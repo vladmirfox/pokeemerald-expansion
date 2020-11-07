@@ -4984,7 +4984,12 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     }
     else if (gBattleMoves[move].effect == EFFECT_JUDGMENT)
     {
-        // TODO:
+        #ifdef IS_ITEM_PLATE
+            if (!(IS_ITEM_PLATE(gBattleMons[battlerAtk].item)))
+                gBattleStruct->dynamicMoveType = TYPE_NORMAL;
+            else
+                gBattleStruct->dynamicMoveType = ItemId_GetSecondaryId(gBattleMons[battlerAtk].item) | 0x80;
+        #endif
     }
     else if (gBattleMoves[move].effect == EFFECT_REVELATION_DANCE)
     {
