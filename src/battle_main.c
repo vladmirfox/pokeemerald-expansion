@@ -4989,6 +4989,8 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
                 gBattleStruct->dynamicMoveType = TYPE_NORMAL;
             else
                 gBattleStruct->dynamicMoveType = ItemId_GetSecondaryId(gBattleMons[battlerAtk].item) | 0x80;
+        #else
+            #warning "EFFECT_JUDGMENT won't work properly without Item Expansion installed."
         #endif
     }
     else if (gBattleMoves[move].effect == EFFECT_REVELATION_DANCE)
