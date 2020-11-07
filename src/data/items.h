@@ -5749,9 +5749,9 @@ const struct Item gItems[] =
         .price = 200,
         .holdEffect = HOLD_EFFECT_GRACIDEA,
         .description = sGracideaDesc,
-        .pocket = POCKET_ITEMS,
-        .type = 4,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Gracidea,
         .secondaryId = 0,
     },
 
