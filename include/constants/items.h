@@ -701,4 +701,7 @@
 // Check if the item is one that can be used on a Pokemon.
 #define ITEM_HAS_EFFECT(item) ((item) >= ITEM_POTION && (item) <= LAST_BERRY_INDEX)
 
+// Check if the item is a Plate.
+#define IS_ITEM_PLATE(item) ((item) >= ITEM_INSECT_PLATE && (item) <= ITEM_SPLASH_PLATE)
+
 #endif  // GUARD_CONSTANTS_ITEMS_H

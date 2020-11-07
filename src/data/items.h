@@ -6004,7 +6004,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_FIRE,
     },
 
     [ITEM_SPLASH_PLATE] =
@@ -6018,7 +6018,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_WATER,
     },
 
     [ITEM_ZAP_PLATE] =
@@ -6032,7 +6032,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_ELECTRIC,
     },
 
     [ITEM_MEADOW_PLATE] =
@@ -6046,7 +6046,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_GRASS,
     },
 
     [ITEM_ICICLE_PLATE] =
@@ -6060,7 +6060,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_ICE,
     },
 
     [ITEM_FIST_PLATE] =
@@ -6074,7 +6074,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_FIGHTING,
     },
 
     [ITEM_TOXIC_PLATE] =
@@ -6088,7 +6088,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_POISON,
     },
 
     [ITEM_EARTH_PLATE] =
@@ -6102,7 +6102,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_GROUND,
     },
 
     [ITEM_SKY_PLATE] =
@@ -6116,7 +6116,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_FLYING,
     },
 
     [ITEM_MIND_PLATE] =
@@ -6130,7 +6130,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_PSYCHIC,
     },
 
     [ITEM_INSECT_PLATE] =
@@ -6144,7 +6144,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_BUG,
     },
 
     [ITEM_STONE_PLATE] =
@@ -6158,7 +6158,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_ROCK,
     },
 
     [ITEM_SPOOKY_PLATE] =
@@ -6172,7 +6172,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_GHOST,
     },
 
     [ITEM_DRACO_PLATE] =
@@ -6186,7 +6186,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_DRAGON,
     },
 
     [ITEM_DREAD_PLATE] =
@@ -6200,7 +6200,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_DARK,
     },
 
     [ITEM_IRON_PLATE] =
@@ -6214,7 +6214,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_STEEL,
     },
 
     [ITEM_EVIOLITE] =
@@ -6726,7 +6726,7 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = 4,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 0,
+        .secondaryId = TYPE_FAIRY,
     },
 
     [ITEM_SAFETY_GOGGLES] =
