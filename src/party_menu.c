@@ -406,7 +406,7 @@ static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
 static bool8 SetUpFieldMove_Dive(void);
-void SetArceusFormBasedOnHeldPlate(struct Pokemon *mon);
+void SetArceusForm(struct Pokemon *mon);
 
 // static const data
 #include "data/pokemon/tutor_learnsets.h"
@@ -1735,7 +1735,7 @@ static void GiveItemToMon(struct Pokemon *mon, u16 item)
     itemBytes[0] = item;
     itemBytes[1] = item >> 8;
     SetMonData(mon, MON_DATA_HELD_ITEM, itemBytes);
-    SetArceusFormBasedOnHeldPlate(&gPlayerParty[gPartyMenu.slotId]);
+    SetArceusForm(&gPlayerParty[gPartyMenu.slotId]);
 }
 
 static u8 TryTakeMonItem(struct Pokemon* mon)
@@ -1749,7 +1749,7 @@ static u8 TryTakeMonItem(struct Pokemon* mon)
 
     item = ITEM_NONE;
     SetMonData(mon, MON_DATA_HELD_ITEM, &item);
-    SetArceusFormBasedOnHeldPlate(&gPlayerParty[gPartyMenu.slotId]);
+    SetArceusForm(&gPlayerParty[gPartyMenu.slotId]);
     return 2;
 }
 
@@ -6461,7 +6461,7 @@ void IsLastMonThatKnowsSurf(void)
     }
 }
 
-void SetArceusFormBasedOnHeldPlate(struct Pokemon *mon)
+void SetArceusForm(struct Pokemon *mon)
 {
 // This function relies on the item_expansion and pokemon_expansion branches to work.
 #if defined(ITEM_EXPANSION) && defined(POKEMON_EXPANSION)
