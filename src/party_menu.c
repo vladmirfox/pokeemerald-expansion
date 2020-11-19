@@ -6363,7 +6363,7 @@ void IsLastMonThatKnowsSurf(void)
 
 void SetArceusForm(struct Pokemon *mon)
 {
-#if defined(ITEM_EXPANSION) && defined(POKEMON_EXPANSION)
+#ifdef POKEMON_EXPANSION
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
     u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM);
     u16 ability = GetAbilityBySpecies(species, abilityNum);

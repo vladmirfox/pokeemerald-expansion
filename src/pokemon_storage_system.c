@@ -6778,7 +6778,7 @@ static void sub_80CEBDC(void)
 
 u16 SetArceusFormPSS(struct BoxPokemon *boxMon)
 {
-#if defined(ITEM_EXPANSION) && defined(POKEMON_EXPANSION)
+#ifdef POKEMON_EXPANSION
     u16 species = sPSSData->cursorMonSpecies = GetMonData(boxMon, MON_DATA_SPECIES);
     u8 abilityNum = GetMonData(boxMon, MON_DATA_ABILITY_NUM);
     u16 ability = GetAbilityBySpecies(species, abilityNum);
@@ -6955,7 +6955,7 @@ static void SetCursorMonData(void *pokemon, u8 mode)
         if (sPSSData->cursorMonSpecies == SPECIES_NIDORAN_F || sPSSData->cursorMonSpecies == SPECIES_NIDORAN_M)
             gender = MON_GENDERLESS;
 
-    #if defined(ITEM_EXPANSION) && defined(POKEMON_EXPANSION)
+    #ifdef POKEMON_EXPANSION
         if ((species == SPECIES_ARCEUS
          || (species >= SPECIES_ARCEUS_FIGHTING && species <= SPECIES_ARCEUS_FAIRY))
          && ability == ABILITY_MULTITYPE
