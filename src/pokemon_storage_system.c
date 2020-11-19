@@ -41,6 +41,8 @@
 #include "constants/moves.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/abilities.h"
+#include "constants/hold_effects.h"
 
 struct WallpaperTable
 {
@@ -713,6 +715,7 @@ static void sub_80D2A90(struct UnkStruct_2000020 *arg0, struct UnkStruct_2000028
 static void sub_80D2AA4(void);
 static void sub_80D2B88(struct UnkStruct_2000028 *unkStruct);
 static void sub_80D2C1C(struct UnkStruct_2000028 *unkStruct);
+u16 SetArceusFormPSS(struct BoxPokemon *boxMon);
 
 // static const rom data
 static const struct PSS_MenuStringPtrs gUnknown_085716C0[] =
@@ -6773,6 +6776,90 @@ static void sub_80CEBDC(void)
         sub_80CEB40();
 }
 
+u16 SetArceusFormPSS(struct BoxPokemon *boxMon)
+{
+#if defined(ITEM_EXPANSION) && defined(POKEMON_EXPANSION)
+    u16 species = sPSSData->cursorMonSpecies = GetMonData(boxMon, MON_DATA_SPECIES);
+    u8 abilityNum = GetMonData(boxMon, MON_DATA_ABILITY_NUM);
+    u16 ability = GetAbilityBySpecies(species, abilityNum);
+    u16 item = GetMonData(boxMon, MON_DATA_HELD_ITEM);
+    u8 holdEffect = ItemId_GetHoldEffect(item);
+    u16 forme;
+
+    if ((species == SPECIES_ARCEUS || (species >= SPECIES_ARCEUS_FIGHTING && species <= SPECIES_ARCEUS_FAIRY))
+     && ability == ABILITY_MULTITYPE)
+    {
+        if (holdEffect == HOLD_EFFECT_PLATE)
+        {
+            switch (ItemId_GetSecondaryId(item))
+            {
+                case TYPE_FIRE:
+                    forme = SPECIES_ARCEUS_FIRE;
+                    break;
+                case TYPE_WATER:
+                    forme = SPECIES_ARCEUS_WATER;
+                    break;
+                case TYPE_ELECTRIC:
+                    forme = SPECIES_ARCEUS_ELECTRIC;
+                    break;
+                case TYPE_GRASS:
+                    forme = SPECIES_ARCEUS_GRASS;
+                    break;
+                case TYPE_ICE:
+                    forme = SPECIES_ARCEUS_ICE;
+                    break;
+                case TYPE_FIGHTING:
+                    forme = SPECIES_ARCEUS_FIGHTING;
+                    break;
+                case TYPE_POISON:
+                    forme = SPECIES_ARCEUS_POISON;
+                    break;
+                case TYPE_GROUND:
+                    forme = SPECIES_ARCEUS_GROUND;
+                    break;
+                case TYPE_FLYING:
+                    forme = SPECIES_ARCEUS_FLYING;
+                    break;
+                case TYPE_PSYCHIC:
+                    forme = SPECIES_ARCEUS_PSYCHIC;
+                    break;
+                case TYPE_BUG:
+                    forme = SPECIES_ARCEUS_BUG;
+                    break;
+                case TYPE_ROCK:
+                    forme = SPECIES_ARCEUS_ROCK;
+                    break;
+                case TYPE_GHOST:
+                    forme = SPECIES_ARCEUS_GHOST;
+                    break;
+                case TYPE_DRAGON:
+                    forme = SPECIES_ARCEUS_DRAGON;
+                    break;
+                case TYPE_DARK:
+                    forme = SPECIES_ARCEUS_DARK;
+                    break;
+                case TYPE_STEEL:
+                    forme = SPECIES_ARCEUS_STEEL;
+                    break;
+                case TYPE_FAIRY:
+                    forme = SPECIES_ARCEUS_FAIRY;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            forme = SPECIES_ARCEUS;
+        }
+    }
+
+    SetBoxMonData(boxMon, MON_DATA_SPECIES, &forme);
+
+    return GetMonData(boxMon, MON_DATA_SPECIES);
+#endif
+}
+
 static void SetCursorMonData(void *pokemon, u8 mode)
 {
     u8 *txtPtr;
@@ -6857,8 +6944,31 @@ static void SetCursorMonData(void *pokemon, u8 mode)
     }
     else
     {
+        struct BoxPokemon *boxMon = (struct BoxPokemon *)pokemon;
+        u16 species = sPSSData->cursorMonSpecies;
+        u32 otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
+        u8 abilityNum = GetMonData(boxMon, MON_DATA_ABILITY_NUM);
+        u16 ability = GetAbilityBySpecies(species, abilityNum);
+        u16 item = GetMonData(boxMon, MON_DATA_HELD_ITEM);
+        u8 holdEffect = ItemId_GetHoldEffect(item);
+
         if (sPSSData->cursorMonSpecies == SPECIES_NIDORAN_F || sPSSData->cursorMonSpecies == SPECIES_NIDORAN_M)
             gender = MON_GENDERLESS;
+
+    #if defined(ITEM_EXPANSION) && defined(POKEMON_EXPANSION)
+        if ((species == SPECIES_ARCEUS
+         || (species >= SPECIES_ARCEUS_FIGHTING && species <= SPECIES_ARCEUS_FAIRY))
+         && ability == ABILITY_MULTITYPE
+         && holdEffect == HOLD_EFFECT_PLATE)
+        {
+            SetArceusFormPSS(pokemon);
+            sPSSData->cursorMonSpecies = GetMonData(pokemon, MON_DATA_SPECIES2);
+            sPSSData->cursorMonPalette = GetMonSpritePalFromSpeciesAndPersonality(sPSSData->cursorMonSpecies, otId, sPSSData->cursorMonPersonality);
+            LoadCursorMonGfx(sPSSData->cursorMonSpecies, sPSSData->cursorMonPersonality);
+            sub_80CA65C();
+            ScheduleBgCopyTilemapToVram(0);
+        }
+    #endif
 
         StringCopyPadded(sPSSData->cursorMonNickText, sPSSData->cursorMonNick, CHAR_SPACE, 5);
 
