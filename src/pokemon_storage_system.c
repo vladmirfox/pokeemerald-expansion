@@ -6783,12 +6783,16 @@ void SetArceusFormPSS(struct BoxPokemon *boxMon)
 #ifdef POKEMON_EXPANSION
     u16 species = GetMonData(boxMon, MON_DATA_SPECIES);
     u16 forme;
+    u8 abilityNum = GetMonData(boxMon, MON_DATA_ABILITY_NUM);
+    u16 ability = GetAbilityBySpecies(species, abilityNum);
 
-    if (species == SPECIES_ARCEUS
+    if ((species == SPECIES_ARCEUS
      || (species >= SPECIES_ARCEUS_FIGHTING && species <= SPECIES_ARCEUS_FAIRY))
+     && ability == ABILITY_MULTITYPE)
     {
         forme = GetArceusFormPSS(boxMon);
         SetBoxMonData(boxMon, MON_DATA_SPECIES, &forme);
+        UpdateSpeciesSpritePSS(boxMon);
     }
 #endif
 }
@@ -6936,18 +6940,7 @@ static void SetCursorMonData(void *pokemon, u8 mode)
     #ifdef POKEMON_EXPANSION
         if (sPSSData->cursorMonSpecies == SPECIES_ARCEUS
          || (sPSSData->cursorMonSpecies >= SPECIES_ARCEUS_FIGHTING && sPSSData->cursorMonSpecies <= SPECIES_ARCEUS_FAIRY))
-        {
-            struct BoxPokemon *boxMon = (struct BoxPokemon *)pokemon;
-            u16 species = sPSSData->cursorMonSpecies;
-            u8 abilityNum = GetMonData(boxMon, MON_DATA_ABILITY_NUM);
-            u16 ability = GetAbilityBySpecies(species, abilityNum);
-         
-            if (ability == ABILITY_MULTITYPE)
-            {
-                SetArceusFormPSS(pokemon);
-                UpdateSpeciesSpritePSS(pokemon);
-            }
-        }
+            SetArceusFormPSS(pokemon);
     #endif
 
         StringCopyPadded(sPSSData->cursorMonNickText, sPSSData->cursorMonNick, CHAR_SPACE, 5);

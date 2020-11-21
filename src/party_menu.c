@@ -6367,9 +6367,12 @@ void SetArceusForm(struct Pokemon *mon)
 #ifdef POKEMON_EXPANSION
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
     u16 forme;
+    u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM);
+    u16 ability = GetAbilityBySpecies(species, abilityNum);
 
-    if (species == SPECIES_ARCEUS
+    if ((species == SPECIES_ARCEUS
      || (species >= SPECIES_ARCEUS_FIGHTING && species <= SPECIES_ARCEUS_FAIRY))
+     && ability == ABILITY_MULTITYPE)
     {
         forme = GetArceusForm(mon);
         SetMonData(mon, MON_DATA_SPECIES, &forme);
