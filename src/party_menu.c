@@ -407,6 +407,7 @@ static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
 static bool8 SetUpFieldMove_Dive(void);
 void SetArceusForm(struct Pokemon *mon);
+u16 GetCurrentArceusForm(struct Pokemon *mon);
 
 // static const data
 #include "data/pokemon/tutor_learnsets.h"
@@ -6365,81 +6366,67 @@ void SetArceusForm(struct Pokemon *mon)
 {
 #ifdef POKEMON_EXPANSION
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
-    u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM);
-    u16 ability = GetAbilityBySpecies(species, abilityNum);
-    u16 item = GetMonData(mon, MON_DATA_HELD_ITEM);
-    u8 holdEffect = ItemId_GetHoldEffect(item);
     u16 forme;
 
-    if ((species == SPECIES_ARCEUS || (species >= SPECIES_ARCEUS_FIGHTING && species <= SPECIES_ARCEUS_FAIRY))
-     && ability == ABILITY_MULTITYPE)
+    if (species == SPECIES_ARCEUS
+     || (species >= SPECIES_ARCEUS_FIGHTING && species <= SPECIES_ARCEUS_FAIRY))
     {
-        if (holdEffect == HOLD_EFFECT_PLATE)
+        forme = GetCurrentArceusForm(mon);
+        SetMonData(mon, MON_DATA_SPECIES, &forme);
+        CalculateMonStats(mon);
+    }
+#endif
+}
+
+u16 GetCurrentArceusForm(struct Pokemon *mon)
+{
+#ifdef POKEMON_EXPANSION
+    u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+    u8 holdEffect = ItemId_GetHoldEffect(item);
+
+    if (holdEffect == HOLD_EFFECT_PLATE)
+    {
+        switch (ItemId_GetSecondaryId(item))
         {
-            switch (ItemId_GetSecondaryId(item))
-            {
-                case TYPE_FIRE:
-                    forme = SPECIES_ARCEUS_FIRE;
-                    break;
-                case TYPE_WATER:
-                    forme = SPECIES_ARCEUS_WATER;
-                    break;
-                case TYPE_ELECTRIC:
-                    forme = SPECIES_ARCEUS_ELECTRIC;
-                    break;
-                case TYPE_GRASS:
-                    forme = SPECIES_ARCEUS_GRASS;
-                    break;
-                case TYPE_ICE:
-                    forme = SPECIES_ARCEUS_ICE;
-                    break;
-                case TYPE_FIGHTING:
-                    forme = SPECIES_ARCEUS_FIGHTING;
-                    break;
-                case TYPE_POISON:
-                    forme = SPECIES_ARCEUS_POISON;
-                    break;
-                case TYPE_GROUND:
-                    forme = SPECIES_ARCEUS_GROUND;
-                    break;
-                case TYPE_FLYING:
-                    forme = SPECIES_ARCEUS_FLYING;
-                    break;
-                case TYPE_PSYCHIC:
-                    forme = SPECIES_ARCEUS_PSYCHIC;
-                    break;
-                case TYPE_BUG:
-                    forme = SPECIES_ARCEUS_BUG;
-                    break;
-                case TYPE_ROCK:
-                    forme = SPECIES_ARCEUS_ROCK;
-                    break;
-                case TYPE_GHOST:
-                    forme = SPECIES_ARCEUS_GHOST;
-                    break;
-                case TYPE_DRAGON:
-                    forme = SPECIES_ARCEUS_DRAGON;
-                    break;
-                case TYPE_DARK:
-                    forme = SPECIES_ARCEUS_DARK;
-                    break;
-                case TYPE_STEEL:
-                    forme = SPECIES_ARCEUS_STEEL;
-                    break;
-                case TYPE_FAIRY:
-                    forme = SPECIES_ARCEUS_FAIRY;
-                    break;
-                default:
-                    break;
-            }
-        }
-        else
-        {
-            forme = SPECIES_ARCEUS;
+            case TYPE_FIRE:
+                return SPECIES_ARCEUS_FIRE;
+            case TYPE_WATER:
+                return SPECIES_ARCEUS_WATER;
+            case TYPE_ELECTRIC:
+                return SPECIES_ARCEUS_ELECTRIC;
+            case TYPE_GRASS:
+                return SPECIES_ARCEUS_GRASS;
+            case TYPE_ICE:
+                return SPECIES_ARCEUS_ICE;
+            case TYPE_FIGHTING:
+                return SPECIES_ARCEUS_FIGHTING;
+            case TYPE_POISON:
+                return SPECIES_ARCEUS_POISON;
+            case TYPE_GROUND:
+                return SPECIES_ARCEUS_GROUND;
+            case TYPE_FLYING:
+                return SPECIES_ARCEUS_FLYING;
+            case TYPE_PSYCHIC:
+                return SPECIES_ARCEUS_PSYCHIC;
+            case TYPE_BUG:
+                return SPECIES_ARCEUS_BUG;
+            case TYPE_ROCK:
+                return SPECIES_ARCEUS_ROCK;
+            case TYPE_GHOST:
+                return SPECIES_ARCEUS_GHOST;
+            case TYPE_DRAGON:
+                return SPECIES_ARCEUS_DRAGON;
+            case TYPE_DARK:
+                return SPECIES_ARCEUS_DARK;
+            case TYPE_STEEL:
+                return SPECIES_ARCEUS_STEEL;
+            case TYPE_FAIRY:
+                return SPECIES_ARCEUS_FAIRY;
         }
     }
-
-    SetMonData(mon, MON_DATA_SPECIES, &forme);
-    CalculateMonStats(mon);
+    else
+    {
+        return SPECIES_ARCEUS;
+    }
 #endif
 }
