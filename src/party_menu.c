@@ -407,7 +407,7 @@ static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
 static bool8 SetUpFieldMove_Dive(void);
 void SetArceusForm(struct Pokemon *mon);
-u16 GetCurrentArceusForm(struct Pokemon *mon);
+u16 GetArceusForm(struct Pokemon *mon);
 
 // static const data
 #include "data/pokemon/tutor_learnsets.h"
@@ -6371,14 +6371,14 @@ void SetArceusForm(struct Pokemon *mon)
     if (species == SPECIES_ARCEUS
      || (species >= SPECIES_ARCEUS_FIGHTING && species <= SPECIES_ARCEUS_FAIRY))
     {
-        forme = GetCurrentArceusForm(mon);
+        forme = GetArceusForm(mon);
         SetMonData(mon, MON_DATA_SPECIES, &forme);
         CalculateMonStats(mon);
     }
 #endif
 }
 
-u16 GetCurrentArceusForm(struct Pokemon *mon)
+u16 GetArceusForm(struct Pokemon *mon)
 {
 #ifdef POKEMON_EXPANSION
     u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);

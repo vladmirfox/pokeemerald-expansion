@@ -716,7 +716,7 @@ static void sub_80D2AA4(void);
 static void sub_80D2B88(struct UnkStruct_2000028 *unkStruct);
 static void sub_80D2C1C(struct UnkStruct_2000028 *unkStruct);
 void SetArceusFormPSS(struct BoxPokemon *boxMon);
-u16 GetCurrentArceusFormPSS(struct BoxPokemon *boxMon);
+u16 GetArceusFormPSS(struct BoxPokemon *boxMon);
 void UpdateSpeciesSpritePSS(struct BoxPokemon *boxmon);
 
 // static const rom data
@@ -6787,13 +6787,13 @@ void SetArceusFormPSS(struct BoxPokemon *boxMon)
     if (species == SPECIES_ARCEUS
      || (species >= SPECIES_ARCEUS_FIGHTING && species <= SPECIES_ARCEUS_FAIRY))
     {
-        forme = GetCurrentArceusFormPSS(boxMon);
+        forme = GetArceusFormPSS(boxMon);
         SetBoxMonData(boxMon, MON_DATA_SPECIES, &forme);
     }
 #endif
 }
 
-u16 GetCurrentArceusFormPSS(struct BoxPokemon *boxMon)
+u16 GetArceusFormPSS(struct BoxPokemon *boxMon)
 {
 #ifdef POKEMON_EXPANSION
     u16 item = GetMonData(boxMon, MON_DATA_HELD_ITEM, NULL);
@@ -6930,25 +6930,23 @@ static void SetCursorMonData(void *pokemon, u8 mode)
     }
     else
     {
-        struct BoxPokemon *boxMon = (struct BoxPokemon *)pokemon;
-        u16 species = sPSSData->cursorMonSpecies;
-        u32 otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
-        u8 abilityNum = GetMonData(boxMon, MON_DATA_ABILITY_NUM);
-        u16 ability = GetAbilityBySpecies(species, abilityNum);
-        u16 item = GetMonData(boxMon, MON_DATA_HELD_ITEM);
-        u8 holdEffect = ItemId_GetHoldEffect(item);
-
         if (sPSSData->cursorMonSpecies == SPECIES_NIDORAN_F || sPSSData->cursorMonSpecies == SPECIES_NIDORAN_M)
             gender = MON_GENDERLESS;
 
     #ifdef POKEMON_EXPANSION
-        if ((species == SPECIES_ARCEUS
-         || (species >= SPECIES_ARCEUS_FIGHTING && species <= SPECIES_ARCEUS_FAIRY))
-         && ability == ABILITY_MULTITYPE
-         && holdEffect == HOLD_EFFECT_PLATE)
+        if (sPSSData->cursorMonSpecies == SPECIES_ARCEUS
+         || (sPSSData->cursorMonSpecies >= SPECIES_ARCEUS_FIGHTING && sPSSData->cursorMonSpecies <= SPECIES_ARCEUS_FAIRY))
         {
-            SetArceusFormPSS(pokemon);
-            UpdateSpeciesSpritePSS(pokemon);
+            struct BoxPokemon *boxMon = (struct BoxPokemon *)pokemon;
+            u16 species = sPSSData->cursorMonSpecies;
+            u8 abilityNum = GetMonData(boxMon, MON_DATA_ABILITY_NUM);
+            u16 ability = GetAbilityBySpecies(species, abilityNum);
+         
+            if (ability == ABILITY_MULTITYPE)
+            {
+                SetArceusFormPSS(pokemon);
+                UpdateSpeciesSpritePSS(pokemon);
+            }
         }
     #endif
 
