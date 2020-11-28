@@ -6385,51 +6385,45 @@ u16 GetArceusForm(struct Pokemon *mon)
 {
 #ifdef POKEMON_EXPANSION
     u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
-    u8 holdEffect = ItemId_GetHoldEffect(item);
 
-    if (holdEffect == HOLD_EFFECT_PLATE)
+    switch (item)
     {
-        switch (ItemId_GetSecondaryId(item))
-        {
-            case TYPE_FIRE:
-                return SPECIES_ARCEUS_FIRE;
-            case TYPE_WATER:
-                return SPECIES_ARCEUS_WATER;
-            case TYPE_ELECTRIC:
-                return SPECIES_ARCEUS_ELECTRIC;
-            case TYPE_GRASS:
-                return SPECIES_ARCEUS_GRASS;
-            case TYPE_ICE:
-                return SPECIES_ARCEUS_ICE;
-            case TYPE_FIGHTING:
-                return SPECIES_ARCEUS_FIGHTING;
-            case TYPE_POISON:
-                return SPECIES_ARCEUS_POISON;
-            case TYPE_GROUND:
-                return SPECIES_ARCEUS_GROUND;
-            case TYPE_FLYING:
-                return SPECIES_ARCEUS_FLYING;
-            case TYPE_PSYCHIC:
-                return SPECIES_ARCEUS_PSYCHIC;
-            case TYPE_BUG:
-                return SPECIES_ARCEUS_BUG;
-            case TYPE_ROCK:
-                return SPECIES_ARCEUS_ROCK;
-            case TYPE_GHOST:
-                return SPECIES_ARCEUS_GHOST;
-            case TYPE_DRAGON:
-                return SPECIES_ARCEUS_DRAGON;
-            case TYPE_DARK:
-                return SPECIES_ARCEUS_DARK;
-            case TYPE_STEEL:
-                return SPECIES_ARCEUS_STEEL;
-            case TYPE_FAIRY:
-                return SPECIES_ARCEUS_FAIRY;
-        }
-    }
-    else
-    {
-        return SPECIES_ARCEUS;
+        case ITEM_FLAME_PLATE:
+            return SPECIES_ARCEUS_FIRE;
+        case ITEM_SPLASH_PLATE:
+            return SPECIES_ARCEUS_WATER;
+        case ITEM_ZAP_PLATE:
+            return SPECIES_ARCEUS_ELECTRIC;
+        case ITEM_MEADOW_PLATE:
+            return SPECIES_ARCEUS_GRASS;
+        case ITEM_ICICLE_PLATE:
+            return SPECIES_ARCEUS_ICE;
+        case ITEM_FIST_PLATE:
+            return SPECIES_ARCEUS_FIGHTING;
+        case ITEM_TOXIC_PLATE:
+            return SPECIES_ARCEUS_POISON;
+        case ITEM_EARTH_PLATE:
+            return SPECIES_ARCEUS_GROUND;
+        case ITEM_SKY_PLATE:
+            return SPECIES_ARCEUS_FLYING;
+        case ITEM_MIND_PLATE:
+            return SPECIES_ARCEUS_PSYCHIC;
+        case ITEM_INSECT_PLATE:
+            return SPECIES_ARCEUS_BUG;
+        case ITEM_STONE_PLATE:
+            return SPECIES_ARCEUS_ROCK;
+        case ITEM_SPOOKY_PLATE:
+            return SPECIES_ARCEUS_GHOST;
+        case ITEM_DRACO_PLATE:
+            return SPECIES_ARCEUS_DRAGON;
+        case ITEM_DREAD_PLATE:
+            return SPECIES_ARCEUS_DARK;
+        case ITEM_IRON_PLATE:
+            return SPECIES_ARCEUS_STEEL;
+        case ITEM_PIXIE_PLATE:
+            return SPECIES_ARCEUS_FAIRY;
+        default:
+            return SPECIES_ARCEUS;
     }
 #endif
 }
