@@ -5280,7 +5280,7 @@ void ItemUseCB_Gracidea(u8 taskId, TaskFunc task)
         struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
         u16 item = gSpecialVar_ItemId;
         u16 species = GetMonData(mon, MON_DATA_SPECIES);
-        u16 newSpecies;
+        u16 targetSpecies;
 
         RtcCalcLocalTime();
 
@@ -5291,10 +5291,10 @@ void ItemUseCB_Gracidea(u8 taskId, TaskFunc task)
             gPartyMenuUseExitCallback = TRUE;
             PlaySE(SE_USE_ITEM);
             PlayCry2(SPECIES_SHAYMIN_SKY, 0, 0x7D, 0xA);
-            newSpecies = SPECIES_SHAYMIN_SKY;
-            SetMonData(mon, MON_DATA_SPECIES, &newSpecies);
+            targetSpecies = SPECIES_SHAYMIN_SKY;
+            SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
             FreeAndDestroyMonIconSprite(&gSprites[sPartyMenuBoxes[gPartyMenu.slotId].monSpriteId]);
-            CreatePartyMonIconSpriteParameterized(newSpecies, GetMonData(mon, MON_DATA_PERSONALITY), &sPartyMenuBoxes[gPartyMenu.slotId], 0, FALSE);
+            CreatePartyMonIconSpriteParameterized(targetSpecies, GetMonData(mon, MON_DATA_PERSONALITY), &sPartyMenuBoxes[gPartyMenu.slotId], 0, FALSE);
             CalculateMonStats(mon);
             GetMonNickname(mon, gStringVar1);
             StringExpandPlaceholders(gStringVar4, ChangedForm);
