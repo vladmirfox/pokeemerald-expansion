@@ -413,7 +413,7 @@ static bool8 SetUpFieldMove_Dive(void);
 #include "data/party_menu.h"
 
 // Text string printed when changing the form of certain species like Shaymin and Giratina
-const u8 ChangedForm[] = _("{STR_VAR_1} changed Forme!{PAUSE_UNTIL_PRESS}");
+const u8 ChangedForm[] = _("{STR_VAR_1} transformed!{PAUSE_UNTIL_PRESS}");
 
 // code
 static void InitPartyMenu(u8 menuType, u8 layout, u8 partyAction, bool8 keepCursorPos, u8 messageId, TaskFunc task, MainCallback callback)
@@ -5281,7 +5281,7 @@ void ItemUseCB_FormChangeItem(u8 taskId, TaskFunc task)
     switch (item)
     {
         case ITEM_GRACIDEA:
-            TryChangeShayminForm(taskId,task);
+            TryChangeShayminForm(taskId, task);
             return;
         default:
             gPartyMenuUseExitCallback = FALSE;
