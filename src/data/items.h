@@ -5747,7 +5747,6 @@ const struct Item gItems[] =
         .name = _("Gracidea"),
         .itemId = ITEM_GRACIDEA,
         .price = 200,
-        .holdEffect = HOLD_EFFECT_GRACIDEA,
         .description = sGracideaDesc,
         .pocket = POCKET_KEY_ITEMS,
         .type = 1,
