@@ -194,9 +194,9 @@ void ItemUseOutOfBattle_Mail(u8 taskId)
     Task_FadeAndCloseBagMenu(taskId);
 }
 
-void ItemUseOutOfBattle_Gracidea(u8 taskId)
+void ItemUseOutOfBattle_FormChangeItem(u8 taskId)
 {
-    gItemUseCB = ItemUseCB_Gracidea;
+    gItemUseCB = ItemUseCB_FormChangeItem;
     SetUpItemUseCallback(taskId);
 }
 

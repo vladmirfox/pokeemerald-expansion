@@ -5750,7 +5750,7 @@ const struct Item gItems[] =
         .description = sGracideaDesc,
         .pocket = POCKET_KEY_ITEMS,
         .type = 1,
-        .fieldUseFunc = ItemUseOutOfBattle_Gracidea,
+        .fieldUseFunc = ItemUseOutOfBattle_FormChangeItem,
         .secondaryId = 0,
     },
 
