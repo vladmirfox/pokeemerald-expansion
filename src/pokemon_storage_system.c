@@ -9969,11 +9969,12 @@ static void sub_80D2C1C(struct UnkStruct_2000028 *unkStruct)
 
 void UpdateSpeciesSpritePSS(struct BoxPokemon *boxMon)
 {
+    u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
     u32 otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
+    u32 pid = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
 
-    sPSSData->cursorMonSpecies = GetMonData(boxMon, MON_DATA_SPECIES2);
-    sPSSData->cursorMonPalette = GetMonSpritePalFromSpeciesAndPersonality(sPSSData->cursorMonSpecies, otId, sPSSData->cursorMonPersonality);
-    LoadCursorMonGfx(sPSSData->cursorMonSpecies, sPSSData->cursorMonPersonality);
-    sub_80CA65C();
-    ScheduleBgCopyTilemapToVram(0);
+    // Update front sprite
+    sPSSData->cursorMonSpecies = species;
+    sPSSData->cursorMonPalette = GetMonSpritePalFromSpeciesAndPersonality(species, otId, pid);
+    LoadCursorMonGfx(species, pid);
 }
