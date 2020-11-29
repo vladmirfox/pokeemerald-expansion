@@ -6799,7 +6799,7 @@ void SetArceusFormPSS(struct BoxPokemon *boxMon)
 
 u16 GetArceusFormPSS(struct BoxPokemon *boxMon)
 {
-#ifdef POKEMON_EXPANSION
+#ifdef defined (ITEM_EXPANSION) && defined (POKEMON_EXPANSION)
     u16 item = GetMonData(boxMon, MON_DATA_HELD_ITEM, NULL);
 
     switch (item)

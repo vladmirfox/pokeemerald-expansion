@@ -6383,7 +6383,7 @@ void SetArceusForm(struct Pokemon *mon)
 
 u16 GetArceusForm(struct Pokemon *mon)
 {
-#ifdef POKEMON_EXPANSION
+#ifdef defined (ITEM_EXPANSION) && defined (POKEMON_EXPANSION)
     u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
 
     switch (item)
