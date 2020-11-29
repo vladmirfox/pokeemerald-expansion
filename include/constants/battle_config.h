@@ -38,31 +38,31 @@
 #endif
 
 // Items with peculiar battle effects.
-#ifndef ITEM_EXPANSION
-    #define ITEM_CHOPLE_BERRY   177
-    #define ITEM_KEBIA_BERRY    178
-    #define ITEM_SHUCA_BERRY    179
-    #define ITEM_COBA_BERRY     180
-    #define ITEM_PAYAPA_BERRY   181
-    #define ITEM_TANGA_BERRY    182
-    #define ITEM_CHARTI_BERRY   183
-    #define ITEM_KASIB_BERRY    184
-    #define ITEM_HABAN_BERRY    185
-    #define ITEM_COLBUR_BERRY   186
-    #define ITEM_BABIRI_BERRY   187
-    #define ITEM_CHILAN_BERRY   188
-    #define ITEM_ROSELI_BERRY   189
-    #define ITEM_MICLE_BERRY    197
-    #define ITEM_CUSTAP_BERRY   199
-    #define ITEM_JABOCA_BERRY   200
-    #define ITEM_ROWAP_BERRY    201
-    #define ITEM_KEE_BERRY      202
-    #define ITEM_MARANGA_BERRY  203
-    #define ITEM_OCCA_BERRY     204
-    #define ITEM_PASSHO_BERRY   205
-    #define ITEM_WACAN_BERRY    206
-    #define ITEM_RINDO_BERRY    207
-    #define ITEM_YACHE_BERRY    208
+#ifndef ITEM_EXPANSION 
+    #define ITEM_OCCA_BERRY     179
+    #define ITEM_PASSHO_BERRY   180
+    #define ITEM_WACAN_BERRY    181
+    #define ITEM_RINDO_BERRY    182
+    #define ITEM_YACHE_BERRY    183
+    #define ITEM_CHOPLE_BERRY   184
+    #define ITEM_KEBIA_BERRY    185
+    #define ITEM_SHUCA_BERRY    186
+    #define ITEM_COBA_BERRY     187
+    #define ITEM_PAYAPA_BERRY   188
+    #define ITEM_TANGA_BERRY    189
+    #define ITEM_CHARTI_BERRY   190
+    #define ITEM_KASIB_BERRY    191
+    #define ITEM_HABAN_BERRY    192
+    #define ITEM_COLBUR_BERRY   193
+    #define ITEM_BABIRI_BERRY   194
+    #define ITEM_CHILAN_BERRY   195
+    #define ITEM_ROSELI_BERRY   196
+    #define ITEM_MICLE_BERRY    204
+    #define ITEM_CUSTAP_BERRY   206
+    #define ITEM_JABOCA_BERRY   207
+    #define ITEM_ROWAP_BERRY    208
+    #define ITEM_KEE_BERRY      209
+    #define ITEM_MARANGA_BERRY  210
     #define ITEM_GRISEOUS_ORB   369
 #endif
 
