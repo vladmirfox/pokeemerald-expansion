@@ -7138,6 +7138,17 @@ static void Cmd_various(void)
         else
             gBattlescriptCurrInstr += 7;
         return;
+    case VARIOUS_CHECK_POLTERGEIST:
+        if(gBattleMons[gActiveBattler].item == ITEM_NONE
+         || gFieldStatuses & STATUS_FIELD_MAGIC_ROOM
+         || GetBattlerAbility(gActiveBattler) == ABILITY_KLUTZ)
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        else
+        {
+            PREPARE_ITEM_BUFFER(gBattleTextBuff1, gBattleMons[gActiveBattler].item);
+            gBattlescriptCurrInstr += 7;
+        }
+        return;
     case VARIOUS_TRY_NO_RETREAT:
         if(gDisableStructs[gActiveBattler].noRetreat)
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);

@@ -1771,6 +1771,11 @@
 	.4byte \ptr
 	.endm
 	
+	.macro checkpoltergeist battler:req, ptr:req
+	various \battler, VARIOUS_CHECK_POLTERGEIST
+	.4byte \ptr
+	.endm
+	
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER \stat | \stages << 3 | \down << 7

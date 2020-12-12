@@ -369,12 +369,22 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectNoRetreat
 	.4byte BattleScript_EffectTarShot
 	.4byte BattleScript_EffectDragonDarts
-	
+	.4byte BattleScript_EffectPoltergiest
+
+BattleScript_EffectPoltergiest:
+	attackcanceler
+	attackstring
+	ppreduce
+	checkpoltergeist BS_TARGET, BattleScript_ButItFailed
+	printstring STRINGID_ABOUTTOUSEPOLTERGEIST
+	waitmessage 0x40
+	goto BattleScript_HitFromCritCalc
+
 BattleScript_EffectDragonDarts:
 	attackcanceler
 	attackstring
 	ppreduce
-	setmultihit 0x2
+	setmultihit 2
 BattleScript_DragonDartsLoop:
 	jumpifhalfword CMP_EQUAL, gChosenMove, MOVE_SLEEP_TALK, BattleScript_DragonDartsAccuracyCheck
 	jumpifstatus BS_ATTACKER, STATUS1_SLEEP, BattleScript_DragonDartsResult
@@ -407,7 +417,7 @@ BattleScript_DragonDartsHitFromAnimation:
 	critmessage
 	waitmessage 0x40
 	resultmessage
-	waitmessage 0x30
+	waitmessage 0x40
 	multihitresultmessage
 	seteffectwithchance
 	printstring STRINGID_EMPTYSTRING3
@@ -424,7 +434,7 @@ BattleScript_DragonDartsTryNextTarget:
 	goto BattleScript_DragonDartsLoop
 BattleScript_DragonDartsResult:
 	resultmessage
-	waitmessage 0x30
+	waitmessage 0x40
 	tryfaintmon BS_TARGET, FALSE, NULL
 	moveendcase MOVEEND_SYNCHRONIZE_TARGET
 	moveendfrom MOVEEND_STATUS_IMMUNITY_ABILITIES

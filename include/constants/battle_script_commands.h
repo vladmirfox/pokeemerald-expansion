@@ -168,6 +168,7 @@
 #define VARIOUS_TRY_NO_RETREAT                  102
 #define VARIOUS_TRY_TAR_SHOT                    103
 #define VARIOUS_TRY_NEXT_DART                   104
+#define VARIOUS_CHECK_POLTERGEIST               105
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
