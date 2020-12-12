@@ -1756,6 +1756,21 @@
 	.4byte \ptr
 	.endm
 	
+	.macro trynoretreat battler:req, ptr:req
+	various \battler, VARIOUS_TRY_NO_RETREAT
+	.4byte \ptr
+	.endm
+	
+	.macro trytarshot battler:req, ptr:req
+	various \battler, VARIOUS_TRY_TAR_SHOT
+	.4byte \ptr
+	.endm
+	
+	.macro trynextdart ptr:req
+	various BS_ATTACKER, VARIOUS_TRY_NEXT_DART
+	.4byte \ptr
+	.endm
+	
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER \stat | \stages << 3 | \down << 7

@@ -10647,7 +10647,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_NO_RETREAT] =
     {
-        .effect = EFFECT_PLACEHOLDER,   //TODO
+        .effect = EFFECT_NO_RETREAT,
         .power = 0,
         .type = TYPE_FIGHTING,
         .accuracy = 0,
@@ -10661,7 +10661,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_TAR_SHOT] =
     {
-        .effect = EFFECT_SPEED_DOWN,
+        .effect = EFFECT_TAR_SHOT,
         .power = 0,
         .type = TYPE_ROCK,
         .accuracy = 100,
@@ -10675,7 +10675,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_MAGIC_POWDER] =
     {
-        .effect = EFFECT_THIRD_TYPE,
+        .effect = EFFECT_SOAK,
         .power = 0,
         .type = TYPE_PSYCHIC,
         .accuracy = 100,
@@ -10690,7 +10690,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_DRAGON_DARTS] =
     {
-        .effect = EFFECT_MULTI_HIT, //TODO
+        .effect = EFFECT_DRAGON_DARTS,
         .power = 50,
         .type = TYPE_DRAGON,
         .accuracy = 100,

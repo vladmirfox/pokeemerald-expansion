@@ -109,6 +109,8 @@ struct DisableStruct
     u8 throatChopTimer;
     u8 usedMoves:4;
     u8 wrapTurns;
+    u8 noRetreat:1;
+    u8 tarShot:1;
 };
 
 struct ProtectStruct
