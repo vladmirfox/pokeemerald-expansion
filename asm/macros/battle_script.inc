@@ -1781,6 +1781,11 @@
 	.4byte \ptr
 	.endm
 
+	.macro cutonethirdhpraisestats ptr:req
+	various BS_ATTACKER, VARIOUS_CUT_1_3_HP_RAISE_STATS
+	.4byte \ptr
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER \stat | \stages << 3 | \down << 7

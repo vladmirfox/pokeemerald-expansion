@@ -7138,6 +7138,34 @@ static void Cmd_various(void)
         else
             gBattlescriptCurrInstr += 7;
         return;
+    case VARIOUS_CUT_1_3_HP_RAISE_STATS:
+        {
+            bool8 atLeastOneStatBoosted = FALSE;
+            bool8 hasContrary = (GetBattlerAbility(gBattlerAttacker) == ABILITY_CONTRARY);
+            u16 hpFraction = gBattleMons[gBattlerAttacker].maxHP / 3;
+            if (hpFraction == 0)
+                hpFraction = 1;
+
+            for(i = 1; i < NUM_STATS; i++)
+            {
+                if(!(gBattleMons[gBattlerAttacker].statStages[i] == MAX_STAT_STAGE ||
+                    (hasContrary && gBattleMons[gBattlerAttacker].statStages[i] == MIN_STAT_STAGE)))
+                {
+                    atLeastOneStatBoosted = TRUE;
+                    break;
+                }
+            }
+            if (atLeastOneStatBoosted && gBattleMons[gBattlerAttacker].hp > hpFraction)
+            {
+                gBattleMoveDamage = hpFraction;
+                gBattlescriptCurrInstr += 7;
+            }
+            else
+            {
+                gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+            }
+        }
+        return;
     case VARIOUS_SET_OCTOLOCK:
         if(gDisableStructs[gActiveBattler].octolock)
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
