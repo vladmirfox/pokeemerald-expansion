@@ -10619,7 +10619,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_JAW_LOCK] =
     {
-        .effect = EFFECT_MEAN_LOOK,
+        .effect = EFFECT_JAW_LOCK,
         .power = 80,
         .type = TYPE_DARK,
         .accuracy = 100,

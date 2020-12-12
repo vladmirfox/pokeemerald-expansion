@@ -365,6 +365,16 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectFairyLock
 	.4byte BattleScript_EffectAllySwitch
 	.4byte BattleScript_EffectSleepHit
+	.4byte BattleScript_EffectJawLock
+
+BattleScript_EffectJawLock:
+	setmoveeffect MOVE_EFFECT_TRAP_BOTH | MOVE_EFFECT_CERTAIN
+	goto BattleScript_EffectHit
+
+BattleScript_BothCanNoLongerEscape::
+	printstring STRINGID_BOTHCANNOLONGERESCAPE
+	waitmessage 0x40
+	return
 
 BattleScript_EffectSleepHit:
 	setmoveeffect MOVE_EFFECT_SLEEP
