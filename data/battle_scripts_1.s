@@ -369,9 +369,43 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectNoRetreat
 	.4byte BattleScript_EffectTarShot
 	.4byte BattleScript_EffectDragonDarts
-	.4byte BattleScript_EffectPoltergiest
+	.4byte BattleScript_EffectPoltergeist
+	.4byte BattleScript_EffectOctolock
 
-BattleScript_EffectPoltergiest:
+BattleScript_EffectOctolock:
+	attackcanceler
+	jumpifsubstituteblocks BattleScript_ButItFailedAtkStringPpReduce
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	setoctolock BS_TARGET, BattleScript_ButItFailed
+	attackanimation
+	waitanimation
+	printstring STRINGID_CANTESCAPEBECAUSEOFCURRENTMOVE
+	waitmessage 0x30
+	goto BattleScript_MoveEnd
+
+BattleScript_OctolockEndTurn::
+	playanimation BS_ATTACKER, B_ANIM_TURN_TRAP, 0
+	jumpifstat BS_TARGET, CMP_EQUAL, STAT_DEF, MIN_STAT_STAGE, BattleScript_OctolockTryLowerSpDef
+	jumpifability BS_TARGET, ABILITY_BIG_PECKS, BattleScript_OctolockTryLowerSpDef
+	setbyte sSTAT_ANIM_PLAYED, FALSE
+	playstatchangeanimation BS_ATTACKER, BIT_SPATK | BIT_SPDEF, STAT_CHANGE_NEGATIVE
+	setstatchanger STAT_DEF, 1, TRUE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_OctolockTryLowerSpDef
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_OctolockTryLowerSpDef
+	printfromtable gStatUpStringIds
+	waitmessage 0x40
+BattleScript_OctolockTryLowerSpDef::
+	setstatchanger STAT_SPDEF, 1, TRUE
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_OctolockEnd2
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x2, BattleScript_OctolockEnd2
+	printfromtable gStatUpStringIds
+	waitmessage 0x40
+BattleScript_OctolockEnd2::
+	end2
+
+BattleScript_EffectPoltergeist:
 	attackcanceler
 	attackstring
 	ppreduce
@@ -447,6 +481,8 @@ BattleScript_EffectTarShot:
 	attackstring
 	ppreduce
 	setstatchanger STAT_SPEED, 1, TRUE
+	attackanimation
+	waitanimation
 	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_TryTarShot
 	setgraphicalstatchangevalues
 	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1

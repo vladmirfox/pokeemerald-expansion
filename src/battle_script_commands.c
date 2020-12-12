@@ -7138,6 +7138,17 @@ static void Cmd_various(void)
         else
             gBattlescriptCurrInstr += 7;
         return;
+    case VARIOUS_SET_OCTOLOCK:
+        if(gDisableStructs[gActiveBattler].octolock)
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        else
+        {
+            gDisableStructs[gActiveBattler].octolock = 1;
+            gBattleMons[gActiveBattler].status2 |= STATUS2_ESCAPE_PREVENTION;
+            gDisableStructs[gActiveBattler].battlerPreventingEscape = gBattlerAttacker;
+            gBattlescriptCurrInstr += 7;
+        }
+        return;
     case VARIOUS_CHECK_POLTERGEIST:
         if(gBattleMons[gActiveBattler].item == ITEM_NONE
          || gFieldStatuses & STATUS_FIELD_MAGIC_ROOM

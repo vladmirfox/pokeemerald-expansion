@@ -352,5 +352,6 @@ extern const u8 BattleScript_CheekPouchActivates[];
 extern const u8 BattleScript_AnnounceAirLockCloudNine[];
 extern const u8 BattleScript_BothCanNoLongerEscape[];
 extern const u8 BattleScript_DragonDartsAccuracyCheck2[];
+extern const u8 BattleScript_OctolockEndTurn[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H
