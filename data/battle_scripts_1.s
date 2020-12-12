@@ -372,6 +372,7 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectPoltergeist
 	.4byte BattleScript_EffectOctolock
 	.4byte BattleScript_EffectClangorousSoul
+	.4byte BattleScript_EffectBoltBeak
 
 BattleScript_EffectClangorousSoul:
 	attackcanceler
@@ -2216,7 +2217,7 @@ BattleScript_EffectChangeTypeOnItem:
 BattleScript_EffectFusionCombo:
 BattleScript_EffectRevelationDance:
 BattleScript_EffectBelch:
-
+BattleScript_EffectBoltBeak:
 BattleScript_HitFromAtkCanceler::
 	attackcanceler
 BattleScript_HitFromAccCheck::
