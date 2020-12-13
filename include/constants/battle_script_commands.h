@@ -35,6 +35,7 @@
 #define sMOVE_EFFECT gBattleScripting + 0x2E
 #define sMULTIHIT_EFFECT gBattleScripting + 0x30
 #define sILLUSION_NICK_HACK gBattleScripting + 0x32
+#define sFIXED_ABILITY_POPUP gBattleScripting + 0x33
 
 #define cMULTISTRING_CHOOSER gBattleCommunication + 5
 
@@ -171,6 +172,7 @@
 #define VARIOUS_CHECK_POLTERGEIST               105
 #define VARIOUS_SET_OCTOLOCK                    106
 #define VARIOUS_CUT_1_3_HP_RAISE_STATS          107
+#define VARIOUS_DESTROY_ABILITY_POPUP           108
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
