@@ -7714,3 +7714,13 @@ BattleScript_AnnounceAirLockCloudNine::
 	waitmessage 0x40
 	call BattleScript_WeatherFormChanges
 	end3
+
+BattleScript_SandSpitActivates::
+	pause 0x20
+	call BattleScript_AbilityPopUp
+	setsandstorm
+	printstring STRINGID_PKMNSXWHIPPEDUPSANDSTORM
+	waitmessage 0x40
+	playanimation BS_BATTLER_0, B_ANIM_SANDSTORM_CONTINUES, NULL
+	call BattleScript_WeatherFormChanges
+	return
