@@ -17,7 +17,7 @@ void ResetTasks(void)
         gTasks[i].prev = i;
         gTasks[i].next = i + 1;
         gTasks[i].priority = -1;
-        memset(gTasks[i].data, 0, sizeof(gTasks[i].data));
+        gTasks[i].data = { 0 }; //Initialize array to 0
     }
 
     gTasks[0].prev = HEAD_SENTINEL;
@@ -35,7 +35,7 @@ u8 CreateTask(TaskFunc func, u8 priority)
             gTasks[i].func = func;
             gTasks[i].priority = priority;
             InsertTask(i);
-            memset(gTasks[i].data, 0, sizeof(gTasks[i].data));
+            gTasks[i].data = { 0 }; //Initialize array to 0
             gTasks[i].isActive = TRUE;
             return i;
         }
@@ -195,6 +195,6 @@ void SetWordTaskArg(u8 taskId, u8 dataElem, u32 value)
 u32 GetWordTaskArg(u8 taskId, u8 dataElem)
 {
     if (dataElem <= TASK_SPACE)
-        return (u16)gTasks[taskId].data[dataElem] | (gTasks[taskId].data[dataElem + 1] << 16);
+        return (gTasks[taskId].data[dataElem + 1] << 16) | ((u16)gTasks[taskId].data[dataElem]);
     return 0;
 }
