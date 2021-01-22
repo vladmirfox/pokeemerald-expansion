@@ -6786,8 +6786,7 @@ void SetArceusFormPSS(struct BoxPokemon *boxMon)
     u8 abilityNum = GetMonData(boxMon, MON_DATA_ABILITY_NUM);
     u16 ability = GetAbilityBySpecies(species, abilityNum);
 
-    if ((species == SPECIES_ARCEUS
-     || (species >= SPECIES_ARCEUS_FIGHTING && species <= SPECIES_ARCEUS_FAIRY))
+    if (GET_BASE_SPECIES_ID(species) == SPECIES_ARCEUS
      && ability == ABILITY_MULTITYPE)
     {
         forme = GetArceusFormPSS(boxMon);
@@ -6799,11 +6798,11 @@ void SetArceusFormPSS(struct BoxPokemon *boxMon)
 
 u16 GetArceusFormPSS(struct BoxPokemon *boxMon)
 {
-#if defined (ITEM_EXPANSION) && defined (POKEMON_EXPANSION)
     u16 item = GetMonData(boxMon, MON_DATA_HELD_ITEM, NULL);
 
     switch (item)
     {
+#if defined (ITEM_EXPANSION) && defined (POKEMON_EXPANSION)
         case ITEM_FLAME_PLATE:
             return SPECIES_ARCEUS_FIRE;
         case ITEM_SPLASH_PLATE:
@@ -6838,10 +6837,10 @@ u16 GetArceusFormPSS(struct BoxPokemon *boxMon)
             return SPECIES_ARCEUS_STEEL;
         case ITEM_PIXIE_PLATE:
             return SPECIES_ARCEUS_FAIRY;
+#endif
         default:
             return SPECIES_ARCEUS;
     }
-#endif
 }
 
 static void SetCursorMonData(void *pokemon, u8 mode)
@@ -6932,8 +6931,7 @@ static void SetCursorMonData(void *pokemon, u8 mode)
             gender = MON_GENDERLESS;
 
     #ifdef POKEMON_EXPANSION
-        if (sPSSData->cursorMonSpecies == SPECIES_ARCEUS
-         || (sPSSData->cursorMonSpecies >= SPECIES_ARCEUS_FIGHTING && sPSSData->cursorMonSpecies <= SPECIES_ARCEUS_FAIRY))
+        if (GET_BASE_SPECIES_ID(sPSSData->cursorMonSpecies) == SPECIES_ARCEUS)
             SetArceusFormPSS(pokemon);
     #endif
 

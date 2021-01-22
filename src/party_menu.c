@@ -6370,8 +6370,7 @@ void SetArceusForm(struct Pokemon *mon)
     u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM);
     u16 ability = GetAbilityBySpecies(species, abilityNum);
 
-    if ((species == SPECIES_ARCEUS
-     || (species >= SPECIES_ARCEUS_FIGHTING && species <= SPECIES_ARCEUS_FAIRY))
+    if (GET_BASE_SPECIES_ID(species) == SPECIES_ARCEUS
      && ability == ABILITY_MULTITYPE)
     {
         forme = GetArceusForm(mon);
@@ -6383,11 +6382,11 @@ void SetArceusForm(struct Pokemon *mon)
 
 u16 GetArceusForm(struct Pokemon *mon)
 {
-#if defined (ITEM_EXPANSION) && defined (POKEMON_EXPANSION)
     u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
 
     switch (item)
     {
+#if defined (ITEM_EXPANSION) && defined (POKEMON_EXPANSION)
         case ITEM_FLAME_PLATE:
             return SPECIES_ARCEUS_FIRE;
         case ITEM_SPLASH_PLATE:
@@ -6422,8 +6421,8 @@ u16 GetArceusForm(struct Pokemon *mon)
             return SPECIES_ARCEUS_STEEL;
         case ITEM_PIXIE_PLATE:
             return SPECIES_ARCEUS_FAIRY;
+#endif
         default:
             return SPECIES_ARCEUS;
     }
-#endif
 }
