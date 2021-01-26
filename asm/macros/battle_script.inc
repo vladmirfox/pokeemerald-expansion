@@ -1789,6 +1789,11 @@
 	.macro destroyabilitypopup
 	various BS_ABILITY_BATTLER, VARIOUS_DESTROY_ABILITY_POPUP
 	.endm
+
+	.macro gettotemboost ptr:req
+	various BS_ATTACKER, VARIOUS_TOTEM_BOOST
+	.4byte \ptr
+	.endm
 	
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req

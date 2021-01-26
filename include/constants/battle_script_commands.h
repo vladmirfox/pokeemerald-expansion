@@ -173,6 +173,7 @@
 #define VARIOUS_SET_OCTOLOCK                    106
 #define VARIOUS_CUT_1_3_HP_RAISE_STATS          107
 #define VARIOUS_DESTROY_ABILITY_POPUP           108
+#define VARIOUS_TOTEM_BOOST                     109
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
@@ -183,6 +184,7 @@
 #define DMG_CURR_ATTACKER_HP       5
 #define DMG_BIG_ROOT               6
 #define DMG_1_2_ATTACKER_HP        7
+#define DMG_RECOIL_FROM_IMMUNE     8 // Used to calculate recoil for the Gen 4 version of Jump Kick
 
 // Cmd_jumpifcantswitch
 #define SWITCH_IGNORE_ESCAPE_PREVENTION   0x80
