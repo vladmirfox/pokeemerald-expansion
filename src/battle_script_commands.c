@@ -7168,7 +7168,9 @@ static void Cmd_various(void)
         return;
     case VARIOUS_SET_OCTOLOCK:
         if(gDisableStructs[gActiveBattler].octolock)
+        {
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        }
         else
         {
             gDisableStructs[gActiveBattler].octolock = 1;
@@ -7181,7 +7183,9 @@ static void Cmd_various(void)
         if(gBattleMons[gActiveBattler].item == ITEM_NONE
          || gFieldStatuses & STATUS_FIELD_MAGIC_ROOM
          || GetBattlerAbility(gActiveBattler) == ABILITY_KLUTZ)
+        {
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        }
         else
         {
             PREPARE_ITEM_BUFFER(gBattleTextBuff1, gBattleMons[gActiveBattler].item);
@@ -7223,7 +7227,9 @@ static void Cmd_various(void)
             else if ((gMoveResultFlags & MOVE_RESULT_MISSED || gMoveResultFlags & MOVE_RESULT_NO_EFFECT) && gMultiHitCounter == 2) //Dart missed 1st target
             {
                 if(IsBattlerAlive(BATTLE_PARTNER(gBattlerTarget))) //If partner is alive, try to hit partner; otherwise, go to result
+                {
                     gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerTarget) ^ BIT_FLANK);
+                }
                 gBattlescriptCurrInstr = BattleScript_DragonDartsAccuracyCheck2;
             }
         }
