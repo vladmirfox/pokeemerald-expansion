@@ -10211,6 +10211,7 @@ static const u32 sTutorLearnsets[] =
                                             | TUTOR(MOVE_SWIFT)),
 
     [SPECIES_RAPIDASH_GALARIAN]= TUTOR_LEARNSET(TUTOR(MOVE_BODY_SLAM)
+                                            | TUTOR(MOVE_DOUBLE_EDGE)
                                             | TUTOR(MOVE_ENDURE)
                                             | TUTOR(MOVE_SLEEP_TALK)
                                             | TUTOR(MOVE_SNORE)
