@@ -84,13 +84,13 @@
 #define B_SCALED_EXP                GEN_7 // In Gen5 and Gen7+, experience is weighted by level difference.
 #define B_BURN_DAMAGE               GEN_7 // In Gen7+, burn damage is 1/16th of max HP instead of 1/8th.
 #define B_PARALYSIS_SPEED           GEN_7 // In Gen7+, speed is decreased by 50% instead of 75%.
-#define B_TERRAIN_TYPE_BOOST        GEN_6 // In Gen8+, damage is boosted by 30% instead of 50%.
+#define B_TERRAIN_TYPE_BOOST        GEN_6 // In Gen8, damage is boosted by 30% instead of 50%.
 #define B_BINDING_DAMAGE            GEN_6 // In Gen6+, binding damage is 1/8 of max HP instead of 1/16. (With Binding Band, 1/6 and 1/8 respectively.)
 #define B_CONFUSION_SELF_DMG_CHANCE GEN_7 // In Gen7+, confusion has a 33.3% of self-damage, instead of 50%.
 #define B_MULTI_HIT_CHANCE          GEN_6 // In Gen5+, multi-hit moves have different %. See Cmd_setmultihitcounter for values.
 #define B_RECOIL_IF_MISS_DMG        GEN_6 // In Gen5+, Jump Kick and High Jump Kick will always do half of the user's max HP when missing.
 #define B_PSYWAVE_DMG               GEN_6 // Psywave's damage formula. See Cmd_psywavedamageeffect.
-#define B_BADGE_BOOST               GEN_6 // In Gen4+, Gym Badges no longer boost a Pokémon's stats
+#define B_BADGE_BOOST               GEN_6 // In Gen4+, Gym Badges no longer boost a Pokémon's stats.
 
 // Move data settings
 #define B_UPDATED_MOVE_DATA         GEN_7 // Updates move data in gBattleMoves, including Power, Accuracy, PP, stat changes, targets, chances of secondary effects, etc.
@@ -118,9 +118,9 @@
 #define B_GALE_WINGS                GEN_7 // In Gen7+ requires full HP to trigger.
 #define B_STANCE_CHANGE_FAIL        GEN_7 // In Gen7+, Stance Change fails if the Pokémon is unable to use a move because of confusion, paralysis, etc. In Gen6, it doesn't.
 #define B_GHOSTS_ESCAPE             GEN_6 // In Gen6+, ghosts can escape even when blocked by abilities such as Shadow Tag.
-#define B_MOODY_ACC_EVASION         GEN_6 // In Gen8+, Moody CANNOT raise Accuracy and Evasion anymore.
+#define B_MOODY_ACC_EVASION         GEN_6 // In Gen8, Moody CANNOT raise Accuracy and Evasion anymore.
 #define B_FLASH_FIRE_FROZEN         GEN_6 // In Gen5+, Flash Fire can trigger even when frozen, when it couldn't before.
-#define B_SYNCHRONIZE_NATURE        GEN_6 // In Gen8+, if the Pokémon with Synchronize is leading the party, it's 100% guaranteed that wild Pokémon will have the same ability, as opposed to 50% previously.
+#define B_SYNCHRONIZE_NATURE        GEN_6 // In Gen8, if the Pokémon with Synchronize is leading the party, it's 100% guaranteed that wild Pokémon will have the same ability, as opposed to 50% previously.
 #define B_UPDATED_INTIMIDATE        GEN_7 // In Gen8, Intimidate doesn't work on opponents with the Inner Focus, Scrappy, Own Tempo or Oblivious abilities.
 
 // Item settings
@@ -168,8 +168,8 @@
 #define B_NEW_IMPACT_PALETTE            FALSE    // If set to TRUE, it updates the basic 'hit' palette.
 #define B_NEW_SURF_PARTICLE_PALETTE     FALSE    // If set to TRUE, it updates Surf's wave palette.
 
-#define B_HIDE_HEALTHBOXES_DURING_ANIMS TRUE    // If set to TRUE, hides healthboxes during move animations.
-#define B_TERRAIN_BG_CHANGE             TRUE    // If set to TRUE, terrain moves permanently change the default battle background until the effect fades.
-#define B_ENABLE_DEBUG                  TRUE    // If set to TRUE, enables a debug menu to use in battles by pressing the Select button.
+#define B_HIDE_HEALTHBOXES_DURING_ANIMS TRUE     // If set to TRUE, hides healthboxes during move animations.
+#define B_TERRAIN_BG_CHANGE             TRUE     // If set to TRUE, terrain moves permanently change the default battle background until the effect fades.
+#define B_ENABLE_DEBUG                  TRUE     // If set to TRUE, enables a debug menu to use in battles by pressing the Select button.
 
 #endif // GUARD_CONSTANTS_BATTLE_CONFIG_H
