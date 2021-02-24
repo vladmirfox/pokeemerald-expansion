@@ -1189,26 +1189,9 @@ void CancelMultiTurnMoves(u8 battler)
     gBattleMons[battler].status2 &= ~(STATUS2_BIDE);
 
     gStatuses3[battler] &= ~(STATUS3_SEMI_INVULNERABLE);
-	
-	// Check to see if this Pokemon was in the middle of Sky Drop. If so, release the target.
-	if (gBattleStruct->skyDropTargets[0] - 4 == battler)
-	{
-		gStatuses3[gBattleStruct->skyDropTargets[1]] &= ~STATUS3_SKY_DROPPED;
-		gBattleMons[gBattleStruct->skyDropTargets[1]].status2 &= ~STATUS2_ESCAPE_PREVENTION;
-		gBattleStruct->skyDropTargets[0] = 0;
-		gBattleStruct->skyDropTargets[1] = 0;
-	}
-	else if (gBattleStruct->skyDropTargets[2] - 4 == battler)
-	{
-		gStatuses3[gBattleStruct->skyDropTargets[3]] &= ~STATUS3_SKY_DROPPED;
-		gBattleMons[gBattleStruct->skyDropTargets[3]].status2 &= ~STATUS2_ESCAPE_PREVENTION;
-		gBattleStruct->skyDropTargets[2] = 0;
-		gBattleStruct->skyDropTargets[3] = 0;
-	}
 
     gDisableStructs[battler].rolloutTimer = 0;
     gDisableStructs[battler].furyCutterCounter = 0;
-		
 }
 
 bool8 WasUnableToUseMove(u8 battler)
@@ -2895,7 +2878,6 @@ enum
     CANCELLER_POWDER_MOVE,
     CANCELLER_POWDER_STATUS,
     CANCELLER_THROAT_CHOP,
-	CANCELLER_SKY_DROP,
     CANCELLER_END,
     CANCELLER_PSYCHIC_TERRAIN,
     CANCELLER_END2,
@@ -3230,16 +3212,6 @@ u8 AtkCanceller_UnableToUseMove(void)
                 effect = 1;
             }
             gBattleStruct->atkCancellerTracker++;
-            break;
-		case CANCELLER_SKY_DROP:
-			// If Pokemon has STATUS3_SKY_DROPPED
-			if((gStatuses3[gBattlerAttacker] & STATUS3_ON_AIR) && (gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND))
-			{
-				gBattlescriptCurrInstr = BattleScript_MoveEnd;
-                gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-                effect = 1;
-			}
-			gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_END:
             break;
