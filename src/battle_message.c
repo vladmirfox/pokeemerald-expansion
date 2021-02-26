@@ -1247,8 +1247,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_AURABREAKENTERS - 12] = sText_AuraBreakActivates,
     [STRINGID_COMATOSEENTERS - 12] = sText_ComatoseActivates,
     [STRINGID_SCREENCLEANERENTERS - 12] = sText_ScreenCleanerActivates,
-	[STRINGID_PKMNTOOKTARGETHIGH - 12] = sText_PkmnTookTargetHigh,
-	[STRINGID_TARGETTOOHEAVY - 12] = sText_TargetTooHeavy,
+    [STRINGID_PKMNTOOKTARGETHIGH - 12] = sText_PkmnTookTargetHigh,
+    [STRINGID_TARGETTOOHEAVY - 12] = sText_TargetTooHeavy,
 };
 
 const u16 gTerrainStringIds[] =
