@@ -374,6 +374,7 @@ BattleScript_EffectSkyDrop:
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	jumpifsubstituteblocks BattleScript_ButItFailed
 	jumpifunder200 BS_TARGET, BattleScript_SkyDropWork
+	attackstring
 	printstring STRINGID_TARGETTOOHEAVY
 	waitmessage 0x40
 	goto BattleScript_MoveEnd
