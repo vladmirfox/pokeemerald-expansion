@@ -8336,39 +8336,39 @@ static void Cmd_various(void)
         }
         return;
 	case VARIOUS_JUMP_IF_UNDER_200:
-		// If the Pokemon is less than 200 kg, or weighing less than 441 lbs, then Sky Drop will work. Otherwise, it will fail.
-		if (GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), 1) < 441)
-            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
-        else
-            gBattlescriptCurrInstr += 7;
-        return;
-	case VARIOUS_SET_SKY_DROP:
-		gStatuses3[gBattlerTarget] |= STATUS3_SKY_DROPPED;
-		gBattleMons[gBattlerTarget].status2 |= STATUS2_ESCAPE_PREVENTION;
-        gDisableStructs[gBattlerTarget].battlerPreventingEscape = gBattlerAttacker;
-		/* skyDropTargets holds the information of who is the attacker and the target of Sky Drop. 
-		   It's necessary in case two Pokemon use Sky Drop in a double battle at once.
-		   Otherwise, the game will confuse which Pokemon was targeted by which if one of the attackers
-		   is affected by Yawn while in the air. */
-		if (gBattleStruct->skyDropTargets[0] < 4)
-		{
-			gBattleStruct->skyDropTargets[0] = gBattlerAttacker + 4;
-			gBattleStruct->skyDropTargets[1] = gBattlerTarget;
-		}
-		else
-		{
-			gBattleStruct->skyDropTargets[2] = gBattlerAttacker + 4;
-			gBattleStruct->skyDropTargets[3] = gBattlerTarget;
-		}
-		break;
-	case VARIOUS_CLEAR_SKY_DROP:
-		gStatuses3[gBattlerTarget] &= ~STATUS3_SKY_DROPPED;
-		gBattleMons[gBattlerTarget].status2 &= ~STATUS2_ESCAPE_PREVENTION;
-		if (gBattleStruct->skyDropTargets[0] - 4 == gBattlerAttacker)
-			gBattleStruct->skyDropTargets[0] = 0;
-		else
-			gBattleStruct->skyDropTargets[2] = 0;
-		break;
+            // If the Pokemon is less than 200 kg, or weighing less than 441 lbs, then Sky Drop will work. Otherwise, it will fail.
+            if (GetPokedexHeightWeight(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), 1) < 441)
+                gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+            else
+                gBattlescriptCurrInstr += 7;
+            return;
+        case VARIOUS_SET_SKY_DROP:
+            gStatuses3[gBattlerTarget] |= STATUS3_SKY_DROPPED;
+            gBattleMons[gBattlerTarget].status2 |= STATUS2_ESCAPE_PREVENTION;
+            gDisableStructs[gBattlerTarget].battlerPreventingEscape = gBattlerAttacker;
+            /* skyDropTargets holds the information of who is the attacker and the target of Sky Drop. 
+               It's necessary in case two Pokemon use Sky Drop in a double battle at once.
+               Otherwise, the game will confuse which Pokemon was targeted by which if one of the attackers
+               is affected by Yawn while in the air. */
+            if (gBattleStruct->skyDropTargets[0] < 4)
+            {
+                gBattleStruct->skyDropTargets[0] = gBattlerAttacker + 4;
+                gBattleStruct->skyDropTargets[1] = gBattlerTarget;
+            }
+            else
+            {
+                gBattleStruct->skyDropTargets[2] = gBattlerAttacker + 4;
+                gBattleStruct->skyDropTargets[3] = gBattlerTarget;
+            }
+            break;
+        case VARIOUS_CLEAR_SKY_DROP:
+            gStatuses3[gBattlerTarget] &= ~STATUS3_SKY_DROPPED;
+            gBattleMons[gBattlerTarget].status2 &= ~STATUS2_ESCAPE_PREVENTION;
+            if (gBattleStruct->skyDropTargets[0] - 4 == gBattlerAttacker)
+                gBattleStruct->skyDropTargets[0] = 0;
+            else
+                gBattleStruct->skyDropTargets[2] = 0;
+            break;
     }
 
     gBattlescriptCurrInstr += 3;
@@ -10940,7 +10940,7 @@ static void Cmd_setsemiinvulnerablebit(void)
     {
     case MOVE_FLY:
     case MOVE_BOUNCE:
-	case MOVE_SKY_DROP:
+    case MOVE_SKY_DROP:
         gStatuses3[gBattlerAttacker] |= STATUS3_ON_AIR;
         break;
     case MOVE_DIG:
