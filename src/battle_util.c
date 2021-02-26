@@ -2877,6 +2877,7 @@ static bool32 IsThawingMove(u8 battlerId, u16 move)
 enum
 {
     CANCELLER_FLAGS,
+    CANCELLER_SKY_DROP,
     CANCELLER_ASLEEP,
     CANCELLER_FROZEN,
     CANCELLER_TRUANT,
@@ -2895,7 +2896,6 @@ enum
     CANCELLER_POWDER_MOVE,
     CANCELLER_POWDER_STATUS,
     CANCELLER_THROAT_CHOP,
-	CANCELLER_SKY_DROP,
     CANCELLER_END,
     CANCELLER_PSYCHIC_TERRAIN,
     CANCELLER_END2,
@@ -2913,6 +2913,16 @@ u8 AtkCanceller_UnableToUseMove(void)
             gBattleMons[gBattlerAttacker].status2 &= ~(STATUS2_DESTINY_BOND);
             gStatuses3[gBattlerAttacker] &= ~(STATUS3_GRUDGE);
             gBattleStruct->atkCancellerTracker++;
+            break;
+	case CANCELLER_SKY_DROP:
+			// If Pokemon has STATUS3_SKY_DROPPED
+			if((gStatuses3[gBattlerAttacker] & STATUS3_ON_AIR) && (gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND))
+			{
+				gBattlescriptCurrInstr = BattleScript_MoveEnd;
+                		gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
+                		effect = 1;
+			}
+			gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_ASLEEP: // check being asleep
             if (gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
@@ -3230,16 +3240,6 @@ u8 AtkCanceller_UnableToUseMove(void)
                 effect = 1;
             }
             gBattleStruct->atkCancellerTracker++;
-            break;
-		case CANCELLER_SKY_DROP:
-			// If Pokemon has STATUS3_SKY_DROPPED
-			if((gStatuses3[gBattlerAttacker] & STATUS3_ON_AIR) && (gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND))
-			{
-				gBattlescriptCurrInstr = BattleScript_MoveEnd;
-                gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
-                effect = 1;
-			}
-			gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_END:
             break;
