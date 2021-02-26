@@ -792,8 +792,8 @@ static bool8 ShouldUseItem(void)
     u8 validMons = 0;
     bool8 shouldUse = FALSE;
 
+    // If teaming up with player and Pokemon is on the right, or Pokemon is currently held by Sky Drop
     if ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && GetBattlerPosition(gActiveBattler) == B_POSITION_PLAYER_RIGHT)
-        // If Pokemon is currently being held by Sky Drop
        || (gStatuses3[gActiveBattler] & STATUS3_ON_AIR && gStatuses3[gActiveBattler] & STATUS3_UNDERGROUND))
         return FALSE;
 
