@@ -2914,7 +2914,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             break;
         case CANCELLER_SKY_DROP:
             // If Pokemon has STATUS3_SKY_DROPPED
-            if((gStatuses3[gBattlerAttacker] & STATUS3_ON_AIR) && (gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND))
+            if ((gStatuses3[gBattlerAttacker] & STATUS3_ON_AIR) && (gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND))
             {
                 gBattlescriptCurrInstr = BattleScript_MoveEnd;
                 gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
