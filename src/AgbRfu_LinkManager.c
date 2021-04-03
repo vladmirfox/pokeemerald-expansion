@@ -14,7 +14,7 @@
 #define FSP_ON    0x01
 #define FSP_START 0x02
 
-LINK_MANAGER lman;
+LINK_MANAGER lman
 
 static void rfu_LMAN_clearVariables(void);
 static void rfu_LMAN_settingPCSWITCH(u32 rand);
