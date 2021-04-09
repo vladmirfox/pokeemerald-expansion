@@ -1197,13 +1197,11 @@ void CancelMultiTurnMoves(u8 battler)
     if (gBattleStruct->skyDropTargets[0] - 4 == battler)
     {
         gStatuses3[gBattleStruct->skyDropTargets[1]] &= ~STATUS3_SKY_DROPPED;
-        gBattleMons[gBattleStruct->skyDropTargets[1]].status2 &= ~STATUS2_ESCAPE_PREVENTION;
         gBattleStruct->skyDropTargets[0] = 0;
     }
     else if (gBattleStruct->skyDropTargets[2] - 4 == battler)
     {
         gStatuses3[gBattleStruct->skyDropTargets[3]] &= ~STATUS3_SKY_DROPPED;
-        gBattleMons[gBattleStruct->skyDropTargets[3]].status2 &= ~STATUS2_ESCAPE_PREVENTION;
         gBattleStruct->skyDropTargets[2] = 0;
     }
 
