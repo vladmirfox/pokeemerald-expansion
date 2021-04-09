@@ -5172,6 +5172,8 @@ bool32 CanBattlerEscape(u32 battlerId) // no ability check
         return FALSE;
     else if (gFieldStatuses & STATUS_FIELD_FAIRY_LOCK)
         return FALSE;
+    else if ((gStatuses3[battlerId] & STATUS3_ON_AIR) && (gStatuses3[battlerId] & STATUS3_UNDERGROUND))
+        return FALSE;
     else
         return TRUE;
 }
