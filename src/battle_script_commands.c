@@ -8385,8 +8385,6 @@ static void Cmd_various(void)
         return;
     case VARIOUS_SET_SKY_DROP:
         gStatuses3[gBattlerTarget] |= STATUS3_SKY_DROPPED;
-        gBattleMons[gBattlerTarget].status2 |= STATUS2_ESCAPE_PREVENTION;
-        gDisableStructs[gBattlerTarget].battlerPreventingEscape = gBattlerAttacker;
         /* skyDropTargets holds the information of who is the attacker and the target of Sky Drop. 
            It's necessary in case two Pokemon use Sky Drop in a double battle at once.
            Otherwise, the game will confuse which Pokemon was targeted by which if one of the attackers
@@ -8404,7 +8402,6 @@ static void Cmd_various(void)
         break;
     case VARIOUS_CLEAR_SKY_DROP:
         gStatuses3[gBattlerTarget] &= ~STATUS3_SKY_DROPPED;
-        gBattleMons[gBattlerTarget].status2 &= ~STATUS2_ESCAPE_PREVENTION;
         if (gBattleStruct->skyDropTargets[0] - 4 == gBattlerAttacker)
            gBattleStruct->skyDropTargets[0] = 0;
         else
