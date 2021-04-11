@@ -8388,7 +8388,7 @@ static void Cmd_various(void)
         /* skyDropTargets holds the information of who is the attacker and the target of Sky Drop. 
            It's necessary in case two Pokemon use Sky Drop in a double battle at once.
            Otherwise, the game will confuse which Pokemon was targeted by which if one of the attackers
-           is affected by Yawn while in the air. */
+           is affected by Yawn while in the air.*/
         if (gBattleStruct->skyDropTargets[0] < 4)
         {
             gBattleStruct->skyDropTargets[0] = gBattlerAttacker + 4;
