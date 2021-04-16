@@ -1,0 +1,13 @@
+tools/agbcc/bin/agbcc
+-Iconstants
+-Igflib
+-Iinclude
+-Isound
+-Isrc
+-L./tools/agbcc/lib
+-L./tools/agbcc/lib
+-L./libagbsyscall
+-lc
+-lgcc
+-lagbsyscall
+-isystem./tools/agbcc/include
