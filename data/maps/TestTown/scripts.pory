@@ -1,0 +1,9 @@
+mapscripts TestTown_MapScripts {
+}
+
+script TestTown_Sign1 {
+    lock
+    msgbox("Welcome to TestTown", MSGBOX_SIGN)
+    release
+    end
+}
