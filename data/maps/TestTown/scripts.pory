@@ -7,3 +7,25 @@ script TestTown_Sign1 {
     release
     end
 }
+
+script TestTown_EventScript_EnableQuestMenuSign {
+    lockall
+    if (!flag(FLAG_SYS_QUEST_MENU_GET)) {
+        msgbox (TestTown_Text_EnabledQuestMenu)
+        setflag (FLAG_SYS_QUEST_MENU_GET)
+    }
+    elif (flag(FLAG_SYS_QUEST_MENU_GET)) {
+        msgbox (TestTown_Text_QuestMenuAlreadyEnabled)
+        clearflag (FLAG_SYS_QUEST_MENU_GET)
+    }
+    releaseall
+    end
+}
+
+text TestTown_Text_EnabledQuestMenu {
+    "Quest menu flag is enabled."
+}
+
+text TestTown_Text_QuestMenuAlreadyEnabled {
+    "The quest menu is already enabled."
+}
