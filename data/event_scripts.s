@@ -1064,4 +1064,4 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 
 	.include "data/maps/TestTown/scripts.inc"
 
-	.include "data/maps/InsideTestTown/scripts.inc"
+	.include "data/maps/TestTown_House1/scripts.inc"
