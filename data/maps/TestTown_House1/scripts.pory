@@ -1,0 +1,127 @@
+mapscripts TestTown_House1_MapScripts {
+}
+
+script TestTown_House1_EventScript_MudkipPokeBall {
+    lockall
+    msgbox (TestTown_House1_Text_TakeThisBall, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox (TestTown_House1_Text_LeftTheBall)
+        releaseall
+        end
+    }
+    else {
+        givemon (SPECIES_MUDKIP, 15, ITEM_MASTER_BALL)
+        if (var(VAR_RESULT) == 0) {
+            call (TestTown_House1_EventScript_MudkipFanFare)
+            msgbox (gText_NicknameThisPokemon, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES) {
+                call (Common_EventScript_GetGiftMonPartySlot)
+                call (Common_EventScript_NameReceivedPartyMon)
+            }
+            setflag (FLAG_UNUSED_0x020)
+        }
+        elif (var(VAR_RESULT) == 1) {
+            call (TestTown_House1_EventScript_MudkipFanFare)
+            msgbox (gText_NicknameThisPokemon, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES) {
+                call (Common_EventScript_NameReceivedBoxMon)
+            }
+            call (Common_EventScript_TransferredToPC)
+            setflag (FLAG_UNUSED_0x020)
+        }
+        else {
+            goto (Common_EventScript_NoMoreRoomForPokemon)
+        }
+        releaseall
+        end
+    }
+}
+
+script TestTown_House1_EventScript_MudkipFanFare {
+    bufferspeciesname (1, SPECIES_MUDKIP)
+    removeobject (1)
+    playfanfare (MUS_CAUGHT)
+    setflag (FLAG_SYS_POKEMON_GET)
+    message (TestTown_House1_Text_ObtainedMudkip)
+    waitmessage
+    waitfanfare
+    bufferspeciesname (0, SPECIES_MUDKIP)
+    return
+}
+
+text TestTown_House1_Text_LeftTheBall {
+    "Decided to leave the Poke Ball."
+}
+
+text TestTown_House1_Text_TakeThisBall {
+    "This Poke Ball contains a Mudkip. \p"
+    "Will you take it?" 
+}
+
+text TestTown_House1_Text_ObtainedMudkip {
+    "{PLAYER} obtained Mudkip!"
+}
+
+
+script TestTown_House1_EventScript_GivePokedex {
+    lockall
+    faceplayer
+    goto_if_set (FLAG_SYS_POKEDEX_GET, TestTown_House1_EventScript_DexFlagSet)
+    msgbox (TestTown_House1_Text_RecievedDex)
+    setflag (FLAG_SYS_POKEDEX_GET)
+    releaseall
+    end
+}
+
+script TestTown_House1_EventScript_DexFlagSet {
+    lockall
+    msgbox (TestTown_House1_Text_DontGiveDex)
+    releaseall
+    end
+}
+
+text TestTown_House1_Text_RecievedDex {
+    "Here is a Pokédex."
+}
+
+text TestTown_House1_Text_DontGiveDex {
+    "You already have a Pokédex!"
+}
+
+script TestTown_House1_EventScript_GiveRunningShoes {
+    lockall
+    faceplayer
+    if (flag(FLAG_SYS_B_DASH)) {
+        msgbox (TestTown_House1_Text_TakeRunningShoesQuestion, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            clearflag (FLAG_SYS_B_DASH)
+            msgbox (TestTown_House1_Text_MomTookRunningShoes)
+        } 
+        else {
+            msgbox (TestTown_House1_Text_KeptRunningShoes)
+        }
+    }
+    elif (!flag(FLAG_SYS_B_DASH)) {
+        setflag (FLAG_SYS_B_DASH)
+        msgbox (TestTown_House1_Text_GiveRunningShoes)
+    }
+    releaseall
+    end
+}
+
+text TestTown_House1_Text_GiveRunningShoes {
+    "Here are the running shoes!"
+}
+
+text TestTown_House1_Text_TakeRunningShoesQuestion {
+    "Do you want me to take your \n"
+    "running shoes?"
+}
+
+text TestTown_House1_Text_KeptRunningShoes {
+    "Decided to keep the running shoes."
+}
+
+text TestTown_House1_Text_MomTookRunningShoes {
+    "Mom took the running shoes."
+}
