@@ -28,7 +28,7 @@ gText_Birch_SoItsPlayer:: @ 82C8C1C
 
 gText_Birch_YourePlayer:: @ 82C8C2A
 	.string "Ah, okay!\p"
-	.string "You're {PLAYER}{KUN}\p"
+	.string "You're {PLAYER}{KUN}.\p"
 	.string "$"
 
 gText_Birch_AreYouReady:: @ 82C8C7A
