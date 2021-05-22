@@ -8,24 +8,43 @@ script TestTown_Sign1 {
     end
 }
 
-script TestTown_EventScript_EnableQuestMenuSign {
+script TestTown_EventScript_EnableQuestMenu {
     lockall
+    faceplayer
+    //give player quest menu if they don't already have it
     if (!flag(FLAG_SYS_QUEST_MENU_GET)) {
         msgbox (TestTown_Text_EnabledQuestMenu)
         setflag (FLAG_SYS_QUEST_MENU_GET)
     }
     elif (flag(FLAG_SYS_QUEST_MENU_GET)) {
-        msgbox (TestTown_Text_QuestMenuAlreadyEnabled)
-        clearflag (FLAG_SYS_QUEST_MENU_GET)
+        msgbox (TestTown_Text_DisableQuestQuestion, MSGBOX_YESNO)
+        //player wants to disable quest menu
+        if (var(VAR_RESULT) == 1) {
+            msgbox (TestTown_Text_DisabledQuestMenu)
+            clearflag (FLAG_SYS_QUEST_MENU_GET)
+        }
+        //player wants to keep the quest menu enabled
+        else {
+            msgbox (TestTown_Text_QuestMenuFlagNotChanged)
+        }
     }
     releaseall
     end
+}
+
+text TestTown_Text_DisableQuestQuestion {
+    "Should I disable the quest\n"
+    "menu?"
 }
 
 text TestTown_Text_EnabledQuestMenu {
     "Quest menu flag is enabled."
 }
 
-text TestTown_Text_QuestMenuAlreadyEnabled {
-    "The quest menu is already enabled."
+text TestTown_Text_DisabledQuestMenu {
+    "Quest menu was disabled."
+}
+
+text TestTown_Text_QuestMenuFlagNotChanged {
+    "The quest menu flag was not changed."
 }
