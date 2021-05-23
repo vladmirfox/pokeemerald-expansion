@@ -4440,6 +4440,16 @@
       "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/TestTown_House1/border.bin",
       "blockdata_filepath": "data/layouts/TestTown_House1/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEST_TOWN_HOUSE2",
+      "name": "TestTown_House2_Layout",
+      "width": 10,
+      "height": 10,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/TestTown_House2/border.bin",
+      "blockdata_filepath": "data/layouts/TestTown_House2/map.bin"
     }
   ]
 }

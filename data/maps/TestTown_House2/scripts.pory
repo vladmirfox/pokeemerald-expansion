@@ -1,0 +1,70 @@
+mapscripts TestTown_House1_MapScripts {
+}
+
+script TestTown_House2_EventScript_GiveMudkipPokeball {
+    lockall
+    msgbox (TestTown_House2_Text_WantMudkip, MSGBOX_YESNO)
+    // player wants Mudkip
+    if (var(VAR_RESULT)) {
+        msgbox (TestTown_House2_Text_RecievedMudkip)
+        givemon (SPECIES_MUDKIP. 15, ITEM_MASTER_BALL)
+        // Mudkip is added to party
+        if (var(VAR_RESULT) == 0) {
+            call (TestTown_House2_EventScript_MudkipFanFare)
+            msgbox (gText_NicknameThisPokemon, MSGBOX_YESNO)
+            //Nickname mudkip
+            if (var(VAR_RESULT)) {
+                call (Common_EventScript_GetGiftMonPartySlot)
+                call (Common_EventScript_NameReceivedPartyMon)
+            }
+            setflag (FLAG_UNUSED_0x021)
+        }
+        //Mudkip is sent to box
+        elif (var(VAR_RESULT) == 1) {
+            call (TestTown_House2_EventScript_MudkipFanFare)
+            msgbox (gText_NicknameThisPokemon, MSGBOX_YESNO)
+            //Nickname mudkip
+            if (var(VAR_RESULT)) {
+                call (Common_EventScript_NameReceivedBoxMon)
+            }
+            call (Common_EventScript_TransferredToPC)
+            setflag (FLAG_UNUSED_0x021)
+        }  
+        //Nore more room for pokemon
+        else {
+            goto (Common_EventScript_NoMoreRoomForPokemon)
+        }
+    }
+    // player doesn't want the Mudkip
+    else {
+        TestTown_House2_Text_DontTakeMudkip
+    }
+    releaseall
+    end
+}
+
+script TestTown_House2_EventScript_MudkipFanFare {
+    bufferspeciesname (1, SPECIES_MUDKIP)
+    removeobject (1)
+    playfanfare (MUS_CAUGHT)
+    setflag (FLAG_SYS_POKEMON_GET)
+    message (TestTown_House1_Text_ObtainedMudkip)
+    waitmessage
+    waitfanfare
+    bufferspeciesname (0, SPECIES_MUDKIP)
+    return
+}
+
+text TestTown_House2_Text_DontTakeMudkip {
+    "Decided to leave the Poke Ball."
+}
+
+text TestTown_House2_Text_WantMudkip {
+    "This Poke Ball contains a Mudkip. \p"
+    "Will you take it?" 
+}
+
+text TestTown_House2_Text_RecievedMudkip {
+    "{PLAYER} obtained Mudkip!"
+}
+
