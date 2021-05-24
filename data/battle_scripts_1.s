@@ -383,7 +383,7 @@ BattleScript_EffectSkyDrop:
 
 BattleScript_SkyDropWork:
 	setskydrop
-	setbyte sTWOTURN_STRINGID, 11
+	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_SKY_DROP
 	setsemiinvulnerablebit
 	call BattleScriptFirstChargingTurn
 	goto BattleScript_MoveEnd
