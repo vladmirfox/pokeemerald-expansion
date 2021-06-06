@@ -5125,10 +5125,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 break;
             case ABILITY_OBLIVIOUS:
                 if (gBattleMons[battler].status2 & STATUS2_INFATUATION)
-                {
-                    StringCopy(gBattleTextBuff1, gStatusConditionString_LoveJpn);
                     effect = 3;
-                }
+                else if (gDisableStructs[battler].tauntTimer != 0)
+                    effect = 4;
                 break;
             }
             if (effect)
@@ -5137,17 +5136,26 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                 case 1: // status cleared
                     gBattleMons[battler].status1 = 0;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_AbilityCuredStatus;
                     break;
                 case 2: // get rid of confusion
                     gBattleMons[battler].status2 &= ~(STATUS2_CONFUSION);
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_AbilityCuredStatus;
                     break;
                 case 3: // get rid of infatuation
                     gBattleMons[battler].status2 &= ~(STATUS2_INFATUATION);
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_BattlerGotOverItsInfatuation;
+                    break;
+                case 4: // get rid of taunt
+                    gDisableStructs[battler].tauntTimer = 0;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_BattlerShookOffTaunt;
                     break;
                 }
 
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_AbilityCuredStatus;
                 gBattleScripting.battler = gActiveBattler = gBattlerAbility = battler;
                 BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[gActiveBattler].status1);
                 MarkBattlerForControllerExec(gActiveBattler);
@@ -7551,6 +7559,11 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             atkStage = gBattleMons[battlerDef].statStages[STAT_SPATK];
         }
     }
+    if (gBattleMoves[move].effect == EFFECT_BODY_PRESS)
+    {
+        atkStat = gBattleMons[battlerAtk].defense;
+        atkStage = gBattleMons[battlerAtk].statStages[STAT_DEF];
+    }
     else
     {
         if (IS_MOVE_PHYSICAL(move))
@@ -7668,7 +7681,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         switch (GetBattlerAbility(BATTLE_PARTNER(battlerAtk)))
         {
         case ABILITY_FLOWER_GIFT:
-            if (gBattleMons[BATTLE_PARTNER(battlerAtk)].species == SPECIES_CHERRIM && IS_MOVE_PHYSICAL(move))
+            if (gBattleMons[BATTLE_PARTNER(battlerAtk)].species == SPECIES_CHERRIM && WEATHER_HAS_EFFECT && (gBattleWeather & WEATHER_SUN_ANY) && IS_MOVE_PHYSICAL(move))
                 MulModifier(&modifier, UQ_4_12(1.5));
             break;
         }
@@ -7813,7 +7826,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         switch (GetBattlerAbility(BATTLE_PARTNER(battlerDef)))
         {
         case ABILITY_FLOWER_GIFT:
-            if (gBattleMons[BATTLE_PARTNER(battlerDef)].species == SPECIES_CHERRIM && !usesDefStat)
+            if (gBattleMons[BATTLE_PARTNER(battlerDef)].species == SPECIES_CHERRIM && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && !usesDefStat)
                 MulModifier(&modifier, UQ_4_12(1.5));
             break;
         }
@@ -7999,7 +8012,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
         MulModifier(&finalModifier, UQ_4_12(2.0));
     if (gBattleMoves[move].flags & FLAG_DMG_UNDERWATER  && gStatuses3[battlerDef] & STATUS3_UNDERWATER)
         MulModifier(&finalModifier, UQ_4_12(2.0));
-    if (gBattleMoves[move].flags & FLAG_DMG_IN_AIR      && gStatuses3[battlerDef] & STATUS3_ON_AIR)
+    if (gBattleMoves[move].flags & FLAG_DMG_2X_IN_AIR   && gStatuses3[battlerDef] & STATUS3_ON_AIR)
         MulModifier(&finalModifier, UQ_4_12(2.0));
 
     dmg = ApplyModifier(finalModifier, dmg);
@@ -8114,7 +8127,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         && gBattleMons[battlerDef].type3 != gBattleMons[battlerDef].type1)
         MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, gBattleMons[battlerDef].type3, battlerAtk, recordAbilities);
 
-    if (moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef) && !(gBattleMoves[move].flags & FLAG_DAMAGE_AIRBORNE))
+    if (moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef) && !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING))
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities && GetBattlerAbility(battlerDef) == ABILITY_LEVITATE)
@@ -8128,7 +8141,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
     }
 
     // Thousand Arrows ignores type modifiers for flying mons
-    if (!IsBattlerGrounded(battlerDef) && (gBattleMoves[move].flags & FLAG_DAMAGE_AIRBORNE)
+    if (!IsBattlerGrounded(battlerDef) && (gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
         && (gBattleMons[battlerDef].type1 == TYPE_FLYING || gBattleMons[battlerDef].type2 == TYPE_FLYING || gBattleMons[battlerDef].type3 == TYPE_FLYING))
     {
         modifier = UQ_4_12(1.0);
@@ -8683,4 +8696,3 @@ bool32 IsEntrainmentTargetOrSimpleBeamBannedAbility(u16 ability)
     }
     return FALSE;
 }
-
