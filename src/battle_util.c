@@ -3339,9 +3339,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             {
                 if (gBattleMoves[gCurrentMove].flags & FLAG_THAW_USER)
                 {
-                    if (gBattleMoves[gCurrentMove].effect == EFFECT_BURN_UP && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_FIRE))
-                        /* Do nothing */;
-                    else
+                    if (!(gBattleMoves[gCurrentMove].effect == EFFECT_BURN_UP && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_FIRE)))
                     {
                         gBattleMons[gBattlerAttacker].status1 &= ~(STATUS1_FREEZE);
                         BattleScriptPushCursor();
