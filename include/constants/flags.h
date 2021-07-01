@@ -650,6 +650,26 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_128_HEART_SCALE_2             (FLAG_HIDDEN_ITEMS_START + 0x5D)
 #define FLAG_HIDDEN_ITEM_ROUTE_128_HEART_SCALE_3             (FLAG_HIDDEN_ITEMS_START + 0x5E)
 
+ //FLAG_HIDDEN_ITEMS_START is 1f4. 1f4 + 5E is only 252, so there are 16 unused hidden item flags.
+
+#define FLAG_HIDDEN_ITEM_UNUSED_0x5F                         (FLAG_HIDDEN_ITEMS_START + 0x5F)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x60                         (FLAG_HIDDEN_ITEMS_START + 0x60)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x61                         (FLAG_HIDDEN_ITEMS_START + 0x61)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x62                         (FLAG_HIDDEN_ITEMS_START + 0x62)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x63                         (FLAG_HIDDEN_ITEMS_START + 0x63)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x64                         (FLAG_HIDDEN_ITEMS_START + 0x64)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x65                         (FLAG_HIDDEN_ITEMS_START + 0x65)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x66                         (FLAG_HIDDEN_ITEMS_START + 0x66)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x67                         (FLAG_HIDDEN_ITEMS_START + 0x67)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x68                         (FLAG_HIDDEN_ITEMS_START + 0x68)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x69                         (FLAG_HIDDEN_ITEMS_START + 0x69)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x6A                         (FLAG_HIDDEN_ITEMS_START + 0x6A)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x6B                         (FLAG_HIDDEN_ITEMS_START + 0x6B)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x6C                         (FLAG_HIDDEN_ITEMS_START + 0x6C)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x6D                         (FLAG_HIDDEN_ITEMS_START + 0x6D)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x6E                         (FLAG_HIDDEN_ITEMS_START + 0x6E)//Unused hidden item flag.
+#define FLAG_HIDDEN_ITEM_UNUSED_0x6F                         (FLAG_HIDDEN_ITEMS_START + 0x6F)//Unused hidden item flag.
+
 #define FLAG_UNUSED_0x264  0x264 // Unused Flag
 #define FLAG_UNUSED_0x265  0x265 // Unused Flag
 #define FLAG_UNUSED_0x266  0x266 // Unused Flag
