@@ -2846,15 +2846,13 @@ u16 GetBattlerSideSpeedAverage(u8 battler)
 
 bool32 ShouldUseRecoilMove(u8 battlerAtk, u8 battlerDef, u32 recoilDmg, u8 moveIndex)
 {
-    if (recoilDmg >= gBattleMons[battlerAtk].hp //Recoil kills attacker
-      && CountUsablePartyMons(battlerDef) != 0) //Foe has more than 1 target left
+    if (recoilDmg >= gBattleMons[battlerAtk].hp
+        && CountUsablePartyMons(battlerDef) > 0
+        && CountUsablePartyMons(battlerAtk) == 0)
     {
-        if (recoilDmg >= gBattleMons[battlerDef].hp && !CanAttackerFaintTarget(battlerAtk, battlerDef, moveIndex, 0))
-            return TRUE; //If it's the only KO move then just use it
-        else
-            return FALSE; //Not as good to use move if you'll faint and not win
+        return FALSE; // Don't use if you will faint and you don't have other mons but defender does.
     }
-    
+
     return TRUE;
 }
 
