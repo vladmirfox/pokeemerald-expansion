@@ -119,7 +119,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
         for (opposingBattler = GetBattlerAtPosition(opposingPosition), j = 0; j < MAX_MON_MOVES; j++)
         {
             move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
-            if (move != MOVE_NONE)
+            if (move != MOVE_NONE && move != MOVE_SUCKER_PUNCH)
             {
                 if (AI_GetTypeEffectiveness(move, gActiveBattler, opposingBattler) >= UQ_4_12(2.0) && Random() % 3 < 2)
                 {
