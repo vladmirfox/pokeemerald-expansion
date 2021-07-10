@@ -548,16 +548,19 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         // check off screen
         if (IsSemiInvulnerable(battlerDef, move) && moveEffect != EFFECT_SEMI_INVULNERABLE && GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) != 1)
             RETURN_SCORE_MINUS(20);    // if target off screen and we go first, don't use move
-        
-        // check if negates type
-        switch (effectiveness)
+
+        if (!IS_MOVE_STATUS(move))
         {
-        case AI_EFFECTIVENESS_x0:
-            RETURN_SCORE_MINUS(20);
-            break;
-        case AI_EFFECTIVENESS_x0_25:
-            RETURN_SCORE_MINUS(10);
-            break;
+            // check if negates type
+            switch (effectiveness)
+            {
+            case AI_EFFECTIVENESS_x0:
+                RETURN_SCORE_MINUS(20);
+                break;
+            case AI_EFFECTIVENESS_x0_25:
+                RETURN_SCORE_MINUS(10);
+                break;
+            }
         }
         
         // target ability checks
@@ -582,8 +585,29 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     RETURN_SCORE_MINUS(20);
                 break;
             case ABILITY_WONDER_GUARD:
-                if (effectiveness != AI_EFFECTIVENESS_x2 && effectiveness != AI_EFFECTIVENESS_x4)
-                    return 0;
+                // Let's avoid using any damaging but non-supereffective move, and any status move with no secondary damage effects.
+                if (IS_MOVE_STATUS(move))
+                {
+                    if (move != MOVE_HAIL
+                        && move != MOVE_SANDSTORM
+                        && move != MOVE_SPIKES
+                        && move != MOVE_TOXIC_SPIKES
+                        && move != MOVE_STEALTH_ROCK
+                        && move != MOVE_LEECH_SEED
+                        && moveEffect != EFFECT_POISON
+                        && moveEffect != EFFECT_TOXIC
+                        && moveEffect != EFFECT_WILL_O_WISP
+                        && moveEffect != EFFECT_CONFUSE
+                        && moveEffect != EFFECT_ROAR)
+                    {
+                        return AI_MOVE_SCORE_PREFER_SWITCH;
+                    }
+                }
+                else
+                {
+                    if (effectiveness < AI_EFFECTIVENESS_x2)
+                        return AI_MOVE_SCORE_PREFER_SWITCH;
+                }
                 break;
             case ABILITY_SAP_SIPPER:
                 if (moveType == TYPE_GRASS)
@@ -3175,8 +3199,11 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
           || PartnerHasSameMoveEffectWithoutTarget(AI_DATA->battlerAtkPartner, move, AI_DATA->partnerMove))
             score -= 3;
             break;
-        // fallthrough
     case EFFECT_ROAR:
+        // Roaring to get the Shedinja out of hazards is very good.
+        if (AI_DATA->defAbility == ABILITY_WONDER_GUARD && (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_HAZARDS_DAMAGING))
+            score += 5;
+        //fallthrough
     case EFFECT_CLEAR_SMOG:
         if (isDoubleBattle)
             score += min(CountPositiveStatStages(battlerDef) + CountPositiveStatStages(AI_DATA->battlerDefPartner), 7);
