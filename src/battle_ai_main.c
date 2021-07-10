@@ -529,9 +529,11 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         // handle negative checks on non-user target
         // check powder moves
         if (TestMoveFlags(move, FLAG_POWDER) && !IsAffectedByPowder(battlerDef, AI_DATA->defAbility, AI_DATA->defHoldEffect))
-        {
             RETURN_SCORE_MINUS(20);
-        }
+
+        // Magic coat check.
+        if (TestMoveFlags(move, FLAG_MAGIC_COAT_AFFECTED) && gProtectStructs[battlerDef].bounceMove)
+            RETURN_SCORE_MINUS(20);
         
         // check ground immunities
         if (moveType == TYPE_GROUND
@@ -761,9 +763,30 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     // throat chop check
     if (gDisableStructs[battlerAtk].throatChopTimer && TestMoveFlags(move, FLAG_SOUND))
         return 0; // Can't even select move at all
+
     // heal block check
     if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK && IsHealBlockPreventingMove(battlerAtk, move))
         return 0; // Can't even select heal blocked move
+
+    switch (AI_DATA->defAbility)
+    {
+    case ABILITY_MAGIC_GUARD:
+        switch (moveEffect)
+        {
+        case EFFECT_POISON:
+        case EFFECT_WILL_O_WISP:
+        case EFFECT_TOXIC:
+        case EFFECT_LEECH_SEED:
+        case EFFECT_NIGHTMARE:
+            RETURN_SCORE_MINUS(20);
+        case EFFECT_CURSE:
+            if (IS_BATTLER_OF_TYPE(battlerAtk, TYPE_GHOST)) // Don't use Curse if you're a ghost type vs a Magic Guard user, he'll take no damage.
+                RETURN_SCORE_MINUS(20);
+            break;
+        }
+        break;
+    }
+
     // primal weather check
     //TODO
     
@@ -2424,7 +2447,9 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 }
 
 static s16 AI_TryToFaint(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
-{    
+{
+    u16 moveEffect = gBattleMoves[move].effect;
+
     if (IsTargetingPartner(battlerAtk, battlerDef))
         return score;
     
