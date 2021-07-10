@@ -589,13 +589,13 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                         && moveEffect != EFFECT_CONFUSE
                         && moveEffect != EFFECT_ROAR)
                     {
-                        return RETURN_SCORE_MINUS(20);
+                        RETURN_SCORE_MINUS(20);
                     }
                 }
                 else
                 {
                     if (effectiveness < AI_EFFECTIVENESS_x2)
-                        return RETURN_SCORE_MINUS(20);
+                        RETURN_SCORE_MINUS(20);
                 }
                 break;
             case ABILITY_SAP_SIPPER:
@@ -2433,11 +2433,19 @@ static s16 AI_TryToFaint(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     
     if (CanAttackerFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0) && gBattleMoves[move].effect != EFFECT_EXPLOSION)
     {
-        // this move can faint the target
-        if (GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) == 0 || GetMovePriority(battlerAtk, move) > 0)
-            score += 4; // we go first or we're using priority move
+        // Heavily force kill move.
+        // Prioritize killing moves with highest priority.
+        if (GetMovePriority(battlerAtk, move) > 0)
+            score += 10 + 2 * GetMovePriority(battlerAtk, move);
         else
-            score += 2;
+            score += 10;
+
+        // Not very good, albeit still useable.
+        if (moveEffect == EFFECT_RECHARGE)
+            score -= 5;
+
+        // this move can faint the target
+        score += 4;
     }
     else
     {
@@ -2459,6 +2467,15 @@ static s16 AI_TryToFaint(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             else
                 score++;
             break;
+        }
+
+        // If we're gonna faint and player is faster, execute highest priority move
+        // to do as much damage as you can before fainting.
+        if (GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) == 1
+            && CanTargetFaintAi(battlerDef, battlerAtk)
+            && GetMovePriority(battlerAtk, move) > 0)
+        {
+            score += 10 + 2 * GetMovePriority(battlerAtk, move);
         }
     }
     
