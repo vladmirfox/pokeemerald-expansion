@@ -549,19 +549,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         if (IsSemiInvulnerable(battlerDef, move) && moveEffect != EFFECT_SEMI_INVULNERABLE && GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) != 1)
             RETURN_SCORE_MINUS(20);    // if target off screen and we go first, don't use move
 
-        if (!IS_MOVE_STATUS(move))
-        {
-            // check if negates type
-            switch (effectiveness)
-            {
-            case AI_EFFECTIVENESS_x0:
-                RETURN_SCORE_MINUS(20);
-                break;
-            case AI_EFFECTIVENESS_x0_25:
-                RETURN_SCORE_MINUS(10);
-                break;
-            }
-        }
+        if (!IS_MOVE_STATUS(move) && effectiveness == AI_EFFECTIVENESS_x0_25)
+            RETURN_SCORE_MINUS(10);
         
         // target ability checks
         if (!DoesBattlerIgnoreAbilityChecks(AI_DATA->atkAbility, move))
@@ -600,13 +589,13 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                         && moveEffect != EFFECT_CONFUSE
                         && moveEffect != EFFECT_ROAR)
                     {
-                        return AI_MOVE_SCORE_PREFER_SWITCH;
+                        return RETURN_SCORE_MINUS(20);
                     }
                 }
                 else
                 {
                     if (effectiveness < AI_EFFECTIVENESS_x2)
-                        return AI_MOVE_SCORE_PREFER_SWITCH;
+                        return RETURN_SCORE_MINUS(20);
                 }
                 break;
             case ABILITY_SAP_SIPPER:
@@ -766,6 +755,9 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     
 // the following checks apply to any target (including user)
     
+    if (!IS_MOVE_STATUS(move) && effectiveness == AI_EFFECTIVENESS_x0)
+        RETURN_SCORE_MINUS(20);
+
     // throat chop check
     if (gDisableStructs[battlerAtk].throatChopTimer && TestMoveFlags(move, FLAG_SOUND))
         return 0; // Can't even select move at all
