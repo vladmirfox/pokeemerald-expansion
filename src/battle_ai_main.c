@@ -533,7 +533,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 
         // Magic coat check
         if (TestMoveFlags(move, FLAG_MAGIC_COAT_AFFECTED) && gBattleMoves[predictedMove].effect == EFFECT_MAGIC_COAT && GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) == 1)
-            RETURN_SCORE_MINUS(20); // If the move is affected by Magic Coatand the predicted move is Magic Coatand the enemy goes first, don't use move.
+            RETURN_SCORE_MINUS(20); // If the move is affected by Magic Coat and the predicted move is Magic Coat and the enemy goes first, don't use move.
         
         // check ground immunities
         if (moveType == TYPE_GROUND
@@ -2466,7 +2466,7 @@ static s16 AI_TryToFaint(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score += 10;
 
         // Not very good to cripple ourselves unless the battle is gonna end, albeit still useable.
-        if ((moveEffect == EFFECT_RECHARGE || moveEffect == EFFECT_OVERHEAT) && CountUsablePartyMons(battlerAtk) > 0)
+        if ((moveEffect == EFFECT_RECHARGE || moveEffect == EFFECT_OVERHEAT) && CountUsablePartyMons(battlerDef) > 0)
             score -= 5;
     }
     else
