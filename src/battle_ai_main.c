@@ -531,9 +531,9 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         if (TestMoveFlags(move, FLAG_POWDER) && !IsAffectedByPowder(battlerDef, AI_DATA->defAbility, AI_DATA->defHoldEffect))
             RETURN_SCORE_MINUS(20);
 
-        // Magic coat check.
-        if (TestMoveFlags(move, FLAG_MAGIC_COAT_AFFECTED) && gProtectStructs[battlerDef].bounceMove)
-            RETURN_SCORE_MINUS(20);
+        // Magic coat check
+        if (TestMoveFlags(move, FLAG_MAGIC_COAT_AFFECTED) && gBattleMoves[predictedMove].effect == EFFECT_MAGIC_COAT && GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) == 1)
+            RETURN_SCORE_MINUS(20); // If the move is affected by Magic Coatand the predicted move is Magic Coatand the enemy goes first, don't use move.
         
         // check ground immunities
         if (moveType == TYPE_GROUND
@@ -2465,12 +2465,9 @@ static s16 AI_TryToFaint(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         else
             score += 10;
 
-        // Not very good, albeit still useable.
-        if (moveEffect == EFFECT_RECHARGE)
+        // Not very good to cripple ourselves unless the battle is gonna end, albeit still useable.
+        if ((moveEffect == EFFECT_RECHARGE || moveEffect == EFFECT_OVERHEAT) && CountUsablePartyMons(battlerAtk) > 0)
             score -= 5;
-
-        // this move can faint the target
-        score += 4;
     }
     else
     {
