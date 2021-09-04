@@ -570,10 +570,12 @@
 #define STRINGID_MICLEBERRYACTIVATES             566                                  
 #define STRINGID_PKMNSHOOKOFFTHETAUNT            567
 #define STRINGID_PKMNGOTOVERITSINFATUATION       568
-#define STRINGID_TARGETTOOHEAVY                  569
-#define STRINGID_PKMNTOOKTARGETHIGH              570
+#define STRINGID_ITEMCANNOTBEREMOVED             569
+#define STRINGID_STICKYBARBTRANSFER              570
+#define STRINGID_TARGETTOOHEAVY                  571
+#define STRINGID_PKMNTOOKTARGETHIGH              572
 
-#define BATTLESTRINGS_COUNT                      571
+#define BATTLESTRINGS_COUNT                      573
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
