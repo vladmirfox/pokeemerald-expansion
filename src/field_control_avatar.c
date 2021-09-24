@@ -67,7 +67,6 @@ static bool8 TryStartCoordEventScript(struct MapPosition *);
 static bool8 TryStartWarpEventScript(struct MapPosition *, u16);
 static bool8 TryStartMiscWalkingScripts(u16);
 static bool8 TryStartStepCountScript(u16);
-static void UpdateFriendshipStepCounter(void);
 static bool8 UpdatePoisonStepCounter(void);
 
 void FieldClearPlayerInput(struct FieldInput *input)
@@ -542,7 +541,6 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
     }
 
     IncrementRematchStepCounter();
-    UpdateFriendshipStepCounter();
     UpdateFarawayIslandStepCounter();
 
     if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_FORCED_MOVE) && !MetatileBehavior_IsForcedMovementTile(metatileBehavior))
@@ -605,30 +603,6 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
     if (TryStartMatchCall())
         return TRUE;
     return FALSE;
-}
-
-// Unused
-static void ClearFriendshipStepCounter(void)
-{
-    VarSet(VAR_FRIENDSHIP_STEP_COUNTER, 0);
-}
-
-static void UpdateFriendshipStepCounter(void)
-{
-    u16 *ptr = GetVarPointer(VAR_FRIENDSHIP_STEP_COUNTER);
-    int i;
-
-    (*ptr)++;
-    (*ptr) %= 128;
-    if (*ptr == 0)
-    {
-        struct Pokemon *mon = gPlayerParty;
-        for (i = 0; i < PARTY_SIZE; i++)
-        {
-            AdjustFriendship(mon, FRIENDSHIP_EVENT_WALKING);
-            mon++;
-        }
-    }
 }
 
 void ClearPoisonStepCounter(void)
