@@ -6984,7 +6984,7 @@ const struct Item gItems[] =
     {
         .name = _("HealthFeather"),
         .itemId = ITEM_HEALTH_FEATHER,
-        .price = 300,
+        .price = 100,
         .description = sHealthFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -6995,7 +6995,7 @@ const struct Item gItems[] =
     {
         .name = _("MuscleFeather"),
         .itemId = ITEM_MUSCLE_FEATHER,
-        .price = 300,
+        .price = 100,
         .description = sMuscleFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -7006,7 +7006,7 @@ const struct Item gItems[] =
     {
         .name = _("ResistFeather"),
         .itemId = ITEM_RESIST_FEATHER,
-        .price = 300,
+        .price = 100,
         .description = sResistFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -7017,7 +7017,7 @@ const struct Item gItems[] =
     {
         .name = _("GeniusFeather"),
         .itemId = ITEM_GENIUS_FEATHER,
-        .price = 300,
+        .price = 100,
         .description = sGeniusFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -7028,7 +7028,7 @@ const struct Item gItems[] =
     {
         .name = _("CleverFeather"),
         .itemId = ITEM_CLEVER_FEATHER,
-        .price = 300,
+        .price = 100,
         .description = sCleverFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -7039,7 +7039,7 @@ const struct Item gItems[] =
     {
         .name = _("SwiftFeather"),
         .itemId = ITEM_SWIFT_FEATHER,
-        .price = 300,
+        .price = 100,
         .description = sSwiftFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -7050,7 +7050,7 @@ const struct Item gItems[] =
     {
         .name = _("PrettyFeather"),
         .itemId = ITEM_PRETTY_FEATHER,
-        .price = 1000,
+        .price = 10,
         .description = sPrettyFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
