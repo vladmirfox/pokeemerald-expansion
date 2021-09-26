@@ -1966,7 +1966,7 @@ const struct Item gItems[] =
     {
         .name = _("Pomeg Berry"),
         .itemId = ITEM_POMEG_BERRY,
-        .price = 20,
+        .price = 100,
         .description = sPomegBerryDesc,
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
@@ -1977,7 +1977,7 @@ const struct Item gItems[] =
     {
         .name = _("Kelpsy Berry"),
         .itemId = ITEM_KELPSY_BERRY,
-        .price = 20,
+        .price = 100,
         .description = sKelpsyBerryDesc,
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
@@ -1988,7 +1988,7 @@ const struct Item gItems[] =
     {
         .name = _("Qualot Berry"),
         .itemId = ITEM_QUALOT_BERRY,
-        .price = 20,
+        .price = 100,
         .description = sQualotBerryDesc,
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
@@ -1999,7 +1999,7 @@ const struct Item gItems[] =
     {
         .name = _("Hondew Berry"),
         .itemId = ITEM_HONDEW_BERRY,
-        .price = 20,
+        .price = 100,
         .description = sHondewBerryDesc,
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
@@ -2010,7 +2010,7 @@ const struct Item gItems[] =
     {
         .name = _("Grepa Berry"),
         .itemId = ITEM_GREPA_BERRY,
-        .price = 20,
+        .price = 100,
         .description = sGrepaBerryDesc,
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
@@ -2021,7 +2021,7 @@ const struct Item gItems[] =
     {
         .name = _("Tamato Berry"),
         .itemId = ITEM_TAMATO_BERRY,
-        .price = 20,
+        .price = 100,
         .description = sTamatoBerryDesc,
         .pocket = POCKET_BERRIES,
         .type = ITEM_USE_PARTY_MENU,
