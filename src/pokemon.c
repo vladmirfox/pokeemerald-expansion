@@ -6774,7 +6774,7 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
             break;
 
         if (CheckPartyHasHadPokerus(mon, 0))
-            multiplier = 2;
+            multiplier = 4;
         else
             multiplier = 1;
 
@@ -6850,8 +6850,14 @@ u16 GetMonEVCount(struct Pokemon *mon)
 
 void RandomlyGivePartyPokerus(struct Pokemon *party)
 {
-    u16 rnd = Random();
-    if (rnd == 0x4000 || rnd == 0x8000 || rnd == 0xC000)
+    u16 rnd;
+    u8 rnd2;
+
+    if (gBattleTypeFlags & (BATTLE_TYPE_FIRST_BATTLE
+                          | BATTLE_TYPE_KYOGRE_GROUDON
+                          | BATTLE_TYPE_LEGENDARY
+                          | BATTLE_TYPE_REGI
+                          | BATTLE_TYPE_ROAMER))
     {
         struct Pokemon *mon;
 
@@ -6868,8 +6874,6 @@ void RandomlyGivePartyPokerus(struct Pokemon *party)
 
         if (!(CheckPartyHasHadPokerus(party, gBitTable[rnd])))
         {
-            u8 rnd2;
-
             do
             {
                 rnd2 = Random();
@@ -6884,6 +6888,78 @@ void RandomlyGivePartyPokerus(struct Pokemon *party)
             rnd2++;
 
             SetMonData(&party[rnd], MON_DATA_POKERUS, &rnd2);
+        }
+    }
+    else if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
+    {
+        if (Random() % 32 == 0)
+        {
+            struct Pokemon *mon;
+
+            do
+            {
+                do
+                {
+                    rnd = Random() % PARTY_SIZE;
+                    mon = &party[rnd];
+                }
+                while (!GetMonData(mon, MON_DATA_SPECIES, 0));
+            }
+            while (GetMonData(mon, MON_DATA_IS_EGG, 0));
+
+            if (!(CheckPartyHasHadPokerus(party, gBitTable[rnd])))
+            {
+                do
+                {
+                    rnd2 = Random();
+                }
+                while ((rnd2 & 0x7) == 0);
+
+                if (rnd2 & 0xF0)
+                    rnd2 &= 0x7;
+
+                rnd2 |= (rnd2 << 4);
+                rnd2 &= 0xF3;
+                rnd2++;
+
+                SetMonData(&party[rnd], MON_DATA_POKERUS, &rnd2);
+            }
+        }
+    }
+    else
+    {
+        if (Random() % 256 == 0)
+        {
+            struct Pokemon *mon;
+
+            do
+            {
+                do
+                {
+                    rnd = Random() % PARTY_SIZE;
+                    mon = &party[rnd];
+                }
+                while (!GetMonData(mon, MON_DATA_SPECIES, 0));
+            }
+            while (GetMonData(mon, MON_DATA_IS_EGG, 0));
+
+            if (!(CheckPartyHasHadPokerus(party, gBitTable[rnd])))
+            {
+                do
+                {
+                    rnd2 = Random();
+                }
+                while ((rnd2 & 0x7) == 0);
+
+                if (rnd2 & 0xF0)
+                    rnd2 &= 0x7;
+
+                rnd2 |= (rnd2 << 4);
+                rnd2 &= 0xF3;
+                rnd2++;
+
+                SetMonData(&party[rnd], MON_DATA_POKERUS, &rnd2);
+            }
         }
     }
 }

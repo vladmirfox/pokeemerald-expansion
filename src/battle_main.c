@@ -4948,7 +4948,10 @@ static void WaitForEvoSceneToFinish(void)
 
 static void ReturnFromBattleToOverworld(void)
 {
-    if (!(gBattleTypeFlags & BATTLE_TYPE_LINK))
+    if ((!(gBattleTypeFlags & (BATTLE_TYPE_LINK 
+                             | BATTLE_TYPE_TRAINER
+                             | BATTLE_TYPE_DOUBLE))
+        && ((gBattleOutcome & B_OUTCOME_WON) && gBattleOutcome != B_OUTCOME_CAUGHT)))
     {
         RandomlyGivePartyPokerus(gPlayerParty);
         PartySpreadPokerus(gPlayerParty);
