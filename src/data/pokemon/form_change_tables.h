@@ -38,6 +38,7 @@ static const struct FormChange sShayminFormChangeTable[] = {
 
 static const struct FormChange sShayminSkyFormChangeTable[] = {
     {FORM_WITHDRAW, SPECIES_SHAYMIN},
+    {FORM_TIME_NIGHT, SPECIES_SHAYMIN},
     {FORM_CHANGE_END},
 };
 

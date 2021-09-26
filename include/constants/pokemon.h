@@ -355,6 +355,7 @@
 #define FORM_MOVE             3
 #define FORM_WITHDRAW         4
 #define FORM_ITEM_USE_DAY     5
+#define FORM_TIME_NIGHT       6
 
 // Evolution 'modes,' for GetEvolutionTargetSpecies
 #define EVO_MODE_NORMAL     0

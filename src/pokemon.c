@@ -8085,6 +8085,12 @@ u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg)
                  && (gLocalTime.hours >= 12 && gLocalTime.hours < 24))
                     targetSpecies = formChanges[i].targetSpecies;
                 break;
+            case FORM_TIME_NIGHT:
+                RtcCalcLocalTime();
+                if ((ability == formChanges[i].param2 || formChanges[i].param2 == ABILITY_NONE)
+                 && gLocalTime.hours >= 0 && gLocalTime.hours < 12)
+                    targetSpecies = formChanges[i].targetSpecies;
+                break;
             default:
                 targetSpecies = formChanges[i].targetSpecies; 
                 break;
