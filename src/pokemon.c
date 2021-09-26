@@ -8066,6 +8066,7 @@ u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg)
             {
             case FORM_ITEM_HOLD:
                 if (GetMonData(mon, MON_DATA_HELD_ITEM, NULL) == formChanges[i].param1 && (ability == formChanges[i].param2 || formChanges[i].param2 == ABILITY_NONE))
+                    targetSpecies = formChanges[i].targetSpecies;
                 break;
             case FORM_ITEM_USE: 
                 if (arg == formChanges[i].param1 && (ability == formChanges[i].param2 || formChanges[i].param2 == ABILITY_NONE))
