@@ -209,7 +209,7 @@ const u8 gItemEffect_SacredAsh[7] = {
 const u8 gItemEffect_HPUp[11] = {
     [4] = ITEM4_EV_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_EV,
+    [6] = ITEM6_MAX_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
     [10] = ITEM10_IS_VITAMIN,
 };
@@ -217,35 +217,35 @@ const u8 gItemEffect_HPUp[11] = {
 const u8 gItemEffect_Protein[11] = {
     [4] = ITEM4_EV_ATK,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_EV,
+    [6] = ITEM6_MAX_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
     [10] = ITEM10_IS_VITAMIN,
 };
 
 const u8 gItemEffect_Iron[11] = {
     [5] = ITEM5_EV_DEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_EV,
+    [6] = ITEM6_MAX_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
     [10] = ITEM10_IS_VITAMIN,
 };
 
 const u8 gItemEffect_Carbos[11] = {
     [5] = ITEM5_EV_SPEED | ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_EV,
+    [6] = ITEM6_MAX_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
     [10] = ITEM10_IS_VITAMIN,
 };
 
 const u8 gItemEffect_Calcium[11] = {
     [5] = ITEM5_EV_SPATK | ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_EV,
+    [6] = ITEM6_MAX_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
     [10] = ITEM10_IS_VITAMIN,
 };
 
 const u8 gItemEffect_Zinc[11] = {
     [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_EV,
+    [6] = ITEM6_MAX_EV,
     VITAMIN_FRIENDSHIP_CHANGE(7),
     [10] = ITEM10_IS_VITAMIN,
 };
@@ -258,7 +258,7 @@ const u8 gItemEffect_Zinc[11] = {
 const u8 gItemEffect_HpFeather[11] = {
     [4] = ITEM4_EV_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_ONE_EV,
+    [6] = ITEM6_ADD_EV,
     FEATHER_FRIENDSHIP_CHANGE(7),
     [10] = 0,
 };
@@ -266,35 +266,35 @@ const u8 gItemEffect_HpFeather[11] = {
 const u8 gItemEffect_AtkFeather[11] = {
     [4] = ITEM4_EV_ATK,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_ONE_EV,
+    [6] = ITEM6_ADD_EV,
     FEATHER_FRIENDSHIP_CHANGE(7),
     [10] = 0,
 };
 
 const u8 gItemEffect_DefFeather[11] = {
     [5] = ITEM5_EV_DEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_ONE_EV,
+    [6] = ITEM6_ADD_EV,
     FEATHER_FRIENDSHIP_CHANGE(7),
     [10] = 0,
 };
 
 const u8 gItemEffect_SpeedFeather[11] = {
     [5] = ITEM5_EV_SPEED | ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_ONE_EV,
+    [6] = ITEM6_ADD_EV,
     FEATHER_FRIENDSHIP_CHANGE(7),
     [10] = 0,
 };
 
 const u8 gItemEffect_SpatkFeather[11] = {
     [5] = ITEM5_EV_SPATK | ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_ONE_EV,
+    [6] = ITEM6_ADD_EV,
     FEATHER_FRIENDSHIP_CHANGE(7),
     [10] = 0,
 };
 
 const u8 gItemEffect_SpdefFeather[11] = {
     [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = ITEM6_ADD_ONE_EV,
+    [6] = ITEM6_ADD_EV,
     FEATHER_FRIENDSHIP_CHANGE(7),
     [10] = 0,
 };
