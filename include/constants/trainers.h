@@ -369,10 +369,13 @@
 
 #define F_TRAINER_FEMALE (1 << 7)
 
-// All trainer parties specify the IV, level, and species for each Pokémon in the
-// party. Some trainer parties also specify held items and custom moves for each
-// Pokémon.
-#define F_TRAINER_PARTY_CUSTOM_MOVESET (1 << 0)
-#define F_TRAINER_PARTY_HELD_ITEM      (1 << 1)
+// All trainer parties specify the level, ability, species, and shininess for each Pokémon in the
+// Some trainer parties also specify the iv, ev, nature, pokeball, held item and custom moves.
+// Below is used for setting the custom gender and friendship stat.
+#define TRAINER_MON_MALE   1
+#define TRAINER_MON_FEMALE 2
+
+#define TRAINER_MON_FRIENDLY   1
+#define TRAINER_MON_UNFRIENDLY 2
 
 #endif  // GUARD_TRAINERS_H

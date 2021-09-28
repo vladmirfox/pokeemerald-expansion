@@ -237,7 +237,8 @@
 
 #define OT_ID_PLAYER_ID       0
 #define OT_ID_PRESET          1
-#define OT_ID_RANDOM_NO_SHINY 2
+#define OT_ID_RANDOM_SHINY    2
+#define OT_ID_RANDOM_NO_SHINY 3
 
 #define MON_GIVEN_TO_PARTY      0
 #define MON_GIVEN_TO_PC         1

@@ -2992,9 +2992,12 @@ void TryHideBattleTowerReporter(void)
 
 static void FillPartnerParty(u16 trainerId)
 {
+    u32 nameHash = 0;
+    u32 personalityValue;
+    u8 fixedIV;
+    u8 ability, gender, friendship;
     s32 i, j;
     u32 ivs, level;
-    u32 friendship;
     u16 monId;
     u32 otID;
     u8 trainerName[(PLAYER_NAME_LENGTH * 3) + 1];
@@ -3031,6 +3034,7 @@ static void FillPartnerParty(u16 trainerId)
     }
     else if (trainerId >= TRAINER_CUSTOM_PARTNER)
     {
+        const struct TrainerMon *partyData = gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].party.TrainerMon;
         otID = Random32();
 
         for (i = 0; i < 3; i++)
@@ -3038,61 +3042,78 @@ static void FillPartnerParty(u16 trainerId)
 
         for (i = 0; i < 3 && i < gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].partySize; i++)
         {
-            do
-            {
-                j = Random32();
-            } while (IsShinyOtIdPersonality(otID, j));
 
-            switch (gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].partyFlags)
+            if (gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].doubleBattle == TRUE)
+                personalityValue = 0x80;
+            else if (gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].encounterMusic_gender & 0x80)
             {
-            case 0:
-            {
-                const struct TrainerMonNoItemDefaultMoves *partyData = gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].party.NoItemDefaultMoves;
-
-                CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, partyData[i].iv * 31 / 255, TRUE, j, TRUE, otID);
-                break;
+                personalityValue = 0x78; // Use personality more likely to result in a male Pokémon
+                gender = MON_FEMALE;
             }
-            case F_TRAINER_PARTY_CUSTOM_MOVESET:
+            else
             {
-                const struct TrainerMonNoItemCustomMoves *partyData = gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].party.NoItemCustomMoves;
+                personalityValue = personalityValue = 0x88; // Use personality more likely to result in a female Pokémon
+                gender = MON_MALE;
+            }
 
-                CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, partyData[i].iv * 31 / 255, TRUE, j, TRUE, otID);
+            if (partyData[i].gender == TRAINER_MON_FEMALE)
+                gender = MON_FEMALE;
+            else if (partyData[i].gender == TRAINER_MON_MALE)
+                gender = MON_MALE;
 
+            if ((partyData[i].nature > 0) || (partyData[i].gender > 0))
+                CreateMonWithGenderNatureLetter(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, 31, gender, partyData[i].nature, 0, partyData[i].shiny ? OT_ID_RANDOM_SHINY : OT_ID_RANDOM_NO_SHINY);
+            else
+            {
+                CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, 31, TRUE, personalityValue, partyData[i].shiny ? OT_ID_RANDOM_SHINY : OT_ID_RANDOM_NO_SHINY, 0);
+            }
+
+            if (partyData[i].abilityNum > 0)
+                SetMonData(&gPlayerParty[i + 3], MON_DATA_ABILITY_NUM, &partyData[i].abilityNum);
+
+            if (partyData[i].friendship > 0)
+            {
+                if (partyData[i].friendship == TRAINER_MON_UNFRIENDLY)
+                    friendship = 0;
+                else if (partyData[i].friendship == TRAINER_MON_FRIENDLY)
+                    friendship = MAX_FRIENDSHIP;
+                SetMonData(&gPlayerParty[i + 3], MON_DATA_FRIENDSHIP, &friendship);
+            }
+
+            if (partyData[i].pokeBall > 0)
+                SetMonData(&gPlayerParty[i + 3], MON_DATA_POKEBALL, &partyData[i].pokeBall);
+
+            if (partyData[i].heldItem > 0)
+                SetMonData(&gPlayerParty[i + 3], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+
+            if (partyData[i].iv > 0)
+            {
+                for (j = 0; j < NUM_STATS; j++)
+                {
+                    SetMonData(&gPlayerParty[i + 3], MON_DATA_HP_IV + j, &partyData[i].iv[j]);
+                }
+            }
+
+            if (partyData[i].ev > 0)
+            {
+                for (j = 0; j < NUM_STATS; j++)
+                {
+                    SetMonData(&gPlayerParty[i + 3], MON_DATA_HP_EV + j, &partyData[i].ev[j]);
+                }
+            }
+
+            if (partyData[i].moves[0] != 0)
+            {
                 for (j = 0; j < 4; j++)
                 {
                     SetMonData(&gPlayerParty[i + 3], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
                     SetMonData(&gPlayerParty[i + 3], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
                 }
-                break;
             }
-            case F_TRAINER_PARTY_HELD_ITEM:
-            {
-                const struct TrainerMonItemDefaultMoves *partyData = gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].party.ItemDefaultMoves;
-
-                CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, partyData[i].iv * 31 / 255, TRUE, j, TRUE, otID);
-
-                SetMonData(&gPlayerParty[i + 3], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
-                break;
-            }
-            case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
-            {
-                const struct TrainerMonItemCustomMoves *partyData = gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].party.ItemCustomMoves;
-
-                CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, partyData[i].iv * 31 / 255, TRUE, j, TRUE, otID);
-
-                SetMonData(&gPlayerParty[i + 3], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
-
-                for (j = 0; j < 4; j++)
-                {
-                    SetMonData(&gPlayerParty[i + 3], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
-                    SetMonData(&gPlayerParty[i + 3], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
-                }
-                break;
-            }
-            }
-
+            
             StringCopy(trainerName, gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].trainerName);
             SetMonData(&gPlayerParty[i + 3], MON_DATA_OT_NAME, trainerName);
+            CalculateMonStats(&gPlayerParty[i + 3]);
         }
     }
     else if (trainerId == TRAINER_EREADER)
