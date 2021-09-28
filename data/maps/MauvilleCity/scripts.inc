@@ -208,7 +208,28 @@ MauvilleCity_EventScript_ScottExitEast::
 
 MauvilleCity_EventScript_BattleWally::
 	msgbox MauvilleCity_Text_WallyHereICome, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_WALLY_MAUVILLE, MauvilleCity_Text_WallyDefeat
+	switch VAR_STARTER_MON
+	case 0, MauvilleCity_EventScript_StartWallyBattleTreecko
+	case 1, MauvilleCity_EventScript_StartWallyBattleTorchic
+	case 2, MauvilleCity_EventScript_StartWallyBattleMudkip
+	end
+
+MauvilleCity_EventScript_StartWallyBattleTreecko::
+	trainerbattle_no_intro TRAINER_WALLY_MAUVILLE_TREECKO, MauvilleCity_Text_WallyDefeat
+	goto MauvilleCity_EventScript_AfterWallyBattle
+	end
+
+MauvilleCity_EventScript_StartWallyBattleTorchic::
+	trainerbattle_no_intro TRAINER_WALLY_MAUVILLE_TORCHIC, MauvilleCity_Text_WallyDefeat
+	goto MauvilleCity_EventScript_AfterWallyBattle
+	end
+
+MauvilleCity_EventScript_StartWallyBattleMudkip::
+	trainerbattle_no_intro TRAINER_WALLY_MAUVILLE_MUDKIP, MauvilleCity_Text_WallyDefeat
+	goto MauvilleCity_EventScript_AfterWallyBattle
+	end
+
+MauvilleCity_EventScript_AfterWallyBattle::
 	applymovement LOCALID_WALLY, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox MauvilleCity_Text_WallyIllGoBackToVerdanturf, MSGBOX_DEFAULT

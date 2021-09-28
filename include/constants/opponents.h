@@ -514,13 +514,13 @@
 #define TRAINER_HUDSON                      510
 #define TRAINER_CONOR                       511
 #define TRAINER_EDWIN_1                     512
-#define TRAINER_HECTOR                      513
-#define TRAINER_TABITHA_MOSSDEEP            514
-#define TRAINER_EDWIN_2                     515
-#define TRAINER_EDWIN_3                     516
-#define TRAINER_EDWIN_4                     517
-#define TRAINER_EDWIN_5                     518
-#define TRAINER_WALLY_VR_1                  519
+#define TRAINER_EDWIN_2                     513
+#define TRAINER_EDWIN_3                     514
+#define TRAINER_EDWIN_4                     515
+#define TRAINER_EDWIN_5                     516
+#define TRAINER_WALLY_MAUVILLE_MUDKIP       517
+#define TRAINER_WALLY_MAUVILLE_TREECKO      518
+#define TRAINER_WALLY_MAUVILLE_TORCHIC      519
 #define TRAINER_BRENDAN_ROUTE_103_MUDKIP    520
 #define TRAINER_BRENDAN_ROUTE_110_MUDKIP    521
 #define TRAINER_BRENDAN_ROUTE_119_MUDKIP    522
@@ -657,7 +657,7 @@
 #define TRAINER_RILEY                       653
 #define TRAINER_FLINT                       654
 #define TRAINER_ASHLEY                      655
-#define TRAINER_WALLY_MAUVILLE              656
+#define TRAINER_WALLY_VR_1                  656
 #define TRAINER_WALLY_VR_2                  657
 #define TRAINER_WALLY_VR_3                  658
 #define TRAINER_WALLY_VR_4                  659
@@ -852,16 +852,18 @@
 #define TRAINER_MARIELA                     848
 #define TRAINER_ALVARO                      849
 #define TRAINER_EVERETT                     850
-#define TRAINER_RED                         851
-#define TRAINER_LEAF                        852
-#define TRAINER_BRENDAN_PLACEHOLDER         853
-#define TRAINER_MAY_PLACEHOLDER             854
+#define TRAINER_HECTOR                      851
+#define TRAINER_TABITHA_MOSSDEEP            852
+#define TRAINER_RED                         853
+#define TRAINER_LEAF                        854
+#define TRAINER_BRENDAN_PLACEHOLDER         855
+#define TRAINER_MAY_PLACEHOLDER             856
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      855
+#define TRAINERS_COUNT                      857
 #define MAX_TRAINERS_COUNT                  864
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H
