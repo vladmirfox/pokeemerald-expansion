@@ -11,21 +11,11 @@ LittlerootTown_BrendansHouse_1F_MapScripts::
 LittlerootTown_BrendansHouse_1F_OnLoad:
 	compare VAR_LITTLEROOT_INTRO_STATE, 6
 	call_if_lt LittlerootTown_BrendansHouse_1F_EventScript_SetMovingBoxes
-	call_if_set FLAG_RECEIVED_RUNNING_SHOES, LittlerootTown_BrendansHouse_1F_EventScript_CheckShowShoesManual
 	end
 
 LittlerootTown_BrendansHouse_1F_EventScript_SetMovingBoxes::
 	setmetatile 5, 4, METATILE_BrendansMaysHouse_MovingBox_Open, 1
 	setmetatile 5, 2, METATILE_BrendansMaysHouse_MovingBox_Closed, 1
-	return
-
-LittlerootTown_BrendansHouse_1F_EventScript_CheckShowShoesManual::
-	checkplayergender
-	compare VAR_RESULT, MALE
-	goto_if_eq LittlerootTown_BrendansHouse_1F_EventScript_ShowRunningShoesManual
-	return
-
-LittlerootTown_BrendansHouse_1F_EventScript_ShowRunningShoesManual::
 	setmetatile 3, 7, METATILE_BrendansMaysHouse_BookOnTable, 1
 	return
 
@@ -357,6 +347,10 @@ PlayersHouse_1F_Text_YouShouldRestABit:
 PlayersHouse_1F_Text_TakeCareHoney:
 	.string "MOM: Take care, honey!$"
 
+PlayersHouse_1F_Text_HeresSomethingFromMom:
+	.string "MOM: Oh! {PLAYER}!\p"
+	.string "Here's something from your MOM!$"
+
 PlayersHouse_1F_Text_GotDadsBadgeHeresSomethingFromMom:
 	.string "MOM: Oh? Did DAD give you that BADGE?\p"
 	.string "Then here's something from your MOM!$"
@@ -392,14 +386,6 @@ PlayersHouse_1F_Text_TheresAMovieOnTV:
 	.string "Two men are dancing on a big piano\n"
 	.string "keyboard.\p"
 	.string "Better get going!$"
-
-PlayersHouse_1F_Text_RunningShoesManual:
-	.string "It's the instruction booklet for the\n"
-	.string "RUNNING SHOES.\p"
-	.string "“Press the B Button to run while\n"
-	.string "wearing your RUNNING SHOES.\p"
-	.string "“Lace up your RUNNING SHOES and hit\n"
-	.string "the road running!”$"
 
 PlayersHouse_1F_Text_TicketFromBrineyCameForYou:
 	.string "DAD: Hm?\p"

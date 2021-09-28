@@ -449,45 +449,45 @@ LittlerootTown_EventScript_PlayersHouseSignFemale::
 	msgbox LittlerootTown_Text_PlayersHouse, MSGBOX_DEFAULT
 	return
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger0::
+LittlerootTown_EventScript_GiveLuckyEggTrigger0::
 	lockall
 	setvar VAR_0x8008, 0
 	setobjectxy LOCALID_MOM, 10, 9
-	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	goto LittlerootTown_EventScript_GiveLuckyEggTrigger
 	end
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger1::
+LittlerootTown_EventScript_GiveLuckyEggTrigger1::
 	lockall
 	setvar VAR_0x8008, 1
 	setobjectxy LOCALID_MOM, 11, 9
-	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	goto LittlerootTown_EventScript_GiveLuckyEggTrigger
 	end
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger2::
+LittlerootTown_EventScript_GiveLuckyEggTrigger2::
 	lockall
 	setvar VAR_0x8008, 2
-	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	goto LittlerootTown_EventScript_GiveLuckyEggTrigger
 	end
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger3::
+LittlerootTown_EventScript_GiveLuckyEggTrigger3::
 	lockall
 	setvar VAR_0x8008, 3
-	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	goto LittlerootTown_EventScript_GiveLuckyEggTrigger
 	end
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger4::
+LittlerootTown_EventScript_GiveLuckyEggTrigger4::
 	lockall
 	setvar VAR_0x8008, 4
-	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	goto LittlerootTown_EventScript_GiveLuckyEggTrigger
 	end
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger5::
+LittlerootTown_EventScript_GiveLuckyEggTrigger5::
 	lockall
 	setvar VAR_0x8008, 5
-	goto LittlerootTown_EventScript_GiveRunningShoesTrigger
+	goto LittlerootTown_EventScript_GiveLuckyEggTrigger
 	end
 
-LittlerootTown_EventScript_GiveRunningShoesTrigger::
+LittlerootTown_EventScript_GiveLuckyEggTrigger::
 	checkplayergender
 	compare VAR_RESULT, MALE
 	call_if_eq LittlerootTown_EventScript_MomNoticePlayerMale
@@ -505,13 +505,13 @@ LittlerootTown_EventScript_GiveRunningShoesTrigger::
 	call_if_eq LittlerootTown_EventScript_MomApproachPlayerMale
 	compare VAR_RESULT, FEMALE
 	call_if_eq LittlerootTown_EventScript_MomApproachPlayerFemale
-	call LittlerootTown_EventScript_GiveRunningShoes
+	call LittlerootTown_EventScript_GiveLuckyEgg
 	checkplayergender
 	compare VAR_RESULT, MALE
 	call_if_eq LittlerootTown_EventScript_MomReturnHomeMale
 	compare VAR_RESULT, FEMALE
 	call_if_eq LittlerootTown_EventScript_MomReturnHomeFemale
-	goto LittlerootTown_EventScript_SetReceivedRunningShoes
+	goto LittlerootTown_EventScript_SetReceiveLuckyEgg
 	end
 
 LittlerootTown_EventScript_SetHomeDoorCoordsMale::
@@ -928,7 +928,7 @@ LittlerootTown_EventScript_Mom::
 	call_if_eq LittlerootTown_EventScript_SetHomeDoorCoordsMale
 	compare VAR_RESULT, FEMALE
 	call_if_eq LittlerootTown_EventScript_SetHomeDoorCoordsFemale
-	call LittlerootTown_EventScript_GiveRunningShoes
+	call LittlerootTown_EventScript_GiveLuckyEgg
 	applymovement LOCALID_MOM, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	opendoor VAR_0x8009, VAR_0x800A
@@ -938,26 +938,30 @@ LittlerootTown_EventScript_Mom::
 	hideobjectat LOCALID_MOM, MAP_LITTLEROOT_TOWN
 	closedoor VAR_0x8009, VAR_0x800A
 	waitdooranim
-	goto LittlerootTown_EventScript_SetReceivedRunningShoes
+	goto LittlerootTown_EventScript_SetReceiveLuckyEgg
 	end
 
-LittlerootTown_EventScript_SetReceivedRunningShoes::
+LittlerootTown_EventScript_SetReceiveLuckyEgg::
 	removeobject LOCALID_MOM
-	setflag FLAG_SYS_B_DASH
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
 	release
 	end
 
-LittlerootTown_EventScript_GiveRunningShoes::
-	msgbox LittlerootTown_Text_WearTheseRunningShoes, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_ITEM
-	message LittlerootTown_Text_SwitchShoesWithRunningShoes
+LittlerootTown_EventScript_GiveLuckyEgg::
+	msgbox LittlerootTown_Text_GoingOnAdventure, MSGBOX_DEFAULT
+	giveitem ITEM_LUCKY_EGG, 1
+	compare VAR_RESULT, FALSE
+	call_if_eq LittlerootTown_EventScript_NoRoomForLuckyEgg
 	waitfanfare
-	setflag FLAG_RECEIVED_RUNNING_SHOES
-	msgbox LittlerootTown_Text_ExplainRunningShoes, MSGBOX_DEFAULT
+	setflag FLAG_TALKED_TO_MOM
 	msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
 	closemessage
 	delay 30
+	return
+
+LittlerootTown_EventScript_NoRoomForLuckyEgg::
+	setflag FLAG_MOM_HOLDING_LUCKY_EGG
+	msgbox gText_TooBadBagIsFull, MSGBOX_DEFAULT
 	return
 
 LittlerootTown_Text_OurNewHomeLetsGoInside:
@@ -975,28 +979,15 @@ LittlerootTown_Text_OurNewHomeLetsGoInside:
 LittlerootTown_Text_WaitPlayer:
 	.string "MOM: Wait, {PLAYER}!$"
 
-LittlerootTown_Text_WearTheseRunningShoes:
+LittlerootTown_Text_GoingOnAdventure:
 	.string "MOM: {PLAYER}! {PLAYER}! Did you\n"
 	.string "introduce yourself to PROF. BIRCH?\p"
 	.string "Oh! What an adorable POKéMON!\n"
 	.string "You got it from PROF. BIRCH. How nice!\p"
 	.string "You're your father's child, all right.\n"
 	.string "You look good together with POKéMON!\p"
-	.string "Here, honey! If you're going out on an\n"
-	.string "adventure, wear these RUNNING SHOES.\p"
-	.string "They'll put a zip in your step!$"
-
-LittlerootTown_Text_SwitchShoesWithRunningShoes:
-	.string "{PLAYER} switched shoes with the\n"
-	.string "RUNNING SHOES.$"
-
-LittlerootTown_Text_ExplainRunningShoes:
-	.string "MOM: {PLAYER}, those shoes came with\n"
-	.string "instructions.\p"
-	.string "“Press the B Button while wearing these\n"
-	.string "RUNNING SHOES to run extra-fast!\p"
-	.string "“Slip on these RUNNING SHOES and race\n"
-	.string "in the great outdoors!”$"
+	.string "Oh? If you're going on an adventure,\n"
+	.string "here's something from your MOM!$"
 
 LittlerootTown_Text_ComeHomeIfAnythingHappens:
 	.string "… … … … … … … …\n"

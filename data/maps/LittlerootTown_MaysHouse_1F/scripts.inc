@@ -11,22 +11,11 @@ LittlerootTown_MaysHouse_1F_MapScripts::
 LittlerootTown_MaysHouse_1F_OnLoad:
 	compare VAR_LITTLEROOT_INTRO_STATE, 6
 	call_if_lt LittlerootTown_MaysHouse_1F_EventScript_SetMovingBoxes
-	call_if_set FLAG_RECEIVED_RUNNING_SHOES, LittlerootTown_MaysHouse_1F_EventScript_CheckShowShoesManual
 	end
 
 LittlerootTown_MaysHouse_1F_EventScript_SetMovingBoxes::
 	setmetatile 5, 4, METATILE_BrendansMaysHouse_MovingBox_Open, 1
 	setmetatile 5, 2, METATILE_BrendansMaysHouse_MovingBox_Closed, 1
-	return
-
-LittlerootTown_MaysHouse_1F_EventScript_CheckShowShoesManual::
-	checkplayergender
-	compare VAR_RESULT, FEMALE
-	goto_if_eq LittlerootTown_MaysHouse_1F_EventScript_ShowRunningShoesManual
-	return
-
-LittlerootTown_MaysHouse_1F_EventScript_ShowRunningShoesManual::
-	setmetatile 6, 7, METATILE_BrendansMaysHouse_BookOnTable, 1
 	return
 
 LittlerootTown_MaysHouse_1F_OnTransition:

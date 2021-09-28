@@ -343,9 +343,24 @@ PlayersHouse_1F_EventScript_TryRegisterMom::
 	release
 	end
 
+PlayersHouse_1F_EventScript_CheckGiveLuckyEgg::
+	goto_if_set FLAG_MOM_HOLDING_LUCKY_EGG, PlayersHouse_1F_EventScript_TryGiveLuckyEgg
+	goto PlayersHouse_1F_EventScript_MomHealsParty
+
 PlayersHouse_1F_EventScript_CheckGiveAmuletCoin::
 	goto_if_set FLAG_BADGE05_GET, PlayersHouse_1F_EventScript_TryGiveAmuletCoin
 	goto PlayersHouse_1F_EventScript_MomHealsParty
+
+PlayersHouse_1F_EventScript_TryGiveLuckyEgg::
+	goto_if_set FLAG_TALKED_TO_MOM, PlayersHouse_1F_EventScript_MomHealsParty
+	msgbox PlayersHouse_1F_Text_HeresSomethingFromMom, MSGBOX_DEFAULT
+	giveitem ITEM_LUCKY_EGG
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	msgbox PlayersHouse_1F_Text_DontPushYourselfTooHard, MSGBOX_DEFAULT
+	clearflag FLAG_MOM_HOLDING_LUCKY_EGG
+	release
+	end
 
 PlayersHouse_1F_EventScript_TryGiveAmuletCoin::
 	goto_if_set FLAG_RECEIVED_AMULET_COIN, PlayersHouse_1F_EventScript_MomHealsParty
@@ -701,7 +716,3 @@ PlayersHouse_1F_Movement_PlayerApproachTVForLatiFemale:
 	walk_right
 	walk_in_place_fastest_up
 	step_end
-
-EventScript_RunningShoesManual::
-	msgbox PlayersHouse_1F_Text_RunningShoesManual, MSGBOX_SIGN
-	end
