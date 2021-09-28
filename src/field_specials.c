@@ -36,6 +36,7 @@
 #include "rtc.h"
 #include "script.h"
 #include "script_menu.h"
+#include "script_pokemon_util.h"
 #include "sound.h"
 #include "starter_choose.h"
 #include "string_util.h"
@@ -1447,16 +1448,18 @@ void SetShoalItemFlag(u16 unused)
 
 void PutZigzagoonInPlayerParty(void)
 {
-    u16 monData;
-    CreateMon(&gPlayerParty[0], SPECIES_ZIGZAGOON, 7, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
-    monData = TRUE;
-    SetMonData(&gPlayerParty[0], MON_DATA_ABILITY_NUM, &monData);
-    monData = MOVE_TACKLE;
-    SetMonData(&gPlayerParty[0], MON_DATA_MOVE1, &monData);
-    monData = MOVE_NONE;
-    SetMonData(&gPlayerParty[0], MON_DATA_MOVE2, &monData);
-    SetMonData(&gPlayerParty[0], MON_DATA_MOVE3, &monData);
-    SetMonData(&gPlayerParty[0], MON_DATA_MOVE4, &monData);
+    u16 move;
+
+    CreateMaleMon(&gPlayerParty[0], SPECIES_ZANGOOSE, 50);
+    move = MOVE_FALSE_SWIPE;
+    SetMonData(&gPlayerParty[0], MON_DATA_MOVE1, &move);
+    move = MOVE_THUNDER_WAVE;
+    SetMonData(&gPlayerParty[0], MON_DATA_MOVE2, &move);
+    move = MOVE_RETURN;
+    SetMonData(&gPlayerParty[0], MON_DATA_MOVE3, &move);
+    move = MOVE_THIEF;
+    SetMonData(&gPlayerParty[0], MON_DATA_MOVE4, &move);
+    HealPlayerParty();
 }
 
 bool8 IsStarterInParty(void)

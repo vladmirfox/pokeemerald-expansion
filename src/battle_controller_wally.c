@@ -1228,7 +1228,7 @@ static void WallyHandleChooseMove(void)
     case 0:
         InitMoveSelectionsVarsAndStrings();
         gBattleStruct->wallyMovesState++;
-        gBattleStruct->wallyMoveFrames = 80;
+        gBattleStruct->wallyMoveFrames = 60;
         break;
     case 1:
         if (!IsDma3ManagerBusyWithBgCopy())
@@ -1241,8 +1241,28 @@ static void WallyHandleChooseMove(void)
     case 2:
         if (--gBattleStruct->wallyMoveFrames == 0)
         {
+            MoveSelectionDestroyCursorAt(gMoveSelectionCursor[gActiveBattler]);
+            gMoveSelectionCursor[gActiveBattler] ^= 1;
             PlaySE(SE_SELECT);
-            BtlController_EmitTwoReturnValues(1, 10, 0x100);
+            MoveSelectionCreateCursorAt(gMoveSelectionCursor[gActiveBattler], 0);
+            MoveSelectionDisplayPpNumber();
+            MoveSelectionDisplayMoveType();
+            gBattleStruct->wallyMoveFrames = 60;
+            gBattleStruct->wallyMovesState++;
+        }
+        break;
+    case 3:
+        if (--gBattleStruct->wallyMoveFrames == 0)
+        {
+            PlaySE(SE_SELECT);
+            if (gBattleResults.battleTurnCounter != 0)
+            {
+                BtlController_EmitTwoReturnValues(1, 10, 0 | 0x100);
+            }
+            else
+            {
+                BtlController_EmitTwoReturnValues(1, 10, 1 | 0x100);
+            }
             WallyBufferExecCompleted();
         }
         break;

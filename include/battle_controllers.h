@@ -259,6 +259,12 @@ void Task_PlayerController_RestoreBgmAfterCry(u8 taskId);
 void ActionSelectionCreateCursorAt(u8 cursorPos, u8 unused);
 void ActionSelectionDestroyCursorAt(u8 cursorPos);
 void InitMoveSelectionsVarsAndStrings(void);
+void MoveSelectionCreateCursorAt(u8 cursorPos, u8 arg1);
+void MoveSelectionDestroyCursorAt(u8 cursorPos);
+void MoveSelectionDisplayPpNumber(void);
+void MoveSelectionDisplayMoveType(void);
+void MoveSelectionDisplayPpString(void);
+void MoveSelectionDisplayMoveNames(void);
 
 // recorded player controller
 void SetControllerToRecordedPlayer(void);

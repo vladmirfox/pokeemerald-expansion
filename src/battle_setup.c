@@ -480,7 +480,12 @@ static void sub_80B0828(void)
 // Initiates battle where Wally catches Ralts
 void StartWallyTutorialBattle(void)
 {
-    CreateMaleMon(&gEnemyParty[0], SPECIES_RALTS, 5);
+    if (*GetVarPointer(VAR_STARTER_MON) == 0) // Grass Starter
+        CreateMaleMon(&gEnemyParty[0], SPECIES_MUDKIP, 5);
+    if (*GetVarPointer(VAR_STARTER_MON) == 1) // Fire Starter
+        CreateMaleMon(&gEnemyParty[0], SPECIES_TREECKO, 5);
+    if (*GetVarPointer(VAR_STARTER_MON) == 2) // Water Starter
+        CreateMaleMon(&gEnemyParty[0], SPECIES_TORCHIC, 5);
     ScriptContext2_Enable();
     gMain.savedCallback = CB2_ReturnToFieldContinueScriptPlayMapMusic;
     gBattleTypeFlags = BATTLE_TYPE_WALLY_TUTORIAL;

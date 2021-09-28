@@ -1502,6 +1502,11 @@ bool8 JumpIfMoveAffectedByProtect(u16 move)
 
 static bool32 AccuracyCalcHelper(u16 move)
 {
+    if (gBattleTypeFlags & BATTLE_TYPE_WALLY_TUTORIAL)
+    {
+        JumpIfMoveFailed(7, move);
+        return TRUE;
+    }
     if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
     {
         JumpIfMoveFailed(7, move);
