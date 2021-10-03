@@ -40,6 +40,11 @@
     #define SPECIES_BURMY                   0
     #define SPECIES_BURMY_SANDY_CLOAK       10013
     #define SPECIES_BURMY_TRASH_CLOAK       10014
+    #define SPECIES_CRAMORANT               0
+    #define SPECIES_CRAMORANT_GORGING       10015
+    #define SPECIES_CRAMORANT_GULPING       10016
+    #define SPECIES_GRENINJA_BATTLE_BOND    0
+    #define SPECIES_GRENINJA_ASH            10017
 #endif
 
 // Items with peculiar battle effects.
