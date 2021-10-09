@@ -40,9 +40,9 @@ Route103_EventScript_RivalMay::
 	waitmovement 0
 	msgbox Route103_Text_MayLetsBattle, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, Route103_EventScript_StartMayBattleTreecko
-	case 1, Route103_EventScript_StartMayBattleTorchic
-	case 2, Route103_EventScript_StartMayBattleMudkip
+	case 0, Route103_EventScript_StartMayBattleGrass
+	case 1, Route103_EventScript_StartMayBattleFire
+	case 2, Route103_EventScript_StartMayBattleWater
 	end
 
 Route103_EventScript_RivalBrendan::
@@ -57,38 +57,38 @@ Route103_EventScript_RivalBrendan::
 	waitmovement 0
 	msgbox Route103_Text_BrendanLetsBattle, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, Route103_EventScript_StartBrendanBattleTreecko
-	case 1, Route103_EventScript_StartBrendanBattleTorchic
-	case 2, Route103_EventScript_StartBrendanBattleMudkip
+	case 0, Route103_EventScript_StartBrendanBattleGrass
+	case 1, Route103_EventScript_StartBrendanBattleFire
+	case 2, Route103_EventScript_StartBrendanBattleWater
 	end
 
-Route103_EventScript_StartMayBattleTreecko::
-	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TREECKO, Route103_Text_MayDefeated
+Route103_EventScript_StartMayBattleGrass::
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_GRASS, Route103_Text_MayDefeated
 	goto Route103_EventScript_AfterMayBattle
 	end
 
-Route103_EventScript_StartMayBattleTorchic::
-	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TORCHIC, Route103_Text_MayDefeated
+Route103_EventScript_StartMayBattleFire::
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_FIRE, Route103_Text_MayDefeated
 	goto Route103_EventScript_AfterMayBattle
 	end
 
-Route103_EventScript_StartMayBattleMudkip::
-	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_MUDKIP, Route103_Text_MayDefeated
+Route103_EventScript_StartMayBattleWater::
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_WATER, Route103_Text_MayDefeated
 	goto Route103_EventScript_AfterMayBattle
 	end
 
-Route103_EventScript_StartBrendanBattleTreecko::
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TREECKO, Route103_Text_BrendanDefeated
+Route103_EventScript_StartBrendanBattleGrass::
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_GRASS, Route103_Text_BrendanDefeated
 	goto Route103_EventScript_AfterBrendanBattle
 	end
 
-Route103_EventScript_StartBrendanBattleTorchic::
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TORCHIC, Route103_Text_BrendanDefeated
+Route103_EventScript_StartBrendanBattleFire::
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_FIRE, Route103_Text_BrendanDefeated
 	goto Route103_EventScript_AfterBrendanBattle
 	end
 
-Route103_EventScript_StartBrendanBattleMudkip::
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_MUDKIP, Route103_Text_BrendanDefeated
+Route103_EventScript_StartBrendanBattleWater::
+	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_WATER, Route103_Text_BrendanDefeated
 	goto Route103_EventScript_AfterBrendanBattle
 	end
 

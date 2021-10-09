@@ -15313,15 +15313,15 @@ static const struct TrainerMon sParty_Edwin5[] = {
     }
 };
 
-static const struct TrainerMon sParty_WallyMauvilleMudkip[] = {
+static const struct TrainerMon sParty_WallyMauvilleWater[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 16,
-    .species = SPECIES_TORCHIC,
+    .lvl = 21,
+    .species = SPECIES_QUILAVA,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15330,15 +15330,15 @@ static const struct TrainerMon sParty_WallyMauvilleMudkip[] = {
     }
 };
 
-static const struct TrainerMon sParty_WallyMauvilleTreecko[] = {
+static const struct TrainerMon sParty_WallyMauvilleGrass[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 16,
-    .species = SPECIES_MUDKIP,
+    .lvl = 21,
+    .species = SPECIES_CROCONAW,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15347,15 +15347,15 @@ static const struct TrainerMon sParty_WallyMauvilleTreecko[] = {
     }
 };
 
-static const struct TrainerMon sParty_WallyMauvilleTorchic[] = {
+static const struct TrainerMon sParty_WallyMauvilleFire[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 16,
-    .species = SPECIES_TREECKO,
+    .lvl = 21,
+    .species = SPECIES_BAYLEEF,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15364,15 +15364,15 @@ static const struct TrainerMon sParty_WallyMauvilleTorchic[] = {
     }
 };
 
-static const struct TrainerMon sParty_BrendanRoute103Mudkip[] = {
+static const struct TrainerMon sParty_BrendanRoute103Water[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 5,
-    .species = SPECIES_TREECKO,
+    .lvl = 6,
+    .species = SPECIES_CHIKORITA,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15381,7 +15381,7 @@ static const struct TrainerMon sParty_BrendanRoute103Mudkip[] = {
     }
 };
 
-static const struct TrainerMon sParty_BrendanRoute110Mudkip[] = {
+static const struct TrainerMon sParty_BrendanRoute110Water[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
@@ -15417,7 +15417,7 @@ static const struct TrainerMon sParty_BrendanRoute110Mudkip[] = {
     .shiny = 0,
     .abilityNum = 0,
     .lvl = 20,
-    .species = SPECIES_GROVYLE,
+    .species = SPECIES_BAYLEEF,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15426,15 +15426,15 @@ static const struct TrainerMon sParty_BrendanRoute110Mudkip[] = {
     }
 };
 
-static const struct TrainerMon sParty_BrendanRoute119Mudkip[] = {
+static const struct TrainerMon sParty_BrendanRoute119Water[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 29,
-    .species = SPECIES_SLUGMA,
+    .lvl = 38,
+    .species = SPECIES_MAGCARGO,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15447,7 +15447,7 @@ static const struct TrainerMon sParty_BrendanRoute119Mudkip[] = {
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 29,
+    .lvl = 38,
     .species = SPECIES_PELIPPER,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
@@ -15461,8 +15461,8 @@ static const struct TrainerMon sParty_BrendanRoute119Mudkip[] = {
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 31,
-    .species = SPECIES_GROVYLE,
+    .lvl = 40,
+    .species = SPECIES_MEGANIUM,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15471,15 +15471,15 @@ static const struct TrainerMon sParty_BrendanRoute119Mudkip[] = {
     }
 };
 
-static const struct TrainerMon sParty_BrendanRoute103Treecko[] = {
+static const struct TrainerMon sParty_BrendanRoute103Grass[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 5,
-    .species = SPECIES_TORCHIC,
+    .lvl = 6,
+    .species = SPECIES_CYNDAQUIL,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15488,7 +15488,7 @@ static const struct TrainerMon sParty_BrendanRoute103Treecko[] = {
     }
 };
 
-static const struct TrainerMon sParty_BrendanRoute110Treecko[] = {
+static const struct TrainerMon sParty_BrendanRoute110Grass[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
@@ -15524,7 +15524,7 @@ static const struct TrainerMon sParty_BrendanRoute110Treecko[] = {
     .shiny = 0,
     .abilityNum = 0,
     .lvl = 20,
-    .species = SPECIES_COMBUSKEN,
+    .species = SPECIES_QUILAVA,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15533,14 +15533,14 @@ static const struct TrainerMon sParty_BrendanRoute110Treecko[] = {
     }
 };
 
-static const struct TrainerMon sParty_BrendanRoute119Treecko[] = {
+static const struct TrainerMon sParty_BrendanRoute119Grass[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 29,
+    .lvl = 38,
     .species = SPECIES_PELIPPER,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
@@ -15554,8 +15554,8 @@ static const struct TrainerMon sParty_BrendanRoute119Treecko[] = {
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 29,
-    .species = SPECIES_LOMBRE,
+    .lvl = 38,
+    .species = SPECIES_LUDICOLO,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15568,8 +15568,8 @@ static const struct TrainerMon sParty_BrendanRoute119Treecko[] = {
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 31,
-    .species = SPECIES_COMBUSKEN,
+    .lvl = 40,
+    .species = SPECIES_TYPHLOSION,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15578,15 +15578,15 @@ static const struct TrainerMon sParty_BrendanRoute119Treecko[] = {
     }
 };
 
-static const struct TrainerMon sParty_BrendanRoute103Torchic[] = {
+static const struct TrainerMon sParty_BrendanRoute103Fire[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 5,
-    .species = SPECIES_MUDKIP,
+    .lvl = 6,
+    .species = SPECIES_TOTODILE,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15595,7 +15595,7 @@ static const struct TrainerMon sParty_BrendanRoute103Torchic[] = {
     }
 };
 
-static const struct TrainerMon sParty_BrendanRoute110Torchic[] = {
+static const struct TrainerMon sParty_BrendanRoute110Fire[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
@@ -15631,7 +15631,7 @@ static const struct TrainerMon sParty_BrendanRoute110Torchic[] = {
     .shiny = 0,
     .abilityNum = 0,
     .lvl = 20,
-    .species = SPECIES_MARSHTOMP,
+    .species = SPECIES_CROCONAW,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15640,15 +15640,15 @@ static const struct TrainerMon sParty_BrendanRoute110Torchic[] = {
     }
 };
 
-static const struct TrainerMon sParty_BrendanRoute119Torchic[] = {
+static const struct TrainerMon sParty_BrendanRoute119Fire[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 29,
-    .species = SPECIES_LOMBRE,
+    .lvl = 38,
+    .species = SPECIES_LUDICOLO,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15661,8 +15661,8 @@ static const struct TrainerMon sParty_BrendanRoute119Torchic[] = {
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 29,
-    .species = SPECIES_SLUGMA,
+    .lvl = 38,
+    .species = SPECIES_MAGCARGO,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15675,8 +15675,8 @@ static const struct TrainerMon sParty_BrendanRoute119Torchic[] = {
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 31,
-    .species = SPECIES_MARSHTOMP,
+    .lvl = 40,
+    .species = SPECIES_FERALIGATR,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15685,15 +15685,15 @@ static const struct TrainerMon sParty_BrendanRoute119Torchic[] = {
     }
 };
 
-static const struct TrainerMon sParty_MayRoute103Mudkip[] = {
+static const struct TrainerMon sParty_MayRoute103Water[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 5,
-    .species = SPECIES_TREECKO,
+    .lvl = 6,
+    .species = SPECIES_CHIKORITA,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15702,7 +15702,7 @@ static const struct TrainerMon sParty_MayRoute103Mudkip[] = {
     }
 };
 
-static const struct TrainerMon sParty_MayRoute110Mudkip[] = {
+static const struct TrainerMon sParty_MayRoute110Water[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
@@ -15738,7 +15738,7 @@ static const struct TrainerMon sParty_MayRoute110Mudkip[] = {
     .shiny = 0,
     .abilityNum = 0,
     .lvl = 20,
-    .species = SPECIES_GROVYLE,
+    .species = SPECIES_BAYLEEF,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15747,121 +15747,14 @@ static const struct TrainerMon sParty_MayRoute110Mudkip[] = {
     }
 };
 
-static const struct TrainerMon sParty_MayRoute119Mudkip[] = {
+static const struct TrainerMon sParty_MayRoute119Water[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 29,
-    .species = SPECIES_SLUGMA,
-    //.gender = TRAINER_MON_FEMALE,
-    //.friendship = TRAINER_MON_UNFRIENDLY,
-    //.pokeBall = ITEM_POKE_BALL,
-    //.heldItem = ITEM_NONE,
-    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
-    },
-    {
-    //.iv = {0, 0, 0, 0, 0, 0},
-    //.ev = {0, 0, 0, 0, 0, 0},
-    //.nature = NATURE_HARDY,
-    .shiny = 0,
-    .abilityNum = 0,
-    .lvl = 29,
-    .species = SPECIES_LOMBRE,
-    //.gender = TRAINER_MON_FEMALE,
-    //.friendship = TRAINER_MON_UNFRIENDLY,
-    //.pokeBall = ITEM_POKE_BALL,
-    //.heldItem = ITEM_NONE,
-    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
-    },
-    {
-    //.iv = {0, 0, 0, 0, 0, 0},
-    //.ev = {0, 0, 0, 0, 0, 0},
-    //.nature = NATURE_HARDY,
-    .shiny = 0,
-    .abilityNum = 0,
-    .lvl = 31,
-    .species = SPECIES_GROVYLE,
-    //.gender = TRAINER_MON_FEMALE,
-    //.friendship = TRAINER_MON_UNFRIENDLY,
-    //.pokeBall = ITEM_POKE_BALL,
-    //.heldItem = ITEM_NONE,
-    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
-    }
-};
-
-static const struct TrainerMon sParty_MayRoute103Treecko[] = {
-    {
-    //.iv = {0, 0, 0, 0, 0, 0},
-    //.ev = {0, 0, 0, 0, 0, 0},
-    //.nature = NATURE_HARDY,
-    .shiny = 0,
-    .abilityNum = 0,
-    .lvl = 5,
-    .species = SPECIES_TORCHIC,
-    //.gender = TRAINER_MON_FEMALE,
-    //.friendship = TRAINER_MON_UNFRIENDLY,
-    //.pokeBall = ITEM_POKE_BALL,
-    //.heldItem = ITEM_NONE,
-    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
-    }
-};
-
-static const struct TrainerMon sParty_MayRoute110Treecko[] = {
-    {
-    //.iv = {0, 0, 0, 0, 0, 0},
-    //.ev = {0, 0, 0, 0, 0, 0},
-    //.nature = NATURE_HARDY,
-    .shiny = 0,
-    .abilityNum = 0,
-    .lvl = 18,
-    .species = SPECIES_WINGULL,
-    //.gender = TRAINER_MON_FEMALE,
-    //.friendship = TRAINER_MON_UNFRIENDLY,
-    //.pokeBall = ITEM_POKE_BALL,
-    //.heldItem = ITEM_NONE,
-    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
-    },
-    {
-    //.iv = {0, 0, 0, 0, 0, 0},
-    //.ev = {0, 0, 0, 0, 0, 0},
-    //.nature = NATURE_HARDY,
-    .shiny = 0,
-    .abilityNum = 0,
-    .lvl = 18,
-    .species = SPECIES_LOMBRE,
-    //.gender = TRAINER_MON_FEMALE,
-    //.friendship = TRAINER_MON_UNFRIENDLY,
-    //.pokeBall = ITEM_POKE_BALL,
-    //.heldItem = ITEM_NONE,
-    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
-    },
-    {
-    //.iv = {0, 0, 0, 0, 0, 0},
-    //.ev = {0, 0, 0, 0, 0, 0},
-    //.nature = NATURE_HARDY,
-    .shiny = 0,
-    .abilityNum = 0,
-    .lvl = 20,
-    .species = SPECIES_COMBUSKEN,
-    //.gender = TRAINER_MON_FEMALE,
-    //.friendship = TRAINER_MON_UNFRIENDLY,
-    //.pokeBall = ITEM_POKE_BALL,
-    //.heldItem = ITEM_NONE,
-    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
-    }
-};
-
-static const struct TrainerMon sParty_MayRoute119Treecko[] = {
-    {
-    //.iv = {0, 0, 0, 0, 0, 0},
-    //.ev = {0, 0, 0, 0, 0, 0},
-    //.nature = NATURE_HARDY,
-    .shiny = 0,
-    .abilityNum = 0,
-    .lvl = 29,
+    .lvl = 38,
     .species = SPECIES_PELIPPER,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
@@ -15875,7 +15768,69 @@ static const struct TrainerMon sParty_MayRoute119Treecko[] = {
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 29,
+    .lvl = 38,
+    .species = SPECIES_MAGCARGO,
+    //.gender = TRAINER_MON_FEMALE,
+    //.friendship = TRAINER_MON_UNFRIENDLY,
+    //.pokeBall = ITEM_POKE_BALL,
+    //.heldItem = ITEM_NONE,
+    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
+    },
+    {
+    //.iv = {0, 0, 0, 0, 0, 0},
+    //.ev = {0, 0, 0, 0, 0, 0},
+    //.nature = NATURE_HARDY,
+    .shiny = 0,
+    .abilityNum = 0,
+    .lvl = 40,
+    .species = SPECIES_MEGANIUM,
+    //.gender = TRAINER_MON_FEMALE,
+    //.friendship = TRAINER_MON_UNFRIENDLY,
+    //.pokeBall = ITEM_POKE_BALL,
+    //.heldItem = ITEM_NONE,
+    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
+    }
+};
+
+static const struct TrainerMon sParty_MayRoute103Grass[] = {
+    {
+    //.iv = {0, 0, 0, 0, 0, 0},
+    //.ev = {0, 0, 0, 0, 0, 0},
+    //.nature = NATURE_HARDY,
+    .shiny = 0,
+    .abilityNum = 0,
+    .lvl = 6,
+    .species = SPECIES_CYNDAQUIL,
+    //.gender = TRAINER_MON_FEMALE,
+    //.friendship = TRAINER_MON_UNFRIENDLY,
+    //.pokeBall = ITEM_POKE_BALL,
+    //.heldItem = ITEM_NONE,
+    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
+    }
+};
+
+static const struct TrainerMon sParty_MayRoute110Grass[] = {
+    {
+    //.iv = {0, 0, 0, 0, 0, 0},
+    //.ev = {0, 0, 0, 0, 0, 0},
+    //.nature = NATURE_HARDY,
+    .shiny = 0,
+    .abilityNum = 0,
+    .lvl = 18,
+    .species = SPECIES_WINGULL,
+    //.gender = TRAINER_MON_FEMALE,
+    //.friendship = TRAINER_MON_UNFRIENDLY,
+    //.pokeBall = ITEM_POKE_BALL,
+    //.heldItem = ITEM_NONE,
+    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
+    },
+    {
+    //.iv = {0, 0, 0, 0, 0, 0},
+    //.ev = {0, 0, 0, 0, 0, 0},
+    //.nature = NATURE_HARDY,
+    .shiny = 0,
+    .abilityNum = 0,
+    .lvl = 18,
     .species = SPECIES_LOMBRE,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
@@ -15889,8 +15844,8 @@ static const struct TrainerMon sParty_MayRoute119Treecko[] = {
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 31,
-    .species = SPECIES_COMBUSKEN,
+    .lvl = 20,
+    .species = SPECIES_QUILAVA,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15899,15 +15854,43 @@ static const struct TrainerMon sParty_MayRoute119Treecko[] = {
     }
 };
 
-static const struct TrainerMon sParty_MayRoute103Torchic[] = {
+static const struct TrainerMon sParty_MayRoute119Grass[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 5,
-    .species = SPECIES_MUDKIP,
+    .lvl = 38,
+    .species = SPECIES_PELIPPER,
+    //.gender = TRAINER_MON_FEMALE,
+    //.friendship = TRAINER_MON_UNFRIENDLY,
+    //.pokeBall = ITEM_POKE_BALL,
+    //.heldItem = ITEM_NONE,
+    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
+    },
+    {
+    //.iv = {0, 0, 0, 0, 0, 0},
+    //.ev = {0, 0, 0, 0, 0, 0},
+    //.nature = NATURE_HARDY,
+    .shiny = 0,
+    .abilityNum = 0,
+    .lvl = 38,
+    .species = SPECIES_LUDICOLO,
+    //.gender = TRAINER_MON_FEMALE,
+    //.friendship = TRAINER_MON_UNFRIENDLY,
+    //.pokeBall = ITEM_POKE_BALL,
+    //.heldItem = ITEM_NONE,
+    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
+    },
+    {
+    //.iv = {0, 0, 0, 0, 0, 0},
+    //.ev = {0, 0, 0, 0, 0, 0},
+    //.nature = NATURE_HARDY,
+    .shiny = 0,
+    .abilityNum = 0,
+    .lvl = 40,
+    .species = SPECIES_TYPHLOSION,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15916,7 +15899,24 @@ static const struct TrainerMon sParty_MayRoute103Torchic[] = {
     }
 };
 
-static const struct TrainerMon sParty_MayRoute110Torchic[] = {
+static const struct TrainerMon sParty_MayRoute103Fire[] = {
+    {
+    //.iv = {0, 0, 0, 0, 0, 0},
+    //.ev = {0, 0, 0, 0, 0, 0},
+    //.nature = NATURE_HARDY,
+    .shiny = 0,
+    .abilityNum = 0,
+    .lvl = 6,
+    .species = SPECIES_TOTODILE,
+    //.gender = TRAINER_MON_FEMALE,
+    //.friendship = TRAINER_MON_UNFRIENDLY,
+    //.pokeBall = ITEM_POKE_BALL,
+    //.heldItem = ITEM_NONE,
+    //.moves = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
+    }
+};
+
+static const struct TrainerMon sParty_MayRoute110Fire[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
@@ -15952,7 +15952,7 @@ static const struct TrainerMon sParty_MayRoute110Torchic[] = {
     .shiny = 0,
     .abilityNum = 0,
     .lvl = 20,
-    .species = SPECIES_MARSHTOMP,
+    .species = SPECIES_CROCONAW,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15961,15 +15961,15 @@ static const struct TrainerMon sParty_MayRoute110Torchic[] = {
     }
 };
 
-static const struct TrainerMon sParty_MayRoute119Torchic[] = {
+static const struct TrainerMon sParty_MayRoute119Fire[] = {
     {
     //.iv = {0, 0, 0, 0, 0, 0},
     //.ev = {0, 0, 0, 0, 0, 0},
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 29,
-    .species = SPECIES_LOMBRE,
+    .lvl = 38,
+    .species = SPECIES_LUDICOLO,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15982,8 +15982,8 @@ static const struct TrainerMon sParty_MayRoute119Torchic[] = {
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 29,
-    .species = SPECIES_SLUGMA,
+    .lvl = 38,
+    .species = SPECIES_MAGCARGO,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,
@@ -15996,8 +15996,8 @@ static const struct TrainerMon sParty_MayRoute119Torchic[] = {
     //.nature = NATURE_HARDY,
     .shiny = 0,
     .abilityNum = 0,
-    .lvl = 31,
-    .species = SPECIES_MARSHTOMP,
+    .lvl = 40,
+    .species = SPECIES_FERALIGATR,
     //.gender = TRAINER_MON_FEMALE,
     //.friendship = TRAINER_MON_UNFRIENDLY,
     //.pokeBall = ITEM_POKE_BALL,

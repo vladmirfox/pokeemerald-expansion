@@ -209,23 +209,23 @@ MauvilleCity_EventScript_ScottExitEast::
 MauvilleCity_EventScript_BattleWally::
 	msgbox MauvilleCity_Text_WallyHereICome, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, MauvilleCity_EventScript_StartWallyBattleTreecko
-	case 1, MauvilleCity_EventScript_StartWallyBattleTorchic
-	case 2, MauvilleCity_EventScript_StartWallyBattleMudkip
+	case 0, MauvilleCity_EventScript_StartWallyBattleGrass
+	case 1, MauvilleCity_EventScript_StartWallyBattleFire
+	case 2, MauvilleCity_EventScript_StartWallyBattleWater
 	end
 
-MauvilleCity_EventScript_StartWallyBattleTreecko::
-	trainerbattle_no_intro TRAINER_WALLY_MAUVILLE_TREECKO, MauvilleCity_Text_WallyDefeat
+MauvilleCity_EventScript_StartWallyBattleGrass::
+	trainerbattle_no_intro TRAINER_WALLY_MAUVILLE_GRASS, MauvilleCity_Text_WallyDefeat
 	goto MauvilleCity_EventScript_AfterWallyBattle
 	end
 
-MauvilleCity_EventScript_StartWallyBattleTorchic::
-	trainerbattle_no_intro TRAINER_WALLY_MAUVILLE_TORCHIC, MauvilleCity_Text_WallyDefeat
+MauvilleCity_EventScript_StartWallyBattleFire::
+	trainerbattle_no_intro TRAINER_WALLY_MAUVILLE_FIRE, MauvilleCity_Text_WallyDefeat
 	goto MauvilleCity_EventScript_AfterWallyBattle
 	end
 
-MauvilleCity_EventScript_StartWallyBattleMudkip::
-	trainerbattle_no_intro TRAINER_WALLY_MAUVILLE_MUDKIP, MauvilleCity_Text_WallyDefeat
+MauvilleCity_EventScript_StartWallyBattleWater::
+	trainerbattle_no_intro TRAINER_WALLY_MAUVILLE_WATER, MauvilleCity_Text_WallyDefeat
 	goto MauvilleCity_EventScript_AfterWallyBattle
 	end
 
