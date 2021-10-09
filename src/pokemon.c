@@ -3133,6 +3133,7 @@ void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFix
 void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
 {
     u8 speciesName[POKEMON_NAME_LENGTH + 1];
+    u8 gameStatIDs[NUM_STATS] = {0, 1, 2, 3, 4, 5};
     u32 personality;
     u32 value;
     u16 checksum;
@@ -3214,29 +3215,129 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
     else
     {
-        u32 iv;
-        value = Random();
+        u32 iv, i;
+        u8 rand1, rand2;
+        u8 temp;
 
+        value = Random();
         iv = value & MAX_IV_MASK;
         SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
-        iv = (value & (MAX_IV_MASK << 5)) >> 5;
-        SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
-        iv = (value & (MAX_IV_MASK << 10)) >> 10;
-        SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
-
         value = Random();
-
+        iv = value & MAX_IV_MASK;
+        SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
+        value = Random();
+        iv = value & MAX_IV_MASK;
+        SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
+        value = Random();
         iv = value & MAX_IV_MASK;
         SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
-        iv = (value & (MAX_IV_MASK << 5)) >> 5;
+        value = Random();
+        iv = value & MAX_IV_MASK;
         SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
-        iv = (value & (MAX_IV_MASK << 10)) >> 10;
+        value = Random();
+        iv = value & MAX_IV_MASK;
         SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
+        iv = MAX_IV_MASK;
+        
+        if ((FlagGet(FLAG_BADGE08_GET) == TRUE) || (gMapHeader.regionMapSectionId == MAPSEC_SAFARI_ZONE))
+        {
+            for (i = 0; i < 256; i++)
+            {
+                rand1 = Random() % NUM_STATS;
+                rand2 = Random() % NUM_STATS;
+                SWAP(gameStatIDs[rand1], gameStatIDs[rand2], temp);
+            }
+
+            for (i = 0; i < 6; i++)
+            {
+                SetBoxMonData(boxMon, MON_DATA_HP_IV + gameStatIDs[i], &iv);
+            }
+        }
+        else if (FlagGet(FLAG_BADGE07_GET) == TRUE)
+        {
+            for (i = 0; i < 256; i++)
+            {
+                rand1 = Random() % NUM_STATS;
+                rand2 = Random() % NUM_STATS;
+                SWAP(gameStatIDs[rand1], gameStatIDs[rand2], temp);
+            }
+
+            for (i = 0; i < 5; i++)
+            {
+                SetBoxMonData(boxMon, MON_DATA_HP_IV + gameStatIDs[i], &iv);
+            }
+        }
+        else if (FlagGet(FLAG_BADGE06_GET) == TRUE)
+        {
+            for (i = 0; i < 256; i++)
+            {
+                rand1 = Random() % NUM_STATS;
+                rand2 = Random() % NUM_STATS;
+                SWAP(gameStatIDs[rand1], gameStatIDs[rand2], temp);
+            }
+
+            for (i = 0; i < 4; i++)
+            {
+                SetBoxMonData(boxMon, MON_DATA_HP_IV + gameStatIDs[i], &iv);
+            }
+        }
+        else if (FlagGet(FLAG_BADGE05_GET) == TRUE)
+        {
+            for (i = 0; i < 256; i++)
+            {
+                rand1 = Random() % NUM_STATS;
+                rand2 = Random() % NUM_STATS;
+                SWAP(gameStatIDs[rand1], gameStatIDs[rand2], temp);
+            }
+
+            for (i = 0; i < 3; i++)
+            {
+                SetBoxMonData(boxMon, MON_DATA_HP_IV + gameStatIDs[i], &iv);
+            }
+        }
+        else if (FlagGet(FLAG_BADGE04_GET) == TRUE)
+        {
+            for (i = 0; i < 256; i++)
+            {
+                rand1 = Random() % NUM_STATS;
+                rand2 = Random() % NUM_STATS;
+                SWAP(gameStatIDs[rand1], gameStatIDs[rand2], temp);
+            }
+
+            for (i = 0; i < 2; i++)
+            {
+                SetBoxMonData(boxMon, MON_DATA_HP_IV + gameStatIDs[i], &iv);
+            }
+        }
+        else if (FlagGet(FLAG_BADGE03_GET) == TRUE)
+        {
+            for (i = 0; i < 256; i++)
+            {
+                rand1 = Random() % NUM_STATS;
+                rand2 = Random() % NUM_STATS;
+                SWAP(gameStatIDs[rand1], gameStatIDs[rand2], temp);
+            }
+
+            for (i = 0; i < 1; i++)
+            {
+                SetBoxMonData(boxMon, MON_DATA_HP_IV + gameStatIDs[i], &iv);
+            }
+        }
     }
 
-    if (gBaseStats[species].abilities[1])
+    if ((gBaseStats[species].abilities[2]) && (gMapHeader.regionMapSectionId == MAPSEC_SAFARI_ZONE))
+    {
+        value = personality & 2;
+        SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
+    }
+    else if (gBaseStats[species].abilities[1])
     {
         value = personality & 1;
+        SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
+    }
+    else if (gBaseStats[species].abilities[0])
+    {
+        value = personality & 0;
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
     }
 
