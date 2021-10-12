@@ -1571,13 +1571,13 @@ static bool32 AccuracyCalcHelper(u16 move)
         JumpIfMoveFailed(7, move);
         return TRUE;
     }
-    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD)
+    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || (gBattlerTarget != gBattleStruct->skyDropTargets[1] - 4 && gBattlerTarget != gBattleStruct->skyDropTargets[3] - 4)))
     {
         if (!JumpIfMoveFailed(7, move))
             RecordAbilityBattle(gBattlerAttacker, ABILITY_NO_GUARD);
         return TRUE;
     }
-    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD)
+    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || (gBattlerTarget != gBattleStruct->skyDropTargets[1] - 4 && gBattlerTarget != gBattleStruct->skyDropTargets[3] - 4)))
     {
         if (!JumpIfMoveFailed(7, move))
             RecordAbilityBattle(gBattlerTarget, ABILITY_NO_GUARD);
@@ -1585,8 +1585,7 @@ static bool32 AccuracyCalcHelper(u16 move)
     }
 
     if ((gStatuses3[gBattlerTarget] & STATUS3_PHANTOM_FORCE)
-        || (!(gBattleMoves[move].flags & FLAG_DMG_IN_AIR) && gStatuses3[gBattlerTarget] & STATUS3_ON_AIR)
-        || (!(gBattleMoves[move].flags & FLAG_DMG_2X_IN_AIR) && gStatuses3[gBattlerTarget] & STATUS3_ON_AIR)
+        || (!(gBattleMoves[move].flags & FLAG_DMG_IN_AIR || gBattleMoves[move].flags & FLAG_DMG_2X_IN_AIR) && gStatuses3[gBattlerTarget] & STATUS3_ON_AIR)
         || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERGROUND) && gStatuses3[gBattlerTarget] & STATUS3_UNDERGROUND && !(gStatuses3[gBattlerTarget] & STATUS3_ON_AIR))
         || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERWATER) && gStatuses3[gBattlerTarget] & STATUS3_UNDERWATER))
     {
@@ -8798,20 +8797,32 @@ static void Cmd_various(void)
         if (gBattleStruct->skyDropTargets[0] < 4)
         {
             gBattleStruct->skyDropTargets[0] = gBattlerAttacker + 4;
-            gBattleStruct->skyDropTargets[1] = gBattlerTarget;
+            gBattleStruct->skyDropTargets[1] = gBattlerTarget + 4;
         }
         else
         {
             gBattleStruct->skyDropTargets[2] = gBattlerAttacker + 4;
-            gBattleStruct->skyDropTargets[3] = gBattlerTarget;
+            gBattleStruct->skyDropTargets[3] = gBattlerTarget + 4;
         }
+		gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_MULTIPLETURNS);
+		gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_LOCK_CONFUSE);
+		gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_UPROAR);
+		gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_BIDE);
+		gDisableStructs[gBattlerTarget].rolloutTimer = 0;
+		gDisableStructs[gBattlerTarget].furyCutterCounter = 0;
         break;
     case VARIOUS_CLEAR_SKY_DROP:
         gStatuses3[gBattlerTarget] &= ~STATUS3_SKY_DROPPED;
         if (gBattleStruct->skyDropTargets[0] - 4 == gBattlerAttacker)
+		{
            gBattleStruct->skyDropTargets[0] = 0;
+		   gBattleStruct->skyDropTargets[1] = 0;
+		}
         else
+		{
            gBattleStruct->skyDropTargets[2] = 0;
+		   gBattleStruct->skyDropTargets[3] = 0;
+		}
         break;
     case VARIOUS_JUMP_IF_PRANKSTER_BLOCKED:
         if (BlocksPrankster(gCurrentMove, gBattlerAttacker, gActiveBattler))
