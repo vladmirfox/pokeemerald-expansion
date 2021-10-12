@@ -18,7 +18,7 @@
 	.section script_data, "aw", %progbits
 	
 .align 2
-gBattleScriptsForMoveEffects:: @ 82D86A8
+gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_HIT
 	.4byte BattleScript_EffectSleep                   @ EFFECT_SLEEP
 	.4byte BattleScript_EffectPoisonHit               @ EFFECT_POISON_HIT
@@ -369,7 +369,7 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectSleepHit                @ EFFECT_SLEEP_HIT
 	.4byte BattleScript_EffectAttackerDefenseDownHit  @ EFFECT_ATTACKER_DEFENSE_DOWN_HIT
 	.4byte BattleScript_EffectHit                     @ EFFECT_BODY_PRESS
-  .4byte BattleScript_EffectEerieSpell              @ EFFECT_EERIE_SPELL
+    .4byte BattleScript_EffectEerieSpell              @ EFFECT_EERIE_SPELL
 	.4byte BattleScript_EffectJungleHealing           @ EFFECT_JUNGLE_HEALING
 	.4byte BattleScript_EffectCoaching                @ EFFECT_COACHING
 	.4byte BattleScript_EffectHit                     @ EFFECT_LASH_OUT
@@ -380,7 +380,7 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectHit                     @ EFFECT_SNIPE_SHOT
 	.4byte BattleScript_EffectTripleHit               @ EFFECT_TRIPLE_HIT
 	.4byte BattleScript_EffectRecoilHP25              @ EFFECT_RECOIL_HP_25
-  .4byte BattleScript_EffectSkyDrop                 @ EFFECT_SKY_DROP
+    .4byte BattleScript_EffectSkyDrop                 @ EFFECT_SKY_DROP
 
 BattleScript_EffectSkyDrop:
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_SkyDropTurn2
@@ -410,7 +410,15 @@ BattleScript_SkyDropTurn2:
 	clearsemiinvulnerablebit
 	clearskydrop
 	attackstring
+	jumpiftype BS_TARGET, TYPE_FLYING, BattleScript_SkyDropFlyingType
 	goto BattleScript_HitFromCritCalc
+BattleScript_SkyDropFlyingType:
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	goto BattleScript_MoveEnd
 
 BattleScript_EffectDecorate:
 	attackcanceler
@@ -6991,8 +6999,14 @@ BattleScript_YawnMakesAsleep::
 	waitmessage B_WAIT_TIME_LONG
 	updatestatusicon BS_EFFECT_BATTLER
 	waitstate
+	jumpifstatus3 BS_EFFECT_BATTLER, STATUS3_ON_AIR, BattleScript_YawnSkyDropCheck
+BattleScript_YawnMakeVisible:
 	makevisible BS_EFFECT_BATTLER
+BattleScript_YawnEnd:
 	end2
+BattleScript_YawnSkyDropCheck:
+	jumpifstatus3 BS_EFFECT_BATTLER, STATUS3_UNDERGROUND, BattleScript_YawnEnd
+	goto BattleScript_YawnMakeVisible
 
 BattleScript_EmbargoEndTurn::
 	printstring STRINGID_EMBARGOENDS
