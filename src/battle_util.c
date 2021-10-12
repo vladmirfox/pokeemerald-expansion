@@ -757,6 +757,17 @@ void HandleAction_SafariZoneBallThrow(void)
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }
 
+void HandleAction_ThrowBall(void)
+{
+    gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+    gBattle_BG0_X = 0;
+    gBattle_BG0_Y = 0;
+    gLastUsedItem = gLastThrownBall;
+    RemoveBagItem(gLastUsedItem, 1);
+    gBattlescriptCurrInstr = BattleScript_BallThrow;
+    gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
+}
+
 void HandleAction_ThrowPokeblock(void)
 {
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
@@ -3426,9 +3437,10 @@ u8 AtkCanceller_UnableToUseMove(void)
                     gBattlerAbility = gBattlerTarget;
                     effect = 1;
                 }
-                else if (GetBattlerHoldEffect(gBattlerTarget, TRUE) == HOLD_EFFECT_SAFETY_GOOGLES)
+                else if (GetBattlerHoldEffect(gBattlerTarget, TRUE) == HOLD_EFFECT_SAFETY_GOGGLES)
                 {
-                    RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_SAFETY_GOOGLES);
+                    RecordItemEffectBattle(gBattlerTarget, HOLD_EFFECT_SAFETY_GOGGLES);
+                    gLastUsedItem = gBattleMons[gBattlerTarget].item;
                     effect = 1;
                 }
 
@@ -4556,7 +4568,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
         break;
     case ABILITYEFFECT_MOVES_BLOCK: // 2
-        if ((gLastUsedAbility == ABILITY_SOUNDPROOF && gBattleMoves[move].flags & FLAG_SOUND)
+        if ((gLastUsedAbility == ABILITY_SOUNDPROOF && gBattleMoves[move].flags & FLAG_SOUND && !(gBattleMoves[move].target & MOVE_TARGET_USER))
             || (gLastUsedAbility == ABILITY_BULLETPROOF && gBattleMoves[move].flags & FLAG_BALLISTIC))
         {
             if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
@@ -4924,7 +4936,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_EFFECT_SPORE:
             if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
              && GetBattlerAbility(gBattlerAttacker) != ABILITY_OVERCOAT
-             && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOOGLES)
+             && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
                 i = Random() % 3;
                 if (i == 0)
@@ -5704,7 +5716,7 @@ static u8 HealConfuseBerry(u32 battlerId, u32 itemId, u8 flavorId, bool32 end2)
             gBattleMoveDamage *= 2;
             gBattlerAbility = battlerId;
         }
-
+        gBattleScripting.battler = battlerId;
         if (end2)
         {
             if (GetFlavorRelationByPersonality(gBattleMons[battlerId].personality, flavorId) < 0)
@@ -6919,7 +6931,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 if (TARGET_TURN_DAMAGED
                   && (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
                   && IsMoveMakingContact(gCurrentMove, gBattlerAttacker)
-                  && !DoesSubstituteBlockMove(gCurrentMove, gBattlerAttacker, battlerId)
+                  && !DoesSubstituteBlockMove(gBattlerAttacker, battlerId, gCurrentMove)
                   && IsBattlerAlive(gBattlerAttacker)
                   && CanStealItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerTarget].item)
                   && gBattleMons[gBattlerAttacker].item == ITEM_NONE)
@@ -7690,6 +7702,22 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             basePower *= 2;
         #endif
         break;
+    case EFFECT_HIDDEN_POWER:
+    {
+        #if B_HIDDEN_POWER_DMG < GEN_6
+        u8 powerBits;
+
+        powerBits = ((gBattleMons[gBattlerAttacker].hpIV & 2) >> 1)
+                | ((gBattleMons[gBattlerAttacker].attackIV & 2) << 0)
+                | ((gBattleMons[gBattlerAttacker].defenseIV & 2) << 1)
+                | ((gBattleMons[gBattlerAttacker].speedIV & 2) << 2)
+                | ((gBattleMons[gBattlerAttacker].spAttackIV & 2) << 3)
+                | ((gBattleMons[gBattlerAttacker].spDefenseIV & 2) << 4);
+
+        basePower = (40 * powerBits) / 63 + 30;
+        #endif
+        break;
+    }
     }
 
     // move-specific base power changes
