@@ -1028,8 +1028,13 @@ static const u8 sMachoBraceDesc[] = _(
 
 static const u8 sExpShareDesc[] = _(
     "A hold item that\n"
-    "gets Exp. points\n"
+    "splits Exp. points\n"
     "from battles.");
+
+static const u8 sExpAllDesc[] = _(
+    "Allows all Pokémon\n"
+    "on your team to\n"
+    "gain Exp. points.");
 
 static const u8 sQuickClawDesc[] = _(
     "A hold item that\n"

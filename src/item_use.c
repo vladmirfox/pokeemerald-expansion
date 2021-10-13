@@ -194,6 +194,35 @@ void ItemUseOutOfBattle_Mail(u8 taskId)
     Task_FadeAndCloseBagMenu(taskId);
 }
 
+void ItemUseOutOfBattle_ExpAll(u8 taskId)
+{
+	if (!gSaveBlock2Ptr->expAll)
+	{
+        PlaySE(SE_PC_LOGIN);
+        if (!gTasks[taskId].tUsingRegisteredKeyItem)
+        {
+            DisplayItemMessage(taskId, 1, gText_ExpAllOn, CloseItemMessage);
+        }
+        else
+        {
+            DisplayItemMessageOnField(taskId, gText_ExpAllOn, Task_CloseCantUseKeyItemMessage);
+        }
+	}
+	else
+	{
+        PlaySE(SE_PC_OFF);
+        if (!gTasks[taskId].tUsingRegisteredKeyItem)
+        {
+            DisplayItemMessage(taskId, 1, gText_ExpAllOff, CloseItemMessage);
+        }
+        else
+        {
+            DisplayItemMessageOnField(taskId, gText_ExpAllOff, Task_CloseCantUseKeyItemMessage);
+        }
+    }
+	gSaveBlock2Ptr->expAll = !gSaveBlock2Ptr->expAll;
+}
+
 void ItemUseOutOfBattle_Bike(u8 taskId)
 {
     s16* data = gTasks[taskId].data;

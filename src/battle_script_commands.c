@@ -3715,7 +3715,7 @@ static void Cmd_getexp(void)
                 else
                     holdEffect = ItemId_GetHoldEffect(item);
 
-                if (holdEffect == HOLD_EFFECT_EXP_SHARE)
+                if (holdEffect == HOLD_EFFECT_EXP_SHARE && B_SPLIT_EXP < GEN_6)
                     viaExpShare++;
             }
             #if (B_SCALED_EXP >= GEN_5) && (B_SCALED_EXP != GEN_6)
@@ -3764,12 +3764,21 @@ static void Cmd_getexp(void)
             else
                 holdEffect = ItemId_GetHoldEffect(item);
 
-            if (holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1))
-            {
-                *(&gBattleStruct->sentInPokes) >>= 1;
-                gBattleScripting.getexpState = 5;
-                gBattleMoveDamage = 0; // used for exp
-            }
+            #if B_SPLIT_EXP < GEN_6
+                if (holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1))
+                {
+                    *(&gBattleStruct->sentInPokes) >>= 1;
+                    gBattleScripting.getexpState = 5;
+                    gBattleMoveDamage = 0; // used for exp
+                }
+            #else
+                if (!gSaveBlock2Ptr->expAll && !(gBattleStruct->sentInPokes & 1))
+                {
+                    *(&gBattleStruct->sentInPokes) >>= 1;
+                    gBattleScripting.getexpState = 5;
+                    gBattleMoveDamage = 0; // used for exp
+                }
+            #endif
             else if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) == MAX_LEVEL)
             {
                 *(&gBattleStruct->sentInPokes) >>= 1;
@@ -3790,7 +3799,7 @@ static void Cmd_getexp(void)
                     gBattleStruct->wildVictorySong++;
                 }
 
-                if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP))
+                if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP) && !GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_IS_EGG))
                 {
                     if (gBattleStruct->sentInPokes & 1)
                         gBattleMoveDamage = *exp;
@@ -3798,7 +3807,9 @@ static void Cmd_getexp(void)
                         gBattleMoveDamage = 0;
 
                     // only give exp share bonus in later gens if the mon wasn't sent out
-                    if ((holdEffect == HOLD_EFFECT_EXP_SHARE) && ((gBattleMoveDamage == 0) || (B_SPLIT_EXP < GEN_6)))
+                    if (holdEffect == HOLD_EFFECT_EXP_SHARE && B_SPLIT_EXP < GEN_6)
+                        gBattleMoveDamage += gExpShareExp;
+                    if (gSaveBlock2Ptr->expAll && gBattleMoveDamage == 0)
                         gBattleMoveDamage += gExpShareExp;
                     if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
                         gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;

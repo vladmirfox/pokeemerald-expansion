@@ -2581,14 +2581,25 @@ const struct Item gItems[] =
 
     [ITEM_EXP_SHARE] =
     {
-        .name = _("Exp. Share"),
-        .itemId = ITEM_EXP_SHARE,
-        .price = 3000,
-        .holdEffect = HOLD_EFFECT_EXP_SHARE,
-        .description = sExpShareDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        #if B_SPLIT_EXP < GEN_6
+            .name = _("Exp. Share"),
+            .itemId = ITEM_EXP_SHARE,
+            .price = 3000,
+            .holdEffect = HOLD_EFFECT_EXP_SHARE,
+            .description = sExpShareDesc,
+            .pocket = POCKET_ITEMS,
+            .type = ITEM_USE_BAG_MENU,
+            .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        #else
+            .name = _("EXP. All"),
+            .itemId = ITEM_EXP_SHARE,
+            .price = 0,
+            .description = sExpAllDesc,
+            .importance = 1,
+            .pocket = POCKET_KEY_ITEMS,
+            .type = ITEM_USE_BAG_MENU,
+            .fieldUseFunc = ItemUseOutOfBattle_ExpAll,
+        #endif
     },
 
     [ITEM_QUICK_CLAW] =
