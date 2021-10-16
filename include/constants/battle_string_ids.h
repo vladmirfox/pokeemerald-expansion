@@ -592,10 +592,11 @@
 #define STRINGID_STRONGWINDSDISSIPATED                588
 #define STRINGID_MYSTERIOUSAIRCURRENTBLOWSON          589
 #define STRINGID_ATTACKWEAKENEDBSTRONGWINDS           590
-#define STRINGID_TARGETTOOHEAVY                       591
-#define STRINGID_PKMNTOOKTARGETHIGH                   592
+#define STRINGID_STUFFCHEEKSCANTSELECT                591
+#define STRINGID_TARGETTOOHEAVY                       592
+#define STRINGID_PKMNTOOKTARGETHIGH                   593
 
-#define BATTLESTRINGS_COUNT                           593
+#define BATTLESTRINGS_COUNT                           594
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
