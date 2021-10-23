@@ -2360,9 +2360,10 @@ u8 DoFieldEndTurnEffects(void)
             gBattleStruct->turnCountersTracker++;
             break;
         case ENDTURN_RETALIATE:
-            gActiveBattler = gBattlerByTurnOrder[gBattleStruct->turnSideTracker];
-            if (gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].retaliateTimer > 0)
-                gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].retaliateTimer--;
+            if (gSideTimers[B_SIDE_PLAYER].retaliateTimer > 0)
+                gSideTimers[B_SIDE_PLAYER].retaliateTimer--;
+            if (gSideTimers[B_SIDE_OPPONENT].retaliateTimer > 0)
+                gSideTimers[B_SIDE_OPPONENT].retaliateTimer--;
             gBattleStruct->turnCountersTracker++;
             break;
         case ENDTURN_FIELD_COUNT:
@@ -2891,7 +2892,7 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_ELECTRIFY:
-            gStatuses3[gActiveBattler] &= ~(STATUS3_ELECTRIFIED);
+            gStatuses4[gActiveBattler] &= ~(STATUS4_ELECTRIFIED);
             gBattleStruct->turnEffectsTracker++;
         case ENDTURN_POWDER:
             gBattleMons[gActiveBattler].status2 &= ~(STATUS2_POWDER);

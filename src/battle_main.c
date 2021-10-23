@@ -190,6 +190,7 @@ EWRAM_DATA u8 gUnusedFirstBattleVar2 = 0; // Never read
 EWRAM_DATA u32 gSideStatuses[2] = {0};
 EWRAM_DATA struct SideTimer gSideTimers[2] = {0};
 EWRAM_DATA u32 gStatuses3[MAX_BATTLERS_COUNT] = {0};
+EWRAM_DATA u32 gStatuses4[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA struct DisableStruct gDisableStructs[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gPauseCounterBattle = 0;
 EWRAM_DATA u16 gPaydayMoney = 0;
@@ -2849,6 +2850,7 @@ static void BattleStartClearSetData(void)
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
         gStatuses3[i] = 0;
+        gStatuses4[i] = 0;
         gDisableStructs[i].isFirstTurn = 2;
         gLastMoves[i] = 0;
         gLastLandedMoves[i] = 0;
@@ -2960,7 +2962,9 @@ void SwitchInClearSetData(void)
     if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
     {
         gBattleMons[gActiveBattler].status2 &= (STATUS2_CONFUSION | STATUS2_FOCUS_ENERGY | STATUS2_SUBSTITUTE | STATUS2_ESCAPE_PREVENTION | STATUS2_CURSED);
-        gStatuses3[gActiveBattler] &= (STATUS3_LEECHSEED_BATTLER | STATUS3_LEECHSEED | STATUS3_ALWAYS_HITS | STATUS3_PERISH_SONG | STATUS3_ROOTED);
+        gStatuses3[gActiveBattler] &= (STATUS3_LEECHSEED_BATTLER | STATUS3_LEECHSEED | STATUS3_ALWAYS_HITS | STATUS3_PERISH_SONG | STATUS3_ROOTED
+                                       | STATUS3_GASTRO_ACID | STATUS3_EMBARGO | STATUS3_TELEKINESIS | STATUS3_MAGNET_RISE | STATUS3_HEAL_BLOCK
+                                       | STATUS3_AQUA_RING | STATUS3_POWER_TRICK);
 
         for (i = 0; i < gBattlersCount; i++)
         {
@@ -2980,6 +2984,8 @@ void SwitchInClearSetData(void)
         gBattleMons[gActiveBattler].status2 = 0;
         gStatuses3[gActiveBattler] = 0;
     }
+    
+    gStatuses4[gActiveBattler] = 0;
 
     for (i = 0; i < gBattlersCount; i++)
     {
@@ -3053,6 +3059,7 @@ void FaintClearSetData(void)
 
     gBattleMons[gActiveBattler].status2 = 0;
     gStatuses3[gActiveBattler] = 0;
+    gStatuses4[gActiveBattler] = 0;
 
     for (i = 0; i < gBattlersCount; i++)
     {
@@ -5123,7 +5130,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     attackerAbility = GetBattlerAbility(battlerAtk);
     GET_MOVE_TYPE(move, moveType);
     if ((gFieldStatuses & STATUS_FIELD_ION_DELUGE && moveType == TYPE_NORMAL)
-        || gStatuses3[battlerAtk] & STATUS3_ELECTRIFIED)
+        || gStatuses4[battlerAtk] & STATUS4_ELECTRIFIED)
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_ELECTRIC;
     }
