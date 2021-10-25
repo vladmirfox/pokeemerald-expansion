@@ -1874,6 +1874,11 @@
 	.4byte \ptr
 	.endm
 
+	.macro trytoapplyiceface battler:req, ptr:req
+	various \battler, VARIOUS_TRY_TO_APPLY_ICE_FACE
+	.4byte \ptr
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER \stat | \stages << 3 | \down << 7

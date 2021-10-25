@@ -57,6 +57,7 @@ functions instead of at the top of the file with the other declarations.
 
 static bool32 TryRemoveScreens(u8 battler);
 static bool32 IsUnnerveAbilityOnOpposingSide(u8 battlerId);
+static void TryToApplyIceFace(u8 battlerId);
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForBallThrow[];
@@ -2233,10 +2234,12 @@ u8 DoFieldEndTurnEffects(void)
                 {
                     gBattleWeather &= ~WEATHER_HAIL_TEMPORARY;
                     gBattlescriptCurrInstr = BattleScript_SandStormHailEnds;
+                    gCanActivateIceFace = TRUE;
                 }
                 else
                 {
                     gBattlescriptCurrInstr = BattleScript_DamagingWeatherContinues;
+                    gCanActivateIceFace = FALSE;
                 }
 
                 gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
@@ -3886,6 +3889,19 @@ static u8 ForewarnChooseMove(u32 battler)
     free(data);
 }
 
+static void TryToApplyIceFace(u8 battlerId)
+{
+    if (gCanActivateIceFace)
+    {
+        if (gBattleMons[battlerId].species == SPECIES_EISCUE_NOICE_FACE && GetBattlerAbility(battlerId) == ABILITY_ICE_FACE)
+        {
+            gBattlerAttacker = battlerId;
+            gBattleMons[gBattlerAttacker].species = SPECIES_EISCUE;
+            BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
+        }
+    }
+}
+
 u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 moveArg)
 {
     u8 effect = 0;
@@ -4262,6 +4278,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);
+                for (i = 0; i < gBattlersCount; i++)
+                    if (GetBattlerAbility(i) == ABILITY_ICE_FACE)
+                        TryToApplyIceFace(i);
                 effect++;
             }
             else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInAbilityDone)
@@ -4595,7 +4614,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             gBattlescriptCurrInstr = BattleScript_DarkTypePreventsPrankster;
             effect = 1;
         }
-        
+        else if (gLastUsedAbility == ABILITY_ICE_FACE && IS_MOVE_PHYSICAL(move) && gBattleMons[gBattlerTarget].species == SPECIES_EISCUE)
+        {
+            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
+                gHitMarker |= HITMARKER_NO_PPDEDUCT;
+            gBattlescriptCurrInstr = BattleScript_NoDamage;
+            effect = 1;
+        }
         break;
     case ABILITYEFFECT_ABSORBING: // 3
         if (move != MOVE_NONE)
@@ -5188,6 +5213,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     gBattlescriptCurrInstr = BattleScript_GulpMissileGulping;
                     effect++;
                 }
+            }
+            break;
+        case ABILITY_ICE_FACE:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && IsBattlerAlive(gBattlerTarget)
+             && IS_MOVE_PHYSICAL(gCurrentMove)
+             && gBattleMons[gBattlerTarget].species == SPECIES_EISCUE)
+            {
+                gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerTarget]] = gBattleMons[gBattlerTarget].species;
+                gBattleMons[gBattlerTarget].species = SPECIES_EISCUE_NOICE_FACE;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_TargetFormChangeWithString;
+                effect++;
             }
             break;
         }
@@ -8957,6 +8996,7 @@ void UndoFormChange(u32 monId, u32 side, bool32 isSwitchingOut)
     {
         {SPECIES_MIMIKYU_BUSTED, SPECIES_MIMIKYU},
         {SPECIES_GRENINJA_ASH, SPECIES_GRENINJA_BATTLE_BOND},
+        {SPECIES_EISCUE_NOICE_FACE, SPECIES_EISCUE},
         {SPECIES_AEGISLASH_BLADE, SPECIES_AEGISLASH},
         {SPECIES_DARMANITAN_ZEN_MODE, SPECIES_DARMANITAN},
         {SPECIES_MINIOR, SPECIES_MINIOR_CORE_RED},
@@ -8972,7 +9012,7 @@ void UndoFormChange(u32 monId, u32 side, bool32 isSwitchingOut)
     };
 
     if (isSwitchingOut) // Don't revert Mimikyu Busted or Ash-Greninja when switching out
-        i = 2;
+        i = 3;
     else
         i = 0;
 

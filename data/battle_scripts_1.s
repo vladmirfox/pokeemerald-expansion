@@ -4386,7 +4386,21 @@ BattleScript_MoveWeatherChange::
 	printfromtable gMoveWeatherChangeStringIds
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_WeatherFormChanges
+	jumpifabilitypresent ABILITY_ICE_FACE, BattleScript_ApplyIceFace
 	goto BattleScript_MoveEnd
+
+BattleScript_ApplyIceFace::
+	savetarget
+	setbyte gBattlerTarget, 0
+BattleScript_IceFaceLoopIter:
+	copybyte sBATTLER, gBattlerTarget
+	trytoapplyiceface BS_TARGET, BattleScript_IceFaceLoop_NextBattler
+	call BattleScript_AttackerFormChange
+BattleScript_IceFaceLoop_NextBattler:
+	addbyte gBattlerTarget, 0x1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_IceFaceLoopIter
+	restoretarget
+	end
 
 BattleScript_EffectSunnyDay::
 	attackcanceler
@@ -6958,6 +6972,21 @@ BattleScript_TargetFormChange::
 	handleformchange BS_TARGET, 2 
 	return
 
+BattleScript_TargetFormChangeWithString::
+	pause 5
+	copybyte gBattlerAbility, gBattlerTarget
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_EMPTYSTRING3
+	waitmessage 1
+	handleformchange BS_TARGET, 0
+	handleformchange BS_TARGET, 1
+	playanimation BS_TARGET, B_ANIM_FORM_CHANGE, NULL
+	waitanimation
+	handleformchange BS_TARGET, 2
+	printstring STRINGID_TARGETPKMNTRANSFORMED
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_IllusionOff::
 	spriteignore0hp TRUE
 	playanimation BS_TARGET, B_ANIM_ILLUSION_OFF, NULL
@@ -7898,6 +7927,16 @@ BattleScript_SoundproofProtected::
 	printstring STRINGID_PKMNSXBLOCKSY
 	waitmessage B_WAIT_TIME_LONG
 	orhalfword gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE
+	goto BattleScript_MoveEnd
+
+BattleScript_NoDamage::
+	attackstring
+	ppreduce
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
 	goto BattleScript_MoveEnd
 
 BattleScript_DazzlingProtected::

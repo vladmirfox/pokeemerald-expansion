@@ -9004,6 +9004,25 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr += 7;
         }
         return;
+    case VARIOUS_TRY_TO_APPLY_ICE_FACE:
+    {
+        bool8 isIceFaceDone = FALSE;
+
+        if (gCanActivateIceFace)
+        {
+            if (gBattleMons[gActiveBattler].species == SPECIES_EISCUE_NOICE_FACE && GetBattlerAbility(gActiveBattler) == ABILITY_ICE_FACE)
+            {
+                gBattlerAttacker = gActiveBattler;
+                gBattleMons[gBattlerAttacker].species = SPECIES_EISCUE;
+                isIceFaceDone = TRUE;
+            }
+        }
+        if (!isIceFaceDone)
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        else
+            gBattlescriptCurrInstr += 7;
+        return;
+    }
     }
 
     gBattlescriptCurrInstr += 3;
