@@ -190,9 +190,12 @@
 #define VARIOUS_JUMP_IF_NOT_ROTOTILLER_AFFECTED 117
 #define VARIOUS_TRY_ACTIVATE_BATTLE_BOND        118
 #define VARIOUS_CONSUME_BERRY                   119
-#define VARIOUS_JUMP_IF_UNDER_200               120
-#define VARIOUS_SET_SKY_DROP                    121
-#define VARIOUS_CLEAR_SKY_DROP                  122
+#define VARIOUS_JUMP_IF_CANT_REVERT_TO_PRIMAL   120
+#define VARIOUS_HANDLE_PRIMAL_REVERSION         121
+#define VARIOUS_APPLY_PLASMA_FISTS              122
+#define VARIOUS_JUMP_IF_UNDER_200               123
+#define VARIOUS_SET_SKY_DROP                    124
+#define VARIOUS_CLEAR_SKY_DROP                  125
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
