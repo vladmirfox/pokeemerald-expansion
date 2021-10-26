@@ -1420,34 +1420,36 @@ void CancelMultiTurnMoves(u8 battler)
     gBattleMons[battler].status2 &= ~(STATUS2_UPROAR);
     gBattleMons[battler].status2 &= ~(STATUS2_BIDE);
 
-	if(gBattleStruct->skyDropTargets[1] - 4 != battler && gBattleStruct->skyDropTargets[3] - 4 != battler)
-		gStatuses3[battler] &= ~(STATUS3_SEMI_INVULNERABLE);
+    if(gBattleStruct->skyDropTargets[1] - 4 != battler && gBattleStruct->skyDropTargets[3] - 4 != battler)
+        gStatuses3[battler] &= ~(STATUS3_SEMI_INVULNERABLE);
     
     // Check to see if this Pokemon was in the middle of using Sky Drop. If so, release the target.
     if (gBattleStruct->skyDropTargets[0] - 4 == battler)
     {
-		// Sets skyDropTargets[1] to be the actual id for the target
-		gBattleStruct->skyDropTargets[1] -= 4;
+	// Sets skyDropTargets[1] to be the actual id for the target
+	gBattleStruct->skyDropTargets[1] -= 4;
 		
-		// Clears sky dropped effect
+	// Clears sky dropped and on_air statuses
         gStatuses3[gBattleStruct->skyDropTargets[1]] &= ~STATUS3_SKY_DROPPED;
+	gStatuses3[gBattleStruct->skyDropTargets[1]] &= ~STATUS3_ON_AIR;
 		
-		// Resets skyDropTargets values and makes both sprites visible in case of unique Yawn case
-		gSprites[gBattlerSpriteIds[gBattleStruct->skyDropTargets[0] - 4]].invisible = FALSE;
-		gBattleStruct->skyDropTargets[0] = 0;
-		gSprites[gBattlerSpriteIds[gBattleStruct->skyDropTargets[1]]].invisible = FALSE;
-		gBattleStruct->skyDropTargets[1] = 0;
+	// Resets skyDropTargets values and makes both sprites visible in case of unique Yawn case
+	gSprites[gBattlerSpriteIds[gBattleStruct->skyDropTargets[0] - 4]].invisible = FALSE;
+	gBattleStruct->skyDropTargets[0] = 0;
+	gSprites[gBattlerSpriteIds[gBattleStruct->skyDropTargets[1]]].invisible = FALSE;
+	gBattleStruct->skyDropTargets[1] = 0;
     }
     else if (gBattleStruct->skyDropTargets[2] - 4 == battler)
     {
         gBattleStruct->skyDropTargets[3] -= 4;
 		
         gStatuses3[gBattleStruct->skyDropTargets[3]] &= ~STATUS3_SKY_DROPPED;
+	gStatuses3[gBattleStruct->skyDropTargets[3]] &= ~STATUS3_ON_AIR;
 		
-		gSprites[gBattlerSpriteIds[gBattleStruct->skyDropTargets[2] - 4]].invisible = FALSE;
-		gBattleStruct->skyDropTargets[2] = 0;
-		gSprites[gBattlerSpriteIds[gBattleStruct->skyDropTargets[3]]].invisible = FALSE;
-		gBattleStruct->skyDropTargets[3] = 0;
+	gSprites[gBattlerSpriteIds[gBattleStruct->skyDropTargets[2] - 4]].invisible = FALSE;
+	gBattleStruct->skyDropTargets[2] = 0;
+	gSprites[gBattlerSpriteIds[gBattleStruct->skyDropTargets[3]]].invisible = FALSE;
+	gBattleStruct->skyDropTargets[3] = 0;
     }
 
     gDisableStructs[battler].rolloutTimer = 0;
