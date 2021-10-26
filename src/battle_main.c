@@ -3069,7 +3069,7 @@ void FaintClearSetData(void)
             gBattleMons[i].status2 &= ~(STATUS2_INFATUATED_WITH(gActiveBattler));
         if ((gBattleMons[i].status2 & STATUS2_WRAPPED) && *(gBattleStruct->wrappedBy + i) == gActiveBattler)
             gBattleMons[i].status2 &= ~(STATUS2_WRAPPED);
-	if ((gStatuses3[i] & STATUS3_ON_AIR) && (gStatuses3[i] & STATUS3_UNDERGROUND))
+        if(gStatuses3[i] & STATUS3_SKY_DROPPED)
             gStatuses3[i] &= ~STATUS3_SKY_DROPPED;
     }
 
@@ -3869,7 +3869,7 @@ static void HandleTurnActionSelectionState(void)
                                             | BATTLE_TYPE_EREADER_TRAINER
                                             | BATTLE_TYPE_RECORDED_LINK))
                                             // Or if currently held by Sky Drop
-                                            || ((gStatuses3[gActiveBattler] & STATUS3_ON_AIR) && (gStatuses3[gActiveBattler] & STATUS3_UNDERGROUND)))
+                                            || gStatuses3[gActiveBattler] & STATUS3_SKY_DROPPED)
                     {
                         RecordedBattle_ClearBattlerAction(gActiveBattler, 1);
                         gSelectionBattleScripts[gActiveBattler] = BattleScript_ActionSelectionItemsCantBeUsed;

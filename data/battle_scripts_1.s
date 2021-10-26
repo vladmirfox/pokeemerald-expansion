@@ -7196,14 +7196,10 @@ BattleScript_YawnMakesAsleep::
 	waitmessage B_WAIT_TIME_LONG
 	updatestatusicon BS_EFFECT_BATTLER
 	waitstate
-	jumpifstatus3 BS_EFFECT_BATTLER, STATUS3_ON_AIR, BattleScript_YawnSkyDropCheck
-BattleScript_YawnMakeVisible:
+	jumpifstatus3 BS_EFFECT_BATTLER, STATUS3_SKY_DROPPED, BattleScript_YawnEnd
 	makevisible BS_EFFECT_BATTLER
 BattleScript_YawnEnd:
 	end2
-BattleScript_YawnSkyDropCheck:
-	jumpifstatus3 BS_EFFECT_BATTLER, STATUS3_UNDERGROUND, BattleScript_YawnEnd
-	goto BattleScript_YawnMakeVisible
 
 BattleScript_EmbargoEndTurn::
 	printstring STRINGID_EMBARGOENDS

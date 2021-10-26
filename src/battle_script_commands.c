@@ -1587,7 +1587,7 @@ static bool32 AccuracyCalcHelper(u16 move)
 
     if ((gStatuses3[gBattlerTarget] & STATUS3_PHANTOM_FORCE)
         || (!(gBattleMoves[move].flags & FLAG_DMG_IN_AIR || gBattleMoves[move].flags & FLAG_DMG_2X_IN_AIR) && gStatuses3[gBattlerTarget] & STATUS3_ON_AIR)
-        || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERGROUND) && gStatuses3[gBattlerTarget] & STATUS3_UNDERGROUND && !(gStatuses3[gBattlerTarget] & STATUS3_ON_AIR))
+        || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERGROUND) && gStatuses3[gBattlerTarget] & STATUS3_UNDERGROUND)
         || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERWATER) && gStatuses3[gBattlerTarget] & STATUS3_UNDERWATER))
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
@@ -8813,6 +8813,7 @@ static void Cmd_various(void)
         return;
     case VARIOUS_SET_SKY_DROP:
         gStatuses3[gBattlerTarget] |= STATUS3_SKY_DROPPED;
+		gStatuses3[gBattlerTarget] |= STATUS3_ON_AIR;
         /* skyDropTargets holds the information of who is the attacker and the target of Sky Drop. 
            It's necessary in case two Pokemon use Sky Drop in a double battle at once.
            Otherwise, the game will confuse which Pokemon was targeted by which if one of the attackers
@@ -8836,6 +8837,7 @@ static void Cmd_various(void)
         break;
     case VARIOUS_CLEAR_SKY_DROP:
         gStatuses3[gBattlerTarget] &= ~STATUS3_SKY_DROPPED;
+		gStatuses3[gBattlerTarget] &= ~STATUS3_ON_AIR;
         if (gBattleStruct->skyDropTargets[0] - 4 == gBattlerAttacker)
 		{
            gBattleStruct->skyDropTargets[0] = 0;

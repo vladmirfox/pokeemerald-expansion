@@ -3224,8 +3224,8 @@ u8 AtkCanceller_UnableToUseMove(void)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_SKY_DROP:
-            // If Pokemon has STATUS3_SKY_DROPPED
-            if ((gStatuses3[gBattlerAttacker] & STATUS3_ON_AIR) && (gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND))
+            // If Pokemon is being held in Sky Drop
+            if (gStatuses3[gBattlerAttacker] & STATUS3_SKY_DROPPED)
             {
                 gBattlescriptCurrInstr = BattleScript_MoveEnd;
                 gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
@@ -4800,7 +4800,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !(gBattleTypeFlags & BATTLE_TYPE_ARENA)
              && CountUsablePartyMons(battler) > 0
              // Not currently held by Sky Drop
-             && !(gStatuses3[battler] & STATUS3_ON_AIR && gStatuses3[battler] & STATUS3_UNDERGROUND))
+             && !(gStatuses3[battler] & STATUS3_SKY_DROPPED)
             {
                 gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_EMERGENCY_EXIT;
                 effect++;
@@ -5562,7 +5562,7 @@ bool32 CanBattlerEscape(u32 battlerId) // no ability check
         return FALSE;
     else if (gFieldStatuses & STATUS_FIELD_FAIRY_LOCK)
         return FALSE;
-    else if ((gStatuses3[battlerId] & STATUS3_ON_AIR) && (gStatuses3[battlerId] & STATUS3_UNDERGROUND))
+    else if (gStatuses3[battlerId] & STATUS3_SKY_DROPPED)
         return FALSE;
     else
         return TRUE;
