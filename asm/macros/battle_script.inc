@@ -1988,7 +1988,7 @@
 	jumpifsideaffecting BS_TARGET, SIDE_STATUS_SAFEGUARD, \jumpptr
 	1:
 	.endm
-	
+
 	.macro jumpifunder200 battler:req, ptr:req
 	various \battler, VARIOUS_JUMP_IF_UNDER_200
 	.4byte \ptr

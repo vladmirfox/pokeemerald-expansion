@@ -428,7 +428,7 @@ BattleScript_SkyDropFlyingType:
 	effectivenesssound
 	hitanimation BS_TARGET
 	waitstate
-  goto BattleScript_MoveEnd
+	goto BattleScript_MoveEnd
 
 BattleScript_EffectPlasmaFists:
 	attackcanceler
@@ -455,7 +455,7 @@ BattleScript_EffectPlasmaFists:
 	printstring STRINGID_IONDELUGEON
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
-  
+
 BattleScript_EffectSparklySwirl:
 	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
