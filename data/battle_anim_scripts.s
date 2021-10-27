@@ -2503,14 +2503,10 @@ Move_GIGA_IMPACT:
 	delay 11
 	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, 0, 26, 0, 0, 5
 	delay 6
-	@monbg ANIM_DEF_PARTNER
-	@setalpha 12, 8
-	@createvisualtask AnimTask_WindUpLunge, 5, 7, 0, -18, 8, 23, 10, 40, 10
-	@delay 35
 	createsprite gComplexPaletteBlendSpriteTemplate, 2, 7, 31, 3, 1, 0, 10, 0, 0
 	createsprite gBasicHitSplatSpriteTemplate, 4, 4, -10, 0, 1, 0
 	playsewithpan SE_M_MEGA_KICK2, SOUND_PAN_TARGET
-	call SetImpactBackground
+	call SetGigaImpactBackground
 	delay 1
 	createsprite gSlideMonToOffsetSpriteTemplate 2, 5, 1, -16, 0, 0, 4
 	waitforvisualfinish
@@ -14587,6 +14583,25 @@ EmberFireHit:
 	createsprite gEmberFlareSpriteTemplate, ANIM_TARGET, 2, -24, 24, 24, 24, 20, ANIM_TARGET, 1
 	delay 4
 	return
+
+SetGigaImpactBackground:
+	delay 2
+	createvisualtask AnimTask_IsContest, 2
+	jumprettrue SetGigaImpactContestsBG
+	createvisualtask AnimTask_IsTargetPlayerSide, 2
+	jumpretfalse SetGigaImpactOpponentBG
+	jumprettrue SetGigaImpactPlayerBG
+SetGigaImpactBackgroundRet:
+	return
+SetGigaImpactOpponentBG:
+	changebg BG_GIGA_IMPACT_OPPONENT
+	goto SetGigaImpactBackgroundRet
+SetGigaImpactPlayerBG:
+	changebg BG_GIGA_IMPACT_PLAYER
+	goto SetGigaImpactBackgroundRet
+SetGigaImpactContestsBG:
+	changebg BG_GIGA_IMPACT_CONTEST
+	goto SetGigaImpactBackgroundRet
 
 SetImpactBackground:
 	delay 2

@@ -1397,10 +1397,6 @@ const u32 gBattleAnimBgPalette_MagmaStorm[] = INCBIN_U32("graphics/battle_anims/
 //new battle bgs
 const u32 gBattleAnimBgPalette_GigaImpact[] = INCBIN_U32("graphics/battle_anims/backgrounds/giga_impact.gbapal.lz");
 
-//const u32 gBattleAnimBgImage_TrickRoom[] = INCBIN_U32("graphics/battle_anims/backgrounds/trick_room.4bpp.lz");
-//const u32 gBattleAnimBgPalette_TrickRoom[] = INCBIN_U32("graphics/battle_anims/backgrounds/trick_room.gbapal.lz");
-//const u32 gBattleAnimBgTilemap_TrickRoom[] = INCBIN_U32("graphics/battle_anims/backgrounds/trick_room_map.bin.lz");
-
 const u32 gBattleAnimBgImage_RockWrecker[] = INCBIN_U32("graphics/battle_anims/backgrounds/rock_wrecker.4bpp.lz");
 const u32 gBattleAnimBgPalette_RockWrecker[] = INCBIN_U32("graphics/battle_anims/backgrounds/rock_wrecker.gbapal.lz");
 const u32 gBattleAnimBgTilemap_RockWrecker[] = INCBIN_U32("graphics/battle_anims/backgrounds/rock_wrecker_map.bin.lz");
@@ -1465,11 +1461,9 @@ const u32 gBattleAnimBgTilemap_FocusBlast[] = INCBIN_U32("graphics/battle_anims/
 const u32 gBattleAnimBgPalette_GarbageFalls[] = INCBIN_U32("graphics/battle_anims/backgrounds/new/garbage_falls.gbapal.lz");
 
 const u32 gBattleAnimBgImage_GigaImpactOpponent[] = INCBIN_U32("graphics/battle_anims/backgrounds/new/giga_impact_opponent.4bpp.lz");
-const u32 gBattleAnimBgPalette_GigaImpactOpponent[] = INCBIN_U32("graphics/battle_anims/backgrounds/new/giga_impact_opponent.gbapal.lz");
 const u32 gBattleAnimBgTilemap_GigaImpactOpponent[] = INCBIN_U32("graphics/battle_anims/backgrounds/new/giga_impact_opponent.bin");
 
 const u32 gBattleAnimBgImage_GigaImpactPlayer[] = INCBIN_U32("graphics/battle_anims/backgrounds/new/giga_impact_player.4bpp.lz");
-const u32 gBattleAnimBgPalette_GigaImpactPlayer[] = INCBIN_U32("graphics/battle_anims/backgrounds/new/giga_impact_player.gbapal.lz");
 const u32 gBattleAnimBgTilemap_GigaImpactPlayer[] = INCBIN_U32("graphics/battle_anims/backgrounds/new/giga_impact_player.bin");
 
 const u32 gBattleAnimBgImage_GrassyTerrain[] = INCBIN_U32("graphics/battle_anims/backgrounds/new/grassy_terrain.4bpp.lz");
