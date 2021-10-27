@@ -8860,7 +8860,7 @@ static void Cmd_various(void)
         return;
     case VARIOUS_SET_SKY_DROP:
         gStatuses3[gBattlerTarget] |= STATUS3_SKY_DROPPED;
-		gStatuses3[gBattlerTarget] |= STATUS3_ON_AIR;
+        gStatuses3[gBattlerTarget] |= STATUS3_ON_AIR;
         /* skyDropTargets holds the information of who is the attacker and the target of Sky Drop. 
            It's necessary in case two Pokemon use Sky Drop in a double battle at once.
            Otherwise, the game will confuse which Pokemon was targeted by which if one of the attackers
@@ -8875,26 +8875,26 @@ static void Cmd_various(void)
             gBattleStruct->skyDropTargets[2] = gBattlerAttacker + 4;
             gBattleStruct->skyDropTargets[3] = gBattlerTarget + 4;
         }
-		gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_MULTIPLETURNS);
-		gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_LOCK_CONFUSE);
-		gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_UPROAR);
-		gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_BIDE);
-		gDisableStructs[gBattlerTarget].rolloutTimer = 0;
-		gDisableStructs[gBattlerTarget].furyCutterCounter = 0;
+        gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_MULTIPLETURNS);
+        gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_LOCK_CONFUSE);
+        gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_UPROAR);
+        gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_BIDE);
+        gDisableStructs[gBattlerTarget].rolloutTimer = 0;
+        gDisableStructs[gBattlerTarget].furyCutterCounter = 0;
         break;
     case VARIOUS_CLEAR_SKY_DROP:
         gStatuses3[gBattlerTarget] &= ~STATUS3_SKY_DROPPED;
-		gStatuses3[gBattlerTarget] &= ~STATUS3_ON_AIR;
+        gStatuses3[gBattlerTarget] &= ~STATUS3_ON_AIR;
         if (gBattleStruct->skyDropTargets[0] - 4 == gBattlerAttacker)
-		{
+        {
            gBattleStruct->skyDropTargets[0] = 0;
-		   gBattleStruct->skyDropTargets[1] = 0;
-		}
+           gBattleStruct->skyDropTargets[1] = 0;
+        }
         else
-		{
+        {
            gBattleStruct->skyDropTargets[2] = 0;
-		   gBattleStruct->skyDropTargets[3] = 0;
-		}
+           gBattleStruct->skyDropTargets[3] = 0;
+        }
         break;
     case VARIOUS_JUMP_IF_PRANKSTER_BLOCKED:
         if (BlocksPrankster(gCurrentMove, gBattlerAttacker, gActiveBattler, TRUE))
