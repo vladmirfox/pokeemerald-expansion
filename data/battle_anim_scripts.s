@@ -13942,16 +13942,17 @@ Move_ETERNA_BEAM::
 Move_STEEL_BEAM::
 	loadspritegfx ANIM_TAG_ELECTRIC_ORBS
 	loadspritegfx ANIM_TAG_GUST
-	loadspritegfx ANIM_TAG_SPIKES
-	launchtask AnimTask_BlendBattleAnimPal 0xa 0x5 ANIM_PAL_BG 0x0 0x0 0x10 0x6B59   @To gray
-	launchtask AnimTask_ElectricChargingParticles 0x2 0x4 0x0 0x14 0x0 0x2
+	loadspritegfx ANIM_TAG_ORBS
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, ANIM_PAL_BG, 0, 0, 16, 0x6B59   @To gray
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_ORBS, 0, 16, 16, RGB2GBA(120, 120, 120)    @To gray  
+	createvisualtask AnimTask_ElectricChargingParticles, 2, 0, 20, 0, 2
 	playsewithpan SE_M_CHARGE, SOUND_PAN_ATTACKER
-	delay 0x14
-	loopsewithpan SE_M_HARDEN, SOUND_PAN_ATTACKER, 0x9, 15
-	launchtask AnimTask_ShakeMon 0x2 0x5 ANIM_ATTACKER 0x0 0x4 72 0x1
+	delay 20
+	loopsewithpan SE_M_HARDEN, SOUND_PAN_ATTACKER, 9, 15
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_ATTACKER, 0, 4, 72, 1
 	call SteelBeamShards
 	call SteelBeamShards
-	launchtemplate gSlideMonToOffsetSpriteTemplate 0x2 0x5 ANIM_TARGET, -30, 0x0 TRUE 145
+	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, ANIM_TARGET, -30, 0, TRUE, 145
 	call SteelBeamShards
 	call SteelBeamShards
 	call SteelBeamShards
@@ -13969,18 +13970,18 @@ Move_STEEL_BEAM::
 	call SteelBeamShards
 	call SteelBeamShards
 	waitforvisualfinish
-	launchtemplate gSlideMonToOriginalPosSpriteTemplate 0x2 0x3 ANIM_TARGET 0x0 0x6
-	launchtask AnimTask_BlendBattleAnimPal 0xa 0x5 ANIM_PAL_BG 0x1 0xE 0x0 0x6B59    @From gray
+	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, ANIM_TARGET, 0, 6
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, ANIM_PAL_BG, 1, 14, 0, 0x6B59	@From gray
 	waitforvisualfinish
 	end
 SteelBeamShards:
-	launchtemplate gSteelBeamSpikeShardTemplate 0x80, 0x5 0xf 0xf 0x14 0x0 0x0
-	launchtemplate gSteelBeamSpikeShardTemplate 0x80, 0x5 0xf 0xf 0x14 0xa 0x5
-	launchtemplate gSteelBeamSpikeShardTemplate 0x80, 0x5 0xf 0xf 0x14 0xfff6 0xfffb
-	delay 0x2
-	launchtemplate gSteelBeamSpikeShardTemplate 0x80, 0x5 0xf 0xf 0x14 0x14 0xa
-	launchtemplate gSteelBeamSpikeShardTemplate 0x80, 0x5 0xf 0xf 0x14 0xffec 0xfff6
-	delay 0x2
+	createsprite gHyperBeamOrbSpriteTemplate, ANIM_TARGET, 2
+	createsprite gHyperBeamOrbSpriteTemplate, ANIM_TARGET, 2
+	delay 1
+	createsprite gHyperBeamOrbSpriteTemplate, ANIM_TARGET, 2
+	createsprite gHyperBeamOrbSpriteTemplate, ANIM_TARGET, 2
+	delay 1
+	return
 
 Move_EXPANDING_FORCE::
 	end @to do:
