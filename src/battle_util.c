@@ -1420,7 +1420,7 @@ void CancelMultiTurnMoves(u8 battler)
     gBattleMons[battler].status2 &= ~(STATUS2_UPROAR);
     gBattleMons[battler].status2 &= ~(STATUS2_BIDE);
 
-    if(gBattleStruct->skyDropTargets[1] - 4 != battler && gBattleStruct->skyDropTargets[3] - 4 != battler)
+    if (gBattleStruct->skyDropTargets[1] - 4 != battler && gBattleStruct->skyDropTargets[3] - 4 != battler)
         gStatuses3[battler] &= ~(STATUS3_SEMI_INVULNERABLE);
     
     // Check to see if this Pokemon was in the middle of using Sky Drop. If so, release the target.
@@ -4808,7 +4808,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !(gBattleTypeFlags & BATTLE_TYPE_ARENA)
              && CountUsablePartyMons(battler) > 0
              // Not currently held by Sky Drop
-             && !(gStatuses3[battler] & STATUS3_SKY_DROPPED)
+             && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
             {
                 gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_EMERGENCY_EXIT;
                 effect++;

@@ -1993,11 +1993,11 @@
 	various \battler, VARIOUS_JUMP_IF_UNDER_200
 	.4byte \ptr
 	.endm
-	
+
 	.macro setskydrop
 	various 0, VARIOUS_SET_SKY_DROP
 	.endm
-	
+
 	.macro clearskydrop
 	various 0, VARIOUS_CLEAR_SKY_DROP
 	.endm
