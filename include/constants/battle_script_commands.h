@@ -193,9 +193,10 @@
 #define VARIOUS_JUMP_IF_CANT_REVERT_TO_PRIMAL   120
 #define VARIOUS_HANDLE_PRIMAL_REVERSION         121
 #define VARIOUS_APPLY_PLASMA_FISTS              122
-#define VARIOUS_JUMP_IF_UNDER_200               123
-#define VARIOUS_SET_SKY_DROP                    124
-#define VARIOUS_CLEAR_SKY_DROP                  125
+#define VARIOUS_JUMP_IF_SPECIES                 123
+#define VARIOUS_JUMP_IF_UNDER_200               124
+#define VARIOUS_SET_SKY_DROP                    125
+#define VARIOUS_CLEAR_SKY_DROP                  126
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
