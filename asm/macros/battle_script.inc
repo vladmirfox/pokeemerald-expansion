@@ -1998,7 +1998,7 @@
 	various 0, VARIOUS_SET_SKY_DROP
 	.endm
 
-	.macro clearskydrop
+	.macro clearskydrop ptr:req
 	various 0, VARIOUS_CLEAR_SKY_DROP
+	.4byte \ptr
 	.endm
-

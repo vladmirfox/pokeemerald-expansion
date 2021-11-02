@@ -1415,40 +1415,55 @@ void MarkBattlerReceivedLinkData(u8 battlerId)
 
 void CancelMultiTurnMoves(u8 battler)
 {
+	u8 i;
     gBattleMons[battler].status2 &= ~(STATUS2_MULTIPLETURNS);
     gBattleMons[battler].status2 &= ~(STATUS2_LOCK_CONFUSE);
     gBattleMons[battler].status2 &= ~(STATUS2_UPROAR);
     gBattleMons[battler].status2 &= ~(STATUS2_BIDE);
 
-    if (gBattleStruct->skyDropTargets[1] - 4 != battler && gBattleStruct->skyDropTargets[3] - 4 != battler)
+    if (gBattleStruct->skyDropTargets[1] - 6 != gBattlerPartyIndexes[battler] && gBattleStruct->skyDropTargets[3] - 6 != gBattlerPartyIndexes[battler])
         gStatuses3[battler] &= ~(STATUS3_SEMI_INVULNERABLE);
     
     // Check to see if this Pokemon was in the middle of using Sky Drop. If so, release the target.
-    if (gBattleStruct->skyDropTargets[0] - 4 == battler)
+    if (gBattleStruct->skyDropTargets[0] - 6 == gBattlerPartyIndexes[battler])
     {
-        // Sets skyDropTargets[1] to be the actual id for the target
-        gBattleStruct->skyDropTargets[1] -= 4;
+        // Sets skyDropTargets[1] to be the battler id for the target
+        for(i = 0; i < MAX_BATTLERS_COUNT; i++)
+        {
+            if(gBattlerPartyIndexes[i] + 6 == gBattleStruct->skyDropTargets[1])
+            {
+                gBattleStruct->skyDropTargets[1] = i;
+                break;
+            }
+        }
 		
         // Clears sky dropped and on_air statuses
         gStatuses3[gBattleStruct->skyDropTargets[1]] &= ~STATUS3_SKY_DROPPED;
         gStatuses3[gBattleStruct->skyDropTargets[1]] &= ~STATUS3_ON_AIR;
 		
         // Resets skyDropTargets values and makes both sprites visible in case of unique Yawn case
-        gSprites[gBattlerSpriteIds[gBattleStruct->skyDropTargets[0] - 4]].invisible = FALSE;
-        gBattleStruct->skyDropTargets[0] = 0;
+        gSprites[gBattlerSpriteIds[battler]].invisible = FALSE;
         gSprites[gBattlerSpriteIds[gBattleStruct->skyDropTargets[1]]].invisible = FALSE;
+        gBattleStruct->skyDropTargets[0] = 0;
         gBattleStruct->skyDropTargets[1] = 0;
     }
-    else if (gBattleStruct->skyDropTargets[2] - 4 == battler)
+    else if (gBattleStruct->skyDropTargets[2] - 6 == gBattlerPartyIndexes[battler])
     {
-        gBattleStruct->skyDropTargets[3] -= 4;
+        for(i = 0; i < MAX_BATTLERS_COUNT; i++)
+        {
+            if(gBattlerPartyIndexes[i] + 6 == gBattleStruct->skyDropTargets[3])
+            {
+                gBattleStruct->skyDropTargets[3] = i;
+                break;
+            }
+        }
 		
         gStatuses3[gBattleStruct->skyDropTargets[3]] &= ~STATUS3_SKY_DROPPED;
         gStatuses3[gBattleStruct->skyDropTargets[3]] &= ~STATUS3_ON_AIR;
 		
-        gSprites[gBattlerSpriteIds[gBattleStruct->skyDropTargets[2] - 4]].invisible = FALSE;
-        gBattleStruct->skyDropTargets[2] = 0;
+        gSprites[gBattlerSpriteIds[battler]].invisible = FALSE;
         gSprites[gBattlerSpriteIds[gBattleStruct->skyDropTargets[3]]].invisible = FALSE;
+        gBattleStruct->skyDropTargets[2] = 0;
         gBattleStruct->skyDropTargets[3] = 0;
     }
 
@@ -8864,6 +8879,10 @@ bool32 CanMegaEvolve(u8 battlerId)
             && (mega->alreadyEvolved[partnerPosition] || (mega->toEvolve & gBitTable[BATTLE_PARTNER(battlerId)])))
             return FALSE;
     }
+	
+	// Check if mon is currently held by Sky Drop
+	if (gStatuses3[battlerId] & STATUS3_SKY_DROPPED)
+		return FALSE;
 
     // Gets mon data.
     if (GetBattlerSide(battlerId) == B_SIDE_OPPONENT)

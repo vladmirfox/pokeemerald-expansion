@@ -1573,13 +1573,13 @@ static bool32 AccuracyCalcHelper(u16 move)
         JumpIfMoveFailed(7, move);
         return TRUE;
     }
-    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || (gBattlerTarget != gBattleStruct->skyDropTargets[1] - 4 && gBattlerTarget != gBattleStruct->skyDropTargets[3] - 4)))
+    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || (gBattlerPartyIndexes[gBattlerTarget] + 6 != gBattleStruct->skyDropTargets[1] && gBattlerPartyIndexes[gBattlerTarget] + 6 != gBattleStruct->skyDropTargets[3])))
     {
         if (!JumpIfMoveFailed(7, move))
             RecordAbilityBattle(gBattlerAttacker, ABILITY_NO_GUARD);
         return TRUE;
     }
-    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || (gBattlerTarget != gBattleStruct->skyDropTargets[1] - 4 && gBattlerTarget != gBattleStruct->skyDropTargets[3] - 4)))
+    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || (gBattlerPartyIndexes[gBattlerTarget] + 6 != gBattleStruct->skyDropTargets[1] && gBattlerPartyIndexes[gBattlerTarget] + 6 != gBattleStruct->skyDropTargets[3])))
     {
         if (!JumpIfMoveFailed(7, move))
             RecordAbilityBattle(gBattlerTarget, ABILITY_NO_GUARD);
@@ -8862,19 +8862,21 @@ static void Cmd_various(void)
         gStatuses3[gBattlerTarget] |= STATUS3_SKY_DROPPED;
         gStatuses3[gBattlerTarget] |= STATUS3_ON_AIR;
         /* skyDropTargets holds the information of who is the attacker and the target of Sky Drop. 
-           It's necessary in case two Pokemon use Sky Drop in a double battle at once.
-           Otherwise, the game will confuse which Pokemon was targeted by which if one of the attackers
-           is affected by Yawn while in the air.*/
-        if (gBattleStruct->skyDropTargets[0] < 4)
+           This is needed in the case that multiple Pokemon use Sky Drop in the same turn or if
+		   the target of a Sky Drop faints while in the air.*/
+        if (gBattleStruct->skyDropTargets[0] == 0)
         {
-            gBattleStruct->skyDropTargets[0] = gBattlerAttacker + 4;
-            gBattleStruct->skyDropTargets[1] = gBattlerTarget + 4;
+			// Store the party index of the target and the attacker within their respective parties
+            gBattleStruct->skyDropTargets[0] = gBattlerPartyIndexes[gBattlerAttacker] + 6;
+            gBattleStruct->skyDropTargets[1] = gBattlerPartyIndexes[gBattlerTarget] + 6;
         }
         else
         {
-            gBattleStruct->skyDropTargets[2] = gBattlerAttacker + 4;
-            gBattleStruct->skyDropTargets[3] = gBattlerTarget + 4;
+            gBattleStruct->skyDropTargets[2] = gBattlerPartyIndexes[gBattlerAttacker] + 6;
+            gBattleStruct->skyDropTargets[3] = gBattlerPartyIndexes[gBattlerTarget] + 6;
         }
+		
+        // End any multiturn effects caused by the target
         gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_MULTIPLETURNS);
         gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_LOCK_CONFUSE);
         gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_UPROAR);
@@ -8883,19 +8885,38 @@ static void Cmd_various(void)
         gDisableStructs[gBattlerTarget].furyCutterCounter = 0;
         break;
     case VARIOUS_CLEAR_SKY_DROP:
-        gStatuses3[gBattlerTarget] &= ~STATUS3_SKY_DROPPED;
-        gStatuses3[gBattlerTarget] &= ~STATUS3_ON_AIR;
-        if (gBattleStruct->skyDropTargets[0] - 4 == gBattlerAttacker)
-        {
-           gBattleStruct->skyDropTargets[0] = 0;
-           gBattleStruct->skyDropTargets[1] = 0;
+        if (gBattleStruct->skyDropTargets[0] - 6 == gBattlerPartyIndexes[gBattlerAttacker])
+        {			
+            // Check to see if the initial target of this Sky Drop fainted before the 2nd turn of Sky Drop.
+			// If so, make the move fail. If not, clear all of the statuses and continue the move.
+		    if (gBattleStruct->skyDropTargets[1] - 6 != gBattlerPartyIndexes[gBattlerTarget])
+                gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+		    else
+		    {
+                gStatuses3[gBattlerTarget] &= ~STATUS3_SKY_DROPPED;
+                gStatuses3[gBattlerTarget] &= ~STATUS3_ON_AIR;
+				gBattlescriptCurrInstr += 7;
+		    }
+			
+            // Clear skyDropTargets data
+			gBattleStruct->skyDropTargets[0] = 0;		  
+            gBattleStruct->skyDropTargets[1] = 0;
         }
         else
         {
-           gBattleStruct->skyDropTargets[2] = 0;
-           gBattleStruct->skyDropTargets[3] = 0;
+            if (gBattleStruct->skyDropTargets[3] - 6 != gBattlerPartyIndexes[gBattlerTarget])
+                gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+			else
+		    {
+                gStatuses3[gBattlerTarget] &= ~STATUS3_SKY_DROPPED;
+                gStatuses3[gBattlerTarget] &= ~STATUS3_ON_AIR;
+				gBattlescriptCurrInstr += 7;
+		    }
+			
+            gBattleStruct->skyDropTargets[2] = 0;
+            gBattleStruct->skyDropTargets[3] = 0;
         }
-        break;
+        return;
     case VARIOUS_JUMP_IF_PRANKSTER_BLOCKED:
         if (BlocksPrankster(gCurrentMove, gBattlerAttacker, gActiveBattler, TRUE))
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);

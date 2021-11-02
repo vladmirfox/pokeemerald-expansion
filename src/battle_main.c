@@ -3069,8 +3069,6 @@ void FaintClearSetData(void)
             gBattleMons[i].status2 &= ~(STATUS2_INFATUATED_WITH(gActiveBattler));
         if ((gBattleMons[i].status2 & STATUS2_WRAPPED) && *(gBattleStruct->wrappedBy + i) == gActiveBattler)
             gBattleMons[i].status2 &= ~(STATUS2_WRAPPED);
-        if (gStatuses3[i] & STATUS3_SKY_DROPPED)
-            gStatuses3[i] &= ~STATUS3_SKY_DROPPED;
     }
 
     gActionSelectionCursor[gActiveBattler] = 0;

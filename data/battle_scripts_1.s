@@ -397,9 +397,10 @@ BattleScript_EffectSkyDrop:
 	attackcanceler
 	ppreduce
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-	jumpifsubstituteblocks BattleScript_ButItFailed
-	jumpifunder200 BS_TARGET, BattleScript_SkyDropWork
 	attackstring
+	jumpifsubstituteblocks BattleScript_ButItFailed
+	jumpiftargetally BattleScript_ButItFailed
+	jumpifunder200 BS_TARGET, BattleScript_SkyDropWork
 	printstring STRINGID_TARGETTOOHEAVY
 	waitmessage 0x40
 	goto BattleScript_MoveEnd
@@ -418,16 +419,22 @@ BattleScript_SkyDropTurn2:
 	orword gHitMarker, HITMARKER_NO_PPDEDUCT
 	argumenttomoveeffect
 	clearsemiinvulnerablebit
-	clearskydrop
 	attackstring
+	clearskydrop BattleScript_SkyDropChangedTarget
 	jumpiftype BS_TARGET, TYPE_FLYING, BattleScript_SkyDropFlyingType
 	goto BattleScript_HitFromCritCalc
 BattleScript_SkyDropFlyingType:
-	attackanimation
-	waitanimation
-	effectivenesssound
-	hitanimation BS_TARGET
-	waitstate
+	makevisible BS_TARGET
+	printstring STRINGID_ITDOESNTAFFECT
+	waitmessage B_WAIT_TIME_LONG
+	makevisible BS_ATTACKER
+	goto BattleScript_MoveEnd
+BattleScript_SkyDropChangedTarget:
+	pause B_WAIT_TIME_SHORT
+	orhalfword gMoveResultFlags, MOVE_RESULT_FAILED
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	makevisible BS_ATTACKER
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectPlasmaFists:
