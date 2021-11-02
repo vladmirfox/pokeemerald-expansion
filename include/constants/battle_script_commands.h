@@ -194,9 +194,12 @@
 #define VARIOUS_HANDLE_PRIMAL_REVERSION         121
 #define VARIOUS_APPLY_PLASMA_FISTS              122
 #define VARIOUS_JUMP_IF_SPECIES                 123
-#define VARIOUS_JUMP_IF_UNDER_200               124
-#define VARIOUS_SET_SKY_DROP                    125
-#define VARIOUS_CLEAR_SKY_DROP                  126
+#define VARIOUS_UPDATE_ABILITY_POPUP            124
+#define VARIOUS_JUMP_IF_WEATHER_AFFECTED        125
+#define VARIOUS_JUMP_IF_LEAF_GUARD_PROTECTED    126
+#define VARIOUS_JUMP_IF_UNDER_200               127
+#define VARIOUS_SET_SKY_DROP                    128
+#define VARIOUS_CLEAR_SKY_DROP                  129
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

@@ -597,10 +597,12 @@
 #define STRINGID_BUTPOKEMONCANTUSETHEMOVE             593
 #define STRINGID_BUTHOOPACANTUSEIT                    594
 #define STRINGID_BROKETHROUGHPROTECTION               595
-#define STRINGID_TARGETTOOHEAVY                       596
-#define STRINGID_PKMNTOOKTARGETHIGH                   597
+#define STRINGID_ABILITYALLOWSONLYMOVE                596
+#define STRINGID_SWAPPEDABILITIES                     597
+#define STRINGID_TARGETTOOHEAVY                       598
+#define STRINGID_PKMNTOOKTARGETHIGH                   599
 
-#define BATTLESTRINGS_COUNT                           598
+#define BATTLESTRINGS_COUNT                           600
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
