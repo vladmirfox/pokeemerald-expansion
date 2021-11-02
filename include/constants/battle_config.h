@@ -45,6 +45,8 @@
     #define SPECIES_CRAMORANT_GULPING       10016
     #define SPECIES_GRENINJA_BATTLE_BOND    0
     #define SPECIES_GRENINJA_ASH            10017
+    #define SPECIES_HOOPA                   0
+    #define SPECIES_HOOPA_UNBOUND           10018
 #endif
 
 // Items with peculiar battle effects.
@@ -111,7 +113,7 @@
 #define B_ROUGH_SKIN_DMG            GEN_7 // In Gen4+, Rough Skin contact damage is 1/8th of max HP instead of 1/16th. This will also affect Iron Barbs.
 
 // Type settings
-#define B_GHOSTS_ESCAPE             GEN_7 // In Gen6+, Ghost-type Pokémon can escape even when blocked by abilities such as Shadow Tag.
+#define B_GHOSTS_ESCAPE             GEN_7 // In Gen6+, abilities like Shadow Tag or moves like Mean Look fail on Ghost-type Pokémon. They can also escape any Wild Battle.
 #define B_PARALYZE_ELECTRIC         GEN_7 // In Gen6+, Electric-type Pokémon can't be paralyzed.
 #define B_POWDER_GRASS              GEN_7 // In Gen6+, Grass-type Pokémon are immune to powder and spore moves.
 #define B_STEEL_RESISTANCES         GEN_7 // In Gen6+, Steel-type Pokémon are no longer resistant to Dark-type and Ghost-type moves.
