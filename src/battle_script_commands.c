@@ -8863,7 +8863,7 @@ static void Cmd_various(void)
 		   the target of a Sky Drop faints while in the air.*/
         if (gBattleStruct->skyDropTargets[0] == 0)
         {
-			// Store the party index of the target and the attacker within their respective parties
+            // Store the party index of the target and the attacker within their respective parties
             gBattleStruct->skyDropTargets[0] = gBattlerPartyIndexes[gBattlerAttacker] + 6;
             gBattleStruct->skyDropTargets[1] = gBattlerPartyIndexes[gBattlerTarget] + 6;
         }
@@ -8885,30 +8885,30 @@ static void Cmd_various(void)
         if (gBattleStruct->skyDropTargets[0] - 6 == gBattlerPartyIndexes[gBattlerAttacker])
         {			
             // Check to see if the initial target of this Sky Drop fainted before the 2nd turn of Sky Drop.
-			// If so, make the move fail. If not, clear all of the statuses and continue the move.
-		    if (gBattleStruct->skyDropTargets[1] - 6 != gBattlerPartyIndexes[gBattlerTarget])
+            // If so, make the move fail. If not, clear all of the statuses and continue the move.
+            if (gBattleStruct->skyDropTargets[1] - 6 != gBattlerPartyIndexes[gBattlerTarget])
                 gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
-		    else
-		    {
+            else
+            {
                 gStatuses3[gBattlerTarget] &= ~STATUS3_SKY_DROPPED;
                 gStatuses3[gBattlerTarget] &= ~STATUS3_ON_AIR;
-				gBattlescriptCurrInstr += 7;
-		    }
+                gBattlescriptCurrInstr += 7;
+            }
 			
             // Clear skyDropTargets data
-			gBattleStruct->skyDropTargets[0] = 0;		  
+            gBattleStruct->skyDropTargets[0] = 0;		  
             gBattleStruct->skyDropTargets[1] = 0;
         }
         else
         {
             if (gBattleStruct->skyDropTargets[3] - 6 != gBattlerPartyIndexes[gBattlerTarget])
                 gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
-			else
-		    {
+            else
+            {
                 gStatuses3[gBattlerTarget] &= ~STATUS3_SKY_DROPPED;
                 gStatuses3[gBattlerTarget] &= ~STATUS3_ON_AIR;
-				gBattlescriptCurrInstr += 7;
-		    }
+                gBattlescriptCurrInstr += 7;
+            }
 			
             gBattleStruct->skyDropTargets[2] = 0;
             gBattleStruct->skyDropTargets[3] = 0;

@@ -399,7 +399,6 @@ BattleScript_EffectSkyDrop:
 	attackcanceler
 	ppreduce
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-	attackstring
 	jumpifsubstituteblocks BattleScript_ButItFailed
 	jumpiftargetally BattleScript_ButItFailed
 	jumpifunder200 BS_TARGET, BattleScript_SkyDropWork
