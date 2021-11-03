@@ -4279,8 +4279,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);
                 for (i = 0; i < gBattlersCount; i++)
+                {
                     if (GetBattlerAbility(i) == ABILITY_ICE_FACE)
                         TryToApplyIceFace(i);
+                }
                 effect++;
             }
             else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInAbilityDone)
