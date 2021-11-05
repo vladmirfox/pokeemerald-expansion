@@ -47,6 +47,8 @@
     #define SPECIES_GRENINJA_ASH            10017
     #define SPECIES_HOOPA                   0
     #define SPECIES_HOOPA_UNBOUND           10018
+    #define SPECIES_EISCUE                  0
+    #define SPECIES_EISCUE_NOICE_FACE       10019
 #endif
 
 // Items with peculiar battle effects.
