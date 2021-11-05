@@ -197,9 +197,11 @@
 #define VARIOUS_UPDATE_ABILITY_POPUP            124
 #define VARIOUS_JUMP_IF_WEATHER_AFFECTED        125
 #define VARIOUS_JUMP_IF_LEAF_GUARD_PROTECTED    126
-#define VARIOUS_JUMP_IF_UNDER_200               127
-#define VARIOUS_SET_SKY_DROP                    128
-#define VARIOUS_CLEAR_SKY_DROP                  129
+#define VARIOUS_SET_ATTACKER_STICKY_WEB_USER    127
+#define VARIOUS_TRY_TO_APPLY_MIMICRY            128
+#define VARIOUS_JUMP_IF_UNDER_200               129
+#define VARIOUS_SET_SKY_DROP                    130
+#define VARIOUS_CLEAR_SKY_DROP                  131
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

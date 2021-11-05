@@ -410,7 +410,7 @@
 #define STRINGID_PKMNTWISTEDDIMENSIONS                406
 #define STRINGID_POINTEDSTONESFLOAT                   407
 #define STRINGID_CLOAKEDINMYSTICALMOONLIGHT           408
-#define STRINGID_TRAPPERBYSWIRLINGMAGMA               409
+#define STRINGID_TRAPPEDBYSWIRLINGMAGMA               409
 #define STRINGID_VANISHEDINSTANTLY                    410
 #define STRINGID_PROTECTEDTEAM                        411
 #define STRINGID_SHAREDITSGUARD                       412
@@ -599,10 +599,13 @@
 #define STRINGID_BROKETHROUGHPROTECTION               595
 #define STRINGID_ABILITYALLOWSONLYMOVE                596
 #define STRINGID_SWAPPEDABILITIES                     597
-#define STRINGID_TARGETTOOHEAVY                       598
-#define STRINGID_PKMNTOOKTARGETHIGH                   599
+#define STRINGID_PASTELVEILPROTECTED                  598
+#define STRINGID_PASTELVEILENTERS                     599
+#define STRINGID_BATTLERTYPECHANGEDTO                 600
+#define STRINGID_TARGETTOOHEAVY                       601
+#define STRINGID_PKMNTOOKTARGETHIGH                   602
 
-#define BATTLESTRINGS_COUNT                           600
+#define BATTLESTRINGS_COUNT                           603
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
@@ -838,6 +841,7 @@
 #define B_MSG_SWITCHIN_SCREENCLEANER    12
 #define B_MSG_SWITCHIN_ASONE            13
 #define B_MSG_SWITCHIN_CURIOUS_MEDICINE 14
+#define B_MSG_SWITCHIN_PASTEL_VEIL      15
 
 // gMentalHerbCureStringIds
 #define B_MSG_MENTALHERBCURE_INFATUATION       0
