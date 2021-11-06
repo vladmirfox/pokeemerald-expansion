@@ -8876,8 +8876,8 @@ static void Cmd_various(void)
         gStatuses3[gBattlerTarget] |= STATUS3_SKY_DROPPED;
         gStatuses3[gBattlerTarget] |= STATUS3_ON_AIR;
         /* skyDropTargets holds the information of who is the attacker and the target of Sky Drop. 
-       This is needed in the case that multiple Pokemon use Sky Drop in the same turn or if
-		   the target of a Sky Drop faints while in the air.*/
+           This is needed in the case that multiple Pokemon use Sky Drop in the same turn or if
+           the target of a Sky Drop faints while in the air.*/
         if (gBattleStruct->skyDropTargets[0] == 0)
         {
             // Store the party index of the target and the attacker within their respective parties
