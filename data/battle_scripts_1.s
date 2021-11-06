@@ -437,7 +437,7 @@ BattleScript_SkyDropChangedTarget:
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
 	makevisible BS_ATTACKER
-  goto BattleScript_MoveEnd
+	goto BattleScript_MoveEnd
   
 BattleScript_EffectAuraWheel: @ Aura Wheel can only be used by Morpeko
 	jumpifspecies BS_ATTACKER, SPECIES_MORPEKO, BattleScript_EffectSpeedUpHit
