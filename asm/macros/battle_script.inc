@@ -1883,6 +1883,14 @@
 	.4byte \ptr
 	.endm
 
+	.macro photongeysercheck
+	various BS_ATTACKER, VARIOUS_PHOTON_GEYSER_CHECK
+	.endm
+
+	.macro shellsidearmcheck
+	various BS_ATTACKER, VARIOUS_SHELL_SIDE_ARM_CHECK
+	.endm
+
 	.macro trytoapplyiceface battler:req, ptr:req
 	various \battler, VARIOUS_TRY_TO_APPLY_ICE_FACE
 	.4byte \ptr
