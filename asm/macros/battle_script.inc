@@ -1891,8 +1891,8 @@
 	various BS_ATTACKER, VARIOUS_SHELL_SIDE_ARM_CHECK
 	.endm
 
-	.macro trytoapplyiceface battler:req, ptr:req
-	various \battler, VARIOUS_TRY_TO_APPLY_ICE_FACE
+	.macro trytoreverticeface battler:req, ptr:req
+	various \battler, VARIOUS_TRY_TO_REVERT_ICE_FACE
 	.4byte \ptr
 	.endm
 

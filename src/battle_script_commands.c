@@ -9112,13 +9112,15 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr += 7;
         return;
     }
-    case VARIOUS_TRY_TO_APPLY_ICE_FACE:
+    case VARIOUS_TRY_TO_REVERT_ICE_FACE:
     {
         bool8 isIceFaceDone = FALSE;
 
         if (gCanActivateIceFace)
         {
-            if (gBattleMons[gActiveBattler].species == SPECIES_EISCUE_NOICE_FACE && GetBattlerAbility(gActiveBattler) == ABILITY_ICE_FACE)
+            if (gBattleMons[gActiveBattler].species == SPECIES_EISCUE_NOICE_FACE
+             && GetBattlerAbility(gActiveBattler) == ABILITY_ICE_FACE
+             && gBattleWeather & WEATHER_HAIL_ANY)
             {
                 gBattlerAttacker = gActiveBattler;
                 gBattleMons[gBattlerAttacker].species = SPECIES_EISCUE;

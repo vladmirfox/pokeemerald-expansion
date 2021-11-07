@@ -57,7 +57,6 @@ functions instead of at the top of the file with the other declarations.
 
 static bool32 TryRemoveScreens(u8 battler);
 static bool32 IsUnnerveAbilityOnOpposingSide(u8 battlerId);
-static void TryToApplyIceFace(u8 battlerId);
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForBallThrow[];
@@ -2284,13 +2283,13 @@ u8 DoFieldEndTurnEffects(void)
                 if (!(gBattleWeather & WEATHER_HAIL_PERMANENT) && --gWishFutureKnock.weatherDuration == 0)
                 {
                     gBattleWeather &= ~WEATHER_HAIL_TEMPORARY;
-                    gBattlescriptCurrInstr = BattleScript_SandStormHailEnds;
                     gCanActivateIceFace = TRUE;
+                    gBattlescriptCurrInstr = BattleScript_SandStormHailEnds;
                 }
                 else
                 {
-                    gBattlescriptCurrInstr = BattleScript_DamagingWeatherContinues;
                     gCanActivateIceFace = FALSE;
+                    gBattlescriptCurrInstr = BattleScript_DamagingWeatherContinues;
                 }
 
                 gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
@@ -3945,11 +3944,13 @@ static u8 ForewarnChooseMove(u32 battler)
     free(data);
 }
 
-static void TryToApplyIceFace(u8 battlerId)
+static void TryToRevertIceFace(u8 battlerId)
 {
     if (gCanActivateIceFace)
     {
-        if (gBattleMons[battlerId].species == SPECIES_EISCUE_NOICE_FACE && GetBattlerAbility(battlerId) == ABILITY_ICE_FACE)
+        if (gBattleMons[battlerId].species == SPECIES_EISCUE_NOICE_FACE
+         && GetBattlerAbility(battlerId) == ABILITY_ICE_FACE
+         && gBattleWeather & WEATHER_HAIL_ANY)
         {
             gBattlerAttacker = battlerId;
             gBattleMons[gBattlerAttacker].species = SPECIES_EISCUE;
@@ -4347,7 +4348,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 for (i = 0; i < gBattlersCount; i++)
                 {
                     if (GetBattlerAbility(i) == ABILITY_ICE_FACE)
-                        TryToApplyIceFace(i);
+                        TryToRevertIceFace(i);
                 }
                 effect++;
             }
@@ -4709,7 +4710,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         {
             if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
                 gHitMarker |= HITMARKER_NO_PPDEDUCT;
-            gBattlescriptCurrInstr = BattleScript_NoDamage;
+            gBattlescriptCurrInstr = BattleScript_NullifyDamage;
             effect = 1;
         }
         break;
@@ -9112,6 +9113,7 @@ void UndoFormChange(u32 monId, u32 side, bool32 isSwitchingOut)
     static const u16 species[][3] =
     {
         // Changed Form ID             Default Form ID               Should change on switch
+        {SPECIES_EISCUE_NOICE_FACE,    SPECIES_EISCUE,               FALSE},
         {SPECIES_MIMIKYU_BUSTED,       SPECIES_MIMIKYU,              FALSE},
         {SPECIES_GRENINJA_ASH,         SPECIES_GRENINJA_BATTLE_BOND, FALSE},
         {SPECIES_MELOETTA_PIROUETTE,   SPECIES_MELOETTA,             FALSE},

@@ -4506,21 +4506,7 @@ BattleScript_MoveWeatherChange::
 	printfromtable gMoveWeatherChangeStringIds
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_WeatherFormChanges
-	jumpifabilitypresent ABILITY_ICE_FACE, BattleScript_ApplyIceFace
 	goto BattleScript_MoveEnd
-
-BattleScript_ApplyIceFace::
-	savetarget
-	setbyte gBattlerTarget, 0
-BattleScript_IceFaceLoopIter:
-	copybyte sBATTLER, gBattlerTarget
-	trytoapplyiceface BS_TARGET, BattleScript_IceFaceLoop_NextBattler
-	call BattleScript_AttackerFormChange
-BattleScript_IceFaceLoop_NextBattler:
-	addbyte gBattlerTarget, 0x1
-	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_IceFaceLoopIter
-	restoretarget
-	end
 
 BattleScript_EffectSunnyDay::
 	attackcanceler
@@ -6111,6 +6097,20 @@ BattleScript_DamagingWeatherLoopIncrement::
 	jumpifbytenotequal gBattleCommunication, gBattlersCount, BattleScript_DamagingWeatherLoop
 BattleScript_DamagingWeatherContinuesEnd::
 	bicword gHitMarker, HITMARKER_SKIP_DMG_TRACK | HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_GRUDGE
+	jumpifhalfword CMP_EQUAL, gCanActivateIceFace, TRUE, BattleScript_RevertIceFace
+	end2
+
+BattleScript_RevertIceFace::
+	savetarget
+	setbyte gBattlerTarget, 0
+BattleScript_IceFaceLoopIter:
+	copybyte sBATTLER, gBattlerTarget
+	trytoreverticeface BS_TARGET, BattleScript_IceFaceLoop_NextBattler
+	call BattleScript_TargetFormChangeWithString
+BattleScript_IceFaceLoop_NextBattler:
+	addbyte gBattlerTarget, 0x1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_IceFaceLoopIter
+	restoretarget
 	end2
 
 BattleScript_SandStormHailEnds::
@@ -8066,7 +8066,7 @@ BattleScript_SoundproofProtected::
 	orhalfword gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE
 	goto BattleScript_MoveEnd
 
-BattleScript_NoDamage::
+BattleScript_NullifyDamage::
 	attackstring
 	ppreduce
 	attackanimation
