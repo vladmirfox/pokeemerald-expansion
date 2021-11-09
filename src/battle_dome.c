@@ -104,7 +104,7 @@ static void HblankCb_TourneyTree(void);
 static void VblankCb_TourneyTree(void);
 static u8 UpdateTourneyTreeCursor(u8 taskId);
 static void DecideRoundWinners(u8 roundId);
-static u8 sub_81953E8(u8 tournamentId, u8);
+static u8 GetOpposingNPCTournamentIdByRound(u8 tournamentId, u8);
 static void DrawTourneyAdvancementLine(u8, u8);
 static void SpriteCb_HorizontalScrollArrow(struct Sprite *sprite);
 static void SpriteCb_VerticalScrollArrow(struct Sprite *sprite);
@@ -978,7 +978,7 @@ static const union AnimCmd * const sSpriteAnimTable_TourneyTreePokeball[] =
 static const struct SpriteTemplate sTourneyTreePokeballSpriteTemplate =
 {
     .tileTag = 0x0000,
-    .paletteTag = 0xffff,
+    .paletteTag = TAG_NONE,
     .oam = &sOamData_TourneyTreePokeball,
     .anims = sSpriteAnimTable_TourneyTreePokeball,
     .images = NULL,
@@ -1007,7 +1007,7 @@ static const union AnimCmd * const sSpriteAnimTable_TourneyTreeCancelButton[] =
 static const struct SpriteTemplate sCancelButtonSpriteTemplate =
 {
     .tileTag = 0x0000,
-    .paletteTag = 0xffff,
+    .paletteTag = TAG_NONE,
     .oam = &sOamData_TourneyTreeCloseButton,
     .anims = sSpriteAnimTable_TourneyTreeCancelButton,
     .images = NULL,
@@ -1036,7 +1036,7 @@ static const union AnimCmd * const sSpriteAnimTable_TourneyTreeExitButton[] =
 static const struct SpriteTemplate sExitButtonSpriteTemplate =
 {
     .tileTag = 0x0000,
-    .paletteTag = 0xffff,
+    .paletteTag = TAG_NONE,
     .oam = &sOamData_TourneyTreeCloseButton,
     .anims = sSpriteAnimTable_TourneyTreeExitButton,
     .images = NULL,
@@ -1083,7 +1083,7 @@ static const union AnimCmd * const sSpriteAnimTable_HorizontalScrollArrow[] =
 static const struct SpriteTemplate sHorizontalScrollArrowSpriteTemplate =
 {
     .tileTag = 0x0000,
-    .paletteTag = 0xffff,
+    .paletteTag = TAG_NONE,
     .oam = &sOamData_HorizontalScrollArrow,
     .anims = sSpriteAnimTable_HorizontalScrollArrow,
     .images = NULL,
@@ -1094,7 +1094,7 @@ static const struct SpriteTemplate sHorizontalScrollArrowSpriteTemplate =
 static const struct SpriteTemplate sVerticalScrollArrowSpriteTemplate =
 {
     .tileTag = 0x0000,
-    .paletteTag = 0xffff,
+    .paletteTag = TAG_NONE,
     .oam = &sOamData_VerticalScrollArrow,
     .anims = sSpriteAnimTable_VerticalScrollArrow,
     .images = NULL,
@@ -1197,7 +1197,7 @@ static const u8 sLastMatchCardNum[DOME_ROUNDS_COUNT] =
     [DOME_FINAL]     = 30
 };
 
-static const u8 gUnknown_0860D1A0[DOME_TOURNAMENT_TRAINERS_COUNT / 2][DOME_ROUNDS_COUNT] =
+static const u8 sTrainerAndRoundToLastMatchCardNum[DOME_TOURNAMENT_TRAINERS_COUNT / 2][DOME_ROUNDS_COUNT] =
 {
     {16, 24, 28, 30},
     {17, 24, 28, 30},
@@ -1209,7 +1209,7 @@ static const u8 gUnknown_0860D1A0[DOME_TOURNAMENT_TRAINERS_COUNT / 2][DOME_ROUND
     {23, 27, 29, 30},
 };
 
-static const u8 gUnknown_0860D1C0[DOME_TOURNAMENT_TRAINERS_COUNT] = {0, 15, 8, 7, 3, 12, 11, 4, 1, 14, 9, 6, 2, 13, 10, 5};
+static const u8 sTournamentIdToPairedTrainerIds[DOME_TOURNAMENT_TRAINERS_COUNT] = {0, 15, 8, 7, 3, 12, 11, 4, 1, 14, 9, 6, 2, 13, 10, 5};
 
 // The first line of text on a trainers info card. It describes their potential to win, based on their seed in the tournament tree.
 // Dome Ace Tucker has their own separate potential text.
@@ -4160,7 +4160,7 @@ static u8 Task_GetInfoCardInput(u8 taskId)
         if (input == INFOCARD_INPUT_AB)
         {
             if (sInfoCard->pos != 0)
-                gTasks[taskId2].data[1] = gUnknown_0860D1A0[position / 2][sInfoCard->pos - 1];
+                gTasks[taskId2].data[1] = sTrainerAndRoundToLastMatchCardNum[position / 2][sInfoCard->pos - 1];
             else
                 gTasks[taskId2].data[1] = position;
         }
@@ -4200,9 +4200,9 @@ static u8 Task_GetInfoCardInput(u8 taskId)
         if (input == INFOCARD_INPUT_AB)
         {
             if (sInfoCard->pos == 0) // On left trainer info card
-                gTasks[taskId2].data[1] = gUnknown_0860D1C0[sInfoCard->tournamentIds[0]];
+                gTasks[taskId2].data[1] = sTournamentIdToPairedTrainerIds[sInfoCard->tournamentIds[0]];
             else if (sInfoCard->pos == 2) // On right trainer info card
-                gTasks[taskId2].data[1] = gUnknown_0860D1C0[sInfoCard->tournamentIds[1]];
+                gTasks[taskId2].data[1] = sTournamentIdToPairedTrainerIds[sInfoCard->tournamentIds[1]];
             else // On match info card
                 gTasks[taskId2].data[1] = position;
         }
@@ -4249,11 +4249,11 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
 
     // Create trainer pic sprite
     if (trainerId == TRAINER_PLAYER)
-        sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), TRUE, x + 48, y + 64, palSlot + 12, 0xFFFF);
+        sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), TRUE, x + 48, y + 64, palSlot + 12, TAG_NONE);
     else if (trainerId == TRAINER_FRONTIER_BRAIN)
-        sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(GetDomeBrainTrainerPicId(), TRUE, x + 48, y + 64, palSlot + 12, 0xFFFF);
+        sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(GetDomeBrainTrainerPicId(), TRUE, x + 48, y + 64, palSlot + 12, TAG_NONE);
     else
-        sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(GetFrontierTrainerFrontSpriteId(trainerId), TRUE, x + 48, y + 64, palSlot + 12, 0xFFFF);
+        sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(GetFrontierTrainerFrontSpriteId(trainerId), TRUE, x + 48, y + 64, palSlot + 12, TAG_NONE);
 
     if (flags & MOVE_CARD)
         gSprites[sInfoCard->spriteIds[arrId]].invisible = TRUE;
@@ -4294,7 +4294,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
     }
 
     // Initialize the text printer
-    textPrinter.fontId = 2;
+    textPrinter.fontId = FONT_SHORT;
     textPrinter.x = 0;
     textPrinter.y = 0;
     textPrinter.currentX = textPrinter.x;
@@ -4375,7 +4375,7 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
     else
         textPrinter.currentChar = sBattleDomePotentialTexts[trainerTourneyId];
 
-    textPrinter.fontId = 1;
+    textPrinter.fontId = FONT_NORMAL;
     textPrinter.windowId = windowId + 4;
     textPrinter.currentX = 0;
     textPrinter.y = 4;
@@ -4722,11 +4722,11 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
 
     // Draw left trainer sprite.
     if (trainerIds[0] == TRAINER_PLAYER)
-        sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), TRUE, x + 48, y + 88, palSlot + 12, 0xFFFF);
+        sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), TRUE, x + 48, y + 88, palSlot + 12, TAG_NONE);
     else if (trainerIds[0] == TRAINER_FRONTIER_BRAIN)
-        sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(GetDomeBrainTrainerPicId(), TRUE, x + 48, y + 88, palSlot + 12, 0xFFFF);
+        sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(GetDomeBrainTrainerPicId(), TRUE, x + 48, y + 88, palSlot + 12, TAG_NONE);
     else
-        sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(GetFrontierTrainerFrontSpriteId(trainerIds[0]), TRUE, x + 48, y + 88, palSlot + 12, 0xFFFF);
+        sInfoCard->spriteIds[arrId] = CreateTrainerPicSprite(GetFrontierTrainerFrontSpriteId(trainerIds[0]), TRUE, x + 48, y + 88, palSlot + 12, TAG_NONE);
 
     if (flags & MOVE_CARD)
         gSprites[sInfoCard->spriteIds[arrId]].invisible = TRUE;
@@ -4735,11 +4735,11 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
 
     // Draw right trainer sprite.
     if (trainerIds[1] == TRAINER_PLAYER)
-        sInfoCard->spriteIds[1 + arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), TRUE, x + 192, y + 88, palSlot + 13, 0xFFFF);
+        sInfoCard->spriteIds[1 + arrId] = CreateTrainerPicSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender), TRUE, x + 192, y + 88, palSlot + 13, TAG_NONE);
     else if (trainerIds[1] == TRAINER_FRONTIER_BRAIN)
-        sInfoCard->spriteIds[1 + arrId] = CreateTrainerPicSprite(GetDomeBrainTrainerPicId(), TRUE, x + 192, y + 88, palSlot + 13, 0xFFFF);
+        sInfoCard->spriteIds[1 + arrId] = CreateTrainerPicSprite(GetDomeBrainTrainerPicId(), TRUE, x + 192, y + 88, palSlot + 13, TAG_NONE);
     else
-        sInfoCard->spriteIds[1 + arrId] = CreateTrainerPicSprite(GetFrontierTrainerFrontSpriteId(trainerIds[1]), TRUE, x + 192, y + 88, palSlot + 13, 0xFFFF);
+        sInfoCard->spriteIds[1 + arrId] = CreateTrainerPicSprite(GetFrontierTrainerFrontSpriteId(trainerIds[1]), TRUE, x + 192, y + 88, palSlot + 13, TAG_NONE);
 
     if (flags & MOVE_CARD)
         gSprites[sInfoCard->spriteIds[1 + arrId]].invisible = TRUE;
@@ -4840,7 +4840,7 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
     StringExpandPlaceholders(gStringVar4, sBattleDomeWinTexts[winStringId]);
     textPrinter.currentChar = gStringVar4;
     textPrinter.windowId = windowId + 8;
-    textPrinter.fontId = 1;
+    textPrinter.fontId = FONT_NORMAL;
     PutWindowTilemap(windowId + 8);
     CopyWindowToVram(windowId + 8, 3);
     textPrinter.currentX = 0;
@@ -4855,7 +4855,7 @@ static void DisplayMatchInfoOnCard(u8 flags, u8 matchNo)
     else
         CopyDomeTrainerName(gStringVar1, trainerIds[0]);
 
-    textPrinter.fontId = 2;
+    textPrinter.fontId = FONT_SHORT;
     textPrinter.letterSpacing = 2;
     textPrinter.currentChar = gStringVar1;
     textPrinter.windowId = windowId + 6;
@@ -5205,7 +5205,7 @@ static u16 GetWinningMove(int winnerTournamentId, int loserTournamentId, u8 roun
     {
         for (i = 0; i < roundId - 1; i++)
         {
-            if (gSaveBlock2Ptr->frontier.domeWinningMoves[sub_81953E8(winnerTournamentId, i)] == moveIds[j])
+            if (gSaveBlock2Ptr->frontier.domeWinningMoves[GetOpposingNPCTournamentIdByRound(winnerTournamentId, i)] == moveIds[j])
                 break;
         }
         if (i != roundId - 1)
@@ -5320,7 +5320,7 @@ static void Task_ShowTourneyTree(u8 taskId)
         gTasks[taskId].tState++;
         break;
     case 4:
-        textPrinter.fontId = 2;
+        textPrinter.fontId = FONT_SHORT;
         textPrinter.currentChar = gText_BattleTourney;
         textPrinter.windowId = 2;
         textPrinter.x = 0;
@@ -5505,7 +5505,7 @@ static void Task_HandleStaticTourneyTreeInput(u8 taskId)
         {
             gTasks[taskId].tState = STATE_DELAY;
             gTasks[taskId].data[3] = 64;
-            textPrinter.fontId = 2;
+            textPrinter.fontId = FONT_SHORT;
             textPrinter.x = 0;
             textPrinter.y = 0;
             textPrinter.letterSpacing = 2;
@@ -5781,7 +5781,7 @@ static void InitRandomTourneyTreeResults(void)
     gSaveBlock2Ptr->frontier.lvlMode = FRONTIER_LVL_50;
     zero1 = 0;
     zero2 = 0;
-    
+
     gSaveBlock2Ptr->frontier.domeLvlMode = zero1 + 1;
     gSaveBlock2Ptr->frontier.domeBattleMode = zero2 + 1;
 
@@ -5915,10 +5915,10 @@ int TrainerIdToDomeTournamentId(u16 trainerId)
     return i;
 }
 
-static u8 sub_81953E8(u8 tournamentId, u8 round)
+static u8 GetOpposingNPCTournamentIdByRound(u8 tournamentId, u8 round)
 {
     u8 tournamentIds[2];
-    BufferDomeWinString(gUnknown_0860D1A0[gUnknown_0860D1C0[tournamentId] / 2][round] - 16, tournamentIds);
+    BufferDomeWinString(sTrainerAndRoundToLastMatchCardNum[sTournamentIdToPairedTrainerIds[tournamentId] / 2][round] - 16, tournamentIds);
     if (tournamentId == tournamentIds[0])
         return tournamentIds[1];
     else
