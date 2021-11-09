@@ -413,5 +413,6 @@ extern const u8 BattleScript_AttackerFormChangeEnd3NoPopup[];
 extern const u8 BattleScript_AttackerFormChangeMoveEffect[];
 extern const u8 BattleScript_TargetFormChangeWithString[];
 extern const u8 BattleScript_NullifyDamage[];
+extern const u8 BattleScript_TargetFormChangeWithStringEnd3[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

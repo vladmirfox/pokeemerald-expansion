@@ -2283,12 +2283,10 @@ u8 DoFieldEndTurnEffects(void)
                 if (!(gBattleWeather & WEATHER_HAIL_PERMANENT) && --gWishFutureKnock.weatherDuration == 0)
                 {
                     gBattleWeather &= ~WEATHER_HAIL_TEMPORARY;
-                    gCanActivateIceFace = TRUE;
                     gBattlescriptCurrInstr = BattleScript_SandStormHailEnds;
                 }
                 else
                 {
-                    gCanActivateIceFace = FALSE;
                     gBattlescriptCurrInstr = BattleScript_DamagingWeatherContinues;
                 }
 
@@ -3944,18 +3942,18 @@ static u8 ForewarnChooseMove(u32 battler)
     free(data);
 }
 
-static void TryToRevertIceFace(u8 battlerId)
+void TryToRevertIceFace(u8 battlerId, bool8 end2)
 {
-    if (gCanActivateIceFace)
+    if (gBattleMons[battlerId].species == SPECIES_EISCUE_NOICE_FACE
+     && GetBattlerAbility(battlerId) == ABILITY_ICE_FACE
+     && gBattleWeather & WEATHER_HAIL_ANY)
     {
-        if (gBattleMons[battlerId].species == SPECIES_EISCUE_NOICE_FACE
-         && GetBattlerAbility(battlerId) == ABILITY_ICE_FACE
-         && gBattleWeather & WEATHER_HAIL_ANY)
-        {
-            gBattlerAttacker = battlerId;
-            gBattleMons[gBattlerAttacker].species = SPECIES_EISCUE;
-            BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
-        }
+        gBattlerTarget = battlerId;
+        gBattleMons[gBattlerTarget].species = SPECIES_EISCUE;
+        if (end2)
+            BattleScriptExecute(BattleScript_TargetFormChangeWithStringEnd2);
+        else
+            BattleScriptPushCursorAndCallback(BattleScript_TargetFormChangeWithStringEnd3);
     }
 }
 
@@ -4348,7 +4346,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 for (i = 0; i < gBattlersCount; i++)
                 {
                     if (GetBattlerAbility(i) == ABILITY_ICE_FACE)
-                        TryToRevertIceFace(i);
+                        TryToRevertIceFace(i, FALSE);
                 }
                 effect++;
             }

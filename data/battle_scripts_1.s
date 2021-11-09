@@ -6097,20 +6097,6 @@ BattleScript_DamagingWeatherLoopIncrement::
 	jumpifbytenotequal gBattleCommunication, gBattlersCount, BattleScript_DamagingWeatherLoop
 BattleScript_DamagingWeatherContinuesEnd::
 	bicword gHitMarker, HITMARKER_SKIP_DMG_TRACK | HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_GRUDGE
-	jumpifhalfword CMP_EQUAL, gCanActivateIceFace, TRUE, BattleScript_RevertIceFace
-	end2
-
-BattleScript_RevertIceFace::
-	savetarget
-	setbyte gBattlerTarget, 0
-BattleScript_IceFaceLoopIter:
-	copybyte sBATTLER, gBattlerTarget
-	trytoreverticeface BS_TARGET, BattleScript_IceFaceLoop_NextBattler
-	call BattleScript_TargetFormChangeWithString
-BattleScript_IceFaceLoop_NextBattler:
-	addbyte gBattlerTarget, 0x1
-	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_IceFaceLoopIter
-	restoretarget
 	end2
 
 BattleScript_SandStormHailEnds::
@@ -7123,6 +7109,10 @@ BattleScript_TargetFormChangeWithString::
 	printstring STRINGID_TARGETPKMNTRANSFORMED
 	waitmessage B_WAIT_TIME_LONG
 	return
+
+BattleScript_TargetFormChangeWithStringEnd3::
+	call BattleScript_TargetFormChangeWithString
+	end3
 
 BattleScript_IllusionOff::
 	spriteignore0hp TRUE
