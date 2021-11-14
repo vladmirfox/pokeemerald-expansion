@@ -1273,7 +1273,7 @@ const struct CompressedSpriteSheet gMonBackPicTable[] =
     SPECIES_SPRITE(CALYREX_SHADOW_RIDER, gMonBackPic_CalyrexShadowRider),
 
     SPECIES_SPRITE(EGG, gMonFrontPic_Egg),
-    SPECIES_SPRITE(EGG_MANAPHY, gMonFrontPic_EggManaphy),
+    SPECIES_SPRITE(MANAPHY_EGG, gMonFrontPic_ManaphyEgg),
 };
 
 const struct CompressedSpriteSheet gMonBackPicTableFemale[] =

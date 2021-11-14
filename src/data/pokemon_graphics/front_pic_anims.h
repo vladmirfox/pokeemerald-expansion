@@ -15882,7 +15882,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD_FULL(CALYREX_ICE_RIDER, sAnims_CALYREX),
     ANIM_CMD_FULL(CALYREX_SHADOW_RIDER, sAnims_CALYREX),
     ANIM_CMD(EGG),
-    ANIM_CMD_FULL(EGG_MANAPHY, sAnims_EGG),
+    ANIM_CMD_FULL(MANAPHY_EGG, sAnims_EGG),
 };
 
 #undef ANIM_CMD

@@ -8135,7 +8135,7 @@ u16 GetEggSpeciesId (u16 species, u16 species2)
         switch (species)
         {
         case SPECIES_MANAPHY:
-            species2 = SPECIES_EGG_MANAPHY;
+            species2 = SPECIES_MANAPHY_EGG;
             break;
         }
     }

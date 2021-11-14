@@ -1344,8 +1344,8 @@
 // Egg
 #define SPECIES_EGG             SPECIES_CALYREX_SHADOW_RIDER + 1
 #define NUM_SPECIES             SPECIES_EGG
-#define SPECIES_EGG_MANAPHY     SPECIES_EGG + 1
-#define NUM_SPECIES_EGG         SPECIES_EGG_MANAPHY
+#define SPECIES_MANAPHY_EGG     SPECIES_EGG + 1
+#define NUM_SPECIES_EGG         SPECIES_MANAPHY_EGG
 
 // National Dex Index Defines
 

@@ -1180,7 +1180,7 @@ extern const u32 gMonFrontPic_ZarudeDada[];
 extern const u32 gMonFrontPic_CalyrexIceRider[];
 extern const u32 gMonFrontPic_CalyrexShadowRider[];
 extern const u32 gMonFrontPic_Egg[];
-extern const u32 gMonFrontPic_EggManaphy[];
+extern const u32 gMonFrontPic_ManaphyEgg[];
 
 extern const u32 gMonBackPic_CircledQuestionMark[];
 extern const u32 gMonBackPic_DoubleQuestionMark[];
@@ -3497,7 +3497,7 @@ extern const u32 gMonPalette_ZarudeDada[];
 extern const u32 gMonPalette_CalyrexIceRider[];
 extern const u32 gMonPalette_CalyrexShadowRider[];
 extern const u32 gMonPalette_Egg[];
-extern const u32 gMonPalette_EggManaphy[];
+extern const u32 gMonPalette_ManaphyEgg[];
 
 extern const u32 gMonShinyPalette_CircledQuestionMark[];
 extern const u32 gMonShinyPalette_DoubleQuestionMark[];
@@ -5818,7 +5818,7 @@ extern const u8 gMonIcon_ZarudeDada[];
 //extern const u8 gMonIcon_CalyrexIceRider[];
 //extern const u8 gMonIcon_CalyrexShadowRider[];
 extern const u8 gMonIcon_Egg[];
-extern const u8 gMonIcon_EggManaphy[];
+extern const u8 gMonIcon_ManaphyEgg[];
 
 extern const u8 gMonFootprint_QuestionMark[];
 extern const u8 gMonFootprint_Bulbasaur[];

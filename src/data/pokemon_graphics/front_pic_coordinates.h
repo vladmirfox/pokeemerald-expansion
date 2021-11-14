@@ -6108,7 +6108,7 @@ const struct MonCoords gMonFrontPicCoords[] =
         .y_offset = 20,
     },
     // Egg
-    [SPECIES_EGG_MANAPHY] =
+    [SPECIES_MANAPHY_EGG] =
     {
         .size = 0x33,
         .y_offset = 20,

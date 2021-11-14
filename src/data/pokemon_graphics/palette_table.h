@@ -1273,7 +1273,7 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(CALYREX_SHADOW_RIDER, gMonPalette_CalyrexShadowRider),
 
     SPECIES_PAL(EGG, gMonPalette_Egg),
-    SPECIES_PAL(EGG_MANAPHY, gMonPalette_EggManaphy),
+    SPECIES_PAL(MANAPHY_EGG, gMonPalette_ManaphyEgg),
 };
 
 const struct CompressedSpritePalette gMonPaletteTableFemale[] =
