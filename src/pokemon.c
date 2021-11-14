@@ -1855,7 +1855,7 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 
 // SPECIES_NONE are ignored in the following two tables, so decrement before accessing these arrays to get the right result
 
-static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
+static const u8 sMonFrontAnimIdsTable[NUM_SPECIES_EGG - 1] =
 {
     [SPECIES_BULBASAUR - 1]     = ANIM_V_JUMPS_H_JUMPS,
     [SPECIES_IVYSAUR - 1]       = ANIM_V_STRETCH,
@@ -2791,7 +2791,7 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_ARCEUS_FAIRY - 1]    = ANIM_CIRCULAR_VIBRATE,
 };
 
-static const u8 sMonAnimationDelayTable[NUM_SPECIES - 1] =
+static const u8 sMonAnimationDelayTable[NUM_SPECIES_EGG - 1] =
 {
     [SPECIES_BLASTOISE - 1]  = 50,
     [SPECIES_WEEDLE - 1]     = 10,
@@ -7403,7 +7403,7 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
 {
     u32 shinyValue;
 
-    if (species > NUM_SPECIES)
+    if (species > NUM_SPECIES_EGG)
         return gMonPaletteTable[0].data;
 
     shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);

@@ -1235,6 +1235,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_CALYREX_ICE_RIDER] = gMonIcon_QuestionMark,//gMonIcon_CalyrexIceRider,
     [SPECIES_CALYREX_SHADOW_RIDER] = gMonIcon_QuestionMark,//gMonIcon_CalyrexShadowRider,
     [SPECIES_EGG] = gMonIcon_Egg,
+    [SPECIES_EGG_MANAPHY] = gMonIcon_EggManaphy,
 };
 
 const u8 *const gMonIconTableFemale[] =
@@ -2423,6 +2424,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_CALYREX_ICE_RIDER] = 0,
     [SPECIES_CALYREX_SHADOW_RIDER] = 0,
     [SPECIES_EGG] = 1,
+    [SPECIES_EGG_MANAPHY] = 2,
 };
 
 const u8 gMonIconPaletteIndicesFemale[] =
@@ -2563,7 +2565,7 @@ u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u
         .paletteTag = POKE_ICON_BASE_PAL_TAG + gMonIconPaletteIndices[species],
     };
 
-    if (species > NUM_SPECIES)
+    if (species > NUM_SPECIES_EGG)
         iconTemplate.paletteTag = POKE_ICON_BASE_PAL_TAG;
     else if ((gBaseStats[species].flags & FLAG_GENDER_DIFFERENCE) && GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE)
         iconTemplate.paletteTag = POKE_ICON_BASE_PAL_TAG + gMonIconPaletteIndicesFemale[species];
@@ -2606,7 +2608,7 @@ u16 GetIconSpecies(u16 species, u32 personality)
     }
     else
     {
-        if (species > NUM_SPECIES)
+        if (species > NUM_SPECIES_EGG)
             result = INVALID_ICON_SPECIES;
         else
             result = species;
@@ -2634,7 +2636,7 @@ u16 GetIconSpeciesNoPersonality(u16 species)
     }
     else
     {
-        if (species > NUM_SPECIES)
+        if (species > NUM_SPECIES_EGG)
             species = INVALID_ICON_SPECIES;
 
         return GetIconSpecies(species, 0);
@@ -2662,7 +2664,7 @@ void LoadMonIconPalettes(void)
 void SafeLoadMonIconPalette(u16 species)
 {
     u8 palIndex;
-    if (species > NUM_SPECIES)
+    if (species > NUM_SPECIES_EGG)
         species = INVALID_ICON_SPECIES;
     palIndex = gMonIconPaletteIndices[species];
     if (IndexOfSpritePaletteTag(gMonIconPaletteTable[palIndex].tag) == 0xFF)
@@ -2687,7 +2689,7 @@ void FreeMonIconPalettes(void)
 void SafeFreeMonIconPalette(u16 species)
 {
     u8 palIndex;
-    if (species > NUM_SPECIES)
+    if (species > NUM_SPECIES_EGG)
         species = INVALID_ICON_SPECIES;
     palIndex = gMonIconPaletteIndices[species];
     FreeSpritePaletteByTag(gMonIconPaletteTable[palIndex].tag);
@@ -2734,7 +2736,7 @@ void sub_80D304C(u16 offset)
 
 u8 GetValidMonIconPalIndex(u16 species)
 {
-    if (species > NUM_SPECIES)
+    if (species > NUM_SPECIES_EGG)
         species = INVALID_ICON_SPECIES;
     return gMonIconPaletteIndices[species];
 }
@@ -2746,7 +2748,7 @@ u8 GetMonIconPaletteIndexFromSpecies(u16 species)
 
 const u16* GetValidMonIconPalettePtr(u16 species)
 {
-    if (species > NUM_SPECIES)
+    if (species > NUM_SPECIES_EGG)
         species = INVALID_ICON_SPECIES;
     return gMonIconPaletteTable[gMonIconPaletteIndices[species]].data;
 }

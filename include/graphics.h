@@ -5816,6 +5816,7 @@ extern const u8 gMonIcon_ZarudeDada[];
 //extern const u8 gMonIcon_CalyrexIceRider[];
 //extern const u8 gMonIcon_CalyrexShadowRider[];
 extern const u8 gMonIcon_Egg[];
+extern const u8 gMonIcon_EggManaphy[];
 
 extern const u8 gMonFootprint_QuestionMark[];
 extern const u8 gMonFootprint_Bulbasaur[];

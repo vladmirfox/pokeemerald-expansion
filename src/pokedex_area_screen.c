@@ -350,7 +350,7 @@ static void FindMapsWithMon(u16 species)
                 return;
         }
 
-        for (i = 0; sFeebasData[i][0] != NUM_SPECIES; i++)
+        for (i = 0; sFeebasData[i][0] < NUM_SPECIES; i++)
         {
             if (species == sFeebasData[i][0])
             {
