@@ -7393,7 +7393,7 @@ static void Task_PlayMapChosenOrBattleBGM(u8 taskId)
 
 const u32 *GetMonFrontSpritePal(struct Pokemon *mon)
 {
-    u16 species = GetMonData(mon, MON_DATA_SPECIES2, 0);
+    u16 species = GetEggSpeciesId(GetMonData(mon, MON_DATA_SPECIES, 0), GetMonData(mon, MON_DATA_SPECIES2, 0));
     u32 otId = GetMonData(mon, MON_DATA_OT_ID, 0);
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
     return GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality);

@@ -1180,6 +1180,7 @@ extern const u32 gMonFrontPic_ZarudeDada[];
 extern const u32 gMonFrontPic_CalyrexIceRider[];
 extern const u32 gMonFrontPic_CalyrexShadowRider[];
 extern const u32 gMonFrontPic_Egg[];
+extern const u32 gMonFrontPic_EggManaphy[];
 
 extern const u32 gMonBackPic_CircledQuestionMark[];
 extern const u32 gMonBackPic_DoubleQuestionMark[];
@@ -3496,6 +3497,7 @@ extern const u32 gMonPalette_ZarudeDada[];
 extern const u32 gMonPalette_CalyrexIceRider[];
 extern const u32 gMonPalette_CalyrexShadowRider[];
 extern const u32 gMonPalette_Egg[];
+extern const u32 gMonPalette_EggManaphy[];
 
 extern const u32 gMonShinyPalette_CircledQuestionMark[];
 extern const u32 gMonShinyPalette_DoubleQuestionMark[];

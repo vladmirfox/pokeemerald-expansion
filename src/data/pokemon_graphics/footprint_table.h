@@ -723,4 +723,5 @@ const u8 *const gMonFootprintTable[] =
     [SPECIES_HOOPA] = gMonFootprint_Hoopa,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
     [SPECIES_EGG] = gMonFootprint_Bulbasaur,
+    [SPECIES_EGG_MANAPHY] = gMonFootprint_Bulbasaur,
 };

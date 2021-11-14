@@ -6106,4 +6106,10 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0x36,
         .y_offset = 10,
     },
+    // Egg
+    [SPECIES_EGG_MANAPHY] =
+    {
+        .size = 0x36,
+        .y_offset = 10,
+    },
 };
