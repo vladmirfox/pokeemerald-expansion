@@ -496,12 +496,7 @@ static void CB2_CreateTradeMenu(void)
         for (i = 0; i < sTradeMenuData->partyCounts[TRADE_PLAYER]; i++)
         {
             struct Pokemon *mon = &gPlayerParty[i];
-            u16 species2 = GetMonData(mon, MON_DATA_SPECIES2);
-
-            if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_MANAPHY && species2 == SPECIES_EGG)
-                species2 = SPECIES_EGG_MANAPHY;
-            
-            sTradeMenuData->partySpriteIds[TRADE_PLAYER][i] = CreateMonIcon(species2,
+            sTradeMenuData->partySpriteIds[TRADE_PLAYER][i] = CreateMonIcon(GetEggSpeciesId(GetMonData(mon, MON_DATA_SPECIES), GetMonData(mon, MON_DATA_SPECIES2)),
                                                          SpriteCB_MonIcon,
                                                          (sTradeMonSpriteCoords[i][0] * 8) + 14,
                                                          (sTradeMonSpriteCoords[i][1] * 8) - 12,
@@ -512,11 +507,8 @@ static void CB2_CreateTradeMenu(void)
         for (i = 0; i < sTradeMenuData->partyCounts[TRADE_PARTNER]; i++)
         {
             struct Pokemon *mon = &gEnemyParty[i];
-            u16 species2 = GetMonData(mon, MON_DATA_SPECIES2);
 
-            if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_MANAPHY && species2 == SPECIES_EGG)
-                species2 = SPECIES_EGG_MANAPHY;
-            sTradeMenuData->partySpriteIds[TRADE_PARTNER][i] = CreateMonIcon(species2,
+            sTradeMenuData->partySpriteIds[TRADE_PARTNER][i] = CreateMonIcon(GetEggSpeciesId(GetMonData(mon, MON_DATA_SPECIES), GetMonData(mon, MON_DATA_SPECIES2)),
                                                          SpriteCB_MonIcon,
                                                          (sTradeMonSpriteCoords[i + PARTY_SIZE][0] * 8) + 14,
                                                          (sTradeMonSpriteCoords[i + PARTY_SIZE][1] * 8) - 12,

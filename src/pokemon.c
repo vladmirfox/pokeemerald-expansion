@@ -8127,3 +8127,17 @@ u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg)
 
     return species != targetSpecies ? targetSpecies : SPECIES_NONE;
 }
+
+u16 GetEggSpeciesId (u16 species, u16 species2)
+{
+    if (species2 == SPECIES_EGG)
+    {
+        switch (species)
+        {
+        case SPECIES_MANAPHY:
+            species2 = SPECIES_EGG_MANAPHY;
+            break;
+        }
+    }
+    return species2;
+}

@@ -3852,12 +3852,8 @@ static bool8 SetUpFieldMove_Dive(void)
 
 static void CreatePartyMonIconSprite(struct Pokemon *mon, struct PartyMenuBox *menuBox, u32 slot)
 {
-    u16 species, species2;
-
-    species = GetMonData(mon, MON_DATA_SPECIES);
-    species2 = GetMonData(mon, MON_DATA_SPECIES2);
-    if (species == SPECIES_MANAPHY && species2 == SPECIES_EGG)
-        species2 = SPECIES_EGG_MANAPHY;
+    u16 species2;
+    species2 = GetEggSpeciesId(GetMonData(mon, MON_DATA_SPECIES), GetMonData(mon, MON_DATA_SPECIES2));
     CreatePartyMonIconSpriteParameterized(species2, GetMonData(mon, MON_DATA_PERSONALITY), menuBox, 1);
     UpdatePartyMonHPBar(menuBox->monSpriteId, mon);
 }
