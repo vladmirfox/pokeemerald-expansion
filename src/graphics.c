@@ -367,7 +367,6 @@ const u32 gBattleAnimSpriteGfx_TrumpCard[] = INCBIN_U32("graphics/battle_anims/s
 const u32 gBattleAnimSpritePal_TrumpCard[] = INCBIN_U32("graphics/battle_anims/sprites/new/trump_cards.gbapal.lz");
 
 const u32 gBattleAnimSpriteGfx_TrumpCardParticles[] = INCBIN_U32("graphics/battle_anims/sprites/new/trump_card_particles.4bpp.lz");
-const u32 gBattleAnimSpritePal_TrumpCardParticles[] = INCBIN_U32("graphics/battle_anims/sprites/new/trump_card_particles.gbapal.lz");
 
 const u32 gBattleAnimSpriteGfx_Acupressure[] = INCBIN_U32("graphics/battle_anims/sprites/new/acupressure.4bpp.lz");
 const u32 gBattleAnimSpritePal_Acupressure[] = INCBIN_U32("graphics/battle_anims/sprites/new/acupressure.gbapal.lz");

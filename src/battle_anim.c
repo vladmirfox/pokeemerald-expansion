@@ -1930,7 +1930,7 @@ const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
     {gBattleAnimSpritePal_MegaSymbol, ANIM_TAG_MEGA_SYMBOL},
     {gBattleAnimSpritePal_MegaParticles, ANIM_TAG_MEGA_PARTICLES},
     {gBattleAnimSpritePal_TrumpCard, ANIM_TAG_TRUMP_CARD},
-    {gBattleAnimSpritePal_TrumpCardParticles, ANIM_TAG_TRUMP_CARD_PARTICLES},
+    {gBattleAnimSpritePal_TrumpCard, ANIM_TAG_TRUMP_CARD_PARTICLES},
     {gBattleAnimSpritePal_Acupressure, ANIM_TAG_ACUPRESSURE},
     {gBattleAnimSpritePal_WringOut, ANIM_TAG_WRING_OUT},
     {gBattleAnimSpritePal_ColoredOrbs, ANIM_TAG_COLORED_ORBS},
