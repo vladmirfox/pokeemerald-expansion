@@ -79,6 +79,8 @@ static struct EggHatchData *sEggHatchData;
 static const u16 sEggPalette[] = INCBIN_U16("graphics/pokemon/egg/normal.gbapal");
 static const u8 sEggHatchTiles[] = INCBIN_U8("graphics/misc/egg_hatch.4bpp");
 static const u8 sEggShardTiles[] = INCBIN_U8("graphics/misc/egg_shard.4bpp");
+static const u16 sEggManaphyPalette[] = INCBIN_U16("graphics/pokemon/manaphy/egg/normal.gbapal");
+static const u8 sEggManaphyHatchTiles[] = INCBIN_U8("graphics/misc/egg_hatch_manaphy.4bpp");
 
 static const struct OamData sOamData_EggHatch =
 {
@@ -136,6 +138,13 @@ static const struct SpriteSheet sEggHatch_Sheet =
     .tag = 12345,
 };
 
+static const struct SpriteSheet sEggManaphyHatch_Sheet =
+{
+    .data = sEggManaphyHatchTiles,
+    .size = 2024,
+    .tag = 12345,
+};
+
 static const struct SpriteSheet sEggShards_Sheet =
 {
     .data = sEggShardTiles,
@@ -146,6 +155,12 @@ static const struct SpriteSheet sEggShards_Sheet =
 static const struct SpritePalette sEgg_SpritePalette =
 {
     .data = sEggPalette,
+    .tag = 54321
+};
+
+static const struct SpritePalette sEggManaphy_SpritePalette =
+{
+    .data = sEggManaphyPalette,
     .tag = 54321
 };
 
@@ -524,11 +539,24 @@ static void CB2_EggHatch_0(void)
         gMain.state++;
         break;
     case 3:
-        LoadSpriteSheet(&sEggHatch_Sheet);
-        LoadSpriteSheet(&sEggShards_Sheet);
-        LoadSpritePalette(&sEgg_SpritePalette);
+    {
+        struct Pokemon* mon = &gPlayerParty[sEggHatchData->eggPartyID];
+
+        if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_MANAPHY)
+        {
+            LoadSpriteSheet(&sEggManaphyHatch_Sheet);
+            //LoadSpriteSheet(&sEggShards_Sheet);
+            LoadSpritePalette(&sEggManaphy_SpritePalette);
+        }
+        else
+        {
+            LoadSpriteSheet(&sEggHatch_Sheet);
+            LoadSpriteSheet(&sEggShards_Sheet);
+            LoadSpritePalette(&sEgg_SpritePalette);
+        }
         gMain.state++;
         break;
+    }
     case 4:
         CopyBgTilemapBufferToVram(0);
         AddHatchedMonToParty(sEggHatchData->eggPartyID);
@@ -841,13 +869,16 @@ static void SpriteCB_EggShard(struct Sprite* sprite)
 
 static void CreateRandomEggShardSprite(void)
 {
-    u16 spriteAnimIndex;
+    if (sEggHatchData->species != SPECIES_MANAPHY)
+    {
+        u16 spriteAnimIndex;
 
-    s16 velocity1 = sEggShardVelocities[sEggHatchData->eggShardVelocityID][0];
-    s16 velocity2 = sEggShardVelocities[sEggHatchData->eggShardVelocityID][1];
-    sEggHatchData->eggShardVelocityID++;
-    spriteAnimIndex = Random() % 4;
-    CreateEggShardSprite(120, 60, velocity1, velocity2, 100, spriteAnimIndex);
+        s16 velocity1 = sEggShardVelocities[sEggHatchData->eggShardVelocityID][0];
+        s16 velocity2 = sEggShardVelocities[sEggHatchData->eggShardVelocityID][1];
+        sEggHatchData->eggShardVelocityID++;
+        spriteAnimIndex = Random() % 4;
+        CreateEggShardSprite(120, 60, velocity1, velocity2, 100, spriteAnimIndex);
+    }
 }
 
 static void CreateEggShardSprite(u8 x, u8 y, s16 data1, s16 data2, s16 data3, u8 spriteAnimIndex)
