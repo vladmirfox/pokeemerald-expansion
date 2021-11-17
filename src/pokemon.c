@@ -3354,13 +3354,13 @@ u32 IsBoxMonBadEgg(struct BoxPokemon *boxMon, s32 field)
     u32 retVal = 0;
     if (field > MON_DATA_ENCRYPT_SEPARATOR)
     {
-	    DecryptBoxMon(boxMon);
-		retVal = IS_BOX_MON_BAD_EGG(boxMon);
-        EncryptBoxMon(boxMon);
+        retVal = IS_BOX_MON_BAD_EGG(boxMon);
     }
 	else
     {
+        DecryptBoxMon(boxMon);
         retVal = IS_BOX_MON_BAD_EGG(boxMon);
+        EncryptBoxMon(boxMon);
     }
     return retVal;
 }
