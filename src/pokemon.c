@@ -3937,7 +3937,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_IS_EGG:
         SET8(substruct3->isEgg);
-        if (substruct3->isEgg | IsBoxMonBadEgg(boxMon, field))
+        if (substruct3->isEgg || IsBoxMonBadEgg(boxMon, field))
             boxMon->isEgg = 1;
         else
             boxMon->isEgg = 0;
