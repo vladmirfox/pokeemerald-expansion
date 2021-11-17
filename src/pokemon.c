@@ -3395,7 +3395,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     case MON_DATA_NICKNAME:
     {
-        if (IsBoxMonBadEgg(boxMon, field)
+        if (IsBoxMonBadEgg(boxMon, field))
         {
             for (retVal = 0;
                 retVal < POKEMON_NAME_LENGTH && gText_BadEgg[retVal] != EOS;
