@@ -4688,8 +4688,7 @@ static void CheckMegaEvolutionBeforeTurn(void)
             }
         }
     }
-
-    gBattleMainFunc = CheckIfTurnOrderMustChangeAfterMega;
+    gBattleMainFunc = CheckIfTurnOrderMustChangeAfterMega; // This will just do nothing is no mon mega evolve
 }
 
 static void CheckIfTurnOrderMustChangeAfterMega(void)
