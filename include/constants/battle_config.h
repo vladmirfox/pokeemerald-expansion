@@ -92,6 +92,9 @@
     #define GEN_8 5
 #endif
 
+// Mega Evolution settings
+#define B_MEGA_INFO_CHANGE_ORDER    GEN_7 // In gen6, mega evolving doesn't change the turn order the turn you mega evolve. This is fixed in gen 7
+
 // Calculation settings
 #define B_CRIT_CHANCE               GEN_7 // Chances of a critical hit landing. See CalcCritChanceStage.
 #define B_CRIT_MULTIPLIER           GEN_7 // In Gen6+, critical hits multiply damage by 1.5 instead of 2.
