@@ -104,7 +104,7 @@ static void RunTurnActionsFunctions(void);
 static void SetActionsAndBattlersTurnOrder(void);
 static void sub_803CDF8(void);
 static bool8 AllAtActionConfirmed(void);
-static void CheckIfTurnOrderMustChangeAfterMega(void)
+static void TryChangeTurnOrder(void);
 static void CheckFocusPunch_ClearVarsBeforeTurnStarts(void);
 static void CheckMegaEvolutionBeforeTurn(void);
 static void CheckQuickClaw_CustapBerryActivation(void);
@@ -4688,10 +4688,18 @@ static void CheckMegaEvolutionBeforeTurn(void)
             }
         }
     }
-    gBattleMainFunc = CheckIfTurnOrderMustChangeAfterMega; // This will just do nothing is no mon mega evolve
+    if (B_MEGA_EVO_CHANGE_ORDER = GEN_6)
+    {
+        gBattleMainFunc = CheckQuickClaw_CustapBerryActivation;
+        gBattleStruct->quickClawBattlerId = 0;
+    }
+    else
+    {
+        gBattleMainFunc = CheckIfTurnOrderMustChangeAfterMega; // This will just do nothing is no mon mega evolve
+    }
 }
 
-static void CheckIfTurnOrderMustChangeAfterMega(void)
+static void TryChangeTurnOrder(void)
 {
     for (i = 0; i < gBattlersCount - 1; i++)
     {
