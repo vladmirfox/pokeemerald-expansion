@@ -4702,6 +4702,7 @@ static void CheckMegaEvolutionBeforeTurn(void)
 // In gen7, priority and speed is recalculated during the turn in which a pokemon mega evolve
 static void TryChangeTurnOrder(void)
 {
+    s32 i, j;
     for (i = 0; i < gBattlersCount - 1; i++)
     {
         for (j = i + 1; j < gBattlersCount; j++)
