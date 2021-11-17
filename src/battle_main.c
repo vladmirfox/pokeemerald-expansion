@@ -104,6 +104,7 @@ static void RunTurnActionsFunctions(void);
 static void SetActionsAndBattlersTurnOrder(void);
 static void sub_803CDF8(void);
 static bool8 AllAtActionConfirmed(void);
+static void CheckIfTurnOrderMustChangeAfterMega(void)
 static void CheckFocusPunch_ClearVarsBeforeTurnStarts(void);
 static void CheckMegaEvolutionBeforeTurn(void);
 static void CheckQuickClaw_CustapBerryActivation(void);
@@ -4688,6 +4689,29 @@ static void CheckMegaEvolutionBeforeTurn(void)
         }
     }
 
+    gBattleMainFunc = CheckIfTurnOrderMustChangeAfterMega;
+}
+
+static void CheckIfTurnOrderMustChangeAfterMega(void)
+{
+    for (i = 0; i < gBattlersCount - 1; i++)
+    {
+        for (j = i + 1; j < gBattlersCount; j++)
+        {
+            u8 battler1 = gBattlerByTurnOrder[i];
+            u8 battler2 = gBattlerByTurnOrder[j];
+            if (gActionsByTurnOrder[i] != B_ACTION_USE_ITEM
+                && gActionsByTurnOrder[j] != B_ACTION_USE_ITEM
+                && gActionsByTurnOrder[i] != B_ACTION_SWITCH
+                && gActionsByTurnOrder[j] != B_ACTION_SWITCH
+                && gActionsByTurnOrder[i] != B_ACTION_THROW_BALL
+                && gActionsByTurnOrder[j] != B_ACTION_THROW_BALL)
+            {
+                if (GetWhoStrikesFirst(battler1, battler2, FALSE))
+                    SwapTurnOrder(i, j);
+            }
+        }
+    }
     gBattleMainFunc = CheckFocusPunch_ClearVarsBeforeTurnStarts;
     gBattleStruct->focusPunchBattlerId = 0;
 }
