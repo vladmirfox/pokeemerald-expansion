@@ -4695,7 +4695,7 @@ static void CheckMegaEvolutionBeforeTurn(void)
     }
     else
     {
-        gBattleMainFunc = CheckIfTurnOrderMustChangeAfterMega; // This will just do nothing is no mon mega evolve
+        gBattleMainFunc = CheckIfTurnOrderMustChangeAfterMega; // This will just do nothing if no mon has mega evolved
     }
 }
 
