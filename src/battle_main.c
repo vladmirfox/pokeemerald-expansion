@@ -4690,8 +4690,8 @@ static void CheckMegaEvolutionBeforeTurn(void)
     }
     if (B_MEGA_EVO_CHANGE_ORDER <= GEN_6)
     {
-        gBattleMainFunc = CheckQuickClaw_CustapBerryActivation;
-        gBattleStruct->quickClawBattlerId = 0;
+        gBattleMainFunc = CheckFocusPunch_ClearVarsBeforeTurnStarts;
+        gBattleStruct->focusPunchBattlerId = 0;
     }
     else
     {
