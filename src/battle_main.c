@@ -4688,15 +4688,12 @@ static void CheckMegaEvolutionBeforeTurn(void)
             }
         }
     }
-    if (B_MEGA_EVO_CHANGE_ORDER <= GEN_6)
-    {
+    #if B_MEGA_EVO_CHANGE_ORDER <= GEN_6
         gBattleMainFunc = CheckFocusPunch_ClearVarsBeforeTurnStarts;
         gBattleStruct->focusPunchBattlerId = 0;
-    }
-    else
-    {
+    #else
         gBattleMainFunc = TryChangeTurnOrder; // This will just do nothing if no mon has mega evolved
-    }
+    #endif  
 }
 
 // In gen7, priority and speed is recalculated during the turn in which a pokemon mega evolve
