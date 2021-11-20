@@ -1427,6 +1427,7 @@ void CancelMultiTurnMoves(u8 battler)
     gBattleMons[battler].status2 &= ~(STATUS2_UPROAR);
     gBattleMons[battler].status2 &= ~(STATUS2_BIDE);
 
+    // Don't clear battler's semi-invulnerable bits if they are held by Sky Drop.
     if (gBattleStruct->skyDropTargets[1] != battler && gBattleStruct->skyDropTargets[3] != battler)
         gStatuses3[battler] &= ~(STATUS3_SEMI_INVULNERABLE);
     
@@ -1446,23 +1447,32 @@ void CancelMultiTurnMoves(u8 battler)
                 gSprites[gBattlerSpriteIds[i]].invisible = FALSE;
                 
                 // If target was sky dropped in the middle of Outrage/Thrash/Petal Dance,
-                // confuse them upon release and display "confused by fatigue" message & animation
+                // confuse them upon release and display "confused by fatigue" message & animation.
+                // Don't do this if this CancelMultiTurnMoves is caused by falling asleep via Yawn.
                 if (gBattleMons[i].status2 & STATUS2_LOCK_CONFUSE && gBattleStruct->turnEffectsTracker != 24)
                 {
                     gBattleMons[i].status2 &= ~(STATUS2_LOCK_CONFUSE);
+
+                    // If the target can be confused, confuse them.
+                    // Don't use CanBeConfused, can cause issues in edge cases.
                     if (!(GetBattlerAbility(i) == ABILITY_OWN_TEMPO
                         || gBattleMons[i].status2 & STATUS2_CONFUSION
                         || IsBattlerTerrainAffected(i, STATUS_FIELD_MISTY_TERRAIN)))
                     {
                         gBattleMons[i].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2);
                         
+                        // If this CancelMultiTurnMoves is occuring due to attackcanceller or VARIOUS_GRAVITY_ON_AIRBORNE_MONS
                         if (gBattlescriptCurrInstr[0] == 0x0 || (gBattlescriptCurrInstr[0] == 0x76 && gBattlescriptCurrInstr[2] == 76))
                             gBattleStruct->skyDropTargets[0] = 0xFE - battler;
+
+                        // If this CancelMultiTurnMoves is occuring due to cancelmultiturnmoves script
                         else if (gBattlescriptCurrInstr[0] == 0x76 && gBattlescriptCurrInstr[2] == 0)
                         {
                             gBattlerAttacker = i;
                             gBattlescriptCurrInstr = BattleScript_ThrashConfuses - 3;
                         }
+						
+						// If this CancelMultiTurnMoves is occuring due to receiving Sleep/Freeze status
                         else if (gBattleScripting.moveEffect <= PRIMARY_STATUS_MOVE_EFFECT)
                         {
                             gBattlerAttacker = i;
@@ -1476,7 +1486,7 @@ void CancelMultiTurnMoves(u8 battler)
             }
         }
         
-        // Clear skyDropTargets data
+        // Clear skyDropTargets data, unless this CancelMultiTurnMoves is caused by Yawn, attackcanceler, or VARIOUS_GRAVITY_ON_AIRBORNE_MONS
         if (!(gBattleMons[gBattleStruct->skyDropTargets[1]].status2 & STATUS2_LOCK_CONFUSE) && gBattleStruct->skyDropTargets[0] < 4)
         {
             gBattleStruct->skyDropTargets[0] = 0xFF;
@@ -2860,6 +2870,7 @@ u8 DoBattlerEndTurnEffects(void)
                 gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_THRASH:  // thrash
+            // Don't decrement STATUS2_LOCK_CONFUSE if the target is held by Sky Drop
             if (gBattleMons[gActiveBattler].status2 & STATUS2_LOCK_CONFUSE && !(gStatuses3[gActiveBattler] & STATUS3_SKY_DROPPED))
             {
                 gBattleMons[gActiveBattler].status2 -= STATUS2_LOCK_CONFUSE_TURN(1);

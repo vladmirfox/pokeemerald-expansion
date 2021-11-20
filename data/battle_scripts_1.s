@@ -483,7 +483,7 @@ BattleScript_EffectPhotonGeyser:
 	seteffectwithchance
 	tryfaintmon BS_TARGET, FALSE, NULL
 	goto BattleScript_MoveEnd
-  
+
 BattleScript_EffectAuraWheel: @ Aura Wheel can only be used by Morpeko
 	jumpifspecies BS_ATTACKER, SPECIES_MORPEKO, BattleScript_EffectSpeedUpHit
 	jumpifspecies BS_ATTACKER, SPECIES_MORPEKO_HANGRY, BattleScript_EffectSpeedUpHit

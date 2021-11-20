@@ -3086,6 +3086,8 @@ void FaintClearSetData(void)
             gBattleMons[i].status2 &= ~(STATUS2_INFATUATED_WITH(gActiveBattler));
         if ((gBattleMons[i].status2 & STATUS2_WRAPPED) && *(gBattleStruct->wrappedBy + i) == gActiveBattler)
             gBattleMons[i].status2 &= ~(STATUS2_WRAPPED);
+
+        // If the fainted mon was holding another Pokemon in Sky Drop, release the mon and clear Sky Drop data
         if (gActiveBattler == gBattleStruct->skyDropTargets[0] && i == gBattleStruct->skyDropTargets[1])
         {
             gBattleStruct->skyDropTargets[0] = 0xFF;
@@ -3099,6 +3101,9 @@ void FaintClearSetData(void)
             if (gBattleMons[i].status2 & STATUS2_LOCK_CONFUSE)
             {
                 gBattleMons[i].status2 &= ~(STATUS2_LOCK_CONFUSE);
+
+                // If the released mon can be confused, do so.
+                // Don't use CanBeConfused here, since it can cause issues in edge cases.
                 if (!(GetBattlerAbility(i) == ABILITY_OWN_TEMPO
                     || gBattleMons[i].status2 & STATUS2_CONFUSION
                     || IsBattlerTerrainAffected(i, STATUS_FIELD_MISTY_TERRAIN)))
@@ -3211,6 +3216,7 @@ void FaintClearSetData(void)
     if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
         UndoMegaEvolution(gBattlerPartyIndexes[gActiveBattler]);
     
+    // If the fainted Pokemon was being held by Sky Drop, clear their Sky Drop data.
     if (gActiveBattler == gBattleStruct->skyDropTargets[1])
         gBattleStruct->skyDropTargets[1] = 0xFF;
     else if (gActiveBattler == gBattleStruct->skyDropTargets[3])

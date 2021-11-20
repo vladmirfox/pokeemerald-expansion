@@ -1579,12 +1579,14 @@ static bool32 AccuracyCalcHelper(u16 move)
         JumpIfMoveFailed(7, move);
         return TRUE;
     }
+	// If the attacker has the ability No Guard and they aren't targeting a Pokemon involved in a Sky Drop with the move Sky Drop, move hits.
     else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || (gBattlerTarget != gBattleStruct->skyDropTargets[0] && gBattlerTarget != gBattleStruct->skyDropTargets[1] && gBattlerTarget != gBattleStruct->skyDropTargets[2] && gBattlerTarget != gBattleStruct->skyDropTargets[3])))
     {
         if (!JumpIfMoveFailed(7, move))
             RecordAbilityBattle(gBattlerAttacker, ABILITY_NO_GUARD);
         return TRUE;
     }
+	// If the target has the ability No Guard and they aren't involved in a Sky Drop or the current move isn't Sky Drop, move hits.
     else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || (gBattlerTarget != gBattleStruct->skyDropTargets[0] && gBattlerTarget != gBattleStruct->skyDropTargets[1] && gBattlerTarget != gBattleStruct->skyDropTargets[2] && gBattlerTarget != gBattleStruct->skyDropTargets[3])))
     {
         if (!JumpIfMoveFailed(7, move))
@@ -2894,6 +2896,8 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 {
                     gBattleMons[gEffectBattler].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2); // 2-5 turns
                     
+					// If the confusion is activating due to being released from Sky Drop, go to "confused due to fatigue" script.
+					// Otherwise, do normal confusion script.
                     if(gCurrentMove == MOVE_SKY_DROP)
                     {
                         gBattleMons[gEffectBattler].status2 &= ~(STATUS2_LOCK_CONFUSE);
@@ -5086,7 +5090,7 @@ static void Cmd_moveend(void)
             }
             gBattleScripting.moveendState++;
             break;
-        case MOVEEND_SKY_DROP_CONFUSE:
+        case MOVEEND_SKY_DROP_CONFUSE: // If a Pokemon was released from Sky Drop and was in LOCK_CONFUSE, go to "confused due to fatigue scripts and clear Sky Drop data.
             for (i = 0; i < gBattlersCount; i++)
             {
                 if (gBattleStruct->skyDropTargets[0] == 0xFE - i)
@@ -7638,6 +7642,7 @@ static void Cmd_various(void)
         }
         return;
     case VARIOUS_GRAVITY_ON_AIRBORNE_MONS:
+        // Cancel all multiturn moves of IN_AIR Pokemon except those being targeted by Sky Drop.
         if (gStatuses3[gActiveBattler] & STATUS3_ON_AIR && !(gActiveBattler == gBattleStruct->skyDropTargets[1] || gActiveBattler == gBattleStruct->skyDropTargets[3]))
             CancelMultiTurnMoves(gActiveBattler);
 
@@ -8975,10 +8980,11 @@ static void Cmd_various(void)
             gBattleStruct->skyDropTargets[3] = 0xFF;
         }
         
+        // Confuse target if they were in the middle of Petal Dance/Outrage/Thrash when targeted.
         if (gBattleMons[gBattlerTarget].status2 & STATUS2_LOCK_CONFUSE)
             gBattleScripting.moveEffect = (MOVE_EFFECT_CONFUSION | MOVE_EFFECT_CERTAIN);
         return;
-    case VARIOUS_SKY_DROP_YAWN:
+    case VARIOUS_SKY_DROP_YAWN: // If the mon that's sleeping due to Yawn was holding a Pokemon in Sky Drop, release the target and clear Sky Drop data.
         if (gEffectBattler == gBattleStruct->skyDropTargets[0])
         {    
             gEffectBattler = gBattleStruct->skyDropTargets[1];
@@ -11238,6 +11244,7 @@ static void Cmd_tryspiteppreduce(void)
 
             gBattlescriptCurrInstr += 5;
 
+            // Don't cut off Sky Drop if pp is brought to zero.
             if (gBattleMons[gBattlerTarget].pp[i] == 0 && !(gBattlerTarget == gBattleStruct->skyDropTargets[0] || gBattlerTarget == gBattleStruct->skyDropTargets[2]))
                 CancelMultiTurnMoves(gBattlerTarget);
         }
