@@ -204,6 +204,7 @@
 #define VARIOUS_JUMP_IF_UNDER_200               131
 #define VARIOUS_SET_SKY_DROP                    132
 #define VARIOUS_CLEAR_SKY_DROP                  133
+#define VARIOUS_SKY_DROP_YAWN                   134
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
@@ -260,18 +261,19 @@
 #define MOVEEND_ITEM_EFFECTS_ALL                  15
 #define MOVEEND_KINGSROCK                         16    // These item effects will occur each strike of a multi-hit move
 #define MOVEEND_SUBSTITUTE                        17
-#define MOVEEND_UPDATE_LAST_MOVES                 18
-#define MOVEEND_MIRROR_MOVE                       19
-#define MOVEEND_NEXT_TARGET                       20    // Everything up until here is handled for each strike of a multi-hit move
-#define MOVEEND_EJECT_BUTTON                      21
-#define MOVEEND_RED_CARD                          22
-#define MOVEEND_EJECT_PACK                        23
-#define MOVEEND_LIFEORB_SHELLBELL                 24    // Includes shell bell, throat spray, etc
-#define MOVEEND_PICKPOCKET                        25
-#define MOVEEND_DANCER                            26
-#define MOVEEND_EMERGENCY_EXIT                    27
-#define MOVEEND_CLEAR_BITS                        28
-#define MOVEEND_COUNT                             29
+#define MOVEEND_SKY_DROP_CONFUSE                  18
+#define MOVEEND_UPDATE_LAST_MOVES                 19
+#define MOVEEND_MIRROR_MOVE                       20
+#define MOVEEND_NEXT_TARGET                       21    // Everything up until here is handled for each strike of a multi-hit move
+#define MOVEEND_EJECT_BUTTON                      22
+#define MOVEEND_RED_CARD                          23
+#define MOVEEND_EJECT_PACK                        24
+#define MOVEEND_LIFEORB_SHELLBELL                 25    // Includes shell bell, throat spray, etc
+#define MOVEEND_PICKPOCKET                        26
+#define MOVEEND_DANCER                            27
+#define MOVEEND_EMERGENCY_EXIT                    28
+#define MOVEEND_CLEAR_BITS                        29
+#define MOVEEND_COUNT                             30
 
 // switch cases
 #define B_SWITCH_NORMAL     0

@@ -1579,13 +1579,13 @@ static bool32 AccuracyCalcHelper(u16 move)
         JumpIfMoveFailed(7, move);
         return TRUE;
     }
-    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || (gBattlerPartyIndexes[gBattlerTarget] + 6 != gBattleStruct->skyDropTargets[1] && gBattlerPartyIndexes[gBattlerTarget] + 6 != gBattleStruct->skyDropTargets[3])))
+    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || (gBattlerTarget != gBattleStruct->skyDropTargets[0] && gBattlerTarget != gBattleStruct->skyDropTargets[1] && gBattlerTarget != gBattleStruct->skyDropTargets[2] && gBattlerTarget != gBattleStruct->skyDropTargets[3])))
     {
         if (!JumpIfMoveFailed(7, move))
             RecordAbilityBattle(gBattlerAttacker, ABILITY_NO_GUARD);
         return TRUE;
     }
-    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || (gBattlerPartyIndexes[gBattlerTarget] + 6 != gBattleStruct->skyDropTargets[1] && gBattlerPartyIndexes[gBattlerTarget] + 6 != gBattleStruct->skyDropTargets[3])))
+    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD && (move != MOVE_SKY_DROP || (gBattlerTarget != gBattleStruct->skyDropTargets[0] && gBattlerTarget != gBattleStruct->skyDropTargets[1] && gBattlerTarget != gBattleStruct->skyDropTargets[2] && gBattlerTarget != gBattleStruct->skyDropTargets[3])))
     {
         if (!JumpIfMoveFailed(7, move))
             RecordAbilityBattle(gBattlerTarget, ABILITY_NO_GUARD);
@@ -2893,9 +2893,18 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 else
                 {
                     gBattleMons[gEffectBattler].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2); // 2-5 turns
-
-                    BattleScriptPush(gBattlescriptCurrInstr + 1);
-                    gBattlescriptCurrInstr = sMoveEffectBS_Ptrs[gBattleScripting.moveEffect];
+                    
+                    if(gCurrentMove == MOVE_SKY_DROP)
+                    {
+                        gBattleMons[gEffectBattler].status2 &= ~(STATUS2_LOCK_CONFUSE);
+                        gBattlerAttacker = gEffectBattler;
+                        gBattlescriptCurrInstr = BattleScript_ThrashConfuses;
+                    }
+                    else
+                    {
+                        BattleScriptPush(gBattlescriptCurrInstr + 1);
+                        gBattlescriptCurrInstr = sMoveEffectBS_Ptrs[gBattleScripting.moveEffect];    
+                    }
                 }
                 break;
             case MOVE_EFFECT_FLINCH:
@@ -5074,6 +5083,28 @@ static void Cmd_moveend(void)
             {
                 if (gDisableStructs[i].substituteHP == 0)
                     gBattleMons[i].status2 &= ~(STATUS2_SUBSTITUTE);
+            }
+            gBattleScripting.moveendState++;
+            break;
+        case MOVEEND_SKY_DROP_CONFUSE:
+            for (i = 0; i < gBattlersCount; i++)
+            {
+                if (gBattleStruct->skyDropTargets[0] == 0xFE - i)
+                {
+                    gBattlerAttacker = gBattleStruct->skyDropTargets[1];
+                    gBattlescriptCurrInstr = BattleScript_ThrashConfuses;
+                    gBattleStruct->skyDropTargets[0] = 0xFF;
+                    gBattleStruct->skyDropTargets[1] = 0xFF;
+                    return;
+                }
+                else if (gBattleStruct->skyDropTargets[2] == 0xFE - i)
+                {
+                    gBattlerAttacker = gBattleStruct->skyDropTargets[3];
+                    gBattlescriptCurrInstr = BattleScript_ThrashConfuses;
+                    gBattleStruct->skyDropTargets[2] = 0xFF;
+                    gBattleStruct->skyDropTargets[3] = 0xFF;
+                    return;
+                }
             }
             gBattleScripting.moveendState++;
             break;
@@ -7607,7 +7638,7 @@ static void Cmd_various(void)
         }
         return;
     case VARIOUS_GRAVITY_ON_AIRBORNE_MONS:
-        if (gStatuses3[gActiveBattler] & STATUS3_ON_AIR)
+        if (gStatuses3[gActiveBattler] & STATUS3_ON_AIR && !(gActiveBattler == gBattleStruct->skyDropTargets[1] || gActiveBattler == gBattleStruct->skyDropTargets[3]))
             CancelMultiTurnMoves(gActiveBattler);
 
         gStatuses3[gActiveBattler] &= ~(STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS | STATUS3_ON_AIR);
@@ -8813,7 +8844,7 @@ static void Cmd_various(void)
                     MarkBattlerForControllerExec(gActiveBattler);
                 }
                 
-                if (gBattleMons[gActiveBattler].pp[i] == 0)
+                if (gBattleMons[gActiveBattler].pp[i] == 0 && !(gActiveBattler == gBattleStruct->skyDropTargets[0] || gActiveBattler == gBattleStruct->skyDropTargets[2]))
                     CancelMultiTurnMoves(gActiveBattler);
                 
                 gBattlescriptCurrInstr += 7;    // continue
@@ -8891,64 +8922,92 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr += 7;
         return;
     case VARIOUS_SET_SKY_DROP:
-        gStatuses3[gBattlerTarget] |= STATUS3_SKY_DROPPED;
-        gStatuses3[gBattlerTarget] |= STATUS3_ON_AIR;
+        gStatuses3[gBattlerTarget] |= (STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
         /* skyDropTargets holds the information of who is the attacker and the target of Sky Drop. 
            This is needed in the case that multiple Pokemon use Sky Drop in the same turn or if
            the target of a Sky Drop faints while in the air.*/
-        if (gBattleStruct->skyDropTargets[0] == 0)
+        if (gBattleStruct->skyDropTargets[0] == 0xFF)
         {
-            // Store the party index of the target and the attacker within their respective parties
-            gBattleStruct->skyDropTargets[0] = gBattlerPartyIndexes[gBattlerAttacker] + 6;
-            gBattleStruct->skyDropTargets[1] = gBattlerPartyIndexes[gBattlerTarget] + 6;
+            gBattleStruct->skyDropTargets[0] = gBattlerAttacker;
+            gBattleStruct->skyDropTargets[1] = gBattlerTarget;
         }
         else
         {
-            gBattleStruct->skyDropTargets[2] = gBattlerPartyIndexes[gBattlerAttacker] + 6;
-            gBattleStruct->skyDropTargets[3] = gBattlerPartyIndexes[gBattlerTarget] + 6;
+            gBattleStruct->skyDropTargets[2] = gBattlerAttacker;
+            gBattleStruct->skyDropTargets[3] = gBattlerTarget;
         }
-		
+        
         // End any multiturn effects caused by the target
         gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_MULTIPLETURNS);
-        gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_LOCK_CONFUSE);
         gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_UPROAR);
         gBattleMons[gBattlerTarget].status2 &= ~(STATUS2_BIDE);
         gDisableStructs[gBattlerTarget].rolloutTimer = 0;
         gDisableStructs[gBattlerTarget].furyCutterCounter = 0;
         break;
     case VARIOUS_CLEAR_SKY_DROP:
-        if (gBattleStruct->skyDropTargets[0] - 6 == gBattlerPartyIndexes[gBattlerAttacker])
-        {			
+        if (gBattleStruct->skyDropTargets[0] == gBattlerAttacker)
+        {            
             // Check to see if the initial target of this Sky Drop fainted before the 2nd turn of Sky Drop.
             // If so, make the move fail. If not, clear all of the statuses and continue the move.
-            if (gBattleStruct->skyDropTargets[1] - 6 != gBattlerPartyIndexes[gBattlerTarget])
+            if (gBattleStruct->skyDropTargets[1] == 0xFF)
                 gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
             else
             {
-                gStatuses3[gBattlerTarget] &= ~STATUS3_SKY_DROPPED;
-                gStatuses3[gBattlerTarget] &= ~STATUS3_ON_AIR;
+                gStatuses3[gBattlerTarget] &= ~(STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
                 gBattlescriptCurrInstr += 7;
             }
-			
+            
             // Clear skyDropTargets data
-            gBattleStruct->skyDropTargets[0] = 0;		  
-            gBattleStruct->skyDropTargets[1] = 0;
+            gBattleStruct->skyDropTargets[0] = 0xFF;          
+            gBattleStruct->skyDropTargets[1] = 0xFF;
         }
         else
         {
-            if (gBattleStruct->skyDropTargets[3] - 6 != gBattlerPartyIndexes[gBattlerTarget])
+            if (gBattleStruct->skyDropTargets[3] == 0xFF)
                 gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
             else
             {
-                gStatuses3[gBattlerTarget] &= ~STATUS3_SKY_DROPPED;
-                gStatuses3[gBattlerTarget] &= ~STATUS3_ON_AIR;
+                gStatuses3[gBattlerTarget] &= ~(STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
                 gBattlescriptCurrInstr += 7;
             }
-			
-            gBattleStruct->skyDropTargets[2] = 0;
-            gBattleStruct->skyDropTargets[3] = 0;
+            
+            gBattleStruct->skyDropTargets[2] = 0xFF;
+            gBattleStruct->skyDropTargets[3] = 0xFF;
         }
+        
+        if (gBattleMons[gBattlerTarget].status2 & STATUS2_LOCK_CONFUSE)
+            gBattleScripting.moveEffect = (MOVE_EFFECT_CONFUSION | MOVE_EFFECT_CERTAIN);
         return;
+    case VARIOUS_SKY_DROP_YAWN:
+        if (gEffectBattler == gBattleStruct->skyDropTargets[0])
+        {    
+            gEffectBattler = gBattleStruct->skyDropTargets[1];
+            gBattleStruct->skyDropTargets[0] = 0xFF;
+            gBattleStruct->skyDropTargets[1] = 0xFF;    
+            gBattleMons[gEffectBattler].status2 &= ~(STATUS2_LOCK_CONFUSE);
+            if (CanBeConfused(gEffectBattler))
+            {
+                gBattlerAttacker = gEffectBattler;
+                gBattleMons[gBattlerTarget].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2);
+                gBattlescriptCurrInstr = BattleScript_ThrashConfuses;
+                return;
+            }
+        }
+        else if (gEffectBattler == gBattleStruct->skyDropTargets[2])
+        {    
+            gEffectBattler = gBattleStruct->skyDropTargets[3];
+            gBattleStruct->skyDropTargets[2] = 0xFF;
+            gBattleStruct->skyDropTargets[3] = 0xFF;    
+            gBattleMons[gEffectBattler].status2 &= ~(STATUS2_LOCK_CONFUSE);
+            if (CanBeConfused(gEffectBattler))
+            {
+                gBattlerAttacker = gEffectBattler;
+                gBattleMons[gBattlerTarget].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2);
+                gBattlescriptCurrInstr = BattleScript_ThrashConfuses;
+                return;
+            }
+        }
+        break;
     case VARIOUS_JUMP_IF_PRANKSTER_BLOCKED:
         if (BlocksPrankster(gCurrentMove, gBattlerAttacker, gActiveBattler, TRUE))
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
@@ -11179,7 +11238,7 @@ static void Cmd_tryspiteppreduce(void)
 
             gBattlescriptCurrInstr += 5;
 
-            if (gBattleMons[gBattlerTarget].pp[i] == 0)
+            if (gBattleMons[gBattlerTarget].pp[i] == 0 && !(gBattlerTarget == gBattleStruct->skyDropTargets[0] || gBattlerTarget == gBattleStruct->skyDropTargets[2]))
                 CancelMultiTurnMoves(gBattlerTarget);
         }
         else

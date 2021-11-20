@@ -2034,3 +2034,7 @@
 	various 0, VARIOUS_CLEAR_SKY_DROP
 	.4byte \ptr
 	.endm
+	
+	.macro skydropyawn
+	various 0, VARIOUS_SKY_DROP_YAWN
+	.endm

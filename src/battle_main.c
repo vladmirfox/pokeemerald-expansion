@@ -2944,6 +2944,12 @@ static void BattleStartClearSetData(void)
     }
 
     gSwapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
+	
+    // Clear skyDropTargets data
+    for (i = 0; i < 4; i++)
+    {
+        gBattleStruct->skyDropTargets[i] = 0xFF;
+    }
 }
 
 void SwitchInClearSetData(void)
@@ -3080,6 +3086,51 @@ void FaintClearSetData(void)
             gBattleMons[i].status2 &= ~(STATUS2_INFATUATED_WITH(gActiveBattler));
         if ((gBattleMons[i].status2 & STATUS2_WRAPPED) && *(gBattleStruct->wrappedBy + i) == gActiveBattler)
             gBattleMons[i].status2 &= ~(STATUS2_WRAPPED);
+        if (gActiveBattler == gBattleStruct->skyDropTargets[0] && i == gBattleStruct->skyDropTargets[1])
+        {
+            gBattleStruct->skyDropTargets[0] = 0xFF;
+            gBattleStruct->skyDropTargets[1] = 0xFF;
+            
+            gStatuses3[i] &= ~(STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
+            gSprites[gBattlerSpriteIds[i]].invisible = FALSE;
+            
+            // If the target was sky dropped in the middle of using Outrage/Petal Dance/Thrash,
+            // confuse them upon release and print "confused via fatigue" message and animation.
+            if (gBattleMons[i].status2 & STATUS2_LOCK_CONFUSE)
+            {
+                gBattleMons[i].status2 &= ~(STATUS2_LOCK_CONFUSE);
+                if (!(GetBattlerAbility(i) == ABILITY_OWN_TEMPO
+                    || gBattleMons[i].status2 & STATUS2_CONFUSION
+                    || IsBattlerTerrainAffected(i, STATUS_FIELD_MISTY_TERRAIN)))
+                {
+                    gBattleMons[i].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2);
+                    gBattlerAttacker = i;
+                    gBattlescriptCurrInstr = BattleScript_ThrashConfuses - 2;
+                }
+            }
+        }
+        else if (gActiveBattler == gBattleStruct->skyDropTargets[2] && i == gBattleStruct->skyDropTargets[3])
+        {
+            gBattleStruct->skyDropTargets[2] = 0xFF;
+            gBattleStruct->skyDropTargets[3] = 0xFF;
+            
+            gStatuses3[i] &= ~(STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
+            gSprites[gBattlerSpriteIds[i]].invisible = FALSE;
+            
+            if (gBattleMons[i].status2 & STATUS2_LOCK_CONFUSE)
+            {
+                gBattleMons[i].status2 &= ~(STATUS2_LOCK_CONFUSE);
+                gEffectBattler = i;
+                if (!(GetBattlerAbility(i) == ABILITY_OWN_TEMPO
+                    || gBattleMons[i].status2 & STATUS2_CONFUSION
+                    || IsBattlerTerrainAffected(i, STATUS_FIELD_MISTY_TERRAIN)))
+                {
+                    gBattleMons[i].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2);
+                    gBattlerAttacker = i;
+                    gBattlescriptCurrInstr = BattleScript_ThrashConfuses - 2;
+                }
+            }
+        }
     }
 
     gActionSelectionCursor[gActiveBattler] = 0;
@@ -3159,6 +3210,11 @@ void FaintClearSetData(void)
     UndoFormChange(gBattlerPartyIndexes[gActiveBattler], GET_BATTLER_SIDE(gActiveBattler), FALSE);
     if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
         UndoMegaEvolution(gBattlerPartyIndexes[gActiveBattler]);
+    
+    if (gActiveBattler == gBattleStruct->skyDropTargets[1])
+        gBattleStruct->skyDropTargets[1] = 0xFF;
+    else if (gActiveBattler == gBattleStruct->skyDropTargets[3])
+        gBattleStruct->skyDropTargets[3] = 0xFF;
 }
 
 static void DoBattleIntro(void)

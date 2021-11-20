@@ -402,18 +402,20 @@ BattleScript_EffectSkyDrop:
 	attackcanceler
 	ppreduce
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
 	jumpifsubstituteblocks BattleScript_ButItFailed
 	jumpiftargetally BattleScript_ButItFailed
 	jumpifunder200 BS_TARGET, BattleScript_SkyDropWork
+	pause B_WAIT_TIME_SHORT
 	printstring STRINGID_TARGETTOOHEAVY
-	waitmessage 0x40
+	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
 BattleScript_SkyDropWork:
 	setskydrop
 	setbyte sTWOTURN_STRINGID, B_MSG_TURN1_SKY_DROP
 	setsemiinvulnerablebit
-	call BattleScriptFirstChargingTurn
+	call BattleScriptFirstChargingTurnAfterAttackString
 	goto BattleScript_MoveEnd
 BattleScript_SkyDropTurn2:
 	attackcanceler
@@ -432,6 +434,8 @@ BattleScript_SkyDropFlyingType:
 	printstring STRINGID_ITDOESNTAFFECT
 	waitmessage B_WAIT_TIME_LONG
 	makevisible BS_ATTACKER
+	jumpifstatus2 BS_TARGET, STATUS2_CONFUSION, BattleScript_SkyDropFlyingAlreadyConfused
+	jumpifstatus2 BS_TARGET, STATUS2_LOCK_CONFUSE, BattleScript_SkyDropFlyingConfuseLock
 	goto BattleScript_MoveEnd
 BattleScript_SkyDropChangedTarget:
 	pause B_WAIT_TIME_SHORT
@@ -440,6 +444,16 @@ BattleScript_SkyDropChangedTarget:
 	waitmessage B_WAIT_TIME_LONG
 	makevisible BS_ATTACKER
 	goto BattleScript_MoveEnd
+
+BattleScript_SkyDropFlyingConfuseLock:
+	setmoveeffect MOVE_EFFECT_CONFUSION
+	seteffectprimary
+BattleScript_SkyDropFlyingAlreadyConfused:
+	setmoveeffect MOVE_EFFECT_THRASH
+	clearstatusfromeffect BS_TARGET
+	jumpifstatus2 BS_TARGET, STATUS2_CONFUSION, BattleScript_MoveEnd
+	setbyte BS_ATTACKER, BS_TARGET
+	goto BattleScript_ThrashConfuses
 
 BattleScript_EffectShellSideArm:
 	shellsidearmcheck
@@ -3328,6 +3342,7 @@ BattleScriptFirstChargingTurn::
 	printstring STRINGID_EMPTYSTRING3
 	ppreduce
 	attackstring
+BattleScriptFirstChargingTurnAfterAttackString:
 	pause B_WAIT_TIME_LONG
 	copybyte cMULTISTRING_CHOOSER, sTWOTURN_STRINGID
 	printfromtable gFirstTurnOfTwoStringIds
@@ -7441,6 +7456,7 @@ BattleScript_YawnMakesAsleep::
 	waitstate
 	jumpifstatus3 BS_EFFECT_BATTLER, STATUS3_SKY_DROPPED, BattleScript_YawnEnd
 	makevisible BS_EFFECT_BATTLER
+	skydropyawn
 BattleScript_YawnEnd:
 	end2
 
