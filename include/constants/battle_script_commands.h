@@ -201,10 +201,17 @@
 #define VARIOUS_TRY_TO_APPLY_MIMICRY            128
 #define VARIOUS_PHOTON_GEYSER_CHECK             129
 #define VARIOUS_SHELL_SIDE_ARM_CHECK            130
-#define VARIOUS_JUMP_IF_UNDER_200               131
-#define VARIOUS_SET_SKY_DROP                    132
-#define VARIOUS_CLEAR_SKY_DROP                  133
-#define VARIOUS_SKY_DROP_YAWN                   134
+#define VARIOUS_TRY_NO_RETREAT                  131
+#define VARIOUS_TRY_TAR_SHOT                    132
+#define VARIOUS_CAN_TAR_SHOT_WORK               133
+#define VARIOUS_CHECK_POLTERGEIST               134
+#define VARIOUS_SET_OCTOLOCK                    135
+#define VARIOUS_CUT_1_3_HP_RAISE_STATS          136
+#define VARIOUS_TRY_END_NEUTRALIZING_GAS        137
+#define VARIOUS_JUMP_IF_UNDER_200               138
+#define VARIOUS_SET_SKY_DROP                    139
+#define VARIOUS_CLEAR_SKY_DROP                  140
+#define VARIOUS_SKY_DROP_YAWN                   141
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
@@ -223,6 +230,7 @@
 // Cmd_statbuffchange
 #define STAT_BUFF_ALLOW_PTR                 (1 << 0)   // If set, allow use of jumpptr. Set in every use of statbuffchange
 #define STAT_BUFF_NOT_PROTECT_AFFECTED      (1 << 5)
+#define STAT_BUFF_UPDATE_MOVE_EFFECT        (1 << 6)
 
 // stat change flags for Cmd_playstatchangeanimation
 #define STAT_CHANGE_NEGATIVE             (1 << 0)

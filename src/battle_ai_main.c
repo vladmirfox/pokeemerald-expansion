@@ -1392,22 +1392,22 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             break;
         case EFFECT_SANDSTORM:
-            if (gBattleWeather & WEATHER_SANDSTORM_ANY //TODO | WEATHER_PRIMAL_ANY)
+            if (gBattleWeather & (WEATHER_SANDSTORM_ANY | WEATHER_PRIMAL_ANY)
              || PartnerMoveEffectIsWeather(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove))
                 score -= 8;
             break;
         case EFFECT_SUNNY_DAY:
-            if (gBattleWeather & WEATHER_SUN_ANY //TODO | WEATHER_PRIMAL_ANY)
+            if (gBattleWeather & (WEATHER_SUN_ANY | WEATHER_PRIMAL_ANY)
              || PartnerMoveEffectIsWeather(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove))
                 score -= 8;
             break;
         case EFFECT_RAIN_DANCE:
-            if (gBattleWeather & WEATHER_RAIN_ANY  //TODO  | WEATHER_PRIMAL_ANY)
+            if (gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_PRIMAL_ANY)
              || PartnerMoveEffectIsWeather(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove))
                 score -= 8;
             break;
         case EFFECT_HAIL:
-            if (gBattleWeather & WEATHER_HAIL_ANY //TODO | WEATHER_PRIMAL_ANY)
+            if (gBattleWeather & (WEATHER_HAIL_ANY | WEATHER_PRIMAL_ANY)
              || PartnerMoveEffectIsWeather(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove))
                 score -= 8;
             break;
@@ -1473,7 +1473,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             else if (move == MOVE_FAKE_OUT) // filter out first impression
             {
                 if ((AI_DATA->atkHoldEffect == HOLD_EFFECT_CHOICE_BAND || AI_DATA->atkAbility == ABILITY_GORILLA_TACTICS)
-                  && (CountUsablePartyMons(battlerDef) > 0 || !CanAttackerFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0)))
+                  && (CountUsablePartyMons(battlerDef) > 0 || !CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0)))
                 {
                     if (CountUsablePartyMons(battlerAtk) == 0)
                         score -= 10; // Don't lock the attacker into Fake Out if they can't switch out afterwards.
@@ -1714,7 +1714,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             if (AI_DATA->defAbility == ABILITY_WONDER_GUARD && effectiveness < AI_EFFECTIVENESS_x2)
                 score -= 10;
             else if (AI_DATA->atkAbility != ABILITY_TRUANT
-              && !CanAttackerFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
+              && !CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
                 score -= 2;
             break;
         case EFFECT_SPITE:
@@ -2320,7 +2320,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                   || IsInstructBannedMove(instructedMove)
                   || MoveRequiresRecharging(instructedMove)
                   || MoveCallsOtherMove(instructedMove)
-                  #ifdef ITEM_Z_RING
+                  #ifdef ITEM_Z_POWER_RING
                   //|| (IsZMove(instructedMove))
                   #endif
                   || (gLockedMoves[battlerDef] != 0 && gLockedMoves[battlerDef] != 0xFFFF)
@@ -2465,7 +2465,7 @@ static s16 AI_TryToFaint(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     if (gBattleMoves[move].power == 0)
         return score;   // can't make anything faint with no power
     
-    if (CanAttackerFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0) && gBattleMoves[move].effect != EFFECT_EXPLOSION)
+    if (CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0) && gBattleMoves[move].effect != EFFECT_EXPLOSION)
     {
         // this move can faint the target
         if (GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) == 0 || GetMovePriority(battlerAtk, move) > 0)
@@ -2707,7 +2707,7 @@ static s16 AI_DoubleBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                       && !IS_MOVE_STATUS(move)
                       && HasMoveWithSplit(battlerAtkPartner, SPLIT_PHYSICAL)
                       && BattlerStatCanRise(battlerAtkPartner, atkPartnerAbility, STAT_ATK)
-                      && !CanAttackerFaintTarget(battlerAtk, battlerAtkPartner, AI_THINKING_STRUCT->movesetIndex, 1))
+                      && !CanIndexMoveFaintTarget(battlerAtk, battlerAtkPartner, AI_THINKING_STRUCT->movesetIndex, 1))
                     {
                         RETURN_SCORE_PLUS(1);
                     }
@@ -2716,7 +2716,7 @@ static s16 AI_DoubleBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     if (!IS_MOVE_STATUS(move)
                       && (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG)
                       && BattlerStatCanRise(battlerAtkPartner, atkPartnerAbility, STAT_SPEED)
-                      && !CanAttackerFaintTarget(battlerAtk, battlerAtkPartner, AI_THINKING_STRUCT->movesetIndex, 1))
+                      && !CanIndexMoveFaintTarget(battlerAtk, battlerAtkPartner, AI_THINKING_STRUCT->movesetIndex, 1))
                     {
                         RETURN_SCORE_PLUS(1);
                     }
@@ -2782,7 +2782,7 @@ static s16 AI_DoubleBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                   && !IS_MOVE_STATUS(move)
                   && HasMoveWithSplit(battlerAtkPartner, SPLIT_PHYSICAL)
                   && BattlerStatCanRise(battlerAtkPartner, atkPartnerAbility, STAT_ATK)
-                  && !CanAttackerFaintTarget(battlerAtk, battlerAtkPartner, AI_THINKING_STRUCT->movesetIndex, 0))
+                  && !CanIndexMoveFaintTarget(battlerAtk, battlerAtkPartner, AI_THINKING_STRUCT->movesetIndex, 0))
                 {
                     RETURN_SCORE_PLUS(1);
                 }
@@ -2969,9 +2969,13 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     {
     case ABILITY_MOXIE:
     case ABILITY_BEAST_BOOST:
+    case ABILITY_CHILLING_NEIGH:
+    case ABILITY_GRIM_NEIGH:
+    case ABILITY_AS_ONE_ICE_RIDER:
+    case ABILITY_AS_ONE_SHADOW_RIDER:
         if (GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) == 0) // attacker should go first
         {
-            if (CanAttackerFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
+            if (CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
                 score += 8; // prioritize killing target for stat boost
         }
         break;
@@ -2980,7 +2984,6 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     // move effect checks
     switch (moveEffect)
     {
-        
     case EFFECT_HIT:
         break;
     case EFFECT_SLEEP:
@@ -3243,6 +3246,10 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_MULTI_HIT:
     case EFFECT_DOUBLE_HIT:
     case EFFECT_TRIPLE_KICK:
+        if (AI_MoveMakesContact(AI_DATA->atkAbility, AI_DATA->atkHoldEffect, move)
+          && AI_DATA->atkAbility != ABILITY_MAGIC_GUARD
+          && AI_DATA->defHoldEffect == HOLD_EFFECT_ROCKY_HELMET)
+            score -= 2;
         break;
     case EFFECT_CONVERSION:
         if (!IS_BATTLER_OF_TYPE(battlerAtk, gBattleMoves[gBattleMons[battlerAtk].moves[0]].type))
@@ -3772,7 +3779,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_FELL_STINGER:
         if (gBattleMons[battlerAtk].statStages[STAT_ATK] < MAX_STAT_STAGE
           && AI_DATA->atkAbility != ABILITY_CONTRARY
-          && CanAttackerFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
+          && CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
         {
             if (GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) == 0)  // Attacker goes first
                 score += 9;
@@ -4101,6 +4108,18 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score++;
         if (IsRecycleEncouragedItem(GetUsedHeldItem(battlerAtk)))
             score++;
+        if (AI_DATA->atkAbility == ABILITY_RIPEN)
+        {
+            u16 item = GetUsedHeldItem(battlerAtk);
+            u16 toHeal = (ItemId_GetHoldEffectParam(item) == 10) ? 10 : gBattleMons[battlerAtk].maxHP / ItemId_GetHoldEffectParam(item);
+            
+            if (IsStatBoostingBerry(item) && atkHpPercent > 60)
+                score++;
+            else if (ShouldRestoreHpBerry(battlerAtk, item) && !CanAIFaintTarget(battlerAtk, battlerDef, 0) 
+              && ((GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) == 0 && CanTargetFaintAiWithMod(battlerDef, battlerAtk, 0, 0))
+               || !CanTargetFaintAiWithMod(battlerDef, battlerAtk, toHeal, 0)))
+                score++;    // Recycle healing berry if we can't otherwise faint the target and the target wont kill us after we activate the berry
+        }
         break;
     case EFFECT_BRICK_BREAK:
         if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_REFLECT)
@@ -4923,7 +4942,7 @@ static s16 AI_HPAware(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     }
     
     // consider target HP
-    if (CanAttackerFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
+    if (CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
     {
         score += 2;
     }
