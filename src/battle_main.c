@@ -3637,20 +3637,21 @@ static void HandleEndTurn_ContinueBattle(void)
 static bool32 TryInitSosCall(void)
 {
     // TODO conditional
-    if (0)
+    if (gAbsentBattlerFlags & gBitTable[3])
     {
-        u16 species = SPECIES_POOCHYENA;
-        u8 level = 15;
+        //u16 species = SPECIES_POOCHYENA;
+        //u8 level = 15;
         
-        CreateMonWithNature(&gEnemyParty[1], species, level, 32, 0);
+        //CreateMonWithNature(&gEnemyParty[1], species, level, 32, 0);
         gBattlerPartyIndexes[B_POSITION_OPPONENT_RIGHT] = 1;
+        gHitMarker |= HITMARKER_FAINTED(3);
         
         /*CopyEnemyPartyMonToBattleData(B_POSITION_OPPONENT_RIGHT,
             GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[B_POSITION_OPPONENT_RIGHT]));*/
         gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
         gBattleScripting.battler = B_POSITION_OPPONENT_RIGHT; 
                 
-        BattleScriptExecute(BattleScript_CallForHelp);
+        BattleScriptExecute(BattleScript_HandleFaintedMon);
         return TRUE;
     }
     return FALSE;
@@ -3668,6 +3669,7 @@ void BattleTurnPassed(void)
         if (DoBattlerEndTurnEffects())
             return;
     }
+    
     if (HandleFaintedMonActions())
         return;
     gBattleStruct->faintedActionsState = 0;
