@@ -3257,7 +3257,7 @@ static void DoBattleIntro(void)
                         MarkBattlerForControllerExec(gActiveBattler);
                     }
                 }
-                else // wild mon 2
+                else if (!gSoSBattle) // wild mon 2
                 {
                     BtlController_EmitLoadMonSprite(0);
                     MarkBattlerForControllerExec(gActiveBattler);
@@ -3496,7 +3496,7 @@ static void TryDoEventsBeforeFirstTurn(void)
     {
         for (i = 0; i < gBattlersCount; i++)
         {
-            if (gBattleMons[i].hp == 0 || gBattleMons[i].species == SPECIES_NONE)
+            if (gBattleMons[i].hp == 0 || gBattleMons[i].species == SPECIES_NONE || (gSoSBattle && i > 1))
                 gAbsentBattlerFlags |= gBitTable[i];
         }
     }
