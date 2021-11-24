@@ -9284,6 +9284,23 @@ static void Cmd_various(void)
         else
             gBattlescriptCurrInstr += 7;
         return;
+    case VARIOUS_SOS_CALL:
+        switch (gBattleCommunication[0])
+        {
+        case 0:
+            gBattleCommunication[SPRITES_INIT_STATE1] = 0;
+            gBattleCommunication[SPRITES_INIT_STATE2] = 0;
+            gBattleCommunication[0]++;
+            break;
+        case 1:
+            if (BattleInitAllSprites(&gBattleCommunication[SPRITES_INIT_STATE1], &gBattleCommunication[SPRITES_INIT_STATE2]))
+                gBattleCommunication[0]++;
+            break;
+        case 2:
+            gBattlescriptCurrInstr += 3;
+            break;
+        }
+        return;
     }
     } // End of switch (gBattlescriptCurrInstr[2])
 

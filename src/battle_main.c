@@ -235,6 +235,7 @@ EWRAM_DATA bool8 gHasFetchedBall = FALSE;
 EWRAM_DATA u8 gLastUsedBall = 0;
 EWRAM_DATA u16 gLastThrownBall = 0;
 EWRAM_DATA bool8 gSwapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
+EWRAM_DATA bool8 gSoSBattle = FALSE;
 
 // IWRAM common vars
 void (*gPreBattleCallback1)(void);
@@ -3633,6 +3634,28 @@ static void HandleEndTurn_ContinueBattle(void)
     }
 }
 
+static bool32 TryInitSosCall(void)
+{
+    // TODO conditional
+    if (0)
+    {
+        u16 species = SPECIES_POOCHYENA;
+        u8 level = 15;
+        
+        CreateMonWithNature(&gEnemyParty[1], species, level, 32, 0);
+        gBattlerPartyIndexes[B_POSITION_OPPONENT_RIGHT] = 1;
+        
+        /*CopyEnemyPartyMonToBattleData(B_POSITION_OPPONENT_RIGHT,
+            GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[B_POSITION_OPPONENT_RIGHT]));*/
+        gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+        gBattleScripting.battler = B_POSITION_OPPONENT_RIGHT; 
+                
+        BattleScriptExecute(BattleScript_CallForHelp);
+        return TRUE;
+    }
+    return FALSE;
+}
+
 void BattleTurnPassed(void)
 {
     s32 i;
@@ -3661,6 +3684,9 @@ void BattleTurnPassed(void)
     gBattleScripting.moveendState = 0;
     gBattleMoveDamage = 0;
     gMoveResultFlags = 0;
+    
+    if (TryInitSosCall())
+        return;
 
     for (i = 0; i < 5; i++)
         gBattleCommunication[i] = 0;

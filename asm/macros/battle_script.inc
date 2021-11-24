@@ -1924,6 +1924,11 @@
 	.macro shellsidearmcheck
 	various BS_ATTACKER, VARIOUS_SHELL_SIDE_ARM_CHECK
 	.endm
+	
+	.macro soscall
+	setbyte gBattleCommunication, 0
+	various BS_SCRIPTING, VARIOUS_SOS_CALL
+	.endm
 
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req

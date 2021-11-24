@@ -82,6 +82,8 @@
 #define WILD_DOUBLE_BATTLE ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER))))
 #define BATTLE_TWO_VS_ONE_OPPONENT ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gTrainerBattleOpponent_B == 0xFFFF))
 
+#define BATTLE_TYPE_SOS (BATTLE_TYPE_RAYQUAZA)  // for now
+
 // Battle Outcome defines
 #define B_OUTCOME_WON                  1
 #define B_OUTCOME_LOST                 2

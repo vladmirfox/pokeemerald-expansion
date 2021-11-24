@@ -407,6 +407,7 @@ static void DoStandardWildBattle(bool32 isDouble)
     gBattleTypeFlags = 0;
     if (isDouble)
         gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+    
     if (InBattlePyramid())
     {
         VarSet(VAR_TEMP_E, 0);
@@ -504,6 +505,9 @@ void BattleSetup_StartScriptedDoubleWildBattle(void)
     ScriptContext2_Enable();
     gMain.savedCallback = CB2_EndScriptedWildBattle;
     gBattleTypeFlags = BATTLE_TYPE_DOUBLE;
+    
+    gSoSBattle = TRUE;
+    
     CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);

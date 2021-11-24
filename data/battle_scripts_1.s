@@ -9255,3 +9255,12 @@ BattleScript_NeutralizingGasExitsLoop:
 	jumpifbytenotequal gBattlerTarget, sByteFour, BattleScript_NeutralizingGasExitsLoop	@ SOMEHOW, comparing to gBattlersCount is problematic.
 	restoretarget
 	return
+	
+BattleScript_CallForHelp::
+	printstring STRINGID_EMPTYSTRING3
+	waitmessage 1
+@	soscall
+	switchinanim BS_SCRIPTING, TRUE
+	waitstate
+	end2
+	
