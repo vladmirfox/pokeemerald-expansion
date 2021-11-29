@@ -385,7 +385,7 @@ void HandleAction_UseMove(void)
         {
             gActiveBattler = gBattlerByTurnOrder[var];
             RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
-            if (gBattleMons[gActiveBattler].ability == ABILITY_LIGHTNING_ROD)
+            if (gBattleMons[gActiveBattler].ability == ABILITY_LIGHTNING_ROD && gCurrentMove != MOVE_TEATIME)
                 gSpecialStatuses[gActiveBattler].lightningRodRedirected = 1;
             else if (gBattleMons[gActiveBattler].ability == ABILITY_STORM_DRAIN)
                 gSpecialStatuses[gActiveBattler].stormDrainRedirected = 1;
