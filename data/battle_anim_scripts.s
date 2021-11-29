@@ -13303,7 +13303,6 @@ Move_TEATIME::
 	delay 6
 	createsprite gTeapotSpriteTemplate, ANIM_ATTACKER, 12, 0
 	createvisualtask AnimTask_RockMonBackAndForth, 5, ANIM_ATTACKER, 2, 0
-	createvisualtask AnimTask_RockMonBackAndForth, 5, ANIM_ATK_PARTNER, 2, 0
 	delay 24
 	loopsewithpan SE_M_HEAL_BELL, SOUND_PAN_ATTACKER, 22, 3
 	waitforvisualfinish
