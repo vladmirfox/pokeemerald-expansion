@@ -173,6 +173,11 @@
 #define VARIOUS_DESTROY_ABILITY_POPUP           102
 #define VARIOUS_TOTEM_BOOST                     103
 #define VARIOUS_TRY_ACTIVATE_GRIM_NEIGH         104
+#define VARIOUS_JUMP_IF_ROD                     105
+#define VARIOUS_JUMP_IF_ABSORB                  106
+#define VARIOUS_JUMP_IF_MOTOR                   107
+#define VARIOUS_TEATIME_INVUL                   108
+#define VARIOUS_TEATIME_TARGETS                 109
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
