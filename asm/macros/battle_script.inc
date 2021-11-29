@@ -1768,6 +1768,32 @@
 	.macro tryactivategrimneigh, battler:req
 	various \battler, VARIOUS_TRY_ACTIVATE_GRIM_NEIGH
 	.endm
+	
+		.macro jumpifrodaffected battler:req, ptr:req
+	various \battler, VARIOUS_JUMP_IF_ROD
+	.4byte \ptr
+	.endm
+
+	.macro jumpifabsorbaffected battler:req, ptr:req
+	various \battler, VARIOUS_JUMP_IF_ABSORB
+	.4byte \ptr
+	.endm
+
+	.macro jumpifmotoraffected battler:req, ptr:req
+	various \battler, VARIOUS_JUMP_IF_MOTOR
+	.4byte \ptr
+	.endm
+
+	.macro jumpifteanoberry ptr:req
+	various BS_ATTACKER, VARIOUS_TEATIME_TARGETS
+	.4byte \ptr
+	.endm
+
+	.macro jumpifteainvulnerable battler:req, ptr:req
+	various \battler, VARIOUS_TEATIME_INVUL
+	.4byte \ptr
+	.endm
+
 
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
