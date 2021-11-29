@@ -7183,6 +7183,72 @@ static u32 GetHighestStatId(u32 battlerId)
     return highestId;
 }
 
+static bool32 IsAbilityRodAffected(void)
+{
+	u32 moveType;
+
+	if (gBattleStruct->dynamicMoveType == 0)
+		moveType = gBattleMoves[gCurrentMove].type;
+	else if (!(gBattleStruct->dynamicMoveType & 0x40))
+		moveType = gBattleStruct->dynamicMoveType & 0x3F;
+	else
+		moveType = gBattleMoves[gCurrentMove].type;
+
+	if (moveType == TYPE_ELECTRIC && GetBattlerAbility(gBattlerTarget) == ABILITY_LIGHTNING_ROD) {
+		return TRUE;
+	}
+	else {
+		return FALSE;
+	}
+}
+
+static bool32 IsAbilityMotorAffected(void)
+{
+	u32 moveType;
+
+	if (gBattleStruct->dynamicMoveType == 0)
+		moveType = gBattleMoves[gCurrentMove].type;
+	else if (!(gBattleStruct->dynamicMoveType & 0x40))
+		moveType = gBattleStruct->dynamicMoveType & 0x3F;
+	else
+		moveType = gBattleMoves[gCurrentMove].type;
+
+	if (moveType == TYPE_ELECTRIC && GetBattlerAbility(gBattlerTarget) == ABILITY_MOTOR_DRIVE) {
+		return TRUE;
+	}
+	else {
+		return FALSE;
+	}
+}
+
+static bool32 IsAbilityAbsorbAffected(void)
+{
+	u32 moveType;
+
+	if (gBattleStruct->dynamicMoveType == 0)
+		moveType = gBattleMoves[gCurrentMove].type;
+	else if (!(gBattleStruct->dynamicMoveType & 0x40))
+		moveType = gBattleStruct->dynamicMoveType & 0x3F;
+	else
+		moveType = gBattleMoves[gCurrentMove].type;
+
+	if (moveType == TYPE_ELECTRIC && GetBattlerAbility(gBattlerTarget) == ABILITY_VOLT_ABSORB) {
+		return TRUE;
+	}
+	else {
+		return FALSE;
+	}
+}
+
+static bool32 IsTeatimeAffected(u32 battlerId)
+{
+	if (ItemId_GetPocket(gBattleMons[battlerId].item) != POCKET_BERRIES)
+		return FALSE;   // Only berries
+	if (gStatuses3[battlerId] & STATUS3_SEMI_INVULNERABLE)
+		return FALSE;   // Teatime doesn't affected semi-invulnerable battlers
+	return TRUE;
+}
+
 static void Cmd_various(void)
 {
     struct Pokemon *mon;
@@ -8425,6 +8491,49 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr += 7;    // exit if loop failed (failsafe)
         }
         return;
+	case VARIOUS_TEATIME_TARGETS:
+		// Gets the battlers to be affected by teatime. If there are none, print 'But it failed!'
+	{
+		u32 count = 0;
+		for (i = 0; i < gBattlersCount; i++)
+		{
+			if (IsTeatimeAffected(i))
+			{
+				count++;
+			}
+		}
+			if (count == 0) {
+				gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);   // Teatime fails
+			}
+			else {
+				gBattlescriptCurrInstr += 7;
+			}
+	}
+	    return;
+	case VARIOUS_TEATIME_INVUL:
+		if (ItemId_GetPocket(gBattleMons[gActiveBattler].item) == POCKET_BERRIES && !(gStatuses3[gBattlerTarget] & (STATUS3_SEMI_INVULNERABLE)))
+			gBattlescriptCurrInstr += 7;
+		else
+			gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+		return;
+	case VARIOUS_JUMP_IF_ROD:
+		if (IsAbilityRodAffected())
+			gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+		else
+			gBattlescriptCurrInstr += 7;
+		return;
+	case VARIOUS_JUMP_IF_MOTOR:
+		if (IsAbilityMotorAffected())
+			gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+		else
+			gBattlescriptCurrInstr += 7;
+		return;
+	case VARIOUS_JUMP_IF_ABSORB:
+		if (IsAbilityAbsorbAffected())
+			gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+		else
+			gBattlescriptCurrInstr += 7;
+		return;		    
     }
 
     gBattlescriptCurrInstr += 3;
