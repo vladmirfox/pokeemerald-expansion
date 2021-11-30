@@ -8057,6 +8057,7 @@ BattleScript_MoveHPDrain::
 	datahpupdate BS_TARGET
 	printstring STRINGID_PKMNRESTOREDHPUSING
 	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_ATTACKER, FALSE, NULL @ necessary for moves that faint the user and could change type (galvanized explosion..)
 	orhalfword gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE
 	goto BattleScript_MoveEnd
 
@@ -8072,7 +8073,7 @@ BattleScript_MoveStatDrain::
 	printstring STRINGID_TARGETABILITYSTATRAISE
 	waitmessage B_WAIT_TIME_LONG
 	clearsemiinvulnerablebit
-	tryfaintmon BS_ATTACKER, FALSE, NULL @ this should be removed, unless I'm missing something
+	tryfaintmon BS_ATTACKER, FALSE, NULL @ necessary for moves that faint the user and could change type (galvanized explosion..)
 	orhalfword gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE
 	goto BattleScript_MoveEnd
 
@@ -8084,7 +8085,7 @@ BattleScript_MonMadeMoveUseless::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNSXMADEYUSELESS
 	waitmessage B_WAIT_TIME_LONG
-	tryfaintmon BS_ATTACKER, FALSE, NULL @ this should be removed, unless I'm missing something
+	tryfaintmon BS_ATTACKER, FALSE, NULL @ necessary for moves that faint the user and could change type (galvanized explosion..)
 	orhalfword gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE
 	goto BattleScript_MoveEnd
 
@@ -8096,7 +8097,7 @@ BattleScript_FlashFireBoost::
 	call BattleScript_AbilityPopUp
 	printfromtable gFlashFireStringIds
 	waitmessage B_WAIT_TIME_LONG
-	tryfaintmon BS_ATTACKER, FALSE, NULL @ this should be removed, unless I'm missing something
+	tryfaintmon BS_ATTACKER, FALSE, NULL @ necessary for moves that faint the user and could change type (galvanized explosion..)
 	orhalfword gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE
 	goto BattleScript_MoveEnd
 
