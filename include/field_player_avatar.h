@@ -11,10 +11,10 @@ void PlayerGetDestCoords(s16 *, s16 *);
 u8 GetPlayerFacingDirection(void);
 u8 GetPlayerMovementDirection(void);
 u8 PlayerGetCopyableMovement(void);
-void PlayerGoSpeed1(u8);
-void PlayerGoSpeed2(u8);
+void PlayerWalkNormal(u8);
+void PlayerWalkFast(u8);
 void PlayerRideWaterCurrent(u8);
-void PlayerGoSpeed4(u8);
+void PlayerWalkFaster(u8);
 void PlayerOnBikeCollide(u8);
 void PlayerFaceDirection(u8 a);
 void PlayerTurnInPlace(u8 a);
@@ -32,10 +32,10 @@ void PlayerOnBikeCollideWithFarawayIslandMew(u8 direction);
 u8 CheckForObjectEventCollision(struct ObjectEvent *a, s16 b, s16 c, u8 d, u8 e);
 u8 PlayerGetZCoord(void);
 void SetPlayerAvatarTransitionFlags(u16 a);
-void sub_808BCE8(void);
+void CancelPlayerForcedMovement(void);
 void InitPlayerAvatar(s16 a, s16 b, u8 c, u8 d);
 void PlayerFreeze(void);
-void sub_808BCF4(void);
+void StopPlayerAvatar(void);
 void SetSpinStartFacingDir(u8);
 void GetXYCoordsOneStepInFrontOfPlayer(s16 *xPtr, s16 *yPtr);
 u8 GetRivalAvatarGraphicsIdByStateIdAndGender(u8, u8);
@@ -64,5 +64,9 @@ bool32 IsPlayerSpinExitActive(void);
 void SetPlayerInvisibility(bool8 invisible);
 u8 player_get_pos_including_state_based_drift(s16 *x, s16 *y);
 void StartFishing(u8 rod);
+bool8 ObjectMovingOnRockStairs(struct ObjectEvent *objectEvent, u8 direction);
+//sideways stairs
+u8 GetRightSideStairsDirection(u8 direction);
+u8 GetLeftSideStairsDirection(u8 direction);
 
 #endif // GUARD_FIELD_PLAYER_AVATAR_H

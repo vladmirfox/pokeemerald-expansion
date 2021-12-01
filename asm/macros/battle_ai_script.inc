@@ -251,11 +251,11 @@
 	.4byte \ptr
 	.endm
 
-	.macro nullsub_2A
+	.macro nop_2A
 	.byte 0x2a
 	.endm
 
-	.macro nullsub_2B
+	.macro nop_2B
 	.byte 0x2b
 	.endm
 
@@ -287,11 +287,11 @@
 	.4byte \param1
 	.endm
 
-	.macro nullsub_32
+	.macro nop_32
 	.byte 0x32
 	.endm
 
-	.macro nullsub_33
+	.macro nop_33
 	.byte 0x33
 	.endm
 
@@ -467,35 +467,56 @@
 	.byte \battler
 	.endm
 
+<<<<<<< HEAD
 	.macro if_move_flag flag jumpptr
+=======
+	.macro nop_52
+>>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 	.byte 0x52
 	.4byte \flag
 	.4byte \jumpptr
 	.endm
 
+<<<<<<< HEAD
 	.macro if_field_status flag jumpptr
+=======
+	.macro nop_53
+>>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 	.byte 0x53
 	.4byte \flag
 	.4byte \jumpptr
 	.endm
 
+<<<<<<< HEAD
 	.macro get_move_accuracy
 	.byte 0x54
 	.endm
 
 	.macro call_if_eq value, ptr
+=======
+	.macro nop_54
+	.byte 0x54
+	.endm
+
+	.macro nop_55
+>>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 	.byte 0x55
 	.2byte \value
 	.4byte \ptr
 	.endm
 
+<<<<<<< HEAD
 	.macro call_if_move_flag flag ptr
 	.byte 0x52
 	.4byte \flag
 	.4byte \ptr
+=======
+	.macro nop_56
+	.byte 0x56
+>>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 	.endm
 
-	.macro nullsub_57
+	.macro nop_57
 	.byte 0x57
 	.endm
 

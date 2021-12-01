@@ -71,12 +71,12 @@ static void (*const sMachBikeTransitions[])(u8) =
     MachBikeTransition_TrySlowDown,
 };
 
-// bikeFrameCounter is input which is represented by sMachBikeSpeeds in order: 0 is normal speed (1 speed), 1 is fast speed (2 speed), 2 is fastest speed (4 speed)
+// bikeFrameCounter is input which is represented by sMachBikeSpeeds in order
 static void (*const sMachBikeSpeedCallbacks[])(u8) =
 {
-    PlayerGoSpeed1, // normal speed (1 speed)
-    PlayerGoSpeed2, // fast speed (2 speed)
-    PlayerGoSpeed4, // fastest speed (4 speed)
+    PlayerWalkNormal,
+    PlayerWalkFast,
+    PlayerWalkFaster,
 };
 
 static void (*const sAcroBikeTransitions[])(u8) =
@@ -108,7 +108,7 @@ static u8 (*const sAcroBikeInputHandlers[])(u8 *, u16, u16) =
 };
 
 // used with bikeFrameCounter from mach bike
-static const u16 sMachBikeSpeeds[] = {SPEED_NORMAL, SPEED_FAST, SPEED_FASTEST};
+static const u16 sMachBikeSpeeds[] = {BIKE_SPEED_NORMAL, BIKE_SPEED_FAST, BIKE_SPEED_FASTEST};
 
 // this is a list of timers to compare against later, terminated with 0. the only timer being compared against is 4 frames in this list.
 static const u8 sAcroBikeJumpTimerList[] = {4, 0};
@@ -142,12 +142,25 @@ static u8 GetMachBikeTransition(u8 *dirTraveling)
 {
     // if the dir updated before this function, get the relevent new direction to check later.
     u8 direction = GetPlayerMovementDirection();
+    
+    // fix direction when moving on sideways stairs
+    switch (direction)
+    {
+    case DIR_SOUTHWEST:
+    case DIR_NORTHWEST:
+        direction = DIR_WEST;
+        break;
+    case DIR_SOUTHEAST:
+    case DIR_NORTHEAST:
+        direction = DIR_EAST;
+        break;
+    }
 
     // is the player standing still?
     if (*dirTraveling == 0)
     {
         *dirTraveling = direction; // update the direction, since below we either faced a direction or we started moving.
-        if (gPlayerAvatar.bikeSpeed == SPEED_STANDING)
+        if (gPlayerAvatar.bikeSpeed == BIKE_SPEED_STANDING)
         {
             gPlayerAvatar.runningState = NOT_MOVING;
             return MACH_TRANS_FACE_DIRECTION;
@@ -159,7 +172,7 @@ static u8 GetMachBikeTransition(u8 *dirTraveling)
     // we need to check if the last traveled direction changed from the new direction as well as ensuring that we dont update the state while the player is moving: see the else check.
     if (*dirTraveling != direction && gPlayerAvatar.runningState != MOVING)
     {
-        if (gPlayerAvatar.bikeSpeed != SPEED_STANDING)
+        if (gPlayerAvatar.bikeSpeed != BIKE_SPEED_STANDING)
         {
             *dirTraveling = direction; // implement the new direction
             gPlayerAvatar.runningState = MOVING;
@@ -193,7 +206,7 @@ static void MachBikeTransition_TurnDirection(u8 direction)
         Bike_SetBikeStill();
     }
     else
-    {
+    {        
         MachBikeTransition_FaceDirection(playerObjEvent->facingDirection);
     }
 }
@@ -233,7 +246,9 @@ static void MachBikeTransition_TrySpeedUp(u8 direction)
         }
         else
         {
-            // we did not hit anything that can slow us down, so perform the advancement callback depending on the bikeFrameCounter and try to increase the mach bike's speed.
+            if (ObjectMovingOnRockStairs(playerObjEvent, direction) && gPlayerAvatar.bikeFrameCounter > 1)
+                gPlayerAvatar.bikeFrameCounter--;
+            
             sMachBikeSpeedCallbacks[gPlayerAvatar.bikeFrameCounter](direction);
             gPlayerAvatar.bikeSpeed = gPlayerAvatar.bikeFrameCounter + (gPlayerAvatar.bikeFrameCounter >> 1); // same as dividing by 2, but compiler is insistent on >> 1
             if (gPlayerAvatar.bikeFrameCounter < 2) // do not go faster than the last element in the mach bike array
@@ -246,7 +261,7 @@ static void MachBikeTransition_TrySlowDown(u8 direction)
 {
     u8 collision;
 
-    if (gPlayerAvatar.bikeSpeed != SPEED_STANDING)
+    if (gPlayerAvatar.bikeSpeed != BIKE_SPEED_STANDING)
         gPlayerAvatar.bikeFrameCounter = --gPlayerAvatar.bikeSpeed;
 
     collision = GetBikeCollision(direction);
@@ -306,7 +321,7 @@ static u8 AcroBikeHandleInputNormal(u8 *newDirection, u16 newKeys, u16 heldKeys)
             return ACRO_TRANS_FACE_DIRECTION;
         }
     }
-    if (*newDirection == direction && (heldKeys & B_BUTTON) && gPlayerAvatar.bikeSpeed == SPEED_STANDING)
+    if (*newDirection == direction && (heldKeys & B_BUTTON) && gPlayerAvatar.bikeSpeed == BIKE_SPEED_STANDING)
     {
         gPlayerAvatar.bikeSpeed++;
         gPlayerAvatar.acroBikeState = ACRO_STATE_WHEELIE_MOVING;
@@ -342,7 +357,7 @@ static u8 AcroBikeHandleInputTurning(u8 *newDirection, u16 newKeys, u16 heldKeys
     if (*newDirection == AcroBike_GetJumpDirection())
     {
         Bike_SetBikeStill(); // Bike_SetBikeStill sets speed to standing, but the next line immediately overrides it. could have just reset acroBikeState to 0 here instead of wasting a jump.
-        gPlayerAvatar.bikeSpeed = SPEED_NORMAL;
+        gPlayerAvatar.bikeSpeed = BIKE_SPEED_NORMAL;
         if (*newDirection == GetOppositeDirection(direction))
         {
             // do a turn jump.
@@ -368,6 +383,7 @@ static u8 AcroBikeHandleInputWheelieStanding(u8 *newDirection, u16 newKeys, u16 
     struct ObjectEvent *playerObjEvent;
 
     direction = GetPlayerMovementDirection();
+    
     playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
     gPlayerAvatar.runningState = NOT_MOVING;
 
@@ -563,7 +579,10 @@ static void AcroBikeTransition_Moving(u8 direction)
     }
     else
     {
-        PlayerRideWaterCurrent(direction);
+        if (ObjectMovingOnRockStairs(playerObjEvent, direction))
+            PlayerWalkFast(direction);
+        else
+            PlayerRideWaterCurrent(direction);
     }
 }
 
@@ -658,7 +677,7 @@ static void AcroBikeTransition_SideJump(u8 direction)
     playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
     PlaySE(SE_BIKE_HOP);
     playerObjEvent->facingDirectionLocked = 1;
-    PlayerSetAnimId(GetJumpMovementAction(direction), 2);
+    PlayerSetAnimId(GetJumpMovementAction(direction), COPY_MOVE_WALK);
 }
 
 static void AcroBikeTransition_TurnJump(u8 direction)
@@ -696,6 +715,7 @@ static void AcroBikeTransition_WheelieMoving(u8 direction)
         }
         return;
     }
+    
     PlayerWheelieMove(direction);
     gPlayerAvatar.runningState = MOVING;
 }
@@ -730,6 +750,7 @@ static void AcroBikeTransition_WheelieRisingMoving(u8 direction)
         }
         return;
     }
+
     PlayerPopWheelieWhileMoving(direction);
     gPlayerAvatar.runningState = MOVING;
 }
@@ -753,6 +774,7 @@ static void AcroBikeTransition_WheelieLoweringMoving(u8 direction)
             PlayerEndWheelie(direction);
         return;
     }
+
     PlayerEndWheelieWhileMoving(direction);
 }
 
@@ -775,7 +797,7 @@ static void AcroBike_TryHistoryUpdate(u16 newKeys, u16 heldKeys) // newKeys is u
     else
     {
         Bike_UpdateDirTimerHistory(direction);
-        gPlayerAvatar.bikeSpeed = SPEED_STANDING;
+        gPlayerAvatar.bikeSpeed = BIKE_SPEED_STANDING;
     }
 
     direction = heldKeys & (A_BUTTON | B_BUTTON | SELECT_BUTTON | START_BUTTON); // directions is reused for some reason.
@@ -787,7 +809,7 @@ static void AcroBike_TryHistoryUpdate(u16 newKeys, u16 heldKeys) // newKeys is u
     else
     {
         Bike_UpdateABStartSelectHistory(direction);
-        gPlayerAvatar.bikeSpeed = SPEED_STANDING;
+        gPlayerAvatar.bikeSpeed = BIKE_SPEED_STANDING;
     }
 }
 
@@ -962,7 +984,7 @@ bool8 IsBikingDisallowedByPlayer(void)
 
 bool8 IsPlayerNotUsingAcroBikeOnBumpySlope(void)
 {
-    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE) 
+    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE)
         && MetatileBehavior_IsBumpySlope(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior))
         return FALSE;
     else
@@ -994,7 +1016,7 @@ void BikeClearState(int newDirHistory, int newAbStartHistory)
     gPlayerAvatar.acroBikeState = ACRO_STATE_NORMAL;
     gPlayerAvatar.newDirBackup = DIR_NONE;
     gPlayerAvatar.bikeFrameCounter = 0;
-    gPlayerAvatar.bikeSpeed = SPEED_STANDING;
+    gPlayerAvatar.bikeSpeed = BIKE_SPEED_STANDING;
     gPlayerAvatar.directionHistory = newDirHistory;
     gPlayerAvatar.abStartSelectHistory = newAbStartHistory;
 
@@ -1014,7 +1036,7 @@ void Bike_UpdateBikeCounterSpeed(u8 counter)
 static void Bike_SetBikeStill(void)
 {
     gPlayerAvatar.bikeFrameCounter = 0;
-    gPlayerAvatar.bikeSpeed = SPEED_STANDING;
+    gPlayerAvatar.bikeSpeed = BIKE_SPEED_STANDING;
 }
 
 s16 GetPlayerSpeed(void)
@@ -1027,11 +1049,11 @@ s16 GetPlayerSpeed(void)
     if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_MACH_BIKE)
         return machSpeeds[gPlayerAvatar.bikeFrameCounter];
     else if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_ACRO_BIKE)
-        return SPEED_FASTER;
+        return BIKE_SPEED_FASTER;
     else if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_SURFING | PLAYER_AVATAR_FLAG_DASH))
-        return SPEED_FAST;
+        return BIKE_SPEED_FAST;
     else
-        return SPEED_NORMAL;
+        return BIKE_SPEED_NORMAL;
 }
 
 void Bike_HandleBumpySlopeJump(void)

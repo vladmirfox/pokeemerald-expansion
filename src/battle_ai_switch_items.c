@@ -4,7 +4,11 @@
 #include "battle_ai_util.h"
 #include "battle_anim.h"
 #include "battle_controllers.h"
+<<<<<<< HEAD
 #include "battle_setup.h"
+=======
+#include "data.h"
+>>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 #include "pokemon.h"
 #include "random.h"
 #include "util.h"
@@ -58,7 +62,7 @@ static bool8 ShouldSwitchIfPerishSong(void)
         && gDisableStructs[gActiveBattler].perishSongTimer == 0)
     {
         *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
-        BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+        BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
         return TRUE;
     }
     else
@@ -121,6 +125,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
             move = GetMonData(&party[i], MON_DATA_MOVE1 + j);
             if (move != MOVE_NONE)
             {
+<<<<<<< HEAD
                 if (AI_GetTypeEffectiveness(move, gActiveBattler, opposingBattler) >= UQ_4_12(2.0) && Random() % 3 < 2)
                 {
                     // We found a mon.
@@ -128,6 +133,12 @@ static bool8 ShouldSwitchIfWonderGuard(void)
                     BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
                     return TRUE;
                 }
+=======
+                // We found a mon.
+                *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = i;
+                BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
+                return TRUE;
+>>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
             }
         }
     }
@@ -216,7 +227,7 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
         {
             // we found a mon.
             *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = i;
-            BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+            BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
             return TRUE;
         }
     }
@@ -236,13 +247,13 @@ static bool8 ShouldSwitchIfNaturalCure(void)
     if ((gLastLandedMoves[gActiveBattler] == 0 || gLastLandedMoves[gActiveBattler] == 0xFFFF) && Random() & 1)
     {
         *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
-        BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+        BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
         return TRUE;
     }
     else if (gBattleMoves[gLastLandedMoves[gActiveBattler]].power == 0 && Random() & 1)
     {
         *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
-        BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+        BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
         return TRUE;
     }
 
@@ -254,7 +265,7 @@ static bool8 ShouldSwitchIfNaturalCure(void)
     if (Random() & 1)
     {
         *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
-        BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+        BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
         return TRUE;
     }
 
@@ -407,7 +418,7 @@ static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent)
                 if (AI_GetTypeEffectiveness(move, gActiveBattler, battlerIn1) >= UQ_4_12(2.0) && Random() % moduloPercent == 0)
                 {
                     *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = i;
-                    BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+                    BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_SWITCH, 0);
                     return TRUE;
                 }
             }
@@ -564,7 +575,7 @@ void AI_TrySwitchOrUseItem(void)
         }
     }
 
-    BtlController_EmitTwoReturnValues(1, B_ACTION_USE_MOVE, (gActiveBattler ^ BIT_SIDE) << 8);
+    BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_USE_MOVE, (gActiveBattler ^ BIT_SIDE) << 8);
 }
 
 // If there are two(or more) mons to choose from, always choose one that has baton pass
@@ -858,7 +869,7 @@ static bool8 ShouldUseItem(void)
                 *(gBattleStruct->AI_itemFlags + gActiveBattler / 2) |= (1 << AI_HEAL_SLEEP);
                 shouldUse = TRUE;
             }
-            if (itemEffects[3] & ITEM3_POISON && (gBattleMons[gActiveBattler].status1 & STATUS1_POISON 
+            if (itemEffects[3] & ITEM3_POISON && (gBattleMons[gActiveBattler].status1 & STATUS1_POISON
                                                || gBattleMons[gActiveBattler].status1 & STATUS1_TOXIC_POISON))
             {
                 *(gBattleStruct->AI_itemFlags + gActiveBattler / 2) |= (1 << AI_HEAL_POISON);
@@ -931,7 +942,7 @@ static bool8 ShouldUseItem(void)
 
         if (shouldUse)
         {
-            BtlController_EmitTwoReturnValues(1, B_ACTION_USE_ITEM, 0);
+            BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_USE_ITEM, 0);
             *(gBattleStruct->chosenItem + (gActiveBattler / 2) * 2) = item;
             gBattleResources->battleHistory->trainerItems[i] = 0;
             return shouldUse;
