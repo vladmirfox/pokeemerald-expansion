@@ -9186,15 +9186,7 @@ extern const u32 gBattleAnimBgPalette_Sky[];
 extern const u32 gBattleAnimBgPalette_Aurora[];
 extern const u32 gBattleAnimBgPalette_Fissure[];
 extern const u32 gBattleAnimBgPalette_Bug[];
-<<<<<<< HEAD
-extern const u32 gBattleAnimBgPalette_Solarbeam[];
-extern const u32 gBattleAnimBgPalette_MagmaStorm[];
-extern const u32 gBattleAnimBgPalette_GigaImpact[];
-extern const u32 gBattleAnimBgPalette_TrickRoom[];
-extern const u32 gBattleAnimBgPalette_RockWrecker[];
-=======
 extern const u32 gBattleAnimBgPalette_SolarBeam[];
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 extern const u32 gBattleAnimBgTilemap_Dark[];
 extern const u32 gBattleAnimBgTilemap_Ghost[];
 extern const u32 gBattleAnimBgTilemap_Psychic[];

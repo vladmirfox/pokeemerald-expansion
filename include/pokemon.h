@@ -226,12 +226,18 @@ struct BaseStats
  /* 0x13 */ u8 growthRate;
  /* 0x14 */ u8 eggGroup1;
  /* 0x15 */ u8 eggGroup2;
- /* 0x16 */ u16 abilities[NUM_ABILITY_SLOTS];
-            u8 safariZoneFleeRate;
-            u8 bodyColor : 7;
+            #ifdef BATTLE_ENGINE
+ /* 0x16 */ u8 abilities[NUM_ABILITY_SLOTS];
+            #else
+            u8 abilities[2];
+            #endif
+ /* 0x18 */ u8 safariZoneFleeRate;
+ /* 0x19 */ u8 bodyColor : 7;
             u8 noFlip : 1;
-            u8 flags;
-};
+            #ifndef BATTLE_ENGINE
+ /* 0x1A */ u8 abilityHidden;
+            #endif
+}; /* size = 28 */
 
 #include "constants/battle_config.h"
 struct BattleMove
@@ -335,11 +341,7 @@ void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon);
 u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove);
 void DeleteFirstMoveAndGiveMoveToMon(struct Pokemon *mon, u16 move);
 void DeleteFirstMoveAndGiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move);
-<<<<<<< HEAD
-
-=======
 s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *defender, u32 move, u16 sideStatus, u16 powerOverride, u8 typeOverride, u8 bankAtk, u8 bankDef);
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 u8 CountAliveMonsInBattle(u8 caseId);
 u8 GetDefaultMoveTarget(u8 battlerId);
 u8 GetMonGender(struct Pokemon *mon);
@@ -392,11 +394,7 @@ u16 NationalToHoennOrder(u16 nationalNum);
 u16 SpeciesToNationalPokedexNum(u16 species);
 u16 SpeciesToHoennPokedexNum(u16 species);
 u16 HoennToNationalOrder(u16 hoennNum);
-<<<<<<< HEAD
-void sub_806D544(u16 species, u32 personality, u8 *dest);
-=======
 u16 SpeciesToCryId(u16 species);
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 void DrawSpindaSpots(u16 species, u32 personality, u8 *dest, u8 a4);
 void EvolutionRenameMon(struct Pokemon *mon, u16 oldSpecies, u16 newSpecies);
 u8 GetPlayerFlankId(void);
@@ -454,16 +452,8 @@ void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality);
 const u8 *GetTrainerClassNameFromId(u16 trainerId);
 const u8 *GetTrainerNameFromId(u16 trainerId);
 bool8 HasTwoFramesAnimation(u16 species);
-<<<<<<< HEAD
-struct Unknown_806F160_Struct *sub_806F2AC(u8 id, u8 arg1);
-void sub_806F47C(u8 id);
-u8 *sub_806F4F8(u8 id, u8 arg1);
-u16 GetFormSpeciesId(u16 speciesId, u8 formId);
-u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId);
-=======
 struct MonSpritesGfxManager *CreateMonSpritesGfxManager(u8 managerId, u8 mode);
 void DestroyMonSpritesGfxManager(u8 managerId);
 u8 *MonSpritesGfxManager_GetSpritePtr(u8 managerId, u8 spriteNum);
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 
 #endif // GUARD_POKEMON_H

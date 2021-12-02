@@ -17,6 +17,7 @@
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
+#include "dexnav.h"
 #include "dma3.h"
 #include "event_data.h"
 #include "evolution_scene.h"
@@ -131,15 +132,6 @@ EWRAM_DATA u8 gDisplayedStringBattle[400] = {0};
 EWRAM_DATA u8 gBattleTextBuff1[TEXT_BUFF_ARRAY_COUNT] = {0};
 EWRAM_DATA u8 gBattleTextBuff2[TEXT_BUFF_ARRAY_COUNT] = {0};
 EWRAM_DATA u8 gBattleTextBuff3[TEXT_BUFF_ARRAY_COUNT] = {0};
-<<<<<<< HEAD
-EWRAM_DATA u32 gBattleTypeFlags = 0;
-EWRAM_DATA u8 gBattleTerrain = 0;
-EWRAM_DATA u32 gUnusedFirstBattleVar1 = 0; // Never read
-EWRAM_DATA struct UnknownPokemonStruct4 gMultiPartnerParty[MULTI_PARTY_SIZE] = {0};
-EWRAM_DATA static struct UnknownPokemonStruct4* sMultiPartnerPartyBuffer = NULL;
-EWRAM_DATA u8 *gUnknown_0202305C = NULL;
-EWRAM_DATA u8 *gUnknown_02023060 = NULL;
-=======
 // The below array is never intentionally used. However, Juan's
 // defeat text (SootopolisCity_Gym_1F_Text_JuanDefeat) is too long
 // for gDisplayedStringBattle and overflows into this array. If it
@@ -155,7 +147,6 @@ EWRAM_DATA u8 *gBattleAnimBgTileBuffer = NULL;
 EWRAM_DATA u8 *gBattleAnimBgTilemapBuffer = NULL;
 EWRAM_DATA u8 gBattleBufferA[MAX_BATTLERS_COUNT][0x200] = {0};
 EWRAM_DATA u8 gBattleBufferB[MAX_BATTLERS_COUNT][0x200] = {0};
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 EWRAM_DATA u8 gActiveBattler = 0;
 EWRAM_DATA u32 gBattleControllerExecFlags = 0;
 EWRAM_DATA u8 gBattlersCount = 0;
@@ -310,9 +301,6 @@ const struct OamData gOamData_BattleSpritePlayerSide =
     .affineParam = 0,
 };
 
-<<<<<<< HEAD
-static const s8 gUnknown_0831ACE0[] ={-32, -16, -16, -32, -32, 0, 0, 0};
-=======
 // Unknown and unused data. Feel free to remove.
 static const u16 sUnused1[] = {0, 5, 0xfffe, 0};
 static const u16 *const sUnused1Ptr = sUnused1;
@@ -320,7 +308,6 @@ static const u16 sUnused2[] = {0xfff0, 0, 0x0400, 0, 0, 0, 0x3c00, 0, 0x7ffe, 1,
 static const u16 *const sUnused2Ptr = sUnused2;
 
 static const s8 sCenterToCornerVecXs[8] ={-32, -16, -16, -32, -32};
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 
 const u8 gTypeNames[NUMBER_OF_MON_TYPES][TYPE_NAME_LENGTH + 1] =
 {
@@ -573,13 +560,8 @@ static void CB2_InitBattleInternal(void)
     if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)))
     {
         CreateNPCTrainerParty(&gEnemyParty[0], gTrainerBattleOpponent_A, TRUE);
-<<<<<<< HEAD
-        if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS && !BATTLE_TWO_VS_ONE_OPPONENT)
-            CreateNPCTrainerParty(&gEnemyParty[3], gTrainerBattleOpponent_B, FALSE);
-=======
         if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
             CreateNPCTrainerParty(&gEnemyParty[PARTY_SIZE / 2], gTrainerBattleOpponent_B, FALSE);
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
         SetWildMonHeldItem();
     }
 
@@ -1958,8 +1940,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     return gTrainers[trainerNum].partySize;
 }
 
-<<<<<<< HEAD
-=======
 // Unused
 static void HBlankCB_Battle(void)
 {
@@ -1967,7 +1947,6 @@ static void HBlankCB_Battle(void)
         SetGpuReg(REG_OFFSET_BG0CNT, BGCNT_SCREENBASE(24) | BGCNT_TXT256x512);
 }
 
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 void VBlankCB_Battle(void)
 {
     // Change gRngSeed every vblank unless the battle could be recorded.
@@ -2601,9 +2580,6 @@ void SpriteCallbackDummy_2(struct Sprite *sprite)
 
 }
 
-<<<<<<< HEAD
-static void sub_80398D0(struct Sprite *sprite)
-=======
 #define sNumFlickers data[3]
 #define sDelay       data[4]
 
@@ -2616,7 +2592,6 @@ static void SpriteCB_InitFlicker(struct Sprite *sprite)
 }
 
 static void SpriteCB_Flicker(struct Sprite *sprite)
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 {
     sprite->sDelay--;
     if (sprite->sDelay == 0)
@@ -2628,11 +2603,7 @@ static void SpriteCB_Flicker(struct Sprite *sprite)
         {
             sprite->invisible = FALSE;
             sprite->callback = SpriteCallbackDummy_2;
-<<<<<<< HEAD
-            // sUnusedUnknownArray[0] = 0;
-=======
             sFlickerArray[0] = 0;
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
         }
     }
 }
@@ -3248,13 +3219,6 @@ static void DoBattleIntro(void)
                 *state = 0;
         }
         break;
-<<<<<<< HEAD
-    case 2: // Start graphical intro slide.
-        if (!gBattleControllerExecFlags)
-        {
-            gActiveBattler = GetBattlerAtPosition(0);
-            BtlController_EmitIntroSlide(0, gBattleTerrain);
-=======
     }
 }
 
@@ -3309,7 +3273,6 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
         if (GetBattlerPosition(gActiveBattler) == B_POSITION_PLAYER_LEFT)
         {
             BtlController_EmitDrawTrainerPic(BUFFER_A);
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
             MarkBattlerForControllerExec(gActiveBattler);
             gBattleCommunication[0] = 0;
             gBattleCommunication[1] = 0;
@@ -3325,12 +3288,8 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
         {
             if ((gBattleTypeFlags & BATTLE_TYPE_SAFARI) && GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
             {
-<<<<<<< HEAD
-                memset(&gBattleMons[gActiveBattler], 0, sizeof(struct BattlePokemon));
-=======
                 BtlController_EmitDrawTrainerPic(BUFFER_A);
                 MarkBattlerForControllerExec(gActiveBattler);
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
             }
             else
             {
@@ -3358,42 +3317,9 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
                     BtlController_EmitDrawTrainerPic(0);
                     MarkBattlerForControllerExec(gActiveBattler);
                 }
-<<<<<<< HEAD
-                else // wild mon 1
-                {
-                    BtlController_EmitLoadMonSprite(0);
-                    MarkBattlerForControllerExec(gActiveBattler);
-                    gBattleResults.lastOpponentSpecies = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_SPECIES, NULL);
-                }
-                break;
-            case B_POSITION_PLAYER_RIGHT:
-                if (gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER)) // partner sprite
-                {
-                    BtlController_EmitDrawTrainerPic(0);
-                    MarkBattlerForControllerExec(gActiveBattler);
-                }
-                break;
-            case B_POSITION_OPPONENT_RIGHT:
-                if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-                {
-                    if (gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_TWO_OPPONENTS) && !BATTLE_TWO_VS_ONE_OPPONENT) // opponent 2 if exists
-                    {
-                        BtlController_EmitDrawTrainerPic(0);
-                        MarkBattlerForControllerExec(gActiveBattler);
-                    }
-                }
-                else // wild mon 2
-                {
-                    BtlController_EmitLoadMonSprite(0);
-                    MarkBattlerForControllerExec(gActiveBattler);
-                    gBattleResults.lastOpponentSpecies = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_SPECIES, NULL);
-                }
-                break;
-=======
                 BtlController_EmitLoadMonSprite(BUFFER_A);
                 MarkBattlerForControllerExec(gActiveBattler);
                 gBattleResults.lastOpponentSpecies = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_SPECIES, NULL);
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
             }
 
             if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
@@ -3402,28 +3328,17 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
 
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
         {
-<<<<<<< HEAD
-            (*state)++;
-=======
             if (GetBattlerPosition(gActiveBattler) == B_POSITION_PLAYER_RIGHT
              || GetBattlerPosition(gActiveBattler) == B_POSITION_OPPONENT_RIGHT)
             {
                 BtlController_EmitDrawTrainerPic(BUFFER_A);
                 MarkBattlerForControllerExec(gActiveBattler);
             }
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
         }
         else // Skip party summary since it is a wild battle.
         {
-<<<<<<< HEAD
-            if (B_FAST_INTRO)
-                *state = 7; // Don't wait for sprite, print message at the same time.
-            else
-                *state = 6; // Wait for sprite to load.
-=======
             BtlController_EmitDrawTrainerPic(BUFFER_A);
             MarkBattlerForControllerExec(gActiveBattler);
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
         }
         break;
     case 5: // draw party summary in trainer battles
@@ -3488,12 +3403,8 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
         {
             if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
             {
-<<<<<<< HEAD
-                (*state)++;
-=======
                 hpStatus[i].hp = HP_EMPTY_SLOT;
                 hpStatus[i].status = 0;
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
             }
             else
             {
@@ -3503,30 +3414,8 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
                     *state = 14; // Wait for text and sprite.
             }
         }
-<<<<<<< HEAD
-        break;
-    case 9: // print opponent sends out
-        if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
-            PrepareStringBattle(STRINGID_INTROSENDOUT, GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
-        else
-            PrepareStringBattle(STRINGID_INTROSENDOUT, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
-        (*state)++;
-        break;
-    case 10: // wait for opponent sends out text
-        if (!gBattleControllerExecFlags)
-            (*state)++;
-        break;
-    case 11: // first opponent's mon send out animation
-        if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
-            gActiveBattler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
-        else
-            gActiveBattler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
-
-        BtlController_EmitIntroTrainerBallThrow(0);
-=======
         gActiveBattler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
         BtlController_EmitDrawPartyStatusSummary(BUFFER_A, hpStatus, PARTY_SUMM_SKIP_DRAW_DELAY);
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
         MarkBattlerForControllerExec(gActiveBattler);
         (*state)++;
         break;
@@ -3559,17 +3448,12 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
     case 16: // print player sends out
         if (!(gBattleTypeFlags & BATTLE_TYPE_SAFARI))
         {
-<<<<<<< HEAD
-            if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
-                gActiveBattler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
-=======
             if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) == SPECIES_NONE
              || GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) == SPECIES_EGG)
             {
                 hpStatus[i].hp = HP_EMPTY_SLOT;
                 hpStatus[i].status = 0;
             }
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
             else
                 gActiveBattler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
 
@@ -3584,21 +3468,9 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
 
             PrepareStringBattle(STRINGID_INTROSENDOUT, gActiveBattler);
         }
-<<<<<<< HEAD
-        (*state)++;
-        break;
-    case 17: // wait for player send out message
-        if (!(gBattleTypeFlags & BATTLE_TYPE_LINK && gBattleControllerExecFlags))
-        {
-            if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
-                gActiveBattler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
-            else
-                gActiveBattler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
-=======
         gActiveBattler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
         BtlController_EmitDrawPartyStatusSummary(BUFFER_A, hpStatus, PARTY_SUMM_SKIP_DRAW_DELAY);
         MarkBattlerForControllerExec(gActiveBattler);
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
 
             if (!IsBattlerMarkedForControllerExec(gActiveBattler))
                 (*state)++;
@@ -3617,17 +3489,12 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
     case 19: // player 2 send out
         if (gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER))
         {
-<<<<<<< HEAD
-            if (gBattleTypeFlags & BATTLE_TYPE_RECORDED_LINK && !(gBattleTypeFlags & BATTLE_TYPE_RECORDED_IS_MASTER))
-                gActiveBattler = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
-=======
             if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) == SPECIES_NONE
              || GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) == SPECIES_EGG)
             {
                 hpStatus[i].hp = HP_EMPTY_SLOT;
                 hpStatus[i].status = 0;
             }
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
             else
                 gActiveBattler = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
 
@@ -3691,14 +3558,6 @@ static void TryDoEventsBeforeFirstTurn(void)
 
     if (!gBattleStruct->terrainDone && AbilityBattleEffects(0, 0, 0, ABILITYEFFECT_SWITCH_IN_TERRAIN, 0) != 0)
     {
-<<<<<<< HEAD
-        gBattleStruct->terrainDone = TRUE;
-        return;
-    }
-
-    // Totem boosts
-    for (i = 0; i < gBattlersCount; i++)
-=======
         if (GetBattlerPosition(gActiveBattler) == position)
         {
             BtlController_EmitIntroTrainerBallThrow(BUFFER_A);
@@ -3876,21 +3735,14 @@ static void BattleIntroPlayer1SendsOutMonAnimation(void)
 static void BattleIntroSwitchInPlayerMons(void)
 {
     if (gBattleControllerExecFlags == 0)
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
     {
         if (gTotemBoosts[i].stats != 0)
         {
-<<<<<<< HEAD
-            gBattlerAttacker = i;
-            BattleScriptExecute(BattleScript_TotemVar);
-            return;
-=======
             if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
             {
                 BtlController_EmitSwitchInAnim(BUFFER_A, gBattlerPartyIndexes[gActiveBattler], FALSE);
                 MarkBattlerForControllerExec(gActiveBattler);
             }
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
         }
     }
     memset(gTotemBoosts, 0, sizeof(gTotemBoosts));  // erase all totem boosts just to be safe
@@ -4177,11 +4029,7 @@ static void HandleTurnActionSelectionState(void)
                     }
                     else
                     {
-<<<<<<< HEAD
-                        BtlController_EmitChooseAction(0, gChosenActionByBattler[0], gBattleResources->bufferB[0][1] | (gBattleResources->bufferB[0][2] << 8));
-=======
                         BtlController_EmitChooseAction(BUFFER_A, gChosenActionByBattler[0], gBattleBufferB[0][1] | (gBattleBufferB[0][2] << 8));
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
                         MarkBattlerForControllerExec(gActiveBattler);
                         gBattleCommunication[gActiveBattler]++;
                     }
@@ -4256,26 +4104,16 @@ static void HandleTurnActionSelectionState(void)
                     }
                     break;
                 case B_ACTION_SWITCH:
-<<<<<<< HEAD
-                    *(gBattleStruct->field_58 + gActiveBattler) = gBattlerPartyIndexes[gActiveBattler];
-                    if (gBattleTypeFlags & BATTLE_TYPE_ARENA
-                        || !CanBattlerEscape(gActiveBattler))
-=======
                     *(gBattleStruct->battlerPartyIndexes + gActiveBattler) = gBattlerPartyIndexes[gActiveBattler];
                     if (gBattleMons[gActiveBattler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION)
                         || gBattleTypeFlags & BATTLE_TYPE_ARENA
                         || gStatuses3[gActiveBattler] & STATUS3_ROOTED)
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
                     {
                         BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CANT_SWITCH, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
                     }
                     else if ((i = IsAbilityPreventingEscape(gActiveBattler)))
                     {
-<<<<<<< HEAD
-                        BtlController_EmitChoosePokemon(0, ((i - 1) << 4) | PARTY_ACTION_ABILITY_PREVENTS, PARTY_SIZE, gBattleMons[i - 1].ability, gBattleStruct->field_60[gActiveBattler]);
-=======
                         BtlController_EmitChoosePokemon(BUFFER_A, ((i - 1) << 4) | PARTY_ACTION_ABILITY_PREVENTS, PARTY_SIZE, gLastUsedAbility, gBattleStruct->battlerPartyOrders[gActiveBattler]);
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
                     }
                     else
                     {
@@ -4337,13 +4175,7 @@ static void HandleTurnActionSelectionState(void)
                     {
                         RecordedBattle_ClearBattlerAction(GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler))), 3);
                     }
-<<<<<<< HEAD
-
-                    gBattleStruct->mega.toEvolve &= ~(gBitTable[BATTLE_PARTNER(GetBattlerPosition(gActiveBattler))]);
-                    BtlController_EmitEndBounceEffect(0);
-=======
                     BtlController_EmitEndBounceEffect(BUFFER_A);
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
                     MarkBattlerForControllerExec(gActiveBattler);
                     return;
                 case B_ACTION_DEBUG:
@@ -4406,13 +4238,8 @@ static void HandleTurnActionSelectionState(void)
                         UpdateBattlerPartyOrdersOnSwitch();
                         return;
                     default:
-<<<<<<< HEAD
-                        sub_818603C(2);
-                        if ((gBattleResources->bufferB[gActiveBattler][2] | (gBattleResources->bufferB[gActiveBattler][3] << 8)) == 0xFFFF)
-=======
                         RecordedBattle_CheckMovesetChanges(B_RECORD_MODE_PLAYBACK);
                         if ((gBattleBufferB[gActiveBattler][2] | (gBattleBufferB[gActiveBattler][3] << 8)) == 0xFFFF)
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
                         {
                             gBattleCommunication[gActiveBattler] = STATE_BEFORE_ACTION_CHOSEN;
                             RecordedBattle_ClearBattlerAction(gActiveBattler, 1);
@@ -4479,12 +4306,7 @@ static void HandleTurnActionSelectionState(void)
                     gBattleCommunication[gActiveBattler]++;
                     break;
                 case B_ACTION_SAFARI_POKEBLOCK:
-<<<<<<< HEAD
-                    if ((gBattleResources->bufferB[gActiveBattler][1] | (gBattleResources->bufferB[gActiveBattler][2] << 8)) != 0)
-                    {
-=======
                     if ((gBattleBufferB[gActiveBattler][1] | (gBattleBufferB[gActiveBattler][2] << 8)) != 0)
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
                         gBattleCommunication[gActiveBattler]++;
                     else
                         gBattleCommunication[gActiveBattler] = STATE_BEFORE_ACTION_CHOSEN;
@@ -4628,15 +4450,6 @@ static void UpdateBattlerPartyOrdersOnSwitch(void)
 
     if (gBattleTypeFlags & BATTLE_TYPE_LINK && gBattleTypeFlags & BATTLE_TYPE_MULTI)
     {
-<<<<<<< HEAD
-        *(gActiveBattler * 3 + (u8*)(gBattleStruct->field_60) + 0) &= 0xF;
-        *(gActiveBattler * 3 + (u8*)(gBattleStruct->field_60) + 0) |= (gBattleResources->bufferB[gActiveBattler][2] & 0xF0);
-        *(gActiveBattler * 3 + (u8*)(gBattleStruct->field_60) + 1) = gBattleResources->bufferB[gActiveBattler][3];
-
-        *((gActiveBattler ^ BIT_FLANK) * 3 + (u8*)(gBattleStruct->field_60) + 0) &= (0xF0);
-        *((gActiveBattler ^ BIT_FLANK) * 3 + (u8*)(gBattleStruct->field_60) + 0) |= (gBattleResources->bufferB[gActiveBattler][2] & 0xF0) >> 4;
-        *((gActiveBattler ^ BIT_FLANK) * 3 + (u8*)(gBattleStruct->field_60) + 2) = gBattleResources->bufferB[gActiveBattler][3];
-=======
         *(gActiveBattler * 3 + (u8*)(gBattleStruct->battlerPartyOrders) + 0) &= 0xF;
         *(gActiveBattler * 3 + (u8*)(gBattleStruct->battlerPartyOrders) + 0) |= (gBattleBufferB[gActiveBattler][2] & 0xF0);
         *(gActiveBattler * 3 + (u8*)(gBattleStruct->battlerPartyOrders) + 1) = gBattleBufferB[gActiveBattler][3];
@@ -4644,7 +4457,6 @@ static void UpdateBattlerPartyOrdersOnSwitch(void)
         *((gActiveBattler ^ BIT_FLANK) * 3 + (u8*)(gBattleStruct->battlerPartyOrders) + 0) &= (0xF0);
         *((gActiveBattler ^ BIT_FLANK) * 3 + (u8*)(gBattleStruct->battlerPartyOrders) + 0) |= (gBattleBufferB[gActiveBattler][2] & 0xF0) >> 4;
         *((gActiveBattler ^ BIT_FLANK) * 3 + (u8*)(gBattleStruct->battlerPartyOrders) + 2) = gBattleBufferB[gActiveBattler][3];
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
     }
 }
 
@@ -4665,34 +4477,6 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     // weather abilities
     if (WEATHER_HAS_EFFECT)
     {
-<<<<<<< HEAD
-        if (ability == ABILITY_SWIFT_SWIM       && gBattleWeather & WEATHER_RAIN_ANY)
-            speed *= 2;
-        else if (ability == ABILITY_CHLOROPHYLL && gBattleWeather & WEATHER_SUN_ANY)
-            speed *= 2;
-        else if (ability == ABILITY_SAND_RUSH   && gBattleWeather & WEATHER_SANDSTORM_ANY)
-            speed *= 2;
-        else if (ability == ABILITY_SLUSH_RUSH  && gBattleWeather & WEATHER_HAIL_ANY)
-            speed *= 2;
-    }
-
-    // other abilities
-    if (ability == ABILITY_QUICK_FEET && gBattleMons[battlerId].status1 & STATUS1_ANY)
-        speed = (speed * 150) / 100;
-    else if (ability == ABILITY_SURGE_SURFER && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
-        speed *= 2;
-    else if (ability == ABILITY_SLOW_START && gDisableStructs[battlerId].slowStartTimer != 0)
-        speed /= 2;
-
-    // stat stages
-    speed *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0];
-    speed /= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][1];
-
-    // player's badge boost
-    if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_FRONTIER))
-        && ShouldGetStatBadgeBoost(FLAG_BADGE03_GET, battlerId)
-        && GetBattlerSide(battlerId) == B_SIDE_PLAYER)
-=======
         if ((gBattleMons[battler1].ability == ABILITY_SWIFT_SWIM && gBattleWeather & B_WEATHER_RAIN)
             || (gBattleMons[battler1].ability == ABILITY_CHLOROPHYLL && gBattleWeather & B_WEATHER_SUN))
             speedMultiplierBattler1 = 2;
@@ -4706,7 +4490,6 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
             speedMultiplierBattler2 = 1;
     }
     else
->>>>>>> 384bdaee183e9368852818f734a83fd0e4e02075
     {
         speed = (speed * 110) / 100;
     }
@@ -5346,8 +5129,11 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
 {
     if (!gPaletteFade.active)
     {
-        gIsFishingEncounter = FALSE;
-        gIsSurfingEncounter = FALSE;
+        if (gDexnavBattle && (gBattleOutcome == B_OUTCOME_WON || gBattleOutcome == B_OUTCOME_CAUGHT))
+            IncrementDexNavChain();
+        else
+            gSaveBlock1Ptr->dexNavChain = 0;
+        
         ResetSpriteData();
         if (gLeveledUpInBattle && (gBattleOutcome == B_OUTCOME_WON || gBattleOutcome == B_OUTCOME_CAUGHT))
         {
