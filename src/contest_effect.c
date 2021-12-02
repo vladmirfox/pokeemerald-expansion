@@ -65,7 +65,15 @@ bool8 AreMovesContestCombo(u16 lastMove, u16 nextMove)
     if (lastMoveComboStarterId == 0)
     {
         return FALSE;
+<<<<<<< HEAD
     }
+=======
+    else if (lastMoveComboStarterId == nextMoveComboMoves[0]
+          || lastMoveComboStarterId == nextMoveComboMoves[1]
+          || lastMoveComboStarterId == nextMoveComboMoves[2]
+          || lastMoveComboStarterId == nextMoveComboMoves[3])
+        return gComboStarterLookupTable[lastMoveComboStarterId];
+>>>>>>> 3c7228396a8e2cf98ddac2be2ac4b89c57b25eaf
     else
     {
         for (i = 0; i < MAX_COMBO_MOVES; i++)

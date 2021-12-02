@@ -6,7 +6,6 @@
 #include "bg.h"
 #include "graphics.h"
 
-// const rom data
 const u8 gTextWindowFrame1_Gfx[] = INCBIN_U8("graphics/text_window/1.4bpp");
 static const u8 sTextWindowFrame2_Gfx[] = INCBIN_U8("graphics/text_window/2.4bpp");
 static const u8 sTextWindowFrame3_Gfx[] = INCBIN_U8("graphics/text_window/3.4bpp");
@@ -81,6 +80,9 @@ static const struct TilesPal sWindowFrames[WINDOW_FRAMES_COUNT] =
     {sTextWindowFrame19_Gfx, sTextWindowFrame19_Pal},
     {sTextWindowFrame20_Gfx, sTextWindowFrame20_Pal}
 };
+
+static const u16 sTextWindowDexnavFrame[] = INCBIN_U16("graphics/text_window/dexnav_pal.gbapal");
+static const struct TilesPal sDexnavWindowFrame = {gTextWindowFrame1_Gfx, sTextWindowDexnavFrame};
 
 // code
 const struct TilesPal *GetWindowFrameTilesPal(u8 id)
@@ -190,8 +192,16 @@ const u16 *GetOverworldTextboxPalettePtr(void)
     return gMessageBox_Pal;
 }
 
-void sub_8098C6C(u8 bg, u16 destOffset, u8 palOffset)
+// Effectively LoadUserWindowBorderGfx but specifying the bg directly instead of a window from that bg
+void LoadUserWindowBorderGfxOnBg(u8 bg, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(bg, sWindowFrames[gSaveBlock2Ptr->optionsWindowFrameType].tiles, 0x120, destOffset);
     LoadPalette(GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->pal, palOffset, 0x20);
 }
+
+void LoadDexNavWindowGfx(u8 windowId, u16 destOffset, u8 palOffset)
+{
+    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sDexnavWindowFrame.tiles, 0x120, destOffset);
+    LoadPalette(sDexnavWindowFrame.pal, palOffset, 32);
+}
+
