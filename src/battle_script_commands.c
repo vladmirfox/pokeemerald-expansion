@@ -1424,7 +1424,24 @@ static void Cmd_attackcanceler(void)
         gBattlescriptCurrInstr = BattleScript_ProteanActivates;
         return;
     }
-
+    
+    // damp check for explosion and mind blown
+    if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
+        && ((gBattleMoves[gCurrentMove].effect == EFFECT_EXPLOSION) || (gBattleMoves[gCurrentMove].effect == EFFECT_MIND_BLOWN)))
+    {
+        u8 battlerWithDamp = IsAbilityOnField(ABILITY_DAMP);
+        if (battlerWithDamp)
+        {
+            battlerWithDamp = battlerWithDamp - 1; // IsAbilityOnField returns the battlerId+1, so we put it back to being battlerId
+            gLastUsedAbility = ABILITY_DAMP; // for the string ability prevents usage move
+            RecordAbilityBattle(battlerWithDamp, ABILITY_DAMP);
+            gBattlerAbility = battlerWithDamp; // For ability pop-up
+            gBattlescriptCurrInstr = BattleScript_DampStopsExplosion;
+            // I choose to not push the current battlescript because damps stops entirely these moves
+            return;
+        }
+    }
+    
     if (AtkCanceller_UnableToUseMove2())
         return;
     if (AbilityBattleEffects(ABILITYEFFECT_MOVES_BLOCK, gBattlerTarget, 0, 0, 0))
@@ -1461,6 +1478,12 @@ static void Cmd_attackcanceler(void)
     gHitMarker |= HITMARKER_OBEYS;
     if (NoTargetPresent(gCurrentMove) && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
     {
+        if (gBattleMoves[gCurrentMove].effect == EFFECT_EXPLOSION) // explosion can happen in void and you die!
+        {
+            gBattlescriptCurrInstr = BattleScript_ExplosionInVoid;
+            return;
+        }
+        
         gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce;
         if (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
             CancelMultiTurnMoves(gBattlerAttacker);
@@ -5266,10 +5289,35 @@ static void Cmd_moveend(void)
             RecordLastUsedMoveBy(gBattlerAttacker, gCurrentMove);
             gBattleScripting.moveendState++;
             break;
+        case MOVEEND_KO_USER: // Explosion/selfdestruct and mind blown
+            if (IsBattlerAlive(gBattlerAttacker)
+                && (gBattleMoves[gCurrentMove].effect == EFFECT_EXPLOSION)
+                && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)) // Only condition for explosion not to faint the user. Even a failed move KOes user
+            {
+                gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_DoRecoilNoString; // instant bar drop doesn't exist in later generations, and it saves a battlescript command
+                effect = TRUE;
+            }
+			else if (gSpecialStatuses[gBattlerAttacker].parentalBondOn != 1 // parental bonded mind blown should only hurt user on FIRST and NOT SECOND STRIKE
+																			// that's how it's written in bulbapedia at least at the time I'm writing this code (kleenexfeu)
+                && IsBattlerAlive(gBattlerAttacker)
+                && (gBattleMoves[gCurrentMove].effect == EFFECT_MIND_BLOWN)
+				&& (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+				&& !(gMoveResultFlags & MOVE_RESULT_FAILED)
+                && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE))
+			{
+                gBattleMoveDamage = ((gBattleMons[gBattlerAttacker].maxHP + 1)/2); // damage = half max HP of user rounded up
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_DoRecoilNoString;
+                effect = TRUE;
+			}
+            gBattleScripting.moveendState++;
+            break;
         case MOVEEND_EJECT_BUTTON:
             if (gCurrentMove != MOVE_DRAGON_TAIL
               && gCurrentMove != MOVE_CIRCLE_THROW
-              && IsBattlerAlive(gBattlerAttacker)
+              && IsBattlerAlive(gBattlerAttacker) // might have to do more check for explosion, because it currently doesn't activate eject button
               && !TestSheerForceFlag(gBattlerAttacker, gCurrentMove)
               && (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER || (gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
             {
