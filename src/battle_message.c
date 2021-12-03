@@ -3201,7 +3201,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 break;
             case B_TXT_BATTLER_ABILITY_NAME_WITH_PREFIX:
                 HANDLE_NICKNAME_STRING_CASE(gBattlerAbility)
-            break;
+                break;
             case B_TXT_SCR_ACTIVE_NAME_WITH_PREFIX: // scripting active battlerId name with prefix
                 HANDLE_NICKNAME_STRING_CASE(gBattleScripting.battler)
                 break;
