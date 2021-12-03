@@ -5299,19 +5299,19 @@ static void Cmd_moveend(void)
                 gBattlescriptCurrInstr = BattleScript_DoRecoilNoString; // instant bar drop doesn't exist in later generations, and it saves a battlescript command
                 effect = TRUE;
             }
-			else if (gSpecialStatuses[gBattlerAttacker].parentalBondOn != 1 // parental bonded mind blown should only hurt user on FIRST and NOT SECOND STRIKE
-																			// that's how it's written in bulbapedia at least at the time I'm writing this code (kleenexfeu)
+            else if (gSpecialStatuses[gBattlerAttacker].parentalBondOn != 1 // parental bonded mind blown should only hurt user on FIRST and NOT SECOND STRIKE
+                                                                            // that's how it's written in bulbapedia at least at the time I'm writing this code (kleenexfeu)
                 && IsBattlerAlive(gBattlerAttacker)
                 && (gBattleMoves[gCurrentMove].effect == EFFECT_MIND_BLOWN)
-				&& (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
-				&& !(gMoveResultFlags & MOVE_RESULT_FAILED)
+                && (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                && !(gMoveResultFlags & MOVE_RESULT_FAILED)
                 && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE))
-			{
+            {
                 gBattleMoveDamage = ((gBattleMons[gBattlerAttacker].maxHP + 1)/2); // damage = half max HP of user rounded up
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_DoRecoilNoString;
                 effect = TRUE;
-			}
+            }
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_EJECT_BUTTON:
