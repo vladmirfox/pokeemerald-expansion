@@ -9105,6 +9105,11 @@ u16 GetWishMegaEvolutionSpecies(u16 preEvoSpecies, u16 moveId1, u16 moveId2, u16
     return SPECIES_NONE;
 }
 
+// This function should be tweaked in my opinion, here are my suggestions (kleenexfeu) in comment.
+// Note that these suggestions fixed the AI not mega evolving first chance before ghoulash did the commit 14f974c9a95fe9801a744955973303b242036a11
+// After several playthrough with it, including watching battle records when I mega evolve, I couldn't find an issue with the new code.
+// So even though the issue was solved with the revert, I still believe this is legacy code that should be changed. Please contact me if you think I'm
+// making a mistake!
 bool32 CanMegaEvolve(u8 battlerId)
 {
     u32 itemId, holdEffect, species;
@@ -9112,6 +9117,8 @@ bool32 CanMegaEvolve(u8 battlerId)
     u8 battlerPosition = GetBattlerPosition(battlerId);
     u8 partnerPosition = GetBattlerPosition(BATTLE_PARTNER(battlerId));
     struct MegaEvolutionData *mega = &(((struct ChooseMoveStruct*)(&gBattleResources->bufferA[gActiveBattler][4]))->mega);
+    // The line above should be entirely removed. I couldn't find any other instance in the battle engine where the mega structure in accessed in
+    // such a way.
 
 #ifdef ITEM_EXPANSION
     // Check if Player has a Mega Ring
@@ -9122,11 +9129,16 @@ bool32 CanMegaEvolve(u8 battlerId)
 
     // Check if trainer already mega evolved a pokemon.
     if (mega->alreadyEvolved[battlerPosition])
+    // should be: if (gBattleStruct->mega.alreadyEvolved[battlerPosition])
+    
         return FALSE;
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
         if (IsPartnerMonFromSameTrainer(battlerId)
+            
             && (mega->alreadyEvolved[partnerPosition] || (mega->toEvolve & gBitTable[BATTLE_PARTNER(battlerId)])))
+            // should be: && (gBattleStruct->mega.alreadyEvolved[partnerPosition] || (gBattleStruct->mega.toEvolve & gBitTable[BATTLE_PARTNER(battlerId)])))
+            
             return FALSE;
     }
 
@@ -9152,14 +9164,14 @@ bool32 CanMegaEvolve(u8 battlerId)
         // Can Mega Evolve via Mega Stone.
         if (holdEffect == HOLD_EFFECT_MEGA_STONE)
         {
-            gBattleStruct->mega.isWishMegaEvo = FALSE;
+            gBattleStruct->mega.isWishMegaEvo[battlerId] = FALSE;
             return TRUE;
         }
 
         // Can undergo Primal Reversion.
         if (holdEffect == HOLD_EFFECT_PRIMAL_ORB)
         {
-            gBattleStruct->mega.isWishMegaEvo = FALSE;
+            gBattleStruct->mega.isWishMegaEvo[battlerId] = FALSE;
             gBattleStruct->mega.isPrimalReversion = TRUE;
             return TRUE;
         }
@@ -9168,7 +9180,7 @@ bool32 CanMegaEvolve(u8 battlerId)
     // Check if there is an entry in the evolution table for Wish Mega Evolution.
     if (GetWishMegaEvolutionSpecies(species, GetMonData(mon, MON_DATA_MOVE1), GetMonData(mon, MON_DATA_MOVE2), GetMonData(mon, MON_DATA_MOVE3), GetMonData(mon, MON_DATA_MOVE4)))
     {
-        gBattleStruct->mega.isWishMegaEvo = TRUE;
+        gBattleStruct->mega.isWishMegaEvo[battlerId] = TRUE;
         return TRUE;
     }
 

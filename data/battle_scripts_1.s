@@ -6068,6 +6068,7 @@ BattleScript_DoSwitchOut2:
 
 BattleScript_PursuitDmgOnSwitchOut::
 	pause B_WAIT_TIME_SHORT
+	canpursuitusermegaevolve
 	attackstring
 	ppreduce
 	critcalc
@@ -7066,20 +7067,25 @@ BattleScript_FocusPunchSetUp::
 
 BattleScript_MegaEvolution::
 	printstring STRINGID_MEGAEVOREACTING
-	waitmessage B_WAIT_TIME_LONG
-	setbyte gIsCriticalHit, 0
-	handlemegaevo BS_ATTACKER, 0
-	handlemegaevo BS_ATTACKER, 1
-	playanimation BS_ATTACKER, B_ANIM_MEGA_EVOLUTION, NULL
-	waitanimation
-	handlemegaevo BS_ATTACKER, 2
-	printstring STRINGID_MEGAEVOEVOLVED
-	waitmessage B_WAIT_TIME_LONG
-	switchinabilities BS_ATTACKER
+	call BattleScript_MegaEvolutionExecution
 	end2
 
 BattleScript_WishMegaEvolution::
 	printstring STRINGID_FERVENTWISHREACHED
+	call BattleScript_MegaEvolutionExecution
+	end2
+	
+BattleScript_MegaEvolutionPursuit::
+	printstring STRINGID_MEGAEVOREACTING
+	call BattleScript_MegaEvolutionExecution
+	return
+
+BattleScript_WishMegaEvolutionPursuit::
+	printstring STRINGID_FERVENTWISHREACHED
+	call BattleScript_MegaEvolutionExecution
+	return
+	
+BattleScript_MegaEvolutionExecution:: @ for pursuit and it's better to have only one anyway
 	waitmessage B_WAIT_TIME_LONG
 	setbyte gIsCriticalHit, 0
 	handlemegaevo BS_ATTACKER, 0
@@ -7090,7 +7096,7 @@ BattleScript_WishMegaEvolution::
 	printstring STRINGID_MEGAEVOEVOLVED
 	waitmessage B_WAIT_TIME_LONG
 	switchinabilities BS_ATTACKER
-	end2
+	return
 
 BattleScript_PrimalReversion::
 	printstring STRINGID_EMPTYSTRING3

@@ -426,7 +426,7 @@ static void Cmd_hpthresholds2(void);
 static void Cmd_useitemonopponent(void);
 static void Cmd_various(void);
 static void Cmd_setprotectlike(void);
-static void Cmd_faintifabilitynotdamp(void);
+static void Cmd_canpursuitusermegaevolve(void); // previously faintifabilitynotdamp
 static void Cmd_setatkhptozero(void);
 static void Cmd_jumpifnexttargetvalid(void);
 static void Cmd_tryhealhalfhealth(void);
@@ -685,7 +685,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_useitemonopponent,                       //0x75
     Cmd_various,                                 //0x76
     Cmd_setprotectlike,                          //0x77
-    Cmd_faintifabilitynotdamp,                   //0x78
+    Cmd_canpursuitusermegaevolve,                //0x78 previously faintifabilitynotdamp
     Cmd_setatkhptozero,                          //0x79
     Cmd_jumpifnexttargetvalid,                   //0x7A
     Cmd_tryhealhalfhealth,                       //0x7B
@@ -9430,32 +9430,21 @@ static void Cmd_setprotectlike(void)
     gBattlescriptCurrInstr++;
 }
 
-static void Cmd_faintifabilitynotdamp(void)
+static void Cmd_canpursuitusermegaevolve(void) // previously faintifabilitynotdamp
 {
-    if (gBattleControllerExecFlags)
-        return;
-
-    if ((gBattlerTarget = IsAbilityOnField(ABILITY_DAMP)))
-    {
-        gLastUsedAbility = ABILITY_DAMP;
-        RecordAbilityBattle(--gBattlerTarget, ABILITY_DAMP);
-        gBattlescriptCurrInstr = BattleScript_DampStopsExplosion;
-        return;
-    }
-
-    gActiveBattler = gBattlerAttacker;
-    gBattleMoveDamage = gBattleMons[gActiveBattler].hp;
-    BtlController_EmitHealthBarUpdate(0, INSTANT_HP_BAR_DROP);
-    MarkBattlerForControllerExec(gActiveBattler);
-    gBattlescriptCurrInstr++;
-
-    for (gBattlerTarget = 0; gBattlerTarget < gBattlersCount; gBattlerTarget++)
-    {
-        if (gBattlerTarget == gBattlerAttacker)
-            continue;
-        if (IsBattlerAlive(gBattlerTarget))
-            break;
-    }
+	gBattlescriptCurrInstr++;
+	gBattleStruct->mega.battlerId = gActiveBattler = gBattlerAttacker;
+	if (gBattleStruct->mega.toEvolve & gBitTable[gActiveBattler]
+		&& !(gProtectStructs[gActiveBattler].noValidMoves))
+	{
+		gBattleStruct->mega.toEvolve &= ~(gBitTable[gActiveBattler]);
+		gLastUsedItem = gBattleMons[gActiveBattler].item;
+	    BattleScriptPushCursor();
+		if (gBattleStruct->mega.isWishMegaEvo[gActiveBattler] == TRUE)
+			BattleScriptExecute(BattleScript_WishMegaEvolutionPursuit);
+		else
+			BattleScriptExecute(BattleScript_MegaEvolutionPursuit);
+	}
 }
 
 static void Cmd_setatkhptozero(void)

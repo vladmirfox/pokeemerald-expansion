@@ -669,7 +669,8 @@
 	.byte 0x77
 	.endm
 
-	.macro faintifabilitynotdamp
+@ previously faintifabilitynotdamp
+	.macro canpursuitusermegaevolve
 	.byte 0x78
 	.endm
 

@@ -17,7 +17,7 @@
 #define GET_BATTLER_POSITION(battler)     (gBattlerPositions[battler])
 #define GET_BATTLER_SIDE(battler)         (GetBattlerPosition(battler) & BIT_SIDE)
 #define GET_BATTLER_SIDE2(battler)        (GET_BATTLER_POSITION(battler) & BIT_SIDE)
-
+    
 // Battle Actions
 // These determine what each battler will do in a turn
 #define B_ACTION_USE_MOVE               0
@@ -474,8 +474,10 @@ struct MegaEvolutionData
     u8 battlerId;
     bool8 playerSelect;
     u8 triggerSpriteId;
-    bool8 isWishMegaEvo;
+    bool8 isWishMegaEvo[4]; // array to check whether the mega to be executed will be wish.
     bool8 isPrimalReversion;
+    u8 megaEvoWasDone; // used after executing the battlescript for mega evolution, to set gCurrentActionFuncId back to B_ACTION_USE_MOVE and not bypass the
+                       // fastest mon's turn. Mega evolutions are done one by one, so a single byte (even bit) is enough
 };
 
 struct Illusion
@@ -792,8 +794,8 @@ struct MonSpritesGfx
     void* firstDecompressed; // ptr to the decompressed sprite of the first pokemon
     union
     {
-	void* ptr[4];
-	u8* byte[4];
+    void* ptr[4];
+    u8* byte[4];
     } sprites;
     struct SpriteTemplate templates[4];
     struct SpriteFrameImage field_74[4][4];
