@@ -885,7 +885,7 @@ BattleScript_JungleHealingTryRestoreAlly:
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectAttackerDefenseDownHit:
-	setmoveeffect MOVE_EFFECT_DEF_MINUS_1 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
+	setmoveeffect MOVE_EFFECT_DEF_MINUS_1 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN | MOVE_EFFECT_ONCE_PER_USE
 	goto BattleScript_EffectHit
 
 BattleScript_EffectRelicSong:

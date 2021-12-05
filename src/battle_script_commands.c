@@ -3486,9 +3486,77 @@ void SetMoveEffect(bool32 primary, u32 certain)
     gBattleScripting.moveEffect = 0;
 }
 
+bool8 IsMoveParentalBondAffected(u16 move)
+{
+    if (gBattleMoves[move].split != SPLIT_STATUS && !(sForbiddenMoves[move] & FORBIDDEN_PARENTAL_BOND) && !WillMoveHitMoreThanOneTarget(move))
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool32 WillMoveHitMoreThanOneTarget(u16 move)
+{
+    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    {
+        switch (gBattleMoves[move].target)
+        {
+            case MOVE_TARGET_BOTH:
+                if (CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) >= 2) // Check for single target
+                    return TRUE;
+                break;
+            case MOVE_TARGET_FOES_AND_ALLY:
+                if (CountAliveMonsInBattle(BATTLE_ALIVE_EXCEPT_ATTACKER) >= 2) // Count mons on both sides; ignore attacker
+                    return TRUE;
+                break;
+        }
+    }
+    return FALSE;
+}    
+
+bool32 IsCurrentTargetTheLastOne(u16 move)
+{
+    u8 battlerId = 0;
+    if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        || !(gBattleMoves[move].target & MOVE_TARGET_FOES_AND_ALLY || gBattleMoves[move].target & MOVE_TARGET_BOTH)
+        || !WillMoveHitMoreThanOneTarget(move))
+        return TRUE;// if we aren't in double/multi battle,  and/or the move doesn't target several pokémon at once, current target is the last one
+
+    if (gBattleMoves[move].target & MOVE_TARGET_BOTH)
+    {
+        if (IsBattlerAlive(gBattlerTarget ^ BIT_FLANK)
+            && (gBattlerTarget ^ BIT_FLANK) > gBattlerTarget )
+            return FALSE; // Other flank is alive, and will be hit after the current one, because its index is > to the current one
+        else
+            return TRUE;
+    }
+    else
+    {
+        for (battlerId = gBattlersCount - 1; battlerId != 0; battlerId--)
+        {
+            if (battlerId == gBattlerAttacker)
+                continue;
+            if (IsBattlerAlive(battlerId))
+                break;
+        }
+        if (battlerId > gBattlerTarget && battlerId < gBattlersCount)
+            return FALSE;
+        else
+            return TRUE;
+    }
+}
+
 static void Cmd_seteffectwithchance(void)
 {
     u32 percentChance;
+    
+    if (gBattleScripting.moveEffect & MOVE_EFFECT_ONCE_PER_USE)
+    {
+        if (!IsCurrentTargetTheLastOne(gCurrentMove))
+            gBattlescriptCurrInstr++;
+        else
+            gBattleScripting.moveEffect &= ~(MOVE_EFFECT_ONCE_PER_USE);
+        return;
+    }
 
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE)
         percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 2;
