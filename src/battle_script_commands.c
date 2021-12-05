@@ -3500,14 +3500,14 @@ bool32 WillMoveHitMoreThanOneTarget(u16 move)
     {
         switch (gBattleMoves[move].target)
         {
-            case MOVE_TARGET_BOTH:
-                if (CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) >= 2) // Check for single target
-                    return TRUE;
-                break;
-            case MOVE_TARGET_FOES_AND_ALLY:
-                if (CountAliveMonsInBattle(BATTLE_ALIVE_EXCEPT_ATTACKER) >= 2) // Count mons on both sides; ignore attacker
-                    return TRUE;
-                break;
+        case MOVE_TARGET_BOTH:
+            if (CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) >= 2) // Check for single target
+                return TRUE;
+            break;
+        case MOVE_TARGET_FOES_AND_ALLY:
+            if (CountAliveMonsInBattle(BATTLE_ALIVE_EXCEPT_ATTACKER) >= 2) // Count mons on both sides; ignore attacker
+                return TRUE;
+            break;
         }
     }
     return FALSE;
