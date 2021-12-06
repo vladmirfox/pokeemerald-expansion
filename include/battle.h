@@ -616,6 +616,7 @@ struct BattleStruct
     u8 blunderPolicy:1; // should blunder policy activate
     u8 ballSpriteIds[2];    // item gfx, window gfx
     u8 stickyWebUser;
+    bool8 sosAllyPresent;
 };
 
 #define GET_MOVE_TYPE(move, typeArg)                        \
@@ -933,6 +934,5 @@ extern bool8 gHasFetchedBall;
 extern u8 gLastUsedBall;
 extern u16 gLastThrownBall;
 extern bool8 gSwapDamageCategory; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
-extern bool8 gSoSBattle;
 
 #endif // GUARD_BATTLE_H

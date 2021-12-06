@@ -1105,7 +1105,7 @@ static void Intro_DelayAndEnd(void)
 
 static bool32 TwoIntroMons(u32 battlerId) // Double battle with both player pokemon active.
 {
-    return (!gSoSBattle && IsDoubleBattle() && IsValidForBattle(&gPlayerParty[gBattlerPartyIndexes[battlerId ^ BIT_FLANK]]));
+    return (!IsSosBattle() && IsDoubleBattle() && IsValidForBattle(&gPlayerParty[gBattlerPartyIndexes[battlerId ^ BIT_FLANK]]));
 }
 
 static void Intro_WaitForShinyAnimAndHealthbox(void)

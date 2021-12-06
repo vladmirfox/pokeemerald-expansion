@@ -235,7 +235,6 @@ EWRAM_DATA bool8 gHasFetchedBall = FALSE;
 EWRAM_DATA u8 gLastUsedBall = 0;
 EWRAM_DATA u16 gLastThrownBall = 0;
 EWRAM_DATA bool8 gSwapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
-EWRAM_DATA bool8 gSoSBattle = FALSE;
 
 // IWRAM common vars
 void (*gPreBattleCallback1)(void);
@@ -3257,7 +3256,7 @@ static void DoBattleIntro(void)
                         MarkBattlerForControllerExec(gActiveBattler);
                     }
                 }
-                else if (!gSoSBattle) // wild mon 2
+                else if (!IsSosBattle()) // wild mon 2
                 {
                     BtlController_EmitLoadMonSprite(0);
                     MarkBattlerForControllerExec(gActiveBattler);
@@ -3496,7 +3495,7 @@ static void TryDoEventsBeforeFirstTurn(void)
     {
         for (i = 0; i < gBattlersCount; i++)
         {
-            if (gBattleMons[i].hp == 0 || gBattleMons[i].species == SPECIES_NONE || (gSoSBattle && i > 1))
+            if (gBattleMons[i].hp == 0 || gBattleMons[i].species == SPECIES_NONE || (IsSosBattle() && i > 1))
                 gAbsentBattlerFlags |= gBitTable[i];
         }
     }
@@ -5344,4 +5343,9 @@ void SetTotemBoost(void)
             gTotemBoosts[battlerId].stats |= 0x80;  // used as a flag for the "totem flared to life" script
         }
     }
+}
+
+bool32 IsSosBattle(void)
+{
+    return (gBattleTypeFlags & BATTLE_TYPE_SOS);
 }
