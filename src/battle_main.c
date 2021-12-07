@@ -2937,6 +2937,7 @@ static void BattleStartClearSetData(void)
     gBattleStruct->mega.triggerSpriteId = 0xFF;
     
     gBattleStruct->stickyWebUser = 0xFF;
+    gBattleStruct->sosAllyPresent = FALSE;
     
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -3636,21 +3637,39 @@ static void HandleEndTurn_ContinueBattle(void)
 static bool32 TryInitSosCall(void)
 {
     // TODO conditional
-    if (gAbsentBattlerFlags & gBitTable[3])
+    if (!gBattleStruct->sosAllyPresent)
     {
-        //u16 species = SPECIES_POOCHYENA;
-        //u8 level = 15;
+        u16 species = SPECIES_POOCHYENA;
+        u8 level = 15;
         
-        //CreateMonWithNature(&gEnemyParty[1], species, level, 32, 0);
-        gBattlerPartyIndexes[B_POSITION_OPPONENT_RIGHT] = 1;
-        gHitMarker |= HITMARKER_FAINTED(3);
+        CreateMonWithNature(&gEnemyParty[1], species, level, 32, 0);
+        ///gBattlerPartyIndexes[B_POSITION_OPPONENT_RIGHT] = 1;
+        gHitMarker |= HITMARKER_FAINTED(B_POSITION_OPPONENT_RIGHT);
+        
+        gBattleStruct->sosAllyPresent = TRUE;
+
+        gBattlerControllerFuncs[2] = SetControllerToPlayer;
+        gBattlerPositions[2] = B_POSITION_PLAYER_RIGHT;
+        
+        gBattlerControllerFuncs[3] = SetControllerToOpponent;
+        gBattlerPositions[3] = B_POSITION_OPPONENT_RIGHT;
+        
+        BufferBattlePartyCurrentOrderBySide(0, 0);
+        BufferBattlePartyCurrentOrderBySide(1, 0);
+        BufferBattlePartyCurrentOrderBySide(2, 1);
+        BufferBattlePartyCurrentOrderBySide(3, 1);
+        
+        gBattlersCount = 4;
         
         /*CopyEnemyPartyMonToBattleData(B_POSITION_OPPONENT_RIGHT,
             GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[B_POSITION_OPPONENT_RIGHT]));*/
-        gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+        gEffectBattler = B_POSITION_OPPONENT_LEFT;
         gBattleScripting.battler = B_POSITION_OPPONENT_RIGHT; 
-                
-        BattleScriptExecute(BattleScript_HandleFaintedMon);
+        
+        gBattleStruct->faintedActionsBattlerId = gBattlerFainted = B_POSITION_OPPONENT_RIGHT;
+        
+        BattleScriptExecute(BattleScript_CallForHelp);
+        //BattleScriptExecute(BattleScript_HandleFaintedMon);
         return TRUE;
     }
     return FALSE;
@@ -3792,7 +3811,7 @@ void SwitchPartyOrder(u8 battler)
     partyId2 = GetPartyIdFromBattlePartyId(*(gBattleStruct->monToSwitchIntoId + battler));
     SwitchPartyMonSlots(partyId1, partyId2);
 
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    if (IsDoubleBattle())
     {
         for (i = 0; i < (int)ARRAY_COUNT(gBattlePartyCurrentOrder); i++)
         {
@@ -3920,7 +3939,7 @@ static void HandleTurnActionSelectionState(void)
                                                             i);
                         }
                         
-                        BtlController_EmitChooseMove(0, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0, FALSE, &moveInfo);
+                        BtlController_EmitChooseMove(0, (IsDoubleBattle()) != 0, FALSE, &moveInfo);
                         MarkBattlerForControllerExec(gActiveBattler);
                     }
                     break;
@@ -5348,4 +5367,9 @@ void SetTotemBoost(void)
 bool32 IsSosBattle(void)
 {
     return (gBattleTypeFlags & BATTLE_TYPE_SOS);
+}
+
+bool32 IsSoSAllyPresent(void)
+{
+    return (gBattleStruct->sosAllyPresent);
 }

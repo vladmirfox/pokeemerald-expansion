@@ -1463,7 +1463,7 @@ void CreateMegaTriggerSprite(u8 battlerId, u8 palId)
         LoadSpriteSheet(&sSpriteSheet_MegaTrigger);
     if (gBattleStruct->mega.triggerSpriteId == 0xFF)
     {
-        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        if (IsDoubleBattle())
             gBattleStruct->mega.triggerSpriteId = CreateSprite(&sSpriteTemplate_MegaTrigger,
                                                              gSprites[gHealthboxSpriteIds[battlerId]].x - DOUBLES_MEGA_TRIGGER_POS_X_SLIDE,
                                                              gSprites[gHealthboxSpriteIds[battlerId]].y - DOUBLES_MEGA_TRIGGER_POS_Y_DIFF, 0);
@@ -1483,7 +1483,7 @@ static void SpriteCb_MegaTrigger(struct Sprite *sprite)
     s32 xSlide, xPriority, xOptimal;
     s32 yDiff;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    if (IsDoubleBattle())
     {
         xSlide = DOUBLES_MEGA_TRIGGER_POS_X_SLIDE;
         xPriority = DOUBLES_MEGA_TRIGGER_POS_X_PRIORITY;

@@ -72,7 +72,7 @@ void AdjustFriendshipOnBattleFaint(u8 battlerId)
 {
     u8 opposingBattlerId;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    if (IsDoubleBattle())
     {
         u8 opposingBattlerId2;
 

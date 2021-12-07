@@ -299,7 +299,7 @@ static u8 GetBattlePalaceMoveGroup(u16 move)
 
 static u16 GetBattlePalaceTarget(void)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    if (IsDoubleBattle())
     {
         u8 opposing1, opposing2;
 

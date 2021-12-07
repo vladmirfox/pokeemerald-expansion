@@ -205,7 +205,7 @@ u8 BattleAI_ChooseMoveOrAction(void)
     u32 savedCurrentMove = gCurrentMove;
     u8 ret;
 
-    if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
+    if (!(IsDoubleBattle()))
         ret = ChooseMoveOrAction_Singles();
     else
         ret = ChooseMoveOrAction_Doubles();
@@ -2950,7 +2950,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     
     // check thawing moves
     if ((gBattleMons[battlerAtk].status1 & STATUS1_FREEZE) && TestMoveFlags(move, FLAG_THAW_USER))
-        score += (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) ? 20 : 10;
+        score += (IsDoubleBattle()) ? 20 : 10;
     
     // check burn
     if (gBattleMons[battlerAtk].status1 & STATUS1_BURN)
