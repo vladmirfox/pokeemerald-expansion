@@ -9256,25 +9256,26 @@ BattleScript_NeutralizingGasExitsLoop:
 	restoretarget
 	return
 	
-BattleScript_CallForHelp::
-	printstring STRINGID_CALLEDFORHELP
+BattleScript_CallForHelpFailed::
+	printfromtable gSosBattleCallStringIds
 	waitmessage B_WAIT_TIME_LONG
-
+	printstring STRINGID_ITSHELPDIDNTAPPEAR
+	waitmessage B_WAIT_TIME_LONG
+	end2
+	
+BattleScript_CallForHelp::
+	printfromtable gSosBattleCallStringIds
+	waitmessage B_WAIT_TIME_LONG
 	setbyte sSHIFT_SWITCHED, 0
 	openpartyscreen BS_SCRIPTING, BattleScript_CallForHelpEnd
 	switchhandleorder BS_SCRIPTING, 2
-@	drawpartystatussummary BS_SCRIPTING
 	getswitchedmondata BS_SCRIPTING
 	switchindataupdate BS_SCRIPTING
 	hpthresholds BS_SCRIPTING
-	trytoclearprimalweather
 	printstring STRINGID_EMPTYSTRING3
 	waitmessage 1
-	printstring STRINGID_SWITCHINMON
-	hidepartystatussummary BS_SCRIPTING
-	switchinanim BS_SCRIPTING, FALSE
-	waitstate
-	
+	soscall
+	trytoclearprimalweather
 	switchineffects BS_SCRIPTING
 BattleScript_CallForHelpEnd:
 	end2

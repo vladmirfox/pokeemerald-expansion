@@ -2163,8 +2163,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     else
         personality = Random32();
 
-    SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
-
     //Determine original trainer ID
     if (otIdType == OT_ID_RANDOM_NO_SHINY) //Pokemon cannot be shiny
     {
@@ -2185,8 +2183,23 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+        
+        if (gMain.inBattle && IsSosBattle())
+        {
+            u32 maxRolls = 1;
+            u32 rolls = 0;
+            u32 shinyValue;
+            
+            maxRolls += GetSosBattleShinyRolls();
+            do {
+                personality = Random32();
+                shinyValue = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
+                rolls++;
+            } while (shinyValue >= SHINY_ODDS && rolls < maxRolls);
+        }
     }
 
+    SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);
 
     checksum = CalculateBoxMonChecksum(boxMon);
@@ -4321,6 +4334,14 @@ void CopyPlayerPartyMonToBattleData(u8 battlerId, u8 partyIndex)
     ClearTemporarySpeciesSpriteData(battlerId, FALSE);
 }
 
+void CopyEnemyPartyMonToBattleData(u8 battlerId, u8 partyIndex)
+{
+    PokemonToBattleMon(&gEnemyParty[partyIndex], &gBattleMons[battlerId]);
+    gBattleStruct->hpOnSwitchout[GetBattlerSide(battlerId)] = gBattleMons[battlerId].hp;
+    UpdateSentPokesToOpponentValue(battlerId);
+    ClearTemporarySpeciesSpriteData(battlerId, FALSE);
+}
+
 bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 moveIndex)
 {
     return PokemonUseItemEffects(mon, item, partyIndex, moveIndex, FALSE);
@@ -5717,6 +5738,10 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
             multiplier = 2;
         else
             multiplier = 1;
+        
+        // SoS Battles -> If a Pokémon successfully calls an ally, all EVs earned by defeating a Pokémon are doubled for the rest of the battle (including those from Power item‎s). 
+        if (IsSosBattle() && gBattleStruct->sos.calls > 0)
+            multiplier *= 2;
 
         switch (i)
         {

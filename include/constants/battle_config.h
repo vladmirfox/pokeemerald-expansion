@@ -227,6 +227,11 @@
 #define B_LAST_USED_BALL            TRUE     // If TRUE, the "last used ball" feature from Gen 7 will be implemented
 #define B_LAST_USED_BALL_BUTTON     R_BUTTON // If last used ball is implemented, this button (or button combo) will trigger throwing the last used ball.
 
+// SOS battle settings
+#define B_FLAG_SOS_BATTLE           0       // If defined and set, forces an SoS battle
+#define B_SOS_MAX_CHAIN             31      // Maximum chain value for increasing hidden ability rate, shiny rolls, etc
+#define B_USUM_SOS_CALL_LIMIT       FALSE   // In USUM, wild Pokémon will only call for help once per battle unless an Adrenaline Orb is used
+
 // Other
 #define B_DOUBLE_WILD_CHANCE        0     // % chance of encountering two Pokémon in a Wild Encounter.
 

@@ -711,6 +711,27 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
             LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
             LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[1]);
         }
+        else if (IsSosBattle() && IsSoSAllyPresent())
+        {
+            if (state == 2)
+                LoadCompressedSpriteSheet(&sSpriteSheet_SinglesPlayerHealthbox);
+            else if (state == 3)
+                LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[1]);    // needed for proper vram alignment but goes unused
+            else if (state == 4)
+                LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[0]);
+            else if (state == 5)
+                LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[1]);
+            else if (state == 6)
+                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[gBattlerPositions[0]]);
+            else if (state == 7)
+                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[gBattlerPositions[1]]);
+            else if (state == 8)
+                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[gBattlerPositions[2]]);
+            else if (state == 9)
+                LoadCompressedSpriteSheet(&sSpriteSheets_HealthBar[gBattlerPositions[3]]);
+            else
+                retVal = TRUE;
+        }
         else if (!IsDoubleBattle())
         {
             if (state == 2)

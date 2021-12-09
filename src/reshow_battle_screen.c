@@ -182,7 +182,7 @@ static void sub_80A95F4(void)
 
 static bool8 LoadBattlerSpriteGfx(u8 battler)
 {
-    if (battler < gBattlersCount)
+    if (battler < gBattlersCount && IsBattlerAlive(battler))
     {
         if (GetBattlerSide(battler) != B_SIDE_PLAYER)
         {
@@ -207,7 +207,7 @@ static bool8 LoadBattlerSpriteGfx(u8 battler)
 
 static void CreateBattlerSprite(u8 battler)
 {
-    if (battler < gBattlersCount)
+    if (battler < gBattlersCount && IsBattlerAlive(battler))
     {
         u8 posY;
 
@@ -277,7 +277,7 @@ static void CreateBattlerSprite(u8 battler)
 
 static void CreateHealthboxSprite(u8 battler)
 {
-    if (battler < gBattlersCount)
+    if (battler < gBattlersCount && IsBattlerAlive(battler))
     {
         u8 healthboxSpriteId;
 

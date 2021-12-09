@@ -2401,6 +2401,7 @@ static void Cmd_resultmessage(void)
         switch (gMoveResultFlags & (~MOVE_RESULT_MISSED))
         {
         case MOVE_RESULT_SUPER_EFFECTIVE:
+            gSpecialStatuses[gBattlerTarget].hitBySuperEffective = TRUE;
             stringId = STRINGID_SUPEREFFECTIVE;
             break;
         case MOVE_RESULT_NOT_VERY_EFFECTIVE:
@@ -3595,6 +3596,7 @@ static void Cmd_tryfaintmon(void)
             }
             else
             {
+                gBattleStruct->sos.allyPresent = FALSE;
                 if (gBattleResults.opponentFaintCounter < 0xFF)
                     gBattleResults.opponentFaintCounter++;
                 gBattleResults.lastOpponentSpecies = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_SPECIES, NULL);
@@ -7892,6 +7894,7 @@ static void Cmd_various(void)
         {
             gAbsentBattlerFlags |= gBitTable[gActiveBattler];
             gHitMarker |= HITMARKER_FAINTED(gActiveBattler);
+            gBattleStruct->sos.allyPresent = FALSE;
             gBattleMons[gActiveBattler].hp = 0;
             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_HP, &gBattleMons[gActiveBattler].hp);
             SetHealthboxSpriteInvisible(gHealthboxSpriteIds[gActiveBattler]);
@@ -9284,16 +9287,27 @@ static void Cmd_various(void)
         switch (gBattleCommunication[0])
         {
         case 0:
-            gBattleCommunication[SPRITES_INIT_STATE1] = 0;
-            gBattleCommunication[SPRITES_INIT_STATE2] = 0;
+            BeginNormalPaletteFade(-1, 0, 0, 0x10, 0);
+            SetMainCallback2(CB2_SosCall);
             gBattleCommunication[0]++;
             break;
         case 1:
-            if (BattleInitAllSprites(&gBattleCommunication[SPRITES_INIT_STATE1], &gBattleCommunication[SPRITES_INIT_STATE2]))
+            if (gMain.callback2 == BattleMainCB2 && !gPaletteFade.active)
                 gBattleCommunication[0]++;
             break;
         case 2:
-            gBattlescriptCurrInstr += 3;
+            // Animate it
+            if (!(gHitMarker & HITMARKER_NO_ANIMATIONS) 
+              && HasTwoFramesAnimation(gSprites[gBattlerSpriteIds[B_POSITION_OPPONENT_RIGHT]].data[2]))
+                StartSpriteAnim(&gSprites[gBattlerSpriteIds[B_POSITION_OPPONENT_RIGHT]], 1);
+            
+            BattleAnimateFrontSprite(&gSprites[gBattlerSpriteIds[B_POSITION_OPPONENT_RIGHT]], gSprites[gBattlerSpriteIds[B_POSITION_OPPONENT_RIGHT]].data[2], TRUE, 1);
+            PlayCry3(gBattleMons[B_POSITION_OPPONENT_RIGHT].species, -25, 0);
+            gBattleCommunication[0]++;
+            break;
+        case 3:
+            if (gSprites[gBattlerSpriteIds[B_POSITION_OPPONENT_RIGHT]].animEnded)
+                gBattlescriptCurrInstr += 3;
             break;
         }
         return;

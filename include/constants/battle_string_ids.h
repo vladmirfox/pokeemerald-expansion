@@ -610,8 +610,10 @@
 #define STRINGID_NEUTRALIZINGGASENTERS                607
 #define STRINGID_NEUTRALIZINGGASOVER                  608
 #define STRINGID_CALLEDFORHELP                        609
+#define STRINGID_ITSHELPDIDNTAPPEAR                   610
+#define STRINGID_CALLEDITSALLY                        611
 
-#define BATTLESTRINGS_COUNT                           610
+#define BATTLESTRINGS_COUNT                           612
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
@@ -861,5 +863,9 @@
 #define B_MSG_TERRAINPREVENTS_MISTY     0
 #define B_MSG_TERRAINPREVENTS_ELECTRIC  1
 #define B_MSG_TERRAINPREVENTS_PSYCHIC   2
+
+// gSosBattleCallStringIds
+#define B_MSG_SOS_CALL_NORMAL       0
+#define B_MSG_SOS_CALL_TOTEM        1
 
 #endif // GUARD_CONSTANTS_BATTLE_STRING_IDS_H

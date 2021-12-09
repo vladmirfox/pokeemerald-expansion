@@ -787,7 +787,38 @@ u8 CreateBattlerHealthboxSprites(u8 battlerId)
     u8 healthbarSpriteId, megaIndicatorSpriteId;
     struct Sprite *healthBarSpritePtr;
 
-    if (!IsDoubleBattle())
+    if (IsSosBattle() && IsSoSAllyPresent())
+    {
+        if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
+        {
+            healthboxLeftSpriteId = CreateSprite(&sHealthboxPlayerSpriteTemplates[0], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
+            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxPlayerSpriteTemplates[0], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
+
+            gSprites[healthboxLeftSpriteId].oam.shape = ST_OAM_SQUARE;
+
+            gSprites[healthboxRightSpriteId].oam.shape = ST_OAM_SQUARE;
+            gSprites[healthboxRightSpriteId].oam.tileNum += 64;
+            
+            gSprites[healthboxLeftSpriteId].oam.affineParam = healthboxRightSpriteId;
+
+            gSprites[healthboxRightSpriteId].hOther_HealthBoxSpriteId = healthboxLeftSpriteId;
+            gSprites[healthboxRightSpriteId].callback = SpriteCB_HealthBoxOther;
+        }
+        else
+        {
+            healthboxLeftSpriteId = CreateSprite(&sHealthboxOpponentSpriteTemplates[GetBattlerPosition(battlerId) / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
+            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxOpponentSpriteTemplates[GetBattlerPosition(battlerId) / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
+
+            gSprites[healthboxLeftSpriteId].oam.affineParam = healthboxRightSpriteId;
+
+            gSprites[healthboxRightSpriteId].hOther_HealthBoxSpriteId = healthboxLeftSpriteId;
+            gSprites[healthboxRightSpriteId].oam.tileNum += 32;
+            gSprites[healthboxRightSpriteId].callback = SpriteCB_HealthBoxOther;
+
+            data6 = 2;
+        }
+    }
+    else if (!IsDoubleBattle())
     {
         if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
         {
@@ -1033,7 +1064,10 @@ void UpdateOamPriorityInAllHealthboxes(u8 priority, bool32 hideHPBoxes)
         u8 healthboxRightSpriteId = gSprites[gHealthboxSpriteIds[i]].oam.affineParam;
         u8 healthbarSpriteId = gSprites[gHealthboxSpriteIds[i]].hMain_HealthBarSpriteId;
         u8 indicatorSpriteId = GetMegaIndicatorSpriteId(healthboxLeftSpriteId);
-
+        
+        if (!IsBattlerAlive(i))
+            continue;
+        
         gSprites[healthboxLeftSpriteId].oam.priority = priority;
         gSprites[healthboxRightSpriteId].oam.priority = priority;
         gSprites[healthbarSpriteId].oam.priority = priority;
@@ -1041,7 +1075,7 @@ void UpdateOamPriorityInAllHealthboxes(u8 priority, bool32 hideHPBoxes)
             gSprites[indicatorSpriteId].oam.priority = priority;
 
         #if B_HIDE_HEALTHBOX_IN_ANIMS
-        if (hideHPBoxes && IsBattlerAlive(i))
+        if (hideHPBoxes)
             TryToggleHealboxVisibility(priority, healthboxLeftSpriteId, healthboxRightSpriteId, healthbarSpriteId, indicatorSpriteId);
         #endif
     }
@@ -1051,7 +1085,25 @@ void GetBattlerHealthboxCoords(u8 battler, s16 *x, s16 *y)
 {
     *x = 0, *y = 0;
 
-    if (!IsDoubleBattle())
+    if (IsSoSAllyPresent())
+    {
+        switch (GetBattlerPosition(battler))
+        {
+        case B_POSITION_PLAYER_LEFT:
+            *x = 158, *y = 88;  // singles coords
+            break;
+        case B_POSITION_PLAYER_RIGHT:
+            *x = 0, *y = 0;
+            break;
+        case B_POSITION_OPPONENT_LEFT:
+            *x = 44, *y = 19;
+            break;
+        case B_POSITION_OPPONENT_RIGHT:
+            *x = 32, *y = 44;
+            break;
+        }
+    }
+    else if (!IsDoubleBattle())
     {
         if (GetBattlerSide(battler) != B_SIDE_PLAYER)
             *x = 44, *y = 30;
@@ -1118,7 +1170,7 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
     if (GetBattlerSide(battler) == B_SIDE_PLAYER)
     {
         objVram = (void*)(OBJ_VRAM0);
-        if (!IsDoubleBattle())
+        if (!IsDoubleBattle() || IsSosBattle())
             objVram += spriteTileNum + 0x820;
         else
             objVram += spriteTileNum + 0x420;
@@ -1139,7 +1191,7 @@ void UpdateHpTextInHealthbox(u8 healthboxSpriteId, s16 value, u8 maxOrCurrent)
     u8 text[32];
     void *objVram;
 
-    if (GetBattlerSide(gSprites[healthboxSpriteId].hMain_Battler) == B_SIDE_PLAYER && !IsDoubleBattle())
+    if (GetBattlerSide(gSprites[healthboxSpriteId].hMain_Battler) == B_SIDE_PLAYER && (!IsDoubleBattle() || IsSosBattle()))
     {
         spriteTileNum = gSprites[healthboxSpriteId].oam.tileNum * TILE_SIZE_4BPP;
         if (maxOrCurrent != HP_CURRENT) // singles, max
@@ -1386,7 +1438,7 @@ void SwapHpBarsWithHpText(void)
             noBars = gBattleSpritesDataPtr->battlerData[i].hpNumbersNoBars;
             if (GetBattlerSide(i) == B_SIDE_PLAYER)
             {
-                if (!IsDoubleBattle())
+                if (!IsDoubleBattle() || IsSosBattle())
                     continue;
                 if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
                     continue;
@@ -1463,7 +1515,7 @@ void CreateMegaTriggerSprite(u8 battlerId, u8 palId)
         LoadSpriteSheet(&sSpriteSheet_MegaTrigger);
     if (gBattleStruct->mega.triggerSpriteId == 0xFF)
     {
-        if (IsDoubleBattle())
+        if (IsDoubleBattle() && !IsSosBattle())
             gBattleStruct->mega.triggerSpriteId = CreateSprite(&sSpriteTemplate_MegaTrigger,
                                                              gSprites[gHealthboxSpriteIds[battlerId]].x - DOUBLES_MEGA_TRIGGER_POS_X_SLIDE,
                                                              gSprites[gHealthboxSpriteIds[battlerId]].y - DOUBLES_MEGA_TRIGGER_POS_Y_DIFF, 0);
@@ -1483,7 +1535,7 @@ static void SpriteCb_MegaTrigger(struct Sprite *sprite)
     s32 xSlide, xPriority, xOptimal;
     s32 yDiff;
 
-    if (IsDoubleBattle())
+    if (IsDoubleBattle() && !IsSosBattle())
     {
         xSlide = DOUBLES_MEGA_TRIGGER_POS_X_SLIDE;
         xPriority = DOUBLES_MEGA_TRIGGER_POS_X_PRIORITY;
@@ -2147,7 +2199,7 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
     {
         TextIntoHealthboxObject((void*)(OBJ_VRAM0 + 0x40 + spriteTileNum), windowTileData, 6);
         ptr = (void*)(OBJ_VRAM0);
-        if (!IsDoubleBattle())
+        if (!IsDoubleBattle() || IsSosBattle())
             ptr += spriteTileNum + 0x800;
         else
             ptr += spriteTileNum + 0x400;
@@ -2198,7 +2250,7 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
     {
         status = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS);
-        if (!IsDoubleBattle())
+        if (!IsDoubleBattle() || IsSosBattle())
             tileNumAdder = 0x1A;
         else
             tileNumAdder = 0x12;
@@ -2254,7 +2306,7 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     FillPalette(sStatusIconColors[statusPalId], pltAdder + 0x100, 2);
     CpuCopy16(gPlttBufferUnfaded + 0x100 + pltAdder, (void*)(OBJ_PLTT + pltAdder * 2), 2);
     CpuCopy32(statusGfxPtr, (void*)(OBJ_VRAM0 + (gSprites[healthboxSpriteId].oam.tileNum + tileNumAdder) * TILE_SIZE_4BPP), 96);
-    if (IsDoubleBattle() == TRUE || GetBattlerSide(battlerId) == B_SIDE_OPPONENT)
+    if ((IsDoubleBattle() && !IsSosBattle()) || GetBattlerSide(battlerId) == B_SIDE_OPPONENT)
     {
         if (!gBattleSpritesDataPtr->battlerData[battlerId].hpNumbersNoBars)
         {
@@ -2377,7 +2429,7 @@ void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elem
             SetBattleBarStruct(battlerId, healthboxSpriteId, maxHp, currHp, 0);
             MoveBattleBar(battlerId, healthboxSpriteId, HEALTH_BAR, 0);
         }
-        isDoubles = IsDoubleBattle();
+        isDoubles = (IsDoubleBattle() && !(IsSosBattle() && GetBattlerSide(battlerId) == B_SIDE_PLAYER));
         if (!isDoubles && (elementId == HEALTHBOX_EXP_BAR || elementId == HEALTHBOX_ALL))
         {
             u16 species;
@@ -3102,7 +3154,7 @@ void CreateAbilityPopUp(u8 battlerId, u32 ability, bool32 isDoubleBattle)
     gBattleStruct->activeAbilityPopUps |= gBitTable[battlerId];
     battlerPosition = GetBattlerPosition(battlerId);
 
-    if (isDoubleBattle)
+    if (isDoubleBattle && !(IsSosBattle() && (battlerPosition & BIT_SIDE) == B_SIDE_PLAYER))
         coords = sAbilityPopUpCoordsDoubles;
     else
         coords = sAbilityPopUpCoordsSingles;

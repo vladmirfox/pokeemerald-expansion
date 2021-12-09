@@ -2937,7 +2937,13 @@ static void BattleStartClearSetData(void)
     gBattleStruct->mega.triggerSpriteId = 0xFF;
     
     gBattleStruct->stickyWebUser = 0xFF;
-    gBattleStruct->sosAllyPresent = FALSE;
+    
+    // SOS battles
+    gBattleStruct->sos.totemBattle = FALSE;
+    gBattleStruct->sos.allyPresent = FALSE;
+    gBattleStruct->sos.lastCallFailed = FALSE;
+    gBattleStruct->sos.usedAdrenalineOrb = FALSE;
+    gBattleStruct->sos.calls = 0;
     
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -3532,6 +3538,7 @@ static void TryDoEventsBeforeFirstTurn(void)
     {
         if (gTotemBoosts[i].stats != 0)
         {
+            gBattleStruct->sos.totemBattle = TRUE;
             gBattlerAttacker = i;
             BattleScriptExecute(BattleScript_TotemVar);
             return;
@@ -3632,47 +3639,6 @@ static void HandleEndTurn_ContinueBattle(void)
         gBattleStruct->turnCountersTracker = 0;
         gMoveResultFlags = 0;
     }
-}
-
-static bool32 TryInitSosCall(void)
-{
-    // TODO conditional
-    if (!gBattleStruct->sosAllyPresent)
-    {
-        u16 species = SPECIES_POOCHYENA;
-        u8 level = 15;
-        
-        CreateMonWithNature(&gEnemyParty[1], species, level, 32, 0);
-        ///gBattlerPartyIndexes[B_POSITION_OPPONENT_RIGHT] = 1;
-        gHitMarker |= HITMARKER_FAINTED(B_POSITION_OPPONENT_RIGHT);
-        
-        gBattleStruct->sosAllyPresent = TRUE;
-
-        gBattlerControllerFuncs[2] = SetControllerToPlayer;
-        gBattlerPositions[2] = B_POSITION_PLAYER_RIGHT;
-        
-        gBattlerControllerFuncs[3] = SetControllerToOpponent;
-        gBattlerPositions[3] = B_POSITION_OPPONENT_RIGHT;
-        
-        BufferBattlePartyCurrentOrderBySide(0, 0);
-        BufferBattlePartyCurrentOrderBySide(1, 0);
-        BufferBattlePartyCurrentOrderBySide(2, 1);
-        BufferBattlePartyCurrentOrderBySide(3, 1);
-        
-        gBattlersCount = 4;
-        
-        /*CopyEnemyPartyMonToBattleData(B_POSITION_OPPONENT_RIGHT,
-            GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[B_POSITION_OPPONENT_RIGHT]));*/
-        gEffectBattler = B_POSITION_OPPONENT_LEFT;
-        gBattleScripting.battler = B_POSITION_OPPONENT_RIGHT; 
-        
-        gBattleStruct->faintedActionsBattlerId = gBattlerFainted = B_POSITION_OPPONENT_RIGHT;
-        
-        BattleScriptExecute(BattleScript_CallForHelp);
-        //BattleScriptExecute(BattleScript_HandleFaintedMon);
-        return TRUE;
-    }
-    return FALSE;
 }
 
 void BattleTurnPassed(void)
@@ -5362,14 +5328,4 @@ void SetTotemBoost(void)
             gTotemBoosts[battlerId].stats |= 0x80;  // used as a flag for the "totem flared to life" script
         }
     }
-}
-
-bool32 IsSosBattle(void)
-{
-    return (gBattleTypeFlags & BATTLE_TYPE_SOS);
-}
-
-bool32 IsSoSAllyPresent(void)
-{
-    return (gBattleStruct->sosAllyPresent);
 }

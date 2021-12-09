@@ -736,9 +736,14 @@ static const u8 sText_CantEscapeBecauseOfCurrentMove[] = _("{B_DEF_NAME_WITH_PRE
 static const u8 sText_NeutralizingGasEnters[] = _("Neutralizing Gas filled the area!");
 static const u8 sText_NeutralizingGasOver[] = _("The effects of Neutralizing\nGas wore off!");
 static const u8 sText_CalledForHelp[] = _("{B_EFF_NAME_WITH_PREFIX} called\nfor help!");
+static const u8 sText_ItsHelpDidntAppear[] = _("Its help didn't appear!");
+static const u8 sText_CalledItsAlly[] = _("{B_EFF_NAME_WITH_PREFIX} called\nits ally Pokémon!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    
+    [STRINGID_CALLEDITSALLY - 12] = sText_CalledItsAlly,
+    [STRINGID_ITSHELPDIDNTAPPEAR - 12] = sText_ItsHelpDidntAppear,
     [STRINGID_CALLEDFORHELP - 12] = sText_CalledForHelp,
     [STRINGID_NEUTRALIZINGGASOVER - 12] = sText_NeutralizingGasOver,
     [STRINGID_NEUTRALIZINGGASENTERS - 12] = sText_NeutralizingGasEnters,
@@ -1336,6 +1341,12 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNBECAMEWEAKERTOFIRE - 12] = sText_PkmnBecameWeakerToFire,
     [STRINGID_ABOUTTOUSEPOLTERGEIST - 12] = sText_PkmnAboutToBeAttackedByItsItem,
     [STRINGID_CANTESCAPEBECAUSEOFCURRENTMOVE - 12] = sText_CantEscapeBecauseOfCurrentMove,
+};
+
+const u16 gSosBattleCallStringIds[] = 
+{
+    [B_MSG_SOS_CALL_NORMAL] = STRINGID_CALLEDFORHELP,
+    [B_MSG_SOS_CALL_TOTEM]  = STRINGID_CALLEDITSALLY,
 };
 
 const u16 gMentalHerbCureStringIds[] = 

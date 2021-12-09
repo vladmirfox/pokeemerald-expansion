@@ -13,6 +13,7 @@
 #include "battle_bg.h"
 #include "pokeball.h"
 #include "battle_debug.h"
+#include "battle_sos.h"
 
 #define GET_BATTLER_POSITION(battler)     (gBattlerPositions[battler])
 #define GET_BATTLER_SIDE(battler)         (GetBattlerPosition(battler) & BIT_SIDE)
@@ -187,6 +188,7 @@ struct SpecialStatus
     u8 dancerOriginalTarget:3;
     u8 announceNeutralizingGas:1;   // See Cmd_switchineffects
     u8 neutralizingGasRemoved:1;    // See VARIOUS_TRY_END_NEUTRALIZING_GAS
+    u8 hitBySuperEffective:1;       // For SoS Battles
     s32 dmg;
     s32 physicalDmg;
     s32 specialDmg;
@@ -493,6 +495,17 @@ struct StolenItem
     u16 stolen:1;
 };
 
+struct SoSBattle
+{
+    u16 calls:9;
+    u16 allyPresent:1;
+    u16 totemBattle:1;              // Prints slightly different 'call for help' string
+    u16 usedAdrenalineOrb:1;        // Doubles call rate
+    u16 lastCallFailed:1;           // If TRUE, triples likelihood of next call being answered
+    u16 lastCallBattler:2;          // Holds battler that had last successful call. 1.5x answer if same battler as last turn
+    u16 hitBySuperEffectiveMove:1;  // surviving a super effective
+};
+
 struct BattleStruct
 {
     u8 turnEffectsTracker;
@@ -616,7 +629,7 @@ struct BattleStruct
     u8 blunderPolicy:1; // should blunder policy activate
     u8 ballSpriteIds[2];    // item gfx, window gfx
     u8 stickyWebUser;
-    bool8 sosAllyPresent;
+    struct SoSBattle sos;
 };
 
 #define GET_MOVE_TYPE(move, typeArg)                        \
