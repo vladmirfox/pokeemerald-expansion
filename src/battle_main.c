@@ -3670,9 +3670,6 @@ void BattleTurnPassed(void)
     gBattleScripting.moveendState = 0;
     gBattleMoveDamage = 0;
     gMoveResultFlags = 0;
-    
-    if (TryInitSosCall())
-        return;
 
     for (i = 0; i < 5; i++)
         gBattleCommunication[i] = 0;
@@ -3683,6 +3680,9 @@ void BattleTurnPassed(void)
         gBattleMainFunc = RunTurnActionsFunctions;
         return;
     }
+    
+    if (TryInitSosCall())
+        return;
 
     if (gBattleResults.battleTurnCounter < 0xFF)
     {

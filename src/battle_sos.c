@@ -124,12 +124,30 @@ u32 GetSosBattleShinyRolls(void)
     return 13;  // max call rate
 }
 
-static u8 GetSosAllyFixedIvs(void)
+static bool32 IsNotUniqueIV(u8 index, u8 *stat)
 {
-    u8 calls = gBattleStruct->sos.calls;
-    u8 chance = 0;
+    u32 i;
     
-    /*  Chain length 	Perfect IVs
+    for (i = 0; i < NUM_STATS; i++)
+    {
+        if (index == i)
+            continue;
+        if (stat[index] == stat[i])
+            return TRUE;
+    }
+    
+    return FALSE;
+}
+
+static void SetSosAllyIVs(struct Pokemon *mon)
+{
+    u8 stat[NUM_STATS] = {NUM_STATS};
+    u8 calls = gBattleStruct->sos.calls;
+    u8 nPerfect = 0;
+    u32 i;
+    u32 perfectIv = MAX_PER_STAT_IVS;
+    
+    /*  Chain length 	Number of Perfect IVs
         5 	            1
         10 	            2
         11 	            2
@@ -137,33 +155,38 @@ static u8 GetSosAllyFixedIvs(void)
         21 	            3
         30 	            4
         31 	            4       */
+        
     if (calls < 5)
-        return USE_RANDOM_IVS;
+        return;
     
     if (calls < 10)
-        chance = 1;
+        nPerfect = 1;
     else if (calls < 20)
-        chance = 2;
+        nPerfect = 2;
     else if (calls < 30)
-        chance = 3;
+        nPerfect = 3;
     else
-        chance = 4;
+        nPerfect = 4;
     
-    if (Random() % 100 < chance)
-        return MAX_PER_STAT_IVS;
-    
-    return USE_RANDOM_IVS;
+    for (i = 0; i < nPerfect; i++)
+    {
+        do {
+            stat[i] = Random() % NUM_STATS;
+        } while (IsNotUniqueIV(i, stat));
+        
+        if (stat[i] != NUM_STATS)
+            SetMonData(mon, MON_DATA_HP_IV + stat[i], &perfectIv);
+    }
 }
 
 static void CreateSoSAlly(u8 caller)
 {
     struct Pokemon *mon = &gEnemyParty[1];
     u16 species = SPECIES_GROWLITHE;    // TODO gBattleMons[caller].species; 
-    u8 level = 11;
+    u8 level = 11;                      // TODO level
     u32 val;
-    u8 fixedIv = GetSosAllyFixedIvs();    // Random IVs
     
-    CreateMon(mon, species, level, fixedIv, FALSE, 0, OT_ID_PLAYER_ID, 0);
+    CreateMon(mon, species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
     
     #ifdef POKEMON_EXPANSION
     // Try give hidden ability - 5% increase every 10 calls
@@ -174,6 +197,9 @@ static void CreateSoSAlly(u8 caller)
         SetMonData(mon, MON_DATA_ABILITY_NUM, &val);
     }
     #endif
+    
+    // Set number of perfect IVs
+    SetSosAllyIVs(mon);
 }
 
 static u32 GetCallRate(u8 caller)
@@ -244,6 +270,8 @@ bool32 TryInitSosCall(void)
     
     if (!IsSosBattle())
         return FALSE;
+    if (IsSoSAllyPresent())
+        return FALSE;
     if (IS_WHOLE_SIDE_ALIVE(B_POSITION_OPPONENT_LEFT))
         return FALSE;
     if (gBattleOutcome != 0)
@@ -255,9 +283,9 @@ bool32 TryInitSosCall(void)
         return FALSE;
     #endif
     
-    if (!IsBattlerAlive(GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT)))
+    if (gBattleMons[B_POSITION_OPPONENT_RIGHT].hp == 0)
         caller = B_POSITION_OPPONENT_LEFT;  // Right flank dead -> Left calls for help
-    else if (!IsBattlerAlive(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)))
+    else if (gBattleMons[B_POSITION_OPPONENT_LEFT].hp == 0)
         caller = B_POSITION_OPPONENT_RIGHT; // Left flank dead -> right calls for help
     else
         return FALSE;   // failsafe, both wild mons are dead -> battle should end
@@ -286,6 +314,7 @@ bool32 TryInitSosCall(void)
         gBattlerPositions[2] = B_POSITION_PLAYER_RIGHT;
         gBattlerControllerFuncs[ally] = SetControllerToOpponent;
         gBattlerPositions[ally] = ally;
+        gBattleTypeFlags |= BATTLE_TYPE_DOUBLE; // If not already set
         gBattlersCount = MAX_BATTLERS_COUNT;
     }
     

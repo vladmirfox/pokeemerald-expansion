@@ -3596,7 +3596,6 @@ static void Cmd_tryfaintmon(void)
             }
             else
             {
-                gBattleStruct->sos.allyPresent = FALSE;
                 if (gBattleResults.opponentFaintCounter < 0xFF)
                     gBattleResults.opponentFaintCounter++;
                 gBattleResults.lastOpponentSpecies = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_SPECIES, NULL);
@@ -4146,6 +4145,12 @@ static bool32 NoAliveMonsForOpponent(void)
 {
     u32 i;
     u32 HP_count = 0;
+    
+    if (IsSosBattle())
+    {
+        if (gBattleMons[B_POSITION_OPPONENT_LEFT].hp == 0 && gBattleMons[B_POSITION_OPPONENT_RIGHT].hp == 0)
+            return TRUE;
+    }
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -5471,6 +5476,9 @@ static void Cmd_moveend(void)
               && (gBattleMons[gBattlerAttacker].status2 & STATUS2_LOCK_CONFUSE) != STATUS2_LOCK_CONFUSE_TURN(1))  // And won't end this turn
                 CancelMultiTurnMoves(gBattlerAttacker); // Cancel it
             #endif
+            
+            if (IsSosBattle() && !IS_WHOLE_SIDE_ALIVE(B_POSITION_OPPONENT_LEFT))
+                gBattleStruct->sos.allyPresent = FALSE;
             
             gProtectStructs[gBattlerAttacker].usesBouncedMove = FALSE;
             gProtectStructs[gBattlerAttacker].targetAffected = FALSE;

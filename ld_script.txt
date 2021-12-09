@@ -482,6 +482,7 @@ SECTIONS {
         src/battle_ai_switch_items.o(.rodata);
         src/battle_controller_link_opponent.o(.rodata);
         src/battle_debug.o(.rodata);
+		src/battle_sos.o(.rodata);
         src/pokemon.o(.rodata);
         src/trig.o(.rodata);
         src/util.o(.rodata);

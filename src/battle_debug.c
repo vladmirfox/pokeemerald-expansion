@@ -993,12 +993,16 @@ static void Task_DebugMenuProcessInput(u8 taskId)
     {
         if (data->battlerId++ == gBattlersCount - 1)
             data->battlerId = 0;
+        if (IsSosBattle() && data->battlerId == B_POSITION_PLAYER_RIGHT)
+            data->battlerId++;
         UpdateWindowsOnChangedBattler(data);
     }
     else if (gMain.newKeys & L_BUTTON)
     {
         if (data->battlerId-- == 0)
             data->battlerId = gBattlersCount - 1;
+        if (IsSosBattle() && data->battlerId == B_POSITION_PLAYER_RIGHT)
+            data->battlerId--;
         UpdateWindowsOnChangedBattler(data);
     }
 

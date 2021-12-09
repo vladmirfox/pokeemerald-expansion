@@ -3119,7 +3119,7 @@ bool8 HandleFaintedMonActions(void)
             for (i = 0; i < gBattlersCount; i++)
             {
                 if (IsSosBattle() && i == B_POSITION_PLAYER_RIGHT)
-                    continue;
+                    continue;   // Second player mon excluded from sos battle
                 if (gAbsentBattlerFlags & gBitTable[i] && !HasNoMonsToSwitch(i, PARTY_SIZE, PARTY_SIZE))
                     gAbsentBattlerFlags &= ~(gBitTable[i]);
             }
@@ -3613,7 +3613,7 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
     u8 id1, id2;
     s32 i;
 
-    if (!(IsDoubleBattle()))
+    if (!IsDoubleBattle())
         return FALSE;
 
     if (BATTLE_TWO_VS_ONE_OPPONENT && GetBattlerSide(battler) == B_SIDE_OPPONENT)
