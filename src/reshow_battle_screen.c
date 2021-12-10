@@ -182,7 +182,7 @@ static void sub_80A95F4(void)
 
 static bool8 LoadBattlerSpriteGfx(u8 battler)
 {
-    if (battler < gBattlersCount && IsBattlerAlive(battler))
+    if (battler < gBattlersCount)
     {
         if (GetBattlerSide(battler) != B_SIDE_PLAYER)
         {
@@ -207,7 +207,7 @@ static bool8 LoadBattlerSpriteGfx(u8 battler)
 
 static void CreateBattlerSprite(u8 battler)
 {
-    if (battler < gBattlersCount && IsBattlerAlive(battler))
+    if (battler < gBattlersCount)
     {
         u8 posY;
 
@@ -258,6 +258,9 @@ static void CreateBattlerSprite(u8 battler)
         {
             if (GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_HP) == 0)
                 return;
+            
+            if (IsSosBattle() && battler == B_POSITION_PLAYER_RIGHT)
+                return;
 
             SetMultiuseSpriteTemplateToPokemon(GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_SPECIES), GetBattlerPosition(battler));
             gBattlerSpriteIds[battler] = CreateSprite(&gMultiuseSpriteTemplate, GetBattlerSpriteCoord(battler, 2), posY, GetBattlerSpriteSubpriority(battler));
@@ -277,7 +280,7 @@ static void CreateBattlerSprite(u8 battler)
 
 static void CreateHealthboxSprite(u8 battler)
 {
-    if (battler < gBattlersCount && IsBattlerAlive(battler))
+    if (battler < gBattlersCount)
     {
         u8 healthboxSpriteId;
 
@@ -289,6 +292,10 @@ static void CreateHealthboxSprite(u8 battler)
             healthboxSpriteId = CreateBattlerHealthboxSprites(battler);
 
         gHealthboxSpriteIds[battler] = healthboxSpriteId;
+        
+        if (IsSosBattle() && battler == B_POSITION_PLAYER_RIGHT)
+            return;
+        
         InitBattlerHealthboxCoords(battler);
         SetHealthboxSpriteVisible(healthboxSpriteId);
 
@@ -303,7 +310,7 @@ static void CreateHealthboxSprite(u8 battler)
             DummyBattleInterfaceFunc(gHealthboxSpriteIds[battler], TRUE);
         else
             DummyBattleInterfaceFunc(gHealthboxSpriteIds[battler], FALSE);
-
+        
         if (GetBattlerSide(battler) != B_SIDE_PLAYER)
         {
             if (GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_HP) == 0)

@@ -9295,6 +9295,7 @@ static void Cmd_various(void)
         else
             gBattlescriptCurrInstr += 7;
         return;
+    }
     case VARIOUS_SOS_CALL:
         switch (gBattleCommunication[0])
         {
@@ -9324,7 +9325,12 @@ static void Cmd_various(void)
             break;
         }
         return;
-    }
+    case VARIOUS_JUMP_IF_SOS_FAINTED:
+        if (IsSosBattle() && GetBattlerSide(gActiveBattler) == B_SIDE_OPPONENT)
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        else
+            gBattlescriptCurrInstr += 7;
+        return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;

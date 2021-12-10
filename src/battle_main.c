@@ -3727,8 +3727,13 @@ void BattleTurnPassed(void)
 
 void TryCallSosAlly(void)
 {
+    s32 i;
+    
     if (!gBattleStruct->sos.triedToCallAlly && TryInitSosCall())
         return;
+    
+    for (i = 0; i < 5; i++)
+        gBattleCommunication[i] = 0;
     
     gBattleStruct->sos.triedToCallAlly = FALSE;
     ClearActionsAndMovesForNextTurn();

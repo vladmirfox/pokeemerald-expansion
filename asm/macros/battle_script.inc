@@ -1929,6 +1929,11 @@
 	setbyte gBattleCommunication, 0
 	various \battler, VARIOUS_SOS_CALL
 	.endm
+	
+	.macro jumpifsosallyfainted ptr:req
+	various BS_FAINTED, VARIOUS_JUMP_IF_SOS_FAINTED
+	.4byte \ptr
+	.endm
 
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
