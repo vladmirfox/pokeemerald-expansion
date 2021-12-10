@@ -497,13 +497,14 @@ struct StolenItem
 
 struct SoSBattle
 {
-    u16 calls:9;
+    u16 calls:8;
     u16 allyPresent:1;
     u16 totemBattle:1;              // Prints slightly different 'call for help' string
     u16 usedAdrenalineOrb:1;        // Doubles call rate
     u16 lastCallFailed:1;           // If TRUE, triples likelihood of next call being answered
     u16 lastCallBattler:2;          // Holds battler that had last successful call. 1.5x answer if same battler as last turn
     u16 hitBySuperEffectiveMove:1;  // surviving a super effective
+    u16 triedToCallAlly:1;
 };
 
 struct BattleStruct

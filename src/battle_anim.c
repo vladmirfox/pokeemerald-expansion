@@ -2672,6 +2672,9 @@ u8 GetAnimBattlerId(u8 wantedBattler)
 
 bool8 IsBattlerSpriteVisible(u8 battlerId)
 {
+    if (IsSosBattle() && battlerId == B_POSITION_PLAYER_RIGHT)
+        return FALSE;
+    
     if (IsContest())
     {
         if (battlerId == gBattleAnimAttacker)

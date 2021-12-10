@@ -1925,9 +1925,9 @@
 	various BS_ATTACKER, VARIOUS_SHELL_SIDE_ARM_CHECK
 	.endm
 	
-	.macro soscall
+	.macro soscall battler:req
 	setbyte gBattleCommunication, 0
-	various BS_SCRIPTING, VARIOUS_SOS_CALL
+	various \battler, VARIOUS_SOS_CALL
 	.endm
 
 @ helpful macros

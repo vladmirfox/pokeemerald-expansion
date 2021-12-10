@@ -179,10 +179,10 @@ static void SetSosAllyIVs(struct Pokemon *mon)
     }
 }
 
-static void CreateSoSAlly(u8 caller)
+static void CreateSoSAlly(u8 caller, u8 ally)
 {
-    struct Pokemon *mon = &gEnemyParty[1];
-    u16 species = SPECIES_GROWLITHE;    // TODO gBattleMons[caller].species; 
+    struct Pokemon *mon = &gEnemyParty[gBattlerPartyIndexes[ally]];
+    u16 species = SPECIES_ABRA;    // TODO gBattleMons[caller].species; 
     u8 level = 11;                      // TODO level
     u32 val;
     
@@ -268,6 +268,8 @@ bool32 TryInitSosCall(void)
     u8 caller, ally;
     u16 callRate, answerRate;
     
+    gBattleStruct->sos.triedToCallAlly = TRUE;
+        
     if (!IsSosBattle())
         return FALSE;
     if (IsSoSAllyPresent())
@@ -300,6 +302,8 @@ bool32 TryInitSosCall(void)
     
     gBattleStruct->sos.lastCallBattler = caller;
     answerRate = GetAnswerRate(caller, callRate);
+    gEffectBattler = caller;
+    gBattleScripting.battler = ally;
     if ((Random() % 100) > answerRate)
     {
         gBattleStruct->sos.lastCallFailed = TRUE;
@@ -310,10 +314,12 @@ bool32 TryInitSosCall(void)
     if (gBattleStruct->sos.calls == 0)
     {
         // Set some quasi-double battle params on the first call
+        gBattlerPositions[B_POSITION_PLAYER_RIGHT] = 0xFF;
         gBattlerControllerFuncs[2] = SetControllerToPlayer;
         gBattlerPositions[2] = B_POSITION_PLAYER_RIGHT;
-        gBattlerControllerFuncs[ally] = SetControllerToOpponent;
-        gBattlerPositions[ally] = ally;
+        gBattlerControllerFuncs[3] = SetControllerToOpponent;
+        gBattlerPositions[3] = B_POSITION_OPPONENT_RIGHT;
+        gBattlerPartyIndexes[ally] = 1;
         gBattleTypeFlags |= BATTLE_TYPE_DOUBLE; // If not already set
         gBattlersCount = MAX_BATTLERS_COUNT;
     }
@@ -322,14 +328,13 @@ bool32 TryInitSosCall(void)
     if (gBattleStruct->sos.calls < B_SOS_MAX_CHAIN)
         gBattleStruct->sos.calls++;
     
-    CreateSoSAlly(caller);
+    CreateSoSAlly(caller, ally);
     gBattleStruct->sos.allyPresent = TRUE;
     
     CopyEnemyPartyMonToBattleData(ally,
         GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[ally]));
     
-    gEffectBattler = caller;
-    gBattleScripting.battler = ally;
+    *(gBattleStruct->monToSwitchIntoId + ally) = gBattlerPartyIndexes[ally];
     gBattleCommunication[MULTISTRING_CHOOSER] = (gBattleStruct->sos.totemBattle) ? B_MSG_SOS_CALL_TOTEM : B_MSG_SOS_CALL_NORMAL;   // See gSosBattleCallStringIds
     BattleScriptExecute(BattleScript_CallForHelp);
     return TRUE;

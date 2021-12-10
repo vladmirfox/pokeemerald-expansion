@@ -3641,6 +3641,32 @@ static void HandleEndTurn_ContinueBattle(void)
     }
 }
 
+static void ClearActionsAndMovesForNextTurn(void)
+{
+    u32 i;
+    
+    if (gBattleResults.battleTurnCounter < 0xFF)
+    {
+        gBattleResults.battleTurnCounter++;
+        gBattleStruct->arenaTurnCounter++;
+    }
+
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        gChosenActionByBattler[i] = B_ACTION_NONE;
+        gChosenMoveByBattler[i] = MOVE_NONE;
+    }
+
+    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        *(gBattleStruct->monToSwitchIntoId + i) = PARTY_SIZE;
+
+    if (IsSosBattle())
+        gAbsentBattlerFlags |= gBitTable[B_POSITION_PLAYER_RIGHT];
+    
+    *(&gBattleStruct->field_91) = gAbsentBattlerFlags;
+    BattlePutTextOnWindow(gText_EmptyString3, 0);
+}
+
 void BattleTurnPassed(void)
 {
     s32 i;
@@ -3680,27 +3706,14 @@ void BattleTurnPassed(void)
         gBattleMainFunc = RunTurnActionsFunctions;
         return;
     }
-    
-    if (TryInitSosCall())
+
+    if (IsSosBattle())
+    {
+        gBattleMainFunc = TryCallSosAlly;
         return;
-
-    if (gBattleResults.battleTurnCounter < 0xFF)
-    {
-        gBattleResults.battleTurnCounter++;
-        gBattleStruct->arenaTurnCounter++;
     }
 
-    for (i = 0; i < gBattlersCount; i++)
-    {
-        gChosenActionByBattler[i] = B_ACTION_NONE;
-        gChosenMoveByBattler[i] = MOVE_NONE;
-    }
-
-    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
-        *(gBattleStruct->monToSwitchIntoId + i) = PARTY_SIZE;
-
-    *(&gBattleStruct->field_91) = gAbsentBattlerFlags;
-    BattlePutTextOnWindow(gText_EmptyString3, 0);
+    ClearActionsAndMovesForNextTurn();
     gBattleMainFunc = HandleTurnActionSelectionState;
     gRandomTurnNumber = Random();
 
@@ -3710,6 +3723,17 @@ void BattleTurnPassed(void)
         BattleScriptExecute(BattleScript_ArenaTurnBeginning);
     else if (ShouldDoTrainerSlide(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), gTrainerBattleOpponent_A, TRAINER_SLIDE_LAST_LOW_HP))
         BattleScriptExecute(BattleScript_TrainerSlideMsgEnd2);
+}
+
+void TryCallSosAlly(void)
+{
+    if (!gBattleStruct->sos.triedToCallAlly && TryInitSosCall())
+        return;
+    
+    gBattleStruct->sos.triedToCallAlly = FALSE;
+    ClearActionsAndMovesForNextTurn();
+    gBattleMainFunc = HandleTurnActionSelectionState;
+    gRandomTurnNumber = Random();
 }
 
 u8 IsRunningFromBattleImpossible(void)
@@ -3814,7 +3838,7 @@ static void HandleTurnActionSelectionState(void)
     gBattleCommunication[ACTIONS_CONFIRMED_COUNT] = 0;
     for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
     {
-        u8 position = GetBattlerPosition(gActiveBattler);
+        u8 position = GetBattlerPosition(gActiveBattler);       
         switch (gBattleCommunication[gActiveBattler])
         {
         case STATE_TURN_START_RECORD: // Recorded battle related action on start of every turn.

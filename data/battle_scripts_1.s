@@ -9270,14 +9270,14 @@ BattleScript_CallForHelp::
 	printfromtable gSosBattleCallStringIds
 	waitmessage B_WAIT_TIME_LONG
 	setbyte sSHIFT_SWITCHED, 0
-	openpartyscreen BS_SCRIPTING, BattleScript_CallForHelpEnd
-	switchhandleorder BS_SCRIPTING, 2
 	getswitchedmondata BS_SCRIPTING
 	switchindataupdate BS_SCRIPTING
 	hpthresholds BS_SCRIPTING
 	printstring STRINGID_EMPTYSTRING3
 	waitmessage 1
-	soscall
+	soscall BS_SCRIPTING
+	printstring STRINGID_ALLYAPPEARED
+	waitmessage B_WAIT_TIME_LONG
 	trytoclearprimalweather
 	switchineffects BS_SCRIPTING
 BattleScript_CallForHelpEnd:

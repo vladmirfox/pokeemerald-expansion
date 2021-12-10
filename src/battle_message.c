@@ -738,10 +738,11 @@ static const u8 sText_NeutralizingGasOver[] = _("The effects of Neutralizing\nGa
 static const u8 sText_CalledForHelp[] = _("{B_EFF_NAME_WITH_PREFIX} called\nfor help!");
 static const u8 sText_ItsHelpDidntAppear[] = _("Its help didn't appear!");
 static const u8 sText_CalledItsAlly[] = _("{B_EFF_NAME_WITH_PREFIX} called\nits ally Pokémon!");
+static const u8 sText_AllyAppeared[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} appeared!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
-    
+    [STRINGID_ALLYAPPEARED - 12] = sText_AllyAppeared,
     [STRINGID_CALLEDITSALLY - 12] = sText_CalledItsAlly,
     [STRINGID_ITSHELPDIDNTAPPEAR - 12] = sText_ItsHelpDidntAppear,
     [STRINGID_CALLEDFORHELP - 12] = sText_CalledForHelp,

@@ -612,8 +612,9 @@
 #define STRINGID_CALLEDFORHELP                        609
 #define STRINGID_ITSHELPDIDNTAPPEAR                   610
 #define STRINGID_CALLEDITSALLY                        611
+#define STRINGID_ALLYAPPEARED                         612
 
-#define BATTLESTRINGS_COUNT                           612
+#define BATTLESTRINGS_COUNT                           613
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

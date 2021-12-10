@@ -5477,8 +5477,12 @@ static void Cmd_moveend(void)
                 CancelMultiTurnMoves(gBattlerAttacker); // Cancel it
             #endif
             
-            if (IsSosBattle() && !IS_WHOLE_SIDE_ALIVE(B_POSITION_OPPONENT_LEFT))
-                gBattleStruct->sos.allyPresent = FALSE;
+            if (IsSosBattle())
+            {
+                gAbsentBattlerFlags |= gBitTable[B_POSITION_PLAYER_RIGHT];
+                if (!IS_WHOLE_SIDE_ALIVE(B_POSITION_OPPONENT_LEFT))
+                    gBattleStruct->sos.allyPresent = FALSE;
+            }
             
             gProtectStructs[gBattlerAttacker].usesBouncedMove = FALSE;
             gProtectStructs[gBattlerAttacker].targetAffected = FALSE;
@@ -9305,17 +9309,18 @@ static void Cmd_various(void)
             break;
         case 2:
             // Animate it
+            gSprites[gBattlerSpriteIds[gActiveBattler]].invisible = FALSE;  // In case previous ally had teleported away
             if (!(gHitMarker & HITMARKER_NO_ANIMATIONS) 
-              && HasTwoFramesAnimation(gSprites[gBattlerSpriteIds[B_POSITION_OPPONENT_RIGHT]].data[2]))
-                StartSpriteAnim(&gSprites[gBattlerSpriteIds[B_POSITION_OPPONENT_RIGHT]], 1);
+              && HasTwoFramesAnimation(gSprites[gBattlerSpriteIds[gActiveBattler]].data[2]))
+                StartSpriteAnim(&gSprites[gBattlerSpriteIds[gActiveBattler]], 1);
             
-            BattleAnimateFrontSprite(&gSprites[gBattlerSpriteIds[B_POSITION_OPPONENT_RIGHT]], gSprites[gBattlerSpriteIds[B_POSITION_OPPONENT_RIGHT]].data[2], TRUE, 1);
-            PlayCry3(gBattleMons[B_POSITION_OPPONENT_RIGHT].species, -25, 0);
+            BattleAnimateFrontSprite(&gSprites[gBattlerSpriteIds[gActiveBattler]], gSprites[gBattlerSpriteIds[gActiveBattler]].data[2], TRUE, 1);
+            PlayCry3(gBattleMons[gActiveBattler].species, -25, 0);
             gBattleCommunication[0]++;
             break;
         case 3:
-            if (gSprites[gBattlerSpriteIds[B_POSITION_OPPONENT_RIGHT]].animEnded)
-                gBattlescriptCurrInstr += 3;
+            gBattleCommunication[0] = 0;
+            gBattlescriptCurrInstr += 3;
             break;
         }
         return;
