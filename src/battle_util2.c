@@ -72,7 +72,7 @@ void AdjustFriendshipOnBattleFaint(u8 battlerId)
 {
     u8 opposingBattlerId;
 
-    if (IsDoubleBattle())
+    if (IsDoubleBattleOnSide(battlerId))
     {
         u8 opposingBattlerId2;
 

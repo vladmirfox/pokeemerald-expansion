@@ -8722,7 +8722,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
         && !(isCrit)
         && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
     {
-        if (IsDoubleBattle())
+        if (IsDoubleBattleOnSide(battlerDef))
             MulModifier(&finalModifier, UQ_4_12(0.66));
         else
             MulModifier(&finalModifier, UQ_4_12(0.5));

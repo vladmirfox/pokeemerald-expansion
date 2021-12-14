@@ -49,6 +49,18 @@ bool32 IsSoSAllyPresent(void)
     return (gBattleStruct->sos.allyPresent);
 }
 
+bool32 IsDoubleBattleOnSide(u8 battler)
+{
+    if (IsSosBattle())
+    {
+        if (IsSoSAllyPresent() && GetBattlerSide(battler) == B_SIDE_OPPONENT)
+            return TRUE;
+        return FALSE;
+    }
+    
+    return (gBattleTypeFlags & BATTLE_TYPE_DOUBLE);
+}
+
 static void MainCB2(void)
 {
     RunTasks();
