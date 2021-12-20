@@ -3966,21 +3966,6 @@ static u8 ForewarnChooseMove(u32 battler)
     free(data);
 }
 
-void TryToRevertIceFace(u8 battlerId, bool8 end2)
-{
-    if (gBattleMons[battlerId].species == SPECIES_EISCUE_NOICE_FACE
-     && GetBattlerAbility(battlerId) == ABILITY_ICE_FACE
-     && gBattleWeather & WEATHER_HAIL_ANY)
-    {
-        gBattlerTarget = battlerId;
-        gBattleMons[gBattlerTarget].species = SPECIES_EISCUE;
-        if (end2)
-            BattleScriptExecute(BattleScript_TargetFormChangeWithStringEnd2);
-        else
-            BattleScriptPushCursorAndCallback(BattleScript_TargetFormChangeWithStringEnd3);
-    }
-}
-
 u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 moveArg)
 {
     u8 effect = 0;
@@ -4367,11 +4352,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);
-                for (i = 0; i < gBattlersCount; i++)
-                {
-                    if (GetBattlerAbility(i) == ABILITY_ICE_FACE)
-                        TryToRevertIceFace(i, FALSE);
-                }
                 effect++;
             }
             else if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInAbilityDone)

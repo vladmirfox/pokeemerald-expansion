@@ -1932,6 +1932,10 @@
 	various BS_ATTACKER, VARIOUS_SHELL_SIDE_ARM_CHECK
 	.endm
 
+	.macro trytorestoreiceface
+	various BS_ATTACKER, VARIOUS_TRY_TO_RESTORE_ICE_FACE
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER, \stat | \stages << 3 | \down << 7

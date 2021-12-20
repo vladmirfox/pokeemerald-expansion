@@ -9305,6 +9305,20 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr += 7;
         return;
     }
+    case VARIOUS_TRY_TO_RESTORE_ICE_FACE:
+        for (i = 0; i < gBattlersCount; i++)
+        {
+            if (gBattleMons[i].species == SPECIES_EISCUE_NOICE_FACE
+             && GetBattlerAbility(i) == ABILITY_ICE_FACE)
+            {
+                gBattlerTarget = i;
+                gBattleMons[gBattlerTarget].species = SPECIES_EISCUE;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_TargetFormChangeWithStringRet;
+                return;
+            }
+        }
+        break;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;

@@ -4623,6 +4623,11 @@ BattleScript_MoveWeatherChange::
 	printfromtable gMoveWeatherChangeStringIds
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_WeatherFormChanges
+	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_HAIL, BattleScript_TryToRestoreIceFace
+	goto BattleScript_MoveEnd
+
+BattleScript_TryToRestoreIceFace:
+	trytorestoreiceface
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectSunnyDay::
@@ -7236,6 +7241,10 @@ BattleScript_TargetFormChangeWithStringEnd3::
 	call BattleScript_TargetFormChangeWithString
 	end3
 
+BattleScript_TargetFormChangeWithStringRet::
+	call BattleScript_TargetFormChangeWithString
+	return
+
 BattleScript_IllusionOff::
 	spriteignore0hp TRUE
 	playanimation BS_TARGET, B_ANIM_ILLUSION_OFF
@@ -7974,6 +7983,7 @@ BattleScript_SnowWarningActivates::
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_HAIL_CONTINUES
 	call BattleScript_WeatherFormChanges
+	trytorestoreiceface
 	end3
 
 BattleScript_TerrainSeedLoop:

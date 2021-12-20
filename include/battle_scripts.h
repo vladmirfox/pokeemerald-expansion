@@ -418,5 +418,6 @@ extern const u8 BattleScript_NeutralizingGasExits[];
 extern const u8 BattleScript_TargetFormChangeWithString[];
 extern const u8 BattleScript_NullifyDamage[];
 extern const u8 BattleScript_TargetFormChangeWithStringEnd3[];
+extern const u8 BattleScript_TargetFormChangeWithStringRet[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H
