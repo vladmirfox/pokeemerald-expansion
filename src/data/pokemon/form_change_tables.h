@@ -29,13 +29,19 @@ FORM_ITEM_USE_TIME:
     param1 = item to use
     param2 = DAY if form change activates in the daytime
              NIGHT if form change activates at nighttime
+
+FORM_TIME:
+    Form change activates when the Pokémon is in the party at the appropriate
+    time of day.
+    param1 = DAY if form change activates in the daytime
+             NIGHT if form change activates at nighttime
 */
 
 // FORM_MOVE param2 Arguments
 #define WHEN_LEARNED    0
 #define WHEN_FORGOTTEN  1
 
-// FORM_ITEM_USE_TIME param2 Arguments
+// FORM_ITEM_USE_TIME and FORM_TIME param Arguments
 #define DAY    0
 #define NIGHT  1
 
@@ -46,8 +52,8 @@ static const struct FormChange sGiratinaFormChangeTable[] = {
 };
 
 static const struct FormChange sShayminFormChangeTable[] = {
-    {FORM_TIME_NIGHT,    SPECIES_SHAYMIN},
-    {FORM_WITHDRAW,      SPECIES_SHAYMIN},
+    {FORM_TIME, SPECIES_SHAYMIN, NIGHT},
+    {FORM_WITHDRAW, SPECIES_SHAYMIN},
     {FORM_ITEM_USE_TIME, SPECIES_SHAYMIN_SKY, ITEM_GRACIDEA, DAY},
     {FORM_CHANGE_END},
 };
