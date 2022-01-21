@@ -3761,7 +3761,7 @@ static void ClearActionsAndMovesForNextTurn(void)
     if (IsSosBattle())
         gAbsentBattlerFlags |= gBitTable[B_POSITION_PLAYER_RIGHT];
     
-    *(&gBattleStruct->field_91) = gAbsentBattlerFlags;
+    *(&gBattleStruct->absentBattlerFlags) = gAbsentBattlerFlags;
     BattlePutTextOnWindow(gText_EmptyString3, B_WIN_MSG);
 }
 

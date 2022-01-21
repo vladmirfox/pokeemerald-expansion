@@ -9467,7 +9467,7 @@ static void Cmd_various(void)
                 StartSpriteAnim(&gSprites[gBattlerSpriteIds[gActiveBattler]], 1);
             
             BattleAnimateFrontSprite(&gSprites[gBattlerSpriteIds[gActiveBattler]], gSprites[gBattlerSpriteIds[gActiveBattler]].data[2], TRUE, 1);
-            PlayCry3(gBattleMons[gActiveBattler].species, -25, 0);
+            PlayCry_ByMode(gBattleMons[gActiveBattler].species, -25, 0);
             gBattleCommunication[0]++;
             break;
         case 3:

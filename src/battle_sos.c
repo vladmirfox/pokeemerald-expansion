@@ -194,8 +194,8 @@ static void SetSosAllyIVs(struct Pokemon *mon)
 static void CreateSoSAlly(u8 caller, u8 ally)
 {
     struct Pokemon *mon = &gEnemyParty[gBattlerPartyIndexes[ally]];
-    u16 species = SPECIES_MIGHTYENA;    // TODO gBattleMons[caller].species; 
-    u8 level = 35 + Random() % 5;                      // TODO level
+    u16 species = SPECIES_GROWLITHE;    // TODO gBattleMons[caller].species; 
+    u8 level = gBattleMons[caller].level - 5 + Random() % 10;   // level += 5   TODO better system
     u32 val;
     
     CreateMon(mon, species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
