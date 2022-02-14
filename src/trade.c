@@ -4334,7 +4334,7 @@ static bool8 AnimateTradeSequenceWireless(void)
 // In-game trades resolve evolution during the trade sequence, in TS_STATE_TRY_EVOLUTION
 static void CB2_TryLinkTradeEvolution(void)
 {
-    u16 evoTarget;
+    u32 evoTarget, playerMonItem, partnerMonItem;
     switch (gMain.state)
     {
     case 0:
@@ -4344,7 +4344,11 @@ static void CB2_TryLinkTradeEvolution(void)
     case 4:
         gCB2_AfterEvolution = CB2_SaveAndEndTrade;
         evoTarget = GetEvolutionTargetSpecies(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], EVO_MODE_TRADE, ITEM_NONE, GetMonData(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PARTNER]], MON_DATA_SPECIES));
-        if (evoTarget != SPECIES_NONE)
+        playerMonItem = GetMonData(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], MON_DATA_HELD_ITEM);
+        partnerMonItem = GetMonData(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PARTNER]], MON_DATA_HELD_ITEM);
+        if ((evoTarget == SPECIES_ESCAVALIER || evoTarget == SPECIES_ACCELGOR) && (playerMonItem == ITEM_EVERSTONE || partnerMonItem == ITEM_EVERSTONE))
+            SetMainCallback2(CB2_SaveAndEndTrade);
+        else if (evoTarget != SPECIES_NONE)
             TradeEvolutionScene(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], evoTarget, sTradeData->monSpriteIds[TRADE_PARTNER], gSelectedTradeMonPositions[TRADE_PLAYER]);
         else if (IsWirelessTrade())
             SetMainCallback2(CB2_SaveAndEndWirelessTrade);
