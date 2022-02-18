@@ -3916,17 +3916,17 @@ const struct MonCoords gMonBackPicCoords[] =
     },
     [SPECIES_JANGMO_O] =
     {
-        .size = MON_COORDS_SIZE(48, 56),
-        .y_offset = 7,
+        .size = MON_COORDS_SIZE(42, 56),
+        .y_offset = 5,
     },
     [SPECIES_HAKAMO_O] =
     {
-        .size = MON_COORDS_SIZE(56, 64),
+        .size = MON_COORDS_SIZE(49, 56),
         .y_offset = 5,
     },
     [SPECIES_KOMMO_O] =
     {
-        .size = MON_COORDS_SIZE(64, 64),
+        .size = MON_COORDS_SIZE(60, 60),
         .y_offset = 2,
     },
     [SPECIES_TAPU_KOKO] =
