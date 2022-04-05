@@ -131,7 +131,7 @@ static bool32 IsPlayerStandingStill(void)
 }
 
 // Gender and trainer id are used to determine which sprite a player appears as
-static u8 GetUnionRoomPlayerGraphicsId(u32 gender, u32 id)
+static u16 GetUnionRoomPlayerGraphicsId(u32 gender, u32 id)
 {
     return sUnionRoomObjGfxIds[gender][id % NUM_UNION_ROOM_CLASSES];
 }
