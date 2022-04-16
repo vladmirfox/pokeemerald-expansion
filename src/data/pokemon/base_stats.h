@@ -2279,7 +2279,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 95,
         .baseSpDefense = 55,
         .type1 = TYPE_ELECTRIC,
-        .type2 = TYPE_STEEL,
+        #if P_UPDATED_TYPES >= GEN_2_GS
+            .type2 = TYPE_STEEL,
+        #else
+            .type2 = TYPE_ELECTRIC,
+        #endif
         .catchRate = 190,
         .expYield = 65,
         .evYield_SpAttack  = 1,
@@ -2308,7 +2312,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 120,
         .baseSpDefense = 70,
         .type1 = TYPE_ELECTRIC,
-        .type2 = TYPE_STEEL,
+        #if P_UPDATED_TYPES >= GEN_2_GS
+            .type2 = TYPE_STEEL,
+        #else
+            .type2 = TYPE_ELECTRIC,
+        #endif
         .catchRate = 60,
         .expYield = 163,
         .evYield_SpAttack  = 2,
