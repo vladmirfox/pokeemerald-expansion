@@ -551,7 +551,7 @@ static void CreateShedinja(u16 preEvoSpecies, struct Pokemon* mon)
     u32 data = 0;
     u16 ball = ITEM_POKE_BALL;
     if (gEvolutionTable[preEvoSpecies][0].method == EVO_LEVEL_NINJASK && gPlayerPartyCount < PARTY_SIZE
-        && (P_SHEDINJA_BALL == GEN_3 || CheckBagHasItem(ball, 1)))
+        && (P_SHEDINJA_BALL < GEN_4_DP || CheckBagHasItem(ball, 1)))
     {
         s32 i;
         struct Pokemon* shedinja = &gPlayerParty[gPlayerPartyCount];
@@ -563,7 +563,7 @@ static void CreateShedinja(u16 preEvoSpecies, struct Pokemon* mon)
         SetMonData(&gPlayerParty[gPlayerPartyCount], MON_DATA_MARKINGS, &data);
         SetMonData(&gPlayerParty[gPlayerPartyCount], MON_DATA_ENCRYPT_SEPARATOR, &data);
         
-        #if P_SHEDINJA_BALL >= GEN_4
+        #if P_SHEDINJA_BALL >= GEN_4_DP
         SetMonData(&gPlayerParty[gPlayerPartyCount], MON_DATA_POKEBALL, &ball);
         RemoveBagItem(ball, 1);
         #endif

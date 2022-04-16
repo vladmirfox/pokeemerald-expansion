@@ -3,13 +3,41 @@
 
 #include "constants/expansion_branches.h"
 
-#ifndef GEN_3
-#define GEN_3 0
-#define GEN_4 1
-#define GEN_5 2
-#define GEN_6 3
-#define GEN_7 4
-#define GEN_8 5
+#ifndef GEN_1
+#define GEN_1_JP_RG 0
+#define GEN_1_INT_RB 1
+#define GEN_1_YLW 2
+#define GEN_1_STD 3
+#define GEN_2_GS 4
+#define GEN_2_C 5
+#define GEN_3_RS 6
+#define GEN_3_COL 7
+#define GEN_3_FRLG 8
+#define GEN_3_EM 9
+#define GEN_3_XD 10
+#define GEN_4_DP 11
+#define GEN_4_PT 12
+#define GEN_4_HGSS 13
+#define GEN_5_BW 14
+#define GEN_5_B2W2 15
+#define GEN_6_XY 16
+#define GEN_6_ORAS 17
+#define GEN_7_SM 18
+#define GEN_7_USUM 19
+#define GEN_8_SWSH 20
+#define GEN_8_BDSP 21
+#define GEN_8_LA 22
+#define GEN_9_SV 23
+
+#define GEN_1 GEN_1_STD
+#define GEN_2 GEN_2_C
+#define GEN_3 GEN_3_EM
+#define GEN_4 GEN_4_HGSS
+#define GEN_5 GEN_5_BW2
+#define GEN_6 GEN_6_ORAS
+#define GEN_7 GEN_7_USUM
+#define GEN_8 GEN_8_SWSH
+#define GEN_9 GEN_9_SV
 #endif
 
 #define P_UPDATED_TYPES         GEN_8 // In Gen6+, several Pokémon were changed to be partially or fully Fairy type.
