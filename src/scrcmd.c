@@ -49,6 +49,7 @@
 #include "tv.h"
 #include "window.h"
 #include "constants/event_objects.h"
+#include "evolution_scene.h"
 
 typedef u16 (*SpecialFunc)(void);
 typedef void (*NativeFunc)(void);
@@ -2329,5 +2330,22 @@ bool8 ScrCmd_warpwhitefade(struct ScriptContext *ctx)
     SetWarpDestination(mapGroup, mapNum, warpId, x, y);
     DoWhiteFadeWarp();
     ResetInitialPlayerAvatarState();
+    return TRUE;
+}
+
+bool8 ScrCmd_tryspecialevo(struct ScriptContext *ctx)
+{
+    u8 i;
+    u8 evoMethod = ScriptReadByte(ctx);
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        u16 targetSpecies = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_OVERWORLD_SPECIAL, evoMethod, SPECIES_NONE);
+        if (targetSpecies != SPECIES_NONE)
+        {
+            gCB2_AfterEvolution = CB2_ReturnToField;
+            BeginEvolutionScene(&gPlayerParty[i], targetSpecies, TRUE, i);
+        }   
+    }
     return TRUE;
 }

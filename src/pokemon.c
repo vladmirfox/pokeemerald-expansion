@@ -6554,13 +6554,27 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
             }
         }
         break;
-    case EVO_MODE_SPECIAL: //Battle evolution that doesn't require a level up.
+    //Battle evolution without leveling; party slot is being passed into the evolutionItem arg.
+    case EVO_MODE_BATTLE_SPECIAL:
         for (i = 0; i < EVOS_PER_MON; i++)
         {
             switch (gEvolutionTable[species][i].method)
             {
-            case EVO_SIRFETCHD: //Right now, party slot is being passed for the evolutionItem arg.
+            case EVO_SIRFETCHD:
                 if (((gPartyCriticalHits >> evolutionItem*2) & 3) == 3)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            }
+        }
+        break;
+    //Overworld evolution without leveling; evolution method is being passed into the evolutionItem arg.
+    case EVO_MODE_OVERWORLD_SPECIAL:
+        for (i = 0; i < EVOS_PER_MON; i++)
+        {
+            switch (gEvolutionTable[species][i].method)
+            {
+            case EVO_RUNERIGUS:
+                if (evolutionItem == EVO_RUNERIGUS) //&& YAMASK DAMAGE CHECK
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             }

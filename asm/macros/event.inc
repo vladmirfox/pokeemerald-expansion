@@ -2006,3 +2006,9 @@
 	.macro totemboost_evas2 battler:req
 	settotemboost \battler, 0, 0, 0, 0, 0, 0, 2
 	.endm
+
+	@ Attempts to trigger a special evolution method.
+	.macro tryspecialevo evoMethod:req
+	.byte 0xe3
+	.byte \evoMethod
+	.endm

@@ -5152,7 +5152,7 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
                                   | BATTLE_TYPE_FRONTIER
                                   | BATTLE_TYPE_EREADER_TRAINER
                                   | BATTLE_TYPE_WALLY_TUTORIAL)
-            && (gBattleOutcome == B_OUTCOME_WON || gBattleOutcome == B_OUTCOME_CAUGHT))
+            && (gBattleOutcome == B_OUTCOME_WON || gBattleOutcome == B_OUTCOME_CAUGHT)))
         {
             gBattleMainFunc = TrySpecialEvolution;
         }
@@ -5203,13 +5203,13 @@ static void TryEvolvePokemon(void)
     gBattleMainFunc = ReturnFromBattleToOverworld;
 }
 
-static void TrySpecialEvolution(void)
+static void TrySpecialEvolution(void) //Not related to the tryspecialevo script command.
 {
     s32 i;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        u16 species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_SPECIAL, i, SPECIES_NONE);
+        u16 species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_BATTLE_SPECIAL, i, SPECIES_NONE);
         if (species != SPECIES_NONE && !(gTriedEvolving & gBitTable[i]))
         {
             gTriedEvolving |= gBitTable[i];

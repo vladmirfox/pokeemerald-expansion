@@ -384,15 +384,17 @@
 #define EVO_LEVEL_NATURE_AMPED            33     // Pokémon reaches the specified level, it has a Hardy, Brave, Adamant, Naughty, Docile, Impish, Lax, Hasty, Jolly, Naive, Rash, Sassy, or Quirky nature.
 #define EVO_LEVEL_NATURE_LOW_KEY          34     // Pokémon reaches the specified level, it has a Lonely, Bold, Relaxed, Timid, Serious, Modest, Mild, Quiet, Bashful, Calm, Gentle, or Careful nature.
 #define EVO_SIRFETCHD                     35     // Pokémon performs three critical hits in one battle
+#define EVO_RUNERIGUS                     36     // Pokémon takes 49 damage in battle, then player steps on trigger.
 
 #define EVOS_PER_MON 10
 
 // Evolution 'modes,' for GetEvolutionTargetSpecies
-#define EVO_MODE_NORMAL     0
-#define EVO_MODE_TRADE      1
-#define EVO_MODE_ITEM_USE   2
-#define EVO_MODE_ITEM_CHECK 3 // If an Everstone is being held, still want to show that the stone *could* be used on that Pokémon to evolve
-#define EVO_MODE_SPECIAL    4
+#define EVO_MODE_NORMAL             0
+#define EVO_MODE_TRADE              1
+#define EVO_MODE_ITEM_USE           2
+#define EVO_MODE_ITEM_CHECK         3 // If an Everstone is being held, still want to show that the stone *could* be used on that Pokémon to evolve
+#define EVO_MODE_BATTLE_SPECIAL     4
+#define EVO_MODE_OVERWORLD_SPECIAL  5
 
 // Form change types
 #define FORM_CHANGE_END         0
