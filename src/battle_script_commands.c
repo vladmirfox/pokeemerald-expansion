@@ -1908,6 +1908,8 @@ s8 GetInverseCritChance(u8 battlerAtk, u8 battlerDef, u32 move)
 
 static void Cmd_critcalc(void)
 {
+    u16 partySlot;
+
     s32 critChance = CalcCritChanceStage(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
     gPotentialItemEffectBattler = gBattlerAttacker;
 
@@ -1921,6 +1923,17 @@ static void Cmd_critcalc(void)
         gIsCriticalHit = TRUE;
     else
         gIsCriticalHit = FALSE;
+
+    //Counter for Sirfetchd evolution method (caps at 3 per party mon).
+    partySlot = gBattlerPartyIndexes[gBattlerAttacker];
+    if (gIsCriticalHit && GetBattlerSide(gBattlerAttacker) == 0
+        && ((gPartyCriticalHits >> partySlot*2) & 3) < 3)
+    {
+        if (gPartyCriticalHits & (1 << partySlot*2))                        // 1 -> 2
+            gPartyCriticalHits ^= (0x03 << (partySlot*2));
+        else                                                                // 0 -> 1 or 2 -> 3
+            gPartyCriticalHits |= (1 << (partySlot*2));
+    }
 
     gBattlescriptCurrInstr++;
 }

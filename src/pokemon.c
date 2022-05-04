@@ -6554,6 +6554,18 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
             }
         }
         break;
+    case EVO_MODE_SPECIAL: //Battle evolution that doesn't require a level up.
+        for (i = 0; i < EVOS_PER_MON; i++)
+        {
+            switch (gEvolutionTable[species][i].method)
+            {
+            case EVO_SIRFETCHD: //Right now, party slot is being passed for the evolutionItem arg.
+                if (((gPartyCriticalHits >> evolutionItem*2) & 3) == 3)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            }
+        }
+        break;
     }
 
     return targetSpecies;

@@ -115,6 +115,7 @@ static void HandleEndTurn_MonFled(void);
 static void HandleEndTurn_FinishBattle(void);
 static void SpriteCB_UnusedBattleInit(struct Sprite* sprite);
 static void SpriteCB_UnusedBattleInit_Main(struct Sprite *sprite);
+static void TrySpecialEvolution(void);
 
 EWRAM_DATA u16 gBattle_BG0_X = 0;
 EWRAM_DATA u16 gBattle_BG0_Y = 0;
@@ -237,6 +238,8 @@ EWRAM_DATA bool8 gHasFetchedBall = FALSE;
 EWRAM_DATA u8 gLastUsedBall = 0;
 EWRAM_DATA u16 gLastThrownBall = 0;
 EWRAM_DATA bool8 gSwapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
+EWRAM_DATA u16 gPartyCriticalHits = 0;
+EWRAM_DATA static u8 gTriedEvolving = 0;
 
 void (*gPreBattleCallback1)(void);
 void (*gBattleMainFunc)(void);
@@ -2961,6 +2964,7 @@ static void BattleStartClearSetData(void)
     gBattleScripting.animTurn = 0;
     gBattleScripting.animTargetsHit = 0;
     gLeveledUpInBattle = 0;
+    gPartyCriticalHits = 0;
     gAbsentBattlerFlags = 0;
     gBattleStruct->runTries = 0;
     gBattleStruct->safariGoNearCounter = 0;
@@ -5134,14 +5138,16 @@ static void HandleEndTurn_FinishBattle(void)
 
 static void FreeResetData_ReturnToOvOrDoEvolutions(void)
 {
+    u8 i;
+
     if (!gPaletteFade.active)
     {
         gIsFishingEncounter = FALSE;
         gIsSurfingEncounter = FALSE;
         ResetSpriteData();
-        if (gLeveledUpInBattle && (gBattleOutcome == B_OUTCOME_WON || gBattleOutcome == B_OUTCOME_CAUGHT))
+        if (gBattleOutcome == B_OUTCOME_WON || gBattleOutcome == B_OUTCOME_CAUGHT)
         {
-            gBattleMainFunc = TryEvolvePokemon;
+            gBattleMainFunc = TrySpecialEvolution;
         }
         else
         {
@@ -5190,10 +5196,30 @@ static void TryEvolvePokemon(void)
     gBattleMainFunc = ReturnFromBattleToOverworld;
 }
 
+static void TrySpecialEvolution(void)
+{
+    s32 i;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        u16 species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_SPECIAL, i, SPECIES_NONE);
+        if (species != SPECIES_NONE && !(gTriedEvolving & gBitTable[i]))
+        {
+            gTriedEvolving |= gBitTable[i];
+            FreeAllWindowBuffers();
+            gBattleMainFunc = WaitForEvoSceneToFinish;
+            EvolutionScene(&gPlayerParty[i], species, TRUE, i);
+            return;
+        }
+    }
+    gTriedEvolving = 0;
+    gBattleMainFunc = TryEvolvePokemon;
+}
+
 static void WaitForEvoSceneToFinish(void)
 {
     if (gMain.callback2 == BattleMainCB2)
-        gBattleMainFunc = TryEvolvePokemon;
+        gBattleMainFunc = TrySpecialEvolution;
 }
 
 static void ReturnFromBattleToOverworld(void)
