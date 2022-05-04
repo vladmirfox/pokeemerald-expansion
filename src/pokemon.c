@@ -6560,7 +6560,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
         {
             switch (gEvolutionTable[species][i].method)
             {
-            case EVO_SIRFETCHD:
+            case EVO_THREECRITS:
                 if (((gPartyCriticalHits >> evolutionItem*2) & 3) == 3)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
@@ -6574,9 +6574,18 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
             switch (gEvolutionTable[species][i].method)
             {
             case EVO_RUNERIGUS:
-                if (evolutionItem == EVO_RUNERIGUS) //&& YAMASK DAMAGE CHECK
+                if (evolutionItem == EVO_RUNERIGUS 
+                    && (GetMonData(mon, MON_DATA_MAX_HP, NULL) - GetMonData(mon, MON_DATA_HP, NULL) >= 49))
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
+            case EVO_DARK_SCROLL:
+                if (evolutionItem == EVO_DARK_SCROLL)
+                        targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                    break;
+            case EVO_WATER_SCROLL:
+                    if (evolutionItem == EVO_WATER_SCROLL)
+                        targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                    break;
             }
         }
         break;
