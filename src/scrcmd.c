@@ -49,7 +49,6 @@
 #include "tv.h"
 #include "window.h"
 #include "constants/event_objects.h"
-#include "evolution_scene.h"
 
 typedef u16 (*SpecialFunc)(void);
 typedef void (*NativeFunc)(void);
