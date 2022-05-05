@@ -8279,3 +8279,19 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)
     }
     return 0;
 }
+
+void TrySpecialOverworldEvo(void) // Attempts to perform non-level/item related overworld evolutions.
+{
+    u8 i;
+    u8 evoMethod = gSpecialVar_0x8000;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        u16 targetSpecies = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_OVERWORLD_SPECIAL, evoMethod, SPECIES_NONE);
+        if (targetSpecies != SPECIES_NONE)
+        {
+            gCB2_AfterEvolution = CB2_ReturnToField;
+            BeginEvolutionScene(&gPlayerParty[i], targetSpecies, TRUE, i);
+        }   
+    }
+}

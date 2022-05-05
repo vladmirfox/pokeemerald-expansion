@@ -2009,6 +2009,6 @@
 
 	@ Attempts to trigger a special evolution method.
 	.macro tryspecialevo evoMethod:req
-	.byte 0xe3
-	.byte \evoMethod
+	setvar VAR_0x8000, \evoMethod
+	special TrySpecialOverworldEvo
 	.endm
