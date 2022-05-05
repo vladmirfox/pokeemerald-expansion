@@ -926,6 +926,6 @@ extern bool8 gHasFetchedBall;
 extern u8 gLastUsedBall;
 extern u16 gLastThrownBall;
 extern bool8 gSwapDamageCategory; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
-extern u16 gPartyCriticalHits; // Bitfield to track the critical hits of each party member, up to 3. Used for EVO_CRITICAL_HITS.
+extern u8 gPartyCriticalHits[6]; // Tracks critical hits performed by each party member during one battle. Used for EVO_CRITICAL_HITS.
 
 #endif // GUARD_BATTLE_H

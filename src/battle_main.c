@@ -238,7 +238,7 @@ EWRAM_DATA bool8 gHasFetchedBall = FALSE;
 EWRAM_DATA u8 gLastUsedBall = 0;
 EWRAM_DATA u16 gLastThrownBall = 0;
 EWRAM_DATA bool8 gSwapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
-EWRAM_DATA u16 gPartyCriticalHits = 0;
+EWRAM_DATA u8 gPartyCriticalHits[PARTY_SIZE] = {0};
 EWRAM_DATA static u8 sTriedEvolving = 0;
 
 void (*gPreBattleCallback1)(void);
@@ -2964,7 +2964,6 @@ static void BattleStartClearSetData(void)
     gBattleScripting.animTurn = 0;
     gBattleScripting.animTargetsHit = 0;
     gLeveledUpInBattle = 0;
-    gPartyCriticalHits = 0;
     gAbsentBattlerFlags = 0;
     gBattleStruct->runTries = 0;
     gBattleStruct->safariGoNearCounter = 0;
@@ -2994,6 +2993,7 @@ static void BattleStartClearSetData(void)
         gBattleStruct->usedHeldItems[i][0] = 0;
         gBattleStruct->usedHeldItems[i][1] = 0;
         gBattleStruct->itemStolen[i].originalItem = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
+        gPartyCriticalHits[i] = 0;
     }
 
     gSwapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky

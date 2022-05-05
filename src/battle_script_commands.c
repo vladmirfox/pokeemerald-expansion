@@ -1926,15 +1926,9 @@ static void Cmd_critcalc(void)
 
     // Counter for Sirfetchd evolution method (caps at 3 per party mon).
     partySlot = gBattlerPartyIndexes[gBattlerAttacker];
-    if (gIsCriticalHit && GetBattlerSide(gBattlerAttacker) == 0
-        && !(gBattleTypeFlags & BATTLE_TYPE_MULTI && GetBattlerPosition(gBattlerAttacker) == 1)
-        && ((gPartyCriticalHits >> partySlot*2) & 3) < 3)
-    {
-        if (gPartyCriticalHits & (1 << partySlot*2))                        // 1 -> 2
-            gPartyCriticalHits ^= (0x03 << (partySlot*2));
-        else                                                                // 0 -> 1 or 2 -> 3
-            gPartyCriticalHits |= (1 << (partySlot*2));
-    }
+    if (gIsCriticalHit && GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER
+        && !(gBattleTypeFlags & BATTLE_TYPE_MULTI && GetBattlerPosition(gBattlerAttacker) == B_POSITION_PLAYER_LEFT))
+        gPartyCriticalHits[partySlot] += 1;
 
     gBattlescriptCurrInstr++;
 }
