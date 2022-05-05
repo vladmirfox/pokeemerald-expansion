@@ -5203,7 +5203,7 @@ static void TryEvolvePokemon(void)
     gBattleMainFunc = ReturnFromBattleToOverworld;
 }
 
-static void TrySpecialEvolution(void) // Attempts to perform non-level related battle evolutions (not the script command).
+static void TrySpecialEvolution(void) // Attempts to perform non-level related battle evolutions.
 {
     s32 i;
 
