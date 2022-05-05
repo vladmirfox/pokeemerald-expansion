@@ -6560,8 +6560,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
         {
             switch (gEvolutionTable[species][i].method)
             {
-            case EVO_THREE_CRITS:
-                if (((gPartyCriticalHits >> evolutionItem * 2) & 3) == 3)
+            case EVO_CRITICAL_HITS:
+                if (((gPartyCriticalHits >> evolutionItem * 2) & 3) >=  gEvolutionTable[species][i].param)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             }
@@ -6573,9 +6573,9 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
         {
             switch (gEvolutionTable[species][i].method)
             {
-            case EVO_RUNERIGUS:
-                if (evolutionItem == EVO_RUNERIGUS 
-                    && (GetMonData(mon, MON_DATA_MAX_HP, NULL) - GetMonData(mon, MON_DATA_HP, NULL) >= 49))
+            case EVO_SCRIPT_TRIGGER_DMG:
+                if (evolutionItem == EVO_SCRIPT_TRIGGER_DMG 
+                    && (GetMonData(mon, MON_DATA_MAX_HP, NULL) - GetMonData(mon, MON_DATA_HP, NULL) >= gEvolutionTable[species][i].param))
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_DARK_SCROLL:
