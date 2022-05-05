@@ -1928,7 +1928,7 @@ static void Cmd_critcalc(void)
     partySlot = gBattlerPartyIndexes[gBattlerAttacker];
     if (gIsCriticalHit && GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER
         && !(gBattleTypeFlags & BATTLE_TYPE_MULTI && GetBattlerPosition(gBattlerAttacker) == B_POSITION_PLAYER_LEFT))
-        gPartyCriticalHits[partySlot] += 1;
+        gPartyCriticalHits[partySlot]++;
 
     gBattlescriptCurrInstr++;
 }
