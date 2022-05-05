@@ -239,7 +239,7 @@ EWRAM_DATA u8 gLastUsedBall = 0;
 EWRAM_DATA u16 gLastThrownBall = 0;
 EWRAM_DATA bool8 gSwapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
 EWRAM_DATA u16 gPartyCriticalHits = 0;
-EWRAM_DATA static u8 gTriedEvolving = 0;
+EWRAM_DATA static u8 sTriedEvolving = 0;
 
 void (*gPreBattleCallback1)(void);
 void (*gBattleMainFunc)(void);
@@ -5210,16 +5210,16 @@ static void TrySpecialEvolution(void) //Not related to the tryspecialevo script 
     for (i = 0; i < PARTY_SIZE; i++)
     {
         u16 species = GetEvolutionTargetSpecies(&gPlayerParty[i], EVO_MODE_BATTLE_SPECIAL, i, SPECIES_NONE);
-        if (species != SPECIES_NONE && !(gTriedEvolving & gBitTable[i]))
+        if (species != SPECIES_NONE && !(sTriedEvolving & gBitTable[i]))
         {
-            gTriedEvolving |= gBitTable[i];
+            sTriedEvolving |= gBitTable[i];
             FreeAllWindowBuffers();
             gBattleMainFunc = WaitForEvoSceneToFinish;
             EvolutionScene(&gPlayerParty[i], species, TRUE, i);
             return;
         }
     }
-    gTriedEvolving = 0;
+    sTriedEvolving = 0;
     gBattleMainFunc = TryEvolvePokemon;
 }
 
