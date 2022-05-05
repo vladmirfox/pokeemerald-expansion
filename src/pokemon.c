@@ -6554,20 +6554,20 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, u
             }
         }
         break;
-    //Battle evolution without leveling; party slot is being passed into the evolutionItem arg.
+    // Battle evolution without leveling; party slot is being passed into the evolutionItem arg.
     case EVO_MODE_BATTLE_SPECIAL:
         for (i = 0; i < EVOS_PER_MON; i++)
         {
             switch (gEvolutionTable[species][i].method)
             {
-            case EVO_THREECRITS:
-                if (((gPartyCriticalHits >> evolutionItem*2) & 3) == 3)
+            case EVO_THREE_CRITS:
+                if (((gPartyCriticalHits >> evolutionItem * 2) & 3) == 3)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             }
         }
         break;
-    //Overworld evolution without leveling; evolution method is being passed into the evolutionItem arg.
+    // Overworld evolution without leveling; evolution method is being passed into the evolutionItem arg.
     case EVO_MODE_OVERWORLD_SPECIAL:
         for (i = 0; i < EVOS_PER_MON; i++)
         {

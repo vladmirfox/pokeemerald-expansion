@@ -1924,7 +1924,7 @@ static void Cmd_critcalc(void)
     else
         gIsCriticalHit = FALSE;
 
-    //Counter for Sirfetchd evolution method (caps at 3 per party mon).
+    // Counter for Sirfetchd evolution method (caps at 3 per party mon).
     partySlot = gBattlerPartyIndexes[gBattlerAttacker];
     if (gIsCriticalHit && GetBattlerSide(gBattlerAttacker) == 0
         && !(gBattleTypeFlags & BATTLE_TYPE_MULTI && GetBattlerPosition(gBattlerAttacker) == 1)

@@ -383,7 +383,7 @@
 #define EVO_SPECIFIC_MAP                  32     // Pokémon levels up on specified map
 #define EVO_LEVEL_NATURE_AMPED            33     // Pokémon reaches the specified level, it has a Hardy, Brave, Adamant, Naughty, Docile, Impish, Lax, Hasty, Jolly, Naive, Rash, Sassy, or Quirky nature.
 #define EVO_LEVEL_NATURE_LOW_KEY          34     // Pokémon reaches the specified level, it has a Lonely, Bold, Relaxed, Timid, Serious, Modest, Mild, Quiet, Bashful, Calm, Gentle, or Careful nature.
-#define EVO_THREECRITS                    35     // Pokémon performs three critical hits in one battle
+#define EVO_THREE_CRITS                   35     // Pokémon performs three critical hits in one battle
 #define EVO_RUNERIGUS                     36     // Pokémon takes 49 damage in battle, then player steps on trigger.
 #define EVO_DARK_SCROLL                   37     // interacts with Scroll of Darkness
 #define EVO_WATER_SCROLL                  38     // interacts with Scroll of Waters

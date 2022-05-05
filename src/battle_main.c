@@ -5203,7 +5203,7 @@ static void TryEvolvePokemon(void)
     gBattleMainFunc = ReturnFromBattleToOverworld;
 }
 
-static void TrySpecialEvolution(void) //Not related to the tryspecialevo script command.
+static void TrySpecialEvolution(void) // Not related to the tryspecialevo script command.
 {
     s32 i;
 
