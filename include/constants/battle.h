@@ -419,7 +419,7 @@
 #define B_WIN_TYPE_NORMAL 0
 #define B_WIN_TYPE_ARENA  1
 
-#define STORED_LUNAR_DANCE (1 << 7)
+#define STORED_LUNAR_DANCE (1 << (MAX_BATTLERS_COUNT + 1))
 
 // Window Ids for gStandardBattleWindowTemplates / gBattleArenaWindowTemplates
 #define B_WIN_MSG                 0
