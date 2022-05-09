@@ -2128,3 +2128,8 @@
 	.macro skydropyawn
 	various 0, VARIOUS_SKY_DROP_YAWN
 	.endm
+
+	@ Stores Healing Wish effect.
+	.macro storehealingwish
+	various BS_ATTACKER, VARIOUS_STORE_HEALING_WISH
+	.endm

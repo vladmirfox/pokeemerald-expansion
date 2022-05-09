@@ -6323,6 +6323,17 @@ static void Cmd_switchineffects(void)
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_SwitchInAbilityMsgRet;
     }
+    // Healing Wish activates before hazards
+    else if ((B_STORE_HEALING_WISH <= GEN_7 
+        && gStoredHealingWish & gBitTable[GetBattlerPosition(gActiveBattler)])
+        || (gStoredHealingWish & gBitTable[GetBattlerPosition(gActiveBattler)]
+        && (gBattleMons[gActiveBattler].hp != gBattleMons[gActiveBattler].maxHP 
+        || gBattleMons[gActiveBattler].status1 != 0)))
+    {
+        gStoredHealingWish &= ~(gBitTable[GetBattlerPosition(gActiveBattler)]);
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_HealingWishActivates;
+    }
     else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES_DAMAGED)
         && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES)
         && GetBattlerAbility(gActiveBattler) != ABILITY_MAGIC_GUARD
@@ -9572,6 +9583,11 @@ static void Cmd_various(void)
         break;
     case VARIOUS_SWAP_SIDE_STATUSES:
         CourtChangeSwapSideStatuses();
+        break;
+    case VARIOUS_STORE_HEALING_WISH:
+        gStoredHealingWish |= gBitTable[GetBattlerPosition(gActiveBattler)];
+        if (gCurrentMove == MOVE_LUNAR_DANCE) // Store whether it was Lunar Dance or Healing Wish.
+            gStoredHealingWish |= gBitTable[MAX_BATTLERS_COUNT + 1];
         break;
     } // End of switch (gBattlescriptCurrInstr[2])
 

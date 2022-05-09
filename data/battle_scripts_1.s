@@ -2539,6 +2539,8 @@ BattleScript_EffectHealingWish:
 	instanthpdrop BS_ATTACKER
 	setatkhptozero
 	tryfaintmon BS_ATTACKER
+	storehealingwish
+.if B_HEALING_WISH_SWITCH <= GEN_4
 	openpartyscreen BS_ATTACKER, BattleScript_EffectHealingWishEnd
 	switchoutabilities BS_ATTACKER
 	waitstate
@@ -2553,11 +2555,18 @@ BattleScript_EffectHealingWish:
 	printstring STRINGID_SWITCHINMON
 	switchinanim BS_ATTACKER, TRUE
 	waitstate
+	switchineffects BS_ATTACKER
+.endif
+BattleScript_EffectHealingWishEnd:
+	moveendall
+	end
+
+BattleScript_HealingWishActivates::
 	setbyte cMULTISTRING_CHOOSER, 0
-	jumpifnotchosenmove MOVE_LUNAR_DANCE, BattleScript_EffectHealingWishNewMon
+	jumpifbyte CMP_NO_COMMON_BITS, gStoredHealingWish, STORED_LUNAR_DANCE, BattleScript_EffectHealingWishRestore
 	setbyte cMULTISTRING_CHOOSER, 1
 	restorepp BS_ATTACKER
-BattleScript_EffectHealingWishNewMon:
+BattleScript_EffectHealingWishRestore:
 	printfromtable gHealingWishStringIds
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_ATTACKER, B_ANIM_WISH_HEAL
@@ -2572,10 +2581,7 @@ BattleScript_EffectHealingWishNewMon:
 	waitstate
 	printstring STRINGID_HEALINGWISHHEALED
 	waitmessage B_WAIT_TIME_LONG
-	switchineffects BS_ATTACKER
-BattleScript_EffectHealingWishEnd:
-	moveendall
-	end
+	return
 
 BattleScript_EffectWorrySeed:
 	attackcanceler
