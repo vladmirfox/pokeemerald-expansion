@@ -3087,6 +3087,7 @@ void SwitchInClearSetData(void)
     gLastResultingMoves[gActiveBattler] = 0;
     gLastPrintedMoves[gActiveBattler] = 0;
     gLastHitBy[gActiveBattler] = 0xFF;
+    gStoredHealingWish &= ~gBitTable[GetBattlerPosition(gActiveBattler) + MAX_BATTLERS_COUNT + 1];
 
     gBattleStruct->lastTakenMove[gActiveBattler] = 0;
     gBattleStruct->sameMoveTurns[gActiveBattler] = 0;

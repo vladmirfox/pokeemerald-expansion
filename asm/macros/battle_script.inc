@@ -2133,3 +2133,9 @@
 	.macro storehealingwish
 	various BS_ATTACKER, VARIOUS_STORE_HEALING_WISH
 	.endm
+
+	@ Used to skip the "Use next Pokemon?" prompt in wild battles.
+	.macro jumpifusedhealingwish ptr:req
+	various BS_FAINTED, VARIOUS_JUMP_IF_USED_HEALING_WISH
+	.4byte \ptr
+	.endm

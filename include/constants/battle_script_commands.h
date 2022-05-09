@@ -242,6 +242,7 @@
 #define VARIOUS_SET_BEAK_BLAST                      151
 #define VARIOUS_SWAP_SIDE_STATUSES                  152
 #define VARIOUS_STORE_HEALING_WISH                  153
+#define VARIOUS_JUMP_IF_USED_HEALING_WISH           154
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

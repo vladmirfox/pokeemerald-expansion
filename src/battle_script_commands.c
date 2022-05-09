@@ -9585,10 +9585,20 @@ static void Cmd_various(void)
         CourtChangeSwapSideStatuses();
         break;
     case VARIOUS_STORE_HEALING_WISH:
+        // Bits 0-3 represent which battler position has a stored Healing Wish
+        // Bit 4 represents whether Lunar Dance was used
+        // Bits 5-8 represent what battler positions used Healing Wish before fainting.
         gStoredHealingWish |= gBitTable[GetBattlerPosition(gActiveBattler)];
-        if (gCurrentMove == MOVE_LUNAR_DANCE) // Store whether it was Lunar Dance or Healing Wish.
-            gStoredHealingWish |= gBitTable[MAX_BATTLERS_COUNT + 1];
+        if (gCurrentMove == MOVE_LUNAR_DANCE)
+            gStoredHealingWish |= gBitTable[MAX_BATTLERS_COUNT];
+        gStoredHealingWish |= gBitTable[GetBattlerPosition(gActiveBattler) + MAX_BATTLERS_COUNT + 1];
         break;
+    case VARIOUS_JUMP_IF_USED_HEALING_WISH:
+        if (gStoredHealingWish & gBitTable[gBattlerFainted + MAX_BATTLERS_COUNT + 1])
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        else
+            gBattlescriptCurrInstr += 7;
+        return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;
