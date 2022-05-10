@@ -4961,15 +4961,36 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
         else
         {
             u32 side = GetBattlerSide(battlerDef);
+            gActiveBattler = battlerDef;
 
-            gLastUsedItem = gBattleMons[battlerDef].item;
-            gBattleMons[battlerDef].item = 0;
-            gBattleStruct->choicedMove[battlerDef] = 0;
-            gWishFutureKnock.knockedOffMons[side] |= gBitTable[gBattlerPartyIndexes[battlerDef]];
-            CheckSetUnburden(battlerDef);
+            #if B_KNOCK_OFF >= GEN_5
+            // Wild Pokemon cannot remove player items.
+            if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER || side == B_SIDE_OPPONENT)
+                && gBattleMons[gBattlerAttacker].hp != 0
+                && !(gBattleMons[gActiveBattler].status2 & STATUS2_SUBSTITUTE))
+            {
+                gLastUsedItem = gBattleMons[gActiveBattler].item;
+                gBattleMons[gActiveBattler].item = 0;
+                gBattleStruct->choicedMove[gActiveBattler] = 0;
+                CheckSetUnburden(gActiveBattler);
 
+                if (!IsItemConsumable(gLastUsedItem)) // This might be redundant, as stolen berries are not restored after battle.
+                    gBattleStruct->itemStolen[gBattlerPartyIndexes[gActiveBattler]].stolen = TRUE;
+                BtlController_EmitSetMonData(BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[gActiveBattler].item), &gBattleMons[gActiveBattler].item);
+                MarkBattlerForControllerExec(gActiveBattler);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_KnockedOff;
+            }
+            #else
+            gLastUsedItem = gBattleMons[gActiveBattler].item;
+            gBattleMons[gActiveBattler].item = 0;
+            gBattleStruct->choicedMove[gActiveBattler] = 0;
+            CheckSetUnburden(gActiveBattler);
+
+            gWishFutureKnock.knockedOffMons[side] |= gBitTable[gBattlerPartyIndexes[gActiveBattler]];
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_KnockedOff;
+            #endif
         }
         return TRUE;
     }

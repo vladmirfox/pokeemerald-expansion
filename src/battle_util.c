@@ -10120,3 +10120,48 @@ bool32 CanTargetBattler(u8 battlerAtk, u8 battlerDef, u16 move)
         return FALSE;   // Pokémon affected by Heal Block cannot target allies with Pollen Puff
     return TRUE;
 }
+
+// This is currently geared towards Knock Off and ignores some consumable items that should be restored after battle.
+bool32 IsItemConsumable(u16 itemId)
+{
+    u16 holdEffect = ItemId_GetHoldEffect(itemId);
+
+    switch (holdEffect)
+    { // Unsure about Absorb Bulb-type items, terrain seeds, Weakness/Blunder Policy, and Throat Spray.
+        case HOLD_EFFECT_RESTORE_HP:
+        case HOLD_EFFECT_CURE_PAR:
+        case HOLD_EFFECT_CURE_SLP:
+        case HOLD_EFFECT_CURE_PSN:
+        case HOLD_EFFECT_CURE_BRN:
+        case HOLD_EFFECT_CURE_FRZ:
+        case HOLD_EFFECT_RESTORE_PP:
+        case HOLD_EFFECT_CURE_CONFUSION:
+        case HOLD_EFFECT_CURE_STATUS:
+        case HOLD_EFFECT_CONFUSE_SPICY:
+        case HOLD_EFFECT_CONFUSE_DRY:
+        case HOLD_EFFECT_CONFUSE_SWEET:
+        case HOLD_EFFECT_CONFUSE_BITTER:
+        case HOLD_EFFECT_CONFUSE_SOUR:
+        case HOLD_EFFECT_ATTACK_UP:
+        case HOLD_EFFECT_DEFENSE_UP:
+        case HOLD_EFFECT_SPEED_UP:
+        case HOLD_EFFECT_SP_ATTACK_UP:
+        case HOLD_EFFECT_SP_DEFENSE_UP:
+        case HOLD_EFFECT_CRITICAL_UP:
+        case HOLD_EFFECT_RANDOM_STAT_UP:
+        case HOLD_EFFECT_EVASION_UP:
+        case HOLD_EFFECT_RESTORE_STATS:
+        case HOLD_EFFECT_MENTAL_HERB:
+        case HOLD_EFFECT_POWER_HERB:
+        case HOLD_EFFECT_RESIST_BERRY:
+        case HOLD_EFFECT_RESTORE_PCT_HP:
+        case HOLD_EFFECT_MICLE_BERRY:
+        case HOLD_EFFECT_CUSTAP_BERRY:
+        case HOLD_EFFECT_ROWAP_BERRY:
+        case HOLD_EFFECT_KEE_BERRY:
+        case HOLD_EFFECT_MARANGA_BERRY:
+        case HOLD_EFFECT_GEMS:
+            return TRUE;
+    }
+    return FALSE;
+}
