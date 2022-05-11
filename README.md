@@ -1,3 +1,5 @@
+# WIP EXPERIMENTAL - Based on Pokeemerald Expansion.
+
 # pokeemerald Expansion
 
 ## What is the pokeemerald Expansion?
