@@ -411,6 +411,25 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_BEAK_BLAST
 	.4byte BattleScript_EffectCourtChange             @ EFFECT_COURT_CHANGE
 	.4byte BattleScript_EffectSteelBeam               @ EFFECT_STEEL_BEAM
+	.4byte BattleScript_EffectShellTrap				  @ EFFECT_SHELL_TRAP
+
+BattleScript_ShellTrapSetUp::
+	printstring STRINGID_EMPTYSTRING3
+	waitmessage 0x1
+	playanimation BS_ATTACKER, B_ANIM_SHELL_TRAP_SETUP, NULL	
+	printstring STRINGID_PREPARESHELLTRAP
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
+BattleScript_EffectShellTrap::
+	attackcanceler
+	jumpifhitbyphys BattleScript_HitFromAccCheck
+	ppreduce
+	attackstring
+	waitmessage B_WAIT_TIME_LONG
+	printstring STRINGID_BUTITFAILED
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
 
 BattleScript_EffectSteelBeam::
 	attackcanceler

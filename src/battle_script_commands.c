@@ -9580,6 +9580,14 @@ static void Cmd_various(void)
     case VARIOUS_SWAP_SIDE_STATUSES:
         CourtChangeSwapSideStatuses();
         break;
+    case VARIOUS_JUMP_IF_HIT_BY_PHYS:
+        if (GetBattlerSide(gProtectStructs[gBattlerAttacker].physicalBattlerId) != GetBattlerSide(gBattlerAttacker)
+            && GetBattlerAbility(gProtectStructs[gBattlerAttacker].physicalBattlerId) != ABILITY_SHEER_FORCE
+            && gProtectStructs[gBattlerAttacker].physicalDmg)
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        else
+            gBattlescriptCurrInstr += 7;
+        return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;

@@ -2128,3 +2128,9 @@
 	.macro skydropyawn
 	various 0, VARIOUS_SKY_DROP_YAWN
 	.endm
+
+	@ Used by Shell Trap.
+	.macro jumpifhitbyphys ptr:req
+	various 0, VARIOUS_JUMP_IF_HIT_BY_PHYS
+	.4byte \ptr
+	.endm
