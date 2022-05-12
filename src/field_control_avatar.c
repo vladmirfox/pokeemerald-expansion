@@ -136,7 +136,7 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
         input->input_field_1_2 = TRUE;
         input->pressedStartButton = FALSE;
     }
-#endif
+#endif // DEBUGGING
 }
 
 int ProcessPlayerFieldInput(struct FieldInput *input)
@@ -203,7 +203,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         Debug_ShowMainMenu();
         return TRUE;
     }
-#endif
+#endif // DEBUGGING
 
     return FALSE;
 }

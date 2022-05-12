@@ -5,6 +5,6 @@
 
 void Debug_ShowMainMenu(void);
 
-#endif
+#endif // DEBUGGING
 
-#endif
+#endif // GUARD_DEBUG_H
