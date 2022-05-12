@@ -9839,7 +9839,7 @@ void TryRestoreStolenItems(void)
         if (gBattleStruct->itemStolen[i].stolen)
         {
             stolenItem = gBattleStruct->itemStolen[i].originalItem;
-            if (stolenItem != ITEM_NONE && ItemId_GetPocket(stolenItem) != POCKET_BERRIES)
+            if (stolenItem != ITEM_NONE && ShouldRestoreItem(stolenItem))
                 SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &stolenItem);  // Restore stolen non-berry items
         }
     }
@@ -10121,8 +10121,7 @@ bool32 CanTargetBattler(u8 battlerAtk, u8 battlerDef, u16 move)
     return TRUE;
 }
 
-// This is currently geared towards Knock Off and ignores some consumable items that should be restored after battle.
-bool32 IsItemConsumable(u16 itemId)
+bool32 ShouldRestoreItem(u16 itemId)
 {
     u16 holdEffect = ItemId_GetHoldEffect(itemId);
 

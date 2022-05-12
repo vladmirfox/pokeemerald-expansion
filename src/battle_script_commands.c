@@ -4974,8 +4974,7 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
                 gBattleStruct->choicedMove[gActiveBattler] = 0;
                 CheckSetUnburden(gActiveBattler);
 
-                if (!IsItemConsumable(gLastUsedItem)) // This might be redundant, as stolen berries are not restored after battle.
-                    gBattleStruct->itemStolen[gBattlerPartyIndexes[gActiveBattler]].stolen = TRUE;
+                gBattleStruct->itemStolen[gBattlerPartyIndexes[gActiveBattler]].stolen = TRUE;
                 BtlController_EmitSetMonData(BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[gActiveBattler].item), &gBattleMons[gActiveBattler].item);
                 MarkBattlerForControllerExec(gActiveBattler);
                 BattleScriptPushCursor();
