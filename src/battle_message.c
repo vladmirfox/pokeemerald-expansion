@@ -738,7 +738,7 @@ static const u8 sText_TargetTooHeavy[] = _("But the target\nwas too heavy!");
 static const u8 sText_MeteorBeamCharging[] = _("{B_ATK_NAME_WITH_PREFIX} is overflowing\nwith space energy!");
 static const u8 sText_HeatingUpBeak[] = _("{B_ATK_NAME_WITH_PREFIX} started\nheating up its beak!");
 static const u8 sText_CourtChange[] = _("{B_ATK_NAME_WITH_PREFIX} swapped the battle\neffects affecting each side!");
-static const u8 sText_IntroTutorial[] = _("BIRCH: Help!");
+static const u8 sText_IntroTutorial[] = _("BIRCH: Help!\p");
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
     [STRINGID_INTROTUTORIAL - BATTLESTRINGS_TABLE_START] = sText_IntroTutorial,

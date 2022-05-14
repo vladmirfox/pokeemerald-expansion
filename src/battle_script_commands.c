@@ -9593,7 +9593,6 @@ static void Cmd_various(void)
             break;
         case 2:
             PrepareStringBattle(STRINGID_INTROTUTORIAL, GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
-            gBattleCommunication[MSG_DISPLAY] = 1;
             gBattleCommunication[0]++;
             break;
         case 3:

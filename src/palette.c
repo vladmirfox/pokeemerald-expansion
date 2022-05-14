@@ -984,7 +984,7 @@ void BlendPalettesGradually(u32 selectedPalettes, s8 delay, u8 coeff, u8 coeffTa
 
 bool32 IsBlendPalettesGraduallyTaskActive(void)
 {
-    return (FuncIsActiveTask(Task_BlendPalettesGradually) != 0xFF);
+    return FuncIsActiveTask(Task_BlendPalettesGradually);
 }
 
 // Unused
