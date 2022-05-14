@@ -9580,6 +9580,39 @@ static void Cmd_various(void)
     case VARIOUS_SWAP_SIDE_STATUSES:
         CourtChangeSwapSideStatuses();
         break;
+    case VARIOUS_INTRO_TUTORIAL:
+        switch (gBattleCommunication[0])
+        {
+        case 0:
+            BlendPalettesGradually(0xFFFFFFFE, 4, 0, 8, RGB_BLACK, 0, 0);
+            gBattleCommunication[0]++;
+            break;
+        case 1:
+            if (!IsBlendPalettesGraduallyTaskActive())
+                gBattleCommunication[0]++;
+            break;
+        case 2:
+            PrepareStringBattle(STRINGID_INTROTUTORIAL, GetBattlerAtPosition(B_POSITION_PLAYER_LEFT));
+            gBattleCommunication[MSG_DISPLAY] = 1;
+            gBattleCommunication[0]++;
+            break;
+        case 3:
+            if (!IsBattlerMarkedForControllerExec(GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)))
+                gBattleCommunication[0]++;
+            break;
+        case 4:
+            BlendPalettesGradually(0xFFFFFFFE, 4, 8, 0, RGB_BLACK, 0, 0);
+            gBattleCommunication[0]++;
+            break;
+        case 5:
+            if (!IsBlendPalettesGraduallyTaskActive())
+                gBattleCommunication[0]++;
+            break;
+        case 6:
+            gBattlescriptCurrInstr += 3;
+            break;
+        }
+        return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;

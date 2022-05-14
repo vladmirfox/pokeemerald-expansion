@@ -9630,3 +9630,10 @@ BattleScript_MagicianActivates::
 	call BattleScript_AbilityPopUp
 	call BattleScript_ItemSteal
 	return
+
+BattleScript_IntroTutorial::
+	printstring STRINGID_EMPTYSTRING3
+	waitmessage 1
+	setbyte gBattleCommunication, 0
+	dotutorial
+	end2

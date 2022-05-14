@@ -982,18 +982,9 @@ void BlendPalettesGradually(u32 selectedPalettes, s8 delay, u8 coeff, u8 coeffTa
     gTasks[taskId].func(taskId);
 }
 
-// Unused
-static bool32 IsBlendPalettesGraduallyTaskActive(u8 id)
+bool32 IsBlendPalettesGraduallyTaskActive(void)
 {
-    int i;
-
-    for (i = 0; i < NUM_TASKS; i++)
-        if ((gTasks[i].isActive == TRUE)
-         && (gTasks[i].func == Task_BlendPalettesGradually)
-         && (gTasks[i].tId == id))
-            return TRUE;
-
-    return FALSE;
+    return (FuncIsActiveTask(Task_BlendPalettesGradually) != 0xFF);
 }
 
 // Unused

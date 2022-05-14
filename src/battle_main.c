@@ -3677,6 +3677,13 @@ static void TryDoEventsBeforeFirstTurn(void)
         if (ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, gBattlerByTurnOrder[gBattleStruct->switchInItemsCounter++], FALSE))
             return;
     }
+    
+    if (B_FIRST_BATTLE_TUTORIAL == TRUE && gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE && !gBattleStruct->tutorialDone)
+    {
+        gBattleStruct->tutorialDone = TRUE;
+        BattleScriptExecute(BattleScript_IntroTutorial);
+        return;
+    }
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {

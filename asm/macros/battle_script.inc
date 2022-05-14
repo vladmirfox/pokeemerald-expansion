@@ -1975,6 +1975,10 @@
 	.macro swapsidestatuses
 	various BS_ATTACKER, VARIOUS_SWAP_SIDE_STATUSES
 	.endm
+	
+	.macro dotutorial
+	various BS_ATTACKER, VARIOUS_INTRO_TUTORIAL
+	.endm
 
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req

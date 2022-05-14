@@ -562,8 +562,9 @@ struct BattleStruct
     } multiBuffer;
     u8 wishPerishSongState;
     u8 wishPerishSongBattlerId;
-    bool8 overworldWeatherDone;
-    bool8 terrainDone;
+    u8 overworldWeatherDone:1;
+    u8 terrainDone:1;
+    u8 tutorialDone:1;
     u8 atkCancellerTracker;
     struct BattleTvMovePoints tvMovePoints;
     struct BattleTv tv;
