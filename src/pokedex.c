@@ -3009,15 +3009,19 @@ void SpriteCB_MoveMonForInfoScreen(struct Sprite *sprite)
     sprite->y2 = 0;
     if (sprite->x != MON_PAGE_X || sprite->y != MON_PAGE_Y)
     {
-        if (sprite->x > MON_PAGE_X)
+        if (sprite->x > MON_PAGE_X) {
             sprite->x--;
-        if (sprite->x < MON_PAGE_X)
+        }
+        if (sprite->x < MON_PAGE_X) {
             sprite->x++;
+        }
 
-        if (sprite->y > MON_PAGE_Y)
+        if (sprite->y > MON_PAGE_Y) {
             sprite->y--;
-        if (sprite->y < MON_PAGE_Y)
+        }
+        if (sprite->y < MON_PAGE_Y) {
             sprite->y++;
+        }
     }
     else
     {
