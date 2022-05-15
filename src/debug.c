@@ -52,6 +52,7 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/species.h"
+#include "pokemon_debug.h"
 
 
 // *******************************
@@ -62,6 +63,7 @@ enum { // Main
     DEBUG_MENU_ITEM_FLAGS,
     DEBUG_MENU_ITEM_VARS,
     DEBUG_MENU_ITEM_GIVE,
+    DEBUG_MENU_ITEM_POKEMON_VIEWER,
     DEBUG_MENU_ITEM_SOUND,
     DEBUG_MENU_ITEM_ACCESS_PC,
     DEBUG_MENU_ITEM_CANCEL
@@ -176,6 +178,7 @@ void Debug_ShowMainMenu(void);
 static void Debug_DestroyMenu(u8);
 static void DebugAction_Cancel(u8);
 static void DebugAction_DestroyExtraWindow(u8 taskId);
+static void DebugAction_Pokemon(u8);
 
 static void DebugAction_Util_Script_1(u8);
 static void DebugAction_Util_Script_2(u8);
@@ -297,6 +300,7 @@ static const u8 gDebugText_Scripts[] =          _("Scripts");
 static const u8 gDebugText_Flags[] =            _("Flags");
 static const u8 gDebugText_Vars[] =             _("Variables");
 static const u8 gDebugText_Give[] =             _("Give X");
+static const u8 gDebugText_PokemonViewer[] =    _("Pokemon");
 static const u8 gDebugText_Sound[] =            _("Sound");
 static const u8 gDebugText_Cancel[] =           _("Cancel");
 // Script menu
@@ -421,14 +425,15 @@ static const s32 sPowersOfTen[] =
 // List Menu Items
 static const struct ListMenuItem sDebugMenu_Items_Main[] =
 {
-    [DEBUG_MENU_ITEM_UTILITIES]     = {gDebugText_Utilities,    DEBUG_MENU_ITEM_UTILITIES},
-    [DEBUG_MENU_ITEM_SCRIPTS]       = {gDebugText_Scripts,      DEBUG_MENU_ITEM_SCRIPTS},
-    [DEBUG_MENU_ITEM_FLAGS]         = {gDebugText_Flags,        DEBUG_MENU_ITEM_FLAGS},
-    [DEBUG_MENU_ITEM_VARS]          = {gDebugText_Vars,         DEBUG_MENU_ITEM_VARS},
-    [DEBUG_MENU_ITEM_GIVE]          = {gDebugText_Give,         DEBUG_MENU_ITEM_GIVE},
-    [DEBUG_MENU_ITEM_SOUND]         = {gDebugText_Sound,        DEBUG_MENU_ITEM_SOUND},
-    [DEBUG_MENU_ITEM_ACCESS_PC]     = {gDebugText_AccessPC,     DEBUG_MENU_ITEM_ACCESS_PC},
-    [DEBUG_MENU_ITEM_CANCEL]        = {gDebugText_Cancel,       DEBUG_MENU_ITEM_CANCEL}
+    [DEBUG_MENU_ITEM_UTILITIES]      = {gDebugText_Utilities,     DEBUG_MENU_ITEM_UTILITIES},
+    [DEBUG_MENU_ITEM_SCRIPTS]        = {gDebugText_Scripts,       DEBUG_MENU_ITEM_SCRIPTS},
+    [DEBUG_MENU_ITEM_FLAGS]          = {gDebugText_Flags,         DEBUG_MENU_ITEM_FLAGS},
+    [DEBUG_MENU_ITEM_VARS]           = {gDebugText_Vars,          DEBUG_MENU_ITEM_VARS},
+    [DEBUG_MENU_ITEM_GIVE]           = {gDebugText_Give,          DEBUG_MENU_ITEM_GIVE},
+    [DEBUG_MENU_ITEM_POKEMON_VIEWER] = {gDebugText_PokemonViewer, DEBUG_MENU_ITEM_POKEMON_VIEWER},
+    [DEBUG_MENU_ITEM_SOUND]          = {gDebugText_Sound,         DEBUG_MENU_ITEM_SOUND},
+    [DEBUG_MENU_ITEM_ACCESS_PC]      = {gDebugText_AccessPC,      DEBUG_MENU_ITEM_ACCESS_PC},
+    [DEBUG_MENU_ITEM_CANCEL]         = {gDebugText_Cancel,        DEBUG_MENU_ITEM_CANCEL}
 };
 static const struct ListMenuItem sDebugMenu_Items_Utilities[] =
 {
@@ -498,14 +503,15 @@ static const struct ListMenuItem sDebugMenu_Items_Sound[] =
 // Menu Actions
 static void (*const sDebugMenu_Actions_Main[])(u8) =
 {
-    [DEBUG_MENU_ITEM_UTILITIES]     = DebugAction_OpenUtilitiesMenu,
-    [DEBUG_MENU_ITEM_SCRIPTS]       = DebugAction_OpenScriptsMenu,
-    [DEBUG_MENU_ITEM_FLAGS]         = DebugAction_OpenFlagsMenu,
-    [DEBUG_MENU_ITEM_VARS]          = DebugAction_OpenVariablesMenu,
-    [DEBUG_MENU_ITEM_GIVE]          = DebugAction_OpenGiveMenu,
-    [DEBUG_MENU_ITEM_SOUND]         = DebugAction_OpenSoundMenu,
-    [DEBUG_MENU_ITEM_ACCESS_PC]     = DebugAction_AccessPC,
-    [DEBUG_MENU_ITEM_CANCEL]        = DebugAction_Cancel
+    [DEBUG_MENU_ITEM_UTILITIES]      = DebugAction_OpenUtilitiesMenu,
+    [DEBUG_MENU_ITEM_SCRIPTS]        = DebugAction_OpenScriptsMenu,
+    [DEBUG_MENU_ITEM_FLAGS]          = DebugAction_OpenFlagsMenu,
+    [DEBUG_MENU_ITEM_VARS]           = DebugAction_OpenVariablesMenu,
+    [DEBUG_MENU_ITEM_GIVE]           = DebugAction_OpenGiveMenu,
+    [DEBUG_MENU_ITEM_POKEMON_VIEWER] = DebugAction_Pokemon,
+    [DEBUG_MENU_ITEM_SOUND]          = DebugAction_OpenSoundMenu,
+    [DEBUG_MENU_ITEM_ACCESS_PC]      = DebugAction_AccessPC,
+    [DEBUG_MENU_ITEM_CANCEL]         = DebugAction_Cancel
 };
 static void (*const sDebugMenu_Actions_Utilities[])(u8) =
 {
@@ -3642,3 +3648,9 @@ static void DebugTask_HandleMenuInput(u8 taskId, void (*HandleInput)(u8))
 }
 */
 
+static void DebugAction_Pokemon (u8 taskId) {
+    if (!gPaletteFade.active) {
+        CleanupOverworldWindowsAndTilemaps();
+        SetMainCallback2(CB2_Debug_Pokemon);
+    }
+}

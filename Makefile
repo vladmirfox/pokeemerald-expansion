@@ -309,6 +309,7 @@ endif
 ifeq ($(DEBUGMODE), 1)
 	override ASFLAGS += --defsym DEBUGGING=1
 	override CPPFLAGS += -D DEBUGGING=1
+	override CPPFLAGS += -D TX_DEBUGGING=1
 endif
 
 # The dep rules have to be explicit or else missing files won't be reported.

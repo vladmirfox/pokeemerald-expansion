@@ -476,7 +476,7 @@ const struct MonCoords gMonFrontPicCoords[] =
     },
     [SPECIES_GENGAR] =
     {
-        .size = MON_COORDS_SIZE(56, 56),
+        .size = MON_COORDS_SIZE(64, 64),
         .y_offset = 7,
     },
     [SPECIES_ONIX] =

@@ -60,6 +60,7 @@ struct Weather
     bool8 weatherChangeComplete;
     u8 weatherPicSpritePalIndex;
     u8 altGammaSpritePalIndex;
+
     // Rain
     u16 rainSpriteVisibleCounter;
     u8 curRainSpriteIndex;
@@ -69,11 +70,19 @@ struct Weather
     u8 isDownpour;
     u8 rainStrength;
     u8 cloudSpritesCreated;
+
     // Snow
     u16 snowflakeVisibleCounter;
+    /**
+     * The amount of time (in frames? ms?) before a new snow sprite is created.
+     */
     u16 snowflakeTimer;
     u8 snowflakeSpriteCount;
+    /**
+     * The amount of snow sprites that will be drawn to the screen at once. 
+     */
     u8 targetSnowflakeSpriteCount;
+
     // Thunderstorm
     u16 thunderDelay;
     u16 thunderCounter;
@@ -81,6 +90,7 @@ struct Weather
     bool8 thunderSkipShort;
     u8 thunderShortRetries;
     bool8 thunderTriggered;
+
     // Horizontal fog
     u16 fogHScrollPosX;
     u16 fogHScrollCounter;
@@ -88,10 +98,12 @@ struct Weather
     u8 lightenedFogSpritePals[6];
     u8 lightenedFogSpritePalsCount;
     u8 fogHSpritesCreated;
+
     // Ash
     u16 ashBaseSpritesX;
     u16 ashUnused;
     u8 ashSpritesCreated;
+
     // Sandstorm
     u32 sandstormXOffset;
     u32 sandstormYOffset;
@@ -102,6 +114,7 @@ struct Weather
     u16 sandstormWaveCounter;
     u8 sandstormSpritesCreated;
     u8 sandstormSwirlSpritesCreated;
+
     // Diagonal fog
     u16 fogDBaseSpritesX;
     u16 fogDPosY;
@@ -110,6 +123,7 @@ struct Weather
     u16 fogDXOffset;
     u16 fogDYOffset;
     u8 fogDSpritesCreated;
+
     // Bubbles
     u16 bubblesDelayCounter;
     u16 bubblesDelayIndex;
@@ -124,6 +138,7 @@ struct Weather
     u8 blendUpdateCounter;
     u8 blendFrameCounter;
     u8 blendDelay;
+
     // Drought
     s16 droughtBrightnessStage;
     s16 droughtLastBrightnessStage;
