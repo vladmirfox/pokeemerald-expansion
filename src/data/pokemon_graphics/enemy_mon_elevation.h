@@ -73,6 +73,7 @@ const u8 gEnemyMonElevation[NUM_SPECIES] =
     [SPECIES_GLISCOR] = 9,
     [SPECIES_PORYGON_Z] = 12,
     [SPECIES_PROBOPASS] = 6,
+    [SPECIES_FROSLASS] = 13,
     [SPECIES_ROTOM] = 10,
     [SPECIES_UXIE] = 6,
     [SPECIES_MESPRIT] = 6,
