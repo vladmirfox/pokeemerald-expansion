@@ -1,16 +1,22 @@
 @ Interact with cuttable tree
 EventScript_CutTree::
 	lockall
-	goto_if_unset FLAG_BADGE01_GET, EventScript_CheckTreeCantCut
-	checkpartymove MOVE_CUT
-	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CheckTreeCantCut
-	setfieldeffectargument 0, VAR_RESULT
-	bufferpartymonnick STR_VAR_1, VAR_RESULT
+	@ goto_if_unset FLAG_BADGE01_GET, EventScript_CheckTreeCantCut
+
+	checkitem ITEM_HM01, 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_CheckTreeCantCut
+
+	setfieldeffectargument 0, 0
+	bufferpartymonnick STR_VAR_1, 0
 	buffermovename STR_VAR_2, MOVE_CUT
+
 	msgbox Text_WantToCut, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, EventScript_CancelCut
+
 	msgbox Text_MonUsedFieldMove, MSGBOX_DEFAULT
 	closemessage
+	
 	dofieldeffect FLDEFF_USE_CUT_ON_TREE
 	waitstate
 	goto EventScript_CutTreeDown
