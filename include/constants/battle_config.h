@@ -108,17 +108,17 @@
 // Exp and stat settings
 #define B_EXP_CATCH                 GEN_7 // In Gen6+, Pokémon get experience from catching.
 #define B_TRAINER_EXP_MULTIPLIER    GEN_7 // In Gen7+, trainer battles no longer give a 1.5 multiplier to EXP gain.
-#define B_SPLIT_EXP                 GEN_7 // In Gen6+, all participating mon get full experience.
+#define B_SPLIT_EXP                 GEN_3 // In Gen6+, all participating mon get full experience.
 #define B_SCALED_EXP                GEN_7 // In Gen5 and Gen7+, experience is weighted by level difference.
 #define B_BADGE_BOOST               GEN_7 // In Gen4+, Gym Badges no longer boost a Pokémon's stats.
 #define B_MAX_LEVEL_EV_GAINS        GEN_7 // In Gen5+, Lv100 Pokémon can obtain Effort Values normally.
 #define B_RECALCULATE_STATS         GEN_7 // In Gen5+, the stats of the Pokémon who participate in battle are recalculated at the end of each battle.
 
 // Damage settings
-#define B_BURN_DAMAGE               GEN_7 // In Gen7+, burn damage is 1/16th of max HP instead of 1/8th.
+#define B_BURN_DAMAGE               GEN_5 // In Gen7+, burn damage is 1/16th of max HP instead of 1/8th.
 #define B_BINDING_DAMAGE            GEN_7 // In Gen6+, binding damage is 1/8 of max HP instead of 1/16. (With Binding Band, 1/6 and 1/8 respectively.)
 #define B_PSYWAVE_DMG               GEN_7 // Psywave's damage formula. See Cmd_psywavedamageeffect.
-#define B_PAYBACK_SWITCH_BOOST      GEN_7 // In Gen5+, if the opponent switches out, Payback's damage will no longer be doubled.
+#define B_PAYBACK_SWITCH_BOOST      GEN_4 // In Gen5+, if the opponent switches out, Payback's damage will no longer be doubled.
 #define B_HIDDEN_POWER_DMG          GEN_7 // In Gen6+, Hidden Power's base power was set to always be 60. Before, it was determined by the mon's IVs.
 #define B_ROUGH_SKIN_DMG            GEN_7 // In Gen4+, Rough Skin contact damage is 1/8th of max HP instead of 1/16th. This will also affect Iron Barbs.
 #define B_KNOCK_OFF_DMG             GEN_8 // In Gen6+, Knock Off deals 50% more damage when knocking off an item.
@@ -126,11 +126,11 @@
 
 // Type settings
 #define B_GHOSTS_ESCAPE             GEN_7 // In Gen6+, abilities like Shadow Tag or moves like Mean Look fail on Ghost-type Pokémon. They can also escape any Wild Battle.
-#define B_PARALYZE_ELECTRIC         GEN_7 // In Gen6+, Electric-type Pokémon can't be paralyzed.
+#define B_PARALYZE_ELECTRIC         GEN_5 // In Gen6+, Electric-type Pokémon can't be paralyzed.
 #define B_POWDER_GRASS              GEN_7 // In Gen6+, Grass-type Pokémon are immune to powder and spore moves.
-#define B_STEEL_RESISTANCES         GEN_7 // In Gen6+, Steel-type Pokémon are no longer resistant to Dark-type and Ghost-type moves.
-#define B_PRANKSTER_DARK_TYPES      GEN_7 // In Gen7+, Prankster-elevated status moves do not affect Dark type Pokémon.
-#define B_SHEER_COLD_IMMUNITY       GEN_7 // In Gen7+, Ice-types are immune to Sheer Cold
+// -remove #define B_STEEL_RESISTANCES         GEN_7 // In Gen6+, Steel-type Pokémon are no longer resistant to Dark-type and Ghost-type moves.
+#define B_PRANKSTER_DARK_TYPES      GEN_5 // In Gen7+, Prankster-elevated status moves do not affect Dark type Pokémon.
+#define B_SHEER_COLD_IMMUNITY       GEN_7 // In Gen7+, Ice-types are immune to Sheer Cold // TODO: Remove as Sheer Cold is now a damaging move.
 
 // Turn settings
 #define B_BINDING_TURNS             GEN_7 // In Gen5+, binding moves last for 4-5 turns instead of 2-5 turns. (With Grip Claw, 7 and 5 turns respectively.)
@@ -144,17 +144,17 @@
 #define B_RECALC_TURN_AFTER_ACTIONS GEN_8 // In Gen8, switching/using a move affects the current turn's order of actions.
 
 // Move data settings
-#define B_UPDATED_MOVE_DATA         GEN_8 // Updates move data in gBattleMoves, including Power, Accuracy, PP, stat changes, targets, chances of secondary effects, etc.
+#define B_UPDATED_MOVE_DATA         GEN_8 // Updates move data in gBattleMoves, including Power, Accuracy, PP, stat changes, targets, chances of secondary effects, etc. //TODO: Remove this as we are gonna remade some moves.
 #define B_PHYSICAL_SPECIAL_SPLIT    GEN_7 // In Gen3, the move's type determines if it will do physical or special damage. The split icon in the summary will reflect this.
 #define B_FELL_STINGER_STAT_RAISE   GEN_7 // In Gen7+, it raises Atk by 3 stages instead of 2 if it causes the target to faint.
 #define B_KINGS_SHIELD_LOWER_ATK    GEN_7 // In Gen7+, it lowers Atk by 1 stage instead of 2 of oponents that hit it.
 #define B_SPEED_BUFFING_RAPID_SPIN  GEN_8 // In Gen8, Rapid Spin raises the user's Speed by 1 stage.
-#define B_RECOIL_IF_MISS_DMG        GEN_7 // In Gen5+, Jump Kick and High Jump Kick will always do half of the user's max HP when missing.
+#define B_RECOIL_IF_MISS_DMG        GEN_7 // In Gen5+, Jump Kick and High Jump Kick will always do half of the user's max HP when missing. // TODO: Jump Kick should be 1/4th.
 #define B_KLUTZ_FLING_INTERACTION   GEN_7 // In Gen5+, Pokémon with the Klutz ability can't use Fling.
 #define B_UPDATED_CONVERSION        GEN_7 // In Gen6+, Conversion changes the user's type to match their first move's. Before, it would choose a move at random.
 
 // Move accuracy settings
-#define B_TOXIC_NEVER_MISS          GEN_7 // In Gen6+, if Toxic is used by a Poison-type Pokémon, it will never miss.
+#define B_TOXIC_NEVER_MISS          GEN_7 // In Gen6+, if Toxic is used by a Poison-type Pokémon, it will never miss. // TODO: It never misses, in general.
 #define B_MINIMIZE_DMG_ACC          GEN_7 // In Gen6+, moves that causes double damage to minimized Pokémon will also skip accuracy checks.
 #define B_BLIZZARD_HAIL             GEN_7 // In Gen4+, Blizzard bypasses accuracy checks if it's hailing.
 
@@ -167,26 +167,26 @@
 #define B_MEMENTO_FAIL              GEN_7 // In Gen4+, Memento fails if there is no target or if the target is protected or behind substitute. But not if Atk/Sp. Atk are at -6.
 #define B_GLARE_GHOST               GEN_7 // In Gen4+, Glare can hit Ghost-type Pokémon normally.
 #define B_SKILL_SWAP                GEN_7 // In Gen4+, Skill Swap triggers switch-in abilities after use.
-#define B_BRICK_BREAK               GEN_7 // In Gen4+, you can destroy your own side's screens. In Gen 5+, screens are not removed if the target is immune.
+#define B_BRICK_BREAK               GEN_4 // In Gen4+, you can destroy your own side's screens. In Gen 5+, screens are not removed if the target is immune.
 #define B_WISH_HP_SOURCE            GEN_7 // In Gen5+, Wish heals half of the user's max HP instead of the target's.
 #define B_RAMPAGE_CANCELLING        GEN_7 // In Gen5+, a failed Thrash, etc, will cancel except on its last turn.
 
 // Ability settings
 #define B_EXPANDED_ABILITY_NAMES    TRUE  // If TRUE, ability names are increased from 12 characters to 16 characters.
 #define B_ABILITY_WEATHER           GEN_7 // In Gen6+, ability-induced weather lasts 5 turns. Before, it lasted until the battle ended or until it was changed by a move or a different weather-affecting ability.
-#define B_GALE_WINGS                GEN_7 // In Gen7+ requires full HP to trigger.
+#define B_GALE_WINGS                GEN_7 // In Gen7+ requires full HP to trigger. // TODO: Maybe this nerf is not necessary here.
 #define B_STANCE_CHANGE_FAIL        GEN_7 // In Gen7+, Stance Change fails if the Pokémon is unable to use a move because of confusion, paralysis, etc. In Gen6, it doesn't.
 #define B_SHADOW_TAG_ESCAPE         GEN_7 // In Gen4+, if both sides have a Pokémon with Shadow Tag, all battlers can escape. Before, neither side could escape this situation.
 #define B_MOODY_ACC_EVASION         GEN_8 // In Gen8, Moody CANNOT raise Accuracy and Evasion anymore.
 #define B_FLASH_FIRE_FROZEN         GEN_7 // In Gen5+, Flash Fire can trigger even when frozen, when it couldn't before.
-#define B_SYNCHRONIZE_NATURE        GEN_8 // In Gen8, if a Pokémon with Synchronize is leading the party, it's 100% guaranteed that wild Pokémon will have the same ability, as opposed to 50% previously.
+#define B_SYNCHRONIZE_NATURE        GEN_8 // In Gen8, if a Pokémon with Synchronize is leading the party, it's 100% guaranteed that wild Pokémon will have the same nature, as opposed to 50% previously.
 #define B_SYNCHRONIZE_TOXIC         GEN_8 // In Gen5+, if a Pokémon with Synchronize is badly poisoned, the opponent will also become badly poisoned. Previously, the opponent would become regular poisoned.
 #define B_UPDATED_INTIMIDATE        GEN_8 // In Gen8, Intimidate doesn't work on opponents with the Inner Focus, Scrappy, Own Tempo or Oblivious abilities.
 
 // Item settings
 #define B_HP_BERRIES                GEN_7 // In Gen4+, berries which restore hp activate immediately after HP drops to half. In Gen3, the effect occurs at the end of the turn.
 #define B_BERRIES_INSTANT           GEN_7 // In Gen4+, most berries activate on battle start/switch-in if applicable. In Gen3, they only activate either at the move end or turn end.
-#define B_X_ITEMS_BUFF              GEN_7 // In Gen7+, the X Items raise a stat by 2 stages instead of 1.
+#define B_X_ITEMS_BUFF              GEN_7 // In Gen7+, the X Items raise a stat by 2 stages instead of 1. // TODO: Probably irrelevant as they can only be used against Wild Pokémon.
 #define B_MENTAL_HERB               GEN_5 // In Gen5+, the Mental Herb cures Infatuation, Taunt, Encore, Torment, Heal Block, and Disable
 #define B_TRAINERS_KNOCK_OFF_ITEMS  TRUE  // If TRUE, trainers can steal/swap your items (non-berries are restored after battle). In vanilla games trainers cannot steal items.
 #define B_SOUL_DEW_BOOST            GEN_7 // In Gens3-6, Soul Dew boosts Lati@s' Sp. Atk and Sp. Def. In Gen7+ it boosts the power of their Psychic and Dragon type moves instead.
@@ -201,7 +201,7 @@
 #define B_HEAVY_BALL_MODIFIER       GEN_7 // In Gen7+, Heavy Ball's ranges change. See Cmd_handleballthrow.
 #define B_DREAM_BALL_MODIFIER       GEN_8 // In Gen8, Dream Ball's catch multiplier is x4 when the target is asleep or has the ability Comatose.
 #define B_SERENE_GRACE_BOOST        GEN_7 // In Gen5+, Serene Grace boosts the added flinch chance of King's Rock and Razor Fang.
-#define B_LEEK_ALWAYS_CRIT          GEN_7 // In Gen6+, if a Farfetch'd or Sirfetch'd holding a Leek use a move with increased Critical Hit ratio, it will always result in a Critical Hit.
+#define B_LEEK_ALWAYS_CRIT          GEN_7 // In Gen6+, if a Farfetch'd or Sirfetch'd holding a Leek use a move with increased Critical Hit ratio, it will always result in a Critical Hit. // TODO: Crit rework.
 
 // Flag settings
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.
