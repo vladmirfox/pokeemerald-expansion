@@ -1729,3 +1729,23 @@ gTilesetPalettes_UnionRoom::
 	.align 2
 gTilesetTiles_UnionRoom::
 	.incbin "data/tilesets/secondary/union_room/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_Petalburg_Extended::
+	.incbin "data/tilesets/secondary/petalburg_extended/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/petalburg_extended/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/petalburg_extended/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/petalburg_extended/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/petalburg_extended/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/petalburg_extended/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/petalburg_extended/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/petalburg_extended/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/petalburg_extended/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/petalburg_extended/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/petalburg_extended/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/petalburg_extended/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/petalburg_extended/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_Petalburg_Extended::
+	.incbin "data/tilesets/secondary/petalburg_extended/tiles.4bpp.lz"

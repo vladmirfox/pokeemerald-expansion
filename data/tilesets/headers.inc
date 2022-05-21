@@ -830,3 +830,14 @@ gTileset_UnionRoom::
 	.4byte gMetatiles_UnionRoom
 	.4byte gMetatileAttributes_UnionRoom
 	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_Petalburg_Extended::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_Petalburg_Extended
+	.4byte gTilesetPalettes_Petalburg_Extended
+	.4byte gMetatiles_Petalburg_Extended
+	.4byte gMetatileAttributes_Petalburg_Extended
+	.4byte NULL

@@ -557,3 +557,11 @@ gMetatiles_UnionRoom::
 	.align 1
 gMetatileAttributes_UnionRoom::
 	.incbin "data/tilesets/secondary/union_room/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_Petalburg_Extended::
+	.incbin "data/tilesets/secondary/petalburg_extended/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Petalburg_Extended::
+	.incbin "data/tilesets/secondary/petalburg_extended/metatile_attributes.bin"
