@@ -29,6 +29,8 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
+#define POKEMON_SELECTION_JUMP 50
+
 enum
 {
     PAGE_MAIN,
@@ -2611,8 +2613,10 @@ static u16 TryDoPokedexScroll(u16 selectedMon, u16 ignored)
     {
         startingPos = selectedMon;
 
-        for (i = 0; i < 7; i++)
+        for (i = 0; i < POKEMON_SELECTION_JUMP; i++) {
             selectedMon = GetNextPosition(1, selectedMon, 0, sPokedexView->pokemonListCount - 1);
+        }
+
         sPokedexView->pokeBallRotation += 16 * (selectedMon - startingPos);
         ClearMonSprites();
         CreateMonSpritesAtPos(selectedMon, 0xE);
@@ -2621,8 +2625,10 @@ static u16 TryDoPokedexScroll(u16 selectedMon, u16 ignored)
     else if (JOY_NEW(DPAD_RIGHT) && (selectedMon < sPokedexView->pokemonListCount - 1))
     {
         startingPos = selectedMon;
-        for (i = 0; i < 7; i++)
+        for (i = 0; i < POKEMON_SELECTION_JUMP; i++) {
             selectedMon = GetNextPosition(0, selectedMon, 0, sPokedexView->pokemonListCount - 1);
+        }
+        
         sPokedexView->pokeBallRotation += 16 * (selectedMon - startingPos);
         ClearMonSprites();
         CreateMonSpritesAtPos(selectedMon, 0xE);
