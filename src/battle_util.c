@@ -4382,14 +4382,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                                       / gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_SPDEF]][1];
                     }
                 }
+                
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                if (opposingDef == 0 && opposingSpDef == 0)
+                    break; // If no opposing battlers out -> dont activate
 
                 if (opposingDef < opposingSpDef)
                     statId = STAT_ATK;
                 else
                     statId = STAT_SPATK;
-
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-
                 if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
                     gBattleMons[battler].statStages[statId]++;
