@@ -29,6 +29,7 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
+// The amount of Pokémon skipped at once when pressing left / right in the Pokémon list.
 #define POKEMON_SELECTION_JUMP 50
 
 enum
@@ -2628,7 +2629,7 @@ static u16 TryDoPokedexScroll(u16 selectedMon, u16 ignored)
         for (i = 0; i < POKEMON_SELECTION_JUMP; i++) {
             selectedMon = GetNextPosition(0, selectedMon, 0, sPokedexView->pokemonListCount - 1);
         }
-        
+
         sPokedexView->pokeBallRotation += 16 * (selectedMon - startingPos);
         ClearMonSprites();
         CreateMonSpritesAtPos(selectedMon, 0xE);

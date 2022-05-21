@@ -4625,7 +4625,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score += 2;
         break;
     case EFFECT_FACADE:
-        if (gBattleMons[battlerAtk].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON))
+        if (gBattleMons[battlerAtk].status1 & STATUS1_ANY)
             score++;
         break;
     case EFFECT_FOCUS_PUNCH:

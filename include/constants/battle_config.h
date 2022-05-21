@@ -130,7 +130,7 @@
 #define B_POWDER_GRASS              GEN_7 // In Gen6+, Grass-type Pokémon are immune to powder and spore moves.
 // -remove #define B_STEEL_RESISTANCES         GEN_7 // In Gen6+, Steel-type Pokémon are no longer resistant to Dark-type and Ghost-type moves.
 #define B_PRANKSTER_DARK_TYPES      GEN_5 // In Gen7+, Prankster-elevated status moves do not affect Dark type Pokémon.
-#define B_SHEER_COLD_IMMUNITY       GEN_7 // In Gen7+, Ice-types are immune to Sheer Cold // TODO: Remove as Sheer Cold is now a damaging move.
+#define B_SHEER_COLD_IMMUNITY       GEN_7 // In Gen7+, Ice-types are immune to Sheer Cold // TODO: Remove as Sheer Cold only affects weak types.
 
 // Turn settings
 #define B_BINDING_TURNS             GEN_7 // In Gen5+, binding moves last for 4-5 turns instead of 2-5 turns. (With Grip Claw, 7 and 5 turns respectively.)
@@ -154,7 +154,7 @@
 #define B_UPDATED_CONVERSION        GEN_7 // In Gen6+, Conversion changes the user's type to match their first move's. Before, it would choose a move at random.
 
 // Move accuracy settings
-#define B_TOXIC_NEVER_MISS          GEN_7 // In Gen6+, if Toxic is used by a Poison-type Pokémon, it will never miss. // TODO: It never misses, in general.
+#define B_TOXIC_NEVER_MISS          GEN_7 // In Gen6+, if Toxic is used by a Poison-type Pokémon, it will never miss.
 #define B_MINIMIZE_DMG_ACC          GEN_7 // In Gen6+, moves that causes double damage to minimized Pokémon will also skip accuracy checks.
 #define B_BLIZZARD_HAIL             GEN_7 // In Gen4+, Blizzard bypasses accuracy checks if it's hailing.
 
