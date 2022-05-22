@@ -17,11 +17,12 @@
 
 #define ENGLISH
 
-#ifdef ENGLISH
-#define UNITS_IMPERIAL
-#else
+//#ifdef ENGLISH
+//#define UNITS_IMPERIAL
+//#else
+//#define UNITS_METRIC
+//#endif
 #define UNITS_METRIC
-#endif
 
 // Uncomment to fix some identified minor bugs
 //#define BUGFIX
@@ -33,5 +34,9 @@
 #define UBFIX
 #endif
 #endif
+
+// Kaisa's configuration
+#define CONF_FIRST_BATTLE_SPECIES  SPECIES_POOCHYENA
+#define CONF_FIRST_BATTLE_LEVEL    4
 
 #endif // GUARD_CONFIG_H

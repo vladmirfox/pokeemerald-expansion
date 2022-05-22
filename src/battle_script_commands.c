@@ -12116,7 +12116,20 @@ static void Cmd_recoverbasedonsunlight(void)
     gBattlerTarget = gBattlerAttacker;
     if (gBattleMons[gBattlerAttacker].hp != gBattleMons[gBattlerAttacker].maxHP)
     {
-        if (gCurrentMove == MOVE_SHORE_UP)
+        if (gCurrentMove == MOVE_SYNTHESIS) {
+            if (WEATHER_HAS_EFFECT) {
+                if (gBattleWeather & B_WEATHER_SUN) {
+                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP;
+                }
+                else {
+                    gBattleMoveDamage == 0;
+                }
+            }
+            else {
+                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 2;
+            }
+        }
+        else if (gCurrentMove == MOVE_SHORE_UP)
         {
             if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM)
                 gBattleMoveDamage = 20 * gBattleMons[gBattlerAttacker].maxHP / 30;
@@ -12133,8 +12146,9 @@ static void Cmd_recoverbasedonsunlight(void)
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
         }
 
-        if (gBattleMoveDamage == 0)
+        if (gBattleMoveDamage == 0) {
             gBattleMoveDamage = 1;
+        }
         gBattleMoveDamage *= -1;
 
         gBattlescriptCurrInstr += 5;
