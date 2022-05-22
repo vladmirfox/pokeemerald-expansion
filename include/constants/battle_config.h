@@ -98,12 +98,24 @@
     #define GEN_8 5
 #endif
 
+#ifndef KAISA
+    #define KAISA   0 // Use the mechanics applied by Kaisa's Emerald.
+    #define VANILLA 1 // Use the mechanics present in vanilla games.
+#endif
+
 // Calculation settings
-#define B_CRIT_CHANCE               GEN_7 // Chances of a critical hit landing. See CalcCritChanceStage.
-#define B_CRIT_MULTIPLIER           GEN_7 // In Gen6+, critical hits multiply damage by 1.5 instead of 2.
-#define B_PARALYSIS_SPEED           GEN_7 // In Gen7+, Speed is decreased by 50% instead of 75%.
-#define B_CONFUSION_SELF_DMG_CHANCE GEN_7 // In Gen7+, confusion has a 33.3% of self-damage, instead of 50%.
-#define B_MULTI_HIT_CHANCE          GEN_7 // In Gen5+, multi-hit moves have different %. See Cmd_setmultihitcounter for values.
+#define B_STAB_OR_INCOMPATIBILITY       KAISA // VANILLA multiplies Power from compatible types by 1.5. KAISA multiplies incompatible types by 0.75 instead.
+#define B_RANDOM_FACTOR                 FALSE // If true, multiplies the damage of a move in combat by a random number between 0.85 and 1.
+#define B_DEFAULT_CRIT_CHANCE              10 // A number, between 0 and 100, that defines the base probability (in %) of getting a critical strike.
+#define B_CRIT_MULTIPLIER                 1.5 // In Gen6+, critical hits multiply damage by 1.5 instead of 2.
+#define B_INCOMPATIBILITY_MULTIPLIER     0.75 // The multiplier to apply to a move that has an incompatibility penalty.
+#define B_MOVE_MULTI_TARGET_MULTIPLIER   0.75 // The multiplier to apply to moves when they target more than one Pokémon.
+
+
+#define B_CRIT_CHANCE                   GEN_7 // Chances of a critical hit landing. See CalcCritChanceStage.
+#define B_PARALYSIS_SPEED               GEN_7 // In Gen7+, Speed is decreased by 50% instead of 75%.
+#define B_CONFUSION_SELF_DMG_CHANCE     GEN_7 // In Gen7+, confusion has a 33.3% of self-damage, instead of 50%.
+#define B_MULTI_HIT_CHANCE              GEN_7 // In Gen5+, multi-hit moves have different %. See Cmd_setmultihitcounter for values.
 
 // Exp and stat settings
 #define B_EXP_CATCH                 GEN_7 // In Gen6+, Pokémon get experience from catching.
@@ -201,7 +213,7 @@
 #define B_HEAVY_BALL_MODIFIER       GEN_7 // In Gen7+, Heavy Ball's ranges change. See Cmd_handleballthrow.
 #define B_DREAM_BALL_MODIFIER       GEN_8 // In Gen8, Dream Ball's catch multiplier is x4 when the target is asleep or has the ability Comatose.
 #define B_SERENE_GRACE_BOOST        GEN_7 // In Gen5+, Serene Grace boosts the added flinch chance of King's Rock and Razor Fang.
-#define B_LEEK_ALWAYS_CRIT          GEN_7 // In Gen6+, if a Farfetch'd or Sirfetch'd holding a Leek use a move with increased Critical Hit ratio, it will always result in a Critical Hit. // TODO: Crit rework.
+#define B_LEEK_ALWAYS_CRIT          GEN_7 // In Gen6+, if a Farfetch'd or Sirfetch'd holding a Leek use a move with increased Critical Hit ratio, it will always result in a Critical Hit. // TODO: Crit rework - remove.
 
 // Flag settings
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.
@@ -237,7 +249,7 @@
 #define B_SEMI_INVULNERABLE_CATCH   GEN_7    // In Gen4+, you cannot throw a ball against a Pokemon that is in a semi-invulnerable state (dig/fly/etc)
 #define B_CATCHING_CHARM_BOOST      20       // % boost in Critical Capture odds if player has the Catching Charm.
 #define B_CRITICAL_CAPTURE          TRUE     // If set to TRUE, Critical Capture will be enabled.
-#define B_LAST_USED_BALL            TRUE     // If TRUE, the "last used ball" feature from Gen 7 will be implemented
+#define B_LAST_USED_BALL            FALSE    // If TRUE, the "last used ball" feature from Gen 7 will be implemented
 #define B_LAST_USED_BALL_BUTTON     R_BUTTON // If last used ball is implemented, this button (or button combo) will trigger throwing the last used ball.
 
 // Other settings

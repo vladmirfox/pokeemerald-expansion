@@ -1118,17 +1118,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_PHYSICAL,
     },
 
-    [MOVE_ABSORB] =
-    {
-        #if B_UPDATED_MOVE_DATA >= GEN_4
-            .pp = 25,
-        #else
-            .pp = 20,
-        #endif
+    [MOVE_ABSORB] = {
         .effect = EFFECT_ABSORB,
-        .power = 20,
+        .power = 30,
         .type = TYPE_GRASS,
         .accuracy = 100,
+        .pp = 20,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
@@ -1197,6 +1192,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_HIGH_CRIT,
+        .critChance = 50,
         .split = SPLIT_PHYSICAL,
     },
 
@@ -6559,22 +6555,17 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_SPECIAL,
     },
 
-    [MOVE_ENERGY_BALL] =
-    {
-        #if B_UPDATED_MOVE_DATA >= GEN_6
-            .power = 90,
-        #else
-            .power = 80,
-        #endif
-        .effect = EFFECT_SPECIAL_DEFENSE_DOWN_HIT,
+    [MOVE_ENERGY_BALL] = {
+        .effect = EFFECT_ENERGY_BALL,
+        .power = 60,
         .type = TYPE_GRASS,
         .accuracy = 100,
         .pp = 10,
-        .secondaryEffectChance = 10,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_BALLISTIC | FLAG_SHEER_FORCE_BOOST,
-        .split = SPLIT_SPECIAL,
+        .split = SPLIT_SPECIAL
     },
 
     [MOVE_BRAVE_BIRD] =

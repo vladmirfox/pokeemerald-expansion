@@ -404,6 +404,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectClangorousSoul          @ EFFECT_CLANGOROUS_SOUL
 	.4byte BattleScript_EffectHit                     @ EFFECT_BOLT_BEAK
 	.4byte BattleScript_EffectSkyDrop                 @ EFFECT_SKY_DROP
+	.4byte BattleScript_EffectHit                     @ EFFECT_ENERGY_BALL
   
 BattleScript_EffectSkyDrop:
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_SkyDropTurn2
@@ -9426,3 +9427,15 @@ BattleScript_MagicianActivates::
 	call BattleScript_AbilityPopUp
 	call BattleScript_ItemSteal
 	return
+
+@ BattleScript_EffectEnergyBall:
+@ 	attackcanceler
+@ 	attackstring
+@ 	ppreduce
+@ 	attackanimation
+@ 	waitanimation
+@ 	healthbarupdate BS_ATTACKER
+@ 	datahpupdate BS_ATTACKER
+@ 	
+@ 	call BattleScript_AllStatsUp
+@ 	goto BattleScript_MoveEnd

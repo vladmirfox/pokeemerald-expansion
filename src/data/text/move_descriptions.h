@@ -282,8 +282,8 @@ static const u8 sStrengthDescription[] = _(
     "then slams the foe.");
 
 static const u8 sAbsorbDescription[] = _(
-    "An attack that absorbs\n"
-    "half the damage inflicted.");
+    "Heal for 50% of the\n"
+    "damage dealt.");
 
 static const u8 sMegaDrainDescription[] = _(
     "An attack that absorbs\n"

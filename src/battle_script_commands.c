@@ -292,6 +292,9 @@ static const u16 sTrappingMoves[] =
 
 #define TAG_LVLUP_BANNER_MON_ICON 55130
 
+#define CRIT_CHANCE_FORCE_FAIL    -1
+#define CRIT_CHANCE_FORCE_SUCCESS -2
+
 static bool8 IsTwoTurnsMove(u16 move);
 static void TrySetDestinyBondToHappen(void);
 static u8 AttacksThisTurn(u8 battlerId, u16 move); // Note: returns 1 if it's a charging turn, otherwise 2.
@@ -563,6 +566,7 @@ static void Cmd_jumpifoppositegenders(void);
 static void Cmd_trygetbaddreamstarget(void);
 static void Cmd_tryworryseed(void);
 static void Cmd_metalburstdamagecalculator(void);
+static void Cmd_removetargetresistanttypes(void);
 
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
@@ -1851,46 +1855,74 @@ static void Cmd_ppreduce(void)
 #endif // B_CRIT_CHANCE
 
 #define BENEFITS_FROM_LEEK(battler, holdEffect)((holdEffect == HOLD_EFFECT_LEEK) && (GET_BASE_SPECIES_ID(gBattleMons[battler].species) == SPECIES_FARFETCHD || gBattleMons[battler].species == SPECIES_SIRFETCHD))
-s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbility)
-{
-    s32 critChance = 0;
-    u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
-    u32 abilityDef = GetBattlerAbility(gBattlerTarget);
-    u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
+/**
+ * Calculates the critical strike chance of this attack.
+ * @param battlerAtk The attacker's battler.
+ * @param battlerDef The defender's battler.
+ * @param move The move used.
+ * @param recordAbility If true, abilities that trigger with this effect will be shown (as defined in this function):
+ * @return s32 The critical strike chance, from 0 to 100, of this attack. CRIT_CHANCE_FORCE_FAIL if the attack cannot critically strike,
+ * CRIT_CHANCE_FORCE_SUCCESS if the attack is guaranteed to critically strike.
+ */
+s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbility) {
+    s32 critChance = B_DEFAULT_CRIT_CHANCE;
+    u32 attackerAbility = GetBattlerAbility(gBattlerAttacker);
+    u32 defenderAbility = GetBattlerAbility(gBattlerTarget);
+    u32 attackerHoldEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
 
-    if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT
-        || gStatuses3[gBattlerAttacker] & STATUS3_CANT_SCORE_A_CRIT)
-    {
-        critChance = -1;
+    // If the defender cannot receive a crit, or the attacker cannot do one.
+    if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT || gStatuses3[gBattlerAttacker] & STATUS3_CANT_SCORE_A_CRIT) {
+        return CRIT_CHANCE_FORCE_FAIL;
     }
-    else if (abilityDef == ABILITY_BATTLE_ARMOR || abilityDef == ABILITY_SHELL_ARMOR)
-    {
-        if (recordAbility)
-            RecordAbilityBattle(battlerDef, abilityDef);
-        critChance = -1;
+    
+    // Defender abilities.
+    if (defenderAbility == ABILITY_BATTLE_ARMOR) {
+        if (recordAbility) {
+            RecordAbilityBattle(battlerDef, defenderAbility);
+        }
+        return CRIT_CHANCE_FORCE_FAIL;
     }
-    else if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS
-             || gBattleMoves[move].effect == EFFECT_ALWAYS_CRIT
-             || (abilityAtk == ABILITY_MERCILESS && gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY)
-             || move == MOVE_SURGING_STRIKES
-            #if B_LEEK_ALWAYS_CRIT >= GEN_6
-             || ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) && BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk))
-            #endif
-             )
-    {
-        critChance = -2;
+    else if (defenderAbility == ABILITY_SHELL_ARMOR) {
+        if (recordAbility) {
+            RecordAbilityBattle(battlerDef, defenderAbility);
+        }
+        return CRIT_CHANCE_FORCE_FAIL;
     }
-    else
-    {
-        critChance  = 2 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
-                    + ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) != 0)
-                    + (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
-                    + 2 * (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
-                    + 2 * BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)
-                    + (abilityAtk == ABILITY_SUPER_LUCK);
 
-        if (critChance >= ARRAY_COUNT(sCriticalHitChance))
-            critChance = ARRAY_COUNT(sCriticalHitChance) - 1;
+    // Attacker's move and effects.
+    if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS) {
+        return CRIT_CHANCE_FORCE_SUCCESS;
+    }
+    if (gBattleMoves[move].effect == EFFECT_ALWAYS_CRIT) {
+        return CRIT_CHANCE_FORCE_SUCCESS;
+    }
+    if ((attackerAbility == ABILITY_MERCILESS && gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY)) {
+        return CRIT_CHANCE_FORCE_SUCCESS;
+    }
+    if (move == MOVE_SURGING_STRIKES) {
+        return CRIT_CHANCE_FORCE_SUCCESS;
+    }
+    if ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) && BENEFITS_FROM_LEEK(battlerAtk, attackerHoldEffect)) {
+        return CRIT_CHANCE_FORCE_SUCCESS;
+    }
+
+    // Attacker's abilities
+    if (attackerAbility == ABILITY_SUPER_LUCK) {
+        critChance += 20;
+    }
+
+    // Attacker's items
+    if ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) != 0) {
+        critChance = gBattleMoves[gCurrentMove].critChance;
+    }
+    if ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0) {
+        critChance += 25;
+    }
+    if (attackerHoldEffect == HOLD_EFFECT_SCOPE_LENS) {
+        critChance += 10;
+    }
+    if (attackerHoldEffect == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY) {
+        critChance += 20;
     }
 
     return critChance;
@@ -1906,21 +1938,28 @@ s8 GetInverseCritChance(u8 battlerAtk, u8 battlerDef, u32 move)
         return sCriticalHitChance[critChanceIndex];
 }
 
-static void Cmd_critcalc(void)
-{
+/**
+ * Calculates whether this attack will critically strike, and stores the result in gIsCriticalHit.
+ */
+static void Cmd_critcalc (void) {
     s32 critChance = CalcCritChanceStage(gBattlerAttacker, gBattlerTarget, gCurrentMove, TRUE);
     gPotentialItemEffectBattler = gBattlerAttacker;
 
-    if (gBattleTypeFlags & (BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FIRST_BATTLE))
+    if (gBattleTypeFlags & (BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FIRST_BATTLE)) {
         gIsCriticalHit = FALSE;
-    else if (critChance == -1)
+    }
+    else if (critChance == CRIT_CHANCE_FORCE_FAIL) {
         gIsCriticalHit = FALSE;
-    else if (critChance == -2)
+    }
+    else if (critChance == CRIT_CHANCE_FORCE_SUCCESS) {
         gIsCriticalHit = TRUE;
-    else if (Random() % sCriticalHitChance[critChance] == 0)
+    }
+    else if ((Random() % 100) < critChance) {
         gIsCriticalHit = TRUE;
-    else
+    }
+    else {
         gIsCriticalHit = FALSE;
+    }
 
     gBattlescriptCurrInstr++;
 }
@@ -1930,7 +1969,7 @@ static void Cmd_damagecalc(void)
     u8 moveType;
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
-    gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, 0, gIsCriticalHit, TRUE, TRUE);
+    gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, 0, gIsCriticalHit, B_RANDOM_FACTOR, TRUE);
     gBattlescriptCurrInstr++;
 }
 
