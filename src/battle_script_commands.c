@@ -13051,8 +13051,7 @@ static void Cmd_pickup(void)
 {
     s32 i;
     u16 species, heldItem;
-    u16 ability;
-    u8 lvlDivBy10;
+    u8 ability;
 
     if (InBattlePike())
     {
@@ -13071,7 +13070,7 @@ static void Cmd_pickup(void)
                 ability = gBaseStats[species].abilities[0];
 
             if (ability == ABILITY_PICKUP
-                && species != SPECIES_NONE
+                && species != 0
                 && species != SPECIES_EGG
                 && heldItem == ITEM_NONE
                 && (Random() % 10) == 0)
@@ -13079,19 +13078,16 @@ static void Cmd_pickup(void)
                 heldItem = GetBattlePyramidPickupItemId();
                 SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
             }
-            #if (defined ITEM_HONEY)
-            else if (ability == ABILITY_HONEY_GATHER
-                && species != 0
-                && species != SPECIES_EGG
-                && heldItem == ITEM_NONE)
-            {
-                if ((lvlDivBy10 + 1 ) * 5 > Random() % 100)
-                {
-                    heldItem = ITEM_HONEY;
-                    SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
-                }
-            }
-            #endif
+           else if (species == SPECIES_SHUCKLE
+               && heldItem >= FIRST_BERRY_INDEX
+               && heldItem <= LAST_BERRY_INDEX)
+           {
+               if (!(Random() % 16))
+               {
+                   heldItem = ITEM_BERRY_JUICE;
+                   SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
+               }
+           }
         }
     }
     else
@@ -13100,9 +13096,6 @@ static void Cmd_pickup(void)
         {
             species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2);
             heldItem = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
-            lvlDivBy10 = (GetMonData(&gPlayerParty[i], MON_DATA_LEVEL)-1) / 10; //Moving this here makes it easier to add in abilities like Honey Gather
-            if (lvlDivBy10 > 9)
-                lvlDivBy10 = 9;
 
             if (GetMonData(&gPlayerParty[i], MON_DATA_ABILITY_NUM))
                 ability = gBaseStats[species].abilities[1];
@@ -13110,13 +13103,16 @@ static void Cmd_pickup(void)
                 ability = gBaseStats[species].abilities[0];
 
             if (ability == ABILITY_PICKUP
-                && species != SPECIES_NONE
+                && species != 0
                 && species != SPECIES_EGG
                 && heldItem == ITEM_NONE
                 && (Random() % 10) == 0)
             {
                 s32 j;
                 s32 rand = Random() % 100;
+                u8 lvlDivBy10 = (GetMonData(&gPlayerParty[i], MON_DATA_LEVEL) - 1) / 10;
+                if (lvlDivBy10 > 9)
+                    lvlDivBy10 = 9;
 
                 for (j = 0; j < (int)ARRAY_COUNT(sPickupProbabilities); j++)
                 {
@@ -13132,19 +13128,16 @@ static void Cmd_pickup(void)
                     }
                 }
             }
-            #if (defined ITEM_HONEY)
-            else if (ability == ABILITY_HONEY_GATHER
-                && species != 0
-                && species != SPECIES_EGG
-                && heldItem == ITEM_NONE)
-            {
-                if ((lvlDivBy10 + 1 ) * 5 > Random() % 100)
-                {
-                    heldItem = ITEM_HONEY;
-                    SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
-                }
-            }
-            #endif
+           else if (species == SPECIES_SHUCKLE
+               && heldItem >= FIRST_BERRY_INDEX
+               && heldItem <= LAST_BERRY_INDEX)
+           {
+               if (!(Random() % 16))
+               {
+                   heldItem = ITEM_BERRY_JUICE;
+                   SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
+               }
+           }
         }
     }
 
