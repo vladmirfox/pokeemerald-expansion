@@ -9,6 +9,7 @@
 #include "field_screen_effect.h"
 #include "field_weather.h"
 #include "fieldmap.h"
+#include "pokemon_storage_system.h"
 #include "fldeff.h"
 #include "gpu_regs.h"
 #include "main.h"
@@ -1002,7 +1003,7 @@ bool8 FldEff_PokecenterHeal(void)
     u8 nPokemon;
     struct Task *task;
 
-    nPokemon = CalculatePlayerPartyCount();
+    nPokemon = CountPartyNonEggMons();
     task = &gTasks[CreateTask(Task_PokecenterHeal, 0xff)];
     task->tNumMons = nPokemon;
     task->tFirstBallX = 93;
