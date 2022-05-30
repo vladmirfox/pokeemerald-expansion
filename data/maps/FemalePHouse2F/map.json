@@ -1,7 +1,7 @@
 {
-  "id": "MAP_NEW_MAP1",
-  "name": "NewMap1",
-  "layout": "LAYOUT_NEW_MAP1",
+  "id": "MAP_FEMALE_PHOUSE2F",
+  "name": "FemalePHouse2F",
+  "layout": "LAYOUT_FEMALE_PHOUSE2F",
   "music": "MUS_ABANDONED_SHIP",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
@@ -18,25 +18,11 @@
   ],
   "warp_events": [
     {
-      "x": 9,
-      "y": 8,
+      "x": 1,
+      "y": 1,
       "elevation": 0,
-      "dest_map": "MAP_SMALL_TOWN",
-      "dest_warp_id": 0
-    },
-    {
-      "x": 8,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_SMALL_TOWN",
-      "dest_warp_id": 0
-    },
-    {
-      "x": 8,
-      "y": 2,
-      "elevation": 0,
-      "dest_map": "MAP_MALE_PLAYER_HOUSE2F",
-      "dest_warp_id": 0
+      "dest_map": "MAP_FEMALE_PLAYER_HOUSE1F",
+      "dest_warp_id": 2
     }
   ],
   "coord_events": [

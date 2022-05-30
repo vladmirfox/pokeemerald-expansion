@@ -46,7 +46,11 @@
     "RouteA"
   ],
   "gMapGroup_IndoorSmallTown": [
-    "NewMap1"
+    "NewMap1",
+    "MalePlayerHouse2F",
+    "FemalePlayerHouse1F",
+    "FemalePlayerHouse2F",
+    "FemalePHouse2F"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",

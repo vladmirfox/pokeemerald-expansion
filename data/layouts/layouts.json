@@ -4440,6 +4440,46 @@
       "secondary_tileset": "gTileset_PlayerHouse",
       "border_filepath": "data/layouts/NewMap1/border.bin",
       "blockdata_filepath": "data/layouts/NewMap1/map.bin"
+    },
+    {
+      "id": "LAYOUT_MALE_PLAYER_HOUSE2F",
+      "name": "MalePlayerHouse2F_Layout",
+      "width": 9,
+      "height": 8,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PlayerHouse",
+      "border_filepath": "data/layouts/MalePlayerHouse2F/border.bin",
+      "blockdata_filepath": "data/layouts/MalePlayerHouse2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_FEMALE_PLAYER_HOUSE1F",
+      "name": "FemalePlayerHouse1F_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PlayerHouse",
+      "border_filepath": "data/layouts/FemalePlayerHouse1F/border.bin",
+      "blockdata_filepath": "data/layouts/FemalePlayerHouse1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_FEMALE_PLAYER_HOUSE2F",
+      "name": "FemalePlayerHouse2F_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PlayerHouse",
+      "border_filepath": "data/layouts/FemalePlayerHouse2F/border.bin",
+      "blockdata_filepath": "data/layouts/FemalePlayerHouse2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_FEMALE_PHOUSE2F",
+      "name": "FemalePHouse2F_Layout",
+      "width": 9,
+      "height": 8,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PlayerHouse",
+      "border_filepath": "data/layouts/FemalePHouse2F/border.bin",
+      "blockdata_filepath": "data/layouts/FemalePHouse2F/map.bin"
     }
   ]
 }

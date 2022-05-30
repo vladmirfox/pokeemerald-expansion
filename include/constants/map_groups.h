@@ -12,7 +12,11 @@
 #define MAP_ROUTE_A (0 | (1 << 8))
 
 // gMapGroup_IndoorSmallTown
-#define MAP_NEW_MAP1 (0 | (2 << 8))
+#define MAP_NEW_MAP1              (0 | (2 << 8))
+#define MAP_MALE_PLAYER_HOUSE2F   (1 | (2 << 8))
+#define MAP_FEMALE_PLAYER_HOUSE1F (2 | (2 << 8))
+#define MAP_FEMALE_PLAYER_HOUSE2F (3 | (2 << 8))
+#define MAP_FEMALE_PHOUSE2F       (4 | (2 << 8))
 
 // gMapGroup_TownsAndRoutes
 #define MAP_PETALBURG_CITY      (0 | (3 << 8))

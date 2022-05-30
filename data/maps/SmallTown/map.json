@@ -27,7 +27,14 @@
       "x": 5,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_SMALL_TOWN",
+      "dest_map": "MAP_NEW_MAP1",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 14,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_FEMALE_PLAYER_HOUSE1F",
       "dest_warp_id": 0
     }
   ],
