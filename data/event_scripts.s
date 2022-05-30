@@ -1074,3 +1074,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/ProffesorLab/scripts.inc"
 
 	.include "data/maps/SmallTownDayCare/scripts.inc"
+
+	.include "data/maps/SmallTownPokemonMart/scripts.inc"

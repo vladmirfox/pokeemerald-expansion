@@ -50,6 +50,13 @@
       "elevation": 0,
       "dest_map": "MAP_SMALL_TOWN_DAY_CARE",
       "dest_warp_id": 0
+    },
+    {
+      "x": 12,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_SMALL_TOWN_POKEMON_MART",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

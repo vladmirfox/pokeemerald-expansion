@@ -4500,6 +4500,16 @@
       "secondary_tileset": "gTileset_FloraSkyDaycare",
       "border_filepath": "data/layouts/SmallTownDayCare/border.bin",
       "blockdata_filepath": "data/layouts/SmallTownDayCare/map.bin"
+    },
+    {
+      "id": "LAYOUT_SMALL_TOWN_POKEMON_MART",
+      "name": "SmallTownPokemonMart_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyMart",
+      "border_filepath": "data/layouts/SmallTownPokemonMart/border.bin",
+      "blockdata_filepath": "data/layouts/SmallTownPokemonMart/map.bin"
     }
   ]
 }

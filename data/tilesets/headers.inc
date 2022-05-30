@@ -896,3 +896,14 @@ gTileset_FloraSkyDaycare::
 	.4byte gMetatiles_FloraSkyDaycare
 	.4byte gMetatileAttributes_FloraSkyDaycare
 	.4byte NULL
+
+	.align 2
+gTileset_FloraSkyMart::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FloraSkyMart
+	.4byte gTilesetPalettes_FloraSkyMart
+	.4byte gMetatiles_FloraSkyMart
+	.4byte gMetatileAttributes_FloraSkyMart
+	.4byte NULL

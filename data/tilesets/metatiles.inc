@@ -605,3 +605,11 @@ gMetatiles_FloraSkyDaycare::
 	.align 1
 gMetatileAttributes_FloraSkyDaycare::
 	.incbin "data/tilesets/secondary/floraskydaycare/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_FloraSkyMart::
+	.incbin "data/tilesets/secondary/floraskymart/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FloraSkyMart::
+	.incbin "data/tilesets/secondary/floraskymart/metatile_attributes.bin"

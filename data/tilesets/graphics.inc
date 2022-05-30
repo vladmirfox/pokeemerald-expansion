@@ -1849,3 +1849,23 @@ gTilesetPalettes_FloraSkyDaycare::
 	.align 2
 gTilesetTiles_FloraSkyDaycare::
 	.incbin "data/tilesets/secondary/floraskydaycare/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FloraSkyMart::
+	.incbin "data/tilesets/secondary/floraskymart/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/floraskymart/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/floraskymart/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/floraskymart/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/floraskymart/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/floraskymart/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/floraskymart/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/floraskymart/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/floraskymart/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/floraskymart/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/floraskymart/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/floraskymart/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/floraskymart/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FloraSkyMart::
+	.incbin "data/tilesets/secondary/floraskymart/tiles.4bpp.lz"
