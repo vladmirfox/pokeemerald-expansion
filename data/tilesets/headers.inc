@@ -874,3 +874,14 @@ gTileset_PlayerHouse::
 	.4byte gMetatiles_PlayerHouse
 	.4byte gMetatileAttributes_PlayerHouse
 	.4byte NULL
+
+	.align 2
+gTileset_ProffesorLab::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_ProffesorLab
+	.4byte gTilesetPalettes_ProffesorLab
+	.4byte gMetatiles_ProffesorLab
+	.4byte gMetatileAttributes_ProffesorLab
+	.4byte NULL

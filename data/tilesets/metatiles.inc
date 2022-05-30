@@ -589,3 +589,11 @@ gMetatiles_PlayerHouse::
 	.align 1
 gMetatileAttributes_PlayerHouse::
 	.incbin "data/tilesets/secondary/playerhouse/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_ProffesorLab::
+	.incbin "data/tilesets/secondary/proffesorlab/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_ProffesorLab::
+	.incbin "data/tilesets/secondary/proffesorlab/metatile_attributes.bin"

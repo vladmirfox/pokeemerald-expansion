@@ -4480,6 +4480,16 @@
       "secondary_tileset": "gTileset_PlayerHouse",
       "border_filepath": "data/layouts/FemalePHouse2F/border.bin",
       "blockdata_filepath": "data/layouts/FemalePHouse2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_PROFFESOR_LAB",
+      "name": "ProffesorLab_Layout",
+      "width": 26,
+      "height": 13,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_ProffesorLab",
+      "border_filepath": "data/layouts/ProffesorLab/border.bin",
+      "blockdata_filepath": "data/layouts/ProffesorLab/map.bin"
     }
   ]
 }

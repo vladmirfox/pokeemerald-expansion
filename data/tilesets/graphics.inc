@@ -1809,3 +1809,23 @@ gTilesetPalettes_PlayerHouse::
 	.align 2
 gTilesetTiles_PlayerHouse::
 	.incbin "data/tilesets/secondary/playerhouse/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_ProffesorLab::
+	.incbin "data/tilesets/secondary/proffesorlab/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/proffesorlab/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/proffesorlab/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/proffesorlab/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/proffesorlab/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/proffesorlab/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/proffesorlab/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/proffesorlab/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/proffesorlab/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/proffesorlab/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/proffesorlab/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/proffesorlab/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/proffesorlab/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_ProffesorLab::
+	.incbin "data/tilesets/secondary/proffesorlab/tiles.4bpp.lz"
