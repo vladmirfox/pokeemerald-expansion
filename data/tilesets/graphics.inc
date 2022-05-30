@@ -1769,3 +1769,43 @@ gTilesetPalettes_SmallTown::
 	.align 2
 gTilesetTiles_SmallTown::
 	.incbin "data/tilesets/secondary/smalltown/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_PlayerAndRivalHouse::
+	.incbin "data/tilesets/secondary/playerandrivalhouse/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/playerandrivalhouse/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/playerandrivalhouse/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/playerandrivalhouse/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/playerandrivalhouse/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/playerandrivalhouse/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/playerandrivalhouse/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/playerandrivalhouse/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/playerandrivalhouse/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/playerandrivalhouse/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/playerandrivalhouse/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/playerandrivalhouse/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/playerandrivalhouse/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_PlayerAndRivalHouse::
+	.incbin "data/tilesets/secondary/playerandrivalhouse/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FloraSkyGeneralBuilding::
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/palettes/00.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/palettes/01.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/palettes/02.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/palettes/03.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/palettes/04.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/palettes/05.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/palettes/06.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/palettes/07.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/palettes/08.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/palettes/09.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/palettes/10.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/palettes/11.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FloraSkyGeneralBuilding::
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/tiles.4bpp.lz"

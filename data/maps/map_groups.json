@@ -4,6 +4,7 @@
     "gMapGroup_FloraSkyTowns",
     "gMapGroup_FloraSkyRoutes",
     "gMapGroup_TownsAndRoutes",
+    "gMapGroup_IndoorSmallTown",
     "gMapGroup_IndoorLittleroot",
     "gMapGroup_IndoorOldale",
     "gMapGroup_IndoorDewford",
@@ -39,7 +40,8 @@
     "gMapGroup_IndoorRoute124"
   ],
   "gMapGroup_FloraSkyTowns": [
-    "SmallTown"
+    "SmallTown",
+    "MalePlayer1F"
   ],
   "gMapGroup_FloraSkyRoutes": [
 
@@ -102,6 +104,13 @@
     "Underwater_Route129",
     "Underwater_Route105",
     "Underwater_Route125"
+  ],
+  "gMapGroup_IndoorSmallTown": [
+    "MalePlayer1stFloor",
+    "MalePlayer2ndFloor",
+    "FemalePlayer1ndFloor",
+    "FemalePlayer2ndFloor",
+    "ProffesorsLab"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",

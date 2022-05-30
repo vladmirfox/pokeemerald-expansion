@@ -1058,3 +1058,15 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/text/birch_speech.inc"
 
 	.include "data/maps/SmallTown/scripts.inc"
+
+	.include "data/maps/MalePlayer1F/scripts.inc"
+
+	.include "data/maps/MalePlayer1stFloor/scripts.inc"
+
+	.include "data/maps/MalePlayer2ndFloor/scripts.inc"
+
+	.include "data/maps/FemalePlayer1ndFloor/scripts.inc"
+
+	.include "data/maps/FemalePlayer2ndFloor/scripts.inc"
+
+	.include "data/maps/ProffesorsLab/scripts.inc"
