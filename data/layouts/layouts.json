@@ -4430,6 +4430,16 @@
       "secondary_tileset": "gTileset_SmallTown",
       "border_filepath": "data/layouts/RouteA/border.bin",
       "blockdata_filepath": "data/layouts/RouteA/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_MAP1",
+      "name": "NewMap1_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PlayerHouse",
+      "border_filepath": "data/layouts/NewMap1/border.bin",
+      "blockdata_filepath": "data/layouts/NewMap1/map.bin"
     }
   ]
 }

@@ -1769,3 +1769,43 @@ gTilesetPalettes_SmallTown::
 	.align 2
 gTilesetTiles_SmallTown::
 	.incbin "data/tilesets/secondary/smalltown/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FloraSkyBuildingsGeneral::
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/palettes/00.gbapal"
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/palettes/01.gbapal"
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/palettes/02.gbapal"
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/palettes/03.gbapal"
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/palettes/04.gbapal"
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/palettes/05.gbapal"
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/palettes/06.gbapal"
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/palettes/07.gbapal"
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/palettes/08.gbapal"
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/palettes/09.gbapal"
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/palettes/10.gbapal"
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/palettes/11.gbapal"
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FloraSkyBuildingsGeneral::
+	.incbin "data/tilesets/primary/floraskybuildingsgeneral/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_PlayerHouse::
+	.incbin "data/tilesets/secondary/playerhouse/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/playerhouse/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/playerhouse/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/playerhouse/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/playerhouse/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/playerhouse/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/playerhouse/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/playerhouse/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/playerhouse/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/playerhouse/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/playerhouse/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/playerhouse/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/playerhouse/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_PlayerHouse::
+	.incbin "data/tilesets/secondary/playerhouse/tiles.4bpp.lz"

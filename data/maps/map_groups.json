@@ -3,6 +3,7 @@
   "group_order": [
     "gMapGroup_FloraSkyTowns",
     "gMapGroup_FloraSkyRoutes",
+    "gMapGroup_IndoorSmallTown",
     "gMapGroup_TownsAndRoutes",
     "gMapGroup_IndoorLittleroot",
     "gMapGroup_IndoorOldale",
@@ -43,6 +44,9 @@
   ],
   "gMapGroup_FloraSkyRoutes": [
     "RouteA"
+  ],
+  "gMapGroup_IndoorSmallTown": [
+    "NewMap1"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
