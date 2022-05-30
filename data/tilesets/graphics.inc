@@ -1869,3 +1869,23 @@ gTilesetPalettes_FloraSkyMart::
 	.align 2
 gTilesetTiles_FloraSkyMart::
 	.incbin "data/tilesets/secondary/floraskymart/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_PuelCity::
+	.incbin "data/tilesets/secondary/puelcity/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/puelcity/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/puelcity/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/puelcity/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/puelcity/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/puelcity/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/puelcity/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/puelcity/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/puelcity/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/puelcity/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/puelcity/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/puelcity/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/puelcity/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_PuelCity::
+	.incbin "data/tilesets/secondary/puelcity/tiles.4bpp.lz"

@@ -4510,6 +4510,16 @@
       "secondary_tileset": "gTileset_FloraSkyMart",
       "border_filepath": "data/layouts/SmallTownPokemonMart/border.bin",
       "blockdata_filepath": "data/layouts/SmallTownPokemonMart/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_D",
+      "name": "RouteD_Layout",
+      "width": 26,
+      "height": 86,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_PuelCity",
+      "border_filepath": "data/layouts/RouteD/border.bin",
+      "blockdata_filepath": "data/layouts/RouteD/map.bin"
     }
   ]
 }

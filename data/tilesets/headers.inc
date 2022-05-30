@@ -907,3 +907,14 @@ gTileset_FloraSkyMart::
 	.4byte gMetatiles_FloraSkyMart
 	.4byte gMetatileAttributes_FloraSkyMart
 	.4byte NULL
+
+	.align 2
+gTileset_PuelCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_PuelCity
+	.4byte gTilesetPalettes_PuelCity
+	.4byte gMetatiles_PuelCity
+	.4byte gMetatileAttributes_PuelCity
+	.4byte NULL

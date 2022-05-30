@@ -613,3 +613,11 @@ gMetatiles_FloraSkyMart::
 	.align 1
 gMetatileAttributes_FloraSkyMart::
 	.incbin "data/tilesets/secondary/floraskymart/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_PuelCity::
+	.incbin "data/tilesets/secondary/puelcity/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_PuelCity::
+	.incbin "data/tilesets/secondary/puelcity/metatile_attributes.bin"

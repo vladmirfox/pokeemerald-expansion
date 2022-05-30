@@ -10,6 +10,7 @@
 
 // gMapGroup_FloraSkyRoutes
 #define MAP_ROUTE_A (0 | (1 << 8))
+#define MAP_ROUTE_D (1 | (1 << 8))
 
 // gMapGroup_IndoorSmallTown
 #define MAP_NEW_MAP1                (0 | (2 << 8))

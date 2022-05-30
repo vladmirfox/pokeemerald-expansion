@@ -43,7 +43,8 @@
     "SmallTown"
   ],
   "gMapGroup_FloraSkyRoutes": [
-    "RouteA"
+    "RouteA",
+    "RouteD"
   ],
   "gMapGroup_IndoorSmallTown": [
     "NewMap1",
