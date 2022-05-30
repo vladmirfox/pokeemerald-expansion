@@ -2,7 +2,7 @@
   "id": "MAP_MALE_PLAYER2ND_FLOOR",
   "name": "MalePlayer2ndFloor",
   "layout": "LAYOUT_MALE_PLAYER2ND_FLOOR",
-  "music": "MUS_LITTLEROOT_TEST",
+  "music": "",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -17,13 +17,7 @@
 
   ],
   "warp_events": [
-    {
-      "x": 7,
-      "y": 1,
-      "elevation": 0,
-      "dest_map": "MAP_MALE_PLAYER1ST_FLOOR",
-      "dest_warp_id": 2
-    }
+
   ],
   "coord_events": [
 

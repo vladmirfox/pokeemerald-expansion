@@ -2,7 +2,7 @@
   "id": "MAP_FEMALE_PLAYER2ND_FLOOR",
   "name": "FemalePlayer2ndFloor",
   "layout": "LAYOUT_FEMALE_PLAYER2ND_FLOOR",
-  "music": "MUS_LITTLEROOT_TEST",
+  "music": "",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -17,13 +17,7 @@
 
   ],
   "warp_events": [
-    {
-      "x": 1,
-      "y": 1,
-      "elevation": 0,
-      "dest_map": "MAP_FEMALE_PLAYER1ND_FLOOR",
-      "dest_warp_id": 2
-    }
+
   ],
   "coord_events": [
 
