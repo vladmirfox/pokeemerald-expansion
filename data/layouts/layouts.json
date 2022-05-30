@@ -4420,6 +4420,16 @@
       "secondary_tileset": "gTileset_SmallTown",
       "border_filepath": "data/layouts/SmallTown/border.bin",
       "blockdata_filepath": "data/layouts/SmallTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_A",
+      "name": "RouteA_Layout",
+      "width": 60,
+      "height": 20,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_SmallTown",
+      "border_filepath": "data/layouts/RouteA/border.bin",
+      "blockdata_filepath": "data/layouts/RouteA/map.bin"
     }
   ]
 }

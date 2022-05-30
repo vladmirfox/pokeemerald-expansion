@@ -9,6 +9,7 @@
 #define MAP_SMALL_TOWN (0 | (0 << 8))
 
 // gMapGroup_FloraSkyRoutes
+#define MAP_ROUTE_A (0 | (1 << 8))
 
 // gMapGroup_TownsAndRoutes
 #define MAP_PETALBURG_CITY      (0 | (2 << 8))
