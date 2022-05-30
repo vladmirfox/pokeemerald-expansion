@@ -852,3 +852,25 @@ gTileset_SmallTown::
 	.4byte gMetatiles_SmallTown
 	.4byte gMetatileAttributes_SmallTown
 	.4byte NULL
+
+	.align 2
+gTileset_PlayerAndRivalHouse::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_PlayerAndRivalHouse
+	.4byte gTilesetPalettes_PlayerAndRivalHouse
+	.4byte gMetatiles_PlayerAndRivalHouse
+	.4byte gMetatileAttributes_PlayerAndRivalHouse
+	.4byte NULL
+
+	.align 2
+gTileset_FloraSkyGeneralBuilding::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FloraSkyGeneralBuilding
+	.4byte gTilesetPalettes_FloraSkyGeneralBuilding
+	.4byte gMetatiles_FloraSkyGeneralBuilding
+	.4byte gMetatileAttributes_FloraSkyGeneralBuilding
+	.4byte NULL

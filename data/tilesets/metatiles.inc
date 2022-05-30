@@ -573,3 +573,19 @@ gMetatiles_SmallTown::
 	.align 1
 gMetatileAttributes_SmallTown::
 	.incbin "data/tilesets/secondary/smalltown/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_PlayerAndRivalHouse::
+	.incbin "data/tilesets/secondary/playerandrivalhouse/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_PlayerAndRivalHouse::
+	.incbin "data/tilesets/secondary/playerandrivalhouse/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_FloraSkyGeneralBuilding::
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FloraSkyGeneralBuilding::
+	.incbin "data/tilesets/primary/floraskygeneralbuilding/metatile_attributes.bin"
