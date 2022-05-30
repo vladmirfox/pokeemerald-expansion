@@ -4420,66 +4420,6 @@
       "secondary_tileset": "gTileset_SmallTown",
       "border_filepath": "data/layouts/SmallTown/border.bin",
       "blockdata_filepath": "data/layouts/SmallTown/map.bin"
-    },
-    {
-      "id": "LAYOUT_MALE_PLAYER1F",
-      "name": "MalePlayer1F_Layout",
-      "width": 11,
-      "height": 11,
-      "primary_tileset": "gTileset_FloraSkyGeneralBuilding",
-      "secondary_tileset": "gTileset_PlayerAndRivalHouse",
-      "border_filepath": "data/layouts/MalePlayer1F/border.bin",
-      "blockdata_filepath": "data/layouts/MalePlayer1F/map.bin"
-    },
-    {
-      "id": "LAYOUT_MALE_PLAYER1ST_FLOOR",
-      "name": "MalePlayer1stFloor_Layout",
-      "width": 11,
-      "height": 9,
-      "primary_tileset": "gTileset_FloraSkyGeneralBuilding",
-      "secondary_tileset": "gTileset_PlayerAndRivalHouse",
-      "border_filepath": "data/layouts/MalePlayer1stFloor/border.bin",
-      "blockdata_filepath": "data/layouts/MalePlayer1stFloor/map.bin"
-    },
-    {
-      "id": "LAYOUT_MALE_PLAYER2ND_FLOOR",
-      "name": "MalePlayer2ndFloor_Layout",
-      "width": 9,
-      "height": 8,
-      "primary_tileset": "gTileset_FloraSkyGeneralBuilding",
-      "secondary_tileset": "gTileset_PlayerAndRivalHouse",
-      "border_filepath": "data/layouts/MalePlayer2ndFloor/border.bin",
-      "blockdata_filepath": "data/layouts/MalePlayer2ndFloor/map.bin"
-    },
-    {
-      "id": "LAYOUT_FEMALE_PLAYER1ND_FLOOR",
-      "name": "FemalePlayer1ndFloor_Layout",
-      "width": 11,
-      "height": 9,
-      "primary_tileset": "gTileset_FloraSkyGeneralBuilding",
-      "secondary_tileset": "gTileset_PlayerAndRivalHouse",
-      "border_filepath": "data/layouts/FemalePlayer1ndFloor/border.bin",
-      "blockdata_filepath": "data/layouts/FemalePlayer1ndFloor/map.bin"
-    },
-    {
-      "id": "LAYOUT_FEMALE_PLAYER2ND_FLOOR",
-      "name": "FemalePlayer2ndFloor_Layout",
-      "width": 9,
-      "height": 8,
-      "primary_tileset": "gTileset_FloraSkyGeneral",
-      "secondary_tileset": "gTileset_PlayerAndRivalHouse",
-      "border_filepath": "data/layouts/FemalePlayer2ndFloor/border.bin",
-      "blockdata_filepath": "data/layouts/FemalePlayer2ndFloor/map.bin"
-    },
-    {
-      "id": "LAYOUT_PROFFESORS_LAB",
-      "name": "ProffesorsLab_Layout",
-      "width": 26,
-      "height": 13,
-      "primary_tileset": "gTileset_FloraSkyGeneralBuilding",
-      "secondary_tileset": "gTileset_Lab",
-      "border_filepath": "data/layouts/ProffesorsLab/border.bin",
-      "blockdata_filepath": "data/layouts/ProffesorsLab/map.bin"
     }
   ]
 }
