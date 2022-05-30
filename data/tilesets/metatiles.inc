@@ -589,3 +589,11 @@ gMetatiles_FloraSkyGeneralBuilding::
 	.align 1
 gMetatileAttributes_FloraSkyGeneralBuilding::
 	.incbin "data/tilesets/primary/floraskygeneralbuilding/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_ProffesorsLab::
+	.incbin "data/tilesets/secondary/proffesorslab/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_ProffesorsLab::
+	.incbin "data/tilesets/secondary/proffesorslab/metatile_attributes.bin"

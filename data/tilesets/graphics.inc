@@ -1809,3 +1809,23 @@ gTilesetPalettes_FloraSkyGeneralBuilding::
 	.align 2
 gTilesetTiles_FloraSkyGeneralBuilding::
 	.incbin "data/tilesets/primary/floraskygeneralbuilding/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_ProffesorsLab::
+	.incbin "data/tilesets/secondary/proffesorslab/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/proffesorslab/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/proffesorslab/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/proffesorslab/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/proffesorslab/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/proffesorslab/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/proffesorslab/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/proffesorslab/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/proffesorslab/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/proffesorslab/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/proffesorslab/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/proffesorslab/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/proffesorslab/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_ProffesorsLab::
+	.incbin "data/tilesets/secondary/proffesorslab/tiles.4bpp.lz"
