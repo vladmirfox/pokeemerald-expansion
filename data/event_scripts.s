@@ -1072,3 +1072,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/FemalePHouse2F/scripts.inc"
 
 	.include "data/maps/ProffesorLab/scripts.inc"
+
+	.include "data/maps/SmallTownDayCare/scripts.inc"

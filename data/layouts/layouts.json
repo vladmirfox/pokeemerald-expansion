@@ -4490,6 +4490,16 @@
       "secondary_tileset": "gTileset_ProffesorLab",
       "border_filepath": "data/layouts/ProffesorLab/border.bin",
       "blockdata_filepath": "data/layouts/ProffesorLab/map.bin"
+    },
+    {
+      "id": "LAYOUT_SMALL_TOWN_DAY_CARE",
+      "name": "SmallTownDayCare_Layout",
+      "width": 12,
+      "height": 9,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyDaycare",
+      "border_filepath": "data/layouts/SmallTownDayCare/border.bin",
+      "blockdata_filepath": "data/layouts/SmallTownDayCare/map.bin"
     }
   ]
 }

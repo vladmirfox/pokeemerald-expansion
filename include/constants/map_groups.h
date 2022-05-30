@@ -18,6 +18,7 @@
 #define MAP_FEMALE_PLAYER_HOUSE2F (3 | (2 << 8))
 #define MAP_FEMALE_PHOUSE2F       (4 | (2 << 8))
 #define MAP_PROFFESOR_LAB         (5 | (2 << 8))
+#define MAP_SMALL_TOWN_DAY_CARE   (6 | (2 << 8))
 
 // gMapGroup_TownsAndRoutes
 #define MAP_PETALBURG_CITY      (0 | (3 << 8))

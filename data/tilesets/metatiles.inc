@@ -597,3 +597,11 @@ gMetatiles_ProffesorLab::
 	.align 1
 gMetatileAttributes_ProffesorLab::
 	.incbin "data/tilesets/secondary/proffesorlab/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_FloraSkyDaycare::
+	.incbin "data/tilesets/secondary/floraskydaycare/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FloraSkyDaycare::
+	.incbin "data/tilesets/secondary/floraskydaycare/metatile_attributes.bin"

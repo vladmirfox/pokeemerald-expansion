@@ -885,3 +885,14 @@ gTileset_ProffesorLab::
 	.4byte gMetatiles_ProffesorLab
 	.4byte gMetatileAttributes_ProffesorLab
 	.4byte NULL
+
+	.align 2
+gTileset_FloraSkyDaycare::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FloraSkyDaycare
+	.4byte gTilesetPalettes_FloraSkyDaycare
+	.4byte gMetatiles_FloraSkyDaycare
+	.4byte gMetatileAttributes_FloraSkyDaycare
+	.4byte NULL

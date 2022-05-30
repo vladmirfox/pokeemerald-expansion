@@ -51,7 +51,8 @@
     "FemalePlayerHouse1F",
     "FemalePlayerHouse2F",
     "FemalePHouse2F",
-    "ProffesorLab"
+    "ProffesorLab",
+    "SmallTownDayCare"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",

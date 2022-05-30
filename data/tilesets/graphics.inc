@@ -1829,3 +1829,23 @@ gTilesetPalettes_ProffesorLab::
 	.align 2
 gTilesetTiles_ProffesorLab::
 	.incbin "data/tilesets/secondary/proffesorlab/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FloraSkyDaycare::
+	.incbin "data/tilesets/secondary/floraskydaycare/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/floraskydaycare/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/floraskydaycare/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/floraskydaycare/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/floraskydaycare/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/floraskydaycare/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/floraskydaycare/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/floraskydaycare/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/floraskydaycare/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/floraskydaycare/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/floraskydaycare/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/floraskydaycare/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/floraskydaycare/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FloraSkyDaycare::
+	.incbin "data/tilesets/secondary/floraskydaycare/tiles.4bpp.lz"
