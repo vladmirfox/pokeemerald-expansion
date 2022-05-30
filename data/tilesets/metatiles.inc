@@ -557,3 +557,19 @@ gMetatiles_UnionRoom::
 	.align 1
 gMetatileAttributes_UnionRoom::
 	.incbin "data/tilesets/secondary/union_room/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_FloraSkyGeneral::
+	.incbin "data/tilesets/primary/floraskygeneral/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FloraSkyGeneral::
+	.incbin "data/tilesets/primary/floraskygeneral/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_SmallTown::
+	.incbin "data/tilesets/secondary/smalltown/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_SmallTown::
+	.incbin "data/tilesets/secondary/smalltown/metatile_attributes.bin"

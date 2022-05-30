@@ -1729,3 +1729,43 @@ gTilesetPalettes_UnionRoom::
 	.align 2
 gTilesetTiles_UnionRoom::
 	.incbin "data/tilesets/secondary/union_room/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FloraSkyGeneral::
+	.incbin "data/tilesets/primary/floraskygeneral/palettes/00.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneral/palettes/01.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneral/palettes/02.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneral/palettes/03.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneral/palettes/04.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneral/palettes/05.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneral/palettes/06.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneral/palettes/07.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneral/palettes/08.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneral/palettes/09.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneral/palettes/10.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneral/palettes/11.gbapal"
+	.incbin "data/tilesets/primary/floraskygeneral/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FloraSkyGeneral::
+	.incbin "data/tilesets/primary/floraskygeneral/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_SmallTown::
+	.incbin "data/tilesets/secondary/smalltown/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/smalltown/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/smalltown/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/smalltown/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/smalltown/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/smalltown/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/smalltown/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/smalltown/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/smalltown/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/smalltown/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/smalltown/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/smalltown/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/smalltown/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_SmallTown::
+	.incbin "data/tilesets/secondary/smalltown/tiles.4bpp.lz"

@@ -830,3 +830,25 @@ gTileset_UnionRoom::
 	.4byte gMetatiles_UnionRoom
 	.4byte gMetatileAttributes_UnionRoom
 	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_FloraSkyGeneral::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FloraSkyGeneral
+	.4byte gTilesetPalettes_FloraSkyGeneral
+	.4byte gMetatiles_FloraSkyGeneral
+	.4byte gMetatileAttributes_FloraSkyGeneral
+	.4byte NULL
+
+	.align 2
+gTileset_SmallTown::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_SmallTown
+	.4byte gTilesetPalettes_SmallTown
+	.4byte gMetatiles_SmallTown
+	.4byte gMetatileAttributes_SmallTown
+	.4byte NULL
