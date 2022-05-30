@@ -2,7 +2,7 @@
   "id": "MAP_SMALL_TOWN",
   "name": "SmallTown",
   "layout": "LAYOUT_SMALL_TOWN",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_LITTLEROOT_TEST",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -17,7 +17,27 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 5,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_MALE_PLAYER1ST_FLOOR",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 14,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_FEMALE_PLAYER1ND_FLOOR",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 2,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_PROFFESORS_LAB",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 
