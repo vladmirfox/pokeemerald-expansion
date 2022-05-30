@@ -6,6 +6,7 @@
 //
 
 // gMapGroup_FloraSkyTowns
+#define MAP_SMALL_TOWN (0 | (0 << 8))
 
 // gMapGroup_FloraSkyRoutes
 
