@@ -874,14 +874,3 @@ gTileset_FloraSkyGeneralBuilding::
 	.4byte gMetatiles_FloraSkyGeneralBuilding
 	.4byte gMetatileAttributes_FloraSkyGeneralBuilding
 	.4byte NULL
-
-	.align 2
-gTileset_ProffesorsLab::
-	.byte TRUE @ is compressed
-	.byte TRUE @ is secondary
-	.2byte 0
-	.4byte gTilesetTiles_ProffesorsLab
-	.4byte gTilesetPalettes_ProffesorsLab
-	.4byte gMetatiles_ProffesorsLab
-	.4byte gMetatileAttributes_ProffesorsLab
-	.4byte NULL
