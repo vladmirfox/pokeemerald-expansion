@@ -2,7 +2,7 @@
   "id": "MAP_FEMALE_PLAYER1ND_FLOOR",
   "name": "FemalePlayer1ndFloor",
   "layout": "LAYOUT_FEMALE_PLAYER1ND_FLOOR",
-  "music": "",
+  "music": "MUS_LITTLEROOT_TEST",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -17,7 +17,27 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 1,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_SMALL_TOWN",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_FEMALE_PLAYER2ND_FLOOR",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 2,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_SMALL_TOWN",
+      "dest_warp_id": 1
+    }
   ],
   "coord_events": [
 
