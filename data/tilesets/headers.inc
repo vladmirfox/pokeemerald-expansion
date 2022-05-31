@@ -918,3 +918,14 @@ gTileset_PuelCity::
 	.4byte gMetatiles_PuelCity
 	.4byte gMetatileAttributes_PuelCity
 	.4byte NULL
+
+	.align 2
+gTileset_FloraSkyCaves::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FloraSkyCaves
+	.4byte gTilesetPalettes_FloraSkyCaves
+	.4byte gMetatiles_FloraSkyCaves
+	.4byte gMetatileAttributes_FloraSkyCaves
+	.4byte NULL

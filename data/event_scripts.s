@@ -1078,3 +1078,11 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/SmallTownPokemonMart/scripts.inc"
 
 	.include "data/maps/RouteD/scripts.inc"
+
+	.include "data/maps/MountFullMoonMainInterior/scripts.inc"
+
+	.include "data/maps/MountFullMoonInteriorCavedownrightside/scripts.inc"
+
+	.include "data/maps/MountFullMoonInteriorMiddleCaveCresselia/scripts.inc"
+
+	.include "data/maps/MountMoonCaveStarterPick/scripts.inc"

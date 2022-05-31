@@ -621,3 +621,11 @@ gMetatiles_PuelCity::
 	.align 1
 gMetatileAttributes_PuelCity::
 	.incbin "data/tilesets/secondary/puelcity/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_FloraSkyCaves::
+	.incbin "data/tilesets/secondary/floraskycaves/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FloraSkyCaves::
+	.incbin "data/tilesets/secondary/floraskycaves/metatile_attributes.bin"

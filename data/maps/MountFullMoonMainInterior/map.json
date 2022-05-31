@@ -1,0 +1,62 @@
+{
+  "id": "MAP_MOUNT_FULL_MOON_MAIN_INTERIOR",
+  "name": "MountFullMoonMainInterior",
+  "layout": "LAYOUT_MOUNT_FULL_MOON_MAIN_INTERIOR",
+  "music": "MUS_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 22,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_A",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 8,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_A",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 29,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_A",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 36,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_MOUNT_FULL_MOON_INTERIOR_CAVEDOWNRIGHTSIDE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 25,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_MOUNT_MOON_CAVE_STARTER_PICK",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

@@ -4,6 +4,7 @@
     "gMapGroup_FloraSkyTowns",
     "gMapGroup_FloraSkyRoutes",
     "gMapGroup_IndoorSmallTown",
+    "gMapGroup_MountainFullMoon",
     "gMapGroup_TownsAndRoutes",
     "gMapGroup_IndoorLittleroot",
     "gMapGroup_IndoorOldale",
@@ -40,7 +41,8 @@
     "gMapGroup_IndoorRoute124"
   ],
   "gMapGroup_FloraSkyTowns": [
-    "SmallTown"
+    "SmallTown",
+    "MountFullMoonInteriorMiddleCaveCresselia"
   ],
   "gMapGroup_FloraSkyRoutes": [
     "RouteA",
@@ -55,6 +57,11 @@
     "ProffesorLab",
     "SmallTownDayCare",
     "SmallTownPokemonMart"
+  ],
+  "gMapGroup_MountainFullMoon": [
+    "MountFullMoonMainInterior",
+    "MountFullMoonInteriorCavedownrightside",
+    "MountMoonCaveStarterPick"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",

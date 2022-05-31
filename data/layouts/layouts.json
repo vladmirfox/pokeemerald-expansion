@@ -4520,6 +4520,46 @@
       "secondary_tileset": "gTileset_PuelCity",
       "border_filepath": "data/layouts/RouteD/border.bin",
       "blockdata_filepath": "data/layouts/RouteD/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_FULL_MOON_MAIN_INTERIOR",
+      "name": "MountFullMoonMainInterior_Layout",
+      "width": 46,
+      "height": 31,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_FloraSkyCaves",
+      "border_filepath": "data/layouts/MountFullMoonMainInterior/border.bin",
+      "blockdata_filepath": "data/layouts/MountFullMoonMainInterior/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_FULL_MOON_INTERIOR_CAVEDOWNRIGHTSIDE",
+      "name": "MountFullMoonInteriorCavedownrightside_Layout",
+      "width": 10,
+      "height": 10,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_FloraSkyCaves",
+      "border_filepath": "data/layouts/MountFullMoonInteriorCavedownrightside/border.bin",
+      "blockdata_filepath": "data/layouts/MountFullMoonInteriorCavedownrightside/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_FULL_MOON_INTERIOR_MIDDLE_CAVE_CRESSELIA",
+      "name": "MountFullMoonInteriorMiddleCaveCresselia_Layout",
+      "width": 10,
+      "height": 13,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_FloraSkyCaves",
+      "border_filepath": "data/layouts/MountFullMoonInteriorMiddleCaveCresselia/border.bin",
+      "blockdata_filepath": "data/layouts/MountFullMoonInteriorMiddleCaveCresselia/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_MOON_CAVE_STARTER_PICK",
+      "name": "MountMoonCaveStarterPick_Layout",
+      "width": 10,
+      "height": 13,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_FloraSkyCaves",
+      "border_filepath": "data/layouts/MountMoonCaveStarterPick/border.bin",
+      "blockdata_filepath": "data/layouts/MountMoonCaveStarterPick/map.bin"
     }
   ]
 }
