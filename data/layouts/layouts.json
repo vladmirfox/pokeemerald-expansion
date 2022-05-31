@@ -4670,6 +4670,46 @@
       "secondary_tileset": "gTileset_FloraSkyIndoor",
       "border_filepath": "data/layouts/ForestEntranceHouse/border.bin",
       "blockdata_filepath": "data/layouts/ForestEntranceHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_POLAR_FOREST_BOTTOM_RIGHT",
+      "name": "PolarForestBottomRight_Layout",
+      "width": 48,
+      "height": 54,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_BeeBugForest",
+      "border_filepath": "data/layouts/PolarForestBottomRight/border.bin",
+      "blockdata_filepath": "data/layouts/PolarForestBottomRight/map.bin"
+    },
+    {
+      "id": "LAYOUT_POLAR_FOREST_LEFT",
+      "name": "PolarForestLeft_Layout",
+      "width": 70,
+      "height": 40,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_BeeBugForest",
+      "border_filepath": "data/layouts/PolarForestLeft/border.bin",
+      "blockdata_filepath": "data/layouts/PolarForestLeft/map.bin"
+    },
+    {
+      "id": "LAYOUT_POLAR_FOREST_DOWN",
+      "name": "PolarForestDown_Layout",
+      "width": 70,
+      "height": 41,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_BeeBugForest",
+      "border_filepath": "data/layouts/PolarForestDown/border.bin",
+      "blockdata_filepath": "data/layouts/PolarForestDown/map.bin"
+    },
+    {
+      "id": "LAYOUT_POLAR_FOREST_DOWN_LEFT",
+      "name": "PolarForestDownLeft_Layout",
+      "width": 84,
+      "height": 66,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_BeeBugForest",
+      "border_filepath": "data/layouts/PolarForestDownLeft/border.bin",
+      "blockdata_filepath": "data/layouts/PolarForestDownLeft/map.bin"
     }
   ]
 }

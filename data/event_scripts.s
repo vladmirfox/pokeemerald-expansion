@@ -1108,3 +1108,11 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/RouteBHouse/scripts.inc"
 
 	.include "data/maps/ForestEntranceHouse/scripts.inc"
+
+	.include "data/maps/PolarForestBottomRight/scripts.inc"
+
+	.include "data/maps/PolarForestLeft/scripts.inc"
+
+	.include "data/maps/PolarForestDown/scripts.inc"
+
+	.include "data/maps/PolarForestDownLeft/scripts.inc"
