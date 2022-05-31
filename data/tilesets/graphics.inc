@@ -1949,3 +1949,23 @@ gTilesetPalettes_BeeBugForest::
 	.align 2
 gTilesetTiles_BeeBugForest::
 	.incbin "data/tilesets/secondary/beebugforest/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FloraSkyIndoor::
+	.incbin "data/tilesets/secondary/floraskyindoor/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/floraskyindoor/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/floraskyindoor/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/floraskyindoor/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/floraskyindoor/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/floraskyindoor/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/floraskyindoor/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/floraskyindoor/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/floraskyindoor/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/floraskyindoor/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/floraskyindoor/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/floraskyindoor/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/floraskyindoor/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FloraSkyIndoor::
+	.incbin "data/tilesets/secondary/floraskyindoor/tiles.4bpp.lz"

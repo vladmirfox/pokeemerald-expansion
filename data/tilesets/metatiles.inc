@@ -645,3 +645,11 @@ gMetatiles_BeeBugForest::
 	.align 1
 gMetatileAttributes_BeeBugForest::
 	.incbin "data/tilesets/secondary/beebugforest/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_FloraSkyIndoor::
+	.incbin "data/tilesets/secondary/floraskyindoor/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FloraSkyIndoor::
+	.incbin "data/tilesets/secondary/floraskyindoor/metatile_attributes.bin"

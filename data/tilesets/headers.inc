@@ -951,3 +951,14 @@ gTileset_BeeBugForest::
 	.4byte gMetatiles_BeeBugForest
 	.4byte gMetatileAttributes_BeeBugForest
 	.4byte NULL
+
+	.align 2
+gTileset_FloraSkyIndoor::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FloraSkyIndoor
+	.4byte gTilesetPalettes_FloraSkyIndoor
+	.4byte gMetatiles_FloraSkyIndoor
+	.4byte gMetatileAttributes_FloraSkyIndoor
+	.4byte NULL

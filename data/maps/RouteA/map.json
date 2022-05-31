@@ -69,6 +69,13 @@
       "elevation": 0,
       "dest_map": "MAP_MOUNT_MOON_DEEP_INTERIOR",
       "dest_warp_id": 19
+    },
+    {
+      "x": 3,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE_AHOUSE",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

@@ -4,6 +4,8 @@
     "gMapGroup_FloraSkyTowns",
     "gMapGroup_FloraSkyRoutes",
     "gMapGroup_IndoorSmallTown",
+    "gMapGroup_RouteA",
+    "gMapGroup_RouteD",
     "gMapGroup_MountainFullMoon",
     "gMapGroup_BeeBugForest",
     "gMapGroup_TownsAndRoutes",
@@ -60,6 +62,12 @@
     "ProffesorLab",
     "SmallTownDayCare",
     "SmallTownPokemonMart"
+  ],
+  "gMapGroup_RouteA": [
+    "RouteAHouse"
+  ],
+  "gMapGroup_RouteD": [
+
   ],
   "gMapGroup_MountainFullMoon": [
     "MountFullMoonMainInterior",
