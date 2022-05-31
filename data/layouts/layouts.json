@@ -4560,6 +4560,56 @@
       "secondary_tileset": "gTileset_FloraSkyCaves",
       "border_filepath": "data/layouts/MountMoonCaveStarterPick/border.bin",
       "blockdata_filepath": "data/layouts/MountMoonCaveStarterPick/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_MOON_DEEP_INTERIOR",
+      "name": "MountMoonDeepInterior_Layout",
+      "width": 80,
+      "height": 40,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_FloraSkyCaves",
+      "border_filepath": "data/layouts/MountMoonDeepInterior/border.bin",
+      "blockdata_filepath": "data/layouts/MountMoonDeepInterior/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_FULL_MOON_DEEP_CAVE_DIALGA",
+      "name": "MountFullMoonDeepCaveDialga_Layout",
+      "width": 23,
+      "height": 23,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_FloraSkyCaves",
+      "border_filepath": "data/layouts/MountFullMoonDeepCaveDialga/border.bin",
+      "blockdata_filepath": "data/layouts/MountFullMoonDeepCaveDialga/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_FULL_MOON_PEAK",
+      "name": "MountFullMoonPeak_Layout",
+      "width": 50,
+      "height": 37,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_FloraSkyCaves",
+      "border_filepath": "data/layouts/MountFullMoonPeak/border.bin",
+      "blockdata_filepath": "data/layouts/MountFullMoonPeak/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_FULL_MOON_DEEPEST_INTERIOR",
+      "name": "MountFullMoonDeepestInterior_Layout",
+      "width": 40,
+      "height": 35,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_FloraSkyCaves",
+      "border_filepath": "data/layouts/MountFullMoonDeepestInterior/border.bin",
+      "blockdata_filepath": "data/layouts/MountFullMoonDeepestInterior/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_FULL_MOON_DEEP_CAVE_CRESELLIA",
+      "name": "MountFullMoonDeepCaveCresellia_Layout",
+      "width": 19,
+      "height": 21,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_FloraSkyCaves",
+      "border_filepath": "data/layouts/MountFullMoonDeepCaveCresellia/border.bin",
+      "blockdata_filepath": "data/layouts/MountFullMoonDeepCaveCresellia/map.bin"
     }
   ]
 }

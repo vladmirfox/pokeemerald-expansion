@@ -27,6 +27,11 @@
 #define MAP_MOUNT_FULL_MOON_MAIN_INTERIOR              (0 | (3 << 8))
 #define MAP_MOUNT_FULL_MOON_INTERIOR_CAVEDOWNRIGHTSIDE (1 | (3 << 8))
 #define MAP_MOUNT_MOON_CAVE_STARTER_PICK               (2 | (3 << 8))
+#define MAP_MOUNT_MOON_DEEP_INTERIOR                   (3 | (3 << 8))
+#define MAP_MOUNT_FULL_MOON_DEEP_CAVE_DIALGA           (4 | (3 << 8))
+#define MAP_MOUNT_FULL_MOON_PEAK                       (5 | (3 << 8))
+#define MAP_MOUNT_FULL_MOON_DEEPEST_INTERIOR           (6 | (3 << 8))
+#define MAP_MOUNT_FULL_MOON_DEEP_CAVE_CRESELLIA        (7 | (3 << 8))
 
 // gMapGroup_TownsAndRoutes
 #define MAP_PETALBURG_CITY      (0 | (4 << 8))

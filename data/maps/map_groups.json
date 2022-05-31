@@ -61,7 +61,12 @@
   "gMapGroup_MountainFullMoon": [
     "MountFullMoonMainInterior",
     "MountFullMoonInteriorCavedownrightside",
-    "MountMoonCaveStarterPick"
+    "MountMoonCaveStarterPick",
+    "MountMoonDeepInterior",
+    "MountFullMoonDeepCaveDialga",
+    "MountFullMoonPeak",
+    "MountFullMoonDeepestInterior",
+    "MountFullMoonDeepCaveCresellia"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
