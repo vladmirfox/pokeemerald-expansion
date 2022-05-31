@@ -4,8 +4,9 @@
     "gMapGroup_FloraSkyTowns",
     "gMapGroup_FloraSkyRoutes",
     "gMapGroup_IndoorSmallTown",
-    "gMapGroup_RouteA",
-    "gMapGroup_RouteD",
+    "gMapGroup_IndoorRouteA",
+    "gMapGroup_IndoorRouteB",
+    "gMapGroup_IndoorForestEntrance",
     "gMapGroup_MountainFullMoon",
     "gMapGroup_BeeBugForest",
     "gMapGroup_TownsAndRoutes",
@@ -44,8 +45,7 @@
     "gMapGroup_IndoorRoute124"
   ],
   "gMapGroup_FloraSkyTowns": [
-    "SmallTown",
-    "MountFullMoonInteriorMiddleCaveCresselia"
+    "SmallTown"
   ],
   "gMapGroup_FloraSkyRoutes": [
     "RouteA",
@@ -63,11 +63,14 @@
     "SmallTownDayCare",
     "SmallTownPokemonMart"
   ],
-  "gMapGroup_RouteA": [
+  "gMapGroup_IndoorRouteA": [
     "RouteAHouse"
   ],
-  "gMapGroup_RouteD": [
-
+  "gMapGroup_IndoorRouteB": [
+    "RouteBHouse"
+  ],
+  "gMapGroup_IndoorForestEntrance": [
+    "ForestEntranceHouse"
   ],
   "gMapGroup_MountainFullMoon": [
     "MountFullMoonMainInterior",

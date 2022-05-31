@@ -4650,6 +4650,26 @@
       "secondary_tileset": "gTileset_FloraSkyIndoor",
       "border_filepath": "data/layouts/RouteAHouse/border.bin",
       "blockdata_filepath": "data/layouts/RouteAHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_BHOUSE",
+      "name": "RouteBHouse_Layout",
+      "width": 18,
+      "height": 13,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyIndoor",
+      "border_filepath": "data/layouts/RouteBHouse/border.bin",
+      "blockdata_filepath": "data/layouts/RouteBHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOREST_ENTRANCE_HOUSE",
+      "name": "ForestEntranceHouse_Layout",
+      "width": 18,
+      "height": 13,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyIndoor",
+      "border_filepath": "data/layouts/ForestEntranceHouse/border.bin",
+      "blockdata_filepath": "data/layouts/ForestEntranceHouse/map.bin"
     }
   ]
 }
