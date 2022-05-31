@@ -1096,3 +1096,7 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/MountFullMoonDeepestInterior/scripts.inc"
 
 	.include "data/maps/MountFullMoonDeepCaveCresellia/scripts.inc"
+
+	.include "data/maps/ForestEntrance/scripts.inc"
+
+	.include "data/maps/RouteB/scripts.inc"

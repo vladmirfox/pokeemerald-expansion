@@ -10,8 +10,10 @@
 #define MAP_MOUNT_FULL_MOON_INTERIOR_MIDDLE_CAVE_CRESSELIA (1 | (0 << 8))
 
 // gMapGroup_FloraSkyRoutes
-#define MAP_ROUTE_A (0 | (1 << 8))
-#define MAP_ROUTE_D (1 | (1 << 8))
+#define MAP_ROUTE_A         (0 | (1 << 8))
+#define MAP_ROUTE_D         (1 | (1 << 8))
+#define MAP_FOREST_ENTRANCE (2 | (1 << 8))
+#define MAP_ROUTE_B         (3 | (1 << 8))
 
 // gMapGroup_IndoorSmallTown
 #define MAP_NEW_MAP1                (0 | (2 << 8))

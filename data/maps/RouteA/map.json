@@ -17,6 +17,11 @@
       "direction": "left",
       "offset": 0,
       "map": "MAP_SMALL_TOWN"
+    },
+    {
+      "direction": "right",
+      "offset": 0,
+      "map": "MAP_FOREST_ENTRANCE"
     }
   ],
   "object_events": [

@@ -46,7 +46,9 @@
   ],
   "gMapGroup_FloraSkyRoutes": [
     "RouteA",
-    "RouteD"
+    "RouteD",
+    "ForestEntrance",
+    "RouteB"
   ],
   "gMapGroup_IndoorSmallTown": [
     "NewMap1",

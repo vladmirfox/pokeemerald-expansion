@@ -4610,6 +4610,26 @@
       "secondary_tileset": "gTileset_FloraSkyCaves",
       "border_filepath": "data/layouts/MountFullMoonDeepCaveCresellia/border.bin",
       "blockdata_filepath": "data/layouts/MountFullMoonDeepCaveCresellia/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOREST_ENTRANCE",
+      "name": "ForestEntrance_Layout",
+      "width": 36,
+      "height": 20,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_SmallTown",
+      "border_filepath": "data/layouts/ForestEntrance/border.bin",
+      "blockdata_filepath": "data/layouts/ForestEntrance/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_B",
+      "name": "RouteB_Layout",
+      "width": 86,
+      "height": 20,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_PuelCity",
+      "border_filepath": "data/layouts/RouteB/border.bin",
+      "blockdata_filepath": "data/layouts/RouteB/map.bin"
     }
   ]
 }
