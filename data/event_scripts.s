@@ -1100,3 +1100,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/ForestEntrance/scripts.inc"
 
 	.include "data/maps/RouteB/scripts.inc"
+
+	.include "data/maps/BeeBugForest/scripts.inc"

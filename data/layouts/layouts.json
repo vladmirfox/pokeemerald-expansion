@@ -4630,6 +4630,16 @@
       "secondary_tileset": "gTileset_PuelCity",
       "border_filepath": "data/layouts/RouteB/border.bin",
       "blockdata_filepath": "data/layouts/RouteB/map.bin"
+    },
+    {
+      "id": "LAYOUT_BEE_BUG_FOREST",
+      "name": "BeeBugForest_Layout",
+      "width": 48,
+      "height": 54,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_BeeBugForest",
+      "border_filepath": "data/layouts/BeeBugForest/border.bin",
+      "blockdata_filepath": "data/layouts/BeeBugForest/map.bin"
     }
   ]
 }

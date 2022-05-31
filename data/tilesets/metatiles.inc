@@ -637,3 +637,11 @@ gMetatiles_MountFullMoonPeak::
 	.align 1
 gMetatileAttributes_MountFullMoonPeak::
 	.incbin "data/tilesets/secondary/mountfullmoonpeak/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_BeeBugForest::
+	.incbin "data/tilesets/secondary/beebugforest/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_BeeBugForest::
+	.incbin "data/tilesets/secondary/beebugforest/metatile_attributes.bin"

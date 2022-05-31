@@ -5,6 +5,7 @@
     "gMapGroup_FloraSkyRoutes",
     "gMapGroup_IndoorSmallTown",
     "gMapGroup_MountainFullMoon",
+    "gMapGroup_BeeBugForest",
     "gMapGroup_TownsAndRoutes",
     "gMapGroup_IndoorLittleroot",
     "gMapGroup_IndoorOldale",
@@ -69,6 +70,9 @@
     "MountFullMoonPeak",
     "MountFullMoonDeepestInterior",
     "MountFullMoonDeepCaveCresellia"
+  ],
+  "gMapGroup_BeeBugForest": [
+    "BeeBugForest"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",

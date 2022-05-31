@@ -1,54 +1,48 @@
 {
-  "id": "MAP_ROUTE_D",
-  "name": "RouteD",
-  "layout": "LAYOUT_ROUTE_D",
+  "id": "MAP_BEE_BUG_FOREST",
+  "name": "BeeBugForest",
+  "layout": "LAYOUT_BEE_BUG_FOREST",
   "music": "MUS_ABANDONED_SHIP",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
-  "map_type": "MAP_TYPE_ROUTE",
-  "allow_cycling": true,
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
   "allow_escaping": false,
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "direction": "up",
-      "offset": 0,
-      "map": "MAP_SMALL_TOWN"
-    }
-  ],
+  "connections": 0,
   "object_events": [
 
   ],
   "warp_events": [
     {
-      "x": 12,
-      "y": 58,
+      "x": 14,
+      "y": 4,
       "elevation": 0,
-      "dest_map": "MAP_BEE_BUG_FOREST",
+      "dest_map": "MAP_ROUTE_D",
       "dest_warp_id": 0
     },
     {
-      "x": 13,
-      "y": 58,
+      "x": 15,
+      "y": 4,
       "elevation": 0,
-      "dest_map": "MAP_BEE_BUG_FOREST",
+      "dest_map": "MAP_ROUTE_D",
       "dest_warp_id": 1
     },
     {
-      "x": 13,
-      "y": 67,
+      "x": 11,
+      "y": 48,
       "elevation": 0,
-      "dest_map": "MAP_BEE_BUG_FOREST",
+      "dest_map": "MAP_ROUTE_D",
       "dest_warp_id": 2
     },
     {
-      "x": 12,
-      "y": 67,
+      "x": 10,
+      "y": 48,
       "elevation": 0,
-      "dest_map": "MAP_BEE_BUG_FOREST",
+      "dest_map": "MAP_ROUTE_D",
       "dest_warp_id": 3
     }
   ],

@@ -940,3 +940,14 @@ gTileset_MountFullMoonPeak::
 	.4byte gMetatiles_MountFullMoonPeak
 	.4byte gMetatileAttributes_MountFullMoonPeak
 	.4byte NULL
+
+	.align 2
+gTileset_BeeBugForest::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_BeeBugForest
+	.4byte gTilesetPalettes_BeeBugForest
+	.4byte gMetatiles_BeeBugForest
+	.4byte gMetatileAttributes_BeeBugForest
+	.4byte NULL

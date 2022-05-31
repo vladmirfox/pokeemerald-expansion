@@ -1929,3 +1929,23 @@ gTilesetPalettes_MountFullMoonPeak::
 	.align 2
 gTilesetTiles_MountFullMoonPeak::
 	.incbin "data/tilesets/secondary/mountfullmoonpeak/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_BeeBugForest::
+	.incbin "data/tilesets/secondary/beebugforest/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/beebugforest/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/beebugforest/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/beebugforest/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/beebugforest/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/beebugforest/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/beebugforest/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/beebugforest/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/beebugforest/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/beebugforest/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/beebugforest/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/beebugforest/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/beebugforest/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_BeeBugForest::
+	.incbin "data/tilesets/secondary/beebugforest/tiles.4bpp.lz"
