@@ -4587,7 +4587,7 @@
       "width": 50,
       "height": 37,
       "primary_tileset": "gTileset_FloraSkyGeneral",
-      "secondary_tileset": "gTileset_FloraSkyCaves",
+      "secondary_tileset": "gTileset_MountFullMoonPeak",
       "border_filepath": "data/layouts/MountFullMoonPeak/border.bin",
       "blockdata_filepath": "data/layouts/MountFullMoonPeak/map.bin"
     },

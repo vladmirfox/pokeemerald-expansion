@@ -1909,3 +1909,23 @@ gTilesetPalettes_FloraSkyCaves::
 	.align 2
 gTilesetTiles_FloraSkyCaves::
 	.incbin "data/tilesets/secondary/floraskycaves/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_MountFullMoonPeak::
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_MountFullMoonPeak::
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/tiles.4bpp.lz"

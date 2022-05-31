@@ -929,3 +929,14 @@ gTileset_FloraSkyCaves::
 	.4byte gMetatiles_FloraSkyCaves
 	.4byte gMetatileAttributes_FloraSkyCaves
 	.4byte NULL
+
+	.align 2
+gTileset_MountFullMoonPeak::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_MountFullMoonPeak
+	.4byte gTilesetPalettes_MountFullMoonPeak
+	.4byte gMetatiles_MountFullMoonPeak
+	.4byte gMetatileAttributes_MountFullMoonPeak
+	.4byte NULL

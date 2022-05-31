@@ -629,3 +629,11 @@ gMetatiles_FloraSkyCaves::
 	.align 1
 gMetatileAttributes_FloraSkyCaves::
 	.incbin "data/tilesets/secondary/floraskycaves/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_MountFullMoonPeak::
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_MountFullMoonPeak::
+	.incbin "data/tilesets/secondary/mountfullmoonpeak/metatile_attributes.bin"
