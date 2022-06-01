@@ -4820,6 +4820,36 @@
       "secondary_tileset": "gTileset_PokemonCenter",
       "border_filepath": "data/layouts/PuelCityPkmnCentre2F/border.bin",
       "blockdata_filepath": "data/layouts/PuelCityPkmnCentre2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_PUEL_CITY_MUSEUM1F",
+      "name": "PuelCityMuseum1F_Layout",
+      "width": 21,
+      "height": 14,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_LilycoveMuseum",
+      "border_filepath": "data/layouts/PuelCityMuseum1F/border.bin",
+      "blockdata_filepath": "data/layouts/PuelCityMuseum1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_PUEL_CITY_MUSEUM2F",
+      "name": "PuelCityMuseum2F_Layout",
+      "width": 22,
+      "height": 13,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_LilycoveMuseum",
+      "border_filepath": "data/layouts/PuelCityMuseum2F/border.bin",
+      "blockdata_filepath": "data/layouts/PuelCityMuseum2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_PUEL_CITY_MUSEUM_AQUA_HIDEOUT",
+      "name": "PuelCityMuseumAquaHideout_Layout",
+      "width": 20,
+      "height": 30,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PuelCityAquaHideout",
+      "border_filepath": "data/layouts/PuelCityMuseumAquaHideout/border.bin",
+      "blockdata_filepath": "data/layouts/PuelCityMuseumAquaHideout/map.bin"
     }
   ]
 }

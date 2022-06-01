@@ -1138,3 +1138,9 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/PuelCityPkmnCentre1F/scripts.inc"
 
 	.include "data/maps/PuelCityPkmnCentre2F/scripts.inc"
+
+	.include "data/maps/PuelCityMuseum1F/scripts.inc"
+
+	.include "data/maps/PuelCityMuseum2F/scripts.inc"
+
+	.include "data/maps/PuelCityMuseumAquaHideout/scripts.inc"

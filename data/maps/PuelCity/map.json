@@ -58,6 +58,13 @@
       "elevation": 0,
       "dest_map": "MAP_PUEL_CITY_PKMN_CENTRE1F",
       "dest_warp_id": 0
+    },
+    {
+      "x": 18,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_PUEL_CITY_MUSEUM1F",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

@@ -2029,3 +2029,23 @@ gTilesetPalettes_Gym0::
 	.align 2
 gTilesetTiles_Gym0::
 	.incbin "data/tilesets/secondary/gym0/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_PuelCityAquaHideout::
+	.incbin "data/tilesets/secondary/puelcityaquahideout/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/puelcityaquahideout/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/puelcityaquahideout/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/puelcityaquahideout/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/puelcityaquahideout/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/puelcityaquahideout/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/puelcityaquahideout/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/puelcityaquahideout/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/puelcityaquahideout/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/puelcityaquahideout/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/puelcityaquahideout/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/puelcityaquahideout/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/puelcityaquahideout/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_PuelCityAquaHideout::
+	.incbin "data/tilesets/secondary/puelcityaquahideout/tiles.4bpp.lz"

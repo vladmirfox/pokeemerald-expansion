@@ -995,3 +995,14 @@ gTileset_Gym0::
 	.4byte gMetatiles_Gym0
 	.4byte gMetatileAttributes_Gym0
 	.4byte NULL
+
+	.align 2
+gTileset_PuelCityAquaHideout::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_PuelCityAquaHideout
+	.4byte gTilesetPalettes_PuelCityAquaHideout
+	.4byte gMetatiles_PuelCityAquaHideout
+	.4byte gMetatileAttributes_PuelCityAquaHideout
+	.4byte NULL
