@@ -29,6 +29,13 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE_BHOUSE",
       "dest_warp_id": 0
+    },
+    {
+      "x": 75,
+      "y": 13,
+      "elevation": 0,
+      "dest_map": "MAP_UNION_GATE",
+      "dest_warp_id": 1
     }
   ],
   "coord_events": [
