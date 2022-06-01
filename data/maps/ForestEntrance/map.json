@@ -48,6 +48,13 @@
       "elevation": 0,
       "dest_map": "MAP_POLAR_FOREST_BOTTOM_RIGHT",
       "dest_warp_id": 1
+    },
+    {
+      "x": 9,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_FOREST_ENTRANCE_POKEMON_CENTRE1F",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

@@ -4750,6 +4750,36 @@
       "secondary_tileset": "gTileset_PuelCity",
       "border_filepath": "data/layouts/PuelCity/border.bin",
       "blockdata_filepath": "data/layouts/PuelCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOREST_ENTRANCE_POKEMON_CENTRE1F",
+      "name": "ForestEntrancePokemonCentre1F_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/ForestEntrancePokemonCentre1F/border.bin",
+      "blockdata_filepath": "data/layouts/ForestEntrancePokemonCentre1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOREST_ENTRANCE_POKEMON_CENTRE2F",
+      "name": "ForestEntrancePokemonCentre2F_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/ForestEntrancePokemonCentre2F/border.bin",
+      "blockdata_filepath": "data/layouts/ForestEntrancePokemonCentre2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOREST_ENTRANCE_PKMN_CENTRE2F",
+      "name": "ForestEntrancePkmnCentre2F_Layout",
+      "width": 14,
+      "height": 10,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/ForestEntrancePkmnCentre2F/border.bin",
+      "blockdata_filepath": "data/layouts/ForestEntrancePkmnCentre2F/map.bin"
     }
   ]
 }

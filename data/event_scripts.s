@@ -1124,3 +1124,9 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/UnionGate/scripts.inc"
 
 	.include "data/maps/PuelCity/scripts.inc"
+
+	.include "data/maps/ForestEntrancePokemonCentre1F/scripts.inc"
+
+	.include "data/maps/ForestEntrancePokemonCentre2F/scripts.inc"
+
+	.include "data/maps/ForestEntrancePkmnCentre2F/scripts.inc"

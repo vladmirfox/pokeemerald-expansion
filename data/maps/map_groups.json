@@ -8,6 +8,7 @@
     "gMapGroup_IndoorRouteB",
     "gMapGroup_IndoorRouteD",
     "gMapGroup_IndoorUnionGate",
+    "gMapGroup_IndoorPuelCity",
     "gMapGroup_IndoorForestEntrance",
     "gMapGroup_MountainFullMoon",
     "gMapGroup_BeeBugForest",
@@ -80,8 +81,13 @@
   "gMapGroup_IndoorUnionGate": [
     "UnionGate"
   ],
+  "gMapGroup_IndoorPuelCity": [
+
+  ],
   "gMapGroup_IndoorForestEntrance": [
-    "ForestEntranceHouse"
+    "ForestEntranceHouse",
+    "ForestEntrancePokemonCentre1F",
+    "ForestEntrancePkmnCentre2F"
   ],
   "gMapGroup_MountainFullMoon": [
     "MountFullMoonMainInterior",
