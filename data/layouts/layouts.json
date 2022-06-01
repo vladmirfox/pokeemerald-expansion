@@ -4720,6 +4720,16 @@
       "secondary_tileset": "gTileset_DeepForest",
       "border_filepath": "data/layouts/DeepForest/border.bin",
       "blockdata_filepath": "data/layouts/DeepForest/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_DFLOWER_SHOP",
+      "name": "RouteDFlowerShop_Layout",
+      "width": 15,
+      "height": 9,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PrettyPetalFlowerShop",
+      "border_filepath": "data/layouts/RouteDFlowerShop/border.bin",
+      "blockdata_filepath": "data/layouts/RouteDFlowerShop/map.bin"
     }
   ]
 }
