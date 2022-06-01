@@ -4790,6 +4790,16 @@
       "secondary_tileset": "gTileset_Gym0",
       "border_filepath": "data/layouts/PuelCityGym/border.bin",
       "blockdata_filepath": "data/layouts/PuelCityGym/map.bin"
+    },
+    {
+      "id": "LAYOUT_PUEL_CITY_HOUSES",
+      "name": "PuelCityHouses_Layout",
+      "width": 50,
+      "height": 40,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyIndoor",
+      "border_filepath": "data/layouts/PuelCityHouses/border.bin",
+      "blockdata_filepath": "data/layouts/PuelCityHouses/map.bin"
     }
   ]
 }

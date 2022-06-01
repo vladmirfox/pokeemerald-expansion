@@ -30,6 +30,27 @@
       "elevation": 0,
       "dest_map": "MAP_PUEL_CITY_GYM",
       "dest_warp_id": 0
+    },
+    {
+      "x": 20,
+      "y": 37,
+      "elevation": 0,
+      "dest_map": "MAP_PUEL_CITY_HOUSES",
+      "dest_warp_id": 4
+    },
+    {
+      "x": 22,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_PUEL_CITY_HOUSES",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 8,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_PUEL_CITY_HOUSES",
+      "dest_warp_id": 3
     }
   ],
   "coord_events": [

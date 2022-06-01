@@ -82,7 +82,8 @@
     "UnionGate"
   ],
   "gMapGroup_IndoorPuelCity": [
-    "PuelCityGym"
+    "PuelCityGym",
+    "PuelCityHouses"
   ],
   "gMapGroup_IndoorForestEntrance": [
     "ForestEntranceHouse",
