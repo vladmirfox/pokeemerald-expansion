@@ -661,3 +661,11 @@ gMetatiles_DeepForest::
 	.align 1
 gMetatileAttributes_DeepForest::
 	.incbin "data/tilesets/secondary/deepforest/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_UnionGate::
+	.incbin "data/tilesets/secondary/uniongate/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_UnionGate::
+	.incbin "data/tilesets/secondary/uniongate/metatile_attributes.bin"

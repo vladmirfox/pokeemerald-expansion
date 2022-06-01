@@ -7,6 +7,7 @@
     "gMapGroup_IndoorRouteA",
     "gMapGroup_IndoorRouteB",
     "gMapGroup_IndoorRouteD",
+    "gMapGroup_IndoorUnionGate",
     "gMapGroup_IndoorForestEntrance",
     "gMapGroup_MountainFullMoon",
     "gMapGroup_BeeBugForest",
@@ -74,6 +75,9 @@
   ],
   "gMapGroup_IndoorRouteD": [
     "RouteDFlowerShop"
+  ],
+  "gMapGroup_IndoorUnionGate": [
+    "UnionGate"
   ],
   "gMapGroup_IndoorForestEntrance": [
     "ForestEntranceHouse"

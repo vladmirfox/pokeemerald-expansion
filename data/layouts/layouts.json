@@ -4730,6 +4730,16 @@
       "secondary_tileset": "gTileset_PrettyPetalFlowerShop",
       "border_filepath": "data/layouts/RouteDFlowerShop/border.bin",
       "blockdata_filepath": "data/layouts/RouteDFlowerShop/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNION_GATE",
+      "name": "UnionGate_Layout",
+      "width": 50,
+      "height": 50,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_UnionGate",
+      "border_filepath": "data/layouts/UnionGate/border.bin",
+      "blockdata_filepath": "data/layouts/UnionGate/map.bin"
     }
   ]
 }

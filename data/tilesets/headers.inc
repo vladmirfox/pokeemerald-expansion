@@ -973,3 +973,14 @@ gTileset_DeepForest::
 	.4byte gMetatiles_DeepForest
 	.4byte gMetatileAttributes_DeepForest
 	.4byte NULL
+
+	.align 2
+gTileset_UnionGate::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_UnionGate
+	.4byte gTilesetPalettes_UnionGate
+	.4byte gMetatiles_UnionGate
+	.4byte gMetatileAttributes_UnionGate
+	.4byte NULL

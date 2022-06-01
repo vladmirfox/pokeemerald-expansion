@@ -1989,3 +1989,23 @@ gTilesetPalettes_DeepForest::
 	.align 2
 gTilesetTiles_DeepForest::
 	.incbin "data/tilesets/secondary/deepforest/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_UnionGate::
+	.incbin "data/tilesets/secondary/uniongate/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/uniongate/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/uniongate/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/uniongate/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/uniongate/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/uniongate/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/uniongate/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/uniongate/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/uniongate/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/uniongate/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/uniongate/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/uniongate/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/uniongate/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_UnionGate::
+	.incbin "data/tilesets/secondary/uniongate/tiles.4bpp.lz"
