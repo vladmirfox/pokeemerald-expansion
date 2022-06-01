@@ -83,7 +83,9 @@
   ],
   "gMapGroup_IndoorPuelCity": [
     "PuelCityGym",
-    "PuelCityHouses"
+    "PuelCityHouses",
+    "PuelCityPkmnCentre1F",
+    "PuelCityPkmnCentre2F"
   ],
   "gMapGroup_IndoorForestEntrance": [
     "ForestEntranceHouse",

@@ -51,6 +51,13 @@
       "elevation": 0,
       "dest_map": "MAP_PUEL_CITY_HOUSES",
       "dest_warp_id": 3
+    },
+    {
+      "x": 11,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_PUEL_CITY_PKMN_CENTRE1F",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

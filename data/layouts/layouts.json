@@ -4800,6 +4800,26 @@
       "secondary_tileset": "gTileset_FloraSkyIndoor",
       "border_filepath": "data/layouts/PuelCityHouses/border.bin",
       "blockdata_filepath": "data/layouts/PuelCityHouses/map.bin"
+    },
+    {
+      "id": "LAYOUT_PUEL_CITY_PKMN_CENTRE1F",
+      "name": "PuelCityPkmnCentre1F_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/PuelCityPkmnCentre1F/border.bin",
+      "blockdata_filepath": "data/layouts/PuelCityPkmnCentre1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_PUEL_CITY_PKMN_CENTRE2F",
+      "name": "PuelCityPkmnCentre2F_Layout",
+      "width": 14,
+      "height": 10,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/PuelCityPkmnCentre2F/border.bin",
+      "blockdata_filepath": "data/layouts/PuelCityPkmnCentre2F/map.bin"
     }
   ]
 }

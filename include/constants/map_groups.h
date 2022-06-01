@@ -38,8 +38,10 @@
 #define MAP_UNION_GATE (0 | (6 << 8))
 
 // gMapGroup_IndoorPuelCity
-#define MAP_PUEL_CITY_GYM    (0 | (7 << 8))
-#define MAP_PUEL_CITY_HOUSES (1 | (7 << 8))
+#define MAP_PUEL_CITY_GYM           (0 | (7 << 8))
+#define MAP_PUEL_CITY_HOUSES        (1 | (7 << 8))
+#define MAP_PUEL_CITY_PKMN_CENTRE1F (2 | (7 << 8))
+#define MAP_PUEL_CITY_PKMN_CENTRE2F (3 | (7 << 8))
 
 // gMapGroup_IndoorForestEntrance
 #define MAP_FOREST_ENTRANCE_HOUSE            (0 | (8 << 8))
