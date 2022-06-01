@@ -10,6 +10,7 @@
     "gMapGroup_MountainFullMoon",
     "gMapGroup_BeeBugForest",
     "gMapGroup_PolarForest",
+    "gMapGroup_DeepForest",
     "gMapGroup_TownsAndRoutes",
     "gMapGroup_IndoorLittleroot",
     "gMapGroup_IndoorOldale",
@@ -91,6 +92,9 @@
     "PolarForestLeft",
     "PolarForestDown",
     "PolarForestDownLeft"
+  ],
+  "gMapGroup_DeepForest": [
+    "DeepForest"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",

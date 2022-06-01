@@ -4710,6 +4710,16 @@
       "secondary_tileset": "gTileset_BeeBugForest",
       "border_filepath": "data/layouts/PolarForestDownLeft/border.bin",
       "blockdata_filepath": "data/layouts/PolarForestDownLeft/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEEP_FOREST",
+      "name": "DeepForest_Layout",
+      "width": 40,
+      "height": 50,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_DeepForest",
+      "border_filepath": "data/layouts/DeepForest/border.bin",
+      "blockdata_filepath": "data/layouts/DeepForest/map.bin"
     }
   ]
 }

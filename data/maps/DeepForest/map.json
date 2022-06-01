@@ -1,8 +1,8 @@
 {
-  "id": "MAP_POLAR_FOREST_DOWN_LEFT",
-  "name": "PolarForestDownLeft",
-  "layout": "LAYOUT_POLAR_FOREST_DOWN_LEFT",
-  "music": "MUS_C_VS_LEGEND_BEAST",
+  "id": "MAP_DEEP_FOREST",
+  "name": "DeepForest",
+  "layout": "LAYOUT_DEEP_FOREST",
+  "music": "MUS_ABANDONED_SHIP",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -12,29 +12,23 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "direction": "right",
-      "offset": 26,
-      "map": "MAP_POLAR_FOREST_DOWN"
-    }
-  ],
+  "connections": 0,
   "object_events": [
 
   ],
   "warp_events": [
     {
-      "x": 15,
-      "y": 23,
+      "x": 19,
+      "y": 46,
       "elevation": 0,
-      "dest_map": "MAP_DEEP_FOREST",
+      "dest_map": "MAP_POLAR_FOREST_DOWN_LEFT",
       "dest_warp_id": 0
     },
     {
-      "x": 14,
-      "y": 23,
+      "x": 18,
+      "y": 46,
       "elevation": 0,
-      "dest_map": "MAP_DEEP_FOREST",
+      "dest_map": "MAP_POLAR_FOREST_DOWN_LEFT",
       "dest_warp_id": 1
     }
   ],

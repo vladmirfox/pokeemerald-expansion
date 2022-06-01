@@ -962,3 +962,14 @@ gTileset_FloraSkyIndoor::
 	.4byte gMetatiles_FloraSkyIndoor
 	.4byte gMetatileAttributes_FloraSkyIndoor
 	.4byte NULL
+
+	.align 2
+gTileset_DeepForest::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_DeepForest
+	.4byte gTilesetPalettes_DeepForest
+	.4byte gMetatiles_DeepForest
+	.4byte gMetatileAttributes_DeepForest
+	.4byte NULL

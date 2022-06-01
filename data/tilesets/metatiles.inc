@@ -653,3 +653,11 @@ gMetatiles_FloraSkyIndoor::
 	.align 1
 gMetatileAttributes_FloraSkyIndoor::
 	.incbin "data/tilesets/secondary/floraskyindoor/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_DeepForest::
+	.incbin "data/tilesets/secondary/deepforest/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_DeepForest::
+	.incbin "data/tilesets/secondary/deepforest/metatile_attributes.bin"

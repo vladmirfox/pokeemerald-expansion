@@ -1116,3 +1116,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/PolarForestDown/scripts.inc"
 
 	.include "data/maps/PolarForestDownLeft/scripts.inc"
+
+	.include "data/maps/DeepForest/scripts.inc"

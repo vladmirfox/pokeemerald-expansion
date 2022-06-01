@@ -1969,3 +1969,23 @@ gTilesetPalettes_FloraSkyIndoor::
 	.align 2
 gTilesetTiles_FloraSkyIndoor::
 	.incbin "data/tilesets/secondary/floraskyindoor/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_DeepForest::
+	.incbin "data/tilesets/secondary/deepforest/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/deepforest/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/deepforest/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/deepforest/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/deepforest/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/deepforest/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/deepforest/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/deepforest/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/deepforest/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/deepforest/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/deepforest/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/deepforest/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/deepforest/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_DeepForest::
+	.incbin "data/tilesets/secondary/deepforest/tiles.4bpp.lz"
