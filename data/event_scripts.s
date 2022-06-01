@@ -1122,3 +1122,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/RouteDFlowerShop/scripts.inc"
 
 	.include "data/maps/UnionGate/scripts.inc"
+
+	.include "data/maps/PuelCity/scripts.inc"

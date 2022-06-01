@@ -49,7 +49,8 @@
     "gMapGroup_IndoorRoute124"
   ],
   "gMapGroup_FloraSkyTowns": [
-    "SmallTown"
+    "SmallTown",
+    "PuelCity"
   ],
   "gMapGroup_FloraSkyRoutes": [
     "RouteA",

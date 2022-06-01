@@ -4740,6 +4740,16 @@
       "secondary_tileset": "gTileset_UnionGate",
       "border_filepath": "data/layouts/UnionGate/border.bin",
       "blockdata_filepath": "data/layouts/UnionGate/map.bin"
+    },
+    {
+      "id": "LAYOUT_PUEL_CITY",
+      "name": "PuelCity_Layout",
+      "width": 30,
+      "height": 60,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_PuelCity",
+      "border_filepath": "data/layouts/PuelCity/border.bin",
+      "blockdata_filepath": "data/layouts/PuelCity/map.bin"
     }
   ]
 }
