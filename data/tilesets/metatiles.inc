@@ -669,3 +669,11 @@ gMetatiles_UnionGate::
 	.align 1
 gMetatileAttributes_UnionGate::
 	.incbin "data/tilesets/secondary/uniongate/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_Gym0::
+	.incbin "data/tilesets/secondary/gym0/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Gym0::
+	.incbin "data/tilesets/secondary/gym0/metatile_attributes.bin"

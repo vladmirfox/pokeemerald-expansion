@@ -984,3 +984,14 @@ gTileset_UnionGate::
 	.4byte gMetatiles_UnionGate
 	.4byte gMetatileAttributes_UnionGate
 	.4byte NULL
+
+	.align 2
+gTileset_Gym0::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_Gym0
+	.4byte gTilesetPalettes_Gym0
+	.4byte gMetatiles_Gym0
+	.4byte gMetatileAttributes_Gym0
+	.4byte NULL
