@@ -57,7 +57,8 @@
     "RouteA",
     "RouteD",
     "ForestEntrance",
-    "RouteB"
+    "RouteB",
+    "RouteC"
   ],
   "gMapGroup_IndoorSmallTown": [
     "NewMap1",
@@ -88,7 +89,8 @@
     "PuelCityPkmnCentre2F",
     "PuelCityMuseum1F",
     "PuelCityMuseum2F",
-    "PuelCityMuseumAquaHideout"
+    "PuelCityMuseumAquaHideout",
+    "PuelCityMart"
   ],
   "gMapGroup_IndoorForestEntrance": [
     "ForestEntranceHouse",

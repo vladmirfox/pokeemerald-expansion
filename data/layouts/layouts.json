@@ -4850,6 +4850,26 @@
       "secondary_tileset": "gTileset_PuelCityAquaHideout",
       "border_filepath": "data/layouts/PuelCityMuseumAquaHideout/border.bin",
       "blockdata_filepath": "data/layouts/PuelCityMuseumAquaHideout/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_C",
+      "name": "RouteC_Layout",
+      "width": 24,
+      "height": 50,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_PuelCity",
+      "border_filepath": "data/layouts/RouteC/border.bin",
+      "blockdata_filepath": "data/layouts/RouteC/map.bin"
+    },
+    {
+      "id": "LAYOUT_PUEL_CITY_MART",
+      "name": "PuelCityMart_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyMart",
+      "border_filepath": "data/layouts/PuelCityMart/border.bin",
+      "blockdata_filepath": "data/layouts/PuelCityMart/map.bin"
     }
   ]
 }

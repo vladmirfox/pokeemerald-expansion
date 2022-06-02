@@ -14,6 +14,7 @@
 #define MAP_ROUTE_D         (1 | (1 << 8))
 #define MAP_FOREST_ENTRANCE (2 | (1 << 8))
 #define MAP_ROUTE_B         (3 | (1 << 8))
+#define MAP_ROUTE_C         (4 | (1 << 8))
 
 // gMapGroup_IndoorSmallTown
 #define MAP_NEW_MAP1                (0 | (2 << 8))
@@ -45,6 +46,7 @@
 #define MAP_PUEL_CITY_MUSEUM1F            (4 | (7 << 8))
 #define MAP_PUEL_CITY_MUSEUM2F            (5 | (7 << 8))
 #define MAP_PUEL_CITY_MUSEUM_AQUA_HIDEOUT (6 | (7 << 8))
+#define MAP_PUEL_CITY_MART                (7 | (7 << 8))
 
 // gMapGroup_IndoorForestEntrance
 #define MAP_FOREST_ENTRANCE_HOUSE            (0 | (8 << 8))
