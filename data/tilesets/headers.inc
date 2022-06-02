@@ -1006,3 +1006,14 @@ gTileset_PuelCityAquaHideout::
 	.4byte gMetatiles_PuelCityAquaHideout
 	.4byte gMetatileAttributes_PuelCityAquaHideout
 	.4byte NULL
+
+	.align 2
+gTileset_MysticTown::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_MysticTown
+	.4byte gTilesetPalettes_MysticTown
+	.4byte gMetatiles_MysticTown
+	.4byte gMetatileAttributes_MysticTown
+	.4byte NULL

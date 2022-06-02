@@ -685,3 +685,11 @@ gMetatiles_PuelCityAquaHideout::
 	.align 1
 gMetatileAttributes_PuelCityAquaHideout::
 	.incbin "data/tilesets/secondary/puelcityaquahideout/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_MysticTown::
+	.incbin "data/tilesets/secondary/mystictown/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_MysticTown::
+	.incbin "data/tilesets/secondary/mystictown/metatile_attributes.bin"

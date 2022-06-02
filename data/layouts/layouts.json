@@ -4880,6 +4880,16 @@
       "secondary_tileset": "gTileset_FloraSkyIndoor",
       "border_filepath": "data/layouts/RouteCHouse/border.bin",
       "blockdata_filepath": "data/layouts/RouteCHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_MYSTIC_TOWN",
+      "name": "MysticTown_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_MysticTown",
+      "border_filepath": "data/layouts/MysticTown/border.bin",
+      "blockdata_filepath": "data/layouts/MysticTown/map.bin"
     }
   ]
 }

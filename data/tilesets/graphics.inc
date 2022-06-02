@@ -2049,3 +2049,23 @@ gTilesetPalettes_PuelCityAquaHideout::
 	.align 2
 gTilesetTiles_PuelCityAquaHideout::
 	.incbin "data/tilesets/secondary/puelcityaquahideout/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_MysticTown::
+	.incbin "data/tilesets/secondary/mystictown/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/mystictown/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/mystictown/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/mystictown/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/mystictown/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/mystictown/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/mystictown/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/mystictown/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/mystictown/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/mystictown/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/mystictown/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/mystictown/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/mystictown/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_MysticTown::
+	.incbin "data/tilesets/secondary/mystictown/tiles.4bpp.lz"
