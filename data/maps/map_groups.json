@@ -6,6 +6,7 @@
     "gMapGroup_IndoorSmallTown",
     "gMapGroup_IndoorRouteA",
     "gMapGroup_IndoorRouteB",
+    "gMapGroup_IndoorRouteC",
     "gMapGroup_IndoorRouteD",
     "gMapGroup_IndoorUnionGate",
     "gMapGroup_IndoorPuelCity",
@@ -75,6 +76,9 @@
   ],
   "gMapGroup_IndoorRouteB": [
     "RouteBHouse"
+  ],
+  "gMapGroup_IndoorRouteC": [
+    "RouteCHouse"
   ],
   "gMapGroup_IndoorRouteD": [
     "RouteDFlowerShop"

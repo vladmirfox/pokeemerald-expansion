@@ -1148,3 +1148,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/RouteC/scripts.inc"
 
 	.include "data/maps/PuelCityMart/scripts.inc"
+
+	.include "data/maps/RouteCHouse/scripts.inc"

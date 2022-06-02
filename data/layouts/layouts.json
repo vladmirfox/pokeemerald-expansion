@@ -4870,6 +4870,16 @@
       "secondary_tileset": "gTileset_FloraSkyMart",
       "border_filepath": "data/layouts/PuelCityMart/border.bin",
       "blockdata_filepath": "data/layouts/PuelCityMart/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_CHOUSE",
+      "name": "RouteCHouse_Layout",
+      "width": 10,
+      "height": 8,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyIndoor",
+      "border_filepath": "data/layouts/RouteCHouse/border.bin",
+      "blockdata_filepath": "data/layouts/RouteCHouse/map.bin"
     }
   ]
 }
