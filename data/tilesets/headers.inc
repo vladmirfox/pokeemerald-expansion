@@ -1017,3 +1017,14 @@ gTileset_MysticTown::
 	.4byte gMetatiles_MysticTown
 	.4byte gMetatileAttributes_MysticTown
 	.4byte NULL
+
+	.align 2
+gTileset_SurenceTown::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_SurenceTown
+	.4byte gTilesetPalettes_SurenceTown
+	.4byte gMetatiles_SurenceTown
+	.4byte gMetatileAttributes_SurenceTown
+	.4byte NULL

@@ -693,3 +693,11 @@ gMetatiles_MysticTown::
 	.align 1
 gMetatileAttributes_MysticTown::
 	.incbin "data/tilesets/secondary/mystictown/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_SurenceTown::
+	.incbin "data/tilesets/secondary/surencetown/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_SurenceTown::
+	.incbin "data/tilesets/secondary/surencetown/metatile_attributes.bin"

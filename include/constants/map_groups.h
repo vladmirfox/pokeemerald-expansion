@@ -16,6 +16,7 @@
 #define MAP_FOREST_ENTRANCE (2 | (1 << 8))
 #define MAP_ROUTE_B         (3 | (1 << 8))
 #define MAP_ROUTE_C         (4 | (1 << 8))
+#define MAP_ROUTE_G         (5 | (1 << 8))
 
 // gMapGroup_IndoorSmallTown
 #define MAP_NEW_MAP1                (0 | (2 << 8))

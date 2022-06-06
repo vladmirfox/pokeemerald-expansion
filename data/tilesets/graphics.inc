@@ -2069,3 +2069,23 @@ gTilesetPalettes_MysticTown::
 	.align 2
 gTilesetTiles_MysticTown::
 	.incbin "data/tilesets/secondary/mystictown/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_SurenceTown::
+	.incbin "data/tilesets/secondary/surencetown/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/surencetown/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/surencetown/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/surencetown/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/surencetown/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/surencetown/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/surencetown/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/surencetown/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/surencetown/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/surencetown/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/surencetown/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/surencetown/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/surencetown/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_SurenceTown::
+	.incbin "data/tilesets/secondary/surencetown/tiles.4bpp.lz"

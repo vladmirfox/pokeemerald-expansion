@@ -4890,6 +4890,16 @@
       "secondary_tileset": "gTileset_MysticTown",
       "border_filepath": "data/layouts/MysticTown/border.bin",
       "blockdata_filepath": "data/layouts/MysticTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_G",
+      "name": "RouteG_Layout",
+      "width": 76,
+      "height": 60,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_SurenceTown",
+      "border_filepath": "data/layouts/RouteG/border.bin",
+      "blockdata_filepath": "data/layouts/RouteG/map.bin"
     }
   ]
 }
