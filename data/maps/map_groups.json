@@ -54,7 +54,8 @@
     "SmallTown",
     "PuelCity",
     "MysticTown",
-    "PlatepicsCity"
+    "PlatepicsCity",
+    "NewMap2"
   ],
   "gMapGroup_FloraSkyRoutes": [
     "RouteA",
@@ -62,7 +63,8 @@
     "ForestEntrance",
     "RouteB",
     "RouteC",
-    "RouteG"
+    "RouteG",
+    "RouteF"
   ],
   "gMapGroup_IndoorSmallTown": [
     "NewMap1",

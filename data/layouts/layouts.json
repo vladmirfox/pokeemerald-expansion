@@ -4910,6 +4910,26 @@
       "secondary_tileset": "gTileset_PlatepicsCity",
       "border_filepath": "data/layouts/PlatepicsCity/border.bin",
       "blockdata_filepath": "data/layouts/PlatepicsCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_MAP2",
+      "name": "NewMap2_Layout",
+      "width": 60,
+      "height": 60,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_SurenceTown",
+      "border_filepath": "data/layouts/NewMap2/border.bin",
+      "blockdata_filepath": "data/layouts/NewMap2/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_F",
+      "name": "RouteF_Layout",
+      "width": 80,
+      "height": 60,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_SurenceTown",
+      "border_filepath": "data/layouts/RouteF/border.bin",
+      "blockdata_filepath": "data/layouts/RouteF/map.bin"
     }
   ]
 }

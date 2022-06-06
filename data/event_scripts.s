@@ -1156,3 +1156,7 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/RouteG/scripts.inc"
 
 	.include "data/maps/PlatepicsCity/scripts.inc"
+
+	.include "data/maps/NewMap2/scripts.inc"
+
+	.include "data/maps/RouteF/scripts.inc"
