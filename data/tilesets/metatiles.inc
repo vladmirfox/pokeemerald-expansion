@@ -701,3 +701,11 @@ gMetatiles_SurenceTown::
 	.align 1
 gMetatileAttributes_SurenceTown::
 	.incbin "data/tilesets/secondary/surencetown/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_PlatepicsCity::
+	.incbin "data/tilesets/secondary/platepicscity/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_PlatepicsCity::
+	.incbin "data/tilesets/secondary/platepicscity/metatile_attributes.bin"

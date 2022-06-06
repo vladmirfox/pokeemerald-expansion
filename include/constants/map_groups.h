@@ -6,9 +6,10 @@
 //
 
 // gMapGroup_FloraSkyTowns
-#define MAP_SMALL_TOWN  (0 | (0 << 8))
-#define MAP_PUEL_CITY   (1 | (0 << 8))
-#define MAP_MYSTIC_TOWN (2 | (0 << 8))
+#define MAP_SMALL_TOWN     (0 | (0 << 8))
+#define MAP_PUEL_CITY      (1 | (0 << 8))
+#define MAP_MYSTIC_TOWN    (2 | (0 << 8))
+#define MAP_PLATEPICS_CITY (3 | (0 << 8))
 
 // gMapGroup_FloraSkyRoutes
 #define MAP_ROUTE_A         (0 | (1 << 8))

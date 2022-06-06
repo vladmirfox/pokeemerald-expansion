@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE_G",
   "name": "RouteG",
   "layout": "LAYOUT_ROUTE_G",
-  "music": "MUS_B_ARENA",
+  "music": "MUS_B_FACTORY",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

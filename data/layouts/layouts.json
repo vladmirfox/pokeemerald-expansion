@@ -4900,6 +4900,16 @@
       "secondary_tileset": "gTileset_SurenceTown",
       "border_filepath": "data/layouts/RouteG/border.bin",
       "blockdata_filepath": "data/layouts/RouteG/map.bin"
+    },
+    {
+      "id": "LAYOUT_PLATEPICS_CITY",
+      "name": "PlatepicsCity_Layout",
+      "width": 60,
+      "height": 74,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_PlatepicsCity",
+      "border_filepath": "data/layouts/PlatepicsCity/border.bin",
+      "blockdata_filepath": "data/layouts/PlatepicsCity/map.bin"
     }
   ]
 }

@@ -79,6 +79,27 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE_C",
       "dest_warp_id": 1
+    },
+    {
+      "x": 26,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_PLATEPICS_CITY",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 27,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_PLATEPICS_CITY",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 28,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_PLATEPICS_CITY",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

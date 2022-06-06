@@ -1154,3 +1154,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/MysticTown/scripts.inc"
 
 	.include "data/maps/RouteG/scripts.inc"
+
+	.include "data/maps/PlatepicsCity/scripts.inc"
