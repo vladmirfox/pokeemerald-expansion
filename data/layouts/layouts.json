@@ -4930,6 +4930,16 @@
       "secondary_tileset": "gTileset_SurenceTown",
       "border_filepath": "data/layouts/RouteF/border.bin",
       "blockdata_filepath": "data/layouts/RouteF/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_E",
+      "name": "RouteE_Layout",
+      "width": 82,
+      "height": 20,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_PlatepicsCity",
+      "border_filepath": "data/layouts/RouteE/border.bin",
+      "blockdata_filepath": "data/layouts/RouteE/map.bin"
     }
   ]
 }

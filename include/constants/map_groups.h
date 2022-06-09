@@ -20,6 +20,7 @@
 #define MAP_ROUTE_C         (4 | (1 << 8))
 #define MAP_ROUTE_G         (5 | (1 << 8))
 #define MAP_ROUTE_F         (6 | (1 << 8))
+#define MAP_ROUTE_E         (7 | (1 << 8))
 
 // gMapGroup_IndoorSmallTown
 #define MAP_NEW_MAP1                (0 | (2 << 8))
