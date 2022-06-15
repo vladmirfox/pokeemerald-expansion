@@ -55,7 +55,8 @@
     "PuelCity",
     "MysticTown",
     "PlatepicsCity",
-    "NewMap2"
+    "NewMap2",
+    "TurzoroCity"
   ],
   "gMapGroup_FloraSkyRoutes": [
     "RouteA",
@@ -68,7 +69,8 @@
     "RouteE",
     "RouteH",
     "RouteI",
-    "RouteJ"
+    "RouteJ",
+    "RouteK"
   ],
   "gMapGroup_IndoorSmallTown": [
     "NewMap1",

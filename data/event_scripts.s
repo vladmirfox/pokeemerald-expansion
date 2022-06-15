@@ -1168,3 +1168,7 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/RouteI/scripts.inc"
 
 	.include "data/maps/RouteJ/scripts.inc"
+
+	.include "data/maps/RouteK/scripts.inc"
+
+	.include "data/maps/TurzoroCity/scripts.inc"

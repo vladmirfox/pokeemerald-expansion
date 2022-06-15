@@ -11,6 +11,7 @@
 #define MAP_MYSTIC_TOWN    (2 | (0 << 8))
 #define MAP_PLATEPICS_CITY (3 | (0 << 8))
 #define MAP_NEW_MAP2       (4 | (0 << 8))
+#define MAP_TURZORO_CITY   (5 | (0 << 8))
 
 // gMapGroup_FloraSkyRoutes
 #define MAP_ROUTE_A         (0 | (1 << 8))
@@ -24,6 +25,7 @@
 #define MAP_ROUTE_H         (8 | (1 << 8))
 #define MAP_ROUTE_I         (9 | (1 << 8))
 #define MAP_ROUTE_J         (10 | (1 << 8))
+#define MAP_ROUTE_K         (11 | (1 << 8))
 
 // gMapGroup_IndoorSmallTown
 #define MAP_NEW_MAP1                (0 | (2 << 8))

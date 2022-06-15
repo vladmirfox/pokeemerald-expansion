@@ -4970,6 +4970,26 @@
       "secondary_tileset": "gTileset_RouteH",
       "border_filepath": "data/layouts/RouteJ/border.bin",
       "blockdata_filepath": "data/layouts/RouteJ/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_K",
+      "name": "RouteK_Layout",
+      "width": 60,
+      "height": 20,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_BeeBugForest",
+      "border_filepath": "data/layouts/RouteK/border.bin",
+      "blockdata_filepath": "data/layouts/RouteK/map.bin"
+    },
+    {
+      "id": "LAYOUT_TURZORO_CITY",
+      "name": "TurzoroCity_Layout",
+      "width": 70,
+      "height": 46,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_BeeBugForest",
+      "border_filepath": "data/layouts/TurzoroCity/border.bin",
+      "blockdata_filepath": "data/layouts/TurzoroCity/map.bin"
     }
   ]
 }
