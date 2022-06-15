@@ -26,6 +26,7 @@
 #define MAP_ROUTE_I         (9 | (1 << 8))
 #define MAP_ROUTE_J         (10 | (1 << 8))
 #define MAP_ROUTE_K         (11 | (1 << 8))
+#define MAP_ROUTE_L         (12 | (1 << 8))
 
 // gMapGroup_IndoorSmallTown
 #define MAP_NEW_MAP1                (0 | (2 << 8))

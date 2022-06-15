@@ -4990,6 +4990,16 @@
       "secondary_tileset": "gTileset_BeeBugForest",
       "border_filepath": "data/layouts/TurzoroCity/border.bin",
       "blockdata_filepath": "data/layouts/TurzoroCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_L",
+      "name": "RouteL_Layout",
+      "width": 26,
+      "height": 80,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_BeeBugForest",
+      "border_filepath": "data/layouts/RouteL/border.bin",
+      "blockdata_filepath": "data/layouts/RouteL/map.bin"
     }
   ]
 }
