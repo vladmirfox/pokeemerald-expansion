@@ -5120,6 +5120,16 @@
       "secondary_tileset": "gTileset_RouteW",
       "border_filepath": "data/layouts/RouteQ/border.bin",
       "blockdata_filepath": "data/layouts/RouteQ/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_U",
+      "name": "RouteU_Layout",
+      "width": 80,
+      "height": 80,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_RouteW",
+      "border_filepath": "data/layouts/RouteU/border.bin",
+      "blockdata_filepath": "data/layouts/RouteU/map.bin"
     }
   ]
 }
