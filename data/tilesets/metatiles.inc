@@ -733,3 +733,11 @@ gMetatiles_RouteJ::
 	.align 1
 gMetatileAttributes_RouteJ::
 	.incbin "data/tilesets/secondary/routej/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_PokemonLeauge::
+	.incbin "data/tilesets/secondary/pokemonleauge/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_PokemonLeauge::
+	.incbin "data/tilesets/secondary/pokemonleauge/metatile_attributes.bin"

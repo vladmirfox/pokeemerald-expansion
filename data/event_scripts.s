@@ -1174,3 +1174,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/TurzoroCity/scripts.inc"
 
 	.include "data/maps/RouteL/scripts.inc"
+
+	.include "data/maps/PokemonLeauge/scripts.inc"

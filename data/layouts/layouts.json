@@ -5000,6 +5000,16 @@
       "secondary_tileset": "gTileset_BeeBugForest",
       "border_filepath": "data/layouts/RouteL/border.bin",
       "blockdata_filepath": "data/layouts/RouteL/map.bin"
+    },
+    {
+      "id": "LAYOUT_POKEMON_LEAUGE",
+      "name": "PokemonLeauge_Layout",
+      "width": 40,
+      "height": 80,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_PokemonLeauge",
+      "border_filepath": "data/layouts/PokemonLeauge/border.bin",
+      "blockdata_filepath": "data/layouts/PokemonLeauge/map.bin"
     }
   ]
 }

@@ -1072,3 +1072,14 @@ gTileset_RouteJ::
 	.4byte gMetatiles_RouteJ
 	.4byte gMetatileAttributes_RouteJ
 	.4byte NULL
+
+	.align 2
+gTileset_PokemonLeauge::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_PokemonLeauge
+	.4byte gTilesetPalettes_PokemonLeauge
+	.4byte gMetatiles_PokemonLeauge
+	.4byte gMetatileAttributes_PokemonLeauge
+	.4byte NULL
