@@ -5140,6 +5140,16 @@
       "secondary_tileset": "gTileset_OcepacTown",
       "border_filepath": "data/layouts/OcepacTown/border.bin",
       "blockdata_filepath": "data/layouts/OcepacTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_T",
+      "name": "RouteT_Layout",
+      "width": 84,
+      "height": 60,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_PuelCity",
+      "border_filepath": "data/layouts/RouteT/border.bin",
+      "blockdata_filepath": "data/layouts/RouteT/map.bin"
     }
   ]
 }
