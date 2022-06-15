@@ -5170,6 +5170,16 @@
       "secondary_tileset": "gTileset_RouteAB",
       "border_filepath": "data/layouts/RouteZ/border.bin",
       "blockdata_filepath": "data/layouts/RouteZ/map.bin"
+    },
+    {
+      "id": "LAYOUT_HOTASITA_CITY",
+      "name": "HotasitaCity_Layout",
+      "width": 50,
+      "height": 54,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_RouteAB",
+      "border_filepath": "data/layouts/HotasitaCity/border.bin",
+      "blockdata_filepath": "data/layouts/HotasitaCity/map.bin"
     }
   ]
 }

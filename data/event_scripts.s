@@ -1208,3 +1208,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/RouteAA/scripts.inc"
 
 	.include "data/maps/RouteZ/scripts.inc"
+
+	.include "data/maps/HotasitaCity/scripts.inc"

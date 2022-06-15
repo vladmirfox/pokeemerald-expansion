@@ -17,6 +17,7 @@
 #define MAP_SEAROUND_CITY  (8 | (0 << 8))
 #define MAP_CHARPOS_ISLAND (9 | (0 << 8))
 #define MAP_OCEPAC_TOWN    (10 | (0 << 8))
+#define MAP_HOTASITA_CITY  (11 | (0 << 8))
 
 // gMapGroup_FloraSkyRoutes
 #define MAP_ROUTE_A         (0 | (1 << 8))
