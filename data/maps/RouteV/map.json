@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE_V",
   "name": "RouteV",
   "layout": "LAYOUT_ROUTE_V",
-  "music": "",
+  "music": "MUS_CAUGHT",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -17,6 +17,11 @@
       "direction": "left",
       "offset": 0,
       "map": "MAP_SEAROUND_CITY"
+    },
+    {
+      "direction": "right",
+      "offset": -10,
+      "map": "MAP_ROUTE_AC"
     }
   ],
   "object_events": [

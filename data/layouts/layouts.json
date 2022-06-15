@@ -5080,6 +5080,16 @@
       "secondary_tileset": "gTileset_BeeBugForest",
       "border_filepath": "data/layouts/RouteAC/border.bin",
       "blockdata_filepath": "data/layouts/RouteAC/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_AB",
+      "name": "RouteAB_Layout",
+      "width": 40,
+      "height": 140,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_RouteAB",
+      "border_filepath": "data/layouts/RouteAB/border.bin",
+      "blockdata_filepath": "data/layouts/RouteAB/map.bin"
     }
   ]
 }

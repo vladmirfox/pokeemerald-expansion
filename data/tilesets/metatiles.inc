@@ -773,3 +773,11 @@ gMetatiles_SearoundCity::
 	.align 1
 gMetatileAttributes_SearoundCity::
 	.incbin "data/tilesets/secondary/searoundcity/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_RouteAB::
+	.incbin "data/tilesets/secondary/routeab/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_RouteAB::
+	.incbin "data/tilesets/secondary/routeab/metatile_attributes.bin"

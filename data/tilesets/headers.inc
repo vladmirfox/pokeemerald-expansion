@@ -1127,3 +1127,14 @@ gTileset_SearoundCity::
 	.4byte gMetatiles_SearoundCity
 	.4byte gMetatileAttributes_SearoundCity
 	.4byte NULL
+
+	.align 2
+gTileset_RouteAB::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_RouteAB
+	.4byte gTilesetPalettes_RouteAB
+	.4byte gMetatiles_RouteAB
+	.4byte gMetatileAttributes_RouteAB
+	.4byte NULL

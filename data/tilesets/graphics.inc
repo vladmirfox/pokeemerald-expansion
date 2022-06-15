@@ -2269,3 +2269,23 @@ gTilesetPalettes_SearoundCity::
 	.align 2
 gTilesetTiles_SearoundCity::
 	.incbin "data/tilesets/secondary/searoundcity/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_RouteAB::
+	.incbin "data/tilesets/secondary/routeab/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/routeab/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/routeab/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/routeab/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/routeab/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/routeab/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/routeab/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/routeab/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/routeab/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/routeab/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/routeab/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/routeab/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/routeab/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_RouteAB::
+	.incbin "data/tilesets/secondary/routeab/tiles.4bpp.lz"
