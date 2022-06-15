@@ -5010,6 +5010,16 @@
       "secondary_tileset": "gTileset_PokemonLeauge",
       "border_filepath": "data/layouts/PokemonLeauge/border.bin",
       "blockdata_filepath": "data/layouts/PokemonLeauge/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_P",
+      "name": "RouteP_Layout",
+      "width": 60,
+      "height": 20,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_RouteP",
+      "border_filepath": "data/layouts/RouteP/border.bin",
+      "blockdata_filepath": "data/layouts/RouteP/map.bin"
     }
   ]
 }

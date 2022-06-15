@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE_L",
   "name": "RouteL",
   "layout": "LAYOUT_ROUTE_L",
-  "music": "",
+  "music": "MUS_CAVE_OF_ORIGIN",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -17,6 +17,11 @@
       "direction": "down",
       "offset": -10,
       "map": "MAP_TURZORO_CITY"
+    },
+    {
+      "direction": "up",
+      "offset": 0,
+      "map": "MAP_POKEMON_LEAUGE"
     }
   ],
   "object_events": [

@@ -2189,3 +2189,23 @@ gTilesetPalettes_PokemonLeauge::
 	.align 2
 gTilesetTiles_PokemonLeauge::
 	.incbin "data/tilesets/secondary/pokemonleauge/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_RouteP::
+	.incbin "data/tilesets/secondary/routep/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/routep/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/routep/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/routep/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/routep/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/routep/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/routep/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/routep/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/routep/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/routep/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/routep/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/routep/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/routep/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_RouteP::
+	.incbin "data/tilesets/secondary/routep/tiles.4bpp.lz"

@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE_K",
   "name": "RouteK",
   "layout": "LAYOUT_ROUTE_K",
-  "music": "",
+  "music": "MUS_CONTEST_RESULTS",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

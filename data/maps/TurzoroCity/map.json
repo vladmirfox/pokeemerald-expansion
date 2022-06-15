@@ -2,7 +2,7 @@
   "id": "MAP_TURZORO_CITY",
   "name": "TurzoroCity",
   "layout": "LAYOUT_TURZORO_CITY",
-  "music": "",
+  "music": "MUS_B_PIKE",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -17,6 +17,11 @@
       "direction": "right",
       "offset": 0,
       "map": "MAP_ROUTE_K"
+    },
+    {
+      "direction": "up",
+      "offset": 10,
+      "map": "MAP_ROUTE_L"
     }
   ],
   "object_events": [

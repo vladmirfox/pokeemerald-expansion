@@ -1176,3 +1176,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/RouteL/scripts.inc"
 
 	.include "data/maps/PokemonLeauge/scripts.inc"
+
+	.include "data/maps/RouteP/scripts.inc"
