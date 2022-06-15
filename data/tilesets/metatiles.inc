@@ -709,3 +709,27 @@ gMetatiles_PlatepicsCity::
 	.align 1
 gMetatileAttributes_PlatepicsCity::
 	.incbin "data/tilesets/secondary/platepicscity/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_RouteH::
+	.incbin "data/tilesets/secondary/routeh/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_RouteH::
+	.incbin "data/tilesets/secondary/routeh/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_RouteI::
+	.incbin "data/tilesets/secondary/routei/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_RouteI::
+	.incbin "data/tilesets/secondary/routei/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_RouteJ::
+	.incbin "data/tilesets/secondary/routej/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_RouteJ::
+	.incbin "data/tilesets/secondary/routej/metatile_attributes.bin"

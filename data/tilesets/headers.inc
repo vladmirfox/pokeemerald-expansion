@@ -1039,3 +1039,36 @@ gTileset_PlatepicsCity::
 	.4byte gMetatiles_PlatepicsCity
 	.4byte gMetatileAttributes_PlatepicsCity
 	.4byte NULL
+
+	.align 2
+gTileset_RouteH::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_RouteH
+	.4byte gTilesetPalettes_RouteH
+	.4byte gMetatiles_RouteH
+	.4byte gMetatileAttributes_RouteH
+	.4byte NULL
+
+	.align 2
+gTileset_RouteI::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_RouteI
+	.4byte gTilesetPalettes_RouteI
+	.4byte gMetatiles_RouteI
+	.4byte gMetatileAttributes_RouteI
+	.4byte NULL
+
+	.align 2
+gTileset_RouteJ::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_RouteJ
+	.4byte gTilesetPalettes_RouteJ
+	.4byte gMetatiles_RouteJ
+	.4byte gMetatileAttributes_RouteJ
+	.4byte NULL

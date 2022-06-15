@@ -17,6 +17,16 @@
       "direction": "right",
       "offset": 0,
       "map": "MAP_ROUTE_F"
+    },
+    {
+      "direction": "left",
+      "offset": 14,
+      "map": "MAP_ROUTE_E"
+    },
+    {
+      "direction": "down",
+      "offset": 0,
+      "map": "MAP_ROUTE_H"
     }
   ],
   "object_events": [

@@ -1162,3 +1162,9 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/RouteF/scripts.inc"
 
 	.include "data/maps/RouteE/scripts.inc"
+
+	.include "data/maps/RouteH/scripts.inc"
+
+	.include "data/maps/RouteI/scripts.inc"
+
+	.include "data/maps/RouteJ/scripts.inc"

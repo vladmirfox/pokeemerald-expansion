@@ -4940,6 +4940,36 @@
       "secondary_tileset": "gTileset_PlatepicsCity",
       "border_filepath": "data/layouts/RouteE/border.bin",
       "blockdata_filepath": "data/layouts/RouteE/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_H",
+      "name": "RouteH_Layout",
+      "width": 40,
+      "height": 100,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_RouteH",
+      "border_filepath": "data/layouts/RouteH/border.bin",
+      "blockdata_filepath": "data/layouts/RouteH/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_I",
+      "name": "RouteI_Layout",
+      "width": 40,
+      "height": 62,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_RouteI",
+      "border_filepath": "data/layouts/RouteI/border.bin",
+      "blockdata_filepath": "data/layouts/RouteI/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_J",
+      "name": "RouteJ_Layout",
+      "width": 60,
+      "height": 120,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_RouteH",
+      "border_filepath": "data/layouts/RouteJ/border.bin",
+      "blockdata_filepath": "data/layouts/RouteJ/map.bin"
     }
   ]
 }

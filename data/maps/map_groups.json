@@ -65,7 +65,10 @@
     "RouteC",
     "RouteG",
     "RouteF",
-    "RouteE"
+    "RouteE",
+    "RouteH",
+    "RouteI",
+    "RouteJ"
   ],
   "gMapGroup_IndoorSmallTown": [
     "NewMap1",

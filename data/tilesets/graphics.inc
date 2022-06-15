@@ -2109,3 +2109,63 @@ gTilesetPalettes_PlatepicsCity::
 	.align 2
 gTilesetTiles_PlatepicsCity::
 	.incbin "data/tilesets/secondary/platepicscity/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_RouteH::
+	.incbin "data/tilesets/secondary/routeh/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/routeh/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/routeh/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/routeh/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/routeh/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/routeh/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/routeh/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/routeh/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/routeh/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/routeh/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/routeh/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/routeh/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/routeh/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_RouteH::
+	.incbin "data/tilesets/secondary/routeh/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_RouteI::
+	.incbin "data/tilesets/secondary/routei/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/routei/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/routei/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/routei/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/routei/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/routei/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/routei/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/routei/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/routei/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/routei/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/routei/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/routei/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/routei/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_RouteI::
+	.incbin "data/tilesets/secondary/routei/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_RouteJ::
+	.incbin "data/tilesets/secondary/routej/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/routej/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/routej/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/routej/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/routej/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/routej/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/routej/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/routej/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/routej/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/routej/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/routej/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/routej/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/routej/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_RouteJ::
+	.incbin "data/tilesets/secondary/routej/tiles.4bpp.lz"
