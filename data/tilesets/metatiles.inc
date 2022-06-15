@@ -789,3 +789,11 @@ gMetatiles_RouteW::
 	.align 1
 gMetatileAttributes_RouteW::
 	.incbin "data/tilesets/secondary/routew/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_OcepacTown::
+	.incbin "data/tilesets/secondary/ocepactown/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_OcepacTown::
+	.incbin "data/tilesets/secondary/ocepactown/metatile_attributes.bin"

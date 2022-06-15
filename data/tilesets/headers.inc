@@ -1149,3 +1149,14 @@ gTileset_RouteW::
 	.4byte gMetatiles_RouteW
 	.4byte gMetatileAttributes_RouteW
 	.4byte NULL
+
+	.align 2
+gTileset_OcepacTown::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_OcepacTown
+	.4byte gTilesetPalettes_OcepacTown
+	.4byte gMetatiles_OcepacTown
+	.4byte gMetatileAttributes_OcepacTown
+	.4byte NULL

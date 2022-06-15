@@ -61,7 +61,7 @@
     "HabutestTown",
     "SearoundCity",
     "CharposIsland",
-    "RouteU"
+    "OcepacTown"
   ],
   "gMapGroup_FloraSkyRoutes": [
     "RouteA",
@@ -84,7 +84,8 @@
     "RouteAC",
     "RouteAB",
     "RouteQ",
-    "RouteW"
+    "RouteW",
+    "RouteU"
   ],
   "gMapGroup_IndoorSmallTown": [
     "NewMap1",
