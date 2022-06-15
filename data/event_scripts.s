@@ -1196,3 +1196,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/RouteW/scripts.inc"
 
 	.include "data/maps/CharposIsland/scripts.inc"
+
+	.include "data/maps/RouteQ/scripts.inc"

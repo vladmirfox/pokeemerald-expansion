@@ -16,6 +16,7 @@
 #define MAP_HABUTEST_TOWN  (7 | (0 << 8))
 #define MAP_SEAROUND_CITY  (8 | (0 << 8))
 #define MAP_CHARPOS_ISLAND (9 | (0 << 8))
+#define MAP_ROUTE_Q        (10 | (0 << 8))
 
 // gMapGroup_FloraSkyRoutes
 #define MAP_ROUTE_A         (0 | (1 << 8))

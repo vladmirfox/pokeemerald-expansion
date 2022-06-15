@@ -1,0 +1,39 @@
+{
+  "id": "MAP_ROUTE_Q",
+  "name": "RouteQ",
+  "layout": "LAYOUT_ROUTE_Q",
+  "music": "",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_NONE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "up",
+      "offset": -10,
+      "map": "MAP_CHARPOS_ISLAND"
+    },
+    {
+      "direction": "down",
+      "offset": 20,
+      "map": "MAP_ROUTE_V"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}
