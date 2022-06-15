@@ -1204,3 +1204,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/OcepacTown/scripts.inc"
 
 	.include "data/maps/RouteT/scripts.inc"
+
+	.include "data/maps/RouteAA/scripts.inc"

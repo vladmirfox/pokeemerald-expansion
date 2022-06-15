@@ -5150,6 +5150,16 @@
       "secondary_tileset": "gTileset_PuelCity",
       "border_filepath": "data/layouts/RouteT/border.bin",
       "blockdata_filepath": "data/layouts/RouteT/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_AA",
+      "name": "RouteAA_Layout",
+      "width": 80,
+      "height": 40,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_OcepacTown",
+      "border_filepath": "data/layouts/RouteAA/border.bin",
+      "blockdata_filepath": "data/layouts/RouteAA/map.bin"
     }
   ]
 }

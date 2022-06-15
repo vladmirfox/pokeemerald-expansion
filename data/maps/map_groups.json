@@ -86,7 +86,8 @@
     "RouteQ",
     "RouteW",
     "RouteU",
-    "RouteT"
+    "RouteT",
+    "RouteAA"
   ],
   "gMapGroup_IndoorSmallTown": [
     "NewMap1",
