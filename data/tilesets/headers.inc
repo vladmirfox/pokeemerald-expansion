@@ -1138,3 +1138,14 @@ gTileset_RouteAB::
 	.4byte gMetatiles_RouteAB
 	.4byte gMetatileAttributes_RouteAB
 	.4byte NULL
+
+	.align 2
+gTileset_RouteW::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_RouteW
+	.4byte gTilesetPalettes_RouteW
+	.4byte gMetatiles_RouteW
+	.4byte gMetatileAttributes_RouteW
+	.4byte NULL

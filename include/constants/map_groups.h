@@ -36,6 +36,7 @@
 #define MAP_ROUTE_V         (16 | (1 << 8))
 #define MAP_ROUTE_AC        (17 | (1 << 8))
 #define MAP_ROUTE_AB        (18 | (1 << 8))
+#define MAP_ROUTE_W         (19 | (1 << 8))
 
 // gMapGroup_IndoorSmallTown
 #define MAP_NEW_MAP1                (0 | (2 << 8))

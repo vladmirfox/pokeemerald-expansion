@@ -781,3 +781,11 @@ gMetatiles_RouteAB::
 	.align 1
 gMetatileAttributes_RouteAB::
 	.incbin "data/tilesets/secondary/routeab/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_RouteW::
+	.incbin "data/tilesets/secondary/routew/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_RouteW::
+	.incbin "data/tilesets/secondary/routew/metatile_attributes.bin"
