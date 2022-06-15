@@ -1,8 +1,8 @@
 {
-  "id": "MAP_ROUTE_T",
-  "name": "RouteT",
-  "layout": "LAYOUT_ROUTE_T",
-  "music": "MUS_B_DOME_LOBBY",
+  "id": "MAP_ROUTE_Z",
+  "name": "RouteZ",
+  "layout": "LAYOUT_ROUTE_Z",
+  "music": "MUS_AQUA_MAGMA_HIDEOUT",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -14,14 +14,9 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "direction": "right",
-      "offset": 0,
-      "map": "MAP_OCEPAC_TOWN"
-    },
-    {
       "direction": "left",
-      "offset": 0,
-      "map": "MAP_PUEL_CITY"
+      "offset": 19,
+      "map": "MAP_ROUTE_AA"
     }
   ],
   "object_events": [

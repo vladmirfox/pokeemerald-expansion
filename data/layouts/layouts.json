@@ -5160,6 +5160,16 @@
       "secondary_tileset": "gTileset_OcepacTown",
       "border_filepath": "data/layouts/RouteAA/border.bin",
       "blockdata_filepath": "data/layouts/RouteAA/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_Z",
+      "name": "RouteZ_Layout",
+      "width": 40,
+      "height": 80,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_RouteAB",
+      "border_filepath": "data/layouts/RouteZ/border.bin",
+      "blockdata_filepath": "data/layouts/RouteZ/map.bin"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE_AA",
   "name": "RouteAA",
   "layout": "LAYOUT_ROUTE_AA",
-  "music": "",
+  "music": "MUS_BIRCH_LAB",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -17,6 +17,11 @@
       "direction": "left",
       "offset": 0,
       "map": "MAP_OCEPAC_TOWN"
+    },
+    {
+      "direction": "right",
+      "offset": -19,
+      "map": "MAP_ROUTE_Z"
     }
   ],
   "object_events": [
