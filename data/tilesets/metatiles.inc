@@ -757,3 +757,19 @@ gMetatiles_HabutestTown::
 	.align 1
 gMetatileAttributes_HabutestTown::
 	.incbin "data/tilesets/secondary/habutesttown/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_TeaesCity::
+	.incbin "data/tilesets/secondary/teaescity/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_TeaesCity::
+	.incbin "data/tilesets/secondary/teaescity/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_SearoundCity::
+	.incbin "data/tilesets/secondary/searoundcity/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_SearoundCity::
+	.incbin "data/tilesets/secondary/searoundcity/metatile_attributes.bin"

@@ -1105,3 +1105,25 @@ gTileset_HabutestTown::
 	.4byte gMetatiles_HabutestTown
 	.4byte gMetatileAttributes_HabutestTown
 	.4byte NULL
+
+	.align 2
+gTileset_TeaesCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_TeaesCity
+	.4byte gTilesetPalettes_TeaesCity
+	.4byte gMetatiles_TeaesCity
+	.4byte gMetatileAttributes_TeaesCity
+	.4byte NULL
+
+	.align 2
+gTileset_SearoundCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_SearoundCity
+	.4byte gTilesetPalettes_SearoundCity
+	.4byte gMetatiles_SearoundCity
+	.4byte gMetatileAttributes_SearoundCity
+	.4byte NULL

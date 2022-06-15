@@ -11,9 +11,10 @@
 #define MAP_MYSTIC_TOWN    (2 | (0 << 8))
 #define MAP_PLATEPICS_CITY (3 | (0 << 8))
 #define MAP_NEW_MAP2       (4 | (0 << 8))
-#define MAP_TURZORO_CITY   (5 | (0 << 8))
-#define MAP_HABUTEST_TOWN  (6 | (0 << 8))
-#define MAP_ROUTE_M        (7 | (0 << 8))
+#define MAP_POKEMON_LEAUGE (5 | (0 << 8))
+#define MAP_TURZORO_CITY   (6 | (0 << 8))
+#define MAP_HABUTEST_TOWN  (7 | (0 << 8))
+#define MAP_SEAROUND_CITY  (8 | (0 << 8))
 
 // gMapGroup_FloraSkyRoutes
 #define MAP_ROUTE_A         (0 | (1 << 8))
@@ -29,8 +30,11 @@
 #define MAP_ROUTE_J         (10 | (1 << 8))
 #define MAP_ROUTE_K         (11 | (1 << 8))
 #define MAP_ROUTE_L         (12 | (1 << 8))
-#define MAP_POKEMON_LEAUGE  (13 | (1 << 8))
-#define MAP_ROUTE_P         (14 | (1 << 8))
+#define MAP_ROUTE_M         (13 | (1 << 8))
+#define MAP_ROUTE_N         (14 | (1 << 8))
+#define MAP_ROUTE_P         (15 | (1 << 8))
+#define MAP_ROUTE_V         (16 | (1 << 8))
+#define MAP_ROUTE_AC        (17 | (1 << 8))
 
 // gMapGroup_IndoorSmallTown
 #define MAP_NEW_MAP1                (0 | (2 << 8))

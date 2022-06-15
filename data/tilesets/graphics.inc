@@ -2229,3 +2229,43 @@ gTilesetPalettes_HabutestTown::
 	.align 2
 gTilesetTiles_HabutestTown::
 	.incbin "data/tilesets/secondary/habutesttown/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_TeaesCity::
+	.incbin "data/tilesets/secondary/teaescity/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/teaescity/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/teaescity/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/teaescity/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/teaescity/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/teaescity/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/teaescity/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/teaescity/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/teaescity/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/teaescity/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/teaescity/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/teaescity/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/teaescity/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_TeaesCity::
+	.incbin "data/tilesets/secondary/teaescity/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_SearoundCity::
+	.incbin "data/tilesets/secondary/searoundcity/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/searoundcity/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/searoundcity/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/searoundcity/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/searoundcity/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/searoundcity/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/searoundcity/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/searoundcity/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/searoundcity/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/searoundcity/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/searoundcity/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/searoundcity/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/searoundcity/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_SearoundCity::
+	.incbin "data/tilesets/secondary/searoundcity/tiles.4bpp.lz"

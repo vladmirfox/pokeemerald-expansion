@@ -1182,3 +1182,11 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/HabutestTown/scripts.inc"
 
 	.include "data/maps/RouteM/scripts.inc"
+
+	.include "data/maps/RouteN/scripts.inc"
+
+	.include "data/maps/SearoundCity/scripts.inc"
+
+	.include "data/maps/RouteV/scripts.inc"
+
+	.include "data/maps/RouteAC/scripts.inc"

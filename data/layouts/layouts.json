@@ -5040,6 +5040,46 @@
       "secondary_tileset": "gTileset_HabutestTown",
       "border_filepath": "data/layouts/RouteM/border.bin",
       "blockdata_filepath": "data/layouts/RouteM/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_N",
+      "name": "RouteN_Layout",
+      "width": 80,
+      "height": 30,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_TeaesCity",
+      "border_filepath": "data/layouts/RouteN/border.bin",
+      "blockdata_filepath": "data/layouts/RouteN/map.bin"
+    },
+    {
+      "id": "LAYOUT_SEAROUND_CITY",
+      "name": "SearoundCity_Layout",
+      "width": 90,
+      "height": 40,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_SearoundCity",
+      "border_filepath": "data/layouts/SearoundCity/border.bin",
+      "blockdata_filepath": "data/layouts/SearoundCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_V",
+      "name": "RouteV_Layout",
+      "width": 80,
+      "height": 40,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_HabutestTown",
+      "border_filepath": "data/layouts/RouteV/border.bin",
+      "blockdata_filepath": "data/layouts/RouteV/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_AC",
+      "name": "RouteAC_Layout",
+      "width": 120,
+      "height": 40,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_BeeBugForest",
+      "border_filepath": "data/layouts/RouteAC/border.bin",
+      "blockdata_filepath": "data/layouts/RouteAC/map.bin"
     }
   ]
 }

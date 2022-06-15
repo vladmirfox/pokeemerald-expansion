@@ -58,7 +58,8 @@
     "NewMap2",
     "PokemonLeauge",
     "TurzoroCity",
-    "HabutestTown"
+    "HabutestTown",
+    "SearoundCity"
   ],
   "gMapGroup_FloraSkyRoutes": [
     "RouteA",
@@ -75,7 +76,10 @@
     "RouteK",
     "RouteL",
     "RouteM",
-    "RouteP"
+    "RouteN",
+    "RouteP",
+    "RouteV",
+    "RouteAC"
   ],
   "gMapGroup_IndoorSmallTown": [
     "NewMap1",
