@@ -60,8 +60,7 @@
     "TurzoroCity",
     "HabutestTown",
     "SearoundCity",
-    "CharposIsland",
-    "RouteQ"
+    "CharposIsland"
   ],
   "gMapGroup_FloraSkyRoutes": [
     "RouteA",
@@ -83,6 +82,7 @@
     "RouteV",
     "RouteAC",
     "RouteAB",
+    "RouteQ",
     "RouteW"
   ],
   "gMapGroup_IndoorSmallTown": [
