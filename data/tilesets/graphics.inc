@@ -2209,3 +2209,23 @@ gTilesetPalettes_RouteP::
 	.align 2
 gTilesetTiles_RouteP::
 	.incbin "data/tilesets/secondary/routep/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_HabutestTown::
+	.incbin "data/tilesets/secondary/habutesttown/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/habutesttown/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/habutesttown/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/habutesttown/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/habutesttown/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/habutesttown/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/habutesttown/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/habutesttown/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/habutesttown/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/habutesttown/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/habutesttown/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/habutesttown/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/habutesttown/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_HabutestTown::
+	.incbin "data/tilesets/secondary/habutesttown/tiles.4bpp.lz"

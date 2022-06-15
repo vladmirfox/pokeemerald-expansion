@@ -12,6 +12,8 @@
 #define MAP_PLATEPICS_CITY (3 | (0 << 8))
 #define MAP_NEW_MAP2       (4 | (0 << 8))
 #define MAP_TURZORO_CITY   (5 | (0 << 8))
+#define MAP_HABUTEST_TOWN  (6 | (0 << 8))
+#define MAP_ROUTE_M        (7 | (0 << 8))
 
 // gMapGroup_FloraSkyRoutes
 #define MAP_ROUTE_A         (0 | (1 << 8))

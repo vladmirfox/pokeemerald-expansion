@@ -749,3 +749,11 @@ gMetatiles_RouteP::
 	.align 1
 gMetatileAttributes_RouteP::
 	.incbin "data/tilesets/secondary/routep/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_HabutestTown::
+	.incbin "data/tilesets/secondary/habutesttown/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_HabutestTown::
+	.incbin "data/tilesets/secondary/habutesttown/metatile_attributes.bin"

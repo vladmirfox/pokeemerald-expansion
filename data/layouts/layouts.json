@@ -5020,6 +5020,26 @@
       "secondary_tileset": "gTileset_RouteP",
       "border_filepath": "data/layouts/RouteP/border.bin",
       "blockdata_filepath": "data/layouts/RouteP/map.bin"
+    },
+    {
+      "id": "LAYOUT_HABUTEST_TOWN",
+      "name": "HabutestTown_Layout",
+      "width": 46,
+      "height": 30,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_HabutestTown",
+      "border_filepath": "data/layouts/HabutestTown/border.bin",
+      "blockdata_filepath": "data/layouts/HabutestTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_M",
+      "name": "RouteM_Layout",
+      "width": 60,
+      "height": 20,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_HabutestTown",
+      "border_filepath": "data/layouts/RouteM/border.bin",
+      "blockdata_filepath": "data/layouts/RouteM/map.bin"
     }
   ]
 }
