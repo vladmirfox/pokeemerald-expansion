@@ -10,6 +10,7 @@
     "gMapGroup_IndoorRouteD",
     "gMapGroup_IndoorUnionGate",
     "gMapGroup_IndoorPuelCity",
+    "gMapGroup_IndoorMysticTown",
     "gMapGroup_IndoorForestEntrance",
     "gMapGroup_MountainFullMoon",
     "gMapGroup_BeeBugForest",
@@ -137,6 +138,14 @@
     "PuelCityMuseum2F",
     "PuelCityMuseumAquaHideout",
     "PuelCityMart"
+  ],
+  "gMapGroup_IndoorMysticTown": [
+    "MysticTownHouseWithHole",
+    "MysticTownPkmnCentre1F",
+    "MysticTownPkmnCentre2F",
+    "MysticTownHouse",
+    "MysticTownSmallCave",
+    "MysticTownShop"
   ],
   "gMapGroup_IndoorForestEntrance": [
     "ForestEntranceHouse",

@@ -1234,3 +1234,15 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/FrosterTown/scripts.inc"
 
 	.include "data/maps/MountBlizzard/scripts.inc"
+
+	.include "data/maps/MysticTownHouseWithHole/scripts.inc"
+
+	.include "data/maps/MysticTownPkmnCentre1F/scripts.inc"
+
+	.include "data/maps/MysticTownPkmnCentre2F/scripts.inc"
+
+	.include "data/maps/MysticTownHouse/scripts.inc"
+
+	.include "data/maps/MysticTownSmallCave/scripts.inc"
+
+	.include "data/maps/MysticTownShop/scripts.inc"

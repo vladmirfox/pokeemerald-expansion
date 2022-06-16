@@ -5300,6 +5300,66 @@
       "secondary_tileset": "gTileset_SearoundCity",
       "border_filepath": "data/layouts/MountBlizzard/border.bin",
       "blockdata_filepath": "data/layouts/MountBlizzard/map.bin"
+    },
+    {
+      "id": "LAYOUT_MYSTIC_TOWN_HOUSE_WITH_HOLE",
+      "name": "MysticTownHouseWithHole_Layout",
+      "width": 14,
+      "height": 12,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyIndoor",
+      "border_filepath": "data/layouts/MysticTownHouseWithHole/border.bin",
+      "blockdata_filepath": "data/layouts/MysticTownHouseWithHole/map.bin"
+    },
+    {
+      "id": "LAYOUT_MYSTIC_TOWN_PKMN_CENTRE1F",
+      "name": "MysticTownPkmnCentre1F_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/MysticTownPkmnCentre1F/border.bin",
+      "blockdata_filepath": "data/layouts/MysticTownPkmnCentre1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_MYSTIC_TOWN_PKMN_CENTRE2F",
+      "name": "MysticTownPkmnCentre2F_Layout",
+      "width": 14,
+      "height": 10,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/MysticTownPkmnCentre2F/border.bin",
+      "blockdata_filepath": "data/layouts/MysticTownPkmnCentre2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_MYSTIC_TOWN_HOUSE",
+      "name": "MysticTownHouse_Layout",
+      "width": 17,
+      "height": 14,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyIndoor",
+      "border_filepath": "data/layouts/MysticTownHouse/border.bin",
+      "blockdata_filepath": "data/layouts/MysticTownHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_MYSTIC_TOWN_SMALL_CAVE",
+      "name": "MysticTownSmallCave_Layout",
+      "width": 13,
+      "height": 26,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyCaves",
+      "border_filepath": "data/layouts/MysticTownSmallCave/border.bin",
+      "blockdata_filepath": "data/layouts/MysticTownSmallCave/map.bin"
+    },
+    {
+      "id": "LAYOUT_MYSTIC_TOWN_SHOP",
+      "name": "MysticTownShop_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_Shop",
+      "border_filepath": "data/layouts/MysticTownShop/border.bin",
+      "blockdata_filepath": "data/layouts/MysticTownShop/map.bin"
     }
   ]
 }
