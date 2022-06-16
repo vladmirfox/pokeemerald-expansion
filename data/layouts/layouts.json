@@ -5180,6 +5180,26 @@
       "secondary_tileset": "gTileset_RouteAB",
       "border_filepath": "data/layouts/HotasitaCity/border.bin",
       "blockdata_filepath": "data/layouts/HotasitaCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_Y",
+      "name": "RouteY_Layout",
+      "width": 40,
+      "height": 40,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_RouteAB",
+      "border_filepath": "data/layouts/RouteY/border.bin",
+      "blockdata_filepath": "data/layouts/RouteY/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_X",
+      "name": "RouteX_Layout",
+      "width": 50,
+      "height": 50,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_RouteAB",
+      "border_filepath": "data/layouts/RouteX/border.bin",
+      "blockdata_filepath": "data/layouts/RouteX/map.bin"
     }
   ]
 }
