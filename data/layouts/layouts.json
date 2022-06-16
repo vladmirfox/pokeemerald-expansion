@@ -5200,6 +5200,16 @@
       "secondary_tileset": "gTileset_RouteAB",
       "border_filepath": "data/layouts/RouteX/border.bin",
       "blockdata_filepath": "data/layouts/RouteX/map.bin"
+    },
+    {
+      "id": "LAYOUT_PULHIA_CITY",
+      "name": "PulhiaCity_Layout",
+      "width": 54,
+      "height": 50,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_PulhiaCity",
+      "border_filepath": "data/layouts/PulhiaCity/border.bin",
+      "blockdata_filepath": "data/layouts/PulhiaCity/map.bin"
     }
   ]
 }

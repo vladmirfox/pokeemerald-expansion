@@ -797,3 +797,11 @@ gMetatiles_OcepacTown::
 	.align 1
 gMetatileAttributes_OcepacTown::
 	.incbin "data/tilesets/secondary/ocepactown/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_PulhiaCity::
+	.incbin "data/tilesets/secondary/pulhiacity/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_PulhiaCity::
+	.incbin "data/tilesets/secondary/pulhiacity/metatile_attributes.bin"

@@ -1160,3 +1160,14 @@ gTileset_OcepacTown::
 	.4byte gMetatiles_OcepacTown
 	.4byte gMetatileAttributes_OcepacTown
 	.4byte NULL
+
+	.align 2
+gTileset_PulhiaCity::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_PulhiaCity
+	.4byte gTilesetPalettes_PulhiaCity
+	.4byte gMetatiles_PulhiaCity
+	.4byte gMetatileAttributes_PulhiaCity
+	.4byte NULL

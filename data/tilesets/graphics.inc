@@ -2329,3 +2329,23 @@ gTilesetPalettes_OcepacTown::
 	.align 2
 gTilesetTiles_OcepacTown::
 	.incbin "data/tilesets/secondary/ocepactown/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_PulhiaCity::
+	.incbin "data/tilesets/secondary/pulhiacity/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/pulhiacity/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/pulhiacity/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/pulhiacity/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/pulhiacity/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/pulhiacity/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/pulhiacity/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/pulhiacity/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/pulhiacity/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/pulhiacity/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/pulhiacity/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/pulhiacity/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/pulhiacity/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_PulhiaCity::
+	.incbin "data/tilesets/secondary/pulhiacity/tiles.4bpp.lz"

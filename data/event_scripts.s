@@ -1214,3 +1214,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/RouteY/scripts.inc"
 
 	.include "data/maps/RouteX/scripts.inc"
+
+	.include "data/maps/PulhiaCity/scripts.inc"
