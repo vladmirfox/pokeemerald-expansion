@@ -5210,6 +5210,26 @@
       "secondary_tileset": "gTileset_PulhiaCity",
       "border_filepath": "data/layouts/PulhiaCity/border.bin",
       "blockdata_filepath": "data/layouts/PulhiaCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_S",
+      "name": "RouteS_Layout",
+      "width": 80,
+      "height": 80,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_RouteW",
+      "border_filepath": "data/layouts/RouteS/border.bin",
+      "blockdata_filepath": "data/layouts/RouteS/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_R",
+      "name": "RouteR_Layout",
+      "width": 80,
+      "height": 40,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_BeeBugForest",
+      "border_filepath": "data/layouts/RouteR/border.bin",
+      "blockdata_filepath": "data/layouts/RouteR/map.bin"
     }
   ]
 }

@@ -92,7 +92,9 @@
     "RouteAA",
     "RouteZ",
     "RouteY",
-    "RouteX"
+    "RouteX",
+    "RouteR",
+    "RouteS"
   ],
   "gMapGroup_IndoorSmallTown": [
     "NewMap1",
