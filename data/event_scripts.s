@@ -1228,3 +1228,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/TeaesCity/scripts.inc"
 
 	.include "data/maps/RouteAF/scripts.inc"
+
+	.include "data/maps/RouteAE/scripts.inc"
