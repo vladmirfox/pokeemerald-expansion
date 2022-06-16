@@ -17,7 +17,34 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 4,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_MYSTIC_TOWN_HOUSE_WITH_HOLE",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 5,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_MYSTIC_TOWN_HOUSE_WITH_HOLE",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 10,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_MYSTIC_TOWN",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 9,
+      "y": 24,
+      "elevation": 0,
+      "dest_map": "MAP_MYSTIC_TOWN",
+      "dest_warp_id": 1
+    }
   ],
   "coord_events": [
 

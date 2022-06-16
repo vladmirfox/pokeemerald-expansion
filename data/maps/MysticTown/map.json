@@ -28,7 +28,41 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 20,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_MYSTIC_TOWN_HOUSE_WITH_HOLE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 24,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_MYSTIC_TOWN_SMALL_CAVE",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 4,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_MYSTIC_TOWN_PKMN_CENTRE1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 22,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_MYSTIC_TOWN_HOUSE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 9,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_MYSTIC_TOWN_SHOP",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 
