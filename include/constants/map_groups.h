@@ -56,6 +56,7 @@
 #define MAP_ROUTE_O         (29 | (1 << 8))
 #define MAP_ROUTE_AF        (30 | (1 << 8))
 #define MAP_ROUTE_AE        (31 | (1 << 8))
+#define MAP_MOUNT_BLIZZARD  (32 | (1 << 8))
 
 // gMapGroup_IndoorSmallTown
 #define MAP_NEW_MAP1                (0 | (2 << 8))

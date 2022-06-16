@@ -1,0 +1,34 @@
+{
+  "id": "MAP_MOUNT_BLIZZARD",
+  "name": "MountBlizzard",
+  "layout": "LAYOUT_MOUNT_BLIZZARD",
+  "music": "MUS_B_PALACE",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_NONE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "left",
+      "offset": 20,
+      "map": "MAP_FROSTER_TOWN"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

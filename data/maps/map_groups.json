@@ -100,7 +100,8 @@
     "RouteS",
     "RouteO",
     "RouteAF",
-    "RouteAE"
+    "RouteAE",
+    "MountBlizzard"
   ],
   "gMapGroup_IndoorSmallTown": [
     "NewMap1",

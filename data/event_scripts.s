@@ -1232,3 +1232,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/RouteAE/scripts.inc"
 
 	.include "data/maps/FrosterTown/scripts.inc"
+
+	.include "data/maps/MountBlizzard/scripts.inc"

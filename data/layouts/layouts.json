@@ -5290,6 +5290,16 @@
       "secondary_tileset": "gTileset_SearoundCity",
       "border_filepath": "data/layouts/FrosterTown/border.bin",
       "blockdata_filepath": "data/layouts/FrosterTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOUNT_BLIZZARD",
+      "name": "MountBlizzard_Layout",
+      "width": 40,
+      "height": 47,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_SearoundCity",
+      "border_filepath": "data/layouts/MountBlizzard/border.bin",
+      "blockdata_filepath": "data/layouts/MountBlizzard/map.bin"
     }
   ]
 }
