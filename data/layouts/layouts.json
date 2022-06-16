@@ -5250,6 +5250,16 @@
       "secondary_tileset": "gTileset_BeeBugForest",
       "border_filepath": "data/layouts/RouteO/border.bin",
       "blockdata_filepath": "data/layouts/RouteO/map.bin"
+    },
+    {
+      "id": "LAYOUT_TEAES_CITY",
+      "name": "TeaesCity_Layout",
+      "width": 92,
+      "height": 46,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_TeaesCity",
+      "border_filepath": "data/layouts/TeaesCity/border.bin",
+      "blockdata_filepath": "data/layouts/TeaesCity/map.bin"
     }
   ]
 }
