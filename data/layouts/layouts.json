@@ -5240,6 +5240,16 @@
       "secondary_tileset": "gTileset_BeeBugForest",
       "border_filepath": "data/layouts/MaliasCity/border.bin",
       "blockdata_filepath": "data/layouts/MaliasCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_O",
+      "name": "RouteO_Layout",
+      "width": 60,
+      "height": 30,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_BeeBugForest",
+      "border_filepath": "data/layouts/RouteO/border.bin",
+      "blockdata_filepath": "data/layouts/RouteO/map.bin"
     }
   ]
 }

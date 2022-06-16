@@ -1222,3 +1222,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/RouteR/scripts.inc"
 
 	.include "data/maps/MaliasCity/scripts.inc"
+
+	.include "data/maps/RouteO/scripts.inc"

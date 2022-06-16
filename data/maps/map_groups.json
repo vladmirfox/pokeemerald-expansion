@@ -95,7 +95,8 @@
     "RouteY",
     "RouteX",
     "RouteR",
-    "RouteS"
+    "RouteS",
+    "RouteO"
   ],
   "gMapGroup_IndoorSmallTown": [
     "NewMap1",
