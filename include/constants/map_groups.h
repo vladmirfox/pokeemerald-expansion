@@ -21,6 +21,7 @@
 #define MAP_PULHIA_CITY    (12 | (0 << 8))
 #define MAP_MALIAS_CITY    (13 | (0 << 8))
 #define MAP_TEAES_CITY     (14 | (0 << 8))
+#define MAP_ROUTE_AF       (15 | (0 << 8))
 
 // gMapGroup_FloraSkyRoutes
 #define MAP_ROUTE_A         (0 | (1 << 8))

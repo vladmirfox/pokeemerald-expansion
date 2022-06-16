@@ -2,7 +2,7 @@
   "id": "MAP_TEAES_CITY",
   "name": "TeaesCity",
   "layout": "LAYOUT_TEAES_CITY",
-  "music": "",
+  "music": "MUS_B_DOME",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

@@ -5260,6 +5260,16 @@
       "secondary_tileset": "gTileset_TeaesCity",
       "border_filepath": "data/layouts/TeaesCity/border.bin",
       "blockdata_filepath": "data/layouts/TeaesCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_AF",
+      "name": "RouteAF_Layout",
+      "width": 80,
+      "height": 20,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_SearoundCity",
+      "border_filepath": "data/layouts/RouteAF/border.bin",
+      "blockdata_filepath": "data/layouts/RouteAF/map.bin"
     }
   ]
 }
