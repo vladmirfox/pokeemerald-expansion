@@ -5280,6 +5280,16 @@
       "secondary_tileset": "gTileset_SearoundCity",
       "border_filepath": "data/layouts/RouteAE/border.bin",
       "blockdata_filepath": "data/layouts/RouteAE/map.bin"
+    },
+    {
+      "id": "LAYOUT_FROSTER_TOWN",
+      "name": "FrosterTown_Layout",
+      "width": 24,
+      "height": 24,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_SearoundCity",
+      "border_filepath": "data/layouts/FrosterTown/border.bin",
+      "blockdata_filepath": "data/layouts/FrosterTown/map.bin"
     }
   ]
 }
