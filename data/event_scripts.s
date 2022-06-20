@@ -1246,5 +1246,3 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/MysticTownSmallCave/scripts.inc"
 
 	.include "data/maps/MysticTownShop/scripts.inc"
-
-	.include "data/maps/LostCave/scripts.inc"

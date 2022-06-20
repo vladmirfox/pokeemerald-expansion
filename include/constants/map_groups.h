@@ -73,7 +73,6 @@
 
 // gMapGroup_IndoorRouteB
 #define MAP_ROUTE_BHOUSE (0 | (4 << 8))
-#define MAP_LOST_CAVE    (1 | (4 << 8))
 
 // gMapGroup_IndoorRouteC
 #define MAP_ROUTE_CHOUSE (0 | (5 << 8))

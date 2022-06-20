@@ -5360,16 +5360,6 @@
       "secondary_tileset": "gTileset_Shop",
       "border_filepath": "data/layouts/MysticTownShop/border.bin",
       "blockdata_filepath": "data/layouts/MysticTownShop/map.bin"
-    },
-    {
-      "id": "LAYOUT_LOST_CAVE",
-      "name": "LostCave_Layout",
-      "width": 19,
-      "height": 26,
-      "primary_tileset": "gTileset_FloraSkyGeneral",
-      "secondary_tileset": "gTileset_FloraSkyCaves",
-      "border_filepath": "data/layouts/LostCave/border.bin",
-      "blockdata_filepath": "data/layouts/LostCave/map.bin"
     }
   ]
 }
