@@ -118,7 +118,8 @@
     "RouteAHouse"
   ],
   "gMapGroup_IndoorRouteB": [
-    "RouteBHouse"
+    "RouteBHouse",
+    "LostCave"
   ],
   "gMapGroup_IndoorRouteC": [
     "RouteCHouse"
