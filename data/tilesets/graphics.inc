@@ -2369,3 +2369,23 @@ gTilesetPalettes_FloraSkyIndoor2::
 	.align 2
 gTilesetTiles_FloraSkyIndoor2::
 	.incbin "data/tilesets/secondary/floraskyindoor2/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FloraSkyPkmnCentre::
+	.incbin "data/tilesets/secondary/floraskypkmncentre/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/floraskypkmncentre/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/floraskypkmncentre/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/floraskypkmncentre/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/floraskypkmncentre/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/floraskypkmncentre/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/floraskypkmncentre/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/floraskypkmncentre/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/floraskypkmncentre/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/floraskypkmncentre/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/floraskypkmncentre/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/floraskypkmncentre/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/floraskypkmncentre/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FloraSkyPkmnCentre::
+	.incbin "data/tilesets/secondary/floraskypkmncentre/tiles.4bpp.lz"

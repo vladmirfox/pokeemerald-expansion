@@ -4807,7 +4807,7 @@
       "width": 14,
       "height": 9,
       "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
-      "secondary_tileset": "gTileset_PokemonCenter",
+      "secondary_tileset": "gTileset_FloraSkyPkmnCentre",
       "border_filepath": "data/layouts/PuelCityPkmnCentre1F/border.bin",
       "blockdata_filepath": "data/layouts/PuelCityPkmnCentre1F/map.bin"
     },
@@ -4817,7 +4817,7 @@
       "width": 14,
       "height": 10,
       "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
-      "secondary_tileset": "gTileset_PokemonCenter",
+      "secondary_tileset": "gTileset_FloraSkyPkmnCentre",
       "border_filepath": "data/layouts/PuelCityPkmnCentre2F/border.bin",
       "blockdata_filepath": "data/layouts/PuelCityPkmnCentre2F/map.bin"
     },
@@ -5317,7 +5317,7 @@
       "width": 14,
       "height": 9,
       "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
-      "secondary_tileset": "gTileset_PokemonCenter",
+      "secondary_tileset": "gTileset_FloraSkyPkmnCentre",
       "border_filepath": "data/layouts/MysticTownPkmnCentre1F/border.bin",
       "blockdata_filepath": "data/layouts/MysticTownPkmnCentre1F/map.bin"
     },
@@ -5327,7 +5327,7 @@
       "width": 14,
       "height": 10,
       "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
-      "secondary_tileset": "gTileset_PokemonCenter",
+      "secondary_tileset": "gTileset_FloraSkyPkmnCentre",
       "border_filepath": "data/layouts/MysticTownPkmnCentre2F/border.bin",
       "blockdata_filepath": "data/layouts/MysticTownPkmnCentre2F/map.bin"
     },
@@ -5387,7 +5387,7 @@
       "width": 14,
       "height": 9,
       "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
-      "secondary_tileset": "gTileset_PokemonCenter",
+      "secondary_tileset": "gTileset_FloraSkyPkmnCentre",
       "border_filepath": "data/layouts/NewMap3/border.bin",
       "blockdata_filepath": "data/layouts/NewMap3/map.bin"
     },
@@ -5397,7 +5397,7 @@
       "width": 14,
       "height": 10,
       "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
-      "secondary_tileset": "gTileset_PokemonCenter",
+      "secondary_tileset": "gTileset_FloraSkyPkmnCentre",
       "border_filepath": "data/layouts/SurenceCityPkmnCentre2F/border.bin",
       "blockdata_filepath": "data/layouts/SurenceCityPkmnCentre2F/map.bin"
     },
