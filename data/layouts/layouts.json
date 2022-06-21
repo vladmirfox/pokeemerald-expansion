@@ -5430,6 +5430,26 @@
       "secondary_tileset": "gTileset_FloraSkyIndoor2",
       "border_filepath": "data/layouts/SurenceTownTopMostHouse2F/border.bin",
       "blockdata_filepath": "data/layouts/SurenceTownTopMostHouse2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SURENECE_TOWN_HOUSE_FLOWER_SHOP",
+      "name": "SureneceTownHouseFlowerShop_Layout",
+      "width": 12,
+      "height": 10,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PrettyPetalFlowerShop",
+      "border_filepath": "data/layouts/SureneceTownHouseFlowerShop/border.bin",
+      "blockdata_filepath": "data/layouts/SureneceTownHouseFlowerShop/map.bin"
+    },
+    {
+      "id": "LAYOUT_SURENCE_TOWN_EAST_HOUSE",
+      "name": "SurenceTownEastHouse_Layout",
+      "width": 12,
+      "height": 10,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyIndoor2",
+      "border_filepath": "data/layouts/SurenceTownEastHouse/border.bin",
+      "blockdata_filepath": "data/layouts/SurenceTownEastHouse/map.bin"
     }
   ]
 }

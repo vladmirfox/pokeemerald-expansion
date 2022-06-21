@@ -155,7 +155,9 @@
     "SurenceCityPkmnCentre2F",
     "SurenceTownTopMostHouse",
     "SurenceTownMart",
-    "SurenceTownTopMostHouse2F"
+    "SurenceTownTopMostHouse2F",
+    "SureneceTownHouseFlowerShop",
+    "SurenceTownEastHouse"
   ],
   "gMapGroup_IndoorForestEntrance": [
     "ForestEntranceHouse",

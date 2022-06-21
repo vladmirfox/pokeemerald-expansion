@@ -50,6 +50,20 @@
       "elevation": 0,
       "dest_map": "MAP_SURENCE_TOWN_TOP_MOST_HOUSE",
       "dest_warp_id": 0
+    },
+    {
+      "x": 23,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_SURENECE_TOWN_HOUSE_FLOWER_SHOP",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 49,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_SURENCE_TOWN_EAST_HOUSE",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

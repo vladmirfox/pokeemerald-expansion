@@ -109,6 +109,8 @@
 #define MAP_SURENCE_TOWN_TOP_MOST_HOUSE     (3 | (10 << 8))
 #define MAP_SURENCE_TOWN_MART               (4 | (10 << 8))
 #define MAP_SURENCE_TOWN_TOP_MOST_HOUSE2F   (5 | (10 << 8))
+#define MAP_SURENECE_TOWN_HOUSE_FLOWER_SHOP (6 | (10 << 8))
+#define MAP_SURENCE_TOWN_EAST_HOUSE         (7 | (10 << 8))
 
 // gMapGroup_IndoorForestEntrance
 #define MAP_FOREST_ENTRANCE_HOUSE            (0 | (11 << 8))
