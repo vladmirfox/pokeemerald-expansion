@@ -104,6 +104,8 @@
 
 // gMapGroup_IndoorSurenceTown
 #define MAP_SURENCE_TOWN_BOTTOM_RIGHT_HOUSE (0 | (10 << 8))
+#define MAP_NEW_MAP3                        (1 | (10 << 8))
+#define MAP_SURENCE_CITY_PKMN_CENTRE2F      (2 | (10 << 8))
 
 // gMapGroup_IndoorForestEntrance
 #define MAP_FOREST_ENTRANCE_HOUSE            (0 | (11 << 8))

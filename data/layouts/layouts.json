@@ -5380,6 +5380,26 @@
       "secondary_tileset": "gTileset_FloraSkyIndoor2",
       "border_filepath": "data/layouts/SurenceTownBottomRightHouse/border.bin",
       "blockdata_filepath": "data/layouts/SurenceTownBottomRightHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_MAP3",
+      "name": "NewMap3_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/NewMap3/border.bin",
+      "blockdata_filepath": "data/layouts/NewMap3/map.bin"
+    },
+    {
+      "id": "LAYOUT_SURENCE_CITY_PKMN_CENTRE2F",
+      "name": "SurenceCityPkmnCentre2F_Layout",
+      "width": 14,
+      "height": 10,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/SurenceCityPkmnCentre2F/border.bin",
+      "blockdata_filepath": "data/layouts/SurenceCityPkmnCentre2F/map.bin"
     }
   ]
 }

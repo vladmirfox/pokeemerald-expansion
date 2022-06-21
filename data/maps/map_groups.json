@@ -150,7 +150,9 @@
     "MysticTownShop"
   ],
   "gMapGroup_IndoorSurenceTown": [
-    "SurenceTownBottomRightHouse"
+    "SurenceTownBottomRightHouse",
+    "NewMap3",
+    "SurenceCityPkmnCentre2F"
   ],
   "gMapGroup_IndoorForestEntrance": [
     "ForestEntranceHouse",

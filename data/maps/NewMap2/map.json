@@ -29,6 +29,13 @@
       "elevation": 0,
       "dest_map": "MAP_SURENCE_TOWN_BOTTOM_RIGHT_HOUSE",
       "dest_warp_id": 0
+    },
+    {
+      "x": 19,
+      "y": 28,
+      "elevation": 0,
+      "dest_map": "MAP_NEW_MAP3",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

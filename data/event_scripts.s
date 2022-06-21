@@ -1250,3 +1250,7 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/LostCave/scripts.inc"
 
 	.include "data/maps/SurenceTownBottomRightHouse/scripts.inc"
+
+	.include "data/maps/NewMap3/scripts.inc"
+
+	.include "data/maps/SurenceCityPkmnCentre2F/scripts.inc"
