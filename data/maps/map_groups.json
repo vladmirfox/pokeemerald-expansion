@@ -152,7 +152,10 @@
   "gMapGroup_IndoorSurenceTown": [
     "SurenceTownBottomRightHouse",
     "NewMap3",
-    "SurenceCityPkmnCentre2F"
+    "SurenceCityPkmnCentre2F",
+    "SurenceTownTopMostHouse",
+    "SurenceTownMart",
+    "SurenceTownTopMostHouse2F"
   ],
   "gMapGroup_IndoorForestEntrance": [
     "ForestEntranceHouse",

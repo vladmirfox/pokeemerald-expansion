@@ -1254,3 +1254,9 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/NewMap3/scripts.inc"
 
 	.include "data/maps/SurenceCityPkmnCentre2F/scripts.inc"
+
+	.include "data/maps/SurenceTownMart/scripts.inc"
+
+	.include "data/maps/SurenceTownTopMostHouse/scripts.inc"
+
+	.include "data/maps/SurenceTownTopMostHouse2F/scripts.inc"

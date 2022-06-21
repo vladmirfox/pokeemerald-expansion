@@ -5400,6 +5400,36 @@
       "secondary_tileset": "gTileset_PokemonCenter",
       "border_filepath": "data/layouts/SurenceCityPkmnCentre2F/border.bin",
       "blockdata_filepath": "data/layouts/SurenceCityPkmnCentre2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SURENCE_TOWN_MART",
+      "name": "SurenceTownMart_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyMart",
+      "border_filepath": "data/layouts/SurenceTownMart/border.bin",
+      "blockdata_filepath": "data/layouts/SurenceTownMart/map.bin"
+    },
+    {
+      "id": "LAYOUT_SURENCE_TOWN_TOP_MOST_HOUSE",
+      "name": "SurenceTownTopMostHouse_Layout",
+      "width": 12,
+      "height": 9,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyIndoor2",
+      "border_filepath": "data/layouts/SurenceTownTopMostHouse/border.bin",
+      "blockdata_filepath": "data/layouts/SurenceTownTopMostHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_SURENCE_TOWN_TOP_MOST_HOUSE2F",
+      "name": "SurenceTownTopMostHouse2F_Layout",
+      "width": 12,
+      "height": 9,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyIndoor2",
+      "border_filepath": "data/layouts/SurenceTownTopMostHouse2F/border.bin",
+      "blockdata_filepath": "data/layouts/SurenceTownTopMostHouse2F/map.bin"
     }
   ]
 }

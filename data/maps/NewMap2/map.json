@@ -36,6 +36,20 @@
       "elevation": 0,
       "dest_map": "MAP_NEW_MAP3",
       "dest_warp_id": 0
+    },
+    {
+      "x": 46,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_SURENCE_TOWN_MART",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 44,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_SURENCE_TOWN_TOP_MOST_HOUSE",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [
