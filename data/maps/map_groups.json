@@ -11,6 +11,7 @@
     "gMapGroup_IndoorUnionGate",
     "gMapGroup_IndoorPuelCity",
     "gMapGroup_IndoorMysticTown",
+    "gMapGroup_IndoorSurenceTown",
     "gMapGroup_IndoorForestEntrance",
     "gMapGroup_MountainFullMoon",
     "gMapGroup_BeeBugForest",
@@ -147,6 +148,9 @@
     "MysticTownHouse",
     "MysticTownSmallCave",
     "MysticTownShop"
+  ],
+  "gMapGroup_IndoorSurenceTown": [
+    "SurenceTownBottomRightHouse"
   ],
   "gMapGroup_IndoorForestEntrance": [
     "ForestEntranceHouse",

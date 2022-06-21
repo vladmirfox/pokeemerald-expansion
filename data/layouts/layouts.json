@@ -5370,6 +5370,16 @@
       "secondary_tileset": "gTileset_FloraSkyCaves",
       "border_filepath": "data/layouts/LostCave/border.bin",
       "blockdata_filepath": "data/layouts/LostCave/map.bin"
+    },
+    {
+      "id": "LAYOUT_SURENCE_TOWN_BOTTOM_RIGHT_HOUSE",
+      "name": "SurenceTownBottomRightHouse_Layout",
+      "width": 12,
+      "height": 10,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyIndoor2",
+      "border_filepath": "data/layouts/SurenceTownBottomRightHouse/border.bin",
+      "blockdata_filepath": "data/layouts/SurenceTownBottomRightHouse/map.bin"
     }
   ]
 }

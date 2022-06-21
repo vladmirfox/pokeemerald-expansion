@@ -805,3 +805,11 @@ gMetatiles_PulhiaCity::
 	.align 1
 gMetatileAttributes_PulhiaCity::
 	.incbin "data/tilesets/secondary/pulhiacity/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_FloraSkyIndoor2::
+	.incbin "data/tilesets/secondary/floraskyindoor2/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FloraSkyIndoor2::
+	.incbin "data/tilesets/secondary/floraskyindoor2/metatile_attributes.bin"

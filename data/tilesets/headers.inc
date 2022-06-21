@@ -1171,3 +1171,14 @@ gTileset_PulhiaCity::
 	.4byte gMetatiles_PulhiaCity
 	.4byte gMetatileAttributes_PulhiaCity
 	.4byte NULL
+
+	.align 2
+gTileset_FloraSkyIndoor2::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FloraSkyIndoor2
+	.4byte gTilesetPalettes_FloraSkyIndoor2
+	.4byte gMetatiles_FloraSkyIndoor2
+	.4byte gMetatileAttributes_FloraSkyIndoor2
+	.4byte NULL
