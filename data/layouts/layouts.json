@@ -5450,6 +5450,26 @@
       "secondary_tileset": "gTileset_FloraSkyIndoor2",
       "border_filepath": "data/layouts/SurenceTownEastHouse/border.bin",
       "blockdata_filepath": "data/layouts/SurenceTownEastHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_SURENCE_TOWN_GYM_A1",
+      "name": "SurenceTownGymA1_Layout",
+      "width": 21,
+      "height": 15,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PuelCityAquaHideout",
+      "border_filepath": "data/layouts/SurenceTownGymA1/border.bin",
+      "blockdata_filepath": "data/layouts/SurenceTownGymA1/map.bin"
+    },
+    {
+      "id": "LAYOUT_SURENCE_TOWN_GYM_A2",
+      "name": "SurenceTownGymA2_Layout",
+      "width": 26,
+      "height": 36,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_PuelCityAquaHideout",
+      "border_filepath": "data/layouts/SurenceTownGymA2/border.bin",
+      "blockdata_filepath": "data/layouts/SurenceTownGymA2/map.bin"
     }
   ]
 }
