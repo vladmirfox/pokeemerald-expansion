@@ -5346,7 +5346,7 @@
       "name": "MysticTownSmallCave_Layout",
       "width": 13,
       "height": 26,
-      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "primary_tileset": "gTileset_FloraSkyGeneral",
       "secondary_tileset": "gTileset_FloraSkyCaves",
       "border_filepath": "data/layouts/MysticTownSmallCave/border.bin",
       "blockdata_filepath": "data/layouts/MysticTownSmallCave/map.bin"
