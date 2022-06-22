@@ -23,7 +23,13 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 12,
+      "y": 37,
+      "elevation": 0,
+      "dest_map": "MAP_MALIAS_CITY_RIVAL2HOUSE",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 

@@ -10,6 +10,7 @@
     "gMapGroup_IndoorRouteD",
     "gMapGroup_IndoorUnionGate",
     "gMapGroup_IndoorPuelCity",
+    "gMapGroup_IndoorMaliasCity",
     "gMapGroup_IndoorMysticTown",
     "gMapGroup_IndoorSurenceTown",
     "gMapGroup_IndoorForestEntrance",
@@ -140,6 +141,9 @@
     "PuelCityMuseum2F",
     "PuelCityMuseumAquaHideout",
     "PuelCityMart"
+  ],
+  "gMapGroup_IndoorMaliasCity": [
+    "MaliasCityRIval2House"
   ],
   "gMapGroup_IndoorMysticTown": [
     "MysticTownHouseWithHole",

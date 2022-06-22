@@ -1268,3 +1268,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/SurenceTownGymA1/scripts.inc"
 
 	.include "data/maps/SurenceTownGymA2/scripts.inc"
+
+	.include "data/maps/MaliasCityRIval2House/scripts.inc"
