@@ -143,7 +143,8 @@
     "PuelCityMart"
   ],
   "gMapGroup_IndoorMaliasCity": [
-    "MaliasCityRIval2House"
+    "MaliasCityRIval2House",
+    "MaliasCityGym"
   ],
   "gMapGroup_IndoorMysticTown": [
     "MysticTownHouseWithHole",

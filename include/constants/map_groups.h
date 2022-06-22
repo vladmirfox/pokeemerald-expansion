@@ -96,6 +96,7 @@
 
 // gMapGroup_IndoorMaliasCity
 #define MAP_MALIAS_CITY_RIVAL2HOUSE (0 | (9 << 8))
+#define MAP_MALIAS_CITY_GYM         (1 | (9 << 8))
 
 // gMapGroup_IndoorMysticTown
 #define MAP_MYSTIC_TOWN_HOUSE_WITH_HOLE (0 | (10 << 8))

@@ -5480,6 +5480,16 @@
       "secondary_tileset": "gTileset_FloraSkyIndoor2",
       "border_filepath": "data/layouts/MaliasCityRIval2House/border.bin",
       "blockdata_filepath": "data/layouts/MaliasCityRIval2House/map.bin"
+    },
+    {
+      "id": "LAYOUT_MALIAS_CITY_GYM",
+      "name": "MaliasCityGym_Layout",
+      "width": 22,
+      "height": 40,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_Gym0",
+      "border_filepath": "data/layouts/MaliasCityGym/border.bin",
+      "blockdata_filepath": "data/layouts/MaliasCityGym/map.bin"
     }
   ]
 }
