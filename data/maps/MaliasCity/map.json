@@ -36,6 +36,20 @@
       "elevation": 0,
       "dest_map": "MAP_MALIAS_CITY_GYM",
       "dest_warp_id": 0
+    },
+    {
+      "x": 35,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_MALIAS_CITY_PKMN_CENTRE1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 33,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_MALIAS_CITY_PKMN_MART",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

@@ -144,7 +144,10 @@
   ],
   "gMapGroup_IndoorMaliasCity": [
     "MaliasCityRIval2House",
-    "MaliasCityGym"
+    "MaliasCityGym",
+    "MaliasCityPkmnCentre1F",
+    "MaliasCityPkmnCentre2F",
+    "MaliasCityPkmnMart"
   ],
   "gMapGroup_IndoorMysticTown": [
     "MysticTownHouseWithHole",

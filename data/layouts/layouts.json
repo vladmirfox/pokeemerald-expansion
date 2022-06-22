@@ -5490,6 +5490,36 @@
       "secondary_tileset": "gTileset_Gym0",
       "border_filepath": "data/layouts/MaliasCityGym/border.bin",
       "blockdata_filepath": "data/layouts/MaliasCityGym/map.bin"
+    },
+    {
+      "id": "LAYOUT_MALIAS_CITY_PKMN_CENTRE1F",
+      "name": "MaliasCityPkmnCentre1F_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyPkmnCentre",
+      "border_filepath": "data/layouts/MaliasCityPkmnCentre1F/border.bin",
+      "blockdata_filepath": "data/layouts/MaliasCityPkmnCentre1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_MALIAS_CITY_PKMN_CENTRE2F",
+      "name": "MaliasCityPkmnCentre2F_Layout",
+      "width": 14,
+      "height": 10,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyPkmnCentre",
+      "border_filepath": "data/layouts/MaliasCityPkmnCentre2F/border.bin",
+      "blockdata_filepath": "data/layouts/MaliasCityPkmnCentre2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_MALIAS_CITY_PKMN_MART",
+      "name": "MaliasCityPkmnMart_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyMart",
+      "border_filepath": "data/layouts/MaliasCityPkmnMart/border.bin",
+      "blockdata_filepath": "data/layouts/MaliasCityPkmnMart/map.bin"
     }
   ]
 }
