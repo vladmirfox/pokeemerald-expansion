@@ -138,6 +138,8 @@
 #define DIR_NORTHWEST   7
 #define DIR_NORTHEAST   8
 
+#define FOLLOW_ME_IMPLEMENTED       FALSE
+
 #define CONNECTION_INVALID -1
 #define CONNECTION_NONE     0
 #define CONNECTION_SOUTH    1
