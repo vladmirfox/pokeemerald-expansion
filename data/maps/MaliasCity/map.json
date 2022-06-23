@@ -57,6 +57,13 @@
       "elevation": 0,
       "dest_map": "MAP_MALIAS_CITY_MIDDLE_MOST_HOUSE",
       "dest_warp_id": 0
+    },
+    {
+      "x": 16,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_MALIAS_CITY_WEST_HOUSE",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

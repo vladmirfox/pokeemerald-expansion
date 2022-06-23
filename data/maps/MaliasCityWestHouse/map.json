@@ -1,0 +1,41 @@
+{
+  "id": "MAP_MALIAS_CITY_WEST_HOUSE",
+  "name": "MaliasCityWestHouse",
+  "layout": "LAYOUT_MALIAS_CITY_WEST_HOUSE",
+  "music": "MUS_B_PALACE",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_NONE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 5,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_MALIAS_CITY",
+      "dest_warp_id": 5
+    },
+    {
+      "x": 4,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_MALIAS_CITY",
+      "dest_warp_id": 5
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

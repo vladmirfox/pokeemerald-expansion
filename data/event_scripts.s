@@ -1280,3 +1280,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/MaliasCityPkmnMart/scripts.inc"
 
 	.include "data/maps/MaliasCityMiddleMostHouse/scripts.inc"
+
+	.include "data/maps/MaliasCityWestHouse/scripts.inc"

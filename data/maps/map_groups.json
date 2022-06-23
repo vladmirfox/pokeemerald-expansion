@@ -148,7 +148,8 @@
     "MaliasCityPkmnCentre1F",
     "MaliasCityPkmnCentre2F",
     "MaliasCityPkmnMart",
-    "MaliasCityMiddleMostHouse"
+    "MaliasCityMiddleMostHouse",
+    "MaliasCityWestHouse"
   ],
   "gMapGroup_IndoorMysticTown": [
     "MysticTownHouseWithHole",

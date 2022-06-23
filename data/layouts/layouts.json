@@ -5530,6 +5530,16 @@
       "secondary_tileset": "gTileset_FloraSkyIndoor2",
       "border_filepath": "data/layouts/MaliasCityMiddleMostHouse/border.bin",
       "blockdata_filepath": "data/layouts/MaliasCityMiddleMostHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_MALIAS_CITY_WEST_HOUSE",
+      "name": "MaliasCityWestHouse_Layout",
+      "width": 18,
+      "height": 13,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyIndoor",
+      "border_filepath": "data/layouts/MaliasCityWestHouse/border.bin",
+      "blockdata_filepath": "data/layouts/MaliasCityWestHouse/map.bin"
     }
   ]
 }
