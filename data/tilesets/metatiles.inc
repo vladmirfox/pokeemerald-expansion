@@ -821,3 +821,11 @@ gMetatiles_FloraSkyPkmnCentre::
 	.align 1
 gMetatileAttributes_FloraSkyPkmnCentre::
 	.incbin "data/tilesets/secondary/floraskypkmncentre/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_FloraSkyLibrary::
+	.incbin "data/tilesets/secondary/floraskylibrary/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FloraSkyLibrary::
+	.incbin "data/tilesets/secondary/floraskylibrary/metatile_attributes.bin"

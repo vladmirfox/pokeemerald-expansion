@@ -104,6 +104,9 @@
 #define MAP_MALIAS_CITY_WEST_HOUSE         (6 | (9 << 8))
 #define MAP_MALIAS_CITY_BILLS_FRIEND_HOUSE (7 | (9 << 8))
 #define MAP_MALIAS_CITY_SOUTH_HOUSE        (8 | (9 << 8))
+#define MAP_MALIAS_CITY_LIBRARY1F          (9 | (9 << 8))
+#define MAP_MALIAS_CITY_LIBRARY2F          (10 | (9 << 8))
+#define MAP_MALIAS_CITY_LIBRARY_HIDDEN_LAB (11 | (9 << 8))
 
 // gMapGroup_IndoorMysticTown
 #define MAP_MYSTIC_TOWN_HOUSE_WITH_HOLE (0 | (10 << 8))

@@ -5560,6 +5560,36 @@
       "secondary_tileset": "gTileset_FloraSkyIndoor",
       "border_filepath": "data/layouts/MaliasCitySouthHouse/border.bin",
       "blockdata_filepath": "data/layouts/MaliasCitySouthHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_MALIAS_CITY_LIBRARY1F",
+      "name": "MaliasCityLibrary1F_Layout",
+      "width": 16,
+      "height": 10,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_FloraSkyLibrary",
+      "border_filepath": "data/layouts/MaliasCityLibrary1F/border.bin",
+      "blockdata_filepath": "data/layouts/MaliasCityLibrary1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_MALIAS_CITY_LIBRARY2F",
+      "name": "MaliasCityLibrary2F_Layout",
+      "width": 16,
+      "height": 10,
+      "primary_tileset": "gTileset_FloraSkyGeneral",
+      "secondary_tileset": "gTileset_FloraSkyLibrary",
+      "border_filepath": "data/layouts/MaliasCityLibrary2F/border.bin",
+      "blockdata_filepath": "data/layouts/MaliasCityLibrary2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_MALIAS_CITY_LIBRARY_HIDDEN_LAB",
+      "name": "MaliasCityLibraryHiddenLab_Layout",
+      "width": 10,
+      "height": 10,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_ProffesorLab",
+      "border_filepath": "data/layouts/MaliasCityLibraryHiddenLab/border.bin",
+      "blockdata_filepath": "data/layouts/MaliasCityLibraryHiddenLab/map.bin"
     }
   ]
 }

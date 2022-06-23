@@ -151,7 +151,10 @@
     "MaliasCityMiddleMostHouse",
     "MaliasCityWestHouse",
     "MaliasCityBillsFriendHouse",
-    "MaliasCitySouthHouse"
+    "MaliasCitySouthHouse",
+    "MaliasCityLibrary1F",
+    "MaliasCityLibrary2F",
+    "MaliasCityLibraryHiddenLab"
   ],
   "gMapGroup_IndoorMysticTown": [
     "MysticTownHouseWithHole",

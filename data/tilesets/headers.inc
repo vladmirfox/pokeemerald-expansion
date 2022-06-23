@@ -1193,3 +1193,14 @@ gTileset_FloraSkyPkmnCentre::
 	.4byte gMetatiles_FloraSkyPkmnCentre
 	.4byte gMetatileAttributes_FloraSkyPkmnCentre
 	.4byte NULL
+
+	.align 2
+gTileset_FloraSkyLibrary::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FloraSkyLibrary
+	.4byte gTilesetPalettes_FloraSkyLibrary
+	.4byte gMetatiles_FloraSkyLibrary
+	.4byte gMetatileAttributes_FloraSkyLibrary
+	.4byte NULL

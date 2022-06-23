@@ -78,6 +78,13 @@
       "elevation": 0,
       "dest_map": "MAP_MALIAS_CITY_SOUTH_HOUSE",
       "dest_warp_id": 0
+    },
+    {
+      "x": 32,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_MALIAS_CITY_LIBRARY1F",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [
