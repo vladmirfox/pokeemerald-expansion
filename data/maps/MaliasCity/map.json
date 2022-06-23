@@ -50,6 +50,13 @@
       "elevation": 0,
       "dest_map": "MAP_MALIAS_CITY_PKMN_MART",
       "dest_warp_id": 0
+    },
+    {
+      "x": 21,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_MALIAS_CITY_MIDDLE_MOST_HOUSE",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

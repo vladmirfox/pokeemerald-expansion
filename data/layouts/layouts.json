@@ -5520,6 +5520,16 @@
       "secondary_tileset": "gTileset_FloraSkyMart",
       "border_filepath": "data/layouts/MaliasCityPkmnMart/border.bin",
       "blockdata_filepath": "data/layouts/MaliasCityPkmnMart/map.bin"
+    },
+    {
+      "id": "LAYOUT_MALIAS_CITY_MIDDLE_MOST_HOUSE",
+      "name": "MaliasCityMiddleMostHouse_Layout",
+      "width": 16,
+      "height": 24,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyIndoor2",
+      "border_filepath": "data/layouts/MaliasCityMiddleMostHouse/border.bin",
+      "blockdata_filepath": "data/layouts/MaliasCityMiddleMostHouse/map.bin"
     }
   ]
 }

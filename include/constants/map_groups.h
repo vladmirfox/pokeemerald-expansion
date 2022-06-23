@@ -95,11 +95,12 @@
 #define MAP_PUEL_CITY_MART                (7 | (8 << 8))
 
 // gMapGroup_IndoorMaliasCity
-#define MAP_MALIAS_CITY_RIVAL2HOUSE   (0 | (9 << 8))
-#define MAP_MALIAS_CITY_GYM           (1 | (9 << 8))
-#define MAP_MALIAS_CITY_PKMN_CENTRE1F (2 | (9 << 8))
-#define MAP_MALIAS_CITY_PKMN_CENTRE2F (3 | (9 << 8))
-#define MAP_MALIAS_CITY_PKMN_MART     (4 | (9 << 8))
+#define MAP_MALIAS_CITY_RIVAL2HOUSE       (0 | (9 << 8))
+#define MAP_MALIAS_CITY_GYM               (1 | (9 << 8))
+#define MAP_MALIAS_CITY_PKMN_CENTRE1F     (2 | (9 << 8))
+#define MAP_MALIAS_CITY_PKMN_CENTRE2F     (3 | (9 << 8))
+#define MAP_MALIAS_CITY_PKMN_MART         (4 | (9 << 8))
+#define MAP_MALIAS_CITY_MIDDLE_MOST_HOUSE (5 | (9 << 8))
 
 // gMapGroup_IndoorMysticTown
 #define MAP_MYSTIC_TOWN_HOUSE_WITH_HOLE (0 | (10 << 8))
