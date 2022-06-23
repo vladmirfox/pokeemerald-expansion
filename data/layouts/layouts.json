@@ -5550,6 +5550,16 @@
       "secondary_tileset": "gTileset_ProffesorLab",
       "border_filepath": "data/layouts/MaliasCityBillsFriendHouse/border.bin",
       "blockdata_filepath": "data/layouts/MaliasCityBillsFriendHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_MALIAS_CITY_SOUTH_HOUSE",
+      "name": "MaliasCitySouthHouse_Layout",
+      "width": 18,
+      "height": 13,
+      "primary_tileset": "gTileset_FloraSkyBuildingsGeneral",
+      "secondary_tileset": "gTileset_FloraSkyIndoor",
+      "border_filepath": "data/layouts/MaliasCitySouthHouse/border.bin",
+      "blockdata_filepath": "data/layouts/MaliasCitySouthHouse/map.bin"
     }
   ]
 }
