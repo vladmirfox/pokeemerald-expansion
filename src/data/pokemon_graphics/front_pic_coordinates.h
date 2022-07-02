@@ -3661,17 +3661,17 @@ const struct MonCoords gMonFrontPicCoords[] =
     },
     [SPECIES_PIKIPEK] =
     {
-        .size = MON_COORDS_SIZE(40, 48),
-        .y_offset = 11,
+        .size = MON_COORDS_SIZE(29, 40),
+        .y_offset = 12,
     },
     [SPECIES_TRUMBEAK] =
     {
-        .size = MON_COORDS_SIZE(48, 56),
-        .y_offset = 6,
+        .size = MON_COORDS_SIZE(44, 53),
+        .y_offset = 7,
     },
     [SPECIES_TOUCANNON] =
     {
-        .size = MON_COORDS_SIZE(64, 64),
+        .size = MON_COORDS_SIZE(22, 12),
         .y_offset = 2,
     },
     [SPECIES_YUNGOOS] =
@@ -3916,17 +3916,17 @@ const struct MonCoords gMonFrontPicCoords[] =
     },
     [SPECIES_JANGMO_O] =
     {
-        .size = MON_COORDS_SIZE(40, 48),
-        .y_offset = 8,
+        .size = MON_COORDS_SIZE(36, 43),
+        .y_offset = 9,
     },
     [SPECIES_HAKAMO_O] =
     {
-        .size = MON_COORDS_SIZE(56, 64),
+        .size = MON_COORDS_SIZE(53, 61),
         .y_offset = 1,
     },
     [SPECIES_KOMMO_O] =
     {
-        .size = MON_COORDS_SIZE(64, 64),
+        .size = MON_COORDS_SIZE(63, 63),
         .y_offset = 0,
     },
     [SPECIES_TAPU_KOKO] =
