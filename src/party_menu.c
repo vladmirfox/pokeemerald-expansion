@@ -5039,7 +5039,7 @@ static void PartyMenuTryEvolution(u8 taskId)
 static void DisplayMonNeedsToReplaceMove(u8 taskId)
 {
     GetMonNickname(&gPlayerParty[gPartyMenu.slotId], gStringVar1);
-    StringCopy(gStringVar2, gLongMoveNames[gMoveToLearn]);
+    StringCopy(gStringVar2, gMoveNames[gMoveToLearn]);
     StringExpandPlaceholders(gStringVar4, gText_PkmnNeedsToReplaceMove);
     DisplayPartyMenuMessage(gStringVar4, TRUE);
     ScheduleBgCopyTilemapToVram(2);
@@ -5050,7 +5050,7 @@ static void DisplayMonNeedsToReplaceMove(u8 taskId)
 static void DisplayMonLearnedMove(u8 taskId, u16 move)
 {
     GetMonNickname(&gPlayerParty[gPartyMenu.slotId], gStringVar1);
-    StringCopy(gStringVar2, gLongMoveNames[move]);
+    StringCopy(gStringVar2, gMoveNames[move]);
     StringExpandPlaceholders(gStringVar4, gText_PkmnLearnedMove3);
     DisplayPartyMenuMessage(gStringVar4, TRUE);
     ScheduleBgCopyTilemapToVram(2);
