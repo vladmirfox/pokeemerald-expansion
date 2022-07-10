@@ -5,6 +5,8 @@
 // In Gen 4 only, migrated Pokemon with Diamond, Pearl, or Platinum's ID show as "----------".
 // Gen 5 and up read Diamond, Pearl, or Platinum's ID as "Sinnoh".
 // In Gen 4 and up, migrated Pokemon with HeartGold or SoulSilver's ID show the otherwise unused "Johto" string.
+#include "constants/battle_config.h"
+
 #define VERSION_SAPPHIRE 1
 #define VERSION_RUBY 2
 #define VERSION_EMERALD 3
@@ -94,7 +96,11 @@
 #define PLAYER_NAME_LENGTH 7
 #define MAIL_WORDS_COUNT 9
 #define EASY_CHAT_BATTLE_WORDS_COUNT 6
+#if B_EXPANDED_MOVE_NAMES == TRUE
+#define MOVE_NAME_LENGTH 16
+#else
 #define MOVE_NAME_LENGTH 12
+#endif
 #define NUM_QUESTIONNAIRE_WORDS 4
 #define QUIZ_QUESTION_LEN 9
 #define WONDER_CARD_TEXT_LENGTH 40

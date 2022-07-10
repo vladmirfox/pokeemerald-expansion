@@ -275,4 +275,6 @@
 
 #define B_ENABLE_DEBUG                  TRUE     // If set to TRUE, enables a debug menu to use in battles by pressing the Select button.
 
+#define B_EXPANDED_MOVE_NAMES           FALSE    //If set to TRUE, changes the maximum amount of letters in a move name to 16. NOTE: You'll need to change the summary screen UI, bag UI, and in-battle move selector UI to get this 100% working.
+
 #endif // GUARD_CONSTANTS_BATTLE_CONFIG_H
