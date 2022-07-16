@@ -8146,7 +8146,8 @@ bool8 HasTwoFramesAnimation(u16 species)
          && species != SPECIES_CHERRIM
          && species != SPECIES_CASTFORM_SUNNY
          && species != SPECIES_CASTFORM_RAINY
-         && species != SPECIES_CASTFORM_SNOWY);
+         && species != SPECIES_CASTFORM_SNOWY
+         && species != SPECIES_CHERRIM_SUNSHINE);
 }
 
 static bool8 ShouldSkipFriendshipChange(void)
