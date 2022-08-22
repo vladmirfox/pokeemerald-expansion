@@ -6433,6 +6433,27 @@ static bool32 GetMentalHerbEffect(u8 battlerId)
     return ret;
 }
 
+static u8 TryConsumeMirrorHerb(u8 battlerId, bool32 execute)
+{
+    u8 effect = 0;
+
+    // TODO should this have its own MOVEEND case? MOVEEND_ITEM_EFFECTS_ALL is pretty far down the list...
+    if (gProtectStructs[battlerId].eatMirrorHerb) {
+        gLastUsedItem = gBattleMons[battlerId].item;
+        gBattleScripting.savedBattler = gBattlerAttacker;
+        gBattleScripting.battler = gBattlerAttacker = battlerId;
+        gProtectStructs[battlerId].eatMirrorHerb = 0;
+        if (execute) {
+            BattleScriptExecute(BattleScript_MirrorHerbCopyStatChangeEnd2);
+        } else {
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_MirrorHerbCopyStatChange;
+        }
+        effect = ITEM_STATS_CHANGE;
+    }
+    return effect;
+}
+
 u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
 {
     int i = 0, moveType;
@@ -6958,6 +6979,9 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 if (!moveTurn)
                     effect = TrySetMicleBerry(battlerId, gLastUsedItem, TRUE);
                 break;
+            case HOLD_EFFECT_MIRROR_HERB:
+                effect = TryConsumeMirrorHerb(battlerId, TRUE);
+                break;
             }
 
             if (effect)
@@ -7157,6 +7181,9 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                     gBattlescriptCurrInstr = BattleScript_WhiteHerbRet;
                     return effect;
                 }
+                break;
+            case HOLD_EFFECT_MIRROR_HERB:
+                effect = TryConsumeMirrorHerb(battlerId, FALSE);
                 break;
             }
 

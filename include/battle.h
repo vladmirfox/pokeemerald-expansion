@@ -147,6 +147,7 @@ struct ProtectStruct
     u16 pranksterElevated:1;
     u16 quickDraw:1;
     u16 beakBlastCharge:1;
+    u16 eatMirrorHerb:1;
     u32 physicalDmg;
     u32 specialDmg;
     u8 physicalBattlerId;
@@ -492,6 +493,12 @@ struct StolenItem
     u16 stolen:1;
 };
 
+struct TotemBoost
+{
+    u8 stats;   // bitfield for each battle stat that is set if the stat changes
+    s8 statChanges[NUM_BATTLE_STATS - 1];    // highest bit being set decreases the stat
+}; /* size = 8 */
+
 struct BattleStruct
 {
     u8 turnEffectsTracker;
@@ -620,6 +627,7 @@ struct BattleStruct
     u8 stickyWebUser;
     u8 appearedInBattle; // Bitfield to track which Pokemon appeared in battle. Used for Burmy's form change
     u8 skyDropTargets[MAX_BATTLERS_COUNT]; // For Sky Drop, to account for if multiple Pokemon use Sky Drop in a double battle.
+    struct TotemBoost statBoosts[MAX_BATTLERS_COUNT];       // mirror herb copies stat changes. needed for multiple stat changes
 };
 
 #define F_DYNAMIC_TYPE_1 (1 << 6)
@@ -809,12 +817,6 @@ struct MonSpritesGfx
     void *unusedPtr;
     u16 *buffer;
 };
-
-struct TotemBoost
-{
-    u8 stats;   // bitfield for each battle stat that is set if the stat changes
-    s8 statChanges[NUM_BATTLE_STATS - 1];    // highest bit being set decreases the stat
-}; /* size = 8 */
 
 // All battle variables are declared in battle_main.c
 extern u16 gBattle_BG0_X;

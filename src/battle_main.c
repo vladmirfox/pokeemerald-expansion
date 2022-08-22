@@ -3627,6 +3627,8 @@ static void TryDoEventsBeforeFirstTurn(void)
     {
         if (gTotemBoosts[i].stats != 0)
         {
+            memcpy(&gBattleStruct->statBoosts[i], &gTotemBoosts[i], sizeof(struct TotemBoost));
+            memset(&gTotemBoosts[i], 0, sizeof(struct TotemBoost));
             gBattlerAttacker = i;
             BattleScriptExecute(BattleScript_TotemVar);
             return;
