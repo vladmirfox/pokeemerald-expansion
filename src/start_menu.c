@@ -42,9 +42,10 @@
 #include "text_window.h"
 #include "trainer_card.h"
 #include "window.h"
-#include "constants/songs.h"
 #include "union_room.h"
+#include "constants/battle_frontier.h"
 #include "constants/rgb.h"
+#include "constants/songs.h"
 
 // Menu actions
 enum
@@ -84,8 +85,8 @@ EWRAM_DATA static u8 sBattlePyramidFloorWindowId = 0;
 EWRAM_DATA static u8 sStartMenuCursorPos = 0;
 EWRAM_DATA static u8 sNumStartMenuActions = 0;
 EWRAM_DATA static u8 sCurrentStartMenuActions[StartMenu_ActionNum] = {0};
-EWRAM_DATA static u8 sInitStartMenuData[2] = {0};
 EWRAM_DATA static u8 startMenuTaskId = 0;
+EWRAM_DATA static u8 sInitStartMenuData[2] = {0};
 
 EWRAM_DATA static u8 (*sSaveDialogCallback)(void) = NULL;
 EWRAM_DATA static u8 sSaveDialogTimer = 0;
@@ -93,10 +94,9 @@ EWRAM_DATA static bool8 sSavingComplete = FALSE;
 EWRAM_DATA static u8 sSaveInfoWindowId = 0;
 
 // Menu action callbacks
-bool8 StartMenuPokedexCallback(void);
+static bool8 StartMenuPokedexCallback(void);
 static bool8 StartMenuPokemonCallback(void);
 static bool8 StartMenuBagCallback(void);
-static bool8 StartMenuPCCallback(void);
 static bool8 StartMenuPokeNavCallback(void);
 static bool8 StartMenuPlayerNameCallback(void);
 static bool8 StartMenuSaveCallback(void);
@@ -107,7 +107,6 @@ static bool8 StartMenuSafariZoneRetireCallback(void);
 static bool8 StartMenuLinkModePlayerNameCallback(void);
 static bool8 StartMenuBattlePyramidRetireCallback(void);
 static bool8 StartMenuBattlePyramidBagCallback(void);
-static bool8 StartMenuDexNavCallback(void);
 
 // Menu callbacks
 static bool8 SaveStartCallback(void);
@@ -144,7 +143,7 @@ static bool8 FieldCB_ReturnToFieldStartMenu(void);
 
 static const struct WindowTemplate sSafariBallsWindowTemplate = {0, 1, 1, 9, 4, 0xF, 8};
 
-static const u8* const sPyramidFloorNames[] =
+static const u8* const sPyramidFloorNames[FRONTIER_STAGES_PER_CHALLENGE + 1] =
 {
     gText_Floor1,
     gText_Floor2,
@@ -204,12 +203,12 @@ static const struct WindowTemplate sWindowTemplates_LinkBattleSave[] =
 };
 
 static const struct WindowTemplate sSaveInfoWindowTemplate = {
-    .bg = 0, 
-    .tilemapLeft = 1, 
-    .tilemapTop = 1, 
-    .width = 14, 
-    .height = 10, 
-    .paletteNum = 15, 
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 14,
+    .height = 10,
+    .paletteNum = 15,
     .baseBlock = 8
 };
 
@@ -288,14 +287,20 @@ static void AddStartMenuAction(u8 action)
 static void BuildNormalStartMenu(void)
 {
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
+    {
         AddStartMenuAction(MENU_ACTION_POKEDEX);
+    }
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
+    {
         AddStartMenuAction(MENU_ACTION_POKEMON);
+    }
 
     AddStartMenuAction(MENU_ACTION_BAG);
 
     if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
+    {
         AddStartMenuAction(MENU_ACTION_POKENAV);
+    }
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
@@ -379,13 +384,13 @@ static void ShowSafariBallsWindow(void)
     DrawStdWindowFrame(sSafariBallsWindowId, FALSE);
     ConvertIntToDecimalStringN(gStringVar1, gNumSafariBalls, STR_CONV_MODE_RIGHT_ALIGN, 2);
     StringExpandPlaceholders(gStringVar4, gText_SafariBallStock);
-    AddTextPrinterParameterized(sSafariBallsWindowId, 1, gStringVar4, 0, 1, 0xFF, NULL);
-    CopyWindowToVram(sSafariBallsWindowId, 2);
+    AddTextPrinterParameterized(sSafariBallsWindowId, FONT_NORMAL, gStringVar4, 0, 1, TEXT_SKIP_DRAW, NULL);
+    CopyWindowToVram(sSafariBallsWindowId, COPYWIN_GFX);
 }
 
 static void ShowPyramidFloorWindow(void)
 {
-    if (gSaveBlock2Ptr->frontier.curChallengeBattleNum == 7)
+    if (gSaveBlock2Ptr->frontier.curChallengeBattleNum == FRONTIER_STAGES_PER_CHALLENGE)
         sBattlePyramidFloorWindowId = AddWindow(&sPyramidFloorWindowTemplate_1);
     else
         sBattlePyramidFloorWindowId = AddWindow(&sPyramidFloorWindowTemplate_2);
@@ -394,8 +399,8 @@ static void ShowPyramidFloorWindow(void)
     DrawStdWindowFrame(sBattlePyramidFloorWindowId, FALSE);
     StringCopy(gStringVar1, sPyramidFloorNames[gSaveBlock2Ptr->frontier.curChallengeBattleNum]);
     StringExpandPlaceholders(gStringVar4, gText_BattlePyramidFloor);
-    AddTextPrinterParameterized(sBattlePyramidFloorWindowId, 1, gStringVar4, 0, 1, 0xFF, NULL);
-    CopyWindowToVram(sBattlePyramidFloorWindowId, 2);
+    AddTextPrinterParameterized(sBattlePyramidFloorWindowId, FONT_NORMAL, gStringVar4, 0, 1, TEXT_SKIP_DRAW, NULL);
+    CopyWindowToVram(sBattlePyramidFloorWindowId, COPYWIN_GFX);
 }
 
 static void RemoveExtraStartMenuWindows(void)
@@ -403,7 +408,7 @@ static void RemoveExtraStartMenuWindows(void)
     if (GetSafariZoneFlag())
     {
         ClearStdWindowAndFrameToTransparent(sSafariBallsWindowId, FALSE);
-        CopyWindowToVram(sSafariBallsWindowId, 2);
+        CopyWindowToVram(sSafariBallsWindowId, COPYWIN_GFX);
         RemoveWindow(sSafariBallsWindowId);
     }
     if (InBattlePyramid())
@@ -416,21 +421,20 @@ static void RemoveExtraStartMenuWindows(void)
 static bool32 PrintStartMenuActions(s8 *pIndex, u32 count)
 {
     s8 index = *pIndex;
-	struct ListMenuItem *tempItems = (void*)&gStringVar4[0x200];
-	gMultiuseListMenuTemplate.items=tempItems;
+
+    struct ListMenuItem *tempItems = (void*)&gStringVar4[0x200];
+    gMultiuseListMenuTemplate.items=tempItems;
     do
     {
         if (sStartMenuItems[sCurrentStartMenuActions[index]].func.u8_void == StartMenuPlayerNameCallback)
         {
-			tempItems[index].name = gSaveBlock2Ptr->playerName;
-			tempItems[index].id = index;
-           // PrintPlayerNameOnWindow(GetStartMenuWindowId(), sStartMenuItems[sCurrentStartMenuActions[index]].text, 8, (index << 4) + 9);
+            tempItems[index].name = gSaveBlock2Ptr->playerName;
+            tempItems[index].id = index;
         }
         else
         {
             tempItems[index].name = sStartMenuItems[sCurrentStartMenuActions[index]].text;
             tempItems[index].id = index;
-//            AddTextPrinterParameterized(GetStartMenuWindowId(), 1, gStringVar4, 8, (index << 4) + 9, 0xFF, NULL);
         }
 
         index++;
@@ -443,6 +447,7 @@ static bool32 PrintStartMenuActions(s8 *pIndex, u32 count)
         count--;
     }
     while (count != 0);
+
     *pIndex = index;
     return FALSE;
 }
@@ -500,18 +505,18 @@ static bool32 InitStartMenuStep(void)
         sInitStartMenuData[0]++;
         break;
     case 4:
-		gMultiuseListMenuTemplate = sCommonListMenuTemplate;
-		gMultiuseListMenuTemplate.windowId = GetStartMenuWindowId();
+        gMultiuseListMenuTemplate = sCommonListMenuTemplate;
+        gMultiuseListMenuTemplate.windowId = GetStartMenuWindowId();
         if (PrintStartMenuActions(&sInitStartMenuData[1], 2))
-		{
-			gMultiuseListMenuTemplate.totalItems = sNumStartMenuActions;
-			gTasks[startMenuTaskId].data[5] = ListMenuInit(&gMultiuseListMenuTemplate, 0, 0);
-			sInitStartMenuData[0]++;
-		}
+        {
+            gMultiuseListMenuTemplate.totalItems = sNumStartMenuActions;
+            gTasks[startMenuTaskId].data[5] = ListMenuInit(&gMultiuseListMenuTemplate, 0, 0);
+            sInitStartMenuData[0]++;
+        }
 		
         break;
     case 5:
-        CopyWindowToVram(GetStartMenuWindowId(), 3);
+        CopyWindowToVram(GetStartMenuWindowId(), COPYWIN_MAP);
         return TRUE;
     }
 
