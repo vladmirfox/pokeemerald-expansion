@@ -516,8 +516,8 @@ static bool32 InitStartMenuStep(void)
         if (PrintStartMenuActions(&sInitStartMenuData[1], 2))
         {
             gMultiuseListMenuTemplate.totalItems = sNumStartMenuActions;
-            //If you add a new option and find bug, please see here
-            if(sStartMenuCursorPos < 5) //maxshowed - 2
+            //If you add a new option and find bug, please modify here
+            if(sStartMenuCursorPos < 5)
                 gTasks[startMenuTaskId].data[5] = ListMenuInit(&gMultiuseListMenuTemplate, 0, sStartMenuCursorPos);
             else
                 gTasks[startMenuTaskId].data[5] = ListMenuInit(&gMultiuseListMenuTemplate, 1, sStartMenuCursorPos - 1);
