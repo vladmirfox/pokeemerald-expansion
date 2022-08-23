@@ -244,6 +244,13 @@ static void ShowSaveInfoWindow(void);
 static void RemoveSaveInfoWindow(void);
 static void HideStartMenuWindow(void);
 
+void SetDexPokemonPokenavFlags(void) // unused
+{
+    FlagSet(FLAG_SYS_POKEDEX_GET);
+    FlagSet(FLAG_SYS_POKEMON_GET);
+    FlagSet(FLAG_SYS_POKENAV_GET);
+}
+
 static void BuildStartMenuActions(void)
 {
     sNumStartMenuActions = 0;
@@ -509,7 +516,7 @@ static bool32 InitStartMenuStep(void)
         if (PrintStartMenuActions(&sInitStartMenuData[1], 2))
         {
             gMultiuseListMenuTemplate.totalItems = sNumStartMenuActions;
-            gTasks[startMenuTaskId].data[5] = ListMenuInit(&gMultiuseListMenuTemplate, 0, 0);
+            gTasks[startMenuTaskId].data[5] = ListMenuInit(&gMultiuseListMenuTemplate, 0, sStartMenuCursorPos);
             sInitStartMenuData[0]++;
         }
         break;
@@ -1365,7 +1372,7 @@ static void ShowSaveInfoWindow(void)
     yOffset += 16;
     AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gText_SavingBadges, 0, yOffset, TEXT_SKIP_DRAW, NULL);
     BufferSaveMenuText(SAVE_MENU_BADGES, gStringVar4, color);
-    xOffset = GetStringRightAlignXOffset(1, gStringVar4, 0x70);
+    xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 0x70);
     AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, xOffset, yOffset, TEXT_SKIP_DRAW, NULL);
 
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
@@ -1417,7 +1424,7 @@ void SaveForBattleTowerLink(void)
 static void HideStartMenuWindow(void)
 {
     ClearStdWindowAndFrame(GetStartMenuWindowId(), TRUE);
-	DestroyListMenuTask(gTasks[startMenuTaskId].data[5], 0 ,0);
+    DestroyListMenuTask(gTasks[startMenuTaskId].data[5], 0 ,0);
     RemoveStartMenuWindow();
     ScriptUnfreezeObjectEvents();
     ScriptContext2_Disable();
