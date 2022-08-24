@@ -7245,39 +7245,27 @@ bool8 TryIncrementMonLevel(struct Pokemon *mon)
 
 u32 CanMonLearnTMHM(struct Pokemon *mon, u8 tm)
 {
-    u16 species = GetMonData(mon, MON_DATA_SPECIES2, 0);
-    if (species == SPECIES_EGG)
-    {
-        return 0;
-    }
-    else if (tm < 32)
-    {
-        u32 mask = 1 << tm;
-        return gTMHMLearnsets[species][0] & mask;
-    }
-    else
-    {
-        u32 mask = 1 << (tm - 32);
-        return gTMHMLearnsets[species][1] & mask;
-    }
+    return CanSpeciesLearnTMHM(GetMonData(mon, MON_DATA_SPECIES2, 0), tm);
 }
 
 u32 CanSpeciesLearnTMHM(u16 species, u8 tm)
 {
+    u8 index;
+    u32 mask;
+
     if (species == SPECIES_EGG)
     {
         return 0;
     }
-    else if (tm < 32)
-    {
-        u32 mask = 1 << tm;
-        return gTMHMLearnsets[species][0] & mask;
-    }
-    else
-    {
-        u32 mask = 1 << (tm - 32);
-        return gTMHMLearnsets[species][1] & mask;
-    }
+
+    // First we obtain which of the 4 32 bit integers the tm falls into
+    // The alternative would be an if-else for each range
+    index = (tm - (tm % 32)) / 32;
+
+    // We shift the bits based on the index
+    mask = 1 << (tm - (32 * index));
+
+    return gTMHMLearnsets[species][index] & mask;
 }
 
 u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
