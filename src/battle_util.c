@@ -9060,7 +9060,10 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     }
 
     // check stab
-    if (IS_BATTLER_OF_TYPE(battlerAtk, moveType) && move != MOVE_STRUGGLE && move != MOVE_NONE)
+    // Pokemon will get STAB after type change
+    if ((IS_BATTLER_OF_TYPE(battlerAtk, moveType) || 
+        ((abilityAtk == ABILITY_PROTEAN || abilityAtk == ABILITY_LIBERO) && !IsNeutralizingGasOnField()))
+        && move != MOVE_STRUGGLE && move != MOVE_NONE)
     {
         if (abilityAtk == ABILITY_ADAPTABILITY)
             MulModifier(&finalModifier, UQ_4_12(2.0));
