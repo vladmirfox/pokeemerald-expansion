@@ -33,14 +33,14 @@
       "x": 2,
       "y": 9,
       "elevation": 0,
-      "dest_map": "MAP_MODIFIED_LAB",
+      "dest_map": "MAP_LITTLEROOT_TOWN",
       "dest_warp_id": 2
     },
     {
       "x": 3,
       "y": 9,
       "elevation": 0,
-      "dest_map": "MAP_MODIFIED_LAB",
+      "dest_map": "MAP_LITTLEROOT_TOWN",
       "dest_warp_id": 2
     }
   ],
