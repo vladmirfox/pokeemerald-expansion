@@ -43,7 +43,7 @@ extern "C" {
 #include "gba/types.h"
 
 s32 mini_vsnprintf(char* buffer, u32 buffer_len, const char *fmt, va_list va);
-s32 mini_vpprintf(int (*puts)(char* s, s32 len, void* buf), void* buf, const char *fmt, va_list va);
+s32 mini_vpprintf(s32 (*puts)(char* s, s32 len, void* buf),s32 (*puts2)(char* s, s32 len, void* buf), void* buf, const char *fmt, va_list va);
 
 #ifdef __cplusplus
 }

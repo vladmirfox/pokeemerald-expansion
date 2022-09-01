@@ -49,12 +49,89 @@
 #include "mgba_printf/mini_printf.h"
 #include "gba/types.h"
 #include "gba/defines.h"
+#include "text.h"
 
 struct mini_buff 
 {
     char *buffer, *pbuffer;
     u32 buffer_len;
 };
+
+//This converts the number used to represent a character in the game code to a regular char (character).
+static u8 decodeChar(u8 input)
+{
+    switch(input)
+    {
+    case CHAR_a: return 'a';
+    case CHAR_b: return 'b';
+    case CHAR_c: return 'c';
+    case CHAR_d: return 'd';
+    case CHAR_e: return 'e';
+    case CHAR_f: return 'f';
+    case CHAR_g: return 'g';
+    case CHAR_h: return 'h';
+    case CHAR_i: return 'i';
+    case CHAR_j: return 'j';
+    case CHAR_k: return 'k';
+    case CHAR_l: return 'l';
+    case CHAR_m: return 'm';
+    case CHAR_n: return 'n';
+    case CHAR_o: return 'o';
+    case CHAR_p: return 'p';
+    case CHAR_q: return 'q';
+    case CHAR_r: return 'r';
+    case CHAR_s: return 's';
+    case CHAR_t: return 't';
+    case CHAR_u: return 'u';
+    case CHAR_v: return 'v';
+    case CHAR_w: return 'w';
+    case CHAR_x: return 'x';
+    case CHAR_y: return 'y';
+    case CHAR_z: return 'z';
+    case CHAR_A: return 'A';
+    case CHAR_B: return 'B';
+    case CHAR_C: return 'C';
+    case CHAR_D: return 'D';
+    case CHAR_E: return 'E';
+    case CHAR_F: return 'F';
+    case CHAR_G: return 'G';
+    case CHAR_H: return 'H';
+    case CHAR_I: return 'I';
+    case CHAR_J: return 'J';
+    case CHAR_K: return 'K';
+    case CHAR_L: return 'L';
+    case CHAR_M: return 'M';
+    case CHAR_N: return 'N';
+    case CHAR_O: return 'O';
+    case CHAR_P: return 'P';
+    case CHAR_Q: return 'Q';
+    case CHAR_R: return 'R';
+    case CHAR_S: return 'S';
+    case CHAR_T: return 'T';
+    case CHAR_U: return 'U';
+    case CHAR_V: return 'V';
+    case CHAR_W: return 'W';
+    case CHAR_X: return 'X';
+    case CHAR_Y: return 'Y';
+    case CHAR_Z: return 'Z';
+    case CHAR_0: return '0';
+    case CHAR_1: return '1';
+    case CHAR_2: return '2';
+    case CHAR_3: return '3';
+    case CHAR_4: return '4';
+    case CHAR_5: return '5';
+    case CHAR_6: return '6';
+    case CHAR_7: return '7';
+    case CHAR_8: return '8';
+    case CHAR_9: return '9';
+    case CHAR_EXCL_MARK: return '!';
+    case CHAR_QUESTION_MARK: return '?';
+    case CHAR_PERIOD: return '.';
+    case CHAR_HYPHEN: return '-';
+    case CHAR_SPACE: return ' ';
+    }
+    return '_';
+}
 
 static s32 _puts(char *s, s32 len, void *buf)
 {
@@ -79,10 +156,40 @@ static s32 _puts(char *s, s32 len, void *buf)
     return b->pbuffer - p0;
 }
 
+static s32 _puts2(char *s, s32 len, void *buf)
+{
+    char *p0;
+    s32 i;
+    struct mini_buff *b;
+
+    if (!buf) 
+        return len;
+    
+    b = buf;
+    p0 = b->buffer;
+
+    /* Copy to buffer */
+    for (i = 0; i < len; i++) {
+        if(b->pbuffer == b->buffer + b->buffer_len - 1) {
+            break;
+        }
+        *(b->pbuffer ++) = decodeChar(s[i]);
+    }
+    *(b->pbuffer) = 0;
+    return b->pbuffer - p0;
+}
+
 static s32 mini_strlen(const char *s)
 {
 	s32 len = 0;
 	while (s[len] != '\0') len++;
+	return len;
+}
+
+static s32 mini_strlen2(const char *s)
+{
+	s32 len = 0;
+	while (s[len] != EOS) len++;
 	return len;
 }
 
@@ -167,13 +274,13 @@ s32 mini_vsnprintf(char *buffer, u32 buffer_len, const char *fmt, va_list va)
     b.buffer_len = buffer_len;
     if (buffer_len == 0)
         buffer = NULL;
-    n = mini_vpprintf(_puts, (buffer != NULL) ? &b : NULL, fmt, va);
+    n = mini_vpprintf(_puts,_puts2, (buffer != NULL) ? &b : NULL, fmt, va);
     if (buffer == NULL)
         return n;
     return b.pbuffer - b.buffer;
 }
 
-s32 mini_vpprintf(s32 (*puts)(char* s, s32 len, void* buf), void* buf, const char *fmt, va_list va)
+s32 mini_vpprintf(s32 (*puts)(char* s, s32 len, void* buf),s32 (*puts2)(char* s, s32 len, void* buf), void* buf, const char *fmt, va_list va)
 {
     char bf[24];
     char bf2[24];
@@ -182,7 +289,7 @@ s32 mini_vpprintf(s32 (*puts)(char* s, s32 len, void* buf), void* buf, const cha
     if(puts == NULL)
     {
         /* run puts in counting mode. */
-        puts = _puts; buf = NULL;
+        puts2 = _puts2; puts = _puts; buf = NULL;
     }
     n = 0;
     while ((ch=*(fmt++)))
@@ -275,10 +382,24 @@ s32 mini_vpprintf(s32 (*puts)(char* s, s32 len, void* buf), void* buf, const cha
                         len = puts(ptr, len, buf);
                     }
                     break;
+                case 'S' :
+                    ptr = va_arg(va, char*);
+                    len = mini_strlen2(ptr);
+                    if (pad_to > 0)
+                    {
+                        len = mini_pad(ptr, len, pad_char, pad_to, bf);
+                        len = puts2(bf, len, buf);
+                    } else
+                    {
+                        len = puts2(ptr, len, buf);
+                    }
+                    break;
                 default:
                     len = 1;
                     len = puts(&ch, len, buf);
                     break;
+                    // MODIFIED: Use %S to convert to Ascii
+      
             }
         }
         n = n + len;
