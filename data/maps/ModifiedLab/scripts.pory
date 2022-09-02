@@ -1,0 +1,89 @@
+mapscripts ModifiedLab_MapScripts {}
+
+script ModifiedLab_EventScript_Pokeball{
+
+    lockall
+    showmonpic(SPECIES_EEVEE, 10, 3)
+    msgbox("Are you ready to start your journey?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_EEVEE, 5, ITEM_CHERISH_BALL)
+        if(var(VAR_RESULT)==MON_GIVEN_TO_PARTY){
+        playfanfare(MUS_OBTAIN_ITEM)
+        msgbox("Received Eevee")
+        removeobject(1)
+        setflag(FLAG_POKEMON_GIFT_LITTLEROOT_EEVEE)
+        setflag(FLAG_SYS_POKEMON_GET)
+        setvar(VAR_LITTLEROOT_TOWN_STATE,4)
+        call(NicknameStarterMon)
+        }
+        elif(var(VAR_RESULT) == YES){
+        playfanfare(MUS_OBTAIN_ITEM)
+        msgbox("Received Eevee")
+        removeobject(1)
+        setflag(FLAG_POKEMON_GIFT_LITTLEROOT_EEVEE)
+        setflag(FLAG_SYS_POKEMON_GET)
+        setvar(VAR_LITTLEROOT_TOWN_STATE,4)
+        call(NicknameStarterBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("No room in the party.")
+        }
+        call(GivePokedex)
+    }
+    else{
+        hidemonpic
+        msgbox(NewLab_NotChosen)
+    } 
+    waitmessage
+    releaseall
+    end
+}
+
+script NicknameStarterMon{
+ 
+    msgbox("Give it a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_GetGiftMonPartySlot)
+        call(Common_EventScript_NameReceivedPartyMon)
+    }
+}
+
+script NicknameStarterBoxMon{
+
+    msgbox("Give it a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_NameReceivedBoxMon)
+    }
+    call(Common_EventScript_TransferredToPC)
+}
+
+text NewLab_NotChosen{
+    "You decided you weren't ready yet."
+}
+
+script GivePokedex{
+    lock
+	setflag(FLAG_SYS_POKEDEX_GET)
+    setflag(FLAG_ADVENTURE_STARTED)
+	special(SetUnlockedPokedexFlags)
+	setflag(FLAG_RECEIVED_POKEDEX_FROM_BIRCH)
+    setflag(FLAG_DISABLE_BAG)
+	setvar(VAR_CABLE_CLUB_TUTORIAL_STATE, 1)
+    msgbox("Good luck {PLAYER}!", MSGBOX_DEFAULT)
+    giveitem(ITEM_POKE_BALL, 50)
+    giveitem(ITEM_RARE_CANDY, 1998)
+    call(UpgradeNationalDex)
+    release
+	return
+}
+
+script UpgradeNationalDex{
+    lock
+	setflag(FLAG_SYS_NATIONAL_DEX)
+	special(EnableNationalPokedex)
+    release
+    return
+}
