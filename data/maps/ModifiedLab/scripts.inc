@@ -29,6 +29,7 @@ ModifiedLab_EventScript_Pokeball_5:
 
 ModifiedLab_EventScript_Pokeball_6:
 	playfanfare MUS_OBTAIN_ITEM
+	playmoncry SPECIES_EEVEE, CRY_MODE_NORMAL
 	msgbox ModifiedLab_EventScript_Pokeball_Text_1
 	removeobject 1
 	setflag FLAG_POKEMON_GIFT_LITTLEROOT_EEVEE
@@ -39,6 +40,7 @@ ModifiedLab_EventScript_Pokeball_6:
 
 ModifiedLab_EventScript_Pokeball_7:
 	playfanfare MUS_OBTAIN_ITEM
+	playmoncry SPECIES_EEVEE, CRY_MODE_NORMAL
 	msgbox ModifiedLab_EventScript_Pokeball_Text_1
 	removeobject 1
 	setflag FLAG_POKEMON_GIFT_LITTLEROOT_EEVEE
@@ -81,7 +83,6 @@ GivePokedex::
 	setflag FLAG_ADVENTURE_STARTED
 	special SetUnlockedPokedexFlags
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
-	setflag FLAG_DISABLE_BAG
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
 	msgbox GivePokedex_Text_0, MSGBOX_DEFAULT
 	giveitem ITEM_POKE_BALL, 50
