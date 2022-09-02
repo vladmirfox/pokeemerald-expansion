@@ -3,13 +3,8 @@ raw `
 .set LOCALID_ZIGZAGOON, 4
 
 Route101_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route101_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route101_OnFrame
 	.byte 0
-
-Route101_OnTransition:
-	call ProfBirch_EventScript_UpdateLocation
-	end
 
 Route101_OnFrame:
 	map_script_2 VAR_ROUTE101_STATE, 0, Route101_EventScript_HideMapNamePopup
@@ -302,3 +297,29 @@ Route101_Text_RouteSign:
 	.string "{UP_ARROW} OLDALE TOWN$"
 
 `
+
+script Route101_EventScript_GameSign {
+	lockall
+	msgbox("There's no turning back after each jump.")
+	msgbox("You will have to defeat all trainers to move on.")
+	msgbox("You can only fully heal after completing each route, or with items outside of battle.")
+	msgbox("Resources are limited so use items and money wisely.")
+	releaseall
+
+}
+
+script Route101_EventScript_Trainer_001 {
+	trainerbattle_single(TRAINER_CALVIN_1, Intro_001, Outro_001)
+	//msgbox(Outro_001, MSGBOX_AUTOCLOSE)
+	//waitmessage
+	end
+
+}
+
+text Intro_001{
+	"I'll be your first opponent."
+}
+
+text Outro_001{
+	"You won't get far!"
+}

@@ -9,6 +9,7 @@ script ModifiedLab_EventScript_Pokeball{
         givemon(SPECIES_EEVEE, 5, ITEM_CHERISH_BALL)
         if(var(VAR_RESULT)==MON_GIVEN_TO_PARTY){
         playfanfare(MUS_OBTAIN_ITEM)
+        playmoncry(SPECIES_EEVEE,CRY_MODE_NORMAL)
         msgbox("Received Eevee")
         removeobject(1)
         setflag(FLAG_POKEMON_GIFT_LITTLEROOT_EEVEE)
@@ -18,6 +19,7 @@ script ModifiedLab_EventScript_Pokeball{
         }
         elif(var(VAR_RESULT) == YES){
         playfanfare(MUS_OBTAIN_ITEM)
+        playmoncry(SPECIES_EEVEE,CRY_MODE_NORMAL)
         msgbox("Received Eevee")
         removeobject(1)
         setflag(FLAG_POKEMON_GIFT_LITTLEROOT_EEVEE)
@@ -70,7 +72,6 @@ script GivePokedex{
     setflag(FLAG_ADVENTURE_STARTED)
 	special(SetUnlockedPokedexFlags)
 	setflag(FLAG_RECEIVED_POKEDEX_FROM_BIRCH)
-    setflag(FLAG_DISABLE_BAG)
 	setvar(VAR_CABLE_CLUB_TUTORIAL_STATE, 1)
     msgbox("Good luck {PLAYER}!", MSGBOX_DEFAULT)
     giveitem(ITEM_POKE_BALL, 50)
