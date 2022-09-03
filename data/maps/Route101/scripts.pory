@@ -300,16 +300,17 @@ Route101_Text_RouteSign:
 
 script Route101_EventScript_GameSign {
 	lockall
-	msgbox("There's no turning back after each jump.")
-	msgbox("You will have to defeat all trainers to move on.")
-	msgbox("You can only fully heal after completing each route, or with items outside of battle.")
-	msgbox("Resources are limited so use items and money wisely.")
+	msgbox(format("There's no turning back after each jump."))
+	msgbox(format("You will have to defeat all trainers to move on."))
+	msgbox(format("You can only fully heal after completing each route, or with items outside of battle."))
+	msgbox(format("Resources are limited so use items and money wisely."))
+	msgbox(format("The level cap in this area is 5, you can exceed it with Rare Candy if desired."))
 	releaseall
 
 }
 
 script Route101_EventScript_Trainer_001 {
-	trainerbattle_single(TRAINER_CALVIN_1, Intro_001, Outro_001)
+	trainerbattle_single(TRAINER_REF001_RT101, Intro_001, Outro_001)
 	//msgbox(Outro_001, MSGBOX_AUTOCLOSE)
 	//waitmessage
 	end
