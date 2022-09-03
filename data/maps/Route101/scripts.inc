@@ -301,26 +301,36 @@ Route101_EventScript_GameSign::
 	msgbox Route101_EventScript_GameSign_Text_1
 	msgbox Route101_EventScript_GameSign_Text_2
 	msgbox Route101_EventScript_GameSign_Text_3
+	msgbox Route101_EventScript_GameSign_Text_4
 	releaseall
 	return
 
 
 Route101_EventScript_Trainer_001::
-	trainerbattle_single TRAINER_CALVIN_1, Intro_001, Outro_001
+	trainerbattle_single TRAINER_REF001_RT101, Intro_001, Outro_001
 	end
 
 
 Route101_EventScript_GameSign_Text_0:
-	.string "There's no turning back after each jump.$"
+	.string "There's no turning back after each\n"
+	.string "jump.$"
 
 Route101_EventScript_GameSign_Text_1:
-	.string "You will have to defeat all trainers to move on.$"
+	.string "You will have to defeat all trainers to\n"
+	.string "move on.$"
 
 Route101_EventScript_GameSign_Text_2:
-	.string "You can only fully heal after completing each route, or with items outside of battle.$"
+	.string "You can only fully heal after\n"
+	.string "completing each route, or with items\l"
+	.string "outside of battle.$"
 
 Route101_EventScript_GameSign_Text_3:
-	.string "Resources are limited so use items and money wisely.$"
+	.string "Resources are limited so use items and\n"
+	.string "money wisely.$"
+
+Route101_EventScript_GameSign_Text_4:
+	.string "The level cap in this area is 5, you can\n"
+	.string "exceed it with Rare Candy if desired.$"
 
 Intro_001::
 	.string "I'll be your first opponent.$"

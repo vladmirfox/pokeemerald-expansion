@@ -3416,8 +3416,14 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         
     }
 
-    if (gBaseStats[species].abilities[1])
+    if (gBaseStats[species].abilities[2] && (Random() % 100) <= 20)
     {
+        value = 2;
+        SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
+    }
+    else if (gBaseStats[species].abilities[1])
+    {
+
         value = personality & 1;
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
     }
@@ -5794,7 +5800,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                         if (evChange > 0) // Increasing EV (HP or Atk)
                         {
                             // Has EV increase limit already been reached?
-                            if (evCount >= MAX_TOTAL_EVS)
+                            if (evCount == MAX_TOTAL_EVS)
                                 return TRUE;
 
                             if (itemEffect[10] & ITEM10_IS_VITAMIN)
@@ -6030,7 +6036,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                         if (evChange > 0) // Increasing EV
                         {
                             // Has EV increase limit already been reached?
-                            if (evCount >= MAX_TOTAL_EVS)
+                            if (evCount == MAX_TOTAL_EVS)
                                 return TRUE;
 
                             if (itemEffect[10] & ITEM10_IS_VITAMIN)
@@ -7050,7 +7056,7 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
 
     for (i = 0; i < NUM_STATS; i++)
     {
-        if (totalEVs >= MAX_TOTAL_EVS)
+        if (totalEVs == MAX_TOTAL_EVS)
             break;
 
         if (CheckPartyHasHadPokerus(mon, 0))

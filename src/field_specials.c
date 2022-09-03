@@ -1334,10 +1334,10 @@ void GiveLeadMonEffortRibbon(void)
 
 bool8 Special_AreLeadMonEVsMaxedOut(void)
 {
-    if (GetMonEVCount(&gPlayerParty[GetLeadMonIndex()]) >= MAX_TOTAL_EVS)
-        return TRUE;
+    //if (GetMonEVCount(&gPlayerParty[GetLeadMonIndex()]) >= MAX_TOTAL_EVS)
+    //    return TRUE;
 
-    return FALSE;
+    return TRUE;
 }
 
 u8 TryUpdateRusturfTunnelState(void)
