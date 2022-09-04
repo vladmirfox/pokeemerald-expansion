@@ -9,64 +9,69 @@ static const struct TrainerMonItemCustomMoves sParty_REF001[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntAquaHideout1[] = {
+static const struct TrainerMonItemCustomMoves sParty_REF002[] = {
     {
     .iv = 0,
-    .lvl = 32,
-    .species = SPECIES_POOCHYENA,
+    .lvl = 5,
+    .species = SPECIES_TREECKO,
+    .heldItem = ITEM_ORAN_BERRY,
+    .abilityNums = 0,
+    .moves = {MOVE_LEECH_SEED, MOVE_TACKLE, MOVE_ABSORB, MOVE_NONE}
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntAquaHideout2[] = {
+static const struct TrainerMonItemCustomMoves sParty_REF003[] = {
     {
     .iv = 0,
-    .lvl = 31,
-    .species = SPECIES_ZUBAT,
-    },
-    {
-    .iv = 0,
-    .lvl = 31,
-    .species = SPECIES_CARVANHA,
+    .lvl = 5,
+    .species = SPECIES_TREECKO,
+    .heldItem = ITEM_ORAN_BERRY,
+    .abilityNums = 0,
+    .moves = {MOVE_LEECH_SEED, MOVE_TACKLE, MOVE_ABSORB, MOVE_NONE}
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntAquaHideout3[] = {
+static const struct TrainerMonItemCustomMoves sParty_REF004[] = {
     {
     .iv = 0,
-    .lvl = 32,
-    .species = SPECIES_ZUBAT,
+    .lvl = 5,
+    .species = SPECIES_TREECKO,
+    .heldItem = ITEM_ORAN_BERRY,
+    .abilityNums = 0,
+    .moves = {MOVE_LEECH_SEED, MOVE_TACKLE, MOVE_ABSORB, MOVE_NONE}
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntAquaHideout4[] = {
+static const struct TrainerMonItemCustomMoves sParty_REF005[] = {
     {
     .iv = 0,
-    .lvl = 32,
-    .species = SPECIES_CARVANHA,
+    .lvl = 5,
+    .species = SPECIES_TREECKO,
+    .heldItem = ITEM_ORAN_BERRY,
+    .abilityNums = 0,
+    .moves = {MOVE_LEECH_SEED, MOVE_TACKLE, MOVE_ABSORB, MOVE_NONE}
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntSeafloorCavern1[] = {
+static const struct TrainerMonItemCustomMoves sParty_REF006[] = {
     {
     .iv = 0,
-    .lvl = 36,
-    .species = SPECIES_POOCHYENA,
+    .lvl = 5,
+    .species = SPECIES_TREECKO,
+    .heldItem = ITEM_ORAN_BERRY,
+    .abilityNums = 0,
+    .moves = {MOVE_LEECH_SEED, MOVE_TACKLE, MOVE_ABSORB, MOVE_NONE}
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntSeafloorCavern2[] = {
+static const struct TrainerMonItemCustomMoves sParty_REF007[] = {
     {
     .iv = 0,
-    .lvl = 36,
-    .species = SPECIES_CARVANHA,
-    }
-};
-
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntSeafloorCavern3[] = {
-    {
-    .iv = 0,
-    .lvl = 36,
-    .species = SPECIES_ZUBAT,
+    .lvl = 5,
+    .species = SPECIES_TREECKO,
+    .heldItem = ITEM_ORAN_BERRY,
+    .abilityNums = 0,
+    .moves = {MOVE_LEECH_SEED, MOVE_TACKLE, MOVE_ABSORB, MOVE_NONE}
     }
 };
 
@@ -4461,19 +4466,6 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Eddie[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Allen[] = {
-    {
-    .iv = 0,
-    .lvl = 4,
-    .species = SPECIES_ZIGZAGOON,
-    },
-    {
-    .iv = 0,
-    .lvl = 3,
-    .species = SPECIES_TAILLOW,
-    }
-};
-
 static const struct TrainerMonNoItemDefaultMoves sParty_Timmy[] = {
     {
     .iv = 0,
@@ -8084,18 +8076,6 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MaxieMtChimney[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Tiana[] = {
-    {
-    .iv = 0,
-    .lvl = 4,
-    .species = SPECIES_ZIGZAGOON,
-    },
-    {
-    .iv = 0,
-    .lvl = 4,
-    .species = SPECIES_SHROOMISH,
-    }
-};
 
 static const struct TrainerMonNoItemDefaultMoves sParty_Haley1[] = {
     {
@@ -8237,19 +8217,6 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Crissy[] = {
     .iv = 100,
     .lvl = 39,
     .species = SPECIES_WAILMER,
-    }
-};
-
-static const struct TrainerMonNoItemDefaultMoves sParty_Rick[] = {
-    {
-    .iv = 0,
-    .lvl = 4,
-    .species = SPECIES_WURMPLE,
-    },
-    {
-    .iv = 0,
-    .lvl = 4,
-    .species = SPECIES_WURMPLE,
     }
 };
 

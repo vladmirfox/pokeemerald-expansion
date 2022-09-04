@@ -310,8 +310,15 @@ script Route101_EventScript_GameSign {
 
 script Route101_EventScript_Trainer_001 {
 	trainerbattle_single(TRAINER_REF001_RT101, Intro_001, Outro_001)
-	//msgbox(Outro_001, MSGBOX_AUTOCLOSE)
-	//waitmessage
+	msgbox(format("Watch out for the ROUTE BOSS!"), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route101_EventScript_Trainer_002 {
+	trainerbattle_single(TRAINER_REF002_RT101_BOSS, Intro_002, Outro_002)
+	msgbox(format("You'll have to beat each ROUTE BOSS to move on to the next town."), MSGBOX_AUTOCLOSE)
+	waitmessage
 	end
 
 }
@@ -326,6 +333,14 @@ text Intro_001{
 
 text Outro_001{
 	"You won't get far!"
+}
+
+text Intro_002{
+	format("I'm the route boss! Let's see if you're ready to move on.")
+}
+
+text Outro_002{
+	format("Hmph, you haven't seen the last of me {PLAYER}.")
 }
 
 script Route101_Healer{
