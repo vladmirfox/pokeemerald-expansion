@@ -49,12 +49,29 @@ EventScript_BufferBerriesPocket::
 	call_if_eq VAR_0x8007, TRUE, EventScript_PlayFanfareObtainedItem
 	return
 
-EventScript_ObtainedItem::
+EventScript_ObtainedItem:: @ 8271B95
+	compare VAR_0x8001, TRUE
+	goto_if_eq EventScript_ObtainedItemMessage
+	buffernumberstring 0, VAR_0x8001
+	message gText_ObtainedTheItems
+	goto EventScript_ContinueObtainedItem
+EventScript_ObtainedItemMessage:
 	message gText_ObtainedTheItem
+EventScript_ContinueObtainedItem:
 	waitfanfare
 	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
 	setvar VAR_RESULT, TRUE
 	return
+
+EventScript_FoundItem:: @ 8271C9B
+    compare VAR_0x8001, TRUE
+    goto_if_eq EventScript_FoundItemMessage
+    buffernumberstring 0, VAR_0x8001
+    message gText_PlayerFoundItems
+    return
+EventScript_FoundItemMessage::
+    message gText_PlayerFoundOneItem
+    return
 
 EventScript_NoRoomForItem::
 	setvar VAR_RESULT, FALSE
@@ -130,10 +147,6 @@ EventScript_PutBattlePyramidItemInBag::
 EventScript_FoundTMHM::
 	bufferitemnameplural STR_VAR_1, VAR_0x8004, VAR_0x8005
 	message gText_PlayerFoundOneTMHM
-	return
-
-EventScript_FoundItem::
-	message gText_PlayerFoundOneItem
 	return
 
 EventScript_NoRoomToPickUpItem::
