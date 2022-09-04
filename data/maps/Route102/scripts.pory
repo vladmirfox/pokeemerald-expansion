@@ -88,8 +88,6 @@ script Route102_ItemBall_Berries{
 	finditem(ITEM_CHESTO_BERRY,5)
 }
 
-
-
 text Intro_003{
 	"So you think you can handle me?"
 }

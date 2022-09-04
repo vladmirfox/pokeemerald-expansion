@@ -1064,3 +1064,4 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/Checkpoint2_Mart/scripts.inc"
 
 	.include "data/maps/Checkpoint2_Pokecenter/scripts.inc"
+

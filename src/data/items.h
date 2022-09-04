@@ -17,7 +17,7 @@ const struct Item gItems[] =
     {
         .name = _("Poké Ball"),
         .itemId = ITEM_POKE_BALL,
-        .price = 10,
+        .price = 50,
         .description = sPokeBallDesc,
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_POKE_BALL - FIRST_BALL,
@@ -43,7 +43,7 @@ const struct Item gItems[] =
     {
         .name = _("Ultra Ball"),
         .itemId = ITEM_ULTRA_BALL,
-        .price = 400,
+        .price = 200,
         .description = sUltraBallDesc,
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_ULTRA_BALL - FIRST_BALL,
@@ -1078,7 +1078,7 @@ const struct Item gItems[] =
     {
         .name = _("AbilityCapsle"),
         .itemId = ITEM_ABILITY_CAPSULE,
-        .price = 10000,
+        .price = 1000,
         .holdEffectParam = 0,
         .description = sAbilityCapsuleDesc,
         .pocket = POCKET_ITEMS,
@@ -1090,7 +1090,7 @@ const struct Item gItems[] =
     {
         .name = _("AbilityPatch"),
         .itemId = ITEM_ABILITY_PATCH,
-        .price = 0,
+        .price = 1000,
         .holdEffectParam = 0,
         .description = sAbilityPatchDesc,
         .pocket = POCKET_ITEMS,
@@ -1104,7 +1104,7 @@ const struct Item gItems[] =
     {
         .name = _("Lonely Mint"),
         .itemId = ITEM_LONELY_MINT,
-        .price = 20,
+        .price = 500,
         .description = sLonelyMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1116,7 +1116,7 @@ const struct Item gItems[] =
     {
         .name = _("Adamant Mint"),
         .itemId = ITEM_ADAMANT_MINT,
-        .price = 20,
+        .price = 500,
         .description = sAdamantMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1128,7 +1128,7 @@ const struct Item gItems[] =
     {
         .name = _("Naughty Mint"),
         .itemId = ITEM_NAUGHTY_MINT,
-        .price = 20,
+        .price = 500,
         .description = sNaughtyMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1140,7 +1140,7 @@ const struct Item gItems[] =
     {
         .name = _("Brave Mint"),
         .itemId = ITEM_BRAVE_MINT,
-        .price = 20,
+        .price = 500,
         .description = sBraveMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1152,7 +1152,7 @@ const struct Item gItems[] =
     {
         .name = _("Bold Mint"),
         .itemId = ITEM_BOLD_MINT,
-        .price = 20,
+        .price = 500,
         .description = sBoldMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1164,7 +1164,7 @@ const struct Item gItems[] =
     {
         .name = _("Impish Mint"),
         .itemId = ITEM_IMPISH_MINT,
-        .price = 20,
+        .price = 500,
         .description = sImpishMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1176,7 +1176,7 @@ const struct Item gItems[] =
     {
         .name = _("Lax Mint"),
         .itemId = ITEM_LAX_MINT,
-        .price = 20,
+        .price = 500,
         .description = sLaxMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1188,7 +1188,7 @@ const struct Item gItems[] =
     {
         .name = _("Relaxed Mint"),
         .itemId = ITEM_RELAXED_MINT,
-        .price = 20,
+        .price = 500,
         .description = sRelaxedMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1200,7 +1200,7 @@ const struct Item gItems[] =
     {
         .name = _("Modest Mint"),
         .itemId = ITEM_MODEST_MINT,
-        .price = 20,
+        .price = 500,
         .description = sModestMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1212,7 +1212,7 @@ const struct Item gItems[] =
     {
         .name = _("Mild Mint"),
         .itemId = ITEM_MILD_MINT,
-        .price = 20,
+        .price = 500,
         .description = sMildMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1224,7 +1224,7 @@ const struct Item gItems[] =
     {
         .name = _("Rash Mint"),
         .itemId = ITEM_RASH_MINT,
-        .price = 20,
+        .price = 500,
         .description = sRashMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1236,7 +1236,7 @@ const struct Item gItems[] =
     {
         .name = _("Quiet Mint"),
         .itemId = ITEM_QUIET_MINT,
-        .price = 20,
+        .price = 500,
         .description = sQuietMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1248,7 +1248,7 @@ const struct Item gItems[] =
     {
         .name = _("Calm Mint"),
         .itemId = ITEM_CALM_MINT,
-        .price = 20,
+        .price = 500,
         .description = sCalmMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1260,7 +1260,7 @@ const struct Item gItems[] =
     {
         .name = _("Gentle Mint"),
         .itemId = ITEM_GENTLE_MINT,
-        .price = 20,
+        .price = 500,
         .description = sGentleMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1272,7 +1272,7 @@ const struct Item gItems[] =
     {
         .name = _("Careful Mint"),
         .itemId = ITEM_CAREFUL_MINT,
-        .price = 20,
+        .price = 500,
         .description = sCarefulMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1284,7 +1284,7 @@ const struct Item gItems[] =
     {
         .name = _("Sassy Mint"),
         .itemId = ITEM_SASSY_MINT,
-        .price = 20,
+        .price = 500,
         .description = sSassyMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1296,7 +1296,7 @@ const struct Item gItems[] =
     {
         .name = _("Timid Mint"),
         .itemId = ITEM_TIMID_MINT,
-        .price = 20,
+        .price = 500,
         .description = sTimidMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1308,7 +1308,7 @@ const struct Item gItems[] =
     {
         .name = _("Hasty Mint"),
         .itemId = ITEM_HASTY_MINT,
-        .price = 20,
+        .price = 500,
         .description = sHastyMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1320,7 +1320,7 @@ const struct Item gItems[] =
     {
         .name = _("Jolly Mint"),
         .itemId = ITEM_JOLLY_MINT,
-        .price = 20,
+        .price = 500,
         .description = sJollyMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1332,7 +1332,7 @@ const struct Item gItems[] =
     {
         .name = _("Naive Mint"),
         .itemId = ITEM_NAIVE_MINT,
-        .price = 20,
+        .price = 500,
         .description = sNaiveMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1344,7 +1344,7 @@ const struct Item gItems[] =
     {
         .name = _("Serious Mint"),
         .itemId = ITEM_SERIOUS_MINT,
-        .price = 20,
+        .price = 500,
         .description = sSeriousMintDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,

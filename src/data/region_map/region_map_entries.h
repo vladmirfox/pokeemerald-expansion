@@ -2,11 +2,11 @@
 #define GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H
 
 static const u8 sMapName_LittlerootTown[] = _("LITTLEROOT TOWN");
-static const u8 sMapName_OldaleTown[] = _("OLDALE TOWN");
-static const u8 sMapName_DewfordTown[] = _("DEWFORD TOWN");
-static const u8 sMapName_LavaridgeTown[] = _("LAVARIDGE TOWN");
-static const u8 sMapName_FallarborTown[] = _("FALLARBOR TOWN");
-static const u8 sMapName_VerdanturfTown[] = _("VERDANTURF TOWN");
+static const u8 sMapName_OldaleTown[] = _("CHECKPOINT 1"); //oldale
+static const u8 sMapName_DewfordTown[] = _("CHECKPOINT 2"); //dewford
+static const u8 sMapName_LavaridgeTown[] = _("CHECKPOINT 3"); //lavaridge
+static const u8 sMapName_FallarborTown[] = _("CHECKPOINT 4"); //fallarbor
+static const u8 sMapName_VerdanturfTown[] = _("CHECKPOINT 5"); //verdanturf
 static const u8 sMapName_PacifidlogTown[] = _("PACIFIDLOG TOWN");
 static const u8 sMapName_PetalburgCity[] = _("PETALBURG CITY");
 static const u8 sMapName_SlateportCity[] = _("SLATEPORT CITY");
