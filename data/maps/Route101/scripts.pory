@@ -316,6 +316,10 @@ script Route101_EventScript_Trainer_001 {
 
 }
 
+script Route101_ItemBall_Oran_Berry{
+	finditem(ITEM_ORAN_BERRY,5)
+}
+
 text Intro_001{
 	"I'll be your first opponent."
 }

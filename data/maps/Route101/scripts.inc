@@ -310,6 +310,11 @@ Route101_EventScript_Trainer_001::
 	end
 
 
+Route101_ItemBall_Oran_Berry::
+	finditem ITEM_ORAN_BERRY, 5
+	return
+
+
 Route101_Healer::
 	lock
 	faceplayer

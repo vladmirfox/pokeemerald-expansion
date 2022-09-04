@@ -1,5 +1,5 @@
-Route102_EventScript_ItemPotion::
-	finditem ITEM_POTION
+Route101_EventScript_ItemOranBerry::
+	finditem ITEM_ORAN_BERRY
 	end
 
 Route103_EventScript_ItemGuardSpec::
