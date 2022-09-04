@@ -17,7 +17,7 @@ const struct Item gItems[] =
     {
         .name = _("Poké Ball"),
         .itemId = ITEM_POKE_BALL,
-        .price = 200,
+        .price = 10,
         .description = sPokeBallDesc,
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_POKE_BALL - FIRST_BALL,
@@ -30,7 +30,7 @@ const struct Item gItems[] =
     {
         .name = _("Great Ball"),
         .itemId = ITEM_GREAT_BALL,
-        .price = 600,
+        .price = 100,
         .description = sGreatBallDesc,
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_GREAT_BALL - FIRST_BALL,
@@ -43,7 +43,7 @@ const struct Item gItems[] =
     {
         .name = _("Ultra Ball"),
         .itemId = ITEM_ULTRA_BALL,
-        .price = 800,
+        .price = 400,
         .description = sUltraBallDesc,
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_ULTRA_BALL - FIRST_BALL,
@@ -1358,7 +1358,7 @@ const struct Item gItems[] =
     {
         .name = _("Rare Candy"),
         .itemId = ITEM_RARE_CANDY,
-        .price = 10000,
+        .price = 1,
         .description = sRareCandyDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
@@ -1521,7 +1521,7 @@ const struct Item gItems[] =
     {
         .name = _("Repel"),
         .itemId = ITEM_REPEL,
-        .price = 400,
+        .price = 10,
         .holdEffectParam = 100,
         .description = sRepelDesc,
         .pocket = POCKET_ITEMS,
@@ -1534,7 +1534,7 @@ const struct Item gItems[] =
     {
         .name = _("Super Repel"),
         .itemId = ITEM_SUPER_REPEL,
-        .price = 700,
+        .price = 20,
         .holdEffectParam = 200,
         .description = sSuperRepelDesc,
         .pocket = POCKET_ITEMS,
@@ -1547,7 +1547,7 @@ const struct Item gItems[] =
     {
         .name = _("Max Repel"),
         .itemId = ITEM_MAX_REPEL,
-        .price = 900,
+        .price = 30,
         .holdEffectParam = 250,
         .description = sMaxRepelDesc,
         .pocket = POCKET_ITEMS,
