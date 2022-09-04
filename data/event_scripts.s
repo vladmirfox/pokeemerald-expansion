@@ -1058,3 +1058,11 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/text/birch_speech.inc"
 
 	.include "data/maps/ModifiedLab/scripts.inc"
+
+	.include "data/maps/Checkpoint2/scripts.inc"
+
+	.include "data/maps/Checkpoint2_Mart/scripts.inc"
+
+	.include "data/maps/NewMap1/scripts.inc"
+
+	.include "data/maps/Checkpoint2_Pokecenter/scripts.inc"

@@ -4420,6 +4420,46 @@
       "secondary_tileset": "gTileset_Lab",
       "border_filepath": "data/layouts/ModifiedLab/border.bin",
       "blockdata_filepath": "data/layouts/ModifiedLab/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT2",
+      "name": "Checkpoint2_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Dewford",
+      "border_filepath": "data/layouts/Checkpoint2/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint2/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT2_MART",
+      "name": "Checkpoint2_Mart_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Shop",
+      "border_filepath": "data/layouts/Checkpoint2_Mart/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint2_Mart/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_MAP1",
+      "name": "NewMap1_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/NewMap1/border.bin",
+      "blockdata_filepath": "data/layouts/NewMap1/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT2_POKECENTER",
+      "name": "Checkpoint2_Pokecenter_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/Checkpoint2_Pokecenter/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint2_Pokecenter/map.bin"
     }
   ]
 }
