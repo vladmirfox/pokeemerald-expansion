@@ -301,13 +301,30 @@ Route101_EventScript_GameSign::
 	msgbox Route101_EventScript_GameSign_Text_1
 	msgbox Route101_EventScript_GameSign_Text_2
 	msgbox Route101_EventScript_GameSign_Text_3
-	msgbox Route101_EventScript_GameSign_Text_4
 	releaseall
 	return
 
 
 Route101_EventScript_Trainer_001::
 	trainerbattle_single TRAINER_REF001_RT101, Intro_001, Outro_001
+	end
+
+
+Route101_Healer::
+	lock
+	faceplayer
+	msgbox Route101_Healer_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route101_Healer_1
+	msgbox Route101_Healer_Text_2, MSGBOX_NPC
+	return
+
+Route101_Healer_1:
+	incrementgamestat GAME_STAT_USED_POKECENTER
+	special HealPlayerParty
+	msgbox Route101_Healer_Text_1
+	waitmessage
+	release
 	end
 
 
@@ -320,17 +337,21 @@ Route101_EventScript_GameSign_Text_1:
 	.string "move on.$"
 
 Route101_EventScript_GameSign_Text_2:
-	.string "You can only fully heal after\n"
-	.string "completing each route, or with items\l"
-	.string "outside of battle.$"
-
-Route101_EventScript_GameSign_Text_3:
 	.string "Resources are limited so use items and\n"
 	.string "money wisely.$"
 
-Route101_EventScript_GameSign_Text_4:
+Route101_EventScript_GameSign_Text_3:
 	.string "The level cap in this area is 5, you can\n"
 	.string "exceed it with Rare Candy if desired.$"
+
+Route101_Healer_Text_0:
+	.string "Would you like me to heal your party?$"
+
+Route101_Healer_Text_1:
+	.string "Good luck.$"
+
+Route101_Healer_Text_2:
+	.string "Alright then.$"
 
 Intro_001::
 	.string "I'll be your first opponent.$"
