@@ -184,7 +184,7 @@
     {
       "id": "LAYOUT_ROUTE103",
       "name": "Route103_Layout",
-      "width": 80,
+      "width": 24,
       "height": 22,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
@@ -4460,6 +4460,26 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/Route102_SideArea/border.bin",
       "blockdata_filepath": "data/layouts/Route102_SideArea/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT3",
+      "name": "Checkpoint3_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Checkpoint3/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint3/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE103_SIDE_AREA",
+      "name": "Route103_SideArea_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Route103_SideArea/border.bin",
+      "blockdata_filepath": "data/layouts/Route103_SideArea/map.bin"
     }
   ]
 }
