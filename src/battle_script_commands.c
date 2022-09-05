@@ -13565,7 +13565,7 @@ static void Cmd_settypebasedhalvers(void)
         #else
             if (!(gStatuses4[gBattlerAttacker] & STATUS4_WATER_SPORT))
             {
-                gStatuses4[gBattlerAttacker] |= v;
+                gStatuses4[gBattlerAttacker] |= STATUS4_WATER_SPORT;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEAKEN_FIRE;
                 worked = TRUE;
             }
