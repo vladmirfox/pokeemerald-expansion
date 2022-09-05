@@ -432,7 +432,7 @@
 #define FLAG_REMATCH_EDWIN                   0x192
 #define FLAG_REMATCH_LYDIA                   0x193
 #define FLAG_REMATCH_ISAAC                   0x194
-#define FLAG_REMATCH_GABRIELLE               0x195
+//#define FLAG_REMATCH_GABRIELLE               0x195
 #define FLAG_REMATCH_CATHERINE               0x196
 #define FLAG_REMATCH_JACKSON                 0x197
 #define FLAG_REMATCH_HALEY                   0x198
@@ -1218,7 +1218,7 @@
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL                  0x492
 
 #define FLAG_POKEMON_GIFT_LITTLEROOT_EEVEE                          0x493 // True after obtaining Eevee starter
-#define FLAG_UNUSED_0x494                                           0x494 // 
+#define FLAG_CHECKPOINT_2_RANDOM_NPC                                0x494 // 
 #define FLAG_UNUSED_0x495                                           0x495 // 
 #define FLAG_UNUSED_0x496                                           0x496 // Unused Flag
 #define FLAG_UNUSED_0x497                                           0x497 // Unused Flag

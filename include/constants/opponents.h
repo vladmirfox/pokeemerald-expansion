@@ -8,10 +8,10 @@
 #define TRAINER_REF004_RT102                  4
 #define TRAINER_REF005_RT102_BOSS             5
 #define TRAINER_REF006_RT102_GUARDIAN         6
-#define TRAINER_REF007_RT103                  7
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_3       8 // deleted from map
-#define TRAINER_GABRIELLE_1                   9
-#define TRAINER_GRUNT_PETALBURG_WOODS        10
+#define TRAINER_REF007A_BONUS_STONES_1        7
+#define TRAINER_REF007B_BONUS_HELD_ITEMS_1    8
+#define TRAINER_REF007C_BONUS_ABILITIES_1     9
+#define TRAINER_REF007D_BONUS_IVS_1          10
 #define TRAINER_MARCEL                       11
 #define TRAINER_ALBERTO                      12
 #define TRAINER_ED                           13
@@ -837,14 +837,14 @@
 #define TRAINER_FERNANDO_3                  833
 #define TRAINER_FERNANDO_4                  834
 #define TRAINER_FERNANDO_5                  835
-//#define TRAINER_NONE                    836
-//#define TRAINER_NONE                    837
-//#define TRAINER_NONE                    838
-//#define TRAINER_NONE                    839
-#define TRAINER_GABRIELLE_2                 840
-#define TRAINER_GABRIELLE_3                 841
-#define TRAINER_GABRIELLE_4                 842
-#define TRAINER_GABRIELLE_5                 843
+//#define TRAINER_NONE                      836
+//#define TRAINER_NONE                      837
+//#define TRAINER_NONE                      838
+//#define TRAINER_NONE                      839
+//#define TRAINER_NONE                      840
+//#define TRAINER_NONE                      841
+//#define TRAINER_NONE                      842
+//#define TRAINER_NONE                      843
 #define TRAINER_THALIA_2                    844
 #define TRAINER_THALIA_3                    845
 #define TRAINER_THALIA_4                    846

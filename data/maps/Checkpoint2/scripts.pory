@@ -1,0 +1,125 @@
+const NPC_GFX = OBJ_EVENT_GFX_VAR_0
+const NPC_STONES = OBJ_EVENT_GFX_BEAUTY
+const NPC_HELD_ITEMS = OBJ_EVENT_GFX_LEAF
+const NPC_ABILITIES = OBJ_EVENT_GFX_SCIENTIST_2
+const NPC_IVS = OBJ_EVENT_GFX_WALLY
+
+mapscripts Checkpoint2_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if(!flag(FLAG_CHECKPOINT_2_RANDOM_NPC)){
+            random(5)
+            setflag (FLAG_CHECKPOINT_2_RANDOM_NPC)
+            setvar(VAR_RANDOM_NPC_STATE,VAR_RESULT)
+            switch (var(VAR_RESULT)) {
+                case 0:
+                case 1: 
+                    setvar(NPC_GFX, NPC_STONES)
+                case 2:
+                case 3: 
+                    setvar(NPC_GFX, NPC_HELD_ITEMS)
+                case 4: 
+                    setvar(NPC_GFX, NPC_ABILITIES)
+                case 5: 
+                    setvar(NPC_GFX, NPC_IVS)
+            }
+        }
+    }
+}
+
+script Random_NPC_CheckPoint2{
+    switch (var(VAR_RANDOM_NPC_STATE)){
+        case 0:
+        case 1: 
+            msgbox(format("Battle Beauty for an opportunity to purchase EVOLUTION STONES?"), MSGBOX_YESNO)
+            if(var(VAR_RESULT) == YES){
+            call(Event_Script_NPC_Stones)
+            }
+            else {break}
+        case 2:
+        case 3: 
+             msgbox(format("Battle Leaf for an opportunity to purchase HELD ITEMS?"), MSGBOX_YESNO)
+            if(var(VAR_RESULT) == YES){
+            call(Event_Script_NPC_Held_Items)
+            }
+            else {break}
+        case 4: 
+            msgbox(format("Battle Scientist for an opportunity to purchase ABILITY ITEMS?"), MSGBOX_YESNO)
+            if(var(VAR_RESULT) == YES){
+            call(Event_Script_NPC_Abilities)
+            }
+            else {break}
+        case 5: 
+            msgbox(format("Battle Wally for an opportunity to purchase IV ITEMS?"), MSGBOX_YESNO)
+            if(var(VAR_RESULT) == YES){
+            call(Event_Script_NPC_IVS)
+            }
+            else {break}
+    }
+    releaseall
+}
+
+script Event_Script_NPC_Stones{
+    trainerbattle_single(TRAINER_REF007A_BONUS_STONES_1, Intro, Outro)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_Stones)
+	release
+	end
+}
+
+script Event_Script_NPC_Held_Items{
+    trainerbattle_single(TRAINER_REF007B_BONUS_HELD_ITEMS_1, Intro, Outro)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_Held_Items)
+	release
+	end
+}
+
+script Event_Script_NPC_Abilities{
+    trainerbattle_single(TRAINER_REF007C_BONUS_ABILITIES_1, Intro, Outro)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_Abilities)
+	release
+	end
+}
+
+script Event_Script_NPC_IVS{
+    trainerbattle_single(TRAINER_REF007D_BONUS_IVS_1, Intro, Outro)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_IVS)
+	release
+	end
+}
+
+
+text Intro{
+	format("If you can beat me you'll get something special!")
+}
+
+text Outro{
+	format("I give up! You've earned this.")
+}
+
+mart MartInventory_Stones {
+	ITEM_LEAF_STONE
+}
+
+mart MartInventory_Held_Items {
+	ITEM_SILK_SCARF
+}
+
+mart MartInventory_Abilities {
+	ITEM_ABILITY_CAPSULE
+    ITEM_ABILITY_PATCH
+}
+
+mart MartInventory_IVS {
+	ITEM_CALCIUM
+}
