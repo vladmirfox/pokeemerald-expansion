@@ -99,14 +99,16 @@
     "Underwater_Route125"
   ],
   "gMapGroup_Checkpoints": [
-    "Checkpoint2"
+    "Checkpoint2",
+    "Checkpoint3"
   ],
   "gMapGroup_CheckpointsIndoor": [
     "Checkpoint2_Mart",
     "Checkpoint2_Pokecenter"
   ],
   "gMapGroup_SideAreas": [
-    "Route102_SideArea"
+    "Route102_SideArea",
+    "Route103_SideArea"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",

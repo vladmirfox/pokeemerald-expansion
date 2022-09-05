@@ -66,6 +66,7 @@
 
 // gMapGroup_Checkpoints
 #define MAP_CHECKPOINT2 (0 | (1 << 8))
+#define MAP_CHECKPOINT3 (1 | (1 << 8))
 
 // gMapGroup_CheckpointsIndoor
 #define MAP_CHECKPOINT2_MART       (0 | (2 << 8))
@@ -73,6 +74,7 @@
 
 // gMapGroup_SideAreas
 #define MAP_ROUTE102_SIDE_AREA (0 | (3 << 8))
+#define MAP_ROUTE103_SIDE_AREA (1 | (3 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (4 << 8))
