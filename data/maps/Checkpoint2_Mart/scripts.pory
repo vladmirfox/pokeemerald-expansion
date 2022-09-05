@@ -1,0 +1,58 @@
+raw `
+Checkpoint2_Mart_MapScripts::
+	.byte 0
+
+`
+
+script Checkpoint2_Pokemart_Employee {
+	lock
+	message("Welcome trainer.")
+	waitmessage
+	pokemart(MartInventory)
+	msgbox("Good luck out there!")
+	release
+}
+
+script Checkpoint2_Pokemart_Employee2 {
+	lock
+	message("I sell {PKMN} enhancements!")
+	waitmessage
+	pokemart(MartInventory)
+	msgbox("Good luck out there!")
+	release
+}
+
+mart MartInventory {
+	ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_ULTRA_BALL
+    ITEM_BERRY_JUICE
+    ITEM_MAX_REPEL
+}
+
+mart MartInventory2 {
+    ITEM_ABILITY_PATCH
+    ITEM_ABILITY_CAPSULE
+    ITEM_LONELY_MINT
+    ITEM_ADAMANT_MINT
+    ITEM_NAUGHTY_MINT
+    ITEM_BRAVE_MINT
+    ITEM_BOLD_MINT
+    ITEM_IMPISH_MINT
+    ITEM_LAX_MINT
+    ITEM_RELAXED_MINT
+    ITEM_MODEST_MINT
+    ITEM_MILD_MINT
+    ITEM_RASH_MINT
+    ITEM_QUIET_MINT
+    ITEM_CALM_MINT
+    ITEM_GENTLE_MINT
+    ITEM_CAREFUL_MINT
+    ITEM_SASSY_MINT
+    ITEM_TIMID_MINT
+    ITEM_HASTY_MINT
+    ITEM_JOLLY_MINT
+    ITEM_NAIVE_MINT
+    ITEM_SERIOUS_MINT
+
+}

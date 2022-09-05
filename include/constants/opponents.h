@@ -3,19 +3,19 @@
 
 #define TRAINER_NONE                          0
 #define TRAINER_REF001_RT101                  1
-#define TRAINER_GRUNT_AQUA_HIDEOUT_1          2
-#define TRAINER_GRUNT_AQUA_HIDEOUT_2          3
-#define TRAINER_GRUNT_AQUA_HIDEOUT_3          4
-#define TRAINER_GRUNT_AQUA_HIDEOUT_4          5
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_1       6
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_2       7
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_3       8
+#define TRAINER_REF002_RT101_BOSS             2
+#define TRAINER_REF003_RT102                  3
+#define TRAINER_REF004_RT102                  4
+#define TRAINER_REF005_RT102_BOSS             5
+#define TRAINER_REF006_RT102_GUARDIAN         6
+#define TRAINER_REF007_RT103                  7
+#define TRAINER_GRUNT_SEAFLOOR_CAVERN_3       8 // deleted from map
 #define TRAINER_GABRIELLE_1                   9
 #define TRAINER_GRUNT_PETALBURG_WOODS        10
 #define TRAINER_MARCEL                       11
 #define TRAINER_ALBERTO                      12
 #define TRAINER_ED                           13
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_4      14
+#define TRAINER_GRUNT_SEAFLOOR_CAVERN_4      14 // deleted from map
 #define TRAINER_DECLAN                       15
 #define TRAINER_GRUNT_RUSTURF_TUNNEL         16
 #define TRAINER_GRUNT_WEATHER_INST_1         17
@@ -28,8 +28,8 @@
 #define TRAINER_GRUNT_MT_PYRE_2              24
 #define TRAINER_GRUNT_MT_PYRE_3              25
 #define TRAINER_GRUNT_WEATHER_INST_4         26
-#define TRAINER_GRUNT_AQUA_HIDEOUT_5         27
-#define TRAINER_GRUNT_AQUA_HIDEOUT_6         28
+#define TRAINER_GRUNT_AQUA_HIDEOUT_5         27 // deleted
+#define TRAINER_GRUNT_AQUA_HIDEOUT_6         28 // deleted
 #define TRAINER_FREDRICK                     29
 #define TRAINER_MATT                         30
 #define TRAINER_ZANDER                       31
@@ -193,7 +193,7 @@
 #define TRAINER_DAISUKE                     189
 #define TRAINER_ATSUSHI                     190
 #define TRAINER_KIRK                        191
-#define TRAINER_GRUNT_AQUA_HIDEOUT_7        192
+#define TRAINER_GRUNT_AQUA_HIDEOUT_7        192 //deleted
 #define TRAINER_GRUNT_AQUA_HIDEOUT_8        193
 #define TRAINER_SHAWN                       194
 #define TRAINER_FERNANDO_1                  195
@@ -334,7 +334,7 @@
 #define TRAINER_CALVIN_4                    330
 #define TRAINER_CALVIN_5                    331
 #define TRAINER_EDDIE                       332
-#define TRAINER_ALLEN                       333
+#define TRAINER_ALLEN                       333 //already deleted on 102
 #define TRAINER_TIMMY                       334
 #define TRAINER_WALLACE                     335
 #define TRAINER_ANDREW                      336
@@ -604,7 +604,7 @@
 #define TRAINER_MAY_RUSTBORO_MUDKIP         600
 #define TRAINER_MAXIE_MAGMA_HIDEOUT         601
 #define TRAINER_MAXIE_MT_CHIMNEY            602
-#define TRAINER_TIANA                       603
+#define TRAINER_TIANA                       603 //already deleted on 102
 #define TRAINER_HALEY_1                     604
 #define TRAINER_JANICE                      605
 #define TRAINER_VIVI                        606
@@ -616,7 +616,7 @@
 #define TRAINER_ROBIN                       612
 #define TRAINER_ANDREA                      613
 #define TRAINER_CRISSY                      614
-#define TRAINER_RICK                        615
+#define TRAINER_RICK                        615 //already deleted on 102
 #define TRAINER_LYLE                        616
 #define TRAINER_JOSE                        617
 #define TRAINER_DOUG                        618

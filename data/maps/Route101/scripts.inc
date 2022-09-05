@@ -307,6 +307,15 @@ Route101_EventScript_GameSign::
 
 Route101_EventScript_Trainer_001::
 	trainerbattle_single TRAINER_REF001_RT101, Intro_001, Outro_001
+	msgbox Route101_EventScript_Trainer_001_Text_0, MSGBOX_AUTOCLOSE
+	waitmessage
+	end
+
+
+Route101_EventScript_Trainer_002::
+	trainerbattle_single TRAINER_REF002_RT101_BOSS, Intro_002, Outro_002
+	msgbox Route101_EventScript_Trainer_002_Text_0, MSGBOX_AUTOCLOSE
+	waitmessage
 	end
 
 
@@ -349,6 +358,13 @@ Route101_EventScript_GameSign_Text_3:
 	.string "The level cap in this area is 5, you can\n"
 	.string "exceed it with Rare Candy if desired.$"
 
+Route101_EventScript_Trainer_001_Text_0:
+	.string "Watch out for the ROUTE BOSS!$"
+
+Route101_EventScript_Trainer_002_Text_0:
+	.string "You'll have to beat each ROUTE BOSS to\n"
+	.string "move on to the next town.$"
+
 Route101_Healer_Text_0:
 	.string "Would you like me to heal your party?$"
 
@@ -363,3 +379,11 @@ Intro_001::
 
 Outro_001::
 	.string "You won't get far!$"
+
+Intro_002::
+	.string "I'm the route boss! Let's see if you're\n"
+	.string "ready to move on.$"
+
+Outro_002::
+	.string "Hmph, you haven't seen the last of me\n"
+	.string "{PLAYER}.$"
