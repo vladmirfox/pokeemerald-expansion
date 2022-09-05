@@ -1,57 +1,6 @@
 Route102_MapScripts::
 	.byte 0
 
-Route102_EventScript_LittleBoy::
-	msgbox Route102_Text_ImNotVeryTall, MSGBOX_NPC
-	end
-
-Route102_EventScript_RouteSignOldale::
-	msgbox Route102_Text_RouteSignOldale, MSGBOX_SIGN
-	end
-
-Route102_EventScript_RouteSignPetalburg::
-	msgbox Route102_Text_RouteSignPetalburg, MSGBOX_SIGN
-	end
-
-Route102_EventScript_Boy::
-	msgbox Route102_Text_CatchWholeBunchOfPokemon, MSGBOX_NPC
-	end
-
-Route102_Text_WatchMeCatchPokemon:
-	.string "WALLY: {PLAYER}…\n"
-	.string "POKéMON hide in tall grass like this,\l"
-	.string "don't they?\p"
-	.string "Please watch me and see if I can\n"
-	.string "catch one properly.\p"
-	.string "…Whoa!$"
-
-Route102_Text_WallyIDidIt:
-	.string "WALLY: I did it… It's my…\n"
-	.string "My POKéMON!$"
-
-Route102_Text_LetsGoBack:
-	.string "{PLAYER}, thank you!\n"
-	.string "Let's go back to the GYM!$"
-
-Route102_Text_ImNotVeryTall:
-	.string "I'm…not very tall, so I sink right\n"
-	.string "into tall grass.\p"
-	.string "The grass goes up my nose and…\n"
-	.string "Fwafwafwafwafwa…\p"
-	.string "Fwatchoo!$"
-
-Route102_Text_CatchWholeBunchOfPokemon:
-	.string "I'm going to catch a whole bunch of\n"
-	.string "POKéMON!$"
-
-Route102_Text_RouteSignOldale:
-	.string "ROUTE 102\n"
-	.string "{RIGHT_ARROW} OLDALE TOWN$"
-
-Route102_Text_RouteSignPetalburg:
-	.string "ROUTE 102\n"
-	.string "{LEFT_ARROW} PETALBURG CITY$"
-
 Route102_EventScript_GameSign::
 	lockall
 	msgbox Route102_EventScript_GameSign_Text_0
@@ -82,12 +31,45 @@ Route102_EventScript_Trainer_004::
 	end
 
 
+Route102_EventScript_Trainer_005::
+	trainerbattle_single TRAINER_REF005_RT102_BOSS, Intro_005, Outro_005
+	msgbox Route102_EventScript_Trainer_005_Text_0, MSGBOX_AUTOCLOSE
+	waitmessage
+	end
+
+
+Route102_EventScript_Trainer_006::
+	trainerbattle_single TRAINER_REF006_RT102_GUARDIAN, Intro_006, Outro_006
+	msgbox Route102_EventScript_Trainer_006_Text_0, MSGBOX_AUTOCLOSE
+	waitmessage
+	end
+
+
 Route102_ItemBall_Berries::
 	finditem ITEM_PECHA_BERRY, 5
 	finditem ITEM_CHERI_BERRY, 5
 	finditem ITEM_CHESTO_BERRY, 5
 	return
 
+
+Route102_PathBlocker::
+	checktrainerflag TRAINER_REF005_RT102_BOSS
+	goto_if 1, Route102_PathBlocker_1
+	msgbox Route102_PathBlocker_Text_0
+	lock
+	applymovement OBJ_EVENT_ID_PLAYER, MyMovement
+	waitmovement 0
+	release
+	return
+
+Route102_PathBlocker_1:
+	release
+	end
+
+
+MyMovement:
+	walk_down
+	step_end
 
 Route102_Healer::
 	lock
@@ -134,6 +116,15 @@ Route102_EventScript_Trainer_004_Text_0:
 	.string "You really think you have what it\n"
 	.string "takes?$"
 
+Route102_EventScript_Trainer_005_Text_0:
+	.string "I need more training.$"
+
+Route102_EventScript_Trainer_006_Text_0:
+	.string "You may pass.$"
+
+Route102_PathBlocker_Text_0:
+	.string "I must defeat the ROUTE BOSS first.$"
+
 Route102_Healer_Text_0:
 	.string "Would you like me to heal your party?$"
 
@@ -154,3 +145,18 @@ Intro_004::
 
 Outro_004::
 	.string "Not bad.$"
+
+Intro_005::
+	.string "Time for a re-match {PLAYER}, you\n"
+	.string "wont make it past me.$"
+
+Outro_005::
+	.string "Beaten again, I need to train more. So\n"
+	.string "will you challenge the GUARDIAN now?$"
+
+Intro_006::
+	.string "So you've decided to challenge me?$"
+
+Outro_006::
+	.string "Well done, may your encounter be a good\n"
+	.string "one.$"

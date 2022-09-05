@@ -72,6 +72,7 @@
 #define MAP_CHECKPOINT2_POKECENTER (1 | (2 << 8))
 
 // gMapGroup_SideAreas
+#define MAP_ROUTE102_SIDE_AREA (0 | (3 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (4 << 8))

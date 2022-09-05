@@ -1,57 +1,6 @@
 raw `
 Route102_MapScripts::
 	.byte 0
-
-Route102_EventScript_LittleBoy::
-	msgbox Route102_Text_ImNotVeryTall, MSGBOX_NPC
-	end
-
-Route102_EventScript_RouteSignOldale::
-	msgbox Route102_Text_RouteSignOldale, MSGBOX_SIGN
-	end
-
-Route102_EventScript_RouteSignPetalburg::
-	msgbox Route102_Text_RouteSignPetalburg, MSGBOX_SIGN
-	end
-
-Route102_EventScript_Boy::
-	msgbox Route102_Text_CatchWholeBunchOfPokemon, MSGBOX_NPC
-	end
-
-Route102_Text_WatchMeCatchPokemon:
-	.string "WALLY: {PLAYER}…\n"
-	.string "POKéMON hide in tall grass like this,\l"
-	.string "don't they?\p"
-	.string "Please watch me and see if I can\n"
-	.string "catch one properly.\p"
-	.string "…Whoa!$"
-
-Route102_Text_WallyIDidIt:
-	.string "WALLY: I did it… It's my…\n"
-	.string "My POKéMON!$"
-
-Route102_Text_LetsGoBack:
-	.string "{PLAYER}, thank you!\n"
-	.string "Let's go back to the GYM!$"
-
-Route102_Text_ImNotVeryTall:
-	.string "I'm…not very tall, so I sink right\n"
-	.string "into tall grass.\p"
-	.string "The grass goes up my nose and…\n"
-	.string "Fwafwafwafwafwa…\p"
-	.string "Fwatchoo!$"
-
-Route102_Text_CatchWholeBunchOfPokemon:
-	.string "I'm going to catch a whole bunch of\n"
-	.string "POKéMON!$"
-
-Route102_Text_RouteSignOldale:
-	.string "ROUTE 102\n"
-	.string "{RIGHT_ARROW} OLDALE TOWN$"
-
-Route102_Text_RouteSignPetalburg:
-	.string "ROUTE 102\n"
-	.string "{LEFT_ARROW} PETALBURG CITY$"
 `
 script Route102_EventScript_GameSign {
 	lockall
@@ -82,6 +31,22 @@ script Route102_EventScript_Trainer_004 {
 
 }
 
+script Route102_EventScript_Trainer_005 {
+	trainerbattle_single(TRAINER_REF005_RT102_BOSS, Intro_005, Outro_005)
+	msgbox(format("I need more training."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+
+}
+
+script Route102_EventScript_Trainer_006 {
+	trainerbattle_single(TRAINER_REF006_RT102_GUARDIAN, Intro_006, Outro_006)
+	msgbox(format("You may pass."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+
+}
+
 script Route102_ItemBall_Berries{
 	finditem(ITEM_PECHA_BERRY,5)
 	finditem(ITEM_CHERI_BERRY,5)
@@ -102,6 +67,41 @@ text Intro_004{
 
 text Outro_004{
 	format("Not bad.")
+}
+
+text Intro_005{
+	format("Time for a re-match {PLAYER}, you wont make it past me.")
+}
+
+text Outro_005{
+	format("Beaten again, I need to train more. So will you challenge the GUARDIAN now?")
+}
+
+text Intro_006{
+	format("So you've decided to challenge me?")
+}
+
+text Outro_006{
+	format("Well done, may your encounter be a good one.")
+}
+
+script Route102_PathBlocker{
+	if (defeated(TRAINER_REF005_RT102_BOSS) == true)
+	{
+		release
+		end
+	}
+	else
+	{
+		msgbox(format("I must defeat the ROUTE BOSS first."))
+		lock
+		applymovement(OBJ_EVENT_ID_PLAYER, MyMovement)
+		waitmovement(0)
+		release
+	}
+}
+movement MyMovement {
+    walk_down
 }
 
 script Route102_Healer{
