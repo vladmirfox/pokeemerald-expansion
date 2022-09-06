@@ -45,7 +45,7 @@ script Random_NPC_CheckPoint2{
             if (defeated(TRAINER_REF007B_BONUS_HELD_ITEMS_1) == false){
                 msgbox(format("Battle for an opportunity to purchase HELD ITEMS?"), MSGBOX_YESNO)
                 if(var(VAR_RESULT) == YES){
-                call(Event_Script_NPC_Held_Items)
+                call(Event_Script_NPC_Held_Items_CP2)
                 }
             }
             else{
@@ -55,7 +55,7 @@ script Random_NPC_CheckPoint2{
             if (defeated(TRAINER_REF007C_BONUS_ABILITIES_1) == false){
                 msgbox(format("Battle for an opportunity to purchase ABILITY ITEMS?"), MSGBOX_YESNO)
                 if(var(VAR_RESULT) == YES){
-                call(Event_Script_NPC_Abilities)
+                call(Event_Script_NPC_Abilities_CP2)
                 }
             }
             else{
@@ -65,7 +65,7 @@ script Random_NPC_CheckPoint2{
             if (defeated(TRAINER_REF007D_BONUS_IVS_1) == false){
                 msgbox(format("Battle for an opportunity to purchase IV ITEMS?"), MSGBOX_YESNO)
                 if(var(VAR_RESULT) == YES){
-                call(Event_Script_NPC_IVS)
+                call(Event_Script_NPC_IVS_CP2)
                 }
             }
             else{
