@@ -1071,3 +1071,6 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/Checkpoint3/scripts.inc"
 
 	.include "data/maps/Route103_SideArea/scripts.inc"
+
+	.include "data/scripts/AJScripts/setup.inc"
+

@@ -94,29 +94,29 @@
 #define VAR_POKELOT_RND1                     0x404B
 #define VAR_POKELOT_RND2                     0x404C
 #define VAR_POKELOT_PRIZE_PLACE              0x404D
-#define VAR_RANDOM_NPC_STATE                 0x404E //aiurjordan
+#define VAR_CHECKPOINT2_NPC_STATE            0x404E // determines which NPC is at Checkpoint 2, generated in setup.pory
 #define VAR_LOTAD_SIZE_RECORD                0x404F
 #define VAR_LITTLEROOT_TOWN_STATE            0x4050
 #define VAR_OLDALE_TOWN_STATE                0x4051
-#define VAR_DEWFORD_TOWN_STATE               0x4052 // Unused Var
+#define VAR_CHECKPOINT3_NPC_STATE            0x4052 // determines which NPC is at Checkpoint 3
 #define VAR_LAVARIDGE_TOWN_STATE             0x4053
 #define VAR_CURRENT_SECRET_BASE              0x4054 // was probably allocated for VAR_FALLARBOR_TOWN_STATE at one point
-#define VAR_VERDANTURF_TOWN_STATE            0x4055 // Unused Var
-#define VAR_PACIFIDLOG_TOWN_STATE            0x4056 // Unused Var
+#define VAR_CHECKPOINT4_NPC_STATE            0x4055 // determines which NPC is at Checkpoint 4
+#define VAR_CHECKPOINT5_NPC_STATE            0x4056 // determines which NPC is at Checkpoint 5
 #define VAR_PETALBURG_CITY_STATE             0x4057
 #define VAR_SLATEPORT_CITY_STATE             0x4058
-#define VAR_MAUVILLE_CITY_STATE              0x4059 // Unused Var
+#define VAR_CHECKPOINT6_NPC_STATE            0x4059 // determines which NPC is at Checkpoint 6
 #define VAR_RUSTBORO_CITY_STATE              0x405A
-#define VAR_FORTREE_CITY_STATE               0x405B // Unused Var
-#define VAR_LILYCOVE_CITY_STATE              0x405C // Unused Var
+#define VAR_CHECKPOINT7_NPC_STATE            0x405B // determines which NPC is at Checkpoint 7
+#define VAR_CHECKPOINT8_NPC_STATE            0x405C // determines which NPC is at Checkpoint 8
 #define VAR_MOSSDEEP_CITY_STATE              0x405D
 #define VAR_SOOTOPOLIS_CITY_STATE            0x405E
-#define VAR_EVER_GRANDE_CITY_STATE           0x405F // Unused Var
+#define VAR_CHECKPOINT9_NPC_STATE            0x405F // determines which NPC is at Checkpoint 9
 #define VAR_ROUTE101_STATE                   0x4060
-#define VAR_ROUTE102_STATE                   0x4061 // Unused Var
-#define VAR_ROUTE103_STATE                   0x4062 // Unused Var
+#define VAR_CHECKPOINT10_NPC_STATE           0x4061 // determines which NPC is at Checkpoint 10
+#define VAR_CHECKPOINT11_NPC_STATE           0x4062 // determines which NPC is at Checkpoint 11
 #define VAR_ROUTE104_STATE                   0x4063
-#define VAR_ROUTE105_STATE                   0x4064 // Unused Var
+#define VAR_CHECKPOINT12_NPC_STATE           0x4064 // determines which NPC is at Checkpoint 12
 #define VAR_ROUTE106_STATE                   0x4065 // Unused Var
 #define VAR_ROUTE107_STATE                   0x4066 // Unused Var
 #define VAR_ROUTE108_STATE                   0x4067 // Unused Var
