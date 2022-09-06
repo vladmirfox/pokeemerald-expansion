@@ -42,80 +42,105 @@ Random_NPC_CheckPoint2_1:
 	return
 
 Random_NPC_CheckPoint2_3:
-	msgbox Random_NPC_CheckPoint2_Text_0, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq Random_NPC_CheckPoint2_7
+	checktrainerflag TRAINER_REF007A_BONUS_STONES_1
+	goto_if 0, Random_NPC_CheckPoint2_7
+	call Event_Script_NPC_Stones_CP2
 	goto Random_NPC_CheckPoint2_1
 
 Random_NPC_CheckPoint2_4:
-	msgbox Random_NPC_CheckPoint2_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq Random_NPC_CheckPoint2_9
+	checktrainerflag TRAINER_REF007B_BONUS_HELD_ITEMS_1
+	goto_if 0, Random_NPC_CheckPoint2_10
+	call Event_Script_NPC_Held_Items_CP2
 	goto Random_NPC_CheckPoint2_1
 
 Random_NPC_CheckPoint2_5:
-	msgbox Random_NPC_CheckPoint2_Text_2, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq Random_NPC_CheckPoint2_11
+	checktrainerflag TRAINER_REF007C_BONUS_ABILITIES_1
+	goto_if 0, Random_NPC_CheckPoint2_13
+	call Event_Script_NPC_Abilities_CP2
 	goto Random_NPC_CheckPoint2_1
 
 Random_NPC_CheckPoint2_6:
-	msgbox Random_NPC_CheckPoint2_Text_3, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq Random_NPC_CheckPoint2_13
+	checktrainerflag TRAINER_REF007D_BONUS_IVS_1
+	goto_if 0, Random_NPC_CheckPoint2_17
+Random_NPC_CheckPoint2_16:
+	call Event_Script_NPC_IVS_CP2
 	goto Random_NPC_CheckPoint2_1
 
 Random_NPC_CheckPoint2_7:
-	call Event_Script_NPC_Stones
+	msgbox Random_NPC_CheckPoint2_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Random_NPC_CheckPoint2_20
 	goto Random_NPC_CheckPoint2_1
 
-Random_NPC_CheckPoint2_9:
-	call Event_Script_NPC_Held_Items
-	goto Random_NPC_CheckPoint2_1
-
-Random_NPC_CheckPoint2_11:
-	call Event_Script_NPC_Abilities
+Random_NPC_CheckPoint2_10:
+	msgbox Random_NPC_CheckPoint2_Text_1, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Random_NPC_CheckPoint2_22
 	goto Random_NPC_CheckPoint2_1
 
 Random_NPC_CheckPoint2_13:
-	call Event_Script_NPC_IVS
+	msgbox Random_NPC_CheckPoint2_Text_2, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Random_NPC_CheckPoint2_24
 	goto Random_NPC_CheckPoint2_1
 
+Random_NPC_CheckPoint2_17:
+	msgbox Random_NPC_CheckPoint2_Text_3, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Random_NPC_CheckPoint2_26
+	goto Random_NPC_CheckPoint2_16
 
-Event_Script_NPC_Stones::
+Random_NPC_CheckPoint2_20:
+	call Event_Script_NPC_Stones_CP2
+	goto Random_NPC_CheckPoint2_1
+
+Random_NPC_CheckPoint2_22:
+	call Event_Script_NPC_Held_Items_CP2
+	goto Random_NPC_CheckPoint2_1
+
+Random_NPC_CheckPoint2_24:
+	call Event_Script_NPC_Abilities_CP2
+	goto Random_NPC_CheckPoint2_1
+
+Random_NPC_CheckPoint2_26:
+	call Event_Script_NPC_IVS_CP2
+	goto Random_NPC_CheckPoint2_16
+
+
+Event_Script_NPC_Stones_CP2::
 	trainerbattle_single TRAINER_REF007A_BONUS_STONES_1, Intro, Outro
 	lock
-	message Event_Script_NPC_Stones_Text_0
+	message Event_Script_NPC_Stones_CP2_Text_0
 	waitmessage
 	pokemart MartInventory_Stones
 	release
 	end
 
 
-Event_Script_NPC_Held_Items::
+Event_Script_NPC_Held_Items_CP2::
 	trainerbattle_single TRAINER_REF007B_BONUS_HELD_ITEMS_1, Intro, Outro
 	lock
-	message Event_Script_NPC_Stones_Text_0
+	message Event_Script_NPC_Stones_CP2_Text_0
 	waitmessage
 	pokemart MartInventory_Held_Items
 	release
 	end
 
 
-Event_Script_NPC_Abilities::
+Event_Script_NPC_Abilities_CP2::
 	trainerbattle_single TRAINER_REF007C_BONUS_ABILITIES_1, Intro, Outro
 	lock
-	message Event_Script_NPC_Stones_Text_0
+	message Event_Script_NPC_Stones_CP2_Text_0
 	waitmessage
 	pokemart MartInventory_Abilities
 	release
 	end
 
 
-Event_Script_NPC_IVS::
+Event_Script_NPC_IVS_CP2::
 	trainerbattle_single TRAINER_REF007D_BONUS_IVS_1, Intro, Outro
 	lock
-	message Event_Script_NPC_Stones_Text_0
+	message Event_Script_NPC_Stones_CP2_Text_0
 	waitmessage
 	pokemart MartInventory_IVS
 	release
@@ -134,12 +159,77 @@ Event_Script_Checkpoint2_SignPost::
 
 	.align 2
 MartInventory_Stones:
+	.2byte ITEM_DAWN_STONE
+	.2byte ITEM_DUSK_STONE
+	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_ICE_STONE
 	.2byte ITEM_LEAF_STONE
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_SHINY_STONE
+	.2byte ITEM_SUN_STONE
+	.2byte ITEM_THUNDER_STONE
+	.2byte ITEM_WATER_STONE
 	.2byte ITEM_NONE
 
 	.align 2
 MartInventory_Held_Items:
+	.2byte ITEM_AIR_BALLOON
+	.2byte ITEM_AMULET_COIN
+	.2byte ITEM_BIG_ROOT
+	.2byte ITEM_BLACK_BELT
+	.2byte ITEM_BLACK_GLASSES
+	.2byte ITEM_BLUNDER_POLICY
+	.2byte ITEM_CHARCOAL
+	.2byte ITEM_DAMP_ROCK
+	.2byte ITEM_DRAGON_FANG
+	.2byte ITEM_EVIOLITE
+	.2byte ITEM_EXPERT_BELT
+	.2byte ITEM_FLAME_ORB
+	.2byte ITEM_FLOAT_STONE
+	.2byte ITEM_FOCUS_SASH
+	.2byte ITEM_FULL_INCENSE
+	.2byte ITEM_GRIP_CLAW
+	.2byte ITEM_HARD_STONE
+	.2byte ITEM_HEAT_ROCK
+	.2byte ITEM_HEAVY_DUTY_BOOTS
+	.2byte ITEM_ICY_ROCK
+	.2byte ITEM_IRON_BALL
+	.2byte ITEM_LAX_INCENSE
+	.2byte ITEM_LIFE_ORB
+	.2byte ITEM_LIGHT_CLAY
+	.2byte ITEM_LUCK_INCENSE
+	.2byte ITEM_MAGNET
+	.2byte ITEM_METAL_COAT
+	.2byte ITEM_MIRACLE_SEED
+	.2byte ITEM_MUSCLE_BAND
+	.2byte ITEM_MYSTIC_WATER
+	.2byte ITEM_NEVER_MELT_ICE
+	.2byte ITEM_PIXIE_PLATE
+	.2byte ITEM_POISON_BARB
+	.2byte ITEM_PROTECTIVE_PADS
+	.2byte ITEM_QUICK_CLAW
+	.2byte ITEM_RAZOR_CLAW
+	.2byte ITEM_RED_CARD
+	.2byte ITEM_RING_TARGET
+	.2byte ITEM_ROCKY_HELMET
+	.2byte ITEM_SAFETY_GOGGLES
+	.2byte ITEM_SCOPE_LENS
+	.2byte ITEM_SHARP_BEAK
+	.2byte ITEM_SHED_SHELL
 	.2byte ITEM_SILK_SCARF
+	.2byte ITEM_SILVER_POWDER
+	.2byte ITEM_SMOOTH_ROCK
+	.2byte ITEM_SOFT_SAND
+	.2byte ITEM_SPELL_TAG
+	.2byte ITEM_STICKY_BARB
+	.2byte ITEM_TERRAIN_EXTENDER
+	.2byte ITEM_THROAT_SPRAY
+	.2byte ITEM_TOXIC_ORB
+	.2byte ITEM_TWISTED_SPOON
+	.2byte ITEM_UTILITY_UMBRELLA
+	.2byte ITEM_WIDE_LENS
+	.2byte ITEM_WISE_GLASSES
+	.2byte ITEM_ZOOM_LENS
 	.2byte ITEM_NONE
 
 	.align 2
@@ -150,31 +240,36 @@ MartInventory_Abilities:
 
 	.align 2
 MartInventory_IVS:
+	.2byte ITEM_HP_UP
+	.2byte ITEM_PROTEIN
+	.2byte ITEM_IRON
 	.2byte ITEM_CALCIUM
+	.2byte ITEM_ZINC
+	.2byte ITEM_CARBOS
 	.2byte ITEM_NONE
 
 Random_NPC_CheckPoint2_Text_0:
-	.string "Battle Beauty for an opportunity to\n"
-	.string "purchase EVOLUTION STONES?$"
+	.string "Battle for an opportunity to purchase\n"
+	.string "EVOLUTION STONES?$"
 
 Random_NPC_CheckPoint2_Text_1:
-	.string "Battle Leaf for an opportunity to\n"
-	.string "purchase HELD ITEMS?$"
+	.string "Battle for an opportunity to purchase\n"
+	.string "HELD ITEMS?$"
 
 Random_NPC_CheckPoint2_Text_2:
-	.string "Battle Scientist for an opportunity to\n"
-	.string "purchase ABILITY ITEMS?$"
+	.string "Battle for an opportunity to purchase\n"
+	.string "ABILITY ITEMS?$"
 
 Random_NPC_CheckPoint2_Text_3:
-	.string "Battle Wally for an opportunity to\n"
-	.string "purchase IV ITEMS?$"
+	.string "Battle for an opportunity to purchase\n"
+	.string "IV ITEMS?$"
 
-Event_Script_NPC_Stones_Text_0:
+Event_Script_NPC_Stones_CP2_Text_0:
 	.string "What will you choose?$"
 
 Event_Script_Checkpoint2_SignPost_Text_0:
-	.string "At each checkpoint there is a special\n"
-	.string "random character.$"
+	.string "At each checkpoint you will find one of\n"
+	.string "four random characters.$"
 
 Event_Script_Checkpoint2_SignPost_Text_1:
 	.string "You may battle them to unlock access\n"
