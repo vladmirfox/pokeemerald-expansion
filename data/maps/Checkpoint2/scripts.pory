@@ -1,0 +1,222 @@
+mapscripts Checkpoint2_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+    //When you enter the map, assign OBJ_EVENT_GFX_VAR_A to the following graphic
+    //these are randomly generated when picking up the starter, find in data/AJScripts/setup.pory
+    switch (var(VAR_CHECKPOINT2_NPC_STATE)) {
+        case 0:
+        case 1: 
+            setvar(VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_BEAUTY)
+            end
+        case 2:
+        case 3: 
+            setvar(VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_LEAF)
+            end
+        case 4: 
+            setvar(VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_SCIENTIST_2)
+            end
+        case 5: 
+            setvar(VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_WALLY)
+            end
+        }
+    }
+}
+
+script Random_NPC_CheckPoint2{
+    // buffernumberstring(STR_VAR_1, VAR_OBJ_GFX_ID_A)
+    // msgbox("GFX var: {STR_VAR_1}")
+    // buffernumberstring(STR_VAR_2, VAR_RANDOM_NPC_STATE)
+    // msgbox("NPC var: {STR_VAR_2}")
+    switch (var(VAR_CHECKPOINT2_NPC_STATE)){
+        case 0:
+        case 1: 
+            // If this trainer has been beaten, skip to the else
+            if (defeated(TRAINER_REF007A_BONUS_STONES_1) == false){
+            msgbox(format("Battle for an opportunity to purchase EVOLUTION STONES?"), MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES){
+                call(Event_Script_NPC_Stones_CP2)
+                }
+            }
+            // call the script with no intro
+            else{
+            call(Event_Script_NPC_Stones_CP2)
+            }
+        case 2:
+        case 3: 
+            if (defeated(TRAINER_REF007B_BONUS_HELD_ITEMS_1) == false){
+                msgbox(format("Battle for an opportunity to purchase HELD ITEMS?"), MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES){
+                call(Event_Script_NPC_Held_Items)
+                }
+            }
+            else{
+                call(Event_Script_NPC_Held_Items_CP2)
+            }
+        case 4: 
+            if (defeated(TRAINER_REF007C_BONUS_ABILITIES_1) == false){
+                msgbox(format("Battle for an opportunity to purchase ABILITY ITEMS?"), MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES){
+                call(Event_Script_NPC_Abilities)
+                }
+            }
+            else{
+                call(Event_Script_NPC_Abilities_CP2)
+            }
+        case 5: 
+            if (defeated(TRAINER_REF007D_BONUS_IVS_1) == false){
+                msgbox(format("Battle for an opportunity to purchase IV ITEMS?"), MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES){
+                call(Event_Script_NPC_IVS)
+                }
+            }
+            else{
+
+            }call(Event_Script_NPC_IVS_CP2)
+    }
+    //release for saftey
+    releaseall
+}
+
+script Event_Script_NPC_Stones_CP2{
+    trainerbattle_single(TRAINER_REF007A_BONUS_STONES_1, Intro, Outro)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_Stones)
+	release
+	end
+}
+
+script Event_Script_NPC_Held_Items_CP2{
+    trainerbattle_single(TRAINER_REF007B_BONUS_HELD_ITEMS_1, Intro, Outro)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_Held_Items)
+	release
+	end
+}
+
+script Event_Script_NPC_Abilities_CP2{
+    trainerbattle_single(TRAINER_REF007C_BONUS_ABILITIES_1, Intro, Outro)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_Abilities)
+	release
+	end
+}
+
+script Event_Script_NPC_IVS_CP2{
+    trainerbattle_single(TRAINER_REF007D_BONUS_IVS_1, Intro, Outro)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_IVS)
+	release
+	end
+}
+
+
+text Intro{
+	format("If you can beat me you'll get something special!")
+}
+
+text Outro{
+	format("I give up! You've earned this.")
+}
+script Event_Script_Checkpoint2_SignPost{
+    lockall
+    msgbox(format("At each checkpoint you will find one of four random characters."))
+    msgbox(format("You may battle them to unlock access to a special {PKMN} Mart"))
+    msgbox(format("These marts contain powerful items that can enhance your team!"))
+    msgbox(format("Will you accept the risk?"))
+    releaseall
+}
+
+mart MartInventory_Stones {
+    ITEM_DAWN_STONE
+    ITEM_DUSK_STONE
+    ITEM_FIRE_STONE
+    ITEM_ICE_STONE
+    ITEM_LEAF_STONE
+    ITEM_MOON_STONE
+    ITEM_SHINY_STONE
+    ITEM_SUN_STONE
+    ITEM_THUNDER_STONE
+    ITEM_WATER_STONE
+}
+
+mart MartInventory_Held_Items {
+ITEM_AIR_BALLOON
+ITEM_AMULET_COIN
+ITEM_BIG_ROOT
+ITEM_BLACK_BELT
+ITEM_BLACK_GLASSES
+ITEM_BLUNDER_POLICY
+ITEM_CHARCOAL
+ITEM_DAMP_ROCK
+ITEM_DRAGON_FANG
+ITEM_EVIOLITE
+ITEM_EXPERT_BELT
+ITEM_FLAME_ORB
+ITEM_FLOAT_STONE
+ITEM_FOCUS_SASH
+ITEM_FULL_INCENSE
+ITEM_GRIP_CLAW
+ITEM_HARD_STONE
+ITEM_HEAT_ROCK
+ITEM_HEAVY_DUTY_BOOTS
+ITEM_ICY_ROCK
+ITEM_IRON_BALL
+ITEM_LAX_INCENSE
+ITEM_LIFE_ORB
+ITEM_LIGHT_CLAY
+ITEM_LUCK_INCENSE
+ITEM_MAGNET
+ITEM_METAL_COAT
+ITEM_MIRACLE_SEED
+ITEM_MUSCLE_BAND
+ITEM_MYSTIC_WATER
+ITEM_NEVER_MELT_ICE
+ITEM_PIXIE_PLATE
+ITEM_POISON_BARB
+ITEM_PROTECTIVE_PADS
+ITEM_QUICK_CLAW
+ITEM_RAZOR_CLAW
+ITEM_RED_CARD
+ITEM_RING_TARGET
+ITEM_ROCKY_HELMET
+ITEM_SAFETY_GOGGLES
+ITEM_SCOPE_LENS
+ITEM_SHARP_BEAK
+ITEM_SHED_SHELL
+ITEM_SILK_SCARF
+ITEM_SILVER_POWDER
+ITEM_SMOOTH_ROCK
+ITEM_SOFT_SAND
+ITEM_SPELL_TAG
+ITEM_STICKY_BARB
+ITEM_TERRAIN_EXTENDER
+ITEM_THROAT_SPRAY
+ITEM_TOXIC_ORB
+ITEM_TWISTED_SPOON
+ITEM_UTILITY_UMBRELLA
+ITEM_WIDE_LENS
+ITEM_WISE_GLASSES
+ITEM_ZOOM_LENS
+}
+
+mart MartInventory_Abilities {
+	ITEM_ABILITY_CAPSULE
+    ITEM_ABILITY_PATCH
+
+}
+
+mart MartInventory_IVS {
+    ITEM_HP_UP
+    ITEM_PROTEIN
+    ITEM_IRON
+    ITEM_CALCIUM
+    ITEM_ZINC
+    ITEM_CARBOS
+}

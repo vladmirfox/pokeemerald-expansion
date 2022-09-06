@@ -18,13 +18,25 @@ ModifiedLab_EventScript_Pokeball_1:
 ModifiedLab_EventScript_Pokeball_2:
 	givemon SPECIES_EEVEE, 5, ITEM_CHERISH_BALL
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
-	goto_if_eq ModifiedLab_EventScript_Pokeball_6
+	goto_if_eq ModifiedLab_EventScript_Pokeball_5
 	compare VAR_RESULT, YES
-	goto_if_eq ModifiedLab_EventScript_Pokeball_7
+	goto_if_eq ModifiedLab_EventScript_Pokeball_6
 	hidemonpic
 	msgbox ModifiedLab_EventScript_Pokeball_Text_2
+	goto ModifiedLab_EventScript_Pokeball_1
+
 ModifiedLab_EventScript_Pokeball_5:
+	playfanfare MUS_OBTAIN_ITEM
+	playmoncry SPECIES_EEVEE, CRY_MODE_NORMAL
+	msgbox ModifiedLab_EventScript_Pokeball_Text_1
+	removeobject 1
+	setflag FLAG_POKEMON_GIFT_LITTLEROOT_EEVEE
+	setflag FLAG_SYS_POKEMON_GET
+	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	call NicknameStarterMon
+	call NPCVariablesSetup
 	call GivePokedex
+	setflag FLAG_SYS_B_DASH
 	goto ModifiedLab_EventScript_Pokeball_1
 
 ModifiedLab_EventScript_Pokeball_6:
@@ -35,19 +47,11 @@ ModifiedLab_EventScript_Pokeball_6:
 	setflag FLAG_POKEMON_GIFT_LITTLEROOT_EEVEE
 	setflag FLAG_SYS_POKEMON_GET
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
-	call NicknameStarterMon
-	goto ModifiedLab_EventScript_Pokeball_5
-
-ModifiedLab_EventScript_Pokeball_7:
-	playfanfare MUS_OBTAIN_ITEM
-	playmoncry SPECIES_EEVEE, CRY_MODE_NORMAL
-	msgbox ModifiedLab_EventScript_Pokeball_Text_1
-	removeobject 1
-	setflag FLAG_POKEMON_GIFT_LITTLEROOT_EEVEE
-	setflag FLAG_SYS_POKEMON_GET
-	setvar VAR_LITTLEROOT_TOWN_STATE, 4
 	call NicknameStarterBoxMon
-	goto ModifiedLab_EventScript_Pokeball_5
+	call NPCVariablesSetup
+	call GivePokedex
+	setflag FLAG_SYS_B_DASH
+	goto ModifiedLab_EventScript_Pokeball_1
 
 
 NicknameStarterMon::
