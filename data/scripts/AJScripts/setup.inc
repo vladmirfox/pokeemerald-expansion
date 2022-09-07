@@ -22,5 +22,4 @@ NPCVariablesSetup::
 	random 6
 	copyvar VAR_CHECKPOINT12_NPC_STATE, VAR_RESULT
 	return
-	
 
