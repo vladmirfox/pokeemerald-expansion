@@ -2,3 +2,99 @@ raw `
 Route103_MapScripts::
 	.byte 0
 `
+
+script Route103_EventScript_Trainer_008 {
+	trainerbattle_single(TRAINER_REF008_RT103, Intro_008, Outro_008)
+	msgbox(format("Are you ready?"), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route103_EventScript_Trainer_009 {
+	trainerbattle_single(TRAINER_REF009_RT103, Intro_009, Outro_009)
+	msgbox(format("You've done well so far."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route103_EventScript_Trainer_010 {
+	trainerbattle_single(TRAINER_REF010_RT103_BOSS, Intro_010, Outro_010)
+	msgbox(format("Congratulations on your victory."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route103_EventScript_Trainer_011 {
+	trainerbattle_single(TRAINER_REF011_RT103_GUARDIAN, Intro_011, Outro_011)
+	msgbox(format("We're worlds apart, you and I."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+text Intro_008{
+	format("Are you ready?")
+}
+
+text Outro_008{
+	format("A fine performance!")
+}
+
+text Intro_009{
+	format("I've been waiting for this.")
+}
+
+text Outro_009{
+	format("Bravissimo!")
+}
+
+text Intro_010{
+	format("You've got to beat me first!")
+}
+
+text Outro_010{
+	format("So what's your next move?")
+}
+
+text Intro_011{
+	format("You wont get past me easily.")
+}
+
+text Outro_011{
+	format("You've proven yourself.")
+}
+
+script Route103_PathBlocker{
+	if (defeated(TRAINER_REF010_RT103_BOSS) == true)
+	{
+		release
+		end
+	}
+	else
+	{
+		msgbox(format("I must defeat the ROUTE BOSS first."))
+		lock
+		applymovement(OBJ_EVENT_ID_PLAYER, Movement_103)
+		waitmovement(0)
+		release
+	}
+}
+movement Movement_103 {
+    walk_down
+}
+
+script Route103_Healer{
+    lock
+    faceplayer
+    msgbox("Would you like me to heal your party?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        incrementgamestat(GAME_STAT_USED_POKECENTER)
+        special(HealPlayerParty)
+        msgbox("Good luck.")
+        waitmessage
+        release
+        end
+    }
+    else{
+        msgbox("Alright then.", MSGBOX_NPC)
+    }
+}

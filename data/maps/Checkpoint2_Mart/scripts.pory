@@ -6,6 +6,7 @@ Checkpoint2_Mart_MapScripts::
 
 script Checkpoint2_Pokemart_Employee {
 	lock
+	faceplayer
 	message("Welcome trainer.")
 	waitmessage
 	pokemart(MartInventory)
@@ -15,6 +16,7 @@ script Checkpoint2_Pokemart_Employee {
 
 script Checkpoint2_Pokemart_Employee2 {
 	lock
+	faceplayer
 	message("I sell delicious berries!")
 	waitmessage
 	pokemart(MartInventory2)
@@ -28,6 +30,8 @@ mart MartInventory {
     ITEM_ULTRA_BALL
     ITEM_BERRY_JUICE
     ITEM_MAX_REPEL
+	ITEM_MAX_POTION
+	ITEM_ETHER
 }
 
 mart MartInventory2 {

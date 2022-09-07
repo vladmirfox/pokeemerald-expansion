@@ -1,1 +1,141 @@
-mapscripts Checkpoint3_MapScripts {}
+mapscripts Checkpoint3_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+    //When you enter the map, assign OBJ_EVENT_GFX_VAR_A to the following graphic
+    //these are randomly generated when picking up the starter, find in data/AJScripts/setup.pory
+    switch (var(VAR_CHECKPOINT3_NPC_STATE)) {
+        case 0:
+        case 1: 
+            setvar(VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_BEAUTY)
+            end
+        case 2:
+        case 3: 
+            setvar(VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_LEAF)
+            end
+        case 4: 
+            setvar(VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_SCIENTIST_2)
+            end
+        case 5: 
+            setvar(VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_WALLY)
+            end
+        }
+    }
+}
+
+script Route103_EventScript_GameSign {
+	lockall
+	msgbox(format("LOCK ROUTES: When you see these signs beware!"))
+	msgbox(format("You will lose access to your PC and there will be no free healing on the route!"))
+	msgbox(format("Choose your party carefully and bring healing items!"))
+    msgbox(format("PC access will be restored upon leaving the area."))
+    releaseall
+}
+
+script Route103_EventScript_GameSign2 {
+	lockall
+	msgbox(format("Checkpoint 3:/n Where the going gets rough."))
+    releaseall
+}
+
+script Random_NPC_CheckPoint3{
+    // buffernumberstring(STR_VAR_1, VAR_OBJ_GFX_ID_A)
+    // msgbox("GFX var: {STR_VAR_1}")
+    // buffernumberstring(STR_VAR_2, VAR_RANDOM_NPC_STATE)
+    // msgbox("NPC var: {STR_VAR_2}")
+    switch (var(VAR_CHECKPOINT3_NPC_STATE)){
+        case 0:
+        case 1: 
+            // If this trainer has been beaten, skip to the else
+            if (defeated(TRAINER_REF012A_BONUS_STONES_2) == false){
+            msgbox(format("Battle for an opportunity to purchase EVOLUTION STONES?"), MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES){
+                call(Event_Script_NPC_Stones_CP3)
+                }
+            }
+            // call the script with no intro
+            else{
+            call(Event_Script_NPC_Stones_CP3)
+            }
+        case 2:
+        case 3: 
+            if (defeated(TRAINER_REF012B_BONUS_HELD_ITEMS_2) == false){
+                msgbox(format("Battle for an opportunity to purchase HELD ITEMS?"), MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES){
+                call(Event_Script_NPC_Held_Items_CP3)
+                }
+            }
+            else{
+                call(Event_Script_NPC_Held_Items_CP3)
+            }
+        case 4: 
+            if (defeated(TRAINER_REF012C_BONUS_ABILITIES_2) == false){
+                msgbox(format("Battle for an opportunity to purchase ABILITY ITEMS?"), MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES){
+                call(Event_Script_NPC_Abilities_CP3)
+                }
+            }
+            else{
+                call(Event_Script_NPC_Abilities_CP3)
+            }
+        case 5: 
+            if (defeated(TRAINER_REF012D_BONUS_IVS_2) == false){
+                msgbox(format("Battle for an opportunity to purchase IV ITEMS?"), MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES){
+                call(Event_Script_NPC_IVS_CP3)
+                }
+            }
+            else{
+
+            }call(Event_Script_NPC_IVS_CP3)
+    }
+    //release for saftey
+    releaseall
+}
+
+script Event_Script_NPC_Stones_CP3{
+    trainerbattle_single(TRAINER_REF012A_BONUS_STONES_2, Intro_CP3, Outro_CP3)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_Stones)
+	release
+	end
+}
+
+script Event_Script_NPC_Held_Items_CP3{
+    trainerbattle_single(TRAINER_REF012B_BONUS_HELD_ITEMS_2, Intro_CP3, Outro_CP3)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_Held_Items)
+	release
+	end
+}
+
+script Event_Script_NPC_Abilities_CP3{
+    trainerbattle_single(TRAINER_REF012C_BONUS_ABILITIES_2, Intro_CP3, Outro_CP3)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_Abilities)
+	release
+	end
+}
+
+script Event_Script_NPC_IVS_CP3{
+    trainerbattle_single(TRAINER_REF012D_BONUS_IVS_2, Intro_CP3, Outro_CP3)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_IVS)
+	release
+	end
+}
+
+
+text Intro_CP3{
+	format("You've accepted the challenge!")
+}
+
+text Outro_CP3{
+	format("Access to the special items is granted!")
+}
