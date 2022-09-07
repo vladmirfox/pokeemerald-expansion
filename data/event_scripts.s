@@ -1074,3 +1074,11 @@ Common_EventScript_LegendaryFlewAway::
 
 	.include "data/scripts/AJScripts/setup.inc"
 
+
+	.include "data/maps/Checkpoint1_SideArea/scripts.inc"
+
+	.include "data/maps/GreenGrotto/scripts.inc"
+
+	.include "data/maps/Checkpoint3_Mart/scripts.inc"
+
+	.include "data/maps/Checkpoint3_Pokecenter/scripts.inc"

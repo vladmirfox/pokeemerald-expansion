@@ -108,7 +108,7 @@ Random_NPC_CheckPoint2_26:
 
 
 Event_Script_NPC_Stones_CP2::
-	trainerbattle_single TRAINER_REF007A_BONUS_STONES_1, Intro, Outro
+	trainerbattle_single TRAINER_REF007A_BONUS_STONES_1, Intro_CP2, Outro_CP2
 	lock
 	message Event_Script_NPC_Stones_CP2_Text_0
 	waitmessage
@@ -118,7 +118,7 @@ Event_Script_NPC_Stones_CP2::
 
 
 Event_Script_NPC_Held_Items_CP2::
-	trainerbattle_single TRAINER_REF007B_BONUS_HELD_ITEMS_1, Intro, Outro
+	trainerbattle_single TRAINER_REF007B_BONUS_HELD_ITEMS_1, Intro_CP2, Outro_CP2
 	lock
 	message Event_Script_NPC_Stones_CP2_Text_0
 	waitmessage
@@ -128,7 +128,7 @@ Event_Script_NPC_Held_Items_CP2::
 
 
 Event_Script_NPC_Abilities_CP2::
-	trainerbattle_single TRAINER_REF007C_BONUS_ABILITIES_1, Intro, Outro
+	trainerbattle_single TRAINER_REF007C_BONUS_ABILITIES_1, Intro_CP2, Outro_CP2
 	lock
 	message Event_Script_NPC_Stones_CP2_Text_0
 	waitmessage
@@ -138,7 +138,7 @@ Event_Script_NPC_Abilities_CP2::
 
 
 Event_Script_NPC_IVS_CP2::
-	trainerbattle_single TRAINER_REF007D_BONUS_IVS_1, Intro, Outro
+	trainerbattle_single TRAINER_REF007D_BONUS_IVS_1, Intro_CP2, Outro_CP2
 	lock
 	message Event_Script_NPC_Stones_CP2_Text_0
 	waitmessage
@@ -282,9 +282,9 @@ Event_Script_Checkpoint2_SignPost_Text_2:
 Event_Script_Checkpoint2_SignPost_Text_3:
 	.string "Will you accept the risk?$"
 
-Intro::
+Intro_CP2::
 	.string "If you can beat me you'll get something\n"
 	.string "special!$"
 
-Outro::
+Outro_CP2::
 	.string "I give up! You've earned this.$"

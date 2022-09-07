@@ -71,10 +71,14 @@
 // gMapGroup_CheckpointsIndoor
 #define MAP_CHECKPOINT2_MART       (0 | (2 << 8))
 #define MAP_CHECKPOINT2_POKECENTER (1 | (2 << 8))
+#define MAP_CHECKPOINT3_MART       (2 | (2 << 8))
+#define MAP_CHECKPOINT3_POKECENTER (3 | (2 << 8))
 
 // gMapGroup_SideAreas
-#define MAP_ROUTE102_SIDE_AREA (0 | (3 << 8))
-#define MAP_ROUTE103_SIDE_AREA (1 | (3 << 8))
+#define MAP_ROUTE102_SIDE_AREA    (0 | (3 << 8))
+#define MAP_ROUTE103_SIDE_AREA    (1 | (3 << 8))
+#define MAP_CHECKPOINT1_SIDE_AREA (2 | (3 << 8))
+#define MAP_GREEN_GROTTO          (3 | (3 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (4 << 8))

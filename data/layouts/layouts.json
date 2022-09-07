@@ -4480,6 +4480,46 @@
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/Route103_SideArea/border.bin",
       "blockdata_filepath": "data/layouts/Route103_SideArea/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT1_SIDE_AREA",
+      "name": "Checkpoint1_SideArea_Layout",
+      "width": 14,
+      "height": 14,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Checkpoint1_SideArea/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint1_SideArea/map.bin"
+    },
+    {
+      "id": "LAYOUT_GREEN_GROTTO",
+      "name": "GreenGrotto_Layout",
+      "width": 16,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/GreenGrotto/border.bin",
+      "blockdata_filepath": "data/layouts/GreenGrotto/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT3_MART",
+      "name": "Checkpoint3_Mart_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Shop",
+      "border_filepath": "data/layouts/Checkpoint3_Mart/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint3_Mart/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT3_POKECENTER",
+      "name": "Checkpoint3_Pokecenter_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/Checkpoint3_Pokecenter/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint3_Pokecenter/map.bin"
     }
   ]
 }

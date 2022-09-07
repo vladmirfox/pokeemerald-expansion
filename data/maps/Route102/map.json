@@ -22,6 +22,11 @@
       "direction": "right",
       "offset": -4,
       "map": "MAP_CHECKPOINT2"
+    },
+    {
+      "direction": "left",
+      "offset": 0,
+      "map": "MAP_GREEN_GROTTO"
     }
   ],
   "object_events": [
