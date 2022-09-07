@@ -3,6 +3,7 @@ Checkpoint2_Mart_MapScripts::
 
 Checkpoint2_Pokemart_Employee::
 	lock
+	faceplayer
 	message Checkpoint2_Pokemart_Employee_Text_0
 	waitmessage
 	pokemart MartInventory
@@ -13,6 +14,7 @@ Checkpoint2_Pokemart_Employee::
 
 Checkpoint2_Pokemart_Employee2::
 	lock
+	faceplayer
 	message Checkpoint2_Pokemart_Employee2_Text_0
 	waitmessage
 	pokemart MartInventory2
@@ -28,6 +30,8 @@ MartInventory:
 	.2byte ITEM_ULTRA_BALL
 	.2byte ITEM_BERRY_JUICE
 	.2byte ITEM_MAX_REPEL
+	.2byte ITEM_MAX_POTION
+	.2byte ITEM_ETHER
 	.2byte ITEM_NONE
 
 	.align 2
