@@ -4,10 +4,26 @@
 // .y_offset is the number of pixels between the drawn pixel area and the bottom edge.
 const struct MonCoords gMonFrontPicCoords[] =
 {
-    [SPECIES_NONE]          = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 12, },
-    [SPECIES_BULBASAUR]     = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 13, },
-    [SPECIES_IVYSAUR]       = { .size = MON_COORDS_SIZE(56, 48), .y_offset = 9, },
-    [SPECIES_VENUSAUR]      = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 3, },
+    [SPECIES_NONE] =
+    {
+        .size = MON_COORDS_SIZE(40, 40),
+        .y_offset = 12,
+    },
+    [SPECIES_BULBASAUR] =
+    {
+        .size = MON_COORDS_SIZE(40, 40),
+        .y_offset = 13,
+    },
+    [SPECIES_IVYSAUR] =
+    {
+        .size = MON_COORDS_SIZE(56, 48),
+        .y_offset = 9,
+    },
+    [SPECIES_VENUSAUR] =
+    {
+        .size = MON_COORDS_SIZE(64, 64),
+        .y_offset = 3,
+    },
     [SPECIES_CHARMANDER] =
     {
         .size = MON_COORDS_SIZE(48, 48),
