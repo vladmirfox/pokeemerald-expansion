@@ -196,35 +196,60 @@ static const struct TrainerMonItemCustomMoves sParty_REF012D[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntMtPyre1[] = {
+static const struct TrainerMonItemCustomMoves sParty_REF013[] = {
     {
     .iv = 0,
-    .lvl = 32,
-    .species = SPECIES_ZUBAT,
+    .lvl = 5,
+    .species = SPECIES_TREECKO,
+    .heldItem = ITEM_ORAN_BERRY,
+    .abilityNums = 0,
+    .moves = {MOVE_LEECH_SEED, MOVE_TACKLE, MOVE_ABSORB, MOVE_NONE}
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntMtPyre2[] = {
+static const struct TrainerMonItemCustomMoves sParty_REF014[] = {
     {
     .iv = 0,
-    .lvl = 32,
-    .species = SPECIES_CARVANHA,
+    .lvl = 5,
+    .species = SPECIES_TREECKO,
+    .heldItem = ITEM_ORAN_BERRY,
+    .abilityNums = 0,
+    .moves = {MOVE_LEECH_SEED, MOVE_TACKLE, MOVE_ABSORB, MOVE_NONE}
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntMtPyre3[] = {
+static const struct TrainerMonItemCustomMoves sParty_REF015[] = {
     {
     .iv = 0,
-    .lvl = 30,
-    .species = SPECIES_POOCHYENA,
-    },
-    {
-    .iv = 0,
-    .lvl = 30,
-    .species = SPECIES_CARVANHA,
+    .lvl = 5,
+    .species = SPECIES_TREECKO,
+    .heldItem = ITEM_ORAN_BERRY,
+    .abilityNums = 0,
+    .moves = {MOVE_LEECH_SEED, MOVE_TACKLE, MOVE_ABSORB, MOVE_NONE}
     }
 };
 
+static const struct TrainerMonItemCustomMoves sParty_REF016[] = {
+    {
+    .iv = 0,
+    .lvl = 5,
+    .species = SPECIES_TREECKO,
+    .heldItem = ITEM_ORAN_BERRY,
+    .abilityNums = 0,
+    .moves = {MOVE_LEECH_SEED, MOVE_TACKLE, MOVE_ABSORB, MOVE_NONE}
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_REF017[] = {
+    {
+    .iv = 0,
+    .lvl = 5,
+    .species = SPECIES_TREECKO,
+    .heldItem = ITEM_ORAN_BERRY,
+    .abilityNums = 0,
+    .moves = {MOVE_LEECH_SEED, MOVE_TACKLE, MOVE_ABSORB, MOVE_NONE}
+    }
+};
 static const struct TrainerMonNoItemDefaultMoves sParty_GruntAquaHideout5[] = {
     {
     .iv = 0,
@@ -7617,19 +7642,6 @@ static const struct TrainerMonNoItemDefaultMoves sParty_GruntUnused[] = {
     {
     .iv = 0,
     .lvl = 31,
-    .species = SPECIES_ZUBAT,
-    }
-};
-
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntMtPyre4[] = {
-    {
-    .iv = 0,
-    .lvl = 30,
-    .species = SPECIES_WAILMER,
-    },
-    {
-    .iv = 0,
-    .lvl = 30,
     .species = SPECIES_ZUBAT,
     }
 };

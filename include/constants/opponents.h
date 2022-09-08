@@ -20,13 +20,13 @@
 #define TRAINER_REF012B_BONUS_HELD_ITEMS_2   16
 #define TRAINER_REF012C_BONUS_ABILITIES_2    17
 #define TRAINER_REF012D_BONUS_IVS_2          18
-//#define TRAINER_GRUNT_WEATHER_INST_3         19
-//#define TRAINER_GRUNT_MUSEUM_1               20
-//#define TRAINER_GRUNT_MUSEUM_2               21
-//#define TRAINER_GRUNT_SPACE_CENTER_1         22
-#define TRAINER_GRUNT_MT_PYRE_1              23
-#define TRAINER_GRUNT_MT_PYRE_2              24
-#define TRAINER_GRUNT_MT_PYRE_3              25
+#define TRAINER_REF013_RT104                 19
+#define TRAINER_REF014_RT104                 20
+#define TRAINER_REF015_RT104                 21
+#define TRAINER_REF016_RT104_BOSS            22
+#define TRAINER_REF017_RT104_GUARDIAN        23
+//#define TRAINER_GRUNT_MT_PYRE_2             24
+//#define TRAINER_GRUNT_MT_PYRE_3              25
 //#define TRAINER_GRUNT_WEATHER_INST_4         26
 #define TRAINER_GRUNT_AQUA_HIDEOUT_5         27 // deleted
 #define TRAINER_GRUNT_AQUA_HIDEOUT_6         28 // deleted
@@ -570,7 +570,7 @@
 #define TRAINER_JULIO                       566
 #define TRAINER_GRUNT_SEAFLOOR_CAVERN_5     567
 #define TRAINER_GRUNT_UNUSED                568
-#define TRAINER_GRUNT_MT_PYRE_4             569
+//#define TRAINER_GRUNT_MT_PYRE_4             569
 #define TRAINER_GRUNT_JAGGED_PASS           570
 #define TRAINER_MARC                        571
 #define TRAINER_BRENDEN                     572
