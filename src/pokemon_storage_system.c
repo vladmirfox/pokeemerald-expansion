@@ -579,7 +579,6 @@ EWRAM_DATA static bool8 sAutoActionOn = 0;
 EWRAM_DATA static bool8 sJustOpenedBag = 0;
 
 // Main tasks
-//static void EnterPokeStorage(u8);
 static void Task_InitPokeStorage(u8);
 static void Task_PlaceMon(u8);
 static void Task_ChangeScreen(u8);
@@ -1668,7 +1667,23 @@ static void FieldTask_ReturnToPcMenu(void)
 {
     u8 taskId;
     MainCallback vblankCb = gMain.vblankCallback;
-	if (FlagGet(FLAG_REMOTE_STORAGE)==TRUE)
+
+	SetVBlankCallback(NULL);
+    if (!FlagGet(DEBUG_FLAG_PC_FROM_DEBUG_MENU))
+    {
+        taskId = CreateTask(Task_PCMainMenu, 80);
+        gTasks[taskId].tState = 0;
+        gTasks[taskId].tSelectedOption = sPreviousBoxOption;
+        Task_PCMainMenu(taskId);
+    }
+     else {
+        FlagClear(DEBUG_FLAG_PC_FROM_DEBUG_MENU);
+        ScriptContext_Enable();
+    }
+    SetVBlankCallback(vblankCb);
+    FadeInFromBlack();
+    
+    if (FlagGet(FLAG_REMOTE_STORAGE)==TRUE)
 	{
 		SetVBlankCallback(NULL);
 		taskId = CreateTask(Task_PCMainMenu, 80);
