@@ -110,22 +110,25 @@ struct BoxPokemon
     // Words 3-5: Pokémon nickname (12 chars)
     u8 nickname[12];
     
-    // Word 6: Species + Experience points (used to derive level)
-    u32 species:11;
-    u32 experience:21;
-    
-    // Words 7 & 8: moves, language, gender, friendship, Pokérus, ppBonuses
-    u32 move1:10;
-    u32 move2:10;
-    u32 language:3;
-    u32 gender:1;
+    // Word 6: Species, hidden nature, friendship, met level
+    u32 species:11;     // Up to 2047 species
+    u32 hiddenNature:5; // 25 natures
     u32 friendship:8;
-    
-    u32 move3:10;
-    u32 move4:10;
-    u32 pokerus:4;
+    u32 metLevel:8;     // 7 bits needed in vanilla, but added 1 more to allow for level 255
+
+    // Words 7 & 8: moves, isEgg, otGender, Pokéball, ppBonuses, Pokérus, Dynamax Level
+    u32 move1:10;       // 1023 moves
+    u32 move2:10;       // 1023 moves
+    u32 move3:10;       // 1023 moves
+    u32 isEgg:1;
+    u32 otGender:1;
+
+    u32 move4:10;       // 1023 moves
+    u32 pokeball:6;     // 64 balls
     u32 ppBonuses:8;
-    
+    u32 pokerus:4;
+    u32 dynamaxLevel:4; // Up to level 10
+
     // Words 9 - 11: EV's + contest stats
     u8 hpEV;
     u8 attackEV;
@@ -134,8 +137,7 @@ struct BoxPokemon
     
     u8 spAttackEV;
     u8 spDefenseEV;
-    
-    // Contest garbage (6 bytes)
+    // Contest data (6 bytes)
     u8 cool;
     u8 beauty;
     
@@ -144,20 +146,16 @@ struct BoxPokemon
     u8 tough;
     u8 sheen;
     
-    // Word 12: miscellaneous data; item, formId, Egg and origin data
-    u32 heldItem:10;
-    u32 formId:5;
-    u32 isEgg:1;
-    u32 metLevel:7;
+    // Word 12: experience, language and met game
+    u32 experience:26;  // 21 bits needed in vanilla, but added 5 more to allow for exp up to lvl 255.
+    u32 language:3;
     u32 metGame:3;
-    u32 pokeball:5;
-    u32 otGender:1;
     
     // Words 13 & 14: Trainer name + met location
     u8 metLocation;
     u8 otName[PLAYER_NAME_LENGTH];
     
-    // Word 15: IV's
+    // Word 15: IVs
     u32 hpIV:5;
     u32 attackIV:5;
     u32 defenseIV:5;
@@ -166,7 +164,7 @@ struct BoxPokemon
     u32 spDefenseIV:5;
     u32 abilityNum:2;
 
-    // Word 16: ribbons and markings
+    // Word 16: ribbons, markings and gigantamax factor
     u32 coolRibbon:3;
     u32 beautyRibbon:3;
     u32 cuteRibbon:3;
@@ -184,8 +182,15 @@ struct BoxPokemon
     u32 nationalRibbon:1;
     u32 earthRibbon:1;
     u32 worldRibbon:1;
-    u32 eventLegal:1;
     u32 markings:4;
+    u32 gigantamax:1;
+
+    // Words 17 - 20: held item and filler
+    u32 heldItem:10;    // 1024 items
+    u32 filler1:22;
+    u32 filler2;
+    u32 filler3;
+    u32 filler4;
 };
 
 struct Pokemon
@@ -202,7 +207,7 @@ struct Pokemon
     u16 speed;
     u16 spAttack;
     u16 spDefense;
-    u32 padding[3]; // Brings Pokemon struct back up to the vanilla 100 bytes for compatibility with all current functions
+    u32 filler;
 };
 
 struct MonSpritesGfxManager
