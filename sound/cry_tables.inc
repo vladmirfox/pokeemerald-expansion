@@ -533,6 +533,22 @@ gCryTable::
 	cry Cry_Darkrai
 	cry Cry_Shaymin
 	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
+	cry Cry_Arceus
 	cry Cry_Victini
 	cry Cry_Snivy
 	cry Cry_Servine
@@ -1086,22 +1102,6 @@ gCryTable::
 	@ Shaymin
 	cry Cry_ShayminSky
 	@ Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
-	cry Cry_Arceus
 	cry Cry_Arceus
 	@ Basculin
 	cry Cry_Basculin
@@ -1829,6 +1829,22 @@ gCryTable_Reverse::
 	cry_reverse Cry_Darkrai
 	cry_reverse Cry_Shaymin
 	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
+	cry_reverse Cry_Arceus
 	cry_reverse Cry_Victini
 	cry_reverse Cry_Snivy
 	cry_reverse Cry_Servine
@@ -2382,22 +2398,6 @@ gCryTable_Reverse::
 	@ Shaymin
 	cry_reverse Cry_ShayminSky
 	@ Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
-	cry_reverse Cry_Arceus
 	cry_reverse Cry_Arceus
 	@ Basculin
 	cry_reverse Cry_Basculin
