@@ -1014,6 +1014,141 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = MON_COORDS_SIZE(24, 40),
         .y_offset = 15,
     },
+    [SPECIES_UNOWN_B] =
+    {
+        .size = MON_COORDS_SIZE(24, 32),
+        .y_offset = 16,
+    },
+    [SPECIES_UNOWN_C] =
+    {
+        .size = MON_COORDS_SIZE(32, 32),
+        .y_offset = 16,
+    },
+    [SPECIES_UNOWN_D] =
+    {
+        .size = MON_COORDS_SIZE(32, 32),
+        .y_offset = 16,
+    },
+    [SPECIES_UNOWN_E] =
+    {
+        .size = MON_COORDS_SIZE(32, 32),
+        .y_offset = 17,
+    },
+    [SPECIES_UNOWN_F] =
+    {
+        .size = MON_COORDS_SIZE(32, 32),
+        .y_offset = 17,
+    },
+    [SPECIES_UNOWN_G] =
+    {
+        .size = MON_COORDS_SIZE(24, 40),
+        .y_offset = 14,
+    },
+    [SPECIES_UNOWN_H] =
+    {
+        .size = MON_COORDS_SIZE(32, 32),
+        .y_offset = 16,
+    },
+    [SPECIES_UNOWN_I] =
+    {
+        .size = MON_COORDS_SIZE(24, 32),
+        .y_offset = 16,
+    },
+    [SPECIES_UNOWN_J] =
+    {
+        .size = MON_COORDS_SIZE(24, 32),
+        .y_offset = 17,
+    },
+    [SPECIES_UNOWN_K] =
+    {
+        .size = MON_COORDS_SIZE(32, 32),
+        .y_offset = 17,
+    },
+    [SPECIES_UNOWN_L] =
+    {
+        .size = MON_COORDS_SIZE(24, 32),
+        .y_offset = 19,
+    },
+    [SPECIES_UNOWN_M] =
+    {
+        .size = MON_COORDS_SIZE(32, 32),
+        .y_offset = 19,
+    },
+    [SPECIES_UNOWN_N] =
+    {
+        .size = MON_COORDS_SIZE(32, 24),
+        .y_offset = 20,
+    },
+    [SPECIES_UNOWN_O] =
+    {
+        .size = MON_COORDS_SIZE(32, 32),
+        .y_offset = 16,
+    },
+    [SPECIES_UNOWN_P] =
+    {
+        .size = MON_COORDS_SIZE(24, 32),
+        .y_offset = 19,
+    },
+    [SPECIES_UNOWN_Q] =
+    {
+        .size = MON_COORDS_SIZE(32, 24),
+        .y_offset = 21,
+    },
+    [SPECIES_UNOWN_R] =
+    {
+        .size = MON_COORDS_SIZE(24, 32),
+        .y_offset = 19,
+    },
+    [SPECIES_UNOWN_S] =
+    {
+        .size = MON_COORDS_SIZE(32, 40),
+        .y_offset = 12,
+    },
+    [SPECIES_UNOWN_T] =
+    {
+        .size = MON_COORDS_SIZE(24, 32),
+        .y_offset = 18,
+    },
+    [SPECIES_UNOWN_U] =
+    {
+        .size = MON_COORDS_SIZE(32, 32),
+        .y_offset = 18,
+    },
+    [SPECIES_UNOWN_V] =
+    {
+        .size = MON_COORDS_SIZE(32, 32),
+        .y_offset = 18,
+    },
+    [SPECIES_UNOWN_W] =
+    {
+        .size = MON_COORDS_SIZE(32, 32),
+        .y_offset = 19,
+    },
+    [SPECIES_UNOWN_X] =
+    {
+        .size = MON_COORDS_SIZE(24, 24),
+        .y_offset = 21,
+    },
+    [SPECIES_UNOWN_Y] =
+    {
+        .size = MON_COORDS_SIZE(24, 32),
+        .y_offset = 17,
+    },
+    [SPECIES_UNOWN_Z] =
+    {
+        .size = MON_COORDS_SIZE(24, 32),
+        .y_offset = 16,
+    },
+    [SPECIES_UNOWN_EMARK] =
+    {
+        .size = MON_COORDS_SIZE(24, 40),
+        .y_offset = 15,
+    },
+    [SPECIES_UNOWN_QMARK] =
+    {
+        .size = MON_COORDS_SIZE(24, 40),
+        .y_offset = 13,
+    },
     [SPECIES_WOBBUFFET] =
     {
         .size = MON_COORDS_SIZE(64, 56),
@@ -5156,142 +5291,6 @@ const struct MonCoords gMonFrontPicCoords[] =
     {
         .size = MON_COORDS_SIZE(32, 40),
         .y_offset = 14,
-    },
-    // Unown
-    [SPECIES_UNOWN_B] =
-    {
-        .size = MON_COORDS_SIZE(24, 32),
-        .y_offset = 16,
-    },
-    [SPECIES_UNOWN_C] =
-    {
-        .size = MON_COORDS_SIZE(32, 32),
-        .y_offset = 16,
-    },
-    [SPECIES_UNOWN_D] =
-    {
-        .size = MON_COORDS_SIZE(32, 32),
-        .y_offset = 16,
-    },
-    [SPECIES_UNOWN_E] =
-    {
-        .size = MON_COORDS_SIZE(32, 32),
-        .y_offset = 17,
-    },
-    [SPECIES_UNOWN_F] =
-    {
-        .size = MON_COORDS_SIZE(32, 32),
-        .y_offset = 17,
-    },
-    [SPECIES_UNOWN_G] =
-    {
-        .size = MON_COORDS_SIZE(24, 40),
-        .y_offset = 14,
-    },
-    [SPECIES_UNOWN_H] =
-    {
-        .size = MON_COORDS_SIZE(32, 32),
-        .y_offset = 16,
-    },
-    [SPECIES_UNOWN_I] =
-    {
-        .size = MON_COORDS_SIZE(24, 32),
-        .y_offset = 16,
-    },
-    [SPECIES_UNOWN_J] =
-    {
-        .size = MON_COORDS_SIZE(24, 32),
-        .y_offset = 17,
-    },
-    [SPECIES_UNOWN_K] =
-    {
-        .size = MON_COORDS_SIZE(32, 32),
-        .y_offset = 17,
-    },
-    [SPECIES_UNOWN_L] =
-    {
-        .size = MON_COORDS_SIZE(24, 32),
-        .y_offset = 19,
-    },
-    [SPECIES_UNOWN_M] =
-    {
-        .size = MON_COORDS_SIZE(32, 32),
-        .y_offset = 19,
-    },
-    [SPECIES_UNOWN_N] =
-    {
-        .size = MON_COORDS_SIZE(32, 24),
-        .y_offset = 20,
-    },
-    [SPECIES_UNOWN_O] =
-    {
-        .size = MON_COORDS_SIZE(32, 32),
-        .y_offset = 16,
-    },
-    [SPECIES_UNOWN_P] =
-    {
-        .size = MON_COORDS_SIZE(24, 32),
-        .y_offset = 19,
-    },
-    [SPECIES_UNOWN_Q] =
-    {
-        .size = MON_COORDS_SIZE(32, 24),
-        .y_offset = 21,
-    },
-    [SPECIES_UNOWN_R] =
-    {
-        .size = MON_COORDS_SIZE(24, 32),
-        .y_offset = 19,
-    },
-    [SPECIES_UNOWN_S] =
-    {
-        .size = MON_COORDS_SIZE(32, 40),
-        .y_offset = 12,
-    },
-    [SPECIES_UNOWN_T] =
-    {
-        .size = MON_COORDS_SIZE(24, 32),
-        .y_offset = 18,
-    },
-    [SPECIES_UNOWN_U] =
-    {
-        .size = MON_COORDS_SIZE(32, 32),
-        .y_offset = 18,
-    },
-    [SPECIES_UNOWN_V] =
-    {
-        .size = MON_COORDS_SIZE(32, 32),
-        .y_offset = 18,
-    },
-    [SPECIES_UNOWN_W] =
-    {
-        .size = MON_COORDS_SIZE(32, 32),
-        .y_offset = 19,
-    },
-    [SPECIES_UNOWN_X] =
-    {
-        .size = MON_COORDS_SIZE(24, 24),
-        .y_offset = 21,
-    },
-    [SPECIES_UNOWN_Y] =
-    {
-        .size = MON_COORDS_SIZE(24, 32),
-        .y_offset = 17,
-    },
-    [SPECIES_UNOWN_Z] =
-    {
-        .size = MON_COORDS_SIZE(24, 32),
-        .y_offset = 16,
-    },
-    [SPECIES_UNOWN_EMARK] =
-    {
-        .size = MON_COORDS_SIZE(24, 40),
-        .y_offset = 15,
-    },
-    [SPECIES_UNOWN_QMARK] =
-    {
-        .size = MON_COORDS_SIZE(24, 40),
-        .y_offset = 13,
     },
     // Castform
     [SPECIES_CASTFORM_SUNNY] =
