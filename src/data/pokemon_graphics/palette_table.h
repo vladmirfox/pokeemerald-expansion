@@ -447,7 +447,11 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(SHIELDON, gMonPalette_Shieldon),
     SPECIES_PAL(BASTIODON, gMonPalette_Bastiodon),
     SPECIES_PAL(BURMY, gMonPalette_Burmy),
+    SPECIES_PAL(BURMY_SANDY_CLOAK, gMonPalette_BurmySandyCloak),
+    SPECIES_PAL(BURMY_TRASH_CLOAK, gMonPalette_BurmyTrashCloak),
     SPECIES_PAL(WORMADAM, gMonPalette_Wormadam),
+    SPECIES_PAL(WORMADAM_SANDY_CLOAK, gMonPalette_WormadamSandyCloak),
+    SPECIES_PAL(WORMADAM_TRASH_CLOAK, gMonPalette_WormadamTrashCloak),
     SPECIES_PAL(MOTHIM, gMonPalette_Mothim),
     SPECIES_PAL(COMBEE, gMonPalette_Combee),
     SPECIES_PAL(VESPIQUEN, gMonPalette_Vespiquen),
@@ -456,8 +460,11 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(FLOATZEL, gMonPalette_Floatzel),
     SPECIES_PAL(CHERUBI, gMonPalette_Cherubi),
     SPECIES_PAL(CHERRIM, gMonPalette_Cherrim),
+    SPECIES_PAL(CHERRIM_SUNSHINE, gMonPalette_CherrimSunshine),
     SPECIES_PAL(SHELLOS, gMonPalette_Shellos),
+    SPECIES_PAL(SHELLOS_EAST_SEA, gMonPalette_ShellosEastSea),
     SPECIES_PAL(GASTRODON, gMonPalette_Gastrodon),
+    SPECIES_PAL(GASTRODON_EAST_SEA, gMonPalette_GastrodonEastSea),
     SPECIES_PAL(AMBIPOM, gMonPalette_Ambipom),
     SPECIES_PAL(DRIFLOON, gMonPalette_Drifloon),
     SPECIES_PAL(DRIFBLIM, gMonPalette_Drifblim),
@@ -1090,17 +1097,7 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(PICHU_SPIKY_EARED, gMonPalette_PichuSpikyEared),
 
 #if P_GEN_4_POKEMON == TRUE
-    SPECIES_PAL(BURMY_SANDY_CLOAK, gMonPalette_BurmySandyCloak),
-    SPECIES_PAL(BURMY_TRASH_CLOAK, gMonPalette_BurmyTrashCloak),
 
-    SPECIES_PAL(WORMADAM_SANDY_CLOAK, gMonPalette_WormadamSandyCloak),
-    SPECIES_PAL(WORMADAM_TRASH_CLOAK, gMonPalette_WormadamTrashCloak),
-
-    SPECIES_PAL(CHERRIM_SUNSHINE, gMonPalette_CherrimSunshine),
-
-    SPECIES_PAL(SHELLOS_EAST_SEA, gMonPalette_ShellosEastSea),
-
-    SPECIES_PAL(GASTRODON_EAST_SEA, gMonPalette_GastrodonEastSea),
 
     SPECIES_PAL(ROTOM_HEAT, gMonPalette_RotomHeat),
     SPECIES_PAL(ROTOM_WASH, gMonPalette_RotomWash),

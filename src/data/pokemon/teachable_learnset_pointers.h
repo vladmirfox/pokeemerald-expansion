@@ -447,7 +447,11 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_SHIELDON] = sShieldonTeachableLearnset,
     [SPECIES_BASTIODON] = sBastiodonTeachableLearnset,
     [SPECIES_BURMY] = sBurmyTeachableLearnset,
+    [SPECIES_BURMY_SANDY_CLOAK] = sBurmyTeachableLearnset,
+    [SPECIES_BURMY_TRASH_CLOAK] = sBurmyTeachableLearnset,
     [SPECIES_WORMADAM] = sWormadamTeachableLearnset,
+    [SPECIES_WORMADAM_SANDY_CLOAK] = sWormadamSandyCloakTeachableLearnset,
+    [SPECIES_WORMADAM_TRASH_CLOAK] = sWormadamTrashCloakTeachableLearnset,
     [SPECIES_MOTHIM] = sMothimTeachableLearnset,
     [SPECIES_COMBEE] = sCombeeTeachableLearnset,
     [SPECIES_VESPIQUEN] = sVespiquenTeachableLearnset,
@@ -456,8 +460,11 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_FLOATZEL] = sFloatzelTeachableLearnset,
     [SPECIES_CHERUBI] = sCherubiTeachableLearnset,
     [SPECIES_CHERRIM] = sCherrimTeachableLearnset,
+    [SPECIES_CHERRIM_SUNSHINE] = sCherrimTeachableLearnset,
     [SPECIES_SHELLOS] = sShellosTeachableLearnset,
+    [SPECIES_SHELLOS_EAST_SEA] = sShellosTeachableLearnset,
     [SPECIES_GASTRODON] = sGastrodonTeachableLearnset,
+    [SPECIES_GASTRODON_EAST_SEA] = sGastrodonTeachableLearnset,
     [SPECIES_AMBIPOM] = sAmbipomTeachableLearnset,
     [SPECIES_DRIFLOON] = sDrifloonTeachableLearnset,
     [SPECIES_DRIFBLIM] = sDrifblimTeachableLearnset,
@@ -1091,18 +1098,6 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     // Pichu
     [SPECIES_PICHU_SPIKY_EARED] = sPichuTeachableLearnset,
 #if P_GEN_4_POKEMON == TRUE
-    // Burmy
-    [SPECIES_BURMY_SANDY_CLOAK] = sBurmyTeachableLearnset,
-    [SPECIES_BURMY_TRASH_CLOAK] = sBurmyTeachableLearnset,
-    // Wormadam
-    [SPECIES_WORMADAM_SANDY_CLOAK] = sWormadamSandyCloakTeachableLearnset,
-    [SPECIES_WORMADAM_TRASH_CLOAK] = sWormadamTrashCloakTeachableLearnset,
-    // Cherrim
-    [SPECIES_CHERRIM_SUNSHINE] = sCherrimTeachableLearnset,
-    // Shellos
-    [SPECIES_SHELLOS_EAST_SEA] = sShellosTeachableLearnset,
-    // Gastrodon
-    [SPECIES_GASTRODON_EAST_SEA] = sGastrodonTeachableLearnset,
     // Rotom
     [SPECIES_ROTOM_HEAT] = sRotomTeachableLearnset,
     [SPECIES_ROTOM_WASH] = sRotomTeachableLearnset,

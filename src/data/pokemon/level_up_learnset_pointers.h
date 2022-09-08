@@ -447,7 +447,11 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_SHIELDON] = sShieldonLevelUpLearnset,
     [SPECIES_BASTIODON] = sBastiodonLevelUpLearnset,
     [SPECIES_BURMY] = sBurmyLevelUpLearnset,
+    [SPECIES_BURMY_SANDY_CLOAK] = sBurmyLevelUpLearnset,
+    [SPECIES_BURMY_TRASH_CLOAK] = sBurmyLevelUpLearnset,
     [SPECIES_WORMADAM] = sWormadamLevelUpLearnset,
+    [SPECIES_WORMADAM_SANDY_CLOAK] = sWormadamSandyCloakLevelUpLearnset,
+    [SPECIES_WORMADAM_TRASH_CLOAK] = sWormadamTrashCloakLevelUpLearnset,
     [SPECIES_MOTHIM] = sMothimLevelUpLearnset,
     [SPECIES_COMBEE] = sCombeeLevelUpLearnset,
     [SPECIES_VESPIQUEN] = sVespiquenLevelUpLearnset,
@@ -456,8 +460,11 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_FLOATZEL] = sFloatzelLevelUpLearnset,
     [SPECIES_CHERUBI] = sCherubiLevelUpLearnset,
     [SPECIES_CHERRIM] = sCherrimLevelUpLearnset,
+    [SPECIES_CHERRIM_SUNSHINE] = sCherrimLevelUpLearnset,
     [SPECIES_SHELLOS] = sShellosLevelUpLearnset,
+    [SPECIES_SHELLOS_EAST_SEA] = sShellosLevelUpLearnset,
     [SPECIES_GASTRODON] = sGastrodonLevelUpLearnset,
+    [SPECIES_GASTRODON_EAST_SEA] = sGastrodonLevelUpLearnset,
     [SPECIES_AMBIPOM] = sAmbipomLevelUpLearnset,
     [SPECIES_DRIFLOON] = sDrifloonLevelUpLearnset,
     [SPECIES_DRIFBLIM] = sDrifblimLevelUpLearnset,
@@ -1091,18 +1098,6 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     // Pichu
     [SPECIES_PICHU_SPIKY_EARED] = sPichuLevelUpLearnset,
 #if P_GEN_4_POKEMON == TRUE
-    // Burmy
-    [SPECIES_BURMY_SANDY_CLOAK] = sBurmyLevelUpLearnset,
-    [SPECIES_BURMY_TRASH_CLOAK] = sBurmyLevelUpLearnset,
-    // Wormadam
-    [SPECIES_WORMADAM_SANDY_CLOAK] = sWormadamSandyCloakLevelUpLearnset,
-    [SPECIES_WORMADAM_TRASH_CLOAK] = sWormadamTrashCloakLevelUpLearnset,
-    // Cherrim
-    [SPECIES_CHERRIM_SUNSHINE] = sCherrimLevelUpLearnset,
-    // Shellos
-    [SPECIES_SHELLOS_EAST_SEA] = sShellosLevelUpLearnset,
-    // Gastrodon
-    [SPECIES_GASTRODON_EAST_SEA] = sGastrodonLevelUpLearnset,
     // Rotom
     [SPECIES_ROTOM_HEAT] = sRotomLevelUpLearnset,
     [SPECIES_ROTOM_WASH] = sRotomLevelUpLearnset,

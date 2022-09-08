@@ -121,8 +121,11 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_BURMY] = sBurmyFormSpeciesIdTable,
     [SPECIES_WORMADAM] = sWormadamFormSpeciesIdTable,
     [SPECIES_CHERRIM] = sCherrimFormSpeciesIdTable,
+    [SPECIES_CHERRIM_SUNSHINE] = sCherrimFormSpeciesIdTable,
     [SPECIES_SHELLOS] = sShellosFormSpeciesIdTable,
+    [SPECIES_SHELLOS_EAST_SEA] = sShellosFormSpeciesIdTable,
     [SPECIES_GASTRODON] = sGastrodonFormSpeciesIdTable,
+    [SPECIES_GASTRODON_EAST_SEA] = sGastrodonFormSpeciesIdTable,
     [SPECIES_LOPUNNY] = sLopunnyFormSpeciesIdTable,
     [SPECIES_GARCHOMP] = sGarchompFormSpeciesIdTable,
     [SPECIES_LUCARIO] = sLucarioFormSpeciesIdTable,
@@ -353,12 +356,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     // Wormadam
     [SPECIES_WORMADAM_SANDY_CLOAK] = sWormadamFormSpeciesIdTable,
     [SPECIES_WORMADAM_TRASH_CLOAK] = sWormadamFormSpeciesIdTable,
-    // Cherrim
-    [SPECIES_CHERRIM_SUNSHINE] = sCherrimFormSpeciesIdTable,
-    // Shellos
-    [SPECIES_SHELLOS_EAST_SEA] = sShellosFormSpeciesIdTable,
-    // Gastrodon
-    [SPECIES_GASTRODON_EAST_SEA] = sGastrodonFormSpeciesIdTable,
     // Rotom
     [SPECIES_ROTOM_HEAT] = sRotomFormSpeciesIdTable,
     [SPECIES_ROTOM_WASH] = sRotomFormSpeciesIdTable,

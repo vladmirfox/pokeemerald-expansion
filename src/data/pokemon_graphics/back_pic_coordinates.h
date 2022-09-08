@@ -2295,12 +2295,27 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = MON_COORDS_SIZE(40, 56),
         .y_offset = 9,
     },
+    [SPECIES_CHERRIM_SUNSHINE] =
+    {
+        .size = MON_COORDS_SIZE(64, 56),
+        .y_offset = 6,
+    },
     [SPECIES_SHELLOS] =
     {
         .size = MON_COORDS_SIZE(40, 56),
         .y_offset = 8,
     },
+    [SPECIES_SHELLOS_EAST_SEA] =
+    {
+        .size = MON_COORDS_SIZE(56, 48),
+        .y_offset = 8,
+    },
     [SPECIES_GASTRODON] =
+    {
+        .size = MON_COORDS_SIZE(56, 64),
+        .y_offset = 3,
+    },
+    [SPECIES_GASTRODON_EAST_SEA] =
     {
         .size = MON_COORDS_SIZE(56, 64),
         .y_offset = 3,
@@ -5295,24 +5310,6 @@ const struct MonCoords gMonBackPicCoords[] =
     {
         .size = MON_COORDS_SIZE(64, 64),
         .y_offset = 2,
-    },
-    // Cherrim
-    [SPECIES_CHERRIM_SUNSHINE] =
-    {
-        .size = MON_COORDS_SIZE(64, 56),
-        .y_offset = 6,
-    },
-    // Shellos
-    [SPECIES_SHELLOS_EAST_SEA] =
-    {
-        .size = MON_COORDS_SIZE(56, 48),
-        .y_offset = 8,
-    },
-    // Gastrodon
-    [SPECIES_GASTRODON_EAST_SEA] =
-    {
-        .size = MON_COORDS_SIZE(56, 64),
-        .y_offset = 3,
     },
     // Rotom
     [SPECIES_ROTOM_HEAT] =

@@ -447,7 +447,11 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(SHIELDON, gMonShinyPalette_Shieldon),
     SPECIES_SHINY_PAL(BASTIODON, gMonShinyPalette_Bastiodon),
     SPECIES_SHINY_PAL(BURMY, gMonShinyPalette_Burmy),
+    SPECIES_SHINY_PAL(BURMY_SANDY_CLOAK, gMonShinyPalette_BurmySandyCloak),
+    SPECIES_SHINY_PAL(BURMY_TRASH_CLOAK, gMonShinyPalette_BurmyTrashCloak),
     SPECIES_SHINY_PAL(WORMADAM, gMonShinyPalette_Wormadam),
+    SPECIES_SHINY_PAL(WORMADAM_SANDY_CLOAK, gMonShinyPalette_WormadamSandyCloak),
+    SPECIES_SHINY_PAL(WORMADAM_TRASH_CLOAK, gMonShinyPalette_WormadamTrashCloak),
     SPECIES_SHINY_PAL(MOTHIM, gMonShinyPalette_Mothim),
     SPECIES_SHINY_PAL(COMBEE, gMonShinyPalette_Combee),
     SPECIES_SHINY_PAL(VESPIQUEN, gMonShinyPalette_Vespiquen),
@@ -456,8 +460,11 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(FLOATZEL, gMonShinyPalette_Floatzel),
     SPECIES_SHINY_PAL(CHERUBI, gMonShinyPalette_Cherubi),
     SPECIES_SHINY_PAL(CHERRIM, gMonShinyPalette_Cherrim),
+    SPECIES_SHINY_PAL(CHERRIM_SUNSHINE, gMonShinyPalette_CherrimSunshine),
     SPECIES_SHINY_PAL(SHELLOS, gMonShinyPalette_Shellos),
+    SPECIES_SHINY_PAL(SHELLOS_EAST_SEA, gMonShinyPalette_ShellosEastSea),
     SPECIES_SHINY_PAL(GASTRODON, gMonShinyPalette_Gastrodon),
+    SPECIES_SHINY_PAL(GASTRODON_EAST_SEA, gMonShinyPalette_GastrodonEastSea),
     SPECIES_SHINY_PAL(AMBIPOM, gMonShinyPalette_Ambipom),
     SPECIES_SHINY_PAL(DRIFLOON, gMonShinyPalette_Drifloon),
     SPECIES_SHINY_PAL(DRIFBLIM, gMonShinyPalette_Drifblim),
@@ -1091,17 +1098,7 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(PICHU_SPIKY_EARED, gMonShinyPalette_PichuSpikyEared),
 
 #if P_GEN_4_POKEMON == TRUE
-    SPECIES_SHINY_PAL(BURMY_SANDY_CLOAK, gMonShinyPalette_BurmySandyCloak),
-    SPECIES_SHINY_PAL(BURMY_TRASH_CLOAK, gMonShinyPalette_BurmyTrashCloak),
 
-    SPECIES_SHINY_PAL(WORMADAM_SANDY_CLOAK, gMonShinyPalette_WormadamSandyCloak),
-    SPECIES_SHINY_PAL(WORMADAM_TRASH_CLOAK, gMonShinyPalette_WormadamTrashCloak),
-
-    SPECIES_SHINY_PAL(CHERRIM_SUNSHINE, gMonShinyPalette_CherrimSunshine),
-
-    SPECIES_SHINY_PAL(SHELLOS_EAST_SEA, gMonShinyPalette_ShellosEastSea),
-
-    SPECIES_SHINY_PAL(GASTRODON_EAST_SEA, gMonShinyPalette_GastrodonEastSea),
 
     SPECIES_SHINY_PAL(ROTOM_HEAT, gMonShinyPalette_RotomHeat),
     SPECIES_SHINY_PAL(ROTOM_WASH, gMonShinyPalette_RotomWash),

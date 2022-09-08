@@ -447,7 +447,11 @@ const struct CompressedSpriteSheet gMonBackPicTable[] =
     SPECIES_SPRITE(SHIELDON, gMonBackPic_Shieldon),
     SPECIES_SPRITE(BASTIODON, gMonBackPic_Bastiodon),
     SPECIES_SPRITE(BURMY, gMonBackPic_Burmy),
+    SPECIES_SPRITE(BURMY_SANDY_CLOAK, gMonBackPic_BurmySandyCloak),
+    SPECIES_SPRITE(BURMY_TRASH_CLOAK, gMonBackPic_BurmyTrashCloak),
     SPECIES_SPRITE(WORMADAM, gMonBackPic_Wormadam),
+    SPECIES_SPRITE(WORMADAM_SANDY_CLOAK, gMonBackPic_WormadamSandyCloak),
+    SPECIES_SPRITE(WORMADAM_TRASH_CLOAK, gMonBackPic_WormadamTrashCloak),
     SPECIES_SPRITE(MOTHIM, gMonBackPic_Mothim),
     SPECIES_SPRITE(COMBEE, gMonBackPic_Combee),
     SPECIES_SPRITE(VESPIQUEN, gMonBackPic_Vespiquen),
@@ -456,8 +460,11 @@ const struct CompressedSpriteSheet gMonBackPicTable[] =
     SPECIES_SPRITE(FLOATZEL, gMonBackPic_Floatzel),
     SPECIES_SPRITE(CHERUBI, gMonBackPic_Cherubi),
     SPECIES_SPRITE(CHERRIM, gMonBackPic_Cherrim),
+    SPECIES_SPRITE(CHERRIM_SUNSHINE, gMonBackPic_CherrimSunshine),
     SPECIES_SPRITE(SHELLOS, gMonBackPic_Shellos),
+    SPECIES_SPRITE(SHELLOS_EAST_SEA, gMonBackPic_ShellosEastSea),
     SPECIES_SPRITE(GASTRODON, gMonBackPic_Gastrodon),
+    SPECIES_SPRITE(GASTRODON_EAST_SEA, gMonBackPic_GastrodonEastSea),
     SPECIES_SPRITE(AMBIPOM, gMonBackPic_Ambipom),
     SPECIES_SPRITE(DRIFLOON, gMonBackPic_Drifloon),
     SPECIES_SPRITE(DRIFBLIM, gMonBackPic_Drifblim),
@@ -1091,17 +1098,7 @@ const struct CompressedSpriteSheet gMonBackPicTable[] =
     SPECIES_SPRITE(PICHU_SPIKY_EARED, gMonBackPic_PichuSpikyEared),
 
 #if P_GEN_4_POKEMON == TRUE
-    SPECIES_SPRITE(BURMY_SANDY_CLOAK, gMonBackPic_BurmySandyCloak),
-    SPECIES_SPRITE(BURMY_TRASH_CLOAK, gMonBackPic_BurmyTrashCloak),
 
-    SPECIES_SPRITE(WORMADAM_SANDY_CLOAK, gMonBackPic_WormadamSandyCloak),
-    SPECIES_SPRITE(WORMADAM_TRASH_CLOAK, gMonBackPic_WormadamTrashCloak),
-
-    SPECIES_SPRITE(CHERRIM_SUNSHINE, gMonBackPic_CherrimSunshine),
-
-    SPECIES_SPRITE(SHELLOS_EAST_SEA, gMonBackPic_ShellosEastSea),
-
-    SPECIES_SPRITE(GASTRODON_EAST_SEA, gMonBackPic_GastrodonEastSea),
 
     SPECIES_SPRITE(ROTOM_HEAT, gMonBackPic_RotomHeat),
     SPECIES_SPRITE(ROTOM_WASH, gMonBackPic_RotomWash),

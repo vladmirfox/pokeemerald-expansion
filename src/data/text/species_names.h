@@ -455,8 +455,11 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_FLOATZEL] = _("Floatzel"),
     [SPECIES_CHERUBI] = _("Cherubi"),
     [SPECIES_CHERRIM] = _("Cherrim"),
+    [SPECIES_CHERRIM_SUNSHINE] = _("Cherrim"),
     [SPECIES_SHELLOS] = _("Shellos"),
+    [SPECIES_SHELLOS_EAST_SEA] = _("Shellos"),
     [SPECIES_GASTRODON] = _("Gastrodon"),
+    [SPECIES_GASTRODON_EAST_SEA] = _("Gastrodon"),
     [SPECIES_AMBIPOM] = _("Ambipom"),
     [SPECIES_DRIFLOON] = _("Drifloon"),
     [SPECIES_DRIFBLIM] = _("Drifblim"),
@@ -1100,12 +1103,6 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     // Wormadam
     [SPECIES_WORMADAM_SANDY_CLOAK] = _("Wormadam"),
     [SPECIES_WORMADAM_TRASH_CLOAK] = _("Wormadam"),
-    // Cherrim
-    [SPECIES_CHERRIM_SUNSHINE] = _("Cherrim"),
-    // Shellos
-    [SPECIES_SHELLOS_EAST_SEA] = _("Shellos"),
-    // Gastrodon
-    [SPECIES_GASTRODON_EAST_SEA] = _("Gastrodon"),
     // Rotom
     [SPECIES_ROTOM_HEAT] = _("Rotom"),
     [SPECIES_ROTOM_FAN] = _("Rotom"),

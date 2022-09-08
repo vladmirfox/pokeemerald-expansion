@@ -451,500 +451,512 @@
 #define SPECIES_RAMPARDOS                    442
 #define SPECIES_SHIELDON                     443
 #define SPECIES_BASTIODON                    444
-#define SPECIES_BURMY                        445
-#define SPECIES_WORMADAM                     446
-#define SPECIES_MOTHIM                       447
-#define SPECIES_COMBEE                       448
-#define SPECIES_VESPIQUEN                    449
-#define SPECIES_PACHIRISU                    450
-#define SPECIES_BUIZEL                       451
-#define SPECIES_FLOATZEL                     452
-#define SPECIES_CHERUBI                      453
-#define SPECIES_CHERRIM                      454
-#define SPECIES_SHELLOS                      455
-#define SPECIES_GASTRODON                    456
-#define SPECIES_AMBIPOM                      457
-#define SPECIES_DRIFLOON                     458
-#define SPECIES_DRIFBLIM                     459
-#define SPECIES_BUNEARY                      460
-#define SPECIES_LOPUNNY                      461
-#define SPECIES_MISMAGIUS                    462
-#define SPECIES_HONCHKROW                    463
-#define SPECIES_GLAMEOW                      464
-#define SPECIES_PURUGLY                      465
-#define SPECIES_CHINGLING                    466
-#define SPECIES_STUNKY                       467
-#define SPECIES_SKUNTANK                     468
-#define SPECIES_BRONZOR                      469
-#define SPECIES_BRONZONG                     470
-#define SPECIES_BONSLY                       471
-#define SPECIES_MIME_JR                      472
-#define SPECIES_HAPPINY                      473
-#define SPECIES_CHATOT                       474
-#define SPECIES_SPIRITOMB                    475
-#define SPECIES_GIBLE                        476
-#define SPECIES_GABITE                       477
-#define SPECIES_GARCHOMP                     478
-#define SPECIES_MUNCHLAX                     479
-#define SPECIES_RIOLU                        480
-#define SPECIES_LUCARIO                      481
-#define SPECIES_HIPPOPOTAS                   482
-#define SPECIES_HIPPOWDON                    483
-#define SPECIES_SKORUPI                      484
-#define SPECIES_DRAPION                      485
-#define SPECIES_CROAGUNK                     486
-#define SPECIES_TOXICROAK                    487
-#define SPECIES_CARNIVINE                    488
-#define SPECIES_FINNEON                      489
-#define SPECIES_LUMINEON                     490
-#define SPECIES_MANTYKE                      491
-#define SPECIES_SNOVER                       492
-#define SPECIES_ABOMASNOW                    493
-#define SPECIES_WEAVILE                      494
-#define SPECIES_MAGNEZONE                    495
-#define SPECIES_LICKILICKY                   496
-#define SPECIES_RHYPERIOR                    497
-#define SPECIES_TANGROWTH                    498
-#define SPECIES_ELECTIVIRE                   499
-#define SPECIES_MAGMORTAR                    500
-#define SPECIES_TOGEKISS                     501
-#define SPECIES_YANMEGA                      502
-#define SPECIES_LEAFEON                      503
-#define SPECIES_GLACEON                      504
-#define SPECIES_GLISCOR                      505
-#define SPECIES_MAMOSWINE                    506
-#define SPECIES_PORYGON_Z                    507
-#define SPECIES_GALLADE                      508
-#define SPECIES_PROBOPASS                    509
-#define SPECIES_DUSKNOIR                     510
-#define SPECIES_FROSLASS                     511
-#define SPECIES_ROTOM                        512
-#define SPECIES_UXIE                         513
-#define SPECIES_MESPRIT                      514
-#define SPECIES_AZELF                        515
-#define SPECIES_DIALGA                       516
-#define SPECIES_PALKIA                       517
-#define SPECIES_HEATRAN                      518
-#define SPECIES_REGIGIGAS                    519
-#define SPECIES_GIRATINA                     520
-#define SPECIES_CRESSELIA                    521
-#define SPECIES_PHIONE                       522
-#define SPECIES_MANAPHY                      523
-#define SPECIES_DARKRAI                      524
-#define SPECIES_SHAYMIN                      525
-#define SPECIES_ARCEUS                       526
-#define SPECIES_VICTINI                      527
-#define SPECIES_SNIVY                        528
-#define SPECIES_SERVINE                      529
-#define SPECIES_SERPERIOR                    530
-#define SPECIES_TEPIG                        531
-#define SPECIES_PIGNITE                      532
-#define SPECIES_EMBOAR                       533
-#define SPECIES_OSHAWOTT                     534
-#define SPECIES_DEWOTT                       535
-#define SPECIES_SAMUROTT                     536
-#define SPECIES_PATRAT                       537
-#define SPECIES_WATCHOG                      538
-#define SPECIES_LILLIPUP                     539
-#define SPECIES_HERDIER                      540
-#define SPECIES_STOUTLAND                    541
-#define SPECIES_PURRLOIN                     542
-#define SPECIES_LIEPARD                      543
-#define SPECIES_PANSAGE                      544
-#define SPECIES_SIMISAGE                     545
-#define SPECIES_PANSEAR                      546
-#define SPECIES_SIMISEAR                     547
-#define SPECIES_PANPOUR                      548
-#define SPECIES_SIMIPOUR                     549
-#define SPECIES_MUNNA                        550
-#define SPECIES_MUSHARNA                     551
-#define SPECIES_PIDOVE                       552
-#define SPECIES_TRANQUILL                    553
-#define SPECIES_UNFEZANT                     554
-#define SPECIES_BLITZLE                      555
-#define SPECIES_ZEBSTRIKA                    556
-#define SPECIES_ROGGENROLA                   557
-#define SPECIES_BOLDORE                      558
-#define SPECIES_GIGALITH                     559
-#define SPECIES_WOOBAT                       560
-#define SPECIES_SWOOBAT                      561
-#define SPECIES_DRILBUR                      562
-#define SPECIES_EXCADRILL                    563
-#define SPECIES_AUDINO                       564
-#define SPECIES_TIMBURR                      565
-#define SPECIES_GURDURR                      566
-#define SPECIES_CONKELDURR                   567
-#define SPECIES_TYMPOLE                      568
-#define SPECIES_PALPITOAD                    569
-#define SPECIES_SEISMITOAD                   570
-#define SPECIES_THROH                        571
-#define SPECIES_SAWK                         572
-#define SPECIES_SEWADDLE                     573
-#define SPECIES_SWADLOON                     574
-#define SPECIES_LEAVANNY                     575
-#define SPECIES_VENIPEDE                     576
-#define SPECIES_WHIRLIPEDE                   577
-#define SPECIES_SCOLIPEDE                    578
-#define SPECIES_COTTONEE                     579
-#define SPECIES_WHIMSICOTT                   580
-#define SPECIES_PETILIL                      581
-#define SPECIES_LILLIGANT                    582
-#define SPECIES_BASCULIN                     583
-#define SPECIES_SANDILE                      584
-#define SPECIES_KROKOROK                     585
-#define SPECIES_KROOKODILE                   586
-#define SPECIES_DARUMAKA                     587
-#define SPECIES_DARMANITAN                   588
-#define SPECIES_MARACTUS                     589
-#define SPECIES_DWEBBLE                      590
-#define SPECIES_CRUSTLE                      591
-#define SPECIES_SCRAGGY                      592
-#define SPECIES_SCRAFTY                      593
-#define SPECIES_SIGILYPH                     594
-#define SPECIES_YAMASK                       595
-#define SPECIES_COFAGRIGUS                   596
-#define SPECIES_TIRTOUGA                     597
-#define SPECIES_CARRACOSTA                   598
-#define SPECIES_ARCHEN                       599
-#define SPECIES_ARCHEOPS                     600
-#define SPECIES_TRUBBISH                     601
-#define SPECIES_GARBODOR                     602
-#define SPECIES_ZORUA                        603
-#define SPECIES_ZOROARK                      604
-#define SPECIES_MINCCINO                     605
-#define SPECIES_CINCCINO                     606
-#define SPECIES_GOTHITA                      607
-#define SPECIES_GOTHORITA                    608
-#define SPECIES_GOTHITELLE                   609
-#define SPECIES_SOLOSIS                      610
-#define SPECIES_DUOSION                      611
-#define SPECIES_REUNICLUS                    612
-#define SPECIES_DUCKLETT                     613
-#define SPECIES_SWANNA                       614
-#define SPECIES_VANILLITE                    615
-#define SPECIES_VANILLISH                    616
-#define SPECIES_VANILLUXE                    617
-#define SPECIES_DEERLING                     618
-#define SPECIES_SAWSBUCK                     619
-#define SPECIES_EMOLGA                       620
-#define SPECIES_KARRABLAST                   621
-#define SPECIES_ESCAVALIER                   622
-#define SPECIES_FOONGUS                      623
-#define SPECIES_AMOONGUSS                    624
-#define SPECIES_FRILLISH                     625
-#define SPECIES_JELLICENT                    626
-#define SPECIES_ALOMOMOLA                    627
-#define SPECIES_JOLTIK                       628
-#define SPECIES_GALVANTULA                   629
-#define SPECIES_FERROSEED                    630
-#define SPECIES_FERROTHORN                   631
-#define SPECIES_KLINK                        632
-#define SPECIES_KLANG                        633
-#define SPECIES_KLINKLANG                    634
-#define SPECIES_TYNAMO                       635
-#define SPECIES_EELEKTRIK                    636
-#define SPECIES_EELEKTROSS                   637
-#define SPECIES_ELGYEM                       638
-#define SPECIES_BEHEEYEM                     639
-#define SPECIES_LITWICK                      640
-#define SPECIES_LAMPENT                      641
-#define SPECIES_CHANDELURE                   642
-#define SPECIES_AXEW                         643
-#define SPECIES_FRAXURE                      644
-#define SPECIES_HAXORUS                      645
-#define SPECIES_CUBCHOO                      646
-#define SPECIES_BEARTIC                      647
-#define SPECIES_CRYOGONAL                    648
-#define SPECIES_SHELMET                      649
-#define SPECIES_ACCELGOR                     650
-#define SPECIES_STUNFISK                     651
-#define SPECIES_MIENFOO                      652
-#define SPECIES_MIENSHAO                     653
-#define SPECIES_DRUDDIGON                    654
-#define SPECIES_GOLETT                       655
-#define SPECIES_GOLURK                       656
-#define SPECIES_PAWNIARD                     657
-#define SPECIES_BISHARP                      658
-#define SPECIES_BOUFFALANT                   659
-#define SPECIES_RUFFLET                      660
-#define SPECIES_BRAVIARY                     661
-#define SPECIES_VULLABY                      662
-#define SPECIES_MANDIBUZZ                    663
-#define SPECIES_HEATMOR                      664
-#define SPECIES_DURANT                       665
-#define SPECIES_DEINO                        666
-#define SPECIES_ZWEILOUS                     667
-#define SPECIES_HYDREIGON                    668
-#define SPECIES_LARVESTA                     669
-#define SPECIES_VOLCARONA                    670
-#define SPECIES_COBALION                     671
-#define SPECIES_TERRAKION                    672
-#define SPECIES_VIRIZION                     673
-#define SPECIES_TORNADUS                     674
-#define SPECIES_THUNDURUS                    675
-#define SPECIES_RESHIRAM                     676
-#define SPECIES_ZEKROM                       677
-#define SPECIES_LANDORUS                     678
-#define SPECIES_KYUREM                       679
-#define SPECIES_KELDEO                       680
-#define SPECIES_MELOETTA                     681
-#define SPECIES_GENESECT                     682
-#define SPECIES_CHESPIN                      683
-#define SPECIES_QUILLADIN                    684
-#define SPECIES_CHESNAUGHT                   685
-#define SPECIES_FENNEKIN                     686
-#define SPECIES_BRAIXEN                      687
-#define SPECIES_DELPHOX                      688
-#define SPECIES_FROAKIE                      689
-#define SPECIES_FROGADIER                    690
-#define SPECIES_GRENINJA                     691
-#define SPECIES_BUNNELBY                     692
-#define SPECIES_DIGGERSBY                    693
-#define SPECIES_FLETCHLING                   694
-#define SPECIES_FLETCHINDER                  695
-#define SPECIES_TALONFLAME                   696
-#define SPECIES_SCATTERBUG                   697
-#define SPECIES_SPEWPA                       698
-#define SPECIES_VIVILLON                     699 // Icy Snow Pattern
-#define SPECIES_LITLEO                       700
-#define SPECIES_PYROAR                       701
-#define SPECIES_FLABEBE                      702 // Red Flower
-#define SPECIES_FLOETTE                      703
-#define SPECIES_FLORGES                      704
-#define SPECIES_SKIDDO                       705
-#define SPECIES_GOGOAT                       706
-#define SPECIES_PANCHAM                      707
-#define SPECIES_PANGORO                      708
-#define SPECIES_FURFROU                      709
-#define SPECIES_ESPURR                       710
-#define SPECIES_MEOWSTIC                     711
-#define SPECIES_HONEDGE                      712
-#define SPECIES_DOUBLADE                     713
-#define SPECIES_AEGISLASH                    714
-#define SPECIES_SPRITZEE                     715
-#define SPECIES_AROMATISSE                   716
-#define SPECIES_SWIRLIX                      717
-#define SPECIES_SLURPUFF                     718
-#define SPECIES_INKAY                        719
-#define SPECIES_MALAMAR                      720
-#define SPECIES_BINACLE                      721
-#define SPECIES_BARBARACLE                   722
-#define SPECIES_SKRELP                       723
-#define SPECIES_DRAGALGE                     724
-#define SPECIES_CLAUNCHER                    725
-#define SPECIES_CLAWITZER                    726
-#define SPECIES_HELIOPTILE                   727
-#define SPECIES_HELIOLISK                    728
-#define SPECIES_TYRUNT                       729
-#define SPECIES_TYRANTRUM                    730
-#define SPECIES_AMAURA                       731
-#define SPECIES_AURORUS                      732
-#define SPECIES_SYLVEON                      733
-#define SPECIES_HAWLUCHA                     734
-#define SPECIES_DEDENNE                      735
-#define SPECIES_CARBINK                      736
-#define SPECIES_GOOMY                        737
-#define SPECIES_SLIGGOO                      738
-#define SPECIES_GOODRA                       739
-#define SPECIES_KLEFKI                       740
-#define SPECIES_PHANTUMP                     741
-#define SPECIES_TREVENANT                    742
-#define SPECIES_PUMPKABOO                    743
-#define SPECIES_GOURGEIST                    744
-#define SPECIES_BERGMITE                     745
-#define SPECIES_AVALUGG                      746
-#define SPECIES_NOIBAT                       747
-#define SPECIES_NOIVERN                      748
-#define SPECIES_XERNEAS                      749
-#define SPECIES_YVELTAL                      750
-#define SPECIES_ZYGARDE                      751
-#define SPECIES_DIANCIE                      752
-#define SPECIES_HOOPA                        753
-#define SPECIES_VOLCANION                    754
-#define SPECIES_ROWLET                       755
-#define SPECIES_DARTRIX                      756
-#define SPECIES_DECIDUEYE                    757
-#define SPECIES_LITTEN                       758
-#define SPECIES_TORRACAT                     759
-#define SPECIES_INCINEROAR                   760
-#define SPECIES_POPPLIO                      761
-#define SPECIES_BRIONNE                      762
-#define SPECIES_PRIMARINA                    763
-#define SPECIES_PIKIPEK                      764
-#define SPECIES_TRUMBEAK                     765
-#define SPECIES_TOUCANNON                    766
-#define SPECIES_YUNGOOS                      767
-#define SPECIES_GUMSHOOS                     768
-#define SPECIES_GRUBBIN                      769
-#define SPECIES_CHARJABUG                    770
-#define SPECIES_VIKAVOLT                     771
-#define SPECIES_CRABRAWLER                   772
-#define SPECIES_CRABOMINABLE                 773
-#define SPECIES_ORICORIO                     774
-#define SPECIES_CUTIEFLY                     775
-#define SPECIES_RIBOMBEE                     776
-#define SPECIES_ROCKRUFF                     777
-#define SPECIES_LYCANROC                     778
-#define SPECIES_WISHIWASHI                   779
-#define SPECIES_MAREANIE                     780
-#define SPECIES_TOXAPEX                      781
-#define SPECIES_MUDBRAY                      782
-#define SPECIES_MUDSDALE                     783
-#define SPECIES_DEWPIDER                     784
-#define SPECIES_ARAQUANID                    785
-#define SPECIES_FOMANTIS                     786
-#define SPECIES_LURANTIS                     787
-#define SPECIES_MORELULL                     788
-#define SPECIES_SHIINOTIC                    789
-#define SPECIES_SALANDIT                     790
-#define SPECIES_SALAZZLE                     791
-#define SPECIES_STUFFUL                      792
-#define SPECIES_BEWEAR                       793
-#define SPECIES_BOUNSWEET                    794
-#define SPECIES_STEENEE                      795
-#define SPECIES_TSAREENA                     796
-#define SPECIES_COMFEY                       797
-#define SPECIES_ORANGURU                     798
-#define SPECIES_PASSIMIAN                    799
-#define SPECIES_WIMPOD                       800
-#define SPECIES_GOLISOPOD                    801
-#define SPECIES_SANDYGAST                    802
-#define SPECIES_PALOSSAND                    803
-#define SPECIES_PYUKUMUKU                    804
-#define SPECIES_TYPE_NULL                    805
-#define SPECIES_SILVALLY                     806
-#define SPECIES_MINIOR                       807
-#define SPECIES_KOMALA                       808
-#define SPECIES_TURTONATOR                   809
-#define SPECIES_TOGEDEMARU                   810
-#define SPECIES_MIMIKYU                      811
-#define SPECIES_BRUXISH                      812
-#define SPECIES_DRAMPA                       813
-#define SPECIES_DHELMISE                     814
-#define SPECIES_JANGMO_O                     815
-#define SPECIES_HAKAMO_O                     816
-#define SPECIES_KOMMO_O                      817
-#define SPECIES_TAPU_KOKO                    818
-#define SPECIES_TAPU_LELE                    819
-#define SPECIES_TAPU_BULU                    820
-#define SPECIES_TAPU_FINI                    821
-#define SPECIES_COSMOG                       822
-#define SPECIES_COSMOEM                      823
-#define SPECIES_SOLGALEO                     824
-#define SPECIES_LUNALA                       825
-#define SPECIES_NIHILEGO                     826
-#define SPECIES_BUZZWOLE                     827
-#define SPECIES_PHEROMOSA                    828
-#define SPECIES_XURKITREE                    829
-#define SPECIES_CELESTEELA                   830
-#define SPECIES_KARTANA                      831
-#define SPECIES_GUZZLORD                     832
-#define SPECIES_NECROZMA                     833
-#define SPECIES_MAGEARNA                     834
-#define SPECIES_MARSHADOW                    835
-#define SPECIES_POIPOLE                      836
-#define SPECIES_NAGANADEL                    837
-#define SPECIES_STAKATAKA                    838
-#define SPECIES_BLACEPHALON                  839
-#define SPECIES_ZERAORA                      840
-#define SPECIES_MELTAN                       841
-#define SPECIES_MELMETAL                     842
-#define SPECIES_GROOKEY                      843
-#define SPECIES_THWACKEY                     844
-#define SPECIES_RILLABOOM                    845
-#define SPECIES_SCORBUNNY                    846
-#define SPECIES_RABOOT                       847
-#define SPECIES_CINDERACE                    848
-#define SPECIES_SOBBLE                       849
-#define SPECIES_DRIZZILE                     850
-#define SPECIES_INTELEON                     851
-#define SPECIES_SKWOVET                      852
-#define SPECIES_GREEDENT                     853
-#define SPECIES_ROOKIDEE                     854
-#define SPECIES_CORVISQUIRE                  855
-#define SPECIES_CORVIKNIGHT                  856
-#define SPECIES_BLIPBUG                      857
-#define SPECIES_DOTTLER                      858
-#define SPECIES_ORBEETLE                     859
-#define SPECIES_NICKIT                       860
-#define SPECIES_THIEVUL                      861
-#define SPECIES_GOSSIFLEUR                   862
-#define SPECIES_ELDEGOSS                     863
-#define SPECIES_WOOLOO                       864
-#define SPECIES_DUBWOOL                      865
-#define SPECIES_CHEWTLE                      866
-#define SPECIES_DREDNAW                      867
-#define SPECIES_YAMPER                       868
-#define SPECIES_BOLTUND                      869
-#define SPECIES_ROLYCOLY                     870
-#define SPECIES_CARKOL                       871
-#define SPECIES_COALOSSAL                    872
-#define SPECIES_APPLIN                       873
-#define SPECIES_FLAPPLE                      874
-#define SPECIES_APPLETUN                     875
-#define SPECIES_SILICOBRA                    876
-#define SPECIES_SANDACONDA                   877
-#define SPECIES_CRAMORANT                    878
-#define SPECIES_ARROKUDA                     879
-#define SPECIES_BARRASKEWDA                  880
-#define SPECIES_TOXEL                        881
-#define SPECIES_TOXTRICITY                   882
-#define SPECIES_SIZZLIPEDE                   883
-#define SPECIES_CENTISKORCH                  884
-#define SPECIES_CLOBBOPUS                    885
-#define SPECIES_GRAPPLOCT                    886
-#define SPECIES_SINISTEA                     887
-#define SPECIES_POLTEAGEIST                  888
-#define SPECIES_HATENNA                      889
-#define SPECIES_HATTREM                      890
-#define SPECIES_HATTERENE                    891
-#define SPECIES_IMPIDIMP                     892
-#define SPECIES_MORGREM                      893
-#define SPECIES_GRIMMSNARL                   894
-#define SPECIES_OBSTAGOON                    895
-#define SPECIES_PERRSERKER                   896
-#define SPECIES_CURSOLA                      897
-#define SPECIES_SIRFETCHD                    898
-#define SPECIES_MR_RIME                      899
-#define SPECIES_RUNERIGUS                    900
-#define SPECIES_MILCERY                      901
-#define SPECIES_ALCREMIE                     902
-#define SPECIES_FALINKS                      903
-#define SPECIES_PINCURCHIN                   904
-#define SPECIES_SNOM                         905
-#define SPECIES_FROSMOTH                     906
-#define SPECIES_STONJOURNER                  907
-#define SPECIES_EISCUE                       908
-#define SPECIES_INDEEDEE                     909
-#define SPECIES_MORPEKO                      910
-#define SPECIES_CUFANT                       911
-#define SPECIES_COPPERAJAH                   912
-#define SPECIES_DRACOZOLT                    913
-#define SPECIES_ARCTOZOLT                    914
-#define SPECIES_DRACOVISH                    915
-#define SPECIES_ARCTOVISH                    916
-#define SPECIES_DURALUDON                    917
-#define SPECIES_DREEPY                       918
-#define SPECIES_DRAKLOAK                     919
-#define SPECIES_DRAGAPULT                    920
-#define SPECIES_ZACIAN                       921
-#define SPECIES_ZAMAZENTA                    922
-#define SPECIES_ETERNATUS                    923
-#define SPECIES_KUBFU                        924
-#define SPECIES_URSHIFU                      925
-#define SPECIES_ZARUDE                       926
-#define SPECIES_REGIELEKI                    927
-#define SPECIES_REGIDRAGO                    928
-#define SPECIES_GLASTRIER                    929
-#define SPECIES_SPECTRIER                    930
-#define SPECIES_CALYREX                      931
-#define SPECIES_WYRDEER                      932
-#define SPECIES_KLEAVOR                      933
-#define SPECIES_URSALUNA                     934
-#define SPECIES_BASCULEGION                  935
-#define SPECIES_SNEASLER                     936
-#define SPECIES_OVERQWIL                     937
-#define SPECIES_ENAMORUS                     938
+#define SPECIES_BURMY                        SPECIES_BURMY_PLANT_CLOAK
+#define SPECIES_BURMY_PLANT_CLOAK            445
+#define SPECIES_BURMY_SANDY_CLOAK            446
+#define SPECIES_BURMY_TRASH_CLOAK            447
+#define SPECIES_WORMADAM                     SPECIES_WORMADAM_PLANT_CLOAK
+#define SPECIES_WORMADAM_PLANT_CLOAK         448
+#define SPECIES_WORMADAM_SANDY_CLOAK         449
+#define SPECIES_WORMADAM_TRASH_CLOAK         450
+#define SPECIES_MOTHIM                       451
+#define SPECIES_COMBEE                       452
+#define SPECIES_VESPIQUEN                    453
+#define SPECIES_PACHIRISU                    454
+#define SPECIES_BUIZEL                       455
+#define SPECIES_FLOATZEL                     456
+#define SPECIES_CHERUBI                      457
+#define SPECIES_CHERRIM                      SPECIES_CHERRIM_OVERCAST
+#define SPECIES_CHERRIM_OVERCAST             458
+#define SPECIES_CHERRIM_SUNSHINE             459
+#define SPECIES_SHELLOS                      SPECIES_SHELLOS_WEST_SEA
+#define SPECIES_SHELLOS_WEST_SEA             460
+#define SPECIES_SHELLOS_EAST_SEA             461
+#define SPECIES_GASTRODON                    SPECIES_GASTRODON_WEST_SEA
+#define SPECIES_GASTRODON_WEST_SEA           462
+#define SPECIES_GASTRODON_EAST_SEA           463
+#define SPECIES_AMBIPOM                      464
+#define SPECIES_DRIFLOON                     465
+#define SPECIES_DRIFBLIM                     466
+#define SPECIES_BUNEARY                      467
+#define SPECIES_LOPUNNY                      468
+#define SPECIES_MISMAGIUS                    469
+#define SPECIES_HONCHKROW                    470
+#define SPECIES_GLAMEOW                      471
+#define SPECIES_PURUGLY                      472
+#define SPECIES_CHINGLING                    473
+#define SPECIES_STUNKY                       474
+#define SPECIES_SKUNTANK                     475
+#define SPECIES_BRONZOR                      476
+#define SPECIES_BRONZONG                     477
+#define SPECIES_BONSLY                       478
+#define SPECIES_MIME_JR                      479
+#define SPECIES_HAPPINY                      480
+#define SPECIES_CHATOT                       481
+#define SPECIES_SPIRITOMB                    482
+#define SPECIES_GIBLE                        483
+#define SPECIES_GABITE                       484
+#define SPECIES_GARCHOMP                     485
+#define SPECIES_MUNCHLAX                     486
+#define SPECIES_RIOLU                        487
+#define SPECIES_LUCARIO                      488
+#define SPECIES_HIPPOPOTAS                   489
+#define SPECIES_HIPPOWDON                    490
+#define SPECIES_SKORUPI                      491
+#define SPECIES_DRAPION                      492
+#define SPECIES_CROAGUNK                     493
+#define SPECIES_TOXICROAK                    494
+#define SPECIES_CARNIVINE                    495
+#define SPECIES_FINNEON                      496
+#define SPECIES_LUMINEON                     497
+#define SPECIES_MANTYKE                      498
+#define SPECIES_SNOVER                       499
+#define SPECIES_ABOMASNOW                    500
+#define SPECIES_WEAVILE                      501
+#define SPECIES_MAGNEZONE                    502
+#define SPECIES_LICKILICKY                   503
+#define SPECIES_RHYPERIOR                    504
+#define SPECIES_TANGROWTH                    505
+#define SPECIES_ELECTIVIRE                   506
+#define SPECIES_MAGMORTAR                    507
+#define SPECIES_TOGEKISS                     508
+#define SPECIES_YANMEGA                      509
+#define SPECIES_LEAFEON                      510
+#define SPECIES_GLACEON                      511
+#define SPECIES_GLISCOR                      512
+#define SPECIES_MAMOSWINE                    513
+#define SPECIES_PORYGON_Z                    514
+#define SPECIES_GALLADE                      515
+#define SPECIES_PROBOPASS                    516
+#define SPECIES_DUSKNOIR                     517
+#define SPECIES_FROSLASS                     518
+#define SPECIES_ROTOM                        519
+#define SPECIES_UXIE                         520
+#define SPECIES_MESPRIT                      521
+#define SPECIES_AZELF                        522
+#define SPECIES_DIALGA                       523
+#define SPECIES_PALKIA                       524
+#define SPECIES_HEATRAN                      525
+#define SPECIES_REGIGIGAS                    526
+#define SPECIES_GIRATINA                     527
+#define SPECIES_CRESSELIA                    528
+#define SPECIES_PHIONE                       529
+#define SPECIES_MANAPHY                      530
+#define SPECIES_DARKRAI                      531
+#define SPECIES_SHAYMIN                      532
+#define SPECIES_ARCEUS                       533
+#define SPECIES_VICTINI                      534
+#define SPECIES_SNIVY                        535
+#define SPECIES_SERVINE                      536
+#define SPECIES_SERPERIOR                    537
+#define SPECIES_TEPIG                        538
+#define SPECIES_PIGNITE                      539
+#define SPECIES_EMBOAR                       540
+#define SPECIES_OSHAWOTT                     541
+#define SPECIES_DEWOTT                       542
+#define SPECIES_SAMUROTT                     543
+#define SPECIES_PATRAT                       544
+#define SPECIES_WATCHOG                      545
+#define SPECIES_LILLIPUP                     546
+#define SPECIES_HERDIER                      547
+#define SPECIES_STOUTLAND                    548
+#define SPECIES_PURRLOIN                     549
+#define SPECIES_LIEPARD                      550
+#define SPECIES_PANSAGE                      551
+#define SPECIES_SIMISAGE                     552
+#define SPECIES_PANSEAR                      553
+#define SPECIES_SIMISEAR                     554
+#define SPECIES_PANPOUR                      555
+#define SPECIES_SIMIPOUR                     556
+#define SPECIES_MUNNA                        557
+#define SPECIES_MUSHARNA                     558
+#define SPECIES_PIDOVE                       559
+#define SPECIES_TRANQUILL                    560
+#define SPECIES_UNFEZANT                     561
+#define SPECIES_BLITZLE                      562
+#define SPECIES_ZEBSTRIKA                    563
+#define SPECIES_ROGGENROLA                   564
+#define SPECIES_BOLDORE                      565
+#define SPECIES_GIGALITH                     566
+#define SPECIES_WOOBAT                       567
+#define SPECIES_SWOOBAT                      568
+#define SPECIES_DRILBUR                      569
+#define SPECIES_EXCADRILL                    570
+#define SPECIES_AUDINO                       571
+#define SPECIES_TIMBURR                      572
+#define SPECIES_GURDURR                      573
+#define SPECIES_CONKELDURR                   574
+#define SPECIES_TYMPOLE                      575
+#define SPECIES_PALPITOAD                    576
+#define SPECIES_SEISMITOAD                   577
+#define SPECIES_THROH                        578
+#define SPECIES_SAWK                         579
+#define SPECIES_SEWADDLE                     580
+#define SPECIES_SWADLOON                     581
+#define SPECIES_LEAVANNY                     582
+#define SPECIES_VENIPEDE                     583
+#define SPECIES_WHIRLIPEDE                   584
+#define SPECIES_SCOLIPEDE                    585
+#define SPECIES_COTTONEE                     586
+#define SPECIES_WHIMSICOTT                   587
+#define SPECIES_PETILIL                      588
+#define SPECIES_LILLIGANT                    589
+#define SPECIES_BASCULIN                     590
+#define SPECIES_SANDILE                      591
+#define SPECIES_KROKOROK                     592
+#define SPECIES_KROOKODILE                   593
+#define SPECIES_DARUMAKA                     594
+#define SPECIES_DARMANITAN                   595
+#define SPECIES_MARACTUS                     596
+#define SPECIES_DWEBBLE                      597
+#define SPECIES_CRUSTLE                      598
+#define SPECIES_SCRAGGY                      599
+#define SPECIES_SCRAFTY                      600
+#define SPECIES_SIGILYPH                     601
+#define SPECIES_YAMASK                       602
+#define SPECIES_COFAGRIGUS                   603
+#define SPECIES_TIRTOUGA                     604
+#define SPECIES_CARRACOSTA                   605
+#define SPECIES_ARCHEN                       606
+#define SPECIES_ARCHEOPS                     607
+#define SPECIES_TRUBBISH                     608
+#define SPECIES_GARBODOR                     609
+#define SPECIES_ZORUA                        610
+#define SPECIES_ZOROARK                      611
+#define SPECIES_MINCCINO                     612
+#define SPECIES_CINCCINO                     613
+#define SPECIES_GOTHITA                      614
+#define SPECIES_GOTHORITA                    615
+#define SPECIES_GOTHITELLE                   616
+#define SPECIES_SOLOSIS                      617
+#define SPECIES_DUOSION                      618
+#define SPECIES_REUNICLUS                    619
+#define SPECIES_DUCKLETT                     620
+#define SPECIES_SWANNA                       621
+#define SPECIES_VANILLITE                    622
+#define SPECIES_VANILLISH                    623
+#define SPECIES_VANILLUXE                    624
+#define SPECIES_DEERLING                     625
+#define SPECIES_SAWSBUCK                     626
+#define SPECIES_EMOLGA                       627
+#define SPECIES_KARRABLAST                   628
+#define SPECIES_ESCAVALIER                   629
+#define SPECIES_FOONGUS                      630
+#define SPECIES_AMOONGUSS                    631
+#define SPECIES_FRILLISH                     632
+#define SPECIES_JELLICENT                    633
+#define SPECIES_ALOMOMOLA                    634
+#define SPECIES_JOLTIK                       635
+#define SPECIES_GALVANTULA                   636
+#define SPECIES_FERROSEED                    637
+#define SPECIES_FERROTHORN                   638
+#define SPECIES_KLINK                        639
+#define SPECIES_KLANG                        640
+#define SPECIES_KLINKLANG                    641
+#define SPECIES_TYNAMO                       642
+#define SPECIES_EELEKTRIK                    643
+#define SPECIES_EELEKTROSS                   644
+#define SPECIES_ELGYEM                       645
+#define SPECIES_BEHEEYEM                     646
+#define SPECIES_LITWICK                      647
+#define SPECIES_LAMPENT                      648
+#define SPECIES_CHANDELURE                   649
+#define SPECIES_AXEW                         650
+#define SPECIES_FRAXURE                      651
+#define SPECIES_HAXORUS                      652
+#define SPECIES_CUBCHOO                      653
+#define SPECIES_BEARTIC                      654
+#define SPECIES_CRYOGONAL                    655
+#define SPECIES_SHELMET                      656
+#define SPECIES_ACCELGOR                     657
+#define SPECIES_STUNFISK                     658
+#define SPECIES_MIENFOO                      659
+#define SPECIES_MIENSHAO                     660
+#define SPECIES_DRUDDIGON                    661
+#define SPECIES_GOLETT                       662
+#define SPECIES_GOLURK                       663
+#define SPECIES_PAWNIARD                     664
+#define SPECIES_BISHARP                      665
+#define SPECIES_BOUFFALANT                   666
+#define SPECIES_RUFFLET                      667
+#define SPECIES_BRAVIARY                     668
+#define SPECIES_VULLABY                      669
+#define SPECIES_MANDIBUZZ                    670
+#define SPECIES_HEATMOR                      671
+#define SPECIES_DURANT                       672
+#define SPECIES_DEINO                        673
+#define SPECIES_ZWEILOUS                     674
+#define SPECIES_HYDREIGON                    675
+#define SPECIES_LARVESTA                     676
+#define SPECIES_VOLCARONA                    677
+#define SPECIES_COBALION                     678
+#define SPECIES_TERRAKION                    679
+#define SPECIES_VIRIZION                     680
+#define SPECIES_TORNADUS                     681
+#define SPECIES_THUNDURUS                    682
+#define SPECIES_RESHIRAM                     683
+#define SPECIES_ZEKROM                       684
+#define SPECIES_LANDORUS                     685
+#define SPECIES_KYUREM                       686
+#define SPECIES_KELDEO                       687
+#define SPECIES_MELOETTA                     688
+#define SPECIES_GENESECT                     689
+#define SPECIES_CHESPIN                      690
+#define SPECIES_QUILLADIN                    691
+#define SPECIES_CHESNAUGHT                   692
+#define SPECIES_FENNEKIN                     693
+#define SPECIES_BRAIXEN                      694
+#define SPECIES_DELPHOX                      695
+#define SPECIES_FROAKIE                      696
+#define SPECIES_FROGADIER                    697
+#define SPECIES_GRENINJA                     698
+#define SPECIES_BUNNELBY                     699
+#define SPECIES_DIGGERSBY                    700
+#define SPECIES_FLETCHLING                   701
+#define SPECIES_FLETCHINDER                  702
+#define SPECIES_TALONFLAME                   703
+#define SPECIES_SCATTERBUG                   704
+#define SPECIES_SPEWPA                       705
+#define SPECIES_VIVILLON                     706 // Icy Snow Pattern
+#define SPECIES_LITLEO                       707
+#define SPECIES_PYROAR                       708
+#define SPECIES_FLABEBE                      709 // Red Flower
+#define SPECIES_FLOETTE                      710
+#define SPECIES_FLORGES                      711
+#define SPECIES_SKIDDO                       712
+#define SPECIES_GOGOAT                       713
+#define SPECIES_PANCHAM                      714
+#define SPECIES_PANGORO                      715
+#define SPECIES_FURFROU                      716
+#define SPECIES_ESPURR                       717
+#define SPECIES_MEOWSTIC                     718
+#define SPECIES_HONEDGE                      719
+#define SPECIES_DOUBLADE                     720
+#define SPECIES_AEGISLASH                    721
+#define SPECIES_SPRITZEE                     722
+#define SPECIES_AROMATISSE                   723
+#define SPECIES_SWIRLIX                      724
+#define SPECIES_SLURPUFF                     725
+#define SPECIES_INKAY                        726
+#define SPECIES_MALAMAR                      727
+#define SPECIES_BINACLE                      728
+#define SPECIES_BARBARACLE                   729
+#define SPECIES_SKRELP                       730
+#define SPECIES_DRAGALGE                     731
+#define SPECIES_CLAUNCHER                    732
+#define SPECIES_CLAWITZER                    733
+#define SPECIES_HELIOPTILE                   734
+#define SPECIES_HELIOLISK                    735
+#define SPECIES_TYRUNT                       736
+#define SPECIES_TYRANTRUM                    737
+#define SPECIES_AMAURA                       738
+#define SPECIES_AURORUS                      739
+#define SPECIES_SYLVEON                      740
+#define SPECIES_HAWLUCHA                     741
+#define SPECIES_DEDENNE                      742
+#define SPECIES_CARBINK                      743
+#define SPECIES_GOOMY                        744
+#define SPECIES_SLIGGOO                      745
+#define SPECIES_GOODRA                       746
+#define SPECIES_KLEFKI                       747
+#define SPECIES_PHANTUMP                     748
+#define SPECIES_TREVENANT                    749
+#define SPECIES_PUMPKABOO                    750
+#define SPECIES_GOURGEIST                    751
+#define SPECIES_BERGMITE                     752
+#define SPECIES_AVALUGG                      753
+#define SPECIES_NOIBAT                       754
+#define SPECIES_NOIVERN                      755
+#define SPECIES_XERNEAS                      756
+#define SPECIES_YVELTAL                      757
+#define SPECIES_ZYGARDE                      758
+#define SPECIES_DIANCIE                      759
+#define SPECIES_HOOPA                        760
+#define SPECIES_VOLCANION                    761
+#define SPECIES_ROWLET                       762
+#define SPECIES_DARTRIX                      763
+#define SPECIES_DECIDUEYE                    764
+#define SPECIES_LITTEN                       765
+#define SPECIES_TORRACAT                     766
+#define SPECIES_INCINEROAR                   767
+#define SPECIES_POPPLIO                      768
+#define SPECIES_BRIONNE                      769
+#define SPECIES_PRIMARINA                    770
+#define SPECIES_PIKIPEK                      771
+#define SPECIES_TRUMBEAK                     772
+#define SPECIES_TOUCANNON                    773
+#define SPECIES_YUNGOOS                      774
+#define SPECIES_GUMSHOOS                     775
+#define SPECIES_GRUBBIN                      776
+#define SPECIES_CHARJABUG                    777
+#define SPECIES_VIKAVOLT                     778
+#define SPECIES_CRABRAWLER                   779
+#define SPECIES_CRABOMINABLE                 780
+#define SPECIES_ORICORIO                     781
+#define SPECIES_CUTIEFLY                     782
+#define SPECIES_RIBOMBEE                     783
+#define SPECIES_ROCKRUFF                     784
+#define SPECIES_LYCANROC                     785
+#define SPECIES_WISHIWASHI                   786
+#define SPECIES_MAREANIE                     787
+#define SPECIES_TOXAPEX                      788
+#define SPECIES_MUDBRAY                      789
+#define SPECIES_MUDSDALE                     790
+#define SPECIES_DEWPIDER                     791
+#define SPECIES_ARAQUANID                    792
+#define SPECIES_FOMANTIS                     793
+#define SPECIES_LURANTIS                     794
+#define SPECIES_MORELULL                     795
+#define SPECIES_SHIINOTIC                    796
+#define SPECIES_SALANDIT                     797
+#define SPECIES_SALAZZLE                     798
+#define SPECIES_STUFFUL                      799
+#define SPECIES_BEWEAR                       800
+#define SPECIES_BOUNSWEET                    801
+#define SPECIES_STEENEE                      802
+#define SPECIES_TSAREENA                     803
+#define SPECIES_COMFEY                       804
+#define SPECIES_ORANGURU                     805
+#define SPECIES_PASSIMIAN                    806
+#define SPECIES_WIMPOD                       807
+#define SPECIES_GOLISOPOD                    808
+#define SPECIES_SANDYGAST                    809
+#define SPECIES_PALOSSAND                    810
+#define SPECIES_PYUKUMUKU                    811
+#define SPECIES_TYPE_NULL                    812
+#define SPECIES_SILVALLY                     813
+#define SPECIES_MINIOR                       814
+#define SPECIES_KOMALA                       815
+#define SPECIES_TURTONATOR                   816
+#define SPECIES_TOGEDEMARU                   817
+#define SPECIES_MIMIKYU                      818
+#define SPECIES_BRUXISH                      819
+#define SPECIES_DRAMPA                       820
+#define SPECIES_DHELMISE                     821
+#define SPECIES_JANGMO_O                     822
+#define SPECIES_HAKAMO_O                     823
+#define SPECIES_KOMMO_O                      824
+#define SPECIES_TAPU_KOKO                    825
+#define SPECIES_TAPU_LELE                    826
+#define SPECIES_TAPU_BULU                    827
+#define SPECIES_TAPU_FINI                    828
+#define SPECIES_COSMOG                       829
+#define SPECIES_COSMOEM                      830
+#define SPECIES_SOLGALEO                     831
+#define SPECIES_LUNALA                       832
+#define SPECIES_NIHILEGO                     833
+#define SPECIES_BUZZWOLE                     834
+#define SPECIES_PHEROMOSA                    835
+#define SPECIES_XURKITREE                    836
+#define SPECIES_CELESTEELA                   837
+#define SPECIES_KARTANA                      838
+#define SPECIES_GUZZLORD                     839
+#define SPECIES_NECROZMA                     840
+#define SPECIES_MAGEARNA                     841
+#define SPECIES_MARSHADOW                    842
+#define SPECIES_POIPOLE                      843
+#define SPECIES_NAGANADEL                    844
+#define SPECIES_STAKATAKA                    845
+#define SPECIES_BLACEPHALON                  846
+#define SPECIES_ZERAORA                      847
+#define SPECIES_MELTAN                       848
+#define SPECIES_MELMETAL                     849
+#define SPECIES_GROOKEY                      850
+#define SPECIES_THWACKEY                     851
+#define SPECIES_RILLABOOM                    852
+#define SPECIES_SCORBUNNY                    853
+#define SPECIES_RABOOT                       854
+#define SPECIES_CINDERACE                    855
+#define SPECIES_SOBBLE                       856
+#define SPECIES_DRIZZILE                     857
+#define SPECIES_INTELEON                     858
+#define SPECIES_SKWOVET                      859
+#define SPECIES_GREEDENT                     860
+#define SPECIES_ROOKIDEE                     861
+#define SPECIES_CORVISQUIRE                  862
+#define SPECIES_CORVIKNIGHT                  863
+#define SPECIES_BLIPBUG                      864
+#define SPECIES_DOTTLER                      865
+#define SPECIES_ORBEETLE                     866
+#define SPECIES_NICKIT                       867
+#define SPECIES_THIEVUL                      868
+#define SPECIES_GOSSIFLEUR                   869
+#define SPECIES_ELDEGOSS                     870
+#define SPECIES_WOOLOO                       871
+#define SPECIES_DUBWOOL                      872
+#define SPECIES_CHEWTLE                      873
+#define SPECIES_DREDNAW                      874
+#define SPECIES_YAMPER                       875
+#define SPECIES_BOLTUND                      876
+#define SPECIES_ROLYCOLY                     877
+#define SPECIES_CARKOL                       878
+#define SPECIES_COALOSSAL                    879
+#define SPECIES_APPLIN                       880
+#define SPECIES_FLAPPLE                      881
+#define SPECIES_APPLETUN                     882
+#define SPECIES_SILICOBRA                    883
+#define SPECIES_SANDACONDA                   884
+#define SPECIES_CRAMORANT                    885
+#define SPECIES_ARROKUDA                     886
+#define SPECIES_BARRASKEWDA                  887
+#define SPECIES_TOXEL                        888
+#define SPECIES_TOXTRICITY                   889
+#define SPECIES_SIZZLIPEDE                   890
+#define SPECIES_CENTISKORCH                  891
+#define SPECIES_CLOBBOPUS                    892
+#define SPECIES_GRAPPLOCT                    893
+#define SPECIES_SINISTEA                     894
+#define SPECIES_POLTEAGEIST                  895
+#define SPECIES_HATENNA                      896
+#define SPECIES_HATTREM                      897
+#define SPECIES_HATTERENE                    898
+#define SPECIES_IMPIDIMP                     899
+#define SPECIES_MORGREM                      900
+#define SPECIES_GRIMMSNARL                   901
+#define SPECIES_OBSTAGOON                    902
+#define SPECIES_PERRSERKER                   903
+#define SPECIES_CURSOLA                      904
+#define SPECIES_SIRFETCHD                    905
+#define SPECIES_MR_RIME                      906
+#define SPECIES_RUNERIGUS                    907
+#define SPECIES_MILCERY                      908
+#define SPECIES_ALCREMIE                     909
+#define SPECIES_FALINKS                      910
+#define SPECIES_PINCURCHIN                   911
+#define SPECIES_SNOM                         912
+#define SPECIES_FROSMOTH                     913
+#define SPECIES_STONJOURNER                  914
+#define SPECIES_EISCUE                       915
+#define SPECIES_INDEEDEE                     916
+#define SPECIES_MORPEKO                      917
+#define SPECIES_CUFANT                       918
+#define SPECIES_COPPERAJAH                   919
+#define SPECIES_DRACOZOLT                    920
+#define SPECIES_ARCTOZOLT                    921
+#define SPECIES_DRACOVISH                    922
+#define SPECIES_ARCTOVISH                    923
+#define SPECIES_DURALUDON                    924
+#define SPECIES_DREEPY                       925
+#define SPECIES_DRAKLOAK                     926
+#define SPECIES_DRAGAPULT                    927
+#define SPECIES_ZACIAN                       928
+#define SPECIES_ZAMAZENTA                    929
+#define SPECIES_ETERNATUS                    930
+#define SPECIES_KUBFU                        931
+#define SPECIES_URSHIFU                      932
+#define SPECIES_ZARUDE                       933
+#define SPECIES_REGIELEKI                    934
+#define SPECIES_REGIDRAGO                    935
+#define SPECIES_GLASTRIER                    936
+#define SPECIES_SPECTRIER                    937
+#define SPECIES_CALYREX                      938
+#define SPECIES_WYRDEER                      939
+#define SPECIES_KLEAVOR                      940
+#define SPECIES_URSALUNA                     941
+#define SPECIES_BASCULEGION                  942
+#define SPECIES_SNEASLER                     943
+#define SPECIES_OVERQWIL                     944
+#define SPECIES_ENAMORUS                     945
 
 // Megas
 #define SPECIES_VENUSAUR_MEGA                FORMS_START + 1
@@ -1082,290 +1094,273 @@
 // Pichu
 #define SPECIES_PICHU_SPIKY_EARED            FORMS_START + 118
 
-// Burmy
-#define SPECIES_BURMY_SANDY_CLOAK            FORMS_START + 119
-#define SPECIES_BURMY_TRASH_CLOAK            FORMS_START + 120
-
-// Wormadam
-#define SPECIES_WORMADAM_SANDY_CLOAK         FORMS_START + 121
-#define SPECIES_WORMADAM_TRASH_CLOAK         FORMS_START + 122
-
-// Cherrim
-#define SPECIES_CHERRIM_SUNSHINE             FORMS_START + 123
-
-// Shellos
-#define SPECIES_SHELLOS_EAST_SEA             FORMS_START + 124
-
-// Gastrodon
-#define SPECIES_GASTRODON_EAST_SEA           FORMS_START + 125
-
 // Rotom
-#define SPECIES_ROTOM_HEAT                   FORMS_START + 126
-#define SPECIES_ROTOM_WASH                   FORMS_START + 127
-#define SPECIES_ROTOM_FROST                  FORMS_START + 128
-#define SPECIES_ROTOM_FAN                    FORMS_START + 129
-#define SPECIES_ROTOM_MOW                    FORMS_START + 130
+#define SPECIES_ROTOM_HEAT                   FORMS_START + 119
+#define SPECIES_ROTOM_WASH                   FORMS_START + 120
+#define SPECIES_ROTOM_FROST                  FORMS_START + 121
+#define SPECIES_ROTOM_FAN                    FORMS_START + 122
+#define SPECIES_ROTOM_MOW                    FORMS_START + 123
 
 // Origin Forme
-#define SPECIES_DIALGA_ORIGIN                FORMS_START + 131
-#define SPECIES_PALKIA_ORIGIN                FORMS_START + 132
-#define SPECIES_GIRATINA_ORIGIN              FORMS_START + 133
+#define SPECIES_DIALGA_ORIGIN                FORMS_START + 124
+#define SPECIES_PALKIA_ORIGIN                FORMS_START + 125
+#define SPECIES_GIRATINA_ORIGIN              FORMS_START + 126
 
 // Shaymin
-#define SPECIES_SHAYMIN_SKY                  FORMS_START + 134
+#define SPECIES_SHAYMIN_SKY                  FORMS_START + 127
 
 // Arceus
-#define SPECIES_ARCEUS_FIGHTING              FORMS_START + 135
-#define SPECIES_ARCEUS_FLYING                FORMS_START + 136
-#define SPECIES_ARCEUS_POISON                FORMS_START + 137
-#define SPECIES_ARCEUS_GROUND                FORMS_START + 138
-#define SPECIES_ARCEUS_ROCK                  FORMS_START + 139
-#define SPECIES_ARCEUS_BUG                   FORMS_START + 140
-#define SPECIES_ARCEUS_GHOST                 FORMS_START + 141
-#define SPECIES_ARCEUS_STEEL                 FORMS_START + 142
-#define SPECIES_ARCEUS_FIRE                  FORMS_START + 143
-#define SPECIES_ARCEUS_WATER                 FORMS_START + 144
-#define SPECIES_ARCEUS_GRASS                 FORMS_START + 145
-#define SPECIES_ARCEUS_ELECTRIC              FORMS_START + 146
-#define SPECIES_ARCEUS_PSYCHIC               FORMS_START + 147
-#define SPECIES_ARCEUS_ICE                   FORMS_START + 148
-#define SPECIES_ARCEUS_DRAGON                FORMS_START + 149
-#define SPECIES_ARCEUS_DARK                  FORMS_START + 150
-#define SPECIES_ARCEUS_FAIRY                 FORMS_START + 151
+#define SPECIES_ARCEUS_FIGHTING              FORMS_START + 128
+#define SPECIES_ARCEUS_FLYING                FORMS_START + 129
+#define SPECIES_ARCEUS_POISON                FORMS_START + 130
+#define SPECIES_ARCEUS_GROUND                FORMS_START + 131
+#define SPECIES_ARCEUS_ROCK                  FORMS_START + 132
+#define SPECIES_ARCEUS_BUG                   FORMS_START + 133
+#define SPECIES_ARCEUS_GHOST                 FORMS_START + 134
+#define SPECIES_ARCEUS_STEEL                 FORMS_START + 135
+#define SPECIES_ARCEUS_FIRE                  FORMS_START + 136
+#define SPECIES_ARCEUS_WATER                 FORMS_START + 137
+#define SPECIES_ARCEUS_GRASS                 FORMS_START + 138
+#define SPECIES_ARCEUS_ELECTRIC              FORMS_START + 139
+#define SPECIES_ARCEUS_PSYCHIC               FORMS_START + 140
+#define SPECIES_ARCEUS_ICE                   FORMS_START + 141
+#define SPECIES_ARCEUS_DRAGON                FORMS_START + 142
+#define SPECIES_ARCEUS_DARK                  FORMS_START + 143
+#define SPECIES_ARCEUS_FAIRY                 FORMS_START + 144
 
 // Basculin
-#define SPECIES_BASCULIN_BLUE_STRIPED        FORMS_START + 152
-#define SPECIES_BASCULIN_WHITE_STRIPED       FORMS_START + 153
+#define SPECIES_BASCULIN_BLUE_STRIPED        FORMS_START + 145
+#define SPECIES_BASCULIN_WHITE_STRIPED       FORMS_START + 146
 
 // Darmanitan
-#define SPECIES_DARMANITAN_ZEN_MODE          FORMS_START + 154
-#define SPECIES_DARMANITAN_ZEN_MODE_GALARIAN FORMS_START + 155
+#define SPECIES_DARMANITAN_ZEN_MODE          FORMS_START + 147
+#define SPECIES_DARMANITAN_ZEN_MODE_GALARIAN FORMS_START + 148
 
 // Deerling
-#define SPECIES_DEERLING_SUMMER              FORMS_START + 156
-#define SPECIES_DEERLING_AUTUMN              FORMS_START + 157
-#define SPECIES_DEERLING_WINTER              FORMS_START + 158
+#define SPECIES_DEERLING_SUMMER              FORMS_START + 149
+#define SPECIES_DEERLING_AUTUMN              FORMS_START + 150
+#define SPECIES_DEERLING_WINTER              FORMS_START + 151
 
 // Sawsbuck
-#define SPECIES_SAWSBUCK_SUMMER              FORMS_START + 159
-#define SPECIES_SAWSBUCK_AUTUMN              FORMS_START + 160
-#define SPECIES_SAWSBUCK_WINTER              FORMS_START + 161
+#define SPECIES_SAWSBUCK_SUMMER              FORMS_START + 152
+#define SPECIES_SAWSBUCK_AUTUMN              FORMS_START + 153
+#define SPECIES_SAWSBUCK_WINTER              FORMS_START + 154
 
 // Therian Forms
-#define SPECIES_TORNADUS_THERIAN             FORMS_START + 162
-#define SPECIES_THUNDURUS_THERIAN            FORMS_START + 163
-#define SPECIES_LANDORUS_THERIAN             FORMS_START + 164
-#define SPECIES_ENAMORUS_THERIAN             FORMS_START + 165
+#define SPECIES_TORNADUS_THERIAN             FORMS_START + 155
+#define SPECIES_THUNDURUS_THERIAN            FORMS_START + 156
+#define SPECIES_LANDORUS_THERIAN             FORMS_START + 157
+#define SPECIES_ENAMORUS_THERIAN             FORMS_START + 158
 
 // Kyurem
-#define SPECIES_KYUREM_WHITE                 FORMS_START + 166
-#define SPECIES_KYUREM_BLACK                 FORMS_START + 167
+#define SPECIES_KYUREM_WHITE                 FORMS_START + 159
+#define SPECIES_KYUREM_BLACK                 FORMS_START + 160
 
 // Keldeo
-#define SPECIES_KELDEO_RESOLUTE              FORMS_START + 168
+#define SPECIES_KELDEO_RESOLUTE              FORMS_START + 161
 
 // Meloetta
-#define SPECIES_MELOETTA_PIROUETTE           FORMS_START + 169
+#define SPECIES_MELOETTA_PIROUETTE           FORMS_START + 162
 
 // Genesect
-#define SPECIES_GENESECT_DOUSE_DRIVE         FORMS_START + 170
-#define SPECIES_GENESECT_SHOCK_DRIVE         FORMS_START + 171
-#define SPECIES_GENESECT_BURN_DRIVE          FORMS_START + 172
-#define SPECIES_GENESECT_CHILL_DRIVE         FORMS_START + 173
+#define SPECIES_GENESECT_DOUSE_DRIVE         FORMS_START + 163
+#define SPECIES_GENESECT_SHOCK_DRIVE         FORMS_START + 164
+#define SPECIES_GENESECT_BURN_DRIVE          FORMS_START + 165
+#define SPECIES_GENESECT_CHILL_DRIVE         FORMS_START + 166
 
 // Greninja
-#define SPECIES_GRENINJA_BATTLE_BOND         FORMS_START + 174
-#define SPECIES_GRENINJA_ASH                 FORMS_START + 175
+#define SPECIES_GRENINJA_BATTLE_BOND         FORMS_START + 167
+#define SPECIES_GRENINJA_ASH                 FORMS_START + 168
 
 // Vivillon
-#define SPECIES_VIVILLON_POLAR               FORMS_START + 176
-#define SPECIES_VIVILLON_TUNDRA              FORMS_START + 177
-#define SPECIES_VIVILLON_CONTINENTAL         FORMS_START + 178
-#define SPECIES_VIVILLON_GARDEN              FORMS_START + 179
-#define SPECIES_VIVILLON_ELEGANT             FORMS_START + 180
-#define SPECIES_VIVILLON_MEADOW              FORMS_START + 181
-#define SPECIES_VIVILLON_MODERN              FORMS_START + 182
-#define SPECIES_VIVILLON_MARINE              FORMS_START + 183
-#define SPECIES_VIVILLON_ARCHIPELAGO         FORMS_START + 184
-#define SPECIES_VIVILLON_HIGH_PLAINS         FORMS_START + 185
-#define SPECIES_VIVILLON_SANDSTORM           FORMS_START + 186
-#define SPECIES_VIVILLON_RIVER               FORMS_START + 187
-#define SPECIES_VIVILLON_MONSOON             FORMS_START + 188
-#define SPECIES_VIVILLON_SAVANNA             FORMS_START + 189
-#define SPECIES_VIVILLON_SUN                 FORMS_START + 190
-#define SPECIES_VIVILLON_OCEAN               FORMS_START + 191
-#define SPECIES_VIVILLON_JUNGLE              FORMS_START + 192
-#define SPECIES_VIVILLON_FANCY               FORMS_START + 193
-#define SPECIES_VIVILLON_POKE_BALL           FORMS_START + 194
+#define SPECIES_VIVILLON_POLAR               FORMS_START + 169
+#define SPECIES_VIVILLON_TUNDRA              FORMS_START + 170
+#define SPECIES_VIVILLON_CONTINENTAL         FORMS_START + 171
+#define SPECIES_VIVILLON_GARDEN              FORMS_START + 172
+#define SPECIES_VIVILLON_ELEGANT             FORMS_START + 173
+#define SPECIES_VIVILLON_MEADOW              FORMS_START + 174
+#define SPECIES_VIVILLON_MODERN              FORMS_START + 175
+#define SPECIES_VIVILLON_MARINE              FORMS_START + 176
+#define SPECIES_VIVILLON_ARCHIPELAGO         FORMS_START + 177
+#define SPECIES_VIVILLON_HIGH_PLAINS         FORMS_START + 178
+#define SPECIES_VIVILLON_SANDSTORM           FORMS_START + 179
+#define SPECIES_VIVILLON_RIVER               FORMS_START + 180
+#define SPECIES_VIVILLON_MONSOON             FORMS_START + 181
+#define SPECIES_VIVILLON_SAVANNA             FORMS_START + 182
+#define SPECIES_VIVILLON_SUN                 FORMS_START + 183
+#define SPECIES_VIVILLON_OCEAN               FORMS_START + 184
+#define SPECIES_VIVILLON_JUNGLE              FORMS_START + 185
+#define SPECIES_VIVILLON_FANCY               FORMS_START + 186
+#define SPECIES_VIVILLON_POKE_BALL           FORMS_START + 187
 
 // Flabébé
-#define SPECIES_FLABEBE_YELLOW_FLOWER        FORMS_START + 195
-#define SPECIES_FLABEBE_ORANGE_FLOWER        FORMS_START + 196
-#define SPECIES_FLABEBE_BLUE_FLOWER          FORMS_START + 197
-#define SPECIES_FLABEBE_WHITE_FLOWER         FORMS_START + 198
+#define SPECIES_FLABEBE_YELLOW_FLOWER        FORMS_START + 188
+#define SPECIES_FLABEBE_ORANGE_FLOWER        FORMS_START + 189
+#define SPECIES_FLABEBE_BLUE_FLOWER          FORMS_START + 190
+#define SPECIES_FLABEBE_WHITE_FLOWER         FORMS_START + 191
 
 // Floette
-#define SPECIES_FLOETTE_YELLOW_FLOWER        FORMS_START + 199
-#define SPECIES_FLOETTE_ORANGE_FLOWER        FORMS_START + 200
-#define SPECIES_FLOETTE_BLUE_FLOWER          FORMS_START + 201
-#define SPECIES_FLOETTE_WHITE_FLOWER         FORMS_START + 202
-#define SPECIES_FLOETTE_ETERNAL_FLOWER       FORMS_START + 203
+#define SPECIES_FLOETTE_YELLOW_FLOWER        FORMS_START + 192
+#define SPECIES_FLOETTE_ORANGE_FLOWER        FORMS_START + 193
+#define SPECIES_FLOETTE_BLUE_FLOWER          FORMS_START + 194
+#define SPECIES_FLOETTE_WHITE_FLOWER         FORMS_START + 195
+#define SPECIES_FLOETTE_ETERNAL_FLOWER       FORMS_START + 196
 
 // Florges
-#define SPECIES_FLORGES_YELLOW_FLOWER        FORMS_START + 204
-#define SPECIES_FLORGES_ORANGE_FLOWER        FORMS_START + 205
-#define SPECIES_FLORGES_BLUE_FLOWER          FORMS_START + 206
-#define SPECIES_FLORGES_WHITE_FLOWER         FORMS_START + 207
+#define SPECIES_FLORGES_YELLOW_FLOWER        FORMS_START + 197
+#define SPECIES_FLORGES_ORANGE_FLOWER        FORMS_START + 198
+#define SPECIES_FLORGES_BLUE_FLOWER          FORMS_START + 199
+#define SPECIES_FLORGES_WHITE_FLOWER         FORMS_START + 200
 
 // Furfrou
-#define SPECIES_FURFROU_HEART_TRIM           FORMS_START + 208
-#define SPECIES_FURFROU_STAR_TRIM            FORMS_START + 209
-#define SPECIES_FURFROU_DIAMOND_TRIM         FORMS_START + 210
-#define SPECIES_FURFROU_DEBUTANTE_TRIM       FORMS_START + 211
-#define SPECIES_FURFROU_MATRON_TRIM          FORMS_START + 212
-#define SPECIES_FURFROU_DANDY_TRIM           FORMS_START + 213
-#define SPECIES_FURFROU_LA_REINE_TRIM        FORMS_START + 214
-#define SPECIES_FURFROU_KABUKI_TRIM          FORMS_START + 215
-#define SPECIES_FURFROU_PHARAOH_TRIM         FORMS_START + 216
+#define SPECIES_FURFROU_HEART_TRIM           FORMS_START + 201
+#define SPECIES_FURFROU_STAR_TRIM            FORMS_START + 202
+#define SPECIES_FURFROU_DIAMOND_TRIM         FORMS_START + 203
+#define SPECIES_FURFROU_DEBUTANTE_TRIM       FORMS_START + 204
+#define SPECIES_FURFROU_MATRON_TRIM          FORMS_START + 205
+#define SPECIES_FURFROU_DANDY_TRIM           FORMS_START + 206
+#define SPECIES_FURFROU_LA_REINE_TRIM        FORMS_START + 207
+#define SPECIES_FURFROU_KABUKI_TRIM          FORMS_START + 208
+#define SPECIES_FURFROU_PHARAOH_TRIM         FORMS_START + 209
 
 // Meowstic
-#define SPECIES_MEOWSTIC_FEMALE              FORMS_START + 217
+#define SPECIES_MEOWSTIC_FEMALE              FORMS_START + 210
 
 // Aegislash
-#define SPECIES_AEGISLASH_BLADE              FORMS_START + 218
+#define SPECIES_AEGISLASH_BLADE              FORMS_START + 211
 
 // Pumpkaboo
-#define SPECIES_PUMPKABOO_SMALL              FORMS_START + 219
-#define SPECIES_PUMPKABOO_LARGE              FORMS_START + 220
-#define SPECIES_PUMPKABOO_SUPER              FORMS_START + 221
+#define SPECIES_PUMPKABOO_SMALL              FORMS_START + 212
+#define SPECIES_PUMPKABOO_LARGE              FORMS_START + 213
+#define SPECIES_PUMPKABOO_SUPER              FORMS_START + 214
 
 // Gourgeist
-#define SPECIES_GOURGEIST_SMALL              FORMS_START + 222
-#define SPECIES_GOURGEIST_LARGE              FORMS_START + 223
-#define SPECIES_GOURGEIST_SUPER              FORMS_START + 224
+#define SPECIES_GOURGEIST_SMALL              FORMS_START + 215
+#define SPECIES_GOURGEIST_LARGE              FORMS_START + 216
+#define SPECIES_GOURGEIST_SUPER              FORMS_START + 217
 
 // Xerneas
-#define SPECIES_XERNEAS_ACTIVE               FORMS_START + 225
+#define SPECIES_XERNEAS_ACTIVE               FORMS_START + 218
 
 // Zygarde
-#define SPECIES_ZYGARDE_10                   FORMS_START + 226
-#define SPECIES_ZYGARDE_10_POWER_CONSTRUCT   FORMS_START + 227
-#define SPECIES_ZYGARDE_50_POWER_CONSTRUCT   FORMS_START + 228
-#define SPECIES_ZYGARDE_COMPLETE             FORMS_START + 229
+#define SPECIES_ZYGARDE_10                   FORMS_START + 219
+#define SPECIES_ZYGARDE_10_POWER_CONSTRUCT   FORMS_START + 220
+#define SPECIES_ZYGARDE_50_POWER_CONSTRUCT   FORMS_START + 221
+#define SPECIES_ZYGARDE_COMPLETE             FORMS_START + 222
 
 // Hoopa
-#define SPECIES_HOOPA_UNBOUND                FORMS_START + 230
+#define SPECIES_HOOPA_UNBOUND                FORMS_START + 223
 
 // Oricorio
-#define SPECIES_ORICORIO_POM_POM             FORMS_START + 231
-#define SPECIES_ORICORIO_PAU                 FORMS_START + 232
-#define SPECIES_ORICORIO_SENSU               FORMS_START + 233
+#define SPECIES_ORICORIO_POM_POM             FORMS_START + 224
+#define SPECIES_ORICORIO_PAU                 FORMS_START + 225
+#define SPECIES_ORICORIO_SENSU               FORMS_START + 226
 
 // Rockruff
-#define SPECIES_ROCKRUFF_OWN_TEMPO           FORMS_START + 234
+#define SPECIES_ROCKRUFF_OWN_TEMPO           FORMS_START + 227
 
 // Lycanroc
-#define SPECIES_LYCANROC_MIDNIGHT            FORMS_START + 235
-#define SPECIES_LYCANROC_DUSK                FORMS_START + 236
+#define SPECIES_LYCANROC_MIDNIGHT            FORMS_START + 228
+#define SPECIES_LYCANROC_DUSK                FORMS_START + 229
 
 // Wishiwashi
-#define SPECIES_WISHIWASHI_SCHOOL            FORMS_START + 237
+#define SPECIES_WISHIWASHI_SCHOOL            FORMS_START + 230
 
 // Silvally
-#define SPECIES_SILVALLY_FIGHTING            FORMS_START + 238
-#define SPECIES_SILVALLY_FLYING              FORMS_START + 239
-#define SPECIES_SILVALLY_POISON              FORMS_START + 240
-#define SPECIES_SILVALLY_GROUND              FORMS_START + 241
-#define SPECIES_SILVALLY_ROCK                FORMS_START + 242
-#define SPECIES_SILVALLY_BUG                 FORMS_START + 243
-#define SPECIES_SILVALLY_GHOST               FORMS_START + 244
-#define SPECIES_SILVALLY_STEEL               FORMS_START + 245
-#define SPECIES_SILVALLY_FIRE                FORMS_START + 246
-#define SPECIES_SILVALLY_WATER               FORMS_START + 247
-#define SPECIES_SILVALLY_GRASS               FORMS_START + 248
-#define SPECIES_SILVALLY_ELECTRIC            FORMS_START + 249
-#define SPECIES_SILVALLY_PSYCHIC             FORMS_START + 250
-#define SPECIES_SILVALLY_ICE                 FORMS_START + 251
-#define SPECIES_SILVALLY_DRAGON              FORMS_START + 252
-#define SPECIES_SILVALLY_DARK                FORMS_START + 253
-#define SPECIES_SILVALLY_FAIRY               FORMS_START + 254
+#define SPECIES_SILVALLY_FIGHTING            FORMS_START + 231
+#define SPECIES_SILVALLY_FLYING              FORMS_START + 232
+#define SPECIES_SILVALLY_POISON              FORMS_START + 233
+#define SPECIES_SILVALLY_GROUND              FORMS_START + 234
+#define SPECIES_SILVALLY_ROCK                FORMS_START + 235
+#define SPECIES_SILVALLY_BUG                 FORMS_START + 236
+#define SPECIES_SILVALLY_GHOST               FORMS_START + 237
+#define SPECIES_SILVALLY_STEEL               FORMS_START + 238
+#define SPECIES_SILVALLY_FIRE                FORMS_START + 239
+#define SPECIES_SILVALLY_WATER               FORMS_START + 240
+#define SPECIES_SILVALLY_GRASS               FORMS_START + 241
+#define SPECIES_SILVALLY_ELECTRIC            FORMS_START + 242
+#define SPECIES_SILVALLY_PSYCHIC             FORMS_START + 243
+#define SPECIES_SILVALLY_ICE                 FORMS_START + 244
+#define SPECIES_SILVALLY_DRAGON              FORMS_START + 245
+#define SPECIES_SILVALLY_DARK                FORMS_START + 246
+#define SPECIES_SILVALLY_FAIRY               FORMS_START + 247
 
 // Minior
-#define SPECIES_MINIOR_METEOR_ORANGE         FORMS_START + 255
-#define SPECIES_MINIOR_METEOR_YELLOW         FORMS_START + 256
-#define SPECIES_MINIOR_METEOR_GREEN          FORMS_START + 257
-#define SPECIES_MINIOR_METEOR_BLUE           FORMS_START + 258
-#define SPECIES_MINIOR_METEOR_INDIGO         FORMS_START + 259
-#define SPECIES_MINIOR_METEOR_VIOLET         FORMS_START + 260
-#define SPECIES_MINIOR_CORE_RED              FORMS_START + 261
-#define SPECIES_MINIOR_CORE_ORANGE           FORMS_START + 262
-#define SPECIES_MINIOR_CORE_YELLOW           FORMS_START + 263
-#define SPECIES_MINIOR_CORE_GREEN            FORMS_START + 264
-#define SPECIES_MINIOR_CORE_BLUE             FORMS_START + 265
-#define SPECIES_MINIOR_CORE_INDIGO           FORMS_START + 266
-#define SPECIES_MINIOR_CORE_VIOLET           FORMS_START + 267
+#define SPECIES_MINIOR_METEOR_ORANGE         FORMS_START + 248
+#define SPECIES_MINIOR_METEOR_YELLOW         FORMS_START + 249
+#define SPECIES_MINIOR_METEOR_GREEN          FORMS_START + 250
+#define SPECIES_MINIOR_METEOR_BLUE           FORMS_START + 251
+#define SPECIES_MINIOR_METEOR_INDIGO         FORMS_START + 252
+#define SPECIES_MINIOR_METEOR_VIOLET         FORMS_START + 253
+#define SPECIES_MINIOR_CORE_RED              FORMS_START + 254
+#define SPECIES_MINIOR_CORE_ORANGE           FORMS_START + 255
+#define SPECIES_MINIOR_CORE_YELLOW           FORMS_START + 256
+#define SPECIES_MINIOR_CORE_GREEN            FORMS_START + 257
+#define SPECIES_MINIOR_CORE_BLUE             FORMS_START + 258
+#define SPECIES_MINIOR_CORE_INDIGO           FORMS_START + 259
+#define SPECIES_MINIOR_CORE_VIOLET           FORMS_START + 260
 
 // Mimikyu
-#define SPECIES_MIMIKYU_BUSTED               FORMS_START + 268
+#define SPECIES_MIMIKYU_BUSTED               FORMS_START + 261
 
 // Necrozma
-#define SPECIES_NECROZMA_DUSK_MANE           FORMS_START + 269
-#define SPECIES_NECROZMA_DAWN_WINGS          FORMS_START + 270
-#define SPECIES_NECROZMA_ULTRA               FORMS_START + 271
+#define SPECIES_NECROZMA_DUSK_MANE           FORMS_START + 262
+#define SPECIES_NECROZMA_DAWN_WINGS          FORMS_START + 263
+#define SPECIES_NECROZMA_ULTRA               FORMS_START + 264
 
 // Magearna
-#define SPECIES_MAGEARNA_ORIGINAL_COLOR      FORMS_START + 272
+#define SPECIES_MAGEARNA_ORIGINAL_COLOR      FORMS_START + 265
 
 // Cramorant
-#define SPECIES_CRAMORANT_GULPING            FORMS_START + 273
-#define SPECIES_CRAMORANT_GORGING            FORMS_START + 274
+#define SPECIES_CRAMORANT_GULPING            FORMS_START + 266
+#define SPECIES_CRAMORANT_GORGING            FORMS_START + 267
 
 // Toxtricity
-#define SPECIES_TOXTRICITY_LOW_KEY           FORMS_START + 275
+#define SPECIES_TOXTRICITY_LOW_KEY           FORMS_START + 268
 
 // Sinistea
-#define SPECIES_SINISTEA_ANTIQUE             FORMS_START + 276
+#define SPECIES_SINISTEA_ANTIQUE             FORMS_START + 269
 
 // Polteageist
-#define SPECIES_POLTEAGEIST_ANTIQUE          FORMS_START + 277
+#define SPECIES_POLTEAGEIST_ANTIQUE          FORMS_START + 270
 
 // Alcremie
-#define SPECIES_ALCREMIE_RUBY_CREAM          FORMS_START + 278
-#define SPECIES_ALCREMIE_MATCHA_CREAM        FORMS_START + 279
-#define SPECIES_ALCREMIE_MINT_CREAM          FORMS_START + 280
-#define SPECIES_ALCREMIE_LEMON_CREAM         FORMS_START + 281
-#define SPECIES_ALCREMIE_SALTED_CREAM        FORMS_START + 282
-#define SPECIES_ALCREMIE_RUBY_SWIRL          FORMS_START + 283
-#define SPECIES_ALCREMIE_CARAMEL_SWIRL       FORMS_START + 284
-#define SPECIES_ALCREMIE_RAINBOW_SWIRL       FORMS_START + 285
+#define SPECIES_ALCREMIE_RUBY_CREAM          FORMS_START + 271
+#define SPECIES_ALCREMIE_MATCHA_CREAM        FORMS_START + 272
+#define SPECIES_ALCREMIE_MINT_CREAM          FORMS_START + 273
+#define SPECIES_ALCREMIE_LEMON_CREAM         FORMS_START + 274
+#define SPECIES_ALCREMIE_SALTED_CREAM        FORMS_START + 275
+#define SPECIES_ALCREMIE_RUBY_SWIRL          FORMS_START + 276
+#define SPECIES_ALCREMIE_CARAMEL_SWIRL       FORMS_START + 277
+#define SPECIES_ALCREMIE_RAINBOW_SWIRL       FORMS_START + 278
 
 // Eiscue
-#define SPECIES_EISCUE_NOICE_FACE            FORMS_START + 286
+#define SPECIES_EISCUE_NOICE_FACE            FORMS_START + 279
 
 // Indeedee
-#define SPECIES_INDEEDEE_FEMALE              FORMS_START + 287
+#define SPECIES_INDEEDEE_FEMALE              FORMS_START + 280
 
 // Morpeko
-#define SPECIES_MORPEKO_HANGRY               FORMS_START + 288
+#define SPECIES_MORPEKO_HANGRY               FORMS_START + 281
 
 // Zacian
-#define SPECIES_ZACIAN_CROWNED_SWORD         FORMS_START + 289
+#define SPECIES_ZACIAN_CROWNED_SWORD         FORMS_START + 282
 
 // Zamazenta
-#define SPECIES_ZAMAZENTA_CROWNED_SHIELD     FORMS_START + 290
+#define SPECIES_ZAMAZENTA_CROWNED_SHIELD     FORMS_START + 283
 
 // Eternatus
-#define SPECIES_ETERNATUS_ETERNAMAX          FORMS_START + 291
+#define SPECIES_ETERNATUS_ETERNAMAX          FORMS_START + 284
 
 // Urshifu
-#define SPECIES_URSHIFU_RAPID_STRIKE_STYLE   FORMS_START + 292
+#define SPECIES_URSHIFU_RAPID_STRIKE_STYLE   FORMS_START + 285
 
 // Zarude
-#define SPECIES_ZARUDE_DADA                  FORMS_START + 293
+#define SPECIES_ZARUDE_DADA                  FORMS_START + 286
 
 // Calyrex
-#define SPECIES_CALYREX_ICE_RIDER            FORMS_START + 294
-#define SPECIES_CALYREX_SHADOW_RIDER         FORMS_START + 295
+#define SPECIES_CALYREX_ICE_RIDER            FORMS_START + 287
+#define SPECIES_CALYREX_SHADOW_RIDER         FORMS_START + 288
 
 #define FORMS_START SPECIES_ENAMORUS
 #define SPECIES_EGG SPECIES_CALYREX_SHADOW_RIDER + 1
