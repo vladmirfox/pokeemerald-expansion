@@ -200,7 +200,34 @@ gCryTable::
 	cry Cry_Murkrow
 	cry Cry_Slowking
 	cry Cry_Misdreavus
-	cry Cry_Unown
+	cry Cry_Unown @ A
+	cry Cry_Unown @ B
+	cry Cry_Unown @ C
+	cry Cry_Unown @ D
+	cry Cry_Unown @ E
+	cry Cry_Unown @ F
+	cry Cry_Unown @ G
+	cry Cry_Unown @ H
+	cry Cry_Unown @ I
+	cry Cry_Unown @ J
+	cry Cry_Unown @ K
+	cry Cry_Unown @ L
+	cry Cry_Unown @ M
+	cry Cry_Unown @ N
+	cry Cry_Unown @ O
+	cry Cry_Unown @ P
+	cry Cry_Unown @ Q
+	cry Cry_Unown @ R
+	cry Cry_Unown @ S
+	cry Cry_Unown @ T
+	cry Cry_Unown @ U
+	cry Cry_Unown @ V
+	cry Cry_Unown @ W
+	cry Cry_Unown @ X
+	cry Cry_Unown @ Y
+	cry Cry_Unown @ Z
+	cry Cry_Unown @ QM
+	cry Cry_Unown @ EM
 	cry Cry_Wobbuffet
 	cry Cry_Girafarig
 	cry Cry_Pineco
@@ -1607,34 +1634,6 @@ gCryTable::
 	cry Cry_Pikachu
 	@ Pichu
 	cry Cry_Pichu
-	@ Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
-	cry Cry_Unown
 	@ Castform
 	cry Cry_Castform
 	cry Cry_Castform
@@ -2321,6 +2320,34 @@ gCryTable_Reverse::
 	cry_reverse Cry_Murkrow
 	cry_reverse Cry_Slowking
 	cry_reverse Cry_Misdreavus
+	cry_reverseCry_Unown @ A
+	cry_reverse Cry_Unown @ B
+	cry_reverse Cry_Unown @ C
+	cry_reverse Cry_Unown @ D
+	cry_reverse Cry_Unown @ E
+	cry_reverse Cry_Unown @ F
+	cry_reverse Cry_Unown @ G
+	cry_reverse Cry_Unown @ H
+	cry_reverse Cry_Unown @ I
+	cry_reverse Cry_Unown @ J
+	cry_reverse Cry_Unown @ K
+	cry_reverse Cry_Unown @ L
+	cry_reverse Cry_Unown @ M
+	cry_reverse Cry_Unown @ N
+	cry_reverse Cry_Unown @ O
+	cry_reverse Cry_Unown @ P
+	cry_reverse Cry_Unown @ Q
+	cry_reverse Cry_Unown @ R
+	cry_reverse Cry_Unown @ S
+	cry_reverse Cry_Unown @ T
+	cry_reverse Cry_Unown @ U
+	cry_reverse Cry_Unown @ V
+	cry_reverse Cry_Unown @ W
+	cry_reverse Cry_Unown @ X
+	cry_reverse Cry_Unown @ Y
+	cry_reverse Cry_Unown @ Z
+	cry_reverse Cry_Unown @ QM
+	cry_reverse Cry_Unown @ EM
 	cry_reverse Cry_Unown
 	cry_reverse Cry_Wobbuffet
 	cry_reverse Cry_Girafarig
@@ -3728,34 +3755,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_Pikachu
 	@ Pichu
 	cry_reverse Cry_Pichu
-	@ Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
-	cry_reverse Cry_Unown
 	@ Castform
 	cry_reverse Cry_Castform
 	cry_reverse Cry_Castform
