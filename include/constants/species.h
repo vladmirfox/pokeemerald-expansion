@@ -204,7 +204,8 @@
 #define SPECIES_MURKROW                      198
 #define SPECIES_SLOWKING                     199
 #define SPECIES_MISDREAVUS                   200
-#define SPECIES_UNOWN                        201
+#define SPECIES_UNOWN                        SPECIES_UNOWN_A
+#define SPECIES_UNOWN_A                      201
 #define SPECIES_UNOWN_B                      202
 #define SPECIES_UNOWN_C                      203
 #define SPECIES_UNOWN_D                      204
@@ -381,7 +382,8 @@
 #define SPECIES_ARMALDO                      375
 #define SPECIES_FEEBAS                       376
 #define SPECIES_MILOTIC                      377
-#define SPECIES_CASTFORM                     378
+#define SPECIES_CASTFORM                     SPECIES_CASTFORM_NORMAL
+#define SPECIES_CASTFORM_NORMAL              378
 #define SPECIES_CASTFORM_SUNNY               379
 #define SPECIES_CASTFORM_RAINY               380
 #define SPECIES_CASTFORM_SNOWY               381
@@ -419,7 +421,8 @@
 #define SPECIES_GROUDON                      413
 #define SPECIES_RAYQUAZA                     414
 #define SPECIES_JIRACHI                      415
-#define SPECIES_DEOXYS                       416
+#define SPECIES_DEOXYS                       SPECIES_DEOXYS_NORMAL
+#define SPECIES_DEOXYS_NORMAL                416
 #define SPECIES_DEOXYS_ATTACK                417
 #define SPECIES_DEOXYS_DEFENSE               418
 #define SPECIES_DEOXYS_SPEED                 419
