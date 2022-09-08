@@ -1,7 +1,5 @@
-raw `
-@ NOTE: Route 104's sail to Dewford script references local IDs from Dewford's map.
-@  These are labeled in DewfordTown/scripts.inc
-
-Route104_MapScripts::
-	.byte 0
-`
+mapscripts Route104_MapScripts {
+	Route104_OnTransition{
+		clearflag(FLAG_SYS_REMOTE_POKEMON_STORAGE)
+	}
+}

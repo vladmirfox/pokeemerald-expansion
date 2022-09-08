@@ -302,7 +302,7 @@ static void BuildNormalStartMenu(void)
 
     }
     
-    if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_REMOTE_POKEMON_STORAGE) == TRUE)
     {
         AddStartMenuAction(MENU_ACTION_PC);
     }
