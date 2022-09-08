@@ -5749,12 +5749,10 @@ static void Cmd_moveend(void)
                 {
                 case SPECIES_CASTFORM:
                 case SPECIES_CHERRIM:
-#ifdef POKEMON_EXPANSION
                 case SPECIES_CASTFORM_RAINY:
                 case SPECIES_CASTFORM_SNOWY:
                 case SPECIES_CASTFORM_SUNNY:
                 case SPECIES_CHERRIM_SUNSHINE:
-#endif
                     effect = TryWeatherFormChange(i);
                     if (effect)
                     {

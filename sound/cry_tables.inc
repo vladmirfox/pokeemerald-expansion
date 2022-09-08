@@ -378,6 +378,9 @@ gCryTable::
 	cry Cry_Feebas
 	cry Cry_Milotic
 	cry Cry_Castform
+	cry Cry_Castform
+	cry Cry_Castform
+	cry Cry_Castform
 	cry Cry_Kecleon
 	cry Cry_Shuppet
 	cry Cry_Banette
@@ -412,6 +415,9 @@ gCryTable::
 	cry Cry_Groudon
 	cry Cry_Rayquaza
 	cry Cry_Jirachi
+	cry Cry_Deoxys
+	cry Cry_Deoxys
+	cry Cry_Deoxys
 	cry Cry_Deoxys
 .if P_GEN_4_POKEMON == TRUE
 	cry Cry_Turtwig
@@ -1634,14 +1640,6 @@ gCryTable::
 	cry Cry_Pikachu
 	@ Pichu
 	cry Cry_Pichu
-	@ Castform
-	cry Cry_Castform
-	cry Cry_Castform
-	cry Cry_Castform
-	@ Deoxys
-	cry Cry_Deoxys
-	cry Cry_Deoxys
-	cry Cry_Deoxys
 .if P_GEN_4_POKEMON == TRUE
 	@ Burmy
 	cry Cry_Burmy
@@ -2320,7 +2318,7 @@ gCryTable_Reverse::
 	cry_reverse Cry_Murkrow
 	cry_reverse Cry_Slowking
 	cry_reverse Cry_Misdreavus
-	cry_reverseCry_Unown @ A
+	cry_reverse Cry_Unown @ A
 	cry_reverse Cry_Unown @ B
 	cry_reverse Cry_Unown @ C
 	cry_reverse Cry_Unown @ D
@@ -2499,6 +2497,9 @@ gCryTable_Reverse::
 	cry_reverse Cry_Feebas
 	cry_reverse Cry_Milotic
 	cry_reverse Cry_Castform
+	cry_reverse Cry_Castform
+	cry_reverse Cry_Castform
+	cry_reverse Cry_Castform
 	cry_reverse Cry_Kecleon
 	cry_reverse Cry_Shuppet
 	cry_reverse Cry_Banette
@@ -2533,6 +2534,9 @@ gCryTable_Reverse::
 	cry_reverse Cry_Groudon
 	cry_reverse Cry_Rayquaza
 	cry_reverse Cry_Jirachi
+	cry_reverse Cry_Deoxys
+	cry_reverse Cry_Deoxys
+	cry_reverse Cry_Deoxys
 	cry_reverse Cry_Deoxys
 .if P_GEN_4_POKEMON == TRUE
 	cry_reverse Cry_Turtwig
@@ -3755,14 +3759,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_Pikachu
 	@ Pichu
 	cry_reverse Cry_Pichu
-	@ Castform
-	cry_reverse Cry_Castform
-	cry_reverse Cry_Castform
-	cry_reverse Cry_Castform
-	@ Deoxys
-	cry_reverse Cry_Deoxys
-	cry_reverse Cry_Deoxys
-	cry_reverse Cry_Deoxys
 .if P_GEN_4_POKEMON == TRUE
 	@ Burmy
 	cry_reverse Cry_Burmy

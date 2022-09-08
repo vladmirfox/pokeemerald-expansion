@@ -1959,6 +1959,21 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = MON_COORDS_SIZE(32, 64),
         .y_offset = 0,
     },
+    [SPECIES_CASTFORM_SUNNY] =
+    {
+        .size = MON_COORDS_SIZE(56, 64),
+        .y_offset = 0,
+    },
+    [SPECIES_CASTFORM_RAINY] =
+    {
+        .size = MON_COORDS_SIZE(40, 64),
+        .y_offset = 0,
+    },
+    [SPECIES_CASTFORM_SNOWY] =
+    {
+        .size = MON_COORDS_SIZE(56, 64),
+        .y_offset = 0,
+    },
     [SPECIES_VOLBEAT] =
     {
         .size = MON_COORDS_SIZE(48, 64),
@@ -2083,6 +2098,21 @@ const struct MonCoords gMonBackPicCoords[] =
     {
         .size = MON_COORDS_SIZE(64, 56),
         .y_offset = 6,
+    },
+    [SPECIES_DEOXYS_ATTACK] =
+    {
+        .size = MON_COORDS_SIZE(64, 64),
+        .y_offset = 1,
+    },
+    [SPECIES_DEOXYS_DEFENSE] =
+    {
+        .size = MON_COORDS_SIZE(64, 56),
+        .y_offset = 8,
+    },
+    [SPECIES_DEOXYS_SPEED] =
+    {
+        .size = MON_COORDS_SIZE(64, 64),
+        .y_offset = 0,
     },
     [SPECIES_CHIMECHO] =
     {
@@ -5242,38 +5272,6 @@ const struct MonCoords gMonBackPicCoords[] =
     {
         .size = MON_COORDS_SIZE(48, 56),
         .y_offset = 8,
-    },
-    // Castform
-    [SPECIES_CASTFORM_SUNNY] =
-    {
-        .size = MON_COORDS_SIZE(56, 64),
-        .y_offset = 0,
-    },
-    [SPECIES_CASTFORM_RAINY] =
-    {
-        .size = MON_COORDS_SIZE(40, 64),
-        .y_offset = 0,
-    },
-    [SPECIES_CASTFORM_SNOWY] =
-    {
-        .size = MON_COORDS_SIZE(56, 64),
-        .y_offset = 0,
-    },
-    // Deoxys
-    [SPECIES_DEOXYS_ATTACK] =
-    {
-        .size = MON_COORDS_SIZE(64, 64),
-        .y_offset = 1,
-    },
-    [SPECIES_DEOXYS_DEFENSE] =
-    {
-        .size = MON_COORDS_SIZE(64, 56),
-        .y_offset = 8,
-    },
-    [SPECIES_DEOXYS_SPEED] =
-    {
-        .size = MON_COORDS_SIZE(64, 64),
-        .y_offset = 0,
     },
 #if P_GEN_4_POKEMON == TRUE
     // Burmy

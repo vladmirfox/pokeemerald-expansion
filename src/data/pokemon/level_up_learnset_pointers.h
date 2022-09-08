@@ -388,6 +388,9 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_LAIRON] = sLaironLevelUpLearnset,
     [SPECIES_AGGRON] = sAggronLevelUpLearnset,
     [SPECIES_CASTFORM] = sCastformLevelUpLearnset,
+    [SPECIES_CASTFORM_SUNNY] = sCastformLevelUpLearnset,
+    [SPECIES_CASTFORM_RAINY] = sCastformLevelUpLearnset,
+    [SPECIES_CASTFORM_SNOWY] = sCastformLevelUpLearnset,
     [SPECIES_VOLBEAT] = sVolbeatLevelUpLearnset,
     [SPECIES_ILLUMISE] = sIllumiseLevelUpLearnset,
     [SPECIES_LILEEP] = sLileepLevelUpLearnset,
@@ -413,6 +416,9 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_LATIOS] = sLatiosLevelUpLearnset,
     [SPECIES_JIRACHI] = sJirachiLevelUpLearnset,
     [SPECIES_DEOXYS] = sDeoxysLevelUpLearnset,
+    [SPECIES_DEOXYS_ATTACK] = sDeoxysAttackLevelUpLearnset,
+    [SPECIES_DEOXYS_DEFENSE] = sDeoxysDefenseLevelUpLearnset,
+    [SPECIES_DEOXYS_SPEED] = sDeoxysSpeedLevelUpLearnset,
     [SPECIES_CHIMECHO] = sChimechoLevelUpLearnset,
 #if P_GEN_4_POKEMON == TRUE
     [SPECIES_TURTWIG] = sTurtwigLevelUpLearnset,
@@ -1084,14 +1090,6 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_PIKACHU_WORLD_CAP] = sPikachuLevelUpLearnset,
     // Pichu
     [SPECIES_PICHU_SPIKY_EARED] = sPichuLevelUpLearnset,
-    // Castform
-    [SPECIES_CASTFORM_SUNNY] = sCastformLevelUpLearnset,
-    [SPECIES_CASTFORM_RAINY] = sCastformLevelUpLearnset,
-    [SPECIES_CASTFORM_SNOWY] = sCastformLevelUpLearnset,
-    // Deoxys
-    [SPECIES_DEOXYS_ATTACK] = sDeoxysAttackLevelUpLearnset,
-    [SPECIES_DEOXYS_DEFENSE] = sDeoxysDefenseLevelUpLearnset,
-    [SPECIES_DEOXYS_SPEED] = sDeoxysSpeedLevelUpLearnset,
 #if P_GEN_4_POKEMON == TRUE
     // Burmy
     [SPECIES_BURMY_SANDY_CLOAK] = sBurmyLevelUpLearnset,

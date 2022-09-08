@@ -388,6 +388,9 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
     SPECIES_SPRITE(LAIRON, gMonFrontPic_Lairon),
     SPECIES_SPRITE(AGGRON, gMonFrontPic_Aggron),
     SPECIES_SPRITE(CASTFORM, gMonFrontPic_Castform),
+    SPECIES_SPRITE(CASTFORM_SUNNY, gMonFrontPic_CastformSunny),
+    SPECIES_SPRITE(CASTFORM_RAINY, gMonFrontPic_CastformRainy),
+    SPECIES_SPRITE(CASTFORM_SNOWY, gMonFrontPic_CastformSnowy),
     SPECIES_SPRITE(VOLBEAT, gMonFrontPic_Volbeat),
     SPECIES_SPRITE(ILLUMISE, gMonFrontPic_Illumise),
     SPECIES_SPRITE(LILEEP, gMonFrontPic_Lileep),
@@ -413,6 +416,9 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
     SPECIES_SPRITE(LATIOS, gMonFrontPic_Latios),
     SPECIES_SPRITE(JIRACHI, gMonFrontPic_Jirachi),
     SPECIES_SPRITE(DEOXYS, gMonFrontPic_Deoxys),
+    SPECIES_SPRITE(DEOXYS_ATTACK, gMonFrontPic_DeoxysAttack),
+    SPECIES_SPRITE(DEOXYS_DEFENSE, gMonFrontPic_DeoxysDefense),
+    SPECIES_SPRITE(DEOXYS_SPEED, gMonFrontPic_DeoxysSpeed),
     SPECIES_SPRITE(CHIMECHO, gMonFrontPic_Chimecho),
 #if P_GEN_4_POKEMON == TRUE
     SPECIES_SPRITE(TURTWIG, gMonFrontPic_Turtwig),
@@ -1082,13 +1088,7 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
     SPECIES_SPRITE(PIKACHU_WORLD_CAP, gMonFrontPic_PikachuWorldCap),
 
     SPECIES_SPRITE(PICHU_SPIKY_EARED, gMonFrontPic_PichuSpikyEared),
-    SPECIES_SPRITE(CASTFORM_SUNNY, gMonFrontPic_CastformSunny),
-    SPECIES_SPRITE(CASTFORM_RAINY, gMonFrontPic_CastformRainy),
-    SPECIES_SPRITE(CASTFORM_SNOWY, gMonFrontPic_CastformSnowy),
 
-    SPECIES_SPRITE(DEOXYS_ATTACK, gMonFrontPic_DeoxysAttack),
-    SPECIES_SPRITE(DEOXYS_DEFENSE, gMonFrontPic_DeoxysDefense),
-    SPECIES_SPRITE(DEOXYS_SPEED, gMonFrontPic_DeoxysSpeed),
 #if P_GEN_4_POKEMON == TRUE
     SPECIES_SPRITE(BURMY_SANDY_CLOAK, gMonFrontPic_BurmySandyCloak),
     SPECIES_SPRITE(BURMY_TRASH_CLOAK, gMonFrontPic_BurmyTrashCloak),
