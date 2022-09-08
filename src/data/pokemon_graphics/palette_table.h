@@ -421,6 +421,7 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(DEOXYS_SPEED, gMonPalette_DeoxysSpeed),
     SPECIES_PAL(CHIMECHO, gMonPalette_Chimecho),
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
     SPECIES_PAL(TURTWIG, gMonPalette_Turtwig),
     SPECIES_PAL(GROTLE, gMonPalette_Grotle),
     SPECIES_PAL(TORTERRA, gMonPalette_Torterra),
@@ -551,8 +552,20 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(ARCEUS_ICE, gMonPalette_ArceusIce),
     SPECIES_PAL(ARCEUS_DRAGON, gMonPalette_ArceusDragon),
     SPECIES_PAL(ARCEUS_DARK, gMonPalette_ArceusDark),
+// Platinum
+    SPECIES_PAL(ROTOM_HEAT, gMonPalette_RotomHeat),
+    SPECIES_PAL(ROTOM_WASH, gMonPalette_RotomWash),
+    SPECIES_PAL(ROTOM_FROST, gMonPalette_RotomFrost),
+    SPECIES_PAL(ROTOM_FAN, gMonPalette_RotomFan),
+    SPECIES_PAL(ROTOM_MOW, gMonPalette_RotomMow),
+    SPECIES_PAL(GIRATINA_ORIGIN, gMonPalette_GiratinaOrigin),
+    SPECIES_PAL(SHAYMIN_SKY, gMonPalette_ShayminSky),
 #endif
+// HeartGold and SoulSilver
+    SPECIES_PAL(PICHU_SPIKY_EARED, gMonPalette_PichuSpikyEared),
+
 #if P_GEN_5_POKEMON == TRUE
+// Black and White
     SPECIES_PAL(VICTINI, gMonPalette_Victini),
     SPECIES_PAL(SNIVY, gMonPalette_Snivy),
     SPECIES_PAL(SERVINE, gMonPalette_Servine),
@@ -1110,22 +1123,10 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(PIKACHU_PARTNER_CAP, gMonPalette_PikachuPartnerCap),
     SPECIES_PAL(PIKACHU_WORLD_CAP, gMonPalette_PikachuWorldCap),
 
-    SPECIES_PAL(PICHU_SPIKY_EARED, gMonPalette_PichuSpikyEared),
 
 #if P_GEN_4_POKEMON == TRUE
-
-
-    SPECIES_PAL(ROTOM_HEAT, gMonPalette_RotomHeat),
-    SPECIES_PAL(ROTOM_WASH, gMonPalette_RotomWash),
-    SPECIES_PAL(ROTOM_FROST, gMonPalette_RotomFrost),
-    SPECIES_PAL(ROTOM_FAN, gMonPalette_RotomFan),
-    SPECIES_PAL(ROTOM_MOW, gMonPalette_RotomMow),
-
     SPECIES_PAL(DIALGA_ORIGIN, gMonPalette_DialgaOrigin),
     SPECIES_PAL(PALKIA_ORIGIN, gMonPalette_PalkiaOrigin),
-    SPECIES_PAL(GIRATINA_ORIGIN, gMonPalette_GiratinaOrigin),
-
-    SPECIES_PAL(SHAYMIN_SKY, gMonPalette_ShayminSky),
 
     SPECIES_PAL(ARCEUS_FAIRY, gMonPalette_ArceusFairy),
 #endif

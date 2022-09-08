@@ -2120,6 +2120,7 @@ const struct MonCoords gMonBackPicCoords[] =
         .y_offset = 9,
     },
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
     [SPECIES_TURTWIG] =
     {
         .size = MON_COORDS_SIZE(48, 56),
@@ -2250,9 +2251,29 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = MON_COORDS_SIZE(40, 56),
         .y_offset = 6,
     },
+    [SPECIES_BURMY_SANDY_CLOAK] =
+    {
+        .size = MON_COORDS_SIZE(32, 56),
+        .y_offset = 7,
+    },
+    [SPECIES_BURMY_TRASH_CLOAK] =
+    {
+        .size = MON_COORDS_SIZE(40, 64),
+        .y_offset = 0,
+    },
     [SPECIES_WORMADAM] =
     {
         .size = MON_COORDS_SIZE(56, 64),
+        .y_offset = 2,
+    },
+    [SPECIES_WORMADAM_SANDY_CLOAK] =
+    {
+        .size = MON_COORDS_SIZE(56, 64),
+        .y_offset = 2,
+    },
+    [SPECIES_WORMADAM_TRASH_CLOAK] =
+    {
+        .size = MON_COORDS_SIZE(64, 64),
         .y_offset = 2,
     },
     [SPECIES_MOTHIM] =
@@ -2682,8 +2703,52 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_ARCEUS_ICE] = ARCEUS_BACK_PIC_COORDS,
     [SPECIES_ARCEUS_DRAGON] = ARCEUS_BACK_PIC_COORDS,
     [SPECIES_ARCEUS_DARK] = ARCEUS_BACK_PIC_COORDS,
+// Platinum
+    [SPECIES_ROTOM_HEAT] =
+    {
+        .size = MON_COORDS_SIZE(64, 40),
+        .y_offset = 12,
+    },
+    [SPECIES_ROTOM_WASH] =
+    {
+        .size = MON_COORDS_SIZE(64, 48),
+        .y_offset = 11,
+    },
+    [SPECIES_ROTOM_FROST] =
+    {
+        .size = MON_COORDS_SIZE(64, 56),
+        .y_offset = 7,
+    },
+    [SPECIES_ROTOM_FAN] =
+    {
+        .size = MON_COORDS_SIZE(64, 48),
+        .y_offset = 8,
+    },
+    [SPECIES_ROTOM_MOW] =
+    {
+        .size = MON_COORDS_SIZE(56, 48),
+        .y_offset = 10,
+    },
+    [SPECIES_GIRATINA_ORIGIN] =
+    {
+        .size = MON_COORDS_SIZE(64, 56),
+        .y_offset = 4,
+    },
+    [SPECIES_SHAYMIN_SKY] =
+    {
+        .size = MON_COORDS_SIZE(56, 64),
+        .y_offset = 2,
+    },
 #endif
+// HeartGold and SoulSilver
+    [SPECIES_PICHU_SPIKY_EARED] =
+    {
+        .size = MON_COORDS_SIZE(48, 56),
+        .y_offset = 8,
+    },
+
 #if P_GEN_5_POKEMON == TRUE
+// Black and White
     [SPECIES_VICTINI] =
     {
         .size = MON_COORDS_SIZE(40, 64),
@@ -5298,61 +5363,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_PIKACHU_ALOLA_CAP] = PIKACHU_BACK_PIC_COORDS,
     [SPECIES_PIKACHU_PARTNER_CAP] = PIKACHU_BACK_PIC_COORDS,
     [SPECIES_PIKACHU_WORLD_CAP] = PIKACHU_BACK_PIC_COORDS,
-    // Pichu
-    [SPECIES_PICHU_SPIKY_EARED] =
-    {
-        .size = MON_COORDS_SIZE(48, 56),
-        .y_offset = 8,
-    },
 #if P_GEN_4_POKEMON == TRUE
-    // Burmy
-    [SPECIES_BURMY_SANDY_CLOAK] =
-    {
-        .size = MON_COORDS_SIZE(32, 56),
-        .y_offset = 7,
-    },
-    [SPECIES_BURMY_TRASH_CLOAK] =
-    {
-        .size = MON_COORDS_SIZE(40, 64),
-        .y_offset = 0,
-    },
-    // Wormadam
-    [SPECIES_WORMADAM_SANDY_CLOAK] =
-    {
-        .size = MON_COORDS_SIZE(56, 64),
-        .y_offset = 2,
-    },
-    [SPECIES_WORMADAM_TRASH_CLOAK] =
-    {
-        .size = MON_COORDS_SIZE(64, 64),
-        .y_offset = 2,
-    },
-    // Rotom
-    [SPECIES_ROTOM_HEAT] =
-    {
-        .size = MON_COORDS_SIZE(64, 40),
-        .y_offset = 12,
-    },
-    [SPECIES_ROTOM_WASH] =
-    {
-        .size = MON_COORDS_SIZE(64, 48),
-        .y_offset = 11,
-    },
-    [SPECIES_ROTOM_FROST] =
-    {
-        .size = MON_COORDS_SIZE(64, 56),
-        .y_offset = 7,
-    },
-    [SPECIES_ROTOM_FAN] =
-    {
-        .size = MON_COORDS_SIZE(64, 48),
-        .y_offset = 8,
-    },
-    [SPECIES_ROTOM_MOW] =
-    {
-        .size = MON_COORDS_SIZE(56, 48),
-        .y_offset = 10,
-    },
     // Origin Forme
     [SPECIES_DIALGA_ORIGIN] =
     {
@@ -5363,17 +5374,6 @@ const struct MonCoords gMonBackPicCoords[] =
     {
         .size = MON_COORDS_SIZE(64, 64),
         .y_offset = 3,
-    },
-    [SPECIES_GIRATINA_ORIGIN] =
-    {
-        .size = MON_COORDS_SIZE(64, 56),
-        .y_offset = 4,
-    },
-    // Shaymin
-    [SPECIES_SHAYMIN_SKY] =
-    {
-        .size = MON_COORDS_SIZE(56, 64),
-        .y_offset = 2,
     },
     // Arceus
     [SPECIES_ARCEUS_FAIRY] = ARCEUS_BACK_PIC_COORDS,

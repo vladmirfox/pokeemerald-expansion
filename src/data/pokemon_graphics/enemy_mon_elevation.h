@@ -88,7 +88,7 @@ const u8 gEnemyMonElevation[NUM_SPECIES] =
     [SPECIES_LATIOS] = 6,
     [SPECIES_JIRACHI] = 14,
     [SPECIES_CHIMECHO] = 16,
-    // Gen 4
+// Diamond and Pearl
     [SPECIES_MOTHIM] = 10,
     [SPECIES_COMBEE] = 8,
     [SPECIES_VESPIQUEN] = 4,
@@ -109,7 +109,14 @@ const u8 gEnemyMonElevation[NUM_SPECIES] =
     [SPECIES_AZELF] = 6,
     [SPECIES_CRESSELIA] = 3,
     [SPECIES_DARKRAI] = 4,
-    // Gen 5
+// Platinum
+    [SPECIES_ROTOM_HEAT] = 6,
+    [SPECIES_ROTOM_WASH] = 6,
+    [SPECIES_ROTOM_FROST] = 6,
+    [SPECIES_ROTOM_FAN] = 6,
+    [SPECIES_ROTOM_MOW] = 6,
+    [SPECIES_GIRATINA_ORIGIN] = 7,
+// Black and White
     [SPECIES_MUNNA] = 7,
     [SPECIES_MUSHARNA] = 5,
     [SPECIES_WOOBAT] = 19,
@@ -212,12 +219,6 @@ const u8 gEnemyMonElevation[NUM_SPECIES] =
     [SPECIES_ELECTRODE_HISUIAN] = 4,
     [SPECIES_BRAVIARY_HISUIAN] = 3,
     // Other Forms
-    [SPECIES_ROTOM_HEAT] = 6,
-    [SPECIES_ROTOM_WASH] = 6,
-    [SPECIES_ROTOM_FROST] = 6,
-    [SPECIES_ROTOM_FAN] = 6,
-    [SPECIES_ROTOM_MOW] = 6,
-    [SPECIES_GIRATINA_ORIGIN] = 7,
     [SPECIES_THUNDURUS_THERIAN] = 7,
     [SPECIES_MELOETTA_PIROUETTE] = 5,
     [SPECIES_VIVILLON_POLAR] = 9,

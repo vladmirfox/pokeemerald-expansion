@@ -421,6 +421,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_DEOXYS_SPEED] = sDeoxysSpeedTeachableLearnset,
     [SPECIES_CHIMECHO] = sChimechoTeachableLearnset,
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
     [SPECIES_TURTWIG] = sTurtwigTeachableLearnset,
     [SPECIES_GROTLE] = sGrotleTeachableLearnset,
     [SPECIES_TORTERRA] = sTorterraTeachableLearnset,
@@ -551,8 +552,20 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_ARCEUS_ICE] = sArceusTeachableLearnset,
     [SPECIES_ARCEUS_DRAGON] = sArceusTeachableLearnset,
     [SPECIES_ARCEUS_DARK] = sArceusTeachableLearnset,
+// Platinum
+    [SPECIES_ROTOM_HEAT] = sRotomTeachableLearnset,
+    [SPECIES_ROTOM_WASH] = sRotomTeachableLearnset,
+    [SPECIES_ROTOM_FROST] = sRotomTeachableLearnset,
+    [SPECIES_ROTOM_FAN] = sRotomTeachableLearnset,
+    [SPECIES_ROTOM_MOW] = sRotomTeachableLearnset,
+    [SPECIES_GIRATINA_ORIGIN] = sGiratinaTeachableLearnset,
+    [SPECIES_SHAYMIN_SKY] = sShayminSkyTeachableLearnset,
 #endif
+// HeartGold and SoulSilver
+    [SPECIES_PICHU_SPIKY_EARED] = sPichuTeachableLearnset,
+
 #if P_GEN_5_POKEMON == TRUE
+// Black and White
     [SPECIES_VICTINI] = sVictiniTeachableLearnset,
     [SPECIES_SNIVY] = sSnivyTeachableLearnset,
     [SPECIES_SERVINE] = sServineTeachableLearnset,
@@ -1111,21 +1124,10 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_PIKACHU_ALOLA_CAP] = sPikachuTeachableLearnset,
     [SPECIES_PIKACHU_PARTNER_CAP] = sPikachuTeachableLearnset,
     [SPECIES_PIKACHU_WORLD_CAP] = sPikachuTeachableLearnset,
-    // Pichu
-    [SPECIES_PICHU_SPIKY_EARED] = sPichuTeachableLearnset,
 #if P_GEN_4_POKEMON == TRUE
-    // Rotom
-    [SPECIES_ROTOM_HEAT] = sRotomTeachableLearnset,
-    [SPECIES_ROTOM_WASH] = sRotomTeachableLearnset,
-    [SPECIES_ROTOM_FROST] = sRotomTeachableLearnset,
-    [SPECIES_ROTOM_FAN] = sRotomTeachableLearnset,
-    [SPECIES_ROTOM_MOW] = sRotomTeachableLearnset,
     // Origin Forme
     [SPECIES_DIALGA_ORIGIN] = sDialgaTeachableLearnset,
     [SPECIES_PALKIA_ORIGIN] = sPalkiaTeachableLearnset,
-    [SPECIES_GIRATINA_ORIGIN] = sGiratinaTeachableLearnset,
-    // Shaymin
-    [SPECIES_SHAYMIN_SKY] = sShayminSkyTeachableLearnset,
     // Arceus
     [SPECIES_ARCEUS_FAIRY] = sArceusTeachableLearnset,
 #endif

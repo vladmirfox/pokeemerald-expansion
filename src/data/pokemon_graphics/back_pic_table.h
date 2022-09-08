@@ -421,6 +421,7 @@ const struct CompressedSpriteSheet gMonBackPicTable[] =
     SPECIES_SPRITE(DEOXYS_SPEED, gMonBackPic_DeoxysSpeed),
     SPECIES_SPRITE(CHIMECHO, gMonBackPic_Chimecho),
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
     SPECIES_SPRITE(TURTWIG, gMonBackPic_Turtwig),
     SPECIES_SPRITE(GROTLE, gMonBackPic_Grotle),
     SPECIES_SPRITE(TORTERRA, gMonBackPic_Torterra),
@@ -551,8 +552,20 @@ const struct CompressedSpriteSheet gMonBackPicTable[] =
     SPECIES_SPRITE(ARCEUS_ICE, gMonBackPic_Arceus),
     SPECIES_SPRITE(ARCEUS_DRAGON, gMonBackPic_Arceus),
     SPECIES_SPRITE(ARCEUS_DARK, gMonBackPic_Arceus),
+// Platinum
+    SPECIES_SPRITE(ROTOM_HEAT, gMonBackPic_RotomHeat),
+    SPECIES_SPRITE(ROTOM_WASH, gMonBackPic_RotomWash),
+    SPECIES_SPRITE(ROTOM_FROST, gMonBackPic_RotomFrost),
+    SPECIES_SPRITE(ROTOM_FAN, gMonBackPic_RotomFan),
+    SPECIES_SPRITE(ROTOM_MOW, gMonBackPic_RotomMow),
+    SPECIES_SPRITE(GIRATINA_ORIGIN, gMonBackPic_GiratinaOrigin),
+    SPECIES_SPRITE(SHAYMIN_SKY, gMonBackPic_ShayminSky),
 #endif
+// HeartGold and SoulSilver
+    SPECIES_SPRITE(PICHU_SPIKY_EARED, gMonBackPic_PichuSpikyEared),
+
 #if P_GEN_5_POKEMON == TRUE
+// Black and White
     SPECIES_SPRITE(VICTINI, gMonBackPic_Victini),
     SPECIES_SPRITE(SNIVY, gMonBackPic_Snivy),
     SPECIES_SPRITE(SERVINE, gMonBackPic_Servine),
@@ -1111,22 +1124,10 @@ const struct CompressedSpriteSheet gMonBackPicTable[] =
     SPECIES_SPRITE(PIKACHU_PARTNER_CAP, gMonBackPic_PikachuPartnerCap),
     SPECIES_SPRITE(PIKACHU_WORLD_CAP, gMonBackPic_PikachuWorldCap),
 
-    SPECIES_SPRITE(PICHU_SPIKY_EARED, gMonBackPic_PichuSpikyEared),
 
 #if P_GEN_4_POKEMON == TRUE
-
-
-    SPECIES_SPRITE(ROTOM_HEAT, gMonBackPic_RotomHeat),
-    SPECIES_SPRITE(ROTOM_WASH, gMonBackPic_RotomWash),
-    SPECIES_SPRITE(ROTOM_FROST, gMonBackPic_RotomFrost),
-    SPECIES_SPRITE(ROTOM_FAN, gMonBackPic_RotomFan),
-    SPECIES_SPRITE(ROTOM_MOW, gMonBackPic_RotomMow),
-
     SPECIES_SPRITE(DIALGA_ORIGIN, gMonBackPic_DialgaOrigin),
     SPECIES_SPRITE(PALKIA_ORIGIN, gMonBackPic_PalkiaOrigin),
-    SPECIES_SPRITE(GIRATINA_ORIGIN, gMonBackPic_GiratinaOrigin),
-
-    SPECIES_SPRITE(SHAYMIN_SKY, gMonBackPic_ShayminSky),
 
     SPECIES_SPRITE(ARCEUS_FAIRY, gMonBackPic_Arceus),
 #endif

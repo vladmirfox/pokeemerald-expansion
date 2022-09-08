@@ -4855,6 +4855,7 @@ static const union AnimCmd sAnim_EGG_1[] =
 };
 
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
 static const union AnimCmd sAnim_TURTWIG_1[] =
 {
     ANIMCMD_FRAME(0, 15),
@@ -5640,70 +5641,6 @@ static const union AnimCmd sAnim_ROTOM_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_RotomHeat_1[] =
-{
-    ANIMCMD_FRAME(0, 30),
-    ANIMCMD_FRAME(1, 30),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_RotomFrost_1[] =
-{
-    ANIMCMD_FRAME(0, 30),
-    ANIMCMD_FRAME(1, 30),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_RotomFan_1[] =
-{
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 6),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 5),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 4),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 3),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 10),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 10),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_RotomMow_1[] =
-{
-    ANIMCMD_FRAME(0, 30),
-    ANIMCMD_FRAME(1, 30),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_RotomWash_1[] =
-{
-    ANIMCMD_FRAME(0, 30),
-    ANIMCMD_FRAME(1, 30),
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
 static const union AnimCmd sAnim_UXIE_1[] =
 {
     ANIMCMD_FRAME(0, 30),
@@ -5815,9 +5752,94 @@ static const union AnimCmd sAnim_ARCEUS_1[] =
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
+
+// Platinum
+static const union AnimCmd sAnim_RotomHeat_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_RotomFrost_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_RotomFan_1[] =
+{
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 6),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 4),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 3),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 10),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 2),
+    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 10),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_RotomMow_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_RotomWash_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_GIRATINA_ORIGIN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_SHAYMIN_SKY_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
 #endif
 
+// HeartGold and SoulSilver
+static const union AnimCmd sAnim_PICHU_SPIKY_EARED_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
 #if P_GEN_5_POKEMON == TRUE
+// Black and White
 static const union AnimCmd sAnim_VICTINI_1[] =
 {
     ANIMCMD_FRAME(0, 30),
@@ -9344,19 +9366,7 @@ static const union AnimCmd sAnim_PIKACHU_WORLD_CAP_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_PICHU_SPIKY_EARED_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
 #if P_GEN_4_POKEMON == TRUE
-static const union AnimCmd sAnim_SHAYMIN_SKY_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
 static const union AnimCmd sAnim_DIALGA_ORIGIN_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -9364,12 +9374,6 @@ static const union AnimCmd sAnim_DIALGA_ORIGIN_1[] =
 };
 
 static const union AnimCmd sAnim_PALKIA_ORIGIN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_GIRATINA_ORIGIN_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -12070,6 +12074,7 @@ static const union AnimCmd *const sAnims_EGG[] =
 };
 
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
 static const union AnimCmd *const sAnims_TURTWIG[] =
 {
     sAnim_GeneralFrame0,
@@ -12628,36 +12633,6 @@ static const union AnimCmd *const sAnims_ROTOM[] =
     sAnim_ROTOM_1,
 };
 
-static const union AnimCmd *const sAnims_ROTOM_HEAT[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_RotomHeat_1,
-};
-
-static const union AnimCmd *const sAnims_ROTOM_FROST[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_RotomFrost_1,
-};
-
-static const union AnimCmd *const sAnims_ROTOM_FAN[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_RotomFan_1,
-};
-
-static const union AnimCmd *const sAnims_ROTOM_MOW[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_RotomMow_1,
-};
-
-static const union AnimCmd *const sAnims_ROTOM_WASH[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_RotomWash_1,
-};
-
 static const union AnimCmd *const sAnims_UXIE[] =
 {
     sAnim_GeneralFrame0,
@@ -12741,9 +12716,60 @@ static const union AnimCmd *const sAnims_ARCEUS[] =
     sAnim_GeneralFrame0,
     sAnim_ARCEUS_1,
 };
+
+// Platinum
+static const union AnimCmd *const sAnims_ROTOM_HEAT[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_RotomHeat_1,
+};
+
+static const union AnimCmd *const sAnims_ROTOM_FROST[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_RotomFrost_1,
+};
+
+static const union AnimCmd *const sAnims_ROTOM_FAN[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_RotomFan_1,
+};
+
+static const union AnimCmd *const sAnims_ROTOM_MOW[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_RotomMow_1,
+};
+
+static const union AnimCmd *const sAnims_ROTOM_WASH[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_RotomWash_1,
+};
+
+static const union AnimCmd *const sAnims_GIRATINA_ORIGIN[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_GIRATINA_ORIGIN_1,
+};
+
+static const union AnimCmd *const sAnims_SHAYMIN_SKY[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_SHAYMIN_SKY_1,
+};
+
 #endif
 
+// HeartGold and SoulSilver
+static const union AnimCmd *const sAnims_PICHU_SPIKY_EARED[] = {
+    sAnim_GeneralFrame0,
+    sAnim_PICHU_SPIKY_EARED_1,
+};
+
 #if P_GEN_5_POKEMON == TRUE
+// Black and White
 static const union AnimCmd *const sAnims_VICTINI[] =
 {
     sAnim_GeneralFrame0,
@@ -15939,11 +15965,6 @@ static const union AnimCmd *const sAnims_PIKACHU_WORLD_CAP[] =
     sAnim_PIKACHU_WORLD_CAP_1,
 };
 
-static const union AnimCmd *const sAnims_PICHU_SPIKY_EARED[] = {
-    sAnim_GeneralFrame0,
-    sAnim_PICHU_SPIKY_EARED_1,
-};
-
 #if P_GEN_4_POKEMON == TRUE
 static const union AnimCmd *const sAnims_DIALGA_ORIGIN[] =
 {
@@ -15955,18 +15976,6 @@ static const union AnimCmd *const sAnims_PALKIA_ORIGIN[] =
 {
     sAnim_GeneralFrame0,
     sAnim_PALKIA_ORIGIN_1,
-};
-
-static const union AnimCmd *const sAnims_GIRATINA_ORIGIN[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_GIRATINA_ORIGIN_1,
-};
-
-static const union AnimCmd *const sAnims_SHAYMIN_SKY[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_SHAYMIN_SKY_1,
 };
 #endif
 
@@ -16518,6 +16527,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(DEOXYS_SPEED),
     ANIM_CMD(CHIMECHO),
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
     ANIM_CMD(TURTWIG),
     ANIM_CMD(GROTLE),
     ANIM_CMD(TORTERRA),
@@ -16544,7 +16554,11 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SHIELDON),
     ANIM_CMD(BASTIODON),
     ANIM_CMD(BURMY),
+    ANIM_CMD_FULL(BURMY_SANDY_CLOAK, sAnims_BURMY),
+    ANIM_CMD_FULL(BURMY_TRASH_CLOAK, sAnims_BURMY),
     ANIM_CMD(WORMADAM),
+    ANIM_CMD_FULL(WORMADAM_SANDY_CLOAK, sAnims_WORMADAM),
+    ANIM_CMD_FULL(WORMADAM_TRASH_CLOAK, sAnims_WORMADAM),
     ANIM_CMD(MOTHIM),
     ANIM_CMD(COMBEE),
     ANIM_CMD(VESPIQUEN),
@@ -16644,8 +16658,20 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD_FULL(ARCEUS_ICE, sAnims_ARCEUS),
     ANIM_CMD_FULL(ARCEUS_DRAGON, sAnims_ARCEUS),
     ANIM_CMD_FULL(ARCEUS_DARK, sAnims_ARCEUS),
+// Platinum
+    ANIM_CMD(ROTOM_HEAT),
+    ANIM_CMD(ROTOM_WASH),
+    ANIM_CMD(ROTOM_FROST),
+    ANIM_CMD(ROTOM_FAN),
+    ANIM_CMD(ROTOM_MOW),
+    ANIM_CMD(GIRATINA_ORIGIN),
+    ANIM_CMD(SHAYMIN_SKY),
 #endif
+// HeartGold and SoulSilver
+    ANIM_CMD(PICHU_SPIKY_EARED),
+
 #if P_GEN_5_POKEMON == TRUE
+// Black and White
     ANIM_CMD(VICTINI),
     ANIM_CMD(SNIVY),
     ANIM_CMD(SERVINE),
@@ -17196,21 +17222,9 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(PIKACHU_ALOLA_CAP),
     ANIM_CMD(PIKACHU_PARTNER_CAP),
     ANIM_CMD(PIKACHU_WORLD_CAP),
-    ANIM_CMD(PICHU_SPIKY_EARED),
 #if P_GEN_4_POKEMON == TRUE
-    ANIM_CMD_FULL(BURMY_SANDY_CLOAK, sAnims_BURMY),
-    ANIM_CMD_FULL(BURMY_TRASH_CLOAK, sAnims_BURMY),
-    ANIM_CMD_FULL(WORMADAM_SANDY_CLOAK, sAnims_WORMADAM),
-    ANIM_CMD_FULL(WORMADAM_TRASH_CLOAK, sAnims_WORMADAM),
-    ANIM_CMD(ROTOM_HEAT),
-    ANIM_CMD(ROTOM_WASH),
-    ANIM_CMD(ROTOM_FROST),
-    ANIM_CMD(ROTOM_FAN),
-    ANIM_CMD(ROTOM_MOW),
     ANIM_CMD(DIALGA_ORIGIN),
     ANIM_CMD(PALKIA_ORIGIN),
-    ANIM_CMD(GIRATINA_ORIGIN),
-    ANIM_CMD(SHAYMIN_SKY),
     ANIM_CMD_FULL(ARCEUS_FAIRY, sAnims_ARCEUS),
 #endif
 #if P_GEN_5_POKEMON == TRUE

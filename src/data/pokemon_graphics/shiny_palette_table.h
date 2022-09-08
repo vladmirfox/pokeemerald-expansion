@@ -421,6 +421,7 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(DEOXYS_SPEED, gMonShinyPalette_DeoxysSpeed),
     SPECIES_SHINY_PAL(CHIMECHO, gMonShinyPalette_Chimecho),
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
     SPECIES_SHINY_PAL(TURTWIG, gMonShinyPalette_Turtwig),
     SPECIES_SHINY_PAL(GROTLE, gMonShinyPalette_Grotle),
     SPECIES_SHINY_PAL(TORTERRA, gMonShinyPalette_Torterra),
@@ -551,8 +552,20 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(ARCEUS_ICE, gMonShinyPalette_ArceusIce),
     SPECIES_SHINY_PAL(ARCEUS_DRAGON, gMonShinyPalette_ArceusDragon),
     SPECIES_SHINY_PAL(ARCEUS_DARK, gMonShinyPalette_ArceusDark),
+// Platinum
+    SPECIES_SHINY_PAL(ROTOM_HEAT, gMonShinyPalette_RotomHeat),
+    SPECIES_SHINY_PAL(ROTOM_WASH, gMonShinyPalette_RotomWash),
+    SPECIES_SHINY_PAL(ROTOM_FROST, gMonShinyPalette_RotomFrost),
+    SPECIES_SHINY_PAL(ROTOM_FAN, gMonShinyPalette_RotomFan),
+    SPECIES_SHINY_PAL(ROTOM_MOW, gMonShinyPalette_RotomMow),
+    SPECIES_SHINY_PAL(GIRATINA_ORIGIN, gMonShinyPalette_GiratinaOrigin),
+    SPECIES_SHINY_PAL(SHAYMIN_SKY, gMonShinyPalette_ShayminSky),
 #endif
+// HeartGold and SoulSilver
+    SPECIES_SHINY_PAL(PICHU_SPIKY_EARED, gMonShinyPalette_PichuSpikyEared),
+
 #if P_GEN_5_POKEMON == TRUE
+// Black and White
     SPECIES_SHINY_PAL(VICTINI, gMonShinyPalette_Victini),
     SPECIES_SHINY_PAL(SNIVY, gMonShinyPalette_Snivy),
     SPECIES_SHINY_PAL(SERVINE, gMonShinyPalette_Servine),
@@ -1111,22 +1124,10 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(PIKACHU_PARTNER_CAP, gMonShinyPalette_PikachuPartnerCap),
     SPECIES_SHINY_PAL(PIKACHU_WORLD_CAP, gMonShinyPalette_PikachuWorldCap),
 
-    SPECIES_SHINY_PAL(PICHU_SPIKY_EARED, gMonShinyPalette_PichuSpikyEared),
 
 #if P_GEN_4_POKEMON == TRUE
-
-
-    SPECIES_SHINY_PAL(ROTOM_HEAT, gMonShinyPalette_RotomHeat),
-    SPECIES_SHINY_PAL(ROTOM_WASH, gMonShinyPalette_RotomWash),
-    SPECIES_SHINY_PAL(ROTOM_FROST, gMonShinyPalette_RotomFrost),
-    SPECIES_SHINY_PAL(ROTOM_FAN, gMonShinyPalette_RotomFan),
-    SPECIES_SHINY_PAL(ROTOM_MOW, gMonShinyPalette_RotomMow),
-
     SPECIES_SHINY_PAL(DIALGA_ORIGIN, gMonShinyPalette_DialgaOrigin),
     SPECIES_SHINY_PAL(PALKIA_ORIGIN, gMonShinyPalette_PalkiaOrigin),
-    SPECIES_SHINY_PAL(GIRATINA_ORIGIN, gMonShinyPalette_GiratinaOrigin),
-
-    SPECIES_SHINY_PAL(SHAYMIN_SKY, gMonShinyPalette_ShayminSky),
 
     SPECIES_SHINY_PAL(ARCEUS_FAIRY, gMonShinyPalette_ArceusFairy),
 #endif

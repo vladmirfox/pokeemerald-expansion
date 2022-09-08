@@ -421,6 +421,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_DEOXYS_SPEED] = sDeoxysSpeedLevelUpLearnset,
     [SPECIES_CHIMECHO] = sChimechoLevelUpLearnset,
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
     [SPECIES_TURTWIG] = sTurtwigLevelUpLearnset,
     [SPECIES_GROTLE] = sGrotleLevelUpLearnset,
     [SPECIES_TORTERRA] = sTorterraLevelUpLearnset,
@@ -551,8 +552,20 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_ARCEUS_ICE] = sArceusLevelUpLearnset,
     [SPECIES_ARCEUS_DRAGON] = sArceusLevelUpLearnset,
     [SPECIES_ARCEUS_DARK] = sArceusLevelUpLearnset,
+// Platinum
+    [SPECIES_ROTOM_HEAT] = sRotomLevelUpLearnset,
+    [SPECIES_ROTOM_WASH] = sRotomLevelUpLearnset,
+    [SPECIES_ROTOM_FROST] = sRotomLevelUpLearnset,
+    [SPECIES_ROTOM_FAN] = sRotomLevelUpLearnset,
+    [SPECIES_ROTOM_MOW] = sRotomLevelUpLearnset,
+    [SPECIES_GIRATINA_ORIGIN] = sGiratinaLevelUpLearnset,
+    [SPECIES_SHAYMIN_SKY] = sShayminSkyLevelUpLearnset,
 #endif
+// HeartGold and SoulSilver
+    [SPECIES_PICHU_SPIKY_EARED] = sPichuLevelUpLearnset,
+
 #if P_GEN_5_POKEMON == TRUE
+// Black and White
     [SPECIES_VICTINI] = sVictiniLevelUpLearnset,
     [SPECIES_SNIVY] = sSnivyLevelUpLearnset,
     [SPECIES_SERVINE] = sServineLevelUpLearnset,
@@ -1112,20 +1125,10 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_PIKACHU_PARTNER_CAP] = sPikachuLevelUpLearnset,
     [SPECIES_PIKACHU_WORLD_CAP] = sPikachuLevelUpLearnset,
     // Pichu
-    [SPECIES_PICHU_SPIKY_EARED] = sPichuLevelUpLearnset,
 #if P_GEN_4_POKEMON == TRUE
-    // Rotom
-    [SPECIES_ROTOM_HEAT] = sRotomLevelUpLearnset,
-    [SPECIES_ROTOM_WASH] = sRotomLevelUpLearnset,
-    [SPECIES_ROTOM_FROST] = sRotomLevelUpLearnset,
-    [SPECIES_ROTOM_FAN] = sRotomLevelUpLearnset,
-    [SPECIES_ROTOM_MOW] = sRotomLevelUpLearnset,
     // Origin Forme
     [SPECIES_DIALGA_ORIGIN] = sDialgaLevelUpLearnset,
     [SPECIES_PALKIA_ORIGIN] = sPalkiaLevelUpLearnset,
-    [SPECIES_GIRATINA_ORIGIN] = sGiratinaLevelUpLearnset,
-    // Shaymin
-    [SPECIES_SHAYMIN_SKY] = sShayminSkyLevelUpLearnset,
     // Arceus
     [SPECIES_ARCEUS_FAIRY] = sArceusLevelUpLearnset,
 #endif

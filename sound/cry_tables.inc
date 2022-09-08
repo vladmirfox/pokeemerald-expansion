@@ -419,6 +419,7 @@ gCryTable::
 	cry Cry_Deoxys
 	cry Cry_Deoxys
 	cry Cry_Deoxys
+@ Diamond and Pearl
 	cry Cry_Turtwig
 	cry Cry_Grotle
 	cry Cry_Torterra
@@ -549,6 +550,17 @@ gCryTable::
 	cry Cry_Arceus
 	cry Cry_Arceus
 	cry Cry_Arceus
+@ Platinum
+	cry Cry_Rotom
+	cry Cry_Rotom
+	cry Cry_Rotom
+	cry Cry_Rotom
+	cry Cry_Rotom
+	cry Cry_Giratina
+	cry Cry_ShayminSky
+@ HeartGold and SoulSilver
+	cry Cry_Pichu
+@ Black and White
 	cry Cry_Victini
 	cry Cry_Snivy
 	cry Cry_Servine
@@ -1087,20 +1099,9 @@ gCryTable::
 	cry Cry_Pikachu
 	cry Cry_Pikachu
 	cry Cry_Pikachu
-	@ Pichu
-	cry Cry_Pichu
-	@ Rotom
-	cry Cry_Rotom
-	cry Cry_Rotom
-	cry Cry_Rotom
-	cry Cry_Rotom
-	cry Cry_Rotom
 	@ Origin Forme
 	cry Cry_Dialga
 	cry Cry_Palkia
-	cry Cry_Giratina
-	@ Shaymin
-	cry Cry_ShayminSky
 	@ Arceus
 	cry Cry_Arceus
 	@ Basculin
@@ -1715,6 +1716,7 @@ gCryTable_Reverse::
 	cry_reverse Cry_Deoxys
 	cry_reverse Cry_Deoxys
 	cry_reverse Cry_Deoxys
+@ Diamond and Pearl
 	cry_reverse Cry_Turtwig
 	cry_reverse Cry_Grotle
 	cry_reverse Cry_Torterra
@@ -1845,6 +1847,17 @@ gCryTable_Reverse::
 	cry_reverse Cry_Arceus
 	cry_reverse Cry_Arceus
 	cry_reverse Cry_Arceus
+@ Platinum
+	cry_reverse Cry_Rotom
+	cry_reverse Cry_Rotom
+	cry_reverse Cry_Rotom
+	cry_reverse Cry_Rotom
+	cry_reverse Cry_Rotom
+	cry_reverse Cry_Giratina
+	cry_reverse Cry_ShayminSky
+@ HeartGold and SoulSilver
+	cry_reverse Cry_Pichu
+@ Black and White
 	cry_reverse Cry_Victini
 	cry_reverse Cry_Snivy
 	cry_reverse Cry_Servine
@@ -2383,20 +2396,9 @@ gCryTable_Reverse::
 	cry_reverse Cry_Pikachu
 	cry_reverse Cry_Pikachu
 	cry_reverse Cry_Pikachu
-	@ Pichu
-	cry_reverse Cry_Pichu
-	@ Rotom
-	cry_reverse Cry_Rotom
-	cry_reverse Cry_Rotom
-	cry_reverse Cry_Rotom
-	cry_reverse Cry_Rotom
-	cry_reverse Cry_Rotom
 	@ Origin Forme
 	cry_reverse Cry_Dialga
 	cry_reverse Cry_Palkia
-	cry_reverse Cry_Giratina
-	@ Shaymin
-	cry_reverse Cry_ShayminSky
 	@ Arceus
 	cry_reverse Cry_Arceus
 	@ Basculin

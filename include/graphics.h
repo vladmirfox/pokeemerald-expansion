@@ -488,6 +488,7 @@ extern const u32 gMonFrontPic_DeoxysAttack[];
 extern const u32 gMonFrontPic_DeoxysDefense[];
 extern const u32 gMonFrontPic_DeoxysSpeed[];
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
 extern const u32 gMonFrontPic_Turtwig[];
 extern const u32 gMonFrontPic_Grotle[];
 extern const u32 gMonFrontPic_Torterra[];
@@ -611,7 +612,18 @@ extern const u32 gMonFrontPic_Manaphy[];
 extern const u32 gMonFrontPic_Darkrai[];
 extern const u32 gMonFrontPic_Shaymin[];
 extern const u32 gMonFrontPic_Arceus[];
+// Platinum
+extern const u32 gMonFrontPic_RotomHeat[];
+extern const u32 gMonFrontPic_RotomWash[];
+extern const u32 gMonFrontPic_RotomFrost[];
+extern const u32 gMonFrontPic_RotomFan[];
+extern const u32 gMonFrontPic_RotomMow[];
+extern const u32 gMonFrontPic_GiratinaOrigin[];
+extern const u32 gMonFrontPic_ShayminSky[];
 #endif
+// HeartGold and SoulSilver
+extern const u32 gMonFrontPic_PichuSpikyEared[];
+
 #if P_GEN_5_POKEMON == TRUE
 extern const u32 gMonFrontPic_Victini[];
 extern const u32 gMonFrontPic_Snivy[];
@@ -1168,17 +1180,9 @@ extern const u32 gMonFrontPic_PikachuKalosCap[];
 extern const u32 gMonFrontPic_PikachuAlolaCap[];
 extern const u32 gMonFrontPic_PikachuPartnerCap[];
 extern const u32 gMonFrontPic_PikachuWorldCap[];
-extern const u32 gMonFrontPic_PichuSpikyEared[];
 #if P_GEN_4_POKEMON == TRUE
-extern const u32 gMonFrontPic_RotomHeat[];
-extern const u32 gMonFrontPic_RotomWash[];
-extern const u32 gMonFrontPic_RotomFrost[];
-extern const u32 gMonFrontPic_RotomFan[];
-extern const u32 gMonFrontPic_RotomMow[];
 extern const u32 gMonFrontPic_DialgaOrigin[];
 extern const u32 gMonFrontPic_PalkiaOrigin[];
-extern const u32 gMonFrontPic_GiratinaOrigin[];
-extern const u32 gMonFrontPic_ShayminSky[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
 extern const u32 gMonFrontPic_BasculinBlueStriped[];
@@ -1705,6 +1709,7 @@ extern const u32 gMonBackPic_DeoxysAttack[];
 extern const u32 gMonBackPic_DeoxysDefense[];
 extern const u32 gMonBackPic_DeoxysSpeed[];
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
 extern const u32 gMonBackPic_Turtwig[];
 extern const u32 gMonBackPic_Grotle[];
 extern const u32 gMonBackPic_Torterra[];
@@ -1827,7 +1832,18 @@ extern const u32 gMonBackPic_Manaphy[];
 extern const u32 gMonBackPic_Darkrai[];
 extern const u32 gMonBackPic_Shaymin[];
 extern const u32 gMonBackPic_Arceus[];
+// Platinum
+extern const u32 gMonBackPic_RotomHeat[];
+extern const u32 gMonBackPic_RotomWash[];
+extern const u32 gMonBackPic_RotomFrost[];
+extern const u32 gMonBackPic_RotomFan[];
+extern const u32 gMonBackPic_RotomMow[];
+extern const u32 gMonBackPic_GiratinaOrigin[];
+extern const u32 gMonBackPic_ShayminSky[];
 #endif
+// HeartGold and SoulSilver
+extern const u32 gMonBackPic_PichuSpikyEared[];
+
 #if P_GEN_5_POKEMON == TRUE
 extern const u32 gMonBackPic_Victini[];
 extern const u32 gMonBackPic_Snivy[];
@@ -2384,17 +2400,9 @@ extern const u32 gMonBackPic_PikachuKalosCap[];
 extern const u32 gMonBackPic_PikachuAlolaCap[];
 extern const u32 gMonBackPic_PikachuPartnerCap[];
 extern const u32 gMonBackPic_PikachuWorldCap[];
-extern const u32 gMonBackPic_PichuSpikyEared[];
 #if P_GEN_4_POKEMON == TRUE
-extern const u32 gMonBackPic_RotomHeat[];
-extern const u32 gMonBackPic_RotomWash[];
-extern const u32 gMonBackPic_RotomFrost[];
-extern const u32 gMonBackPic_RotomFan[];
-extern const u32 gMonBackPic_RotomMow[];
 extern const u32 gMonBackPic_DialgaOrigin[];
 extern const u32 gMonBackPic_PalkiaOrigin[];
-extern const u32 gMonBackPic_GiratinaOrigin[];
-extern const u32 gMonBackPic_ShayminSky[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
 extern const u32 gMonBackPic_BasculinBlueStriped[];
@@ -2890,6 +2898,7 @@ extern const u32 gMonPalette_DeoxysAttack[];
 extern const u32 gMonPalette_DeoxysDefense[];
 extern const u32 gMonPalette_DeoxysSpeed[];
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
 extern const u32 gMonPalette_Turtwig[];
 extern const u32 gMonPalette_Grotle[];
 extern const u32 gMonPalette_Torterra[];
@@ -3022,7 +3031,18 @@ extern const u32 gMonPalette_ArceusPsychic[];
 extern const u32 gMonPalette_ArceusIce[];
 extern const u32 gMonPalette_ArceusDragon[];
 extern const u32 gMonPalette_ArceusDark[];
+// Platinum
+extern const u32 gMonPalette_RotomHeat[];
+extern const u32 gMonPalette_RotomWash[];
+extern const u32 gMonPalette_RotomFrost[];
+extern const u32 gMonPalette_RotomFan[];
+extern const u32 gMonPalette_RotomMow[];
+extern const u32 gMonPalette_GiratinaOrigin[];
+extern const u32 gMonPalette_ShayminSky[];
 #endif
+// HeartGold and SoulSilver
+extern const u32 gMonPalette_PichuSpikyEared[];
+
 #if P_GEN_5_POKEMON == TRUE
 extern const u32 gMonPalette_Victini[];
 extern const u32 gMonPalette_Snivy[];
@@ -3579,17 +3599,9 @@ extern const u32 gMonPalette_PikachuKalosCap[];
 extern const u32 gMonPalette_PikachuAlolaCap[];
 extern const u32 gMonPalette_PikachuPartnerCap[];
 extern const u32 gMonPalette_PikachuWorldCap[];
-extern const u32 gMonPalette_PichuSpikyEared[];
 #if P_GEN_4_POKEMON == TRUE
-extern const u32 gMonPalette_RotomHeat[];
-extern const u32 gMonPalette_RotomWash[];
-extern const u32 gMonPalette_RotomFrost[];
-extern const u32 gMonPalette_RotomFan[];
-extern const u32 gMonPalette_RotomMow[];
 extern const u32 gMonPalette_DialgaOrigin[];
 extern const u32 gMonPalette_PalkiaOrigin[];
-extern const u32 gMonPalette_GiratinaOrigin[];
-extern const u32 gMonPalette_ShayminSky[];
 extern const u32 gMonPalette_ArceusFairy[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
@@ -4123,6 +4135,7 @@ extern const u32 gMonShinyPalette_DeoxysAttack[];
 extern const u32 gMonShinyPalette_DeoxysDefense[];
 extern const u32 gMonShinyPalette_DeoxysSpeed[];
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
 extern const u32 gMonShinyPalette_Turtwig[];
 extern const u32 gMonShinyPalette_Grotle[];
 extern const u32 gMonShinyPalette_Torterra[];
@@ -4256,7 +4269,18 @@ extern const u32 gMonShinyPalette_ArceusPsychic[];
 extern const u32 gMonShinyPalette_ArceusIce[];
 extern const u32 gMonShinyPalette_ArceusDragon[];
 extern const u32 gMonShinyPalette_ArceusDark[];
+// Platinum
+extern const u32 gMonShinyPalette_RotomHeat[];
+extern const u32 gMonShinyPalette_RotomWash[];
+extern const u32 gMonShinyPalette_RotomFrost[];
+extern const u32 gMonShinyPalette_RotomFan[];
+extern const u32 gMonShinyPalette_RotomMow[];
+extern const u32 gMonShinyPalette_GiratinaOrigin[];
+extern const u32 gMonShinyPalette_ShayminSky[];
 #endif
+// HeartGold and SoulSilver
+extern const u32 gMonShinyPalette_PichuSpikyEared[];
+
 #if P_GEN_5_POKEMON == TRUE
 extern const u32 gMonShinyPalette_Victini[];
 extern const u32 gMonShinyPalette_Snivy[];
@@ -4813,17 +4837,9 @@ extern const u32 gMonShinyPalette_PikachuKalosCap[];
 extern const u32 gMonShinyPalette_PikachuAlolaCap[];
 extern const u32 gMonShinyPalette_PikachuPartnerCap[];
 extern const u32 gMonShinyPalette_PikachuWorldCap[];
-extern const u32 gMonShinyPalette_PichuSpikyEared[];
 #if P_GEN_4_POKEMON == TRUE
-extern const u32 gMonShinyPalette_RotomHeat[];
-extern const u32 gMonShinyPalette_RotomWash[];
-extern const u32 gMonShinyPalette_RotomFrost[];
-extern const u32 gMonShinyPalette_RotomFan[];
-extern const u32 gMonShinyPalette_RotomMow[];
 extern const u32 gMonShinyPalette_DialgaOrigin[];
 extern const u32 gMonShinyPalette_PalkiaOrigin[];
-extern const u32 gMonShinyPalette_GiratinaOrigin[];
-extern const u32 gMonShinyPalette_ShayminSky[];
 extern const u32 gMonShinyPalette_ArceusFairy[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
@@ -5376,6 +5392,7 @@ extern const u8 gMonIcon_DeoxysAttack[];
 extern const u8 gMonIcon_DeoxysDefense[];
 extern const u8 gMonIcon_DeoxysSpeed[];
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
 extern const u8 gMonIcon_Turtwig[];
 extern const u8 gMonIcon_Grotle[];
 extern const u8 gMonIcon_Torterra[];
@@ -5490,7 +5507,18 @@ extern const u8 gMonIcon_Manaphy[];
 extern const u8 gMonIcon_Darkrai[];
 extern const u8 gMonIcon_Shaymin[];
 extern const u8 gMonIcon_Arceus[];
+// Platinum
+extern const u8 gMonIcon_RotomHeat[];
+extern const u8 gMonIcon_RotomWash[];
+extern const u8 gMonIcon_RotomFrost[];
+extern const u8 gMonIcon_RotomFan[];
+extern const u8 gMonIcon_RotomMow[];
+extern const u8 gMonIcon_GiratinaOrigin[];
+extern const u8 gMonIcon_ShayminSky[];
 #endif
+// HeartGold and SoulSilver
+extern const u8 gMonIcon_PichuSpikyEared[];
+
 #if P_GEN_5_POKEMON == TRUE
 extern const u8 gMonIcon_Victini[];
 extern const u8 gMonIcon_Snivy[];
@@ -6046,17 +6074,9 @@ extern const u8 gMonIcon_PikachuUnovaCap[];
 extern const u8 gMonIcon_PikachuKalosCap[];
 extern const u8 gMonIcon_PikachuAlolaCap[];
 extern const u8 gMonIcon_PikachuPartnerCap[];
-extern const u8 gMonIcon_PichuSpikyEared[];
 #if P_GEN_4_POKEMON == TRUE
-extern const u8 gMonIcon_RotomHeat[];
-extern const u8 gMonIcon_RotomWash[];
-extern const u8 gMonIcon_RotomFrost[];
-extern const u8 gMonIcon_RotomFan[];
-extern const u8 gMonIcon_RotomMow[];
 extern const u8 gMonIcon_DialgaOrigin[];
 extern const u8 gMonIcon_PalkiaOrigin[];
-extern const u8 gMonIcon_GiratinaOrigin[];
-extern const u8 gMonIcon_ShayminSky[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
 extern const u8 gMonIcon_BasculinBlueStriped[];

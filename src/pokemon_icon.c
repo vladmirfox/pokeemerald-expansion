@@ -447,6 +447,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_DEOXYS_SPEED] = gMonIcon_DeoxysSpeed,
     [SPECIES_CHIMECHO] = gMonIcon_Chimecho,
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
     [SPECIES_TURTWIG] = gMonIcon_Turtwig,
     [SPECIES_GROTLE] = gMonIcon_Grotle,
     [SPECIES_TORTERRA] = gMonIcon_Torterra,
@@ -577,7 +578,18 @@ const u8 *const gMonIconTable[] =
     [SPECIES_ARCEUS_ICE] = gMonIcon_Arceus,
     [SPECIES_ARCEUS_DRAGON] = gMonIcon_Arceus,
     [SPECIES_ARCEUS_DARK] = gMonIcon_Arceus,
+// Platinum
+    [SPECIES_ROTOM_HEAT] = gMonIcon_RotomHeat,
+    [SPECIES_ROTOM_WASH] = gMonIcon_RotomWash,
+    [SPECIES_ROTOM_FROST] = gMonIcon_RotomFrost,
+    [SPECIES_ROTOM_FAN] = gMonIcon_RotomFan,
+    [SPECIES_ROTOM_MOW] = gMonIcon_RotomMow,
+    [SPECIES_GIRATINA_ORIGIN] = gMonIcon_GiratinaOrigin,
+    [SPECIES_SHAYMIN_SKY] = gMonIcon_ShayminSky,
 #endif
+// HeartGold and SoulSilver
+    [SPECIES_PICHU_SPIKY_EARED] = gMonIcon_PichuSpikyEared,
+
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_VICTINI] = gMonIcon_Victini,
     [SPECIES_SNIVY] = gMonIcon_Snivy,
@@ -1129,18 +1141,10 @@ const u8 *const gMonIconTable[] =
     [SPECIES_PIKACHU_ALOLA_CAP] = gMonIcon_PikachuAlolaCap,
     [SPECIES_PIKACHU_PARTNER_CAP] = gMonIcon_PikachuPartnerCap,
     [SPECIES_PIKACHU_WORLD_CAP] = gMonIcon_QuestionMark,
-    [SPECIES_PICHU_SPIKY_EARED] = gMonIcon_PichuSpikyEared,
 #if P_GEN_4_POKEMON == TRUE
-    [SPECIES_ROTOM_HEAT] = gMonIcon_RotomHeat,
-    [SPECIES_ROTOM_WASH] = gMonIcon_RotomWash,
-    [SPECIES_ROTOM_FROST] = gMonIcon_RotomFrost,
-    [SPECIES_ROTOM_FAN] = gMonIcon_RotomFan,
-    [SPECIES_ROTOM_MOW] = gMonIcon_RotomMow,
+    [SPECIES_ARCEUS_FAIRY] = gMonIcon_Arceus,
     [SPECIES_DIALGA_ORIGIN] = gMonIcon_DialgaOrigin,
     [SPECIES_PALKIA_ORIGIN] = gMonIcon_PalkiaOrigin,
-    [SPECIES_GIRATINA_ORIGIN] = gMonIcon_GiratinaOrigin,
-    [SPECIES_SHAYMIN_SKY] = gMonIcon_ShayminSky,
-    [SPECIES_ARCEUS_FAIRY] = gMonIcon_Arceus,
 #endif
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_BASCULIN_BLUE_STRIPED] = gMonIcon_BasculinBlueStriped,
@@ -1719,6 +1723,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_DEOXYS_DEFENSE] = 0,
     [SPECIES_DEOXYS_SPEED] = 0,
     [SPECIES_CHIMECHO] = 0,
+// Diamond and Pearl
     [SPECIES_TURTWIG] = 1,
     [SPECIES_GROTLE] = 1,
     [SPECIES_TORTERRA] = 1,
@@ -1745,7 +1750,11 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_SHIELDON] = 1,
     [SPECIES_BASTIODON] = 1,
     [SPECIES_BURMY] = 1,
+    [SPECIES_BURMY_SANDY_CLOAK] = 1,
+    [SPECIES_BURMY_TRASH_CLOAK] = 0,
     [SPECIES_WORMADAM] = 1,
+    [SPECIES_WORMADAM_SANDY_CLOAK] = 1,
+    [SPECIES_WORMADAM_TRASH_CLOAK] = 0,
     [SPECIES_MOTHIM] = 0,
     [SPECIES_COMBEE] = 0,
     [SPECIES_VESPIQUEN] = 0,
@@ -1845,6 +1854,17 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_ARCEUS_ICE] = 1,
     [SPECIES_ARCEUS_DRAGON] = 1,
     [SPECIES_ARCEUS_DARK] = 1,
+// Platinum
+    [SPECIES_ROTOM_HEAT] = 0,
+    [SPECIES_ROTOM_WASH] = 0,
+    [SPECIES_ROTOM_FROST] = 5,
+    [SPECIES_ROTOM_FAN] = 0,
+    [SPECIES_ROTOM_MOW] = 0,
+    [SPECIES_GIRATINA_ORIGIN] = 0,
+    [SPECIES_SHAYMIN_SKY] = 1,
+// HeartGold and SoulSilver
+    [SPECIES_PICHU_SPIKY_EARED] = 1,
+// Black and White
     [SPECIES_VICTINI] = 0,
     [SPECIES_SNIVY] = 1,
     [SPECIES_SERVINE] = 1,
@@ -2374,22 +2394,10 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_PIKACHU_ALOLA_CAP] = 0,
     [SPECIES_PIKACHU_PARTNER_CAP] = 0,
     [SPECIES_PIKACHU_WORLD_CAP] = 0,
-    [SPECIES_PICHU_SPIKY_EARED] = 1,
 #if P_GEN_4_POKEMON == TRUE
-    [SPECIES_BURMY_SANDY_CLOAK] = 1,
-    [SPECIES_BURMY_TRASH_CLOAK] = 0,
-    [SPECIES_WORMADAM_SANDY_CLOAK] = 1,
-    [SPECIES_WORMADAM_TRASH_CLOAK] = 0,
-    [SPECIES_ROTOM_HEAT] = 0,
-    [SPECIES_ROTOM_WASH] = 0,
-    [SPECIES_ROTOM_FROST] = 5,
-    [SPECIES_ROTOM_FAN] = 0,
-    [SPECIES_ROTOM_MOW] = 0,
+    [SPECIES_ARCEUS_FAIRY] = 1,
     [SPECIES_DIALGA_ORIGIN] = 0,
     [SPECIES_PALKIA_ORIGIN] = 2,
-    [SPECIES_GIRATINA_ORIGIN] = 0,
-    [SPECIES_SHAYMIN_SKY] = 1,
-    [SPECIES_ARCEUS_FAIRY] = 1,
 #endif
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_BASCULIN_BLUE_STRIPED] = 0,

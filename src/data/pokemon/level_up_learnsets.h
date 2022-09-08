@@ -7960,6 +7960,7 @@ static const struct LevelUpMove sChimechoLevelUpLearnset[] = {
 };
 
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
 static const struct LevelUpMove sTurtwigLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 5, MOVE_WITHDRAW),
@@ -10092,6 +10093,23 @@ static const struct LevelUpMove sArceusLevelUpLearnset[] = {
     LEVEL_UP_MOVE(80, MOVE_HYPER_BEAM),
     LEVEL_UP_MOVE(90, MOVE_PERISH_SONG),
     LEVEL_UP_MOVE(100, MOVE_JUDGMENT),
+    LEVEL_UP_END
+};
+
+// Platinum
+static const struct LevelUpMove sShayminSkyLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_GROWTH),
+    LEVEL_UP_MOVE(10, MOVE_MAGICAL_LEAF),
+    LEVEL_UP_MOVE(19, MOVE_LEECH_SEED),
+    LEVEL_UP_MOVE(28, MOVE_QUICK_ATTACK),
+    LEVEL_UP_MOVE(37, MOVE_SWEET_SCENT),
+    LEVEL_UP_MOVE(46, MOVE_NATURAL_GIFT),
+    LEVEL_UP_MOVE(55, MOVE_WORRY_SEED),
+    LEVEL_UP_MOVE(64, MOVE_AIR_SLASH),
+    LEVEL_UP_MOVE(73, MOVE_ENERGY_BALL),
+    LEVEL_UP_MOVE(82, MOVE_SWEET_KISS),
+    LEVEL_UP_MOVE(91, MOVE_LEAF_STORM),
+    LEVEL_UP_MOVE(100, MOVE_SEED_FLARE),
     LEVEL_UP_END
 };
 #endif
@@ -19263,24 +19281,6 @@ static const struct LevelUpMove sDecidueyeHisuianLevelUpLearnset[] = {
     LEVEL_UP_MOVE(34, MOVE_TRIPLE_ARROWS),
     LEVEL_UP_MOVE(40, MOVE_BRAVE_BIRD),
     LEVEL_UP_MOVE(43, MOVE_LEAF_STORM),
-    LEVEL_UP_END
-};
-#endif
-
-#if P_GEN_4_POKEMON == TRUE
-static const struct LevelUpMove sShayminSkyLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_GROWTH),
-    LEVEL_UP_MOVE(10, MOVE_MAGICAL_LEAF),
-    LEVEL_UP_MOVE(19, MOVE_LEECH_SEED),
-    LEVEL_UP_MOVE(28, MOVE_QUICK_ATTACK),
-    LEVEL_UP_MOVE(37, MOVE_SWEET_SCENT),
-    LEVEL_UP_MOVE(46, MOVE_NATURAL_GIFT),
-    LEVEL_UP_MOVE(55, MOVE_WORRY_SEED),
-    LEVEL_UP_MOVE(64, MOVE_AIR_SLASH),
-    LEVEL_UP_MOVE(73, MOVE_ENERGY_BALL),
-    LEVEL_UP_MOVE(82, MOVE_SWEET_KISS),
-    LEVEL_UP_MOVE(91, MOVE_LEAF_STORM),
-    LEVEL_UP_MOVE(100, MOVE_SEED_FLARE),
     LEVEL_UP_END
 };
 #endif

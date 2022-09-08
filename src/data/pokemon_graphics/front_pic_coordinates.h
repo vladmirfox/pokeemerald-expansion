@@ -4,26 +4,10 @@
 // .y_offset is the number of pixels between the drawn pixel area and the bottom edge.
 const struct MonCoords gMonFrontPicCoords[] =
 {
-    [SPECIES_NONE] =
-    {
-        .size = MON_COORDS_SIZE(40, 40),
-        .y_offset = 12,
-    },
-    [SPECIES_BULBASAUR] =
-    {
-        .size = MON_COORDS_SIZE(40, 40),
-        .y_offset = 13,
-    },
-    [SPECIES_IVYSAUR] =
-    {
-        .size = MON_COORDS_SIZE(56, 48),
-        .y_offset = 9,
-    },
-    [SPECIES_VENUSAUR] =
-    {
-        .size = MON_COORDS_SIZE(64, 64),
-        .y_offset = 3,
-    },
+    [SPECIES_NONE]          = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 12, },
+    [SPECIES_BULBASAUR]     = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 13, },
+    [SPECIES_IVYSAUR]       = { .size = MON_COORDS_SIZE(56, 48), .y_offset = 9, },
+    [SPECIES_VENUSAUR]      = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 3, },
     [SPECIES_CHARMANDER] =
     {
         .size = MON_COORDS_SIZE(48, 48),
@@ -2105,6 +2089,7 @@ const struct MonCoords gMonFrontPicCoords[] =
         .y_offset = 11,
     },
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
     [SPECIES_TURTWIG] =
     {
         .size = MON_COORDS_SIZE(40, 48),
@@ -2235,7 +2220,27 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = MON_COORDS_SIZE(32, 56),
         .y_offset = 13,
     },
+    [SPECIES_BURMY_SANDY_CLOAK] =
+    {
+        .size = MON_COORDS_SIZE(32, 56),
+        .y_offset = 12,
+    },
+    [SPECIES_BURMY_TRASH_CLOAK] =
+    {
+        .size = MON_COORDS_SIZE(32, 56),
+        .y_offset = 8,
+    },
     [SPECIES_WORMADAM] =
+    {
+        .size = MON_COORDS_SIZE(48, 56),
+        .y_offset = 10,
+    },
+    [SPECIES_WORMADAM_SANDY_CLOAK] =
+    {
+        .size = MON_COORDS_SIZE(40, 56),
+        .y_offset = 10,
+    },
+    [SPECIES_WORMADAM_TRASH_CLOAK] =
     {
         .size = MON_COORDS_SIZE(48, 56),
         .y_offset = 10,
@@ -2735,8 +2740,52 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = MON_COORDS_SIZE(64, 64),
         .y_offset = 0,
     },
+// Platinum
+    [SPECIES_ROTOM_HEAT] =
+    {
+        .size = MON_COORDS_SIZE(56, 48),
+        .y_offset = 10,
+    },
+    [SPECIES_ROTOM_WASH] =
+    {
+        .size = MON_COORDS_SIZE(64, 56),
+        .y_offset = 7,
+    },
+    [SPECIES_ROTOM_FROST] =
+    {
+        .size = MON_COORDS_SIZE(64, 64),
+        .y_offset = 4,
+    },
+    [SPECIES_ROTOM_FAN] =
+    {
+        .size = MON_COORDS_SIZE(64, 56),
+        .y_offset = 8,
+    },
+    [SPECIES_ROTOM_MOW] =
+    {
+        .size = MON_COORDS_SIZE(56, 64),
+        .y_offset = 12,
+    },
+    [SPECIES_GIRATINA_ORIGIN] =
+    {
+        .size = MON_COORDS_SIZE(64, 64),
+        .y_offset = 0,
+    },
+    [SPECIES_SHAYMIN_SKY] =
+    {
+        .size = MON_COORDS_SIZE(56, 56),
+        .y_offset = 7,
+    },
 #endif
+// HeartGold and SoulSilver
+    [SPECIES_PICHU_SPIKY_EARED] =
+    {
+        .size = MON_COORDS_SIZE(32, 40),
+        .y_offset = 14,
+    },
+
 #if P_GEN_5_POKEMON == TRUE
+// Black and White
     [SPECIES_VICTINI] =
     {
         .size = MON_COORDS_SIZE(48, 56),
@@ -5411,61 +5460,7 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = MON_COORDS_SIZE(48, 48),
         .y_offset = 9,
     },
-    // Pichu
-    [SPECIES_PICHU_SPIKY_EARED] =
-    {
-        .size = MON_COORDS_SIZE(32, 40),
-        .y_offset = 14,
-    },
 #if P_GEN_4_POKEMON == TRUE
-    // Burmy
-    [SPECIES_BURMY_SANDY_CLOAK] =
-    {
-        .size = MON_COORDS_SIZE(32, 56),
-        .y_offset = 12,
-    },
-    [SPECIES_BURMY_TRASH_CLOAK] =
-    {
-        .size = MON_COORDS_SIZE(32, 56),
-        .y_offset = 8,
-    },
-    // Wormadam
-    [SPECIES_WORMADAM_SANDY_CLOAK] =
-    {
-        .size = MON_COORDS_SIZE(40, 56),
-        .y_offset = 10,
-    },
-    [SPECIES_WORMADAM_TRASH_CLOAK] =
-    {
-        .size = MON_COORDS_SIZE(48, 56),
-        .y_offset = 10,
-    },
-    // Rotom
-    [SPECIES_ROTOM_HEAT] =
-    {
-        .size = MON_COORDS_SIZE(56, 48),
-        .y_offset = 10,
-    },
-    [SPECIES_ROTOM_WASH] =
-    {
-        .size = MON_COORDS_SIZE(64, 56),
-        .y_offset = 7,
-    },
-    [SPECIES_ROTOM_FROST] =
-    {
-        .size = MON_COORDS_SIZE(64, 64),
-        .y_offset = 4,
-    },
-    [SPECIES_ROTOM_FAN] =
-    {
-        .size = MON_COORDS_SIZE(64, 56),
-        .y_offset = 8,
-    },
-    [SPECIES_ROTOM_MOW] =
-    {
-        .size = MON_COORDS_SIZE(56, 64),
-        .y_offset = 12,
-    },
     // Origin Forme
     [SPECIES_DIALGA_ORIGIN] =
     {
@@ -5476,17 +5471,6 @@ const struct MonCoords gMonFrontPicCoords[] =
     {
         .size = MON_COORDS_SIZE(64, 64),
         .y_offset = 0,
-    },
-    [SPECIES_GIRATINA_ORIGIN] =
-    {
-        .size = MON_COORDS_SIZE(64, 64),
-        .y_offset = 0,
-    },
-    // Shaymin
-    [SPECIES_SHAYMIN_SKY] =
-    {
-        .size = MON_COORDS_SIZE(56, 56),
-        .y_offset = 7,
     },
     // Arceus
     [SPECIES_ARCEUS_FAIRY] =

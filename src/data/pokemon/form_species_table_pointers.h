@@ -118,8 +118,13 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_DEOXYS_DEFENSE] = sDeoxysFormSpeciesIdTable,
     [SPECIES_DEOXYS_SPEED] = sDeoxysFormSpeciesIdTable,
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
     [SPECIES_BURMY] = sBurmyFormSpeciesIdTable,
+    [SPECIES_BURMY_SANDY_CLOAK] = sBurmyFormSpeciesIdTable,
+    [SPECIES_BURMY_TRASH_CLOAK] = sBurmyFormSpeciesIdTable,
     [SPECIES_WORMADAM] = sWormadamFormSpeciesIdTable,
+    [SPECIES_WORMADAM_SANDY_CLOAK] = sWormadamFormSpeciesIdTable,
+    [SPECIES_WORMADAM_TRASH_CLOAK] = sWormadamFormSpeciesIdTable,
     [SPECIES_CHERRIM] = sCherrimFormSpeciesIdTable,
     [SPECIES_CHERRIM_SUNSHINE] = sCherrimFormSpeciesIdTable,
     [SPECIES_SHELLOS] = sShellosFormSpeciesIdTable,
@@ -153,8 +158,20 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_ARCEUS_ICE] = sArceusFormSpeciesIdTable,
     [SPECIES_ARCEUS_DRAGON] = sArceusFormSpeciesIdTable,
     [SPECIES_ARCEUS_DARK] = sArceusFormSpeciesIdTable,
+// Platinum
+    [SPECIES_ROTOM_HEAT] = sRotomFormSpeciesIdTable,
+    [SPECIES_ROTOM_WASH] = sRotomFormSpeciesIdTable,
+    [SPECIES_ROTOM_FROST] = sRotomFormSpeciesIdTable,
+    [SPECIES_ROTOM_FAN] = sRotomFormSpeciesIdTable,
+    [SPECIES_ROTOM_MOW] = sRotomFormSpeciesIdTable,
+    [SPECIES_GIRATINA_ORIGIN] = sGiratinaFormSpeciesIdTable,
+    [SPECIES_SHAYMIN_SKY] = sShayminFormSpeciesIdTable,
 #endif
+// HeartGold and SoulSilver
+    [SPECIES_PICHU_SPIKY_EARED] = sPichuFormSpeciesIdTable,
+
 #if P_GEN_5_POKEMON == TRUE
+// Black and White
     [SPECIES_SAMUROTT] = sSamurottFormSpeciesIdTable,
     [SPECIES_AUDINO] = sAudinoFormSpeciesIdTable,
     [SPECIES_BASCULIN] = sBasculinFormSpeciesIdTable,
@@ -363,27 +380,11 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_PIKACHU_ALOLA_CAP] = sPikachuFormSpeciesIdTable,
     [SPECIES_PIKACHU_PARTNER_CAP] = sPikachuFormSpeciesIdTable,
     [SPECIES_PIKACHU_WORLD_CAP] = sPikachuFormSpeciesIdTable,
-    // Pichu
-    [SPECIES_PICHU_SPIKY_EARED] = sPichuFormSpeciesIdTable,
 #if P_GEN_4_POKEMON == TRUE
-    // Burmy
-    [SPECIES_BURMY_SANDY_CLOAK] = sBurmyFormSpeciesIdTable,
-    [SPECIES_BURMY_TRASH_CLOAK] = sBurmyFormSpeciesIdTable,
-    // Wormadam
-    [SPECIES_WORMADAM_SANDY_CLOAK] = sWormadamFormSpeciesIdTable,
-    [SPECIES_WORMADAM_TRASH_CLOAK] = sWormadamFormSpeciesIdTable,
-    // Rotom
-    [SPECIES_ROTOM_HEAT] = sRotomFormSpeciesIdTable,
-    [SPECIES_ROTOM_WASH] = sRotomFormSpeciesIdTable,
-    [SPECIES_ROTOM_FROST] = sRotomFormSpeciesIdTable,
-    [SPECIES_ROTOM_FAN] = sRotomFormSpeciesIdTable,
-    [SPECIES_ROTOM_MOW] = sRotomFormSpeciesIdTable,
     // Origin Forme
     [SPECIES_DIALGA_ORIGIN] = sDialgaFormSpeciesIdTable,
     [SPECIES_PALKIA_ORIGIN] = sPalkiaFormSpeciesIdTable,
-    [SPECIES_GIRATINA_ORIGIN] = sGiratinaFormSpeciesIdTable,
-    // Shaymin
-    [SPECIES_SHAYMIN_SKY] = sShayminFormSpeciesIdTable,
+
     [SPECIES_ARCEUS_FAIRY] = sArceusFormSpeciesIdTable,
 #endif
 #if P_GEN_5_POKEMON == TRUE

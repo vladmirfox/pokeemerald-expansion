@@ -420,6 +420,7 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_DEOXYS_DEFENSE] = _("Deoxys"),
     [SPECIES_DEOXYS_SPEED] = _("Deoxys"),
 #if P_GEN_4_POKEMON == TRUE
+// Diamond and Pearl
     [SPECIES_TURTWIG] = _("Turtwig"),
     [SPECIES_GROTLE] = _("Grotle"),
     [SPECIES_TORTERRA] = _("Torterra"),
@@ -446,7 +447,11 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_SHIELDON] = _("Shieldon"),
     [SPECIES_BASTIODON] = _("Bastiodon"),
     [SPECIES_BURMY] = _("Burmy"),
+    [SPECIES_BURMY_SANDY_CLOAK] = _("Burmy"),
+    [SPECIES_BURMY_TRASH_CLOAK] = _("Burmy"),
     [SPECIES_WORMADAM] = _("Wormadam"),
+    [SPECIES_WORMADAM_SANDY_CLOAK] = _("Wormadam"),
+    [SPECIES_WORMADAM_TRASH_CLOAK] = _("Wormadam"),
     [SPECIES_MOTHIM] = _("Mothim"),
     [SPECIES_COMBEE] = _("Combee"),
     [SPECIES_VESPIQUEN] = _("Vespiquen"),
@@ -546,8 +551,20 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_ARCEUS_ICE] = _("Arceus"),
     [SPECIES_ARCEUS_DRAGON] = _("Arceus"),
     [SPECIES_ARCEUS_DARK] = _("Arceus"),
+// Platinum
+    [SPECIES_ROTOM_HEAT] = _("Rotom"),
+    [SPECIES_ROTOM_FAN] = _("Rotom"),
+    [SPECIES_ROTOM_FROST] = _("Rotom"),
+    [SPECIES_ROTOM_MOW] = _("Rotom"),
+    [SPECIES_ROTOM_WASH] = _("Rotom"),
+    [SPECIES_GIRATINA_ORIGIN] = _("Giratina"),
+    [SPECIES_SHAYMIN_SKY] = _("Shaymin"),
 #endif
+// HeartGold and SoulSilver
+    [SPECIES_PICHU_SPIKY_EARED] = _("Pichu"),
+
 #if P_GEN_5_POKEMON == TRUE
+// Black and White
     [SPECIES_VICTINI] = _("Victini"),
     [SPECIES_SNIVY] = _("Snivy"),
     [SPECIES_SERVINE] = _("Servine"),
@@ -1111,26 +1128,10 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_PIKACHU_PARTNER_CAP] = _("Pikachu"),
     [SPECIES_PIKACHU_WORLD_CAP] = _("Pikachu"),
     // Pichu
-    [SPECIES_PICHU_SPIKY_EARED] = _("Pichu"),
 #if P_GEN_4_POKEMON == TRUE
-    // Burmy
-    [SPECIES_BURMY_SANDY_CLOAK] = _("Burmy"),
-    [SPECIES_BURMY_TRASH_CLOAK] = _("Burmy"),
-    // Wormadam
-    [SPECIES_WORMADAM_SANDY_CLOAK] = _("Wormadam"),
-    [SPECIES_WORMADAM_TRASH_CLOAK] = _("Wormadam"),
-    // Rotom
-    [SPECIES_ROTOM_HEAT] = _("Rotom"),
-    [SPECIES_ROTOM_FAN] = _("Rotom"),
-    [SPECIES_ROTOM_FROST] = _("Rotom"),
-    [SPECIES_ROTOM_MOW] = _("Rotom"),
-    [SPECIES_ROTOM_WASH] = _("Rotom"),
     // Origin Forme
     [SPECIES_DIALGA_ORIGIN] = _("Dialga"),
     [SPECIES_PALKIA_ORIGIN] = _("Palkia"),
-    [SPECIES_GIRATINA_ORIGIN] = _("Giratina"),
-    // Shaymin
-    [SPECIES_SHAYMIN_SKY] = _("Shaymin"),
     // Arceus
     [SPECIES_ARCEUS_FAIRY] = _("Arceus"),
 #endif
