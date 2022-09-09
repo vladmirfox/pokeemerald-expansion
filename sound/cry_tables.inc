@@ -966,13 +966,13 @@ gCryTable::
 	cry Cry_Glastrier
 	cry Cry_Spectrier
 	cry Cry_Calyrex
-	cry Cry_Unown //Cry_Wyrdeer
-	cry Cry_Unown //Cry_Kleavor
-	cry Cry_Unown //Cry_Ursaluna
-	cry Cry_Unown //Cry_Basculegion
-	cry Cry_Unown //Cry_Sneasler
-	cry Cry_Unown //Cry_Overqwil
-	cry Cry_Unown //Cry_Enamorus
+	cry Cry_Wyrdeer
+	cry Cry_Kleavor
+	cry Cry_Ursaluna
+	cry Cry_Basculegion
+	cry Cry_Sneasler
+	cry Cry_Overqwil
+	cry Cry_Enamorus
 
 	@ Megas
 	cry Cry_VenusaurMega
@@ -1292,7 +1292,6 @@ gCryTable::
 	@ Calyrex
 	cry Cry_CalyrexIceRider
 	cry Cry_CalyrexShadowRider
-
 
 	.align 2
 gCryTable_Reverse::
@@ -2263,13 +2262,13 @@ gCryTable_Reverse::
 	cry_reverse Cry_Glastrier
 	cry_reverse Cry_Spectrier
 	cry_reverse Cry_Calyrex
-	cry_reverse Cry_Unown //Cry_Wyrdeer
-	cry_reverse Cry_Unown //Cry_Kleavor
-	cry_reverse Cry_Unown //Cry_Ursaluna
-	cry_reverse Cry_Unown //Cry_Basculegion
-	cry_reverse Cry_Unown //Cry_Sneasler
-	cry_reverse Cry_Unown //Cry_Overqwil
-	cry_reverse Cry_Unown //Cry_Enamorus
+	cry_reverse Cry_Wyrdeer
+	cry_reverse Cry_Kleavor
+	cry_reverse Cry_Ursaluna
+	cry_reverse Cry_Basculegion
+	cry_reverse Cry_Sneasler
+	cry_reverse Cry_Overqwil
+	cry_reverse Cry_Enamorus
 
 	@ Megas
 	cry_reverse Cry_VenusaurMega
