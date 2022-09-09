@@ -623,11 +623,13 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_PETILIL] = sPetililLevelUpLearnset,
     [SPECIES_LILLIGANT] = sLilligantLevelUpLearnset,
     [SPECIES_BASCULIN] = sBasculinLevelUpLearnset,
+    [SPECIES_BASCULIN_BLUE_STRIPED] = sBasculinLevelUpLearnset,
     [SPECIES_SANDILE] = sSandileLevelUpLearnset,
     [SPECIES_KROKOROK] = sKrokorokLevelUpLearnset,
     [SPECIES_KROOKODILE] = sKrookodileLevelUpLearnset,
     [SPECIES_DARUMAKA] = sDarumakaLevelUpLearnset,
     [SPECIES_DARMANITAN] = sDarmanitanLevelUpLearnset,
+    [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanLevelUpLearnset,
     [SPECIES_MARACTUS] = sMaractusLevelUpLearnset,
     [SPECIES_DWEBBLE] = sDwebbleLevelUpLearnset,
     [SPECIES_CRUSTLE] = sCrustleLevelUpLearnset,
@@ -658,7 +660,13 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_VANILLISH] = sVanillishLevelUpLearnset,
     [SPECIES_VANILLUXE] = sVanilluxeLevelUpLearnset,
     [SPECIES_DEERLING] = sDeerlingLevelUpLearnset,
+    [SPECIES_DEERLING_SUMMER] = sDeerlingLevelUpLearnset,
+    [SPECIES_DEERLING_AUTUMN] = sDeerlingLevelUpLearnset,
+    [SPECIES_DEERLING_WINTER] = sDeerlingLevelUpLearnset,
     [SPECIES_SAWSBUCK] = sSawsbuckLevelUpLearnset,
+    [SPECIES_SAWSBUCK_SUMMER] = sSawsbuckLevelUpLearnset,
+    [SPECIES_SAWSBUCK_AUTUMN] = sSawsbuckLevelUpLearnset,
+    [SPECIES_SAWSBUCK_WINTER] = sSawsbuckLevelUpLearnset,
     [SPECIES_EMOLGA] = sEmolgaLevelUpLearnset,
     [SPECIES_KARRABLAST] = sKarrablastLevelUpLearnset,
     [SPECIES_ESCAVALIER] = sEscavalierLevelUpLearnset,
@@ -721,7 +729,12 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_KYUREM] = sKyuremLevelUpLearnset,
     [SPECIES_KELDEO] = sKeldeoLevelUpLearnset,
     [SPECIES_MELOETTA] = sMeloettaLevelUpLearnset,
+    [SPECIES_MELOETTA_PIROUETTE] = sMeloettaLevelUpLearnset,
     [SPECIES_GENESECT] = sGenesectLevelUpLearnset,
+    [SPECIES_GENESECT_DOUSE_DRIVE] = sGenesectLevelUpLearnset,
+    [SPECIES_GENESECT_SHOCK_DRIVE] = sGenesectLevelUpLearnset,
+    [SPECIES_GENESECT_BURN_DRIVE] = sGenesectLevelUpLearnset,
+    [SPECIES_GENESECT_CHILL_DRIVE] = sGenesectLevelUpLearnset,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_CHESPIN] = sChespinLevelUpLearnset,
@@ -1133,20 +1146,10 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_ARCEUS_FAIRY] = sArceusLevelUpLearnset,
 #endif
 #if P_GEN_5_POKEMON == TRUE
-    // Basculin
-    [SPECIES_BASCULIN_BLUE_STRIPED] = sBasculinLevelUpLearnset,
+
     [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinLevelUpLearnset,
     // Darmanitan
-    [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanLevelUpLearnset,
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = sDarmanitanGalarianLevelUpLearnset,
-    // Deerling
-    [SPECIES_DEERLING_SUMMER] = sDeerlingLevelUpLearnset,
-    [SPECIES_DEERLING_AUTUMN] = sDeerlingLevelUpLearnset,
-    [SPECIES_DEERLING_WINTER] = sDeerlingLevelUpLearnset,
-    // Sawsbuck
-    [SPECIES_SAWSBUCK_SUMMER] = sSawsbuckLevelUpLearnset,
-    [SPECIES_SAWSBUCK_AUTUMN] = sSawsbuckLevelUpLearnset,
-    [SPECIES_SAWSBUCK_WINTER] = sSawsbuckLevelUpLearnset,
     // Therian Forms
     [SPECIES_TORNADUS_THERIAN] = sTornadusLevelUpLearnset,
     [SPECIES_THUNDURUS_THERIAN] = sThundurusLevelUpLearnset,
@@ -1156,13 +1159,6 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_KYUREM_BLACK] = sKyuremBlackLevelUpLearnset,
     // Keldeo
     [SPECIES_KELDEO_RESOLUTE] = sKeldeoLevelUpLearnset,
-    // Meloetta
-    [SPECIES_MELOETTA_PIROUETTE] = sMeloettaLevelUpLearnset,
-    // Genesect
-    [SPECIES_GENESECT_DOUSE_DRIVE] = sGenesectLevelUpLearnset,
-    [SPECIES_GENESECT_SHOCK_DRIVE] = sGenesectLevelUpLearnset,
-    [SPECIES_GENESECT_BURN_DRIVE] = sGenesectLevelUpLearnset,
-    [SPECIES_GENESECT_CHILL_DRIVE] = sGenesectLevelUpLearnset,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     // Greninja

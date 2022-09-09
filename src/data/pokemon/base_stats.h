@@ -265,6 +265,30 @@
         .flags = FLAG_MYTHICAL,                        \
     }
 
+#define BASCULIN_BASE_STATS(itemRare, ability1)                            \
+    {                                                                      \
+        .baseHP        = 70,                                               \
+        .baseAttack    = 92,                                               \
+        .baseDefense   = 65,                                               \
+        .baseSpeed     = 98,                                               \
+        .baseSpAttack  = 80,                                               \
+        .baseSpDefense = 55,                                               \
+        .type1 = TYPE_WATER,                                               \
+        .type2 = TYPE_WATER,                                               \
+        .catchRate = 25,                                                   \
+        .expYield = 161,                                                   \
+        .evYield_Speed     = 161,                                          \
+        .genderRatio = PERCENT_FEMALE(50),                                 \
+        .eggCycles = 40,                                                   \
+        .friendship = 70,                                                  \
+        .growthRate = GROWTH_MEDIUM_FAST,                                  \
+        .eggGroup1 = EGG_GROUP_WATER_2,                                    \
+        .eggGroup2 = EGG_GROUP_WATER_2,                                    \
+        .abilities = {ability1, ABILITY_SAP_SIPPER, ABILITY_SERENE_GRACE}, \
+        .bodyColor = BODY_COLOR_GREEN,                                     \
+        .noFlip = FALSE,                                                   \
+    }
+
 #define DEERLING_BASE_STATS(color)                                                   \
     {                                                                                \
         .baseHP        = 60,                                                         \
@@ -14849,30 +14873,8 @@ const struct BaseStats gBaseStats[] =
         .noFlip = TRUE,
     },
 
-    [SPECIES_BASCULIN] =
-    {
-        .baseHP        = 70,
-        .baseAttack    = 92,
-        .baseDefense   = 65,
-        .baseSpeed     = 98,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 55,
-        .type1 = TYPE_WATER,
-        .type2 = TYPE_WATER,
-        .catchRate = 25,
-        .expYield = 161,
-        .evYield_Speed     = 2,
-        .itemRare = ITEM_DEEP_SEA_TOOTH,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 40,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_WATER_2,
-        .eggGroup2 = EGG_GROUP_WATER_2,
-        .abilities = {ABILITY_RECKLESS, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER},
-        .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = FALSE,
-    },
+    [SPECIES_BASCULIN] = BASCULIN_BASE_STATS(ITEM_DEEP_SEA_TOOTH, ABILITY_RECKLESS),
+    [SPECIES_BASCULIN_BLUE_STRIPED] = BASCULIN_BASE_STATS(ITEM_DEEP_SEA_SCALE, ABILITY_ROCK_HEAD),
 
     [SPECIES_SANDILE] =
     {
@@ -14998,6 +15000,30 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_FIELD,
         .abilities = {ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_ZEN_MODE},
         .bodyColor = BODY_COLOR_RED,
+        .noFlip = FALSE,
+    },
+
+    [SPECIES_DARMANITAN_ZEN_MODE] =
+    {
+        .baseHP        = 105,
+        .baseAttack    = 30,
+        .baseDefense   = 105,
+        .baseSpeed     = 55,
+        .baseSpAttack  = 140,
+        .baseSpDefense = 105,
+        .type1 = TYPE_FIRE,
+        .type2 = TYPE_PSYCHIC,
+        .catchRate = 60,
+        .expYield = 189,
+        .evYield_SpAttack  = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FIELD,
+        .abilities = {ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_ZEN_MODE},
+        .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
 
@@ -15716,8 +15742,14 @@ const struct BaseStats gBaseStats[] =
     },
 
     [SPECIES_DEERLING] = DEERLING_BASE_STATS(BODY_COLOR_PINK),
+    [SPECIES_DEERLING_SUMMER] = DEERLING_BASE_STATS(BODY_COLOR_GREEN),
+    [SPECIES_DEERLING_AUTUMN] = DEERLING_BASE_STATS(BODY_COLOR_RED),
+    [SPECIES_DEERLING_WINTER] = DEERLING_BASE_STATS(BODY_COLOR_BROWN),
 
     [SPECIES_SAWSBUCK] = SAWSBUCK_BASE_STATS,
+    [SPECIES_SAWSBUCK_SUMMER] = SAWSBUCK_BASE_STATS,
+    [SPECIES_SAWSBUCK_AUTUMN] = SAWSBUCK_BASE_STATS,
+    [SPECIES_SAWSBUCK_WINTER] = SAWSBUCK_BASE_STATS,
 
     [SPECIES_EMOLGA] =
     {
@@ -17260,7 +17292,41 @@ const struct BaseStats gBaseStats[] =
         .flags = FLAG_MYTHICAL,
     },
 
+    [SPECIES_MELOETTA_PIROUETTE] =
+    {
+        .baseHP        = 100,
+        .baseAttack    = 128,
+        .baseDefense   = 90,
+        .baseSpeed     = 128,
+        .baseSpAttack  = 77,
+        .baseSpDefense = 77,
+        .type1 = TYPE_NORMAL,
+        .type2 = TYPE_FIGHTING,
+        .catchRate = 3,
+        .expYield = 270,
+        .evYield_Attack  = 1,
+        .evYield_Defense = 1,
+        .evYield_Speed     = 1,
+        .itemCommon = ITEM_STAR_PIECE,
+        .itemRare = ITEM_STAR_PIECE,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 100,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        .abilities = {ABILITY_SERENE_GRACE, ABILITY_NONE},
+        .bodyColor = BODY_COLOR_WHITE,
+        .noFlip = TRUE,
+        .flags = FLAG_MYTHICAL,
+    },
+
     [SPECIES_GENESECT] = GENESECT_BASE_STATS,
+    [SPECIES_GENESECT_DOUSE_DRIVE] = GENESECT_BASE_STATS,
+    [SPECIES_GENESECT_SHOCK_DRIVE] = GENESECT_BASE_STATS,
+    [SPECIES_GENESECT_BURN_DRIVE] = GENESECT_BASE_STATS,
+    [SPECIES_GENESECT_CHILL_DRIVE] = GENESECT_BASE_STATS,
+
 #endif
 
 #if P_GEN_6_POKEMON == TRUE
@@ -25740,79 +25806,7 @@ const struct BaseStats gBaseStats[] =
 #endif
 
 #if P_GEN_5_POKEMON == TRUE
-    [SPECIES_BASCULIN_BLUE_STRIPED] =
-    {
-        .baseHP        = 70,
-        .baseAttack    = 92,
-        .baseDefense   = 65,
-        .baseSpeed     = 98,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 55,
-        .type1 = TYPE_WATER,
-        .type2 = TYPE_WATER,
-        .catchRate = 25,
-        .expYield = 161,
-        .evYield_Speed     = 2,
-        .itemRare = ITEM_DEEP_SEA_SCALE,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 40,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_WATER_2,
-        .eggGroup2 = EGG_GROUP_WATER_2,
-        .abilities = {ABILITY_ROCK_HEAD, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER},
-        .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = FALSE,
-    },
-
-    [SPECIES_BASCULIN_WHITE_STRIPED] =
-    {
-        .baseHP        = 70,
-        .baseAttack    = 92,
-        .baseDefense   = 65,
-        .baseSpeed     = 98,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 55,
-        .type1 = TYPE_WATER,
-        .type2 = TYPE_WATER,
-        .catchRate = 25,
-        .expYield = 161,
-        .evYield_Speed     = 2,
-        .itemRare = ITEM_DEEP_SEA_SCALE,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 40,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_WATER_2,
-        .eggGroup2 = EGG_GROUP_WATER_2,
-        .abilities = {ABILITY_RATTLED, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER},
-        .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = FALSE,
-    },
-
-    [SPECIES_DARMANITAN_ZEN_MODE] =
-    {
-        .baseHP        = 105,
-        .baseAttack    = 30,
-        .baseDefense   = 105,
-        .baseSpeed     = 55,
-        .baseSpAttack  = 140,
-        .baseSpDefense = 105,
-        .type1 = TYPE_FIRE,
-        .type2 = TYPE_PSYCHIC,
-        .catchRate = 60,
-        .expYield = 189,
-        .evYield_SpAttack  = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroup1 = EGG_GROUP_FIELD,
-        .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_ZEN_MODE},
-        .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
-    },
+    [SPECIES_BASCULIN_WHITE_STRIPED] = BASCULIN_BASE_STATS(ITEM_DEEP_SEA_SCALE, ABILITY_RATTLED),
 
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] =
     {
@@ -25838,14 +25832,6 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
         .flags = FLAG_GALARIAN_FORM,
     },
-
-    [SPECIES_DEERLING_SUMMER] = DEERLING_BASE_STATS(BODY_COLOR_GREEN),
-    [SPECIES_DEERLING_AUTUMN] = DEERLING_BASE_STATS(BODY_COLOR_RED),
-    [SPECIES_DEERLING_WINTER] = DEERLING_BASE_STATS(BODY_COLOR_BROWN),
-
-    [SPECIES_SAWSBUCK_SUMMER] = SAWSBUCK_BASE_STATS,
-    [SPECIES_SAWSBUCK_AUTUMN] = SAWSBUCK_BASE_STATS,
-    [SPECIES_SAWSBUCK_WINTER] = SAWSBUCK_BASE_STATS,
 
     [SPECIES_TORNADUS_THERIAN] =
     {
@@ -25996,40 +25982,6 @@ const struct BaseStats gBaseStats[] =
         .noFlip = TRUE,
         .flags = FLAG_MYTHICAL,
     },
-
-    [SPECIES_MELOETTA_PIROUETTE] =
-    {
-        .baseHP        = 100,
-        .baseAttack    = 128,
-        .baseDefense   = 90,
-        .baseSpeed     = 128,
-        .baseSpAttack  = 77,
-        .baseSpDefense = 77,
-        .type1 = TYPE_NORMAL,
-        .type2 = TYPE_FIGHTING,
-        .catchRate = 3,
-        .expYield = 270,
-        .evYield_Attack  = 1,
-        .evYield_Defense = 1,
-        .evYield_Speed     = 1,
-        .itemCommon = ITEM_STAR_PIECE,
-        .itemRare = ITEM_STAR_PIECE,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 100,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_SERENE_GRACE, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_WHITE,
-        .noFlip = TRUE,
-        .flags = FLAG_MYTHICAL,
-    },
-
-    [SPECIES_GENESECT_DOUSE_DRIVE] = GENESECT_BASE_STATS,
-    [SPECIES_GENESECT_SHOCK_DRIVE] = GENESECT_BASE_STATS,
-    [SPECIES_GENESECT_BURN_DRIVE] = GENESECT_BASE_STATS,
-    [SPECIES_GENESECT_CHILL_DRIVE] = GENESECT_BASE_STATS,
 #endif
 
 #if P_GEN_6_POKEMON == TRUE

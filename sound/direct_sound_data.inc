@@ -1720,6 +1720,7 @@ Cry_Basculegion::
 Cry_Sneasler::
 Cry_Overqwil::
 Cry_Enamorus::
+Cry_EnamorusTherian::
 Cry_Unown::
 	.incbin "sound/direct_sound_samples/cries/unown.bin"
 

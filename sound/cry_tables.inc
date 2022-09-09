@@ -419,6 +419,7 @@ gCryTable::
 	cry Cry_Deoxys
 	cry Cry_Deoxys
 	cry Cry_Deoxys
+	cry Cry_Lugia
 @ Diamond and Pearl
 	cry Cry_Turtwig
 	cry Cry_Grotle
@@ -618,10 +619,12 @@ gCryTable::
 	cry Cry_Petilil
 	cry Cry_Lilligant
 	cry Cry_Basculin
+	cry Cry_Basculin
 	cry Cry_Sandile
 	cry Cry_Krokorok
 	cry Cry_Krookodile
 	cry Cry_Darumaka
+	cry Cry_Darmanitan
 	cry Cry_Darmanitan
 	cry Cry_Maractus
 	cry Cry_Dwebble
@@ -653,6 +656,12 @@ gCryTable::
 	cry Cry_Vanillish
 	cry Cry_Vanilluxe
 	cry Cry_Deerling
+	cry Cry_Deerling
+	cry Cry_Deerling
+	cry Cry_Deerling
+	cry Cry_Sawsbuck
+	cry Cry_Sawsbuck
+	cry Cry_Sawsbuck
 	cry Cry_Sawsbuck
 	cry Cry_Emolga
 	cry Cry_Karrablast
@@ -716,7 +725,20 @@ gCryTable::
 	cry Cry_Kyurem
 	cry Cry_Keldeo
 	cry Cry_Meloetta
+	cry Cry_Meloetta
 	cry Cry_Genesect
+	cry Cry_Genesect
+	cry Cry_Genesect
+	cry Cry_Genesect
+	cry Cry_Genesect
+@ Black 2 and White 2
+	cry Cry_TornadusTherian
+	cry Cry_ThundurusTherian
+	cry Cry_LandorusTherian
+	cry Cry_KyuremWhite
+	cry Cry_KyuremBlack
+	cry Cry_Keldeo
+@ X and Y
 	cry Cry_Chespin
 	cry Cry_Quilladin
 	cry Cry_Chesnaught
@@ -1104,36 +1126,9 @@ gCryTable::
 	cry Cry_Palkia
 	@ Arceus
 	cry Cry_Arceus
-	@ Basculin
 	cry Cry_Basculin
-	cry Cry_Basculin
-	@ Darmanitan
 	cry Cry_Darmanitan
-	cry Cry_Darmanitan
-	@ Deerling
-	cry Cry_Deerling
-	cry Cry_Deerling
-	cry Cry_Deerling
-	@ Sawsbuck
-	cry Cry_Sawsbuck
-	cry Cry_Sawsbuck
-	cry Cry_Sawsbuck
-	@ Therian Forms
-	cry Cry_TornadusTherian
-	cry Cry_ThundurusTherian
-	cry Cry_LandorusTherian
-	@ Kyurem
-	cry Cry_KyuremWhite
-	cry Cry_KyuremBlack
-	@ Keldeo
-	cry Cry_Keldeo
-	@ Meloetta
-	cry Cry_Meloetta
-	@ Genesect
-	cry Cry_Genesect
-	cry Cry_Genesect
-	cry Cry_Genesect
-	cry Cry_Genesect
+	cry Cry_EnamorusTherian
 	@ Greninja
 	cry Cry_Greninja
 	cry Cry_Greninja
@@ -1523,7 +1518,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_Unown @ Z
 	cry_reverse Cry_Unown @ QM
 	cry_reverse Cry_Unown @ EM
-	cry_reverse Cry_Unown
 	cry_reverse Cry_Wobbuffet
 	cry_reverse Cry_Girafarig
 	cry_reverse Cry_Pineco
@@ -1715,6 +1709,7 @@ gCryTable_Reverse::
 	cry_reverse Cry_Deoxys
 	cry_reverse Cry_Deoxys
 	cry_reverse Cry_Deoxys
+	cry_reverse Cry_Lugia
 @ Diamond and Pearl
 	cry_reverse Cry_Turtwig
 	cry_reverse Cry_Grotle
@@ -1914,10 +1909,12 @@ gCryTable_Reverse::
 	cry_reverse Cry_Petilil
 	cry_reverse Cry_Lilligant
 	cry_reverse Cry_Basculin
+	cry_reverse Cry_Basculin
 	cry_reverse Cry_Sandile
 	cry_reverse Cry_Krokorok
 	cry_reverse Cry_Krookodile
 	cry_reverse Cry_Darumaka
+	cry_reverse Cry_Darmanitan
 	cry_reverse Cry_Darmanitan
 	cry_reverse Cry_Maractus
 	cry_reverse Cry_Dwebble
@@ -1949,6 +1946,12 @@ gCryTable_Reverse::
 	cry_reverse Cry_Vanillish
 	cry_reverse Cry_Vanilluxe
 	cry_reverse Cry_Deerling
+	cry_reverse Cry_Deerling
+	cry_reverse Cry_Deerling
+	cry_reverse Cry_Deerling
+	cry_reverse Cry_Sawsbuck
+	cry_reverse Cry_Sawsbuck
+	cry_reverse Cry_Sawsbuck
 	cry_reverse Cry_Sawsbuck
 	cry_reverse Cry_Emolga
 	cry_reverse Cry_Karrablast
@@ -2012,7 +2015,20 @@ gCryTable_Reverse::
 	cry_reverse Cry_Kyurem
 	cry_reverse Cry_Keldeo
 	cry_reverse Cry_Meloetta
+	cry_reverse Cry_Meloetta
 	cry_reverse Cry_Genesect
+	cry_reverse Cry_Genesect
+	cry_reverse Cry_Genesect
+	cry_reverse Cry_Genesect
+	cry_reverse Cry_Genesect
+@ Black 2 and White 2
+	cry_reverse Cry_TornadusTherian
+	cry_reverse Cry_ThundurusTherian
+	cry_reverse Cry_LandorusTherian
+	cry_reverse Cry_KyuremWhite
+	cry_reverse Cry_KyuremBlack
+	cry_reverse Cry_Keldeo
+@ X and Y
 	cry_reverse Cry_Chespin
 	cry_reverse Cry_Quilladin
 	cry_reverse Cry_Chesnaught
@@ -2400,37 +2416,10 @@ gCryTable_Reverse::
 	cry_reverse Cry_Palkia
 	@ Arceus
 	cry_reverse Cry_Arceus
-	@ Basculin
 	cry_reverse Cry_Basculin
-	cry_reverse Cry_Basculin
-	@ Darmanitan
 	cry_reverse Cry_Darmanitan
-	cry_reverse Cry_Darmanitan
-	@ Deerling
-	cry_reverse Cry_Deerling
-	cry_reverse Cry_Deerling
-	cry_reverse Cry_Deerling
-	@ Sawsbuck
-	cry_reverse Cry_Sawsbuck
-	cry_reverse Cry_Sawsbuck
-	cry_reverse Cry_Sawsbuck
 	@ Therian Forms
-	cry_reverse Cry_TornadusTherian
-	cry_reverse Cry_ThundurusTherian
-	cry_reverse Cry_LandorusTherian
-	cry_reverse Cry_Bulbasaur //Cry_EnamorusTherian
-	@ Kyurem
-	cry_reverse Cry_KyuremWhite
-	cry_reverse Cry_KyuremBlack
-	@ Keldeo
-	cry_reverse Cry_Keldeo
-	@ Meloetta
-	cry_reverse Cry_Meloetta
-	@ Genesect
-	cry_reverse Cry_Genesect
-	cry_reverse Cry_Genesect
-	cry_reverse Cry_Genesect
-	cry_reverse Cry_Genesect
+	cry_reverse Cry_EnamorusTherian
 	@ Greninja
 	cry_reverse Cry_Greninja
 	cry_reverse Cry_Greninja

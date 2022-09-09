@@ -623,11 +623,13 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_PETILIL] = sPetililTeachableLearnset,
     [SPECIES_LILLIGANT] = sLilligantTeachableLearnset,
     [SPECIES_BASCULIN] = sBasculinTeachableLearnset,
+    [SPECIES_BASCULIN_BLUE_STRIPED] = sBasculinTeachableLearnset,
     [SPECIES_SANDILE] = sSandileTeachableLearnset,
     [SPECIES_KROKOROK] = sKrokorokTeachableLearnset,
     [SPECIES_KROOKODILE] = sKrookodileTeachableLearnset,
     [SPECIES_DARUMAKA] = sDarumakaTeachableLearnset,
     [SPECIES_DARMANITAN] = sDarmanitanTeachableLearnset,
+    [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanTeachableLearnset,
     [SPECIES_MARACTUS] = sMaractusTeachableLearnset,
     [SPECIES_DWEBBLE] = sDwebbleTeachableLearnset,
     [SPECIES_CRUSTLE] = sCrustleTeachableLearnset,
@@ -658,7 +660,13 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_VANILLISH] = sVanillishTeachableLearnset,
     [SPECIES_VANILLUXE] = sVanilluxeTeachableLearnset,
     [SPECIES_DEERLING] = sDeerlingTeachableLearnset,
+    [SPECIES_DEERLING_SUMMER] = sDeerlingTeachableLearnset,
+    [SPECIES_DEERLING_AUTUMN] = sDeerlingTeachableLearnset,
+    [SPECIES_DEERLING_WINTER] = sDeerlingTeachableLearnset,
     [SPECIES_SAWSBUCK] = sSawsbuckTeachableLearnset,
+    [SPECIES_SAWSBUCK_SUMMER] = sSawsbuckTeachableLearnset,
+    [SPECIES_SAWSBUCK_AUTUMN] = sSawsbuckTeachableLearnset,
+    [SPECIES_SAWSBUCK_WINTER] = sSawsbuckTeachableLearnset,
     [SPECIES_EMOLGA] = sEmolgaTeachableLearnset,
     [SPECIES_KARRABLAST] = sKarrablastTeachableLearnset,
     [SPECIES_ESCAVALIER] = sEscavalierTeachableLearnset,
@@ -721,7 +729,12 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_KYUREM] = sKyuremTeachableLearnset,
     [SPECIES_KELDEO] = sKeldeoTeachableLearnset,
     [SPECIES_MELOETTA] = sMeloettaTeachableLearnset,
+    [SPECIES_MELOETTA_PIROUETTE] = sMeloettaTeachableLearnset,
     [SPECIES_GENESECT] = sGenesectTeachableLearnset,
+    [SPECIES_GENESECT_DOUSE_DRIVE] = sGenesectTeachableLearnset,
+    [SPECIES_GENESECT_SHOCK_DRIVE] = sGenesectTeachableLearnset,
+    [SPECIES_GENESECT_BURN_DRIVE] = sGenesectTeachableLearnset,
+    [SPECIES_GENESECT_CHILL_DRIVE] = sGenesectTeachableLearnset,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_CHESPIN] = sChespinTeachableLearnset,
@@ -1132,20 +1145,11 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_ARCEUS_FAIRY] = sArceusTeachableLearnset,
 #endif
 #if P_GEN_5_POKEMON == TRUE
-    // Basculin
-    [SPECIES_BASCULIN_BLUE_STRIPED] = sBasculinTeachableLearnset,
+
     [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinTeachableLearnset,
     // Darmanitan
-    [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanTeachableLearnset,
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = sDarmanitanGalarianTeachableLearnset,
     // Deerling
-    [SPECIES_DEERLING_SUMMER] = sDeerlingTeachableLearnset,
-    [SPECIES_DEERLING_AUTUMN] = sDeerlingTeachableLearnset,
-    [SPECIES_DEERLING_WINTER] = sDeerlingTeachableLearnset,
-    // Sawsbuck
-    [SPECIES_SAWSBUCK_SUMMER] = sSawsbuckTeachableLearnset,
-    [SPECIES_SAWSBUCK_AUTUMN] = sSawsbuckTeachableLearnset,
-    [SPECIES_SAWSBUCK_WINTER] = sSawsbuckTeachableLearnset,
     // Therian Forms
     [SPECIES_TORNADUS_THERIAN] = sTornadusTeachableLearnset,
     [SPECIES_THUNDURUS_THERIAN] = sThundurusTeachableLearnset,
@@ -1155,13 +1159,6 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_KYUREM_BLACK] = sKyuremTeachableLearnset,
     // Keldeo
     [SPECIES_KELDEO_RESOLUTE] = sKeldeoTeachableLearnset,
-    // Meloetta
-    [SPECIES_MELOETTA_PIROUETTE] = sMeloettaTeachableLearnset,
-    // Genesect
-    [SPECIES_GENESECT_DOUSE_DRIVE] = sGenesectTeachableLearnset,
-    [SPECIES_GENESECT_SHOCK_DRIVE] = sGenesectTeachableLearnset,
-    [SPECIES_GENESECT_BURN_DRIVE] = sGenesectTeachableLearnset,
-    [SPECIES_GENESECT_CHILL_DRIVE] = sGenesectTeachableLearnset,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     // Greninja

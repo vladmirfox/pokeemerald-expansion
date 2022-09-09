@@ -683,11 +683,13 @@ extern const u32 gMonFrontPic_Whimsicott[];
 extern const u32 gMonFrontPic_Petilil[];
 extern const u32 gMonFrontPic_Lilligant[];
 extern const u32 gMonFrontPic_Basculin[];
+extern const u32 gMonFrontPic_BasculinBlueStriped[];
 extern const u32 gMonFrontPic_Sandile[];
 extern const u32 gMonFrontPic_Krokorok[];
 extern const u32 gMonFrontPic_Krookodile[];
 extern const u32 gMonFrontPic_Darumaka[];
 extern const u32 gMonFrontPic_Darmanitan[];
+extern const u32 gMonFrontPic_DarmanitanZenMode[];
 extern const u32 gMonFrontPic_Maractus[];
 extern const u32 gMonFrontPic_Dwebble[];
 extern const u32 gMonFrontPic_Crustle[];
@@ -719,6 +721,9 @@ extern const u32 gMonFrontPic_Vanillish[];
 extern const u32 gMonFrontPic_Vanilluxe[];
 extern const u32 gMonFrontPic_Deerling[];
 extern const u32 gMonFrontPic_Sawsbuck[];
+extern const u32 gMonFrontPic_SawsbuckSummer[];
+extern const u32 gMonFrontPic_SawsbuckAutumn[];
+extern const u32 gMonFrontPic_SawsbuckWinter[];
 extern const u32 gMonFrontPic_Emolga[];
 extern const u32 gMonFrontPic_Karrablast[];
 extern const u32 gMonFrontPic_Escavalier[];
@@ -783,7 +788,9 @@ extern const u32 gMonFrontPic_Landorus[];
 extern const u32 gMonFrontPic_Kyurem[];
 extern const u32 gMonFrontPic_Keldeo[];
 extern const u32 gMonFrontPic_Meloetta[];
+extern const u32 gMonFrontPic_MeloettaPirouette[];
 extern const u32 gMonFrontPic_Genesect[];
+// Black 2 and White 2
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonFrontPic_Chespin[];
@@ -1185,22 +1192,19 @@ extern const u32 gMonFrontPic_DialgaOrigin[];
 extern const u32 gMonFrontPic_PalkiaOrigin[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
-extern const u32 gMonFrontPic_BasculinBlueStriped[];
-extern const u32 gMonFrontPic_BasculinWhiteStriped[];
-extern const u32 gMonFrontPic_DarmanitanZenMode[];
-extern const u32 gMonFrontPic_DarmanitanZenModeGalarian[];
-extern const u32 gMonFrontPic_SawsbuckSummer[];
-extern const u32 gMonFrontPic_SawsbuckAutumn[];
-extern const u32 gMonFrontPic_SawsbuckWinter[];
+
 extern const u32 gMonFrontPic_TornadusTherian[];
 extern const u32 gMonFrontPic_ThundurusTherian[];
 extern const u32 gMonFrontPic_LandorusTherian[];
+
+extern const u32 gMonFrontPic_DarmanitanZenModeGalarian[];
+extern const u32 gMonFrontPic_BasculinWhiteStriped[];
+
 #endif
 #if P_GEN_5_POKEMON == TRUE
 extern const u32 gMonFrontPic_KyuremWhite[];
 extern const u32 gMonFrontPic_KyuremBlack[];
 extern const u32 gMonFrontPic_KeldeoResolute[];
-extern const u32 gMonFrontPic_MeloettaPirouette[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonFrontPic_GreninjaAsh[];
@@ -1903,11 +1907,13 @@ extern const u32 gMonBackPic_Whimsicott[];
 extern const u32 gMonBackPic_Petilil[];
 extern const u32 gMonBackPic_Lilligant[];
 extern const u32 gMonBackPic_Basculin[];
+extern const u32 gMonBackPic_BasculinBlueStriped[];
 extern const u32 gMonBackPic_Sandile[];
 extern const u32 gMonBackPic_Krokorok[];
 extern const u32 gMonBackPic_Krookodile[];
 extern const u32 gMonBackPic_Darumaka[];
 extern const u32 gMonBackPic_Darmanitan[];
+extern const u32 gMonBackPic_DarmanitanZenMode[];
 extern const u32 gMonBackPic_Maractus[];
 extern const u32 gMonBackPic_Dwebble[];
 extern const u32 gMonBackPic_Crustle[];
@@ -1939,6 +1945,9 @@ extern const u32 gMonBackPic_Vanillish[];
 extern const u32 gMonBackPic_Vanilluxe[];
 extern const u32 gMonBackPic_Deerling[];
 extern const u32 gMonBackPic_Sawsbuck[];
+extern const u32 gMonBackPic_SawsbuckSummer[];
+extern const u32 gMonBackPic_SawsbuckAutumn[];
+extern const u32 gMonBackPic_SawsbuckWinter[];
 extern const u32 gMonBackPic_Emolga[];
 extern const u32 gMonBackPic_Karrablast[];
 extern const u32 gMonBackPic_Escavalier[];
@@ -2003,7 +2012,9 @@ extern const u32 gMonBackPic_Landorus[];
 extern const u32 gMonBackPic_Kyurem[];
 extern const u32 gMonBackPic_Keldeo[];
 extern const u32 gMonBackPic_Meloetta[];
+extern const u32 gMonBackPic_MeloettaPirouette[];
 extern const u32 gMonBackPic_Genesect[];
+// Black 2 and White 2
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonBackPic_Chespin[];
@@ -2405,20 +2416,16 @@ extern const u32 gMonBackPic_DialgaOrigin[];
 extern const u32 gMonBackPic_PalkiaOrigin[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
-extern const u32 gMonBackPic_BasculinBlueStriped[];
-extern const u32 gMonBackPic_BasculinWhiteStriped[];
-extern const u32 gMonBackPic_DarmanitanZenMode[];
-extern const u32 gMonBackPic_DarmanitanZenModeGalarian[];
-extern const u32 gMonBackPic_SawsbuckSummer[];
-extern const u32 gMonBackPic_SawsbuckAutumn[];
-extern const u32 gMonBackPic_SawsbuckWinter[];
+
 extern const u32 gMonBackPic_TornadusTherian[];
 extern const u32 gMonBackPic_ThundurusTherian[];
 extern const u32 gMonBackPic_LandorusTherian[];
 extern const u32 gMonBackPic_KyuremWhite[];
 extern const u32 gMonBackPic_KyuremBlack[];
 extern const u32 gMonBackPic_KeldeoResolute[];
-extern const u32 gMonBackPic_MeloettaPirouette[];
+
+extern const u32 gMonBackPic_DarmanitanZenModeGalarian[];
+extern const u32 gMonBackPic_BasculinWhiteStriped[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonBackPic_GreninjaAsh[];
@@ -3102,11 +3109,13 @@ extern const u32 gMonPalette_Whimsicott[];
 extern const u32 gMonPalette_Petilil[];
 extern const u32 gMonPalette_Lilligant[];
 extern const u32 gMonPalette_Basculin[];
+extern const u32 gMonPalette_BasculinBlueStriped[];
 extern const u32 gMonPalette_Sandile[];
 extern const u32 gMonPalette_Krokorok[];
 extern const u32 gMonPalette_Krookodile[];
 extern const u32 gMonPalette_Darumaka[];
 extern const u32 gMonPalette_Darmanitan[];
+extern const u32 gMonPalette_DarmanitanZenMode[];
 extern const u32 gMonPalette_Maractus[];
 extern const u32 gMonPalette_Dwebble[];
 extern const u32 gMonPalette_Crustle[];
@@ -3137,7 +3146,13 @@ extern const u32 gMonPalette_Vanillite[];
 extern const u32 gMonPalette_Vanillish[];
 extern const u32 gMonPalette_Vanilluxe[];
 extern const u32 gMonPalette_Deerling[];
+extern const u32 gMonPalette_DeerlingSummer[];
+extern const u32 gMonPalette_DeerlingAutumn[];
+extern const u32 gMonPalette_DeerlingWinter[];
 extern const u32 gMonPalette_Sawsbuck[];
+extern const u32 gMonPalette_SawsbuckSummer[];
+extern const u32 gMonPalette_SawsbuckAutumn[];
+extern const u32 gMonPalette_SawsbuckWinter[];
 extern const u32 gMonPalette_Emolga[];
 extern const u32 gMonPalette_Karrablast[];
 extern const u32 gMonPalette_Escavalier[];
@@ -3202,7 +3217,13 @@ extern const u32 gMonPalette_Landorus[];
 extern const u32 gMonPalette_Kyurem[];
 extern const u32 gMonPalette_Keldeo[];
 extern const u32 gMonPalette_Meloetta[];
+extern const u32 gMonPalette_MeloettaPirouette[];
 extern const u32 gMonPalette_Genesect[];
+extern const u32 gMonPalette_GenesectDouseDrive[];
+extern const u32 gMonPalette_GenesectShockDrive[];
+extern const u32 gMonPalette_GenesectBurnDrive[];
+extern const u32 gMonPalette_GenesectChillDrive[];
+// Black 2 and White 2
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonPalette_Chespin[];
@@ -3605,27 +3626,15 @@ extern const u32 gMonPalette_PalkiaOrigin[];
 extern const u32 gMonPalette_ArceusFairy[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
-extern const u32 gMonPalette_BasculinBlueStriped[];
+
 extern const u32 gMonPalette_BasculinWhiteStriped[];
-extern const u32 gMonPalette_DarmanitanZenMode[];
 extern const u32 gMonPalette_DarmanitanZenModeGalarian[];
-extern const u32 gMonPalette_DeerlingSummer[];
-extern const u32 gMonPalette_DeerlingAutumn[];
-extern const u32 gMonPalette_DeerlingWinter[];
-extern const u32 gMonPalette_SawsbuckSummer[];
-extern const u32 gMonPalette_SawsbuckAutumn[];
-extern const u32 gMonPalette_SawsbuckWinter[];
 extern const u32 gMonPalette_TornadusTherian[];
 extern const u32 gMonPalette_ThundurusTherian[];
 extern const u32 gMonPalette_LandorusTherian[];
 extern const u32 gMonPalette_KyuremWhite[];
 extern const u32 gMonPalette_KyuremBlack[];
 extern const u32 gMonPalette_KeldeoResolute[];
-extern const u32 gMonPalette_MeloettaPirouette[];
-extern const u32 gMonPalette_GenesectDouseDrive[];
-extern const u32 gMonPalette_GenesectShockDrive[];
-extern const u32 gMonPalette_GenesectBurnDrive[];
-extern const u32 gMonPalette_GenesectChillDrive[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonPalette_GreninjaAsh[];
@@ -4340,11 +4349,13 @@ extern const u32 gMonShinyPalette_Whimsicott[];
 extern const u32 gMonShinyPalette_Petilil[];
 extern const u32 gMonShinyPalette_Lilligant[];
 extern const u32 gMonShinyPalette_Basculin[];
+extern const u32 gMonShinyPalette_BasculinBlueStriped[];
 extern const u32 gMonShinyPalette_Sandile[];
 extern const u32 gMonShinyPalette_Krokorok[];
 extern const u32 gMonShinyPalette_Krookodile[];
 extern const u32 gMonShinyPalette_Darumaka[];
 extern const u32 gMonShinyPalette_Darmanitan[];
+extern const u32 gMonShinyPalette_DarmanitanZenMode[];
 extern const u32 gMonShinyPalette_Maractus[];
 extern const u32 gMonShinyPalette_Dwebble[];
 extern const u32 gMonShinyPalette_Crustle[];
@@ -4375,7 +4386,13 @@ extern const u32 gMonShinyPalette_Vanillite[];
 extern const u32 gMonShinyPalette_Vanillish[];
 extern const u32 gMonShinyPalette_Vanilluxe[];
 extern const u32 gMonShinyPalette_Deerling[];
+extern const u32 gMonShinyPalette_DeerlingSummer[];
+extern const u32 gMonShinyPalette_DeerlingAutumn[];
+extern const u32 gMonShinyPalette_DeerlingWinter[];
 extern const u32 gMonShinyPalette_Sawsbuck[];
+extern const u32 gMonShinyPalette_SawsbuckSummer[];
+extern const u32 gMonShinyPalette_SawsbuckAutumn[];
+extern const u32 gMonShinyPalette_SawsbuckWinter[];
 extern const u32 gMonShinyPalette_Emolga[];
 extern const u32 gMonShinyPalette_Karrablast[];
 extern const u32 gMonShinyPalette_Escavalier[];
@@ -4440,7 +4457,13 @@ extern const u32 gMonShinyPalette_Landorus[];
 extern const u32 gMonShinyPalette_Kyurem[];
 extern const u32 gMonShinyPalette_Keldeo[];
 extern const u32 gMonShinyPalette_Meloetta[];
+extern const u32 gMonShinyPalette_MeloettaPirouette[];
 extern const u32 gMonShinyPalette_Genesect[];
+extern const u32 gMonShinyPalette_GenesectDouseDrive[];
+extern const u32 gMonShinyPalette_GenesectShockDrive[];
+extern const u32 gMonShinyPalette_GenesectBurnDrive[];
+extern const u32 gMonShinyPalette_GenesectChillDrive[];
+// Black 2 and White 2
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonShinyPalette_Chespin[];
@@ -4843,27 +4866,16 @@ extern const u32 gMonShinyPalette_PalkiaOrigin[];
 extern const u32 gMonShinyPalette_ArceusFairy[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
-extern const u32 gMonShinyPalette_BasculinBlueStriped[];
+
 extern const u32 gMonShinyPalette_BasculinWhiteStriped[];
-extern const u32 gMonShinyPalette_DarmanitanZenMode[];
 extern const u32 gMonShinyPalette_DarmanitanZenModeGalarian[];
-extern const u32 gMonShinyPalette_DeerlingSummer[];
-extern const u32 gMonShinyPalette_DeerlingAutumn[];
-extern const u32 gMonShinyPalette_DeerlingWinter[];
-extern const u32 gMonShinyPalette_SawsbuckSummer[];
-extern const u32 gMonShinyPalette_SawsbuckAutumn[];
-extern const u32 gMonShinyPalette_SawsbuckWinter[];
+
 extern const u32 gMonShinyPalette_TornadusTherian[];
 extern const u32 gMonShinyPalette_ThundurusTherian[];
 extern const u32 gMonShinyPalette_LandorusTherian[];
 extern const u32 gMonShinyPalette_KyuremWhite[];
 extern const u32 gMonShinyPalette_KyuremBlack[];
 extern const u32 gMonShinyPalette_KeldeoResolute[];
-extern const u32 gMonShinyPalette_MeloettaPirouette[];
-extern const u32 gMonShinyPalette_GenesectDouseDrive[];
-extern const u32 gMonShinyPalette_GenesectShockDrive[];
-extern const u32 gMonShinyPalette_GenesectBurnDrive[];
-extern const u32 gMonShinyPalette_GenesectChillDrive[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonShinyPalette_GreninjaAsh[];
@@ -5578,11 +5590,13 @@ extern const u8 gMonIcon_Whimsicott[];
 extern const u8 gMonIcon_Petilil[];
 extern const u8 gMonIcon_Lilligant[];
 extern const u8 gMonIcon_Basculin[];
+extern const u8 gMonIcon_BasculinBlueStriped[];
 extern const u8 gMonIcon_Sandile[];
 extern const u8 gMonIcon_Krokorok[];
 extern const u8 gMonIcon_Krookodile[];
 extern const u8 gMonIcon_Darumaka[];
 extern const u8 gMonIcon_Darmanitan[];
+extern const u8 gMonIcon_DarmanitanZenMode[];
 extern const u8 gMonIcon_Maractus[];
 extern const u8 gMonIcon_Dwebble[];
 extern const u8 gMonIcon_Crustle[];
@@ -5613,7 +5627,13 @@ extern const u8 gMonIcon_Vanillite[];
 extern const u8 gMonIcon_Vanillish[];
 extern const u8 gMonIcon_Vanilluxe[];
 extern const u8 gMonIcon_Deerling[];
+extern const u8 gMonIcon_DeerlingSummer[];
+extern const u8 gMonIcon_DeerlingAutumn[];
+extern const u8 gMonIcon_DeerlingWinter[];
 extern const u8 gMonIcon_Sawsbuck[];
+extern const u8 gMonIcon_SawsbuckSummer[];
+extern const u8 gMonIcon_SawsbuckAutumn[];
+extern const u8 gMonIcon_SawsbuckWinter[];
 extern const u8 gMonIcon_Emolga[];
 extern const u8 gMonIcon_Karrablast[];
 extern const u8 gMonIcon_Escavalier[];
@@ -5678,7 +5698,9 @@ extern const u8 gMonIcon_Landorus[];
 extern const u8 gMonIcon_Kyurem[];
 extern const u8 gMonIcon_Keldeo[];
 extern const u8 gMonIcon_Meloetta[];
+extern const u8 gMonIcon_MeloettaPirouette[];
 extern const u8 gMonIcon_Genesect[];
+// Black 2 and White 2
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u8 gMonIcon_Chespin[];
@@ -6079,23 +6101,15 @@ extern const u8 gMonIcon_DialgaOrigin[];
 extern const u8 gMonIcon_PalkiaOrigin[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
-extern const u8 gMonIcon_BasculinBlueStriped[];
+
 extern const u8 gMonIcon_BasculinWhiteStriped[];
-extern const u8 gMonIcon_DarmanitanZenMode[];
 extern const u8 gMonIcon_DarmanitanZenModeGalarian[];
-extern const u8 gMonIcon_DeerlingSummer[];
-extern const u8 gMonIcon_DeerlingAutumn[];
-extern const u8 gMonIcon_DeerlingWinter[];
-extern const u8 gMonIcon_SawsbuckSummer[];
-extern const u8 gMonIcon_SawsbuckAutumn[];
-extern const u8 gMonIcon_SawsbuckWinter[];
 extern const u8 gMonIcon_TornadusTherian[];
 extern const u8 gMonIcon_ThundurusTherian[];
 extern const u8 gMonIcon_LandorusTherian[];
 extern const u8 gMonIcon_KyuremWhite[];
 extern const u8 gMonIcon_KyuremBlack[];
 extern const u8 gMonIcon_KeldeoResolute[];
-extern const u8 gMonIcon_MeloettaPirouette[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u8 gMonIcon_GreninjaAsh[];

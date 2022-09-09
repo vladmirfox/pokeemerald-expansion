@@ -623,11 +623,13 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
     SPECIES_SPRITE(PETILIL, gMonFrontPic_Petilil),
     SPECIES_SPRITE(LILLIGANT, gMonFrontPic_Lilligant),
     SPECIES_SPRITE(BASCULIN, gMonFrontPic_Basculin),
+    SPECIES_SPRITE(BASCULIN_BLUE_STRIPED, gMonFrontPic_BasculinBlueStriped),
     SPECIES_SPRITE(SANDILE, gMonFrontPic_Sandile),
     SPECIES_SPRITE(KROKOROK, gMonFrontPic_Krokorok),
     SPECIES_SPRITE(KROOKODILE, gMonFrontPic_Krookodile),
     SPECIES_SPRITE(DARUMAKA, gMonFrontPic_Darumaka),
     SPECIES_SPRITE(DARMANITAN, gMonFrontPic_Darmanitan),
+    SPECIES_SPRITE(DARMANITAN_ZEN_MODE, gMonFrontPic_DarmanitanZenMode),
     SPECIES_SPRITE(MARACTUS, gMonFrontPic_Maractus),
     SPECIES_SPRITE(DWEBBLE, gMonFrontPic_Dwebble),
     SPECIES_SPRITE(CRUSTLE, gMonFrontPic_Crustle),
@@ -658,7 +660,13 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
     SPECIES_SPRITE(VANILLISH, gMonFrontPic_Vanillish),
     SPECIES_SPRITE(VANILLUXE, gMonFrontPic_Vanilluxe),
     SPECIES_SPRITE(DEERLING, gMonFrontPic_Deerling),
+    SPECIES_SPRITE(DEERLING_SUMMER, gMonFrontPic_Deerling),
+    SPECIES_SPRITE(DEERLING_AUTUMN, gMonFrontPic_Deerling),
+    SPECIES_SPRITE(DEERLING_WINTER, gMonFrontPic_Deerling),
     SPECIES_SPRITE(SAWSBUCK, gMonFrontPic_Sawsbuck),
+    SPECIES_SPRITE(SAWSBUCK_SUMMER, gMonFrontPic_SawsbuckSummer),
+    SPECIES_SPRITE(SAWSBUCK_AUTUMN, gMonFrontPic_SawsbuckAutumn),
+    SPECIES_SPRITE(SAWSBUCK_WINTER, gMonFrontPic_SawsbuckWinter),
     SPECIES_SPRITE(EMOLGA, gMonFrontPic_Emolga),
     SPECIES_SPRITE(KARRABLAST, gMonFrontPic_Karrablast),
     SPECIES_SPRITE(ESCAVALIER, gMonFrontPic_Escavalier),
@@ -721,7 +729,12 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
     SPECIES_SPRITE(KYUREM, gMonFrontPic_Kyurem),
     SPECIES_SPRITE(KELDEO, gMonFrontPic_Keldeo),
     SPECIES_SPRITE(MELOETTA, gMonFrontPic_Meloetta),
+    SPECIES_SPRITE(MELOETTA_PIROUETTE, gMonFrontPic_MeloettaPirouette),
     SPECIES_SPRITE(GENESECT, gMonFrontPic_Genesect),
+    SPECIES_SPRITE(GENESECT_DOUSE_DRIVE, gMonFrontPic_Genesect),
+    SPECIES_SPRITE(GENESECT_SHOCK_DRIVE, gMonFrontPic_Genesect),
+    SPECIES_SPRITE(GENESECT_BURN_DRIVE, gMonFrontPic_Genesect),
+    SPECIES_SPRITE(GENESECT_CHILL_DRIVE, gMonFrontPic_Genesect),
 #endif
 #if P_GEN_6_POKEMON == TRUE
     SPECIES_SPRITE(CHESPIN, gMonFrontPic_Chespin),
@@ -1132,19 +1145,11 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
 #endif
 
 #if P_GEN_5_POKEMON == TRUE
-    SPECIES_SPRITE(BASCULIN_BLUE_STRIPED, gMonFrontPic_BasculinBlueStriped),
+
     SPECIES_SPRITE(BASCULIN_WHITE_STRIPED, gMonFrontPic_BasculinWhiteStriped),
 
-    SPECIES_SPRITE(DARMANITAN_ZEN_MODE, gMonFrontPic_DarmanitanZenMode),
     SPECIES_SPRITE(DARMANITAN_ZEN_MODE_GALARIAN, gMonFrontPic_DarmanitanZenModeGalarian),
 
-    SPECIES_SPRITE(DEERLING_SUMMER, gMonFrontPic_Deerling),
-    SPECIES_SPRITE(DEERLING_AUTUMN, gMonFrontPic_Deerling),
-    SPECIES_SPRITE(DEERLING_WINTER, gMonFrontPic_Deerling),
-
-    SPECIES_SPRITE(SAWSBUCK_SUMMER, gMonFrontPic_SawsbuckSummer),
-    SPECIES_SPRITE(SAWSBUCK_AUTUMN, gMonFrontPic_SawsbuckAutumn),
-    SPECIES_SPRITE(SAWSBUCK_WINTER, gMonFrontPic_SawsbuckWinter),
 
     SPECIES_SPRITE(TORNADUS_THERIAN, gMonFrontPic_TornadusTherian),
     SPECIES_SPRITE(THUNDURUS_THERIAN, gMonFrontPic_ThundurusTherian),
@@ -1155,12 +1160,6 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
 
     SPECIES_SPRITE(KELDEO_RESOLUTE, gMonFrontPic_KeldeoResolute),
 
-    SPECIES_SPRITE(MELOETTA_PIROUETTE, gMonFrontPic_MeloettaPirouette),
-
-    SPECIES_SPRITE(GENESECT_DOUSE_DRIVE, gMonFrontPic_Genesect),
-    SPECIES_SPRITE(GENESECT_SHOCK_DRIVE, gMonFrontPic_Genesect),
-    SPECIES_SPRITE(GENESECT_BURN_DRIVE, gMonFrontPic_Genesect),
-    SPECIES_SPRITE(GENESECT_CHILL_DRIVE, gMonFrontPic_Genesect),
 #endif
 
 #if P_GEN_6_POKEMON == TRUE

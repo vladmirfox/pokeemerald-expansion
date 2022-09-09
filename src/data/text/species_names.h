@@ -622,11 +622,13 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_PETILIL] = _("Petilil"),
     [SPECIES_LILLIGANT] = _("Lilligant"),
     [SPECIES_BASCULIN] = _("Basculin"),
+    [SPECIES_BASCULIN_BLUE_STRIPED] = _("Basculin"),
     [SPECIES_SANDILE] = _("Sandile"),
     [SPECIES_KROKOROK] = _("Krokorok"),
     [SPECIES_KROOKODILE] = _("Krookodile"),
     [SPECIES_DARUMAKA] = _("Darumaka"),
     [SPECIES_DARMANITAN] = _("Darmanitan"),
+    [SPECIES_DARMANITAN_ZEN_MODE] = _("Darmanitan"),
     [SPECIES_MARACTUS] = _("Maractus"),
     [SPECIES_DWEBBLE] = _("Dwebble"),
     [SPECIES_CRUSTLE] = _("Crustle"),
@@ -657,7 +659,13 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_VANILLISH] = _("Vanillish"),
     [SPECIES_VANILLUXE] = _("Vanilluxe"),
     [SPECIES_DEERLING] = _("Deerling"),
+    [SPECIES_DEERLING_SUMMER] = _("Deerling"),
+    [SPECIES_DEERLING_AUTUMN] = _("Deerling"),
+    [SPECIES_DEERLING_WINTER] = _("Deerling"),
     [SPECIES_SAWSBUCK] = _("Sawsbuck"),
+    [SPECIES_SAWSBUCK_SUMMER] = _("Sawsbuck"),
+    [SPECIES_SAWSBUCK_AUTUMN] = _("Sawsbuck"),
+    [SPECIES_SAWSBUCK_WINTER] = _("Sawsbuck"),
     [SPECIES_EMOLGA] = _("Emolga"),
     [SPECIES_KARRABLAST] = _("Karrablast"),
     [SPECIES_ESCAVALIER] = _("Escavalier"),
@@ -720,7 +728,12 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_KYUREM] = _("Kyurem"),
     [SPECIES_KELDEO] = _("Keldeo"),
     [SPECIES_MELOETTA] = _("Meloetta"),
+    [SPECIES_MELOETTA_PIROUETTE] = _("Meloetta"),
     [SPECIES_GENESECT] = _("Genesect"),
+    [SPECIES_GENESECT_DOUSE_DRIVE] = _("Genesect"),
+    [SPECIES_GENESECT_SHOCK_DRIVE] = _("Genesect"),
+    [SPECIES_GENESECT_BURN_DRIVE] = _("Genesect"),
+    [SPECIES_GENESECT_CHILL_DRIVE] = _("Genesect"),
 #endif
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_CHESPIN] = _("Chespin"),
@@ -1136,20 +1149,10 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_ARCEUS_FAIRY] = _("Arceus"),
 #endif
 #if P_GEN_5_POKEMON == TRUE
-    // Basculin
-    [SPECIES_BASCULIN_BLUE_STRIPED] = _("Basculin"),
+
     [SPECIES_BASCULIN_WHITE_STRIPED] = _("Basculin"),
     // Darmanitan
-    [SPECIES_DARMANITAN_ZEN_MODE] = _("Darmanitan"),
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = _("Darmanitan"),
-    // Deerling
-    [SPECIES_DEERLING_SUMMER] = _("Deerling"),
-    [SPECIES_DEERLING_AUTUMN] = _("Deerling"),
-    [SPECIES_DEERLING_WINTER] = _("Deerling"),
-    // Sawsbuck
-    [SPECIES_SAWSBUCK_SUMMER] = _("Sawsbuck"),
-    [SPECIES_SAWSBUCK_AUTUMN] = _("Sawsbuck"),
-    [SPECIES_SAWSBUCK_WINTER] = _("Sawsbuck"),
     // Therian Forms
     [SPECIES_TORNADUS_THERIAN] = _("Tornadus"),
     [SPECIES_THUNDURUS_THERIAN] = _("Thundurus"),
@@ -1160,13 +1163,6 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_KYUREM_WHITE] = _("Kyurem"),
     // Keldeo
     [SPECIES_KELDEO_RESOLUTE] = _("Keldeo"),
-    // Meloetta
-    [SPECIES_MELOETTA_PIROUETTE] = _("Meloetta"),
-    // Genesect
-    [SPECIES_GENESECT_DOUSE_DRIVE] = _("Genesect"),
-    [SPECIES_GENESECT_SHOCK_DRIVE] = _("Genesect"),
-    [SPECIES_GENESECT_BURN_DRIVE] = _("Genesect"),
-    [SPECIES_GENESECT_CHILL_DRIVE] = _("Genesect"),
 #endif
 #if P_GEN_6_POKEMON == TRUE
     // Greninja

@@ -175,14 +175,22 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_SAMUROTT] = sSamurottFormSpeciesIdTable,
     [SPECIES_AUDINO] = sAudinoFormSpeciesIdTable,
     [SPECIES_BASCULIN] = sBasculinFormSpeciesIdTable,
+    [SPECIES_BASCULIN_BLUE_STRIPED] = sBasculinFormSpeciesIdTable,
     [SPECIES_LILLIGANT] = sLilligantFormSpeciesIdTable,
     [SPECIES_DARUMAKA] = sDarumakaFormSpeciesIdTable,
     [SPECIES_DARMANITAN] = sDarmanitanFormSpeciesIdTable,
+    [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanFormSpeciesIdTable,
     [SPECIES_YAMASK] = sYamaskFormSpeciesIdTable,	
     [SPECIES_ZORUA] = sZoruaFormSpeciesIdTable,
     [SPECIES_ZOROARK] = sZoroarkFormSpeciesIdTable,
     [SPECIES_DEERLING] = sDeerlingFormSpeciesIdTable,
+    [SPECIES_DEERLING_SUMMER] = sDeerlingFormSpeciesIdTable,
+    [SPECIES_DEERLING_AUTUMN] = sDeerlingFormSpeciesIdTable,
+    [SPECIES_DEERLING_WINTER] = sDeerlingFormSpeciesIdTable,
     [SPECIES_SAWSBUCK] = sSawsbuckFormSpeciesIdTable,
+    [SPECIES_SAWSBUCK_SUMMER] = sSawsbuckFormSpeciesIdTable,
+    [SPECIES_SAWSBUCK_AUTUMN] = sSawsbuckFormSpeciesIdTable,
+    [SPECIES_SAWSBUCK_WINTER] = sSawsbuckFormSpeciesIdTable,
     [SPECIES_STUNFISK] = sStunfiskFormSpeciesIdTable,
     [SPECIES_BRAVIARY] = sBraviaryFormSpeciesIdTable,
     [SPECIES_TORNADUS] = sTornadusFormSpeciesIdTable,
@@ -191,7 +199,12 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_KYUREM] = sKyuremFormSpeciesIdTable,
     [SPECIES_KELDEO] = sKeldeoFormSpeciesIdTable,
     [SPECIES_MELOETTA] = sMeloettaFormSpeciesIdTable,
+    [SPECIES_MELOETTA_PIROUETTE] = sMeloettaFormSpeciesIdTable,
     [SPECIES_GENESECT] = sGenesectFormSpeciesIdTable,
+    [SPECIES_GENESECT_DOUSE_DRIVE] = sGenesectFormSpeciesIdTable,
+    [SPECIES_GENESECT_SHOCK_DRIVE] = sGenesectFormSpeciesIdTable,
+    [SPECIES_GENESECT_BURN_DRIVE] = sGenesectFormSpeciesIdTable,
+    [SPECIES_GENESECT_CHILL_DRIVE] = sGenesectFormSpeciesIdTable,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_GRENINJA] = sGreninjaFormSpeciesIdTable,
@@ -388,20 +401,10 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_ARCEUS_FAIRY] = sArceusFormSpeciesIdTable,
 #endif
 #if P_GEN_5_POKEMON == TRUE
-    // Basculin
-    [SPECIES_BASCULIN_BLUE_STRIPED] = sBasculinFormSpeciesIdTable,
+
     [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinFormSpeciesIdTable,
     // Darmanitan
-    [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanFormSpeciesIdTable,
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = sDarmanitanFormSpeciesIdTable,
-    // Deerling
-    [SPECIES_DEERLING_SUMMER] = sDeerlingFormSpeciesIdTable,
-    [SPECIES_DEERLING_AUTUMN] = sDeerlingFormSpeciesIdTable,
-    [SPECIES_DEERLING_WINTER] = sDeerlingFormSpeciesIdTable,
-    // Sawsbuck
-    [SPECIES_SAWSBUCK_SUMMER] = sSawsbuckFormSpeciesIdTable,
-    [SPECIES_SAWSBUCK_AUTUMN] = sSawsbuckFormSpeciesIdTable,
-    [SPECIES_SAWSBUCK_WINTER] = sSawsbuckFormSpeciesIdTable,
     // Therian Forms
     [SPECIES_TORNADUS_THERIAN] = sTornadusFormSpeciesIdTable,
     [SPECIES_THUNDURUS_THERIAN] = sThundurusFormSpeciesIdTable,
@@ -411,13 +414,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_KYUREM_BLACK] = sKyuremFormSpeciesIdTable,
     // Keldeo
     [SPECIES_KELDEO_RESOLUTE] = sKeldeoFormSpeciesIdTable,
-    // Meloetta
-    [SPECIES_MELOETTA_PIROUETTE] = sMeloettaFormSpeciesIdTable,
-    // Genesect
-    [SPECIES_GENESECT_DOUSE_DRIVE] = sGenesectFormSpeciesIdTable,
-    [SPECIES_GENESECT_SHOCK_DRIVE] = sGenesectFormSpeciesIdTable,
-    [SPECIES_GENESECT_BURN_DRIVE] = sGenesectFormSpeciesIdTable,
-    [SPECIES_GENESECT_CHILL_DRIVE] = sGenesectFormSpeciesIdTable,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     // Greninja

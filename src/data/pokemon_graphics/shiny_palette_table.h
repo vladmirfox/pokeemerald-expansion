@@ -623,11 +623,13 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(PETILIL, gMonShinyPalette_Petilil),
     SPECIES_SHINY_PAL(LILLIGANT, gMonShinyPalette_Lilligant),
     SPECIES_SHINY_PAL(BASCULIN, gMonShinyPalette_Basculin),
+    SPECIES_SHINY_PAL(BASCULIN_BLUE_STRIPED, gMonShinyPalette_BasculinBlueStriped),
     SPECIES_SHINY_PAL(SANDILE, gMonShinyPalette_Sandile),
     SPECIES_SHINY_PAL(KROKOROK, gMonShinyPalette_Krokorok),
     SPECIES_SHINY_PAL(KROOKODILE, gMonShinyPalette_Krookodile),
     SPECIES_SHINY_PAL(DARUMAKA, gMonShinyPalette_Darumaka),
     SPECIES_SHINY_PAL(DARMANITAN, gMonShinyPalette_Darmanitan),
+    SPECIES_SHINY_PAL(DARMANITAN_ZEN_MODE, gMonShinyPalette_DarmanitanZenMode),
     SPECIES_SHINY_PAL(MARACTUS, gMonShinyPalette_Maractus),
     SPECIES_SHINY_PAL(DWEBBLE, gMonShinyPalette_Dwebble),
     SPECIES_SHINY_PAL(CRUSTLE, gMonShinyPalette_Crustle),
@@ -658,7 +660,13 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(VANILLISH, gMonShinyPalette_Vanillish),
     SPECIES_SHINY_PAL(VANILLUXE, gMonShinyPalette_Vanilluxe),
     SPECIES_SHINY_PAL(DEERLING, gMonShinyPalette_Deerling),
+    SPECIES_SHINY_PAL(DEERLING_SUMMER, gMonShinyPalette_DeerlingSummer),
+    SPECIES_SHINY_PAL(DEERLING_AUTUMN, gMonShinyPalette_DeerlingAutumn),
+    SPECIES_SHINY_PAL(DEERLING_WINTER, gMonShinyPalette_DeerlingWinter),
     SPECIES_SHINY_PAL(SAWSBUCK, gMonShinyPalette_Sawsbuck),
+    SPECIES_SHINY_PAL(SAWSBUCK_SUMMER, gMonShinyPalette_SawsbuckSummer),
+    SPECIES_SHINY_PAL(SAWSBUCK_AUTUMN, gMonShinyPalette_SawsbuckAutumn),
+    SPECIES_SHINY_PAL(SAWSBUCK_WINTER, gMonShinyPalette_SawsbuckWinter),
     SPECIES_SHINY_PAL(EMOLGA, gMonShinyPalette_Emolga),
     SPECIES_SHINY_PAL(KARRABLAST, gMonShinyPalette_Karrablast),
     SPECIES_SHINY_PAL(ESCAVALIER, gMonShinyPalette_Escavalier),
@@ -721,7 +729,12 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(KYUREM, gMonShinyPalette_Kyurem),
     SPECIES_SHINY_PAL(KELDEO, gMonShinyPalette_Keldeo),
     SPECIES_SHINY_PAL(MELOETTA, gMonShinyPalette_Meloetta),
+    SPECIES_SHINY_PAL(MELOETTA_PIROUETTE, gMonShinyPalette_MeloettaPirouette),
     SPECIES_SHINY_PAL(GENESECT, gMonShinyPalette_Genesect),
+    SPECIES_SHINY_PAL(GENESECT_DOUSE_DRIVE, gMonShinyPalette_GenesectDouseDrive),
+    SPECIES_SHINY_PAL(GENESECT_SHOCK_DRIVE, gMonShinyPalette_GenesectShockDrive),
+    SPECIES_SHINY_PAL(GENESECT_BURN_DRIVE, gMonShinyPalette_GenesectBurnDrive),
+    SPECIES_SHINY_PAL(GENESECT_CHILL_DRIVE, gMonShinyPalette_GenesectChillDrive),
 #endif
 #if P_GEN_6_POKEMON == TRUE
     SPECIES_SHINY_PAL(CHESPIN, gMonShinyPalette_Chespin),
@@ -1132,19 +1145,11 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(ARCEUS_FAIRY, gMonShinyPalette_ArceusFairy),
 #endif
 #if P_GEN_5_POKEMON == TRUE
-    SPECIES_SHINY_PAL(BASCULIN_BLUE_STRIPED, gMonShinyPalette_BasculinBlueStriped),
+
     SPECIES_SHINY_PAL(BASCULIN_WHITE_STRIPED, gMonShinyPalette_BasculinWhiteStriped),
 
-    SPECIES_SHINY_PAL(DARMANITAN_ZEN_MODE, gMonShinyPalette_DarmanitanZenMode),
     SPECIES_SHINY_PAL(DARMANITAN_ZEN_MODE_GALARIAN, gMonShinyPalette_DarmanitanZenModeGalarian),
 
-    SPECIES_SHINY_PAL(DEERLING_SUMMER, gMonShinyPalette_DeerlingSummer),
-    SPECIES_SHINY_PAL(DEERLING_AUTUMN, gMonShinyPalette_DeerlingAutumn),
-    SPECIES_SHINY_PAL(DEERLING_WINTER, gMonShinyPalette_DeerlingWinter),
-
-    SPECIES_SHINY_PAL(SAWSBUCK_SUMMER, gMonShinyPalette_SawsbuckSummer),
-    SPECIES_SHINY_PAL(SAWSBUCK_AUTUMN, gMonShinyPalette_SawsbuckAutumn),
-    SPECIES_SHINY_PAL(SAWSBUCK_WINTER, gMonShinyPalette_SawsbuckWinter),
 
     SPECIES_SHINY_PAL(TORNADUS_THERIAN, gMonShinyPalette_TornadusTherian),
     SPECIES_SHINY_PAL(THUNDURUS_THERIAN, gMonShinyPalette_ThundurusTherian),
@@ -1155,12 +1160,6 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
 
     SPECIES_SHINY_PAL(KELDEO_RESOLUTE, gMonShinyPalette_KeldeoResolute),
 
-    SPECIES_SHINY_PAL(MELOETTA_PIROUETTE, gMonShinyPalette_MeloettaPirouette),
-
-    SPECIES_SHINY_PAL(GENESECT_DOUSE_DRIVE, gMonShinyPalette_GenesectDouseDrive),
-    SPECIES_SHINY_PAL(GENESECT_SHOCK_DRIVE, gMonShinyPalette_GenesectShockDrive),
-    SPECIES_SHINY_PAL(GENESECT_BURN_DRIVE, gMonShinyPalette_GenesectBurnDrive),
-    SPECIES_SHINY_PAL(GENESECT_CHILL_DRIVE, gMonShinyPalette_GenesectChillDrive),
 #endif
 #if P_GEN_6_POKEMON == TRUE
     SPECIES_SHINY_PAL(GRENINJA_BATTLE_BOND, gMonShinyPalette_Greninja),

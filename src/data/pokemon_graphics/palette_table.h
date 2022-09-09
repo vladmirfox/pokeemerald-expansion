@@ -623,11 +623,13 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(PETILIL, gMonPalette_Petilil),
     SPECIES_PAL(LILLIGANT, gMonPalette_Lilligant),
     SPECIES_PAL(BASCULIN, gMonPalette_Basculin),
+    SPECIES_PAL(BASCULIN_BLUE_STRIPED, gMonPalette_BasculinBlueStriped),
     SPECIES_PAL(SANDILE, gMonPalette_Sandile),
     SPECIES_PAL(KROKOROK, gMonPalette_Krokorok),
     SPECIES_PAL(KROOKODILE, gMonPalette_Krookodile),
     SPECIES_PAL(DARUMAKA, gMonPalette_Darumaka),
     SPECIES_PAL(DARMANITAN, gMonPalette_Darmanitan),
+    SPECIES_PAL(DARMANITAN_ZEN_MODE, gMonPalette_DarmanitanZenMode),
     SPECIES_PAL(MARACTUS, gMonPalette_Maractus),
     SPECIES_PAL(DWEBBLE, gMonPalette_Dwebble),
     SPECIES_PAL(CRUSTLE, gMonPalette_Crustle),
@@ -658,7 +660,13 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(VANILLISH, gMonPalette_Vanillish),
     SPECIES_PAL(VANILLUXE, gMonPalette_Vanilluxe),
     SPECIES_PAL(DEERLING, gMonPalette_Deerling),
+    SPECIES_PAL(DEERLING_SUMMER, gMonPalette_DeerlingSummer),
+    SPECIES_PAL(DEERLING_AUTUMN, gMonPalette_DeerlingAutumn),
+    SPECIES_PAL(DEERLING_WINTER, gMonPalette_DeerlingWinter),
     SPECIES_PAL(SAWSBUCK, gMonPalette_Sawsbuck),
+    SPECIES_PAL(SAWSBUCK_SUMMER, gMonPalette_SawsbuckSummer),
+    SPECIES_PAL(SAWSBUCK_AUTUMN, gMonPalette_SawsbuckAutumn),
+    SPECIES_PAL(SAWSBUCK_WINTER, gMonPalette_SawsbuckWinter),
     SPECIES_PAL(EMOLGA, gMonPalette_Emolga),
     SPECIES_PAL(KARRABLAST, gMonPalette_Karrablast),
     SPECIES_PAL(ESCAVALIER, gMonPalette_Escavalier),
@@ -721,7 +729,12 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(KYUREM, gMonPalette_Kyurem),
     SPECIES_PAL(KELDEO, gMonPalette_Keldeo),
     SPECIES_PAL(MELOETTA, gMonPalette_Meloetta),
+    SPECIES_PAL(MELOETTA_PIROUETTE, gMonPalette_MeloettaPirouette),
     SPECIES_PAL(GENESECT, gMonPalette_Genesect),
+    SPECIES_PAL(GENESECT_DOUSE_DRIVE, gMonPalette_GenesectDouseDrive),
+    SPECIES_PAL(GENESECT_SHOCK_DRIVE, gMonPalette_GenesectShockDrive),
+    SPECIES_PAL(GENESECT_BURN_DRIVE, gMonPalette_GenesectBurnDrive),
+    SPECIES_PAL(GENESECT_CHILL_DRIVE, gMonPalette_GenesectChillDrive),
 #endif
 #if P_GEN_6_POKEMON == TRUE
     SPECIES_PAL(CHESPIN, gMonPalette_Chespin),
@@ -1132,19 +1145,11 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
 #endif
 
 #if P_GEN_5_POKEMON == TRUE
-    SPECIES_PAL(BASCULIN_BLUE_STRIPED, gMonPalette_BasculinBlueStriped),
+
     SPECIES_PAL(BASCULIN_WHITE_STRIPED, gMonPalette_BasculinWhiteStriped),
 
-    SPECIES_PAL(DARMANITAN_ZEN_MODE, gMonPalette_DarmanitanZenMode),
     SPECIES_PAL(DARMANITAN_ZEN_MODE_GALARIAN, gMonPalette_DarmanitanZenModeGalarian),
 
-    SPECIES_PAL(DEERLING_SUMMER, gMonPalette_DeerlingSummer),
-    SPECIES_PAL(DEERLING_AUTUMN, gMonPalette_DeerlingAutumn),
-    SPECIES_PAL(DEERLING_WINTER, gMonPalette_DeerlingWinter),
-
-    SPECIES_PAL(SAWSBUCK_SUMMER, gMonPalette_SawsbuckSummer),
-    SPECIES_PAL(SAWSBUCK_AUTUMN, gMonPalette_SawsbuckAutumn),
-    SPECIES_PAL(SAWSBUCK_WINTER, gMonPalette_SawsbuckWinter),
 
     SPECIES_PAL(TORNADUS_THERIAN, gMonPalette_TornadusTherian),
     SPECIES_PAL(THUNDURUS_THERIAN, gMonPalette_ThundurusTherian),
@@ -1155,12 +1160,6 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
 
     SPECIES_PAL(KELDEO_RESOLUTE, gMonPalette_KeldeoResolute),
 
-    SPECIES_PAL(MELOETTA_PIROUETTE, gMonPalette_MeloettaPirouette),
-
-    SPECIES_PAL(GENESECT_DOUSE_DRIVE, gMonPalette_GenesectDouseDrive),
-    SPECIES_PAL(GENESECT_SHOCK_DRIVE, gMonPalette_GenesectShockDrive),
-    SPECIES_PAL(GENESECT_BURN_DRIVE, gMonPalette_GenesectBurnDrive),
-    SPECIES_PAL(GENESECT_CHILL_DRIVE, gMonPalette_GenesectChillDrive),
 #endif
 
 #if P_GEN_6_POKEMON == TRUE
