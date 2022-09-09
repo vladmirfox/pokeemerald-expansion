@@ -735,8 +735,17 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(GENESECT_SHOCK_DRIVE, gMonPalette_GenesectShockDrive),
     SPECIES_PAL(GENESECT_BURN_DRIVE, gMonPalette_GenesectBurnDrive),
     SPECIES_PAL(GENESECT_CHILL_DRIVE, gMonPalette_GenesectChillDrive),
+// Black 2 and White 2
+    SPECIES_PAL(TORNADUS_THERIAN, gMonPalette_TornadusTherian),
+    SPECIES_PAL(THUNDURUS_THERIAN, gMonPalette_ThundurusTherian),
+    SPECIES_PAL(LANDORUS_THERIAN, gMonPalette_LandorusTherian),
+    SPECIES_PAL(KYUREM_WHITE, gMonPalette_KyuremWhite),
+    SPECIES_PAL(KYUREM_BLACK, gMonPalette_KyuremBlack),
+    SPECIES_PAL(KELDEO_RESOLUTE, gMonPalette_KeldeoResolute),
 #endif
+
 #if P_GEN_6_POKEMON == TRUE
+// X and Y
     SPECIES_PAL(CHESPIN, gMonPalette_Chespin),
     SPECIES_PAL(QUILLADIN, gMonPalette_Quilladin),
     SPECIES_PAL(CHESNAUGHT, gMonPalette_Chesnaught),
@@ -1145,21 +1154,9 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
 #endif
 
 #if P_GEN_5_POKEMON == TRUE
-
     SPECIES_PAL(BASCULIN_WHITE_STRIPED, gMonPalette_BasculinWhiteStriped),
 
     SPECIES_PAL(DARMANITAN_ZEN_MODE_GALARIAN, gMonPalette_DarmanitanZenModeGalarian),
-
-
-    SPECIES_PAL(TORNADUS_THERIAN, gMonPalette_TornadusTherian),
-    SPECIES_PAL(THUNDURUS_THERIAN, gMonPalette_ThundurusTherian),
-    SPECIES_PAL(LANDORUS_THERIAN, gMonPalette_LandorusTherian),
-
-    SPECIES_PAL(KYUREM_WHITE, gMonPalette_KyuremWhite),
-    SPECIES_PAL(KYUREM_BLACK, gMonPalette_KyuremBlack),
-
-    SPECIES_PAL(KELDEO_RESOLUTE, gMonPalette_KeldeoResolute),
-
 #endif
 
 #if P_GEN_6_POKEMON == TRUE

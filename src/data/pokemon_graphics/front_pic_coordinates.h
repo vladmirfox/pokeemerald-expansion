@@ -739,8 +739,16 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_GENESECT_SHOCK_DRIVE] = { .size = MON_COORDS_SIZE(56, 64), .y_offset = 0, },
     [SPECIES_GENESECT_BURN_DRIVE] = { .size = MON_COORDS_SIZE(56, 64), .y_offset = 0, },
     [SPECIES_GENESECT_CHILL_DRIVE] = { .size = MON_COORDS_SIZE(56, 64), .y_offset = 0, },
+// Black 2 and White 2
+    [SPECIES_TORNADUS_THERIAN] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0, },
+    [SPECIES_THUNDURUS_THERIAN] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 2, },
+    [SPECIES_LANDORUS_THERIAN] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0, },
+    [SPECIES_KYUREM_WHITE] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0, },
+    [SPECIES_KYUREM_BLACK] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0, },
+    [SPECIES_KELDEO_RESOLUTE] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 2, },
 #endif
 #if P_GEN_6_POKEMON == TRUE
+// X and Y
     [SPECIES_CHESPIN] = { .size = MON_COORDS_SIZE(40, 48), .y_offset = 10, },
     [SPECIES_QUILLADIN] = { .size = MON_COORDS_SIZE(48, 48), .y_offset = 10, },
     [SPECIES_CHESNAUGHT] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 4, },
@@ -1152,15 +1160,6 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_BASCULIN_WHITE_STRIPED] = { .size = MON_COORDS_SIZE(48, 40), .y_offset = 10, },
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = { .size = MON_COORDS_SIZE(48, 64), .y_offset = 2, },
-    // Therian Forms
-    [SPECIES_TORNADUS_THERIAN] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0, },
-    [SPECIES_THUNDURUS_THERIAN] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 2, },
-    [SPECIES_LANDORUS_THERIAN] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0, },
-    // Kyurem
-    [SPECIES_KYUREM_WHITE] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0, },
-    [SPECIES_KYUREM_BLACK] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0, },
-    // Keldeo
-    [SPECIES_KELDEO_RESOLUTE] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 2, },
 #endif
 #if P_GEN_6_POKEMON == TRUE
     // Greninja

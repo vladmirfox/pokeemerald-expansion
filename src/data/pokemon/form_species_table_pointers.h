@@ -205,8 +205,16 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_GENESECT_SHOCK_DRIVE] = sGenesectFormSpeciesIdTable,
     [SPECIES_GENESECT_BURN_DRIVE] = sGenesectFormSpeciesIdTable,
     [SPECIES_GENESECT_CHILL_DRIVE] = sGenesectFormSpeciesIdTable,
+// Black 2 and White 2
+    [SPECIES_TORNADUS_THERIAN] = sTornadusFormSpeciesIdTable,
+    [SPECIES_THUNDURUS_THERIAN] = sThundurusFormSpeciesIdTable,
+    [SPECIES_LANDORUS_THERIAN] = sLandorusFormSpeciesIdTable,
+    [SPECIES_KYUREM_WHITE] = sKyuremFormSpeciesIdTable,
+    [SPECIES_KYUREM_BLACK] = sKyuremFormSpeciesIdTable,
+    [SPECIES_KELDEO_RESOLUTE] = sKeldeoFormSpeciesIdTable,
 #endif
 #if P_GEN_6_POKEMON == TRUE
+// X and Y
     [SPECIES_GRENINJA] = sGreninjaFormSpeciesIdTable,
     [SPECIES_VIVILLON] = sVivillonFormSpeciesIdTable,
     [SPECIES_FLABEBE] = sFlabebeFormSpeciesIdTable,
@@ -405,15 +413,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinFormSpeciesIdTable,
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = sDarmanitanFormSpeciesIdTable,
-    // Therian Forms
-    [SPECIES_TORNADUS_THERIAN] = sTornadusFormSpeciesIdTable,
-    [SPECIES_THUNDURUS_THERIAN] = sThundurusFormSpeciesIdTable,
-    [SPECIES_LANDORUS_THERIAN] = sLandorusFormSpeciesIdTable,
-    // Kyurem
-    [SPECIES_KYUREM_WHITE] = sKyuremFormSpeciesIdTable,
-    [SPECIES_KYUREM_BLACK] = sKyuremFormSpeciesIdTable,
-    // Keldeo
-    [SPECIES_KELDEO_RESOLUTE] = sKeldeoFormSpeciesIdTable,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     // Greninja

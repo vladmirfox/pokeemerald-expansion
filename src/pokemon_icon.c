@@ -760,6 +760,12 @@ const u8 *const gMonIconTable[] =
     [SPECIES_GENESECT_SHOCK_DRIVE] = gMonIcon_Genesect,
     [SPECIES_GENESECT_BURN_DRIVE] = gMonIcon_Genesect,
     [SPECIES_GENESECT_CHILL_DRIVE] = gMonIcon_Genesect,
+    [SPECIES_TORNADUS_THERIAN] = gMonIcon_TornadusTherian,
+    [SPECIES_THUNDURUS_THERIAN] = gMonIcon_ThundurusTherian,
+    [SPECIES_LANDORUS_THERIAN] = gMonIcon_LandorusTherian,
+    [SPECIES_KYUREM_WHITE] = gMonIcon_KyuremWhite,
+    [SPECIES_KYUREM_BLACK] = gMonIcon_KyuremBlack,
+    [SPECIES_KELDEO_RESOLUTE] = gMonIcon_KeldeoResolute,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_CHESPIN] = gMonIcon_Chespin,
@@ -1163,12 +1169,6 @@ const u8 *const gMonIconTable[] =
 
     [SPECIES_BASCULIN_WHITE_STRIPED] = gMonIcon_BasculinWhiteStriped,
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = gMonIcon_DarmanitanZenModeGalarian,
-    [SPECIES_TORNADUS_THERIAN] = gMonIcon_TornadusTherian,
-    [SPECIES_THUNDURUS_THERIAN] = gMonIcon_ThundurusTherian,
-    [SPECIES_LANDORUS_THERIAN] = gMonIcon_LandorusTherian,
-    [SPECIES_KYUREM_WHITE] = gMonIcon_KyuremWhite,
-    [SPECIES_KYUREM_BLACK] = gMonIcon_KyuremBlack,
-    [SPECIES_KELDEO_RESOLUTE] = gMonIcon_KeldeoResolute,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_GRENINJA_BATTLE_BOND] = gMonIcon_Greninja,
@@ -2035,6 +2035,12 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_GENESECT_SHOCK_DRIVE] = 2,
     [SPECIES_GENESECT_BURN_DRIVE] = 2,
     [SPECIES_GENESECT_CHILL_DRIVE] = 2,
+    [SPECIES_TORNADUS_THERIAN] = 1,
+    [SPECIES_THUNDURUS_THERIAN] = 0,
+    [SPECIES_LANDORUS_THERIAN] = 0,
+    [SPECIES_KYUREM_WHITE] = 0,
+    [SPECIES_KYUREM_BLACK] = 0,
+    [SPECIES_KELDEO_RESOLUTE] = 0,
 // Black 2 and White 2
     [SPECIES_CHESPIN] = 1,
     [SPECIES_QUILLADIN] = 1,
@@ -2419,12 +2425,6 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_BASCULIN_WHITE_STRIPED] = 0,
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = 0,
 
-    [SPECIES_TORNADUS_THERIAN] = 1,
-    [SPECIES_THUNDURUS_THERIAN] = 0,
-    [SPECIES_LANDORUS_THERIAN] = 0,
-    [SPECIES_KYUREM_WHITE] = 0,
-    [SPECIES_KYUREM_BLACK] = 0,
-    [SPECIES_KELDEO_RESOLUTE] = 0,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_GRENINJA_BATTLE_BOND] = 0,

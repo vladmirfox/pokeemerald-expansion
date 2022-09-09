@@ -735,8 +735,17 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
     SPECIES_SPRITE(GENESECT_SHOCK_DRIVE, gMonFrontPic_Genesect),
     SPECIES_SPRITE(GENESECT_BURN_DRIVE, gMonFrontPic_Genesect),
     SPECIES_SPRITE(GENESECT_CHILL_DRIVE, gMonFrontPic_Genesect),
+// Black 2 and White 2
+    SPECIES_SPRITE(TORNADUS_THERIAN, gMonFrontPic_TornadusTherian),
+    SPECIES_SPRITE(THUNDURUS_THERIAN, gMonFrontPic_ThundurusTherian),
+    SPECIES_SPRITE(LANDORUS_THERIAN, gMonFrontPic_LandorusTherian),
+    SPECIES_SPRITE(KYUREM_WHITE, gMonFrontPic_KyuremWhite),
+    SPECIES_SPRITE(KYUREM_BLACK, gMonFrontPic_KyuremBlack),
+    SPECIES_SPRITE(KELDEO_RESOLUTE, gMonFrontPic_KeldeoResolute),
 #endif
+
 #if P_GEN_6_POKEMON == TRUE
+// X and Y
     SPECIES_SPRITE(CHESPIN, gMonFrontPic_Chespin),
     SPECIES_SPRITE(QUILLADIN, gMonFrontPic_Quilladin),
     SPECIES_SPRITE(CHESNAUGHT, gMonFrontPic_Chesnaught),
@@ -1151,14 +1160,6 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
     SPECIES_SPRITE(DARMANITAN_ZEN_MODE_GALARIAN, gMonFrontPic_DarmanitanZenModeGalarian),
 
 
-    SPECIES_SPRITE(TORNADUS_THERIAN, gMonFrontPic_TornadusTherian),
-    SPECIES_SPRITE(THUNDURUS_THERIAN, gMonFrontPic_ThundurusTherian),
-    SPECIES_SPRITE(LANDORUS_THERIAN, gMonFrontPic_LandorusTherian),
-
-    SPECIES_SPRITE(KYUREM_WHITE, gMonFrontPic_KyuremWhite),
-    SPECIES_SPRITE(KYUREM_BLACK, gMonFrontPic_KyuremBlack),
-
-    SPECIES_SPRITE(KELDEO_RESOLUTE, gMonFrontPic_KeldeoResolute),
 
 #endif
 

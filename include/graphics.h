@@ -791,6 +791,12 @@ extern const u32 gMonFrontPic_Meloetta[];
 extern const u32 gMonFrontPic_MeloettaPirouette[];
 extern const u32 gMonFrontPic_Genesect[];
 // Black 2 and White 2
+extern const u32 gMonFrontPic_TornadusTherian[];
+extern const u32 gMonFrontPic_ThundurusTherian[];
+extern const u32 gMonFrontPic_LandorusTherian[];
+extern const u32 gMonFrontPic_KyuremWhite[];
+extern const u32 gMonFrontPic_KyuremBlack[];
+extern const u32 gMonFrontPic_KeldeoResolute[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonFrontPic_Chespin[];
@@ -1193,18 +1199,9 @@ extern const u32 gMonFrontPic_PalkiaOrigin[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
 
-extern const u32 gMonFrontPic_TornadusTherian[];
-extern const u32 gMonFrontPic_ThundurusTherian[];
-extern const u32 gMonFrontPic_LandorusTherian[];
-
 extern const u32 gMonFrontPic_DarmanitanZenModeGalarian[];
 extern const u32 gMonFrontPic_BasculinWhiteStriped[];
 
-#endif
-#if P_GEN_5_POKEMON == TRUE
-extern const u32 gMonFrontPic_KyuremWhite[];
-extern const u32 gMonFrontPic_KyuremBlack[];
-extern const u32 gMonFrontPic_KeldeoResolute[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonFrontPic_GreninjaAsh[];
@@ -2015,6 +2012,12 @@ extern const u32 gMonBackPic_Meloetta[];
 extern const u32 gMonBackPic_MeloettaPirouette[];
 extern const u32 gMonBackPic_Genesect[];
 // Black 2 and White 2
+extern const u32 gMonBackPic_TornadusTherian[];
+extern const u32 gMonBackPic_ThundurusTherian[];
+extern const u32 gMonBackPic_LandorusTherian[];
+extern const u32 gMonBackPic_KyuremWhite[];
+extern const u32 gMonBackPic_KyuremBlack[];
+extern const u32 gMonBackPic_KeldeoResolute[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonBackPic_Chespin[];
@@ -2417,12 +2420,6 @@ extern const u32 gMonBackPic_PalkiaOrigin[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
 
-extern const u32 gMonBackPic_TornadusTherian[];
-extern const u32 gMonBackPic_ThundurusTherian[];
-extern const u32 gMonBackPic_LandorusTherian[];
-extern const u32 gMonBackPic_KyuremWhite[];
-extern const u32 gMonBackPic_KyuremBlack[];
-extern const u32 gMonBackPic_KeldeoResolute[];
 
 extern const u32 gMonBackPic_DarmanitanZenModeGalarian[];
 extern const u32 gMonBackPic_BasculinWhiteStriped[];
@@ -3224,6 +3221,12 @@ extern const u32 gMonPalette_GenesectShockDrive[];
 extern const u32 gMonPalette_GenesectBurnDrive[];
 extern const u32 gMonPalette_GenesectChillDrive[];
 // Black 2 and White 2
+extern const u32 gMonPalette_TornadusTherian[];
+extern const u32 gMonPalette_ThundurusTherian[];
+extern const u32 gMonPalette_LandorusTherian[];
+extern const u32 gMonPalette_KyuremWhite[];
+extern const u32 gMonPalette_KyuremBlack[];
+extern const u32 gMonPalette_KeldeoResolute[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonPalette_Chespin[];
@@ -3629,12 +3632,6 @@ extern const u32 gMonPalette_ArceusFairy[];
 
 extern const u32 gMonPalette_BasculinWhiteStriped[];
 extern const u32 gMonPalette_DarmanitanZenModeGalarian[];
-extern const u32 gMonPalette_TornadusTherian[];
-extern const u32 gMonPalette_ThundurusTherian[];
-extern const u32 gMonPalette_LandorusTherian[];
-extern const u32 gMonPalette_KyuremWhite[];
-extern const u32 gMonPalette_KyuremBlack[];
-extern const u32 gMonPalette_KeldeoResolute[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonPalette_GreninjaAsh[];
@@ -4464,6 +4461,12 @@ extern const u32 gMonShinyPalette_GenesectShockDrive[];
 extern const u32 gMonShinyPalette_GenesectBurnDrive[];
 extern const u32 gMonShinyPalette_GenesectChillDrive[];
 // Black 2 and White 2
+extern const u32 gMonShinyPalette_TornadusTherian[];
+extern const u32 gMonShinyPalette_ThundurusTherian[];
+extern const u32 gMonShinyPalette_LandorusTherian[];
+extern const u32 gMonShinyPalette_KyuremWhite[];
+extern const u32 gMonShinyPalette_KyuremBlack[];
+extern const u32 gMonShinyPalette_KeldeoResolute[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonShinyPalette_Chespin[];
@@ -4870,12 +4873,6 @@ extern const u32 gMonShinyPalette_ArceusFairy[];
 extern const u32 gMonShinyPalette_BasculinWhiteStriped[];
 extern const u32 gMonShinyPalette_DarmanitanZenModeGalarian[];
 
-extern const u32 gMonShinyPalette_TornadusTherian[];
-extern const u32 gMonShinyPalette_ThundurusTherian[];
-extern const u32 gMonShinyPalette_LandorusTherian[];
-extern const u32 gMonShinyPalette_KyuremWhite[];
-extern const u32 gMonShinyPalette_KyuremBlack[];
-extern const u32 gMonShinyPalette_KeldeoResolute[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonShinyPalette_GreninjaAsh[];
@@ -5701,6 +5698,12 @@ extern const u8 gMonIcon_Meloetta[];
 extern const u8 gMonIcon_MeloettaPirouette[];
 extern const u8 gMonIcon_Genesect[];
 // Black 2 and White 2
+extern const u8 gMonIcon_TornadusTherian[];
+extern const u8 gMonIcon_ThundurusTherian[];
+extern const u8 gMonIcon_LandorusTherian[];
+extern const u8 gMonIcon_KyuremWhite[];
+extern const u8 gMonIcon_KyuremBlack[];
+extern const u8 gMonIcon_KeldeoResolute[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u8 gMonIcon_Chespin[];
@@ -6104,12 +6107,6 @@ extern const u8 gMonIcon_PalkiaOrigin[];
 
 extern const u8 gMonIcon_BasculinWhiteStriped[];
 extern const u8 gMonIcon_DarmanitanZenModeGalarian[];
-extern const u8 gMonIcon_TornadusTherian[];
-extern const u8 gMonIcon_ThundurusTherian[];
-extern const u8 gMonIcon_LandorusTherian[];
-extern const u8 gMonIcon_KyuremWhite[];
-extern const u8 gMonIcon_KyuremBlack[];
-extern const u8 gMonIcon_KeldeoResolute[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u8 gMonIcon_GreninjaAsh[];

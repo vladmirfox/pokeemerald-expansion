@@ -734,8 +734,18 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_GENESECT_SHOCK_DRIVE] = _("Genesect"),
     [SPECIES_GENESECT_BURN_DRIVE] = _("Genesect"),
     [SPECIES_GENESECT_CHILL_DRIVE] = _("Genesect"),
+// Black 2 and White 2
+    [SPECIES_TORNADUS_THERIAN] = _("Tornadus"),
+    [SPECIES_THUNDURUS_THERIAN] = _("Thundurus"),
+    [SPECIES_LANDORUS_THERIAN] = _("Landorus"),
+    [SPECIES_ENAMORUS_THERIAN] = _("Enamorus"),
+    [SPECIES_KYUREM_BLACK] = _("Kyurem"),
+    [SPECIES_KYUREM_WHITE] = _("Kyurem"),
+    [SPECIES_KELDEO_RESOLUTE] = _("Keldeo"),
 #endif
+
 #if P_GEN_6_POKEMON == TRUE
+// X and Y
     [SPECIES_CHESPIN] = _("Chespin"),
     [SPECIES_QUILLADIN] = _("Quilladin"),
     [SPECIES_CHESNAUGHT] = _("Chesnaught"),
@@ -1153,16 +1163,6 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_BASCULIN_WHITE_STRIPED] = _("Basculin"),
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = _("Darmanitan"),
-    // Therian Forms
-    [SPECIES_TORNADUS_THERIAN] = _("Tornadus"),
-    [SPECIES_THUNDURUS_THERIAN] = _("Thundurus"),
-    [SPECIES_LANDORUS_THERIAN] = _("Landorus"),
-    [SPECIES_ENAMORUS_THERIAN] = _("Enamorus"),
-    // Kyurem
-    [SPECIES_KYUREM_BLACK] = _("Kyurem"),
-    [SPECIES_KYUREM_WHITE] = _("Kyurem"),
-    // Keldeo
-    [SPECIES_KELDEO_RESOLUTE] = _("Keldeo"),
 #endif
 #if P_GEN_6_POKEMON == TRUE
     // Greninja

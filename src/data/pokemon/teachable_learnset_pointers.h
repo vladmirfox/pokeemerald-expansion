@@ -735,8 +735,16 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_GENESECT_SHOCK_DRIVE] = sGenesectTeachableLearnset,
     [SPECIES_GENESECT_BURN_DRIVE] = sGenesectTeachableLearnset,
     [SPECIES_GENESECT_CHILL_DRIVE] = sGenesectTeachableLearnset,
+// Black 2 and White 2
+    [SPECIES_TORNADUS_THERIAN] = sTornadusTeachableLearnset,
+    [SPECIES_THUNDURUS_THERIAN] = sThundurusTeachableLearnset,
+    [SPECIES_LANDORUS_THERIAN] = sLandorusTeachableLearnset,
+    [SPECIES_KYUREM_WHITE] = sKyuremTeachableLearnset,
+    [SPECIES_KYUREM_BLACK] = sKyuremTeachableLearnset,
+    [SPECIES_KELDEO_RESOLUTE] = sKeldeoTeachableLearnset,
 #endif
 #if P_GEN_6_POKEMON == TRUE
+// X and Y
     [SPECIES_CHESPIN] = sChespinTeachableLearnset,
     [SPECIES_QUILLADIN] = sQuilladinTeachableLearnset,
     [SPECIES_CHESNAUGHT] = sChesnaughtTeachableLearnset,
@@ -1149,16 +1157,6 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinTeachableLearnset,
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = sDarmanitanGalarianTeachableLearnset,
-    // Deerling
-    // Therian Forms
-    [SPECIES_TORNADUS_THERIAN] = sTornadusTeachableLearnset,
-    [SPECIES_THUNDURUS_THERIAN] = sThundurusTeachableLearnset,
-    [SPECIES_LANDORUS_THERIAN] = sLandorusTeachableLearnset,
-    // Kyurem
-    [SPECIES_KYUREM_WHITE] = sKyuremTeachableLearnset,
-    [SPECIES_KYUREM_BLACK] = sKyuremTeachableLearnset,
-    // Keldeo
-    [SPECIES_KELDEO_RESOLUTE] = sKeldeoTeachableLearnset,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     // Greninja

@@ -735,8 +735,17 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(GENESECT_SHOCK_DRIVE, gMonShinyPalette_GenesectShockDrive),
     SPECIES_SHINY_PAL(GENESECT_BURN_DRIVE, gMonShinyPalette_GenesectBurnDrive),
     SPECIES_SHINY_PAL(GENESECT_CHILL_DRIVE, gMonShinyPalette_GenesectChillDrive),
+// Black 2 and White 2
+    SPECIES_SHINY_PAL(TORNADUS_THERIAN, gMonShinyPalette_TornadusTherian),
+    SPECIES_SHINY_PAL(THUNDURUS_THERIAN, gMonShinyPalette_ThundurusTherian),
+    SPECIES_SHINY_PAL(LANDORUS_THERIAN, gMonShinyPalette_LandorusTherian),
+    SPECIES_SHINY_PAL(KYUREM_WHITE, gMonShinyPalette_KyuremWhite),
+    SPECIES_SHINY_PAL(KYUREM_BLACK, gMonShinyPalette_KyuremBlack),
+    SPECIES_SHINY_PAL(KELDEO_RESOLUTE, gMonShinyPalette_KeldeoResolute),
 #endif
+
 #if P_GEN_6_POKEMON == TRUE
+// X and Y
     SPECIES_SHINY_PAL(CHESPIN, gMonShinyPalette_Chespin),
     SPECIES_SHINY_PAL(QUILLADIN, gMonShinyPalette_Quilladin),
     SPECIES_SHINY_PAL(CHESNAUGHT, gMonShinyPalette_Chesnaught),
@@ -1145,22 +1154,10 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(ARCEUS_FAIRY, gMonShinyPalette_ArceusFairy),
 #endif
 #if P_GEN_5_POKEMON == TRUE
-
     SPECIES_SHINY_PAL(BASCULIN_WHITE_STRIPED, gMonShinyPalette_BasculinWhiteStriped),
-
     SPECIES_SHINY_PAL(DARMANITAN_ZEN_MODE_GALARIAN, gMonShinyPalette_DarmanitanZenModeGalarian),
-
-
-    SPECIES_SHINY_PAL(TORNADUS_THERIAN, gMonShinyPalette_TornadusTherian),
-    SPECIES_SHINY_PAL(THUNDURUS_THERIAN, gMonShinyPalette_ThundurusTherian),
-    SPECIES_SHINY_PAL(LANDORUS_THERIAN, gMonShinyPalette_LandorusTherian),
-
-    SPECIES_SHINY_PAL(KYUREM_WHITE, gMonShinyPalette_KyuremWhite),
-    SPECIES_SHINY_PAL(KYUREM_BLACK, gMonShinyPalette_KyuremBlack),
-
-    SPECIES_SHINY_PAL(KELDEO_RESOLUTE, gMonShinyPalette_KeldeoResolute),
-
 #endif
+
 #if P_GEN_6_POKEMON == TRUE
     SPECIES_SHINY_PAL(GRENINJA_BATTLE_BOND, gMonShinyPalette_Greninja),
     SPECIES_SHINY_PAL(GRENINJA_ASH, gMonShinyPalette_GreninjaAsh),

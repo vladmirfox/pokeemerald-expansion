@@ -758,8 +758,16 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_GENESECT_SHOCK_DRIVE] = { .size = MON_COORDS_SIZE(64, 48), .y_offset = 8, },
     [SPECIES_GENESECT_BURN_DRIVE] = { .size = MON_COORDS_SIZE(64, 48), .y_offset = 8, },
     [SPECIES_GENESECT_CHILL_DRIVE] = { .size = MON_COORDS_SIZE(64, 48), .y_offset = 8, },
+// Black 2 and White 2
+    [SPECIES_TORNADUS_THERIAN] = { .size = MON_COORDS_SIZE(56, 64), .y_offset = 0, },
+    [SPECIES_THUNDURUS_THERIAN] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 5, },
+    [SPECIES_LANDORUS_THERIAN] = { .size = MON_COORDS_SIZE(64, 56), .y_offset = 7, },
+    [SPECIES_KYUREM_WHITE] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0, },
+    [SPECIES_KYUREM_BLACK] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 3, },
+    [SPECIES_KELDEO_RESOLUTE] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 3, },
 #endif
 #if P_GEN_6_POKEMON == TRUE
+// X and Y
     [SPECIES_CHESPIN] = { .size = MON_COORDS_SIZE(56, 64), .y_offset = 6, },
     [SPECIES_QUILLADIN] = { .size = MON_COORDS_SIZE(64, 48), .y_offset = 9, },
     [SPECIES_CHESNAUGHT] = { .size = MON_COORDS_SIZE(64, 56), .y_offset = 10, },
@@ -1172,15 +1180,6 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_BASCULIN_WHITE_STRIPED] = { .size = MON_COORDS_SIZE(64, 40), .y_offset = 16, },
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 1, },
-    // Therian Forms
-    [SPECIES_TORNADUS_THERIAN] = { .size = MON_COORDS_SIZE(56, 64), .y_offset = 0, },
-    [SPECIES_THUNDURUS_THERIAN] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 5, },
-    [SPECIES_LANDORUS_THERIAN] = { .size = MON_COORDS_SIZE(64, 56), .y_offset = 7, },
-    // Kyurem
-    [SPECIES_KYUREM_WHITE] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0, },
-    [SPECIES_KYUREM_BLACK] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 3, },
-    // Keldeo
-    [SPECIES_KELDEO_RESOLUTE] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 3, },
 #endif
 #if P_GEN_6_POKEMON == TRUE
     // Greninja

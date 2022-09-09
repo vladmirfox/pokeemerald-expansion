@@ -6335,6 +6335,12 @@ static const union AnimCmd sAnim_DARMANITAN_1[] =
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_DARMANITAN_ZEN_MODE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd sAnim_MARACTUS_1[] =
 {
     ANIMCMD_FRAME(0, 30),
@@ -7079,10 +7085,52 @@ static const union AnimCmd sAnim_MELOETTA_1[] =
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_MELOETTA_PIROUETTE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd sAnim_GENESECT_1[] =
 {
     ANIMCMD_FRAME(0, 30),
     ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_TORNADUS_THERIAN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_THUNDURUS_THERIAN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_LANDORUS_THERIAN_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_KYUREM_BLACK_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_KYUREM_WHITE_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_KELDEO_RESOLUTE_1[] =
+{
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
@@ -9381,11 +9429,6 @@ static const union AnimCmd sAnim_PALKIA_ORIGIN_1[] =
 #endif
 
 #if P_GEN_5_POKEMON == TRUE
-static const union AnimCmd sAnim_DARMANITAN_ZEN_MODE_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
 
 static const union AnimCmd sAnim_DARMANITAN_ZEN_MODE_GALARIAN_1[] =
 {
@@ -9393,47 +9436,6 @@ static const union AnimCmd sAnim_DARMANITAN_ZEN_MODE_GALARIAN_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_TORNADUS_THERIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_THUNDURUS_THERIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_LANDORUS_THERIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_KYUREM_BLACK_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_KYUREM_WHITE_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_KELDEO_RESOLUTE_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_MELOETTA_PIROUETTE_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
 #endif
 
 #if P_GEN_6_POKEMON == TRUE
@@ -13142,6 +13144,12 @@ static const union AnimCmd *const sAnims_DARMANITAN[] =
     sAnim_DARMANITAN_1,
 };
 
+static const union AnimCmd *const sAnims_DARMANITAN_ZEN_MODE[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_DARMANITAN_ZEN_MODE_1,
+};
+
 static const union AnimCmd *const sAnims_MARACTUS[] =
 {
     sAnim_GeneralFrame0,
@@ -13700,10 +13708,52 @@ static const union AnimCmd *const sAnims_MELOETTA[] =
     sAnim_MELOETTA_1,
 };
 
+static const union AnimCmd *const sAnims_MELOETTA_PIROUETTE[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_MELOETTA_PIROUETTE_1,
+};
+
 static const union AnimCmd *const sAnims_GENESECT[] =
 {
     sAnim_GeneralFrame0,
     sAnim_GENESECT_1,
+};
+
+static const union AnimCmd *const sAnims_TORNADUS_THERIAN[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_TORNADUS_THERIAN_1,
+};
+
+static const union AnimCmd *const sAnims_THUNDURUS_THERIAN[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_THUNDURUS_THERIAN_1,
+};
+
+static const union AnimCmd *const sAnims_LANDORUS_THERIAN[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_LANDORUS_THERIAN_1,
+};
+
+static const union AnimCmd *const sAnims_KYUREM_BLACK[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_KYUREM_BLACK_1,
+};
+
+static const union AnimCmd *const sAnims_KYUREM_WHITE[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_KYUREM_WHITE_1,
+};
+
+static const union AnimCmd *const sAnims_KELDEO_RESOLUTE[] =
+{
+    sAnim_GeneralFrame0,
+    sAnim_KELDEO_RESOLUTE_1,
 };
 #endif
 
@@ -15980,58 +16030,10 @@ static const union AnimCmd *const sAnims_PALKIA_ORIGIN[] =
 #endif
 
 #if P_GEN_5_POKEMON == TRUE
-static const union AnimCmd *const sAnims_DARMANITAN_ZEN_MODE[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_DARMANITAN_ZEN_MODE_1,
-};
-
 static const union AnimCmd *const sAnims_DARMANITAN_ZEN_MODE_GALARIAN[] =
 {
     sAnim_GeneralFrame0,
     sAnim_DARMANITAN_ZEN_MODE_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_TORNADUS_THERIAN[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_TORNADUS_THERIAN_1,
-};
-
-static const union AnimCmd *const sAnims_THUNDURUS_THERIAN[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_THUNDURUS_THERIAN_1,
-};
-
-static const union AnimCmd *const sAnims_LANDORUS_THERIAN[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_LANDORUS_THERIAN_1,
-};
-
-static const union AnimCmd *const sAnims_KYUREM_BLACK[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_KYUREM_BLACK_1,
-};
-
-static const union AnimCmd *const sAnims_KYUREM_WHITE[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_KYUREM_WHITE_1,
-};
-
-static const union AnimCmd *const sAnims_KELDEO_RESOLUTE[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_KELDEO_RESOLUTE_1,
-};
-
-static const union AnimCmd *const sAnims_MELOETTA_PIROUETTE[] =
-{
-    sAnim_GeneralFrame0,
-    sAnim_MELOETTA_PIROUETTE_1,
 };
 #endif
 
@@ -16841,6 +16843,13 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD_FULL(GENESECT_SHOCK_DRIVE, sAnims_GENESECT),
     ANIM_CMD_FULL(GENESECT_BURN_DRIVE, sAnims_GENESECT),
     ANIM_CMD_FULL(GENESECT_CHILL_DRIVE, sAnims_GENESECT),
+// Black 2 and White 2
+    ANIM_CMD(TORNADUS_THERIAN),
+    ANIM_CMD(THUNDURUS_THERIAN),
+    ANIM_CMD(LANDORUS_THERIAN),
+    ANIM_CMD(KYUREM_WHITE),
+    ANIM_CMD(KYUREM_BLACK),
+    ANIM_CMD(KELDEO_RESOLUTE),
 #endif
 #if P_GEN_6_POKEMON == TRUE
     ANIM_CMD(CHESPIN),
@@ -17241,15 +17250,8 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD_FULL(ARCEUS_FAIRY, sAnims_ARCEUS),
 #endif
 #if P_GEN_5_POKEMON == TRUE
-
     ANIM_CMD_FULL(BASCULIN_WHITE_STRIPED, sAnims_BASCULIN),
     ANIM_CMD(DARMANITAN_ZEN_MODE_GALARIAN),
-    ANIM_CMD(TORNADUS_THERIAN),
-    ANIM_CMD(THUNDURUS_THERIAN),
-    ANIM_CMD(LANDORUS_THERIAN),
-    ANIM_CMD(KYUREM_WHITE),
-    ANIM_CMD(KYUREM_BLACK),
-    ANIM_CMD(KELDEO_RESOLUTE),
 #endif
 #if P_GEN_6_POKEMON == TRUE
     ANIM_CMD_FULL(GRENINJA_BATTLE_BOND, sAnims_GRENINJA),

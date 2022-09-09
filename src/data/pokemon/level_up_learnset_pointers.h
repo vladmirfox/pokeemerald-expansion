@@ -735,8 +735,16 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_GENESECT_SHOCK_DRIVE] = sGenesectLevelUpLearnset,
     [SPECIES_GENESECT_BURN_DRIVE] = sGenesectLevelUpLearnset,
     [SPECIES_GENESECT_CHILL_DRIVE] = sGenesectLevelUpLearnset,
+// Black 2 and White 2
+    [SPECIES_TORNADUS_THERIAN] = sTornadusLevelUpLearnset,
+    [SPECIES_THUNDURUS_THERIAN] = sThundurusLevelUpLearnset,
+    [SPECIES_LANDORUS_THERIAN] = sLandorusLevelUpLearnset,
+    [SPECIES_KYUREM_WHITE] = sKyuremWhiteLevelUpLearnset,
+    [SPECIES_KYUREM_BLACK] = sKyuremBlackLevelUpLearnset,
+    [SPECIES_KELDEO_RESOLUTE] = sKeldeoLevelUpLearnset,
 #endif
 #if P_GEN_6_POKEMON == TRUE
+// X and Y
     [SPECIES_CHESPIN] = sChespinLevelUpLearnset,
     [SPECIES_QUILLADIN] = sQuilladinLevelUpLearnset,
     [SPECIES_CHESNAUGHT] = sChesnaughtLevelUpLearnset,
@@ -1150,15 +1158,6 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinLevelUpLearnset,
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = sDarmanitanGalarianLevelUpLearnset,
-    // Therian Forms
-    [SPECIES_TORNADUS_THERIAN] = sTornadusLevelUpLearnset,
-    [SPECIES_THUNDURUS_THERIAN] = sThundurusLevelUpLearnset,
-    [SPECIES_LANDORUS_THERIAN] = sLandorusLevelUpLearnset,
-    // Kyurem
-    [SPECIES_KYUREM_WHITE] = sKyuremWhiteLevelUpLearnset,
-    [SPECIES_KYUREM_BLACK] = sKyuremBlackLevelUpLearnset,
-    // Keldeo
-    [SPECIES_KELDEO_RESOLUTE] = sKeldeoLevelUpLearnset,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     // Greninja
