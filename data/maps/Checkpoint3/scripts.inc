@@ -3,6 +3,7 @@ Checkpoint3_MapScripts::
 	.byte 0
 
 Checkpoint3_MapScripts_MAP_SCRIPT_ON_TRANSITION:
+	setflag FLAG_SYS_REMOTE_POKEMON_STORAGE
 	switch VAR_CHECKPOINT3_NPC_STATE
 	case 0, Checkpoint3_MapScripts_MAP_SCRIPT_ON_TRANSITION_2
 	case 1, Checkpoint3_MapScripts_MAP_SCRIPT_ON_TRANSITION_2

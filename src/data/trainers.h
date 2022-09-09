@@ -75,7 +75,7 @@ const struct Trainer gTrainers[] = {
 
     [TRAINER_REF006_RT102_GUARDIAN] =
     {
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_LEADER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_LEADER_ROXANNE,
         .trainerName = _("ROXANNE"),
@@ -171,7 +171,7 @@ const struct Trainer gTrainers[] = {
 
     [TRAINER_REF011_RT103_GUARDIAN] =
     {
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_LEADER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_LEADER_BRAWLY,
         .trainerName = _("BRAWLY"),
@@ -279,7 +279,7 @@ const struct Trainer gTrainers[] = {
 
       [TRAINER_REF017_RT104_GUARDIAN] =
     {
-        .trainerClass = TRAINER_CLASS_RIVAL,
+        .trainerClass = TRAINER_CLASS_LEADER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_LEADER_WATTSON,
         .trainerName = _("WATSON"),

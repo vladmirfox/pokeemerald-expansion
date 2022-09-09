@@ -1,5 +1,100 @@
 mapscripts Route104_MapScripts {
-	Route104_OnTransition{
+	MAP_SCRIPT_ON_TRANSITION {
 		clearflag(FLAG_SYS_REMOTE_POKEMON_STORAGE)
 	}
+}
+
+script Route104_PathBlocker{
+	if (defeated(TRAINER_REF016_RT104_BOSS) == true)
+	{
+		release
+		end
+	}
+	else
+	{
+		msgbox(format("I must defeat the ROUTE BOSS first."))
+		lock
+		applymovement(OBJ_EVENT_ID_PLAYER, Movement_104)
+		waitmovement(0)
+		release
+	}
+}
+
+movement Movement_104 {
+    walk_down
+}
+
+script Route104_EventScript_Trainer_013 {
+	trainerbattle_single(TRAINER_REF013_RT104, Intro_013, Outro_013)
+	msgbox(format("I hope you brought some medicine."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route104_EventScript_Trainer_014 {
+	trainerbattle_single(TRAINER_REF014_RT104, Intro_014, Outro_014)
+	msgbox(format("You're just getting started."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route104_EventScript_Trainer_015 {
+	trainerbattle_single(TRAINER_REF015_RT104, Intro_015, Outro_015)
+	msgbox(format("Hmm, will you make it?"), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route104_EventScript_Trainer_016 {
+	trainerbattle_single(TRAINER_REF016_RT104_BOSS, Intro_016, Outro_016)
+	msgbox(format("Congratulations on your win."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route104_EventScript_Trainer_017 {
+	trainerbattle_single(TRAINER_REF017_RT104_GUARDIAN, Intro_017, Outro_017)
+	msgbox(format("I am shocked with your performance."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+text Intro_013{
+	format("The gauntlet begins.")
+}
+
+text Outro_013{
+	format("Unbelievable.")
+}
+
+text Intro_014{
+	format("Getting tired yet?")
+}
+
+text Outro_014{
+	format("Wow, you're good.")
+}
+
+text Intro_015{
+	format("No turning back now.")
+}
+
+text Outro_015{
+	format("You must be tired after that one.")
+}
+
+text Intro_016{
+	format("Let me give you a break.")
+}
+
+text Outro_016{
+	format("I can't believe I lost.")
+}
+
+text Intro_017{
+	format("Impressive, you've decided to take on my challenge.")
+}
+
+text Outro_017{
+	format("Well done, you've earned passage.")
 }

@@ -2,6 +2,7 @@ mapscripts Checkpoint2_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
     //When you enter the map, assign OBJ_EVENT_GFX_VAR_A to the following graphic
     //these are randomly generated when picking up the starter, find in data/AJScripts/setup.pory
+    setflag(FLAG_SYS_REMOTE_POKEMON_STORAGE)
     switch (var(VAR_CHECKPOINT2_NPC_STATE)) {
         case 0:
         case 1: 

@@ -4520,6 +4520,16 @@
       "secondary_tileset": "gTileset_PokemonCenter",
       "border_filepath": "data/layouts/Checkpoint3_Pokecenter/border.bin",
       "blockdata_filepath": "data/layouts/Checkpoint3_Pokecenter/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT4",
+      "name": "Checkpoint4_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Lavaridge",
+      "border_filepath": "data/layouts/Checkpoint4/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint4/map.bin"
     }
   ]
 }

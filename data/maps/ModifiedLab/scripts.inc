@@ -32,6 +32,7 @@ ModifiedLab_EventScript_Pokeball_5:
 	removeobject 1
 	setflag FLAG_POKEMON_GIFT_LITTLEROOT_EEVEE
 	setflag FLAG_SYS_POKEMON_GET
+	setflag FLAG_SYS_REMOTE_POKEMON_STORAGE
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
 	call NicknameStarterMon
 	call NPCVariablesSetup
@@ -46,6 +47,7 @@ ModifiedLab_EventScript_Pokeball_6:
 	removeobject 1
 	setflag FLAG_POKEMON_GIFT_LITTLEROOT_EEVEE
 	setflag FLAG_SYS_POKEMON_GET
+	setflag FLAG_SYS_REMOTE_POKEMON_STORAGE
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
 	call NicknameStarterBoxMon
 	call NPCVariablesSetup

@@ -67,6 +67,7 @@
 // gMapGroup_Checkpoints
 #define MAP_CHECKPOINT2 (0 | (1 << 8))
 #define MAP_CHECKPOINT3 (1 | (1 << 8))
+#define MAP_CHECKPOINT4 (2 | (1 << 8))
 
 // gMapGroup_CheckpointsIndoor
 #define MAP_CHECKPOINT2_MART       (0 | (2 << 8))
