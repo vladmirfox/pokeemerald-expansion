@@ -2,3 +2,115 @@ raw `
 Route105_MapScripts::
 	.byte 0
 `
+script Route105_PathBlocker{
+	if (defeated(TRAINER_REF022_RT105_BOSS) == true)
+	{
+		release
+		end
+	}
+	else
+	{
+		msgbox(format("I must defeat the ROUTE BOSS first."))
+		lock
+		applymovement(OBJ_EVENT_ID_PLAYER, Movement_104)
+		waitmovement(0)
+		release
+	}
+}
+
+movement Movement_105 {
+    walk_down
+}
+
+
+script Route105_EventScript_Trainer_019 {
+	trainerbattle_single(TRAINER_REF019_RT105, Intro_019, Outro_019)
+	msgbox(format("You're pretty impressive."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route105_EventScript_Trainer_020 {
+	trainerbattle_single(TRAINER_REF020_RT105, Intro_020, Outro_020)
+	msgbox(format("Can you beat all of us?"), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route105_EventScript_Trainer_021 {
+	trainerbattle_single(TRAINER_REF021_RT105, Intro_021, Outro_021)
+	msgbox(format("Color me surprised."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route105_EventScript_Trainer_022 {
+	trainerbattle_single(TRAINER_REF022_RT105_BOSS, Intro_022, Outro_022)
+	msgbox(format("You beat me fair and square."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route105_EventScript_Trainer_023 {
+	trainerbattle_single(TRAINER_REF023_RT105_GUARDIAN, Intro_023, Outro_023)
+	msgbox(format("I wonder what you will catch?"), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+text Intro_019{
+	format("Finally, it's my turn!")
+}
+
+text Outro_019{
+	format("Shocking!")
+}
+
+text Intro_020{
+	format("I'm your second challenge here.")
+}
+
+text Outro_020{
+	format("Two down, I'm knocked out.")
+}
+
+text Intro_021{
+	format("Third and best, let's put you to the test.")
+}
+
+text Outro_021{
+	format("Crazy win, what a turn around.")
+}
+
+text Intro_022{
+	format("This time things are different.")
+}
+
+text Outro_022{
+	format("Lost again? Jeez'!")
+}
+
+text Intro_023{
+	format("You're a brave one to challenge me.")
+}
+
+text Outro_023{
+	format("You secured yourself a bonus encounter!")
+}
+
+script Route105_Healer{
+    lock
+    faceplayer
+    msgbox("Would you like me to heal your party?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        incrementgamestat(GAME_STAT_USED_POKECENTER)
+        special(HealPlayerParty)
+        msgbox("Good luck.")
+        waitmessage
+        release
+        end
+    }
+    else{
+        msgbox("Alright then.", MSGBOX_NPC)
+    }
+}

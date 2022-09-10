@@ -29,12 +29,12 @@
 #define TRAINER_REF018B_BONUS_HELD_ITEMS_3   25
 #define TRAINER_REF018C_BONUS_ABILITIES_3    26
 #define TRAINER_REF018D_BONUS_IVS_3          27
-//#define TRAINER_GRUNT_AQUA_HIDEOUT_6       28
-#define TRAINER_FREDRICK                     29
-#define TRAINER_MATT                         30
-#define TRAINER_ZANDER                       31
-#define TRAINER_SHELLY_WEATHER_INSTITUTE     32
-#define TRAINER_SHELLY_SEAFLOOR_CAVERN       33
+#define TRAINER_REF019_RT105               28
+#define TRAINER_REF020_RT105               29
+#define TRAINER_REF021_RT105               30
+#define TRAINER_REF022_RT105_BOSS            31
+#define TRAINER_REF023_RT105_GUARDIAN      32
+//#define TRAINER_SHELLY_SEAFLOOR_CAVERN     33
 #define TRAINER_ARCHIE                       34
 #define TRAINER_LEAH                         35
 #define TRAINER_DAISY                        36
@@ -568,7 +568,7 @@
 #define TRAINER_CATHERINE_4                 564
 #define TRAINER_CATHERINE_5                 565
 #define TRAINER_JULIO                       566
-#define TRAINER_GRUNT_SEAFLOOR_CAVERN_5     567
+//#define TRAINER_GRUNT_SEAFLOOR_CAVERN_5     567
 #define TRAINER_GRUNT_UNUSED                568
 //#define TRAINER_GRUNT_MT_PYRE_4             569
 #define TRAINER_GRUNT_JAGGED_PASS           570
