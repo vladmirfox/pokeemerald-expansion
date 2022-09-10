@@ -70,8 +70,8 @@ script Random_NPC_CheckPoint2{
                 }
             }
             else{
-
-            }call(Event_Script_NPC_IVS_CP2)
+                call(Event_Script_NPC_IVS_CP2)
+            }
     }
     //release for saftey
     releaseall

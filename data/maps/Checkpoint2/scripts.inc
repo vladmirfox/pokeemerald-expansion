@@ -62,50 +62,49 @@ Random_NPC_CheckPoint2_5:
 
 Random_NPC_CheckPoint2_6:
 	checktrainerflag TRAINER_REF007D_BONUS_IVS_1
-	goto_if 0, Random_NPC_CheckPoint2_17
-Random_NPC_CheckPoint2_16:
+	goto_if 0, Random_NPC_CheckPoint2_16
 	call Event_Script_NPC_IVS_CP2
 	goto Random_NPC_CheckPoint2_1
 
 Random_NPC_CheckPoint2_7:
 	msgbox Random_NPC_CheckPoint2_Text_0, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq Random_NPC_CheckPoint2_20
+	goto_if_eq Random_NPC_CheckPoint2_19
 	goto Random_NPC_CheckPoint2_1
 
 Random_NPC_CheckPoint2_10:
 	msgbox Random_NPC_CheckPoint2_Text_1, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq Random_NPC_CheckPoint2_22
+	goto_if_eq Random_NPC_CheckPoint2_21
 	goto Random_NPC_CheckPoint2_1
 
 Random_NPC_CheckPoint2_13:
 	msgbox Random_NPC_CheckPoint2_Text_2, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq Random_NPC_CheckPoint2_24
+	goto_if_eq Random_NPC_CheckPoint2_23
 	goto Random_NPC_CheckPoint2_1
 
-Random_NPC_CheckPoint2_17:
+Random_NPC_CheckPoint2_16:
 	msgbox Random_NPC_CheckPoint2_Text_3, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq Random_NPC_CheckPoint2_26
-	goto Random_NPC_CheckPoint2_16
+	goto_if_eq Random_NPC_CheckPoint2_25
+	goto Random_NPC_CheckPoint2_1
 
-Random_NPC_CheckPoint2_20:
+Random_NPC_CheckPoint2_19:
 	call Event_Script_NPC_Stones_CP2
 	goto Random_NPC_CheckPoint2_1
 
-Random_NPC_CheckPoint2_22:
+Random_NPC_CheckPoint2_21:
 	call Event_Script_NPC_Held_Items_CP2
 	goto Random_NPC_CheckPoint2_1
 
-Random_NPC_CheckPoint2_24:
+Random_NPC_CheckPoint2_23:
 	call Event_Script_NPC_Abilities_CP2
 	goto Random_NPC_CheckPoint2_1
 
-Random_NPC_CheckPoint2_26:
+Random_NPC_CheckPoint2_25:
 	call Event_Script_NPC_IVS_CP2
-	goto Random_NPC_CheckPoint2_16
+	goto Random_NPC_CheckPoint2_1
 
 
 Event_Script_NPC_Stones_CP2::

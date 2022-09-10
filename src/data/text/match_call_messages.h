@@ -3,11 +3,6 @@ const u8 gText_MatchCallAromaLady_Rose_Pokemon[] = _("Fragrant GRASS POKéMON.")
 const u8 gText_MatchCallAromaLady_Rose_Intro1[] = _("Soothing aromas make the");
 const u8 gText_MatchCallAromaLady_Rose_Intro2[] = _("body and mind healthy.");
 
-const u8 gText_MatchCallRuinManiac_Andres_Strategy[] = _("I'm not very good at this.");
-const u8 gText_MatchCallRuinManiac_Andres_Pokemon[] = _("Ruin-exploration partners.");
-const u8 gText_MatchCallRuinManiac_Andres_Intro1[] = _("I am searching for undersea");
-const u8 gText_MatchCallRuinManiac_Andres_Intro2[] = _("ruins and relics.");
-
 const u8 gText_MatchCallRuinManiac_Dusty_Strategy[] = _("Overwhelm with power!");
 const u8 gText_MatchCallRuinManiac_Dusty_Pokemon[] = _("Craggy ROCK POKéMON.");
 const u8 gText_MatchCallRuinManiac_Dusty_Intro1[] = _("In search of ancient lore,");
@@ -386,7 +381,6 @@ const u8 gText_MatchCallChampion_Wallace_Intro2[] = _("well as intelligence.");
 const u8 *const gMatchCallFlavorTexts[REMATCH_TABLE_ENTRIES][CHECK_PAGE_ENTRY_COUNT] =
 {
     [REMATCH_ROSE] = MCFLAVOR(AromaLady_Rose),
-    [REMATCH_ANDRES] = MCFLAVOR(RuinManiac_Andres),
     [REMATCH_DUSTY] = MCFLAVOR(RuinManiac_Dusty),
     [REMATCH_LOLA] = MCFLAVOR(Tuber_Lola),
     [REMATCH_RICKY] = MCFLAVOR(Tuber_Ricky),

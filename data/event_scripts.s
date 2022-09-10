@@ -1086,3 +1086,13 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/Checkpoint3_Pokecenter/scripts.inc"
 
 	.include "data/maps/Checkpoint4/scripts.inc"
+
+	.include "data/maps/Checkpoint4Transition/scripts.inc"
+
+	.include "data/maps/Route104_SideArea/scripts.inc"
+
+	.include "data/maps/Route105_SideArea/scripts.inc"
+
+	.include "data/maps/Checkpoint4_Mart/scripts.inc"
+
+	.include "data/maps/Checkpoint4_Pokecenter/scripts.inc"

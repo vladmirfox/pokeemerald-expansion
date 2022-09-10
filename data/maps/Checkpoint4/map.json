@@ -2,27 +2,79 @@
   "id": "MAP_CHECKPOINT4",
   "name": "Checkpoint4",
   "layout": "LAYOUT_CHECKPOINT4",
-  "music": "MUS_ABANDONED_SHIP",
+  "music": "MUS_MT_PYRE_EXTERIOR",
   "region_map_section": "MAPSEC_FALLARBOR_TOWN",
   "requires_flash": false,
-  "weather": "WEATHER_NONE",
+  "weather": "WEATHER_VOLCANIC_ASH",
   "map_type": "MAP_TYPE_NONE",
   "allow_cycling": false,
   "allow_escaping": false,
   "allow_running": false,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "direction": "down",
+      "offset": 7,
+      "map": "MAP_CHECKPOINT4TRANSITION"
+    }
+  ],
   "object_events": [
-
+    {
+      "graphics_id": "OBJ_EVENT_GFX_VAR_A",
+      "x": 11,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Random_NPC_CheckPoint4",
+      "flag": "0"
+    }
   ],
   "warp_events": [
-
+    {
+      "x": 16,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_CHECKPOINT4",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 30,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_CHECKPOINT4",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 12,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_CHECKPOINT4_MART",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 12,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_CHECKPOINT4_POKECENTER",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 18,
+      "y": 16,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route104_EventScript_GameSign"
+    }
   ]
 }

@@ -37,7 +37,7 @@ script Route103_EventScript_GameSign2 {
     releaseall
 }
 
-script Random_NPC_CheckPoint3{
+script Random_NPC_CheckPoint3 {
     // buffernumberstring(STR_VAR_1, VAR_OBJ_GFX_ID_A)
     // msgbox("GFX var: {STR_VAR_1}")
     // buffernumberstring(STR_VAR_2, VAR_RANDOM_NPC_STATE)
@@ -85,8 +85,8 @@ script Random_NPC_CheckPoint3{
                 }
             }
             else{
-
-            }call(Event_Script_NPC_IVS_CP3)
+                call(Event_Script_NPC_IVS_CP3)
+            }
     }
     //release for saftey
     releaseall

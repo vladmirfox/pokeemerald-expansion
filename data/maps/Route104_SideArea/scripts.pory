@@ -1,0 +1,22 @@
+mapscripts Route104_SideArea_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+	setflag(FLAG_SYS_REMOTE_POKEMON_STORAGE)
+    }
+}
+
+script Route104_SideArea_Healer{
+    lock
+    faceplayer
+    msgbox("Would you like me to heal your party?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        incrementgamestat(GAME_STAT_USED_POKECENTER)
+        special(HealPlayerParty)
+        msgbox("Good luck.")
+        waitmessage
+        release
+        end
+    }
+    else{
+        msgbox("Alright then.", MSGBOX_NPC)
+    }
+}

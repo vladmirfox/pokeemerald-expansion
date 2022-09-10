@@ -377,7 +377,7 @@
 // Trainer Rematch Flags
 #define FLAG_MATCH_CALL_REGISTERED           0x15C
 #define FLAG_REMATCH_ROSE                    0x15D
-#define FLAG_REMATCH_ANDRES                  0x15E
+//#define FLAG_REMATCH_ANDRES                  0x15E
 #define FLAG_REMATCH_DUSTY                   0x15F
 #define FLAG_REMATCH_LOLA                    0x160
 #define FLAG_REMATCH_RICKY                   0x161
