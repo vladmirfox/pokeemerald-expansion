@@ -756,20 +756,63 @@ gCryTable::
 	cry Cry_Scatterbug
 	cry Cry_Spewpa
 	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
+	cry Cry_Vivillon
 	cry Cry_Litleo
 	cry Cry_Pyroar
 	cry Cry_Flabebe
+	cry Cry_Flabebe
+	cry Cry_Flabebe
+	cry Cry_Flabebe
+	cry Cry_Flabebe
 	cry Cry_Floette
+	cry Cry_Floette
+	cry Cry_Floette
+	cry Cry_Floette
+	cry Cry_Floette
+	cry Cry_FloetteEternalFlower
+	cry Cry_Florges
+	cry Cry_Florges
+	cry Cry_Florges
+	cry Cry_Florges
 	cry Cry_Florges
 	cry Cry_Skiddo
 	cry Cry_Gogoat
 	cry Cry_Pancham
 	cry Cry_Pangoro
 	cry Cry_Furfrou
+	cry Cry_Furfrou
+	cry Cry_Furfrou
+	cry Cry_Furfrou
+	cry Cry_Furfrou
+	cry Cry_Furfrou
+	cry Cry_Furfrou
+	cry Cry_Furfrou
+	cry Cry_Furfrou
+	cry Cry_Furfrou
 	cry Cry_Espurr
+	cry Cry_Meowstic
 	cry Cry_Meowstic
 	cry Cry_Honedge
 	cry Cry_Doublade
+	cry Cry_Aegislash
 	cry Cry_Aegislash
 	cry Cry_Spritzee
 	cry Cry_Aromatisse
@@ -796,21 +839,88 @@ gCryTable::
 	cry Cry_Goomy
 	cry Cry_Sliggoo
 	cry Cry_Goodra
-	cry_uncomp Cry_Klefki
+	cry_uncomp Cry_Klefki @ Doesn't sound good compressed.
 	cry Cry_Phantump
 	cry Cry_Trevenant
 	cry Cry_Pumpkaboo
+	cry Cry_Pumpkaboo
+	cry Cry_Pumpkaboo
+	cry Cry_PumpkabooSuper
 	cry Cry_Gourgeist
+	cry Cry_Gourgeist
+	cry Cry_Gourgeist
+	cry Cry_GourgeistSuper
 	cry Cry_Bergmite
 	cry Cry_Avalugg
 	cry Cry_Noibat
 	cry Cry_Noivern
+	cry Cry_Xerneas
 	cry Cry_Xerneas
 	cry Cry_Yveltal
 	cry Cry_Zygarde
 	cry Cry_Diancie
 	cry Cry_Hoopa
 	cry Cry_Volcanion
+	cry Cry_VenusaurMega
+	cry Cry_CharizardMegaX
+	cry Cry_CharizardMegaY
+	cry Cry_BlastoiseMega
+	cry Cry_AlakazamMega
+	cry Cry_GengarMega
+	cry Cry_KangaskhanMega
+	cry Cry_PinsirMega
+	cry Cry_GyaradosMega
+	cry Cry_AerodactylMega
+	cry Cry_MewtwoMegaX
+	cry Cry_MewtwoMegaY
+	cry Cry_AmpharosMega
+	cry Cry_ScizorMega
+	cry Cry_HeracrossMega
+	cry Cry_HoundoomMega
+	cry Cry_TyranitarMega
+	cry Cry_BlazikenMega
+	cry Cry_GardevoirMega
+	cry Cry_MawileMega
+	cry Cry_AggronMega
+	cry Cry_MedichamMega
+	cry Cry_ManectricMega
+	cry Cry_BanetteMega
+	cry Cry_AbsolMega
+	cry Cry_LatiasMega
+	cry Cry_LatiosMega
+	cry Cry_GarchompMega
+	cry Cry_LucarioMega
+	cry Cry_AbomasnowMega
+	cry Cry_Arceus
+@ Omega Ruby and Alpha Sapphire
+	cry Cry_BeedrillMega
+	cry Cry_PidgeotMega
+	cry Cry_Pikachu
+	cry Cry_Pikachu
+	cry Cry_Pikachu
+	cry Cry_Pikachu
+	cry Cry_Pikachu
+	cry Cry_Pikachu
+	cry Cry_SlowbroMega
+	cry Cry_SteelixMega
+	cry Cry_SceptileMega
+	cry Cry_SwampertMega
+	cry Cry_SableyeMega
+	cry Cry_SharpedoMega
+	cry Cry_CameruptMega
+	cry Cry_AltariaMega
+	cry Cry_GlalieMega
+	cry Cry_SalamenceMega
+	cry Cry_MetagrossMega
+	cry Cry_KyogrePrimal
+	cry Cry_GroudonPrimal
+	cry Cry_RayquazaMega
+	cry Cry_LopunnyMega
+	cry Cry_GalladeMega
+	cry Cry_AudinoMega
+	cry Cry_DiancieMega
+	cry Cry_HoopaUnbound
+@ Sun and Moon
 	cry Cry_Rowlet
 	cry Cry_Dartrix
 	cry Cry_Decidueye
@@ -996,58 +1106,6 @@ gCryTable::
 	cry Cry_Overqwil
 	cry Cry_Enamorus
 
-	@ Megas
-	cry Cry_VenusaurMega
-	cry Cry_CharizardMegaX
-	cry Cry_CharizardMegaY
-	cry Cry_BlastoiseMega
-	cry Cry_BeedrillMega
-	cry Cry_PidgeotMega
-	cry Cry_AlakazamMega
-	cry Cry_SlowbroMega
-	cry Cry_GengarMega
-	cry Cry_KangaskhanMega
-	cry Cry_PinsirMega
-	cry Cry_GyaradosMega
-	cry Cry_AerodactylMega
-	cry Cry_MewtwoMegaX
-	cry Cry_MewtwoMegaY
-	cry Cry_AmpharosMega
-	cry Cry_SteelixMega
-	cry Cry_ScizorMega
-	cry Cry_HeracrossMega
-	cry Cry_HoundoomMega
-	cry Cry_TyranitarMega
-	cry Cry_SceptileMega
-	cry Cry_BlazikenMega
-	cry Cry_SwampertMega
-	cry Cry_GardevoirMega
-	cry Cry_SableyeMega
-	cry Cry_MawileMega
-	cry Cry_AggronMega
-	cry Cry_MedichamMega
-	cry Cry_ManectricMega
-	cry Cry_SharpedoMega
-	cry Cry_CameruptMega
-	cry Cry_AltariaMega
-	cry Cry_BanetteMega
-	cry Cry_AbsolMega
-	cry Cry_GlalieMega
-	cry Cry_SalamenceMega
-	cry Cry_MetagrossMega
-	cry Cry_LatiasMega
-	cry Cry_LatiosMega
-	cry Cry_LopunnyMega
-	cry Cry_GarchompMega
-	cry Cry_LucarioMega
-	cry Cry_AbomasnowMega
-	cry Cry_GalladeMega
-	cry Cry_AudinoMega
-	cry Cry_DiancieMega
-	@ Special Mega + Primals
-	cry Cry_RayquazaMega
-	cry Cry_KyogrePrimal
-	cry Cry_GroudonPrimal
 	@ Alolan Forms
 	cry Cry_Rattata
 	cry Cry_Raticate
@@ -1105,13 +1163,6 @@ gCryTable::
 	cry Cry_Avalugg
 	cry Cry_Decidueye
 	@ Misc Forms
-	@ Cosplay Pikachu
-	cry Cry_Pikachu
-	cry Cry_Pikachu
-	cry Cry_Pikachu
-	cry Cry_Pikachu
-	cry Cry_Pikachu
-	cry Cry_Pikachu
 	@ Cap Pikachu
 	cry Cry_Pikachu
 	cry Cry_Pikachu
@@ -1125,80 +1176,17 @@ gCryTable::
 	cry Cry_Dialga
 	cry Cry_Palkia
 	@ Arceus
-	cry Cry_Arceus
 	cry Cry_Basculin
 	cry Cry_Darmanitan
 	cry Cry_EnamorusTherian
 	@ Greninja
 	cry Cry_Greninja
 	cry Cry_Greninja
-	@ Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	cry Cry_Vivillon
-	@ Flabébé
-	cry Cry_Flabebe
-	cry Cry_Flabebe
-	cry Cry_Flabebe
-	cry Cry_Flabebe
-	@ Floette
-	cry Cry_Floette
-	cry Cry_Floette
-	cry Cry_Floette
-	cry Cry_Floette
-	cry Cry_FloetteEternalFlower
-	@ Florges
-	cry Cry_Florges
-	cry Cry_Florges
-	cry Cry_Florges
-	cry Cry_Florges
-	@ Furfrou
-	cry Cry_Furfrou
-	cry Cry_Furfrou
-	cry Cry_Furfrou
-	cry Cry_Furfrou
-	cry Cry_Furfrou
-	cry Cry_Furfrou
-	cry Cry_Furfrou
-	cry Cry_Furfrou
-	cry Cry_Furfrou
-	@ Meowstic
-	cry Cry_Meowstic
-	@ Aegislash
-	cry Cry_Aegislash
-	@ Pumpkaboo
-	cry Cry_Pumpkaboo
-	cry Cry_Pumpkaboo
-	cry Cry_PumpkabooSuper
-	@ Gourgeist
-	cry Cry_Gourgeist
-	cry Cry_Gourgeist
-	cry Cry_GourgeistSuper
-	@ Xerneas
-	cry Cry_Xerneas
 	@ Zygarde
 	cry Cry_Zygarde10
 	cry Cry_Zygarde10
 	cry Cry_Zygarde
 	cry Cry_ZygardeComplete
-	@ Hoopa
-	cry Cry_HoopaUnbound
 	@ Oricorio
 	cry Cry_OricorioPomPom
 	cry Cry_OricorioPau
@@ -2046,20 +2034,63 @@ gCryTable_Reverse::
 	cry_reverse Cry_Scatterbug
 	cry_reverse Cry_Spewpa
 	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
+	cry_reverse Cry_Vivillon
 	cry_reverse Cry_Litleo
 	cry_reverse Cry_Pyroar
 	cry_reverse Cry_Flabebe
+	cry_reverse Cry_Flabebe
+	cry_reverse Cry_Flabebe
+	cry_reverse Cry_Flabebe
+	cry_reverse Cry_Flabebe
 	cry_reverse Cry_Floette
+	cry_reverse Cry_Floette
+	cry_reverse Cry_Floette
+	cry_reverse Cry_Floette
+	cry_reverse Cry_Floette
+	cry_reverse Cry_FloetteEternalFlower
+	cry_reverse Cry_Florges
+	cry_reverse Cry_Florges
+	cry_reverse Cry_Florges
+	cry_reverse Cry_Florges
 	cry_reverse Cry_Florges
 	cry_reverse Cry_Skiddo
 	cry_reverse Cry_Gogoat
 	cry_reverse Cry_Pancham
 	cry_reverse Cry_Pangoro
 	cry_reverse Cry_Furfrou
+	cry_reverse Cry_Furfrou
+	cry_reverse Cry_Furfrou
+	cry_reverse Cry_Furfrou
+	cry_reverse Cry_Furfrou
+	cry_reverse Cry_Furfrou
+	cry_reverse Cry_Furfrou
+	cry_reverse Cry_Furfrou
+	cry_reverse Cry_Furfrou
+	cry_reverse Cry_Furfrou
 	cry_reverse Cry_Espurr
+	cry_reverse Cry_Meowstic
 	cry_reverse Cry_Meowstic
 	cry_reverse Cry_Honedge
 	cry_reverse Cry_Doublade
+	cry_reverse Cry_Aegislash
 	cry_reverse Cry_Aegislash
 	cry_reverse Cry_Spritzee
 	cry_reverse Cry_Aromatisse
@@ -2086,21 +2117,88 @@ gCryTable_Reverse::
 	cry_reverse Cry_Goomy
 	cry_reverse Cry_Sliggoo
 	cry_reverse Cry_Goodra
-	cry_reverse_uncomp Cry_Klefki
+	cry_uncomp Cry_Klefki @ Doesn't sound good compressed.
 	cry_reverse Cry_Phantump
 	cry_reverse Cry_Trevenant
 	cry_reverse Cry_Pumpkaboo
+	cry_reverse Cry_Pumpkaboo
+	cry_reverse Cry_Pumpkaboo
+	cry_reverse Cry_PumpkabooSuper
 	cry_reverse Cry_Gourgeist
+	cry_reverse Cry_Gourgeist
+	cry_reverse Cry_Gourgeist
+	cry_reverse Cry_GourgeistSuper
 	cry_reverse Cry_Bergmite
 	cry_reverse Cry_Avalugg
 	cry_reverse Cry_Noibat
 	cry_reverse Cry_Noivern
+	cry_reverse Cry_Xerneas
 	cry_reverse Cry_Xerneas
 	cry_reverse Cry_Yveltal
 	cry_reverse Cry_Zygarde
 	cry_reverse Cry_Diancie
 	cry_reverse Cry_Hoopa
 	cry_reverse Cry_Volcanion
+	cry_reverse Cry_VenusaurMega
+	cry_reverse Cry_CharizardMegaX
+	cry_reverse Cry_CharizardMegaY
+	cry_reverse Cry_BlastoiseMega
+	cry_reverse Cry_AlakazamMega
+	cry_reverse Cry_GengarMega
+	cry_reverse Cry_KangaskhanMega
+	cry_reverse Cry_PinsirMega
+	cry_reverse Cry_GyaradosMega
+	cry_reverse Cry_AerodactylMega
+	cry_reverse Cry_MewtwoMegaX
+	cry_reverse Cry_MewtwoMegaY
+	cry_reverse Cry_AmpharosMega
+	cry_reverse Cry_ScizorMega
+	cry_reverse Cry_HeracrossMega
+	cry_reverse Cry_HoundoomMega
+	cry_reverse Cry_TyranitarMega
+	cry_reverse Cry_BlazikenMega
+	cry_reverse Cry_GardevoirMega
+	cry_reverse Cry_MawileMega
+	cry_reverse Cry_AggronMega
+	cry_reverse Cry_MedichamMega
+	cry_reverse Cry_ManectricMega
+	cry_reverse Cry_BanetteMega
+	cry_reverse Cry_AbsolMega
+	cry_reverse Cry_LatiasMega
+	cry_reverse Cry_LatiosMega
+	cry_reverse Cry_GarchompMega
+	cry_reverse Cry_LucarioMega
+	cry_reverse Cry_AbomasnowMega
+	cry_reverse Cry_Arceus
+@ Omega Ruby and Alpha Sapphire
+	cry_reverse Cry_BeedrillMega
+	cry_reverse Cry_PidgeotMega
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_SlowbroMega
+	cry_reverse Cry_SteelixMega
+	cry_reverse Cry_SceptileMega
+	cry_reverse Cry_SwampertMega
+	cry_reverse Cry_SableyeMega
+	cry_reverse Cry_SharpedoMega
+	cry_reverse Cry_CameruptMega
+	cry_reverse Cry_AltariaMega
+	cry_reverse Cry_GlalieMega
+	cry_reverse Cry_SalamenceMega
+	cry_reverse Cry_MetagrossMega
+	cry_reverse Cry_KyogrePrimal
+	cry_reverse Cry_GroudonPrimal
+	cry_reverse Cry_RayquazaMega
+	cry_reverse Cry_LopunnyMega
+	cry_reverse Cry_GalladeMega
+	cry_reverse Cry_AudinoMega
+	cry_reverse Cry_DiancieMega
+	cry_reverse Cry_HoopaUnbound
+@ Sun and Moon
 	cry_reverse Cry_Rowlet
 	cry_reverse Cry_Dartrix
 	cry_reverse Cry_Decidueye
@@ -2286,58 +2384,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_Overqwil
 	cry_reverse Cry_Enamorus
 
-	@ Megas
-	cry_reverse Cry_VenusaurMega
-	cry_reverse Cry_CharizardMegaX
-	cry_reverse Cry_CharizardMegaY
-	cry_reverse Cry_BlastoiseMega
-	cry_reverse Cry_BeedrillMega
-	cry_reverse Cry_PidgeotMega
-	cry_reverse Cry_AlakazamMega
-	cry_reverse Cry_SlowbroMega
-	cry_reverse Cry_GengarMega
-	cry_reverse Cry_KangaskhanMega
-	cry_reverse Cry_PinsirMega
-	cry_reverse Cry_GyaradosMega
-	cry_reverse Cry_AerodactylMega
-	cry_reverse Cry_MewtwoMegaX
-	cry_reverse Cry_MewtwoMegaY
-	cry_reverse Cry_AmpharosMega
-	cry_reverse Cry_SteelixMega
-	cry_reverse Cry_ScizorMega
-	cry_reverse Cry_HeracrossMega
-	cry_reverse Cry_HoundoomMega
-	cry_reverse Cry_TyranitarMega
-	cry_reverse Cry_SceptileMega
-	cry_reverse Cry_BlazikenMega
-	cry_reverse Cry_SwampertMega
-	cry_reverse Cry_GardevoirMega
-	cry_reverse Cry_SableyeMega
-	cry_reverse Cry_MawileMega
-	cry_reverse Cry_AggronMega
-	cry_reverse Cry_MedichamMega
-	cry_reverse Cry_ManectricMega
-	cry_reverse Cry_SharpedoMega
-	cry_reverse Cry_CameruptMega
-	cry_reverse Cry_AltariaMega
-	cry_reverse Cry_BanetteMega
-	cry_reverse Cry_AbsolMega
-	cry_reverse Cry_GlalieMega
-	cry_reverse Cry_SalamenceMega
-	cry_reverse Cry_MetagrossMega
-	cry_reverse Cry_LatiasMega
-	cry_reverse Cry_LatiosMega
-	cry_reverse Cry_LopunnyMega
-	cry_reverse Cry_GarchompMega
-	cry_reverse Cry_LucarioMega
-	cry_reverse Cry_AbomasnowMega
-	cry_reverse Cry_GalladeMega
-	cry_reverse Cry_AudinoMega
-	cry_reverse Cry_DiancieMega
-	@ Special Mega + Primals
-	cry_reverse Cry_RayquazaMega
-	cry_reverse Cry_KyogrePrimal
-	cry_reverse Cry_GroudonPrimal
 	@ Alolan Forms
 	cry_reverse Cry_Rattata
 	cry_reverse Cry_Raticate
@@ -2395,13 +2441,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_Avalugg
 	cry_reverse Cry_Decidueye
 	@ Misc Forms
-	@ Cosplay Pikachu
-	cry_reverse Cry_Pikachu
-	cry_reverse Cry_Pikachu
-	cry_reverse Cry_Pikachu
-	cry_reverse Cry_Pikachu
-	cry_reverse Cry_Pikachu
-	cry_reverse Cry_Pikachu
 	@ Cap Pikachu
 	cry_reverse Cry_Pikachu
 	cry_reverse Cry_Pikachu
@@ -2415,81 +2454,17 @@ gCryTable_Reverse::
 	cry_reverse Cry_Dialga
 	cry_reverse Cry_Palkia
 	@ Arceus
-	cry_reverse Cry_Arceus
 	cry_reverse Cry_Basculin
 	cry_reverse Cry_Darmanitan
-	@ Therian Forms
 	cry_reverse Cry_EnamorusTherian
 	@ Greninja
 	cry_reverse Cry_Greninja
 	cry_reverse Cry_Greninja
-	@ Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	cry_reverse Cry_Vivillon
-	@ Flabébé
-	cry_reverse Cry_Flabebe
-	cry_reverse Cry_Flabebe
-	cry_reverse Cry_Flabebe
-	cry_reverse Cry_Flabebe
-	@ Floette
-	cry_reverse Cry_Floette
-	cry_reverse Cry_Floette
-	cry_reverse Cry_Floette
-	cry_reverse Cry_Floette
-	cry_reverse Cry_FloetteEternalFlower
-	@ Florges
-	cry_reverse Cry_Florges
-	cry_reverse Cry_Florges
-	cry_reverse Cry_Florges
-	cry_reverse Cry_Florges
-	@ Furfrou
-	cry_reverse Cry_Furfrou
-	cry_reverse Cry_Furfrou
-	cry_reverse Cry_Furfrou
-	cry_reverse Cry_Furfrou
-	cry_reverse Cry_Furfrou
-	cry_reverse Cry_Furfrou
-	cry_reverse Cry_Furfrou
-	cry_reverse Cry_Furfrou
-	cry_reverse Cry_Furfrou
-	@ Meowstic
-	cry_reverse Cry_Meowstic
-	@ Aegislash
-	cry_reverse Cry_Aegislash
-	@ Pumpkaboo
-	cry_reverse Cry_Pumpkaboo
-	cry_reverse Cry_Pumpkaboo
-	cry_reverse Cry_PumpkabooSuper
-	@ Gourgeist
-	cry_reverse Cry_Gourgeist
-	cry_reverse Cry_Gourgeist
-	cry_reverse Cry_GourgeistSuper
-	@ Xerneas
-	cry_reverse Cry_Xerneas
 	@ Zygarde
 	cry_reverse Cry_Zygarde10
 	cry_reverse Cry_Zygarde10
 	cry_reverse Cry_Zygarde
 	cry_reverse Cry_ZygardeComplete
-	@ Hoopa
-	cry_reverse Cry_HoopaUnbound
 	@ Oricorio
 	cry_reverse Cry_OricorioPomPom
 	cry_reverse Cry_OricorioPau
@@ -2578,4 +2553,3 @@ gCryTable_Reverse::
 	@ Calyrex
 	cry_reverse Cry_CalyrexIceRider
 	cry_reverse Cry_CalyrexShadowRider
-
