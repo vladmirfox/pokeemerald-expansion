@@ -29,7 +29,6 @@ MartInventory:
 	.2byte ITEM_GREAT_BALL
 	.2byte ITEM_ULTRA_BALL
 	.2byte ITEM_BERRY_JUICE
-	.2byte ITEM_MAX_REPEL
 	.2byte ITEM_MAX_POTION
 	.2byte ITEM_ETHER
 	.2byte ITEM_NONE

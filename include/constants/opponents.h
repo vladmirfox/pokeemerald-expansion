@@ -29,11 +29,11 @@
 #define TRAINER_REF018B_BONUS_HELD_ITEMS_3   25
 #define TRAINER_REF018C_BONUS_ABILITIES_3    26
 #define TRAINER_REF018D_BONUS_IVS_3          27
-#define TRAINER_REF019_RT105               28
-#define TRAINER_REF020_RT105               29
-#define TRAINER_REF021_RT105               30
+#define TRAINER_REF019_RT105                 28
+#define TRAINER_REF020_RT105                 29
+#define TRAINER_REF021_RT105                 30
 #define TRAINER_REF022_RT105_BOSS            31
-#define TRAINER_REF023_RT105_GUARDIAN      32
+#define TRAINER_REF023_RT105_GUARDIAN        32
 //#define TRAINER_SHELLY_SEAFLOOR_CAVERN     33
 #define TRAINER_ARCHIE                       34
 #define TRAINER_LEAH                         35

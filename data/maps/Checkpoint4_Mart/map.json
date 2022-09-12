@@ -2,7 +2,7 @@
   "id": "MAP_CHECKPOINT4_MART",
   "name": "Checkpoint4_Mart",
   "layout": "LAYOUT_CHECKPOINT4_MART",
-  "music": "MUS_ABANDONED_SHIP",
+  "music": "MUS_POKE_MART",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

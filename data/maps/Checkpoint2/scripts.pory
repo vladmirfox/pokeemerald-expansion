@@ -23,10 +23,6 @@ mapscripts Checkpoint2_MapScripts {
 }
 
 script Random_NPC_CheckPoint2{
-    // buffernumberstring(STR_VAR_1, VAR_OBJ_GFX_ID_A)
-    // msgbox("GFX var: {STR_VAR_1}")
-    // buffernumberstring(STR_VAR_2, VAR_RANDOM_NPC_STATE)
-    // msgbox("NPC var: {STR_VAR_2}")
     switch (var(VAR_CHECKPOINT2_NPC_STATE)){
         case 0:
         case 1: 

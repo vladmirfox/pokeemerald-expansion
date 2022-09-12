@@ -11476,7 +11476,7 @@
           "map": "MAP_ROUTE102_SIDE_AREA",
           "base_label": "gRoute102_SideArea0",
           "land_mons": {
-            "encounter_rate": 0,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 10,
@@ -11545,7 +11545,7 @@
           "map": "MAP_OLDALE_TOWN",
           "base_label": "gOldaleTown0",
           "land_mons": {
-            "encounter_rate": 0,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 10,
@@ -11614,7 +11614,7 @@
           "map": "MAP_ROUTE103_SIDE_AREA",
           "base_label": "gRoute103_SideArea0",
           "land_mons": {
-            "encounter_rate": 0,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 15,
@@ -11683,7 +11683,7 @@
           "map": "MAP_CHECKPOINT1_SIDE_AREA",
           "base_label": "gCheckpoint1_SideArea0",
           "land_mons": {
-            "encounter_rate": 0,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 10,
@@ -11752,7 +11752,7 @@
           "map": "MAP_GREEN_GROTTO",
           "base_label": "gGreenGrotto0",
           "land_mons": {
-            "encounter_rate": 0,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 10,
@@ -11821,7 +11821,7 @@
           "map": "MAP_ROUTE104_SIDE_AREA",
           "base_label": "gRoute104_SideArea0",
           "land_mons": {
-            "encounter_rate": 0,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 5,
@@ -11831,7 +11831,7 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_NUMEL"
+                "species": "SPECIES_KABUTO"
               },
               {
                 "min_level": 5,
@@ -11890,7 +11890,7 @@
           "map": "MAP_ROUTE105_SIDE_AREA",
           "base_label": "gRoute105_SideArea0",
           "land_mons": {
-            "encounter_rate": 0,
+            "encounter_rate": 20,
             "mons": [
               {
                 "min_level": 5,

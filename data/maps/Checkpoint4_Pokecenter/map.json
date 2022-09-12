@@ -2,7 +2,7 @@
   "id": "MAP_CHECKPOINT4_POKECENTER",
   "name": "Checkpoint4_Pokecenter",
   "layout": "LAYOUT_CHECKPOINT4_POKECENTER",
-  "music": "MUS_ABANDONED_SHIP",
+  "music": "MUS_POKE_CENTER",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

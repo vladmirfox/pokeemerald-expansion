@@ -4580,6 +4580,46 @@
       "secondary_tileset": "gTileset_PokemonCenter",
       "border_filepath": "data/layouts/Checkpoint4_Pokecenter/border.bin",
       "blockdata_filepath": "data/layouts/Checkpoint4_Pokecenter/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT5TRANSITION",
+      "name": "Checkpoint5Transition_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/Checkpoint5Transition/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint5Transition/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT5",
+      "name": "Checkpoint5_Layout",
+      "width": 22,
+      "height": 22,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/Checkpoint5/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint5/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT5_MART",
+      "name": "Checkpoint5_Mart_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Shop",
+      "border_filepath": "data/layouts/Checkpoint5_Mart/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint5_Mart/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT5_POKECENTER",
+      "name": "Checkpoint5_Pokecenter_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/Checkpoint5_Pokecenter/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint5_Pokecenter/map.bin"
     }
   ]
 }

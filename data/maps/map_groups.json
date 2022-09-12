@@ -102,7 +102,9 @@
     "Checkpoint2",
     "Checkpoint3",
     "Checkpoint4",
-    "Checkpoint4Transition"
+    "Checkpoint4Transition",
+    "Checkpoint5Transition",
+    "Checkpoint5"
   ],
   "gMapGroup_CheckpointsIndoor": [
     "Checkpoint2_Mart",
@@ -110,7 +112,9 @@
     "Checkpoint3_Mart",
     "Checkpoint3_Pokecenter",
     "Checkpoint4_Mart",
-    "Checkpoint4_Pokecenter"
+    "Checkpoint4_Pokecenter",
+    "Checkpoint5_Mart",
+    "Checkpoint5_Pokecenter"
   ],
   "gMapGroup_SideAreas": [
     "Route102_SideArea",
