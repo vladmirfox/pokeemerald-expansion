@@ -159,7 +159,7 @@ static const struct OamData sOamData_Arrow =
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
     .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(8x8),
     .x = 0,
@@ -181,7 +181,7 @@ static const struct SpriteFrameImage sPicTable_Arrow[] =
     obj_frame_tiles(sArrowRight_Gfx)
 };
 
-static const struct SpritePalette sSpritePalette_Arrow =
+const struct SpritePalette gSpritePalette_Arrow =
 {
     sArrow_Pal, PALTAG_ARROW
 };
@@ -217,7 +217,7 @@ static const union AnimCmd *const sAnims_Arrow[] =
     [ARROW_RIGHT] = sAnim_Arrow_Right,
 };
 
-static const struct SpriteTemplate sSpriteTemplate_Arrow =
+const struct SpriteTemplate gSpriteTemplate_Arrow =
 {
     .tileTag = TAG_NONE,
     .paletteTag = PALTAG_ARROW,
@@ -333,14 +333,14 @@ static void CreateCursor(u8 taskId)
 {
     u32 spriteId;
 
-    LoadSpritePalette(&sSpritePalette_Arrow);
+    LoadSpritePalette(&gSpritePalette_Arrow);
 
-    spriteId = CreateSpriteAtEnd(&sSpriteTemplate_Arrow, 53, 68, 0);
+    spriteId = CreateSpriteAtEnd(&gSpriteTemplate_Arrow, 53, 68, 0);
     gSprites[spriteId].callback = SpriteCB_Cursor_UpOrRight;
     gSprites[spriteId].sTaskId = taskId;
     gSprites[spriteId].sState = -1;
 
-    spriteId = CreateSpriteAtEnd(&sSpriteTemplate_Arrow, 53, 68, 0);
+    spriteId = CreateSpriteAtEnd(&gSpriteTemplate_Arrow, 53, 68, 0);
     gSprites[spriteId].callback = SpriteCB_Cursor_Down;
     gSprites[spriteId].sTaskId = taskId;
     gSprites[spriteId].sState = -1;
@@ -348,7 +348,7 @@ static void CreateCursor(u8 taskId)
 
 static void FreeCursorPalette(void)
 {
-    FreeSpritePaletteByTag(sSpritePalette_Arrow.tag);
+    FreeSpritePaletteByTag(gSpritePalette_Arrow.tag);
 }
 
 static void HideChooseTimeWindow(u8 windowId)
