@@ -61,9 +61,9 @@ Random_NPC_CheckPoint2_5:
 	goto Random_NPC_CheckPoint2_1
 
 Random_NPC_CheckPoint2_6:
-	checktrainerflag TRAINER_REF007D_BONUS_IVS_1
+	checktrainerflag TRAINER_REF007D_BONUS_TMS_1
 	goto_if 0, Random_NPC_CheckPoint2_16
-	call Event_Script_NPC_IVS_CP2
+	call Event_Script_NPC_TMS_CP2
 	goto Random_NPC_CheckPoint2_1
 
 Random_NPC_CheckPoint2_7:
@@ -103,7 +103,7 @@ Random_NPC_CheckPoint2_23:
 	goto Random_NPC_CheckPoint2_1
 
 Random_NPC_CheckPoint2_25:
-	call Event_Script_NPC_IVS_CP2
+	call Event_Script_NPC_TMS_CP2
 	goto Random_NPC_CheckPoint2_1
 
 
@@ -137,12 +137,12 @@ Event_Script_NPC_Abilities_CP2::
 	end
 
 
-Event_Script_NPC_IVS_CP2::
-	trainerbattle_single TRAINER_REF007D_BONUS_IVS_1, Intro_CP2, Outro_CP2
+Event_Script_NPC_TMS_CP2::
+	trainerbattle_single TRAINER_REF007D_BONUS_TMS_1, Intro_CP2, Outro_CP2
 	lock
 	message Event_Script_NPC_Stones_CP2_Text_0
 	waitmessage
-	pokemart MartInventory_IVS
+	pokemart MartInventory_TMS
 	release
 	end
 
@@ -239,13 +239,57 @@ MartInventory_Abilities:
 	.2byte ITEM_NONE
 
 	.align 2
-MartInventory_IVS:
-	.2byte ITEM_HP_UP
-	.2byte ITEM_PROTEIN
-	.2byte ITEM_IRON
-	.2byte ITEM_CALCIUM
-	.2byte ITEM_ZINC
-	.2byte ITEM_CARBOS
+MartInventory_TMS:
+	.2byte ITEM_TM01
+	.2byte ITEM_TM02
+	.2byte ITEM_TM03
+	.2byte ITEM_TM04
+	.2byte ITEM_TM05
+	.2byte ITEM_TM06
+	.2byte ITEM_TM07
+	.2byte ITEM_TM08
+	.2byte ITEM_TM09
+	.2byte ITEM_TM10
+	.2byte ITEM_TM11
+	.2byte ITEM_TM12
+	.2byte ITEM_TM13
+	.2byte ITEM_TM14
+	.2byte ITEM_TM15
+	.2byte ITEM_TM16
+	.2byte ITEM_TM17
+	.2byte ITEM_TM18
+	.2byte ITEM_TM19
+	.2byte ITEM_TM20
+	.2byte ITEM_TM21
+	.2byte ITEM_TM22
+	.2byte ITEM_TM23
+	.2byte ITEM_TM24
+	.2byte ITEM_TM25
+	.2byte ITEM_TM26
+	.2byte ITEM_TM27
+	.2byte ITEM_TM28
+	.2byte ITEM_TM29
+	.2byte ITEM_TM30
+	.2byte ITEM_TM31
+	.2byte ITEM_TM32
+	.2byte ITEM_TM33
+	.2byte ITEM_TM34
+	.2byte ITEM_TM35
+	.2byte ITEM_TM36
+	.2byte ITEM_TM37
+	.2byte ITEM_TM38
+	.2byte ITEM_TM39
+	.2byte ITEM_TM40
+	.2byte ITEM_TM41
+	.2byte ITEM_TM42
+	.2byte ITEM_TM43
+	.2byte ITEM_TM44
+	.2byte ITEM_TM45
+	.2byte ITEM_TM46
+	.2byte ITEM_TM47
+	.2byte ITEM_TM48
+	.2byte ITEM_TM49
+	.2byte ITEM_TM50
 	.2byte ITEM_NONE
 
 Random_NPC_CheckPoint2_Text_0:
@@ -262,7 +306,7 @@ Random_NPC_CheckPoint2_Text_2:
 
 Random_NPC_CheckPoint2_Text_3:
 	.string "Battle for an opportunity to purchase\n"
-	.string "IV ITEMS?$"
+	.string "TM ITEMS?$"
 
 Event_Script_NPC_Stones_CP2_Text_0:
 	.string "What will you choose?$"

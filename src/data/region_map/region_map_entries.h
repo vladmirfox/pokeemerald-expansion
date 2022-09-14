@@ -1,7 +1,7 @@
 #ifndef GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H
 #define GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H
 
-static const u8 sMapName_LittlerootTown[] = _("LITTLEROOT TOWN");
+static const u8 sMapName_LittlerootTown[] = _("FAMILIARVILLE");
 static const u8 sMapName_OldaleTown[] = _("CHECKPOINT 1"); //oldale
 static const u8 sMapName_DewfordTown[] = _("CHECKPOINT 2"); //dewford
 static const u8 sMapName_LavaridgeTown[] = _("CHECKPOINT 3"); //lavaridge
@@ -91,13 +91,13 @@ static const u8 sMapName_FuchsiaCity[] = _("FUCHSIA CITY");
 static const u8 sMapName_CinnabarIsland[] = _("CINNABAR ISLAND");
 static const u8 sMapName_IndigoPlateau[] = _("INDIGO PLATEAU");
 static const u8 sMapName_SaffronCity[] = _("SAFFRON CITY");
-static const u8 sMapName_Route4[] = _("ROUTE 4");
+static const u8 sMapName_Route4[] = _("STIFLING CREVASSE");
 static const u8 sMapName_Route10[] = _("ROUTE 10");
 static const u8 sMapName_Route1[] = _("GRASSY GLADE");
 static const u8 sMapName_Route2[] = _("STONY ALCOVE");
 static const u8 sMapName_Route3[] = _("TRANQUIL CLEARING");
-static const u8 sMapName_Route4_2[] = _("ROUTE 4");
-static const u8 sMapName_Route5[] = _("ROUTE 5");
+static const u8 sMapName_Route4_2[] = _("UNUSED");
+static const u8 sMapName_Route5[] = _("HIDDEN FIELD");
 static const u8 sMapName_Route6[] = _("ROUTE 6");
 static const u8 sMapName_Route7[] = _("ROUTE 7");
 static const u8 sMapName_Route8[] = _("ROUTE 8");
@@ -117,8 +117,8 @@ static const u8 sMapName_Route21[] = _("ROUTE 21");
 static const u8 sMapName_Route22[] = _("ROUTE 22");
 static const u8 sMapName_Route23[] = _("ROUTE 23");
 static const u8 sMapName_Route24[] = _("ROUTE 24");
-static const u8 sMapName_Route25[] = _("GREEN GROTTO");
-static const u8 sMapName_ViridianForest[] = _("VIRIDIAN FOREST");
+static const u8 sMapName_Route25[] = _("ROUTE 25");
+static const u8 sMapName_ViridianForest[] = _("GREEN GROTTO");
 static const u8 sMapName_MtMoon[] = _("MT. MOON");
 static const u8 sMapName_SSAnne[] = _("S.S. ANNE");
 static const u8 sMapName_UndergroundPath[] = _("UNDERGROUND PATH");

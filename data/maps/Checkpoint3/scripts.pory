@@ -78,14 +78,14 @@ script Random_NPC_CheckPoint3 {
                 call(Event_Script_NPC_Abilities_CP3)
             }
         case 5: 
-            if (defeated(TRAINER_REF012D_BONUS_IVS_2) == false){
-                msgbox(format("Battle for an opportunity to purchase IV ITEMS?"), MSGBOX_YESNO)
+            if (defeated(TRAINER_REF012D_BONUS_TMS_2) == false){
+                msgbox(format("Battle for an opportunity to purchase TM ITEMS?"), MSGBOX_YESNO)
                 if(var(VAR_RESULT) == YES){
-                call(Event_Script_NPC_IVS_CP3)
+                call(Event_Script_NPC_TMS_CP3)
                 }
             }
             else{
-                call(Event_Script_NPC_IVS_CP3)
+                call(Event_Script_NPC_TMS_CP3)
             }
     }
     //release for saftey
@@ -122,12 +122,12 @@ script Event_Script_NPC_Abilities_CP3{
 	end
 }
 
-script Event_Script_NPC_IVS_CP3{
-    trainerbattle_single(TRAINER_REF012D_BONUS_IVS_2, Intro_CP3, Outro_CP3)
+script Event_Script_NPC_TMS_CP3{
+    trainerbattle_single(TRAINER_REF012D_BONUS_TMS_2, Intro_CP3, Outro_CP3)
     lock
 	message("What will you choose?")
 	waitmessage
-	pokemart(MartInventory_IVS)
+	pokemart(MartInventory_TMS)
 	release
 	end
 }

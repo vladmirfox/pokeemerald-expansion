@@ -68,9 +68,9 @@ Random_NPC_CheckPoint4_5:
 	goto Random_NPC_CheckPoint4_1
 
 Random_NPC_CheckPoint4_6:
-	checktrainerflag TRAINER_REF018D_BONUS_IVS_3
+	checktrainerflag TRAINER_REF018D_BONUS_TMS_3
 	goto_if 0, Random_NPC_CheckPoint4_16
-	call Event_Script_NPC_IVS_CP4
+	call Event_Script_NPC_TMS_CP4
 	goto Random_NPC_CheckPoint4_1
 
 Random_NPC_CheckPoint4_7:
@@ -110,7 +110,7 @@ Random_NPC_CheckPoint4_23:
 	goto Random_NPC_CheckPoint4_1
 
 Random_NPC_CheckPoint4_25:
-	call Event_Script_NPC_IVS_CP4
+	call Event_Script_NPC_TMS_CP4
 	goto Random_NPC_CheckPoint4_1
 
 
@@ -144,12 +144,12 @@ Event_Script_NPC_Abilities_CP4::
 	end
 
 
-Event_Script_NPC_IVS_CP4::
-	trainerbattle_single TRAINER_REF018D_BONUS_IVS_3, Intro_CP4, Outro_CP4
+Event_Script_NPC_TMS_CP4::
+	trainerbattle_single TRAINER_REF018D_BONUS_TMS_3, Intro_CP4, Outro_CP4
 	lock
 	message Event_Script_NPC_Stones_CP4_Text_0
 	waitmessage
-	pokemart MartInventory_IVS
+	pokemart MartInventory_TMS
 	release
 	end
 
@@ -172,7 +172,7 @@ Random_NPC_CheckPoint4_Text_2:
 
 Random_NPC_CheckPoint4_Text_3:
 	.string "Battle for an opportunity to purchase\n"
-	.string "IV ITEMS?$"
+	.string "TM ITEMS?$"
 
 Event_Script_NPC_Stones_CP4_Text_0:
 	.string "What will you choose?$"
