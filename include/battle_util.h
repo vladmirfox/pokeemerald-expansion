@@ -26,7 +26,7 @@
 #define ABILITYEFFECT_MOVE_END_ATTACKER          4
 #define ABILITYEFFECT_MOVE_END                   5
 #define ABILITYEFFECT_IMMUNITY                   6
-#define ABILITYEFFECT_FORECAST                   7
+#define ABILITYEFFECT_WEATHER_FORM               7
 #define ABILITYEFFECT_SYNCHRONIZE                8
 #define ABILITYEFFECT_ATK_SYNCHRONIZE            9
 #define ABILITYEFFECT_INTIMIDATE1                10
@@ -201,5 +201,6 @@ bool32 CanBeParalyzed(u8 battlerId);
 bool32 CanBeFrozen(u8 battlerId);
 bool32 CanBeConfused(u8 battlerId);
 bool32 IsBattlerTerrainAffected(u8 battlerId, u32 terrainFlag);
+u32 GetMonFriendshipScore(struct Pokemon *pokemon);
 
 #endif // GUARD_BATTLE_UTIL_H
