@@ -22,7 +22,7 @@ mapscripts Checkpoint3_MapScripts {
     }
 }
 
-script Route103_EventScript_GameSign {
+script Checkpoint3_EventScript_GameSign {
 	lockall
 	msgbox(format("LOCK ROUTES: When you see these signs beware!"))
 	msgbox(format("You will lose access to your PC and there will be no free healing on the route!"))
@@ -31,7 +31,7 @@ script Route103_EventScript_GameSign {
     releaseall
 }
 
-script Route103_EventScript_GameSign2 {
+script Checkpoint3_EventScript_GameSign2 {
 	lockall
 	msgbox(format("Checkpoint 3:/n Where the going gets rough."))
     releaseall

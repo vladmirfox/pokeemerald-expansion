@@ -1,50 +1,95 @@
 raw `
 Route106_MapScripts::
 	.byte 0
-
-Route106_EventScript_TrainerTipsSign::
-	msgbox Route106_Text_TrainerTips, MSGBOX_SIGN
-	end
-
-Route106_EventScript_Douglas::
-	trainerbattle_single TRAINER_DOUGLAS, Route106_Text_DouglasIntro, Route106_Text_DouglasDefeated
-	msgbox Route106_Text_DouglasPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route106_EventScript_Kyla::
-	trainerbattle_single TRAINER_KYLA, Route106_Text_KylaIntro, Route106_Text_KylaDefeated
-	msgbox Route106_Text_KylaPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route106_EventScript_Elliot::
-	trainerbattle_single TRAINER_ELLIOT_1, Route106_Text_ElliotIntro, Route106_Text_ElliotDefeated, Route106_EventScript_ElliotRegisterMatchCallAfterBattle
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, Route106_EventScript_ElliotRematch
-	msgbox Route106_Text_ElliotPostBattle, MSGBOX_DEFAULT
-	release
-	end
-
-Route106_EventScript_ElliotRegisterMatchCallAfterBattle::
-	special PlayerFaceTrainerAfterBattle
-	waitmovement 0
-	msgbox Route106_Text_ElliotRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_ELLIOT_1
-	release
-	end
-
-Route106_EventScript_ElliotRematch::
-	trainerbattle_rematch TRAINER_ELLIOT_1, Route106_Text_ElliotRematchIntro, Route106_Text_ElliotRematchDefeated
-	msgbox Route106_Text_ElliotRematchPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route106_EventScript_Ned::
-	trainerbattle_single TRAINER_NED, Route106_Text_NedIntro, Route106_Text_NedDefeated
-	msgbox Route106_Text_NedPostBattle, MSGBOX_AUTOCLOSE
-	end
-
-Route106_Text_TrainerTips:
-	.string "TRAINER TIPS\p"
-	.string "Advice on catching POKéMON with a ROD:\n"
-	.string "Press the A Button if you get a bite.$"
-
 `
+script Route106_EventScript_Trainer_025 {
+	trainerbattle_single(TRAINER_REF025_RT106, Intro_025, Outro_025)
+	msgbox(format("You're one strong trainer."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route106_EventScript_Trainer_026 {
+	trainerbattle_single(TRAINER_REF026_RT106, Intro_026, Outro_026)
+	msgbox(format("I really dislike the weather here."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route106_EventScript_Trainer_027 {
+	trainerbattle_single(TRAINER_REF027_RT106, Intro_027, Outro_027)
+	msgbox(format("Nice strategy!"), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route106_EventScript_Trainer_028 {
+	trainerbattle_single(TRAINER_REF028_RT106_BOSS, Intro_028, Outro_028)
+	msgbox(format("You've got permission to move on."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+script Route106_EventScript_Trainer_029 {
+	trainerbattle_single(TRAINER_REF029_RT106_GUARDIAN, Intro_029, Outro_029)
+	msgbox(format("Masterful execution."), MSGBOX_AUTOCLOSE)
+	waitmessage
+	end
+}
+
+text Intro_025{
+	format("Let's get started.")
+}
+
+text Outro_025{
+	format("You know your stuff.")
+}
+
+text Intro_026{
+	format("I challenge you!")
+}
+
+text Outro_026{
+	format("I've got a lot to learn.")
+}
+
+text Intro_027{
+	format("Finally, we meet.")
+}
+
+text Outro_027{
+	format("You just can't be stopped!")
+}
+
+text Intro_028{
+	format("Let me show you what I can do.")
+}
+
+text Outro_028{
+	format("I'm noticing a pattern here.")
+}
+
+text Intro_029{
+	format("You think you've got what it takes?")
+}
+
+text Outro_029{
+	format("I guess you did have what it takes.")
+}
+
+script Route106_Healer{
+    lock
+    faceplayer
+    msgbox("Would you like me to heal your party?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        incrementgamestat(GAME_STAT_USED_POKECENTER)
+        special(HealPlayerParty)
+        msgbox("Good luck.")
+        waitmessage
+        release
+        end
+    }
+    else{
+        msgbox("Alright then.", MSGBOX_NPC)
+    }
+}

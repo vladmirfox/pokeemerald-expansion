@@ -1,0 +1,89 @@
+{
+  "id": "MAP_CHECKPOINT6",
+  "name": "Checkpoint6",
+  "layout": "LAYOUT_CHECKPOINT6",
+  "music": "MUS_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_NONE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "up",
+      "offset": -7,
+      "map": "MAP_CHECKPOINT6TRANSITION"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_VAR_A",
+      "x": 8,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Random_NPC_CheckPoint6",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 18,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_CHECKPOINT6_POKECENTER",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 22,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_CHECKPOINT6_MART",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 25,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_CHECKPOINT6",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 16,
+      "y": 17,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Checkpoint6_EventScript_GameSign"
+    },
+    {
+      "type": "sign",
+      "x": 23,
+      "y": 26,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Checkpoint6_EventScript_GameSign2"
+    },
+    {
+      "type": "sign",
+      "x": 27,
+      "y": 26,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Checkpoint6_EventScript_GameSign2"
+    }
+  ]
+}

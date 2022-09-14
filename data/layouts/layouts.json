@@ -214,10 +214,10 @@
     {
       "id": "LAYOUT_ROUTE106",
       "name": "Route106_Layout",
-      "width": 80,
-      "height": 20,
+      "width": 32,
+      "height": 36,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Dewford",
+      "secondary_tileset": "gTileset_Fortree",
       "border_filepath": "data/layouts/Route106/border.bin",
       "blockdata_filepath": "data/layouts/Route106/map.bin"
     },
@@ -4595,7 +4595,7 @@
       "id": "LAYOUT_CHECKPOINT5",
       "name": "Checkpoint5_Layout",
       "width": 22,
-      "height": 22,
+      "height": 32,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Fortree",
       "border_filepath": "data/layouts/Checkpoint5/border.bin",
@@ -4620,6 +4620,56 @@
       "secondary_tileset": "gTileset_PokemonCenter",
       "border_filepath": "data/layouts/Checkpoint5_Pokecenter/border.bin",
       "blockdata_filepath": "data/layouts/Checkpoint5_Pokecenter/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE106_SIDE_AREA",
+      "name": "Route106_SideArea_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/Route106_SideArea/border.bin",
+      "blockdata_filepath": "data/layouts/Route106_SideArea/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT6TRANSITION",
+      "name": "Checkpoint6Transition_Layout",
+      "width": 20,
+      "height": 15,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/Checkpoint6Transition/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint6Transition/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT6",
+      "name": "Checkpoint6_Layout",
+      "width": 36,
+      "height": 36,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Checkpoint6/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint6/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT6_MART",
+      "name": "Checkpoint6_Mart_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Shop",
+      "border_filepath": "data/layouts/Checkpoint6_Mart/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint6_Mart/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHECKPOINT6_POKECENTER",
+      "name": "Checkpoint6_Pokecenter_Layout",
+      "width": 14,
+      "height": 11,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/Checkpoint6_Pokecenter/border.bin",
+      "blockdata_filepath": "data/layouts/Checkpoint6_Pokecenter/map.bin"
     }
   ]
 }

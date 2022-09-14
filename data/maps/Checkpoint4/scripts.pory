@@ -22,7 +22,7 @@ mapscripts Checkpoint4_MapScripts {
     }
 }
 
-script Route104_EventScript_GameSign {
+script Checkpoint4_EventScript_GameSign {
 	lockall
 	msgbox(format("Checkpoint 4: Honestly we can't believe you made it this far!"))
     releaseall

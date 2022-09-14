@@ -1,1 +1,21 @@
 mapscripts Checkpoint5_Mart_MapScripts {}
+
+script Checkpoint5_Pokemart_Employee {
+	lock
+	faceplayer
+	message("Welcome trainer.")
+	waitmessage
+	pokemart(MartInventory)
+	msgbox("Thank you, come again!")
+	release
+}
+
+script Checkpoint5_Pokemart_Employee2 {
+	lock
+	faceplayer
+	message("I sell delicious berries!")
+	waitmessage
+	pokemart(MartInventory2)
+	msgbox("Good luck out there!")
+	release
+}

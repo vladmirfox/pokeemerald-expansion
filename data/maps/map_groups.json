@@ -104,7 +104,9 @@
     "Checkpoint4",
     "Checkpoint4Transition",
     "Checkpoint5Transition",
-    "Checkpoint5"
+    "Checkpoint5",
+    "Checkpoint6Transition",
+    "Checkpoint6"
   ],
   "gMapGroup_CheckpointsIndoor": [
     "Checkpoint2_Mart",
@@ -114,7 +116,9 @@
     "Checkpoint4_Mart",
     "Checkpoint4_Pokecenter",
     "Checkpoint5_Mart",
-    "Checkpoint5_Pokecenter"
+    "Checkpoint5_Pokecenter",
+    "Checkpoint6_Mart",
+    "Checkpoint6_Pokecenter"
   ],
   "gMapGroup_SideAreas": [
     "Route102_SideArea",
@@ -122,7 +126,8 @@
     "Checkpoint1_SideArea",
     "GreenGrotto",
     "Route104_SideArea",
-    "Route105_SideArea"
+    "Route105_SideArea",
+    "Route106_SideArea"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",

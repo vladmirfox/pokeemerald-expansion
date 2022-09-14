@@ -1,0 +1,140 @@
+mapscripts Checkpoint6_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+    //When you enter the map, assign OBJ_EVENT_GFX_VAR_A to the following graphic
+    //these are randomly generated when picking up the starter, find in data/AJScripts/setup.porymapscripts Route104_MapScripts {
+	setflag(FLAG_SYS_REMOTE_POKEMON_STORAGE)
+    switch (var(VAR_CHECKPOINT6_NPC_STATE)) {
+        case 0:
+        case 1: 
+            setvar(VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_BEAUTY)
+            end
+        case 2:
+        case 3: 
+            setvar(VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_LEAF)
+            end
+        case 4: 
+            setvar(VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_SCIENTIST_2)
+            end
+        case 5: 
+            setvar(VAR_OBJ_GFX_ID_A, OBJ_EVENT_GFX_WALLY)
+            end
+        }
+    }
+}
+
+
+script Checkpoint6_EventScript_GameSign {
+	lockall
+	msgbox(format("Checkpoint 6:/n The last bastion of hope."))
+    releaseall
+}
+
+script Checkpoint6_EventScript_GameSign2 {
+	lockall
+	msgbox(format("LOCK ROUTES: When you see these signs beware!"))
+	msgbox(format("You will lose access to your PC and there will be no free healing on the route!"))
+	msgbox(format("Choose your party carefully and bring healing items!"))
+    msgbox(format("PC access will be restored upon leaving the area."))
+    releaseall
+}
+
+script Random_NPC_CheckPoint6 {
+    switch (var(VAR_CHECKPOINT5_NPC_STATE)){
+        case 0:
+        case 1: 
+            // If this trainer has been beaten, skip to the else
+            if (defeated(TRAINER_REF030A_BONUS_STONES_5) == false){
+            msgbox(format("Battle for an opportunity to purchase EVOLUTION STONES?"), MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES){
+                call(Event_Script_NPC_Stones_CP6)
+                }
+            }
+            // call the script with no intro
+            else{
+            call(Event_Script_NPC_Stones_CP6)
+            }
+        case 2:
+        case 3: 
+            if (defeated(TRAINER_REF030B_BONUS_HELD_ITEMS_5) == false){
+                msgbox(format("Battle for an opportunity to purchase HELD ITEMS?"), MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES){
+                call(Event_Script_NPC_Held_Items_CP6)
+                }
+            }
+            else{
+                call(Event_Script_NPC_Held_Items_CP6)
+            }
+        case 4: 
+            if (defeated(TRAINER_REF030C_BONUS_ABILITIES_5) == false){
+                msgbox(format("Battle for an opportunity to purchase ABILITY ITEMS?"), MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES){
+                call(Event_Script_NPC_Abilities_CP6)
+                }
+            }
+            else{
+                call(Event_Script_NPC_Abilities_CP6)
+            }
+        case 5: 
+            if (defeated(TRAINER_REF030D_BONUS_TMS_5) == false){
+                msgbox(format("Battle for an opportunity to purchase TM ITEMS?"), MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES){
+                call(Event_Script_NPC_TMS_CP6)
+                }
+            }
+            else{
+                call(Event_Script_NPC_TMS_CP6)
+            }
+    }
+    //release for saftey
+    releaseall
+}
+
+
+script Event_Script_NPC_Stones_CP6{
+    trainerbattle_single(TRAINER_REF030A_BONUS_STONES_4, Intro_CP6, Outro_CP6)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_Stones)
+	release
+	end
+}
+
+script Event_Script_NPC_Held_Items_CP6{
+    trainerbattle_single(TRAINER_REF030B_BONUS_HELD_ITEMS_4, Intro_CP6, Outro_CP6)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_Held_Items)
+	release
+	end
+}
+
+script Event_Script_NPC_Abilities_CP6{
+    trainerbattle_single(TRAINER_REF030C_BONUS_ABILITIES_4, Intro_CP6, Outro_CP6)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_Abilities)
+	release
+	end
+}
+
+script Event_Script_NPC_TMS_CP6{
+    trainerbattle_single(TRAINER_REF030D_BONUS_TMS_4, Intro_CP6, Outro_CP6)
+    lock
+	message("What will you choose?")
+	waitmessage
+	pokemart(MartInventory_TMS)
+	release
+	end
+}
+
+
+text Intro_CP6{
+	format("You've accepted the challenge!")
+}
+
+text Outro_CP6{
+	format("Access to the special items is granted!")
+}
