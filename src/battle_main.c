@@ -1823,8 +1823,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u32 nameHash = 0;
     u32 personalityValue;
     u8 fixedIV;
+    u8 level;
     s32 i, j;
     u8 monsCount;
+    u8 friendship;
 
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
@@ -1927,6 +1929,66 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 }
                 SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].abilityNums);
                 break;
+            }
+            case F_TRAINER_PARTY_CUSTOM_MON:
+            {
+                const struct TrainerMon *partyData = gTrainers[trainerNum].party.TrainerMon;
+
+                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+
+                // Set friendship to 1 or 255
+                if (partyData[i].friendship == FRIENDSHIP_FRUSTRATION)
+                {
+                    friendship = 0;
+                    SetMonData(&party[i], MON_DATA_FRIENDSHIP, &friendship);
+                }
+                else if (partyData[i].friendship > 0)
+                    SetMonData(&party[i], MON_DATA_FRIENDSHIP, &partyData[i].friendship);
+
+                // Set ability index to 0, 1, or 2
+                SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].abilityNums);
+
+                // Set the ball the mon is in
+                if (partyData[i].ball > 0)
+                    SetMonData(&party[i], MON_DATA_POKEBALL, &partyData[i].ball);
+
+                // Set the held item
+                if (partyData[i].heldItem > 0)
+                    SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+
+                // iterate through the moves and set each
+                for (j = 0; j < MAX_MON_MOVES; j++)
+                {
+                    SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
+                    SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
+                }
+
+                // Set the IVs if it is defined from 1-255
+                if (partyData[i].iv > 0)
+                {
+                    for (j = 0; j < NUM_STATS; j++)
+                    {
+                        SetMonData(&party[i], MON_DATA_HP_IV + j, &partyData[i].iv);
+                    }
+                }
+                // Else if set to worse, assign 1 in each stat
+                else if (partyData[i].iv == WORST_IVS)
+                {
+                    fixedIV = 0;
+
+                    for (j = 0; j < NUM_STATS; j++)
+                    {
+                        SetMonData(&party[i], MON_DATA_HP_IV + j, &fixedIV);
+                    }
+                }
+                else
+                {
+                    for (j = 0; j < NUM_STATS; j++)
+                    {
+                        SetMonData(&party[i], MON_DATA_HP_IV + j, &partyData[i].ivs[j]);
+                    }
+                }
+                CalculateMonStats(&party[i]);
             }
             }
         }
