@@ -526,7 +526,7 @@ void AI_TrySwitchOrUseItem(void)
         {
             if (*(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) == PARTY_SIZE)
             {
-                s32 monToSwitchId = GetMostSuitableMonToSwitchInto();
+                s32 monToSwitchId = GetMostSuitableMonToSwitchInto(TRUE);
                 if (monToSwitchId == PARTY_SIZE)
                 {
                     if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
@@ -576,13 +576,16 @@ void AI_TrySwitchOrUseItem(void)
 
 // If there are two(or more) mons to choose from, always choose one that has baton pass
 // as most often it can't do much on its own.
-static u32 GetBestMonBatonPass(struct Pokemon *party, int firstId, int lastId, u8 invalidMons, int aliveCount)
+static u32 GetBestMonBatonPass(struct Pokemon *party, int firstId, int lastId, u8 invalidMons, int aliveCount, bool8 checkSurvivability)
 {
     int i, j, bits = 0;
 
     for (i = firstId; i < lastId; i++)
     {
         if (invalidMons & gBitTable[i])
+            continue;
+
+        if (checkSurvivability && CanTargetFaintAiWithMod(BATTLE_OPPOSITE(i), i, 0, 0))
             continue;
 
         for (j = 0; j < MAX_MON_MOVES; j++)
@@ -607,7 +610,7 @@ static u32 GetBestMonBatonPass(struct Pokemon *party, int firstId, int lastId, u
     return PARTY_SIZE;
 }
 
-static u32 GetBestMonTypeMatchup(struct Pokemon *party, int firstId, int lastId, u8 invalidMons, u32 opposingBattler)
+static u32 GetBestMonTypeMatchup(struct Pokemon *party, int firstId, int lastId, u8 invalidMons, u32 opposingBattler, bool8 checkSurvivability)
 {
     int i, bits = 0;
 
@@ -618,6 +621,9 @@ static u32 GetBestMonTypeMatchup(struct Pokemon *party, int firstId, int lastId,
         // Find the mon whose type is the most suitable defensively.
         for (i = firstId; i < lastId; i++)
         {
+            if (checkSurvivability && CanTargetFaintAiWithMod(BATTLE_OPPOSITE(i), i, 0, 0))
+                continue;
+
             if (!(gBitTable[i] & invalidMons) && !(gBitTable[i] & bits))
             {
                 u16 species = GetMonData(&party[i], MON_DATA_SPECIES);
@@ -669,7 +675,7 @@ static u32 GetBestMonTypeMatchup(struct Pokemon *party, int firstId, int lastId,
     return PARTY_SIZE;
 }
 
-static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 invalidMons, u32 opposingBattler)
+static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 invalidMons, u32 opposingBattler, bool8 checkSurvivability)
 {
     int i, j;
     int bestDmg = 0;
@@ -680,6 +686,9 @@ static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 inva
     for (i = firstId; i < lastId; i++)
     {
         if (gBitTable[i] & invalidMons)
+            continue;
+
+        if (checkSurvivability && CanTargetFaintAiWithMod(BATTLE_OPPOSITE(i), i, 0, 0))
             continue;
 
         for (j = 0; j < MAX_MON_MOVES; j++)
@@ -700,7 +709,7 @@ static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 inva
     return bestMonId;
 }
 
-u8 GetMostSuitableMonToSwitchInto(void)
+u8 GetMostSuitableMonToSwitchInto(bool8 checkSurvivability)
 {
     u32 opposingBattler = 0;
     u32 bestMonId = 0;
@@ -757,16 +766,21 @@ u8 GetMostSuitableMonToSwitchInto(void)
             aliveCount++;
     }
 
-    bestMonId = GetBestMonBatonPass(party, firstId, lastId, invalidMons, aliveCount);
+    bestMonId = GetBestMonBatonPass(party, firstId, lastId, invalidMons, aliveCount, checkSurvivability);
     if (bestMonId != PARTY_SIZE)
         return bestMonId;
 
-    bestMonId = GetBestMonTypeMatchup(party, firstId, lastId, invalidMons, opposingBattler);
+    bestMonId = GetBestMonTypeMatchup(party, firstId, lastId, invalidMons, opposingBattler, checkSurvivability);
     if (bestMonId != PARTY_SIZE)
         return bestMonId;
 
-    bestMonId = GetBestMonDmg(party, firstId, lastId, invalidMons, opposingBattler);
+    bestMonId = GetBestMonDmg(party, firstId, lastId, invalidMons, opposingBattler, checkSurvivability);
     if (bestMonId != PARTY_SIZE)
+        return bestMonId;
+
+
+    if (checkSurvivability && bestMonId == PARTY_SIZE)
+        bestMonId = GetMostSuitableMonToSwitchInto(FALSE);
         return bestMonId;
 
     return PARTY_SIZE;
