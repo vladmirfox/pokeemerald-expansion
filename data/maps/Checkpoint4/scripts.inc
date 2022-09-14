@@ -30,9 +30,9 @@ Checkpoint4_MapScripts_MAP_SCRIPT_ON_TRANSITION_5:
 	end
 
 
-Route104_EventScript_GameSign::
+Checkpoint4_EventScript_GameSign::
 	lockall
-	msgbox Route104_EventScript_GameSign_Text_0
+	msgbox Checkpoint4_EventScript_GameSign_Text_0
 	releaseall
 	return
 
@@ -154,7 +154,7 @@ Event_Script_NPC_TMS_CP4::
 	end
 
 
-Route104_EventScript_GameSign_Text_0:
+Checkpoint4_EventScript_GameSign_Text_0:
 	.string "Checkpoint 4: Honestly we can't believe\n"
 	.string "you made it this far!$"
 

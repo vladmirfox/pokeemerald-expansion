@@ -1,47 +1,109 @@
 Route106_MapScripts::
 	.byte 0
 
-Route106_EventScript_TrainerTipsSign::
-	msgbox Route106_Text_TrainerTips, MSGBOX_SIGN
+Route106_EventScript_Trainer_025::
+	trainerbattle_single TRAINER_REF025_RT106, Intro_025, Outro_025
+	msgbox Route106_EventScript_Trainer_025_Text_0, MSGBOX_AUTOCLOSE
+	waitmessage
 	end
 
-Route106_EventScript_Douglas::
-	trainerbattle_single TRAINER_DOUGLAS, Route106_Text_DouglasIntro, Route106_Text_DouglasDefeated
-	msgbox Route106_Text_DouglasPostBattle, MSGBOX_AUTOCLOSE
+
+Route106_EventScript_Trainer_026::
+	trainerbattle_single TRAINER_REF026_RT106, Intro_026, Outro_026
+	msgbox Route106_EventScript_Trainer_026_Text_0, MSGBOX_AUTOCLOSE
+	waitmessage
 	end
 
-Route106_EventScript_Kyla::
-	trainerbattle_single TRAINER_KYLA, Route106_Text_KylaIntro, Route106_Text_KylaDefeated
-	msgbox Route106_Text_KylaPostBattle, MSGBOX_AUTOCLOSE
+
+Route106_EventScript_Trainer_027::
+	trainerbattle_single TRAINER_REF027_RT106, Intro_027, Outro_027
+	msgbox Route106_EventScript_Trainer_027_Text_0, MSGBOX_AUTOCLOSE
+	waitmessage
 	end
 
-Route106_EventScript_Elliot::
-	trainerbattle_single TRAINER_ELLIOT_1, Route106_Text_ElliotIntro, Route106_Text_ElliotDefeated, Route106_EventScript_ElliotRegisterMatchCallAfterBattle
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, Route106_EventScript_ElliotRematch
-	msgbox Route106_Text_ElliotPostBattle, MSGBOX_DEFAULT
+
+Route106_EventScript_Trainer_028::
+	trainerbattle_single TRAINER_REF028_RT106_BOSS, Intro_028, Outro_028
+	msgbox Route106_EventScript_Trainer_028_Text_0, MSGBOX_AUTOCLOSE
+	waitmessage
+	end
+
+
+Route106_EventScript_Trainer_029::
+	trainerbattle_single TRAINER_REF029_RT106_GUARDIAN, Intro_029, Outro_029
+	msgbox Route106_EventScript_Trainer_029_Text_0, MSGBOX_AUTOCLOSE
+	waitmessage
+	end
+
+
+Route106_Healer::
+	lock
+	faceplayer
+	msgbox Route106_Healer_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq Route106_Healer_1
+	msgbox Route106_Healer_Text_2, MSGBOX_NPC
+	return
+
+Route106_Healer_1:
+	incrementgamestat GAME_STAT_USED_POKECENTER
+	special HealPlayerParty
+	msgbox Route106_Healer_Text_1
+	waitmessage
 	release
 	end
 
-Route106_EventScript_ElliotRegisterMatchCallAfterBattle::
-	special PlayerFaceTrainerAfterBattle
-	waitmovement 0
-	msgbox Route106_Text_ElliotRegister, MSGBOX_DEFAULT
-	register_matchcall TRAINER_ELLIOT_1
-	release
-	end
 
-Route106_EventScript_ElliotRematch::
-	trainerbattle_rematch TRAINER_ELLIOT_1, Route106_Text_ElliotRematchIntro, Route106_Text_ElliotRematchDefeated
-	msgbox Route106_Text_ElliotRematchPostBattle, MSGBOX_AUTOCLOSE
-	end
+Route106_EventScript_Trainer_025_Text_0:
+	.string "You're one strong trainer.$"
 
-Route106_EventScript_Ned::
-	trainerbattle_single TRAINER_NED, Route106_Text_NedIntro, Route106_Text_NedDefeated
-	msgbox Route106_Text_NedPostBattle, MSGBOX_AUTOCLOSE
-	end
+Route106_EventScript_Trainer_026_Text_0:
+	.string "I really dislike the weather here.$"
 
-Route106_Text_TrainerTips:
-	.string "TRAINER TIPS\p"
-	.string "Advice on catching POKéMON with a ROD:\n"
-	.string "Press the A Button if you get a bite.$"
+Route106_EventScript_Trainer_027_Text_0:
+	.string "Nice strategy!$"
+
+Route106_EventScript_Trainer_028_Text_0:
+	.string "You've got permission to move on.$"
+
+Route106_EventScript_Trainer_029_Text_0:
+	.string "Masterful execution.$"
+
+Route106_Healer_Text_0:
+	.string "Would you like me to heal your party?$"
+
+Route106_Healer_Text_1:
+	.string "Good luck.$"
+
+Route106_Healer_Text_2:
+	.string "Alright then.$"
+
+Intro_025::
+	.string "Let's get started.$"
+
+Outro_025::
+	.string "You know your stuff.$"
+
+Intro_026::
+	.string "I challenge you!$"
+
+Outro_026::
+	.string "I've got a lot to learn.$"
+
+Intro_027::
+	.string "Finally, we meet.$"
+
+Outro_027::
+	.string "You just can't be stopped!$"
+
+Intro_028::
+	.string "Let me show you what I can do.$"
+
+Outro_028::
+	.string "I'm noticing a pattern here.$"
+
+Intro_029::
+	.string "You think you've got what it takes?$"
+
+Outro_029::
+	.string "I guess you did have what it takes.$"

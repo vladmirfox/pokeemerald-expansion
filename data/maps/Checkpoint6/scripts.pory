@@ -38,8 +38,8 @@ script Checkpoint6_EventScript_GameSign2 {
     releaseall
 }
 
-script Random_NPC_CheckPoint6 {
-    switch (var(VAR_CHECKPOINT5_NPC_STATE)){
+script Random_NPC_CheckPoint6{
+    switch (var(VAR_CHECKPOINT6_NPC_STATE)){
         case 0:
         case 1: 
             // If this trainer has been beaten, skip to the else
@@ -91,7 +91,7 @@ script Random_NPC_CheckPoint6 {
 
 
 script Event_Script_NPC_Stones_CP6{
-    trainerbattle_single(TRAINER_REF030A_BONUS_STONES_4, Intro_CP6, Outro_CP6)
+    trainerbattle_single(TRAINER_REF030A_BONUS_STONES_5, Intro_CP6, Outro_CP6)
     lock
 	message("What will you choose?")
 	waitmessage
@@ -101,7 +101,7 @@ script Event_Script_NPC_Stones_CP6{
 }
 
 script Event_Script_NPC_Held_Items_CP6{
-    trainerbattle_single(TRAINER_REF030B_BONUS_HELD_ITEMS_4, Intro_CP6, Outro_CP6)
+    trainerbattle_single(TRAINER_REF030B_BONUS_HELD_ITEMS_5, Intro_CP6, Outro_CP6)
     lock
 	message("What will you choose?")
 	waitmessage
@@ -111,7 +111,7 @@ script Event_Script_NPC_Held_Items_CP6{
 }
 
 script Event_Script_NPC_Abilities_CP6{
-    trainerbattle_single(TRAINER_REF030C_BONUS_ABILITIES_4, Intro_CP6, Outro_CP6)
+    trainerbattle_single(TRAINER_REF030C_BONUS_ABILITIES_5, Intro_CP6, Outro_CP6)
     lock
 	message("What will you choose?")
 	waitmessage
@@ -121,7 +121,7 @@ script Event_Script_NPC_Abilities_CP6{
 }
 
 script Event_Script_NPC_TMS_CP6{
-    trainerbattle_single(TRAINER_REF030D_BONUS_TMS_4, Intro_CP6, Outro_CP6)
+    trainerbattle_single(TRAINER_REF030D_BONUS_TMS_5, Intro_CP6, Outro_CP6)
     lock
 	message("What will you choose?")
 	waitmessage

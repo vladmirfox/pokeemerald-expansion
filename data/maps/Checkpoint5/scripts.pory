@@ -22,12 +22,12 @@ mapscripts Checkpoint5_MapScripts {
     }
 }
 
-script Random_NPC_CheckPoint5 {
+script Random_NPC_CheckPoint5{
     switch (var(VAR_CHECKPOINT5_NPC_STATE)){
         case 0:
         case 1: 
             // If this trainer has been beaten, skip to the else
-            if (defeated(TRAINER_REF030A_BONUS_STONES_5) == false){
+            if (defeated(TRAINER_REF024A_BONUS_STONES_4) == false){
             msgbox(format("Battle for an opportunity to purchase EVOLUTION STONES?"), MSGBOX_YESNO)
                 if(var(VAR_RESULT) == YES){
                 call(Event_Script_NPC_Stones_CP5)
@@ -39,7 +39,7 @@ script Random_NPC_CheckPoint5 {
             }
         case 2:
         case 3: 
-            if (defeated(TRAINER_REF030B_BONUS_HELD_ITEMS_5) == false){
+            if (defeated(TRAINER_REF024B_BONUS_HELD_ITEMS_4) == false){
                 msgbox(format("Battle for an opportunity to purchase HELD ITEMS?"), MSGBOX_YESNO)
                 if(var(VAR_RESULT) == YES){
                 call(Event_Script_NPC_Held_Items_CP5)
@@ -49,7 +49,7 @@ script Random_NPC_CheckPoint5 {
                 call(Event_Script_NPC_Held_Items_CP5)
             }
         case 4: 
-            if (defeated(TRAINER_REF030C_BONUS_ABILITES_5) == false){
+            if (defeated(TRAINER_REF024C_BONUS_ABILITIES_4) == false){
                 msgbox(format("Battle for an opportunity to purchase ABILITY ITEMS?"), MSGBOX_YESNO)
                 if(var(VAR_RESULT) == YES){
                 call(Event_Script_NPC_Abilities_CP5)
@@ -59,7 +59,7 @@ script Random_NPC_CheckPoint5 {
                 call(Event_Script_NPC_Abilities_CP5)
             }
         case 5: 
-            if (defeated(TRAINER_REF030D_BONUS_TMS_5) == false){
+            if (defeated(TRAINER_REF024D_BONUS_TMS_4) == false){
                 msgbox(format("Battle for an opportunity to purchase TM ITEMS?"), MSGBOX_YESNO)
                 if(var(VAR_RESULT) == YES){
                 call(Event_Script_NPC_TMS_CP5)

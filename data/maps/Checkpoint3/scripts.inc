@@ -30,19 +30,19 @@ Checkpoint3_MapScripts_MAP_SCRIPT_ON_TRANSITION_5:
 	end
 
 
-Route103_EventScript_GameSign::
+Checkpoint3_EventScript_GameSign::
 	lockall
-	msgbox Route103_EventScript_GameSign_Text_0
-	msgbox Route103_EventScript_GameSign_Text_1
-	msgbox Route103_EventScript_GameSign_Text_2
-	msgbox Route103_EventScript_GameSign_Text_3
+	msgbox Checkpoint3_EventScript_GameSign_Text_0
+	msgbox Checkpoint3_EventScript_GameSign_Text_1
+	msgbox Checkpoint3_EventScript_GameSign_Text_2
+	msgbox Checkpoint3_EventScript_GameSign_Text_3
 	releaseall
 	return
 
 
-Route103_EventScript_GameSign2::
+Checkpoint3_EventScript_GameSign2::
 	lockall
-	msgbox Route103_EventScript_GameSign2_Text_0
+	msgbox Checkpoint3_EventScript_GameSign2_Text_0
 	releaseall
 	return
 
@@ -164,24 +164,24 @@ Event_Script_NPC_TMS_CP3::
 	end
 
 
-Route103_EventScript_GameSign_Text_0:
+Checkpoint3_EventScript_GameSign_Text_0:
 	.string "LOCK ROUTES: When you see these signs\n"
 	.string "beware!$"
 
-Route103_EventScript_GameSign_Text_1:
+Checkpoint3_EventScript_GameSign_Text_1:
 	.string "You will lose access to your PC and\n"
 	.string "there will be no free healing on the\l"
 	.string "route!$"
 
-Route103_EventScript_GameSign_Text_2:
+Checkpoint3_EventScript_GameSign_Text_2:
 	.string "Choose your party carefully and bring\n"
 	.string "healing items!$"
 
-Route103_EventScript_GameSign_Text_3:
+Checkpoint3_EventScript_GameSign_Text_3:
 	.string "PC access will be restored upon leaving\n"
 	.string "the area.$"
 
-Route103_EventScript_GameSign2_Text_0:
+Checkpoint3_EventScript_GameSign2_Text_0:
 	.string "Checkpoint 3:/n Where the going gets\n"
 	.string "rough.$"
 
