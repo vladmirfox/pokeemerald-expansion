@@ -587,7 +587,7 @@ static u32 GetBestMonBatonPass(struct Pokemon *party, int firstId, int lastId, u
         if (invalidMons & gBitTable[i])
             continue;
 
-        if (AI_CheckSurvivabilty(checkSurvivability, BATTLE_OPPOSITE(i), i))
+        if (AI_CheckSurvivabilty(checkSurvivability, BATTLE_OPPOSITE(gActiveBattler), i))
             continue;
 
         for (j = 0; j < MAX_MON_MOVES; j++)
@@ -620,7 +620,7 @@ static u32 GetBestMonTypeMatchup(struct Pokemon *party, int firstId, int lastId,
     // Find the mon whose type is the most suitable defensively.
     for (i = firstId; i < lastId; i++)
     {
-        if (AI_CheckSurvivabilty(checkSurvivability, BATTLE_OPPOSITE(i), i))
+        if (AI_CheckSurvivabilty(checkSurvivability, BATTLE_OPPOSITE(gActiveBattler), i))
             continue;
 
         if (!(gBitTable[i] & invalidMons) && !(gBitTable[i] & bits))
@@ -657,7 +657,7 @@ static u32 GetBestMonTypeMatchup(struct Pokemon *party, int firstId, int lastId,
          // Find the mon that has an attack most suited offensively
         for (i = firstId; i < lastId; i++)
         {
-            if (AI_CheckSurvivabilty(checkSurvivability, BATTLE_OPPOSITE(i), i))
+            if (AI_CheckSurvivabilty(checkSurvivability, BATTLE_OPPOSITE(gActiveBattler), i))
                 continue;
 
             for (i = 0; i < MAX_MON_MOVES; i++)
@@ -688,7 +688,7 @@ static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 inva
         if (gBitTable[i] & invalidMons)
             continue;
 
-        if (AI_CheckSurvivabilty(checkSurvivability, BATTLE_OPPOSITE(i), i))
+        if (AI_CheckSurvivabilty(checkSurvivability, BATTLE_OPPOSITE(gActiveBattler), i))
             continue;
 
         for (j = 0; j < MAX_MON_MOVES; j++)
@@ -995,12 +995,16 @@ static bool32 AI_CheckSurvivabilty(bool8 checkSurvivability, int playerPokemon, 
 
     if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING)
         {
-            if (CanTargetFaintAiWithMod(playerPokemon, aiPokemon , 0, 0)) 
+            //Opponent can OHKO AI, don't send this Pokemon out
+            if (CanTargetFaintAiWithMod(playerPokemon, aiPokemon, 0, 0)) 
                 return TRUE;
-            else if (CanTargetFaintAiWithMod(playerPokemon, aiPokemon, 0, 2) //Can 2HKO AI
-                    && !WillAIStrikeFirst())
-                return TRUE;
+
+            //Opponent can 2HKO AI and AI cannot strike first
+            //ToDo: Modify for switches when AI has already attacked (Volt Switch etc.)
+            if (CanTargetFaintAiWithMod(playerPokemon, aiPokemon, 0, 2)        
+                && GetWhoStrikesFirst(playerPokemon, aiPokemon, TRUE) == 0)
+                 return TRUE;  
         }
-    
+
     return FALSE;
 }
