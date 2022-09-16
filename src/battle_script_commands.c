@@ -13446,6 +13446,15 @@ static void Cmd_pickup(void)
                     SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
                 }
             }
+        #if P_SHUCKLE_BERRY_JUICE == TRUE
+            else if (species == SPECIES_SHUCKLE
+                && heldItem == ITEM_ORAN_BERRY
+                && (Random() % 16) == 0)
+            {
+                heldItem = ITEM_BERRY_JUICE;
+                SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
+            }
+        #endif
         }
     }
     else
@@ -13494,6 +13503,15 @@ static void Cmd_pickup(void)
                     SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
                 }
             }
+        #if P_SHUCKLE_BERRY_JUICE == TRUE
+            else if (species == SPECIES_SHUCKLE
+                && heldItem == ITEM_ORAN_BERRY
+                && (Random() % 16) == 0)
+            {
+                heldItem = ITEM_BERRY_JUICE;
+                SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
+            }
+        #endif
         }
     }
 

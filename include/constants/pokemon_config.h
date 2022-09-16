@@ -9,6 +9,7 @@
 #define P_LEGENDARY_PERFECT_IVS GEN_LATEST  // Since Gen 6, Legendaries, Mythicals and Ultra Beasts found in the wild or given through gifts have at least 3 perfect IVs.
 #define P_KADABRA_EVERSTONE     GEN_LATEST  // Since Gen 4, Kadabra can evolve even when holding an Everstone.
 #define P_NIDORAN_M_DITTO_BREED GEN_LATEST  // Since Gen 5, when Nidoran♂ breeds with Ditto it can produce Nidoran♀ offspring. Before, it would only yield male offspring. This change also applies to Volbeat.
+#define P_SHUCKLE_BERRY_JUICE   TRUE        // In Gen 2, Shuckle had a 1/16 chance of converting Berry that it's holding into Berry Juice. Setting this to TRUE will allow to do this with an Oran Berry, which is the spiritual succesor of the Berry item.
 
 #define P_NEW_POKEMON           TRUE        // Turning this to FALSE will remove all newly added Pokémon and Forms. Only Unown, Castform and Deoxys forms will remain.
 
