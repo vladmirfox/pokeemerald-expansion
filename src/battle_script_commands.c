@@ -13435,7 +13435,6 @@ static void Cmd_pickup(void)
                 heldItem = GetBattlePyramidPickupItemId();
                 SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
             }
-            #if (defined ITEM_HONEY)
             else if (ability == ABILITY_HONEY_GATHER
                 && species != 0
                 && species != SPECIES_EGG
@@ -13447,7 +13446,6 @@ static void Cmd_pickup(void)
                     SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
                 }
             }
-            #endif
         }
     }
     else
@@ -13485,7 +13483,6 @@ static void Cmd_pickup(void)
                     }
                 }
             }
-            #if (defined ITEM_HONEY)
             else if (ability == ABILITY_HONEY_GATHER
                 && species != 0
                 && species != SPECIES_EGG
@@ -13497,7 +13494,6 @@ static void Cmd_pickup(void)
                     SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
                 }
             }
-            #endif
         }
     }
 
@@ -14518,10 +14514,8 @@ static bool32 CriticalCapture(u32 odds)
     else
         odds = (odds * 250) / 100;
 
-    #ifdef ITEM_CATCHING_CHARM
     if (CheckBagHasItem(ITEM_CATCHING_CHARM, 1))
         odds = (odds * (100 + B_CATCHING_CHARM_BOOST)) / 100;
-    #endif
 
     odds /= 6;
     if ((Random() % 255) < odds)

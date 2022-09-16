@@ -174,10 +174,8 @@ bool32 IsViableZMove(u8 battlerId, u16 move)
     if (gBattleTypeFlags & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FRONTIER))
         return FALSE;
 
-    #ifdef ITEM_Z_RING
-    if ((GetBattlerPosition(battlerId) == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battlerId) == B_POSITION_PLAYER_RIGHT)) && !CheckBagHasItem(ITEM_Z_RING, 1))
+    if ((GetBattlerPosition(battlerId) == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battlerId) == B_POSITION_PLAYER_RIGHT)) && !CheckBagHasItem(ITEM_Z_POWER_RING, 1))
         return FALSE;
-    #endif
 
     if (mega->alreadyEvolved[battlerPosition])
         return FALSE;   // Trainer has mega evolved
@@ -198,11 +196,7 @@ bool32 IsViableZMove(u8 battlerId, u16 move)
     else
         holdEffect = ItemId_GetHoldEffect(item);
 
-    #ifdef ITEM_ULTRANECROZIUM_Z
-    if (holdEffect == HOLD_EFFECT_Z_CRYSTAL || item == ITEM_ULTRANECROZIUM_Z)
-    #else
     if (holdEffect == HOLD_EFFECT_Z_CRYSTAL)
-    #endif
     {
         u16 zMove = GetSignatureZMove(move, gBattleMons[battlerId].species, item);
         if (zMove != MOVE_NONE)
