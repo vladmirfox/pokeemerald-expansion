@@ -22,7 +22,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SETUP_FIRST_TURN,
-        .party = ITEM_CUSTOM_MOVES(sParty_REF001),
+        .party = CUSTOM_PARTY(sParty_REF001),
     },
 
     [TRAINER_REF002_RT101_BOSS] =

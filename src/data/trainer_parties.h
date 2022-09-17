@@ -1,11 +1,15 @@
-static const struct TrainerMonItemCustomMoves sParty_REF001[] = {
+static const struct TrainerMon sParty_REF001[] = {
     {
-    .iv = 0,
+    .ivs = BEST_IV_SPREAD_HIDDEN_POWER_WATER,
     .lvl = 5,
     .species = SPECIES_TREECKO,
     .heldItem = ITEM_ORAN_BERRY,
+    .gender = FEMALE,
+    .nature = NATURE_HARDY,
+    .ball = BALL_ULTRA,
+    .friendship = FRIENDSHIP_RETURN,
     .abilityNums = 0,
-    .moves = {MOVE_LEECH_SEED, MOVE_TACKLE, MOVE_ABSORB, MOVE_NONE}
+    .moves = {MOVE_HIDDEN_POWER, MOVE_NONE, MOVE_NONE, MOVE_NONE}
     }
 };
 
