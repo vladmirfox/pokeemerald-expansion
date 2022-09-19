@@ -18,8 +18,8 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_MEOWTH] = sMeowthFormSpeciesIdTable,
     [SPECIES_PERSIAN] = sPersianFormSpeciesIdTable,
     [SPECIES_ALAKAZAM] = sAlakazamFormSpeciesIdTable,
-    [SPECIES_GROWLITHE] = sGrowlitheFormSpeciesIdTable,	
-    [SPECIES_ARCANINE] = sArcanineFormSpeciesIdTable,	
+    [SPECIES_GROWLITHE] = sGrowlitheFormSpeciesIdTable,
+    [SPECIES_ARCANINE] = sArcanineFormSpeciesIdTable,
     [SPECIES_GEODUDE] = sGeodudeFormSpeciesIdTable,
     [SPECIES_GRAVELER] = sGravelerFormSpeciesIdTable,
     [SPECIES_GOLEM] = sGolemFormSpeciesIdTable,
@@ -176,10 +176,13 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_AUDINO] = sAudinoFormSpeciesIdTable,
     [SPECIES_BASCULIN] = sBasculinFormSpeciesIdTable,
     [SPECIES_BASCULIN_BLUE_STRIPED] = sBasculinFormSpeciesIdTable,
+    [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinFormSpeciesIdTable,
     [SPECIES_LILLIGANT] = sLilligantFormSpeciesIdTable,
     [SPECIES_DARUMAKA] = sDarumakaFormSpeciesIdTable,
     [SPECIES_DARMANITAN] = sDarmanitanFormSpeciesIdTable,
     [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanFormSpeciesIdTable,
+    [SPECIES_DARMANITAN_GALARIAN] = sDarmanitanFormSpeciesIdTable,
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = sDarmanitanFormSpeciesIdTable,
     [SPECIES_YAMASK] = sYamaskFormSpeciesIdTable,	
     [SPECIES_ZORUA] = sZoruaFormSpeciesIdTable,
     [SPECIES_ZOROARK] = sZoroarkFormSpeciesIdTable,
@@ -227,7 +230,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_GOODRA] = sGoodraFormSpeciesIdTable,
     [SPECIES_PUMPKABOO] = sPumpkabooFormSpeciesIdTable,
     [SPECIES_GOURGEIST] = sGourgeistFormSpeciesIdTable,
-    [SPECIES_AVALUGG] = sAvaluggFormSpeciesIdTable,	
+    [SPECIES_AVALUGG] = sAvaluggFormSpeciesIdTable,
     [SPECIES_XERNEAS] = sXerneasFormSpeciesIdTable,
     [SPECIES_ZYGARDE] = sZygardeFormSpeciesIdTable,
     [SPECIES_DIANCIE] = sDiancieFormSpeciesIdTable,
@@ -357,7 +360,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_LINOONE_GALARIAN] = sLinooneFormSpeciesIdTable,
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_DARUMAKA_GALARIAN] = sDarumakaFormSpeciesIdTable,
-    [SPECIES_DARMANITAN_GALARIAN] = sDarmanitanFormSpeciesIdTable,
     [SPECIES_YAMASK_GALARIAN] = sYamaskFormSpeciesIdTable,
     [SPECIES_STUNFISK_GALARIAN] = sStunfiskFormSpeciesIdTable,
 #endif
@@ -408,12 +410,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 
     [SPECIES_ARCEUS_FAIRY] = sArceusFormSpeciesIdTable,
 #endif
-#if P_GEN_5_POKEMON == TRUE
 
-    [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinFormSpeciesIdTable,
-    // Darmanitan
-    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = sDarmanitanFormSpeciesIdTable,
-#endif
 #if P_GEN_6_POKEMON == TRUE
     // Greninja
     [SPECIES_GRENINJA_BATTLE_BOND] = sGreninjaFormSpeciesIdTable,
