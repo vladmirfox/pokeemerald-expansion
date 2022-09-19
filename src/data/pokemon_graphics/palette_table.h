@@ -1156,7 +1156,7 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
 #if P_GEN_5_POKEMON == TRUE
     SPECIES_PAL(BASCULIN_WHITE_STRIPED, gMonPalette_BasculinWhiteStriped),
 
-    SPECIES_PAL(DARMANITAN_ZEN_MODE_GALARIAN, gMonPalette_DarmanitanZenModeGalarian),
+    SPECIES_PAL(DARMANITAN_GALARIAN_ZEN_MODE, gMonPalette_DarmanitanGalarianZenMode),
 #endif
 
 #if P_GEN_6_POKEMON == TRUE
@@ -1294,14 +1294,14 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
 
     SPECIES_PAL(POLTEAGEIST_ANTIQUE, gMonPalette_Polteageist),
 
-    SPECIES_PAL(ALCREMIE_RUBY_CREAM, gMonPalette_AlcremieRubyCream),
-    SPECIES_PAL(ALCREMIE_MATCHA_CREAM, gMonPalette_AlcremieMatchaCream),
-    SPECIES_PAL(ALCREMIE_MINT_CREAM, gMonPalette_AlcremieMintCream),
-    SPECIES_PAL(ALCREMIE_LEMON_CREAM, gMonPalette_AlcremieLemonCream),
-    SPECIES_PAL(ALCREMIE_SALTED_CREAM, gMonPalette_AlcremieSaltedCream),
-    SPECIES_PAL(ALCREMIE_RUBY_SWIRL, gMonPalette_AlcremieRubySwirl),
-    SPECIES_PAL(ALCREMIE_CARAMEL_SWIRL, gMonPalette_AlcremieCaramelSwirl),
-    SPECIES_PAL(ALCREMIE_RAINBOW_SWIRL, gMonPalette_AlcremieRainbowSwirl),
+    SPECIES_PAL(ALCREMIE_STRAWBERRY_RUBY_CREAM, gMonPalette_AlcremieRubyCream),
+    SPECIES_PAL(ALCREMIE_STRAWBERRY_MATCHA_CREAM, gMonPalette_AlcremieMatchaCream),
+    SPECIES_PAL(ALCREMIE_STRAWBERRY_MINT_CREAM, gMonPalette_AlcremieMintCream),
+    SPECIES_PAL(ALCREMIE_STRAWBERRY_LEMON_CREAM, gMonPalette_AlcremieLemonCream),
+    SPECIES_PAL(ALCREMIE_STRAWBERRY_SALTED_CREAM, gMonPalette_AlcremieSaltedCream),
+    SPECIES_PAL(ALCREMIE_STRAWBERRY_RUBY_SWIRL, gMonPalette_AlcremieRubySwirl),
+    SPECIES_PAL(ALCREMIE_STRAWBERRY_CARAMEL_SWIRL, gMonPalette_AlcremieCaramelSwirl),
+    SPECIES_PAL(ALCREMIE_STRAWBERRY_RAINBOW_SWIRL, gMonPalette_AlcremieRainbowSwirl),
 
     SPECIES_PAL(EISCUE_NOICE_FACE, gMonPalette_EiscueNoiceFace),
 

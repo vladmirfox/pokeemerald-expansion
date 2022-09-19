@@ -1179,7 +1179,7 @@ const struct MonCoords gMonBackPicCoords[] =
 
     [SPECIES_BASCULIN_WHITE_STRIPED] = { .size = MON_COORDS_SIZE(64, 40), .y_offset = 16, },
     // Darmanitan
-    [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 1, },
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 1, },
 #endif
 #if P_GEN_6_POKEMON == TRUE
     // Greninja
@@ -1317,14 +1317,14 @@ const struct MonCoords gMonBackPicCoords[] =
     // Polteageist
     [SPECIES_POLTEAGEIST_ANTIQUE] = { .size = MON_COORDS_SIZE(64, 40), .y_offset = 13, },
     // Alcremie
-    [SPECIES_ALCREMIE_RUBY_CREAM] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
-    [SPECIES_ALCREMIE_MATCHA_CREAM] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
-    [SPECIES_ALCREMIE_MINT_CREAM] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
-    [SPECIES_ALCREMIE_LEMON_CREAM] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
-    [SPECIES_ALCREMIE_SALTED_CREAM] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
-    [SPECIES_ALCREMIE_RUBY_SWIRL] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
-    [SPECIES_ALCREMIE_CARAMEL_SWIRL] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
-    [SPECIES_ALCREMIE_RAINBOW_SWIRL] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
+    [SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
+    [SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
+    [SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
+    [SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
+    [SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
+    [SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL] = { .size = MON_COORDS_SIZE(48, 56), .y_offset = 9, },
     // Eiscue
     [SPECIES_EISCUE_NOICE_FACE] = { .size = MON_COORDS_SIZE(40, 64), .y_offset = 0, },
     // Indeedee

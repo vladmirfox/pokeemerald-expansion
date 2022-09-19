@@ -1199,7 +1199,7 @@ extern const u32 gMonFrontPic_PalkiaOrigin[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
 
-extern const u32 gMonFrontPic_DarmanitanZenModeGalarian[];
+extern const u32 gMonFrontPic_DarmanitanGalarianZenMode[];
 extern const u32 gMonFrontPic_BasculinWhiteStriped[];
 
 #endif
@@ -2421,7 +2421,7 @@ extern const u32 gMonBackPic_PalkiaOrigin[];
 #if P_GEN_5_POKEMON == TRUE
 
 
-extern const u32 gMonBackPic_DarmanitanZenModeGalarian[];
+extern const u32 gMonBackPic_DarmanitanGalarianZenMode[];
 extern const u32 gMonBackPic_BasculinWhiteStriped[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -3631,7 +3631,7 @@ extern const u32 gMonPalette_ArceusFairy[];
 #if P_GEN_5_POKEMON == TRUE
 
 extern const u32 gMonPalette_BasculinWhiteStriped[];
-extern const u32 gMonPalette_DarmanitanZenModeGalarian[];
+extern const u32 gMonPalette_DarmanitanGalarianZenMode[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u32 gMonPalette_GreninjaAsh[];
@@ -4871,7 +4871,7 @@ extern const u32 gMonShinyPalette_ArceusFairy[];
 #if P_GEN_5_POKEMON == TRUE
 
 extern const u32 gMonShinyPalette_BasculinWhiteStriped[];
-extern const u32 gMonShinyPalette_DarmanitanZenModeGalarian[];
+extern const u32 gMonShinyPalette_DarmanitanGalarianZenMode[];
 
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -6106,7 +6106,7 @@ extern const u8 gMonIcon_PalkiaOrigin[];
 #if P_GEN_5_POKEMON == TRUE
 
 extern const u8 gMonIcon_BasculinWhiteStriped[];
-extern const u8 gMonIcon_DarmanitanZenModeGalarian[];
+extern const u8 gMonIcon_DarmanitanGalarianZenMode[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
 extern const u8 gMonIcon_GreninjaAsh[];

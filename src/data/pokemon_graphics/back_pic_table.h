@@ -1155,7 +1155,7 @@ const struct CompressedSpriteSheet gMonBackPicTable[] =
 #if P_GEN_5_POKEMON == TRUE
     SPECIES_SPRITE(BASCULIN_WHITE_STRIPED, gMonBackPic_BasculinWhiteStriped),
 
-    SPECIES_SPRITE(DARMANITAN_ZEN_MODE_GALARIAN, gMonBackPic_DarmanitanZenModeGalarian),
+    SPECIES_SPRITE(DARMANITAN_GALARIAN_ZEN_MODE, gMonBackPic_DarmanitanGalarianZenMode),
 #endif
 
 #if P_GEN_6_POKEMON == TRUE
@@ -1293,14 +1293,14 @@ const struct CompressedSpriteSheet gMonBackPicTable[] =
 
     SPECIES_SPRITE(POLTEAGEIST_ANTIQUE, gMonBackPic_Polteageist),
 
-    SPECIES_SPRITE(ALCREMIE_RUBY_CREAM, gMonBackPic_AlcremieRubyCream),
-    SPECIES_SPRITE(ALCREMIE_MATCHA_CREAM, gMonBackPic_AlcremieMatchaCream),
-    SPECIES_SPRITE(ALCREMIE_MINT_CREAM, gMonBackPic_AlcremieMintCream),
-    SPECIES_SPRITE(ALCREMIE_LEMON_CREAM, gMonBackPic_AlcremieLemonCream),
-    SPECIES_SPRITE(ALCREMIE_SALTED_CREAM, gMonBackPic_AlcremieSaltedCream),
-    SPECIES_SPRITE(ALCREMIE_RUBY_SWIRL, gMonBackPic_AlcremieRubySwirl),
-    SPECIES_SPRITE(ALCREMIE_CARAMEL_SWIRL, gMonBackPic_AlcremieCaramelSwirl),
-    SPECIES_SPRITE(ALCREMIE_RAINBOW_SWIRL, gMonBackPic_AlcremieRainbowSwirl),
+    SPECIES_SPRITE(ALCREMIE_STRAWBERRY_RUBY_CREAM, gMonBackPic_AlcremieRubyCream),
+    SPECIES_SPRITE(ALCREMIE_STRAWBERRY_MATCHA_CREAM, gMonBackPic_AlcremieMatchaCream),
+    SPECIES_SPRITE(ALCREMIE_STRAWBERRY_MINT_CREAM, gMonBackPic_AlcremieMintCream),
+    SPECIES_SPRITE(ALCREMIE_STRAWBERRY_LEMON_CREAM, gMonBackPic_AlcremieLemonCream),
+    SPECIES_SPRITE(ALCREMIE_STRAWBERRY_SALTED_CREAM, gMonBackPic_AlcremieSaltedCream),
+    SPECIES_SPRITE(ALCREMIE_STRAWBERRY_RUBY_SWIRL, gMonBackPic_AlcremieRubySwirl),
+    SPECIES_SPRITE(ALCREMIE_STRAWBERRY_CARAMEL_SWIRL, gMonBackPic_AlcremieCaramelSwirl),
+    SPECIES_SPRITE(ALCREMIE_STRAWBERRY_RAINBOW_SWIRL, gMonBackPic_AlcremieRainbowSwirl),
 
     SPECIES_SPRITE(EISCUE_NOICE_FACE, gMonBackPic_EiscueNoiceFace),
 

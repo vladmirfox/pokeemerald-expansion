@@ -1155,7 +1155,7 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
 #endif
 #if P_GEN_5_POKEMON == TRUE
     SPECIES_SHINY_PAL(BASCULIN_WHITE_STRIPED, gMonShinyPalette_BasculinWhiteStriped),
-    SPECIES_SHINY_PAL(DARMANITAN_ZEN_MODE_GALARIAN, gMonShinyPalette_DarmanitanZenModeGalarian),
+    SPECIES_SHINY_PAL(DARMANITAN_GALARIAN_ZEN_MODE, gMonShinyPalette_DarmanitanGalarianZenMode),
 #endif
 
 #if P_GEN_6_POKEMON == TRUE
@@ -1293,14 +1293,14 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
 
     SPECIES_SHINY_PAL(POLTEAGEIST_ANTIQUE, gMonShinyPalette_Polteageist),
 
-    SPECIES_SHINY_PAL(ALCREMIE_RUBY_CREAM, gMonShinyPalette_AlcremieRubyCream),
-    SPECIES_SHINY_PAL(ALCREMIE_MATCHA_CREAM, gMonShinyPalette_AlcremieMatchaCream),
-    SPECIES_SHINY_PAL(ALCREMIE_MINT_CREAM, gMonShinyPalette_AlcremieMintCream),
-    SPECIES_SHINY_PAL(ALCREMIE_LEMON_CREAM, gMonShinyPalette_AlcremieLemonCream),
-    SPECIES_SHINY_PAL(ALCREMIE_SALTED_CREAM, gMonShinyPalette_AlcremieSaltedCream),
-    SPECIES_SHINY_PAL(ALCREMIE_RUBY_SWIRL, gMonShinyPalette_AlcremieRubySwirl),
-    SPECIES_SHINY_PAL(ALCREMIE_CARAMEL_SWIRL, gMonShinyPalette_AlcremieCaramelSwirl),
-    SPECIES_SHINY_PAL(ALCREMIE_RAINBOW_SWIRL, gMonShinyPalette_AlcremieRainbowSwirl),
+    SPECIES_SHINY_PAL(ALCREMIE_STRAWBERRY_RUBY_CREAM, gMonShinyPalette_AlcremieRubyCream),
+    SPECIES_SHINY_PAL(ALCREMIE_STRAWBERRY_MATCHA_CREAM, gMonShinyPalette_AlcremieMatchaCream),
+    SPECIES_SHINY_PAL(ALCREMIE_STRAWBERRY_MINT_CREAM, gMonShinyPalette_AlcremieMintCream),
+    SPECIES_SHINY_PAL(ALCREMIE_STRAWBERRY_LEMON_CREAM, gMonShinyPalette_AlcremieLemonCream),
+    SPECIES_SHINY_PAL(ALCREMIE_STRAWBERRY_SALTED_CREAM, gMonShinyPalette_AlcremieSaltedCream),
+    SPECIES_SHINY_PAL(ALCREMIE_STRAWBERRY_RUBY_SWIRL, gMonShinyPalette_AlcremieRubySwirl),
+    SPECIES_SHINY_PAL(ALCREMIE_STRAWBERRY_CARAMEL_SWIRL, gMonShinyPalette_AlcremieCaramelSwirl),
+    SPECIES_SHINY_PAL(ALCREMIE_STRAWBERRY_RAINBOW_SWIRL, gMonShinyPalette_AlcremieRainbowSwirl),
 
     SPECIES_SHINY_PAL(EISCUE_NOICE_FACE, gMonShinyPalette_EiscueNoiceFace),
 

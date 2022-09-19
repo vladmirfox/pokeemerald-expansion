@@ -1134,7 +1134,7 @@ const u32 gMonFrontPic_PalkiaOrigin[] = INCBIN_U32("graphics/pokemon/palkia/orig
 #if P_GEN_5_POKEMON == TRUE
 
 const u32 gMonFrontPic_BasculinWhiteStriped[] = INCBIN_U32("graphics/pokemon/basculin/white_striped/front.4bpp.lz");
-const u32 gMonFrontPic_DarmanitanZenModeGalarian[] = INCBIN_U32("graphics/pokemon/darmanitan/zen_mode/galarian/front.4bpp.lz");
+const u32 gMonFrontPic_DarmanitanGalarianZenMode[] = INCBIN_U32("graphics/pokemon/darmanitan/zen_mode/galarian/front.4bpp.lz");
 
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -2357,7 +2357,7 @@ const u32 gMonBackPic_PalkiaOrigin[] = INCBIN_U32("graphics/pokemon/palkia/origi
 #if P_GEN_5_POKEMON == TRUE
 
 const u32 gMonBackPic_BasculinWhiteStriped[] = INCBIN_U32("graphics/pokemon/basculin/white_striped/back.4bpp.lz");
-const u32 gMonBackPic_DarmanitanZenModeGalarian[] = INCBIN_U32("graphics/pokemon/darmanitan/zen_mode/galarian/back.4bpp.lz");
+const u32 gMonBackPic_DarmanitanGalarianZenMode[] = INCBIN_U32("graphics/pokemon/darmanitan/zen_mode/galarian/back.4bpp.lz");
 #endif
 #if P_GEN_6_POKEMON == TRUE
 const u32 gMonBackPic_GreninjaAsh[] = INCBIN_U32("graphics/pokemon/greninja/ash/back.4bpp.lz");
@@ -3568,7 +3568,7 @@ const u32 gMonPalette_ArceusFairy[] = INCBIN_U32("graphics/pokemon/arceus/fairy/
 #if P_GEN_5_POKEMON == TRUE
 
 const u32 gMonPalette_BasculinWhiteStriped[] = INCBIN_U32("graphics/pokemon/basculin/white_striped/normal.gbapal.lz");
-const u32 gMonPalette_DarmanitanZenModeGalarian[] = INCBIN_U32("graphics/pokemon/darmanitan/zen_mode/galarian/normal.gbapal.lz");
+const u32 gMonPalette_DarmanitanGalarianZenMode[] = INCBIN_U32("graphics/pokemon/darmanitan/zen_mode/galarian/normal.gbapal.lz");
 
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -4809,7 +4809,7 @@ const u32 gMonShinyPalette_ArceusFairy[] = INCBIN_U32("graphics/pokemon/arceus/f
 #endif
 #if P_GEN_5_POKEMON == TRUE
 const u32 gMonShinyPalette_BasculinWhiteStriped[] = INCBIN_U32("graphics/pokemon/basculin/white_striped/shiny.gbapal.lz");
-const u32 gMonShinyPalette_DarmanitanZenModeGalarian[] = INCBIN_U32("graphics/pokemon/darmanitan/zen_mode/galarian/shiny.gbapal.lz");
+const u32 gMonShinyPalette_DarmanitanGalarianZenMode[] = INCBIN_U32("graphics/pokemon/darmanitan/zen_mode/galarian/shiny.gbapal.lz");
 #endif
 #if P_GEN_6_POKEMON == TRUE
 const u32 gMonShinyPalette_GreninjaAsh[] = INCBIN_U32("graphics/pokemon/greninja/ash/shiny.gbapal.lz");
@@ -6045,7 +6045,7 @@ const u8 gMonIcon_PalkiaOrigin[] = INCBIN_U8("graphics/pokemon/palkia/origin/ico
 #if P_GEN_5_POKEMON == TRUE
 
 const u8 gMonIcon_BasculinWhiteStriped[] = INCBIN_U8("graphics/pokemon/basculin/white_striped/icon.4bpp");
-const u8 gMonIcon_DarmanitanZenModeGalarian[] = INCBIN_U8("graphics/pokemon/darmanitan/zen_mode/galarian/icon.4bpp");
+const u8 gMonIcon_DarmanitanGalarianZenMode[] = INCBIN_U8("graphics/pokemon/darmanitan/zen_mode/galarian/icon.4bpp");
 #endif
 #if P_GEN_6_POKEMON == TRUE
 const u8 gMonIcon_GreninjaAsh[] = INCBIN_U8("graphics/pokemon/greninja/ash/icon.4bpp");

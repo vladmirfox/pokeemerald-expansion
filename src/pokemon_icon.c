@@ -1229,7 +1229,7 @@ const u8 *const gMonIconTable[] =
 #if P_GEN_5_POKEMON == TRUE
 
     [SPECIES_BASCULIN_WHITE_STRIPED] = gMonIcon_BasculinWhiteStriped,
-    [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = gMonIcon_DarmanitanZenModeGalarian,
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = gMonIcon_DarmanitanGalarianZenMode,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_GRENINJA_BATTLE_BOND] = gMonIcon_Greninja,
@@ -1290,14 +1290,14 @@ const u8 *const gMonIconTable[] =
     [SPECIES_TOXTRICITY_LOW_KEY] = gMonIcon_ToxtricityLowKey,
     [SPECIES_SINISTEA_ANTIQUE] = gMonIcon_Sinistea,
     [SPECIES_POLTEAGEIST_ANTIQUE] = gMonIcon_Polteageist,
-    [SPECIES_ALCREMIE_RUBY_CREAM] = gMonIcon_QuestionMark,//gMonIcon_AlcremieRubyCream,
-    [SPECIES_ALCREMIE_MATCHA_CREAM] = gMonIcon_QuestionMark,//gMonIcon_AlcremieMatchaCream,
-    [SPECIES_ALCREMIE_MINT_CREAM] = gMonIcon_QuestionMark,//gMonIcon_AlcremieMintCream,
-    [SPECIES_ALCREMIE_LEMON_CREAM] = gMonIcon_QuestionMark,//gMonIcon_AlcremieLemonCream,
-    [SPECIES_ALCREMIE_SALTED_CREAM] = gMonIcon_QuestionMark,//gMonIcon_AlcremieSaltedCream,
-    [SPECIES_ALCREMIE_RUBY_SWIRL] = gMonIcon_QuestionMark,//gMonIcon_AlcremieRubySwirl,
-    [SPECIES_ALCREMIE_CARAMEL_SWIRL] = gMonIcon_QuestionMark,//gMonIcon_AlcremieCaramelSwirl,
-    [SPECIES_ALCREMIE_RAINBOW_SWIRL] = gMonIcon_QuestionMark,//gMonIcon_AlcremieRainbowSwirl,
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM] = gMonIcon_QuestionMark,//gMonIcon_AlcremieRubyCream,
+    [SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM] = gMonIcon_QuestionMark,//gMonIcon_AlcremieMatchaCream,
+    [SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM] = gMonIcon_QuestionMark,//gMonIcon_AlcremieMintCream,
+    [SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM] = gMonIcon_QuestionMark,//gMonIcon_AlcremieLemonCream,
+    [SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM] = gMonIcon_QuestionMark,//gMonIcon_AlcremieSaltedCream,
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL] = gMonIcon_QuestionMark,//gMonIcon_AlcremieRubySwirl,
+    [SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL] = gMonIcon_QuestionMark,//gMonIcon_AlcremieCaramelSwirl,
+    [SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL] = gMonIcon_QuestionMark,//gMonIcon_AlcremieRainbowSwirl,
     [SPECIES_EISCUE_NOICE_FACE] = gMonIcon_EiscueNoiceFace,
     [SPECIES_INDEEDEE_FEMALE] = gMonIcon_IndeedeeFemale,
     [SPECIES_MORPEKO_HANGRY] = gMonIcon_MorpekoHangry,
@@ -2498,7 +2498,7 @@ const u8 gMonIconPaletteIndices[] =
 #if P_GEN_5_POKEMON == TRUE
 
     [SPECIES_BASCULIN_WHITE_STRIPED] = 0,
-    [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = 0,
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = 0,
 
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -2555,14 +2555,14 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_TOXTRICITY_LOW_KEY] = 2,
     [SPECIES_SINISTEA_ANTIQUE] = 2,
     [SPECIES_POLTEAGEIST_ANTIQUE] = 2,
-    [SPECIES_ALCREMIE_RUBY_CREAM] = 0,
-    [SPECIES_ALCREMIE_MATCHA_CREAM] = 0,
-    [SPECIES_ALCREMIE_MINT_CREAM] = 0,
-    [SPECIES_ALCREMIE_LEMON_CREAM] = 0,
-    [SPECIES_ALCREMIE_SALTED_CREAM] = 0,
-    [SPECIES_ALCREMIE_RUBY_SWIRL] = 0,
-    [SPECIES_ALCREMIE_CARAMEL_SWIRL] = 0,
-    [SPECIES_ALCREMIE_RAINBOW_SWIRL] = 0,
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM] = 0,
+    [SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM] = 0,
+    [SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM] = 0,
+    [SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM] = 0,
+    [SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM] = 0,
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL] = 0,
+    [SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL] = 0,
+    [SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL] = 0,
     [SPECIES_EISCUE_NOICE_FACE] = 0,
     [SPECIES_INDEEDEE_FEMALE] = 2,
     [SPECIES_MORPEKO_HANGRY] = 2,

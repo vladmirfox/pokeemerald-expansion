@@ -1157,7 +1157,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
 
     [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinLevelUpLearnset,
     // Darmanitan
-    [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = sDarmanitanGalarianLevelUpLearnset,
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = sDarmanitanGalarianLevelUpLearnset,
 #endif
 #if P_GEN_6_POKEMON == TRUE
     // Greninja
@@ -1295,14 +1295,14 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     // Polteageist
     [SPECIES_POLTEAGEIST_ANTIQUE] = sPolteageistLevelUpLearnset,
     // Alcremie
-    [SPECIES_ALCREMIE_RUBY_CREAM] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_MATCHA_CREAM] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_MINT_CREAM] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_LEMON_CREAM] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_SALTED_CREAM] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_RUBY_SWIRL] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_CARAMEL_SWIRL] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_RAINBOW_SWIRL] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL] = sAlcremieLevelUpLearnset,
     // Eiscue
     [SPECIES_EISCUE_NOICE_FACE] = sEiscueLevelUpLearnset,
     // Indeedee
