@@ -1,11 +1,11 @@
 const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES] =
 {
 #if P_GEN_4_POKEMON == TRUE
-    [SPECIES_GIRATINA] = sGiratinaFormChangeTable,
+    [SPECIES_GIRATINA_ALTERED] = sGiratinaFormChangeTable,
     [SPECIES_GIRATINA_ORIGIN] = sGiratinaFormChangeTable,
-    [SPECIES_SHAYMIN] = sShayminFormChangeTable,
+    [SPECIES_SHAYMIN_LAND] = sShayminFormChangeTable,
     [SPECIES_SHAYMIN_SKY] = sShayminFormChangeTable,
-    [SPECIES_ARCEUS] = sArceusFormChangeTable,
+    [SPECIES_ARCEUS_NORMAL] = sArceusFormChangeTable,
     [SPECIES_ARCEUS_FIGHTING] = sArceusFormChangeTable,
     [SPECIES_ARCEUS_FLYING] = sArceusFormChangeTable,
     [SPECIES_ARCEUS_POISON] = sArceusFormChangeTable,

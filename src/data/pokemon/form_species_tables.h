@@ -635,19 +635,19 @@ static const u16 sPalkiaFormSpeciesIdTable[] = {
 };
 
 static const u16 sGiratinaFormSpeciesIdTable[] = {
-    SPECIES_GIRATINA,
+    SPECIES_GIRATINA_ALTERED,
     SPECIES_GIRATINA_ORIGIN,
     FORM_SPECIES_END,
 };
 
 static const u16 sShayminFormSpeciesIdTable[] = {
-    SPECIES_SHAYMIN,
+    SPECIES_SHAYMIN_LAND,
     SPECIES_SHAYMIN_SKY,
     FORM_SPECIES_END,
 };
 
 static const u16 sArceusFormSpeciesIdTable[] = {
-    SPECIES_ARCEUS,
+    SPECIES_ARCEUS_NORMAL,
     SPECIES_ARCEUS_FIGHTING,
     SPECIES_ARCEUS_FLYING,
     SPECIES_ARCEUS_POISON,
@@ -683,7 +683,7 @@ static const u16 sAudinoFormSpeciesIdTable[] = {
 };
 
 static const u16 sBasculinFormSpeciesIdTable[] = {
-    SPECIES_BASCULIN,
+    SPECIES_BASCULIN_RED_STRIPED,
     SPECIES_BASCULIN_BLUE_STRIPED,
     SPECIES_BASCULIN_WHITE_STRIPED,
     FORM_SPECIES_END,

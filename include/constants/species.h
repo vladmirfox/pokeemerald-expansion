@@ -541,12 +541,14 @@
 #define SPECIES_PALKIA                                       525
 #define SPECIES_HEATRAN                                      526
 #define SPECIES_REGIGIGAS                                    527
-#define SPECIES_GIRATINA                                     528
+#define SPECIES_GIRATINA                                     SPECIES_GIRATINA_ALTERED
+#define SPECIES_GIRATINA_ALTERED                             528
 #define SPECIES_CRESSELIA                                    529
 #define SPECIES_PHIONE                                       530
 #define SPECIES_MANAPHY                                      531
 #define SPECIES_DARKRAI                                      532
-#define SPECIES_SHAYMIN                                      533
+#define SPECIES_SHAYMIN                                      SPECIES_SHAYMIN_LAND
+#define SPECIES_SHAYMIN_LAND                                 533
 #define SPECIES_ARCEUS                                       SPECIES_ARCEUS_NORMAL
 #define SPECIES_ARCEUS_NORMAL                                534
 #define SPECIES_ARCEUS_FIGHTING                              535

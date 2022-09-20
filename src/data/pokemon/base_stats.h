@@ -13224,7 +13224,7 @@ const struct BaseStats gBaseStats[] =
         .flags = FLAG_LEGENDARY,
     },
 
-    [SPECIES_GIRATINA] =
+    [SPECIES_GIRATINA_ALTERED] =
     {
         .baseHP        = 150,
         .baseAttack    = 100,
@@ -13350,7 +13350,7 @@ const struct BaseStats gBaseStats[] =
         .flags = FLAG_MYTHICAL,
     },
 
-    [SPECIES_SHAYMIN] =
+    [SPECIES_SHAYMIN_LAND] =
     {
         .baseHP        = 100,
         .baseAttack    = 100,
@@ -13377,7 +13377,7 @@ const struct BaseStats gBaseStats[] =
         .flags = FLAG_MYTHICAL,
     },
 
-    [SPECIES_ARCEUS]          = ARCEUS_BASE_STATS(TYPE_NORMAL),
+    [SPECIES_ARCEUS_NORMAL]   = ARCEUS_BASE_STATS(TYPE_NORMAL),
     [SPECIES_ARCEUS_FIGHTING] = ARCEUS_BASE_STATS(TYPE_FIGHTING),
     [SPECIES_ARCEUS_FLYING]   = ARCEUS_BASE_STATS(TYPE_FLYING),
     [SPECIES_ARCEUS_POISON]   = ARCEUS_BASE_STATS(TYPE_POISON),
@@ -14873,7 +14873,7 @@ const struct BaseStats gBaseStats[] =
         .noFlip = TRUE,
     },
 
-    [SPECIES_BASCULIN] = BASCULIN_BASE_STATS(ITEM_DEEP_SEA_TOOTH, ABILITY_RECKLESS),
+    [SPECIES_BASCULIN_RED_STRIPED] = BASCULIN_BASE_STATS(ITEM_DEEP_SEA_TOOTH, ABILITY_RECKLESS),
     [SPECIES_BASCULIN_BLUE_STRIPED] = BASCULIN_BASE_STATS(ITEM_DEEP_SEA_SCALE, ABILITY_ROCK_HEAD),
 
     [SPECIES_SANDILE] =
