@@ -2343,7 +2343,7 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_GROUDON - 1]       = ANIM_V_SHAKE,
     [SPECIES_RAYQUAZA - 1]      = ANIM_H_SHAKE,
     [SPECIES_JIRACHI - 1]       = ANIM_SWING_CONVEX,
-    [SPECIES_DEOXYS - 1]        = ANIM_H_PIVOT,
+    [SPECIES_DEOXYS_NORMAL - 1] = ANIM_H_PIVOT,
 
     // Gen 4
     [SPECIES_TURTWIG - 1]       = ANIM_V_SLIDE,
@@ -8041,12 +8041,13 @@ const u8 *GetTrainerNameFromId(u16 trainerId)
 bool8 HasTwoFramesAnimation(u16 species)
 {
     return (species != SPECIES_CASTFORM
-         && species != SPECIES_SPINDA
-         && species != SPECIES_UNOWN
-         && species != SPECIES_CHERRIM
          && species != SPECIES_CASTFORM_SUNNY
          && species != SPECIES_CASTFORM_RAINY
-         && species != SPECIES_CASTFORM_SNOWY);
+         && species != SPECIES_CASTFORM_SNOWY
+         && species != SPECIES_SPINDA
+         && species != SPECIES_UNOWN
+         && species != SPECIES_CHERRIM_OVERCAST
+         && species != SPECIES_CHERRIM_SUNSHINE);
 }
 
 static bool8 ShouldSkipFriendshipChange(void)

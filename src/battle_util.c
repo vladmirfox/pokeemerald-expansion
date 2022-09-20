@@ -4087,7 +4087,7 @@ u8 TryWeatherFormChange(u8 battler)
             ret = CASTFORM_ICE + 1;
         }
         break;
-    case SPECIES_CHERRIM:
+    case SPECIES_CHERRIM_OVERCAST:
     case SPECIES_CHERRIM_SUNSHINE:
         if (gBattleMons[battler].hp == 0)
             ret = 0; // No change
@@ -4792,7 +4792,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             break;
 #if B_WEATHER_FORMS < GEN_5
         default:
-            if (gBattleMons[battler].species == SPECIES_CHERRIM)
+            if (gBattleMons[battler].species == SPECIES_CHERRIM_OVERCAST)
                 goto TRY_WEATHER_FORM;
             break;
 #endif
@@ -5814,10 +5814,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             switch (gBattleMons[battler].species)
             {
             case SPECIES_CASTFORM:
-            case SPECIES_CHERRIM:
             case SPECIES_CASTFORM_RAINY:
             case SPECIES_CASTFORM_SNOWY:
             case SPECIES_CASTFORM_SUNNY:
+            case SPECIES_CHERRIM_OVERCAST:
             case SPECIES_CHERRIM_SUNSHINE:
                 effect = TryWeatherFormChange(battler);
                 if (effect != 0)
@@ -10315,7 +10315,7 @@ void DoBurmyFormChange(u32 monId)
             case BATTLE_TERRAIN_POND:
             case BATTLE_TERRAIN_MOUNTAIN:
             case BATTLE_TERRAIN_PLAIN:
-                newSpecies = SPECIES_BURMY;
+                newSpecies = SPECIES_BURMY_PLANT_CLOAK;
                 break;
             case BATTLE_TERRAIN_CAVE:
             case BATTLE_TERRAIN_SAND:

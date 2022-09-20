@@ -5747,11 +5747,11 @@ static void Cmd_moveend(void)
             {
                 switch (gBattleMons[i].species)
                 {
-                case SPECIES_CASTFORM:
-                case SPECIES_CHERRIM:
+                case SPECIES_CASTFORM_NORMAL:
                 case SPECIES_CASTFORM_RAINY:
                 case SPECIES_CASTFORM_SNOWY:
                 case SPECIES_CASTFORM_SUNNY:
+                case SPECIES_CHERRIM_OVERCAST:
                 case SPECIES_CHERRIM_SUNSHINE:
                     effect = TryWeatherFormChange(i);
                     if (effect)

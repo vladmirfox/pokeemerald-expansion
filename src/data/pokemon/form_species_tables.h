@@ -474,7 +474,7 @@ static const u16 sAltariaFormSpeciesIdTable[] = {
 };
 
 static const u16 sCastformFormSpeciesIdTable[] = {
-    SPECIES_CASTFORM,
+    SPECIES_CASTFORM_NORMAL,
     SPECIES_CASTFORM_SUNNY,
     SPECIES_CASTFORM_RAINY,
     SPECIES_CASTFORM_SNOWY,
@@ -542,7 +542,7 @@ static const u16 sRayquazaFormSpeciesIdTable[] = {
 };
 
 static const u16 sDeoxysFormSpeciesIdTable[] = {
-    SPECIES_DEOXYS,
+    SPECIES_DEOXYS_NORMAL,
     SPECIES_DEOXYS_ATTACK,
     SPECIES_DEOXYS_DEFENSE,
     SPECIES_DEOXYS_SPEED,
@@ -551,33 +551,33 @@ static const u16 sDeoxysFormSpeciesIdTable[] = {
 
 #if P_GEN_4_POKEMON == TRUE
 static const u16 sBurmyFormSpeciesIdTable[] = {
-    SPECIES_BURMY,
+    SPECIES_BURMY_PLANT_CLOAK,
     SPECIES_BURMY_SANDY_CLOAK,
     SPECIES_BURMY_TRASH_CLOAK,
     FORM_SPECIES_END,
 };
 
 static const u16 sWormadamFormSpeciesIdTable[] = {
-    SPECIES_WORMADAM,
+    SPECIES_WORMADAM_PLANT_CLOAK,
     SPECIES_WORMADAM_SANDY_CLOAK,
     SPECIES_WORMADAM_TRASH_CLOAK,
     FORM_SPECIES_END,
 };
 
 static const u16 sCherrimFormSpeciesIdTable[] = {
-    SPECIES_CHERRIM,
+    SPECIES_CHERRIM_OVERCAST,
     SPECIES_CHERRIM_SUNSHINE,
     FORM_SPECIES_END,
 };
 
 static const u16 sShellosFormSpeciesIdTable[] = {
-    SPECIES_SHELLOS,
+    SPECIES_SHELLOS_WEST_SEA,
     SPECIES_SHELLOS_EAST_SEA,
     FORM_SPECIES_END,
 };
 
 static const u16 sGastrodonFormSpeciesIdTable[] = {
-    SPECIES_GASTRODON,
+    SPECIES_GASTRODON_WEST_SEA,
     SPECIES_GASTRODON_EAST_SEA,
     FORM_SPECIES_END,
 };
