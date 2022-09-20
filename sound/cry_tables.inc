@@ -941,11 +941,16 @@ gCryTable::
 	cry Cry_Crabrawler
 	cry Cry_Crabominable
 	cry Cry_Oricorio
+	cry Cry_OricorioPomPom
+	cry Cry_OricorioPau
+	cry Cry_OricorioSensu
 	cry Cry_Cutiefly
 	cry Cry_Ribombee
 	cry Cry_Rockruff
 	cry Cry_Lycanroc
+	cry Cry_LycanrocMidnight
 	cry Cry_Wishiwashi
+	cry Cry_WishiwashiSchool
 	cry Cry_Mareanie
 	cry Cry_Toxapex
 	cry Cry_Mudbray
@@ -973,10 +978,41 @@ gCryTable::
 	cry Cry_Pyukumuku
 	cry Cry_TypeNull
 	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Silvally
+	cry Cry_Minior
+	cry Cry_Minior
+	cry Cry_Minior
+	cry Cry_Minior
+	cry Cry_Minior
+	cry Cry_Minior
+	cry Cry_Minior
+	cry Cry_Minior
+	cry Cry_Minior
+	cry Cry_Minior
+	cry Cry_Minior
+	cry Cry_Minior
+	cry Cry_Minior
 	cry Cry_Minior
 	cry Cry_Komala
 	cry Cry_Turtonator
 	cry Cry_Togedemaru
+	cry Cry_Mimikyu
 	cry Cry_Mimikyu
 	cry Cry_Bruxish
 	cry Cry_Drampa
@@ -1001,114 +1037,16 @@ gCryTable::
 	cry Cry_Guzzlord
 	cry Cry_Necrozma
 	cry Cry_Magearna
+	cry Cry_Magearna
 	cry Cry_Marshadow
-	cry Cry_Poipole
-	cry Cry_Naganadel
-	cry Cry_Stakataka
-	cry Cry_Blacephalon
-	cry Cry_Zeraora
-	cry Cry_Meltan
-	cry Cry_Melmetal
-	cry Cry_Grookey
-	cry Cry_Thwackey
-	cry Cry_Rillaboom
-	cry Cry_Scorbunny
-	cry Cry_Raboot
-	cry Cry_Cinderace
-	cry Cry_Sobble
-	cry Cry_Drizzile
-	cry Cry_Inteleon
-	cry Cry_Skwovet
-	cry Cry_Greedent
-	cry Cry_Rookidee
-	cry Cry_Corvisquire
-	cry Cry_Corviknight
-	cry Cry_Blipbug
-	cry Cry_Dottler
-	cry Cry_Orbeetle
-	cry Cry_Nickit
-	cry Cry_Thievul
-	cry Cry_Gossifleur
-	cry Cry_Eldegoss
-	cry Cry_Wooloo
-	cry Cry_Dubwool
-	cry Cry_Chewtle
-	cry Cry_Drednaw
-	cry Cry_Yamper
-	cry Cry_Boltund
-	cry Cry_Rolycoly
-	cry Cry_Carkol
-	cry Cry_Coalossal
-	cry Cry_Applin
-	cry Cry_Flapple
-	cry Cry_Appletun
-	cry Cry_Silicobra
-	cry Cry_Sandaconda
-	cry Cry_Cramorant
-	cry Cry_Arrokuda
-	cry Cry_Barraskewda
-	cry Cry_Toxel
-	cry Cry_Toxtricity
-	cry Cry_Sizzlipede
-	cry Cry_Centiskorch
-	cry Cry_Clobbopus
-	cry Cry_Grapploct
-	cry Cry_Sinistea
-	cry Cry_Polteageist
-	cry Cry_Hatenna
-	cry Cry_Hattrem
-	cry Cry_Hatterene
-	cry Cry_Impidimp
-	cry Cry_Morgrem
-	cry Cry_Grimmsnarl
-	cry Cry_Obstagoon
-	cry Cry_Perrserker
-	cry Cry_Cursola
-	cry Cry_Sirfetchd
-	cry Cry_MrRime
-	cry Cry_Runerigus
-	cry Cry_Milcery
-	cry Cry_Alcremie
-	cry Cry_Falinks
-	cry Cry_Pincurchin
-	cry Cry_Snom
-	cry Cry_Frosmoth
-	cry Cry_Stonjourner
-	cry Cry_Eiscue
-	cry Cry_Indeedee
-	cry Cry_Morpeko
-	cry Cry_Cufant
-	cry Cry_Copperajah
-	cry Cry_Dracozolt
-	cry Cry_Arctozolt
-	cry Cry_Dracovish
-	cry Cry_Arctovish
-	cry Cry_Duraludon
-	cry Cry_Dreepy
-	cry Cry_Drakloak
-	cry Cry_Dragapult
-	cry Cry_Zacian
-	cry Cry_Zamazenta
-	cry Cry_Eternatus
-	cry Cry_Kubfu
-	cry Cry_Urshifu
-	cry Cry_Zarude
-	cry Cry_Regieleki
-	cry Cry_Regidrago
-	cry Cry_Glastrier
-	cry Cry_Spectrier
-	cry Cry_Calyrex
-	cry Cry_Wyrdeer
-	cry Cry_Kleavor
-	cry Cry_Ursaluna
-	cry Cry_Basculegion
-	cry Cry_Sneasler
-	cry Cry_Overqwil
-	cry Cry_Enamorus
-
-	@ Alolan Forms
 	cry Cry_Rattata
 	cry Cry_Raticate
+	cry Cry_Pikachu
+	cry Cry_Pikachu
+	cry Cry_Pikachu
+	cry Cry_Pikachu
+	cry Cry_Pikachu
+	cry Cry_Pikachu
 	cry Cry_Raichu
 	cry Cry_Sandshrew
 	cry Cry_Sandslash
@@ -1125,27 +1063,325 @@ gCryTable::
 	cry Cry_Muk
 	cry Cry_Exeggutor
 	cry Cry_Marowak
-	@ Galarian Forms
+	cry Cry_Greninja
+	cry Cry_Greninja
+	cry Cry_Zygarde10
+	cry Cry_Zygarde10
+	cry Cry_Zygarde
+	cry Cry_ZygardeComplete
+@ Ultra Sun and Ultra Moon
+	cry Cry_Poipole
+	cry Cry_Naganadel
+	cry Cry_Stakataka
+	cry Cry_Blacephalon
+	cry Cry_Zeraora
+	cry Cry_Pikachu
+	cry Cry_Rockruff
+	cry Cry_LycanrocDusk
+	cry Cry_NecrozmaDuskMane
+	cry Cry_NecrozmaDawnWings
+	cry Cry_NecrozmaUltra
+@ Let's Go Pikachu and Eevee
+	cry Cry_Meltan
+	cry Cry_Melmetal
+	cry Cry_Pikachu
+	cry Cry_Eevee
+@ Sword and Shield
+	cry Cry_Grookey
+	cry Cry_Thwackey
+	cry Cry_Rillaboom
+	cry Cry_Scorbunny
+	cry Cry_Raboot
+	cry Cry_Cinderace
+	cry Cry_Sobble
+	cry Cry_Drizzile
+	cry Cry_Inteleon
+	cry Cry_Skwovet
+	cry Cry_Greedent
+	cry Cry_Rookidee
+	cry Cry_Corvisquire
+	cry Cry_Corviknight
+	cry Cry_Corviknight
+	cry Cry_Blipbug
+	cry Cry_Dottler
+	cry Cry_Orbeetle
+	cry Cry_Orbeetle
+	cry Cry_Nickit
+	cry Cry_Thievul
+	cry Cry_Gossifleur
+	cry Cry_Eldegoss
+	cry Cry_Wooloo
+	cry Cry_Dubwool
+	cry Cry_Chewtle
+	cry Cry_Drednaw
+	cry Cry_Drednaw
+	cry Cry_Yamper
+	cry Cry_Boltund
+	cry Cry_Rolycoly
+	cry Cry_Carkol
+	cry Cry_Coalossal
+	cry Cry_Coalossal
+	cry Cry_Applin
+	cry Cry_Flapple
+	cry Cry_Flapple
+	cry Cry_Appletun
+	cry Cry_Appletun
+	cry Cry_Silicobra
+	cry Cry_Sandaconda
+	cry Cry_Sandaconda
+	cry Cry_Cramorant
+	cry Cry_Cramorant
+	cry Cry_Cramorant
+	cry Cry_Arrokuda
+	cry Cry_Barraskewda
+	cry Cry_Toxel
+	cry Cry_Toxtricity
+	cry Cry_Toxtricity
+	cry Cry_ToxtricityLowKey
+	cry Cry_ToxtricityLowKey
+	cry Cry_Sizzlipede
+	cry Cry_Centiskorch
+	cry Cry_Centiskorch
+	cry Cry_Clobbopus
+	cry Cry_Grapploct
+	cry Cry_Sinistea
+	cry Cry_Sinistea
+	cry Cry_Polteageist
+	cry Cry_Polteageist
+	cry Cry_Hatenna
+	cry Cry_Hattrem
+	cry Cry_Hatterene
+	cry Cry_Hatterene
+	cry Cry_Impidimp
+	cry Cry_Morgrem
+	cry Cry_Grimmsnarl
+	cry Cry_Grimmsnarl
+	cry Cry_Obstagoon
+	cry Cry_Perrserker
+	cry Cry_Cursola
+	cry Cry_Sirfetchd
+	cry Cry_MrRime
+	cry Cry_Runerigus
+	cry Cry_Milcery
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Alcremie
+	cry Cry_Falinks
+	cry Cry_Pincurchin
+	cry Cry_Snom
+	cry Cry_Frosmoth
+	cry Cry_Stonjourner
+	cry Cry_Eiscue
+	cry Cry_EiscueNoiceFace
+	cry Cry_Indeedee
+	cry Cry_IndeedeeFemale
+	cry Cry_Morpeko
+	cry Cry_MorpekoHangry
+	cry Cry_Cufant
+	cry Cry_Copperajah
+	cry Cry_Copperajah
+	cry Cry_Dracozolt
+	cry Cry_Arctozolt
+	cry Cry_Dracovish
+	cry Cry_Arctovish
+	cry Cry_Duraludon
+	cry Cry_Duraludon
+	cry Cry_Dreepy
+	cry Cry_Drakloak
+	cry Cry_Dragapult
+	cry Cry_Zacian
+	cry Cry_ZacianCrownedSword
+	cry Cry_Zamazenta
+	cry Cry_ZamazentaCrownedShield
+	cry Cry_Eternatus
+	cry Cry_EternatusEternamax
+	cry Cry_Charizard
+	cry Cry_Butterfree
+	cry Cry_Pikachu
+	cry Cry_Pikachu
 	cry Cry_Meowth
+	cry Cry_Meowth
+	cry Cry_Machamp
 	cry Cry_Ponyta
 	cry Cry_Rapidash
-	cry Cry_SlowpokeGalarian
-	cry Cry_Slowbro
 	cry Cry_Farfetchd
+	cry Cry_Gengar
+	cry Cry_Kingler
 	cry Cry_Weezing
 	cry Cry_MrMime
-	cry Cry_Articuno
-	cry Cry_Zapdos
-	cry Cry_Moltres
-	cry Cry_Slowking
+	cry Cry_Lapras
+	cry Cry_Eevee
+	cry Cry_Snorlax
 	cry Cry_Corsola
 	cry Cry_Zigzagoon
 	cry Cry_Linoone
 	cry Cry_Darumaka
 	cry Cry_Darmanitan
+	cry Cry_Darmanitan
 	cry Cry_Yamask
+	cry Cry_Garbodor
 	cry Cry_Stunfisk
-	@ Hisuian Forms
+	cry Cry_Melmetal
+@ Sword and Shield 1.1.0
+	cry Cry_SlowpokeGalarian
+@ The Isle of Armor
+	cry Cry_Kubfu
+	cry Cry_Urshifu
+	cry Cry_Urshifu
+	cry Cry_UrshifuRapidStrikeStyle
+	cry Cry_UrshifuRapidStrikeStyle
+	cry Cry_Zarude
+	cry Cry_Zarude
+	cry Cry_Venusaur
+	cry Cry_Blastoise
+	cry Cry_Slowbro
+	cry Cry_Rillaboom
+	cry Cry_Cinderace
+	cry Cry_Inteleon
+@ The Crown Tundra
+	cry Cry_Regieleki
+	cry Cry_Regidrago
+	cry Cry_Glastrier
+	cry Cry_Spectrier
+	cry Cry_Calyrex
+	cry Cry_CalyrexIceRider
+	cry Cry_CalyrexShadowRider
+	cry Cry_Articuno
+	cry Cry_Zapdos
+	cry Cry_Moltres
+	cry Cry_Slowking
+@ Legends: Arceus
+	cry Cry_Wyrdeer
+	cry Cry_Kleavor
+	cry Cry_Ursaluna
+	cry Cry_Basculegion
+	cry Cry_Sneasler
+	cry Cry_Overqwil
+	cry Cry_Enamorus
+	cry Cry_EnamorusTherian
 	cry Cry_Growlithe
 	cry Cry_Arcanine
 	cry Cry_Voltorb
@@ -1153,8 +1389,11 @@ gCryTable::
 	cry Cry_Typhlosion
 	cry Cry_Qwilfish
 	cry Cry_Sneasel
+	cry Cry_Dialga
+	cry Cry_Palkia
 	cry Cry_Samurott
 	cry Cry_Lilligant
+	cry Cry_Basculin
 	cry Cry_Zorua
 	cry Cry_Zoroark
 	cry Cry_Braviary
@@ -1162,119 +1401,6 @@ gCryTable::
 	cry Cry_Goodra
 	cry Cry_Avalugg
 	cry Cry_Decidueye
-	@ Misc Forms
-	@ Cap Pikachu
-	cry Cry_Pikachu
-	cry Cry_Pikachu
-	cry Cry_Pikachu
-	cry Cry_Pikachu
-	cry Cry_Pikachu
-	cry Cry_Pikachu
-	cry Cry_Pikachu
-	cry Cry_Pikachu
-	@ Origin Forme
-	cry Cry_Dialga
-	cry Cry_Palkia
-	@ Arceus
-	cry Cry_Basculin
-	cry Cry_Darmanitan
-	cry Cry_EnamorusTherian
-	@ Greninja
-	cry Cry_Greninja
-	cry Cry_Greninja
-	@ Zygarde
-	cry Cry_Zygarde10
-	cry Cry_Zygarde10
-	cry Cry_Zygarde
-	cry Cry_ZygardeComplete
-	@ Oricorio
-	cry Cry_OricorioPomPom
-	cry Cry_OricorioPau
-	cry Cry_OricorioSensu
-	@ Rockruff
-	cry Cry_Rockruff
-	@ Lycanroc
-	cry Cry_LycanrocMidnight
-	cry Cry_LycanrocDusk
-	@ Wishiwashi
-	cry Cry_WishiwashiSchool
-	@ Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	cry Cry_Silvally
-	@ Minior
-	cry Cry_Minior
-	cry Cry_Minior
-	cry Cry_Minior
-	cry Cry_Minior
-	cry Cry_Minior
-	cry Cry_Minior
-	cry Cry_Minior
-	cry Cry_Minior
-	cry Cry_Minior
-	cry Cry_Minior
-	cry Cry_Minior
-	cry Cry_Minior
-	cry Cry_Minior
-	@ Mimikyu
-	cry Cry_Mimikyu
-	@ Necrozma
-	cry Cry_NecrozmaDuskMane
-	cry Cry_NecrozmaDawnWings
-	cry Cry_NecrozmaUltra
-	@ Magearna
-	cry Cry_Magearna
-	@ Cramorant
-	cry Cry_Cramorant
-	cry Cry_Cramorant
-	@ Toxtricity
-	cry Cry_ToxtricityLowKey
-	@ Sinistea
-	cry Cry_Sinistea
-	@ Polteageist
-	cry Cry_Polteageist
-	@ Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	@ Eiscue
-	cry Cry_EiscueNoiceFace
-	@ Indeedee
-	cry Cry_IndeedeeFemale
-	@ Morpeko
-	cry Cry_MorpekoHangry
-	@ Zacian
-	cry Cry_ZacianCrownedSword
-	@ Zamazenta
-	cry Cry_ZamazentaCrownedShield
-	@ Eternatus
-	cry Cry_EternatusEternamax
-	@ Urshifu
-	cry Cry_UrshifuRapidStrikeStyle
-	@ Zarude
-	cry Cry_Zarude
-	@ Calyrex
-	cry Cry_CalyrexIceRider
-	cry Cry_CalyrexShadowRider
 
 	.align 2
 gCryTable_Reverse::
@@ -2219,11 +2345,16 @@ gCryTable_Reverse::
 	cry_reverse Cry_Crabrawler
 	cry_reverse Cry_Crabominable
 	cry_reverse Cry_Oricorio
+	cry_reverse Cry_OricorioPomPom
+	cry_reverse Cry_OricorioPau
+	cry_reverse Cry_OricorioSensu
 	cry_reverse Cry_Cutiefly
 	cry_reverse Cry_Ribombee
 	cry_reverse Cry_Rockruff
 	cry_reverse Cry_Lycanroc
+	cry_reverse Cry_LycanrocMidnight
 	cry_reverse Cry_Wishiwashi
+	cry_reverse Cry_WishiwashiSchool
 	cry_reverse Cry_Mareanie
 	cry_reverse Cry_Toxapex
 	cry_reverse Cry_Mudbray
@@ -2251,10 +2382,41 @@ gCryTable_Reverse::
 	cry_reverse Cry_Pyukumuku
 	cry_reverse Cry_TypeNull
 	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Silvally
+	cry_reverse Cry_Minior
+	cry_reverse Cry_Minior
+	cry_reverse Cry_Minior
+	cry_reverse Cry_Minior
+	cry_reverse Cry_Minior
+	cry_reverse Cry_Minior
+	cry_reverse Cry_Minior
+	cry_reverse Cry_Minior
+	cry_reverse Cry_Minior
+	cry_reverse Cry_Minior
+	cry_reverse Cry_Minior
+	cry_reverse Cry_Minior
+	cry_reverse Cry_Minior
 	cry_reverse Cry_Minior
 	cry_reverse Cry_Komala
 	cry_reverse Cry_Turtonator
 	cry_reverse Cry_Togedemaru
+	cry_reverse Cry_Mimikyu
 	cry_reverse Cry_Mimikyu
 	cry_reverse Cry_Bruxish
 	cry_reverse Cry_Drampa
@@ -2279,114 +2441,16 @@ gCryTable_Reverse::
 	cry_reverse Cry_Guzzlord
 	cry_reverse Cry_Necrozma
 	cry_reverse Cry_Magearna
+	cry_reverse Cry_Magearna
 	cry_reverse Cry_Marshadow
-	cry_reverse Cry_Poipole
-	cry_reverse Cry_Naganadel
-	cry_reverse Cry_Stakataka
-	cry_reverse Cry_Blacephalon
-	cry_reverse Cry_Zeraora
-	cry_reverse Cry_Meltan
-	cry_reverse Cry_Melmetal
-	cry_reverse Cry_Grookey
-	cry_reverse Cry_Thwackey
-	cry_reverse Cry_Rillaboom
-	cry_reverse Cry_Scorbunny
-	cry_reverse Cry_Raboot
-	cry_reverse Cry_Cinderace
-	cry_reverse Cry_Sobble
-	cry_reverse Cry_Drizzile
-	cry_reverse Cry_Inteleon
-	cry_reverse Cry_Skwovet
-	cry_reverse Cry_Greedent
-	cry_reverse Cry_Rookidee
-	cry_reverse Cry_Corvisquire
-	cry_reverse Cry_Corviknight
-	cry_reverse Cry_Blipbug
-	cry_reverse Cry_Dottler
-	cry_reverse Cry_Orbeetle
-	cry_reverse Cry_Nickit
-	cry_reverse Cry_Thievul
-	cry_reverse Cry_Gossifleur
-	cry_reverse Cry_Eldegoss
-	cry_reverse Cry_Wooloo
-	cry_reverse Cry_Dubwool
-	cry_reverse Cry_Chewtle
-	cry_reverse Cry_Drednaw
-	cry_reverse Cry_Yamper
-	cry_reverse Cry_Boltund
-	cry_reverse Cry_Rolycoly
-	cry_reverse Cry_Carkol
-	cry_reverse Cry_Coalossal
-	cry_reverse Cry_Applin
-	cry_reverse Cry_Flapple
-	cry_reverse Cry_Appletun
-	cry_reverse Cry_Silicobra
-	cry_reverse Cry_Sandaconda
-	cry_reverse Cry_Cramorant
-	cry_reverse Cry_Arrokuda
-	cry_reverse Cry_Barraskewda
-	cry_reverse Cry_Toxel
-	cry_reverse Cry_Toxtricity
-	cry_reverse Cry_Sizzlipede
-	cry_reverse Cry_Centiskorch
-	cry_reverse Cry_Clobbopus
-	cry_reverse Cry_Grapploct
-	cry_reverse Cry_Sinistea
-	cry_reverse Cry_Polteageist
-	cry_reverse Cry_Hatenna
-	cry_reverse Cry_Hattrem
-	cry_reverse Cry_Hatterene
-	cry_reverse Cry_Impidimp
-	cry_reverse Cry_Morgrem
-	cry_reverse Cry_Grimmsnarl
-	cry_reverse Cry_Obstagoon
-	cry_reverse Cry_Perrserker
-	cry_reverse Cry_Cursola
-	cry_reverse Cry_Sirfetchd
-	cry_reverse Cry_MrRime
-	cry_reverse Cry_Runerigus
-	cry_reverse Cry_Milcery
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Falinks
-	cry_reverse Cry_Pincurchin
-	cry_reverse Cry_Snom
-	cry_reverse Cry_Frosmoth
-	cry_reverse Cry_Stonjourner
-	cry_reverse Cry_Eiscue
-	cry_reverse Cry_Indeedee
-	cry_reverse Cry_Morpeko
-	cry_reverse Cry_Cufant
-	cry_reverse Cry_Copperajah
-	cry_reverse Cry_Dracozolt
-	cry_reverse Cry_Arctozolt
-	cry_reverse Cry_Dracovish
-	cry_reverse Cry_Arctovish
-	cry_reverse Cry_Duraludon
-	cry_reverse Cry_Dreepy
-	cry_reverse Cry_Drakloak
-	cry_reverse Cry_Dragapult
-	cry_reverse Cry_Zacian
-	cry_reverse Cry_Zamazenta
-	cry_reverse Cry_Eternatus
-	cry_reverse Cry_Kubfu
-	cry_reverse Cry_Urshifu
-	cry_reverse Cry_Zarude
-	cry_reverse Cry_Regieleki
-	cry_reverse Cry_Regidrago
-	cry_reverse Cry_Glastrier
-	cry_reverse Cry_Spectrier
-	cry_reverse Cry_Calyrex
-	cry_reverse Cry_Wyrdeer
-	cry_reverse Cry_Kleavor
-	cry_reverse Cry_Ursaluna
-	cry_reverse Cry_Basculegion
-	cry_reverse Cry_Sneasler
-	cry_reverse Cry_Overqwil
-	cry_reverse Cry_Enamorus
-
-	@ Alolan Forms
 	cry_reverse Cry_Rattata
 	cry_reverse Cry_Raticate
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Pikachu
 	cry_reverse Cry_Raichu
 	cry_reverse Cry_Sandshrew
 	cry_reverse Cry_Sandslash
@@ -2403,27 +2467,325 @@ gCryTable_Reverse::
 	cry_reverse Cry_Muk
 	cry_reverse Cry_Exeggutor
 	cry_reverse Cry_Marowak
-	@ Galarian Forms
+	cry_reverse Cry_Greninja
+	cry_reverse Cry_Greninja
+	cry_reverse Cry_Zygarde10
+	cry_reverse Cry_Zygarde10
+	cry_reverse Cry_Zygarde
+	cry_reverse Cry_ZygardeComplete
+@ Ultra Sun and Ultra Moon
+	cry_reverse Cry_Poipole
+	cry_reverse Cry_Naganadel
+	cry_reverse Cry_Stakataka
+	cry_reverse Cry_Blacephalon
+	cry_reverse Cry_Zeraora
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Rockruff
+	cry_reverse Cry_LycanrocDusk
+	cry_reverse Cry_NecrozmaDuskMane
+	cry_reverse Cry_NecrozmaDawnWings
+	cry_reverse Cry_NecrozmaUltra
+@ Let's Go Pikachu and Eevee
+	cry_reverse Cry_Meltan
+	cry_reverse Cry_Melmetal
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Eevee
+@ Sword and Shield
+	cry_reverse Cry_Grookey
+	cry_reverse Cry_Thwackey
+	cry_reverse Cry_Rillaboom
+	cry_reverse Cry_Scorbunny
+	cry_reverse Cry_Raboot
+	cry_reverse Cry_Cinderace
+	cry_reverse Cry_Sobble
+	cry_reverse Cry_Drizzile
+	cry_reverse Cry_Inteleon
+	cry_reverse Cry_Skwovet
+	cry_reverse Cry_Greedent
+	cry_reverse Cry_Rookidee
+	cry_reverse Cry_Corvisquire
+	cry_reverse Cry_Corviknight
+	cry_reverse Cry_Corviknight
+	cry_reverse Cry_Blipbug
+	cry_reverse Cry_Dottler
+	cry_reverse Cry_Orbeetle
+	cry_reverse Cry_Orbeetle
+	cry_reverse Cry_Nickit
+	cry_reverse Cry_Thievul
+	cry_reverse Cry_Gossifleur
+	cry_reverse Cry_Eldegoss
+	cry_reverse Cry_Wooloo
+	cry_reverse Cry_Dubwool
+	cry_reverse Cry_Chewtle
+	cry_reverse Cry_Drednaw
+	cry_reverse Cry_Drednaw
+	cry_reverse Cry_Yamper
+	cry_reverse Cry_Boltund
+	cry_reverse Cry_Rolycoly
+	cry_reverse Cry_Carkol
+	cry_reverse Cry_Coalossal
+	cry_reverse Cry_Coalossal
+	cry_reverse Cry_Applin
+	cry_reverse Cry_Flapple
+	cry_reverse Cry_Flapple
+	cry_reverse Cry_Appletun
+	cry_reverse Cry_Appletun
+	cry_reverse Cry_Silicobra
+	cry_reverse Cry_Sandaconda
+	cry_reverse Cry_Sandaconda
+	cry_reverse Cry_Cramorant
+	cry_reverse Cry_Cramorant
+	cry_reverse Cry_Cramorant
+	cry_reverse Cry_Arrokuda
+	cry_reverse Cry_Barraskewda
+	cry_reverse Cry_Toxel
+	cry_reverse Cry_Toxtricity
+	cry_reverse Cry_Toxtricity
+	cry_reverse Cry_ToxtricityLowKey
+	cry_reverse Cry_ToxtricityLowKey
+	cry_reverse Cry_Sizzlipede
+	cry_reverse Cry_Centiskorch
+	cry_reverse Cry_Centiskorch
+	cry_reverse Cry_Clobbopus
+	cry_reverse Cry_Grapploct
+	cry_reverse Cry_Sinistea
+	cry_reverse Cry_Sinistea
+	cry_reverse Cry_Polteageist
+	cry_reverse Cry_Polteageist
+	cry_reverse Cry_Hatenna
+	cry_reverse Cry_Hattrem
+	cry_reverse Cry_Hatterene
+	cry_reverse Cry_Hatterene
+	cry_reverse Cry_Impidimp
+	cry_reverse Cry_Morgrem
+	cry_reverse Cry_Grimmsnarl
+	cry_reverse Cry_Grimmsnarl
+	cry_reverse Cry_Obstagoon
+	cry_reverse Cry_Perrserker
+	cry_reverse Cry_Cursola
+	cry_reverse Cry_Sirfetchd
+	cry_reverse Cry_MrRime
+	cry_reverse Cry_Runerigus
+	cry_reverse Cry_Milcery
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Falinks
+	cry_reverse Cry_Pincurchin
+	cry_reverse Cry_Snom
+	cry_reverse Cry_Frosmoth
+	cry_reverse Cry_Stonjourner
+	cry_reverse Cry_Eiscue
+	cry_reverse Cry_EiscueNoiceFace
+	cry_reverse Cry_Indeedee
+	cry_reverse Cry_IndeedeeFemale
+	cry_reverse Cry_Morpeko
+	cry_reverse Cry_MorpekoHangry
+	cry_reverse Cry_Cufant
+	cry_reverse Cry_Copperajah
+	cry_reverse Cry_Copperajah
+	cry_reverse Cry_Dracozolt
+	cry_reverse Cry_Arctozolt
+	cry_reverse Cry_Dracovish
+	cry_reverse Cry_Arctovish
+	cry_reverse Cry_Duraludon
+	cry_reverse Cry_Duraludon
+	cry_reverse Cry_Dreepy
+	cry_reverse Cry_Drakloak
+	cry_reverse Cry_Dragapult
+	cry_reverse Cry_Zacian
+	cry_reverse Cry_ZacianCrownedSword
+	cry_reverse Cry_Zamazenta
+	cry_reverse Cry_ZamazentaCrownedShield
+	cry_reverse Cry_Eternatus
+	cry_reverse Cry_EternatusEternamax
+	cry_reverse Cry_Charizard
+	cry_reverse Cry_Butterfree
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Pikachu
 	cry_reverse Cry_Meowth
+	cry_reverse Cry_Meowth
+	cry_reverse Cry_Machamp
 	cry_reverse Cry_Ponyta
 	cry_reverse Cry_Rapidash
-	cry_reverse Cry_SlowpokeGalarian
-	cry_reverse Cry_Slowbro
 	cry_reverse Cry_Farfetchd
+	cry_reverse Cry_Gengar
+	cry_reverse Cry_Kingler
 	cry_reverse Cry_Weezing
 	cry_reverse Cry_MrMime
-	cry_reverse Cry_Articuno
-	cry_reverse Cry_Zapdos
-	cry_reverse Cry_Moltres
-	cry_reverse Cry_Slowking
+	cry_reverse Cry_Lapras
+	cry_reverse Cry_Eevee
+	cry_reverse Cry_Snorlax
 	cry_reverse Cry_Corsola
 	cry_reverse Cry_Zigzagoon
 	cry_reverse Cry_Linoone
 	cry_reverse Cry_Darumaka
 	cry_reverse Cry_Darmanitan
+	cry_reverse Cry_Darmanitan
 	cry_reverse Cry_Yamask
+	cry_reverse Cry_Garbodor
 	cry_reverse Cry_Stunfisk
-	@ Hisuian Forms
+	cry_reverse Cry_Melmetal
+@ Sword and Shield 1.1.0
+	cry_reverse Cry_SlowpokeGalarian
+@ The Isle of Armor
+	cry_reverse Cry_Kubfu
+	cry_reverse Cry_Urshifu
+	cry_reverse Cry_Urshifu
+	cry_reverse Cry_UrshifuRapidStrikeStyle
+	cry_reverse Cry_UrshifuRapidStrikeStyle
+	cry_reverse Cry_Zarude
+	cry_reverse Cry_Zarude
+	cry_reverse Cry_Venusaur
+	cry_reverse Cry_Blastoise
+	cry_reverse Cry_Slowbro
+	cry_reverse Cry_Rillaboom
+	cry_reverse Cry_Cinderace
+	cry_reverse Cry_Inteleon
+@ The Crown Tundra
+	cry_reverse Cry_Regieleki
+	cry_reverse Cry_Regidrago
+	cry_reverse Cry_Glastrier
+	cry_reverse Cry_Spectrier
+	cry_reverse Cry_Calyrex
+	cry_reverse Cry_CalyrexIceRider
+	cry_reverse Cry_CalyrexShadowRider
+	cry_reverse Cry_Articuno
+	cry_reverse Cry_Zapdos
+	cry_reverse Cry_Moltres
+	cry_reverse Cry_Slowking
+@ Legends: Arceus
+	cry_reverse Cry_Wyrdeer
+	cry_reverse Cry_Kleavor
+	cry_reverse Cry_Ursaluna
+	cry_reverse Cry_Basculegion
+	cry_reverse Cry_Sneasler
+	cry_reverse Cry_Overqwil
+	cry_reverse Cry_Enamorus
+	cry_reverse Cry_EnamorusTherian
 	cry_reverse Cry_Growlithe
 	cry_reverse Cry_Arcanine
 	cry_reverse Cry_Voltorb
@@ -2431,8 +2793,11 @@ gCryTable_Reverse::
 	cry_reverse Cry_Typhlosion
 	cry_reverse Cry_Qwilfish
 	cry_reverse Cry_Sneasel
+	cry_reverse Cry_Dialga
+	cry_reverse Cry_Palkia
 	cry_reverse Cry_Samurott
 	cry_reverse Cry_Lilligant
+	cry_reverse Cry_Basculin
 	cry_reverse Cry_Zorua
 	cry_reverse Cry_Zoroark
 	cry_reverse Cry_Braviary
@@ -2440,116 +2805,3 @@ gCryTable_Reverse::
 	cry_reverse Cry_Goodra
 	cry_reverse Cry_Avalugg
 	cry_reverse Cry_Decidueye
-	@ Misc Forms
-	@ Cap Pikachu
-	cry_reverse Cry_Pikachu
-	cry_reverse Cry_Pikachu
-	cry_reverse Cry_Pikachu
-	cry_reverse Cry_Pikachu
-	cry_reverse Cry_Pikachu
-	cry_reverse Cry_Pikachu
-	cry_reverse Cry_Pikachu
-	cry_reverse Cry_Pikachu
-	@ Origin Forme
-	cry_reverse Cry_Dialga
-	cry_reverse Cry_Palkia
-	@ Arceus
-	cry_reverse Cry_Basculin
-	cry_reverse Cry_Darmanitan
-	cry_reverse Cry_EnamorusTherian
-	@ Greninja
-	cry_reverse Cry_Greninja
-	cry_reverse Cry_Greninja
-	@ Zygarde
-	cry_reverse Cry_Zygarde10
-	cry_reverse Cry_Zygarde10
-	cry_reverse Cry_Zygarde
-	cry_reverse Cry_ZygardeComplete
-	@ Oricorio
-	cry_reverse Cry_OricorioPomPom
-	cry_reverse Cry_OricorioPau
-	cry_reverse Cry_OricorioSensu
-	@ Rockruff
-	cry_reverse Cry_Rockruff
-	@ Lycanroc
-	cry_reverse Cry_LycanrocMidnight
-	cry_reverse Cry_LycanrocDusk
-	@ Wishiwashi
-	cry_reverse Cry_WishiwashiSchool
-	@ Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	cry_reverse Cry_Silvally
-	@ Minior
-	cry_reverse Cry_Minior
-	cry_reverse Cry_Minior
-	cry_reverse Cry_Minior
-	cry_reverse Cry_Minior
-	cry_reverse Cry_Minior
-	cry_reverse Cry_Minior
-	cry_reverse Cry_Minior
-	cry_reverse Cry_Minior
-	cry_reverse Cry_Minior
-	cry_reverse Cry_Minior
-	cry_reverse Cry_Minior
-	cry_reverse Cry_Minior
-	cry_reverse Cry_Minior
-	@ Mimikyu
-	cry_reverse Cry_Mimikyu
-	@ Necrozma
-	cry_reverse Cry_NecrozmaDuskMane
-	cry_reverse Cry_NecrozmaDawnWings
-	cry_reverse Cry_NecrozmaUltra
-	@ Magearna
-	cry_reverse Cry_Magearna
-	@ Cramorant
-	cry_reverse Cry_Cramorant
-	cry_reverse Cry_Cramorant
-	@ Toxtricity
-	cry_reverse Cry_ToxtricityLowKey
-	@ Sinistea
-	cry_reverse Cry_Sinistea
-	@ Polteageist
-	cry_reverse Cry_Polteageist
-	@ Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	@ Eiscue
-	cry_reverse Cry_EiscueNoiceFace
-	@ Indeedee
-	cry_reverse Cry_IndeedeeFemale
-	@ Morpeko
-	cry_reverse Cry_MorpekoHangry
-	@ Zacian
-	cry_reverse Cry_ZacianCrownedSword
-	@ Zamazenta
-	cry_reverse Cry_ZamazentaCrownedShield
-	@ Eternatus
-	cry_reverse Cry_EternatusEternamax
-	@ Urshifu
-	cry_reverse Cry_UrshifuRapidStrikeStyle
-	@ Zarude
-	cry_reverse Cry_Zarude
-	@ Calyrex
-	cry_reverse Cry_CalyrexIceRider
-	cry_reverse Cry_CalyrexShadowRider
