@@ -305,6 +305,7 @@
 #define EVO_SCRIPT_TRIGGER_DMG            36     // Pokémon has specified HP below max, then player interacts trigger
 #define EVO_DARK_SCROLL                   37     // interacts with Scroll of Darkness
 #define EVO_WATER_SCROLL                  38     // interacts with Scroll of Waters
+#define EVO_ALCREMIE                      39     // TODO: read separate lookup table from gEvolutionTable.
 
 #define EVOS_PER_MON 10
 

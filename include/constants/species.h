@@ -426,9 +426,9 @@
 #define SPECIES_DEOXYS_ATTACK                                417
 #define SPECIES_DEOXYS_DEFENSE                               418
 #define SPECIES_DEOXYS_SPEED                                 419
-// XD: Gale of Darkness
+// XD: Gale of Darkness (New Forms)
 #define SPECIES_LUGIA_SHADOW                                 420 // Todo
-// Diamond and Pearl
+// Diamond and Pearl (New Species)
 #define SPECIES_TURTWIG                                      421
 #define SPECIES_GROTLE                                       422
 #define SPECIES_TORTERRA                                     423
@@ -567,7 +567,7 @@
 #define SPECIES_ARCEUS_ICE                                   548
 #define SPECIES_ARCEUS_DRAGON                                549
 #define SPECIES_ARCEUS_DARK                                  550
-// Platinum
+// Platinum (New Forms)
 #define SPECIES_ROTOM_HEAT                                   551
 #define SPECIES_ROTOM_WASH                                   552
 #define SPECIES_ROTOM_FROST                                  553
@@ -575,7 +575,7 @@
 #define SPECIES_ROTOM_MOW                                    555
 #define SPECIES_GIRATINA_ORIGIN                              556
 #define SPECIES_SHAYMIN_SKY                                  557
-// HeartGold and SoulSilver
+// HeartGold and SoulSilver (New Forms)
 #define SPECIES_PICHU_SPIKY_EARED                            558
 // Black and White
 #define SPECIES_VICTINI                                      559
@@ -756,14 +756,14 @@
 #define SPECIES_GENESECT_SHOCK_DRIVE                         725
 #define SPECIES_GENESECT_BURN_DRIVE                          726
 #define SPECIES_GENESECT_CHILL_DRIVE                         727
-// Black 2 and White 2
+// Black 2 and White 2 (New Forms)
 #define SPECIES_TORNADUS_THERIAN                             728
 #define SPECIES_THUNDURUS_THERIAN                            729
 #define SPECIES_LANDORUS_THERIAN                             730
 #define SPECIES_KYUREM_WHITE                                 731
 #define SPECIES_KYUREM_BLACK                                 732
 #define SPECIES_KELDEO_RESOLUTE                              733
-// X and Y
+// X and Y (New Species)
 #define SPECIES_CHESPIN                                      734
 #define SPECIES_QUILLADIN                                    735
 #define SPECIES_CHESNAUGHT                                   736
@@ -843,7 +843,8 @@
 #define SPECIES_MEOWSTIC_FEMALE                              804
 #define SPECIES_HONEDGE                                      805
 #define SPECIES_DOUBLADE                                     806
-#define SPECIES_AEGISLASH                                    807
+#define SPECIES_AEGISLASH                                    SPECIES_AEGISLASH_SHIELD
+#define SPECIES_AEGISLASH_SHIELD                             807
 #define SPECIES_AEGISLASH_BLADE                              808
 #define SPECIES_SPRITZEE                                     809
 #define SPECIES_AROMATISSE                                   810
@@ -891,10 +892,13 @@
 #define SPECIES_XERNEAS_NEUTRAL                              849
 #define SPECIES_XERNEAS_ACTIVE                               850
 #define SPECIES_YVELTAL                                      851
-#define SPECIES_ZYGARDE                                      852
+#define SPECIES_ZYGARDE                                      SPECIES_ZYGARDE_50
+#define SPECIES_ZYGARDE_50                                   852
 #define SPECIES_DIANCIE                                      853
-#define SPECIES_HOOPA                                        854
+#define SPECIES_HOOPA                                        SPECIES_HOOPA_CONFINED
+#define SPECIES_HOOPA_CONFINED                               854
 #define SPECIES_VOLCANION                                    855
+// X and Y (New Forms)
 #define SPECIES_VENUSAUR_MEGA                                856
 #define SPECIES_CHARIZARD_MEGA_X                             857
 #define SPECIES_CHARIZARD_MEGA_Y                             858
@@ -926,7 +930,7 @@
 #define SPECIES_LUCARIO_MEGA                                 884
 #define SPECIES_ABOMASNOW_MEGA                               885
 #define SPECIES_ARCEUS_FAIRY                                 886
-// Omega Ruby and Alpha Sapphire
+// Omega Ruby and Alpha Sapphire (New Forms)
 #define SPECIES_BEEDRILL_MEGA                                887
 #define SPECIES_PIDGEOT_MEGA                                 888
 #define SPECIES_PIKACHU_COSPLAY                              889
@@ -954,7 +958,7 @@
 #define SPECIES_AUDINO_MEGA                                  911
 #define SPECIES_DIANCIE_MEGA                                 912
 #define SPECIES_HOOPA_UNBOUND                                913
-// Sun and Moon
+// Sun and Moon (New Species)
 #define SPECIES_ROWLET                                       914
 #define SPECIES_DARTRIX                                      915
 #define SPECIES_DECIDUEYE                                    916
@@ -974,16 +978,19 @@
 #define SPECIES_VIKAVOLT                                     930
 #define SPECIES_CRABRAWLER                                   931
 #define SPECIES_CRABOMINABLE                                 932
-#define SPECIES_ORICORIO                                     933
+#define SPECIES_ORICORIO                                     SPECIES_ORICORIO_BAILE
+#define SPECIES_ORICORIO_BAILE                               933
 #define SPECIES_ORICORIO_POM_POM                             934
 #define SPECIES_ORICORIO_PAU                                 935
 #define SPECIES_ORICORIO_SENSU                               936
 #define SPECIES_CUTIEFLY                                     937
 #define SPECIES_RIBOMBEE                                     938
 #define SPECIES_ROCKRUFF                                     939
-#define SPECIES_LYCANROC                                     940
+#define SPECIES_LYCANROC                                     SPECIES_LYCANROC_MIDDAY
+#define SPECIES_LYCANROC_MIDDAY                              940
 #define SPECIES_LYCANROC_MIDNIGHT                            941
-#define SPECIES_WISHIWASHI                                   942
+#define SPECIES_WISHIWASHI                                   SPECIES_WISHIWASHI_SOLO
+#define SPECIES_WISHIWASHI_SOLO                              942
 #define SPECIES_WISHIWASHI_SCHOOL                            943
 #define SPECIES_MAREANIE                                     944
 #define SPECIES_TOXAPEX                                      945
@@ -1011,7 +1018,8 @@
 #define SPECIES_PALOSSAND                                    967
 #define SPECIES_PYUKUMUKU                                    968
 #define SPECIES_TYPE_NULL                                    969
-#define SPECIES_SILVALLY                                     970
+#define SPECIES_SILVALLY                                     SPECIES_SILVALLY_NORMAL
+#define SPECIES_SILVALLY_NORMAL                              970
 #define SPECIES_SILVALLY_FIGHTING                            971
 #define SPECIES_SILVALLY_FLYING                              972
 #define SPECIES_SILVALLY_POISON                              973
@@ -1029,7 +1037,8 @@
 #define SPECIES_SILVALLY_DRAGON                              985
 #define SPECIES_SILVALLY_DARK                                986
 #define SPECIES_SILVALLY_FAIRY                               987
-#define SPECIES_MINIOR                                       988
+#define SPECIES_MINIOR                                       SPECIES_MINIOR_METEOR_RED
+#define SPECIES_MINIOR_METEOR_RED                            988
 #define SPECIES_MINIOR_METEOR_ORANGE                         989
 #define SPECIES_MINIOR_METEOR_YELLOW                         990
 #define SPECIES_MINIOR_METEOR_GREEN                          991
@@ -1046,7 +1055,8 @@
 #define SPECIES_KOMALA                                       1002
 #define SPECIES_TURTONATOR                                   1003
 #define SPECIES_TOGEDEMARU                                   1004
-#define SPECIES_MIMIKYU                                      1005
+#define SPECIES_MIMIKYU                                      SPECIES_MIMIKYU_DISGUISED
+#define SPECIES_MIMIKYU_DISGUISED                            1005
 #define SPECIES_MIMIKYU_BUSTED                               1006
 #define SPECIES_BRUXISH                                      1007
 #define SPECIES_DRAMPA                                       1008
@@ -1073,6 +1083,7 @@
 #define SPECIES_MAGEARNA                                     1029
 #define SPECIES_MAGEARNA_ORIGINAL_COLOR                      1030
 #define SPECIES_MARSHADOW                                    1031
+// Sun and Moon (New Forms)
 #define SPECIES_RATTATA_ALOLAN                               1032
 #define SPECIES_RATICATE_ALOLAN                              1033
 #define SPECIES_PIKACHU_ORIGINAL_CAP                         1034
@@ -1103,24 +1114,26 @@
 #define SPECIES_ZYGARDE_10_POWER_CONSTRUCT                   1059
 #define SPECIES_ZYGARDE_50_POWER_CONSTRUCT                   1060
 #define SPECIES_ZYGARDE_COMPLETE                             1061
-// Ultra Sun and Ultra Moon
+// Ultra Sun and Ultra Moon (New Species)
 #define SPECIES_POIPOLE                                      1062
 #define SPECIES_NAGANADEL                                    1063
 #define SPECIES_STAKATAKA                                    1064
 #define SPECIES_BLACEPHALON                                  1065
 #define SPECIES_ZERAORA                                      1066
+// Ultra Sun and Ultra Moon (New Forms)
 #define SPECIES_PIKACHU_PARTNER_CAP                          1067
 #define SPECIES_ROCKRUFF_OWN_TEMPO                           1068
 #define SPECIES_LYCANROC_DUSK                                1069
 #define SPECIES_NECROZMA_DUSK_MANE                           1070
 #define SPECIES_NECROZMA_DAWN_WINGS                          1071
 #define SPECIES_NECROZMA_ULTRA                               1072
-// Let's Go Pikachu and Eevee
+// Let's Go Pikachu and Eevee (New Species)
 #define SPECIES_MELTAN                                       1073
 #define SPECIES_MELMETAL                                     1074
+// Let's Go Pikachu and Eevee (New Forms)
 #define SPECIES_PIKACHU_PARTNER                              1075 // Todo
 #define SPECIES_EEVEE_PARTNER                                1076 // Todo
-// Sword and Shield
+// Sword and Shield (New Species)
 #define SPECIES_GROOKEY                                      1077
 #define SPECIES_THWACKEY                                     1078
 #define SPECIES_RILLABOOM                                    1079
@@ -1361,6 +1374,7 @@
 #define SPECIES_ZAMAZENTA_CROWNED_SHIELD                     1305
 #define SPECIES_ETERNATUS                                    1306
 #define SPECIES_ETERNATUS_ETERNAMAX                          1307
+// Sword and Shield (New Forms)
 #define SPECIES_CHARIZARD_GIGANTAMAX                         1308
 #define SPECIES_BUTTERFREE_GIGANTAMAX                        1309
 #define SPECIES_PIKACHU_WORLD_CAP                            1310
@@ -1382,15 +1396,16 @@
 #define SPECIES_ZIGZAGOON_GALARIAN                           1326
 #define SPECIES_LINOONE_GALARIAN                             1327
 #define SPECIES_DARUMAKA_GALARIAN                            1328
-#define SPECIES_DARMANITAN_GALARIAN                          1329
+#define SPECIES_DARMANITAN_GALARIAN                          SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE
+#define SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE            1329
 #define SPECIES_DARMANITAN_GALARIAN_ZEN_MODE                 1330
 #define SPECIES_YAMASK_GALARIAN                              1331
 #define SPECIES_GARBODOR_GIGANTAMAX                          1332
 #define SPECIES_STUNFISK_GALARIAN                            1333
 #define SPECIES_MELMETAL_GIGANTAMAX                          1334
-// Sword and Shield 1.1.0
+// Sword and Shield 1.1.0 (New Forms)
 #define SPECIES_SLOWPOKE_GALARIAN                            1335
-// The Isle of Armor
+// The Isle of Armor (New Species)
 #define SPECIES_KUBFU                                        1336
 #define SPECIES_URSHIFU                                      SPECIES_URSHIFU_SINGLE_STRIKE_STYLE
 #define SPECIES_URSHIFU_SINGLE_STRIKE_STYLE                  1337
@@ -1399,13 +1414,14 @@
 #define SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX        1340
 #define SPECIES_ZARUDE                                       1341
 #define SPECIES_ZARUDE_DADA                                  1342
+// The Isle of Armor (New Forms)
 #define SPECIES_VENUSAUR_GIGANTAMAX                          1343
 #define SPECIES_BLASTOISE_GIGANTAMAX                         1344
 #define SPECIES_SLOWBRO_GALARIAN                             1345
 #define SPECIES_RILLABOOM_GIGANTAMAX                         1346
 #define SPECIES_CINDERACE_GIGANTAMAX                         1347
 #define SPECIES_INTELEON_GIGANTAMAX                          1348
-// The Crown Tundra
+// The Crown Tundra (New Species)
 #define SPECIES_REGIELEKI                                    1349
 #define SPECIES_REGIDRAGO                                    1350
 #define SPECIES_GLASTRIER                                    1351
@@ -1413,11 +1429,12 @@
 #define SPECIES_CALYREX                                      1353
 #define SPECIES_CALYREX_ICE_RIDER                            1354
 #define SPECIES_CALYREX_SHADOW_RIDER                         1355
+// The Crown Tundra (New Forms)
 #define SPECIES_ARTICUNO_GALARIAN                            1356
 #define SPECIES_ZAPDOS_GALARIAN                              1357
 #define SPECIES_MOLTRES_GALARIAN                             1358
 #define SPECIES_SLOWKING_GALARIAN                            1359
-// Legends: Arceus
+// Legends: Arceus (New Species)
 #define SPECIES_WYRDEER                                      1360
 #define SPECIES_KLEAVOR                                      1361
 #define SPECIES_URSALUNA                                     1362
@@ -1427,6 +1444,7 @@
 #define SPECIES_ENAMORUS                                     SPECIES_ENAMORUS_INCARNATE
 #define SPECIES_ENAMORUS_INCARNATE                           1366
 #define SPECIES_ENAMORUS_THERIAN                             1367
+// Legends: Arceus (New Forms)
 #define SPECIES_GROWLITHE_HISUIAN                            1368
 #define SPECIES_ARCANINE_HISUIAN                             1369
 #define SPECIES_VOLTORB_HISUIAN                              1370

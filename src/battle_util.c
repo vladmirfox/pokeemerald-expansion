@@ -4175,18 +4175,18 @@ static bool32 ShouldChangeFormHpBased(u32 battler)
     // Ability,     form >, form <=, hp divided
     static const u16 forms[][4] =
     {
-        {ABILITY_ZEN_MODE, SPECIES_DARMANITAN, SPECIES_DARMANITAN_ZEN_MODE, 2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR, SPECIES_MINIOR_CORE_RED, 2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_BLUE, SPECIES_MINIOR_CORE_BLUE, 2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_GREEN, SPECIES_MINIOR_CORE_GREEN, 2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_INDIGO, SPECIES_MINIOR_CORE_INDIGO, 2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_ORANGE, SPECIES_MINIOR_CORE_ORANGE, 2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_VIOLET, SPECIES_MINIOR_CORE_VIOLET, 2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_YELLOW, SPECIES_MINIOR_CORE_YELLOW, 2},
-        {ABILITY_SCHOOLING, SPECIES_WISHIWASHI_SCHOOL, SPECIES_WISHIWASHI, 4},
-        {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT, SPECIES_CRAMORANT_GORGING, 2},
-        {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT, SPECIES_CRAMORANT_GULPING, 1},
-        {ABILITY_ZEN_MODE, SPECIES_DARMANITAN_GALARIAN, SPECIES_DARMANITAN_GALARIAN_ZEN_MODE, 2},
+        {ABILITY_ZEN_MODE,     SPECIES_DARMANITAN_STANDARD_MODE,          SPECIES_DARMANITAN_ZEN_MODE,          2},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_RED,                 SPECIES_MINIOR_CORE_RED,              2},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_BLUE,                SPECIES_MINIOR_CORE_BLUE,             2},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_GREEN,               SPECIES_MINIOR_CORE_GREEN,            2},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_INDIGO,              SPECIES_MINIOR_CORE_INDIGO,           2},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_ORANGE,              SPECIES_MINIOR_CORE_ORANGE,           2},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_VIOLET,              SPECIES_MINIOR_CORE_VIOLET,           2},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_YELLOW,              SPECIES_MINIOR_CORE_YELLOW,           2},
+        {ABILITY_SCHOOLING,    SPECIES_WISHIWASHI_SCHOOL,                 SPECIES_WISHIWASHI_SOLO,              4},
+        {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT,                         SPECIES_CRAMORANT_GORGING,            2},
+        {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT,                         SPECIES_CRAMORANT_GULPING,            1},
+        {ABILITY_ZEN_MODE,     SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE, SPECIES_DARMANITAN_GALARIAN_ZEN_MODE, 2},
     };
     u32 i;
     u16 battlerAbility = GetBattlerAbility(battler);
@@ -4960,7 +4960,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
                 break;
             case ABILITY_POWER_CONSTRUCT:
-                if ((gBattleMons[battler].species == SPECIES_ZYGARDE || gBattleMons[battler].species == SPECIES_ZYGARDE_10)
+                if ((gBattleMons[battler].species == SPECIES_ZYGARDE_50_POWER_CONSTRUCT
+                        || gBattleMons[battler].species == SPECIES_ZYGARDE_10_POWER_CONSTRUCT)
                     && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / 2)
                 {
                     gBattleStruct->changedSpecies[gBattlerPartyIndexes[battler]] = gBattleMons[battler].species;
@@ -4986,14 +4987,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             case ABILITY_HUNGER_SWITCH:
                 if (!(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
                 {
-                    if (gBattleMons[battler].species == SPECIES_MORPEKO)
+                    if (gBattleMons[battler].species == SPECIES_MORPEKO_FULL_BELLY)
                     {
                         gBattleMons[battler].species = SPECIES_MORPEKO_HANGRY;
                         BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3NoPopup);
                     }
                     else if (gBattleMons[battler].species == SPECIES_MORPEKO_HANGRY)
                     {
-                        gBattleMons[battler].species = SPECIES_MORPEKO;
+                        gBattleMons[battler].species = SPECIES_MORPEKO_FULL_BELLY;
                         BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3NoPopup);
                     }
                     effect++;
@@ -9695,24 +9696,24 @@ void UndoFormChange(u32 monId, u32 side, bool32 isSwitchingOut)
     struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
     static const u16 species[][3] =
     {
-        // Changed Form ID                      Default Form ID               Should change on switch
-        {SPECIES_MIMIKYU_BUSTED,                SPECIES_MIMIKYU,              FALSE},
-        {SPECIES_GRENINJA_ASH,                  SPECIES_GRENINJA_BATTLE_BOND, FALSE},
-        {SPECIES_MELOETTA_PIROUETTE,            SPECIES_MELOETTA,             FALSE},
-        {SPECIES_AEGISLASH_BLADE,               SPECIES_AEGISLASH,            TRUE},
-        {SPECIES_DARMANITAN_ZEN_MODE,           SPECIES_DARMANITAN,           TRUE},
-        {SPECIES_MINIOR,                        SPECIES_MINIOR_CORE_RED,      TRUE},
-        {SPECIES_MINIOR_METEOR_BLUE,            SPECIES_MINIOR_CORE_BLUE,     TRUE},
-        {SPECIES_MINIOR_METEOR_GREEN,           SPECIES_MINIOR_CORE_GREEN,    TRUE},
-        {SPECIES_MINIOR_METEOR_INDIGO,          SPECIES_MINIOR_CORE_INDIGO,   TRUE},
-        {SPECIES_MINIOR_METEOR_ORANGE,          SPECIES_MINIOR_CORE_ORANGE,   TRUE},
-        {SPECIES_MINIOR_METEOR_VIOLET,          SPECIES_MINIOR_CORE_VIOLET,   TRUE},
-        {SPECIES_MINIOR_METEOR_YELLOW,          SPECIES_MINIOR_CORE_YELLOW,   TRUE},
-        {SPECIES_WISHIWASHI_SCHOOL,             SPECIES_WISHIWASHI,           TRUE},
-        {SPECIES_CRAMORANT_GORGING,             SPECIES_CRAMORANT,            TRUE},
-        {SPECIES_CRAMORANT_GULPING,             SPECIES_CRAMORANT,            TRUE},
-        {SPECIES_MORPEKO_HANGRY,                SPECIES_MORPEKO,              TRUE},
-        {SPECIES_DARMANITAN_GALARIAN_ZEN_MODE,  SPECIES_DARMANITAN_GALARIAN,  TRUE},
+        // Changed Form ID                      Default Form ID                            Should change on switch
+        {SPECIES_MIMIKYU_BUSTED,                SPECIES_MIMIKYU_DISGUISED,                 FALSE},
+        {SPECIES_GRENINJA_ASH,                  SPECIES_GRENINJA_BATTLE_BOND,              FALSE},
+        {SPECIES_MELOETTA_PIROUETTE,            SPECIES_MELOETTA_ARIA,                     FALSE},
+        {SPECIES_AEGISLASH_BLADE,               SPECIES_AEGISLASH_SHIELD,                  TRUE},
+        {SPECIES_DARMANITAN_ZEN_MODE,           SPECIES_DARMANITAN_STANDARD_MODE,          TRUE},
+        {SPECIES_MINIOR_METEOR_RED,             SPECIES_MINIOR_CORE_RED,                   TRUE},
+        {SPECIES_MINIOR_METEOR_BLUE,            SPECIES_MINIOR_CORE_BLUE,                  TRUE},
+        {SPECIES_MINIOR_METEOR_GREEN,           SPECIES_MINIOR_CORE_GREEN,                 TRUE},
+        {SPECIES_MINIOR_METEOR_INDIGO,          SPECIES_MINIOR_CORE_INDIGO,                TRUE},
+        {SPECIES_MINIOR_METEOR_ORANGE,          SPECIES_MINIOR_CORE_ORANGE,                TRUE},
+        {SPECIES_MINIOR_METEOR_VIOLET,          SPECIES_MINIOR_CORE_VIOLET,                TRUE},
+        {SPECIES_MINIOR_METEOR_YELLOW,          SPECIES_MINIOR_CORE_YELLOW,                TRUE},
+        {SPECIES_WISHIWASHI_SCHOOL,             SPECIES_WISHIWASHI_SOLO,                   TRUE},
+        {SPECIES_CRAMORANT_GORGING,             SPECIES_CRAMORANT,                         TRUE},
+        {SPECIES_CRAMORANT_GULPING,             SPECIES_CRAMORANT,                         TRUE},
+        {SPECIES_MORPEKO_HANGRY,                SPECIES_MORPEKO_FULL_BELLY,                TRUE},
+        {SPECIES_DARMANITAN_GALARIAN_ZEN_MODE,  SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE, TRUE},
     };
 
     currSpecies = GetMonData(&party[monId], MON_DATA_SPECIES, NULL);
