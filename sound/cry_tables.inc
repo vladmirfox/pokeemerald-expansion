@@ -754,6 +754,44 @@ gCryTable::
 	cry Cry_Fletchinder
 	cry Cry_Talonflame
 	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Scatterbug
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
+	cry Cry_Spewpa
 	cry Cry_Spewpa
 	cry Cry_Vivillon
 	cry Cry_Vivillon
