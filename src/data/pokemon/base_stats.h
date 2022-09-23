@@ -17387,53 +17387,93 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_SCATTERBUG] =
-    {
-        .baseHP        = 38,
-        .baseAttack    = 35,
-        .baseDefense   = 40,
-        .baseSpeed     = 35,
-        .baseSpAttack  = 27,
-        .baseSpDefense = 25,
-        .type1 = TYPE_BUG,
-        .type2 = TYPE_BUG,
-        .catchRate = 255,
-        .expYield = 40,
-        .evYield_Defense   = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_BUG,
-        .eggGroup2 = EGG_GROUP_BUG,
-        .abilities = {ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD},
-        .bodyColor = BODY_COLOR_BLACK,
-        .noFlip = FALSE,
-    },
+#define SCATTERBUG_BASE_STATS                                                           \
+    {                                                                                   \
+        .baseHP        = 38,                                                            \
+        .baseAttack    = 35,                                                            \
+        .baseDefense   = 40,                                                            \
+        .baseSpeed     = 35,                                                            \
+        .baseSpAttack  = 27,                                                            \
+        .baseSpDefense = 25,                                                            \
+        .type1 = TYPE_BUG,                                                              \
+        .type2 = TYPE_BUG,                                                              \
+        .catchRate = 255,                                                               \
+        .expYield = 40,                                                                 \
+        .evYield_Defense   = 1,                                                         \
+        .genderRatio = PERCENT_FEMALE(50),                                              \
+        .eggCycles = 15,                                                                \
+        .friendship = 70,                                                               \
+        .growthRate = GROWTH_MEDIUM_FAST,                                               \
+        .eggGroup1 = EGG_GROUP_BUG,                                                     \
+        .eggGroup2 = EGG_GROUP_BUG,                                                     \
+        .abilities = {ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD},\
+        .bodyColor = BODY_COLOR_BLACK,                                                  \
+        .noFlip = FALSE,                                                                \
+    }
+    [SPECIES_SCATTERBUG_ICY_SNOW]    = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_POLAR]       = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_TUNDRA]      = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_CONTINENTAL] = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_GARDEN]      = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_ELEGANT]     = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_MEADOW]      = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_MODERN]      = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_MARINE]      = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_ARCHIPELAGO] = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_HIGH_PLAINS] = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_SANDSTORM]   = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_RIVER]       = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_MONSOON]     = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_SAVANNA]     = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_SUN]         = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_OCEAN]       = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_JUNGLE]      = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_FANCY]       = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_POKE_BALL]   = SCATTERBUG_BASE_STATS,
 
-    [SPECIES_SPEWPA] =
-    {
-        .baseHP        = 45,
-        .baseAttack    = 22,
-        .baseDefense   = 60,
-        .baseSpeed     = 29,
-        .baseSpAttack  = 27,
-        .baseSpDefense = 30,
-        .type1 = TYPE_BUG,
-        .type2 = TYPE_BUG,
-        .catchRate = 120,
-        .expYield = 75,
-        .evYield_Defense   = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_BUG,
-        .eggGroup2 = EGG_GROUP_BUG,
-        .abilities = {ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD},
-        .bodyColor = BODY_COLOR_BLACK,
-        .noFlip = FALSE,
-    },
+#define SPEWPA_BASE_STATS                                                       \
+    {                                                                           \
+        .baseHP        = 45,                                                    \
+        .baseAttack    = 22,                                                    \
+        .baseDefense   = 60,                                                    \
+        .baseSpeed     = 29,                                                    \
+        .baseSpAttack  = 27,                                                    \
+        .baseSpDefense = 30,                                                    \
+        .type1 = TYPE_BUG,                                                      \
+        .type2 = TYPE_BUG,                                                      \
+        .catchRate = 120,                                                       \
+        .expYield = 75,                                                         \
+        .evYield_Defense   = 2,                                                 \
+        .genderRatio = PERCENT_FEMALE(50),                                      \
+        .eggCycles = 15,                                                        \
+        .friendship = 70,                                                       \
+        .growthRate = GROWTH_MEDIUM_FAST,                                       \
+        .eggGroup1 = EGG_GROUP_BUG,                                             \
+        .eggGroup2 = EGG_GROUP_BUG,                                             \
+        .abilities = {ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD},   \
+        .bodyColor = BODY_COLOR_BLACK,                                          \
+        .noFlip = FALSE,                                                        \
+    }
+    [SPECIES_SPEWPA_ICY_SNOW]    = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_POLAR]       = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_TUNDRA]      = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_CONTINENTAL] = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_GARDEN]      = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_ELEGANT]     = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_MEADOW]      = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_MODERN]      = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_MARINE]      = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_ARCHIPELAGO] = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_HIGH_PLAINS] = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_SANDSTORM]   = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_RIVER]       = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_MONSOON]     = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_SAVANNA]     = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_SUN]         = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_OCEAN]       = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_JUNGLE]      = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_FANCY]       = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_POKE_BALL]   = SPEWPA_BASE_STATS,
 
 #define VIVILLON_BASE_STATS(color)                                                      \
     {                                                                                   \
