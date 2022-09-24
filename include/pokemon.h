@@ -107,8 +107,8 @@ struct BoxPokemon
     u32 personality;
     u32 otId;
 
-    // Words 3-5: Pokémon nickname (12 chars)
-    u8 nickname[12];
+    // Words 3-5: Pokémon nickname (12 chars). Space reserved, but POKEMON_NAME_LENGTH is still set to the old value (10).
+    u8 nickname[POKEMON_NAME_LENGTH_NEW];
 
     // Word 6: Species, hidden nature, friendship, met level
     u32 species:11;     // Up to 2047 species
