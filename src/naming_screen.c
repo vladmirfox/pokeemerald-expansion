@@ -2109,7 +2109,7 @@ static const struct NamingScreenTemplate sPCBoxNamingTemplate =
 static const struct NamingScreenTemplate sMonNamingScreenTemplate =
 {
     .copyExistingString = FALSE,
-    .maxChars = POKEMON_NAME_LENGTH,
+    .maxChars = POKEMON_NAME_LENGTH_OLD,
     .iconFunction = 3,
     .addGenderIcon = TRUE,
     .initialPage = KBPAGE_LETTERS_UPPER,
