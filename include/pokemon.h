@@ -106,10 +106,10 @@ struct BoxPokemon
     // Words 1 & 2: PID + Trainer ID
     u32 personality;
     u32 otId;
-    
+
     // Words 3-5: Pokémon nickname (12 chars)
     u8 nickname[12];
-    
+
     // Word 6: Species, hidden nature, friendship, met level
     u32 species:11;     // Up to 2047 species
     u32 hiddenNature:5; // 25 natures
@@ -134,27 +134,27 @@ struct BoxPokemon
     u8 attackEV;
     u8 defenseEV;
     u8 speedEV;
-    
+
     u8 spAttackEV;
     u8 spDefenseEV;
     // Contest data (6 bytes)
     u8 cool;
     u8 beauty;
-    
+
     u8 cute;
     u8 smart;
     u8 tough;
     u8 sheen;
-    
+
     // Word 12: experience, language and met game
     u32 experience:26;  // 21 bits needed in vanilla, but added 5 more to allow for exp up to lvl 255.
     u32 language:3;
     u32 metGame:3;
-    
+
     // Words 13 & 14: Trainer name + met location
     u8 metLocation;
     u8 otName[PLAYER_NAME_LENGTH];
-    
+
     // Word 15: IVs
     u32 hpIV:5;
     u32 attackIV:5;
@@ -185,9 +185,19 @@ struct BoxPokemon
     u32 markings:4;
     u32 gigantamax:1;
 
-    // Words 17 - 20: held item and filler
+    // Words 17 & 18: held item, shadow, Tera type, Hyper Training and filler
     u32 heldItem:10;    // 1024 items
-    u32 filler1:22;
+    u32 teraType:5;     // 18 Types
+    u32 isShadow:1;
+    u32 hyperTrainedHP:1;
+    u32 hyperTrainedAttack:1;
+    u32 hyperTrainedDefense:1;
+    u32 hyperTrainedSpeed:1;
+    u32 hyperTrainedSpAttack:1;
+    u32 hyperTrainedSpDefense:1;
+    u32 filler1:10;
+
+    // Words 18 - 20: Filler
     u32 filler2;
     u32 filler3;
     u32 filler4;
@@ -207,7 +217,6 @@ struct Pokemon
     u16 speed;
     u16 spAttack;
     u16 spDefense;
-    u32 filler;
 };
 
 struct MonSpritesGfxManager
