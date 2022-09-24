@@ -116,7 +116,10 @@ struct BoxPokemon
     u32 friendship:8;
     u32 metLevel:8;     // 7 bits needed in vanilla, but added 1 more to allow for level 255
 
-    // Words 7 & 8: moves, isEgg, otGender, Pokéball, ppBonuses, Pokérus, Dynamax Level
+    // Word 7: Status
+    u32 status;
+
+    // Words 8 & 9: moves, isEgg, otGender, Pokéball, ppBonuses, Pokérus, Dynamax Level
     u32 move1:10;       // 1023 moves
     u32 move2:10;       // 1023 moves
     u32 move3:10;       // 1023 moves
@@ -129,7 +132,7 @@ struct BoxPokemon
     u32 pokerus:4;
     u32 dynamaxLevel:4; // Up to level 10
 
-    // Words 9 - 11: EV's + contest stats
+    // Words 10 - 12: EV's + contest stats
     u8 hpEV;
     u8 attackEV;
     u8 defenseEV;
@@ -146,16 +149,16 @@ struct BoxPokemon
     u8 tough;
     u8 sheen;
 
-    // Word 12: experience, language and met game
+    // Word 13: experience, language and met game
     u32 experience:26;  // 21 bits needed in vanilla, but added 5 more to allow for exp up to lvl 255.
     u32 language:3;
     u32 metGame:3;
 
-    // Words 13 & 14: Trainer name + met location
+    // Words 14 & 15: Trainer name + met location
     u8 metLocation;
     u8 otName[PLAYER_NAME_LENGTH];
 
-    // Word 15: IVs
+    // Word 16: IVs and ability number.
     u32 hpIV:5;
     u32 attackIV:5;
     u32 defenseIV:5;
@@ -164,7 +167,7 @@ struct BoxPokemon
     u32 spDefenseIV:5;
     u32 abilityNum:2;
 
-    // Word 16: ribbons, markings and gigantamax factor
+    // Word 17: ribbons, markings and gigantamax factor
     u32 coolRibbon:3;
     u32 beautyRibbon:3;
     u32 cuteRibbon:3;
@@ -185,29 +188,31 @@ struct BoxPokemon
     u32 markings:4;
     u32 gigantamax:1;
 
-    // Words 17 & 18: held item, shadow, Tera type, Hyper Training and filler
-    u32 heldItem:10;    // 1024 items
-    u32 teraType:5;     // 18 Types
-    u32 isShadow:1;
+    // Words 18 & 19: Move PP, held item, Tera type, shadow, Hyper Training and filler
+    u32 pp1:7;      // Max 127 PP
+    u32 pp2:7;      // Max 127 PP
+    u32 pp3:7;      // Max 127 PP
+    u32 pp4:7;      // Max 127 PP
     u32 hyperTrainedHP:1;
     u32 hyperTrainedAttack:1;
     u32 hyperTrainedDefense:1;
     u32 hyperTrainedSpeed:1;
+
+    u32 heldItem:10;    // 1024 items
+    u32 teraType:5;     // 18 Types
+    u32 isShadow:1;
     u32 hyperTrainedSpAttack:1;
     u32 hyperTrainedSpDefense:1;
-    u32 filler1:10;
+    u32 filler1:14;
 
-    // Words 18 - 20: Filler
+    // Word 20: Filler
     u32 filler2;
-    u32 filler3;
-    u32 filler4;
 };
 
 struct Pokemon
 {
     struct BoxPokemon box;
-    u8 pp[4];
-    u32 status;
+    u32 filler;
     u8 level;
     u8 mail;
     u16 hp;
