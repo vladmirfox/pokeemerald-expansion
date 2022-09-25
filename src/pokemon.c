@@ -4729,6 +4729,7 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     }
     case MON_DATA_LANGUAGE:
+        SET8(boxMon->language);
         break;
     case MON_DATA_SANITY_IS_EGG:
         SET8(boxMon->isEgg);
