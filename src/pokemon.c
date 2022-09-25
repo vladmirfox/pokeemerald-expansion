@@ -3916,6 +3916,8 @@ void CalculateMonStats(struct Pokemon *mon)
     {
         if (currentHP == 0 && oldMaxHP == 0)
             currentHP = newMaxHP;
+        else if (oldMaxHP == 0)
+            return;
         else if (currentHP != 0) {
             // BUG: currentHP is unintentionally able to become <= 0 after the instruction below. This causes the pomeg berry glitch.
             currentHP += newMaxHP - oldMaxHP;
@@ -3924,8 +3926,6 @@ void CalculateMonStats(struct Pokemon *mon)
                 currentHP = 1;
             #endif
         }
-        else
-            return;
     }
 
     SetMonData(mon, MON_DATA_HP, &currentHP);
@@ -3936,7 +3936,7 @@ void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest)
     u32 value = 0;
     dest->box = *src;
     //SetMonData(dest, MON_DATA_STATUS, &value);
-    SetMonData(dest, MON_DATA_HP, &value);
+    //SetMonData(dest, MON_DATA_HP, &value);
     SetMonData(dest, MON_DATA_MAX_HP, &value);
     value = MAIL_NONE;
     SetMonData(dest, MON_DATA_MAIL, &value);
@@ -4293,9 +4293,6 @@ u32 GetMonData(struct Pokemon *mon, s32 field, u8 *data)
     case MON_DATA_LEVEL:
         ret = mon->level;
         break;
-    case MON_DATA_HP:
-        ret = mon->hp;
-        break;
     case MON_DATA_MAX_HP:
         ret = mon->maxHP;
         break;
@@ -4505,6 +4502,9 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_OT_GENDER:
         retVal = boxMon->otGender;
         break;
+    case MON_DATA_HP:
+        retVal = boxMon->hp;
+        break;
     case MON_DATA_HP_IV:
         retVal = boxMon->hpIV;
         break;
@@ -4677,9 +4677,6 @@ void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg)
     case MON_DATA_LEVEL:
         SET8(mon->level);
         break;
-    case MON_DATA_HP:
-        SET16(mon->hp);
-        break;
     case MON_DATA_MAX_HP:
         SET16(mon->maxHP);
         break;
@@ -4845,6 +4842,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     }
     case MON_DATA_OT_GENDER:
         SET8(boxMon->otGender);
+        break;
+    case MON_DATA_HP:
+        SET16(boxMon->hp);
         break;
     case MON_DATA_HP_IV:
         SET8(boxMon->hpIV);

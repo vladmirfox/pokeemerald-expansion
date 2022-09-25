@@ -203,7 +203,7 @@ struct BoxPokemon
     u32 isShadow:1;
     u32 hyperTrainedSpAttack:1;
     u32 hyperTrainedSpDefense:1;
-    u32 filler1:14;
+    u32 hp:14;          // Max 16383 HP
 
     // Word 20: Filler
     u32 filler2;
@@ -212,10 +212,10 @@ struct BoxPokemon
 struct Pokemon
 {
     struct BoxPokemon box;
-    u32 filler;
+    u32 filler1;
     u8 level;
     u8 mail;
-    u16 hp;
+    u16 filler2;
     u16 maxHP;
     u16 attack;
     u16 defense;
