@@ -4385,7 +4385,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         retVal = FALSE;
         break;
     case MON_DATA_SANITY_HAS_SPECIES:
-        retVal = boxMon->species;
+        retVal = boxMon->species != SPECIES_NONE;
         break;
     case MON_DATA_SANITY_IS_EGG:
         retVal = boxMon->isEgg;
