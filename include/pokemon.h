@@ -212,16 +212,17 @@ struct BoxPokemon
 struct Pokemon
 {
     struct BoxPokemon box;
-    u32 filler1;
     u8 level;
     u8 mail;
-    u16 filler2;
     u16 maxHP;
     u16 attack;
     u16 defense;
     u16 speed;
     u16 spAttack;
     u16 spDefense;
+    u16 formCountdown:3; //Max 7 days
+    u16 filler1:13;
+    u32 filler2;
 };
 
 struct MonSpritesGfxManager
