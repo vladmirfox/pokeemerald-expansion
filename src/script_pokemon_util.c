@@ -64,6 +64,7 @@ void HealPlayerParty(void)
 static void HealPlayerBoxes(void)
 {
     int boxId, boxPosition;
+    struct BoxPokemon *boxMon;
 
     u8 i, j;
     u8 ppBonuses;
@@ -73,26 +74,27 @@ static void HealPlayerBoxes(void)
     {
         for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
         {
-            if (GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
+            boxMon = &gPokemonStoragePtr->boxes[boxId][boxPosition];
+            if (GetBoxMonData(boxMon, MON_DATA_SANITY_HAS_SPECIES))
             {
                 // restore HP.
-                u16 maxHP = GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_MAX_HP);
-                SetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_HP, &maxHP);
-                ppBonuses = GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_PP_BONUSES);
+                u16 maxHP = GetBoxMonData(boxMon, MON_DATA_MAX_HP);
+                SetBoxMonData(boxMon, MON_DATA_HP, &maxHP);
+                ppBonuses = GetBoxMonData(boxMon, MON_DATA_PP_BONUSES);
 
                 // restore PP.
                 for (i = 0; i < MAX_MON_MOVES; i++)
                 {
-                    if (GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_MOVE1 + i, 0))
+                    if (GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, 0))
                     {
-                        u16 move = GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_MOVE1 + i, 0);
-                        u16 bonus = GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_PP_BONUSES, 0);
+                        u16 move = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, 0);
+                        u16 bonus = GetBoxMonData(boxMon, MON_DATA_PP_BONUSES, 0);
                         u8 pp = CalculatePPWithBonus(move, bonus, i);
-                        SetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_PP1 + i, &pp);
+                        SetBoxMonData(boxMon, MON_DATA_PP1 + i, &pp);
                     }
                 }
                 // restore status.
-                SetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_STATUS, &status);
+                SetBoxMonData(boxMon, MON_DATA_STATUS, &status);
             }
         }
     }
