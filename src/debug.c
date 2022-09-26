@@ -123,7 +123,8 @@ enum { // Give
     DEBUG_GIVE_MENU_ITEM_MAX_COINS,
     DEBUG_GIVE_MENU_ITEM_MAX_BATTLE_POINTS,
     DEBUG_GIVE_MENU_ITEM_DAYCARE_EGG,
-    DEBUG_GIVE_MENU_ITEM_FILL_PC,
+    DEBUG_GIVE_MENU_ITEM_FILL_PC_FAST,
+    DEBUG_GIVE_MENU_ITEM_FILL_PC_SLOW,
     DEBUG_GIVE_MENU_ITEM_CHEAT,
 };
 enum { //Sound
@@ -263,7 +264,8 @@ static void DebugAction_Give_MaxMoney(u8 taskId);
 static void DebugAction_Give_MaxCoins(u8 taskId);
 static void DebugAction_Give_MaxBattlePoints(u8 taskId);
 static void DebugAction_Give_DayCareEgg(u8 taskId);
-static void DebugAction_Give_FillPC(u8 taskId);
+static void DebugAction_Give_FillPC_Fast(u8 taskId);
+static void DebugAction_Give_FillPC_Slow(u8 taskId);
 static void DebugAction_Give_CHEAT(u8 taskId);
 static void DebugAction_AccessPC(u8 taskId);
 
@@ -379,7 +381,8 @@ static const u8 sDebugText_Give_MaxMoney[] =           _("Max Money");
 static const u8 sDebugText_Give_MaxCoins[] =           _("Max Coins");
 static const u8 sDebugText_Give_BattlePoints[] =       _("Max Battle Points");
 static const u8 sDebugText_Give_DaycareEgg[] =         _("Daycare Egg");
-static const u8 sDebugText_Give_FillPc[] =             _("Fill Pc");
+static const u8 sDebugText_Give_FillPc_Fast[] =        _("Fill PC Fast");
+static const u8 sDebugText_Give_FillPc_Slow[] =        _("Fill PC Slow (LAG!)");
 static const u8 sDebugText_Give_GiveCHEAT[] =          _("CHEAT Start");
 static const u8 sDebugText_AccessPC[] =                _("Access PC");
 // Sound Mneu
@@ -492,7 +495,8 @@ static const struct ListMenuItem sDebugMenu_Items_Give[] =
     [DEBUG_GIVE_MENU_ITEM_MAX_COINS]         = {sDebugText_Give_MaxCoins,           DEBUG_GIVE_MENU_ITEM_MAX_COINS},
     [DEBUG_GIVE_MENU_ITEM_MAX_BATTLE_POINTS] = {sDebugText_Give_BattlePoints,       DEBUG_GIVE_MENU_ITEM_MAX_BATTLE_POINTS},
     [DEBUG_GIVE_MENU_ITEM_DAYCARE_EGG]       = {sDebugText_Give_DaycareEgg,         DEBUG_GIVE_MENU_ITEM_DAYCARE_EGG},
-    [DEBUG_GIVE_MENU_ITEM_FILL_PC]           = {sDebugText_Give_FillPc,             DEBUG_GIVE_MENU_ITEM_FILL_PC},
+    [DEBUG_GIVE_MENU_ITEM_FILL_PC_FAST]      = {sDebugText_Give_FillPc_Fast,        DEBUG_GIVE_MENU_ITEM_FILL_PC_FAST},
+    [DEBUG_GIVE_MENU_ITEM_FILL_PC_SLOW]      = {sDebugText_Give_FillPc_Slow,        DEBUG_GIVE_MENU_ITEM_FILL_PC_SLOW},
     [DEBUG_GIVE_MENU_ITEM_CHEAT]             = {sDebugText_Give_GiveCHEAT,          DEBUG_GIVE_MENU_ITEM_CHEAT},
 };
 static const struct ListMenuItem sDebugMenu_Items_Sound[] =
@@ -571,7 +575,8 @@ static void (*const sDebugMenu_Actions_Give[])(u8) =
     [DEBUG_GIVE_MENU_ITEM_MAX_COINS]         = DebugAction_Give_MaxCoins,
     [DEBUG_GIVE_MENU_ITEM_MAX_BATTLE_POINTS] = DebugAction_Give_MaxBattlePoints,
     [DEBUG_GIVE_MENU_ITEM_DAYCARE_EGG]       = DebugAction_Give_DayCareEgg,
-    [DEBUG_GIVE_MENU_ITEM_FILL_PC]           = DebugAction_Give_FillPC,
+    [DEBUG_GIVE_MENU_ITEM_FILL_PC_FAST]      = DebugAction_Give_FillPC_Fast,
+    [DEBUG_GIVE_MENU_ITEM_FILL_PC_SLOW]      = DebugAction_Give_FillPC_Slow,
     [DEBUG_GIVE_MENU_ITEM_CHEAT]             = DebugAction_Give_CHEAT,
 };
 static void (*const sDebugMenu_Actions_Sound[])(u8) =
@@ -2761,7 +2766,7 @@ static void DebugAction_Give_DayCareEgg(u8 taskId)
     TriggerPendingDaycareEgg();
 }
 
-static void DebugAction_Give_FillPC(u8 taskId) //Credit: Sierraffinity
+static void DebugAction_Give_FillPC_Fast(u8 taskId) //Credit: Sierraffinity
 {
     int boxId, boxPosition;
     u32 personality;
@@ -2770,7 +2775,7 @@ static void DebugAction_Give_FillPC(u8 taskId) //Credit: Sierraffinity
     personality = Random32();
 
     CreateBoxMon(&boxMon,
-                 SPECIES_DEOXYS,
+                 SPECIES_BULBASAUR,
                  100,
                  32,
                  personality,
@@ -2784,6 +2789,52 @@ static void DebugAction_Give_FillPC(u8 taskId) //Credit: Sierraffinity
         {
             if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
             {
+                gPokemonStoragePtr->boxes[boxId][boxPosition] = boxMon;
+            }
+        }
+    }
+}
+
+static void DebugAction_Give_FillPC_Slow(u8 taskId)
+{
+    int boxId, boxPosition;
+    u32 personality;
+    struct BoxPokemon boxMon;
+    u32 i = 1;
+
+    personality = Random32();
+
+    for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
+    {
+        for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
+        {
+            if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
+            {
+                CreateBoxMon(&boxMon,
+                    i,
+                    100,
+                    32,
+                    personality,
+                    0,
+                    OT_ID_PLAYER_ID,
+                    0);
+
+            #ifndef POKEMON_EXPANSION
+                if (i < SPECIES_CELEBI)
+                    i += 1;
+                else if (i == SPECIES_CELEBI)
+                    i = SPECIES_TREECKO;
+                else if (i < SPECIES_CHIMECHO)
+                    i += 1;
+                else
+                    i = 1;
+            #else
+                if (i < FORMS_START - 1)
+                    i += 1;
+                else
+                    i = 1;
+            #endif
+
                 gPokemonStoragePtr->boxes[boxId][boxPosition] = boxMon;
             }
         }
