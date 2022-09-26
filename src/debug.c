@@ -75,7 +75,6 @@ enum { // Util
     DEBUG_UTIL_MENU_ITEM_HEAL_PARTY,
     DEBUG_UTIL_MENU_ITEM_FLY,
     DEBUG_UTIL_MENU_ITEM_WARP,
-    DEBUG_UTIL_MENU_ITEM_RUNNING_SHOES,
     DEBUG_UTIL_MENU_ITEM_POISON_MONS,
     DEBUG_UTIL_MENU_ITEM_SAVEBLOCK,
     DEBUG_UTIL_MENU_ITEM_WEATHER,
@@ -100,18 +99,19 @@ enum { // Scripts
 enum { // Flags and Vars
     DEBUG_FLAGVAR_MENU_ITEM_FLAGS,
     DEBUG_FLAGVAR_MENU_ITEM_VARS,
-    DEBUG_FLAGVAR_MENU_ITEM_POKEDEXFLAGS,
-    DEBUG_FLAGVAR_MENU_ITEM_POKEDEXONOFF,
-    DEBUG_FLAGVAR_MENU_ITEM_NATDEXONOFF,
-    DEBUG_FLAGVAR_MENU_ITEM_POKENAVONOFF,
-    DEBUG_FLAGVAR_MENU_ITEM_FLYANYWHERE,
-    DEBUG_FLAGVAR_MENU_ITEM_GETALLBADGES,
-    DEBUG_FLAGVAR_MENU_ITEM_FRONTIER_PASS,
-    DEBUG_FLAGVAR_MENU_ITEM_COLISSION_ONOFF,
-    DEBUG_FLAGVAR_MENU_ITEM_ENCOUNTER_ONOFF,
-    DEBUG_FLAGVAR_MENU_ITEM_TRAINER_SEE_ONOFF,
-    DEBUG_FLAGVAR_MENU_ITEM_BAG_USE_ONOFF,
-    DEBUG_FLAGVAR_MENU_ITEM_CATCHING_ONOFF,
+    DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_ALL,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_POKEDEX,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_NATDEX,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_POKENAV,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RUN_SHOES,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_LOCATIONS,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BADGES_ALL,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLISSION,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_ENCOUNTER,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING,
 };
 enum { // Give
     DEBUG_GIVE_MENU_ITEM_ITEM_X,
@@ -227,7 +227,7 @@ static void DebugAction_Util_Warp_Warp(u8 taskId);
 static void DebugAction_Util_Warp_SelectMapGroup(u8 taskId);
 static void DebugAction_Util_Warp_SelectMap(u8 taskId);
 static void DebugAction_Util_Warp_SelectWarp(u8 taskId);
-static void DebugAction_Util_RunningShoes(u8 taskId);
+static void DebugAction_FlagsVars_RunningShoes(u8 taskId);
 static void DebugAction_Util_PoisonMons(u8 taskId);
 static void DebugAction_Util_CheckSaveBlock(u8 taskId);
 static void DebugAction_Util_Weather(u8 taskId);
@@ -343,7 +343,6 @@ static const u8 sDebugText_Util_WarpToMap_SelectMapGroup[] =_("Group: {STR_VAR_1
 static const u8 sDebugText_Util_WarpToMap_SelectMap[] =     _("Map: {STR_VAR_1}{CLEAR_TO 90}\nMapSec:{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}\n{STR_VAR_3}{CLEAR_TO 90}");
 static const u8 sDebugText_Util_WarpToMap_SelectWarp[] =    _("Warp:{CLEAR_TO 90}\n{STR_VAR_1}{CLEAR_TO 90}\n{CLEAR_TO 90}\n{STR_VAR_3}{CLEAR_TO 90}");
 static const u8 sDebugText_Util_WarpToMap_SelMax[] =        _("{STR_VAR_1} / {STR_VAR_2}");
-static const u8 sDebugText_Util_RunningShoes[] =            _("Toggle Running Shoes");
 static const u8 sDebugText_Util_PoisonMons[] =              _("Poison all mons");
 static const u8 sDebugText_Util_SaveBlockSpace[] =          _("SaveBlock Space…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Util_Weather[] =                 _("Set weather…{CLEAR_TO 110}{RIGHT_ARROW}");
@@ -367,6 +366,7 @@ static const u8 sDebugText_FlagsVars_SetPokedexFlags[] =        _("All Pokédex 
 static const u8 sDebugText_FlagsVars_SwitchDex[] =              _("Toggle Pokédex");
 static const u8 sDebugText_FlagsVars_SwitchNationalDex[] =      _("Toggle NatDex");
 static const u8 sDebugText_FlagsVars_SwitchPokeNav[] =          _("Toggle PokéNav");
+static const u8 sDebugText_FlagsVars_RunningShoes[] =           _("Toggle Running Shoes");
 static const u8 sDebugText_FlagsVars_ToggleFlyFlags[] =         _("Toggle Fly Flags");
 static const u8 sDebugText_FlagsVars_ToggleAllBadges[] =        _("Toggle All badges");
 static const u8 sDebugText_FlagsVars_ToggleFrontierPass[] =     _("Toggle Frontier Pass");
@@ -468,7 +468,6 @@ static const struct ListMenuItem sDebugMenu_Items_Utilities[] =
     [DEBUG_UTIL_MENU_ITEM_HEAL_PARTY]       = {sDebugText_Util_HealParty,        DEBUG_UTIL_MENU_ITEM_HEAL_PARTY},
     [DEBUG_UTIL_MENU_ITEM_FLY]              = {sDebugText_Util_Fly,              DEBUG_UTIL_MENU_ITEM_FLY},
     [DEBUG_UTIL_MENU_ITEM_WARP]             = {sDebugText_Util_WarpToMap,        DEBUG_UTIL_MENU_ITEM_WARP},
-    [DEBUG_UTIL_MENU_ITEM_RUNNING_SHOES]    = {sDebugText_Util_RunningShoes,     DEBUG_UTIL_MENU_ITEM_RUNNING_SHOES},
     [DEBUG_UTIL_MENU_ITEM_POISON_MONS]      = {sDebugText_Util_PoisonMons,       DEBUG_UTIL_MENU_ITEM_POISON_MONS},
     [DEBUG_UTIL_MENU_ITEM_SAVEBLOCK]        = {sDebugText_Util_SaveBlockSpace,   DEBUG_UTIL_MENU_ITEM_SAVEBLOCK},
     [DEBUG_UTIL_MENU_ITEM_WEATHER]          = {sDebugText_Util_Weather,          DEBUG_UTIL_MENU_ITEM_WEATHER},
@@ -493,20 +492,21 @@ static const struct ListMenuItem sDebugMenu_Items_Scripts[] =
 };
 static const struct ListMenuItem sDebugMenu_Items_Flags[] =
 {
-    [DEBUG_FLAGVAR_MENU_ITEM_FLAGS]             = {sDebugText_FlagsVars_Flags,              DEBUG_FLAGVAR_MENU_ITEM_FLAGS},
-    [DEBUG_FLAGVAR_MENU_ITEM_VARS]              = {sDebugText_FlagsVars_Vars,               DEBUG_FLAGVAR_MENU_ITEM_VARS},
-    [DEBUG_FLAGVAR_MENU_ITEM_POKEDEXFLAGS]      = {sDebugText_FlagsVars_SetPokedexFlags,    DEBUG_FLAGVAR_MENU_ITEM_POKEDEXFLAGS},
-    [DEBUG_FLAGVAR_MENU_ITEM_POKEDEXONOFF]      = {sDebugText_FlagsVars_SwitchDex,          DEBUG_FLAGVAR_MENU_ITEM_POKEDEXONOFF},
-    [DEBUG_FLAGVAR_MENU_ITEM_NATDEXONOFF]       = {sDebugText_FlagsVars_SwitchNationalDex,  DEBUG_FLAGVAR_MENU_ITEM_NATDEXONOFF},
-    [DEBUG_FLAGVAR_MENU_ITEM_POKENAVONOFF]      = {sDebugText_FlagsVars_SwitchPokeNav,      DEBUG_FLAGVAR_MENU_ITEM_POKENAVONOFF},
-    [DEBUG_FLAGVAR_MENU_ITEM_FLYANYWHERE]       = {sDebugText_FlagsVars_ToggleFlyFlags,     DEBUG_FLAGVAR_MENU_ITEM_FLYANYWHERE},
-    [DEBUG_FLAGVAR_MENU_ITEM_GETALLBADGES]      = {sDebugText_FlagsVars_ToggleAllBadges,    DEBUG_FLAGVAR_MENU_ITEM_GETALLBADGES},
-    [DEBUG_FLAGVAR_MENU_ITEM_FRONTIER_PASS]     = {sDebugText_FlagsVars_ToggleFrontierPass, DEBUG_FLAGVAR_MENU_ITEM_FRONTIER_PASS},
-    [DEBUG_FLAGVAR_MENU_ITEM_COLISSION_ONOFF]   = {sDebugText_FlagsVars_SwitchCollision,    DEBUG_FLAGVAR_MENU_ITEM_COLISSION_ONOFF},
-    [DEBUG_FLAGVAR_MENU_ITEM_ENCOUNTER_ONOFF]   = {sDebugText_FlagsVars_SwitchEncounter,    DEBUG_FLAGVAR_MENU_ITEM_ENCOUNTER_ONOFF},
-    [DEBUG_FLAGVAR_MENU_ITEM_TRAINER_SEE_ONOFF] = {sDebugText_FlagsVars_SwitchTrainerSee,   DEBUG_FLAGVAR_MENU_ITEM_TRAINER_SEE_ONOFF},
-    [DEBUG_FLAGVAR_MENU_ITEM_BAG_USE_ONOFF]     = {sDebugText_FlagsVars_SwitchBagUse,       DEBUG_FLAGVAR_MENU_ITEM_BAG_USE_ONOFF},
-    [DEBUG_FLAGVAR_MENU_ITEM_CATCHING_ONOFF]    = {sDebugText_FlagsVars_SwitchCatching,     DEBUG_FLAGVAR_MENU_ITEM_CATCHING_ONOFF},
+    [DEBUG_FLAGVAR_MENU_ITEM_FLAGS]                = {sDebugText_FlagsVars_Flags,              DEBUG_FLAGVAR_MENU_ITEM_FLAGS},
+    [DEBUG_FLAGVAR_MENU_ITEM_VARS]                 = {sDebugText_FlagsVars_Vars,               DEBUG_FLAGVAR_MENU_ITEM_VARS},
+    [DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_ALL]         = {sDebugText_FlagsVars_SetPokedexFlags,    DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_ALL},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_POKEDEX]       = {sDebugText_FlagsVars_SwitchDex,          DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_POKEDEX},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_NATDEX]        = {sDebugText_FlagsVars_SwitchNationalDex,  DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_NATDEX},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_POKENAV]       = {sDebugText_FlagsVars_SwitchPokeNav,      DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_POKENAV},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RUN_SHOES]     = {sDebugText_FlagsVars_RunningShoes,       DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RUN_SHOES},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_LOCATIONS]     = {sDebugText_FlagsVars_ToggleFlyFlags,     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_LOCATIONS},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BADGES_ALL]    = {sDebugText_FlagsVars_ToggleAllBadges,    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BADGES_ALL},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS] = {sDebugText_FlagsVars_ToggleFrontierPass, DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLISSION]     = {sDebugText_FlagsVars_SwitchCollision,    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLISSION},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_ENCOUNTER]     = {sDebugText_FlagsVars_SwitchEncounter,    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_ENCOUNTER},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE]   = {sDebugText_FlagsVars_SwitchTrainerSee,   DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE]       = {sDebugText_FlagsVars_SwitchBagUse,       DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING]      = {sDebugText_FlagsVars_SwitchCatching,     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING},
 };
 static const struct ListMenuItem sDebugMenu_Items_Give[] =
 {
@@ -554,7 +554,6 @@ static void (*const sDebugMenu_Actions_Utilities[])(u8) =
     [DEBUG_UTIL_MENU_ITEM_HEAL_PARTY]       = DebugAction_Util_HealParty,
     [DEBUG_UTIL_MENU_ITEM_FLY]              = DebugAction_Util_Fly,
     [DEBUG_UTIL_MENU_ITEM_WARP]             = DebugAction_Util_Warp_Warp,
-    [DEBUG_UTIL_MENU_ITEM_RUNNING_SHOES]    = DebugAction_Util_RunningShoes,
     [DEBUG_UTIL_MENU_ITEM_POISON_MONS]      = DebugAction_Util_PoisonMons,
     [DEBUG_UTIL_MENU_ITEM_SAVEBLOCK]        = DebugAction_Util_CheckSaveBlock,
     [DEBUG_UTIL_MENU_ITEM_WEATHER]          = DebugAction_Util_Weather,
@@ -579,20 +578,21 @@ static void (*const sDebugMenu_Actions_Scripts[])(u8) =
 };
 static void (*const sDebugMenu_Actions_Flags[])(u8) =
 {
-    [DEBUG_FLAGVAR_MENU_ITEM_FLAGS]             = DebugAction_FlagsVars_Flags,
-    [DEBUG_FLAGVAR_MENU_ITEM_VARS]              = DebugAction_FlagsVars_Vars,
-    [DEBUG_FLAGVAR_MENU_ITEM_POKEDEXFLAGS]      = DebugAction_FlagsVars_SetPokedexFlags,
-    [DEBUG_FLAGVAR_MENU_ITEM_POKEDEXONOFF]      = DebugAction_FlagsVars_SwitchDex,
-    [DEBUG_FLAGVAR_MENU_ITEM_NATDEXONOFF]       = DebugAction_FlagsVars_SwitchNatDex,
-    [DEBUG_FLAGVAR_MENU_ITEM_POKENAVONOFF]      = DebugAction_FlagsVars_SwitchPokeNav,
-    [DEBUG_FLAGVAR_MENU_ITEM_FLYANYWHERE]       = DebugAction_FlagsVars_ToggleFlyFlags,
-    [DEBUG_FLAGVAR_MENU_ITEM_GETALLBADGES]      = DebugAction_FlagsVars_ToggleBadgeFlags,
-    [DEBUG_FLAGVAR_MENU_ITEM_FRONTIER_PASS]     = DebugAction_FlagsVars_ToggleFrontierPass,
-    [DEBUG_FLAGVAR_MENU_ITEM_COLISSION_ONOFF]   = DebugAction_FlagsVars_CollisionOnOff,
-    [DEBUG_FLAGVAR_MENU_ITEM_ENCOUNTER_ONOFF]   = DebugAction_FlagsVars_EncounterOnOff,
-    [DEBUG_FLAGVAR_MENU_ITEM_TRAINER_SEE_ONOFF] = DebugAction_FlagsVars_TrainerSeeOnOff,
-    [DEBUG_FLAGVAR_MENU_ITEM_BAG_USE_ONOFF]     = DebugAction_FlagsVars_BagUseOnOff,
-    [DEBUG_FLAGVAR_MENU_ITEM_CATCHING_ONOFF]    = DebugAction_FlagsVars_CatchingOnOff,
+    [DEBUG_FLAGVAR_MENU_ITEM_FLAGS]                = DebugAction_FlagsVars_Flags,
+    [DEBUG_FLAGVAR_MENU_ITEM_VARS]                 = DebugAction_FlagsVars_Vars,
+    [DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_ALL]         = DebugAction_FlagsVars_SetPokedexFlags,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_POKEDEX]       = DebugAction_FlagsVars_SwitchDex,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_NATDEX]        = DebugAction_FlagsVars_SwitchNatDex,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_POKENAV]       = DebugAction_FlagsVars_SwitchPokeNav,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RUN_SHOES]     = DebugAction_FlagsVars_RunningShoes,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_LOCATIONS]     = DebugAction_FlagsVars_ToggleFlyFlags,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BADGES_ALL]    = DebugAction_FlagsVars_ToggleBadgeFlags,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS] = DebugAction_FlagsVars_ToggleFrontierPass,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLISSION]     = DebugAction_FlagsVars_CollisionOnOff,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_ENCOUNTER]     = DebugAction_FlagsVars_EncounterOnOff,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE]   = DebugAction_FlagsVars_TrainerSeeOnOff,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE]       = DebugAction_FlagsVars_BagUseOnOff,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING]      = DebugAction_FlagsVars_CatchingOnOff,
 };
 static void (*const sDebugMenu_Actions_Give[])(u8) =
 {
@@ -881,16 +881,19 @@ static void DebugTask_HandleMenuInput_FlagsVars(u8 taskId)
     // Check current flag
     switch (idx)
     {
-        case DEBUG_FLAGVAR_MENU_ITEM_POKEDEXONOFF:
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_POKEDEX:
             gTasks[taskId].data[3] = FlagGet(FLAG_SYS_POKEDEX_GET);
             break;
-        case DEBUG_FLAGVAR_MENU_ITEM_NATDEXONOFF:
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_NATDEX:
             gTasks[taskId].data[3] = IsNationalPokedexEnabled();
             break;
-        case DEBUG_FLAGVAR_MENU_ITEM_POKENAVONOFF:
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_POKENAV:
             gTasks[taskId].data[3] = FlagGet(FLAG_SYS_POKENAV_GET);
             break;
-        case DEBUG_FLAGVAR_MENU_ITEM_FLYANYWHERE:
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RUN_SHOES:
+            gTasks[taskId].data[3] = FlagGet(FLAG_SYS_B_DASH);
+            break;
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_LOCATIONS:
             gTasks[taskId].data[3] = FlagGet(FLAG_VISITED_LITTLEROOT_TOWN) &&
                 FlagGet(FLAG_VISITED_OLDALE_TOWN) &&
                 FlagGet(FLAG_VISITED_DEWFORD_TOWN) &&
@@ -910,7 +913,7 @@ static void DebugTask_HandleMenuInput_FlagsVars(u8 taskId)
                 FlagGet(FLAG_LANDMARK_POKEMON_LEAGUE) &&
                 FlagGet(FLAG_LANDMARK_BATTLE_FRONTIER);
             break;
-        case DEBUG_FLAGVAR_MENU_ITEM_GETALLBADGES:
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BADGES_ALL:
             gTasks[taskId].data[3] = FlagGet(FLAG_BADGE01_GET) &&
                 FlagGet(FLAG_BADGE02_GET) &&
                 FlagGet(FLAG_BADGE03_GET) &&
@@ -920,31 +923,31 @@ static void DebugTask_HandleMenuInput_FlagsVars(u8 taskId)
                 FlagGet(FLAG_BADGE07_GET) &&
                 FlagGet(FLAG_BADGE08_GET);
             break;
-        case DEBUG_FLAGVAR_MENU_ITEM_FRONTIER_PASS:
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS:
             gTasks[taskId].data[3] = FlagGet(FLAG_SYS_FRONTIER_PASS);
             break;
     #if DEBUG_FLAG_NO_COLLISION != 0
-        case DEBUG_FLAGVAR_MENU_ITEM_COLISSION_ONOFF:
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLISSION:
             gTasks[taskId].data[3] = FlagGet(DEBUG_FLAG_NO_COLLISION);
             break;
     #endif
     #if OW_FLAG_NO_ENCOUNTER != 0
-        case DEBUG_FLAGVAR_MENU_ITEM_ENCOUNTER_ONOFF:
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_ENCOUNTER:
             gTasks[taskId].data[3] = FlagGet(OW_FLAG_NO_ENCOUNTER);
             break;
     #endif
     #if OW_FLAG_NO_TRAINER_SEE != 0
-        case DEBUG_FLAGVAR_MENU_ITEM_TRAINER_SEE_ONOFF:
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE:
             gTasks[taskId].data[3] = FlagGet(OW_FLAG_NO_TRAINER_SEE);
             break;
     #endif
     #if B_FLAG_NO_BAG_USE != 0
-        case DEBUG_FLAGVAR_MENU_ITEM_BAG_USE_ONOFF:
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE:
             gTasks[taskId].data[3] = FlagGet(B_FLAG_NO_BAG_USE);
             break;
     #endif
     #if B_FLAG_NO_CATCHING_USE != 0
-        case DEBUG_FLAGVAR_MENU_ITEM_CATCHING_ONOFF:
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING:
             gTasks[taskId].data[3] = FlagGet(B_FLAG_NO_CATCHING_USE);
             break;
     #endif
@@ -1294,15 +1297,6 @@ static void DebugAction_Util_Warp_SelectWarp(u8 taskId)
     }
 }
 
-static void DebugAction_Util_RunningShoes(u8 taskId)
-{
-    if (FlagGet(FLAG_SYS_B_DASH))
-        PlaySE(SE_PC_OFF);
-    else
-        PlaySE(SE_PC_LOGIN);
-    FlagToggle(FLAG_SYS_B_DASH);
-}
-
 static void DebugAction_Util_PoisonMons(u8 taskId)
 {
     int i;
@@ -1474,6 +1468,12 @@ static void DebugAction_Util_Trainer_Id(u8 taskId)
     SetTrainerId(trainerId, gSaveBlock2Ptr->playerTrainerId);
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
+}
+static void DebugAction_Util_CheatStart(u8 taskId)
+{
+    Debug_DestroyMenu_Full(taskId);
+    LockPlayerFieldControls();
+    ScriptContext_SetupScript(Debug_CheatStart);
 }
 
 // *******************************
@@ -1828,6 +1828,14 @@ static void DebugAction_FlagsVars_SwitchPokeNav(u8 taskId)
     else
         PlaySE(SE_PC_LOGIN);
     FlagToggle(FLAG_SYS_POKENAV_GET);
+}
+static void DebugAction_FlagsVars_RunningShoes(u8 taskId)
+{
+    if (FlagGet(FLAG_SYS_B_DASH))
+        PlaySE(SE_PC_OFF);
+    else
+        PlaySE(SE_PC_LOGIN);
+    FlagToggle(FLAG_SYS_B_DASH);
 }
 static void DebugAction_FlagsVars_ToggleFlyFlags(u8 taskId)
 {
@@ -2938,6 +2946,8 @@ static void DebugAction_Give_DayCareEgg(u8 taskId)
     TriggerPendingDaycareEgg();
 }
 
+// *******************************
+// Actions Fill
 static void DebugAction_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
 {
     int boxId, boxPosition;
@@ -2969,7 +2979,6 @@ static void DebugAction_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
-
 static void DebugAction_Fill_PCBoxes_Slow(u8 taskId)
 {
     int boxId, boxPosition;
@@ -3018,7 +3027,6 @@ static void DebugAction_Fill_PCBoxes_Slow(u8 taskId)
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
-
 static void DebugAction_Fill_PCItemStorage(u8 taskId)
 {
     u16 itemId;
@@ -3029,7 +3037,6 @@ static void DebugAction_Fill_PCItemStorage(u8 taskId)
             AddPCItem(itemId, MAX_PC_ITEM_CAPACITY);
     }
 }
-
 static void DebugAction_Fill_PocketItems(u8 taskId)
 {
     u16 itemId;
@@ -3040,7 +3047,6 @@ static void DebugAction_Fill_PocketItems(u8 taskId)
             AddBagItem(itemId, MAX_BAG_ITEM_CAPACITY);
     }
 }
-
 static void DebugAction_Fill_PocketPokeBalls(u8 taskId)
 {
     u16 itemId;
@@ -3051,7 +3057,6 @@ static void DebugAction_Fill_PocketPokeBalls(u8 taskId)
             AddBagItem(itemId, MAX_BAG_ITEM_CAPACITY);
     }
 }
-
 static void DebugAction_Fill_PocketTMHM(u8 taskId)
 {
     u16 itemId;
@@ -3062,7 +3067,6 @@ static void DebugAction_Fill_PocketTMHM(u8 taskId)
             AddBagItem(itemId, 1);
     }
 }
-
 static void DebugAction_Fill_PocketBerries(u8 taskId)
 {
     u16 itemId;
@@ -3073,7 +3077,6 @@ static void DebugAction_Fill_PocketBerries(u8 taskId)
             AddBagItem(itemId, MAX_BERRY_CAPACITY);
     }
 }
-
 static void DebugAction_Fill_PocketKeyItems(u8 taskId)
 {
     u16 itemId;
@@ -3085,23 +3088,8 @@ static void DebugAction_Fill_PocketKeyItems(u8 taskId)
     }
 }
 
-static void DebugAction_Util_CheatStart(u8 taskId)
-{
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_CheatStart);
-}
-
-static void DebugAction_AccessPC(u8 taskId)
-{
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(EventScript_PC);
-}
-
-
 // *******************************
-// Sound Scripts
+// Actions Sound
 static const u8 *const sBGMNames[];
 static const u8 *const sSENames[];
 static void DebugAction_Sound_SE(u8 taskId)
@@ -3814,5 +3802,15 @@ static const u8 *const sSENames[] =
 SOUND_LIST_SE
 };
 #undef X
+
+// *******************************
+// Actions Other
+
+static void DebugAction_AccessPC(u8 taskId)
+{
+    Debug_DestroyMenu_Full(taskId);
+    LockPlayerFieldControls();
+    ScriptContext_SetupScript(EventScript_PC);
+}
 
 #endif //DEBUG_OVERWORLD_MENU == TRUE
