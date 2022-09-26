@@ -135,7 +135,7 @@ enum { //Sound
 // *******************************
 // Constants
 #define DEBUG_MAIN_MENU_WIDTH 15
-#define DEBUG_MAIN_MENU_HEIGHT 8
+#define DEBUG_MAIN_MENU_HEIGHT 9
 
 #define DEBUG_NUMBER_DISPLAY_WIDTH 10
 #define DEBUG_NUMBER_DISPLAY_HEIGHT 4
@@ -296,13 +296,14 @@ extern u8 PlayersHouse_2F_EventScript_CheckWallClock[];
 
 // Text
 // Main Menu
-static const u8 sDebugText_Utilities[] = _("Utilities");
-static const u8 sDebugText_Scripts[] =   _("Scripts");
-static const u8 sDebugText_Flags[] =     _("Flags");
-static const u8 sDebugText_Vars[] =      _("Variables");
-static const u8 sDebugText_Give[] =      _("Give X");
-static const u8 sDebugText_Sound[] =     _("Sound");
-static const u8 sDebugText_Cancel[] =    _("Cancel");
+static const u8 sDebugText_Utilities[] =        _("{RIGHT_ARROW}Utilities");
+static const u8 sDebugText_Scripts[] =          _("{RIGHT_ARROW}Scripts");
+static const u8 sDebugText_Flags[] =            _("{RIGHT_ARROW}Flags");
+static const u8 sDebugText_Vars[] =             _("{RIGHT_ARROW}Variables");
+static const u8 sDebugText_Give[] =             _("{RIGHT_ARROW}Give X");
+static const u8 sDebugText_Sound[] =            _("{RIGHT_ARROW}Sound");
+static const u8 sDebugText_AccessPC[] =         _("{RIGHT_ARROW}Access PC");
+static const u8 sDebugText_Cancel[] =           _("Cancel");
 // Script menu
 static const u8 sDebugText_Util_Script_1[] = _("Script 1");
 static const u8 sDebugText_Util_Script_2[] = _("Script 2");
@@ -313,84 +314,82 @@ static const u8 sDebugText_Util_Script_6[] = _("Script 6");
 static const u8 sDebugText_Util_Script_7[] = _("Script 7");
 static const u8 sDebugText_Util_Script_8[] = _("Script 8");
 // Util Menu
-static const u8 sDebugText_Util_HealParty[] =                _("Heal Party");
-static const u8 sDebugText_Util_Fly[] =                      _("Fly to map");
-static const u8 sDebugText_Util_WarpToMap[] =                _("Warp to map warp");
-static const u8 sDebugText_Util_WarpToMap_SelectMapGroup[] = _("Group: {STR_VAR_1}          \n                 \n\n{STR_VAR_3}     ");
-static const u8 sDebugText_Util_WarpToMap_SelectMap[] =      _("Map: {STR_VAR_1}            \nMapSec:          \n{STR_VAR_2}                       \n{STR_VAR_3}     ");
-static const u8 sDebugText_Util_WarpToMap_SelectWarp[] =     _("Warp:             \n{STR_VAR_1}                \n                                  \n{STR_VAR_3}     ");
-static const u8 sDebugText_Util_WarpToMap_SelMax[] =         _("{STR_VAR_1} / {STR_VAR_2}");
-static const u8 sDebugText_Util_RunningShoes[] =             _("Toggle Running Shoes");
-static const u8 sDebugText_Util_PoisonMons[] =               _("Poison all mons");
-static const u8 sDebugText_Util_SaveBlockSpace[] =           _("SaveBlock Space");
-static const u8 sDebugText_Util_Weather[] =                  _("Set weather");
-static const u8 sDebugText_Util_Weather_ID[] =               _("Weather Id: {STR_VAR_3}\n{STR_VAR_1}\n{STR_VAR_2}");
-static const u8 sDebugText_Util_CheckWallClock[] =           _("Check Wall Clock");
-static const u8 sDebugText_Util_SetWallClock[] =             _("Set Wall Clock");
-static const u8 sDebugText_Util_WatchCredits[] =             _("Watch Credits");
-static const u8 sDebugText_Util_Trainer_Name[] =             _("Trainer name");
-static const u8 sDebugText_Util_Trainer_Gender[] =           _("Toggle T. Gender");
-static const u8 sDebugText_Util_Trainer_Id[] =               _("New Trainer Id");
-// Flags Menu
-static const u8 sDebugText_Flags_Flags[] =              _("Set Flag XXXX");
-static const u8 sDebugText_Flags_SetPokedexFlags[] =    _("All Pokédex Flags");
-static const u8 sDebugText_Flags_SwitchDex[] =          _("Pokédex ON/OFF");
-static const u8 sDebugText_Flags_SwitchNationalDex[] =  _("NatDex ON/OFF");
-static const u8 sDebugText_Flags_SwitchPokeNav[] =      _("PokéNav ON/OFF");
-static const u8 sDebugText_Flags_ToggleFlyFlags[] =     _("Fly Flags ON/OFF");
-static const u8 sDebugText_Flags_ToggleAllBadges[] =    _("All badges ON/OFF");
-static const u8 sDebugText_Flags_ToggleFrontierPass[] = _("Frontier Pass ON/OFF");
-static const u8 sDebugText_Flags_SwitchCollision[] =    _("Collision ON/OFF");
-static const u8 sDebugText_Flags_SwitchEncounter[] =    _("Encounter ON/OFF");
-static const u8 sDebugText_Flags_SwitchTrainerSee[] =   _("TrainerSee ON/OFF");
-static const u8 sDebugText_Flags_SwitchBagUse[] =       _("BagUse ON/OFF");
-static const u8 sDebugText_Flags_SwitchCatching[] =     _("Catching ON/OFF");
-static const u8 sDebugText_Flags_Flag[] =               _("Flag: {STR_VAR_1}   \n{STR_VAR_2}                   \n{STR_VAR_3}");
-static const u8 sDebugText_Flags_FlagHex[] =            _("{STR_VAR_1}           \n0x{STR_VAR_2}             ");
-static const u8 sDebugText_Flags_FlagSet[] =            _("TRUE");
-static const u8 sDebugText_Flags_FlagUnset[] =          _("FALSE");
-// Variables Menu
-static const u8 sDebugText_Vars_Vars[] =             _("Set Vars XXXX");
-static const u8 sDebugText_Vars_VariableHex[] =      _("{STR_VAR_1}           \n0x{STR_VAR_2}             ");
-static const u8 sDebugText_Vars_Variable[] =         _("Var: {STR_VAR_1}             \nVal: {STR_VAR_3}             \n{STR_VAR_2}");
-static const u8 sDebugText_Vars_VariableValueSet[] = _("Var: {STR_VAR_1}             \nVal: {STR_VAR_3}             \n{STR_VAR_2}");
+static const u8 sDebugText_Util_HealParty[] =               _("Heal Party");
+static const u8 sDebugText_Util_Fly[] =                     _("{RIGHT_ARROW}Fly to map");
+static const u8 sDebugText_Util_WarpToMap[] =               _("{RIGHT_ARROW}Warp to map warp");
+static const u8 sDebugText_Util_WarpToMap_SelectMapGroup[] =_("Group: {STR_VAR_1}          \n                 \n\n{STR_VAR_3}     ");
+static const u8 sDebugText_Util_WarpToMap_SelectMap[] =     _("Map: {STR_VAR_1}            \nMapSec:          \n{STR_VAR_2}                       \n{STR_VAR_3}     ");
+static const u8 sDebugText_Util_WarpToMap_SelectWarp[] =    _("Warp:             \n{STR_VAR_1}                \n                                  \n{STR_VAR_3}     ");
+static const u8 sDebugText_Util_WarpToMap_SelMax[] =        _("{STR_VAR_1} / {STR_VAR_2}");
+static const u8 sDebugText_Util_RunningShoes[] =            _("Toggle Running Shoes");
+static const u8 sDebugText_Util_PoisonMons[] =              _("Poison all mons");
+static const u8 sDebugText_Util_SaveBlockSpace[] =          _("{RIGHT_ARROW}SaveBlock Space");
+static const u8 sDebugText_Util_Weather[] =                 _("{RIGHT_ARROW}Set weather");
+static const u8 sDebugText_Util_Weather_ID[] =              _("Weather Id: {STR_VAR_3}\n{STR_VAR_1}\n{STR_VAR_2}");
+static const u8 sDebugText_Util_CheckWallClock[] =          _("{RIGHT_ARROW}Check Wall Clock");
+static const u8 sDebugText_Util_SetWallClock[] =            _("{RIGHT_ARROW}Set Wall Clock");
+static const u8 sDebugText_Util_WatchCredits[] =            _("{RIGHT_ARROW}Watch Credits");
+static const u8 sDebugText_Util_Trainer_Name[] =            _("Trainer name");
+static const u8 sDebugText_Util_Trainer_Gender[] =          _("Toggle T. Gender");
+static const u8 sDebugText_Util_Trainer_Id[] =              _("New Trainer Id");
+// Flags/Vars Menu
+static const u8 sDebugText_Flags_Flags[] =                  _("{RIGHT_ARROW}Set Flag XXXX");
+static const u8 sDebugText_Flags_Flag[] =                   _("Flag: {STR_VAR_1}   \n{STR_VAR_2}                   \n{STR_VAR_3}");
+static const u8 sDebugText_Flags_FlagHex[] =                _("{STR_VAR_1}           \n0x{STR_VAR_2}             ");
+static const u8 sDebugText_Flags_FlagSet[] =                _("TRUE");
+static const u8 sDebugText_Flags_FlagUnset[] =              _("FALSE");
+static const u8 sDebugText_Vars_Vars[] =                    _("{RIGHT_ARROW}Set Vars XXXX");
+static const u8 sDebugText_Vars_VariableHex[] =             _("{STR_VAR_1}           \n0x{STR_VAR_2}             ");
+static const u8 sDebugText_Vars_Variable[] =                _("Var: {STR_VAR_1}             \nVal: {STR_VAR_3}             \n{STR_VAR_2}");
+static const u8 sDebugText_Vars_VariableValueSet[] =        _("Var: {STR_VAR_1}             \nVal: {STR_VAR_3}             \n{STR_VAR_2}");
+static const u8 sDebugText_Flags_SetPokedexFlags[] =        _("All Pokédex Flags");
+static const u8 sDebugText_Flags_SwitchDex[] =              _("Pokédex ON/OFF");
+static const u8 sDebugText_Flags_SwitchNationalDex[] =      _("NatDex ON/OFF");
+static const u8 sDebugText_Flags_SwitchPokeNav[] =          _("PokéNav ON/OFF");
+static const u8 sDebugText_Flags_ToggleFlyFlags[] =         _("Fly Flags ON/OFF");
+static const u8 sDebugText_Flags_ToggleAllBadges[] =        _("All badges ON/OFF");
+static const u8 sDebugText_Flags_ToggleFrontierPass[] =     _("Frontier Pass ON/OFF");
+static const u8 sDebugText_Flags_SwitchCollision[] =        _("Collision ON/OFF");
+static const u8 sDebugText_Flags_SwitchEncounter[] =        _("Encounter ON/OFF");
+static const u8 sDebugText_Flags_SwitchTrainerSee[] =       _("TrainerSee ON/OFF");
+static const u8 sDebugText_Flags_SwitchBagUse[] =           _("BagUse ON/OFF");
+static const u8 sDebugText_Flags_SwitchCatching[] =         _("Catching ON/OFF");
 // Give Menu
-static const u8 sDebugText_Give_GiveItem[] =           _("Give item XXXX");
-static const u8 sDebugText_ItemQuantity[] =            _("Quantity:       \n{STR_VAR_1}    \n\n{STR_VAR_2}");
-static const u8 sDebugText_ItemID[] =                  _("Item Id: {STR_VAR_3}\n{STR_VAR_1}    \n\n{STR_VAR_2}");
-static const u8 sDebugText_Give_AllTMs[] =             _("Give all TMs");
-static const u8 sDebugText_Give_GivePokemonSimple[] =  _("Pkm(lvl)");
-static const u8 sDebugText_Give_GivePokemonComplex[] = _("Pkm(l,s,n,a,IV,mov)");
-static const u8 sDebugText_PokemonID[] =               _("Species: {STR_VAR_3}\n{STR_VAR_1}    \n\n{STR_VAR_2}");
-static const u8 sDebugText_PokemonLevel[] =            _("Level:                   \n{STR_VAR_1}           \n          \n{STR_VAR_2}");
-static const u8 sDebugText_PokemonShiny[] =            _("Shiny:                   \n   {STR_VAR_2}             \n              \n                ");
-static const u8 sDebugText_PokemonNature[] =           _("NatureId: {STR_VAR_3}          \n{STR_VAR_1}          \n          \n{STR_VAR_2}");
-static const u8 sDebugText_PokemonAbility[] =          _("AbilityNum: {STR_VAR_3}          \n{STR_VAR_1}          \n          \n{STR_VAR_2}");
-static const u8 sDebugText_PokemonIVs[] =              _("All IVs:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
-static const u8 sDebugText_PokemonIV_0[] =             _("IV HP:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
-static const u8 sDebugText_PokemonIV_1[] =             _("IV Attack:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
-static const u8 sDebugText_PokemonIV_2[] =             _("IV Defense:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
-static const u8 sDebugText_PokemonIV_3[] =             _("IV Speed:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
-static const u8 sDebugText_PokemonIV_4[] =             _("IV Sp. Attack:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
-static const u8 sDebugText_PokemonIV_5[] =             _("IV Sp. Defense:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
-static const u8 sDebugText_PokemonMove_0[] =           _("Move 0: {STR_VAR_3}                   \n{STR_VAR_1}           \n          \n{STR_VAR_2}");
-static const u8 sDebugText_PokemonMove_1[] =           _("Move 1: {STR_VAR_3}                   \n{STR_VAR_1}           \n          \n{STR_VAR_2}");
-static const u8 sDebugText_PokemonMove_2[] =           _("Move 2: {STR_VAR_3}                   \n{STR_VAR_1}           \n          \n{STR_VAR_2}");
-static const u8 sDebugText_PokemonMove_3[] =           _("Move 3: {STR_VAR_3}                   \n{STR_VAR_1}           \n          \n{STR_VAR_2}");
-static const u8 sDebugText_Give_MaxMoney[] =           _("Max Money");
-static const u8 sDebugText_Give_MaxCoins[] =           _("Max Coins");
-static const u8 sDebugText_Give_BattlePoints[] =       _("Max Battle Points");
-static const u8 sDebugText_Give_DaycareEgg[] =         _("Daycare Egg");
-static const u8 sDebugText_Give_FillPc_Fast[] =        _("Fill PC Fast");
-static const u8 sDebugText_Give_FillPc_Slow[] =        _("Fill PC Slow (LAG!)");
-static const u8 sDebugText_Give_GiveCHEAT[] =          _("CHEAT Start");
-static const u8 sDebugText_AccessPC[] =                _("Access PC");
+static const u8 sDebugText_Give_GiveItem[] =            _("{RIGHT_ARROW}Give item XXXX");
+static const u8 sDebugText_ItemQuantity[] =             _("Quantity:       \n{STR_VAR_1}    \n\n{STR_VAR_2}");
+static const u8 sDebugText_ItemID[] =                   _("Item Id: {STR_VAR_3}\n{STR_VAR_1}    \n\n{STR_VAR_2}");
+static const u8 sDebugText_Give_AllTMs[] =              _("Give all TMs");
+static const u8 sDebugText_Give_GivePokemonSimple[] =   _("{RIGHT_ARROW}Pkm (lvl)");
+static const u8 sDebugText_Give_GivePokemonComplex[] =  _("{RIGHT_ARROW}Pkm (l,s,n,a,IV,mov)");
+static const u8 sDebugText_PokemonID[] =                _("Species: {STR_VAR_3}\n{STR_VAR_1}    \n\n{STR_VAR_2}");
+static const u8 sDebugText_PokemonLevel[] =             _("Level:                   \n{STR_VAR_1}           \n          \n{STR_VAR_2}");
+static const u8 sDebugText_PokemonShiny[] =             _("Shiny:                   \n   {STR_VAR_2}             \n              \n                ");
+static const u8 sDebugText_PokemonNature[] =            _("NatureId: {STR_VAR_3}          \n{STR_VAR_1}          \n          \n{STR_VAR_2}");
+static const u8 sDebugText_PokemonAbility[] =           _("AbilityNum: {STR_VAR_3}          \n{STR_VAR_1}          \n          \n{STR_VAR_2}");
+static const u8 sDebugText_PokemonIVs[] =               _("All IVs:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
+static const u8 sDebugText_PokemonIV_0[] =              _("IV HP:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
+static const u8 sDebugText_PokemonIV_1[] =              _("IV Attack:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
+static const u8 sDebugText_PokemonIV_2[] =              _("IV Defense:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
+static const u8 sDebugText_PokemonIV_3[] =              _("IV Speed:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
+static const u8 sDebugText_PokemonIV_4[] =              _("IV Sp. Attack:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
+static const u8 sDebugText_PokemonIV_5[] =              _("IV Sp. Defense:               \n    {STR_VAR_3}            \n             \n{STR_VAR_2}          ");
+static const u8 sDebugText_PokemonMove_0[] =            _("Move 0: {STR_VAR_3}                   \n{STR_VAR_1}           \n          \n{STR_VAR_2}");
+static const u8 sDebugText_PokemonMove_1[] =            _("Move 1: {STR_VAR_3}                   \n{STR_VAR_1}           \n          \n{STR_VAR_2}");
+static const u8 sDebugText_PokemonMove_2[] =            _("Move 2: {STR_VAR_3}                   \n{STR_VAR_1}           \n          \n{STR_VAR_2}");
+static const u8 sDebugText_PokemonMove_3[] =            _("Move 3: {STR_VAR_3}                   \n{STR_VAR_1}           \n          \n{STR_VAR_2}");
+static const u8 sDebugText_Give_MaxMoney[] =            _("Max Money");
+static const u8 sDebugText_Give_MaxCoins[] =            _("Max Coins");
+static const u8 sDebugText_Give_BattlePoints[] =        _("Max Battle Points");
+static const u8 sDebugText_Give_DaycareEgg[] =          _("Daycare Egg");
+static const u8 sDebugText_Give_FillPc_Fast[] =         _("Fill PC Fast");
+static const u8 sDebugText_Give_FillPc_Slow[] =         _("Fill PC Slow (LAG!)");
+static const u8 sDebugText_Give_GiveCHEAT[] =           _("CHEAT Start");
 // Sound Mneu
-static const u8 sDebugText_Sound_SE[] =     _("Effects");
-static const u8 sDebugText_Sound_SE_ID[] =  _("Sound Id: {STR_VAR_3}\n{STR_VAR_1}    \n{STR_VAR_2}");
-static const u8 sDebugText_Sound_MUS[] =    _("Music");
-static const u8 sDebugText_Sound_MUS_ID[] = _("Music Id: {STR_VAR_3}\n{STR_VAR_1}    \n{STR_VAR_2}");
-static const u8 sDebugText_Sound_Empty[] =  _("");
+static const u8 sDebugText_Sound_SE[] =                 _("{RIGHT_ARROW}Effects");
+static const u8 sDebugText_Sound_SE_ID[] =              _("Sound Id: {STR_VAR_3}\n{STR_VAR_1}    \n{STR_VAR_2}");
+static const u8 sDebugText_Sound_MUS[] =                _("{RIGHT_ARROW}Music");
+static const u8 sDebugText_Sound_MUS_ID[] =             _("Music Id: {STR_VAR_3}\n{STR_VAR_1}    \n{STR_VAR_2}");
+static const u8 sDebugText_Sound_Empty[] =              _("");
 
 static const u8 digitInidicator_1[] =        _("{LEFT_ARROW}+1{RIGHT_ARROW}        ");
 static const u8 digitInidicator_10[] =       _("{LEFT_ARROW}+10{RIGHT_ARROW}       ");
