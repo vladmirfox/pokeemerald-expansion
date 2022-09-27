@@ -2998,6 +2998,10 @@ static void FillPartnerParty(u16 trainerId)
     u16 monId;
     u32 otID;
     u8 trainerName[(PLAYER_NAME_LENGTH * 3) + 1];
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     SetFacilityPtrsGetLevel();
 
     if (trainerId == TRAINER_STEVEN_PARTNER)

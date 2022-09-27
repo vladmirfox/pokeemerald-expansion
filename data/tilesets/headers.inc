@@ -830,3 +830,14 @@ gTileset_UnionRoom::
 	.4byte gMetatiles_UnionRoom
 	.4byte gMetatileAttributes_UnionRoom
 	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_ASPAKIA_TILESET::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_ASPAKIA_TILESET
+	.4byte gTilesetPalettes_ASPAKIA_TILESET
+	.4byte gMetatiles_ASPAKIA_TILESET
+	.4byte gMetatileAttributes_ASPAKIA_TILESET
+	.4byte NULL

@@ -557,3 +557,11 @@ gMetatiles_UnionRoom::
 	.align 1
 gMetatileAttributes_UnionRoom::
 	.incbin "data/tilesets/secondary/union_room/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_ASPAKIA_TILESET::
+	.incbin "data/tilesets/primary/aspakia_tileset/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_ASPAKIA_TILESET::
+	.incbin "data/tilesets/primary/aspakia_tileset/metatile_attributes.bin"

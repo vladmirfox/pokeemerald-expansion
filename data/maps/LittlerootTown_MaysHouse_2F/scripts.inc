@@ -416,3 +416,26 @@ RivalsHouse_2F_Text_BrendanWhereShouldIGoNext:
 	.string "Hey, {PLAYER}, if I see you while I'm out\n"
 	.string "catching POKéMON, I can pitch you a\l"
 	.string "battle if you'd like.$"
+
+LittlerootTown_RivalHouseSign::
+	lockall
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq LittlerootTown_RivalHouseSign_2
+	msgbox LittlerootTown_RivalHouseSign_Text_1
+
+LittlerootTown_RivalHouseSign_1:
+	releaseall
+	return
+
+LittlerootTown_RivalHouseSign_2:
+	msgbox LittlerootTown_RivalHouseSign_Text_0
+	goto LittlerootTown_RivalHouseSign_1
+
+
+LittlerootTown_RivalHouseSign_Text_0:
+	.string "It's MAY's house.$"
+
+LittlerootTown_RivalHouseSign_Text_1:
+	.string "It's BRENDAN's house. He was always my\n"
+	.string "favorite.$"

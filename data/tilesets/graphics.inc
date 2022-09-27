@@ -1729,3 +1729,23 @@ gTilesetPalettes_UnionRoom::
 	.align 2
 gTilesetTiles_UnionRoom::
 	.incbin "data/tilesets/secondary/union_room/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_ASPAKIA_TILESET::
+	.incbin "data/tilesets/primary/aspakia_tileset/palettes/00.gbapal"
+	.incbin "data/tilesets/primary/aspakia_tileset/palettes/01.gbapal"
+	.incbin "data/tilesets/primary/aspakia_tileset/palettes/02.gbapal"
+	.incbin "data/tilesets/primary/aspakia_tileset/palettes/03.gbapal"
+	.incbin "data/tilesets/primary/aspakia_tileset/palettes/04.gbapal"
+	.incbin "data/tilesets/primary/aspakia_tileset/palettes/05.gbapal"
+	.incbin "data/tilesets/primary/aspakia_tileset/palettes/06.gbapal"
+	.incbin "data/tilesets/primary/aspakia_tileset/palettes/07.gbapal"
+	.incbin "data/tilesets/primary/aspakia_tileset/palettes/08.gbapal"
+	.incbin "data/tilesets/primary/aspakia_tileset/palettes/09.gbapal"
+	.incbin "data/tilesets/primary/aspakia_tileset/palettes/10.gbapal"
+	.incbin "data/tilesets/primary/aspakia_tileset/palettes/11.gbapal"
+	.incbin "data/tilesets/primary/aspakia_tileset/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_ASPAKIA_TILESET::
+	.incbin "data/tilesets/primary/aspakia_tileset/tiles.4bpp.lz"

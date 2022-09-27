@@ -6874,6 +6874,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BrendanRoute103Torchic[]
     .iv = 0,
     .lvl = 5,
     .species = SPECIES_MUDKIP,
+    .nature = NATURE_TIMID,
     }
 };
 

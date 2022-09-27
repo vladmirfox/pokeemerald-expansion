@@ -1,0 +1,16 @@
+mapscripts ASPAKIA_MapScripts {
+
+}
+
+
+# Enter your Poryscript here, and press the "Compile" button!
+script LittlerootTown_HackSign {
+    lockall
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        msgbox("You're Male")
+    } else {
+        msgbox(format("You're Female"))
+    }
+    releaseall
+}
