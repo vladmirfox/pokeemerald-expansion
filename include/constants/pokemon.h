@@ -290,7 +290,7 @@
 #define EVO_ITEM_HOLD_DAY                 21     // Pokémon levels up, holds specified item at day
 #define EVO_ITEM_HOLD_NIGHT               22     // Pokémon levels up, holds specified item at night
 #define EVO_MOVE                          23     // Pokémon levels up, knows specified move
-#define EVO_MOVE_TYPE                     24     // Pokémon levels up, knows move with specified type
+#define EVO_FRIENDSHIP_MOVE_TYPE          24     // Pokémon levels up with friendship ≥ 220, knows move with specified type
 #define EVO_MAPSEC                        25     // Pokémon levels up on specified mapsec
 #define EVO_ITEM_MALE                     26     // specified item is used on a male Pokémon
 #define EVO_ITEM_FEMALE                   27     // specified item is used on a female Pokémon
@@ -306,6 +306,8 @@
 #define EVO_DARK_SCROLL                   37     // interacts with Scroll of Darkness
 #define EVO_WATER_SCROLL                  38     // interacts with Scroll of Waters
 #define EVO_ALCREMIE                      39     // TODO: read separate lookup table from gEvolutionTable.
+#define EVO_ITEM_NIGHT                    40     // specified item is used on Pokémon, is night
+#define EVO_RECOIL_DMG                    41     // TODO: Pokémon receives a specified amount of recoil damage.
 
 #define EVOS_PER_MON 10
 
