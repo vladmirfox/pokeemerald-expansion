@@ -519,7 +519,6 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_DEOXYS_DEFENSE] = sDeoxysDefenseLevelUpLearnset,
     [SPECIES_DEOXYS_SPEED] = sDeoxysSpeedLevelUpLearnset,
 #if P_GEN_4_POKEMON == TRUE
-// Diamond and Pearl
     [SPECIES_TURTWIG] = sTurtwigLevelUpLearnset,
     [SPECIES_GROTLE] = sGrotleLevelUpLearnset,
     [SPECIES_TORTERRA] = sTorterraLevelUpLearnset,

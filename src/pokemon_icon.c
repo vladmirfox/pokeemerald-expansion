@@ -545,7 +545,6 @@ const u8 *const gMonIconTable[] =
     [SPECIES_DEOXYS_DEFENSE] = gMonIcon_DeoxysDefense,
     [SPECIES_DEOXYS_SPEED] = gMonIcon_DeoxysSpeed,
 #if P_GEN_4_POKEMON == TRUE
-// Diamond and Pearl
     [SPECIES_TURTWIG] = gMonIcon_Turtwig,
     [SPECIES_GROTLE] = gMonIcon_Grotle,
     [SPECIES_TORTERRA] = gMonIcon_Torterra,
@@ -693,7 +692,6 @@ const u8 *const gMonIconTable[] =
     [SPECIES_ARCEUS_FAIRY] = gMonIcon_Arceus,
 #endif
 #if P_GEN_5_POKEMON == TRUE
-// Black and White
     [SPECIES_VICTINI] = gMonIcon_Victini,
     [SPECIES_SNIVY] = gMonIcon_Snivy,
     [SPECIES_SERVINE] = gMonIcon_Servine,
@@ -1347,22 +1345,22 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_IVYSAUR] = 4,
     [SPECIES_VENUSAUR] = 4,
     [SPECIES_VENUSAUR_MEGA] = 1,
-    [SPECIES_VENUSAUR_GIGANTAMAX] = 1, //Todo
+    //[SPECIES_VENUSAUR_GIGANTAMAX] = 0,
     [SPECIES_CHARMANDER] = 0,
     [SPECIES_CHARMELEON] = 0,
     [SPECIES_CHARIZARD] = 0,
     [SPECIES_CHARIZARD_MEGA_X] = 0,
     [SPECIES_CHARIZARD_MEGA_Y] = 0,
-    [SPECIES_CHARIZARD_GIGANTAMAX] = 0, //Todo
+    //[SPECIES_CHARIZARD_GIGANTAMAX] = 0,
     [SPECIES_SQUIRTLE] = 0,
     [SPECIES_WARTORTLE] = 2,
     [SPECIES_BLASTOISE] = 2,
     [SPECIES_BLASTOISE_MEGA] = 2,
-    [SPECIES_BLASTOISE_GIGANTAMAX] = 2, //Todo
+    //[SPECIES_BLASTOISE_GIGANTAMAX] = 0,
     [SPECIES_CATERPIE] = 1,
     [SPECIES_METAPOD] = 1,
     [SPECIES_BUTTERFREE] = 0,
-    [SPECIES_BUTTERFREE_GIGANTAMAX] = 0, //Todo
+    //[SPECIES_BUTTERFREE_GIGANTAMAX] = 0,
     [SPECIES_WEEDLE] = 2,
     [SPECIES_KAKUNA] = 2,
     [SPECIES_BEEDRILL] = 2,
@@ -2475,6 +2473,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_ZERAORA] = 0,
     [SPECIES_MELTAN] = 2,
     [SPECIES_MELMETAL] = 2,
+// Gen 8
     [SPECIES_GROOKEY] = 1,
     [SPECIES_THWACKEY] = 1,
     [SPECIES_RILLABOOM] = 1,
@@ -2601,7 +2600,6 @@ const u8 gMonIconPaletteIndices[] =
 const u8 gMonIconPaletteIndicesFemale[] =
 {
     [SPECIES_EEVEE] = 2,
-#if P_GEN_4_POKEMON == TRUE
     [SPECIES_STARLY] = 0,
     [SPECIES_STARAVIA] = 0,
     [SPECIES_BIDOOF] = 2,
@@ -2611,18 +2609,11 @@ const u8 gMonIconPaletteIndicesFemale[] =
     [SPECIES_COMBEE] = 0,
     [SPECIES_HIPPOPOTAS] = 1,
     [SPECIES_HIPPOWDON] = 1,
-#endif
-#if P_GEN_5_POKEMON == TRUE
     [SPECIES_UNFEZANT] = 1,
     [SPECIES_FRILLISH] = 1,
     [SPECIES_JELLICENT] = 1,
-#endif
-#if P_GEN_6_POKEMON == TRUE
     [SPECIES_PYROAR] = 2,
-#endif
-#if P_GEN_8_POKEMON == TRUE
     [SPECIES_BASCULEGION] = 0,
-#endif
 };
 
 const struct SpritePalette gMonIconPaletteTable[] =

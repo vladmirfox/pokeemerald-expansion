@@ -2913,12 +2913,8 @@ static const u8 sMonAnimationDelayTable[NUM_SPECIES - 1] =
     [SPECIES_SALAMENCE - 1]  = 70,
     [SPECIES_KYOGRE - 1]     = 60,
     [SPECIES_RAYQUAZA - 1]   = 60,
-#if P_GEN_4_POKEMON == TRUE
     [SPECIES_ROTOM_FAN - 1]  = 7,
-#endif
-#if P_GEN_7_POKEMON == TRUE
     [SPECIES_TAPU_FINI - 1]  = 5,
-#endif
 };
 
 #define PP_UP_SHIFTS(val)           val,        (val) << 2,        (val) << 4,        (val) << 6
