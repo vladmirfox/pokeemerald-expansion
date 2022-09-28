@@ -33222,27 +33222,6 @@ static const u16 sDecidueyeHisuianTeachableLearnset[] = {
 #endif
 
 #if P_GEN_6_POKEMON == TRUE
-static const u16 sFloetteEternalFlowerTeachableLearnset[] = {
-    MOVE_ATTRACT,
-    MOVE_CALM_MIND,
-    MOVE_DOUBLE_TEAM,
-    MOVE_FACADE,
-    MOVE_FLASH,
-    MOVE_FRUSTRATION,
-    MOVE_GIGA_DRAIN,
-    MOVE_HIDDEN_POWER,
-    MOVE_PROTECT,
-    MOVE_PSYCHIC,
-    MOVE_RAIN_DANCE,
-    MOVE_REST,
-    MOVE_RETURN,
-    MOVE_SAFEGUARD,
-    MOVE_SECRET_POWER,
-    MOVE_SOLAR_BEAM,
-    MOVE_SUNNY_DAY,
-    MOVE_TOXIC,
-    MOVE_UNAVAILABLE,
-};
 
 static const u16 sHoopaUnboundTeachableLearnset[] = {
     MOVE_BRICK_BREAK,
