@@ -10423,9 +10423,6 @@ static const u16 sStantlerTeachableLearnset[] = {
 };
 
 static const u16 sSmeargleTeachableLearnset[] = {
-    MOVE_FLAMETHROWER,
-    MOVE_SEISMIC_TOSS,
-    MOVE_SLEEP_TALK,
     MOVE_UNAVAILABLE,
 };
 
