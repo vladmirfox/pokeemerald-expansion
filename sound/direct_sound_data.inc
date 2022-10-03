@@ -1230,6 +1230,7 @@ Cry_Drifloon::
 Cry_Drifblim::
 Cry_Buneary::
 Cry_Lopunny::
+Cry_LopunnyMega::
 Cry_Mismagius::
 Cry_Honchkrow::
 Cry_Glameow::
@@ -1247,9 +1248,11 @@ Cry_Spiritomb::
 Cry_Gible::
 Cry_Gabite::
 Cry_Garchomp::
+Cry_GarchompMega::
 Cry_Munchlax::
 Cry_Riolu::
 Cry_Lucario::
+Cry_LucarioMega::
 Cry_Hippopotas::
 Cry_Hippowdon::
 Cry_Skorupi::
@@ -1262,6 +1265,7 @@ Cry_Lumineon::
 Cry_Mantyke::
 Cry_Snover::
 Cry_Abomasnow::
+Cry_AbomasnowMega::
 Cry_Weavile::
 Cry_Magnezone::
 Cry_Lickilicky::
@@ -1277,6 +1281,7 @@ Cry_Gliscor::
 Cry_Mamoswine::
 Cry_PorygonZ::
 Cry_Gallade::
+Cry_GalladeMega::
 Cry_Probopass::
 Cry_Dusknoir::
 Cry_Froslass::
@@ -1294,6 +1299,7 @@ Cry_Phione::
 Cry_Manaphy::
 Cry_Darkrai::
 Cry_Shaymin::
+Cry_ShayminSky::
 Cry_Arceus::
 .endif
 
@@ -1336,6 +1342,7 @@ Cry_Swoobat::
 Cry_Drilbur::
 Cry_Excadrill::
 Cry_Audino::
+Cry_AudinoMega::
 Cry_Timburr::
 Cry_Gurdurr::
 Cry_Conkeldurr::
@@ -1446,11 +1453,16 @@ Cry_Cobalion::
 Cry_Terrakion::
 Cry_Virizion::
 Cry_Tornadus::
+Cry_TornadusTherian::
 Cry_Thundurus::
+Cry_ThundurusTherian::
 Cry_Reshiram::
 Cry_Zekrom::
 Cry_Landorus::
+Cry_LandorusTherian::
 Cry_Kyurem::
+Cry_KyuremWhite::
+Cry_KyuremBlack::
 Cry_Keldeo::
 Cry_Meloetta::
 Cry_Genesect::
@@ -1478,6 +1490,7 @@ Cry_Litleo::
 Cry_Pyroar::
 Cry_Flabebe::
 Cry_Floette::
+Cry_FloetteEternalFlower::
 Cry_Florges::
 Cry_Skiddo::
 Cry_Gogoat::
@@ -1518,7 +1531,9 @@ Cry_Klefki::
 Cry_Phantump::
 Cry_Trevenant::
 Cry_Pumpkaboo::
+Cry_PumpkabooSuper::
 Cry_Gourgeist::
+Cry_GourgeistSuper::
 Cry_Bergmite::
 Cry_Avalugg::
 Cry_Noibat::
@@ -1526,8 +1541,12 @@ Cry_Noivern::
 Cry_Xerneas::
 Cry_Yveltal::
 Cry_Zygarde::
+Cry_Zygarde10::
+Cry_ZygardeComplete::
 Cry_Diancie::
+Cry_DiancieMega::
 Cry_Hoopa::
+Cry_HoopaUnbound::
 Cry_Volcanion::
 .endif
 
@@ -1552,11 +1571,17 @@ Cry_Vikavolt::
 Cry_Crabrawler::
 Cry_Crabominable::
 Cry_Oricorio::
+Cry_OricorioPomPom::
+Cry_OricorioPau::
+Cry_OricorioSensu::
 Cry_Cutiefly::
 Cry_Ribombee::
 Cry_Rockruff::
 Cry_Lycanroc::
+Cry_LycanrocMidnight::
+Cry_LycanrocDusk::
 Cry_Wishiwashi::
+Cry_WishiwashiSchool::
 Cry_Mareanie::
 Cry_Toxapex::
 Cry_Mudbray::
@@ -1611,6 +1636,9 @@ Cry_Celesteela::
 Cry_Kartana::
 Cry_Guzzlord::
 Cry_Necrozma::
+Cry_NecrozmaDuskMane::
+Cry_NecrozmaDawnWings::
+Cry_NecrozmaUltra::
 Cry_Magearna::
 Cry_Marshadow::
 Cry_Poipole::
@@ -1663,6 +1691,7 @@ Cry_Arrokuda::
 Cry_Barraskewda::
 Cry_Toxel::
 Cry_Toxtricity::
+Cry_ToxtricityLowKey::
 Cry_Sizzlipede::
 Cry_Centiskorch::
 Cry_Clobbopus::
@@ -1689,8 +1718,11 @@ Cry_Snom::
 Cry_Frosmoth::
 Cry_Stonjourner::
 Cry_Eiscue::
+Cry_EiscueNoiceFace::
 Cry_Indeedee::
+Cry_IndeedeeFemale::
 Cry_Morpeko::
+Cry_MorpekoHangry::
 Cry_Cufant::
 Cry_Copperajah::
 Cry_Dracozolt::
@@ -1702,16 +1734,22 @@ Cry_Dreepy::
 Cry_Drakloak::
 Cry_Dragapult::
 Cry_Zacian::
+Cry_ZacianCrownedSword::
 Cry_Zamazenta::
+Cry_ZamazentaCrownedShield::
 Cry_Eternatus::
+Cry_EternatusEternamax::
 Cry_Kubfu::
 Cry_Urshifu::
+Cry_UrshifuRapidStrikeStyle::
 Cry_Zarude::
 Cry_Regieleki::
 Cry_Regidrago::
 Cry_Glastrier::
 Cry_Spectrier::
 Cry_Calyrex::
+Cry_CalyrexIceRider::
+Cry_CalyrexShadowRider::
 .endif
 Cry_Wyrdeer::
 Cry_Kleavor::
@@ -2890,6 +2928,10 @@ Cry_Shaymin::
 	.incbin "sound/direct_sound_samples/cries/shaymin.bin"
 
 	.align 2
+Cry_ShayminSky::
+	.incbin "sound/direct_sound_samples/cries/shaymin_sky.bin"
+
+	.align 2
 Cry_Arceus::
 	.incbin "sound/direct_sound_samples/cries/arceus.bin"
 .endif
@@ -3046,6 +3088,10 @@ Cry_Excadrill::
 	.align 2
 Cry_Audino::
 	.incbin "sound/direct_sound_samples/cries/audino.bin"
+
+	.align 2
+Cry_AudinoMega::
+	.incbin "sound/direct_sound_samples/cries/mega_audino.bin"
 
 	.align 2
 Cry_Timburr::
@@ -3488,8 +3534,16 @@ Cry_Tornadus::
 	.incbin "sound/direct_sound_samples/cries/tornadus.bin"
 
 	.align 2
+Cry_TornadusTherian::
+	.incbin "sound/direct_sound_samples/cries/tornadus_therian.bin"
+
+	.align 2
 Cry_Thundurus::
 	.incbin "sound/direct_sound_samples/cries/thundurus.bin"
+
+	.align 2
+Cry_ThundurusTherian::
+	.incbin "sound/direct_sound_samples/cries/thundurus_therian.bin"
 
 	.align 2
 Cry_Reshiram::
@@ -3504,8 +3558,20 @@ Cry_Landorus::
 	.incbin "sound/direct_sound_samples/cries/landorus.bin"
 
 	.align 2
+Cry_LandorusTherian::
+	.incbin "sound/direct_sound_samples/cries/landorus_therian.bin"
+
+	.align 2
 Cry_Kyurem::
 	.incbin "sound/direct_sound_samples/cries/kyurem.bin"
+
+	.align 2
+Cry_KyuremWhite::
+	.incbin "sound/direct_sound_samples/cries/kyurem_white.bin"
+
+	.align 2
+Cry_KyuremBlack::
+	.incbin "sound/direct_sound_samples/cries/kyurem_black.bin"
 
 	.align 2
 Cry_Keldeo::
@@ -3604,6 +3670,10 @@ Cry_Flabebe::
 	.align 2
 Cry_Floette::
 	.incbin "sound/direct_sound_samples/cries/floette.bin"
+
+	.align 2
+Cry_FloetteEternalFlower::
+	.incbin "sound/direct_sound_samples/cries/floette_eternal_flower.bin"
 
 	.align 2
 Cry_Florges::
@@ -3766,8 +3836,16 @@ Cry_Pumpkaboo::
 	.incbin "sound/direct_sound_samples/cries/pumpkaboo.bin"
 
 	.align 2
+Cry_PumpkabooSuper::
+	.incbin "sound/direct_sound_samples/cries/pumpkaboo_super.bin"
+
+	.align 2
 Cry_Gourgeist::
 	.incbin "sound/direct_sound_samples/cries/gourgeist.bin"
+
+	.align 2
+Cry_GourgeistSuper::
+	.incbin "sound/direct_sound_samples/cries/gourgeist_super.bin"
 
 	.align 2
 Cry_Bergmite::
@@ -3798,12 +3876,28 @@ Cry_Zygarde::
 	.incbin "sound/direct_sound_samples/cries/zygarde.bin"
 
 	.align 2
+Cry_Zygarde10::
+	.incbin "sound/direct_sound_samples/cries/zygarde_10.bin"
+
+	.align 2
+Cry_ZygardeComplete::
+	.incbin "sound/direct_sound_samples/cries/zygarde_complete.bin"
+
+	.align 2
 Cry_Diancie::
 	.incbin "sound/direct_sound_samples/cries/diancie.bin"
 
 	.align 2
+Cry_DiancieMega::
+	.incbin "sound/direct_sound_samples/cries/mega_diancie.bin"
+
+	.align 2
 Cry_Hoopa::
 	.incbin "sound/direct_sound_samples/cries/hoopa.bin"
+
+	.align 2
+Cry_HoopaUnbound::
+	.incbin "sound/direct_sound_samples/cries/hoopa_unbound.bin"
 
 	.align 2
 Cry_Volcanion::
@@ -3892,6 +3986,18 @@ Cry_Oricorio::
 	.incbin "sound/direct_sound_samples/cries/oricorio.bin"
 
 	.align 2
+Cry_OricorioPomPom::
+	.incbin "sound/direct_sound_samples/cries/oricorio_pom_pom.bin"
+
+	.align 2
+Cry_OricorioPau::
+	.incbin "sound/direct_sound_samples/cries/oricorio_pau.bin"
+
+	.align 2
+Cry_OricorioSensu::
+	.incbin "sound/direct_sound_samples/cries/oricorio_sensu.bin"
+
+	.align 2
 Cry_Cutiefly::
 	.incbin "sound/direct_sound_samples/cries/cutiefly.bin"
 
@@ -3908,8 +4014,20 @@ Cry_Lycanroc::
 	.incbin "sound/direct_sound_samples/cries/lycanroc.bin"
 
 	.align 2
+Cry_LycanrocMidnight::
+	.incbin "sound/direct_sound_samples/cries/lycanroc_midnight.bin"
+
+	.align 2
+Cry_LycanrocDusk::
+	.incbin "sound/direct_sound_samples/cries/lycanroc_dusk.bin"
+
+	.align 2
 Cry_Wishiwashi::
 	.incbin "sound/direct_sound_samples/cries/wishiwashi.bin"
+
+	.align 2
+Cry_WishiwashiSchool::
+	.incbin "sound/direct_sound_samples/cries/wishiwashi_school.bin"
 
 	.align 2
 Cry_Mareanie::
@@ -4128,6 +4246,18 @@ Cry_Necrozma::
 	.incbin "sound/direct_sound_samples/cries/necrozma.bin"
 
 	.align 2
+Cry_NecrozmaDuskMane::
+	.incbin "sound/direct_sound_samples/cries/necrozma_dusk_mane.bin"
+
+	.align 2
+Cry_NecrozmaDawnWings::
+	.incbin "sound/direct_sound_samples/cries/necrozma_dawn_wings.bin"
+
+	.align 2
+Cry_NecrozmaUltra::
+	.incbin "sound/direct_sound_samples/cries/necrozma_ultra.bin"
+
+	.align 2
 Cry_Magearna::
 	.incbin "sound/direct_sound_samples/cries/magearna.bin"
 
@@ -4326,6 +4456,10 @@ Cry_Toxtricity::
 	.incbin "sound/direct_sound_samples/cries/toxtricity.bin"
 
 	.align 2
+Cry_ToxtricityLowKey::
+	.incbin "sound/direct_sound_samples/cries/toxtricity_low_key.bin"
+
+	.align 2
 Cry_Sizzlipede::
 	.incbin "sound/direct_sound_samples/cries/sizzlipede.bin"
 
@@ -4430,12 +4564,24 @@ Cry_Eiscue::
 	.incbin "sound/direct_sound_samples/cries/eiscue.bin"
 
 	.align 2
+Cry_EiscueNoiceFace::
+	.incbin "sound/direct_sound_samples/cries/eiscue_noice_face.bin"
+
+	.align 2
 Cry_Indeedee::
 	.incbin "sound/direct_sound_samples/cries/indeedee.bin"
 
 	.align 2
+Cry_IndeedeeFemale::
+	.incbin "sound/direct_sound_samples/cries/indeedee_female.bin"
+
+	.align 2
 Cry_Morpeko::
 	.incbin "sound/direct_sound_samples/cries/morpeko.bin"
+
+	.align 2
+Cry_MorpekoHangry::
+	.incbin "sound/direct_sound_samples/cries/morpeko_hangry.bin"
 
 	.align 2
 Cry_Cufant::
@@ -4482,12 +4628,24 @@ Cry_Zacian::
 	.incbin "sound/direct_sound_samples/cries/zacian.bin"
 
 	.align 2
+Cry_ZacianCrownedSword::
+	.incbin "sound/direct_sound_samples/cries/zacian_crowned_sword.bin"
+
+	.align 2
 Cry_Zamazenta::
 	.incbin "sound/direct_sound_samples/cries/zamazenta.bin"
 
 	.align 2
+Cry_ZamazentaCrownedShield::
+	.incbin "sound/direct_sound_samples/cries/zamazenta_crowned_shield.bin"
+
+	.align 2
 Cry_Eternatus::
 	.incbin "sound/direct_sound_samples/cries/eternatus.bin"
+
+	.align 2
+Cry_EternatusEternamax::
+	.incbin "sound/direct_sound_samples/cries/eternatus_eternamax.bin"
 
 	.align 2
 Cry_Kubfu::
@@ -4496,6 +4654,10 @@ Cry_Kubfu::
 	.align 2
 Cry_Urshifu::
 	.incbin "sound/direct_sound_samples/cries/urshifu.bin"
+
+	.align 2
+Cry_UrshifuRapidStrikeStyle::
+	.incbin "sound/direct_sound_samples/cries/urshifu_rapid_strike_style.bin"
 
 	.align 2
 Cry_Zarude::
@@ -4520,6 +4682,15 @@ Cry_Spectrier::
 	.align 2
 Cry_Calyrex::
 	.incbin "sound/direct_sound_samples/cries/calyrex.bin"
+
+	.align 2
+Cry_CalyrexIceRider::
+	.incbin "sound/direct_sound_samples/cries/calyrex_ice_rider.bin"
+
+	.align 2
+Cry_CalyrexShadowRider::
+	.incbin "sound/direct_sound_samples/cries/calyrex_shadow_rider.bin"
+
 /*
 	.align 2
 Cry_Wyrdeer::
@@ -4548,6 +4719,10 @@ Cry_Overqwil::
 	.align 2
 Cry_Enamorus::
 	.incbin "sound/direct_sound_samples/cries/enamorus.bin"
+
+	.align 2
+Cry_EnamorusTherian::
+	.incbin "sound/direct_sound_samples/cries/enamorus_therian.bin"
 */
 .endif
 
@@ -4733,18 +4908,6 @@ Cry_GalladeMega::
 	.incbin "sound/direct_sound_samples/cries/mega_gallade.bin"
 .endif
 
-.if P_GEN_5_POKEMON == TRUE
-	.align 2
-Cry_AudinoMega::
-	.incbin "sound/direct_sound_samples/cries/mega_audino.bin"
-.endif
-
-.if P_GEN_6_POKEMON == TRUE
-	.align 2
-Cry_DiancieMega::
-	.incbin "sound/direct_sound_samples/cries/mega_diancie.bin"
-.endif
-
 	.align 2
 Cry_RayquazaMega::
 	.incbin "sound/direct_sound_samples/cries/mega_rayquaza.bin"
@@ -4760,146 +4923,6 @@ Cry_GroudonPrimal::
 	.align 2
 Cry_SlowpokeGalarian::
 	.incbin "sound/direct_sound_samples/cries/slowpoke_galarian.bin"
-
-.if P_GEN_4_POKEMON == TRUE
-	.align 2
-Cry_ShayminSky::
-	.incbin "sound/direct_sound_samples/cries/shaymin_sky.bin"
-.endif
-
-.if P_GEN_5_POKEMON == TRUE
-	.align 2
-Cry_TornadusTherian::
-	.incbin "sound/direct_sound_samples/cries/tornadus_therian.bin"
-
-	.align 2
-Cry_ThundurusTherian::
-	.incbin "sound/direct_sound_samples/cries/thundurus_therian.bin"
-
-	.align 2
-Cry_LandorusTherian::
-	.incbin "sound/direct_sound_samples/cries/landorus_therian.bin"
-
-	.align 2
-Cry_KyuremWhite::
-	.incbin "sound/direct_sound_samples/cries/kyurem_white.bin"
-
-	.align 2
-Cry_KyuremBlack::
-	.incbin "sound/direct_sound_samples/cries/kyurem_black.bin"
-.endif
-
-.if P_GEN_6_POKEMON == TRUE
-	.align 2
-Cry_FloetteEternalFlower::
-	.incbin "sound/direct_sound_samples/cries/floette_eternal_flower.bin"
-
-	.align 2
-Cry_PumpkabooSuper::
-	.incbin "sound/direct_sound_samples/cries/pumpkaboo_super.bin"
-
-	.align 2
-Cry_GourgeistSuper::
-	.incbin "sound/direct_sound_samples/cries/gourgeist_super.bin"
-
-	.align 2
-Cry_Zygarde10::
-	.incbin "sound/direct_sound_samples/cries/zygarde_10.bin"
-
-	.align 2
-Cry_ZygardeComplete::
-	.incbin "sound/direct_sound_samples/cries/zygarde_complete.bin"
-
-	.align 2
-Cry_HoopaUnbound::
-	.incbin "sound/direct_sound_samples/cries/hoopa_unbound.bin"
-.endif
-
-.if P_GEN_7_POKEMON == TRUE
-	.align 2
-Cry_OricorioPomPom::
-	.incbin "sound/direct_sound_samples/cries/oricorio_pom_pom.bin"
-
-	.align 2
-Cry_OricorioPau::
-	.incbin "sound/direct_sound_samples/cries/oricorio_pau.bin"
-
-	.align 2
-Cry_OricorioSensu::
-	.incbin "sound/direct_sound_samples/cries/oricorio_sensu.bin"
-
-	.align 2
-Cry_LycanrocMidnight::
-	.incbin "sound/direct_sound_samples/cries/lycanroc_midnight.bin"
-
-	.align 2
-Cry_LycanrocDusk::
-	.incbin "sound/direct_sound_samples/cries/lycanroc_dusk.bin"
-
-	.align 2
-Cry_WishiwashiSchool::
-	.incbin "sound/direct_sound_samples/cries/wishiwashi_school.bin"
-
-	.align 2
-Cry_NecrozmaDuskMane::
-	.incbin "sound/direct_sound_samples/cries/necrozma_dusk_mane.bin"
-
-	.align 2
-Cry_NecrozmaDawnWings::
-	.incbin "sound/direct_sound_samples/cries/necrozma_dawn_wings.bin"
-
-	.align 2
-Cry_NecrozmaUltra::
-	.incbin "sound/direct_sound_samples/cries/necrozma_ultra.bin"
-.endif
-
-.if P_GEN_8_POKEMON == TRUE
-	.align 2
-Cry_ToxtricityLowKey::
-	.incbin "sound/direct_sound_samples/cries/toxtricity_low_key.bin"
-
-	.align 2
-Cry_EiscueNoiceFace::
-	.incbin "sound/direct_sound_samples/cries/eiscue_noice_face.bin"
-
-	.align 2
-Cry_IndeedeeFemale::
-	.incbin "sound/direct_sound_samples/cries/indeedee_female.bin"
-
-	.align 2
-Cry_MorpekoHangry::
-	.incbin "sound/direct_sound_samples/cries/morpeko_hangry.bin"
-
-	.align 2
-Cry_ZacianCrownedSword::
-	.incbin "sound/direct_sound_samples/cries/zacian_crowned_sword.bin"
-
-	.align 2
-Cry_ZamazentaCrownedShield::
-	.incbin "sound/direct_sound_samples/cries/zamazenta_crowned_shield.bin"
-
-	.align 2
-Cry_EternatusEternamax::
-	.incbin "sound/direct_sound_samples/cries/eternatus_eternamax.bin"
-
-	.align 2
-Cry_UrshifuRapidStrikeStyle::
-	.incbin "sound/direct_sound_samples/cries/urshifu_rapid_strike_style.bin"
-
-	.align 2
-Cry_CalyrexIceRider::
-	.incbin "sound/direct_sound_samples/cries/calyrex_ice_rider.bin"
-
-	.align 2
-Cry_CalyrexShadowRider::
-	.incbin "sound/direct_sound_samples/cries/calyrex_shadow_rider.bin"
-
-/*
-	.align 2
-Cry_EnamorusTherian::
-	.incbin "sound/direct_sound_samples/cries/enamorus_therian.bin"
-*/
-.endif
 
 	.align 2
 DirectSoundWaveData_register_noise::
