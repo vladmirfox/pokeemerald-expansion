@@ -94,11 +94,6 @@ enum {
     MON_DATA_KNOWN_MOVES,
     MON_DATA_RIBBON_COUNT,
     MON_DATA_RIBBONS,
-    MON_DATA_ATK2,
-    MON_DATA_DEF2,
-    MON_DATA_SPEED2,
-    MON_DATA_SPATK2,
-    MON_DATA_SPDEF2,
 };
 
 struct BoxPokemon
@@ -110,29 +105,42 @@ struct BoxPokemon
     // Words 3-5: Pokémon nickname (12 chars). Space reserved, but POKEMON_NAME_LENGTH is still set to the old value (10).
     u8 nickname[POKEMON_NAME_LENGTH_NEW];
 
-    // Word 6: Species, hidden nature, friendship, met level
+    // Word 6: Species, hidden nature, friendship, met level, isEgg.
     u32 species:11;     // Up to 2047 species
     u32 hiddenNature:5; // 25 natures
     u32 friendship:8;
-    u32 metLevel:8;     // 7 bits needed in vanilla, but added 1 more to allow for level 255
+    u32 metLevel:7;     // To support Level 255, it needs 8 bits
+    u32 isEgg:1;
+
+
 
     // Word 7: Status
     u32 status;
 
-    // Words 8 & 9: moves, isEgg, otGender, Pokéball, ppBonuses, Pokérus, Dynamax Level
-    u32 move1:10;       // 1023 moves
-    u32 move2:10;       // 1023 moves
-    u32 move3:10;       // 1023 moves
-    u32 isEgg:1;
+    // Words 8 & 9: moves, Pokéball, Pokérus
+    u32 move1:11;       // 2047 moves
+    u32 move2:11;       // 2047 moves
+    u32 heldItem:10;    // 1023 items
+
+    u32 move3:11;       // 2047 moves
+    u32 move4:11;       // 2047 moves
+    u32 pokeball:6;     // 64 balls
+    u32 pokerus:4;
+
+    // Word 10: Move PP, met game, OT gender
+    u32 pp1:7;          // Max 127 PP
+    u32 pp2:7;          // Max 127 PP
+    u32 pp3:7;          // Max 127 PP
+    u32 pp4:7;          // Max 127 PP
+    u32 metGame:3;
     u32 otGender:1;
 
-    u32 move4:10;       // 1023 moves
-    u32 pokeball:6;     // 64 balls
+    // Word 11: ppBonuses, experience, language
     u32 ppBonuses:8;
-    u32 pokerus:4;
-    u32 dynamaxLevel:4; // Up to level 10
+    u32 experience:21;  // To support Level 255, it needs 26 bits.
+    u32 language:3;
 
-    // Words 10 - 12: EV's + contest stats
+    // Words 12 - 14: EV's + contest stats
     u8 hpEV;
     u8 attackEV;
     u8 defenseEV;
@@ -149,16 +157,11 @@ struct BoxPokemon
     u8 tough;
     u8 sheen;
 
-    // Word 13: experience, language and met game
-    u32 experience:26;  // 21 bits needed in vanilla, but added 5 more to allow for exp up to lvl 255.
-    u32 language:3;
-    u32 metGame:3;
-
-    // Words 14 & 15: Trainer name + met location
+    // Words 15 & 16: Trainer name + met location
     u8 metLocation;
     u8 otName[PLAYER_NAME_LENGTH];
 
-    // Word 16: IVs and ability number.
+    // Word 17: IVs and ability number.
     u32 hpIV:5;
     u32 attackIV:5;
     u32 defenseIV:5;
@@ -167,7 +170,7 @@ struct BoxPokemon
     u32 spDefenseIV:5;
     u32 abilityNum:2;
 
-    // Word 17: ribbons, markings and gigantamax factor
+    // Word 18: ribbons, markings and shadow factor
     u32 coolRibbon:3;
     u32 beautyRibbon:3;
     u32 cuteRibbon:3;
@@ -186,24 +189,20 @@ struct BoxPokemon
     u32 earthRibbon:1;
     u32 worldRibbon:1;
     u32 markings:4;
-    u32 gigantamax:1;
+    u32 isShadow:1;
 
-    // Words 18 & 19: Move PP, held item, Tera type, shadow, Hyper Training and filler
-    u32 pp1:7;      // Max 127 PP
-    u32 pp2:7;      // Max 127 PP
-    u32 pp3:7;      // Max 127 PP
-    u32 pp4:7;      // Max 127 PP
+    // Word 19: Dynamax level, Gigantamax Factor, Hyper Training, HP, Tera type and filler.
+    u32 dynamaxLevel:4; // Up to level 10
+    u32 gigantamax:1;
     u32 hyperTrainedHP:1;
     u32 hyperTrainedAttack:1;
     u32 hyperTrainedDefense:1;
     u32 hyperTrainedSpeed:1;
-
-    u32 heldItem:10;    // 1024 items
-    u32 teraType:5;     // 18 Types
-    u32 isShadow:1;
     u32 hyperTrainedSpAttack:1;
     u32 hyperTrainedSpDefense:1;
     u32 hp:14;          // Max 16383 HP
+    u32 teraType:5;     // 18 Types
+    u32 filler1:2;
 
     // Word 20: Filler
     u32 filler2;
