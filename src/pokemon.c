@@ -1908,6 +1908,7 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 #include "data/pokemon/form_species_table_pointers.h"
 #include "data/pokemon/form_change_tables.h"
 #include "data/pokemon/form_change_table_pointers.h"
+#include "data/pokemon/base_form_species_table.h"
 
 // SPECIES_NONE are ignored in the following two tables, so decrement before accessing these arrays to get the right result
 #if P_ENABLE_DEBUG == TRUE
@@ -8184,15 +8185,32 @@ u16 PlayerGenderToFrontTrainerPicId(u8 playerGender)
         return FacilityClassToPicIndex(FACILITY_CLASS_BRENDAN);
 }
 
-void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality)
+void HandleSetPokedexFlag(u16 species, u8 caseId, u32 personality)
 {
-    u8 getFlagCaseId = (caseId == FLAG_SET_SEEN) ? FLAG_GET_SEEN : FLAG_GET_CAUGHT;
-    if (!GetSetPokedexFlag(nationalNum, getFlagCaseId)) // don't set if it's already set
+    bool8 updateUnownSpinda = FALSE;
+    if (caseId == FLAG_SET_SEEN)
     {
-        GetSetPokedexFlag(nationalNum, caseId);
-        if (NationalPokedexNumToSpecies(nationalNum) == SPECIES_UNOWN)
+        if (!GetSetPokedexSeenFlag(species, FLAG_GET_SEEN)) // don't set if it's already set
+        {
+            GetSetPokedexSeenFlag(species, caseId);
+            updateUnownSpinda = TRUE;
+        }
+    }
+    else if (caseId == FLAG_SET_CAUGHT)
+    {
+        u16 nationalNum = SpeciesToNationalPokedexNum(species);
+        if (!GetSetPokedexCaughtFlag(nationalNum, FLAG_GET_CAUGHT)) // don't set if it's already set
+        {
+            GetSetPokedexCaughtFlag(nationalNum, caseId);
+            updateUnownSpinda = TRUE;
+        }
+    }
+
+    if (updateUnownSpinda)
+    {
+        if (species == SPECIES_UNOWN)
             gSaveBlock2Ptr->pokedex.unownPersonality = personality;
-        if (NationalPokedexNumToSpecies(nationalNum) == SPECIES_SPINDA)
+        if (species == SPECIES_SPINDA)
             gSaveBlock2Ptr->pokedex.spindaPersonality = personality;
     }
 }

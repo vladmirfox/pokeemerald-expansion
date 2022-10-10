@@ -338,9 +338,8 @@ bool8 MEScrCmd_givepokemon(struct ScriptContext *ctx)
 
         if (species != SPECIES_EGG)
         {
-            u16 pokedexNum = SpeciesToNationalPokedexNum(species);
-            GetSetPokedexFlag(pokedexNum, FLAG_SET_SEEN);
-            GetSetPokedexCaughtFlag(pokedexNum, FLAG_SET_CAUGHT);
+            GetSetPokedexSeenFlag(species, FLAG_SET_SEEN);
+            GetSetPokedexCaughtFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_CAUGHT);
         }
 
         heldItem = GetMonData(&gPlayerParty[PARTY_SIZE - 1], MON_DATA_HELD_ITEM);

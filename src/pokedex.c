@@ -2210,7 +2210,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
             {
                 temp_dexNum = HoennToNationalOrder(i + 1);
                 sPokedexView->pokedexList[i].dexNum = temp_dexNum;
-                sPokedexView->pokedexList[i].seen = GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN);
+                sPokedexView->pokedexList[i].seen = GetPokedexFlagFirstSeen(temp_dexNum) ? TRUE : FALSE;
                 sPokedexView->pokedexList[i].owned = GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT);
                 if (sPokedexView->pokedexList[i].seen)
                     sPokedexView->pokemonListCount = i + 1;
@@ -2222,12 +2222,12 @@ static void CreatePokedexList(u8 dexMode, u8 order)
             for (i = 0, r5 = 0, r10 = 0; i < temp_dexCount; i++)
             {
                 temp_dexNum = i + 1;
-                if (GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN))
+                if (GetPokedexFlagFirstSeen(temp_dexNum) ? TRUE : FALSE)
                     r10 = 1;
                 if (r10)
                 {
                     sPokedexView->pokedexList[r5].dexNum = temp_dexNum;
-                    sPokedexView->pokedexList[r5].seen = GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN);
+                    sPokedexView->pokedexList[r5].seen = GetPokedexFlagFirstSeen(temp_dexNum) ? TRUE : FALSE;
                     sPokedexView->pokedexList[r5].owned = GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT);
                     if (sPokedexView->pokedexList[r5].seen)
                         sPokedexView->pokemonListCount = r5 + 1;
@@ -2241,7 +2241,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         {
             temp_dexNum = gPokedexOrder_Alphabetical[i];
 
-            if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN))
+            if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetPokedexFlagFirstSeen(temp_dexNum) ? TRUE : FALSE)
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
@@ -4305,11 +4305,20 @@ u16 GetPokedexFlagFirstSeen(u16 nationalDexNo)
     {
         for (formId = 0; formTable[formId] != FORM_SPECIES_END; formId++)
         {
+            if (nationalDexNo == 25)
+                MgbaPrintf(MGBA_LOG_INFO, "species1:%d, found:%d", formTable[formId], GetSetPokedexSeenFlag(formTable[formId], FLAG_GET_SEEN));
+
             if (GetSetPokedexSeenFlag(formTable[formId], FLAG_GET_SEEN))
                 return formTable[formId];
         }
+        return SPECIES_NONE;
     }
-    return SPECIES_NONE;
+    else
+    {
+        if (nationalDexNo == 25)
+            MgbaPrintf(MGBA_LOG_INFO, "species2:%d, found:%d", gBaseFormSpeciesIdTable[nationalDexNo], GetSetPokedexSeenFlag(gBaseFormSpeciesIdTable[nationalDexNo], FLAG_GET_SEEN));
+        return GetSetPokedexSeenFlag(gBaseFormSpeciesIdTable[nationalDexNo], FLAG_GET_SEEN);
+    }
 }
 
 s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
@@ -4351,7 +4360,7 @@ u16 GetNationalPokedexCount(u8 caseID)
         switch (caseID)
         {
         case FLAG_GET_SEEN:
-            if (GetSetPokedexFlag(i + 1, FLAG_GET_SEEN))
+            if (GetPokedexFlagFirstSeen(i + 1) ? TRUE : FALSE)
                 count++;
             break;
         case FLAG_GET_CAUGHT:
@@ -4373,7 +4382,7 @@ u16 GetHoennPokedexCount(u8 caseID)
         switch (caseID)
         {
         case FLAG_GET_SEEN:
-            if (GetSetPokedexFlag(HoennToNationalOrder(i + 1), FLAG_GET_SEEN))
+            if (GetPokedexFlagFirstSeen(HoennToNationalOrder(i + 1)) ? TRUE : FALSE)
                 count++;
             break;
         case FLAG_GET_CAUGHT:
@@ -4395,7 +4404,7 @@ u16 GetKantoPokedexCount(u8 caseID)
         switch (caseID)
         {
         case FLAG_GET_SEEN:
-            if (GetSetPokedexFlag(i + 1, FLAG_GET_SEEN))
+            if (GetPokedexFlagFirstSeen(i + 1) ? TRUE : FALSE)
                 count++;
             break;
         case FLAG_GET_CAUGHT:

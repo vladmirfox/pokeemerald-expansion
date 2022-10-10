@@ -1467,7 +1467,7 @@ static void DebugAction_Flags_SetPokedexFlags(u8 taskId)
     for (i = 0; i < NATIONAL_DEX_COUNT; i++)
         GetSetPokedexCaughtFlag(i + 1, FLAG_SET_CAUGHT);
     for (i = 0; i < NUM_SPECIES; i++)
-        GetSetPokedexFlag(i + 1, FLAG_SET_SEEN);
+        GetSetPokedexSeenFlag(i + 1, FLAG_SET_SEEN);
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
@@ -2625,7 +2625,6 @@ static void DebugAction_Give_Pokemon_Move(u8 taskId)
 }
 static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://github.com/ghoulslash/pokeemerald/tree/custom-givemon
 {
-    u16 nationalDexNum;
     int sentToPc;
     struct Pokemon mon;
     u8 i;
@@ -2719,13 +2718,12 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     }
 
     //Pokedex entry
-    nationalDexNum = SpeciesToNationalPokedexNum(species);
     switch(sentToPc)
     {
     case MON_GIVEN_TO_PARTY:
     case MON_GIVEN_TO_PC:
-        GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);
-        GetSetPokedexCaughtFlag(nationalDexNum, FLAG_SET_CAUGHT);
+        GetSetPokedexSeenFlag(species, FLAG_SET_SEEN);
+        GetSetPokedexCaughtFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_CAUGHT);
         break;
     case MON_CANT_GIVE:
         break;
