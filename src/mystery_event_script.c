@@ -340,7 +340,7 @@ bool8 MEScrCmd_givepokemon(struct ScriptContext *ctx)
         {
             u16 pokedexNum = SpeciesToNationalPokedexNum(species);
             GetSetPokedexFlag(pokedexNum, FLAG_SET_SEEN);
-            GetSetPokedexFlag(pokedexNum, FLAG_SET_CAUGHT);
+            GetSetPokedexCaughtFlag(pokedexNum, FLAG_SET_CAUGHT);
         }
 
         heldItem = GetMonData(&gPlayerParty[PARTY_SIZE - 1], MON_DATA_HELD_ITEM);

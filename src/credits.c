@@ -1560,7 +1560,7 @@ static void DeterminePokemonToShow(void)
     // This basically packs all of the caught pokemon into the front of the array
     for (dexNum = 1, j = 0; dexNum < NATIONAL_DEX_COUNT; dexNum++)
     {
-        if (GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT))
+        if (GetSetPokedexCaughtFlag(dexNum, FLAG_GET_CAUGHT))
         {
             sCreditsData->caughtMonIds[j] = dexNum;
             j++;
