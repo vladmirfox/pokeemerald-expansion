@@ -135,7 +135,8 @@
 
 #define ROUND_BITS_TO_BYTES(numBits) DIV_ROUND_UP(numBits, 8)
 
-#define NUM_DEX_FLAG_BYTES ROUND_BITS_TO_BYTES(POKEMON_SLOTS_NUMBER)
+#define NUM_DEX_SEEN_FLAG_BYTES ROUND_BITS_TO_BYTES(2047)
+#define NUM_DEX_CAUGHT_FLAG_BYTES ROUND_BITS_TO_BYTES(NATIONAL_DEX_COUNT)
 #define NUM_FLAG_BYTES ROUND_BITS_TO_BYTES(FLAGS_COUNT)
 #define NUM_ADDITIONAL_PHRASE_BYTES ROUND_BITS_TO_BYTES(NUM_ADDITIONAL_PHRASES)
 
@@ -1003,8 +1004,6 @@ struct SaveBlock1
     /*0x31DC*/ struct Roamer roamer;
     /*0x31F8*/ struct EnigmaBerry enigmaBerry;
     /*0x322C*/ struct MysteryGiftSave mysteryGift;
-    /*0x3???*/ u8 dexSeen[NUM_DEX_FLAG_BYTES];
-    /*0x3???*/ u8 dexCaught[NUM_DEX_FLAG_BYTES];
     /*0x3???*/ u32 trainerHillTimes[NUM_TRAINER_HILL_MODES];
     /*0x3???*/ struct RamScript ramScript;
     /*0x3???*/ struct RecordMixingGift recordMixingGift;
@@ -1013,6 +1012,8 @@ struct SaveBlock1
     /*0x3???*/ u8 registeredTexts[UNION_ROOM_KB_ROW_COUNT][21];
     /*0x3???*/ struct TrainerHillSave trainerHill;
     /*0x3???*/ struct WaldaPhrase waldaPhrase;
+    /*0x3???*/ u8 dexSeen[NUM_DEX_SEEN_FLAG_BYTES];
+    /*0x3???*/ u8 dexCaught[NUM_DEX_CAUGHT_FLAG_BYTES];
     // sizeof: 0x3???
 };
 

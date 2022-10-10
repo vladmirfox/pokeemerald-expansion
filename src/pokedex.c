@@ -1514,11 +1514,10 @@ void ResetPokedex(void)
     gSaveBlock2Ptr->pokedex.unownPersonality = 0;
     gSaveBlock2Ptr->pokedex.spindaPersonality = 0;
     DisableNationalPokedex();
-    for (i = 0; i < NUM_DEX_FLAG_BYTES; i++)
-    {
+    for (i = 0; i < NUM_DEX_CAUGHT_FLAG_BYTES; i++)
         gSaveBlock1Ptr->dexCaught[i] = 0;
+    for (i = 0; i < NUM_DEX_SEEN_FLAG_BYTES; i++)
         gSaveBlock1Ptr->dexSeen[i] = 0;
-    }
 }
 
 void ResetPokedexScrollPositions(void)
