@@ -8418,8 +8418,9 @@ u8 *MonSpritesGfxManager_GetSpritePtr(u8 managerId, u8 spriteNum)
 
 u16 GetFormSpeciesId(u16 speciesId, u8 formId)
 {
-    if (gFormSpeciesIdTables[speciesId] != NULL)
-        return gFormSpeciesIdTables[speciesId][formId];
+    const u16 * formTable = gFormSpeciesIdTables[SpeciesToNationalPokedexNum(speciesId)];
+    if (formTable != NULL)
+        return formTable[formId];
     else
         return speciesId;
 }
@@ -8427,12 +8428,13 @@ u16 GetFormSpeciesId(u16 speciesId, u8 formId)
 u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId)
 {
     u8 targetFormId = 0;
+    const u16 * formTable = gFormSpeciesIdTables[SpeciesToNationalPokedexNum(formSpeciesId)];
 
-    if (gFormSpeciesIdTables[formSpeciesId] != NULL)
+    if (formTable != NULL)
     {
-        for (targetFormId = 0; gFormSpeciesIdTables[formSpeciesId][targetFormId] != FORM_SPECIES_END; targetFormId++)
+        for (targetFormId = 0; formTable[targetFormId] != FORM_SPECIES_END; targetFormId++)
         {
-            if (formSpeciesId == gFormSpeciesIdTables[formSpeciesId][targetFormId])
+            if (formSpeciesId == formTable[targetFormId])
                 break;
         }
     }

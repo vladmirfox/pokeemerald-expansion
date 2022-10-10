@@ -444,7 +444,7 @@ static void PrintInstructionsOnWindow(struct PokemonDebugMenu *data)
     {
         AddTextPrinterParameterized(WIN_BOTTOM_LEFT, fontId, textL, 30, 0, 0, NULL);
         AddTextPrinterParameterized(WIN_BOTTOM_LEFT, fontId, textR, 30, 12, 0, NULL);
-        if (gFormSpeciesIdTables[data->currentmonId] != NULL)
+        if (gFormSpeciesIdTables[SpeciesToNationalPokedexNum(data->currentmonId)] != NULL)
             AddTextPrinterParameterized(WIN_BOTTOM_LEFT, fontId, textBottomForms, 0, 0, 0, NULL);
         else
             AddTextPrinterParameterized(WIN_BOTTOM_LEFT, fontId, textBottom, 0, 0, 0, NULL);
@@ -1347,28 +1347,30 @@ static void UpdateSubmenuOneOptionValue(u8 taskId, bool8 increment)
         UpdateBattleBg(taskId, increment);
         break;
     case 3:
-        if (gFormSpeciesIdTables[data->currentmonId] != NULL)
+    {
+        const u16 * formTable = gFormSpeciesIdTables[SpeciesToNationalPokedexNum(data->currentmonId)];
+        if (formTable != NULL)
         {
             struct PokemonDebugModifyArrows *modArrows = &data->modifyArrows;
             u8 formId = GetFormIdFromFormSpeciesId(data->currentmonId);
             if (increment)
             {
-                if (gFormSpeciesIdTables[data->currentmonId][formId + 1] != FORM_SPECIES_END)
+                if (formTable[formId + 1] != FORM_SPECIES_END)
                     modArrows->currValue = GetFormSpeciesId(data->currentmonId, formId + 1);
                 else
-                    modArrows->currValue = gFormSpeciesIdTables[data->currentmonId][0];
+                    modArrows->currValue = formTable[0];
             }
             else
             {
-                if (gFormSpeciesIdTables[data->currentmonId][formId] == gFormSpeciesIdTables[data->currentmonId][0])
+                if (formTable[formId] == formTable[0])
                 {
                     u8 lastForm;
-                    for (lastForm = 0; gFormSpeciesIdTables[data->currentmonId][lastForm] != FORM_SPECIES_END; lastForm++)
+                    for (lastForm = 0; formTable[lastForm] != FORM_SPECIES_END; lastForm++)
                     {
-                        if (gFormSpeciesIdTables[data->currentmonId][lastForm + 1] == FORM_SPECIES_END)
+                        if (formTable[lastForm + 1] == FORM_SPECIES_END)
                             break;
                     }
-                    modArrows->currValue = gFormSpeciesIdTables[data->currentmonId][lastForm];
+                    modArrows->currValue = formTable[lastForm];
                 }
                 else
                     modArrows->currValue = GetFormSpeciesId(data->currentmonId, formId - 1);
@@ -1384,6 +1386,7 @@ static void UpdateSubmenuOneOptionValue(u8 taskId, bool8 increment)
             PlaySE(SE_DEX_SCROLL);
         }
         break;
+    }
     default:
         break;
     }
@@ -1596,7 +1599,7 @@ static void Handle_Input_Debug_Pokemon(u8 taskId)
             data->submenuYpos[1] += 1;
             if (data->submenuYpos[1] >= 3)
             {
-                if ((gFormSpeciesIdTables[data->currentmonId] == NULL) || (data->submenuYpos[1] >= 4))
+                if ((gFormSpeciesIdTables[SpeciesToNationalPokedexNum(data->currentmonId)] == NULL) || (data->submenuYpos[1] >= 4))
                     data->submenuYpos[1] = 0;
             }
             data->optionArrows.currentDigit = data->submenuYpos[1];
@@ -1606,7 +1609,7 @@ static void Handle_Input_Debug_Pokemon(u8 taskId)
         {
             if (data->submenuYpos[1] == 0)
             {
-                if (gFormSpeciesIdTables[data->currentmonId] != NULL)
+                if (gFormSpeciesIdTables[SpeciesToNationalPokedexNum(data->currentmonId)] != NULL)
                     data->submenuYpos[1] = 3;
                 else
                     data->submenuYpos[1] = 2;
