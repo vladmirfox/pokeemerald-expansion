@@ -3433,14 +3433,23 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
     else // Player is the OT
     {
+        u32 shinyValue;
         value = gSaveBlock2Ptr->playerTrainerId[0]
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
 
-        if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+        if (gBaseStats[species].flags & SPECIES_FLAG_SHINY_LOCKED)
         {
-            u32 shinyValue;
+            do
+            {
+                // Choose random personalities until one that results in a non-shiny Pokémon
+                personality = Random32();
+                shinyValue = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
+            } while (shinyValue < SHINY_ODDS);
+        }
+        else if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+        {
             u32 rolls = 0;
             do
             {
@@ -3502,8 +3511,18 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         iv = (value & (MAX_IV_MASK << 10)) >> 10;
         SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
 
+        if (gBaseStats[species].flags & SPECIES_FLAG_ALL_PERFECT_IVS)
+        {
+            iv = MAX_PER_STAT_IVS;
+            SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
+            SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
+            SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
+            SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
+            SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
+            SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
+        }
     #if P_LEGENDARY_PERFECT_IVS >= GEN_6
-        if (gBaseStats[species].flags & (FLAG_LEGENDARY | FLAG_MYTHICAL | FLAG_ULTRA_BEAST))
+        else if (gBaseStats[species].flags & (SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MYTHICAL | SPECIES_FLAG_ULTRA_BEAST))
         {
             iv = MAX_PER_STAT_IVS;
             // Initialize a list of IV indices.
@@ -3523,29 +3542,28 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
             {
                 switch (selectedIvs[i])
                 {
-                    case STAT_HP:
-                        SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
-                        break;
-                    case STAT_ATK:
-                        SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
-                        break;
-                    case STAT_DEF:
-                        SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
-                        break;
-                    case STAT_SPEED:
-                        SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
-                        break;
-                    case STAT_SPATK:
-                        SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
-                        break;
-                    case STAT_SPDEF:
-                        SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
-                        break;
+                case STAT_HP:
+                    SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
+                    break;
+                case STAT_ATK:
+                    SetBoxMonData(boxMon, MON_DATA_ATK_IV, &iv);
+                    break;
+                case STAT_DEF:
+                    SetBoxMonData(boxMon, MON_DATA_DEF_IV, &iv);
+                    break;
+                case STAT_SPEED:
+                    SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &iv);
+                    break;
+                case STAT_SPATK:
+                    SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
+                    break;
+                case STAT_SPDEF:
+                    SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
+                    break;
                 }
             }
         }
     #endif
-
     }
 
     if (gBaseStats[species].abilities[1])
@@ -7439,6 +7457,38 @@ u8 CanLearnTeachableMove(u16 species, u16 move)
     {
         return FALSE;
     }
+    else if (species == SPECIES_MEW)
+    {
+        switch (move)
+        {
+        case MOVE_BADDY_BAD:
+        case MOVE_BLAST_BURN:
+        case MOVE_BOUNCY_BUBBLE:
+        case MOVE_BUZZY_BUZZ:
+        case MOVE_DRACO_METEOR:
+        case MOVE_DRAGON_ASCENT:
+        case MOVE_FIRE_PLEDGE:
+        case MOVE_FLOATY_FALL:
+        case MOVE_FREEZY_FROST:
+        case MOVE_FRENZY_PLANT:
+        case MOVE_GLITZY_GLOW:
+        case MOVE_GRASS_PLEDGE:
+        case MOVE_HYDRO_CANNON:
+        case MOVE_RELIC_SONG:
+        case MOVE_SAPPY_SEED:
+        case MOVE_SECRET_SWORD:
+        case MOVE_SIZZLY_SLIDE:
+        case MOVE_SPARKLY_SWIRL:
+        case MOVE_SPLISHY_SPLASH:
+        case MOVE_STEEL_BEAM:
+        case MOVE_VOLT_TACKLE:
+        case MOVE_WATER_PLEDGE:
+        case MOVE_ZIPPY_ZAP:
+            return FALSE;
+        default:
+            return TRUE;
+        }
+    }
     else
     {
         u8 i;
@@ -8534,7 +8584,7 @@ void TrySpecialOverworldEvo(void)
 
 bool32 ShouldShowFemaleDifferences(u16 species, u32 personality)
 {
-    return (gBaseStats[species].flags & FLAG_GENDER_DIFFERENCE) && GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE;
+    return (gBaseStats[species].flags & SPECIES_FLAG_GENDER_DIFFERENCE) && GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE;
 }
 
 void TryToSetBattleFormChangeMoves(struct Pokemon *mon)
@@ -8575,4 +8625,24 @@ void TryToSetBattleFormChangeMoves(struct Pokemon *mon)
             break;
         }
     }
+}
+
+u32 GetMonFriendshipScore(struct Pokemon *pokemon)
+{
+    u32 friendshipScore = GetMonData(pokemon, MON_DATA_FRIENDSHIP, NULL);
+
+    if (friendshipScore == MAX_FRIENDSHIP)
+        return FRIENDSHIP_MAX;
+    if (friendshipScore >= 200)
+        return FRIENDSHIP_200_TO_254;
+    if (friendshipScore >= 150)
+        return FRIENDSHIP_150_TO_199;
+    if (friendshipScore >= 100)
+        return FRIENDSHIP_100_TO_149;
+    if (friendshipScore >= 50)
+        return FRIENDSHIP_50_TO_99;
+    if (friendshipScore >= 1)
+        return FRIENDSHIP_1_TO_49;
+
+    return FRIENDSHIP_NONE;
 }

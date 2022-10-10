@@ -133,7 +133,7 @@ static const struct FormChange sGenesectFormChangeTable[] = {
 
 #if P_GEN_6_POKEMON == TRUE
 static const struct FormChange sXerneasFormChangeTable[] = {
-    {FORM_BATTLE_BEGIN, SPECIES_XERNEAS_ACTIVE},
+    {FORM_BATTLE_BEGIN, SPECIES_XERNEAS_ACTIVE  },
     {FORM_BATTLE_END,   SPECIES_XERNEAS_NEUTRAL,},
     {FORM_CHANGE_END},
 };
