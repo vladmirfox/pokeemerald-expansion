@@ -444,7 +444,7 @@ static void PrintInstructionsOnWindow(struct PokemonDebugMenu *data)
     {
         AddTextPrinterParameterized(WIN_BOTTOM_LEFT, fontId, textL, 30, 0, 0, NULL);
         AddTextPrinterParameterized(WIN_BOTTOM_LEFT, fontId, textR, 30, 12, 0, NULL);
-        if (GetFormSpeciesTable(data->currentmonId) != NULL)
+        if (GetFormSpeciesTableBySpecies(data->currentmonId) != NULL)
             AddTextPrinterParameterized(WIN_BOTTOM_LEFT, fontId, textBottomForms, 0, 0, 0, NULL);
         else
             AddTextPrinterParameterized(WIN_BOTTOM_LEFT, fontId, textBottom, 0, 0, 0, NULL);
@@ -1348,7 +1348,7 @@ static void UpdateSubmenuOneOptionValue(u8 taskId, bool8 increment)
         break;
     case 3:
     {
-        const u16 * formTable = GetFormSpeciesTable(data->currentmonId);
+        const u16 * formTable = GetFormSpeciesTableBySpecies(data->currentmonId);
         if (formTable != NULL)
         {
             struct PokemonDebugModifyArrows *modArrows = &data->modifyArrows;
@@ -1599,7 +1599,7 @@ static void Handle_Input_Debug_Pokemon(u8 taskId)
             data->submenuYpos[1] += 1;
             if (data->submenuYpos[1] >= 3)
             {
-                if ((GetFormSpeciesTable(data->currentmonId) == NULL) || (data->submenuYpos[1] >= 4))
+                if ((GetFormSpeciesTableBySpecies(data->currentmonId) == NULL) || (data->submenuYpos[1] >= 4))
                     data->submenuYpos[1] = 0;
             }
             data->optionArrows.currentDigit = data->submenuYpos[1];
@@ -1609,7 +1609,7 @@ static void Handle_Input_Debug_Pokemon(u8 taskId)
         {
             if (data->submenuYpos[1] == 0)
             {
-                if (GetFormSpeciesTable(data->currentmonId) != NULL)
+                if (GetFormSpeciesTableBySpecies(data->currentmonId) != NULL)
                     data->submenuYpos[1] = 3;
                 else
                     data->submenuYpos[1] = 2;

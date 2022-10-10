@@ -4250,6 +4250,68 @@ u16 GetPokedexHeightWeight(u16 dexNum, u8 data)
     }
 }
 
+s8 GetSetPokedexSeenFlag(u16 species, u8 caseID)
+{
+    u32 index, bit, mask;
+    s8 retVal = 0;
+
+    species--;
+    index = species / 8;
+    bit = species % 8;
+    mask = 1 << bit;
+
+    switch (caseID)
+    {
+    case FLAG_GET_SEEN:
+        retVal = ((gSaveBlock1Ptr->dexSeen[index] & mask) != 0);
+        break;
+    case FLAG_SET_SEEN:
+        gSaveBlock1Ptr->dexSeen[index] |= mask;
+        break;
+    }
+
+    return retVal;
+}
+
+s8 GetSetPokedexCaughtFlag(u16 nationalDexNo, u8 caseID)
+{
+    u32 index, bit, mask;
+    s8 retVal = 0;
+
+    nationalDexNo--;
+    index = nationalDexNo / 8;
+    bit = nationalDexNo % 8;
+    mask = 1 << bit;
+
+    switch (caseID)
+    {
+    case FLAG_GET_CAUGHT:
+        retVal = ((gSaveBlock1Ptr->dexCaught[index] & mask) != 0);
+        break;
+    case FLAG_SET_CAUGHT:
+        gSaveBlock1Ptr->dexCaught[index] |= mask;
+        break;
+    }
+
+    return retVal;
+}
+
+u16 GetPokedexFlagFirstSeen(u16 nationalDexNo)
+{
+    u8 formId = 0;
+    const u16 *formTable = GetFormSpeciesTable(nationalDexNo);
+
+    if (formTable != NULL)
+    {
+        for (formId = 0; formTable[formId] != FORM_SPECIES_END; formId++)
+        {
+            if (GetSetPokedexSeenFlag(formTable[formId], FLAG_GET_SEEN))
+                return formTable[formId];
+        }
+    }
+    return SPECIES_NONE;
+}
+
 s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
 {
     u32 index, bit, mask;
@@ -4266,7 +4328,7 @@ s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
         retVal = ((gSaveBlock1Ptr->dexSeen[index] & mask) != 0);
         break;
     case FLAG_GET_CAUGHT:
-         retVal = ((gSaveBlock1Ptr->dexCaught[index] & mask) != 0);
+        retVal = ((gSaveBlock1Ptr->dexCaught[index] & mask) != 0);
         break;
     case FLAG_SET_SEEN:
         gSaveBlock1Ptr->dexSeen[index] |= mask;
