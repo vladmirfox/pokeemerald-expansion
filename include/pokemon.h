@@ -325,6 +325,15 @@ struct BaseStats
             u8 bodyColor : 7;
             u8 noFlip : 1;
             u16 flags;
+// Pokédex data
+            u8 categoryName[13];
+            u16 height; //in decimeters
+            u16 weight; //in hectograms
+            const u8 *description;
+            u16 pokemonScale;
+            u16 pokemonOffset;
+            u16 trainerScale;
+            u16 trainerOffset;
 };
 
 #include "constants/battle_config.h"

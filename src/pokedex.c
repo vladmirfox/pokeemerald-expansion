@@ -4251,6 +4251,24 @@ const u8 *GetPokedexCategoryName(u16 dexNum) // unused
     return gPokedexEntries[dexNum].categoryName;
 }
 
+u16 GetSpeciesHeightWeight(u16 species, u8 data)
+{
+    if (species < NUM_SPECIES && gPokedexEntriesForms[species].flags & FLAG_FORM_WEIGHT_HEIGHT)
+    {
+        switch (data)
+        {
+        case 0:  // height
+            return gPokedexEntriesForms[species].height;
+        case 1:  // weight
+            return gPokedexEntriesForms[species].weight;
+        default:
+            return 1;
+        }
+    }
+
+    return GetPokedexHeightWeight(SpeciesToNationalPokedexNum(species), data);
+}
+
 u16 GetPokedexHeightWeight(u16 dexNum, u8 data)
 {
     switch (data)

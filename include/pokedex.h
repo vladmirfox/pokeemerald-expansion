@@ -35,8 +35,23 @@ struct PokedexEntry
     /*0x1C*/ u16 trainerOffset;
 };  /*size = 0x20*/
 
+struct PokedexEntryForms
+{
+    u8 categoryName[13];
+    u16 height; //in decimeters
+    u16 weight; //in hectograms
+    const u8 *description;
+    u8 flags;
+};
+
+// PokedexEntryForms flags
+#define FLAG_FORM_DESCRIPTION   (1 << 0)
+#define FLAG_FORM_WEIGHT_HEIGHT (1 << 1)
+#define FLAG_FORM_CATEGORY      (1 << 2)
+
 void ResetPokedex(void);
 u16 GetPokedexHeightWeight(u16 dexNum, u8 data);
+u16 GetSpeciesHeightWeight(u16 species, u8 data);
 u16 GetNationalPokedexCount(u8);
 u16 GetHoennPokedexCount(u8);
 u8 DisplayCaughtMonDexPage(u16 dexNum, u32 otId, u32 personality);
