@@ -6850,18 +6850,10 @@ u16 NationalPokedexNumToSpecies(u16 nationalNum)
 {
     u16 species;
 
-    if (!nationalNum)
-        return 0;
+    if (!nationalNum || nationalNum > ARRAY_COUNT(gBaseFormSpeciesIdTable))
+        return SPECIES_NONE;
 
-    species = 0;
-
-    while (species < (NUM_SPECIES - 1) && sSpeciesToNationalPokedexNum[species] != nationalNum)
-        species++;
-
-    if (species == NUM_SPECIES - 1)
-        return 0;
-
-    return species + 1;
+    return gBaseFormSpeciesIdTable[nationalNum];
 }
 
 u16 NationalToHoennOrder(u16 nationalNum)

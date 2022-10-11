@@ -1077,7 +1077,8 @@
 #define SPECIES_SILVALLY_DRAGON                              1023
 #define SPECIES_SILVALLY_DARK                                1024
 #define SPECIES_SILVALLY_FAIRY                               1025
-#define SPECIES_MINIOR                                       SPECIES_MINIOR_METEOR_RED
+#define SPECIES_MINIOR                                       SPECIES_MINIOR_METEOR
+#define SPECIES_MINIOR_METEOR                                SPECIES_MINIOR_METEOR_RED
 #define SPECIES_MINIOR_METEOR_RED                            1026
 #define SPECIES_MINIOR_METEOR_ORANGE                         1027
 #define SPECIES_MINIOR_METEOR_YELLOW                         1028
@@ -1085,6 +1086,7 @@
 #define SPECIES_MINIOR_METEOR_BLUE                           1030
 #define SPECIES_MINIOR_METEOR_INDIGO                         1031
 #define SPECIES_MINIOR_METEOR_VIOLET                         1032
+#define SPECIES_MINIOR_CORE                                  SPECIES_MINIOR_CORE_RED
 #define SPECIES_MINIOR_CORE_RED                              1033
 #define SPECIES_MINIOR_CORE_ORANGE                           1034
 #define SPECIES_MINIOR_CORE_YELLOW                           1035
