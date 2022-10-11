@@ -153,7 +153,7 @@ struct SearchMenuItem
 struct PokedexListItem
 {
     u16 dexNum;
-    u16 seen:1;
+    u16 seenSpecies:15;
     u16 owned:1;
 };
 
@@ -1540,11 +1540,11 @@ static void ResetPokedexView(struct PokedexView *pokedexView)
     for (i = 0; i < NATIONAL_DEX_COUNT; i++)
     {
         pokedexView->pokedexList[i].dexNum = 0xFFFF;
-        pokedexView->pokedexList[i].seen = FALSE;
+        pokedexView->pokedexList[i].seenSpecies = SPECIES_NONE;
         pokedexView->pokedexList[i].owned = FALSE;
     }
     pokedexView->pokedexList[NATIONAL_DEX_COUNT].dexNum = 0;
-    pokedexView->pokedexList[NATIONAL_DEX_COUNT].seen = FALSE;
+    pokedexView->pokedexList[NATIONAL_DEX_COUNT].seenSpecies = SPECIES_NONE;
     pokedexView->pokedexList[NATIONAL_DEX_COUNT].owned = FALSE;
     pokedexView->pokemonListCount = 0;
     pokedexView->selectedPokemon = 0;
@@ -1668,7 +1668,7 @@ static void Task_HandlePokedexInput(u8 taskId)
     }
     else
     {
-        if (JOY_NEW(A_BUTTON) && sPokedexView->pokedexList[sPokedexView->selectedPokemon].seen)
+        if (JOY_NEW(A_BUTTON) && sPokedexView->pokedexList[sPokedexView->selectedPokemon].seenSpecies != SPECIES_NONE)
         {
             UpdateSelectedMonSpriteId();
             BeginNormalPaletteFade(~(1 << (gSprites[sPokedexView->selectedMonSpriteId].oam.paletteNum + 16)), 0, 0, 0x10, RGB_BLACK);
@@ -1871,7 +1871,7 @@ static void Task_HandleSearchResultsInput(u8 taskId)
     }
     else
     {
-        if (JOY_NEW(A_BUTTON) && sPokedexView->pokedexList[sPokedexView->selectedPokemon].seen)
+        if (JOY_NEW(A_BUTTON) && sPokedexView->pokedexList[sPokedexView->selectedPokemon].seenSpecies != SPECIES_NONE)
         {
             u32 a;
 
@@ -2210,9 +2210,9 @@ static void CreatePokedexList(u8 dexMode, u8 order)
             {
                 temp_dexNum = HoennToNationalOrder(i + 1);
                 sPokedexView->pokedexList[i].dexNum = temp_dexNum;
-                sPokedexView->pokedexList[i].seen = GetPokedexFlagFirstSeen(temp_dexNum) ? TRUE : FALSE;
+                sPokedexView->pokedexList[i].seenSpecies = GetPokedexFlagFirstSeen(temp_dexNum);
                 sPokedexView->pokedexList[i].owned = GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT);
-                if (sPokedexView->pokedexList[i].seen)
+                if (sPokedexView->pokedexList[i].seenSpecies != SPECIES_NONE)
                     sPokedexView->pokemonListCount = i + 1;
             }
         }
@@ -2222,14 +2222,14 @@ static void CreatePokedexList(u8 dexMode, u8 order)
             for (i = 0, r5 = 0, r10 = 0; i < temp_dexCount; i++)
             {
                 temp_dexNum = i + 1;
-                if (GetPokedexFlagFirstSeen(temp_dexNum) ? TRUE : FALSE)
+                if (GetPokedexFlagFirstSeen(temp_dexNum) != SPECIES_NONE)
                     r10 = 1;
                 if (r10)
                 {
                     sPokedexView->pokedexList[r5].dexNum = temp_dexNum;
-                    sPokedexView->pokedexList[r5].seen = GetPokedexFlagFirstSeen(temp_dexNum) ? TRUE : FALSE;
+                    sPokedexView->pokedexList[r5].seenSpecies = GetPokedexFlagFirstSeen(temp_dexNum);
                     sPokedexView->pokedexList[r5].owned = GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT);
-                    if (sPokedexView->pokedexList[r5].seen)
+                    if (sPokedexView->pokedexList[r5].seenSpecies != SPECIES_NONE)
                         sPokedexView->pokemonListCount = r5 + 1;
                     r5++;
                 }
@@ -2239,12 +2239,14 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     case ORDER_ALPHABETICAL:
         for (i = 0; i < ARRAY_COUNT(gPokedexOrder_Alphabetical); i++)
         {
+            u16 seenSpecies;
             temp_dexNum = gPokedexOrder_Alphabetical[i];
+            seenSpecies = GetPokedexFlagFirstSeen(temp_dexNum);
 
-            if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetPokedexFlagFirstSeen(temp_dexNum) ? TRUE : FALSE)
+            if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && seenSpecies != SPECIES_NONE)
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
-                sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT);
                 sPokedexView->pokemonListCount++;
             }
@@ -2253,12 +2255,14 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     case ORDER_HEAVIEST:
         for (i = ARRAY_COUNT(gPokedexOrder_Weight) - 1; i >= 0; i--)
         {
+            u16 seenSpecies;
             temp_dexNum = gPokedexOrder_Weight[i];
+            seenSpecies = GetPokedexFlagFirstSeen(temp_dexNum);
 
             if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
-                sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = TRUE;
                 sPokedexView->pokemonListCount++;
             }
@@ -2267,12 +2271,14 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     case ORDER_LIGHTEST:
         for (i = 0; i < ARRAY_COUNT(gPokedexOrder_Weight); i++)
         {
+            u16 seenSpecies;
             temp_dexNum = gPokedexOrder_Weight[i];
+            seenSpecies = GetPokedexFlagFirstSeen(temp_dexNum);
 
             if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
-                sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = TRUE;
                 sPokedexView->pokemonListCount++;
             }
@@ -2281,12 +2287,14 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     case ORDER_TALLEST:
         for (i = ARRAY_COUNT(gPokedexOrder_Height) - 1; i >= 0; i--)
         {
+            u16 seenSpecies;
             temp_dexNum = gPokedexOrder_Height[i];
+            seenSpecies = GetPokedexFlagFirstSeen(temp_dexNum);
 
             if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
-                sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = TRUE;
                 sPokedexView->pokemonListCount++;
             }
@@ -2295,12 +2303,14 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     case ORDER_SMALLEST:
         for (i = 0; i < ARRAY_COUNT(gPokedexOrder_Height); i++)
         {
+            u16 seenSpecies;
             temp_dexNum = gPokedexOrder_Height[i];
+            seenSpecies = GetPokedexFlagFirstSeen(temp_dexNum);
 
             if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
-                sPokedexView->pokedexList[sPokedexView->pokemonListCount].seen = TRUE;
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = TRUE;
                 sPokedexView->pokemonListCount++;
             }
@@ -2311,7 +2321,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     for (i = sPokedexView->pokemonListCount; i < NATIONAL_DEX_COUNT; i++)
     {
         sPokedexView->pokedexList[i].dexNum = 0xFFFF;
-        sPokedexView->pokedexList[i].seen = FALSE;
+        sPokedexView->pokedexList[i].seenSpecies = SPECIES_NONE;
         sPokedexView->pokedexList[i].owned = FALSE;
     }
 }
@@ -2347,7 +2357,7 @@ static void CreateMonListEntry(u8 position, u16 b, u16 ignored)
             else
             {
                 ClearMonListEntry(17, i * 2, ignored);
-                if (sPokedexView->pokedexList[entryNum].seen)
+                if (sPokedexView->pokedexList[entryNum].seenSpecies != SPECIES_NONE)
                 {
                     CreateMonDexNum(entryNum, 0x12, i * 2, ignored);
                     CreateCaughtBall(sPokedexView->pokedexList[entryNum].owned, 0x11, i * 2, ignored);
@@ -2372,7 +2382,7 @@ static void CreateMonListEntry(u8 position, u16 b, u16 ignored)
         else
         {
             ClearMonListEntry(17, sPokedexView->listVOffset * 2, ignored);
-            if (sPokedexView->pokedexList[entryNum].seen)
+            if (sPokedexView->pokedexList[entryNum].seenSpecies != SPECIES_NONE)
             {
                 CreateMonDexNum(entryNum, 18, sPokedexView->listVOffset * 2, ignored);
                 CreateCaughtBall(sPokedexView->pokedexList[entryNum].owned, 0x11, sPokedexView->listVOffset * 2, ignored);
@@ -2396,7 +2406,7 @@ static void CreateMonListEntry(u8 position, u16 b, u16 ignored)
         else
         {
             ClearMonListEntry(17, vOffset * 2, ignored);
-            if (sPokedexView->pokedexList[entryNum].seen)
+            if (sPokedexView->pokedexList[entryNum].seenSpecies != SPECIES_NONE)
             {
                 CreateMonDexNum(entryNum, 18, vOffset * 2, ignored);
                 CreateCaughtBall(sPokedexView->pokedexList[entryNum].owned, 0x11, vOffset * 2, ignored);
@@ -2459,7 +2469,7 @@ static void ClearMonListEntry(u8 x, u8 y, u16 unused)
 static void CreateMonSpritesAtPos(u16 selectedMon, u16 ignored)
 {
     u8 i;
-    u16 dexNum;
+    u16 species;
     u8 spriteId;
 
     gPaletteFade.bufferTransferDisabled = TRUE;
@@ -2469,28 +2479,28 @@ static void CreateMonSpritesAtPos(u16 selectedMon, u16 ignored)
     sPokedexView->selectedMonSpriteId = 0xFFFF;
 
     // Create top mon sprite
-    dexNum = GetPokemonSpriteToDisplay(selectedMon - 1);
-    if (dexNum != 0xFFFF)
+    species = GetPokemonSpriteToDisplay(selectedMon - 1);
+    if (species != 0xFFFF)
     {
-        spriteId = CreatePokedexMonSprite(dexNum, 0x60, 0x50);
+        spriteId = CreatePokedexMonSprite(species, 0x60, 0x50);
         gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
         gSprites[spriteId].data[5] = -32;
     }
 
     // Create mid mon sprite
-    dexNum = GetPokemonSpriteToDisplay(selectedMon);
-    if (dexNum != 0xFFFF)
+    species = GetPokemonSpriteToDisplay(selectedMon);
+    if (species != 0xFFFF)
     {
-        spriteId = CreatePokedexMonSprite(dexNum, 0x60, 0x50);
+        spriteId = CreatePokedexMonSprite(species, 0x60, 0x50);
         gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
         gSprites[spriteId].data[5] = 0;
     }
 
     // Create bottom mon sprite
-    dexNum = GetPokemonSpriteToDisplay(selectedMon + 1);
-    if (dexNum != 0xFFFF)
+    species = GetPokemonSpriteToDisplay(selectedMon + 1);
+    if (species != 0xFFFF)
     {
-        spriteId = CreatePokedexMonSprite(dexNum, 0x60, 0x50);
+        spriteId = CreatePokedexMonSprite(species, 0x60, 0x50);
         gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
         gSprites[spriteId].data[5] = 32;
     }
@@ -2546,17 +2556,17 @@ static bool8 UpdateDexListScroll(u8 direction, u8 monMoveIncrement, u8 scrollTim
 
 static void CreateScrollingPokemonSprite(u8 direction, u16 selectedMon)
 {
-    u16 dexNum;
+    u16 species;
     u8 spriteId;
 
     sPokedexView->listMovingVOffset = sPokedexView->listVOffset;
     switch (direction)
     {
     case 1: // up
-        dexNum = GetPokemonSpriteToDisplay(selectedMon - 1);
-        if (dexNum != 0xFFFF)
+        species = GetPokemonSpriteToDisplay(selectedMon - 1);
+        if (species != 0xFFFF)
         {
-            spriteId = CreatePokedexMonSprite(dexNum, 0x60, 0x50);
+            spriteId = CreatePokedexMonSprite(species, 0x60, 0x50);
             gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
             gSprites[spriteId].data[5] = -64;
         }
@@ -2566,10 +2576,10 @@ static void CreateScrollingPokemonSprite(u8 direction, u16 selectedMon)
             sPokedexView->listVOffset = LIST_SCROLL_STEP - 1;
         break;
     case 2: // down
-        dexNum = GetPokemonSpriteToDisplay(selectedMon + 1);
-        if (dexNum != 0xFFFF)
+        species = GetPokemonSpriteToDisplay(selectedMon + 1);
+        if (species != 0xFFFF)
         {
-            spriteId = CreatePokedexMonSprite(dexNum, 0x60, 0x50);
+            spriteId = CreatePokedexMonSprite(species, 0x60, 0x50);
             gSprites[spriteId].callback = SpriteCB_PokedexListMonSprite;
             gSprites[spriteId].data[5] = 64;
         }
@@ -2673,7 +2683,7 @@ static bool8 TryDoInfoScreenScroll(void)
         {
             nextPokemon = GetNextPosition(1, nextPokemon, 0, sPokedexView->pokemonListCount - 1);
 
-            if (sPokedexView->pokedexList[nextPokemon].seen)
+            if (sPokedexView->pokedexList[nextPokemon].seenSpecies != SPECIES_NONE)
             {
                 selectedPokemon = nextPokemon;
                 break;
@@ -2696,7 +2706,7 @@ static bool8 TryDoInfoScreenScroll(void)
         {
             nextPokemon = GetNextPosition(0, nextPokemon, 0, sPokedexView->pokemonListCount - 1);
 
-            if (sPokedexView->pokedexList[nextPokemon].seen)
+            if (sPokedexView->pokedexList[nextPokemon].seenSpecies != SPECIES_NONE)
             {
                 selectedPokemon = nextPokemon;
                 break;
@@ -2732,15 +2742,16 @@ static u8 ClearMonSprites(void)
 
 static u16 GetPokemonSpriteToDisplay(u16 species)
 {
+    MgbaPrintf(MGBA_LOG_INFO, "aaaaa:%d", sPokedexView->pokedexList[species].seenSpecies);
     if (species >= NATIONAL_DEX_COUNT || sPokedexView->pokedexList[species].dexNum == 0xFFFF)
         return 0xFFFF;
-    else if (sPokedexView->pokedexList[species].seen)
-        return sPokedexView->pokedexList[species].dexNum;
+    else if (sPokedexView->pokedexList[species].seenSpecies != SPECIES_NONE)
+        return sPokedexView->pokedexList[species].seenSpecies;
     else
-        return 0;
+        return SPECIES_NONE;
 }
 
-static u32 CreatePokedexMonSprite(u16 num, s16 x, s16 y)
+static u32 CreatePokedexMonSprite(u16 species, s16 x, s16 y)
 {
     u8 i;
 
@@ -2748,13 +2759,13 @@ static u32 CreatePokedexMonSprite(u16 num, s16 x, s16 y)
     {
         if (sPokedexView->monSpriteIds[i] == 0xFFFF)
         {
-            u8 spriteId = CreateMonSpriteFromNationalDexNumber(num, x, y, i);
+            u8 spriteId = CreateMonSpriteFromNationalDexNumber(species, x, y, i);
 
             gSprites[spriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
             gSprites[spriteId].oam.priority = 3;
             gSprites[spriteId].data[0] = 0;
             gSprites[spriteId].data[1] = i;
-            gSprites[spriteId].data[2] = NationalPokedexNumToSpecies(num);
+            gSprites[spriteId].data[2] = species;
             sPokedexView->monSpriteIds[i] = spriteId;
             return spriteId;
         }
@@ -3272,7 +3283,7 @@ static void Task_LoadInfoScreen(u8 taskId)
     case 5:
         if (!gTasks[taskId].tMonSpriteDone)
         {
-            gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
+            gTasks[taskId].tMonSpriteId = (u16)CreateMonSpriteFromNationalDexNumber(sPokedexListItem->seenSpecies, MON_PAGE_X, MON_PAGE_Y, 0);
             gSprites[gTasks[taskId].tMonSpriteId].oam.priority = 0;
         }
         gMain.state++;
@@ -3563,7 +3574,7 @@ static void Task_LoadCryScreen(u8 taskId)
         gMain.state++;
         break;
     case 5:
-        gTasks[taskId].tMonSpriteId = CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, MON_PAGE_X, MON_PAGE_Y, 0);
+        gTasks[taskId].tMonSpriteId = CreateMonSpriteFromNationalDexNumber(sPokedexListItem->seenSpecies, MON_PAGE_X, MON_PAGE_Y, 0);
         gSprites[gTasks[taskId].tMonSpriteId].oam.priority = 0;
         gDexCryScreenState = 0;
         gMain.state++;
@@ -3771,7 +3782,7 @@ static void Task_LoadSizeScreen(u8 taskId)
         gMain.state++;
         break;
     case 6:
-        spriteId = CreateMonSpriteFromNationalDexNumber(sPokedexListItem->dexNum, 88, 56, 1);
+        spriteId = CreateMonSpriteFromNationalDexNumber(sPokedexListItem->seenSpecies, 88, 56, 1);
         gSprites[spriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
         gSprites[spriteId].oam.matrixNum = 2;
         gSprites[spriteId].oam.priority = 0;
@@ -4305,20 +4316,15 @@ u16 GetPokedexFlagFirstSeen(u16 nationalDexNo)
     {
         for (formId = 0; formTable[formId] != FORM_SPECIES_END; formId++)
         {
-            if (nationalDexNo == 25)
-                MgbaPrintf(MGBA_LOG_INFO, "species1:%d, found:%d", formTable[formId], GetSetPokedexSeenFlag(formTable[formId], FLAG_GET_SEEN));
-
             if (GetSetPokedexSeenFlag(formTable[formId], FLAG_GET_SEEN))
                 return formTable[formId];
         }
-        return SPECIES_NONE;
     }
-    else
+    else if (GetSetPokedexSeenFlag(gBaseFormSpeciesIdTable[nationalDexNo], FLAG_GET_SEEN))
     {
-        if (nationalDexNo == 25)
-            MgbaPrintf(MGBA_LOG_INFO, "species2:%d, found:%d", gBaseFormSpeciesIdTable[nationalDexNo], GetSetPokedexSeenFlag(gBaseFormSpeciesIdTable[nationalDexNo], FLAG_GET_SEEN));
-        return GetSetPokedexSeenFlag(gBaseFormSpeciesIdTable[nationalDexNo], FLAG_GET_SEEN);
+        return gBaseFormSpeciesIdTable[nationalDexNo];
     }
+    return SPECIES_NONE;
 }
 
 s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
@@ -4674,10 +4680,9 @@ static u32 GetPokedexMonPersonality(u16 species)
     }
 }
 
-u16 CreateMonSpriteFromNationalDexNumber(u16 nationalNum, s16 x, s16 y, u16 paletteSlot)
+u16 CreateMonSpriteFromNationalDexNumber(u16 species, s16 x, s16 y, u16 paletteSlot)
 {
-    nationalNum = NationalPokedexNumToSpecies(nationalNum);
-    return CreateMonPicSprite(nationalNum, SHINY_ODDS, GetPokedexMonPersonality(nationalNum), TRUE, x, y, paletteSlot, TAG_NONE);
+    return CreateMonPicSprite(species, SHINY_ODDS, GetPokedexMonPersonality(species), TRUE, x, y, paletteSlot, TAG_NONE);
 }
 
 static u16 CreateSizeScreenTrainerPic(u16 species, s16 x, s16 y, s8 paletteSlot)
@@ -4696,7 +4701,7 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
 
     for (i = 0, resultsCount = 0; i < NATIONAL_DEX_COUNT; i++)
     {
-        if (sPokedexView->pokedexList[i].seen)
+        if (sPokedexView->pokedexList[i].seenSpecies != SPECIES_NONE)
         {
             sPokedexView->pokedexList[resultsCount] = sPokedexView->pokedexList[i];
             resultsCount++;
@@ -4791,7 +4796,7 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
         for (i = sPokedexView->pokemonListCount; i < NATIONAL_DEX_COUNT; i++)
         {
             sPokedexView->pokedexList[i].dexNum = 0xFFFF;
-            sPokedexView->pokedexList[i].seen = FALSE;
+            sPokedexView->pokedexList[i].seenSpecies = SPECIES_NONE;
             sPokedexView->pokedexList[i].owned = FALSE;
         }
     }
