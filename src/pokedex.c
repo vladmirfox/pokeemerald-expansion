@@ -82,6 +82,34 @@ enum
 
 enum
 {
+#if P_DEX_SEARCH_SINGLE_LETTER == TRUE
+    NAME_A = 1,
+    NAME_B,
+    NAME_C,
+    NAME_D,
+    NAME_E,
+    NAME_F,
+    NAME_G,
+    NAME_H,
+    NAME_I,
+    NAME_J,
+    NAME_K,
+    NAME_L,
+    NAME_M,
+    NAME_N,
+    NAME_O,
+    NAME_P,
+    NAME_Q,
+    NAME_R,
+    NAME_S,
+    NAME_T,
+    NAME_U,
+    NAME_V,
+    NAME_W,
+    NAME_X,
+    NAME_Y,
+    NAME_Z,
+#else
     NAME_ABC = 1,
     NAME_DEF,
     NAME_GHI,
@@ -91,6 +119,7 @@ enum
     NAME_STU,
     NAME_VWX,
     NAME_YZ,
+#endif
 };
 
 // For scrolling search parameter
@@ -993,6 +1022,34 @@ static const u8 sText_TenDashes2[] = _("----------");
 static const u8 sLetterSearchRanges[][4] =
 {
     {}, // Name not specified, shouldn't be reached
+#if P_DEX_SEARCH_SINGLE_LETTER == TRUE
+    [NAME_A] = {CHAR_A, 1, CHAR_a, 1},
+    [NAME_B] = {CHAR_B, 1, CHAR_b, 1},
+    [NAME_C] = {CHAR_C, 1, CHAR_c, 1},
+    [NAME_D] = {CHAR_D, 1, CHAR_d, 1},
+    [NAME_E] = {CHAR_E, 1, CHAR_e, 1},
+    [NAME_F] = {CHAR_F, 1, CHAR_f, 1},
+    [NAME_G] = {CHAR_G, 1, CHAR_g, 1},
+    [NAME_H] = {CHAR_H, 1, CHAR_h, 1},
+    [NAME_I] = {CHAR_I, 1, CHAR_i, 1},
+    [NAME_J] = {CHAR_J, 1, CHAR_j, 1},
+    [NAME_K] = {CHAR_K, 1, CHAR_k, 1},
+    [NAME_L] = {CHAR_L, 1, CHAR_l, 1},
+    [NAME_M] = {CHAR_M, 1, CHAR_m, 1},
+    [NAME_N] = {CHAR_N, 1, CHAR_n, 1},
+    [NAME_O] = {CHAR_O, 1, CHAR_o, 1},
+    [NAME_P] = {CHAR_P, 1, CHAR_p, 1},
+    [NAME_Q] = {CHAR_Q, 1, CHAR_q, 1},
+    [NAME_R] = {CHAR_R, 1, CHAR_r, 1},
+    [NAME_S] = {CHAR_S, 1, CHAR_s, 1},
+    [NAME_T] = {CHAR_T, 1, CHAR_t, 1},
+    [NAME_U] = {CHAR_U, 1, CHAR_u, 1},
+    [NAME_V] = {CHAR_V, 1, CHAR_v, 1},
+    [NAME_W] = {CHAR_W, 1, CHAR_w, 1},
+    [NAME_X] = {CHAR_X, 1, CHAR_x, 1},
+    [NAME_Y] = {CHAR_Y, 1, CHAR_y, 1},
+    [NAME_Z] = {CHAR_Z, 1, CHAR_z, 1},
+#else
     [NAME_ABC] = {CHAR_A, 3, CHAR_a, 3},
     [NAME_DEF] = {CHAR_D, 3, CHAR_d, 3},
     [NAME_GHI] = {CHAR_G, 3, CHAR_g, 3},
@@ -1002,6 +1059,7 @@ static const u8 sLetterSearchRanges[][4] =
     [NAME_STU] = {CHAR_S, 3, CHAR_s, 3},
     [NAME_VWX] = {CHAR_V, 3, CHAR_v, 3},
     [NAME_YZ]  = {CHAR_Y, 2, CHAR_y, 2},
+#endif
 };
 
 #define LETTER_IN_RANGE_UPPER(letter, range) \
@@ -1346,6 +1404,34 @@ static const struct SearchOptionText sDexOrderOptions[] =
 static const struct SearchOptionText sDexSearchNameOptions[] =
 {
     {gText_DexEmptyString, gText_DexSearchDontSpecify},
+#if P_DEX_SEARCH_SINGLE_LETTER == TRUE
+    [NAME_A] = {gText_DexEmptyString, gText_DexSearchAlphaA},
+    [NAME_B] = {gText_DexEmptyString, gText_DexSearchAlphaB},
+    [NAME_C] = {gText_DexEmptyString, gText_DexSearchAlphaC},
+    [NAME_D] = {gText_DexEmptyString, gText_DexSearchAlphaD},
+    [NAME_E] = {gText_DexEmptyString, gText_DexSearchAlphaE},
+    [NAME_F] = {gText_DexEmptyString, gText_DexSearchAlphaF},
+    [NAME_G] = {gText_DexEmptyString, gText_DexSearchAlphaG},
+    [NAME_H] = {gText_DexEmptyString, gText_DexSearchAlphaH},
+    [NAME_I] = {gText_DexEmptyString, gText_DexSearchAlphaI},
+    [NAME_J] = {gText_DexEmptyString, gText_DexSearchAlphaJ},
+    [NAME_K] = {gText_DexEmptyString, gText_DexSearchAlphaK},
+    [NAME_L] = {gText_DexEmptyString, gText_DexSearchAlphaL},
+    [NAME_M] = {gText_DexEmptyString, gText_DexSearchAlphaM},
+    [NAME_N] = {gText_DexEmptyString, gText_DexSearchAlphaN},
+    [NAME_O] = {gText_DexEmptyString, gText_DexSearchAlphaO},
+    [NAME_P] = {gText_DexEmptyString, gText_DexSearchAlphaP},
+    [NAME_Q] = {gText_DexEmptyString, gText_DexSearchAlphaQ},
+    [NAME_R] = {gText_DexEmptyString, gText_DexSearchAlphaR},
+    [NAME_S] = {gText_DexEmptyString, gText_DexSearchAlphaS},
+    [NAME_T] = {gText_DexEmptyString, gText_DexSearchAlphaT},
+    [NAME_U] = {gText_DexEmptyString, gText_DexSearchAlphaU},
+    [NAME_V] = {gText_DexEmptyString, gText_DexSearchAlphaV},
+    [NAME_W] = {gText_DexEmptyString, gText_DexSearchAlphaW},
+    [NAME_X] = {gText_DexEmptyString, gText_DexSearchAlphaX},
+    [NAME_Y] = {gText_DexEmptyString, gText_DexSearchAlphaY},
+    [NAME_Z] = {gText_DexEmptyString, gText_DexSearchAlphaZ},
+#else
     [NAME_ABC] = {gText_DexEmptyString, gText_DexSearchAlphaABC},
     [NAME_DEF] = {gText_DexEmptyString, gText_DexSearchAlphaDEF},
     [NAME_GHI] = {gText_DexEmptyString, gText_DexSearchAlphaGHI},
@@ -1355,6 +1441,7 @@ static const struct SearchOptionText sDexSearchNameOptions[] =
     [NAME_STU] = {gText_DexEmptyString, gText_DexSearchAlphaSTU},
     [NAME_VWX] = {gText_DexEmptyString, gText_DexSearchAlphaVWX},
     [NAME_YZ]  = {gText_DexEmptyString, gText_DexSearchAlphaYZ},
+#endif
     {},
 };
 
