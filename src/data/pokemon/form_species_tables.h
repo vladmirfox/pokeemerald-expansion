@@ -1188,7 +1188,7 @@ static const u16 sCalyrexFormSpeciesIdTable[] = {
 };
 
 static const u16 sEnamorusFormSpeciesIdTable[] = {
-    SPECIES_ENAMORUS,
+    SPECIES_ENAMORUS_INCARNATE,
     SPECIES_ENAMORUS_THERIAN,
     FORM_SPECIES_END,
 };

@@ -3015,7 +3015,7 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_BASCULEGION - 1]                   = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_SNEASLER - 1]                      = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_OVERQWIL - 1]                      = ANIM_V_SQUISH_AND_BOUNCE,
-    [SPECIES_ENAMORUS - 1]                      = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_ENAMORUS_INCARNATE - 1]            = ANIM_V_SQUISH_AND_BOUNCE,
 };
 
 static const u8 sMonAnimationDelayTable[NUM_SPECIES - 1] =
