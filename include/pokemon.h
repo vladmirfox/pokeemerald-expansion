@@ -419,6 +419,8 @@ extern const struct SpriteTemplate gBattlerSpriteTemplates[];
 extern const s8 gNatureStatTable[][5];
 extern const u32 sExpCandyExperienceTable[];
 extern const u16 gBaseFormSpeciesIdTable[NATIONAL_DEX_COUNT + 1];
+extern const struct PokedexEntry gPokedexEntries[];
+extern const struct PokedexEntryForms gPokedexEntriesForms[];
 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);
 void ZeroMonData(struct Pokemon *mon);
