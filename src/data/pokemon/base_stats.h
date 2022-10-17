@@ -3067,16 +3067,16 @@ const struct BaseStats gBaseStats[] =
         PONYTA_MISC_STATS,
     },
 
-#define RAPIDASH_BASE_STATS         \
-        .baseHP        = 65,        \
-        .baseAttack    = 100,       \
-        .baseDefense   = 70,        \
-        .baseSpeed     = 105,       \
-        .baseSpAttack  = 80,        \
-        .baseSpDefense = 80,        \
-        .catchRate = 60,            \
-        .expYield = 175,            \
-        .evYield_Speed     = 2,     \
+#define RAPIDASH_MISC_STATS     \
+        .baseHP        = 65,    \
+        .baseAttack    = 100,   \
+        .baseDefense   = 70,    \
+        .baseSpeed     = 105,   \
+        .baseSpAttack  = 80,    \
+        .baseSpDefense = 80,    \
+        .catchRate = 60,        \
+        .expYield = 175,        \
+        .evYield_Speed     = 2, \
         PONYTA_FAMILY_MISC_STATS
 
     [SPECIES_RAPIDASH] =
@@ -3089,7 +3089,7 @@ const struct BaseStats gBaseStats[] =
         .trainerScale = 289,
         .trainerOffset = 1,
         KANTONIAN_PONYTA_FAMILY_STATS,
-        RAPIDASH_BASE_STATS,
+        RAPIDASH_MISC_STATS,
     },
     [SPECIES_RAPIDASH_GALARIAN] =
     {
@@ -3102,10 +3102,10 @@ const struct BaseStats gBaseStats[] =
         .trainerScale = 289,
         .trainerOffset = 1,
         GALARIAN_PONYTA_FAMILY_STATS,
-        RAPIDASH_BASE_STATS,
+        RAPIDASH_MISC_STATS,
     },
 
-#define SLOWPOKE_BASE_STATS                 \
+#define SLOWPOKE_MISC_STATS                 \
         .baseHP        = 90,                \
         .baseAttack    = 65,                \
         .baseDefense   = 65,                \
@@ -3138,7 +3138,7 @@ const struct BaseStats gBaseStats[] =
         .itemRare = ITEM_LAGGING_TAIL,
         .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
         .description = gSlowpokePokedexText,
-        SLOWPOKE_BASE_STATS,
+        SLOWPOKE_MISC_STATS,
     },
     [SPECIES_SLOWPOKE_GALARIAN] =
     {
@@ -3146,7 +3146,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_GLUTTONY, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
         .flags = SPECIES_FLAG_GALARIAN_FORM,
         .description = gDummyPokedexText,
-        SLOWPOKE_BASE_STATS,
+        SLOWPOKE_MISC_STATS,
     },
 
 #define SLOWBRO_MISC_STATS                  \
@@ -3503,7 +3503,7 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,                    \
         .categoryName = _("Sludge")
 
-#define GRIMER_BASE_STATS       \
+#define GRIMER_MISC_STATS       \
         .baseHP        = 80,    \
         .baseAttack    = 80,    \
         .baseDefense   = 50,    \
@@ -3530,7 +3530,7 @@ const struct BaseStats gBaseStats[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         KANTONIAN_GRIMER_FAMILY_STATS,
-        GRIMER_BASE_STATS,
+        GRIMER_MISC_STATS,
     },
 
 #define ALOLAN_GRIMER_FAMILY_STATS                                                      \
@@ -3549,10 +3549,10 @@ const struct BaseStats gBaseStats[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         ALOLAN_GRIMER_FAMILY_STATS,
-        GRIMER_BASE_STATS,
+        GRIMER_MISC_STATS,
     },
 
-#define MUK_BASE_STATS          \
+#define MUK_MISC_STATS          \
         .baseHP        = 105,   \
         .baseAttack    = 105,   \
         .baseDefense   = 75,    \
@@ -3575,7 +3575,7 @@ const struct BaseStats gBaseStats[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         KANTONIAN_GRIMER_FAMILY_STATS,
-        MUK_BASE_STATS,
+        MUK_MISC_STATS,
     },
     [SPECIES_MUK_ALOLAN] =
     {
@@ -3587,7 +3587,7 @@ const struct BaseStats gBaseStats[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         ALOLAN_GRIMER_FAMILY_STATS,
-        MUK_BASE_STATS,
+        MUK_MISC_STATS,
     },
 
     [SPECIES_SHELLDER] =
@@ -3936,7 +3936,7 @@ const struct BaseStats gBaseStats[] =
         .trainerOffset = 0,
     },
 
-#define VOLTORB_FAMILY_MISC_STATS \
+#define VOLTORB_FAMILY_MISC_STATS                                               \
         .type1 = TYPE_ELECTRIC,                                                 \
         .genderRatio = MON_GENDERLESS,                                          \
         .eggCycles = 20,                                                        \
@@ -3950,19 +3950,19 @@ const struct BaseStats gBaseStats[] =
         .trainerScale = 256,                                                    \
         .trainerOffset = 0
 
-#define VOLTORB_BASE_STATS                                                      \
-        .baseHP        = 40,                                                    \
-        .baseAttack    = 30,                                                    \
-        .baseDefense   = 50,                                                    \
-        .baseSpeed     = 100,                                                   \
-        .baseSpAttack  = 55,                                                    \
-        .baseSpDefense = 55,                                                    \
-        .catchRate = 190,                                                       \
-        .expYield = 66,                                                         \
-        .evYield_Speed     = 1,                                                 \
-        .height = 5,                                                            \
-        .pokemonScale = 364,                                                    \
-        .pokemonOffset = -8,                                                    \
+#define VOLTORB_MISC_STATS      \
+        .baseHP        = 40,    \
+        .baseAttack    = 30,    \
+        .baseDefense   = 50,    \
+        .baseSpeed     = 100,   \
+        .baseSpAttack  = 55,    \
+        .baseSpDefense = 55,    \
+        .catchRate = 190,       \
+        .expYield = 66,         \
+        .evYield_Speed     = 1, \
+        .height = 5,            \
+        .pokemonScale = 364,    \
+        .pokemonOffset = -8,    \
         VOLTORB_FAMILY_MISC_STATS
 
     [SPECIES_VOLTORB] =
@@ -3971,7 +3971,7 @@ const struct BaseStats gBaseStats[] =
         .categoryName = _("Ball"),
         .weight = 104,
         .description = gVoltorbPokedexText,
-        VOLTORB_BASE_STATS,
+        VOLTORB_MISC_STATS,
     },
     [SPECIES_VOLTORB_HISUIAN] =
     {
@@ -3980,7 +3980,7 @@ const struct BaseStats gBaseStats[] =
         .categoryName = _("Sphere"),
         .weight = 130,
         .description = gDummyPokedexText,
-        VOLTORB_BASE_STATS,
+        VOLTORB_MISC_STATS,
     },
 
 #if P_UPDATED_STATS >= GEN_7
@@ -3989,7 +3989,7 @@ const struct BaseStats gBaseStats[] =
     #define ELECTRODE_SPEED 140
 #endif
 
-#define ELECTRODE_BASE_STATS   \
+#define ELECTRODE_MISC_STATS   \
         .baseHP        = 60,                                                    \
         .baseAttack    = 50,                                                    \
         .baseDefense   = 70,                                                    \
@@ -4010,7 +4010,7 @@ const struct BaseStats gBaseStats[] =
         .categoryName = _("Ball"),
         .weight = 666,
         .description = gElectrodePokedexText,
-        ELECTRODE_BASE_STATS,
+        ELECTRODE_MISC_STATS,
     },
     [SPECIES_ELECTRODE_HISUIAN] =
     {
@@ -4019,7 +4019,7 @@ const struct BaseStats gBaseStats[] =
         .categoryName = _("Sphere"),
         .weight = 710,
         .description = gDummyPokedexText,
-        ELECTRODE_BASE_STATS,
+        ELECTRODE_MISC_STATS,
     },
 
     [SPECIES_EXEGGCUTE] =
@@ -4149,7 +4149,7 @@ const struct BaseStats gBaseStats[] =
         .trainerOffset = 0,
     },
 
-#define MAROWAK_BASE_STATS                  \
+#define MAROWAK_MISC_STATS                  \
         .baseHP        = 60,                \
         .baseAttack    = 80,                \
         .baseDefense   = 110,               \
@@ -4182,7 +4182,7 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BROWN,
         .weight = 450,
         .description = gMarowakPokedexText,
-        MAROWAK_BASE_STATS,
+        MAROWAK_MISC_STATS,
     },
     [SPECIES_MAROWAK_ALOLAN] =
     {
@@ -4193,7 +4193,7 @@ const struct BaseStats gBaseStats[] =
         .flags = SPECIES_FLAG_ALOLAN_FORM,
         .weight = 340,
         .description = gMarowakAlolanPokedexText,
-        MAROWAK_BASE_STATS,
+        MAROWAK_MISC_STATS,
     },
 
     [SPECIES_HITMONLEE] =
@@ -4326,28 +4326,28 @@ const struct BaseStats gBaseStats[] =
         .trainerOffset = 0,
     },
 
-#define WEEZING_BASE_STATS  \
-        .baseHP        = 65,                                                \
-        .baseAttack    = 90,                                                \
-        .baseDefense   = 120,                                               \
-        .baseSpeed     = 60,                                                \
-        .baseSpAttack  = 85,                                                \
-        .baseSpDefense = 70,                                                \
-        .type1 = TYPE_POISON,                                               \
-        .catchRate = 60,                                                    \
-        .expYield = 172,                                                    \
-        .evYield_Defense   = 2,                                             \
-        .genderRatio = PERCENT_FEMALE(50),                                  \
-        .eggCycles = 20,                                                    \
-        .friendship = 70,                                                   \
-        .growthRate = GROWTH_MEDIUM_FAST,                                   \
-        .eggGroup1 = EGG_GROUP_AMORPHOUS,                                   \
-        .eggGroup2 = EGG_GROUP_AMORPHOUS,                                   \
-        .noFlip = TRUE,                                                     \
-        .categoryName = _("Poison Gas"),                                    \
-        .pokemonScale = 305,                                                \
-        .pokemonOffset = 3,                                                 \
-        .trainerScale = 256,                                                \
+#define WEEZING_MISC_STATS                  \
+        .baseHP        = 65,                \
+        .baseAttack    = 90,                \
+        .baseDefense   = 120,               \
+        .baseSpeed     = 60,                \
+        .baseSpAttack  = 85,                \
+        .baseSpDefense = 70,                \
+        .type1 = TYPE_POISON,               \
+        .catchRate = 60,                    \
+        .expYield = 172,                    \
+        .evYield_Defense   = 2,             \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 20,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_MEDIUM_FAST,   \
+        .eggGroup1 = EGG_GROUP_AMORPHOUS,   \
+        .eggGroup2 = EGG_GROUP_AMORPHOUS,   \
+        .noFlip = TRUE,                     \
+        .categoryName = _("Poison Gas"),    \
+        .pokemonScale = 305,                \
+        .pokemonOffset = 3,                 \
+        .trainerScale = 256,                \
         .trainerOffset = 0
 
     [SPECIES_WEEZING] =
@@ -4359,7 +4359,7 @@ const struct BaseStats gBaseStats[] =
         .height = 12,
         .weight = 95,
         .description = gWeezingPokedexText,
-        WEEZING_BASE_STATS,
+        WEEZING_MISC_STATS,
     },
     [SPECIES_WEEZING_GALARIAN] =
     {
@@ -4371,7 +4371,7 @@ const struct BaseStats gBaseStats[] =
         .height = 30,
         .weight = 160,
         .description = gDummyPokedexText,
-        WEEZING_BASE_STATS,
+        WEEZING_MISC_STATS,
     },
 
     [SPECIES_RHYHORN] =

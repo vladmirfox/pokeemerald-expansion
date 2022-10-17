@@ -50,11 +50,10 @@ struct PokedexEntryForms
 #define FLAG_FORM_CATEGORY      (1 << 2)
 
 void ResetPokedex(void);
-u16 GetPokedexHeightWeight(u16 dexNum, u8 data);
-u16 GetSpeciesHeightWeight(u16 species, u8 data);
+u16 GetPokedexHeightWeight(u16 species, u8 data);
 u16 GetNationalPokedexCount(u8);
 u16 GetHoennPokedexCount(u8);
-u8 DisplayCaughtMonDexPage(u16 dexNum, u32 otId, u32 personality);
+u8 DisplayCaughtMonDexPage(u16 species, u32 otId, u32 personality);
 s8 GetSetPokedexSeenFlag(u16 species, u8 caseID);
 s8 GetSetPokedexCaughtFlag(u16 nationalDexNo, u8 caseID);
 u16 GetPokedexFlagFirstSeen(u16 nationalDexNo);

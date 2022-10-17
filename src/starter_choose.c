@@ -581,7 +581,7 @@ static void CreateStarterPokemonLabel(u8 selection)
     u8 labelLeft, labelRight, labelTop, labelBottom;
 
     u16 species = GetStarterPokemon(selection);
-    CopyMonCategoryText(SpeciesToNationalPokedexNum(species), categoryText);
+    CopyMonCategoryText(species, categoryText);
     speciesName = gSpeciesNames[species];
 
     winTemplate = sWindowTemplate_StarterLabel;
