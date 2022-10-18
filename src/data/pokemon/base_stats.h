@@ -9525,6 +9525,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Wood Gecko"),
+        .height = 5,
+        .weight = 50,
+        .description = gTreeckoPokedexText,
+        .pokemonScale = 541,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_GROVYLE] =
@@ -9549,23 +9557,35 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Wood Gecko"),
+        .height = 9,
+        .weight = 216,
+        .description = gGrovylePokedexText,
+        .pokemonScale = 360,
+        .pokemonOffset = 5,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define SCEPTILE_MISC_STATS(typeB,exp,ability1,ability3)\
-        .type1 = TYPE_GRASS,                            \
-        .type2 = typeB,                                 \
-        .catchRate = 45,                                \
-        .expYield = exp,                                \
-        .evYield_Speed     = 3,                         \
-        .genderRatio = PERCENT_FEMALE(12.5),            \
-        .eggCycles = 20,                                \
-        .friendship = 70,                               \
-        .growthRate = GROWTH_MEDIUM_SLOW,               \
-        .eggGroup1 = EGG_GROUP_MONSTER,                 \
-        .eggGroup2 = EGG_GROUP_DRAGON,                  \
-        .abilities = {ability1, ABILITY_NONE, ability3},\
-        .bodyColor = BODY_COLOR_GREEN,                  \
-        .noFlip = FALSE
+#define SCEPTILE_MISC_STATS                 \
+        .type1 = TYPE_GRASS,                \
+        .catchRate = 45,                    \
+        .evYield_Speed     = 3,             \
+        .genderRatio = PERCENT_FEMALE(12.5),\
+        .eggCycles = 20,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_MEDIUM_SLOW,   \
+        .eggGroup1 = EGG_GROUP_MONSTER,     \
+        .eggGroup2 = EGG_GROUP_DRAGON,      \
+        .bodyColor = BODY_COLOR_GREEN,      \
+        .noFlip = FALSE,                    \
+        .categoryName = _("Forest"),        \
+        .weight = 522,                      \
+        .description = gSceptilePokedexText,\
+        .pokemonScale = 256,                \
+        .pokemonOffset = -1,                \
+        .trainerScale = 275,                \
+        .trainerOffset = 2
 
     [SPECIES_SCEPTILE] =
     {
@@ -9575,7 +9595,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 120,
         .baseSpAttack  = 105,
         .baseSpDefense = 85,
-        SCEPTILE_MISC_STATS(TYPE_GRASS, 239, ABILITY_OVERGROW, ABILITY_UNBURDEN),
+        .type2 = TYPE_GRASS,
+        .height = 17,
+        .expYield = 239,
+        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN},
+        SCEPTILE_MISC_STATS,
     },
     [SPECIES_SCEPTILE_MEGA] =
     {
@@ -9585,8 +9609,12 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 145,
         .baseSpAttack  = 145,
         .baseSpDefense = 85,
+        .type2 = TYPE_DRAGON,
+        .expYield = 284,
+        .abilities = {ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        SCEPTILE_MISC_STATS(TYPE_DRAGON, 284, ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD),
+        .height = 19,
+        SCEPTILE_MISC_STATS,
     },
 
     [SPECIES_TORCHIC] =
@@ -9611,6 +9639,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_SPEED_BOOST},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .categoryName = _("Chick"),
+        .height = 4,
+        .weight = 25,
+        .description = gTorchicPokedexText,
+        .pokemonScale = 566,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_COMBUSKEN] =
@@ -9636,13 +9672,20 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_SPEED_BOOST},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .categoryName = _("Young Fowl"),
+        .height = 9,
+        .weight = 195,
+        .description = gCombuskenPokedexText,
+        .pokemonScale = 343,
+        .pokemonOffset = 5,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define BLAZIKEN_MISC_STATS(exp,ability1)                           \
+#define BLAZIKEN_MISC_STATS                           \
         .type1 = TYPE_FIRE,                                         \
         .type2 = TYPE_FIGHTING,                                     \
         .catchRate = 45,                                            \
-        .expYield = exp,                                            \
         .evYield_Attack    = 3,                                     \
         .genderRatio = PERCENT_FEMALE(12.5),                        \
         .eggCycles = 20,                                            \
@@ -9650,9 +9693,16 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_SLOW,                           \
         .eggGroup1 = EGG_GROUP_FIELD,                               \
         .eggGroup2 = EGG_GROUP_FIELD,                               \
-        .abilities = {ability1, ABILITY_NONE, ABILITY_SPEED_BOOST}, \
         .bodyColor = BODY_COLOR_RED,                                \
-        .noFlip = FALSE
+        .noFlip = FALSE,                                            \
+        .categoryName = _("Blaze"),                                 \
+        .height = 19,                                               \
+        .weight = 520,                                              \
+        .description = gBlazikenPokedexText,                        \
+        .pokemonScale = 256,                                        \
+        .pokemonOffset = 0,                                         \
+        .trainerScale = 301,                                        \
+        .trainerOffset = 4
 
     [SPECIES_BLAZIKEN] =
     {
@@ -9662,7 +9712,9 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 80,
         .baseSpAttack  = 110,
         .baseSpDefense = 70,
-        BLAZIKEN_MISC_STATS(239, ABILITY_BLAZE),
+        .expYield = 239,
+        .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_SPEED_BOOST},
+        BLAZIKEN_MISC_STATS,
     },
     [SPECIES_BLAZIKEN_MEGA] =
     {
@@ -9672,8 +9724,10 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 100,
         .baseSpAttack  = 130,
         .baseSpDefense = 80,
+        .expYield = 284,
+        .abilities = {ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        BLAZIKEN_MISC_STATS(284, ABILITY_SPEED_BOOST),
+        BLAZIKEN_MISC_STATS,
     },
 
     [SPECIES_MUDKIP] =
@@ -9698,6 +9752,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_DAMP},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Mud Fish"),
+        .height = 4,
+        .weight = 76,
+        .description = gMudkipPokedexText,
+        .pokemonScale = 535,
+        .pokemonOffset = 20,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_MARSHTOMP] =
@@ -9722,23 +9784,35 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_DAMP},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Mud Fish"),
+        .height = 7,
+        .weight = 280,
+        .description = gMarshtompPokedexText,
+        .pokemonScale = 340,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define SWAMPERT_MISC_STATS(exp,ability1,ability3)      \
-        .type1 = TYPE_WATER,                            \
-        .type2 = TYPE_GROUND,                           \
-        .catchRate = 45,                                \
-        .expYield = 241,                                \
-        .evYield_Attack    = 3,                         \
-        .genderRatio = PERCENT_FEMALE(12.5),            \
-        .eggCycles = 20,                                \
-        .friendship = 70,                               \
-        .growthRate = GROWTH_MEDIUM_SLOW,               \
-        .eggGroup1 = EGG_GROUP_MONSTER,                 \
-        .eggGroup2 = EGG_GROUP_WATER_1,                 \
-        .abilities = {ability1, ABILITY_NONE, ability3},\
-        .bodyColor = BODY_COLOR_BLUE,                   \
-        .noFlip = FALSE
+#define SWAMPERT_MISC_STATS                 \
+        .type1 = TYPE_WATER,                \
+        .type2 = TYPE_GROUND,               \
+        .catchRate = 45,                    \
+        .evYield_Attack    = 3,             \
+        .genderRatio = PERCENT_FEMALE(12.5),\
+        .eggCycles = 20,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_MEDIUM_SLOW,   \
+        .eggGroup1 = EGG_GROUP_MONSTER,     \
+        .eggGroup2 = EGG_GROUP_WATER_1,     \
+        .bodyColor = BODY_COLOR_BLUE,       \
+        .noFlip = FALSE,                    \
+        .categoryName = _("Mud Fish"),      \
+        .description = gSwampertPokedexText,\
+        .pokemonScale = 256,                \
+        .pokemonOffset = 0,                 \
+        .trainerScale = 256,                \
+        .trainerOffset = 0
 
     [SPECIES_SWAMPERT] =
     {
@@ -9748,7 +9822,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 60,
         .baseSpAttack  = 85,
         .baseSpDefense = 90,
-        SWAMPERT_MISC_STATS(241, ABILITY_TORRENT, ABILITY_DAMP)
+        .expYield = 241,
+        .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_DAMP},
+        .height = 15,
+        .weight = 819,
+        SWAMPERT_MISC_STATS,
     },
     [SPECIES_SWAMPERT_MEGA] =
     {
@@ -9758,8 +9836,12 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 70,
         .baseSpAttack  = 95,
         .baseSpDefense = 110,
+        .expYield = 286,
+        .abilities = {ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        SWAMPERT_MISC_STATS(286, ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM),
+        .height = 19,
+        .weight = 1020,
+        SWAMPERT_MISC_STATS,
     },
 
     [SPECIES_POOCHYENA] =
@@ -9784,6 +9866,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RUN_AWAY, ABILITY_QUICK_FEET, ABILITY_RATTLED},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .categoryName = _("Bite"),
+        .height = 5,
+        .weight = 136,
+        .description = gPoochyenaPokedexText,
+        .pokemonScale = 481,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_MIGHTYENA] =
@@ -9808,23 +9898,27 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_QUICK_FEET, ABILITY_MOXIE},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .categoryName = _("Bite"),
+        .height = 10,
+        .weight = 370,
+        .description = gMightyenaPokedexText,
+        .pokemonScale = 362,
+        .pokemonOffset = 9,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define ZIGZAGOON_BASE_STATS(typeA,commonItem,rareItem,color,flag)          \
-    {                                                                       \
+#define ZIGZAGOON_MISC_STATS                                                \
         .baseHP        = 38,                                                \
         .baseAttack    = 30,                                                \
         .baseDefense   = 41,                                                \
         .baseSpeed     = 60,                                                \
         .baseSpAttack  = 30,                                                \
         .baseSpDefense = 41,                                                \
-        .type1 = typeA,                                                     \
         .type2 = TYPE_NORMAL,                                               \
         .catchRate = 255,                                                   \
         .expYield = 56,                                                     \
         .evYield_Speed     = 1,                                             \
-        .itemCommon = commonItem,                                           \
-        .itemRare = rareItem,                                               \
         .genderRatio = PERCENT_FEMALE(50),                                  \
         .eggCycles = 15,                                                    \
         .friendship = 70,                                                   \
@@ -9832,29 +9926,45 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FIELD,                                       \
         .eggGroup2 = EGG_GROUP_FIELD,                                       \
         .abilities = {ABILITY_PICKUP, ABILITY_GLUTTONY, ABILITY_QUICK_FEET},\
-        .bodyColor = color,                                                 \
         .noFlip = FALSE,                                                    \
-        .flags = flag,                                                      \
-    }
-    [SPECIES_ZIGZAGOON] = ZIGZAGOON_BASE_STATS(TYPE_NORMAL,ITEM_POTION,ITEM_REVIVE,BODY_COLOR_BROWN,0),
-    [SPECIES_ZIGZAGOON_GALARIAN] = ZIGZAGOON_BASE_STATS(TYPE_DARK,ITEM_NONE,ITEM_NONE,BODY_COLOR_WHITE,SPECIES_FLAG_GALARIAN_FORM),
+        .categoryName = _("Tiny Raccoon"),                                  \
+        .height = 4,                                                        \
+        .weight = 175,                                                      \
+        .pokemonScale = 560,                                                \
+        .pokemonOffset = 22,                                                \
+        .trainerScale = 256,                                                \
+        .trainerOffset = 0
 
 
-#define LINOONE_BASE_STATS(typeA,commonItem,rareItem,flag)                  \
-    {                                                                       \
+    [SPECIES_ZIGZAGOON] =
+    {
+        .type1 = TYPE_NORMAL,
+        .itemCommon = ITEM_POTION,
+        .itemRare = ITEM_REVIVE,
+        .bodyColor = BODY_COLOR_BROWN,
+        .description = gZigzagoonPokedexText,
+        ZIGZAGOON_MISC_STATS,
+    },
+    [SPECIES_ZIGZAGOON_GALARIAN] =
+    {
+        .type1 = TYPE_DARK,
+        .bodyColor = BODY_COLOR_WHITE,
+        .flags = SPECIES_FLAG_GALARIAN_FORM,
+        .description = gDummyPokedexText,
+        ZIGZAGOON_MISC_STATS,
+    },
+
+#define LINOONE_MISC_STATS                                                  \
         .baseHP        = 78,                                                \
         .baseAttack    = 70,                                                \
         .baseDefense   = 61,                                                \
         .baseSpeed     = 100,                                               \
         .baseSpAttack  = 50,                                                \
         .baseSpDefense = 61,                                                \
-        .type1 = typeA,                                                     \
         .type2 = TYPE_NORMAL,                                               \
         .catchRate = 90,                                                    \
         .expYield = 147,                                                    \
         .evYield_Speed     = 2,                                             \
-        .itemCommon = commonItem,                                           \
-        .itemRare = rareItem,                                               \
         .genderRatio = PERCENT_FEMALE(50),                                  \
         .eggCycles = 15,                                                    \
         .friendship = 70,                                                   \
@@ -9864,10 +9974,29 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PICKUP, ABILITY_GLUTTONY, ABILITY_QUICK_FEET},\
         .bodyColor = BODY_COLOR_WHITE,                                      \
         .noFlip = FALSE,                                                    \
-        .flags = flag,                                                      \
-    }
-    [SPECIES_LINOONE] = LINOONE_BASE_STATS(TYPE_NORMAL, ITEM_POTION, ITEM_MAX_REVIVE, 0),
-    [SPECIES_LINOONE_GALARIAN] = LINOONE_BASE_STATS(TYPE_DARK, ITEM_NONE, ITEM_NONE, SPECIES_FLAG_GALARIAN_FORM),
+        .categoryName = _("Rushing"),                                       \
+        .height = 5,                                                        \
+        .weight = 325,                                                      \
+        .pokemonScale = 321,                                                \
+        .pokemonOffset = 7,                                                 \
+        .trainerScale = 256,                                                \
+        .trainerOffset = 0
+
+    [SPECIES_LINOONE] =
+    {
+        .type1 = TYPE_NORMAL,
+        .itemCommon = ITEM_POTION,
+        .itemRare = ITEM_MAX_REVIVE,
+        .description = gLinoonePokedexText,
+        LINOONE_MISC_STATS,
+    },
+    [SPECIES_LINOONE_GALARIAN] =
+    {
+        .type1 = TYPE_DARK,
+        .flags = SPECIES_FLAG_GALARIAN_FORM,
+        .description = gDummyPokedexText,
+        LINOONE_MISC_STATS,
+    },
 
     [SPECIES_WURMPLE] =
     {
@@ -9893,6 +10022,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SHIELD_DUST, ABILITY_NONE, ABILITY_RUN_AWAY},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .categoryName = _("Worm"),
+        .height = 3,
+        .weight = 36,
+        .description = gWurmplePokedexText,
+        .pokemonScale = 711,
+        .pokemonOffset = 24,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SILCOON] =
@@ -9917,6 +10054,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SHED_SKIN, ABILITY_NONE},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .categoryName = _("Cocoon"),
+        .height = 6,
+        .weight = 100,
+        .description = gSilcoonPokedexText,
+        .pokemonScale = 431,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_BEAUTIFLY] =
@@ -9946,6 +10091,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWARM, ABILITY_NONE, ABILITY_RIVALRY},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .categoryName = _("Butterfly"),
+        .height = 10,
+        .weight = 284,
+        .description = gBeautiflyPokedexText,
+        .pokemonScale = 298,
+        .pokemonOffset = -1,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_CASCOON] =
@@ -9970,6 +10123,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SHED_SKIN, ABILITY_NONE},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .categoryName = _("Cocoon"),
+        .height = 7,
+        .weight = 115,
+        .description = gCascoonPokedexText,
+        .pokemonScale = 391,
+        .pokemonOffset = 20,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_DUSTOX] =
@@ -9995,6 +10156,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SHIELD_DUST, ABILITY_NONE, ABILITY_COMPOUND_EYES},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Poison Moth"),
+        .height = 12,
+        .weight = 316,
+        .description = gDustoxPokedexText,
+        .pokemonScale = 269,
+        .pokemonOffset = 1,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_LOTAD] =
@@ -10020,6 +10189,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_RAIN_DISH, ABILITY_OWN_TEMPO},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Water Weed"),
+        .height = 5,
+        .weight = 26,
+        .description = gLotadPokedexText,
+        .pokemonScale = 406,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_LOMBRE] =
@@ -10045,6 +10222,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_RAIN_DISH, ABILITY_OWN_TEMPO},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Jolly"),
+        .height = 12,
+        .weight = 325,
+        .description = gLombrePokedexText,
+        .pokemonScale = 277,
+        .pokemonOffset = 9,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_LUDICOLO] =
@@ -10070,6 +10255,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_RAIN_DISH, ABILITY_OWN_TEMPO},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Carefree"),
+        .height = 15,
+        .weight = 550,
+        .description = gLudicoloPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 268,
+        .trainerOffset = -1,
     },
 
     [SPECIES_SEEDOT] =
@@ -10095,6 +10288,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD, ABILITY_PICKPOCKET},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .categoryName = _("Acorn"),
+        .height = 5,
+        .weight = 40,
+        .description = gSeedotPokedexText,
+        .pokemonScale = 472,
+        .pokemonOffset = 20,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_NUZLEAF] =
@@ -10120,6 +10321,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD, ABILITY_PICKPOCKET},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .categoryName = _("Wily"),
+        .height = 10,
+        .weight = 280,
+        .description = gNuzleafPokedexText,
+        .pokemonScale = 299,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SHIFTRY] =
@@ -10145,6 +10354,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_EARLY_BIRD, ABILITY_PICKPOCKET},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .categoryName = _("Wicked"),
+        .height = 13,
+        .weight = 596,
+        .description = gShiftryPokedexText,
+        .pokemonScale = 290,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_TAILLOW] =
@@ -10169,6 +10386,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_GUTS, ABILITY_NONE, ABILITY_SCRAPPY},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Tiny Swallow"),
+        .height = 3,
+        .weight = 23,
+        .description = gTaillowPokedexText,
+        .pokemonScale = 465,
+        .pokemonOffset = 21,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SWELLOW] =
@@ -10197,6 +10422,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_GUTS, ABILITY_NONE, ABILITY_SCRAPPY},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Swallow"),
+        .height = 7,
+        .weight = 198,
+        .description = gSwellowPokedexText,
+        .pokemonScale = 428,
+        .pokemonOffset = 15,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_WINGULL] =
@@ -10222,6 +10455,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_HYDRATION, ABILITY_RAIN_DISH},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .categoryName = _("Seagull"),
+        .height = 6,
+        .weight = 95,
+        .description = gWingullPokedexText,
+        .pokemonScale = 295,
+        .pokemonOffset = -2,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_PELIPPER] =
@@ -10251,6 +10492,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_DRIZZLE, ABILITY_RAIN_DISH},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .categoryName = _("Water Bird"),
+        .height = 12,
+        .weight = 280,
+        .description = gPelipperPokedexText,
+        .pokemonScale = 288,
+        .pokemonOffset = 1,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
 #if P_UPDATED_TYPES >= GEN_6
@@ -10287,6 +10536,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_TELEPATHY},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .categoryName = _("Feeling"),
+        .height = 4,
+        .weight = 66,
+        .description = gRaltsPokedexText,
+        .pokemonScale = 457,
+        .pokemonOffset = -3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_KIRLIA] =
@@ -10311,23 +10568,37 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_TELEPATHY},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .categoryName = _("Emotion"),
+        .height = 8,
+        .weight = 202,
+        .description = gKirliaPokedexText,
+        .pokemonScale = 354,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define GARDEVOIR_MISC_STATS(exp,ability1,ability2,ability3)\
-        .type1 = TYPE_PSYCHIC,                              \
-        .type2 = RALTS_FAMILY_TYPE_2,                       \
-        .catchRate = 45,                                    \
-        .expYield = exp,                                    \
-        .evYield_SpAttack  = 3,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = 35,                                   \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroup1 = RALTS_FAMILY_EGG_GROUP_1,              \
-        .eggGroup2 = EGG_GROUP_AMORPHOUS,                   \
-        .abilities = {ability1, ability2, ability3},        \
-        .bodyColor = BODY_COLOR_WHITE,                      \
-        .noFlip = FALSE
+#define GARDEVOIR_MISC_STATS                    \
+        .type1 = TYPE_PSYCHIC,                  \
+        .type2 = RALTS_FAMILY_TYPE_2,           \
+        .catchRate = 45,                        \
+        .evYield_SpAttack  = 3,                 \
+        .genderRatio = PERCENT_FEMALE(50),      \
+        .eggCycles = 20,                        \
+        .friendship = 35,                       \
+        .growthRate = GROWTH_SLOW,              \
+        .eggGroup1 = RALTS_FAMILY_EGG_GROUP_1,  \
+        .eggGroup2 = EGG_GROUP_AMORPHOUS,       \
+        .bodyColor = BODY_COLOR_WHITE,          \
+        .noFlip = FALSE,                        \
+        .categoryName = _("Embrace"),           \
+        .height = 16,                           \
+        .weight = 484,                          \
+        .description = gGardevoirPokedexText,   \
+        .pokemonScale = 256,                    \
+        .pokemonOffset = 0,                     \
+        .trainerScale = 256,                    \
+        .trainerOffset = 0
 
     [SPECIES_GARDEVOIR] =
     {
@@ -10337,7 +10608,9 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 80,
         .baseSpAttack  = 125,
         .baseSpDefense = 115,
-        GARDEVOIR_MISC_STATS(233, ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_TELEPATHY),
+        .expYield = 233,
+        .abilities = {ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_TELEPATHY},
+        GARDEVOIR_MISC_STATS,
     },
     [SPECIES_GARDEVOIR_MEGA] =
     {
@@ -10347,8 +10620,10 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 100,
         .baseSpAttack  = 165,
         .baseSpDefense = 135,
+        .expYield = 278,
+        .abilities = {ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        GARDEVOIR_MISC_STATS(278, ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE),
+        GARDEVOIR_MISC_STATS,
     },
 
     [SPECIES_SURSKIT] =
@@ -10374,6 +10649,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_NONE, ABILITY_RAIN_DISH},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Pond Skater"),
+        .height = 5,
+        .weight = 17,
+        .description = gSurskitPokedexText,
+        .pokemonScale = 375,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_MASQUERAIN] =
@@ -10405,6 +10688,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_UNNERVE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Eyeball"),
+        .height = 8,
+        .weight = 36,
+        .description = gMasquerainPokedexText,
+        .pokemonScale = 378,
+        .pokemonOffset = 8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SHROOMISH] =
@@ -10431,6 +10722,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_EFFECT_SPORE, ABILITY_POISON_HEAL, ABILITY_QUICK_FEET},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .categoryName = _("Mushroom"),
+        .height = 4,
+        .weight = 45,
+        .description = gShroomishPokedexText,
+        .pokemonScale = 513,
+        .pokemonOffset = 22,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_BRELOOM] =
@@ -10457,6 +10756,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_EFFECT_SPORE, ABILITY_POISON_HEAL, ABILITY_TECHNICIAN},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Mushroom"),
+        .height = 12,
+        .weight = 392,
+        .description = gBreloomPokedexText,
+        .pokemonScale = 324,
+        .pokemonOffset = 6,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SLAKOTH] =
@@ -10481,6 +10788,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TRUANT, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .categoryName = _("Slacker"),
+        .height = 8,
+        .weight = 240,
+        .description = gSlakothPokedexText,
+        .pokemonScale = 291,
+        .pokemonOffset = 16,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_VIGOROTH] =
@@ -10505,6 +10820,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_VITAL_SPIRIT, ABILITY_NONE},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .categoryName = _("Wild Monkey"),
+        .height = 14,
+        .weight = 465,
+        .description = gVigorothPokedexText,
+        .pokemonScale = 301,
+        .pokemonOffset = 2,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SLAKING] =
@@ -10529,6 +10852,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TRUANT, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .categoryName = _("Lazy"),
+        .height = 20,
+        .weight = 1305,
+        .description = gSlakingPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 2,
+        .trainerScale = 300,
+        .trainerOffset = 1,
     },
 
     [SPECIES_NINCADA] =
@@ -10554,6 +10885,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_RUN_AWAY},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .categoryName = _("Trainee"),
+        .height = 5,
+        .weight = 55,
+        .description = gNincadaPokedexText,
+        .pokemonScale = 405,
+        .pokemonOffset = 21,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_NINJASK] =
@@ -10578,6 +10917,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SPEED_BOOST, ABILITY_NONE, ABILITY_INFILTRATOR},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .categoryName = _("Ninja"),
+        .height = 8,
+        .weight = 120,
+        .description = gNinjaskPokedexText,
+        .pokemonScale = 383,
+        .pokemonOffset = -9,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SHEDINJA] =
@@ -10602,6 +10949,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_WONDER_GUARD, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .categoryName = _("Shed"),
+        .height = 8,
+        .weight = 12,
+        .description = gShedinjaPokedexText,
+        .pokemonScale = 372,
+        .pokemonOffset = -8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_WHISMUR] =
@@ -10626,6 +10981,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SOUNDPROOF, ABILITY_NONE, ABILITY_RATTLED},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .categoryName = _("Whisper"),
+        .height = 6,
+        .weight = 163,
+        .description = gWhismurPokedexText,
+        .pokemonScale = 373,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_LOUDRED] =
@@ -10650,6 +11013,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SOUNDPROOF, ABILITY_NONE, ABILITY_SCRAPPY},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Big Voice"),
+        .height = 10,
+        .weight = 405,
+        .description = gLoudredPokedexText,
+        .pokemonScale = 356,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_EXPLOUD] =
@@ -10678,6 +11049,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SOUNDPROOF, ABILITY_NONE, ABILITY_SCRAPPY},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Loud Noise"),
+        .height = 15,
+        .weight = 840,
+        .description = gExploudPokedexText,
+        .pokemonScale = 284,
+        .pokemonOffset = 1,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_MAKUHITA] =
@@ -10703,6 +11082,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_THICK_FAT, ABILITY_GUTS, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .categoryName = _("Guts"),
+        .height = 10,
+        .weight = 864,
+        .description = gMakuhitaPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_HARIYAMA] =
@@ -10728,6 +11115,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_THICK_FAT, ABILITY_GUTS, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .categoryName = _("Arm Thrust"),
+        .height = 23,
+        .weight = 2538,
+        .description = gHariyamaPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 343,
+        .trainerOffset = 7,
     },
 
     [SPECIES_AZURILL] =
@@ -10756,6 +11151,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_THICK_FAT, ABILITY_HUGE_POWER, ABILITY_SAP_SIPPER},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Polka Dot"),
+        .height = 2,
+        .weight = 20,
+        .description = gAzurillPokedexText,
+        .pokemonScale = 603,
+        .pokemonOffset = 23,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_NOSEPASS] =
@@ -10781,6 +11184,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STURDY, ABILITY_MAGNET_PULL, ABILITY_SAND_FORCE},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .categoryName = _("Compass"),
+        .height = 10,
+        .weight = 970,
+        .description = gNosepassPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 9,
+        .trainerScale = 289,
+        .trainerOffset = 3,
     },
 
     [SPECIES_SKITTY] =
@@ -10805,6 +11216,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CUTE_CHARM, ABILITY_NORMALIZE, ABILITY_WONDER_SKIN},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .categoryName = _("Kitten"),
+        .height = 6,
+        .weight = 110,
+        .description = gSkittyPokedexText,
+        .pokemonScale = 492,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_DELCATTY] =
@@ -10834,25 +11253,37 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CUTE_CHARM, ABILITY_NORMALIZE, ABILITY_WONDER_SKIN},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .categoryName = _("Prim"),
+        .height = 11,
+        .weight = 326,
+        .description = gDelcattyPokedexText,
+        .pokemonScale = 322,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define SABLEYE_MISC_STATS(exp,ability1,ability2,ability3)  \
-        .type1 = TYPE_DARK,                                 \
-        .type2 = TYPE_GHOST,                                \
-        .catchRate = 45,                                    \
-        .expYield = exp,                                    \
-        .evYield_Attack    = 1,                             \
-        .evYield_Defense   = 1,                             \
-        .itemRare = ITEM_WIDE_LENS,                         \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 25,                                    \
-        .friendship = 35,                                   \
-        .growthRate = GROWTH_MEDIUM_SLOW,                   \
-        .eggGroup1 = EGG_GROUP_HUMAN_LIKE,                  \
-        .eggGroup2 = EGG_GROUP_HUMAN_LIKE,                  \
-        .abilities = {ability1, ability2, ability3},        \
-        .bodyColor = BODY_COLOR_PURPLE,                     \
-        .noFlip = FALSE
+#define SABLEYE_MISC_STATS                  \
+        .type1 = TYPE_DARK,                 \
+        .type2 = TYPE_GHOST,                \
+        .catchRate = 45,                    \
+        .evYield_Attack    = 1,             \
+        .evYield_Defense   = 1,             \
+        .itemRare = ITEM_WIDE_LENS,         \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 25,                    \
+        .friendship = 35,                   \
+        .growthRate = GROWTH_MEDIUM_SLOW,   \
+        .eggGroup1 = EGG_GROUP_HUMAN_LIKE,  \
+        .eggGroup2 = EGG_GROUP_HUMAN_LIKE,  \
+        .bodyColor = BODY_COLOR_PURPLE,     \
+        .noFlip = FALSE,                    \
+        .categoryName = _("Darkness"),      \
+        .height = 5,                        \
+        .pokemonScale = 451,                \
+        .pokemonOffset = 17,                \
+        .trainerScale = 256,                \
+        .trainerOffset = 0
 
     [SPECIES_SABLEYE] =
     {
@@ -10862,7 +11293,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 50,
         .baseSpAttack  = 65,
         .baseSpDefense = 65,
-        SABLEYE_MISC_STATS(133, ABILITY_KEEN_EYE, ABILITY_STALL, ABILITY_PRANKSTER),
+        .expYield = 133,
+        .abilities = {ABILITY_KEEN_EYE, ABILITY_STALL, ABILITY_PRANKSTER},
+        .weight = 110,
+        .description = gSableyePokedexText,
+        SABLEYE_MISC_STATS,
     },
     [SPECIES_SABLEYE_MEGA] =
     {
@@ -10872,8 +11307,12 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 20,
         .baseSpAttack  = 85,
         .baseSpDefense = 115,
+        .expYield = 168,
+        .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        SABLEYE_MISC_STATS(168, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE),
+        .weight = 1610,
+        .description = gSableyeMegaPokedexText,
+        SABLEYE_MISC_STATS,
     },
 
 #if P_UPDATED_TYPES >= GEN_6
@@ -10882,11 +11321,10 @@ const struct BaseStats gBaseStats[] =
     #define MAWILE_TYPE_2 TYPE_STEEL
 #endif
 
-#define MAWILE_MISC_STATS(exp,ability1,ability2,ability3)   \
+#define MAWILE_MISC_STATS   \
         .type1 = TYPE_STEEL,                                \
         .type2 = MAWILE_TYPE_2,                             \
         .catchRate = 45,                                    \
-        .expYield = exp,                                    \
         .evYield_Attack    = 1,                             \
         .evYield_Defense   = 1,                             \
         .itemRare = ITEM_IRON_BALL,                         \
@@ -10896,9 +11334,9 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_FAST,                          \
         .eggGroup1 = EGG_GROUP_FIELD,                       \
         .eggGroup2 = EGG_GROUP_FAIRY,                       \
-        .abilities = {ability1, ability2, ability3},        \
         .bodyColor = BODY_COLOR_BLACK,                      \
-        .noFlip = FALSE
+        .noFlip = FALSE,                                    \
+        .categoryName = _("Deceiver")
 
     [SPECIES_MAWILE] =
     {
@@ -10908,7 +11346,16 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 50,
         .baseSpAttack  = 55,
         .baseSpDefense = 55,
-        MAWILE_MISC_STATS(133, ABILITY_HYPER_CUTTER, ABILITY_INTIMIDATE, ABILITY_SHEER_FORCE),
+        .expYield = 133,
+        .abilities = {ABILITY_HYPER_CUTTER, ABILITY_INTIMIDATE, ABILITY_SHEER_FORCE},
+        .height = 6,
+        .weight = 115,
+        .description = gMawilePokedexText,
+        .pokemonScale = 466,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        MAWILE_MISC_STATS,
     },
     [SPECIES_MAWILE_MEGA] =
     {
@@ -10918,8 +11365,17 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 50,
         .baseSpAttack  = 55,
         .baseSpDefense = 95,
+        .expYield = 168,
+        .abilities = {ABILITY_HUGE_POWER, ABILITY_HUGE_POWER, ABILITY_HUGE_POWER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        MAWILE_MISC_STATS(168, ABILITY_HUGE_POWER, ABILITY_HUGE_POWER, ABILITY_HUGE_POWER),
+        .height = 10,
+        .weight = 235,
+        .description = gMawileMegaPokedexText,
+        .pokemonScale = 335,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        MAWILE_MISC_STATS,
     },
 
     [SPECIES_ARON] =
@@ -10945,6 +11401,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_HEAVY_METAL},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .categoryName = _("Iron Armor"),
+        .height = 4,
+        .weight = 600,
+        .description = gAronPokedexText,
+        .pokemonScale = 419,
+        .pokemonOffset = 23,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_LAIRON] =
@@ -10970,24 +11434,31 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_HEAVY_METAL},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .categoryName = _("Iron Armor"),
+        .height = 9,
+        .weight = 1200,
+        .description = gLaironPokedexText,
+        .pokemonScale = 275,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define AGGRON_MISC_STATS(typeB,exp,ability1,ability2,ability3) \
-        .type1 = TYPE_STEEL,                                    \
-        .type2 = typeB,                                         \
-        .catchRate = 45,                                        \
-        .expYield = exp,                                        \
-        .evYield_Defense   = 3,                                 \
-        .itemRare = ITEM_HARD_STONE,                            \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 35,                                        \
-        .friendship = 35,                                       \
-        .growthRate = GROWTH_SLOW,                              \
-        .eggGroup1 = EGG_GROUP_MONSTER,                         \
-        .eggGroup2 = EGG_GROUP_MONSTER,                         \
-        .abilities = {ability1, ability2, ability3},            \
-        .bodyColor = BODY_COLOR_GRAY,                           \
-        .noFlip = FALSE
+#define AGGRON_MISC_STATS                   \
+        .type1 = TYPE_STEEL,                \
+        .catchRate = 45,                    \
+        .evYield_Defense   = 3,             \
+        .itemRare = ITEM_HARD_STONE,        \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 35,                    \
+        .friendship = 35,                   \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_MONSTER,     \
+        .eggGroup2 = EGG_GROUP_MONSTER,     \
+        .bodyColor = BODY_COLOR_GRAY,       \
+        .noFlip = FALSE,                    \
+        .categoryName = _("Iron Armor"),    \
+        .description = gAggronPokedexText
 
     [SPECIES_AGGRON] =
     {
@@ -10997,7 +11468,16 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 50,
         .baseSpAttack  = 60,
         .baseSpDefense = 60,
-        AGGRON_MISC_STATS(TYPE_ROCK, 239, ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_HEAVY_METAL),
+        .type2 = TYPE_ROCK,
+        .expYield = 239,
+        .abilities = {ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_HEAVY_METAL},
+        .height = 21,
+        .weight = 3600,
+        .pokemonScale = 256,
+        .pokemonOffset = -1,
+        .trainerScale = 350,
+        .trainerOffset = 6,
+        AGGRON_MISC_STATS,
     },
     [SPECIES_AGGRON_MEGA] =
     {
@@ -11007,8 +11487,17 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 50,
         .baseSpAttack  = 60,
         .baseSpDefense = 80,
+        .type2 = TYPE_STEEL,
+        .expYield = 284,
+        .abilities = {ABILITY_FILTER, ABILITY_FILTER, ABILITY_FILTER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        AGGRON_MISC_STATS(TYPE_STEEL, 284, ABILITY_FILTER, ABILITY_FILTER, ABILITY_FILTER),
+        .height = 22,
+        .weight = 3950,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 387,
+        .trainerOffset = 8,
+        AGGRON_MISC_STATS,
     },
 
     [SPECIES_MEDITITE] =
@@ -11033,23 +11522,37 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PURE_POWER, ABILITY_NONE, ABILITY_TELEPATHY},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Meditate"),
+        .height = 6,
+        .weight = 112,
+        .description = gMedititePokedexText,
+        .pokemonScale = 465,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define MEDICHAM_MISC_STATS(exp, ability3)                          \
-        .type1 = TYPE_FIGHTING,                                     \
-        .type2 = TYPE_PSYCHIC,                                      \
-        .catchRate = 90,                                            \
-        .expYield = exp,                                            \
-        .evYield_Speed     = 2,                                     \
-        .genderRatio = PERCENT_FEMALE(50),                          \
-        .eggCycles = 20,                                            \
-        .friendship = 70,                                           \
-        .growthRate = GROWTH_MEDIUM_FAST,                           \
-        .eggGroup1 = EGG_GROUP_HUMAN_LIKE,                          \
-        .eggGroup2 = EGG_GROUP_HUMAN_LIKE,                          \
-        .abilities = {ABILITY_PURE_POWER, ABILITY_NONE, ability3},  \
-        .bodyColor = BODY_COLOR_RED,                                \
-        .noFlip = FALSE
+#define MEDICHAM_MISC_STATS                 \
+        .type1 = TYPE_FIGHTING,             \
+        .type2 = TYPE_PSYCHIC,              \
+        .catchRate = 90,                    \
+        .evYield_Speed     = 2,             \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 20,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_MEDIUM_FAST,   \
+        .eggGroup1 = EGG_GROUP_HUMAN_LIKE,  \
+        .eggGroup2 = EGG_GROUP_HUMAN_LIKE,  \
+        .bodyColor = BODY_COLOR_RED,        \
+        .noFlip = FALSE,                    \
+        .categoryName = _("Meditate"),      \
+        .height = 13,                       \
+        .weight = 315,                      \
+        .description = gMedichamPokedexText,\
+        .pokemonScale = 298,                \
+        .pokemonOffset = 5,                 \
+        .trainerScale = 256,                \
+        .trainerOffset = 0
 
     [SPECIES_MEDICHAM] =
     {
@@ -11059,7 +11562,9 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 80,
         .baseSpAttack  = 60,
         .baseSpDefense = 75,
-        MEDICHAM_MISC_STATS(144, ABILITY_TELEPATHY),
+        .expYield = 144,
+        .abilities = {ABILITY_PURE_POWER, ABILITY_NONE, ABILITY_TELEPATHY},
+        MEDICHAM_MISC_STATS,
     },
     [SPECIES_MEDICHAM_MEGA] =
     {
@@ -11069,8 +11574,10 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 100,
         .baseSpAttack  = 80,
         .baseSpDefense = 85,
+        .expYield = 179,
+        .abilities = {ABILITY_PURE_POWER, ABILITY_PURE_POWER, ABILITY_PURE_POWER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        MEDICHAM_MISC_STATS(179, ABILITY_PURE_POWER),
+        MEDICHAM_MISC_STATS,
     },
 
     [SPECIES_ELECTRIKE] =
@@ -11095,23 +11602,30 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STATIC, ABILITY_LIGHTNING_ROD, ABILITY_MINUS},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Lightning"),
+        .height = 6,
+        .weight = 152,
+        .description = gElectrikePokedexText,
+        .pokemonScale = 290,
+        .pokemonOffset = 15,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define MANECTRIC_MISC_STATS(exp,ability1,ability2,ability3)\
-        .type1 = TYPE_ELECTRIC,                             \
-        .type2 = TYPE_ELECTRIC,                             \
-        .catchRate = 45,                                    \
-        .expYield = exp,                                    \
-        .evYield_Speed     = 2,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = 70,                                   \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroup1 = EGG_GROUP_FIELD,                       \
-        .eggGroup2 = EGG_GROUP_FIELD,                       \
-        .abilities = {ability1, ability2, ability3},        \
-        .bodyColor = BODY_COLOR_YELLOW,                     \
-        .noFlip = FALSE
+#define MANECTRIC_MISC_STATS                \
+        .type1 = TYPE_ELECTRIC,             \
+        .type2 = TYPE_ELECTRIC,             \
+        .catchRate = 45,                    \
+        .evYield_Speed     = 2,             \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 20,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_FIELD,       \
+        .eggGroup2 = EGG_GROUP_FIELD,       \
+        .bodyColor = BODY_COLOR_YELLOW,     \
+        .noFlip = FALSE,                    \
+        .categoryName = _("Discharge")
 
     [SPECIES_MANECTRIC] =
     {
@@ -11121,7 +11635,9 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 105,
         .baseSpAttack  = 105,
         .baseSpDefense = 60,
-        MANECTRIC_MISC_STATS(166, ABILITY_STATIC, ABILITY_LIGHTNING_ROD, ABILITY_MINUS),
+        .expYield = 166,
+        .abilities = {ABILITY_STATIC, ABILITY_LIGHTNING_ROD, ABILITY_MINUS},
+        MANECTRIC_MISC_STATS,
     },
     [SPECIES_MANECTRIC_MEGA] =
     {
@@ -11132,7 +11648,16 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 135,
         .baseSpDefense = 80,
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        MANECTRIC_MISC_STATS(201, ABILITY_INTIMIDATE, ABILITY_INTIMIDATE, ABILITY_INTIMIDATE),
+        .expYield = 201,
+        .abilities = {ABILITY_INTIMIDATE, ABILITY_INTIMIDATE, ABILITY_INTIMIDATE},
+        .height = 18,
+        .weight = 440,
+        .description = gManectricMegaPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 268,
+        .trainerOffset = 0,
+        MANECTRIC_MISC_STATS,
     },
 
     [SPECIES_PLUSLE] =
@@ -11158,6 +11683,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PLUS, ABILITY_NONE, ABILITY_LIGHTNING_ROD},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .categoryName = _("Cheering"),
+        .height = 4,
+        .weight = 42,
+        .description = gPluslePokedexText,
+        .pokemonScale = 515,
+        .pokemonOffset = -9,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_MINUN] =
@@ -11183,6 +11716,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_MINUS, ABILITY_NONE, ABILITY_VOLT_ABSORB},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .categoryName = _("Cheering"),
+        .height = 4,
+        .weight = 42,
+        .description = gMinunPokedexText,
+        .pokemonScale = 512,
+        .pokemonOffset = -7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_VOLBEAT] =
@@ -11213,6 +11754,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_ILLUMINATE, ABILITY_SWARM, ABILITY_PRANKSTER},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .categoryName = _("Firefly"),
+        .height = 7,
+        .weight = 177,
+        .description = gVolbeatPokedexText,
+        .pokemonScale = 442,
+        .pokemonOffset = 16,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_ILLUMISE] =
@@ -11243,6 +11792,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OBLIVIOUS, ABILITY_TINTED_LENS, ABILITY_PRANKSTER},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .categoryName = _("Firefly"),
+        .height = 6,
+        .weight = 177,
+        .description = gIllumisePokedexText,
+        .pokemonScale = 572,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_ROSELIA] =
@@ -11268,6 +11825,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT, ABILITY_LEAF_GUARD},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
+        .categoryName = _("Thorn"),
+        .height = 3,
+        .weight = 20,
+        .description = gRoseliaPokedexText,
+        .pokemonScale = 677,
+        .pokemonOffset = 20,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_GULPIN] =
@@ -11294,6 +11859,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LIQUID_OOZE, ABILITY_STICKY_HOLD, ABILITY_GLUTTONY},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Stomach"),
+        .height = 4,
+        .weight = 103,
+        .description = gGulpinPokedexText,
+        .pokemonScale = 593,
+        .pokemonOffset = 23,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SWALOT] =
@@ -11320,6 +11893,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LIQUID_OOZE, ABILITY_STICKY_HOLD, ABILITY_GLUTTONY},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .categoryName = _("Poison Bag"),
+        .height = 17,
+        .weight = 800,
+        .description = gSwalotPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 6,
+        .trainerScale = 345,
+        .trainerOffset = 3,
     },
 
     [SPECIES_CARVANHA] =
@@ -11345,24 +11926,31 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_ROUGH_SKIN, ABILITY_NONE, ABILITY_SPEED_BOOST},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .categoryName = _("Savage"),
+        .height = 8,
+        .weight = 208,
+        .description = gCarvanhaPokedexText,
+        .pokemonScale = 362,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define SHARPEDO_MISC_STATS(exp,ability1,ability3)      \
-        .type1 = TYPE_WATER,                            \
-        .type2 = TYPE_DARK,                             \
-        .catchRate = 60,                                \
-        .expYield = exp,                                \
-        .evYield_Attack    = 2,                         \
-        .itemRare = ITEM_DEEP_SEA_TOOTH,                \
-        .genderRatio = PERCENT_FEMALE(50),              \
-        .eggCycles = 20,                                \
-        .friendship = 35,                               \
-        .growthRate = GROWTH_SLOW,                      \
-        .eggGroup1 = EGG_GROUP_WATER_2,                 \
-        .eggGroup2 = EGG_GROUP_WATER_2,                 \
-        .abilities = {ability1, ABILITY_NONE, ability3},\
-        .bodyColor = BODY_COLOR_BLUE,                   \
-        .noFlip = FALSE
+#define SHARPEDO_MISC_STATS                 \
+        .type1 = TYPE_WATER,                \
+        .type2 = TYPE_DARK,                 \
+        .catchRate = 60,                    \
+        .evYield_Attack    = 2,             \
+        .itemRare = ITEM_DEEP_SEA_TOOTH,    \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 20,                    \
+        .friendship = 35,                   \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_WATER_2,     \
+        .eggGroup2 = EGG_GROUP_WATER_2,     \
+        .bodyColor = BODY_COLOR_BLUE,       \
+        .noFlip = FALSE,                    \
+        .categoryName = _("Brutal")
 
     [SPECIES_SHARPEDO] =
     {
@@ -11372,7 +11960,16 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 95,
         .baseSpAttack  = 95,
         .baseSpDefense = 40,
-        SHARPEDO_MISC_STATS(161, ABILITY_ROUGH_SKIN, ABILITY_SPEED_BOOST),
+        .expYield = 161,
+        .abilities = {ABILITY_ROUGH_SKIN, ABILITY_NONE, ABILITY_SPEED_BOOST},
+        .height = 18,
+        .weight = 888,
+        .description = gSharpedoPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 317,
+        .trainerOffset = 3,
+        SHARPEDO_MISC_STATS,
     },
     [SPECIES_SHARPEDO_MEGA] =
     {
@@ -11382,8 +11979,17 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 105,
         .baseSpAttack  = 110,
         .baseSpDefense = 65,
+        .expYield = 196,
+        .abilities = {ABILITY_STRONG_JAW, ABILITY_STRONG_JAW, ABILITY_STRONG_JAW},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        SHARPEDO_MISC_STATS(196, ABILITY_STRONG_JAW, ABILITY_STRONG_JAW),
+        .height = 25,
+        .weight = 1303,
+        .description = gSharpedoMegaPokedexText,
+        .pokemonScale = 257,
+        .pokemonOffset = 10,
+        .trainerScale = 423,
+        .trainerOffset = 8,
+        SHARPEDO_MISC_STATS,
     },
 
     [SPECIES_WAILMER] =
@@ -11408,6 +12014,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_WATER_VEIL, ABILITY_OBLIVIOUS, ABILITY_PRESSURE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Ball Whale"),
+        .height = 20,
+        .weight = 1300,
+        .description = gWailmerPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 2,
+        .trainerScale = 493,
+        .trainerOffset = 0,
     },
 
     [SPECIES_WAILORD] =
@@ -11432,6 +12046,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_WATER_VEIL, ABILITY_OBLIVIOUS, ABILITY_PRESSURE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Float Whale"),
+        .height = 145,
+        .weight = 3980,
+        .description = gWailordPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 1352,
+        .trainerOffset = 18,
     },
 
     [SPECIES_NUMEL] =
@@ -11456,24 +12078,32 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OBLIVIOUS, ABILITY_SIMPLE, ABILITY_OWN_TEMPO},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .categoryName = _("Numb"),
+        .height = 7,
+        .weight = 240,
+        .description = gNumelPokedexText,
+        .pokemonScale = 342,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define CAMERUPT_MISC_STATS(exp,ability1,ability2,ability3) \
-        .type1 = TYPE_FIRE,                                 \
-        .type2 = TYPE_GROUND,                               \
-        .catchRate = 150,                                   \
-        .expYield = exp,                                    \
-        .evYield_Attack    = 1,                             \
-        .evYield_SpAttack  = 1,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = 70,                                   \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroup1 = EGG_GROUP_FIELD,                       \
-        .eggGroup2 = EGG_GROUP_FIELD,                       \
-        .abilities = {ability1, ability2, ability3},        \
-        .bodyColor = BODY_COLOR_RED,                        \
-        .noFlip = FALSE
+#define CAMERUPT_MISC_STATS                 \
+        .type1 = TYPE_FIRE,                 \
+        .type2 = TYPE_GROUND,               \
+        .catchRate = 150,                   \
+        .evYield_Attack    = 1,             \
+        .evYield_SpAttack  = 1,             \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 20,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_MEDIUM_FAST,   \
+        .eggGroup1 = EGG_GROUP_FIELD,       \
+        .eggGroup2 = EGG_GROUP_FIELD,       \
+        .bodyColor = BODY_COLOR_RED,        \
+        .noFlip = FALSE,                    \
+        .categoryName = _("Eruption"),      \
+        .description = gCameruptPokedexText
 
     [SPECIES_CAMERUPT] =
     {
@@ -11483,7 +12113,9 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 40,
         .baseSpAttack  = 105,
         .baseSpDefense = 75,
-        CAMERUPT_MISC_STATS(161, ABILITY_MAGMA_ARMOR, ABILITY_SOLID_ROCK, ABILITY_ANGER_POINT),
+        .expYield = 161,
+        .abilities = {ABILITY_MAGMA_ARMOR, ABILITY_SOLID_ROCK, ABILITY_ANGER_POINT},
+        CAMERUPT_MISC_STATS,
     },
     [SPECIES_CAMERUPT_MEGA] =
     {
@@ -11493,8 +12125,16 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 20,
         .baseSpAttack  = 145,
         .baseSpDefense = 105,
+        .expYield = 196,
+        .abilities = {ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        CAMERUPT_MISC_STATS(196, ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE),
+        .height = 25,
+        .weight = 3205,
+        .pokemonScale = 257,
+        .pokemonOffset = 10,
+        .trainerScale = 423,
+        .trainerOffset = 8,
+        CAMERUPT_MISC_STATS,
     },
 
     [SPECIES_TORKOAL] =
@@ -11520,6 +12160,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_WHITE_SMOKE, ABILITY_DROUGHT, ABILITY_SHELL_ARMOR},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .categoryName = _("Coal"),
+        .height = 5,
+        .weight = 804,
+        .description = gTorkoalPokedexText,
+        .pokemonScale = 390,
+        .pokemonOffset = 9,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SPOINK] =
@@ -11544,6 +12192,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_THICK_FAT, ABILITY_OWN_TEMPO, ABILITY_GLUTTONY},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .categoryName = _("Bounce"),
+        .height = 7,
+        .weight = 306,
+        .description = gSpoinkPokedexText,
+        .pokemonScale = 423,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_GRUMPIG] =
@@ -11568,6 +12224,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_THICK_FAT, ABILITY_OWN_TEMPO, ABILITY_GLUTTONY},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .categoryName = _("Manipulate"),
+        .height = 9,
+        .weight = 715,
+        .description = gGrumpigPokedexText,
+        .pokemonScale = 358,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SPINDA] =
@@ -11592,6 +12256,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_TANGLED_FEET, ABILITY_CONTRARY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
+        .categoryName = _("Spot Panda"),
+        .height = 11,
+        .weight = 50,
+        .description = gSpindaPokedexText,
+        .pokemonScale = 321,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_TRAPINCH] =
@@ -11621,6 +12293,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_HYPER_CUTTER, ABILITY_ARENA_TRAP, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .categoryName = _("Ant Pit"),
+        .height = 7,
+        .weight = 150,
+        .description = gTrapinchPokedexText,
+        .pokemonScale = 298,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_VIBRAVA] =
@@ -11650,6 +12330,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Vibration"),
+        .height = 11,
+        .weight = 153,
+        .description = gVibravaPokedexText,
+        .pokemonScale = 370,
+        .pokemonOffset = 11,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_FLYGON] =
@@ -11679,6 +12367,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Mystic"),
+        .height = 20,
+        .weight = 820,
+        .description = gFlygonPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 268,
+        .trainerOffset = 1,
     },
 
     [SPECIES_CACNEA] =
@@ -11704,6 +12400,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_WATER_ABSORB},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Cactus"),
+        .height = 4,
+        .weight = 513,
+        .description = gCacneaPokedexText,
+        .pokemonScale = 455,
+        .pokemonOffset = 20,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_CACTURNE] =
@@ -11730,6 +12434,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_WATER_ABSORB},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Scarecrow"),
+        .height = 13,
+        .weight = 774,
+        .description = gCacturnePokedexText,
+        .pokemonScale = 327,
+        .pokemonOffset = 5,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SWABLU] =
@@ -11754,23 +12466,30 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_NATURAL_CURE, ABILITY_NONE, ABILITY_CLOUD_NINE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Cotton Bird"),
+        .height = 4,
+        .weight = 12,
+        .description = gSwabluPokedexText,
+        .pokemonScale = 422,
+        .pokemonOffset = -8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define ALTARIA_MISC_STATS(typeB,exp,ability1,ability3) \
-        .type1 = TYPE_DRAGON,                           \
-        .type2 = typeB,                                 \
-        .catchRate = 45,                                \
-        .expYield = exp,                                \
-        .evYield_SpDefense = 2,                         \
-        .genderRatio = PERCENT_FEMALE(50),              \
-        .eggCycles = 20,                                \
-        .friendship = 70,                               \
-        .growthRate = GROWTH_ERRATIC,                   \
-        .eggGroup1 = EGG_GROUP_FLYING,                  \
-        .eggGroup2 = EGG_GROUP_DRAGON,                  \
-        .abilities = {ability1, ABILITY_NONE, ability3},\
-        .bodyColor = BODY_COLOR_BLUE,                   \
-        .noFlip = FALSE
+#define ALTARIA_MISC_STATS                  \
+        .type1 = TYPE_DRAGON,               \
+        .catchRate = 45,                    \
+        .evYield_SpDefense = 2,             \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 20,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_ERRATIC,       \
+        .eggGroup1 = EGG_GROUP_FLYING,      \
+        .eggGroup2 = EGG_GROUP_DRAGON,      \
+        .bodyColor = BODY_COLOR_BLUE,       \
+        .noFlip = FALSE,                    \
+        .categoryName = _("Humming"),       \
+        .description = gAltariaPokedexText
 
     [SPECIES_ALTARIA] =
     {
@@ -11780,7 +12499,16 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 80,
         .baseSpAttack  = 70,
         .baseSpDefense = 105,
-        ALTARIA_MISC_STATS(TYPE_FLYING, 172, ABILITY_NATURAL_CURE, ABILITY_CLOUD_NINE),
+        .type2 = TYPE_FLYING,
+        .expYield = 172,
+        .abilities = {ABILITY_NATURAL_CURE, ABILITY_NONE, ABILITY_CLOUD_NINE},
+        .height = 11,
+        .weight = 206,
+        .pokemonScale = 327,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        ALTARIA_MISC_STATS,
     },
     [SPECIES_ALTARIA_MEGA] =
     {
@@ -11790,8 +12518,17 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 80,
         .baseSpAttack  = 110,
         .baseSpDefense = 105,
+        .type2 = TYPE_FAIRY,
+        .expYield = 207,
+        .abilities = {ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        ALTARIA_MISC_STATS(TYPE_FAIRY, 207, ABILITY_PIXILATE, ABILITY_PIXILATE),
+        .height = 15,
+        .weight = 206,
+        .pokemonScale = 269,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        ALTARIA_MISC_STATS,
     },
 
     [SPECIES_ZANGOOSE] =
@@ -11817,6 +12554,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_IMMUNITY, ABILITY_NONE, ABILITY_TOXIC_BOOST},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
+        .categoryName = _("Cat Ferret"),
+        .height = 13,
+        .weight = 403,
+        .description = gZangoosePokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SEVIPER] =
@@ -11843,6 +12588,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_INFILTRATOR},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = TRUE,
+        .categoryName = _("Fang Snake"),
+        .height = 27,
+        .weight = 525,
+        .description = gSeviperPokedexText,
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_LUNATONE] =
@@ -11873,6 +12626,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .categoryName = _("Meteorite"),
+        .height = 10,
+        .weight = 1680,
+        .description = gLunatonePokedexText,
+        .pokemonScale = 300,
+        .pokemonOffset = 3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SOLROCK] =
@@ -11903,6 +12664,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .categoryName = _("Meteorite"),
+        .height = 12,
+        .weight = 1540,
+        .description = gSolrockPokedexText,
+        .pokemonScale = 328,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_BARBOACH] =
@@ -11927,6 +12696,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OBLIVIOUS, ABILITY_ANTICIPATION, ABILITY_HYDRATION},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .categoryName = _("Whiskers"),
+        .height = 4,
+        .weight = 19,
+        .description = gBarboachPokedexText,
+        .pokemonScale = 581,
+        .pokemonOffset = -3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_WHISCASH] =
@@ -11951,6 +12728,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OBLIVIOUS, ABILITY_ANTICIPATION, ABILITY_HYDRATION},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Whiskers"),
+        .height = 9,
+        .weight = 236,
+        .description = gWhiscashPokedexText,
+        .pokemonScale = 317,
+        .pokemonOffset = 1,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_CORPHISH] =
@@ -11975,6 +12760,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR, ABILITY_ADAPTABILITY},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .categoryName = _("Ruffian"),
+        .height = 6,
+        .weight = 115,
+        .description = gCorphishPokedexText,
+        .pokemonScale = 484,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_CRAWDAUNT] =
@@ -11999,6 +12792,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR, ABILITY_ADAPTABILITY},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .categoryName = _("Rogue"),
+        .height = 11,
+        .weight = 328,
+        .description = gCrawdauntPokedexText,
+        .pokemonScale = 365,
+        .pokemonOffset = 9,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_BALTOY] =
@@ -12024,6 +12825,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .categoryName = _("Clay Doll"),
+        .height = 5,
+        .weight = 215,
+        .description = gBaltoyPokedexText,
+        .pokemonScale = 457,
+        .pokemonOffset = 21,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_CLAYDOL] =
@@ -12049,6 +12858,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .categoryName = _("Clay Doll"),
+        .height = 15,
+        .weight = 1080,
+        .description = gClaydolPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 3,
+        .trainerScale = 280,
+        .trainerOffset = 1,
     },
 
     [SPECIES_LILEEP] =
@@ -12074,6 +12891,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SUCTION_CUPS, ABILITY_NONE, ABILITY_STORM_DRAIN},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .categoryName = _("Sea Lily"),
+        .height = 10,
+        .weight = 238,
+        .description = gLileepPokedexText,
+        .pokemonScale = 305,
+        .pokemonOffset = 8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_CRADILY] =
@@ -12099,6 +12924,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SUCTION_CUPS, ABILITY_NONE, ABILITY_STORM_DRAIN},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Barnacle"),
+        .height = 15,
+        .weight = 604,
+        .description = gCradilyPokedexText,
+        .pokemonScale = 267,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_ANORITH] =
@@ -12123,6 +12956,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BATTLE_ARMOR, ABILITY_NONE, ABILITY_SWIFT_SWIM},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .categoryName = _("Old Shrimp"),
+        .height = 7,
+        .weight = 125,
+        .description = gAnorithPokedexText,
+        .pokemonScale = 296,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_ARMALDO] =
@@ -12147,6 +12988,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BATTLE_ARMOR, ABILITY_NONE, ABILITY_SWIFT_SWIM},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .categoryName = _("Plate"),
+        .height = 15,
+        .weight = 682,
+        .description = gArmaldoPokedexText,
+        .pokemonScale = 312,
+        .pokemonOffset = 3,
+        .trainerScale = 271,
+        .trainerOffset = 0,
     },
 
     [SPECIES_FEEBAS] =
@@ -12171,6 +13020,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_OBLIVIOUS, ABILITY_ADAPTABILITY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .categoryName = _("Fish"),
+        .height = 6,
+        .weight = 74,
+        .description = gFeebasPokedexText,
+        .pokemonScale = 423,
+        .pokemonOffset = -4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_MILOTIC] =
@@ -12195,37 +13052,76 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_MARVEL_SCALE, ABILITY_COMPETITIVE, ABILITY_CUTE_CHARM},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .categoryName = _("Tender"),
+        .height = 62,
+        .weight = 1620,
+        .description = gMiloticPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 360,
+        .trainerOffset = 7,
     },
 
-#define CASTFORM_BASE_STATS(type, color)              \
-    {                                                 \
-        .baseHP        = 70,                          \
-        .baseAttack    = 70,                          \
-        .baseDefense   = 70,                          \
-        .baseSpeed     = 70,                          \
-        .baseSpAttack  = 70,                          \
-        .baseSpDefense = 70,                          \
-        .type1 = type,                                \
-        .type2 = type,                                \
-        .catchRate = 45,                              \
-        .expYield = 147,                              \
-        .evYield_HP        = 1,                       \
-        .itemCommon = ITEM_MYSTIC_WATER,              \
-        .itemRare = ITEM_MYSTIC_WATER,                \
-        .genderRatio = PERCENT_FEMALE(50),            \
-        .eggCycles = 25,                              \
-        .friendship = 70,                             \
-        .growthRate = GROWTH_MEDIUM_FAST,             \
-        .eggGroup1 = EGG_GROUP_FAIRY,                 \
-        .eggGroup2 = EGG_GROUP_AMORPHOUS,             \
-        .abilities = {ABILITY_FORECAST, ABILITY_NONE},\
-        .bodyColor = color,                           \
-        .noFlip = FALSE,                              \
-    }
-    [SPECIES_CASTFORM_NORMAL] = CASTFORM_BASE_STATS(TYPE_NORMAL, BODY_COLOR_GRAY),
-    [SPECIES_CASTFORM_SUNNY]  = CASTFORM_BASE_STATS(TYPE_FIRE, BODY_COLOR_RED),
-    [SPECIES_CASTFORM_RAINY]  = CASTFORM_BASE_STATS(TYPE_WATER, BODY_COLOR_BLUE),
-    [SPECIES_CASTFORM_SNOWY]  = CASTFORM_BASE_STATS(TYPE_ICE, BODY_COLOR_WHITE),
+#define CASTFORM_MISC_STATS                             \
+        .baseHP        = 70,                            \
+        .baseAttack    = 70,                            \
+        .baseDefense   = 70,                            \
+        .baseSpeed     = 70,                            \
+        .baseSpAttack  = 70,                            \
+        .baseSpDefense = 70,                            \
+        .catchRate = 45,                                \
+        .expYield = 147,                                \
+        .evYield_HP        = 1,                         \
+        .itemCommon = ITEM_MYSTIC_WATER,                \
+        .itemRare = ITEM_MYSTIC_WATER,                  \
+        .genderRatio = PERCENT_FEMALE(50),              \
+        .eggCycles = 25,                                \
+        .friendship = 70,                               \
+        .growthRate = GROWTH_MEDIUM_FAST,               \
+        .eggGroup1 = EGG_GROUP_FAIRY,                   \
+        .eggGroup2 = EGG_GROUP_AMORPHOUS,               \
+        .abilities = {ABILITY_FORECAST, ABILITY_NONE},  \
+        .noFlip = FALSE,                                \
+        .categoryName = _("Weather"),                   \
+        .height = 3,                                    \
+        .weight = 8,                                    \
+        .pokemonScale = 435,                            \
+        .pokemonOffset = -5,                            \
+        .trainerScale = 256,                            \
+        .trainerOffset = 0
+
+    [SPECIES_CASTFORM_NORMAL] =
+    {
+        .type1 = TYPE_NORMAL,
+        .type2 = TYPE_NORMAL,
+        .bodyColor = BODY_COLOR_GRAY,
+        .description = gCastformPokedexText,
+        CASTFORM_MISC_STATS,
+    },
+    [SPECIES_CASTFORM_SUNNY]
+    {
+        .type1 = TYPE_FIRE,
+        .type2 = TYPE_FIRE,
+        .bodyColor = BODY_COLOR_RED,
+        .description = gDummyPokedexText,
+        CASTFORM_MISC_STATS,
+    },
+    [SPECIES_CASTFORM_RAINY]
+    {
+        .type1 = TYPE_WATER,
+        .type2 = TYPE_WATER,
+        .bodyColor = BODY_COLOR_BLUE,
+        .description = gDummyPokedexText,
+        CASTFORM_MISC_STATS,
+    },
+    [SPECIES_CASTFORM_SNOWY]
+    {
+        .type1 = TYPE_ICE,
+        .type2 = TYPE_ICE,
+        .bodyColor = BODY_COLOR_WHITE,
+        .description = gDummyPokedexText,
+        CASTFORM_MISC_STATS,
+    },
 
     [SPECIES_KECLEON] =
     {
@@ -12249,6 +13145,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_COLOR_CHANGE, ABILITY_NONE, ABILITY_PROTEAN},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Color Swap"),
+        .height = 10,
+        .weight = 220,
+        .description = gKecleonPokedexText,
+        .pokemonScale = 316,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SHUPPET] =
@@ -12274,24 +13178,31 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_INSOMNIA, ABILITY_FRISK, ABILITY_CURSED_BODY},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .categoryName = _("Puppet"),
+        .height = 6,
+        .weight = 23,
+        .description = gShuppetPokedexText,
+        .pokemonScale = 440,
+        .pokemonOffset = 20,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define BANETTE_MISC_STATS(exp,ability1,ability2,ability3)  \
-        .type1 = TYPE_GHOST,                                \
-        .type2 = TYPE_GHOST,                                \
-        .catchRate = 45,                                    \
-        .expYield = exp,                                    \
-        .evYield_Attack    = 2,                             \
-        .itemRare = ITEM_SPELL_TAG,                         \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 25,                                    \
-        .friendship = 35,                                   \
-        .growthRate = GROWTH_FAST,                          \
-        .eggGroup1 = EGG_GROUP_AMORPHOUS,                   \
-        .eggGroup2 = EGG_GROUP_AMORPHOUS,                   \
-        .abilities = {ability1, ability2, ability3},        \
-        .bodyColor = BODY_COLOR_BLACK,                      \
-        .noFlip = FALSE
+#define BANETTE_MISC_STATS                  \
+        .type1 = TYPE_GHOST,                \
+        .type2 = TYPE_GHOST,                \
+        .catchRate = 45,                    \
+        .evYield_Attack    = 2,             \
+        .itemRare = ITEM_SPELL_TAG,         \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 25,                    \
+        .friendship = 35,                   \
+        .growthRate = GROWTH_FAST,          \
+        .eggGroup1 = EGG_GROUP_AMORPHOUS,   \
+        .eggGroup2 = EGG_GROUP_AMORPHOUS,   \
+        .bodyColor = BODY_COLOR_BLACK,      \
+        .noFlip = FALSE,                    \
+        .categoryName = _("Marionette")
 
     [SPECIES_BANETTE] =
     {
@@ -12301,7 +13212,16 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 65,
         .baseSpAttack  = 83,
         .baseSpDefense = 63,
-        BANETTE_MISC_STATS(159, ABILITY_INSOMNIA, ABILITY_FRISK, ABILITY_CURSED_BODY),
+        .expYield = 159,
+        .abilities = {ABILITY_INSOMNIA, ABILITY_FRISK, ABILITY_CURSED_BODY},
+        .height = 11,
+        .weight = 125,
+        .description = gBanettePokedexText,
+        .pokemonScale = 262,
+        .pokemonOffset = 9,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        BANETTE_MISC_STATS,
     },
     [SPECIES_BANETTE_MEGA] =
     {
@@ -12311,8 +13231,17 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 75,
         .baseSpAttack  = 93,
         .baseSpDefense = 83,
+        .expYield = 194,
+        .abilities = {ABILITY_PRANKSTER, ABILITY_PRANKSTER, ABILITY_PRANKSTER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        BANETTE_MISC_STATS(194, ABILITY_PRANKSTER, ABILITY_PRANKSTER, ABILITY_PRANKSTER),
+        .height = 12,
+        .weight = 130,
+        .description = gBanetteMegaPokedexText,
+        .pokemonScale = 278,
+        .pokemonOffset = 1,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        BANETTE_MISC_STATS,
     },
 
     [SPECIES_DUSKULL] =
@@ -12338,6 +13267,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE, ABILITY_FRISK},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .categoryName = _("Requiem"),
+        .height = 8,
+        .weight = 150,
+        .description = gDuskullPokedexText,
+        .pokemonScale = 406,
+        .pokemonOffset = -4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_DUSCLOPS] =
@@ -12364,6 +13301,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PRESSURE, ABILITY_NONE, ABILITY_FRISK},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .categoryName = _("Beckon"),
+        .height = 16,
+        .weight = 306,
+        .description = gDusclopsPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 3,
+        .trainerScale = 299,
+        .trainerOffset = 1,
     },
 
     [SPECIES_TROPIUS] =
@@ -12388,6 +13333,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER, ABILITY_HARVEST},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .categoryName = _("Fruit"),
+        .height = 20,
+        .weight = 1000,
+        .description = gTropiusPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 344,
+        .trainerOffset = 7,
     },
 
     [SPECIES_CHIMECHO] =
@@ -12420,23 +13373,35 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Wind Chime"),
+        .height = 6,
+        .weight = 10,
+        .description = gChimechoPokedexText,
+        .pokemonScale = 505,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define ABSOL_MISC_STATS(exp,ability1,ability2,ability3)\
-        .type1 = TYPE_DARK,                             \
-        .type2 = TYPE_DARK,                             \
-        .catchRate = 30,                                \
-        .expYield = exp,                                \
-        .evYield_Attack    = 2,                         \
-        .genderRatio = PERCENT_FEMALE(50),              \
-        .eggCycles = 25,                                \
-        .friendship = 35,                               \
-        .growthRate = GROWTH_MEDIUM_SLOW,               \
-        .eggGroup1 = EGG_GROUP_FIELD,                   \
-        .eggGroup2 = EGG_GROUP_FIELD,                   \
-        .abilities = {ability1, ability2, ability3},    \
-        .bodyColor = BODY_COLOR_WHITE,                  \
-        .noFlip = TRUE
+#define ABSOL_MISC_STATS                    \
+        .type1 = TYPE_DARK,                 \
+        .type2 = TYPE_DARK,                 \
+        .catchRate = 30,                    \
+        .evYield_Attack    = 2,             \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 25,                    \
+        .friendship = 35,                   \
+        .growthRate = GROWTH_MEDIUM_SLOW,   \
+        .eggGroup1 = EGG_GROUP_FIELD,       \
+        .eggGroup2 = EGG_GROUP_FIELD,       \
+        .bodyColor = BODY_COLOR_WHITE,      \
+        .noFlip = TRUE,                     \
+        .categoryName = _("Disaster"),      \
+        .height = 12,                       \
+        .pokemonScale = 301,                \
+        .pokemonOffset = 3,                 \
+        .trainerScale = 256,                \
+        .trainerOffset = 0
 
     [SPECIES_ABSOL] =
     {
@@ -12446,7 +13411,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 75,
         .baseSpAttack  = 75,
         .baseSpDefense = 60,
-        ABSOL_MISC_STATS(163, ABILITY_PRESSURE, ABILITY_SUPER_LUCK, ABILITY_JUSTIFIED),
+        .expYield = 163,
+        .abilities = {ABILITY_PRESSURE, ABILITY_SUPER_LUCK, ABILITY_JUSTIFIED},
+        .weight = 470,
+        .description = gAbsolPokedexText,
+        ABSOL_MISC_STATS,
     },
     [SPECIES_ABSOL_MEGA] =
     {
@@ -12456,8 +13425,12 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 115,
         .baseSpAttack  = 115,
         .baseSpDefense = 60,
+        .expYield = 198,
+        .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        ABSOL_MISC_STATS(198, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE),
+        .weight = 490,
+        .description = gAbsolMegaPokedexText,
+        ABSOL_MISC_STATS,
     },
 
     [SPECIES_WYNAUT] =
@@ -12482,6 +13455,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SHADOW_TAG, ABILITY_NONE, ABILITY_TELEPATHY},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Bright"),
+        .height = 6,
+        .weight = 140,
+        .description = gWynautPokedexText,
+        .pokemonScale = 484,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SNORUNT] =
@@ -12507,23 +13488,30 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_INNER_FOCUS, ABILITY_ICE_BODY, ABILITY_MOODY},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .categoryName = _("Snow Hat"),
+        .height = 7,
+        .weight = 168,
+        .description = gSnoruntPokedexText,
+        .pokemonScale = 380,
+        .pokemonOffset = 15,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define GLALIE_MISC_STATS(exp,ability1,ability2,ability3)   \
-        .type1 = TYPE_ICE,                                  \
-        .type2 = TYPE_ICE,                                  \
-        .catchRate = 75,                                    \
-        .expYield = exp,                                    \
-        .evYield_HP        = 2,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = 70,                                   \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroup1 = EGG_GROUP_FAIRY,                       \
-        .eggGroup2 = EGG_GROUP_MINERAL,                     \
-        .abilities = {ability1, ability2, ability3},        \
-        .bodyColor = BODY_COLOR_GRAY,                       \
-        .noFlip = FALSE
+#define GLALIE_MISC_STATS                   \
+        .type1 = TYPE_ICE,                  \
+        .type2 = TYPE_ICE,                  \
+        .catchRate = 75,                    \
+        .evYield_HP        = 2,             \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 20,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_MEDIUM_FAST,   \
+        .eggGroup1 = EGG_GROUP_FAIRY,       \
+        .eggGroup2 = EGG_GROUP_MINERAL,     \
+        .bodyColor = BODY_COLOR_GRAY,       \
+        .noFlip = FALSE,                    \
+        .categoryName = _("Face")
 
     [SPECIES_GLALIE] =
     {
@@ -12533,7 +13521,16 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 80,
         .baseSpAttack  = 80,
         .baseSpDefense = 80,
-        GLALIE_MISC_STATS(168, ABILITY_INNER_FOCUS, ABILITY_ICE_BODY, ABILITY_MOODY),
+        .expYield = 168,
+        .abilities = {ABILITY_INNER_FOCUS, ABILITY_ICE_BODY, ABILITY_MOODY},
+        .height = 15,
+        .weight = 2565,
+        .description = gGlaliePokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 3,
+        .trainerScale = 344,
+        .trainerOffset = 0,
+        GLALIE_MISC_STATS,
     },
     [SPECIES_GLALIE_MEGA] =
     {
@@ -12543,8 +13540,17 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 100,
         .baseSpAttack  = 120,
         .baseSpDefense = 80,
+        .expYield = 203,
+        .abilities = {ABILITY_REFRIGERATE, ABILITY_REFRIGERATE, ABILITY_REFRIGERATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        GLALIE_MISC_STATS(203, ABILITY_REFRIGERATE, ABILITY_REFRIGERATE, ABILITY_REFRIGERATE),
+        .height = 21,
+        .weight = 3502,
+        .description = gGlalieMegaPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 4,
+        .trainerScale = 423,
+        .trainerOffset = 11,
+        GLALIE_MISC_STATS,
     },
 
     [SPECIES_SPHEAL] =
@@ -12569,6 +13575,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_THICK_FAT, ABILITY_ICE_BODY, ABILITY_OBLIVIOUS},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Clap"),
+        .height = 8,
+        .weight = 395,
+        .description = gSphealPokedexText,
+        .pokemonScale = 315,
+        .pokemonOffset = 16,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SEALEO] =
@@ -12593,6 +13607,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_THICK_FAT, ABILITY_ICE_BODY, ABILITY_OBLIVIOUS},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Ball Roll"),
+        .height = 11,
+        .weight = 876,
+        .description = gSealeoPokedexText,
+        .pokemonScale = 338,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_WALREIN] =
@@ -12617,6 +13639,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_THICK_FAT, ABILITY_ICE_BODY, ABILITY_OBLIVIOUS},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Ice Break"),
+        .height = 14,
+        .weight = 1506,
+        .description = gWalreinPokedexText,
+        .pokemonScale = 316,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_CLAMPERL] =
@@ -12643,6 +13673,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SHELL_ARMOR, ABILITY_NONE, ABILITY_RATTLED},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Bivalve"),
+        .height = 4,
+        .weight = 525,
+        .description = gClamperlPokedexText,
+        .pokemonScale = 691,
+        .pokemonOffset = 22,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_HUNTAIL] =
@@ -12669,6 +13707,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_NONE, ABILITY_WATER_VEIL},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Deep Sea"),
+        .height = 17,
+        .weight = 270,
+        .description = gHuntailPokedexText,
+        .pokemonScale = 307,
+        .pokemonOffset = 1,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_GOREBYSS] =
@@ -12694,6 +13740,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_NONE, ABILITY_HYDRATION},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .categoryName = _("South Sea"),
+        .height = 18,
+        .weight = 226,
+        .description = gGorebyssPokedexText,
+        .pokemonScale = 278,
+        .pokemonOffset = 5,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_RELICANTH] =
@@ -12720,6 +13774,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_ROCK_HEAD, ABILITY_STURDY},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .categoryName = _("Longevity"),
+        .height = 10,
+        .weight = 234,
+        .description = gRelicanthPokedexText,
+        .pokemonScale = 316,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_LUVDISC] =
@@ -12745,6 +13807,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_NONE, ABILITY_HYDRATION},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .categoryName = _("Rendezvous"),
+        .height = 6,
+        .weight = 87,
+        .description = gLuvdiscPokedexText,
+        .pokemonScale = 371,
+        .pokemonOffset = 2,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_BAGON] =
@@ -12770,6 +13840,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_ROCK_HEAD, ABILITY_NONE, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Rock Head"),
+        .height = 6,
+        .weight = 421,
+        .description = gBagonPokedexText,
+        .pokemonScale = 448,
+        .pokemonOffset = 18,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_SHELGON] =
@@ -12795,6 +13873,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_ROCK_HEAD, ABILITY_NONE, ABILITY_OVERCOAT},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .categoryName = _("Endurance"),
+        .height = 11,
+        .weight = 1105,
+        .description = gShelgonPokedexText,
+        .pokemonScale = 311,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
 #define SALAMENCE_MISC_STATS(exp,ability1,ability3)     \
@@ -12812,7 +13898,8 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_DRAGON,                  \
         .abilities = {ability1, ABILITY_NONE, ability3},\
         .bodyColor = BODY_COLOR_BLUE,                   \
-        .noFlip = FALSE
+        .noFlip = FALSE,                                \
+        .categoryName = _("Dragon")
 
     [SPECIES_SALAMENCE] =
     {
@@ -12822,6 +13909,13 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 100,
         .baseSpAttack  = 110,
         .baseSpDefense = 80,
+        .height = 15,
+        .weight = 1026,
+        .description = gSalamencePokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
         SALAMENCE_MISC_STATS(270, ABILITY_INTIMIDATE, ABILITY_MOXIE),
     },
     [SPECIES_SALAMENCE_MEGA] =
@@ -12833,6 +13927,13 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 120,
         .baseSpDefense = 90,
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
+        .height = 18,
+        .weight = 1126,
+        .description = gSalamenceMegaPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 268,
+        .trainerOffset = 0,
         SALAMENCE_MISC_STATS(315, ABILITY_AERILATE, ABILITY_AERILATE),
     },
 
@@ -12859,6 +13960,14 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_LIGHT_METAL},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Iron Ball"),
+        .height = 6,
+        .weight = 952,
+        .description = gBeldumPokedexText,
+        .pokemonScale = 414,
+        .pokemonOffset = -1,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [SPECIES_METANG] =
@@ -12884,13 +13993,20 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_LIGHT_METAL},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .categoryName = _("Iron Claw"),
+        .height = 12,
+        .weight = 2025,
+        .description = gMetangPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 6,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
-#define METAGROSS_MISC_STATS(exp,ability1,ability3)     \
+#define METAGROSS_MISC_STATS     \
         .type1 = TYPE_STEEL,                            \
         .type2 = TYPE_PSYCHIC,                          \
         .catchRate = 3,                                 \
-        .expYield = exp,                                \
         .evYield_Defense   = 3,                         \
         .itemRare = ITEM_METAL_COAT,                    \
         .genderRatio = MON_GENDERLESS,                  \
@@ -12899,9 +14015,9 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,                      \
         .eggGroup1 = EGG_GROUP_MINERAL,                 \
         .eggGroup2 = EGG_GROUP_MINERAL,                 \
-        .abilities = {ability1, ABILITY_NONE, ability3},\
         .bodyColor = BODY_COLOR_BLUE,                   \
-        .noFlip = FALSE
+        .noFlip = FALSE,                                \
+        .categoryName = _("Iron Leg")
 
     [SPECIES_METAGROSS] =
     {
@@ -12911,7 +14027,16 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 70,
         .baseSpAttack  = 95,
         .baseSpDefense = 90,
-        METAGROSS_MISC_STATS(270, ABILITY_CLEAR_BODY, ABILITY_LIGHT_METAL),
+        .expYield = 270,
+        .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_LIGHT_METAL},
+        .height = 16,
+        .weight = 5500,
+        .description = gMetagrossPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 4,
+        .trainerScale = 447,
+        .trainerOffset = 9,
+        METAGROSS_MISC_STATS,
     },
     [SPECIES_METAGROSS_MEGA] =
     {
@@ -12921,8 +14046,17 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 110,
         .baseSpAttack  = 105,
         .baseSpDefense = 110,
+        .expYield = 315,
+        .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        METAGROSS_MISC_STATS(315, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS),
+        .height = 25,
+        .weight = 9429,
+        .description = gMetagrossMegaPokedexText,
+        .pokemonScale = 257,
+        .pokemonOffset = 10,
+        .trainerScale = 423,
+        .trainerOffset = 8,
+        METAGROSS_MISC_STATS,
     },
 
     [SPECIES_REGIROCK] =
@@ -12948,6 +14082,14 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .categoryName = _("Rock Peak"),
+        .height = 17,
+        .weight = 2300,
+        .description = gRegirockPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 2,
+        .trainerScale = 309,
+        .trainerOffset = 1,
     },
 
     [SPECIES_REGICE] =
@@ -12973,6 +14115,14 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .categoryName = _("Iceberg"),
+        .height = 18,
+        .weight = 1750,
+        .description = gRegicePokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 301,
+        .trainerOffset = 2,
     },
 
     [SPECIES_REGISTEEL] =
@@ -12999,22 +14149,28 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .categoryName = _("Iron"),
+        .height = 19,
+        .weight = 2050,
+        .description = gRegisteelPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 359,
+        .trainerOffset = 6,
     },
 
-#define LATIS_MISC_STATS(exp,gender,color)              \
+#define LATIS_MISC_STATS              \
         .type1 = TYPE_DRAGON,                           \
         .type2 = TYPE_PSYCHIC,                          \
         .catchRate = 3,                                 \
-        .expYield = exp,                                \
-        .genderRatio = gender,                          \
         .eggCycles = 120,                               \
         .friendship = 90,                               \
         .growthRate = GROWTH_SLOW,                      \
         .eggGroup1 = EGG_GROUP_UNDISCOVERED,            \
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,            \
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},  \
-        .bodyColor = color,                             \
-        .noFlip = FALSE
+        .noFlip = FALSE,\
+        .categoryName = _("Eon")
 
     [SPECIES_LATIAS] =
     {
@@ -13025,8 +14181,18 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 110,
         .baseSpDefense = 130,
         .evYield_SpDefense = 3,
+        .expYield = 270,
+        .genderRatio = MON_FEMALE,
+        .bodyColor = BODY_COLOR_RED,
         .flags = SPECIES_FLAG_LEGENDARY,
-        LATIS_MISC_STATS(270, MON_FEMALE, BODY_COLOR_RED),
+        .height = 14,
+        .weight = 400,
+        .description = gLatiasPokedexText,
+        .pokemonScale = 304,
+        .pokemonOffset = 3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        LATIS_MISC_STATS,
     },
     [SPECIES_LATIAS_MEGA] =
     {
@@ -13037,8 +14203,18 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 140,
         .baseSpDefense = 150,
         .evYield_SpDefense = 3,
+        .expYield = 315,
+        .genderRatio = MON_FEMALE,
+        .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
-        LATIS_MISC_STATS(315, MON_FEMALE, BODY_COLOR_PURPLE),
+        .height = 18,
+        .weight = 520,
+        .description = gLatiasPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 277,
+        .trainerOffset = 1,
+        LATIS_MISC_STATS,
     },
 
     [SPECIES_LATIOS] =
@@ -13050,8 +14226,18 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 130,
         .baseSpDefense = 110,
         .evYield_SpAttack  = 3,
+        .expYield = 270,
+        .genderRatio = MON_MALE,
+        .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_LEGENDARY,
-        LATIS_MISC_STATS(270, MON_MALE, BODY_COLOR_BLUE),
+        .height = 20,
+        .weight = 600,
+        .description = gLatiosPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 294,
+        .trainerOffset = 3,
+        LATIS_MISC_STATS,
     },
     [SPECIES_LATIOS_MEGA] =
     {
@@ -13061,26 +14247,41 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 110,
         .baseSpAttack  = 160,
         .baseSpDefense = 120,
+        .expYield = 315,
+        .genderRatio = MON_MALE,
+        .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
-        LATIS_MISC_STATS(315, MON_MALE, BODY_COLOR_PURPLE),
+        .height = 23,
+        .weight = 700,
+        .description = gLatiosPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 342,
+        .trainerOffset = 7,
+        LATIS_MISC_STATS,
     },
 
-#define KYOGRE_MISC_STATS(ability)              \
-        .type1 = TYPE_WATER,                    \
-        .type2 = TYPE_WATER,                    \
-        .catchRate = 3,                         \
-        .expYield = 302,                        \
-        .evYield_SpAttack  = 3,                 \
-        .genderRatio = MON_GENDERLESS,          \
-        .eggCycles = 120,                       \
-        .friendship = 0,                        \
-        .growthRate = GROWTH_SLOW,              \
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,    \
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,    \
-        .abilities = {ability, ABILITY_NONE},   \
-        .bodyColor = BODY_COLOR_BLUE,           \
-        .noFlip = FALSE,                        \
-        .flags = SPECIES_FLAG_LEGENDARY
+#define KYOGRE_MISC_STATS                   \
+        .type1 = TYPE_WATER,                \
+        .type2 = TYPE_WATER,                \
+        .catchRate = 3,                     \
+        .expYield = 302,                    \
+        .evYield_SpAttack  = 3,             \
+        .genderRatio = MON_GENDERLESS,      \
+        .eggCycles = 120,                   \
+        .friendship = 0,                    \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,\
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,\
+        .bodyColor = BODY_COLOR_BLUE,       \
+        .noFlip = FALSE,                    \
+        .flags = SPECIES_FLAG_LEGENDARY,    \
+        .categoryName = _("Sea Basin"),     \
+        .description = gKyogrePokedexText,  \
+        .pokemonScale = 256,                \
+        .pokemonOffset = 0,                 \
+        .trainerScale = 614,                \
+        .trainerOffset = 13
 
     [SPECIES_KYOGRE] =
     {
@@ -13090,7 +14291,10 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 150,
         .baseSpDefense = 140,
-        KYOGRE_MISC_STATS(ABILITY_DRIZZLE),
+        .abilities = {ABILITY_DRIZZLE, ABILITY_NONE},
+        .height = 45,
+        .weight = 3520,
+        KYOGRE_MISC_STATS,
     },
     [SPECIES_KYOGRE_PRIMAL] =
     {
@@ -13100,25 +14304,32 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 180,
         .baseSpDefense = 160,
-        KYOGRE_MISC_STATS(ABILITY_PRIMORDIAL_SEA),
+        .abilities = {ABILITY_PRIMORDIAL_SEA, ABILITY_NONE},
+        .height = 98,
+        .weight = 4300,
+        KYOGRE_MISC_STATS,
     },
 
-#define GROUDON_MISC_STATS(typeB,ability)       \
-        .type1 = TYPE_GROUND,                   \
-        .type2 = typeB,                         \
-        .catchRate = 3,                         \
-        .expYield = 302,                        \
-        .evYield_Attack    = 3,                 \
-        .genderRatio = MON_GENDERLESS,          \
-        .eggCycles = 120,                       \
-        .friendship = 0,                        \
-        .growthRate = GROWTH_SLOW,              \
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,    \
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,    \
-        .abilities = {ability, ABILITY_NONE},   \
-        .bodyColor = BODY_COLOR_RED,            \
-        .noFlip = FALSE,                        \
-        .flags = SPECIES_FLAG_LEGENDARY
+#define GROUDON_MISC_STATS                  \
+        .type1 = TYPE_GROUND,               \
+        .catchRate = 3,                     \
+        .expYield = 302,                    \
+        .evYield_Attack    = 3,             \
+        .genderRatio = MON_GENDERLESS,      \
+        .eggCycles = 120,                   \
+        .friendship = 0,                    \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,\
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,\
+        .bodyColor = BODY_COLOR_RED,        \
+        .noFlip = FALSE,                    \
+        .flags = SPECIES_FLAG_LEGENDARY,    \
+        .categoryName = _("Continent"),     \
+        .description = gGroudonPokedexText, \
+        .pokemonScale = 256,                \
+        .pokemonOffset = 0,                 \
+        .trainerScale = 515,                \
+        .trainerOffset = 14
 
     [SPECIES_GROUDON] =
     {
@@ -13128,7 +14339,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 100,
         .baseSpDefense = 90,
-        GROUDON_MISC_STATS(TYPE_GROUND, ABILITY_DROUGHT),
+        .type2 = TYPE_GROUND,
+        .abilities = {ABILITY_DROUGHT, ABILITY_NONE},
+        .height = 35,
+        .weight = 9500,
+        GROUDON_MISC_STATS,
     },
     [SPECIES_GROUDON_PRIMAL] =
     {
@@ -13138,25 +14353,34 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 150,
         .baseSpDefense = 90,
-        GROUDON_MISC_STATS(TYPE_FIRE, ABILITY_DESOLATE_LAND),
+        .type2 = TYPE_FIRE,
+        .abilities = {ABILITY_DESOLATE_LAND, ABILITY_NONE},
+        .height = 50,
+        .weight = 9997,
+        GROUDON_MISC_STATS,
     },
 
-#define RAYQUAZA_MISC_STATS(ability)            \
-        .type1 = TYPE_DRAGON,                   \
-        .type2 = TYPE_FLYING,                   \
-        .catchRate = 45,                        \
-        .expYield = 306,                        \
-        .evYield_Attack    = 2,                 \
-        .evYield_SpAttack  = 1,                 \
-        .genderRatio = MON_GENDERLESS,          \
-        .eggCycles = 120,                       \
-        .friendship = 0,                        \
-        .growthRate = GROWTH_SLOW,              \
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,    \
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,    \
-        .abilities = {ability, ABILITY_NONE},   \
-        .bodyColor = BODY_COLOR_GREEN,          \
-        .noFlip = FALSE
+#define RAYQUAZA_MISC_STATS                 \
+        .type1 = TYPE_DRAGON,               \
+        .type2 = TYPE_FLYING,               \
+        .catchRate = 45,                    \
+        .expYield = 306,                    \
+        .evYield_Attack    = 2,             \
+        .evYield_SpAttack  = 1,             \
+        .genderRatio = MON_GENDERLESS,      \
+        .eggCycles = 120,                   \
+        .friendship = 0,                    \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,\
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,\
+        .bodyColor = BODY_COLOR_GREEN,      \
+        .noFlip = FALSE,                    \
+        .categoryName = _("Sky High"),      \
+        .description = gRayquazaPokedexText,\
+        .pokemonScale = 256,                \
+        .pokemonOffset = 0,                 \
+        .trainerScale = 448,                \
+        .trainerOffset = 12
 
     [SPECIES_RAYQUAZA] =
     {
@@ -13166,8 +14390,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 95,
         .baseSpAttack  = 150,
         .baseSpDefense = 90,
+        .abilities = {ABILITY_AIR_LOCK, ABILITY_NONE},
         .flags = SPECIES_FLAG_LEGENDARY,
-        RAYQUAZA_MISC_STATS(ABILITY_AIR_LOCK),
+        .height = 70,
+        .weight = 2065,
+        RAYQUAZA_MISC_STATS,
     },
     [SPECIES_RAYQUAZA_MEGA] =
     {
@@ -13177,8 +14404,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 115,
         .baseSpAttack  = 180,
         .baseSpDefense = 100,
+        .abilities = {ABILITY_DELTA_STREAM, ABILITY_NONE},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
-        RAYQUAZA_MISC_STATS(ABILITY_DELTA_STREAM),
+        .height = 108,
+        .weight = 3920,
+        RAYQUAZA_MISC_STATS,
     },
 
     [SPECIES_JIRACHI] =
@@ -13206,7 +14436,39 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_MYTHICAL,
+        .categoryName = _("Wish"),
+        .height = 3,
+        .weight = 11,
+        .description = gJirachiPokedexText,
+        .pokemonScale = 608,
+        .pokemonOffset = -8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
+
+#define DEOXYS_MISC_STATS                               \
+        .type1 = TYPE_PSYCHIC,                          \
+        .type2 = TYPE_PSYCHIC,                          \
+        .catchRate = 3,                                 \
+        .expYield = 270,                                \
+        .genderRatio = MON_GENDERLESS,                  \
+        .eggCycles = 120,                               \
+        .friendship = 0,                                \
+        .growthRate = GROWTH_SLOW,                      \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,            \
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,            \
+        .abilities = {ABILITY_PRESSURE, ABILITY_NONE},  \
+        .bodyColor = BODY_COLOR_RED,                    \
+        .noFlip = FALSE,                                \
+        .flags = SPECIES_FLAG_MYTHICAL,                 \
+        .categoryName = _("DNA"),                       \
+        .height = 17,                                   \
+        .weight = 608,                                  \
+        .description = gDeoxysPokedexText,              \
+        .pokemonScale = 256,                            \
+        .pokemonOffset = 0,                             \
+        .trainerScale = 290,                            \
+        .trainerOffset = 2
 
     [SPECIES_DEOXYS_NORMAL] =
     {
@@ -13216,23 +14478,10 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 150,
         .baseSpAttack  = 150,
         .baseSpDefense = 50,
-        .type1 = TYPE_PSYCHIC,
-        .type2 = TYPE_PSYCHIC,
-        .catchRate = 3,
-        .expYield = 270,
         .evYield_Attack    = 1,
         .evYield_Speed     = 1,
         .evYield_SpAttack  = 1,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_PRESSURE, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_RED,
-        .noFlip = FALSE,
-        .flags = SPECIES_FLAG_MYTHICAL,
+        DEOXYS_MISC_STATS,
     },
 
     [SPECIES_DEOXYS_ATTACK] =
@@ -13243,21 +14492,9 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 150,
         .baseSpAttack  = 180,
         .baseSpDefense = 20,
-        .type1 = TYPE_PSYCHIC,
-        .type2 = TYPE_PSYCHIC,
-        .catchRate = 3,
-        .expYield = 270,
         .evYield_Attack    = 2,
         .evYield_SpAttack  = 1,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_PRESSURE, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_RED,
-        .noFlip = FALSE,
+        DEOXYS_MISC_STATS,
     },
 
     [SPECIES_DEOXYS_DEFENSE] =
@@ -13268,21 +14505,9 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 70,
         .baseSpDefense = 160,
-        .type1 = TYPE_PSYCHIC,
-        .type2 = TYPE_PSYCHIC,
-        .catchRate = 3,
-        .expYield = 270,
         .evYield_Defense   = 2,
         .evYield_SpDefense = 1,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_PRESSURE, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_RED,
-        .noFlip = FALSE,
+        DEOXYS_MISC_STATS,
     },
 
     [SPECIES_DEOXYS_SPEED] =
@@ -13293,20 +14518,8 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 180,
         .baseSpAttack  = 95,
         .baseSpDefense = 90,
-        .type1 = TYPE_PSYCHIC,
-        .type2 = TYPE_PSYCHIC,
-        .catchRate = 3,
-        .expYield = 270,
         .evYield_Speed     = 3,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_PRESSURE, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_RED,
-        .noFlip = TRUE,
+        DEOXYS_MISC_STATS,
     },
 
 #if P_GEN_4_POKEMON == TRUE
