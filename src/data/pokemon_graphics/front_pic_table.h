@@ -519,7 +519,6 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
     SPECIES_SPRITE(DEOXYS_DEFENSE, gMonFrontPic_DeoxysDefense),
     SPECIES_SPRITE(DEOXYS_SPEED, gMonFrontPic_DeoxysSpeed),
 #if P_GEN_4_POKEMON == TRUE
-// Diamond and Pearl
     SPECIES_SPRITE(TURTWIG, gMonFrontPic_Turtwig),
     SPECIES_SPRITE(GROTLE, gMonFrontPic_Grotle),
     SPECIES_SPRITE(TORTERRA, gMonFrontPic_Torterra),
