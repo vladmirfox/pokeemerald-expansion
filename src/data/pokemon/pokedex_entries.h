@@ -6243,6 +6243,7 @@ const struct PokedexEntry gPokedexEntries[] =
 
 const struct PokedexEntryForms gPokedexEntriesForms[] =
 {
+#if P_GEN_4_POKEMON == TRUE
     [SPECIES_LOPUNNY_MEGA] =
     {
         .height = 13,
@@ -6278,6 +6279,8 @@ const struct PokedexEntryForms gPokedexEntriesForms[] =
         .description = gGalladePokedexText, // No official dex entry
         .flags = FLAG_FORM_DESCRIPTION | FLAG_FORM_WEIGHT_HEIGHT,
     },
+#endif
+#if P_GEN_5_POKEMON == TRUE
     [SPECIES_AUDINO_MEGA] =
     {
         .height = 15,
@@ -6285,6 +6288,8 @@ const struct PokedexEntryForms gPokedexEntriesForms[] =
         .description = gAudinoPokedexText, // No official dex entry
         .flags = FLAG_FORM_DESCRIPTION | FLAG_FORM_WEIGHT_HEIGHT,
     },
+#endif
+#if P_GEN_6_POKEMON == TRUE
     [SPECIES_DIANCIE_MEGA] =
     {
         .height = 11,
@@ -6292,8 +6297,9 @@ const struct PokedexEntryForms gPokedexEntriesForms[] =
         .description = gDianciePokedexText, // No official dex entry
         .flags = FLAG_FORM_DESCRIPTION | FLAG_FORM_WEIGHT_HEIGHT,
     },
+#endif
 
-
+#if P_GEN_5_POKEMON == TRUE
     [SPECIES_DARUMAKA_GALARIAN] =
     {
         .height = 7,
@@ -6323,7 +6329,9 @@ const struct PokedexEntryForms gPokedexEntriesForms[] =
         .description = gDummyPokedexText,
         .flags = FLAG_FORM_DESCRIPTION | FLAG_FORM_WEIGHT_HEIGHT,
     },
+#endif
 
+#if P_GEN_4_POKEMON == TRUE
     // Cherrim   
     [SPECIES_CHERRIM_SUNSHINE] =
     { 
@@ -6384,6 +6392,8 @@ const struct PokedexEntryForms gPokedexEntriesForms[] =
         .description = gDummyPokedexText,
         .flags = FLAG_FORM_DESCRIPTION | FLAG_FORM_WEIGHT_HEIGHT,
     },
+#endif
+#if P_GEN_5_POKEMON == TRUE
     // Basculin   
     [SPECIES_BASCULIN_BLUE_STRIPED] =
     { 
@@ -6446,6 +6456,8 @@ const struct PokedexEntryForms gPokedexEntriesForms[] =
         .description = gDummyPokedexText,
         .flags = FLAG_FORM_DESCRIPTION ,
     },
+#endif
+#if P_GEN_6_POKEMON == TRUE
     // Meowstic   
     [SPECIES_MEOWSTIC_FEMALE] =
     { 
@@ -6540,6 +6552,8 @@ const struct PokedexEntryForms gPokedexEntriesForms[] =
         .description = gDummyPokedexText,
         .flags = FLAG_FORM_DESCRIPTION | FLAG_FORM_WEIGHT_HEIGHT | FLAG_FORM_CATEGORY,
     },
+#endif
+#if P_GEN_7_POKEMON == TRUE
     // Oricorio   
     [SPECIES_ORICORIO_POM_POM] =
     { 
@@ -6797,6 +6811,8 @@ const struct PokedexEntryForms gPokedexEntriesForms[] =
         .description = gDummyPokedexText,
         .flags = FLAG_FORM_DESCRIPTION ,
     },
+#endif
+#if P_GEN_8_POKEMON == TRUE
     // Cramorant   
     [SPECIES_CRAMORANT_GULPING] =
     { 
@@ -6938,4 +6954,5 @@ const struct PokedexEntryForms gPokedexEntriesForms[] =
         .description = gDummyPokedexText,
         .flags = FLAG_FORM_DESCRIPTION | FLAG_FORM_WEIGHT_HEIGHT | FLAG_FORM_CATEGORY,
     },
+#endif
 };
