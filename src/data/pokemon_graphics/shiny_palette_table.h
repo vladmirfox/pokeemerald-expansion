@@ -1,6 +1,6 @@
 const struct CompressedSpritePalette gMonShinyPaletteTable[] =
 {
-    SPECIES_SHINY_PAL(NONE, gMonShinyPalette_CircledQuestionMark),
+    SPECIES_SHINY_PAL(NONE, gMonShinyPalette_QuestionMark),
     SPECIES_SHINY_PAL(BULBASAUR, gMonShinyPalette_Bulbasaur),
     SPECIES_SHINY_PAL(IVYSAUR, gMonShinyPalette_Ivysaur),
     SPECIES_SHINY_PAL(VENUSAUR, gMonShinyPalette_Venusaur),
@@ -677,7 +677,7 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(OSHAWOTT, gMonShinyPalette_Oshawott),
     SPECIES_SHINY_PAL(DEWOTT, gMonShinyPalette_Dewott),
     SPECIES_SHINY_PAL(SAMUROTT, gMonShinyPalette_Samurott),
-    SPECIES_SHINY_PAL(SAMUROTT_HISUIAN, gMonShinyPalette_CircledQuestionMark), //gMonShinyPalette_SamurottHisuian),
+    SPECIES_SHINY_PAL(SAMUROTT_HISUIAN, gMonShinyPalette_QuestionMark), //gMonShinyPalette_SamurottHisuian),
     SPECIES_SHINY_PAL(PATRAT, gMonShinyPalette_Patrat),
     SPECIES_SHINY_PAL(WATCHOG, gMonShinyPalette_Watchog),
     SPECIES_SHINY_PAL(LILLIPUP, gMonShinyPalette_Lillipup),
@@ -1033,7 +1033,7 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(ROWLET, gMonShinyPalette_Rowlet),
     SPECIES_SHINY_PAL(DARTRIX, gMonShinyPalette_Dartrix),
     SPECIES_SHINY_PAL(DECIDUEYE, gMonShinyPalette_Decidueye),
-    SPECIES_SHINY_PAL(DECIDUEYE_HISUIAN, gMonShinyPalette_CircledQuestionMark), //gMonShinyPalette_DecidueyeHisuian),
+    SPECIES_SHINY_PAL(DECIDUEYE_HISUIAN, gMonShinyPalette_QuestionMark), //gMonShinyPalette_DecidueyeHisuian),
     SPECIES_SHINY_PAL(LITTEN, gMonShinyPalette_Litten),
     SPECIES_SHINY_PAL(TORRACAT, gMonShinyPalette_Torracat),
     SPECIES_SHINY_PAL(INCINEROAR, gMonShinyPalette_Incineroar),
@@ -1275,14 +1275,14 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(CALYREX, gMonShinyPalette_Calyrex),
     SPECIES_SHINY_PAL(CALYREX_ICE_RIDER, gMonShinyPalette_CalyrexIceRider),
     SPECIES_SHINY_PAL(CALYREX_SHADOW_RIDER, gMonShinyPalette_CalyrexShadowRider),
-    SPECIES_SHINY_PAL(WYRDEER, gMonShinyPalette_CircledQuestionMark), //gMonShinyPalette_Wyrdeer),
+    SPECIES_SHINY_PAL(WYRDEER, gMonShinyPalette_QuestionMark), //gMonShinyPalette_Wyrdeer),
     SPECIES_SHINY_PAL(KLEAVOR, gMonShinyPalette_Kleavor),
     SPECIES_SHINY_PAL(URSALUNA, gMonShinyPalette_Ursaluna),
-    SPECIES_SHINY_PAL(BASCULEGION, gMonShinyPalette_CircledQuestionMark), //gMonShinyPalette_Basculegion),
-    SPECIES_SHINY_PAL(SNEASLER, gMonShinyPalette_CircledQuestionMark), //gMonShinyPalette_Sneasler),
+    SPECIES_SHINY_PAL(BASCULEGION, gMonShinyPalette_QuestionMark), //gMonShinyPalette_Basculegion),
+    SPECIES_SHINY_PAL(SNEASLER, gMonShinyPalette_QuestionMark), //gMonShinyPalette_Sneasler),
     SPECIES_SHINY_PAL(OVERQWIL, gMonShinyPalette_Overqwil),
-    SPECIES_SHINY_PAL(ENAMORUS, gMonShinyPalette_CircledQuestionMark), //gMonShinyPalette_Enamorus),
-    SPECIES_SHINY_PAL(ENAMORUS_THERIAN, gMonShinyPalette_CircledQuestionMark), //gMonShinyPalette_EnamorusTherian),
+    SPECIES_SHINY_PAL(ENAMORUS, gMonShinyPalette_QuestionMark), //gMonShinyPalette_Enamorus),
+    SPECIES_SHINY_PAL(ENAMORUS_THERIAN, gMonShinyPalette_QuestionMark), //gMonShinyPalette_EnamorusTherian),
 #endif
     SPECIES_SHINY_PAL(EGG, gMonPalette_Egg),
 };
@@ -1311,6 +1311,6 @@ const struct CompressedSpritePalette gMonShinyPaletteTableFemale[] =
     SPECIES_SHINY_PAL(PYROAR, gMonShinyPalette_Pyroar),
 #endif
 #if P_GEN_8_POKEMON == TRUE
-    SPECIES_SHINY_PAL(BASCULEGION, gMonShinyPalette_CircledQuestionMark), // gMonShinyPalette_BasculegionF),
+    SPECIES_SHINY_PAL(BASCULEGION, gMonShinyPalette_QuestionMark), // gMonShinyPalette_BasculegionF),
 #endif
 };

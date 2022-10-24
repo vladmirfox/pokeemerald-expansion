@@ -1,6 +1,6 @@
 const struct CompressedSpritePalette gMonPaletteTable[] =
 {
-    SPECIES_PAL(NONE, gMonPalette_CircledQuestionMark),
+    SPECIES_PAL(NONE, gMonPalette_QuestionMark),
     SPECIES_PAL(BULBASAUR, gMonPalette_Bulbasaur),
     SPECIES_PAL(IVYSAUR, gMonPalette_Ivysaur),
     SPECIES_PAL(VENUSAUR, gMonPalette_Venusaur),
@@ -677,7 +677,7 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(OSHAWOTT, gMonPalette_Oshawott),
     SPECIES_PAL(DEWOTT, gMonPalette_Dewott),
     SPECIES_PAL(SAMUROTT, gMonPalette_Samurott),
-    SPECIES_PAL(SAMUROTT_HISUIAN, gMonPalette_CircledQuestionMark), //gMonPalette_SamurottHisuian),
+    SPECIES_PAL(SAMUROTT_HISUIAN, gMonPalette_QuestionMark), //gMonPalette_SamurottHisuian),
     SPECIES_PAL(PATRAT, gMonPalette_Patrat),
     SPECIES_PAL(WATCHOG, gMonPalette_Watchog),
     SPECIES_PAL(LILLIPUP, gMonPalette_Lillipup),
@@ -1033,7 +1033,7 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(ROWLET, gMonPalette_Rowlet),
     SPECIES_PAL(DARTRIX, gMonPalette_Dartrix),
     SPECIES_PAL(DECIDUEYE, gMonPalette_Decidueye),
-    SPECIES_PAL(DECIDUEYE_HISUIAN, gMonPalette_CircledQuestionMark), //gMonPalette_DecidueyeHisuian),
+    SPECIES_PAL(DECIDUEYE_HISUIAN, gMonPalette_QuestionMark), //gMonPalette_DecidueyeHisuian),
     SPECIES_PAL(LITTEN, gMonPalette_Litten),
     SPECIES_PAL(TORRACAT, gMonPalette_Torracat),
     SPECIES_PAL(INCINEROAR, gMonPalette_Incineroar),
@@ -1275,14 +1275,14 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(CALYREX, gMonPalette_Calyrex),
     SPECIES_PAL(CALYREX_ICE_RIDER, gMonPalette_CalyrexIceRider),
     SPECIES_PAL(CALYREX_SHADOW_RIDER, gMonPalette_CalyrexShadowRider),
-    SPECIES_PAL(WYRDEER, gMonPalette_CircledQuestionMark), //gMonPalette_Wyrdeer),
+    SPECIES_PAL(WYRDEER, gMonPalette_QuestionMark), //gMonPalette_Wyrdeer),
     SPECIES_PAL(KLEAVOR, gMonPalette_Kleavor),
     SPECIES_PAL(URSALUNA, gMonPalette_Ursaluna),
-    SPECIES_PAL(BASCULEGION, gMonPalette_CircledQuestionMark), //gMonPalette_Basculegion),
-    SPECIES_PAL(SNEASLER, gMonPalette_CircledQuestionMark), //gMonPalette_Sneasler),
+    SPECIES_PAL(BASCULEGION, gMonPalette_QuestionMark), //gMonPalette_Basculegion),
+    SPECIES_PAL(SNEASLER, gMonPalette_QuestionMark), //gMonPalette_Sneasler),
     SPECIES_PAL(OVERQWIL, gMonPalette_Overqwil),
-    SPECIES_PAL(ENAMORUS, gMonPalette_CircledQuestionMark), //gMonPalette_Enamorus),
-    SPECIES_PAL(ENAMORUS_THERIAN, gMonPalette_CircledQuestionMark), //gMonPalette_EnamorusTherian),
+    SPECIES_PAL(ENAMORUS, gMonPalette_QuestionMark), //gMonPalette_Enamorus),
+    SPECIES_PAL(ENAMORUS_THERIAN, gMonPalette_QuestionMark), //gMonPalette_EnamorusTherian),
 #endif
     SPECIES_PAL(EGG, gMonPalette_Egg),
 };
@@ -1311,6 +1311,6 @@ const struct CompressedSpritePalette gMonPaletteTableFemale[] =
     SPECIES_PAL(PYROAR, gMonPalette_Pyroar),
 #endif
 #if P_GEN_8_POKEMON == TRUE
-    SPECIES_PAL(BASCULEGION, gMonPalette_CircledQuestionMark), // gMonPalette_BasculegionF),
+    SPECIES_PAL(BASCULEGION, gMonPalette_QuestionMark), // gMonPalette_BasculegionF),
 #endif
 };
