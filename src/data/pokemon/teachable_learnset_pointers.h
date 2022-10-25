@@ -1,6 +1,5 @@
 const u16 *const gTeachableLearnsets[NUM_SPECIES] =
 {
-    [SPECIES_NONE] = sBulbasaurTeachableLearnset,
     [SPECIES_IVYSAUR] = sIvysaurTeachableLearnset,
     [SPECIES_VENUSAUR] = sVenusaurTeachableLearnset,
     [SPECIES_VENUSAUR_MEGA] = sVenusaurTeachableLearnset,

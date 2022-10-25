@@ -5133,7 +5133,6 @@ static const union AnimCmd sAnim_EGG_1[] =
 };
 
 #if P_GEN_4_POKEMON == TRUE
-// Diamond and Pearl
 static const union AnimCmd sAnim_TURTWIG_1[] =
 {
     ANIMCMD_FRAME(0, 15),
@@ -6387,7 +6386,6 @@ static const union AnimCmd sAnim_ARCEUS_1[] =
 };
 #endif
 
-// HeartGold and SoulSilver
 static const union AnimCmd sAnim_PICHU_SPIKY_EARED_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -6395,7 +6393,6 @@ static const union AnimCmd sAnim_PICHU_SPIKY_EARED_1[] =
 };
 
 #if P_GEN_5_POKEMON == TRUE
-// Black and White
 static const union AnimCmd sAnim_VICTINI_1[] =
 {
     ANIMCMD_FRAME(0, 2),
@@ -17541,7 +17538,6 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(DEOXYS_SPEED),
     ANIM_CMD(CHIMECHO),
 #if P_GEN_4_POKEMON == TRUE
-// Diamond and Pearl
     ANIM_CMD(TURTWIG),
     ANIM_CMD(GROTLE),
     ANIM_CMD(TORTERRA),
@@ -17675,7 +17671,6 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD_FULL(ARCEUS_DRAGON, sAnims_ARCEUS),
     ANIM_CMD_FULL(ARCEUS_DARK, sAnims_ARCEUS),
     ANIM_CMD_FULL(ARCEUS_FAIRY, sAnims_ARCEUS),
-// Platinum
     ANIM_CMD(ROTOM_HEAT),
     ANIM_CMD(ROTOM_WASH),
     ANIM_CMD(ROTOM_FROST),
@@ -17686,7 +17681,6 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
 #endif
 
 #if P_GEN_5_POKEMON == TRUE
-// Black and White
     ANIM_CMD(VICTINI),
     ANIM_CMD(SNIVY),
     ANIM_CMD(SERVINE),

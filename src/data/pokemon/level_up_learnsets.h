@@ -7960,7 +7960,6 @@ static const struct LevelUpMove sChimechoLevelUpLearnset[] = {
 };
 
 #if P_GEN_4_POKEMON == TRUE
-// Diamond and Pearl
 static const struct LevelUpMove sTurtwigLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 5, MOVE_WITHDRAW),
