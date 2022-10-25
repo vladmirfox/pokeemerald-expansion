@@ -5471,7 +5471,7 @@ extern const u8 gMonIcon_Leafeon[];
 extern const u8 gMonIcon_Glaceon[];
 extern const u8 gMonIcon_Gliscor[];
 extern const u8 gMonIcon_Mamoswine[];
-extern const u8 gMonIcon_Porygon_Z[];
+extern const u8 gMonIcon_PorygonZ[];
 extern const u8 gMonIcon_Gallade[];
 extern const u8 gMonIcon_GalladeMega[];
 extern const u8 gMonIcon_Probopass[];
