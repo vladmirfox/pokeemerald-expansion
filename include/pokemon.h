@@ -360,8 +360,10 @@ struct BaseStats
             const u8 *const footprint;
             // Animation Data
             const union AnimCmd *const *frontAnim;
+            u8 frontAnimDelay;
             u8 frontAnimId;
             u8 backAnimId;
+            u8 enemyMonElevation;
 };
 
 #include "constants/battle_config.h"
