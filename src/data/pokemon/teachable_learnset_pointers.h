@@ -1,7 +1,6 @@
 const u16 *const gTeachableLearnsets[NUM_SPECIES] =
 {
     [SPECIES_NONE] = sBulbasaurTeachableLearnset,
-    [SPECIES_BULBASAUR] = sBulbasaurTeachableLearnset,
     [SPECIES_IVYSAUR] = sIvysaurTeachableLearnset,
     [SPECIES_VENUSAUR] = sVenusaurTeachableLearnset,
     [SPECIES_VENUSAUR_MEGA] = sVenusaurTeachableLearnset,
@@ -353,15 +352,12 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_LUGIA] = sLugiaTeachableLearnset,
     [SPECIES_HO_OH] = sHoOhTeachableLearnset,
     [SPECIES_CELEBI] = sCelebiTeachableLearnset,
-    [SPECIES_TREECKO] = sTreeckoTeachableLearnset,
     [SPECIES_GROVYLE] = sGrovyleTeachableLearnset,
     [SPECIES_SCEPTILE] = sSceptileTeachableLearnset,
     [SPECIES_SCEPTILE_MEGA] = sSceptileTeachableLearnset,
-    [SPECIES_TORCHIC] = sTorchicTeachableLearnset,
     [SPECIES_COMBUSKEN] = sCombuskenTeachableLearnset,
     [SPECIES_BLAZIKEN] = sBlazikenTeachableLearnset,
     [SPECIES_BLAZIKEN_MEGA] = sBlazikenTeachableLearnset,
-    [SPECIES_MUDKIP] = sMudkipTeachableLearnset,
     [SPECIES_MARSHTOMP] = sMarshtompTeachableLearnset,
     [SPECIES_SWAMPERT] = sSwampertTeachableLearnset,
     [SPECIES_SWAMPERT_MEGA] = sSwampertTeachableLearnset,

@@ -50,6 +50,16 @@ void LoadCompressedSpritePalette(const struct CompressedSpritePalette *src)
     LoadSpritePalette(&dest);
 }
 
+void LoadCompressedSpritePaletteWithTag(const u32 *pal, u8 tag)
+{
+    struct SpritePalette dest;
+
+    LZ77UnCompWram(pal, gDecompressionBuffer);
+    dest.data = (void *) gDecompressionBuffer;
+    dest.tag = tag;
+    LoadSpritePalette(&dest);
+}
+
 void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePalette *src, void *buffer)
 {
     struct SpritePalette dest;
@@ -63,17 +73,21 @@ void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePale
 void DecompressPicFromTable(const struct CompressedSpriteSheet *src, void *buffer, s32 species)
 {
     if (species > NUM_SPECIES)
-        LZ77UnCompWram(gMonFrontPicTable[0].data, buffer);
+        LZ77UnCompWram(gBaseStats[SPECIES_NONE].frontPic, buffer);
     else
         LZ77UnCompWram(src->data, buffer);
 }
 
 void DecompressPicFromTableGender(void* buffer, s32 species, u32 personality)
 {
-    if (ShouldShowFemaleDifferences(species, personality))
-        DecompressPicFromTable(&gMonFrontPicTableFemale[species], buffer, species);
+    if (species > NUM_SPECIES)
+        LZ77UnCompWram(gBaseStats[SPECIES_NONE].frontPic, buffer);
+    else if (gBaseStats[species].frontPicFemale != NULL)
+        LZ77UnCompWram(gBaseStats[species].frontPicFemale, buffer);
+    else if (gBaseStats[species].frontPic != NULL)
+        LZ77UnCompWram(gBaseStats[species].frontPic, buffer);
     else
-        DecompressPicFromTable(&gMonFrontPicTable[species], buffer, species);
+        LZ77UnCompWram(gBaseStats[SPECIES_NONE].frontPic, buffer);
 }
 
 void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 personality)
@@ -88,30 +102,31 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
         u32 id = GetUnownSpeciesId(personality);
 
         if (!isFrontPic)
-            LZ77UnCompWram(gMonBackPicTable[id].data, dest);
+            LZ77UnCompWram(gBaseStats[id].backPic, dest);
         else
-            LZ77UnCompWram(gMonFrontPicTable[id].data, dest);
+            LZ77UnCompWram(gBaseStats[id].frontPic, dest);
     }
     else if (species > NUM_SPECIES) // is species unknown? draw the ? icon
     {
         if (isFrontPic)
-            LZ77UnCompWram(gMonFrontPicTable[0].data, dest);
+            LZ77UnCompWram(gBaseStats[SPECIES_NONE].frontPic, dest);
         else
-            LZ77UnCompWram(gMonBackPicTable[0].data, dest);
+            LZ77UnCompWram(gBaseStats[SPECIES_NONE].backPic, dest);
     }
-    else if (ShouldShowFemaleDifferences(species, personality))
+    else if (isFrontPic && gBaseStats[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
     {
-        if (isFrontPic)
-            LZ77UnCompWram(gMonFrontPicTableFemale[species].data, dest);
-        else
-            LZ77UnCompWram(gMonBackPicTableFemale[species].data, dest);
+        LZ77UnCompWram(gBaseStats[species].frontPicFemale, dest);
+    }
+    else if (!isFrontPic && gBaseStats[species].backPicFemale != NULL && IsPersonalityFemale(species, personality))
+    {
+        LZ77UnCompWram(gBaseStats[species].backPicFemale, dest);
     }
     else
     {
         if (isFrontPic)
-            LZ77UnCompWram(gMonFrontPicTable[species].data, dest);
+            LZ77UnCompWram(gBaseStats[species].frontPic, dest);
         else
-            LZ77UnCompWram(gMonBackPicTable[species].data, dest);
+            LZ77UnCompWram(gBaseStats[species].backPic, dest);
     }
 
     DrawSpindaSpots(species, personality, dest, isFrontPic);

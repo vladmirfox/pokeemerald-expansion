@@ -1094,7 +1094,7 @@ static bool8 BufferTradeParties(void)
 
                     if (!StringCompareWithoutExtCtrlCodes(name, sJPText_Shedinja))
                     {
-                        SetMonData(mon, MON_DATA_NICKNAME, gSpeciesNames[SPECIES_SHEDINJA]);
+                        SetMonData(mon, MON_DATA_NICKNAME, GetSpeciesName(SPECIES_SHEDINJA));
                     }
                 }
             }
@@ -2743,21 +2743,21 @@ static void LoadTradeMonPic(u8 whichParty, u8 state)
         mon = &gEnemyParty[gSelectedTradeMonPositions[TRADE_PARTNER] % PARTY_SIZE];
         pos = B_POSITION_OPPONENT_RIGHT;
     }
+    species = GetMonData(mon, MON_DATA_SPECIES2);
 
     switch (state)
     {
     case 0:
-        species = GetMonData(mon, MON_DATA_SPECIES2);
         personality = GetMonData(mon, MON_DATA_PERSONALITY);
 
         HandleLoadSpecialPokePic(TRUE, gMonSpritesGfxPtr->sprites.ptr[whichParty * 2 + B_POSITION_OPPONENT_LEFT], species, personality);
 
-        LoadCompressedSpritePalette(GetMonSpritePalStruct(mon));
+        LoadCompressedSpritePaletteWithTag(GetMonFrontSpritePal(mon), species);
         sTradeData->monSpecies[whichParty] = species;
         sTradeData->monPersonalities[whichParty] = personality;
         break;
     case 1:
-        SetMultiuseSpriteTemplateToPokemon(GetMonSpritePalStruct(mon)->tag, pos);
+        SetMultiuseSpriteTemplateToPokemon(species, pos);
         sTradeData->monSpriteIds[whichParty] = CreateSprite(&gMultiuseSpriteTemplate, 120, 60, 6);
         gSprites[sTradeData->monSpriteIds[whichParty]].invisible = TRUE;
         gSprites[sTradeData->monSpriteIds[whichParty]].callback = SpriteCallbackDummy;
@@ -3380,7 +3380,7 @@ static bool8 AnimateTradeSequenceCable(void)
     case TS_STATE_START:
         gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].invisible = FALSE;
         gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].x2 = -180;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].y2 = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PLAYER]].y_offset;
+        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].y2 = gBaseStats[sTradeData->monSpecies[TRADE_PLAYER]].frontPicYOffset;
         sTradeData->state++;
         sTradeData->cachedMapMusic = GetCurrentMapMusic();
         PlayNewMapMusic(MUS_EVOLUTION);
@@ -3748,7 +3748,7 @@ static bool8 AnimateTradeSequenceCable(void)
         break;
     case TS_STATE_SHOW_NEW_MON:
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].x = 120;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PARTNER]].y_offset + 60;
+        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y = gBaseStats[sTradeData->monSpecies[TRADE_PARTNER]].frontPicYOffset + 60;
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].x2 = 0;
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y2 = 0;
         StartSpriteAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]], 0);
@@ -3853,7 +3853,7 @@ static bool8 AnimateTradeSequenceWireless(void)
     case TS_STATE_START:
         gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].invisible = FALSE;
         gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].x2 = -180;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].y2 = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PLAYER]].y_offset;
+        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].y2 = gBaseStats[sTradeData->monSpecies[TRADE_PLAYER]].frontPicYOffset;
         sTradeData->state++;
         sTradeData->cachedMapMusic = GetCurrentMapMusic();
         PlayNewMapMusic(MUS_EVOLUTION);
@@ -4248,7 +4248,7 @@ static bool8 AnimateTradeSequenceWireless(void)
         break;
     case TS_STATE_SHOW_NEW_MON:
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].x = 120;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PARTNER]].y_offset + 60;
+        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y = gBaseStats[sTradeData->monSpecies[TRADE_PARTNER]].frontPicYOffset + 60;
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].x2 = 0;
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y2 = 0;
         StartSpriteAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]], 0);
@@ -4476,8 +4476,8 @@ static void SpriteCB_BouncingPokeballArrive(struct Sprite *sprite)
 u16 GetInGameTradeSpeciesInfo(void)
 {
     const struct InGameTrade *inGameTrade = &sIngameTrades[gSpecialVar_0x8004];
-    StringCopy(gStringVar1, gSpeciesNames[inGameTrade->requestedSpecies]);
-    StringCopy(gStringVar2, gSpeciesNames[inGameTrade->species]);
+    StringCopy(gStringVar1, GetSpeciesName(inGameTrade->requestedSpecies));
+    StringCopy(gStringVar2, GetSpeciesName(inGameTrade->species));
     return inGameTrade->requestedSpecies;
 }
 
@@ -4487,7 +4487,7 @@ static void BufferInGameTradeMonName(void)
     const struct InGameTrade *inGameTrade = &sIngameTrades[gSpecialVar_0x8004];
     GetMonData(&gPlayerParty[gSpecialVar_0x8005], MON_DATA_NICKNAME, nickname);
     StringCopy_Nickname(gStringVar1, nickname);
-    StringCopy(gStringVar2, gSpeciesNames[inGameTrade->species]);
+    StringCopy(gStringVar2, GetSpeciesName(inGameTrade->species));
 }
 
 static void _CreateInGameTradePokemon(u8 whichPlayerMon, u8 whichInGameTrade)

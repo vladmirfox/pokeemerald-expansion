@@ -4365,11 +4365,11 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
     {
         textPrinter.currentY = sSpeciesNameTextYCoords[i];
         if (trainerId == TRAINER_PLAYER)
-            textPrinter.currentChar = gSpeciesNames[DOME_MONS[trainerTourneyId][i]];
+            textPrinter.currentChar = gBaseStats[DOME_MONS[trainerTourneyId][i]].speciesName;
         else if (trainerId == TRAINER_FRONTIER_BRAIN)
-            textPrinter.currentChar = gSpeciesNames[DOME_MONS[trainerTourneyId][i]];
+            textPrinter.currentChar = gBaseStats[DOME_MONS[trainerTourneyId][i]].speciesName;
         else
-            textPrinter.currentChar = gSpeciesNames[gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].species];
+            textPrinter.currentChar = gBaseStats[gFacilityTrainerMons[DOME_MONS[trainerTourneyId][i]].species].speciesName;
 
         textPrinter.windowId = 1 + i + windowId;
         if (i == 1)

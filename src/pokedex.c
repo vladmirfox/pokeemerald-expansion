@@ -2545,7 +2545,7 @@ static u8 CreateMonName(u16 species, u8 left, u8 top)
     const u8 *str;
 
     if (species >= NUM_SPECIES)
-        str = gSpeciesNames[species];
+        str = GetSpeciesName(species);
     else
         str = sText_TenDashes;
     PrintMonDexNumAndName(0, FONT_NARROW, str, left, top);
@@ -4210,7 +4210,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
         value = SpeciesToNationalPokedexNum(num);
     ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 3);
     PrintInfoScreenText(str, 0x60, 0x19);
-    name = gSpeciesNames[num];
+    name = GetSpeciesName(num);
     PrintInfoScreenText(name, 0x84, 0x19);
     if (owned)
     {
@@ -4616,8 +4616,8 @@ static u8 PrintCryScreenSpeciesName(u8 windowId, u16 num, u8 left, u8 top)
     switch (num)
     {
     default:
-        for (i = 0; gSpeciesNames[num][i] != EOS && i < POKEMON_NAME_LENGTH; i++)
-            str[i] = gSpeciesNames[num][i];
+        for (i = 0; GetSpeciesName(num)[i] != EOS && i < POKEMON_NAME_LENGTH; i++)
+            str[i] = GetSpeciesName(num)[i];
         break;
     case 0:
         for (i = 0; i < 5; i++)
@@ -4689,7 +4689,7 @@ static void PrintDecimalNum(u8 windowId, u16 num, u8 left, u8 top)
 static void DrawFootprint(u8 windowId, u16 species)
 {
     u8 footprint[32 * 4] = {0};
-    const u8 *footprintGfx = gMonFootprintTable[species];
+    const u8 *footprintGfx = gBaseStats[species].footprint;
     u32 i, j, tileIdx = 0;
 
     if (footprintGfx != NULL)
@@ -4801,7 +4801,7 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
             u8 firstLetter;
 
             species = sPokedexView->pokedexList[i].seenSpecies;
-            firstLetter = gSpeciesNames[species][0];
+            firstLetter = GetSpeciesName(species)[0];
             if (LETTER_IN_RANGE_UPPER(firstLetter, abcGroup) || LETTER_IN_RANGE_LOWER(firstLetter, abcGroup))
             {
                 sPokedexView->pokedexList[resultsCount] = sPokedexView->pokedexList[i];

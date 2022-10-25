@@ -11,17 +11,28 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_NONE] =
     {
         .categoryName = _("Unknown"),
-        .height = 0,
-        .weight = 0,
         .description = gDummyPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
+        .footprint = gMonFootprint_Bulbasaur,
+        .levelUpLearnset = sBulbasaurLevelUpLearnset,
+        .teachableLearnset = sBulbasaurTeachableLearnset,
+        .frontPic = gMonFrontPic_QuestionMark,
+        .frontPicSize = MON_COORDS_SIZE(40, 40),
+        .frontPicYOffset = 12,
+        .palette = gMonPalette_QuestionMark,
+        .backPic = gMonBackPic_QuestionMark,
+        .backPicSize = MON_COORDS_SIZE(40, 40),
+        .backPicYOffset = 12,
+        .shinyPalette = gMonShinyPalette_QuestionMark,
+        .iconSprite = gMonIcon_QuestionMark,
     },
 
     [SPECIES_BULBASAUR] =
     {
+        .speciesName = _("Bulbasaur"),
         .baseHP        = 45,
         .baseAttack    = 49,
         .baseDefense   = 49,
@@ -42,6 +53,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_CHLOROPHYLL},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BULBASAUR,
         .categoryName = _("Seed"),
         .height = 7,
         .weight = 69,
@@ -50,6 +62,22 @@ const struct BaseStats gBaseStats[] =
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
+        .levelUpLearnset = sBulbasaurLevelUpLearnset,
+        .teachableLearnset = sBulbasaurTeachableLearnset,
+        .frontPic = gMonFrontPic_Bulbasaur,
+        .frontPicSize = MON_COORDS_SIZE(40, 40),
+        .frontPicYOffset = 13 ,
+        .palette = gMonPalette_Bulbasaur,
+        .backPic = gMonBackPic_Bulbasaur,
+        .backPicSize = MON_COORDS_SIZE(56, 40),
+        .backPicYOffset = 13,
+        .shinyPalette = gMonShinyPalette_Bulbasaur,
+        .iconSprite = gMonIcon_Bulbasaur,
+        .iconPalIndex = 4,
+        .footprint = gMonFootprint_Bulbasaur,
+        .frontAnim = sAnims_BULBASAUR,
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
     },
 
     [SPECIES_IVYSAUR] =
@@ -5209,7 +5237,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RUN_AWAY, ABILITY_ADAPTABILITY, ABILITY_ANTICIPATION},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
         .categoryName = _("Evolution"),
         .height = 3,
         .weight = 65,
@@ -9505,6 +9532,7 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_TREECKO] =
     {
+        .speciesName = _("Treecko"),
         .baseHP        = 40,
         .baseAttack    = 45,
         .baseDefense   = 35,
@@ -9533,6 +9561,8 @@ const struct BaseStats gBaseStats[] =
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
+        .levelUpLearnset = sTreeckoLevelUpLearnset,
+        .teachableLearnset = sTreeckoTeachableLearnset,
     },
 
     [SPECIES_GROVYLE] =
@@ -9619,6 +9649,7 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_TORCHIC] =
     {
+        .speciesName = _("Torchic"),
         .baseHP        = 45,
         .baseAttack    = 60,
         .baseDefense   = 40,
@@ -9647,6 +9678,7 @@ const struct BaseStats gBaseStats[] =
         .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
+        .levelUpLearnset = sTorchicLevelUpLearnset,
     },
 
     [SPECIES_COMBUSKEN] =
@@ -9732,6 +9764,7 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_MUDKIP] =
     {
+        .speciesName = _("Mudkip"),
         .baseHP        = 50,
         .baseAttack    = 70,
         .baseDefense   = 50,
@@ -9760,6 +9793,7 @@ const struct BaseStats gBaseStats[] =
         .pokemonOffset = 20,
         .trainerScale = 256,
         .trainerOffset = 0,
+        .levelUpLearnset = sMudkipLevelUpLearnset,
     },
 
     [SPECIES_MARSHTOMP] =
@@ -14766,7 +14800,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_NONE, ABILITY_RECKLESS},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_STARAVIA] =
@@ -14791,7 +14824,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_RECKLESS},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_STARAPTOR] =
@@ -14844,7 +14876,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SIMPLE, ABILITY_UNAWARE, ABILITY_MOODY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_BIBAREL] =
@@ -14894,7 +14925,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_RUN_AWAY},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_KRICKETUNE] =
@@ -14920,7 +14950,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWARM, ABILITY_NONE, ABILITY_TECHNICIAN},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_SHINX] =
@@ -14945,7 +14974,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RIVALRY, ABILITY_INTIMIDATE, ABILITY_GUTS},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_LUXIO] =
@@ -15298,7 +15326,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_HONEY_GATHER, ABILITY_NONE, ABILITY_HUSTLE},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_VESPIQUEN] =
@@ -16182,7 +16209,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAND_STREAM, ABILITY_NONE, ABILITY_SAND_FORCE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_HIPPOWDON] =
@@ -16207,7 +16233,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAND_STREAM, ABILITY_NONE, ABILITY_SAND_FORCE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_SKORUPI] =
@@ -18110,7 +18135,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BIG_PECKS, ABILITY_SUPER_LUCK, ABILITY_RIVALRY},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_BLITZLE] =
@@ -20104,7 +20128,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_WATER_ABSORB, ABILITY_CURSED_BODY, ABILITY_DAMP},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_JELLICENT] =
@@ -20129,7 +20152,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_WATER_ABSORB, ABILITY_CURSED_BODY, ABILITY_DAMP},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_ALOMOMOLA] =
@@ -22274,7 +22296,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RIVALRY, ABILITY_UNNERVE, ABILITY_MOXIE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
 #define FLABEBE_BASE_STATS                                                  \
@@ -28664,7 +28685,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RATTLED, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
     },
 
     [SPECIES_SNEASLER] =

@@ -17107,8 +17107,6 @@ static const union AnimCmd *const sAnims_LYCANROC_DUSK[] =
 
 const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
 {
-    ANIM_CMD(NONE),
-    ANIM_CMD(BULBASAUR),
     ANIM_CMD(IVYSAUR),
     ANIM_CMD(VENUSAUR),
     ANIM_CMD(CHARMANDER),

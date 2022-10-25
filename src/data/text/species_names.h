@@ -1,6 +1,6 @@
 const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_NONE] = _("??????????"),
-    [SPECIES_BULBASAUR] = _("Bulbasaur"),
+
     [SPECIES_IVYSAUR] = _("Ivysaur"),
     [SPECIES_VENUSAUR] = _("Venusaur"),
     [SPECIES_VENUSAUR_MEGA] = _("Venusaur"),
@@ -352,15 +352,12 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_LUGIA] = _("Lugia"),
     [SPECIES_HO_OH] = _("Ho-Oh"),
     [SPECIES_CELEBI] = _("Celebi"),
-    [SPECIES_TREECKO] = _("Treecko"),
     [SPECIES_GROVYLE] = _("Grovyle"),
     [SPECIES_SCEPTILE] = _("Sceptile"),
     [SPECIES_SCEPTILE_MEGA] = _("Sceptile"),
-    [SPECIES_TORCHIC] = _("Torchic"),
     [SPECIES_COMBUSKEN] = _("Combusken"),
     [SPECIES_BLAZIKEN] = _("Blaziken"),
     [SPECIES_BLAZIKEN_MEGA] = _("Blaziken"),
-    [SPECIES_MUDKIP] = _("Mudkip"),
     [SPECIES_MARSHTOMP] = _("Marshtomp"),
     [SPECIES_SWAMPERT] = _("Swampert"),
     [SPECIES_SWAMPERT_MEGA] = _("Swampert"),

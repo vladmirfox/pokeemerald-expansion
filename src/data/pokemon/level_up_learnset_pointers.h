@@ -1,7 +1,6 @@
 const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
 {
     [SPECIES_NONE] = sBulbasaurLevelUpLearnset,
-    [SPECIES_BULBASAUR] = sBulbasaurLevelUpLearnset,
     [SPECIES_IVYSAUR] = sIvysaurLevelUpLearnset,
     [SPECIES_VENUSAUR] = sVenusaurLevelUpLearnset,
     [SPECIES_VENUSAUR_MEGA] = sVenusaurLevelUpLearnset,
@@ -353,15 +352,12 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_LUGIA] = sLugiaLevelUpLearnset,
     [SPECIES_HO_OH] = sHoOhLevelUpLearnset,
     [SPECIES_CELEBI] = sCelebiLevelUpLearnset,
-    [SPECIES_TREECKO] = sTreeckoLevelUpLearnset,
     [SPECIES_GROVYLE] = sGrovyleLevelUpLearnset,
     [SPECIES_SCEPTILE] = sSceptileLevelUpLearnset,
     [SPECIES_SCEPTILE_MEGA] = sSceptileLevelUpLearnset,
-    [SPECIES_TORCHIC] = sTorchicLevelUpLearnset,
     [SPECIES_COMBUSKEN] = sCombuskenLevelUpLearnset,
     [SPECIES_BLAZIKEN] = sBlazikenLevelUpLearnset,
     [SPECIES_BLAZIKEN_MEGA] = sBlazikenLevelUpLearnset,
-    [SPECIES_MUDKIP] = sMudkipLevelUpLearnset,
     [SPECIES_MARSHTOMP] = sMarshtompLevelUpLearnset,
     [SPECIES_SWAMPERT] = sSwampertLevelUpLearnset,
     [SPECIES_SWAMPERT_MEGA] = sSwampertLevelUpLearnset,

@@ -339,7 +339,6 @@ static const u16 sSpeciesToHoennPokedexNum[NUM_SPECIES - 1] =
 // Assigns all species to the National Dex Index (Summary No. for National Dex)
 static const u16 sSpeciesToNationalPokedexNum[NUM_SPECIES - 1] =
 {
-    SPECIES_TO_NATIONAL(BULBASAUR),
     SPECIES_TO_NATIONAL(IVYSAUR),
     SPECIES_TO_NATIONAL(VENUSAUR),
     SPECIES_TO_NATIONAL(VENUSAUR,_MEGA),
@@ -1900,7 +1899,6 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 #include "data/pokemon/experience_tables.h"
 #include "data/pokemon/pokedex_text.h"
 #include "data/pokemon/pokedex_entries.h"
-#include "data/pokemon/base_stats.h"
 #include "data/pokemon/level_up_learnsets.h"
 #include "data/pokemon/teachable_learnsets.h"
 #include "data/pokemon/evolution.h"
@@ -1912,14 +1910,15 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 #include "data/pokemon/form_change_table_pointers.h"
 #include "data/pokemon/base_form_species_table.h"
 
+#include "data/graphics/pokemon.h"
+#include "data/pokemon_graphics/front_pic_anims.h"
+
+#include "data/pokemon/base_stats.h"
+
 // SPECIES_NONE are ignored in the following two tables, so decrement before accessing these arrays to get the right result
-#if P_ENABLE_DEBUG == TRUE
+
 const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
-#else
-static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
-#endif
 {
-    [SPECIES_BULBASAUR - 1]                     = ANIM_V_JUMPS_H_JUMPS,
     [SPECIES_IVYSAUR - 1]                       = ANIM_V_STRETCH,
     [SPECIES_VENUSAUR - 1]                      = ANIM_ROTATE_UP_SLAM_DOWN,
     [SPECIES_CHARMANDER - 1]                    = ANIM_V_JUMPS_SMALL,
@@ -3469,7 +3468,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     checksum = CalculateBoxMonChecksum(boxMon);
     SetBoxMonData(boxMon, MON_DATA_CHECKSUM, &checksum);
     EncryptBoxMon(boxMon);
-    GetSpeciesName(speciesName, species);
+    StringCopy(speciesName, GetSpeciesName(species));
     SetBoxMonData(boxMon, MON_DATA_NICKNAME, speciesName);
     SetBoxMonData(boxMon, MON_DATA_LANGUAGE, &gGameLanguage);
     SetBoxMonData(boxMon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
@@ -4220,14 +4219,14 @@ void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon)
     s32 level = GetLevelFromBoxMonExp(boxMon);
     s32 i;
 
-    for (i = 0; gLevelUpLearnsets[species][i].move != LEVEL_UP_END; i++)
+    for (i = 0; gBaseStats[species].levelUpLearnset[i].move != LEVEL_UP_END; i++)
     {
-        if (gLevelUpLearnsets[species][i].level > level)
+        if (gBaseStats[species].levelUpLearnset[i].level > level)
             break;
-        if (gLevelUpLearnsets[species][i].level == 0)
+        if (gBaseStats[species].levelUpLearnset[i].level == 0)
             continue;
-        if (GiveMoveToBoxMon(boxMon, gLevelUpLearnsets[species][i].move) == MON_HAS_MAX_MOVES)
-            DeleteFirstMoveAndGiveMoveToBoxMon(boxMon, gLevelUpLearnsets[species][i].move);
+        if (GiveMoveToBoxMon(boxMon, gBaseStats[species].levelUpLearnset[i].move) == MON_HAS_MAX_MOVES)
+            DeleteFirstMoveAndGiveMoveToBoxMon(boxMon, gBaseStats[species].levelUpLearnset[i].move);
     }
 }
 
@@ -4245,17 +4244,17 @@ u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove)
     {
         sLearningMoveTableID = 0;
 
-        while (gLevelUpLearnsets[species][sLearningMoveTableID].level != level)
+        while (gBaseStats[species].levelUpLearnset[sLearningMoveTableID].level != level)
         {
             sLearningMoveTableID++;
-            if (gLevelUpLearnsets[species][sLearningMoveTableID].move == LEVEL_UP_END)
+            if (gBaseStats[species].levelUpLearnset[sLearningMoveTableID].move == LEVEL_UP_END)
                 return MOVE_NONE;
         }
     }
 
-    if (gLevelUpLearnsets[species][sLearningMoveTableID].level == level)
+    if (gBaseStats[species].levelUpLearnset[sLearningMoveTableID].level == level)
     {
-        gMoveToLearn = gLevelUpLearnsets[species][sLearningMoveTableID].move;
+        gMoveToLearn = gBaseStats[species].levelUpLearnset[sLearningMoveTableID].move;
         sLearningMoveTableID++;
         retVal = GiveMoveToMon(mon, gMoveToLearn);
     }
@@ -4416,6 +4415,11 @@ u8 GetGenderFromSpeciesAndPersonality(u16 species, u32 personality)
         return MON_MALE;
 }
 
+bool32 IsPersonalityFemale(u16 species, u32 personality)
+{
+    return GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE;
+}
+
 u32 GetUnownSpeciesId(u32 personality)
 {
     u16 unownLetter = GetUnownLetterByPersonality(personality);
@@ -4440,9 +4444,9 @@ void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition)
     if (battlerPosition == B_POSITION_PLAYER_LEFT || battlerPosition == B_POSITION_PLAYER_RIGHT)
         gMultiuseSpriteTemplate.anims = gAnims_MonPic;
     else if (speciesTag > SPECIES_SHINY_TAG)
-        gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[speciesTag - SPECIES_SHINY_TAG];
+        gMultiuseSpriteTemplate.anims = gBaseStats[speciesTag - SPECIES_SHINY_TAG].frontAnim;
     else
-        gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[speciesTag];
+        gMultiuseSpriteTemplate.anims = gBaseStats[speciesTag].frontAnim;
 }
 
 void SetMultiuseSpriteTemplateToTrainerBack(u16 trainerPicId, u8 battlerPosition)
@@ -5536,22 +5540,11 @@ bool8 IsPokemonStorageFull(void)
     return TRUE;
 }
 
-void GetSpeciesName(u8 *name, u16 species)
+const u8 *GetSpeciesName(u16 species)
 {
-    s32 i;
-
-    for (i = 0; i <= POKEMON_NAME_LENGTH; i++)
-    {
-        if (species > NUM_SPECIES)
-            name[i] = gSpeciesNames[SPECIES_NONE][i];
-        else
-            name[i] = gSpeciesNames[species][i];
-
-        if (name[i] == EOS)
-            break;
-    }
-
-    name[i] = EOS;
+    if (species > NUM_SPECIES)
+        return gBaseStats[SPECIES_NONE].speciesName;
+    return gBaseStats[species].speciesName;
 }
 
 u8 CalculatePPWithBonus(u16 move, u8 ppBonuses, u8 moveIndex)
@@ -6830,24 +6823,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
     return targetSpecies;
 }
 
-u16 HoennPokedexNumToSpecies(u16 hoennNum)
-{
-    u16 species;
-
-    if (!hoennNum)
-        return 0;
-
-    species = 0;
-
-    while (species < (NUM_SPECIES - 1) && sSpeciesToHoennPokedexNum[species] != hoennNum)
-        species++;
-
-    if (species == NUM_SPECIES - 1)
-        return 0;
-
-    return species + 1;
-}
-
 u16 NationalPokedexNumToSpecies(u16 nationalNum)
 {
     u16 species;
@@ -6881,7 +6856,7 @@ u16 SpeciesToNationalPokedexNum(u16 species)
     if (!species)
         return 0;
 
-    return sSpeciesToNationalPokedexNum[species - 1];
+    return gBaseStats[species].natDexNum;
 }
 
 u16 SpeciesToHoennPokedexNum(u16 species)
@@ -6889,7 +6864,7 @@ u16 SpeciesToHoennPokedexNum(u16 species)
     if (!species)
         return 0;
 
-    return sSpeciesToHoennPokedexNum[species - 1];
+    return gBaseStats[species].hoennDexNum;
 }
 
 u16 HoennToNationalOrder(u16 hoennNum)
@@ -7005,8 +6980,8 @@ void EvolutionRenameMon(struct Pokemon *mon, u16 oldSpecies, u16 newSpecies)
     u8 language;
     GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
     language = GetMonData(mon, MON_DATA_LANGUAGE, &language);
-    if (language == GAME_LANGUAGE && !StringCompare(gSpeciesNames[oldSpecies], gStringVar1))
-        SetMonData(mon, MON_DATA_NICKNAME, gSpeciesNames[newSpecies]);
+    if (language == GAME_LANGUAGE && !StringCompare(GetSpeciesName(oldSpecies), gStringVar1))
+        SetMonData(mon, MON_DATA_NICKNAME, GetSpeciesName(newSpecies));
 }
 
 // The below two functions determine which side of a multi battle the trainer battles on
@@ -7487,9 +7462,9 @@ u8 CanLearnTeachableMove(u16 species, u16 move)
     else
     {
         u8 i;
-        for (i = 0; gTeachableLearnsets[species][i] != MOVE_UNAVAILABLE; i++)
+        for (i = 0; gBaseStats[species].teachableLearnset[i] != MOVE_UNAVAILABLE; i++)
         {
-            if (gTeachableLearnsets[species][i] == move)
+            if (gBaseStats[species].teachableLearnset[i] == move)
                 return TRUE;
         }
         return FALSE;
@@ -7511,23 +7486,23 @@ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
     {
         u16 moveLevel;
 
-        if (gLevelUpLearnsets[species][i].move == LEVEL_UP_END)
+        if (gBaseStats[species].levelUpLearnset[i].move == LEVEL_UP_END)
             break;
 
-        moveLevel = gLevelUpLearnsets[species][i].level;
+        moveLevel = gBaseStats[species].levelUpLearnset[i].level;
 
         if (moveLevel <= level)
         {
-            for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != gLevelUpLearnsets[species][i].move; j++)
+            for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != gBaseStats[species].levelUpLearnset[i].move; j++)
                 ;
 
             if (j == MAX_MON_MOVES)
             {
-                for (k = 0; k < numMoves && moves[k] != gLevelUpLearnsets[species][i].move; k++)
+                for (k = 0; k < numMoves && moves[k] != gBaseStats[species].levelUpLearnset[i].move; k++)
                     ;
 
                 if (k == numMoves)
-                    moves[numMoves++] = gLevelUpLearnsets[species][i].move;
+                    moves[numMoves++] = gBaseStats[species].levelUpLearnset[i].move;
             }
         }
     }
@@ -7540,8 +7515,8 @@ u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves)
     u8 numMoves = 0;
     int i;
 
-    for (i = 0; i < MAX_LEVEL_UP_MOVES && gLevelUpLearnsets[species][i].move != LEVEL_UP_END; i++)
-         moves[numMoves++] = gLevelUpLearnsets[species][i].move;
+    for (i = 0; i < MAX_LEVEL_UP_MOVES && gBaseStats[species].levelUpLearnset[i].move != LEVEL_UP_END; i++)
+         moves[numMoves++] = gBaseStats[species].levelUpLearnset[i].move;
 
      return numMoves;
 }
@@ -7565,23 +7540,23 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
     {
         u16 moveLevel;
 
-        if (gLevelUpLearnsets[species][i].move == LEVEL_UP_END)
+        if (gBaseStats[species].levelUpLearnset[i].move == LEVEL_UP_END)
             break;
 
-        moveLevel = gLevelUpLearnsets[species][i].level;
+        moveLevel = gBaseStats[species].levelUpLearnset[i].level;
 
         if (moveLevel <= level)
         {
-            for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != gLevelUpLearnsets[species][i].move; j++)
+            for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != gBaseStats[species].levelUpLearnset[i].move; j++)
                 ;
 
             if (j == MAX_MON_MOVES)
             {
-                for (k = 0; k < numMoves && moves[k] != gLevelUpLearnsets[species][i].move; k++)
+                for (k = 0; k < numMoves && moves[k] != gBaseStats[species].levelUpLearnset[i].move; k++)
                     ;
 
                 if (k == numMoves)
-                    moves[numMoves++] = gLevelUpLearnsets[species][i].move;
+                    moves[numMoves++] = gBaseStats[species].levelUpLearnset[i].move;
             }
         }
     }
@@ -7731,51 +7706,22 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
     u32 shinyValue;
 
     if (species > NUM_SPECIES)
-        return gMonPaletteTable[SPECIES_NONE].data;
+        return gBaseStats[SPECIES_NONE].palette;
 
     shinyValue = GET_SHINY_VALUE(otId, personality);
     if (shinyValue < SHINY_ODDS)
     {
-        if (ShouldShowFemaleDifferences(species, personality))
-            return gMonShinyPaletteTableFemale[species].data;
+        if (gBaseStats[species].shinyPaletteFemale != NULL && IsPersonalityFemale(species, personality))
+            return gBaseStats[species].shinyPaletteFemale;
         else
-            return gMonShinyPaletteTable[species].data;
+            return gBaseStats[species].shinyPalette;
     }
     else
     {
-        if (ShouldShowFemaleDifferences(species, personality))
-            return gMonPaletteTableFemale[species].data;
+        if (gBaseStats[species].paletteFemale != NULL && IsPersonalityFemale(species, personality))
+            return gBaseStats[species].paletteFemale;
         else
-            return gMonPaletteTable[species].data;
-    }
-}
-
-const struct CompressedSpritePalette *GetMonSpritePalStruct(struct Pokemon *mon)
-{
-    u16 species = GetMonData(mon, MON_DATA_SPECIES2, 0);
-    u32 otId = GetMonData(mon, MON_DATA_OT_ID, 0);
-    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
-    return GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
-}
-
-const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u16 species, u32 otId , u32 personality)
-{
-    u32 shinyValue;
-
-    shinyValue = GET_SHINY_VALUE(otId, personality);
-    if (shinyValue < SHINY_ODDS)
-    {
-        if (ShouldShowFemaleDifferences(species, personality))
-            return &gMonShinyPaletteTableFemale[species];
-        else
-            return &gMonShinyPaletteTable[species];
-    }
-    else
-    {
-        if (ShouldShowFemaleDifferences(species, personality))
-            return &gMonPaletteTableFemale[species];
-        else
-            return &gMonPaletteTable[species];
+            return gBaseStats[species].palette;
     }
 }
 
@@ -8064,13 +8010,13 @@ void DoMonFrontSpriteAnimation(struct Sprite *sprite, u16 species, bool8 noCry, 
             // Animation has delay, start delay task
             u8 taskId = CreateTask(Task_AnimateAfterDelay, 0);
             STORE_PTR_IN_TASK(sprite, taskId, 0);
-            gTasks[taskId].sAnimId = sMonFrontAnimIdsTable[species - 1];
+            gTasks[taskId].sAnimId = gBaseStats[species].frontAnimId;
             gTasks[taskId].sAnimDelay = sMonAnimationDelayTable[species - 1];
         }
         else
         {
             // No delay, start animation
-            LaunchAnimationTaskForFrontSprite(sprite, sMonFrontAnimIdsTable[species - 1]);
+            LaunchAnimationTaskForFrontSprite(sprite, gBaseStats[species].frontAnimId);
         }
         sprite->callback = SpriteCallbackDummy_2;
     }
@@ -8085,7 +8031,7 @@ void PokemonSummaryDoMonAnimation(struct Sprite *sprite, u16 species, bool8 oneF
         // Animation has delay, start delay task
         u8 taskId = CreateTask(Task_PokemonSummaryAnimateAfterDelay, 0);
         STORE_PTR_IN_TASK(sprite, taskId, 0);
-        gTasks[taskId].sAnimId = sMonFrontAnimIdsTable[species - 1];
+        gTasks[taskId].sAnimId = gBaseStats[species].frontAnimId;
         gTasks[taskId].sAnimDelay = sMonAnimationDelayTable[species - 1];
         SummaryScreen_SetAnimDelayTaskId(taskId);
         SetSpriteCB_MonAnimDummy(sprite);
@@ -8093,7 +8039,7 @@ void PokemonSummaryDoMonAnimation(struct Sprite *sprite, u16 species, bool8 oneF
     else
     {
         // No delay, start animation
-        StartMonSummaryAnimation(sprite, sMonFrontAnimIdsTable[species - 1]);
+        StartMonSummaryAnimation(sprite, gBaseStats[species].frontAnimId);
     }
 }
 
@@ -8544,11 +8490,11 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)
     {
         sLearningMoveTableID = 0;
     }
-    while(gLevelUpLearnsets[species][sLearningMoveTableID].move != LEVEL_UP_END)
+    while(gBaseStats[species].levelUpLearnset[sLearningMoveTableID].move != LEVEL_UP_END)
     {
-        while (gLevelUpLearnsets[species][sLearningMoveTableID].level == 0 || gLevelUpLearnsets[species][sLearningMoveTableID].level == level)
+        while (gBaseStats[species].levelUpLearnset[sLearningMoveTableID].level == 0 || gBaseStats[species].levelUpLearnset[sLearningMoveTableID].level == level)
         {
-            gMoveToLearn = gLevelUpLearnsets[species][sLearningMoveTableID].move;
+            gMoveToLearn = gBaseStats[species].levelUpLearnset[sLearningMoveTableID].move;
             sLearningMoveTableID++;
             return GiveMoveToMon(mon, gMoveToLearn);
         }
@@ -8606,9 +8552,16 @@ void TrySpecialOverworldEvo(void)
     SetMainCallback2(CB2_ReturnToField);
 }
 
-bool32 ShouldShowFemaleDifferences(u16 species, u32 personality)
+bool32 SpeciesHasGenderDifferences(u16 species)
 {
-    return (gBaseStats[species].flags & SPECIES_FLAG_GENDER_DIFFERENCE) && GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE;
+    if (gBaseStats[species].frontPicFemale != NULL
+        || gBaseStats[species].paletteFemale != NULL
+        || gBaseStats[species].backPicFemale != NULL
+        || gBaseStats[species].shinyPaletteFemale != NULL
+        || gBaseStats[species].iconSpriteFemale != NULL)
+        return TRUE;
+
+    return FALSE;
 }
 
 void TryToSetBattleFormChangeMoves(struct Pokemon *mon)

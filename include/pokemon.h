@@ -296,44 +296,72 @@ struct BattlePokemon
 
 struct BaseStats
 {
- /* 0x00 */ u8 baseHP;
- /* 0x01 */ u8 baseAttack;
- /* 0x02 */ u8 baseDefense;
- /* 0x03 */ u8 baseSpeed;
- /* 0x04 */ u8 baseSpAttack;
- /* 0x05 */ u8 baseSpDefense;
- /* 0x06 */ u8 type1;
- /* 0x07 */ u8 type2;
- /* 0x08 */ u8 catchRate;
- /* 0x09 */ u16 expYield;
- /* 0x0A */ u16 evYield_HP:2;
- /* 0x0A */ u16 evYield_Attack:2;
- /* 0x0A */ u16 evYield_Defense:2;
- /* 0x0A */ u16 evYield_Speed:2;
- /* 0x0B */ u16 evYield_SpAttack:2;
- /* 0x0B */ u16 evYield_SpDefense:2;
- /* 0x0C */ u16 itemCommon;
- /* 0x0E */ u16 itemRare;
- /* 0x10 */ u8 genderRatio;
- /* 0x11 */ u8 eggCycles;
- /* 0x12 */ u8 friendship;
- /* 0x13 */ u8 growthRate;
- /* 0x14 */ u8 eggGroup1;
- /* 0x15 */ u8 eggGroup2;
- /* 0x16 */ u16 abilities[NUM_ABILITY_SLOTS];
-            u8 safariZoneFleeRate;
-            u8 bodyColor : 7;
-            u8 noFlip : 1;
-            u16 flags;
-// Pokédex data
-            u8 categoryName[13];
-            u16 height; //in decimeters
-            u16 weight; //in hectograms
-            const u8 *description;
-            u16 pokemonScale;
-            u16 pokemonOffset;
-            u16 trainerScale;
-            u16 trainerOffset;
+ /* 0x?? */ u8 speciesName[POKEMON_NAME_LENGTH + 1];
+ /* 0x?? */ u8 baseHP;
+ /* 0x?? */ u8 baseAttack;
+ /* 0x?? */ u8 baseDefense;
+ /* 0x?? */ u8 baseSpeed;
+ /* 0x?? */ u8 baseSpAttack;
+ /* 0x?? */ u8 baseSpDefense;
+ /* 0x?? */ u8 type1;
+ /* 0x?? */ u8 type2;
+ /* 0x?? */ u8 catchRate;
+ /* 0x?? */ u16 expYield;
+ /* 0x?? */ u16 evYield_HP:2;
+ /* 0x?? */ u16 evYield_Attack:2;
+ /* 0x?? */ u16 evYield_Defense:2;
+ /* 0x?? */ u16 evYield_Speed:2;
+ /* 0x?? */ u16 evYield_SpAttack:2;
+ /* 0x?? */ u16 evYield_SpDefense:2;
+ /* 0x?? */ u16 itemCommon;
+ /* 0x?? */ u16 itemRare;
+ /* 0x?? */ u8 genderRatio;
+ /* 0x?? */ u8 eggCycles;
+ /* 0x?? */ u8 friendship;
+ /* 0x?? */ u8 growthRate;
+ /* 0x?? */ u8 eggGroup1;
+ /* 0x?? */ u8 eggGroup2;
+ /* 0x?? */ u16 abilities[NUM_ABILITY_SLOTS];
+ /* 0x?? */ u8 safariZoneFleeRate;
+ /* 0x?? */ u8 bodyColor : 7;
+ /* 0x?? */ u8 noFlip : 1;
+ /* 0x?? */ u16 flags;
+            // Pokédex data
+ /* 0x?? */ u16 natDexNum;
+ /* 0x?? */ u16 hoennDexNum;
+ /* 0x?? */ u8 categoryName[13];
+ /* 0x?? */ u16 height; //in decimeters
+ /* 0x?? */ u16 weight; //in hectograms
+ /* 0x?? */ const u8 *description;
+ /* 0x?? */ u16 pokemonScale;
+ /* 0x?? */ u16 pokemonOffset;
+ /* 0x?? */ u16 trainerScale;
+ /* 0x?? */ u16 trainerOffset;
+            // Move Data
+ /* 0x?? */ const struct LevelUpMove *const levelUpLearnset;
+            const u16 *const teachableLearnset;
+            // Graphical Data
+            const u32 *const frontPic;
+            const u32 *const frontPicFemale;
+            u8 frontPicSize;
+            u8 frontPicYOffset;
+            const u32 *const palette;
+            const u32 *const paletteFemale;
+            const u32 *const backPic;
+            const u32 *const backPicFemale;
+            u8 backPicSize;
+            u8 backPicYOffset;
+            const u32 *const shinyPalette;
+            const u32 *const shinyPaletteFemale;
+            const u8 *const iconSprite;
+            const u8 *const iconSpriteFemale;
+            u8 iconPalIndex;
+            u8 iconPalIndexFemale;
+            const u8 *const footprint;
+            // Animation Data
+            const union AnimCmd *const *frontAnim;
+            u8 frontAnimId;
+            u8 backAnimId;
 };
 
 #include "constants/battle_config.h"
@@ -460,6 +488,7 @@ u8 GetDefaultMoveTarget(u8 battlerId);
 u8 GetMonGender(struct Pokemon *mon);
 u8 GetBoxMonGender(struct BoxPokemon *boxMon);
 u8 GetGenderFromSpeciesAndPersonality(u16 species, u32 personality);
+bool32 IsPersonalityFemale(u16 species, u32 personality);
 u32 GetUnownSpeciesId(u32 personality);
 void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition);
 void SetMultiuseSpriteTemplateToTrainerBack(u16 trainerSpriteId, u8 battlerPosition);
@@ -488,7 +517,7 @@ u8 GetSecretBaseTrainerPicIndex(void);
 u8 GetSecretBaseTrainerClass(void);
 bool8 IsPlayerPartyAndPokemonStorageFull(void);
 bool8 IsPokemonStorageFull(void);
-void GetSpeciesName(u8 *name, u16 species);
+const u8 *GetSpeciesName(u16 species);
 u8 CalculatePPWithBonus(u16 move, u8 ppBonuses, u8 moveIndex);
 void RemoveMonPPBonus(struct Pokemon *mon, u8 moveIndex);
 void RemoveBattleMonPPBonus(struct BattlePokemon *mon, u8 moveIndex);
@@ -502,7 +531,6 @@ u8 *UseStatIncreaseItem(u16 itemId);
 u8 GetNature(struct Pokemon *mon);
 u8 GetNatureFromPersonality(u32 personality);
 u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem, struct Pokemon *tradePartner);
-u16 HoennPokedexNumToSpecies(u16 hoennNum);
 u16 NationalPokedexNumToSpecies(u16 nationalNum);
 u16 NationalToHoennOrder(u16 nationalNum);
 u16 SpeciesToNationalPokedexNum(u16 species);
@@ -537,8 +565,6 @@ void PlayMapChosenOrBattleBGM(u16 songId);
 void CreateTask_PlayMapChosenOrBattleBGM(u16 songId);
 const u32 *GetMonFrontSpritePal(struct Pokemon *mon);
 const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 personality);
-const struct CompressedSpritePalette *GetMonSpritePalStruct(struct Pokemon *mon);
-const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u16 species, u32 otId , u32 personality);
 bool32 IsHMMove2(u16 move);
 bool8 IsMonSpriteNotFlipped(u16 species);
 s8 GetMonFlavorRelation(struct Pokemon *mon, u8 flavor);
@@ -574,7 +600,7 @@ u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId);
 u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg);
 u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *mon, u16 method, u32 arg);
 u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove);
-bool32 ShouldShowFemaleDifferences(u16 species, u32 personality);
+bool32 SpeciesHasGenderDifferences(u16 species);
 void TryToSetBattleFormChangeMoves(struct Pokemon *mon);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);
 
