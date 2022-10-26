@@ -201,33 +201,6 @@ gCryTable::
 	cry Cry_Slowking
 	cry Cry_Misdreavus
 	cry Cry_Unown @ A
-	cry Cry_Unown @ B
-	cry Cry_Unown @ C
-	cry Cry_Unown @ D
-	cry Cry_Unown @ E
-	cry Cry_Unown @ F
-	cry Cry_Unown @ G
-	cry Cry_Unown @ H
-	cry Cry_Unown @ I
-	cry Cry_Unown @ J
-	cry Cry_Unown @ K
-	cry Cry_Unown @ L
-	cry Cry_Unown @ M
-	cry Cry_Unown @ N
-	cry Cry_Unown @ O
-	cry Cry_Unown @ P
-	cry Cry_Unown @ Q
-	cry Cry_Unown @ R
-	cry Cry_Unown @ S
-	cry Cry_Unown @ T
-	cry Cry_Unown @ U
-	cry Cry_Unown @ V
-	cry Cry_Unown @ W
-	cry Cry_Unown @ X
-	cry Cry_Unown @ Y
-	cry Cry_Unown @ Z
-	cry Cry_Unown @ QM
-	cry Cry_Unown @ EM
 	cry Cry_Wobbuffet
 	cry Cry_Girafarig
 	cry Cry_Pineco
@@ -278,6 +251,31 @@ gCryTable::
 	cry Cry_Lugia
 	cry Cry_HoOh
 	cry Cry_Celebi
+	cry Cry_Unown @ B
+	cry Cry_Unown @ C
+	cry Cry_Unown @ D
+	cry Cry_Unown @ E
+	cry Cry_Unown @ F
+	cry Cry_Unown @ G
+	cry Cry_Unown @ H
+	cry Cry_Unown @ I
+	cry Cry_Unown @ J
+	cry Cry_Unown @ K
+	cry Cry_Unown @ L
+	cry Cry_Unown @ M
+	cry Cry_Unown @ N
+	cry Cry_Unown @ O
+	cry Cry_Unown @ P
+	cry Cry_Unown @ Q
+	cry Cry_Unown @ R
+	cry Cry_Unown @ S
+	cry Cry_Unown @ T
+	cry Cry_Unown @ U
+	cry Cry_Unown @ V
+	cry Cry_Unown @ W
+	cry Cry_Unown @ X
+	cry Cry_Unown @ Y
+	cry Cry_Unown @ Z
 	cry Cry_Treecko
 	cry Cry_Grovyle
 	cry Cry_Sceptile
@@ -302,104 +300,100 @@ gCryTable::
 	cry Cry_Seedot
 	cry Cry_Nuzleaf
 	cry Cry_Shiftry
-	cry Cry_Taillow
-	cry Cry_Swellow
-	cry Cry_Wingull
-	cry Cry_Pelipper
-	cry Cry_Ralts
-	cry Cry_Kirlia
-	cry Cry_Gardevoir
-	cry Cry_Surskit
-	cry Cry_Masquerain
-	cry Cry_Shroomish
-	cry Cry_Breloom
-	cry Cry_Slakoth
-	cry Cry_Vigoroth
-	cry Cry_Slaking
 	cry Cry_Nincada
 	cry Cry_Ninjask
 	cry Cry_Shedinja
-	cry Cry_Whismur
-	cry Cry_Loudred
-	cry Cry_Exploud
-	cry Cry_Makuhita
-	cry Cry_Hariyama
-	cry Cry_Azurill
-	cry Cry_Nosepass
-	cry Cry_Skitty
-	cry Cry_Delcatty
-	cry Cry_Sableye
-	cry Cry_Mawile
-	cry Cry_Aron
-	cry Cry_Lairon
-	cry Cry_Aggron
-	cry Cry_Meditite
-	cry Cry_Medicham
-	cry Cry_Electrike
-	cry Cry_Manectric
-	cry Cry_Plusle
-	cry Cry_Minun
-	cry Cry_Volbeat
-	cry Cry_Illumise
-	cry Cry_Roselia
-	cry Cry_Gulpin
-	cry Cry_Swalot
-	cry Cry_Carvanha
-	cry Cry_Sharpedo
+	cry Cry_Taillow
+	cry Cry_Swellow
+	cry Cry_Shroomish
+	cry Cry_Breloom
+	cry Cry_Spinda
+	cry Cry_Wingull
+	cry Cry_Pelipper
+	cry Cry_Surskit
+	cry Cry_Masquerain
 	cry Cry_Wailmer
 	cry Cry_Wailord
-	cry Cry_Numel
-	cry Cry_Camerupt
+	cry Cry_Skitty
+	cry Cry_Delcatty
+	cry Cry_Kecleon
+	cry Cry_Baltoy
+	cry Cry_Claydol
+	cry Cry_Nosepass
 	cry Cry_Torkoal
-	cry Cry_Spoink
-	cry Cry_Grumpig
-	cry Cry_Spinda
+	cry Cry_Sableye
+	cry Cry_Barboach
+	cry Cry_Whiscash
+	cry Cry_Luvdisc
+	cry Cry_Corphish
+	cry Cry_Crawdaunt
+	cry Cry_Feebas
+	cry Cry_Milotic
+	cry Cry_Carvanha
+	cry Cry_Sharpedo
 	cry Cry_Trapinch
 	cry Cry_Vibrava
 	cry Cry_Flygon
+	cry Cry_Makuhita
+	cry Cry_Hariyama
+	cry Cry_Electrike
+	cry Cry_Manectric
+	cry Cry_Numel
+	cry Cry_Camerupt
+	cry Cry_Spheal
+	cry Cry_Sealeo
+	cry Cry_Walrein
 	cry Cry_Cacnea
 	cry Cry_Cacturne
-	cry Cry_Swablu
-	cry Cry_Altaria
-	cry Cry_Zangoose
-	cry Cry_Seviper
+	cry Cry_Snorunt
+	cry Cry_Glalie
 	cry Cry_Lunatone
 	cry Cry_Solrock
-	cry Cry_Barboach
-	cry Cry_Whiscash
-	cry Cry_Corphish
-	cry Cry_Crawdaunt
-	cry Cry_Baltoy
-	cry Cry_Claydol
+	cry Cry_Azurill
+	cry Cry_Spoink
+	cry Cry_Grumpig
+	cry Cry_Plusle
+	cry Cry_Minun
+	cry Cry_Mawile
+	cry Cry_Meditite
+	cry Cry_Medicham
+	cry Cry_Swablu
+	cry Cry_Altaria
+	cry Cry_Wynaut
+	cry Cry_Duskull
+	cry Cry_Dusclops
+	cry Cry_Roselia
+	cry Cry_Slakoth
+	cry Cry_Vigoroth
+	cry Cry_Slaking
+	cry Cry_Gulpin
+	cry Cry_Swalot
+	cry Cry_Tropius
+	cry Cry_Whismur
+	cry Cry_Loudred
+	cry Cry_Exploud
+	cry Cry_Clamperl
+	cry Cry_Huntail
+	cry Cry_Gorebyss
+	cry Cry_Absol
+	cry Cry_Shuppet
+	cry Cry_Banette
+	cry Cry_Seviper
+	cry Cry_Zangoose
+	cry Cry_Relicanth
+	cry Cry_Aron
+	cry Cry_Lairon
+	cry Cry_Aggron
+	cry Cry_Castform
+	cry Cry_Volbeat
+	cry Cry_Illumise
 	cry Cry_Lileep
 	cry Cry_Cradily
 	cry Cry_Anorith
 	cry Cry_Armaldo
-	cry Cry_Feebas
-	cry Cry_Milotic
-	cry Cry_Castform
-	cry Cry_Castform
-	cry Cry_Castform
-	cry Cry_Castform
-	cry Cry_Kecleon
-	cry Cry_Shuppet
-	cry Cry_Banette
-	cry Cry_Duskull
-	cry Cry_Dusclops
-	cry Cry_Tropius
-	cry Cry_Chimecho
-	cry Cry_Absol
-	cry Cry_Wynaut
-	cry Cry_Snorunt
-	cry Cry_Glalie
-	cry Cry_Spheal
-	cry Cry_Sealeo
-	cry Cry_Walrein
-	cry Cry_Clamperl
-	cry Cry_Huntail
-	cry Cry_Gorebyss
-	cry Cry_Relicanth
-	cry Cry_Luvdisc
+	cry Cry_Ralts
+	cry Cry_Kirlia
+	cry Cry_Gardevoir
 	cry Cry_Bagon
 	cry Cry_Shelgon
 	cry Cry_Salamence
@@ -409,16 +403,23 @@ gCryTable::
 	cry Cry_Regirock
 	cry Cry_Regice
 	cry Cry_Registeel
-	cry Cry_Latias
-	cry Cry_Latios
 	cry Cry_Kyogre
 	cry Cry_Groudon
 	cry Cry_Rayquaza
+	cry Cry_Latias
+	cry Cry_Latios
 	cry Cry_Jirachi
 	cry Cry_Deoxys
+	cry Cry_Chimecho
+	cry Cry_Unown @ QM
+	cry Cry_Unown @ EM
+	cry Cry_Castform
+	cry Cry_Castform
+	cry Cry_Castform
 	cry Cry_Deoxys
 	cry Cry_Deoxys
 	cry Cry_Deoxys
+@ XD: Gale of Darkness
 	cry Cry_Lugia
 @ Diamond and Pearl
 	cry Cry_Turtwig
@@ -1174,9 +1175,8 @@ gCryTable::
 	cry Cry_Barraskewda
 	cry Cry_Toxel
 	cry Cry_Toxtricity
+	cry Cry_ToxtricityLowKey
 	cry Cry_Toxtricity
-	cry Cry_ToxtricityLowKey
-	cry Cry_ToxtricityLowKey
 	cry Cry_Sizzlipede
 	cry Cry_Centiskorch
 	cry Cry_Centiskorch
@@ -1201,67 +1201,6 @@ gCryTable::
 	cry Cry_MrRime
 	cry Cry_Runerigus
 	cry Cry_Milcery
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
-	cry Cry_Alcremie
 	cry Cry_Alcremie
 	cry Cry_Alcremie
 	cry Cry_Alcremie
@@ -1643,33 +1582,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_Slowking
 	cry_reverse Cry_Misdreavus
 	cry_reverse Cry_Unown @ A
-	cry_reverse Cry_Unown @ B
-	cry_reverse Cry_Unown @ C
-	cry_reverse Cry_Unown @ D
-	cry_reverse Cry_Unown @ E
-	cry_reverse Cry_Unown @ F
-	cry_reverse Cry_Unown @ G
-	cry_reverse Cry_Unown @ H
-	cry_reverse Cry_Unown @ I
-	cry_reverse Cry_Unown @ J
-	cry_reverse Cry_Unown @ K
-	cry_reverse Cry_Unown @ L
-	cry_reverse Cry_Unown @ M
-	cry_reverse Cry_Unown @ N
-	cry_reverse Cry_Unown @ O
-	cry_reverse Cry_Unown @ P
-	cry_reverse Cry_Unown @ Q
-	cry_reverse Cry_Unown @ R
-	cry_reverse Cry_Unown @ S
-	cry_reverse Cry_Unown @ T
-	cry_reverse Cry_Unown @ U
-	cry_reverse Cry_Unown @ V
-	cry_reverse Cry_Unown @ W
-	cry_reverse Cry_Unown @ X
-	cry_reverse Cry_Unown @ Y
-	cry_reverse Cry_Unown @ Z
-	cry_reverse Cry_Unown @ QM
-	cry_reverse Cry_Unown @ EM
 	cry_reverse Cry_Wobbuffet
 	cry_reverse Cry_Girafarig
 	cry_reverse Cry_Pineco
@@ -1720,6 +1632,31 @@ gCryTable_Reverse::
 	cry_reverse Cry_Lugia
 	cry_reverse Cry_HoOh
 	cry_reverse Cry_Celebi
+	cry_reverse Cry_Unown @ B
+	cry_reverse Cry_Unown @ C
+	cry_reverse Cry_Unown @ D
+	cry_reverse Cry_Unown @ E
+	cry_reverse Cry_Unown @ F
+	cry_reverse Cry_Unown @ G
+	cry_reverse Cry_Unown @ H
+	cry_reverse Cry_Unown @ I
+	cry_reverse Cry_Unown @ J
+	cry_reverse Cry_Unown @ K
+	cry_reverse Cry_Unown @ L
+	cry_reverse Cry_Unown @ M
+	cry_reverse Cry_Unown @ N
+	cry_reverse Cry_Unown @ O
+	cry_reverse Cry_Unown @ P
+	cry_reverse Cry_Unown @ Q
+	cry_reverse Cry_Unown @ R
+	cry_reverse Cry_Unown @ S
+	cry_reverse Cry_Unown @ T
+	cry_reverse Cry_Unown @ U
+	cry_reverse Cry_Unown @ V
+	cry_reverse Cry_Unown @ W
+	cry_reverse Cry_Unown @ X
+	cry_reverse Cry_Unown @ Y
+	cry_reverse Cry_Unown @ Z
 	cry_reverse Cry_Treecko
 	cry_reverse Cry_Grovyle
 	cry_reverse Cry_Sceptile
@@ -1744,104 +1681,100 @@ gCryTable_Reverse::
 	cry_reverse Cry_Seedot
 	cry_reverse Cry_Nuzleaf
 	cry_reverse Cry_Shiftry
-	cry_reverse Cry_Taillow
-	cry_reverse Cry_Swellow
-	cry_reverse Cry_Wingull
-	cry_reverse Cry_Pelipper
-	cry_reverse Cry_Ralts
-	cry_reverse Cry_Kirlia
-	cry_reverse Cry_Gardevoir
-	cry_reverse Cry_Surskit
-	cry_reverse Cry_Masquerain
-	cry_reverse Cry_Shroomish
-	cry_reverse Cry_Breloom
-	cry_reverse Cry_Slakoth
-	cry_reverse Cry_Vigoroth
-	cry_reverse Cry_Slaking
 	cry_reverse Cry_Nincada
 	cry_reverse Cry_Ninjask
 	cry_reverse Cry_Shedinja
-	cry_reverse Cry_Whismur
-	cry_reverse Cry_Loudred
-	cry_reverse Cry_Exploud
-	cry_reverse Cry_Makuhita
-	cry_reverse Cry_Hariyama
-	cry_reverse Cry_Azurill
-	cry_reverse Cry_Nosepass
-	cry_reverse Cry_Skitty
-	cry_reverse Cry_Delcatty
-	cry_reverse Cry_Sableye
-	cry_reverse Cry_Mawile
-	cry_reverse Cry_Aron
-	cry_reverse Cry_Lairon
-	cry_reverse Cry_Aggron
-	cry_reverse Cry_Meditite
-	cry_reverse Cry_Medicham
-	cry_reverse Cry_Electrike
-	cry_reverse Cry_Manectric
-	cry_reverse Cry_Plusle
-	cry_reverse Cry_Minun
-	cry_reverse Cry_Volbeat
-	cry_reverse Cry_Illumise
-	cry_reverse Cry_Roselia
-	cry_reverse Cry_Gulpin
-	cry_reverse Cry_Swalot
-	cry_reverse Cry_Carvanha
-	cry_reverse Cry_Sharpedo
+	cry_reverse Cry_Taillow
+	cry_reverse Cry_Swellow
+	cry_reverse Cry_Shroomish
+	cry_reverse Cry_Breloom
+	cry_reverse Cry_Spinda
+	cry_reverse Cry_Wingull
+	cry_reverse Cry_Pelipper
+	cry_reverse Cry_Surskit
+	cry_reverse Cry_Masquerain
 	cry_reverse Cry_Wailmer
 	cry_reverse Cry_Wailord
-	cry_reverse Cry_Numel
-	cry_reverse Cry_Camerupt
+	cry_reverse Cry_Skitty
+	cry_reverse Cry_Delcatty
+	cry_reverse Cry_Kecleon
+	cry_reverse Cry_Baltoy
+	cry_reverse Cry_Claydol
+	cry_reverse Cry_Nosepass
 	cry_reverse Cry_Torkoal
-	cry_reverse Cry_Spoink
-	cry_reverse Cry_Grumpig
-	cry_reverse Cry_Spinda
+	cry_reverse Cry_Sableye
+	cry_reverse Cry_Barboach
+	cry_reverse Cry_Whiscash
+	cry_reverse Cry_Luvdisc
+	cry_reverse Cry_Corphish
+	cry_reverse Cry_Crawdaunt
+	cry_reverse Cry_Feebas
+	cry_reverse Cry_Milotic
+	cry_reverse Cry_Carvanha
+	cry_reverse Cry_Sharpedo
 	cry_reverse Cry_Trapinch
 	cry_reverse Cry_Vibrava
 	cry_reverse Cry_Flygon
+	cry_reverse Cry_Makuhita
+	cry_reverse Cry_Hariyama
+	cry_reverse Cry_Electrike
+	cry_reverse Cry_Manectric
+	cry_reverse Cry_Numel
+	cry_reverse Cry_Camerupt
+	cry_reverse Cry_Spheal
+	cry_reverse Cry_Sealeo
+	cry_reverse Cry_Walrein
 	cry_reverse Cry_Cacnea
 	cry_reverse Cry_Cacturne
-	cry_reverse Cry_Swablu
-	cry_reverse Cry_Altaria
-	cry_reverse Cry_Zangoose
-	cry_reverse Cry_Seviper
+	cry_reverse Cry_Snorunt
+	cry_reverse Cry_Glalie
 	cry_reverse Cry_Lunatone
 	cry_reverse Cry_Solrock
-	cry_reverse Cry_Barboach
-	cry_reverse Cry_Whiscash
-	cry_reverse Cry_Corphish
-	cry_reverse Cry_Crawdaunt
-	cry_reverse Cry_Baltoy
-	cry_reverse Cry_Claydol
+	cry_reverse Cry_Azurill
+	cry_reverse Cry_Spoink
+	cry_reverse Cry_Grumpig
+	cry_reverse Cry_Plusle
+	cry_reverse Cry_Minun
+	cry_reverse Cry_Mawile
+	cry_reverse Cry_Meditite
+	cry_reverse Cry_Medicham
+	cry_reverse Cry_Swablu
+	cry_reverse Cry_Altaria
+	cry_reverse Cry_Wynaut
+	cry_reverse Cry_Duskull
+	cry_reverse Cry_Dusclops
+	cry_reverse Cry_Roselia
+	cry_reverse Cry_Slakoth
+	cry_reverse Cry_Vigoroth
+	cry_reverse Cry_Slaking
+	cry_reverse Cry_Gulpin
+	cry_reverse Cry_Swalot
+	cry_reverse Cry_Tropius
+	cry_reverse Cry_Whismur
+	cry_reverse Cry_Loudred
+	cry_reverse Cry_Exploud
+	cry_reverse Cry_Clamperl
+	cry_reverse Cry_Huntail
+	cry_reverse Cry_Gorebyss
+	cry_reverse Cry_Absol
+	cry_reverse Cry_Shuppet
+	cry_reverse Cry_Banette
+	cry_reverse Cry_Seviper
+	cry_reverse Cry_Zangoose
+	cry_reverse Cry_Relicanth
+	cry_reverse Cry_Aron
+	cry_reverse Cry_Lairon
+	cry_reverse Cry_Aggron
+	cry_reverse Cry_Castform
+	cry_reverse Cry_Volbeat
+	cry_reverse Cry_Illumise
 	cry_reverse Cry_Lileep
 	cry_reverse Cry_Cradily
 	cry_reverse Cry_Anorith
 	cry_reverse Cry_Armaldo
-	cry_reverse Cry_Feebas
-	cry_reverse Cry_Milotic
-	cry_reverse Cry_Castform
-	cry_reverse Cry_Castform
-	cry_reverse Cry_Castform
-	cry_reverse Cry_Castform
-	cry_reverse Cry_Kecleon
-	cry_reverse Cry_Shuppet
-	cry_reverse Cry_Banette
-	cry_reverse Cry_Duskull
-	cry_reverse Cry_Dusclops
-	cry_reverse Cry_Tropius
-	cry_reverse Cry_Chimecho
-	cry_reverse Cry_Absol
-	cry_reverse Cry_Wynaut
-	cry_reverse Cry_Snorunt
-	cry_reverse Cry_Glalie
-	cry_reverse Cry_Spheal
-	cry_reverse Cry_Sealeo
-	cry_reverse Cry_Walrein
-	cry_reverse Cry_Clamperl
-	cry_reverse Cry_Huntail
-	cry_reverse Cry_Gorebyss
-	cry_reverse Cry_Relicanth
-	cry_reverse Cry_Luvdisc
+	cry_reverse Cry_Ralts
+	cry_reverse Cry_Kirlia
+	cry_reverse Cry_Gardevoir
 	cry_reverse Cry_Bagon
 	cry_reverse Cry_Shelgon
 	cry_reverse Cry_Salamence
@@ -1851,18 +1784,25 @@ gCryTable_Reverse::
 	cry_reverse Cry_Regirock
 	cry_reverse Cry_Regice
 	cry_reverse Cry_Registeel
-	cry_reverse Cry_Latias
-	cry_reverse Cry_Latios
 	cry_reverse Cry_Kyogre
 	cry_reverse Cry_Groudon
 	cry_reverse Cry_Rayquaza
+	cry_reverse Cry_Latias
+	cry_reverse Cry_Latios
 	cry_reverse Cry_Jirachi
 	cry_reverse Cry_Deoxys
+	cry_reverse Cry_Chimecho
+	cry_reverse Cry_Unown @ QM
+	cry_reverse Cry_Unown @ EM
+	cry_reverse Cry_Castform
+	cry_reverse Cry_Castform
+	cry_reverse Cry_Castform
 	cry_reverse Cry_Deoxys
 	cry_reverse Cry_Deoxys
 	cry_reverse Cry_Deoxys
+	@ XD: Gale of Darkness
 	cry_reverse Cry_Lugia
-@ Diamond and Pearl
+	@ Diamond and Pearl
 	cry_reverse Cry_Turtwig
 	cry_reverse Cry_Grotle
 	cry_reverse Cry_Torterra
@@ -2196,6 +2136,44 @@ gCryTable_Reverse::
 	cry_reverse Cry_Fletchinder
 	cry_reverse Cry_Talonflame
 	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Scatterbug
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
+	cry_reverse Cry_Spewpa
 	cry_reverse Cry_Spewpa
 	cry_reverse Cry_Vivillon
 	cry_reverse Cry_Vivillon
@@ -2578,9 +2556,8 @@ gCryTable_Reverse::
 	cry_reverse Cry_Barraskewda
 	cry_reverse Cry_Toxel
 	cry_reverse Cry_Toxtricity
+	cry_reverse Cry_ToxtricityLowKey
 	cry_reverse Cry_Toxtricity
-	cry_reverse Cry_ToxtricityLowKey
-	cry_reverse Cry_ToxtricityLowKey
 	cry_reverse Cry_Sizzlipede
 	cry_reverse Cry_Centiskorch
 	cry_reverse Cry_Centiskorch
@@ -2605,67 +2582,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_MrRime
 	cry_reverse Cry_Runerigus
 	cry_reverse Cry_Milcery
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
-	cry_reverse Cry_Alcremie
 	cry_reverse Cry_Alcremie
 	cry_reverse Cry_Alcremie
 	cry_reverse Cry_Alcremie
