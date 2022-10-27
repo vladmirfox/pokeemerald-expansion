@@ -928,7 +928,7 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 castform, bo
 
         if (targetSpecies == SPECIES_CASTFORM || targetSpecies == SPECIES_CHERRIM)
         {
-            gSprites[gBattlerSpriteIds[battlerAtk]].anims = gBaseStats[targetSpecies].frontAnim;
+            gSprites[gBattlerSpriteIds[battlerAtk]].anims = gBaseStats[targetSpecies].frontAnimFrames;
             LZDecompressWram(lzPaletteData, gBattleStruct->castformPalette);
             LoadPalette(gBattleStruct->castformPalette[gBattleMonForms[battlerDef]], paletteOffset, 32);
         }

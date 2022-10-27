@@ -2,32 +2,68 @@
 // 255 (MON_GENDERLESS) is reserved for genderless Pokémon.
 #define PERCENT_FEMALE(percent) min(254, ((percent * 255) / 100))
 
-// Macros to allow editing every form at once
 #define FLIP    0
 #define NO_FLIP 1
+
+#define DEX_TEXT(name, category)        \
+    .description = g##name##PokedexText,  \
+    .categoryName = _(category)
+
+#define HEIGHT_WEIGHT(ht, wt)   \
+    .height = ht,               \
+    .weight = wt
+
+#define DEX_SCALE(mon_scale, mon_offset, trainer_scale, trainer_offset) \
+    .pokemonScale = mon_scale,                                          \
+    .pokemonOffset = mon_offset,                                        \
+    .trainerScale = trainer_scale,                                      \
+    .trainerOffset = trainer_offset
+
+#define LEARNSETS(name)                             \
+    .levelUpLearnset = s##name##LevelUpLearnset,    \
+    .teachableLearnset = s##name##TeachableLearnset
+
+#define FRONT_SPRITE(name, width, height, y_offset, elevation)  \
+    .frontPic = gMonFrontPic_##name,                            \
+    .frontPicSize = MON_COORDS_SIZE(width,height),              \
+    .frontPicYOffset = y_offset,                                \
+    .enemyMonElevation = elevation
+
+#define BACK_SPRITE(name, width, height, y_offset)\
+    .backPic = gMonBackPic_##name,                \
+    .backPicSize = MON_COORDS_SIZE(width,height),  \
+    .backPicYOffset = y_offset
+
+#define PALETTES(name)                      \
+    .palette = gMonPalette_##name,          \
+    .shinyPalette = gMonShinyPalette_##name
+
+#define ICON(name, palId)           \
+    .iconSprite = gMonIcon_##name,  \
+    .iconPalIndex = palId
+
+#define FOOTPRINT(name) \
+    .footprint = gMonFootprint_##name
+
+#define ANIMATIONS(frames, delay, frontId, backId)  \
+    .frontAnimFrames = sAnims_##frames,             \
+    .frontAnimDelay = delay,                        \
+    .frontAnimId = frontId,                         \
+    .backAnimId = backId
 
 const struct BaseStats gBaseStats[] =
 {
     [SPECIES_NONE] =
     {
-        .categoryName = _("Unknown"),
-        .description = gDummyPokedexText,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .footprint = gMonFootprint_Bulbasaur,
-        .levelUpLearnset = sBulbasaurLevelUpLearnset,
-        .teachableLearnset = sBulbasaurTeachableLearnset,
-        .frontPic = gMonFrontPic_QuestionMark,
-        .frontPicSize = MON_COORDS_SIZE(40, 40),
-        .frontPicYOffset = 12,
-        .palette = gMonPalette_QuestionMark,
-        .backPic = gMonBackPic_QuestionMark,
-        .backPicSize = MON_COORDS_SIZE(40, 40),
-        .backPicYOffset = 12,
-        .shinyPalette = gMonShinyPalette_QuestionMark,
-        .iconSprite = gMonIcon_QuestionMark,
+        DEX_TEXT(Dummy, "Unknown"),
+        DEX_SCALE(256, 0, 256, 0),
+        HEIGHT_WEIGHT(0, 0),
+        LEARNSETS(Bulbasaur),
+        FRONT_SPRITE(QuestionMark, 40, 40, 12, 0),
+        BACK_SPRITE (QuestionMark, 40, 40, 12),
+        PALETTES(QuestionMark),
+        ICON(QuestionMark, 0),
+        FOOTPRINT(Bulbasaur),
     },
 
     [SPECIES_BULBASAUR] =
@@ -54,30 +90,16 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
         .natDexNum = NATIONAL_DEX_BULBASAUR,
-        .categoryName = _("Seed"),
-        .height = 7,
-        .weight = 69,
-        .description = gBulbasaurPokedexText,
-        .pokemonScale = 356,
-        .pokemonOffset = 17,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .levelUpLearnset = sBulbasaurLevelUpLearnset,
-        .teachableLearnset = sBulbasaurTeachableLearnset,
-        .frontPic = gMonFrontPic_Bulbasaur,
-        .frontPicSize = MON_COORDS_SIZE(40, 40),
-        .frontPicYOffset = 13 ,
-        .palette = gMonPalette_Bulbasaur,
-        .backPic = gMonBackPic_Bulbasaur,
-        .backPicSize = MON_COORDS_SIZE(56, 40),
-        .backPicYOffset = 13,
-        .shinyPalette = gMonShinyPalette_Bulbasaur,
-        .iconSprite = gMonIcon_Bulbasaur,
-        .iconPalIndex = 4,
-        .footprint = gMonFootprint_Bulbasaur,
-        .frontAnim = sAnims_BULBASAUR,
-        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
-        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
+        DEX_TEXT(Bulbasaur, "Seed"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 69),
+        LEARNSETS(Bulbasaur),
+        FRONT_SPRITE(Bulbasaur, 40, 40, 13, 0),
+        BACK_SPRITE (Bulbasaur, 56, 40, 12),
+        PALETTES(Bulbasaur),
+        ICON(Bulbasaur, 4),
+        FOOTPRINT(Bulbasaur),
+        ANIMATIONS(BULBASAUR, 0, ANIM_V_JUMPS_H_JUMPS, BACK_ANIM_DIP_RIGHT_SIDE),
     },
 
     [SPECIES_IVYSAUR] =

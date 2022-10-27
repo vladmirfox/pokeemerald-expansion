@@ -359,7 +359,7 @@ struct BaseStats
             u8 iconPalIndexFemale;
             const u8 *const footprint;
             // Animation Data
-            const union AnimCmd *const *frontAnim;
+            const union AnimCmd *const *frontAnimFrames;
             u8 frontAnimDelay;
             u8 frontAnimId;
             u8 backAnimId;
