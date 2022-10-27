@@ -9850,7 +9850,7 @@ bool32 SetIllusionMon(struct Pokemon *mon, u32 battlerId)
 
 bool8 ShouldGetStatBadgeBoost(u16 badgeFlag, u8 battlerId)
 {
-#if B_BADGE_BOOST != GEN_3
+#if B_BADGE_BOOST == GEN_3
     if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_FRONTIER))
         return FALSE;
     else if (GetBattlerSide(battlerId) != B_SIDE_PLAYER)
@@ -9981,7 +9981,7 @@ bool32 CanFling(u8 battlerId)
       #endif
       || gFieldStatuses & STATUS_FIELD_MAGIC_ROOM
       || gDisableStructs[battlerId].embargoTimer != 0
-      || GetFlingPowerFromItemId(item) != 0
+      || GetFlingPowerFromItemId(item) == 0
       || !CanBattlerGetOrLoseItem(battlerId, item))
         return FALSE;
 
