@@ -313,6 +313,7 @@ struct BaseStats
  /* 0x?? */ u16 evYield_Speed:2;
  /* 0x?? */ u16 evYield_SpAttack:2;
  /* 0x?? */ u16 evYield_SpDefense:2;
+            u16 padding:4;
  /* 0x?? */ u16 itemCommon;
  /* 0x?? */ u16 itemRare;
  /* 0x?? */ u8 genderRatio;
@@ -323,47 +324,48 @@ struct BaseStats
  /* 0x?? */ u8 eggGroup2;
  /* 0x?? */ u16 abilities[NUM_ABILITY_SLOTS];
  /* 0x?? */ u8 safariZoneFleeRate;
- /* 0x?? */ u8 bodyColor : 7;
- /* 0x?? */ u8 noFlip : 1;
- /* 0x?? */ u16 flags;
-            // Pokédex data
+            // PokÃ©dex data
+ /* 0x?? */ u8 categoryName[13];
  /* 0x?? */ u16 natDexNum;
  /* 0x?? */ u16 hoennDexNum;
- /* 0x?? */ u8 categoryName[13];
  /* 0x?? */ u16 height; //in decimeters
  /* 0x?? */ u16 weight; //in hectograms
- /* 0x?? */ const u8 *description;
  /* 0x?? */ u16 pokemonScale;
  /* 0x?? */ u16 pokemonOffset;
  /* 0x?? */ u16 trainerScale;
  /* 0x?? */ u16 trainerOffset;
-            // Move Data
- /* 0x?? */ const struct LevelUpMove *const levelUpLearnset;
-            const u16 *const teachableLearnset;
+ /* 0x?? */ const u8 *description;
+ /* 0x?? */ u8 bodyColor : 7;
             // Graphical Data
+ /* 0x?? */ u8 noFlip : 1;
+            u8 frontAnimDelay;
+            u8 frontAnimId;
+            u8 backAnimId;
+            const union AnimCmd *const *frontAnimFrames;
             const u32 *const frontPic;
             const u32 *const frontPicFemale;
-            u8 frontPicSize;
-            u8 frontPicYOffset;
-            const u32 *const palette;
-            const u32 *const paletteFemale;
             const u32 *const backPic;
             const u32 *const backPicFemale;
-            u8 backPicSize;
-            u8 backPicYOffset;
+            const u32 *const palette;
+            const u32 *const paletteFemale;
             const u32 *const shinyPalette;
             const u32 *const shinyPaletteFemale;
             const u8 *const iconSprite;
             const u8 *const iconSpriteFemale;
-            u8 iconPalIndex;
-            u8 iconPalIndexFemale;
             const u8 *const footprint;
-            // Animation Data
-            const union AnimCmd *const *frontAnimFrames;
-            u8 frontAnimDelay;
-            u8 frontAnimId;
-            u8 backAnimId;
+            u8 frontPicSize;
+            u8 frontPicYOffset;
+            u8 backPicSize;
+            u8 backPicYOffset;
+            u8 iconPalIndex:3;
+            u8 iconPalIndexFemale:3;
+            u8 padding2:2;
             u8 enemyMonElevation;
+            // Flags
+ /* 0x?? */ u16 flags;
+            // Move Data
+ /* 0x?? */ const struct LevelUpMove *const levelUpLearnset;
+            const u16 *const teachableLearnset;
 };
 
 #include "constants/battle_config.h"
