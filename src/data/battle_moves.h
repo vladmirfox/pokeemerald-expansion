@@ -13011,7 +13011,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
     },
 
-    [MOVE_TRIPLE_AXEL] =
+    [MOVE_TRIPLE_AXEL] = // cringe move
     {
         .effect = EFFECT_TRIPLE_KICK,
         .power = 20,
