@@ -1014,8 +1014,6 @@ static const struct WindowTemplate sNewEntryInfoScreen_WindowTemplates[] =
 
 static const u8 sText_TenDashes2[] = _("----------");
 
-#include "data/pokemon_graphics/footprint_table.h"
-
 // First character in range followed by number of characters in range for upper and lowercase
 static const u8 sLetterSearchRanges[][4] =
 {

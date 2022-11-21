@@ -1,9 +1,5 @@
 const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
 {
-    [SPECIES_NONE] = sBulbasaurLevelUpLearnset,
-    [SPECIES_IVYSAUR] = sIvysaurLevelUpLearnset,
-    [SPECIES_VENUSAUR] = sVenusaurLevelUpLearnset,
-    [SPECIES_VENUSAUR_MEGA] = sVenusaurLevelUpLearnset,
     [SPECIES_CHARMANDER] = sCharmanderLevelUpLearnset,
     [SPECIES_CHARMELEON] = sCharmeleonLevelUpLearnset,
     [SPECIES_CHARIZARD] = sCharizardLevelUpLearnset,

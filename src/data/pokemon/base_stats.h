@@ -55,6 +55,7 @@ const struct BaseStats gBaseStats[] =
 {
     [SPECIES_NONE] =
     {
+        .speciesName = _("??????????"),
         DEX_TEXT(Dummy, "Unknown"),
         DEX_SCALE(256, 0, 256, 0),
         HEIGHT_WEIGHT(0, 0),
@@ -68,7 +69,6 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_BULBASAUR] =
     {
-        .speciesName = _("Bulbasaur"),
         .baseHP        = 45,
         .baseAttack    = 49,
         .baseDefense   = 49,
@@ -89,6 +89,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_CHLOROPHYLL},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .speciesName = _("Bulbasaur"),
         .natDexNum = NATIONAL_DEX_BULBASAUR,
         DEX_TEXT(Bulbasaur, "Seed"),
         DEX_SCALE(356, 17, 256, 0),
@@ -125,14 +126,18 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_CHLOROPHYLL},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
-        .categoryName = _("Seed"),
-        .height = 10,
-        .weight = 130,
-        .description = gIvysaurPokedexText,
-        .pokemonScale = 335,
-        .pokemonOffset = 13,
-        .trainerScale = 256,
-        .trainerOffset = 0,
+        .speciesName = _("Ivysaur"),
+        .natDexNum = NATIONAL_DEX_IVYSAUR,
+        DEX_TEXT(Ivysaur, "Seed"),
+        DEX_SCALE(335, 13, 256, 0),
+        HEIGHT_WEIGHT(10, 130),
+        LEARNSETS(Ivysaur),
+        FRONT_SPRITE(Ivysaur, 56, 48, 9, 0),
+        BACK_SPRITE (Ivysaur, 64, 56, 9),
+        PALETTES(Ivysaur),
+        ICON(Ivysaur, 4),
+        FOOTPRINT(Ivysaur),
+        ANIMATIONS(IVYSAUR, 0, ANIM_V_STRETCH, BACK_ANIM_H_SLIDE),
     },
 
 #define VENUSAUR_MISC_STATS                 \
@@ -149,7 +154,10 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_GRASS,       \
         .bodyColor = BODY_COLOR_GREEN,      \
         .noFlip = FALSE,                    \
-        .categoryName = _("Seed")
+        .speciesName = _("Venusaur"),       \
+        .natDexNum = NATIONAL_DEX_VENUSAUR, \
+        LEARNSETS(Venusaur),                \
+        FOOTPRINT(Venusaur)
 
     [SPECIES_VENUSAUR] =
     {
@@ -161,13 +169,14 @@ const struct BaseStats gBaseStats[] =
         .baseSpDefense = 100,
         .expYield = 236,
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_CHLOROPHYLL},
-        .height = 20,
-        .weight = 1000,
-        .description = gVenusaurPokedexText,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 388,
-        .trainerOffset = 6,
+        DEX_TEXT(Venusaur, "Seed"),
+        DEX_SCALE(256, 0, 388, 6),
+        HEIGHT_WEIGHT(20, 1000),
+        FRONT_SPRITE(Venusaur, 56, 48, 9, 0),
+        BACK_SPRITE (Venusaur, 64, 56, 9),
+        PALETTES(Venusaur),
+        ICON(Venusaur, 4),
+        ANIMATIONS(VENUSAUR, 0, ANIM_ROTATE_UP_SLAM_DOWN, BACK_ANIM_H_SLIDE),
         VENUSAUR_MISC_STATS,
     },
     [SPECIES_VENUSAUR_MEGA] =
@@ -181,13 +190,14 @@ const struct BaseStats gBaseStats[] =
         .expYield = 281,
         .abilities = {ABILITY_THICK_FAT, ABILITY_NONE, ABILITY_THICK_FAT},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        .height = 24,
-        .weight = 1555,
-        .description = gVenusaurMegaPokedexText,
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 388,
-        .trainerOffset = 6,
+        DEX_TEXT(VenusaurMega, "Seed"),
+        DEX_SCALE(256, 0, 388, 6),
+        HEIGHT_WEIGHT(24, 1555),
+        FRONT_SPRITE(VenusaurMega, 56, 48, 9, 0),
+        BACK_SPRITE (VenusaurMega, 64, 56, 9),
+        PALETTES(VenusaurMega),
+        ICON(VenusaurMega, 4),
+        ANIMATIONS(VENUSAUR, 0, ANIM_V_STRETCH, BACK_ANIM_H_SLIDE),
         VENUSAUR_MISC_STATS,
     },
 
@@ -213,14 +223,19 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_SOLAR_POWER},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
-        .categoryName = _("Lizard"),
-        .height = 6,
-        .weight = 85,
-        .description = gCharmanderPokedexText,
-        .pokemonScale = 444,
-        .pokemonOffset = 18,
-        .trainerScale = 256,
-        .trainerOffset = 0,
+        .speciesName = _("Charmander"),
+        .natDexNum = NATIONAL_DEX_CHARMANDER,
+        DEX_TEXT(Charmander, "Lizard"),
+        DEX_SCALE(444, 18, 256, 0),
+        HEIGHT_WEIGHT(6, 85),
+
+        LEARNSETS(Ivysaur),
+        FRONT_SPRITE(Ivysaur, 56, 48, 9, 0),
+        BACK_SPRITE (Ivysaur, 64, 56, 9),
+        PALETTES(Ivysaur),
+        ICON(Ivysaur, 4),
+        FOOTPRINT(Ivysaur),
+        ANIMATIONS(IVYSAUR, 0, ANIM_V_STRETCH, BACK_ANIM_H_SLIDE),
     },
 
     [SPECIES_CHARMELEON] =

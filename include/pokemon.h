@@ -324,7 +324,7 @@ struct BaseStats
  /* 0x?? */ u8 eggGroup2;
  /* 0x?? */ u16 abilities[NUM_ABILITY_SLOTS];
  /* 0x?? */ u8 safariZoneFleeRate;
-            // PokÃ©dex data
+            // Pokédex data
  /* 0x?? */ u8 categoryName[13];
  /* 0x?? */ u16 natDexNum;
  /* 0x?? */ u16 hoennDexNum;
@@ -353,14 +353,15 @@ struct BaseStats
             const u8 *const iconSprite;
             const u8 *const iconSpriteFemale;
             const u8 *const footprint;
-            u8 frontPicSize;
-            u8 frontPicYOffset;
-            u8 backPicSize;
-            u8 backPicYOffset;
+            // All Pokémon pics are 64x64, but this data table defines where in this 64x64 frame the sprite's non-transparent pixels actually are.
+            u8 frontPicSize; // The dimensions of this drawn pixel area.
+            u8 frontPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
+            u8 backPicSize; // The dimensions of this drawn pixel area.
+            u8 backPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
             u8 iconPalIndex:3;
             u8 iconPalIndexFemale:3;
             u8 padding2:2;
-            u8 enemyMonElevation;
+            u8 enemyMonElevation; // This determines how much higher above the usual position the enemy Pokémon is during battle. Species that float or fly have nonzero values.
             // Flags
  /* 0x?? */ u16 flags;
             // Move Data

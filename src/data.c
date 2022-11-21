@@ -302,9 +302,6 @@ const union AnimCmd *const gAnims_MonPic[] =
 #define SPECIES_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species}
 #define SPECIES_SHINY_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species + SPECIES_SHINY_TAG}
 
-#include "data/pokemon_graphics/front_pic_coordinates.h"
-#include "data/pokemon_graphics/back_pic_coordinates.h"
-
 #include "data/pokemon_graphics/back_pic_table.h"
 #include "data/pokemon_graphics/palette_table.h"
 #include "data/pokemon_graphics/shiny_palette_table.h"
@@ -314,7 +311,6 @@ const union AnimCmd *const gAnims_MonPic[] =
 #include "data/trainer_graphics/back_pic_anims.h"
 #include "data/trainer_graphics/back_pic_tables.h"
 
-#include "data/pokemon_graphics/enemy_mon_elevation.h"
 //#include "data/pokemon_graphics/front_pic_anims.h"
 #include "data/pokemon_graphics/front_pic_table.h"
 

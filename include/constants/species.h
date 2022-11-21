@@ -1382,7 +1382,7 @@
 #define SPECIES_GARBODOR_GIGANTAMAX                          1307
 #define SPECIES_STUNFISK_GALARIAN                            1308
 #define SPECIES_MELMETAL_GIGANTAMAX                          1309
-// Sword and Shield 1.0.0 (New Forms)
+// Sword and Shield 1.1.0 (New Forms)
 #define SPECIES_SLOWPOKE_GALARIAN                            1310
 // The Isle of Armor (New Species)
 #define SPECIES_KUBFU                                        1311
