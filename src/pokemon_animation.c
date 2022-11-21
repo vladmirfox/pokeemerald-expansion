@@ -605,7 +605,6 @@ static const u8 sSpeciesToBackAnimSet[NUM_SPECIES] =
     [SPECIES_DEOXYS_ATTACK] = BACK_ANIM_SHRINK_GROW_VIBRATE,
     [SPECIES_DEOXYS_DEFENSE] = BACK_ANIM_SHRINK_GROW_VIBRATE,
     [SPECIES_DEOXYS_SPEED] = BACK_ANIM_SHRINK_GROW_VIBRATE,
-    [SPECIES_LUGIA_SHADOW] = BACK_ANIM_SHAKE_GLOW_BLUE,
 };
 
 // Equivalent to struct YellowFlashData, but doesn't match as a struct
@@ -895,8 +894,8 @@ static void SetPosForRotation(struct Sprite *sprite, u16 index, s16 amplitudeX, 
 
 u8 GetSpeciesBackAnimSet(u16 species)
 {
-    if (sSpeciesToBackAnimSet[species] != BACK_ANIM_NONE)
-        return sSpeciesToBackAnimSet[species] - 1;
+    if (gBaseStats[species].backAnimId != BACK_ANIM_NONE)
+        return gBaseStats[species].backAnimId;
     else
         return 0;
 }

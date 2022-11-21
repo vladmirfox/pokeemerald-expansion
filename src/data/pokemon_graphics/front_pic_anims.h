@@ -13263,6 +13263,7 @@ static const union AnimCmd *const sAnims_CHERUBI[] =
 
 static const union AnimCmd *const sAnims_CHERRIM[] =
 {
+    sAnim_GeneralFrame0,
     sAnim_CHERRIM_NORMAL,
     sAnim_CHERRIM_SUNSHINE,
 };
