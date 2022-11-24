@@ -296,7 +296,6 @@ struct BattlePokemon
 
 struct BaseStats
 {
- /* 0x?? */ u8 speciesName[POKEMON_NAME_LENGTH + 1];
  /* 0x?? */ u8 baseHP;
  /* 0x?? */ u8 baseAttack;
  /* 0x?? */ u8 baseDefense;

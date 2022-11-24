@@ -1916,8 +1916,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             {
                 const struct TrainerMonNoItemDefaultMoves *partyData = gTrainers[trainerNum].party.NoItemDefaultMoves;
 
-                for (j = 0; gBaseStats[partyData[i].species].speciesName[j] != EOS; j++)
-                    nameHash += gBaseStats[partyData[i].species].speciesName[j];
+                for (j = 0; gSpeciesNames[gBaseStats[partyData[i].species].natDexNum][j] != EOS; j++)
+                    nameHash += gSpeciesNames[partyData[i].species][j];
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
@@ -1928,8 +1928,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             {
                 const struct TrainerMonNoItemCustomMoves *partyData = gTrainers[trainerNum].party.NoItemCustomMoves;
 
-                for (j = 0; gBaseStats[partyData[i].species].speciesName[j] != EOS; j++)
-                    nameHash += gBaseStats[partyData[i].species].speciesName[j];
+                for (j = 0; gSpeciesNames[gBaseStats[partyData[i].species].natDexNum][j] != EOS; j++)
+                    nameHash += gSpeciesNames[gBaseStats[partyData[i].species].natDexNum][j];
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
@@ -1946,8 +1946,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             {
                 const struct TrainerMonItemDefaultMoves *partyData = gTrainers[trainerNum].party.ItemDefaultMoves;
 
-                for (j = 0; gBaseStats[partyData[i].species].speciesName[j] != EOS; j++)
-                    nameHash += gBaseStats[partyData[i].species].speciesName[j];
+                for (j = 0; gSpeciesNames[gBaseStats[partyData[i].species].natDexNum][j] != EOS; j++)
+                    nameHash += gSpeciesNames[gBaseStats[partyData[i].species].natDexNum][j];
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
@@ -1960,8 +1960,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             {
                 const struct TrainerMonItemCustomMoves *partyData = gTrainers[trainerNum].party.ItemCustomMoves;
 
-                for (j = 0; gBaseStats[partyData[i].species].speciesName[j] != EOS; j++)
-                    nameHash += gBaseStats[partyData[i].species].speciesName[j];
+                for (j = 0; gSpeciesNames[gBaseStats[partyData[i].species].natDexNum][j] != EOS; j++)
+                    nameHash += gSpeciesNames[gBaseStats[partyData[i].species].natDexNum][j];
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;

@@ -55,7 +55,6 @@ const struct BaseStats gBaseStats[] =
 {
     [SPECIES_NONE] =
     {
-        .speciesName = _("??????????"),
         .natDexNum = NATIONAL_DEX_NONE,
         DEX_TEXT(Dummy, "Unknown"),
         DEX_SCALE(256, 0, 256, 0),
@@ -90,7 +89,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_CHLOROPHYLL},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
-        .speciesName = _("Bulbasaur"),
         .natDexNum = NATIONAL_DEX_BULBASAUR,
         DEX_TEXT(Bulbasaur, "Seed"),
         DEX_SCALE(356, 17, 256, 0),
@@ -127,7 +125,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_CHLOROPHYLL},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
-        .speciesName = _("Ivysaur"),
         .natDexNum = NATIONAL_DEX_IVYSAUR,
         DEX_TEXT(Ivysaur, "Seed"),
         DEX_SCALE(335, 13, 256, 0),
@@ -155,7 +152,6 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_GRASS,       \
         .bodyColor = BODY_COLOR_GREEN,      \
         .noFlip = FALSE,                    \
-        .speciesName = _("Venusaur"),       \
         .natDexNum = NATIONAL_DEX_VENUSAUR, \
         LEARNSETS(Venusaur),                \
         FOOTPRINT(Venusaur)
@@ -224,7 +220,6 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_SOLAR_POWER},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
-        .speciesName = _("Charmander"),
         .natDexNum = NATIONAL_DEX_CHARMANDER,
         DEX_TEXT(Charmander, "Lizard"),
         DEX_SCALE(444, 18, 256, 0),
@@ -8533,7 +8528,6 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_TREECKO] =
     {
-        .speciesName = _("Treecko"),
         .baseHP        = 40,
         .baseAttack    = 45,
         .baseDefense   = 35,
@@ -8638,7 +8632,6 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_TORCHIC] =
     {
-        .speciesName = _("Torchic"),
         .baseHP        = 45,
         .baseAttack    = 60,
         .baseDefense   = 40,
@@ -8741,7 +8734,6 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_MUDKIP] =
     {
-        .speciesName = _("Mudkip"),
         .baseHP        = 50,
         .baseAttack    = 70,
         .baseDefense   = 50,

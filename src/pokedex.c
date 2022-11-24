@@ -2542,7 +2542,7 @@ static u8 CreateMonName(u16 species, u8 left, u8 top)
 {
     const u8 *str;
 
-    if (species >= NUM_SPECIES)
+    if (species)
         str = GetSpeciesName(species);
     else
         str = sText_TenDashes;

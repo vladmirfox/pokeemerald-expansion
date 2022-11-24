@@ -3101,8 +3101,8 @@ bool8 IsPokemonStorageFull(void)
 const u8 *GetSpeciesName(u16 species)
 {
     if (species > NUM_SPECIES)
-        return gBaseStats[SPECIES_NONE].speciesName;
-    return gBaseStats[species].speciesName;
+        return gSpeciesNames[NATIONAL_DEX_NONE];
+    return gSpeciesNames[gBaseStats[species].natDexNum];
 }
 
 u8 CalculatePPWithBonus(u16 move, u8 ppBonuses, u8 moveIndex)
