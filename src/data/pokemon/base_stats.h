@@ -13001,6 +13001,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_SHELL_ARMOR},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_TURTWIG,
+        DEX_TEXT(Turtwig, "Tiny Leaf"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 102),
     },
 
     [SPECIES_GROTLE] =
@@ -13026,6 +13030,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_SHELL_ARMOR},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_GROTLE,
+        DEX_TEXT(Grotle, "Grove"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(11, 970),
     },
 
     [SPECIES_TORTERRA] =
@@ -13051,6 +13059,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_SHELL_ARMOR},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_TORTERRA,
+        DEX_TEXT(Torterra, "Continent"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(22, 3100),
     },
 
     [SPECIES_CHIMCHAR] =
@@ -13075,6 +13087,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_IRON_FIST},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_CHIMCHAR,
+        DEX_TEXT(Chimchar, "Chimp"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 62),
     },
 
     [SPECIES_MONFERNO] =
@@ -13100,6 +13116,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_IRON_FIST},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_MONFERNO,
+        DEX_TEXT(Monferno, "Playful"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(9, 220),
     },
 
     [SPECIES_INFERNAPE] =
@@ -13126,6 +13146,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_IRON_FIST},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_INFERNAPE,
+        DEX_TEXT(Infernape, "Flame"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 550),
     },
 
     [SPECIES_PIPLUP] =
@@ -13150,6 +13174,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PIPLUP,
+        DEX_TEXT(Piplup, "Penguin"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 52),
     },
 
     [SPECIES_PRINPLUP] =
@@ -13174,6 +13202,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PRINPLUP,
+        DEX_TEXT(Prinplup, "Penguin"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 230),
     },
 
     [SPECIES_EMPOLEON] =
@@ -13198,6 +13230,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_DEFIANT},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_EMPOLEON,
+        DEX_TEXT(Empoleon, "Emperor"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(17, 845),
     },
 
     [SPECIES_STARLY] =
@@ -13222,6 +13258,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_NONE, ABILITY_RECKLESS},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_STARLY,
+        DEX_TEXT(Starly, "Starling"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 20),
     },
 
     [SPECIES_STARAVIA] =
@@ -13246,6 +13286,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_RECKLESS},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_STARAVIA,
+        DEX_TEXT(Staravia, "Starling"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(6, 155),
     },
 
     [SPECIES_STARAPTOR] =
@@ -13274,6 +13318,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_RECKLESS},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_STARAPTOR,
+        DEX_TEXT(Staraptor, "Predator"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 249),
     },
 
     [SPECIES_BIDOOF] =
@@ -13298,6 +13346,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SIMPLE, ABILITY_UNAWARE, ABILITY_MOODY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BIDOOF,
+        DEX_TEXT(Bidoof, "Plump Mouse"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 200),
     },
 
     [SPECIES_BIBAREL] =
@@ -13322,6 +13374,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SIMPLE, ABILITY_UNAWARE, ABILITY_MOODY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BIBAREL,
+        DEX_TEXT(Bibarel, "Beaver"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 315),
     },
 
     [SPECIES_KRICKETOT] =
@@ -13347,6 +13403,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_RUN_AWAY},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_KRICKETOT,
+        DEX_TEXT(Kricketot, "Cricket"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 22),
     },
 
     [SPECIES_KRICKETUNE] =
@@ -13372,6 +13432,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWARM, ABILITY_NONE, ABILITY_TECHNICIAN},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_KRICKETUNE,
+        DEX_TEXT(Kricketune, "Cricket"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 255),
     },
 
     [SPECIES_SHINX] =
@@ -13396,6 +13460,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RIVALRY, ABILITY_INTIMIDATE, ABILITY_GUTS},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SHINX,
+        DEX_TEXT(Shinx, "Flash"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 95),
     },
 
     [SPECIES_LUXIO] =
@@ -13420,6 +13488,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RIVALRY, ABILITY_INTIMIDATE, ABILITY_GUTS},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_LUXIO,
+        DEX_TEXT(Luxio, "Spark"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(9, 305),
     },
 
     [SPECIES_LUXRAY] =
@@ -13444,6 +13516,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RIVALRY, ABILITY_INTIMIDATE, ABILITY_GUTS},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_LUXRAY,
+        DEX_TEXT(Luxray, "Gleam Eyes"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(14, 420),
     },
 
     [SPECIES_BUDEW] =
@@ -13469,6 +13545,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT, ABILITY_LEAF_GUARD},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_BUDEW,
+        DEX_TEXT(Budew, "Bud"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(2, 12),
     },
 
     [SPECIES_ROSERADE] =
@@ -13498,6 +13578,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_NATURAL_CURE, ABILITY_POISON_POINT, ABILITY_TECHNICIAN},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_ROSERADE,
+        DEX_TEXT(Roserade, "Bouquet"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(9, 145),
     },
 
     [SPECIES_CRANIDOS] =
@@ -13522,6 +13606,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_MOLD_BREAKER, ABILITY_NONE, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_CRANIDOS,
+        DEX_TEXT(Cranidos, "Head Butt"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(9, 315),
     },
 
     [SPECIES_RAMPARDOS] =
@@ -13546,6 +13634,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_MOLD_BREAKER, ABILITY_NONE, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_RAMPARDOS,
+        DEX_TEXT(Rampardos, "Head Butt"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(16, 1025),
     },
 
     [SPECIES_SHIELDON] =
@@ -13570,6 +13662,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STURDY, ABILITY_NONE, ABILITY_SOUNDPROOF},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SHIELDON,
+        DEX_TEXT(Shieldon, "Shield"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 570),
     },
 
     [SPECIES_BASTIODON] =
@@ -13594,34 +13690,71 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STURDY, ABILITY_NONE, ABILITY_SOUNDPROOF},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BASTIODON,
+        DEX_TEXT(Bastiodon, "Shield"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(13, 1495),
     },
 
-#define BURMY_BASE_STATS(color)                                          \
-    {                                                                    \
-        .baseHP        = 40,                                             \
-        .baseAttack    = 29,                                             \
-        .baseDefense   = 45,                                             \
-        .baseSpeed     = 36,                                             \
-        .baseSpAttack  = 29,                                             \
-        .baseSpDefense = 45,                                             \
-        .type1 = TYPE_BUG,                                               \
-        .type2 = TYPE_BUG,                                               \
-        .catchRate = 120,                                                \
-        .expYield = 45,                                                  \
-        .evYield_SpDefense = 1,                                          \
-        .genderRatio = PERCENT_FEMALE(50),                               \
-        .eggCycles = 15,                                                 \
-        .friendship = 70,                                                \
-        .growthRate = GROWTH_MEDIUM_FAST,                                \
-        .eggGroup1 = EGG_GROUP_BUG,                                      \
-        .eggGroup2 = EGG_GROUP_BUG,                                      \
-        .abilities = {ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_OVERCOAT},\
-        .bodyColor = color,                                              \
-        .noFlip = FALSE,                                                 \
-    }
-    [SPECIES_BURMY_PLANT_CLOAK] = BURMY_BASE_STATS(BODY_COLOR_GREEN),
-    [SPECIES_BURMY_SANDY_CLOAK] = BURMY_BASE_STATS(BODY_COLOR_BROWN),
-    [SPECIES_BURMY_TRASH_CLOAK] = BURMY_BASE_STATS(BODY_COLOR_RED),
+#define BURMY_BASE_STATS                                                    \
+        .baseHP        = 40,                                                \
+        .baseAttack    = 29,                                                \
+        .baseDefense   = 45,                                                \
+        .baseSpeed     = 36,                                                \
+        .baseSpAttack  = 29,                                                \
+        .baseSpDefense = 45,                                                \
+        .type1 = TYPE_BUG,                                                  \
+        .type2 = TYPE_BUG,                                                  \
+        .catchRate = 120,                                                   \
+        .expYield = 45,                                                     \
+        .evYield_SpDefense = 1,                                             \
+        .genderRatio = PERCENT_FEMALE(50),                                  \
+        .eggCycles = 15,                                                    \
+        .friendship = 70,                                                   \
+        .growthRate = GROWTH_MEDIUM_FAST,                                   \
+        .eggGroup1 = EGG_GROUP_BUG,                                         \
+        .eggGroup2 = EGG_GROUP_BUG,                                         \
+        .abilities = {ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_OVERCOAT},   \
+        .noFlip = FALSE,                                                    \
+        .natDexNum = NATIONAL_DEX_BURMY,                                    \
+        DEX_SCALE(356, 17, 256, 0),                                         \
+        HEIGHT_WEIGHT(2, 34)
+
+    [SPECIES_BURMY_PLANT_CLOAK] =
+    {
+        .bodyColor = BODY_COLOR_GREEN,
+        DEX_TEXT(Burmy, "Bagworm"),
+        BURMY_BASE_STATS,
+    },
+    [SPECIES_BURMY_SANDY_CLOAK] =
+    {
+        .bodyColor = BODY_COLOR_BROWN,
+        DEX_TEXT(Dummy, "Bagworm"),
+        BURMY_BASE_STATS,
+    },
+    [SPECIES_BURMY_TRASH_CLOAK] =
+    {
+        .bodyColor = BODY_COLOR_RED,
+        DEX_TEXT(Dummy, "Bagworm"),
+        BURMY_BASE_STATS,
+    },
+
+#define WORMADAM_MISC_STATS                                                 \
+        .type1 = TYPE_BUG,                                                  \
+        .catchRate = 45,                                                    \
+        .expYield = 148,                                                    \
+        .itemRare = ITEM_SILVER_POWDER,                                     \
+        .genderRatio = MON_FEMALE,                                          \
+        .eggCycles = 15,                                                    \
+        .friendship = 70,                                                   \
+        .growthRate = GROWTH_MEDIUM_FAST,                                   \
+        .eggGroup1 = EGG_GROUP_BUG,                                         \
+        .eggGroup2 = EGG_GROUP_BUG,                                         \
+        .abilities = {ABILITY_ANTICIPATION, ABILITY_NONE, ABILITY_OVERCOAT},\
+        .noFlip = FALSE,                                                    \
+        .natDexNum = NATIONAL_DEX_WORMADAM,                                 \
+        DEX_SCALE(356, 17, 256, 0),                                         \
+        HEIGHT_WEIGHT(5, 65)
 
     [SPECIES_WORMADAM_PLANT_CLOAK] =
     {
@@ -13631,21 +13764,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 36,
         .baseSpAttack  = 79,
         .baseSpDefense = 105,
-        .type1 = TYPE_BUG,
         .type2 = TYPE_GRASS,
-        .catchRate = 45,
-        .expYield = 148,
         .evYield_SpDefense = 2,
-        .itemRare = ITEM_SILVER_POWDER,
-        .genderRatio = MON_FEMALE,
-        .eggCycles = 15,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_BUG,
-        .eggGroup2 = EGG_GROUP_BUG,
-        .abilities = {ABILITY_ANTICIPATION, ABILITY_NONE, ABILITY_OVERCOAT},
         .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = FALSE,
+        DEX_TEXT(Wormadam, "Bagworm"),
+        WORMADAM_MISC_STATS,
     },
 
     [SPECIES_WORMADAM_SANDY_CLOAK] =
@@ -13656,21 +13779,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 36,
         .baseSpAttack  = 59,
         .baseSpDefense = 85,
-        .type1 = TYPE_BUG,
         .type2 = TYPE_GROUND,
-        .catchRate = 45,
-        .expYield = 148,
         .evYield_Defense   = 2,
-        .itemRare = ITEM_SILVER_POWDER,
-        .genderRatio = MON_FEMALE,
-        .eggCycles = 15,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_BUG,
-        .eggGroup2 = EGG_GROUP_BUG,
-        .abilities = {ABILITY_ANTICIPATION, ABILITY_NONE, ABILITY_OVERCOAT},
         .bodyColor = BODY_COLOR_BROWN,
-        .noFlip = FALSE,
+        DEX_TEXT(Dummy, "Bagworm"),
+        WORMADAM_MISC_STATS,
     },
 
     [SPECIES_WORMADAM_TRASH_CLOAK] =
@@ -13681,22 +13794,12 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 36,
         .baseSpAttack  = 69,
         .baseSpDefense = 95,
-        .type1 = TYPE_BUG,
         .type2 = TYPE_STEEL,
-        .catchRate = 45,
-        .expYield = 148,
         .evYield_Defense   = 1,
         .evYield_SpDefense = 1,
-        .itemRare = ITEM_SILVER_POWDER,
-        .genderRatio = MON_FEMALE,
-        .eggCycles = 15,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_BUG,
-        .eggGroup2 = EGG_GROUP_BUG,
-        .abilities = {ABILITY_ANTICIPATION, ABILITY_NONE, ABILITY_OVERCOAT},
         .bodyColor = BODY_COLOR_RED,
-        .noFlip = FALSE,
+        DEX_TEXT(Dummy, "Bagworm"),
+        WORMADAM_MISC_STATS,
     },
 
     [SPECIES_MOTHIM] =
@@ -13723,6 +13826,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWARM, ABILITY_NONE, ABILITY_TINTED_LENS},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_MOTHIM,
+        DEX_TEXT(Mothim, "Moth"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(9, 233),
     },
 
     [SPECIES_COMBEE] =
@@ -13748,6 +13855,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_HONEY_GATHER, ABILITY_NONE, ABILITY_HUSTLE},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_COMBEE,
+        DEX_TEXT(Combee, "Tiny Bee"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 55),
     },
 
     [SPECIES_VESPIQUEN] =
@@ -13774,6 +13885,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PRESSURE, ABILITY_NONE, ABILITY_UNNERVE},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_VESPIQUEN,
+        DEX_TEXT(Vespiquen, "Beehive"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 385),
     },
 
     [SPECIES_PACHIRISU] =
@@ -13798,6 +13913,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RUN_AWAY, ABILITY_PICKUP, ABILITY_VOLT_ABSORB},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PACHIRISU,
+        DEX_TEXT(Pachirisu, "EleSquirrel"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 39),
     },
 
     [SPECIES_BUIZEL] =
@@ -13822,6 +13941,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_NONE, ABILITY_WATER_VEIL},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BUIZEL,
+        DEX_TEXT(Buizel, "Sea Weasel"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 295),
     },
 
     [SPECIES_FLOATZEL] =
@@ -13846,6 +13969,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_NONE, ABILITY_WATER_VEIL},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_FLOATZEL,
+        DEX_TEXT(Floatzel, "Sea Weasel"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(11, 335),
     },
 
     [SPECIES_CHERUBI] =
@@ -13871,37 +13998,51 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_NONE},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_CHERUBI,
+        DEX_TEXT(Cherubi, "Cherry"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 33),
     },
 
-#define CHERRIM_BASE_STATS(color)                        \
-    {                                                    \
-        .baseHP        = 70,                             \
-        .baseAttack    = 60,                             \
-        .baseDefense   = 70,                             \
-        .baseSpeed     = 85,                             \
-        .baseSpAttack  = 87,                             \
-        .baseSpDefense = 78,                             \
-        .type1 = TYPE_GRASS,                             \
-        .type2 = TYPE_GRASS,                             \
-        .catchRate = 75,                                 \
-        .expYield = 158,                                 \
-        .evYield_SpAttack  = 2,                          \
-        .itemRare = ITEM_MIRACLE_SEED,                   \
-        .genderRatio = PERCENT_FEMALE(50),               \
-        .eggCycles = 20,                                 \
-        .friendship = 70,                                \
-        .growthRate = GROWTH_MEDIUM_FAST,                \
-        .eggGroup1 = EGG_GROUP_FAIRY,                    \
-        .eggGroup2 = EGG_GROUP_GRASS,                    \
-        .abilities = {ABILITY_FLOWER_GIFT, ABILITY_NONE},\
-        .bodyColor = color,                              \
-        .noFlip = FALSE,                                 \
-    }
-    [SPECIES_CHERRIM_OVERCAST] = CHERRIM_BASE_STATS(BODY_COLOR_PURPLE),
-    [SPECIES_CHERRIM_SUNSHINE] = CHERRIM_BASE_STATS(BODY_COLOR_PINK),
+#define CHERRIM_MISC_STATS                                  \
+        .baseHP        = 70,                                \
+        .baseAttack    = 60,                                \
+        .baseDefense   = 70,                                \
+        .baseSpeed     = 85,                                \
+        .baseSpAttack  = 87,                                \
+        .baseSpDefense = 78,                                \
+        .type1 = TYPE_GRASS,                                \
+        .type2 = TYPE_GRASS,                                \
+        .catchRate = 75,                                    \
+        .expYield = 158,                                    \
+        .evYield_SpAttack  = 2,                             \
+        .itemRare = ITEM_MIRACLE_SEED,                      \
+        .genderRatio = PERCENT_FEMALE(50),                  \
+        .eggCycles = 20,                                    \
+        .friendship = 70,                                   \
+        .growthRate = GROWTH_MEDIUM_FAST,                   \
+        .eggGroup1 = EGG_GROUP_FAIRY,                       \
+        .eggGroup2 = EGG_GROUP_GRASS,                       \
+        .abilities = {ABILITY_FLOWER_GIFT, ABILITY_NONE},   \
+        .noFlip = FALSE,                                    \
+        .natDexNum = NATIONAL_DEX_CHERRIM,                  \
+        DEX_SCALE(356, 17, 256, 0),                         \
+        HEIGHT_WEIGHT(5, 93)
 
-#define SHELLOS_BASE_STATS(color)                                                   \
-    {                                                                               \
+    [SPECIES_CHERRIM_OVERCAST] =
+    {
+        .bodyColor = BODY_COLOR_PURPLE,
+        DEX_TEXT(Cherrim, "Blossom"),
+        CHERRIM_MISC_STATS,
+    },
+    [SPECIES_CHERRIM_SUNSHINE] =
+    {
+        .bodyColor = BODY_COLOR_PINK,
+        DEX_TEXT(Dummy, "Blossom"),
+        CHERRIM_MISC_STATS,
+    },
+
+#define SHELLOS_MISC_STATS                                                          \
         .baseHP        = 76,                                                        \
         .baseAttack    = 48,                                                        \
         .baseDefense   = 48,                                                        \
@@ -13920,14 +14061,25 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_WATER_1,                                             \
         .eggGroup2 = EGG_GROUP_AMORPHOUS,                                           \
         .abilities = {ABILITY_STICKY_HOLD, ABILITY_STORM_DRAIN, ABILITY_SAND_FORCE},\
-        .bodyColor = color,                                                         \
         .noFlip = FALSE,                                                            \
-    }
-    [SPECIES_SHELLOS_WEST_SEA] = SHELLOS_BASE_STATS(BODY_COLOR_PURPLE),
-    [SPECIES_SHELLOS_EAST_SEA] = SHELLOS_BASE_STATS(BODY_COLOR_BLUE),
+        .natDexNum = NATIONAL_DEX_SHELLOS,                                          \
+        DEX_SCALE(356, 17, 256, 0),                                                 \
+        HEIGHT_WEIGHT(3, 63)
 
-#define GASTRODON_BASE_STATS(color)                                                 \
-    {                                                                               \
+    [SPECIES_SHELLOS_WEST_SEA] =
+    {
+        .bodyColor = BODY_COLOR_PURPLE,
+        DEX_TEXT(Shellos, "Sea Slug"),
+        SHELLOS_MISC_STATS,
+    },
+    [SPECIES_SHELLOS_EAST_SEA] =
+    {
+        .bodyColor = BODY_COLOR_BLUE,
+        DEX_TEXT(Dummy, "Sea Slug"),
+        SHELLOS_MISC_STATS,
+    },
+
+#define GASTRODON_MISC_STATS                                                        \
         .baseHP        = 111,                                                       \
         .baseAttack    = 83,                                                        \
         .baseDefense   = 68,                                                        \
@@ -13946,11 +14098,23 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_WATER_1,                                             \
         .eggGroup2 = EGG_GROUP_AMORPHOUS,                                           \
         .abilities = {ABILITY_STICKY_HOLD, ABILITY_STORM_DRAIN, ABILITY_SAND_FORCE},\
-        .bodyColor = color,                                                         \
         .noFlip = FALSE,                                                            \
-    }
-    [SPECIES_GASTRODON_WEST_SEA] = GASTRODON_BASE_STATS(BODY_COLOR_PURPLE),
-    [SPECIES_GASTRODON_EAST_SEA] = GASTRODON_BASE_STATS(BODY_COLOR_BLUE),
+        .natDexNum = NATIONAL_DEX_GASTRODON,                                        \
+        DEX_SCALE(356, 17, 256, 0),                                                 \
+        HEIGHT_WEIGHT(9, 299)
+
+    [SPECIES_GASTRODON_WEST_SEA] =
+    {
+        .bodyColor = BODY_COLOR_PURPLE,
+        DEX_TEXT(Gastrodon, "Sea Slug"),
+        GASTRODON_MISC_STATS,
+    },
+    [SPECIES_GASTRODON_EAST_SEA] =
+    {
+        .bodyColor = BODY_COLOR_BLUE,
+        DEX_TEXT(Dummy, "Sea Slug"),
+        GASTRODON_MISC_STATS,
+    },
 
     [SPECIES_AMBIPOM] =
     {
@@ -13974,6 +14138,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TECHNICIAN, ABILITY_PICKUP, ABILITY_SKILL_LINK},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_AMBIPOM,
+        DEX_TEXT(Ambipom, "Long Tail"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 203),
     },
 
     [SPECIES_DRIFLOON] =
@@ -13998,6 +14166,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_AFTERMATH, ABILITY_UNBURDEN, ABILITY_FLARE_BOOST},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_DRIFLOON,
+        DEX_TEXT(Drifloon, "Balloon"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 12),
     },
 
     [SPECIES_DRIFBLIM] =
@@ -14022,6 +14194,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_AFTERMATH, ABILITY_UNBURDEN, ABILITY_FLARE_BOOST},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_DRIFBLIM,
+        DEX_TEXT(Drifblim, "Blimp"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 150),
     },
 
     [SPECIES_BUNEARY] =
@@ -14046,23 +14222,25 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RUN_AWAY, ABILITY_KLUTZ, ABILITY_LIMBER},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BUNEARY,
+        DEX_TEXT(Buneary, "Rabbit"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 55),
     },
 
-#define LOPUNNY_MISC_STATS(typeB,exp,ability1,ability2,ability3)\
-        .type1 = TYPE_NORMAL,                                   \
-        .type2 = typeB,                                         \
-        .catchRate = 60,                                        \
-        .expYield = exp,                                        \
-        .evYield_Speed     = 2,                                 \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 20,                                        \
-        .friendship = 140,                                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroup1 = EGG_GROUP_FIELD,                           \
-        .eggGroup2 = EGG_GROUP_HUMAN_LIKE,                      \
-        .abilities = {ability1, ability2, ability3},            \
-        .bodyColor = BODY_COLOR_BROWN,                          \
-        .noFlip = FALSE
+#define LOPUNNY_MISC_STATS                  \
+        .type1 = TYPE_NORMAL,               \
+        .catchRate = 60,                    \
+        .evYield_Speed     = 2,             \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 20,                    \
+        .friendship = 140,                  \
+        .growthRate = GROWTH_MEDIUM_FAST,   \
+        .eggGroup1 = EGG_GROUP_FIELD,       \
+        .eggGroup2 = EGG_GROUP_HUMAN_LIKE,  \
+        .bodyColor = BODY_COLOR_BROWN,      \
+        .noFlip = FALSE,                    \
+        .natDexNum = NATIONAL_DEX_LOPUNNY
 
     [SPECIES_LOPUNNY] =
     {
@@ -14072,7 +14250,13 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 105,
         .baseSpAttack  = 54,
         .baseSpDefense = 96,
-        LOPUNNY_MISC_STATS(TYPE_NORMAL, 168, ABILITY_CUTE_CHARM, ABILITY_KLUTZ, ABILITY_LIMBER),
+        .type2 = TYPE_NORMAL,
+        .expYield = 168,
+        .abilities = {ABILITY_CUTE_CHARM, ABILITY_KLUTZ, ABILITY_LIMBER},
+        DEX_TEXT(Lopunny, "Rabbit"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 333),
+        LOPUNNY_MISC_STATS,
     },
     [SPECIES_LOPUNNY_MEGA] =
     {
@@ -14082,8 +14266,14 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 135,
         .baseSpAttack  = 54,
         .baseSpDefense = 96,
+        .type2 = TYPE_FIGHTING,
+        .expYield = 203,
+        .abilities = {ABILITY_SCRAPPY, ABILITY_SCRAPPY, ABILITY_SCRAPPY},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        LOPUNNY_MISC_STATS(TYPE_FIGHTING, 203, ABILITY_SCRAPPY, ABILITY_SCRAPPY, ABILITY_SCRAPPY),
+        DEX_TEXT(LopunnyMega, "Rabbit"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(13, 283),
+        LOPUNNY_MISC_STATS,
     },
 
     [SPECIES_MISMAGIUS] =
@@ -14109,6 +14299,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_MISMAGIUS,
+        DEX_TEXT(Mismagius, "Magical"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(9, 44),
     },
 
     [SPECIES_HONCHKROW] =
@@ -14133,6 +14327,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_INSOMNIA, ABILITY_SUPER_LUCK, ABILITY_MOXIE},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_HONCHKROW,
+        DEX_TEXT(Honchkrow, "Big Boss"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(9, 273),
     },
 
     [SPECIES_GLAMEOW] =
@@ -14157,6 +14355,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LIMBER, ABILITY_OWN_TEMPO, ABILITY_KEEN_EYE},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_GLAMEOW,
+        DEX_TEXT(Glameow, "Catty"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 39),
     },
 
     [SPECIES_PURUGLY] =
@@ -14181,6 +14383,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_THICK_FAT, ABILITY_OWN_TEMPO, ABILITY_DEFIANT},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PURUGLY,
+        DEX_TEXT(Purugly, "Tiger Cat"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 438),
     },
 
     [SPECIES_CHINGLING] =
@@ -14206,6 +14412,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_CHINGLING,
+        DEX_TEXT(Chingling, "Bell"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(2, 6),
     },
 
     [SPECIES_STUNKY] =
@@ -14230,6 +14440,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STENCH, ABILITY_AFTERMATH, ABILITY_KEEN_EYE},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_STUNKY,
+        DEX_TEXT(Stunky, "Skunk"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 192),
     },
 
     [SPECIES_SKUNTANK] =
@@ -14254,6 +14468,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STENCH, ABILITY_AFTERMATH, ABILITY_KEEN_EYE},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SKUNTANK,
+        DEX_TEXT(Skuntank, "Skunk"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 380),
     },
 
     [SPECIES_BRONZOR] =
@@ -14279,6 +14497,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_HEATPROOF, ABILITY_HEAVY_METAL},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BRONZOR,
+        DEX_TEXT(Bronzor, "Bronze"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 605),
     },
 
     [SPECIES_BRONZONG] =
@@ -14305,6 +14527,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_HEATPROOF, ABILITY_HEAVY_METAL},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BRONZONG,
+        DEX_TEXT(Bronzong, "Bronze Bell"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(13, 1870),
     },
 
     [SPECIES_BONSLY] =
@@ -14329,6 +14555,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_RATTLED},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BONSLY,
+        DEX_TEXT(Bonsly, "Bonsai"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 150),
     },
 
     [SPECIES_MIME_JR] =
@@ -14357,6 +14587,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SOUNDPROOF, ABILITY_FILTER, ABILITY_TECHNICIAN},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_MIME_JR,
+        DEX_TEXT(MimeJr, "Mime"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(6, 130),
     },
 
     [SPECIES_HAPPINY] =
@@ -14382,6 +14616,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_NATURAL_CURE, ABILITY_SERENE_GRACE, ABILITY_FRIEND_GUARD},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_HAPPINY,
+        DEX_TEXT(Happiny, "Playhouse"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(6, 244),
     },
 
     [SPECIES_CHATOT] =
@@ -14407,6 +14645,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_TANGLED_FEET, ABILITY_BIG_PECKS},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_CHATOT,
+        DEX_TEXT(Chatot, "Music Note"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 19),
     },
 
     [SPECIES_SPIRITOMB] =
@@ -14432,6 +14674,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PRESSURE, ABILITY_NONE, ABILITY_INFILTRATOR},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SPIRITOMB,
+        DEX_TEXT(Spiritomb, "Forbidden"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 1080),
     },
 
     [SPECIES_GIBLE] =
@@ -14456,6 +14702,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_ROUGH_SKIN},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_GIBLE,
+        DEX_TEXT(Gible, "Land Shark"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 205),
     },
 
     [SPECIES_GABITE] =
@@ -14480,23 +14730,28 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_ROUGH_SKIN},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_GABITE,
+        DEX_TEXT(Gabite, "Cave"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(14, 560),
     },
 
-#define GARCHOMP_MISC_STATS(exp,ability1,ability3)      \
-        .type1 = TYPE_DRAGON,                           \
-        .type2 = TYPE_GROUND,                           \
-        .catchRate = 45,                                \
-        .expYield = exp,                                \
-        .evYield_Attack    = 3,                         \
-        .genderRatio = PERCENT_FEMALE(50),              \
-        .eggCycles = 40,                                \
-        .friendship = 70,                               \
-        .growthRate = GROWTH_SLOW,                      \
-        .eggGroup1 = EGG_GROUP_MONSTER,                 \
-        .eggGroup2 = EGG_GROUP_DRAGON,                  \
-        .abilities = {ability1, ABILITY_NONE, ability3},\
-        .bodyColor = BODY_COLOR_BLUE,                   \
-        .noFlip = FALSE
+#define GARCHOMP_MISC_STATS                 \
+        .type1 = TYPE_DRAGON,               \
+        .type2 = TYPE_GROUND,               \
+        .catchRate = 45,                    \
+        .evYield_Attack    = 3,             \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 40,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_MONSTER,     \
+        .eggGroup2 = EGG_GROUP_DRAGON,      \
+        .bodyColor = BODY_COLOR_BLUE,       \
+        .noFlip = FALSE,                    \
+        .natDexNum = NATIONAL_DEX_GARCHOMP, \
+        DEX_SCALE(356, 17, 256, 0),         \
+        HEIGHT_WEIGHT(19, 950)
 
     [SPECIES_GARCHOMP] =
     {
@@ -14506,7 +14761,10 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 102,
         .baseSpAttack  = 80,
         .baseSpDefense = 85,
-        GARCHOMP_MISC_STATS(270, ABILITY_SAND_VEIL, ABILITY_ROUGH_SKIN),
+        .expYield = 270,
+        .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_ROUGH_SKIN},
+        DEX_TEXT(Garchomp, "Mach"),
+        GARCHOMP_MISC_STATS,
     },
     [SPECIES_GARCHOMP_MEGA] =
     {
@@ -14516,8 +14774,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 92,
         .baseSpAttack  = 120,
         .baseSpDefense = 95,
+        .expYield = 315,
+        .abilities = {ABILITY_SAND_FORCE, ABILITY_SAND_FORCE, ABILITY_SAND_FORCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        GARCHOMP_MISC_STATS(315, ABILITY_SAND_FORCE, ABILITY_SAND_FORCE),
+        DEX_TEXT(GarchompMega, "Mach"),
+        GARCHOMP_MISC_STATS,
     },
 
     [SPECIES_MUNCHLAX] =
@@ -14544,6 +14805,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PICKUP, ABILITY_THICK_FAT, ABILITY_GLUTTONY},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_MUNCHLAX,
+        DEX_TEXT(Munchlax, "Big Eater"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(6, 1050),
     },
 
     [SPECIES_RIOLU] =
@@ -14568,24 +14833,27 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STEADFAST, ABILITY_INNER_FOCUS, ABILITY_PRANKSTER},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_RIOLU,
+        DEX_TEXT(Riolu, "Emanation"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 202),
     },
 
-#define LUCARIO_MISC_STATS(exp,ability1,ability2,ability3)  \
-        .type1 = TYPE_FIGHTING,                             \
-        .type2 = TYPE_STEEL,                                \
-        .catchRate = 45,                                    \
-        .expYield = exp,                                    \
-        .evYield_Attack    = 1,                             \
-        .evYield_SpAttack  = 1,                             \
-        .genderRatio = PERCENT_FEMALE(12.5),                \
-        .eggCycles = 25,                                    \
-        .friendship = 70,                                   \
-        .growthRate = GROWTH_MEDIUM_SLOW,                   \
-        .eggGroup1 = EGG_GROUP_FIELD,                       \
-        .eggGroup2 = EGG_GROUP_HUMAN_LIKE,                  \
-        .abilities = {ability1, ability2, ability3},        \
-        .bodyColor = BODY_COLOR_BLUE,                       \
-        .noFlip = FALSE
+#define LUCARIO_MISC_STATS                  \
+        .type1 = TYPE_FIGHTING,             \
+        .type2 = TYPE_STEEL,                \
+        .catchRate = 45,                    \
+        .evYield_Attack    = 1,             \
+        .evYield_SpAttack  = 1,             \
+        .genderRatio = PERCENT_FEMALE(12.5),\
+        .eggCycles = 25,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_MEDIUM_SLOW,   \
+        .eggGroup1 = EGG_GROUP_FIELD,       \
+        .eggGroup2 = EGG_GROUP_HUMAN_LIKE,  \
+        .bodyColor = BODY_COLOR_BLUE,       \
+        .noFlip = FALSE,                    \
+        .natDexNum = NATIONAL_DEX_LUCARIO
 
     [SPECIES_LUCARIO] =
     {
@@ -14595,7 +14863,12 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 115,
         .baseSpDefense = 70,
-        LUCARIO_MISC_STATS(184, ABILITY_STEADFAST, ABILITY_INNER_FOCUS, ABILITY_JUSTIFIED),
+        .expYield = 184,
+        .abilities = {ABILITY_STEADFAST, ABILITY_INNER_FOCUS, ABILITY_JUSTIFIED},
+        DEX_TEXT(Lucario, "Aura"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 540),
+        LUCARIO_MISC_STATS,
     },
     [SPECIES_LUCARIO_MEGA] =
     {
@@ -14605,8 +14878,13 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 112,
         .baseSpAttack  = 140,
         .baseSpDefense = 70,
+        .expYield = 219,
+        .abilities = {ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        LUCARIO_MISC_STATS(219, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY),
+        DEX_TEXT(LucarioMega, "Aura"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(13, 575),
+        LUCARIO_MISC_STATS,
     },
 
     [SPECIES_HIPPOPOTAS] =
@@ -14631,6 +14909,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAND_STREAM, ABILITY_NONE, ABILITY_SAND_FORCE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_HIPPOPOTAS,
+        DEX_TEXT(Hippopotas, "Hippo"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 495),
     },
 
     [SPECIES_HIPPOWDON] =
@@ -14655,6 +14937,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAND_STREAM, ABILITY_NONE, ABILITY_SAND_FORCE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_HIPPOWDON,
+        DEX_TEXT(Hippowdon, "Heavyweight"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(20, 3000),
     },
 
     [SPECIES_SKORUPI] =
@@ -14680,6 +14966,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BATTLE_ARMOR, ABILITY_SNIPER, ABILITY_KEEN_EYE},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SKORUPI,
+        DEX_TEXT(Skorupi, "Scorpion"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 120),
     },
 
     [SPECIES_DRAPION] =
@@ -14705,6 +14995,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BATTLE_ARMOR, ABILITY_SNIPER, ABILITY_KEEN_EYE},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_DRAPION,
+        DEX_TEXT(Drapion, "Ogre Scorp"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(13, 615),
     },
 
     [SPECIES_CROAGUNK] =
@@ -14730,6 +15024,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_ANTICIPATION, ABILITY_DRY_SKIN, ABILITY_POISON_TOUCH},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_CROAGUNK,
+        DEX_TEXT(Croagunk, "Toxic Mouth"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 230),
     },
 
     [SPECIES_TOXICROAK] =
@@ -14755,6 +15053,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_ANTICIPATION, ABILITY_DRY_SKIN, ABILITY_POISON_TOUCH},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_TOXICROAK,
+        DEX_TEXT(Toxicroak, "Toxic Mouth"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(13, 444),
     },
 
     [SPECIES_CARNIVINE] =
@@ -14779,6 +15081,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_CARNIVINE,
+        DEX_TEXT(Carnivine, "Bug Catcher"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(14, 270),
     },
 
     [SPECIES_FINNEON] =
@@ -14803,6 +15109,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_STORM_DRAIN, ABILITY_WATER_VEIL},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_FINNEON,
+        DEX_TEXT(Finneon, "Wing Fish"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 70),
     },
 
     [SPECIES_LUMINEON] =
@@ -14827,6 +15137,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_STORM_DRAIN, ABILITY_WATER_VEIL},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_LUMINEON,
+        DEX_TEXT(Lumineon, "Neon"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 240),
     },
 
     [SPECIES_MANTYKE] =
@@ -14851,6 +15165,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_WATER_ABSORB, ABILITY_WATER_VEIL},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_MANTYKE,
+        DEX_TEXT(Mantyke, "Kite"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 650),
     },
 
     [SPECIES_SNOVER] =
@@ -14876,25 +15194,29 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SNOW_WARNING, ABILITY_NONE, ABILITY_SOUNDPROOF},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SNOVER,
+        DEX_TEXT(Snover, "Frost Tree"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 505),
     },
 
-#define ABOMASNOW_MISC_STATS(exp,ability1,ability3)     \
-        .type1 = TYPE_GRASS,                            \
-        .type2 = TYPE_ICE,                              \
-        .catchRate = 60,                                \
-        .expYield = exp,                                \
-        .evYield_Attack    = 1,                         \
-        .evYield_SpAttack  = 1,                         \
-        .itemRare = ITEM_NEVER_MELT_ICE,                \
-        .genderRatio = PERCENT_FEMALE(50),              \
-        .eggCycles = 20,                                \
-        .friendship = 70,                               \
-        .growthRate = GROWTH_SLOW,                      \
-        .eggGroup1 = EGG_GROUP_MONSTER,                 \
-        .eggGroup2 = EGG_GROUP_GRASS,                   \
-        .abilities = {ability1, ABILITY_NONE, ability3},\
-        .bodyColor = BODY_COLOR_WHITE,                  \
-        .noFlip = FALSE
+#define ABOMASNOW_MISC_STATS                \
+        .type1 = TYPE_GRASS,                \
+        .type2 = TYPE_ICE,                  \
+        .catchRate = 60,                    \
+        .evYield_Attack    = 1,             \
+        .evYield_SpAttack  = 1,             \
+        .itemRare = ITEM_NEVER_MELT_ICE,    \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 20,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_MONSTER,     \
+        .eggGroup2 = EGG_GROUP_GRASS,       \
+        .bodyColor = BODY_COLOR_WHITE,      \
+        .noFlip = FALSE,                    \
+        .natDexNum = NATIONAL_DEX_ABOMASNOW,\
+        DEX_TEXT(Abomasnow, "Frost Tree")
 
     [SPECIES_ABOMASNOW] =
     {
@@ -14904,7 +15226,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 60,
         .baseSpAttack  = 92,
         .baseSpDefense = 85,
-        ABOMASNOW_MISC_STATS(173, ABILITY_SNOW_WARNING, ABILITY_SOUNDPROOF),
+        .expYield = 173,
+        .abilities = {ABILITY_SNOW_WARNING, ABILITY_NONE, ABILITY_SOUNDPROOF},
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(22, 1355),
+        ABOMASNOW_MISC_STATS,
     },
     [SPECIES_ABOMASNOW_MEGA] =
     {
@@ -14914,8 +15240,12 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 30,
         .baseSpAttack  = 132,
         .baseSpDefense = 105,
+        .expYield = 208,
+        .abilities = {ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        ABOMASNOW_MISC_STATS(208, ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(27, 1850),
+        ABOMASNOW_MISC_STATS,
     },
 
     [SPECIES_WEAVILE] =
@@ -14942,6 +15272,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PRESSURE, ABILITY_NONE, ABILITY_PICKPOCKET},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_WEAVILE,
+        DEX_TEXT(Weavile, "Sharp Claw"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(11, 340),
     },
 
     [SPECIES_MAGNEZONE] =
@@ -14967,6 +15301,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_ANALYTIC},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_MAGNEZONE,
+        DEX_TEXT(Magnezone, "Magnet Area"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 1800),
     },
 
     [SPECIES_LICKILICKY] =
@@ -14992,6 +15330,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_OBLIVIOUS, ABILITY_CLOUD_NINE},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_LICKILICKY,
+        DEX_TEXT(Lickilicky, "Licking"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(17, 1400),
     },
 
     [SPECIES_RHYPERIOR] =
@@ -15016,6 +15358,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LIGHTNING_ROD, ABILITY_SOLID_ROCK, ABILITY_RECKLESS},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_RHYPERIOR,
+        DEX_TEXT(Rhyperior, "Drill"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(24, 2828),
     },
 
     [SPECIES_TANGROWTH] =
@@ -15040,6 +15386,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_LEAF_GUARD, ABILITY_REGENERATOR},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_TANGROWTH,
+        DEX_TEXT(Tangrowth, "Vine"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(20, 1286),
     },
 
     [SPECIES_ELECTIVIRE] =
@@ -15065,6 +15415,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_MOTOR_DRIVE, ABILITY_NONE, ABILITY_VITAL_SPIRIT},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_ELECTIVIRE,
+        DEX_TEXT(Electivire, "Thunderbolt"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(18, 1386),
     },
 
     [SPECIES_MAGMORTAR] =
@@ -15090,6 +15444,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_FLAME_BODY, ABILITY_NONE, ABILITY_VITAL_SPIRIT},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_MAGMORTAR,
+        DEX_TEXT(Magmortar, "Blast"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(16, 680),
     },
 
     [SPECIES_TOGEKISS] =
@@ -15115,6 +15473,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_HUSTLE, ABILITY_SERENE_GRACE, ABILITY_SUPER_LUCK},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_TOGEKISS,
+        DEX_TEXT(Togekiss, "Jubilee"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(15, 380),
     },
 
     [SPECIES_YANMEGA] =
@@ -15140,6 +15502,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SPEED_BOOST, ABILITY_TINTED_LENS, ABILITY_FRISK},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_YANMEGA,
+        DEX_TEXT(Yanmega, "Ogre Darner"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(19, 515),
     },
 
     [SPECIES_LEAFEON] =
@@ -15164,6 +15530,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEAF_GUARD, ABILITY_LEAF_GUARD, ABILITY_CHLOROPHYLL},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_LEAFEON,
+        DEX_TEXT(Leafeon, "Verdant"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 255),
     },
 
     [SPECIES_GLACEON] =
@@ -15188,6 +15558,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SNOW_CLOAK, ABILITY_SNOW_CLOAK, ABILITY_ICE_BODY},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_GLACEON,
+        DEX_TEXT(Glaceon, "Fresh Snow"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 259),
     },
 
     [SPECIES_GLISCOR] =
@@ -15212,6 +15586,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_HYPER_CUTTER, ABILITY_SAND_VEIL, ABILITY_POISON_HEAL},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_GLISCOR,
+        DEX_TEXT(Gliscor, "Fang Scorp"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(20, 425),
     },
 
     [SPECIES_MAMOSWINE] =
@@ -15236,6 +15614,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OBLIVIOUS, ABILITY_SNOW_CLOAK, ABILITY_THICK_FAT},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_MAMOSWINE,
+        DEX_TEXT(Mamoswine, "Twin Tusk"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(25, 2910),
     },
 
     [SPECIES_PORYGON_Z] =
@@ -15260,23 +15642,27 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_ADAPTABILITY, ABILITY_DOWNLOAD, ABILITY_ANALYTIC},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PORYGON_Z,
+        DEX_TEXT(PorygonZ, "Virtual"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(9, 340),
     },
 
-#define GALLADE_MISC_STATS(exp,ability1,ability3)       \
-        .type1 = TYPE_PSYCHIC,                          \
-        .type2 = TYPE_FIGHTING,                         \
-        .catchRate = 45,                                \
-        .expYield = exp,                                \
-        .evYield_Attack    = 3,                         \
-        .genderRatio = MON_MALE,                        \
-        .eggCycles = 20,                                \
-        .friendship = 35,                               \
-        .growthRate = GROWTH_SLOW,                      \
-        .eggGroup1 = RALTS_FAMILY_EGG_GROUP_1,          \
-        .eggGroup2 = EGG_GROUP_AMORPHOUS,               \
-        .abilities = {ability1, ABILITY_NONE, ability3},\
-        .bodyColor = BODY_COLOR_WHITE,                  \
-        .noFlip = FALSE
+#define GALLADE_MISC_STATS                      \
+        .type1 = TYPE_PSYCHIC,                  \
+        .type2 = TYPE_FIGHTING,                 \
+        .catchRate = 45,                        \
+        .evYield_Attack    = 3,                 \
+        .genderRatio = MON_MALE,                \
+        .eggCycles = 20,                        \
+        .friendship = 35,                       \
+        .growthRate = GROWTH_SLOW,              \
+        .eggGroup1 = RALTS_FAMILY_EGG_GROUP_1,  \
+        .eggGroup2 = EGG_GROUP_AMORPHOUS,       \
+        .bodyColor = BODY_COLOR_WHITE,          \
+        .noFlip = FALSE,                        \
+        .natDexNum = NATIONAL_DEX_GALLADE,      \
+        DEX_TEXT(Gallade, "Blade")
 
     [SPECIES_GALLADE] =
     {
@@ -15286,7 +15672,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 80,
         .baseSpAttack  = 65,
         .baseSpDefense = 115,
-        GALLADE_MISC_STATS(233, ABILITY_STEADFAST, ABILITY_JUSTIFIED),
+        .expYield = 233,
+        .abilities = {ABILITY_STEADFAST, ABILITY_NONE, ABILITY_JUSTIFIED},
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(16, 520),
+        GALLADE_MISC_STATS,
     },
     [SPECIES_GALLADE_MEGA] =
     {
@@ -15296,8 +15686,12 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 110,
         .baseSpAttack  = 65,
         .baseSpDefense = 115,
+        .expYield = 278,
+        .abilities = {ABILITY_INNER_FOCUS, ABILITY_INNER_FOCUS, ABILITY_INNER_FOCUS},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        GALLADE_MISC_STATS(278, ABILITY_INNER_FOCUS, ABILITY_INNER_FOCUS),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(16, 564),
+        GALLADE_MISC_STATS,
     },
 
     [SPECIES_PROBOPASS] =
@@ -15324,6 +15718,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STURDY, ABILITY_MAGNET_PULL, ABILITY_SAND_FORCE},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PROBOPASS,
+        DEX_TEXT(Probopass, "Compass"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(14, 3400),
     },
 
     [SPECIES_DUSKNOIR] =
@@ -15350,6 +15748,10 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PRESSURE, ABILITY_NONE, ABILITY_FRISK},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_DUSKNOIR,
+        DEX_TEXT(Dusknoir, "Gripper"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(22, 1066),
     },
 
     [SPECIES_FROSLASS] =
@@ -15374,13 +15776,15 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_CURSED_BODY},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_FROSLASS,
+        DEX_TEXT(Froslass, "Snow Land"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(13, 266),
     },
 
-#define ROTOM_MISC_STATS(typeB,exp,flip)              \
+#define ROTOM_MISC_STATS              \
         .type1 = TYPE_ELECTRIC,                       \
-        .type2 = typeB,                               \
         .catchRate = 45,                              \
-        .expYield = exp,                              \
         .evYield_Speed     = 1,                       \
         .evYield_SpAttack  = 1,                       \
         .genderRatio = MON_GENDERLESS,                \
@@ -15391,18 +15795,10 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_AMORPHOUS,             \
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},\
         .bodyColor = BODY_COLOR_RED,                  \
-        .noFlip = flip
+        .natDexNum = NATIONAL_DEX_ROTOM,\
+        DEX_SCALE(356, 17, 256, 0),\
+        HEIGHT_WEIGHT(3, 3)
 
-#define ROTOM_FORM_BASE_STATS(typeB, flip)            \
-    {                                                 \
-        .baseHP        = 50,                          \
-        .baseAttack    = 65,                          \
-        .baseDefense   = 107,                         \
-        .baseSpeed     = 86,                          \
-        .baseSpAttack  = 105,                         \
-        .baseSpDefense = 107,                         \
-        ROTOM_MISC_STATS(typeB, 182, flip),           \
-    }
     [SPECIES_ROTOM] =
     {
         .baseHP        = 50,
@@ -15411,13 +15807,56 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 91,
         .baseSpAttack  = 95,
         .baseSpDefense = 77,
-        ROTOM_MISC_STATS(TYPE_GHOST, 154, NO_FLIP),
+        .type2 = TYPE_GHOST,
+        .expYield = 154,
+        .noFlip = FALSE,
+        ROTOM_MISC_STATS,
     },
-    [SPECIES_ROTOM_HEAT]  = ROTOM_FORM_BASE_STATS(TYPE_FIRE, FLIP),
-    [SPECIES_ROTOM_WASH]  = ROTOM_FORM_BASE_STATS(TYPE_WATER, NO_FLIP),
-    [SPECIES_ROTOM_FROST] = ROTOM_FORM_BASE_STATS(TYPE_ICE, FLIP),
-    [SPECIES_ROTOM_FAN]   = ROTOM_FORM_BASE_STATS(TYPE_FLYING, FLIP),
-    [SPECIES_ROTOM_MOW]   = ROTOM_FORM_BASE_STATS(TYPE_GRASS, FLIP),
+
+#define ROTOM_APPLIANCE_STATS   \
+        .baseHP        = 50,    \
+        .baseAttack    = 65,    \
+        .baseDefense   = 107,   \
+        .baseSpeed     = 86,    \
+        .baseSpAttack  = 105,   \
+        .baseSpDefense = 107,   \
+        .expYield = 182
+
+    [SPECIES_ROTOM_HEAT] =
+    {
+        ROTOM_APPLIANCE_STATS,
+        .type2 = TYPE_FIRE,
+        .noFlip = FALSE,
+        ROTOM_MISC_STATS,
+    },
+    [SPECIES_ROTOM_WASH] =
+    {
+        ROTOM_APPLIANCE_STATS,
+        .type2 = TYPE_WATER,
+        .noFlip = TRUE,
+        ROTOM_MISC_STATS,
+    },
+    [SPECIES_ROTOM_FROST] =
+    {
+        ROTOM_APPLIANCE_STATS,
+        .type2 = TYPE_ICE,
+        .noFlip = FALSE,
+        ROTOM_MISC_STATS,
+    },
+    [SPECIES_ROTOM_FAN] =
+    {
+        ROTOM_APPLIANCE_STATS,
+        .type2 = TYPE_FLYING,
+        .noFlip = FALSE,
+        ROTOM_MISC_STATS,
+    },
+    [SPECIES_ROTOM_MOW] =
+    {
+        ROTOM_APPLIANCE_STATS,
+        .type2 = TYPE_GRASS,
+        .noFlip = FALSE,
+        ROTOM_MISC_STATS,
+    },
 
     [SPECIES_UXIE] =
     {
@@ -15443,6 +15882,10 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_UXIE,
+        DEX_TEXT(Uxie, "Knowledge"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 3),
     },
 
     [SPECIES_MESPRIT] =
@@ -15470,6 +15913,10 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_MESPRIT,
+        DEX_TEXT(Mesprit, "Emotion"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 3),
     },
 
     [SPECIES_AZELF] =
@@ -15496,6 +15943,10 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_AZELF,
+        DEX_TEXT(Azelf, "Willpower"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 3),
     },
 
 #define DIALGA_MISC_STATS                                                   \
@@ -15513,7 +15964,8 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY},   \
         .bodyColor = BODY_COLOR_WHITE,                                      \
         .noFlip = FALSE,                                                    \
-        .flags = SPECIES_FLAG_LEGENDARY
+        .flags = SPECIES_FLAG_LEGENDARY,                                    \
+        .natDexNum = NATIONAL_DEX_DIALGA
 
     [SPECIES_DIALGA] =
     {
@@ -15523,6 +15975,9 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 150,
         .baseSpDefense = 100,
+        DEX_TEXT(Dialga, "Temporal"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(54, 6830),
         DIALGA_MISC_STATS,
     },
 
@@ -15534,6 +15989,9 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 150,
         .baseSpDefense = 120,
+        DEX_TEXT(Dummy, "Temporal"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(70, 8500),
         DIALGA_MISC_STATS,
     },
 
@@ -15552,7 +16010,8 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY},   \
         .bodyColor = BODY_COLOR_PURPLE,                                     \
         .noFlip = FALSE,                                                    \
-        .flags = SPECIES_FLAG_LEGENDARY
+        .flags = SPECIES_FLAG_LEGENDARY,                                    \
+        .natDexNum = NATIONAL_DEX_PALKIA
 
     [SPECIES_PALKIA] =
     {
@@ -15562,6 +16021,9 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 100,
         .baseSpAttack  = 150,
         .baseSpDefense = 120,
+        DEX_TEXT(Palkia, "Spatial"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(42, 3360),
         PALKIA_MISC_STATS,
     },
 
@@ -15573,6 +16035,9 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 120,
         .baseSpAttack  = 150,
         .baseSpDefense = 120,
+        DEX_TEXT(Dummy, "Spatial"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(63, 6600),
         PALKIA_MISC_STATS,
     },
 
@@ -15599,6 +16064,10 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_HEATRAN,
+        DEX_TEXT(Heatran, "Lava Dome"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(17, 4300),
     },
 
     [SPECIES_REGIGIGAS] =
@@ -15624,24 +16093,28 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_REGIGIGAS,
+        DEX_TEXT(Regigigas, "Colossal"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(37, 4200),
     },
 
-#define GIRATINA_MISC_STATS(ability1, ability3)             \
-        .type1 = TYPE_GHOST,                                \
-        .type2 = TYPE_DRAGON,                               \
-        .catchRate = 3,                                     \
-        .expYield = 306,                                    \
-        .evYield_HP        = 3,                             \
-        .genderRatio = MON_GENDERLESS,                      \
-        .eggCycles = 120,                                   \
-        .friendship = 0,                                    \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,                \
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,                \
-        .abilities = {ability1, ABILITY_NONE, ability3},    \
-        .bodyColor = BODY_COLOR_BLACK,                      \
-        .noFlip = FALSE,                                    \
-        .flags = SPECIES_FLAG_LEGENDARY
+#define GIRATINA_MISC_STATS                 \
+        .type1 = TYPE_GHOST,                \
+        .type2 = TYPE_DRAGON,               \
+        .catchRate = 3,                     \
+        .expYield = 306,                    \
+        .evYield_HP        = 3,             \
+        .genderRatio = MON_GENDERLESS,      \
+        .eggCycles = 120,                   \
+        .friendship = 0,                    \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,\
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,\
+        .bodyColor = BODY_COLOR_BLACK,      \
+        .noFlip = FALSE,                    \
+        .flags = SPECIES_FLAG_LEGENDARY,    \
+        .natDexNum = NATIONAL_DEX_GIRATINA
 
     [SPECIES_GIRATINA_ALTERED] =
     {
@@ -15651,7 +16124,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 100,
         .baseSpDefense = 120,
-        GIRATINA_MISC_STATS(ABILITY_PRESSURE, ABILITY_TELEPATHY),
+        .abilities = {ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY},
+        DEX_TEXT(Giratina, "Renegade"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(45, 7500),
+        GIRATINA_MISC_STATS,
     },
     [SPECIES_GIRATINA_ORIGIN] =
     {
@@ -15661,7 +16138,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 120,
         .baseSpDefense = 100,
-        GIRATINA_MISC_STATS(ABILITY_LEVITATE, ABILITY_LEVITATE),
+        .abilities = {ABILITY_LEVITATE, ABILITY_NONE, ABILITY_LEVITATE},
+        DEX_TEXT(Dummy, "Renegade"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(69, 6500),
+        GIRATINA_MISC_STATS,
     },
 
     [SPECIES_CRESSELIA] =
@@ -15687,6 +16168,10 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_CRESSELIA,
+        DEX_TEXT(Cresselia, "Lunar"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(15, 856),
     },
 
     [SPECIES_PHIONE] =
@@ -15712,6 +16197,10 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_MYTHICAL,
+        .natDexNum = NATIONAL_DEX_PHIONE,
+        DEX_TEXT(Phione, "Sea Drifter"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 31),
     },
 
     [SPECIES_MANAPHY] =
@@ -15737,6 +16226,10 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_MYTHICAL,
+        .natDexNum = NATIONAL_DEX_MANAPHY,
+        DEX_TEXT(Manaphy, "Seafaring"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 14),
     },
 
     [SPECIES_DARKRAI] =
@@ -15763,7 +16256,28 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_MYTHICAL,
+        .natDexNum = NATIONAL_DEX_DARKRAI,
+        DEX_TEXT(Darkrai, "Pitch-Black"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(15, 505),
     },
+
+#define SHAYMIN_MISC_STATS                  \
+        .type1 = TYPE_GRASS,                \
+        .catchRate = 45,                    \
+        .expYield = 270,                    \
+        .evYield_HP        = 3,             \
+        .itemCommon = ITEM_LUM_BERRY,       \
+        .itemRare = ITEM_LUM_BERRY,         \
+        .genderRatio = MON_GENDERLESS,      \
+        .eggCycles = 120,                   \
+        .friendship = 100,                  \
+        .growthRate = GROWTH_MEDIUM_SLOW,   \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,\
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,\
+        .bodyColor = BODY_COLOR_GREEN,      \
+        .flags = SPECIES_FLAG_MYTHICAL,     \
+        .natDexNum = NATIONAL_DEX_SHAYMIN
 
     [SPECIES_SHAYMIN_LAND] =
     {
@@ -15773,23 +16287,13 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 100,
         .baseSpAttack  = 100,
         .baseSpDefense = 100,
-        .type1 = TYPE_GRASS,
         .type2 = TYPE_GRASS,
-        .catchRate = 45,
-        .expYield = 270,
-        .evYield_HP        = 3,
-        .itemCommon = ITEM_LUM_BERRY,
-        .itemRare = ITEM_LUM_BERRY,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 100,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
         .abilities = {ABILITY_NATURAL_CURE, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
-        .flags = SPECIES_FLAG_MYTHICAL,
+        DEX_TEXT(Shaymin, "Gratitude"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(2, 21),
+        SHAYMIN_MISC_STATS,
     },
 
     [SPECIES_SHAYMIN_SKY] =
@@ -15800,48 +16304,42 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 127,
         .baseSpAttack  = 120,
         .baseSpDefense = 75,
-        .type1 = TYPE_GRASS,
         .type2 = TYPE_FLYING,
-        .catchRate = 45,
-        .expYield = 270,
-        .evYield_HP        = 3,
-        .itemCommon = ITEM_LUM_BERRY,
-        .itemRare = ITEM_LUM_BERRY,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 100,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
         .abilities = {ABILITY_SERENE_GRACE, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
-        .flags = SPECIES_FLAG_MYTHICAL,
+        DEX_TEXT(Dummy, "Gratitude"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 52),
+        SHAYMIN_MISC_STATS,
     },
 
-#define ARCEUS_BASE_STATS(type)                        \
-    {                                                  \
-        .baseHP        = 120,                          \
-        .baseAttack    = 120,                          \
-        .baseDefense   = 120,                          \
-        .baseSpeed     = 120,                          \
-        .baseSpAttack  = 120,                          \
-        .baseSpDefense = 120,                          \
-        .type1 = type,                                 \
-        .type2 = type,                                 \
-        .catchRate = 3,                                \
-        .expYield = 324,                               \
-        .evYield_HP        = 3,                        \
-        .genderRatio = MON_GENDERLESS,                 \
-        .eggCycles = 120,                              \
-        .friendship = 0,                               \
-        .growthRate = GROWTH_SLOW,                     \
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,           \
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,           \
-        .abilities = {ABILITY_MULTITYPE, ABILITY_NONE},\
-        .bodyColor = BODY_COLOR_WHITE,                 \
-        .noFlip = FALSE,                               \
-        .flags = SPECIES_FLAG_MYTHICAL,                \
+#define ARCEUS_BASE_STATS(type)                         \
+    {                                                   \
+        .baseHP        = 120,                           \
+        .baseAttack    = 120,                           \
+        .baseDefense   = 120,                           \
+        .baseSpeed     = 120,                           \
+        .baseSpAttack  = 120,                           \
+        .baseSpDefense = 120,                           \
+        .type1 = type,                                  \
+        .type2 = type,                                  \
+        .catchRate = 3,                                 \
+        .expYield = 324,                                \
+        .evYield_HP        = 3,                         \
+        .genderRatio = MON_GENDERLESS,                  \
+        .eggCycles = 120,                               \
+        .friendship = 0,                                \
+        .growthRate = GROWTH_SLOW,                      \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,            \
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,            \
+        .abilities = {ABILITY_MULTITYPE, ABILITY_NONE}, \
+        .bodyColor = BODY_COLOR_WHITE,                  \
+        .noFlip = FALSE,                                \
+        .flags = SPECIES_FLAG_MYTHICAL,                 \
+        .natDexNum = NATIONAL_DEX_ARCEUS,               \
+        DEX_TEXT(Arceus, "Alpha"),                      \
+        DEX_SCALE(356, 17, 256, 0),                     \
+        HEIGHT_WEIGHT(32, 3200),                        \
     }
     [SPECIES_ARCEUS_NORMAL]   = ARCEUS_BASE_STATS(TYPE_NORMAL),
     [SPECIES_ARCEUS_FIGHTING] = ARCEUS_BASE_STATS(TYPE_FIGHTING),
@@ -27158,21 +27656,19 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
-#define ENAMORUS_MISC_STATS(exp,ability1,ability3)      \
-        .type1 = TYPE_FAIRY,                            \
-        .type2 = TYPE_FLYING,                           \
-        .catchRate = 3,                                 \
-        .expYield = exp,                                \
-        .evYield_SpAttack  = 3,                         \
-        .genderRatio = MON_FEMALE,                      \
-        .eggCycles = 120,                               \
-        .friendship = 90,                               \
-        .growthRate = GROWTH_SLOW,                      \
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,            \
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,            \
-        .abilities = {ability1, ABILITY_NONE, ability3},\
-        .bodyColor = BODY_COLOR_PINK,                   \
-        .noFlip = FALSE,                                \
+#define ENAMORUS_MISC_STATS                 \
+        .type1 = TYPE_FAIRY,                \
+        .type2 = TYPE_FLYING,               \
+        .catchRate = 3,                     \
+        .evYield_SpAttack  = 3,             \
+        .genderRatio = MON_FEMALE,          \
+        .eggCycles = 120,                   \
+        .friendship = 90,                   \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,\
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,\
+        .bodyColor = BODY_COLOR_PINK,       \
+        .noFlip = FALSE,                    \
         .flags = SPECIES_FLAG_LEGENDARY
 
     [SPECIES_ENAMORUS_INCARNATE] =
@@ -27183,7 +27679,9 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 106,
         .baseSpAttack  = 135,
         .baseSpDefense = 80,
-        ENAMORUS_MISC_STATS(261, ABILITY_HEALER, ABILITY_CONTRARY),
+        .expYield = 261,
+        .abilities = {ABILITY_HEALER, ABILITY_NONE, ABILITY_CONTRARY},
+        ENAMORUS_MISC_STATS,
     },
     [SPECIES_ENAMORUS_THERIAN] =
     {
@@ -27193,7 +27691,9 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 46,
         .baseSpAttack  = 135,
         .baseSpDefense = 100,
-        ENAMORUS_MISC_STATS(270, ABILITY_OVERCOAT, ABILITY_OVERCOAT),
+        .expYield = 270,
+        .abilities = {ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_OVERCOAT},
+        ENAMORUS_MISC_STATS,
     },
 #endif
 };
