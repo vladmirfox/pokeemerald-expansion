@@ -5,7 +5,7 @@ const struct PokedexEntryForms gPokedexEntriesForms[] =
     {
         .height = 15,
         .weight = 320,
-        .description = gAudinoPokedexText, // No official dex entry
+        .description = gAudinoPokedexText, // No official dex entry for this form
     },
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -13,7 +13,7 @@ const struct PokedexEntryForms gPokedexEntriesForms[] =
     {
         .height = 11,
         .weight = 278,
-        .description = gDianciePokedexText, // No official dex entry
+        .description = gDianciePokedexText, // No official dex entry for this form
     },
 #endif
 
