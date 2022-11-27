@@ -27,9 +27,9 @@ const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES] =
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_TORNADUS_INCARNATE] = sTornadusFormChangeTable,
     [SPECIES_TORNADUS_THERIAN] = sTornadusFormChangeTable,
-    [SPECIES_THUNDURUS] = sThundurusFormChangeTable,
+    [SPECIES_THUNDURUS_INCARNATE] = sThundurusFormChangeTable,
     [SPECIES_THUNDURUS_THERIAN] = sThundurusFormChangeTable,
-    [SPECIES_LANDORUS] = sLandorusFormChangeTable,
+    [SPECIES_LANDORUS_INCARNATE] = sLandorusFormChangeTable,
     [SPECIES_LANDORUS_THERIAN] = sLandorusFormChangeTable,
     [SPECIES_KELDEO_ORDINARY] = sKeldeoFormChangeTable,
     [SPECIES_KELDEO_RESOLUTE] = sKeldeoFormChangeTable,

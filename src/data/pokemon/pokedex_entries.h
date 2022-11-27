@@ -1,13 +1,5 @@
 const struct PokedexEntryForms gPokedexEntriesForms[] =
 {
-#if P_GEN_5_POKEMON == TRUE
-    [SPECIES_AUDINO_MEGA] =
-    {
-        .height = 15,
-        .weight = 320,
-        .description = gAudinoPokedexText, // No official dex entry for this form
-    },
-#endif
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_DIANCIE_MEGA] =
     {
@@ -17,89 +9,7 @@ const struct PokedexEntryForms gPokedexEntriesForms[] =
     },
 #endif
 
-#if P_GEN_5_POKEMON == TRUE
-    [SPECIES_DARUMAKA_GALARIAN] =
-    {
-        .height = 7,
-        .weight = 400,
-        .description = gDummyPokedexText,
-    },
-    [SPECIES_DARMANITAN_GALARIAN] =
-    {
-        .categoryName = _("Zen Charm"),
-        .height = 17,
-        .weight = 1200,
-        .description = gDummyPokedexText,
-    },
-    [SPECIES_YAMASK_GALARIAN] =
-    {
-        .height = 5,
-        .weight = 15,
-        .description = gDummyPokedexText,
-    },
-    [SPECIES_STUNFISK_GALARIAN] =
-    {
-        .height = 7,
-        .weight = 205,
-        .description = gDummyPokedexText,
-    },
-#endif
 
-#if P_GEN_5_POKEMON == TRUE
-    // Basculin   
-    [SPECIES_BASCULIN_BLUE_STRIPED] =
-    { 
-        .description = gDummyPokedexText,
-    },
-    // Darmanitan   
-    [SPECIES_DARMANITAN_ZEN_MODE] =
-    {
-        .categoryName = _("Zen Charm"), 
-        .description = gDummyPokedexText,
-    },
-    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] =
-    {
-        .categoryName = _("Zen Charm"), 
-        .description = gDummyPokedexText,
-    },
-    // Therian Forms   
-    [SPECIES_TORNADUS_THERIAN] =
-    {
-        .height = 14,
-        .weight = 630,
-        .description = gDummyPokedexText,
-    },
-    [SPECIES_THUNDURUS_THERIAN] =
-    {
-        .height = 30,
-        .weight = 610,
-        .description = gDummyPokedexText,
-    },
-    [SPECIES_LANDORUS_THERIAN] =
-    {
-        .height = 13,
-        .weight = 680,
-        .description = gDummyPokedexText,
-    },
-    // Kyurem   
-    [SPECIES_KYUREM_WHITE] =
-    {
-        .height = 36,
-        .weight = 3250,
-        .description = gDummyPokedexText,
-    },
-    [SPECIES_KYUREM_BLACK] =
-    {
-        .height = 33,
-        .weight = 3250,
-        .description = gDummyPokedexText,
-    },
-    // Keldeo   
-    [SPECIES_KELDEO_RESOLUTE] =
-    { 
-        .description = gDummyPokedexText,
-    },
-#endif
 #if P_GEN_6_POKEMON == TRUE
     // Meowstic   
     [SPECIES_MEOWSTIC_FEMALE] =
