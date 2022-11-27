@@ -50,7 +50,7 @@ void LoadCompressedSpritePalette(const struct CompressedSpritePalette *src)
     LoadSpritePalette(&dest);
 }
 
-void LoadCompressedSpritePaletteWithTag(const u32 *pal, u8 tag)
+void LoadCompressedSpritePaletteWithTag(const u32 *pal, u16 tag)
 {
     struct SpritePalette dest;
 
