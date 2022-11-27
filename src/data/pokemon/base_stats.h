@@ -16570,6 +16570,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Turtwig, "Tiny Leaf"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(4, 102),
+        LEARNSETS(Turtwig),
+        FRONT_SPRITE(Turtwig, 40, 48, 11, 0),
+        BACK_SPRITE(Turtwig, 48, 56,  6),
+        PALETTES(Turtwig),
+        ICON(Turtwig, 1),
+        FOOTPRINT(Turtwig),
+        ANIMATIONS(TURTWIG, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_GROTLE] =
@@ -16599,6 +16606,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Grotle, "Grove"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(11, 970),
+        LEARNSETS(Grotle),
+        FRONT_SPRITE(Grotle, 56, 56,  7, 0),
+        BACK_SPRITE(Grotle, 64, 48, 10),
+        PALETTES(Grotle),
+        ICON(Grotle, 1),
+        FOOTPRINT(Grotle),
+        ANIMATIONS(GROTLE, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_TORTERRA] =
@@ -16628,6 +16642,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Torterra, "Continent"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(22, 3100),
+        LEARNSETS(Torterra),
+        FRONT_SPRITE(Torterra, 64, 64,  0, 0),
+        BACK_SPRITE(Torterra, 64, 56,  4),
+        PALETTES(Torterra),
+        ICON(Torterra, 1),
+        FOOTPRINT(Torterra),
+        ANIMATIONS(TORTERRA, 0, ANIM_H_SHAKE, BACK_ANIM_NONE),
     },
 
     [SPECIES_CHIMCHAR] =
@@ -16656,6 +16677,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Chimchar, "Chimp"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(5, 62),
+        LEARNSETS(Chimchar),
+        FRONT_SPRITE(Chimchar, 32, 48, 10, 0),
+        BACK_SPRITE(Chimchar, 56, 56,  6),
+        PALETTES(Chimchar),
+        ICON(Chimchar, 1),
+        FOOTPRINT(Chimchar),
+        ANIMATIONS(CHIMCHAR, 0, ANIM_V_JUMPS_BIG, BACK_ANIM_NONE),
     },
 
     [SPECIES_MONFERNO] =
@@ -16685,6 +16713,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Monferno, "Playful"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(9, 220),
+        LEARNSETS(Monferno),
+        FRONT_SPRITE(Monferno, 56, 56,  8, 0),
+        BACK_SPRITE(Monferno, 64, 64,  0),
+        PALETTES(Monferno),
+        ICON(Monferno, 0),
+        FOOTPRINT(Monferno),
+        ANIMATIONS(MONFERNO, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_INFERNAPE] =
@@ -16715,6 +16750,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Infernape, "Flame"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(12, 550),
+        LEARNSETS(Infernape),
+        FRONT_SPRITE(Infernape, 64, 64,  1, 0),
+        BACK_SPRITE(Infernape, 64, 64,  0),
+        PALETTES(Infernape),
+        ICON(Infernape, 0),
+        FOOTPRINT(Infernape),
+        ANIMATIONS(INFERNAPE, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_PIPLUP] =
@@ -16743,6 +16785,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Piplup, "Penguin"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(4, 52),
+        LEARNSETS(Piplup),
+        FRONT_SPRITE(Piplup, 24, 40, 14, 0),
+        BACK_SPRITE(Piplup, 40, 48, 10),
+        PALETTES(Piplup),
+        ICON(Piplup, 0),
+        FOOTPRINT(Piplup),
+        ANIMATIONS(PIPLUP, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_PRINPLUP] =
@@ -16771,6 +16820,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Prinplup, "Penguin"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(8, 230),
+        LEARNSETS(Prinplup),
+        FRONT_SPRITE(Prinplup, 48, 56,  7, 0),
+        BACK_SPRITE(Prinplup, 48, 56,  7),
+        PALETTES(Prinplup),
+        ICON(Prinplup, 0),
+        FOOTPRINT(Prinplup),
+        ANIMATIONS(PRINPLUP, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_EMPOLEON] =
@@ -16799,6 +16855,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Empoleon, "Emperor"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(17, 845),
+        LEARNSETS(Empoleon),
+        FRONT_SPRITE(Empoleon, 64, 64,  0, 0),
+        BACK_SPRITE(Empoleon, 64, 64,  0),
+        PALETTES(Empoleon),
+        ICON(Empoleon, 0),
+        FOOTPRINT(Empoleon),
+        ANIMATIONS(EMPOLEON, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_STARLY] =
@@ -16827,6 +16890,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Starly, "Starling"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(3, 20),
+        LEARNSETS(Starly),
+        FRONT_SPRITE(Starly, 40, 40, 12, 0),
+        BACK_SPRITE(Starly, 56, 48, 11),
+        PALETTES(Starly),
+        ICON(Starly, 0),
+        FOOTPRINT(Starly),
+        ANIMATIONS(STARLY, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_STARAVIA] =
@@ -16855,6 +16925,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Staravia, "Starling"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(6, 155),
+        LEARNSETS(Staravia),
+        FRONT_SPRITE(Staravia, 40, 48,  8, 0),
+        BACK_SPRITE(Staravia, 64, 64,  6),
+        PALETTES(Staravia),
+        ICON(Staravia, 0),
+        FOOTPRINT(Staravia),
+        ANIMATIONS(STARAVIA, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_STARAPTOR] =
@@ -16887,6 +16964,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Staraptor, "Predator"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(12, 249),
+        LEARNSETS(Staraptor),
+        FRONT_SPRITE(Staraptor, 56, 64,  3, 0),
+        BACK_SPRITE(Staraptor, 64, 64,  3),
+        PALETTES(Staraptor),
+        ICON(Staraptor, 0),
+        FOOTPRINT(Staraptor),
+        ANIMATIONS(STARAPTOR, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
     [SPECIES_BIDOOF] =
@@ -16915,6 +16999,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Bidoof, "Plump Mouse"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(5, 200),
+        LEARNSETS(Bidoof),
+        FRONT_SPRITE(Bidoof, 40, 40, 12, 0),
+        BACK_SPRITE(Bidoof, 64, 40, 13),
+        PALETTES(Bidoof),
+        ICON(Bidoof, 2),
+        FOOTPRINT(Bidoof),
+        ANIMATIONS(BIDOOF, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_BIBAREL] =
@@ -16943,6 +17034,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Bibarel, "Beaver"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(10, 315),
+        LEARNSETS(Bibarel),
+        FRONT_SPRITE(Bibarel, 56, 48,  8, 0),
+        BACK_SPRITE(Bibarel, 64, 56,  6),
+        PALETTES(Bibarel),
+        ICON(Bibarel, 2),
+        FOOTPRINT(Bibarel),
+        ANIMATIONS(BIBAREL, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_KRICKETOT] =
@@ -16972,6 +17070,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Kricketot, "Cricket"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(3, 22),
+        LEARNSETS(Kricketot),
+        FRONT_SPRITE(Kricketot, 48, 48, 11, 0),
+        BACK_SPRITE(Kricketot, 48, 56,  6),
+        PALETTES(Kricketot),
+        ICON(Kricketot, 2),
+        FOOTPRINT(Kricketot),
+        ANIMATIONS(KRICKETOT, 0, ANIM_H_JUMPS, BACK_ANIM_NONE),
     },
 
     [SPECIES_KRICKETUNE] =
@@ -17001,6 +17106,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Kricketune, "Cricket"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(10, 255),
+        LEARNSETS(Kricketune),
+        FRONT_SPRITE(Kricketune, 56, 56,  7, 0),
+        BACK_SPRITE(Kricketune, 56, 64,  3),
+        PALETTES(Kricketune),
+        ICON(Kricketune, 2),
+        FOOTPRINT(Kricketune),
+        ANIMATIONS(KRICKETUNE, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_SHINX] =
@@ -17029,6 +17141,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Shinx, "Flash"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(5, 95),
+        LEARNSETS(Shinx),
+        FRONT_SPRITE(Shinx, 48, 40, 13, 0),
+        BACK_SPRITE(Shinx, 64, 48,  8),
+        PALETTES(Shinx),
+        ICON(Shinx, 0),
+        FOOTPRINT(Shinx),
+        ANIMATIONS(SHINX, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_LUXIO] =
@@ -17057,6 +17176,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Luxio, "Spark"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(9, 305),
+        LEARNSETS(Luxio),
+        FRONT_SPRITE(Luxio, 48, 48, 10, 0),
+        BACK_SPRITE(Luxio, 64, 64,  4),
+        PALETTES(Luxio),
+        ICON(Luxio, 0),
+        FOOTPRINT(Luxio),
+        ANIMATIONS(LUXIO, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_LUXRAY] =
@@ -17085,6 +17211,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Luxray, "Gleam Eyes"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(14, 420),
+        LEARNSETS(Luxray),
+        FRONT_SPRITE(Luxray, 64, 64,  2, 0),
+        BACK_SPRITE(Luxray, 64, 64,  0),
+        PALETTES(Luxray),
+        ICON(Luxray, 0),
+        FOOTPRINT(Luxray),
+        ANIMATIONS(LUXRAY, 0, ANIM_GLOW_YELLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_BUDEW] =
@@ -17114,6 +17247,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Budew, "Bud"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(2, 12),
+        LEARNSETS(Budew),
+        FRONT_SPRITE(Budew, 32, 40, 14, 0),
+        BACK_SPRITE(Budew, 40, 56, 11),
+        PALETTES(Budew),
+        ICON(Budew, 1),
+        FOOTPRINT(Budew),
+        ANIMATIONS(BUDEW, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_ROSERADE] =
@@ -17147,6 +17287,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Roserade, "Bouquet"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(9, 145),
+        LEARNSETS(Roserade),
+        FRONT_SPRITE(Roserade, 48, 56,  7, 0),
+        BACK_SPRITE(Roserade, 64, 56,  6),
+        PALETTES(Roserade),
+        ICON(Roserade, 0),
+        FOOTPRINT(Roserade),
+        ANIMATIONS(ROSERADE, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_CRANIDOS] =
@@ -17175,6 +17322,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Cranidos, "Head Butt"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(9, 315),
+        LEARNSETS(Cranidos),
+        FRONT_SPRITE(Cranidos, 48, 48, 10, 0),
+        BACK_SPRITE(Cranidos, 64, 56,  6),
+        PALETTES(Cranidos),
+        ICON(Cranidos, 0),
+        FOOTPRINT(Cranidos),
+        ANIMATIONS(CRANIDOS, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_RAMPARDOS] =
@@ -17203,6 +17357,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Rampardos, "Head Butt"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(16, 1025),
+        LEARNSETS(Rampardos),
+        FRONT_SPRITE(Rampardos, 64, 64,  3, 0),
+        BACK_SPRITE(Rampardos, 64, 64,  6),
+        PALETTES(Rampardos),
+        ICON(Rampardos, 0),
+        FOOTPRINT(Rampardos),
+        ANIMATIONS(RAMPARDOS, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_NONE),
     },
 
     [SPECIES_SHIELDON] =
@@ -17231,6 +17392,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Shieldon, "Shield"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(5, 570),
+        LEARNSETS(Shieldon),
+        FRONT_SPRITE(Shieldon, 40, 40, 15, 0),
+        BACK_SPRITE(Shieldon, 56, 48, 11),
+        PALETTES(Shieldon),
+        ICON(Shieldon, 1),
+        FOOTPRINT(Shieldon),
+        ANIMATIONS(SHIELDON, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
     [SPECIES_BASTIODON] =
@@ -17259,6 +17427,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Bastiodon, "Shield"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(13, 1495),
+        LEARNSETS(Bastiodon),
+        FRONT_SPRITE(Bastiodon, 64, 56,  6, 0),
+        BACK_SPRITE(Bastiodon, 64, 56,  7),
+        PALETTES(Bastiodon),
+        ICON(Bastiodon, 1),
+        FOOTPRINT(Bastiodon),
+        ANIMATIONS(BASTIODON, 0, ANIM_BACK_AND_LUNGE, BACK_ANIM_NONE),
     },
 
 #define BURMY_BASE_STATS                                                    \
@@ -17283,24 +17458,39 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,                                                    \
         .natDexNum = NATIONAL_DEX_BURMY,                                    \
         DEX_SCALE(356, 17, 256, 0),                                         \
-        HEIGHT_WEIGHT(2, 34)
+        HEIGHT_WEIGHT(2, 34),                                               \
+        LEARNSETS(Burmy),                                                   \
+        FOOTPRINT(Burmy),                                                   \
+        ANIMATIONS(BURMY, 0, ANIM_V_STRETCH, BACK_ANIM_NONE)
 
     [SPECIES_BURMY_PLANT_CLOAK] =
     {
         .bodyColor = BODY_COLOR_GREEN,
         DEX_TEXT(Burmy, "Bagworm"),
+        FRONT_SPRITE(Burmy, 32, 56, 13, 0),
+        BACK_SPRITE(Burmy, 40, 56,  6),
+        PALETTES(Burmy),
+        ICON(BurmyPlantCloak, 1),
         BURMY_BASE_STATS,
     },
     [SPECIES_BURMY_SANDY_CLOAK] =
     {
         .bodyColor = BODY_COLOR_BROWN,
         DEX_TEXT(Dummy, "Bagworm"),
+        FRONT_SPRITE(BurmySandyCloak, 32, 56, 12, 0),
+        BACK_SPRITE(BurmySandyCloak, 32, 56,  7),
+        PALETTES(BurmySandyCloak),
+        ICON(BurmySandyCloak, 1),
         BURMY_BASE_STATS,
     },
     [SPECIES_BURMY_TRASH_CLOAK] =
     {
         .bodyColor = BODY_COLOR_RED,
         DEX_TEXT(Dummy, "Bagworm"),
+        FRONT_SPRITE(BurmyTrashCloak, 32, 56,  8, 0),
+        BACK_SPRITE(BurmyTrashCloak, 40, 64,  0),
+        PALETTES(BurmyTrashCloak),
+        ICON(BurmyTrashCloak, 0),
         BURMY_BASE_STATS,
     },
 
@@ -17319,7 +17509,9 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,                                                    \
         .natDexNum = NATIONAL_DEX_WORMADAM,                                 \
         DEX_SCALE(356, 17, 256, 0),                                         \
-        HEIGHT_WEIGHT(5, 65)
+        HEIGHT_WEIGHT(5, 65),                                               \
+        FOOTPRINT(Wormadam),                                                \
+        ANIMATIONS(WORMADAM, 0, ANIM_SWING_CONVEX_FAST_SHORT, BACK_ANIM_NONE)
 
     [SPECIES_WORMADAM_PLANT_CLOAK] =
     {
@@ -17333,6 +17525,11 @@ const struct BaseStats gBaseStats[] =
         .evYield_SpDefense = 2,
         .bodyColor = BODY_COLOR_GREEN,
         DEX_TEXT(Wormadam, "Bagworm"),
+        LEARNSETS(WormadamPlantCloak),
+        FRONT_SPRITE(Wormadam, 48, 56, 10, 0),
+        BACK_SPRITE(Wormadam, 56, 64,  2),
+        PALETTES(Wormadam),
+        ICON(WormadamPlantCloak, 1),
         WORMADAM_MISC_STATS,
     },
 
@@ -17348,6 +17545,11 @@ const struct BaseStats gBaseStats[] =
         .evYield_Defense   = 2,
         .bodyColor = BODY_COLOR_BROWN,
         DEX_TEXT(Dummy, "Bagworm"),
+        LEARNSETS(WormadamSandyCloak),
+        FRONT_SPRITE(WormadamSandyCloak, 40, 56, 10, 0),
+        BACK_SPRITE(WormadamSandyCloak, 56, 64,  2),
+        PALETTES(WormadamSandyCloak),
+        ICON(WormadamSandyCloak, 1),
         WORMADAM_MISC_STATS,
     },
 
@@ -17364,6 +17566,11 @@ const struct BaseStats gBaseStats[] =
         .evYield_SpDefense = 1,
         .bodyColor = BODY_COLOR_RED,
         DEX_TEXT(Dummy, "Bagworm"),
+        LEARNSETS(WormadamTrashCloak),
+        FRONT_SPRITE(WormadamTrashCloak, 48, 56, 10, 0),
+        BACK_SPRITE(WormadamTrashCloak, 64, 64,  2),
+        PALETTES(WormadamTrashCloak),
+        ICON(WormadamTrashCloak, 0),
         WORMADAM_MISC_STATS,
     },
 
@@ -17395,6 +17602,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Mothim, "Moth"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(9, 233),
+        LEARNSETS(Mothim),
+        FRONT_SPRITE(Mothim, 64, 64, 12, 0),
+        BACK_SPRITE(Mothim, 64, 56,  8),
+        PALETTES(Mothim),
+        ICON(Mothim, 0),
+        FOOTPRINT(Mothim),
+        ANIMATIONS(MOTHIM, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_COMBEE] =
@@ -17424,6 +17638,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Combee, "Tiny Bee"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(3, 55),
+        LEARNSETS(Combee),
+        FRONT_SPRITE(Combee, 64, 40, 16, 8),
+        BACK_SPRITE(Combee, 64, 48, 22),
+        PALETTES(Combee),
+        ICON(Combee, 0),
+        FOOTPRINT(Combee),
+        ANIMATIONS(COMBEE, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_VESPIQUEN] =
@@ -17454,6 +17675,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Vespiquen, "Beehive"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(12, 385),
+        LEARNSETS(Vespiquen),
+        FRONT_SPRITE(Vespiquen, 48, 56,  4, 4),
+        BACK_SPRITE(Vespiquen, 64, 64,  0),
+        PALETTES(Vespiquen),
+        ICON(Vespiquen, 0),
+        FOOTPRINT(Vespiquen),
+        ANIMATIONS(VESPIQUEN, 0, ANIM_LUNGE_GROW, BACK_ANIM_NONE),
     },
 
     [SPECIES_PACHIRISU] =
@@ -17482,6 +17710,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Pachirisu, "EleSquirrel"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(4, 39),
+        LEARNSETS(Pachirisu),
+        FRONT_SPRITE(Pachirisu, 48, 56, 12, 0),
+        BACK_SPRITE(Pachirisu, 64, 64,  3),
+        PALETTES(Pachirisu),
+        ICON(Pachirisu, 0),
+        FOOTPRINT(Pachirisu),
+        ANIMATIONS(PACHIRISU, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_BUIZEL] =
@@ -17510,6 +17745,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Buizel, "Sea Weasel"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(7, 295),
+        LEARNSETS(Buizel),
+        FRONT_SPRITE(Buizel, 56, 48, 10, 0),
+        BACK_SPRITE(Buizel, 64, 48,  9),
+        PALETTES(Buizel),
+        ICON(Buizel, 0),
+        FOOTPRINT(Buizel),
+        ANIMATIONS(BUIZEL, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_FLOATZEL] =
@@ -17538,6 +17780,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Floatzel, "Sea Weasel"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(11, 335),
+        LEARNSETS(Floatzel),
+        FRONT_SPRITE(Floatzel, 64, 64,  3, 0),
+        BACK_SPRITE(Floatzel, 64, 64,  6),
+        PALETTES(Floatzel),
+        ICON(Floatzel, 0),
+        FOOTPRINT(Floatzel),
+        ANIMATIONS(FLOATZEL, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_CHERUBI] =
@@ -17567,6 +17816,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Cherubi, "Cherry"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(4, 33),
+        LEARNSETS(Cherubi),
+        FRONT_SPRITE(Cherubi, 40, 32, 16, 0),
+        BACK_SPRITE(Cherubi, 48, 40, 13),
+        PALETTES(Cherubi),
+        ICON(Cherubi, 1),
+        FOOTPRINT(Cherubi),
+        ANIMATIONS(CHERUBI, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
 #define CHERRIM_MISC_STATS                                  \
@@ -17592,18 +17848,29 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,                                    \
         .natDexNum = NATIONAL_DEX_CHERRIM,                  \
         DEX_SCALE(356, 17, 256, 0),                         \
-        HEIGHT_WEIGHT(5, 93)
+        HEIGHT_WEIGHT(5, 93),                               \
+        LEARNSETS(Cherrim),                                 \
+        FOOTPRINT(Cherrim),                                 \
+        ANIMATIONS(CHERRIM, 0, ANIM_DEEP_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE)
 
     [SPECIES_CHERRIM_OVERCAST] =
     {
         .bodyColor = BODY_COLOR_PURPLE,
         DEX_TEXT(Cherrim, "Blossom"),
+        FRONT_SPRITE(Cherrim, 32, 48,  8, 0),
+        BACK_SPRITE(Cherrim, 40, 56,  9),
+        PALETTES(Cherrim),
+        ICON(CherrimOvercast, 0),
         CHERRIM_MISC_STATS,
     },
     [SPECIES_CHERRIM_SUNSHINE] =
     {
         .bodyColor = BODY_COLOR_PINK,
         DEX_TEXT(Dummy, "Blossom"),
+        FRONT_SPRITE(CherrimSunshine, 48, 40, 12, 0),
+        BACK_SPRITE(CherrimSunshine, 64, 56,  6),
+        PALETTES(CherrimSunshine),
+        ICON(CherrimSunshine, 1),
         CHERRIM_MISC_STATS,
     },
 
@@ -17629,18 +17896,29 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,                                                            \
         .natDexNum = NATIONAL_DEX_SHELLOS,                                          \
         DEX_SCALE(356, 17, 256, 0),                                                 \
-        HEIGHT_WEIGHT(3, 63)
+        HEIGHT_WEIGHT(3, 63),                                                       \
+        LEARNSETS(Shellos),                                                         \
+        FOOTPRINT(Shellos),                                                         \
+        ANIMATIONS(SHELLOS, 0, ANIM_V_STRETCH, BACK_ANIM_NONE)
 
     [SPECIES_SHELLOS_WEST_SEA] =
     {
         .bodyColor = BODY_COLOR_PURPLE,
         DEX_TEXT(Shellos, "Sea Slug"),
+        FRONT_SPRITE(Shellos, 40, 40, 13, 0),
+        BACK_SPRITE(Shellos, 40, 56,  8),
+        PALETTES(Shellos),
+        ICON(ShellosWestSea, 0),
         SHELLOS_MISC_STATS,
     },
     [SPECIES_SHELLOS_EAST_SEA] =
     {
         .bodyColor = BODY_COLOR_BLUE,
         DEX_TEXT(Dummy, "Sea Slug"),
+        FRONT_SPRITE(ShellosEastSea, 40, 40, 14, 0),
+        BACK_SPRITE(ShellosEastSea, 56, 48,  8),
+        PALETTES(ShellosEastSea),
+        ICON(ShellosEastSea, 0),
         SHELLOS_MISC_STATS,
     },
 
@@ -17666,18 +17944,29 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,                                                            \
         .natDexNum = NATIONAL_DEX_GASTRODON,                                        \
         DEX_SCALE(356, 17, 256, 0),                                                 \
-        HEIGHT_WEIGHT(9, 299)
+        HEIGHT_WEIGHT(9, 299),                                                      \
+        LEARNSETS(Gastrodon),                                                       \
+        FOOTPRINT(Gastrodon),                                                       \
+        ANIMATIONS(GASTRODON, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_NONE)
 
     [SPECIES_GASTRODON_WEST_SEA] =
     {
         .bodyColor = BODY_COLOR_PURPLE,
         DEX_TEXT(Gastrodon, "Sea Slug"),
+        FRONT_SPRITE(Gastrodon, 48, 48,  8, 0),
+        BACK_SPRITE(Gastrodon, 56, 64,  3),
+        PALETTES(Gastrodon),
+        ICON(Gastrodon, 0),
         GASTRODON_MISC_STATS,
     },
     [SPECIES_GASTRODON_EAST_SEA] =
     {
         .bodyColor = BODY_COLOR_BLUE,
         DEX_TEXT(Dummy, "Sea Slug"),
+        FRONT_SPRITE(GastrodonEastSea, 56, 48,  8, 0),
+        BACK_SPRITE(GastrodonEastSea, 56, 64,  3),
+        PALETTES(GastrodonEastSea),
+        ICON(GastrodonEastSea, 0),
         GASTRODON_MISC_STATS,
     },
 
@@ -17707,6 +17996,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Ambipom, "Long Tail"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(12, 203),
+        LEARNSETS(Ambipom),
+        FRONT_SPRITE(Ambipom, 64, 64,  1, 0),
+        BACK_SPRITE(Ambipom, 64, 64,  3),
+        PALETTES(Ambipom),
+        ICON(Ambipom, 2),
+        FOOTPRINT(Ambipom),
+        ANIMATIONS(AMBIPOM, 0, ANIM_BACK_AND_LUNGE, BACK_ANIM_NONE),
     },
 
     [SPECIES_DRIFLOON] =
@@ -17735,6 +18031,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Drifloon, "Balloon"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(4, 12),
+        LEARNSETS(Drifloon),
+        FRONT_SPRITE(Drifloon, 32, 56,  7, 5),
+        BACK_SPRITE(Drifloon, 40, 64,  0),
+        PALETTES(Drifloon),
+        ICON(Drifloon, 2),
+        FOOTPRINT(Drifloon),
+        ANIMATIONS(DRIFLOON, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_DRIFBLIM] =
@@ -17763,6 +18066,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Drifblim, "Blimp"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(12, 150),
+        LEARNSETS(Drifblim),
+        FRONT_SPRITE(Drifblim, 56, 56,  7, 7),
+        BACK_SPRITE(Drifblim, 64, 64,  6),
+        PALETTES(Drifblim),
+        ICON(Drifblim, 2),
+        FOOTPRINT(Drifblim),
+        ANIMATIONS(DRIFBLIM, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_BUNEARY] =
@@ -17791,6 +18101,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Buneary, "Rabbit"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(4, 55),
+        LEARNSETS(Buneary),
+        FRONT_SPRITE(Buneary, 32, 64,  9, 0),
+        BACK_SPRITE(Buneary, 64, 64,  4),
+        PALETTES(Buneary),
+        ICON(Buneary, 2),
+        FOOTPRINT(Buneary),
+        ANIMATIONS(BUNEARY, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
     },
 
 #define LOPUNNY_MISC_STATS                  \
@@ -17805,7 +18122,9 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_HUMAN_LIKE,  \
         .bodyColor = BODY_COLOR_BROWN,      \
         .noFlip = FALSE,                    \
-        .natDexNum = NATIONAL_DEX_LOPUNNY
+        .natDexNum = NATIONAL_DEX_LOPUNNY,  \
+        LEARNSETS(Lopunny),                 \
+        FOOTPRINT(Lopunny)
 
     [SPECIES_LOPUNNY] =
     {
@@ -17821,6 +18140,11 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Lopunny, "Rabbit"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(12, 333),
+        FRONT_SPRITE(Lopunny, 56, 56,  4, 0),
+        BACK_SPRITE(Lopunny, 64, 56,  5),
+        PALETTES(Lopunny),
+        ICON(Lopunny, 2),
+        ANIMATIONS(LOPUNNY, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE),
         LOPUNNY_MISC_STATS,
     },
     [SPECIES_LOPUNNY_MEGA] =
@@ -17838,6 +18162,11 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(LopunnyMega, "Rabbit"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(13, 283),
+        FRONT_SPRITE(LopunnyMega, 56, 64,  1, 0),
+        BACK_SPRITE(LopunnyMega, 64, 64,  3),
+        PALETTES(LopunnyMega),
+        ICON(LopunnyMega, 2),
+        ANIMATIONS(LOPUNNY_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         LOPUNNY_MISC_STATS,
     },
 
@@ -17868,6 +18197,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Mismagius, "Magical"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(9, 44),
+        LEARNSETS(Mismagius),
+        FRONT_SPRITE(Mismagius, 56, 64,  3, 3),
+        BACK_SPRITE(Mismagius, 56, 64,  3),
+        PALETTES(Mismagius),
+        ICON(Mismagius, 2),
+        FOOTPRINT(Mismagius),
+        ANIMATIONS(MISMAGIUS, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_HONCHKROW] =
@@ -17896,6 +18232,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Honchkrow, "Big Boss"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(9, 273),
+        LEARNSETS(Honchkrow),
+        FRONT_SPRITE(Honchkrow, 64, 56,  6, 0),
+        BACK_SPRITE(Honchkrow, 64, 48,  8),
+        PALETTES(Honchkrow),
+        ICON(Honchkrow, 2),
+        FOOTPRINT(Honchkrow),
+        ANIMATIONS(HONCHKROW, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_GLAMEOW] =
@@ -17924,6 +18267,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Glameow, "Catty"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(5, 39),
+        LEARNSETS(Glameow),
+        FRONT_SPRITE(Glameow, 56, 56,  8, 0),
+        BACK_SPRITE(Glameow, 64, 56,  7),
+        PALETTES(Glameow),
+        ICON(Glameow, 0),
+        FOOTPRINT(Glameow),
+        ANIMATIONS(GLAMEOW, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_PURUGLY] =
@@ -17952,6 +18302,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Purugly, "Tiger Cat"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(10, 438),
+        LEARNSETS(Purugly),
+        FRONT_SPRITE(Purugly, 64, 56,  5, 0),
+        BACK_SPRITE(Purugly, 64, 48,  8),
+        PALETTES(Purugly),
+        ICON(Purugly, 0),
+        FOOTPRINT(Purugly),
+        ANIMATIONS(PURUGLY, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_CHINGLING] =
@@ -17981,6 +18338,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Chingling, "Bell"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(2, 6),
+        LEARNSETS(Chingling),
+        FRONT_SPRITE(Chingling, 40, 40, 12, 5),
+        BACK_SPRITE(Chingling, 48, 48, 13),
+        PALETTES(Chingling),
+        ICON(Chingling, 1),
+        FOOTPRINT(Chingling),
+        ANIMATIONS(CHINGLING, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_STUNKY] =
@@ -18009,6 +18373,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Stunky, "Skunk"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(4, 192),
+        LEARNSETS(Stunky),
+        FRONT_SPRITE(Stunky, 56, 48, 13, 0),
+        BACK_SPRITE(Stunky, 64, 64,  6),
+        PALETTES(Stunky),
+        ICON(Stunky, 2),
+        FOOTPRINT(Stunky),
+        ANIMATIONS(STUNKY, 0, ANIM_TIP_MOVE_FORWARD, BACK_ANIM_NONE),
     },
 
     [SPECIES_SKUNTANK] =
@@ -18037,6 +18408,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Skuntank, "Skunk"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(10, 380),
+        LEARNSETS(Skuntank),
+        FRONT_SPRITE(Skuntank, 64, 56,  7, 0),
+        BACK_SPRITE(Skuntank, 64, 64,  4),
+        PALETTES(Skuntank),
+        ICON(Skuntank, 2),
+        FOOTPRINT(Skuntank),
+        ANIMATIONS(SKUNTANK, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_BRONZOR] =
@@ -18066,6 +18444,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Bronzor, "Bronze"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(5, 605),
+        LEARNSETS(Bronzor),
+        FRONT_SPRITE(Bronzor, 32, 40, 14, 0),
+        BACK_SPRITE(Bronzor, 40, 48,  9),
+        PALETTES(Bronzor),
+        ICON(Bronzor, 0),
+        FOOTPRINT(Bronzor),
+        ANIMATIONS(BRONZOR, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_BRONZONG] =
@@ -18096,6 +18481,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Bronzong, "Bronze Bell"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(13, 1870),
+        LEARNSETS(Bronzong),
+        FRONT_SPRITE(Bronzong, 56, 56,  6, 4),
+        BACK_SPRITE(Bronzong, 64, 56,  6),
+        PALETTES(Bronzong),
+        ICON(Bronzong, 0),
+        FOOTPRINT(Bronzong),
+        ANIMATIONS(BRONZONG, 0, ANIM_V_SLIDE_WOBBLE_SMALL, BACK_ANIM_NONE),
     },
 
     [SPECIES_BONSLY] =
@@ -18124,6 +18516,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Bonsly, "Bonsai"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(5, 150),
+        LEARNSETS(Bonsly),
+        FRONT_SPRITE(Bonsly, 32, 48,  9, 0),
+        BACK_SPRITE(Bonsly, 40, 64,  6),
+        PALETTES(Bonsly),
+        ICON(Bonsly, 1),
+        FOOTPRINT(Bonsly),
+        ANIMATIONS(BONSLY, 0, ANIM_BOUNCE_ROTATE_TO_SIDES, BACK_ANIM_NONE),
     },
 
     [SPECIES_MIME_JR] =
@@ -18156,6 +18555,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(MimeJr, "Mime"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(6, 130),
+        LEARNSETS(MimeJr),
+        FRONT_SPRITE(MimeJr, 32, 56,  9, 0),
+        BACK_SPRITE(MimeJr, 64, 64,  1),
+        PALETTES(MimeJr),
+        ICON(MimeJr, 0),
+        FOOTPRINT(MimeJr),
+        ANIMATIONS(MIME_JR, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_HAPPINY] =
@@ -18185,6 +18591,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Happiny, "Playhouse"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(6, 244),
+        LEARNSETS(Happiny),
+        FRONT_SPRITE(Happiny, 32, 48, 12, 0),
+        BACK_SPRITE(Happiny, 48, 56,  9),
+        PALETTES(Happiny),
+        ICON(Happiny, 0),
+        FOOTPRINT(Happiny),
+        ANIMATIONS(HAPPINY, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_CHATOT] =
@@ -18214,6 +18627,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Chatot, "Music Note"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(5, 19),
+        LEARNSETS(Chatot),
+        FRONT_SPRITE(Chatot, 40, 48, 11, 0),
+        BACK_SPRITE(Chatot, 48, 48,  9),
+        PALETTES(Chatot),
+        ICON(Chatot, 0),
+        FOOTPRINT(Chatot),
+        ANIMATIONS(CHATOT, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_NONE),
     },
 
     [SPECIES_SPIRITOMB] =
@@ -18243,6 +18663,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Spiritomb, "Forbidden"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(10, 1080),
+        LEARNSETS(Spiritomb),
+        FRONT_SPRITE(Spiritomb, 56, 56,  6, 0),
+        BACK_SPRITE(Spiritomb, 64, 56,  5),
+        PALETTES(Spiritomb),
+        ICON(Spiritomb, 5),
+        FOOTPRINT(Spiritomb),
+        ANIMATIONS(SPIRITOMB, 0, ANIM_GROW_IN_STAGES, BACK_ANIM_NONE),
     },
 
     [SPECIES_GIBLE] =
@@ -18271,6 +18698,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Gible, "Land Shark"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(7, 205),
+        LEARNSETS(Gible),
+        FRONT_SPRITE(Gible, 48, 48,  9, 0),
+        BACK_SPRITE(Gible, 56, 48,  9),
+        PALETTES(Gible),
+        ICON(Gible, 0),
+        FOOTPRINT(Gible),
+        ANIMATIONS(GIBLE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_GABITE] =
@@ -18299,6 +18733,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Gabite, "Cave"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(14, 560),
+        LEARNSETS(Gabite),
+        FRONT_SPRITE(Gabite, 64, 64,  2, 0),
+        BACK_SPRITE(Gabite, 64, 64,  3),
+        PALETTES(Gabite),
+        ICON(Gabite, 0),
+        FOOTPRINT(Gabite),
+        ANIMATIONS(GABITE, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
 #define GARCHOMP_MISC_STATS                 \
@@ -18316,7 +18757,9 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,                    \
         .natDexNum = NATIONAL_DEX_GARCHOMP, \
         DEX_SCALE(356, 17, 256, 0),         \
-        HEIGHT_WEIGHT(19, 950)
+        HEIGHT_WEIGHT(19, 950),             \
+        LEARNSETS(Garchomp),                \
+        FOOTPRINT(Garchomp)
 
     [SPECIES_GARCHOMP] =
     {
@@ -18329,6 +18772,11 @@ const struct BaseStats gBaseStats[] =
         .expYield = 270,
         .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_ROUGH_SKIN},
         DEX_TEXT(Garchomp, "Mach"),
+        FRONT_SPRITE(Garchomp, 64, 64,  0, 0),
+        BACK_SPRITE(Garchomp, 64, 56,  4),
+        PALETTES(Garchomp),
+        ICON(Garchomp, 0),
+        ANIMATIONS(GARCHOMP, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_NONE),
         GARCHOMP_MISC_STATS,
     },
     [SPECIES_GARCHOMP_MEGA] =
@@ -18343,6 +18791,11 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAND_FORCE, ABILITY_SAND_FORCE, ABILITY_SAND_FORCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         DEX_TEXT(GarchompMega, "Mach"),
+        FRONT_SPRITE(GarchompMega, 64, 64,  0, 0),
+        BACK_SPRITE(GarchompMega, 64, 56,  4),
+        PALETTES(GarchompMega),
+        ICON(GarchompMega, 0),
+        ANIMATIONS(GARCHOMP_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         GARCHOMP_MISC_STATS,
     },
 
@@ -18374,6 +18827,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Munchlax, "Big Eater"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(6, 1050),
+        LEARNSETS(Munchlax),
+        FRONT_SPRITE(Munchlax, 48, 48, 10, 0),
+        BACK_SPRITE(Munchlax, 48, 56,  7),
+        PALETTES(Munchlax),
+        ICON(Munchlax, 3),
+        FOOTPRINT(Munchlax),
+        ANIMATIONS(MUNCHLAX, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_RIOLU] =
@@ -18402,6 +18862,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Riolu, "Emanation"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(7, 202),
+        LEARNSETS(Riolu),
+        FRONT_SPRITE(Riolu, 48, 48, 10, 0),
+        BACK_SPRITE(Riolu, 64, 64,  8),
+        PALETTES(Riolu),
+        ICON(Riolu, 2),
+        FOOTPRINT(Riolu),
+        ANIMATIONS(RIOLU, 0, ANIM_RAPID_H_HOPS, BACK_ANIM_NONE),
     },
 
 #define LUCARIO_MISC_STATS                  \
@@ -18418,7 +18885,9 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_HUMAN_LIKE,  \
         .bodyColor = BODY_COLOR_BLUE,       \
         .noFlip = FALSE,                    \
-        .natDexNum = NATIONAL_DEX_LUCARIO
+        .natDexNum = NATIONAL_DEX_LUCARIO,  \
+        LEARNSETS(Lucario),                 \
+        FOOTPRINT(Lucario)
 
     [SPECIES_LUCARIO] =
     {
@@ -18433,6 +18902,11 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Lucario, "Aura"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(12, 540),
+        FRONT_SPRITE(Lucario, 48, 56,  7, 0),
+        BACK_SPRITE(Lucario, 64, 64,  0),
+        PALETTES(Lucario),
+        ICON(Lucario, 2),
+        ANIMATIONS(LUCARIO, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
         LUCARIO_MISC_STATS,
     },
     [SPECIES_LUCARIO_MEGA] =
@@ -18449,6 +18923,11 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(LucarioMega, "Aura"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(13, 575),
+        FRONT_SPRITE(LucarioMega, 48, 64,  2, 0),
+        BACK_SPRITE(LucarioMega, 64, 64,  0),
+        PALETTES(LucarioMega),
+        ICON(LucarioMega, 2),
+        ANIMATIONS(LUCARIO_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         LUCARIO_MISC_STATS,
     },
 
@@ -18478,6 +18957,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Hippopotas, "Hippo"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(8, 495),
+        LEARNSETS(Hippopotas),
+        FRONT_SPRITE(Hippopotas, 64, 40, 12, 0),
+        BACK_SPRITE(Hippopotas, 64, 40, 14),
+        PALETTES(Hippopotas),
+        ICON(Hippopotas, 1),
+        FOOTPRINT(Hippopotas),
+        ANIMATIONS(HIPPOPOTAS, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_HIPPOWDON] =
@@ -18506,6 +18992,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Hippowdon, "Heavyweight"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(20, 3000),
+        LEARNSETS(Hippowdon),
+        FRONT_SPRITE(Hippowdon, 64, 56,  6, 0),
+        BACK_SPRITE(Hippowdon, 64, 56,  6),
+        PALETTES(Hippowdon),
+        ICON(Hippowdon, 1),
+        FOOTPRINT(Hippowdon),
+        ANIMATIONS(HIPPOWDON, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_NONE),
     },
 
     [SPECIES_SKORUPI] =
@@ -18535,6 +19028,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Skorupi, "Scorpion"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(8, 120),
+        LEARNSETS(Skorupi),
+        FRONT_SPRITE(Skorupi, 48, 48, 11, 0),
+        BACK_SPRITE(Skorupi, 64, 56,  6),
+        PALETTES(Skorupi),
+        ICON(Skorupi, 0),
+        FOOTPRINT(Skorupi),
+        ANIMATIONS(SKORUPI, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_DRAPION] =
@@ -18564,6 +19064,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Drapion, "Ogre Scorp"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(13, 615),
+        LEARNSETS(Drapion),
+        FRONT_SPRITE(Drapion, 64, 56,  8, 0),
+        BACK_SPRITE(Drapion, 64, 56,  6),
+        PALETTES(Drapion),
+        ICON(Drapion, 2),
+        FOOTPRINT(Drapion),
+        ANIMATIONS(DRAPION, 0, ANIM_V_JUMPS_BIG, BACK_ANIM_NONE),
     },
 
     [SPECIES_CROAGUNK] =
@@ -18593,6 +19100,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Croagunk, "Toxic Mouth"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(7, 230),
+        LEARNSETS(Croagunk),
+        FRONT_SPRITE(Croagunk, 40, 48,  9, 0),
+        BACK_SPRITE(Croagunk, 56, 56,  6),
+        PALETTES(Croagunk),
+        ICON(Croagunk, 0),
+        FOOTPRINT(Croagunk),
+        ANIMATIONS(CROAGUNK, 0, ANIM_RAPID_H_HOPS, BACK_ANIM_NONE),
     },
 
     [SPECIES_TOXICROAK] =
@@ -18622,6 +19136,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Toxicroak, "Toxic Mouth"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(13, 444),
+        LEARNSETS(Toxicroak),
+        FRONT_SPRITE(Toxicroak, 56, 56,  5, 0),
+        BACK_SPRITE(Toxicroak, 56, 56,  6),
+        PALETTES(Toxicroak),
+        ICON(Toxicroak, 0),
+        FOOTPRINT(Toxicroak),
+        ANIMATIONS(TOXICROAK, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_CARNIVINE] =
@@ -18650,6 +19171,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Carnivine, "Bug Catcher"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(14, 270),
+        LEARNSETS(Carnivine),
+        FRONT_SPRITE(Carnivine, 64, 48, 10, 0),
+        BACK_SPRITE(Carnivine, 64, 56,  6),
+        PALETTES(Carnivine),
+        ICON(Carnivine, 1),
+        FOOTPRINT(Carnivine),
+        ANIMATIONS(CARNIVINE, 0, ANIM_FIGURE_8, BACK_ANIM_NONE),
     },
 
     [SPECIES_FINNEON] =
@@ -18678,6 +19206,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Finneon, "Wing Fish"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(4, 70),
+        LEARNSETS(Finneon),
+        FRONT_SPRITE(Finneon, 32, 40, 14, 0),
+        BACK_SPRITE(Finneon, 56, 40, 13),
+        PALETTES(Finneon),
+        ICON(Finneon, 0),
+        FOOTPRINT(Finneon),
+        ANIMATIONS(FINNEON, 0, ANIM_V_SLIDE_WOBBLE_SMALL, BACK_ANIM_NONE),
     },
 
     [SPECIES_LUMINEON] =
@@ -18706,6 +19241,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Lumineon, "Neon"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(12, 240),
+        LEARNSETS(Lumineon),
+        FRONT_SPRITE(Lumineon, 56, 56,  6, 0),
+        BACK_SPRITE(Lumineon, 56, 64,  0),
+        PALETTES(Lumineon),
+        ICON(Lumineon, 0),
+        FOOTPRINT(Lumineon),
+        ANIMATIONS(LUMINEON, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_MANTYKE] =
@@ -18734,6 +19276,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Mantyke, "Kite"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(10, 650),
+        LEARNSETS(Mantyke),
+        FRONT_SPRITE(Mantyke, 48, 48, 12, 0),
+        BACK_SPRITE(Mantyke, 64, 56,  6),
+        PALETTES(Mantyke),
+        ICON(Mantyke, 0),
+        FOOTPRINT(Mantyke),
+        ANIMATIONS(MANTYKE, 0, ANIM_TWIST_TWICE, BACK_ANIM_NONE),
     },
 
     [SPECIES_SNOVER] =
@@ -18763,6 +19312,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Snover, "Frost Tree"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(10, 505),
+        LEARNSETS(Snover),
+        FRONT_SPRITE(Snover, 64, 48, 10, 0),
+        BACK_SPRITE(Snover, 64, 56,  6),
+        PALETTES(Snover),
+        ICON(Snover, 1),
+        FOOTPRINT(Snover),
+        ANIMATIONS(SNOVER, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
 #define ABOMASNOW_MISC_STATS                \
@@ -18781,7 +19337,9 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_WHITE,      \
         .noFlip = FALSE,                    \
         .natDexNum = NATIONAL_DEX_ABOMASNOW,\
-        DEX_TEXT(Abomasnow, "Frost Tree")
+        DEX_TEXT(Abomasnow, "Frost Tree"),  \
+        LEARNSETS(Abomasnow),               \
+        FOOTPRINT(Abomasnow)
 
     [SPECIES_ABOMASNOW] =
     {
@@ -18795,6 +19353,11 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SNOW_WARNING, ABILITY_NONE, ABILITY_SOUNDPROOF},
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(22, 1355),
+        FRONT_SPRITE(Abomasnow, 64, 64,  0, 0),
+        BACK_SPRITE(Abomasnow, 64, 56,  4),
+        PALETTES(Abomasnow),
+        ICON(Abomasnow, 1),
+        ANIMATIONS(ABOMASNOW, 0, ANIM_H_SHAKE, BACK_ANIM_NONE),
         ABOMASNOW_MISC_STATS,
     },
     [SPECIES_ABOMASNOW_MEGA] =
@@ -18810,6 +19373,11 @@ const struct BaseStats gBaseStats[] =
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(27, 1850),
+        FRONT_SPRITE(AbomasnowMega, 64, 64,  1, 0),
+        BACK_SPRITE(AbomasnowMega, 64, 64,  0),
+        PALETTES(AbomasnowMega),
+        ICON(AbomasnowMega, 1),
+        ANIMATIONS(ABOMASNOW_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         ABOMASNOW_MISC_STATS,
     },
 
@@ -18841,6 +19409,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Weavile, "Sharp Claw"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(11, 340),
+        LEARNSETS(Weavile),
+        FRONT_SPRITE(Weavile, 56, 56,  4, 0),
+        BACK_SPRITE(Weavile, 64, 64,  6),
+        PALETTES(Weavile),
+        ICON(Weavile, 0),
+        FOOTPRINT(Weavile),
+        ANIMATIONS(WEAVILE, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_MAGNEZONE] =
@@ -18870,6 +19445,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Magnezone, "Magnet Area"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(12, 1800),
+        LEARNSETS(Magnezone),
+        FRONT_SPRITE(Magnezone, 64, 56,  4, 4),
+        BACK_SPRITE(Magnezone, 64, 40, 12),
+        PALETTES(Magnezone),
+        ICON(Magnezone, 0),
+        FOOTPRINT(Magnezone),
+        ANIMATIONS(MAGNEZONE, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_LICKILICKY] =
@@ -18899,6 +19481,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Lickilicky, "Licking"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(17, 1400),
+        LEARNSETS(Lickilicky),
+        FRONT_SPRITE(Lickilicky, 64, 64,  2, 0),
+        BACK_SPRITE(Lickilicky, 64, 64,  2),
+        PALETTES(Lickilicky),
+        ICON(Lickilicky, 1),
+        FOOTPRINT(Lickilicky),
+        ANIMATIONS(LICKILICKY, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_RHYPERIOR] =
@@ -18927,6 +19516,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Rhyperior, "Drill"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(24, 2828),
+        LEARNSETS(Rhyperior),
+        FRONT_SPRITE(Rhyperior, 64, 64,  2, 0),
+        BACK_SPRITE(Rhyperior, 64, 64,  0),
+        PALETTES(Rhyperior),
+        ICON(Rhyperior, 0),
+        FOOTPRINT(Rhyperior),
+        ANIMATIONS(RHYPERIOR, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_NONE),
     },
 
     [SPECIES_TANGROWTH] =
@@ -18955,6 +19551,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Tangrowth, "Vine"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(20, 1286),
+        LEARNSETS(Tangrowth),
+        FRONT_SPRITE(Tangrowth, 64, 64,  2, 0),
+        BACK_SPRITE(Tangrowth, 64, 56,  6),
+        PALETTES(Tangrowth),
+        ICON(Tangrowth, 0),
+        FOOTPRINT(Tangrowth),
+        ANIMATIONS(TANGROWTH, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_ELECTIVIRE] =
@@ -18984,6 +19587,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Electivire, "Thunderbolt"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(18, 1386),
+        LEARNSETS(Electivire),
+        FRONT_SPRITE(Electivire, 64, 64,  0, 0),
+        BACK_SPRITE(Electivire, 64, 48,  9),
+        PALETTES(Electivire),
+        ICON(Electivire, 1),
+        FOOTPRINT(Electivire),
+        ANIMATIONS(ELECTIVIRE, 0, ANIM_GLOW_YELLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_MAGMORTAR] =
@@ -19013,6 +19623,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Magmortar, "Blast"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(16, 680),
+        LEARNSETS(Magmortar),
+        FRONT_SPRITE(Magmortar, 64, 64,  0, 0),
+        BACK_SPRITE(Magmortar, 64, 56,  6),
+        PALETTES(Magmortar),
+        ICON(Magmortar, 0),
+        FOOTPRINT(Magmortar),
+        ANIMATIONS(MAGMORTAR, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_TOGEKISS] =
@@ -19042,6 +19659,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Togekiss, "Jubilee"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(15, 380),
+        LEARNSETS(Togekiss),
+        FRONT_SPRITE(Togekiss, 64, 56, 10, 14),
+        BACK_SPRITE(Togekiss, 64, 48, 10),
+        PALETTES(Togekiss),
+        ICON(Togekiss, 2),
+        FOOTPRINT(Togekiss),
+        ANIMATIONS(TOGEKISS, 0, ANIM_SWING_CONVEX, BACK_ANIM_NONE),
     },
 
     [SPECIES_YANMEGA] =
@@ -19071,6 +19695,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Yanmega, "Ogre Darner"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(19, 515),
+        LEARNSETS(Yanmega),
+        FRONT_SPRITE(Yanmega, 64, 56,  5, 6),
+        BACK_SPRITE(Yanmega, 64, 56,  6),
+        PALETTES(Yanmega),
+        ICON(Yanmega, 1),
+        FOOTPRINT(Yanmega),
+        ANIMATIONS(YANMEGA, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_LEAFEON] =
@@ -19099,6 +19730,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Leafeon, "Verdant"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(10, 255),
+        LEARNSETS(Leafeon),
+        FRONT_SPRITE(Leafeon, 56, 48,  9, 0),
+        BACK_SPRITE(Leafeon, 48, 64,  0),
+        PALETTES(Leafeon),
+        ICON(Leafeon, 1),
+        FOOTPRINT(Leafeon),
+        ANIMATIONS(LEAFEON, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE),
     },
 
     [SPECIES_GLACEON] =
@@ -19127,6 +19765,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Glaceon, "Fresh Snow"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(8, 259),
+        LEARNSETS(Glaceon),
+        FRONT_SPRITE(Glaceon, 64, 56, 10, 0),
+        BACK_SPRITE(Glaceon, 56, 64,  6),
+        PALETTES(Glaceon),
+        ICON(Glaceon, 0),
+        FOOTPRINT(Glaceon),
+        ANIMATIONS(GLACEON, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_GLISCOR] =
@@ -19155,6 +19800,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Gliscor, "Fang Scorp"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(20, 425),
+        LEARNSETS(Gliscor),
+        FRONT_SPRITE(Gliscor, 64, 56,  7, 9),
+        BACK_SPRITE(Gliscor, 64, 48, 11),
+        PALETTES(Gliscor),
+        ICON(Gliscor, 2),
+        FOOTPRINT(Gliscor),
+        ANIMATIONS(GLISCOR, 0, ANIM_SWING_CONVEX, BACK_ANIM_NONE),
     },
 
     [SPECIES_MAMOSWINE] =
@@ -19183,6 +19835,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Mamoswine, "Twin Tusk"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(25, 2910),
+        LEARNSETS(Mamoswine),
+        FRONT_SPRITE(Mamoswine, 64, 56,  4, 0),
+        BACK_SPRITE(Mamoswine, 64, 56,  6),
+        PALETTES(Mamoswine),
+        ICON(Mamoswine, 2),
+        FOOTPRINT(Mamoswine),
+        ANIMATIONS(MAMOSWINE, 0, ANIM_BACK_AND_LUNGE, BACK_ANIM_NONE),
     },
 
     [SPECIES_PORYGON_Z] =
@@ -19211,6 +19870,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(PorygonZ, "Virtual"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(9, 340),
+        LEARNSETS(PorygonZ),
+        FRONT_SPRITE(PorygonZ, 40, 56,  6, 12),
+        BACK_SPRITE(PorygonZ, 64, 56,  6),
+        PALETTES(PorygonZ),
+        ICON(PorygonZ, 0),
+        FOOTPRINT(PorygonZ),
+        ANIMATIONS(PORYGON_Z, 0, ANIM_CIRCLE_C_CLOCKWISE_SLOW, BACK_ANIM_NONE),
     },
 
 #define GALLADE_MISC_STATS                      \
@@ -19227,7 +19893,9 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_WHITE,          \
         .noFlip = FALSE,                        \
         .natDexNum = NATIONAL_DEX_GALLADE,      \
-        DEX_TEXT(Gallade, "Blade")
+        DEX_TEXT(Gallade, "Blade"),             \
+        LEARNSETS(Gallade),                     \
+        FOOTPRINT(Gallade)
 
     [SPECIES_GALLADE] =
     {
@@ -19241,6 +19909,11 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STEADFAST, ABILITY_NONE, ABILITY_JUSTIFIED},
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(16, 520),
+        FRONT_SPRITE(Gallade, 56, 64,  1, 0),
+        BACK_SPRITE(Gallade, 64, 64,  5),
+        PALETTES(Gallade),
+        ICON(Gallade, 1),
+        ANIMATIONS(GALLADE, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
         GALLADE_MISC_STATS,
     },
     [SPECIES_GALLADE_MEGA] =
@@ -19256,6 +19929,11 @@ const struct BaseStats gBaseStats[] =
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(16, 564),
+        FRONT_SPRITE(GalladeMega, 64, 64,  1, 0),
+        BACK_SPRITE(GalladeMega, 64, 64,  3),
+        PALETTES(GalladeMega),
+        ICON(GalladeMega, 1),
+        ANIMATIONS(GALLADE_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         GALLADE_MISC_STATS,
     },
 
@@ -19287,6 +19965,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Probopass, "Compass"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(14, 3400),
+        LEARNSETS(Probopass),
+        FRONT_SPRITE(Probopass, 56, 56,  4, 6),
+        BACK_SPRITE(Probopass, 64, 56,  4),
+        PALETTES(Probopass),
+        ICON(Probopass, 0),
+        FOOTPRINT(Probopass),
+        ANIMATIONS(PROBOPASS, 0, ANIM_V_SLIDE, BACK_ANIM_NONE),
     },
 
     [SPECIES_DUSKNOIR] =
@@ -19317,6 +20002,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Dusknoir, "Gripper"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(22, 1066),
+        LEARNSETS(Dusknoir),
+        FRONT_SPRITE(Dusknoir, 64, 64,  2, 0),
+        BACK_SPRITE(Dusknoir, 64, 56,  6),
+        PALETTES(Dusknoir),
+        ICON(Dusknoir, 2),
+        FOOTPRINT(Dusknoir),
+        ANIMATIONS(DUSKNOIR, 0, ANIM_H_SLIDE, BACK_ANIM_NONE),
     },
 
     [SPECIES_FROSLASS] =
@@ -19345,24 +20037,33 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Froslass, "Snow Land"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(13, 266),
+        LEARNSETS(Froslass),
+        FRONT_SPRITE(Froslass, 48, 48,  8, 0),
+        BACK_SPRITE(Froslass, 64, 64,  3),
+        PALETTES(Froslass),
+        ICON(Froslass, 0),
+        FOOTPRINT(Froslass),
+        ANIMATIONS(FROSLASS, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
-#define ROTOM_MISC_STATS              \
-        .type1 = TYPE_ELECTRIC,                       \
-        .catchRate = 45,                              \
-        .evYield_Speed     = 1,                       \
-        .evYield_SpAttack  = 1,                       \
-        .genderRatio = MON_GENDERLESS,                \
-        .eggCycles = 20,                              \
-        .friendship = 70,                             \
-        .growthRate = GROWTH_MEDIUM_FAST,             \
-        .eggGroup1 = EGG_GROUP_AMORPHOUS,             \
-        .eggGroup2 = EGG_GROUP_AMORPHOUS,             \
-        .abilities = {ABILITY_LEVITATE, ABILITY_NONE},\
-        .bodyColor = BODY_COLOR_RED,                  \
-        .natDexNum = NATIONAL_DEX_ROTOM,\
-        DEX_SCALE(356, 17, 256, 0),\
-        HEIGHT_WEIGHT(3, 3)
+#define ROTOM_MISC_STATS                                \
+        .type1 = TYPE_ELECTRIC,                         \
+        .catchRate = 45,                                \
+        .evYield_Speed     = 1,                         \
+        .evYield_SpAttack  = 1,                         \
+        .genderRatio = MON_GENDERLESS,                  \
+        .eggCycles = 20,                                \
+        .friendship = 70,                               \
+        .growthRate = GROWTH_MEDIUM_FAST,               \
+        .eggGroup1 = EGG_GROUP_AMORPHOUS,               \
+        .eggGroup2 = EGG_GROUP_AMORPHOUS,               \
+        .abilities = {ABILITY_LEVITATE, ABILITY_NONE},  \
+        .bodyColor = BODY_COLOR_RED,                    \
+        .natDexNum = NATIONAL_DEX_ROTOM,                \
+        DEX_SCALE(356, 17, 256, 0),                     \
+        HEIGHT_WEIGHT(3, 3),                            \
+        LEARNSETS(Rotom),                               \
+        FOOTPRINT(Rotom)
 
     [SPECIES_ROTOM] =
     {
@@ -19375,6 +20076,11 @@ const struct BaseStats gBaseStats[] =
         .type2 = TYPE_GHOST,
         .expYield = 154,
         .noFlip = FALSE,
+        FRONT_SPRITE(Rotom, 56, 48, 11, 10),
+        BACK_SPRITE(Rotom, 56, 56,  5),
+        PALETTES(Rotom),
+        ICON(Rotom, 0),
+        ANIMATIONS(ROTOM, 0, ANIM_GLOW_YELLOW, BACK_ANIM_NONE),
         ROTOM_MISC_STATS,
     },
 
@@ -19392,6 +20098,11 @@ const struct BaseStats gBaseStats[] =
         ROTOM_APPLIANCE_STATS,
         .type2 = TYPE_FIRE,
         .noFlip = FALSE,
+        FRONT_SPRITE(RotomHeat, 56, 48, 10, 6),
+        BACK_SPRITE(RotomHeat, 64, 40, 12),
+        PALETTES(RotomHeat),
+        ICON(RotomHeat, 0),
+        ANIMATIONS(ROTOM_HEAT, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         ROTOM_MISC_STATS,
     },
     [SPECIES_ROTOM_WASH] =
@@ -19399,6 +20110,11 @@ const struct BaseStats gBaseStats[] =
         ROTOM_APPLIANCE_STATS,
         .type2 = TYPE_WATER,
         .noFlip = TRUE,
+        FRONT_SPRITE(RotomWash, 64, 56,  7, 6),
+        BACK_SPRITE(RotomWash, 64, 48, 11),
+        PALETTES(RotomWash),
+        ICON(RotomWash, 0),
+        ANIMATIONS(ROTOM_WASH, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_NONE),
         ROTOM_MISC_STATS,
     },
     [SPECIES_ROTOM_FROST] =
@@ -19406,6 +20122,11 @@ const struct BaseStats gBaseStats[] =
         ROTOM_APPLIANCE_STATS,
         .type2 = TYPE_ICE,
         .noFlip = FALSE,
+        FRONT_SPRITE(RotomFrost, 64, 64,  4, 6),
+        BACK_SPRITE(RotomFrost, 64, 56,  7),
+        PALETTES(RotomFrost),
+        ICON(RotomFrost, 5),
+        ANIMATIONS(ROTOM_FROST, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
         ROTOM_MISC_STATS,
     },
     [SPECIES_ROTOM_FAN] =
@@ -19413,6 +20134,11 @@ const struct BaseStats gBaseStats[] =
         ROTOM_APPLIANCE_STATS,
         .type2 = TYPE_FLYING,
         .noFlip = FALSE,
+        FRONT_SPRITE(RotomFan, 64, 56,  8, 6),
+        BACK_SPRITE(RotomFan, 64, 48,  8),
+        PALETTES(RotomFan),
+        ICON(RotomFan, 0),
+        ANIMATIONS(ROTOM_FAN, 7, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_NONE),
         ROTOM_MISC_STATS,
     },
     [SPECIES_ROTOM_MOW] =
@@ -19420,6 +20146,11 @@ const struct BaseStats gBaseStats[] =
         ROTOM_APPLIANCE_STATS,
         .type2 = TYPE_GRASS,
         .noFlip = FALSE,
+        FRONT_SPRITE(RotomMow, 56, 64, 12, 6),
+        BACK_SPRITE(RotomMow, 56, 48, 10),
+        PALETTES(RotomMow),
+        ICON(RotomMow, 0),
+        ANIMATIONS(ROTOM_MOW, 0, ANIM_TIP_MOVE_FORWARD, BACK_ANIM_NONE),
         ROTOM_MISC_STATS,
     },
 
@@ -19451,6 +20182,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Uxie, "Knowledge"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(3, 3),
+        LEARNSETS(Uxie),
+        FRONT_SPRITE(Uxie, 56, 56,  6, 6),
+        BACK_SPRITE(Uxie, 56, 48,  8),
+        PALETTES(Uxie),
+        ICON(Uxie, 0),
+        FOOTPRINT(Uxie),
+        ANIMATIONS(UXIE, 0, ANIM_SWING_CONCAVE, BACK_ANIM_NONE),
     },
 
     [SPECIES_MESPRIT] =
@@ -19482,6 +20220,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Mesprit, "Emotion"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(3, 3),
+        LEARNSETS(Mesprit),
+        FRONT_SPRITE(Mesprit, 48, 56,  4, 6),
+        BACK_SPRITE(Mesprit, 64, 48,  8),
+        PALETTES(Mesprit),
+        ICON(Mesprit, 0),
+        FOOTPRINT(Mesprit),
+        ANIMATIONS(MESPRIT, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_AZELF] =
@@ -19512,6 +20257,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Azelf, "Willpower"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(3, 3),
+        LEARNSETS(Azelf),
+        FRONT_SPRITE(Azelf, 48, 64,  0, 6),
+        BACK_SPRITE(Azelf, 64, 56,  6),
+        PALETTES(Azelf),
+        ICON(Azelf, 0),
+        FOOTPRINT(Azelf),
+        ANIMATIONS(AZELF, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
 #define DIALGA_MISC_STATS                                                   \
@@ -19530,7 +20282,9 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_WHITE,                                      \
         .noFlip = FALSE,                                                    \
         .flags = SPECIES_FLAG_LEGENDARY,                                    \
-        .natDexNum = NATIONAL_DEX_DIALGA
+        .natDexNum = NATIONAL_DEX_DIALGA,                                   \
+        LEARNSETS(Dialga),                                                  \
+        FOOTPRINT(Dialga)
 
     [SPECIES_DIALGA] =
     {
@@ -19543,6 +20297,11 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Dialga, "Temporal"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(54, 6830),
+        FRONT_SPRITE(Dialga, 64, 64,  0, 0),
+        BACK_SPRITE(Dialga, 64, 64,  0),
+        PALETTES(Dialga),
+        ICON(Dialga, 2),
+        ANIMATIONS(DIALGA, 0, ANIM_H_SHAKE, BACK_ANIM_NONE),
         DIALGA_MISC_STATS,
     },
 
@@ -19557,6 +20316,11 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Dummy, "Temporal"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(70, 8500),
+        FRONT_SPRITE(DialgaOrigin, 64, 64,  0, 0),
+        BACK_SPRITE(DialgaOrigin, 64, 64,  0),
+        PALETTES(DialgaOrigin),
+        ICON(DialgaOrigin, 0),
+        ANIMATIONS(DIALGA_ORIGIN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         DIALGA_MISC_STATS,
     },
 
@@ -19576,7 +20340,9 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_PURPLE,                                     \
         .noFlip = FALSE,                                                    \
         .flags = SPECIES_FLAG_LEGENDARY,                                    \
-        .natDexNum = NATIONAL_DEX_PALKIA
+        .natDexNum = NATIONAL_DEX_PALKIA,                                   \
+        LEARNSETS(Palkia),                                                  \
+        FOOTPRINT(Palkia)
 
     [SPECIES_PALKIA] =
     {
@@ -19589,6 +20355,11 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Palkia, "Spatial"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(42, 3360),
+        FRONT_SPRITE(Palkia, 64, 64,  0, 0),
+        BACK_SPRITE(Palkia, 64, 64,  6),
+        PALETTES(Palkia),
+        ICON(Palkia, 2),
+        ANIMATIONS(PALKIA, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
         PALKIA_MISC_STATS,
     },
 
@@ -19603,6 +20374,11 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Dummy, "Spatial"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(63, 6600),
+        FRONT_SPRITE(PalkiaOrigin, 64, 64,  0, 0),
+        BACK_SPRITE(PalkiaOrigin, 64, 64,  3),
+        PALETTES(PalkiaOrigin),
+        ICON(PalkiaOrigin, 2),
+        ANIMATIONS(PALKIA_ORIGIN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         PALKIA_MISC_STATS,
     },
 
@@ -19633,6 +20409,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Heatran, "Lava Dome"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(17, 4300),
+        LEARNSETS(Heatran),
+        FRONT_SPRITE(Heatran, 64, 56,  5, 0),
+        BACK_SPRITE(Heatran, 64, 40, 13),
+        PALETTES(Heatran),
+        ICON(Heatran, 0),
+        FOOTPRINT(Heatran),
+        ANIMATIONS(HEATRAN, 0, ANIM_GLOW_ORANGE, BACK_ANIM_NONE),
     },
 
     [SPECIES_REGIGIGAS] =
@@ -19662,6 +20445,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Regigigas, "Colossal"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(37, 4200),
+        LEARNSETS(Regigigas),
+        FRONT_SPRITE(Regigigas, 64, 64,  4, 0),
+        BACK_SPRITE(Regigigas, 64, 40, 13),
+        PALETTES(Regigigas),
+        ICON(Regigigas, 0),
+        FOOTPRINT(Regigigas),
+        ANIMATIONS(REGIGIGAS, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
 #define GIRATINA_MISC_STATS                 \
@@ -19679,7 +20469,9 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BLACK,      \
         .noFlip = FALSE,                    \
         .flags = SPECIES_FLAG_LEGENDARY,    \
-        .natDexNum = NATIONAL_DEX_GIRATINA
+        .natDexNum = NATIONAL_DEX_GIRATINA, \
+        LEARNSETS(Giratina),                \
+        FOOTPRINT(Giratina)
 
     [SPECIES_GIRATINA_ALTERED] =
     {
@@ -19693,6 +20485,11 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Giratina, "Renegade"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(45, 7500),
+        FRONT_SPRITE(Giratina, 64, 64,  0, 0),
+        BACK_SPRITE(Giratina, 64, 64,  4),
+        PALETTES(Giratina),
+        ICON(Giratina, 0),
+        ANIMATIONS(GIRATINA, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
         GIRATINA_MISC_STATS,
     },
     [SPECIES_GIRATINA_ORIGIN] =
@@ -19707,6 +20504,11 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Dummy, "Renegade"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(69, 6500),
+        FRONT_SPRITE(GiratinaOrigin, 64, 64,  0, 7),
+        BACK_SPRITE(GiratinaOrigin, 64, 56,  4),
+        PALETTES(GiratinaOrigin),
+        ICON(GiratinaOrigin, 0),
+        ANIMATIONS(GIRATINA_ORIGIN, 0, ANIM_LUNGE_GROW, BACK_ANIM_NONE),
         GIRATINA_MISC_STATS,
     },
 
@@ -19737,6 +20539,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Cresselia, "Lunar"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(15, 856),
+        LEARNSETS(Cresselia),
+        FRONT_SPRITE(Cresselia, 64, 64,  2, 3),
+        BACK_SPRITE(Cresselia, 56, 64,  0),
+        PALETTES(Cresselia),
+        ICON(Cresselia, 0),
+        FOOTPRINT(Cresselia),
+        ANIMATIONS(CRESSELIA, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_PHIONE] =
@@ -19766,6 +20575,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Phione, "Sea Drifter"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(4, 31),
+        LEARNSETS(Phione),
+        FRONT_SPRITE(Phione, 56, 40,  8, 0),
+        BACK_SPRITE(Phione, 64, 48,  9),
+        PALETTES(Phione),
+        ICON(Phione, 0),
+        FOOTPRINT(Phione),
+        ANIMATIONS(PHIONE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_MANAPHY] =
@@ -19795,6 +20611,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Manaphy, "Seafaring"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(3, 14),
+        LEARNSETS(Manaphy),
+        FRONT_SPRITE(Manaphy, 64, 40, 10, 0),
+        BACK_SPRITE(Manaphy, 64, 56, 10),
+        PALETTES(Manaphy),
+        ICON(Manaphy, 0),
+        FOOTPRINT(Manaphy),
+        ANIMATIONS(MANAPHY, 0, ANIM_SWING_CONVEX, BACK_ANIM_NONE),
     },
 
     [SPECIES_DARKRAI] =
@@ -19825,6 +20648,13 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Darkrai, "Pitch-Black"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(15, 505),
+        LEARNSETS(Darkrai),
+        FRONT_SPRITE(Darkrai, 64, 64,  3, 4),
+        BACK_SPRITE(Darkrai, 64, 64,  0),
+        PALETTES(Darkrai),
+        ICON(Darkrai, 0),
+        FOOTPRINT(Darkrai),
+        ANIMATIONS(DARKRAI, 0, ANIM_GLOW_BLACK, BACK_ANIM_NONE),
     },
 
 #define SHAYMIN_MISC_STATS                  \
@@ -19842,7 +20672,8 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,\
         .bodyColor = BODY_COLOR_GREEN,      \
         .flags = SPECIES_FLAG_MYTHICAL,     \
-        .natDexNum = NATIONAL_DEX_SHAYMIN
+        .natDexNum = NATIONAL_DEX_SHAYMIN,  \
+        FOOTPRINT(Shaymin)
 
     [SPECIES_SHAYMIN_LAND] =
     {
@@ -19858,6 +20689,12 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Shaymin, "Gratitude"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(2, 21),
+        LEARNSETS(Shaymin),
+        FRONT_SPRITE(Shaymin, 40, 32, 16, 0),
+        BACK_SPRITE(Shaymin, 56, 40, 15),
+        PALETTES(Shaymin),
+        ICON(Shaymin, 1),
+        ANIMATIONS(SHAYMIN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         SHAYMIN_MISC_STATS,
     },
 
@@ -19875,19 +20712,22 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Dummy, "Gratitude"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(4, 52),
+        LEARNSETS(ShayminSky),
+        FRONT_SPRITE(ShayminSky, 56, 56,  7, 0),
+        BACK_SPRITE(ShayminSky, 56, 64,  2),
+        PALETTES(ShayminSky),
+        ICON(ShayminSky, 1),
+        ANIMATIONS(SHAYMIN_SKY, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
         SHAYMIN_MISC_STATS,
     },
 
-#define ARCEUS_BASE_STATS(type)                         \
-    {                                                   \
+#define ARCEUS_MISC_STATS                               \
         .baseHP        = 120,                           \
         .baseAttack    = 120,                           \
         .baseDefense   = 120,                           \
         .baseSpeed     = 120,                           \
         .baseSpAttack  = 120,                           \
         .baseSpDefense = 120,                           \
-        .type1 = type,                                  \
-        .type2 = type,                                  \
         .catchRate = 3,                                 \
         .expYield = 324,                                \
         .evYield_HP        = 3,                         \
@@ -19905,25 +20745,139 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Arceus, "Alpha"),                      \
         DEX_SCALE(356, 17, 256, 0),                     \
         HEIGHT_WEIGHT(32, 3200),                        \
-    }
-    [SPECIES_ARCEUS_NORMAL]   = ARCEUS_BASE_STATS(TYPE_NORMAL),
-    [SPECIES_ARCEUS_FIGHTING] = ARCEUS_BASE_STATS(TYPE_FIGHTING),
-    [SPECIES_ARCEUS_FLYING]   = ARCEUS_BASE_STATS(TYPE_FLYING),
-    [SPECIES_ARCEUS_POISON]   = ARCEUS_BASE_STATS(TYPE_POISON),
-    [SPECIES_ARCEUS_GROUND]   = ARCEUS_BASE_STATS(TYPE_GROUND),
-    [SPECIES_ARCEUS_ROCK]     = ARCEUS_BASE_STATS(TYPE_ROCK),
-    [SPECIES_ARCEUS_BUG]      = ARCEUS_BASE_STATS(TYPE_BUG),
-    [SPECIES_ARCEUS_GHOST]    = ARCEUS_BASE_STATS(TYPE_GHOST),
-    [SPECIES_ARCEUS_STEEL]    = ARCEUS_BASE_STATS(TYPE_STEEL),
-    [SPECIES_ARCEUS_FIRE]     = ARCEUS_BASE_STATS(TYPE_FIRE),
-    [SPECIES_ARCEUS_WATER]    = ARCEUS_BASE_STATS(TYPE_WATER),
-    [SPECIES_ARCEUS_GRASS]    = ARCEUS_BASE_STATS(TYPE_GRASS),
-    [SPECIES_ARCEUS_ELECTRIC] = ARCEUS_BASE_STATS(TYPE_ELECTRIC),
-    [SPECIES_ARCEUS_PSYCHIC]  = ARCEUS_BASE_STATS(TYPE_PSYCHIC),
-    [SPECIES_ARCEUS_ICE]      = ARCEUS_BASE_STATS(TYPE_ICE),
-    [SPECIES_ARCEUS_DRAGON]   = ARCEUS_BASE_STATS(TYPE_DRAGON),
-    [SPECIES_ARCEUS_DARK]     = ARCEUS_BASE_STATS(TYPE_DARK),
-    [SPECIES_ARCEUS_FAIRY]    = ARCEUS_BASE_STATS(TYPE_FAIRY),
+        LEARNSETS(Arceus),                              \
+        FRONT_SPRITE(Arceus, 64, 64,  0, 0),            \
+        BACK_SPRITE(Arceus, 64, 64,  3),                \
+        ICON(Arceus, 1),                                \
+        FOOTPRINT(Arceus),                              \
+        ANIMATIONS(ARCEUS, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE)
+
+    [SPECIES_ARCEUS_NORMAL] =
+    {
+        .type1 = TYPE_NORMAL,
+        .type2 = TYPE_NORMAL,
+        PALETTES(Arceus),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_FIGHTING] =
+    {
+        .type1 = TYPE_FIGHTING,
+        .type2 = TYPE_FIGHTING,
+        PALETTES(ArceusFighting),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_FLYING] =
+    {
+        .type1 = TYPE_FLYING,
+        .type2 = TYPE_FLYING,
+        PALETTES(ArceusFlying),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_POISON] =
+    {
+        .type1 = TYPE_POISON,
+        .type2 = TYPE_POISON,
+        PALETTES(ArceusPoison),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_GROUND] =
+    {
+        .type1 = TYPE_GROUND,
+        .type2 = TYPE_GROUND,
+        PALETTES(ArceusGround),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_ROCK] =
+    {
+        .type1 = TYPE_ROCK,
+        .type2 = TYPE_ROCK,
+        PALETTES(ArceusRock),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_BUG] =
+    {
+        .type1 = TYPE_BUG,
+        .type2 = TYPE_BUG,
+        PALETTES(ArceusBug),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_GHOST] =
+    {
+        .type1 = TYPE_GHOST,
+        .type2 = TYPE_GHOST,
+        PALETTES(ArceusGhost),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_STEEL] =
+    {
+        .type1 = TYPE_STEEL,
+        .type2 = TYPE_STEEL,
+        PALETTES(ArceusSteel),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_FIRE] =
+    {
+        .type1 = TYPE_FIRE,
+        .type2 = TYPE_FIRE,
+        PALETTES(ArceusFire),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_WATER] =
+    {
+        .type1 = TYPE_WATER,
+        .type2 = TYPE_WATER,
+        PALETTES(ArceusWater),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_GRASS] =
+    {
+        .type1 = TYPE_GRASS,
+        .type2 = TYPE_GRASS,
+        PALETTES(ArceusGrass),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_ELECTRIC] =
+    {
+        .type1 = TYPE_ELECTRIC,
+        .type2 = TYPE_ELECTRIC,
+        PALETTES(ArceusElectric),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_PSYCHIC] =
+    {
+        .type1 = TYPE_PSYCHIC,
+        .type2 = TYPE_PSYCHIC,
+        PALETTES(ArceusPsychic),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_ICE] =
+    {
+        .type1 = TYPE_ICE,
+        .type2 = TYPE_ICE,
+        PALETTES(ArceusIce),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_DRAGON] =
+    {
+        .type1 = TYPE_DRAGON,
+        .type2 = TYPE_DRAGON,
+        PALETTES(ArceusDragon),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_DARK] =
+    {
+        .type1 = TYPE_DARK,
+        .type2 = TYPE_DARK,
+        PALETTES(ArceusDark),
+        ARCEUS_MISC_STATS,
+    },
+    [SPECIES_ARCEUS_FAIRY] =
+    {
+        .type1 = TYPE_FAIRY,
+        .type2 = TYPE_FAIRY,
+        PALETTES(ArceusFairy),
+        ARCEUS_MISC_STATS,
+    },
 #endif
 
 #if P_GEN_5_POKEMON == TRUE
