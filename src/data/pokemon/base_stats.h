@@ -9328,7 +9328,7 @@ const struct BaseStats gBaseStats[] =
     #define QWILFISH_DEFENSE 75
 #endif
 
-#define QWILFISH_BASE_STATS                                                         \
+#define QWILFISH_MISC_INFO                                                          \
         .baseHP        = 65,                                                        \
         .baseAttack    = 95,                                                        \
         .baseSpeed     = 85,                                                        \
@@ -9364,7 +9364,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Qwilfish),
         ICON(Qwilfish, 0),
         ANIMATIONS(QWILFISH, 39, ANIM_GROW_IN_STAGES, BACK_ANIM_GROW_STUTTER),
-        QWILFISH_BASE_STATS,
+        QWILFISH_MISC_INFO,
     },
     [SPECIES_QWILFISH_HISUIAN] =
     {
@@ -9377,7 +9377,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(QwilfishHisuian),
         ICON(QwilfishHisuian, 0),
         ANIMATIONS(QWILFISH_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        QWILFISH_BASE_STATS,
+        QWILFISH_MISC_INFO,
     },
 
 #define SCIZOR_MISC_STATS                   \
@@ -9536,7 +9536,7 @@ const struct BaseStats gBaseStats[] =
         HERACROSS_MISC_STATS,
     },
 
-#define SNEASEL_BASE_STATS                  \
+#define SNEASEL_MISC_INFO                   \
         .baseHP        = 55,                \
         .baseAttack    = 95,                \
         .baseDefense   = 55,                \
@@ -9572,7 +9572,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Sneasel),
         ICON(Sneasel, 0),
         ANIMATIONS(SNEASEL, 0, ANIM_H_JUMPS, BACK_ANIM_TRIANGLE_DOWN),
-        SNEASEL_BASE_STATS,
+        SNEASEL_MISC_INFO,
     },
     [SPECIES_SNEASEL_HISUIAN] =
     {
@@ -9588,7 +9588,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(SneaselHisuian),
         ICON(SneaselHisuian, 2),
         ANIMATIONS(SNEASEL_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SNEASEL_BASE_STATS,
+        SNEASEL_MISC_INFO,
     },
 
     [SPECIES_TEDDIURSA] =
@@ -17436,7 +17436,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(BASTIODON, 0, ANIM_BACK_AND_LUNGE, BACK_ANIM_NONE),
     },
 
-#define BURMY_BASE_STATS                                                    \
+#define BURMY_MISC_INFO                                                     \
         .baseHP        = 40,                                                \
         .baseAttack    = 29,                                                \
         .baseDefense   = 45,                                                \
@@ -17471,7 +17471,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(Burmy, 40, 56,  6),
         PALETTES(Burmy),
         ICON(BurmyPlantCloak, 1),
-        BURMY_BASE_STATS,
+        BURMY_MISC_INFO,
     },
     [SPECIES_BURMY_SANDY_CLOAK] =
     {
@@ -17481,7 +17481,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(BurmySandyCloak, 32, 56,  7),
         PALETTES(BurmySandyCloak),
         ICON(BurmySandyCloak, 1),
-        BURMY_BASE_STATS,
+        BURMY_MISC_INFO,
     },
     [SPECIES_BURMY_TRASH_CLOAK] =
     {
@@ -17491,7 +17491,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(BurmyTrashCloak, 40, 64,  0),
         PALETTES(BurmyTrashCloak),
         ICON(BurmyTrashCloak, 0),
-        BURMY_BASE_STATS,
+        BURMY_MISC_INFO,
     },
 
 #define WORMADAM_MISC_STATS                                                 \
@@ -26973,67 +26973,49 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(MELOETTA_PIROUETTE, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_NONE),
     },
 
-#define GENESECT_MISC_STATS                             \
-        .baseHP        = 71,                            \
-        .baseAttack    = 120,                           \
-        .baseDefense   = 95,                            \
-        .baseSpeed     = 99,                            \
-        .baseSpAttack  = 120,                           \
-        .baseSpDefense = 95,                            \
-        .type1 = TYPE_BUG,                              \
-        .type2 = TYPE_STEEL,                            \
-        .catchRate = 3,                                 \
-        .expYield = 270,                                \
-        .evYield_Attack    = 1,                         \
-        .evYield_Speed     = 1,                         \
-        .evYield_SpAttack  = 1,                         \
-        .genderRatio = MON_GENDERLESS,                  \
-        .eggCycles = 120,                               \
-        .friendship = 0,                                \
-        .growthRate = GROWTH_SLOW,                      \
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,            \
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,            \
-        .abilities = {ABILITY_DOWNLOAD, ABILITY_NONE},  \
-        .bodyColor = BODY_COLOR_PURPLE,                 \
-        .noFlip = FALSE,                                \
-        .flags = SPECIES_FLAG_MYTHICAL,                 \
-        .natDexNum = NATIONAL_DEX_GENESECT,             \
-        DEX_TEXT(Genesect, "Paleozoic"),                \
-        DEX_SCALE(356, 17, 256, 0),                     \
-        HEIGHT_WEIGHT(15, 825),                         \
-        LEARNSETS(Genesect),                            \
-        FRONT_SPRITE(Genesect, 56, 64,  0, 0),          \
-        BACK_SPRITE(Genesect, 64, 48,  8),              \
-        ICON(Genesect, 2),                              \
-        FOOTPRINT(Genesect),                            \
-        ANIMATIONS(GENESECT, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE)
+#define GENESECT_MISC_STATS(palette)                            \
+    {                                                           \
+        .baseHP        = 71,                                    \
+        .baseAttack    = 120,                                   \
+        .baseDefense   = 95,                                    \
+        .baseSpeed     = 99,                                    \
+        .baseSpAttack  = 120,                                   \
+        .baseSpDefense = 95,                                    \
+        .type1 = TYPE_BUG,                                      \
+        .type2 = TYPE_STEEL,                                    \
+        .catchRate = 3,                                         \
+        .expYield = 270,                                        \
+        .evYield_Attack    = 1,                                 \
+        .evYield_Speed     = 1,                                 \
+        .evYield_SpAttack  = 1,                                 \
+        .genderRatio = MON_GENDERLESS,                          \
+        .eggCycles = 120,                                       \
+        .friendship = 0,                                        \
+        .growthRate = GROWTH_SLOW,                              \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,                    \
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,                    \
+        .abilities = {ABILITY_DOWNLOAD, ABILITY_NONE},          \
+        .bodyColor = BODY_COLOR_PURPLE,                         \
+        .noFlip = FALSE,                                        \
+        .flags = SPECIES_FLAG_MYTHICAL,                         \
+        .natDexNum = NATIONAL_DEX_GENESECT,                     \
+        DEX_TEXT(Genesect, "Paleozoic"),                        \
+        DEX_SCALE(356, 17, 256, 0),                             \
+        HEIGHT_WEIGHT(15, 825),                                 \
+        LEARNSETS(Genesect),                                    \
+        FRONT_SPRITE(Genesect, 56, 64,  0, 0),                  \
+        BACK_SPRITE(Genesect, 64, 48,  8),                      \
+        PALETTES(palette),                                      \
+        ICON(Genesect, 2),                                      \
+        FOOTPRINT(Genesect),                                    \
+        ANIMATIONS(GENESECT, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),\
+    }
 
-
-    [SPECIES_GENESECT] =
-    {
-        PALETTES(Genesect),
-        GENESECT_MISC_STATS,
-    },
-    [SPECIES_GENESECT_DOUSE_DRIVE] =
-    {
-        PALETTES(GenesectDouseDrive),
-        GENESECT_MISC_STATS,
-    },
-    [SPECIES_GENESECT_SHOCK_DRIVE] =
-    {
-        PALETTES(GenesectShockDrive),
-        GENESECT_MISC_STATS,
-    },
-    [SPECIES_GENESECT_BURN_DRIVE] =
-    {
-        PALETTES(GenesectBurnDrive),
-        GENESECT_MISC_STATS,
-    },
-    [SPECIES_GENESECT_CHILL_DRIVE] =
-    {
-        PALETTES(GenesectChillDrive),
-        GENESECT_MISC_STATS,
-    },
+    [SPECIES_GENESECT]             = GENESECT_MISC_STATS(Genesect),
+    [SPECIES_GENESECT_DOUSE_DRIVE] = GENESECT_MISC_STATS(GenesectDouseDrive),
+    [SPECIES_GENESECT_SHOCK_DRIVE] = GENESECT_MISC_STATS(GenesectShockDrive),
+    [SPECIES_GENESECT_BURN_DRIVE]  = GENESECT_MISC_STATS(GenesectBurnDrive),
+    [SPECIES_GENESECT_CHILL_DRIVE] = GENESECT_MISC_STATS(GenesectChillDrive),
 #endif
 
 #if P_GEN_6_POKEMON == TRUE
@@ -27059,6 +27041,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_BULLETPROOF},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_CHESPIN,
+        DEX_TEXT(Chespin, "Spiny Nut"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 90),
+        LEARNSETS(Chespin),
+        FRONT_SPRITE(Chespin, 40, 48, 10, 0),
+        BACK_SPRITE(Chespin, 56, 64,  6),
+        PALETTES(Chespin),
+        ICON(Chespin, 1),
+        FOOTPRINT(Chespin),
+        ANIMATIONS(CHESPIN, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_NONE),
     },
 
     [SPECIES_QUILLADIN] =
@@ -27083,6 +27076,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_BULLETPROOF},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_QUILLADIN,
+        DEX_TEXT(Quilladin, "Spiny Armor"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 290),
+        LEARNSETS(Quilladin),
+        FRONT_SPRITE(Quilladin, 48, 48, 10, 0),
+        BACK_SPRITE(Quilladin, 64, 48,  9),
+        PALETTES(Quilladin),
+        ICON(Quilladin, 1),
+        FOOTPRINT(Quilladin),
+        ANIMATIONS(QUILLADIN, 0, ANIM_LUNGE_GROW, BACK_ANIM_NONE),
     },
 
     [SPECIES_CHESNAUGHT] =
@@ -27107,6 +27111,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_BULLETPROOF},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_CHESNAUGHT,
+        DEX_TEXT(Chesnaught, "Spiny Armor"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(16, 900),
+        LEARNSETS(Chesnaught),
+        FRONT_SPRITE(Chesnaught, 64, 64,  4, 0),
+        BACK_SPRITE(Chesnaught, 64, 56, 10),
+        PALETTES(Chesnaught),
+        ICON(Chesnaught, 1),
+        FOOTPRINT(Chesnaught),
+        ANIMATIONS(CHESNAUGHT, 0, ANIM_GROW_IN_STAGES, BACK_ANIM_NONE),
     },
 
     [SPECIES_FENNEKIN] =
@@ -27131,6 +27146,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_MAGICIAN},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_FENNEKIN,
+        DEX_TEXT(Fennekin, "Fox"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 94),
+        LEARNSETS(Fennekin),
+        FRONT_SPRITE(Fennekin, 40, 48, 10, 0),
+        BACK_SPRITE(Fennekin, 56, 48,  8),
+        PALETTES(Fennekin),
+        ICON(Fennekin, 0),
+        FOOTPRINT(Fennekin),
+        ANIMATIONS(FENNEKIN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_BRAIXEN] =
@@ -27155,6 +27181,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_MAGICIAN},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BRAIXEN,
+        DEX_TEXT(Braixen, "Fox"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 145),
+        LEARNSETS(Braixen),
+        FRONT_SPRITE(Braixen, 48, 64,  4, 0),
+        BACK_SPRITE(Braixen, 64, 56, 10),
+        PALETTES(Braixen),
+        ICON(Braixen, 0),
+        FOOTPRINT(Braixen),
+        ANIMATIONS(BRAIXEN, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_DELPHOX] =
@@ -27179,6 +27216,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_MAGICIAN},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_DELPHOX,
+        DEX_TEXT(Delphox, "Fox"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(15, 390),
+        LEARNSETS(Delphox),
+        FRONT_SPRITE(Delphox, 64, 64,  0, 0),
+        BACK_SPRITE(Delphox, 64, 64,  3),
+        PALETTES(Delphox),
+        ICON(Delphox, 0),
+        FOOTPRINT(Delphox),
+        ANIMATIONS(DELPHOX, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_FROAKIE] =
@@ -27203,6 +27251,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_PROTEAN},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_FROAKIE,
+        DEX_TEXT(Froakie, "Bubble Frog"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 70),
+        LEARNSETS(Froakie),
+        FRONT_SPRITE(Froakie, 40, 40, 12, 0),
+        BACK_SPRITE(Froakie, 56, 56,  7),
+        PALETTES(Froakie),
+        ICON(Froakie, 0),
+        FOOTPRINT(Froakie),
+        ANIMATIONS(FROAKIE, 0, ANIM_H_JUMPS, BACK_ANIM_NONE),
     },
 
     [SPECIES_FROGADIER] =
@@ -27227,41 +27286,67 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_PROTEAN},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_FROGADIER,
+        DEX_TEXT(Frogadier, "Bubble Frog"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(6, 109),
+        LEARNSETS(Frogadier),
+        FRONT_SPRITE(Frogadier, 56, 48,  8, 0),
+        BACK_SPRITE(Frogadier, 64, 56,  6),
+        PALETTES(Frogadier),
+        ICON(Frogadier, 0),
+        FOOTPRINT(Frogadier),
+        ANIMATIONS(FROGADIER, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
     },
 
-#define GRENINJA_BASE_FORM_ATTRIBUTES   \
-        .baseHP        = 72,            \
-        .baseAttack    = 95,            \
-        .baseDefense   = 67,            \
-        .baseSpeed     = 122,           \
-        .baseSpAttack  = 103,           \
-        .baseSpDefense = 71
+#define GRENINJA_NORMAL_MISC_STATS              \
+        .baseHP        = 72,                    \
+        .baseAttack    = 95,                    \
+        .baseDefense   = 67,                    \
+        .baseSpeed     = 122,                   \
+        .baseSpAttack  = 103,                   \
+        .baseSpDefense = 71,                    \
+        DEX_TEXT(Greninja, "Ninja"),            \
+        FRONT_SPRITE(Greninja, 64, 56,  7, 0),  \
+        BACK_SPRITE(Greninja, 64, 48, 11),      \
+        PALETTES(Greninja),                     \
+        ICON(Greninja, 0),                      \
+        ANIMATIONS(GRENINJA, 0, ANIM_V_STRETCH, BACK_ANIM_NONE)
 
-#define GRENINJA_MISC_STATS(gender,eggGroup,ability1,ability3)  \
-        .type1 = TYPE_WATER,                                    \
-        .type2 = TYPE_DARK,                                     \
-        .catchRate = 45,                                        \
-        .expYield = 239,                                        \
-        .evYield_Speed     = 3,                                 \
-        .genderRatio = gender,                                  \
-        .eggCycles = 20,                                        \
-        .friendship = 70,                                       \
-        .growthRate = GROWTH_MEDIUM_SLOW,                       \
-        .eggGroup1 = eggGroup,                                  \
-        .eggGroup2 = eggGroup,                                  \
-        .abilities = {ability1, ABILITY_NONE, ability3},        \
-        .bodyColor = BODY_COLOR_BLUE,                           \
-        .noFlip = TRUE
+#define GRENINJA_MISC_STATS                 \
+        .type1 = TYPE_WATER,                \
+        .type2 = TYPE_DARK,                 \
+        .catchRate = 45,                    \
+        .expYield = 239,                    \
+        .evYield_Speed     = 3,             \
+        .eggCycles = 20,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_MEDIUM_SLOW,   \
+        .bodyColor = BODY_COLOR_BLUE,       \
+        .noFlip = TRUE,                     \
+        .natDexNum = NATIONAL_DEX_GRENINJA, \
+        DEX_SCALE(356, 17, 256, 0),         \
+        HEIGHT_WEIGHT(15, 400),             \
+        LEARNSETS(Greninja),                \
+        FOOTPRINT(Greninja)
 
     [SPECIES_GRENINJA] =
     {
-        GRENINJA_BASE_FORM_ATTRIBUTES,
-        GRENINJA_MISC_STATS(PERCENT_FEMALE(12.5), EGG_GROUP_WATER_1, ABILITY_TORRENT, ABILITY_PROTEAN),
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggGroup1 = EGG_GROUP_WATER_1,
+        .eggGroup2 = EGG_GROUP_WATER_1,
+        .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_PROTEAN},
+        GRENINJA_NORMAL_MISC_STATS,
+        GRENINJA_MISC_STATS,
     },
     [SPECIES_GRENINJA_BATTLE_BOND] =
     {
-        GRENINJA_BASE_FORM_ATTRIBUTES,
-        GRENINJA_MISC_STATS(MON_MALE, EGG_GROUP_UNDISCOVERED, ABILITY_BATTLE_BOND, ABILITY_NONE),
+        .genderRatio = MON_MALE,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        .abilities = {ABILITY_BATTLE_BOND, ABILITY_NONE, ABILITY_NONE},
+        GRENINJA_NORMAL_MISC_STATS,
+        GRENINJA_MISC_STATS,
     },
     [SPECIES_GRENINJA_ASH] =
     {
@@ -27271,7 +27356,17 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 132,
         .baseSpAttack  = 153,
         .baseSpDefense = 71,
-        GRENINJA_MISC_STATS(MON_MALE, EGG_GROUP_UNDISCOVERED, ABILITY_BATTLE_BOND, ABILITY_NONE),
+        .genderRatio = MON_MALE,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        .abilities = {ABILITY_BATTLE_BOND, ABILITY_NONE, ABILITY_NONE},
+        DEX_TEXT(Greninja, "Ninja"), // No official dex entry for this form
+        FRONT_SPRITE(GreninjaAsh, 64, 64,  0, 0),
+        BACK_SPRITE(GreninjaAsh, 64, 48, 11),
+        PALETTES(GreninjaAsh),
+        ICON(GreninjaAsh, 0),
+        ANIMATIONS(GRENINJA, 0, ANIM_FLICKER_INCREASING, BACK_ANIM_NONE),
+        GRENINJA_MISC_STATS,
     },
 
     [SPECIES_BUNNELBY] =
@@ -27296,6 +27391,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PICKUP, ABILITY_CHEEK_POUCH, ABILITY_HUGE_POWER},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BUNNELBY,
+        DEX_TEXT(Bunnelby, "Digging"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 50),
+        LEARNSETS(Bunnelby),
+        FRONT_SPRITE(Bunnelby, 48, 64,  5, 0),
+        BACK_SPRITE(Bunnelby, 48, 64,  0),
+        PALETTES(Bunnelby),
+        ICON(Bunnelby, 2),
+        FOOTPRINT(Bunnelby),
+        ANIMATIONS(BUNNELBY, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_NONE),
     },
 
     [SPECIES_DIGGERSBY] =
@@ -27320,6 +27426,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PICKUP, ABILITY_CHEEK_POUCH, ABILITY_HUGE_POWER},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_DIGGERSBY,
+        DEX_TEXT(Diggersby, "Digging"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 424),
+        LEARNSETS(Diggersby),
+        FRONT_SPRITE(Diggersby, 64, 64,  4, 0),
+        BACK_SPRITE(Diggersby, 64, 64,  3),
+        PALETTES(Diggersby),
+        ICON(Diggersby, 2),
+        FOOTPRINT(Diggersby),
+        ANIMATIONS(DIGGERSBY, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_FLETCHLING] =
@@ -27344,6 +27461,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BIG_PECKS, ABILITY_NONE, ABILITY_GALE_WINGS},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_FLETCHLING,
+        DEX_TEXT(Fletchling, "Tiny Robin"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 17),
+        LEARNSETS(Fletchling),
+        FRONT_SPRITE(Fletchling, 40, 40, 12, 0),
+        BACK_SPRITE(Fletchling, 64, 40, 14),
+        PALETTES(Fletchling),
+        ICON(Fletchling, 2),
+        FOOTPRINT(Fletchling),
+        ANIMATIONS(FLETCHLING, 0, ANIM_RAPID_H_HOPS, BACK_ANIM_NONE),
     },
 
     [SPECIES_FLETCHINDER] =
@@ -27368,6 +27496,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_FLAME_BODY, ABILITY_NONE, ABILITY_GALE_WINGS},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_FLETCHINDER,
+        DEX_TEXT(Fletchinder, "Ember"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 160),
+        LEARNSETS(Fletchinder),
+        FRONT_SPRITE(Fletchinder, 56, 48,  8, 9),
+        BACK_SPRITE(Fletchinder, 64, 48, 11),
+        PALETTES(Fletchinder),
+        ICON(Fletchinder, 2),
+        FOOTPRINT(Fletchinder),
+        ANIMATIONS(FLETCHINDER, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_TALONFLAME] =
@@ -27392,9 +27531,20 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_FLAME_BODY, ABILITY_NONE, ABILITY_GALE_WINGS},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_TALONFLAME,
+        DEX_TEXT(Talonflame, "Scorching"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 245),
+        LEARNSETS(Talonflame),
+        FRONT_SPRITE(Talonflame, 64, 64,  1, 7),
+        BACK_SPRITE(Talonflame, 64, 56,  5),
+        PALETTES(Talonflame),
+        ICON(Talonflame, 2),
+        FOOTPRINT(Talonflame),
+        ANIMATIONS(TALONFLAME, 0, ANIM_SWING_CONCAVE_FAST, BACK_ANIM_NONE),
     },
 
-#define SCATTERBUG_BASE_STATS                                                           \
+#define SCATTERBUG_SPECIES_INFO                                                         \
     {                                                                                   \
         .baseHP        = 38,                                                            \
         .baseAttack    = 35,                                                            \
@@ -27416,29 +27566,40 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD},\
         .bodyColor = BODY_COLOR_BLACK,                                                  \
         .noFlip = FALSE,                                                                \
+        .natDexNum = NATIONAL_DEX_SCATTERBUG,                                           \
+        DEX_TEXT(Scatterbug, "Scatterdust"),                                            \
+        DEX_SCALE(356, 17, 256, 0),                                                     \
+        HEIGHT_WEIGHT(3, 25),                                                           \
+        LEARNSETS(Scatterbug),                                                          \
+        FRONT_SPRITE(Scatterbug, 32, 48, 13, 0),                                        \
+        BACK_SPRITE(Scatterbug, 40, 56, 12),                                            \
+        PALETTES(Scatterbug),                                                           \
+        ICON(Scatterbug, 1),                                                            \
+        FOOTPRINT(Scatterbug),                                                          \
+        ANIMATIONS(SCATTERBUG, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),                      \
     }
-    [SPECIES_SCATTERBUG_ICY_SNOW]    = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_POLAR]       = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_TUNDRA]      = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_CONTINENTAL] = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_GARDEN]      = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_ELEGANT]     = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_MEADOW]      = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_MODERN]      = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_MARINE]      = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_ARCHIPELAGO] = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_HIGH_PLAINS] = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_SANDSTORM]   = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_RIVER]       = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_MONSOON]     = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_SAVANNA]     = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_SUN]         = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_OCEAN]       = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_JUNGLE]      = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_FANCY]       = SCATTERBUG_BASE_STATS,
-    [SPECIES_SCATTERBUG_POKE_BALL]   = SCATTERBUG_BASE_STATS,
+    [SPECIES_SCATTERBUG_ICY_SNOW]    = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_POLAR]       = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_TUNDRA]      = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_CONTINENTAL] = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_GARDEN]      = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_ELEGANT]     = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_MEADOW]      = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_MODERN]      = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_MARINE]      = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_ARCHIPELAGO] = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_HIGH_PLAINS] = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_SANDSTORM]   = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_RIVER]       = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_MONSOON]     = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_SAVANNA]     = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_SUN]         = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_OCEAN]       = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_JUNGLE]      = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_FANCY]       = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_POKE_BALL]   = SCATTERBUG_SPECIES_INFO,
 
-#define SPEWPA_BASE_STATS                                                       \
+#define SPEWPA_SPECIES_INFO                                                     \
     {                                                                           \
         .baseHP        = 45,                                                    \
         .baseAttack    = 22,                                                    \
@@ -27460,29 +27621,40 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_FRIEND_GUARD},   \
         .bodyColor = BODY_COLOR_BLACK,                                          \
         .noFlip = FALSE,                                                        \
+        .natDexNum = NATIONAL_DEX_SPEWPA,                                       \
+        DEX_TEXT(Spewpa, "Scatterdust"),                                        \
+        DEX_SCALE(356, 17, 256, 0),                                             \
+        HEIGHT_WEIGHT(3, 84),                                                   \
+        LEARNSETS(Spewpa),                                                      \
+        FRONT_SPRITE(Spewpa, 32, 48, 13, 0),                                    \
+        BACK_SPRITE(Spewpa, 48, 48, 12),                                        \
+        PALETTES(Spewpa),                                                       \
+        ICON(Spewpa, 1),                                                        \
+        FOOTPRINT(Spewpa),                                                      \
+        ANIMATIONS(SPEWPA, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),                    \
     }
-    [SPECIES_SPEWPA_ICY_SNOW]    = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_POLAR]       = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_TUNDRA]      = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_CONTINENTAL] = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_GARDEN]      = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_ELEGANT]     = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_MEADOW]      = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_MODERN]      = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_MARINE]      = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_ARCHIPELAGO] = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_HIGH_PLAINS] = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_SANDSTORM]   = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_RIVER]       = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_MONSOON]     = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_SAVANNA]     = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_SUN]         = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_OCEAN]       = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_JUNGLE]      = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_FANCY]       = SPEWPA_BASE_STATS,
-    [SPECIES_SPEWPA_POKE_BALL]   = SPEWPA_BASE_STATS,
+    [SPECIES_SPEWPA_ICY_SNOW]    = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_POLAR]       = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_TUNDRA]      = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_CONTINENTAL] = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_GARDEN]      = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_ELEGANT]     = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_MEADOW]      = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_MODERN]      = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_MARINE]      = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_ARCHIPELAGO] = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_HIGH_PLAINS] = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_SANDSTORM]   = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_RIVER]       = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_MONSOON]     = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_SAVANNA]     = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_SUN]         = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_OCEAN]       = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_JUNGLE]      = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_FANCY]       = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_POKE_BALL]   = SPEWPA_SPECIES_INFO,
 
-#define VIVILLON_BASE_STATS(color)                                                      \
+#define VIVILLON_SPECIES_INFO(color, dex, form)                                         \
     {                                                                                   \
         .baseHP        = 80,                                                            \
         .baseAttack    = 52,                                                            \
@@ -27506,27 +27678,39 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_FRIEND_GUARD},\
         .bodyColor = color,                                                             \
         .noFlip = FALSE,                                                                \
+        .natDexNum = NATIONAL_DEX_VIVILLON,                                             \
+        DEX_TEXT(dex, "Scale"),                                                         \
+        DEX_SCALE(356, 17, 256, 0),                                                     \
+        HEIGHT_WEIGHT(12, 170),                                                         \
+        LEARNSETS(Vivillon),                                                            \
+        FRONT_SPRITE(Vivillon, 64, 64,  0, 9),                                          \
+        BACK_SPRITE(form, 64, 64,  0),                                                  \
+        PALETTES(form),                                                                 \
+        ICON(form, 0),                                                                  \
+        FOOTPRINT(Vivillon),                                                            \
+        ANIMATIONS(VIVILLON, 0, ANIM_ZIGZAG_SLOW, BACK_ANIM_NONE),                      \
     }
-    [SPECIES_VIVILLON_ICY_SNOW]    = VIVILLON_BASE_STATS(BODY_COLOR_WHITE),
-    [SPECIES_VIVILLON_POLAR]       = VIVILLON_BASE_STATS(BODY_COLOR_BLUE),
-    [SPECIES_VIVILLON_TUNDRA]      = VIVILLON_BASE_STATS(BODY_COLOR_BLUE),
-    [SPECIES_VIVILLON_CONTINENTAL] = VIVILLON_BASE_STATS(BODY_COLOR_YELLOW),
-    [SPECIES_VIVILLON_GARDEN]      = VIVILLON_BASE_STATS(BODY_COLOR_GREEN),
-    [SPECIES_VIVILLON_ELEGANT]     = VIVILLON_BASE_STATS(BODY_COLOR_PURPLE),
-    [SPECIES_VIVILLON_MEADOW]      = VIVILLON_BASE_STATS(BODY_COLOR_PINK),
-    [SPECIES_VIVILLON_MODERN]      = VIVILLON_BASE_STATS(BODY_COLOR_RED),
-    [SPECIES_VIVILLON_MARINE]      = VIVILLON_BASE_STATS(BODY_COLOR_BLUE),
-    [SPECIES_VIVILLON_ARCHIPELAGO] = VIVILLON_BASE_STATS(BODY_COLOR_BROWN),
-    [SPECIES_VIVILLON_HIGH_PLAINS] = VIVILLON_BASE_STATS(BODY_COLOR_BROWN),
-    [SPECIES_VIVILLON_SANDSTORM]   = VIVILLON_BASE_STATS(BODY_COLOR_BROWN),
-    [SPECIES_VIVILLON_RIVER]       = VIVILLON_BASE_STATS(BODY_COLOR_BROWN),
-    [SPECIES_VIVILLON_MONSOON]     = VIVILLON_BASE_STATS(BODY_COLOR_GRAY),
-    [SPECIES_VIVILLON_SAVANNA]     = VIVILLON_BASE_STATS(BODY_COLOR_GREEN),
-    [SPECIES_VIVILLON_SUN]         = VIVILLON_BASE_STATS(BODY_COLOR_RED),
-    [SPECIES_VIVILLON_OCEAN]       = VIVILLON_BASE_STATS(BODY_COLOR_RED),
-    [SPECIES_VIVILLON_JUNGLE]      = VIVILLON_BASE_STATS(BODY_COLOR_GREEN),
-    [SPECIES_VIVILLON_FANCY]       = VIVILLON_BASE_STATS(BODY_COLOR_PINK),
-    [SPECIES_VIVILLON_POKE_BALL]   = VIVILLON_BASE_STATS(BODY_COLOR_RED),
+
+    [SPECIES_VIVILLON_ICY_SNOW]    = VIVILLON_SPECIES_INFO(BODY_COLOR_WHITE, Vivillon, Vivillon),
+    [SPECIES_VIVILLON_POLAR]       = VIVILLON_SPECIES_INFO(BODY_COLOR_BLUE, Dummy, VivillonPolar),
+    [SPECIES_VIVILLON_TUNDRA]      = VIVILLON_SPECIES_INFO(BODY_COLOR_BLUE, Dummy, VivillonTundra),
+    [SPECIES_VIVILLON_CONTINENTAL] = VIVILLON_SPECIES_INFO(BODY_COLOR_YELLOW, Dummy, VivillonContinental),
+    [SPECIES_VIVILLON_GARDEN]      = VIVILLON_SPECIES_INFO(BODY_COLOR_GREEN, Dummy, VivillonGarden),
+    [SPECIES_VIVILLON_ELEGANT]     = VIVILLON_SPECIES_INFO(BODY_COLOR_PURPLE, Dummy, VivillonElegant),
+    [SPECIES_VIVILLON_MEADOW]      = VIVILLON_SPECIES_INFO(BODY_COLOR_PINK, Dummy, VivillonMeadow),
+    [SPECIES_VIVILLON_MODERN]      = VIVILLON_SPECIES_INFO(BODY_COLOR_RED, Dummy, VivillonModern),
+    [SPECIES_VIVILLON_MARINE]      = VIVILLON_SPECIES_INFO(BODY_COLOR_BLUE, Dummy, VivillonMarine),
+    [SPECIES_VIVILLON_ARCHIPELAGO] = VIVILLON_SPECIES_INFO(BODY_COLOR_BROWN, Dummy, VivillonArchipelago),
+    [SPECIES_VIVILLON_HIGH_PLAINS] = VIVILLON_SPECIES_INFO(BODY_COLOR_BROWN, Dummy, VivillonHighPlains),
+    [SPECIES_VIVILLON_SANDSTORM]   = VIVILLON_SPECIES_INFO(BODY_COLOR_BROWN, Dummy, VivillonSandstorm),
+    [SPECIES_VIVILLON_RIVER]       = VIVILLON_SPECIES_INFO(BODY_COLOR_BROWN, Dummy, VivillonRiver),
+    [SPECIES_VIVILLON_MONSOON]     = VIVILLON_SPECIES_INFO(BODY_COLOR_GRAY, Dummy, VivillonMonsoon),
+    [SPECIES_VIVILLON_SAVANNA]     = VIVILLON_SPECIES_INFO(BODY_COLOR_GREEN, Dummy, VivillonSavanna),
+    [SPECIES_VIVILLON_SUN]         = VIVILLON_SPECIES_INFO(BODY_COLOR_RED, Dummy, VivillonSun),
+    [SPECIES_VIVILLON_OCEAN]       = VIVILLON_SPECIES_INFO(BODY_COLOR_RED, Dummy, VivillonOcean),
+    [SPECIES_VIVILLON_JUNGLE]      = VIVILLON_SPECIES_INFO(BODY_COLOR_GREEN, Dummy, VivillonJungle),
+    [SPECIES_VIVILLON_FANCY]       = VIVILLON_SPECIES_INFO(BODY_COLOR_PINK, Dummy, VivillonFancy),
+    [SPECIES_VIVILLON_POKE_BALL]   = VIVILLON_SPECIES_INFO(BODY_COLOR_RED, Dummy, VivillonPokeBall),
 
     [SPECIES_LITLEO] =
     {
@@ -27550,6 +27734,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RIVALRY, ABILITY_UNNERVE, ABILITY_MOXIE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_LITLEO,
+        DEX_TEXT(Litleo, "Lion Cub"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(6, 135),
+        LEARNSETS(Litleo),
+        FRONT_SPRITE(Litleo, 40, 48, 10, 0),
+        BACK_SPRITE(Litleo, 56, 48,  9),
+        PALETTES(Litleo),
+        ICON(Litleo, 2),
+        FOOTPRINT(Litleo),
+        ANIMATIONS(LITLEO, 0, ANIM_BACK_AND_LUNGE, BACK_ANIM_NONE),
     },
 
     [SPECIES_PYROAR] =
@@ -27574,65 +27769,102 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RIVALRY, ABILITY_UNNERVE, ABILITY_MOXIE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PYROAR,
+        DEX_TEXT(Pyroar, "Royal"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(15, 815),
+        LEARNSETS(Pyroar),
+        FRONT_SPRITE(Pyroar, 64, 64,  0, 0),
+        BACK_SPRITE(Pyroar, 64, 64,  3),
+        PALETTES(Pyroar),
+        ICON(Pyroar, 2),
+        FOOTPRINT(Pyroar),
+        ANIMATIONS(PYROAR, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
-#define FLABEBE_BASE_STATS                                                  \
-    {                                                                       \
-        .baseHP        = 44,                                                \
-        .baseAttack    = 38,                                                \
-        .baseDefense   = 39,                                                \
-        .baseSpeed     = 42,                                                \
-        .baseSpAttack  = 61,                                                \
-        .baseSpDefense = 79,                                                \
-        .type1 = TYPE_FAIRY,                                                \
-        .type2 = TYPE_FAIRY,                                                \
-        .catchRate = 225,                                                   \
-        .expYield = 61,                                                     \
-        .evYield_SpDefense = 1,                                             \
-        .genderRatio = MON_FEMALE,                                          \
-        .eggCycles = 20,                                                    \
-        .friendship = 70,                                                   \
-        .growthRate = GROWTH_MEDIUM_FAST,                                   \
-        .eggGroup1 = EGG_GROUP_FAIRY,                                       \
-        .eggGroup2 = EGG_GROUP_FAIRY,                                       \
-        .abilities = {ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS},\
-        .bodyColor = BODY_COLOR_WHITE,                                      \
-        .noFlip = FALSE,                                                    \
+#define FLABEBE_SPECIES_INFO(dex, form, iconPal)                                \
+    {                                                                           \
+        .baseHP        = 44,                                                    \
+        .baseAttack    = 38,                                                    \
+        .baseDefense   = 39,                                                    \
+        .baseSpeed     = 42,                                                    \
+        .baseSpAttack  = 61,                                                    \
+        .baseSpDefense = 79,                                                    \
+        .type1 = TYPE_FAIRY,                                                    \
+        .type2 = TYPE_FAIRY,                                                    \
+        .catchRate = 225,                                                       \
+        .expYield = 61,                                                         \
+        .evYield_SpDefense = 1,                                                 \
+        .genderRatio = MON_FEMALE,                                              \
+        .eggCycles = 20,                                                        \
+        .friendship = 70,                                                       \
+        .growthRate = GROWTH_MEDIUM_FAST,                                       \
+        .eggGroup1 = EGG_GROUP_FAIRY,                                           \
+        .eggGroup2 = EGG_GROUP_FAIRY,                                           \
+        .abilities = {ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS},    \
+        .bodyColor = BODY_COLOR_WHITE,                                          \
+        .noFlip = FALSE,                                                        \
+        .natDexNum = NATIONAL_DEX_FLABEBE,                                      \
+        DEX_TEXT(dex, "Single Bloom"),                                          \
+        DEX_SCALE(356, 17, 256, 0),                                             \
+        HEIGHT_WEIGHT(1, 1),                                                    \
+        LEARNSETS(Flabebe),                                                     \
+        FRONT_SPRITE(Flabebe, 48, 56,  6, 6),                                   \
+        BACK_SPRITE(Flabebe, 64, 40, 12),                                       \
+        PALETTES(form),                                                         \
+        ICON(form, iconPal),                                                    \
+        FOOTPRINT(Flabebe),                                                     \
+        ANIMATIONS(FLABEBE, 0, ANIM_SWING_CONCAVE_FAST_SHORT, BACK_ANIM_NONE),  \
     }
-    [SPECIES_FLABEBE_RED_FLOWER]    = FLABEBE_BASE_STATS,
-    [SPECIES_FLABEBE_YELLOW_FLOWER] = FLABEBE_BASE_STATS,
-    [SPECIES_FLABEBE_ORANGE_FLOWER] = FLABEBE_BASE_STATS,
-    [SPECIES_FLABEBE_BLUE_FLOWER]   = FLABEBE_BASE_STATS,
-    [SPECIES_FLABEBE_WHITE_FLOWER]  = FLABEBE_BASE_STATS,
+    [SPECIES_FLABEBE_RED_FLOWER]    = FLABEBE_SPECIES_INFO(Flabebe, Flabebe, 1),
+    [SPECIES_FLABEBE_YELLOW_FLOWER] = FLABEBE_SPECIES_INFO(Dummy, FlabebeYellowFlower, 1),
+    [SPECIES_FLABEBE_ORANGE_FLOWER] = FLABEBE_SPECIES_INFO(Dummy, FlabebeOrangeFlower, 0),
+    [SPECIES_FLABEBE_BLUE_FLOWER]   = FLABEBE_SPECIES_INFO(Dummy, FlabebeBlueFlower, 0),
+    [SPECIES_FLABEBE_WHITE_FLOWER]  = FLABEBE_SPECIES_INFO(Dummy, FlabebeWhiteFlower, 1),
 
-#define FLOETTE_BASE_STATS                                                  \
-    {                                                                       \
-        .baseHP        = 54,                                                \
-        .baseAttack    = 45,                                                \
-        .baseDefense   = 47,                                                \
-        .baseSpeed     = 52,                                                \
-        .baseSpAttack  = 75,                                                \
-        .baseSpDefense = 98,                                                \
+#define FLOETTE_MISC_INFO                                                   \
         .type1 = TYPE_FAIRY,                                                \
         .type2 = TYPE_FAIRY,                                                \
         .catchRate = 120,                                                   \
-        .expYield = 130,                                                    \
         .evYield_SpDefense = 2,                                             \
         .genderRatio = MON_FEMALE,                                          \
         .eggCycles = 20,                                                    \
         .friendship = 70,                                                   \
         .growthRate = GROWTH_MEDIUM_FAST,                                   \
-        .eggGroup1 = EGG_GROUP_FAIRY,                                       \
-        .eggGroup2 = EGG_GROUP_FAIRY,                                       \
         .abilities = {ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS},\
         .bodyColor = BODY_COLOR_WHITE,                                      \
         .noFlip = FALSE,                                                    \
+        FOOTPRINT(Floette)
+
+#define FLOETTE_NORMAL_INFO(dex, form, iconPal)                     \
+    {                                                               \
+        .baseHP        = 54,                                        \
+        .baseAttack    = 45,                                        \
+        .baseDefense   = 47,                                        \
+        .baseSpeed     = 52,                                        \
+        .baseSpAttack  = 75,                                        \
+        .baseSpDefense = 98,                                        \
+        .expYield = 130,                                            \
+        .eggGroup1 = EGG_GROUP_FAIRY,                               \
+        .eggGroup2 = EGG_GROUP_FAIRY,                               \
+        .natDexNum = NATIONAL_DEX_FLOETTE,                          \
+        DEX_TEXT(dex, "Single Bloom"),                              \
+        DEX_SCALE(356, 17, 256, 0),                                 \
+        HEIGHT_WEIGHT(2, 9),                                        \
+        LEARNSETS(Floette),                                         \
+        FRONT_SPRITE(Floette, 48, 64,  3, 4),                       \
+        BACK_SPRITE(Floette, 64, 64,  2),                           \
+        PALETTES(form),                                             \
+        ICON(form, iconPal),                                        \
+        ANIMATIONS(FLOETTE, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),\
+        FLOETTE_MISC_INFO,                                          \
     }
-    [SPECIES_FLOETTE_RED_FLOWER]    = FLOETTE_BASE_STATS,
-    [SPECIES_FLOETTE_YELLOW_FLOWER] = FLOETTE_BASE_STATS,
-    [SPECIES_FLOETTE_ORANGE_FLOWER] = FLOETTE_BASE_STATS,
-    [SPECIES_FLOETTE_BLUE_FLOWER]   = FLOETTE_BASE_STATS,
-    [SPECIES_FLOETTE_WHITE_FLOWER]  = FLOETTE_BASE_STATS,
+
+    [SPECIES_FLOETTE_RED_FLOWER]    = FLOETTE_NORMAL_INFO(Floette, Floette, 1),
+    [SPECIES_FLOETTE_YELLOW_FLOWER] = FLOETTE_NORMAL_INFO(Dummy, FloetteYellowFlower, 1),
+    [SPECIES_FLOETTE_ORANGE_FLOWER] = FLOETTE_NORMAL_INFO(Dummy, FloetteOrangeFlower, 0),
+    [SPECIES_FLOETTE_BLUE_FLOWER]   = FLOETTE_NORMAL_INFO(Dummy, FloetteBlueFlower, 0),
+    [SPECIES_FLOETTE_WHITE_FLOWER]  = FLOETTE_NORMAL_INFO(Dummy, FloetteWhiteFlower, 1),
     [SPECIES_FLOETTE_ETERNAL_FLOWER] =
     {
         .baseHP        = 74,
@@ -27641,23 +27873,24 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 92,
         .baseSpAttack  = 125,
         .baseSpDefense = 128,
-        .type1 = TYPE_FAIRY,
-        .type2 = TYPE_FAIRY,
-        .catchRate = 120,
         .expYield = 243,
-        .evYield_SpDefense = 2,
-        .genderRatio = MON_FEMALE,
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_UNDISCOVERED,
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS},
-        .bodyColor = BODY_COLOR_WHITE,
-        .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_FLOETTE,
+        DEX_TEXT(Dummy, "Single Bloom"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(2, 9),
+        .levelUpLearnset = sFloetteEternalFlowerLevelUpLearnset,
+        .teachableLearnset = sFloetteTeachableLearnset,
+        FRONT_SPRITE(FloetteEternalFlower, 48, 64,  3, 4),
+        BACK_SPRITE(FloetteEternalFlower, 64, 64,  2),
+        PALETTES(FloetteEternalFlower),
+        ICON(FloetteEternalFlower, 0),
+        ANIMATIONS(FLOETTE, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
+        FLOETTE_MISC_INFO,
     },
 
-#define FLORGES_BASE_STATS                                                  \
+#define FLORGES_SPECIES_INFO(dex, form, iconPal)                            \
     {                                                                       \
         .baseHP        = 78,                                                \
         .baseAttack    = 65,                                                \
@@ -27679,12 +27912,23 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_FLOWER_VEIL, ABILITY_NONE, ABILITY_SYMBIOSIS},\
         .bodyColor = BODY_COLOR_WHITE,                                      \
         .noFlip = FALSE,                                                    \
+        .natDexNum = NATIONAL_DEX_FLORGES,                                  \
+        DEX_TEXT(dex, "Garden"),                                            \
+        DEX_SCALE(356, 17, 256, 0),                                         \
+        HEIGHT_WEIGHT(11, 100),                                             \
+        LEARNSETS(Florges),                                                 \
+        FRONT_SPRITE(Florges, 64, 64,  0, 0),                               \
+        BACK_SPRITE(Florges, 64, 48,  9),                                   \
+        PALETTES(form),                                                     \
+        ICON(form, iconPal),                                                \
+        FOOTPRINT(Florges),                                                 \
+        ANIMATIONS(FLORGES, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),          \
     }
-    [SPECIES_FLORGES_RED_FLOWER]    = FLORGES_BASE_STATS,
-    [SPECIES_FLORGES_YELLOW_FLOWER] = FLORGES_BASE_STATS,
-    [SPECIES_FLORGES_ORANGE_FLOWER] = FLORGES_BASE_STATS,
-    [SPECIES_FLORGES_BLUE_FLOWER]   = FLORGES_BASE_STATS,
-    [SPECIES_FLORGES_WHITE_FLOWER]  = FLORGES_BASE_STATS,
+    [SPECIES_FLORGES_RED_FLOWER]    = FLORGES_SPECIES_INFO(Florges, Florges, 0),
+    [SPECIES_FLORGES_YELLOW_FLOWER] = FLORGES_SPECIES_INFO(Dummy, FlorgesYellowFlower, 1),
+    [SPECIES_FLORGES_ORANGE_FLOWER] = FLORGES_SPECIES_INFO(Dummy, FlorgesOrangeFlower, 0),
+    [SPECIES_FLORGES_BLUE_FLOWER]   = FLORGES_SPECIES_INFO(Dummy, FlorgesBlueFlower, 0),
+    [SPECIES_FLORGES_WHITE_FLOWER]  = FLORGES_SPECIES_INFO(Dummy, FlorgesWhiteFlower, 0),
 
     [SPECIES_SKIDDO] =
     {
@@ -27708,6 +27952,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAP_SIPPER, ABILITY_NONE, ABILITY_GRASS_PELT},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SKIDDO,
+        DEX_TEXT(Skiddo, "Mount"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(9, 310),
+        LEARNSETS(Skiddo),
+        FRONT_SPRITE(Skiddo, 48, 56,  7, 0),
+        BACK_SPRITE(Skiddo, 56, 48,  8),
+        PALETTES(Skiddo),
+        ICON(Skiddo, 1),
+        FOOTPRINT(Skiddo),
+        ANIMATIONS(SKIDDO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_GOGOAT] =
@@ -27732,6 +27987,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAP_SIPPER, ABILITY_NONE, ABILITY_GRASS_PELT},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_GOGOAT,
+        DEX_TEXT(Gogoat, "Mount"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(17, 910),
+        LEARNSETS(Gogoat),
+        FRONT_SPRITE(Gogoat, 56, 64,  2, 0),
+        BACK_SPRITE(Gogoat, 64, 56,  9),
+        PALETTES(Gogoat),
+        ICON(Gogoat, 1),
+        FOOTPRINT(Gogoat),
+        ANIMATIONS(GOGOAT, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_PANCHAM] =
@@ -27757,6 +28023,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_IRON_FIST, ABILITY_MOLD_BREAKER, ABILITY_SCRAPPY},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PANCHAM,
+        DEX_TEXT(Pancham, "Playful"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(6, 80),
+        LEARNSETS(Pancham),
+        FRONT_SPRITE(Pancham, 32, 48, 12, 0),
+        BACK_SPRITE(Pancham, 48, 56,  9),
+        PALETTES(Pancham),
+        ICON(Pancham, 1),
+        FOOTPRINT(Pancham),
+        ANIMATIONS(PANCHAM, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_PANGORO] =
@@ -27782,41 +28059,63 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_IRON_FIST, ABILITY_MOLD_BREAKER, ABILITY_SCRAPPY},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PANGORO,
+        DEX_TEXT(Pangoro, "Daunting"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(21, 1360),
+        LEARNSETS(Pangoro),
+        FRONT_SPRITE(Pangoro, 64, 64,  0, 0),
+        BACK_SPRITE(Pangoro, 64, 56,  4),
+        PALETTES(Pangoro),
+        ICON(Pangoro, 1),
+        FOOTPRINT(Pangoro),
+        ANIMATIONS(PANGORO, 0, ANIM_BACK_AND_LUNGE, BACK_ANIM_NONE),
     },
 
-#define FURFROU_BASE_STATS(flip)                      \
-    {                                                 \
-        .baseHP        = 75,                          \
-        .baseAttack    = 80,                          \
-        .baseDefense   = 60,                          \
-        .baseSpeed     = 102,                         \
-        .baseSpAttack  = 65,                          \
-        .baseSpDefense = 90,                          \
-        .type1 = TYPE_NORMAL,                         \
-        .type2 = TYPE_NORMAL,                         \
-        .catchRate = 160,                             \
-        .expYield = 165,                              \
-        .evYield_Speed     = 1,                       \
-        .genderRatio = PERCENT_FEMALE(50),            \
-        .eggCycles = 20,                              \
-        .friendship = 70,                             \
-        .growthRate = GROWTH_MEDIUM_FAST,             \
-        .eggGroup1 = EGG_GROUP_FIELD,                 \
-        .eggGroup2 = EGG_GROUP_FIELD,                 \
-        .abilities = {ABILITY_FUR_COAT, ABILITY_NONE},\
-        .bodyColor = BODY_COLOR_WHITE,                \
-        .noFlip = flip,                               \
+#define FURFROU_SPECIES_INFO(flip, form)                        \
+    {                                                           \
+        .baseHP        = 75,                                    \
+        .baseAttack    = 80,                                    \
+        .baseDefense   = 60,                                    \
+        .baseSpeed     = 102,                                   \
+        .baseSpAttack  = 65,                                    \
+        .baseSpDefense = 90,                                    \
+        .type1 = TYPE_NORMAL,                                   \
+        .type2 = TYPE_NORMAL,                                   \
+        .catchRate = 160,                                       \
+        .expYield = 165,                                        \
+        .evYield_Speed     = 1,                                 \
+        .genderRatio = PERCENT_FEMALE(50),                      \
+        .eggCycles = 20,                                        \
+        .friendship = 70,                                       \
+        .growthRate = GROWTH_MEDIUM_FAST,                       \
+        .eggGroup1 = EGG_GROUP_FIELD,                           \
+        .eggGroup2 = EGG_GROUP_FIELD,                           \
+        .abilities = {ABILITY_FUR_COAT, ABILITY_NONE},          \
+        .bodyColor = BODY_COLOR_WHITE,                          \
+        .noFlip = flip,                                         \
+        .natDexNum = NATIONAL_DEX_FURFROU,                      \
+        DEX_TEXT(Furfrou, "Poodle"),                            \
+        DEX_SCALE(356, 17, 256, 0),                             \
+        HEIGHT_WEIGHT(12, 280),                                 \
+        LEARNSETS(Furfrou),                                     \
+        FRONT_SPRITE(form, 56, 64,  2, 0),                      \
+        BACK_SPRITE(form, 56, 64,  1),                          \
+        PALETTES(form),                                         \
+        ICON(form, 0),                                          \
+        FOOTPRINT(Furfrou),                                     \
+        ANIMATIONS(FURFROU, 0, ANIM_H_SLIDE, BACK_ANIM_NONE),   \
     }
-    [SPECIES_FURFROU_NATURAL]        = FURFROU_BASE_STATS(FLIP),
-    [SPECIES_FURFROU_HEART_TRIM]     = FURFROU_BASE_STATS(FLIP),
-    [SPECIES_FURFROU_STAR_TRIM]      = FURFROU_BASE_STATS(FLIP),
-    [SPECIES_FURFROU_DIAMOND_TRIM]   = FURFROU_BASE_STATS(FLIP),
-    [SPECIES_FURFROU_DEBUTANTE_TRIM] = FURFROU_BASE_STATS(NO_FLIP),
-    [SPECIES_FURFROU_MATRON_TRIM]    = FURFROU_BASE_STATS(FLIP),
-    [SPECIES_FURFROU_DANDY_TRIM]     = FURFROU_BASE_STATS(FLIP),
-    [SPECIES_FURFROU_LA_REINE_TRIM]  = FURFROU_BASE_STATS(FLIP),
-    [SPECIES_FURFROU_KABUKI_TRIM]    = FURFROU_BASE_STATS(FLIP),
-    [SPECIES_FURFROU_PHARAOH_TRIM]   = FURFROU_BASE_STATS(FLIP),
+    [SPECIES_FURFROU_NATURAL]        = FURFROU_SPECIES_INFO(FLIP, Furfrou),
+    [SPECIES_FURFROU_HEART_TRIM]     = FURFROU_SPECIES_INFO(FLIP, FurfrouHeartTrim),
+    [SPECIES_FURFROU_STAR_TRIM]      = FURFROU_SPECIES_INFO(FLIP, FurfrouStarTrim),
+    [SPECIES_FURFROU_DIAMOND_TRIM]   = FURFROU_SPECIES_INFO(FLIP, FurfrouDiamondTrim),
+    [SPECIES_FURFROU_DEBUTANTE_TRIM] = FURFROU_SPECIES_INFO(NO_FLIP, FurfrouDebutanteTrim),
+    [SPECIES_FURFROU_MATRON_TRIM]    = FURFROU_SPECIES_INFO(FLIP, FurfrouMatronTrim),
+    [SPECIES_FURFROU_DANDY_TRIM]     = FURFROU_SPECIES_INFO(FLIP, FurfrouDandyTrim),
+    [SPECIES_FURFROU_LA_REINE_TRIM]  = FURFROU_SPECIES_INFO(FLIP, FurfrouLaReineTrim),
+    [SPECIES_FURFROU_KABUKI_TRIM]    = FURFROU_SPECIES_INFO(FLIP, FurfrouKabukiTrim),
+    [SPECIES_FURFROU_PHARAOH_TRIM]   = FURFROU_SPECIES_INFO(FLIP, FurfrouPharaohTrim),
 
     [SPECIES_ESPURR] =
     {
@@ -27840,33 +28139,69 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_INFILTRATOR, ABILITY_OWN_TEMPO},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_ESPURR,
+        DEX_TEXT(Espurr, "Restraint"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 35),
+        LEARNSETS(Espurr),
+        FRONT_SPRITE(Espurr, 32, 48, 10, 0),
+        BACK_SPRITE(Espurr, 56, 56,  7),
+        PALETTES(Espurr),
+        ICON(Espurr, 2),
+        FOOTPRINT(Espurr),
+        ANIMATIONS(ESPURR, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
-#define MEOWSTIC_BASE_STATS(gender, ability3, color)                    \
-    {                                                                   \
-        .baseHP        = 74,                                            \
-        .baseAttack    = 48,                                            \
-        .baseDefense   = 76,                                            \
-        .baseSpeed     = 104,                                           \
-        .baseSpAttack  = 83,                                            \
-        .baseSpDefense = 81,                                            \
-        .type1 = TYPE_PSYCHIC,                                          \
-        .type2 = TYPE_PSYCHIC,                                          \
-        .catchRate = 75,                                                \
-        .expYield = 163,                                                \
-        .evYield_Speed     = 2,                                         \
-        .genderRatio = gender,                                          \
-        .eggCycles = 20,                                                \
-        .friendship = 70,                                               \
-        .growthRate = GROWTH_MEDIUM_FAST,                               \
-        .eggGroup1 = EGG_GROUP_FIELD,                                   \
-        .eggGroup2 = EGG_GROUP_FIELD,                                   \
-        .abilities = {ABILITY_KEEN_EYE, ABILITY_INFILTRATOR, ability3}, \
-        .bodyColor = color,                                             \
-        .noFlip = FALSE,                                                \
-    }
-    [SPECIES_MEOWSTIC_MALE]   = MEOWSTIC_BASE_STATS(MON_MALE, ABILITY_PRANKSTER, BODY_COLOR_BLUE),
-    [SPECIES_MEOWSTIC_FEMALE] = MEOWSTIC_BASE_STATS(MON_FEMALE, ABILITY_COMPETITIVE, BODY_COLOR_WHITE),
+#define MEOWSTIC_MISC_STATS                                         \
+        .baseHP        = 74,                                        \
+        .baseAttack    = 48,                                        \
+        .baseDefense   = 76,                                        \
+        .baseSpeed     = 104,                                       \
+        .baseSpAttack  = 83,                                        \
+        .baseSpDefense = 81,                                        \
+        .type1 = TYPE_PSYCHIC,                                      \
+        .type2 = TYPE_PSYCHIC,                                      \
+        .catchRate = 75,                                            \
+        .expYield = 163,                                            \
+        .evYield_Speed     = 2,                                     \
+        .eggCycles = 20,                                            \
+        .friendship = 70,                                           \
+        .growthRate = GROWTH_MEDIUM_FAST,                           \
+        .eggGroup1 = EGG_GROUP_FIELD,                               \
+        .eggGroup2 = EGG_GROUP_FIELD,                               \
+        .noFlip = FALSE,                                            \
+        .natDexNum = NATIONAL_DEX_MEOWSTIC,                         \
+        DEX_SCALE(356, 17, 256, 0),                                 \
+        HEIGHT_WEIGHT(6, 85),                                       \
+        FOOTPRINT(Meowstic),                                        \
+        ANIMATIONS(MEOWSTIC, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE)
+
+    [SPECIES_MEOWSTIC_MALE] =
+    {
+        .genderRatio = MON_MALE,
+        .abilities = {ABILITY_KEEN_EYE, ABILITY_INFILTRATOR, ABILITY_PRANKSTER},
+        .bodyColor = BODY_COLOR_BLUE,
+        DEX_TEXT(Meowstic, "Constraint"),
+        LEARNSETS(Meowstic),
+        FRONT_SPRITE(Meowstic, 48, 64,  3, 0),
+        BACK_SPRITE(Meowstic, 64, 64,  9),
+        PALETTES(Meowstic),
+        ICON(Meowstic, 0),
+        MEOWSTIC_MISC_STATS,
+    },
+    [SPECIES_MEOWSTIC_FEMALE] =
+    {
+        .genderRatio = MON_FEMALE,
+        .abilities = {ABILITY_KEEN_EYE, ABILITY_INFILTRATOR, ABILITY_COMPETITIVE},
+        .bodyColor = BODY_COLOR_WHITE,
+        DEX_TEXT(Dummy, "Constraint"),
+        LEARNSETS(MeowsticFemale),
+        FRONT_SPRITE(MeowsticFemale, 56, 64,  2, 0),
+        BACK_SPRITE(MeowsticFemale, 48, 64,  9),
+        PALETTES(MeowsticFemale),
+        ICON(MeowsticFemale, 0),
+        MEOWSTIC_MISC_STATS,
+    },
 
     [SPECIES_HONEDGE] =
     {
@@ -27890,6 +28225,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_NO_GUARD, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_HONEDGE,
+        DEX_TEXT(Honedge, "Sword"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 20),
+        LEARNSETS(Honedge),
+        FRONT_SPRITE(Honedge, 64, 56,  4, 4),
+        BACK_SPRITE(Honedge, 48, 56,  4),
+        PALETTES(Honedge),
+        ICON(Honedge, 2),
+        FOOTPRINT(Honedge),
+        ANIMATIONS(HONEDGE, 0, ANIM_SWING_CONVEX, BACK_ANIM_NONE),
     },
 
     [SPECIES_DOUBLADE] =
@@ -27914,6 +28260,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_NO_GUARD, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_DOUBLADE,
+        DEX_TEXT(Doublade, "Sword"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 45),
+        LEARNSETS(Doublade),
+        FRONT_SPRITE(Doublade, 64, 64,  5, 5),
+        BACK_SPRITE(Doublade, 64, 64,  7),
+        PALETTES(Doublade),
+        ICON(Doublade, 2),
+        FOOTPRINT(Doublade),
+        ANIMATIONS(DOUBLADE, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 
 
@@ -27922,8 +28279,6 @@ const struct BaseStats gBaseStats[] =
         .type2 = TYPE_GHOST,                                \
         .catchRate = 45,                                    \
         .expYield = 234,                                    \
-        .evYield_Defense   = 2,                             \
-        .evYield_SpDefense = 1,                             \
         .genderRatio = PERCENT_FEMALE(50),                  \
         .eggCycles = 20,                                    \
         .friendship = 70,                                   \
@@ -27932,36 +28287,53 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_MINERAL,                     \
         .abilities = {ABILITY_STANCE_CHANGE, ABILITY_NONE}, \
         .bodyColor = BODY_COLOR_BROWN,                      \
-        .noFlip = FALSE
+        .noFlip = FALSE,                                    \
+        .natDexNum = NATIONAL_DEX_AEGISLASH,                \
+        DEX_SCALE(356, 17, 256, 0),                         \
+        HEIGHT_WEIGHT(17, 530),                             \
+        LEARNSETS(Aegislash),                               \
+        FOOTPRINT(Aegislash)
+
+#if P_UPDATED_STATS >= GEN_8
+    #define AEGISLASH_HIGHER_STAT 140
+#else
+    #define AEGISLASH_HIGHER_STAT 150
+#endif
 
     [SPECIES_AEGISLASH_SHIELD] =
     {
         .baseHP        = 60,
         .baseAttack    = 50,
+        .baseDefense   = AEGISLASH_HIGHER_STAT,
         .baseSpeed     = 60,
         .baseSpAttack  = 50,
-    #if P_UPDATED_STATS >= GEN_8
-        .baseDefense   = 140,
-        .baseSpDefense = 140,
-    #else
-        .baseDefense   = 150,
-        .baseSpDefense = 150,
-    #endif
+        .baseSpDefense = AEGISLASH_HIGHER_STAT,
+        .evYield_Defense   = 2,
+        .evYield_SpDefense = 1,
+        DEX_TEXT(Aegislash, "Royal Sword"),
+        FRONT_SPRITE(Aegislash, 56, 64,  0, 3),
+        BACK_SPRITE(Aegislash, 64, 64,  9),
+        PALETTES(Aegislash),
+        ICON(Aegislash, 2),
+        ANIMATIONS(AEGISLASH, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
         AEGISLASH_MISC_STATS,
     },
     [SPECIES_AEGISLASH_BLADE] =
     {
         .baseHP        = 60,
+        .baseAttack    = AEGISLASH_HIGHER_STAT,
         .baseDefense   = 50,
         .baseSpeed     = 60,
-    #if P_UPDATED_STATS >= GEN_8
-        .baseAttack    = 140,
-        .baseSpAttack  = 140,
-    #else
-        .baseAttack    = 150,
-        .baseSpAttack  = 150,
-    #endif
+        .baseSpAttack  = AEGISLASH_HIGHER_STAT,
         .baseSpDefense = 50,
+        .evYield_Attack    = 2,
+        .evYield_SpAttack  = 1,
+        DEX_TEXT(Dummy, "Royal Sword"),
+        FRONT_SPRITE(AegislashBlade, 64, 64,  0, 3),
+        BACK_SPRITE(AegislashBlade, 64, 64,  9),
+        PALETTES(AegislashBlade),
+        ICON(AegislashBlade, 2),
+        ANIMATIONS(AEGISLASH_BLADE, 0, ANIM_CIRCLE_C_CLOCKWISE_SLOW, BACK_ANIM_NONE),
         AEGISLASH_MISC_STATS,
     },
 
@@ -27987,6 +28359,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_HEALER, ABILITY_NONE, ABILITY_AROMA_VEIL},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SPRITZEE,
+        DEX_TEXT(Spritzee, "Perfume"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(2, 5),
+        LEARNSETS(Spritzee),
+        FRONT_SPRITE(Spritzee, 48, 48, 12, 14),
+        BACK_SPRITE(Spritzee, 56, 48, 11),
+        PALETTES(Spritzee),
+        ICON(Spritzee, 0),
+        FOOTPRINT(Spritzee),
+        ANIMATIONS(SPRITZEE, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_AROMATISSE] =
@@ -28011,6 +28394,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_HEALER, ABILITY_NONE, ABILITY_AROMA_VEIL},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_AROMATISSE,
+        DEX_TEXT(Aromatisse, "Fragrance"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 155),
+        LEARNSETS(Aromatisse),
+        FRONT_SPRITE(Aromatisse, 48, 56,  4, 0),
+        BACK_SPRITE(Aromatisse, 64, 64,  5),
+        PALETTES(Aromatisse),
+        ICON(Aromatisse, 0),
+        FOOTPRINT(Aromatisse),
+        ANIMATIONS(AROMATISSE, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_SWIRLIX] =
@@ -28035,6 +28429,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWEET_VEIL, ABILITY_NONE, ABILITY_UNBURDEN},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SWIRLIX,
+        DEX_TEXT(Swirlix, "Cotton Candy"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 35),
+        LEARNSETS(Swirlix),
+        FRONT_SPRITE(Swirlix, 40, 40, 14, 0),
+        BACK_SPRITE(Swirlix, 56, 40, 12),
+        PALETTES(Swirlix),
+        ICON(Swirlix, 1),
+        FOOTPRINT(Swirlix),
+        ANIMATIONS(SWIRLIX, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_SLURPUFF] =
@@ -28059,6 +28464,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWEET_VEIL, ABILITY_NONE, ABILITY_UNBURDEN},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SLURPUFF,
+        DEX_TEXT(Slurpuff, "Meringue"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 50),
+        LEARNSETS(Slurpuff),
+        FRONT_SPRITE(Slurpuff, 48, 56,  8, 0),
+        BACK_SPRITE(Slurpuff, 64, 64,  4),
+        PALETTES(Slurpuff),
+        ICON(Slurpuff, 1),
+        FOOTPRINT(Slurpuff),
+        ANIMATIONS(SLURPUFF, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_INKAY] =
@@ -28083,6 +28499,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CONTRARY, ABILITY_SUCTION_CUPS, ABILITY_INFILTRATOR},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_INKAY,
+        DEX_TEXT(Inkay, "Revolving"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 35),
+        LEARNSETS(Inkay),
+        FRONT_SPRITE(Inkay, 48, 48, 14, 14),
+        BACK_SPRITE(Inkay, 56, 64,  9),
+        PALETTES(Inkay),
+        ICON(Inkay, 0),
+        FOOTPRINT(Inkay),
+        ANIMATIONS(INKAY, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_MALAMAR] =
@@ -28107,6 +28534,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CONTRARY, ABILITY_SUCTION_CUPS, ABILITY_INFILTRATOR},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_MALAMAR,
+        DEX_TEXT(Malamar, "Overturning"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(15, 470),
+        LEARNSETS(Malamar),
+        FRONT_SPRITE(Malamar, 64, 64,  0, 0),
+        BACK_SPRITE(Malamar, 64, 56,  8),
+        PALETTES(Malamar),
+        ICON(Malamar, 2),
+        FOOTPRINT(Malamar),
+        ANIMATIONS(MALAMAR, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_NONE),
     },
 
     [SPECIES_BINACLE] =
@@ -28131,6 +28569,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_SNIPER, ABILITY_PICKPOCKET},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BINACLE,
+        DEX_TEXT(Binacle, "Two-Handed"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 310),
+        LEARNSETS(Binacle),
+        FRONT_SPRITE(Binacle, 48, 56,  9, 0),
+        BACK_SPRITE(Binacle, 64, 64,  5),
+        PALETTES(Binacle),
+        ICON(Binacle, 2),
+        FOOTPRINT(Binacle),
+        ANIMATIONS(BINACLE, 0, ANIM_H_SLIDE, BACK_ANIM_NONE),
     },
 
     [SPECIES_BARBARACLE] =
@@ -28155,6 +28604,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_SNIPER, ABILITY_PICKPOCKET},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_BARBARACLE,
+        DEX_TEXT(Barbaracle, "Collective"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(13, 960),
+        LEARNSETS(Barbaracle),
+        FRONT_SPRITE(Barbaracle, 64, 64,  0, 0),
+        BACK_SPRITE(Barbaracle, 64, 64,  0),
+        PALETTES(Barbaracle),
+        ICON(Barbaracle, 2),
+        FOOTPRINT(Barbaracle),
+        ANIMATIONS(BARBARACLE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_SKRELP] =
@@ -28179,6 +28639,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_POISON_POINT, ABILITY_POISON_TOUCH, ABILITY_ADAPTABILITY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SKRELP,
+        DEX_TEXT(Skrelp, "Mock Kelp"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 73),
+        LEARNSETS(Skrelp),
+        FRONT_SPRITE(Skrelp, 40, 48,  8, 0),
+        BACK_SPRITE(Skrelp, 64, 64,  5),
+        PALETTES(Skrelp),
+        ICON(Skrelp, 2),
+        FOOTPRINT(Skrelp),
+        ANIMATIONS(SKRELP, 0, ANIM_V_SLIDE_WOBBLE_SMALL, BACK_ANIM_NONE),
     },
 
     [SPECIES_DRAGALGE] =
@@ -28203,6 +28674,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_POISON_POINT, ABILITY_POISON_TOUCH, ABILITY_ADAPTABILITY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_DRAGALGE,
+        DEX_TEXT(Dragalge, "Mock Kelp"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(18, 815),
+        LEARNSETS(Dragalge),
+        FRONT_SPRITE(Dragalge, 64, 64,  0, 0),
+        BACK_SPRITE(Dragalge, 64, 64,  0),
+        PALETTES(Dragalge),
+        ICON(Dragalge, 5),
+        FOOTPRINT(Dragalge),
+        ANIMATIONS(DRAGALGE, 0, ANIM_FRONT_FLIP, BACK_ANIM_NONE),
     },
 
     [SPECIES_CLAUNCHER] =
@@ -28227,6 +28709,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_MEGA_LAUNCHER, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_CLAUNCHER,
+        DEX_TEXT(Clauncher, "Water Gun"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 83),
+        LEARNSETS(Clauncher),
+        FRONT_SPRITE(Clauncher, 56, 40, 14, 0),
+        BACK_SPRITE(Clauncher, 64, 48, 11),
+        PALETTES(Clauncher),
+        ICON(Clauncher, 0),
+        FOOTPRINT(Clauncher),
+        ANIMATIONS(CLAUNCHER, 0, ANIM_TIP_MOVE_FORWARD, BACK_ANIM_NONE),
     },
 
     [SPECIES_CLAWITZER] =
@@ -28251,6 +28744,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_MEGA_LAUNCHER, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_CLAWITZER,
+        DEX_TEXT(Clawitzer, "Howitzer"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(13, 353),
+        LEARNSETS(Clawitzer),
+        FRONT_SPRITE(Clawitzer, 64, 64, 10, 0),
+        BACK_SPRITE(Clawitzer, 64, 48, 11),
+        PALETTES(Clawitzer),
+        ICON(Clawitzer, 0),
+        FOOTPRINT(Clawitzer),
+        ANIMATIONS(CLAWITZER, 0, ANIM_CIRCLE_C_CLOCKWISE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_HELIOPTILE] =
@@ -28275,6 +28779,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_DRY_SKIN, ABILITY_SAND_VEIL, ABILITY_SOLAR_POWER},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_HELIOPTILE,
+        DEX_TEXT(Helioptile, "Generator"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 60),
+        LEARNSETS(Helioptile),
+        FRONT_SPRITE(Helioptile, 40, 40, 13, 0),
+        BACK_SPRITE(Helioptile, 64, 48, 11),
+        PALETTES(Helioptile),
+        ICON(Helioptile, 2),
+        FOOTPRINT(Helioptile),
+        ANIMATIONS(HELIOPTILE, 0, ANIM_GLOW_YELLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_HELIOLISK] =
@@ -28300,6 +28815,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_DRY_SKIN, ABILITY_SAND_VEIL, ABILITY_SOLAR_POWER},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_HELIOLISK,
+        DEX_TEXT(Heliolisk, "Generator"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 210),
+        LEARNSETS(Heliolisk),
+        FRONT_SPRITE(Heliolisk, 64, 56,  4, 0),
+        BACK_SPRITE(Heliolisk, 56, 64,  2),
+        PALETTES(Heliolisk),
+        ICON(Heliolisk, 2),
+        FOOTPRINT(Heliolisk),
+        ANIMATIONS(HELIOLISK, 0, ANIM_RAPID_H_HOPS, BACK_ANIM_NONE),
     },
 
     [SPECIES_TYRUNT] =
@@ -28324,6 +28850,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STRONG_JAW, ABILITY_NONE, ABILITY_STURDY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_TYRUNT,
+        DEX_TEXT(Tyrunt, "Royal Heir"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 260),
+        LEARNSETS(Tyrunt),
+        FRONT_SPRITE(Tyrunt, 48, 48, 11, 0),
+        BACK_SPRITE(Tyrunt, 64, 48, 11),
+        PALETTES(Tyrunt),
+        ICON(Tyrunt, 2),
+        FOOTPRINT(Tyrunt),
+        ANIMATIONS(TYRUNT, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
     [SPECIES_TYRANTRUM] =
@@ -28348,6 +28885,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STRONG_JAW, ABILITY_NONE, ABILITY_ROCK_HEAD},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_TYRANTRUM,
+        DEX_TEXT(Tyrantrum, "Despot"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(25, 2700),
+        LEARNSETS(Tyrantrum),
+        FRONT_SPRITE(Tyrantrum, 64, 64,  0, 0),
+        BACK_SPRITE(Tyrantrum, 64, 56, 11),
+        PALETTES(Tyrantrum),
+        ICON(Tyrantrum, 0),
+        FOOTPRINT(Tyrantrum),
+        ANIMATIONS(TYRANTRUM, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
     [SPECIES_AMAURA] =
@@ -28372,6 +28920,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_REFRIGERATE, ABILITY_NONE, ABILITY_SNOW_WARNING},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_AMAURA,
+        DEX_TEXT(Amaura, "Tundra"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(13, 252),
+        LEARNSETS(Amaura),
+        FRONT_SPRITE(Amaura, 32, 56,  8, 0),
+        BACK_SPRITE(Amaura, 40, 64,  3),
+        PALETTES(Amaura),
+        ICON(Amaura, 0),
+        FOOTPRINT(Amaura),
+        ANIMATIONS(AMAURA, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_AURORUS] =
@@ -28396,6 +28955,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_REFRIGERATE, ABILITY_NONE, ABILITY_SNOW_WARNING},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_AURORUS,
+        DEX_TEXT(Aurorus, "Tundra"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(27, 2250),
+        LEARNSETS(Aurorus),
+        FRONT_SPRITE(Aurorus, 64, 64,  0, 0),
+        BACK_SPRITE(Aurorus, 64, 64,  0),
+        PALETTES(Aurorus),
+        ICON(Aurorus, 0),
+        FOOTPRINT(Aurorus),
+        ANIMATIONS(AURORUS, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_SYLVEON] =
@@ -28420,6 +28990,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CUTE_CHARM, ABILITY_CUTE_CHARM, ABILITY_PIXILATE},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_SYLVEON,
+        DEX_TEXT(Sylveon, "Intertwine"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 235),
+        LEARNSETS(Sylveon),
+        FRONT_SPRITE(Sylveon, 48, 56,  4, 0),
+        BACK_SPRITE(Sylveon, 64, 64,  4),
+        PALETTES(Sylveon),
+        ICON(Sylveon, 0),
+        FOOTPRINT(Sylveon),
+        ANIMATIONS(SYLVEON, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE),
     },
 
     [SPECIES_HAWLUCHA] =
@@ -28449,6 +29030,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LIMBER, ABILITY_UNBURDEN, ABILITY_MOLD_BREAKER},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_HAWLUCHA,
+        DEX_TEXT(Hawlucha, "Wrestling"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 215),
+        LEARNSETS(Hawlucha),
+        FRONT_SPRITE(Hawlucha, 64, 56,  8, 0),
+        BACK_SPRITE(Hawlucha, 64, 48, 10),
+        PALETTES(Hawlucha),
+        ICON(Hawlucha, 0),
+        FOOTPRINT(Hawlucha),
+        ANIMATIONS(HAWLUCHA, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_DEDENNE] =
@@ -28473,6 +29065,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CHEEK_POUCH, ABILITY_PICKUP, ABILITY_PLUS},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_DEDENNE,
+        DEX_TEXT(Dedenne, "Antenna"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(2, 22),
+        LEARNSETS(Dedenne),
+        FRONT_SPRITE(Dedenne, 64, 40, 13, 0),
+        BACK_SPRITE(Dedenne, 64, 48, 12),
+        PALETTES(Dedenne),
+        ICON(Dedenne, 0),
+        FOOTPRINT(Dedenne),
+        ANIMATIONS(DEDENNE, 0, ANIM_GLOW_YELLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_CARBINK] =
@@ -28498,6 +29101,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_STURDY},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_CARBINK,
+        DEX_TEXT(Carbink, "Jewel"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 57),
+        LEARNSETS(Carbink),
+        FRONT_SPRITE(Carbink, 48, 48, 10, 4),
+        BACK_SPRITE(Carbink, 56, 56,  7),
+        PALETTES(Carbink),
+        ICON(Carbink, 2),
+        FOOTPRINT(Carbink),
+        ANIMATIONS(CARBINK, 0, ANIM_ZIGZAG_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_GOOMY] =
@@ -28523,7 +29137,35 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_GOOMY,
+        DEX_TEXT(Goomy, "Soft Tissue"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 28),
+        LEARNSETS(Goomy),
+        FRONT_SPRITE(Goomy, 32, 40, 13, 0),
+        BACK_SPRITE(Goomy, 48, 56,  9),
+        PALETTES(Goomy),
+        ICON(Goomy, 5),
+        FOOTPRINT(Goomy),
+        ANIMATIONS(GOOMY, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
     },
+
+#define SLIGGOO_MISC_STATS                  \
+        .type1 = TYPE_DRAGON,               \
+        .catchRate = 45,                    \
+        .expYield = 158,                    \
+        .evYield_SpDefense = 2,             \
+        .itemRare = ITEM_SHED_SHELL,        \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 40,                    \
+        .friendship = 35,                   \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_DRAGON,      \
+        .eggGroup2 = EGG_GROUP_DRAGON,      \
+        .bodyColor = BODY_COLOR_PURPLE,     \
+        .noFlip = FALSE,                    \
+        .natDexNum = NATIONAL_DEX_SLIGGOO,  \
+        FOOTPRINT(Sliggoo)
 
     [SPECIES_SLIGGOO] =
     {
@@ -28533,21 +29175,18 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 60,
         .baseSpAttack  = 83,
         .baseSpDefense = 113,
-        .type1 = TYPE_DRAGON,
         .type2 = TYPE_DRAGON,
-        .catchRate = 45,
-        .expYield = 158,
-        .evYield_SpDefense = 2,
-        .itemRare = ITEM_SHED_SHELL,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 40,
-        .friendship = 35,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_DRAGON,
-        .eggGroup2 = EGG_GROUP_DRAGON,
         .abilities = {ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY},
-        .bodyColor = BODY_COLOR_PURPLE,
-        .noFlip = FALSE,
+        DEX_TEXT(Sliggoo, "Soft Tissue"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 175),
+        LEARNSETS(Sliggoo),
+        FRONT_SPRITE(Sliggoo, 32, 64,  6, 0),
+        BACK_SPRITE(Sliggoo, 48, 64,  0),
+        PALETTES(Sliggoo),
+        ICON(Sliggoo, 5),
+        ANIMATIONS(SLIGGOO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        SLIGGOO_MISC_STATS,
     },
     [SPECIES_SLIGGOO_HISUIAN] =
     {
@@ -28557,23 +29196,35 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 40,
         .baseSpAttack  = 83,
         .baseSpDefense = 113,
-        .type1 = TYPE_DRAGON,
         .type2 = TYPE_STEEL,
-        .catchRate = 45,
-        .expYield = 158,
-        .evYield_SpDefense = 2,
-        .itemRare = ITEM_SHED_SHELL,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 40,
-        .friendship = 35,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_DRAGON,
-        .eggGroup2 = EGG_GROUP_DRAGON,
-        .abilities = {ABILITY_SAP_SIPPER, ABILITY_OVERCOAT, ABILITY_GOOEY},
-        .bodyColor = BODY_COLOR_PURPLE,
-        .noFlip = FALSE,
+        .abilities = {ABILITY_SAP_SIPPER, ABILITY_SHELL_ARMOR, ABILITY_GOOEY},
 	    .flags = SPECIES_FLAG_HISUIAN_FORM,
+        DEX_TEXT(Dummy, "Snail"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 685),
+        LEARNSETS(SliggooHisuian),
+        FRONT_SPRITE(SliggooHisuian, 48, 56,  6, 0),
+        BACK_SPRITE(SliggooHisuian, 64, 64,  0),
+        PALETTES(SliggooHisuian),
+        ICON(SliggooHisuian, 2),
+        ANIMATIONS(SLIGGOO_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
+
+#define GOODRA_MISC_STATS                   \
+        .type1 = TYPE_DRAGON,               \
+        .catchRate = 45,                    \
+        .expYield = 270,                    \
+        .evYield_SpDefense = 3,             \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 40,                    \
+        .friendship = 35,                   \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_DRAGON,      \
+        .eggGroup2 = EGG_GROUP_DRAGON,      \
+        .bodyColor = BODY_COLOR_PURPLE,     \
+        .noFlip = FALSE,                    \
+        .natDexNum = NATIONAL_DEX_GOODRA,   \
+        FOOTPRINT(Goodra)
 
     [SPECIES_GOODRA] =
     {
@@ -28583,20 +29234,18 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 80,
         .baseSpAttack  = 110,
         .baseSpDefense = 150,
-        .type1 = TYPE_DRAGON,
         .type2 = TYPE_DRAGON,
-        .catchRate = 45,
-        .expYield = 270,
-        .evYield_SpDefense = 3,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 40,
-        .friendship = 35,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_DRAGON,
-        .eggGroup2 = EGG_GROUP_DRAGON,
         .abilities = {ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY},
-        .bodyColor = BODY_COLOR_PURPLE,
-        .noFlip = FALSE,
+        DEX_TEXT(Goodra, "Dragon"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(20, 1505),
+        LEARNSETS(Goodra),
+        FRONT_SPRITE(Goodra, 64, 64,  0, 0),
+        BACK_SPRITE(Goodra, 64, 64,  0),
+        PALETTES(Goodra),
+        ICON(Goodra, 5),
+        ANIMATIONS(GOODRA, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
+        GOODRA_MISC_STATS,
     },
     [SPECIES_GOODRA_HISUIAN] =
     {
@@ -28606,21 +29255,19 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 60,
         .baseSpAttack  = 110,
         .baseSpDefense = 150,
-        .type1 = TYPE_DRAGON,
         .type2 = TYPE_STEEL,
-        .catchRate = 45,
-        .expYield = 270,
-        .evYield_SpDefense = 3,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 40,
-        .friendship = 35,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_DRAGON,
-        .eggGroup2 = EGG_GROUP_DRAGON,
-        .abilities = {ABILITY_SAP_SIPPER, ABILITY_OVERCOAT, ABILITY_GOOEY},
-        .bodyColor = BODY_COLOR_PURPLE,
-        .noFlip = FALSE,
+        .abilities = {ABILITY_SAP_SIPPER, ABILITY_SHELL_ARMOR, ABILITY_GOOEY},
 	    .flags = SPECIES_FLAG_HISUIAN_FORM,
+        DEX_TEXT(Dummy, "Shell Bunker"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(17, 3341),
+        LEARNSETS(GoodraHisuian),
+        FRONT_SPRITE(GoodraHisuian, 56, 64,  0, 0),
+        BACK_SPRITE(GoodraHisuian, 64, 64,  0),
+        PALETTES(GoodraHisuian),
+        ICON(GoodraHisuian, 2),
+        ANIMATIONS(GOODRA_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        GOODRA_MISC_STATS,
     },
 
     [SPECIES_KLEFKI] =
@@ -28645,6 +29292,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PRANKSTER, ABILITY_NONE, ABILITY_MAGICIAN},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_KLEFKI,
+        DEX_TEXT(Klefki, "Key Ring"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(2, 30),
+        LEARNSETS(Klefki),
+        FRONT_SPRITE(Klefki, 40, 56,  4, 5),
+        BACK_SPRITE(Klefki, 56, 64,  8),
+        PALETTES(Klefki),
+        ICON(Klefki, 0),
+        FOOTPRINT(Klefki),
+        ANIMATIONS(KLEFKI, 0, ANIM_FOUR_PETAL, BACK_ANIM_NONE),
     },
 
     [SPECIES_PHANTUMP] =
@@ -28669,6 +29327,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_NATURAL_CURE, ABILITY_FRISK, ABILITY_HARVEST},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PHANTUMP,
+        DEX_TEXT(Phantump, "Stump"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 70),
+        LEARNSETS(Phantump),
+        FRONT_SPRITE(Phantump, 48, 48, 11, 5),
+        BACK_SPRITE(Phantump, 64, 56,  9),
+        PALETTES(Phantump),
+        ICON(Phantump, 1),
+        FOOTPRINT(Phantump),
+        ANIMATIONS(PHANTUMP, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_TREVENANT] =
@@ -28693,23 +29362,40 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_NATURAL_CURE, ABILITY_FRISK, ABILITY_HARVEST},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_TREVENANT,
+        DEX_TEXT(Trevenant, "Elder Tree"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(15, 710),
+        LEARNSETS(Trevenant),
+        FRONT_SPRITE(Trevenant, 64, 64,  1, 0),
+        BACK_SPRITE(Trevenant, 64, 64,  5),
+        PALETTES(Trevenant),
+        ICON(Trevenant, 1),
+        FOOTPRINT(Trevenant),
+        ANIMATIONS(TREVENANT, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_NONE),
     },
 
-#define PUMKPABOO_MISC_STATS                                           \
-        .type1 = TYPE_GHOST,                                           \
-        .type2 = TYPE_GRASS,                                           \
-        .catchRate = 120,                                              \
-        .expYield = 67,                                                \
-        .evYield_Defense   = 1,                                        \
-        .genderRatio = PERCENT_FEMALE(50),                             \
-        .eggCycles = 20,                                               \
-        .friendship = 70,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                              \
-        .eggGroup1 = EGG_GROUP_AMORPHOUS,                              \
-        .eggGroup2 = EGG_GROUP_AMORPHOUS,                              \
-        .abilities = {ABILITY_PICKUP, ABILITY_FRISK, ABILITY_INSOMNIA},\
-        .bodyColor = BODY_COLOR_BROWN,                                 \
-        .noFlip = FALSE
+#define PUMKPABOO_MISC_STATS                                            \
+        .type1 = TYPE_GHOST,                                            \
+        .type2 = TYPE_GRASS,                                            \
+        .catchRate = 120,                                               \
+        .expYield = 67,                                                 \
+        .evYield_Defense   = 1,                                         \
+        .genderRatio = PERCENT_FEMALE(50),                              \
+        .eggCycles = 20,                                                \
+        .friendship = 70,                                               \
+        .growthRate = GROWTH_MEDIUM_FAST,                               \
+        .eggGroup1 = EGG_GROUP_AMORPHOUS,                               \
+        .eggGroup2 = EGG_GROUP_AMORPHOUS,                               \
+        .abilities = {ABILITY_PICKUP, ABILITY_FRISK, ABILITY_INSOMNIA}, \
+        .bodyColor = BODY_COLOR_BROWN,                                  \
+        .noFlip = FALSE,                                                \
+        .natDexNum = NATIONAL_DEX_PUMPKABOO,                            \
+        LEARNSETS(Pumpkaboo),                                           \
+        PALETTES(Pumpkaboo),                                            \
+        ICON(Pumpkaboo, 2),                                             \
+        FOOTPRINT(Pumpkaboo),                                           \
+        ANIMATIONS(PUMPKABOO, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE)
 
     [SPECIES_PUMPKABOO_AVERAGE] =
     {
@@ -28719,6 +29405,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 51,
         .baseSpAttack  = 44,
         .baseSpDefense = 55,
+        DEX_TEXT(Pumpkaboo, "Pumpkin"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 50),
+        FRONT_SPRITE(Pumpkaboo, 40, 40, 13, 0),
+        BACK_SPRITE(Pumpkaboo, 56, 48, 13),
         PUMKPABOO_MISC_STATS,
     },
 
@@ -28730,6 +29421,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 56,
         .baseSpAttack  = 44,
         .baseSpDefense = 55,
+        DEX_TEXT(Dummy, "Pumpkin"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 35),
+        FRONT_SPRITE(PumpkabooSmall, 40, 40, 15, 0),
+        BACK_SPRITE(PumpkabooSmall, 56, 48, 14),
         PUMKPABOO_MISC_STATS,
     },
 
@@ -28741,6 +29437,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 46,
         .baseSpAttack  = 44,
         .baseSpDefense = 55,
+        DEX_TEXT(Dummy, "Pumpkin"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 75),
+        FRONT_SPRITE(PumpkabooLarge, 48, 48, 12, 0),
+        BACK_SPRITE(PumpkabooLarge, 56, 48, 13),
         PUMKPABOO_MISC_STATS,
     },
 
@@ -28754,24 +29455,35 @@ const struct BaseStats gBaseStats[] =
         .baseSpDefense = 55,
         .itemCommon = ITEM_MIRACLE_SEED,
         .itemRare = ITEM_MIRACLE_SEED,
+        DEX_TEXT(Dummy, "Pumpkin"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 150),
+        FRONT_SPRITE(PumpkabooSuper, 48, 48, 10, 0),
+        BACK_SPRITE(PumpkabooSuper, 56, 48, 12),
         PUMKPABOO_MISC_STATS,
     },
 
-#define GOURGEIST_MISC_STATS                                           \
-        .type1 = TYPE_GHOST,                                           \
-        .type2 = TYPE_GRASS,                                           \
-        .catchRate = 60,                                               \
-        .expYield = 173,                                               \
-        .evYield_Defense   = 2,                                        \
-        .genderRatio = PERCENT_FEMALE(50),                             \
-        .eggCycles = 20,                                               \
-        .friendship = 70,                                              \
-        .growthRate = GROWTH_MEDIUM_FAST,                              \
-        .eggGroup1 = EGG_GROUP_AMORPHOUS,                              \
-        .eggGroup2 = EGG_GROUP_AMORPHOUS,                              \
-        .abilities = {ABILITY_PICKUP, ABILITY_FRISK, ABILITY_INSOMNIA},\
-        .bodyColor = BODY_COLOR_BROWN,                                 \
-        .noFlip = FALSE
+#define GOURGEIST_MISC_STATS                                            \
+        .type1 = TYPE_GHOST,                                            \
+        .type2 = TYPE_GRASS,                                            \
+        .catchRate = 60,                                                \
+        .expYield = 173,                                                \
+        .evYield_Defense   = 2,                                         \
+        .genderRatio = PERCENT_FEMALE(50),                              \
+        .eggCycles = 20,                                                \
+        .friendship = 70,                                               \
+        .growthRate = GROWTH_MEDIUM_FAST,                               \
+        .eggGroup1 = EGG_GROUP_AMORPHOUS,                               \
+        .eggGroup2 = EGG_GROUP_AMORPHOUS,                               \
+        .abilities = {ABILITY_PICKUP, ABILITY_FRISK, ABILITY_INSOMNIA}, \
+        .bodyColor = BODY_COLOR_BROWN,                                  \
+        .noFlip = FALSE,                                                \
+        .natDexNum = NATIONAL_DEX_GOURGEIST,                            \
+        LEARNSETS(Gourgeist),                                           \
+        PALETTES(Gourgeist),                                            \
+        ICON(Gourgeist, 2),                                             \
+        FOOTPRINT(Gourgeist),                                           \
+        ANIMATIONS(GOURGEIST, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE)
 
     [SPECIES_GOURGEIST_AVERAGE] =
     {
@@ -28781,6 +29493,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 84,
         .baseSpAttack  = 58,
         .baseSpDefense = 75,
+        DEX_TEXT(Gourgeist, "Pumpkin"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(9, 125),
+        FRONT_SPRITE(Gourgeist, 64, 64,  4, 0),
+        BACK_SPRITE(Gourgeist, 48, 64,  3),
         GOURGEIST_MISC_STATS,
     },
     [SPECIES_GOURGEIST_SMALL] =
@@ -28791,6 +29508,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 99,
         .baseSpAttack  = 58,
         .baseSpDefense = 75,
+        DEX_TEXT(Dummy, "Pumpkin"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 95),
+        FRONT_SPRITE(GourgeistSmall, 56, 64,  5, 0),
+        BACK_SPRITE(GourgeistSmall, 48, 56,  4),
         GOURGEIST_MISC_STATS,
     },
     [SPECIES_GOURGEIST_LARGE] =
@@ -28801,6 +29523,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 69,
         .baseSpAttack  = 58,
         .baseSpDefense = 75,
+        DEX_TEXT(Dummy, "Pumpkin"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(11, 140),
+        FRONT_SPRITE(GourgeistLarge, 64, 64,  2, 0),
+        BACK_SPRITE(GourgeistLarge, 48, 64,  2),
         GOURGEIST_MISC_STATS,
     },
     [SPECIES_GOURGEIST_SUPER] =
@@ -28813,6 +29540,11 @@ const struct BaseStats gBaseStats[] =
         .baseSpDefense = 75,
         .itemCommon = ITEM_MIRACLE_SEED,
         .itemRare = ITEM_MIRACLE_SEED,
+        DEX_TEXT(Dummy, "Pumpkin"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(17, 390),
+        FRONT_SPRITE(GourgeistSuper, 64, 64,  0, 0),
+        BACK_SPRITE(GourgeistSuper, 56, 64,  1),
         GOURGEIST_MISC_STATS,
     },
 
@@ -28844,6 +29576,29 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
+
+#if P_UPDATED_EGG_GROUPS >= GEN_8
+    #define AVALUGG_EGG_GROUP_2 EGG_GROUP_MINERAL
+#else
+    #define AVALUGG_EGG_GROUP_2 EGG_GROUP_MONSTER
+#endif
+
+#define AVALUGG_MISC_STATS                  \
+        .type1 = TYPE_ICE,                  \
+        .catchRate = 55,                    \
+        .expYield = 180,                    \
+        .evYield_Defense   = 2,             \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 20,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_MEDIUM_FAST,   \
+        .eggGroup1 = EGG_GROUP_MONSTER,     \
+        .eggGroup2 = AVALUGG_EGG_GROUP_2,   \
+        .bodyColor = BODY_COLOR_BLUE,       \
+        .noFlip = FALSE,                    \
+        .natDexNum = NATIONAL_DEX_AVALUGG,  \
+        FOOTPRINT(Avalugg)
+
     [SPECIES_AVALUGG] =
     {
         .baseHP        = 95,
@@ -28852,24 +29607,18 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 28,
         .baseSpAttack  = 44,
         .baseSpDefense = 46,
-        .type1 = TYPE_ICE,
         .type2 = TYPE_ICE,
-        .catchRate = 55,
-        .expYield = 180,
-        .evYield_Defense   = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_MONSTER,
-    #if P_UPDATED_EGG_GROUPS >= GEN_8
-        .eggGroup2 = EGG_GROUP_MINERAL,
-    #else
-        .eggGroup2 = EGG_GROUP_MONSTER,
-    #endif
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_ICE_BODY, ABILITY_STURDY},
-        .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
+        DEX_TEXT(Avalugg, "Iceberg"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(20, 5050),
+        LEARNSETS(Avalugg),
+        FRONT_SPRITE(Avalugg, 64, 56,  4, 0),
+        BACK_SPRITE(Avalugg, 64, 40, 12),
+        PALETTES(Avalugg),
+        ICON(Avalugg, 0),
+        ANIMATIONS(AVALUGG, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
+        AVALUGG_MISC_STATS,
     },
     [SPECIES_AVALUGG_HISUIAN] =
     {
@@ -28879,25 +29628,19 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 38,
         .baseSpAttack  = 34,
         .baseSpDefense = 36,
-        .type1 = TYPE_ICE,
         .type2 = TYPE_ROCK,
-        .catchRate = 55,
-        .expYield = 180,
-        .evYield_Defense   = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_MONSTER,
-    #if P_UPDATED_EGG_GROUPS >= GEN_8
-        .eggGroup2 = EGG_GROUP_MONSTER,
-    #else
-        .eggGroup2 = EGG_GROUP_MINERAL,
-    #endif
         .abilities = {ABILITY_STRONG_JAW, ABILITY_ICE_BODY, ABILITY_STURDY},
-        .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
 	    .flags = SPECIES_FLAG_HISUIAN_FORM,
+        DEX_TEXT(Dummy, "Iceberg"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(14, 2624),
+        LEARNSETS(AvaluggHisuian),
+        FRONT_SPRITE(AvaluggHisuian, 64, 48,  5, 0),
+        BACK_SPRITE(AvaluggHisuian, 64, 32, 17),
+        PALETTES(AvaluggHisuian),
+        ICON(AvaluggHisuian, 5),
+        ANIMATIONS(AVALUGG_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        AVALUGG_MISC_STATS,
     },
 
     [SPECIES_NOIBAT] =
@@ -28926,6 +29669,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_TELEPATHY},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_NOIBAT,
+        DEX_TEXT(Noibat, "Sound Wave"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 80),
+        LEARNSETS(Noibat),
+        FRONT_SPRITE(Noibat, 64, 48,  8, 8),
+        BACK_SPRITE(Noibat, 56, 64,  7),
+        PALETTES(Noibat),
+        ICON(Noibat, 2),
+        FOOTPRINT(Noibat),
+        ANIMATIONS(NOIBAT, 0, ANIM_RISING_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_NOIVERN] =
@@ -28954,10 +29708,20 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_TELEPATHY},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_NOIVERN,
+        DEX_TEXT(Noivern, "Sound Wave"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(15, 850),
+        LEARNSETS(Noivern),
+        FRONT_SPRITE(Noivern, 64, 64,  3, 0),
+        BACK_SPRITE(Noivern, 64, 64,  4),
+        PALETTES(Noivern),
+        ICON(Noivern, 2),
+        FOOTPRINT(Noivern),
+        ANIMATIONS(NOIVERN, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
-#define XERNEAS_BASE_STATS                              \
-    {                                                   \
+#define XERNEAS_MISC_STATS                              \
         .baseHP        = 126,                           \
         .baseAttack    = 131,                           \
         .baseDefense   = 95,                            \
@@ -28978,10 +29742,32 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_FAIRY_AURA, ABILITY_NONE},\
         .bodyColor = BODY_COLOR_BLUE,                   \
         .noFlip = FALSE,                                \
-        .flags = SPECIES_FLAG_LEGENDARY,                        \
-    }
-    [SPECIES_XERNEAS_NEUTRAL] = XERNEAS_BASE_STATS,
-    [SPECIES_XERNEAS_ACTIVE]  = XERNEAS_BASE_STATS,
+        .flags = SPECIES_FLAG_LEGENDARY,                \
+        .natDexNum = NATIONAL_DEX_XERNEAS,              \
+        DEX_SCALE(356, 17, 256, 0),                     \
+        HEIGHT_WEIGHT(30, 2150),                        \
+        LEARNSETS(Xerneas),                             \
+        FOOTPRINT(Xerneas),                             \
+        ANIMATIONS(XERNEAS, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE)
+
+    [SPECIES_XERNEAS_NEUTRAL] =
+    {
+        DEX_TEXT(Xerneas, "Life"),
+        FRONT_SPRITE(Xerneas, 64, 64,  0, 0),
+        BACK_SPRITE(Xerneas, 64, 64,  0),
+        PALETTES(Xerneas),
+        ICON(Xerneas, 0),
+        XERNEAS_MISC_STATS,
+    },
+    [SPECIES_XERNEAS_ACTIVE] =
+    {
+        DEX_TEXT(Xerneas, "Life"), // No official dex entry for this form
+        FRONT_SPRITE(XerneasActive, 64, 64,  0, 0),
+        BACK_SPRITE(XerneasActive, 64, 64,  0),
+        PALETTES(XerneasActive),
+        ICON(XerneasActive, 0),
+        XERNEAS_MISC_STATS,
+    },
 
     [SPECIES_YVELTAL] =
     {
@@ -29006,62 +29792,96 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_YVELTAL,
+        DEX_TEXT(Yveltal, "Destruction"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(58, 2030),
+        LEARNSETS(Yveltal),
+        FRONT_SPRITE(Yveltal, 64, 64,  0, 5),
+        BACK_SPRITE(Yveltal, 64, 48, 10),
+        PALETTES(Yveltal),
+        ICON(Yveltal, 0),
+        FOOTPRINT(Yveltal),
+        ANIMATIONS(YVELTAL, 0, ANIM_FRONT_FLIP, BACK_ANIM_NONE),
     },
 
+#define ZYGARDE_MISC_INFO                   \
+        .type1 = TYPE_DRAGON,               \
+        .type2 = TYPE_GROUND,               \
+        .catchRate = 3,                     \
+        .evYield_HP        = 3,             \
+        .genderRatio = MON_GENDERLESS,      \
+        .eggCycles = 120,                   \
+        .friendship = 0,                    \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,\
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,\
+        .noFlip = TRUE,                     \
+        .flags = SPECIES_FLAG_LEGENDARY,    \
+        .natDexNum = NATIONAL_DEX_ZYGARDE,  \
+        LEARNSETS(Zygarde),                 \
+        FOOTPRINT(Zygarde)
 
-#define ZYGARDE_50_BASE_STATS(ability)       \
-    {                                        \
-        .baseHP        = 108,                \
-        .baseAttack    = 100,                \
-        .baseDefense   = 121,                \
-        .baseSpeed     = 95,                 \
-        .baseSpAttack  = 81,                 \
-        .baseSpDefense = 95,                 \
-        .type1 = TYPE_DRAGON,                \
-        .type2 = TYPE_GROUND,                \
-        .catchRate = 3,                      \
-        .expYield = 270,                     \
-        .evYield_HP        = 3,              \
-        .genderRatio = MON_GENDERLESS,       \
-        .eggCycles = 120,                    \
-        .friendship = 0,                     \
-        .growthRate = GROWTH_SLOW,           \
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED, \
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED, \
-        .abilities = {ability, ABILITY_NONE},\
-        .bodyColor = BODY_COLOR_GREEN,       \
-        .noFlip = TRUE,                      \
-        .flags = SPECIES_FLAG_LEGENDARY,             \
-    }
+#define ZYGARDE_50_MISC_INFO                    \
+        .baseHP        = 108,                   \
+        .baseAttack    = 100,                   \
+        .baseDefense   = 121,                   \
+        .baseSpeed     = 95,                    \
+        .baseSpAttack  = 81,                    \
+        .baseSpDefense = 95,                    \
+        .expYield = 270,                        \
+        .bodyColor = BODY_COLOR_GREEN,          \
+        DEX_TEXT(Zygarde, "Order"),             \
+        DEX_SCALE(356, 17, 256, 0),             \
+        HEIGHT_WEIGHT(50, 3050),                \
+        FRONT_SPRITE(Zygarde, 64, 64,  0, 0),   \
+        BACK_SPRITE(Zygarde, 64, 64,  4),       \
+        PALETTES(Zygarde),                      \
+        ICON(Zygarde, 1),                       \
+        ANIMATIONS(ZYGARDE, 0, ANIM_TIP_MOVE_FORWARD, BACK_ANIM_NONE),  \
+        ZYGARDE_MISC_INFO
 
-#define ZYGARDE_10_BASE_STATS(ability)       \
-    {                                        \
-        .baseHP        = 54,                 \
-        .baseAttack    = 100,                \
-        .baseDefense   = 71,                 \
-        .baseSpeed     = 115,                \
-        .baseSpAttack  = 61,                 \
-        .baseSpDefense = 85,                 \
-        .type1 = TYPE_DRAGON,                \
-        .type2 = TYPE_GROUND,                \
-        .catchRate = 3,                      \
-        .expYield = 219,                     \
-        .evYield_HP        = 3,              \
-        .genderRatio = MON_GENDERLESS,       \
-        .eggCycles = 120,                    \
-        .friendship = 0,                     \
-        .growthRate = GROWTH_SLOW,           \
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED, \
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED, \
-        .abilities = {ability, ABILITY_NONE},\
-        .bodyColor = BODY_COLOR_BLACK,       \
-        .noFlip = TRUE,                      \
-        .flags = SPECIES_FLAG_LEGENDARY,             \
-    }
-    [SPECIES_ZYGARDE_50]                 = ZYGARDE_50_BASE_STATS(ABILITY_AURA_BREAK),
-    [SPECIES_ZYGARDE_10]                 = ZYGARDE_10_BASE_STATS(ABILITY_AURA_BREAK),
-    [SPECIES_ZYGARDE_10_POWER_CONSTRUCT] = ZYGARDE_10_BASE_STATS(ABILITY_POWER_CONSTRUCT),
-    [SPECIES_ZYGARDE_50_POWER_CONSTRUCT] = ZYGARDE_50_BASE_STATS(ABILITY_POWER_CONSTRUCT),
+
+#define ZYGARDE_10_MISC_INFO                    \
+        .baseHP        = 54,                    \
+        .baseAttack    = 100,                   \
+        .baseDefense   = 71,                    \
+        .baseSpeed     = 115,                   \
+        .baseSpAttack  = 61,                    \
+        .baseSpDefense = 85,                    \
+        .expYield = 219,                        \
+        .bodyColor = BODY_COLOR_BLACK,          \
+        DEX_TEXT(Dummy, "Order"),               \
+        DEX_SCALE(356, 17, 256, 0),             \
+        HEIGHT_WEIGHT(12, 335),                 \
+        FRONT_SPRITE(Zygarde10, 56, 64,  2, 0), \
+        BACK_SPRITE(Zygarde10, 64, 56,  8),     \
+        PALETTES(Zygarde10),                    \
+        ICON(Zygarde10, 1),                     \
+        ANIMATIONS(ZYGARDE_10, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),\
+        ZYGARDE_MISC_INFO
+
+    [SPECIES_ZYGARDE_50] =
+    {
+        .abilities = {ABILITY_AURA_BREAK, ABILITY_NONE},
+        ZYGARDE_50_MISC_INFO,
+    },
+    [SPECIES_ZYGARDE_10] =
+    {
+        .abilities = {ABILITY_AURA_BREAK, ABILITY_NONE},
+        ZYGARDE_10_MISC_INFO,
+    },
+    [SPECIES_ZYGARDE_10_POWER_CONSTRUCT] =
+    {
+        .abilities = {ABILITY_POWER_CONSTRUCT, ABILITY_NONE},
+        ZYGARDE_10_MISC_INFO,
+    },
+    [SPECIES_ZYGARDE_50_POWER_CONSTRUCT] =
+    {
+        .abilities = {ABILITY_POWER_CONSTRUCT, ABILITY_NONE},
+        ZYGARDE_50_MISC_INFO,
+    },
+
     [SPECIES_ZYGARDE_COMPLETE] =
     {
         .baseHP        = 216,
@@ -29070,22 +29890,37 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 85,
         .baseSpAttack  = 91,
         .baseSpDefense = 95,
-        .type1 = TYPE_DRAGON,
-        .type2 = TYPE_GROUND,
-        .catchRate = 3,
         .expYield = 319,
-        .evYield_HP        = 3,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
         .abilities = {ABILITY_POWER_CONSTRUCT, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLACK,
-        .noFlip = TRUE,
-        .flags = SPECIES_FLAG_LEGENDARY,
+        DEX_TEXT(Dummy, "Order"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(45, 6100),
+        FRONT_SPRITE(ZygardeComplete, 64, 64,  0, 0),
+        BACK_SPRITE(ZygardeComplete, 64, 64,  0),
+        PALETTES(ZygardeComplete),
+        ICON(ZygardeComplete, 1),
+        ANIMATIONS(ZYGARDE_COMPLETE, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
+        ZYGARDE_MISC_INFO,
     },
+
+#define DIANCE_MISC_INFO                    \
+        .type1 = TYPE_ROCK,                 \
+        .type2 = TYPE_FAIRY,                \
+        .catchRate = 3,                     \
+        .evYield_Defense   = 1,             \
+        .evYield_SpDefense = 2,             \
+        .genderRatio = MON_GENDERLESS,      \
+        .eggCycles = 25,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,\
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,\
+        .bodyColor = BODY_COLOR_PINK,       \
+        .noFlip = FALSE,                    \
+        .natDexNum = NATIONAL_DEX_DIANCIE,  \
+        LEARNSETS(Diancie),                 \
+        FOOTPRINT(Diancie)
 
     [SPECIES_DIANCIE] =
     {
@@ -29095,22 +29930,18 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 50,
         .baseSpAttack  = 100,
         .baseSpDefense = 150,
-        .type1 = TYPE_ROCK,
-        .type2 = TYPE_FAIRY,
-        .catchRate = 3,
         .expYield = 270,
-        .evYield_Defense   = 1,
-        .evYield_SpDefense = 2,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 25,
-        .friendship = 70,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
         .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_PINK,
-        .noFlip = FALSE,
         .flags = SPECIES_FLAG_MYTHICAL,
+        DEX_TEXT(Diancie, "Jewel"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 88),
+        FRONT_SPRITE(Diancie, 40, 64,  1, 0),
+        BACK_SPRITE(Diancie, 64, 64,  7),
+        PALETTES(Diancie),
+        ICON(Diancie, 1),
+        ANIMATIONS(DIANCIE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        DIANCE_MISC_INFO,
     },
 
     [SPECIES_DIANCIE_MEGA] =
@@ -29121,23 +29952,37 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 110,
         .baseSpAttack  = 160,
         .baseSpDefense = 110,
-        .type1 = TYPE_ROCK,
-        .type2 = TYPE_FAIRY,
-        .catchRate = 3,
         .expYield = 315,
-        .evYield_Defense   = 1,
-        .evYield_SpDefense = 2,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 25,
-        .friendship = 70,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE},
-        .bodyColor = BODY_COLOR_PINK,
-        .noFlip = FALSE,
+        .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE},
         .flags = SPECIES_FLAG_MYTHICAL | SPECIES_FLAG_MEGA_EVOLUTION,
+        DEX_TEXT(Diancie, "Jewel"), // No official dex entry for this form
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(11, 278),
+        FRONT_SPRITE(DiancieMega, 64, 64,  0, 0),
+        BACK_SPRITE(DiancieMega, 64, 56,  5),
+        PALETTES(DiancieMega),
+        ICON(DiancieMega, 0),
+        ANIMATIONS(DIANCIE_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        DIANCE_MISC_INFO,
     },
+
+#define HOOPA_MISC_INFO                                 \
+        .type1 = TYPE_PSYCHIC,                          \
+        .catchRate = 3,                                 \
+        .expYield = 270,                                \
+        .evYield_SpAttack  = 3,                         \
+        .genderRatio = MON_GENDERLESS,                  \
+        .eggCycles = 120,                               \
+        .friendship = 100,                              \
+        .growthRate = GROWTH_SLOW,                      \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,            \
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,            \
+        .abilities = {ABILITY_MAGICIAN, ABILITY_NONE},  \
+        .bodyColor = BODY_COLOR_PURPLE,                 \
+        .noFlip = FALSE,                                \
+        .flags = SPECIES_FLAG_MYTHICAL,                 \
+        .natDexNum = NATIONAL_DEX_HOOPA,                \
+        FOOTPRINT(Hoopa)
 
     [SPECIES_HOOPA_CONFINED] =
     {
@@ -29147,21 +29992,17 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 70,
         .baseSpAttack  = 150,
         .baseSpDefense = 130,
-        .type1 = TYPE_PSYCHIC,
         .type2 = TYPE_GHOST,
-        .catchRate = 3,
-        .expYield = 270,
-        .evYield_SpAttack  = 3,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 100,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_MAGICIAN, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_PURPLE,
-        .noFlip = FALSE,
-        .flags = SPECIES_FLAG_MYTHICAL,
+        DEX_TEXT(Hoopa, "Mischief"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 90),
+        LEARNSETS(Hoopa),
+        FRONT_SPRITE(Hoopa, 48, 48, 11, 13),
+        BACK_SPRITE(Hoopa, 64, 56,  8),
+        PALETTES(Hoopa),
+        ICON(Hoopa, 0),
+        ANIMATIONS(HOOPA, 0, ANIM_ZIGZAG_SLOW, BACK_ANIM_NONE),
+        HOOPA_MISC_INFO,
     },
 
     [SPECIES_HOOPA_UNBOUND] =
@@ -29172,21 +30013,17 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 80,
         .baseSpAttack  = 170,
         .baseSpDefense = 130,
-        .type1 = TYPE_PSYCHIC,
         .type2 = TYPE_DARK,
-        .catchRate = 3,
-        .expYield = 270,
-        .evYield_SpAttack  = 3,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 100,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_MAGICIAN, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_PURPLE,
-        .noFlip = FALSE,
-        .flags = SPECIES_FLAG_MYTHICAL,
+        DEX_TEXT(Hoopa, "Djinn"), // No official dex entry for this form
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(65, 4900),
+        LEARNSETS(HoopaUnbound),
+        FRONT_SPRITE(HoopaUnbound, 64, 64,  0, 3),
+        BACK_SPRITE(HoopaUnbound, 64, 64,  0),
+        PALETTES(HoopaUnbound),
+        ICON(HoopaUnbound, 0),
+        ANIMATIONS(HOOPA_UNBOUND, 0, ANIM_GROW_IN_STAGES, BACK_ANIM_NONE),
+        HOOPA_MISC_INFO,
     },
 
     [SPECIES_VOLCANION] =
@@ -29212,6 +30049,17 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_MYTHICAL,
+        .natDexNum = NATIONAL_DEX_VOLCANION,
+        DEX_TEXT(Volcanion, "Steam"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(17, 1950),
+        LEARNSETS(Volcanion),
+        FRONT_SPRITE(Volcanion, 64, 64,  0, 0),
+        BACK_SPRITE(Volcanion, 64, 64,  3),
+        PALETTES(Volcanion),
+        ICON(Volcanion, 0),
+        FOOTPRINT(Volcanion),
+        ANIMATIONS(VOLCANION, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_NONE),
     },
 #endif
 

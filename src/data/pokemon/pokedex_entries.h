@@ -1,5 +1,6 @@
 const struct PokedexEntryForms gPokedexEntriesForms[] =
 {
+// No official dex entry for this form
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_DIANCIE_MEGA] =
     {
