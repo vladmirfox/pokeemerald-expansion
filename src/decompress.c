@@ -70,12 +70,9 @@ void LoadCompressedSpritePaletteOverrideBuffer(const struct CompressedSpritePale
     LoadSpritePalette(&dest);
 }
 
-void DecompressPicFromTable(const struct CompressedSpriteSheet *src, void *buffer, s32 species)
+void DecompressPicFromTable(const struct CompressedSpriteSheet *src, void *buffer)
 {
-    if (species > NUM_SPECIES)
-        LZ77UnCompWram(gBaseStats[SPECIES_NONE].frontPic, buffer);
-    else
-        LZ77UnCompWram(src->data, buffer);
+    LZ77UnCompWram(src->data, buffer);
 }
 
 void DecompressPicFromTableGender(void* buffer, s32 species, u32 personality)
