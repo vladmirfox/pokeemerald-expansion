@@ -605,5 +605,6 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove);
 bool32 SpeciesHasGenderDifferences(u16 species);
 void TryToSetBattleFormChangeMoves(struct Pokemon *mon);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);
+u16 SanitizeSpeciesId(u16 species);
 
 #endif // GUARD_POKEMON_H

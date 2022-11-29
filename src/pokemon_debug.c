@@ -696,8 +696,10 @@ static const u32 *GetMonSpritePalStructCustom(u16 species, bool8 isFemale, bool8
     {
         if (gBaseStats[species].paletteFemale != NULL && isFemale)
             return gBaseStats[species].paletteFemale;
-        else
+        else if (gBaseStats[species].palette != NULL)
             return gBaseStats[species].palette;
+        else
+            return gBaseStats[SPECIES_NONE].palette;
     }
 }
 
@@ -719,8 +721,10 @@ static void BattleLoadOpponentMonSpriteGfxCustom(u16 species, bool8 isFemale, bo
     {
         if (gBaseStats[species].paletteFemale != NULL && isFemale)
             lzPaletteData = gBaseStats[species].paletteFemale;
-        else
+        else if (gBaseStats[species].palette != NULL)
             lzPaletteData = gBaseStats[species].palette;
+        else
+            lzPaletteData = gBaseStats[SPECIES_NONE].palette;
     }
 
     LZDecompressWram(lzPaletteData, gDecompressionBuffer);

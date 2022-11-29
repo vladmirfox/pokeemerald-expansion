@@ -209,13 +209,9 @@ u8 GetBattlerYDelta(u8 battlerId, u16 species)
         {
             ret = sCastformBackSpriteYCoords[gBattleMonForms[battlerId]];
         }
-        else if (species > NUM_SPECIES)
-        {
-            ret = gBaseStats[SPECIES_NONE].backPicYOffset;
-        }
         else
         {
-            ret = gBaseStats[species].backPicYOffset;
+            ret = gBaseStats[SanitizeSpeciesId(species)].backPicYOffset;
         }
     }
     else
@@ -235,13 +231,9 @@ u8 GetBattlerYDelta(u8 battlerId, u16 species)
         {
             ret = gCastformFrontSpriteCoords[gBattleMonForms[battlerId]].y_offset;
         }
-        else if (species > NUM_SPECIES)
-        {
-            ret = gBaseStats[SPECIES_NONE].frontPicYOffset;
-        }
         else
         {
-            ret = gBaseStats[species].frontPicYOffset;
+            ret = gBaseStats[SanitizeSpeciesId(species)].frontPicYOffset;
         }
     }
     return ret;
@@ -256,10 +248,8 @@ u8 GetBattlerElevation(u8 battlerId, u16 species)
         {
             if (species == SPECIES_CASTFORM)
                 ret = sCastformElevations[gBattleMonForms[battlerId]];
-            else if (species > NUM_SPECIES)
-                ret = gBaseStats[SPECIES_NONE].enemyMonElevation;
             else
-                ret = gBaseStats[species].enemyMonElevation;
+                ret = gBaseStats[SanitizeSpeciesId(species)].enemyMonElevation;
         }
     }
     return ret;
@@ -2250,15 +2240,10 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
                 size = gBaseStats[species].backPicSize;
                 y_offset = gBaseStats[species].backPicYOffset;
             }
-            else if (species > NUM_SPECIES)
-            {
-                size = gBaseStats[SPECIES_NONE].backPicSize;
-                y_offset = gBaseStats[SPECIES_NONE].backPicYOffset;
-            }
             else
             {
-                size = gBaseStats[species].backPicSize;
-                y_offset = gBaseStats[species].backPicYOffset;
+                size = gBaseStats[SanitizeSpeciesId(species)].backPicSize;
+                y_offset = gBaseStats[SanitizeSpeciesId(species)].backPicYOffset;
             }
         }
         else
@@ -2286,15 +2271,10 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
                 size = gCastformFrontSpriteCoords[gBattleMonForms[battlerId]].size;
                 y_offset = gCastformFrontSpriteCoords[gBattleMonForms[battlerId]].y_offset;
             }
-            else if (species > NUM_SPECIES)
-            {
-                size = gBaseStats[SPECIES_NONE].frontPicSize;
-                y_offset = gBaseStats[SPECIES_NONE].frontPicYOffset;
-            }
             else
             {
-                size = gBaseStats[species].frontPicSize;
-                y_offset = gBaseStats[species].frontPicYOffset;
+                size = gBaseStats[SanitizeSpeciesId(species)].frontPicSize;
+                y_offset = gBaseStats[SanitizeSpeciesId(species)].frontPicYOffset;
             }
         }
     }

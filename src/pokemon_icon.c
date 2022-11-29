@@ -9,8 +9,6 @@
 
 #define POKE_ICON_BASE_PAL_TAG 56000
 
-#define INVALID_ICON_SPECIES SPECIES_NONE // Oddly specific, used when an icon should be a ?. Any of the 'old unown' would work
-
 struct MonIconSpriteTemplate
 {
     const struct OamData *oam;
@@ -194,10 +192,7 @@ u16 GetIconSpecies(u16 species, u32 personality)
     }
     else
     {
-        if (species > NUM_SPECIES)
-            result = INVALID_ICON_SPECIES;
-        else
-            result = species;
+        result = SanitizeSpeciesId(species);
     }
 
     return result;
@@ -222,10 +217,7 @@ u16 GetIconSpeciesNoPersonality(u16 species)
     }
     else
     {
-        if (species > NUM_SPECIES)
-            species = INVALID_ICON_SPECIES;
-
-        return GetIconSpecies(species, 0);
+        return GetIconSpecies(SanitizeSpeciesId(species), 0);
     }
 }
 
@@ -250,9 +242,7 @@ void LoadMonIconPalettes(void)
 void SafeLoadMonIconPalette(u16 species)
 {
     u8 palIndex;
-    if (species > NUM_SPECIES)
-        species = INVALID_ICON_SPECIES;
-    palIndex = gBaseStats[species].iconPalIndex;
+    palIndex = gBaseStats[SanitizeSpeciesId(species)].iconPalIndex;
     if (IndexOfSpritePaletteTag(gMonIconPaletteTable[palIndex].tag) == 0xFF)
         LoadSpritePalette(&gMonIconPaletteTable[palIndex]);
 }
@@ -286,9 +276,7 @@ void FreeMonIconPalettes(void)
 void SafeFreeMonIconPalette(u16 species)
 {
     u8 palIndex;
-    if (species > NUM_SPECIES)
-        species = INVALID_ICON_SPECIES;
-    palIndex = gBaseStats[species].iconPalIndex;
+    palIndex = gBaseStats[SanitizeSpeciesId(species)].iconPalIndex;
     FreeSpritePaletteByTag(gMonIconPaletteTable[palIndex].tag);
 }
 
@@ -310,8 +298,10 @@ const u8 *GetMonIconTiles(u16 species, u32 personality)
 
     if (gBaseStats[species].iconSpriteFemale != NULL && IsPersonalityFemale(species, personality))
         iconSprite = gBaseStats[species].iconSpriteFemale;
-    else
+    else if (gBaseStats[species].iconSprite != NULL)
         iconSprite = gBaseStats[species].iconSprite;
+    else
+        iconSprite = gBaseStats[SPECIES_NONE].iconSprite;
 
     return iconSprite;
 }
@@ -335,9 +325,7 @@ void TryLoadAllMonIconPalettesAtOffset(u16 offset)
 
 u8 GetValidMonIconPalIndex(u16 species)
 {
-    if (species > NUM_SPECIES)
-        species = INVALID_ICON_SPECIES;
-    return gBaseStats[species].iconPalIndex;
+    return gBaseStats[SanitizeSpeciesId(species)].iconPalIndex;
 }
 
 u8 GetMonIconPaletteIndexFromSpecies(u16 species)
@@ -347,9 +335,7 @@ u8 GetMonIconPaletteIndexFromSpecies(u16 species)
 
 const u16 *GetValidMonIconPalettePtr(u16 species)
 {
-    if (species > NUM_SPECIES)
-        species = INVALID_ICON_SPECIES;
-    return gMonIconPaletteTable[gBaseStats[species].iconPalIndex].data;
+    return gMonIconPaletteTable[gBaseStats[SanitizeSpeciesId(species)].iconPalIndex].data;
 }
 
 u8 UpdateMonIconFrame(struct Sprite *sprite)

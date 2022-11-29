@@ -78,6 +78,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(QuestionMark),
         ICON(QuestionMark, 0),
         FOOTPRINT(Bulbasaur),
+        ANIMATIONS(NONE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_BULBASAUR] =

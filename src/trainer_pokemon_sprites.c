@@ -57,14 +57,7 @@ static bool16 DecompressPic(u16 species, u32 personality, bool8 isFrontPic, u8 *
 {
     if (!isTrainer)
     {
-        if (isFrontPic)
-        {
-            LoadSpecialPokePic(dest, species, personality, isFrontPic);
-        }
-        else
-        {
-            LoadSpecialPokePic(dest, species, personality, isFrontPic);
-        }
+        LoadSpecialPokePic(dest, species, personality, isFrontPic);
     }
     else
     {
@@ -223,7 +216,10 @@ u16 CreateMonPicSprite_Affine(u16 species, u32 otId, u32 personality, u8 flags, 
         images[j].size = MON_PIC_SIZE;
     }
     sCreatingSpriteTemplate.tileTag = TAG_NONE;
-    sCreatingSpriteTemplate.anims = gBaseStats[species].frontAnimFrames;
+    if (gBaseStats[species].frontAnimFrames != NULL)
+        sCreatingSpriteTemplate.anims = gBaseStats[species].frontAnimFrames;
+    else
+        sCreatingSpriteTemplate.anims = gBaseStats[SPECIES_NONE].frontAnimFrames;
     sCreatingSpriteTemplate.images = images;
     if (type == MON_PIC_AFFINE_FRONT)
     {

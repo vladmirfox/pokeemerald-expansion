@@ -2000,9 +2000,19 @@ void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition)
     if (battlerPosition == B_POSITION_PLAYER_LEFT || battlerPosition == B_POSITION_PLAYER_RIGHT)
         gMultiuseSpriteTemplate.anims = gAnims_MonPic;
     else if (speciesTag > SPECIES_SHINY_TAG)
-        gMultiuseSpriteTemplate.anims = gBaseStats[speciesTag - SPECIES_SHINY_TAG].frontAnimFrames;
+    {
+        if (gBaseStats[speciesTag - SPECIES_SHINY_TAG].frontAnimFrames != NULL)
+            gMultiuseSpriteTemplate.anims = gBaseStats[speciesTag - SPECIES_SHINY_TAG].frontAnimFrames;
+        else
+            gMultiuseSpriteTemplate.anims = gBaseStats[SPECIES_NONE].frontAnimFrames;
+    }
     else
-        gMultiuseSpriteTemplate.anims = gBaseStats[speciesTag].frontAnimFrames;
+    {
+        if (gBaseStats[speciesTag].frontAnimFrames != NULL)
+            gMultiuseSpriteTemplate.anims = gBaseStats[speciesTag].frontAnimFrames;
+        else
+            gMultiuseSpriteTemplate.anims = gBaseStats[SPECIES_NONE].frontAnimFrames;
+    }
 }
 
 void SetMultiuseSpriteTemplateToTrainerBack(u16 trainerPicId, u8 battlerPosition)
@@ -3098,9 +3108,7 @@ bool8 IsPokemonStorageFull(void)
 
 const u8 *GetSpeciesName(u16 species)
 {
-    if (species > NUM_SPECIES)
-        return gSpeciesNames[NATIONAL_DEX_NONE];
-    return gSpeciesNames[gBaseStats[species].natDexNum];
+    return gSpeciesNames[gBaseStats[SanitizeSpeciesId(species)].natDexNum];
 }
 
 u8 CalculatePPWithBonus(u16 move, u8 ppBonuses, u8 moveIndex)
@@ -5260,9 +5268,7 @@ const u32 *GetMonFrontSpritePal(struct Pokemon *mon)
 const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 personality)
 {
     u32 shinyValue;
-
-    if (species > NUM_SPECIES)
-        return gBaseStats[SPECIES_NONE].palette;
+    species = SanitizeSpeciesId(species);
 
     shinyValue = GET_SHINY_VALUE(otId, personality);
     if (shinyValue < SHINY_ODDS)
@@ -5276,8 +5282,10 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
     {
         if (gBaseStats[species].paletteFemale != NULL && IsPersonalityFemale(species, personality))
             return gBaseStats[species].paletteFemale;
-        else
+        else if (gBaseStats[species].palette != NULL)
             return gBaseStats[species].palette;
+        else
+            return gBaseStats[SPECIES_NONE].palette;
     }
 }
 
@@ -6178,4 +6186,12 @@ u32 GetMonFriendshipScore(struct Pokemon *pokemon)
         return FRIENDSHIP_1_TO_49;
 
     return FRIENDSHIP_NONE;
+}
+
+u16 SanitizeSpeciesId(u16 species)
+{
+    if (species > NUM_SPECIES)
+        return SPECIES_NONE;
+    else
+        return species;
 }
