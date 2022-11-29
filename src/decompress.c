@@ -79,7 +79,7 @@ void DecompressPicFromTableGender(void* buffer, s32 species, u32 personality)
 {
     if (species > NUM_SPECIES)
         LZ77UnCompWram(gBaseStats[SPECIES_NONE].frontPic, buffer);
-    else if (gBaseStats[species].frontPicFemale != NULL)
+    else if (gBaseStats[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
         LZ77UnCompWram(gBaseStats[species].frontPicFemale, buffer);
     else if (gBaseStats[species].frontPic != NULL)
         LZ77UnCompWram(gBaseStats[species].frontPic, buffer);
