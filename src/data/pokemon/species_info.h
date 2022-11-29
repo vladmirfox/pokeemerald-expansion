@@ -64,7 +64,7 @@
     .frontAnimId = frontId,                         \
     .backAnimId = backId
 
-const struct BaseStats gBaseStats[] =
+const struct SpeciesInfo gSpeciesInfo[] =
 {
     [SPECIES_NONE] =
     {
@@ -152,7 +152,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(IVYSAUR, 0, ANIM_V_STRETCH, BACK_ANIM_H_SLIDE),
     },
 
-#define VENUSAUR_MISC_STATS                 \
+#define VENUSAUR_MISC_INFO                  \
         .type1 = TYPE_GRASS,                \
         .type2 = TYPE_POISON,               \
         .catchRate = 45,                    \
@@ -188,7 +188,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Venusaur),
         ICON(Venusaur, 4),
         ANIMATIONS(VENUSAUR, 0, ANIM_ROTATE_UP_SLAM_DOWN, BACK_ANIM_H_SLIDE),
-        VENUSAUR_MISC_STATS,
+        VENUSAUR_MISC_INFO,
     },
     [SPECIES_VENUSAUR_MEGA] =
     {
@@ -209,7 +209,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(VenusaurMega),
         ICON(VenusaurMega, 4),
         ANIMATIONS(VENUSAUR, 0, ANIM_V_STRETCH, BACK_ANIM_H_SLIDE),
-        VENUSAUR_MISC_STATS,
+        VENUSAUR_MISC_INFO,
     },
 
     [SPECIES_CHARMANDER] =
@@ -283,7 +283,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(CHARMELEON, 0, ANIM_BACK_AND_LUNGE, BACK_ANIM_JOLT_RIGHT),
     },
 
-#define CHARIZARD_MISC_STATS                \
+#define CHARIZARD_MISC_INFO                 \
         .type1 = TYPE_FIRE,                 \
         .catchRate = 45,                    \
         .evYield_SpAttack  = 3,             \
@@ -318,7 +318,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Charizard),
         ICON(Charizard, 0),
         ANIMATIONS(CHARIZARD, 0, ANIM_V_SHAKE, BACK_ANIM_SHAKE_GLOW_RED),
-        CHARIZARD_MISC_STATS,
+        CHARIZARD_MISC_INFO,
     },
     [SPECIES_CHARIZARD_MEGA_X] =
     {
@@ -339,7 +339,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(CharizardMegaX),
         ICON(CharizardMegaX, 0),
         ANIMATIONS(CHARIZARD_MEGA_X, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        CHARIZARD_MISC_STATS,
+        CHARIZARD_MISC_INFO,
     },
     [SPECIES_CHARIZARD_MEGA_Y] =
     {
@@ -361,7 +361,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(CharizardMegaY),
         ICON(CharizardMegaY, 0),
         ANIMATIONS(CHARIZARD_MEGA_Y, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        CHARIZARD_MISC_STATS,
+        CHARIZARD_MISC_INFO,
     },
 
     [SPECIES_SQUIRTLE] =
@@ -435,7 +435,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(WARTORTLE, 0, ANIM_SHRINK_GROW, BACK_ANIM_CONCAVE_ARC_SMALL),
     },
 
-#define BLASTOISE_MISC_STATS                \
+#define BLASTOISE_MISC_INFO                 \
         .type1 = TYPE_WATER,                \
         .type2 = TYPE_WATER,                \
         .catchRate = 45,                    \
@@ -470,7 +470,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Blastoise),
         ICON(Blastoise, 2),
         ANIMATIONS(BLASTOISE, 50, ANIM_V_SHAKE_TWICE, BACK_ANIM_SHAKE_GLOW_BLUE),
-        BLASTOISE_MISC_STATS,
+        BLASTOISE_MISC_INFO,
     },
     [SPECIES_BLASTOISE_MEGA] =
     {
@@ -491,7 +491,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(BlastoiseMega),
         ICON(BlastoiseMega, 2),
         ANIMATIONS(BLASTOISE_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        BLASTOISE_MISC_STATS,
+        BLASTOISE_MISC_INFO,
     },
 
     [SPECIES_CATERPIE] =
@@ -682,7 +682,7 @@ const struct BaseStats gBaseStats[] =
     #define BEEDRILL_ATTACK 80
 #endif
 
-#define BEEDRILL_MISC_STATS                 \
+#define BEEDRILL_MISC_INFO                  \
         .type1 = TYPE_BUG,                  \
         .type2 = TYPE_POISON,               \
         .catchRate = 45,                    \
@@ -720,7 +720,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Beedrill),
         ICON(Beedrill, 2),
         ANIMATIONS(BEEDRILL, 35, ANIM_H_VIBRATE, BACK_ANIM_H_VIBRATE),
-        BEEDRILL_MISC_STATS,
+        BEEDRILL_MISC_INFO,
     },
     [SPECIES_BEEDRILL_MEGA] =
     {
@@ -741,7 +741,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(BeedrillMega),
         ICON(BeedrillMega, 2),
         ANIMATIONS(BEEDRILL_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        BEEDRILL_MISC_STATS,
+        BEEDRILL_MISC_INFO,
     },
 
     [SPECIES_PIDGEY] =
@@ -820,7 +820,7 @@ const struct BaseStats gBaseStats[] =
     #define PIDGEOT_SPEED 91
 #endif
 
-#define PIDGEOT_MISC_STATS                  \
+#define PIDGEOT_MISC_INFO                   \
         .type1 = TYPE_NORMAL,               \
         .type2 = TYPE_FLYING,               \
         .catchRate = 45,                    \
@@ -856,7 +856,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Pidgeot),
         ICON(Pidgeot, 0),
         ANIMATIONS(PIDGEOT, 0, ANIM_FRONT_FLIP, BACK_ANIM_TRIANGLE_DOWN),
-        PIDGEOT_MISC_STATS,
+        PIDGEOT_MISC_INFO,
     },
     [SPECIES_PIDGEOT_MEGA] =
     {
@@ -878,10 +878,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PidgeotMega),
         ICON(PidgeotMega, 0),
         ANIMATIONS(PIDGEOT_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIDGEOT_MISC_STATS,
+        PIDGEOT_MISC_INFO,
     },
 
-#define RATTATA_FAMILY_MISC_STATS           \
+#define RATTATA_FAMILY_MISC_INFO            \
         .type2 = TYPE_NORMAL,               \
         .genderRatio = PERCENT_FEMALE(50),  \
         .eggCycles = 15,                    \
@@ -891,7 +891,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_FIELD,       \
         .noFlip = FALSE
 
-#define RATTATA_MISC_STATS                  \
+#define RATTATA_MISC_INFO                   \
         .baseHP        = 30,                \
         .baseAttack    = 56,                \
         .baseDefense   = 35,                \
@@ -903,7 +903,7 @@ const struct BaseStats gBaseStats[] =
         .evYield_Speed     = 1,             \
         .natDexNum = NATIONAL_DEX_RATTATA,  \
         FOOTPRINT(Rattata),                 \
-        RATTATA_FAMILY_MISC_STATS
+        RATTATA_FAMILY_MISC_INFO
 
     [SPECIES_RATTATA] =
     {
@@ -919,7 +919,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Rattata),
         ICON(Rattata, 2),
         ANIMATIONS(RATTATA, 0, ANIM_RAPID_H_HOPS, BACK_ANIM_V_SHAKE_H_SLIDE),
-        RATTATA_MISC_STATS,
+        RATTATA_MISC_INFO,
     },
     [SPECIES_RATTATA_ALOLAN] =
     {
@@ -937,16 +937,16 @@ const struct BaseStats gBaseStats[] =
         PALETTES(RattataAlolan),
         ICON(RattataAlolan, 2),
         ANIMATIONS(RATTATA_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        RATTATA_MISC_STATS,
+        RATTATA_MISC_INFO,
     },
 
-#define RATICATE_MISC_STATS                 \
+#define RATICATE_MISC_INFO                  \
         .catchRate = 127,                   \
         .expYield = 145,                    \
         .evYield_Speed     = 2,             \
         .natDexNum = NATIONAL_DEX_RATICATE, \
         FOOTPRINT(Raticate),                \
-        RATTATA_FAMILY_MISC_STATS
+        RATTATA_FAMILY_MISC_INFO
 
     [SPECIES_RATICATE] =
     {
@@ -968,7 +968,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Raticate),
         ICON(Raticate, 2),
         ANIMATIONS(RATICATE, 0, ANIM_FIGURE_8, BACK_ANIM_V_SHAKE_H_SLIDE),
-        RATICATE_MISC_STATS,
+        RATICATE_MISC_INFO,
     },
 
     [SPECIES_RATICATE_ALOLAN] =
@@ -993,7 +993,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(RaticateAlolan),
         ICON(RaticateAlolan, 2),
         ANIMATIONS(RATICATE_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        RATICATE_MISC_STATS,
+        RATICATE_MISC_INFO,
     },
 
     [SPECIES_SPEAROW] =
@@ -1160,7 +1160,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 50,        \
         PIKACHU_BASE_DEFENSES
 
-#define PIKACHU_MISC_STATS                                                  \
+#define PIKACHU_MISC_INFO                                                   \
         .type1 = TYPE_ELECTRIC,                                             \
         .type2 = TYPE_ELECTRIC,                                             \
         .catchRate = 190,                                                   \
@@ -1191,16 +1191,16 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Pikachu),
         ICON(Pikachu, 2),
         ANIMATIONS(PIKACHU, 0, ANIM_FLASH_YELLOW, BACK_ANIM_SHAKE_FLASH_YELLOW),
-        PIKACHU_MISC_STATS,
+        PIKACHU_MISC_INFO,
     },
 
-#define PIKACHU_COSPLAY_MISC_STATS          \
+#define PIKACHU_COSPLAY_MISC_INFO           \
         PIKACHU_REGULAR_BASE_STATS,         \
         .genderRatio = MON_FEMALE,          \
         .eggGroup1 = EGG_GROUP_UNDISCOVERED,\
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,\
         LEARNSETS(Pikachu),                 \
-        PIKACHU_MISC_STATS
+        PIKACHU_MISC_INFO
 
     [SPECIES_PIKACHU_COSPLAY] =
     {
@@ -1211,7 +1211,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuCosplay),
         ICON(PikachuCosplay, 2),
         ANIMATIONS(PIKACHU_COSPLAY, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_COSPLAY_MISC_STATS,
+        PIKACHU_COSPLAY_MISC_INFO,
     },
     [SPECIES_PIKACHU_ROCK_STAR] =
     {
@@ -1222,7 +1222,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuRockStar),
         ICON(PikachuRockStar, 1),
         ANIMATIONS(PIKACHU_ROCK_STAR, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_COSPLAY_MISC_STATS,
+        PIKACHU_COSPLAY_MISC_INFO,
     },
     [SPECIES_PIKACHU_BELLE] =
     {
@@ -1233,7 +1233,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuBelle),
         ICON(PikachuBelle, 0),
         ANIMATIONS(PIKACHU_BELLE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_COSPLAY_MISC_STATS,
+        PIKACHU_COSPLAY_MISC_INFO,
     },
     [SPECIES_PIKACHU_POP_STAR] =
     {
@@ -1244,7 +1244,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuPopStar),
         ICON(PikachuPopStar, 0),
         ANIMATIONS(PIKACHU_POP_STAR, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_COSPLAY_MISC_STATS,
+        PIKACHU_COSPLAY_MISC_INFO,
     },
     [SPECIES_PIKACHU_PH_D] =
     {
@@ -1255,7 +1255,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuPhD),
         ICON(PikachuPhD, 1),
         ANIMATIONS(PIKACHU_PH_D, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_COSPLAY_MISC_STATS,
+        PIKACHU_COSPLAY_MISC_INFO,
     },
     [SPECIES_PIKACHU_LIBRE] =
     {
@@ -1266,16 +1266,16 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuLibre),
         ICON(PikachuLibre, 0),
         ANIMATIONS(PIKACHU_LIBRE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_COSPLAY_MISC_STATS,
+        PIKACHU_COSPLAY_MISC_INFO,
     },
 
-#define PIKACHU_CAP_MISC_STATS              \
+#define PIKACHU_CAP_MISC_INFO               \
         PIKACHU_REGULAR_BASE_STATS,         \
         .genderRatio = MON_MALE,            \
         .eggGroup1 = EGG_GROUP_UNDISCOVERED,\
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,\
         LEARNSETS(Pikachu),                 \
-        PIKACHU_MISC_STATS
+        PIKACHU_MISC_INFO
 
     [SPECIES_PIKACHU_ORIGINAL_CAP] =
     {
@@ -1286,7 +1286,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuOriginalCap),
         ICON(PikachuOriginalCap, 0),
         ANIMATIONS(PIKACHU_ORIGINAL_CAP, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_CAP_MISC_STATS,
+        PIKACHU_CAP_MISC_INFO,
     },
     [SPECIES_PIKACHU_HOENN_CAP] =
     {
@@ -1297,7 +1297,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuHoennCap),
         ICON(PikachuHoennCap, 0),
         ANIMATIONS(PIKACHU_HOENN_CAP, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_CAP_MISC_STATS,
+        PIKACHU_CAP_MISC_INFO,
     },
     [SPECIES_PIKACHU_SINNOH_CAP] =
     {
@@ -1308,7 +1308,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuSinnohCap),
         ICON(PikachuSinnohCap, 0),
         ANIMATIONS(PIKACHU_SINNOH_CAP, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_CAP_MISC_STATS,
+        PIKACHU_CAP_MISC_INFO,
     },
     [SPECIES_PIKACHU_UNOVA_CAP] =
     {
@@ -1319,7 +1319,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuUnovaCap),
         ICON(PikachuUnovaCap, 0),
         ANIMATIONS(PIKACHU_UNOVA_CAP, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_CAP_MISC_STATS,
+        PIKACHU_CAP_MISC_INFO,
     },
     [SPECIES_PIKACHU_KALOS_CAP] =
     {
@@ -1330,7 +1330,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuKalosCap),
         ICON(PikachuKalosCap, 0),
         ANIMATIONS(PIKACHU_KALOS_CAP, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_CAP_MISC_STATS,
+        PIKACHU_CAP_MISC_INFO,
     },
     [SPECIES_PIKACHU_ALOLA_CAP] =
     {
@@ -1341,7 +1341,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuAlolaCap),
         ICON(PikachuAlolaCap, 0),
         ANIMATIONS(PIKACHU_ALOLA_CAP, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_CAP_MISC_STATS,
+        PIKACHU_CAP_MISC_INFO,
     },
     [SPECIES_PIKACHU_PARTNER_CAP] =
     {
@@ -1352,7 +1352,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuPartnerCap),
         ICON(PikachuPartnerCap, 0),
         ANIMATIONS(PIKACHU_PARTNER_CAP, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_CAP_MISC_STATS,
+        PIKACHU_CAP_MISC_INFO,
     },
     [SPECIES_PIKACHU_WORLD_CAP] =
     {
@@ -1363,7 +1363,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PikachuWorldCap),
         ICON(QuestionMark, 0),
         ANIMATIONS(PIKACHU_WORLD_CAP, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PIKACHU_CAP_MISC_STATS,
+        PIKACHU_CAP_MISC_INFO,
     },
 
 #if P_UPDATED_STATS >= GEN_6
@@ -1372,7 +1372,7 @@ const struct BaseStats gBaseStats[] =
     #define RAICHU_SPEED 100
 #endif
 
-#define RAICHU_MISC_STATS                   \
+#define RAICHU_MISC_INFO                    \
         .type1 = TYPE_ELECTRIC,             \
         .catchRate = 75,                    \
         .expYield = 218,                    \
@@ -1407,7 +1407,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Raichu),
         ICON(Raichu, 0),
         ANIMATIONS(RAICHU, 0, ANIM_GROW_VIBRATE, BACK_ANIM_SHAKE_FLASH_YELLOW),
-        RAICHU_MISC_STATS,
+        RAICHU_MISC_INFO,
     },
     [SPECIES_RAICHU_ALOLAN] =
     {
@@ -1421,7 +1421,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SURGE_SURFER, ABILITY_NONE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        RAICHU_MISC_STATS,
+        RAICHU_MISC_INFO,
         DEX_TEXT(RaichuAlolan, "Mouse"),
         HEIGHT_WEIGHT(7, 210),
         LEARNSETS(RaichuAlolan),
@@ -1433,7 +1433,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(RAICHU_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
-#define SANDSHREW_FAMILY_MISC_STATS         \
+#define SANDSHREW_FAMILY_MISC_INFO          \
         .itemRare = ITEM_GRIP_CLAW,         \
         .genderRatio = PERCENT_FEMALE(50),  \
         .eggCycles = 20,                    \
@@ -1443,14 +1443,14 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_FIELD,       \
         .noFlip = FALSE
 
-#define SANDSHREW_MISC_STATS                \
+#define SANDSHREW_MISC_INFO                 \
         .catchRate = 255,                   \
         .expYield = 60,                     \
         .evYield_Defense   = 1,             \
         .natDexNum = NATIONAL_DEX_SANDSHREW,\
         DEX_SCALE(365, 18, 256, 0),         \
         FOOTPRINT(Sandshrew),               \
-        SANDSHREW_FAMILY_MISC_STATS
+        SANDSHREW_FAMILY_MISC_INFO
 
     [SPECIES_SANDSHREW] =
     {
@@ -1472,7 +1472,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Sandshrew),
         ICON(Sandshrew, 2),
         ANIMATIONS(SANDSHREW, 0, ANIM_SWING_CONCAVE_FAST_SHORT, BACK_ANIM_CONCAVE_ARC_SMALL),
-        SANDSHREW_MISC_STATS,
+        SANDSHREW_MISC_INFO,
     },
     [SPECIES_SANDSHREW_ALOLAN] =
     {
@@ -1495,17 +1495,17 @@ const struct BaseStats gBaseStats[] =
         PALETTES(SandshrewAlolan),
         ICON(SandshrewAlolan, 0),
         ANIMATIONS(SANDSHREW_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SANDSHREW_MISC_STATS,
+        SANDSHREW_MISC_INFO,
     },
 
-#define SANDSLASH_MISC_STATS                \
+#define SANDSLASH_MISC_INFO                 \
         .catchRate = 90,                    \
         .expYield = 158,                    \
         .evYield_Defense   = 2,             \
         .natDexNum = NATIONAL_DEX_SANDSLASH,\
         DEX_SCALE(341, 11, 256, 0),         \
         FOOTPRINT(Sandslash),               \
-        SANDSHREW_FAMILY_MISC_STATS
+        SANDSHREW_FAMILY_MISC_INFO
 
     [SPECIES_SANDSLASH] =
     {
@@ -1527,7 +1527,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Sandslash),
         ICON(Sandslash, 2),
         ANIMATIONS(SANDSLASH, 0, ANIM_H_SHAKE, BACK_ANIM_CONCAVE_ARC_LARGE),
-        SANDSLASH_MISC_STATS,
+        SANDSLASH_MISC_INFO,
     },
     [SPECIES_SANDSLASH_ALOLAN] =
     {
@@ -1550,7 +1550,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(SandslashAlolan),
         ICON(SandslashAlolan, 0),
         ANIMATIONS(SANDSLASH_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SANDSLASH_MISC_STATS,
+        SANDSLASH_MISC_INFO,
     },
 
     [SPECIES_NIDORAN_F] =
@@ -1853,7 +1853,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(CLEFABLE, 0, ANIM_V_STRETCH, BACK_ANIM_DIP_RIGHT_SIDE),
     },
 
-#define VULPIX_FAMILY_MISC_STATS            \
+#define VULPIX_FAMILY_MISC_INFO             \
         .genderRatio = PERCENT_FEMALE(75),  \
         .eggCycles = 20,                    \
         .friendship = 70,                   \
@@ -1862,7 +1862,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_FIELD,       \
         .noFlip = FALSE
 
-#define VULPIX_MISC_STATS                   \
+#define VULPIX_MISC_INFO                    \
         .baseHP        = 38,                \
         .baseAttack    = 41,                \
         .baseDefense   = 40,                \
@@ -1876,7 +1876,7 @@ const struct BaseStats gBaseStats[] =
         DEX_SCALE(542, 19, 256, 0),         \
         HEIGHT_WEIGHT(6, 99),               \
         FOOTPRINT(Vulpix),  	            \
-        VULPIX_FAMILY_MISC_STATS
+        VULPIX_FAMILY_MISC_INFO
 
     [SPECIES_VULPIX] =
     {
@@ -1892,7 +1892,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Vulpix),
         ICON(Vulpix, 5),
         ANIMATIONS(VULPIX, 0, ANIM_V_STRETCH, BACK_ANIM_CONCAVE_ARC_LARGE),
-        VULPIX_MISC_STATS,
+        VULPIX_MISC_INFO,
     },
 
     [SPECIES_VULPIX_ALOLAN] =
@@ -1910,10 +1910,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(VulpixAlolan),
         ICON(VulpixAlolan, 2),
         ANIMATIONS(VULPIX_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        VULPIX_MISC_STATS,
+        VULPIX_MISC_INFO,
     },
 
-#define NINETALES_MISC_STATS                \
+#define NINETALES_MISC_INFO                 \
         .catchRate = 75,                    \
         .expYield = 177,                    \
         .evYield_Speed     = 1,             \
@@ -1922,7 +1922,7 @@ const struct BaseStats gBaseStats[] =
         DEX_SCALE(339, 10, 256, 0),         \
         HEIGHT_WEIGHT(11, 199),             \
         FOOTPRINT(Ninetales),               \
-        VULPIX_FAMILY_MISC_STATS
+        VULPIX_FAMILY_MISC_INFO
 
     [SPECIES_NINETALES] =
     {
@@ -1944,7 +1944,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Ninetales),
         ICON(Ninetales, 3),
         ANIMATIONS(NINETALES, 0, ANIM_GROW_VIBRATE, BACK_ANIM_H_VIBRATE),
-        NINETALES_MISC_STATS,
+        NINETALES_MISC_INFO,
     },
     [SPECIES_NINETALES_ALOLAN] =
     {
@@ -1967,7 +1967,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(NinetalesAlolan),
         ICON(NinetalesAlolan, 2),
         ANIMATIONS(NINETALES_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        NINETALES_MISC_STATS,
+        NINETALES_MISC_INFO,
     },
 
 #if P_UPDATED_TYPES >= GEN_6
@@ -2384,7 +2384,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(VENOMOTH, 0, ANIM_ZIGZAG_SLOW, BACK_ANIM_CONVEX_DOUBLE_ARC),
     },
 
-#define DIGLETT_FAMILY_MISC_STATS           \
+#define DIGLETT_FAMILY_MISC_INFO            \
         .type1 = TYPE_GROUND,               \
         .itemRare = ITEM_SOFT_SAND,         \
         .genderRatio = PERCENT_FEMALE(50),  \
@@ -2395,14 +2395,14 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_FIELD,       \
         .bodyColor = BODY_COLOR_BROWN
 
-#define DIGLETT_MISC_STATS                  \
+#define DIGLETT_MISC_INFO                   \
         .catchRate = 255,                   \
         .expYield = 53,                     \
         .evYield_Speed     = 1,             \
         .noFlip = FALSE,                    \
         .natDexNum = NATIONAL_DEX_DIGLETT,  \
         FOOTPRINT(Diglett),                 \
-        DIGLETT_FAMILY_MISC_STATS
+        DIGLETT_FAMILY_MISC_INFO
 
     [SPECIES_DIGLETT] =
     {
@@ -2423,7 +2423,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Diglett),
         ICON(Diglett, 2),
         ANIMATIONS(DIGLETT, 25, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE),
-        DIGLETT_MISC_STATS,
+        DIGLETT_MISC_INFO,
     },
     [SPECIES_DIGLETT_ALOLAN] =
     {
@@ -2445,16 +2445,16 @@ const struct BaseStats gBaseStats[] =
         PALETTES(DiglettAlolan),
         ICON(DiglettAlolan, 2),
         ANIMATIONS(DIGLETT_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        DIGLETT_MISC_STATS,
+        DIGLETT_MISC_INFO,
     },
 
-#define DUGTRIO_MISC_STATS                  \
+#define DUGTRIO_MISC_INFO                   \
         .catchRate = 50,                    \
         .expYield = 149,                    \
         .evYield_Speed     = 2,             \
         .natDexNum = NATIONAL_DEX_DUGTRIO,  \
         FOOTPRINT(Dugtrio),                 \
-        DIGLETT_FAMILY_MISC_STATS
+        DIGLETT_FAMILY_MISC_INFO
 
 #if P_UPDATED_STATS >= GEN_7
     #define DUGTRIO_ATTACK 100
@@ -2482,7 +2482,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Dugtrio),
         ICON(Dugtrio, 2),
         ANIMATIONS(DUGTRIO, 35, ANIM_H_SHAKE_SLOW, BACK_ANIM_V_SHAKE),
-        DUGTRIO_MISC_STATS,
+        DUGTRIO_MISC_INFO,
     },
     [SPECIES_DUGTRIO_ALOLAN] =
     {
@@ -2505,10 +2505,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(DugtrioAlolan),
         ICON(DugtrioAlolan, 2),
         ANIMATIONS(DUGTRIO_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        DUGTRIO_MISC_STATS,
+        DUGTRIO_MISC_INFO,
     },
 
-#define MEOWTH_MISC_STATS                   \
+#define MEOWTH_MISC_INFO                    \
         .catchRate = 255,                   \
         .expYield = 58,                     \
         .genderRatio = PERCENT_FEMALE(50),  \
@@ -2544,7 +2544,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Meowth),
         ICON(Meowth, 1),
         ANIMATIONS(MEOWTH, 40, ANIM_V_JUMPS_SMALL, BACK_ANIM_CONCAVE_ARC_LARGE),
-        MEOWTH_MISC_STATS,
+        MEOWTH_MISC_INFO,
     },
     [SPECIES_MEOWTH_ALOLAN] =
     {
@@ -2570,7 +2570,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(MeowthGalarian),
         ICON(MeowthAlolan, 2),
         ANIMATIONS(MEOWTH_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        MEOWTH_MISC_STATS,
+        MEOWTH_MISC_INFO,
     },
     [SPECIES_MEOWTH_GALARIAN] =
     {
@@ -2595,10 +2595,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(MeowthAlolan),
         ICON(MeowthGalarian, 0),
         ANIMATIONS(MEOWTH_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        MEOWTH_MISC_STATS,
+        MEOWTH_MISC_INFO,
     },
 
-#define PERSIAN_MISC_STATS                  \
+#define PERSIAN_MISC_INFO                   \
         .catchRate = 90,                    \
         .expYield = 154,                    \
         .evYield_Speed     = 2,             \
@@ -2634,7 +2634,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Persian),
         ICON(Persian, 1),
         ANIMATIONS(PERSIAN, 20, ANIM_V_STRETCH, BACK_ANIM_TRIANGLE_DOWN),
-        PERSIAN_MISC_STATS,
+        PERSIAN_MISC_INFO,
     },
     [SPECIES_PERSIAN_ALOLAN] =
     {
@@ -2658,7 +2658,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PersianAlolan),
         ICON(PersianAlolan, 2),
         ANIMATIONS(PERSIAN_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PERSIAN_MISC_STATS,
+        PERSIAN_MISC_INFO,
     },
 
     [SPECIES_PSYDUCK] =
@@ -2801,7 +2801,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(PRIMEAPE, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL, BACK_ANIM_CONCAVE_ARC_LARGE),
     },
 
-#define GROWLITHE_FAMILY_MISC_STATS                                                 \
+#define GROWLITHE_FAMILY_MISC_INFO                                                  \
         .type1 = TYPE_FIRE,                                                         \
         .genderRatio = PERCENT_FEMALE(25),                                          \
         .eggCycles = 20,                                                            \
@@ -2813,14 +2813,14 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BROWN,                                              \
         .noFlip = FALSE
 
-#define GROWLITHE_MISC_STATS                \
+#define GROWLITHE_MISC_INFO                 \
         .catchRate = 190,                   \
         .expYield = 91,                     \
         .evYield_Attack    = 1,             \
         .natDexNum = NATIONAL_DEX_GROWLITHE,\
         DEX_SCALE(346, 14, 256, 0),         \
         FOOTPRINT(Growlithe),               \
-        GROWLITHE_FAMILY_MISC_STATS
+        GROWLITHE_FAMILY_MISC_INFO
 
     [SPECIES_GROWLITHE] =
     {
@@ -2839,7 +2839,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Growlithe),
         ICON(Growlithe, 3),
         ANIMATIONS(GROWLITHE, 30, ANIM_BACK_AND_LUNGE, BACK_ANIM_JOLT_RIGHT),
-        GROWLITHE_MISC_STATS,
+        GROWLITHE_MISC_INFO,
     },
     [SPECIES_GROWLITHE_HISUIAN] =
     {
@@ -2859,17 +2859,17 @@ const struct BaseStats gBaseStats[] =
         PALETTES(GrowlitheHisuian),
         ICON(GrowlitheHisuian, 0),
         ANIMATIONS(GROWLITHE_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        GROWLITHE_MISC_STATS,
+        GROWLITHE_MISC_INFO,
     },
 
-#define ARCANINE_MISC_STATS                 \
+#define ARCANINE_MISC_INFO                  \
         .catchRate = 75,                    \
         .expYield = 213,                    \
         .evYield_Attack    = 2,             \
         .natDexNum = NATIONAL_DEX_ARCANINE, \
         DEX_SCALE(256, 1, 312, 0),          \
         FOOTPRINT(Arcanine),                \
-        GROWLITHE_FAMILY_MISC_STATS
+        GROWLITHE_FAMILY_MISC_INFO
 
     [SPECIES_ARCANINE] =
     {
@@ -2888,7 +2888,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Arcanine),
         ICON(Arcanine, 3),
         ANIMATIONS(ARCANINE, 40, ANIM_H_SHAKE, BACK_ANIM_JOLT_RIGHT),
-        ARCANINE_MISC_STATS,
+        ARCANINE_MISC_INFO,
     },
     [SPECIES_ARCANINE_HISUIAN] =
     {
@@ -2908,7 +2908,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(ArcanineHisuian),
         ICON(ArcanineHisuian, 0),
         ANIMATIONS(ARCANINE_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ARCANINE_MISC_STATS,
+        ARCANINE_MISC_INFO,
     },
 
     [SPECIES_POLIWAG] =
@@ -3100,7 +3100,7 @@ const struct BaseStats gBaseStats[] =
     #define ALAKAZAM_SP_DEF 85
 #endif
 
-#define ALAKAZAM_MISC_STATS                 \
+#define ALAKAZAM_MISC_INFO                  \
         .type1 = TYPE_PSYCHIC,              \
         .type2 = TYPE_PSYCHIC,              \
         .catchRate = 50,                    \
@@ -3136,7 +3136,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Alakazam),
         ICON(Alakazam, 2),
         ANIMATIONS(ALAKAZAM, 0, ANIM_GROW_VIBRATE, BACK_ANIM_GROW_STUTTER),
-        ALAKAZAM_MISC_STATS,
+        ALAKAZAM_MISC_INFO,
     },
     [SPECIES_ALAKAZAM_MEGA] =
     {
@@ -3152,7 +3152,7 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(AlakazamMega, "Psi"),
         DEX_SCALE(480, -5, 256, 0),
         HEIGHT_WEIGHT(12, 480),
-        ALAKAZAM_MISC_STATS,
+        ALAKAZAM_MISC_INFO,
         FRONT_SPRITE(AlakazamMega, 64, 64, 0),
         .enemyMonElevation = 7,
         BACK_SPRITE(AlakazamMega, 64, 64, 0),
@@ -3455,7 +3455,7 @@ const struct BaseStats gBaseStats[] =
         .itemRare = ITEM_EVERSTONE,                                         \
         .abilities = {ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SAND_VEIL}
 
-#define GEODUDE_FAMILY_MISC_STATS           \
+#define GEODUDE_FAMILY_MISC_INFO            \
         .type1 = TYPE_ROCK,                 \
         .genderRatio = PERCENT_FEMALE(50),  \
         .eggCycles = 15,                    \
@@ -3466,7 +3466,7 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BROWN,      \
         .noFlip = FALSE
 
-#define GEODUDE_MISC_STATS                  \
+#define GEODUDE_MISC_INFO                   \
         .baseHP        = 40,                \
         .baseAttack    = 80,                \
         .baseDefense   = 100,               \
@@ -3478,7 +3478,7 @@ const struct BaseStats gBaseStats[] =
         .evYield_Defense   = 1,             \
         .natDexNum = NATIONAL_DEX_GEODUDE,  \
         FOOTPRINT(Geodude),                 \
-        GEODUDE_FAMILY_MISC_STATS
+        GEODUDE_FAMILY_MISC_INFO
 
     [SPECIES_GEODUDE] =
     {
@@ -3493,7 +3493,7 @@ const struct BaseStats gBaseStats[] =
         ICON(Geodude, 1),
         ANIMATIONS(GEODUDE, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL, BACK_ANIM_V_SHAKE_LOW),
         KANTONIAN_GEODUDE_FAMILY_STATS,
-        GEODUDE_MISC_STATS,
+        GEODUDE_MISC_INFO,
     },
 
 #define ALOLAN_GEODUDE_FAMILY_STATS                                             \
@@ -3515,10 +3515,10 @@ const struct BaseStats gBaseStats[] =
         ICON(GeodudeAlolan, 2),
         ANIMATIONS(GEODUDE_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         ALOLAN_GEODUDE_FAMILY_STATS,
-        GEODUDE_MISC_STATS,
+        GEODUDE_MISC_INFO,
     },
 
-#define GRAVELER_MISC_STATS                 \
+#define GRAVELER_MISC_INFO                  \
         .baseHP        = 55,                \
         .baseAttack    = 95,                \
         .baseDefense   = 115,               \
@@ -3530,7 +3530,7 @@ const struct BaseStats gBaseStats[] =
         .evYield_Defense   = 2,             \
         .natDexNum = NATIONAL_DEX_GRAVELER, \
         FOOTPRINT(Graveler),                \
-        GEODUDE_FAMILY_MISC_STATS
+        GEODUDE_FAMILY_MISC_INFO
 
     [SPECIES_GRAVELER] =
     {
@@ -3544,7 +3544,7 @@ const struct BaseStats gBaseStats[] =
         ICON(Graveler, 1),
         ANIMATIONS(GRAVELER, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL, BACK_ANIM_H_SHAKE),
         KANTONIAN_GEODUDE_FAMILY_STATS,
-        GRAVELER_MISC_STATS,
+        GRAVELER_MISC_INFO,
     },
 
     [SPECIES_GRAVELER_ALOLAN] =
@@ -3559,7 +3559,7 @@ const struct BaseStats gBaseStats[] =
         ICON(GravelerAlolan, 2),
         ANIMATIONS(GRAVELER_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         ALOLAN_GEODUDE_FAMILY_STATS,
-        GRAVELER_MISC_STATS,
+        GRAVELER_MISC_INFO,
     },
 
 #if P_UPDATED_STATS >= GEN_6
@@ -3567,7 +3567,7 @@ const struct BaseStats gBaseStats[] =
 #else
     #define GOLEM_ATTACK 110
 #endif
-#define GOLEM_MISC_STATS                \
+#define GOLEM_MISC_INFO                 \
         .baseHP        = 80,            \
         .baseAttack    = GOLEM_ATTACK,  \
         .baseDefense   = 130,           \
@@ -3579,7 +3579,7 @@ const struct BaseStats gBaseStats[] =
         .evYield_Defense   = 3,         \
         .natDexNum = NATIONAL_DEX_GOLEM,\
         FOOTPRINT(Golem),               \
-        GEODUDE_FAMILY_MISC_STATS
+        GEODUDE_FAMILY_MISC_INFO
 
     [SPECIES_GOLEM] =
     {
@@ -3593,7 +3593,7 @@ const struct BaseStats gBaseStats[] =
         ICON(Golem, 2),
         ANIMATIONS(GOLEM, 0, ANIM_ROTATE_UP_SLAM_DOWN, BACK_ANIM_H_SHAKE),
         KANTONIAN_GEODUDE_FAMILY_STATS,
-        GOLEM_MISC_STATS,
+        GOLEM_MISC_INFO,
     },
     [SPECIES_GOLEM_ALOLAN] =
     {
@@ -3607,7 +3607,7 @@ const struct BaseStats gBaseStats[] =
         ICON(GolemAlolan, 2),
         ANIMATIONS(GOLEM_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         ALOLAN_GEODUDE_FAMILY_STATS,
-        GOLEM_MISC_STATS,
+        GOLEM_MISC_INFO,
     },
 
 #define KANTONIAN_PONYTA_FAMILY_STATS                                           \
@@ -3616,7 +3616,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RUN_AWAY, ABILITY_FLASH_FIRE, ABILITY_FLAME_BODY},\
         .bodyColor = BODY_COLOR_YELLOW
 
-#define PONYTA_FAMILY_MISC_STATS            \
+#define PONYTA_FAMILY_MISC_INFO             \
         .genderRatio = PERCENT_FEMALE(50),  \
         .eggCycles = 20,                    \
         .friendship = 70,                   \
@@ -3625,7 +3625,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_FIELD,       \
         .noFlip = FALSE
 
-#define PONYTA_MISC_STATS                   \
+#define PONYTA_MISC_INFO                    \
         .baseHP        = 50,                \
         .baseAttack    = 85,                \
         .baseDefense   = 55,                \
@@ -3637,7 +3637,7 @@ const struct BaseStats gBaseStats[] =
         .evYield_Speed     = 1,             \
         .natDexNum = NATIONAL_DEX_PONYTA,   \
         FOOTPRINT(Ponyta),                  \
-        PONYTA_FAMILY_MISC_STATS
+        PONYTA_FAMILY_MISC_INFO
 
     [SPECIES_PONYTA] =
     {
@@ -3651,7 +3651,7 @@ const struct BaseStats gBaseStats[] =
         ICON(Ponyta, 3),
         ANIMATIONS(PONYTA, 0, ANIM_GLOW_ORANGE, BACK_ANIM_SHAKE_GLOW_RED),
         KANTONIAN_PONYTA_FAMILY_STATS,
-        PONYTA_MISC_STATS,
+        PONYTA_MISC_INFO,
     },
 
 #define GALARIAN_PONYTA_FAMILY_STATS                                                \
@@ -3673,10 +3673,10 @@ const struct BaseStats gBaseStats[] =
         ICON(PonytaGalarian, 2),
         ANIMATIONS(PONYTA_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         GALARIAN_PONYTA_FAMILY_STATS,
-        PONYTA_MISC_STATS,
+        PONYTA_MISC_INFO,
     },
 
-#define RAPIDASH_MISC_STATS                 \
+#define RAPIDASH_MISC_INFO                  \
         .baseHP        = 65,                \
         .baseAttack    = 100,               \
         .baseDefense   = 70,                \
@@ -3688,7 +3688,7 @@ const struct BaseStats gBaseStats[] =
         .evYield_Speed     = 2,             \
         .natDexNum = NATIONAL_DEX_RAPIDASH, \
         FOOTPRINT(Rapidash),                \
-        PONYTA_FAMILY_MISC_STATS
+        PONYTA_FAMILY_MISC_INFO
 
     [SPECIES_RAPIDASH] =
     {
@@ -3702,7 +3702,7 @@ const struct BaseStats gBaseStats[] =
         ICON(Rapidash, 3),
         ANIMATIONS(RAPIDASH, 0, ANIM_H_SHAKE, BACK_ANIM_JOLT_RIGHT),
         KANTONIAN_PONYTA_FAMILY_STATS,
-        RAPIDASH_MISC_STATS,
+        RAPIDASH_MISC_INFO,
     },
     [SPECIES_RAPIDASH_GALARIAN] =
     {
@@ -3717,10 +3717,10 @@ const struct BaseStats gBaseStats[] =
         ICON(RapidashGalarian, 2),
         ANIMATIONS(RAPIDASH_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         GALARIAN_PONYTA_FAMILY_STATS,
-        RAPIDASH_MISC_STATS,
+        RAPIDASH_MISC_INFO,
     },
 
-#define SLOWPOKE_MISC_STATS                 \
+#define SLOWPOKE_MISC_INFO                  \
         .baseHP        = 90,                \
         .baseAttack    = 65,                \
         .baseDefense   = 65,                \
@@ -3756,7 +3756,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Slowpoke),
         ICON(Slowpoke, 0),
         ANIMATIONS(SLOWPOKE, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_H_SLIDE),
-        SLOWPOKE_MISC_STATS,
+        SLOWPOKE_MISC_INFO,
     },
     [SPECIES_SLOWPOKE_GALARIAN] =
     {
@@ -3770,10 +3770,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(SlowpokeGalarian),
         ICON(SlowpokeGalarian, 1),
         ANIMATIONS(SLOWPOKE_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SLOWPOKE_MISC_STATS,
+        SLOWPOKE_MISC_INFO,
     },
 
-#define SLOWBRO_MISC_STATS                  \
+#define SLOWBRO_MISC_INFO                   \
         .type2 = TYPE_PSYCHIC,              \
         .catchRate = 75,                    \
         .genderRatio = PERCENT_FEMALE(50),  \
@@ -3809,7 +3809,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Slowbro),
         ICON(Slowbro, 0),
         ANIMATIONS(SLOWBRO, 0, ANIM_GROW_VIBRATE, BACK_ANIM_DIP_RIGHT_SIDE),
-        SLOWBRO_MISC_STATS,
+        SLOWBRO_MISC_INFO,
     },
     [SPECIES_SLOWBRO_MEGA] =
     {
@@ -3835,7 +3835,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(SlowbroMega),
         ICON(SlowbroMega, 0),
         ANIMATIONS(SLOWBRO_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SLOWBRO_MISC_STATS,
+        SLOWBRO_MISC_INFO,
     },
     [SPECIES_SLOWBRO_GALARIAN] =
     {
@@ -3860,7 +3860,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(SlowbroGalarian),
         ICON(SlowbroGalarian, 0),
         ANIMATIONS(SLOWBRO_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SLOWBRO_MISC_STATS,
+        SLOWBRO_MISC_INFO,
     },
 
     [SPECIES_MAGNEMITE] =
@@ -3943,7 +3943,7 @@ const struct BaseStats gBaseStats[] =
     #define FARFETCHD_ATTACK 65
 #endif
 
-#define FARFETCHD_MISC_STATS                \
+#define FARFETCHD_MISC_INFO                 \
         .catchRate = 45,                    \
         .expYield = 132,                    \
         .evYield_Attack    = 1,             \
@@ -3979,7 +3979,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Farfetchd),
         ICON(Farfetchd, 1),
         ANIMATIONS(FARFETCHD, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL, BACK_ANIM_H_SLIDE),
-        FARFETCHD_MISC_STATS,
+        FARFETCHD_MISC_INFO,
     },
     [SPECIES_FARFETCHD_GALARIAN] =
     {
@@ -4002,7 +4002,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(FarfetchdGalarian),
         ICON(FarfetchdGalarian, 1),
         ANIMATIONS(FARFETCHD_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        FARFETCHD_MISC_STATS,
+        FARFETCHD_MISC_INFO,
     },
 
     [SPECIES_DODUO] =
@@ -4151,7 +4151,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(DEWGONG, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_H_SLIDE),
     },
 
-#define GRIMER_FAMILY_MISC_STATS            \
+#define GRIMER_FAMILY_MISC_INFO             \
         .type1 = TYPE_POISON,               \
         .itemRare = ITEM_BLACK_SLUDGE,      \
         .genderRatio = PERCENT_FEMALE(50),  \
@@ -4162,7 +4162,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_AMORPHOUS,   \
         .noFlip = FALSE
 
-#define GRIMER_MISC_STATS                   \
+#define GRIMER_MISC_INFO                    \
         .baseHP        = 80,                \
         .baseAttack    = 80,                \
         .baseDefense   = 50,                \
@@ -4174,7 +4174,7 @@ const struct BaseStats gBaseStats[] =
         .evYield_HP        = 1,             \
         .natDexNum = NATIONAL_DEX_GRIMER,   \
         FOOTPRINT(Grimer),                  \
-        GRIMER_FAMILY_MISC_STATS
+        GRIMER_FAMILY_MISC_INFO
 
 #define KANTONIAN_GRIMER_FAMILY_STATS                                               \
         .type2 = TYPE_POISON,                                                       \
@@ -4193,7 +4193,7 @@ const struct BaseStats gBaseStats[] =
         ICON(Grimer, 2),
         ANIMATIONS(GRIMER, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_V_STRETCH),
         KANTONIAN_GRIMER_FAMILY_STATS,
-        GRIMER_MISC_STATS,
+        GRIMER_MISC_INFO,
     },
 
 #define ALOLAN_GRIMER_FAMILY_STATS                                                      \
@@ -4214,10 +4214,10 @@ const struct BaseStats gBaseStats[] =
         ICON(GrimerAlolan, 1),
         ANIMATIONS(GRIMER_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         ALOLAN_GRIMER_FAMILY_STATS,
-        GRIMER_MISC_STATS,
+        GRIMER_MISC_INFO,
     },
 
-#define MUK_MISC_STATS                  \
+#define MUK_MISC_INFO                   \
         .baseHP        = 105,           \
         .baseAttack    = 105,           \
         .baseDefense   = 75,            \
@@ -4230,7 +4230,7 @@ const struct BaseStats gBaseStats[] =
         .evYield_Attack    = 1,         \
         .natDexNum = NATIONAL_DEX_MUK,  \
         FOOTPRINT(Muk),                 \
-        GRIMER_FAMILY_MISC_STATS
+        GRIMER_FAMILY_MISC_INFO
 
     [SPECIES_MUK] =
     {
@@ -4244,7 +4244,7 @@ const struct BaseStats gBaseStats[] =
         ICON(Muk, 2),
         ANIMATIONS(MUK, 45, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_H_STRETCH),
         KANTONIAN_GRIMER_FAMILY_STATS,
-        MUK_MISC_STATS,
+        MUK_MISC_INFO,
     },
     [SPECIES_MUK_ALOLAN] =
     {
@@ -4258,7 +4258,7 @@ const struct BaseStats gBaseStats[] =
         ICON(MukAlolan, 0),
         ANIMATIONS(MUK_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         ALOLAN_GRIMER_FAMILY_STATS,
-        MUK_MISC_STATS,
+        MUK_MISC_INFO,
     },
 
     [SPECIES_SHELLDER] =
@@ -4407,7 +4407,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(HAUNTER, 23, ANIM_FLICKER_INCREASING, BACK_ANIM_H_VIBRATE),
     },
 
-#define GENGAR_MISC_STATS                   \
+#define GENGAR_MISC_INFO                    \
         .type1 = TYPE_GHOST,                \
         .type2 = TYPE_POISON,               \
         .catchRate = 45,                    \
@@ -4446,7 +4446,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Gengar),
         ICON(Gengar, 2),
         ANIMATIONS(GENGAR, 0, ANIM_GROW_IN_STAGES, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        GENGAR_MISC_STATS,
+        GENGAR_MISC_INFO,
     },
     [SPECIES_GENGAR_MEGA] =
     {
@@ -4467,7 +4467,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(GengarMega),
         ICON(GengarMega, 2),
         ANIMATIONS(GENGAR_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        GENGAR_MISC_STATS,
+        GENGAR_MISC_INFO,
     },
 
     [SPECIES_ONIX] =
@@ -4645,7 +4645,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(KINGLER, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_V_SHAKE),
     },
 
-#define VOLTORB_FAMILY_MISC_STATS                                               \
+#define VOLTORB_FAMILY_MISC_INFO                                                \
         .type1 = TYPE_ELECTRIC,                                                 \
         .genderRatio = MON_GENDERLESS,                                          \
         .eggCycles = 20,                                                        \
@@ -4657,7 +4657,7 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_RED,                                            \
         .noFlip = FALSE
 
-#define VOLTORB_MISC_STATS                  \
+#define VOLTORB_MISC_INFO                   \
         .baseHP        = 40,                \
         .baseAttack    = 30,                \
         .baseDefense   = 50,                \
@@ -4670,7 +4670,7 @@ const struct BaseStats gBaseStats[] =
         .natDexNum = NATIONAL_DEX_VOLTORB,  \
         DEX_SCALE(364, -8, 256, 0),         \
         FOOTPRINT(Voltorb),                 \
-        VOLTORB_FAMILY_MISC_STATS
+        VOLTORB_FAMILY_MISC_INFO
 
     [SPECIES_VOLTORB] =
     {
@@ -4683,7 +4683,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Voltorb),
         ICON(Voltorb, 0),
         ANIMATIONS(VOLTORB, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_JOLT_RIGHT),
-        VOLTORB_MISC_STATS,
+        VOLTORB_MISC_INFO,
     },
     [SPECIES_VOLTORB_HISUIAN] =
     {
@@ -4697,7 +4697,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(VoltorbHisuian),
         ICON(VoltorbHisuian, 0),
         ANIMATIONS(VOLTORB_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        VOLTORB_MISC_STATS,
+        VOLTORB_MISC_INFO,
     },
 
 #if P_UPDATED_STATS >= GEN_7
@@ -4706,7 +4706,7 @@ const struct BaseStats gBaseStats[] =
     #define ELECTRODE_SPEED 140
 #endif
 
-#define ELECTRODE_MISC_STATS                \
+#define ELECTRODE_MISC_INFO                 \
         .baseHP        = 60,                \
         .baseAttack    = 50,                \
         .baseDefense   = 70,                \
@@ -4719,7 +4719,7 @@ const struct BaseStats gBaseStats[] =
         .natDexNum = NATIONAL_DEX_ELECTRODE,\
         DEX_SCALE(256, 0, 256, 0),          \
         FOOTPRINT(Electrode),               \
-        VOLTORB_FAMILY_MISC_STATS
+        VOLTORB_FAMILY_MISC_INFO
 
     [SPECIES_ELECTRODE] =
     {
@@ -4732,7 +4732,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Electrode),
         ICON(Electrode, 0),
         ANIMATIONS(ELECTRODE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_JOLT_RIGHT),
-        ELECTRODE_MISC_STATS,
+        ELECTRODE_MISC_INFO,
     },
     [SPECIES_ELECTRODE_HISUIAN] =
     {
@@ -4746,7 +4746,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(ElectrodeHisuian),
         ICON(ElectrodeHisuian, 1),
         ANIMATIONS(ELECTRODE_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ELECTRODE_MISC_STATS,
+        ELECTRODE_MISC_INFO,
     },
 
     [SPECIES_EXEGGCUTE] =
@@ -4785,7 +4785,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(EXEGGCUTE, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_H_SLIDE),
     },
 
-#define EXEGGUTOR_MISC_STATS                \
+#define EXEGGUTOR_MISC_INFO                 \
         .type1 = TYPE_GRASS,                \
         .catchRate = 45,                    \
         .expYield = 186,                    \
@@ -4826,7 +4826,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Exeggutor),
         ICON(Exeggutor, 1),
         ANIMATIONS(EXEGGUTOR, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_CONCAVE_ARC_LARGE),
-        EXEGGUTOR_MISC_STATS,
+        EXEGGUTOR_MISC_INFO,
     },
     [SPECIES_EXEGGUTOR_ALOLAN] =
     {
@@ -4848,7 +4848,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(ExeggutorAlolan),
         ICON(ExeggutorAlolan, 1),
         ANIMATIONS(EXEGGUTOR_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        EXEGGUTOR_MISC_STATS,
+        EXEGGUTOR_MISC_INFO,
     },
 
     [SPECIES_CUBONE] =
@@ -4887,7 +4887,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(CUBONE, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_JOLT_RIGHT),
     },
 
-#define MAROWAK_MISC_STATS                  \
+#define MAROWAK_MISC_INFO                   \
         .baseHP        = 60,                \
         .baseAttack    = 80,                \
         .baseDefense   = 110,               \
@@ -4923,7 +4923,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Marowak),
         ICON(Marowak, 2),
         ANIMATIONS(MAROWAK, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        MAROWAK_MISC_STATS,
+        MAROWAK_MISC_INFO,
     },
     [SPECIES_MAROWAK_ALOLAN] =
     {
@@ -4940,7 +4940,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(MarowakAlolan),
         ICON(MarowakAlolan, 1),
         ANIMATIONS(MAROWAK_ALOLAN, 0, ANIM_BOUNCE_ROTATE_TO_SIDES, BACK_ANIM_CONCAVE_ARC_LARGE),
-        MAROWAK_MISC_STATS,
+        MAROWAK_MISC_INFO,
     },
 
     [SPECIES_HITMONLEE] =
@@ -5086,7 +5086,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(KOFFING, 0, ANIM_V_SLIDE_WOBBLE_SMALL, BACK_ANIM_GROW),
     },
 
-#define WEEZING_MISC_STATS                  \
+#define WEEZING_MISC_INFO                   \
         .baseHP        = 65,                \
         .baseAttack    = 90,                \
         .baseDefense   = 120,               \
@@ -5123,7 +5123,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Weezing),
         ICON(Weezing, 2),
         ANIMATIONS(WEEZING, 0, ANIM_V_SLIDE, BACK_ANIM_GROW),
-        WEEZING_MISC_STATS,
+        WEEZING_MISC_INFO,
     },
     [SPECIES_WEEZING_GALARIAN] =
     {
@@ -5142,7 +5142,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(WeezingGalarian),
         ICON(WeezingGalarian, 1),
         ANIMATIONS(WEEZING_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        WEEZING_MISC_STATS,
+        WEEZING_MISC_INFO,
     },
 
     [SPECIES_RHYHORN] =
@@ -5286,7 +5286,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(TANGELA, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL, BACK_ANIM_V_STRETCH),
     },
 
-#define KANGASKHAN_MISC_STATS                   \
+#define KANGASKHAN_MISC_INFO                    \
         .type1 = TYPE_NORMAL,                   \
         .type2 = TYPE_NORMAL,                   \
         .catchRate = 45,                        \
@@ -5321,7 +5321,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Kangaskhan),
         ICON(Kangaskhan, 2),
         ANIMATIONS(KANGASKHAN, 0, ANIM_V_STRETCH, BACK_ANIM_CONCAVE_ARC_SMALL),
-        KANGASKHAN_MISC_STATS,
+        KANGASKHAN_MISC_INFO,
     },
     [SPECIES_KANGASKHAN_MEGA] =
     {
@@ -5343,7 +5343,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(KangaskhanMega),
         ICON(KangaskhanMega, 2),
         ANIMATIONS(KANGASKHAN_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        KANGASKHAN_MISC_STATS,
+        KANGASKHAN_MISC_INFO,
     },
 
     [SPECIES_HORSEA] =
@@ -5565,7 +5565,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(STARMIE, 0, ANIM_TWIST, BACK_ANIM_SHAKE_GLOW_BLUE),
     },
 
-#define MR_MIME_MISC_STATS                  \
+#define MR_MIME_MISC_INFO                   \
         .catchRate = 45,                    \
         .expYield = 161,                    \
         .genderRatio = PERCENT_FEMALE(50),  \
@@ -5604,7 +5604,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(MrMime),
         ICON(MrMime, 0),
         ANIMATIONS(MR_MIME, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        MR_MIME_MISC_STATS,
+        MR_MIME_MISC_INFO,
     },
     [SPECIES_MR_MIME_GALARIAN] =
     {
@@ -5629,7 +5629,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(MrMimeGalarian),
         ICON(MrMimeGalarian, 0),
         ANIMATIONS(MR_MIME_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        MR_MIME_MISC_STATS,
+        MR_MIME_MISC_INFO,
     },
 
     [SPECIES_SCYTHER] =
@@ -5774,7 +5774,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(MAGMAR, 0, ANIM_H_SHAKE, BACK_ANIM_SHAKE_GLOW_RED),
     },
 
-#define PINSIR_MISC_STATS                   \
+#define PINSIR_MISC_INFO                    \
         .type1 = TYPE_BUG,                  \
         .catchRate = 45,                    \
         .evYield_Attack    = 2,             \
@@ -5809,7 +5809,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Pinsir),
         ICON(Pinsir, 2),
         ANIMATIONS(PINSIR, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_SHAKE_LOW),
-        PINSIR_MISC_STATS,
+        PINSIR_MISC_INFO,
     },
     [SPECIES_PINSIR_MEGA] =
     {
@@ -5832,7 +5832,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PinsirMega),
         ICON(PinsirMega, 2),
         ANIMATIONS(PINSIR_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PINSIR_MISC_STATS,
+        PINSIR_MISC_INFO,
     },
 
     [SPECIES_TAUROS] =
@@ -5906,7 +5906,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(MAGIKARP, 0, ANIM_BOUNCE_ROTATE_TO_SIDES, BACK_ANIM_CONCAVE_ARC_LARGE),
     },
 
-#define GYARADOS_MISC_STATS                 \
+#define GYARADOS_MISC_INFO                  \
         .type1 = TYPE_WATER,                \
         .catchRate = 45,                    \
         .evYield_Attack    = 2,             \
@@ -5941,7 +5941,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Gyarados),
         ICON(Gyarados, 0),
         ANIMATIONS(GYARADOS, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL, BACK_ANIM_V_SHAKE),
-        GYARADOS_MISC_STATS,
+        GYARADOS_MISC_INFO,
     },
     [SPECIES_GYARADOS_MEGA] =
     {
@@ -5964,7 +5964,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(GyaradosMega),
         ICON(GyaradosMega, 0),
         ANIMATIONS(GYARADOS_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        GYARADOS_MISC_STATS,
+        GYARADOS_MISC_INFO,
     },
 
     [SPECIES_LAPRAS] =
@@ -6358,7 +6358,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(KABUTOPS, 0, ANIM_H_SHAKE, BACK_ANIM_JOLT_RIGHT),
     },
 
-#define AERODACTYL_MISC_STATS                   \
+#define AERODACTYL_MISC_INFO                    \
         .type1 = TYPE_ROCK,                     \
         .type2 = TYPE_FLYING,                   \
         .catchRate = 45,                        \
@@ -6394,7 +6394,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Aerodactyl),
         ICON(Aerodactyl, 2),
         ANIMATIONS(AERODACTYL, 0, ANIM_V_SLIDE_SLOW, BACK_ANIM_JOLT_RIGHT),
-        AERODACTYL_MISC_STATS,
+        AERODACTYL_MISC_INFO,
     },
     [SPECIES_AERODACTYL_MEGA] =
     {
@@ -6416,7 +6416,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(AerodactylMega),
         ICON(AerodactylMega, 2),
         ANIMATIONS(AERODACTYL_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        AERODACTYL_MISC_STATS,
+        AERODACTYL_MISC_INFO,
     },
 
     [SPECIES_SNORLAX] =
@@ -6456,7 +6456,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(SNORLAX, 0, ANIM_V_STRETCH, BACK_ANIM_DIP_RIGHT_SIDE),
     },
 
-#define ARTICUNO_MISC_STATS                 \
+#define ARTICUNO_MISC_INFO                  \
         .type2 = TYPE_FLYING,               \
         .catchRate = 3,                     \
         .genderRatio = MON_GENDERLESS,      \
@@ -6492,7 +6492,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Articuno),
         ICON(Articuno, 2),
         ANIMATIONS(ARTICUNO, 0, ANIM_GROW_VIBRATE, BACK_ANIM_SHAKE_GLOW_BLUE),
-        ARTICUNO_MISC_STATS,
+        ARTICUNO_MISC_INFO,
     },
     [SPECIES_ARTICUNO_GALARIAN] =
     {
@@ -6518,10 +6518,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(ArticunoGalarian),
         ICON(ArticunoGalarian, 2),
         ANIMATIONS(ARTICUNO_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ARTICUNO_MISC_STATS,
+        ARTICUNO_MISC_INFO,
     },
 
-#define ZAPDOS_MISC_STATS                   \
+#define ZAPDOS_MISC_INFO                    \
         .type2 = TYPE_FLYING,               \
         .catchRate = 3,                     \
         .genderRatio = MON_GENDERLESS,      \
@@ -6562,7 +6562,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Zapdos),
         ICON(Zapdos, 0),
         ANIMATIONS(ZAPDOS, 0, ANIM_FLASH_YELLOW, BACK_ANIM_SHAKE_FLASH_YELLOW),
-        ZAPDOS_MISC_STATS,
+        ZAPDOS_MISC_INFO,
     },
     [SPECIES_ZAPDOS_GALARIAN] =
     {
@@ -6586,10 +6586,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(ZapdosGalarian),
         ICON(ZapdosGalarian, 0),
         ANIMATIONS(ZAPDOS_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ZAPDOS_MISC_STATS,
+        ZAPDOS_MISC_INFO,
     },
 
-#define MOLTRES_MISC_STATS                  \
+#define MOLTRES_MISC_INFO                   \
         .type2 = TYPE_FLYING,               \
         .catchRate = 3,                     \
         .genderRatio = MON_GENDERLESS,      \
@@ -6625,7 +6625,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Moltres),
         ICON(Moltres, 0),
         ANIMATIONS(MOLTRES, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_SHAKE_GLOW_RED),
-        MOLTRES_MISC_STATS,
+        MOLTRES_MISC_INFO,
     },
     [SPECIES_MOLTRES_GALARIAN] =
     {
@@ -6644,7 +6644,7 @@ const struct BaseStats gBaseStats[] =
         DEX_TEXT(Dummy, "Malevolent"),
         DEX_SCALE(270, 0, 387, 8),
         HEIGHT_WEIGHT(20, 660),
-        MOLTRES_MISC_STATS,
+        MOLTRES_MISC_INFO,
         LEARNSETS(MoltresGalarian),
         FRONT_SPRITE(MoltresGalarian, 64, 64, 1),
         BACK_SPRITE(MoltresGalarian, 56, 56, 5),
@@ -6761,7 +6761,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(DRAGONITE, 0, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE),
     },
 
-#define SPECIES_MEWTWO_MISC_STATS           \
+#define SPECIES_MEWTWO_MISC_INFO            \
         .type1 = TYPE_PSYCHIC,              \
         .catchRate = 3,                     \
         .evYield_SpAttack  = 3,             \
@@ -6797,7 +6797,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Mewtwo),
         ICON(Mewtwo, 2),
         ANIMATIONS(MEWTWO, 0, ANIM_GROW_VIBRATE, BACK_ANIM_GROW_STUTTER),
-        SPECIES_MEWTWO_MISC_STATS,
+        SPECIES_MEWTWO_MISC_INFO,
     },
     [SPECIES_MEWTWO_MEGA_X] =
     {
@@ -6819,7 +6819,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(MewtwoMegaX),
         ICON(MewtwoMegaX, 2),
         ANIMATIONS(MEWTWO_MEGA_X, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SPECIES_MEWTWO_MISC_STATS,
+        SPECIES_MEWTWO_MISC_INFO,
     },
     [SPECIES_MEWTWO_MEGA_Y] =
     {
@@ -6842,7 +6842,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(MewtwoMegaY),
         ICON(MewtwoMegaY, 2),
         ANIMATIONS(MEWTWO_MEGA_Y, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SPECIES_MEWTWO_MISC_STATS,
+        SPECIES_MEWTWO_MISC_INFO,
     },
 
     [SPECIES_MEW] =
@@ -7062,7 +7062,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(QUILAVA, 0, ANIM_H_STRETCH, BACK_ANIM_JOLT_RIGHT),
     },
 
-#define TYPHLOSION_MISC_STATS   \
+#define TYPHLOSION_MISC_INFO    \
         .type1 = TYPE_FIRE,                                             \
         .catchRate = 45,                                                \
         .expYield = 240,                                                \
@@ -7097,7 +7097,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Typhlosion),
         ICON(Typhlosion, 3),
         ANIMATIONS(TYPHLOSION, 20, ANIM_V_SHAKE, BACK_ANIM_SHAKE_GLOW_RED),
-        TYPHLOSION_MISC_STATS,
+        TYPHLOSION_MISC_INFO,
     },
     [SPECIES_TYPHLOSION_HISUIAN] =
     {
@@ -7118,7 +7118,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(TyphlosionHisuian),
         ICON(TyphlosionHisuian, 1),
         ANIMATIONS(TYPHLOSION_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        TYPHLOSION_MISC_STATS,
+        TYPHLOSION_MISC_INFO,
     },
 
     [SPECIES_TOTODILE] =
@@ -7625,7 +7625,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(LANTURN, 0, ANIM_V_SLIDE_WOBBLE_SMALL, BACK_ANIM_SHAKE_FLASH_YELLOW),
     },
 
-#define PICHU_MISC_STATS                                                    \
+#define PICHU_MISC_INFO                                                     \
         .baseHP        = 20,                                                \
         .baseAttack    = 40,                                                \
         .baseDefense   = 15,                                                \
@@ -7660,7 +7660,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Pichu),
         ICON(Pichu, 1),
         ANIMATIONS(PICHU, 0, ANIM_V_JUMPS_BIG, BACK_ANIM_CONCAVE_ARC_SMALL),
-        PICHU_MISC_STATS,
+        PICHU_MISC_INFO,
     },
     [SPECIES_PICHU_SPIKY_EARED] =
     {
@@ -7671,7 +7671,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PichuSpikyEared),
         ICON(PichuSpikyEared, 1),
         ANIMATIONS(PICHU_SPIKY_EARED, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PICHU_MISC_STATS,
+        PICHU_MISC_INFO,
     },
 
     [SPECIES_CLEFFA] =
@@ -7961,7 +7961,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(FLAAFFY, 0, ANIM_V_STRETCH, BACK_ANIM_DIP_RIGHT_SIDE),
     },
 
-#define AMPHAROS_MISC_STATS                 \
+#define AMPHAROS_MISC_INFO                  \
         .type1 = TYPE_ELECTRIC,             \
         .catchRate = 45,                    \
         .evYield_SpAttack  = 3,             \
@@ -8002,7 +8002,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Ampharos),
         ICON(Ampharos, 0),
         ANIMATIONS(AMPHAROS, 10, ANIM_FLASH_YELLOW, BACK_ANIM_SHAKE_FLASH_YELLOW),
-        AMPHAROS_MISC_STATS,
+        AMPHAROS_MISC_INFO,
     },
     [SPECIES_AMPHAROS_MEGA] =
     {
@@ -8022,7 +8022,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(AmpharosMega),
         ICON(AmpharosMega, 0),
         ANIMATIONS(AMPHAROS_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        AMPHAROS_MISC_STATS,
+        AMPHAROS_MISC_INFO,
     },
 
     [SPECIES_BELLOSSOM] =
@@ -8649,7 +8649,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(MURKROW, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONCAVE_ARC_SMALL),
     },
 
-#define SLOWKING_MISC_STATS                 \
+#define SLOWKING_MISC_INFO                  \
         .type2 = TYPE_PSYCHIC,              \
         .catchRate = 70,                    \
         .expYield = 172,                    \
@@ -8685,7 +8685,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Slowking),
         ICON(Slowking, 0),
         ANIMATIONS(SLOWKING, 0, ANIM_SHRINK_GROW, BACK_ANIM_DIP_RIGHT_SIDE),
-        SLOWKING_MISC_STATS,
+        SLOWKING_MISC_INFO,
     },
     [SPECIES_SLOWKING_GALARIAN] =
     {
@@ -8707,7 +8707,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(SlowkingGalarian),
         ICON(SlowkingGalarian, 2),
         ANIMATIONS(SLOWKING_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SLOWKING_MISC_STATS,
+        SLOWKING_MISC_INFO,
     },
 
     [SPECIES_MISDREAVUS] =
@@ -8747,7 +8747,7 @@ const struct BaseStats gBaseStats[] =
     },
 
 
-#define UNOWN_MISC_STATS                                \
+#define UNOWN_MISC_INFO                                 \
         .baseHP        = 48,                            \
         .baseAttack    = 72,                            \
         .baseDefense   = 48,                            \
@@ -8784,7 +8784,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(Unown, 24, 48, 8),
         ICON(Unown, 0),
         ANIMATIONS(UNOWN, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_B] =
     {
@@ -8794,7 +8794,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownB, 40, 48, 9),
         ICON(UnownB, 0),
         ANIMATIONS(UNOWN_B, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_C] =
     {
@@ -8804,7 +8804,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownC, 48, 56, 6),
         ICON(UnownC, 0),
         ANIMATIONS(UNOWN_C, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_D] =
     {
@@ -8814,7 +8814,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownD, 40, 48, 8),
         ICON(UnownD, 0),
         ANIMATIONS(UNOWN_D, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_E] =
     {
@@ -8824,7 +8824,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownE, 40, 48, 10),
         ICON(UnownE, 0),
         ANIMATIONS(UNOWN_E, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_F] =
     {
@@ -8834,7 +8834,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownF, 48, 48, 10),
         ICON(UnownF, 0),
         ANIMATIONS(UNOWN_F, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_G] =
     {
@@ -8844,7 +8844,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownG, 40, 56, 5),
         ICON(UnownG, 0),
         ANIMATIONS(UNOWN_G, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_H] =
     {
@@ -8854,7 +8854,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownH, 48, 48, 8),
         ICON(UnownH, 0),
         ANIMATIONS(UNOWN_H, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_I] =
     {
@@ -8864,7 +8864,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownI, 24, 56, 7),
         ICON(UnownI, 0),
         ANIMATIONS(UNOWN_I, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_J] =
     {
@@ -8874,7 +8874,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownJ, 32, 48, 9),
         ICON(UnownJ, 0),
         ANIMATIONS(UNOWN_J, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_K] =
     {
@@ -8884,7 +8884,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownK, 40, 56, 7),
         ICON(UnownK, 0),
         ANIMATIONS(UNOWN_K, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_L] =
     {
@@ -8894,7 +8894,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownL, 32, 48, 10),
         ICON(UnownL, 0),
         ANIMATIONS(UNOWN_L, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_M] =
     {
@@ -8904,7 +8904,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownM, 48, 40, 13),
         ICON(UnownM, 0),
         ANIMATIONS(UNOWN_M, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_N] =
     {
@@ -8914,7 +8914,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownN, 48, 40, 13),
         ICON(UnownN, 0),
         ANIMATIONS(UNOWN_N, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_O] =
     {
@@ -8924,7 +8924,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownO, 48, 48, 8),
         ICON(UnownO, 0),
         ANIMATIONS(UNOWN_O, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_P] =
     {
@@ -8934,7 +8934,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownP, 32, 48, 10),
         ICON(UnownP, 0),
         ANIMATIONS(UNOWN_P, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_Q] =
     {
@@ -8944,7 +8944,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownQ, 40, 40, 15),
         ICON(UnownQ, 0),
         ANIMATIONS(UNOWN_Q, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_R] =
     {
@@ -8954,7 +8954,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownR, 32, 40, 12),
         ICON(UnownR, 0),
         ANIMATIONS(UNOWN_R, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_S] =
     {
@@ -8964,7 +8964,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownS, 40, 56, 4),
         ICON(UnownS, 0),
         ANIMATIONS(UNOWN_S, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_T] =
     {
@@ -8974,7 +8974,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownT, 32, 40, 13),
         ICON(UnownT, 0),
         ANIMATIONS(UNOWN_T, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_U] =
     {
@@ -8984,7 +8984,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownU, 48, 40, 13),
         ICON(UnownU, 0),
         ANIMATIONS(UNOWN_U, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_V] =
     {
@@ -8994,7 +8994,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownV, 40, 48, 11),
         ICON(UnownV, 0),
         ANIMATIONS(UNOWN_V, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_W] =
     {
@@ -9004,7 +9004,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownW, 40, 40, 13),
         ICON(UnownW, 0),
         ANIMATIONS(UNOWN_W, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_X] =
     {
@@ -9014,7 +9014,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownX, 40, 40, 15),
         ICON(UnownX, 0),
         ANIMATIONS(UNOWN_X, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_Y] =
     {
@@ -9024,7 +9024,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownY, 32, 48, 10),
         ICON(UnownY, 0),
         ANIMATIONS(UNOWN_Y, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_Z] =
     {
@@ -9034,7 +9034,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownZ, 32, 48, 10),
         ICON(UnownZ, 0),
         ANIMATIONS(UNOWN_Z, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_EMARK] =
     {
@@ -9044,7 +9044,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownExclamationMark, 24, 56, 6),
         ICON(UnownExclamationMark, 0),
         ANIMATIONS(UNOWN_EMARK, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
     [SPECIES_UNOWN_QMARK] =
     {
@@ -9054,7 +9054,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(UnownQuestionMark, 32, 56, 6),
         ICON(UnownQuestionMark, 0),
         ANIMATIONS(UNOWN_QMARK, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        UNOWN_MISC_STATS,
+        UNOWN_MISC_INFO,
     },
 
     [SPECIES_WOBBUFFET] =
@@ -9268,7 +9268,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(GLIGAR, 0, ANIM_SHRINK_GROW, BACK_ANIM_SHRINK_GROW),
     },
 
-#define STEELIX_MISC_STATS                  \
+#define STEELIX_MISC_INFO                   \
         .type1 = TYPE_STEEL,                \
         .type2 = TYPE_GROUND,               \
         .catchRate = 25,                    \
@@ -9304,7 +9304,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Steelix),
         ICON(Steelix, 0),
         ANIMATIONS(STEELIX, 45, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE),
-        STEELIX_MISC_STATS,
+        STEELIX_MISC_INFO,
     },
     [SPECIES_STEELIX_MEGA] =
     {
@@ -9324,7 +9324,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(SteelixMega),
         ICON(SteelixMega, 0),
         ANIMATIONS(STEELIX_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        STEELIX_MISC_STATS,
+        STEELIX_MISC_INFO,
     },
 
 #if P_UPDATED_TYPES >= GEN_6
@@ -9461,7 +9461,7 @@ const struct BaseStats gBaseStats[] =
         QWILFISH_MISC_INFO,
     },
 
-#define SCIZOR_MISC_STATS                   \
+#define SCIZOR_MISC_INFO                    \
         .type1 = TYPE_BUG,                  \
         .type2 = TYPE_STEEL,                \
         .catchRate = 25,                    \
@@ -9496,7 +9496,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Scizor),
         ICON(Scizor, 0),
         ANIMATIONS(SCIZOR, 19, ANIM_H_VIBRATE, BACK_ANIM_JOLT_RIGHT),
-        SCIZOR_MISC_STATS,
+        SCIZOR_MISC_INFO,
     },
     [SPECIES_SCIZOR_MEGA] =
     {
@@ -9517,7 +9517,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(ScizorMega),
         ICON(ScizorMega, 0),
         ANIMATIONS(SCIZOR_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SCIZOR_MISC_STATS,
+        SCIZOR_MISC_INFO,
     },
 
     [SPECIES_SHUCKLE] =
@@ -9558,7 +9558,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(SHUCKLE, 0, ANIM_SWING_CONCAVE, BACK_ANIM_DIP_RIGHT_SIDE),
     },
 
-#define HERACROSS_MISC_STATS                \
+#define HERACROSS_MISC_INFO                 \
         .type1 = TYPE_BUG,                  \
         .type2 = TYPE_FIGHTING,             \
         .catchRate = 45,                    \
@@ -9593,7 +9593,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Heracross),
         ICON(Heracross, 0),
         ANIMATIONS(HERACROSS, 0, ANIM_V_STRETCH, BACK_ANIM_JOLT_RIGHT),
-        HERACROSS_MISC_STATS,
+        HERACROSS_MISC_INFO,
     },
     [SPECIES_HERACROSS_MEGA] =
     {
@@ -9614,7 +9614,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(HeracrossMega),
         ICON(HeracrossMega, 0),
         ANIMATIONS(HERACROSS_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        HERACROSS_MISC_STATS,
+        HERACROSS_MISC_INFO,
     },
 
 #define SNEASEL_MISC_INFO                   \
@@ -9896,7 +9896,7 @@ const struct BaseStats gBaseStats[] =
     #define CORSOLA_DEFENSES 85
 #endif
 
-#define CORSOLA_MISC_STATS                  \
+#define CORSOLA_MISC_INFO                   \
         .catchRate = 60,                    \
         .expYield = 144,                    \
         .evYield_SpDefense = 1,             \
@@ -9933,7 +9933,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Corsola),
         ICON(Corsola, 0),
         ANIMATIONS(CORSOLA, 0, ANIM_H_SLIDE, BACK_ANIM_H_SLIDE),
-        CORSOLA_MISC_STATS,
+        CORSOLA_MISC_INFO,
     },
     [SPECIES_CORSOLA_GALARIAN] =
     {
@@ -9957,7 +9957,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(CorsolaGalarian),
         ICON(CorsolaGalarian, 0),
         ANIMATIONS(CORSOLA_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        CORSOLA_MISC_STATS,
+        CORSOLA_MISC_INFO,
     },
 
     [SPECIES_REMORAID] =
@@ -10177,7 +10177,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(HOUNDOUR, 0, ANIM_V_STRETCH, BACK_ANIM_V_SHAKE),
     },
 
-#define HOUNDOOM_MISC_STATS                 \
+#define HOUNDOOM_MISC_INFO                  \
         .type1 = TYPE_DARK,                 \
         .type2 = TYPE_FIRE,                 \
         .catchRate = 45,                    \
@@ -10212,7 +10212,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Houndoom),
         ICON(Houndoom, 0),
         ANIMATIONS(HOUNDOOM, 0, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE),
-        HOUNDOOM_MISC_STATS,
+        HOUNDOOM_MISC_INFO,
     },
     [SPECIES_HOUNDOOM_MEGA] =
     {
@@ -10233,7 +10233,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(HoundoomMega),
         ICON(HoundoomMega, 0),
         ANIMATIONS(HOUNDOOM_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        HOUNDOOM_MISC_STATS,
+        HOUNDOOM_MISC_INFO,
     },
 
     [SPECIES_KINGDRA] =
@@ -10894,7 +10894,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(PUPITAR, 0, ANIM_H_SHAKE, BACK_ANIM_V_SHAKE),
     },
 
-#define TYRANITAR_MISC_STATS                \
+#define TYRANITAR_MISC_INFO                 \
         .type1 = TYPE_ROCK,                 \
         .type2 = TYPE_DARK,                 \
         .catchRate = 45,                    \
@@ -10929,7 +10929,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Tyranitar),
         ICON(Tyranitar, 4),
         ANIMATIONS(TYRANITAR, 10, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE_LOW),
-        TYRANITAR_MISC_STATS,
+        TYRANITAR_MISC_INFO,
     },
     [SPECIES_TYRANITAR_MEGA] =
     {
@@ -10950,7 +10950,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(TyranitarMega),
         ICON(TyranitarMega, 1),
         ANIMATIONS(TYRANITAR_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        TYRANITAR_MISC_STATS,
+        TYRANITAR_MISC_INFO,
     },
 
     [SPECIES_LUGIA] =
@@ -11138,7 +11138,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(GROVYLE, 0, ANIM_V_STRETCH, BACK_ANIM_JOLT_RIGHT),
     },
 
-#define SCEPTILE_MISC_STATS                 \
+#define SCEPTILE_MISC_INFO                  \
         .type1 = TYPE_GRASS,                \
         .catchRate = 45,                    \
         .evYield_Speed     = 3,             \
@@ -11173,7 +11173,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Sceptile),
         ICON(Sceptile, 1),
         ANIMATIONS(SCEPTILE, 0, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE),
-        SCEPTILE_MISC_STATS,
+        SCEPTILE_MISC_INFO,
     },
     [SPECIES_SCEPTILE_MEGA] =
     {
@@ -11194,7 +11194,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(SceptileMega),
         ICON(SceptileMega, 1),
         ANIMATIONS(SCEPTILE_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SCEPTILE_MISC_STATS,
+        SCEPTILE_MISC_INFO,
     },
 
     [SPECIES_TORCHIC] =
@@ -11268,7 +11268,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(COMBUSKEN, 0, ANIM_V_JUMPS_H_JUMPS, BACK_ANIM_CONCAVE_ARC_LARGE),
     },
 
-#define BLAZIKEN_MISC_STATS                 \
+#define BLAZIKEN_MISC_INFO                  \
         .type1 = TYPE_FIRE,                 \
         .type2 = TYPE_FIGHTING,             \
         .catchRate = 45,                    \
@@ -11303,7 +11303,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Blaziken),
         ICON(Blaziken, 0),
         ANIMATIONS(BLAZIKEN, 0, ANIM_H_SHAKE, BACK_ANIM_SHAKE_GLOW_RED),
-        BLAZIKEN_MISC_STATS,
+        BLAZIKEN_MISC_INFO,
     },
     [SPECIES_BLAZIKEN_MEGA] =
     {
@@ -11322,7 +11322,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(BlazikenMega),
         ICON(BlazikenMega, 0),
         ANIMATIONS(BLAZIKEN_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        BLAZIKEN_MISC_STATS,
+        BLAZIKEN_MISC_INFO,
     },
 
     [SPECIES_MUDKIP] =
@@ -11395,7 +11395,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(MARSHTOMP, 0, ANIM_V_STRETCH, BACK_ANIM_CONCAVE_ARC_SMALL),
     },
 
-#define SWAMPERT_MISC_STATS                 \
+#define SWAMPERT_MISC_INFO                  \
         .type1 = TYPE_WATER,                \
         .type2 = TYPE_GROUND,               \
         .catchRate = 45,                    \
@@ -11430,7 +11430,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Swampert),
         ICON(Swampert, 0),
         ANIMATIONS(SWAMPERT, 0, ANIM_H_SHAKE, BACK_ANIM_SHAKE_GLOW_BLUE),
-        SWAMPERT_MISC_STATS,
+        SWAMPERT_MISC_INFO,
     },
     [SPECIES_SWAMPERT_MEGA] =
     {
@@ -11450,7 +11450,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(SwampertMega),
         ICON(SwampertMega, 0),
         ANIMATIONS(SWAMPERT_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SWAMPERT_MISC_STATS,
+        SWAMPERT_MISC_INFO,
     },
 
     [SPECIES_POOCHYENA] =
@@ -11523,7 +11523,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(MIGHTYENA, 0, ANIM_V_SHAKE, BACK_ANIM_H_SHAKE),
     },
 
-#define ZIGZAGOON_MISC_STATS                                                \
+#define ZIGZAGOON_MISC_INFO                                                 \
         .baseHP        = 38,                                                \
         .baseAttack    = 30,                                                \
         .baseDefense   = 41,                                                \
@@ -11561,7 +11561,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Zigzagoon),
         ICON(Zigzagoon, 2),
         ANIMATIONS(ZIGZAGOON, 0, ANIM_H_SLIDE, BACK_ANIM_TRIANGLE_DOWN),
-        ZIGZAGOON_MISC_STATS,
+        ZIGZAGOON_MISC_INFO,
     },
     [SPECIES_ZIGZAGOON_GALARIAN] =
     {
@@ -11575,10 +11575,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(ZigzagoonGalarian),
         ICON(ZigzagoonGalarian, 0),
         ANIMATIONS(ZIGZAGOON_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ZIGZAGOON_MISC_STATS,
+        ZIGZAGOON_MISC_INFO,
     },
 
-#define LINOONE_MISC_STATS                                                  \
+#define LINOONE_MISC_INFO                                                   \
         .baseHP        = 78,                                                \
         .baseAttack    = 70,                                                \
         .baseDefense   = 61,                                                \
@@ -11615,7 +11615,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Linoone),
         ICON(Linoone, 2),
         ANIMATIONS(LINOONE, 0, ANIM_GROW_VIBRATE, BACK_ANIM_JOLT_RIGHT),
-        LINOONE_MISC_STATS,
+        LINOONE_MISC_INFO,
     },
     [SPECIES_LINOONE_GALARIAN] =
     {
@@ -11628,7 +11628,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(LinooneGalarian),
         ICON(LinooneGalarian, 0),
         ANIMATIONS(LINOONE_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        LINOONE_MISC_STATS,
+        LINOONE_MISC_INFO,
     },
 
     [SPECIES_WURMPLE] =
@@ -12266,7 +12266,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(KIRLIA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_SHRINK_GROW_VIBRATE),
     },
 
-#define GARDEVOIR_MISC_STATS                    \
+#define GARDEVOIR_MISC_INFO                     \
         .type1 = TYPE_PSYCHIC,                  \
         .type2 = RALTS_FAMILY_TYPE_2,           \
         .catchRate = 45,                        \
@@ -12301,7 +12301,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Gardevoir),
         ICON(Gardevoir, 1),
         ANIMATIONS(GARDEVOIR, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        GARDEVOIR_MISC_STATS,
+        GARDEVOIR_MISC_INFO,
     },
     [SPECIES_GARDEVOIR_MEGA] =
     {
@@ -12320,7 +12320,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(GardevoirMega),
         ICON(GardevoirMega, 1),
         ANIMATIONS(GARDEVOIR_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        GARDEVOIR_MISC_STATS,
+        GARDEVOIR_MISC_INFO,
     },
 
     [SPECIES_SURSKIT] =
@@ -13020,7 +13020,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(DELCATTY, 0, ANIM_V_STRETCH, BACK_ANIM_CONCAVE_ARC_SMALL),
     },
 
-#define SABLEYE_MISC_STATS                  \
+#define SABLEYE_MISC_INFO                   \
         .type1 = TYPE_DARK,                 \
         .type2 = TYPE_GHOST,                \
         .catchRate = 45,                    \
@@ -13057,7 +13057,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Sableye),
         ICON(Sableye, 2),
         ANIMATIONS(SABLEYE, 0, ANIM_GLOW_BLACK, BACK_ANIM_H_VIBRATE),
-        SABLEYE_MISC_STATS,
+        SABLEYE_MISC_INFO,
     },
     [SPECIES_SABLEYE_MEGA] =
     {
@@ -13077,7 +13077,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(SableyeMega),
         ICON(SableyeMega, 2),
         ANIMATIONS(SABLEYE_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SABLEYE_MISC_STATS,
+        SABLEYE_MISC_INFO,
     },
 
 #if P_UPDATED_TYPES >= GEN_6
@@ -13086,7 +13086,7 @@ const struct BaseStats gBaseStats[] =
     #define MAWILE_TYPE_2 TYPE_STEEL
 #endif
 
-#define MAWILE_MISC_STATS                   \
+#define MAWILE_MISC_INFO                    \
         .type1 = TYPE_STEEL,                \
         .type2 = MAWILE_TYPE_2,             \
         .catchRate = 45,                    \
@@ -13123,7 +13123,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Mawile),
         ICON(Mawile, 2),
         ANIMATIONS(MAWILE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_SHAKE),
-        MAWILE_MISC_STATS,
+        MAWILE_MISC_INFO,
     },
     [SPECIES_MAWILE_MEGA] =
     {
@@ -13144,7 +13144,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(MawileMega),
         ICON(MawileMega, 0),
         ANIMATIONS(MAWILE_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        MAWILE_MISC_STATS,
+        MAWILE_MISC_INFO,
     },
 
     [SPECIES_ARON] =
@@ -13219,7 +13219,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(LAIRON, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_SHAKE),
     },
 
-#define AGGRON_MISC_STATS                   \
+#define AGGRON_MISC_INFO                    \
         .type1 = TYPE_STEEL,                \
         .catchRate = 45,                    \
         .evYield_Defense   = 3,             \
@@ -13255,7 +13255,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Aggron),
         ICON(Aggron, 2),
         ANIMATIONS(AGGRON, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_V_SHAKE_LOW),
-        AGGRON_MISC_STATS,
+        AGGRON_MISC_INFO,
     },
     [SPECIES_AGGRON_MEGA] =
     {
@@ -13276,7 +13276,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(AggronMega),
         ICON(AggronMega, 2),
         ANIMATIONS(AGGRON_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        AGGRON_MISC_STATS,
+        AGGRON_MISC_INFO,
     },
 
     [SPECIES_MEDITITE] =
@@ -13314,7 +13314,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(MEDITITE, 0, ANIM_BOUNCE_ROTATE_TO_SIDES, BACK_ANIM_SHRINK_GROW_VIBRATE),
     },
 
-#define MEDICHAM_MISC_STATS                 \
+#define MEDICHAM_MISC_INFO                  \
         .type1 = TYPE_FIGHTING,             \
         .type2 = TYPE_PSYCHIC,              \
         .catchRate = 90,                    \
@@ -13349,7 +13349,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Medicham),
         ICON(Medicham, 0),
         ANIMATIONS(MEDICHAM, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        MEDICHAM_MISC_STATS,
+        MEDICHAM_MISC_INFO,
     },
     [SPECIES_MEDICHAM_MEGA] =
     {
@@ -13368,7 +13368,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(MedichamMega),
         ICON(MedichamMega, 0),
         ANIMATIONS(MEDICHAM_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        MEDICHAM_MISC_STATS,
+        MEDICHAM_MISC_INFO,
     },
 
     [SPECIES_ELECTRIKE] =
@@ -13406,7 +13406,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(ELECTRIKE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_JOLT_RIGHT),
     },
 
-#define MANECTRIC_MISC_STATS                \
+#define MANECTRIC_MISC_INFO                 \
         .type1 = TYPE_ELECTRIC,             \
         .type2 = TYPE_ELECTRIC,             \
         .catchRate = 45,                    \
@@ -13441,7 +13441,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Manectric),
         ICON(Manectric, 0),
         ANIMATIONS(MANECTRIC, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_SHAKE),
-        MANECTRIC_MISC_STATS,
+        MANECTRIC_MISC_INFO,
     },
     [SPECIES_MANECTRIC_MEGA] =
     {
@@ -13462,7 +13462,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(ManectricMega),
         ICON(ManectricMega, 0),
         ANIMATIONS(MANECTRIC_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        MANECTRIC_MISC_STATS,
+        MANECTRIC_MISC_INFO,
     },
 
     [SPECIES_PLUSLE] =
@@ -13765,7 +13765,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(CARVANHA, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW, BACK_ANIM_H_SPRING_REPEATED),
     },
 
-#define SHARPEDO_MISC_STATS                 \
+#define SHARPEDO_MISC_INFO                  \
         .type1 = TYPE_WATER,                \
         .type2 = TYPE_DARK,                 \
         .catchRate = 60,                    \
@@ -13802,7 +13802,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Sharpedo),
         ICON(Sharpedo, 0),
         ANIMATIONS(SHARPEDO, 0, ANIM_H_JUMPS_V_STRETCH_TWICE, BACK_ANIM_JOLT_RIGHT),
-        SHARPEDO_MISC_STATS,
+        SHARPEDO_MISC_INFO,
     },
     [SPECIES_SHARPEDO_MEGA] =
     {
@@ -13823,7 +13823,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(SharpedoMega),
         ICON(SharpedoMega, 0),
         ANIMATIONS(SHARPEDO_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SHARPEDO_MISC_STATS,
+        SHARPEDO_MISC_INFO,
     },
 
     [SPECIES_WAILMER] =
@@ -13931,7 +13931,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(NUMEL, 0, ANIM_V_SLIDE, BACK_ANIM_V_SHAKE_LOW),
     },
 
-#define CAMERUPT_MISC_STATS                 \
+#define CAMERUPT_MISC_INFO                  \
         .type1 = TYPE_FIRE,                 \
         .type2 = TYPE_GROUND,               \
         .catchRate = 150,                   \
@@ -13967,7 +13967,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Camerupt),
         ICON(Camerupt, 0),
         ANIMATIONS(CAMERUPT, 0, ANIM_V_SHAKE, BACK_ANIM_SHAKE_GLOW_RED),
-        CAMERUPT_MISC_STATS,
+        CAMERUPT_MISC_INFO,
     },
     [SPECIES_CAMERUPT_MEGA] =
     {
@@ -13988,7 +13988,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(CameruptMega),
         ICON(CameruptMega, 0),
         ANIMATIONS(CAMERUPT_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        CAMERUPT_MISC_STATS,
+        CAMERUPT_MISC_INFO,
     },
 
     [SPECIES_TORKOAL] =
@@ -14361,7 +14361,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(SWABLU, 0, ANIM_GROW_VIBRATE, BACK_ANIM_CONVEX_DOUBLE_ARC),
     },
 
-#define ALTARIA_MISC_STATS                  \
+#define ALTARIA_MISC_INFO                   \
         .type1 = TYPE_DRAGON,               \
         .catchRate = 45,                    \
         .evYield_SpDefense = 2,             \
@@ -14397,7 +14397,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Altaria),
         ICON(Altaria, 0),
         ANIMATIONS(ALTARIA, 0, ANIM_V_STRETCH, BACK_ANIM_CONVEX_DOUBLE_ARC),
-        ALTARIA_MISC_STATS,
+        ALTARIA_MISC_INFO,
     },
     [SPECIES_ALTARIA_MEGA] =
     {
@@ -14419,7 +14419,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(AltariaMega),
         ICON(AltariaMega, 0),
         ANIMATIONS(ALTARIA_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ALTARIA_MISC_STATS,
+        ALTARIA_MISC_INFO,
     },
 
     [SPECIES_ZANGOOSE] =
@@ -15005,7 +15005,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(MILOTIC, 45, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_SHAKE_GLOW_BLUE),
     },
 
-#define CASTFORM_MISC_STATS                             \
+#define CASTFORM_MISC_INFO                              \
         .baseHP        = 70,                            \
         .baseAttack    = 70,                            \
         .baseDefense   = 70,                            \
@@ -15043,7 +15043,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(Castform, 32, 64, 0),
         PALETTES(Castform),
         ICON(Castform, 0),
-        CASTFORM_MISC_STATS,
+        CASTFORM_MISC_INFO,
     },
     [SPECIES_CASTFORM_SUNNY]
     {
@@ -15056,7 +15056,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(CastformSunny, 56, 64, 0),
         PALETTES(CastformSunny),
         ICON(CastformSunny, 0),
-        CASTFORM_MISC_STATS,
+        CASTFORM_MISC_INFO,
     },
     [SPECIES_CASTFORM_RAINY]
     {
@@ -15069,7 +15069,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(CastformRainy, 40, 64, 0),
         PALETTES(CastformRainy),
         ICON(CastformRainy, 0),
-        CASTFORM_MISC_STATS,
+        CASTFORM_MISC_INFO,
     },
     [SPECIES_CASTFORM_SNOWY]
     {
@@ -15082,7 +15082,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(CastformSnowy, 56, 64, 0),
         PALETTES(CastformSnowy),
         ICON(CastformSnowy, 0),
-        CASTFORM_MISC_STATS,
+        CASTFORM_MISC_INFO,
     },
 
     [SPECIES_KECLEON] =
@@ -15157,7 +15157,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(SHUPPET, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_H_VIBRATE),
     },
 
-#define BANETTE_MISC_STATS                  \
+#define BANETTE_MISC_INFO                   \
         .type1 = TYPE_GHOST,                \
         .type2 = TYPE_GHOST,                \
         .catchRate = 45,                    \
@@ -15194,7 +15194,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Banette),
         ICON(Banette, 0),
         ANIMATIONS(BANETTE, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_H_VIBRATE),
-        BANETTE_MISC_STATS,
+        BANETTE_MISC_INFO,
     },
     [SPECIES_BANETTE_MEGA] =
     {
@@ -15216,7 +15216,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(BanetteMega),
         ICON(BanetteMega, 0),
         ANIMATIONS(BANETTE_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        BANETTE_MISC_STATS,
+        BANETTE_MISC_INFO,
     },
 
     [SPECIES_DUSKULL] =
@@ -15372,7 +15372,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(CHIMECHO, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_CONVEX_DOUBLE_ARC),
     },
 
-#define ABSOL_MISC_STATS                    \
+#define ABSOL_MISC_INFO                     \
         .type1 = TYPE_DARK,                 \
         .type2 = TYPE_DARK,                 \
         .catchRate = 30,                    \
@@ -15407,7 +15407,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Absol),
         ICON(Absol, 0),
         ANIMATIONS(ABSOL, 45, ANIM_CIRCULAR_VIBRATE, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        ABSOL_MISC_STATS,
+        ABSOL_MISC_INFO,
     },
     [SPECIES_ABSOL_MEGA] =
     {
@@ -15427,7 +15427,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(AbsolMega),
         ICON(AbsolMega, 0),
         ANIMATIONS(ABSOL_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ABSOL_MISC_STATS,
+        ABSOL_MISC_INFO,
     },
 
     [SPECIES_WYNAUT] =
@@ -15501,7 +15501,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(SNORUNT, 20, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_TRIANGLE_DOWN),
     },
 
-#define GLALIE_MISC_STATS                   \
+#define GLALIE_MISC_INFO                    \
         .type1 = TYPE_ICE,                  \
         .type2 = TYPE_ICE,                  \
         .catchRate = 75,                    \
@@ -15537,7 +15537,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Glalie),
         ICON(Glalie, 0),
         ANIMATIONS(GLALIE, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_TRIANGLE_DOWN),
-        GLALIE_MISC_STATS,
+        GLALIE_MISC_INFO,
     },
     [SPECIES_GLALIE_MEGA] =
     {
@@ -15559,7 +15559,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(GlalieMega),
         ICON(GlalieMega, 0),
         ANIMATIONS(GLALIE_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        GLALIE_MISC_STATS,
+        GLALIE_MISC_INFO,
     },
 
     [SPECIES_SPHEAL] =
@@ -15922,7 +15922,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(SHELGON, 0, ANIM_V_SLIDE, BACK_ANIM_V_SHAKE),
     },
 
-#define SALAMENCE_MISC_STATS                \
+#define SALAMENCE_MISC_INFO                 \
         .type1 = TYPE_DRAGON,               \
         .type2 = TYPE_FLYING,               \
         .catchRate = 45,                    \
@@ -15958,7 +15958,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Salamence),
         ICON(Salamence, 0),
         ANIMATIONS(SALAMENCE, 70, ANIM_H_SHAKE, BACK_ANIM_H_SHAKE),
-        SALAMENCE_MISC_STATS,
+        SALAMENCE_MISC_INFO,
     },
     [SPECIES_SALAMENCE_MEGA] =
     {
@@ -15980,7 +15980,7 @@ const struct BaseStats gBaseStats[] =
         ICON(SalamenceMega, 0),
         ANIMATIONS(SALAMENCE_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
 
-        SALAMENCE_MISC_STATS,
+        SALAMENCE_MISC_INFO,
     },
 
     [SPECIES_BELDUM] =
@@ -16056,7 +16056,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(METANG, 0, ANIM_V_SLIDE, BACK_ANIM_JOLT_RIGHT),
     },
 
-#define METAGROSS_MISC_STATS                \
+#define METAGROSS_MISC_INFO                 \
         .type1 = TYPE_STEEL,                \
         .type2 = TYPE_PSYCHIC,              \
         .catchRate = 3,                     \
@@ -16092,7 +16092,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Metagross),
         ICON(Metagross, 0),
         ANIMATIONS(METAGROSS, 0, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE),
-        METAGROSS_MISC_STATS,
+        METAGROSS_MISC_INFO,
     },
     [SPECIES_METAGROSS_MEGA] =
     {
@@ -16114,7 +16114,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(MetagrossMega),
         ICON(MetagrossMega, 0),
         ANIMATIONS(METAGROSS_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        METAGROSS_MISC_STATS,
+        METAGROSS_MISC_INFO,
     },
 
     [SPECIES_REGIROCK] =
@@ -16226,7 +16226,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(REGISTEEL, 0, ANIM_GROW_VIBRATE, BACK_ANIM_V_SHAKE),
     },
 
-#define LATIS_MISC_STATS                                \
+#define LATIS_MISC_INFO                                 \
         .type1 = TYPE_DRAGON,                           \
         .type2 = TYPE_PSYCHIC,                          \
         .catchRate = 3,                                 \
@@ -16263,7 +16263,7 @@ const struct BaseStats gBaseStats[] =
         ICON(Latias, 0),
         FOOTPRINT(Latias),
         ANIMATIONS(LATIAS, 0, ANIM_ZIGZAG_SLOW, BACK_ANIM_H_VIBRATE),
-        LATIS_MISC_STATS,
+        LATIS_MISC_INFO,
     },
     [SPECIES_LATIAS_MEGA] =
     {
@@ -16290,7 +16290,7 @@ const struct BaseStats gBaseStats[] =
         ICON(LatiasMega, 2),
         FOOTPRINT(Latias),
         ANIMATIONS(LATIAS_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        LATIS_MISC_STATS,
+        LATIS_MISC_INFO,
     },
 
     [SPECIES_LATIOS] =
@@ -16318,7 +16318,7 @@ const struct BaseStats gBaseStats[] =
         ICON(Latios, 0),
         FOOTPRINT(Latios),
         ANIMATIONS(LATIOS, 0, ANIM_CIRCLE_C_CLOCKWISE_SLOW, BACK_ANIM_H_VIBRATE),
-        LATIS_MISC_STATS,
+        LATIS_MISC_INFO,
     },
     [SPECIES_LATIOS_MEGA] =
     {
@@ -16344,10 +16344,10 @@ const struct BaseStats gBaseStats[] =
         ICON(LatiosMega, 2),
         FOOTPRINT(Latios),
         ANIMATIONS(LATIOS_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        LATIS_MISC_STATS,
+        LATIS_MISC_INFO,
     },
 
-#define KYOGRE_MISC_STATS                   \
+#define KYOGRE_MISC_INFO                    \
         .type1 = TYPE_WATER,                \
         .type2 = TYPE_WATER,                \
         .catchRate = 3,                     \
@@ -16383,7 +16383,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Kyogre),
         ICON(Kyogre, 2),
         ANIMATIONS(KYOGRE, 60, ANIM_SWING_CONCAVE_FAST_SHORT, BACK_ANIM_SHAKE_GLOW_BLUE),
-        KYOGRE_MISC_STATS,
+        KYOGRE_MISC_INFO,
     },
     [SPECIES_KYOGRE_PRIMAL] =
     {
@@ -16402,10 +16402,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(KyogrePrimal),
         ICON(KyogrePrimal, 0),
         ANIMATIONS(KYOGRE_PRIMAL, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        KYOGRE_MISC_STATS,
+        KYOGRE_MISC_INFO,
     },
 
-#define GROUDON_MISC_STATS                  \
+#define GROUDON_MISC_INFO                   \
         .type1 = TYPE_GROUND,               \
         .catchRate = 3,                     \
         .expYield = 302,                    \
@@ -16441,7 +16441,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Groudon),
         ICON(Groudon, 0),
         ANIMATIONS(GROUDON, 0, ANIM_V_SHAKE, BACK_ANIM_SHAKE_GLOW_RED),
-        GROUDON_MISC_STATS,
+        GROUDON_MISC_INFO,
     },
     [SPECIES_GROUDON_PRIMAL] =
     {
@@ -16461,10 +16461,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(GroudonPrimal),
         ICON(GroudonPrimal, 0),
         ANIMATIONS(GROUDON_PRIMAL, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        GROUDON_MISC_STATS,
+        GROUDON_MISC_INFO,
     },
 
-#define RAYQUAZA_MISC_STATS                 \
+#define RAYQUAZA_MISC_INFO                  \
         .type1 = TYPE_DRAGON,               \
         .type2 = TYPE_FLYING,               \
         .catchRate = 45,                    \
@@ -16502,7 +16502,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Rayquaza),
         ICON(Rayquaza, 1),
         ANIMATIONS(RAYQUAZA, 60, ANIM_H_SHAKE, BACK_ANIM_GROW_STUTTER),
-        RAYQUAZA_MISC_STATS,
+        RAYQUAZA_MISC_INFO,
     },
     [SPECIES_RAYQUAZA_MEGA] =
     {
@@ -16522,7 +16522,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(RayquazaMega),
         ICON(RayquazaMega, 1),
         ANIMATIONS(RAYQUAZA_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        RAYQUAZA_MISC_STATS,
+        RAYQUAZA_MISC_INFO,
     },
 
     [SPECIES_JIRACHI] =
@@ -16564,7 +16564,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(JIRACHI, 0, ANIM_RISING_WOBBLE, BACK_ANIM_CONVEX_DOUBLE_ARC),
     },
 
-#define DEOXYS_MISC_STATS                               \
+#define DEOXYS_MISC_INFO                                \
         .type1 = TYPE_PSYCHIC,                          \
         .type2 = TYPE_PSYCHIC,                          \
         .catchRate = 3,                                 \
@@ -16602,7 +16602,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Deoxys),
         ICON(DeoxysNormal, 0),
         ANIMATIONS(DEOXYS, 0, ANIM_GROW_VIBRATE, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        DEOXYS_MISC_STATS,
+        DEOXYS_MISC_INFO,
     },
 
     [SPECIES_DEOXYS_ATTACK] =
@@ -16622,7 +16622,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(DeoxysAttack),
         ICON(DeoxysAttack, 0),
         ANIMATIONS(DEOXYS_ATTACK, 0, ANIM_GROW_VIBRATE, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        DEOXYS_MISC_STATS,
+        DEOXYS_MISC_INFO,
     },
 
     [SPECIES_DEOXYS_DEFENSE] =
@@ -16642,7 +16642,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(DeoxysDefense),
         ICON(DeoxysDefense, 0),
         ANIMATIONS(DEOXYS_DEFENSE, 0, ANIM_GROW_VIBRATE, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        DEOXYS_MISC_STATS,
+        DEOXYS_MISC_INFO,
     },
 
     [SPECIES_DEOXYS_SPEED] =
@@ -16661,7 +16661,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(DeoxysSpeed),
         ICON(DeoxysSpeed, 0),
         ANIMATIONS(DEOXYS_SPEED, 0, ANIM_GROW_VIBRATE, BACK_ANIM_SHRINK_GROW_VIBRATE),
-        DEOXYS_MISC_STATS,
+        DEOXYS_MISC_INFO,
     },
 
 #if P_GEN_4_POKEMON == TRUE
@@ -17628,7 +17628,7 @@ const struct BaseStats gBaseStats[] =
         BURMY_MISC_INFO,
     },
 
-#define WORMADAM_MISC_STATS                                                 \
+#define WORMADAM_MISC_INFO                                                  \
         .type1 = TYPE_BUG,                                                  \
         .catchRate = 45,                                                    \
         .expYield = 148,                                                    \
@@ -17664,7 +17664,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(Wormadam, 56, 64, 2),
         PALETTES(Wormadam),
         ICON(WormadamPlantCloak, 1),
-        WORMADAM_MISC_STATS,
+        WORMADAM_MISC_INFO,
     },
 
     [SPECIES_WORMADAM_SANDY_CLOAK] =
@@ -17684,7 +17684,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(WormadamSandyCloak, 56, 64, 2),
         PALETTES(WormadamSandyCloak),
         ICON(WormadamSandyCloak, 1),
-        WORMADAM_MISC_STATS,
+        WORMADAM_MISC_INFO,
     },
 
     [SPECIES_WORMADAM_TRASH_CLOAK] =
@@ -17705,7 +17705,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(WormadamTrashCloak, 64, 64, 2),
         PALETTES(WormadamTrashCloak),
         ICON(WormadamTrashCloak, 0),
-        WORMADAM_MISC_STATS,
+        WORMADAM_MISC_INFO,
     },
 
     [SPECIES_MOTHIM] =
@@ -17962,7 +17962,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(CHERUBI, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
-#define CHERRIM_MISC_STATS                                  \
+#define CHERRIM_MISC_INFO                                   \
         .baseHP        = 70,                                \
         .baseAttack    = 60,                                \
         .baseDefense   = 70,                                \
@@ -17998,7 +17998,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(Cherrim, 40, 56, 9),
         PALETTES(Cherrim),
         ICON(CherrimOvercast, 0),
-        CHERRIM_MISC_STATS,
+        CHERRIM_MISC_INFO,
     },
     [SPECIES_CHERRIM_SUNSHINE] =
     {
@@ -18008,10 +18008,10 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(CherrimSunshine, 64, 56, 6),
         PALETTES(CherrimSunshine),
         ICON(CherrimSunshine, 1),
-        CHERRIM_MISC_STATS,
+        CHERRIM_MISC_INFO,
     },
 
-#define SHELLOS_MISC_STATS                                                          \
+#define SHELLOS_MISC_INFO                                                           \
         .baseHP        = 76,                                                        \
         .baseAttack    = 48,                                                        \
         .baseDefense   = 48,                                                        \
@@ -18046,7 +18046,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(Shellos, 40, 56, 8),
         PALETTES(Shellos),
         ICON(ShellosWestSea, 0),
-        SHELLOS_MISC_STATS,
+        SHELLOS_MISC_INFO,
     },
     [SPECIES_SHELLOS_EAST_SEA] =
     {
@@ -18056,10 +18056,10 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(ShellosEastSea, 56, 48, 8),
         PALETTES(ShellosEastSea),
         ICON(ShellosEastSea, 0),
-        SHELLOS_MISC_STATS,
+        SHELLOS_MISC_INFO,
     },
 
-#define GASTRODON_MISC_STATS                                                        \
+#define GASTRODON_MISC_INFO                                                         \
         .baseHP        = 111,                                                       \
         .baseAttack    = 83,                                                        \
         .baseDefense   = 68,                                                        \
@@ -18094,7 +18094,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(Gastrodon, 56, 64, 3),
         PALETTES(Gastrodon),
         ICON(Gastrodon, 0),
-        GASTRODON_MISC_STATS,
+        GASTRODON_MISC_INFO,
     },
     [SPECIES_GASTRODON_EAST_SEA] =
     {
@@ -18104,7 +18104,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(GastrodonEastSea, 56, 64, 3),
         PALETTES(GastrodonEastSea),
         ICON(GastrodonEastSea, 0),
-        GASTRODON_MISC_STATS,
+        GASTRODON_MISC_INFO,
     },
 
     [SPECIES_AMBIPOM] =
@@ -18249,7 +18249,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(BUNEARY, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
     },
 
-#define LOPUNNY_MISC_STATS                  \
+#define LOPUNNY_MISC_INFO                   \
         .type1 = TYPE_NORMAL,               \
         .catchRate = 60,                    \
         .evYield_Speed     = 2,             \
@@ -18284,7 +18284,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Lopunny),
         ICON(Lopunny, 2),
         ANIMATIONS(LOPUNNY, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE),
-        LOPUNNY_MISC_STATS,
+        LOPUNNY_MISC_INFO,
     },
     [SPECIES_LOPUNNY_MEGA] =
     {
@@ -18306,7 +18306,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(LopunnyMega),
         ICON(LopunnyMega, 2),
         ANIMATIONS(LOPUNNY_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        LOPUNNY_MISC_STATS,
+        LOPUNNY_MISC_INFO,
     },
 
     [SPECIES_MISMAGIUS] =
@@ -18884,7 +18884,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(GABITE, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
-#define GARCHOMP_MISC_STATS                 \
+#define GARCHOMP_MISC_INFO                  \
         .type1 = TYPE_DRAGON,               \
         .type2 = TYPE_GROUND,               \
         .catchRate = 45,                    \
@@ -18919,7 +18919,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Garchomp),
         ICON(Garchomp, 0),
         ANIMATIONS(GARCHOMP, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_NONE),
-        GARCHOMP_MISC_STATS,
+        GARCHOMP_MISC_INFO,
     },
     [SPECIES_GARCHOMP_MEGA] =
     {
@@ -18938,7 +18938,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(GarchompMega),
         ICON(GarchompMega, 0),
         ANIMATIONS(GARCHOMP_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        GARCHOMP_MISC_STATS,
+        GARCHOMP_MISC_INFO,
     },
 
     [SPECIES_MUNCHLAX] =
@@ -19013,7 +19013,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(RIOLU, 0, ANIM_RAPID_H_HOPS, BACK_ANIM_NONE),
     },
 
-#define LUCARIO_MISC_STATS                  \
+#define LUCARIO_MISC_INFO                   \
         .type1 = TYPE_FIGHTING,             \
         .type2 = TYPE_STEEL,                \
         .catchRate = 45,                    \
@@ -19049,7 +19049,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Lucario),
         ICON(Lucario, 2),
         ANIMATIONS(LUCARIO, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
-        LUCARIO_MISC_STATS,
+        LUCARIO_MISC_INFO,
     },
     [SPECIES_LUCARIO_MEGA] =
     {
@@ -19070,7 +19070,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(LucarioMega),
         ICON(LucarioMega, 2),
         ANIMATIONS(LUCARIO_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        LUCARIO_MISC_STATS,
+        LUCARIO_MISC_INFO,
     },
 
     [SPECIES_HIPPOPOTAS] =
@@ -19471,7 +19471,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(SNOVER, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
-#define ABOMASNOW_MISC_STATS                \
+#define ABOMASNOW_MISC_INFO                 \
         .type1 = TYPE_GRASS,                \
         .type2 = TYPE_ICE,                  \
         .catchRate = 60,                    \
@@ -19508,7 +19508,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Abomasnow),
         ICON(Abomasnow, 1),
         ANIMATIONS(ABOMASNOW, 0, ANIM_H_SHAKE, BACK_ANIM_NONE),
-        ABOMASNOW_MISC_STATS,
+        ABOMASNOW_MISC_INFO,
     },
     [SPECIES_ABOMASNOW_MEGA] =
     {
@@ -19528,7 +19528,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(AbomasnowMega),
         ICON(AbomasnowMega, 1),
         ANIMATIONS(ABOMASNOW_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ABOMASNOW_MISC_STATS,
+        ABOMASNOW_MISC_INFO,
     },
 
     [SPECIES_WEAVILE] =
@@ -20034,7 +20034,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(PORYGON_Z, 0, ANIM_CIRCLE_C_CLOCKWISE_SLOW, BACK_ANIM_NONE),
     },
 
-#define GALLADE_MISC_STATS                      \
+#define GALLADE_MISC_INFO                       \
         .type1 = TYPE_PSYCHIC,                  \
         .type2 = TYPE_FIGHTING,                 \
         .catchRate = 45,                        \
@@ -20069,7 +20069,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Gallade),
         ICON(Gallade, 1),
         ANIMATIONS(GALLADE, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
-        GALLADE_MISC_STATS,
+        GALLADE_MISC_INFO,
     },
     [SPECIES_GALLADE_MEGA] =
     {
@@ -20089,7 +20089,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(GalladeMega),
         ICON(GalladeMega, 1),
         ANIMATIONS(GALLADE_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        GALLADE_MISC_STATS,
+        GALLADE_MISC_INFO,
     },
 
     [SPECIES_PROBOPASS] =
@@ -20202,7 +20202,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(FROSLASS, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
-#define ROTOM_MISC_STATS                                \
+#define ROTOM_MISC_INFO                                 \
         .type1 = TYPE_ELECTRIC,                         \
         .catchRate = 45,                                \
         .evYield_Speed     = 1,                         \
@@ -20238,7 +20238,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Rotom),
         ICON(Rotom, 0),
         ANIMATIONS(ROTOM, 0, ANIM_GLOW_YELLOW, BACK_ANIM_NONE),
-        ROTOM_MISC_STATS,
+        ROTOM_MISC_INFO,
     },
 
 #define ROTOM_APPLIANCE_STATS   \
@@ -20261,7 +20261,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(RotomHeat),
         ICON(RotomHeat, 0),
         ANIMATIONS(ROTOM_HEAT, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ROTOM_MISC_STATS,
+        ROTOM_MISC_INFO,
     },
     [SPECIES_ROTOM_WASH] =
     {
@@ -20274,7 +20274,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(RotomWash),
         ICON(RotomWash, 0),
         ANIMATIONS(ROTOM_WASH, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_NONE),
-        ROTOM_MISC_STATS,
+        ROTOM_MISC_INFO,
     },
     [SPECIES_ROTOM_FROST] =
     {
@@ -20287,7 +20287,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(RotomFrost),
         ICON(RotomFrost, 5),
         ANIMATIONS(ROTOM_FROST, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
-        ROTOM_MISC_STATS,
+        ROTOM_MISC_INFO,
     },
     [SPECIES_ROTOM_FAN] =
     {
@@ -20300,7 +20300,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(RotomFan),
         ICON(RotomFan, 0),
         ANIMATIONS(ROTOM_FAN, 7, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_NONE),
-        ROTOM_MISC_STATS,
+        ROTOM_MISC_INFO,
     },
     [SPECIES_ROTOM_MOW] =
     {
@@ -20313,7 +20313,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(RotomMow),
         ICON(RotomMow, 0),
         ANIMATIONS(ROTOM_MOW, 0, ANIM_TIP_MOVE_FORWARD, BACK_ANIM_NONE),
-        ROTOM_MISC_STATS,
+        ROTOM_MISC_INFO,
     },
 
     [SPECIES_UXIE] =
@@ -20431,7 +20431,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(AZELF, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
-#define DIALGA_MISC_STATS                                                   \
+#define DIALGA_MISC_INFO                                                    \
         .type1 = TYPE_STEEL,                                                \
         .type2 = TYPE_DRAGON,                                               \
         .catchRate = 3,                                                     \
@@ -20467,7 +20467,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Dialga),
         ICON(Dialga, 2),
         ANIMATIONS(DIALGA, 0, ANIM_H_SHAKE, BACK_ANIM_NONE),
-        DIALGA_MISC_STATS,
+        DIALGA_MISC_INFO,
     },
 
     [SPECIES_DIALGA_ORIGIN] =
@@ -20486,10 +20486,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(DialgaOrigin),
         ICON(DialgaOrigin, 0),
         ANIMATIONS(DIALGA_ORIGIN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        DIALGA_MISC_STATS,
+        DIALGA_MISC_INFO,
     },
 
-#define PALKIA_MISC_STATS                                                   \
+#define PALKIA_MISC_INFO                                                    \
         .type1 = TYPE_WATER,                                                \
         .type2 = TYPE_DRAGON,                                               \
         .catchRate = 3,                                                     \
@@ -20525,7 +20525,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Palkia),
         ICON(Palkia, 2),
         ANIMATIONS(PALKIA, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
-        PALKIA_MISC_STATS,
+        PALKIA_MISC_INFO,
     },
 
     [SPECIES_PALKIA_ORIGIN] =
@@ -20544,7 +20544,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(PalkiaOrigin),
         ICON(PalkiaOrigin, 2),
         ANIMATIONS(PALKIA_ORIGIN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        PALKIA_MISC_STATS,
+        PALKIA_MISC_INFO,
     },
 
     [SPECIES_HEATRAN] =
@@ -20619,7 +20619,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(REGIGIGAS, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
-#define GIRATINA_MISC_STATS                 \
+#define GIRATINA_MISC_INFO                  \
         .type1 = TYPE_GHOST,                \
         .type2 = TYPE_DRAGON,               \
         .catchRate = 3,                     \
@@ -20655,7 +20655,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Giratina),
         ICON(Giratina, 0),
         ANIMATIONS(GIRATINA, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
-        GIRATINA_MISC_STATS,
+        GIRATINA_MISC_INFO,
     },
     [SPECIES_GIRATINA_ORIGIN] =
     {
@@ -20675,7 +20675,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(GiratinaOrigin),
         ICON(GiratinaOrigin, 0),
         ANIMATIONS(GIRATINA_ORIGIN, 0, ANIM_LUNGE_GROW, BACK_ANIM_NONE),
-        GIRATINA_MISC_STATS,
+        GIRATINA_MISC_INFO,
     },
 
     [SPECIES_CRESSELIA] =
@@ -20825,7 +20825,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(DARKRAI, 0, ANIM_GLOW_BLACK, BACK_ANIM_NONE),
     },
 
-#define SHAYMIN_MISC_STATS                  \
+#define SHAYMIN_MISC_INFO                   \
         .type1 = TYPE_GRASS,                \
         .catchRate = 45,                    \
         .expYield = 270,                    \
@@ -20863,7 +20863,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Shaymin),
         ICON(Shaymin, 1),
         ANIMATIONS(SHAYMIN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SHAYMIN_MISC_STATS,
+        SHAYMIN_MISC_INFO,
     },
 
     [SPECIES_SHAYMIN_SKY] =
@@ -20886,10 +20886,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(ShayminSky),
         ICON(ShayminSky, 1),
         ANIMATIONS(SHAYMIN_SKY, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
-        SHAYMIN_MISC_STATS,
+        SHAYMIN_MISC_INFO,
     },
 
-#define ARCEUS_MISC_STATS                               \
+#define ARCEUS_MISC_INFO                                \
         .baseHP        = 120,                           \
         .baseAttack    = 120,                           \
         .baseDefense   = 120,                           \
@@ -20925,126 +20925,126 @@ const struct BaseStats gBaseStats[] =
         .type1 = TYPE_NORMAL,
         .type2 = TYPE_NORMAL,
         PALETTES(Arceus),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_FIGHTING] =
     {
         .type1 = TYPE_FIGHTING,
         .type2 = TYPE_FIGHTING,
         PALETTES(ArceusFighting),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_FLYING] =
     {
         .type1 = TYPE_FLYING,
         .type2 = TYPE_FLYING,
         PALETTES(ArceusFlying),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_POISON] =
     {
         .type1 = TYPE_POISON,
         .type2 = TYPE_POISON,
         PALETTES(ArceusPoison),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_GROUND] =
     {
         .type1 = TYPE_GROUND,
         .type2 = TYPE_GROUND,
         PALETTES(ArceusGround),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_ROCK] =
     {
         .type1 = TYPE_ROCK,
         .type2 = TYPE_ROCK,
         PALETTES(ArceusRock),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_BUG] =
     {
         .type1 = TYPE_BUG,
         .type2 = TYPE_BUG,
         PALETTES(ArceusBug),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_GHOST] =
     {
         .type1 = TYPE_GHOST,
         .type2 = TYPE_GHOST,
         PALETTES(ArceusGhost),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_STEEL] =
     {
         .type1 = TYPE_STEEL,
         .type2 = TYPE_STEEL,
         PALETTES(ArceusSteel),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_FIRE] =
     {
         .type1 = TYPE_FIRE,
         .type2 = TYPE_FIRE,
         PALETTES(ArceusFire),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_WATER] =
     {
         .type1 = TYPE_WATER,
         .type2 = TYPE_WATER,
         PALETTES(ArceusWater),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_GRASS] =
     {
         .type1 = TYPE_GRASS,
         .type2 = TYPE_GRASS,
         PALETTES(ArceusGrass),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_ELECTRIC] =
     {
         .type1 = TYPE_ELECTRIC,
         .type2 = TYPE_ELECTRIC,
         PALETTES(ArceusElectric),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_PSYCHIC] =
     {
         .type1 = TYPE_PSYCHIC,
         .type2 = TYPE_PSYCHIC,
         PALETTES(ArceusPsychic),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_ICE] =
     {
         .type1 = TYPE_ICE,
         .type2 = TYPE_ICE,
         PALETTES(ArceusIce),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_DRAGON] =
     {
         .type1 = TYPE_DRAGON,
         .type2 = TYPE_DRAGON,
         PALETTES(ArceusDragon),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_DARK] =
     {
         .type1 = TYPE_DARK,
         .type2 = TYPE_DARK,
         PALETTES(ArceusDark),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
     [SPECIES_ARCEUS_FAIRY] =
     {
         .type1 = TYPE_FAIRY,
         .type2 = TYPE_FAIRY,
         PALETTES(ArceusFairy),
-        ARCEUS_MISC_STATS,
+        ARCEUS_MISC_INFO,
     },
 #endif
 
@@ -21365,7 +21365,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(DEWOTT, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
     },
 
-#define SAMUROTT_MISC_STATS                                                 \
+#define SAMUROTT_MISC_INFO                                                  \
         .type1 = TYPE_WATER,                                                \
         .catchRate = 45,                                                    \
         .expYield = 238,                                                    \
@@ -21400,7 +21400,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Samurott),
         ICON(Samurott, 2),
         ANIMATIONS(SAMUROTT, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
-        SAMUROTT_MISC_STATS,
+        SAMUROTT_MISC_INFO,
     },
     [SPECIES_SAMUROTT_HISUIAN] =
     {
@@ -21419,7 +21419,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(QuestionMark),
         ICON(SamurottHisuian, 0),
         ANIMATIONS(SAMUROTT_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SAMUROTT_MISC_STATS,
+        SAMUROTT_MISC_INFO,
     },
 
     [SPECIES_PATRAT] =
@@ -22398,7 +22398,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(EXCADRILL, 0, ANIM_H_SHAKE, BACK_ANIM_NONE),
     },
 
-#define AUDINO_MISC_STATS                   \
+#define AUDINO_MISC_INFO                    \
         .type1 = TYPE_NORMAL,               \
         .catchRate = 255,                   \
         .evYield_HP        = 2,             \
@@ -22435,7 +22435,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Audino),
         ICON(Audino, 1),
         ANIMATIONS(AUDINO, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
-        AUDINO_MISC_STATS,
+        AUDINO_MISC_INFO,
     },
     [SPECIES_AUDINO_MEGA] =
     {
@@ -22458,7 +22458,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(AudinoMega),
         ICON(AudinoMega, 1),
         ANIMATIONS(AUDINO_MEGA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        AUDINO_MISC_STATS,
+        AUDINO_MISC_INFO,
     },
 
     [SPECIES_TIMBURR] =
@@ -23100,7 +23100,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(PETILIL, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
     },
 
-#define LILLIGANT_MISC_STATS                \
+#define LILLIGANT_MISC_INFO                 \
         .type1 = TYPE_GRASS,                \
         .catchRate = 75,                    \
         .expYield = 168,                    \
@@ -23136,7 +23136,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Lilligant),
         ICON(Lilligant, 1),
         ANIMATIONS(LILLIGANT, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        LILLIGANT_MISC_STATS,
+        LILLIGANT_MISC_INFO,
     },
     [SPECIES_LILLIGANT_HISUIAN] =
     {
@@ -23159,10 +23159,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(LilligantHisuian),
         ICON(LilligantHisuian, 1),
         ANIMATIONS(LILLIGANT_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        LILLIGANT_MISC_STATS,
+        LILLIGANT_MISC_INFO,
     },
 
-#define BASCULIN_MISC_STATS                 \
+#define BASCULIN_MISC_INFO                  \
         .baseHP        = 70,                \
         .baseAttack    = 92,                \
         .baseDefense   = 65,                \
@@ -23198,7 +23198,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(Basculin, 64, 48, 16),
         PALETTES(Basculin),
         ICON(Basculin, 1),
-        BASCULIN_MISC_STATS,
+        BASCULIN_MISC_INFO,
     },
     [SPECIES_BASCULIN_BLUE_STRIPED] =
     {
@@ -23210,7 +23210,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(BasculinBlueStriped, 64, 48, 16),
         PALETTES(BasculinBlueStriped),
         ICON(BasculinBlueStriped, 0),
-        BASCULIN_MISC_STATS,
+        BASCULIN_MISC_INFO,
     },
     [SPECIES_BASCULIN_WHITE_STRIPED] =
     {
@@ -23221,7 +23221,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(BasculinWhiteStriped, 64, 40, 16),
         PALETTES(BasculinWhiteStriped),
         ICON(BasculinWhiteStriped, 0),
-        BASCULIN_MISC_STATS,
+        BASCULIN_MISC_INFO,
     },
 
     [SPECIES_SANDILE] =
@@ -23336,7 +23336,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(KROOKODILE, 0, ANIM_SWING_CONCAVE_FAST_SHORT, BACK_ANIM_NONE),
     },
 
-#define DARUMAKA_MISC_STATS                                                 \
+#define DARUMAKA_MISC_INFO                                                  \
         .baseHP        = 70,                                                \
         .baseAttack    = 90,                                                \
         .baseDefense   = 45,                                                \
@@ -23371,7 +23371,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Darumaka),
         ICON(Darumaka, 0),
         ANIMATIONS(DARUMAKA, 0, ANIM_SWING_CONCAVE, BACK_ANIM_NONE),
-        DARUMAKA_MISC_STATS,
+        DARUMAKA_MISC_INFO,
     },
     [SPECIES_DARUMAKA_GALARIAN] =
     {
@@ -23387,10 +23387,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(DarumakaGalarian),
         ICON(DarumakaGalarian, 0),
         ANIMATIONS(DARUMAKA_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        DARUMAKA_MISC_STATS,
+        DARUMAKA_MISC_INFO,
     },
 
-#define DARMANITAN_MISC_STATS                   \
+#define DARMANITAN_MISC_INFO                    \
         .catchRate = 60,                        \
         .expYield = 168,                        \
         .genderRatio = PERCENT_FEMALE(50),      \
@@ -23403,7 +23403,7 @@ const struct BaseStats gBaseStats[] =
         .natDexNum = NATIONAL_DEX_DARMANITAN,   \
         FOOTPRINT(Darmanitan)
 
-#define DARMANITAN_UNOVAN_MISC_STATS                                        \
+#define DARMANITAN_UNOVAN_MISC_INFO                                         \
         .type1 = TYPE_FIRE,                                                 \
         .abilities = {ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_ZEN_MODE}, \
         DEX_TEXT(Darmanitan, "Blazing"),                                    \
@@ -23411,7 +23411,7 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(13, 929),                                             \
         LEARNSETS(Darmanitan)
 
-#define DARMANITAN_STANDARD_MISC_STATS      \
+#define DARMANITAN_STANDARD_MISC_INFO       \
         .baseHP        = 105,               \
         .baseAttack    = 140,               \
         .baseDefense   = 55,                \
@@ -23419,7 +23419,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 30,                \
         .baseSpDefense = 55,                \
         .evYield_Attack    = 2,             \
-        DARMANITAN_MISC_STATS
+        DARMANITAN_MISC_INFO
 
     [SPECIES_DARMANITAN_STANDARD_MODE] =
     {
@@ -23430,13 +23430,13 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Darmanitan),
         ICON(Darmanitan, 0),
         ANIMATIONS(DARMANITAN, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_NONE),
-        DARMANITAN_UNOVAN_MISC_STATS,
-        DARMANITAN_STANDARD_MISC_STATS,
+        DARMANITAN_UNOVAN_MISC_INFO,
+        DARMANITAN_STANDARD_MISC_INFO,
     },
 
-#define DARMANITAN_ZEN_MODE_MISC_STATS      \
+#define DARMANITAN_ZEN_MODE_MISC_INFO       \
         .evYield_SpAttack  = 2,             \
-        DARMANITAN_MISC_STATS
+        DARMANITAN_MISC_INFO
 
     [SPECIES_DARMANITAN_ZEN_MODE] =
     {
@@ -23453,11 +23453,11 @@ const struct BaseStats gBaseStats[] =
         PALETTES(DarmanitanZenMode),
         ICON(DarmanitanZenMode, 0),
         ANIMATIONS(DARMANITAN_ZEN_MODE, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
-        DARMANITAN_UNOVAN_MISC_STATS,
-        DARMANITAN_ZEN_MODE_MISC_STATS,
+        DARMANITAN_UNOVAN_MISC_INFO,
+        DARMANITAN_ZEN_MODE_MISC_INFO,
     },
 
-#define DARMANITAN_GALARIAN_MISC_STATS                                          \
+#define DARMANITAN_GALARIAN_MISC_INFO                                           \
         .type1 = TYPE_ICE,                                                      \
         .abilities = {ABILITY_GORILLA_TACTICS, ABILITY_NONE, ABILITY_ZEN_MODE}, \
         .bodyColor = BODY_COLOR_WHITE,                                          \
@@ -23475,8 +23475,8 @@ const struct BaseStats gBaseStats[] =
         PALETTES(DarmanitanGalarian),
         ICON(DarmanitanGalarian, 0),
         ANIMATIONS(DARMANITAN_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        DARMANITAN_GALARIAN_MISC_STATS,
-        DARMANITAN_STANDARD_MISC_STATS,
+        DARMANITAN_GALARIAN_MISC_INFO,
+        DARMANITAN_STANDARD_MISC_INFO,
     },
     [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] =
     {
@@ -23492,8 +23492,8 @@ const struct BaseStats gBaseStats[] =
         PALETTES(DarmanitanGalarianZenMode),
         ICON(DarmanitanGalarianZenMode, 0),
         ANIMATIONS(DARMANITAN_GALARIAN_ZEN_MODE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        DARMANITAN_GALARIAN_MISC_STATS,
-        DARMANITAN_ZEN_MODE_MISC_STATS,
+        DARMANITAN_GALARIAN_MISC_INFO,
+        DARMANITAN_ZEN_MODE_MISC_INFO,
     },
 
     [SPECIES_MARACTUS] =
@@ -23717,7 +23717,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(SIGILYPH, 0, ANIM_FIGURE_8, BACK_ANIM_NONE),
     },
 
-#define YAMASK_MISC_STATS                   \
+#define YAMASK_MISC_INFO                    \
         .type2 = TYPE_GHOST,                \
         .catchRate = 190,                   \
         .expYield = 61,                     \
@@ -23754,7 +23754,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Yamask),
         ICON(Yamask, 0),
         ANIMATIONS(YAMASK, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
-        YAMASK_MISC_STATS,
+        YAMASK_MISC_INFO,
     },
     [SPECIES_YAMASK_GALARIAN] =
     {
@@ -23774,7 +23774,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(YamaskGalarian),
         ICON(YamaskGalarian, 2),
         ANIMATIONS(YAMASK_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        YAMASK_MISC_STATS,
+        YAMASK_MISC_INFO,
     },
 
     [SPECIES_COFAGRIGUS] =
@@ -24027,7 +24027,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(GARBODOR, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
-#define ZORUA_MISC_STATS                                \
+#define ZORUA_MISC_INFO                                 \
         .catchRate = 75,                                \
         .expYield = 66,                                 \
         .evYield_SpAttack  = 1,                         \
@@ -24062,7 +24062,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Zorua),
         ICON(Zorua, 0),
         ANIMATIONS(ZORUA, 0, ANIM_CIRCULAR_VIBRATE, BACK_ANIM_NONE),
-        ZORUA_MISC_STATS,
+        ZORUA_MISC_INFO,
     },
     [SPECIES_ZORUA_HISUIAN] =
     {
@@ -24082,10 +24082,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(ZoruaHisuian),
         ICON(ZoruaHisuian, 0),
         ANIMATIONS(ZORUA_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ZORUA_MISC_STATS,
+        ZORUA_MISC_INFO,
     },
 
-#define ZOROARK_MISC_STATS                              \
+#define ZOROARK_MISC_INFO                               \
         .catchRate = 45,                                \
         .expYield = 179,                                \
         .evYield_SpAttack  = 2,                         \
@@ -24120,7 +24120,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Zoroark),
         ICON(Zoroark, 0),
         ANIMATIONS(ZOROARK, 0, ANIM_FLICKER_INCREASING, BACK_ANIM_NONE),
-        ZOROARK_MISC_STATS,
+        ZOROARK_MISC_INFO,
     },
     [SPECIES_ZOROARK_HISUIAN] =
     {
@@ -24141,7 +24141,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(ZoroarkHisuian),
         ICON(ZoroarkHisuian, 0),
         ANIMATIONS(ZOROARK_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ZOROARK_MISC_STATS,
+        ZOROARK_MISC_INFO,
     },
 
     [SPECIES_MINCCINO] =
@@ -24605,7 +24605,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(VANILLUXE, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 
-#define DEERLING_MISC_STATS                                                             \
+#define DEERLING_MISC_INFO                                                              \
         .baseHP        = 60,                                                            \
         .baseAttack    = 60,                                                            \
         .baseDefense   = 50,                                                            \
@@ -24640,31 +24640,31 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_PINK,
         PALETTES(Deerling),
         ICON(Deerling, 1),
-        DEERLING_MISC_STATS,
+        DEERLING_MISC_INFO,
     },
     [SPECIES_DEERLING_SUMMER] =
     {
         .bodyColor = BODY_COLOR_GREEN,
         PALETTES(DeerlingSummer),
         ICON(DeerlingSummer, 1),
-        DEERLING_MISC_STATS,
+        DEERLING_MISC_INFO,
     },
     [SPECIES_DEERLING_AUTUMN] =
     {
         .bodyColor = BODY_COLOR_RED,
         PALETTES(DeerlingAutumn),
         ICON(DeerlingAutumn, 1),
-        DEERLING_MISC_STATS,
+        DEERLING_MISC_INFO,
     },
     [SPECIES_DEERLING_WINTER] =
     {
         .bodyColor = BODY_COLOR_BROWN,
         PALETTES(DeerlingWinter),
         ICON(DeerlingWinter, 1),
-        DEERLING_MISC_STATS,
+        DEERLING_MISC_INFO,
     },
 
-#define SAWSBUCK_MISC_STATS                                                             \
+#define SAWSBUCK_MISC_INFO                                                              \
         .baseHP        = 80,                                                            \
         .baseAttack    = 100,                                                           \
         .baseDefense   = 70,                                                            \
@@ -24699,7 +24699,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(Sawsbuck, 48, 64, 5),
         PALETTES(Sawsbuck),
         ICON(Sawsbuck, 1),
-        SAWSBUCK_MISC_STATS,
+        SAWSBUCK_MISC_INFO,
     },
     [SPECIES_SAWSBUCK_SUMMER] =
     {
@@ -24708,7 +24708,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(SawsbuckSummer, 64, 64, 5),
         PALETTES(SawsbuckSummer),
         ICON(SawsbuckSummer, 1),
-        SAWSBUCK_MISC_STATS,
+        SAWSBUCK_MISC_INFO,
     },
     [SPECIES_SAWSBUCK_AUTUMN] =
     {
@@ -24717,7 +24717,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(SawsbuckAutumn, 64, 64, 5),
         PALETTES(SawsbuckAutumn),
         ICON(SawsbuckAutumn, 1),
-        SAWSBUCK_MISC_STATS,
+        SAWSBUCK_MISC_INFO,
     },
     [SPECIES_SAWSBUCK_WINTER] =
     {
@@ -24726,7 +24726,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(SawsbuckWinter, 48, 64, 5),
         PALETTES(SawsbuckWinter),
         ICON(SawsbuckWinter, 1),
-        SAWSBUCK_MISC_STATS,
+        SAWSBUCK_MISC_INFO,
     },
 
     [SPECIES_EMOLGA] =
@@ -25855,7 +25855,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(ACCELGOR, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
     },
 
-#define STUNFISK_MISC_STATS                 \
+#define STUNFISK_MISC_INFO                  \
         .type1 = TYPE_GROUND,               \
         .catchRate = 75,                    \
         .expYield = 165,                    \
@@ -25891,7 +25891,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Stunfisk),
         ICON(Stunfisk, 2),
         ANIMATIONS(STUNFISK, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        STUNFISK_MISC_STATS,
+        STUNFISK_MISC_INFO,
     },
     [SPECIES_STUNFISK_GALARIAN] =
     {
@@ -25913,7 +25913,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(StunfiskGalarian),
         ICON(StunfiskGalarian, 1),
         ANIMATIONS(STUNFISK_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        STUNFISK_MISC_STATS,
+        STUNFISK_MISC_INFO,
     },
 
     [SPECIES_MIENFOO] =
@@ -26234,7 +26234,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(RUFFLET, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
-#define BRAVIARY_MISC_STATS                 \
+#define BRAVIARY_MISC_INFO                  \
         .type2 = TYPE_FLYING,               \
         .catchRate = 60,                    \
         .expYield = 179,                    \
@@ -26270,7 +26270,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Braviary),
         ICON(Braviary, 0),
         ANIMATIONS(BRAVIARY, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        BRAVIARY_MISC_STATS,
+        BRAVIARY_MISC_INFO,
     },
     [SPECIES_BRAVIARY_HISUIAN] =
     {
@@ -26295,7 +26295,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(BraviaryHisuian),
         ICON(BraviaryHisuian, 2),
         ANIMATIONS(BRAVIARY_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        BRAVIARY_MISC_STATS,
+        BRAVIARY_MISC_INFO,
     },
 
     [SPECIES_VULLABY] =
@@ -26725,7 +26725,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(VIRIZION, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 
-#define TORNADUS_MISC_STATS                 \
+#define TORNADUS_MISC_INFO                  \
         .type1 = TYPE_FLYING,               \
         .type2 = TYPE_FLYING,               \
         .catchRate = 3,                     \
@@ -26762,7 +26762,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Tornadus),
         ICON(Tornadus, 1),
         ANIMATIONS(TORNADUS, 0, ANIM_FIGURE_8, BACK_ANIM_NONE),
-        TORNADUS_MISC_STATS,
+        TORNADUS_MISC_INFO,
     },
     [SPECIES_TORNADUS_THERIAN] =
     {
@@ -26781,10 +26781,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(TornadusTherian),
         ICON(TornadusTherian, 1),
         ANIMATIONS(TORNADUS_THERIAN, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
-        TORNADUS_MISC_STATS,
+        TORNADUS_MISC_INFO,
     },
 
-#define THUNDURUS_MISC_STATS                \
+#define THUNDURUS_MISC_INFO                 \
         .type1 = TYPE_ELECTRIC,             \
         .type2 = TYPE_FLYING,               \
         .catchRate = 3,                     \
@@ -26821,7 +26821,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Thundurus),
         ICON(Thundurus, 0),
         ANIMATIONS(THUNDURUS, 0, ANIM_FIGURE_8, BACK_ANIM_NONE),
-        THUNDURUS_MISC_STATS,
+        THUNDURUS_MISC_INFO,
     },
     [SPECIES_THUNDURUS_THERIAN] =
     {
@@ -26842,7 +26842,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(ThundurusTherian),
         ICON(ThundurusTherian, 0),
         ANIMATIONS(THUNDURUS_THERIAN, 0, ANIM_RISING_WOBBLE, BACK_ANIM_NONE),
-        THUNDURUS_MISC_STATS,
+        THUNDURUS_MISC_INFO,
     },
 
     [SPECIES_RESHIRAM] =
@@ -26917,7 +26917,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(ZEKROM, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
-#define LANDORUS_MISC_STATS                 \
+#define LANDORUS_MISC_INFO                  \
         .type1 = TYPE_GROUND,               \
         .type2 = TYPE_FLYING,               \
         .catchRate = 3,                     \
@@ -26954,7 +26954,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Landorus),
         ICON(Landorus, 0),
         ANIMATIONS(LANDORUS, 0, ANIM_FIGURE_8, BACK_ANIM_NONE),
-        LANDORUS_MISC_STATS,
+        LANDORUS_MISC_INFO,
     },
     [SPECIES_LANDORUS_THERIAN] =
     {
@@ -26974,10 +26974,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(LandorusTherian),
         ICON(LandorusTherian, 0),
         ANIMATIONS(LANDORUS_THERIAN, 0, ANIM_CIRCULAR_VIBRATE, BACK_ANIM_NONE),
-        LANDORUS_MISC_STATS,
+        LANDORUS_MISC_INFO,
     },
 
-#define KYUREM_MISC_STATS                               \
+#define KYUREM_MISC_INFO                                \
         .type1 = TYPE_DRAGON,                           \
         .type2 = TYPE_ICE,                              \
         .catchRate = 3,                                 \
@@ -27016,7 +27016,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Kyurem),
         ICON(Kyurem, 0),
         ANIMATIONS(KYUREM, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        KYUREM_MISC_STATS,
+        KYUREM_MISC_INFO,
     },
     [SPECIES_KYUREM_WHITE] =
     {
@@ -27039,7 +27039,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(KyuremWhite),
         ICON(KyuremWhite, 0),
         ANIMATIONS(KYUREM_WHITE, 0, ANIM_H_SHAKE, BACK_ANIM_NONE),
-        KYUREM_MISC_STATS,
+        KYUREM_MISC_INFO,
     },
 
     [SPECIES_KYUREM_BLACK] =
@@ -27063,10 +27063,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(KyuremBlack),
         ICON(KyuremBlack, 0),
         ANIMATIONS(KYUREM_BLACK, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
-        KYUREM_MISC_STATS,
+        KYUREM_MISC_INFO,
     },
 
-#define KELDEO_MISC_STATS                               \
+#define KELDEO_MISC_INFO                                \
         .baseHP        = 91,                            \
         .baseAttack    = 72,                            \
         .baseDefense   = 90,                            \
@@ -27102,7 +27102,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Keldeo),
         ICON(Keldeo, 0),
         ANIMATIONS(KELDEO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        KELDEO_MISC_STATS,
+        KELDEO_MISC_INFO,
     },
     [SPECIES_KELDEO_RESOLUTE] =
     {
@@ -27113,10 +27113,10 @@ const struct BaseStats gBaseStats[] =
         PALETTES(KeldeoResolute),
         ICON(KeldeoResolute, 0),
         ANIMATIONS(KELDEO_RESOLUTE, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
-        KELDEO_MISC_STATS,
+        KELDEO_MISC_INFO,
     },
 
-#define MELOETTA_MISC_STATS                                 \
+#define MELOETTA_MISC_INFO                                  \
         .type1 = TYPE_NORMAL,                               \
         .catchRate = 3,                                     \
         .expYield = 270,                                    \
@@ -27157,7 +27157,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Meloetta),
         ICON(Meloetta, 4),
         ANIMATIONS(MELOETTA, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
-        MELOETTA_MISC_STATS,
+        MELOETTA_MISC_INFO,
     },
 
     [SPECIES_MELOETTA_PIROUETTE] =
@@ -27180,7 +27180,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(MELOETTA_PIROUETTE, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_NONE),
     },
 
-#define GENESECT_MISC_STATS(palette)                            \
+#define GENESECT_MISC_INFO(palette)                            \
     {                                                           \
         .baseHP        = 71,                                    \
         .baseAttack    = 120,                                   \
@@ -27218,11 +27218,11 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(GENESECT, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),\
     }
 
-    [SPECIES_GENESECT]             = GENESECT_MISC_STATS(Genesect),
-    [SPECIES_GENESECT_DOUSE_DRIVE] = GENESECT_MISC_STATS(GenesectDouseDrive),
-    [SPECIES_GENESECT_SHOCK_DRIVE] = GENESECT_MISC_STATS(GenesectShockDrive),
-    [SPECIES_GENESECT_BURN_DRIVE]  = GENESECT_MISC_STATS(GenesectBurnDrive),
-    [SPECIES_GENESECT_CHILL_DRIVE] = GENESECT_MISC_STATS(GenesectChillDrive),
+    [SPECIES_GENESECT]             = GENESECT_MISC_INFO(Genesect),
+    [SPECIES_GENESECT_DOUSE_DRIVE] = GENESECT_MISC_INFO(GenesectDouseDrive),
+    [SPECIES_GENESECT_SHOCK_DRIVE] = GENESECT_MISC_INFO(GenesectShockDrive),
+    [SPECIES_GENESECT_BURN_DRIVE]  = GENESECT_MISC_INFO(GenesectBurnDrive),
+    [SPECIES_GENESECT_CHILL_DRIVE] = GENESECT_MISC_INFO(GenesectChillDrive),
 #endif
 
 #if P_GEN_6_POKEMON == TRUE
@@ -27506,7 +27506,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(FROGADIER, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
     },
 
-#define GRENINJA_NORMAL_MISC_STATS              \
+#define GRENINJA_NORMAL_MISC_INFO               \
         .baseHP        = 72,                    \
         .baseAttack    = 95,                    \
         .baseDefense   = 67,                    \
@@ -27520,7 +27520,7 @@ const struct BaseStats gBaseStats[] =
         ICON(Greninja, 0),                      \
         ANIMATIONS(GRENINJA, 0, ANIM_V_STRETCH, BACK_ANIM_NONE)
 
-#define GRENINJA_MISC_STATS                 \
+#define GRENINJA_MISC_INFO                  \
         .type1 = TYPE_WATER,                \
         .type2 = TYPE_DARK,                 \
         .catchRate = 45,                    \
@@ -27543,8 +27543,8 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_WATER_1,
         .eggGroup2 = EGG_GROUP_WATER_1,
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_PROTEAN},
-        GRENINJA_NORMAL_MISC_STATS,
-        GRENINJA_MISC_STATS,
+        GRENINJA_NORMAL_MISC_INFO,
+        GRENINJA_MISC_INFO,
     },
     [SPECIES_GRENINJA_BATTLE_BOND] =
     {
@@ -27552,8 +27552,8 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_UNDISCOVERED,
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,
         .abilities = {ABILITY_BATTLE_BOND, ABILITY_NONE, ABILITY_NONE},
-        GRENINJA_NORMAL_MISC_STATS,
-        GRENINJA_MISC_STATS,
+        GRENINJA_NORMAL_MISC_INFO,
+        GRENINJA_MISC_INFO,
     },
     [SPECIES_GRENINJA_ASH] =
     {
@@ -27573,7 +27573,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(GreninjaAsh),
         ICON(GreninjaAsh, 0),
         ANIMATIONS(GRENINJA, 0, ANIM_FLICKER_INCREASING, BACK_ANIM_NONE),
-        GRENINJA_MISC_STATS,
+        GRENINJA_MISC_INFO,
     },
 
     [SPECIES_BUNNELBY] =
@@ -28368,7 +28368,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(ESPURR, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
-#define MEOWSTIC_MISC_STATS                                         \
+#define MEOWSTIC_MISC_INFO                                          \
         .baseHP        = 74,                                        \
         .baseAttack    = 48,                                        \
         .baseDefense   = 76,                                        \
@@ -28403,7 +28403,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(Meowstic, 64, 64, 9),
         PALETTES(Meowstic),
         ICON(Meowstic, 0),
-        MEOWSTIC_MISC_STATS,
+        MEOWSTIC_MISC_INFO,
     },
     [SPECIES_MEOWSTIC_FEMALE] =
     {
@@ -28416,7 +28416,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(MeowsticFemale, 48, 64, 9),
         PALETTES(MeowsticFemale),
         ICON(MeowsticFemale, 0),
-        MEOWSTIC_MISC_STATS,
+        MEOWSTIC_MISC_INFO,
     },
 
     [SPECIES_HONEDGE] =
@@ -28492,7 +28492,7 @@ const struct BaseStats gBaseStats[] =
     },
 
 
-#define AEGISLASH_MISC_STATS                                \
+#define AEGISLASH_MISC_INFO                                 \
         .type1 = TYPE_STEEL,                                \
         .type2 = TYPE_GHOST,                                \
         .catchRate = 45,                                    \
@@ -28535,7 +28535,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Aegislash),
         ICON(Aegislash, 2),
         ANIMATIONS(AEGISLASH, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
-        AEGISLASH_MISC_STATS,
+        AEGISLASH_MISC_INFO,
     },
     [SPECIES_AEGISLASH_BLADE] =
     {
@@ -28554,7 +28554,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(AegislashBlade),
         ICON(AegislashBlade, 2),
         ANIMATIONS(AEGISLASH_BLADE, 0, ANIM_CIRCLE_C_CLOCKWISE_SLOW, BACK_ANIM_NONE),
-        AEGISLASH_MISC_STATS,
+        AEGISLASH_MISC_INFO,
     },
 
     [SPECIES_SPRITZEE] =
@@ -29373,7 +29373,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(GOOMY, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
     },
 
-#define SLIGGOO_MISC_STATS                  \
+#define SLIGGOO_MISC_INFO                   \
         .type1 = TYPE_DRAGON,               \
         .catchRate = 45,                    \
         .expYield = 158,                    \
@@ -29409,7 +29409,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Sliggoo),
         ICON(Sliggoo, 5),
         ANIMATIONS(SLIGGOO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        SLIGGOO_MISC_STATS,
+        SLIGGOO_MISC_INFO,
     },
     [SPECIES_SLIGGOO_HISUIAN] =
     {
@@ -29433,7 +29433,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(SLIGGOO_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
-#define GOODRA_MISC_STATS                   \
+#define GOODRA_MISC_INFO                    \
         .type1 = TYPE_DRAGON,               \
         .catchRate = 45,                    \
         .expYield = 270,                    \
@@ -29468,7 +29468,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Goodra),
         ICON(Goodra, 5),
         ANIMATIONS(GOODRA, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
-        GOODRA_MISC_STATS,
+        GOODRA_MISC_INFO,
     },
     [SPECIES_GOODRA_HISUIAN] =
     {
@@ -29490,7 +29490,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(GoodraHisuian),
         ICON(GoodraHisuian, 2),
         ANIMATIONS(GOODRA_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        GOODRA_MISC_STATS,
+        GOODRA_MISC_INFO,
     },
 
     [SPECIES_KLEFKI] =
@@ -29600,7 +29600,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(TREVENANT, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_NONE),
     },
 
-#define PUMKPABOO_MISC_STATS                                            \
+#define PUMKPABOO_MISC_INFO                                             \
         .type1 = TYPE_GHOST,                                            \
         .type2 = TYPE_GRASS,                                            \
         .catchRate = 120,                                               \
@@ -29635,7 +29635,7 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(4, 50),
         FRONT_SPRITE(Pumpkaboo, 40, 40, 13),
         BACK_SPRITE(Pumpkaboo, 56, 48, 13),
-        PUMKPABOO_MISC_STATS,
+        PUMKPABOO_MISC_INFO,
     },
 
     [SPECIES_PUMPKABOO_SMALL] =
@@ -29651,7 +29651,7 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(3, 35),
         FRONT_SPRITE(PumpkabooSmall, 40, 40, 15),
         BACK_SPRITE(PumpkabooSmall, 56, 48, 14),
-        PUMKPABOO_MISC_STATS,
+        PUMKPABOO_MISC_INFO,
     },
 
     [SPECIES_PUMPKABOO_LARGE] =
@@ -29667,7 +29667,7 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(5, 75),
         FRONT_SPRITE(PumpkabooLarge, 48, 48, 12),
         BACK_SPRITE(PumpkabooLarge, 56, 48, 13),
-        PUMKPABOO_MISC_STATS,
+        PUMKPABOO_MISC_INFO,
     },
 
     [SPECIES_PUMPKABOO_SUPER] =
@@ -29685,10 +29685,10 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(8, 150),
         FRONT_SPRITE(PumpkabooSuper, 48, 48, 10),
         BACK_SPRITE(PumpkabooSuper, 56, 48, 12),
-        PUMKPABOO_MISC_STATS,
+        PUMKPABOO_MISC_INFO,
     },
 
-#define GOURGEIST_MISC_STATS                                            \
+#define GOURGEIST_MISC_INFO                                             \
         .type1 = TYPE_GHOST,                                            \
         .type2 = TYPE_GRASS,                                            \
         .catchRate = 60,                                                \
@@ -29723,7 +29723,7 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(9, 125),
         FRONT_SPRITE(Gourgeist, 64, 64, 4),
         BACK_SPRITE(Gourgeist, 48, 64, 3),
-        GOURGEIST_MISC_STATS,
+        GOURGEIST_MISC_INFO,
     },
     [SPECIES_GOURGEIST_SMALL] =
     {
@@ -29738,7 +29738,7 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(7, 95),
         FRONT_SPRITE(GourgeistSmall, 56, 64, 5),
         BACK_SPRITE(GourgeistSmall, 48, 56, 4),
-        GOURGEIST_MISC_STATS,
+        GOURGEIST_MISC_INFO,
     },
     [SPECIES_GOURGEIST_LARGE] =
     {
@@ -29753,7 +29753,7 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(11, 140),
         FRONT_SPRITE(GourgeistLarge, 64, 64, 2),
         BACK_SPRITE(GourgeistLarge, 48, 64, 2),
-        GOURGEIST_MISC_STATS,
+        GOURGEIST_MISC_INFO,
     },
     [SPECIES_GOURGEIST_SUPER] =
     {
@@ -29770,7 +29770,7 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(17, 390),
         FRONT_SPRITE(GourgeistSuper, 64, 64, 0),
         BACK_SPRITE(GourgeistSuper, 56, 64, 1),
-        GOURGEIST_MISC_STATS,
+        GOURGEIST_MISC_INFO,
     },
 
     [SPECIES_BERGMITE] =
@@ -29808,7 +29808,7 @@ const struct BaseStats gBaseStats[] =
     #define AVALUGG_EGG_GROUP_2 EGG_GROUP_MONSTER
 #endif
 
-#define AVALUGG_MISC_STATS                  \
+#define AVALUGG_MISC_INFO                   \
         .type1 = TYPE_ICE,                  \
         .catchRate = 55,                    \
         .expYield = 180,                    \
@@ -29843,7 +29843,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Avalugg),
         ICON(Avalugg, 0),
         ANIMATIONS(AVALUGG, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
-        AVALUGG_MISC_STATS,
+        AVALUGG_MISC_INFO,
     },
     [SPECIES_AVALUGG_HISUIAN] =
     {
@@ -29865,7 +29865,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(AvaluggHisuian),
         ICON(AvaluggHisuian, 5),
         ANIMATIONS(AVALUGG_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        AVALUGG_MISC_STATS,
+        AVALUGG_MISC_INFO,
     },
 
     [SPECIES_NOIBAT] =
@@ -29947,7 +29947,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(NOIVERN, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
-#define XERNEAS_MISC_STATS                              \
+#define XERNEAS_MISC_INFO                               \
         .baseHP        = 126,                           \
         .baseAttack    = 131,                           \
         .baseDefense   = 95,                            \
@@ -29983,7 +29983,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(Xerneas, 64, 64, 0),
         PALETTES(Xerneas),
         ICON(Xerneas, 0),
-        XERNEAS_MISC_STATS,
+        XERNEAS_MISC_INFO,
     },
     [SPECIES_XERNEAS_ACTIVE] =
     {
@@ -29992,7 +29992,7 @@ const struct BaseStats gBaseStats[] =
         BACK_SPRITE(XerneasActive, 64, 64, 0),
         PALETTES(XerneasActive),
         ICON(XerneasActive, 0),
-        XERNEAS_MISC_STATS,
+        XERNEAS_MISC_INFO,
     },
 
     [SPECIES_YVELTAL] =
@@ -30363,7 +30363,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(DARTRIX, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
     },
 
-#define DECIDUEYE_MISC_STATS                \
+#define DECIDUEYE_MISC_INFO                 \
         .type1 = TYPE_GRASS,                \
         .catchRate = 45,                    \
         .expYield = 239,                    \
@@ -30398,7 +30398,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Decidueye),
         ICON(Decidueye, 1),
         ANIMATIONS(DECIDUEYE, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
-        DECIDUEYE_MISC_STATS,
+        DECIDUEYE_MISC_INFO,
     },
     [SPECIES_DECIDUEYE_HISUIAN] =
     {
@@ -30419,7 +30419,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(QuestionMark),
         ICON(DecidueyeHisuian, 0),
         ANIMATIONS(DECIDUEYE_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        DECIDUEYE_MISC_STATS,
+        DECIDUEYE_MISC_INFO,
     },
 
     [SPECIES_LITTEN] =
@@ -30991,7 +30991,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(CRABOMINABLE, 0, ANIM_SHRINK_GROW_VIBRATE_FAST, BACK_ANIM_NONE),
     },
 
-#define ORICORIO_MISC_STATS           \
+#define ORICORIO_MISC_INFO            \
         .baseHP        = 75,                        \
         .baseAttack    = 70,                        \
         .baseDefense   = 70,                        \
@@ -31027,7 +31027,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Oricorio),
         ICON(Oricorio, 0),
         ANIMATIONS(ORICORIO, 0, ANIM_CONCAVE_ARC_SMALL, BACK_ANIM_NONE),
-        ORICORIO_MISC_STATS,
+        ORICORIO_MISC_INFO,
     },
     [SPECIES_ORICORIO_POM_POM] =
     {
@@ -31039,7 +31039,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(OricorioPomPom),
         ICON(OricorioPomPom, 1),
         ANIMATIONS(ORICORIO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ORICORIO_MISC_STATS,
+        ORICORIO_MISC_INFO,
     },
     [SPECIES_ORICORIO_PAU] =
     {
@@ -31051,7 +31051,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(OricorioPau),
         ICON(OricorioPau, 1),
         ANIMATIONS(ORICORIO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ORICORIO_MISC_STATS,
+        ORICORIO_MISC_INFO,
     },
     [SPECIES_ORICORIO_SENSU] =
     {
@@ -31063,7 +31063,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(OricorioSensu),
         ICON(OricorioSensu, 0),
         ANIMATIONS(ORICORIO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        ORICORIO_MISC_STATS,
+        ORICORIO_MISC_INFO,
     },
 
     [SPECIES_CUTIEFLY] =
@@ -31140,7 +31140,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(RIBOMBEE, 0, ANIM_CONVEX_DOUBLE_ARC_TWICE, BACK_ANIM_NONE),
     },
 
-#define ROCKRUFF_MISC_STATS                                     \
+#define ROCKRUFF_MISC_INFO                                      \
         .baseHP        = 45,                                    \
         .baseAttack    = 65,                                    \
         .baseDefense   = 40,                                    \
@@ -31175,15 +31175,15 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_ROCKRUFF] =
     {
         .abilities = {ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_STEADFAST},
-        ROCKRUFF_MISC_STATS,
+        ROCKRUFF_MISC_INFO,
     },
     [SPECIES_ROCKRUFF_OWN_TEMPO] =
     {
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_NONE},
-        ROCKRUFF_MISC_STATS,
+        ROCKRUFF_MISC_INFO,
     },
 
-#define LYCANROC_MISC_STATS                 \
+#define LYCANROC_MISC_INFO                  \
         .type1 = TYPE_ROCK,                 \
         .type2 = TYPE_ROCK,                 \
         .catchRate = 90,                    \
@@ -31218,7 +31218,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Lycanroc),
         ICON(Lycanroc, 2),
         ANIMATIONS(LYCANROC, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
-        LYCANROC_MISC_STATS,
+        LYCANROC_MISC_INFO,
     },
     [SPECIES_LYCANROC_MIDNIGHT] =
     {
@@ -31239,7 +31239,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(LycanrocMidnight),
         ICON(LycanrocMidnight, 0),
         ANIMATIONS(LYCANROC_MIDNIGHT, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        LYCANROC_MISC_STATS,
+        LYCANROC_MISC_INFO,
     },
 
     [SPECIES_LYCANROC_DUSK] =
@@ -31263,7 +31263,7 @@ const struct BaseStats gBaseStats[] =
         ANIMATIONS(LYCANROC_DUSK, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
-#define WISHIWASHI_MISC_STATS                           \
+#define WISHIWASHI_MISC_INFO                            \
         .type1 = TYPE_WATER,                            \
         .type2 = TYPE_WATER,                            \
         .catchRate = 60,                                \
@@ -31298,7 +31298,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(Wishiwashi),
         ICON(Wishiwashi, 2),
         ANIMATIONS(WISHIWASHI, 0, ANIM_V_SLIDE_WOBBLE_SMALL, BACK_ANIM_NONE),
-        WISHIWASHI_MISC_STATS,
+        WISHIWASHI_MISC_INFO,
     },
 
     [SPECIES_WISHIWASHI_SCHOOL] =
@@ -31317,7 +31317,7 @@ const struct BaseStats gBaseStats[] =
         PALETTES(WishiwashiSchool),
         ICON(WishiwashiSchool, 0),
         ANIMATIONS(WISHIWASHI_SCHOOL, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
-        WISHIWASHI_MISC_STATS,
+        WISHIWASHI_MISC_INFO,
     },
 
     [SPECIES_MAREANIE] =
@@ -35352,7 +35352,7 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
-#define EISCUE_MISC_STATS                               \
+#define EISCUE_MISC_INFO                                \
         .type1 = TYPE_ICE,                              \
         .type2 = TYPE_ICE,                              \
         .catchRate = 60,                                \
@@ -35376,7 +35376,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 50,
         .baseSpAttack  = 65,
         .baseSpDefense = 90,
-        EISCUE_MISC_STATS,
+        EISCUE_MISC_INFO,
     },
     [SPECIES_EISCUE_NOICE_FACE] =
     {
@@ -35386,10 +35386,10 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 130,
         .baseSpAttack  = 65,
         .baseSpDefense = 50,
-        EISCUE_MISC_STATS,
+        EISCUE_MISC_INFO,
     },
 
-#define INDEEDEE_MISC_STATS(ability1, gender)                               \
+#define INDEEDEE_MISC_INFO(ability1, gender)                               \
         .type1 = TYPE_PSYCHIC,                                              \
         .type2 = TYPE_NORMAL,                                               \
         .catchRate = 30,                                                    \
@@ -35413,7 +35413,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 105,
         .baseSpDefense = 95,
         .evYield_SpAttack  = 2,
-        INDEEDEE_MISC_STATS(ABILITY_INNER_FOCUS, MON_MALE),
+        INDEEDEE_MISC_INFO(ABILITY_INNER_FOCUS, MON_MALE),
     },
     [SPECIES_INDEEDEE_FEMALE] =
     {
@@ -35424,7 +35424,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 95,
         .baseSpDefense = 105,
         .evYield_SpDefense = 2,
-        INDEEDEE_MISC_STATS(ABILITY_OWN_TEMPO, MON_FEMALE),
+        INDEEDEE_MISC_INFO(ABILITY_OWN_TEMPO, MON_FEMALE),
     },
 
 #define MORPEKO_BASE_STATS                                 \
@@ -35695,7 +35695,7 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
-#define ZACIAN_MISC_STATS(typeB, exp)                       \
+#define ZACIAN_MISC_INFO(typeB, exp)                       \
         .type1 = TYPE_FAIRY,                                \
         .type2 = typeB,                                     \
         .catchRate = 10,                                    \
@@ -35720,7 +35720,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 138,
         .baseSpAttack  = 80,
         .baseSpDefense = 115,
-        ZACIAN_MISC_STATS(TYPE_FAIRY, 335),
+        ZACIAN_MISC_INFO(TYPE_FAIRY, 335),
     },
     [SPECIES_ZACIAN_CROWNED_SWORD] =
     {
@@ -35730,10 +35730,10 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 148,
         .baseSpAttack  = 80,
         .baseSpDefense = 115,
-        ZACIAN_MISC_STATS(TYPE_STEEL, 360),
+        ZACIAN_MISC_INFO(TYPE_STEEL, 360),
     },
 
-#define ZAMAZENTA_MISC_STATS(typeB, exp)                        \
+#define ZAMAZENTA_MISC_INFO(typeB, exp)                        \
         .type1 = TYPE_FIGHTING,                                 \
         .type2 = typeB,                                         \
         .catchRate = 10,                                        \
@@ -35758,7 +35758,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 138,
         .baseSpAttack  = 80,
         .baseSpDefense = 115,
-        ZAMAZENTA_MISC_STATS(TYPE_FIGHTING, 335),
+        ZAMAZENTA_MISC_INFO(TYPE_FIGHTING, 335),
     },
     [SPECIES_ZAMAZENTA_CROWNED_SHIELD] =
     {
@@ -35768,10 +35768,10 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 128,
         .baseSpAttack  = 80,
         .baseSpDefense = 145,
-        ZAMAZENTA_MISC_STATS(TYPE_STEEL, 360),
+        ZAMAZENTA_MISC_INFO(TYPE_STEEL, 360),
     },
 
-#define ETERNATUS_MISC_STATS                            \
+#define ETERNATUS_MISC_INFO                             \
         .type1 = TYPE_POISON,                           \
         .type2 = TYPE_DRAGON,                           \
         .catchRate = 255,                               \
@@ -35796,7 +35796,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 145,
         .baseSpDefense = 95,
         .expYield = 345,
-        ETERNATUS_MISC_STATS,
+        ETERNATUS_MISC_INFO,
     },
     [SPECIES_ETERNATUS_ETERNAMAX] =
     {
@@ -35807,7 +35807,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 125,
         .baseSpDefense = 250,
         .expYield = 563,
-        ETERNATUS_MISC_STATS,
+        ETERNATUS_MISC_INFO,
     },
 
     [SPECIES_KUBFU] =
@@ -35940,7 +35940,7 @@ const struct BaseStats gBaseStats[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
-#define RIDER_MISC_STATS(typeA,typeB,exp,friend,ability,color)  \
+#define RIDER_MISC_INFO(typeA,typeB,exp,friend,ability,color)  \
         .type1 = typeA,                                         \
         .type2 = typeB,                                         \
         .catchRate = 3,                                         \
@@ -35965,7 +35965,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 65,
         .baseSpDefense = 110,
         .evYield_Attack    = 3,
-        RIDER_MISC_STATS(TYPE_ICE, TYPE_ICE, 290, 35, ABILITY_CHILLING_NEIGH, BODY_COLOR_WHITE),
+        RIDER_MISC_INFO(TYPE_ICE, TYPE_ICE, 290, 35, ABILITY_CHILLING_NEIGH, BODY_COLOR_WHITE),
     },
     [SPECIES_SPECTRIER] =
     {
@@ -35976,7 +35976,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 145,
         .baseSpDefense = 80,
         .evYield_SpAttack  = 3,
-        RIDER_MISC_STATS(TYPE_GHOST, TYPE_GHOST, 290, 35, ABILITY_GRIM_NEIGH, BODY_COLOR_BLACK),
+        RIDER_MISC_INFO(TYPE_GHOST, TYPE_GHOST, 290, 35, ABILITY_GRIM_NEIGH, BODY_COLOR_BLACK),
     },
     [SPECIES_CALYREX] =
     {
@@ -35987,7 +35987,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 80,
         .baseSpDefense = 80,
         .evYield_HP        = 3,
-        RIDER_MISC_STATS(TYPE_PSYCHIC, TYPE_GRASS, 250, 100, ABILITY_UNNERVE, BODY_COLOR_GREEN),
+        RIDER_MISC_INFO(TYPE_PSYCHIC, TYPE_GRASS, 250, 100, ABILITY_UNNERVE, BODY_COLOR_GREEN),
     },
     [SPECIES_CALYREX_ICE_RIDER] =
     {
@@ -35998,7 +35998,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpAttack  = 85,
         .baseSpDefense = 130,
         .evYield_Attack    = 3,
-        RIDER_MISC_STATS(TYPE_PSYCHIC, TYPE_ICE, 340, 100, ABILITY_AS_ONE_ICE_RIDER, BODY_COLOR_WHITE),
+        RIDER_MISC_INFO(TYPE_PSYCHIC, TYPE_ICE, 340, 100, ABILITY_AS_ONE_ICE_RIDER, BODY_COLOR_WHITE),
     },
     [SPECIES_CALYREX_SHADOW_RIDER] =
     {
@@ -36008,7 +36008,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 150,
         .baseSpAttack  = 165,
         .baseSpDefense = 100,
-        RIDER_MISC_STATS(TYPE_PSYCHIC, TYPE_GHOST, 340, 100, ABILITY_AS_ONE_SHADOW_RIDER, BODY_COLOR_BLACK),
+        RIDER_MISC_INFO(TYPE_PSYCHIC, TYPE_GHOST, 340, 100, ABILITY_AS_ONE_SHADOW_RIDER, BODY_COLOR_BLACK),
     },
 
     [SPECIES_WYRDEER] =
@@ -36156,7 +36156,7 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
-#define ENAMORUS_MISC_STATS                 \
+#define ENAMORUS_MISC_INFO                  \
         .type1 = TYPE_FAIRY,                \
         .type2 = TYPE_FLYING,               \
         .catchRate = 3,                     \
@@ -36181,7 +36181,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpDefense = 80,
         .expYield = 261,
         .abilities = {ABILITY_HEALER, ABILITY_NONE, ABILITY_CONTRARY},
-        ENAMORUS_MISC_STATS,
+        ENAMORUS_MISC_INFO,
     },
     [SPECIES_ENAMORUS_THERIAN] =
     {
@@ -36193,7 +36193,7 @@ const struct BaseStats gBaseStats[] =
         .baseSpDefense = 100,
         .expYield = 270,
         .abilities = {ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_OVERCOAT},
-        ENAMORUS_MISC_STATS,
+        ENAMORUS_MISC_INFO,
     },
 #endif
 };

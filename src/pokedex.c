@@ -3864,8 +3864,8 @@ static void Task_LoadSizeScreen(u8 taskId)
         gSprites[spriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
         gSprites[spriteId].oam.matrixNum = 1;
         gSprites[spriteId].oam.priority = 0;
-        gSprites[spriteId].y2 = gBaseStats[sPokedexListItem->seenSpecies].trainerOffset;
-        SetOamMatrix(1, gBaseStats[sPokedexListItem->seenSpecies].trainerScale, 0, 0, gBaseStats[sPokedexListItem->seenSpecies].trainerScale);
+        gSprites[spriteId].y2 = gSpeciesInfo[sPokedexListItem->seenSpecies].trainerOffset;
+        SetOamMatrix(1, gSpeciesInfo[sPokedexListItem->seenSpecies].trainerScale, 0, 0, gSpeciesInfo[sPokedexListItem->seenSpecies].trainerScale);
         LoadPalette(sSizeScreenSilhouette_Pal, (gSprites[spriteId].oam.paletteNum + 16) * 16, 0x20);
         gTasks[taskId].tTrainerSpriteId = spriteId;
         gMain.state++;
@@ -3875,8 +3875,8 @@ static void Task_LoadSizeScreen(u8 taskId)
         gSprites[spriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
         gSprites[spriteId].oam.matrixNum = 2;
         gSprites[spriteId].oam.priority = 0;
-        gSprites[spriteId].y2 = gBaseStats[sPokedexListItem->seenSpecies].pokemonOffset;
-        SetOamMatrix(2, gBaseStats[sPokedexListItem->seenSpecies].pokemonScale, 0, 0, gBaseStats[sPokedexListItem->seenSpecies].pokemonScale);
+        gSprites[spriteId].y2 = gSpeciesInfo[sPokedexListItem->seenSpecies].pokemonOffset;
+        SetOamMatrix(2, gSpeciesInfo[sPokedexListItem->seenSpecies].pokemonScale, 0, 0, gSpeciesInfo[sPokedexListItem->seenSpecies].pokemonScale);
         LoadPalette(sSizeScreenSilhouette_Pal, (gSprites[spriteId].oam.paletteNum + 16) * 16, 0x20);
         gTasks[taskId].tMonSpriteId = spriteId;
         CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
@@ -4224,16 +4224,16 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     PrintInfoScreenText(gText_WTWeight, 0x60, 0x49);
     if (owned)
     {
-        PrintMonHeight(gBaseStats[num].height, 0x81, 0x39);
-        PrintMonWeight(gBaseStats[num].weight, 0x81, 0x49);
+        PrintMonHeight(gSpeciesInfo[num].height, 0x81, 0x39);
+        PrintMonWeight(gSpeciesInfo[num].weight, 0x81, 0x49);
     }
     else
     {
         PrintInfoScreenText(gText_UnkHeight, 0x81, 0x39);
         PrintInfoScreenText(gText_UnkWeight, 0x81, 0x49);
     }
-    if (owned && gBaseStats[num].description != NULL)
-        description = gBaseStats[num].description;
+    if (owned && gSpeciesInfo[num].description != NULL)
+        description = gSpeciesInfo[num].description;
     else
         description = sExpandedPlaceholder_PokedexDescription;
     PrintInfoScreenText(description, GetStringCenterAlignXOffset(FONT_NORMAL, description, 0xF0), 0x5F);
@@ -4335,9 +4335,9 @@ u16 GetPokedexHeightWeight(u16 species, u8 data)
     switch (data)
     {
     case 0:  // height
-        return gBaseStats[species].height;
+        return gSpeciesInfo[species].height;
     case 1:  // weight
-        return gBaseStats[species].weight;
+        return gSpeciesInfo[species].weight;
     default:
         return 1;
     }
@@ -4536,7 +4536,7 @@ bool16 HasAllMons(void)
 
     for (i = 1; i < NATIONAL_DEX_COUNT + 1; i++)
     {
-        if (!(gBaseStats[i].flags & SPECIES_FLAG_MYTHICAL) && !GetSetPokedexCaughtFlag(i, FLAG_GET_CAUGHT))
+        if (!(gSpeciesInfo[i].flags & SPECIES_FLAG_MYTHICAL) && !GetSetPokedexCaughtFlag(i, FLAG_GET_CAUGHT))
             return FALSE;
     }
 
@@ -4687,7 +4687,7 @@ static void PrintDecimalNum(u8 windowId, u16 num, u8 left, u8 top)
 static void DrawFootprint(u8 windowId, u16 species)
 {
     u8 footprint[32 * 4] = {0};
-    const u8 *footprintGfx = gBaseStats[species].footprint;
+    const u8 *footprintGfx = gSpeciesInfo[species].footprint;
     u32 i, j, tileIdx = 0;
 
     if (footprintGfx != NULL)
@@ -4816,7 +4816,7 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
         {
             species = sPokedexView->pokedexList[i].seenSpecies;
 
-            if (bodyColor == gBaseStats[species].bodyColor)
+            if (bodyColor == gSpeciesInfo[species].bodyColor)
             {
                 sPokedexView->pokedexList[resultsCount] = sPokedexView->pokedexList[i];
                 resultsCount++;
@@ -4842,8 +4842,8 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
                 {
                     species = sPokedexView->pokedexList[i].seenSpecies;
 
-                    types[0] = gBaseStats[species].type1;
-                    types[1] = gBaseStats[species].type2;
+                    types[0] = gSpeciesInfo[species].type1;
+                    types[1] = gSpeciesInfo[species].type2;
                     if (types[0] == type1 || types[1] == type1)
                     {
                         sPokedexView->pokedexList[resultsCount] = sPokedexView->pokedexList[i];
@@ -4860,8 +4860,8 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
                 {
                     species = sPokedexView->pokedexList[i].seenSpecies;
 
-                    types[0] = gBaseStats[species].type1;
-                    types[1] = gBaseStats[species].type2;
+                    types[0] = gSpeciesInfo[species].type1;
+                    types[1] = gSpeciesInfo[species].type2;
                     if ((types[0] == type1 && types[1] == type2) || (types[0] == type2 && types[1] == type1))
                     {
                         sPokedexView->pokedexList[resultsCount] = sPokedexView->pokedexList[i];

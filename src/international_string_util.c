@@ -86,7 +86,7 @@ int Intl_GetListMenuWidth(const struct ListMenuTemplate *listMenu)
 
 void CopyMonCategoryText(int species, u8 *dest)
 {
-    u8 *str = StringCopy(dest, gBaseStats[species].categoryName);
+    u8 *str = StringCopy(dest, gSpeciesInfo[species].categoryName);
     *str = CHAR_SPACE;
     StringCopy(str + 1, gText_Pokemon);
 }
@@ -131,7 +131,7 @@ void PadNameString(u8 *dest, u8 padChar)
         while (length < PLAYER_NAME_LENGTH - 1)
         {
             dest[length] = EXT_CTRL_CODE_BEGIN;
-            dest[length + 1] = EXT_CTRL_CODE_RESET_SIZE;
+            dest[length + 1] = EXT_CTRL_CODE_RESET_FONT;
             length += 2;
         }
     }

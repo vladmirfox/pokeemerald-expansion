@@ -1505,7 +1505,7 @@ static u8 CheckValidityOfTradeMons(u8 *aliveMons, u8 playerPartyCount, u8 player
     }
 
     // Can't trade specific species
-    if (gBaseStats[partnerSpecies].flags & SPECIES_FLAG_CANNOT_BE_TRADED)
+    if (gSpeciesInfo[partnerSpecies].flags & SPECIES_FLAG_CANNOT_BE_TRADED)
         return PARTNER_MON_INVALID;
 
     // Partner cant trade Egg or non-Hoenn mon if player doesn't have National Dex
@@ -2365,7 +2365,7 @@ static u32 CanTradeSelectedMon(struct Pokemon *playerParty, int partyCount, int 
     }
 
     // Can't trade specific species
-    if (gBaseStats[species[monIdx]].flags & SPECIES_FLAG_CANNOT_BE_TRADED)
+    if (gSpeciesInfo[species[monIdx]].flags & SPECIES_FLAG_CANNOT_BE_TRADED)
         return CANT_TRADE_INVALID_MON;
 
     // Make Eggs not count for numMonsLeft
@@ -2461,7 +2461,7 @@ int GetUnionRoomTradeMessageId(struct RfuGameCompatibilityData player, struct Rf
         return UR_TRADE_MSG_MON_CANT_BE_TRADED;
 
     // Can't trade specific species
-    if (gBaseStats[playerSpecies].flags & SPECIES_FLAG_CANNOT_BE_TRADED)
+    if (gSpeciesInfo[playerSpecies].flags & SPECIES_FLAG_CANNOT_BE_TRADED)
         return UR_TRADE_MSG_MON_CANT_BE_TRADED;
 
     if (partnerSpecies == SPECIES_EGG)
@@ -2473,8 +2473,8 @@ int GetUnionRoomTradeMessageId(struct RfuGameCompatibilityData player, struct Rf
     else
     {
         // Player's Pokémon must be of the type the partner requested
-        if (gBaseStats[playerSpecies2].type1 != requestedType
-         && gBaseStats[playerSpecies2].type2 != requestedType)
+        if (gSpeciesInfo[playerSpecies2].type1 != requestedType
+         && gSpeciesInfo[playerSpecies2].type2 != requestedType)
             return UR_TRADE_MSG_NOT_MON_PARTNER_WANTS;
     }
 
@@ -2512,7 +2512,7 @@ int CanRegisterMonForTradingBoard(struct RfuGameCompatibilityData player, u16 sp
         return CANT_REGISTER_MON_NOW;
 
     // Can't trade specific species
-    if (gBaseStats[species].flags & SPECIES_FLAG_CANNOT_BE_TRADED)
+    if (gSpeciesInfo[species].flags & SPECIES_FLAG_CANNOT_BE_TRADED)
         return CANT_REGISTER_MON;
 
     if (hasNationalDex)
@@ -3380,7 +3380,7 @@ static bool8 AnimateTradeSequenceCable(void)
     case TS_STATE_START:
         gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].invisible = FALSE;
         gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].x2 = -180;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].y2 = gBaseStats[sTradeData->monSpecies[TRADE_PLAYER]].frontPicYOffset;
+        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].y2 = gSpeciesInfo[sTradeData->monSpecies[TRADE_PLAYER]].frontPicYOffset;
         sTradeData->state++;
         sTradeData->cachedMapMusic = GetCurrentMapMusic();
         PlayNewMapMusic(MUS_EVOLUTION);
@@ -3748,7 +3748,7 @@ static bool8 AnimateTradeSequenceCable(void)
         break;
     case TS_STATE_SHOW_NEW_MON:
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].x = 120;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y = gBaseStats[sTradeData->monSpecies[TRADE_PARTNER]].frontPicYOffset + 60;
+        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y = gSpeciesInfo[sTradeData->monSpecies[TRADE_PARTNER]].frontPicYOffset + 60;
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].x2 = 0;
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y2 = 0;
         StartSpriteAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]], 0);
@@ -3853,7 +3853,7 @@ static bool8 AnimateTradeSequenceWireless(void)
     case TS_STATE_START:
         gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].invisible = FALSE;
         gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].x2 = -180;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].y2 = gBaseStats[sTradeData->monSpecies[TRADE_PLAYER]].frontPicYOffset;
+        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].y2 = gSpeciesInfo[sTradeData->monSpecies[TRADE_PLAYER]].frontPicYOffset;
         sTradeData->state++;
         sTradeData->cachedMapMusic = GetCurrentMapMusic();
         PlayNewMapMusic(MUS_EVOLUTION);
@@ -4248,7 +4248,7 @@ static bool8 AnimateTradeSequenceWireless(void)
         break;
     case TS_STATE_SHOW_NEW_MON:
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].x = 120;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y = gBaseStats[sTradeData->monSpecies[TRADE_PARTNER]].frontPicYOffset + 60;
+        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y = gSpeciesInfo[sTradeData->monSpecies[TRADE_PARTNER]].frontPicYOffset + 60;
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].x2 = 0;
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y2 = 0;
         StartSpriteAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]], 0);

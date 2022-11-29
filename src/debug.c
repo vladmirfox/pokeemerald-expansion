@@ -58,7 +58,7 @@
 #include "constants/species.h"
 #include "constants/weather.h"
 
-#if DEBUG_SYSTEM_ENABLE == TRUE
+#if DEBUG_OVERWORLD_MENU == TRUE
 // *******************************
 // Enums
 enum { // Main
@@ -3512,4 +3512,4 @@ SOUND_LIST_SE
 };
 #undef X
 
-#endif //DEBUG_SYSTEM_ENABLE == TRUE
+#endif //DEBUG_OVERWORLD_MENU == TRUE

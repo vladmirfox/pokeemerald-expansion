@@ -78,12 +78,12 @@ void DecompressPicFromTable(const struct CompressedSpriteSheet *src, void *buffe
 void DecompressPicFromTableGender(void* buffer, s32 species, u32 personality)
 {
     species = SanitizeSpeciesId(species);
-    if (gBaseStats[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
-        LZ77UnCompWram(gBaseStats[species].frontPicFemale, buffer);
-    else if (gBaseStats[species].frontPic != NULL)
-        LZ77UnCompWram(gBaseStats[species].frontPic, buffer);
+    if (gSpeciesInfo[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
+        LZ77UnCompWram(gSpeciesInfo[species].frontPicFemale, buffer);
+    else if (gSpeciesInfo[species].frontPic != NULL)
+        LZ77UnCompWram(gSpeciesInfo[species].frontPic, buffer);
     else
-        LZ77UnCompWram(gBaseStats[SPECIES_NONE].frontPic, buffer);
+        LZ77UnCompWram(gSpeciesInfo[SPECIES_NONE].frontPic, buffer);
 }
 
 void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 personality)
@@ -96,24 +96,24 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
     if (isFrontPic)
     {
         if (species == SPECIES_UNOWN)
-            LZ77UnCompWram(gBaseStats[GetUnownSpeciesId(personality)].frontPic, dest);
-        else if (gBaseStats[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
-            LZ77UnCompWram(gBaseStats[species].frontPicFemale, dest); // Is female with sprite differences
-        else if (gBaseStats[species].frontPic != NULL)
-            LZ77UnCompWram(gBaseStats[species].frontPic, dest);
+            LZ77UnCompWram(gSpeciesInfo[GetUnownSpeciesId(personality)].frontPic, dest);
+        else if (gSpeciesInfo[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
+            LZ77UnCompWram(gSpeciesInfo[species].frontPicFemale, dest); // Is female with sprite differences
+        else if (gSpeciesInfo[species].frontPic != NULL)
+            LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
         else
-            LZ77UnCompWram(gBaseStats[SPECIES_NONE].frontPic, dest); // No sprite defined, draw ? icon
+            LZ77UnCompWram(gSpeciesInfo[SPECIES_NONE].frontPic, dest); // No sprite defined, draw ? icon
     }
     else
     {
         if (species == SPECIES_UNOWN)
-            LZ77UnCompWram(gBaseStats[GetUnownSpeciesId(personality)].backPic, dest);
-        else if (gBaseStats[species].backPicFemale != NULL && IsPersonalityFemale(species, personality))
-            LZ77UnCompWram(gBaseStats[species].backPicFemale, dest); // Is female with sprite differences
-        else if (gBaseStats[species].backPic != NULL)
-            LZ77UnCompWram(gBaseStats[species].backPic, dest);
+            LZ77UnCompWram(gSpeciesInfo[GetUnownSpeciesId(personality)].backPic, dest);
+        else if (gSpeciesInfo[species].backPicFemale != NULL && IsPersonalityFemale(species, personality))
+            LZ77UnCompWram(gSpeciesInfo[species].backPicFemale, dest); // Is female with sprite differences
+        else if (gSpeciesInfo[species].backPic != NULL)
+            LZ77UnCompWram(gSpeciesInfo[species].backPic, dest);
         else
-            LZ77UnCompWram(gBaseStats[SPECIES_NONE].backPic, dest); // No sprite defined, draw ? icon
+            LZ77UnCompWram(gSpeciesInfo[SPECIES_NONE].backPic, dest); // No sprite defined, draw ? icon
     }
 
     DrawSpindaSpots(species, personality, dest, isFrontPic);

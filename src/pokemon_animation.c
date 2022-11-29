@@ -499,8 +499,8 @@ static void SetPosForRotation(struct Sprite *sprite, u16 index, s16 amplitudeX, 
 
 u8 GetSpeciesBackAnimSet(u16 species)
 {
-    if (gBaseStats[species].backAnimId != BACK_ANIM_NONE)
-        return gBaseStats[species].backAnimId;
+    if (gSpeciesInfo[species].backAnimId != BACK_ANIM_NONE)
+        return gSpeciesInfo[species].backAnimId;
     else
         return 0;
 }

@@ -36,11 +36,7 @@ static void CreateBattlerTrace(struct Task *task, u8 taskId);
 
 EWRAM_DATA static union AffineAnimCmd *sAnimTaskAffineAnim = NULL;
 
-#if P_ENABLE_DEBUG == TRUE
 const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] =
-#else
-static const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] =
-#endif
 {
     { // Single battle
         { 72, 80 },
@@ -65,11 +61,7 @@ const struct MonCoords gCastformFrontSpriteCoords[NUM_CASTFORM_FORMS] =
     [CASTFORM_ICE]    = { .size = MON_COORDS_SIZE(64, 48), .y_offset =  8 },
 };
 
-#if P_ENABLE_DEBUG == TRUE
 const u8 sCastformElevations[NUM_CASTFORM_FORMS] =
-#else
-static const u8 sCastformElevations[NUM_CASTFORM_FORMS] =
-#endif
 {
     [CASTFORM_NORMAL] = 13,
     [CASTFORM_FIRE]   = 14,
@@ -203,7 +195,7 @@ u8 GetBattlerYDelta(u8 battlerId, u16 species)
                     personality = gTransformedPersonalities[battlerId];
             }
             coordSpecies = GetUnownSpeciesId(personality);
-            ret = gBaseStats[coordSpecies].backPicYOffset;
+            ret = gSpeciesInfo[coordSpecies].backPicYOffset;
         }
         else if (species == SPECIES_CASTFORM)
         {
@@ -211,7 +203,7 @@ u8 GetBattlerYDelta(u8 battlerId, u16 species)
         }
         else
         {
-            ret = gBaseStats[SanitizeSpeciesId(species)].backPicYOffset;
+            ret = gSpeciesInfo[SanitizeSpeciesId(species)].backPicYOffset;
         }
     }
     else
@@ -225,7 +217,7 @@ u8 GetBattlerYDelta(u8 battlerId, u16 species)
                 personality = gTransformedPersonalities[battlerId];
 
             coordSpecies = GetUnownSpeciesId(personality);
-            ret = gBaseStats[coordSpecies].frontPicYOffset;
+            ret = gSpeciesInfo[coordSpecies].frontPicYOffset;
         }
         else if (species == SPECIES_CASTFORM)
         {
@@ -233,7 +225,7 @@ u8 GetBattlerYDelta(u8 battlerId, u16 species)
         }
         else
         {
-            ret = gBaseStats[SanitizeSpeciesId(species)].frontPicYOffset;
+            ret = gSpeciesInfo[SanitizeSpeciesId(species)].frontPicYOffset;
         }
     }
     return ret;
@@ -249,7 +241,7 @@ u8 GetBattlerElevation(u8 battlerId, u16 species)
             if (species == SPECIES_CASTFORM)
                 ret = sCastformElevations[gBattleMonForms[battlerId]];
             else
-                ret = gBaseStats[SanitizeSpeciesId(species)].enemyMonElevation;
+                ret = gSpeciesInfo[SanitizeSpeciesId(species)].enemyMonElevation;
         }
     }
     return ret;
@@ -1950,7 +1942,7 @@ static u16 GetBattlerYDeltaFromSpriteId(u8 spriteId)
             if (IsContest())
             {
                 species = gContestResources->moveAnim->species;
-                return gBaseStats[species].backPicYOffset;
+                return gSpeciesInfo[species].backPicYOffset;
             }
             else
             {
@@ -1965,7 +1957,7 @@ static u16 GetBattlerYDeltaFromSpriteId(u8 spriteId)
                     if (species == SPECIES_CASTFORM)
                         return sCastformBackSpriteYCoords[gBattleMonForms[battlerId]];
                     else
-                        return gBaseStats[species].backPicYOffset;
+                        return gSpeciesInfo[species].backPicYOffset;
                 }
                 else
                 {
@@ -1978,7 +1970,7 @@ static u16 GetBattlerYDeltaFromSpriteId(u8 spriteId)
                     if (species == SPECIES_CASTFORM)
                         return sCastformElevations[gBattleMonForms[battlerId]];
                     else
-                        return gBaseStats[species].frontPicYOffset;
+                        return gSpeciesInfo[species].frontPicYOffset;
                 }
             }
         }
@@ -2158,9 +2150,9 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
     FREE_AND_SET_NULL(gMonSpritesGfxPtr->buffer);
 
     if (!isBackpic)
-        spriteId = CreateSprite(&sSpriteTemplates_MoveEffectMons[id], x, y + gBaseStats[species].frontPicYOffset, subpriority);
+        spriteId = CreateSprite(&sSpriteTemplates_MoveEffectMons[id], x, y + gSpeciesInfo[species].frontPicYOffset, subpriority);
     else
-        spriteId = CreateSprite(&sSpriteTemplates_MoveEffectMons[id], x, y + gBaseStats[species].backPicYOffset, subpriority);
+        spriteId = CreateSprite(&sSpriteTemplates_MoveEffectMons[id], x, y + gSpeciesInfo[species].backPicYOffset, subpriority);
 
     if (IsContest())
     {
@@ -2199,8 +2191,8 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
         if (species == SPECIES_UNOWN)
         {
             species = GetUnownSpeciesId(personality);
-            size = gBaseStats[species].backPicSize;
-            y_offset = gBaseStats[species].backPicYOffset;
+            size = gSpeciesInfo[species].backPicSize;
+            y_offset = gSpeciesInfo[species].backPicYOffset;
         }
         else if (species == SPECIES_CASTFORM)
         {
@@ -2209,13 +2201,13 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
         }
         else if (species <= SPECIES_EGG)
         {
-            size = gBaseStats[species].backPicSize;
-            y_offset = gBaseStats[species].backPicYOffset;
+            size = gSpeciesInfo[species].backPicSize;
+            y_offset = gSpeciesInfo[species].backPicYOffset;
         }
         else
         {
-            size = gBaseStats[SPECIES_NONE].backPicSize;
-            y_offset = gBaseStats[SPECIES_NONE].backPicYOffset;
+            size = gSpeciesInfo[SPECIES_NONE].backPicSize;
+            y_offset = gSpeciesInfo[SPECIES_NONE].backPicYOffset;
         }
     }
     else
@@ -2237,13 +2229,13 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
             if (species == SPECIES_UNOWN)
             {
                 species = GetUnownSpeciesId(personality);
-                size = gBaseStats[species].backPicSize;
-                y_offset = gBaseStats[species].backPicYOffset;
+                size = gSpeciesInfo[species].backPicSize;
+                y_offset = gSpeciesInfo[species].backPicYOffset;
             }
             else
             {
-                size = gBaseStats[SanitizeSpeciesId(species)].backPicSize;
-                y_offset = gBaseStats[SanitizeSpeciesId(species)].backPicYOffset;
+                size = gSpeciesInfo[SanitizeSpeciesId(species)].backPicSize;
+                y_offset = gSpeciesInfo[SanitizeSpeciesId(species)].backPicYOffset;
             }
         }
         else
@@ -2263,8 +2255,8 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
             if (species == SPECIES_UNOWN)
             {
                 species = GetUnownSpeciesId(personality);
-                size = gBaseStats[species].frontPicSize;
-                y_offset = gBaseStats[species].frontPicYOffset;
+                size = gSpeciesInfo[species].frontPicSize;
+                y_offset = gSpeciesInfo[species].frontPicYOffset;
             }
             else if (species == SPECIES_CASTFORM)
             {
@@ -2273,8 +2265,8 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
             }
             else
             {
-                size = gBaseStats[SanitizeSpeciesId(species)].frontPicSize;
-                y_offset = gBaseStats[SanitizeSpeciesId(species)].frontPicYOffset;
+                size = gSpeciesInfo[SanitizeSpeciesId(species)].frontPicSize;
+                y_offset = gSpeciesInfo[SanitizeSpeciesId(species)].frontPicYOffset;
             }
         }
     }

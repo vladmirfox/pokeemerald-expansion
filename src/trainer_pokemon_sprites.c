@@ -216,10 +216,10 @@ u16 CreateMonPicSprite_Affine(u16 species, u32 otId, u32 personality, u8 flags, 
         images[j].size = MON_PIC_SIZE;
     }
     sCreatingSpriteTemplate.tileTag = TAG_NONE;
-    if (gBaseStats[species].frontAnimFrames != NULL)
-        sCreatingSpriteTemplate.anims = gBaseStats[species].frontAnimFrames;
+    if (gSpeciesInfo[species].frontAnimFrames != NULL)
+        sCreatingSpriteTemplate.anims = gSpeciesInfo[species].frontAnimFrames;
     else
-        sCreatingSpriteTemplate.anims = gBaseStats[SPECIES_NONE].frontAnimFrames;
+        sCreatingSpriteTemplate.anims = gSpeciesInfo[SPECIES_NONE].frontAnimFrames;
     sCreatingSpriteTemplate.images = images;
     if (type == MON_PIC_AFFINE_FRONT)
     {
