@@ -24,58 +24,6 @@ struct MonIconSpriteTemplate
 static u8 CreateMonIconSprite(struct MonIconSpriteTemplate *, s16, s16, u8);
 static void FreeAndDestroyMonIconSprite_(struct Sprite *sprite);
 
-const u8 *const gMonIconTableFemale[] =
-{
-    [SPECIES_EEVEE] = gMonIcon_Eevee,
-#if P_GEN_4_POKEMON == TRUE
-    [SPECIES_STARLY] = gMonIcon_Starly,
-    [SPECIES_STARAVIA] = gMonIcon_Staravia,
-    [SPECIES_STARAPTOR] = gMonIcon_Staraptor,
-    [SPECIES_BIDOOF] = gMonIcon_Bidoof,
-    [SPECIES_KRICKETOT] = gMonIcon_Kricketot,
-    [SPECIES_KRICKETUNE] = gMonIcon_Kricketune,
-    [SPECIES_SHINX] = gMonIcon_Shinx,
-    [SPECIES_COMBEE] = gMonIcon_Combee,
-#if P_HIPPO_GENDER_DIFF_ICONS == TRUE
-    [SPECIES_HIPPOPOTAS] = gMonIcon_HippopotasF,
-    [SPECIES_HIPPOWDON] = gMonIcon_HippowdonF,
-#else
-    [SPECIES_HIPPOPOTAS] = gMonIcon_Hippopotas,
-    [SPECIES_HIPPOWDON] = gMonIcon_Hippowdon,
-#endif
-#endif
-#if P_GEN_5_POKEMON == TRUE
-    [SPECIES_UNFEZANT] = gMonIcon_UnfezantF,
-    [SPECIES_FRILLISH] = gMonIcon_FrillishF,
-    [SPECIES_JELLICENT] = gMonIcon_JellicentF,
-#endif
-#if P_GEN_6_POKEMON == TRUE
-    [SPECIES_PYROAR] = gMonIcon_PyroarF,
-#endif
-#if P_GEN_8_POKEMON == TRUE
-    [SPECIES_BASCULEGION] = gMonIcon_BasculegionF,
-#endif
-};
-
-const u8 gMonIconPaletteIndicesFemale[] =
-{
-    [SPECIES_EEVEE] = 2,
-    [SPECIES_STARLY] = 0,
-    [SPECIES_STARAVIA] = 0,
-    [SPECIES_BIDOOF] = 2,
-    [SPECIES_KRICKETOT] = 2,
-    [SPECIES_KRICKETUNE] = 2,
-    [SPECIES_SHINX] = 0,
-    [SPECIES_COMBEE] = 0,
-    [SPECIES_HIPPOPOTAS] = 1,
-    [SPECIES_HIPPOWDON] = 1,
-    [SPECIES_UNFEZANT] = 1,
-    [SPECIES_FRILLISH] = 1,
-    [SPECIES_JELLICENT] = 1,
-    [SPECIES_PYROAR] = 2,
-    [SPECIES_BASCULEGION] = 0,
-};
-
 const struct SpritePalette gMonIconPaletteTable[] =
 {
     { gMonIconPalettes[0], POKE_ICON_BASE_PAL_TAG + 0 },

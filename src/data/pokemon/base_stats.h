@@ -28,18 +28,32 @@
     .frontPicSize = MON_COORDS_SIZE(width,height),  \
     .frontPicYOffset = y_offset
 
+#define FRONT_SPRITE_FEMALE(name)  \
+    .frontPicFemale = gMonFrontPic_##name
+
 #define BACK_SPRITE(name, width, height, y_offset)\
     .backPic = gMonBackPic_##name,                \
     .backPicSize = MON_COORDS_SIZE(width,height),  \
     .backPicYOffset = y_offset
 
+#define BACK_SPRITE_FEMALE(name)  \
+    .backPicFemale = gMonBackPic_##name
+
 #define PALETTES(name)                      \
     .palette = gMonPalette_##name,          \
     .shinyPalette = gMonShinyPalette_##name
 
+#define PALETTES_FEMALE(name)                     \
+    .paletteFemale = gMonPalette_##name,          \
+    .shinyPaletteFemale = gMonShinyPalette_##name
+
 #define ICON(name, palId)           \
     .iconSprite = gMonIcon_##name,  \
     .iconPalIndex = palId
+
+#define ICON_FEMALE(name, palId)        \
+    .iconSpriteFemale = gMonIcon_##name,\
+    .iconPalIndexFemale = palId
 
 #define FOOTPRINT(name) \
     .footprint = gMonFootprint_##name
@@ -6054,7 +6068,9 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(3, 65),
         LEARNSETS(Eevee),
         FRONT_SPRITE(Eevee, 40, 48, 11),
+        FRONT_SPRITE_FEMALE(EeveeF),
         BACK_SPRITE(Eevee, 56, 48, 10),
+        BACK_SPRITE_FEMALE(EeveeF),
         PALETTES(Eevee),
         ICON(Eevee, 2),
         FOOTPRINT(Eevee),
@@ -16996,7 +17012,9 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(3, 20),
         LEARNSETS(Starly),
         FRONT_SPRITE(Starly, 40, 40, 12),
+        FRONT_SPRITE_FEMALE(StarlyF),
         BACK_SPRITE(Starly, 56, 48, 11),
+        BACK_SPRITE_FEMALE(StarlyF),
         PALETTES(Starly),
         ICON(Starly, 0),
         FOOTPRINT(Starly),
@@ -17031,7 +17049,9 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(6, 155),
         LEARNSETS(Staravia),
         FRONT_SPRITE(Staravia, 40, 48, 8),
+        FRONT_SPRITE_FEMALE(StaraviaF),
         BACK_SPRITE(Staravia, 64, 64, 6),
+        BACK_SPRITE_FEMALE(StaraviaF),
         PALETTES(Staravia),
         ICON(Staravia, 0),
         FOOTPRINT(Staravia),
@@ -17070,6 +17090,7 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(12, 249),
         LEARNSETS(Staraptor),
         FRONT_SPRITE(Staraptor, 56, 64, 3),
+        FRONT_SPRITE_FEMALE(StaraptorF),
         BACK_SPRITE(Staraptor, 64, 64, 3),
         PALETTES(Staraptor),
         ICON(Staraptor, 0),
@@ -17105,7 +17126,9 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(5, 200),
         LEARNSETS(Bidoof),
         FRONT_SPRITE(Bidoof, 40, 40, 12),
+        FRONT_SPRITE_FEMALE(BidoofF),
         BACK_SPRITE(Bidoof, 64, 40, 13),
+        BACK_SPRITE_FEMALE(BidoofF),
         PALETTES(Bidoof),
         ICON(Bidoof, 2),
         FOOTPRINT(Bidoof),
@@ -17176,7 +17199,9 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(3, 22),
         LEARNSETS(Kricketot),
         FRONT_SPRITE(Kricketot, 48, 48, 11),
+        FRONT_SPRITE_FEMALE(KricketotF),
         BACK_SPRITE(Kricketot, 48, 56, 6),
+        BACK_SPRITE_FEMALE(KricketotF),
         PALETTES(Kricketot),
         ICON(Kricketot, 2),
         FOOTPRINT(Kricketot),
@@ -17212,7 +17237,9 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(10, 255),
         LEARNSETS(Kricketune),
         FRONT_SPRITE(Kricketune, 56, 56, 7),
+        FRONT_SPRITE_FEMALE(KricketuneF),
         BACK_SPRITE(Kricketune, 56, 64, 3),
+        BACK_SPRITE_FEMALE(KricketuneF),
         PALETTES(Kricketune),
         ICON(Kricketune, 2),
         FOOTPRINT(Kricketune),
@@ -17247,7 +17274,9 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(5, 95),
         LEARNSETS(Shinx),
         FRONT_SPRITE(Shinx, 48, 40, 13),
+        FRONT_SPRITE_FEMALE(ShinxF),
         BACK_SPRITE(Shinx, 64, 48, 8),
+        BACK_SPRITE_FEMALE(ShinxF),
         PALETTES(Shinx),
         ICON(Shinx, 0),
         FOOTPRINT(Shinx),
@@ -17747,6 +17776,7 @@ const struct BaseStats gBaseStats[] =
         .enemyMonElevation = 8,
         BACK_SPRITE(Combee, 64, 48, 22),
         PALETTES(Combee),
+        PALETTES_FEMALE(CombeeF),
         ICON(Combee, 0),
         FOOTPRINT(Combee),
         ANIMATIONS(COMBEE, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
@@ -19072,7 +19102,11 @@ const struct BaseStats gBaseStats[] =
         FRONT_SPRITE(Hippopotas, 64, 40, 12),
         BACK_SPRITE(Hippopotas, 64, 40, 14),
         PALETTES(Hippopotas),
+        PALETTES_FEMALE(HippopotasF),
         ICON(Hippopotas, 1),
+    #if P_HIPPO_GENDER_DIFF_ICONS == TRUE
+        ICON_FEMALE(HippopotasF, 1),
+    #endif
         FOOTPRINT(Hippopotas),
         ANIMATIONS(HIPPOPOTAS, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
@@ -19107,7 +19141,11 @@ const struct BaseStats gBaseStats[] =
         FRONT_SPRITE(Hippowdon, 64, 56, 6),
         BACK_SPRITE(Hippowdon, 64, 56, 6),
         PALETTES(Hippowdon),
+        PALETTES_FEMALE(HippowdonF),
         ICON(Hippowdon, 1),
+    #if P_HIPPO_GENDER_DIFF_ICONS == TRUE
+        ICON_FEMALE(HippowdonF, 1),
+    #endif
         FOOTPRINT(Hippowdon),
         ANIMATIONS(HIPPOWDON, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_NONE),
     },
@@ -22016,9 +22054,13 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(12, 290),
         LEARNSETS(Unfezant),
         FRONT_SPRITE(Unfezant, 56, 64, 0),
+        FRONT_SPRITE_FEMALE(UnfezantF),
         BACK_SPRITE(Unfezant, 64, 64, 1),
+        BACK_SPRITE_FEMALE(UnfezantF),
         PALETTES(Unfezant),
+        PALETTES_FEMALE(UnfezantF),
         ICON(Unfezant, 1),
+        ICON_FEMALE(UnfezantF, 1),
         FOOTPRINT(Unfezant),
         ANIMATIONS(UNFEZANT, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE),
     },
@@ -24894,9 +24936,13 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(12, 330),
         LEARNSETS(Frillish),
         FRONT_SPRITE(Frillish, 56, 56, 5),
+        FRONT_SPRITE_FEMALE(FrillishF),
         BACK_SPRITE(Frillish, 40, 56, 7),
+        BACK_SPRITE_FEMALE(FrillishF),
         PALETTES(Frillish),
+        PALETTES_FEMALE(FrillishF),
         ICON(Frillish, 0),
+        ICON_FEMALE(FrillishF, 1),
         FOOTPRINT(Frillish),
         ANIMATIONS(FRILLISH, 0, ANIM_RISING_WOBBLE, BACK_ANIM_NONE),
     },
@@ -24929,9 +24975,13 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(22, 1350),
         LEARNSETS(Jellicent),
         FRONT_SPRITE(Jellicent, 64, 64, 4),
+        FRONT_SPRITE_FEMALE(JellicentF),
         BACK_SPRITE(Jellicent, 64, 48, 10),
+        BACK_SPRITE_FEMALE(JellicentF),
         PALETTES(Jellicent),
+        PALETTES_FEMALE(JellicentF),
         ICON(Jellicent, 0),
+        ICON_FEMALE(JellicentF, 1),
         FOOTPRINT(Jellicent),
         ANIMATIONS(JELLICENT, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
@@ -27934,9 +27984,12 @@ const struct BaseStats gBaseStats[] =
         HEIGHT_WEIGHT(15, 815),
         LEARNSETS(Pyroar),
         FRONT_SPRITE(Pyroar, 64, 64, 0),
+        FRONT_SPRITE_FEMALE(PyroarF),
         BACK_SPRITE(Pyroar, 64, 64, 3),
+        BACK_SPRITE_FEMALE(PyroarF),
         PALETTES(Pyroar),
         ICON(Pyroar, 2),
+        ICON_FEMALE(PyroarF, 2),
         FOOTPRINT(Pyroar),
         ANIMATIONS(PYROAR, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
