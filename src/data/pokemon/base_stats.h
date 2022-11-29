@@ -30315,6 +30315,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LONG_REACH},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_ROWLET,
+        DEX_TEXT(Rowlet, "Grass Quill"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 15),
+        LEARNSETS(Rowlet),
+        FRONT_SPRITE(Rowlet, 32, 40, 12),
+        BACK_SPRITE(Rowlet, 48, 40, 15),
+        PALETTES(Rowlet),
+        ICON(Rowlet, 0),
+        FOOTPRINT(Rowlet),
+        ANIMATIONS(ROWLET, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_DARTRIX] =
@@ -30339,24 +30350,35 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LONG_REACH},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_DARTRIX,
+        DEX_TEXT(Dartrix, "Blade Quill"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 160),
+        LEARNSETS(Dartrix),
+        FRONT_SPRITE(Dartrix, 40, 48,  8),
+        BACK_SPRITE(Dartrix, 56, 56,  4),
+        PALETTES(Dartrix),
+        ICON(Dartrix, 1),
+        FOOTPRINT(Dartrix),
+        ANIMATIONS(DARTRIX, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
     },
 
-#define DECIDUEYE_MISC_STATS(typeB, flag)                                   \
-        .type1 = TYPE_GRASS,                                                \
-        .type2 = typeB,                                                     \
-        .catchRate = 45,                                                    \
-        .expYield = 239,                                                    \
-        .evYield_Attack    = 3,                                             \
-        .genderRatio = PERCENT_FEMALE(12.5),                                \
-        .eggCycles = 15,                                                    \
-        .friendship = 70,                                                   \
-        .growthRate = GROWTH_MEDIUM_SLOW,                                   \
-        .eggGroup1 = EGG_GROUP_FLYING,                                      \
-        .eggGroup2 = EGG_GROUP_FLYING,                                      \
-        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LONG_REACH},  \
-        .bodyColor = BODY_COLOR_BROWN,                                      \
-        .noFlip = FALSE,                                                    \
-	    .flags = flag
+#define DECIDUEYE_MISC_STATS                \
+        .type1 = TYPE_GRASS,                \
+        .catchRate = 45,                    \
+        .expYield = 239,                    \
+        .evYield_Attack    = 3,             \
+        .genderRatio = PERCENT_FEMALE(12.5),\
+        .eggCycles = 15,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_MEDIUM_SLOW,   \
+        .eggGroup1 = EGG_GROUP_FLYING,      \
+        .eggGroup2 = EGG_GROUP_FLYING,      \
+        .bodyColor = BODY_COLOR_BROWN,      \
+        .noFlip = FALSE,                    \
+        .natDexNum = NATIONAL_DEX_DECIDUEYE,\
+        DEX_SCALE(356, 17, 256, 0),         \
+        FOOTPRINT(Decidueye)
 
     [SPECIES_DECIDUEYE] =
     {
@@ -30366,7 +30388,17 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 70,
         .baseSpAttack  = 100,
         .baseSpDefense = 100,
-        DECIDUEYE_MISC_STATS(TYPE_GHOST, 0),
+        .type2 = TYPE_GHOST,
+        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LONG_REACH},
+        DEX_TEXT(Decidueye, "Arrow Quill"),
+        HEIGHT_WEIGHT(16, 366),
+        LEARNSETS(Decidueye),
+        FRONT_SPRITE(Decidueye, 48, 64,  0),
+        BACK_SPRITE(Decidueye, 48, 64,  0),
+        PALETTES(Decidueye),
+        ICON(Decidueye, 1),
+        ANIMATIONS(DECIDUEYE, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
+        DECIDUEYE_MISC_STATS,
     },
     [SPECIES_DECIDUEYE_HISUIAN] =
     {
@@ -30376,7 +30408,18 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 60,
         .baseSpAttack  = 95,
         .baseSpDefense = 95,
-        DECIDUEYE_MISC_STATS(TYPE_FIGHTING, SPECIES_FLAG_HISUIAN_FORM),
+        .type2 = TYPE_FIGHTING,
+        .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_SCRAPPY},
+	    .flags = SPECIES_FLAG_HISUIAN_FORM,
+        DEX_TEXT(Dummy, "Arrow Quill"),
+        HEIGHT_WEIGHT(16, 370),
+        LEARNSETS(DecidueyeHisuian),
+        FRONT_SPRITE(QuestionMark, 64, 64,  0),
+        BACK_SPRITE(QuestionMark, 64, 64,  0),
+        PALETTES(QuestionMark),
+        ICON(DecidueyeHisuian, 0),
+        ANIMATIONS(DECIDUEYE_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        DECIDUEYE_MISC_STATS,
     },
 
     [SPECIES_LITTEN] =
@@ -30401,6 +30444,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_INTIMIDATE},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_LITTEN,
+        DEX_TEXT(Litten, "Fire Cat"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 43),
+        LEARNSETS(Litten),
+        FRONT_SPRITE(Litten, 48, 40, 12),
+        BACK_SPRITE(Litten, 64, 48, 11),
+        PALETTES(Litten),
+        ICON(Litten, 0),
+        FOOTPRINT(Litten),
+        ANIMATIONS(LITTEN, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_TORRACAT] =
@@ -30425,6 +30479,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_INTIMIDATE},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_TORRACAT,
+        DEX_TEXT(Torracat, "Fire Cat"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 250),
+        LEARNSETS(Torracat),
+        FRONT_SPRITE(Torracat, 56, 64,  2),
+        BACK_SPRITE(Torracat, 64, 56,  7),
+        PALETTES(Torracat),
+        ICON(Torracat, 0),
+        FOOTPRINT(Torracat),
+        ANIMATIONS(TORRACAT, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_INCINEROAR] =
@@ -30449,6 +30514,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_INTIMIDATE},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_INCINEROAR,
+        DEX_TEXT(Incineroar, "Heel"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(18, 830),
+        LEARNSETS(Incineroar),
+        FRONT_SPRITE(Incineroar, 64, 64,  0),
+        BACK_SPRITE(Incineroar, 64, 56,  4),
+        PALETTES(Incineroar),
+        ICON(Incineroar, 0),
+        FOOTPRINT(Incineroar),
+        ANIMATIONS(INCINEROAR, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
     [SPECIES_POPPLIO] =
@@ -30473,6 +30549,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_LIQUID_VOICE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_POPPLIO,
+        DEX_TEXT(Popplio, "Sea Lion"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 75),
+        LEARNSETS(Popplio),
+        FRONT_SPRITE(Popplio, 40, 48, 11),
+        BACK_SPRITE(Popplio, 48, 48, 11),
+        PALETTES(Popplio),
+        ICON(Popplio, 0),
+        FOOTPRINT(Popplio),
+        ANIMATIONS(POPPLIO, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_BRIONNE] =
@@ -30497,6 +30584,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_LIQUID_VOICE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BRIONNE,
+        DEX_TEXT(Brionne, "Pop Star"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(6, 175),
+        LEARNSETS(Brionne),
+        FRONT_SPRITE(Brionne, 48, 56,  6),
+        BACK_SPRITE(Brionne, 48, 56,  9),
+        PALETTES(Brionne),
+        ICON(Brionne, 0),
+        FOOTPRINT(Brionne),
+        ANIMATIONS(BRIONNE, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE),
     },
 
     [SPECIES_PRIMARINA] =
@@ -30521,6 +30619,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_LIQUID_VOICE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PRIMARINA,
+        DEX_TEXT(Primarina, "Soloist"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(18, 440),
+        LEARNSETS(Primarina),
+        FRONT_SPRITE(Primarina, 64, 64,  0),
+        BACK_SPRITE(Primarina, 64, 64,  0),
+        PALETTES(Primarina),
+        ICON(Primarina, 0),
+        FOOTPRINT(Primarina),
+        ANIMATIONS(PRIMARINA, 0, ANIM_SHAKE_GLOW_BLUE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_PIKIPEK] =
@@ -30546,6 +30655,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_SKILL_LINK, ABILITY_PICKUP},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PIKIPEK,
+        DEX_TEXT(Pikipek, "Woodpecker"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 12),
+        LEARNSETS(Pikipek),
+        FRONT_SPRITE(Pikipek, 40, 48, 11),
+        BACK_SPRITE(Pikipek, 48, 48,  8),
+        PALETTES(Pikipek),
+        ICON(Pikipek, 2),
+        FOOTPRINT(Pikipek),
+        ANIMATIONS(PIKIPEK, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_NONE),
     },
 
     [SPECIES_TRUMBEAK] =
@@ -30571,6 +30691,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_SKILL_LINK, ABILITY_PICKUP},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_TRUMBEAK,
+        DEX_TEXT(Trumbeak, "Bugle Beak"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(6, 148),
+        LEARNSETS(Trumbeak),
+        FRONT_SPRITE(Trumbeak, 48, 56,  6),
+        BACK_SPRITE(Trumbeak, 56, 56,  6),
+        PALETTES(Trumbeak),
+        ICON(Trumbeak, 0),
+        FOOTPRINT(Trumbeak),
+        ANIMATIONS(TRUMBEAK, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_TOUCANNON] =
@@ -30596,6 +30727,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_SKILL_LINK, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_TOUCANNON,
+        DEX_TEXT(Toucannon, "Cannon"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(11, 260),
+        LEARNSETS(Toucannon),
+        FRONT_SPRITE(Toucannon, 64, 64,  2),
+        BACK_SPRITE(Toucannon, 64, 56,  6),
+        PALETTES(Toucannon),
+        ICON(Toucannon, 0),
+        FOOTPRINT(Toucannon),
+        ANIMATIONS(TOUCANNON, 0, ANIM_SHRINK_GROW_VIBRATE_FAST, BACK_ANIM_NONE),
     },
 
     [SPECIES_YUNGOOS] =
@@ -30621,6 +30763,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STAKEOUT, ABILITY_STRONG_JAW, ABILITY_ADAPTABILITY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_YUNGOOS,
+        DEX_TEXT(Yungoos, "Loitering"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 60),
+        LEARNSETS(Yungoos),
+        FRONT_SPRITE(Yungoos, 64, 40, 12),
+        BACK_SPRITE(Yungoos, 48, 40, 14),
+        PALETTES(Yungoos),
+        ICON(Yungoos, 2),
+        FOOTPRINT(Yungoos),
+        ANIMATIONS(YUNGOOS, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_GUMSHOOS] =
@@ -30646,6 +30799,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STAKEOUT, ABILITY_STRONG_JAW, ABILITY_ADAPTABILITY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_GUMSHOOS,
+        DEX_TEXT(Gumshoos, "Stakeout"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 142),
+        LEARNSETS(Gumshoos),
+        FRONT_SPRITE(Gumshoos, 56, 56,  5),
+        BACK_SPRITE(Gumshoos, 48, 56,  7),
+        PALETTES(Gumshoos),
+        ICON(Gumshoos, 2),
+        FOOTPRINT(Gumshoos),
+        ANIMATIONS(GUMSHOOS, 0, ANIM_H_SHAKE, BACK_ANIM_NONE),
     },
 
     [SPECIES_GRUBBIN] =
@@ -30670,6 +30834,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SWARM, ABILITY_NONE},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_GRUBBIN,
+        DEX_TEXT(Grubbin, "Larva"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 44),
+        LEARNSETS(Grubbin),
+        FRONT_SPRITE(Grubbin, 48, 32, 17),
+        BACK_SPRITE(Grubbin, 64, 32, 16),
+        PALETTES(Grubbin),
+        ICON(Grubbin, 0),
+        FOOTPRINT(Grubbin),
+        ANIMATIONS(GRUBBIN, 0, ANIM_H_SLIDE, BACK_ANIM_NONE),
     },
 
     [SPECIES_CHARJABUG] =
@@ -30695,6 +30870,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BATTERY, ABILITY_NONE},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_CHARJABUG,
+        DEX_TEXT(Charjabug, "Battery"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 105),
+        LEARNSETS(Charjabug),
+        FRONT_SPRITE(Charjabug, 40, 40, 14),
+        BACK_SPRITE(Charjabug, 64, 40, 15),
+        PALETTES(Charjabug),
+        ICON(Charjabug, 1),
+        FOOTPRINT(Charjabug),
+        ANIMATIONS(CHARJABUG, 0, ANIM_SHAKE_FLASH_YELLOW_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_VIKAVOLT] =
@@ -30719,6 +30905,18 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_VIKAVOLT,
+        DEX_TEXT(Vikavolt, "Stag Beetle"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(15, 450),
+        LEARNSETS(Vikavolt),
+        FRONT_SPRITE(Vikavolt, 64, 56,  6),
+        .enemyMonElevation = 8,
+        BACK_SPRITE(Vikavolt, 64, 56,  7),
+        PALETTES(Vikavolt),
+        ICON(Vikavolt, 0),
+        FOOTPRINT(Vikavolt),
+        ANIMATIONS(VIKAVOLT, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_CRABRAWLER] =
@@ -30744,6 +30942,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_HYPER_CUTTER, ABILITY_IRON_FIST, ABILITY_ANGER_POINT},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_CRABRAWLER,
+        DEX_TEXT(Crabrawler, "Boxing"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(6, 70),
+        LEARNSETS(Crabrawler),
+        FRONT_SPRITE(Crabrawler, 64, 56,  7),
+        BACK_SPRITE(Crabrawler, 64, 48,  9),
+        PALETTES(Crabrawler),
+        ICON(Crabrawler, 2),
+        FOOTPRINT(Crabrawler),
+        ANIMATIONS(CRABRAWLER, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
     [SPECIES_CRABOMINABLE] =
@@ -30769,17 +30978,26 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_HYPER_CUTTER, ABILITY_IRON_FIST, ABILITY_ANGER_POINT},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_CRABOMINABLE,
+        DEX_TEXT(Crabominable, "Woolly Crab"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(17, 1800),
+        LEARNSETS(Crabominable),
+        FRONT_SPRITE(Crabominable, 64, 64,  0),
+        BACK_SPRITE(Crabominable, 64, 64,  3),
+        PALETTES(Crabominable),
+        ICON(Crabominable, 2),
+        FOOTPRINT(Crabominable),
+        ANIMATIONS(CRABOMINABLE, 0, ANIM_SHRINK_GROW_VIBRATE_FAST, BACK_ANIM_NONE),
     },
 
-#define ORICORIO_BASE_STATS(typeA, color)           \
-{                                                   \
+#define ORICORIO_MISC_STATS           \
         .baseHP        = 75,                        \
         .baseAttack    = 70,                        \
         .baseDefense   = 70,                        \
         .baseSpeed     = 93,                        \
         .baseSpAttack  = 98,                        \
         .baseSpDefense = 70,                        \
-        .type1 = typeA,                             \
         .type2 = TYPE_FLYING,                       \
         .catchRate = 45,                            \
         .expYield = 167,                            \
@@ -30792,13 +31010,61 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FLYING,              \
         .eggGroup2 = EGG_GROUP_FLYING,              \
         .abilities = {ABILITY_DANCER, ABILITY_NONE},\
-        .bodyColor = color,                         \
         .noFlip = FALSE,                            \
-    }
-    [SPECIES_ORICORIO_BAILE]   = ORICORIO_BASE_STATS(TYPE_FIRE, BODY_COLOR_RED),
-    [SPECIES_ORICORIO_POM_POM] = ORICORIO_BASE_STATS(TYPE_ELECTRIC, BODY_COLOR_YELLOW),
-    [SPECIES_ORICORIO_PAU]     = ORICORIO_BASE_STATS(TYPE_PSYCHIC, BODY_COLOR_PINK),
-    [SPECIES_ORICORIO_SENSU]   = ORICORIO_BASE_STATS(TYPE_GHOST, BODY_COLOR_PURPLE),
+        .natDexNum = NATIONAL_DEX_ORICORIO,         \
+        DEX_SCALE(356, 17, 256, 0),                 \
+        HEIGHT_WEIGHT(6, 34),                       \
+        LEARNSETS(Oricorio),                        \
+        FOOTPRINT(Oricorio)
+
+    [SPECIES_ORICORIO_BAILE] =
+    {
+        .type1 = TYPE_FIRE,
+        .bodyColor = BODY_COLOR_RED,
+        DEX_TEXT(Oricorio, "Dancing"),
+        FRONT_SPRITE(Oricorio, 56, 64,  2),
+        BACK_SPRITE(Oricorio, 64, 64,  0),
+        PALETTES(Oricorio),
+        ICON(Oricorio, 0),
+        ANIMATIONS(ORICORIO, 0, ANIM_CONCAVE_ARC_SMALL, BACK_ANIM_NONE),
+        ORICORIO_MISC_STATS,
+    },
+    [SPECIES_ORICORIO_POM_POM] =
+    {
+        .type1 = TYPE_ELECTRIC,
+        .bodyColor = BODY_COLOR_YELLOW,
+        DEX_TEXT(Dummy, "Dancing"),
+        FRONT_SPRITE(OricorioPomPom, 56, 56,  5),
+        BACK_SPRITE(OricorioPomPom, 64, 64,  0),
+        PALETTES(OricorioPomPom),
+        ICON(OricorioPomPom, 1),
+        ANIMATIONS(ORICORIO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        ORICORIO_MISC_STATS,
+    },
+    [SPECIES_ORICORIO_PAU] =
+    {
+        .type1 = TYPE_PSYCHIC,
+        .bodyColor = BODY_COLOR_PINK,
+        DEX_TEXT(Dummy, "Dancing"),
+        FRONT_SPRITE(OricorioPau, 56, 64,  3),
+        BACK_SPRITE(OricorioPau, 64, 64,  0),
+        PALETTES(OricorioPau),
+        ICON(OricorioPau, 1),
+        ANIMATIONS(ORICORIO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        ORICORIO_MISC_STATS,
+    },
+    [SPECIES_ORICORIO_SENSU] =
+    {
+        .type1 = TYPE_GHOST,
+        .bodyColor = BODY_COLOR_PURPLE,
+        DEX_TEXT(Dummy, "Dancing"),
+        FRONT_SPRITE(OricorioSensu, 64, 56,  4),
+        BACK_SPRITE(OricorioSensu, 64, 64,  0),
+        PALETTES(OricorioSensu),
+        ICON(OricorioSensu, 0),
+        ANIMATIONS(ORICORIO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        ORICORIO_MISC_STATS,
+    },
 
     [SPECIES_CUTIEFLY] =
     {
@@ -30823,6 +31089,18 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_HONEY_GATHER, ABILITY_SHIELD_DUST, ABILITY_SWEET_VEIL},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_CUTIEFLY,
+        DEX_TEXT(Cutiefly, "Bee Fly"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(1, 2),
+        LEARNSETS(Cutiefly),
+        FRONT_SPRITE(Cutiefly, 40, 40, 16),
+        .enemyMonElevation = 10,
+        BACK_SPRITE(Cutiefly, 56, 48, 15),
+        PALETTES(Cutiefly),
+        ICON(Cutiefly, 2),
+        FOOTPRINT(Cutiefly),
+        ANIMATIONS(CUTIEFLY, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_RIBOMBEE] =
@@ -30848,33 +31126,78 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_HONEY_GATHER, ABILITY_SHIELD_DUST, ABILITY_SWEET_VEIL},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_RIBOMBEE,
+        DEX_TEXT(Ribombee, "Bee Fly"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(2, 5),
+        LEARNSETS(Ribombee),
+        FRONT_SPRITE(Ribombee, 56, 56,  5),
+        .enemyMonElevation = 6,
+        BACK_SPRITE(Ribombee, 56, 48, 11),
+        PALETTES(Ribombee),
+        ICON(Ribombee, 2),
+        FOOTPRINT(Ribombee),
+        ANIMATIONS(RIBOMBEE, 0, ANIM_CONVEX_DOUBLE_ARC_TWICE, BACK_ANIM_NONE),
     },
 
-#define ROCKRUFF_BASE_STATS(ability1, ability2, hiddenAbility)\
-    {                                                         \
-        .baseHP        = 45,                                  \
-        .baseAttack    = 65,                                  \
-        .baseDefense   = 40,                                  \
-        .baseSpeed     = 60,                                  \
-        .baseSpAttack  = 30,                                  \
-        .baseSpDefense = 40,                                  \
-        .type1 = TYPE_ROCK,                                   \
-        .type2 = TYPE_ROCK,                                   \
-        .catchRate = 190,                                     \
-        .expYield = 56,                                       \
-        .evYield_Attack    = 1,                               \
-        .genderRatio = PERCENT_FEMALE(50),                    \
-        .eggCycles = 15,                                      \
-        .friendship = 70,                                     \
-        .growthRate = GROWTH_MEDIUM_FAST,                     \
-        .eggGroup1 = EGG_GROUP_FIELD,                         \
-        .eggGroup2 = EGG_GROUP_FIELD,                         \
-        .abilities = {ability1, ability2, hiddenAbility},     \
-        .bodyColor = BODY_COLOR_BROWN,                        \
-        .noFlip = FALSE,                                      \
-    }
-    [SPECIES_ROCKRUFF]           = ROCKRUFF_BASE_STATS(ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_STEADFAST),
-    [SPECIES_ROCKRUFF_OWN_TEMPO] = ROCKRUFF_BASE_STATS(ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_NONE),
+#define ROCKRUFF_MISC_STATS                                     \
+        .baseHP        = 45,                                    \
+        .baseAttack    = 65,                                    \
+        .baseDefense   = 40,                                    \
+        .baseSpeed     = 60,                                    \
+        .baseSpAttack  = 30,                                    \
+        .baseSpDefense = 40,                                    \
+        .type1 = TYPE_ROCK,                                     \
+        .type2 = TYPE_ROCK,                                     \
+        .catchRate = 190,                                       \
+        .expYield = 56,                                         \
+        .evYield_Attack    = 1,                                 \
+        .genderRatio = PERCENT_FEMALE(50),                      \
+        .eggCycles = 15,                                        \
+        .friendship = 70,                                       \
+        .growthRate = GROWTH_MEDIUM_FAST,                       \
+        .eggGroup1 = EGG_GROUP_FIELD,                           \
+        .eggGroup2 = EGG_GROUP_FIELD,                           \
+        .bodyColor = BODY_COLOR_BROWN,                          \
+        .noFlip = FALSE,                                        \
+        .natDexNum = NATIONAL_DEX_ROCKRUFF,                     \
+        DEX_TEXT(Rockruff, "Puppy"),                            \
+        DEX_SCALE(356, 17, 256, 0),                             \
+        HEIGHT_WEIGHT(5, 92),                                   \
+        LEARNSETS(Rockruff),                                    \
+        FRONT_SPRITE(Rockruff, 40, 48, 11),                     \
+        BACK_SPRITE(Rockruff, 64, 56,  7),                      \
+        PALETTES(Rockruff),                                     \
+        ICON(Rockruff, 2),                                      \
+        FOOTPRINT(Rockruff),                                    \
+        ANIMATIONS(ROCKRUFF, 0, ANIM_V_STRETCH, BACK_ANIM_NONE)
+
+    [SPECIES_ROCKRUFF] =
+    {
+        .abilities = {ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_STEADFAST},
+        ROCKRUFF_MISC_STATS,
+    },
+    [SPECIES_ROCKRUFF_OWN_TEMPO] =
+    {
+        .abilities = {ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_NONE},
+        ROCKRUFF_MISC_STATS,
+    },
+
+#define LYCANROC_MISC_STATS                 \
+        .type1 = TYPE_ROCK,                 \
+        .type2 = TYPE_ROCK,                 \
+        .catchRate = 90,                    \
+        .expYield = 170,                    \
+        .evYield_Attack    = 2,             \
+        .genderRatio = PERCENT_FEMALE(50),  \
+        .eggCycles = 15,                    \
+        .friendship = 70,                   \
+        .growthRate = GROWTH_MEDIUM_FAST,   \
+        .eggGroup1 = EGG_GROUP_FIELD,       \
+        .eggGroup2 = EGG_GROUP_FIELD,       \
+        .noFlip = FALSE,                    \
+        .natDexNum = NATIONAL_DEX_LYCANROC, \
+        FOOTPRINT(Lycanroc)
 
     [SPECIES_LYCANROC_MIDDAY] =
     {
@@ -30884,20 +31207,18 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 112,
         .baseSpAttack  = 55,
         .baseSpDefense = 65,
-        .type1 = TYPE_ROCK,
-        .type2 = TYPE_ROCK,
-        .catchRate = 90,
-        .expYield = 170,
-        .evYield_Attack    = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_FIELD,
-        .eggGroup2 = EGG_GROUP_FIELD,
         .abilities = {ABILITY_KEEN_EYE, ABILITY_SAND_RUSH, ABILITY_STEADFAST},
         .bodyColor = BODY_COLOR_BROWN,
-        .noFlip = FALSE,
+        DEX_TEXT(Lycanroc, "Wolf"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 250),
+        LEARNSETS(Lycanroc),
+        FRONT_SPRITE(Lycanroc, 64, 56,  6),
+        BACK_SPRITE(Lycanroc, 64, 56,  7),
+        PALETTES(Lycanroc),
+        ICON(Lycanroc, 2),
+        ANIMATIONS(LYCANROC, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
+        LYCANROC_MISC_STATS,
     },
     [SPECIES_LYCANROC_MIDNIGHT] =
     {
@@ -30907,20 +31228,18 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 82,
         .baseSpAttack  = 55,
         .baseSpDefense = 75,
-        .type1 = TYPE_ROCK,
-        .type2 = TYPE_ROCK,
-        .catchRate = 90,
-        .expYield = 170,
-        .evYield_Attack    = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_FIELD,
-        .eggGroup2 = EGG_GROUP_FIELD,
         .abilities = {ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_NO_GUARD},
         .bodyColor = BODY_COLOR_RED,
-        .noFlip = FALSE,
+        DEX_TEXT(Dummy, "Wolf"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(11, 250),
+        LEARNSETS(LycanrocMidnight),
+        FRONT_SPRITE(LycanrocMidnight, 56, 64,  1),
+        BACK_SPRITE(LycanrocMidnight, 64, 56,  7),
+        PALETTES(LycanrocMidnight),
+        ICON(LycanrocMidnight, 0),
+        ANIMATIONS(LYCANROC_MIDNIGHT, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        LYCANROC_MISC_STATS,
     },
 
     [SPECIES_LYCANROC_DUSK] =
@@ -30931,21 +31250,37 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 110,
         .baseSpAttack  = 55,
         .baseSpDefense = 65,
-        .type1 = TYPE_ROCK,
-        .type2 = TYPE_ROCK,
-        .catchRate = 90,
-        .expYield = 170,
-        .evYield_Attack    = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_FIELD,
-        .eggGroup2 = EGG_GROUP_FIELD,
         .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
-        .noFlip = FALSE,
+        DEX_TEXT(Dummy, "Wolf"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(8, 250),
+        LEARNSETS(LycanrocDusk),
+        FRONT_SPRITE(LycanrocDusk, 64, 64,  3),
+        BACK_SPRITE(LycanrocDusk, 64, 56,  6),
+        PALETTES(LycanrocDusk),
+        ICON(LycanrocDusk, 0),
+        ANIMATIONS(LYCANROC_DUSK, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
+
+#define WISHIWASHI_MISC_STATS                           \
+        .type1 = TYPE_WATER,                            \
+        .type2 = TYPE_WATER,                            \
+        .catchRate = 60,                                \
+        .expYield = 61,                                 \
+        .evYield_HP        = 1,                         \
+        .genderRatio = PERCENT_FEMALE(50),              \
+        .eggCycles = 15,                                \
+        .friendship = 70,                               \
+        .growthRate = GROWTH_FAST,                      \
+        .eggGroup1 = EGG_GROUP_WATER_2,                 \
+        .eggGroup2 = EGG_GROUP_WATER_2,                 \
+        .abilities = {ABILITY_SCHOOLING, ABILITY_NONE}, \
+        .bodyColor = BODY_COLOR_BLUE,                   \
+        .noFlip = FALSE,                                \
+        .natDexNum = NATIONAL_DEX_WISHIWASHI,           \
+        FOOTPRINT(Wishiwashi),                          \
+        LEARNSETS(Wishiwashi)
 
     [SPECIES_WISHIWASHI_SOLO] =
     {
@@ -30955,20 +31290,15 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 40,
         .baseSpAttack  = 25,
         .baseSpDefense = 25,
-        .type1 = TYPE_WATER,
-        .type2 = TYPE_WATER,
-        .catchRate = 60,
-        .expYield = 61,
-        .evYield_HP        = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = 70,
-        .growthRate = GROWTH_FAST,
-        .eggGroup1 = EGG_GROUP_WATER_2,
-        .eggGroup2 = EGG_GROUP_WATER_2,
-        .abilities = {ABILITY_SCHOOLING, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
+        DEX_TEXT(Wishiwashi, "Small Fry"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(2, 3),
+        FRONT_SPRITE(Wishiwashi, 40, 24, 15),
+        BACK_SPRITE(Wishiwashi, 56, 32, 18),
+        PALETTES(Wishiwashi),
+        ICON(Wishiwashi, 2),
+        ANIMATIONS(WISHIWASHI, 0, ANIM_V_SLIDE_WOBBLE_SMALL, BACK_ANIM_NONE),
+        WISHIWASHI_MISC_STATS,
     },
 
     [SPECIES_WISHIWASHI_SCHOOL] =
@@ -30979,20 +31309,15 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 30,
         .baseSpAttack  = 140,
         .baseSpDefense = 135,
-        .type1 = TYPE_WATER,
-        .type2 = TYPE_WATER,
-        .catchRate = 60,
-        .expYield = 61,
-        .evYield_HP        = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = 70,
-        .growthRate = GROWTH_FAST,
-        .eggGroup1 = EGG_GROUP_WATER_2,
-        .eggGroup2 = EGG_GROUP_WATER_2,
-        .abilities = {ABILITY_SCHOOLING, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
+        DEX_TEXT(Dummy, "Small Fry"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(82, 786),
+        FRONT_SPRITE(WishiwashiSchool, 64, 64,  4),
+        BACK_SPRITE(WishiwashiSchool, 64, 56,  5),
+        PALETTES(WishiwashiSchool),
+        ICON(WishiwashiSchool, 0),
+        ANIMATIONS(WISHIWASHI_SCHOOL, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        WISHIWASHI_MISC_STATS,
     },
 
     [SPECIES_MAREANIE] =
@@ -31018,6 +31343,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_MERCILESS, ABILITY_LIMBER, ABILITY_REGENERATOR},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_MAREANIE,
+        DEX_TEXT(Mareanie, "Brutal Star"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 80),
+        LEARNSETS(Mareanie),
+        FRONT_SPRITE(Mareanie, 48, 40, 14),
+        BACK_SPRITE(Mareanie, 64, 48, 15),
+        PALETTES(Mareanie),
+        ICON(Mareanie, 2),
+        FOOTPRINT(Mareanie),
+        ANIMATIONS(MAREANIE, 0, ANIM_GLOW_PURPLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_TOXAPEX] =
@@ -31043,6 +31379,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_MERCILESS, ABILITY_LIMBER, ABILITY_REGENERATOR},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_TOXAPEX,
+        DEX_TEXT(Toxapex, "Brutal Star"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 145),
+        LEARNSETS(Toxapex),
+        FRONT_SPRITE(Toxapex, 64, 64,  2),
+        BACK_SPRITE(Toxapex, 64, 56,  8),
+        PALETTES(Toxapex),
+        ICON(Toxapex, 0),
+        FOOTPRINT(Toxapex),
+        ANIMATIONS(TOXAPEX, 0, ANIM_SHAKE_GLOW_PURPLE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_MUDBRAY] =
@@ -31068,6 +31415,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_STAMINA, ABILITY_INNER_FOCUS},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_MUDBRAY,
+        DEX_TEXT(Mudbray, "Donkey"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 1100),
+        LEARNSETS(Mudbray),
+        FRONT_SPRITE(Mudbray, 48, 56,  7),
+        BACK_SPRITE(Mudbray, 64, 56,  8),
+        PALETTES(Mudbray),
+        ICON(Mudbray, 2),
+        FOOTPRINT(Mudbray),
+        ANIMATIONS(MUDBRAY, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
     [SPECIES_MUDSDALE] =
@@ -31093,6 +31451,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_STAMINA, ABILITY_INNER_FOCUS},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_MUDSDALE,
+        DEX_TEXT(Mudsdale, "Draft Horse"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(25, 9200),
+        LEARNSETS(Mudsdale),
+        FRONT_SPRITE(Mudsdale, 64, 64,  0),
+        BACK_SPRITE(Mudsdale, 64, 56,  5),
+        PALETTES(Mudsdale),
+        ICON(Mudsdale, 0),
+        FOOTPRINT(Mudsdale),
+        ANIMATIONS(MUDSDALE, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_NONE),
     },
 
     [SPECIES_DEWPIDER] =
@@ -31118,6 +31487,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_WATER_BUBBLE, ABILITY_NONE, ABILITY_WATER_ABSORB},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_DEWPIDER,
+        DEX_TEXT(Dewpider, "Water Bubble"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 40),
+        LEARNSETS(Dewpider),
+        FRONT_SPRITE(Dewpider, 32, 48, 13),
+        BACK_SPRITE(Dewpider, 40, 48,  8),
+        PALETTES(Dewpider),
+        ICON(Dewpider, 0),
+        FOOTPRINT(Dewpider),
+        ANIMATIONS(DEWPIDER, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE),
     },
 
     [SPECIES_ARAQUANID] =
@@ -31143,6 +31523,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_WATER_BUBBLE, ABILITY_NONE, ABILITY_WATER_ABSORB},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_ARAQUANID,
+        DEX_TEXT(Araquanid, "Water Bubble"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(18, 820),
+        LEARNSETS(Araquanid),
+        FRONT_SPRITE(Araquanid, 64, 64,  2),
+        BACK_SPRITE(Araquanid, 64, 48, 12),
+        PALETTES(Araquanid),
+        ICON(Araquanid, 2),
+        FOOTPRINT(Araquanid),
+        ANIMATIONS(ARAQUANID, 0, ANIM_H_SHAKE, BACK_ANIM_NONE),
     },
 
     [SPECIES_FOMANTIS] =
@@ -31168,6 +31559,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEAF_GUARD, ABILITY_NONE, ABILITY_CONTRARY},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_FOMANTIS,
+        DEX_TEXT(Fomantis, "Sickle Grass"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 15),
+        LEARNSETS(Fomantis),
+        FRONT_SPRITE(Fomantis, 40, 48, 11),
+        BACK_SPRITE(Fomantis, 40, 56,  5),
+        PALETTES(Fomantis),
+        ICON(Fomantis, 1),
+        FOOTPRINT(Fomantis),
+        ANIMATIONS(FOMANTIS, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_LURANTIS] =
@@ -31193,6 +31595,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEAF_GUARD, ABILITY_NONE, ABILITY_CONTRARY},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_LURANTIS,
+        DEX_TEXT(Lurantis, "Bloom Sickle"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(9, 185),
+        LEARNSETS(Lurantis),
+        FRONT_SPRITE(Lurantis, 48, 64,  2),
+        BACK_SPRITE(Lurantis, 56, 64,  1),
+        PALETTES(Lurantis),
+        ICON(Lurantis, 1),
+        FOOTPRINT(Lurantis),
+        ANIMATIONS(LURANTIS, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_MORELULL] =
@@ -31219,6 +31632,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_ILLUMINATE, ABILITY_EFFECT_SPORE, ABILITY_RAIN_DISH},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_MORELULL,
+        DEX_TEXT(Morelull, "Illuminate"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(2, 15),
+        LEARNSETS(Morelull),
+        FRONT_SPRITE(Morelull, 24, 48, 10),
+        BACK_SPRITE(Morelull, 40, 48,  9),
+        PALETTES(Morelull),
+        ICON(Morelull, 0),
+        FOOTPRINT(Morelull),
+        ANIMATIONS(MORELULL, 0, ANIM_SHAKE_FLASH_YELLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_SHIINOTIC] =
@@ -31245,6 +31669,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_ILLUMINATE, ABILITY_EFFECT_SPORE, ABILITY_RAIN_DISH},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SHIINOTIC,
+        DEX_TEXT(Shiinotic, "Illuminate"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 115),
+        LEARNSETS(Shiinotic),
+        FRONT_SPRITE(Shiinotic, 56, 56,  4),
+        BACK_SPRITE(Shiinotic, 64, 48,  8),
+        PALETTES(Shiinotic),
+        ICON(Shiinotic, 1),
+        FOOTPRINT(Shiinotic),
+        ANIMATIONS(SHIINOTIC, 0, ANIM_SHAKE_GLOW_WHITE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_SALANDIT] =
@@ -31270,6 +31705,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CORROSION, ABILITY_NONE, ABILITY_OBLIVIOUS},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SALANDIT,
+        DEX_TEXT(Salandit, "Toxic Lizard"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(6, 48),
+        LEARNSETS(Salandit),
+        FRONT_SPRITE(Salandit, 56, 40, 12),
+        BACK_SPRITE(Salandit, 56, 40, 12),
+        PALETTES(Salandit),
+        ICON(Salandit, 2),
+        FOOTPRINT(Salandit),
+        ANIMATIONS(SALANDIT, 0, ANIM_SHAKE_GLOW_RED_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_SALAZZLE] =
@@ -31295,6 +31741,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_CORROSION, ABILITY_NONE, ABILITY_OBLIVIOUS},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SALAZZLE,
+        DEX_TEXT(Salazzle, "Toxic Lizard"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 222),
+        LEARNSETS(Salazzle),
+        FRONT_SPRITE(Salazzle, 64, 64,  1),
+        BACK_SPRITE(Salazzle, 48, 64,  3),
+        PALETTES(Salazzle),
+        ICON(Salazzle, 0),
+        FOOTPRINT(Salazzle),
+        ANIMATIONS(SALAZZLE, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_STUFFUL] =
@@ -31319,6 +31776,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_FLUFFY, ABILITY_KLUTZ, ABILITY_CUTE_CHARM},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_STUFFUL,
+        DEX_TEXT(Stufful, "Flailing"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 68),
+        LEARNSETS(Stufful),
+        FRONT_SPRITE(Stufful, 48, 48, 10),
+        BACK_SPRITE(Stufful, 56, 40, 12),
+        PALETTES(Stufful),
+        ICON(Stufful, 0),
+        FOOTPRINT(Stufful),
+        ANIMATIONS(STUFFUL, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_BEWEAR] =
@@ -31343,6 +31811,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_FLUFFY, ABILITY_KLUTZ, ABILITY_UNNERVE},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BEWEAR,
+        DEX_TEXT(Bewear, "Strong Arm"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(21, 1350),
+        LEARNSETS(Bewear),
+        FRONT_SPRITE(Bewear, 56, 64,  1),
+        BACK_SPRITE(Bewear, 64, 64,  2),
+        PALETTES(Bewear),
+        ICON(Bewear, 0),
+        FOOTPRINT(Bewear),
+        ANIMATIONS(BEWEAR, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_BOUNSWEET] =
@@ -31368,6 +31847,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEAF_GUARD, ABILITY_OBLIVIOUS, ABILITY_SWEET_VEIL},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BOUNSWEET,
+        DEX_TEXT(Bounsweet, "Fruit"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 32),
+        LEARNSETS(Bounsweet),
+        FRONT_SPRITE(Bounsweet, 32, 40, 16),
+        BACK_SPRITE(Bounsweet, 48, 40, 14),
+        PALETTES(Bounsweet),
+        ICON(Bounsweet, 1),
+        FOOTPRINT(Bounsweet),
+        ANIMATIONS(BOUNSWEET, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_STEENEE] =
@@ -31393,6 +31883,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEAF_GUARD, ABILITY_OBLIVIOUS, ABILITY_SWEET_VEIL},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_STEENEE,
+        DEX_TEXT(Steenee, "Fruit"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 82),
+        LEARNSETS(Steenee),
+        FRONT_SPRITE(Steenee, 48, 56,  7),
+        BACK_SPRITE(Steenee, 56, 56,  8),
+        PALETTES(Steenee),
+        ICON(Steenee, 1),
+        FOOTPRINT(Steenee),
+        ANIMATIONS(STEENEE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_TSAREENA] =
@@ -31418,6 +31919,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_LEAF_GUARD, ABILITY_QUEENLY_MAJESTY, ABILITY_SWEET_VEIL},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_TSAREENA,
+        DEX_TEXT(Tsareena, "Fruit"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 214),
+        LEARNSETS(Tsareena),
+        FRONT_SPRITE(Tsareena, 56, 64,  1),
+        BACK_SPRITE(Tsareena, 56, 56,  6),
+        PALETTES(Tsareena),
+        ICON(Tsareena, 1),
+        FOOTPRINT(Tsareena),
+        ANIMATIONS(TSAREENA, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE),
     },
 
     [SPECIES_COMFEY] =
@@ -31443,6 +31955,18 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_FLOWER_VEIL, ABILITY_TRIAGE, ABILITY_NATURAL_CURE},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_COMFEY,
+        DEX_TEXT(Comfey, "Posy Picker"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(1, 3),
+        LEARNSETS(Comfey),
+        FRONT_SPRITE(Comfey, 48, 48,  9),
+        .enemyMonElevation = 8,
+        BACK_SPRITE(Comfey, 64, 56, 11),
+        PALETTES(Comfey),
+        ICON(Comfey, 1),
+        FOOTPRINT(Comfey),
+        ANIMATIONS(COMFEY, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_ORANGURU] =
@@ -31467,6 +31991,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_INNER_FOCUS, ABILITY_TELEPATHY, ABILITY_SYMBIOSIS},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_ORANGURU,
+        DEX_TEXT(Oranguru, "Sage"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(15, 760),
+        LEARNSETS(Oranguru),
+        FRONT_SPRITE(Oranguru, 56, 56,  5),
+        BACK_SPRITE(Oranguru, 64, 48, 12),
+        PALETTES(Oranguru),
+        ICON(Oranguru, 0),
+        FOOTPRINT(Oranguru),
+        ANIMATIONS(ORANGURU, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE),
     },
 
     [SPECIES_PASSIMIAN] =
@@ -31491,6 +32026,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_RECEIVER, ABILITY_NONE, ABILITY_DEFIANT},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PASSIMIAN,
+        DEX_TEXT(Passimian, "Teamwork"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(20, 828),
+        LEARNSETS(Passimian),
+        FRONT_SPRITE(Passimian, 64, 64,  2),
+        BACK_SPRITE(Passimian, 56, 56,  7),
+        PALETTES(Passimian),
+        ICON(Passimian, 1),
+        FOOTPRINT(Passimian),
+        ANIMATIONS(PASSIMIAN, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
     [SPECIES_WIMPOD] =
@@ -31515,6 +32061,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_WIMP_OUT, ABILITY_NONE},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_WIMPOD,
+        DEX_TEXT(Wimpod, "Turn Tail"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 120),
+        LEARNSETS(Wimpod),
+        FRONT_SPRITE(Wimpod, 40, 40, 14),
+        BACK_SPRITE(Wimpod, 64, 48, 10),
+        PALETTES(Wimpod),
+        ICON(Wimpod, 2),
+        FOOTPRINT(Wimpod),
+        ANIMATIONS(WIMPOD, 0, ANIM_V_SHAKE_H_SLIDE_FAST, BACK_ANIM_NONE),
     },
 
     [SPECIES_GOLISOPOD] =
@@ -31539,6 +32096,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_EMERGENCY_EXIT, ABILITY_NONE},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_GOLISOPOD,
+        DEX_TEXT(Golisopod, "Hard Scale"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(20, 1080),
+        LEARNSETS(Golisopod),
+        FRONT_SPRITE(Golisopod, 64, 64,  0),
+        BACK_SPRITE(Golisopod, 64, 48,  9),
+        PALETTES(Golisopod),
+        ICON(Golisopod, 2),
+        FOOTPRINT(Golisopod),
+        ANIMATIONS(GOLISOPOD, 0, ANIM_SHRINK_GROW_VIBRATE_FAST, BACK_ANIM_NONE),
     },
 
     [SPECIES_SANDYGAST] =
@@ -31564,6 +32132,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_WATER_COMPACTION, ABILITY_NONE, ABILITY_SAND_VEIL},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_SANDYGAST,
+        DEX_TEXT(Sandygast, "Sand Heap"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(5, 700),
+        LEARNSETS(Sandygast),
+        FRONT_SPRITE(Sandygast, 48, 48, 11),
+        BACK_SPRITE(Sandygast, 40, 48, 11),
+        PALETTES(Sandygast),
+        ICON(Sandygast, 1),
+        FOOTPRINT(Sandygast),
+        ANIMATIONS(SANDYGAST, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_NONE),
     },
 
     [SPECIES_PALOSSAND] =
@@ -31589,6 +32168,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_WATER_COMPACTION, ABILITY_NONE, ABILITY_SAND_VEIL},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PALOSSAND,
+        DEX_TEXT(Palossand, "Sand Castle"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(13, 2500),
+        LEARNSETS(Palossand),
+        FRONT_SPRITE(Palossand, 64, 64,  0),
+        BACK_SPRITE(Palossand, 64, 64,  2),
+        PALETTES(Palossand),
+        ICON(Palossand, 2),
+        FOOTPRINT(Palossand),
+        ANIMATIONS(PALOSSAND, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_PYUKUMUKU] =
@@ -31613,6 +32203,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_INNARDS_OUT, ABILITY_NONE, ABILITY_UNAWARE},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_PYUKUMUKU,
+        DEX_TEXT(Pyukumuku, "Sea Cucumber"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 12),
+        LEARNSETS(Pyukumuku),
+        FRONT_SPRITE(Pyukumuku, 40, 40, 15),
+        BACK_SPRITE(Pyukumuku, 48, 32, 16),
+        PALETTES(Pyukumuku),
+        ICON(Pyukumuku, 0),
+        FOOTPRINT(Pyukumuku),
+        ANIMATIONS(PYUKUMUKU, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
     [SPECIES_TYPE_NULL] =
@@ -31638,106 +32239,145 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_TYPE_NULL,
+        DEX_TEXT(TypeNull, "Synthetic"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(19, 1205),
+        LEARNSETS(TypeNull),
+        FRONT_SPRITE(TypeNull, 64, 64,  2),
+        BACK_SPRITE(TypeNull, 56, 64,  1),
+        PALETTES(TypeNull),
+        ICON(TypeNull, 0),
+        FOOTPRINT(Type_Null),
+        ANIMATIONS(TYPE_NULL, 0, ANIM_H_SHAKE, BACK_ANIM_NONE),
     },
 
-#define SILVALLY_BASE_STATS(type)                       \
-    {                                                   \
-        .baseHP        = 95,                            \
-        .baseAttack    = 95,                            \
-        .baseDefense   = 95,                            \
-        .baseSpeed     = 95,                            \
-        .baseSpAttack  = 95,                            \
-        .baseSpDefense = 95,                            \
-        .type1 = type,                                  \
-        .type2 = type,                                  \
-        .catchRate = 3,                                 \
-        .expYield = 257,                                \
-        .evYield_HP        = 3,                         \
-        .genderRatio = MON_GENDERLESS,                  \
-        .eggCycles = 120,                               \
-        .friendship = 0,                                \
-        .growthRate = GROWTH_SLOW,                      \
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,            \
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,            \
-        .abilities = {ABILITY_RKS_SYSTEM, ABILITY_NONE},\
-        .bodyColor = BODY_COLOR_GRAY,                   \
-        .noFlip = FALSE,                                \
+#define SILVALLY_SPECIES_INFO(type, dex, pal)                   \
+    {                                                           \
+        .baseHP        = 95,                                    \
+        .baseAttack    = 95,                                    \
+        .baseDefense   = 95,                                    \
+        .baseSpeed     = 95,                                    \
+        .baseSpAttack  = 95,                                    \
+        .baseSpDefense = 95,                                    \
+        .type1 = type,                                          \
+        .type2 = type,                                          \
+        .catchRate = 3,                                         \
+        .expYield = 257,                                        \
+        .evYield_HP        = 3,                                 \
+        .genderRatio = MON_GENDERLESS,                          \
+        .eggCycles = 120,                                       \
+        .friendship = 0,                                        \
+        .growthRate = GROWTH_SLOW,                              \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,                    \
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,                    \
+        .abilities = {ABILITY_RKS_SYSTEM, ABILITY_NONE},        \
+        .bodyColor = BODY_COLOR_GRAY,                           \
+        .noFlip = FALSE,                                        \
         .flags = SPECIES_FLAG_LEGENDARY,                        \
+        .natDexNum = NATIONAL_DEX_SILVALLY,                     \
+        DEX_TEXT(dex, "Synthetic"),                             \
+        DEX_SCALE(356, 17, 256, 0),                             \
+        HEIGHT_WEIGHT(23, 1005),                                \
+        LEARNSETS(Silvally),                                    \
+        FRONT_SPRITE(Silvally, 64, 64,  0),                     \
+        BACK_SPRITE(Silvally, 56, 64,  0),                      \
+        PALETTES(pal),                                          \
+        ICON(Silvally, 0),                                      \
+        FOOTPRINT(Silvally),                                    \
+        ANIMATIONS(SILVALLY, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),  \
     }
-    [SPECIES_SILVALLY_NORMAL]   = SILVALLY_BASE_STATS(TYPE_NORMAL),
-    [SPECIES_SILVALLY_FIGHTING] = SILVALLY_BASE_STATS(TYPE_FIGHTING),
-    [SPECIES_SILVALLY_FLYING]   = SILVALLY_BASE_STATS(TYPE_FLYING),
-    [SPECIES_SILVALLY_POISON]   = SILVALLY_BASE_STATS(TYPE_POISON),
-    [SPECIES_SILVALLY_GROUND]   = SILVALLY_BASE_STATS(TYPE_GROUND),
-    [SPECIES_SILVALLY_ROCK]     = SILVALLY_BASE_STATS(TYPE_ROCK),
-    [SPECIES_SILVALLY_BUG]      = SILVALLY_BASE_STATS(TYPE_BUG),
-    [SPECIES_SILVALLY_GHOST]    = SILVALLY_BASE_STATS(TYPE_GHOST),
-    [SPECIES_SILVALLY_STEEL]    = SILVALLY_BASE_STATS(TYPE_STEEL),
-    [SPECIES_SILVALLY_FIRE]     = SILVALLY_BASE_STATS(TYPE_FIRE),
-    [SPECIES_SILVALLY_WATER]    = SILVALLY_BASE_STATS(TYPE_WATER),
-    [SPECIES_SILVALLY_GRASS]    = SILVALLY_BASE_STATS(TYPE_GRASS),
-    [SPECIES_SILVALLY_ELECTRIC] = SILVALLY_BASE_STATS(TYPE_ELECTRIC),
-    [SPECIES_SILVALLY_PSYCHIC]  = SILVALLY_BASE_STATS(TYPE_PSYCHIC),
-    [SPECIES_SILVALLY_ICE]      = SILVALLY_BASE_STATS(TYPE_ICE),
-    [SPECIES_SILVALLY_DRAGON]   = SILVALLY_BASE_STATS(TYPE_DRAGON),
-    [SPECIES_SILVALLY_DARK]     = SILVALLY_BASE_STATS(TYPE_DARK),
-    [SPECIES_SILVALLY_FAIRY]    = SILVALLY_BASE_STATS(TYPE_FAIRY),
+    [SPECIES_SILVALLY_NORMAL]   = SILVALLY_SPECIES_INFO(TYPE_NORMAL, Silvally, Silvally),
+    [SPECIES_SILVALLY_FIGHTING] = SILVALLY_SPECIES_INFO(TYPE_FIGHTING, Dummy, SilvallyFighting),
+    [SPECIES_SILVALLY_FLYING]   = SILVALLY_SPECIES_INFO(TYPE_FLYING, Dummy, SilvallyFlying),
+    [SPECIES_SILVALLY_POISON]   = SILVALLY_SPECIES_INFO(TYPE_POISON, Dummy, SilvallyPoison),
+    [SPECIES_SILVALLY_GROUND]   = SILVALLY_SPECIES_INFO(TYPE_GROUND, Dummy, SilvallyGround),
+    [SPECIES_SILVALLY_ROCK]     = SILVALLY_SPECIES_INFO(TYPE_ROCK, Dummy, SilvallyRock),
+    [SPECIES_SILVALLY_BUG]      = SILVALLY_SPECIES_INFO(TYPE_BUG, Dummy, SilvallyBug),
+    [SPECIES_SILVALLY_GHOST]    = SILVALLY_SPECIES_INFO(TYPE_GHOST, Dummy, SilvallyGhost),
+    [SPECIES_SILVALLY_STEEL]    = SILVALLY_SPECIES_INFO(TYPE_STEEL, Dummy, SilvallySteel),
+    [SPECIES_SILVALLY_FIRE]     = SILVALLY_SPECIES_INFO(TYPE_FIRE, Dummy, SilvallyFire),
+    [SPECIES_SILVALLY_WATER]    = SILVALLY_SPECIES_INFO(TYPE_WATER, Dummy, SilvallyWater),
+    [SPECIES_SILVALLY_GRASS]    = SILVALLY_SPECIES_INFO(TYPE_GRASS, Dummy, SilvallyGrass),
+    [SPECIES_SILVALLY_ELECTRIC] = SILVALLY_SPECIES_INFO(TYPE_ELECTRIC, Dummy, SilvallyElectric),
+    [SPECIES_SILVALLY_PSYCHIC]  = SILVALLY_SPECIES_INFO(TYPE_PSYCHIC, Dummy, SilvallyPsychic),
+    [SPECIES_SILVALLY_ICE]      = SILVALLY_SPECIES_INFO(TYPE_ICE, Dummy, SilvallyIce),
+    [SPECIES_SILVALLY_DRAGON]   = SILVALLY_SPECIES_INFO(TYPE_DRAGON, Dummy, SilvallyDragon),
+    [SPECIES_SILVALLY_DARK]     = SILVALLY_SPECIES_INFO(TYPE_DARK, Dummy, SilvallyDark),
+    [SPECIES_SILVALLY_FAIRY]    = SILVALLY_SPECIES_INFO(TYPE_FAIRY, Dummy, SilvallyFairy),
 
-#define MINIOR_METEOR_ATTRIBUTES\
-        .baseHP        = 60,    \
-        .baseAttack    = 60,    \
-        .baseDefense   = 100,   \
-        .baseSpeed     = 60,    \
-        .baseSpAttack  = 60,    \
-        .baseSpDefense = 100
-#define MINIOR_CORE_ATTRIBUTES\
-        .baseHP        = 60,  \
-        .baseAttack    = 100, \
-        .baseDefense   = 60,  \
-        .baseSpeed     = 120, \
-        .baseSpAttack  = 100, \
-        .baseSpDefense = 60
-#define MINIOR_MISC_STATS(color)                          \
-        .type1 = TYPE_ROCK,                               \
-        .type2 = TYPE_FLYING,                             \
-        .catchRate = 30,                                  \
-        .expYield = 154,                                  \
-        .evYield_Defense   = 1,                           \
-        .evYield_SpDefense = 1,                           \
-        .itemRare = ITEM_STAR_PIECE,                      \
-        .genderRatio = MON_GENDERLESS,                    \
-        .eggCycles = 25,                                  \
-        .friendship = 70,                                 \
-        .growthRate = GROWTH_MEDIUM_SLOW,                 \
-        .eggGroup1 = EGG_GROUP_MINERAL,                   \
-        .eggGroup2 = EGG_GROUP_MINERAL,                   \
-        .abilities = {ABILITY_SHIELDS_DOWN, ABILITY_NONE},\
-        .bodyColor = color,                               \
-        .noFlip = TRUE
-#define MINIOR_METEOR_BASE_STATS            \
+#define MINIOR_MISC_INFO                                    \
+        .type1 = TYPE_ROCK,                                 \
+        .type2 = TYPE_FLYING,                               \
+        .catchRate = 30,                                    \
+        .expYield = 154,                                    \
+        .evYield_Defense   = 1,                             \
+        .evYield_SpDefense = 1,                             \
+        .itemRare = ITEM_STAR_PIECE,                        \
+        .genderRatio = MON_GENDERLESS,                      \
+        .eggCycles = 25,                                    \
+        .friendship = 70,                                   \
+        .growthRate = GROWTH_MEDIUM_SLOW,                   \
+        .eggGroup1 = EGG_GROUP_MINERAL,                     \
+        .eggGroup2 = EGG_GROUP_MINERAL,                     \
+        .abilities = {ABILITY_SHIELDS_DOWN, ABILITY_NONE},  \
+        .noFlip = TRUE,                                     \
+        .natDexNum = NATIONAL_DEX_MINIOR,                   \
+        DEX_SCALE(356, 17, 256, 0),                         \
+        LEARNSETS(Minior),                                  \
+        .enemyMonElevation = 17
+
+#define MINIOR_METEOR_SPECIES_INFO          \
     {                                       \
-        MINIOR_METEOR_ATTRIBUTES,           \
-        MINIOR_MISC_STATS(BODY_COLOR_BROWN),\
+        .baseHP        = 60,                \
+        .baseAttack    = 60,                \
+        .baseDefense   = 100,               \
+        .baseSpeed     = 60,                \
+        .baseSpAttack  = 60,                \
+        .baseSpDefense = 100,               \
+        .bodyColor = BODY_COLOR_BROWN,      \
+        DEX_TEXT(Minior, "Meteor"),         \
+        HEIGHT_WEIGHT(3, 400),              \
+        FRONT_SPRITE(Minior, 48, 40, 14),   \
+        BACK_SPRITE(Minior, 56, 40, 14),    \
+        PALETTES(Minior),                   \
+        ICON(Minior, 2),                    \
+        MINIOR_MISC_INFO,                   \
     }
-#define MINIOR_CORE_BASE_STATS(color)\
-    {                                \
-        MINIOR_CORE_ATTRIBUTES,      \
-        MINIOR_MISC_STATS(color),    \
+
+#define MINIOR_CORE_SPECIES_INFO(color, form, iconPal)  \
+    {                                                   \
+        .baseHP        = 60,                            \
+        .baseAttack    = 100,                           \
+        .baseDefense   = 60,                            \
+        .baseSpeed     = 120,                           \
+        .baseSpAttack  = 100,                           \
+        .baseSpDefense = 60,                            \
+        .bodyColor = color,                             \
+        DEX_TEXT(Dummy, "Meteor"),                      \
+        HEIGHT_WEIGHT(3, 3),                            \
+        FRONT_SPRITE(MiniorCore, 48, 40, 14),           \
+        BACK_SPRITE(MiniorCore, 56, 40, 15),            \
+        .palette = gMonPalette_##form,                  \
+        .shinyPalette = gMonShinyPalette_MiniorCore,    \
+        ICON(form, iconPal),                            \
+        MINIOR_MISC_INFO,                               \
     }
-    [SPECIES_MINIOR_METEOR_RED]    = MINIOR_METEOR_BASE_STATS,
-    [SPECIES_MINIOR_METEOR_ORANGE] = MINIOR_METEOR_BASE_STATS,
-    [SPECIES_MINIOR_METEOR_YELLOW] = MINIOR_METEOR_BASE_STATS,
-    [SPECIES_MINIOR_METEOR_GREEN]  = MINIOR_METEOR_BASE_STATS,
-    [SPECIES_MINIOR_METEOR_BLUE]   = MINIOR_METEOR_BASE_STATS,
-    [SPECIES_MINIOR_METEOR_INDIGO] = MINIOR_METEOR_BASE_STATS,
-    [SPECIES_MINIOR_METEOR_VIOLET] = MINIOR_METEOR_BASE_STATS,
-    [SPECIES_MINIOR_CORE_RED]    = MINIOR_CORE_BASE_STATS(BODY_COLOR_RED),
-    [SPECIES_MINIOR_CORE_ORANGE] = MINIOR_CORE_BASE_STATS(BODY_COLOR_RED),
-    [SPECIES_MINIOR_CORE_YELLOW] = MINIOR_CORE_BASE_STATS(BODY_COLOR_YELLOW),
-    [SPECIES_MINIOR_CORE_GREEN]  = MINIOR_CORE_BASE_STATS(BODY_COLOR_GREEN),
-    [SPECIES_MINIOR_CORE_BLUE]   = MINIOR_CORE_BASE_STATS(BODY_COLOR_BLUE),
-    [SPECIES_MINIOR_CORE_INDIGO] = MINIOR_CORE_BASE_STATS(BODY_COLOR_BLUE),
-    [SPECIES_MINIOR_CORE_VIOLET] = MINIOR_CORE_BASE_STATS(BODY_COLOR_PURPLE),
+
+    [SPECIES_MINIOR_METEOR_RED]    = MINIOR_METEOR_SPECIES_INFO,
+    [SPECIES_MINIOR_METEOR_ORANGE] = MINIOR_METEOR_SPECIES_INFO,
+    [SPECIES_MINIOR_METEOR_YELLOW] = MINIOR_METEOR_SPECIES_INFO,
+    [SPECIES_MINIOR_METEOR_GREEN]  = MINIOR_METEOR_SPECIES_INFO,
+    [SPECIES_MINIOR_METEOR_BLUE]   = MINIOR_METEOR_SPECIES_INFO,
+    [SPECIES_MINIOR_METEOR_INDIGO] = MINIOR_METEOR_SPECIES_INFO,
+    [SPECIES_MINIOR_METEOR_VIOLET] = MINIOR_METEOR_SPECIES_INFO,
+    [SPECIES_MINIOR_CORE_RED]    = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_RED, MiniorCoreRed, 0),
+    [SPECIES_MINIOR_CORE_ORANGE] = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_RED, MiniorCoreOrange, 0),
+    [SPECIES_MINIOR_CORE_YELLOW] = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_YELLOW, MiniorCoreYellow, 0),
+    [SPECIES_MINIOR_CORE_GREEN]  = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_GREEN, MiniorCoreGreen, 1),
+    [SPECIES_MINIOR_CORE_BLUE]   = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_BLUE, MiniorCoreBlue, 0),
+    [SPECIES_MINIOR_CORE_INDIGO] = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_BLUE, MiniorCoreIndigo, 0),
+    [SPECIES_MINIOR_CORE_VIOLET] = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_PURPLE, MiniorCoreViolet, 2),
 
     [SPECIES_KOMALA] =
     {
@@ -31761,6 +32401,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_COMATOSE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_KOMALA,
+        DEX_TEXT(Komala, "Drowsing"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(4, 199),
+        LEARNSETS(Komala),
+        FRONT_SPRITE(Komala, 48, 40, 12),
+        BACK_SPRITE(Komala, 64, 48,  9),
+        PALETTES(Komala),
+        ICON(Komala, 2),
+        FOOTPRINT(Komala),
+        ANIMATIONS(KOMALA, 0, ANIM_H_DIP, BACK_ANIM_NONE),
     },
 
     [SPECIES_TURTONATOR] =
@@ -31786,6 +32437,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SHELL_ARMOR, ABILITY_NONE},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_TURTONATOR,
+        DEX_TEXT(Turtonator, "Blast Turtle"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(20, 2120),
+        LEARNSETS(Turtonator),
+        FRONT_SPRITE(Turtonator, 64, 64,  0),
+        BACK_SPRITE(Turtonator, 64, 56,  9),
+        PALETTES(Turtonator),
+        ICON(Turtonator, 0),
+        FOOTPRINT(Turtonator),
+        ANIMATIONS(TURTONATOR, 0, ANIM_SHAKE_GLOW_RED, BACK_ANIM_NONE),
     },
 
     [SPECIES_TOGEDEMARU] =
@@ -31811,34 +32473,67 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_IRON_BARBS, ABILITY_LIGHTNING_ROD, ABILITY_STURDY},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_TOGEDEMARU,
+        DEX_TEXT(Togedemaru, "Roly-Poly"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 33),
+        LEARNSETS(Togedemaru),
+        FRONT_SPRITE(Togedemaru, 40, 40, 12),
+        BACK_SPRITE(Togedemaru, 64, 48, 13),
+        PALETTES(Togedemaru),
+        ICON(Togedemaru, 2),
+        FOOTPRINT(Togedemaru),
+        ANIMATIONS(TOGEDEMARU, 0, ANIM_SHAKE_FLASH_YELLOW, BACK_ANIM_NONE),
     },
 
-#define MIMIKYU_BASE_STATS                            \
-    {                                                 \
-        .baseHP        = 55,                          \
-        .baseAttack    = 90,                          \
-        .baseDefense   = 80,                          \
-        .baseSpeed     = 96,                          \
-        .baseSpAttack  = 50,                          \
-        .baseSpDefense = 105,                         \
-        .type1 = TYPE_GHOST,                          \
-        .type2 = TYPE_FAIRY,                          \
-        .catchRate = 45,                              \
-        .expYield = 167,                              \
-        .evYield_SpDefense = 2,                       \
-        .itemRare = ITEM_CHESTO_BERRY,                \
-        .genderRatio = PERCENT_FEMALE(50),            \
-        .eggCycles = 20,                              \
-        .friendship = 70,                             \
-        .growthRate = GROWTH_MEDIUM_FAST,             \
-        .eggGroup1 = EGG_GROUP_AMORPHOUS,             \
-        .eggGroup2 = EGG_GROUP_AMORPHOUS,             \
-        .abilities = {ABILITY_DISGUISE, ABILITY_NONE},\
-        .bodyColor = BODY_COLOR_YELLOW,               \
-        .noFlip = FALSE,                              \
-    }
-    [SPECIES_MIMIKYU_DISGUISED] = MIMIKYU_BASE_STATS,
-    [SPECIES_MIMIKYU_BUSTED]    = MIMIKYU_BASE_STATS,
+#define MIMIKYU_MISC_INFO                               \
+        .baseHP        = 55,                            \
+        .baseAttack    = 90,                            \
+        .baseDefense   = 80,                            \
+        .baseSpeed     = 96,                            \
+        .baseSpAttack  = 50,                            \
+        .baseSpDefense = 105,                           \
+        .type1 = TYPE_GHOST,                            \
+        .type2 = TYPE_FAIRY,                            \
+        .catchRate = 45,                                \
+        .expYield = 167,                                \
+        .evYield_SpDefense = 2,                         \
+        .itemRare = ITEM_CHESTO_BERRY,                  \
+        .genderRatio = PERCENT_FEMALE(50),              \
+        .eggCycles = 20,                                \
+        .friendship = 70,                               \
+        .growthRate = GROWTH_MEDIUM_FAST,               \
+        .eggGroup1 = EGG_GROUP_AMORPHOUS,               \
+        .eggGroup2 = EGG_GROUP_AMORPHOUS,               \
+        .abilities = {ABILITY_DISGUISE, ABILITY_NONE},  \
+        .bodyColor = BODY_COLOR_YELLOW,                 \
+        .noFlip = FALSE,                                \
+        .natDexNum = NATIONAL_DEX_MIMIKYU,              \
+        DEX_SCALE(356, 17, 256, 0),                     \
+        HEIGHT_WEIGHT(2, 7),                            \
+        LEARNSETS(Mimikyu),                             \
+        FOOTPRINT(Mimikyu)
+
+    [SPECIES_MIMIKYU_DISGUISED] =
+    {
+        DEX_TEXT(Mimikyu, "Disguise"),
+        FRONT_SPRITE(Mimikyu, 48, 40, 12),
+        BACK_SPRITE(Mimikyu, 56, 56,  7),
+        PALETTES(Mimikyu),
+        ICON(Mimikyu, 1),
+        ANIMATIONS(MIMIKYU, 0, ANIM_DEEP_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        MIMIKYU_MISC_INFO,
+    },
+    [SPECIES_MIMIKYU_BUSTED] =
+    {
+        DEX_TEXT(Dummy, "Disguise"),
+        FRONT_SPRITE(MimikyuBusted, 48, 40, 12),
+        BACK_SPRITE(MimikyuBusted, 64, 40, 15),
+        PALETTES(MimikyuBusted),
+        ICON(MimikyuBusted, 1),
+        ANIMATIONS(MIMIKYU_BUSTED, 0, ANIM_DEEP_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        MIMIKYU_MISC_INFO,
+    },
 
     [SPECIES_BRUXISH] =
     {
@@ -31863,6 +32558,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_DAZZLING, ABILITY_STRONG_JAW, ABILITY_WONDER_SKIN},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BRUXISH,
+        DEX_TEXT(Bruxish, "Gnash Teeth"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(9, 190),
+        LEARNSETS(Bruxish),
+        FRONT_SPRITE(Bruxish, 56, 40, 15),
+        BACK_SPRITE(Bruxish, 64, 48, 14),
+        PALETTES(Bruxish),
+        ICON(Bruxish, 0),
+        FOOTPRINT(Bruxish),
+        ANIMATIONS(BRUXISH, 0, ANIM_RISING_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_DRAMPA] =
@@ -31888,6 +32594,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BERSERK, ABILITY_SAP_SIPPER, ABILITY_CLOUD_NINE},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_DRAMPA,
+        DEX_TEXT(Drampa, "Placid"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(30, 1850),
+        LEARNSETS(Drampa),
+        FRONT_SPRITE(Drampa, 64, 64,  0),
+        BACK_SPRITE(Drampa, 64, 56,  5),
+        PALETTES(Drampa),
+        ICON(Drampa, 0),
+        FOOTPRINT(Drampa),
+        ANIMATIONS(DRAMPA, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
     [SPECIES_DHELMISE] =
@@ -31912,6 +32629,18 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STEELWORKER, ABILITY_NONE},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
+        .natDexNum = NATIONAL_DEX_DHELMISE,
+        DEX_TEXT(Dhelmise, "Sea Creeper"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(39, 2100),
+        LEARNSETS(Dhelmise),
+        FRONT_SPRITE(Dhelmise, 48, 64,  1),
+        .enemyMonElevation = 2,
+        BACK_SPRITE(Dhelmise, 64, 64,  3),
+        PALETTES(Dhelmise),
+        ICON(Dhelmise, 1),
+        FOOTPRINT(Dhelmise),
+        ANIMATIONS(DHELMISE, 0, ANIM_SWING_CONVEX, BACK_ANIM_NONE),
     },
 
     [SPECIES_JANGMO_O] =
@@ -31937,6 +32666,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BULLETPROOF, ABILITY_SOUNDPROOF, ABILITY_OVERCOAT},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_JANGMO_O,
+        DEX_TEXT(Jangmoo, "Scaly"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(6, 297),
+        LEARNSETS(Jangmoo),
+        FRONT_SPRITE(Jangmoo, 40, 48,  8),
+        BACK_SPRITE(Jangmoo, 48, 56,  7),
+        PALETTES(Jangmoo),
+        ICON(Jangmoo, 2),
+        FOOTPRINT(Jangmo_o),
+        ANIMATIONS(JANGMO_O, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_HAKAMO_O] =
@@ -31962,6 +32702,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BULLETPROOF, ABILITY_SOUNDPROOF, ABILITY_OVERCOAT},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_HAKAMO_O,
+        DEX_TEXT(Hakamoo, "Scaly"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 470),
+        LEARNSETS(Hakamoo),
+        FRONT_SPRITE(Hakamoo, 56, 64,  1),
+        BACK_SPRITE(Hakamoo, 56, 64,  5),
+        PALETTES(Hakamoo),
+        ICON(Hakamoo, 2),
+        FOOTPRINT(Hakamo_o),
+        ANIMATIONS(HAKAMO_O, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_KOMMO_O] =
@@ -31987,6 +32738,17 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_BULLETPROOF, ABILITY_SOUNDPROOF, ABILITY_OVERCOAT},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_KOMMO_O,
+        DEX_TEXT(Kommoo, "Scaly"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(16, 782),
+        LEARNSETS(Kommoo),
+        FRONT_SPRITE(Kommoo, 64, 64,  0),
+        BACK_SPRITE(Kommoo, 64, 64,  2),
+        PALETTES(Kommoo),
+        ICON(Kommoo, 2),
+        FOOTPRINT(Kommo_o),
+        ANIMATIONS(KOMMO_O, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_NONE),
     },
 
     [SPECIES_TAPU_KOKO] =
@@ -32012,6 +32774,18 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_TAPU_KOKO,
+        DEX_TEXT(TapuKoko, "Land Spirit"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(18, 205),
+        LEARNSETS(TapuKoko),
+        FRONT_SPRITE(TapuKoko, 64, 64,  1),
+        .enemyMonElevation = 9,
+        BACK_SPRITE(TapuKoko, 64, 64,  2),
+        PALETTES(TapuKoko),
+        ICON(TapuKoko, 0),
+        FOOTPRINT(Tapu_Koko),
+        ANIMATIONS(TAPU_KOKO, 0, ANIM_TRIANGLE_DOWN_TWICE, BACK_ANIM_NONE),
     },
 
     [SPECIES_TAPU_LELE] =
@@ -32037,6 +32811,18 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_TAPU_LELE,
+        DEX_TEXT(TapuLele, "Land Spirit"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 186),
+        LEARNSETS(TapuLele),
+        FRONT_SPRITE(TapuLele, 48, 56,  6),
+        .enemyMonElevation = 8,
+        BACK_SPRITE(TapuLele, 56, 56,  6),
+        PALETTES(TapuLele),
+        ICON(TapuLele, 0),
+        FOOTPRINT(Tapu_Lele),
+        ANIMATIONS(TAPU_LELE, 0, ANIM_V_SLIDE_WOBBLE_SMALL, BACK_ANIM_NONE),
     },
 
     [SPECIES_TAPU_BULU] =
@@ -32062,6 +32848,18 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_TAPU_BULU,
+        DEX_TEXT(TapuBulu, "Land Spirit"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(19, 455),
+        LEARNSETS(TapuBulu),
+        FRONT_SPRITE(TapuBulu, 56, 64,  0),
+        .enemyMonElevation = 5,
+        BACK_SPRITE(TapuBulu, 64, 64,  1),
+        PALETTES(TapuBulu),
+        ICON(TapuBulu, 2),
+        FOOTPRINT(Tapu_Bulu),
+        ANIMATIONS(TAPU_BULU, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_NONE),
     },
 
     [SPECIES_TAPU_FINI] =
@@ -32087,6 +32885,18 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_TAPU_FINI,
+        DEX_TEXT(TapuFini, "Land Spirit"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(13, 212),
+        LEARNSETS(TapuFini),
+        FRONT_SPRITE(TapuFini, 56, 64,  2),
+        .enemyMonElevation = 6,
+        BACK_SPRITE(TapuFini, 64, 56,  4),
+        PALETTES(TapuFini),
+        ICON(TapuFini, 0),
+        FOOTPRINT(Tapu_Fini),
+        ANIMATIONS(TAPU_FINI, 5, ANIM_SHAKE_GLOW_BLUE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_COSMOG] =
@@ -32112,6 +32922,18 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_COSMOG,
+        DEX_TEXT(Cosmog, "Nebula"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(2, 1),
+        LEARNSETS(Cosmog),
+        FRONT_SPRITE(Cosmog, 56, 48, 10),
+        .enemyMonElevation = 7,
+        BACK_SPRITE(Cosmog, 64, 48, 10),
+        PALETTES(Cosmog),
+        ICON(Cosmog, 2),
+        FOOTPRINT(Cosmog),
+        ANIMATIONS(COSMOG, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_COSMOEM] =
@@ -32138,6 +32960,18 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_COSMOEM,
+        DEX_TEXT(Cosmoem, "Protostar"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(1, 9999),
+        LEARNSETS(Cosmoem),
+        FRONT_SPRITE(Cosmoem, 48, 48,  9),
+        .enemyMonElevation = 3,
+        BACK_SPRITE(Cosmoem, 64, 40, 17),
+        PALETTES(Cosmoem),
+        ICON(Cosmoem, 0),
+        FOOTPRINT(Cosmoem),
+        ANIMATIONS(COSMOEM, 0, ANIM_RISING_WOBBLE, BACK_ANIM_NONE),
     },
 
     [SPECIES_SOLGALEO] =
@@ -32163,6 +32997,17 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_SOLGALEO,
+        DEX_TEXT(Solgaleo, "Sunne"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(34, 2300),
+        LEARNSETS(Solgaleo),
+        FRONT_SPRITE(Solgaleo, 64, 64,  0),
+        BACK_SPRITE(Solgaleo, 64, 64,  3),
+        PALETTES(Solgaleo),
+        ICON(Solgaleo, 0),
+        FOOTPRINT(Solgaleo),
+        ANIMATIONS(SOLGALEO, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_LUNALA] =
@@ -32188,6 +33033,18 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
+        .natDexNum = NATIONAL_DEX_LUNALA,
+        DEX_TEXT(Lunala, "Moone"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(40, 1200),
+        LEARNSETS(Lunala),
+        FRONT_SPRITE(Lunala, 64, 64,  0),
+        .enemyMonElevation = 6,
+        BACK_SPRITE(Lunala, 64, 64,  2),
+        PALETTES(Lunala),
+        ICON(Lunala, 2),
+        FOOTPRINT(Lunala),
+        ANIMATIONS(LUNALA, 0, ANIM_CIRCULAR_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_NIHILEGO] =
@@ -32213,6 +33070,18 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_ULTRA_BEAST,
+        .natDexNum = NATIONAL_DEX_NIHILEGO,
+        DEX_TEXT(Nihilego, "Parasite"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(12, 555),
+        LEARNSETS(Nihilego),
+        FRONT_SPRITE(Nihilego, 48, 64,  3),
+        .enemyMonElevation = 6,
+        BACK_SPRITE(Nihilego, 64, 48,  9),
+        PALETTES(Nihilego),
+        ICON(Nihilego, 0),
+        FOOTPRINT(Nihilego),
+        ANIMATIONS(NIHILEGO, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_NONE),
     },
 
     [SPECIES_BUZZWOLE] =
@@ -32239,6 +33108,17 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_ULTRA_BEAST,
+        .natDexNum = NATIONAL_DEX_BUZZWOLE,
+        DEX_TEXT(Buzzwole, "Swollen"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(24, 3336),
+        LEARNSETS(Buzzwole),
+        FRONT_SPRITE(Buzzwole, 64, 64,  0),
+        BACK_SPRITE(Buzzwole, 64, 56, 14),
+        PALETTES(Buzzwole),
+        ICON(Buzzwole, 0),
+        FOOTPRINT(Buzzwole),
+        ANIMATIONS(BUZZWOLE, 0, ANIM_SHRINK_GROW_VIBRATE_FAST, BACK_ANIM_NONE),
     },
 
     [SPECIES_PHEROMOSA] =
@@ -32264,6 +33144,17 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_ULTRA_BEAST,
+        .natDexNum = NATIONAL_DEX_PHEROMOSA,
+        DEX_TEXT(Pheromosa, "Lissome"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(18, 250),
+        LEARNSETS(Pheromosa),
+        FRONT_SPRITE(Pheromosa, 56, 64,  1),
+        BACK_SPRITE(Pheromosa, 64, 64,  2),
+        PALETTES(Pheromosa),
+        ICON(Pheromosa, 2),
+        FOOTPRINT(Pheromosa),
+        ANIMATIONS(PHEROMOSA, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE),
     },
 
     [SPECIES_XURKITREE] =
@@ -32289,6 +33180,17 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_ULTRA_BEAST,
+        .natDexNum = NATIONAL_DEX_XURKITREE,
+        DEX_TEXT(Xurkitree, "Glowing"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(38, 1000),
+        LEARNSETS(Xurkitree),
+        FRONT_SPRITE(Xurkitree, 64, 64,  0),
+        BACK_SPRITE(Xurkitree, 64, 64,  2),
+        PALETTES(Xurkitree),
+        ICON(Xurkitree, 0),
+        FOOTPRINT(Xurkitree),
+        ANIMATIONS(XURKITREE, 0, ANIM_SHAKE_FLASH_YELLOW_FAST, BACK_ANIM_NONE),
     },
 
     [SPECIES_CELESTEELA] =
@@ -32316,6 +33218,17 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_ULTRA_BEAST,
+        .natDexNum = NATIONAL_DEX_CELESTEELA,
+        DEX_TEXT(Celesteela, "Launch"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(92, 9999),
+        LEARNSETS(Celesteela),
+        FRONT_SPRITE(Celesteela, 64, 64,  0),
+        BACK_SPRITE(Celesteela, 64, 64,  0),
+        PALETTES(Celesteela),
+        ICON(Celesteela, 0),
+        FOOTPRINT(Celesteela),
+        ANIMATIONS(CELESTEELA, 0, ANIM_GROW_STUTTER_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_KARTANA] =
@@ -32341,6 +33254,18 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_ULTRA_BEAST,
+        .natDexNum = NATIONAL_DEX_KARTANA,
+        DEX_TEXT(Kartana, "Drawn Sword"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(3, 1),
+        LEARNSETS(Kartana),
+        FRONT_SPRITE(Kartana, 64, 64,  2),
+        .enemyMonElevation = 3,
+        BACK_SPRITE(Kartana, 64, 48, 11),
+        PALETTES(Kartana),
+        ICON(Kartana, 0),
+        FOOTPRINT(Kartana),
+        ANIMATIONS(KARTANA, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_GUZZLORD] =
@@ -32366,7 +33291,32 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_ULTRA_BEAST,
+        .natDexNum = NATIONAL_DEX_GUZZLORD,
+        DEX_TEXT(Guzzlord, "Junkivore"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(55, 8880),
+        LEARNSETS(Guzzlord),
+        FRONT_SPRITE(Guzzlord, 64, 64,  3),
+        BACK_SPRITE(Guzzlord, 64, 56, 10),
+        PALETTES(Guzzlord),
+        ICON(Guzzlord, 0),
+        FOOTPRINT(Guzzlord),
+        ANIMATIONS(GUZZLORD, 0, ANIM_SHRINK_GROW_VIBRATE_FAST, BACK_ANIM_NONE),
     },
+
+#define NECROZMA_MISC_INFO                  \
+        .type1 = TYPE_PSYCHIC,              \
+        .genderRatio = MON_GENDERLESS,      \
+        .eggCycles = 120,                   \
+        .friendship = 0,                    \
+        .growthRate = GROWTH_SLOW,          \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,\
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,\
+        .noFlip = TRUE,                     \
+        .flags = SPECIES_FLAG_LEGENDARY,    \
+        .natDexNum = NATIONAL_DEX_NECROZMA, \
+        LEARNSETS(Necrozma),                \
+        FOOTPRINT(Necrozma)
 
     [SPECIES_NECROZMA] =
     {
@@ -32376,22 +33326,23 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 79,
         .baseSpAttack  = 127,
         .baseSpDefense = 89,
-        .type1 = TYPE_PSYCHIC,
         .type2 = TYPE_PSYCHIC,
         .catchRate = 255,
         .expYield = 270,
         .evYield_Attack    = 1,
         .evYield_SpAttack  = 2,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
         .abilities = {ABILITY_PRISM_ARMOR, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLACK,
-        .noFlip = TRUE,
-        .flags = SPECIES_FLAG_LEGENDARY,
+        DEX_TEXT(Necrozma, "Prism"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(24, 2300),
+        FRONT_SPRITE(Necrozma, 64, 64,  2),
+        .enemyMonElevation = 6,
+        BACK_SPRITE(Necrozma, 64, 64,  4),
+        PALETTES(Necrozma),
+        ICON(Necrozma, 0),
+        ANIMATIONS(NECROZMA, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
+        NECROZMA_MISC_INFO,
     },
 
     [SPECIES_NECROZMA_DUSK_MANE] =
@@ -32402,21 +33353,21 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 77,
         .baseSpAttack  = 113,
         .baseSpDefense = 109,
-        .type1 = TYPE_PSYCHIC,
         .type2 = TYPE_STEEL,
         .catchRate = 255,
         .expYield = 306,
         .evYield_Attack    = 3,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
         .abilities = {ABILITY_PRISM_ARMOR, ABILITY_NONE},
         .bodyColor = BODY_COLOR_YELLOW,
-        .noFlip = TRUE,
-        .flags = SPECIES_FLAG_LEGENDARY,
+        DEX_TEXT(Dummy, "Prism"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(38, 4600),
+        FRONT_SPRITE(NecrozmaDuskMane, 64, 64,  0),
+        BACK_SPRITE(NecrozmaDuskMane, 64, 64,  1),
+        PALETTES(NecrozmaDuskMane),
+        ICON(NecrozmaDuskMane, 0),
+        ANIMATIONS(NECROZMA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        NECROZMA_MISC_INFO,
     },
 
     [SPECIES_NECROZMA_DAWN_WINGS] =
@@ -32427,21 +33378,22 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 77,
         .baseSpAttack  = 157,
         .baseSpDefense = 127,
-        .type1 = TYPE_PSYCHIC,
         .type2 = TYPE_GHOST,
         .catchRate = 255,
         .expYield = 306,
         .evYield_SpAttack    = 3,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
         .abilities = {ABILITY_PRISM_ARMOR, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = TRUE,
-        .flags = SPECIES_FLAG_LEGENDARY,
+        DEX_TEXT(Dummy, "Prism"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(42, 3500),
+        FRONT_SPRITE(NecrozmaDawnWings, 64, 64,  0),
+        .enemyMonElevation = 6,
+        BACK_SPRITE(NecrozmaDawnWings, 64, 64,  2),
+        PALETTES(NecrozmaDawnWings),
+        ICON(NecrozmaDawnWings, 0),
+        ANIMATIONS(NECROZMA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        NECROZMA_MISC_INFO,
     },
 
     [SPECIES_NECROZMA_ULTRA] =
@@ -32452,27 +33404,27 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 129,
         .baseSpAttack  = 167,
         .baseSpDefense = 97,
-        .type1 = TYPE_PSYCHIC,
         .type2 = TYPE_DRAGON,
         .catchRate = 255,
         .expYield = 339,
         .evYield_Attack    = 1,
         .evYield_Speed     = 1,
         .evYield_SpAttack  = 1,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
         .abilities = {ABILITY_NEUROFORCE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_YELLOW,
-        .noFlip = TRUE,
-        .flags = SPECIES_FLAG_LEGENDARY,
+        DEX_TEXT(Dummy, "Prism"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(75, 2300),
+        FRONT_SPRITE(NecrozmaUltra, 64, 64,  0),
+        .enemyMonElevation = 5,
+        BACK_SPRITE(NecrozmaUltra, 64, 64,  3),
+        PALETTES(NecrozmaUltra),
+        ICON(NecrozmaUltra, 2),
+        ANIMATIONS(NECROZMA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        NECROZMA_MISC_INFO,
     },
 
-#define MAGEARNA_BASE_STATS(color)                      \
-    {                                                   \
+#define MAGEARNA_MISC_INFO                              \
         .baseHP        = 80,                            \
         .baseAttack    = 95,                            \
         .baseDefense   = 115,                           \
@@ -32491,12 +33443,35 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_UNDISCOVERED,            \
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,            \
         .abilities = {ABILITY_SOUL_HEART, ABILITY_NONE},\
-        .bodyColor = color,                             \
         .noFlip = FALSE,                                \
-        .flags = SPECIES_FLAG_MYTHICAL,                         \
-    }
-    [SPECIES_MAGEARNA]                = MAGEARNA_BASE_STATS(BODY_COLOR_GRAY),
-    [SPECIES_MAGEARNA_ORIGINAL_COLOR] = MAGEARNA_BASE_STATS(BODY_COLOR_RED),
+        .flags = SPECIES_FLAG_MYTHICAL,                 \
+        .natDexNum = NATIONAL_DEX_MAGEARNA,             \
+        DEX_SCALE(356, 17, 256, 0),                     \
+        HEIGHT_WEIGHT(10, 805),                         \
+        LEARNSETS(Magearna),                            \
+        FOOTPRINT(Magearna),                            \
+        ANIMATIONS(MAGEARNA, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_NONE)
+
+    [SPECIES_MAGEARNA] =
+    {
+        .bodyColor = BODY_COLOR_GRAY,
+        DEX_TEXT(Magearna, "Artificial"),
+        FRONT_SPRITE(Magearna, 56, 64,  0),
+        BACK_SPRITE(Magearna, 64, 56,  4),
+        PALETTES(Magearna),
+        ICON(Magearna, 0),
+        MAGEARNA_MISC_INFO,
+    },
+    [SPECIES_MAGEARNA_ORIGINAL_COLOR] =
+    {
+        .bodyColor = BODY_COLOR_RED,
+        DEX_TEXT(Dummy, "Artificial"),
+        FRONT_SPRITE(MagearnaOriginalColor, 56, 64,  0),
+        BACK_SPRITE(MagearnaOriginalColor, 64, 56,  4),
+        PALETTES(MagearnaOriginalColor),
+        ICON(MagearnaOriginalColor, 0),
+        MAGEARNA_MISC_INFO,
+    },
 
     [SPECIES_MARSHADOW] =
     {
@@ -32522,6 +33497,17 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = TRUE,
         .flags = SPECIES_FLAG_MYTHICAL,
+        .natDexNum = NATIONAL_DEX_MARSHADOW,
+        DEX_TEXT(Marshadow, "Gloomdwellr"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(7, 222),
+        LEARNSETS(Marshadow),
+        FRONT_SPRITE(Marshadow, 32, 56,  9),
+        BACK_SPRITE(Marshadow, 40, 56,  6),
+        PALETTES(Marshadow),
+        ICON(Marshadow, 0),
+        FOOTPRINT(Marshadow),
+        ANIMATIONS(MARSHADOW, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
     },
 
     [SPECIES_POIPOLE] =
@@ -32547,6 +33533,18 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_ULTRA_BEAST,
+        .natDexNum = NATIONAL_DEX_POIPOLE,
+        DEX_TEXT(Poipole, "Poison Pin"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(6, 18),
+        LEARNSETS(Poipole),
+        FRONT_SPRITE(Poipole, 40, 56,  8),
+        .enemyMonElevation = 9,
+        BACK_SPRITE(Poipole, 48, 56,  6),
+        PALETTES(Poipole),
+        ICON(Poipole, 0),
+        FOOTPRINT(Poipole),
+        ANIMATIONS(POIPOLE, 0, ANIM_SHAKE_GLOW_PURPLE_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_NAGANADEL] =
@@ -32572,6 +33570,18 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_ULTRA_BEAST,
+        .natDexNum = NATIONAL_DEX_NAGANADEL,
+        DEX_TEXT(Naganadel, "Poison Pin"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(36, 1500),
+        LEARNSETS(Naganadel),
+        FRONT_SPRITE(Naganadel, 64, 64,  1),
+        .enemyMonElevation = 7,
+        BACK_SPRITE(Naganadel, 64, 56,  6),
+        PALETTES(Naganadel),
+        ICON(Naganadel, 0),
+        FOOTPRINT(Naganadel),
+        ANIMATIONS(NAGANADEL, 0, ANIM_TRIANGLE_DOWN_TWICE, BACK_ANIM_NONE),
     },
 
     [SPECIES_STAKATAKA] =
@@ -32597,6 +33607,17 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = TRUE,
         .flags = SPECIES_FLAG_ULTRA_BEAST,
+        .natDexNum = NATIONAL_DEX_STAKATAKA,
+        DEX_TEXT(Stakataka, "Rampart"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(55, 8200),
+        LEARNSETS(Stakataka),
+        FRONT_SPRITE(Stakataka, 64, 64,  0),
+        BACK_SPRITE(Stakataka, 64, 48, 12),
+        PALETTES(Stakataka),
+        ICON(Stakataka, 0),
+        FOOTPRINT(Stakataka),
+        ANIMATIONS(STAKATAKA, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 
     [SPECIES_BLACEPHALON] =
@@ -32622,6 +33643,17 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
         .flags = SPECIES_FLAG_ULTRA_BEAST,
+        .natDexNum = NATIONAL_DEX_BLACEPHALON,
+        DEX_TEXT(Blacephalon, "Fireworks"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(18, 130),
+        LEARNSETS(Blacephalon),
+        FRONT_SPRITE(Blacephalon, 56, 64,  1),
+        BACK_SPRITE(Blacephalon, 64, 48,  9),
+        PALETTES(Blacephalon),
+        ICON(Blacephalon, 0),
+        FOOTPRINT(Blacephalon),
+        ANIMATIONS(BLACEPHALON, 0, ANIM_SHAKE_GLOW_RED, BACK_ANIM_NONE),
     },
 
     [SPECIES_ZERAORA] =
@@ -32647,6 +33679,17 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_MYTHICAL,
+        .natDexNum = NATIONAL_DEX_ZERAORA,
+        DEX_TEXT(Zeraora, "Thunderclap"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(15, 445),
+        LEARNSETS(Zeraora),
+        FRONT_SPRITE(Zeraora, 64, 56,  4),
+        BACK_SPRITE(Zeraora, 64, 56, 11),
+        PALETTES(Zeraora),
+        ICON(Zeraora, 0),
+        FOOTPRINT(Zeraora),
+        ANIMATIONS(ZERAORA, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
     },
 
     [SPECIES_MELTAN] =
@@ -32672,6 +33715,17 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_MYTHICAL,
+        .natDexNum = NATIONAL_DEX_MELTAN,
+        DEX_TEXT(Meltan, "Hex Nut"),
+        DEX_SCALE(640, 23, 256, 0),
+        HEIGHT_WEIGHT(2, 80),
+        LEARNSETS(Meltan),
+        FRONT_SPRITE(Meltan, 32, 48, 11),
+        BACK_SPRITE(Meltan, 40, 40, 12),
+        PALETTES(Meltan),
+        ICON(Meltan, 2),
+        FOOTPRINT(Meltan),
+        ANIMATIONS(MELTAN, 0, ANIM_GROW_STUTTER_SLOW, BACK_ANIM_NONE),
     },
 
     [SPECIES_MELMETAL] =
@@ -32697,6 +33751,17 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_MYTHICAL,
+        .natDexNum = NATIONAL_DEX_MELMETAL,
+        DEX_TEXT(Meltan, "Hex Nut"),
+        DEX_SCALE(255, 1, 387, 2),
+        HEIGHT_WEIGHT(25, 800),
+        LEARNSETS(Melmetal),
+        FRONT_SPRITE(Melmetal, 64, 56,  4),
+        BACK_SPRITE(Melmetal, 64, 40, 13),
+        PALETTES(Melmetal),
+        ICON(Melmetal, 2),
+        FOOTPRINT(Melmetal),
+        ANIMATIONS(MELMETAL, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
     },
 #endif
 
