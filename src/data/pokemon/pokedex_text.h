@@ -5515,7 +5515,7 @@ const u8 gMilceryPokedexText[] = _(
     "particles in the air. Its body is made\n"
     "of cream.");
 
-const u8 gAlcremiePokedexText[] = _(
+const u8 gAlcremieVanillaCreamPokedexText[] = _(
     "When it trusts a Trainer, it will treat\n"
     "them to berries it's decorated with cream.");
 

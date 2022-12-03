@@ -7701,11 +7701,11 @@ const u32 gMonShinyPalette_Milcery[] = INCBIN_U32("graphics/pokemon/milcery/shin
 const u8 gMonIcon_Milcery[] = INCBIN_U8("graphics/pokemon/milcery/icon.4bpp");
 const u8 gMonFootprint_Milcery[] = INCBIN_U8("graphics/pokemon/milcery/footprint.1bpp");
 
-const u32 gMonFrontPic_Alcremie[] = INCBIN_U32("graphics/pokemon/alcremie/front.4bpp.lz");
-const u32 gMonPalette_Alcremie[] = INCBIN_U32("graphics/pokemon/alcremie/normal.gbapal.lz");
-const u32 gMonBackPic_Alcremie[] = INCBIN_U32("graphics/pokemon/alcremie/back.4bpp.lz");
-const u32 gMonShinyPalette_Alcremie[] = INCBIN_U32("graphics/pokemon/alcremie/shiny.gbapal.lz");
-const u8 gMonIcon_Alcremie[] = INCBIN_U8("graphics/pokemon/alcremie/icon.4bpp");
+const u32 gMonFrontPic_AlcremieVanillaCream[] = INCBIN_U32("graphics/pokemon/alcremie/front.4bpp.lz");
+const u32 gMonPalette_AlcremieVanillaCream[] = INCBIN_U32("graphics/pokemon/alcremie/normal.gbapal.lz");
+const u32 gMonBackPic_AlcremieVanillaCream[] = INCBIN_U32("graphics/pokemon/alcremie/back.4bpp.lz");
+const u32 gMonShinyPalette_AlcremieVanillaCream[] = INCBIN_U32("graphics/pokemon/alcremie/shiny.gbapal.lz");
+const u8 gMonIcon_AlcremieVanillaCream[] = INCBIN_U8("graphics/pokemon/alcremie/icon.4bpp");
 const u8 gMonFootprint_Alcremie[] = INCBIN_U8("graphics/pokemon/alcremie/footprint.1bpp");
 
 const u32 gMonFrontPic_AlcremieRubyCream[] = INCBIN_U32("graphics/pokemon/alcremie/ruby_cream/front.4bpp.lz");
