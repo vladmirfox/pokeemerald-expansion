@@ -293,35 +293,42 @@ struct BattlePokemon
     /*0x55*/ u32 otId;
 };
 
+struct Evolution
+{
+    u16 method;
+    u16 param;
+    u16 targetSpecies;
+};
+
 struct SpeciesInfo
 {
- /* 0x?? */ u8 baseHP;
- /* 0x?? */ u8 baseAttack;
- /* 0x?? */ u8 baseDefense;
- /* 0x?? */ u8 baseSpeed;
- /* 0x?? */ u8 baseSpAttack;
- /* 0x?? */ u8 baseSpDefense;
- /* 0x?? */ u8 type1;
- /* 0x?? */ u8 type2;
- /* 0x?? */ u8 catchRate;
- /* 0x?? */ u16 expYield;
- /* 0x?? */ u16 evYield_HP:2;
- /* 0x?? */ u16 evYield_Attack:2;
- /* 0x?? */ u16 evYield_Defense:2;
- /* 0x?? */ u16 evYield_Speed:2;
- /* 0x?? */ u16 evYield_SpAttack:2;
- /* 0x?? */ u16 evYield_SpDefense:2;
+ /* 0x00 */ u8 baseHP;
+ /* 0x01 */ u8 baseAttack;
+ /* 0x02 */ u8 baseDefense;
+ /* 0x03 */ u8 baseSpeed;
+ /* 0x04 */ u8 baseSpAttack;
+ /* 0x05 */ u8 baseSpDefense;
+ /* 0x06 */ u8 type1;
+ /* 0x07 */ u8 type2;
+ /* 0x08 */ u8 catchRate;
+ /* 0x09 */ u16 expYield;
+ /* 0x0A */ u16 evYield_HP:2;
+ /* 0x0A */ u16 evYield_Attack:2;
+ /* 0x0A */ u16 evYield_Defense:2;
+ /* 0x0A */ u16 evYield_Speed:2;
+ /* 0x0B */ u16 evYield_SpAttack:2;
+ /* 0x0B */ u16 evYield_SpDefense:2;
             u16 padding:4;
- /* 0x?? */ u16 itemCommon;
- /* 0x?? */ u16 itemRare;
- /* 0x?? */ u8 genderRatio;
- /* 0x?? */ u8 eggCycles;
- /* 0x?? */ u8 friendship;
- /* 0x?? */ u8 growthRate;
- /* 0x?? */ u8 eggGroup1;
- /* 0x?? */ u8 eggGroup2;
- /* 0x?? */ u16 abilities[NUM_ABILITY_SLOTS];
- /* 0x?? */ u8 safariZoneFleeRate;
+ /* 0x0C */ u16 itemCommon;
+ /* 0x0E */ u16 itemRare;
+ /* 0x10 */ u8 genderRatio;
+ /* 0x11 */ u8 eggCycles;
+ /* 0x12 */ u8 friendship;
+ /* 0x13 */ u8 growthRate;
+ /* 0x14 */ u8 eggGroup1;
+ /* 0x15 */ u8 eggGroup2;
+ /* 0x16 */ u16 abilities[NUM_ABILITY_SLOTS];
+            u8 safariZoneFleeRate;
             // Pokédex data
  /* 0x?? */ u8 categoryName[13];
  /* 0x?? */ u16 natDexNum;
@@ -361,10 +368,11 @@ struct SpeciesInfo
             u8 padding2:2;
             u8 enemyMonElevation; // This determines how much higher above the usual position the enemy Pokémon is during battle. Species that float or fly have nonzero values.
             // Flags
- /* 0x?? */ u16 flags;
+            u16 flags;
             // Move Data
- /* 0x?? */ const struct LevelUpMove *const levelUpLearnset;
+            const struct LevelUpMove *const levelUpLearnset;
             const u16 *const teachableLearnset;
+            const struct Evolution *const evolutions;
 };
 
 struct BattleMove
@@ -397,13 +405,6 @@ struct LevelUpMove
 {
     u16 move;
     u16 level;
-};
-
-struct Evolution
-{
-    u16 method;
-    u16 param;
-    u16 targetSpecies;
 };
 
 struct FormChange
@@ -517,6 +518,7 @@ u8 GetSecretBaseTrainerPicIndex(void);
 u8 GetSecretBaseTrainerClass(void);
 bool8 IsPlayerPartyAndPokemonStorageFull(void);
 bool8 IsPokemonStorageFull(void);
+u16 SanitizeSpeciesId(u16 species);
 const u8 *GetSpeciesName(u16 species);
 u8 CalculatePPWithBonus(u16 move, u8 ppBonuses, u8 moveIndex);
 void RemoveMonPPBonus(struct Pokemon *mon, u8 moveIndex);
@@ -603,6 +605,5 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove);
 bool32 SpeciesHasGenderDifferences(u16 species);
 void TryToSetBattleFormChangeMoves(struct Pokemon *mon);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);
-u16 SanitizeSpeciesId(u16 species);
 
 #endif // GUARD_POKEMON_H

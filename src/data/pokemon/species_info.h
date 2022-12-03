@@ -114,6 +114,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Bulbasaur, 4),
         FOOTPRINT(Bulbasaur),
         ANIMATIONS(BULBASAUR, 0, ANIM_V_JUMPS_H_JUMPS, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sBulbasaurEvolutions,
     },
 
     [SPECIES_IVYSAUR] =
@@ -150,6 +151,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Ivysaur, 4),
         FOOTPRINT(Ivysaur),
         ANIMATIONS(IVYSAUR, 0, ANIM_V_STRETCH, BACK_ANIM_H_SLIDE),
+        .evolutions = sIvysaurEvolutions,
     },
 
 #define VENUSAUR_MISC_INFO                  \
@@ -188,6 +190,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Venusaur),
         ICON(Venusaur, 4),
         ANIMATIONS(VENUSAUR, 0, ANIM_ROTATE_UP_SLAM_DOWN, BACK_ANIM_H_SLIDE),
+        .evolutions = sVenusaurEvolutions,
         VENUSAUR_MISC_INFO,
     },
     [SPECIES_VENUSAUR_MEGA] =
@@ -245,6 +248,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Charmander, 0),
         FOOTPRINT(Charmander),
         ANIMATIONS(CHARMANDER, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sCharmanderEvolutions,
     },
 
     [SPECIES_CHARMELEON] =
@@ -281,6 +285,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Charmeleon, 0),
         FOOTPRINT(Charmeleon),
         ANIMATIONS(CHARMELEON, 0, ANIM_BACK_AND_LUNGE, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sCharmeleonEvolutions,
     },
 
 #define CHARIZARD_MISC_INFO                 \
@@ -318,6 +323,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Charizard),
         ICON(Charizard, 0),
         ANIMATIONS(CHARIZARD, 0, ANIM_V_SHAKE, BACK_ANIM_SHAKE_GLOW_RED),
+        .evolutions = sCharizardEvolutions,
         CHARIZARD_MISC_INFO,
     },
     [SPECIES_CHARIZARD_MEGA_X] =
@@ -397,6 +403,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Squirtle, 0),
         FOOTPRINT(Squirtle),
         ANIMATIONS(SQUIRTLE, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sSquirtleEvolutions,
     },
 
     [SPECIES_WARTORTLE] =
@@ -433,6 +440,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Wartortle, 2),
         FOOTPRINT(Wartortle),
         ANIMATIONS(WARTORTLE, 0, ANIM_SHRINK_GROW, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sWartortleEvolutions,
     },
 
 #define BLASTOISE_MISC_INFO                 \
@@ -470,6 +478,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Blastoise),
         ICON(Blastoise, 2),
         ANIMATIONS(BLASTOISE, 50, ANIM_V_SHAKE_TWICE, BACK_ANIM_SHAKE_GLOW_BLUE),
+        .evolutions = sBlastoiseEvolutions,
         BLASTOISE_MISC_INFO,
     },
     [SPECIES_BLASTOISE_MEGA] =
@@ -527,6 +536,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Caterpie, 1),
         FOOTPRINT(Caterpie),
         ANIMATIONS(CATERPIE, 0, ANIM_SWING_CONCAVE, BACK_ANIM_H_SLIDE),
+        .evolutions = sCaterpieEvolutions,
     },
 
     [SPECIES_METAPOD] =
@@ -562,6 +572,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Metapod, 1),
         FOOTPRINT(Metapod),
         ANIMATIONS(METAPOD, 0, ANIM_SWING_CONCAVE, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sMetapodEvolutions,
     },
 
     [SPECIES_BUTTERFREE] =
@@ -639,6 +650,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Weedle, 2),
         FOOTPRINT(Weedle),
         ANIMATIONS(WEEDLE, 10, ANIM_H_SLIDE_SLOW, BACK_ANIM_H_SLIDE),
+        .evolutions = sWeedleEvolutions,
     },
 
     [SPECIES_KAKUNA] =
@@ -674,6 +686,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Kakuna, 2),
         FOOTPRINT(Kakuna),
         ANIMATIONS(KAKUNA, 20, ANIM_GLOW_ORANGE, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sKakunaEvolutions,
     },
 
 #if P_UPDATED_STATS >= GEN_6
@@ -720,6 +733,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Beedrill),
         ICON(Beedrill, 2),
         ANIMATIONS(BEEDRILL, 35, ANIM_H_VIBRATE, BACK_ANIM_H_VIBRATE),
+        .evolutions = sBeedrillEvolutions,
         BEEDRILL_MISC_INFO,
     },
     [SPECIES_BEEDRILL_MEGA] =
@@ -777,6 +791,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Pidgey, 0),
         FOOTPRINT(Pidgey),
         ANIMATIONS(PIDGEY, 0, ANIM_V_STRETCH, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sPidgeyEvolutions,
     },
 
     [SPECIES_PIDGEOTTO] =
@@ -812,6 +827,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Pidgeotto, 0),
         FOOTPRINT(Pidgeotto),
         ANIMATIONS(PIDGEOTTO, 25, ANIM_V_STRETCH, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sPidgeottoEvolutions,
     },
 
 #if P_UPDATED_STATS >= GEN_6
@@ -856,6 +872,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Pidgeot),
         ICON(Pidgeot, 0),
         ANIMATIONS(PIDGEOT, 0, ANIM_FRONT_FLIP, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sPidgeotEvolutions,
         PIDGEOT_MISC_INFO,
     },
     [SPECIES_PIDGEOT_MEGA] =
@@ -919,6 +936,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Rattata),
         ICON(Rattata, 2),
         ANIMATIONS(RATTATA, 0, ANIM_RAPID_H_HOPS, BACK_ANIM_V_SHAKE_H_SLIDE),
+        .evolutions = sRattataEvolutions,
         RATTATA_MISC_INFO,
     },
     [SPECIES_RATTATA_ALOLAN] =
@@ -937,6 +955,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(RattataAlolan),
         ICON(RattataAlolan, 2),
         ANIMATIONS(RATTATA_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sRattataAlolanEvolutions,
         RATTATA_MISC_INFO,
     },
 
@@ -1030,6 +1049,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Spearow, 0),
         FOOTPRINT(Spearow),
         ANIMATIONS(SPEAROW, 0, ANIM_H_JUMPS, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sSpearowEvolutions,
     },
 
     [SPECIES_FEAROW] =
@@ -1102,6 +1122,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Ekans, 2),
         FOOTPRINT(Ekans),
         ANIMATIONS(EKANS, 30, ANIM_V_STRETCH, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sEkansEvolutions,
     },
 
     [SPECIES_ARBOK] =
@@ -1191,6 +1212,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Pikachu),
         ICON(Pikachu, 2),
         ANIMATIONS(PIKACHU, 0, ANIM_FLASH_YELLOW, BACK_ANIM_SHAKE_FLASH_YELLOW),
+        .evolutions = sPikachuEvolutions,
         PIKACHU_MISC_INFO,
     },
 
@@ -1472,6 +1494,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Sandshrew),
         ICON(Sandshrew, 2),
         ANIMATIONS(SANDSHREW, 0, ANIM_SWING_CONCAVE_FAST_SHORT, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sSandshrewEvolutions,
         SANDSHREW_MISC_INFO,
     },
     [SPECIES_SANDSHREW_ALOLAN] =
@@ -1495,6 +1518,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SandshrewAlolan),
         ICON(SandshrewAlolan, 0),
         ANIMATIONS(SANDSHREW_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sSandshrewAlolanEvolutions,
         SANDSHREW_MISC_INFO,
     },
 
@@ -1586,6 +1610,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(NidoranF, 0),
         FOOTPRINT(NidoranF),
         ANIMATIONS(NIDORAN_F, 28, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sNidoranFEvolutions,
     },
 
     [SPECIES_NIDORINA] =
@@ -1621,6 +1646,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Nidorina, 0),
         FOOTPRINT(Nidorina),
         ANIMATIONS(NIDORINA, 0, ANIM_V_STRETCH, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sNidorinaEvolutions,
     },
 
     [SPECIES_NIDOQUEEN] =
@@ -1695,6 +1721,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(NidoranM, 2),
         FOOTPRINT(NidoranM),
         ANIMATIONS(NIDORAN_M, 0, ANIM_GROW_VIBRATE, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sNidoranMEvolutions,
     },
 
     [SPECIES_NIDORINO] =
@@ -1730,6 +1757,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Nidorino, 2),
         FOOTPRINT(Nidorino),
         ANIMATIONS(NIDORINO, 0, ANIM_V_STRETCH, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sNidorinoEvolutions,
     },
 
     [SPECIES_NIDOKING] =
@@ -1811,6 +1839,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Clefairy, 0),
         FOOTPRINT(Clefairy),
         ANIMATIONS(CLEFAIRY, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sClefairyEvolutions,
     },
 
     [SPECIES_CLEFABLE] =
@@ -1892,6 +1921,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Vulpix),
         ICON(Vulpix, 5),
         ANIMATIONS(VULPIX, 0, ANIM_V_STRETCH, BACK_ANIM_CONCAVE_ARC_LARGE),
+        .evolutions = sVulpixEvolutions,
         VULPIX_MISC_INFO,
     },
 
@@ -1910,6 +1940,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(VulpixAlolan),
         ICON(VulpixAlolan, 2),
         ANIMATIONS(VULPIX_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sVulpixAlolanEvolutions,
         VULPIX_MISC_INFO,
     },
 
@@ -2010,6 +2041,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Jigglypuff, 0),
         FOOTPRINT(Jigglypuff),
         ANIMATIONS(JIGGLYPUFF, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sJigglypuffEvolutions,
     },
 
     [SPECIES_WIGGLYTUFF] =
@@ -2086,6 +2118,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Zubat, 2),
         FOOTPRINT(Zubat),
         ANIMATIONS(ZUBAT, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONVEX_DOUBLE_ARC),
+        .evolutions = sZubatEvolutions,
     },
 
     [SPECIES_GOLBAT] =
@@ -2122,6 +2155,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Golbat, 2),
         FOOTPRINT(Golbat),
         ANIMATIONS(GOLBAT, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_V_SHAKE),
+        .evolutions = sGolbatEvolutions,
     },
 
     [SPECIES_ODDISH] =
@@ -2158,6 +2192,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Oddish, 4),
         FOOTPRINT(Oddish),
         ANIMATIONS(ODDISH, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_H_SLIDE),
+        .evolutions = sOddishEvolutions,
     },
 
     [SPECIES_GLOOM] =
@@ -2194,6 +2229,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Gloom, 0),
         FOOTPRINT(Gloom),
         ANIMATIONS(GLOOM, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_H_SLIDE),
+        .evolutions = sGloomEvolutions,
     },
 
     [SPECIES_VILEPLUME] =
@@ -2271,6 +2307,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Paras, 0),
         FOOTPRINT(Paras),
         ANIMATIONS(PARAS, 10, ANIM_H_SLIDE_SLOW, BACK_ANIM_H_SLIDE),
+        .evolutions = sParasEvolutions,
     },
 
     [SPECIES_PARASECT] =
@@ -2344,6 +2381,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Venonat, 2),
         FOOTPRINT(Venonat),
         ANIMATIONS(VENONAT, 20, ANIM_V_JUMPS_H_JUMPS, BACK_ANIM_V_SHAKE_H_SLIDE),
+        .evolutions = sVenonatEvolutions,
     },
 
     [SPECIES_VENOMOTH] =
@@ -2423,6 +2461,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Diglett),
         ICON(Diglett, 2),
         ANIMATIONS(DIGLETT, 25, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE),
+        .evolutions = sDiglettEvolutions,
         DIGLETT_MISC_INFO,
     },
     [SPECIES_DIGLETT_ALOLAN] =
@@ -2445,6 +2484,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(DiglettAlolan),
         ICON(DiglettAlolan, 2),
         ANIMATIONS(DIGLETT_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sDiglettAlolanEvolutions,
         DIGLETT_MISC_INFO,
     },
 
@@ -2544,6 +2584,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Meowth),
         ICON(Meowth, 1),
         ANIMATIONS(MEOWTH, 40, ANIM_V_JUMPS_SMALL, BACK_ANIM_CONCAVE_ARC_LARGE),
+        .evolutions = sMeowthEvolutions,
         MEOWTH_MISC_INFO,
     },
     [SPECIES_MEOWTH_ALOLAN] =
@@ -2570,6 +2611,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MeowthGalarian),
         ICON(MeowthAlolan, 2),
         ANIMATIONS(MEOWTH_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sMeowthAlolanEvolutions,
         MEOWTH_MISC_INFO,
     },
     [SPECIES_MEOWTH_GALARIAN] =
@@ -2595,6 +2637,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MeowthAlolan),
         ICON(MeowthGalarian, 0),
         ANIMATIONS(MEOWTH_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sMeowthGalarianEvolutions,
         MEOWTH_MISC_INFO,
     },
 
@@ -2694,6 +2737,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Psyduck, 1),
         FOOTPRINT(Psyduck),
         ANIMATIONS(PSYDUCK, 0, ANIM_V_JUMPS_H_JUMPS, BACK_ANIM_H_SLIDE),
+        .evolutions = sPsyduckEvolutions,
     },
 
     [SPECIES_GOLDUCK] =
@@ -2764,6 +2808,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Mankey, 1),
         FOOTPRINT(Mankey),
         ANIMATIONS(MANKEY, 20, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_CONCAVE_ARC_LARGE),
+        .evolutions = sMankeyEvolutions,
     },
 
     [SPECIES_PRIMEAPE] =
@@ -2839,6 +2884,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Growlithe),
         ICON(Growlithe, 3),
         ANIMATIONS(GROWLITHE, 30, ANIM_BACK_AND_LUNGE, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sGrowlitheEvolutions,
         GROWLITHE_MISC_INFO,
     },
     [SPECIES_GROWLITHE_HISUIAN] =
@@ -2859,6 +2905,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(GrowlitheHisuian),
         ICON(GrowlitheHisuian, 0),
         ANIMATIONS(GROWLITHE_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sGrowlitheHisuianEvolutions,
         GROWLITHE_MISC_INFO,
     },
 
@@ -2944,6 +2991,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Poliwag, 0),
         FOOTPRINT(Poliwag),
         ANIMATIONS(POLIWAG, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sPoliwagEvolutions,
     },
 
     [SPECIES_POLIWHIRL] =
@@ -2980,6 +3028,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Poliwhirl, 0),
         FOOTPRINT(Poliwhirl),
         ANIMATIONS(POLIWHIRL, 5, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_V_SHAKE),
+        .evolutions = sPoliwhirlEvolutions,
     },
 
     [SPECIES_POLIWRATH] =
@@ -3056,6 +3105,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Abra, 2),
         FOOTPRINT(Abra),
         ANIMATIONS(ABRA, 0, ANIM_H_JUMPS, BACK_ANIM_SHRINK_GROW_VIBRATE),
+        .evolutions = sAbraEvolutions,
     },
 
     [SPECIES_KADABRA] =
@@ -3092,6 +3142,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Kadabra, 2),
         FOOTPRINT(Kadabra),
         ANIMATIONS(KADABRA, 0, ANIM_GROW_VIBRATE, BACK_ANIM_SHRINK_GROW_VIBRATE),
+        .evolutions = sKadabraEvolutions,
     },
 
 #if P_UPDATED_STATS >= GEN_6
@@ -3136,6 +3187,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Alakazam),
         ICON(Alakazam, 2),
         ANIMATIONS(ALAKAZAM, 0, ANIM_GROW_VIBRATE, BACK_ANIM_GROW_STUTTER),
+        .evolutions = sAlakazamEvolutions,
         ALAKAZAM_MISC_INFO,
     },
     [SPECIES_ALAKAZAM_MEGA] =
@@ -3195,6 +3247,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Machop, 0),
         FOOTPRINT(Machop),
         ANIMATIONS(MACHOP, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sMachopEvolutions,
     },
 
     [SPECIES_MACHOKE] =
@@ -3231,6 +3284,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Machoke, 2),
         FOOTPRINT(Machoke),
         ANIMATIONS(MACHOKE, 0, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE),
+        .evolutions = sMachokeEvolutions,
     },
 
     [SPECIES_MACHAMP] =
@@ -3302,6 +3356,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Bellsprout, 1),
         FOOTPRINT(Bellsprout),
         ANIMATIONS(BELLSPROUT, 0, ANIM_H_JUMPS, BACK_ANIM_V_STRETCH),
+        .evolutions = sBellsproutEvolutions,
     },
 
     [SPECIES_WEEPINBELL] =
@@ -3337,6 +3392,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Weepinbell, 1),
         FOOTPRINT(Weepinbell),
         ANIMATIONS(WEEPINBELL, 3, ANIM_SWING_CONVEX, BACK_ANIM_V_STRETCH),
+        .evolutions = sWeepinbellEvolutions,
     },
 
     [SPECIES_VICTREEBEL] =
@@ -3412,6 +3468,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Tentacool, 0),
         FOOTPRINT(Tentacool),
         ANIMATIONS(TENTACOOL, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_H_SLIDE),
+        .evolutions = sTentacoolEvolutions,
     },
 
     [SPECIES_TENTACRUEL] =
@@ -3493,6 +3550,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Geodude, 1),
         ANIMATIONS(GEODUDE, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL, BACK_ANIM_V_SHAKE_LOW),
         KANTONIAN_GEODUDE_FAMILY_STATS,
+        .evolutions = sGeodudeEvolutions,
         GEODUDE_MISC_INFO,
     },
 
@@ -3515,6 +3573,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(GeodudeAlolan, 2),
         ANIMATIONS(GEODUDE_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         ALOLAN_GEODUDE_FAMILY_STATS,
+        .evolutions = sGeodudeAlolanEvolutions,
         GEODUDE_MISC_INFO,
     },
 
@@ -3544,6 +3603,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Graveler, 1),
         ANIMATIONS(GRAVELER, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL, BACK_ANIM_H_SHAKE),
         KANTONIAN_GEODUDE_FAMILY_STATS,
+        .evolutions = sGravelerEvolutions,
         GRAVELER_MISC_INFO,
     },
 
@@ -3559,6 +3619,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(GravelerAlolan, 2),
         ANIMATIONS(GRAVELER_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         ALOLAN_GEODUDE_FAMILY_STATS,
+        .evolutions = sGravelerAlolanEvolutions,
         GRAVELER_MISC_INFO,
     },
 
@@ -3651,6 +3712,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Ponyta, 3),
         ANIMATIONS(PONYTA, 0, ANIM_GLOW_ORANGE, BACK_ANIM_SHAKE_GLOW_RED),
         KANTONIAN_PONYTA_FAMILY_STATS,
+        .evolutions = sPonytaEvolutions,
         PONYTA_MISC_INFO,
     },
 
@@ -3673,6 +3735,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(PonytaGalarian, 2),
         ANIMATIONS(PONYTA_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
         GALARIAN_PONYTA_FAMILY_STATS,
+        .evolutions = sPonytaGalarianEvolutions,
         PONYTA_MISC_INFO,
     },
 
@@ -3756,6 +3819,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Slowpoke),
         ICON(Slowpoke, 0),
         ANIMATIONS(SLOWPOKE, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_H_SLIDE),
+        .evolutions = sSlowpokeEvolutions,
         SLOWPOKE_MISC_INFO,
     },
     [SPECIES_SLOWPOKE_GALARIAN] =
@@ -3770,6 +3834,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SlowpokeGalarian),
         ICON(SlowpokeGalarian, 1),
         ANIMATIONS(SLOWPOKE_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sSlowpokeGalarianEvolutions,
         SLOWPOKE_MISC_INFO,
     },
 
@@ -3809,6 +3874,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Slowbro),
         ICON(Slowbro, 0),
         ANIMATIONS(SLOWBRO, 0, ANIM_GROW_VIBRATE, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sSlowbroEvolutions,
         SLOWBRO_MISC_INFO,
     },
     [SPECIES_SLOWBRO_MEGA] =
@@ -3898,6 +3964,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Magnemite, 0),
         FOOTPRINT(Magnemite),
         ANIMATIONS(MAGNEMITE, 0, ANIM_TUMBLING_FRONT_FLIP_TWICE, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sMagnemiteEvolutions,
     },
 
     [SPECIES_MAGNETON] =
@@ -3935,6 +4002,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Magneton, 0),
         FOOTPRINT(Magneton),
         ANIMATIONS(MAGNETON, 0, ANIM_FLASH_YELLOW, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sMagnetonEvolutions,
     },
 
 #if P_UPDATED_STATS >= GEN_7
@@ -4002,6 +4070,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(FarfetchdGalarian),
         ICON(FarfetchdGalarian, 1),
         ANIMATIONS(FARFETCHD_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sFarfetchdGalarianEvolutions,
         FARFETCHD_MISC_INFO,
     },
 
@@ -4039,6 +4108,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Doduo, 2),
         FOOTPRINT(Doduo),
         ANIMATIONS(DODUO, 0, ANIM_H_SHAKE_SLOW, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sDoduoEvolutions,
     },
 
     [SPECIES_DODRIO] =
@@ -4114,6 +4184,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Seel, 0),
         FOOTPRINT(Seel),
         ANIMATIONS(SEEL, 0, ANIM_H_STRETCH, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sSeelEvolutions,
     },
 
     [SPECIES_DEWGONG] =
@@ -4192,6 +4263,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Grimer),
         ICON(Grimer, 2),
         ANIMATIONS(GRIMER, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_V_STRETCH),
+        .evolutions = sGrimerEvolutions,
         KANTONIAN_GRIMER_FAMILY_STATS,
         GRIMER_MISC_INFO,
     },
@@ -4213,6 +4285,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(GrimerAlolan),
         ICON(GrimerAlolan, 1),
         ANIMATIONS(GRIMER_ALOLAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sGrimerAlolanEvolutions,
         ALOLAN_GRIMER_FAMILY_STATS,
         GRIMER_MISC_INFO,
     },
@@ -4296,6 +4369,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Shellder, 2),
         FOOTPRINT(Shellder),
         ANIMATIONS(SHELLDER, 20, ANIM_TWIST, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sShellderEvolutions,
     },
 
     [SPECIES_CLOYSTER] =
@@ -4369,6 +4443,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Gastly, 2),
         FOOTPRINT(Gastly),
         ANIMATIONS(GASTLY, 0, ANIM_CIRCLE_C_CLOCKWISE_SLOW, BACK_ANIM_H_VIBRATE),
+        .evolutions = sGastlyEvolutions,
     },
 
     [SPECIES_HAUNTER] =
@@ -4405,6 +4480,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Haunter, 2),
         FOOTPRINT(Haunter),
         ANIMATIONS(HAUNTER, 23, ANIM_FLICKER_INCREASING, BACK_ANIM_H_VIBRATE),
+        .evolutions = sHaunterEvolutions,
     },
 
 #define GENGAR_MISC_INFO                    \
@@ -4446,6 +4522,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Gengar),
         ICON(Gengar, 2),
         ANIMATIONS(GENGAR, 0, ANIM_GROW_IN_STAGES, BACK_ANIM_SHRINK_GROW_VIBRATE),
+        .evolutions = sGengarEvolutions,
         GENGAR_MISC_INFO,
     },
     [SPECIES_GENGAR_MEGA] =
@@ -4503,6 +4580,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Onix, 2),
         FOOTPRINT(Onix),
         ANIMATIONS(ONIX, 0, ANIM_H_SHAKE, BACK_ANIM_V_SHAKE),
+        .evolutions = sOnixEvolutions,
     },
 
     [SPECIES_DROWZEE] =
@@ -4538,6 +4616,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Drowzee, 2),
         FOOTPRINT(Drowzee),
         ANIMATIONS(DROWZEE, 48, ANIM_V_STRETCH, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sDrowzeeEvolutions,
     },
 
     [SPECIES_HYPNO] =
@@ -4608,6 +4687,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Krabby, 0),
         FOOTPRINT(Krabby),
         ANIMATIONS(KRABBY, 0, ANIM_H_SLIDE, BACK_ANIM_V_SHAKE_H_SLIDE),
+        .evolutions = sKrabbyEvolutions,
     },
 
     [SPECIES_KINGLER] =
@@ -4683,6 +4763,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Voltorb),
         ICON(Voltorb, 0),
         ANIMATIONS(VOLTORB, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sVoltorbEvolutions,
         VOLTORB_MISC_INFO,
     },
     [SPECIES_VOLTORB_HISUIAN] =
@@ -4697,6 +4778,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(VoltorbHisuian),
         ICON(VoltorbHisuian, 0),
         ANIMATIONS(VOLTORB_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sVoltorbHisuianEvolutions,
         VOLTORB_MISC_INFO,
     },
 
@@ -4783,6 +4865,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Exeggcute, 0),
         FOOTPRINT(Exeggcute),
         ANIMATIONS(EXEGGCUTE, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_H_SLIDE),
+        .evolutions = sExeggcuteEvolutions,
     },
 
 #define EXEGGUTOR_MISC_INFO                 \
@@ -4885,6 +4968,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Cubone, 2),
         FOOTPRINT(Cubone),
         ANIMATIONS(CUBONE, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sCuboneEvolutions,
     },
 
 #define MAROWAK_MISC_INFO                   \
@@ -5047,6 +5131,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Lickitung, 0),
         FOOTPRINT(Lickitung),
         ANIMATIONS(LICKITUNG, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_H_SLIDE),
+        .evolutions = sLickitungEvolutions,
     },
 
     [SPECIES_KOFFING] =
@@ -5084,6 +5169,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Koffing, 2),
         FOOTPRINT(Koffing),
         ANIMATIONS(KOFFING, 0, ANIM_V_SLIDE_WOBBLE_SMALL, BACK_ANIM_GROW),
+        .evolutions = sKoffingEvolutions,
     },
 
 #define WEEZING_MISC_INFO                   \
@@ -5178,6 +5264,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Rhyhorn, 1),
         FOOTPRINT(Rhyhorn),
         ANIMATIONS(RHYHORN, 0, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE_LOW),
+        .evolutions = sRhyhornEvolutions,
     },
 
     [SPECIES_RHYDON] =
@@ -5213,6 +5300,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Rhydon, 1),
         FOOTPRINT(Rhydon),
         ANIMATIONS(RHYDON, 0, ANIM_H_SHAKE, BACK_ANIM_V_SHAKE_LOW),
+        .evolutions = sRhydonEvolutions,
     },
 
     [SPECIES_CHANSEY] =
@@ -5249,6 +5337,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Chansey, 0),
         FOOTPRINT(Chansey),
         ANIMATIONS(CHANSEY, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sChanseyEvolutions,
     },
 
     [SPECIES_TANGELA] =
@@ -5284,6 +5373,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Tangela, 0),
         FOOTPRINT(Tangela),
         ANIMATIONS(TANGELA, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL, BACK_ANIM_V_STRETCH),
+        .evolutions = sTangelaEvolutions,
     },
 
 #define KANGASKHAN_MISC_INFO                    \
@@ -5321,6 +5411,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Kangaskhan),
         ICON(Kangaskhan, 2),
         ANIMATIONS(KANGASKHAN, 0, ANIM_V_STRETCH, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sKangaskhanEvolutions,
         KANGASKHAN_MISC_INFO,
     },
     [SPECIES_KANGASKHAN_MEGA] =
@@ -5380,6 +5471,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Horsea, 0),
         FOOTPRINT(Horsea),
         ANIMATIONS(HORSEA, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sHorseaEvolutions,
     },
 
     [SPECIES_SEADRA] =
@@ -5417,6 +5509,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Seadra, 0),
         FOOTPRINT(Seadra),
         ANIMATIONS(SEADRA, 0, ANIM_V_SLIDE, BACK_ANIM_CONVEX_DOUBLE_ARC),
+        .evolutions = sSeadraEvolutions,
     },
 
     [SPECIES_GOLDEEN] =
@@ -5453,6 +5546,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Goldeen, 0),
         FOOTPRINT(Goldeen),
         ANIMATIONS(GOLDEEN, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_CONVEX_DOUBLE_ARC),
+        .evolutions = sGoldeenEvolutions,
     },
 
     [SPECIES_SEAKING] =
@@ -5526,6 +5620,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Staryu, 2),
         FOOTPRINT(Staryu),
         ANIMATIONS(STARYU, 0, ANIM_TWIST_TWICE, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sStaryuEvolutions,
     },
 
     [SPECIES_STARMIE] =
@@ -5629,6 +5724,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(MrMimeGalarian),
         ICON(MrMimeGalarian, 0),
         ANIMATIONS(MR_MIME_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sMrMimeGalarianEvolutions,
         MR_MIME_MISC_INFO,
     },
 
@@ -5665,6 +5761,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Scyther, 1),
         FOOTPRINT(Scyther),
         ANIMATIONS(SCYTHER, 10, ANIM_H_VIBRATE, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sScytherEvolutions,
     },
 
     [SPECIES_JYNX] =
@@ -5736,6 +5833,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Electabuzz, 1),
         FOOTPRINT(Electabuzz),
         ANIMATIONS(ELECTABUZZ, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL_SLOW, BACK_ANIM_SHAKE_FLASH_YELLOW),
+        .evolutions = sElectabuzzEvolutions,
     },
 
     [SPECIES_MAGMAR] =
@@ -5772,6 +5870,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Magmar, 0),
         FOOTPRINT(Magmar),
         ANIMATIONS(MAGMAR, 0, ANIM_H_SHAKE, BACK_ANIM_SHAKE_GLOW_RED),
+        .evolutions = sMagmarEvolutions,
     },
 
 #define PINSIR_MISC_INFO                    \
@@ -5809,6 +5908,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Pinsir),
         ICON(Pinsir, 2),
         ANIMATIONS(PINSIR, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_SHAKE_LOW),
+        .evolutions = sPinsirEvolutions,
         PINSIR_MISC_INFO,
     },
     [SPECIES_PINSIR_MEGA] =
@@ -5904,6 +6004,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Magikarp, 0),
         FOOTPRINT(Magikarp),
         ANIMATIONS(MAGIKARP, 0, ANIM_BOUNCE_ROTATE_TO_SIDES, BACK_ANIM_CONCAVE_ARC_LARGE),
+        .evolutions = sMagikarpEvolutions,
     },
 
 #define GYARADOS_MISC_INFO                  \
@@ -5941,6 +6042,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Gyarados),
         ICON(Gyarados, 0),
         ANIMATIONS(GYARADOS, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL, BACK_ANIM_V_SHAKE),
+        .evolutions = sGyaradosEvolutions,
         GYARADOS_MISC_INFO,
     },
     [SPECIES_GYARADOS_MEGA] =
@@ -6076,6 +6178,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Eevee, 2),
         FOOTPRINT(Eevee),
         ANIMATIONS(EEVEE, 0, ANIM_V_STRETCH, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sEeveelutions,
     },
 
     [SPECIES_VAPOREON] =
@@ -6216,6 +6319,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Porygon, 0),
         FOOTPRINT(Porygon),
         ANIMATIONS(PORYGON, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_H_VIBRATE),
+        .evolutions = sPorygonEvolutions,
     },
 
     [SPECIES_OMANYTE] =
@@ -6251,6 +6355,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Omanyte, 0),
         FOOTPRINT(Omanyte),
         ANIMATIONS(OMANYTE, 0, ANIM_V_SLIDE_WOBBLE_SMALL, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sOmanyteEvolutions,
     },
 
     [SPECIES_OMASTAR] =
@@ -6321,6 +6426,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Kabuto, 2),
         FOOTPRINT(Kabuto),
         ANIMATIONS(KABUTO, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sKabutoEvolutions,
     },
 
     [SPECIES_KABUTOPS] =
@@ -6394,6 +6500,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Aerodactyl),
         ICON(Aerodactyl, 2),
         ANIMATIONS(AERODACTYL, 0, ANIM_V_SLIDE_SLOW, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sAerodactylEvolutions,
         AERODACTYL_MISC_INFO,
     },
     [SPECIES_AERODACTYL_MEGA] =
@@ -6687,6 +6794,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Dratini, 0),
         FOOTPRINT(Dratini),
         ANIMATIONS(DRATINI, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_H_SLIDE),
+        .evolutions = sDratiniEvolutions,
     },
 
     [SPECIES_DRAGONAIR] =
@@ -6723,6 +6831,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Dragonair, 0),
         FOOTPRINT(Dragonair),
         ANIMATIONS(DRAGONAIR, 0, ANIM_GROW_VIBRATE, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sDragonairEvolutions,
     },
 
     [SPECIES_DRAGONITE] =
@@ -6797,6 +6906,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Mewtwo),
         ICON(Mewtwo, 2),
         ANIMATIONS(MEWTWO, 0, ANIM_GROW_VIBRATE, BACK_ANIM_GROW_STUTTER),
+        .evolutions = sMewtwoEvolutions,
         SPECIES_MEWTWO_MISC_INFO,
     },
     [SPECIES_MEWTWO_MEGA_X] =
@@ -6917,6 +7027,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Chikorita, 1),
         FOOTPRINT(Chikorita),
         ANIMATIONS(CHIKORITA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sChikoritaEvolutions,
     },
 
     [SPECIES_BAYLEEF] =
@@ -6953,6 +7064,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Bayleef, 1),
         FOOTPRINT(Bayleef),
         ANIMATIONS(BAYLEEF, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_H_SLIDE),
+        .evolutions = sBayleefEvolutions,
     },
 
     [SPECIES_MEGANIUM] =
@@ -7024,6 +7136,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Cyndaquil, 3),
         FOOTPRINT(Cyndaquil),
         ANIMATIONS(CYNDAQUIL, 0, ANIM_V_STRETCH, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sCyndaquilEvolutions,
     },
 
     [SPECIES_QUILAVA] =
@@ -7060,6 +7173,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Quilava, 3),
         FOOTPRINT(Quilava),
         ANIMATIONS(QUILAVA, 0, ANIM_H_STRETCH, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sQuilavaEvolutions,
     },
 
 #define TYPHLOSION_MISC_INFO    \
@@ -7154,6 +7268,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Totodile, 0),
         FOOTPRINT(Totodile),
         ANIMATIONS(TOTODILE, 0, ANIM_H_JUMPS, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sTotodileEvolutions,
     },
 
     [SPECIES_CROCONAW] =
@@ -7190,6 +7305,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Croconaw, 0),
         FOOTPRINT(Croconaw),
         ANIMATIONS(CROCONAW, 0, ANIM_H_SHAKE, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sCroconawEvolutions,
     },
 
     [SPECIES_FERALIGATR] =
@@ -7261,6 +7377,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Sentret, 2),
         FOOTPRINT(Sentret),
         ANIMATIONS(SENTRET, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sSentretEvolutions,
     },
 
     [SPECIES_FURRET] =
@@ -7331,6 +7448,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Hoothoot, 2),
         FOOTPRINT(Hoothoot),
         ANIMATIONS(HOOTHOOT, 0, ANIM_V_SLIDE_SLOW, BACK_ANIM_CONVEX_DOUBLE_ARC),
+        .evolutions = sHoothootEvolutions,
     },
 
     [SPECIES_NOCTOWL] =
@@ -7405,6 +7523,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Ledyba, 0),
         FOOTPRINT(Ledyba),
         ANIMATIONS(LEDYBA, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_V_SHAKE_H_SLIDE),
+        .evolutions = sLedybaEvolutions,
     },
 
     [SPECIES_LEDIAN] =
@@ -7476,6 +7595,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Spinarak, 1),
         FOOTPRINT(Spinarak),
         ANIMATIONS(SPINARAK, 0, ANIM_CIRCLE_C_CLOCKWISE_SLOW, BACK_ANIM_V_SHAKE_H_SLIDE),
+        .evolutions = sSpinarakEvolutions,
     },
 
     [SPECIES_ARIADOS] =
@@ -7587,6 +7707,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Chinchou, 2),
         FOOTPRINT(Chinchou),
         ANIMATIONS(CHINCHOU, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_V_STRETCH),
+        .evolutions = sChinchouEvolutions,
     },
 
     [SPECIES_LANTURN] =
@@ -7660,6 +7781,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Pichu),
         ICON(Pichu, 1),
         ANIMATIONS(PICHU, 0, ANIM_V_JUMPS_BIG, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sPichuEvolutions,
         PICHU_MISC_INFO,
     },
     [SPECIES_PICHU_SPIKY_EARED] =
@@ -7708,6 +7830,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Cleffa, 0),
         FOOTPRINT(Cleffa),
         ANIMATIONS(CLEFFA, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sCleffaEvolutions,
     },
 
     [SPECIES_IGGLYBUFF] =
@@ -7743,6 +7866,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Igglybuff, 1),
         FOOTPRINT(Igglybuff),
         ANIMATIONS(IGGLYBUFF, 0, ANIM_SWING_CONCAVE_FAST, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sIgglybuffEvolutions,
     },
 
 #if P_UPDATED_TYPES >= GEN_6
@@ -7783,6 +7907,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Togepi, 0),
         FOOTPRINT(Togepi),
         ANIMATIONS(TOGEPI, 0, ANIM_V_JUMPS_BIG, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sTogepiEvolutions,
     },
 
     [SPECIES_TOGETIC] =
@@ -7818,6 +7943,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Togetic, 0),
         FOOTPRINT(Togetic),
         ANIMATIONS(TOGETIC, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONVEX_DOUBLE_ARC),
+        .evolutions = sTogeticEvolutions,
     },
 
     [SPECIES_NATU] =
@@ -7853,6 +7979,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Natu, 1),
         FOOTPRINT(Natu),
         ANIMATIONS(NATU, 30, ANIM_H_JUMPS, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sNatuEvolutions,
     },
 
     [SPECIES_XATU] =
@@ -7924,6 +8051,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Mareep, 0),
         FOOTPRINT(Mareep),
         ANIMATIONS(MAREEP, 50, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sMareepEvolutions,
     },
 
     [SPECIES_FLAAFFY] =
@@ -7959,6 +8087,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Flaaffy, 0),
         FOOTPRINT(Flaaffy),
         ANIMATIONS(FLAAFFY, 0, ANIM_V_STRETCH, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sFlaaffyEvolutions,
     },
 
 #define AMPHAROS_MISC_INFO                  \
@@ -8002,6 +8131,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Ampharos),
         ICON(Ampharos, 0),
         ANIMATIONS(AMPHAROS, 10, ANIM_FLASH_YELLOW, BACK_ANIM_SHAKE_FLASH_YELLOW),
+        .evolutions = sAmpharosEvolutions,
         AMPHAROS_MISC_INFO,
     },
     [SPECIES_AMPHAROS_MEGA] =
@@ -8102,6 +8232,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Marill, 0),
         FOOTPRINT(Marill),
         ANIMATIONS(MARILL, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sMarillEvolutions,
     },
 
     [SPECIES_AZUMARILL] =
@@ -8253,6 +8384,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Hoppip, 1),
         FOOTPRINT(Hoppip),
         ANIMATIONS(HOPPIP, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_CONVEX_DOUBLE_ARC),
+        .evolutions = sHoppipEvolutions,
     },
 
     [SPECIES_SKIPLOOM] =
@@ -8289,6 +8421,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Skiploom, 1),
         FOOTPRINT(Skiploom),
         ANIMATIONS(SKIPLOOM, 0, ANIM_RISING_WOBBLE, BACK_ANIM_CONVEX_DOUBLE_ARC),
+        .evolutions = sSkiploomEvolutions,
     },
 
     [SPECIES_JUMPLUFF] =
@@ -8364,6 +8497,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Aipom, 2),
         FOOTPRINT(Aipom),
         ANIMATIONS(AIPOM, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_CONCAVE_ARC_LARGE),
+        .evolutions = sAipomEvolutions,
     },
 
     [SPECIES_SUNKERN] =
@@ -8399,6 +8533,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Sunkern, 1),
         FOOTPRINT(Sunkern),
         ANIMATIONS(SUNKERN, 0, ANIM_H_JUMPS, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sSunkernEvolutions,
     },
 
     [SPECIES_SUNFLORA] =
@@ -8471,6 +8606,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Yanma, 1),
         FOOTPRINT(Yanma),
         ANIMATIONS(YANMA, 0, ANIM_FIGURE_8, BACK_ANIM_CONVEX_DOUBLE_ARC),
+        .evolutions = sYanmaEvolutions,
     },
 
     [SPECIES_WOOPER] =
@@ -8506,6 +8642,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Wooper, 0),
         FOOTPRINT(Wooper),
         ANIMATIONS(WOOPER, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_STRETCH),
+        .evolutions = sWooperEvolutions,
     },
 
     [SPECIES_QUAGSIRE] =
@@ -8647,6 +8784,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Murkrow, 2),
         FOOTPRINT(Murkrow),
         ANIMATIONS(MURKROW, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sMurkrowEvolutions,
     },
 
 #define SLOWKING_MISC_INFO                  \
@@ -8744,6 +8882,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Misdreavus, 0),
         FOOTPRINT(Misdreavus),
         ANIMATIONS(MISDREAVUS, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_H_VIBRATE),
+        .evolutions = sMisdreavusEvolutions,
     },
 
 
@@ -9160,6 +9299,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Pineco, 0),
         FOOTPRINT(Pineco),
         ANIMATIONS(PINECO, 0, ANIM_SWING_CONCAVE, BACK_ANIM_H_SHAKE),
+        .evolutions = sPinecoEvolutions,
     },
 
     [SPECIES_FORRETRESS] =
@@ -9266,6 +9406,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Gligar, 0),
         FOOTPRINT(Gligar),
         ANIMATIONS(GLIGAR, 0, ANIM_SHRINK_GROW, BACK_ANIM_SHRINK_GROW),
+        .evolutions = sGligarEvolutions,
     },
 
 #define STEELIX_MISC_INFO                   \
@@ -9304,6 +9445,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Steelix),
         ICON(Steelix, 0),
         ANIMATIONS(STEELIX, 45, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE),
+        .evolutions = sSteelixEvolutions,
         STEELIX_MISC_INFO,
     },
     [SPECIES_STEELIX_MEGA] =
@@ -9366,6 +9508,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Snubbull, 0),
         FOOTPRINT(Snubbull),
         ANIMATIONS(SNUBBULL, 0, ANIM_V_STRETCH, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sSnubbullEvolutions,
     },
 
     [SPECIES_GRANBULL] =
@@ -9458,6 +9601,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(QwilfishHisuian),
         ICON(QwilfishHisuian, 0),
         ANIMATIONS(QWILFISH_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sQwilfishHisuianEvolutions,
         QWILFISH_MISC_INFO,
     },
 
@@ -9496,6 +9640,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Scizor),
         ICON(Scizor, 0),
         ANIMATIONS(SCIZOR, 19, ANIM_H_VIBRATE, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sScizorEvolutions,
         SCIZOR_MISC_INFO,
     },
     [SPECIES_SCIZOR_MEGA] =
@@ -9593,6 +9738,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Heracross),
         ICON(Heracross, 0),
         ANIMATIONS(HERACROSS, 0, ANIM_V_STRETCH, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sHeracrossEvolutions,
         HERACROSS_MISC_INFO,
     },
     [SPECIES_HERACROSS_MEGA] =
@@ -9653,6 +9799,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Sneasel),
         ICON(Sneasel, 0),
         ANIMATIONS(SNEASEL, 0, ANIM_H_JUMPS, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sSneaselEvolutions,
         SNEASEL_MISC_INFO,
     },
     [SPECIES_SNEASEL_HISUIAN] =
@@ -9669,6 +9816,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SneaselHisuian),
         ICON(SneaselHisuian, 2),
         ANIMATIONS(SNEASEL_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sSneaselHisuianEvolutions,
         SNEASEL_MISC_INFO,
     },
 
@@ -9705,6 +9853,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Teddiursa, 0),
         FOOTPRINT(Teddiursa),
         ANIMATIONS(TEDDIURSA, 0, ANIM_V_STRETCH, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sTeddiursaEvolutions,
     },
 
     [SPECIES_URSARING] =
@@ -9740,6 +9889,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Ursaring, 2),
         FOOTPRINT(Ursaring),
         ANIMATIONS(URSARING, 0, ANIM_H_SHAKE, BACK_ANIM_V_SHAKE),
+        .evolutions = sUrsaringEvolutions,
     },
 
     [SPECIES_SLUGMA] =
@@ -9775,6 +9925,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Slugma, 0),
         FOOTPRINT(Slugma),
         ANIMATIONS(SLUGMA, 0, ANIM_V_STRETCH, BACK_ANIM_SHAKE_GLOW_RED),
+        .evolutions = sSlugmaEvolutions,
     },
 
     [SPECIES_MAGCARGO] =
@@ -9850,6 +10001,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Swinub, 2),
         FOOTPRINT(Swinub),
         ANIMATIONS(SWINUB, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_SHAKE_H_SLIDE),
+        .evolutions = sSwinubEvolutions,
     },
 
     [SPECIES_PILOSWINE] =
@@ -9886,6 +10038,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Piloswine, 2),
         FOOTPRINT(Piloswine),
         ANIMATIONS(PILOSWINE, 0, ANIM_H_SHAKE, BACK_ANIM_H_SHAKE),
+        .evolutions = sPiloswineEvolutions,
     },
 
 #if P_UPDATED_STATS >= GEN_7
@@ -9957,6 +10110,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(CorsolaGalarian),
         ICON(CorsolaGalarian, 0),
         ANIMATIONS(CORSOLA_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sCorsolaGalarianEvolutions,
         CORSOLA_MISC_INFO,
     },
 
@@ -9993,6 +10147,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Remoraid, 0),
         FOOTPRINT(Remoraid),
         ANIMATIONS(REMORAID, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_H_SLIDE),
+        .evolutions = sRemoraidEvolutions,
     },
 
     [SPECIES_OCTILLERY] =
@@ -10175,6 +10330,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Houndour, 0),
         FOOTPRINT(Houndour),
         ANIMATIONS(HOUNDOUR, 0, ANIM_V_STRETCH, BACK_ANIM_V_SHAKE),
+        .evolutions = sHoundourEvolutions,
     },
 
 #define HOUNDOOM_MISC_INFO                  \
@@ -10212,6 +10368,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Houndoom),
         ICON(Houndoom, 0),
         ANIMATIONS(HOUNDOOM, 0, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE),
+        .evolutions = sHoundoomEvolutions,
         HOUNDOOM_MISC_INFO,
     },
     [SPECIES_HOUNDOOM_MEGA] =
@@ -10307,6 +10464,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Phanpy, 0),
         FOOTPRINT(Phanpy),
         ANIMATIONS(PHANPY, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sPhanpyEvolutions,
     },
 
     [SPECIES_DONPHAN] =
@@ -10379,6 +10537,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Porygon2, 0),
         FOOTPRINT(Porygon2),
         ANIMATIONS(PORYGON2, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_H_VIBRATE),
+        .evolutions = sPorygon2Evolutions,
     },
 
     [SPECIES_STANTLER] =
@@ -10414,6 +10573,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Stantler, 2),
         FOOTPRINT(Stantler),
         ANIMATIONS(STANTLER, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sStantlerEvolutions,
     },
 
     [SPECIES_SMEARGLE] =
@@ -10484,6 +10644,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Tyrogue, 2),
         FOOTPRINT(Tyrogue),
         ANIMATIONS(TYROGUE, 0, ANIM_BACK_AND_LUNGE, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sTyrogueEvolutions,
     },
 
     [SPECIES_HITMONTOP] =
@@ -10554,6 +10715,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Smoochum, 1),
         FOOTPRINT(Smoochum),
         ANIMATIONS(SMOOCHUM, 40, ANIM_GROW_VIBRATE, BACK_ANIM_H_SLIDE),
+        .evolutions = sSmoochumEvolutions,
     },
 
     [SPECIES_ELEKID] =
@@ -10590,6 +10752,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Elekid, 1),
         FOOTPRINT(Elekid),
         ANIMATIONS(ELEKID, 0, ANIM_FLASH_YELLOW, BACK_ANIM_H_SHAKE),
+        .evolutions = sElekidEvolutions,
     },
 
     [SPECIES_MAGBY] =
@@ -10626,6 +10789,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Magby, 0),
         FOOTPRINT(Magby),
         ANIMATIONS(MAGBY, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_SHAKE_GLOW_RED),
+        .evolutions = sMagbyEvolutions,
     },
 
     [SPECIES_MILTANK] =
@@ -10857,6 +11021,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Larvitar, 1),
         FOOTPRINT(Larvitar),
         ANIMATIONS(LARVITAR, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_V_SHAKE_LOW),
+        .evolutions = sLarvitarEvolutions,
     },
 
     [SPECIES_PUPITAR] =
@@ -10892,6 +11057,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Pupitar, 2),
         FOOTPRINT(Pupitar),
         ANIMATIONS(PUPITAR, 0, ANIM_H_SHAKE, BACK_ANIM_V_SHAKE),
+        .evolutions = sPupitarEvolutions,
     },
 
 #define TYRANITAR_MISC_INFO                 \
@@ -10929,6 +11095,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Tyranitar),
         ICON(Tyranitar, 4),
         ANIMATIONS(TYRANITAR, 10, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE_LOW),
+        .evolutions = sTyranitarEvolutions,
         TYRANITAR_MISC_INFO,
     },
     [SPECIES_TYRANITAR_MEGA] =
@@ -11101,6 +11268,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Treecko, 1),
         FOOTPRINT(Treecko),
         ANIMATIONS(TREECKO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONCAVE_ARC_LARGE),
+        .evolutions = sTreeckoEvolutions,
     },
 
     [SPECIES_GROVYLE] =
@@ -11136,6 +11304,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Grovyle, 1),
         FOOTPRINT(Grovyle),
         ANIMATIONS(GROVYLE, 0, ANIM_V_STRETCH, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sGrovyleEvolutions,
     },
 
 #define SCEPTILE_MISC_INFO                  \
@@ -11173,6 +11342,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Sceptile),
         ICON(Sceptile, 1),
         ANIMATIONS(SCEPTILE, 0, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE),
+        .evolutions = sSceptileEvolutions,
         SCEPTILE_MISC_INFO,
     },
     [SPECIES_SCEPTILE_MEGA] =
@@ -11230,6 +11400,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Torchic, 0),
         FOOTPRINT(Torchic),
         ANIMATIONS(TORCHIC, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sTorchicEvolutions,
     },
 
     [SPECIES_COMBUSKEN] =
@@ -11266,6 +11437,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Combusken, 0),
         FOOTPRINT(Combusken),
         ANIMATIONS(COMBUSKEN, 0, ANIM_V_JUMPS_H_JUMPS, BACK_ANIM_CONCAVE_ARC_LARGE),
+        .evolutions = sCombuskenEvolutions,
     },
 
 #define BLAZIKEN_MISC_INFO                  \
@@ -11303,6 +11475,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Blaziken),
         ICON(Blaziken, 0),
         ANIMATIONS(BLAZIKEN, 0, ANIM_H_SHAKE, BACK_ANIM_SHAKE_GLOW_RED),
+        .evolutions = sBlazikenEvolutions,
         BLAZIKEN_MISC_INFO,
     },
     [SPECIES_BLAZIKEN_MEGA] =
@@ -11358,6 +11531,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Mudkip, 0),
         FOOTPRINT(Mudkip),
         ANIMATIONS(MUDKIP, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_H_SLIDE),
+        .evolutions = sMudkipEvolutions,
     },
 
     [SPECIES_MARSHTOMP] =
@@ -11393,6 +11567,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Marshtomp, 0),
         FOOTPRINT(Marshtomp),
         ANIMATIONS(MARSHTOMP, 0, ANIM_V_STRETCH, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sMarshtompEvolutions,
     },
 
 #define SWAMPERT_MISC_INFO                  \
@@ -11430,6 +11605,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Swampert),
         ICON(Swampert, 0),
         ANIMATIONS(SWAMPERT, 0, ANIM_H_SHAKE, BACK_ANIM_SHAKE_GLOW_BLUE),
+        .evolutions = sSwampertEvolutions,
         SWAMPERT_MISC_INFO,
     },
     [SPECIES_SWAMPERT_MEGA] =
@@ -11486,6 +11662,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Poochyena, 2),
         FOOTPRINT(Poochyena),
         ANIMATIONS(POOCHYENA, 0, ANIM_V_SHAKE, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sPoochyenaEvolutions,
     },
 
     [SPECIES_MIGHTYENA] =
@@ -11547,7 +11724,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         HEIGHT_WEIGHT(4, 175),                                              \
         FOOTPRINT(Zigzagoon)
 
-
     [SPECIES_ZIGZAGOON] =
     {
         .type1 = TYPE_NORMAL,
@@ -11561,6 +11737,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Zigzagoon),
         ICON(Zigzagoon, 2),
         ANIMATIONS(ZIGZAGOON, 0, ANIM_H_SLIDE, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sZigzagoonEvolutions,
         ZIGZAGOON_MISC_INFO,
     },
     [SPECIES_ZIGZAGOON_GALARIAN] =
@@ -11575,6 +11752,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(ZigzagoonGalarian),
         ICON(ZigzagoonGalarian, 0),
         ANIMATIONS(ZIGZAGOON_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sZigzagoonGalarianEvolutions,
         ZIGZAGOON_MISC_INFO,
     },
 
@@ -11628,6 +11806,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(LinooneGalarian),
         ICON(LinooneGalarian, 0),
         ANIMATIONS(LINOONE_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sLinooneGalarianEvolutions,
         LINOONE_MISC_INFO,
     },
 
@@ -11666,6 +11845,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Wurmple, 0),
         FOOTPRINT(Wurmple),
         ANIMATIONS(WURMPLE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_STRETCH),
+        .evolutions = sWurmpleEvolutions,
     },
 
     [SPECIES_SILCOON] =
@@ -11701,6 +11881,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Silcoon, 2),
         FOOTPRINT(Silcoon),
         ANIMATIONS(SILCOON, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_H_SHAKE),
+        .evolutions = sSilcoonEvolutions,
     },
 
     [SPECIES_BEAUTIFLY] =
@@ -11777,6 +11958,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Cascoon, 2),
         FOOTPRINT(Cascoon),
         ANIMATIONS(CASCOON, 0, ANIM_V_SLIDE, BACK_ANIM_H_SHAKE),
+        .evolutions = sCascoonEvolutions,
     },
 
     [SPECIES_DUSTOX] =
@@ -11850,6 +12032,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Lotad, 4),
         FOOTPRINT(Lotad),
         ANIMATIONS(LOTAD, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_H_SLIDE),
+        .evolutions = sLotadEvolutions,
     },
 
     [SPECIES_LOMBRE] =
@@ -11886,6 +12069,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Lombre, 1),
         FOOTPRINT(Lombre),
         ANIMATIONS(LOMBRE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONCAVE_ARC_LARGE),
+        .evolutions = sLombreEvolutions,
     },
 
     [SPECIES_LUDICOLO] =
@@ -11958,6 +12142,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Seedot, 2),
         FOOTPRINT(Seedot),
         ANIMATIONS(SEEDOT, 0, ANIM_V_JUMPS_H_JUMPS, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sSeedotEvolutions,
     },
 
     [SPECIES_NUZLEAF] =
@@ -11994,6 +12179,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Nuzleaf, 1),
         FOOTPRINT(Nuzleaf),
         ANIMATIONS(NUZLEAF, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_SHAKE),
+        .evolutions = sNuzleafEvolutions,
     },
 
     [SPECIES_SHIFTRY] =
@@ -12065,6 +12251,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Taillow, 2),
         FOOTPRINT(Taillow),
         ANIMATIONS(TAILLOW, 0, ANIM_V_JUMPS_BIG, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sTaillowEvolutions,
     },
 
     [SPECIES_SWELLOW] =
@@ -12141,6 +12328,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Wingull, 0),
         FOOTPRINT(Wingull),
         ANIMATIONS(WINGULL, 0, ANIM_H_PIVOT, BACK_ANIM_CONVEX_DOUBLE_ARC),
+        .evolutions = sWingullEvolutions,
     },
 
     [SPECIES_PELIPPER] =
@@ -12229,6 +12417,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Ralts, 1),
         FOOTPRINT(Ralts),
         ANIMATIONS(RALTS, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_SHRINK_GROW_VIBRATE),
+        .evolutions = sRaltsEvolutions,
     },
 
     [SPECIES_KIRLIA] =
@@ -12264,6 +12453,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Kirlia, 1),
         FOOTPRINT(Kirlia),
         ANIMATIONS(KIRLIA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_SHRINK_GROW_VIBRATE),
+        .evolutions = sKirliaEvolutions,
     },
 
 #define GARDEVOIR_MISC_INFO                     \
@@ -12301,6 +12491,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Gardevoir),
         ICON(Gardevoir, 1),
         ANIMATIONS(GARDEVOIR, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_SHRINK_GROW_VIBRATE),
+        .evolutions = sGardevoirEvolutions,
         GARDEVOIR_MISC_INFO,
     },
     [SPECIES_GARDEVOIR_MEGA] =
@@ -12357,6 +12548,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Surskit, 0),
         FOOTPRINT(Surskit),
         ANIMATIONS(SURSKIT, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_H_SPRING),
+        .evolutions = sSurskitEvolutions,
     },
 
     [SPECIES_MASQUERAIN] =
@@ -12437,6 +12629,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Shroomish, 1),
         FOOTPRINT(Shroomish),
         ANIMATIONS(SHROOMISH, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sShroomishEvolutions,
     },
 
     [SPECIES_BRELOOM] =
@@ -12509,6 +12702,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Slakoth, 2),
         FOOTPRINT(Slakoth),
         ANIMATIONS(SLAKOTH, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_H_SLIDE),
+        .evolutions = sSlakothEvolutions,
     },
 
     [SPECIES_VIGOROTH] =
@@ -12544,6 +12738,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Vigoroth, 2),
         FOOTPRINT(Vigoroth),
         ANIMATIONS(VIGOROTH, 0, ANIM_H_JUMPS, BACK_ANIM_CONCAVE_ARC_LARGE),
+        .evolutions = sVigorothEvolutions,
     },
 
     [SPECIES_SLAKING] =
@@ -12615,6 +12810,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Nincada, 1),
         FOOTPRINT(Nincada),
         ANIMATIONS(NINCADA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_SHAKE_H_SLIDE),
+        .evolutions = sNincadaEvolutions,
     },
 
     [SPECIES_NINJASK] =
@@ -12722,6 +12918,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Whismur, 1),
         FOOTPRINT(Whismur),
         ANIMATIONS(WHISMUR, 0, ANIM_H_SLIDE, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sWhismurEvolutions,
     },
 
     [SPECIES_LOUDRED] =
@@ -12757,6 +12954,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Loudred, 2),
         FOOTPRINT(Loudred),
         ANIMATIONS(LOUDRED, 0, ANIM_SHRINK_GROW, BACK_ANIM_V_SHAKE),
+        .evolutions = sLoudredEvolutions,
     },
 
     [SPECIES_EXPLOUD] =
@@ -12832,6 +13030,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Makuhita, 1),
         FOOTPRINT(Makuhita),
         ANIMATIONS(MAKUHITA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_SHAKE_LOW),
+        .evolutions = sMakuhitaEvolutions,
     },
 
     [SPECIES_HARIYAMA] =
@@ -12907,6 +13106,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Azurill, 0),
         FOOTPRINT(Azurill),
         ANIMATIONS(AZURILL, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_CONCAVE_ARC_LARGE),
+        .evolutions = sAzurillEvolutions,
     },
 
     [SPECIES_NOSEPASS] =
@@ -12943,6 +13143,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Nosepass, 0),
         FOOTPRINT(Nosepass),
         ANIMATIONS(NOSEPASS, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_V_SHAKE_LOW),
+        .evolutions = sNosepassEvolutions,
     },
 
     [SPECIES_SKITTY] =
@@ -12978,6 +13179,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Skitty, 0),
         FOOTPRINT(Skitty),
         ANIMATIONS(SKITTY, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sSkittyEvolutions,
     },
 
     [SPECIES_DELCATTY] =
@@ -13057,6 +13259,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Sableye),
         ICON(Sableye, 2),
         ANIMATIONS(SABLEYE, 0, ANIM_GLOW_BLACK, BACK_ANIM_H_VIBRATE),
+        .evolutions = sSableyeEvolutions,
         SABLEYE_MISC_INFO,
     },
     [SPECIES_SABLEYE_MEGA] =
@@ -13123,6 +13326,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Mawile),
         ICON(Mawile, 2),
         ANIMATIONS(MAWILE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_SHAKE),
+        .evolutions = sMawileEvolutions,
         MAWILE_MISC_INFO,
     },
     [SPECIES_MAWILE_MEGA] =
@@ -13181,6 +13385,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Aron, 2),
         FOOTPRINT(Aron),
         ANIMATIONS(ARON, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sAronEvolutions,
     },
 
     [SPECIES_LAIRON] =
@@ -13217,6 +13422,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Lairon, 2),
         FOOTPRINT(Lairon),
         ANIMATIONS(LAIRON, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_SHAKE),
+        .evolutions = sLaironEvolutions,
     },
 
 #define AGGRON_MISC_INFO                    \
@@ -13255,6 +13461,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Aggron),
         ICON(Aggron, 2),
         ANIMATIONS(AGGRON, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_V_SHAKE_LOW),
+        .evolutions = sAggronEvolutions,
         AGGRON_MISC_INFO,
     },
     [SPECIES_AGGRON_MEGA] =
@@ -13312,6 +13519,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Meditite, 0),
         FOOTPRINT(Meditite),
         ANIMATIONS(MEDITITE, 0, ANIM_BOUNCE_ROTATE_TO_SIDES, BACK_ANIM_SHRINK_GROW_VIBRATE),
+        .evolutions = sMedititeEvolutions,
     },
 
 #define MEDICHAM_MISC_INFO                  \
@@ -13349,6 +13557,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Medicham),
         ICON(Medicham, 0),
         ANIMATIONS(MEDICHAM, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_SHRINK_GROW_VIBRATE),
+        .evolutions = sMedichamEvolutions,
         MEDICHAM_MISC_INFO,
     },
     [SPECIES_MEDICHAM_MEGA] =
@@ -13404,6 +13613,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Electrike, 1),
         FOOTPRINT(Electrike),
         ANIMATIONS(ELECTRIKE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sElectrikeEvolutions,
     },
 
 #define MANECTRIC_MISC_INFO                 \
@@ -13441,6 +13651,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Manectric),
         ICON(Manectric, 0),
         ANIMATIONS(MANECTRIC, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_SHAKE),
+        .evolutions = sManectricEvolutions,
         MANECTRIC_MISC_INFO,
     },
     [SPECIES_MANECTRIC_MEGA] =
@@ -13653,6 +13864,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Roselia, 4),
         FOOTPRINT(Roselia),
         ANIMATIONS(ROSELIA, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_SHAKE_GLOW_GREEN),
+        .evolutions = sRoseliaEvolutions,
     },
 
     [SPECIES_GULPIN] =
@@ -13690,6 +13902,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Gulpin, 1),
         FOOTPRINT(Gulpin),
         ANIMATIONS(GULPIN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_V_STRETCH),
+        .evolutions = sGulpinEvolutions,
     },
 
     [SPECIES_SWALOT] =
@@ -13763,6 +13976,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Carvanha, 0),
         FOOTPRINT(Carvanha),
         ANIMATIONS(CARVANHA, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW, BACK_ANIM_H_SPRING_REPEATED),
+        .evolutions = sCarvanhaEvolutions,
     },
 
 #define SHARPEDO_MISC_INFO                  \
@@ -13802,6 +14016,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Sharpedo),
         ICON(Sharpedo, 0),
         ANIMATIONS(SHARPEDO, 0, ANIM_H_JUMPS_V_STRETCH_TWICE, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sSharpedoEvolutions,
         SHARPEDO_MISC_INFO,
     },
     [SPECIES_SHARPEDO_MEGA] =
@@ -13859,6 +14074,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Wailmer, 2),
         FOOTPRINT(Wailmer),
         ANIMATIONS(WAILMER, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_SHAKE_GLOW_BLUE),
+        .evolutions = sWailmerEvolutions,
     },
 
     [SPECIES_WAILORD] =
@@ -13929,6 +14145,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Numel, 1),
         FOOTPRINT(Numel),
         ANIMATIONS(NUMEL, 0, ANIM_V_SLIDE, BACK_ANIM_V_SHAKE_LOW),
+        .evolutions = sNumelEvolutions,
     },
 
 #define CAMERUPT_MISC_INFO                  \
@@ -13967,6 +14184,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Camerupt),
         ICON(Camerupt, 0),
         ANIMATIONS(CAMERUPT, 0, ANIM_V_SHAKE, BACK_ANIM_SHAKE_GLOW_RED),
+        .evolutions = sCameruptEvolutions,
         CAMERUPT_MISC_INFO,
     },
     [SPECIES_CAMERUPT_MEGA] =
@@ -14060,6 +14278,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Spoink, 0),
         FOOTPRINT(Spoink),
         ANIMATIONS(SPOINK, 0, ANIM_H_JUMPS_V_STRETCH_TWICE, BACK_ANIM_CONCAVE_ARC_LARGE),
+        .evolutions = sSpoinkEvolutions,
     },
 
     [SPECIES_GRUMPIG] =
@@ -14170,6 +14389,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Trapinch, 0),
         FOOTPRINT(Trapinch),
         ANIMATIONS(TRAPINCH, 0, ANIM_V_SHAKE, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sTrapinchEvolutions,
     },
 
     [SPECIES_VIBRAVA] =
@@ -14210,6 +14430,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Vibrava, 1),
         FOOTPRINT(Vibrava),
         ANIMATIONS(VIBRAVA, 0, ANIM_H_SHAKE, BACK_ANIM_H_VIBRATE),
+        .evolutions = sVibravaEvolutions,
     },
 
     [SPECIES_FLYGON] =
@@ -14287,6 +14508,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Cacnea, 1),
         FOOTPRINT(Cacnea),
         ANIMATIONS(CACNEA, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW, BACK_ANIM_V_SHAKE_H_SLIDE),
+        .evolutions = sCacneaEvolutions,
     },
 
     [SPECIES_CACTURNE] =
@@ -14359,6 +14581,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Swablu, 0),
         FOOTPRINT(Swablu),
         ANIMATIONS(SWABLU, 0, ANIM_GROW_VIBRATE, BACK_ANIM_CONVEX_DOUBLE_ARC),
+        .evolutions = sSwabluEvolutions,
     },
 
 #define ALTARIA_MISC_INFO                   \
@@ -14397,6 +14620,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Altaria),
         ICON(Altaria, 0),
         ANIMATIONS(ALTARIA, 0, ANIM_V_STRETCH, BACK_ANIM_CONVEX_DOUBLE_ARC),
+        .evolutions = sAltariaEvolutions,
         ALTARIA_MISC_INFO,
     },
     [SPECIES_ALTARIA_MEGA] =
@@ -14612,6 +14836,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Barboach, 0),
         FOOTPRINT(Barboach),
         ANIMATIONS(BARBOACH, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW, BACK_ANIM_V_STRETCH),
+        .evolutions = sBarboachEvolutions,
     },
 
     [SPECIES_WHISCASH] =
@@ -14682,6 +14907,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Corphish, 0),
         FOOTPRINT(Corphish),
         ANIMATIONS(CORPHISH, 0, ANIM_V_SHAKE, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sCorphishEvolutions,
     },
 
     [SPECIES_CRAWDAUNT] =
@@ -14754,6 +14980,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Baltoy, 2),
         FOOTPRINT(Baltoy),
         ANIMATIONS(BALTOY, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sBaltoyEvolutions,
     },
 
     [SPECIES_CLAYDOL] =
@@ -14827,6 +15054,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Lileep, 2),
         FOOTPRINT(Lileep),
         ANIMATIONS(LILEEP, 0, ANIM_V_STRETCH, BACK_ANIM_H_STRETCH),
+        .evolutions = sLileepEvolutions,
     },
 
     [SPECIES_CRADILY] =
@@ -14898,6 +15126,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Anorith, 0),
         FOOTPRINT(Anorith),
         ANIMATIONS(ANORITH, 0, ANIM_TWIST, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sAnorithEvolutions,
     },
 
     [SPECIES_ARMALDO] =
@@ -14968,6 +15197,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Feebas, 2),
         FOOTPRINT(Feebas),
         ANIMATIONS(FEEBAS, 0, ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW, BACK_ANIM_H_SPRING),
+        .evolutions = sFeebasEvolutions,
     },
 
     [SPECIES_MILOTIC] =
@@ -15155,6 +15385,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Shuppet, 0),
         FOOTPRINT(Shuppet),
         ANIMATIONS(SHUPPET, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_H_VIBRATE),
+        .evolutions = sShuppetEvolutions,
     },
 
 #define BANETTE_MISC_INFO                   \
@@ -15194,6 +15425,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Banette),
         ICON(Banette, 0),
         ANIMATIONS(BANETTE, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_H_VIBRATE),
+        .evolutions = sBanetteEvolutions,
         BANETTE_MISC_INFO,
     },
     [SPECIES_BANETTE_MEGA] =
@@ -15254,6 +15486,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Duskull, 0),
         FOOTPRINT(Duskull),
         ANIMATIONS(DUSKULL, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_H_VIBRATE),
+        .evolutions = sDuskullEvolutions,
     },
 
     [SPECIES_DUSCLOPS] =
@@ -15291,6 +15524,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Dusclops, 0),
         FOOTPRINT(Dusclops),
         ANIMATIONS(DUSCLOPS, 30, ANIM_H_VIBRATE, BACK_ANIM_H_VIBRATE),
+        .evolutions = sDusclopsEvolutions,
     },
 
     [SPECIES_TROPIUS] =
@@ -15407,6 +15641,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Absol),
         ICON(Absol, 0),
         ANIMATIONS(ABSOL, 45, ANIM_CIRCULAR_VIBRATE, BACK_ANIM_SHRINK_GROW_VIBRATE),
+        .evolutions = sAbsolEvolutions,
         ABSOL_MISC_INFO,
     },
     [SPECIES_ABSOL_MEGA] =
@@ -15463,6 +15698,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Wynaut, 0),
         FOOTPRINT(Wynaut),
         ANIMATIONS(WYNAUT, 15, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_CONCAVE_ARC_SMALL),
+        .evolutions = sWynautEvolutions,
     },
 
     [SPECIES_SNORUNT] =
@@ -15499,6 +15735,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Snorunt, 2),
         FOOTPRINT(Snorunt),
         ANIMATIONS(SNORUNT, 20, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sSnoruntEvolutions,
     },
 
 #define GLALIE_MISC_INFO                    \
@@ -15537,6 +15774,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Glalie),
         ICON(Glalie, 0),
         ANIMATIONS(GLALIE, 0, ANIM_ZIGZAG_FAST, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sGlalieEvolutions,
         GLALIE_MISC_INFO,
     },
     [SPECIES_GLALIE_MEGA] =
@@ -15595,6 +15833,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Spheal, 2),
         FOOTPRINT(Spheal),
         ANIMATIONS(SPHEAL, 15, ANIM_V_STRETCH, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sSphealEvolutions,
     },
 
     [SPECIES_SEALEO] =
@@ -15630,6 +15869,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Sealeo, 2),
         FOOTPRINT(Sealeo),
         ANIMATIONS(SEALEO, 0, ANIM_V_STRETCH, BACK_ANIM_V_SHAKE),
+        .evolutions = sSealeoEvolutions,
     },
 
     [SPECIES_WALREIN] =
@@ -15702,6 +15942,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Clamperl, 0),
         FOOTPRINT(Clamperl),
         ANIMATIONS(CLAMPERL, 0, ANIM_TWIST, BACK_ANIM_DIP_RIGHT_SIDE),
+        .evolutions = sClamperlEvolutions,
     },
 
     [SPECIES_HUNTAIL] =
@@ -15884,6 +16125,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Bagon, 0),
         FOOTPRINT(Bagon),
         ANIMATIONS(BAGON, 0, ANIM_H_SHAKE, BACK_ANIM_V_SHAKE),
+        .evolutions = sBagonEvolutions,
     },
 
     [SPECIES_SHELGON] =
@@ -15920,6 +16162,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Shelgon, 2),
         FOOTPRINT(Shelgon),
         ANIMATIONS(SHELGON, 0, ANIM_V_SLIDE, BACK_ANIM_V_SHAKE),
+        .evolutions = sShelgonEvolutions,
     },
 
 #define SALAMENCE_MISC_INFO                 \
@@ -15958,6 +16201,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Salamence),
         ICON(Salamence, 0),
         ANIMATIONS(SALAMENCE, 70, ANIM_H_SHAKE, BACK_ANIM_H_SHAKE),
+        .evolutions = sSalamenceEvolutions,
         SALAMENCE_MISC_INFO,
     },
     [SPECIES_SALAMENCE_MEGA] =
@@ -16018,6 +16262,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Beldum, 0),
         FOOTPRINT(Beldum),
         ANIMATIONS(BELDUM, 0, ANIM_H_SHAKE, BACK_ANIM_TRIANGLE_DOWN),
+        .evolutions = sBeldumEvolutions,
     },
 
     [SPECIES_METANG] =
@@ -16054,6 +16299,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Metang, 0),
         FOOTPRINT(Metang),
         ANIMATIONS(METANG, 0, ANIM_V_SLIDE, BACK_ANIM_JOLT_RIGHT),
+        .evolutions = sMetangEvolutions,
     },
 
 #define METAGROSS_MISC_INFO                 \
@@ -16092,6 +16338,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Metagross),
         ICON(Metagross, 0),
         ANIMATIONS(METAGROSS, 0, ANIM_V_SHAKE, BACK_ANIM_V_SHAKE),
+        .evolutions = sMetagrossEvolutions,
         METAGROSS_MISC_INFO,
     },
     [SPECIES_METAGROSS_MEGA] =
@@ -16263,6 +16510,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Latias, 0),
         FOOTPRINT(Latias),
         ANIMATIONS(LATIAS, 0, ANIM_ZIGZAG_SLOW, BACK_ANIM_H_VIBRATE),
+        .evolutions = sLatiasEvolutions,
         LATIS_MISC_INFO,
     },
     [SPECIES_LATIAS_MEGA] =
@@ -16318,6 +16566,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Latios, 0),
         FOOTPRINT(Latios),
         ANIMATIONS(LATIOS, 0, ANIM_CIRCLE_C_CLOCKWISE_SLOW, BACK_ANIM_H_VIBRATE),
+        .evolutions = sLatiosEvolutions,
         LATIS_MISC_INFO,
     },
     [SPECIES_LATIOS_MEGA] =
@@ -16383,6 +16632,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Kyogre),
         ICON(Kyogre, 2),
         ANIMATIONS(KYOGRE, 60, ANIM_SWING_CONCAVE_FAST_SHORT, BACK_ANIM_SHAKE_GLOW_BLUE),
+        .evolutions = sKyogreEvolutions,
         KYOGRE_MISC_INFO,
     },
     [SPECIES_KYOGRE_PRIMAL] =
@@ -16441,6 +16691,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Groudon),
         ICON(Groudon, 0),
         ANIMATIONS(GROUDON, 0, ANIM_V_SHAKE, BACK_ANIM_SHAKE_GLOW_RED),
+        .evolutions = sGroudonEvolutions,
         GROUDON_MISC_INFO,
     },
     [SPECIES_GROUDON_PRIMAL] =
@@ -16453,7 +16704,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 90,
         .type2 = TYPE_FIRE,
         .abilities = {ABILITY_DESOLATE_LAND, ABILITY_NONE},
-        DEX_TEXT(Groudon, "Continent"),
+        DEX_TEXT(Groudon, "Continent"), // No official dex entry for this form
         DEX_SCALE(256, 0, 515, 14),
         HEIGHT_WEIGHT(50, 9997),
         FRONT_SPRITE(GroudonPrimal, 64, 64, 0),
@@ -16502,6 +16753,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Rayquaza),
         ICON(Rayquaza, 1),
         ANIMATIONS(RAYQUAZA, 60, ANIM_H_SHAKE, BACK_ANIM_GROW_STUTTER),
+        .evolutions = sRayquazaEvolutions,
         RAYQUAZA_MISC_INFO,
     },
     [SPECIES_RAYQUAZA_MEGA] =
@@ -16514,6 +16766,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 100,
         .abilities = {ABILITY_DELTA_STREAM, ABILITY_NONE},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
+        DEX_TEXT(Rayquaza, "Sky High"), // No official dex entry for this form
         DEX_SCALE(256, 0, 448, 12),
         HEIGHT_WEIGHT(108, 3920),
         FRONT_SPRITE(RayquazaMega, 64, 64, 0),
@@ -16698,6 +16951,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Turtwig, 1),
         FOOTPRINT(Turtwig),
         ANIMATIONS(TURTWIG, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sTurtwigEvolutions,
     },
 
     [SPECIES_GROTLE] =
@@ -16734,6 +16988,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Grotle, 1),
         FOOTPRINT(Grotle),
         ANIMATIONS(GROTLE, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sGrotleEvolutions,
     },
 
     [SPECIES_TORTERRA] =
@@ -16805,6 +17060,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Chimchar, 1),
         FOOTPRINT(Chimchar),
         ANIMATIONS(CHIMCHAR, 0, ANIM_V_JUMPS_BIG, BACK_ANIM_NONE),
+        .evolutions = sChimcharEvolutions,
     },
 
     [SPECIES_MONFERNO] =
@@ -16841,6 +17097,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Monferno, 0),
         FOOTPRINT(Monferno),
         ANIMATIONS(MONFERNO, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sMonfernoEvolutions,
     },
 
     [SPECIES_INFERNAPE] =
@@ -16913,6 +17170,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Piplup, 0),
         FOOTPRINT(Piplup),
         ANIMATIONS(PIPLUP, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sPiplupEvolutions,
     },
 
     [SPECIES_PRINPLUP] =
@@ -16948,6 +17206,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Prinplup, 0),
         FOOTPRINT(Prinplup),
         ANIMATIONS(PRINPLUP, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sPrinplupEvolutions,
     },
 
     [SPECIES_EMPOLEON] =
@@ -17020,6 +17279,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Starly, 0),
         FOOTPRINT(Starly),
         ANIMATIONS(STARLY, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sStarlyEvolutions,
     },
 
     [SPECIES_STARAVIA] =
@@ -17057,6 +17317,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Staravia, 0),
         FOOTPRINT(Staravia),
         ANIMATIONS(STARAVIA, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sStaraviaEvolutions,
     },
 
     [SPECIES_STARAPTOR] =
@@ -17134,6 +17395,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Bidoof, 2),
         FOOTPRINT(Bidoof),
         ANIMATIONS(BIDOOF, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_NONE),
+        .evolutions = sBidoofEvolutions,
     },
 
     [SPECIES_BIBAREL] =
@@ -17207,6 +17469,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Kricketot, 2),
         FOOTPRINT(Kricketot),
         ANIMATIONS(KRICKETOT, 0, ANIM_H_JUMPS, BACK_ANIM_NONE),
+        .evolutions = sKricketotEvolutions,
     },
 
     [SPECIES_KRICKETUNE] =
@@ -17282,6 +17545,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Shinx, 0),
         FOOTPRINT(Shinx),
         ANIMATIONS(SHINX, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sShinxEvolutions,
     },
 
     [SPECIES_LUXIO] =
@@ -17317,6 +17581,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Luxio, 0),
         FOOTPRINT(Luxio),
         ANIMATIONS(LUXIO, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sLuxioEvolutions,
     },
 
     [SPECIES_LUXRAY] =
@@ -17388,6 +17653,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Budew, 1),
         FOOTPRINT(Budew),
         ANIMATIONS(BUDEW, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
+        .evolutions = sBudewEvolutions,
     },
 
     [SPECIES_ROSERADE] =
@@ -17463,6 +17729,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Cranidos, 0),
         FOOTPRINT(Cranidos),
         ANIMATIONS(CRANIDOS, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sCranidosEvolutions,
     },
 
     [SPECIES_RAMPARDOS] =
@@ -17533,6 +17800,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Shieldon, 1),
         FOOTPRINT(Shieldon),
         ANIMATIONS(SHIELDON, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
+        .evolutions = sShieldonEvolutions,
     },
 
     [SPECIES_BASTIODON] =
@@ -17605,6 +17873,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_SPRITE(Burmy, 40, 56, 6),
         PALETTES(Burmy),
         ICON(BurmyPlantCloak, 1),
+        .evolutions = sBurmyPlantCloakEvolutions,
         BURMY_MISC_INFO,
     },
     [SPECIES_BURMY_SANDY_CLOAK] =
@@ -17615,6 +17884,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_SPRITE(BurmySandyCloak, 32, 56, 7),
         PALETTES(BurmySandyCloak),
         ICON(BurmySandyCloak, 1),
+        .evolutions = sBurmySandyCloakEvolutions,
         BURMY_MISC_INFO,
     },
     [SPECIES_BURMY_TRASH_CLOAK] =
@@ -17625,6 +17895,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_SPRITE(BurmyTrashCloak, 40, 64, 0),
         PALETTES(BurmyTrashCloak),
         ICON(BurmyTrashCloak, 0),
+        .evolutions = sBurmyTrashCloakEvolutions,
         BURMY_MISC_INFO,
     },
 
@@ -17781,6 +18052,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Combee, 0),
         FOOTPRINT(Combee),
         ANIMATIONS(COMBEE, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
+        .evolutions = sCombeeEvolutions,
     },
 
     [SPECIES_VESPIQUEN] =
@@ -17889,6 +18161,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Buizel, 0),
         FOOTPRINT(Buizel),
         ANIMATIONS(BUIZEL, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
+        .evolutions = sBuizelEvolutions,
     },
 
     [SPECIES_FLOATZEL] =
@@ -17960,6 +18233,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Cherubi, 1),
         FOOTPRINT(Cherubi),
         ANIMATIONS(CHERUBI, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sCherubiEvolutions,
     },
 
 #define CHERRIM_MISC_INFO                                   \
@@ -18046,6 +18320,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_SPRITE(Shellos, 40, 56, 8),
         PALETTES(Shellos),
         ICON(ShellosWestSea, 0),
+        .evolutions = sShellosWestSeaEvolutions,
         SHELLOS_MISC_INFO,
     },
     [SPECIES_SHELLOS_EAST_SEA] =
@@ -18056,6 +18331,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_SPRITE(ShellosEastSea, 56, 48, 8),
         PALETTES(ShellosEastSea),
         ICON(ShellosEastSea, 0),
+        .evolutions = sShellosEastSeaEvolutions,
         SHELLOS_MISC_INFO,
     },
 
@@ -18176,6 +18452,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Drifloon, 2),
         FOOTPRINT(Drifloon),
         ANIMATIONS(DRIFLOON, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
+        .evolutions = sDrifloonEvolutions,
     },
 
     [SPECIES_DRIFBLIM] =
@@ -18247,6 +18524,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Buneary, 2),
         FOOTPRINT(Buneary),
         ANIMATIONS(BUNEARY, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sBunearyEvolutions,
     },
 
 #define LOPUNNY_MISC_INFO                   \
@@ -18284,6 +18562,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Lopunny),
         ICON(Lopunny, 2),
         ANIMATIONS(LOPUNNY, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE),
+        .evolutions = sLopunnyEvolutions,
         LOPUNNY_MISC_INFO,
     },
     [SPECIES_LOPUNNY_MEGA] =
@@ -18414,6 +18693,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Glameow, 0),
         FOOTPRINT(Glameow),
         ANIMATIONS(GLAMEOW, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
+        .evolutions = sGlameowEvolutions,
     },
 
     [SPECIES_PURUGLY] =
@@ -18486,6 +18766,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Chingling, 1),
         FOOTPRINT(Chingling),
         ANIMATIONS(CHINGLING, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_NONE),
+        .evolutions = sChinglingEvolutions,
     },
 
     [SPECIES_STUNKY] =
@@ -18521,6 +18802,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Stunky, 2),
         FOOTPRINT(Stunky),
         ANIMATIONS(STUNKY, 0, ANIM_TIP_MOVE_FORWARD, BACK_ANIM_NONE),
+        .evolutions = sStunkyEvolutions,
     },
 
     [SPECIES_SKUNTANK] =
@@ -18592,6 +18874,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Bronzor, 0),
         FOOTPRINT(Bronzor),
         ANIMATIONS(BRONZOR, 0, ANIM_H_SLIDE_WOBBLE, BACK_ANIM_NONE),
+        .evolutions = sBronzorEvolutions,
     },
 
     [SPECIES_BRONZONG] =
@@ -18665,6 +18948,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Bonsly, 1),
         FOOTPRINT(Bonsly),
         ANIMATIONS(BONSLY, 0, ANIM_BOUNCE_ROTATE_TO_SIDES, BACK_ANIM_NONE),
+        .evolutions = sBonslyEvolutions,
     },
 
     [SPECIES_MIME_JR] =
@@ -18704,6 +18988,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(MimeJr, 0),
         FOOTPRINT(MimeJr),
         ANIMATIONS(MIME_JR, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_NONE),
+        .evolutions = sMimeJrEvolutions,
     },
 
     [SPECIES_HAPPINY] =
@@ -18740,6 +19025,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Happiny, 0),
         FOOTPRINT(Happiny),
         ANIMATIONS(HAPPINY, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
+        .evolutions = sHappinyEvolutions,
     },
 
     [SPECIES_CHATOT] =
@@ -18847,6 +19133,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Gible, 0),
         FOOTPRINT(Gible),
         ANIMATIONS(GIBLE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sGibleEvolutions,
     },
 
     [SPECIES_GABITE] =
@@ -18882,6 +19169,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Gabite, 0),
         FOOTPRINT(Gabite),
         ANIMATIONS(GABITE, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sGabiteEvolutions,
     },
 
 #define GARCHOMP_MISC_INFO                  \
@@ -18919,6 +19207,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Garchomp),
         ICON(Garchomp, 0),
         ANIMATIONS(GARCHOMP, 0, ANIM_V_SHAKE_TWICE, BACK_ANIM_NONE),
+        .evolutions = sGarchompEvolutions,
         GARCHOMP_MISC_INFO,
     },
     [SPECIES_GARCHOMP_MEGA] =
@@ -18976,6 +19265,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Munchlax, 3),
         FOOTPRINT(Munchlax),
         ANIMATIONS(MUNCHLAX, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
+        .evolutions = sMunchlaxEvolutions,
     },
 
     [SPECIES_RIOLU] =
@@ -19011,6 +19301,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Riolu, 2),
         FOOTPRINT(Riolu),
         ANIMATIONS(RIOLU, 0, ANIM_RAPID_H_HOPS, BACK_ANIM_NONE),
+        .evolutions = sRioluEvolutions,
     },
 
 #define LUCARIO_MISC_INFO                   \
@@ -19049,6 +19340,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Lucario),
         ICON(Lucario, 2),
         ANIMATIONS(LUCARIO, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sLucarioEvolutions,
         LUCARIO_MISC_INFO,
     },
     [SPECIES_LUCARIO_MEGA] =
@@ -19110,6 +19402,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     #endif
         FOOTPRINT(Hippopotas),
         ANIMATIONS(HIPPOPOTAS, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sHippopotasEvolutions,
     },
 
     [SPECIES_HIPPOWDON] =
@@ -19185,6 +19478,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Skorupi, 0),
         FOOTPRINT(Skorupi),
         ANIMATIONS(SKORUPI, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_NONE),
+        .evolutions = sSkorupiEvolutions,
     },
 
     [SPECIES_DRAPION] =
@@ -19257,6 +19551,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Croagunk, 0),
         FOOTPRINT(Croagunk),
         ANIMATIONS(CROAGUNK, 0, ANIM_RAPID_H_HOPS, BACK_ANIM_NONE),
+        .evolutions = sCroagunkEvolutions,
     },
 
     [SPECIES_TOXICROAK] =
@@ -19363,6 +19658,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Finneon, 0),
         FOOTPRINT(Finneon),
         ANIMATIONS(FINNEON, 0, ANIM_V_SLIDE_WOBBLE_SMALL, BACK_ANIM_NONE),
+        .evolutions = sFinneonEvolutions,
     },
 
     [SPECIES_LUMINEON] =
@@ -19433,6 +19729,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Mantyke, 0),
         FOOTPRINT(Mantyke),
         ANIMATIONS(MANTYKE, 0, ANIM_TWIST_TWICE, BACK_ANIM_NONE),
+        .evolutions = sMantykeEvolutions,
     },
 
     [SPECIES_SNOVER] =
@@ -19469,6 +19766,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Snover, 1),
         FOOTPRINT(Snover),
         ANIMATIONS(SNOVER, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sSnoverEvolutions,
     },
 
 #define ABOMASNOW_MISC_INFO                 \
@@ -19508,6 +19806,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Abomasnow),
         ICON(Abomasnow, 1),
         ANIMATIONS(ABOMASNOW, 0, ANIM_H_SHAKE, BACK_ANIM_NONE),
+        .evolutions = sAbomasnowEvolutions,
         ABOMASNOW_MISC_INFO,
     },
     [SPECIES_ABOMASNOW_MEGA] =
@@ -20069,6 +20368,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Gallade),
         ICON(Gallade, 1),
         ANIMATIONS(GALLADE, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
+        .evolutions = sGalladeEvolutions,
         GALLADE_MISC_INFO,
     },
     [SPECIES_GALLADE_MEGA] =
@@ -21118,6 +21418,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Snivy, 1),
         FOOTPRINT(Snivy),
         ANIMATIONS(SNIVY, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sSnivyEvolutions,
     },
 
     [SPECIES_SERVINE] =
@@ -21153,6 +21454,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Servine, 1),
         FOOTPRINT(Servine),
         ANIMATIONS(SERVINE, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sServineEvolutions,
     },
 
     [SPECIES_SERPERIOR] =
@@ -21223,6 +21525,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Tepig, 0),
         FOOTPRINT(Tepig),
         ANIMATIONS(TEPIG, 0, ANIM_H_SLIDE, BACK_ANIM_NONE),
+        .evolutions = sTepigEvolutions,
     },
 
     [SPECIES_PIGNITE] =
@@ -21258,6 +21561,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Pignite, 0),
         FOOTPRINT(Pignite),
         ANIMATIONS(PIGNITE, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sPigniteEvolutions,
     },
 
     [SPECIES_EMBOAR] =
@@ -21328,6 +21632,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Oshawott, 0),
         FOOTPRINT(Oshawott),
         ANIMATIONS(OSHAWOTT, 0, ANIM_H_JUMPS, BACK_ANIM_NONE),
+        .evolutions = sOshawottEvolutions,
     },
 
     [SPECIES_DEWOTT] =
@@ -21363,6 +21668,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Dewott, 0),
         FOOTPRINT(Dewott),
         ANIMATIONS(DEWOTT, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
+        .evolutions = sDewottEvolutions,
     },
 
 #define SAMUROTT_MISC_INFO                                                  \
@@ -21455,6 +21761,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Patrat, 2),
         FOOTPRINT(Patrat),
         ANIMATIONS(PATRAT, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sPatratEvolutions,
     },
 
     [SPECIES_WATCHOG] =
@@ -21525,6 +21832,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Lillipup, 2),
         FOOTPRINT(Lillipup),
         ANIMATIONS(LILLIPUP, 0, ANIM_H_JUMPS, BACK_ANIM_NONE),
+        .evolutions = sLillipupEvolutions,
     },
 
     [SPECIES_HERDIER] =
@@ -21560,6 +21868,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Herdier, 2),
         FOOTPRINT(Herdier),
         ANIMATIONS(HERDIER, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sHerdierEvolutions,
     },
 
     [SPECIES_STOUTLAND] =
@@ -21634,6 +21943,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Purrloin, 0),
         FOOTPRINT(Purrloin),
         ANIMATIONS(PURRLOIN, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
+        .evolutions = sPurrloinEvolutions,
     },
 
     [SPECIES_LIEPARD] =
@@ -21704,6 +22014,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Pansage, 1),
         FOOTPRINT(Pansage),
         ANIMATIONS(PANSAGE, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_NONE),
+        .evolutions = sPansageEvolutions,
     },
 
     [SPECIES_SIMISAGE] =
@@ -21774,6 +22085,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Pansear, 2),
         FOOTPRINT(Pansear),
         ANIMATIONS(PANSEAR, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sPansearEvolutions,
     },
 
     [SPECIES_SIMISEAR] =
@@ -21844,6 +22156,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Panpour, 2),
         FOOTPRINT(Panpour),
         ANIMATIONS(PANPOUR, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
+        .evolutions = sPanpourEvolutions,
     },
 
     [SPECIES_SIMIPOUR] =
@@ -21915,6 +22228,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Munna, 0),
         FOOTPRINT(Munna),
         ANIMATIONS(MUNNA, 0, ANIM_RISING_WOBBLE, BACK_ANIM_NONE),
+        .evolutions = sMunnaEvolutions,
     },
 
     [SPECIES_MUSHARNA] =
@@ -21986,6 +22300,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Pidove, 0),
         FOOTPRINT(Pidove),
         ANIMATIONS(PIDOVE, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_NONE),
+        .evolutions = sPidoveEvolutions,
     },
 
     [SPECIES_TRANQUILL] =
@@ -22021,6 +22336,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Tranquill, 0),
         FOOTPRINT(Tranquill),
         ANIMATIONS(TRANQUILL, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sTranquillEvolutions,
     },
 
     [SPECIES_UNFEZANT] =
@@ -22099,6 +22415,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Blitzle, 2),
         FOOTPRINT(Blitzle),
         ANIMATIONS(BLITZLE, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sBlitzleEvolutions,
     },
 
     [SPECIES_ZEBSTRIKA] =
@@ -22171,6 +22488,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Roggenrola, 2),
         FOOTPRINT(Roggenrola),
         ANIMATIONS(ROGGENROLA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sRoggenrolaEvolutions,
     },
 
     [SPECIES_BOLDORE] =
@@ -22209,6 +22527,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Boldore, 0),
         FOOTPRINT(Boldore),
         ANIMATIONS(BOLDORE, 0, ANIM_H_SLIDE_SLOW, BACK_ANIM_NONE),
+        .evolutions = sBoldoreEvolutions,
     },
 
     [SPECIES_GIGALITH] =
@@ -22290,6 +22609,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Woobat, 0),
         FOOTPRINT(Woobat),
         ANIMATIONS(WOOBAT, 0, ANIM_FOUR_PETAL, BACK_ANIM_NONE),
+        .evolutions = sWoobatEvolutions,
     },
 
     [SPECIES_SWOOBAT] =
@@ -22361,6 +22681,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Drilbur, 0),
         FOOTPRINT(Drilbur),
         ANIMATIONS(DRILBUR, 0, ANIM_SWING_CONCAVE_FAST_SHORT, BACK_ANIM_NONE),
+        .evolutions = sDrilburEvolutions,
     },
 
     [SPECIES_EXCADRILL] =
@@ -22435,6 +22756,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Audino),
         ICON(Audino, 1),
         ANIMATIONS(AUDINO, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sAudinoEvolutions,
         AUDINO_MISC_INFO,
     },
     [SPECIES_AUDINO_MEGA] =
@@ -22494,6 +22816,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Timburr, 1),
         FOOTPRINT(Timburr),
         ANIMATIONS(TIMBURR, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sTimburrEvolutions,
     },
 
     [SPECIES_GURDURR] =
@@ -22529,6 +22852,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Gurdurr, 1),
         FOOTPRINT(Gurdurr),
         ANIMATIONS(GURDURR, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
+        .evolutions = sGurdurrEvolutions,
     },
 
     [SPECIES_CONKELDURR] =
@@ -22599,6 +22923,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Tympole, 2),
         FOOTPRINT(Tympole),
         ANIMATIONS(TYMPOLE, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sTympoleEvolutions,
     },
 
     [SPECIES_PALPITOAD] =
@@ -22634,6 +22959,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Palpitoad, 2),
         FOOTPRINT(Palpitoad),
         ANIMATIONS(PALPITOAD, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_NONE),
+        .evolutions = sPalpitoadEvolutions,
     },
 
     [SPECIES_SEISMITOAD] =
@@ -22781,6 +23107,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Sewaddle, 1),
         FOOTPRINT(Sewaddle),
         ANIMATIONS(SEWADDLE, 0, ANIM_CIRCLE_INTO_BG, BACK_ANIM_NONE),
+        .evolutions = sSewaddleEvolutions,
     },
 
     [SPECIES_SWADLOON] =
@@ -22817,6 +23144,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Swadloon, 1),
         FOOTPRINT(Swadloon),
         ANIMATIONS(SWADLOON, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_NONE),
+        .evolutions = sSwadloonEvolutions,
     },
 
     [SPECIES_LEAVANNY] =
@@ -22897,6 +23225,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Venipede, 1),
         FOOTPRINT(Venipede),
         ANIMATIONS(VENIPEDE, 0, ANIM_H_SLIDE, BACK_ANIM_NONE),
+        .evolutions = sVenipedeEvolutions,
     },
 
     [SPECIES_WHIRLIPEDE] =
@@ -22937,6 +23266,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Whirlipede, 2),
         FOOTPRINT(Whirlipede),
         ANIMATIONS(WHIRLIPEDE, 0, ANIM_TIP_MOVE_FORWARD, BACK_ANIM_NONE),
+        .evolutions = sWhirlipedeEvolutions,
     },
 
     [SPECIES_SCOLIPEDE] =
@@ -23021,6 +23351,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Cottonee, 1),
         FOOTPRINT(Cottonee),
         ANIMATIONS(COTTONEE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sCottoneeEvolutions,
     },
 
     [SPECIES_WHIMSICOTT] =
@@ -23098,6 +23429,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Petilil, 1),
         FOOTPRINT(Petilil),
         ANIMATIONS(PETILIL, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sPetililEvolutions,
     },
 
 #define LILLIGANT_MISC_INFO                 \
@@ -23221,6 +23553,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_SPRITE(BasculinWhiteStriped, 64, 40, 16),
         PALETTES(BasculinWhiteStriped),
         ICON(BasculinWhiteStriped, 0),
+        .evolutions = sBasculinWhiteStripedEvolutions,
         BASCULIN_MISC_INFO,
     },
 
@@ -23258,6 +23591,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Sandile, 1),
         FOOTPRINT(Sandile),
         ANIMATIONS(SANDILE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sSandileEvolutions,
     },
 
     [SPECIES_KROKOROK] =
@@ -23294,6 +23628,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Krokorok, 1),
         FOOTPRINT(Krokorok),
         ANIMATIONS(KROKOROK, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sKrokorokEvolutions,
     },
 
     [SPECIES_KROOKODILE] =
@@ -23371,6 +23706,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Darumaka),
         ICON(Darumaka, 0),
         ANIMATIONS(DARUMAKA, 0, ANIM_SWING_CONCAVE, BACK_ANIM_NONE),
+        .evolutions = sDarumakaEvolutions,
         DARUMAKA_MISC_INFO,
     },
     [SPECIES_DARUMAKA_GALARIAN] =
@@ -23387,6 +23723,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(DarumakaGalarian),
         ICON(DarumakaGalarian, 0),
         ANIMATIONS(DARUMAKA_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sDarumakaGalarianEvolutions,
         DARUMAKA_MISC_INFO,
     },
 
@@ -23566,6 +23903,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Dwebble, 0),
         FOOTPRINT(Dwebble),
         ANIMATIONS(DWEBBLE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sDwebbleEvolutions,
     },
 
     [SPECIES_CRUSTLE] =
@@ -23642,6 +23980,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Scraggy, 2),
         FOOTPRINT(Scraggy),
         ANIMATIONS(SCRAGGY, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sScraggyEvolutions,
     },
 
     [SPECIES_SCRAFTY] =
@@ -23754,6 +24093,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Yamask),
         ICON(Yamask, 0),
         ANIMATIONS(YAMASK, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
+        .evolutions = sYamaskEvolutions,
         YAMASK_MISC_INFO,
     },
     [SPECIES_YAMASK_GALARIAN] =
@@ -23774,6 +24114,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(YamaskGalarian),
         ICON(YamaskGalarian, 2),
         ANIMATIONS(YAMASK_GALARIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sYamaskGalarianEvolutions,
         YAMASK_MISC_INFO,
     },
 
@@ -23846,6 +24187,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Tirtouga, 2),
         FOOTPRINT(Tirtouga),
         ANIMATIONS(TIRTOUGA, 0, ANIM_RISING_WOBBLE, BACK_ANIM_NONE),
+        .evolutions = sTirtougaEvolutions,
     },
 
     [SPECIES_CARRACOSTA] =
@@ -23916,6 +24258,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Archen, 0),
         FOOTPRINT(Archen),
         ANIMATIONS(ARCHEN, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_NONE),
+        .evolutions = sArchenEvolutions,
     },
 
     [SPECIES_ARCHEOPS] =
@@ -23988,6 +24331,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Trubbish, 1),
         FOOTPRINT(Trubbish),
         ANIMATIONS(TRUBBISH, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sTrubbishEvolutions,
     },
 
     [SPECIES_GARBODOR] =
@@ -24062,6 +24406,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Zorua),
         ICON(Zorua, 0),
         ANIMATIONS(ZORUA, 0, ANIM_CIRCULAR_VIBRATE, BACK_ANIM_NONE),
+        .evolutions = sZoruaEvolutions,
         ZORUA_MISC_INFO,
     },
     [SPECIES_ZORUA_HISUIAN] =
@@ -24082,6 +24427,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(ZoruaHisuian),
         ICON(ZoruaHisuian, 0),
         ANIMATIONS(ZORUA_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sZoruaHisuianEvolutions,
         ZORUA_MISC_INFO,
     },
 
@@ -24177,6 +24523,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Minccino, 0),
         FOOTPRINT(Minccino),
         ANIMATIONS(MINCCINO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sMinccinoEvolutions,
     },
 
     [SPECIES_CINCCINO] =
@@ -24247,6 +24594,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Gothita, 2),
         FOOTPRINT(Gothita),
         ANIMATIONS(GOTHITA, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_NONE),
+        .evolutions = sGothitaEvolutions,
     },
 
     [SPECIES_GOTHORITA] =
@@ -24282,6 +24630,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Gothorita, 2),
         FOOTPRINT(Gothorita),
         ANIMATIONS(GOTHORITA, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
+        .evolutions = sGothoritaEvolutions,
     },
 
     [SPECIES_GOTHITELLE] =
@@ -24353,6 +24702,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Solosis, 1),
         FOOTPRINT(Solosis),
         ANIMATIONS(SOLOSIS, 0, ANIM_TWIST, BACK_ANIM_NONE),
+        .evolutions = sSolosisEvolutions,
     },
 
     [SPECIES_DUOSION] =
@@ -24389,6 +24739,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Duosion, 1),
         FOOTPRINT(Duosion),
         ANIMATIONS(DUOSION, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_NONE),
+        .evolutions = sDuosionEvolutions,
     },
 
     [SPECIES_REUNICLUS] =
@@ -24460,6 +24811,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Ducklett, 0),
         FOOTPRINT(Ducklett),
         ANIMATIONS(DUCKLETT, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sDucklettEvolutions,
     },
 
     [SPECIES_SWANNA] =
@@ -24531,6 +24883,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Vanillite, 0),
         FOOTPRINT(Vanillite),
         ANIMATIONS(VANILLITE, 0, ANIM_H_SLIDE, BACK_ANIM_NONE),
+        .evolutions = sVanilliteEvolutions,
     },
 
     [SPECIES_VANILLISH] =
@@ -24567,6 +24920,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Vanillish, 2),
         FOOTPRINT(Vanillish),
         ANIMATIONS(VANILLISH, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
+        .evolutions = sVanillishEvolutions,
     },
 
     [SPECIES_VANILLUXE] =
@@ -24640,6 +24994,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
         PALETTES(Deerling),
         ICON(Deerling, 1),
+        .evolutions = sDeerlingSpringEvolutions,
         DEERLING_MISC_INFO,
     },
     [SPECIES_DEERLING_SUMMER] =
@@ -24647,6 +25002,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         PALETTES(DeerlingSummer),
         ICON(DeerlingSummer, 1),
+        .evolutions = sDeerlingSummerEvolutions,
         DEERLING_MISC_INFO,
     },
     [SPECIES_DEERLING_AUTUMN] =
@@ -24654,6 +25010,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         PALETTES(DeerlingAutumn),
         ICON(DeerlingAutumn, 1),
+        .evolutions = sDeerlingAutumnEvolutions,
         DEERLING_MISC_INFO,
     },
     [SPECIES_DEERLING_WINTER] =
@@ -24661,6 +25018,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         PALETTES(DeerlingWinter),
         ICON(DeerlingWinter, 1),
+        .evolutions = sDeerlingWinterEvolutions,
         DEERLING_MISC_INFO,
     },
 
@@ -24798,6 +25156,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Karrablast, 0),
         FOOTPRINT(Karrablast),
         ANIMATIONS(KARRABLAST, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sKarrablastEvolutions,
     },
 
     [SPECIES_ESCAVALIER] =
@@ -24870,6 +25229,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Foongus, 0),
         FOOTPRINT(Foongus),
         ANIMATIONS(FOONGUS, 0, ANIM_SWING_CONCAVE_FAST, BACK_ANIM_NONE),
+        .evolutions = sFoongusEvolutions,
     },
 
     [SPECIES_AMOONGUSS] =
@@ -24946,6 +25306,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON_FEMALE(FrillishF, 1),
         FOOTPRINT(Frillish),
         ANIMATIONS(FRILLISH, 0, ANIM_RISING_WOBBLE, BACK_ANIM_NONE),
+        .evolutions = sFrillishEvolutions,
     },
 
     [SPECIES_JELLICENT] =
@@ -25055,6 +25416,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Joltik, 0),
         FOOTPRINT(Joltik),
         ANIMATIONS(JOLTIK, 0, ANIM_H_SLIDE, BACK_ANIM_NONE),
+        .evolutions = sJoltikEvolutions,
     },
 
     [SPECIES_GALVANTULA] =
@@ -25126,6 +25488,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Ferroseed, 1),
         FOOTPRINT(Ferroseed),
         ANIMATIONS(FERROSEED, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
+        .evolutions = sFerroseedEvolutions,
     },
 
     [SPECIES_FERROTHORN] =
@@ -25197,6 +25560,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Klink, 0),
         FOOTPRINT(Klink),
         ANIMATIONS(KLINK, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_NONE),
+        .evolutions = sKlinkEvolutions,
     },
 
     [SPECIES_KLANG] =
@@ -25232,6 +25596,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Klang, 0),
         FOOTPRINT(Klang),
         ANIMATIONS(KLANG, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_NONE),
+        .evolutions = sKlangEvolutions,
     },
 
     [SPECIES_KLINKLANG] =
@@ -25303,6 +25668,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Tynamo, 0),
         FOOTPRINT(Tynamo),
         ANIMATIONS(TYNAMO, 0, ANIM_V_SLIDE_WOBBLE_SMALL, BACK_ANIM_NONE),
+        .evolutions = sTynamoEvolutions,
     },
 
     [SPECIES_EELEKTRIK] =
@@ -25339,6 +25705,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Eelektrik, 0),
         FOOTPRINT(Eelektrik),
         ANIMATIONS(EELEKTRIK, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sEelektrikEvolutions,
     },
 
     [SPECIES_EELEKTROSS] =
@@ -25410,6 +25777,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Elgyem, 0),
         FOOTPRINT(Elgyem),
         ANIMATIONS(ELGYEM, 0, ANIM_RISING_WOBBLE, BACK_ANIM_NONE),
+        .evolutions = sElgyemEvolutions,
     },
 
     [SPECIES_BEHEEYEM] =
@@ -25484,6 +25852,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Litwick, 2),
         FOOTPRINT(Litwick),
         ANIMATIONS(LITWICK, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sLitwickEvolutions,
     },
 
     [SPECIES_LAMPENT] =
@@ -25523,6 +25892,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Lampent, 2),
         FOOTPRINT(Lampent),
         ANIMATIONS(LAMPENT, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
+        .evolutions = sLampentEvolutions,
     },
 
     [SPECIES_CHANDELURE] =
@@ -25597,6 +25967,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Axew, 1),
         FOOTPRINT(Axew),
         ANIMATIONS(AXEW, 0, ANIM_H_SHAKE, BACK_ANIM_NONE),
+        .evolutions = sAxewEvolutions,
     },
 
     [SPECIES_FRAXURE] =
@@ -25632,6 +26003,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Fraxure, 1),
         FOOTPRINT(Fraxure),
         ANIMATIONS(FRAXURE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sFraxureEvolutions,
     },
 
     [SPECIES_HAXORUS] =
@@ -25702,6 +26074,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Cubchoo, 0),
         FOOTPRINT(Cubchoo),
         ANIMATIONS(CUBCHOO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sCubchooEvolutions,
     },
 
     [SPECIES_BEARTIC] =
@@ -25818,6 +26191,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Shelmet, 1),
         FOOTPRINT(Shelmet),
         ANIMATIONS(SHELMET, 0, ANIM_TWIST, BACK_ANIM_NONE),
+        .evolutions = sShelmetEvolutions,
     },
 
     [SPECIES_ACCELGOR] =
@@ -25949,6 +26323,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Mienfoo, 1),
         FOOTPRINT(Mienfoo),
         ANIMATIONS(MIENFOO, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
+        .evolutions = sMienfooEvolutions,
     },
 
     [SPECIES_MIENSHAO] =
@@ -26056,6 +26431,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Golett, 0),
         FOOTPRINT(Golett),
         ANIMATIONS(GOLETT, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
+        .evolutions = sGolettEvolutions,
     },
 
     [SPECIES_GOLURK] =
@@ -26127,6 +26503,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Pawniard, 0),
         FOOTPRINT(Pawniard),
         ANIMATIONS(PAWNIARD, 0, ANIM_H_VIBRATE, BACK_ANIM_NONE),
+        .evolutions = sPawniardEvolutions,
     },
 
     [SPECIES_BISHARP] =
@@ -26232,6 +26609,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Rufflet, 2),
         FOOTPRINT(Rufflet),
         ANIMATIONS(RUFFLET, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sRuffletEvolutions,
     },
 
 #define BRAVIARY_MISC_INFO                  \
@@ -26331,6 +26709,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Vullaby, 0),
         FOOTPRINT(Vullaby),
         ANIMATIONS(VULLABY, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sVullabyEvolutions,
     },
 
     [SPECIES_MANDIBUZZ] =
@@ -26471,6 +26850,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Deino, 2),
         FOOTPRINT(Deino),
         ANIMATIONS(DEINO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sDeinoEvolutions,
     },
 
     [SPECIES_ZWEILOUS] =
@@ -26506,6 +26886,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Zweilous, 2),
         FOOTPRINT(Zweilous),
         ANIMATIONS(ZWEILOUS, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sZweilousEvolutions,
     },
 
     [SPECIES_HYDREIGON] =
@@ -26577,6 +26958,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Larvesta, 0),
         FOOTPRINT(Larvesta),
         ANIMATIONS(LARVESTA, 0, ANIM_GLOW_ORANGE, BACK_ANIM_NONE),
+        .evolutions = sLarvestaEvolutions,
     },
 
     [SPECIES_VOLCARONA] =
@@ -27259,6 +27641,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Chespin, 1),
         FOOTPRINT(Chespin),
         ANIMATIONS(CHESPIN, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_NONE),
+        .evolutions = sChespinEvolutions,
     },
 
     [SPECIES_QUILLADIN] =
@@ -27294,6 +27677,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Quilladin, 1),
         FOOTPRINT(Quilladin),
         ANIMATIONS(QUILLADIN, 0, ANIM_LUNGE_GROW, BACK_ANIM_NONE),
+        .evolutions = sQuilladinEvolutions,
     },
 
     [SPECIES_CHESNAUGHT] =
@@ -27364,6 +27748,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Fennekin, 0),
         FOOTPRINT(Fennekin),
         ANIMATIONS(FENNEKIN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sFennekinEvolutions,
     },
 
     [SPECIES_BRAIXEN] =
@@ -27399,6 +27784,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Braixen, 0),
         FOOTPRINT(Braixen),
         ANIMATIONS(BRAIXEN, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),
+        .evolutions = sBraixenEvolutions,
     },
 
     [SPECIES_DELPHOX] =
@@ -27469,6 +27855,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Froakie, 0),
         FOOTPRINT(Froakie),
         ANIMATIONS(FROAKIE, 0, ANIM_H_JUMPS, BACK_ANIM_NONE),
+        .evolutions = sFroakieEvolutions,
     },
 
     [SPECIES_FROGADIER] =
@@ -27504,6 +27891,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Frogadier, 0),
         FOOTPRINT(Frogadier),
         ANIMATIONS(FROGADIER, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
+        .evolutions = sFrogadierEvolutions,
     },
 
 #define GRENINJA_NORMAL_MISC_INFO               \
@@ -27609,6 +27997,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Bunnelby, 2),
         FOOTPRINT(Bunnelby),
         ANIMATIONS(BUNNELBY, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_NONE),
+        .evolutions = sBunnelbyEvolutions,
     },
 
     [SPECIES_DIGGERSBY] =
@@ -27679,6 +28068,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Fletchling, 2),
         FOOTPRINT(Fletchling),
         ANIMATIONS(FLETCHLING, 0, ANIM_RAPID_H_HOPS, BACK_ANIM_NONE),
+        .evolutions = sFletchlingEvolutions,
     },
 
     [SPECIES_FLETCHINDER] =
@@ -27715,6 +28105,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Fletchinder, 2),
         FOOTPRINT(Fletchinder),
         ANIMATIONS(FLETCHINDER, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sFletchinderEvolutions,
     },
 
     [SPECIES_TALONFLAME] =
@@ -27753,7 +28144,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ANIMATIONS(TALONFLAME, 0, ANIM_SWING_CONCAVE_FAST, BACK_ANIM_NONE),
     },
 
-#define SCATTERBUG_SPECIES_INFO                                                         \
+#define SCATTERBUG_SPECIES_INFO(form)                                                         \
     {                                                                                   \
         .baseHP        = 38,                                                            \
         .baseAttack    = 35,                                                            \
@@ -27786,29 +28177,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Scatterbug, 1),                                                            \
         FOOTPRINT(Scatterbug),                                                          \
         ANIMATIONS(SCATTERBUG, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),                      \
+        .evolutions = sScatterbug##form##Evolutions,                                    \
     }
-    [SPECIES_SCATTERBUG_ICY_SNOW]    = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_POLAR]       = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_TUNDRA]      = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_CONTINENTAL] = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_GARDEN]      = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_ELEGANT]     = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_MEADOW]      = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_MODERN]      = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_MARINE]      = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_ARCHIPELAGO] = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_HIGH_PLAINS] = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_SANDSTORM]   = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_RIVER]       = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_MONSOON]     = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_SAVANNA]     = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_SUN]         = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_OCEAN]       = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_JUNGLE]      = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_FANCY]       = SCATTERBUG_SPECIES_INFO,
-    [SPECIES_SCATTERBUG_POKE_BALL]   = SCATTERBUG_SPECIES_INFO,
+    [SPECIES_SCATTERBUG_ICY_SNOW]    = SCATTERBUG_SPECIES_INFO(IcySnow),
+    [SPECIES_SCATTERBUG_POLAR]       = SCATTERBUG_SPECIES_INFO(Polar),
+    [SPECIES_SCATTERBUG_TUNDRA]      = SCATTERBUG_SPECIES_INFO(Tundra),
+    [SPECIES_SCATTERBUG_CONTINENTAL] = SCATTERBUG_SPECIES_INFO(Continental),
+    [SPECIES_SCATTERBUG_GARDEN]      = SCATTERBUG_SPECIES_INFO(Garden),
+    [SPECIES_SCATTERBUG_ELEGANT]     = SCATTERBUG_SPECIES_INFO(Elegant),
+    [SPECIES_SCATTERBUG_MEADOW]      = SCATTERBUG_SPECIES_INFO(Meadow),
+    [SPECIES_SCATTERBUG_MODERN]      = SCATTERBUG_SPECIES_INFO(Modern),
+    [SPECIES_SCATTERBUG_MARINE]      = SCATTERBUG_SPECIES_INFO(Marine),
+    [SPECIES_SCATTERBUG_ARCHIPELAGO] = SCATTERBUG_SPECIES_INFO(Archipelago),
+    [SPECIES_SCATTERBUG_HIGH_PLAINS] = SCATTERBUG_SPECIES_INFO(HighPlains),
+    [SPECIES_SCATTERBUG_SANDSTORM]   = SCATTERBUG_SPECIES_INFO(Sandstorm),
+    [SPECIES_SCATTERBUG_RIVER]       = SCATTERBUG_SPECIES_INFO(River),
+    [SPECIES_SCATTERBUG_MONSOON]     = SCATTERBUG_SPECIES_INFO(Monsoon),
+    [SPECIES_SCATTERBUG_SAVANNA]     = SCATTERBUG_SPECIES_INFO(Savanna),
+    [SPECIES_SCATTERBUG_SUN]         = SCATTERBUG_SPECIES_INFO(Sun),
+    [SPECIES_SCATTERBUG_OCEAN]       = SCATTERBUG_SPECIES_INFO(Ocean),
+    [SPECIES_SCATTERBUG_JUNGLE]      = SCATTERBUG_SPECIES_INFO(Jungle),
+    [SPECIES_SCATTERBUG_FANCY]       = SCATTERBUG_SPECIES_INFO(Fancy),
+    [SPECIES_SCATTERBUG_POKE_BALL]   = SCATTERBUG_SPECIES_INFO(PokeBall),
 
-#define SPEWPA_SPECIES_INFO                                                     \
+#define SPEWPA_SPECIES_INFO(form)                                               \
     {                                                                           \
         .baseHP        = 45,                                                    \
         .baseAttack    = 22,                                                    \
@@ -27841,27 +28233,28 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Spewpa, 1),                                                        \
         FOOTPRINT(Spewpa),                                                      \
         ANIMATIONS(SPEWPA, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),                    \
+        .evolutions = sSpewpa##form##Evolutions,                                \
     }
-    [SPECIES_SPEWPA_ICY_SNOW]    = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_POLAR]       = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_TUNDRA]      = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_CONTINENTAL] = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_GARDEN]      = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_ELEGANT]     = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_MEADOW]      = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_MODERN]      = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_MARINE]      = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_ARCHIPELAGO] = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_HIGH_PLAINS] = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_SANDSTORM]   = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_RIVER]       = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_MONSOON]     = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_SAVANNA]     = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_SUN]         = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_OCEAN]       = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_JUNGLE]      = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_FANCY]       = SPEWPA_SPECIES_INFO,
-    [SPECIES_SPEWPA_POKE_BALL]   = SPEWPA_SPECIES_INFO,
+    [SPECIES_SPEWPA_ICY_SNOW]    = SPEWPA_SPECIES_INFO(IcySnow),
+    [SPECIES_SPEWPA_POLAR]       = SPEWPA_SPECIES_INFO(Polar),
+    [SPECIES_SPEWPA_TUNDRA]      = SPEWPA_SPECIES_INFO(Tundra),
+    [SPECIES_SPEWPA_CONTINENTAL] = SPEWPA_SPECIES_INFO(Continental),
+    [SPECIES_SPEWPA_GARDEN]      = SPEWPA_SPECIES_INFO(Garden),
+    [SPECIES_SPEWPA_ELEGANT]     = SPEWPA_SPECIES_INFO(Elegant),
+    [SPECIES_SPEWPA_MEADOW]      = SPEWPA_SPECIES_INFO(Meadow),
+    [SPECIES_SPEWPA_MODERN]      = SPEWPA_SPECIES_INFO(Modern),
+    [SPECIES_SPEWPA_MARINE]      = SPEWPA_SPECIES_INFO(Marine),
+    [SPECIES_SPEWPA_ARCHIPELAGO] = SPEWPA_SPECIES_INFO(Archipelago),
+    [SPECIES_SPEWPA_HIGH_PLAINS] = SPEWPA_SPECIES_INFO(HighPlains),
+    [SPECIES_SPEWPA_SANDSTORM]   = SPEWPA_SPECIES_INFO(Sandstorm),
+    [SPECIES_SPEWPA_RIVER]       = SPEWPA_SPECIES_INFO(River),
+    [SPECIES_SPEWPA_MONSOON]     = SPEWPA_SPECIES_INFO(Monsoon),
+    [SPECIES_SPEWPA_SAVANNA]     = SPEWPA_SPECIES_INFO(Savanna),
+    [SPECIES_SPEWPA_SUN]         = SPEWPA_SPECIES_INFO(Sun),
+    [SPECIES_SPEWPA_OCEAN]       = SPEWPA_SPECIES_INFO(Ocean),
+    [SPECIES_SPEWPA_JUNGLE]      = SPEWPA_SPECIES_INFO(Jungle),
+    [SPECIES_SPEWPA_FANCY]       = SPEWPA_SPECIES_INFO(Fancy),
+    [SPECIES_SPEWPA_POKE_BALL]   = SPEWPA_SPECIES_INFO(PokeBall),
 
 #define VIVILLON_SPECIES_INFO(color, dex, form)                                         \
     {                                                                                   \
@@ -27894,7 +28287,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         LEARNSETS(Vivillon),                                                            \
         FRONT_SPRITE(Vivillon, 64, 64, 0),                                              \
         .enemyMonElevation = 9,                                                         \
-        BACK_SPRITE(form, 64, 64, 0),                                                  \
+        BACK_SPRITE(form, 64, 64, 0),                                                   \
         PALETTES(form),                                                                 \
         ICON(form, 0),                                                                  \
         FOOTPRINT(Vivillon),                                                            \
@@ -27955,6 +28348,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Litleo, 2),
         FOOTPRINT(Litleo),
         ANIMATIONS(LITLEO, 0, ANIM_BACK_AND_LUNGE, BACK_ANIM_NONE),
+        .evolutions = sLitleoEvolutions,
     },
 
     [SPECIES_PYROAR] =
@@ -28029,8 +28423,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(form, iconPal),                                                    \
         FOOTPRINT(Flabebe),                                                     \
         ANIMATIONS(FLABEBE, 0, ANIM_SWING_CONCAVE_FAST_SHORT, BACK_ANIM_NONE),  \
+        .evolutions = s##form##Evolutions,                                      \
     }
-    [SPECIES_FLABEBE_RED_FLOWER]    = FLABEBE_SPECIES_INFO(Flabebe, Flabebe, 1),
+    [SPECIES_FLABEBE_RED_FLOWER]    = FLABEBE_SPECIES_INFO(Flabebe, FlabebeRedFlower, 1),
     [SPECIES_FLABEBE_YELLOW_FLOWER] = FLABEBE_SPECIES_INFO(Dummy, FlabebeYellowFlower, 1),
     [SPECIES_FLABEBE_ORANGE_FLOWER] = FLABEBE_SPECIES_INFO(Dummy, FlabebeOrangeFlower, 0),
     [SPECIES_FLABEBE_BLUE_FLOWER]   = FLABEBE_SPECIES_INFO(Dummy, FlabebeBlueFlower, 0),
@@ -28072,10 +28467,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(form),                                             \
         ICON(form, iconPal),                                        \
         ANIMATIONS(FLOETTE, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),\
+        .evolutions = s##form##Evolutions,                          \
         FLOETTE_MISC_INFO,                                          \
     }
 
-    [SPECIES_FLOETTE_RED_FLOWER]    = FLOETTE_NORMAL_INFO(Floette, Floette, 1),
+    [SPECIES_FLOETTE_RED_FLOWER]    = FLOETTE_NORMAL_INFO(Floette, FloetteRedFlower, 1),
     [SPECIES_FLOETTE_YELLOW_FLOWER] = FLOETTE_NORMAL_INFO(Dummy, FloetteYellowFlower, 1),
     [SPECIES_FLOETTE_ORANGE_FLOWER] = FLOETTE_NORMAL_INFO(Dummy, FloetteOrangeFlower, 0),
     [SPECIES_FLOETTE_BLUE_FLOWER]   = FLOETTE_NORMAL_INFO(Dummy, FloetteBlueFlower, 0),
@@ -28140,7 +28536,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FOOTPRINT(Florges),                                                 \
         ANIMATIONS(FLORGES, 0, ANIM_GROW_VIBRATE, BACK_ANIM_NONE),          \
     }
-    [SPECIES_FLORGES_RED_FLOWER]    = FLORGES_SPECIES_INFO(Florges, Florges, 0),
+    [SPECIES_FLORGES_RED_FLOWER]    = FLORGES_SPECIES_INFO(Florges, FlorgesRedFlower, 0),
     [SPECIES_FLORGES_YELLOW_FLOWER] = FLORGES_SPECIES_INFO(Dummy, FlorgesYellowFlower, 1),
     [SPECIES_FLORGES_ORANGE_FLOWER] = FLORGES_SPECIES_INFO(Dummy, FlorgesOrangeFlower, 0),
     [SPECIES_FLORGES_BLUE_FLOWER]   = FLORGES_SPECIES_INFO(Dummy, FlorgesBlueFlower, 0),
@@ -29371,6 +29767,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Goomy, 5),
         FOOTPRINT(Goomy),
         ANIMATIONS(GOOMY, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
+        .evolutions = sGoomyEvolutions,
     },
 
 #define SLIGGOO_MISC_INFO                   \
@@ -29409,6 +29806,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Sliggoo),
         ICON(Sliggoo, 5),
         ANIMATIONS(SLIGGOO, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sSliggooEvolutions,
         SLIGGOO_MISC_INFO,
     },
     [SPECIES_SLIGGOO_HISUIAN] =
@@ -29431,6 +29829,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(SliggooHisuian),
         ICON(SliggooHisuian, 2),
         ANIMATIONS(SLIGGOO_HISUIAN, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sSliggooHisuianEvolutions,
     },
 
 #define GOODRA_MISC_INFO                    \
@@ -29563,6 +29962,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Phantump, 1),
         FOOTPRINT(Phantump),
         ANIMATIONS(PHANTUMP, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sPhantumpEvolutions,
     },
 
     [SPECIES_TREVENANT] =
@@ -29635,6 +30035,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         HEIGHT_WEIGHT(4, 50),
         FRONT_SPRITE(Pumpkaboo, 40, 40, 13),
         BACK_SPRITE(Pumpkaboo, 56, 48, 13),
+        .evolutions = sPumpkabooAverageEvolutions,
         PUMKPABOO_MISC_INFO,
     },
 
@@ -29651,6 +30052,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         HEIGHT_WEIGHT(3, 35),
         FRONT_SPRITE(PumpkabooSmall, 40, 40, 15),
         BACK_SPRITE(PumpkabooSmall, 56, 48, 14),
+        .evolutions = sPumpkabooSmallEvolutions,
         PUMKPABOO_MISC_INFO,
     },
 
@@ -29667,6 +30069,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         HEIGHT_WEIGHT(5, 75),
         FRONT_SPRITE(PumpkabooLarge, 48, 48, 12),
         BACK_SPRITE(PumpkabooLarge, 56, 48, 13),
+        .evolutions = sPumpkabooLargeEvolutions,
         PUMKPABOO_MISC_INFO,
     },
 
@@ -29685,6 +30088,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         HEIGHT_WEIGHT(8, 150),
         FRONT_SPRITE(PumpkabooSuper, 48, 48, 10),
         BACK_SPRITE(PumpkabooSuper, 56, 48, 12),
+        .evolutions = sPumpkabooSuperEvolutions,
         PUMKPABOO_MISC_INFO,
     },
 
@@ -29799,6 +30203,18 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_ICE_BODY, ABILITY_STURDY},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_BERGMITE,
+        DEX_TEXT(Bergmite, "Ice Chunk"),
+        DEX_SCALE(356, 17, 256, 0),
+        HEIGHT_WEIGHT(10, 995),
+        LEARNSETS(Bergmite),
+        FRONT_SPRITE(Bergmite, 40, 40, 14),
+        BACK_SPRITE(Bergmite, 56, 48, 13),
+        PALETTES(Bergmite),
+        ICON(Bergmite, 0), 
+        FOOTPRINT(Bergmite), 
+        ANIMATIONS(BERGMITE, 0, ANIM_LUNGE_GROW, BACK_ANIM_NONE),
+        .evolutions = sBergmiteEvolutions,
     },
 
 
@@ -29906,6 +30322,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Noibat, 2),
         FOOTPRINT(Noibat),
         ANIMATIONS(NOIBAT, 0, ANIM_RISING_WOBBLE, BACK_ANIM_NONE),
+        .evolutions = sNoibatEvolutions,
     },
 
     [SPECIES_NOIVERN] =
@@ -30168,6 +30585,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTES(Diancie),
         ICON(Diancie, 1),
         ANIMATIONS(DIANCIE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sDiancieEvolutions,
         DIANCE_MISC_INFO,
     },
 
@@ -30326,6 +30744,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Rowlet, 0),
         FOOTPRINT(Rowlet),
         ANIMATIONS(ROWLET, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sRowletEvolutions,
     },
 
     [SPECIES_DARTRIX] =
@@ -30361,6 +30780,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Dartrix, 1),
         FOOTPRINT(Dartrix),
         ANIMATIONS(DARTRIX, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sDartrixEvolutions,
     },
 
 #define DECIDUEYE_MISC_INFO                 \
@@ -30455,6 +30875,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Litten, 0),
         FOOTPRINT(Litten),
         ANIMATIONS(LITTEN, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sLittenEvolutions,
     },
 
     [SPECIES_TORRACAT] =
@@ -30490,6 +30911,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Torracat, 0),
         FOOTPRINT(Torracat),
         ANIMATIONS(TORRACAT, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sTorracatEvolutions,
     },
 
     [SPECIES_INCINEROAR] =
@@ -30560,6 +30982,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Popplio, 0),
         FOOTPRINT(Popplio),
         ANIMATIONS(POPPLIO, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
+        .evolutions = sPopplioEvolutions,
     },
 
     [SPECIES_BRIONNE] =
@@ -30595,6 +31018,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Brionne, 0),
         FOOTPRINT(Brionne),
         ANIMATIONS(BRIONNE, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE),
+        .evolutions = sBrionneEvolutions,
     },
 
     [SPECIES_PRIMARINA] =
@@ -30666,6 +31090,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Pikipek, 2),
         FOOTPRINT(Pikipek),
         ANIMATIONS(PIKIPEK, 0, ANIM_V_JUMPS_SMALL, BACK_ANIM_NONE),
+        .evolutions = sPikipekEvolutions,
     },
 
     [SPECIES_TRUMBEAK] =
@@ -30702,6 +31127,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Trumbeak, 0),
         FOOTPRINT(Trumbeak),
         ANIMATIONS(TRUMBEAK, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sTrumbeakEvolutions,
     },
 
     [SPECIES_TOUCANNON] =
@@ -30774,6 +31200,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Yungoos, 2),
         FOOTPRINT(Yungoos),
         ANIMATIONS(YUNGOOS, 0, ANIM_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sYungoosEvolutions,
     },
 
     [SPECIES_GUMSHOOS] =
@@ -30845,6 +31272,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Grubbin, 0),
         FOOTPRINT(Grubbin),
         ANIMATIONS(GRUBBIN, 0, ANIM_H_SLIDE, BACK_ANIM_NONE),
+        .evolutions = sGrubbinEvolutions,
     },
 
     [SPECIES_CHARJABUG] =
@@ -30881,6 +31309,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Charjabug, 1),
         FOOTPRINT(Charjabug),
         ANIMATIONS(CHARJABUG, 0, ANIM_SHAKE_FLASH_YELLOW_SLOW, BACK_ANIM_NONE),
+        .evolutions = sCharjabugEvolutions,
     },
 
     [SPECIES_VIKAVOLT] =
@@ -30953,6 +31382,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Crabrawler, 2),
         FOOTPRINT(Crabrawler),
         ANIMATIONS(CRABRAWLER, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
+        .evolutions = sCrabrawlerEvolutions,
     },
 
     [SPECIES_CRABOMINABLE] =
@@ -31101,6 +31531,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Cutiefly, 2),
         FOOTPRINT(Cutiefly),
         ANIMATIONS(CUTIEFLY, 0, ANIM_V_SLIDE_WOBBLE, BACK_ANIM_NONE),
+        .evolutions = sCutieflyEvolutions,
     },
 
     [SPECIES_RIBOMBEE] =
@@ -31175,11 +31606,13 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_ROCKRUFF] =
     {
         .abilities = {ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_STEADFAST},
+        .evolutions = sRockruffEvolutions,
         ROCKRUFF_MISC_INFO,
     },
     [SPECIES_ROCKRUFF_OWN_TEMPO] =
     {
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_NONE},
+        .evolutions = sRockruffOwnTempoEvolutions,
         ROCKRUFF_MISC_INFO,
     },
 
@@ -31354,6 +31787,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Mareanie, 2),
         FOOTPRINT(Mareanie),
         ANIMATIONS(MAREANIE, 0, ANIM_GLOW_PURPLE, BACK_ANIM_NONE),
+        .evolutions = sMareanieEvolutions,
     },
 
     [SPECIES_TOXAPEX] =
@@ -31426,6 +31860,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Mudbray, 2),
         FOOTPRINT(Mudbray),
         ANIMATIONS(MUDBRAY, 0, ANIM_V_SHAKE, BACK_ANIM_NONE),
+        .evolutions = sMudbrayEvolutions,
     },
 
     [SPECIES_MUDSDALE] =
@@ -31498,6 +31933,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Dewpider, 0),
         FOOTPRINT(Dewpider),
         ANIMATIONS(DEWPIDER, 0, ANIM_SHRINK_GROW, BACK_ANIM_NONE),
+        .evolutions = sDewpiderEvolutions,
     },
 
     [SPECIES_ARAQUANID] =
@@ -31570,6 +32006,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Fomantis, 1),
         FOOTPRINT(Fomantis),
         ANIMATIONS(FOMANTIS, 0, ANIM_V_SQUISH_AND_BOUNCE_SLOW, BACK_ANIM_NONE),
+        .evolutions = sFomantisEvolutions,
     },
 
     [SPECIES_LURANTIS] =
@@ -31643,6 +32080,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Morelull, 0),
         FOOTPRINT(Morelull),
         ANIMATIONS(MORELULL, 0, ANIM_SHAKE_FLASH_YELLOW, BACK_ANIM_NONE),
+        .evolutions = sMorelullEvolutions,
     },
 
     [SPECIES_SHIINOTIC] =
@@ -31716,6 +32154,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Salandit, 2),
         FOOTPRINT(Salandit),
         ANIMATIONS(SALANDIT, 0, ANIM_SHAKE_GLOW_RED_SLOW, BACK_ANIM_NONE),
+        .evolutions = sSalanditEvolutions,
     },
 
     [SPECIES_SALAZZLE] =
@@ -31787,6 +32226,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Stufful, 0),
         FOOTPRINT(Stufful),
         ANIMATIONS(STUFFUL, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sStuffulEvolutions,
     },
 
     [SPECIES_BEWEAR] =
@@ -31858,6 +32298,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Bounsweet, 1),
         FOOTPRINT(Bounsweet),
         ANIMATIONS(BOUNSWEET, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sBounsweetEvolutions,
     },
 
     [SPECIES_STEENEE] =
@@ -31894,6 +32335,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Steenee, 1),
         FOOTPRINT(Steenee),
         ANIMATIONS(STEENEE, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .evolutions = sSteeneeEvolutions,
     },
 
     [SPECIES_TSAREENA] =
@@ -32072,6 +32514,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Wimpod, 2),
         FOOTPRINT(Wimpod),
         ANIMATIONS(WIMPOD, 0, ANIM_V_SHAKE_H_SLIDE_FAST, BACK_ANIM_NONE),
+        .evolutions = sWimpodEvolutions,
     },
 
     [SPECIES_GOLISOPOD] =
@@ -32143,6 +32586,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Sandygast, 1),
         FOOTPRINT(Sandygast),
         ANIMATIONS(SANDYGAST, 0, ANIM_CIRCULAR_STRETCH_TWICE, BACK_ANIM_NONE),
+        .evolutions = sSandygastEvolutions,
     },
 
     [SPECIES_PALOSSAND] =
@@ -32250,6 +32694,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(TypeNull, 0),
         FOOTPRINT(Type_Null),
         ANIMATIONS(TYPE_NULL, 0, ANIM_H_SHAKE, BACK_ANIM_NONE),
+        .evolutions = sTypeNullEvolutions,
     },
 
 #define SILVALLY_SPECIES_INFO(type, dex, pal)                   \
@@ -32677,6 +33122,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Jangmoo, 2),
         FOOTPRINT(Jangmo_o),
         ANIMATIONS(JANGMO_O, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sJangmoOEvolutions,
     },
 
     [SPECIES_HAKAMO_O] =
@@ -32713,6 +33159,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Hakamoo, 2),
         FOOTPRINT(Hakamo_o),
         ANIMATIONS(HAKAMO_O, 0, ANIM_H_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sHakamoOEvolutions,
     },
 
     [SPECIES_KOMMO_O] =
@@ -32934,6 +33381,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Cosmog, 2),
         FOOTPRINT(Cosmog),
         ANIMATIONS(COSMOG, 0, ANIM_H_JUMPS_V_STRETCH, BACK_ANIM_NONE),
+        .evolutions = sCosmogEvolutions,
     },
 
     [SPECIES_COSMOEM] =
@@ -32972,6 +33420,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Cosmoem, 0),
         FOOTPRINT(Cosmoem),
         ANIMATIONS(COSMOEM, 0, ANIM_RISING_WOBBLE, BACK_ANIM_NONE),
+        .evolutions = sCosmoemEvolutions,
     },
 
     [SPECIES_SOLGALEO] =
@@ -33545,6 +33994,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Poipole, 0),
         FOOTPRINT(Poipole),
         ANIMATIONS(POIPOLE, 0, ANIM_SHAKE_GLOW_PURPLE_SLOW, BACK_ANIM_NONE),
+        .evolutions = sPoipoleEvolutions,
     },
 
     [SPECIES_NAGANADEL] =

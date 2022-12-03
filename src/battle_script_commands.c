@@ -60,8 +60,6 @@
 #include "battle_util.h"
 #include "constants/pokemon.h"
 
-extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
-
 extern const u8 *const gBattleScriptsForMoveEffects[];
 
 // table to avoid ugly powing on gba (courtesy of doesnt)
@@ -9766,12 +9764,18 @@ static void Cmd_various(void)
     case VARIOUS_JUMP_IF_CANT_REVERT_TO_PRIMAL:
     {
         bool8 canDoPrimalReversion = FALSE;
+        const struct Evolution *evolutions = gSpeciesInfo[gBattleMons[i].species].evolutions;
 
-        for (i = 0; i < EVOS_PER_MON; i++)
+        if (evolutions != NULL)
         {
-            if (gEvolutionTable[gBattleMons[gActiveBattler].species][i].method == EVO_PRIMAL_REVERSION
-            && gEvolutionTable[gBattleMons[gActiveBattler].species][i].param == gBattleMons[gActiveBattler].item)
-                canDoPrimalReversion = TRUE;
+            for (j = 0; evolutions[j].method != EVOLUTIONS_END; j++)
+            {
+                if (evolutions[j].method == EVO_PRIMAL_REVERSION
+                && evolutions[j].param == gBattleMons[gActiveBattler].item)
+                {
+                    canDoPrimalReversion = TRUE;
+                }
+            }
         }
         if (!canDoPrimalReversion)
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
@@ -14204,11 +14208,14 @@ static void Cmd_handleballthrow(void)
                 #endif
                 break;
             case ITEM_MOON_BALL:
-                for (i = 0; i < EVOS_PER_MON; i++)
+                if (gSpeciesInfo[gBattleMons[gBattlerTarget].species].evolutions != NULL)
                 {
-                    if (gEvolutionTable[gBattleMons[gBattlerTarget].species][i].method == EVO_ITEM
-                        && gEvolutionTable[gBattleMons[gBattlerTarget].species][i].param == ITEM_MOON_STONE)
-                        ballMultiplier = 400;
+                    const struct Evolution *evolutions = gSpeciesInfo[gBattleMons[gBattlerTarget].species].evolutions;
+                    for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
+                    {
+                        if (evolutions[i].method == EVO_ITEM && evolutions[i].param == ITEM_MOON_STONE)
+                            ballMultiplier = 400;
+                    }
                 }
                 break;
             case ITEM_LOVE_BALL:

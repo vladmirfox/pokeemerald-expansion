@@ -46,8 +46,6 @@
 #include "constants/weather.h"
 #include "constants/pokemon.h"
 
-extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
-
 /*
 NOTE: The data and functions in this file up until (but not including) sSoundMovesTable
 are actually part of battle_main.c. They needed to be moved to this file in order to
@@ -9081,14 +9079,18 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 static bool32 CanEvolve(u32 species)
 {
     u32 i;
+    const struct Evolution *evolutions = gSpeciesInfo[gBattleMons[gBattlerTarget].species].evolutions;
 
-    for (i = 0; i < EVOS_PER_MON; i++)
+    if (evolutions != NULL)
     {
-        if (gEvolutionTable[species][i].method
-         && gEvolutionTable[species][i].method != EVO_MEGA_EVOLUTION
-         && gEvolutionTable[species][i].method != EVO_MOVE_MEGA_EVOLUTION
-         && gEvolutionTable[species][i].method != EVO_PRIMAL_REVERSION)
-            return TRUE;
+        for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
+        {
+            if (evolutions[i].method
+            && evolutions[i].method != EVO_MEGA_EVOLUTION
+            && evolutions[i].method != EVO_MOVE_MEGA_EVOLUTION
+            && evolutions[i].method != EVO_PRIMAL_REVERSION)
+                return TRUE;
+        }
     }
     return FALSE;
 }
@@ -9695,25 +9697,34 @@ bool32 IsPartnerMonFromSameTrainer(u8 battlerId)
 u16 GetMegaEvolutionSpecies(u16 preEvoSpecies, u16 heldItemId)
 {
     u32 i;
+    const struct Evolution *evolutions = gSpeciesInfo[preEvoSpecies].evolutions;
 
-    for (i = 0; i < EVOS_PER_MON; i++)
+    if (evolutions != NULL)
     {
-        if (gEvolutionTable[preEvoSpecies][i].method == EVO_MEGA_EVOLUTION
-         && gEvolutionTable[preEvoSpecies][i].param == heldItemId)
-            return gEvolutionTable[preEvoSpecies][i].targetSpecies;
+        for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
+        {
+            if (evolutions[i].method == EVO_MEGA_EVOLUTION
+            && evolutions[i].param == heldItemId)
+                return evolutions[i].targetSpecies;
+        }
     }
+
     return SPECIES_NONE;
 }
 
 u16 GetPrimalReversionSpecies(u16 preEvoSpecies, u16 heldItemId)
 {
     u32 i;
+    const struct Evolution *evolutions = gSpeciesInfo[preEvoSpecies].evolutions;
 
-    for (i = 0; i < EVOS_PER_MON; i++)
+    if (evolutions != NULL)
     {
-        if (gEvolutionTable[preEvoSpecies][i].method == EVO_PRIMAL_REVERSION
-         && gEvolutionTable[preEvoSpecies][i].param == heldItemId)
-            return gEvolutionTable[preEvoSpecies][i].targetSpecies;
+        for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
+        {
+            if (evolutions[i].method == EVO_PRIMAL_REVERSION
+            && evolutions[i].param == heldItemId)
+                return evolutions[i].targetSpecies;
+        }
     }
     return SPECIES_NONE;
 }
@@ -9721,14 +9732,18 @@ u16 GetPrimalReversionSpecies(u16 preEvoSpecies, u16 heldItemId)
 u16 GetWishMegaEvolutionSpecies(u16 preEvoSpecies, u16 moveId1, u16 moveId2, u16 moveId3, u16 moveId4)
 {
     u32 i, par;
+    const struct Evolution *evolutions = gSpeciesInfo[preEvoSpecies].evolutions;
 
-    for (i = 0; i < EVOS_PER_MON; i++)
+    if (evolutions != NULL)
     {
-        if (gEvolutionTable[preEvoSpecies][i].method == EVO_MOVE_MEGA_EVOLUTION)
+        for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
-            par = gEvolutionTable[preEvoSpecies][i].param;
-            if (par == moveId1 || par == moveId2 || par == moveId3 || par == moveId4)
-                return gEvolutionTable[preEvoSpecies][i].targetSpecies;
+            if (evolutions[i].method == EVO_MOVE_MEGA_EVOLUTION)
+            {
+                par = evolutions[i].param;
+                if (par == moveId1 || par == moveId2 || par == moveId3 || par == moveId4)
+                    return evolutions[i].targetSpecies;
+            }
         }
     }
     return SPECIES_NONE;

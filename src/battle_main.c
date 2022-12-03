@@ -63,8 +63,6 @@
 #include "constants/trainers.h"
 #include "cable_club.h"
 
-extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
-
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];
 
@@ -3691,14 +3689,18 @@ static void TryDoEventsBeforeFirstTurn(void)
     {
         if (GetBattlerHoldEffect(i, TRUE) == HOLD_EFFECT_PRIMAL_ORB)
         {
-            for (j = 0; j < EVOS_PER_MON; j++)
+            const struct Evolution *evolutions = gSpeciesInfo[gBattleMons[i].species].evolutions;
+            if (evolutions != NULL)
             {
-                if (gEvolutionTable[gBattleMons[i].species][j].targetSpecies != SPECIES_NONE
-                 && gEvolutionTable[gBattleMons[i].species][j].method == EVO_PRIMAL_REVERSION)
+                for (j = 0; evolutions[j].method != EVOLUTIONS_END; j++)
                 {
-                    gBattlerAttacker = i;
-                    BattleScriptExecute(BattleScript_PrimalReversion);
-                    return;
+                    if (evolutions[j].targetSpecies != SPECIES_NONE
+                    && evolutions[j].method == EVO_PRIMAL_REVERSION)
+                    {
+                        gBattlerAttacker = i;
+                        BattleScriptExecute(BattleScript_PrimalReversion);
+                        return;
+                    }
                 }
             }
         }

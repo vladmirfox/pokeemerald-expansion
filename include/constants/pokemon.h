@@ -305,11 +305,11 @@
 #define EVO_SCRIPT_TRIGGER_DMG            36     // Pokémon has specified HP below max, then player interacts trigger
 #define EVO_DARK_SCROLL                   37     // interacts with Scroll of Darkness
 #define EVO_WATER_SCROLL                  38     // interacts with Scroll of Waters
-#define EVO_ALCREMIE                      39     // TODO: read separate lookup table from gEvolutionTable.
+#define EVO_ALCREMIE                      39     // TODO
 #define EVO_ITEM_NIGHT                    40     // specified item is used on Pokémon, is night
 #define EVO_RECOIL_DMG                    41     // TODO: Pokémon receives a specified amount of recoil damage.
 
-#define EVOS_PER_MON 10
+#define EVOLUTIONS_END 0xFFFF
 
 // Evolution 'modes,' for GetEvolutionTargetSpecies
 #define EVO_MODE_NORMAL            0
