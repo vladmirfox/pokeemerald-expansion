@@ -11301,7 +11301,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_SCEPTILITE,
         .abilities = {ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        DEX_TEXT(Sceptile, "Forest"), // No official dex entry for this form
+        DEX_TEXT(SceptileMega, "Forest"),
         HEIGHT_WEIGHT(19, 522),
         FRONT_SPRITE(SceptileMega, 64, 64, 0),
         BACK_SPRITE(SceptileMega, 64, 64, 3),
@@ -11435,7 +11435,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_BLAZIKENITE,
         .abilities = {ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        DEX_TEXT(Blaziken, "Blaze"), // No official dex entry for this form
+        DEX_TEXT(BlazikenMega, "Blaze"),
         FRONT_SPRITE(BlazikenMega, 64, 64, 0),
         BACK_SPRITE(BlazikenMega, 56, 64, 0),
         PALETTES(BlazikenMega),
@@ -11567,7 +11567,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_SWAMPERTITE,
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        DEX_TEXT(Swampert, "Mud Fish"), // No official dex entry for this form
+        DEX_TEXT(SwampertMega, "Mud Fish"),
         HEIGHT_WEIGHT(19, 1020),
         FRONT_SPRITE(SwampertMega, 64, 64, 6),
         BACK_SPRITE(SwampertMega, 64, 56, 6),
@@ -12455,7 +12455,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_GARDEVOIRITE,
         .abilities = {ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        DEX_TEXT(Gardevoir, "Embrace"), // No official dex entry for this form
+        DEX_TEXT(GardevoirMega, "Embrace"),
         FRONT_SPRITE(GardevoirMega, 64, 64, 0),
         BACK_SPRITE(GardevoirMega, 48, 56, 6),
         PALETTES(GardevoirMega),
@@ -13529,7 +13529,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_MEDICHAMITE,
         .abilities = {ABILITY_PURE_POWER, ABILITY_PURE_POWER, ABILITY_PURE_POWER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        DEX_TEXT(Medicham, "Meditate"), // No official dex entry for this form
+        DEX_TEXT(MedichamMega, "Meditate"),
         FRONT_SPRITE(MedichamMega, 64, 64, 0),
         BACK_SPRITE(MedichamMega, 64, 64, 1),
         PALETTES(MedichamMega),
@@ -14162,7 +14162,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_CAMERUPTITE,
         .abilities = {ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        DEX_TEXT(Camerupt, "Eruption"), // No official dex entry for this form
+        DEX_TEXT(CameruptMega, "Eruption"),
         DEX_SCALE(257, 10, 423, 8),
         HEIGHT_WEIGHT(25, 3205),
         FRONT_SPRITE(CameruptMega, 64, 64, 4),
@@ -16504,7 +16504,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
         .natDexNum = NATIONAL_DEX_LATIAS,
-        DEX_TEXT(Latias, "Eon"), // No official dex entry for this form
+        DEX_TEXT(LatiasMega, "Eon"),
         DEX_SCALE(256, 0, 277, 1),
         HEIGHT_WEIGHT(18, 520),
         LEARNSETS(Latias),
@@ -16561,7 +16561,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
         .natDexNum = NATIONAL_DEX_LATIOS,
-        DEX_TEXT(Latios, "Eon"), // No official dex entry for this form
+        DEX_TEXT(LatiosMega, "Eon"),
         DEX_SCALE(256, 0, 342, 7),
         HEIGHT_WEIGHT(23, 700),
         LEARNSETS(Latios),
@@ -16625,7 +16625,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemCommon = ITEM_BLUE_ORB,
         .itemRare = ITEM_BLUE_ORB,
         .abilities = {ABILITY_PRIMORDIAL_SEA, ABILITY_NONE},
-        DEX_TEXT(Kyogre, "Sea Basin"), // No official dex entry for this form
+        DEX_TEXT(KyogrePrimal, "Sea Basin"),
         DEX_SCALE(256, 0, 614, 13),
         HEIGHT_WEIGHT(98, 4300),
         FRONT_SPRITE(KyogrePrimal, 64, 64, 0),
@@ -16687,7 +16687,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemCommon = ITEM_RED_ORB,
         .itemRare = ITEM_RED_ORB,
         .abilities = {ABILITY_DESOLATE_LAND, ABILITY_NONE},
-        DEX_TEXT(Groudon, "Continent"), // No official dex entry for this form
+        DEX_TEXT(GroudonPrimal, "Continent"),
         DEX_SCALE(256, 0, 515, 14),
         HEIGHT_WEIGHT(50, 9997),
         FRONT_SPRITE(GroudonPrimal, 64, 64, 0),
@@ -16749,7 +16749,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 100,
         .abilities = {ABILITY_DELTA_STREAM, ABILITY_NONE},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
-        DEX_TEXT(Rayquaza, "Sky High"), // No official dex entry for this form
+        DEX_TEXT(RayquazaMega, "Sky High"),
         DEX_SCALE(256, 0, 448, 12),
         HEIGHT_WEIGHT(108, 3920),
         FRONT_SPRITE(RayquazaMega, 64, 64, 0),
@@ -16831,7 +16831,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Attack    = 1,
         .evYield_Speed     = 1,
         .evYield_SpAttack  = 1,
-        DEX_TEXT(Deoxys, "DNA"),
+        DEX_TEXT(DeoxysNormal, "DNA"),
         LEARNSETS(DeoxysNormal),
         FRONT_SPRITE(DeoxysNormal, 64, 64, 0),
         BACK_SPRITE(DeoxysNormal, 64, 56, 6),
@@ -16851,7 +16851,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 20,
         .evYield_Attack    = 2,
         .evYield_SpAttack  = 1,
-        DEX_TEXT(Deoxys, "DNA"), // No official dex entry for this form
+        DEX_TEXT(DeoxysAttack, "DNA"),
         LEARNSETS(DeoxysAttack),
         FRONT_SPRITE(DeoxysAttack, 64, 64, 0),
         BACK_SPRITE(DeoxysAttack, 64, 64, 1),
@@ -16871,7 +16871,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 160,
         .evYield_Defense   = 2,
         .evYield_SpDefense = 1,
-        DEX_TEXT(Deoxys, "DNA"), // No official dex entry for this form
+        DEX_TEXT(DeoxysDefense, "DNA"),
         LEARNSETS(DeoxysDefense),
         FRONT_SPRITE(DeoxysDefense, 56, 64, 0),
         BACK_SPRITE(DeoxysDefense, 64, 56, 8),
@@ -16890,7 +16890,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 95,
         .baseSpDefense = 90,
         .evYield_Speed     = 3,
-        DEX_TEXT(Deoxys, "DNA"), // No official dex entry for this form
+        DEX_TEXT(DeoxysSpeed, "DNA"),
         LEARNSETS(DeoxysSpeed),
         FRONT_SPRITE(DeoxysSpeed, 64, 64, 1),
         BACK_SPRITE(DeoxysSpeed, 64, 64, 0),
@@ -22665,7 +22665,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_HEALER, ABILITY_HEALER, ABILITY_HEALER},
         .bodyColor = BODY_COLOR_WHITE,
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        DEX_TEXT(Audino, "Hearing"), // No official dex entry for this form
+        DEX_TEXT(AudinoMega, "Hearing"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(15, 320),
         FRONT_SPRITE(AudinoMega, 48, 64, 6),
@@ -27380,7 +27380,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .type2 = TYPE_PSYCHIC,
         .evYield_SpAttack  = 1,
         .evYield_SpDefense = 1,
-        DEX_TEXT(Meloetta, "Melody"),
+        DEX_TEXT(MeloettaAria, "Melody"),
         FRONT_SPRITE(MeloettaAria, 32, 48, 9),
         .enemyMonElevation = 8,
         BACK_SPRITE(MeloettaAria, 48, 56, 7),
@@ -27401,7 +27401,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .type2 = TYPE_FIGHTING,
         .evYield_Attack  = 1,
         .evYield_Defense = 1,
-        DEX_TEXT(Meloetta, "Melody"), // No official dex entry for this form
+        DEX_TEXT(MeloettaPirouette, "Melody"),
         FRONT_SPRITE(MeloettaPirouette, 40, 64, 2),
         .enemyMonElevation = 5,
         BACK_SPRITE(MeloettaPirouette, 56, 64, 4),
@@ -27803,7 +27803,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggGroup1 = EGG_GROUP_UNDISCOVERED,
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,
         .abilities = {ABILITY_BATTLE_BOND, ABILITY_NONE, ABILITY_NONE},
-        DEX_TEXT(Greninja, "Ninja"), // No official dex entry for this form
+        DEX_TEXT(GreninjaAsh, "Ninja"),
         FRONT_SPRITE(GreninjaAsh, 64, 64, 0),
         BACK_SPRITE(GreninjaAsh, 64, 48, 11),
         PALETTES(GreninjaAsh),
@@ -30234,6 +30234,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,                                \
         .flags = SPECIES_FLAG_LEGENDARY,                \
         .natDexNum = NATIONAL_DEX_XERNEAS,              \
+        DEX_TEXT(Xerneas, "Life"),                      \
         DEX_SCALE(356, 17, 256, 0),                     \
         HEIGHT_WEIGHT(30, 2150),                        \
         LEARNSETS(Xerneas),                             \
@@ -30242,7 +30243,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_XERNEAS_NEUTRAL] =
     {
-        DEX_TEXT(Xerneas, "Life"),
         FRONT_SPRITE(XerneasNeutral, 64, 64, 0),
         BACK_SPRITE(XerneasNeutral, 64, 64, 0),
         PALETTES(XerneasNeutral),
@@ -30251,7 +30251,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
     [SPECIES_XERNEAS_ACTIVE] =
     {
-        DEX_TEXT(Xerneas, "Life"), // No official dex entry for this form
         FRONT_SPRITE(XerneasActive, 64, 64, 0),
         BACK_SPRITE(XerneasActive, 64, 64, 0),
         PALETTES(XerneasActive),
@@ -30449,7 +30448,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_DIANCITE,
         .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE},
         .flags = SPECIES_FLAG_MYTHICAL | SPECIES_FLAG_MEGA_EVOLUTION,
-        DEX_TEXT(Diancie, "Jewel"), // No official dex entry for this form
+        DEX_TEXT(DiancieMega, "Jewel"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(11, 278),
         FRONT_SPRITE(DiancieMega, 64, 64, 0),
@@ -30476,6 +30475,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,                                \
         .flags = SPECIES_FLAG_MYTHICAL,                 \
         .natDexNum = NATIONAL_DEX_HOOPA,                \
+        .teachableLearnset = sHoopaTeachableLearnset,   \
         FOOTPRINT(Hoopa)
 
     [SPECIES_HOOPA_CONFINED] =
@@ -30490,7 +30490,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         DEX_TEXT(HoopaConfined, "Mischief"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(5, 90),
-        LEARNSETS(Hoopa),
+        .levelUpLearnset = sHoopaConfinedLevelUpLearnset,
         FRONT_SPRITE(HoopaConfined, 48, 48, 11),
         .enemyMonElevation = 13,
         BACK_SPRITE(HoopaConfined, 64, 56, 8),
@@ -30509,10 +30509,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 170,
         .baseSpDefense = 130,
         .type2 = TYPE_DARK,
-        DEX_TEXT(HoopaUnbound, "Djinn"), // No official dex entry for this form
+        DEX_TEXT(HoopaUnbound, "Djinn"),
         DEX_SCALE(356, 17, 256, 0),
         HEIGHT_WEIGHT(65, 4900),
-        LEARNSETS(HoopaUnbound),
+        .levelUpLearnset = sHoopaUnboundLevelUpLearnset,
         FRONT_SPRITE(HoopaUnbound, 64, 64, 0),
         .enemyMonElevation = 3,
         BACK_SPRITE(HoopaUnbound, 64, 64, 0),
@@ -37616,7 +37616,29 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ANIMATIONS(URSALUNA, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
     },
 
-    [SPECIES_BASCULEGION] =
+#define BASCULEGION_MISC_INFO                                                       \
+        .type1 = TYPE_WATER,                                                        \
+        .type2 = TYPE_GHOST,                                                        \
+        .catchRate = 25,                                                            \
+        .expYield = 186,                                                            \
+        .evYield_HP     = 2,                                                        \
+        .eggCycles = 40,                                                            \
+        .friendship = 70,                                                           \
+        .growthRate = GROWTH_MEDIUM_FAST,                                           \
+        .eggGroup1 = EGG_GROUP_WATER_2,                                             \
+        .eggGroup2 = EGG_GROUP_WATER_2,                                             \
+        .abilities = {ABILITY_RATTLED, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER}, \
+        .bodyColor = BODY_COLOR_GREEN,                                              \
+        .noFlip = FALSE,                                                            \
+        .natDexNum = NATIONAL_DEX_BASCULEGION,                                      \
+        DEX_TEXT(Basculegion, "Big Fish"),                                          \
+        DEX_SCALE(356, 17, 256, 0),                                                 \
+        HEIGHT_WEIGHT(30, 1100),                                                    \
+        LEARNSETS(Basculegion),                                                     \
+        ANIMATIONS(BASCULEGION, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE)
+        //FOOTPRINT(Basculegion),
+
+    [SPECIES_BASCULEGION_MALE] =
     {
         .baseHP        = 120,
         .baseAttack    = 112,
@@ -37624,31 +37646,27 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 78,
         .baseSpAttack  = 80,
         .baseSpDefense = 75,
-        .type1 = TYPE_WATER,
-        .type2 = TYPE_GHOST,
-        .catchRate = 25,
-        .expYield = 186,
-        .evYield_HP     = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 40,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_WATER_2,
-        .eggGroup2 = EGG_GROUP_WATER_2,
-        .abilities = {ABILITY_RATTLED, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER},
-        .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = FALSE,
-        .natDexNum = NATIONAL_DEX_BASCULEGION,
-        DEX_TEXT(Basculegion, "Big Fish"),
-        DEX_SCALE(356, 17, 256, 0),
-        HEIGHT_WEIGHT(30, 1100),
-        LEARNSETS(Basculegion),
-        //FRONT_SPRITE(Basculegion, 64, 64, 0),
-        //BACK_SPRITE(Basculegion, 64, 64, 0),
-        //PALETTES(Basculegion),
-        ICON(Basculegion, 1),
-        //FOOTPRINT(Basculegion),
-        ANIMATIONS(BASCULEGION, 0, ANIM_V_SQUISH_AND_BOUNCE, BACK_ANIM_NONE),
+        .genderRatio = MON_MALE,
+        //FRONT_SPRITE(BasculegionMale, 64, 64, 0),
+        //BACK_SPRITE(BasculegionMale, 64, 64, 0),
+        //PALETTES(BasculegionMale),
+        ICON(BasculegionMale, 1),
+        BASCULEGION_MISC_INFO,
+    },
+    [SPECIES_BASCULEGION_FEMALE] =
+    {
+        .baseHP        = 120,
+        .baseAttack    = 92,
+        .baseDefense   = 65,
+        .baseSpeed     = 78,
+        .baseSpAttack  = 100,
+        .baseSpDefense = 75,
+        .genderRatio = MON_FEMALE,
+        //FRONT_SPRITE(BasculegionFemale, 64, 64, 0),
+        //BACK_SPRITE(BasculegionFemale, 64, 64, 0),
+        //PALETTES(BasculegionFemale),
+        ICON(BasculegionFemale, 0),
+        BASCULEGION_MISC_INFO,
     },
 
     [SPECIES_SNEASLER] =

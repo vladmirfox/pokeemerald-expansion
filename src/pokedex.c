@@ -247,7 +247,7 @@ static void Task_ClosePokedexFromSearchResultsStartMenu(u8);
 static bool8 LoadPokedexListPage(u8);
 static void LoadPokedexBgPalette(bool8);
 static void FreeWindowAndBgBuffers(void);
-static void CreatePokedexList(u8, u8, bool8);
+static void CreatePokedexList(u8, u8);
 static void CreateMonDexNum(u16, u8, u8, u16);
 static void CreateCaughtBall(u16, u8, u8, u16);
 static u8 CreateMonName(u16, u8, u8);
@@ -1718,7 +1718,7 @@ void CB2_OpenPokedex(void)
         EnableInterrupts(1);
         SetVBlankCallback(VBlankCB_Pokedex);
         SetMainCallback2(CB2_Pokedex);
-        CreatePokedexList(sPokedexView->dexMode, sPokedexView->dexOrder, FALSE);
+        CreatePokedexList(sPokedexView->dexMode, sPokedexView->dexOrder);
         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x80);
         break;
     }
@@ -2180,7 +2180,7 @@ static bool8 LoadPokedexListPage(u8 page)
         break;
     case 3:
         if (page == PAGE_MAIN)
-            CreatePokedexList(sPokedexView->dexMode, sPokedexView->dexOrder, FALSE);
+            CreatePokedexList(sPokedexView->dexMode, sPokedexView->dexOrder);
         CreateMonSpritesAtPos(sPokedexView->selectedPokemon, 0xE);
         sPokedexView->menuIsOpen = FALSE;
         sPokedexView->menuY = 0;
@@ -2253,7 +2253,7 @@ static void FreeWindowAndBgBuffers(void)
         Free(tilemapBuffer);
 }
 
-static void CreatePokedexList(u8 dexMode, u8 order, bool8 showForms)
+static void CreatePokedexList(u8 dexMode, u8 order)
 {
     u32 vars[3]; //I have no idea why three regular variables are stored in an array, but whatever.
 #define temp_dexCount   vars[0]
@@ -2287,34 +2287,64 @@ static void CreatePokedexList(u8 dexMode, u8 order, bool8 showForms)
     switch (order)
     {
     case ORDER_NUMERICAL:
-        if (temp_isHoennDex)
-        {
-            for (i = 0; i < temp_dexCount; i++)
-            {
-                temp_dexNum = HoennToNationalOrder(i + 1);
-                sPokedexView->pokedexList[i].dexNum = temp_dexNum;
-                sPokedexView->pokedexList[i].seenSpecies = GetPokedexFlagFirstSeen(temp_dexNum);
-                sPokedexView->pokedexList[i].owned = GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT);
-                if (sPokedexView->pokedexList[i].seenSpecies != SPECIES_NONE)
-                    sPokedexView->pokemonListCount = i + 1;
-            }
-        }
-        else
         {
             s16 r5, r10;
+            u16 seenSpecies;
+            bool32 previousWasSeen;
             for (i = 0, r5 = 0, r10 = 0; i < temp_dexCount; i++)
             {
-                temp_dexNum = i + 1;
-                if (GetPokedexFlagFirstSeen(temp_dexNum) != SPECIES_NONE)
+                if (temp_isHoennDex)
+                    temp_dexNum = HoennToNationalOrder(i + 1);
+                else
+                    temp_dexNum = i + 1;
+
+                seenSpecies = GetPokedexFlagFirstSeen(temp_dexNum);
+                if (seenSpecies != SPECIES_NONE)
                     r10 = 1;
                 if (r10)
                 {
+                #if P_DEX_EMPTY_ENTRY_SKIP == TRUE
+                    if (seenSpecies != SPECIES_NONE)
+                    {
+                        // If it's not the first on the list and the previous entry was not seen, add it to the list.
+                    #if P_DEX_EMPTY_ENTRY_AT_ENDS == TRUE
+                        if (!previousWasSeen && i > 0)
+                    #else
+                        if (!previousWasSeen && i > 0 && sPokedexView->pokemonListCount != 0)
+                    #endif
+                        {
+                            sPokedexView->pokemonListCount++;
+                            sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].dexNum = temp_dexNum - 1;
+                            sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].seenSpecies = SPECIES_NONE;
+                            sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].owned = SPECIES_NONE;
+                        }
+                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
+                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
+                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT);
+                        previousWasSeen = TRUE;
+                        sPokedexView->pokemonListCount++;
+                    }
+                    else if (previousWasSeen)
+                    {
+                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
+                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
+                        previousWasSeen = FALSE;
+                        sPokedexView->pokemonListCount++;
+                    }
+                    else
+                    {
+                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = 0xFFFF;
+                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
+                        previousWasSeen = FALSE;
+                    }
+                #else
                     sPokedexView->pokedexList[r5].dexNum = temp_dexNum;
-                    sPokedexView->pokedexList[r5].seenSpecies = GetPokedexFlagFirstSeen(temp_dexNum);
+                    sPokedexView->pokedexList[r5].seenSpecies = seenSpecies;
                     sPokedexView->pokedexList[r5].owned = GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT);
                     if (sPokedexView->pokedexList[r5].seenSpecies != SPECIES_NONE)
                         sPokedexView->pokemonListCount = r5 + 1;
                     r5++;
+                #endif
                 }
             }
         }
@@ -2408,8 +2438,11 @@ static void CreatePokedexList(u8 dexMode, u8 order, bool8 showForms)
         }
         break;
     }
-
-    for (i = sPokedexView->pokemonListCount; i < NUM_SPECIES; i++)
+#if P_DEX_EMPTY_ENTRY_SKIP == TRUE && P_DEX_EMPTY_ENTRY_AT_ENDS == FALSE
+    if (order == ORDER_NUMERICAL)
+        sPokedexView->pokemonListCount--;
+#endif
+    for (i = sPokedexView->pokemonListCount; i < NATIONAL_DEX_COUNT; i++)
     {
         sPokedexView->pokedexList[i].dexNum = 0xFFFF;
         sPokedexView->pokedexList[i].seenSpecies = SPECIES_NONE;
@@ -4779,7 +4812,7 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
     u16 resultsCount;
     u8 types[2];
 
-    CreatePokedexList(dexMode, order, TRUE);
+    CreatePokedexList(dexMode, order);
 
     for (i = 0, resultsCount = 0; i < NUM_SPECIES; i++)
     {

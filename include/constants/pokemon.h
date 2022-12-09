@@ -307,7 +307,8 @@
 #define EVO_WATER_SCROLL                  38     // interacts with Scroll of Waters
 #define EVO_ALCREMIE                      39     // TODO
 #define EVO_ITEM_NIGHT                    40     // specified item is used on Pokémon, is night
-#define EVO_RECOIL_DMG                    41     // TODO: Pokémon receives a specified amount of recoil damage.
+#define EVO_RECOIL_DMG_MALE               41     // TODO: Pokémon receives a specified amount of recoil damage and it's Male.
+#define EVO_RECOIL_DMG_FEMALE             42     // TODO: Pokémon receives a specified amount of recoil damage and it's Female.
 
 #define EVOLUTIONS_END 0xFFFF
 
