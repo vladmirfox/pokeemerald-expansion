@@ -2853,20 +2853,11 @@ const u8 gJirachiPokedexText[] = _(
     "envelops the body to protect it from\n"
     "enemies.");
 
-const u8 gDeoxysNormalPokedexText[] = _(
+const u8 gDeoxysPokedexText[] = _(
     "Deoxys emerged from a virus that came\n"
     "from space. It is highly intelligent and\n"
     "can shoot lasers from the crystalline\n"
     "organ on its chest.");
-
-const u8 gDeoxysAttackPokedexText[] = _(
-    "");
-
-const u8 gDeoxysDefensePokedexText[] = _(
-    "");
-
-const u8 gDeoxysSpeedPokedexText[] = _(
-    "");
 
 const u8 gChimechoPokedexText[] = _(
     "They fly about very actively when the hot\n"

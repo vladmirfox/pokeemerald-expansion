@@ -4435,7 +4435,7 @@ u16 NationalToHoennOrder(u16 nationalNum)
 
 u16 SpeciesToNationalPokedexNum(u16 species)
 {
-    if (!species)
+    if (species >= NUM_SPECIES)
         return 0;
 
     return gSpeciesInfo[species].natDexNum;
@@ -4443,7 +4443,7 @@ u16 SpeciesToNationalPokedexNum(u16 species)
 
 u16 SpeciesToHoennPokedexNum(u16 species)
 {
-    if (!species)
+    if (species >= NUM_SPECIES)
         return 0;
 
     return gSpeciesInfo[species].hoennDexNum;
@@ -5720,10 +5720,9 @@ void HandleSetPokedexFlag(u16 species, u8 caseId, u32 personality)
     }
     else if (caseId == FLAG_SET_CAUGHT)
     {
-        u16 nationalNum = SpeciesToNationalPokedexNum(species);
-        if (!GetSetPokedexCaughtFlag(nationalNum, FLAG_GET_CAUGHT)) // don't set if it's already set
+        if (!GetSetPokedexCaughtFlag(species, FLAG_GET_CAUGHT)) // don't set if it's already set
         {
-            GetSetPokedexCaughtFlag(nationalNum, caseId);
+            GetSetPokedexCaughtFlag(species, caseId);
             updateUnownSpinda = TRUE;
         }
     }
@@ -5989,6 +5988,25 @@ u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId)
         }
     }
     return targetFormId;
+}
+
+u8 GetAmountOfForms(u16 nationalDexNum)
+{
+    const u16 * formTable = GetFormSpeciesTable(nationalDexNum);
+    u8 amount = 0;
+    if (formTable != NULL)
+    {
+        for (amount = 0; formTable[amount] != FORM_SPECIES_END; amount++);
+    }
+
+    if (amount == 0)
+        amount = 1;
+    return amount;
+}
+
+u8 GetAmountOfFormsBySpecies(u16 speciesId)
+{
+    return GetAmountOfForms(SpeciesToNationalPokedexNum(speciesId));
 }
 
 u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg)

@@ -5515,7 +5515,7 @@ static u16 GetRandomUnlockedEasyChatPokemon(void)
     for (i = 0; i < numWords; i++)
     {
         u16 dexNum = SpeciesToNationalPokedexNum(*species);
-        if (GetPokedexFlagFirstSeen(dexNum) ? TRUE : FALSE)
+        if (GetPokedexFlagFirstSeen(dexNum))
         {
             if (index)
                 index--;

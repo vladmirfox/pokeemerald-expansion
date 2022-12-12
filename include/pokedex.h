@@ -18,29 +18,15 @@ enum
     FLAG_SET_CAUGHT
 };
 
-struct PokedexEntryForms
-{
-    u8 categoryName[13];
-    u16 height; //in decimeters
-    u16 weight; //in hectograms
-    const u8 *description;
-    u8 flags;
-};
-
-// PokedexEntryForms flags
-#define FLAG_FORM_DESCRIPTION   (1 << 0)
-#define FLAG_FORM_WEIGHT_HEIGHT (1 << 1)
-#define FLAG_FORM_CATEGORY      (1 << 2)
-
 void ResetPokedex(void);
 u16 GetPokedexHeightWeight(u16 species, u8 data);
 u16 GetNationalPokedexCount(u8);
 u16 GetHoennPokedexCount(u8);
 u8 DisplayCaughtMonDexPage(u16 species, u32 otId, u32 personality);
 s8 GetSetPokedexSeenFlag(u16 species, u8 caseID);
-s8 GetSetPokedexCaughtFlag(u16 nationalDexNo, u8 caseID);
+s8 GetSetPokedexCaughtFlag(u16 species, u8 caseID);
 u16 GetPokedexFlagFirstSeen(u16 nationalDexNo);
-s8 GetSetPokedexFlag(u16 nationalNum, u8 caseId);
+u16 GetPokedexFlagFirstCaught(u16 nationalDexNo);
 u16 CreateMonSpriteFromNationalDexNumber(u16, s16, s16, u16);
 bool16 HasAllHoennMons(void);
 void ResetPokedexScrollPositions(void);

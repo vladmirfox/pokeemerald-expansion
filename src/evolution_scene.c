@@ -584,7 +584,7 @@ static void CreateShedinja(u16 preEvoSpecies, struct Pokemon *mon)
         CalculatePlayerPartyCount();
 
         GetSetPokedexSeenFlag(evolutions[1].targetSpecies, FLAG_SET_SEEN);
-        GetSetPokedexCaughtFlag(SpeciesToNationalPokedexNum(evolutions[1].targetSpecies), FLAG_SET_CAUGHT);
+        GetSetPokedexCaughtFlag(evolutions[1].targetSpecies, FLAG_SET_CAUGHT);
 
         if (GetMonData(shedinja, MON_DATA_SPECIES) == SPECIES_SHEDINJA
             && GetMonData(shedinja, MON_DATA_LANGUAGE) == LANGUAGE_JAPANESE
@@ -776,7 +776,7 @@ static void Task_EvolutionScene(u8 taskId)
             CalculateMonStats(mon);
             EvolutionRenameMon(mon, gTasks[taskId].tPreEvoSpecies, gTasks[taskId].tPostEvoSpecies);
             GetSetPokedexSeenFlag(gTasks[taskId].tPostEvoSpecies, FLAG_SET_SEEN);
-            GetSetPokedexCaughtFlag(SpeciesToNationalPokedexNum(gTasks[taskId].tPostEvoSpecies), FLAG_SET_CAUGHT);
+            GetSetPokedexCaughtFlag(gTasks[taskId].tPostEvoSpecies, FLAG_SET_CAUGHT);
             IncrementGameStat(GAME_STAT_EVOLVED_POKEMON);
         }
         break;
@@ -1196,7 +1196,7 @@ static void Task_TradeEvolutionScene(u8 taskId)
             CalculateMonStats(mon);
             EvolutionRenameMon(mon, gTasks[taskId].tPreEvoSpecies, gTasks[taskId].tPostEvoSpecies);
             GetSetPokedexSeenFlag(gTasks[taskId].tPostEvoSpecies, FLAG_SET_SEEN);
-            GetSetPokedexCaughtFlag(SpeciesToNationalPokedexNum(gTasks[taskId].tPostEvoSpecies), FLAG_SET_CAUGHT);
+            GetSetPokedexCaughtFlag(gTasks[taskId].tPostEvoSpecies, FLAG_SET_CAUGHT);
             IncrementGameStat(GAME_STAT_EVOLVED_POKEMON);
         }
         break;

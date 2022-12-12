@@ -14158,7 +14158,7 @@ static void Cmd_handleballthrow(void)
             #endif
                 break;
             case ITEM_REPEAT_BALL:
-            if (GetSetPokedexCaughtFlag(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), FLAG_GET_CAUGHT))
+            if (GetSetPokedexCaughtFlag(gBattleMons[gBattlerTarget].species, FLAG_GET_CAUGHT))
                 #if B_REPEAT_BALL_MODIFIER >= GEN_7
                     ballMultiplier = 350;
                 #else
@@ -14423,7 +14423,7 @@ static void Cmd_trysetcaughtmondexflags(void)
     u16 species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_SPECIES, NULL);
     u32 personality = GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_PERSONALITY, NULL);
 
-    if (GetSetPokedexCaughtFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
+    if (GetSetPokedexCaughtFlag(species, FLAG_GET_CAUGHT))
     {
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
     }

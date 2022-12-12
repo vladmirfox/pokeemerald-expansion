@@ -333,6 +333,7 @@ struct SpeciesInfo
  /* 0x?? */ u8 categoryName[13];
  /* 0x?? */ u16 natDexNum;
  /* 0x?? */ u16 hoennDexNum;
+            u16 equivalentDexEntry; // To avoid duplicating dex entries like for Scatterbug
  /* 0x?? */ u16 height; //in decimeters
  /* 0x?? */ u16 weight; //in hectograms
  /* 0x?? */ u16 pokemonScale;
@@ -599,6 +600,8 @@ const u16 *GetFormSpeciesTable(u16 nationalDexNo);
 const u16 *GetFormSpeciesTableBySpecies(u16 speciesId);
 u16 GetFormSpeciesId(u16 speciesId, u8 formId);
 u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId);
+u8 GetAmountOfForms(u16 nationalDexNum);
+u8 GetAmountOfFormsBySpecies(u16 speciesId);
 u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg);
 u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *mon, u16 method, u32 arg);
 u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove);

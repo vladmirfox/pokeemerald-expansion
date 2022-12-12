@@ -16816,6 +16816,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,                                \
         .flags = SPECIES_FLAG_MYTHICAL,                 \
         .natDexNum = NATIONAL_DEX_DEOXYS,               \
+        DEX_TEXT(Deoxys, "DNA"),                        \
         DEX_SCALE(256, 0, 290, 2),                      \
         HEIGHT_WEIGHT(17, 608),                         \
         FOOTPRINT(Deoxys)
@@ -16831,7 +16832,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Attack    = 1,
         .evYield_Speed     = 1,
         .evYield_SpAttack  = 1,
-        DEX_TEXT(DeoxysNormal, "DNA"),
         LEARNSETS(DeoxysNormal),
         FRONT_SPRITE(DeoxysNormal, 64, 64, 0),
         BACK_SPRITE(DeoxysNormal, 64, 56, 6),
@@ -16851,7 +16851,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 20,
         .evYield_Attack    = 2,
         .evYield_SpAttack  = 1,
-        DEX_TEXT(DeoxysAttack, "DNA"),
         LEARNSETS(DeoxysAttack),
         FRONT_SPRITE(DeoxysAttack, 64, 64, 0),
         BACK_SPRITE(DeoxysAttack, 64, 64, 1),
@@ -16871,7 +16870,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 160,
         .evYield_Defense   = 2,
         .evYield_SpDefense = 1,
-        DEX_TEXT(DeoxysDefense, "DNA"),
         LEARNSETS(DeoxysDefense),
         FRONT_SPRITE(DeoxysDefense, 56, 64, 0),
         BACK_SPRITE(DeoxysDefense, 64, 56, 8),
@@ -16890,7 +16888,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 95,
         .baseSpDefense = 90,
         .evYield_Speed     = 3,
-        DEX_TEXT(DeoxysSpeed, "DNA"),
         LEARNSETS(DeoxysSpeed),
         FRONT_SPRITE(DeoxysSpeed, 64, 64, 1),
         BACK_SPRITE(DeoxysSpeed, 64, 64, 0),

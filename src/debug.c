@@ -1464,10 +1464,11 @@ static void DebugAction_Flags_FlagsSelect(u8 taskId)
 static void DebugAction_Flags_SetPokedexFlags(u8 taskId)
 {
     u16 i;
-    for (i = 0; i < NATIONAL_DEX_COUNT; i++)
-        GetSetPokedexCaughtFlag(i + 1, FLAG_SET_CAUGHT);
     for (i = 0; i < NUM_SPECIES; i++)
+    {
+        GetSetPokedexCaughtFlag(i + 1, FLAG_SET_CAUGHT);
         GetSetPokedexSeenFlag(i + 1, FLAG_SET_SEEN);
+    }
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
@@ -2723,7 +2724,7 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     case MON_GIVEN_TO_PARTY:
     case MON_GIVEN_TO_PC:
         GetSetPokedexSeenFlag(species, FLAG_SET_SEEN);
-        GetSetPokedexCaughtFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_CAUGHT);
+        GetSetPokedexCaughtFlag(species, FLAG_SET_CAUGHT);
         break;
     case MON_CANT_GIVE:
         break;

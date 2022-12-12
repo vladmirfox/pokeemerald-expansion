@@ -11,6 +11,7 @@
 #define P_DEX_SEARCH_SINGLE_LETTER  TRUE        // If TRUE, the Pokédex filter by name will be separated by letter, instead of groups of 3 letters.
 #define P_DEX_EMPTY_ENTRY_SKIP      TRUE        // If TRUE, the Pokédex numerical order will skip empty entries if they don't have a seen or caught entry before or after.
 #define P_DEX_EMPTY_ENTRY_AT_ENDS   FALSE       // If TRUE and P_DEX_EMPTY_ENTRY_SKIP is on, it will show trailing missing entries at the beginning and end of the scrolling list.
+#define P_DEX_SEPARATE_FORMS_CAUGHT FALSE       // If TRUE, in order to see form dex data, they need to be caught separately.
 
 // Other settings
 #define P_SHEDINJA_BALL             GEN_LATEST  // Since Gen 4, Shedinja requires a Poké Ball for its evolution. In Gen 3, Shedinja inherits Nincada's Ball.

@@ -678,8 +678,8 @@ static const u8 sFrontierBrainObjEventGfx[NUM_FRONTIER_FACILITIES][2] =
 
 const u16 gFrontierBannedSpecies[] =
 {
-    SPECIES_MEW, SPECIES_MEWTWO, SPECIES_HO_OH, SPECIES_LUGIA, SPECIES_CELEBI,
-    SPECIES_KYOGRE, SPECIES_GROUDON, SPECIES_RAYQUAZA, SPECIES_JIRACHI, SPECIES_DEOXYS, 0xFFFF
+    NATIONAL_DEX_MEW, NATIONAL_DEX_MEWTWO, NATIONAL_DEX_HO_OH, NATIONAL_DEX_LUGIA, NATIONAL_DEX_CELEBI,
+    NATIONAL_DEX_KYOGRE, NATIONAL_DEX_GROUDON, NATIONAL_DEX_RAYQUAZA, NATIONAL_DEX_JIRACHI, NATIONAL_DEX_DEOXYS, 0xFFFF
 };
 
 static const u8 *const sRecordsWindowChallengeTexts[][2] =
@@ -1932,9 +1932,9 @@ static void CheckBattleTypeFlag(void)
         gSpecialVar_Result = FALSE;
 }
 
-static u8 AppendCaughtBannedMonSpeciesName(u16 species, u8 count, s32 numBannedMonsCaught)
+static u8 AppendCaughtBannedMonSpeciesName(u16 natDexNum, u8 count, s32 numBannedMonsCaught)
 {
-    if (GetSetPokedexCaughtFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
+    if (GetPokedexFlagFirstCaught(natDexNum))
     {
         count++;
         switch (count)
@@ -1965,7 +1965,7 @@ static u8 AppendCaughtBannedMonSpeciesName(u16 species, u8 count, s32 numBannedM
             StringAppend(gStringVar1, gText_LineBreak);
             break;
         }
-        StringAppend(gStringVar1, GetSpeciesName(species));
+        StringAppend(gStringVar1, gSpeciesNames[natDexNum]);
     }
 
     return count;
@@ -1978,7 +1978,7 @@ static void AppendIfValid(u16 species, u16 heldItem, u16 hp, u8 lvlMode, u8 monL
     if (species == SPECIES_EGG || species == SPECIES_NONE)
         return;
 
-    for (i = 0; gFrontierBannedSpecies[i] != 0xFFFF && gFrontierBannedSpecies[i] != species; i++)
+    for (i = 0; gFrontierBannedSpecies[i] != 0xFFFF && gFrontierBannedSpecies[i] != SpeciesToNationalPokedexNum(species); i++)
         ;
 
     if (gFrontierBannedSpecies[i] != 0xFFFF)
@@ -2072,7 +2072,7 @@ static void CheckPartyIneligibility(void)
         s32 species = gFrontierBannedSpecies[0];
         for (i = 0; species != 0xFFFF; i++, species = gFrontierBannedSpecies[i])
         {
-            if (GetSetPokedexCaughtFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
+            if (GetPokedexFlagFirstCaught(species))
                 caughtBannedMons++;
         }
         gStringVar1[0] = EOS;

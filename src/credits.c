@@ -69,7 +69,7 @@ struct CreditsData
     u16 nextImgPos; //if the next image spawns left/center/right
     u16 currShownMon; //index into monToShow
     u16 numMonToShow; //number of pokemon to show, always NUM_MON_SLIDES after determine function
-    u16 caughtMonIds[NATIONAL_DEX_COUNT]; //temporary location to hold a condensed array of all caught pokemon
+    u16 caughtMonIds[NUM_SPECIES]; //temporary location to hold a condensed array of all caught pokemon
     u16 numCaughtMon; //count of filled spaces in caughtMonIds
     u16 unused[7];
 };
@@ -1551,25 +1551,25 @@ static void SpriteCB_CreditsMonBg(struct Sprite *sprite)
 
 static void DeterminePokemonToShow(void)
 {
-    u16 starter = SpeciesToNationalPokedexNum(GetStarterPokemon(VarGet(VAR_STARTER_MON)));
+    u16 starter = GetStarterPokemon(VarGet(VAR_STARTER_MON));
     u16 page;
-    u16 dexNum;
+    u16 speciesId;
     u16 j;
 
     // Go through the Pokedex, and anything that has gotten caught we put into our massive array.
     // This basically packs all of the caught pokemon into the front of the array
-    for (dexNum = 1, j = 0; dexNum < NATIONAL_DEX_COUNT; dexNum++)
+    for (speciesId = 1, j = 0; speciesId < NUM_SPECIES; speciesId++)
     {
-        if (GetSetPokedexCaughtFlag(dexNum, FLAG_GET_CAUGHT))
+        if (GetSetPokedexCaughtFlag(speciesId, FLAG_GET_CAUGHT))
         {
-            sCreditsData->caughtMonIds[j] = dexNum;
+            sCreditsData->caughtMonIds[j] = speciesId;
             j++;
         }
     }
 
     // Fill the rest of the array with zeroes
-    for (dexNum = j; dexNum < NATIONAL_DEX_COUNT; dexNum++)
-        sCreditsData->caughtMonIds[dexNum] = NATIONAL_DEX_NONE;
+    for (speciesId = j; speciesId < NUM_SPECIES; speciesId++)
+        sCreditsData->caughtMonIds[speciesId] = SPECIES_NONE;
 
     // Cap the number of pokemon we care about to NUM_MON_SLIDES, the max we show in the credits scene (-1 for the starter)
     sCreditsData->numCaughtMon = j;
@@ -1616,12 +1616,12 @@ static void DeterminePokemonToShow(void)
     else
     {
         // Check to see if our starter has already appeared in this list, break if it has
-        for (dexNum = 0; sCreditsData->monToShow[dexNum] != starter && dexNum < NUM_MON_SLIDES; dexNum++);
+        for (speciesId = 0; sCreditsData->monToShow[speciesId] != starter && speciesId < NUM_MON_SLIDES; speciesId++);
 
         // If it has, swap it with the last pokemon, to ensure our starter is the last image
-        if (dexNum < sCreditsData->numMonToShow - 1)
+        if (speciesId < sCreditsData->numMonToShow - 1)
         {
-            sCreditsData->monToShow[dexNum] = sCreditsData->monToShow[NUM_MON_SLIDES-1];
+            sCreditsData->monToShow[speciesId] = sCreditsData->monToShow[NUM_MON_SLIDES-1];
             sCreditsData->monToShow[NUM_MON_SLIDES - 1] = starter;
         }
         else

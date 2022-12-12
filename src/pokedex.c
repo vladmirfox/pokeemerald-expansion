@@ -1597,9 +1597,9 @@ void ResetPokedex(void)
     gSaveBlock2Ptr->pokedex.unownPersonality = 0;
     gSaveBlock2Ptr->pokedex.spindaPersonality = 0;
     DisableNationalPokedex();
-    for (i = 0; i < NUM_DEX_CAUGHT_FLAG_BYTES; i++)
+    for (i = 0; i < NUM_DEX_FLAG_BYTES; i++)
         gSaveBlock1Ptr->dexCaught[i] = 0;
-    for (i = 0; i < NUM_DEX_SEEN_FLAG_BYTES; i++)
+    for (i = 0; i < NUM_DEX_FLAG_BYTES; i++)
         gSaveBlock1Ptr->dexSeen[i] = 0;
 }
 
@@ -2320,7 +2320,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
                         }
                         sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
                         sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
-                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT);
+                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = GetSetPokedexCaughtFlag(seenSpecies, FLAG_GET_CAUGHT);
                         previousWasSeen = TRUE;
                         sPokedexView->pokemonListCount++;
                     }
@@ -2340,7 +2340,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
                 #else
                     sPokedexView->pokedexList[r5].dexNum = temp_dexNum;
                     sPokedexView->pokedexList[r5].seenSpecies = seenSpecies;
-                    sPokedexView->pokedexList[r5].owned = GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT);
+                    sPokedexView->pokedexList[r5].owned = GetSetPokedexCaughtFlag(seenSpecies, FLAG_GET_CAUGHT);
                     if (sPokedexView->pokedexList[r5].seenSpecies != SPECIES_NONE)
                         sPokedexView->pokemonListCount = r5 + 1;
                     r5++;
@@ -2360,7 +2360,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
-                sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT);
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = GetSetPokedexCaughtFlag(seenSpecies, FLAG_GET_CAUGHT);
                 sPokedexView->pokemonListCount++;
             }
         }
@@ -2369,11 +2369,10 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         for (i = ARRAY_COUNT(gPokedexOrder_Weight) - 1; i >= 0; i--)
         {
             u16 species = gPokedexOrder_Weight[i];
-            bool8 speciesFlag = GetSetPokedexSeenFlag(species, FLAG_GET_SEEN);
             temp_dexNum = SpeciesToNationalPokedexNum(species);
 
             if ((!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0)
-                && GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT)
+                && GetSetPokedexCaughtFlag(species, FLAG_GET_CAUGHT)
                 && GetSetPokedexSeenFlag(species, FLAG_GET_SEEN))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
@@ -2387,11 +2386,10 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         for (i = 0; i < ARRAY_COUNT(gPokedexOrder_Weight); i++)
         {
             u16 species = gPokedexOrder_Weight[i];
-            bool8 speciesFlag = GetSetPokedexSeenFlag(species, FLAG_GET_SEEN);
             temp_dexNum = SpeciesToNationalPokedexNum(species);
 
             if ((!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0)
-                && GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT)
+                && GetSetPokedexCaughtFlag(species, FLAG_GET_CAUGHT)
                 && GetSetPokedexSeenFlag(species, FLAG_GET_SEEN))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
@@ -2405,11 +2403,10 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         for (i = ARRAY_COUNT(gPokedexOrder_Height) - 1; i >= 0; i--)
         {
             u16 species = gPokedexOrder_Height[i];
-            bool8 speciesFlag = GetSetPokedexSeenFlag(species, FLAG_GET_SEEN);
             temp_dexNum = SpeciesToNationalPokedexNum(species);
 
             if ((!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0)
-                && GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT)
+                && GetSetPokedexCaughtFlag(species, FLAG_GET_CAUGHT)
                 && GetSetPokedexSeenFlag(species, FLAG_GET_SEEN))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
@@ -2423,11 +2420,10 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         for (i = 0; i < ARRAY_COUNT(gPokedexOrder_Height); i++)
         {
             u16 species = gPokedexOrder_Height[i];
-            bool8 speciesFlag = GetSetPokedexSeenFlag(species, FLAG_GET_SEEN);
             temp_dexNum = SpeciesToNationalPokedexNum(species);
 
             if ((!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0)
-                && GetSetPokedexCaughtFlag(temp_dexNum, FLAG_GET_CAUGHT)
+                && GetSetPokedexCaughtFlag(species, FLAG_GET_CAUGHT)
                 && GetSetPokedexSeenFlag(species, FLAG_GET_SEEN))
             {
                 sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
@@ -2439,10 +2435,10 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         break;
     }
 #if P_DEX_EMPTY_ENTRY_SKIP == TRUE && P_DEX_EMPTY_ENTRY_AT_ENDS == FALSE
-    if (order == ORDER_NUMERICAL)
+    if (order == ORDER_NUMERICAL && sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].dexNum != NATIONAL_DEX_COUNT)
         sPokedexView->pokemonListCount--;
 #endif
-    for (i = sPokedexView->pokemonListCount; i < NATIONAL_DEX_COUNT; i++)
+    for (i = sPokedexView->pokemonListCount; i < NUM_SPECIES; i++)
     {
         sPokedexView->pokedexList[i].dexNum = 0xFFFF;
         sPokedexView->pokedexList[i].seenSpecies = SPECIES_NONE;
@@ -2738,6 +2734,71 @@ static u16 TryDoPokedexScroll(u16 selectedMon, u16 ignored)
         CreateScrollingPokemonSprite(2, selectedMon);
         CreateMonListEntry(2, selectedMon, ignored);
         PlaySE(SE_DEX_SCROLL);
+    }
+    else if (JOY_NEW(L_BUTTON)
+        && GetAmountOfFormsBySpecies(sPokedexView->pokedexList[selectedMon].seenSpecies) > 1)
+    {
+        u8 formId = GetFormIdFromFormSpeciesId(sPokedexView->pokedexList[selectedMon].seenSpecies);
+        u16 newSpecies = sPokedexView->pokedexList[selectedMon].seenSpecies;
+        u8 formAmount = GetAmountOfFormsBySpecies(sPokedexView->pokedexList[selectedMon].seenSpecies);
+        bool8 found = FALSE;
+
+        while (TRUE)
+        {
+            if (formId == 0)
+                formId = formAmount - 1;
+            else
+                formId--;
+            newSpecies = GetFormSpeciesId(sPokedexView->pokedexList[selectedMon].seenSpecies, formId);
+            if (newSpecies == sPokedexView->pokedexList[selectedMon].seenSpecies)
+                break;
+            if (GetSetPokedexSeenFlag(newSpecies, FLAG_GET_SEEN))
+            {
+                found = TRUE;
+                break;
+            }
+        }
+
+        if (found)
+        {
+            sPokedexView->pokedexList[selectedMon].seenSpecies = newSpecies;
+            sPokedexView->pokedexList[selectedMon].owned = GetSetPokedexCaughtFlag(newSpecies, FLAG_GET_CAUGHT);
+            ClearMonSprites();
+            CreateMonSpritesAtPos(selectedMon, 0xE);
+            PlaySE(SE_DEX_PAGE);
+        }
+    }
+    else if (JOY_NEW(R_BUTTON)
+        && GetAmountOfFormsBySpecies(sPokedexView->pokedexList[selectedMon].seenSpecies) > 1)
+    {
+        u8 formId = GetFormIdFromFormSpeciesId(sPokedexView->pokedexList[selectedMon].seenSpecies);
+        u16 newSpecies = sPokedexView->pokedexList[selectedMon].seenSpecies;
+        u8 formAmount = GetAmountOfFormsBySpecies(sPokedexView->pokedexList[selectedMon].seenSpecies);
+        bool8 found = FALSE;
+
+        while (TRUE)
+        {
+            formId++;
+            if (formId == formAmount)
+                formId = 0;
+            newSpecies = GetFormSpeciesId(sPokedexView->pokedexList[selectedMon].seenSpecies, formId);
+            if (newSpecies == sPokedexView->pokedexList[selectedMon].seenSpecies)
+                break;
+            if (GetSetPokedexSeenFlag(newSpecies, FLAG_GET_SEEN))
+            {
+                found = TRUE;
+                break;
+            }
+        }
+
+        if (found)
+        {
+            sPokedexView->pokedexList[selectedMon].seenSpecies = newSpecies;
+            sPokedexView->pokedexList[selectedMon].owned = GetSetPokedexCaughtFlag(newSpecies, FLAG_GET_CAUGHT);
+            ClearMonSprites();
+            CreateMonSpritesAtPos(selectedMon, 0xE);
+            PlaySE(SE_DEX_PAGE);
+        }
     }
     else if (JOY_NEW(DPAD_LEFT) && (selectedMon > 0))
     {
@@ -3393,7 +3454,7 @@ static void Task_LoadInfoScreen(u8 taskId)
         gMain.state++;
         break;
     case 4:
-        PrintMonInfo(sPokedexListItem->seenSpecies, sPokedexView->dexMode == DEX_MODE_HOENN ? FALSE : TRUE, sPokedexListItem->owned, 0);
+        PrintMonInfo(sPokedexListItem->seenSpecies, sPokedexView->dexMode != DEX_MODE_HOENN, sPokedexListItem->owned, 0);
         if (!sPokedexListItem->owned)
             LoadPalette(gPlttBufferUnfaded + 1, 0x31, 0x1E);
         CopyWindowToVram(WIN_INFO, COPYWIN_FULL);
@@ -4399,20 +4460,24 @@ s8 GetSetPokedexSeenFlag(u16 species, u8 caseID)
     return retVal;
 }
 
-s8 GetSetPokedexCaughtFlag(u16 nationalDexNo, u8 caseID)
+s8 GetSetPokedexCaughtFlag(u16 species, u8 caseID)
 {
     u32 index, bit, mask;
     s8 retVal = 0;
 
-    nationalDexNo--;
-    index = nationalDexNo / 8;
-    bit = nationalDexNo % 8;
+    species--;
+    index = species / 8;
+    bit = species % 8;
     mask = 1 << bit;
 
     switch (caseID)
     {
     case FLAG_GET_CAUGHT:
+    #if P_DEX_SEPARATE_FORMS_CAUGHT == TRUE
         retVal = ((gSaveBlock1Ptr->dexCaught[index] & mask) != 0);
+    #else
+        retVal = (GetPokedexFlagFirstCaught(SpeciesToNationalPokedexNum(species + 1)) != SPECIES_NONE);
+    #endif
         break;
     case FLAG_SET_CAUGHT:
         gSaveBlock1Ptr->dexCaught[index] |= mask;
@@ -4426,6 +4491,12 @@ u16 GetPokedexFlagFirstSeen(u16 nationalDexNo)
 {
     u8 formId = 0;
     const u16 *formTable = GetFormSpeciesTable(nationalDexNo);
+#if P_DEX_SEPARATE_FORMS_CAUGHT == TRUE
+    // If forms are to be counted separate, display the first caught one in Pokédex listings.
+    u16 firstCaught = GetPokedexFlagFirstCaught(nationalDexNo);
+    if (firstCaught != SPECIES_NONE)
+        return firstCaught;
+#endif
 
     if (formTable != NULL)
     {
@@ -4442,33 +4513,37 @@ u16 GetPokedexFlagFirstSeen(u16 nationalDexNo)
     return SPECIES_NONE;
 }
 
-s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
+u16 GetPokedexFlagFirstCaught(u16 nationalDexNo)
 {
+    u8 formId = 0;
     u32 index, bit, mask;
-    s8 retVal = 0;
+    u16 species;
+    const u16 *formTable = GetFormSpeciesTable(nationalDexNo);
 
-    nationalDexNo--;
-    index = nationalDexNo / 8;
-    bit = nationalDexNo % 8;
-    mask = 1 << bit;
-
-    switch (caseID)
+    if (formTable != NULL)
     {
-    case FLAG_GET_SEEN:
-        retVal = ((gSaveBlock1Ptr->dexSeen[index] & mask) != 0);
-        break;
-    case FLAG_GET_CAUGHT:
-        retVal = ((gSaveBlock1Ptr->dexCaught[index] & mask) != 0);
-        break;
-    case FLAG_SET_SEEN:
-        gSaveBlock1Ptr->dexSeen[index] |= mask;
-        break;
-    case FLAG_SET_CAUGHT:
-        gSaveBlock1Ptr->dexCaught[index] |= mask;
-        break;
-    }
+        for (formId = 0; formTable[formId] != FORM_SPECIES_END; formId++)
+        {
+            species = formTable[formId] - 1;
+            index = species / 8;
+            bit = species % 8;
+            mask = 1 << bit;
 
-    return retVal;
+            if ((gSaveBlock1Ptr->dexCaught[index] & mask) != 0)
+                return formTable[formId];
+        }
+    }
+    else
+    {
+        species = NationalPokedexNumToSpecies(nationalDexNo) - 1;
+        index = species / 8;
+        bit = species % 8;
+        mask = 1 << bit;
+
+        if ((gSaveBlock1Ptr->dexCaught[index] & mask) != 0)
+            return species + 1;
+    }
+    return SPECIES_NONE;
 }
 
 u16 GetNationalPokedexCount(u8 caseID)
@@ -4481,11 +4556,11 @@ u16 GetNationalPokedexCount(u8 caseID)
         switch (caseID)
         {
         case FLAG_GET_SEEN:
-            if (GetPokedexFlagFirstSeen(i + 1) ? TRUE : FALSE)
+            if (GetPokedexFlagFirstSeen(i + 1))
                 count++;
             break;
         case FLAG_GET_CAUGHT:
-            if (GetSetPokedexCaughtFlag(i + 1, FLAG_GET_CAUGHT))
+            if (GetPokedexFlagFirstCaught(i + 1))
                 count++;
             break;
         }
@@ -4503,11 +4578,11 @@ u16 GetHoennPokedexCount(u8 caseID)
         switch (caseID)
         {
         case FLAG_GET_SEEN:
-            if (GetPokedexFlagFirstSeen(HoennToNationalOrder(i + 1)) ? TRUE : FALSE)
+            if (GetPokedexFlagFirstSeen(HoennToNationalOrder(i + 1)))
                 count++;
             break;
         case FLAG_GET_CAUGHT:
-            if (GetSetPokedexCaughtFlag(HoennToNationalOrder(i + 1), FLAG_GET_CAUGHT))
+            if (GetPokedexFlagFirstCaught(HoennToNationalOrder(i + 1)))
                 count++;
             break;
         }
@@ -4525,11 +4600,11 @@ u16 GetKantoPokedexCount(u8 caseID)
         switch (caseID)
         {
         case FLAG_GET_SEEN:
-            if (GetPokedexFlagFirstSeen(i + 1) ? TRUE : FALSE)
+            if (GetPokedexFlagFirstSeen(i + 1))
                 count++;
             break;
         case FLAG_GET_CAUGHT:
-            if (GetSetPokedexCaughtFlag(i + 1, FLAG_GET_CAUGHT))
+            if (GetPokedexFlagFirstCaught(i + 1))
                 count++;
             break;
         }
@@ -4544,7 +4619,7 @@ bool16 HasAllHoennMons(void)
     // -2 excludes Jirachi and Deoxys
     for (i = 0; i < HOENN_DEX_COUNT - 2; i++)
     {
-        if (!GetSetPokedexCaughtFlag(HoennToNationalOrder(i + 1), FLAG_GET_CAUGHT))
+        if (!GetPokedexFlagFirstCaught(HoennToNationalOrder(i + 1)))
             return FALSE;
     }
     return TRUE;
@@ -4557,7 +4632,7 @@ bool8 HasAllKantoMons(void)
     // -1 excludes Mew
     for (i = 0; i < KANTO_DEX_COUNT - 1; i++)
     {
-        if (!GetSetPokedexCaughtFlag(i + 1, FLAG_GET_CAUGHT))
+        if (!GetPokedexFlagFirstCaught(i + 1))
             return FALSE;
     }
     return TRUE;
@@ -4569,7 +4644,7 @@ bool16 HasAllMons(void)
 
     for (i = 1; i < NATIONAL_DEX_COUNT + 1; i++)
     {
-        if (!(gSpeciesInfo[i].flags & SPECIES_FLAG_MYTHICAL) && !GetSetPokedexCaughtFlag(i, FLAG_GET_CAUGHT))
+        if (!(gSpeciesInfo[i].flags & SPECIES_FLAG_MYTHICAL) && !GetPokedexFlagFirstCaught(i + 1))
             return FALSE;
     }
 
@@ -4636,19 +4711,18 @@ static void UnusedPrintNum(u8 windowId, u16 num, u8 left, u8 top)
     PrintInfoSubMenuText(windowId, str, left, top);
 }
 
-static u8 PrintCryScreenSpeciesName(u8 windowId, u16 num, u8 left, u8 top)
+static u8 PrintCryScreenSpeciesName(u8 windowId, u16 species, u8 left, u8 top)
 {
     u8 str[POKEMON_NAME_LENGTH + 1];
     u8 i;
 
     for (i = 0; i < ARRAY_COUNT(str); i++)
         str[i] = EOS;
-    num = NationalPokedexNumToSpecies(num);
-    switch (num)
+    switch (species)
     {
     default:
-        for (i = 0; GetSpeciesName(num)[i] != EOS && i < POKEMON_NAME_LENGTH; i++)
-            str[i] = GetSpeciesName(num)[i];
+        for (i = 0; GetSpeciesName(species)[i] != EOS && i < POKEMON_NAME_LENGTH; i++)
+            str[i] = GetSpeciesName(species)[i];
         break;
     case 0:
         for (i = 0; i < 5; i++)
