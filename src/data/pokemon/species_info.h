@@ -15241,7 +15241,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(CastformNormal, 0),
         CASTFORM_MISC_INFO,
     },
-    [SPECIES_CASTFORM_SUNNY]
+    [SPECIES_CASTFORM_SUNNY] =
     {
         .type1 = TYPE_FIRE,
         .type2 = TYPE_FIRE,
@@ -15254,7 +15254,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(CastformSunny, 0),
         CASTFORM_MISC_INFO,
     },
-    [SPECIES_CASTFORM_RAINY]
+    [SPECIES_CASTFORM_RAINY] =
     {
         .type1 = TYPE_WATER,
         .type2 = TYPE_WATER,
@@ -15267,7 +15267,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(CastformRainy, 0),
         CASTFORM_MISC_INFO,
     },
-    [SPECIES_CASTFORM_SNOWY]
+    [SPECIES_CASTFORM_SNOWY] =
     {
         .type1 = TYPE_ICE,
         .type2 = TYPE_ICE,
