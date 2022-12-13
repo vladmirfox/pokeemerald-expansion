@@ -13725,10 +13725,10 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_SILK_TRAP] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_PROTECT with extra checks
+        .effect = EFFECT_PROTECT,
         .power = 0,
         .type = TYPE_BUG,
-        .accuracy = 0,
+        .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_USER,
