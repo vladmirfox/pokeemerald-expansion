@@ -3674,6 +3674,9 @@ const u8 gSamurottPokedexText[] = _(
     "A simple glare from one of them is\n"
     "enough to intimidate most enemies.");
 
+const u8 gSamurottHisuianPokedexText[] = _(
+    "");
+
 const u8 gPatratPokedexText[] = _(
     "Extremely cautious, they take shifts to\n"
     "maintain a constant watch of their nest.\n"
@@ -4004,6 +4007,9 @@ const u8 gDarumakaPokedexText[] = _(
     "When the fire diminishes, it pulls its\n"
     "limbs into its body and falls asleep.");
 
+const u8 gDarumakaGalarianPokedexText[] = _(
+    "");
+
 const u8 gDarmanitanStandardModePokedexText[] = _(
     "When one is injured in a fierce battle,\n"
     "it transforms into a stone statue.\n"
@@ -4057,6 +4063,9 @@ const u8 gYamaskPokedexText[] = _(
     "of people interred in graves in past ages.\n"
     "Each of them carries a mask that used\n"
     "to be its face when it was human.");
+
+const u8 gYamaskGalarianPokedexText[] = _(
+    "");
 
 const u8 gCofagrigusPokedexText[] = _(
     "Grave robbers who mistake them for\n"
