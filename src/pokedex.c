@@ -2735,70 +2735,13 @@ static u16 TryDoPokedexScroll(u16 selectedMon, u16 ignored)
         CreateMonListEntry(2, selectedMon, ignored);
         PlaySE(SE_DEX_SCROLL);
     }
-    else if (JOY_NEW(L_BUTTON)
-        && GetAmountOfFormsBySpecies(sPokedexView->pokedexList[selectedMon].seenSpecies) > 1)
+    else if (JOY_NEW(L_BUTTON) && GetAmountOfFormsBySpecies(sPokedexView->pokedexList[selectedMon].seenSpecies) > 1)
     {
-        u8 formId = GetFormIdFromFormSpeciesId(sPokedexView->pokedexList[selectedMon].seenSpecies);
-        u16 newSpecies = sPokedexView->pokedexList[selectedMon].seenSpecies;
-        u8 formAmount = GetAmountOfFormsBySpecies(sPokedexView->pokedexList[selectedMon].seenSpecies);
-        bool8 found = FALSE;
-
-        while (TRUE)
-        {
-            if (formId == 0)
-                formId = formAmount - 1;
-            else
-                formId--;
-            newSpecies = GetFormSpeciesId(sPokedexView->pokedexList[selectedMon].seenSpecies, formId);
-            if (newSpecies == sPokedexView->pokedexList[selectedMon].seenSpecies)
-                break;
-            if (GetSetPokedexSeenFlag(newSpecies, FLAG_GET_SEEN))
-            {
-                found = TRUE;
-                break;
-            }
-        }
-
-        if (found)
-        {
-            sPokedexView->pokedexList[selectedMon].seenSpecies = newSpecies;
-            sPokedexView->pokedexList[selectedMon].owned = GetSetPokedexCaughtFlag(newSpecies, FLAG_GET_CAUGHT);
-            ClearMonSprites();
-            CreateMonSpritesAtPos(selectedMon, 0xE);
-            PlaySE(SE_DEX_PAGE);
-        }
+        HandleFormSwitch_ScrollingList(selectedMon, FALSE);
     }
-    else if (JOY_NEW(R_BUTTON)
-        && GetAmountOfFormsBySpecies(sPokedexView->pokedexList[selectedMon].seenSpecies) > 1)
+    else if (JOY_NEW(R_BUTTON) && GetAmountOfFormsBySpecies(sPokedexView->pokedexList[selectedMon].seenSpecies) > 1)
     {
-        u8 formId = GetFormIdFromFormSpeciesId(sPokedexView->pokedexList[selectedMon].seenSpecies);
-        u16 newSpecies = sPokedexView->pokedexList[selectedMon].seenSpecies;
-        u8 formAmount = GetAmountOfFormsBySpecies(sPokedexView->pokedexList[selectedMon].seenSpecies);
-        bool8 found = FALSE;
-
-        while (TRUE)
-        {
-            formId++;
-            if (formId == formAmount)
-                formId = 0;
-            newSpecies = GetFormSpeciesId(sPokedexView->pokedexList[selectedMon].seenSpecies, formId);
-            if (newSpecies == sPokedexView->pokedexList[selectedMon].seenSpecies)
-                break;
-            if (GetSetPokedexSeenFlag(newSpecies, FLAG_GET_SEEN))
-            {
-                found = TRUE;
-                break;
-            }
-        }
-
-        if (found)
-        {
-            sPokedexView->pokedexList[selectedMon].seenSpecies = newSpecies;
-            sPokedexView->pokedexList[selectedMon].owned = GetSetPokedexCaughtFlag(newSpecies, FLAG_GET_CAUGHT);
-            ClearMonSprites();
-            CreateMonSpritesAtPos(selectedMon, 0xE);
-            PlaySE(SE_DEX_PAGE);
-        }
+        HandleFormSwitch_ScrollingList(selectedMon, TRUE);
     }
     else if (JOY_NEW(DPAD_LEFT) && (selectedMon > 0))
     {
@@ -5860,4 +5803,48 @@ static void PrintSearchParameterTitle(u32 y, const u8 *str)
 static void ClearSearchParameterBoxText(void)
 {
     ClearSearchMenuRect(144, 8, 96, 96);
+}
+
+static void HandleFormSwitch_ScrollingList(u16 selectedMon, bool8 nextForm)
+{
+    u8 formId = GetFormIdFromFormSpeciesId(sPokedexView->pokedexList[selectedMon].seenSpecies);
+    u16 newSpecies = sPokedexView->pokedexList[selectedMon].seenSpecies;
+    u8 formAmount = GetAmountOfFormsBySpecies(sPokedexView->pokedexList[selectedMon].seenSpecies);
+    bool8 found = FALSE;
+
+    while (TRUE)
+    {
+        if (nextForm)
+        {
+            formId++;
+            if (formId == formAmount)
+                formId = 0;
+        }
+        else
+        {
+            if (formId == 0)
+                formId = formAmount - 1;
+            else
+                formId--;
+        }
+        newSpecies = GetFormSpeciesId(sPokedexView->pokedexList[selectedMon].seenSpecies, formId);
+        // If it loops back to the original form, break.
+        if (newSpecies == sPokedexView->pokedexList[selectedMon].seenSpecies)
+            break;
+        if (GetSetPokedexSeenFlag(newSpecies, FLAG_GET_SEEN))
+        {
+            found = TRUE;
+            break;
+        }
+    }
+
+    if (found)
+    {
+        sPokedexView->pokedexList[selectedMon].seenSpecies = newSpecies;
+        sPokedexView->pokedexList[selectedMon].owned = GetSetPokedexCaughtFlag(newSpecies, FLAG_GET_CAUGHT);
+        ClearMonSprites();
+        CreateMonSpritesAtPos(selectedMon, 0xE);
+        CreateCaughtBall(sPokedexView->pokedexList[selectedMon].owned, 0x11, sPokedexView->listVOffset * 2, 0);
+        PlaySE(SE_DEX_PAGE);
+    }
 }
