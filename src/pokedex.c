@@ -330,6 +330,7 @@ static void EraseSelectorArrow(u32);
 static void PrintSelectorArrow(u32);
 static void PrintSearchParameterTitle(u32, const u8 *);
 static void ClearSearchParameterBoxText(void);
+static void HandleFormSwitch_ScrollingList(u16 selectedMon, bool8 nextForm);
 
 // const rom data
 #include "data/pokemon/pokedex_orders.h"
