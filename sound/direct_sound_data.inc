@@ -1255,578 +1255,6 @@ Cry_Misdreavus::
 	.incbin "sound/direct_sound_samples/cries/misdreavus.bin"
 
 	.align 2
-.if P_GEN_4_POKEMON == FALSE
-Cry_Turtwig::
-Cry_Grotle::
-Cry_Torterra::
-Cry_Chimchar::
-Cry_Monferno::
-Cry_Infernape::
-Cry_Piplup::
-Cry_Prinplup::
-Cry_Empoleon::
-Cry_Starly::
-Cry_Staravia::
-Cry_Staraptor::
-Cry_Bidoof::
-Cry_Bibarel::
-Cry_Kricketot::
-Cry_Kricketune::
-Cry_Shinx::
-Cry_Luxio::
-Cry_Luxray::
-Cry_Budew::
-Cry_Roserade::
-Cry_Cranidos::
-Cry_Rampardos::
-Cry_Shieldon::
-Cry_Bastiodon::
-Cry_Burmy::
-Cry_Wormadam::
-Cry_Mothim::
-Cry_Combee::
-Cry_Vespiquen::
-Cry_Pachirisu::
-Cry_Buizel::
-Cry_Floatzel::
-Cry_Cherubi::
-Cry_Cherrim::
-Cry_Shellos::
-Cry_Gastrodon::
-Cry_Ambipom::
-Cry_Drifloon::
-Cry_Drifblim::
-Cry_Buneary::
-Cry_Lopunny::
-Cry_LopunnyMega::
-Cry_Mismagius::
-Cry_Honchkrow::
-Cry_Glameow::
-Cry_Purugly::
-Cry_Chingling::
-Cry_Stunky::
-Cry_Skuntank::
-Cry_Bronzor::
-Cry_Bronzong::
-Cry_Bonsly::
-Cry_MimeJr::
-Cry_Happiny::
-Cry_Chatot::
-Cry_Spiritomb::
-Cry_Gible::
-Cry_Gabite::
-Cry_Garchomp::
-Cry_GarchompMega::
-Cry_Munchlax::
-Cry_Riolu::
-Cry_Lucario::
-Cry_LucarioMega::
-Cry_Hippopotas::
-Cry_Hippowdon::
-Cry_Skorupi::
-Cry_Drapion::
-Cry_Croagunk::
-Cry_Toxicroak::
-Cry_Carnivine::
-Cry_Finneon::
-Cry_Lumineon::
-Cry_Mantyke::
-Cry_Snover::
-Cry_Abomasnow::
-Cry_AbomasnowMega::
-Cry_Weavile::
-Cry_Magnezone::
-Cry_Lickilicky::
-Cry_Rhyperior::
-Cry_Tangrowth::
-Cry_Electivire::
-Cry_Magmortar::
-Cry_Togekiss::
-Cry_Yanmega::
-Cry_Leafeon::
-Cry_Glaceon::
-Cry_Gliscor::
-Cry_Mamoswine::
-Cry_PorygonZ::
-Cry_Gallade::
-Cry_GalladeMega::
-Cry_Probopass::
-Cry_Dusknoir::
-Cry_Froslass::
-Cry_Rotom::
-Cry_Uxie::
-Cry_Mesprit::
-Cry_Azelf::
-Cry_Dialga::
-Cry_Palkia::
-Cry_Heatran::
-Cry_Regigigas::
-Cry_Giratina::
-Cry_Cresselia::
-Cry_Phione::
-Cry_Manaphy::
-Cry_Darkrai::
-Cry_Shaymin::
-Cry_ShayminSky::
-Cry_Arceus::
-.endif
-
-.if P_GEN_5_POKEMON == FALSE
-Cry_Victini::
-Cry_Snivy::
-Cry_Servine::
-Cry_Serperior::
-Cry_Tepig::
-Cry_Pignite::
-Cry_Emboar::
-Cry_Oshawott::
-Cry_Dewott::
-Cry_Samurott::
-Cry_Patrat::
-Cry_Watchog::
-Cry_Lillipup::
-Cry_Herdier::
-Cry_Stoutland::
-Cry_Purrloin::
-Cry_Liepard::
-Cry_Pansage::
-Cry_Simisage::
-Cry_Pansear::
-Cry_Simisear::
-Cry_Panpour::
-Cry_Simipour::
-Cry_Munna::
-Cry_Musharna::
-Cry_Pidove::
-Cry_Tranquill::
-Cry_Unfezant::
-Cry_Blitzle::
-Cry_Zebstrika::
-Cry_Roggenrola::
-Cry_Boldore::
-Cry_Gigalith::
-Cry_Woobat::
-Cry_Swoobat::
-Cry_Drilbur::
-Cry_Excadrill::
-Cry_Audino::
-Cry_AudinoMega::
-Cry_Timburr::
-Cry_Gurdurr::
-Cry_Conkeldurr::
-Cry_Tympole::
-Cry_Palpitoad::
-Cry_Seismitoad::
-Cry_Throh::
-Cry_Sawk::
-Cry_Sewaddle::
-Cry_Swadloon::
-Cry_Leavanny::
-Cry_Venipede::
-Cry_Whirlipede::
-Cry_Scolipede::
-Cry_Cottonee::
-Cry_Whimsicott::
-Cry_Petilil::
-Cry_Lilligant::
-Cry_Basculin::
-Cry_Sandile::
-Cry_Krokorok::
-Cry_Krookodile::
-Cry_Darumaka::
-Cry_Darmanitan::
-Cry_Maractus::
-Cry_Dwebble::
-Cry_Crustle::
-Cry_Scraggy::
-Cry_Scrafty::
-Cry_Sigilyph::
-Cry_Yamask::
-Cry_Cofagrigus::
-Cry_Tirtouga::
-Cry_Carracosta::
-Cry_Archen::
-Cry_Archeops::
-Cry_Trubbish::
-Cry_Garbodor::
-Cry_Zorua::
-Cry_Zoroark::
-Cry_Minccino::
-Cry_Cinccino::
-Cry_Gothita::
-Cry_Gothorita::
-Cry_Gothitelle::
-Cry_Solosis::
-Cry_Duosion::
-Cry_Reuniclus::
-Cry_Ducklett::
-Cry_Swanna::
-Cry_Vanillite::
-Cry_Vanillish::
-Cry_Vanilluxe::
-Cry_Deerling::
-Cry_Sawsbuck::
-Cry_Emolga::
-Cry_Karrablast::
-Cry_Escavalier::
-Cry_Foongus::
-Cry_Amoonguss::
-Cry_Frillish::
-Cry_Jellicent::
-Cry_Alomomola::
-Cry_Joltik::
-Cry_Galvantula::
-Cry_Ferroseed::
-Cry_Ferrothorn::
-Cry_Klink::
-Cry_Klang::
-Cry_Klinklang::
-Cry_Tynamo::
-Cry_Eelektrik::
-Cry_Eelektross::
-Cry_Elgyem::
-Cry_Beheeyem::
-Cry_Litwick::
-Cry_Lampent::
-Cry_Chandelure::
-Cry_Axew::
-Cry_Fraxure::
-Cry_Haxorus::
-Cry_Cubchoo::
-Cry_Beartic::
-Cry_Cryogonal::
-Cry_Shelmet::
-Cry_Accelgor::
-Cry_Stunfisk::
-Cry_Mienfoo::
-Cry_Mienshao::
-Cry_Druddigon::
-Cry_Golett::
-Cry_Golurk::
-Cry_Pawniard::
-Cry_Bisharp::
-Cry_Bouffalant::
-Cry_Rufflet::
-Cry_Braviary::
-Cry_Vullaby::
-Cry_Mandibuzz::
-Cry_Heatmor::
-Cry_Durant::
-Cry_Deino::
-Cry_Zweilous::
-Cry_Hydreigon::
-Cry_Larvesta::
-Cry_Volcarona::
-Cry_Cobalion::
-Cry_Terrakion::
-Cry_Virizion::
-Cry_Tornadus::
-Cry_TornadusTherian::
-Cry_Thundurus::
-Cry_ThundurusTherian::
-Cry_Reshiram::
-Cry_Zekrom::
-Cry_Landorus::
-Cry_LandorusTherian::
-Cry_Kyurem::
-Cry_KyuremWhite::
-Cry_KyuremBlack::
-Cry_Keldeo::
-Cry_Meloetta::
-Cry_Genesect::
-.endif
-
-.if P_GEN_6_POKEMON == FALSE
-Cry_Chespin::
-Cry_Quilladin::
-Cry_Chesnaught::
-Cry_Fennekin::
-Cry_Braixen::
-Cry_Delphox::
-Cry_Froakie::
-Cry_Frogadier::
-Cry_Greninja::
-Cry_Bunnelby::
-Cry_Diggersby::
-Cry_Fletchling::
-Cry_Fletchinder::
-Cry_Talonflame::
-Cry_Scatterbug::
-Cry_Spewpa::
-Cry_Vivillon::
-Cry_Litleo::
-Cry_Pyroar::
-Cry_Flabebe::
-Cry_Floette::
-Cry_FloetteEternalFlower::
-Cry_Florges::
-Cry_Skiddo::
-Cry_Gogoat::
-Cry_Pancham::
-Cry_Pangoro::
-Cry_Furfrou::
-Cry_Espurr::
-Cry_Meowstic::
-Cry_Honedge::
-Cry_Doublade::
-Cry_Aegislash::
-Cry_Spritzee::
-Cry_Aromatisse::
-Cry_Swirlix::
-Cry_Slurpuff::
-Cry_Inkay::
-Cry_Malamar::
-Cry_Binacle::
-Cry_Barbaracle::
-Cry_Skrelp::
-Cry_Dragalge::
-Cry_Clauncher::
-Cry_Clawitzer::
-Cry_Helioptile::
-Cry_Heliolisk::
-Cry_Tyrunt::
-Cry_Tyrantrum::
-Cry_Amaura::
-Cry_Aurorus::
-Cry_Sylveon::
-Cry_Hawlucha::
-Cry_Dedenne::
-Cry_Carbink::
-Cry_Goomy::
-Cry_Sliggoo::
-Cry_Goodra::
-Cry_Klefki::
-Cry_Phantump::
-Cry_Trevenant::
-Cry_Pumpkaboo::
-Cry_PumpkabooSuper::
-Cry_Gourgeist::
-Cry_GourgeistSuper::
-Cry_Bergmite::
-Cry_Avalugg::
-Cry_Noibat::
-Cry_Noivern::
-Cry_Xerneas::
-Cry_Yveltal::
-Cry_Zygarde::
-Cry_Zygarde10::
-Cry_ZygardeComplete::
-Cry_Diancie::
-Cry_DiancieMega::
-Cry_Hoopa::
-Cry_HoopaUnbound::
-Cry_Volcanion::
-.endif
-
-.if P_GEN_7_POKEMON == FALSE
-Cry_Rowlet::
-Cry_Dartrix::
-Cry_Decidueye::
-Cry_Litten::
-Cry_Torracat::
-Cry_Incineroar::
-Cry_Popplio::
-Cry_Brionne::
-Cry_Primarina::
-Cry_Pikipek::
-Cry_Trumbeak::
-Cry_Toucannon::
-Cry_Yungoos::
-Cry_Gumshoos::
-Cry_Grubbin::
-Cry_Charjabug::
-Cry_Vikavolt::
-Cry_Crabrawler::
-Cry_Crabominable::
-Cry_Oricorio::
-Cry_OricorioPomPom::
-Cry_OricorioPau::
-Cry_OricorioSensu::
-Cry_Cutiefly::
-Cry_Ribombee::
-Cry_Rockruff::
-Cry_Lycanroc::
-Cry_LycanrocMidnight::
-Cry_LycanrocDusk::
-Cry_Wishiwashi::
-Cry_WishiwashiSchool::
-Cry_Mareanie::
-Cry_Toxapex::
-Cry_Mudbray::
-Cry_Mudsdale::
-Cry_Dewpider::
-Cry_Araquanid::
-Cry_Fomantis::
-Cry_Lurantis::
-Cry_Morelull::
-Cry_Shiinotic::
-Cry_Salandit::
-Cry_Salazzle::
-Cry_Stufful::
-Cry_Bewear::
-Cry_Bounsweet::
-Cry_Steenee::
-Cry_Tsareena::
-Cry_Comfey::
-Cry_Oranguru::
-Cry_Passimian::
-Cry_Wimpod::
-Cry_Golisopod::
-Cry_Sandygast::
-Cry_Palossand::
-Cry_Pyukumuku::
-Cry_TypeNull::
-Cry_Silvally::
-Cry_Minior::
-Cry_Komala::
-Cry_Turtonator::
-Cry_Togedemaru::
-Cry_Mimikyu::
-Cry_Bruxish::
-Cry_Drampa::
-Cry_Dhelmise::
-Cry_Jangmoo::
-Cry_Hakamoo::
-Cry_Kommoo::
-Cry_TapuKoko::
-Cry_TapuLele::
-Cry_TapuBulu::
-Cry_TapuFini::
-Cry_Cosmog::
-Cry_Cosmoem::
-Cry_Solgaleo::
-Cry_Lunala::
-Cry_Nihilego::
-Cry_Buzzwole::
-Cry_Pheromosa::
-Cry_Xurkitree::
-Cry_Celesteela::
-Cry_Kartana::
-Cry_Guzzlord::
-Cry_Necrozma::
-Cry_NecrozmaDuskMane::
-Cry_NecrozmaDawnWings::
-Cry_NecrozmaUltra::
-Cry_Magearna::
-Cry_Marshadow::
-Cry_Poipole::
-Cry_Naganadel::
-Cry_Stakataka::
-Cry_Blacephalon::
-Cry_Zeraora::
-Cry_Meltan::
-Cry_Melmetal::
-.endif
-
-.if P_GEN_8_POKEMON == FALSE
-Cry_Grookey::
-Cry_Thwackey::
-Cry_Rillaboom::
-Cry_Scorbunny::
-Cry_Raboot::
-Cry_Cinderace::
-Cry_Sobble::
-Cry_Drizzile::
-Cry_Inteleon::
-Cry_Skwovet::
-Cry_Greedent::
-Cry_Rookidee::
-Cry_Corvisquire::
-Cry_Corviknight::
-Cry_Blipbug::
-Cry_Dottler::
-Cry_Orbeetle::
-Cry_Nickit::
-Cry_Thievul::
-Cry_Gossifleur::
-Cry_Eldegoss::
-Cry_Wooloo::
-Cry_Dubwool::
-Cry_Chewtle::
-Cry_Drednaw::
-Cry_Yamper::
-Cry_Boltund::
-Cry_Rolycoly::
-Cry_Carkol::
-Cry_Coalossal::
-Cry_Applin::
-Cry_Flapple::
-Cry_Appletun::
-Cry_Silicobra::
-Cry_Sandaconda::
-Cry_Cramorant::
-Cry_Arrokuda::
-Cry_Barraskewda::
-Cry_Toxel::
-Cry_Toxtricity::
-Cry_ToxtricityLowKey::
-Cry_Sizzlipede::
-Cry_Centiskorch::
-Cry_Clobbopus::
-Cry_Grapploct::
-Cry_Sinistea::
-Cry_Polteageist::
-Cry_Hatenna::
-Cry_Hattrem::
-Cry_Hatterene::
-Cry_Impidimp::
-Cry_Morgrem::
-Cry_Grimmsnarl::
-Cry_Obstagoon::
-Cry_Perrserker::
-Cry_Cursola::
-Cry_Sirfetchd::
-Cry_MrRime::
-Cry_Runerigus::
-Cry_Milcery::
-Cry_Alcremie::
-Cry_Falinks::
-Cry_Pincurchin::
-Cry_Snom::
-Cry_Frosmoth::
-Cry_Stonjourner::
-Cry_Eiscue::
-Cry_EiscueNoiceFace::
-Cry_Indeedee::
-Cry_IndeedeeFemale::
-Cry_Morpeko::
-Cry_MorpekoHangry::
-Cry_Cufant::
-Cry_Copperajah::
-Cry_Dracozolt::
-Cry_Arctozolt::
-Cry_Dracovish::
-Cry_Arctovish::
-Cry_Duraludon::
-Cry_Dreepy::
-Cry_Drakloak::
-Cry_Dragapult::
-Cry_Zacian::
-Cry_ZacianCrownedSword::
-Cry_Zamazenta::
-Cry_ZamazentaCrownedShield::
-Cry_Eternatus::
-Cry_EternatusEternamax::
-Cry_Kubfu::
-Cry_Urshifu::
-Cry_UrshifuRapidStrikeStyle::
-Cry_Zarude::
-Cry_Regieleki::
-Cry_Regidrago::
-Cry_Glastrier::
-Cry_Spectrier::
-Cry_Calyrex::
-Cry_CalyrexIceRider::
-Cry_CalyrexShadowRider::
-.endif
-Cry_Wyrdeer::
-Cry_Kleavor::
-Cry_Ursaluna::
-Cry_Basculegion::
-Cry_Sneasler::
-Cry_Overqwil::
-Cry_Enamorus::
-Cry_EnamorusTherian::
 Cry_Unown::
 	.incbin "sound/direct_sound_samples/cries/unown.bin"
 
@@ -2652,7 +2080,7 @@ Cry_Kyogre::
 
 	.align 2
 Cry_KyogrePrimal::
-	.incbin "sound/direct_sound_samples/cries/primal_kyogre.bin"
+	.incbin "sound/direct_sound_samples/cries/kyogre_primal.bin"
 
 	.align 2
 Cry_Groudon::
@@ -2660,7 +2088,7 @@ Cry_Groudon::
 
 	.align 2
 Cry_GroudonPrimal::
-	.incbin "sound/direct_sound_samples/cries/primal_groudon.bin"
+	.incbin "sound/direct_sound_samples/cries/groudon_primal.bin"
 
 	.align 2
 Cry_Rayquaza::
@@ -3120,7 +2548,7 @@ Cry_Darkrai::
 	.incbin "sound/direct_sound_samples/cries/darkrai.bin"
 
 	.align 2
-Cry_Shaymin::
+Cry_ShayminLand::
 	.incbin "sound/direct_sound_samples/cries/shaymin.bin"
 
 	.align 2
@@ -3726,16 +3154,16 @@ Cry_Virizion::
 	.incbin "sound/direct_sound_samples/cries/virizion.bin"
 
 	.align 2
-Cry_Tornadus::
-	.incbin "sound/direct_sound_samples/cries/tornadus.bin"
+Cry_TornadusIncarnate::
+	.incbin "sound/direct_sound_samples/cries/tornadus_incarnate.bin"
 
 	.align 2
 Cry_TornadusTherian::
 	.incbin "sound/direct_sound_samples/cries/tornadus_therian.bin"
 
 	.align 2
-Cry_Thundurus::
-	.incbin "sound/direct_sound_samples/cries/thundurus.bin"
+Cry_ThundurusIncarnate::
+	.incbin "sound/direct_sound_samples/cries/thundurus_incarnate.bin"
 
 	.align 2
 Cry_ThundurusTherian::
@@ -3750,8 +3178,8 @@ Cry_Zekrom::
 	.incbin "sound/direct_sound_samples/cries/zekrom.bin"
 
 	.align 2
-Cry_Landorus::
-	.incbin "sound/direct_sound_samples/cries/landorus.bin"
+Cry_LandorusIncarnate::
+	.incbin "sound/direct_sound_samples/cries/landorus_incarnate.bin"
 
 	.align 2
 Cry_LandorusTherian::
@@ -4068,7 +3496,7 @@ Cry_Yveltal::
 	.incbin "sound/direct_sound_samples/cries/yveltal.bin"
 
 	.align 2
-Cry_Zygarde::
+Cry_Zygarde50::
 	.incbin "sound/direct_sound_samples/cries/zygarde.bin"
 
 	.align 2
@@ -4088,8 +3516,8 @@ Cry_DiancieMega::
 	.incbin "sound/direct_sound_samples/cries/diancie_mega.bin"
 
 	.align 2
-Cry_Hoopa::
-	.incbin "sound/direct_sound_samples/cries/hoopa.bin"
+Cry_HoopaConfined::
+	.incbin "sound/direct_sound_samples/cries/hoopa_confined.bin"
 
 	.align 2
 Cry_HoopaUnbound::
@@ -4178,8 +3606,8 @@ Cry_Crabominable::
 	.incbin "sound/direct_sound_samples/cries/crabominable.bin"
 
 	.align 2
-Cry_Oricorio::
-	.incbin "sound/direct_sound_samples/cries/oricorio.bin"
+Cry_OricorioBaile::
+	.incbin "sound/direct_sound_samples/cries/oricorio_baile.bin"
 
 	.align 2
 Cry_OricorioPomPom::
@@ -4206,7 +3634,7 @@ Cry_Rockruff::
 	.incbin "sound/direct_sound_samples/cries/rockruff.bin"
 
 	.align 2
-Cry_Lycanroc::
+Cry_LycanrocMidday::
 	.incbin "sound/direct_sound_samples/cries/lycanroc.bin"
 
 	.align 2
@@ -4218,7 +3646,7 @@ Cry_LycanrocDusk::
 	.incbin "sound/direct_sound_samples/cries/lycanroc_dusk.bin"
 
 	.align 2
-Cry_Wishiwashi::
+Cry_WishiwashiSolo::
 	.incbin "sound/direct_sound_samples/cries/wishiwashi.bin"
 
 	.align 2
@@ -4366,15 +3794,15 @@ Cry_Dhelmise::
 	.incbin "sound/direct_sound_samples/cries/dhelmise.bin"
 
 	.align 2
-Cry_Jangmoo::
+Cry_JangmoO::
 	.incbin "sound/direct_sound_samples/cries/jangmo_o.bin"
 
 	.align 2
-Cry_Hakamoo::
+Cry_HakamoO::
 	.incbin "sound/direct_sound_samples/cries/hakamo_o.bin"
 
 	.align 2
-Cry_Kommoo::
+Cry_KommoO::
 	.incbin "sound/direct_sound_samples/cries/kommo_o.bin"
 
 	.align 2
@@ -4648,8 +4076,8 @@ Cry_Toxel::
 	.incbin "sound/direct_sound_samples/cries/toxel.bin"
 
 	.align 2
-Cry_Toxtricity::
-	.incbin "sound/direct_sound_samples/cries/toxtricity.bin"
+Cry_ToxtricityAmped::
+	.incbin "sound/direct_sound_samples/cries/toxtricity_amped.bin"
 
 	.align 2
 Cry_ToxtricityLowKey::
@@ -4756,7 +4184,7 @@ Cry_Stonjourner::
 	.incbin "sound/direct_sound_samples/cries/stonjourner.bin"
 
 	.align 2
-Cry_Eiscue::
+Cry_EiscueIceFace::
 	.incbin "sound/direct_sound_samples/cries/eiscue.bin"
 
 	.align 2
@@ -4764,7 +4192,7 @@ Cry_EiscueNoiceFace::
 	.incbin "sound/direct_sound_samples/cries/eiscue_noice_face.bin"
 
 	.align 2
-Cry_Indeedee::
+Cry_IndeedeeMale::
 	.incbin "sound/direct_sound_samples/cries/indeedee.bin"
 
 	.align 2
@@ -4772,7 +4200,7 @@ Cry_IndeedeeFemale::
 	.incbin "sound/direct_sound_samples/cries/indeedee_female.bin"
 
 	.align 2
-Cry_Morpeko::
+Cry_MorpekoFullBelly::
 	.incbin "sound/direct_sound_samples/cries/morpeko.bin"
 
 	.align 2
@@ -4820,16 +4248,16 @@ Cry_Dragapult::
 	.incbin "sound/direct_sound_samples/cries/dragapult.bin"
 
 	.align 2
-Cry_Zacian::
-	.incbin "sound/direct_sound_samples/cries/zacian.bin"
+Cry_ZacianHeroOfManyBattles::
+	.incbin "sound/direct_sound_samples/cries/zacian_hero_of_many_battles.bin"
 
 	.align 2
 Cry_ZacianCrownedSword::
 	.incbin "sound/direct_sound_samples/cries/zacian_crowned_sword.bin"
 
 	.align 2
-Cry_Zamazenta::
-	.incbin "sound/direct_sound_samples/cries/zamazenta.bin"
+Cry_ZamazentaHeroOfManyBattles::
+	.incbin "sound/direct_sound_samples/cries/zamazenta_hero_of_many_battles.bin"
 
 	.align 2
 Cry_ZamazentaCrownedShield::
@@ -4848,7 +4276,7 @@ Cry_Kubfu::
 	.incbin "sound/direct_sound_samples/cries/kubfu.bin"
 
 	.align 2
-Cry_Urshifu::
+Cry_UrshifuSingleStrikeStyle::
 	.incbin "sound/direct_sound_samples/cries/urshifu.bin"
 
 	.align 2

@@ -311,6 +311,7 @@ struct SpeciesInfo
  /* 0x06 */ u8 type1;
  /* 0x07 */ u8 type2;
  /* 0x08 */ u8 catchRate;
+            u8 padding1;
  /* 0x09 */ u16 expYield;
  /* 0x0A */ u16 evYield_HP:2;
  /* 0x0A */ u16 evYield_Attack:2;
@@ -318,7 +319,7 @@ struct SpeciesInfo
  /* 0x0A */ u16 evYield_Speed:2;
  /* 0x0B */ u16 evYield_SpAttack:2;
  /* 0x0B */ u16 evYield_SpDefense:2;
-            u16 padding:4;
+            u16 padding2:4;
  /* 0x0C */ u16 itemCommon;
  /* 0x0E */ u16 itemRare;
  /* 0x10 */ u8 genderRatio;
@@ -334,6 +335,7 @@ struct SpeciesInfo
  /* 0x?? */ u16 natDexNum;
  /* 0x?? */ u16 hoennDexNum;
             u16 equivalentDexEntry; // To avoid duplicating dex entries like for Scatterbug
+            u16 cryId;
  /* 0x?? */ u16 height; //in decimeters
  /* 0x?? */ u16 weight; //in hectograms
  /* 0x?? */ u16 pokemonScale;
@@ -366,7 +368,7 @@ struct SpeciesInfo
             u8 backPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
             u8 iconPalIndex:3;
             u8 iconPalIndexFemale:3;
-            u8 padding2:2;
+            u8 padding3:2;
             u8 enemyMonElevation; // This determines how much higher above the usual position the enemy Pokémon is during battle. Species that float or fly have nonzero values.
             // Flags
             u16 flags;
@@ -608,5 +610,6 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove);
 bool32 SpeciesHasGenderDifferences(u16 species);
 void TryToSetBattleFormChangeMoves(struct Pokemon *mon);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);
+u16 GetCryIdBySpecies(u16 species);
 
 #endif // GUARD_POKEMON_H

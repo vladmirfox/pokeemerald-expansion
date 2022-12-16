@@ -42,6 +42,7 @@
 #include "constants/battle_frontier.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_script_commands.h"
+#include "constants/cries.h"
 #include "constants/hold_effects.h"
 #include "constants/item_effects.h"
 #include "constants/items.h"
@@ -5995,3 +5996,11 @@ u16 SanitizeSpeciesId(u16 species)
     else
         return species;
 }
+
+u16 GetCryIdBySpecies(u16 species)
+{
+    species = SanitizeSpeciesId(species);
+    if (gSpeciesInfo[species].cryId >= CRY_COUNT)
+        return 0;
+    return gSpeciesInfo[species].cryId;
+};
