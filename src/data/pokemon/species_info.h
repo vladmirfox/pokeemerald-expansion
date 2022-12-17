@@ -10986,6 +10986,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .natDexNum = NATIONAL_DEX_PICHU,                                    \
         .hoennDexNum = HOENN_DEX_PICHU,                                     \
         .cryId = CRY_PICHU,                                                 \
+        .categoryName = _("Tiny Mouse"),                                    \
         .pokemonScale = 508,                                                \
         .pokemonOffset = 20,                                                \
         .trainerScale = 256,                                                \
@@ -10994,48 +10995,37 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 20,                                                       \
         .levelUpLearnset = sPichuLevelUpLearnset,                           \
         .teachableLearnset = sPichuTeachableLearnset,                       \
-        .footprint = gMonFootprint_Pichu
+        .frontPicSize = MON_COORDS_SIZE(32, 40),                            \
+        .frontPicYOffset = 14,                                              \
+        .backPicSize = MON_COORDS_SIZE(48, 56),                             \
+        .backPicYOffset = 8,                                                \
+        .iconPalIndex = 1,                                                  \
+        .footprint = gMonFootprint_Pichu,                                   \
+        .frontAnimFrames = sAnims_Pichu,                                    \
+        .frontAnimId = ANIM_V_JUMPS_BIG,                                    \
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL
 
     [SPECIES_PICHU] =
     {
         .noFlip = FALSE,
         .description = gPichuPokedexText,
-        .categoryName = _("Tiny Mouse"),
         .frontPic = gMonFrontPic_Pichu,
-        .frontPicSize = MON_COORDS_SIZE(32, 40),
-        .frontPicYOffset = 14,
         .backPic = gMonBackPic_Pichu,
-        .backPicSize = MON_COORDS_SIZE(48, 56),
-        .backPicYOffset = 8,
         .palette = gMonPalette_Pichu,
         .shinyPalette = gMonShinyPalette_Pichu,
         .iconSprite = gMonIcon_Pichu,
-        .iconPalIndex = 1,
-        .frontAnimFrames = sAnims_Pichu,
-        .frontAnimId = ANIM_V_JUMPS_BIG,
-        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sPichuEvolutions,
         PICHU_MISC_INFO,
     },
-
     [SPECIES_PICHU_SPIKY_EARED] =
     {
         .noFlip = TRUE,
-        .description = gPichuPokedexText,
-        .categoryName = _("Tiny Mouse"), // No official dex entry for this form
+        .description = gPichuPokedexText, // No official dex entry for this form
         .frontPic = gMonFrontPic_PichuSpikyEared,
-        .frontPicSize = MON_COORDS_SIZE(32, 40),
-        .frontPicYOffset = 14,
         .backPic = gMonBackPic_PichuSpikyEared,
-        .backPicSize = MON_COORDS_SIZE(48, 56),
-        .backPicYOffset = 8,
         .palette = gMonPalette_PichuSpikyEared,
         .shinyPalette = gMonShinyPalette_PichuSpikyEared,
         .iconSprite = gMonIcon_PichuSpikyEared,
-        .iconPalIndex = 1,
-        .frontAnimFrames = sAnims_PichuSpikyEared,
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .backAnimId = BACK_ANIM_NONE,
         PICHU_MISC_INFO,
     },
 
@@ -38964,6 +38954,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_MeloettaPirouette,
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
+        MELOETTA_MISC_INFO,
     },
 
 #define GENESECT_MISC_INFO(pal)                         \

@@ -2136,8 +2136,6 @@ static const union AnimCmd sAnim_Pichu_2[] =
     ANIMCMD_END,
 };
 
-PLACEHOLDER_ANIM_SINGLE_FRAME(PichuSpikyEared);
-
 static const union AnimCmd sAnim_Cleffa_1[] =
 {
     ANIMCMD_FRAME(1, 10),
@@ -9080,7 +9078,6 @@ SINGLE_ANIMATION(Crobat);
 DOUBLE_ANIMATION(Chinchou);
 DOUBLE_ANIMATION(Lanturn);
 DOUBLE_ANIMATION(Pichu);
-SINGLE_ANIMATION(PichuSpikyEared);
 SINGLE_ANIMATION(Cleffa);
 DOUBLE_ANIMATION(Igglybuff);
 SINGLE_ANIMATION(Togepi);

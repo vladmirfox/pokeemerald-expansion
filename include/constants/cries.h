@@ -999,9 +999,8 @@ enum {
     //CRY_OVERQWIL,
     //CRY_ENAMORUS_INCARNATE,
     //CRY_ENAMORUS_THERIAN,
-    CRY_COUNT,
 #endif
-
+    CRY_COUNT,
 };
 
 #endif // GUARD_CONSTANTS_CRIES_H
