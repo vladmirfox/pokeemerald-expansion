@@ -349,11 +349,12 @@
 #define SPECIES_FLAG_MYTHICAL           (1 << 1)
 #define SPECIES_FLAG_MEGA_EVOLUTION     (1 << 2)
 #define SPECIES_FLAG_ULTRA_BEAST        (1 << 3)
-#define SPECIES_FLAG_ALOLAN_FORM        (1 << 4)
-#define SPECIES_FLAG_GALARIAN_FORM      (1 << 5)
-#define SPECIES_FLAG_HISUIAN_FORM       (1 << 6)
-#define SPECIES_FLAG_ALL_PERFECT_IVS    (1 << 7)
-#define SPECIES_FLAG_CANNOT_BE_TRADED   (1 << 8)
+#define SPECIES_FLAG_GIGANTAMAX         (1 << 4)
+#define SPECIES_FLAG_ALOLAN_FORM        (1 << 5)
+#define SPECIES_FLAG_GALARIAN_FORM      (1 << 6)
+#define SPECIES_FLAG_HISUIAN_FORM       (1 << 7)
+#define SPECIES_FLAG_ALL_PERFECT_IVS    (1 << 8)
+#define SPECIES_FLAG_CANNOT_BE_TRADED   (1 << 9)
 
 #define LEGENDARY_PERFECT_IV_COUNT 3
 

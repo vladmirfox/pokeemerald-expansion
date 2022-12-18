@@ -38,6 +38,7 @@ static const union AnimCmd sAnim_Venusaur_1[] =
 };
 
 PLACEHOLDER_ANIM_SINGLE_FRAME(VenusaurMega);
+PLACEHOLDER_ANIM_SINGLE_FRAME(VenusaurGigantamax);
 
 static const union AnimCmd sAnim_Charmander_1[] =
 {
@@ -8847,6 +8848,7 @@ SINGLE_ANIMATION(Bulbasaur);
 SINGLE_ANIMATION(Ivysaur);
 SINGLE_ANIMATION(Venusaur);
 SINGLE_ANIMATION(VenusaurMega);
+SINGLE_ANIMATION(VenusaurGigantamax);
 SINGLE_ANIMATION(Charmander);
 SINGLE_ANIMATION(Charmeleon);
 SINGLE_ANIMATION(Charizard);

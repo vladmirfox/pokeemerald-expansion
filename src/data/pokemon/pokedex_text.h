@@ -22,6 +22,12 @@ const u8 gVenusaurPokedexText[] = _(
     "sunlight. The flower's aroma soothes the\n"
     "emotions of people.");
 
+const u8 gVenusaurGigantamaxPokedexText[] = _(
+    "Spits big amounts of pollen like a volcano.\n"
+    "Breathing too much of it causes fainting.\n"
+    "In battle, it swings around two thick vines\n"
+    "that can easily topple 10-story buildings.");
+
 const u8 gVenusaurMegaPokedexText[] = _(
     "In order to support its flower, which\n"
     "has grown larger due to Mega Evolution,\n"

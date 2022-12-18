@@ -296,7 +296,7 @@ static void Task_HandleCaughtMonPageInput(u8);
 static void Task_ExitCaughtMonPage(u8);
 static void SpriteCB_SlideCaughtMonToCenter(struct Sprite *sprite);
 static void PrintMonInfo(u32 num, u32, u32 owned, u32 newEntry);
-static void PrintMonHeight(u16 height, u8 left, u8 top);
+static void PrintMonHeight(u16 height, u8 left, u8 top, bool8 isGiga);
 static void PrintMonWeight(u16 weight, u8 left, u8 top);
 static void ResetOtherVideoRegisters(u16);
 static u8 PrintCryScreenSpeciesName(u8, u16, u8, u8);
@@ -4260,16 +4260,17 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     PrintInfoScreenText(category, 0x64, 0x29);
     PrintInfoScreenText(gText_HTHeight, 0x60, 0x39);
     PrintInfoScreenText(gText_WTWeight, 0x60, 0x49);
+
     if (owned)
-    {
-        PrintMonHeight(gSpeciesInfo[num].height, 0x81, 0x39);
-        PrintMonWeight(gSpeciesInfo[num].weight, 0x81, 0x49);
-    }
+        PrintMonHeight(gSpeciesInfo[num].height, 0x81, 0x39, gSpeciesInfo[num].flags & SPECIES_FLAG_GIGANTAMAX);
     else
-    {
         PrintInfoScreenText(gText_UnkHeight, 0x81, 0x39);
+
+    if (!owned || (gSpeciesInfo[num].flags & SPECIES_FLAG_GIGANTAMAX))
         PrintInfoScreenText(gText_UnkWeight, 0x81, 0x49);
-    }
+    else
+        PrintMonWeight(gSpeciesInfo[num].weight, 0x81, 0x49);
+
     if (owned && gSpeciesInfo[num].description != NULL)
         description = gSpeciesInfo[num].description;
     else
@@ -4277,7 +4278,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     PrintInfoScreenText(description, GetStringCenterAlignXOffset(FONT_NORMAL, description, 0xF0), 0x5F);
 }
 
-static void PrintMonHeight(u16 height, u8 left, u8 top)
+static void PrintMonHeight(u16 height, u8 left, u8 top, bool8 isGiga)
 {
     u8 buffer[16];
     u32 inches, feet;
@@ -4306,6 +4307,8 @@ static void PrintMonHeight(u16 height, u8 left, u8 top)
     buffer[i++] = (inches / 10) + CHAR_0;
     buffer[i++] = (inches % 10) + CHAR_0;
     buffer[i++] = CHAR_DBL_QUOTE_RIGHT;
+    if (isGiga)
+        buffer[i++] = CHAR_PLUS;
     buffer[i++] = EOS;
     PrintInfoScreenText(buffer, left, top);
 }
