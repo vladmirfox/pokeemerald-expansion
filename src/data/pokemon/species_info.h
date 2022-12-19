@@ -382,11 +382,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,                                    \
         .natDexNum = NATIONAL_DEX_CHARIZARD,                \
         .categoryName = _("Flame"),                         \
-        .pokemonScale = 256,                                \
-        .pokemonOffset = 1,                                 \
-        .trainerScale = 302,                                \
-        .trainerOffset = 3,                                 \
-        .height = 17,                                       \
         .levelUpLearnset = sCharizardLevelUpLearnset,       \
         .teachableLearnset = sCharizardTeachableLearnset,   \
         .footprint = gMonFootprint_Charizard
@@ -405,6 +400,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         .cryId = CRY_CHARIZARD,
         .description = gCharizardPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 1,
+        .trainerScale = 302,
+        .trainerOffset = 3,
+        .height = 17,
         .weight = 905,
         .frontPic = gMonFrontPic_Charizard,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
@@ -439,6 +439,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_CHARIZARD_MEGA_X,
         .bodyColor = BODY_COLOR_BLACK,
         .description = gCharizardMegaXPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 1,
+        .trainerScale = 302,
+        .trainerOffset = 3,
+        .height = 17,
         .weight = 1105,
         .frontPic = gMonFrontPic_CharizardMegaX,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
@@ -472,6 +477,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         .cryId = CRY_CHARIZARD_MEGA_Y,
         .description = gCharizardMegaYPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 1,
+        .trainerScale = 302,
+        .trainerOffset = 3,
+        .height = 17,
         .weight = 1005,
         .frontPic = gMonFrontPic_CharizardMegaY,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
@@ -483,6 +493,42 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconSprite = gMonIcon_CharizardMegaY,
         .iconPalIndex = 0,
         .frontAnimFrames = sAnims_CharizardMegaY,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
+        CHARIZARD_MISC_INFO,
+    },
+
+    [SPECIES_CHARIZARD_GIGANTAMAX] =
+    {
+        .baseHP        = 78,
+        .baseAttack    = 84,
+        .baseDefense   = 78,
+        .baseSpeed     = 100,
+        .baseSpAttack  = 109,
+        .baseSpDefense = 85,
+        .type2 = TYPE_FLYING,
+        .expYield = 240,
+        .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_SOLAR_POWER},
+        .bodyColor = BODY_COLOR_RED,
+        .flags = SPECIES_FLAG_GIGANTAMAX,
+        .cryId = CRY_CHARIZARD, //CRY_CHARIZARD_GIGANTAMAX,
+        .description = gCharizardGigantamaxPokedexText,
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .height = 280,
+        .frontPic = gMonFrontPic_CharizardGigantamax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .backPic = gMonBackPic_CharizardGigantamax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 1,
+        .palette = gMonPalette_CharizardGigantamax,
+        .shinyPalette = gMonShinyPalette_CharizardGigantamax,
+        .iconSprite = gMonIcon_CharizardGigantamax,
+        .iconPalIndex = 0,
+        .frontAnimFrames = sAnims_CharizardGigantamax,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
         CHARIZARD_MISC_INFO,
@@ -606,7 +652,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,                                    \
         .natDexNum = NATIONAL_DEX_BLASTOISE,                \
         .categoryName = _("Shellfish"),                     \
-        .height = 16,                                       \
         .levelUpLearnset = sBlastoiseLevelUpLearnset,       \
         .teachableLearnset = sBlastoiseTeachableLearnset,   \
         .footprint = gMonFootprint_Blastoise
@@ -627,6 +672,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .pokemonOffset = -1,
         .trainerScale = 293,
         .trainerOffset = 2,
+        .height = 16,
         .weight = 855,
         .frontPic = gMonFrontPic_Blastoise,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
@@ -665,6 +711,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .pokemonOffset = -1,
         .trainerScale = 293,
         .trainerOffset = 2,
+        .height = 16,
         .weight = 1011,
         .frontPic = gMonFrontPic_BlastoiseMega,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
@@ -675,6 +722,40 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconSprite = gMonIcon_BlastoiseMega,
         .iconPalIndex = 2,
         .frontAnimFrames = sAnims_BlastoiseMega,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
+        BLASTOISE_MISC_INFO,
+    },
+
+    [SPECIES_BLASTOISE_GIGANTAMAX] =
+    {
+        .baseHP        = 79,
+        .baseAttack    = 83,
+        .baseDefense   = 100,
+        .baseSpeed     = 78,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 105,
+        .expYield = 239,
+        .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_RAIN_DISH},
+        .flags = SPECIES_FLAG_GIGANTAMAX,
+        .cryId = CRY_BLASTOISE, //CRY_BLASTOISE_GIGANTAMAX,
+        .description = gBlastoiseGigantamaxPokedexText,
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .height = 250,
+        .frontPic = gMonFrontPic_BlastoiseGigantamax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 4,
+        .backPic = gMonBackPic_BlastoiseGigantamax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 5,
+        .palette = gMonPalette_BlastoiseGigantamax,
+        .shinyPalette = gMonShinyPalette_BlastoiseGigantamax,
+        .iconSprite = gMonIcon_BlastoiseGigantamax,
+        .iconPalIndex = 0,
+        .frontAnimFrames = sAnims_BlastoiseGigantamax,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
         BLASTOISE_MISC_INFO,
@@ -782,46 +863,51 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = sMetapodEvolutions,
     },
 
+#if P_UPDATED_STATS >= GEN_6
+    #define BUTTERFREE_SP_ATTACK 90
+#else
+    #define BUTTERFREE_SP_ATTACK 80
+#endif
+
+#define BUTTERFREE_MISC_STATS                                                   \
+        .baseHP        = 60,                                                    \
+        .baseAttack    = 45,                                                    \
+        .baseDefense   = 50,                                                    \
+        .baseSpeed     = 70,                                                    \
+        .baseSpDefense = 80,                                                    \
+        .baseSpAttack  = BUTTERFREE_SP_ATTACK,                                  \
+        .type1 = TYPE_BUG,                                                      \
+        .type2 = TYPE_FLYING,                                                   \
+        .catchRate = 45,                                                        \
+        .expYield = 178,                                                        \
+        .evYield_SpAttack  = 2,                                                 \
+        .evYield_SpDefense = 1,                                                 \
+        .itemRare = ITEM_SILVER_POWDER,                                         \
+        .genderRatio = PERCENT_FEMALE(50),                                      \
+        .eggCycles = 15,                                                        \
+        .friendship = 70,                                                       \
+        .growthRate = GROWTH_MEDIUM_FAST,                                       \
+        .eggGroup1 = EGG_GROUP_BUG,                                             \
+        .eggGroup2 = EGG_GROUP_BUG,                                             \
+        .abilities = {ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_TINTED_LENS},\
+        .bodyColor = BODY_COLOR_WHITE,                                          \
+        .noFlip = FALSE,                                                        \
+        .natDexNum = NATIONAL_DEX_BUTTERFREE,                                   \
+        .categoryName = _("Butterfly"),                                         \
+        .levelUpLearnset = sButterfreeLevelUpLearnset,                          \
+        .teachableLearnset = sButterfreeTeachableLearnset,                      \
+        .footprint = gMonFootprint_Butterfree
+
     [SPECIES_BUTTERFREE] =
     {
-        .baseHP        = 60,
-        .baseAttack    = 45,
-        .baseDefense   = 50,
-        .baseSpeed     = 70,
-        .baseSpDefense = 80,
-    #if P_UPDATED_STATS >= GEN_6
-        .baseSpAttack  = 90,
-    #else
-        .baseSpAttack  = 80,
-    #endif
-        .type1 = TYPE_BUG,
-        .type2 = TYPE_FLYING,
-        .catchRate = 45,
-        .expYield = 178,
-        .evYield_SpAttack  = 2,
-        .evYield_SpDefense = 1,
-        .itemRare = ITEM_SILVER_POWDER,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_BUG,
-        .eggGroup2 = EGG_GROUP_BUG,
-        .abilities = {ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_TINTED_LENS},
-        .bodyColor = BODY_COLOR_WHITE,
-        .noFlip = FALSE,
-        .natDexNum = NATIONAL_DEX_BUTTERFREE,
         .cryId = CRY_BUTTERFREE,
         .description = gButterfreePokedexText,
-        .categoryName = _("Butterfly"),
         .pokemonScale = 312,
         .pokemonOffset = 2,
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 11,
         .weight = 320,
-        .levelUpLearnset = sButterfreeLevelUpLearnset,
-        .teachableLearnset = sButterfreeTeachableLearnset,
         .frontPic = gMonFrontPic_Butterfree,
         .frontPicSize = MON_COORDS_SIZE(64, 56),
         .frontPicYOffset = 10,
@@ -833,10 +919,37 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_Butterfree,
         .iconSprite = gMonIcon_Butterfree,
         .iconPalIndex = 0,
-        .footprint = gMonFootprint_Butterfree,
         .frontAnimFrames = sAnims_Butterfree,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
+        BUTTERFREE_MISC_STATS,
+    },
+
+    [SPECIES_BUTTERFREE_GIGANTAMAX] =
+    {
+        .flags = SPECIES_FLAG_GIGANTAMAX,
+        .cryId = CRY_BUTTERFREE, //CRY_BUTTERFREE_GIGANTAMAX,
+        .description = gButterfreeGigantamaxPokedexText,
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .height = 170,
+        .frontPic = gMonFrontPic_ButterfreeGigantamax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 10,
+        .enemyMonElevation = 10,
+        .backPic = gMonBackPic_ButterfreeGigantamax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 3,
+        .palette = gMonPalette_ButterfreeGigantamax,
+        .shinyPalette = gMonShinyPalette_ButterfreeGigantamax,
+        .iconSprite = gMonIcon_ButterfreeGigantamax,
+        .iconPalIndex = 0,
+        .frontAnimFrames = sAnims_ButterfreeGigantamax,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
+        BUTTERFREE_MISC_STATS,
     },
 
     [SPECIES_WEEDLE] =
@@ -949,26 +1062,26 @@ const struct SpeciesInfo gSpeciesInfo[] =
     #define BEEDRILL_ATTACK 80
 #endif
 
-#define BEEDRILL_MISC_INFO                  \
-        .type1 = TYPE_BUG,                  \
-        .type2 = TYPE_POISON,               \
-        .catchRate = 45,                    \
-        .evYield_Attack    = 2,             \
-        .evYield_SpDefense = 1,             \
-        .genderRatio = PERCENT_FEMALE(50),  \
-        .eggCycles = 15,                    \
-        .friendship = 70,                   \
-        .growthRate = GROWTH_MEDIUM_FAST,   \
-        .eggGroup1 = EGG_GROUP_BUG,         \
-        .eggGroup2 = EGG_GROUP_BUG,         \
-        .bodyColor = BODY_COLOR_YELLOW,     \
-        .noFlip = FALSE,                    \
-        .natDexNum = NATIONAL_DEX_BEEDRILL,\
-        .categoryName = _("Poison Bee"),    \
-        .pokemonScale = 366,                                          \
-        .pokemonOffset = 2,                                        \
-        .trainerScale = 256,                                      \
-        .trainerOffset = 0,\
+#define BEEDRILL_MISC_INFO                              \
+        .type1 = TYPE_BUG,                              \
+        .type2 = TYPE_POISON,                           \
+        .catchRate = 45,                                \
+        .evYield_Attack    = 2,                         \
+        .evYield_SpDefense = 1,                         \
+        .genderRatio = PERCENT_FEMALE(50),              \
+        .eggCycles = 15,                                \
+        .friendship = 70,                               \
+        .growthRate = GROWTH_MEDIUM_FAST,               \
+        .eggGroup1 = EGG_GROUP_BUG,                     \
+        .eggGroup2 = EGG_GROUP_BUG,                     \
+        .bodyColor = BODY_COLOR_YELLOW,                 \
+        .noFlip = FALSE,                                \
+        .natDexNum = NATIONAL_DEX_BEEDRILL,             \
+        .categoryName = _("Poison Bee"),                \
+        .pokemonScale = 366,                            \
+        .pokemonOffset = 2,                             \
+        .trainerScale = 256,                            \
+        .trainerOffset = 0,                             \
         .levelUpLearnset = sBeedrillLevelUpLearnset,    \
         .teachableLearnset = sBeedrillTeachableLearnset,\
         .footprint = gMonFootprint_Beedrill
