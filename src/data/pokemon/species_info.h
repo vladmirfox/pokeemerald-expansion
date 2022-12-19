@@ -1769,6 +1769,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .natDexNum = NATIONAL_DEX_PIKACHU,                                  \
         .hoennDexNum = HOENN_DEX_PIKACHU,                                   \
         .cryId = CRY_PIKACHU,                                               \
+        .categoryName = _("Mouse"),                                         \
         .pokemonScale = 479,                                                \
         .pokemonOffset = 19,                                                \
         .trainerScale = 256,                                                \
@@ -1785,7 +1786,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggGroup2 = EGG_GROUP_FAIRY,
         .noFlip = FALSE,
         .description = gPikachuPokedexText,
-        .categoryName = _("Mouse"),
         .levelUpLearnset = sPikachuLevelUpLearnset,
         .teachableLearnset = sPikachuTeachableLearnset,
         .frontPic = gMonFrontPic_Pikachu,
@@ -1805,20 +1805,19 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PIKACHU_MISC_INFO,
     },
 
-#define PIKACHU_COSPLAY_MISC_INFO           \
-        PIKACHU_REGULAR_BASE_STATS,         \
-        .genderRatio = MON_FEMALE,          \
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,\
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,\
-        .levelUpLearnset = sPikachuLevelUpLearnset,    \
-        .teachableLearnset = sPikachuTeachableLearnset,\
+#define PIKACHU_COSPLAY_MISC_INFO                       \
+        PIKACHU_REGULAR_BASE_STATS,                     \
+        .genderRatio = MON_FEMALE,                      \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,            \
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,            \
+        .levelUpLearnset = sPikachuLevelUpLearnset,     \
+        .teachableLearnset = sPikachuTeachableLearnset, \
         PIKACHU_MISC_INFO
 
     [SPECIES_PIKACHU_COSPLAY] =
     {
         .noFlip = FALSE,
-        .description = gPikachuPokedexText,
-        .categoryName = _("Mouse"), // No official dex entry for this form
+        .description = gPikachuPokedexText, // No official dex entry for this form
         .frontPic = gMonFrontPic_PikachuCosplay,
         .backPic = gMonBackPic_PikachuCosplay,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
@@ -1838,8 +1837,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_PIKACHU_ROCK_STAR] =
     {
         .noFlip = FALSE,
-        .description = gPikachuPokedexText,
-        .categoryName = _("Mouse"), // No official dex entry for this form
+        .description = gPikachuPokedexText, // No official dex entry for this form
         .frontPic = gMonFrontPic_PikachuRockStar,
         .backPic = gMonBackPic_PikachuRockStar,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
@@ -1859,8 +1857,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_PIKACHU_BELLE] =
     {
         .noFlip = TRUE,
-        .description = gPikachuPokedexText,
-        .categoryName = _("Mouse"), // No official dex entry for this form
+        .description = gPikachuPokedexText, // No official dex entry for this form
         .frontPic = gMonFrontPic_PikachuBelle,
         .backPic = gMonBackPic_PikachuBelle,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
@@ -1880,8 +1877,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_PIKACHU_POP_STAR] =
     {
         .noFlip = TRUE,
-        .description = gPikachuPokedexText,
-        .categoryName = _("Mouse"), // No official dex entry for this form
+        .description = gPikachuPokedexText, // No official dex entry for this form
         .frontPic = gMonFrontPic_PikachuPopStar,
         .backPic = gMonBackPic_PikachuPopStar,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
@@ -1901,8 +1897,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_PIKACHU_PH_D] =
     {
         .noFlip = FALSE,
-        .description = gPikachuPokedexText,
-        .categoryName = _("Mouse"), // No official dex entry for this form
+        .description = gPikachuPokedexText, // No official dex entry for this form
         .frontPic = gMonFrontPic_PikachuPhD,
         .backPic = gMonBackPic_PikachuPhD,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
@@ -1922,8 +1917,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_PIKACHU_LIBRE] =
     {
         .noFlip = FALSE,
-        .description = gPikachuPokedexText,
-        .categoryName = _("Mouse"), // No official dex entry for this form
+        .description = gPikachuPokedexText, // No official dex entry for this form
         .frontPic = gMonFrontPic_PikachuLibre,
         .backPic = gMonBackPic_PikachuLibre,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
@@ -1940,40 +1934,65 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PIKACHU_COSPLAY_MISC_INFO,
     },
 
-#define PIKACHU_CAP_SPECIES_INFO(flip, form)                                    \
-    {                                                                           \
-        PIKACHU_REGULAR_BASE_STATS,                                             \
-        .genderRatio = MON_MALE,                                                \
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,                                    \
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,                                    \
-        .noFlip = flip,                                                         \
-        .description = g##form##PokedexText,                                    \
-        .categoryName = _("Mouse"),                                             \
-        .levelUpLearnset = sPikachuLevelUpLearnset,    \
-        .teachableLearnset = sPikachuTeachableLearnset,\
-        .frontPic = gMonFrontPic_##form,                \
-        .frontPicSize = MON_COORDS_SIZE(48, 48),  \
-        .frontPicYOffset = 9,\
-        .backPic = gMonBackPic_##form,\
-        .backPicSize = MON_COORDS_SIZE(64, 56),\
-        .backPicYOffset = 4,\
-        .palette = gMonPalette_##form,          \
-        .shinyPalette = gMonShinyPalette_##form,\
-        .iconSprite = gMonIcon_##form,  \
-        .iconPalIndex = 0,\
-        .frontAnimFrames = sAnims_##form,             \
-        .frontAnimId = ANIM_FLASH_YELLOW,                         \
-        .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,             \
-        PIKACHU_MISC_INFO,                                                      \
+#define PIKACHU_CAP_SPECIES_INFO(form, flip)            \
+    {                                                   \
+        PIKACHU_REGULAR_BASE_STATS,                     \
+        .genderRatio = MON_MALE,                        \
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,            \
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,            \
+        .noFlip = flip,                                 \
+        .description = gPikachu##form##PokedexText,     \
+        .levelUpLearnset = sPikachuLevelUpLearnset,     \
+        .teachableLearnset = sPikachuTeachableLearnset, \
+        .frontPic = gMonFrontPic_Pikachu##form,         \
+        .backPic = gMonBackPic_Pikachu##form,           \
+        .frontPicSize = MON_COORDS_SIZE(48, 48),        \
+        .backPicSize = MON_COORDS_SIZE(64, 56),         \
+        .frontPicYOffset = 9,                           \
+        .backPicYOffset = 4,                            \
+        .palette = gMonPalette_Pikachu##form,           \
+        .shinyPalette = gMonShinyPalette_Pikachu##form, \
+        .iconSprite = gMonIcon_Pikachu##form,           \
+        .iconPalIndex = 0,                              \
+        .frontAnimFrames = sAnims_Pikachu##form,        \
+        .frontAnimId = ANIM_FLASH_YELLOW,               \
+        .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,     \
+        PIKACHU_MISC_INFO,                              \
     }
-    [SPECIES_PIKACHU_ORIGINAL_CAP] = PIKACHU_CAP_SPECIES_INFO(NO_FLIP, PikachuOriginalCap),
-    [SPECIES_PIKACHU_HOENN_CAP]    = PIKACHU_CAP_SPECIES_INFO(FLIP, PikachuHoennCap),
-    [SPECIES_PIKACHU_SINNOH_CAP]   = PIKACHU_CAP_SPECIES_INFO(FLIP, PikachuSinnohCap),
-    [SPECIES_PIKACHU_UNOVA_CAP]    = PIKACHU_CAP_SPECIES_INFO(FLIP, PikachuUnovaCap),
-    [SPECIES_PIKACHU_KALOS_CAP]    = PIKACHU_CAP_SPECIES_INFO(FLIP, PikachuKalosCap),
-    [SPECIES_PIKACHU_ALOLA_CAP]    = PIKACHU_CAP_SPECIES_INFO(FLIP, PikachuAlolaCap),
-    [SPECIES_PIKACHU_PARTNER_CAP]  = PIKACHU_CAP_SPECIES_INFO(NO_FLIP, PikachuPartnerCap),
-    [SPECIES_PIKACHU_WORLD_CAP]    = PIKACHU_CAP_SPECIES_INFO(FLIP, PikachuWorldCap),
+    [SPECIES_PIKACHU_ORIGINAL_CAP] = PIKACHU_CAP_SPECIES_INFO(OriginalCap, NO_FLIP),
+    [SPECIES_PIKACHU_HOENN_CAP]    = PIKACHU_CAP_SPECIES_INFO(HoennCap,    FLIP),
+    [SPECIES_PIKACHU_SINNOH_CAP]   = PIKACHU_CAP_SPECIES_INFO(SinnohCap,   FLIP),
+    [SPECIES_PIKACHU_UNOVA_CAP]    = PIKACHU_CAP_SPECIES_INFO(UnovaCap,    FLIP),
+    [SPECIES_PIKACHU_KALOS_CAP]    = PIKACHU_CAP_SPECIES_INFO(KalosCap,    FLIP),
+    [SPECIES_PIKACHU_ALOLA_CAP]    = PIKACHU_CAP_SPECIES_INFO(AlolaCap,    FLIP),
+    [SPECIES_PIKACHU_PARTNER_CAP]  = PIKACHU_CAP_SPECIES_INFO(PartnerCap,  NO_FLIP),
+    [SPECIES_PIKACHU_WORLD_CAP]    = PIKACHU_CAP_SPECIES_INFO(WorldCap,    FLIP),
+
+    [SPECIES_PIKACHU_GIGANTAMAX] =
+    {
+        PIKACHU_REGULAR_BASE_STATS,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FAIRY,
+        .noFlip = FALSE,
+        .description = gPikachuGigantamaxPokedexText,
+        .levelUpLearnset = sPikachuLevelUpLearnset,
+        .teachableLearnset = sPikachuTeachableLearnset,
+        .frontPic = gMonFrontPic_PikachuGigantamax,
+        .backPic = gMonBackPic_PikachuGigantamax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 1,
+        .backPicYOffset = 0,
+        .palette = gMonPalette_PikachuGigantamax,
+        .shinyPalette = gMonShinyPalette_PikachuGigantamax,
+        .iconSprite = gMonIcon_PikachuGigantamax,
+        .iconPalIndex = 2,
+        .frontAnimFrames = sAnims_PikachuGigantamax,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
+        PIKACHU_MISC_INFO,
+    },
 
 #if P_UPDATED_STATS >= GEN_6
     #define RAICHU_SPEED 110
