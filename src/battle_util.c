@@ -9577,7 +9577,6 @@ static u16 GetInverseTypeMultiplier(u16 multiplier)
     switch (multiplier)
     {
     case UQ_4_12(0.0):
-        return UQ_4_12(2.0);
     case UQ_4_12(0.5):
         return UQ_4_12(2.0);
     case UQ_4_12(2.0):
