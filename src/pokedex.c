@@ -4377,26 +4377,12 @@ bool16 HasAllMons(void)
 {
     u16 i;
 
-    // -1 excludes Mew
-    for (i = 0; i < KANTO_DEX_COUNT - 1; i++)
+    for (i = 1; i < NATIONAL_DEX_COUNT + 1; i++)
     {
-        if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
+        if (!(gSpeciesInfo[i].flags & SPECIES_FLAG_MYTHICAL) && !GetSetPokedexFlag(i, FLAG_GET_CAUGHT))
             return FALSE;
     }
 
-    // -3 excludes Lugia, Ho-Oh, and Celebi
-    for (i = KANTO_DEX_COUNT; i < JOHTO_DEX_COUNT - 3; i++)
-    {
-        if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
-            return FALSE;
-    }
-
-    // -2 excludes Jirachi and Deoxys
-    for (i = JOHTO_DEX_COUNT; i < NATIONAL_DEX_COUNT - 2; i++)
-    {
-        if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
-            return FALSE;
-    }
     return TRUE;
 }
 
@@ -4674,7 +4660,7 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
         {
             species = NationalPokedexNumToSpecies(sPokedexView->pokedexList[i].dexNum);
 
-            if (bodyColor == gBaseStats[species].bodyColor)
+            if (bodyColor == gSpeciesInfo[species].bodyColor)
             {
                 sPokedexView->pokedexList[resultsCount] = sPokedexView->pokedexList[i];
                 resultsCount++;
@@ -4700,8 +4686,8 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
                 {
                     species = NationalPokedexNumToSpecies(sPokedexView->pokedexList[i].dexNum);
 
-                    types[0] = gBaseStats[species].type1;
-                    types[1] = gBaseStats[species].type2;
+                    types[0] = gSpeciesInfo[species].type1;
+                    types[1] = gSpeciesInfo[species].type2;
                     if (types[0] == type1 || types[1] == type1)
                     {
                         sPokedexView->pokedexList[resultsCount] = sPokedexView->pokedexList[i];
@@ -4718,8 +4704,8 @@ static int DoPokedexSearch(u8 dexMode, u8 order, u8 abcGroup, u8 bodyColor, u8 t
                 {
                     species = NationalPokedexNumToSpecies(sPokedexView->pokedexList[i].dexNum);
 
-                    types[0] = gBaseStats[species].type1;
-                    types[1] = gBaseStats[species].type2;
+                    types[0] = gSpeciesInfo[species].type1;
+                    types[1] = gSpeciesInfo[species].type2;
                     if ((types[0] == type1 && types[1] == type2) || (types[0] == type2 && types[1] == type1))
                     {
                         sPokedexView->pokedexList[resultsCount] = sPokedexView->pokedexList[i];

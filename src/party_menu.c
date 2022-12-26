@@ -2857,7 +2857,7 @@ static bool8 TryMovePartySlot(s16 x, s16 width, u8 *leftMove, u8 *newX, u8 *newW
 {
     if (x + width < 0)
         return FALSE;
-    if (x > 31)
+    if (x >= 32)
         return FALSE;
 
     if (x < 0)
@@ -2870,7 +2870,7 @@ static bool8 TryMovePartySlot(s16 x, s16 width, u8 *leftMove, u8 *newX, u8 *newW
     {
         *leftMove = 0;
         *newX = x;
-        if (x + width > 31)
+        if (x + width >= 32)
             *newWidth = 32 - x;
         else
             *newWidth = width;
@@ -3585,8 +3585,11 @@ static void CursorCb_Register(u8 taskId)
 
     switch (CanRegisterMonForTradingBoard(*(struct RfuGameCompatibilityData *)GetHostRfuGameData(), species2, species, TRUE))
     {
-    case CANT_REGISTER_MON:
+    case CANT_REGISTER_MON_NOW:
         StringExpandPlaceholders(gStringVar4, gText_PkmnCantBeTradedNow);
+        break;
+    case CANT_REGISTER_MON:
+        StringExpandPlaceholders(gStringVar4, gText_PkmnCantBeTraded);
         break;
     case CANT_REGISTER_EGG:
         StringExpandPlaceholders(gStringVar4, gText_EggCantBeTradedNow);
@@ -4461,8 +4464,8 @@ void Task_AbilityCapsule(u8 taskId)
     {
     case 0:
         // Can't use.
-        if (gBaseStats[tSpecies].abilities[0] == gBaseStats[tSpecies].abilities[1]
-            || gBaseStats[tSpecies].abilities[1] == 0
+        if (gSpeciesInfo[tSpecies].abilities[0] == gSpeciesInfo[tSpecies].abilities[1]
+            || gSpeciesInfo[tSpecies].abilities[1] == 0
             || tAbilityNum > 1
             || !tSpecies)
         {
@@ -4549,7 +4552,7 @@ void Task_AbilityPatch(u8 taskId)
     {
     case 0:
         // Can't use.
-        if (gBaseStats[tSpecies].abilities[tAbilityNum] == 0
+        if (gSpeciesInfo[tSpecies].abilities[tAbilityNum] == 0
             || !tSpecies
             || GetMonData(&gPlayerParty[tMonId], MON_DATA_ABILITY_NUM, NULL) > 1
             )
@@ -4923,6 +4926,7 @@ void ItemUseCB_TMHM(u8 taskId, TaskFunc task)
     u16 move = ItemIdToBattleMoveId(item);
 
     gPartyMenu.data1 = move;
+    gPartyMenu.learnMoveState = 0;
 
     PlaySE(SE_SELECT);
     mon = &gPlayerParty[gPartyMenu.slotId];
@@ -5155,8 +5159,9 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
     u16 *itemPtr = &gSpecialVar_ItemId;
     bool8 cannotUseEffect;
     u8 holdEffectParam = ItemId_GetHoldEffectParam(*itemPtr);
-    sInitialLevel = GetMonData(mon, MON_DATA_LEVEL);
+    u16 targetSpecies = GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL);
 
+    sInitialLevel = GetMonData(mon, MON_DATA_LEVEL);
     if (sInitialLevel != MAX_LEVEL)
     {
         BufferMonStatsToTaskData(mon, arrayPtr);
@@ -5170,10 +5175,18 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
     PlaySE(SE_SELECT);
     if (cannotUseEffect)
     {
-        gPartyMenuUseExitCallback = FALSE;
-        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
-        ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].func = task;
+        if (targetSpecies != SPECIES_NONE && holdEffectParam == 0)
+        {
+            PartyMenuTryEvolution(taskId);
+            RemoveBagItem(gSpecialVar_ItemId, 1);
+        }
+        else
+        {
+            gPartyMenuUseExitCallback = FALSE;
+            DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+            ScheduleBgCopyTilemapToVram(2);
+            gTasks[taskId].func = task;
+        }
     }
     else
     {
@@ -6155,10 +6168,10 @@ void ChooseMonForWirelessMinigame(void)
 
 static u8 GetPartyLayoutFromBattleType(void)
 {
-    if (!IsDoubleBattle() || gPlayerPartyCount == 1) // Draw the single layout in a double battle where the player has only one pokemon.
-        return PARTY_LAYOUT_SINGLE;
     if (IsMultiBattle() == TRUE)
         return PARTY_LAYOUT_MULTI;
+    if (!IsDoubleBattle() || gPlayerPartyCount == 1) // Draw the single layout in a double battle where the player has only one pokemon.
+        return PARTY_LAYOUT_SINGLE;
     return PARTY_LAYOUT_DOUBLE;
 }
 

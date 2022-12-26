@@ -30,7 +30,6 @@
 #include "util.h"
 #include "window.h"
 #include "constants/battle_anim.h"
-#include "constants/battle_config.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
@@ -330,8 +329,8 @@ static void HandleInputChooseAction(void)
     {
         SwapHpBarsWithHpText();
     }
-#if B_ENABLE_DEBUG == TRUE
-    else if (gMain.newKeys & SELECT_BUTTON)
+#if DEBUG_BATTLE_MENU == TRUE
+    else if (JOY_NEW(SELECT_BUTTON))
     {
         BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_DEBUG, 0);
         PlayerBufferExecCompleted();
@@ -543,7 +542,7 @@ static void HandleInputShowEntireFieldTargets(void)
         HideMegaTriggerSprite();
         PlayerBufferExecCompleted();
     }
-    else if (gMain.newKeys & B_BUTTON || gPlayerDpadHoldFrames > 59)
+    else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
     {
         PlaySE(SE_SELECT);
         HideAllTargets();
@@ -572,7 +571,7 @@ static void HandleInputShowTargets(void)
         TryHideLastUsedBall();
         PlayerBufferExecCompleted();
     }
-    else if (gMain.newKeys & B_BUTTON || gPlayerDpadHoldFrames > 59)
+    else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
     {
         PlaySE(SE_SELECT);
         HideShownTargets();
@@ -597,12 +596,12 @@ static void HandleInputChooseMove(void)
     u32 canSelectTarget = 0;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[gActiveBattler][4]);
 
-    if (gMain.heldKeys & DPAD_ANY && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
+    if (JOY_HELD(DPAD_ANY) && gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
         gPlayerDpadHoldFrames++;
     else
         gPlayerDpadHoldFrames = 0;
 
-    if (gMain.newKeys & A_BUTTON)
+    if (JOY_NEW(A_BUTTON))
     {
         PlaySE(SE_SELECT);
         if (moveInfo->moves[gMoveSelectionCursor[gActiveBattler]] == MOVE_CURSE)
@@ -1385,7 +1384,7 @@ static void Task_GiveExpToMon(u8 taskId)
         u16 species = GetMonData(mon, MON_DATA_SPECIES);
         u8 level = GetMonData(mon, MON_DATA_LEVEL);
         u32 currExp = GetMonData(mon, MON_DATA_EXP);
-        u32 nextLvlExp = gExperienceTables[gBaseStats[species].growthRate][level + 1];
+        u32 nextLvlExp = gExperienceTables[gSpeciesInfo[species].growthRate][level + 1];
 
         if (currExp + gainedExp >= nextLvlExp)
         {
@@ -1428,11 +1427,11 @@ static void Task_PrepareToGiveExpWithExpBar(u8 taskId)
     u8 level = GetMonData(mon, MON_DATA_LEVEL);
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
     u32 exp = GetMonData(mon, MON_DATA_EXP);
-    u32 currLvlExp = gExperienceTables[gBaseStats[species].growthRate][level];
+    u32 currLvlExp = gExperienceTables[gSpeciesInfo[species].growthRate][level];
     u32 expToNextLvl;
 
     exp -= currLvlExp;
-    expToNextLvl = gExperienceTables[gBaseStats[species].growthRate][level + 1] - currLvlExp;
+    expToNextLvl = gExperienceTables[gSpeciesInfo[species].growthRate][level + 1] - currLvlExp;
     SetBattleBarStruct(battlerId, gHealthboxSpriteIds[battlerId], expToNextLvl, exp, -gainedExp);
     PlaySE(SE_EXP);
     gTasks[taskId].func = Task_GiveExpWithExpBar;
@@ -1464,7 +1463,7 @@ static void Task_GiveExpWithExpBar(u8 taskId)
             level = GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL);
             currExp = GetMonData(&gPlayerParty[monId], MON_DATA_EXP);
             species = GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES);
-            expOnNextLvl = gExperienceTables[gBaseStats[species].growthRate][level + 1];
+            expOnNextLvl = gExperienceTables[gSpeciesInfo[species].growthRate][level + 1];
 
             if (currExp + gainedExp >= expOnNextLvl)
             {

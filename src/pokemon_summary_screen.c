@@ -41,7 +41,6 @@
 #include "text.h"
 #include "tv.h"
 #include "window.h"
-#include "constants/battle_config.h"
 #include "constants/battle_move_effects.h"
 #include "constants/items.h"
 #include "constants/moves.h"
@@ -185,7 +184,7 @@ static EWRAM_DATA struct PokemonSummaryScreenData
     u8 filler40CA;
     u8 windowIds[8];
     u8 spriteIds[SPRITE_ARR_ID_COUNT];
-    bool8 unk40EF;
+    bool8 handleDeoxys;
     s16 switchCounter; // Used for various switch statement cases that decompress/load graphics or pokemon data
     u8 unk_filler4[6];
     u8 splitIconSpriteId;
@@ -1211,10 +1210,10 @@ void ShowSelectMovePokemonSummaryScreen(struct Pokemon *mons, u8 monIndex, u8 ma
     sMonSummaryScreen->newMove = newMove;
 }
 
-void ShowPokemonSummaryScreenSet40EF(u8 mode, struct BoxPokemon *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void))
+void ShowPokemonSummaryScreenHandleDeoxys(u8 mode, struct BoxPokemon *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void))
 {
     ShowPokemonSummaryScreen(mode, mons, monIndex, maxMonIndex, callback);
-    sMonSummaryScreen->unk40EF = TRUE;
+    sMonSummaryScreen->handleDeoxys = TRUE;
 }
 
 static void MainCB2(void)
@@ -1504,6 +1503,7 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         sum->def = GetMonData(mon, MON_DATA_DEF);
         sum->spatk = GetMonData(mon, MON_DATA_SPATK);
         sum->spdef = GetMonData(mon, MON_DATA_SPDEF);
+        sum->speed = GetMonData(mon, MON_DATA_SPEED);
         break;
     case 3:
         GetMonData(mon, MON_DATA_OT_NAME, sum->OTName);
@@ -1625,7 +1625,7 @@ static void Task_HandleInput(u8 taskId)
             PlaySE(SE_SELECT);
             BeginCloseSummaryScreen(taskId);
         }
-        #if P_ENABLE_DEBUG == TRUE
+    #if DEBUG_POKEMON_MENU == TRUE
         else if (JOY_NEW(SELECT_BUTTON) && !gMain.inBattle)
         {
             sMonSummaryScreen->callback = CB2_Debug_Pokemon;
@@ -1633,7 +1633,7 @@ static void Task_HandleInput(u8 taskId)
             PlaySE(SE_SELECT);
             CloseSummaryScreen(taskId);
         }
-        #endif
+    #endif
     }
 }
 
@@ -2699,8 +2699,8 @@ static void DrawExperienceProgressBar(struct Pokemon *unused)
 
     if (summary->level < MAX_LEVEL)
     {
-        u32 expBetweenLevels = gExperienceTables[gBaseStats[summary->species].growthRate][summary->level + 1] - gExperienceTables[gBaseStats[summary->species].growthRate][summary->level];
-        u32 expSinceLastLevel = summary->exp - gExperienceTables[gBaseStats[summary->species].growthRate][summary->level];
+        u32 expBetweenLevels = gExperienceTables[gSpeciesInfo[summary->species].growthRate][summary->level + 1] - gExperienceTables[gSpeciesInfo[summary->species].growthRate][summary->level];
+        u32 expSinceLastLevel = summary->exp - gExperienceTables[gSpeciesInfo[summary->species].growthRate][summary->level];
 
         // Calculate the number of 1-pixel "ticks" to illuminate in the experience progress bar.
         // There are 8 tiles that make up the bar, and each tile has 8 "ticks". Hence, the numerator
@@ -3503,7 +3503,7 @@ static void PrintExpPointsNextLevel(void)
     PrintTextOnWindow(windowId, gStringVar1, x, 1, 0, 0);
 
     if (sum->level < MAX_LEVEL)
-        expToNextLevel = gExperienceTables[gBaseStats[sum->species].growthRate][sum->level + 1] - sum->exp;
+        expToNextLevel = gExperienceTables[gSpeciesInfo[sum->species].growthRate][sum->level + 1] - sum->exp;
     else
         expToNextLevel = 0;
 
@@ -3888,10 +3888,10 @@ static void SetMonTypeIcons(void)
     }
     else
     {
-        SetTypeSpritePosAndPal(gBaseStats[summary->species].type1, 120, 48, SPRITE_ARR_ID_TYPE);
-        if (gBaseStats[summary->species].type1 != gBaseStats[summary->species].type2)
+        SetTypeSpritePosAndPal(gSpeciesInfo[summary->species].type1, 120, 48, SPRITE_ARR_ID_TYPE);
+        if (gSpeciesInfo[summary->species].type1 != gSpeciesInfo[summary->species].type2)
         {
-            SetTypeSpritePosAndPal(gBaseStats[summary->species].type2, 160, 48, SPRITE_ARR_ID_TYPE + 1);
+            SetTypeSpritePosAndPal(gSpeciesInfo[summary->species].type2, 160, 48, SPRITE_ARR_ID_TYPE + 1);
             SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 1, FALSE);
         }
         else
