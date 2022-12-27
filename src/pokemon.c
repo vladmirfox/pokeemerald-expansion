@@ -3603,6 +3603,11 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
     }
 
+    if (Random() % 2 == 0)
+        SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &gSpeciesInfo[species].type1);
+    else
+        SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &gSpeciesInfo[species].type2);
+
     GiveBoxMonInitialMoveset(boxMon);
 }
 
@@ -4836,6 +4841,9 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 | (boxMon->worldRibbon << 26);
         }
         break;
+    case MON_DATA_TERA_TYPE:
+        retVal = boxMon->teraType;
+        break;
     default:
         break;
     }
@@ -5111,6 +5119,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         boxMon->spDefenseIV = (ivs >> 25) & MAX_IV_MASK;
         break;
     }
+    case MON_DATA_TERA_TYPE:
+        SET16(boxMon->teraType);
+        break;
     default:
         break;
     }
