@@ -3532,6 +3532,21 @@ const u8 gRotomPokedexText[] = _(
     "kinds of machines and take control,\n"
     "in order to make mischief.");
 
+const u8 gRotomHeatPokedexText[] = _(
+    "");
+
+const u8 gRotomWashPokedexText[] = _(
+    "");
+
+const u8 gRotomFrostPokedexText[] = _(
+    "");
+
+const u8 gRotomFanPokedexText[] = _(
+    "");
+
+const u8 gRotomMowPokedexText[] = _(
+    "");
+
 const u8 gUxiePokedexText[] = _(
     "Known as ”The Being of Knowledge,”\n"
     "according to some sources, this Pokémon\n"
