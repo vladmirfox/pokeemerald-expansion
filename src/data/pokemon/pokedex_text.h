@@ -3527,25 +3527,40 @@ const u8 gFroslassPokedexText[] = _(
     "decorations.");
 
 const u8 gRotomPokedexText[] = _(
-    "Research continues on this Pokémon.\n"
-    "Its electric-like body can enter some\n"
-    "kinds of machines and take control,\n"
-    "in order to make mischief.");
+    "Its body is composed of plasma and loves\n"
+    "to surprise others. One boy's invention led\n"
+    "to the development of many machines that\n"
+    "can use of Rotom's unique capabilities.");
 
 const u8 gRotomHeatPokedexText[] = _(
-    "");
+    "If the convection microwave oven is not\n"
+    "working properly, then the Rotom inhabiting\n"
+    "it will become lethargic. It will gleefully\n"
+    "burn your favorite outfit in mischief.");
 
 const u8 gRotomWashPokedexText[] = _(
-    "");
+    "It enjoys coming up with water-based\n"
+    "pranks. The model of washing machine that\n"
+    "Rotom can inspirit has been discontinued,\n"
+    "so they are now traded at high prices.");
 
 const u8 gRotomFrostPokedexText[] = _(
-    "");
+    "In this form, Rotom likes to play freezing\n"
+    "cold pranks. You may find it's turned the\n"
+    "bath you just filled to solid ice!\n"
+    "It battles by spewing cold air.");
 
 const u8 gRotomFanPokedexText[] = _(
-    "");
+    "The first appliance developed that Rotom\n"
+    "coud inspirit was the electric fan. It uses\n"
+    "its power over wind in its pranks, happily\n"
+    "blowing any important documents it finds.");
 
 const u8 gRotomMowPokedexText[] = _(
-    "");
+    "The lawn mower is an appliance that led to\n"
+    "the development of the Rotom Dex. It will\n"
+    "mow down grass and flowers, then swagger\n"
+    "around with pride at its accomplishments.");
 
 const u8 gUxiePokedexText[] = _(
     "Known as ”The Being of Knowledge,”\n"
