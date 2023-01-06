@@ -202,7 +202,6 @@
 #define SPECIES_MURKROW                                      198
 #define SPECIES_SLOWKING                                     199
 #define SPECIES_MISDREAVUS                                   200
-#define SPECIES_UNOWN                                        SPECIES_UNOWN_A
 #define SPECIES_UNOWN_A                                      201
 #define SPECIES_WOBBUFFET                                    202
 #define SPECIES_GIRAFARIG                                    203
@@ -1447,5 +1446,7 @@
 #define SPECIES_EGG                                          SPECIES_DECIDUEYE_HISUIAN + 1
 
 #define NUM_SPECIES SPECIES_EGG
+
+#define SPECIES_UNOWN NUM_SPECIES + 1    // Used for random Unown form based on personality.
 
 #endif  // GUARD_CONSTANTS_SPECIES_H

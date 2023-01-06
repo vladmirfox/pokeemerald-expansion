@@ -95,9 +95,7 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
 {
     if (isFrontPic)
     {
-        if (species == SPECIES_UNOWN)
-            LZ77UnCompWram(gSpeciesInfo[GetUnownSpeciesId(personality)].frontPic, dest);
-        else if (gSpeciesInfo[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
+        if (gSpeciesInfo[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
             LZ77UnCompWram(gSpeciesInfo[species].frontPicFemale, dest); // Is female with sprite differences
         else if (gSpeciesInfo[species].frontPic != NULL)
             LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
@@ -106,9 +104,7 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
     }
     else
     {
-        if (species == SPECIES_UNOWN)
-            LZ77UnCompWram(gSpeciesInfo[GetUnownSpeciesId(personality)].backPic, dest);
-        else if (gSpeciesInfo[species].backPicFemale != NULL && IsPersonalityFemale(species, personality))
+        if (gSpeciesInfo[species].backPicFemale != NULL && IsPersonalityFemale(species, personality))
             LZ77UnCompWram(gSpeciesInfo[species].backPicFemale, dest); // Is female with sprite differences
         else if (gSpeciesInfo[species].backPic != NULL)
             LZ77UnCompWram(gSpeciesInfo[species].backPic, dest);

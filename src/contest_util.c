@@ -1120,12 +1120,11 @@ static void LoadAllContestMonIcons(u8 srcOffset, bool8 useDmaNow)
 
 static void LoadAllContestMonIconPalettes(void)
 {
-    int i, species;
+    int i;
 
     for (i = 0; i < CONTESTANT_COUNT; i++)
     {
-        species = gContestMons[i].species;
-        LoadPalette(gMonIconPalettes[gSpeciesInfo[GetIconSpecies(species, 0)].iconPalIndex], i * 0x10 + 0xA0, 0x20);
+        LoadPalette(gMonIconPalettes[gSpeciesInfo[gContestMons[i].species].iconPalIndex], i * 0x10 + 0xA0, 0x20);
     }
 }
 

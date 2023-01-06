@@ -5173,7 +5173,6 @@ static struct Sprite *CreateMonIconSprite(u16 species, u32 personality, s16 x, s
     u8 spriteId;
     struct SpriteTemplate template = sSpriteTemplate_MonIcon;
 
-    species = GetIconSpecies(species, personality);
     if (gSpeciesInfo[species].iconSpriteFemale != NULL && IsPersonalityFemale(species, personality))
     {
         template.paletteTag = PALTAG_MON_ICON_0 + gSpeciesInfo[species].iconPalIndexFemale;

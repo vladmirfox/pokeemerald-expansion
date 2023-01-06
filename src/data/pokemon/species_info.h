@@ -12763,7 +12763,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = sMisdreavusEvolutions,
     },
 
-
 #define UNOWN_MISC_INFO                                 \
         .baseHP        = 48,                            \
         .baseAttack    = 72,                            \

@@ -66,7 +66,6 @@ extern const u32 gOpenPokeballGfx[];
 extern const u16 gMonIconPalettes[][16];
 
 extern const u32 gMonFrontPic_QuestionMark[];
-extern const u32 gMonFrontPic_QuestionMark[];
 extern const u32 gMonBackPic_QuestionMark[];
 extern const u32 gMonPalette_QuestionMark[];
 extern const u32 gMonShinyPalette_QuestionMark[];
@@ -9942,6 +9941,8 @@ extern const u32 gBattleAnimSpriteGfx_Tornado[];
 extern const u32 gBattleAnimSpritePal_Tornado[];
 extern const u32 gBattleAnimSpriteGfx_ZMoveSymbol[];
 extern const u32 gBattleAnimSpritePal_ZMoveSymbol[];
+extern const u32 gBattleAnimSpriteGfx_Teapot[];
+extern const u32 gBattleAnimSpritePal_Teapot[];
 
 extern const u32 gBattleAnimBgImage_Dark[];
 extern const u32 gBattleAnimBgImage_Ghost[];

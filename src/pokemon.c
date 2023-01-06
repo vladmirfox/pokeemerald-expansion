@@ -729,6 +729,9 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     else
         personality = Random32();
 
+    if (species == SPECIES_UNOWN)
+        species = GetUnownSpeciesId(personality);
+
     // Determine original trainer ID
     if (otIdType == OT_ID_RANDOM_NO_SHINY)
     {
@@ -772,11 +775,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         else
 #endif
         {
-        #if P_SHINY_BASE_CHANCE >= GEN_6
-            u32 totalRerolls = 1;
-        #else
             u32 totalRerolls = 0;
-        #endif
             if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
                 totalRerolls += I_SHINY_CHARM_REROLLS;
             if (LURE_STEP_COUNT != 0)
@@ -1760,7 +1759,11 @@ u32 GetUnownSpeciesId(u32 personality)
     u16 unownLetter = GetUnownLetterByPersonality(personality);
 
     if (unownLetter == 0)
-        return SPECIES_UNOWN;
+        return SPECIES_UNOWN_A;
+    else if (unownLetter == 26)
+        return SPECIES_UNOWN_EMARK;
+    else if (unownLetter == 27)
+        return SPECIES_UNOWN_QMARK;
     return unownLetter + SPECIES_UNOWN_B - 1;
 }
 
@@ -5494,7 +5497,7 @@ void HandleSetPokedexFlag(u16 species, u8 caseId, u32 personality)
 
     if (updateUnownSpinda)
     {
-        if (species == SPECIES_UNOWN)
+        if (GET_BASE_SPECIES_ID(species) == SPECIES_UNOWN_A)
             gSaveBlock2Ptr->pokedex.unownPersonality = personality;
         if (species == SPECIES_SPINDA)
             gSaveBlock2Ptr->pokedex.spindaPersonality = personality;
@@ -5517,14 +5520,12 @@ const u8 *GetTrainerNameFromId(u16 trainerId)
 
 bool8 HasTwoFramesAnimation(u16 species)
 {
-    return (species != SPECIES_CASTFORM
-         && species != SPECIES_CASTFORM_SUNNY
-         && species != SPECIES_CASTFORM_RAINY
-         && species != SPECIES_CASTFORM_SNOWY
+    species = GET_BASE_SPECIES_ID(species);
+
+    return (species != SPECIES_CASTFORM_NORMAL
          && species != SPECIES_SPINDA
-         && species != SPECIES_UNOWN
-         && species != SPECIES_CHERRIM_OVERCAST
-         && species != SPECIES_CHERRIM_SUNSHINE);
+         && species != SPECIES_UNOWN_A
+         && species != SPECIES_CHERRIM_OVERCAST);
 }
 
 static bool8 ShouldSkipFriendshipChange(void)
