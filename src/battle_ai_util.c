@@ -2712,10 +2712,10 @@ bool32 AI_CanPutToSleep(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, 
     return TRUE;
 }
 
-static bool32 AI_CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
+static bool32 AI_CanPoisonType(u8 battlerAtk, u8 battlerDef)
 {
-    return ((AI_DATA->abilities[battlerAttacker] == ABILITY_CORROSION && gBattleMoves[gCurrentMove].split == SPLIT_STATUS)
-            || !(IS_BATTLER_OF_TYPE(battlerTarget, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL)));
+    return ((AI_DATA->abilities[battlerAtk] == ABILITY_CORROSION && gBattleMoves[gCurrentMove].split == SPLIT_STATUS)
+            || !(IS_BATTLER_OF_TYPE(battlerDef, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerDef, TYPE_STEEL)));
 }
 
 static bool32 AI_CanBePoisoned(u8 battlerAtk, u8 battlerDef)

@@ -7990,15 +7990,19 @@ static void HandleTerrainMove(u16 move)
     }
 }
 
-bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
+bool32 CanPoisonType(u8 battlerAtk, u8 battlerDef)
 {
-    return ((GetBattlerAbility(battlerAttacker) == ABILITY_CORROSION && gBattleMoves[gCurrentMove].split == SPLIT_STATUS)
-            || !(IS_BATTLER_OF_TYPE(battlerTarget, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL)));
+    return ((GetBattlerAbility(battlerAtk) == ABILITY_CORROSION && gBattleMoves[gCurrentMove].split == SPLIT_STATUS)
+            || !(IS_BATTLER_OF_TYPE(battlerDef, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerDef, TYPE_STEEL)));
 }
 
-bool32 CanParalyzeType(u8 battlerAttacker, u8 battlerTarget)
+bool32 CanParalyzeType(u8 battlerAtk, u8 battlerDef)
 {
-    return !(B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battlerTarget, TYPE_ELECTRIC));
+#if B_PARALYZE_ELECTRIC >= GEN_6
+    return !IS_BATTLER_OF_TYPE(target, TYPE_ELECTRIC);
+#else
+    return TRUE;
+#endif
 }
 
 bool32 CanUseLastResort(u8 battlerId)

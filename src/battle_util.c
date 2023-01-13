@@ -6446,19 +6446,19 @@ bool32 CanSleep(u8 battlerId)
     return TRUE;
 }
 
-bool32 CanBePoisoned(u8 battlerAttacker, u8 battlerTarget)
+bool32 CanBePoisoned(u8 battlerAtk, u8 battlerDef)
 {
-    u16 ability = GetBattlerAbility(battlerTarget);
+    u16 ability = GetBattlerAbility(battlerDef);
 
-    if (!(CanPoisonType(battlerAttacker, battlerTarget))
-     || gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
-     || gBattleMons[battlerTarget].status1 & STATUS1_ANY
+    if (!(CanPoisonType(battlerAtk, battlerDef))
+     || gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_SAFEGUARD
+     || gBattleMons[battlerDef].status1 & STATUS1_ANY
      || ability == ABILITY_IMMUNITY
      || ability == ABILITY_COMATOSE
-     || IsAbilityOnSide(battlerTarget, ABILITY_PASTEL_VEIL)
-     || gBattleMons[battlerTarget].status1 & STATUS1_ANY
-     || IsAbilityStatusProtected(battlerTarget)
-     || IsBattlerTerrainAffected(battlerTarget, STATUS_FIELD_MISTY_TERRAIN))
+     || IsAbilityOnSide(battlerDef, ABILITY_PASTEL_VEIL)
+     || gBattleMons[battlerDef].status1 & STATUS1_ANY
+     || IsAbilityStatusProtected(battlerDef)
+     || IsBattlerTerrainAffected(battlerDef, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
     return TRUE;
 }
