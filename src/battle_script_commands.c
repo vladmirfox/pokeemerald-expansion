@@ -7999,7 +7999,7 @@ bool32 CanPoisonType(u8 battlerAtk, u8 battlerDef)
 bool32 CanParalyzeType(u8 battlerAtk, u8 battlerDef)
 {
 #if B_PARALYZE_ELECTRIC >= GEN_6
-    return !IS_BATTLER_OF_TYPE(target, TYPE_ELECTRIC);
+    return !IS_BATTLER_OF_TYPE(battlerDef, TYPE_ELECTRIC);
 #else
     return TRUE;
 #endif
