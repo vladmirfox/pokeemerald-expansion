@@ -2358,7 +2358,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         for (i = 0; i < ARRAY_COUNT(gPokedexOrder_Alphabetical); i++)
         {
             u16 seenSpecies;
-            temp_dexNum = gPokedexOrder_Alphabetical[i];
+            temp_dexNum = SpeciesToNationalPokedexNum(gPokedexOrder_Alphabetical[i]);
             seenSpecies = GetPokedexFlagFirstSeen(temp_dexNum);
 
             if (temp_dexNum <= NATIONAL_DEX_COUNT && (!temp_isHoennDex || NationalToHoennOrder(temp_dexNum) != 0) && seenSpecies != SPECIES_NONE)
