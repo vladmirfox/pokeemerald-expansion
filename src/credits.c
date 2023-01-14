@@ -1560,7 +1560,7 @@ static void DeterminePokemonToShow(void)
     // This basically packs all of the caught pokemon into the front of the array
     for (speciesId = 1, j = 0; speciesId < NUM_SPECIES; speciesId++)
     {
-        if (GetSetPokedexCaughtFlag(speciesId, FLAG_GET_CAUGHT))
+        if (GetSetPokedexFlag(speciesId, FLAG_GET_CAUGHT))
         {
             sCreditsData->caughtMonIds[j] = speciesId;
             j++;

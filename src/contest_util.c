@@ -972,7 +972,7 @@ static void Task_SetSeenWinnerMon(u8 taskId)
         {
             for (i = 0; i < CONTESTANT_COUNT; i++)
             {
-                GetSetPokedexSeenFlag(gContestMons[i].species, FLAG_SET_SEEN);
+                GetSetPokedexFlag(gContestMons[i].species, FLAG_SET_SEEN);
             }
         }
 

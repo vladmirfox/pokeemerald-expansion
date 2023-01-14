@@ -85,8 +85,8 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     {
     case MON_GIVEN_TO_PARTY:
     case MON_GIVEN_TO_PC:
-        GetSetPokedexSeenFlag(species, FLAG_SET_SEEN);
-        GetSetPokedexCaughtFlag(species, FLAG_SET_CAUGHT);
+        GetSetPokedexFlag(species, FLAG_SET_SEEN);
+        GetSetPokedexFlag(species, FLAG_SET_CAUGHT);
         break;
     }
     return sentToPc;

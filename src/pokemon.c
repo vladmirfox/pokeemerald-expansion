@@ -5480,17 +5480,17 @@ void HandleSetPokedexFlag(u16 species, u8 caseId, u32 personality)
     bool8 updateUnownSpinda = FALSE;
     if (caseId == FLAG_SET_SEEN)
     {
-        if (!GetSetPokedexSeenFlag(species, FLAG_GET_SEEN)) // don't set if it's already set
+        if (!GetSetPokedexFlag(species, FLAG_GET_SEEN)) // don't set if it's already set
         {
-            GetSetPokedexSeenFlag(species, caseId);
+            GetSetPokedexFlag(species, caseId);
             updateUnownSpinda = TRUE;
         }
     }
     else if (caseId == FLAG_SET_CAUGHT)
     {
-        if (!GetSetPokedexCaughtFlag(species, FLAG_GET_CAUGHT)) // don't set if it's already set
+        if (!GetSetPokedexFlag(species, FLAG_GET_CAUGHT)) // don't set if it's already set
         {
-            GetSetPokedexCaughtFlag(species, caseId);
+            GetSetPokedexFlag(species, caseId);
             updateUnownSpinda = TRUE;
         }
     }
