@@ -385,10 +385,8 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 #include "data/pokemon/form_change_tables.h"
 #include "data/pokemon/form_change_table_pointers.h"
 #include "data/pokemon/base_form_species_table.h"
-
 #include "data/graphics/pokemon.h"
 #include "data/pokemon_graphics/front_pic_anims.h"
-
 #include "data/pokemon/species_info.h"
 
 #define PP_UP_SHIFTS(val)           val,        (val) << 2,        (val) << 4,        (val) << 6
@@ -2945,8 +2943,8 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     dst->spDefense = GetMonData(src, MON_DATA_SPDEF, NULL);
     dst->abilityNum = GetMonData(src, MON_DATA_ABILITY_NUM, NULL);
     dst->otId = GetMonData(src, MON_DATA_OT_ID, NULL);
-    dst->type1 = gSpeciesInfo[dst->species].type1;
-    dst->type2 = gSpeciesInfo[dst->species].type2;
+    dst->type1 = gSpeciesInfo[dst->species].types[0];
+    dst->type2 = gSpeciesInfo[dst->species].types[1];
     dst->type3 = TYPE_MYSTERY;
     dst->ability = GetAbilityBySpecies(dst->species, dst->abilityNum);
     GetMonData(src, MON_DATA_NICKNAME, nickname);
@@ -4006,8 +4004,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                     for (j = 0; j < PARTY_SIZE; j++)
                     {
                         u16 currSpecies = GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL);
-                        if (gSpeciesInfo[currSpecies].type1 == TYPE_DARK
-                         || gSpeciesInfo[currSpecies].type2 == TYPE_DARK)
+                        if (gSpeciesInfo[currSpecies].types[0] == TYPE_DARK
+                         || gSpeciesInfo[currSpecies].types[1] == TYPE_DARK)
                         {
                             targetSpecies = evolutions[i].targetSpecies;
                             break;

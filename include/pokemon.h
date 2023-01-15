@@ -309,17 +309,16 @@ struct SpeciesInfo
  /* 0x03 */ u8 baseSpeed;
  /* 0x04 */ u8 baseSpAttack;
  /* 0x05 */ u8 baseSpDefense;
- /* 0x06 */ u8 type1;
- /* 0x07 */ u8 type2;
+ /* 0x06 */ u8 types[2];
  /* 0x08 */ u8 catchRate;
             u8 padding1;
  /* 0x09 */ u16 expYield;
  /* 0x0A */ u16 evYield_HP:2;
- /* 0x0A */ u16 evYield_Attack:2;
- /* 0x0A */ u16 evYield_Defense:2;
- /* 0x0A */ u16 evYield_Speed:2;
+            u16 evYield_Attack:2;
+            u16 evYield_Defense:2;
+            u16 evYield_Speed:2;
  /* 0x0B */ u16 evYield_SpAttack:2;
- /* 0x0B */ u16 evYield_SpDefense:2;
+            u16 evYield_SpDefense:2;
             u16 padding2:4;
  /* 0x0C */ u16 itemCommon;
  /* 0x0E */ u16 itemRare;
@@ -327,56 +326,55 @@ struct SpeciesInfo
  /* 0x11 */ u8 eggCycles;
  /* 0x12 */ u8 friendship;
  /* 0x13 */ u8 growthRate;
- /* 0x14 */ u8 eggGroup1;
- /* 0x15 */ u8 eggGroup2;
+ /* 0x14 */ u8 eggGroups[2];
  /* 0x16 */ u16 abilities[NUM_ABILITY_SLOTS];
-            u8 safariZoneFleeRate;
+ /* 0x19 */ u8 safariZoneFleeRate;
             // Pokédex data
- /* 0x?? */ u8 categoryName[13];
- /* 0x?? */ u16 natDexNum;
- /* 0x?? */ u16 hoennDexNum;
-            u16 equivalentDexEntry; // To avoid duplicating dex entries like for Scatterbug
-            u16 cryId;
- /* 0x?? */ u16 height; //in decimeters
- /* 0x?? */ u16 weight; //in hectograms
- /* 0x?? */ u16 pokemonScale;
- /* 0x?? */ u16 pokemonOffset;
- /* 0x?? */ u16 trainerScale;
- /* 0x?? */ u16 trainerOffset;
- /* 0x?? */ const u8 *description;
- /* 0x?? */ u8 bodyColor : 7;
+ /* 0x1A */ u8 categoryName[13];
+ /* 0x27 */ u16 natDexNum;
+ /* 0x29 */ u16 hoennDexNum;
+ /* 0x3B */ u16 equivalentDexEntry; // To avoid duplicating dex entries like for Scatterbug
+ /* 0x3D */ u16 cryId;
+ /* 0x3F */ u16 height; //in decimeters
+ /* 0x41 */ u16 weight; //in hectograms
+ /* 0x43 */ u16 pokemonScale;
+ /* 0x45 */ u16 pokemonOffset;
+ /* 0x47 */ u16 trainerScale;
+ /* 0x49 */ u16 trainerOffset;
+ /* 0xAB */ const u8 *description;
+ /* 0xAF */ u8 bodyColor : 7;
             // Graphical Data
- /* 0x?? */ u8 noFlip : 1;
-            u8 frontAnimDelay;
-            u8 frontAnimId;
-            u8 backAnimId;
-            const union AnimCmd *const *frontAnimFrames;
-            const u32 *const frontPic;
-            const u32 *const frontPicFemale;
-            const u32 *const backPic;
-            const u32 *const backPicFemale;
-            const u32 *const palette;
-            const u32 *const paletteFemale;
-            const u32 *const shinyPalette;
-            const u32 *const shinyPaletteFemale;
-            const u8 *const iconSprite;
-            const u8 *const iconSpriteFemale;
-            const u8 *const footprint;
+            u8 noFlip : 1;
+ /* 0xB0 */ u8 frontAnimDelay;
+ /* 0xB1 */ u8 frontAnimId;
+ /* 0xB2 */ u8 backAnimId;
+ /* 0xB3 */ const union AnimCmd *const *frontAnimFrames;
+ /* 0xB7 */ const u32 *const frontPic;
+ /* 0xBB */ const u32 *const frontPicFemale;
+ /* 0xBF */ const u32 *const backPic;
+ /* 0xC3 */ const u32 *const backPicFemale;
+ /* 0xC7 */ const u32 *const palette;
+ /* 0xCB */ const u32 *const paletteFemale;
+ /* 0xCF */ const u32 *const shinyPalette;
+ /* 0xD3 */ const u32 *const shinyPaletteFemale;
+ /* 0xD7 */ const u8 *const iconSprite;
+ /* 0xDB */ const u8 *const iconSpriteFemale;
+ /* 0xDF */ const u8 *const footprint;
             // All Pokémon pics are 64x64, but this data table defines where in this 64x64 frame the sprite's non-transparent pixels actually are.
-            u8 frontPicSize; // The dimensions of this drawn pixel area.
-            u8 frontPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
-            u8 backPicSize; // The dimensions of this drawn pixel area.
-            u8 backPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
-            u8 iconPalIndex:3;
+ /* 0xE3 */ u8 frontPicSize; // The dimensions of this drawn pixel area.
+ /* 0xE4 */ u8 frontPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
+ /* 0xE5 */ u8 backPicSize; // The dimensions of this drawn pixel area.
+ /* 0xE6 */ u8 backPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
+ /* 0xE7 */ u8 iconPalIndex:3;
             u8 iconPalIndexFemale:3;
             u8 padding3:2;
-            u8 enemyMonElevation; // This determines how much higher above the usual position the enemy Pokémon is during battle. Species that float or fly have nonzero values.
+ /* 0xE8 */ u8 enemyMonElevation; // This determines how much higher above the usual position the enemy Pokémon is during battle. Species that float or fly have nonzero values.
             // Flags
-            u16 flags;
+ /* 0xE9 */ u16 flags;
             // Move Data
-            const struct LevelUpMove *const levelUpLearnset;
-            const u16 *const teachableLearnset;
-            const struct Evolution *const evolutions;
+ /* 0xEB */ const struct LevelUpMove *const levelUpLearnset;
+ /* 0xEF */ const u16 *const teachableLearnset;
+ /* 0xF3 */ const struct Evolution *const evolutions;
 };
 
 struct BattleMove
