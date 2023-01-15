@@ -220,7 +220,6 @@ static u8 IsEasyChatWordUnlocked(u16);
 static u16 SetSelectedWordGroup_GroupMode(u16);
 static u16 SetSelectedWordGroup_AlphabetMode(u16);
 static bool8 IsEasyChatIndexAndGroupUnlocked(u16, u8);
-static int IsRestrictedWordSpecies(u16);
 static void DoQuizAnswerEasyChatScreen(void);
 static void DoQuizQuestionEasyChatScreen(void);
 static void DoQuizSetAnswerEasyChatScreen(void);
@@ -1257,10 +1256,6 @@ static const u16 sDefaultBattleLostWords[EASY_CHAT_BATTLE_WORDS_COUNT] = {
     EC_WORD_WE,
     EC_WORD_LOST,
     EC_WORD_ELLIPSIS,
-};
-
-static const u16 sRestrictedWordSpecies[] = {
-    SPECIES_DEOXYS,
 };
 
 
@@ -5779,11 +5774,8 @@ static bool8 IsEasyChatIndexAndGroupUnlocked(u16 wordIndex, u8 groupId)
     switch (groupId)
     {
     case EC_GROUP_POKEMON:
-        return GetPokedexFlagFirstSeen(SpeciesToNationalPokedexNum(wordIndex) ? TRUE : FALSE);
     case EC_GROUP_POKEMON_NATIONAL:
-        if (IsRestrictedWordSpecies(wordIndex))
-            GetPokedexFlagFirstSeen(SpeciesToNationalPokedexNum(wordIndex) ? TRUE : FALSE);
-        return TRUE;
+        return GetPokedexFlagFirstSeen(SpeciesToNationalPokedexNum(wordIndex));
     case EC_GROUP_MOVE_1:
     case EC_GROUP_MOVE_2:
         return TRUE;
@@ -5792,20 +5784,6 @@ static bool8 IsEasyChatIndexAndGroupUnlocked(u16 wordIndex, u8 groupId)
     default:
         return gEasyChatGroups[groupId].wordData.words[wordIndex].enabled;
     }
-}
-
-// Pokémon words in EC_GROUP_POKEMON_NATIONAL are always allowed (assuming the group is unlocked)
-// unless they are in this group. If they are in this group (just Deoxys), they must also have been seen.
-static int IsRestrictedWordSpecies(u16 species)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sRestrictedWordSpecies); i++)
-    {
-        if (sRestrictedWordSpecies[i] == species)
-            return TRUE;
-    }
-
-    return FALSE;
 }
 
 static u8 IsEasyChatWordUnlocked(u16 easyChatWord)
