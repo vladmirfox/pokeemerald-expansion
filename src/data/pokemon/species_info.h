@@ -2446,9 +2446,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #if P_UPDATED_TYPES >= GEN_6
-    #define CLEFAIRY_FAMILY_TYPES { TYPE_FAIRY, TYPE_FAIRY }
+    #define CLEFAIRY_FAMILY_TYPE TYPE_FAIRY
 #else
-    #define CLEFAIRY_FAMILY_TYPES { TYPE_NORMAL, TYPE_NORMAL }
+    #define CLEFAIRY_FAMILY_TYPE TYPE_NORMAL
 #endif
 
     [SPECIES_CLEFAIRY] =
@@ -2459,7 +2459,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 35,
         .baseSpAttack  = 60,
         .baseSpDefense = 65,
-        .types = CLEFAIRY_FAMILY_TYPES,
+        .types = { CLEFAIRY_FAMILY_TYPE, CLEFAIRY_FAMILY_TYPE },
         .catchRate = 150,
         .expYield = 113,
         .evYield_HP        = 2,
@@ -2512,7 +2512,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     #else
         .baseSpAttack  = 85,
     #endif
-        .types = CLEFAIRY_FAMILY_TYPES,
+        .types = { CLEFAIRY_FAMILY_TYPE, CLEFAIRY_FAMILY_TYPE },
         .catchRate = 25,
         .expYield = 217,
         .evYield_HP        = 3,
@@ -2714,9 +2714,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #if P_UPDATED_TYPES >= GEN_6
-    #define JIGGLYPUFF_FAMILY_TYPES { TYPE_NORMAL, TYPE_FAIRY }
+    #define JIGGLYPUFF_FAMILY_TYPE2 TYPE_FAIRY
 #else
-    #define JIGGLYPUFF_FAMILY_TYPES { TYPE_NORMAL, TYPE_NORMAL }
+    #define JIGGLYPUFF_FAMILY_TYPE2 TYPE_NORMAL
 #endif
 
     [SPECIES_JIGGLYPUFF] =
@@ -2727,7 +2727,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 20,
         .baseSpAttack  = 45,
         .baseSpDefense = 25,
-        .types = JIGGLYPUFF_FAMILY_TYPES,
+        .types = { TYPE_NORMAL, JIGGLYPUFF_FAMILY_TYPE2 },
         .catchRate = 170,
         .expYield = 95,
         .evYield_HP        = 2,
@@ -2781,7 +2781,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     #else
         .baseSpAttack  = 75,
     #endif
-        .types = JIGGLYPUFF_FAMILY_TYPES,
+        .types = { TYPE_NORMAL, JIGGLYPUFF_FAMILY_TYPE2 },
         .catchRate = 50,
         .expYield = 196,
         .evYield_HP        = 3,
@@ -10694,7 +10694,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 15,
         .baseSpAttack  = 45,
         .baseSpDefense = 55,
-        .types = CLEFAIRY_FAMILY_TYPES,
+        .types = { CLEFAIRY_FAMILY_TYPE, CLEFAIRY_FAMILY_TYPE },
         .catchRate = 150,
         .expYield = 44,
         .evYield_SpDefense = 1,
@@ -10743,7 +10743,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 15,
         .baseSpAttack  = 40,
         .baseSpDefense = 20,
-        .types = JIGGLYPUFF_FAMILY_TYPES,
+        .types = { TYPE_NORMAL, JIGGLYPUFF_FAMILY_TYPE2 },
         .catchRate = 170,
         .expYield = 42,
         .evYield_HP        = 1,
@@ -11225,9 +11225,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #if P_UPDATED_TYPES >= GEN_6
-    #define MARILL_FAMILY_TYPE_2 TYPE_FAIRY
+    #define MARILL_FAMILY_TYPE2 TYPE_FAIRY
 #else
-    #define MARILL_FAMILY_TYPE_2 TYPE_WATER
+    #define MARILL_FAMILY_TYPE2 TYPE_WATER
 #endif
 
     [SPECIES_MARILL] =
@@ -11238,7 +11238,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 40,
         .baseSpAttack  = 20,
         .baseSpDefense = 50,
-        .types = { TYPE_WATER, MARILL_FAMILY_TYPE_2 },
+        .types = { TYPE_WATER, MARILL_FAMILY_TYPE2 },
         .catchRate = 190,
         .expYield = 88,
         .evYield_HP        = 2,
@@ -11291,7 +11291,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     #else
         .baseSpAttack  = 50,
     #endif
-        .types = { TYPE_WATER, MARILL_FAMILY_TYPE_2 },
+        .types = { TYPE_WATER, MARILL_FAMILY_TYPE2 },
         .catchRate = 75,
         .expYield = 189,
         .evYield_HP        = 3,
@@ -12838,7 +12838,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #if P_UPDATED_TYPES >= GEN_6
-    #define SNUBBULL_FAMILY_TYPES { TYPE_FAIRY, TYPE_FAIRY }
+    #define SNUBBULL_FAMILY_TYPE TYPE_FAIRY
 #else
     #define SNUBBULL_FAMILY_TYPE TYPE_NORMAL
 #endif
@@ -12851,7 +12851,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 30,
         .baseSpAttack  = 40,
         .baseSpDefense = 40,
-        .types = SNUBBULL_FAMILY_TYPES,
+        .types = { SNUBBULL_FAMILY_TYPE, SNUBBULL_FAMILY_TYPE },
         .catchRate = 190,
         .expYield = 60,
         .evYield_Attack    = 1,
@@ -12899,7 +12899,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 45,
         .baseSpAttack  = 60,
         .baseSpDefense = 60,
-        .types = SNUBBULL_FAMILY_TYPES,
+        .types = { SNUBBULL_FAMILY_TYPE, SNUBBULL_FAMILY_TYPE },
         .catchRate = 75,
         .expYield = 158,
         .evYield_Attack    = 2,
@@ -16785,9 +16785,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #if P_UPDATED_TYPES >= GEN_6
-    #define RALTS_FAMILY_TYPES { TYPE_PSYCHIC, TYPE_FAIRY }
+    #define RALTS_FAMILY_TYPE2 TYPE_FAIRY
 #else
-    #define RALTS_FAMILY_TYPES { TYPE_PSYCHIC, TYPE_PSYCHIC }
+    #define RALTS_FAMILY_TYPE2 TYPE_PSYCHIC
 #endif
 
 #if P_UPDATED_EGG_GROUPS >= GEN_8
@@ -16804,7 +16804,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 40,
         .baseSpAttack  = 45,
         .baseSpDefense = 35,
-        .types = RALTS_FAMILY_TYPES,
+        .types = { TYPE_PSYCHIC, RALTS_FAMILY_TYPE2 },
         .catchRate = 235,
         .expYield = 40,
         .evYield_SpAttack  = 1,
@@ -16853,7 +16853,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 50,
         .baseSpAttack  = 65,
         .baseSpDefense = 55,
-        .types = RALTS_FAMILY_TYPES,
+        .types = { TYPE_PSYCHIC, RALTS_FAMILY_TYPE2 },
         .catchRate = 120,
         .expYield = 97,
         .evYield_SpAttack  = 2,
@@ -16895,7 +16895,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #define GARDEVOIR_MISC_INFO                                 \
-        .types = RALTS_FAMILY_TYPES,                        \
+        .types = { TYPE_PSYCHIC, RALTS_FAMILY_TYPE2 },      \
         .catchRate = 45,                                    \
         .evYield_SpAttack  = 3,                             \
         .genderRatio = PERCENT_FEMALE(50),                  \
@@ -17735,7 +17735,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 20,
         .baseSpAttack  = 20,
         .baseSpDefense = 40,
-        .types = { TYPE_NORMAL, MARILL_FAMILY_TYPE_2 },
+        .types = { TYPE_NORMAL, MARILL_FAMILY_TYPE2 },
         .catchRate = 150,
         .expYield = 38,
         .evYield_HP        = 1,
@@ -31489,9 +31489,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #if P_UPDATED_TYPES >= GEN_6
-    #define COTTONEE_FAMILY_TYPES { TYPE_GRASS, TYPE_FAIRY }
+    #define COTTONEE_FAMILY_TYPE2 TYPE_FAIRY
 #else
-    #define COTTONEE_FAMILY_TYPES { TYPE_GRASS, TYPE_FAIRY }
+    #define COTTONEE_FAMILY_TYPE2 TYPE_GRASS
 #endif
 
     [SPECIES_COTTONEE] =
@@ -31502,7 +31502,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 66,
         .baseSpAttack  = 37,
         .baseSpDefense = 50,
-        .types = COTTONEE_FAMILY_TYPES,
+        .types = { TYPE_GRASS, COTTONEE_FAMILY_TYPE2 },
         .catchRate = 190,
         .expYield = 56,
         .evYield_Speed     = 1,
@@ -31551,7 +31551,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 116,
         .baseSpAttack  = 77,
         .baseSpDefense = 75,
-        .types = COTTONEE_FAMILY_TYPES,
+        .types = { TYPE_GRASS, COTTONEE_FAMILY_TYPE2 },,
         .catchRate = 75,
         .expYield = 168,
         .evYield_Speed     = 2,
