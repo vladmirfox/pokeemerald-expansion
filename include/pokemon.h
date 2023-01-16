@@ -5,7 +5,7 @@
 #include "constants/region_map_sections.h"
 #include "constants/map_groups.h"
 
-#define GET_BASE_SPECIES_ID(speciesId) (GetFormSpeciesId(speciesId, 0))
+#define GET_BASE_SPECIES_ID(speciesId) (gNationalDexInfo[gSpeciesInfo[speciesId].natDexNum].baseSpeciesId)
 #define FORM_SPECIES_END (0xffff)
 
 // Property labels for Get(Box)MonData / Set(Box)MonData
@@ -377,6 +377,13 @@ struct SpeciesInfo
  /* 0xF3 */ const struct Evolution *const evolutions;
 };
 
+struct NationalDexInfo
+{
+    const u16 *const formSpeciesIdTable;
+    u16 baseSpeciesId;
+    u8 speciesName[POKEMON_NAME_LENGTH + 1];
+};
+
 struct BattleMove
 {
     u16 effect;
@@ -439,6 +446,7 @@ extern const struct BattleMove gBattleMoves[];
 extern const u8 gFacilityClassToPicIndex[];
 extern const u8 gFacilityClassToTrainerClass[];
 extern const struct SpeciesInfo gSpeciesInfo[];
+extern const struct NationalDexInfo gNationalDexInfo[];
 extern const u8 *const gItemEffectTable[];
 extern const u32 gExperienceTables[][MAX_LEVEL + 1];
 extern const u8 gPPUpGetMask[];
@@ -449,7 +457,6 @@ extern const u16 gUnionRoomFacilityClasses[];
 extern const struct SpriteTemplate gBattlerSpriteTemplates[];
 extern const s8 gNatureStatTable[][5];
 extern const u32 sExpCandyExperienceTable[];
-extern const u16 gBaseFormSpeciesIdTable[NATIONAL_DEX_COUNT + 1];
 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);
 void ZeroMonData(struct Pokemon *mon);

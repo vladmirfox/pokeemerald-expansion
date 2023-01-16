@@ -1911,7 +1911,7 @@ static u8 AppendCaughtBannedMonSpeciesName(u16 natDexNum, u8 count, s32 numBanne
             StringAppend(gStringVar1, gText_LineBreak);
             break;
         }
-        StringAppend(gStringVar1, gSpeciesNames[natDexNum]);
+        StringAppend(gStringVar1, gNationalDexInfo[natDexNum].speciesName);
     }
 
     return count;
