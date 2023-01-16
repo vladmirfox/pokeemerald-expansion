@@ -329,7 +329,7 @@ static const u8 sKeyboardPageMaxRow[UNION_ROOM_KB_PAGE_COUNT] =
     [UNION_ROOM_KB_PAGE_REGISTER] = 9
 };
 
-static const u8 sCaseToggleTable[256] = {
+const u8 sCaseToggleTable[256] = {
     [CHAR_A] = CHAR_a,
     [CHAR_B] = CHAR_b,
     [CHAR_C] = CHAR_c,
