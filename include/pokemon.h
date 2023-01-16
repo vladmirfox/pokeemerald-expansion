@@ -357,7 +357,7 @@ struct SpeciesInfo
  /* 0xCB */ const u32 *const paletteFemale;
  /* 0xCF */ const u32 *const shinyPalette;
  /* 0xD3 */ const u32 *const shinyPaletteFemale;
- /* 0xD7 */ const u8 *const iconSprite;
+            // Regular mon icons are loaded from gMonIconTable to maintain compatibility with PoryMap
  /* 0xDB */ const u8 *const iconSpriteFemale;
  /* 0xDF */ const u8 *const footprint;
             // All Pokémon pics are 64x64, but this data table defines where in this 64x64 frame the sprite's non-transparent pixels actually are.
