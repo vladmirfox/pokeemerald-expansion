@@ -23419,6 +23419,10 @@ static const u16 sBasculinWhiteStripedTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 
+static const u16 sBasculegionTeachableLearnset[] = {
+    MOVE_UNAVAILABLE,
+};
+
 static const u16 sSandileTeachableLearnset[] = {
     MOVE_ATTRACT,
     MOVE_COUNTER,
@@ -23959,6 +23963,31 @@ static const u16 sCofagrigusTeachableLearnset[] = {
     MOVE_SWAGGER,
     MOVE_THIEF,
     MOVE_TOXIC,
+    MOVE_UNAVAILABLE,
+};
+
+static const u16 sRunerigusTeachableLearnset[] = {
+    MOVE_ATTRACT,
+    MOVE_CALM_MIND,
+    MOVE_EARTHQUAKE,
+    MOVE_ENDURE,
+    MOVE_FACADE,
+    MOVE_HYPER_BEAM,
+    MOVE_PROTECT,
+    MOVE_PSYCHIC,
+    MOVE_RAIN_DANCE,
+    MOVE_REST,
+    MOVE_ROCK_SLIDE,
+    MOVE_ROCK_TOMB,
+    MOVE_SAFEGUARD,
+    MOVE_SANDSTORM,
+    MOVE_SHADOW_BALL,
+    MOVE_SKILL_SWAP,
+    MOVE_SLEEP_TALK,
+    MOVE_SNORE,
+    MOVE_SUBSTITUTE,
+    MOVE_TAUNT,
+    MOVE_THIEF,
     MOVE_UNAVAILABLE,
 };
 
@@ -26645,6 +26674,10 @@ static const u16 sLandorusTeachableLearnset[] = {
     MOVE_SWAGGER,
     MOVE_SWORDS_DANCE,
     MOVE_TOXIC,
+    MOVE_UNAVAILABLE,
+};
+
+static const u16 sEnamorusTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 
@@ -32681,31 +32714,6 @@ static const u16 sGrimmsnarlTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 
-static const u16 sRunerigusTeachableLearnset[] = {
-    MOVE_ATTRACT,
-    MOVE_CALM_MIND,
-    MOVE_EARTHQUAKE,
-    MOVE_ENDURE,
-    MOVE_FACADE,
-    MOVE_HYPER_BEAM,
-    MOVE_PROTECT,
-    MOVE_PSYCHIC,
-    MOVE_RAIN_DANCE,
-    MOVE_REST,
-    MOVE_ROCK_SLIDE,
-    MOVE_ROCK_TOMB,
-    MOVE_SAFEGUARD,
-    MOVE_SANDSTORM,
-    MOVE_SHADOW_BALL,
-    MOVE_SKILL_SWAP,
-    MOVE_SLEEP_TALK,
-    MOVE_SNORE,
-    MOVE_SUBSTITUTE,
-    MOVE_TAUNT,
-    MOVE_THIEF,
-    MOVE_UNAVAILABLE,
-};
-
 static const u16 sMilceryTeachableLearnset[] = {
     MOVE_ATTRACT,
     MOVE_ENDURE,
@@ -33455,14 +33463,6 @@ static const u16 sCalyrexShadowRiderTeachableLearnset[] = {
     MOVE_SUNNY_DAY,
     MOVE_SWIFT,
     MOVE_TAUNT,
-    MOVE_UNAVAILABLE,
-};
-
-static const u16 sBasculegionTeachableLearnset[] = {
-    MOVE_UNAVAILABLE,
-};
-
-static const u16 sEnamorusTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 #endif

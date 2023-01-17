@@ -821,6 +821,12 @@ static const u16 sLandorusFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 
+static const u16 sEnamorusFormSpeciesIdTable[] = {
+    SPECIES_ENAMORUS_INCARNATE,
+    SPECIES_ENAMORUS_THERIAN,
+    FORM_SPECIES_END,
+};
+
 static const u16 sKyuremFormSpeciesIdTable[] = {
     SPECIES_KYUREM,
     SPECIES_KYUREM_WHITE,
@@ -1332,12 +1338,6 @@ static const u16 sCalyrexFormSpeciesIdTable[] = {
     SPECIES_CALYREX,
     SPECIES_CALYREX_ICE_RIDER,
     SPECIES_CALYREX_SHADOW_RIDER,
-    FORM_SPECIES_END,
-};
-
-static const u16 sEnamorusFormSpeciesIdTable[] = {
-    SPECIES_ENAMORUS_INCARNATE,
-    SPECIES_ENAMORUS_THERIAN,
     FORM_SPECIES_END,
 };
 #endif

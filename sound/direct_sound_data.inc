@@ -2855,6 +2855,12 @@ Cry_Lilligant::
 Cry_Basculin::
 	.incbin "sound/direct_sound_samples/cries/basculin.bin"
 
+/*
+	.align 2
+Cry_Basculegion::
+	.incbin "sound/direct_sound_samples/cries/basculegion.bin"
+*/
+
 	.align 2
 Cry_Sandile::
 	.incbin "sound/direct_sound_samples/cries/sandile.bin"
@@ -2906,6 +2912,10 @@ Cry_Yamask::
 	.align 2
 Cry_Cofagrigus::
 	.incbin "sound/direct_sound_samples/cries/cofagrigus.bin"
+
+	.align 2
+Cry_Runerigus::
+	.incbin "sound/direct_sound_samples/cries/runerigus.bin"
 
 	.align 2
 Cry_Tirtouga::
@@ -3246,6 +3256,16 @@ Cry_LandorusIncarnate::
 	.align 2
 Cry_LandorusTherian::
 	.incbin "sound/direct_sound_samples/cries/landorus_therian.bin"
+
+/*
+	.align 2
+Cry_Enamorus::
+	.incbin "sound/direct_sound_samples/cries/enamorus.bin"
+
+	.align 2
+Cry_EnamorusTherian::
+	.incbin "sound/direct_sound_samples/cries/enamorus_therian.bin"
+*/
 
 	.align 2
 Cry_Kyurem::
@@ -4190,10 +4210,6 @@ Cry_Grimmsnarl::
 	.incbin "sound/direct_sound_samples/cries/grimmsnarl.bin"
 
 	.align 2
-Cry_Runerigus::
-	.incbin "sound/direct_sound_samples/cries/runerigus.bin"
-
-	.align 2
 Cry_Milcery::
 	.incbin "sound/direct_sound_samples/cries/milcery.bin"
 
@@ -4345,19 +4361,6 @@ Cry_CalyrexIceRider::
 Cry_CalyrexShadowRider::
 	.incbin "sound/direct_sound_samples/cries/calyrex_shadow_rider.bin"
 
-/*
-	.align 2
-Cry_Basculegion::
-	.incbin "sound/direct_sound_samples/cries/basculegion.bin"
-
-	.align 2
-Cry_Enamorus::
-	.incbin "sound/direct_sound_samples/cries/enamorus.bin"
-
-	.align 2
-Cry_EnamorusTherian::
-	.incbin "sound/direct_sound_samples/cries/enamorus_therian.bin"
-*/
 .endif
 
 	.align 2

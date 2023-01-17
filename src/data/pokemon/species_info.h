@@ -32431,6 +32431,73 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BASCULIN_MISC_INFO,
     },
 
+#define BASCULEGION_MISC_INFO                                                       \
+        .types = { TYPE_WATER, TYPE_GHOST},                                         \
+        .catchRate = 25,                                                            \
+        .expYield = 186,                                                            \
+        .evYield_HP     = 2,                                                        \
+        .eggCycles = 40,                                                            \
+        .friendship = 70,                                                           \
+        .growthRate = GROWTH_MEDIUM_FAST,                                           \
+        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2},                       \
+        .abilities = {ABILITY_RATTLED, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER}, \
+        .bodyColor = BODY_COLOR_GREEN,                                              \
+        .noFlip = FALSE,                                                            \
+        .natDexNum = NATIONAL_DEX_BASCULEGION,                                      \
+        .description = gBasculegionPokedexText,                                     \
+        .categoryName = _("Big Fish"),                                              \
+        .pokemonScale = 356,                                                        \
+        .pokemonOffset = 17,                                                        \
+        .trainerScale = 256,                                                        \
+        .trainerOffset = 0,                                                         \
+        .height = 30,                                                               \
+        .weight = 1100,                                                             \
+        .levelUpLearnset = sBasculegionLevelUpLearnset,                             \
+        .teachableLearnset = sBasculegionTeachableLearnset,                         \
+        .frontAnimFrames = sAnims_Basculegion,                                      \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                    \
+        .backAnimId = BACK_ANIM_NONE
+        //.cryId = CRY_BASCULEGION,\
+        //.footprint = gMonFootprint_Basculegion,
+
+    [SPECIES_BASCULEGION_MALE] =
+    {
+        .baseHP        = 120,
+        .baseAttack    = 112,
+        .baseDefense   = 65,
+        .baseSpeed     = 78,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 75,
+        .genderRatio = MON_MALE,
+        //.frontPic = gMonFrontPic_BasculegionMale,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        //.backPic = gMonBackPic_BasculegionMale,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        //.palette = gMonPalette_BasculegionMale,
+        //.shinyPalette = gMonShinyPalette_BasculegionMale,
+        .iconPalIndex = 1,
+        BASCULEGION_MISC_INFO,
+    },
+
+    [SPECIES_BASCULEGION_FEMALE] =
+    {
+        .baseHP        = 120,
+        .baseAttack    = 92,
+        .baseDefense   = 65,
+        .baseSpeed     = 78,
+        .baseSpAttack  = 100,
+        .baseSpDefense = 75,
+        .genderRatio = MON_FEMALE,
+        //.frontPic = gMonFrontPic_BasculegionFemale,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        //.backPic = gMonBackPic_BasculegionFemale,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        //.palette = gMonPalette_BasculegionFemale,
+        //.shinyPalette = gMonShinyPalette_BasculegionFemale,
+        .iconPalIndex = 0,
+        BASCULEGION_MISC_INFO,
+    },
+
     [SPECIES_SANDILE] =
     {
         .baseHP        = 50,
@@ -33233,6 +33300,54 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .footprint = gMonFootprint_Cofagrigus,
         .frontAnimFrames = sAnims_Cofagrigus,
         .frontAnimId = ANIM_GLOW_BLACK,
+        .backAnimId = BACK_ANIM_NONE,
+    },
+
+    [SPECIES_RUNERIGUS] =
+    {
+        .baseHP        = 58,
+        .baseAttack    = 95,
+        .baseDefense   = 145,
+        .baseSpeed     = 30,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 105,
+        .types = { TYPE_GROUND, TYPE_GHOST },
+        .catchRate = 90,
+        .expYield = 169,
+        .evYield_Defense   = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS},
+        .abilities = {ABILITY_WANDERING_SPIRIT, ABILITY_NONE},
+        .bodyColor = BODY_COLOR_GRAY,
+        .noFlip = FALSE,
+        .natDexNum = NATIONAL_DEX_RUNERIGUS,
+        .cryId = CRY_RUNERIGUS,
+        .description = gRunerigusPokedexText,
+        .categoryName = _("Grudge"),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .height = 16,
+        .weight = 666,
+        .levelUpLearnset = sRunerigusLevelUpLearnset,
+        .teachableLearnset = sRunerigusTeachableLearnset,
+        .frontPic = gMonFrontPic_Runerigus,
+        .backPic = gMonBackPic_Runerigus,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicSize = MON_COORDS_SIZE(64, 48),
+        .frontPicYOffset = 2,
+        .backPicYOffset = 9,
+        .enemyMonElevation = 5,
+        .palette = gMonPalette_Runerigus,
+        .shinyPalette = gMonShinyPalette_Runerigus,
+        .iconPalIndex = 2,
+        .footprint = gMonFootprint_Runerigus,
+        .frontAnimFrames = sAnims_Runerigus,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
     },
 
@@ -37459,6 +37574,81 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_CIRCULAR_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
         LANDORUS_MISC_INFO,
+    },
+
+#define ENAMORUS_MISC_INFO                                              \
+        .types = { TYPE_FAIRY, TYPE_FLYING},                            \
+        .catchRate = 3,                                                 \
+        .evYield_SpAttack  = 3,                                         \
+        .genderRatio = MON_FEMALE,                                      \
+        .eggCycles = 120,                                               \
+        .friendship = 90,                                               \
+        .growthRate = GROWTH_SLOW,                                      \
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED}, \
+        .bodyColor = BODY_COLOR_PINK,                                   \
+        .noFlip = FALSE,                                                \
+        .flags = SPECIES_FLAG_LEGENDARY,                                \
+        .natDexNum = NATIONAL_DEX_ENAMORUS,                             \
+        .pokemonScale = 356,                                            \
+        .pokemonOffset = 17,                                            \
+        .trainerScale = 256,                                            \
+        .trainerOffset = 0,                                             \
+        .height = 16,                                                   \
+        .weight = 480,                                                  \
+        .levelUpLearnset = sEnamorusLevelUpLearnset,                    \
+        .teachableLearnset = sEnamorusTeachableLearnset
+//        .footprint = gMonFootprint_Enamorus
+
+    [SPECIES_ENAMORUS_INCARNATE] =
+    {
+        .baseHP        = 74,
+        .baseAttack    = 115,
+        .baseDefense   = 70,
+        .baseSpeed     = 106,
+        .baseSpAttack  = 135,
+        .baseSpDefense = 80,
+        .expYield = 261,
+        .abilities = {ABILITY_HEALER, ABILITY_NONE, ABILITY_CONTRARY},
+        //.cryId = CRY_ENAMORUS_INCARNATE,
+        .description = gEnamorusIncarnatePokedexText,
+        .categoryName = _("Love-Hate"),
+        //.frontPic = gMonFrontPic_EnamorusIncarnate,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        //.backPic = gMonBackPic_EnamorusIncarnate,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        //.palette = gMonPalette_EnamorusIncarnate,
+        //.shinyPalette = gMonShinyPalette_EnamorusIncarnate,
+        .iconPalIndex = 1,
+        .frontAnimFrames = sAnims_EnamorusIncarnate,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
+        ENAMORUS_MISC_INFO,
+    },
+
+    [SPECIES_ENAMORUS_THERIAN] =
+    {
+        .baseHP        = 74,
+        .baseAttack    = 115,
+        .baseDefense   = 110,
+        .baseSpeed     = 46,
+        .baseSpAttack  = 135,
+        .baseSpDefense = 100,
+        .expYield = 270,
+        .abilities = {ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_OVERCOAT},
+        //.cryId = CRY_ENAMORUS_THERIAN,
+        .description = gEnamorusTherianPokedexText,
+        .categoryName = _("Love-Hate"),
+        //.frontPic = gMonFrontPic_EnamorusTherian,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        //.backPic = gMonBackPic_EnamorusTherian,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        //.palette = gMonPalette_EnamorusTherian,
+        //.shinyPalette = gMonShinyPalette_EnamorusTherian,
+        .iconPalIndex = 1,
+        .frontAnimFrames = sAnims_EnamorusTherian,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
+        ENAMORUS_MISC_INFO,
     },
 
 #define KYUREM_MISC_INFO                                                \
@@ -49141,54 +49331,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_NONE,
     },
 
-    [SPECIES_RUNERIGUS] =
-    {
-        .baseHP        = 58,
-        .baseAttack    = 95,
-        .baseDefense   = 145,
-        .baseSpeed     = 30,
-        .baseSpAttack  = 50,
-        .baseSpDefense = 105,
-        .types = { TYPE_GROUND, TYPE_GHOST },
-        .catchRate = 90,
-        .expYield = 169,
-        .evYield_Defense   = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 25,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS},
-        .abilities = {ABILITY_WANDERING_SPIRIT, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_GRAY,
-        .noFlip = FALSE,
-        .natDexNum = NATIONAL_DEX_RUNERIGUS,
-        .cryId = CRY_RUNERIGUS,
-        .description = gRunerigusPokedexText,
-        .categoryName = _("Grudge"),
-        .pokemonScale = 356,
-        .pokemonOffset = 17,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .height = 16,
-        .weight = 666,
-        .levelUpLearnset = sRunerigusLevelUpLearnset,
-        .teachableLearnset = sRunerigusTeachableLearnset,
-        .frontPic = gMonFrontPic_Runerigus,
-        .backPic = gMonBackPic_Runerigus,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
-        .backPicSize = MON_COORDS_SIZE(64, 48),
-        .frontPicYOffset = 2,
-        .backPicYOffset = 9,
-        .enemyMonElevation = 5,
-        .palette = gMonPalette_Runerigus,
-        .shinyPalette = gMonShinyPalette_Runerigus,
-        .iconPalIndex = 2,
-        .footprint = gMonFootprint_Runerigus,
-        .frontAnimFrames = sAnims_Runerigus,
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .backAnimId = BACK_ANIM_NONE,
-    },
-
     [SPECIES_MILCERY] =
     {
         .baseHP        = 45,
@@ -50863,148 +51005,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Calyrex,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-    },
-
-#define BASCULEGION_MISC_INFO                                                       \
-        .types = { TYPE_WATER, TYPE_GHOST},                                         \
-        .catchRate = 25,                                                            \
-        .expYield = 186,                                                            \
-        .evYield_HP     = 2,                                                        \
-        .eggCycles = 40,                                                            \
-        .friendship = 70,                                                           \
-        .growthRate = GROWTH_MEDIUM_FAST,                                           \
-        .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2},                       \
-        .abilities = {ABILITY_RATTLED, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER}, \
-        .bodyColor = BODY_COLOR_GREEN,                                              \
-        .noFlip = FALSE,                                                            \
-        .natDexNum = NATIONAL_DEX_BASCULEGION,                                      \
-        .description = gBasculegionPokedexText,                                     \
-        .categoryName = _("Big Fish"),                                              \
-        .pokemonScale = 356,                                                        \
-        .pokemonOffset = 17,                                                        \
-        .trainerScale = 256,                                                        \
-        .trainerOffset = 0,                                                         \
-        .height = 30,                                                               \
-        .weight = 1100,                                                             \
-        .levelUpLearnset = sBasculegionLevelUpLearnset,                             \
-        .teachableLearnset = sBasculegionTeachableLearnset,                         \
-        .frontAnimFrames = sAnims_Basculegion,                                      \
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                    \
-        .backAnimId = BACK_ANIM_NONE
-        //.cryId = CRY_BASCULEGION,\
-        //.footprint = gMonFootprint_Basculegion,
-
-    [SPECIES_BASCULEGION_MALE] =
-    {
-        .baseHP        = 120,
-        .baseAttack    = 112,
-        .baseDefense   = 65,
-        .baseSpeed     = 78,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 75,
-        .genderRatio = MON_MALE,
-        //.frontPic = gMonFrontPic_BasculegionMale,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
-        //.backPic = gMonBackPic_BasculegionMale,
-        .backPicSize = MON_COORDS_SIZE(64, 64),
-        //.palette = gMonPalette_BasculegionMale,
-        //.shinyPalette = gMonShinyPalette_BasculegionMale,
-        .iconPalIndex = 1,
-        BASCULEGION_MISC_INFO,
-    },
-
-    [SPECIES_BASCULEGION_FEMALE] =
-    {
-        .baseHP        = 120,
-        .baseAttack    = 92,
-        .baseDefense   = 65,
-        .baseSpeed     = 78,
-        .baseSpAttack  = 100,
-        .baseSpDefense = 75,
-        .genderRatio = MON_FEMALE,
-        //.frontPic = gMonFrontPic_BasculegionFemale,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
-        //.backPic = gMonBackPic_BasculegionFemale,
-        .backPicSize = MON_COORDS_SIZE(64, 64),
-        //.palette = gMonPalette_BasculegionFemale,
-        //.shinyPalette = gMonShinyPalette_BasculegionFemale,
-        .iconPalIndex = 0,
-        BASCULEGION_MISC_INFO,
-    },
-
-#define ENAMORUS_MISC_INFO                                              \
-        .types = { TYPE_FAIRY, TYPE_FLYING},                            \
-        .catchRate = 3,                                                 \
-        .evYield_SpAttack  = 3,                                         \
-        .genderRatio = MON_FEMALE,                                      \
-        .eggCycles = 120,                                               \
-        .friendship = 90,                                               \
-        .growthRate = GROWTH_SLOW,                                      \
-        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED}, \
-        .bodyColor = BODY_COLOR_PINK,                                   \
-        .noFlip = FALSE,                                                \
-        .flags = SPECIES_FLAG_LEGENDARY,                                \
-        .natDexNum = NATIONAL_DEX_ENAMORUS,                             \
-        .pokemonScale = 356,                                            \
-        .pokemonOffset = 17,                                            \
-        .trainerScale = 256,                                            \
-        .trainerOffset = 0,                                             \
-        .height = 16,                                                   \
-        .weight = 480,                                                  \
-        .levelUpLearnset = sEnamorusLevelUpLearnset,                    \
-        .teachableLearnset = sEnamorusTeachableLearnset
-//        .footprint = gMonFootprint_Enamorus
-
-    [SPECIES_ENAMORUS_INCARNATE] =
-    {
-        .baseHP        = 74,
-        .baseAttack    = 115,
-        .baseDefense   = 70,
-        .baseSpeed     = 106,
-        .baseSpAttack  = 135,
-        .baseSpDefense = 80,
-        .expYield = 261,
-        .abilities = {ABILITY_HEALER, ABILITY_NONE, ABILITY_CONTRARY},
-        //.cryId = CRY_ENAMORUS_INCARNATE,
-        .description = gEnamorusIncarnatePokedexText,
-        .categoryName = _("Love-Hate"),
-        //.frontPic = gMonFrontPic_EnamorusIncarnate,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
-        //.backPic = gMonBackPic_EnamorusIncarnate,
-        .backPicSize = MON_COORDS_SIZE(64, 64),
-        //.palette = gMonPalette_EnamorusIncarnate,
-        //.shinyPalette = gMonShinyPalette_EnamorusIncarnate,
-        .iconPalIndex = 1,
-        .frontAnimFrames = sAnims_EnamorusIncarnate,
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .backAnimId = BACK_ANIM_NONE,
-        ENAMORUS_MISC_INFO,
-    },
-
-    [SPECIES_ENAMORUS_THERIAN] =
-    {
-        .baseHP        = 74,
-        .baseAttack    = 115,
-        .baseDefense   = 110,
-        .baseSpeed     = 46,
-        .baseSpAttack  = 135,
-        .baseSpDefense = 100,
-        .expYield = 270,
-        .abilities = {ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_OVERCOAT},
-        //.cryId = CRY_ENAMORUS_THERIAN,
-        .description = gEnamorusTherianPokedexText,
-        .categoryName = _("Love-Hate"),
-        //.frontPic = gMonFrontPic_EnamorusTherian,
-        .frontPicSize = MON_COORDS_SIZE(64, 64),
-        //.backPic = gMonBackPic_EnamorusTherian,
-        .backPicSize = MON_COORDS_SIZE(64, 64),
-        //.palette = gMonPalette_EnamorusTherian,
-        //.shinyPalette = gMonShinyPalette_EnamorusTherian,
-        .iconPalIndex = 1,
-        .frontAnimFrames = sAnims_EnamorusTherian,
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .backAnimId = BACK_ANIM_NONE,
-        ENAMORUS_MISC_INFO,
     },
 #endif
     [SPECIES_EGG] =

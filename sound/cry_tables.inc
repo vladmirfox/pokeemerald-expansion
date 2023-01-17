@@ -617,6 +617,7 @@ gCryTable::
 	cry Cry_Petilil
 	cry Cry_Lilligant
 	cry Cry_Basculin
+    @cry Cry_Basculegion
 	cry Cry_Sandile
 	cry Cry_Krokorok
 	cry Cry_Krookodile
@@ -630,6 +631,7 @@ gCryTable::
 	cry Cry_Sigilyph
 	cry Cry_Yamask
 	cry Cry_Cofagrigus
+	cry Cry_Runerigus
 	cry Cry_Tirtouga
 	cry Cry_Carracosta
 	cry Cry_Archen
@@ -715,6 +717,8 @@ gCryTable::
 	cry Cry_Zekrom
 	cry Cry_LandorusIncarnate
 	cry Cry_LandorusTherian
+    @cry Cry_EnamorusIncarnate
+    @cry Cry_EnamorusTherian
 	cry Cry_Kyurem
 	cry Cry_KyuremWhite
 	cry Cry_KyuremBlack
@@ -955,7 +959,6 @@ gCryTable::
 	cry Cry_Impidimp
 	cry Cry_Morgrem
 	cry Cry_Grimmsnarl
-	cry Cry_Runerigus
 	cry Cry_Milcery
 	cry Cry_Alcremie
 	cry Cry_Falinks
@@ -994,9 +997,6 @@ gCryTable::
 	cry Cry_Calyrex
 	cry Cry_CalyrexIceRider
 	cry Cry_CalyrexShadowRider
-    @cry Cry_Basculegion
-    @cry Cry_EnamorusIncarnate
-    @cry Cry_EnamorusTherian
 .endif
 
 	.align 2
@@ -1618,6 +1618,7 @@ gCryTable_Reverse::
 	cry_reverse Cry_Petilil
 	cry_reverse Cry_Lilligant
 	cry_reverse Cry_Basculin
+    @cry_reverse Cry_Basculegion
 	cry_reverse Cry_Sandile
 	cry_reverse Cry_Krokorok
 	cry_reverse Cry_Krookodile
@@ -1631,6 +1632,7 @@ gCryTable_Reverse::
 	cry_reverse Cry_Sigilyph
 	cry_reverse Cry_Yamask
 	cry_reverse Cry_Cofagrigus
+	cry_reverse Cry_Runerigus
 	cry_reverse Cry_Tirtouga
 	cry_reverse Cry_Carracosta
 	cry_reverse Cry_Archen
@@ -1716,6 +1718,8 @@ gCryTable_Reverse::
 	cry_reverse Cry_Zekrom
 	cry_reverse Cry_LandorusIncarnate
 	cry_reverse Cry_LandorusTherian
+    @cry_reverse Cry_EnamorusIncarnate
+    @cry_reverse Cry_EnamorusTherian
 	cry_reverse Cry_Kyurem
 	cry_reverse Cry_KyuremWhite
 	cry_reverse Cry_KyuremBlack
@@ -1956,7 +1960,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_Impidimp
 	cry_reverse Cry_Morgrem
 	cry_reverse Cry_Grimmsnarl
-	cry_reverse Cry_Runerigus
 	cry_reverse Cry_Milcery
 	cry_reverse Cry_Alcremie
 	cry_reverse Cry_Falinks
@@ -1995,7 +1998,4 @@ gCryTable_Reverse::
 	cry_reverse Cry_Calyrex
 	cry_reverse Cry_CalyrexIceRider
 	cry_reverse Cry_CalyrexShadowRider
-    @cry_reverse Cry_Basculegion
-    @cry_reverse Cry_EnamorusIncarnate
-    @cry_reverse Cry_EnamorusTherian
 .endif

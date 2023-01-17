@@ -4116,6 +4116,12 @@ const u8 gBasculinWhiteStripedPokedexText[] = _(
     "it differs in several respects, including\n"
     "demeanor, being much gentler than others.");
 
+const u8 gBasculegionPokedexText[] = _(
+    "Clads itself in the souls of comrades that\n"
+    "perished before fulfilling their goals of\n"
+    "journeying upstream. No other species in\n"
+    "all Hisui's rivers is Basculegion's equal.");
+
 const u8 gSandilePokedexText[] = _(
     "It conceals itself in the sand and\n"
     "chomps down on the legs of any prey\n"
@@ -4205,6 +4211,11 @@ const u8 gCofagrigusPokedexText[] = _(
     "real coffins and get too close end up\n"
     "trapped inside their bodies. Their bodies\n"
     "are covered in pure gold.");
+
+const u8 gRunerigusPokedexText[] = _(
+    "A powerful curse was woven into an ancient\n"
+    "painting. After absorbing the spirit of\n"
+    "a Yamask, the painting began to move.");
 
 const u8 gTirtougaPokedexText[] = _(
     "Reputed to be the ancestor of most\n"
@@ -4725,6 +4736,14 @@ const u8 gLandorusIncarnatePokedexText[] = _(
     "hailed as “The Guardian of the Fields.”");
 
 const u8 gLandorusTherianPokedexText[] = _("");
+
+const u8 gEnamorusIncarnatePokedexText[] = _(
+    "Its arrival brings an end to the winter.\n"
+    "According to legend, this Pokemon's love\n"
+    "gives rise to the budding of fresh life\n"
+    "across the land.");
+
+const u8 gEnamorusTherianPokedexText[] = _("");
 
 const u8 gKyuremPokedexText[] = _(
     "This legendary ice Pokémon waits for a\n"
@@ -6276,11 +6295,6 @@ const u8 gGrimmsnarlPokedexText[] = _(
 
 const u8 gGrimmsnarlGigantamaxPokedexText[] = _("");
 
-const u8 gRunerigusPokedexText[] = _(
-    "A powerful curse was woven into an ancient\n"
-    "painting. After absorbing the spirit of\n"
-    "a Yamask, the painting began to move.");
-
 const u8 gMilceryPokedexText[] = _(
     "This Pokémon was born from sweet-smelling\n"
     "particles in the air. Its body is made\n"
@@ -6487,19 +6501,5 @@ const u8 gCalyrexPokedexText[] = _(
 const u8 gCalyrexIceRiderPokedexText[] = _("");
 
 const u8 gCalyrexShadowRiderPokedexText[] = _("");
-
-const u8 gBasculegionPokedexText[] = _(
-    "Clads itself in the souls of comrades that\n"
-    "perished before fulfilling their goals of\n"
-    "journeying upstream. No other species in\n"
-    "all Hisui's rivers is Basculegion's equal.");
-
-const u8 gEnamorusIncarnatePokedexText[] = _(
-    "Its arrival brings an end to the winter.\n"
-    "According to legend, this Pokemon's love\n"
-    "gives rise to the budding of fresh life\n"
-    "across the land.");
-
-const u8 gEnamorusTherianPokedexText[] = _("");
 
 #endif

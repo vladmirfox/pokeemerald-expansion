@@ -6671,6 +6671,8 @@ static const union AnimCmd sAnim_Basculin_1[] =
     ANIMCMD_END,
 };
 
+PLACEHOLDER_ANIM_SINGLE_FRAME(Basculegion);
+
 static const union AnimCmd sAnim_Sandile_1[] =
 {
     ANIMCMD_FRAME(0, 20),
@@ -6819,6 +6821,8 @@ static const union AnimCmd sAnim_Cofagrigus_1[] =
     ANIMCMD_FRAME(0, 10),
     ANIMCMD_END,
 };
+
+PLACEHOLDER_ANIM_SINGLE_FRAME(Runerigus);
 
 static const union AnimCmd sAnim_Tirtouga_1[] =
 {
@@ -7746,6 +7750,9 @@ static const union AnimCmd sAnim_LandorusTherian_1[] =
     ANIMCMD_FRAME(0, 15),
     ANIMCMD_END,
 };
+
+PLACEHOLDER_ANIM_SINGLE_FRAME(EnamorusIncarnate);
+PLACEHOLDER_ANIM_SINGLE_FRAME(EnamorusTherian);
 
 static const union AnimCmd sAnim_Kyurem_1[] =
 {
@@ -8830,7 +8837,6 @@ PLACEHOLDER_ANIM_SINGLE_FRAME(Impidimp);
 PLACEHOLDER_ANIM_SINGLE_FRAME(Morgrem);
 PLACEHOLDER_ANIM_SINGLE_FRAME(Grimmsnarl);
 PLACEHOLDER_ANIM_SINGLE_FRAME(GrimmsnarlGigantamax);
-PLACEHOLDER_ANIM_SINGLE_FRAME(Runerigus);
 PLACEHOLDER_ANIM_SINGLE_FRAME(Milcery);
 PLACEHOLDER_ANIM_SINGLE_FRAME(Alcremie);
 PLACEHOLDER_ANIM_SINGLE_FRAME(AlcremieGigantamax);
@@ -8865,9 +8871,6 @@ PLACEHOLDER_ANIM_SINGLE_FRAME(Zarude);
 PLACEHOLDER_ANIM_SINGLE_FRAME(Glastrier);
 PLACEHOLDER_ANIM_SINGLE_FRAME(Spectrier);
 PLACEHOLDER_ANIM_SINGLE_FRAME(Calyrex);
-PLACEHOLDER_ANIM_SINGLE_FRAME(Basculegion);
-PLACEHOLDER_ANIM_SINGLE_FRAME(EnamorusIncarnate);
-PLACEHOLDER_ANIM_SINGLE_FRAME(EnamorusTherian);
 #endif
 
 #define SINGLE_ANIMATION(name)                      \
@@ -9596,6 +9599,7 @@ SINGLE_ANIMATION(Petilil);
 SINGLE_ANIMATION(Lilligant);
 SINGLE_ANIMATION(LilligantHisuian);
 SINGLE_ANIMATION(Basculin);
+SINGLE_ANIMATION(Basculegion);
 SINGLE_ANIMATION(Sandile);
 SINGLE_ANIMATION(Krokorok);
 DOUBLE_ANIMATION(Krookodile);
@@ -9615,6 +9619,7 @@ SINGLE_ANIMATION(Yamask);
 SINGLE_ANIMATION(YamaskGalarian);
 SINGLE_ANIMATION(StunfiskGalarian);
 SINGLE_ANIMATION(Cofagrigus);
+SINGLE_ANIMATION(Runerigus);
 SINGLE_ANIMATION(Tirtouga);
 SINGLE_ANIMATION(Carracosta);
 SINGLE_ANIMATION(Archen);
@@ -9704,6 +9709,8 @@ SINGLE_ANIMATION(Reshiram);
 SINGLE_ANIMATION(Zekrom);
 SINGLE_ANIMATION(LandorusIncarnate);
 SINGLE_ANIMATION(LandorusTherian);
+SINGLE_ANIMATION(EnamorusIncarnate);
+SINGLE_ANIMATION(EnamorusTherian);
 SINGLE_ANIMATION(Kyurem);
 SINGLE_ANIMATION(KyuremBlack);
 SINGLE_ANIMATION(KyuremWhite);
@@ -9959,7 +9966,6 @@ SINGLE_ANIMATION(Impidimp);
 SINGLE_ANIMATION(Morgrem);
 SINGLE_ANIMATION(Grimmsnarl);
 SINGLE_ANIMATION(GrimmsnarlGigantamax);
-SINGLE_ANIMATION(Runerigus);
 SINGLE_ANIMATION(Milcery);
 SINGLE_ANIMATION(Alcremie);
 SINGLE_ANIMATION(AlcremieGigantamax);
@@ -9994,7 +10000,4 @@ SINGLE_ANIMATION(Zarude);
 SINGLE_ANIMATION(Glastrier);
 SINGLE_ANIMATION(Spectrier);
 SINGLE_ANIMATION(Calyrex);
-SINGLE_ANIMATION(Basculegion);
-SINGLE_ANIMATION(EnamorusIncarnate);
-SINGLE_ANIMATION(EnamorusTherian);
 #endif
