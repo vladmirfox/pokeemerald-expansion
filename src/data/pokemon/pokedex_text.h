@@ -2243,6 +2243,12 @@ const u8 gLinooneGalarianPokedexText[] = _(
     "than itself. It uses its long tongue to\n"
     "taunt them to then tackle forcefully.");
 
+const u8 gObstagoonPokedexText[] = _(
+    "Its voice is staggering in volume.\n"
+    "Obstagoon has a tendency to take on a\n"
+    "threatening posture and shout--this move\n"
+    "is known as Obstruct.");
+
 const u8 gWurmplePokedexText[] = _(
     "It sticks to tree branches and eats\n"
     "leaves. The thread it spits from its mouth,\n"
@@ -2428,6 +2434,12 @@ const u8 gNosepassPokedexText[] = _(
     "It feeds on prey that is pulled in by the\n"
     "force. Its magnetism is stronger in cold\n"
     "seasons.");
+
+const u8 gProbopassPokedexText[] = _(
+    "It freely controls three units called\n"
+    "Mini-Noses using magnetic force.\n"
+    "With them, it can attack its foes from\n"
+    "three directions.");
 
 const u8 gTorkoalPokedexText[] = _(
     "It battles using energy it gets from\n"
@@ -2618,6 +2630,12 @@ const u8 gGlalieMegaPokedexText[] = _(
     "that it smashed Glalie's jaw. Its inability\n"
     "to eat very well leaves Glalie irritated.");
 
+const u8 gFroslassPokedexText[] = _(
+    "When it finds people or Pokémon it likes,\n"
+    "it freezes them and takes them to its\n"
+    "chilly den, where they become its\n"
+    "decorations.");
+
 const u8 gLunatonePokedexText[] = _(
     "It becomes very active on the night of\n"
     "a full moon. This Pokémon was first\n"
@@ -2714,11 +2732,29 @@ const u8 gDusclopsPokedexText[] = _(
     "However, no one has been able to\n"
     "confirm this theory as fact.");
 
+const u8 gDusknoirPokedexText[] = _(
+    "This feared Pokémon is said to travel to\n"
+    "worlds unknown. Some even believe that\n"
+    "it takes lost spirits into its pliant body\n"
+    "and guides them home.");
+
+const u8 gBudewPokedexText[] = _(
+    "Over the winter, it closes its bud and\n"
+    "endures the cold. Sensitive to changing\n"
+    "temperature, the bud is said to bloom\n"
+    "when it feels the sun's warm touch.");
+
 const u8 gRoseliaPokedexText[] = _(
     "A Roselia that drinks nutritionally rich\n"
     "springwater blooms with lovely flowers.\n"
     "The fragrance of its flowers has the\n"
     "effect of making its foes careless.");
+
+const u8 gRoseradePokedexText[] = _(
+    "Its sweet aroma attracts prey.\n"
+    "With the movements of a dancer,\n"
+    "it strikes with whips that are densely\n"
+    "lined with poison thorns.");
 
 const u8 gSlakothPokedexText[] = _(
     "It sleeps virtually all day and night long.\n"
@@ -2947,6 +2983,18 @@ const u8 gGardevoirMegaPokedexText[] = _(
     "power. The red plate in its chest is said to\n"
     "be a physical manifestation of its heart.");
 
+const u8 gGalladePokedexText[] = _(
+    "A master of courtesy and swordsmanship,\n"
+    "it fights using extending swords on its\n"
+    "elbows when trying to protect someone.\n"
+    "It can sense what its foe is thinking.");
+
+const u8 gGalladeMegaPokedexText[] = _(
+    "Mega Gallade has a knightly appearance.\n"
+    "It can use its psychic power to reshape\n"
+    "both arms into blades simultaneously and\n"
+    "fight using a dual-wielding style.");
+
 const u8 gBagonPokedexText[] = _(
     "Although it is small, this Pokémon is very\n"
     "powerful because its body is a bundle of\n"
@@ -3011,6 +3059,24 @@ const u8 gRegisteelPokedexText[] = _(
     "metal. The body metal is composed of a\n"
     "mysterious substance. Not only is it hard,\n"
     "it shrinks and stretches flexibly.");
+
+const u8 gRegielekiPokedexText[] = _(
+    "This Pokémon is a cluster of electrical\n"
+    "energy. It's said that removing the rings\n"
+    "on Regieleki's body will unleash the\n"
+    "Pokémon's latent power.");
+
+const u8 gRegidragoPokedexText[] = _(
+    "An academic theory proposes that\n"
+    "Regidrago's arms were once the head of an\n"
+    "ancient dragon Pokémon. The theory\n"
+    "remains unproven.");
+
+const u8 gRegigigasPokedexText[] = _(
+    "There is an enduring legend that\n"
+    "states this Pokémon shaped Regirock,\n"
+    "Regice, and Registeel out of clay, ice,\n"
+    "and magma.");
 
 const u8 gKyogrePokedexText[] = _(
     "Kyogre has appeared in mythology as the\n"
@@ -3083,6 +3149,12 @@ const u8 gDeoxysPokedexText[] = _(
     "from space. It is highly intelligent and\n"
     "can shoot lasers from the crystalline\n"
     "organ on its chest.");
+
+const u8 gChinglingPokedexText[] = _(
+    "There is an orb inside its mouth.\n"
+    "When it hops, the orb bounces all\n"
+    "over and makes a ringing sound.\n"
+    "It can cry for an awfully long time.");
 
 const u8 gChimechoPokedexText[] = _(
     "They fly about very actively when the hot\n"
@@ -3204,18 +3276,6 @@ const u8 gLuxrayPokedexText[] = _(
     "anything. Luxray's ability to see\n"
     "through objects comes in handy when\n"
     "it's scouting for danger.");
-
-const u8 gBudewPokedexText[] = _(
-    "Over the winter, it closes its bud and\n"
-    "endures the cold. Sensitive to changing\n"
-    "temperature, the bud is said to bloom\n"
-    "when it feels the sun's warm touch.");
-
-const u8 gRoseradePokedexText[] = _(
-    "Its sweet aroma attracts prey.\n"
-    "With the movements of a dancer,\n"
-    "it strikes with whips that are densely\n"
-    "lined with poison thorns.");
 
 const u8 gCranidosPokedexText[] = _(
     "A lifelong jungle dweller from 100 million\n"
@@ -3397,12 +3457,6 @@ const u8 gPuruglyPokedexText[] = _(
     "it as its own. It binds its body with its\n"
     "tails to make itself look bigger.");
 
-const u8 gChinglingPokedexText[] = _(
-    "There is an orb inside its mouth.\n"
-    "When it hops, the orb bounces all\n"
-    "over and makes a ringing sound.\n"
-    "It can cry for an awfully long time.");
-
 const u8 gStunkyPokedexText[] = _(
     "It protects itself by spraying a\n"
     "nose-curling, stinky fluid from its rear\n"
@@ -3553,36 +3607,6 @@ const u8 gAbomasnowMegaPokedexText[] = _(
     "Dislikes associating with others and\n"
     "chooses to live quietly deep in mountains.");
 
-const u8 gGalladePokedexText[] = _(
-    "A master of courtesy and swordsmanship,\n"
-    "it fights using extending swords on its\n"
-    "elbows when trying to protect someone.\n"
-    "It can sense what its foe is thinking.");
-
-const u8 gGalladeMegaPokedexText[] = _(
-    "Mega Gallade has a knightly appearance.\n"
-    "It can use its psychic power to reshape\n"
-    "both arms into blades simultaneously and\n"
-    "fight using a dual-wielding style.");
-
-const u8 gProbopassPokedexText[] = _(
-    "It freely controls three units called\n"
-    "Mini-Noses using magnetic force.\n"
-    "With them, it can attack its foes from\n"
-    "three directions.");
-
-const u8 gDusknoirPokedexText[] = _(
-    "This feared Pokémon is said to travel to\n"
-    "worlds unknown. Some even believe that\n"
-    "it takes lost spirits into its pliant body\n"
-    "and guides them home.");
-
-const u8 gFroslassPokedexText[] = _(
-    "When it finds people or Pokémon it likes,\n"
-    "it freezes them and takes them to its\n"
-    "chilly den, where they become its\n"
-    "decorations.");
-
 const u8 gRotomPokedexText[] = _(
     "Its body is composed of plasma and loves\n"
     "to surprise others. One boy's invention led\n"
@@ -3666,12 +3690,6 @@ const u8 gHeatranPokedexText[] = _(
     "through its body. It dwells in volcanic\n"
     "caves, using its cross-shaped feet\n"
     "to crawl on ceilings and walls.");
-
-const u8 gRegigigasPokedexText[] = _(
-    "There is an enduring legend that\n"
-    "states this Pokémon shaped Regirock,\n"
-    "Regice, and Registeel out of clay, ice,\n"
-    "and magma.");
 
 const u8 gGiratinaAlteredPokedexText[] = _(
     "This Pokémon is said to live in a world\n"
@@ -6258,12 +6276,6 @@ const u8 gGrimmsnarlPokedexText[] = _(
 
 const u8 gGrimmsnarlGigantamaxPokedexText[] = _("");
 
-const u8 gObstagoonPokedexText[] = _(
-    "Its voice is staggering in volume.\n"
-    "Obstagoon has a tendency to take on a\n"
-    "threatening posture and shout--this move\n"
-    "is known as Obstruct.");
-
 const u8 gRunerigusPokedexText[] = _(
     "A powerful curse was woven into an ancient\n"
     "painting. After absorbing the spirit of\n"
@@ -6454,18 +6466,6 @@ const u8 gZarudePokedexText[] = _(
     "Pokémon of the forest fear it.");
 
 const u8 gZarudeDadaPokedexText[] = _("");
-
-const u8 gRegielekiPokedexText[] = _(
-    "This Pokémon is a cluster of electrical\n"
-    "energy. It's said that removing the rings\n"
-    "on Regieleki's body will unleash the\n"
-    "Pokémon's latent power.");
-
-const u8 gRegidragoPokedexText[] = _(
-    "An academic theory proposes that\n"
-    "Regidrago's arms were once the head of an\n"
-    "ancient dragon Pokémon. The theory\n"
-    "remains unproven.");
 
 const u8 gGlastrierPokedexText[] = _(
     "Glastrier emits intense cold from its\n"

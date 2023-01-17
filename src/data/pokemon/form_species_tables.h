@@ -467,6 +467,12 @@ static const u16 sGardevoirFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 
+static const u16 sGalladeFormSpeciesIdTable[] = {
+    SPECIES_GALLADE,
+    SPECIES_GALLADE_MEGA,
+    FORM_SPECIES_END,
+};
+
 static const u16 sSableyeFormSpeciesIdTable[] = {
     SPECIES_SABLEYE,
     SPECIES_SABLEYE_MEGA,
@@ -645,12 +651,6 @@ static const u16 sLucarioFormSpeciesIdTable[] = {
 static const u16 sAbomasnowFormSpeciesIdTable[] = {
     SPECIES_ABOMASNOW,
     SPECIES_ABOMASNOW_MEGA,
-    FORM_SPECIES_END,
-};
-
-static const u16 sGalladeFormSpeciesIdTable[] = {
-    SPECIES_GALLADE,
-    SPECIES_GALLADE_MEGA,
     FORM_SPECIES_END,
 };
 

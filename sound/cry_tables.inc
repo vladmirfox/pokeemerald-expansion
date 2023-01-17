@@ -323,6 +323,7 @@ gCryTable::
 	cry Cry_Mightyena
 	cry Cry_Zigzagoon
 	cry Cry_Linoone
+	cry Cry_Obstagoon
 	cry Cry_Wurmple
 	cry Cry_Silcoon
 	cry Cry_Beautifly
@@ -342,6 +343,8 @@ gCryTable::
 	cry Cry_Kirlia
 	cry Cry_Gardevoir
 	cry Cry_GardevoirMega
+	cry Cry_Gallade
+	cry Cry_GalladeMega
 	cry Cry_Surskit
 	cry Cry_Masquerain
 	cry Cry_Shroomish
@@ -358,6 +361,7 @@ gCryTable::
 	cry Cry_Makuhita
 	cry Cry_Hariyama
 	cry Cry_Nosepass
+	cry Cry_Probopass
 	cry Cry_Skitty
 	cry Cry_Delcatty
 	cry Cry_Sableye
@@ -378,7 +382,9 @@ gCryTable::
 	cry Cry_Minun
 	cry Cry_Volbeat
 	cry Cry_Illumise
+	cry Cry_Budew
 	cry Cry_Roselia
+	cry Cry_Roserade
 	cry Cry_Gulpin
 	cry Cry_Swalot
 	cry Cry_Carvanha
@@ -424,13 +430,16 @@ gCryTable::
 	cry Cry_BanetteMega
 	cry Cry_Duskull
 	cry Cry_Dusclops
+	cry Cry_Dusknoir
 	cry Cry_Tropius
+	cry Cry_Chingling
 	cry Cry_Chimecho
 	cry Cry_Absol
 	cry Cry_AbsolMega
 	cry Cry_Snorunt
 	cry Cry_Glalie
 	cry Cry_GlalieMega
+	cry Cry_Froslass
 	cry Cry_Spheal
 	cry Cry_Sealeo
 	cry Cry_Walrein
@@ -450,6 +459,9 @@ gCryTable::
 	cry Cry_Regirock
 	cry Cry_Regice
 	cry Cry_Registeel
+	cry Cry_Regieleki
+	cry Cry_Regidrago
+	cry Cry_Regigigas
 	cry Cry_Latias
 	cry Cry_LatiasMega
 	cry Cry_Latios
@@ -482,8 +494,6 @@ gCryTable::
 	cry Cry_Shinx
 	cry Cry_Luxio
 	cry Cry_Luxray
-	cry Cry_Budew
-	cry Cry_Roserade
 	cry Cry_Cranidos
 	cry Cry_Rampardos
 	cry Cry_Shieldon
@@ -507,7 +517,6 @@ gCryTable::
 	cry Cry_LopunnyMega
 	cry Cry_Glameow
 	cry Cry_Purugly
-	cry Cry_Chingling
 	cry Cry_Stunky
 	cry Cry_Skuntank
 	cry Cry_Bronzor
@@ -533,11 +542,6 @@ gCryTable::
 	cry Cry_Snover
 	cry Cry_Abomasnow
 	cry Cry_AbomasnowMega
-	cry Cry_Gallade
-	cry Cry_GalladeMega
-	cry Cry_Probopass
-	cry Cry_Dusknoir
-	cry Cry_Froslass
 	cry Cry_Rotom
 	cry Cry_Uxie
 	cry Cry_Mesprit
@@ -545,7 +549,6 @@ gCryTable::
 	cry Cry_Dialga
 	cry Cry_Palkia
 	cry Cry_Heatran
-	cry Cry_Regigigas
 	cry Cry_Giratina
 	cry Cry_Cresselia
 	cry Cry_Phione
@@ -952,7 +955,6 @@ gCryTable::
 	cry Cry_Impidimp
 	cry Cry_Morgrem
 	cry Cry_Grimmsnarl
-	cry Cry_Obstagoon
 	cry Cry_Runerigus
 	cry Cry_Milcery
 	cry Cry_Alcremie
@@ -987,8 +989,6 @@ gCryTable::
 	cry Cry_UrshifuSingleStrikeStyle
 	cry Cry_UrshifuRapidStrikeStyle
 	cry Cry_Zarude
-	cry Cry_Regieleki
-	cry Cry_Regidrago
 	cry Cry_Glastrier
 	cry Cry_Spectrier
 	cry Cry_Calyrex
@@ -1324,6 +1324,7 @@ gCryTable_Reverse::
 	cry_reverse Cry_Mightyena
 	cry_reverse Cry_Zigzagoon
 	cry_reverse Cry_Linoone
+	cry_reverse Cry_Obstagoon
 	cry_reverse Cry_Wurmple
 	cry_reverse Cry_Silcoon
 	cry_reverse Cry_Beautifly
@@ -1343,6 +1344,8 @@ gCryTable_Reverse::
 	cry_reverse Cry_Kirlia
 	cry_reverse Cry_Gardevoir
 	cry_reverse Cry_GardevoirMega
+	cry_reverse Cry_Gallade
+	cry_reverse Cry_GalladeMega
 	cry_reverse Cry_Surskit
 	cry_reverse Cry_Masquerain
 	cry_reverse Cry_Shroomish
@@ -1359,6 +1362,7 @@ gCryTable_Reverse::
 	cry_reverse Cry_Makuhita
 	cry_reverse Cry_Hariyama
 	cry_reverse Cry_Nosepass
+	cry_reverse Cry_Probopass
 	cry_reverse Cry_Skitty
 	cry_reverse Cry_Delcatty
 	cry_reverse Cry_Sableye
@@ -1379,7 +1383,9 @@ gCryTable_Reverse::
 	cry_reverse Cry_Minun
 	cry_reverse Cry_Volbeat
 	cry_reverse Cry_Illumise
+	cry_reverse Cry_Budew
 	cry_reverse Cry_Roselia
+	cry_reverse Cry_Roserade
 	cry_reverse Cry_Gulpin
 	cry_reverse Cry_Swalot
 	cry_reverse Cry_Carvanha
@@ -1425,13 +1431,16 @@ gCryTable_Reverse::
 	cry_reverse Cry_BanetteMega
 	cry_reverse Cry_Duskull
 	cry_reverse Cry_Dusclops
+	cry_reverse Cry_Dusknoir
 	cry_reverse Cry_Tropius
+	cry_reverse Cry_Chingling
 	cry_reverse Cry_Chimecho
 	cry_reverse Cry_Absol
 	cry_reverse Cry_AbsolMega
 	cry_reverse Cry_Snorunt
 	cry_reverse Cry_Glalie
 	cry_reverse Cry_GlalieMega
+	cry_reverse Cry_Froslass
 	cry_reverse Cry_Spheal
 	cry_reverse Cry_Sealeo
 	cry_reverse Cry_Walrein
@@ -1451,6 +1460,9 @@ gCryTable_Reverse::
 	cry_reverse Cry_Regirock
 	cry_reverse Cry_Regice
 	cry_reverse Cry_Registeel
+	cry_reverse Cry_Regieleki
+	cry_reverse Cry_Regidrago
+	cry_reverse Cry_Regigigas
 	cry_reverse Cry_Latias
 	cry_reverse Cry_LatiasMega
 	cry_reverse Cry_Latios
@@ -1483,8 +1495,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_Shinx
 	cry_reverse Cry_Luxio
 	cry_reverse Cry_Luxray
-	cry_reverse Cry_Budew
-	cry_reverse Cry_Roserade
 	cry_reverse Cry_Cranidos
 	cry_reverse Cry_Rampardos
 	cry_reverse Cry_Shieldon
@@ -1508,7 +1518,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_LopunnyMega
 	cry_reverse Cry_Glameow
 	cry_reverse Cry_Purugly
-	cry_reverse Cry_Chingling
 	cry_reverse Cry_Stunky
 	cry_reverse Cry_Skuntank
 	cry_reverse Cry_Bronzor
@@ -1534,11 +1543,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_Snover
 	cry_reverse Cry_Abomasnow
 	cry_reverse Cry_AbomasnowMega
-	cry_reverse Cry_Gallade
-	cry_reverse Cry_GalladeMega
-	cry_reverse Cry_Probopass
-	cry_reverse Cry_Dusknoir
-	cry_reverse Cry_Froslass
 	cry_reverse Cry_Rotom
 	cry_reverse Cry_Uxie
 	cry_reverse Cry_Mesprit
@@ -1546,7 +1550,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_Dialga
 	cry_reverse Cry_Palkia
 	cry_reverse Cry_Heatran
-	cry_reverse Cry_Regigigas
 	cry_reverse Cry_Giratina
 	cry_reverse Cry_Cresselia
 	cry_reverse Cry_Phione
@@ -1953,7 +1956,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_Impidimp
 	cry_reverse Cry_Morgrem
 	cry_reverse Cry_Grimmsnarl
-	cry_reverse Cry_Obstagoon
 	cry_reverse Cry_Runerigus
 	cry_reverse Cry_Milcery
 	cry_reverse Cry_Alcremie
@@ -1988,8 +1990,6 @@ gCryTable_Reverse::
 	cry_reverse Cry_UrshifuSingleStrikeStyle
 	cry_reverse Cry_UrshifuRapidStrikeStyle
 	cry_reverse Cry_Zarude
-	cry_reverse Cry_Regieleki
-	cry_reverse Cry_Regidrago
 	cry_reverse Cry_Glastrier
 	cry_reverse Cry_Spectrier
 	cry_reverse Cry_Calyrex
