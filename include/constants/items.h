@@ -937,6 +937,8 @@
 
 // Temp items
 #define ITEM_BLACK_AUGURITE ITEM_NONE
+#define ITEM_LINKING_CORD   ITEM_NONE
+#define ITEM_PEAT_BLOCK     ITEM_NONE
 
 // Range of berries given out by various NPCS
 #define FIRST_BERRY_MASTER_BERRY      ITEM_POMEG_BERRY
