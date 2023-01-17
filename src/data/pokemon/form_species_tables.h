@@ -50,6 +50,12 @@ static const u16 sRaticateFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 
+static const u16 sPichuFormSpeciesIdTable[] = {
+    SPECIES_PICHU,
+    SPECIES_PICHU_SPIKY_EARED,
+    FORM_SPECIES_END,
+};
+
 static const u16 sPikachuFormSpeciesIdTable[] = {
     SPECIES_PIKACHU,
     SPECIES_PIKACHU_COSPLAY,
@@ -224,6 +230,12 @@ static const u16 sGengarFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 
+static const u16 sSteelixFormSpeciesIdTable[] = {
+    SPECIES_STEELIX,
+    SPECIES_STEELIX_MEGA,
+    FORM_SPECIES_END,
+};
+
 static const u16 sVoltorbFormSpeciesIdTable[] = {
     SPECIES_VOLTORB,
     SPECIES_VOLTORB_HISUIAN,
@@ -263,6 +275,12 @@ static const u16 sKangaskhanFormSpeciesIdTable[] = {
 static const u16 sMrMimeFormSpeciesIdTable[] = {
     SPECIES_MR_MIME,
     SPECIES_MR_MIME_GALARIAN,
+    FORM_SPECIES_END,
+};
+
+static const u16 sScizorFormSpeciesIdTable[] = {
+    SPECIES_SCIZOR,
+    SPECIES_SCIZOR_MEGA,
     FORM_SPECIES_END,
 };
 
@@ -333,12 +351,6 @@ static const u16 sMewtwoFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 
-static const u16 sPichuFormSpeciesIdTable[] = {
-    SPECIES_PICHU,
-    SPECIES_PICHU_SPIKY_EARED,
-    FORM_SPECIES_END,
-};
-
 static const u16 sAmpharosFormSpeciesIdTable[] = {
     SPECIES_AMPHAROS,
     SPECIES_AMPHAROS_MEGA,
@@ -392,18 +404,6 @@ static const u16 sUnownFormSpeciesIdTable[] = {
     SPECIES_UNOWN_Z,
     SPECIES_UNOWN_EMARK,
     SPECIES_UNOWN_QMARK,
-    FORM_SPECIES_END,
-};
-
-static const u16 sSteelixFormSpeciesIdTable[] = {
-    SPECIES_STEELIX,
-    SPECIES_STEELIX_MEGA,
-    FORM_SPECIES_END,
-};
-
-static const u16 sScizorFormSpeciesIdTable[] = {
-    SPECIES_SCIZOR,
-    SPECIES_SCIZOR_MEGA,
     FORM_SPECIES_END,
 };
 

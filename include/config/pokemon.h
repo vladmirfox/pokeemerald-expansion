@@ -32,14 +32,19 @@
 #define P_FLAG_FORCE_SHINY      0     // If this flag is set, all wild and gift Pokémon will forced into being Shiny.
 #define P_FLAG_FORCE_NO_SHINY   0     // If this flag is set, all wild and gift Pokémon will forced into NOT being Shiny.
 
-// Modifying the latest generation WILL change the saveblock due to Dex flags and will require a new save file.
-// Forms are kept based on the base species, Eg: Meowth and Persian will keep all of their forms, but Perrserker will not be available if P_GEN_8_POKEMON is set to FALSE.
-// If you're disabling a generation previous to others (eg: Gen 5 but not Gen 6, 7 and 8),
-// remember to update NATIONAL_DEX enum in include/constants/pokedex.h to avoid players from softlocking in the non-existant entries.
+// Enabled species settings
+// These settings will toggle evolution families that originated in the specified generation.
+// Forms, evolutions babies are included.
 #define P_GEN_4_POKEMON             TRUE        // Generation 4 Pokémon (DPPt, HGSS)
 #define P_GEN_5_POKEMON             TRUE        // Generation 5 Pokémon (BW, B2W2)
 #define P_GEN_6_POKEMON             TRUE        // Generation 6 Pokémon (XY, ORAS)
 #define P_GEN_7_POKEMON             TRUE        // Generation 7 Pokémon (SM, USUM, LGPE)
 #define P_GEN_8_POKEMON             TRUE        // Generation 8 Pokémon (SwSh, BDSP, LA)
+#define P_GEN_9_POKEMON             TRUE        // Generation 9 Pokémon (SV)
+
+// WARNING: By default, the expansion has 512 bytes reserved in SaveBlock1 to allow introducing new species and forms without breaking existing saves.
+// By disabling this feature, the amount of dex flags will be adjusted to the amount of species enabled in the previous section.
+// Only disable this if you are certain that you can't get save space somewhere else and you know that you're not going to modify the amount of species you're going to register in the Pokédex.
+#define P_DEX_FLAG_FUTURE_PROOFING  TRUE
 
 #endif // GUARD_CONFIG_POKEMON_H
