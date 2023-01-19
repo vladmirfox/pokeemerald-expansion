@@ -1344,7 +1344,7 @@ static void MarkPyramidTrainerAsBattled(u16 trainerId)
     gObjectEvents[gSelectedObjectEvent].initialCoords.y = gObjectEvents[gSelectedObjectEvent].currentCoords.y;
 }
 
-#ifdef BATTLE_PYRAMID_RANDOM_ENCOUNTERS == TRUE
+#if BATTLE_PYRAMID_RANDOM_ENCOUNTERS == TRUE
 // check if given species evolved from a specific evolutionary stone
 // if nItems is passed as 0, it will check for any EVO_ITEM case
 extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
@@ -1355,7 +1355,7 @@ static bool32 CheckBattlePyramidEvoRequirement(u16 species, u16 *evoItems, int n
     {
         for (j = 0; j < EVOS_PER_MON; j++)
         {
-            if (gEvolutionTable[i][j].species == species
+            if (gEvolutionTable[i][j].targetSpecies == species
                     && (gEvolutionTable[i][j].method == EVO_ITEM || gEvolutionTable[i][j].method == EVO_ITEM_MALE || gEvolutionTable[i][j].method == EVO_ITEM_FEMALE))
             {
                 if (nItems == 0)
@@ -1378,7 +1378,7 @@ static bool32 CheckBattlePyramidEvoRequirement(u16 species, u16 *evoItems, int n
     return FALSE;
 }
 
-
+extern u32 GetTotalBaseStat(u32 species);
 void GenerateBattlePyramidWildMon(void)
 {
     u8 name[POKEMON_NAME_LENGTH + 1];
