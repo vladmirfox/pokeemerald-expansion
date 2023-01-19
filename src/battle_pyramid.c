@@ -1463,7 +1463,7 @@ void GenerateBattlePyramidWildMon(void)
 
     // Set species, name
     SetMonData(&gEnemyParty[0], MON_DATA_SPECIES, &species);
-    CopySpeciesName(name, species);
+    GetSpeciesName(name, species);
     SetMonData(&gEnemyParty[0], MON_DATA_NICKNAME, &name);
     
     // set level
