@@ -1347,15 +1347,17 @@ static void MarkPyramidTrainerAsBattled(u16 trainerId)
 #ifdef BATTLE_PYRAMID_RANDOM_ENCOUNTERS
 // check if given species evolved from a specific evolutionary stone
 // if nItems is passed as 0, it will check for any EVO_ITEM case
+extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
 static bool32 CheckBattlePyramidEvoRequirement(u16 species, u16 *evoItems, int nItems)
 {
     u32 i, j, k;
     for (i = 0; i < NUM_SPECIES; i++)
     {
         for (j = 0; j < EVOS_PER_MON; j++)
-        {   
+        {
             if (gEvolutionTable[i][j].species == species
                     && (gEvolutionTable[i][j].method == EVO_ITEM || gEvolutionTable[i][j].method == EVO_ITEM_MALE || gEvolutionTable[i][j].method == EVO_ITEM_FEMALE))
+            {
                 if (nItems == 0)
                 {
                     // Any EVO_ITEM case will do
@@ -1407,7 +1409,7 @@ void GenerateBattlePyramidWildMon(void)
     {
         species = Random() % FORMS_START;
         // check type
-        if (reqs->type != TYPE_MYSTERY && !IsOfBaseType(species, reqs->type))
+        if (reqs->type != TYPE_MYSTERY && gSpeciesInfo[species].type1 != reqs->type && gSpeciesInfo[species].type2 != reqs->type)
             continue;
         
         // check base stat total
@@ -1421,7 +1423,7 @@ void GenerateBattlePyramidWildMon(void)
             // get list of moves that can be learned
             for (i = 0; i < reqs->nMoves; i++)
             {
-                if (CanTeachMove(species, reqs->moves[i]))
+                if (CanLearnTeachableMove(species, reqs->moves[i]))
                 {
                     moves[moveCount] = reqs->moves[i];
                     moveCount++;
