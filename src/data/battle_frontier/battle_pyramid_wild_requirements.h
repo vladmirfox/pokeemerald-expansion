@@ -1,3 +1,4 @@
+#if BATTLE_PYRAMID_RANDOM_ENCOUNTERS == TRUE
 
 #include "constants/abilities.h"
 #include "constants/battle_move_effects.h"
@@ -231,3 +232,5 @@ static const struct BattlePyramidRequirement sBattlePyramidRequirementsByRound[]
         .nMoves = NELEMS(sPowerfulNormalMoves),
     },
 };
+
+#endif
