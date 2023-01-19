@@ -143,15 +143,7 @@ static const struct BattlePyramidRequirement sBattlePyramidRequirementsByRound[]
         .abilities = { ABILITY_FLAME_BODY },
         .nAbilities = 1,
     },
-    [3] = /* pokemon that frostbite -> NOTE used to be ice types in round 7 */
-    {
-        .type = TYPE_MYSTERY,
-        .moves = sFrostbiteMoves,
-        .nMoves = NELEMS(sFrostbiteMoves),
-        .abilities = { ABILITY_FROZEN_BODY },
-        .nAbilities = 1,
-    },
-    [4] = /* pokemon with moves that waste PP */
+    [3] = /* pokemon with moves that waste PP */
     {
         .type = TYPE_MYSTERY,
         .moves = sPPReducingMoves,
@@ -159,18 +151,23 @@ static const struct BattlePyramidRequirement sBattlePyramidRequirementsByRound[]
         .abilities = { ABILITY_PRESSURE },
         .nAbilities = 1,
     },
-    [5] = /* pokemon with Levitate */
+    [4] = /* pokemon with Levitate */
     {
         .type = TYPE_MYSTERY,
         .abilities = { ABILITY_LEVITATE },
         .nAbilities = 1,
     },
-    [6] = /* pokemon with trapping abilities */
+    [5] = /* pokemon with trapping abilities */
     {
         .type = TYPE_MYSTERY,
         .abilities = { ABILITY_SHADOW_TAG, ABILITY_ARENA_TRAP }, // TODO magnet pull?
         .nAbilities = 2,
     },
+    [6] = /* ice types */
+    {
+        .type = TYPE_ICE,
+    },
+    
     [7] = /* pokemon with explosion effects */
     {
         .type = TYPE_MYSTERY,
