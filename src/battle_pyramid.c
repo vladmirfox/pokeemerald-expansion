@@ -1503,7 +1503,7 @@ void GenerateBattlePyramidWildMon(void)
     }
     
     // Initialize a random ability num
-    if (gSpeciesInfo[wildMons[id].species].abilities[1])
+    if (gSpeciesInfo[species].abilities[1])
     {
         i = GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY, NULL) % 2;
         SetMonData(&gEnemyParty[0], MON_DATA_ABILITY_NUM, &i);
