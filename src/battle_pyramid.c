@@ -1454,7 +1454,7 @@ void GenerateBattlePyramidWildMon(void)
                 continue;
         }
         // check evos
-        if (reqs->evoItems[0] != 0 && !CheckBattlePyramidEvoRequirement(species, reqs->evoItems, reqs->nEvoItems))
+        if (reqs->evoItems[0] != 0 && !CheckBattlePyramidEvoRequirement(species, &reqs->evoItems, reqs->nEvoItems))
             continue;
         
         // we found a species we can use!
