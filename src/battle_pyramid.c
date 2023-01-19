@@ -100,7 +100,7 @@ static bool8 TrySetPyramidObjectEventPositionAtCoords(bool8, u8, u8, u8 *, u8, u
 // Const rom data.
 #define ABILITY_RANDOM 2 // For wild mons data.
 
-#ifdef BATTLE_PYRAMID_RANDOM_ENCOUNTERS
+#if BATTLE_PYRAMID_RANDOM_ENCOUNTERS == TRUE
     #include "data/battle_frontier/battle_pyramid_wild_requirements.h"
 #else
     #include "data/battle_frontier/battle_pyramid_level_50_wild_mons.h"
@@ -1344,18 +1344,20 @@ static void MarkPyramidTrainerAsBattled(u16 trainerId)
     gObjectEvents[gSelectedObjectEvent].initialCoords.y = gObjectEvents[gSelectedObjectEvent].currentCoords.y;
 }
 
-#ifdef BATTLE_PYRAMID_RANDOM_ENCOUNTERS
+#if BATTLE_PYRAMID_RANDOM_ENCOUNTERS == TRUE
 // check if given species evolved from a specific evolutionary stone
 // if nItems is passed as 0, it will check for any EVO_ITEM case
-static bool32 CheckBattlePyramidEvoRequirement(u16 species, u16 *evoItems, int nItems)
+extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
+static bool32 CheckBattlePyramidEvoRequirement(u16 species, const u16 *evoItems, u8 nItems)
 {
     u32 i, j, k;
     for (i = 0; i < NUM_SPECIES; i++)
     {
         for (j = 0; j < EVOS_PER_MON; j++)
-        {   
-            if (gEvolutionTable[i][j].species == species
+        {
+            if (gEvolutionTable[i][j].targetSpecies == species
                     && (gEvolutionTable[i][j].method == EVO_ITEM || gEvolutionTable[i][j].method == EVO_ITEM_MALE || gEvolutionTable[i][j].method == EVO_ITEM_FEMALE))
+            {
                 if (nItems == 0)
                 {
                     // Any EVO_ITEM case will do
@@ -1376,7 +1378,7 @@ static bool32 CheckBattlePyramidEvoRequirement(u16 species, u16 *evoItems, int n
     return FALSE;
 }
 
-
+extern u32 GetTotalBaseStat(u32 species);
 void GenerateBattlePyramidWildMon(void)
 {
     u8 name[POKEMON_NAME_LENGTH + 1];
@@ -1407,7 +1409,7 @@ void GenerateBattlePyramidWildMon(void)
     {
         species = Random() % FORMS_START;
         // check type
-        if (reqs->type != TYPE_MYSTERY && !IsOfBaseType(species, reqs->type))
+        if (reqs->type != TYPE_MYSTERY && gSpeciesInfo[species].type1 != reqs->type && gSpeciesInfo[species].type2 != reqs->type)
             continue;
         
         // check base stat total
@@ -1421,7 +1423,7 @@ void GenerateBattlePyramidWildMon(void)
             // get list of moves that can be learned
             for (i = 0; i < reqs->nMoves; i++)
             {
-                if (CanTeachMove(species, reqs->moves[i]))
+                if (CanLearnTeachableMove(species, reqs->moves[i]))
                 {
                     moves[moveCount] = reqs->moves[i];
                     moveCount++;
@@ -1452,7 +1454,7 @@ void GenerateBattlePyramidWildMon(void)
                 continue;
         }
         // check evos
-        if (reqs->evos[0] != 0 && !CheckBattlePyramidEvoRequirement(species, reqs->evos))
+        if (reqs->evoItems[0] != 0 && !CheckBattlePyramidEvoRequirement(species, reqs->evoItems, reqs->nEvoItems))
             continue;
         
         // we found a species we can use!
@@ -1461,7 +1463,7 @@ void GenerateBattlePyramidWildMon(void)
 
     // Set species, name
     SetMonData(&gEnemyParty[0], MON_DATA_SPECIES, &species);
-    CopySpeciesName(name, species);
+    GetSpeciesName(name, species);
     SetMonData(&gEnemyParty[0], MON_DATA_NICKNAME, &name);
     
     // set level
@@ -1497,11 +1499,11 @@ void GenerateBattlePyramidWildMon(void)
             if (i == 20)
                 break;
         }
-        free(moves);
+        Free(moves);
     }
     
     // Initialize a random ability num
-    if (gSpeciesInfo[wildMons[id].species].abilities[1])
+    if (gSpeciesInfo[species].abilities[1])
     {
         i = GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY, NULL) % 2;
         SetMonData(&gEnemyParty[0], MON_DATA_ABILITY_NUM, &i);
@@ -1528,6 +1530,7 @@ void GenerateBattlePyramidWildMon(void)
                 }
             }
         }
+        Free(abilities);
     }
     
     if (gSaveBlock2Ptr->frontier.pyramidWinStreaks[gSaveBlock2Ptr->frontier.lvlMode] >= 140)

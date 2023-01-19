@@ -1,3 +1,4 @@
+#if BATTLE_PYRAMID_RANDOM_ENCOUNTERS == TRUE
 
 #include "constants/abilities.h"
 #include "constants/battle_move_effects.h"
@@ -8,7 +9,7 @@ struct BattlePyramidRequirement {
     u8 nAbilities;
     u8 type;
     u8 nMoves;
-    u16 evoItems[3];
+    const u16 *evoItems;
     u8 nEvoItems;
 };
 
@@ -58,6 +59,7 @@ static const u16 sPoisoningMoves[] = {
 
 // EFFECT_BURN_HIT, EFFECT_WILL_O_WISP
 static const u16 sBurningMoves[] = {
+    MOVE_WILL_O_WISP,
     //MOVE_EMBER,
     //MOVE_FLAMETHROWER,
     //MOVE_FIRE_BLAST,
@@ -75,8 +77,6 @@ static const u16 sBurningMoves[] = {
     MOVE_SCORCHING_SANDS,
     MOVE_SANDSEAR_STORM,
     MOVE_BLAZING_TORQUE,
-    MOVE_BURN_POWDER,
-    MOVE_WILL_O_WISP,
 };
 
 // EFFECT_FREEZE, EFFECT_FREEZE_HIT
@@ -102,7 +102,7 @@ static const u16 sExplosionMoves[] = {
     MOVE_MISTY_EXPLOSION,
 };
 
-// { EFFECT_RAIN_DANCE, EFFECT_SANDSTORM, EFFECT_HAIL, EFFECT_SUNNY_DAY, EFFECT_HEAT_WAVE, EFFECT_SOLAR_WIND, EFFECT_THICK_FOG, EFFECT_ACID_RAIN, EFFECT_THUNDERSTORM },
+// EFFECT_RAIN_DANCE, EFFECT_SANDSTORM, EFFECT_HAIL, EFFECT_SUNNY_DAY,
 static const u16 sWeatherChangingMoves[] = {
     MOVE_RAIN_DANCE,
     MOVE_SANDSTORM,
@@ -118,6 +118,8 @@ static const u16 sPowerfulNormalMoves[] = {
     MOVE_BODY_SLAM,
     MOVE_DOUBLE_EDGE,
 };
+
+static const u16 sEvoItems[] = {ITEM_FIRE_STONE, ITEM_WATER_STONE, ITEM_THUNDER_STONE};
 
 static const struct BattlePyramidRequirement sBattlePyramidRequirementsByRound[] = {
     [0] = /* pokemon with moves that paraylze */
@@ -143,15 +145,7 @@ static const struct BattlePyramidRequirement sBattlePyramidRequirementsByRound[]
         .abilities = { ABILITY_FLAME_BODY },
         .nAbilities = 1,
     },
-    [3] = /* pokemon that frostbite -> NOTE used to be ice types in round 7 */
-    {
-        .type = TYPE_MYSTERY,
-        .moves = sFrostbiteMoves,
-        .nMoves = NELEMS(sFrostbiteMoves),
-        .abilities = { ABILITY_FROZEN_BODY },
-        .nAbilities = 1,
-    },
-    [4] = /* pokemon with moves that waste PP */
+    [3] = /* pokemon with moves that waste PP */
     {
         .type = TYPE_MYSTERY,
         .moves = sPPReducingMoves,
@@ -159,18 +153,23 @@ static const struct BattlePyramidRequirement sBattlePyramidRequirementsByRound[]
         .abilities = { ABILITY_PRESSURE },
         .nAbilities = 1,
     },
-    [5] = /* pokemon with Levitate */
+    [4] = /* pokemon with Levitate */
     {
         .type = TYPE_MYSTERY,
         .abilities = { ABILITY_LEVITATE },
         .nAbilities = 1,
     },
-    [6] = /* pokemon with trapping abilities */
+    [5] = /* pokemon with trapping abilities */
     {
         .type = TYPE_MYSTERY,
         .abilities = { ABILITY_SHADOW_TAG, ABILITY_ARENA_TRAP }, // TODO magnet pull?
         .nAbilities = 2,
     },
+    [6] = /* ice types */
+    {
+        .type = TYPE_ICE,
+    },
+    
     [7] = /* pokemon with explosion effects */
     {
         .type = TYPE_MYSTERY,
@@ -224,7 +223,7 @@ static const struct BattlePyramidRequirement sBattlePyramidRequirementsByRound[]
     [18] = /* evolve via water/thunder/fire stone */
     {
         .type = TYPE_MYSTERY,
-        .evoItems = {ITEM_WATER_STONE, ITEM_THUNDER_STONE, ITEM_FIRE_STONE},
+        .evoItems = sEvoItems,
         .nEvoItems = 3,
     },
     [19] = /* normal with powerful moves */
@@ -234,3 +233,5 @@ static const struct BattlePyramidRequirement sBattlePyramidRequirementsByRound[]
         .nMoves = NELEMS(sPowerfulNormalMoves),
     },
 };
+
+#endif

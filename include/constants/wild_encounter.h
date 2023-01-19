@@ -8,6 +8,4 @@
 
 #define NUM_ALTERING_CAVE_TABLES 9
 
-#define BATTLE_PYRAMID_RANDOM_ENCOUNTERS    // If defined, battle pyramid Pokemon will be generated randomly based on the round's challenge instead of hardcoded in src/data/battle_frontier/battle_pyramid_level_50_wild_mons.h (or open_level_wild_mons.h)
-
 #endif // GUARD_CONSTANTS_WILD_ENCOUNTER_H
