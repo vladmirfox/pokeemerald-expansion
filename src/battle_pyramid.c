@@ -100,7 +100,7 @@ static bool8 TrySetPyramidObjectEventPositionAtCoords(bool8, u8, u8, u8 *, u8, u
 // Const rom data.
 #define ABILITY_RANDOM 2 // For wild mons data.
 
-#ifdef BATTLE_PYRAMID_RANDOM_ENCOUNTERS
+#if BATTLE_PYRAMID_RANDOM_ENCOUNTERS == TRUE
     #include "data/battle_frontier/battle_pyramid_wild_requirements.h"
 #else
     #include "data/battle_frontier/battle_pyramid_level_50_wild_mons.h"
@@ -1344,7 +1344,7 @@ static void MarkPyramidTrainerAsBattled(u16 trainerId)
     gObjectEvents[gSelectedObjectEvent].initialCoords.y = gObjectEvents[gSelectedObjectEvent].currentCoords.y;
 }
 
-#ifdef BATTLE_PYRAMID_RANDOM_ENCOUNTERS
+#ifdef BATTLE_PYRAMID_RANDOM_ENCOUNTERS == TRUE
 // check if given species evolved from a specific evolutionary stone
 // if nItems is passed as 0, it will check for any EVO_ITEM case
 extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
