@@ -9,7 +9,7 @@ struct BattlePyramidRequirement {
     u8 nAbilities;
     u8 type;
     u8 nMoves;
-    u16 evoItems[3];
+    const u16 *evoItems;
     u8 nEvoItems;
 };
 
@@ -120,6 +120,8 @@ static const u16 sPowerfulNormalMoves[] = {
     MOVE_DOUBLE_EDGE,
 };
 
+static const u16 sEvoItems[] = {ITEM_FIRE_STONE, ITEM_WATER_STONE, ITEM_THUNDER_STONE};
+
 static const struct BattlePyramidRequirement sBattlePyramidRequirementsByRound[] = {
     [0] = /* pokemon with moves that paraylze */
     {
@@ -222,7 +224,7 @@ static const struct BattlePyramidRequirement sBattlePyramidRequirementsByRound[]
     [18] = /* evolve via water/thunder/fire stone */
     {
         .type = TYPE_MYSTERY,
-        .evoItems = {ITEM_WATER_STONE, ITEM_THUNDER_STONE, ITEM_FIRE_STONE},
+        .evoItems = sEvoItems,
         .nEvoItems = 3,
     },
     [19] = /* normal with powerful moves */

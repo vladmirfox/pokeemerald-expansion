@@ -1348,7 +1348,7 @@ static void MarkPyramidTrainerAsBattled(u16 trainerId)
 // check if given species evolved from a specific evolutionary stone
 // if nItems is passed as 0, it will check for any EVO_ITEM case
 extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
-static bool32 CheckBattlePyramidEvoRequirement(u16 species, u16 *evoItems, int nItems)
+static bool32 CheckBattlePyramidEvoRequirement(u16 species, const u16 *evoItems, u8 nItems)
 {
     u32 i, j, k;
     for (i = 0; i < NUM_SPECIES; i++)
@@ -1454,7 +1454,7 @@ void GenerateBattlePyramidWildMon(void)
                 continue;
         }
         // check evos
-        if (reqs->evoItems[0] != 0 && !CheckBattlePyramidEvoRequirement(species, &reqs->evoItems, reqs->nEvoItems))
+        if (reqs->evoItems[0] != 0 && !CheckBattlePyramidEvoRequirement(species, reqs->evoItems, reqs->nEvoItems))
             continue;
         
         // we found a species we can use!
@@ -1499,7 +1499,7 @@ void GenerateBattlePyramidWildMon(void)
             if (i == 20)
                 break;
         }
-        free(moves);
+        Free(moves);
     }
     
     // Initialize a random ability num
@@ -1530,6 +1530,7 @@ void GenerateBattlePyramidWildMon(void)
                 }
             }
         }
+        Free(abilities);
     }
     
     if (gSaveBlock2Ptr->frontier.pyramidWinStreaks[gSaveBlock2Ptr->frontier.lvlMode] >= 140)
