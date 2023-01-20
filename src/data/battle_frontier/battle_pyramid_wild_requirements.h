@@ -59,6 +59,7 @@ static const u16 sPoisoningMoves[] = {
 
 // EFFECT_BURN_HIT, EFFECT_WILL_O_WISP
 static const u16 sBurningMoves[] = {
+    MOVE_WILL_O_WISP,
     //MOVE_EMBER,
     //MOVE_FLAMETHROWER,
     //MOVE_FIRE_BLAST,
@@ -76,8 +77,6 @@ static const u16 sBurningMoves[] = {
     MOVE_SCORCHING_SANDS,
     MOVE_SANDSEAR_STORM,
     MOVE_BLAZING_TORQUE,
-    MOVE_BURN_POWDER,
-    MOVE_WILL_O_WISP,
 };
 
 // EFFECT_FREEZE, EFFECT_FREEZE_HIT
