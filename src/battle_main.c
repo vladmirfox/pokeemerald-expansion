@@ -2135,7 +2135,7 @@ void CB2_InitEndLinkBattle(void)
         gBattle_BG3_Y = 0;
 
         InitBattleBgsVideo();
-        LoadCompressedPalette(gBattleTextboxPalette, 0, 64);
+        LoadCompressedPalette(gBattleTextboxPalette, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
         LoadBattleMenuWindowGfx();
         ResetSpriteData();
         ResetTasks();
@@ -3184,6 +3184,7 @@ void FaintClearSetData(void)
     gProtectStructs[gActiveBattler].banefulBunkered = FALSE;
     gProtectStructs[gActiveBattler].quash = FALSE;
     gProtectStructs[gActiveBattler].obstructed = FALSE;
+    gProtectStructs[gActiveBattler].silkTrapped = FALSE;
     gProtectStructs[gActiveBattler].endured = FALSE;
     gProtectStructs[gActiveBattler].noValidMoves = FALSE;
     gProtectStructs[gActiveBattler].helpingHand = FALSE;
