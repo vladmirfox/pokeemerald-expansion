@@ -28006,6 +28006,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPaletteFemale = gMonShinyPalette_HippopotasF,
         .iconPalIndex = 1,
     #if P_HIPPO_GENDER_DIFF_ICONS == TRUE
+        .iconSpriteFemale = gMonIcon_HippopotasF,
         .iconPalIndexFemale = 1,
     #endif
         .footprint = gMonFootprint_Hippopotas,
@@ -28059,6 +28060,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPaletteFemale = gMonShinyPalette_HippowdonF,
         .iconPalIndex = 1,
     #if P_HIPPO_GENDER_DIFF_ICONS == TRUE
+        .iconSpriteFemale = gMonIcon_HippowdonF,
         .iconPalIndexFemale = 1,
     #endif
         .footprint = gMonFootprint_Hippowdon,
@@ -30858,6 +30860,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_Unfezant,
         .shinyPaletteFemale = gMonShinyPalette_UnfezantF,
         .iconPalIndex = 1,
+        .iconSpriteFemale = gMonIcon_UnfezantF,
         .iconPalIndexFemale = 1,
         .footprint = gMonFootprint_Unfezant,
         .frontAnimFrames = sAnims_Unfezant,
@@ -34816,6 +34819,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_Frillish,
         .shinyPaletteFemale = gMonShinyPalette_FrillishF,
         .iconPalIndex = 0,
+        .iconSpriteFemale = gMonIcon_FrillishF,
         .iconPalIndexFemale = 1,
         .footprint = gMonFootprint_Frillish,
         .frontAnimFrames = sAnims_Frillish,
@@ -34869,6 +34873,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_Jellicent,
         .shinyPaletteFemale = gMonShinyPalette_JellicentF,
         .iconPalIndex = 0,
+        .iconSpriteFemale = gMonIcon_JellicentF,
         .iconPalIndexFemale = 1,
         .footprint = gMonFootprint_Jellicent,
         .frontAnimFrames = sAnims_Jellicent,
@@ -38998,6 +39003,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .palette = gMonPalette_Pyroar,
         .shinyPalette = gMonShinyPalette_Pyroar,
         .iconPalIndex = 2,
+        .iconSpriteFemale = gMonIcon_PyroarF,
         .iconPalIndexFemale = 2,
         .footprint = gMonFootprint_Pyroar,
         .frontAnimFrames = sAnims_Pyroar,
