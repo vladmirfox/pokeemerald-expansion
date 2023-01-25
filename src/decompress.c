@@ -104,12 +104,12 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
     }
     else
     {
-        if (gSpeciesInfo[species].backPicFemale != NULL && IsPersonalityFemale(species, personality))
-            LZ77UnCompWram(gSpeciesInfo[species].backPicFemale, dest); // Is female with sprite differences
-        else if (gSpeciesInfo[species].backPic != NULL)
-            LZ77UnCompWram(gSpeciesInfo[species].backPic, dest);
+        if (gMonBackPicTableFemale[species] != NULL && IsPersonalityFemale(species, personality))
+            LZ77UnCompWram(gMonBackPicTableFemale[species], dest); // Is female with sprite differences
+        else if (gMonBackPicTable[species] != NULL)
+            LZ77UnCompWram(gMonBackPicTable[species], dest);
         else
-            LZ77UnCompWram(gSpeciesInfo[SPECIES_NONE].backPic, dest); // No sprite defined, draw ? icon
+            LZ77UnCompWram(gMonBackPicTable[SPECIES_NONE], dest); // No sprite defined, draw ? icon
     }
 
     DrawSpindaSpots(species, personality, dest, isFrontPic);
