@@ -4421,11 +4421,11 @@ static void HandleTurnActionSelectionState(void)
 
         if (WILD_DOUBLE_BATTLE
             && gBattleStruct->throwingPokeBall
-            && gChosenActionByBattler[B_POSITION_PLAYER_RIGHT] != B_ACTION_NOTHING_FAINTED)
+            && gChosenActionByBattler[GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT)] != B_ACTION_NOTHING_FAINTED)
         {
             // if we choose to throw a ball with our second mon, skip the action of the first
             // (if we have chosen throw ball with first, second's is already skipped)
-            gChosenActionByBattler[B_POSITION_PLAYER_LEFT] = B_ACTION_NOTHING_FAINTED;
+            gChosenActionByBattler[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)] = B_ACTION_NOTHING_FAINTED;
         }
 
         gBattleMainFunc = SetActionsAndBattlersTurnOrder;
