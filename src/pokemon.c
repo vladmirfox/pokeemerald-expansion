@@ -4814,10 +4814,12 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
     shinyValue = GET_SHINY_VALUE(otId, personality);
     if (shinyValue < SHINY_ODDS)
     {
-        if (gSpeciesInfo[species].shinyPaletteFemale != NULL && IsPersonalityFemale(species, personality))
-            return gSpeciesInfo[species].shinyPaletteFemale;
+        if (gMonShinyPaletteTableFemale[species] != NULL && IsPersonalityFemale(species, personality))
+            return gMonShinyPaletteTableFemale[species];
+        else if (gMonShinyPaletteTable[species] != NULL)
+            return gMonShinyPaletteTable[species];
         else
-            return gSpeciesInfo[species].shinyPalette;
+            return gMonShinyPaletteTable[SPECIES_NONE];
     }
     else
     {
@@ -5678,7 +5680,7 @@ bool32 SpeciesHasGenderDifferences(u16 species)
     if (gMonFrontPicTableFemale[species] != NULL
         || gMonPaletteTableFemale[species] != NULL
         || gMonBackPicTableFemale[species] != NULL
-        || gSpeciesInfo[species].shinyPaletteFemale != NULL
+        || gMonShinyPaletteTableFemale[species] != NULL
         || gSpeciesInfo[species].iconSpriteFemale != NULL)
         return TRUE;
 
