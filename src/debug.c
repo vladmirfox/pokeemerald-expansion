@@ -160,7 +160,7 @@ struct DebugMonData
 {
     u16 mon_speciesId;
     u8  mon_level;
-    u8  isShiny;
+    bool8  isShiny;
     u16 mon_natureId;
     u16 mon_abilityNum;
     u8  mon_iv_hp;
@@ -1981,7 +1981,7 @@ static void ResetMonDataStruct(struct DebugMonData *sDebugMonData)
 {
     sDebugMonData->mon_speciesId    = 1;
     sDebugMonData->mon_level        = 1;
-    sDebugMonData->isShiny          = 0;
+    sDebugMonData->isShiny          = FALSE;
     sDebugMonData->mon_natureId     = 0;
     sDebugMonData->mon_abilityNum   = 0;
     sDebugMonData->mon_iv_hp        = 0;
@@ -2637,7 +2637,7 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     u8 iv_val;
     u16 species     = sDebugMonData->mon_speciesId;
     u8 level        = sDebugMonData->mon_level;
-    u8 isShiny      = sDebugMonData->isShiny; //Shiny: no 0, yes 1
+    bool8 isShiny   = sDebugMonData->isShiny;
     u8 nature       = sDebugMonData->mon_natureId;
     u8 abilityNum   = sDebugMonData->mon_abilityNum;
     moves[0]        = sDebugMonData->mon_move_0;
@@ -2654,26 +2654,10 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     //Nature
     if (nature == NUM_NATURES || nature == 0xFF)
         nature = Random() % NUM_NATURES;
+    CreateMonWithNature(&mon, species, level, 32, nature);
 
     //Shininess
-    if (isShiny == 1)
-    {
-        u32 personality;
-        u32 otid = gSaveBlock2Ptr->playerTrainerId[0]
-            | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
-            | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
-            | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
-
-        do
-        {
-            personality = Random32();
-            personality = ((((Random() % 8) ^ (HIHALF(otid) ^ LOHALF(otid))) ^ LOHALF(personality)) << 16) | LOHALF(personality);
-        } while (nature != GetNatureFromPersonality(personality));
-
-        CreateMon(&mon, species, level, 32, 1, personality, OT_ID_PRESET, otid);
-    }
-    else
-        CreateMonWithNature(&mon, species, level, 32, nature);
+    SetMonData(&mon, MON_DATA_IS_SHINY, &isShiny);
 
     //IVs
     for (i = 0; i < NUM_STATS; i++)

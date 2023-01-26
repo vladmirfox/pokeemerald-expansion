@@ -3436,13 +3436,9 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 
     // Determine original trainer ID
     if (otIdType == OT_ID_RANDOM_NO_SHINY)
-    {
         shiny = FALSE;
-    }
     else if (otIdType == OT_ID_PRESET)
-    {
         value = fixedOtId;
-    }
     else // Player is the OT
     {
         u32 totalRerolls = 0;
@@ -3641,11 +3637,10 @@ void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level,
 void CreateMaleMon(struct Pokemon *mon, u16 species, u8 level)
 {
     u32 personality;
-    u32 otId;
+    u32 otId = Random32();
 
     do
     {
-        otId = Random32();
         personality = Random32();
     }
     while (GetGenderFromSpeciesAndPersonality(species, personality) != MON_MALE);
