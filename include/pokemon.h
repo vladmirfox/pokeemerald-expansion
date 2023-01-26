@@ -332,7 +332,6 @@ struct SpeciesInfo
             // Pokédex data
  /* 0x1A */ u8 categoryName[13];
  /* 0x27 */ u16 natDexNum;
- /* 0x29 */ u16 hoennDexNum;
  /* 0x3B */ u16 equivalentDexEntry; // To avoid duplicating dex entries like for Scatterbug
  /* 0x3D */ u16 cryId;
  /* 0x3F */ u16 height; //in decimeters
