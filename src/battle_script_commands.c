@@ -14451,7 +14451,7 @@ static void Cmd_displaydexinfo(void)
         {
             FreeAllWindowBuffers();
             gBattleCommunication[TASK_ID] = DisplayCaughtMonDexPage(SpeciesToNationalPokedexNum(species),
-                                                                        gBattleMons[GetCatchingBattler()].otId,
+                                                                        gBattleMons[GetCatchingBattler()].isShiny,
                                                                         gBattleMons[GetCatchingBattler()].personality);
             gBattleCommunication[0]++;
         }

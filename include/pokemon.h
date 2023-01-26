@@ -92,6 +92,7 @@ enum {
     MON_DATA_RIBBON_COUNT,
     MON_DATA_RIBBONS,
     MON_DATA_TERA_TYPE,
+    MON_DATA_IS_SHINY,
 };
 
 struct BoxPokemon
@@ -200,7 +201,8 @@ struct BoxPokemon
     u32 hyperTrainedSpDefense:1;
     u32 hp:14;          // Max 16383 HP
     u32 teraType:5;     // 18 Types
-    u32 filler1:2;
+    u32 shiny:1;
+    u32 filler1:1;
 
     // Word 20: Filler
     u32 filler2;
@@ -283,6 +285,7 @@ struct BattlePokemon
     /*0x4D*/ u32 status1;
     /*0x51*/ u32 status2;
     /*0x55*/ u32 otId;
+    /*0x59*/ u8 isShiny;
 };
 
 struct SpeciesInfo
@@ -374,8 +377,6 @@ struct FormChange
     | (((personality) & 0x00000300) >> 6)  \
     | (((personality) & 0x00000003) >> 0)  \
 ) % NUM_UNOWN_FORMS)
-
-#define GET_SHINY_VALUE(otId, personality) (HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality))
 
 extern u8 gPlayerPartyCount;
 extern struct Pokemon gPlayerParty[PARTY_SIZE];
@@ -516,9 +517,9 @@ void PlayBattleBGM(void);
 void PlayMapChosenOrBattleBGM(u16 songId);
 void CreateTask_PlayMapChosenOrBattleBGM(u16 songId);
 const u32 *GetMonFrontSpritePal(struct Pokemon *mon);
-const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 personality);
+const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, bool8 isShiny, u32 personality);
 const struct CompressedSpritePalette *GetMonSpritePalStruct(struct Pokemon *mon);
-const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u16 species, u32 otId , u32 personality);
+const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u16 species, bool8 isShiny , u32 personality);
 bool32 IsHMMove2(u16 move);
 bool8 IsMonSpriteNotFlipped(u16 species);
 s8 GetMonFlavorRelation(struct Pokemon *mon, u8 flavor);
@@ -530,7 +531,6 @@ void BoxMonRestorePP(struct BoxPokemon *boxMon);
 void SetMonPreventsSwitchingString(void);
 void SetWildMonHeldItem(void);
 bool8 IsMonShiny(struct Pokemon *mon);
-bool8 IsShinyOtIdPersonality(u32 otId, u32 personality);
 const u8 *GetTrainerPartnerName(void);
 void BattleAnimateFrontSprite(struct Sprite *sprite, u16 species, bool8 noCry, u8 panMode);
 void DoMonFrontSpriteAnimation(struct Sprite *sprite, u16 species, bool8 noCry, u8 panModeAnimFlag);
