@@ -4821,12 +4821,12 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
     }
     else
     {
-        if (gSpeciesInfo[species].paletteFemale != NULL && IsPersonalityFemale(species, personality))
-            return gSpeciesInfo[species].paletteFemale;
-        else if (gSpeciesInfo[species].palette != NULL)
-            return gSpeciesInfo[species].palette;
+        if (gMonPaletteTableFemale[species] != NULL && IsPersonalityFemale(species, personality))
+            return gMonPaletteTableFemale[species];
+        else if (gMonPaletteTable[species] != NULL)
+            return gMonPaletteTable[species];
         else
-            return gSpeciesInfo[SPECIES_NONE].palette;
+            return gMonPaletteTable[SPECIES_NONE];
     }
 }
 
@@ -5676,7 +5676,7 @@ void TrySpecialOverworldEvo(void)
 bool32 SpeciesHasGenderDifferences(u16 species)
 {
     if (gMonFrontPicTableFemale[species] != NULL
-        || gSpeciesInfo[species].paletteFemale != NULL
+        || gMonPaletteTableFemale[species] != NULL
         || gMonBackPicTableFemale[species] != NULL
         || gSpeciesInfo[species].shinyPaletteFemale != NULL
         || gSpeciesInfo[species].iconSpriteFemale != NULL)

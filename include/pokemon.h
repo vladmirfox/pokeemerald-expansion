@@ -348,8 +348,6 @@ struct SpeciesInfo
  /* 0xB1 */ u8 frontAnimId;
  /* 0xB2 */ u8 backAnimId;
  /* 0xB3 */ const union AnimCmd *const *frontAnimFrames;
- /* 0xC7 */ const u32 *const palette;
- /* 0xCB */ const u32 *const paletteFemale;
  /* 0xCF */ const u32 *const shinyPalette;
  /* 0xD3 */ const u32 *const shinyPaletteFemale;
             // Regular mon icons are loaded from gMonIconTable to maintain compatibility with PoryMap

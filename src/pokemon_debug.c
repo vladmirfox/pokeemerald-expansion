@@ -694,12 +694,12 @@ static const u32 *GetMonSpritePalStructCustom(u16 species, bool8 isFemale, bool8
     }
     else
     {
-        if (gSpeciesInfo[species].paletteFemale != NULL && isFemale)
-            return gSpeciesInfo[species].paletteFemale;
-        else if (gSpeciesInfo[species].palette != NULL)
-            return gSpeciesInfo[species].palette;
+        if (gMonPaletteTableFemale[species] != NULL && isFemale)
+            return gMonPaletteTableFemale[species];
+        else if (gMonPaletteTable[species] != NULL)
+            return gMonPaletteTable[species];
         else
-            return gSpeciesInfo[SPECIES_NONE].palette;
+            return gMonPaletteTable[SPECIES_NONE];
     }
 }
 
@@ -719,12 +719,12 @@ static void BattleLoadOpponentMonSpriteGfxCustom(u16 species, bool8 isFemale, bo
     }
     else
     {
-        if (gSpeciesInfo[species].paletteFemale != NULL && isFemale)
-            lzPaletteData = gSpeciesInfo[species].paletteFemale;
-        else if (gSpeciesInfo[species].palette != NULL)
-            lzPaletteData = gSpeciesInfo[species].palette;
+        if (gMonPaletteTableFemale[species] != NULL && isFemale)
+            lzPaletteData = gMonPaletteTableFemale[species];
+        else if (gMonPaletteTable[species] != NULL)
+            lzPaletteData = gMonPaletteTable[species];
         else
-            lzPaletteData = gSpeciesInfo[SPECIES_NONE].palette;
+            lzPaletteData = gMonPaletteTable[SPECIES_NONE];
     }
 
     LZDecompressWram(lzPaletteData, gDecompressionBuffer);
