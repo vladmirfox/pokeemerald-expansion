@@ -1306,6 +1306,10 @@
 	.endm
 
 @ callnative macros
+	.macro tryupdateroundturnorder
+	callnative BS_TryUpdateRoundTurnOrder
+	.endm
+	
 	.macro metalburstdamagecalculator ptr:req
 	callnative BS_CalcMetalBurstDmg
 	.4byte \ptr
