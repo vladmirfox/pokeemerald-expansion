@@ -773,7 +773,7 @@ static u8 GetElevationValue(u16 species)
     else if (IsCastformForm(species))
         val = sCastformElevations[species - SPECIES_CASTFORM_SUNNY + 1];
     else
-        val = gSpeciesInfo[species].enemyMonElevation;
+        val = gEnemyMonElevation[species];
 
     return val;
 }
@@ -834,7 +834,7 @@ static void LoadAndCreateEnemyShadowSpriteCustom(struct PokemonDebugMenu *data, 
 {
     u8 x, y;
     bool8 invisible = FALSE;
-    if (gSpeciesInfo[species].enemyMonElevation == 0 && !IsCastformForm(species))
+    if (gEnemyMonElevation[species] == 0 && !IsCastformForm(species))
         invisible = TRUE;
     LoadCompressedSpriteSheet(&gSpriteSheet_EnemyShadow);
     LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);
