@@ -108,6 +108,8 @@ extern const union AffineAnimCmd *const gAffineAnims_BattleSpriteContest[];
 
 extern const union AnimCmd sAnim_GeneralFrame0[];
 extern const union AnimCmd *const gAnims_MonPic[];
+extern const struct MonCoords gMonFrontPicCoords[];
+extern const struct MonCoords gMonBackPicCoords[];
 extern const u32 *const gMonBackPicTable[NUM_SPECIES + 1];
 extern const u32 *const gMonBackPicTableFemale[NUM_SPECIES + 1];
 extern const u32 *const gMonPaletteTable[NUM_SPECIES + 1];

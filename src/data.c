@@ -298,6 +298,9 @@ const union AnimCmd *const gAnims_MonPic[] =
     sAnim_MonPic_3,
 };
 
+#include "data/pokemon_graphics/front_pic_coordinates.h"
+#include "data/pokemon_graphics/back_pic_coordinates.h"
+
 #include "data/pokemon_graphics/back_pic_table.h"
 #include "data/pokemon_graphics/palette_table.h"
 #include "data/pokemon_graphics/shiny_palette_table.h"

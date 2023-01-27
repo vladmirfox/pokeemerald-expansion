@@ -3380,7 +3380,7 @@ static bool8 AnimateTradeSequenceCable(void)
     case TS_STATE_START:
         gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].invisible = FALSE;
         gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].x2 = -180;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].y2 = gSpeciesInfo[sTradeData->monSpecies[TRADE_PLAYER]].frontPicYOffset;
+        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].y2 = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PLAYER]].y_offset;
         sTradeData->state++;
         sTradeData->cachedMapMusic = GetCurrentMapMusic();
         PlayNewMapMusic(MUS_EVOLUTION);
@@ -3748,7 +3748,7 @@ static bool8 AnimateTradeSequenceCable(void)
         break;
     case TS_STATE_SHOW_NEW_MON:
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].x = 120;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y = gSpeciesInfo[sTradeData->monSpecies[TRADE_PARTNER]].frontPicYOffset + 60;
+        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PARTNER]].y_offset + 60;
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].x2 = 0;
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y2 = 0;
         StartSpriteAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]], 0);
@@ -3853,7 +3853,7 @@ static bool8 AnimateTradeSequenceWireless(void)
     case TS_STATE_START:
         gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].invisible = FALSE;
         gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].x2 = -180;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].y2 = gSpeciesInfo[sTradeData->monSpecies[TRADE_PLAYER]].frontPicYOffset;
+        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].y2 = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PLAYER]].y_offset;
         sTradeData->state++;
         sTradeData->cachedMapMusic = GetCurrentMapMusic();
         PlayNewMapMusic(MUS_EVOLUTION);
@@ -4248,7 +4248,7 @@ static bool8 AnimateTradeSequenceWireless(void)
         break;
     case TS_STATE_SHOW_NEW_MON:
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].x = 120;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y = gSpeciesInfo[sTradeData->monSpecies[TRADE_PARTNER]].frontPicYOffset + 60;
+        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PARTNER]].y_offset + 60;
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].x2 = 0;
         gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].y2 = 0;
         StartSpriteAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]], 0);

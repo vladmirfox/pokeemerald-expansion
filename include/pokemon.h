@@ -351,11 +351,6 @@ struct SpeciesInfo
             // Regular mon icons are loaded from gMonIconTable to maintain compatibility with PoryMap
  /* 0xDB */ const u8 *const iconSpriteFemale;
  /* 0xDF */ const u8 *const footprint;
-            // All Pokémon pics are 64x64, but this data table defines where in this 64x64 frame the sprite's non-transparent pixels actually are.
- /* 0xE3 */ u8 frontPicSize; // The dimensions of this drawn pixel area.
- /* 0xE4 */ u8 frontPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
- /* 0xE5 */ u8 backPicSize; // The dimensions of this drawn pixel area.
- /* 0xE6 */ u8 backPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
  /* 0xE7 */ u8 iconPalIndex:3;
             u8 iconPalIndexFemale:3;
             u8 padding3:2;
