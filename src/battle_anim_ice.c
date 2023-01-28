@@ -1294,9 +1294,9 @@ static void InitPoisonGasCloudAnim(struct Sprite *sprite)
     {
         s16 x, y;
         SetAverageBattlerPositions(gBattleAnimTarget, gBattleAnimArgs[7], &x, &y);
-        sprite->data[1] = sprite->pos1.x + gBattleAnimArgs[1];
+        sprite->data[1] = sprite->x1 + gBattleAnimArgs[1];
         sprite->data[2] = x + gBattleAnimArgs[3];
-        sprite->data[3] = sprite->pos1.y + gBattleAnimArgs[2];
+        sprite->data[3] = sprite->y1 + gBattleAnimArgs[2];
         sprite->data[4] = y + gBattleAnimArgs[4];
         sprite->data[7] |= GetBattlerSpriteBGPriority(gBattleAnimTarget) << 8;
     }
