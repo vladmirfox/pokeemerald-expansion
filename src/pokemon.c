@@ -3582,9 +3582,9 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
 
     if (Random() % 2 == 0)
-        SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &gSpeciesInfo[species].type1);
+        SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &gSpeciesInfo[species].types[0]);
     else
-        SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &gSpeciesInfo[species].type2);
+        SetBoxMonData(boxMon, MON_DATA_TERA_TYPE, &gSpeciesInfo[species].types[1]);
     SetBoxMonData(boxMon, MON_DATA_IS_SHINY, &shiny);
 
     GiveBoxMonInitialMoveset(boxMon);
@@ -5408,8 +5408,8 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     dst->spDefense = GetMonData(src, MON_DATA_SPDEF, NULL);
     dst->abilityNum = GetMonData(src, MON_DATA_ABILITY_NUM, NULL);
     dst->otId = GetMonData(src, MON_DATA_OT_ID, NULL);
-    dst->type1 = gSpeciesInfo[dst->species].type1;
-    dst->type2 = gSpeciesInfo[dst->species].type2;
+    dst->type1 = gSpeciesInfo[dst->species].types[0];
+    dst->type2 = gSpeciesInfo[dst->species].types[1];
     dst->type3 = TYPE_MYSTERY;
     dst->ability = GetAbilityBySpecies(dst->species, dst->abilityNum);
     GetMonData(src, MON_DATA_NICKNAME, nickname);
@@ -6462,8 +6462,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                     for (j = 0; j < PARTY_SIZE; j++)
                     {
                         u16 currSpecies = GetMonData(&gPlayerParty[j], MON_DATA_SPECIES, NULL);
-                        if (gSpeciesInfo[currSpecies].type1 == TYPE_DARK
-                         || gSpeciesInfo[currSpecies].type2 == TYPE_DARK)
+                        if (gSpeciesInfo[currSpecies].types[0] == TYPE_DARK
+                         || gSpeciesInfo[currSpecies].types[1] == TYPE_DARK)
                         {
                             targetSpecies = gEvolutionTable[species][i].targetSpecies;
                             break;
@@ -8358,6 +8358,8 @@ void TrySpecialOverworldEvo(void)
 
 bool32 ShouldShowFemaleDifferences(u16 species, u32 personality)
 {
+    if (species >= NUM_SPECIES)
+        return FALSE;
     return (gSpeciesInfo[species].flags & SPECIES_FLAG_GENDER_DIFFERENCE) && GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE;
 }
 
