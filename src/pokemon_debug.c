@@ -853,7 +853,7 @@ static void LoadAndCreateEnemyShadowSpriteCustom(struct PokemonDebugMenu *data, 
 static void DrawFootprintCustom(u8 windowId, u16 species)
 {
     u8 footprint[32 * 4] = {0};
-    const u8 *footprintGfx = gSpeciesInfo[species].footprint;
+    const u8 *footprintGfx = gMonFootprintTable[species];
     u32 i, j, tileIdx = 0;
 
     if (footprintGfx != NULL)
