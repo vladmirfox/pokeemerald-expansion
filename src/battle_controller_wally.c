@@ -492,6 +492,7 @@ static u32 CopyWallyMonData(u8 monId, u8 *dst)
         battleMon.abilityNum = GetMonData(&gPlayerParty[monId], MON_DATA_ABILITY_NUM);
         battleMon.otId = GetMonData(&gPlayerParty[monId], MON_DATA_OT_ID);
         battleMon.metLevel = GetMonData(&gPlayerParty[monId], MON_DATA_MET_LEVEL);
+        battleMon.isShiny = GetMonData(&gPlayerParty[monId], MON_DATA_IS_SHINY);
         GetMonData(&gPlayerParty[monId], MON_DATA_NICKNAME, nickname);
         StringCopy_Nickname(battleMon.nickname, nickname);
         GetMonData(&gPlayerParty[monId], MON_DATA_OT_NAME, battleMon.otName);
