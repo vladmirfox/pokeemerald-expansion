@@ -22,7 +22,7 @@ struct MonIconSpriteTemplate
 static u8 CreateMonIconSprite(struct MonIconSpriteTemplate *, s16, s16, u8);
 static void FreeAndDestroyMonIconSprite_(struct Sprite *sprite);
 
-const u8 *const gMonIconTable[] =
+const u8 *const gMonIconTable[NUM_SPECIES + 1] =
 {
     [SPECIES_NONE] = gMonIcon_QuestionMark,
     [SPECIES_BULBASAUR] = gMonIcon_Bulbasaur,
@@ -1316,7 +1316,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_EGG] = gMonIcon_Egg,
 };
 
-const u8 *const gMonIconTableFemale[] =
+const u8 *const gMonIconTableFemale[NUM_SPECIES + 1] =
 {
 #if P_GEN_4_POKEMON == TRUE
     #if P_HIPPO_GENDER_DIFF_ICONS == TRUE
