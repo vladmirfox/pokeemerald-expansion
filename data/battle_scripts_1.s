@@ -8482,12 +8482,13 @@ BattleScript_TryAdrenalineOrbRet:
 
 BattleScript_IntimidateActivates::
 	jumpifnovalidtargets BattleScript_IntimidateEnd
-	showabilitypopup BS_ATTACKER
+	showabilitypopup BS_SCRIPTING
 	pause B_WAIT_TIME_LONG
 	destroyabilitypopup
 	setbyte gBattlerTarget, 0
+	copybyte sSAVED_BATTLER, sBATTLER @ Saves the current gBattlerAttacker / sBATTLER / BS_SCRIPTING
 BattleScript_IntimidateLoop:
-	jumpifbyteequal gBattlerTarget, gBattlerAttacker, BattleScript_IntimidateLoopIncrement
+	jumpifbyteequal gBattlerTarget, sBATTLER, BattleScript_IntimidateLoopIncrement
 	jumpiftargetally BattleScript_IntimidateLoopIncrement
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_IntimidateLoopIncrement
 	jumpifholdeffect BS_TARGET, HOLD_EFFECT_CLEAR_AMULET, BattleScript_IntimidatePrevented_Item
@@ -8503,17 +8504,14 @@ BattleScript_IntimidateLoop:
 	jumpifability BS_TARGET, ABILITY_GUARD_DOG, BattleScript_IntimidateInReverse
 BattleScript_IntimidateEffect:
 	copybyte sBATTLER, gBattlerAttacker
-	statbuffchange STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_IntimidateLoopIncrement
-	setgraphicalstatchangevalues
-	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
-	printstring STRINGID_PKMNCUTSATTACKWITH
-	waitmessage B_WAIT_TIME_LONG
+	modifybattlerstatstage BS_TARGET, STAT_ATK, DECREASE, 1, BattleScript_IntimidateLoopIncrement, ANIM_ON, STRINGID_PKMNCUTSATTACKWITH
 	copybyte sBATTLER, gBattlerTarget
 	call BattleScript_TryAdrenalineOrb
 BattleScript_IntimidateLoopIncrement:
 	addbyte gBattlerTarget, 1
 	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_IntimidateLoop
 BattleScript_IntimidateEnd:
+	copybyte sBATTLER, sSAVED_BATTLER @ Restores the original gBattlerAttacker / sBATTLER / BS_SCRIPTING
 	destroyabilitypopup
 	pause B_WAIT_TIME_MED
 	end3
