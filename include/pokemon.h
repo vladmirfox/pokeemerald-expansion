@@ -380,7 +380,7 @@ struct Fusion
     u16 fusingIntoMon;
     u16 itemId;
     u16 fusionMove;
-    u16 skipMoveLearnIfPossible;
+    u16 unfuseForgetMove;
 };
 
 extern const struct Fusion *const gFusionTablePointers[NUM_SPECIES];

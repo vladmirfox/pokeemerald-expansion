@@ -5518,6 +5518,8 @@ void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc task)
 #define fusionResult         data[10]
 #define secondFusionSlot     data[11]
 #define unfuseSecondMon      data[12]
+#define moveToLearn          data[13]
+#define forgetMove     data[14]
 
 static void Task_TryItemUseFusionChange(u8 taskId);
 static void SpriteCB_FormChangeIconMosaic(struct Sprite *sprite);
@@ -5569,6 +5571,62 @@ u16 FusionStorageIndex(u16 species) // Index where the discarded Fused mon is st
             return 3;
         default:
             return 255;
+    }
+}
+
+void TeachFusionMove(u8 taskId, u16 move, u8 slot)
+{
+    struct Pokemon *mon;
+
+    gPartyMenu.data1 = move;
+    gPartyMenu.learnMoveState = 0;
+
+    PlaySE(SE_SELECT);
+    mon = &gPlayerParty[slot];
+    GetMonNickname(mon, gStringVar1);
+    StringCopy(gStringVar2, gMoveNames[move]);
+
+    if (GiveMoveToMon(mon, move) != MON_HAS_MAX_MOVES)
+    {
+        gTasks[taskId].func = Task_LearnedMove;
+    }
+    else
+    {
+        DisplayLearnMoveMessage(gText_PkmnNeedsToReplaceMove);
+        gTasks[taskId].func = Task_ReplaceMoveYesNo;
+    }
+}
+
+u8 DoesMonHaveAnyMoves(struct Pokemon *mon)
+{   
+    struct BoxPokemon *boxMon = &mon->box;
+    u8 i;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        u16 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
+        if (existingMove != MOVE_NONE)
+            i++;
+    }
+    return i;
+}
+
+void DeleteMove(struct Pokemon *mon, u16 move)
+{
+    struct BoxPokemon *boxMon = &mon->box;
+    u8 i, j;
+    u8 deletemove = MOVE_NONE;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        u16 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
+        if (existingMove == move)
+        {
+            SetMonMoveSlot(mon, MOVE_NONE, i);
+            RemoveMonPPBonus(mon, i);
+            for (j = i; j < MAX_MON_MOVES - 1; j++)
+                ShiftMoveSlot(mon, j, j + 1);
+        }
     }
 }
 
@@ -5627,8 +5685,6 @@ static void Task_TryItemUseFusionChange(u8 taskId)
             GiveMonToPlayer(mon2);
             ZeroMonData(&gPokemonStoragePtr->fusions[FusionStorageIndex(gTasks[taskId].unfuseSecondMon)]);
         }
-        CompactPartySlots();
-        CalculatePlayerPartyCount();
         targetSpecies = gTasks[taskId].tTargetSpecies;
         SetMonData(mon, MON_DATA_SPECIES, &targetSpecies);
         CalculateMonStats(mon);
@@ -5670,11 +5726,17 @@ static void Task_TryItemUseFusionChange(u8 taskId)
         if(gTasks[taskId].fusionType == FUSE_MON)
         {
             FreeAndDestroyMonIconSprite(icon2); // place to put the code for clearing out the fused mon and reloading the party screen
+            CompactPartySlots();
+            CalculatePlayerPartyCount();
+            if(gTasks[taskId].firstFusionSlot > gTasks[taskId].secondFusionSlot)
+                gTasks[taskId].firstFusionSlot--;
         }
         else
         {
-            // place for the code of putting the fused mon back in the party and reloading the screen
+            CompactPartySlots();
+            CalculatePlayerPartyCount(); // place for the code of putting the fused mon back in the party and reloading the screen
         }
+        
         gTasks[taskId].tState++;
         break;
     case 3:
@@ -5695,7 +5757,25 @@ static void Task_TryItemUseFusionChange(u8 taskId)
         break;
     case 6:
         if (!IsPartyMenuTextPrinterActive())
+        {
+            if(gTasks[taskId].moveToLearn != 0)
+            {   
+                if(gTasks[taskId].fusionType == FUSE_MON)
+                {
+                    
+                    TeachFusionMove(taskId, gTasks[taskId].moveToLearn, gTasks[taskId].firstFusionSlot);
+                }
+                else
+                {
+                    DeleteMove(mon, gTasks[taskId].forgetMove);
+                    if(!DoesMonHaveAnyMoves(mon))
+                        TeachFusionMove(taskId, gTasks[taskId].moveToLearn, gTasks[taskId].firstFusionSlot);
+                }                
+            }
+            
             gTasks[taskId].tState++;
+        }
+            
         break;
     case 7:
         gTasks[taskId].func = (void *)GetWordTaskArg(taskId, tNextFunc);
@@ -5737,6 +5817,8 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
                     task->firstFusionSlot = gPartyMenu.slotId;
                     task->fusionResult = itemFusion[i].fusingIntoMon;
                     task->unfuseSecondMon = itemFusion[i].targetSpecies2;
+                    task->moveToLearn = itemFusion[i].fusionMove;
+                    task->forgetMove = itemFusion[i].unfuseForgetMove;
                     TryItemUseFusionChange(taskId, taskFunc);
                     return;
                 }
@@ -5772,6 +5854,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
                 {
                     task->fusionResult = itemFusion[i].fusingIntoMon;
                     task->secondFusionSlot = gPartyMenu.slotId;
+                    task->moveToLearn = itemFusion[i].fusionMove;
                     // Start Fusion
                     TryItemUseFusionChange(taskId, taskFunc);
                     return;
