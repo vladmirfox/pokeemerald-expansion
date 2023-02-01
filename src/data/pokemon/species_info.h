@@ -10742,7 +10742,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 430,
         .levelUpLearnset = sSneaslerLevelUpLearnset,
         .teachableLearnset = sSneaslerTeachableLearnset,
-        //.frontPic = gMonFrontPic_Sneasler,
     },
 
     [SPECIES_TEDDIURSA] =
@@ -11581,7 +11580,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 951,
         .levelUpLearnset = sWyrdeerLevelUpLearnset,
         .teachableLearnset = sWyrdeerTeachableLearnset,
-        //.frontPic = gMonFrontPic_Wyrdeer,
     },
 
     [SPECIES_SMEARGLE] =
@@ -21340,7 +21338,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 582,
         .levelUpLearnset = sSamurottHisuianLevelUpLearnset,
         .teachableLearnset = sSamurottHisuianTeachableLearnset,
-        //.frontPic = gMonFrontPic_SamurottHisuian,
         SAMUROTT_MISC_INFO,
     },
 
@@ -23152,7 +23149,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 80,
         .baseSpDefense = 75,
         .genderRatio = MON_MALE,
-        //.frontPic = gMonFrontPic_BasculegionMale,
         BASCULEGION_MISC_INFO,
     },
 
@@ -23165,7 +23161,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 100,
         .baseSpDefense = 75,
         .genderRatio = MON_FEMALE,
-        //.frontPic = gMonFrontPic_BasculegionFemale,
         BASCULEGION_MISC_INFO,
     },
 
@@ -26860,7 +26855,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.cryId = CRY_ENAMORUS_INCARNATE,
         .description = gEnamorusIncarnatePokedexText,
         .categoryName = _("Love-Hate"),
-        //.frontPic = gMonFrontPic_EnamorusIncarnate,
         ENAMORUS_MISC_INFO,
     },
 
@@ -26877,7 +26871,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.cryId = CRY_ENAMORUS_THERIAN,
         .description = gEnamorusTherianPokedexText,
         .categoryName = _("Love-Hate"),
-        //.frontPic = gMonFrontPic_EnamorusTherian,
         ENAMORUS_MISC_INFO,
     },
 
@@ -30224,7 +30217,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 370,
         .levelUpLearnset = sDecidueyeHisuianLevelUpLearnset,
         .teachableLearnset = sDecidueyeHisuianTeachableLearnset,
-        //.frontPic = gMonFrontPic_DecidueyeHisuian,
         DECIDUEYE_MISC_INFO,
     },
 
@@ -35407,7 +35399,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sAlcremieLevelUpLearnset,                        \
         .teachableLearnset = sAlcremieTeachableLearnset,                    \
     }
-        //ICON(Alcremie##cream, 1),
 
     [SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM] = ALCREMIE_SPECIES_INFO(BODY_COLOR_WHITE, Strawberry, VanillaCream),
     [SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM]    = ALCREMIE_SPECIES_INFO(BODY_COLOR_PINK, Strawberry, RubyCream),
