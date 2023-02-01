@@ -1449,6 +1449,71 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES + 1] =
     [SPECIES_EGG] = ANIM_V_SQUISH_AND_BOUNCE,
 };
 
+static const u8 sMonAnimationDelayTable[NUM_SPECIES + 1] =
+{
+    [SPECIES_BLASTOISE] = 50,
+    [SPECIES_WEEDLE] = 10,
+    [SPECIES_KAKUNA] = 20,
+    [SPECIES_BEEDRILL] = 35,
+    [SPECIES_PIDGEOTTO] = 25,
+    [SPECIES_FEAROW] = 2,
+    [SPECIES_EKANS] = 30,
+    [SPECIES_NIDORAN_F] = 28,
+    [SPECIES_NIDOKING] = 25,
+    [SPECIES_PARAS] = 10,
+    [SPECIES_PARASECT] = 45,
+    [SPECIES_VENONAT] = 20,
+    [SPECIES_DIGLETT] = 25,
+    [SPECIES_DUGTRIO] = 35,
+    [SPECIES_MEOWTH] = 40,
+    [SPECIES_PERSIAN] = 20,
+    [SPECIES_MANKEY] = 20,
+    [SPECIES_GROWLITHE] = 30,
+    [SPECIES_ARCANINE] = 40,
+    [SPECIES_POLIWHIRL] = 5,
+    [SPECIES_POLITOED] = 40,
+    [SPECIES_WEEPINBELL] = 3,
+    [SPECIES_MUK] = 45,
+    [SPECIES_SHELLDER] = 20,
+    [SPECIES_HAUNTER] = 23,
+    [SPECIES_STEELIX] = 45,
+    [SPECIES_DROWZEE] = 48,
+    [SPECIES_HYPNO] = 40,
+    [SPECIES_HITMONCHAN] = 25,
+    [SPECIES_SCYTHER] = 10,
+    [SPECIES_SCIZOR] = 19,
+    [SPECIES_SMOOCHUM] = 40,
+    [SPECIES_TAUROS] = 10,
+    [SPECIES_TYPHLOSION] = 20,
+    [SPECIES_FERALIGATR] = 5,
+    [SPECIES_NATU] = 30,
+    [SPECIES_MAREEP] = 50,
+    [SPECIES_AMPHAROS] = 10,
+    [SPECIES_WYNAUT] = 15,
+    [SPECIES_DUNSPARCE] = 10,
+    [SPECIES_QWILFISH] = 39,
+    [SPECIES_OCTILLERY] = 20,
+    [SPECIES_TYRANITAR] = 10,
+    [SPECIES_LUGIA] = 20,
+    [SPECIES_WAILORD] = 10,
+    [SPECIES_GRUMPIG] = 15,
+    [SPECIES_MILOTIC] = 45,
+    [SPECIES_KECLEON] = 30,
+    [SPECIES_DUSCLOPS] = 30,
+    [SPECIES_ABSOL] = 45,
+    [SPECIES_SNORUNT] = 20,
+    [SPECIES_SPHEAL] = 15,
+    [SPECIES_SALAMENCE] = 70,
+    [SPECIES_KYOGRE] = 60,
+    [SPECIES_RAYQUAZA] = 60,
+#if P_GEN_4_POKEMON == TRUE
+    [SPECIES_ROTOM_FAN] = 7,
+#endif
+#if P_GEN_7_POKEMON == TRUE
+    [SPECIES_TAPU_FINI] = 5,
+#endif
+};
+
 #define PP_UP_SHIFTS(val)           val,        (val) << 2,        (val) << 4,        (val) << 6
 #define PP_UP_SHIFTS_INV(val) (u8)~(val), (u8)~((val) << 2), (u8)~((val) << 4), (u8)~((val) << 6)
 
@@ -6405,13 +6470,13 @@ void DoMonFrontSpriteAnimation(struct Sprite *sprite, u16 species, bool8 noCry, 
             if (HasTwoFramesAnimation(species))
                 StartSpriteAnim(sprite, 1);
         }
-        if (gSpeciesInfo[species].frontAnimDelay != 0)
+        if (sMonAnimationDelayTable[species] != 0)
         {
             // Animation has delay, start delay task
             u8 taskId = CreateTask(Task_AnimateAfterDelay, 0);
             STORE_PTR_IN_TASK(sprite, taskId, 0);
             gTasks[taskId].sAnimId = sMonFrontAnimIdsTable[species];
-            gTasks[taskId].sAnimDelay = gSpeciesInfo[species].frontAnimDelay;
+            gTasks[taskId].sAnimDelay = sMonAnimationDelayTable[species];
         }
         else
         {
@@ -6426,13 +6491,13 @@ void PokemonSummaryDoMonAnimation(struct Sprite *sprite, u16 species, bool8 oneF
 {
     if (!oneFrame && HasTwoFramesAnimation(species))
         StartSpriteAnim(sprite, 1);
-    if (gSpeciesInfo[species].frontAnimDelay != 0)
+    if (sMonAnimationDelayTable[species] != 0)
     {
         // Animation has delay, start delay task
         u8 taskId = CreateTask(Task_PokemonSummaryAnimateAfterDelay, 0);
         STORE_PTR_IN_TASK(sprite, taskId, 0);
         gTasks[taskId].sAnimId = sMonFrontAnimIdsTable[species];
-        gTasks[taskId].sAnimDelay = gSpeciesInfo[species].frontAnimDelay;
+        gTasks[taskId].sAnimDelay = sMonAnimationDelayTable[species];
         SummaryScreen_SetAnimDelayTaskId(taskId);
         SetSpriteCB_MonAnimDummy(sprite);
     }
