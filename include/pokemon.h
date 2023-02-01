@@ -591,5 +591,6 @@ bool32 SpeciesHasGenderDifferences(u16 species);
 void TryToSetBattleFormChangeMoves(struct Pokemon *mon);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);
 u16 GetCryIdBySpecies(u16 species);
+bool8 IsSpeciesEnabled(u16 species);
 
 #endif // GUARD_POKEMON_H
