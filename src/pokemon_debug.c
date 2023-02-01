@@ -47,6 +47,7 @@ extern const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[2];
 extern const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] ;
 extern const struct MonCoords gCastformFrontSpriteCoords[NUM_CASTFORM_FORMS];
 extern const u8 sCastformElevations[NUM_CASTFORM_FORMS];
+extern const u8 sMonFrontAnimIdsTable[NUM_SPECIES + 1];
 static const u16 sBgColor[] = {RGB_WHITE};
 
 static struct PokemonDebugMenu *GetStructPtr(u8 taskId)
@@ -1227,7 +1228,7 @@ void CB2_Debug_Pokemon(void)
 
             //Anim names
             data->animIdBack = GetSpeciesBackAnimSet(species) + 1;
-            data->animIdFront = gSpeciesInfo[data->currentmonId].frontAnimId;
+            data->animIdFront = sMonFrontAnimIdsTable[data->currentmonId];
             UpdateMonAnimNames(taskId);
 
             //BattleNg Name
@@ -1380,7 +1381,7 @@ static void UpdateSubmenuOneOptionValue(u8 taskId, bool8 increment)
                     modArrows->currValue = GetFormSpeciesId(data->currentmonId, formId - 1);
             }
             data->animIdBack = GetSpeciesBackAnimSet(modArrows->currValue) + 1;
-            data->animIdFront = gSpeciesInfo[modArrows->currValue].frontAnimId;
+            data->animIdFront = sMonFrontAnimIdsTable[modArrows->currValue];
             UpdateMonAnimNames(taskId);
             ResetOffsetSpriteValues(data);
 
@@ -1533,7 +1534,7 @@ static void Handle_Input_Debug_Pokemon(u8 taskId)
                 UpdateBattlerValue(data);
                 ReloadPokemonSprites(data);
                 data->animIdBack = GetSpeciesBackAnimSet(data->currentmonId) + 1;
-                data->animIdFront = gSpeciesInfo[data->currentmonId].frontAnimId;
+                data->animIdFront = sMonFrontAnimIdsTable[data->currentmonId];
                 UpdateMonAnimNames(taskId);
                 ResetOffsetSpriteValues(data);
             }
@@ -1549,7 +1550,7 @@ static void Handle_Input_Debug_Pokemon(u8 taskId)
                 UpdateBattlerValue(data);
                 ReloadPokemonSprites(data);
                 data->animIdBack = GetSpeciesBackAnimSet(data->currentmonId) + 1;
-                data->animIdFront =gSpeciesInfo[data->currentmonId].frontAnimId;
+                data->animIdFront =sMonFrontAnimIdsTable[data->currentmonId];
                 UpdateMonAnimNames(taskId);
                 ResetOffsetSpriteValues(data);
             }
