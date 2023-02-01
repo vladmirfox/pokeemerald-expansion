@@ -1304,10 +1304,14 @@ const u32 *const gMonShinyPaletteTable[NUM_SPECIES + 1] =
 
 const u32 *const gMonShinyPaletteTableFemale[NUM_SPECIES + 1] =
 {
+#if P_GEN_4_POKEMON == TRUE
     [SPECIES_COMBEE] = gMonShinyPalette_CombeeF,
     [SPECIES_HIPPOPOTAS] = gMonShinyPalette_HippopotasF,
     [SPECIES_HIPPOWDON] = gMonShinyPalette_HippowdonF,
+#endif
+#if P_GEN_5_POKEMON == TRUE
     [SPECIES_UNFEZANT] = gMonShinyPalette_UnfezantF,
     [SPECIES_FRILLISH] = gMonShinyPalette_FrillishF,
     [SPECIES_JELLICENT] = gMonShinyPalette_JellicentF,
+#endif
 };
