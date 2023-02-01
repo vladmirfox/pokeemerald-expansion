@@ -5729,7 +5729,11 @@ static void Task_TryItemUseFusionChange(u8 taskId)
             CompactPartySlots();
             CalculatePlayerPartyCount();
             if(gTasks[taskId].firstFusionSlot > gTasks[taskId].secondFusionSlot)
+            {
                 gTasks[taskId].firstFusionSlot--;
+                gPartyMenu.slotId--;
+            }
+
         }
         else
         {
