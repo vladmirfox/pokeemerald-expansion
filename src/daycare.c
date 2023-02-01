@@ -405,7 +405,7 @@ static u16 GetEggSpecies(u16 species)
             if (evolutions == NULL)
                 continue;
 
-            for (k = 0; evolutions[k].method != EVOLUTIONS_END; i++)
+            for (k = 0; evolutions[k].method != EVOLUTIONS_END; k++)
             {
                 if (evolutions[k].targetSpecies == species)
                 {
