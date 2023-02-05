@@ -490,7 +490,6 @@ struct MegaEvolutionData
     u8 battlerId;
     bool8 playerSelect;
     u8 triggerSpriteId;
-    bool8 isWishMegaEvo;
 };
 
 struct Illusion
