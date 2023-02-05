@@ -8502,6 +8502,7 @@ BattleScript_IntimidateActivatesLoop:
 	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_IntimidatePrevented
 	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_IntimidatePrevented
 .endif
+	jumpifability BS_TARGET, ABILITY_GUARD_DOG, BattleScript_IntimidateInReverse
 	statbuffchange STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_IntimidateActivatesLoopIncrement
 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_IntimidateActivatesLoopIncrement
 	setgraphicalstatchangevalues
@@ -8529,9 +8530,9 @@ BattleScript_IntimidateInReverse:
 	copybyte gBattlerAbility, gBattlerTarget
 	call BattleScript_AbilityPopUp
 	pause B_WAIT_TIME_SHORT
-	modifybattlerstatstage BS_TARGET, STAT_ATK, INCREASE, 1, BattleScript_IntimidateLoopIncrement, ANIM_ON
+	modifybattlerstatstage BS_TARGET, STAT_ATK, INCREASE, 1, BattleScript_IntimidateActivatesLoopIncrement, ANIM_ON
 	call BattleScript_TryAdrenalineOrb
-	goto BattleScript_IntimidateLoopIncrement
+	goto BattleScript_IntimidateActivatesLoopIncrement
 
 BattleScript_DroughtActivates::
 	pause B_WAIT_TIME_SHORT
