@@ -26,18 +26,17 @@
 #define ABILITYEFFECT_MOVE_END_ATTACKER          4
 #define ABILITYEFFECT_MOVE_END                   5
 #define ABILITYEFFECT_IMMUNITY                   6
-#define ABILITYEFFECT_WEATHER_FORM               7
-#define ABILITYEFFECT_SYNCHRONIZE                8
-#define ABILITYEFFECT_ATK_SYNCHRONIZE            9
-#define ABILITYEFFECT_INTIMIDATE1                10
-#define ABILITYEFFECT_INTIMIDATE2                11
-#define ABILITYEFFECT_TRACE1                     12
-#define ABILITYEFFECT_TRACE2                     13
-#define ABILITYEFFECT_MOVE_END_OTHER             14
-#define ABILITYEFFECT_NEUTRALIZINGGAS            15
-#define ABILITYEFFECT_FIELD_SPORT                16 // Only used if B_SPORT_TURNS < GEN_6
-#define ABILITYEFFECT_ON_WEATHER                 17
-#define ABILITYEFFECT_ON_TERRAIN                 18
+#define ABILITYEFFECT_SYNCHRONIZE                7
+#define ABILITYEFFECT_ATK_SYNCHRONIZE            8
+#define ABILITYEFFECT_INTIMIDATE1                9
+#define ABILITYEFFECT_INTIMIDATE2                10
+#define ABILITYEFFECT_TRACE1                     11
+#define ABILITYEFFECT_TRACE2                     12
+#define ABILITYEFFECT_MOVE_END_OTHER             13
+#define ABILITYEFFECT_NEUTRALIZINGGAS            14
+#define ABILITYEFFECT_FIELD_SPORT                15 // Only used if B_SPORT_TURNS < GEN_6
+#define ABILITYEFFECT_ON_WEATHER                 16
+#define ABILITYEFFECT_ON_TERRAIN                 17
 
 // Special cases
 #define ABILITYEFFECT_MUD_SPORT                  252 // Only used if B_SPORT_TURNS < GEN_6
