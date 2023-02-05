@@ -1162,7 +1162,7 @@
 	.4byte \ptr
 	.endm
 
-	.macro unused2 ptr:req
+	.macro trygetintimidatetarget ptr:req
 	.byte 0xe1
 	.4byte \ptr
 	.endm
@@ -1339,8 +1339,8 @@
 	various \battler, VARIOUS_GET_BATTLER_FAINTED
 	.endm
 
-	.macro resetswitchinabilitybits battler:req
-	various \battler, VARIOUS_RESET_SWITCH_IN_ABILITY_BITS
+	.macro resetintimidatetracebits battler:req
+	various \battler, VARIOUS_RESET_INTIMIDATE_TRACE_BITS
 	.endm
 
 	.macro updatechoicemoveonlvlup battler:req
@@ -2042,11 +2042,6 @@
 
 	.macro activateterrainchangeabilities battler:req
 	various \battler, VARIOUS_ACTIVATE_TERRAIN_CHANGE_ABILITIES
-	.endm
-
-	.macro jumpifnovalidtargets ptr:req
-	various BS_ATTACKER, VARIOUS_JUMP_IF_NO_VALID_TARGETS
-	.4byte \ptr
 	.endm
 
 @ helpful macros
