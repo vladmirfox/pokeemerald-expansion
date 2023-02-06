@@ -9,14 +9,11 @@ with open('data/battle_anim_scripts.s','r+') as f:
 		if len(words) > 0 and words[0] == 'launchtemplate':
 			newstr = '	createsprite ' + words[1] + ', '
 			
+			# handle incorrectly assigned prio args
 			if 'ANIM_TARGET' in words[2]:
 				words[2] = '0x84'
-				#print(line)
-				#exit()
 			if 'ANIM_DEF_PARTNER' in words[2]:
 				words[2] = '0x3'
-				#print(line)
-				#exit()
 			
 			prio = words[2].replace(',','')	# remove comma if it exists
 			prio = int(prio, 16)	# get hex val
@@ -30,17 +27,14 @@ with open('data/battle_anim_scripts.s','r+') as f:
 				if '@' in words[arg]:
 					for i in range(arg,len(words)):
 						newstr = newstr + words[i] + ' '
-					#print(newstr)
 				else:
 					newstr = newstr + words[arg].replace(',','')
 					if arg < len(words) - 1:
 						newstr = newstr + ', '
 					else:
-						newstr = newstr + '\n'
-			
-#			print(newstr)
+						newstr = newstr + '\n'			
 		else:
 			newstr = line
-#			print(newstr)
+
 		f.writelines(newstr)
 	f.close()
