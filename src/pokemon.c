@@ -4466,6 +4466,13 @@ u32 GetUnownSpeciesId(u32 personality)
 
 void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition)
 {
+    struct Pokemon *illusionMon;
+    u16 checkedSpeciesTag = speciesTag;
+    illusionMon = GetIllusionMonPtr(battlerPosition);
+
+    if ((illusionMon = GetIllusionMonPtr(battlerPosition)) != NULL)
+        checkedSpeciesTag = GetMonData(illusionMon, MON_DATA_SPECIES2);
+
     if (gMonSpritesGfxPtr != NULL)
         gMultiuseSpriteTemplate = gMonSpritesGfxPtr->templates[battlerPosition];
     else if (sMonSpritesGfxManagers[MON_SPR_GFX_MANAGER_A])
@@ -4475,13 +4482,23 @@ void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition)
     else
         gMultiuseSpriteTemplate = gBattlerSpriteTemplates[battlerPosition];
 
-    gMultiuseSpriteTemplate.paletteTag = speciesTag;
+    gMultiuseSpriteTemplate.paletteTag = checkedSpeciesTag;
     if (battlerPosition == B_POSITION_PLAYER_LEFT || battlerPosition == B_POSITION_PLAYER_RIGHT)
         gMultiuseSpriteTemplate.anims = gAnims_MonPic;
-    else if (speciesTag > SPECIES_SHINY_TAG)
-        gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[speciesTag - SPECIES_SHINY_TAG];
+    else if (checkedSpeciesTag > SPECIES_SHINY_TAG)
+    {
+        if (gMonFrontAnimsPtrTable[checkedSpeciesTag - SPECIES_SHINY_TAG] != NULL)
+            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[checkedSpeciesTag - SPECIES_SHINY_TAG];
+        else
+            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[SPECIES_NONE];
+    }
     else
-        gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[speciesTag];
+    {
+        if (gMonFrontAnimsPtrTable[checkedSpeciesTag] != NULL)
+            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[checkedSpeciesTag];
+        else
+            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[SPECIES_NONE];
+    }
 }
 
 void SetMultiuseSpriteTemplateToTrainerBack(u16 trainerPicId, u8 battlerPosition)
