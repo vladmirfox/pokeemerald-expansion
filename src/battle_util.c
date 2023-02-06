@@ -10306,7 +10306,6 @@ bool32 SetIllusionMon(struct Pokemon *mon, u32 battlerId)
             gBattleStruct->illusion[battlerId].on = 1;
             gBattleStruct->illusion[battlerId].broken = 0;
             gBattleStruct->illusion[battlerId].partyId = id;
-            gBattleStruct->illusion[battlerId].monCopy = party[id];
             gBattleStruct->illusion[battlerId].mon = &party[id];
             return TRUE;
         }
