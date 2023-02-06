@@ -7,7 +7,7 @@ with open('data/battle_anim_scripts.s','r+') as f:
 		words = line.split()
 		
 		if len(words) > 0 and words[0] == 'launchtemplate':
-			newstr = '	createsprite ' + words[1] + ', '
+			newstr = '	createsprite ' + words[1].replace(',','') + ', '
 			
 			# handle incorrectly assigned prio args
 			if 'ANIM_TARGET' in words[2]:
