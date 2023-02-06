@@ -25,16 +25,16 @@ with open('data/battle_anim_scripts.s','r+') as f:
 			# get rest of args, skipping over 'nArgs' argument
 			for arg in range(4,len(words)):
 				if '@' in words[arg]:
-					for i in range(arg,len(words)):
+					for i in range(arg,len(words)-1):
 						newstr = newstr + words[i] + ' '
 				else:
 					newstr = newstr + words[arg].replace(',','')
-					if arg < len(words) - 1:
+					if arg < len(words) - 1 and '@' not in words[arg+1]:
 						newstr = newstr + ', '
 					else:
-						newstr = newstr + '\n'			
+						newstr = newstr + ' '
+			f.writelines(newstr + '\n')
 		else:
 			newstr = line
-
-		f.writelines(newstr)
+			f.writelines(newstr)
 	f.close()
