@@ -4832,7 +4832,7 @@ void AnimNeedleArmSpike(struct Sprite *sprite)
         }
         else
         {
-            if (IsDoubleBattleOnSide(gBattleAnimTarget))
+            if (IsDoubleBattle())
             {
                 SetAverageBattlerPositions(gBattleAnimTarget, TRUE, &a, &b);
             }
