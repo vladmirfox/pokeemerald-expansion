@@ -6406,10 +6406,6 @@ Move_ELECTROWEB:
 	clearmonbg ANIM_DEF_PARTNER
 	delay 1
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 5, 1, 2, 9, 0, RGB_BLACK
-
-    @ ElectricityEffect looks ugly against both opponents, to do later
-	jumpifdoublebattle Move_ELECTROWEB_Wait
-
 	call ElectricityEffect
 Move_ELECTROWEB_Wait:
 	waitforvisualfinish
@@ -23376,15 +23372,15 @@ Move_OVERHEAT:
 	waitforvisualfinish
 	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, -5, 3, ANIM_TARGET, 0
 	playsewithpan SE_M_FLAMETHROWER, SOUND_PAN_TARGET
-	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 10, 0, 25, 1
+	createvisualtaskontargets AnimTask_ShakeMon, 2, 0, ANIM_TARGET, 10, 0, 25, 1
 	delay 6
-	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 8, -5, ANIM_TARGET, 0
+	createspriteontargets gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 2, 8, -5, ANIM_TARGET, 0
 	playsewithpan SE_M_FLAMETHROWER, SOUND_PAN_TARGET
 	delay 8
-	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 10, 10, ANIM_TARGET, 0
+	createspriteontargets gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 2, 10, 10, ANIM_TARGET, 0
 	playsewithpan SE_M_FLAMETHROWER, SOUND_PAN_TARGET
 	delay 8
-	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, 0, ANIM_TARGET, 0
+	createspriteontargets gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 2, 0, 0, ANIM_TARGET, 0
 	playsewithpan SE_M_FLAMETHROWER, SOUND_PAN_TARGET
 	createvisualtask AnimTask_CopyPalFadedToUnfaded, 5, 1
 	delay 1
@@ -24210,21 +24206,21 @@ WaterBubblesEffectLong:
 ElectricityEffect:
 	playsewithpan SE_M_THUNDERBOLT2, SOUND_PAN_TARGET
 ElectricityEffectNoSound:
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 5, 0, 5, 0, ANIM_TARGET
+	createspriteontargets gElectricitySpriteTemplate, ANIM_TARGET, 2, 4, 5, 0, 5, 0, ANIM_TARGET
 	delay 2
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, -5, 10, 5, 1, ANIM_TARGET
+	createspriteontargets gElectricitySpriteTemplate, ANIM_TARGET, 2, 4, -5, 10, 5, 1, ANIM_TARGET
 	delay 2
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 15, 20, 5, 2, ANIM_TARGET
+	createspriteontargets gElectricitySpriteTemplate, ANIM_TARGET, 2, 4, 15, 20, 5, 2, ANIM_TARGET
 	delay 2
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, -15, -10, 5, 0, ANIM_TARGET
+	createspriteontargets gElectricitySpriteTemplate, ANIM_TARGET, 2, 4, -15, -10, 5, 0, ANIM_TARGET
 	delay 2
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 25, 0, 5, 1, ANIM_TARGET
+	createspriteontargets gElectricitySpriteTemplate, ANIM_TARGET, 2, 4, 25, 0, 5, 1, ANIM_TARGET
 	delay 2
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, -8, 8, 5, 2, ANIM_TARGET
+	createspriteontargets gElectricitySpriteTemplate, ANIM_TARGET, 2, 4, -8, 8, 5, 2, ANIM_TARGET
 	delay 2
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, 2, -8, 5, 0, ANIM_TARGET
+	createspriteontargets gElectricitySpriteTemplate, ANIM_TARGET, 2, 4, 2, -8, 5, 0, ANIM_TARGET
 	delay 2
-	createsprite gElectricitySpriteTemplate, ANIM_TARGET, 2, -20, 15, 5, 1, ANIM_TARGET
+	createspriteontargets gElectricitySpriteTemplate, ANIM_TARGET, 2, 4, -20, 15, 5, 1, ANIM_TARGET
 	return
 
 ConfusionEffect:
