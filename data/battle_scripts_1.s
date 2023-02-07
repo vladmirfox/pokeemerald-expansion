@@ -5661,7 +5661,7 @@ BattleScript_EffectFollowMe::
 	attackcanceler
 	attackstring
 	ppreduce
-	.if B_UPDATED_MOVE_DATA >= GEN_5
+	.if B_UPDATED_MOVE_DATA >= GEN_6
 	jumpifnotbattletype BATTLE_TYPE_DOUBLE, BattleScript_ButItFailed
 	.endif
 	setforcedtarget
