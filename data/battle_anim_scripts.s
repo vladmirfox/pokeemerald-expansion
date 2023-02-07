@@ -10172,6 +10172,7 @@ Move_ORIGIN_PULSE::
 	launchtemplate gOriginPulseOrbInwardTemplate 0x82 0x5 0x1 0x0 0xFF2A 0xFFAA 0x10 @between left and upper left
 	launchtemplate gOriginPulseOrbInwardTemplate 0x82 0x5 0x1 0x0 0xFFDA 0xFF94 0x10 @between up and upper left
 	waitforvisualfinish
+	createvisualtaskontargets AnimTask_ShakeMon2, 5, 0, ANIM_TARGET, 2, 0, 18, 1
 	monbg ANIM_DEF_PARTNER
 	launchtemplate gOriginPulseBasicSplatTemplate 0x83 0x4 0xffb0 0xfff0 0x1 0x1
 	stopsound
