@@ -8,7 +8,7 @@ ASSUMPTIONS
 
 DOUBLE_BATTLE_TEST("After You makes the target move after user")
 {
-    if (B_RECALC_TURN_AFTER_ACTIONS >= GEN_8) KNOWN_FAILING; // #2615.
+    if (B_RECALC_TURN_AFTER_ACTIONS >= GEN_8);
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
         PLAYER(SPECIES_WYNAUT) { Speed(1); }
