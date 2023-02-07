@@ -907,10 +907,9 @@ void HandleAction_NothingIsFainted(void)
 void HandleAction_ActionFinished(void)
 {
     #if B_RECALC_TURN_AFTER_ACTIONS >= GEN_8
-    u8 i, j;
-    u8 battler1 = 0;
-    u8 battler2 = 0;
+    u32 i, j;
     #endif
+    bool32 afterYouActive = gSpecialStatuses[gBattlerByTurnOrder[gCurrentTurnActionNumber + 1]].afteryou;
     *(gBattleStruct->monToSwitchIntoId + gBattlerByTurnOrder[gCurrentTurnActionNumber]) = PARTY_SIZE;
     gCurrentTurnActionNumber++;
     gCurrentActionFuncId = gActionsByTurnOrder[gCurrentTurnActionNumber];
@@ -936,25 +935,28 @@ void HandleAction_ActionFinished(void)
     gBattleResources->battleScriptsStack->size = 0;
 
     #if B_RECALC_TURN_AFTER_ACTIONS >= GEN_8
-    // i starts at `gCurrentTurnActionNumber` because we don't want to recalculate turn order for mon that have already
-    // taken action. It's been previously increased, which we want in order to not recalculate the turn of the mon that just finished its action
-    for (i = gCurrentTurnActionNumber; i < gBattlersCount - 1; i++)
+    if (!afterYouActive)
     {
-        for (j = i + 1; j < gBattlersCount; j++)
+        // i starts at `gCurrentTurnActionNumber` because we don't want to recalculate turn order for mon that have already
+        // taken action. It's been previously increased, which we want in order to not recalculate the turn of the mon that just finished its action
+        for (i = gCurrentTurnActionNumber; i < gBattlersCount - 1; i++)
         {
-            u8 battler1 = gBattlerByTurnOrder[i];
-            u8 battler2 = gBattlerByTurnOrder[j];
-            // We recalculate order only for action of the same priority. If any action other than switch/move has been taken, they should
-            // have been executed before. The only recalculation needed is for moves/switch. Mega evolution is handled in src/battle_main.c/TryChangeOrder
-            if((gActionsByTurnOrder[i] == B_ACTION_USE_MOVE && gActionsByTurnOrder[j] == B_ACTION_USE_MOVE))
+            for (j = i + 1; j < gBattlersCount; j++)
             {
-                if (GetWhoStrikesFirst(battler1, battler2, FALSE))
-                    SwapTurnOrder(i, j);
-            }
-            else if ((gActionsByTurnOrder[i] == B_ACTION_SWITCH && gActionsByTurnOrder[j] == B_ACTION_SWITCH))
-            {
-                if (GetWhoStrikesFirst(battler1, battler2, TRUE)) // If the actions chosen are switching, we recalc order but ignoring the moves
-                    SwapTurnOrder(i, j);
+                u8 battler1 = gBattlerByTurnOrder[i];
+                u8 battler2 = gBattlerByTurnOrder[j];
+                // We recalculate order only for action of the same priority. If any action other than switch/move has been taken, they should
+                // have been executed before. The only recalculation needed is for moves/switch. Mega evolution is handled in src/battle_main.c/TryChangeOrder
+                if((gActionsByTurnOrder[i] == B_ACTION_USE_MOVE && gActionsByTurnOrder[j] == B_ACTION_USE_MOVE))
+                {
+                    if (GetWhoStrikesFirst(battler1, battler2, FALSE))
+                        SwapTurnOrder(i, j);
+                }
+                else if ((gActionsByTurnOrder[i] == B_ACTION_SWITCH && gActionsByTurnOrder[j] == B_ACTION_SWITCH))
+                {
+                    if (GetWhoStrikesFirst(battler1, battler2, TRUE)) // If the actions chosen are switching, we recalc order but ignoring the moves
+                        SwapTurnOrder(i, j);
+                }
             }
         }
     }
@@ -3814,7 +3816,7 @@ u8 AtkCanceller_UnableToUseMove(void)
                 {
                     SetRandomMultiHitCounter();
                 }
-                
+
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
             else if (gBattleMoves[gCurrentMove].flags & FLAG_TWO_STRIKES)
@@ -3841,7 +3843,7 @@ u8 AtkCanceller_UnableToUseMove(void)
                     party = gPlayerParty;
                 else
                     party = gEnemyParty;
-                
+
                 for (i = 0; i < PARTY_SIZE; i++)
                 {
                     if (GetMonData(&party[i], MON_DATA_HP)
@@ -5487,7 +5489,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         RecordItemEffectBattle(gBattlerAttacker, HOLD_EFFECT_ABILITY_SHIELD);
                         break;
                     }
-                
+
                     gLastUsedAbility = gBattleMons[gBattlerAttacker].ability;
                     gBattleMons[gBattlerAttacker].ability = gBattleStruct->overwrittenAbilities[gBattlerAttacker] = gBattleMons[gBattlerTarget].ability;
                     gBattleMons[gBattlerTarget].ability = gBattleStruct->overwrittenAbilities[gBattlerTarget] = gLastUsedAbility;
@@ -6858,7 +6860,7 @@ static u8 ItemEffectMoveEnd(u32 battlerId, u16 holdEffect)
 {
     u8 effect = 0;
     u32 i;
-    
+
     switch (holdEffect)
     {
 #if B_HP_BERRIES >= GEN_4
@@ -7027,7 +7029,7 @@ static u8 ItemEffectMoveEnd(u32 battlerId, u16 holdEffect)
             && !(gBattleMons[battlerId].status2 & STATUS2_FOCUS_ENERGY)
             && HasEnoughHpToEatBerry(battlerId, GetBattlerItemHoldEffectParam(battlerId, gLastUsedItem), gLastUsedItem))
         {
-            gBattleMons[battlerId].status2 |= STATUS2_FOCUS_ENERGY;            
+            gBattleMons[battlerId].status2 |= STATUS2_FOCUS_ENERGY;
             gBattleScripting.battler = battlerId;
             gPotentialItemEffectBattler = battlerId;
             BattleScriptPushCursor();
@@ -7036,7 +7038,7 @@ static u8 ItemEffectMoveEnd(u32 battlerId, u16 holdEffect)
         }
         break;
     }
-    
+
     return effect;
 }
 
@@ -7053,7 +7055,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
         gLastUsedItem = gBattleMons[battlerId].item;
         battlerHoldEffect = GetBattlerHoldEffect(battlerId, TRUE);
     }
-    
+
     atkItem = gBattleMons[gBattlerAttacker].item;
     atkHoldEffect = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
     atkHoldEffectParam = GetBattlerHoldEffectParam(gBattlerAttacker);
@@ -8184,7 +8186,7 @@ u32 GetBattlerHoldEffect(u8 battlerId, bool32 checkNegating)
         return ItemId_GetHoldEffect(gBattleMons[battlerId].item);
 }
 
-// 
+//
 static u32 GetBattlerItemHoldEffectParam(u8 battlerId, u16 item)
 {
     if (item == ITEM_ENIGMA_BERRY)
@@ -8234,7 +8236,7 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
         else if (gProtectStructs[battlerId].protected)
             return FALSE;
     }
-    
+
         if (move == MOVE_TEATIME)
     {
             return FALSE;
