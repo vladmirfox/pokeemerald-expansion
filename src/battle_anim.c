@@ -82,7 +82,7 @@ static void Cmd_teamattack_moveback(void);
 static void Cmd_teamattack_movefwd(void);
 static void Cmd_stopsound(void);
 static void Cmd_createspriteontargets(void);
-static void Cmd_createvisualtaskontargets(void)
+static void Cmd_createvisualtaskontargets(void);
 
 static void RunAnimScriptCommand(void);
 static void Task_UpdateMonBg(u8 taskId);
