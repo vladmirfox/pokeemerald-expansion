@@ -26531,7 +26531,7 @@ Move_BLOOM_DOOM::
 	call BloomDoomPetalBlast
 	createvisualtask AnimTask_IsTargetPartner, 0x5, 
 	jumpargeq 0x0 0x1 BloomDoomFadeScreenTargetPartner
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, ANIM_PAL_ALL, -, ANIM_PAL_DEF, 0x1, 0x0, 0x10, 0x33ed @ green bg green, bg, pal 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (F_PAL_ATK_SIDE | F_PAL_DEF_PARTNER), 0x1, 0x0, 0x10, 0x33ed @ green bg green, bg, pal 
 BloomDoomEnding:
 	call BloomDoomPetalBlast
 	waitforvisualfinish
