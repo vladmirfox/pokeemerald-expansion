@@ -5239,11 +5239,11 @@ Move_FOUL_PLAY:
 	createsprite gFoulPlayImpactTemplate, ANIM_ATTACKER, 2, 0x0, 0x0, 0x1, 0x1 
 	createvisualtask AnimTask_ShakeMon, 0x2, 0x1, 0x3, 0x0, 0x6, 0x1 
 	playsewithpan SE_M_VITAL_THROW SOUND_PAN_TARGET
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (ANIM_PAL_BG, |, ANIM_PAL_ALL_BATTLERS), 0x3, 0xa, 0x0, 0x0 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (F_PAL_BG | F_PAL_BATTLERS), 0x3, 0xa, 0x0, 0x0 
 	createsprite gFoulPlayRingTemplate, ANIM_ATTACKER, 3, 0x0, 0x0, 0x100, 0x0 
-	delay 0x8
+	delay 8
 	playsewithpan SE_M_COMET_PUNCH, SOUND_PAN_TARGET
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (ANIM_PAL_BG, |, ANIM_PAL_ALL_BATTLERS), 0x3, 0xa, 0x0, 0x0 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (F_PAL_BG | F_PAL_BATTLERS), 0x3, 0xa, 0x0, 0x0 
 	createsprite gFoulPlayRingTemplate, ANIM_ATTACKER, 3, 0x0, 0x0, 0x100, 0x0 
 	waitforvisualfinish
 	clearmonbg ANIM_TARGET
@@ -6923,7 +6923,7 @@ Move_SEARING_SHOT:
 	waitbgfadein
 	delay 0x1E
 	monbg ANIM_ATK_PARTNER
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xA, ANIM_PAL_ATK_PARTNER, |, ANIM_PAL_DEF, |, ANIM_PAL_DEF_PARTNER, 0x2, 0x0, 0x9, 0x1F 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xA, F_PAL_ADJACENT, 0x2, 0x0, 0x9, 0x1F 
 	playsewithpan SE_M_EXPLOSION, SOUND_PAN_ATTACKER
 	createvisualtask AnimTask_ShakeMon, 0x2, ANIM_TARGET, 0x3, 0x0, 0x1B, 0x1 
 	createvisualtask AnimTask_ShakeMon, 0x2, ANIM_DEF_PARTNER, 0x3, 0x0, 0x1B, 0x1 
@@ -6938,7 +6938,7 @@ Move_SEARING_SHOT:
 	delay 0x1E
 	playsewithpan SE_M_EXPLOSION, SOUND_PAN_ATTACKER
 	waitforvisualfinish
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xA, ANIM_PAL_ATK_PARTNER, |, ANIM_PAL_DEF, |, ANIM_PAL_DEF_PARTNER, 0x2, 0x9, 0x0, 0x1F 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xA, F_PAL_ADJACENT, 0x2, 0x9, 0x0, 0x1F 
 	delay 0x1E
 	call UnsetPsychicBg
 	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, ANIM_PAL_BG, 0x1, 0x0, 0x0, 0x0 
@@ -10266,13 +10266,13 @@ Move_DRAGON_ASCENT::
 	invisible ANIM_ATTACKER
 	createsprite gDragonAscentFlyUpTemplate, ANIM_ATTACKER, 2, 0x0, 0x0, 0x400, 0x24, 0x15, 0x1, ANIM_ATTACKER 
 	waitforvisualfinish
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (ANIM_PAL_ATK, |, ANIM_PAL_BG, |, ANIM_PAL_BG_4, |, ANIM_PAL_BG_5), 4, 0, 14, RGB(21, 31, 27) 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (F_PAL_ATTACKER | F_PAL_BG | F_PAL_ANIM_1 | F_PAL_ANIM_2), 4, 0, 14, RGB(21, 31, 27) 
 	playsewithpan SE_M_MEGA_KICK, SOUND_PAN_ATTACKER
 	waitforvisualfinish
 	playsewithpan SE_M_DETECT, SOUND_PAN_ATTACKER
 	createvisualtask AnimTask_StartSlidingBg, 0x5, -7304, -784, 1, -1 
 	delay 2
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (ANIM_PAL_ATK, |, ANIM_PAL_BG, |, ANIM_PAL_BG_4, |, ANIM_PAL_BG_5), 0, 14, 0, RGB(21, 31, 27) 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (F_PAL_ATTACKER | F_PAL_BG | F_PAL_ANIM_1 | F_PAL_ANIM_2), 0, 14, 0, RGB(21, 31, 27) 
 	waitforvisualfinish
 	delay 1
 	monbg ANIM_DEF_PARTNER
@@ -10284,7 +10284,7 @@ Move_DRAGON_ASCENT::
 	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 4, -10, 0, 1, 0 
 	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, 0x1, -32, 0, 0, 3 
 	createvisualtask AnimTask_ShakeMonInPlace, 0x2, ANIM_TARGET, 6, 0, 12, 1 
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (ANIM_PAL_ATK, |, ANIM_PAL_BG, |, ANIM_PAL_BG_4, |, ANIM_PAL_BG_5), 2, 16, 0, RGB(26, 31, 0) 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (F_PAL_ATTACKER | F_PAL_BG | F_PAL_ANIM_1 | F_PAL_ANIM_2), 2, 16, 0, RGB(26, 31, 0) 
 	waitforvisualfinish
 	delay 3
 	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 1, 0, 7 
