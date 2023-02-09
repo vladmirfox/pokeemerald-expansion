@@ -30,7 +30,7 @@ struct Runner
 {
     pid_t pid;
     int outfd;
-    char rom_path[L_tmpnam];
+    char rom_path[FILENAME_MAX];
     char test_name[256];
     size_t input_buffer_size;
     size_t input_buffer_capacity;
@@ -263,7 +263,7 @@ int main(int argc, char *argv[])
                 perror("close pipefds[1] failed");
                 _exit(2);
             }
-            char rom_path[L_tmpnam];
+            char rom_path[FILENAME_MAX];
             sprintf(rom_path, "/tmp/file%05d", getpid());
             int tmpfd;
             if ((tmpfd = open(rom_path, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR)) == -1)
