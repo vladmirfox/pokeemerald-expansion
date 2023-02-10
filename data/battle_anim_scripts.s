@@ -27228,11 +27228,11 @@ DevastatingDrakeUniversalEnding:
 	waitforvisualfinish
 	end
 DevastatingDrakeFadeTargetPartner:
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (F_PAL_BG | F_PAL_ATTACKER, | F_PAL_BATTLERS_2), 0x6, 0x0, 0x10, 0x40c0 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (F_PAL_BG | F_PAL_ATTACKER | F_PAL_BATTLERS_2), 0x6, 0x0, 0x10, 0x40c0 
 	call DevastatingDrakeExplosion
 	waitforvisualfinish
 	playsewithpan SE_M_DRAGON_RAGE, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (F_PAL_BG | F_PAL_ATTACKER, | F_PAL_BATTLERS_2), 0x0, 0x10, 0x0, 0x40c0 @ fade all but target fade, all, but, target, back 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (F_PAL_BG | F_PAL_ATTACKER | F_PAL_BATTLERS_2), 0x0, 0x10, 0x0, 0x40c0 @ fade all but target fade, all, but, target, back 
 	goto DevastatingDrakeUniversalEnding
 DevastatingDrakeBuffEffect:
 	createsprite gDevastatingDrakePurpleEnergySpriteTemplate, ANIM_ATTACKER, 2, 0x0, 0xffe8, 0x1a, 0x2 
