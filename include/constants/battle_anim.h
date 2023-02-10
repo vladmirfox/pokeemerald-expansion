@@ -591,21 +591,6 @@
 #define ANIM_WEATHER_SANDSTORM 3
 #define ANIM_WEATHER_HAIL 4
 
-// mon pal blend
-#define ANIM_PAL_BG             0x1
-#define ANIM_PAL_ATK            0x2
-#define ANIM_PAL_DEF            0x4
-#define ANIM_PAL_ATK_PARTNER    0x8
-#define ANIM_PAL_DEF_PARTNER    0x10
-#define ANIM_PAL_ALL            0x1f
-#define ANIM_PAL_BG_4           0x20
-#define ANIM_PAL_BG_5           0x40
-#define ANIM_PAL_ALL_BATTLERS   0x780
-#define ANIM_PAL_PLAYER1        0x80
-#define ANIM_PAL_PLAYER2        0x100
-#define ANIM_PAL_OPPONENT1      0x200
-#define ANIM_PAL_OPPONENT2      0x400
-
 // horseshoe/fist frames
 #define ANIM_RIGHT_FIST  0
 #define ANIM_LEFT_FIST   2
@@ -634,6 +619,7 @@
 #define F_PAL_DEF_SIDE    (F_PAL_TARGET | F_PAL_DEF_PARTNER)
 #define F_PAL_BATTLERS    (F_PAL_ATK_SIDE | F_PAL_DEF_SIDE)
 #define F_PAL_ADJACENT    (F_PAL_DEF_SIDE | F_PAL_ATK_PARTNER)
+#define F_PAL_ALL_BUT_DEF (F_PAL_ATK_SIDE | F_PAL_DEF_PARTNER)
 // The below are only used by AnimTask_BlendBattleAnimPal to get battler sprite palettes by position rather than by role.
 // It's redundant with F_PAL_BATTLERS, because they're only ever used together to refer to all the battlers at once.
 #define F_PAL_BATTLERS_2  (1 << 7 | 1 << 8 | 1 << 9 | 1 << 10)
