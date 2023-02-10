@@ -10118,7 +10118,7 @@ Move_LIGHT_OF_RUIN::
 	delay 0x10
 	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, ANIM_PAL_BG, 0x1, 0x10, 0x0, 0x7FFF 
 	waitforvisualfinish
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, ANIM_PAL_ALL_BATTLERS, 0x1, 0x0, 0x0, 0x0 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_BATTLERS, 0x1, 0x0, 0x0, 0x0 
 	waitforvisualfinish
 	end
 LightOfRuinBeam:
@@ -10855,7 +10855,7 @@ SolarBladeUnleash:
 	loadspritegfx ANIM_TAG_SUNLIGHT @sun rays
 	monbg ANIM_ATTACKER
 	setblends 0x30d
-	createvisualtask AnimTask_BlendBattleAnimPal 10, (ANIM_PAL_BG | ANIM_PAL_ALL_BATTLERS), 1, 0, 6, 0x7fff
+	createvisualtask AnimTask_BlendBattleAnimPal 10, (ANIM_PAL_BG | F_PAL_BATTLERS), 1, 0, 6, 0x7fff
 	waitforvisualfinish
 	playsewithpan SE_M_SWORDS_DANCE, SOUND_PAN_ATTACKER
 	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0x10, 0x6, 0x1, 0x4 
@@ -10872,7 +10872,7 @@ SolarBladeUnleash:
 	delay 0x2
 	createvisualtask AnimTask_ShakeMon2, 0x2, ANIM_TARGET, 0x2, 0x0, 0xC, 0x1 
 	waitforvisualfinish
-	createvisualtask AnimTask_BlendBattleAnimPal 10, (ANIM_PAL_BG | ANIM_PAL_ALL_BATTLERS), 1, 6, 0, 0x7fff
+	createvisualtask AnimTask_BlendBattleAnimPal 10, (ANIM_PAL_BG | F_PAL_BATTLERS), 1, 6, 0, 0x7fff
 	waitforvisualfinish
 	call UnsetPsychicBg
 	clearmonbg ANIM_ATTACKER
@@ -26600,7 +26600,7 @@ BloomDoomPetalBlast:
 ResetFromGreenScreen:
 	createvisualtask AnimTask_AllBanksInvisible, 0xA, 
 	waitforvisualfinish
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, ANIM_PAL_ALL_BATTLERS, 0x2, 0x0, 0x0, 0x33ED @Everything from from, green 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_BATTLERS, 0x2, 0x0, 0x0, 0x33ED @Everything from from, green 
 	restorebg
 	waitbgfadeout
 	setarg 0x7 0xffff
@@ -27171,11 +27171,11 @@ DevastatingDrakeFinish:
 	delay 0x6
 	createvisualtask AnimTask_IsTargetPartner, 0x5, 
 	jumpargeq 0x0 0x1 DevastatingDrakeFadeTargetPartner
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, ANIM_PAL_ALL, -, ANIM_PAL_DEF, 0x6, 0x0, 0x10, 0x40c0 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_ALL_BUT_DEF, 0x6, 0x0, 0x10, 0x40c0 
 	call DevastatingDrakeExplosion
 	waitforvisualfinish
 	playsewithpan SE_M_DRAGON_RAGE, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, ANIM_PAL_ALL, -, ANIM_PAL_DEF, 0x0, 0x10, 0x0, 0x40c0 @ fade all but target fade, all, but, target, back 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_ALL_BUT_DEF, 0x0, 0x10, 0x0, 0x40c0 @ fade all but target fade, all, but, target, back 
 DevastatingDrakeUniversalEnding:
 	loadspritegfx ANIM_TAG_FIRE_PLUME
 	loadspritegfx ANIM_TAG_VERTICAL_HEX
@@ -27224,7 +27224,7 @@ DevastatingDrakeUniversalEnding:
 	waitforvisualfinish
 	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, ANIM_PAL_DEF, 0x2, 0x10, 0x0, 0x40c0 @ fade from fade, from, purple 
 	waitforvisualfinish
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, ANIM_PAL_ALL_BATTLERS, 0x2, 0x0, 0x0, 0x0 @ reset all reset, all, colours 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_BATTLERS, 0x2, 0x0, 0x0, 0x0 @ reset all reset, all, colours 
 	waitforvisualfinish
 	createvisualtask AnimTask_AllBanksVisible, 0xA, 
 	waitforvisualfinish
@@ -27448,7 +27448,7 @@ BlackHoleEclipseExplosion:
 ResetFromWhiteScreen:
 	createvisualtask AnimTask_AllBanksInvisible, 0xA, 
 	waitforvisualfinish
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, ANIM_PAL_ALL_BATTLERS, 0x2, 0x0, 0x0, 0x7FFF @everything from from, white 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_BATTLERS, 0x2, 0x0, 0x0, 0x7FFF @everything from from, white 
 	restorebg
 	waitbgfadeout
 	setarg 0x7 0xffff
@@ -30232,7 +30232,7 @@ SearingSunrazeSmashCharge:
 ResetFromRedScreen:
 	createvisualtask AnimTask_AllBanksInvisible, 0xA, 
 	waitforvisualfinish
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, ANIM_PAL_ALL_BATTLERS, 0x2, 0x0, 0x0, 0x1B @Everything from from, red 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_BATTLERS, 0x2, 0x0, 0x0, 0x1B @Everything from from, red 
 	restorebg
 	waitbgfadeout
 	setarg 0x7 0xffff
@@ -30504,7 +30504,7 @@ Move_LIGHT_THAT_BURNS_THE_SKY::
 	call LightThatBurnsTheSkyGeyser
 	call LightThatBurnsTheSkyBlast_2
 	call LightThatBurnsTheSkyGeyser
-	createvisualtask AnimTask_BlendBattleAnimPal, 0x2, ANIM_PAL_ALL, -, ANIM_PAL_DEF, 0x4, 0x0, 0x10, 0x43FF 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0x2, F_PAL_ALL_BUT_DEF, 0x4, 0x0, 0x10, 0x43FF 
 	call LightThatBurnsTheSkyBlast_3
 	clearmonbg ANIM_TARGET
 	waitforvisualfinish
@@ -30706,14 +30706,14 @@ Move_SOUL_STEALING_7_STAR_STRIKE::
 	createvisualtask AnimTask_HorizontalShake, 0x5, ANIM_TARGET, 0x8, 0x20 
 	call SoulStealingSevenStarStrikeExplosion
 	call SoulStealingSevenStarStrikeExplosion
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, ANIM_PAL_ALL, -, ANIM_PAL_DEF, 0x2, 0x0, 0x10, 0x0 @everything to to, black 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_ALL_BUT_DEF, 0x2, 0x0, 0x10, 0x0 @everything to to, black 
 	call SoulStealingSevenStarStrikeExplosion
 	waitforvisualfinish
 	blendoff
 	restorebg
 	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, (F_PAL_BATTLERS | F_PAL_BG), 0x2, 0x10, 0x0, 0x0 @everything from from, black 
 	waitforvisualfinish
-	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, ANIM_PAL_ALL_BATTLERS, 0x2, 0x0, 0x0, 0x0 
+	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_BATTLERS, 0x2, 0x0, 0x0, 0x0 
 	waitforvisualfinish
 	createvisualtask AnimTask_AllBanksVisible, 0xA, 
 	waitforvisualfinish
