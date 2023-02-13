@@ -15126,14 +15126,18 @@ static void TryUpdateRoundTurnOrder(void)
         // update turn order for round users
         for (i = 0; roundUsers[i] != 0xFF && i < 3; i++)
         {
-            gBattlerByTurnOrder[currRounder++] = roundUsers[i];
+            gBattlerByTurnOrder[currRounder] = roundUsers[i];
+            gActionsByTurnOrder[currRounder] = gActionsByTurnOrder[roundUsers[i]];
             gProtectStructs[roundUsers[i]].quash = TRUE; // Make it so their turn order can't be changed again
+            currRounder++;
         }
 
         // Update turn order for non-round users
         for (i = 0; nonRoundUsers[i] != 0xFF && i < 3; i++)
         {
-            gBattlerByTurnOrder[currRounder++] = nonRoundUsers[i];
+            gBattlerByTurnOrder[currRounder] = nonRoundUsers[i];
+            gActionsByTurnOrder[currRounder] = gActionsByTurnOrder[nonRoundUsers[i]];
+            currRounder++;
         }
     }
 }
