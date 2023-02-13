@@ -731,7 +731,7 @@
 	.4byte \ptr
 	.endm
 
-	.macro jumpifcantmakeasleep ptr:req
+	.macro jumpifuproarwakes ptr:req
 	.byte 0x84
 	.4byte \ptr
 	.endm
@@ -2236,4 +2236,9 @@
 		.endif
 	.endif
 	waitmessage B_WAIT_TIME_LONG
+	.endm
+
+	.macro jumpifemergencyexited battler:req, ptr:req
+	various \battler, VARIOUS_JUMP_IF_EMERGENCY_EXITED
+	.4byte \ptr
 	.endm
