@@ -4852,7 +4852,7 @@ static void Cmd_jumpifabilitypresent(void)
     if (abilityBattler)
     {
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
-        gBattleScripting.battler = abilityBattler - 1;
+        gBattlerAbility = abilityBattler - 1;
     }
     else
     {

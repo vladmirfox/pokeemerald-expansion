@@ -3412,7 +3412,7 @@ BattleScript_EffectMindBlown::
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING | HITMARKER_NO_PPDEDUCT, BattleScript_MindBlownNoHpLoss
 	attackstring
 	ppreduce
-	jumpifabilitypresent ABILITY_DAMP, BattleScript_MindBlownDump
+	jumpifabilitypresent ABILITY_DAMP, BattleScript_DampStopsExplosion
 	dmg_1_2_attackerhp
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
@@ -3425,9 +3425,6 @@ BattleScript_MindBlownNoHpLoss:
 	attackstring
 	ppreduce
 	goto BattleScript_MindBlownAfterHpLoss
-BattleScript_MindBlownDump:
-	copybyte gBattlerTarget, sBATTLER
-	goto BattleScript_DampStopsExplosion
 
 BattleScript_PreserveMissedBitDoMoveAnim:
 	bichalfword gMoveResultFlags, MOVE_RESULT_MISSED
