@@ -3370,15 +3370,14 @@ BattleScript_EffectExplosion::
 	ppreduce
 @ Below jumps to BattleScript_DampStopsExplosion if it fails (only way it can)
 	tryexplosion
-	setatkhptozero
 	waitstate
-	jumpifbyte CMP_NO_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_MISSED, BattleScript_ExplosionDoAnimStartLoop
+	jumpifbyte CMP_NO_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_MISSED, BattleScript_ExplosionAnim
 	call BattleScript_PreserveMissedBitDoMoveAnim
-	goto BattleScript_ExplosionLoop
-BattleScript_ExplosionDoAnimStartLoop:
+	goto BattleScript_ExplosionDmg
+BattleScript_ExplosionAnim:
 	attackanimation
 	waitanimation
-BattleScript_ExplosionLoop:
+BattleScript_ExplosionDmg:
 	movevaluescleanup
 	critcalc
 	damagecalc
@@ -3394,32 +3393,41 @@ BattleScript_ExplosionLoop:
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
 	tryfaintmon BS_TARGET
-	moveendto MOVEEND_NEXT_TARGET
-	jumpifnexttargetvalid BattleScript_ExplosionLoop
+BattleScript_ExplosionEnd:
+	moveendall
+@Because Mind Blown also uses this battlescript, we have to ignore the setting hp to zero command
+	jumpifmove MOVE_MIND_BLOWN BattleScript_ExplosionTryFaint
+	setatkhptozero
+BattleScript_ExplosionTryFaint:
 	tryfaintmon BS_ATTACKER
-	moveendcase MOVEEND_CLEAR_BITS
 	end
 BattleScript_ExplosionMissed:
 	effectivenesssound
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
-	moveendto MOVEEND_NEXT_TARGET
-	jumpifnexttargetvalid BattleScript_ExplosionLoop
-	tryfaintmon BS_ATTACKER
-	end
+	goto BattleScript_ExplosionEnd
 
 BattleScript_EffectMindBlown::
 	attackcanceler
+	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING | HITMARKER_NO_PPDEDUCT, BattleScript_MindBlownNoHpLoss
 	attackstring
 	ppreduce
-	tryexplosion
+	jumpifabilitypresent ABILITY_DAMP, BattleScript_MindBlownDump
 	dmg_1_2_attackerhp
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
+BattleScript_MindBlownAfterHpLoss:
 	waitstate
-	jumpifbyte CMP_NO_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_MISSED, BattleScript_ExplosionDoAnimStartLoop
+	jumpifbyte CMP_NO_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_MISSED, BattleScript_ExplosionAnim
 	call BattleScript_PreserveMissedBitDoMoveAnim
-	goto BattleScript_ExplosionLoop
+	goto BattleScript_ExplosionDmg
+BattleScript_MindBlownNoHpLoss:
+	attackstring
+	ppreduce
+	goto BattleScript_MindBlownAfterHpLoss
+BattleScript_MindBlownDump:
+	copybyte gBattlerTarget, sBATTLER
+	goto BattleScript_DampStopsExplosion
 
 BattleScript_PreserveMissedBitDoMoveAnim:
 	bichalfword gMoveResultFlags, MOVE_RESULT_MISSED
@@ -8301,9 +8309,9 @@ BattleScript_AbilityRaisesDefenderStat::
 BattleScript_AbilityPopUp:
 	.if B_ABILITY_POP_UP == TRUE
 	showabilitypopup BS_ABILITY_BATTLER
-	recordability BS_ABILITY_BATTLER
 	pause 40
 	.endif
+	recordability BS_ABILITY_BATTLER
 	sethword sABILITY_OVERWRITE, 0
 	return
 

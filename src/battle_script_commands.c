@@ -4848,10 +4848,16 @@ static void Cmd_setroost(void)
 
 static void Cmd_jumpifabilitypresent(void)
 {
-    if (IsAbilityOnField(T1_READ_16(gBattlescriptCurrInstr + 1)))
+    u32 abilityBattler = IsAbilityOnField(T1_READ_16(gBattlescriptCurrInstr + 1));
+    if (abilityBattler)
+    {
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        gBattleScripting.battler = abilityBattler - 1;
+    }
     else
+    {
         gBattlescriptCurrInstr += 7;
+    }
 }
 
 static void Cmd_endselectionscript(void)
@@ -10387,14 +10393,15 @@ static void Cmd_setprotectlike(void)
 
 static void Cmd_tryexplosion(void)
 {
+    u32 dampBattler;
     if (gBattleControllerExecFlags)
         return;
 
-    if ((gBattlerTarget = IsAbilityOnField(ABILITY_DAMP)))
+    if ((dampBattler = IsAbilityOnField(ABILITY_DAMP)))
     {
         // Failed, a battler has Damp
         gLastUsedAbility = ABILITY_DAMP;
-        RecordAbilityBattle(--gBattlerTarget, ABILITY_DAMP);
+        gBattlerTarget = --dampBattler;
         gBattlescriptCurrInstr = BattleScript_DampStopsExplosion;
         return;
     }
@@ -10404,14 +10411,6 @@ static void Cmd_tryexplosion(void)
     BtlController_EmitHealthBarUpdate(BUFFER_A, INSTANT_HP_BAR_DROP);
     MarkBattlerForControllerExec(gActiveBattler);
     gBattlescriptCurrInstr++;
-
-    for (gBattlerTarget = 0; gBattlerTarget < gBattlersCount; gBattlerTarget++)
-    {
-        if (gBattlerTarget == gBattlerAttacker)
-            continue;
-        if (IsBattlerAlive(gBattlerTarget))
-            break;
-    }
 }
 
 static void Cmd_setatkhptozero(void)
@@ -14965,7 +14964,7 @@ static void Cmd_callnative(void)
     func();
 }
 
-// Callnative Funcs    
+// Callnative Funcs
 void BS_CalcMetalBurstDmg(void)
 {
     u8 sideAttacker = GetBattlerSide(gBattlerAttacker);
