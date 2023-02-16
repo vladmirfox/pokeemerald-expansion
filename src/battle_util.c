@@ -323,7 +323,7 @@ void HandleAction_UseMove(void)
     {
         gCurrentMove = gBattleStruct->zmove.toBeUsed[gBattlerAttacker];
     }
-    
+
     moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove);
 
     if (gBattleMons[gBattlerAttacker].hp != 0)
@@ -946,10 +946,10 @@ void HandleAction_ActionFinished(void)
         {
             u8 battler1 = gBattlerByTurnOrder[i];
             u8 battler2 = gBattlerByTurnOrder[j];
-            
+
             if (gProtectStructs[battler1].quash || gProtectStructs[battler2].quash)
                 continue;
-            
+
             // We recalculate order only for action of the same priority. If any action other than switch/move has been taken, they should
             // have been executed before. The only recalculation needed is for moves/switch. Mega evolution is handled in src/battle_main.c/TryChangeOrder
             if((gActionsByTurnOrder[i] == B_ACTION_USE_MOVE && gActionsByTurnOrder[j] == B_ACTION_USE_MOVE))
@@ -1284,6 +1284,9 @@ u8 GetBattlerForBattleScript(u8 caseId)
         break;
     case BS_ATTACKER:
         ret = gBattlerAttacker;
+        break;
+    case BS_ATTACKER_PARTNER:
+        ret = BATTLE_PARTNER(gBattlerAttacker);
         break;
     case BS_EFFECT_BATTLER:
         ret = gEffectBattler;
