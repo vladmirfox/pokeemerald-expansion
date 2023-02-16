@@ -10262,6 +10262,12 @@ static void Cmd_various(void)
         gBattlescriptCurrInstr += 3;
         AbilityBattleEffects(ABILITYEFFECT_ON_TERRAIN, gActiveBattler, 0, 0, 0);
         return;
+    case VARIOUS_JUMP_IF_EMERGENCY_EXITED:
+        if (gSpecialStatuses[gActiveBattler].emergencyExited)
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+        else
+            gBattlescriptCurrInstr += 7;
+        return;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;
