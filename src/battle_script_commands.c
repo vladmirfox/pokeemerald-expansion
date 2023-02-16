@@ -9419,7 +9419,7 @@ static void Cmd_various(void)
                 gBattlerByTurnOrder[2] = gBattlerTarget;
                 gBattlerByTurnOrder[3] = data[2];
             }
-            gSpecialStatuses[gBattlerTarget].afteryou = 1;
+            gSpecialStatuses[gBattlerTarget].afterYou = 1;
             gBattlescriptCurrInstr += 7;
         }
         return;
