@@ -3969,9 +3969,6 @@ struct TrainerSlide
     const u8 *msgFirstDown;
 };
 
-static const u8 sTextSophie[] = _("Sophie");
-static const u8 sTextCoby[] = _("Coby");
-
 static const struct TrainerSlide sTrainerSlides[] =
 {
     /* Put any trainer slide-in messages inside this array.
@@ -3983,24 +3980,6 @@ static const struct TrainerSlide sTrainerSlides[] =
         .msgFirstDown = sText_123Poof,
     },
     */
-    {
-        .trainerId = TRAINER_GINA_AND_MIA_1,
-        .msgLastSwitchIn = sText_AarghAlmostHadIt,
-        .msgLastLowHp = 0,
-        .msgFirstDown = 0,
-    },
-    {
-        .trainerId = TRAINER_SOPHIE,
-        .msgLastSwitchIn = 0,
-        .msgLastLowHp = 0,
-        .msgFirstDown = sTextSophie,
-    },
-    {
-        .trainerId = TRAINER_COBY,
-        .msgLastSwitchIn = 0,
-        .msgLastLowHp = 0,
-        .msgFirstDown = sTextCoby,
-    },
 };
 
 static u32 GetEnemyMonCount(u32 firstId, u32 lastId, bool32 onlyAlive)
