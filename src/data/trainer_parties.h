@@ -6276,17 +6276,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_GinaAndMia1[] = {
     .iv = 0,
     .lvl = 6,
     .species = SPECIES_LOTAD,
-    },
-    {
-    .iv = 0,
-    .lvl = 5,
-    .species = SPECIES_METAPOD,
-    },
-    {
-    .iv = 0,
-    .lvl = 7,
-    .species = SPECIES_KAKUNA,
-    },
+    }
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_MiuAndYuki[] = {
