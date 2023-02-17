@@ -481,6 +481,7 @@ void CB2_InitBattle(void)
     AllocateBattleSpritesData();
     AllocateMonSpritesGfx();
     RecordedBattle_ClearFrontierPassFlag();
+    gBattlescriptCurrInstr = BattleScript_End;
 
     if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
     {

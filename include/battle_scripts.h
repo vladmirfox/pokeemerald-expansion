@@ -1,6 +1,7 @@
 #ifndef GUARD_BATTLE_SCRIPTS_H
 #define GUARD_BATTLE_SCRIPTS_H
 
+extern const u8 BattleScript_End[];
 extern const u8 BattleScript_NotAffected[];
 extern const u8 BattleScript_HitFromCritCalc[];
 extern const u8 BattleScript_MoveEnd[];
@@ -187,7 +188,7 @@ extern const u8 BattleScript_TruantLoafingAround[];
 extern const u8 BattleScript_IgnoresAndFallsAsleep[];
 extern const u8 BattleScript_IgnoresAndHitsItself[];
 extern const u8 BattleScript_SubstituteFade[];
-extern const u8 BattleScript_BerryCurePrlzEnd[];
+extern const u8 BattleScript_BerryCureParEnd[];
 extern const u8 BattleScript_BerryCureParRet[];
 extern const u8 BattleScript_BerryCurePsnEnd[];
 extern const u8 BattleScript_BerryCurePsnRet[];

@@ -205,3 +205,6 @@ BattleScript_TrainerSlideMsgRet::
 BattleScript_TrainerSlideMsgEnd::
 	call BattleScript_TrainerSlideMsgRet
 	end
+
+BattleScript_End::
+	end

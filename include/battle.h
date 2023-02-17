@@ -333,6 +333,7 @@ struct BattleCallbacksStack
 {
     void (*function[8])(void);
     u8 endType[8];
+    u8 scriptsStackSize[8];
     u8 size;
 };
 

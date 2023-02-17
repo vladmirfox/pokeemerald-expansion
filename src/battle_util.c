@@ -6411,6 +6411,7 @@ void BattleScriptExecute(const u8 *BS_ptr)
     gBattlescriptCurrInstr = BS_ptr;
     gBattleResources->battleCallbackStack->function[gBattleResources->battleCallbackStack->size] = gBattleMainFunc;
     gBattleResources->battleCallbackStack->endType[gBattleResources->battleCallbackStack->size] = BS_END_2;
+    gBattleResources->battleCallbackStack->scriptsStackSize[gBattleResources->battleCallbackStack->size] = gBattleResources->battleScriptsStack->size;
     gBattleResources->battleCallbackStack->size++;
     gBattleMainFunc = RunBattleScriptCommands_PopCallbacksStack;
     gCurrentActionFuncId = 0;
@@ -6422,6 +6423,7 @@ void BattleScriptPushCursorAndCallback(const u8 *BS_ptr)
     gBattlescriptCurrInstr = BS_ptr;
     gBattleResources->battleCallbackStack->function[gBattleResources->battleCallbackStack->size] = gBattleMainFunc;
     gBattleResources->battleCallbackStack->endType[gBattleResources->battleCallbackStack->size] = BS_END_3;
+    gBattleResources->battleCallbackStack->scriptsStackSize[gBattleResources->battleCallbackStack->size] = gBattleResources->battleScriptsStack->size - 1;
     gBattleResources->battleCallbackStack->size++;
     gBattleMainFunc = RunBattleScriptCommands;
 }
@@ -7134,7 +7136,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 if (gBattleMons[battlerId].status1 & STATUS1_PARALYSIS && !UnnerveOn(battlerId, gLastUsedItem))
                 {
                     gBattleMons[battlerId].status1 &= ~STATUS1_PARALYSIS;
-                    BattleScriptExecute(BattleScript_BerryCurePrlzEnd);
+                    BattleScriptExecute(BattleScript_BerryCureParEnd);
                     effect = ITEM_STATUS_CHANGE;
                 }
                 break;
@@ -7452,7 +7454,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 if (gBattleMons[battlerId].status1 & STATUS1_PARALYSIS && !UnnerveOn(battlerId, gLastUsedItem))
                 {
                     gBattleMons[battlerId].status1 &= ~STATUS1_PARALYSIS;
-                    BattleScriptExecute(BattleScript_BerryCurePrlzEnd);
+                    BattleScriptExecute(BattleScript_BerryCureParEnd);
                     effect = ITEM_STATUS_CHANGE;
                 }
                 break;

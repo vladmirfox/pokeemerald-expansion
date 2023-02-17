@@ -9437,7 +9437,7 @@ BattleScript_SubstituteFade::
 	printstring STRINGID_PKMNSUBSTITUTEFADED
 	return
 
-BattleScript_BerryCurePrlzEnd::
+BattleScript_BerryCureParEnd::
 	call BattleScript_BerryCureParRet
 	end
 

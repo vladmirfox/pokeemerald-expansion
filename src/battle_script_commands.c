@@ -4934,7 +4934,16 @@ static void Cmd_healthbar_update(void)
 
 static void Cmd_return(void)
 {
-    BattleScriptPop();
+    CMD_ARGS();
+
+    // Similar to OW scripts, return is implicitly end when the script
+    // stack is empty. But BattleScriptPushCursorAndCallback and
+    // BattleScriptExecute logically start new stacks, so this can
+    // trigger the empty condition even with a non-zero stack size.
+    if (gBattleResources->battleCallbackStack->scriptsStackSize[gBattleResources->battleCallbackStack->size] == gBattleResources->battleScriptsStack->size)
+        Cmd_end();
+    else
+        BattleScriptPop();
 }
 
 static void Cmd_end(void)
