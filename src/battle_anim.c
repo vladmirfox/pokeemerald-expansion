@@ -431,6 +431,42 @@ static void Cmd_unloadspritegfx(void)
     ClearSpriteIndex(GET_TRUE_SPRITE_INDEX(index));
 }
 
+static u8 GetBattleAnimMoveTargets(u8 battlerArgIndex, u8 *targets)
+{
+    u8 numTargets = 1;
+    switch (GetBattlerMoveTargetType(gBattleAnimAttacker, gAnimMoveIndex))
+    {
+    case MOVE_TARGET_BOTH:
+        targets[0] = gBattleAnimArgs[battlerArgIndex];
+        numTargets = 1;
+        if (IsBattlerAlive(targets[0] ^ BIT_FLANK)) {
+            targets[1] = targets[0] ^ BIT_FLANK;
+            numTargets++;
+        }
+        break;
+    case MOVE_TARGET_FOES_AND_ALLY:
+        targets[0] = gBattleAnimArgs[battlerArgIndex];
+        numTargets = 1;
+        
+        if (IsBattlerAlive(targets[0] ^ BIT_FLANK)) {
+            targets[1] = targets[0] ^ BIT_FLANK;
+            numTargets++;
+        }
+        
+        if (IsBattlerAlive(gBattleAnimAttacker ^ BIT_FLANK)) {
+            targets[2] = gBattleAnimAttacker ^ BIT_FLANK; 
+            numTargets++;
+        }
+        break;
+    default:
+        targets[0] = gBattleAnimArgs[battlerArgIndex]; // original
+        numTargets = 1;
+        break;
+    }
+    
+    return numTargets;
+}
+
 static s16 GetSubpriorityForMoveAnim(u8 argVar)
 {
     s16 subpriority;
@@ -509,26 +545,7 @@ static void CreateSpriteOnTargets(const struct SpriteTemplate *template, u8 argV
     
     subpriority = GetSubpriorityForMoveAnim(argVar);
     
-    // get battlers based on move target
-    // leverage the fact that ANIM_xx IDs are the same as battler positions
-    switch (GetBattlerMoveTargetType(gBattleAnimAttacker, gAnimMoveIndex))
-    {
-    case MOVE_TARGET_BOTH:
-        targets[0] = gBattleAnimArgs[battlerArgIndex];
-        targets[1] = targets[0] ^ BIT_FLANK;
-        ntargets = 2;
-        break;
-    case MOVE_TARGET_FOES_AND_ALLY:
-        targets[0] = gBattleAnimArgs[battlerArgIndex];
-        targets[1] = targets[0] ^ BIT_FLANK;
-        targets[2] = gBattleAnimAttacker ^ BIT_FLANK; 
-        ntargets = 3;
-        break;
-    default:
-        targets[0] = gBattleAnimArgs[battlerArgIndex]; // original
-        ntargets = 1;
-        break;
-    }
+    ntargets = GetBattleAnimMoveTargets(battlerArgIndex, targets);
     
     for (i = 0; i < ntargets; i++) {
         
@@ -652,26 +669,7 @@ static void Cmd_createvisualtaskontargets(void)
         sBattleAnimScriptPtr += 2;
     }
     
-    // get battlers based on move target
-    // leverage the fact that ANIM_xx IDs are the same as battler positions
-    switch (GetBattlerMoveTargetType(gBattleAnimAttacker, gAnimMoveIndex))
-    {
-    case MOVE_TARGET_BOTH:
-        targets[0] = gBattleAnimArgs[battlerArgIndex];
-        targets[1] = targets[0] ^ BIT_FLANK;
-        numArgs = 2;
-        break;
-    case MOVE_TARGET_FOES_AND_ALLY:
-        targets[0] = gBattleAnimArgs[battlerArgIndex];
-        targets[1] = targets[0] ^ BIT_FLANK;
-        targets[2] = gBattleAnimAttacker ^ BIT_FLANK; 
-        numArgs = 3;
-        break;
-    default:
-        targets[0] = gBattleAnimArgs[battlerArgIndex]; // original
-        numArgs = 1;
-        break;
-    }
+    numArgs = GetBattleAnimMoveTargets(battlerArgIndex, targets);
     
     for (i = 0; i < numArgs; i++)
     {
