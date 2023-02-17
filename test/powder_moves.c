@@ -42,6 +42,6 @@ SINGLE_BATTLE_TEST("Powder Moves are blocked by Item Safety Goggles")
         TURN { MOVE(player, MOVE_STUN_SPORE); }
     } SCENE {
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_STUN_SPORE, player);
-        MESSAGE("Foe Abra is not affected\nthanks to its SafetyGoggles!");
+        MESSAGE("Foe Abra is not affected thanks to its SafetyGoggles!");
     }
 }
