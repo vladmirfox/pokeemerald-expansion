@@ -322,9 +322,17 @@ struct BattleScriptsStack
     u8 size;
 };
 
+enum
+{
+    BS_END_1,
+    BS_END_2, // Pushed by BattleScriptExecute.
+    BS_END_3, // Pushed by BattleScriptPushCursorAndCallback.
+};
+
 struct BattleCallbacksStack
 {
     void (*function[8])(void);
+    u8 endType[8];
     u8 size;
 };
 

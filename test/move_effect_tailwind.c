@@ -21,6 +21,7 @@ SINGLE_BATTLE_TEST("Tailwind applies for 4 turns")
     } SCENE {
         MESSAGE("Foe Wobbuffet used Celebrate!");
         MESSAGE("Wobbuffet used Tailwind!");
+        MESSAGE("The tailwind blew from behind your team!");
 
         MESSAGE("Wobbuffet used Celebrate!");
         MESSAGE("Foe Wobbuffet used Celebrate!");
@@ -30,6 +31,7 @@ SINGLE_BATTLE_TEST("Tailwind applies for 4 turns")
 
         MESSAGE("Wobbuffet used Celebrate!");
         MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("Your team's tailwind petered out!");
 
         MESSAGE("Foe Wobbuffet used Celebrate!");
         MESSAGE("Wobbuffet used Celebrate!");

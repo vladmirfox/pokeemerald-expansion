@@ -3867,7 +3867,7 @@ void BattleTurnPassed(void)
     else if (gBattleTypeFlags & BATTLE_TYPE_ARENA && gBattleStruct->arenaTurnCounter == 0)
         BattleScriptExecute(BattleScript_ArenaTurnBeginning);
     else if (ShouldDoTrainerSlide(GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), gTrainerBattleOpponent_A, TRAINER_SLIDE_LAST_LOW_HP))
-        BattleScriptExecute(BattleScript_TrainerSlideMsgEnd2);
+        BattleScriptExecute(BattleScript_TrainerSlideMsgEnd);
 }
 
 u8 IsRunningFromBattleImpossible(void)

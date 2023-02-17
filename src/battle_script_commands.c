@@ -413,8 +413,8 @@ static void Cmd_waitstate(void);
 static void Cmd_healthbar_update(void);
 static void Cmd_return(void);
 static void Cmd_end(void);
-static void Cmd_end2(void);
-static void Cmd_end3(void);
+static void Cmd_unused_3e(void);
+static void Cmd_unused_3f(void);
 static void Cmd_jumpifaffectedbyprotect(void);
 static void Cmd_call(void);
 static void Cmd_setroost(void);
@@ -576,7 +576,7 @@ static void Cmd_setuserstatus3(void);
 static void Cmd_assistattackselect(void);
 static void Cmd_trysetmagiccoat(void);
 static void Cmd_trysetsnatch(void);
-static void Cmd_unused2(void);
+static void Cmd_unused_e1(void);
 static void Cmd_switchoutabilities(void);
 static void Cmd_jumpifhasnohp(void);
 static void Cmd_getsecretpowereffect(void);
@@ -604,7 +604,7 @@ static void Cmd_settelekinesis(void);
 static void Cmd_swapstatstages(void);
 static void Cmd_averagestats(void);
 static void Cmd_jumpifoppositegenders(void);
-static void Cmd_unused(void);
+static void Cmd_unused_fd(void);
 static void Cmd_tryworryseed(void);
 static void Cmd_callnative(void);
 
@@ -672,8 +672,8 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_healthbar_update,                        //0x3B
     Cmd_return,                                  //0x3C
     Cmd_end,                                     //0x3D
-    Cmd_end2,                                    //0x3E
-    Cmd_end3,                                    //0x3F
+    Cmd_unused_3e,                               //0x3E
+    Cmd_unused_3f,                               //0x3F
     Cmd_jumpifaffectedbyprotect,                 //0x40
     Cmd_call,                                    //0x41
     Cmd_setroost,                                //0x42
@@ -835,7 +835,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_assistattackselect,                      //0xDE
     Cmd_trysetmagiccoat,                         //0xDF
     Cmd_trysetsnatch,                            //0xE0
-    Cmd_unused2,                                 //0xE1
+    Cmd_unused_e1,                               //0xE1
     Cmd_switchoutabilities,                      //0xE2
     Cmd_jumpifhasnohp,                           //0xE3
     Cmd_getsecretpowereffect,                    //0xE4
@@ -863,7 +863,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_swapstatstages,                          //0xFA
     Cmd_averagestats,                            //0xFB
     Cmd_jumpifoppositegenders,                   //0xFC
-    Cmd_unused,                                  //0xFD
+    Cmd_unused_fd,                               //0xFD
     Cmd_tryworryseed,                            //0xFE
     Cmd_callnative,                              //0xFF
 };
@@ -4941,31 +4941,42 @@ static void Cmd_end(void)
 {
     CMD_ARGS();
 
-    if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
-        BattleArena_AddSkillPoints(gBattlerAttacker);
+    u8 endType;
+    if (gBattleResources->battleCallbackStack->size > 0)
+        endType = gBattleResources->battleCallbackStack->endType[gBattleResources->battleCallbackStack->size - 1];
+    else
+        endType = BS_END_1;
 
-    gMoveResultFlags = 0;
-    gActiveBattler = 0;
-    gCurrentActionFuncId = B_ACTION_TRY_FINISH;
+    switch (endType)
+    {
+    case BS_END_1:
+        if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
+            BattleArena_AddSkillPoints(gBattlerAttacker);
+        gMoveResultFlags = 0;
+        gActiveBattler = 0;
+        gCurrentActionFuncId = B_ACTION_TRY_FINISH;
+        break;
+
+    case BS_END_2:
+        gActiveBattler = 0;
+        gCurrentActionFuncId = B_ACTION_TRY_FINISH;
+        break;
+
+    case BS_END_3:
+        BattleScriptPop();
+        if (gBattleResources->battleCallbackStack->size != 0)
+            gBattleResources->battleCallbackStack->size--;
+        gBattleMainFunc = gBattleResources->battleCallbackStack->function[gBattleResources->battleCallbackStack->size];
+        break;
+    }
 }
 
-static void Cmd_end2(void)
+static void Cmd_unused_3e(void)
 {
-    CMD_ARGS();
-
-    gActiveBattler = 0;
-    gCurrentActionFuncId = B_ACTION_TRY_FINISH;
 }
 
-// Pops the main function stack
-static void Cmd_end3(void)
+static void Cmd_unused_3f(void)
 {
-    CMD_ARGS();
-
-    BattleScriptPop();
-    if (gBattleResources->battleCallbackStack->size != 0)
-        gBattleResources->battleCallbackStack->size--;
-    gBattleMainFunc = gBattleResources->battleCallbackStack->function[gBattleResources->battleCallbackStack->size];
 }
 
 static void Cmd_call(void)
@@ -14753,7 +14764,7 @@ static void Cmd_trysetsnatch(void)
     }
 }
 
-static void Cmd_unused2(void)
+static void Cmd_unused_e1(void)
 {
 }
 
@@ -15959,7 +15970,7 @@ static void Cmd_jumpifoppositegenders(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-static void Cmd_unused(void)
+static void Cmd_unused_fd(void)
 {
 }
 
