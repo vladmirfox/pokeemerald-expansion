@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("Howl raises user's Attack", s16 damage)
     }
 }
 
-DOUBLE_BATTLE_TEST("Howl raises user's and partner's Attack", s16 damage)
+DOUBLE_BATTLE_TEST("Howl raises user's and partner's Attack", s16 damageLeft, s16 damageRight)
 {
     bool32 raiseAttack;
     PARAMETRIZE { raiseAttack = FALSE; }
@@ -45,6 +45,7 @@ DOUBLE_BATTLE_TEST("Howl raises user's and partner's Attack", s16 damage)
     } WHEN {
         if (raiseAttack) TURN { MOVE(playerLeft, MOVE_HOWL); }
         TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); }
+        TURN { MOVE(playerRight, MOVE_TACKLE, target: opponentRight); }
     } SCENE {
         if (raiseAttack) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_HOWL, playerLeft);
@@ -54,8 +55,11 @@ DOUBLE_BATTLE_TEST("Howl raises user's and partner's Attack", s16 damage)
             MESSAGE("Wynaut's attack rose!");
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerLeft);
-        HP_BAR(opponentLeft, captureDamage: &results[i].damage);
+        HP_BAR(opponentLeft, captureDamage: &results[i].damageLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
+        HP_BAR(opponentRight, captureDamage: &results[i].damageRight);
     } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
+        EXPECT_MUL_EQ(results[0].damageLeft, Q_4_12(1.5), results[1].damageLeft);
+        EXPECT_MUL_EQ(results[0].damageRight, Q_4_12(1.5), results[1].damageRight);
     }
 }
