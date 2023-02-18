@@ -7700,7 +7700,7 @@ static bool32 TryCheekPouch(u32 battlerId, u32 itemId)
     if (ItemId_GetPocket(itemId) == POCKET_BERRIES
         && GetBattlerAbility(battlerId) == ABILITY_CHEEK_POUCH
         && !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK)
-        && gBattleStruct->ateBerry[GetBattlerSide(battlerId)] & gBitTable[gBattlerPartyIndexes[battlerId]]
+        && gBattleStruct->sides[GetBattlerSide(battlerId)].party[gBattlerPartyIndexes[battlerId]].ateBerry
         && !BATTLER_MAX_HP(battlerId))
     {
         gBattleMoveDamage = gBattleMons[battlerId].maxHP / 3;

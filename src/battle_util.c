@@ -1731,7 +1731,7 @@ static bool32 IsBelchPreventingMove(u32 battler, u32 move)
     if (gBattleMoves[move].effect != EFFECT_BELCH)
         return FALSE;
 
-    return !(gBattleStruct->ateBerry[battler & BIT_SIDE] & gBitTable[gBattlerPartyIndexes[battler]]);
+    return !(gBattleStruct->sides[battler & BIT_SIDE].party[gBattlerPartyIndexes[battler]].ateBerry);
 }
 
 u8 TrySetCantSelectMoveBattleScript(void)
@@ -7897,7 +7897,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
 
     // Berry was successfully used on a Pokemon.
     if (effect && (gLastUsedItem >= FIRST_BERRY_INDEX && gLastUsedItem <= LAST_BERRY_INDEX))
-        gBattleStruct->ateBerry[battlerId & BIT_SIDE] |= gBitTable[gBattlerPartyIndexes[battlerId]];
+        gBattleStruct->sides[battlerId & BIT_SIDE].party[gBattlerPartyIndexes[battlerId]].ateBerry = TRUE;
 
     return effect;
 }

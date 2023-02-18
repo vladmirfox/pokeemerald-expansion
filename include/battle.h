@@ -605,7 +605,6 @@ struct BattleStruct
     const u8 *trainerSlideMsg;
     bool8 trainerSlideLowHpMsgDone;
     u8 introState;
-    u8 ateBerry[2]; // array id determined by side, each party pokemon as bit
     u8 stolenStats[NUM_BATTLE_STATS]; // hp byte is used for which stats to raise, other inform about by how many stages
     u8 lastMoveFailed; // as bits for each battler, for the sake of Stomping Tantrum
     u8 lastMoveTarget[MAX_BATTLERS_COUNT]; // The last target on which each mon used a move, for the sake of Instruct
@@ -649,6 +648,7 @@ struct BattleStruct
         struct Party
         {
             u16 usedHeldItem; // For harvest, recycle.
+            bool8 ateBerry;
         } party[PARTY_SIZE];
     } sides[NUM_BATTLE_SIDES];
 
