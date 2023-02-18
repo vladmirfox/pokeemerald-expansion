@@ -606,7 +606,6 @@ struct BattleStruct
     bool8 trainerSlideLowHpMsgDone;
     u8 introState;
     u8 stolenStats[NUM_BATTLE_STATS]; // hp byte is used for which stats to raise, other inform about by how many stages
-    u8 lastMoveFailed; // as bits for each battler, for the sake of Stomping Tantrum
     u8 lastMoveTarget[MAX_BATTLERS_COUNT]; // The last target on which each mon used a move, for the sake of Instruct
     u8 debugHoldEffects[MAX_BATTLERS_COUNT]; // These override actual items' hold effects.
     u16 tracedAbility[MAX_BATTLERS_COUNT];
@@ -669,6 +668,7 @@ struct BattleStruct
         u16 lastTakenMoveFrom[MAX_BATTLERS_COUNT];
         u8 roostTypes[2];
         bool8 ateBoost;
+        bool8 lastMoveFailed; // For Stomping Tantrum.
     } battlers[MAX_BATTLERS_COUNT];
 };
 

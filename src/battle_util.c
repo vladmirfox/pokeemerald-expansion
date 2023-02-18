@@ -9121,7 +9121,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             MulModifier(&modifier, UQ_4_12(0.5));
         break;
     case EFFECT_STOMPING_TANTRUM:
-        if (gBattleStruct->lastMoveFailed & gBitTable[battlerAtk])
+        if (gBattleStruct->battlers[battlerAtk].lastMoveFailed)
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
     case EFFECT_BULLDOZE:

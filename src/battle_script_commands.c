@@ -5721,9 +5721,9 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_UPDATE_LAST_MOVES:
             if (gMoveResultFlags & (MOVE_RESULT_FAILED | MOVE_RESULT_DOESNT_AFFECT_FOE))
-                gBattleStruct->lastMoveFailed |= gBitTable[gBattlerAttacker];
+                gBattleStruct->battlers[gBattlerAttacker].lastMoveFailed = TRUE;
             else
-                gBattleStruct->lastMoveFailed &= ~(gBitTable[gBattlerAttacker]);
+                gBattleStruct->battlers[gBattlerAttacker].lastMoveFailed = FALSE;
 
             if (gHitMarker & HITMARKER_SWAP_ATTACKER_TARGET)
             {
@@ -6076,7 +6076,7 @@ static void Cmd_moveend(void)
             {
                 u8 battler, nextDancer = 0;
 
-                if (!(gBattleStruct->lastMoveFailed & gBitTable[gBattlerAttacker]
+                if (!(gBattleStruct->battlers[gBattlerAttacker].lastMoveFailed
                     || (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove
                         && gProtectStructs[gBattlerAttacker].usesBouncedMove)))
                 {   // Dance move succeeds

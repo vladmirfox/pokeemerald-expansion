@@ -3139,7 +3139,7 @@ void SwitchInClearSetData(void)
     gBattleStruct->sameMoveTurns[gActiveBattler] = 0;
     for (j = 0; j < MAX_BATTLERS_COUNT; j++)
         gBattleStruct->battlers[gActiveBattler].lastTakenMoveFrom[j] = MOVE_NONE;
-    gBattleStruct->lastMoveFailed &= ~(gBitTable[gActiveBattler]);
+    gBattleStruct->battlers[gActiveBattler].lastMoveFailed = FALSE;
     gBattleStruct->palaceFlags &= ~(gBitTable[gActiveBattler]);
 
     if (gActiveBattler == gBattleStruct->stickyWebUser)
