@@ -670,6 +670,7 @@ struct BattleStruct
         u16 lastHitByMove;
         u16 lockedMove;
         u8 lastHitBy;
+        u8 lastDamagedBy;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
@@ -935,7 +936,6 @@ extern u16 gLastUsedMove;
 extern u16 gChosenMoveByBattler[MAX_BATTLERS_COUNT];
 extern u16 gMoveResultFlags;
 extern u32 gHitMarker;
-extern u8 gTakenDmgByBattler[MAX_BATTLERS_COUNT];
 extern u8 gUnusedFirstBattleVar2;
 extern u32 gSideStatuses[NUM_BATTLE_SIDES];
 extern struct SideTimer gSideTimers[NUM_BATTLE_SIDES];

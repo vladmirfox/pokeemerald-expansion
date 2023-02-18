@@ -2467,9 +2467,9 @@ static void Cmd_datahpupdate(void)
                 {
                     gBattleStruct->battlers[gActiveBattler].bideTakenDamage += gBattleMoveDamage;
                     if (cmd->battler == BS_TARGET)
-                        gTakenDmgByBattler[gActiveBattler] = gBattlerAttacker;
+                        gBattleStruct->battlers[gActiveBattler].lastDamagedBy = gBattlerAttacker;
                     else
-                        gTakenDmgByBattler[gActiveBattler] = gBattlerTarget;
+                        gBattleStruct->battlers[gActiveBattler].lastDamagedBy = gBattlerTarget;
                 }
 
                 if (gBattleMons[gActiveBattler].hp > gBattleMoveDamage)
