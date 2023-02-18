@@ -13937,16 +13937,16 @@ static void Cmd_trysetfutureattack(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (gWishFutureKnock.futureSightCounter[gBattlerTarget] != 0)
+    if (gBattleStruct->battlers[gBattlerTarget].futureSightCounter != 0)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
     else
     {
         gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)] |= SIDE_STATUS_FUTUREATTACK;
-        gWishFutureKnock.futureSightMove[gBattlerTarget] = gCurrentMove;
-        gWishFutureKnock.futureSightAttacker[gBattlerTarget] = gBattlerAttacker;
-        gWishFutureKnock.futureSightCounter[gBattlerTarget] = 3;
+        gBattleStruct->battlers[gBattlerTarget].futureSightMove = gCurrentMove;
+        gBattleStruct->battlers[gBattlerTarget].futureSightAttacker = gBattlerAttacker;
+        gBattleStruct->battlers[gBattlerTarget].futureSightCounter = 3;
 
         if (gCurrentMove == MOVE_DOOM_DESIRE)
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_DOOM_DESIRE;

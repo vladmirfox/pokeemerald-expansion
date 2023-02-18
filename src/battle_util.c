@@ -3214,26 +3214,26 @@ bool8 HandleWishPerishSongOnTurnEnd(void)
             }
 
             gBattleStruct->wishPerishSongBattlerId++;
-            if (gWishFutureKnock.futureSightCounter[gActiveBattler] != 0
-             && --gWishFutureKnock.futureSightCounter[gActiveBattler] == 0
+            if (gBattleStruct->battlers[gActiveBattler].futureSightCounter != 0
+             && --gBattleStruct->battlers[gActiveBattler].futureSightCounter == 0
              && gBattleMons[gActiveBattler].hp != 0)
             {
-                if (gWishFutureKnock.futureSightMove[gActiveBattler] == MOVE_FUTURE_SIGHT)
+                if (gBattleStruct->battlers[gActiveBattler].futureSightMove == MOVE_FUTURE_SIGHT)
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FUTURE_SIGHT;
                 else
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_DOOM_DESIRE;
 
-                PREPARE_MOVE_BUFFER(gBattleTextBuff1, gWishFutureKnock.futureSightMove[gActiveBattler]);
+                PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->battlers[gActiveBattler].futureSightMove);
 
                 gBattlerTarget = gActiveBattler;
-                gBattlerAttacker = gWishFutureKnock.futureSightAttacker[gActiveBattler];
+                gBattlerAttacker = gBattleStruct->battlers[gActiveBattler].futureSightAttacker;
                 gSpecialStatuses[gBattlerTarget].dmg = 0xFFFF;
-                gCurrentMove = gWishFutureKnock.futureSightMove[gActiveBattler];
+                gCurrentMove = gBattleStruct->battlers[gActiveBattler].futureSightMove;
                 SetTypeBeforeUsingMove(gCurrentMove, gActiveBattler);
                 BattleScriptExecute(BattleScript_MonTookFutureAttack);
 
-                if (gWishFutureKnock.futureSightCounter[gActiveBattler] == 0
-                 && gWishFutureKnock.futureSightCounter[BATTLE_PARTNER(gActiveBattler)] == 0)
+                if (gBattleStruct->battlers[gActiveBattler].futureSightCounter == 0
+                 && gBattleStruct->battlers[BATTLE_PARTNER(gActiveBattler)].futureSightCounter == 0)
                 {
                     gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)] &= ~SIDE_STATUS_FUTUREATTACK;
                 }

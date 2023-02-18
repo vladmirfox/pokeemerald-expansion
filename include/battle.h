@@ -231,9 +231,6 @@ struct FieldTimer
 
 struct WishFutureKnock
 {
-    u8 futureSightCounter[MAX_BATTLERS_COUNT];
-    u8 futureSightAttacker[MAX_BATTLERS_COUNT];
-    u16 futureSightMove[MAX_BATTLERS_COUNT];
     u8 wishCounter[MAX_BATTLERS_COUNT];
     u8 wishPartyId[MAX_BATTLERS_COUNT];
     u8 weatherDuration;
@@ -677,6 +674,9 @@ struct BattleStruct
         u16 lastResultingMove;
         u16 lastPrintedMove;
         u32 resourceFlags;
+        u8 futureSightCounter;
+        u8 futureSightAttacker;
+        u16 futureSightMove;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
