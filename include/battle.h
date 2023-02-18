@@ -526,7 +526,6 @@ struct BattleStruct
     u8 turnEffectsTracker;
     u8 turnEffectsBattlerId;
     u8 turnCountersTracker;
-    u16 moveTarget[MAX_BATTLERS_COUNT];
     u8 expGetterMonId;
     u8 wildVictorySong;
     u8 dynamicMoveType;
@@ -666,6 +665,7 @@ struct BattleStruct
     {
         u16 wrappedMove;
         u8 wrappedBy;
+        u16 moveTarget;
     } battlers[MAX_BATTLERS_COUNT];
 };
 

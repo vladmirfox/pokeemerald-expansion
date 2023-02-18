@@ -3105,7 +3105,7 @@ bool32 DoesPartnerHaveSameMoveEffect(u8 battlerAtkPartner, u8 battlerDef, u16 mo
 
     if (gBattleMoves[move].effect == gBattleMoves[partnerMove].effect
       && gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE
-      && gBattleStruct->moveTarget[battlerAtkPartner] == battlerDef)
+      && gBattleStruct->battlers[battlerAtkPartner].moveTarget == battlerDef)
     {
         return TRUE;
     }
@@ -3131,7 +3131,7 @@ bool32 PartnerMoveEffectIsStatusSameTarget(u8 battlerAtkPartner, u8 battlerDef, 
         return FALSE;
 
     if (gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE
-     && gBattleStruct->moveTarget[battlerAtkPartner] == battlerDef
+     && gBattleStruct->battlers[battlerAtkPartner].moveTarget == battlerDef
      && (gBattleMoves[partnerMove].effect == EFFECT_SLEEP
        || gBattleMoves[partnerMove].effect == EFFECT_POISON
        || gBattleMoves[partnerMove].effect == EFFECT_TOXIC
@@ -3191,7 +3191,7 @@ bool32 PartnerMoveIsSameAsAttacker(u8 battlerAtkPartner, u8 battlerDef, u16 move
     if (!IsDoubleBattle())
         return FALSE;
 
-    if (gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE && move == partnerMove && gBattleStruct->moveTarget[battlerAtkPartner] == battlerDef)
+    if (gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE && move == partnerMove && gBattleStruct->battlers[battlerAtkPartner].moveTarget == battlerDef)
         return TRUE;
     return FALSE;
 }

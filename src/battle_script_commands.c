@@ -5841,7 +5841,7 @@ static void Cmd_moveend(void)
 
                 if (nextTarget != MAX_BATTLERS_COUNT)
                 {
-                    gBattleStruct->moveTarget[gBattlerAttacker] = gBattlerTarget = nextTarget; // Fix for moxie spread moves
+                    gBattleStruct->battlers[gBattlerAttacker].moveTarget = gBattlerTarget = nextTarget; // Fix for moxie spread moves
                     gBattleScripting.moveendState = 0;
                     MoveValuesCleanUp();
                     gBattleScripting.moveEffect = gBattleScripting.savedMoveEffect;
@@ -5861,7 +5861,7 @@ static void Cmd_moveend(void)
                     if (nextTarget != MAX_BATTLERS_COUNT)
                     {
                         // We found another target for the original move user.
-                        gBattleStruct->moveTarget[gBattlerAttacker] = gBattlerTarget = nextTarget;
+                        gBattleStruct->battlers[gBattlerAttacker].moveTarget = gBattlerTarget = nextTarget;
                         gBattleScripting.moveendState = 0;
                         gBattleScripting.animTurn = 0;
                         gBattleScripting.animTargetsHit = 0;
@@ -6175,9 +6175,9 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_CLEAR_BITS: // Clear/Set bits for things like using a move for all targets and all hits.
             if (gSpecialStatuses[gBattlerAttacker].instructedChosenTarget)
-                *(gBattleStruct->moveTarget + gBattlerAttacker) = gSpecialStatuses[gBattlerAttacker].instructedChosenTarget & 0x3;
+                gBattleStruct->battlers[gBattlerAttacker].moveTarget = gSpecialStatuses[gBattlerAttacker].instructedChosenTarget & 0x3;
             if (gSpecialStatuses[gBattlerAttacker].dancerOriginalTarget)
-                *(gBattleStruct->moveTarget + gBattlerAttacker) = gSpecialStatuses[gBattlerAttacker].dancerOriginalTarget & 0x3;
+                gBattleStruct->battlers[gBattlerAttacker].moveTarget = gSpecialStatuses[gBattlerAttacker].dancerOriginalTarget & 0x3;
 
         #if B_RAMPAGE_CANCELLING >= GEN_5
             if (gBattleMoves[gCurrentMove].effect == EFFECT_RAMPAGE // If we're rampaging
@@ -8214,7 +8214,7 @@ static bool32 HasAttackerFaintedTarget(void)
     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
         && gBattleMoves[gCurrentMove].power != 0
         && (gLastHitBy[gBattlerTarget] == 0xFF || gLastHitBy[gBattlerTarget] == gBattlerAttacker)
-        && gBattleStruct->moveTarget[gBattlerAttacker] == gBattlerTarget
+        && gBattleStruct->battlers[gBattlerAttacker].moveTarget == gBattlerTarget
         && gBattlerTarget != gBattlerAttacker
         && gCurrentTurnActionNumber == GetBattlerTurnOrderNum(gBattlerAttacker)
         && (gChosenMove == gChosenMoveByBattler[gBattlerAttacker] || gChosenMove == gBattleMons[gBattlerAttacker].moves[gChosenMovePos]))
@@ -9822,7 +9822,7 @@ static void Cmd_various(void)
         }
         else
         {
-            gSpecialStatuses[gBattlerTarget].instructedChosenTarget = *(gBattleStruct->moveTarget + gBattlerTarget) | 0x4;
+            gSpecialStatuses[gBattlerTarget].instructedChosenTarget = gBattleStruct->battlers[gBattlerTarget].moveTarget | 0x4;
             gBattlerAttacker = gBattlerTarget;
             gCalledMove = gLastMoves[gBattlerAttacker];
             for (i = 0; i < MAX_MON_MOVES; i++)
@@ -13714,7 +13714,7 @@ static void Cmd_jumpifnopursuitswitchdmg(void)
     }
 
     if (gChosenActionByBattler[gBattlerTarget] == B_ACTION_USE_MOVE
-        && gBattlerAttacker == *(gBattleStruct->moveTarget + gBattlerTarget)
+        && gBattlerAttacker == gBattleStruct->battlers[gBattlerTarget].moveTarget
         && !(gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
         && gBattleMons[gBattlerAttacker].hp
         && !gDisableStructs[gBattlerTarget].truantCounter
