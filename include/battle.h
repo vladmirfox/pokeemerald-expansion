@@ -552,7 +552,6 @@ struct BattleStruct
     u8 linkBattleVsSpriteId_V; // The letter "V"
     u8 linkBattleVsSpriteId_S; // The letter "S"
     u8 formToChangeInto;
-    u8 stateIdAfterSelScript[MAX_BATTLERS_COUNT];
     u8 prevSelectedPartySlot;
     u8 stringMoveType;
     u8 expGetterBattlerId;
@@ -666,6 +665,7 @@ struct BattleStruct
         u8 partyIndex;
         u8 monToSwitchIntoIndex;
         u8 chosenMovePosition;
+        u8 stateAfterSelectionScript;
     } battlers[MAX_BATTLERS_COUNT];
 };
 

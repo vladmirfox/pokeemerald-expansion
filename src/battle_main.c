@@ -4037,7 +4037,7 @@ static void HandleTurnActionSelectionState(void)
                     {
                         gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT;
                         gBattleStruct->battlers[gActiveBattler].selectionScriptFinished = FALSE;
-                        *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
+                        gBattleStruct->battlers[gActiveBattler].stateAfterSelectionScript = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
                         gBattleStruct->battlers[gActiveBattler].moveTarget = gBattleResources->bufferB[gActiveBattler][3];
                         return;
                     }
@@ -4080,7 +4080,7 @@ static void HandleTurnActionSelectionState(void)
                         gSelectionBattleScripts[gActiveBattler] = BattleScript_ActionSelectionItemsCantBeUsed;
                         gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT;
                         gBattleStruct->battlers[gActiveBattler].selectionScriptFinished = FALSE;
-                        *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_BEFORE_ACTION_CHOSEN;
+                        gBattleStruct->battlers[gActiveBattler].stateAfterSelectionScript = STATE_BEFORE_ACTION_CHOSEN;
                         return;
                     }
 
@@ -4095,7 +4095,7 @@ static void HandleTurnActionSelectionState(void)
                         gSelectionBattleScripts[gActiveBattler] = BattleScript_ActionSelectionItemsCantBeUsed;
                         gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT;
                         gBattleStruct->battlers[gActiveBattler].selectionScriptFinished = FALSE;
-                        *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_BEFORE_ACTION_CHOSEN;
+                        gBattleStruct->battlers[gActiveBattler].stateAfterSelectionScript = STATE_BEFORE_ACTION_CHOSEN;
                         return;
                     }
                     else
@@ -4133,7 +4133,7 @@ static void HandleTurnActionSelectionState(void)
                         gSelectionBattleScripts[gActiveBattler] = BattleScript_PrintFullBox;
                         gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT;
                         gBattleStruct->battlers[gActiveBattler].selectionScriptFinished = FALSE;
-                        *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_BEFORE_ACTION_CHOSEN;
+                        gBattleStruct->battlers[gActiveBattler].stateAfterSelectionScript = STATE_BEFORE_ACTION_CHOSEN;
                         return;
                     }
                     break;
@@ -4195,7 +4195,7 @@ static void HandleTurnActionSelectionState(void)
                     gSelectionBattleScripts[gActiveBattler] = BattleScript_AskIfWantsToForfeitMatch;
                     gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT_MAY_RUN;
                     gBattleStruct->battlers[gActiveBattler].selectionScriptFinished = FALSE;
-                    *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_BEFORE_ACTION_CHOSEN;
+                    gBattleStruct->battlers[gActiveBattler].stateAfterSelectionScript = STATE_BEFORE_ACTION_CHOSEN;
                     return;
                 }
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
@@ -4211,7 +4211,7 @@ static void HandleTurnActionSelectionState(void)
                     gSelectionBattleScripts[gActiveBattler] = BattleScript_PrintCantEscapeFromBattle;
                     gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT;
                     gBattleStruct->battlers[gActiveBattler].selectionScriptFinished = FALSE;
-                    *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_BEFORE_ACTION_CHOSEN;
+                    gBattleStruct->battlers[gActiveBattler].stateAfterSelectionScript = STATE_BEFORE_ACTION_CHOSEN;
                     return;
                 }
                 else
@@ -4254,7 +4254,7 @@ static void HandleTurnActionSelectionState(void)
                             gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT;
                             gBattleStruct->battlers[gActiveBattler].selectionScriptFinished = FALSE;
                             gBattleResources->bufferB[gActiveBattler][1] = B_ACTION_USE_MOVE;
-                            *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_WAIT_ACTION_CHOSEN;
+                            gBattleStruct->battlers[gActiveBattler].stateAfterSelectionScript = STATE_WAIT_ACTION_CHOSEN;
                             return;
                         }
                         else
@@ -4370,7 +4370,7 @@ static void HandleTurnActionSelectionState(void)
         case STATE_SELECTION_SCRIPT:
             if (gBattleStruct->battlers[gActiveBattler].selectionScriptFinished)
             {
-                gBattleCommunication[gActiveBattler] = *(gBattleStruct->stateIdAfterSelScript + gActiveBattler);
+                gBattleCommunication[gActiveBattler] = gBattleStruct->battlers[gActiveBattler].stateAfterSelectionScript;
             }
             else
             {
@@ -4401,7 +4401,7 @@ static void HandleTurnActionSelectionState(void)
                 else
                 {
                     RecordedBattle_ClearBattlerAction(gActiveBattler, 1);
-                    gBattleCommunication[gActiveBattler] = *(gBattleStruct->stateIdAfterSelScript + gActiveBattler);
+                    gBattleCommunication[gActiveBattler] = gBattleStruct->battlers[gActiveBattler].stateAfterSelectionScript;
                 }
             }
             else
