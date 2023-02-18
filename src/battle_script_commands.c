@@ -8762,7 +8762,7 @@ static void Cmd_various(void)
     case VARIOUS_TRACE_ABILITY:
     {
         VARIOUS_ARGS();
-        gBattleMons[gActiveBattler].ability = gBattleStruct->overwrittenAbilities[gActiveBattler] = gBattleStruct->tracedAbility[gActiveBattler];
+        gBattleMons[gActiveBattler].ability = gBattleStruct->overwrittenAbilities[gActiveBattler] = gBattleStruct->battlers[gActiveBattler].tracedAbility;
         break;
     }
     case VARIOUS_TRY_ILLUSION_OFF:
@@ -9275,7 +9275,7 @@ static void Cmd_various(void)
             case ABILITY_RKS_SYSTEM:        case ABILITY_TRACE:
                 break;
             default:
-                gBattleStruct->tracedAbility[gBattlerAbility] = gBattleMons[gActiveBattler].ability; // re-using the variable for trace
+                gBattleStruct->battlers[gBattlerAbility].tracedAbility = gBattleMons[gActiveBattler].ability; // re-using the variable for trace
                 gBattleScripting.battler = gActiveBattler;
                 BattleScriptPush(cmd->nextInstr);
                 gBattlescriptCurrInstr = BattleScript_ReceiverActivates;

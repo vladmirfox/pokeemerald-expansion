@@ -6119,7 +6119,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         gBattlescriptCurrInstr = BattleScript_TraceActivates;
                     }
                     gBattleResources->flags->flags[i] &= ~RESOURCE_FLAG_TRACED;
-                    gBattleStruct->tracedAbility[i] = gLastUsedAbility = gBattleMons[gActiveBattler].ability;
+                    gBattleStruct->battlers[i].tracedAbility = gLastUsedAbility = gBattleMons[gActiveBattler].ability;
                     RecordAbilityBattle(gActiveBattler, gLastUsedAbility); // Record the opposing battler has this ability
                     battler = gBattlerAbility = gBattleScripting.battler = i;
 
