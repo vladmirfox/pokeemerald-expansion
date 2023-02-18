@@ -4985,8 +4985,8 @@ static void Cmd_setroost(void)
     // Pure flying type.
     if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING && gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
     {
-        gBattleStruct->roostTypes[gBattlerAttacker][0] = TYPE_FLYING;
-        gBattleStruct->roostTypes[gBattlerAttacker][1] = TYPE_FLYING;
+        gBattleStruct->battlers[gBattlerAttacker].roostTypes[0] = TYPE_FLYING;
+        gBattleStruct->battlers[gBattlerAttacker].roostTypes[1] = TYPE_FLYING;
 #if B_ROOST_PURE_FLYING >= GEN_5
         SET_BATTLER_TYPE(gBattlerAttacker, TYPE_NORMAL);
 #else
@@ -4996,8 +4996,8 @@ static void Cmd_setroost(void)
     // Dual type with flying type.
     else if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING || gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
     {
-        gBattleStruct->roostTypes[gBattlerAttacker][0] = gBattleMons[gBattlerAttacker].type1;
-        gBattleStruct->roostTypes[gBattlerAttacker][1] = gBattleMons[gBattlerAttacker].type2;
+        gBattleStruct->battlers[gBattlerAttacker].roostTypes[0] = gBattleMons[gBattlerAttacker].type1;
+        gBattleStruct->battlers[gBattlerAttacker].roostTypes[1] = gBattleMons[gBattlerAttacker].type2;
         if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING)
             gBattleMons[gBattlerAttacker].type1 = TYPE_MYSTERY;
         else if (gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
@@ -5006,8 +5006,8 @@ static void Cmd_setroost(void)
     // Non-flying type.
     else
     {
-        gBattleStruct->roostTypes[gBattlerAttacker][0] = gBattleMons[gBattlerAttacker].type1;
-        gBattleStruct->roostTypes[gBattlerAttacker][1] = gBattleMons[gBattlerAttacker].type2;
+        gBattleStruct->battlers[gBattlerAttacker].roostTypes[0] = gBattleMons[gBattlerAttacker].type1;
+        gBattleStruct->battlers[gBattlerAttacker].roostTypes[1] = gBattleMons[gBattlerAttacker].type2;
     }
 
     gBattlescriptCurrInstr = cmd->nextInstr;

@@ -3145,8 +3145,8 @@ u8 DoBattlerEndTurnEffects(void)
             if (gBattleResources->flags->flags[gActiveBattler] & RESOURCE_FLAG_ROOST)
             {
                 gBattleResources->flags->flags[gActiveBattler] &= ~RESOURCE_FLAG_ROOST;
-                gBattleMons[gActiveBattler].type1 = gBattleStruct->roostTypes[gActiveBattler][0];
-                gBattleMons[gActiveBattler].type2 = gBattleStruct->roostTypes[gActiveBattler][1];
+                gBattleMons[gActiveBattler].type1 = gBattleStruct->battlers[gActiveBattler].roostTypes[0];
+                gBattleMons[gActiveBattler].type2 = gBattleStruct->battlers[gActiveBattler].roostTypes[1];
             }
             gBattleStruct->turnEffectsTracker++;
             break;
