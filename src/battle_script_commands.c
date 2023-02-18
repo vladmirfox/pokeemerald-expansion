@@ -7690,7 +7690,7 @@ static void Cmd_setgravity(void)
     else
     {
         gFieldStatuses |= STATUS_FIELD_GRAVITY;
-        gFieldTimers.gravityTimer = 5;
+        gBattleStruct->field.gravityTimer = 5;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
@@ -8281,9 +8281,9 @@ static void HandleTerrainMove(u16 move)
         gFieldStatuses &= ~STATUS_FIELD_TERRAIN_ANY;
         gFieldStatuses |= statusFlag;
         if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_TERRAIN_EXTENDER)
-            gFieldTimers.terrainTimer = 8;
+            gTerrainTimer = 8;
         else
-            gFieldTimers.terrainTimer = 5;
+            gTerrainTimer = 5;
         gBattlescriptCurrInstr += 7;
     }
 }
@@ -8687,7 +8687,7 @@ static void Cmd_various(void)
         else
         {
             gFieldStatuses |= STATUS_FIELD_FAIRY_LOCK;
-            gFieldTimers.fairyLockTimer = 2;
+            gBattleStruct->field.fairyLockTimer = 2;
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         return;
@@ -10307,7 +10307,7 @@ static void Cmd_various(void)
     case VARIOUS_REMOVE_TERRAIN:
     {
         VARIOUS_ARGS();
-        gFieldTimers.terrainTimer = 0;
+        gTerrainTimer = 0;
         switch (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
         {
         case STATUS_FIELD_MISTY_TERRAIN:
@@ -14523,13 +14523,13 @@ static void Cmd_setroom(void)
     switch (gBattleMoves[gCurrentMove].effect)
     {
     case EFFECT_TRICK_ROOM:
-        HandleRoomMove(STATUS_FIELD_TRICK_ROOM, &gFieldTimers.trickRoomTimer, 0);
+        HandleRoomMove(STATUS_FIELD_TRICK_ROOM, &gBattleStruct->field.trickRoomTimer, 0);
         break;
     case EFFECT_WONDER_ROOM:
-        HandleRoomMove(STATUS_FIELD_WONDER_ROOM, &gFieldTimers.wonderRoomTimer, 2);
+        HandleRoomMove(STATUS_FIELD_WONDER_ROOM, &gBattleStruct->field.wonderRoomTimer, 2);
         break;
     case EFFECT_MAGIC_ROOM:
-        HandleRoomMove(STATUS_FIELD_MAGIC_ROOM, &gFieldTimers.magicRoomTimer, 4);
+        HandleRoomMove(STATUS_FIELD_MAGIC_ROOM, &gBattleStruct->field.magicRoomTimer, 4);
         break;
     default:
         gBattleCommunication[MULTISTRING_CHOOSER] = 6;
@@ -15034,7 +15034,7 @@ static void Cmd_settypebasedhalvers(void)
             if (!(gFieldStatuses & STATUS_FIELD_MUDSPORT))
             {
                 gFieldStatuses |= STATUS_FIELD_MUDSPORT;
-                gFieldTimers.mudSportTimer = 5;
+                gBattleStruct->field.mudSportTimer = 5;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEAKEN_ELECTRIC;
                 worked = TRUE;
             }
@@ -15053,7 +15053,7 @@ static void Cmd_settypebasedhalvers(void)
             if (!(gFieldStatuses & STATUS_FIELD_WATERSPORT))
             {
                 gFieldStatuses |= STATUS_FIELD_WATERSPORT;
-                gFieldTimers.waterSportTimer = 5;
+                gBattleStruct->field.waterSportTimer = 5;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEAKEN_FIRE;
                 worked = TRUE;
             }

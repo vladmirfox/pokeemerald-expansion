@@ -220,7 +220,7 @@ EWRAM_DATA u16 gBattleMovePower = 0;
 EWRAM_DATA u16 gMoveToLearn = 0;
 EWRAM_DATA u8 gBattleMonForms[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u32 gFieldStatuses = 0;
-EWRAM_DATA struct FieldTimer gFieldTimers = {0};
+EWRAM_DATA u8 gTerrainTimer = 0;
 EWRAM_DATA u8 gBattlerAbility = 0;
 EWRAM_DATA u16 gPartnerSpriteId = 0;
 EWRAM_DATA bool8 gHasFetchedBall = FALSE;
@@ -2933,7 +2933,7 @@ static void BattleStartClearSetData(void)
     SpecialStatusesClear();
 
     memset(&gDisableStructs, 0, sizeof(gDisableStructs));
-    memset(&gFieldTimers, 0, sizeof(gFieldTimers));
+    gTerrainTimer = 0;
     memset(&gSideStatuses, 0, sizeof(gSideStatuses));
     memset(&gSideTimers, 0, sizeof(gSideTimers));
     memset(&gBattleResults, 0, sizeof(gBattleResults));

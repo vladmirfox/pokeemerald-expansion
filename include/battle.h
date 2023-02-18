@@ -217,18 +217,6 @@ struct SideTimer
     u8 retaliateTimer;
 };
 
-struct FieldTimer
-{
-    u8 mudSportTimer;
-    u8 waterSportTimer;
-    u8 wonderRoomTimer;
-    u8 magicRoomTimer;
-    u8 trickRoomTimer;
-    u8 terrainTimer;
-    u8 gravityTimer;
-    u8 fairyLockTimer;
-};
-
 struct AI_SavedBattleMon
 {
     u16 ability;
@@ -611,6 +599,13 @@ struct BattleStruct
     struct Field
     {
         u8 weatherDuration;
+        u8 mudSportTimer;
+        u8 waterSportTimer;
+        u8 wonderRoomTimer;
+        u8 magicRoomTimer;
+        u8 trickRoomTimer;
+        u8 gravityTimer;
+        u8 fairyLockTimer;
     } field;
 
     struct Side
@@ -966,7 +961,7 @@ extern u16 gBattleMovePower;
 extern u16 gMoveToLearn;
 extern u8 gBattleMonForms[MAX_BATTLERS_COUNT];
 extern u32 gFieldStatuses;
-extern struct FieldTimer gFieldTimers;
+extern u8 gTerrainTimer;
 extern u8 gBattlerAbility;
 extern u16 gPartnerSpriteId;
 
