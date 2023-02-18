@@ -2025,7 +2025,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     u32 abilityDef = GetBattlerAbility(gBattlerTarget);
     u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
 
-    if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT
+    if (gBattleStruct->sides[battlerDef].status & SIDE_STATUS_LUCKY_CHANT
         || gStatuses3[gBattlerAttacker] & STATUS3_CANT_SCORE_A_CRIT)
     {
         critChance = -1;
@@ -2917,7 +2917,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
         INCREMENT_RESET_RETURN
     }
 
-    if (gSideStatuses[GET_BATTLER_SIDE(gEffectBattler)] & SIDE_STATUS_SAFEGUARD && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+    if (gBattleStruct->sides[GET_BATTLER_SIDE(gEffectBattler)].status & SIDE_STATUS_SAFEGUARD && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
         && !primary && gBattleScripting.moveEffect <= MOVE_EFFECT_CONFUSION)
         INCREMENT_RESET_RETURN
 
@@ -3579,10 +3579,10 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 if (IS_BATTLER_PROTECTED(gBattlerTarget))
                 {
                     gProtectStructs[gBattlerTarget].protected = FALSE;
-                    gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_WIDE_GUARD;
-                    gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_QUICK_GUARD;
-                    gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_CRAFTY_SHIELD;
-                    gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_MAT_BLOCK;
+                    gBattleStruct->sides[GetBattlerSide(gBattlerTarget)].status &= ~SIDE_STATUS_WIDE_GUARD;
+                    gBattleStruct->sides[GetBattlerSide(gBattlerTarget)].status &= ~SIDE_STATUS_QUICK_GUARD;
+                    gBattleStruct->sides[GetBattlerSide(gBattlerTarget)].status &= ~SIDE_STATUS_CRAFTY_SHIELD;
+                    gBattleStruct->sides[GetBattlerSide(gBattlerTarget)].status &= ~SIDE_STATUS_MAT_BLOCK;
                     gProtectStructs[gBattlerTarget].spikyShielded = FALSE;
                     gProtectStructs[gBattlerTarget].kingsShielded = FALSE;
                     gProtectStructs[gBattlerTarget].banefulBunkered = FALSE;
@@ -3828,7 +3828,7 @@ static void Cmd_tryfaintmon(void)
 
             BattleScriptPop();
             gBattlescriptCurrInstr = instr;
-            gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_TOXIC_SPIKES_DAMAGED | SIDE_STATUS_STEALTH_ROCK_DAMAGED | SIDE_STATUS_STICKY_WEB_DAMAGED);
+            gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status &= ~(SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_TOXIC_SPIKES_DAMAGED | SIDE_STATUS_STEALTH_ROCK_DAMAGED | SIDE_STATUS_STICKY_WEB_DAMAGED);
         }
         else
         {
@@ -4027,7 +4027,7 @@ static void Cmd_jumpifsideaffecting(void)
     flags = cmd->flags;
     jumpInstr = cmd->jumpInstr;
 
-    if (gSideStatuses[side] & flags)
+    if (gBattleStruct->sides[side].status & flags)
         gBattlescriptCurrInstr = jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
@@ -6924,8 +6924,8 @@ static void Cmd_switchineffects(void)
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_SwitchInAbilityMsgRet;
     }
-    else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES_DAMAGED)
-        && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES)
+    else if (!(gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status & SIDE_STATUS_SPIKES_DAMAGED)
+        && (gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status & SIDE_STATUS_SPIKES)
         && GetBattlerAbility(gActiveBattler) != ABILITY_MAGIC_GUARD
         && IsBattlerAffectedByHazards(gActiveBattler, FALSE)
         && IsBattlerGrounded(gActiveBattler))
@@ -6935,28 +6935,28 @@ static void Cmd_switchineffects(void)
         if (gBattleMoveDamage == 0)
             gBattleMoveDamage = 1;
 
-        gSideStatuses[GetBattlerSide(gActiveBattler)] |= SIDE_STATUS_SPIKES_DAMAGED;
+        gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status |= SIDE_STATUS_SPIKES_DAMAGED;
         SetDmgHazardsBattlescript(gActiveBattler, 0);
     }
-    else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK_DAMAGED)
-        && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
+    else if (!(gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status & SIDE_STATUS_STEALTH_ROCK_DAMAGED)
+        && (gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status & SIDE_STATUS_STEALTH_ROCK)
         && IsBattlerAffectedByHazards(gActiveBattler, FALSE)
         && GetBattlerAbility(gActiveBattler) != ABILITY_MAGIC_GUARD)
     {
-        gSideStatuses[GetBattlerSide(gActiveBattler)] |= SIDE_STATUS_STEALTH_ROCK_DAMAGED;
+        gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status |= SIDE_STATUS_STEALTH_ROCK_DAMAGED;
         gBattleMoveDamage = GetStealthHazardDamage(gBattleMoves[MOVE_STEALTH_ROCK].type, gActiveBattler);
 
         if (gBattleMoveDamage != 0)
             SetDmgHazardsBattlescript(gActiveBattler, 1);
     }
-    else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_TOXIC_SPIKES_DAMAGED)
-        && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_TOXIC_SPIKES)
+    else if (!(gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status & SIDE_STATUS_TOXIC_SPIKES_DAMAGED)
+        && (gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status & SIDE_STATUS_TOXIC_SPIKES)
         && IsBattlerGrounded(gActiveBattler))
     {
-        gSideStatuses[GetBattlerSide(gActiveBattler)] |= SIDE_STATUS_TOXIC_SPIKES_DAMAGED;
+        gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status |= SIDE_STATUS_TOXIC_SPIKES_DAMAGED;
         if (IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_POISON)) // Absorb the toxic spikes.
         {
-            gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~SIDE_STATUS_TOXIC_SPIKES;
+            gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status &= ~SIDE_STATUS_TOXIC_SPIKES;
             gSideTimers[GetBattlerSide(gActiveBattler)].toxicSpikesAmount = 0;
             gBattleScripting.battler = gActiveBattler;
             BattleScriptPushCursor();
@@ -6968,7 +6968,7 @@ static void Cmd_switchineffects(void)
                 && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_STEEL)
                 && GetBattlerAbility(gActiveBattler) != ABILITY_IMMUNITY
                 && !IsAbilityOnSide(gActiveBattler, ABILITY_PASTEL_VEIL)
-                && !(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SAFEGUARD)
+                && !(gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status & SIDE_STATUS_SAFEGUARD)
                 && !(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
             {
                 if (gSideTimers[GetBattlerSide(gActiveBattler)].toxicSpikesAmount >= 2)
@@ -6984,12 +6984,12 @@ static void Cmd_switchineffects(void)
             }
         }
     }
-    else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STICKY_WEB_DAMAGED)
-        && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STICKY_WEB)
+    else if (!(gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status & SIDE_STATUS_STICKY_WEB_DAMAGED)
+        && (gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status & SIDE_STATUS_STICKY_WEB)
         && IsBattlerAffectedByHazards(gActiveBattler, FALSE)
         && IsBattlerGrounded(gActiveBattler))
     {
-        gSideStatuses[GetBattlerSide(gActiveBattler)] |= SIDE_STATUS_STICKY_WEB_DAMAGED;
+        gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status |= SIDE_STATUS_STICKY_WEB_DAMAGED;
         gBattleScripting.battler = gActiveBattler;
         SET_STATCHANGER(STAT_SPEED, 1, TRUE);
         BattleScriptPushCursor();
@@ -7023,7 +7023,7 @@ static void Cmd_switchineffects(void)
          || AbilityBattleEffects(ABILITYEFFECT_TRACE2, 0, 0, 0, 0))
             return;
 
-        gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_TOXIC_SPIKES_DAMAGED | SIDE_STATUS_STEALTH_ROCK_DAMAGED | SIDE_STATUS_STICKY_WEB_DAMAGED);
+        gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status &= ~(SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_TOXIC_SPIKES_DAMAGED | SIDE_STATUS_STEALTH_ROCK_DAMAGED | SIDE_STATUS_STICKY_WEB_DAMAGED);
 
         for (i = 0; i < gBattlersCount; i++)
         {
@@ -8338,7 +8338,7 @@ static bool32 ClearDefogHazards(u8 battlerAtk, bool32 clear)
     for (i = 0; i < 2; i++)
     {
         struct SideTimer *sideTimer = &gSideTimers[i];
-        u32 *sideStatuses = &gSideStatuses[i];
+        u32 *sideStatuses = &gBattleStruct->sides[i].status;
 
         gBattlerAttacker = i;
         if (GetBattlerSide(battlerAtk) != i)
@@ -8495,24 +8495,24 @@ static bool32 IsTeatimeAffected(u32 battlerId)
     return TRUE;
 }
 
-#define COURTCHANGE_SWAP(status, structField, temp)                     \
+#define COURTCHANGE_SWAP(status_, structField, temp)                    \
 {                                                                       \
-    temp = gSideStatuses[B_SIDE_PLAYER];                                \
-    if (gSideStatuses[B_SIDE_OPPONENT] & status)                        \
-        gSideStatuses[B_SIDE_PLAYER] |= status;                         \
+    temp = gBattleStruct->sides[B_SIDE_PLAYER].status;                  \
+    if (gBattleStruct->sides[B_SIDE_OPPONENT].status & status_)         \
+        gBattleStruct->sides[B_SIDE_PLAYER].status |= status_;          \
     else                                                                \
-        gSideStatuses[B_SIDE_PLAYER] &= ~(status);                      \
-    if (temp & status)                                                  \
-        gSideStatuses[B_SIDE_OPPONENT] |= status;                       \
+        gBattleStruct->sides[B_SIDE_PLAYER].status &= ~(status_);       \
+    if (temp & status_)                                                 \
+        gBattleStruct->sides[B_SIDE_OPPONENT].status |= status_;        \
     else                                                                \
-        gSideStatuses[B_SIDE_OPPONENT] &= ~(status);                    \
+        gBattleStruct->sides[B_SIDE_OPPONENT].status &= ~(status_);     \
     SWAP(sideTimerPlayer->structField, sideTimerOpp->structField, temp);\
 }                                                                       \
 
 #define UPDATE_COURTCHANGED_BATTLER(structField)\
 {                                               \
-    sideTimerPlayer->structField ^= BIT_SIDE;        \
-    sideTimerOpp->structField ^= BIT_SIDE;        \
+    sideTimerPlayer->structField ^= BIT_SIDE;   \
+    sideTimerOpp->structField ^= BIT_SIDE;      \
 }                                               \
 
 static bool32 CourtChangeSwapSideStatuses(void)
@@ -9355,9 +9355,9 @@ static void Cmd_various(void)
     case VARIOUS_SET_LUCKY_CHANT:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (!(gSideStatuses[GET_BATTLER_SIDE(gActiveBattler)] & SIDE_STATUS_LUCKY_CHANT))
+        if (!(gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].status & SIDE_STATUS_LUCKY_CHANT))
         {
-            gSideStatuses[GET_BATTLER_SIDE(gActiveBattler)] |= SIDE_STATUS_LUCKY_CHANT;
+            gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].status |= SIDE_STATUS_LUCKY_CHANT;
             gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].luckyChantBattlerId = gActiveBattler;
             gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].luckyChantTimer = 5;
             gBattlescriptCurrInstr = cmd->nextInstr;
@@ -10065,7 +10065,7 @@ static void Cmd_various(void)
     case VARIOUS_SET_AURORA_VEIL:
     {
         VARIOUS_ARGS();
-        if (gSideStatuses[GET_BATTLER_SIDE(gActiveBattler)] & SIDE_STATUS_AURORA_VEIL
+        if (gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].status & SIDE_STATUS_AURORA_VEIL
             || !(WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_HAIL))
         {
             gMoveResultFlags |= MOVE_RESULT_MISSED;
@@ -10073,7 +10073,7 @@ static void Cmd_various(void)
         }
         else
         {
-            gSideStatuses[GET_BATTLER_SIDE(gActiveBattler)] |= SIDE_STATUS_AURORA_VEIL;
+            gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].status |= SIDE_STATUS_AURORA_VEIL;
             if (GetBattlerHoldEffect(gActiveBattler, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
                 gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].auroraVeilTimer = 8;
             else
@@ -11104,30 +11104,30 @@ static void Cmd_setprotectlike(void)
         else // Protects the whole side.
         {
             u8 side = GetBattlerSide(gBattlerAttacker);
-            if (gCurrentMove == MOVE_WIDE_GUARD && !(gSideStatuses[side] & SIDE_STATUS_WIDE_GUARD))
+            if (gCurrentMove == MOVE_WIDE_GUARD && !(gBattleStruct->sides[side].status & SIDE_STATUS_WIDE_GUARD))
             {
-                gSideStatuses[side] |= SIDE_STATUS_WIDE_GUARD;
+                gBattleStruct->sides[side].status |= SIDE_STATUS_WIDE_GUARD;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
                 gDisableStructs[gBattlerAttacker].protectUses++;
                 fail = FALSE;
             }
-            else if (gCurrentMove == MOVE_QUICK_GUARD && !(gSideStatuses[side] & SIDE_STATUS_QUICK_GUARD))
+            else if (gCurrentMove == MOVE_QUICK_GUARD && !(gBattleStruct->sides[side].status & SIDE_STATUS_QUICK_GUARD))
             {
-                gSideStatuses[side] |= SIDE_STATUS_QUICK_GUARD;
+                gBattleStruct->sides[side].status |= SIDE_STATUS_QUICK_GUARD;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
                 gDisableStructs[gBattlerAttacker].protectUses++;
                 fail = FALSE;
             }
-            else if (gCurrentMove == MOVE_CRAFTY_SHIELD && !(gSideStatuses[side] & SIDE_STATUS_CRAFTY_SHIELD))
+            else if (gCurrentMove == MOVE_CRAFTY_SHIELD && !(gBattleStruct->sides[side].status & SIDE_STATUS_CRAFTY_SHIELD))
             {
-                gSideStatuses[side] |= SIDE_STATUS_CRAFTY_SHIELD;
+                gBattleStruct->sides[side].status |= SIDE_STATUS_CRAFTY_SHIELD;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
                 gDisableStructs[gBattlerAttacker].protectUses++;
                 fail = FALSE;
             }
-            else if (gCurrentMove == MOVE_MAT_BLOCK && !(gSideStatuses[side] & SIDE_STATUS_MAT_BLOCK))
+            else if (gCurrentMove == MOVE_MAT_BLOCK && !(gBattleStruct->sides[side].status & SIDE_STATUS_MAT_BLOCK))
             {
-                gSideStatuses[side] |= SIDE_STATUS_MAT_BLOCK;
+                gBattleStruct->sides[side].status |= SIDE_STATUS_MAT_BLOCK;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
                 fail = FALSE;
             }
@@ -11297,14 +11297,14 @@ static void Cmd_setreflect(void)
 {
     CMD_ARGS();
 
-    if (gSideStatuses[GET_BATTLER_SIDE(gBattlerAttacker)] & SIDE_STATUS_REFLECT)
+    if (gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].status & SIDE_STATUS_REFLECT)
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SIDE_STATUS_FAILED;
     }
     else
     {
-        gSideStatuses[GET_BATTLER_SIDE(gBattlerAttacker)] |= SIDE_STATUS_REFLECT;
+        gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].status |= SIDE_STATUS_REFLECT;
         if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
             gSideTimers[GET_BATTLER_SIDE(gBattlerAttacker)].reflectTimer = 8;
         else
@@ -12376,14 +12376,14 @@ static void Cmd_setlightscreen(void)
 {
     CMD_ARGS();
 
-    if (gSideStatuses[GET_BATTLER_SIDE(gBattlerAttacker)] & SIDE_STATUS_LIGHTSCREEN)
+    if (gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].status & SIDE_STATUS_LIGHTSCREEN)
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SIDE_STATUS_FAILED;
     }
     else
     {
-        gSideStatuses[GET_BATTLER_SIDE(gBattlerAttacker)] |= SIDE_STATUS_LIGHTSCREEN;
+        gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].status |= SIDE_STATUS_LIGHTSCREEN;
         if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
             gSideTimers[GET_BATTLER_SIDE(gBattlerAttacker)].lightscreenTimer = 8;
         else
@@ -12666,7 +12666,7 @@ static void Cmd_setmist(void)
     {
         gSideTimers[GET_BATTLER_SIDE(gBattlerAttacker)].mistTimer = 5;
         gSideTimers[GET_BATTLER_SIDE(gBattlerAttacker)].mistBattlerId = gBattlerAttacker;
-        gSideStatuses[GET_BATTLER_SIDE(gBattlerAttacker)] |= SIDE_STATUS_MIST;
+        gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].status |= SIDE_STATUS_MIST;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_MIST;
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -13238,9 +13238,9 @@ static void Cmd_settailwind(void)
 
     u8 side = GetBattlerSide(gBattlerAttacker);
 
-    if (!(gSideStatuses[side] & SIDE_STATUS_TAILWIND))
+    if (!(gBattleStruct->sides[side].status & SIDE_STATUS_TAILWIND))
     {
-        gSideStatuses[side] |= SIDE_STATUS_TAILWIND;
+        gBattleStruct->sides[side].status |= SIDE_STATUS_TAILWIND;
         gSideTimers[side].tailwindBattlerId = gBattlerAttacker;
     #if B_TAILWIND_TURNS >= GEN_5
         gSideTimers[side].tailwindTimer = 4;
@@ -13451,7 +13451,7 @@ static void Cmd_trysetspikes(void)
     }
     else
     {
-        gSideStatuses[targetSide] |= SIDE_STATUS_SPIKES;
+        gBattleStruct->sides[targetSide].status |= SIDE_STATUS_SPIKES;
         gSideTimers[targetSide].spikesAmount++;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
@@ -13623,14 +13623,14 @@ static void Cmd_setsafeguard(void)
 {
     CMD_ARGS();
 
-    if (gSideStatuses[GET_BATTLER_SIDE(gBattlerAttacker)] & SIDE_STATUS_SAFEGUARD)
+    if (gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].status & SIDE_STATUS_SAFEGUARD)
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SIDE_STATUS_FAILED;
     }
     else
     {
-        gSideStatuses[GET_BATTLER_SIDE(gBattlerAttacker)] |= SIDE_STATUS_SAFEGUARD;
+        gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].status |= SIDE_STATUS_SAFEGUARD;
         gSideTimers[GET_BATTLER_SIDE(gBattlerAttacker)].safeguardTimer = 5;
         gSideTimers[GET_BATTLER_SIDE(gBattlerAttacker)].safeguardBattlerId = gBattlerAttacker;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_SAFEGUARD;
@@ -13821,30 +13821,30 @@ static void Cmd_rapidspinfree(void)
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_LeechSeedFree;
     }
-    else if (gSideStatuses[atkSide] & SIDE_STATUS_SPIKES)
+    else if (gBattleStruct->sides[atkSide].status & SIDE_STATUS_SPIKES)
     {
-        gSideStatuses[atkSide] &= ~SIDE_STATUS_SPIKES;
+        gBattleStruct->sides[atkSide].status &= ~SIDE_STATUS_SPIKES;
         gSideTimers[atkSide].spikesAmount = 0;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_SpikesFree;
     }
-    else if (gSideStatuses[atkSide] & SIDE_STATUS_TOXIC_SPIKES)
+    else if (gBattleStruct->sides[atkSide].status & SIDE_STATUS_TOXIC_SPIKES)
     {
-        gSideStatuses[atkSide] &= ~SIDE_STATUS_TOXIC_SPIKES;
+        gBattleStruct->sides[atkSide].status &= ~SIDE_STATUS_TOXIC_SPIKES;
         gSideTimers[atkSide].toxicSpikesAmount = 0;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_ToxicSpikesFree;
     }
-    else if (gSideStatuses[atkSide] & SIDE_STATUS_STICKY_WEB)
+    else if (gBattleStruct->sides[atkSide].status & SIDE_STATUS_STICKY_WEB)
     {
-        gSideStatuses[atkSide] &= ~SIDE_STATUS_STICKY_WEB;
+        gBattleStruct->sides[atkSide].status &= ~SIDE_STATUS_STICKY_WEB;
         gSideTimers[atkSide].stickyWebAmount = 0;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_StickyWebFree;
     }
-    else if (gSideStatuses[atkSide] & SIDE_STATUS_STEALTH_ROCK)
+    else if (gBattleStruct->sides[atkSide].status & SIDE_STATUS_STEALTH_ROCK)
     {
-        gSideStatuses[atkSide] &= ~SIDE_STATUS_STEALTH_ROCK;
+        gBattleStruct->sides[atkSide].status &= ~SIDE_STATUS_STEALTH_ROCK;
         gSideTimers[atkSide].stealthRockAmount = 0;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_StealthRockFree;
@@ -13905,13 +13905,13 @@ static void Cmd_setstickyweb(void)
 
     u8 targetSide = GetBattlerSide(gBattlerTarget);
 
-    if (gSideStatuses[targetSide] & SIDE_STATUS_STICKY_WEB)
+    if (gBattleStruct->sides[targetSide].status & SIDE_STATUS_STICKY_WEB)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
     else
     {
-        gSideStatuses[targetSide] |= SIDE_STATUS_STICKY_WEB;
+        gBattleStruct->sides[targetSide].status |= SIDE_STATUS_STICKY_WEB;
         gSideTimers[targetSide].stickyWebBattlerSide = GetBattlerSide(gBattlerAttacker); // For Court Change/Defiant - set this to the user's side
         gSideTimers[targetSide].stickyWebAmount = 1;
         gBattleStruct->stickyWebUser = gBattlerAttacker;    // For Mirror Armor
@@ -13943,7 +13943,7 @@ static void Cmd_trysetfutureattack(void)
     }
     else
     {
-        gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)] |= SIDE_STATUS_FUTUREATTACK;
+        gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerTarget)].status |= SIDE_STATUS_FUTUREATTACK;
         gBattleStruct->battlers[gBattlerTarget].futureSightMove = gCurrentMove;
         gBattleStruct->battlers[gBattlerTarget].futureSightAttacker = gBattlerAttacker;
         gBattleStruct->battlers[gBattlerTarget].futureSightCounter = 3;
@@ -14434,7 +14434,7 @@ static void Cmd_settoxicspikes(void)
     else
     {
         gSideTimers[targetSide].toxicSpikesAmount++;
-        gSideStatuses[targetSide] |= SIDE_STATUS_TOXIC_SPIKES;
+        gBattleStruct->sides[targetSide].status |= SIDE_STATUS_TOXIC_SPIKES;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
@@ -14620,13 +14620,13 @@ static void Cmd_setstealthrock(void)
     CMD_ARGS(const u8 *failInstr);
 
     u8 targetSide = GetBattlerSide(gBattlerTarget);
-    if (gSideStatuses[targetSide] & SIDE_STATUS_STEALTH_ROCK)
+    if (gBattleStruct->sides[targetSide].status & SIDE_STATUS_STEALTH_ROCK)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
     else
     {
-        gSideStatuses[targetSide] |= SIDE_STATUS_STEALTH_ROCK;
+        gBattleStruct->sides[targetSide].status |= SIDE_STATUS_STEALTH_ROCK;
         gSideTimers[targetSide].stealthRockAmount = 1;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
@@ -15246,9 +15246,9 @@ static void Cmd_removelightscreenreflect(void)
       || gSideTimers[side].lightscreenTimer
       || gSideTimers[side].auroraVeilTimer))
     {
-        gSideStatuses[side] &= ~SIDE_STATUS_REFLECT;
-        gSideStatuses[side] &= ~SIDE_STATUS_LIGHTSCREEN;
-        gSideStatuses[side] &= ~SIDE_STATUS_AURORA_VEIL;
+        gBattleStruct->sides[side].status &= ~SIDE_STATUS_REFLECT;
+        gBattleStruct->sides[side].status &= ~SIDE_STATUS_LIGHTSCREEN;
+        gBattleStruct->sides[side].status &= ~SIDE_STATUS_AURORA_VEIL;
         gSideTimers[side].reflectTimer = 0;
         gSideTimers[side].lightscreenTimer = 0;
         gSideTimers[side].auroraVeilTimer = 0;

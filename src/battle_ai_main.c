@@ -1347,17 +1347,17 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_LIGHT_SCREEN:
-            if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_LIGHTSCREEN
+            if (gBattleStruct->sides[GetBattlerSide(battlerAtk)].status & SIDE_STATUS_LIGHTSCREEN
               || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_REFLECT:
-            if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_REFLECT
+            if (gBattleStruct->sides[GetBattlerSide(battlerAtk)].status & SIDE_STATUS_REFLECT
               || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_AURORA_VEIL:
-            if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_AURORA_VEIL
+            if (gBattleStruct->sides[GetBattlerSide(battlerAtk)].status & SIDE_STATUS_AURORA_VEIL
               || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove)
               || !(gBattleWeather & B_WEATHER_HAIL))
                 score -= 10;
@@ -1371,7 +1371,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_MIST:
-            if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_MIST
+            if (gBattleStruct->sides[GetBattlerSide(battlerAtk)].status & SIDE_STATUS_MIST
               || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
@@ -1576,7 +1576,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_SAFEGUARD:
-            if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_SAFEGUARD
+            if (gBattleStruct->sides[GetBattlerSide(battlerAtk)].status & SIDE_STATUS_SAFEGUARD
               || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
@@ -1604,7 +1604,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             if ((gBattleMons[battlerAtk].status2 & STATUS2_WRAPPED) || (gStatuses3[battlerAtk] & STATUS3_LEECHSEED))
                 break;  // check damage/accuracy
             //Spin checks
-            if (!(gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_HAZARDS_ANY))
+            if (!(gBattleStruct->sides[GetBattlerSide(battlerAtk)].status & SIDE_STATUS_HAZARDS_ANY))
                 score -= 6;
             break;
         case EFFECT_BELLY_DRUM:
@@ -1614,8 +1614,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_FUTURE_SIGHT:
-            if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_FUTUREATTACK
-              || gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_FUTUREATTACK)
+            if (gBattleStruct->sides[GetBattlerSide(battlerDef)].status & SIDE_STATUS_FUTUREATTACK
+              || gBattleStruct->sides[GetBattlerSide(battlerAtk)].status & SIDE_STATUS_FUTUREATTACK)
                 score -= 12;
             else
                 score += 5;
@@ -2020,10 +2020,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_DEFOG:
-            if (gSideStatuses[GetBattlerSide(battlerDef)]
+            if (gBattleStruct->sides[GetBattlerSide(battlerDef)].status
              & (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL | SIDE_STATUS_SAFEGUARD | SIDE_STATUS_MIST)
               || gSideTimers[GetBattlerSide(battlerDef)].auroraVeilTimer != 0
-              || gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_HAZARDS_ANY)
+              || gBattleStruct->sides[GetBattlerSide(battlerAtk)].status & SIDE_STATUS_HAZARDS_ANY)
             {
                 if (PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 {
@@ -2032,7 +2032,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 }
             }
 
-            if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_HAZARDS_ANY)
+            if (gBattleStruct->sides[GetBattlerSide(battlerDef)].status & SIDE_STATUS_HAZARDS_ANY)
             {
                 score -= 10; //Don't blow away opposing hazards
                 break;
@@ -4102,7 +4102,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_SPEED, &score);    // Gen 8 increases speed
         //fallthrough
     case EFFECT_DEFOG:
-        if (gSideStatuses[GetBattlerSide(battlerAtk)] & SIDE_STATUS_HAZARDS_ANY && CountUsablePartyMons(battlerAtk) != 0)
+        if (gBattleStruct->sides[GetBattlerSide(battlerAtk)].status & SIDE_STATUS_HAZARDS_ANY && CountUsablePartyMons(battlerAtk) != 0)
         {
             score += 3;
             break;
@@ -4111,11 +4111,11 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         switch (move)
         {
         case MOVE_DEFOG:
-            if (gSideStatuses[GetBattlerSide(battlerDef)] & (SIDE_STATUS_SCREEN_ANY | SIDE_STATUS_SAFEGUARD | SIDE_STATUS_MIST))
+            if (gBattleStruct->sides[GetBattlerSide(battlerDef)].status & (SIDE_STATUS_SCREEN_ANY | SIDE_STATUS_SAFEGUARD | SIDE_STATUS_MIST))
             {
                 score += 3;
             }
-            else if (!(gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_SPIKES)) //Don't blow away hazards if you set them up
+            else if (!(gBattleStruct->sides[GetBattlerSide(battlerDef)].status & SIDE_STATUS_SPIKES)) //Don't blow away hazards if you set them up
             {
                 if (isDoubleBattle)
                 {
@@ -4305,11 +4305,11 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
         break;
     case EFFECT_BRICK_BREAK:
-        if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_REFLECT)
+        if (gBattleStruct->sides[GetBattlerSide(battlerDef)].status & SIDE_STATUS_REFLECT)
             score++;
-        if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_LIGHTSCREEN)
+        if (gBattleStruct->sides[GetBattlerSide(battlerDef)].status & SIDE_STATUS_LIGHTSCREEN)
             score++;
-        if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_AURORA_VEIL)
+        if (gBattleStruct->sides[GetBattlerSide(battlerDef)].status & SIDE_STATUS_AURORA_VEIL)
             score++;
         break;
     case EFFECT_KNOCK_OFF:

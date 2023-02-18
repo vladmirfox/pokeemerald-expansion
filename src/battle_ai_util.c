@@ -2439,7 +2439,7 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
     u16 ability = GetMonAbility(mon);   // we know our own party data
     u16 holdEffect;
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
-    u32 flags = gSideStatuses[GetBattlerSide(currBattler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES);
+    u32 flags = gBattleStruct->sides[GetBattlerSide(currBattler)].status & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES);
     s32 hazardDamage = 0;
     u8 type1 = gSpeciesInfo[species].types[0];
     u8 type2 = gSpeciesInfo[species].types[1];
@@ -2537,7 +2537,7 @@ bool32 ShouldPivot(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u8 mo
                         return PIVOT;
 
                     /* TODO - check if switchable mon unafffected by/will remove hazards
-                    if (gSideStatuses[battlerAtk] & SIDE_STATUS_SPIKES && switchScore >= SWITCHING_INCREASE_CAN_REMOVE_HAZARDS)
+                    if (gBattleStruct->sides[battlerAtk].status & SIDE_STATUS_SPIKES && switchScore >= SWITCHING_INCREASE_CAN_REMOVE_HAZARDS)
                         return PIVOT;*/
 
                     /*if (BattlerWillFaintFromSecondaryDamage(battlerAtk, AI_DATA->abilities[battlerAtk]) && switchScore >= SWITCHING_INCREASE_WALLS_FOE)
@@ -2619,7 +2619,7 @@ bool32 ShouldPivot(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u8 mo
                     if (!hasStatBoost)
                     {
                         // TODO - check if switching prevents/removes hazards
-                        //if (gSideStatuses[battlerAtk] & SIDE_STATUS_SPIKES && switchScore >= SWITCHING_INCREASE_CAN_REMOVE_HAZARDS)
+                        //if (gBattleStruct->sides[battlerAtk].status & SIDE_STATUS_SPIKES && switchScore >= SWITCHING_INCREASE_CAN_REMOVE_HAZARDS)
                             //return PIVOT;
 
                         // TODO - not always a good idea
@@ -2704,7 +2704,7 @@ bool32 AI_CanSleep(u8 battler, u16 ability)
     if (ability == ABILITY_INSOMNIA
       || ability == ABILITY_VITAL_SPIRIT
       || gBattleMons[battler].status1 & STATUS1_ANY
-      || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
+      || gBattleStruct->sides[GetBattlerSide(battler)].status & SIDE_STATUS_SAFEGUARD
       || (gFieldStatuses & (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN))
       || IsAbilityStatusProtected(battler))
         return FALSE;
@@ -2731,7 +2731,7 @@ static bool32 AI_CanBePoisoned(u8 battlerAtk, u8 battlerDef)
     u16 ability = AI_DATA->abilities[battlerDef];
 
     if (!(AI_CanPoisonType(battlerAtk, battlerDef))
-     || gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_SAFEGUARD
+     || gBattleStruct->sides[GetBattlerSide(battlerDef)].status & SIDE_STATUS_SAFEGUARD
      || gBattleMons[battlerDef].status1 & STATUS1_ANY
      || ability == ABILITY_IMMUNITY
      || ability == ABILITY_COMATOSE
@@ -2787,7 +2787,7 @@ bool32 AI_CanParalyze(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u1
 {
     if (!AI_CanBeParalyzed(battlerDef, defAbility)
       || AI_GetMoveEffectiveness(move, battlerAtk, battlerDef) == AI_EFFECTIVENESS_x0
-      || gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_SAFEGUARD
+      || gBattleStruct->sides[GetBattlerSide(battlerDef)].status & SIDE_STATUS_SAFEGUARD
       || DoesSubstituteBlockMove(battlerAtk, battlerDef, move)
       || PartnerMoveEffectIsStatusSameTarget(BATTLE_PARTNER(battlerAtk), battlerDef, partnerMove))
         return FALSE;
@@ -2807,7 +2807,7 @@ bool32 AI_CanConfuse(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 battlerAtk
 {
     if (!AI_CanBeConfused(battlerDef, defAbility)
       || AI_GetMoveEffectiveness(move, battlerAtk, battlerDef) == AI_EFFECTIVENESS_x0
-      || gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_SAFEGUARD
+      || gBattleStruct->sides[GetBattlerSide(battlerDef)].status & SIDE_STATUS_SAFEGUARD
       || DoesSubstituteBlockMove(battlerAtk, battlerDef, move)
       || DoesPartnerHaveSameMoveEffect(battlerAtkPartner, battlerDef, move, partnerMove))
     {
@@ -2824,7 +2824,7 @@ bool32 AI_CanBeBurned(u8 battler, u16 ability)
       || IS_BATTLER_OF_TYPE(battler, TYPE_FIRE)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler)
-      || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD)
+      || gBattleStruct->sides[GetBattlerSide(battler)].status & SIDE_STATUS_SAFEGUARD)
         return FALSE;
     return TRUE;
 }
@@ -3048,19 +3048,19 @@ bool32 ShouldSetScreen(u8 battlerAtk, u8 battlerDef, u16 moveEffect)
     case EFFECT_AURORA_VEIL:
         // Use only in Hail and only if AI doesn't already have Reflect, Light Screen or Aurora Veil itself active.
         if (gBattleWeather & B_WEATHER_HAIL
-            && !(gSideStatuses[atkSide] & (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL)))
+            && !(gBattleStruct->sides[atkSide].status & (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL)))
             return TRUE;
         break;
     case EFFECT_REFLECT:
         // Use only if the player has a physical move and AI doesn't already have Reflect itself active.
         if (HasMoveWithSplit(battlerDef, SPLIT_PHYSICAL)
-            && !(gSideStatuses[atkSide] & SIDE_STATUS_REFLECT))
+            && !(gBattleStruct->sides[atkSide].status & SIDE_STATUS_REFLECT))
             return TRUE;
         break;
     case EFFECT_LIGHT_SCREEN:
         // Use only if the player has a special move and AI doesn't already have Light Screen itself active.
         if (HasMoveWithSplit(battlerDef, SPLIT_SPECIAL)
-            && !(gSideStatuses[atkSide] & SIDE_STATUS_LIGHTSCREEN))
+            && !(gBattleStruct->sides[atkSide].status & SIDE_STATUS_LIGHTSCREEN))
             return TRUE;
         break;
     }

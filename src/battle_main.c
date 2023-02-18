@@ -184,7 +184,6 @@ EWRAM_DATA u16 gLastUsedMove = 0;
 EWRAM_DATA u16 gMoveResultFlags = 0;
 EWRAM_DATA u32 gHitMarker = 0;
 EWRAM_DATA u8 gUnusedFirstBattleVar2 = 0; // Never read
-EWRAM_DATA u32 gSideStatuses[NUM_BATTLE_SIDES] = {0};
 EWRAM_DATA struct SideTimer gSideTimers[NUM_BATTLE_SIDES] = {0};
 EWRAM_DATA u32 gStatuses3[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u32 gStatuses4[MAX_BATTLERS_COUNT] = {0};
@@ -2934,7 +2933,6 @@ static void BattleStartClearSetData(void)
 
     memset(&gDisableStructs, 0, sizeof(gDisableStructs));
     gTerrainTimer = 0;
-    memset(&gSideStatuses, 0, sizeof(gSideStatuses));
     memset(&gSideTimers, 0, sizeof(gSideTimers));
     memset(&gBattleResults, 0, sizeof(gBattleResults));
 
@@ -4525,7 +4523,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
         speed *= 2;
 
     // various effects
-    if (gSideStatuses[GET_BATTLER_SIDE(battlerId)] & SIDE_STATUS_TAILWIND)
+    if (gBattleStruct->sides[GET_BATTLER_SIDE(battlerId)].status & SIDE_STATUS_TAILWIND)
         speed *= 2;
     if (gBattleStruct->battlers[battlerId].resourceFlags & RESOURCE_FLAG_UNBURDEN)
         speed *= 2;
@@ -4848,8 +4846,8 @@ static void TurnValuesCleanUp(bool8 var0)
         gSpecialStatuses[gActiveBattler].parentalBondState = PARENTAL_BOND_OFF;
     }
 
-    gSideStatuses[B_SIDE_PLAYER] &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);
-    gSideStatuses[B_SIDE_OPPONENT] &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);
+    gBattleStruct->sides[B_SIDE_PLAYER].status &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);
+    gBattleStruct->sides[B_SIDE_OPPONENT].status &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);
     gSideTimers[B_SIDE_PLAYER].followmeTimer = 0;
     gSideTimers[B_SIDE_OPPONENT].followmeTimer = 0;
 }

@@ -2167,11 +2167,11 @@ u8 DoFieldEndTurnEffects(void)
             {
                 side = gBattleStruct->turnSideTracker;
                 gActiveBattler = gBattlerAttacker = gSideTimers[side].reflectBattlerId;
-                if (gSideStatuses[side] & SIDE_STATUS_REFLECT)
+                if (gBattleStruct->sides[side].status & SIDE_STATUS_REFLECT)
                 {
                     if (--gSideTimers[side].reflectTimer == 0)
                     {
-                        gSideStatuses[side] &= ~SIDE_STATUS_REFLECT;
+                        gBattleStruct->sides[side].status &= ~SIDE_STATUS_REFLECT;
                         BattleScriptExecute(BattleScript_SideStatusWoreOff);
                         PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_REFLECT);
                         effect++;
@@ -2192,11 +2192,11 @@ u8 DoFieldEndTurnEffects(void)
             {
                 side = gBattleStruct->turnSideTracker;
                 gActiveBattler = gBattlerAttacker = gSideTimers[side].lightscreenBattlerId;
-                if (gSideStatuses[side] & SIDE_STATUS_LIGHTSCREEN)
+                if (gBattleStruct->sides[side].status & SIDE_STATUS_LIGHTSCREEN)
                 {
                     if (--gSideTimers[side].lightscreenTimer == 0)
                     {
-                        gSideStatuses[side] &= ~SIDE_STATUS_LIGHTSCREEN;
+                        gBattleStruct->sides[side].status &= ~SIDE_STATUS_LIGHTSCREEN;
                         BattleScriptExecute(BattleScript_SideStatusWoreOff);
                         gBattleCommunication[MULTISTRING_CHOOSER] = side;
                         PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_LIGHT_SCREEN);
@@ -2218,11 +2218,11 @@ u8 DoFieldEndTurnEffects(void)
             {
                 side = gBattleStruct->turnSideTracker;
                 gActiveBattler = gBattlerAttacker = gSideTimers[side].auroraVeilBattlerId;
-                if (gSideStatuses[side] & SIDE_STATUS_AURORA_VEIL)
+                if (gBattleStruct->sides[side].status & SIDE_STATUS_AURORA_VEIL)
                 {
                     if (--gSideTimers[side].auroraVeilTimer == 0)
                     {
-                        gSideStatuses[side] &= ~SIDE_STATUS_AURORA_VEIL;
+                        gBattleStruct->sides[side].status &= ~SIDE_STATUS_AURORA_VEIL;
                         BattleScriptExecute(BattleScript_SideStatusWoreOff);
                         gBattleCommunication[MULTISTRING_CHOOSER] = side;
                         PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_AURORA_VEIL);
@@ -2246,7 +2246,7 @@ u8 DoFieldEndTurnEffects(void)
                 gActiveBattler = gBattlerAttacker = gSideTimers[side].mistBattlerId;
                 if (gSideTimers[side].mistTimer != 0 && --gSideTimers[side].mistTimer == 0)
                 {
-                    gSideStatuses[side] &= ~SIDE_STATUS_MIST;
+                    gBattleStruct->sides[side].status &= ~SIDE_STATUS_MIST;
                     BattleScriptExecute(BattleScript_SideStatusWoreOff);
                     gBattleCommunication[MULTISTRING_CHOOSER] = side;
                     PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_MIST);
@@ -2267,11 +2267,11 @@ u8 DoFieldEndTurnEffects(void)
             {
                 side = gBattleStruct->turnSideTracker;
                 gActiveBattler = gBattlerAttacker = gSideTimers[side].safeguardBattlerId;
-                if (gSideStatuses[side] & SIDE_STATUS_SAFEGUARD)
+                if (gBattleStruct->sides[side].status & SIDE_STATUS_SAFEGUARD)
                 {
                     if (--gSideTimers[side].safeguardTimer == 0)
                     {
-                        gSideStatuses[side] &= ~SIDE_STATUS_SAFEGUARD;
+                        gBattleStruct->sides[side].status &= ~SIDE_STATUS_SAFEGUARD;
                         BattleScriptExecute(BattleScript_SafeguardEnds);
                         effect++;
                     }
@@ -2291,11 +2291,11 @@ u8 DoFieldEndTurnEffects(void)
             {
                 side = gBattleStruct->turnSideTracker;
                 gActiveBattler = gBattlerAttacker = gSideTimers[side].luckyChantBattlerId;
-                if (gSideStatuses[side] & SIDE_STATUS_LUCKY_CHANT)
+                if (gBattleStruct->sides[side].status & SIDE_STATUS_LUCKY_CHANT)
                 {
                     if (--gSideTimers[side].luckyChantTimer == 0)
                     {
-                        gSideStatuses[side] &= ~SIDE_STATUS_LUCKY_CHANT;
+                        gBattleStruct->sides[side].status &= ~SIDE_STATUS_LUCKY_CHANT;
                         BattleScriptExecute(BattleScript_LuckyChantEnds);
                         effect++;
                     }
@@ -2315,11 +2315,11 @@ u8 DoFieldEndTurnEffects(void)
             {
                 side = gBattleStruct->turnSideTracker;
                 gActiveBattler = gBattlerAttacker = gSideTimers[side].tailwindBattlerId;
-                if (gSideStatuses[side] & SIDE_STATUS_TAILWIND)
+                if (gBattleStruct->sides[side].status & SIDE_STATUS_TAILWIND)
                 {
                     if (--gSideTimers[side].tailwindTimer == 0)
                     {
-                        gSideStatuses[side] &= ~SIDE_STATUS_TAILWIND;
+                        gBattleStruct->sides[side].status &= ~SIDE_STATUS_TAILWIND;
                         BattleScriptExecute(BattleScript_TailwindEnds);
                         effect++;
                     }
@@ -3235,7 +3235,7 @@ bool8 HandleWishPerishSongOnTurnEnd(void)
                 if (gBattleStruct->battlers[gActiveBattler].futureSightCounter == 0
                  && gBattleStruct->battlers[BATTLE_PARTNER(gActiveBattler)].futureSightCounter == 0)
                 {
-                    gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)] &= ~SIDE_STATUS_FUTUREATTACK;
+                    gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerTarget)].status &= ~SIDE_STATUS_FUTUREATTACK;
                 }
                 return TRUE;
             }
@@ -5860,7 +5860,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && IS_MOVE_PHYSICAL(gCurrentMove)
              && TARGET_TURN_DAMAGED
-             && !(gSideStatuses[GetBattlerSide(gBattlerAttacker)] & SIDE_STATUS_TOXIC_SPIKES)
+             && !(gBattleStruct->sides[GetBattlerSide(gBattlerAttacker)].status & SIDE_STATUS_TOXIC_SPIKES)
              && IsBattlerAlive(gBattlerTarget))
             {
                 gBattlerTarget = gBattlerAttacker;
@@ -6450,7 +6450,7 @@ bool32 CanSleep(u8 battlerId)
     if (ability == ABILITY_INSOMNIA
       || ability == ABILITY_VITAL_SPIRIT
       || ability == ABILITY_COMATOSE
-      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
+      || gBattleStruct->sides[GetBattlerSide(battlerId)].status & SIDE_STATUS_SAFEGUARD
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || IsAbilityOnSide(battlerId, ABILITY_SWEET_VEIL)
       || IsAbilityStatusProtected(battlerId)
@@ -6464,7 +6464,7 @@ bool32 CanBePoisoned(u8 battlerAttacker, u8 battlerTarget)
     u16 ability = GetBattlerAbility(battlerTarget);
 
     if (!(CanPoisonType(battlerAttacker, battlerTarget))
-     || gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
+     || gBattleStruct->sides[GetBattlerSide(battlerTarget)].status & SIDE_STATUS_SAFEGUARD
      || gBattleMons[battlerTarget].status1 & STATUS1_ANY
      || ability == ABILITY_IMMUNITY
      || ability == ABILITY_COMATOSE
@@ -6480,7 +6480,7 @@ bool32 CanBeBurned(u8 battlerId)
 {
     u16 ability = GetBattlerAbility(battlerId);
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FIRE)
-      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
+      || gBattleStruct->sides[GetBattlerSide(battlerId)].status & SIDE_STATUS_SAFEGUARD
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || ability == ABILITY_WATER_VEIL
       || ability == ABILITY_WATER_BUBBLE
@@ -6499,7 +6499,7 @@ bool32 CanBeParalyzed(u8 battlerId)
     #if B_PARALYZE_ELECTRIC >= GEN_6
         IS_BATTLER_OF_TYPE(battlerId, TYPE_ELECTRIC) ||
     #endif
-        gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
+        gBattleStruct->sides[GetBattlerSide(battlerId)].status & SIDE_STATUS_SAFEGUARD
         || ability == ABILITY_LIMBER
         || ability == ABILITY_COMATOSE
         || gBattleMons[battlerId].status1 & STATUS1_ANY
@@ -6514,7 +6514,7 @@ bool32 CanBeFrozen(u8 battlerId)
     u16 ability = GetBattlerAbility(battlerId);
     if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ICE)
       || IsBattlerWeatherAffected(battlerId, B_WEATHER_SUN)
-      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
+      || gBattleStruct->sides[GetBattlerSide(battlerId)].status & SIDE_STATUS_SAFEGUARD
       || ability == ABILITY_MAGMA_ARMOR
       || ability == ABILITY_COMATOSE
       || gBattleMons[battlerId].status1 & STATUS1_ANY
@@ -8225,7 +8225,7 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
     // Decorate bypasses protect and detect, but not crafty shield
     if (move == MOVE_DECORATE)
     {
-        if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD)
+        if (gBattleStruct->sides[GetBattlerSide(battlerId)].status & SIDE_STATUS_CRAFTY_SHIELD)
             return TRUE;
         else if (gProtectStructs[battlerId].protected)
             return FALSE;
@@ -8247,7 +8247,7 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
         return FALSE;
     else if (gProtectStructs[battlerId].protected)
         return TRUE;
-    else if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD
+    else if (gBattleStruct->sides[GetBattlerSide(battlerId)].status & SIDE_STATUS_WIDE_GUARD
              && GetBattlerMoveTargetType(gBattlerAttacker, move) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY))
         return TRUE;
     else if (gProtectStructs[battlerId].banefulBunkered)
@@ -8258,13 +8258,13 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
         return TRUE;
     else if (gProtectStructs[battlerId].kingsShielded && gBattleMoves[move].power != 0)
         return TRUE;
-    else if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD
+    else if (gBattleStruct->sides[GetBattlerSide(battlerId)].status & SIDE_STATUS_QUICK_GUARD
              && GetChosenMovePriority(gBattlerAttacker) > 0)
         return TRUE;
-    else if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD
+    else if (gBattleStruct->sides[GetBattlerSide(battlerId)].status & SIDE_STATUS_CRAFTY_SHIELD
       && IS_MOVE_STATUS(move))
         return TRUE;
-    else if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_MAT_BLOCK
+    else if (gBattleStruct->sides[GetBattlerSide(battlerId)].status & SIDE_STATUS_MAT_BLOCK
       && !IS_MOVE_STATUS(move))
         return TRUE;
     else
@@ -9598,9 +9598,9 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     }
 
     // reflect, light screen, aurora veil
-    if (((gSideStatuses[defSide] & SIDE_STATUS_REFLECT && IS_MOVE_PHYSICAL(move))
-            || (gSideStatuses[defSide] & SIDE_STATUS_LIGHTSCREEN && IS_MOVE_SPECIAL(move))
-            || (gSideStatuses[defSide] & SIDE_STATUS_AURORA_VEIL))
+    if (((gBattleStruct->sides[defSide].status & SIDE_STATUS_REFLECT && IS_MOVE_PHYSICAL(move))
+            || (gBattleStruct->sides[defSide].status & SIDE_STATUS_LIGHTSCREEN && IS_MOVE_SPECIAL(move))
+            || (gBattleStruct->sides[defSide].status & SIDE_STATUS_AURORA_VEIL))
         && abilityAtk != ABILITY_INFILTRATOR
         && !(isCrit)
         && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
@@ -10349,9 +10349,9 @@ static bool32 TryRemoveScreens(u8 battler)
     u8 enemySide = GetBattlerSide(BATTLE_OPPOSITE(battler));
 
     // try to remove from battler's side
-    if (gSideStatuses[battlerSide] & (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL))
+    if (gBattleStruct->sides[battlerSide].status & (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL))
     {
-        gSideStatuses[battlerSide] &= ~(SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL);
+        gBattleStruct->sides[battlerSide].status &= ~(SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL);
         gSideTimers[battlerSide].reflectTimer = 0;
         gSideTimers[battlerSide].lightscreenTimer = 0;
         gSideTimers[battlerSide].auroraVeilTimer = 0;
@@ -10359,9 +10359,9 @@ static bool32 TryRemoveScreens(u8 battler)
     }
 
     // try to remove from battler opponent's side
-    if (gSideStatuses[enemySide] & (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL))
+    if (gBattleStruct->sides[enemySide].status & (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL))
     {
-        gSideStatuses[enemySide] &= ~(SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL);
+        gBattleStruct->sides[enemySide].status &= ~(SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL);
         gSideTimers[enemySide].reflectTimer = 0;
         gSideTimers[enemySide].lightscreenTimer = 0;
         gSideTimers[enemySide].auroraVeilTimer = 0;

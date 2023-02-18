@@ -1920,7 +1920,7 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
             data->modifyArrows.maxValue = 9;
 
         data->modifyArrows.maxDigits = 2;
-        data->modifyArrows.modifiedValPtr = &gSideStatuses[GET_BATTLER_SIDE(data->battlerId)];
+        data->modifyArrows.modifiedValPtr = &gBattleStruct->sides[GET_BATTLER_SIDE(data->battlerId)].status;
         data->modifyArrows.typeOfVal = VAR_SIDE_STATUS;
         data->modifyArrows.currValue = *GetSideStatusValue(data, FALSE, FALSE);
         break;

@@ -611,6 +611,7 @@ struct BattleStruct
     struct Side
     {
         u16 hpOnSwitchout;
+        u32 status;
         struct Party
         {
             u16 usedHeldItem; // For harvest, recycle.
@@ -706,16 +707,17 @@ struct BattleStruct
 }
 
 
-#define IS_BATTLER_PROTECTED(battlerId)(gProtectStructs[battlerId].protected                                           \
-                                        || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD           \
-                                        || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD          \
-                                        || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD        \
-                                        || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_MAT_BLOCK            \
-                                        || gProtectStructs[battlerId].spikyShielded                                    \
-                                        || gProtectStructs[battlerId].kingsShielded                                    \
-                                        || gProtectStructs[battlerId].banefulBunkered                                  \
-                                        || gProtectStructs[battlerId].obstructed                                       \
-                                        || gProtectStructs[battlerId].silkTrapped)
+#define IS_BATTLER_PROTECTED(battlerId) \
+    (  gProtectStructs[battlerId].protected \
+    || gBattleStruct->sides[GetBattlerSide(battlerId)].status & SIDE_STATUS_WIDE_GUARD \
+    || gBattleStruct->sides[GetBattlerSide(battlerId)].status & SIDE_STATUS_QUICK_GUARD \
+    || gBattleStruct->sides[GetBattlerSide(battlerId)].status & SIDE_STATUS_CRAFTY_SHIELD \
+    || gBattleStruct->sides[GetBattlerSide(battlerId)].status & SIDE_STATUS_MAT_BLOCK \
+    || gProtectStructs[battlerId].spikyShielded \
+    || gProtectStructs[battlerId].kingsShielded \
+    || gProtectStructs[battlerId].banefulBunkered \
+    || gProtectStructs[battlerId].obstructed \
+    || gProtectStructs[battlerId].silkTrapped)
 
 #define GET_STAT_BUFF_ID(n)((n & 7))              // first three bits 0x1, 0x2, 0x4
 #define GET_STAT_BUFF_VALUE_WITH_SIGN(n)((n & 0xF8))
@@ -925,7 +927,6 @@ extern u16 gLastUsedMove;
 extern u16 gMoveResultFlags;
 extern u32 gHitMarker;
 extern u8 gUnusedFirstBattleVar2;
-extern u32 gSideStatuses[NUM_BATTLE_SIDES];
 extern struct SideTimer gSideTimers[NUM_BATTLE_SIDES];
 extern u32 gStatuses3[MAX_BATTLERS_COUNT];
 extern u32 gStatuses4[MAX_BATTLERS_COUNT];
