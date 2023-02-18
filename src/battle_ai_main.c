@@ -326,7 +326,7 @@ static void SetBattlerAiData(u8 battlerId)
     AI_DATA->items[battlerId] = gBattleMons[battlerId].item;
     AI_DATA->holdEffects[battlerId] = AI_GetHoldEffect(battlerId);
     AI_DATA->holdEffectParams[battlerId] = GetBattlerHoldEffectParam(battlerId);
-    AI_DATA->predictedMoves[battlerId] = gLastMoves[battlerId];
+    AI_DATA->predictedMoves[battlerId] = gBattleStruct->battlers[battlerId].lastMove;
     AI_DATA->hpPercents[battlerId] = GetHealthPercentage(battlerId);
     AI_DATA->moveLimitations[battlerId] = CheckMoveLimitations(battlerId, 0, MOVE_LIMITATIONS_ALL);
 }
@@ -363,7 +363,7 @@ void GetAiLogicData(void)
             if (battlerAtk == battlerDef)
                 continue;
 
-            RecordKnownMove(battlerDef, gLastMoves[battlerDef]);
+            RecordKnownMove(battlerDef, gBattleStruct->battlers[battlerDef].lastMove);
             for (i = 0; i < MAX_MON_MOVES; i++)
             {
                 dmg = 0;
@@ -1416,7 +1416,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             {
                 if (AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER) // Attacker should go first
                 {
-                    if (gLastMoves[battlerDef] == MOVE_NONE || gLastMoves[battlerDef] == 0xFFFF)
+                    if (gBattleStruct->battlers[battlerDef].lastMove == MOVE_NONE || gBattleStruct->battlers[battlerDef].lastMove == MOVE_UNAVAILABLE)
                         score -= 10;    // no anticipated move to disable
                 }
                 else if (predictedMove == MOVE_NONE)
@@ -1438,7 +1438,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             {
                 if (AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER) // Attacker should go first
                 {
-                    if (gLastMoves[battlerDef] == MOVE_NONE || gLastMoves[battlerDef] == 0xFFFF)
+                    if (gBattleStruct->battlers[battlerDef].lastMove == MOVE_NONE || gBattleStruct->battlers[battlerDef].lastMove == MOVE_UNAVAILABLE)
                         score -= 10;    // no anticipated move to encore
                 }
                 else if (predictedMove == MOVE_NONE)
@@ -1882,8 +1882,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         case EFFECT_MIMIC:
             if (AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER) // Attacker should go first
             {
-                if (gLastMoves[battlerDef] == MOVE_NONE
-                  || gLastMoves[battlerDef] == 0xFFFF)
+                if (gBattleStruct->battlers[battlerDef].lastMove == MOVE_NONE
+                  || gBattleStruct->battlers[battlerDef].lastMove == MOVE_UNAVAILABLE)
                     score -= 10;
             }
             else if (predictedMove == MOVE_NONE)
@@ -1917,7 +1917,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 8;
             break;
         case EFFECT_SKETCH:
-            if (gLastMoves[battlerDef] == MOVE_NONE)
+            if (gBattleStruct->battlers[battlerDef].lastMove == MOVE_NONE)
                 score -= 10;
             break;
         case EFFECT_DESTINY_BOND:
@@ -2478,7 +2478,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 if (AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_SLOWER)
                     instructedMove = predictedMove;
                 else
-                    instructedMove = gLastMoves[battlerDef];
+                    instructedMove = gBattleStruct->battlers[battlerDef].lastMove;
 
                 if (instructedMove == MOVE_NONE
                   || IsInstructBannedMove(instructedMove)
@@ -2983,7 +2983,7 @@ static s16 AI_DoubleBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     if (AI_WhoStrikesFirst(battlerAtk, battlerAtkPartner, move) == AI_IS_FASTER)
                         instructedMove = AI_DATA->partnerMove;
                     else
-                        instructedMove = gLastMoves[battlerAtkPartner];
+                        instructedMove = gBattleStruct->battlers[battlerAtkPartner].lastMove;
 
                     if (instructedMove != MOVE_NONE
                       && !IS_MOVE_STATUS(instructedMove)
@@ -3186,7 +3186,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         break;
     case EFFECT_MIRROR_MOVE:
         if (predictedMove != MOVE_NONE)
-            return AI_CheckViability(battlerAtk, battlerDef, gLastMoves[battlerDef], score);
+            return AI_CheckViability(battlerAtk, battlerDef, gBattleStruct->battlers[battlerDef].lastMove, score);
         break;
 // stat raising effects
     case EFFECT_ATTACK_UP:
@@ -3594,8 +3594,8 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_MIMIC:
         if (AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER)
         {
-            if (gLastMoves[battlerDef] != MOVE_NONE && gLastMoves[battlerDef] != 0xFFFF)
-                return AI_CheckViability(battlerAtk, battlerDef, gLastMoves[battlerDef], score);
+            if (gBattleStruct->battlers[battlerDef].lastMove != MOVE_NONE && gBattleStruct->battlers[battlerDef].lastMove != MOVE_UNAVAILABLE)
+                return AI_CheckViability(battlerAtk, battlerDef, gBattleStruct->battlers[battlerDef].lastMove, score);
         }
         break;
     case EFFECT_LEECH_SEED:
@@ -3656,13 +3656,13 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         {
             if (AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER) // AI goes first
             {
-                if (gLastMoves[battlerDef] != MOVE_NONE
-                  && gLastMoves[battlerDef] != 0xFFFF)
+                if (gBattleStruct->battlers[battlerDef].lastMove != MOVE_NONE
+                  && gBattleStruct->battlers[battlerDef].lastMove != MOVE_UNAVAILABLE)
                 {
                     /* TODO predicted moves
-                    if (gLastMoves[battlerDef] == predictedMove)
+                    if (gBattleStruct->battlers[battlerDef].lastMove == predictedMove)
                         score += 3;
-                    else */if (CanMoveFaintBattler(gLastMoves[battlerDef], battlerDef, battlerAtk, 1))
+                    else */if (CanMoveFaintBattler(gBattleStruct->battlers[battlerDef].lastMove, battlerDef, battlerAtk, 1))
                         score += 2; //Disable move that can kill attacker
                 }
             }
@@ -3679,7 +3679,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         #endif
         )
         {
-            if (IsEncoreEncouragedEffect(gBattleMoves[gLastMoves[battlerDef]].effect))
+            if (IsEncoreEncouragedEffect(gBattleMoves[gBattleStruct->battlers[battlerDef].lastMove].effect))
                 score += 3;
         }
         break;
@@ -4153,7 +4153,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
           && (move != MOVE_RAGE_POWDER || IsAffectedByPowder(battlerDef, AI_DATA->abilities[battlerDef], AI_DATA->holdEffects[battlerDef])) // Rage Powder doesn't affect powder immunities
           && IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
         {
-            u16 predictedMoveOnPartner = gLastMoves[BATTLE_PARTNER(battlerAtk)];
+            u16 predictedMoveOnPartner = gBattleStruct->battlers[BATTLE_PARTNER(battlerAtk)].lastMove;
             if (predictedMoveOnPartner != MOVE_NONE && !IS_MOVE_STATUS(predictedMoveOnPartner))
                 score += 3;
         }
@@ -4998,7 +4998,7 @@ static s16 AI_PreferBatonPass(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score += 2;
         break;
     case EFFECT_PROTECT:
-        if (gLastMoves[battlerAtk] == MOVE_PROTECT || gLastMoves[battlerAtk] == MOVE_DETECT)
+        if (gBattleStruct->battlers[battlerAtk].lastMove == MOVE_PROTECT || gBattleStruct->battlers[battlerAtk].lastMove == MOVE_DETECT)
             score -= 2;
         else
             score += 2;

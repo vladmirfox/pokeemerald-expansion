@@ -1758,7 +1758,7 @@ u8 TrySetCantSelectMoveBattleScript(void)
         }
     }
 
-    if (move == gLastMoves[gActiveBattler] && move != MOVE_STRUGGLE && (gBattleMons[gActiveBattler].status2 & STATUS2_TORMENT))
+    if (move == gBattleStruct->battlers[gActiveBattler].lastMove && move != MOVE_STRUGGLE && (gBattleMons[gActiveBattler].status2 & STATUS2_TORMENT))
     {
         CancelMultiTurnMoves(gActiveBattler);
         if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
@@ -1979,7 +1979,7 @@ u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u16 check)
         else if (check & MOVE_LIMITATION_DISABLED && gBattleMons[battlerId].moves[i] == gDisableStructs[battlerId].disabledMove)
             unusableMoves |= gBitTable[i];
         // Torment
-        else if (check & MOVE_LIMITATION_TORMENTED && gBattleMons[battlerId].moves[i] == gLastMoves[battlerId] && gBattleMons[battlerId].status2 & STATUS2_TORMENT)
+        else if (check & MOVE_LIMITATION_TORMENTED && gBattleMons[battlerId].moves[i] == gBattleStruct->battlers[battlerId].lastMove && gBattleMons[battlerId].status2 & STATUS2_TORMENT)
             unusableMoves |= gBitTable[i];
         // Taunt
         else if (check & MOVE_LIMITATION_TAUNT && gDisableStructs[battlerId].tauntTimer && IS_MOVE_STATUS(gBattleMons[battlerId].moves[i]))
@@ -8680,7 +8680,7 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
     case EFFECT_ROUND:
         for (i = 0; i < gBattlersCount; i++)
         {
-            if (i != battlerAtk && IsBattlerAlive(i) && gLastMoves[i] == MOVE_ROUND)
+            if (i != battlerAtk && IsBattlerAlive(i) && gBattleStruct->battlers[i].lastMove == MOVE_ROUND)
             {
                 basePower *= 2;
                 break;

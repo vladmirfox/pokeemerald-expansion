@@ -454,7 +454,7 @@ bool32 AI_RandLessThan(u8 val)
 
 void RecordLastUsedMoveByTarget(void)
 {
-    RecordKnownMove(gBattlerTarget, gLastMoves[gBattlerTarget]);
+    RecordKnownMove(gBattlerTarget, gBattleStruct->battlers[gBattlerTarget].lastMove);
 }
 
 bool32 IsBattlerAIControlled(u32 battlerId)
@@ -3084,7 +3084,7 @@ u16 GetAllyChosenMove(u8 battlerId)
     if (!IsBattlerAlive(partnerBattler) || !IsBattlerAIControlled(partnerBattler))
         return MOVE_NONE;
     else if (partnerBattler > battlerId) // Battler with the lower id chooses the move first.
-        return gLastMoves[partnerBattler];
+        return gBattleStruct->battlers[partnerBattler].lastMove;
     else
         return gBattleMons[partnerBattler].moves[gBattleStruct->battlers[partnerBattler].chosenMovePosition];
 }
@@ -3500,7 +3500,7 @@ void IncreaseStatUpScore(u8 battlerAtk, u8 battlerDef, u8 statId, s16 *score)
             *(score)++;
         break;
     case STAT_DEF:
-        if ((HasMoveWithSplit(battlerDef, SPLIT_PHYSICAL)|| IS_MOVE_PHYSICAL(gLastMoves[battlerDef]))
+        if ((HasMoveWithSplit(battlerDef, SPLIT_PHYSICAL)|| IS_MOVE_PHYSICAL(gBattleStruct->battlers[battlerDef].lastMove))
           && AI_DATA->hpPercents[battlerAtk] > 70)
         {
             if (gBattleMons[battlerAtk].statStages[STAT_DEF] < STAT_UP_2_STAGE)
@@ -3528,7 +3528,7 @@ void IncreaseStatUpScore(u8 battlerAtk, u8 battlerDef, u8 statId, s16 *score)
         }
         break;
     case STAT_SPDEF:
-        if ((HasMoveWithSplit(battlerDef, SPLIT_SPECIAL) || IS_MOVE_SPECIAL(gLastMoves[battlerDef]))
+        if ((HasMoveWithSplit(battlerDef, SPLIT_SPECIAL) || IS_MOVE_SPECIAL(gBattleStruct->battlers[battlerDef].lastMove))
           && AI_DATA->hpPercents[battlerAtk] > 70)
         {
             if (gBattleMons[battlerAtk].statStages[STAT_SPDEF] < STAT_UP_2_STAGE)
