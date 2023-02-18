@@ -143,11 +143,11 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
 
     if (HasSuperEffectiveMoveAgainstOpponents(TRUE) && Random() % 3 != 0)
         return FALSE;
-    if (gLastLandedMoves[gActiveBattler] == MOVE_NONE)
+    if (gBattleStruct->battlers[gActiveBattler].lastHitByMove == MOVE_NONE)
         return FALSE;
-    if (gLastLandedMoves[gActiveBattler] == MOVE_UNAVAILABLE)
+    if (gBattleStruct->battlers[gActiveBattler].lastHitByMove == MOVE_UNAVAILABLE)
         return FALSE;
-    if (IS_MOVE_STATUS(gLastLandedMoves[gActiveBattler]))
+    if (IS_MOVE_STATUS(gBattleStruct->battlers[gActiveBattler].lastHitByMove))
         return FALSE;
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
@@ -164,11 +164,11 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
         battlerIn2 = gActiveBattler;
     }
 
-    if (gBattleMoves[gLastLandedMoves[gActiveBattler]].type == TYPE_FIRE)
+    if (gBattleMoves[gBattleStruct->battlers[gActiveBattler].lastHitByMove].type == TYPE_FIRE)
         absorbingTypeAbility = ABILITY_FLASH_FIRE;
-    else if (gBattleMoves[gLastLandedMoves[gActiveBattler]].type == TYPE_WATER)
+    else if (gBattleMoves[gBattleStruct->battlers[gActiveBattler].lastHitByMove].type == TYPE_WATER)
         absorbingTypeAbility = ABILITY_WATER_ABSORB;
-    else if (gBattleMoves[gLastLandedMoves[gActiveBattler]].type == TYPE_ELECTRIC)
+    else if (gBattleMoves[gBattleStruct->battlers[gActiveBattler].lastHitByMove].type == TYPE_ELECTRIC)
         absorbingTypeAbility = ABILITY_VOLT_ABSORB;
     else
         return FALSE;
@@ -527,13 +527,13 @@ static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent)
     s32 i, j;
     u16 move;
 
-    if (gLastLandedMoves[gActiveBattler] == MOVE_NONE)
+    if (gBattleStruct->battlers[gActiveBattler].lastHitByMove == MOVE_NONE)
         return FALSE;
-    if (gLastLandedMoves[gActiveBattler] == MOVE_UNAVAILABLE)
+    if (gBattleStruct->battlers[gActiveBattler].lastHitByMove == MOVE_UNAVAILABLE)
         return FALSE;
     if (gLastHitBy[gActiveBattler] == 0xFF)
         return FALSE;
-    if (IS_MOVE_STATUS(gLastLandedMoves[gActiveBattler]))
+    if (IS_MOVE_STATUS(gBattleStruct->battlers[gActiveBattler].lastHitByMove))
         return FALSE;
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
@@ -587,7 +587,7 @@ static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent)
         else
             monAbility = gSpeciesInfo[species].abilities[0];
 
-        CalcPartyMonTypeEffectivenessMultiplier(gLastLandedMoves[gActiveBattler], species, monAbility);
+        CalcPartyMonTypeEffectivenessMultiplier(gBattleStruct->battlers[gActiveBattler].lastHitByMove, species, monAbility);
         if (gMoveResultFlags & flags)
         {
             battlerIn1 = gLastHitBy[gActiveBattler];

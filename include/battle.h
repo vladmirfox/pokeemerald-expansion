@@ -667,6 +667,7 @@ struct BattleStruct
         s32 bideTakenDamage;
         u16 lastMove;
         u8 lastHitByType;
+        u16 lastHitByMove;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
@@ -927,7 +928,6 @@ extern u8 gChosenActionByBattler[MAX_BATTLERS_COUNT];
 extern const u8 *gSelectionBattleScripts[MAX_BATTLERS_COUNT];
 extern const u8 *gPalaceSelectionBattleScripts[MAX_BATTLERS_COUNT];
 extern u16 gLastPrintedMoves[MAX_BATTLERS_COUNT];
-extern u16 gLastLandedMoves[MAX_BATTLERS_COUNT];
 extern u16 gLastResultingMoves[MAX_BATTLERS_COUNT];
 extern u16 gLockedMoves[MAX_BATTLERS_COUNT];
 extern u16 gLastUsedMove;

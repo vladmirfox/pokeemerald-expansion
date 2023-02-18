@@ -1628,7 +1628,7 @@ static void Cmd_attackcanceler(void)
             gProtectStructs[gBattlerAttacker].touchedProtectLike = TRUE;
         CancelMultiTurnMoves(gBattlerAttacker);
         gMoveResultFlags |= MOVE_RESULT_MISSED;
-        gLastLandedMoves[gBattlerTarget] = 0;
+        gBattleStruct->battlers[gBattlerTarget].lastHitByMove = MOVE_NONE;
         gBattleStruct->battlers[gBattlerTarget].lastHitByType = TYPE_NORMAL;
 
         if (gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_1ST_HIT)
@@ -1655,7 +1655,7 @@ static bool32 JumpIfMoveFailed(u8 adder, u16 move)
 {
     if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
     {
-        gLastLandedMoves[gBattlerTarget] = 0;
+        gBattleStruct->battlers[gBattlerTarget].lastHitByMove = MOVE_NONE;
         gBattleStruct->battlers[gBattlerTarget].lastHitByType = TYPE_NORMAL;
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         return TRUE;
@@ -5768,17 +5768,17 @@ static void Cmd_moveend(void)
                 {
                     if (gChosenMove == MOVE_UNAVAILABLE)
                     {
-                        gLastLandedMoves[gBattlerTarget] = gChosenMove;
+                        gBattleStruct->battlers[gBattlerTarget].lastHitByMove = gChosenMove;
                     }
                     else
                     {
-                        gLastLandedMoves[gBattlerTarget] = gCurrentMove;
+                        gBattleStruct->battlers[gBattlerTarget].lastHitByMove = gCurrentMove;
                         GET_MOVE_TYPE(gCurrentMove, gBattleStruct->battlers[gBattlerTarget].lastHitByType);
                     }
                 }
                 else
                 {
-                    gLastLandedMoves[gBattlerTarget] = MOVE_UNAVAILABLE;
+                    gBattleStruct->battlers[gBattlerTarget].lastHitByMove = MOVE_UNAVAILABLE;
                 }
             }
             gBattleScripting.moveendState++;
@@ -13021,12 +13021,12 @@ static void Cmd_settypetorandomresistance(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (gLastLandedMoves[gBattlerAttacker] == MOVE_NONE
-     || gLastLandedMoves[gBattlerAttacker] == MOVE_UNAVAILABLE)
+    if (gBattleStruct->battlers[gBattlerAttacker].lastHitByMove == MOVE_NONE
+     || gBattleStruct->battlers[gBattlerAttacker].lastHitByMove == MOVE_UNAVAILABLE)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
-    else if (IsTwoTurnsMove(gLastLandedMoves[gBattlerAttacker])
+    else if (IsTwoTurnsMove(gBattleStruct->battlers[gBattlerAttacker].lastHitByMove)
             && gBattleMons[gLastHitBy[gBattlerAttacker]].status2 & STATUS2_MULTIPLETURNS)
     {
         gBattlescriptCurrInstr = cmd->failInstr;

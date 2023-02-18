@@ -926,7 +926,7 @@ void HandleAction_ActionFinished(void)
     gMoveResultFlags = 0;
     gBattleScripting.animTurn = 0;
     gBattleScripting.animTargetsHit = 0;
-    gLastLandedMoves[gBattlerAttacker] = 0;
+    gBattleStruct->battlers[gBattlerAttacker].lastHitByMove = MOVE_NONE;
     gBattleStruct->battlers[gBattlerAttacker].lastHitByType = TYPE_NORMAL;
     gBattleStruct->dynamicMoveType = 0;
     gBattleScripting.moveendState = 0;
@@ -9846,7 +9846,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         {
             gLastUsedAbility = ABILITY_LEVITATE;
             gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
-            gLastLandedMoves[battlerDef] = 0;
+            gBattleStruct->battlers[battlerDef].lastHitByMove = MOVE_NONE;
             gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
             RecordAbilityBattle(battlerDef, ABILITY_LEVITATE);
         }
@@ -9880,7 +9880,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         {
             gLastUsedAbility = gBattleMons[battlerDef].ability;
             gMoveResultFlags |= MOVE_RESULT_MISSED;
-            gLastLandedMoves[battlerDef] = 0;
+            gBattleStruct->battlers[battlerDef].lastHitByMove = MOVE_NONE;
             gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
             RecordAbilityBattle(battlerDef, gBattleMons[battlerDef].ability);
         }
