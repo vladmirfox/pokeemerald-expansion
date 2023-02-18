@@ -8332,18 +8332,36 @@ bool32 CanUseLastResort(u8 battlerId)
     }                                                       \
 }
 
+#define DEFOG_CLEAR_(status, structField, battlescript, move) \
+{ \
+    if (*sideStatuses & status) \
+    { \
+        if (clear) \
+        { \
+            if (move) \
+                PREPARE_MOVE_BUFFER(gBattleTextBuff1, move); \
+            *sideStatuses &= ~status; \
+            side->structField = 0; \
+            BattleScriptPushCursor(); \
+            gBattlescriptCurrInstr = battlescript; \
+        } \
+        return TRUE; \
+    } \
+}
+
 static bool32 ClearDefogHazards(u8 battlerAtk, bool32 clear)
 {
     s32 i;
-    for (i = 0; i < 2; i++)
+    for (i = 0; i < NUM_BATTLE_SIDES; i++)
     {
         struct SideTimer *sideTimer = &gSideTimers[i];
+        struct Side *side = &gBattleStruct->sides[i];
         u32 *sideStatuses = &gBattleStruct->sides[i].status;
 
         gBattlerAttacker = i;
         if (GetBattlerSide(battlerAtk) != i)
         {
-            DEFOG_CLEAR(SIDE_STATUS_REFLECT, reflectTimer, BattleScript_SideStatusWoreOffReturn, MOVE_REFLECT);
+            DEFOG_CLEAR_(SIDE_STATUS_REFLECT, reflectTimer, BattleScript_SideStatusWoreOffReturn, MOVE_REFLECT);
             DEFOG_CLEAR(SIDE_STATUS_LIGHTSCREEN, lightscreenTimer, BattleScript_SideStatusWoreOffReturn, MOVE_LIGHT_SCREEN);
             DEFOG_CLEAR(SIDE_STATUS_MIST, mistTimer, BattleScript_SideStatusWoreOffReturn, MOVE_MIST);
             DEFOG_CLEAR(SIDE_STATUS_AURORA_VEIL, auroraVeilTimer, BattleScript_SideStatusWoreOffReturn, MOVE_AURORA_VEIL);
@@ -8509,11 +8527,31 @@ static bool32 IsTeatimeAffected(u32 battlerId)
     SWAP(sideTimerPlayer->structField, sideTimerOpp->structField, temp);\
 }                                                                       \
 
+#define COURTCHANGE_SWAP_(status_, structField, temp) \
+{ \
+    temp = gBattleStruct->sides[B_SIDE_PLAYER].status; \
+    if (gBattleStruct->sides[B_SIDE_OPPONENT].status & status_) \
+        gBattleStruct->sides[B_SIDE_PLAYER].status |= status_; \
+    else \
+        gBattleStruct->sides[B_SIDE_PLAYER].status &= ~(status_); \
+    if (temp & status_) \
+        gBattleStruct->sides[B_SIDE_OPPONENT].status |= status_; \
+    else \
+        gBattleStruct->sides[B_SIDE_OPPONENT].status &= ~(status_); \
+    SWAP(gBattleStruct->sides[B_SIDE_PLAYER].structField, gBattleStruct->sides[B_SIDE_OPPONENT].structField, temp); \
+}
+
 #define UPDATE_COURTCHANGED_BATTLER(structField)\
 {                                               \
     sideTimerPlayer->structField ^= BIT_SIDE;   \
     sideTimerOpp->structField ^= BIT_SIDE;      \
 }                                               \
+
+#define UPDATE_COURTCHANGED_BATTLER_(structField) \
+{ \
+    gBattleStruct->sides[B_SIDE_PLAYER].structField ^= BIT_SIDE; \
+    gBattleStruct->sides[B_SIDE_OPPONENT].structField ^= BIT_SIDE; \
+}
 
 static bool32 CourtChangeSwapSideStatuses(void)
 {
@@ -8525,7 +8563,7 @@ static bool32 CourtChangeSwapSideStatuses(void)
     // TODO: add Gigantamax-related effects
 
     // Swap timers and statuses
-    COURTCHANGE_SWAP(SIDE_STATUS_REFLECT, reflectTimer, temp)
+    COURTCHANGE_SWAP_(SIDE_STATUS_REFLECT, reflectTimer, temp)
     COURTCHANGE_SWAP(SIDE_STATUS_LIGHTSCREEN, lightscreenTimer, temp)
     COURTCHANGE_SWAP(SIDE_STATUS_MIST, mistTimer, temp);
     COURTCHANGE_SWAP(SIDE_STATUS_SAFEGUARD, safeguardTimer, temp);
@@ -8540,7 +8578,7 @@ static bool32 CourtChangeSwapSideStatuses(void)
 
     // Change battler IDs of swapped effects. Needed for the correct string when they expire
     // E.g. "Foe's Reflect wore off!"
-    UPDATE_COURTCHANGED_BATTLER(reflectBattlerId);
+    UPDATE_COURTCHANGED_BATTLER_(reflectBattlerId);
     UPDATE_COURTCHANGED_BATTLER(lightscreenBattlerId);
     UPDATE_COURTCHANGED_BATTLER(mistBattlerId);
     UPDATE_COURTCHANGED_BATTLER(safeguardBattlerId);
@@ -11306,10 +11344,10 @@ static void Cmd_setreflect(void)
     {
         gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].status |= SIDE_STATUS_REFLECT;
         if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
-            gSideTimers[GET_BATTLER_SIDE(gBattlerAttacker)].reflectTimer = 8;
+            gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].reflectTimer = 8;
         else
-            gSideTimers[GET_BATTLER_SIDE(gBattlerAttacker)].reflectTimer = 5;
-        gSideTimers[GET_BATTLER_SIDE(gBattlerAttacker)].reflectBattlerId = gBattlerAttacker;
+            gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].reflectTimer = 5;
+        gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].reflectBattlerId = gBattlerAttacker;
 
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && CountAliveMonsInBattle(BATTLE_ALIVE_ATK_SIDE) == 2)
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_REFLECT_DOUBLE;
@@ -15242,14 +15280,14 @@ static void Cmd_removelightscreenreflect(void)
 #endif
 
     if (!failed
-     && (gSideTimers[side].reflectTimer
+     && (gBattleStruct->sides[side].reflectTimer
       || gSideTimers[side].lightscreenTimer
       || gSideTimers[side].auroraVeilTimer))
     {
         gBattleStruct->sides[side].status &= ~SIDE_STATUS_REFLECT;
         gBattleStruct->sides[side].status &= ~SIDE_STATUS_LIGHTSCREEN;
         gBattleStruct->sides[side].status &= ~SIDE_STATUS_AURORA_VEIL;
-        gSideTimers[side].reflectTimer = 0;
+        gBattleStruct->sides[side].reflectTimer = 0;
         gSideTimers[side].lightscreenTimer = 0;
         gSideTimers[side].auroraVeilTimer = 0;
         gBattleScripting.animTurn = 1;
