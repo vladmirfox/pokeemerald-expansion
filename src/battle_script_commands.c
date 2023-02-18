@@ -3238,7 +3238,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 if (!(gBattleMons[gEffectBattler].status2 & STATUS2_UPROAR))
                 {
                     gBattleMons[gEffectBattler].status2 |= STATUS2_MULTIPLETURNS;
-                    gLockedMoves[gEffectBattler] = gCurrentMove;
+                    gBattleStruct->battlers[gEffectBattler].lockedMove = gCurrentMove;
                 #if B_UPROAR_TURNS >= GEN_5
                     gBattleMons[gEffectBattler].status2 |= STATUS2_UPROAR_TURN(3);
                 #else
@@ -3291,7 +3291,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 break;
             case MOVE_EFFECT_CHARGING:
                 gBattleMons[gEffectBattler].status2 |= STATUS2_MULTIPLETURNS;
-                gLockedMoves[gEffectBattler] = gCurrentMove;
+                gBattleStruct->battlers[gEffectBattler].lockedMove = gCurrentMove;
                 gProtectStructs[gEffectBattler].chargingTurn = TRUE;
                 gBattlescriptCurrInstr++;
                 break;
@@ -3425,7 +3425,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             case MOVE_EFFECT_RECHARGE:
                 gBattleMons[gEffectBattler].status2 |= STATUS2_RECHARGE;
                 gDisableStructs[gEffectBattler].rechargeTimer = 2;
-                gLockedMoves[gEffectBattler] = gCurrentMove;
+                gBattleStruct->battlers[gEffectBattler].lockedMove = gCurrentMove;
                 gBattlescriptCurrInstr++;
                 break;
             case MOVE_EFFECT_RAGE:
@@ -3538,7 +3538,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 else
                 {
                     gBattleMons[gEffectBattler].status2 |= STATUS2_MULTIPLETURNS;
-                    gLockedMoves[gEffectBattler] = gCurrentMove;
+                    gBattleStruct->battlers[gEffectBattler].lockedMove = gCurrentMove;
                     gBattleMons[gEffectBattler].status2 |= STATUS2_LOCK_CONFUSE_TURN((Random() & 1) + 2); // thrash for 2-3 turns
                 }
                 break;
@@ -11978,7 +11978,7 @@ static void Cmd_setbide(void)
     CMD_ARGS();
 
     gBattleMons[gBattlerAttacker].status2 |= STATUS2_MULTIPLETURNS;
-    gLockedMoves[gBattlerAttacker] = gCurrentMove;
+    gBattleStruct->battlers[gBattlerAttacker].lockedMove = gCurrentMove;
     gBattleStruct->battlers[gBattlerAttacker].bideTakenDamage = 0;
     gBattleMons[gBattlerAttacker].status2 |= STATUS2_BIDE_TURN(2);
 
@@ -13511,7 +13511,7 @@ static void Cmd_handlerollout(void)
             gDisableStructs[gBattlerAttacker].rolloutTimer = 5;
             gDisableStructs[gBattlerAttacker].rolloutTimerStartValue = 5;
             gBattleMons[gBattlerAttacker].status2 |= STATUS2_MULTIPLETURNS;
-            gLockedMoves[gBattlerAttacker] = gCurrentMove;
+            gBattleStruct->battlers[gBattlerAttacker].lockedMove = gCurrentMove;
         }
         if (--gDisableStructs[gBattlerAttacker].rolloutTimer == 0) // Last hit.
         {

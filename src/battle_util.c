@@ -287,7 +287,7 @@ void HandleAction_UseMove(void)
     }
     else if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS || gBattleMons[gBattlerAttacker].status2 & STATUS2_RECHARGE)
     {
-        gCurrentMove = gChosenMove = gLockedMoves[gBattlerAttacker];
+        gCurrentMove = gChosenMove = gBattleStruct->battlers[gBattlerAttacker].lockedMove;
     }
     // encore forces you to use the same move
     else if (!gBattleStruct->zmove.active && gDisableStructs[gBattlerAttacker].encoredMove != MOVE_NONE
