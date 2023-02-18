@@ -2864,9 +2864,9 @@ u8 DoBattlerEndTurnEffects(void)
                 {
                     MAGIC_GUARD_CHECK;
 
-                    gBattleScripting.animArg1 = gBattleStruct->wrappedMove[gActiveBattler];
-                    gBattleScripting.animArg2 = gBattleStruct->wrappedMove[gActiveBattler] >> 8;
-                    PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->wrappedMove[gActiveBattler]);
+                    gBattleScripting.animArg1 = gBattleStruct->battlers[gActiveBattler].wrappedMove;
+                    gBattleScripting.animArg2 = gBattleStruct->battlers[gActiveBattler].wrappedMove >> 8;
+                    PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->battlers[gActiveBattler].wrappedMove);
                     gBattlescriptCurrInstr = BattleScript_WrapTurnDmg;
                     if (GetBattlerHoldEffect(gBattleStruct->wrappedBy[gActiveBattler], TRUE) == HOLD_EFFECT_BINDING_BAND)
                 #if B_BINDING_DAMAGE >= GEN_6
@@ -2885,7 +2885,7 @@ u8 DoBattlerEndTurnEffects(void)
                 else  // broke free
                 {
                     gBattleMons[gActiveBattler].status2 &= ~STATUS2_WRAPPED;
-                    PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->wrappedMove[gActiveBattler]);
+                    PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->battlers[gActiveBattler].wrappedMove);
                     gBattlescriptCurrInstr = BattleScript_WrapEnds;
                 }
                 BattleScriptExecute(gBattlescriptCurrInstr);
