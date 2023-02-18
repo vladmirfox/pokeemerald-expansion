@@ -515,12 +515,6 @@ struct ZMoveData
     u8 splits[MAX_BATTLERS_COUNT];
 };
 
-struct StolenItem
-{
-    u16 originalItem:15;
-    u16 stolen:1;
-};
-
 struct BattleStruct
 {
     u8 turnEffectsTracker;
@@ -615,7 +609,6 @@ struct BattleStruct
     bool8 friskedAbility; // If identifies two mons, show the ability pop-up only once.
     u16 moveEffect2; // For Knock Off
     u8 quickClawBattlerId;
-    struct StolenItem itemStolen[PARTY_SIZE];  // Player's team that had items stolen (two bytes per party member)
     u8 blunderPolicy:1; // should blunder policy activate
     u8 swapDamageCategory:1; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
     u8 ballSpriteIds[2];    // item gfx, window gfx
@@ -642,6 +635,8 @@ struct BattleStruct
             u16 usedHeldItem; // For harvest, recycle.
             bool8 ateBerry;
             u16 changedSpecies;
+            u16 originalItem;
+            bool8 itemStolen;
         } party[PARTY_SIZE];
     } sides[NUM_BATTLE_SIDES];
 

@@ -3047,7 +3047,8 @@ static void BattleStartClearSetData(void)
     {
         gBattleStruct->sides[B_SIDE_PLAYER].party[i].usedHeldItem = ITEM_NONE;
         gBattleStruct->sides[B_SIDE_OPPONENT].party[i].usedHeldItem = ITEM_NONE;
-        gBattleStruct->itemStolen[i].originalItem = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
+        gBattleStruct->sides[B_SIDE_PLAYER].party[i].originalItem = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
+        gBattleStruct->sides[B_SIDE_OPPONENT].party[i].originalItem = GetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM);
         gPartyCriticalHits[i] = 0;
         gBattleStruct->allowedToChangeFormInWeather[i][B_SIDE_PLAYER] = FALSE;
         gBattleStruct->allowedToChangeFormInWeather[i][B_SIDE_OPPONENT] = FALSE;
