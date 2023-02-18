@@ -2119,7 +2119,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 4;
             break;
         case EFFECT_WISH:
-            if (gWishFutureKnock.wishCounter[battlerAtk] != 0)
+            if (gBattleStruct->battlers[battlerAtk].wishCounter != 0)
                 score -= 10;
             break;
         case EFFECT_ASSIST:

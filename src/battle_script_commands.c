@@ -14390,10 +14390,10 @@ static void Cmd_trywish(void)
     switch (cmd->turnNumber)
     {
     case 0: // use wish
-        if (gWishFutureKnock.wishCounter[gBattlerAttacker] == 0)
+        if (gBattleStruct->battlers[gBattlerAttacker].wishCounter == 0)
         {
-            gWishFutureKnock.wishCounter[gBattlerAttacker] = 2;
-            gWishFutureKnock.wishPartyId[gBattlerAttacker] = gBattlerPartyIndexes[gBattlerAttacker];
+            gBattleStruct->battlers[gBattlerAttacker].wishCounter = 2;
+            gBattleStruct->battlers[gBattlerAttacker].wishPartyIndex = gBattlerPartyIndexes[gBattlerAttacker];
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         else
@@ -14402,12 +14402,12 @@ static void Cmd_trywish(void)
         }
         break;
     case 1: // heal effect
-        PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattlerTarget, gWishFutureKnock.wishPartyId[gBattlerTarget])
+        PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattlerTarget, gBattleStruct->battlers[gBattlerTarget].wishPartyIndex)
     #if B_WISH_HP_SOURCE >= GEN_5
         if (GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER)
-            gBattleMoveDamage = max(1, GetMonData(&gPlayerParty[gWishFutureKnock.wishPartyId[gBattlerTarget]], MON_DATA_MAX_HP) / 2);
+            gBattleMoveDamage = max(1, GetMonData(&gPlayerParty[gBattleStruct->battlers[gBattlerTarget].wishPartyIndex], MON_DATA_MAX_HP) / 2);
         else
-            gBattleMoveDamage = max(1, GetMonData(&gEnemyParty[gWishFutureKnock.wishPartyId[gBattlerTarget]], MON_DATA_MAX_HP) / 2);
+            gBattleMoveDamage = max(1, GetMonData(&gEnemyParty[gBattleStruct->battlers[gBattlerTarget].wishPartyIndex], MON_DATA_MAX_HP) / 2);
     #else
         gBattleMoveDamage = max(1, gBattleMons[gBattlerTarget].maxHP / 2);
     #endif
