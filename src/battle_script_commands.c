@@ -10112,7 +10112,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
         gActiveBattler = gBattlerAttacker;
-        if (gTotemBoosts[gActiveBattler].stats == 0)
+        if (gBattleStruct->battlers[gActiveBattler].totemBoost.stats == 0)
         {
             gBattlescriptCurrInstr = cmd->nextInstr;    // stats done, exit
         }
@@ -10120,19 +10120,19 @@ static void Cmd_various(void)
         {
             for (i = 0; i < (NUM_BATTLE_STATS - 1); i++)
             {
-                if (gTotemBoosts[gActiveBattler].stats & (1 << i))
+                if (gBattleStruct->battlers[gActiveBattler].totemBoost.stats & (1 << i))
                 {
-                    if (gTotemBoosts[gActiveBattler].statChanges[i] <= -1)
-                        SET_STATCHANGER(i + 1, abs(gTotemBoosts[gActiveBattler].statChanges[i]), TRUE);
+                    if (gBattleStruct->battlers[gActiveBattler].totemBoost.statChanges[i] <= -1)
+                        SET_STATCHANGER(i + 1, abs(gBattleStruct->battlers[gActiveBattler].totemBoost.statChanges[i]), TRUE);
                     else
-                        SET_STATCHANGER(i + 1, gTotemBoosts[gActiveBattler].statChanges[i], FALSE);
+                        SET_STATCHANGER(i + 1, gBattleStruct->battlers[gActiveBattler].totemBoost.statChanges[i], FALSE);
 
-                    gTotemBoosts[gActiveBattler].stats &= ~(1 << i);
+                    gBattleStruct->battlers[gActiveBattler].totemBoost.stats &= ~(1 << i);
                     gBattleScripting.battler = gActiveBattler;
                     gBattlerTarget = gActiveBattler;
-                    if (gTotemBoosts[gActiveBattler].stats & 0x80)
+                    if (gBattleStruct->battlers[gActiveBattler].totemBoost.stats & 0x80)
                     {
-                        gTotemBoosts[gActiveBattler].stats &= ~0x80; // set 'aura flared to life' flag
+                        gBattleStruct->battlers[gActiveBattler].totemBoost.stats &= ~0x80; // set 'aura flared to life' flag
                         gBattlescriptCurrInstr = BattleScript_TotemFlaredToLife;
                     }
                     else

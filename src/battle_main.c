@@ -226,7 +226,6 @@ EWRAM_DATA u32 gFieldStatuses = 0;
 EWRAM_DATA struct FieldTimer gFieldTimers = {0};
 EWRAM_DATA u8 gBattlerAbility = 0;
 EWRAM_DATA u16 gPartnerSpriteId = 0;
-EWRAM_DATA struct TotemBoost gTotemBoosts[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA bool8 gHasFetchedBall = FALSE;
 EWRAM_DATA u8 gLastUsedBall = 0;
 EWRAM_DATA u16 gLastThrownBall = 0;
@@ -3675,14 +3674,17 @@ static void TryDoEventsBeforeFirstTurn(void)
     // Totem boosts
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (gTotemBoosts[i].stats != 0)
+        if (gBattleStruct->battlers[i].totemBoost.stats != 0)
         {
             gBattlerAttacker = i;
             BattleScriptExecute(BattleScript_TotemVar);
             return;
         }
     }
-    memset(gTotemBoosts, 0, sizeof(gTotemBoosts));  // erase all totem boosts just to be safe
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        memset(&gBattleStruct->battlers[i].totemBoost, 0, sizeof(gBattleStruct->battlers[i].totemBoost)); // erase all totem boosts just to be safe
+    }
 
     // Primal Reversion
     for (i = 0; i < gBattlersCount; i++)
@@ -5550,9 +5552,9 @@ void SetTotemBoost(void)
     {
         if (*(&gSpecialVar_0x8001 + i))
         {
-            gTotemBoosts[battlerId].stats |= (1 << i);
-            gTotemBoosts[battlerId].statChanges[i] = *(&gSpecialVar_0x8001 + i);
-            gTotemBoosts[battlerId].stats |= 0x80;  // used as a flag for the "totem flared to life" script
+            gBattleStruct->battlers[battlerId].totemBoost.stats |= (1 << i);
+            gBattleStruct->battlers[battlerId].totemBoost.statChanges[i] = *(&gSpecialVar_0x8001 + i);
+            gBattleStruct->battlers[battlerId].totemBoost.stats |= 0x80;  // used as a flag for the "totem flared to life" script
         }
     }
 }

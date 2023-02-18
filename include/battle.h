@@ -515,6 +515,12 @@ struct ZMoveData
     u8 splits[MAX_BATTLERS_COUNT];
 };
 
+struct TotemBoost
+{
+    u8 stats;   // bitfield for each battle stat that is set if the stat changes
+    s8 statChanges[NUM_BATTLE_STATS - 1];    // highest bit being set decreases the stat
+}; /* size = 8 */
+
 struct BattleStruct
 {
     u8 turnEffectsTracker;
@@ -673,6 +679,7 @@ struct BattleStruct
         u8 lastDamagedBy;
         u16 chosenMove;
         u32 transformPersonality;
+        struct TotemBoost totemBoost;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
@@ -872,12 +879,6 @@ struct MonSpritesGfx
     u16 *buffer;
 };
 
-struct TotemBoost
-{
-    u8 stats;   // bitfield for each battle stat that is set if the stat changes
-    s8 statChanges[NUM_BATTLE_STATS - 1];    // highest bit being set decreases the stat
-}; /* size = 8 */
-
 // All battle variables are declared in battle_main.c
 extern u16 gBattle_BG0_X;
 extern u16 gBattle_BG0_Y;
@@ -978,7 +979,6 @@ extern u32 gFieldStatuses;
 extern struct FieldTimer gFieldTimers;
 extern u8 gBattlerAbility;
 extern u16 gPartnerSpriteId;
-extern struct TotemBoost gTotemBoosts[MAX_BATTLERS_COUNT];
 
 extern void (*gPreBattleCallback1)(void);
 extern void (*gBattleMainFunc)(void);
