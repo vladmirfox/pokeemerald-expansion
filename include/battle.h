@@ -574,7 +574,6 @@ struct BattleStruct
     u8 arenaTurnCounter;
     u8 turnSideTracker;
     u8 givenExpMons; // Bits for enemy party's pokemon that gave exp to player's party.
-    u16 lastTakenMoveFrom[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT]; // a 2-D array [target][attacker]
     u16 castformPalette[NUM_CASTFORM_FORMS][16];
     union {
         struct LinkBattlerHeader linkBattlerHeader;
@@ -669,6 +668,7 @@ struct BattleStruct
         u16 chosenItem;
         u16 choicedMove;
         u16 changedItem;
+        u16 lastTakenMoveFrom[MAX_BATTLERS_COUNT];
     } battlers[MAX_BATTLERS_COUNT];
 };
 

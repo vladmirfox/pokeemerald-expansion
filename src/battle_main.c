@@ -2940,7 +2940,7 @@ static void BattleMainCB1(void)
 
 static void BattleStartClearSetData(void)
 {
-    s32 i;
+    s32 i, j;
 
     TurnValuesCleanUp(FALSE);
     SpecialStatusesClear();
@@ -2969,10 +2969,8 @@ static void BattleStartClearSetData(void)
         gBattleStruct->battlers[i].lastTakenMove = MOVE_NONE;
         gBattleStruct->battlers[i].choicedMove = MOVE_NONE;
         gBattleStruct->battlers[i].changedItem = ITEM_NONE;
-        gBattleStruct->lastTakenMoveFrom[i][0] = MOVE_NONE;
-        gBattleStruct->lastTakenMoveFrom[i][1] = MOVE_NONE;
-        gBattleStruct->lastTakenMoveFrom[i][2] = MOVE_NONE;
-        gBattleStruct->lastTakenMoveFrom[i][3] = MOVE_NONE;
+        for (j = 0; j < MAX_BATTLERS_COUNT; j++)
+            gBattleStruct->battlers[i].lastTakenMoveFrom[j] = MOVE_NONE;
         gBattleStruct->AI_monToSwitchIntoId[i] = PARTY_SIZE;
         gBattleStruct->skyDropTargets[i] = 0xFF;
         gBattleStruct->overwrittenAbilities[i] = ABILITY_NONE;
@@ -3060,7 +3058,7 @@ static void BattleStartClearSetData(void)
 
 void SwitchInClearSetData(void)
 {
-    s32 i;
+    s32 i, j;
     struct DisableStruct disableStructCopy = gDisableStructs[gActiveBattler];
 
     ClearIllusionMon(gActiveBattler);
@@ -3139,10 +3137,8 @@ void SwitchInClearSetData(void)
 
     gBattleStruct->battlers[gActiveBattler].lastTakenMove = MOVE_NONE;
     gBattleStruct->sameMoveTurns[gActiveBattler] = 0;
-    gBattleStruct->lastTakenMoveFrom[gActiveBattler][0] = 0;
-    gBattleStruct->lastTakenMoveFrom[gActiveBattler][1] = 0;
-    gBattleStruct->lastTakenMoveFrom[gActiveBattler][2] = 0;
-    gBattleStruct->lastTakenMoveFrom[gActiveBattler][3] = 0;
+    for (j = 0; j < MAX_BATTLERS_COUNT; j++)
+        gBattleStruct->battlers[gActiveBattler].lastTakenMoveFrom[j] = MOVE_NONE;
     gBattleStruct->lastMoveFailed &= ~(gBitTable[gActiveBattler]);
     gBattleStruct->palaceFlags &= ~(gBitTable[gActiveBattler]);
 
@@ -3154,7 +3150,7 @@ void SwitchInClearSetData(void)
         if (i != gActiveBattler && GetBattlerSide(i) != GetBattlerSide(gActiveBattler))
             gBattleStruct->battlers[i].lastTakenMove = MOVE_NONE;
 
-        gBattleStruct->lastTakenMoveFrom[i][gActiveBattler] = 0;
+        gBattleStruct->battlers[i].lastTakenMoveFrom[gActiveBattler] = MOVE_NONE;
     }
 
     gBattleStruct->battlers[gActiveBattler].choicedMove = MOVE_NONE;
@@ -3241,10 +3237,8 @@ void FaintClearSetData(void)
     gBattleStruct->battlers[gActiveBattler].choicedMove = MOVE_NONE;
     gBattleStruct->sameMoveTurns[gActiveBattler] = 0;
     gBattleStruct->battlers[gActiveBattler].lastTakenMove = MOVE_NONE;
-    gBattleStruct->lastTakenMoveFrom[gActiveBattler][0] = 0;
-    gBattleStruct->lastTakenMoveFrom[gActiveBattler][1] = 0;
-    gBattleStruct->lastTakenMoveFrom[gActiveBattler][2] = 0;
-    gBattleStruct->lastTakenMoveFrom[gActiveBattler][3] = 0;
+    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        gBattleStruct->battlers[gActiveBattler].lastTakenMoveFrom[i] = MOVE_NONE;
 
     gBattleStruct->palaceFlags &= ~(gBitTable[gActiveBattler]);
 
@@ -3256,7 +3250,7 @@ void FaintClearSetData(void)
         if (i != gActiveBattler && GetBattlerSide(i) != GetBattlerSide(gActiveBattler))
             gBattleStruct->battlers[i].lastTakenMove = MOVE_NONE;
 
-        gBattleStruct->lastTakenMoveFrom[i][gActiveBattler] = 0;
+        gBattleStruct->battlers[i].lastTakenMoveFrom[gActiveBattler] = MOVE_NONE;
     }
 
     gBattleResources->flags->flags[gActiveBattler] = 0;
