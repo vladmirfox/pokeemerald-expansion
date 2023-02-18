@@ -7030,7 +7030,7 @@ static void Cmd_switchineffects(void)
             if (gBattlerByTurnOrder[i] == gActiveBattler)
                 gActionsByTurnOrder[i] = B_ACTION_CANCEL_PARTNER;
 
-            gBattleStruct->hpOnSwitchout[GetBattlerSide(i)] = gBattleMons[i].hp;
+            gBattleStruct->sides[GetBattlerSide(i)].hpOnSwitchout = gBattleMons[i].hp;
         }
 
         if (cmd->battler == BS_FAINTED_LINK_MULTIPLE_1)
@@ -8184,7 +8184,7 @@ static void Cmd_hpthresholds2(void)
     {
         gActiveBattler = GetBattlerForBattleScript(cmd->battler);
         opposingBattler = BATTLE_OPPOSITE(gActiveBattler);
-        hpSwitchout = *(gBattleStruct->hpOnSwitchout + GetBattlerSide(opposingBattler));
+        hpSwitchout = gBattleStruct->sides[GetBattlerSide(opposingBattler)].hpOnSwitchout;
         result = (hpSwitchout - gBattleMons[opposingBattler].hp) * 100 / hpSwitchout;
 
         if (gBattleMons[opposingBattler].hp >= hpSwitchout)

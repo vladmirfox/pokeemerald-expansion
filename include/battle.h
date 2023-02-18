@@ -562,7 +562,6 @@ struct BattleStruct
     u8 wallyMovesState;
     u8 wallyWaitFrames;
     u8 wallyMoveFrames;
-    u16 hpOnSwitchout[NUM_BATTLE_SIDES];
     u32 savedBattleTypeFlags;
     u16 abilityPreventingSwitchout;
     u8 hpScale;
@@ -653,6 +652,7 @@ struct BattleStruct
 
     struct Side
     {
+        u16 hpOnSwitchout;
     } sides[NUM_BATTLE_SIDES];
 
     struct Battler
