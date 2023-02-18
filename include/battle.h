@@ -606,7 +606,6 @@ struct BattleStruct
     bool8 trainerSlideLowHpMsgDone;
     u8 introState;
     u8 stolenStats[NUM_BATTLE_STATS]; // hp byte is used for which stats to raise, other inform about by how many stages
-    u16 hpBefore[MAX_BATTLERS_COUNT]; // Hp of battlers before using a move. For Berserk
     bool8 spriteIgnore0Hp;
     struct Illusion illusion[MAX_BATTLERS_COUNT];
     s8 aiFinalScore[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // AI, target, moves to make debugging easier
@@ -669,6 +668,7 @@ struct BattleStruct
         u8 lastMoveTarget; // For Instruct.
         u8 debugHoldEffect; // Overrides held item's effect.
         u16 tracedAbility;
+        u16 hpBeforeMove; // HP before the current move was used.
     } battlers[MAX_BATTLERS_COUNT];
 };
 

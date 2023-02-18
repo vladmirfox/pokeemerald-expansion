@@ -519,7 +519,7 @@ void HandleAction_UseMove(void)
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
-        gBattleStruct->hpBefore[i] = gBattleMons[i].hp;
+        gBattleStruct->battlers[i].hpBeforeMove = gBattleMons[i].hp;
         gSpecialStatuses[i].emergencyExited = FALSE;
     }
 
@@ -5346,7 +5346,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && TARGET_TURN_DAMAGED
              && IsBattlerAlive(battler)
             // Had more than half of hp before, now has less
-             && gBattleStruct->hpBefore[battler] >= gBattleMons[battler].maxHP / 2
+             && gBattleStruct->battlers[battler].hpBeforeMove >= gBattleMons[battler].maxHP / 2
              && gBattleMons[battler].hp < gBattleMons[battler].maxHP / 2
              && (gMultiHitCounter == 0 || gMultiHitCounter == 1)
              && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
@@ -5365,7 +5365,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && TARGET_TURN_DAMAGED
              && IsBattlerAlive(battler)
             // Had more than half of hp before, now has less
-             && gBattleStruct->hpBefore[battler] > gBattleMons[battler].maxHP / 2
+             && gBattleStruct->battlers[battler].hpBeforeMove > gBattleMons[battler].maxHP / 2
              && gBattleMons[battler].hp < gBattleMons[battler].maxHP / 2
              && (gMultiHitCounter == 0 || gMultiHitCounter == 1)
              && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
