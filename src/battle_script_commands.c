@@ -12696,7 +12696,7 @@ static void Cmd_transformdataexecution(void)
     gChosenMove = MOVE_UNAVAILABLE;
     gBattlescriptCurrInstr = cmd->nextInstr;
     if (gBattleMons[gBattlerTarget].status2 & STATUS2_TRANSFORMED
-        || gBattleStruct->illusion[gBattlerTarget].on
+        || gBattleStruct->battlers[gBattlerTarget].illusion.on
         || gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE)
     {
         gMoveResultFlags |= MOVE_RESULT_FAILED;

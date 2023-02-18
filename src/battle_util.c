@@ -4440,7 +4440,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (IsBattlerAlive(BATTLE_OPPOSITE(battler))
                 && !(gBattleMons[BATTLE_OPPOSITE(battler)].status2 & (STATUS2_TRANSFORMED | STATUS2_SUBSTITUTE))
                 && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
-                && !(gBattleStruct->illusion[BATTLE_OPPOSITE(battler)].on)
+                && !(gBattleStruct->battlers[BATTLE_OPPOSITE(battler)].illusion.on)
                 && !(gStatuses3[BATTLE_OPPOSITE(battler)] & STATUS3_SEMI_INVULNERABLE))
             {
                 gBattlerAttacker = battler;
@@ -5690,7 +5690,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         case ABILITY_ILLUSION:
-            if (gBattleStruct->illusion[gBattlerTarget].on && !gBattleStruct->illusion[gBattlerTarget].broken && TARGET_TURN_DAMAGED)
+            if (gBattleStruct->battlers[gBattlerTarget].illusion.on && !gBattleStruct->battlers[gBattlerTarget].illusion.broken && TARGET_TURN_DAMAGED)
             {
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_IllusionOff;
@@ -10248,24 +10248,24 @@ bool32 CanBattlerGetOrLoseItem(u8 battlerId, u16 itemId)
 
 struct Pokemon *GetIllusionMonPtr(u32 battlerId)
 {
-    if (gBattleStruct->illusion[battlerId].broken)
+    if (gBattleStruct->battlers[battlerId].illusion.broken)
         return NULL;
-    if (!gBattleStruct->illusion[battlerId].set)
+    if (!gBattleStruct->battlers[battlerId].illusion.set)
     {
         if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
             SetIllusionMon(&gPlayerParty[gBattlerPartyIndexes[battlerId]], battlerId);
         else
             SetIllusionMon(&gEnemyParty[gBattlerPartyIndexes[battlerId]], battlerId);
     }
-    if (!gBattleStruct->illusion[battlerId].on)
+    if (!gBattleStruct->battlers[battlerId].illusion.on)
         return NULL;
 
-    return gBattleStruct->illusion[battlerId].mon;
+    return gBattleStruct->battlers[battlerId].illusion.mon;
 }
 
 void ClearIllusionMon(u32 battlerId)
 {
-    memset(&gBattleStruct->illusion[battlerId], 0, sizeof(gBattleStruct->illusion[battlerId]));
+    memset(&gBattleStruct->battlers[battlerId].illusion, 0, sizeof(gBattleStruct->battlers[battlerId].illusion));
 }
 
 bool32 SetIllusionMon(struct Pokemon *mon, u32 battlerId)
@@ -10273,7 +10273,7 @@ bool32 SetIllusionMon(struct Pokemon *mon, u32 battlerId)
     struct Pokemon *party, *partnerMon;
     s32 i, id;
 
-    gBattleStruct->illusion[battlerId].set = 1;
+    gBattleStruct->battlers[battlerId].illusion.set = 1;
     if (GetMonAbility(mon) != ABILITY_ILLUSION)
         return FALSE;
 
@@ -10297,10 +10297,10 @@ bool32 SetIllusionMon(struct Pokemon *mon, u32 battlerId)
             && &party[id] != mon
             && &party[id] != partnerMon)
         {
-            gBattleStruct->illusion[battlerId].on = 1;
-            gBattleStruct->illusion[battlerId].broken = 0;
-            gBattleStruct->illusion[battlerId].partyId = id;
-            gBattleStruct->illusion[battlerId].mon = &party[id];
+            gBattleStruct->battlers[battlerId].illusion.on = 1;
+            gBattleStruct->battlers[battlerId].illusion.broken = 0;
+            gBattleStruct->battlers[battlerId].illusion.partyId = id;
+            gBattleStruct->battlers[battlerId].illusion.mon = &party[id];
             return TRUE;
         }
     }
