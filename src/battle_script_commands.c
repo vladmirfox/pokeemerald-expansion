@@ -2465,7 +2465,7 @@ static void Cmd_datahpupdate(void)
                 }
                 else
                 {
-                    gTakenDmg[gActiveBattler] += gBattleMoveDamage;
+                    gBattleStruct->battlers[gActiveBattler].bideTakenDamage += gBattleMoveDamage;
                     if (cmd->battler == BS_TARGET)
                         gTakenDmgByBattler[gActiveBattler] = gBattlerAttacker;
                     else
@@ -11979,7 +11979,7 @@ static void Cmd_setbide(void)
 
     gBattleMons[gBattlerAttacker].status2 |= STATUS2_MULTIPLETURNS;
     gLockedMoves[gBattlerAttacker] = gCurrentMove;
-    gTakenDmg[gBattlerAttacker] = 0;
+    gBattleStruct->battlers[gBattlerAttacker].bideTakenDamage = 0;
     gBattleMons[gBattlerAttacker].status2 |= STATUS2_BIDE_TURN(2);
 
     gBattlescriptCurrInstr = cmd->nextInstr;

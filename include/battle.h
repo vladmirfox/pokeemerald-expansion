@@ -664,6 +664,7 @@ struct BattleStruct
         u8 sameMoveTurns; // Number of times a move has been SUCCESSFULLY used consecutively.
         u8 skyDropTarget;
         u8 targetsDone; // Bit per battler.
+        s32 bideTakenDamage;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
@@ -909,7 +910,6 @@ extern u16 gChosenMove;
 extern u16 gCalledMove;
 extern s32 gBattleMoveDamage;
 extern s32 gHpDealt;
-extern s32 gTakenDmg[MAX_BATTLERS_COUNT];
 extern u16 gLastUsedItem;
 extern u16 gLastUsedAbility;
 extern u8 gBattlerAttacker;
