@@ -530,7 +530,6 @@ struct BattleStruct
     u8 expGetterMonId;
     u8 wildVictorySong;
     u8 dynamicMoveType;
-    u8 wrappedBy[MAX_BATTLERS_COUNT];
     u16 assistPossibleMoves[PARTY_SIZE * MAX_MON_MOVES]; // Each of mons can know max 4 moves.
     u8 focusPunchBattlerId;
     u8 battlerPreventingSwitchout;
@@ -666,6 +665,7 @@ struct BattleStruct
     struct Battler
     {
         u16 wrappedMove;
+        u8 wrappedBy;
     } battlers[MAX_BATTLERS_COUNT];
 };
 

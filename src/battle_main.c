@@ -3110,7 +3110,7 @@ void SwitchInClearSetData(void)
     {
         if (gBattleMons[i].status2 & STATUS2_INFATUATED_WITH(gActiveBattler))
             gBattleMons[i].status2 &= ~STATUS2_INFATUATED_WITH(gActiveBattler);
-        if ((gBattleMons[i].status2 & STATUS2_WRAPPED) && *(gBattleStruct->wrappedBy + i) == gActiveBattler)
+        if ((gBattleMons[i].status2 & STATUS2_WRAPPED) && gBattleStruct->battlers[i].wrappedBy == gActiveBattler)
             gBattleMons[i].status2 &= ~STATUS2_WRAPPED;
     }
 
@@ -3188,7 +3188,7 @@ void FaintClearSetData(void)
             gBattleMons[i].status2 &= ~STATUS2_ESCAPE_PREVENTION;
         if (gBattleMons[i].status2 & STATUS2_INFATUATED_WITH(gActiveBattler))
             gBattleMons[i].status2 &= ~STATUS2_INFATUATED_WITH(gActiveBattler);
-        if ((gBattleMons[i].status2 & STATUS2_WRAPPED) && *(gBattleStruct->wrappedBy + i) == gActiveBattler)
+        if ((gBattleMons[i].status2 & STATUS2_WRAPPED) && gBattleStruct->battlers[i].wrappedBy == gActiveBattler)
             gBattleMons[i].status2 &= ~STATUS2_WRAPPED;
     }
 

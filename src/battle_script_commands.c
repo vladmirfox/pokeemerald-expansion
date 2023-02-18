@@ -3315,7 +3315,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 #endif
 
                     gBattleStruct->battlers[gEffectBattler].wrappedMove = gCurrentMove;
-                    gBattleStruct->wrappedBy[gEffectBattler] = gBattlerAttacker;
+                    gBattleStruct->battlers[gEffectBattler].wrappedBy = gBattlerAttacker;
 
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = sMoveEffectBS_Ptrs[gBattleScripting.moveEffect];
@@ -13809,7 +13809,7 @@ static void Cmd_rapidspinfree(void)
     {
         gBattleScripting.battler = gBattlerTarget;
         gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_WRAPPED;
-        gBattlerTarget = *(gBattleStruct->wrappedBy + gBattlerAttacker);
+        gBattlerTarget = gBattleStruct->battlers[gBattlerAttacker].wrappedBy;
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->battlers[gBattlerAttacker].wrappedMove);
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_WrapFree;

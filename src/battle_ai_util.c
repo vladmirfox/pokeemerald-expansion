@@ -2262,7 +2262,7 @@ static u32 GetTrapDamage(u8 battlerId)
 {
     // ai has no knowledge about turns remaining
     u32 damage = 0;
-    u32 holdEffect = AI_DATA->holdEffects[gBattleStruct->wrappedBy[battlerId]];
+    u32 holdEffect = AI_DATA->holdEffects[gBattleStruct->battlers[battlerId].wrappedBy];
     if (gBattleMons[battlerId].status2 & STATUS2_WRAPPED)
     {
         if (holdEffect == HOLD_EFFECT_BINDING_BAND)
