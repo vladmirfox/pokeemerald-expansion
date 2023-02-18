@@ -5762,7 +5762,7 @@ static void Cmd_moveend(void)
                 }
 
                 if (!(gHitMarker & HITMARKER_FAINTED(gBattlerTarget)))
-                    gLastHitBy[gBattlerTarget] = gBattlerAttacker;
+                    gBattleStruct->battlers[gBattlerTarget].lastHitBy = gBattlerAttacker;
 
                 if (gHitMarker & HITMARKER_OBEYS && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
                 {
@@ -8213,7 +8213,7 @@ static bool32 HasAttackerFaintedTarget(void)
 {
     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
         && gBattleMoves[gCurrentMove].power != 0
-        && (gLastHitBy[gBattlerTarget] == 0xFF || gLastHitBy[gBattlerTarget] == gBattlerAttacker)
+        && (gBattleStruct->battlers[gBattlerTarget].lastHitBy == 0xFF || gBattleStruct->battlers[gBattlerTarget].lastHitBy == gBattlerAttacker)
         && gBattleStruct->battlers[gBattlerAttacker].moveTarget == gBattlerTarget
         && gBattlerTarget != gBattlerAttacker
         && gCurrentTurnActionNumber == GetBattlerTurnOrderNum(gBattlerAttacker)
@@ -13027,7 +13027,7 @@ static void Cmd_settypetorandomresistance(void)
         gBattlescriptCurrInstr = cmd->failInstr;
     }
     else if (IsTwoTurnsMove(gBattleStruct->battlers[gBattlerAttacker].lastHitByMove)
-            && gBattleMons[gLastHitBy[gBattlerAttacker]].status2 & STATUS2_MULTIPLETURNS)
+            && gBattleMons[gBattleStruct->battlers[gBattlerAttacker].lastHitBy].status2 & STATUS2_MULTIPLETURNS)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }

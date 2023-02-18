@@ -669,6 +669,7 @@ struct BattleStruct
         u8 lastHitByType;
         u16 lastHitByMove;
         u16 lockedMove;
+        u8 lastHitBy;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
@@ -931,7 +932,6 @@ extern const u8 *gPalaceSelectionBattleScripts[MAX_BATTLERS_COUNT];
 extern u16 gLastPrintedMoves[MAX_BATTLERS_COUNT];
 extern u16 gLastResultingMoves[MAX_BATTLERS_COUNT];
 extern u16 gLastUsedMove;
-extern u8 gLastHitBy[MAX_BATTLERS_COUNT];
 extern u16 gChosenMoveByBattler[MAX_BATTLERS_COUNT];
 extern u16 gMoveResultFlags;
 extern u32 gHitMarker;

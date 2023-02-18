@@ -531,7 +531,7 @@ static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent)
         return FALSE;
     if (gBattleStruct->battlers[gActiveBattler].lastHitByMove == MOVE_UNAVAILABLE)
         return FALSE;
-    if (gLastHitBy[gActiveBattler] == 0xFF)
+    if (gBattleStruct->battlers[gActiveBattler].lastHitBy == 0xFF)
         return FALSE;
     if (IS_MOVE_STATUS(gBattleStruct->battlers[gActiveBattler].lastHitByMove))
         return FALSE;
@@ -590,7 +590,7 @@ static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent)
         CalcPartyMonTypeEffectivenessMultiplier(gBattleStruct->battlers[gActiveBattler].lastHitByMove, species, monAbility);
         if (gMoveResultFlags & flags)
         {
-            battlerIn1 = gLastHitBy[gActiveBattler];
+            battlerIn1 = gBattleStruct->battlers[gActiveBattler].lastHitBy;
 
             for (j = 0; j < MAX_MON_MOVES; j++)
             {
