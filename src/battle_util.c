@@ -308,7 +308,7 @@ void HandleAction_UseMove(void)
         gDisableStructs[gBattlerAttacker].encoreTimer = 0;
         gBattleStruct->battlers[gBattlerAttacker].moveTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
     }
-    else if (gBattleMons[gBattlerAttacker].moves[gCurrMovePos] != gChosenMoveByBattler[gBattlerAttacker])
+    else if (gBattleMons[gBattlerAttacker].moves[gCurrMovePos] != gBattleStruct->battlers[gBattlerAttacker].chosenMove)
     {
         gCurrentMove = gChosenMove = gBattleMons[gBattlerAttacker].moves[gCurrMovePos];
         gBattleStruct->battlers[gBattlerAttacker].moveTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
@@ -3403,9 +3403,9 @@ void TryClearRageAndFuryCutter(void)
     s32 i;
     for (i = 0; i < gBattlersCount; i++)
     {
-        if ((gBattleMons[i].status2 & STATUS2_RAGE) && gChosenMoveByBattler[i] != MOVE_RAGE)
+        if ((gBattleMons[i].status2 & STATUS2_RAGE) && gBattleStruct->battlers[i].chosenMove != MOVE_RAGE)
             gBattleMons[i].status2 &= ~STATUS2_RAGE;
-        if (gDisableStructs[i].furyCutterCounter != 0 && gChosenMoveByBattler[i] != MOVE_FURY_CUTTER)
+        if (gDisableStructs[i].furyCutterCounter != 0 && gBattleStruct->battlers[i].chosenMove != MOVE_FURY_CUTTER)
             gDisableStructs[i].furyCutterCounter = 0;
     }
 }

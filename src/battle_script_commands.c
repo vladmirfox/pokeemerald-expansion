@@ -8217,7 +8217,7 @@ static bool32 HasAttackerFaintedTarget(void)
         && gBattleStruct->battlers[gBattlerAttacker].moveTarget == gBattlerTarget
         && gBattlerTarget != gBattlerAttacker
         && gCurrentTurnActionNumber == GetBattlerTurnOrderNum(gBattlerAttacker)
-        && (gChosenMove == gChosenMoveByBattler[gBattlerAttacker] || gChosenMove == gBattleMons[gBattlerAttacker].moves[gChosenMovePos]))
+        && (gChosenMove == gBattleStruct->battlers[gBattlerAttacker].chosenMove || gChosenMove == gBattleMons[gBattlerAttacker].moves[gChosenMovePos]))
         return TRUE;
     else
         return FALSE;
@@ -13718,7 +13718,7 @@ static void Cmd_jumpifnopursuitswitchdmg(void)
         && !(gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
         && gBattleMons[gBattlerAttacker].hp
         && !gDisableStructs[gBattlerTarget].truantCounter
-        && gChosenMoveByBattler[gBattlerTarget] == MOVE_PURSUIT)
+        && gBattleStruct->battlers[gBattlerTarget].chosenMove == MOVE_PURSUIT)
     {
         s32 i;
 
@@ -15190,7 +15190,7 @@ static void Cmd_pursuitdoubles(void)
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
         && !(gAbsentBattlerFlags & gBitTable[gActiveBattler])
         && gChosenActionByBattler[gActiveBattler] == B_ACTION_USE_MOVE
-        && gChosenMoveByBattler[gActiveBattler] == MOVE_PURSUIT)
+        && gBattleStruct->battlers[gActiveBattler].chosenMove == MOVE_PURSUIT)
     {
         gActionsByTurnOrder[gActiveBattler] = B_ACTION_TRY_FINISH;
         gCurrentMove = MOVE_PURSUIT;
@@ -16151,7 +16151,7 @@ static void TryUpdateRoundTurnOrder(void)
         // Get battlers after us using round
         for (i = currRounder; i < gBattlersCount; i++)
         {
-            if (gChosenMoveByBattler[gBattlerByTurnOrder[i]] == MOVE_ROUND)
+            if (gBattleStruct->battlers[gBattlerByTurnOrder[i]].chosenMove == MOVE_ROUND)
                 roundUsers[j++] = gBattlerByTurnOrder[i];
             else
                 nonRoundUsers[k++] = gBattlerByTurnOrder[i];

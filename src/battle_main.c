@@ -183,7 +183,6 @@ EWRAM_DATA const u8 *gPalaceSelectionBattleScripts[MAX_BATTLERS_COUNT] = {NULL};
 EWRAM_DATA u16 gLastPrintedMoves[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastResultingMoves[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastUsedMove = 0;
-EWRAM_DATA u16 gChosenMoveByBattler[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gMoveResultFlags = 0;
 EWRAM_DATA u32 gHitMarker = 0;
 EWRAM_DATA u8 gUnusedFirstBattleVar2 = 0; // Never read
@@ -3728,7 +3727,7 @@ static void TryDoEventsBeforeFirstTurn(void)
     {
         gBattleStruct->battlers[i].monToSwitchIntoIndex = PARTY_SIZE;
         gChosenActionByBattler[i] = B_ACTION_NONE;
-        gChosenMoveByBattler[i] = MOVE_NONE;
+        gBattleStruct->battlers[i].chosenMove = MOVE_NONE;
         // Record party slots of player's mons that appeared in battle
         if (!IsBattlerAIControlled(i))
             gBattleStruct->appearedInBattle |= gBitTable[gBattlerPartyIndexes[i]];
@@ -3838,7 +3837,7 @@ void BattleTurnPassed(void)
     for (i = 0; i < gBattlersCount; i++)
     {
         gChosenActionByBattler[i] = B_ACTION_NONE;
-        gChosenMoveByBattler[i] = MOVE_NONE;
+        gBattleStruct->battlers[i].chosenMove = MOVE_NONE;
     }
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
@@ -4031,7 +4030,7 @@ static void HandleTurnActionSelectionState(void)
                     }
                     else if (gDisableStructs[gActiveBattler].encoredMove != 0)
                     {
-                        gChosenMoveByBattler[gActiveBattler] = gDisableStructs[gActiveBattler].encoredMove;
+                        gBattleStruct->battlers[gActiveBattler].chosenMove = gDisableStructs[gActiveBattler].encoredMove;
                         gBattleStruct->battlers[gActiveBattler].chosenMovePosition = gDisableStructs[gActiveBattler].encoredMovePos;
                         gBattleCommunication[gActiveBattler] = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
                         return;
@@ -4253,7 +4252,7 @@ static void HandleTurnActionSelectionState(void)
                                 RecordedBattle_SetBattlerAction(gActiveBattler, gBattleResources->bufferB[gActiveBattler][3]);
                             }
                             gBattleStruct->battlers[gActiveBattler].chosenMovePosition = gBattleResources->bufferB[gActiveBattler][2] & ~RET_MEGA_EVOLUTION;
-                            gChosenMoveByBattler[gActiveBattler] = gBattleMons[gActiveBattler].moves[gBattleStruct->battlers[gActiveBattler].chosenMovePosition];
+                            gBattleStruct->battlers[gActiveBattler].chosenMove = gBattleMons[gActiveBattler].moves[gBattleStruct->battlers[gActiveBattler].chosenMovePosition];
                             gBattleStruct->battlers[gActiveBattler].moveTarget = gBattleResources->bufferB[gActiveBattler][3];
                             if (gBattleResources->bufferB[gActiveBattler][2] & RET_MEGA_EVOLUTION)
                                 gBattleStruct->mega.toEvolve |= gBitTable[gActiveBattler];
@@ -4620,7 +4619,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     speedBattler1 = GetBattlerTotalSpeedStat(battler1);
     holdEffectBattler1 = GetBattlerHoldEffect(battler1, TRUE);
     // Quick Draw
-    if (!ignoreChosenMoves && ability1 == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler1]) && Random() % 100 < 30)
+    if (!ignoreChosenMoves && ability1 == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gBattleStruct->battlers[battler1].chosenMove) && Random() % 100 < 30)
         gProtectStructs[battler1].quickDraw = TRUE;
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler1].quickDraw
@@ -4632,7 +4631,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     speedBattler2 = GetBattlerTotalSpeedStat(battler2);
     holdEffectBattler2 = GetBattlerHoldEffect(battler2, TRUE);
     // Quick Draw
-    if (!ignoreChosenMoves && ability2 == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler2]) && Random() % 100 < 30)
+    if (!ignoreChosenMoves && ability2 == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gBattleStruct->battlers[battler2].chosenMove) && Random() % 100 < 30)
         gProtectStructs[battler2].quickDraw = TRUE;
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler2].quickDraw
@@ -4934,7 +4933,7 @@ static void CheckChosenMoveForEffectsBeforeTurnStarts(void)
                 && !(gDisableStructs[gBattlerAttacker].truantCounter)
                 && !(gProtectStructs[gActiveBattler].noValidMoves))
             {
-                switch (gChosenMoveByBattler[gActiveBattler])
+                switch (gBattleStruct->battlers[gActiveBattler].chosenMove)
                 {
                 case MOVE_FOCUS_PUNCH:
                     BattleScriptExecute(BattleScript_FocusPunchSetUp);
@@ -4962,7 +4961,7 @@ static void CheckQuickClaw_CustapBerryActivation(void)
             gActiveBattler = gBattlerAttacker = gBattleStruct->quickClawBattlerId;
             gBattleStruct->quickClawBattlerId++;
             if (gChosenActionByBattler[gActiveBattler] == B_ACTION_USE_MOVE
-             && gChosenMoveByBattler[gActiveBattler] != MOVE_FOCUS_PUNCH   // quick claw message doesn't need to activate here
+             && gBattleStruct->battlers[gActiveBattler].chosenMove != MOVE_FOCUS_PUNCH   // quick claw message doesn't need to activate here
              && (gProtectStructs[gActiveBattler].usedCustapBerry || gProtectStructs[gActiveBattler].quickDraw)
              && !(gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP)
              && !(gDisableStructs[gBattlerAttacker].truantCounter)
