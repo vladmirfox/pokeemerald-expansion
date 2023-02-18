@@ -672,6 +672,7 @@ struct BattleStruct
         u8 lastHitBy;
         u8 lastDamagedBy;
         u16 chosenMove;
+        u32 transformPersonality;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
@@ -965,7 +966,6 @@ extern u8 gMoveSelectionCursor[MAX_BATTLERS_COUNT];
 extern u8 gBattlerStatusSummaryTaskId[MAX_BATTLERS_COUNT];
 extern u8 gBattlerInMenuId;
 extern bool8 gDoingBattleAnim;
-extern u32 gTransformedPersonalities[MAX_BATTLERS_COUNT];
 extern u8 gPlayerDpadHoldFrames;
 extern struct BattleSpriteData *gBattleSpritesDataPtr;
 extern struct MonSpritesGfx *gMonSpritesGfxPtr;

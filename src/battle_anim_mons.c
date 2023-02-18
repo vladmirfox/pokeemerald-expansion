@@ -192,7 +192,7 @@ u8 GetBattlerYDelta(u8 battlerId, u16 species)
                 if (!spriteInfo[battlerId].transformSpecies)
                     personality = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_PERSONALITY);
                 else
-                    personality = gTransformedPersonalities[battlerId];
+                    personality = gBattleStruct->battlers[battlerId].transformPersonality;
             }
             coordSpecies = GetUnownSpeciesId(personality);
             ret = gMonBackPicCoords[coordSpecies].y_offset;
@@ -218,7 +218,7 @@ u8 GetBattlerYDelta(u8 battlerId, u16 species)
             if (!spriteInfo[battlerId].transformSpecies)
                 personality = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_PERSONALITY);
             else
-                personality = gTransformedPersonalities[battlerId];
+                personality = gBattleStruct->battlers[battlerId].transformPersonality;
 
             coordSpecies = GetUnownSpeciesId(personality);
             ret = gMonFrontPicCoords[coordSpecies].y_offset;
@@ -2228,7 +2228,7 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
             else
             {
                 species = spriteInfo[battlerId].transformSpecies;
-                personality = gTransformedPersonalities[battlerId];
+                personality = gBattleStruct->battlers[battlerId].transformPersonality;
             }
 
             if (species == SPECIES_UNOWN)
@@ -2256,7 +2256,7 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
             else
             {
                 species = spriteInfo[battlerId].transformSpecies;
-                personality = gTransformedPersonalities[battlerId];
+                personality = gBattleStruct->battlers[battlerId].transformPersonality;
             }
 
             if (species == SPECIES_UNOWN)
