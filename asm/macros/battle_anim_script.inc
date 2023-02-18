@@ -288,25 +288,3 @@
 	createvisualtask AnimTask_IsDoubleBattle, 0
 	jumprettrue \ptr
 	.endm
-
-@ keep CFRU macros cause I'm lazy
-.macro setblends setblends_value
-	.byte 0xC
-	.hword \setblends_value
-	.endm
-
-.macro launchsoundtask launchsoundtaskPtr launchsoundtaskArgsNo launchsoundtaskarg0 launchsoundtaskarg1 launchsoundtaskarg2 launchsoundtaskarg3 launchsoundtaskarg4 launchsoundtaskarg5 launchsoundtaskarg6 launchsoundtaskarg7 launchsoundtaskarg8
-	.byte 0x1F
-	.word \launchsoundtaskPtr
-	.byte \launchsoundtaskArgsNo
-	.hword \launchsoundtaskarg0
-	.hword \launchsoundtaskarg1
-	.hword \launchsoundtaskarg2
-	.hword \launchsoundtaskarg3
-	.hword \launchsoundtaskarg4
-	.hword \launchsoundtaskarg5
-	.hword \launchsoundtaskarg6
-	.hword \launchsoundtaskarg7
-	.hword \launchsoundtaskarg8
-	.endm
-
