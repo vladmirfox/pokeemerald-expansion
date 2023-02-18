@@ -5027,7 +5027,7 @@ static void Cmd_endselectionscript(void)
 {
     CMD_ARGS();
 
-    *(gBattlerAttacker + gBattleStruct->selectionScriptFinished) = TRUE;
+    gBattleStruct->battlers[gBattlerAttacker].selectionScriptFinished = TRUE;
 }
 
 static void Cmd_playanimation(void)
