@@ -5095,8 +5095,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             case ABILITY_CUD_CHEW:
                 if (ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES && gDisableStructs[gActiveBattler].cudChew == TRUE)
                 {
-                    gLastUsedItem = gBattleStruct->usedHeldItems[battler][GetBattlerSide(battler)];
-                    gBattleStruct->usedHeldItems[battler][GetBattlerSide(battler)] = ITEM_NONE;
+                    gLastUsedItem = gBattleStruct->sides[GetBattlerSide(battler)].party[gBattlerPartyIndexes[battler]].usedHeldItem;
+                    gBattleStruct->sides[GetBattlerSide(battler)].party[gBattlerPartyIndexes[battler]].usedHeldItem = ITEM_NONE;
                     BattleScriptPushCursorAndCallback(BattleScript_CudChewActivates);
                     effect++;
                 }
@@ -10817,7 +10817,7 @@ bool32 BlocksPrankster(u16 move, u8 battlerPrankster, u8 battlerDef, bool32 chec
 
 u16 GetUsedHeldItem(u8 battler)
 {
-    return gBattleStruct->usedHeldItems[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)];
+    return gBattleStruct->sides[GetBattlerSide(battler)].party[gBattlerPartyIndexes[battler]].usedHeldItem;
 }
 
 bool32 IsBattlerWeatherAffected(u8 battlerId, u32 weatherFlags)

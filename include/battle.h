@@ -568,7 +568,6 @@ struct BattleStruct
     u16 synchronizeMoveEffect;
     bool8 anyMonHasTransformed;
     void (*savedCallback)(void);
-    u16 usedHeldItems[PARTY_SIZE][NUM_BATTLE_SIDES]; // For each party member and side. For harvest, recycle
     u16 chosenItem[MAX_BATTLERS_COUNT];
     u8 AI_itemType[2];
     u8 AI_itemFlags[2];
@@ -653,6 +652,10 @@ struct BattleStruct
     struct Side
     {
         u16 hpOnSwitchout;
+        struct Party
+        {
+            u16 usedHeldItem; // For harvest, recycle.
+        } party[PARTY_SIZE];
     } sides[NUM_BATTLE_SIDES];
 
     struct Battler
