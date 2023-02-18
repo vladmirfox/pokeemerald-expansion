@@ -180,7 +180,6 @@ EWRAM_DATA const u8 *gBattlescriptCurrInstr = NULL;
 EWRAM_DATA u8 gChosenActionByBattler[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA const u8 *gSelectionBattleScripts[MAX_BATTLERS_COUNT] = {NULL};
 EWRAM_DATA const u8 *gPalaceSelectionBattleScripts[MAX_BATTLERS_COUNT] = {NULL};
-EWRAM_DATA u16 gLastPrintedMoves[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastUsedMove = 0;
 EWRAM_DATA u16 gMoveResultFlags = 0;
 EWRAM_DATA u32 gHitMarker = 0;
@@ -2952,7 +2951,7 @@ static void BattleStartClearSetData(void)
         gBattleStrect->battlers[i].lastResultingMove = MOVE_NONE;
         gBattleStruct->battlers[i].lastHitBy = 0xFF;
         gBattleStruct->battlers[i].lockedMove = MOVE_NONE;
-        gLastPrintedMoves[i] = MOVE_NONE;
+        gBattleStruct->battlers[i].lastPrintedMove = MOVE_NONE;
         gBattleResources->flags->flags[i] = 0;
         gPalaceSelectionBattleScripts[i] = 0;
         gBattleStruct->battlers[i].lastTakenMove = MOVE_NONE;
@@ -3122,7 +3121,7 @@ void SwitchInClearSetData(void)
     gBattleStruct->battlers[gActiveBattler].lastHitByMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitByType = TYPE_NORMAL;
     gBattleStrect->battlers[gActiveBattler].lastResultingMove = MOVE_NONE;
-    gLastPrintedMoves[gActiveBattler] = MOVE_NONE;
+    gBattleStruct->battlers[gActiveBattler].lastPrintedMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitBy = 0xFF;
 
     gBattleStruct->battlers[gActiveBattler].lastTakenMove = MOVE_NONE;
@@ -3221,7 +3220,7 @@ void FaintClearSetData(void)
     gBattleStruct->battlers[gActiveBattler].lastHitByMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitByType = TYPE_NORMAL;
     gBattleStrect->battlers[gActiveBattler].lastResultingMove = MOVE_NONE;
-    gLastPrintedMoves[gActiveBattler] = MOVE_NONE;
+    gBattleStruct->battlers[gActiveBattler].lastPrintedMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitBy = 0xFF;
 
     gBattleStruct->battlers[gActiveBattler].choicedMove = MOVE_NONE;

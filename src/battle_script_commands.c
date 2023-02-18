@@ -5738,7 +5738,7 @@ static void Cmd_moveend(void)
                 gBattleStruct->battlers[gBattlerAttacker].lastMoveTarget = gBattlerTarget;
                 if (gHitMarker & HITMARKER_ATTACKSTRING_PRINTED)
                 {
-                    gLastPrintedMoves[gBattlerAttacker] = gChosenMove;
+                    gBattleStruct->battlers[gBattlerAttacker].lastPrintedMove = gChosenMove;
                     gLastUsedMove = gCurrentMove;
                 }
             }
@@ -13088,10 +13088,10 @@ static void Cmd_copymovepermanently(void)
     gChosenMove = MOVE_UNAVAILABLE;
 
     if (!(gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED)
-        && gLastPrintedMoves[gBattlerTarget] != MOVE_STRUGGLE
-        && gLastPrintedMoves[gBattlerTarget] != MOVE_NONE
-        && gLastPrintedMoves[gBattlerTarget] != MOVE_UNAVAILABLE
-        && gLastPrintedMoves[gBattlerTarget] != MOVE_SKETCH)
+        && gBattleStruct->battlers[gBattlerTarget].lastPrintedMove != MOVE_STRUGGLE
+        && gBattleStruct->battlers[gBattlerTarget].lastPrintedMove != MOVE_NONE
+        && gBattleStruct->battlers[gBattlerTarget].lastPrintedMove != MOVE_UNAVAILABLE
+        && gBattleStruct->battlers[gBattlerTarget].lastPrintedMove != MOVE_SKETCH)
     {
         s32 i;
 
@@ -13099,7 +13099,7 @@ static void Cmd_copymovepermanently(void)
         {
             if (gBattleMons[gBattlerAttacker].moves[i] == MOVE_SKETCH)
                 continue;
-            if (gBattleMons[gBattlerAttacker].moves[i] == gLastPrintedMoves[gBattlerTarget])
+            if (gBattleMons[gBattlerAttacker].moves[i] == gBattleStruct->battlers[gBattlerTarget].lastPrintedMove)
                 break;
         }
 
@@ -13111,8 +13111,8 @@ static void Cmd_copymovepermanently(void)
         {
             struct MovePpInfo movePpData;
 
-            gBattleMons[gBattlerAttacker].moves[gCurrMovePos] = gLastPrintedMoves[gBattlerTarget];
-            gBattleMons[gBattlerAttacker].pp[gCurrMovePos] = gBattleMoves[gLastPrintedMoves[gBattlerTarget]].pp;
+            gBattleMons[gBattlerAttacker].moves[gCurrMovePos] = gBattleStruct->battlers[gBattlerTarget].lastPrintedMove;
+            gBattleMons[gBattlerAttacker].pp[gCurrMovePos] = gBattleMoves[gBattleStruct->battlers[gBattlerTarget].lastPrintedMove].pp;
             gActiveBattler = gBattlerAttacker;
 
             for (i = 0; i < MAX_MON_MOVES; i++)
@@ -13125,7 +13125,7 @@ static void Cmd_copymovepermanently(void)
             BtlController_EmitSetMonData(BUFFER_A, REQUEST_MOVES_PP_BATTLE, 0, sizeof(movePpData), &movePpData);
             MarkBattlerForControllerExec(gActiveBattler);
 
-            PREPARE_MOVE_BUFFER(gBattleTextBuff1, gLastPrintedMoves[gBattlerTarget])
+            PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->battlers[gBattlerTarget].lastPrintedMove)
 
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
