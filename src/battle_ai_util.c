@@ -3086,7 +3086,7 @@ u16 GetAllyChosenMove(u8 battlerId)
     else if (partnerBattler > battlerId) // Battler with the lower id chooses the move first.
         return gLastMoves[partnerBattler];
     else
-        return gBattleMons[partnerBattler].moves[gBattleStruct->chosenMovePositions[partnerBattler]];
+        return gBattleMons[partnerBattler].moves[gBattleStruct->battlers[partnerBattler].chosenMovePosition];
 }
 
 bool32 IsTargetingPartner(u8 battlerAtk, u8 battlerDef)

@@ -275,7 +275,7 @@ void HandleAction_UseMove(void)
     gBattleScripting.savedDmg = 0;
     gBattleCommunication[MISS_TYPE] = 0;
     gBattleScripting.savedMoveEffect = 0;
-    gCurrMovePos = gChosenMovePos = *(gBattleStruct->chosenMovePositions + gBattlerAttacker);
+    gCurrMovePos = gChosenMovePos = gBattleStruct->battlers[gBattlerAttacker].chosenMovePosition;
 
     // choose move
     if (gProtectStructs[gBattlerAttacker].noValidMoves)

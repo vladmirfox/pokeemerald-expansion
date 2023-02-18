@@ -774,7 +774,7 @@ void RecordedBattle_CheckMovesetChanges(u8 mode)
 
                         SetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_PP_BONUSES, &ppBonusSet);
                     }
-                    gChosenMoveByBattler[battlerId] = gBattleMons[battlerId].moves[*(gBattleStruct->chosenMovePositions + battlerId)];
+                    gChosenMoveByBattler[battlerId] = gBattleMons[battlerId].moves[gBattleStruct->battlers[battlerId].chosenMovePosition];
                 }
             }
         }

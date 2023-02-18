@@ -4044,7 +4044,7 @@ static void HandleTurnActionSelectionState(void)
                     else if (gDisableStructs[gActiveBattler].encoredMove != 0)
                     {
                         gChosenMoveByBattler[gActiveBattler] = gDisableStructs[gActiveBattler].encoredMove;
-                        *(gBattleStruct->chosenMovePositions + gActiveBattler) = gDisableStructs[gActiveBattler].encoredMovePos;
+                        gBattleStruct->battlers[gActiveBattler].chosenMovePosition = gDisableStructs[gActiveBattler].encoredMovePos;
                         gBattleCommunication[gActiveBattler] = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
                         return;
                     }
@@ -4264,8 +4264,8 @@ static void HandleTurnActionSelectionState(void)
                                 RecordedBattle_SetBattlerAction(gActiveBattler, gBattleResources->bufferB[gActiveBattler][2]);
                                 RecordedBattle_SetBattlerAction(gActiveBattler, gBattleResources->bufferB[gActiveBattler][3]);
                             }
-                            *(gBattleStruct->chosenMovePositions + gActiveBattler) = gBattleResources->bufferB[gActiveBattler][2] & ~RET_MEGA_EVOLUTION;
-                            gChosenMoveByBattler[gActiveBattler] = gBattleMons[gActiveBattler].moves[*(gBattleStruct->chosenMovePositions + gActiveBattler)];
+                            gBattleStruct->battlers[gActiveBattler].chosenMovePosition = gBattleResources->bufferB[gActiveBattler][2] & ~RET_MEGA_EVOLUTION;
+                            gChosenMoveByBattler[gActiveBattler] = gBattleMons[gActiveBattler].moves[gBattleStruct->battlers[gActiveBattler].chosenMovePosition];
                             gBattleStruct->battlers[gActiveBattler].moveTarget = gBattleResources->bufferB[gActiveBattler][3];
                             if (gBattleResources->bufferB[gActiveBattler][2] & RET_MEGA_EVOLUTION)
                                 gBattleStruct->mega.toEvolve |= gBitTable[gActiveBattler];
@@ -4565,7 +4565,7 @@ s8 GetChosenMovePriority(u32 battlerId)
     if (gProtectStructs[battlerId].noValidMoves)
         move = MOVE_STRUGGLE;
     else
-        move = gBattleMons[battlerId].moves[*(gBattleStruct->chosenMovePositions + battlerId)];
+        move = gBattleMons[battlerId].moves[gBattleStruct->battlers[battlerId].chosenMovePosition];
 
     return GetMovePriority(battlerId, move);
 }
