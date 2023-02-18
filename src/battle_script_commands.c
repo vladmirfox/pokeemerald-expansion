@@ -1981,7 +1981,7 @@ static void Cmd_ppreduce(void)
     {
         gProtectStructs[gBattlerAttacker].notFirstStrike = TRUE;
         // For item Metronome, echoed voice
-        if (gCurrentMove == gBattleStrect->battlers[gBattlerAttacker].lastResultingMove
+        if (gCurrentMove == gBattleStruct->battlers[gBattlerAttacker].lastResultingMove
             && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
             && !WasUnableToUseMove(gBattlerAttacker)
             && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT) // Don't increment counter on first hit
@@ -2816,7 +2816,7 @@ static void CheckSetUnburden(u8 battlerId)
 {
     if (GetBattlerAbility(battlerId) == ABILITY_UNBURDEN)
     {
-        gBattleResources->flags->flags[battlerId] |= RESOURCE_FLAG_UNBURDEN;
+        gBattleStruct->battlers[battlerId].resourceFlags |= RESOURCE_FLAG_UNBURDEN;
         RecordAbilityBattle(battlerId, ABILITY_UNBURDEN);
     }
 }
@@ -2832,7 +2832,7 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
     gBattleMons[battlerStealer].item = gLastUsedItem;
 
     CheckSetUnburden(battlerItem);
-    gBattleResources->flags->flags[battlerStealer] &= ~RESOURCE_FLAG_UNBURDEN;
+    gBattleStruct->battlers[battlerStealer].resourceFlags &= ~RESOURCE_FLAG_UNBURDEN;
 
     gActiveBattler = battlerStealer;
     BtlController_EmitSetMonData(BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gLastUsedItem), &gLastUsedItem); // set attacker item
@@ -4980,7 +4980,7 @@ static void Cmd_setroost(void)
 {
     CMD_ARGS();
 
-    gBattleResources->flags->flags[gBattlerAttacker] |= RESOURCE_FLAG_ROOST;
+    gBattleStruct->battlers[gBattlerAttacker].resourceFlags |= RESOURCE_FLAG_ROOST;
 
     // Pure flying type.
     if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING && gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
@@ -5752,13 +5752,13 @@ static void Cmd_moveend(void)
                     if (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove)
                     {
                         gBattleStruct->battlers[gBattlerAttacker].lastMove = gChosenMove;
-                        gBattleStrect->battlers[gBattlerAttacker].lastResultingMove = gCurrentMove;
+                        gBattleStruct->battlers[gBattlerAttacker].lastResultingMove = gCurrentMove;
                     }
                 }
                 else
                 {
                     gBattleStruct->battlers[gBattlerAttacker].lastMove = MOVE_UNAVAILABLE;
-                    gBattleStrect->battlers[gBattlerAttacker].lastResultingMove = MOVE_UNAVAILABLE;
+                    gBattleStruct->battlers[gBattlerAttacker].lastResultingMove = MOVE_UNAVAILABLE;
                 }
 
                 if (!(gHitMarker & HITMARKER_FAINTED(gBattlerTarget)))
@@ -6104,9 +6104,9 @@ static void Cmd_moveend(void)
         case MOVEEND_EMERGENCY_EXIT: // Special case, because moves hitting multiple opponents stop after switching out
             for (i = 0; i < gBattlersCount; i++)
             {
-                if (gBattleResources->flags->flags[i] & RESOURCE_FLAG_EMERGENCY_EXIT)
+                if (gBattleStruct->battlers[i].resourceFlags & RESOURCE_FLAG_EMERGENCY_EXIT)
                 {
-                    gBattleResources->flags->flags[i] &= ~RESOURCE_FLAG_EMERGENCY_EXIT;
+                    gBattleStruct->battlers[i].resourceFlags &= ~RESOURCE_FLAG_EMERGENCY_EXIT;
                     gSpecialStatuses[i].emergencyExited = TRUE;
                     gBattlerTarget = gBattlerAbility = i;
                     BattleScriptPushCursor();
@@ -7730,7 +7730,7 @@ static void BestowItem(u32 battlerAtk, u32 battlerDef)
     gBattleMons[battlerDef].item = gLastUsedItem;
     BtlController_EmitSetMonData(BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[battlerDef].item), &gBattleMons[battlerDef].item);
     MarkBattlerForControllerExec(battlerDef);
-    gBattleResources->flags->flags[battlerDef] &= ~RESOURCE_FLAG_UNBURDEN;
+    gBattleStruct->battlers[battlerDef].resourceFlags &= ~RESOURCE_FLAG_UNBURDEN;
 }
 
 // Called by Cmd_removeitem. itemId represents the item that was removed, not being given.
@@ -11052,7 +11052,7 @@ static void Cmd_setprotectlike(void)
     bool32 fail = TRUE;
     bool32 notLastTurn = TRUE;
 
-    if (!(gBattleMoves[gBattleStrect->battlers[gBattlerAttacker].lastResultingMove].flags & FLAG_PROTECTION_MOVE))
+    if (!(gBattleMoves[gBattleStruct->battlers[gBattlerAttacker].lastResultingMove].flags & FLAG_PROTECTION_MOVE))
         gDisableStructs[gBattlerAttacker].protectUses = 0;
 
     if (gCurrentTurnActionNumber == (gBattlersCount - 1))
@@ -14346,8 +14346,8 @@ static void Cmd_tryswapitems(void)
             }
             else if (oldItemAtk == ITEM_NONE && *newItemAtk != ITEM_NONE)
             {
-                if (GetBattlerAbility(gBattlerAttacker) == ABILITY_UNBURDEN && gBattleResources->flags->flags[gBattlerAttacker] & RESOURCE_FLAG_UNBURDEN)
-                    gBattleResources->flags->flags[gBattlerAttacker] &= ~RESOURCE_FLAG_UNBURDEN;
+                if (GetBattlerAbility(gBattlerAttacker) == ABILITY_UNBURDEN && gBattleStruct->battlers[gBattlerAttacker].resourceFlags & RESOURCE_FLAG_UNBURDEN)
+                    gBattleStruct->battlers[gBattlerAttacker].resourceFlags &= ~RESOURCE_FLAG_UNBURDEN;
 
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ITEM_SWAP_TAKEN; // nothing -> <- target's item
             }

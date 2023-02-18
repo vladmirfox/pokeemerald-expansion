@@ -3142,9 +3142,9 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_ROOST: // Return flying type.
-            if (gBattleResources->flags->flags[gActiveBattler] & RESOURCE_FLAG_ROOST)
+            if (gBattleStruct->battlers[gActiveBattler].resourceFlags & RESOURCE_FLAG_ROOST)
             {
-                gBattleResources->flags->flags[gActiveBattler] &= ~RESOURCE_FLAG_ROOST;
+                gBattleStruct->battlers[gActiveBattler].resourceFlags &= ~RESOURCE_FLAG_ROOST;
                 gBattleMons[gActiveBattler].type1 = gBattleStruct->battlers[gActiveBattler].roostTypes[0];
                 gBattleMons[gActiveBattler].type2 = gBattleStruct->battlers[gActiveBattler].roostTypes[1];
             }
@@ -4760,7 +4760,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_TRACE:
             if (!(gSpecialStatuses[battler].traced))
             {
-                gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_TRACED;
+                gBattleStruct->battlers[battler].resourceFlags |= RESOURCE_FLAG_TRACED;
                 gSpecialStatuses[battler].traced = TRUE;
             }
             break;
@@ -5195,7 +5195,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 #endif
                 )
                 {
-                    if (!(gBattleResources->flags->flags[battler] & RESOURCE_FLAG_FLASH_FIRE))
+                    if (!(gBattleStruct->battlers[battler].resourceFlags & RESOURCE_FLAG_FLASH_FIRE))
                     {
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FLASH_FIRE_BOOST;
                         if (gProtectStructs[gBattlerAttacker].notFirstStrike)
@@ -5203,7 +5203,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         else
                             gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
 
-                        gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_FLASH_FIRE;
+                        gBattleStruct->battlers[battler].resourceFlags |= RESOURCE_FLAG_FLASH_FIRE;
                         effect = 3;
                     }
                     else
@@ -5375,7 +5375,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              // Not currently held by Sky Drop
              && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
             {
-                gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_EMERGENCY_EXIT;
+                gBattleStruct->battlers[battler].resourceFlags |= RESOURCE_FLAG_EMERGENCY_EXIT;
                 effect++;
             }
             break;
@@ -6085,7 +6085,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     case ABILITYEFFECT_TRACE2:
         for (i = 0; i < gBattlersCount; i++)
         {
-            if (gBattleMons[i].ability == ABILITY_TRACE && (gBattleResources->flags->flags[i] & RESOURCE_FLAG_TRACED))
+            if (gBattleMons[i].ability == ABILITY_TRACE && (gBattleStruct->battlers[i].resourceFlags & RESOURCE_FLAG_TRACED))
             {
                 u8 side = (BATTLE_OPPOSITE(GetBattlerPosition(i))) & BIT_SIDE; // side of the opposing pokemon
                 u8 target1 = GetBattlerAtPosition(side);
@@ -6118,7 +6118,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_TraceActivates;
                     }
-                    gBattleResources->flags->flags[i] &= ~RESOURCE_FLAG_TRACED;
+                    gBattleStruct->battlers[i].resourceFlags &= ~RESOURCE_FLAG_TRACED;
                     gBattleStruct->battlers[i].tracedAbility = gLastUsedAbility = gBattleMons[gActiveBattler].ability;
                     RecordAbilityBattle(gActiveBattler, gLastUsedAbility); // Record the opposing battler has this ability
                     battler = gBattlerAbility = gBattleScripting.battler = i;
@@ -6134,9 +6134,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         // Prints message only. separate from ABILITYEFFECT_ON_SWITCHIN bc activates before entry hazards
         for (i = 0; i < gBattlersCount; i++)
         {
-            if (gBattleMons[i].ability == ABILITY_NEUTRALIZING_GAS && !(gBattleResources->flags->flags[i] & RESOURCE_FLAG_NEUTRALIZING_GAS))
+            if (gBattleMons[i].ability == ABILITY_NEUTRALIZING_GAS && !(gBattleStruct->battlers[i].resourceFlags & RESOURCE_FLAG_NEUTRALIZING_GAS))
             {
-                gBattleResources->flags->flags[i] |= RESOURCE_FLAG_NEUTRALIZING_GAS;
+                gBattleStruct->battlers[i].resourceFlags |= RESOURCE_FLAG_NEUTRALIZING_GAS;
                 gBattlerAbility = i;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_NEUTRALIZING_GAS;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
@@ -9251,7 +9251,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(0.5));
         break;
     case ABILITY_FLASH_FIRE:
-        if (moveType == TYPE_FIRE && gBattleResources->flags->flags[battlerAtk] & RESOURCE_FLAG_FLASH_FIRE)
+        if (moveType == TYPE_FIRE && gBattleStruct->battlers[battlerAtk].resourceFlags & RESOURCE_FLAG_FLASH_FIRE)
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
     case ABILITY_SWARM:

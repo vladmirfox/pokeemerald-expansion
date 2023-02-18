@@ -45,11 +45,6 @@
 
 #define BATTLE_BUFFER_LINK_SIZE 0x1000
 
-struct ResourceFlags
-{
-    u32 flags[MAX_BATTLERS_COUNT];
-};
-
 #define RESOURCE_FLAG_FLASH_FIRE        0x1
 #define RESOURCE_FLAG_ROOST             0x2
 #define RESOURCE_FLAG_UNBURDEN          0x4
@@ -336,7 +331,6 @@ struct StatsArray
 struct BattleResources
 {
     struct SecretBase* secretBase;
-    struct ResourceFlags *flags;
     struct BattleScriptsStack* battleScriptsStack;
     struct BattleCallbacksStack* battleCallbackStack;
     struct StatsArray* beforeLvlUp;
@@ -682,6 +676,7 @@ struct BattleStruct
         struct TotemBoost totemBoost;
         u16 lastResultingMove;
         u16 lastPrintedMove;
+        u32 resourceFlags;
     } battlers[MAX_BATTLERS_COUNT];
 };
 

@@ -2948,11 +2948,11 @@ static void BattleStartClearSetData(void)
         gBattleStruct->battlers[i].lastMove = MOVE_NONE;
         gBattleStruct->battlers[i].lastHitByMove = MOVE_NONE;
         gBattleStruct->battlers[i].lastHitByType = TYPE_NORMAL;
-        gBattleStrect->battlers[i].lastResultingMove = MOVE_NONE;
+        gBattleStruct->battlers[i].lastResultingMove = MOVE_NONE;
         gBattleStruct->battlers[i].lastHitBy = 0xFF;
         gBattleStruct->battlers[i].lockedMove = MOVE_NONE;
         gBattleStruct->battlers[i].lastPrintedMove = MOVE_NONE;
-        gBattleResources->flags->flags[i] = 0;
+        gBattleStruct->battlers[i].resourceFlags = 0;
         gPalaceSelectionBattleScripts[i] = 0;
         gBattleStruct->battlers[i].lastTakenMove = MOVE_NONE;
         gBattleStruct->battlers[i].choicedMove = MOVE_NONE;
@@ -3120,7 +3120,7 @@ void SwitchInClearSetData(void)
     gBattleStruct->battlers[gActiveBattler].lastMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitByMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitByType = TYPE_NORMAL;
-    gBattleStrect->battlers[gActiveBattler].lastResultingMove = MOVE_NONE;
+    gBattleStruct->battlers[gActiveBattler].lastResultingMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastPrintedMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitBy = 0xFF;
 
@@ -3143,7 +3143,7 @@ void SwitchInClearSetData(void)
     }
 
     gBattleStruct->battlers[gActiveBattler].choicedMove = MOVE_NONE;
-    gBattleResources->flags->flags[gActiveBattler] = 0;
+    gBattleStruct->battlers[gActiveBattler].resourceFlags = 0;
     gCurrentMove = MOVE_NONE;
     gBattleStruct->arenaTurnCounter = 0xFF;
 
@@ -3219,7 +3219,7 @@ void FaintClearSetData(void)
     gBattleStruct->battlers[gActiveBattler].lastMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitByMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitByType = TYPE_NORMAL;
-    gBattleStrect->battlers[gActiveBattler].lastResultingMove = MOVE_NONE;
+    gBattleStruct->battlers[gActiveBattler].lastResultingMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastPrintedMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitBy = 0xFF;
 
@@ -3242,7 +3242,7 @@ void FaintClearSetData(void)
         gBattleStruct->battlers[i].lastTakenMoveFrom[gActiveBattler] = MOVE_NONE;
     }
 
-    gBattleResources->flags->flags[gActiveBattler] = 0;
+    gBattleStruct->battlers[gActiveBattler].resourceFlags = 0;
 
     gBattleMons[gActiveBattler].type1 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[0];
     gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];
@@ -4529,7 +4529,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     // various effects
     if (gSideStatuses[GET_BATTLER_SIDE(battlerId)] & SIDE_STATUS_TAILWIND)
         speed *= 2;
-    if (gBattleResources->flags->flags[battlerId] & RESOURCE_FLAG_UNBURDEN)
+    if (gBattleStruct->battlers[battlerId].resourceFlags & RESOURCE_FLAG_UNBURDEN)
         speed *= 2;
 
     // paralysis drop
