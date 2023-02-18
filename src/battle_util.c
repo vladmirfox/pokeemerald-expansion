@@ -4143,9 +4143,9 @@ static void ShouldChangeFormInWeather(u8 battler)
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&party[i], MON_DATA_SPECIES) == SPECIES_EISCUE_NOICE_FACE)
-            gBattleStruct->allowedToChangeFormInWeather[i][side] = TRUE;
+            gBattleStruct->sides[side].party[i].allowedToChangeFormInWeather = TRUE;
         else
-            gBattleStruct->allowedToChangeFormInWeather[i][side] = FALSE;
+            gBattleStruct->sides[side].party[i].allowedToChangeFormInWeather = FALSE;
     }
 }
 
@@ -6198,9 +6198,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (IsBattlerWeatherAffected(battler, B_WEATHER_HAIL)
              && gBattleMons[battler].species == SPECIES_EISCUE_NOICE_FACE
              && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
-             && gBattleStruct->allowedToChangeFormInWeather[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)])
+             && gBattleStruct->sides[GetBattlerSide(battler)].party[gBattlerPartyIndexes[battler]].allowedToChangeFormInWeather)
             {
-                gBattleStruct->allowedToChangeFormInWeather[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)] = FALSE;
+                gBattleStruct->sides[GetBattlerSide(battler)].party[gBattlerPartyIndexes[battler]].allowedToChangeFormInWeather = FALSE;
                 gBattleMons[battler].species = SPECIES_EISCUE;
                 BattleScriptPushCursorAndCallback(BattleScript_BattlerFormChangeWithStringEnd3);
                 effect++;

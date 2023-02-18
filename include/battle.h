@@ -618,7 +618,6 @@ struct BattleStruct
     u8 attackerBeforeBounce:2;
     u8 beatUpSlot:3;
     u16 overwrittenAbilities[MAX_BATTLERS_COUNT];    // abilities overwritten during battle (keep separate from battle history in case of switching)
-    bool8 allowedToChangeFormInWeather[PARTY_SIZE][2]; // For each party member and side, used by Ice Face.
 
     struct Field
     {
@@ -635,6 +634,7 @@ struct BattleStruct
             u16 originalItem;
             bool8 itemStolen;
             bool8 battleBondTransformed;
+            bool8 allowedToChangeFormInWeather;
         } party[PARTY_SIZE];
     } sides[NUM_BATTLE_SIDES];
 
