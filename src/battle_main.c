@@ -2967,7 +2967,7 @@ static void BattleStartClearSetData(void)
         gBattleResources->flags->flags[i] = 0;
         gPalaceSelectionBattleScripts[i] = 0;
         gBattleStruct->battlers[i].lastTakenMove = MOVE_NONE;
-        gBattleStruct->choicedMove[i] = MOVE_NONE;
+        gBattleStruct->battlers[i].choicedMove = MOVE_NONE;
         gBattleStruct->changedItems[i] = 0;
         gBattleStruct->lastTakenMoveFrom[i][0] = MOVE_NONE;
         gBattleStruct->lastTakenMoveFrom[i][1] = MOVE_NONE;
@@ -3157,7 +3157,7 @@ void SwitchInClearSetData(void)
         gBattleStruct->lastTakenMoveFrom[i][gActiveBattler] = 0;
     }
 
-    gBattleStruct->choicedMove[gActiveBattler] = MOVE_NONE;
+    gBattleStruct->battlers[gActiveBattler].choicedMove = MOVE_NONE;
     gBattleResources->flags->flags[gActiveBattler] = 0;
     gCurrentMove = MOVE_NONE;
     gBattleStruct->arenaTurnCounter = 0xFF;
@@ -3238,7 +3238,7 @@ void FaintClearSetData(void)
     gLastPrintedMoves[gActiveBattler] = MOVE_NONE;
     gLastHitBy[gActiveBattler] = 0xFF;
 
-    gBattleStruct->choicedMove[gActiveBattler] = MOVE_NONE;
+    gBattleStruct->battlers[gActiveBattler].choicedMove = MOVE_NONE;
     gBattleStruct->sameMoveTurns[gActiveBattler] = 0;
     gBattleStruct->battlers[gActiveBattler].lastTakenMove = MOVE_NONE;
     gBattleStruct->lastTakenMoveFrom[gActiveBattler][0] = 0;

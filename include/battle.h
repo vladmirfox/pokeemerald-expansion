@@ -570,7 +570,6 @@ struct BattleStruct
     void (*savedCallback)(void);
     u8 AI_itemType[2];
     u8 AI_itemFlags[2];
-    u16 choicedMove[MAX_BATTLERS_COUNT];
     u16 changedItems[MAX_BATTLERS_COUNT];
     u8 switchInItemsCounter;
     u8 arenaTurnCounter;
@@ -669,6 +668,7 @@ struct BattleStruct
         u8 stateAfterSelectionScript;
         u16 lastTakenMove; // Last move that the battler was hit with.
         u16 chosenItem;
+        u16 choicedMove;
     } battlers[MAX_BATTLERS_COUNT];
 };
 

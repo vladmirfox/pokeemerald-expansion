@@ -1740,7 +1740,7 @@ u8 TrySetCantSelectMoveBattleScript(void)
     u8 moveId = gBattleResources->bufferB[gActiveBattler][2] & ~RET_MEGA_EVOLUTION;
     u32 move = gBattleMons[gActiveBattler].moves[moveId];
     u32 holdEffect = GetBattlerHoldEffect(gActiveBattler, TRUE);
-    u16 *choicedMove = &gBattleStruct->choicedMove[gActiveBattler];
+    u16 *choicedMove = &gBattleStruct->battlers[gActiveBattler].choicedMove;
 
     if (gDisableStructs[gActiveBattler].disabledMove == move && move != MOVE_NONE)
     {
@@ -1959,7 +1959,7 @@ u8 TrySetCantSelectMoveBattleScript(void)
 u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u16 check)
 {
     u8 holdEffect = GetBattlerHoldEffect(battlerId, TRUE);
-    u16 *choicedMove = &gBattleStruct->choicedMove[battlerId];
+    u16 *choicedMove = &gBattleStruct->battlers[battlerId].choicedMove;
     s32 i;
 
     gPotentialItemEffectBattler = battlerId;

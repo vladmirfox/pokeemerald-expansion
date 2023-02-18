@@ -2842,7 +2842,7 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
     BtlController_EmitSetMonData(BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[gBattlerTarget].item), &gBattleMons[battlerItem].item);  // remove target item
     MarkBattlerForControllerExec(battlerItem);
 
-    gBattleStruct->choicedMove[battlerItem] = 0;
+    gBattleStruct->battlers[battlerItem].choicedMove = MOVE_NONE;
 
     TrySaveExchangedItem(battlerItem, gLastUsedItem);
 }
@@ -5304,7 +5304,7 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
 
             gLastUsedItem = gBattleMons[battlerDef].item;
             gBattleMons[battlerDef].item = 0;
-            gBattleStruct->choicedMove[battlerDef] = 0;
+            gBattleStruct->battlers[battlerDef].choicedMove = MOVE_NONE;
             gWishFutureKnock.knockedOffMons[side] |= gBitTable[gBattlerPartyIndexes[battlerDef]];
             CheckSetUnburden(battlerDef);
 
@@ -5360,7 +5360,7 @@ static void Cmd_moveend(void)
     endState = cmd->endState;
 
     holdEffectAtk = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
-    choicedMoveAtk = &gBattleStruct->choicedMove[gBattlerAttacker];
+    choicedMoveAtk = &gBattleStruct->battlers[gBattlerAttacker].choicedMove;
     GET_MOVE_TYPE(gCurrentMove, moveType);
 
     do
@@ -8944,11 +8944,11 @@ static void Cmd_various(void)
 
             for (i = 0; i < MAX_MON_MOVES; i++)
             {
-                if (gBattleMons[gActiveBattler].moves[i] == gBattleStruct->choicedMove[gActiveBattler])
+                if (gBattleMons[gActiveBattler].moves[i] == gBattleStruct->battlers[gActiveBattler].choicedMove)
                     break;
             }
             if (i == MAX_MON_MOVES)
-                gBattleStruct->choicedMove[gActiveBattler] = MOVE_NONE;
+                gBattleStruct->battlers[gActiveBattler].choicedMove = MOVE_NONE;
         }
         break;
     }
@@ -14323,8 +14323,8 @@ static void Cmd_tryswapitems(void)
             BtlController_EmitSetMonData(BUFFER_A, REQUEST_HELDITEM_BATTLE, 0, sizeof(gBattleMons[gBattlerTarget].item), &gBattleMons[gBattlerTarget].item);
             MarkBattlerForControllerExec(gBattlerTarget);
 
-            gBattleStruct->choicedMove[gBattlerTarget] = MOVE_NONE;
-            gBattleStruct->choicedMove[gBattlerAttacker] = MOVE_NONE;
+            gBattleStruct->battlers[gBattlerTarget].choicedMove = MOVE_NONE;
+            gBattleStruct->battlers[gBattlerAttacker].choicedMove = MOVE_NONE;
 
             gBattlescriptCurrInstr = cmd->nextInstr;
 
