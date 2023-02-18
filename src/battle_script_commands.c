@@ -5332,7 +5332,7 @@ static u32 GetNextTarget(u32 moveTarget)
     {
         if (i != gBattlerAttacker
             && IsBattlerAlive(i)
-            && !(gBattleStruct->targetsDone[gBattlerAttacker] & gBitTable[i])
+            && !(gBattleStruct->battlers[gBattlerAttacker].targetsDone & gBitTable[i])
             && (GetBattlerSide(i) != GetBattlerSide(gBattlerAttacker) || moveTarget == MOVE_TARGET_FOES_AND_ALLY))
                 break;
     }
@@ -5828,7 +5828,7 @@ static void Cmd_moveend(void)
              && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
                 gProtectStructs[gBattlerAttacker].targetAffected = TRUE;
 
-            gBattleStruct->targetsDone[gBattlerAttacker] |= gBitTable[gBattlerTarget];
+            gBattleStruct->battlers[gBattlerAttacker].targetsDone |= gBitTable[gBattlerTarget];
             if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
                 && gBattleTypeFlags & BATTLE_TYPE_DOUBLE
                 && !gProtectStructs[gBattlerAttacker].chargingTurn
@@ -5854,8 +5854,8 @@ static void Cmd_moveend(void)
                 {
                     u8 originalBounceTarget = gBattlerAttacker;
                     gBattlerAttacker = gBattleStruct->attackerBeforeBounce;
-                    gBattleStruct->targetsDone[gBattlerAttacker] |= gBitTable[originalBounceTarget];
-                    gBattleStruct->targetsDone[originalBounceTarget] = 0;
+                    gBattleStruct->battlers[gBattlerAttacker].targetsDone |= gBitTable[originalBounceTarget];
+                    gBattleStruct->battlers[originalBounceTarget].targetsDone = 0;
 
                     nextTarget = GetNextTarget(moveTarget);
                     if (nextTarget != MAX_BATTLERS_COUNT)
@@ -6186,7 +6186,7 @@ static void Cmd_moveend(void)
                 CancelMultiTurnMoves(gBattlerAttacker); // Cancel it
         #endif
 
-            gBattleStruct->targetsDone[gBattlerAttacker] = 0;
+            gBattleStruct->battlers[gBattlerAttacker].targetsDone = 0;
             gProtectStructs[gBattlerAttacker].usesBouncedMove = FALSE;
             gProtectStructs[gBattlerAttacker].targetAffected = FALSE;
             gBattleStruct->battlers[gBattlerAttacker].ateBoost = FALSE;
