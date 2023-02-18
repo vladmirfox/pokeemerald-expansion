@@ -614,7 +614,6 @@ struct BattleStruct
     u8 friskedBattler; // Frisk needs to identify 2 battlers in double battles.
     bool8 friskedAbility; // If identifies two mons, show the ability pop-up only once.
     u16 moveEffect2; // For Knock Off
-    u16 changedSpecies[PARTY_SIZE]; // For Zygarde or future forms when multiple mons can change into the same pokemon.
     u8 quickClawBattlerId;
     struct StolenItem itemStolen[PARTY_SIZE];  // Player's team that had items stolen (two bytes per party member)
     u8 blunderPolicy:1; // should blunder policy activate
@@ -642,6 +641,7 @@ struct BattleStruct
         {
             u16 usedHeldItem; // For harvest, recycle.
             bool8 ateBerry;
+            u16 changedSpecies;
         } party[PARTY_SIZE];
     } sides[NUM_BATTLE_SIDES];
 

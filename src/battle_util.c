@@ -5056,7 +5056,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if ((gBattleMons[battler].species == SPECIES_ZYGARDE || gBattleMons[battler].species == SPECIES_ZYGARDE_10)
                     && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / 2)
                 {
-                    gBattleStruct->changedSpecies[gBattlerPartyIndexes[battler]] = gBattleMons[battler].species;
+                    gBattleStruct->sides[GetBattlerSide(battler)].party[gBattlerPartyIndexes[battler]].changedSpecies = gBattleMons[battler].species;
                     gBattleMons[battler].species = SPECIES_ZYGARDE_COMPLETE;
                     BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
                     effect++;
@@ -5772,7 +5772,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 if (gBattleMons[gBattlerTarget].species == SPECIES_CRAMORANT_GORGING)
                 {
-                    gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerTarget]] = gBattleMons[gBattlerTarget].species;
+                    gBattleStruct->sides[GetBattlerSide(gBattlerTarget)].party[gBattlerPartyIndexes[gBattlerTarget]].changedSpecies = gBattleMons[gBattlerTarget].species;
                     gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
                     if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
                     {
@@ -5786,7 +5786,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 else if (gBattleMons[gBattlerTarget].species == SPECIES_CRAMORANT_GULPING)
                 {
-                    gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerTarget]] = gBattleMons[gBattlerTarget].species;
+                    gBattleStruct->sides[GetBattlerSide(gBattlerTarget)].party[gBattlerPartyIndexes[gBattlerTarget]].changedSpecies = gBattleMons[gBattlerTarget].species;
                     gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
                     if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
                     {
@@ -10141,8 +10141,8 @@ void UndoMegaEvolution(u32 monId)
     // While not exactly a mega evolution, Zygarde follows the same rules.
     else if (GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, NULL) == SPECIES_ZYGARDE_COMPLETE)
     {
-        SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &gBattleStruct->changedSpecies[monId]);
-        gBattleStruct->changedSpecies[monId] = 0;
+        SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &gBattleStruct->sides[B_SIDE_PLAYER].party[monId].changedSpecies);
+        gBattleStruct->sides[B_SIDE_PLAYER].party[monId].changedSpecies = SPECIES_NONE;
         CalculateMonStats(&gPlayerParty[monId]);
     }
 }
