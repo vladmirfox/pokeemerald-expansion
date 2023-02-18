@@ -2972,7 +2972,7 @@ static void BattleStartClearSetData(void)
         for (j = 0; j < MAX_BATTLERS_COUNT; j++)
             gBattleStruct->battlers[i].lastTakenMoveFrom[j] = MOVE_NONE;
         gBattleStruct->AI_monToSwitchIntoId[i] = PARTY_SIZE;
-        gBattleStruct->skyDropTargets[i] = 0xFF;
+        gBattleStruct->battlers[i].skyDropTarget = 0xFF;
         gBattleStruct->overwrittenAbilities[i] = ABILITY_NONE;
     }
 
@@ -3268,14 +3268,14 @@ void FaintClearSetData(void)
     gBattleStruct->overwrittenAbilities[gActiveBattler] = ABILITY_NONE;
 
     // If the fainted mon was involved in a Sky Drop
-    if (gBattleStruct->skyDropTargets[gActiveBattler] != 0xFF)
+    if (gBattleStruct->battlers[gActiveBattler].skyDropTarget != 0xFF)
     {
         // Get battler id of the other Pokemon involved in this Sky Drop
-        u8 otherSkyDropper = gBattleStruct->skyDropTargets[gActiveBattler];
+        u8 otherSkyDropper = gBattleStruct->battlers[gActiveBattler].skyDropTarget;
 
         // Clear Sky Drop data
-        gBattleStruct->skyDropTargets[gActiveBattler] = 0xFF;
-        gBattleStruct->skyDropTargets[otherSkyDropper] = 0xFF;
+        gBattleStruct->battlers[gActiveBattler].skyDropTarget = 0xFF;
+        gBattleStruct->battlers[otherSkyDropper].skyDropTarget = 0xFF;
 
         // If the other Pokemon involved in this Sky Drop was the target, not the attacker
         if (gStatuses3[otherSkyDropper] & STATUS3_SKY_DROPPED)

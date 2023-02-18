@@ -614,7 +614,6 @@ struct BattleStruct
     u8 ballSpriteIds[2];    // item gfx, window gfx
     u8 stickyWebUser;
     u8 appearedInBattle; // Bitfield to track which Pokemon appeared in battle. Used for Burmy's form change
-    u8 skyDropTargets[MAX_BATTLERS_COUNT]; // For Sky Drop, to account for if multiple Pokemon use Sky Drop in a double battle.
     // When using a move which hits multiple opponents which is then bounced by a target, we need to make sure, the move hits both opponents, the one with bounce, and the one without.
     u8 attackerBeforeBounce:2;
     u8 beatUpSlot:3;
@@ -664,6 +663,7 @@ struct BattleStruct
         u16 hpBeforeMove; // HP before the current move was used.
         struct Illusion illusion;
         u8 sameMoveTurns; // Number of times a move has been SUCCESSFULLY used consecutively.
+        u8 skyDropTarget;
     } battlers[MAX_BATTLERS_COUNT];
 };
 

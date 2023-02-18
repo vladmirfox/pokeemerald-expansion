@@ -1474,10 +1474,10 @@ void CancelMultiTurnMoves(u8 battler)
         gStatuses3[battler] &= ~(STATUS3_SEMI_INVULNERABLE);
 
     // Check to see if this Pokemon was in the middle of using Sky Drop. If so, release the target.
-    if (gBattleStruct->skyDropTargets[battler] != 0xFF && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
+    if (gBattleStruct->battlers[battler].skyDropTarget != 0xFF && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
     {
         // Get the target's battler id
-        u8 otherSkyDropper = gBattleStruct->skyDropTargets[battler];
+        u8 otherSkyDropper = gBattleStruct->battlers[battler].skyDropTarget;
 
         // Clears sky_dropped and on_air statuses
         gStatuses3[otherSkyDropper] &= ~(STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
@@ -1505,13 +1505,13 @@ void CancelMultiTurnMoves(u8 battler)
                 // If this CancelMultiTurnMoves is occuring due to attackcanceller
                 if (gBattlescriptCurrInstr[0] == 0x0)
                 {
-                    gBattleStruct->skyDropTargets[battler] = 0xFE;
+                    gBattleStruct->battlers[battler].skyDropTarget = 0xFE;
                 }
                 // If this CancelMultiTurnMoves is occuring due to VARIOUS_GRAVITY_ON_AIRBORNE_MONS
                 // Reapplying STATUS3_SKY_DROPPED allows for avoiding unecessary messages when Gravity is applied to the target.
                 else if (gBattlescriptCurrInstr[0] == 0x76 && gBattlescriptCurrInstr[2] == 76)
                 {
-                    gBattleStruct->skyDropTargets[battler] = 0xFE;
+                    gBattleStruct->battlers[battler].skyDropTarget = 0xFE;
                     gStatuses3[otherSkyDropper] |= STATUS3_SKY_DROPPED;
                 }
                 // If this CancelMultiTurnMoves is occuring due to cancelmultiturnmoves script
@@ -1531,10 +1531,10 @@ void CancelMultiTurnMoves(u8 battler)
         }
 
         // Clear skyDropTargets data, unless this CancelMultiTurnMoves is caused by Yawn, attackcanceler, or VARIOUS_GRAVITY_ON_AIRBORNE_MONS
-        if (!(gBattleMons[otherSkyDropper].status2 & STATUS2_LOCK_CONFUSE) && gBattleStruct->skyDropTargets[battler] < 4)
+        if (!(gBattleMons[otherSkyDropper].status2 & STATUS2_LOCK_CONFUSE) && gBattleStruct->battlers[battler].skyDropTarget < MAX_BATTLERS_COUNT)
         {
-            gBattleStruct->skyDropTargets[battler] = 0xFF;
-            gBattleStruct->skyDropTargets[otherSkyDropper] = 0xFF;
+            gBattleStruct->battlers[battler].skyDropTarget = 0xFF;
+            gBattleStruct->battlers[otherSkyDropper].skyDropTarget = 0xFF;
         }
     }
 
