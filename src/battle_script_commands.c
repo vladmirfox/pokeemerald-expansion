@@ -3480,7 +3480,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     {
                         StealTargetItem(gBattlerAttacker, gBattlerTarget);  // Attacker steals target item
                         gBattleMons[gBattlerAttacker].item = ITEM_NONE; // Item assigned later on with thief (see MOVEEND_CHANGED_ITEMS)
-                        gBattleStruct->changedItems[gBattlerAttacker] = gLastUsedItem; // Stolen item to be assigned later
+                        gBattleStruct->battlers[gBattlerAttacker].changedItem = gLastUsedItem; // Stolen item to be assigned later
                         BattleScriptPush(gBattlescriptCurrInstr + 1);
                         gBattlescriptCurrInstr = BattleScript_ItemSteal;
                     }
@@ -5573,10 +5573,10 @@ static void Cmd_moveend(void)
         case MOVEEND_CHANGED_ITEMS: // changed held items
             for (i = 0; i < gBattlersCount; i++)
             {
-                if (gBattleStruct->changedItems[i] != ITEM_NONE)
+                if (gBattleStruct->battlers[i].changedItem != ITEM_NONE)
                 {
-                    gBattleMons[i].item = gBattleStruct->changedItems[i];
-                    gBattleStruct->changedItems[i] = ITEM_NONE;
+                    gBattleMons[i].item = gBattleStruct->battlers[i].changedItem;
+                    gBattleStruct->battlers[i].changedItem = ITEM_NONE;
                 }
             }
             gBattleScripting.moveendState++;
@@ -7737,7 +7737,7 @@ static void BestowItem(u32 battlerAtk, u32 battlerDef)
 static bool32 TrySymbiosis(u32 battler, u32 itemId)
 {
     if (!gBattleStruct->itemStolen[gBattlerPartyIndexes[battler]].stolen
-        && gBattleStruct->changedItems[battler] == ITEM_NONE
+        && gBattleStruct->battlers[battler].changedItem == ITEM_NONE
         && GetBattlerHoldEffect(battler, TRUE) != HOLD_EFFECT_EJECT_BUTTON
         && GetBattlerHoldEffect(battler, TRUE) != HOLD_EFFECT_EJECT_PACK
     #if B_SYMBIOSIS_GEMS >= GEN_7
@@ -14305,7 +14305,7 @@ static void Cmd_tryswapitems(void)
         {
             u16 oldItemAtk, *newItemAtk;
 
-            newItemAtk = &gBattleStruct->changedItems[gBattlerAttacker];
+            newItemAtk = &gBattleStruct->battlers[gBattlerAttacker].changedItem;
             oldItemAtk = gBattleMons[gBattlerAttacker].item;
             *newItemAtk = gBattleMons[gBattlerTarget].item;
 
