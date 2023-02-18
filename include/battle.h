@@ -597,7 +597,6 @@ struct BattleStruct
     u8 magnitudeBasePower;
     u8 presentBasePower;
     u8 savedBattlerTarget;
-    bool8 ateBoost[MAX_BATTLERS_COUNT];
     u8 activeAbilityPopUps; // as bits for each battler
     u8 abilityPopUpSpriteIds[MAX_BATTLERS_COUNT][2];    // two per battler
     bool8 throwingPokeBall;
@@ -669,6 +668,7 @@ struct BattleStruct
         u16 changedItem;
         u16 lastTakenMoveFrom[MAX_BATTLERS_COUNT];
         u8 roostTypes[2];
+        bool8 ateBoost;
     } battlers[MAX_BATTLERS_COUNT];
 };
 

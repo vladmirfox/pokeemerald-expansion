@@ -5011,7 +5011,7 @@ static void CheckQuickClaw_CustapBerryActivation(void)
     gBattleStruct->dynamicMoveType = 0;
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
-        gBattleStruct->ateBoost[i] = FALSE;
+        gBattleStruct->battlers[i].ateBoost = FALSE;
         gSpecialStatuses[i].gemBoost = FALSE;
     }
 
@@ -5420,7 +5420,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         return;
 
     gBattleStruct->dynamicMoveType = 0;
-    gBattleStruct->ateBoost[battlerAtk] = 0;
+    gBattleStruct->battlers[battlerAtk].ateBoost = FALSE;
     gSpecialStatuses[battlerAtk].gemBoost = FALSE;
 
     if (gBattleMoves[move].effect == EFFECT_WEATHER_BALL)
@@ -5511,7 +5511,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              )
     {
         gBattleStruct->dynamicMoveType = ateType | F_DYNAMIC_TYPE_2;
-        gBattleStruct->ateBoost[battlerAtk] = 1;
+        gBattleStruct->battlers[battlerAtk].ateBoost = TRUE;
     }
     else if (gBattleMoves[move].type != TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
@@ -5519,7 +5519,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && attackerAbility == ABILITY_NORMALIZE)
     {
         gBattleStruct->dynamicMoveType = TYPE_NORMAL | F_DYNAMIC_TYPE_2;
-        gBattleStruct->ateBoost[battlerAtk] = 1;
+        gBattleStruct->battlers[battlerAtk].ateBoost = TRUE;
     }
     else if (gBattleMoves[move].flags & FLAG_SOUND
              && attackerAbility == ABILITY_LIQUID_VOICE)
