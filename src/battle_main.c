@@ -2966,7 +2966,7 @@ static void BattleStartClearSetData(void)
         gLastPrintedMoves[i] = MOVE_NONE;
         gBattleResources->flags->flags[i] = 0;
         gPalaceSelectionBattleScripts[i] = 0;
-        gBattleStruct->lastTakenMove[i] = MOVE_NONE;
+        gBattleStruct->battlers[i].lastTakenMove = MOVE_NONE;
         gBattleStruct->choicedMove[i] = MOVE_NONE;
         gBattleStruct->changedItems[i] = 0;
         gBattleStruct->lastTakenMoveFrom[i][0] = MOVE_NONE;
@@ -3137,7 +3137,7 @@ void SwitchInClearSetData(void)
     gLastPrintedMoves[gActiveBattler] = MOVE_NONE;
     gLastHitBy[gActiveBattler] = 0xFF;
 
-    gBattleStruct->lastTakenMove[gActiveBattler] = 0;
+    gBattleStruct->battlers[gActiveBattler].lastTakenMove = MOVE_NONE;
     gBattleStruct->sameMoveTurns[gActiveBattler] = 0;
     gBattleStruct->lastTakenMoveFrom[gActiveBattler][0] = 0;
     gBattleStruct->lastTakenMoveFrom[gActiveBattler][1] = 0;
@@ -3152,7 +3152,7 @@ void SwitchInClearSetData(void)
     for (i = 0; i < gBattlersCount; i++)
     {
         if (i != gActiveBattler && GetBattlerSide(i) != GetBattlerSide(gActiveBattler))
-            gBattleStruct->lastTakenMove[i] = MOVE_NONE;
+            gBattleStruct->battlers[i].lastTakenMove = MOVE_NONE;
 
         gBattleStruct->lastTakenMoveFrom[i][gActiveBattler] = 0;
     }
@@ -3240,7 +3240,7 @@ void FaintClearSetData(void)
 
     gBattleStruct->choicedMove[gActiveBattler] = MOVE_NONE;
     gBattleStruct->sameMoveTurns[gActiveBattler] = 0;
-    gBattleStruct->lastTakenMove[gActiveBattler] = MOVE_NONE;
+    gBattleStruct->battlers[gActiveBattler].lastTakenMove = MOVE_NONE;
     gBattleStruct->lastTakenMoveFrom[gActiveBattler][0] = 0;
     gBattleStruct->lastTakenMoveFrom[gActiveBattler][1] = 0;
     gBattleStruct->lastTakenMoveFrom[gActiveBattler][2] = 0;
@@ -3254,7 +3254,7 @@ void FaintClearSetData(void)
     for (i = 0; i < gBattlersCount; i++)
     {
         if (i != gActiveBattler && GetBattlerSide(i) != GetBattlerSide(gActiveBattler))
-            gBattleStruct->lastTakenMove[i] = MOVE_NONE;
+            gBattleStruct->battlers[i].lastTakenMove = MOVE_NONE;
 
         gBattleStruct->lastTakenMoveFrom[i][gActiveBattler] = 0;
     }

@@ -562,7 +562,6 @@ struct BattleStruct
     u8 wallyMovesState;
     u8 wallyWaitFrames;
     u8 wallyMoveFrames;
-    u16 lastTakenMove[MAX_BATTLERS_COUNT]; // Last move that a battler was hit with.
     u16 hpOnSwitchout[NUM_BATTLE_SIDES];
     u32 savedBattleTypeFlags;
     u16 abilityPreventingSwitchout;
@@ -666,6 +665,7 @@ struct BattleStruct
         u8 monToSwitchIntoIndex;
         u8 chosenMovePosition;
         u8 stateAfterSelectionScript;
+        u16 lastTakenMove; // Last move that the battler was hit with.
     } battlers[MAX_BATTLERS_COUNT];
 };
 
