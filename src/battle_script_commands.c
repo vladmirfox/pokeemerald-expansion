@@ -1629,7 +1629,7 @@ static void Cmd_attackcanceler(void)
         CancelMultiTurnMoves(gBattlerAttacker);
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         gLastLandedMoves[gBattlerTarget] = 0;
-        gLastHitByType[gBattlerTarget] = 0;
+        gBattleStruct->battlers[gBattlerTarget].lastHitByType = TYPE_NORMAL;
 
         if (gSpecialStatuses[gBattlerAttacker].parentalBondState == PARENTAL_BOND_1ST_HIT)
         {
@@ -1656,7 +1656,7 @@ static bool32 JumpIfMoveFailed(u8 adder, u16 move)
     if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
     {
         gLastLandedMoves[gBattlerTarget] = 0;
-        gLastHitByType[gBattlerTarget] = 0;
+        gBattleStruct->battlers[gBattlerTarget].lastHitByType = TYPE_NORMAL;
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         return TRUE;
     }
@@ -5773,7 +5773,7 @@ static void Cmd_moveend(void)
                     else
                     {
                         gLastLandedMoves[gBattlerTarget] = gCurrentMove;
-                        GET_MOVE_TYPE(gCurrentMove, gLastHitByType[gBattlerTarget]);
+                        GET_MOVE_TYPE(gCurrentMove, gBattleStruct->battlers[gBattlerTarget].lastHitByType);
                     }
                 }
                 else
@@ -13034,7 +13034,7 @@ static void Cmd_settypetorandomresistance(void)
     else
     {
         u32 i, resistTypes = 0;
-        u32 hitByType = gLastHitByType[gBattlerAttacker];
+        u32 hitByType = gBattleStruct->battlers[gBattlerAttacker].lastHitByType;
 
         for (i = 0; i < NUMBER_OF_MON_TYPES; i++) // Find all types that resist.
         {
