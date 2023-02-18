@@ -680,6 +680,7 @@ struct BattleStruct
         u16 chosenMove;
         u32 transformPersonality;
         struct TotemBoost totemBoost;
+        u16 lastResultingMove;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
@@ -934,7 +935,6 @@ extern u8 gChosenActionByBattler[MAX_BATTLERS_COUNT];
 extern const u8 *gSelectionBattleScripts[MAX_BATTLERS_COUNT];
 extern const u8 *gPalaceSelectionBattleScripts[MAX_BATTLERS_COUNT];
 extern u16 gLastPrintedMoves[MAX_BATTLERS_COUNT];
-extern u16 gLastResultingMoves[MAX_BATTLERS_COUNT];
 extern u16 gLastUsedMove;
 extern u16 gMoveResultFlags;
 extern u32 gHitMarker;

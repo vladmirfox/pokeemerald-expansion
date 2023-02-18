@@ -1981,7 +1981,7 @@ static void Cmd_ppreduce(void)
     {
         gProtectStructs[gBattlerAttacker].notFirstStrike = TRUE;
         // For item Metronome, echoed voice
-        if (gCurrentMove == gLastResultingMoves[gBattlerAttacker]
+        if (gCurrentMove == gBattleStrect->battlers[gBattlerAttacker].lastResultingMove
             && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
             && !WasUnableToUseMove(gBattlerAttacker)
             && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT) // Don't increment counter on first hit
@@ -5752,13 +5752,13 @@ static void Cmd_moveend(void)
                     if (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove)
                     {
                         gBattleStruct->battlers[gBattlerAttacker].lastMove = gChosenMove;
-                        gLastResultingMoves[gBattlerAttacker] = gCurrentMove;
+                        gBattleStrect->battlers[gBattlerAttacker].lastResultingMove = gCurrentMove;
                     }
                 }
                 else
                 {
                     gBattleStruct->battlers[gBattlerAttacker].lastMove = MOVE_UNAVAILABLE;
-                    gLastResultingMoves[gBattlerAttacker] = MOVE_UNAVAILABLE;
+                    gBattleStrect->battlers[gBattlerAttacker].lastResultingMove = MOVE_UNAVAILABLE;
                 }
 
                 if (!(gHitMarker & HITMARKER_FAINTED(gBattlerTarget)))
@@ -11052,7 +11052,7 @@ static void Cmd_setprotectlike(void)
     bool32 fail = TRUE;
     bool32 notLastTurn = TRUE;
 
-    if (!(gBattleMoves[gLastResultingMoves[gBattlerAttacker]].flags & FLAG_PROTECTION_MOVE))
+    if (!(gBattleMoves[gBattleStrect->battlers[gBattlerAttacker].lastResultingMove].flags & FLAG_PROTECTION_MOVE))
         gDisableStructs[gBattlerAttacker].protectUses = 0;
 
     if (gCurrentTurnActionNumber == (gBattlersCount - 1))
