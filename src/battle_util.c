@@ -912,7 +912,7 @@ void HandleAction_ActionFinished(void)
     u32 i, j;
     bool32 afterYouActive = gSpecialStatuses[gBattlerByTurnOrder[gCurrentTurnActionNumber + 1]].afterYou;
     #endif
-    *(gBattleStruct->monToSwitchIntoId + gBattlerByTurnOrder[gCurrentTurnActionNumber]) = PARTY_SIZE;
+    gBattleStruct->battlers[gBattlerByTurnOrder[gCurrentTurnActionNumber]].monToSwitchIntoIndex = PARTY_SIZE;
     gCurrentTurnActionNumber++;
     gCurrentActionFuncId = gActionsByTurnOrder[gCurrentTurnActionNumber];
     SpecialStatusesClear();
@@ -3918,7 +3918,8 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
              && GetMonData(&party[i], MON_DATA_SPECIES2) != SPECIES_NONE
              && GetMonData(&party[i], MON_DATA_SPECIES2) != SPECIES_EGG
              && i != partyIdBattlerOn1 && i != partyIdBattlerOn2
-             && i != *(gBattleStruct->monToSwitchIntoId + flankId) && i != playerId[gBattleStruct->monToSwitchIntoId])
+             && i != gBattleStruct->battlers[flankId].monToSwitchIntoIndex
+             && i != gBattleStruct->battlers[playerId].monToSwitchIntoIndex)
                 break;
         }
         return (i == PARTY_SIZE);
@@ -4024,7 +4025,8 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
              && GetMonData(&party[i], MON_DATA_SPECIES2) != SPECIES_NONE
              && GetMonData(&party[i], MON_DATA_SPECIES2) != SPECIES_EGG
              && i != partyIdBattlerOn1 && i != partyIdBattlerOn2
-             && i != *(gBattleStruct->monToSwitchIntoId + flankId) && i != playerId[gBattleStruct->monToSwitchIntoId])
+             && i != gBattleStruct->battlers[flankId].monToSwitchIntoIndex
+             && i != gBattleStruct->battlers[playerId].monToSwitchIntoIndex)
                 break;
         }
         return (i == PARTY_SIZE);

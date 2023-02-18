@@ -1567,7 +1567,7 @@ static void PlayerPartnerHandleChoosePokemon(void)
         }
     }
 
-    *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = chosenMonId;
+    gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex = chosenMonId;
     BtlController_EmitChosenMonReturnValue(BUFFER_B, chosenMonId, NULL);
     PlayerPartnerBufferExecCompleted();
 }

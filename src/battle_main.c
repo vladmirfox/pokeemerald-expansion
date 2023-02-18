@@ -3738,7 +3738,7 @@ static void TryDoEventsBeforeFirstTurn(void)
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
-        *(gBattleStruct->monToSwitchIntoId + i) = PARTY_SIZE;
+        gBattleStruct->battlers[i].monToSwitchIntoIndex = PARTY_SIZE;
         gChosenActionByBattler[i] = B_ACTION_NONE;
         gChosenMoveByBattler[i] = MOVE_NONE;
         // Record party slots of player's mons that appeared in battle
@@ -3854,7 +3854,7 @@ void BattleTurnPassed(void)
     }
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
-        *(gBattleStruct->monToSwitchIntoId + i) = PARTY_SIZE;
+        gBattleStruct->battlers[i].monToSwitchIntoIndex = PARTY_SIZE;
 
     *(&gBattleStruct->absentBattlerFlags) = gAbsentBattlerFlags;
     BattlePutTextOnWindow(gText_EmptyString3, B_WIN_MSG);
@@ -3930,7 +3930,7 @@ void SwitchPartyOrder(u8 battler)
         gBattlePartyCurrentOrder[i] = *(battler * 3 + i + (u8 *)(gBattleStruct->battlerPartyOrders));
 
     partyId1 = GetPartyIdFromBattlePartyId(gBattlerPartyIndexes[battler]);
-    partyId2 = GetPartyIdFromBattlePartyId(*(gBattleStruct->monToSwitchIntoId + battler));
+    partyId2 = GetPartyIdFromBattlePartyId(gBattleStruct->battlers[battler].monToSwitchIntoIndex);
     SwitchPartyMonSlots(partyId1, partyId2);
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
@@ -3984,7 +3984,7 @@ static void HandleTurnActionSelectionState(void)
             }
             break;
         case STATE_BEFORE_ACTION_CHOSEN: // Choose an action.
-            *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
+            gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex = PARTY_SIZE;
             if (gBattleTypeFlags & BATTLE_TYPE_MULTI
                 || (position & BIT_FLANK) == B_FLANK_LEFT
                 || gBattleStruct->absentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(position))]
@@ -4119,9 +4119,9 @@ static void HandleTurnActionSelectionState(void)
                     else
                     {
                         if (gActiveBattler == 2 && gChosenActionByBattler[0] == B_ACTION_SWITCH)
-                            BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CHOOSE_MON, *(gBattleStruct->monToSwitchIntoId + 0), ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
+                            BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CHOOSE_MON, gBattleStruct->battlers[0].monToSwitchIntoIndex, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
                         else if (gActiveBattler == 3 && gChosenActionByBattler[1] == B_ACTION_SWITCH)
-                            BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CHOOSE_MON, *(gBattleStruct->monToSwitchIntoId + 1), ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
+                            BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CHOOSE_MON, gBattleStruct->battlers[1].monToSwitchIntoIndex, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
                         else
                             BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CHOOSE_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
                     }
@@ -4439,7 +4439,7 @@ static void HandleTurnActionSelectionState(void)
             for (i = 0; i < gBattlersCount; i++)
             {
                 if (gChosenActionByBattler[i] == B_ACTION_SWITCH)
-                    SwitchPartyOrderInGameMulti(i, *(gBattleStruct->monToSwitchIntoId + i));
+                    SwitchPartyOrderInGameMulti(i, gBattleStruct->battlers[i].monToSwitchIntoIndex);
             }
         }
     }
@@ -4463,7 +4463,7 @@ static bool8 AllAtActionConfirmed(void)
 
 static void UpdateBattlerPartyOrdersOnSwitch(void)
 {
-    *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = gBattleResources->bufferB[gActiveBattler][1];
+    gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex = gBattleResources->bufferB[gActiveBattler][1];
     RecordedBattle_SetBattlerAction(gActiveBattler, gBattleResources->bufferB[gActiveBattler][1]);
 
     if (gBattleTypeFlags & BATTLE_TYPE_LINK && gBattleTypeFlags & BATTLE_TYPE_MULTI)

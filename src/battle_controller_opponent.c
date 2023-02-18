@@ -1165,7 +1165,7 @@ static void OpponentHandleLoadMonSprite(void)
 
 static void OpponentHandleSwitchInAnim(void)
 {
-    *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
+    gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex = PARTY_SIZE;
     gBattlerPartyIndexes[gActiveBattler] = gBattleResources->bufferA[gActiveBattler][1];
     StartSendOutAnim(gActiveBattler, gBattleResources->bufferA[gActiveBattler][2]);
     gBattlerControllerFuncs[gActiveBattler] = SwitchIn_TryShinyAnim;
@@ -1715,7 +1715,7 @@ static void OpponentHandleChoosePokemon(void)
     }
 
 
-    *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = chosenMonId;
+    gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex = chosenMonId;
     BtlController_EmitChosenMonReturnValue(BUFFER_B, chosenMonId, NULL);
     OpponentBufferExecCompleted();
 }

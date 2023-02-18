@@ -6254,7 +6254,7 @@ static void Cmd_getswitchedmondata(void)
 
     gActiveBattler = GetBattlerForBattleScript(cmd->battler);
 
-    gBattlerPartyIndexes[gActiveBattler] = *(gBattleStruct->monToSwitchIntoId + gActiveBattler);
+    gBattlerPartyIndexes[gActiveBattler] = gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex;
 
     BtlController_EmitGetMonData(BUFFER_A, REQUEST_ALL_BATTLE, gBitTable[gBattlerPartyIndexes[gActiveBattler]]);
     MarkBattlerForControllerExec(gActiveBattler);
@@ -6520,7 +6520,7 @@ static void Cmd_jumpifcantswitch(void)
 static void ChooseMonToSendOut(u8 slotId)
 {
     gBattleStruct->battlers[gActiveBattler].partyIndex = gBattlerPartyIndexes[gActiveBattler];
-    *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
+    gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex = PARTY_SIZE;
     gBattleStruct->field_93 &= ~(gBitTable[gActiveBattler]);
 
     BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_SEND_OUT, slotId, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
@@ -6586,7 +6586,7 @@ static void Cmd_openpartyscreen(void)
                 }
                 else if (!gSpecialStatuses[gActiveBattler].faintedHasReplacement)
                 {
-                    ChooseMonToSendOut(gBattleStruct->monToSwitchIntoId[2]);
+                    ChooseMonToSendOut(gBattleStruct->battlers[2].monToSwitchIntoIndex);
                     gSpecialStatuses[gActiveBattler].faintedHasReplacement = TRUE;
                 }
                 else
@@ -6608,7 +6608,7 @@ static void Cmd_openpartyscreen(void)
                 }
                 else if (!gSpecialStatuses[gActiveBattler].faintedHasReplacement)
                 {
-                    ChooseMonToSendOut(gBattleStruct->monToSwitchIntoId[0]);
+                    ChooseMonToSendOut(gBattleStruct->battlers[0].monToSwitchIntoIndex);
                     gSpecialStatuses[gActiveBattler].faintedHasReplacement = TRUE;
                 }
                 else if (!(flags & 1))
@@ -6629,7 +6629,7 @@ static void Cmd_openpartyscreen(void)
                 }
                 else if (!gSpecialStatuses[gActiveBattler].faintedHasReplacement)
                 {
-                    ChooseMonToSendOut(gBattleStruct->monToSwitchIntoId[3]);
+                    ChooseMonToSendOut(gBattleStruct->battlers[3].monToSwitchIntoIndex);
                     gSpecialStatuses[gActiveBattler].faintedHasReplacement = TRUE;
                 }
                 else
@@ -6651,7 +6651,7 @@ static void Cmd_openpartyscreen(void)
                 }
                 else if (!gSpecialStatuses[gActiveBattler].faintedHasReplacement)
                 {
-                    ChooseMonToSendOut(gBattleStruct->monToSwitchIntoId[1]);
+                    ChooseMonToSendOut(gBattleStruct->battlers[1].monToSwitchIntoIndex);
                     gSpecialStatuses[gActiveBattler].faintedHasReplacement = TRUE;
                 }
                 else if (!(flags & 2))
@@ -6714,7 +6714,7 @@ static void Cmd_openpartyscreen(void)
                     }
                     else if (!gSpecialStatuses[gActiveBattler].faintedHasReplacement)
                     {
-                        ChooseMonToSendOut(gBattleStruct->monToSwitchIntoId[0]);
+                        ChooseMonToSendOut(gBattleStruct->battlers[0].monToSwitchIntoIndex);
                         gSpecialStatuses[gActiveBattler].faintedHasReplacement = TRUE;
                     }
                 }
@@ -6730,7 +6730,7 @@ static void Cmd_openpartyscreen(void)
                     }
                     else if (!gSpecialStatuses[gActiveBattler].faintedHasReplacement)
                     {
-                        ChooseMonToSendOut(gBattleStruct->monToSwitchIntoId[1]);
+                        ChooseMonToSendOut(gBattleStruct->battlers[1].monToSwitchIntoIndex);
                         gSpecialStatuses[gActiveBattler].faintedHasReplacement = TRUE;
                     }
                 }
@@ -6781,10 +6781,10 @@ static void Cmd_openpartyscreen(void)
         {
             gActiveBattler = battlerId;
             gBattleStruct->battlers[gActiveBattler].partyIndex = gBattlerPartyIndexes[gActiveBattler];
-            *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
+            gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex = PARTY_SIZE;
             gBattleStruct->field_93 &= ~(gBitTable[gActiveBattler]);
 
-            BtlController_EmitChoosePokemon(BUFFER_A, hitmarkerFaintBits, *(gBattleStruct->monToSwitchIntoId + BATTLE_PARTNER(gActiveBattler)), ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
+            BtlController_EmitChoosePokemon(BUFFER_A, hitmarkerFaintBits, gBattleStruct->battlers[BATTLE_PARTNER(gActiveBattler)].monToSwitchIntoIndex, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
             MarkBattlerForControllerExec(gActiveBattler);
 
             gBattlescriptCurrInstr = cmd->nextInstr;
@@ -6833,7 +6833,7 @@ static void Cmd_switchhandleorder(void)
         {
             if (gBattleResources->bufferB[i][0] == CONTROLLER_CHOSENMONRETURNVALUE)
             {
-                *(gBattleStruct->monToSwitchIntoId + i) = gBattleResources->bufferB[i][1];
+                gBattleStruct->battlers[i].monToSwitchIntoIndex = gBattleResources->bufferB[i][1];
                 if (!(gBattleStruct->field_93 & gBitTable[i]))
                 {
                     RecordedBattle_SetBattlerAction(i, gBattleResources->bufferB[i][1]);
@@ -6855,7 +6855,7 @@ static void Cmd_switchhandleorder(void)
         // fall through
     case 3:
         gBattleCommunication[0] = gBattleResources->bufferB[gActiveBattler][1];
-        *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = gBattleResources->bufferB[gActiveBattler][1];
+        gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex = gBattleResources->bufferB[gActiveBattler][1];
 
         if (gBattleTypeFlags & BATTLE_TYPE_LINK && gBattleTypeFlags & BATTLE_TYPE_MULTI)
         {
@@ -6869,7 +6869,7 @@ static void Cmd_switchhandleorder(void)
         }
         else if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
         {
-            SwitchPartyOrderInGameMulti(gActiveBattler, *(gBattleStruct->monToSwitchIntoId + gActiveBattler));
+            SwitchPartyOrderInGameMulti(gActiveBattler, gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex);
         }
         else
         {
@@ -12237,7 +12237,7 @@ static void Cmd_forcerandomswitch(void)
                    || GetMonData(&party[i], MON_DATA_IS_EGG) == TRUE
                    || GetMonData(&party[i], MON_DATA_HP) == 0);
 
-            *(gBattleStruct->monToSwitchIntoId + gBattlerTarget) = i;
+            gBattleStruct->battlers[gBattlerTarget].monToSwitchIntoIndex = i;
 
             if (!IsMultiBattle())
                 SwitchPartyOrder(gBattlerTarget);

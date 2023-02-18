@@ -198,9 +198,9 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
             continue;
         if (i == gBattlerPartyIndexes[battlerIn2])
             continue;
-        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn1))
+        if (i == gBattleStruct->battlers[battlerIn1].monToSwitchIntoIndex)
             continue;
-        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn2))
+        if (i == gBattleStruct->battlers[battlerIn2].monToSwitchIntoIndex)
             continue;
         if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON 
             && i == (CalculateEnemyPartyCount()-1))
@@ -572,9 +572,9 @@ static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent)
             continue;
         if (i == gBattlerPartyIndexes[battlerIn2])
             continue;
-        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn1))
+        if (i == gBattleStruct->battlers[battlerIn1].monToSwitchIntoIndex)
             continue;
-        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn2))
+        if (i == gBattleStruct->battlers[battlerIn2].monToSwitchIntoIndex)
             continue;
         if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON 
             && i == (CalculateEnemyPartyCount()-1))
@@ -664,9 +664,9 @@ bool32 ShouldSwitch(void)
             continue;
         if (i == gBattlerPartyIndexes[battlerIn2])
             continue;
-        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn1))
+        if (i == gBattleStruct->battlers[battlerIn1].monToSwitchIntoIndex)
             continue;
-        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn2))
+        if (i == gBattleStruct->battlers[battlerIn2].monToSwitchIntoIndex)
             continue;
         if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON
             && i == (CalculateEnemyPartyCount()-1))
@@ -754,9 +754,9 @@ void AI_TrySwitchOrUseItem(void)
                             continue;
                         if (monToSwitchId == gBattlerPartyIndexes[battlerIn2])
                             continue;
-                        if (monToSwitchId == *(gBattleStruct->monToSwitchIntoId + battlerIn1))
+                        if (monToSwitchId == gBattleStruct->battlers[battlerIn1].monToSwitchIntoIndex)
                             continue;
-                        if (monToSwitchId == *(gBattleStruct->monToSwitchIntoId + battlerIn2))
+                        if (monToSwitchId == gBattleStruct->battlers[battlerIn2].monToSwitchIntoIndex)
                             continue;
                         if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON 
                             && monToSwitchId == (CalculateEnemyPartyCount()-1))
@@ -769,7 +769,7 @@ void AI_TrySwitchOrUseItem(void)
                 *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = monToSwitchId;
             }
 
-            *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler);
+            gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex = *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler);
             return;
         }
         else if (ShouldUseItem())
@@ -918,8 +918,8 @@ u8 GetMostSuitableMonToSwitchInto(void)
     s32 i, j, aliveCount = 0;
     u8 invalidMons = 0;
 
-    if (*(gBattleStruct->monToSwitchIntoId + gActiveBattler) != PARTY_SIZE)
-        return *(gBattleStruct->monToSwitchIntoId + gActiveBattler);
+    if (gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex != PARTY_SIZE)
+        return gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex;
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
         return gBattlerPartyIndexes[gActiveBattler] + 1;
 
@@ -956,8 +956,8 @@ u8 GetMostSuitableMonToSwitchInto(void)
             || GetMonData(&party[i], MON_DATA_HP) == 0
             || gBattlerPartyIndexes[battlerIn1] == i
             || gBattlerPartyIndexes[battlerIn2] == i
-            || i == *(gBattleStruct->monToSwitchIntoId + battlerIn1)
-            || i == *(gBattleStruct->monToSwitchIntoId + battlerIn2)
+            || i == gBattleStruct->battlers[battlerIn1].monToSwitchIntoIndex
+            || i == gBattleStruct->battlers[battlerIn2].monToSwitchIntoIndex
             || (GetMonAbility(&party[i]) == ABILITY_TRUANT && IsTruantMonVulnerable(gActiveBattler, opposingBattler)) // While not really invalid per say, not really wise to switch into this mon.
             || ((AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON)
                 && i == (CalculateEnemyPartyCount() - 1))) //Save Ace Pokemon for last
