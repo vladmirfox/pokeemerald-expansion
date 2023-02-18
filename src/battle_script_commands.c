@@ -6519,7 +6519,7 @@ static void Cmd_jumpifcantswitch(void)
 // Note that this is not used by the Switch action, only replacing fainted Pokémon or Baton Pass
 static void ChooseMonToSendOut(u8 slotId)
 {
-    *(gBattleStruct->battlerPartyIndexes + gActiveBattler) = gBattlerPartyIndexes[gActiveBattler];
+    gBattleStruct->battlers[gActiveBattler].partyIndex = gBattlerPartyIndexes[gActiveBattler];
     *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
     gBattleStruct->field_93 &= ~(gBitTable[gActiveBattler]);
 
@@ -6780,7 +6780,7 @@ static void Cmd_openpartyscreen(void)
         else
         {
             gActiveBattler = battlerId;
-            *(gBattleStruct->battlerPartyIndexes + gActiveBattler) = gBattlerPartyIndexes[gActiveBattler];
+            gBattleStruct->battlers[gActiveBattler].partyIndex = gBattlerPartyIndexes[gActiveBattler];
             *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
             gBattleStruct->field_93 &= ~(gBitTable[gActiveBattler]);
 
@@ -12223,7 +12223,7 @@ static void Cmd_forcerandomswitch(void)
         }
         else
         {
-            *(gBattleStruct->battlerPartyIndexes + gBattlerTarget) = gBattlerPartyIndexes[gBattlerTarget];
+            gBattleStruct->battlers[gBattlerTarget].partyIndex = gBattlerPartyIndexes[gBattlerTarget];
             gBattlescriptCurrInstr = BattleScript_RoarSuccessSwitch;
 
             do
@@ -14757,7 +14757,7 @@ static void Cmd_switchoutabilities(void)
         case ABILITY_NATURAL_CURE:
             gBattleMons[gActiveBattler].status1 = 0;
             BtlController_EmitSetMonData(BUFFER_A, REQUEST_STATUS_BATTLE,
-                                         gBitTable[*(gBattleStruct->battlerPartyIndexes + gActiveBattler)],
+                                         gBitTable[gBattleStruct->battlers[gActiveBattler].partyIndex],
                                          sizeof(gBattleMons[gActiveBattler].status1),
                                          &gBattleMons[gActiveBattler].status1);
             MarkBattlerForControllerExec(gActiveBattler);
@@ -14768,7 +14768,7 @@ static void Cmd_switchoutabilities(void)
             if (gBattleMoveDamage > gBattleMons[gActiveBattler].maxHP)
                 gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP;
             BtlController_EmitSetMonData(BUFFER_A, REQUEST_HP_BATTLE,
-                                         gBitTable[*(gBattleStruct->battlerPartyIndexes + gActiveBattler)],
+                                         gBitTable[gBattleStruct->battlers[gActiveBattler].partyIndex],
                                          sizeof(gBattleMoveDamage),
                                          &gBattleMoveDamage);
             MarkBattlerForControllerExec(gActiveBattler);

@@ -4105,7 +4105,7 @@ static void HandleTurnActionSelectionState(void)
                     }
                     break;
                 case B_ACTION_SWITCH:
-                    *(gBattleStruct->battlerPartyIndexes + gActiveBattler) = gBattlerPartyIndexes[gActiveBattler];
+                    gBattleStruct->battlers[gActiveBattler].partyIndex = gBattlerPartyIndexes[gActiveBattler];
                     if (gBattleTypeFlags & BATTLE_TYPE_ARENA
                         || !CanBattlerEscape(gActiveBattler))
                     {

@@ -542,7 +542,6 @@ struct BattleStruct
     u32 expValue;
     u8 scriptPartyIdx; // for printing the nickname
     u8 sentInPokes;
-    u8 battlerPartyIndexes[MAX_BATTLERS_COUNT];
     u8 monToSwitchIntoId[MAX_BATTLERS_COUNT];
     u8 battlerPartyOrders[MAX_BATTLERS_COUNT][PARTY_SIZE / 2];
     u8 runTries;
@@ -666,6 +665,7 @@ struct BattleStruct
         u8 wrappedBy;
         u16 moveTarget;
         bool8 selectionScriptFinished;
+        u8 partyIndex;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
