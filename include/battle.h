@@ -613,7 +613,6 @@ struct BattleStruct
     u8 soulheartBattlerId;
     u8 friskedBattler; // Frisk needs to identify 2 battlers in double battles.
     bool8 friskedAbility; // If identifies two mons, show the ability pop-up only once.
-    u8 sameMoveTurns[MAX_BATTLERS_COUNT]; // For Metronome, number of times the same moves has been SUCCESFULLY used.
     u16 moveEffect2; // For Knock Off
     u16 changedSpecies[PARTY_SIZE]; // For Zygarde or future forms when multiple mons can change into the same pokemon.
     u8 quickClawBattlerId;
@@ -669,6 +668,7 @@ struct BattleStruct
         u16 tracedAbility;
         u16 hpBeforeMove; // HP before the current move was used.
         struct Illusion illusion;
+        u8 sameMoveTurns; // Number of times a move has been SUCCESSFULLY used consecutively.
     } battlers[MAX_BATTLERS_COUNT];
 };
 

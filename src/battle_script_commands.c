@@ -1985,9 +1985,9 @@ static void Cmd_ppreduce(void)
             && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
             && !WasUnableToUseMove(gBattlerAttacker)
             && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT) // Don't increment counter on first hit
-                gBattleStruct->sameMoveTurns[gBattlerAttacker]++;
+                gBattleStruct->battlers[gBattlerAttacker].sameMoveTurns++;
         else
-            gBattleStruct->sameMoveTurns[gBattlerAttacker] = 0;
+            gBattleStruct->battlers[gBattlerAttacker].sameMoveTurns = 0;
 
         if (gBattleMons[gBattlerAttacker].pp[gCurrMovePos] > ppToDeduct)
             gBattleMons[gBattlerAttacker].pp[gCurrMovePos] -= ppToDeduct;

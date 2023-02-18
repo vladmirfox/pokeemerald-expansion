@@ -8656,10 +8656,10 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             basePower = 150;
         break;
     case EFFECT_ECHOED_VOICE:
-        // gBattleStruct->sameMoveTurns incremented in ppreduce
-        if (gBattleStruct->sameMoveTurns[battlerAtk] != 0)
+        // battler.sameMoveTurns incremented in ppreduce
+        if (gBattleStruct->battlers[battlerAtk].sameMoveTurns != 0)
         {
-            basePower += (basePower * gBattleStruct->sameMoveTurns[battlerAtk]);
+            basePower += (basePower * gBattleStruct->battlers[battlerAtk].sameMoveTurns);
             if (basePower > 200)
                 basePower = 200;
         }
@@ -9668,7 +9668,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     switch (GetBattlerHoldEffect(battlerAtk, TRUE))
     {
     case HOLD_EFFECT_METRONOME:
-        percentBoost = min((gBattleStruct->sameMoveTurns[battlerAtk] * GetBattlerHoldEffectParam(battlerAtk)), 100);
+        percentBoost = min((gBattleStruct->battlers[battlerAtk].sameMoveTurns * GetBattlerHoldEffectParam(battlerAtk)), 100);
         MulModifier(&finalModifier, UQ_4_12(1.0) + sPercentToModifier[percentBoost]);
         break;
     case HOLD_EFFECT_EXPERT_BELT:

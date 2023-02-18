@@ -3136,7 +3136,7 @@ void SwitchInClearSetData(void)
     gLastHitBy[gActiveBattler] = 0xFF;
 
     gBattleStruct->battlers[gActiveBattler].lastTakenMove = MOVE_NONE;
-    gBattleStruct->sameMoveTurns[gActiveBattler] = 0;
+    gBattleStruct->battlers[gActiveBattler].sameMoveTurns = 0;
     for (j = 0; j < MAX_BATTLERS_COUNT; j++)
         gBattleStruct->battlers[gActiveBattler].lastTakenMoveFrom[j] = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastMoveFailed = FALSE;
@@ -3235,7 +3235,7 @@ void FaintClearSetData(void)
     gLastHitBy[gActiveBattler] = 0xFF;
 
     gBattleStruct->battlers[gActiveBattler].choicedMove = MOVE_NONE;
-    gBattleStruct->sameMoveTurns[gActiveBattler] = 0;
+    gBattleStruct->battlers[gActiveBattler].sameMoveTurns = 0;
     gBattleStruct->battlers[gActiveBattler].lastTakenMove = MOVE_NONE;
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
         gBattleStruct->battlers[gActiveBattler].lastTakenMoveFrom[i] = MOVE_NONE;
