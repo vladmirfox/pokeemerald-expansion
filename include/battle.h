@@ -231,7 +231,6 @@ struct FieldTimer
 
 struct WishFutureKnock
 {
-    u8 weatherDuration;
     u8 knockedOffMons[NUM_BATTLE_SIDES]; // Each battler is represented by a bit.
 };
 
@@ -616,6 +615,7 @@ struct BattleStruct
 
     struct Field
     {
+        u8 weatherDuration;
     } field;
 
     struct Side

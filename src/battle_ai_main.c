@@ -3503,7 +3503,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
               || HasMoveEffect(EFFECT_SNORE, battlerAtk)
               || AI_DATA->abilities[battlerAtk] == ABILITY_SHED_SKIN
               || AI_DATA->abilities[battlerAtk] == ABILITY_EARLY_BIRD
-              || (gBattleWeather & B_WEATHER_RAIN && gWishFutureKnock.weatherDuration != 1 && AI_DATA->abilities[battlerAtk] == ABILITY_HYDRATION && AI_DATA->holdEffects[battlerAtk] != HOLD_EFFECT_UTILITY_UMBRELLA))
+              || (gBattleWeather & B_WEATHER_RAIN && gBattleStruct->field.weatherDuration != 1 && AI_DATA->abilities[battlerAtk] == ABILITY_HYDRATION && AI_DATA->holdEffects[battlerAtk] != HOLD_EFFECT_UTILITY_UMBRELLA))
             {
                 score += 2;
             }

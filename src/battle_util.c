@@ -2362,7 +2362,7 @@ u8 DoFieldEndTurnEffects(void)
                 if (!(gBattleWeather & B_WEATHER_RAIN_PERMANENT)
                  && !(gBattleWeather & B_WEATHER_RAIN_PRIMAL))
                 {
-                    if (--gWishFutureKnock.weatherDuration == 0)
+                    if (--gBattleStruct->field.weatherDuration == 0)
                     {
                         gBattleWeather &= ~B_WEATHER_RAIN_TEMPORARY;
                         gBattleWeather &= ~B_WEATHER_RAIN_DOWNPOUR;
@@ -2390,7 +2390,7 @@ u8 DoFieldEndTurnEffects(void)
         case ENDTURN_SANDSTORM:
             if (gBattleWeather & B_WEATHER_SANDSTORM)
             {
-                if (!(gBattleWeather & B_WEATHER_SANDSTORM_PERMANENT) && --gWishFutureKnock.weatherDuration == 0)
+                if (!(gBattleWeather & B_WEATHER_SANDSTORM_PERMANENT) && --gBattleStruct->field.weatherDuration == 0)
                 {
                     gBattleWeather &= ~B_WEATHER_SANDSTORM_TEMPORARY;
                     gBattlescriptCurrInstr = BattleScript_SandStormHailEnds;
@@ -2412,7 +2412,7 @@ u8 DoFieldEndTurnEffects(void)
             {
                 if (!(gBattleWeather & B_WEATHER_SUN_PERMANENT)
                  && !(gBattleWeather & B_WEATHER_SUN_PRIMAL)
-                 && --gWishFutureKnock.weatherDuration == 0)
+                 && --gBattleStruct->field.weatherDuration == 0)
                 {
                     gBattleWeather &= ~B_WEATHER_SUN_TEMPORARY;
                     gBattlescriptCurrInstr = BattleScript_SunlightFaded;
@@ -2430,7 +2430,7 @@ u8 DoFieldEndTurnEffects(void)
         case ENDTURN_HAIL:
             if (gBattleWeather & B_WEATHER_HAIL)
             {
-                if (!(gBattleWeather & B_WEATHER_HAIL_PERMANENT) && --gWishFutureKnock.weatherDuration == 0)
+                if (!(gBattleWeather & B_WEATHER_HAIL_PERMANENT) && --gBattleStruct->field.weatherDuration == 0)
                 {
                     gBattleWeather &= ~B_WEATHER_HAIL_TEMPORARY;
                     gBattlescriptCurrInstr = BattleScript_SandStormHailEnds;
@@ -4172,9 +4172,9 @@ bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility)
     {
         gBattleWeather = (sWeatherFlagsInfo[weatherEnumId][0]);
         if (GetBattlerHoldEffect(battler, TRUE) == sWeatherFlagsInfo[weatherEnumId][2])
-            gWishFutureKnock.weatherDuration = 8;
+            gBattleStruct->field.weatherDuration = 8;
         else
-            gWishFutureKnock.weatherDuration = 5;
+            gBattleStruct->field.weatherDuration = 5;
         ShouldChangeFormInWeather(battler);
         return TRUE;
     }
