@@ -8170,8 +8170,8 @@ u32 GetBattlerHoldEffect(u8 battlerId, bool32 checkNegating)
     gPotentialItemEffectBattler = battlerId;
 
 #if DEBUG_BATTLE_MENU == TRUE
-    if (gBattleStruct->debugHoldEffects[battlerId] != 0 && gBattleMons[battlerId].item)
-        return gBattleStruct->debugHoldEffects[battlerId];
+    if (gBattleStruct->battlers[battlerId].debugHoldEffect && gBattleMons[battlerId].item)
+        return gBattleStruct->battlers[battlerId].debugHoldEffect;
     else
 #endif
     if (gBattleMons[battlerId].item == ITEM_ENIGMA_BERRY)
@@ -10100,8 +10100,8 @@ bool32 CanMegaEvolve(u8 battlerId)
     if (GetMegaEvolutionSpecies(species, itemId) != SPECIES_NONE)
     {
     #if DEBUG_BATTLE_MENU == TRUE
-        if (gBattleStruct->debugHoldEffects[battlerId])
-            holdEffect = gBattleStruct->debugHoldEffects[battlerId];
+        if (gBattleStruct->battlers[battlerId].debugHoldEffect)
+            holdEffect = gBattleStruct->battlers[battlerId].debugHoldEffect;
         else
     #endif
         if (itemId == ITEM_ENIGMA_BERRY_E_READER)

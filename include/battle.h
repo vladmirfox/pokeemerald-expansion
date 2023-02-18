@@ -606,7 +606,6 @@ struct BattleStruct
     bool8 trainerSlideLowHpMsgDone;
     u8 introState;
     u8 stolenStats[NUM_BATTLE_STATS]; // hp byte is used for which stats to raise, other inform about by how many stages
-    u8 debugHoldEffects[MAX_BATTLERS_COUNT]; // These override actual items' hold effects.
     u16 tracedAbility[MAX_BATTLERS_COUNT];
     u16 hpBefore[MAX_BATTLERS_COUNT]; // Hp of battlers before using a move. For Berserk
     bool8 spriteIgnore0Hp;
@@ -669,6 +668,7 @@ struct BattleStruct
         bool8 ateBoost;
         bool8 lastMoveFailed; // For Stomping Tantrum.
         u8 lastMoveTarget; // For Instruct.
+        u8 debugHoldEffect; // Overrides held item's effect.
     } battlers[MAX_BATTLERS_COUNT];
 };
 

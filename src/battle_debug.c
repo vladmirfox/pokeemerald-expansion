@@ -1585,7 +1585,7 @@ static void UpdateBattlerValue(struct BattleDebugMenu *data)
         if (data->currentSecondaryListItemId == 0)
             *(u16 *)(data->modifyArrows.modifiedValPtr) = data->modifyArrows.currValue;
         else if (data->currentSecondaryListItemId == 1)
-            gBattleStruct->debugHoldEffects[data->battlerId] = data->modifyArrows.currValue;
+            gBattleStruct->battlers[data->battlerId].debugHoldEffect = data->modifyArrows.currValue;
         break;
     }
     data->battlerWasChanged[data->battlerId] = TRUE;
@@ -1799,7 +1799,7 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
         if (data->currentSecondaryListItemId == 0)
             data->modifyArrows.currValue = gBattleMons[data->battlerId].item;
         else
-            data->modifyArrows.currValue = gBattleStruct->debugHoldEffects[data->battlerId];
+            data->modifyArrows.currValue = gBattleStruct->battlers[data->battlerId].debugHoldEffect;
         break;
     case LIST_ITEM_TYPES:
         data->modifyArrows.minValue = 0;
