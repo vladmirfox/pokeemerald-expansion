@@ -5735,7 +5735,7 @@ static void Cmd_moveend(void)
             if (!gSpecialStatuses[gBattlerAttacker].dancerUsedMove)
             {
                 gDisableStructs[gBattlerAttacker].usedMoves |= gBitTable[gCurrMovePos];
-                gBattleStruct->lastMoveTarget[gBattlerAttacker] = gBattlerTarget;
+                gBattleStruct->battlers[gBattlerAttacker].lastMoveTarget = gBattlerTarget;
                 if (gHitMarker & HITMARKER_ATTACKSTRING_PRINTED)
                 {
                     gLastPrintedMoves[gBattlerAttacker] = gChosenMove;
@@ -9838,7 +9838,7 @@ static void Cmd_various(void)
                 gBattlescriptCurrInstr = cmd->failInstr;
             else
             {
-                gBattlerTarget = gBattleStruct->lastMoveTarget[gBattlerAttacker];
+                gBattlerTarget = gBattleStruct->battlers[gBattlerAttacker].lastMoveTarget;
                 gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
                 PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gActiveBattler, gBattlerPartyIndexes[gActiveBattler]);
                 gBattlescriptCurrInstr = cmd->nextInstr;
