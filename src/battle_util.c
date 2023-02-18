@@ -10610,7 +10610,7 @@ bool32 CanStealItem(u8 battlerStealing, u8 battlerItem, u16 item)
            | BATTLE_TYPE_LINK
            | BATTLE_TYPE_RECORDED_LINK
            | BATTLE_TYPE_SECRET_BASE))
-        && (gWishFutureKnock.knockedOffMons[stealerSide] & gBitTable[gBattlerPartyIndexes[battlerStealing]]))
+        && (gBattleStruct->sides[stealerSide].party[gBattlerPartyIndexes[battlerStealing]].knockedOff))
     {
         return FALSE;
     }

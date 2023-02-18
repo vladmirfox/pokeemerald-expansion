@@ -229,11 +229,6 @@ struct FieldTimer
     u8 fairyLockTimer;
 };
 
-struct WishFutureKnock
-{
-    u8 knockedOffMons[NUM_BATTLE_SIDES]; // Each battler is represented by a bit.
-};
-
 struct AI_SavedBattleMon
 {
     u16 ability;
@@ -630,6 +625,7 @@ struct BattleStruct
             bool8 itemStolen;
             bool8 battleBondTransformed;
             bool8 allowedToChangeFormInWeather;
+            bool8 knockedOff;
         } party[PARTY_SIZE];
     } sides[NUM_BATTLE_SIDES];
 
@@ -947,7 +943,6 @@ extern u8 gBattleOutcome;
 extern struct ProtectStruct gProtectStructs[MAX_BATTLERS_COUNT];
 extern struct SpecialStatus gSpecialStatuses[MAX_BATTLERS_COUNT];
 extern u16 gBattleWeather;
-extern struct WishFutureKnock gWishFutureKnock;
 extern u16 gIntroSlideFlags;
 extern u8 gSentPokesToOpponent[2];
 extern u16 gExpShareExp;

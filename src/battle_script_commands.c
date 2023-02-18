@@ -3457,7 +3457,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                             | BATTLE_TYPE_LINK
                             | BATTLE_TYPE_RECORDED_LINK
                             | BATTLE_TYPE_SECRET_BASE))
-                        && (gWishFutureKnock.knockedOffMons[side] & gBitTable[gBattlerPartyIndexes[gBattlerAttacker]]))
+                        && (gBattleStruct->sides[side].party[gBattlerPartyIndexes[gBattlerAttacker]].knockedOff))
                     {
                         gBattlescriptCurrInstr++;
                     }
@@ -5305,7 +5305,7 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
             gLastUsedItem = gBattleMons[battlerDef].item;
             gBattleMons[battlerDef].item = 0;
             gBattleStruct->battlers[battlerDef].choicedMove = MOVE_NONE;
-            gWishFutureKnock.knockedOffMons[side] |= gBitTable[gBattlerPartyIndexes[battlerDef]];
+            gBattleStruct->sides[side].party[gBattlerPartyIndexes[battlerDef]].knockedOff = TRUE;
             CheckSetUnburden(battlerDef);
 
             BattleScriptPushCursor();
@@ -5806,7 +5806,7 @@ static void Cmd_moveend(void)
               && TARGET_TURN_DAMAGED
               && CanStealItem(gBattlerAttacker, gBattlerTarget, gBattleMons[gBattlerTarget].item)
               && !gSpecialStatuses[gBattlerAttacker].gemBoost   // In base game, gems are consumed after magician would activate.
-              && !(gWishFutureKnock.knockedOffMons[GetBattlerSide(gBattlerTarget)] & gBitTable[gBattlerPartyIndexes[gBattlerTarget]])
+              && !gBattleStruct->sides[GetBattlerSide(gBattlerTarget)].party[gBattlerPartyIndexes[gBattlerTarget]].knockedOff
               && !DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove)
               && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
               && (GetBattlerAbility(gBattlerTarget) != ABILITY_STICKY_HOLD || !IsBattlerAlive(gBattlerTarget)))
@@ -6037,7 +6037,7 @@ static void Cmd_moveend(void)
         case MOVEEND_PICKPOCKET:
             if (IsBattlerAlive(gBattlerAttacker)
               && gBattleMons[gBattlerAttacker].item != ITEM_NONE        // Attacker must be holding an item
-              && !(gWishFutureKnock.knockedOffMons[GetBattlerSide(gBattlerAttacker)] & gBitTable[gBattlerPartyIndexes[gBattlerAttacker]])   // But not knocked off
+              && !gBattleStruct->sides[GetBattlerSide(gBattlerAttacker)].party[gBattlerPartyIndexes[gBattlerAttacker]].knockedOff   // But not knocked off
               && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))  // Pickpocket doesn't activate for sheer force
               && IsMoveMakingContact(gCurrentMove, gBattlerAttacker)    // Pickpocket requires contact
               && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))           // Obviously attack needs to have worked
@@ -6287,7 +6287,7 @@ static void Cmd_switchindataupdate(void)
 
     // check knocked off item
     i = GetBattlerSide(gActiveBattler);
-    if (gWishFutureKnock.knockedOffMons[i] & gBitTable[gBattlerPartyIndexes[gActiveBattler]])
+    if (gBattleStruct->sides[i].party[gBattlerPartyIndexes[gActiveBattler]].knockedOff)
     {
         gBattleMons[gActiveBattler].item = ITEM_NONE;
     }
@@ -14278,8 +14278,8 @@ static void Cmd_tryswapitems(void)
                              | BATTLE_TYPE_FRONTIER
                              | BATTLE_TYPE_SECRET_BASE
                              | BATTLE_TYPE_RECORDED_LINK))
-            && (gWishFutureKnock.knockedOffMons[sideAttacker] & gBitTable[gBattlerPartyIndexes[gBattlerAttacker]]
-                || gWishFutureKnock.knockedOffMons[sideTarget] & gBitTable[gBattlerPartyIndexes[gBattlerTarget]]))
+            && (gBattleStruct->sides[sideAttacker].party[gBattlerPartyIndexes[gBattlerAttacker]].knockedOff
+                || gBattleStruct->sides[sideTarget].party[gBattlerPartyIndexes[gBattlerTarget]].knockedOff))
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
