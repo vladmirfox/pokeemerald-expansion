@@ -1145,7 +1145,7 @@ static bool8 ShouldUseItem(void)
         if (shouldUse)
         {
             BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_USE_ITEM, 0);
-            *(gBattleStruct->chosenItem + (gActiveBattler / 2) * 2) = item;
+            gBattleStruct->battlers[(gActiveBattler / 2) * 2].chosenItem = item;
             gBattleResources->battleHistory->trainerItems[i] = 0;
             return shouldUse;
         }

@@ -568,7 +568,6 @@ struct BattleStruct
     u16 synchronizeMoveEffect;
     bool8 anyMonHasTransformed;
     void (*savedCallback)(void);
-    u16 chosenItem[MAX_BATTLERS_COUNT];
     u8 AI_itemType[2];
     u8 AI_itemFlags[2];
     u16 choicedMove[MAX_BATTLERS_COUNT];
@@ -669,6 +668,7 @@ struct BattleStruct
         u8 chosenMovePosition;
         u8 stateAfterSelectionScript;
         u16 lastTakenMove; // Last move that the battler was hit with.
+        u16 chosenItem;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
