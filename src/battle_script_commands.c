@@ -10503,9 +10503,9 @@ static void Cmd_various(void)
         if (gBattleMons[gBattlerAttacker].species == SPECIES_GRENINJA_BATTLE_BOND
             && HasAttackerFaintedTarget()
             && CalculateEnemyPartyCount() > 1
-            && !(gBattleStruct->battleBondTransformed[GET_BATTLER_SIDE2(gBattlerAttacker)] & gBitTable[gBattlerPartyIndexes[gBattlerAttacker]]))
+            && !gBattleStruct->sides[GET_BATTLER_SIDE2(gBattlerAttacker)].party[gBattlerPartyIndexes[gBattlerAttacker]].battleBondTransformed)
         {
-            gBattleStruct->battleBondTransformed[GET_BATTLER_SIDE2(gBattlerAttacker)] |= gBitTable[gBattlerPartyIndexes[gBattlerAttacker]];
+            gBattleStruct->sides[GET_BATTLER_SIDE2(gBattlerAttacker)].party[gBattlerPartyIndexes[gBattlerAttacker]].battleBondTransformed = TRUE;
             PREPARE_SPECIES_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].species);
             gBattleStruct->sides[GetBattlerSide(gBattlerAttacker)].party[gBattlerPartyIndexes[gBattlerAttacker]].changedSpecies = gBattleMons[gBattlerAttacker].species;
             gBattleMons[gBattlerAttacker].species = SPECIES_GRENINJA_ASH;
