@@ -10762,9 +10762,9 @@ static void Cmd_various(void)
             StringCopy(gBattleTextBuff1, gStatusConditionString_LoveJpn);
         }
         // Check taunt
-        if (gDisableStructs[gActiveBattler].tauntTimer != 0)
+        if (gBattleStruct->battlers[gActiveBattler].tauntTimer != 0)
         {
-            gDisableStructs[gActiveBattler].tauntTimer = 0;
+            gBattleStruct->battlers[gActiveBattler].tauntTimer = 0;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MENTALHERBCURE_TAUNT;
             PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_TAUNT);
         }
@@ -14203,7 +14203,7 @@ static void Cmd_settaunt(void)
     }
     else
 #endif
-    if (gDisableStructs[gBattlerTarget].tauntTimer == 0)
+    if (gBattleStruct->battlers[gBattlerTarget].tauntTimer == 0)
     {
         #if B_TAUNT_TURNS >= GEN_5
             u8 turns = 4;
@@ -14215,7 +14215,7 @@ static void Cmd_settaunt(void)
             u8 turns = 2;
         #endif
 
-        gDisableStructs[gBattlerTarget].tauntTimer = turns;
+        gBattleStruct->battlers[gBattlerTarget].tauntTimer = turns;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else

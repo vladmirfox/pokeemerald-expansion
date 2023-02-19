@@ -2100,7 +2100,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         case EFFECT_NATURE_POWER:
             return AI_CheckBadMove(battlerAtk, battlerDef, GetNaturePowerMove(), score);
         case EFFECT_TAUNT:
-            if (gDisableStructs[battlerDef].tauntTimer > 0
+            if (gBattleStruct->battlers[battlerDef].tauntTimer > 0
               || DoesPartnerHaveSameMoveEffect(BATTLE_PARTNER(battlerAtk), battlerDef, move, AI_DATA->partnerMove))
                 score--;
             break;
@@ -4724,7 +4724,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_COUNTER:
         if (!IsBattlerIncapacitated(battlerDef, AI_DATA->abilities[battlerDef]) && predictedMove != MOVE_NONE)
         {
-            if (gDisableStructs[battlerDef].tauntTimer != 0)
+            if (gBattleStruct->battlers[battlerDef].tauntTimer != 0)
                 score++;    // target must use damaging move
             if (GetMoveDamageResult(predictedMove) >= MOVE_POWER_GOOD && GetBattleMoveSplit(predictedMove) == SPLIT_PHYSICAL)
                 score += 3;
@@ -4733,7 +4733,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_MIRROR_COAT:
         if (!IsBattlerIncapacitated(battlerDef, AI_DATA->abilities[battlerDef]) && predictedMove != MOVE_NONE)
         {
-            if (gDisableStructs[battlerDef].tauntTimer != 0)
+            if (gBattleStruct->battlers[battlerDef].tauntTimer != 0)
                 score++;    // target must use damaging move
             if (GetMoveDamageResult(predictedMove) >= MOVE_POWER_GOOD && GetBattleMoveSplit(predictedMove) == SPLIT_SPECIAL)
                 score += 3;

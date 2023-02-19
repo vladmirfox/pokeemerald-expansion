@@ -1773,7 +1773,7 @@ u8 TrySetCantSelectMoveBattleScript(void)
         }
     }
 
-    if (!gBattleStruct->zmove.active && gDisableStructs[gActiveBattler].tauntTimer != 0 && IS_MOVE_STATUS(move))
+    if (!gBattleStruct->zmove.active && gBattleStruct->battlers[gActiveBattler].tauntTimer != 0 && IS_MOVE_STATUS(move))
     {
         gCurrentMove = move;
         if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
@@ -1982,7 +1982,7 @@ u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u16 check)
         else if (check & MOVE_LIMITATION_TORMENTED && gBattleMons[battlerId].moves[i] == gBattleStruct->battlers[battlerId].lastMove && gBattleMons[battlerId].status2 & STATUS2_TORMENT)
             unusableMoves |= gBitTable[i];
         // Taunt
-        else if (check & MOVE_LIMITATION_TAUNT && gDisableStructs[battlerId].tauntTimer && IS_MOVE_STATUS(gBattleMons[battlerId].moves[i]))
+        else if (check & MOVE_LIMITATION_TAUNT && gBattleStruct->battlers[battlerId].tauntTimer && IS_MOVE_STATUS(gBattleMons[battlerId].moves[i]))
             unusableMoves |= gBitTable[i];
         // Imprison
         else if (check & MOVE_LIMITATION_IMPRISON && GetImprisonedMovesCount(battlerId, gBattleMons[battlerId].moves[i]))
@@ -3037,7 +3037,7 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_TAUNT:  // taunt
-            if (gDisableStructs[gActiveBattler].tauntTimer && --gDisableStructs[gActiveBattler].tauntTimer == 0)
+            if (gBattleStruct->battlers[gActiveBattler].tauntTimer && --gBattleStruct->battlers[gActiveBattler].tauntTimer == 0)
             {
                 BattleScriptExecute(BattleScript_BufferEndTurn);
                 PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_TAUNT);
@@ -3570,7 +3570,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_TAUNTED: // taunt
-            if (gDisableStructs[gBattlerAttacker].tauntTimer && IS_MOVE_STATUS(gCurrentMove))
+            if (gBattleStruct->battlers[gBattlerAttacker].tauntTimer && IS_MOVE_STATUS(gCurrentMove))
             {
                 gProtectStructs[gBattlerAttacker].usedTauntedMove = TRUE;
                 CancelMultiTurnMoves(gBattlerAttacker);
@@ -6000,7 +6000,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             case ABILITY_OBLIVIOUS:
                 if (gBattleMons[battler].status2 & STATUS2_INFATUATION)
                     effect = 3;
-                else if (gDisableStructs[battler].tauntTimer != 0)
+                else if (gBattleStruct->battlers[battler].tauntTimer != 0)
                     effect = 4;
                 break;
             }
@@ -6024,7 +6024,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     gBattlescriptCurrInstr = BattleScript_BattlerGotOverItsInfatuation;
                     break;
                 case 4: // get rid of taunt
-                    gDisableStructs[battler].tauntTimer = 0;
+                    gBattleStruct->battlers[battler].tauntTimer = 0;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_BattlerShookOffTaunt;
                     break;
@@ -6809,9 +6809,9 @@ static bool32 GetMentalHerbEffect(u8 battlerId)
     }
 #if B_MENTAL_HERB >= GEN_5
     // Check taunt
-    if (gDisableStructs[battlerId].tauntTimer != 0)
+    if (gBattleStruct->battlers[battlerId].tauntTimer != 0)
     {
-        gDisableStructs[battlerId].tauntTimer = 0;
+        gBattleStruct->battlers[battlerId].tauntTimer = 0;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MENTALHERBCURE_TAUNT;
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_TAUNT);
         ret = TRUE;

@@ -60,7 +60,6 @@ struct DisableStruct
     u8 rolloutTimer:4;
     u8 rolloutTimerStartValue:4;
     u8 chargeTimer:4;
-    u8 tauntTimer:4;
     u8 battlerPreventingEscape;
     u8 battlerWithSureHit;
     u8 isFirstTurn;
@@ -666,6 +665,7 @@ struct BattleStruct
         u8 encoreTimer:4;
         u8 disableTimer:4;
         u8 perishSongTimer:4;
+        u8 tauntTimer:4;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
