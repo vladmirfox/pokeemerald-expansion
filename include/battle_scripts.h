@@ -426,7 +426,6 @@ extern const u8 BattleScript_MagicianActivates[];
 extern const u8 BattleScript_BeakBlastSetUp[];
 extern const u8 BattleScript_BeakBlastBurn[];
 extern const u8 BattleScript_DefDownSpeedUp[];
-<<<<<<< HEAD
 extern const u8 BattleScript_AffectionBasedStatusHeal[];
 extern const u8 BattleScript_AffectionBasedEndurance[];
 extern const u8 BattleScript_SymbiosisActivates[];
