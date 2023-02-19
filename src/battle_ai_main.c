@@ -1493,7 +1493,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10; // only one mon needs to set up the last layer of Spikes
             break;
         case EFFECT_STEALTH_ROCK:
-            if (gSideTimers[GetBattlerSide(battlerDef)].stealthRockAmount > 0
+            if (gBattleStruct->sides[GetBattlerSide(battlerDef)].stealthRockAmount > 0
               || PartnerMoveIsSameNoTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove)) //Only one mon needs to set up Stealth Rocks
                 score -= 10;
             break;

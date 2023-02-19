@@ -1726,7 +1726,7 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_STEALTH_ROCK;
         }
-        return &sideTimer->stealthRockAmount;
+        return &side->stealthRockAmount;
     case LIST_SIDE_TOXIC_SPIKES:
         if (changeStatus)
         {

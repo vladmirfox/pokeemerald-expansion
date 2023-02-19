@@ -8368,7 +8368,7 @@ static bool32 ClearDefogHazards(u8 battlerAtk, bool32 clear)
             DEFOG_CLEAR_(SIDE_STATUS_SAFEGUARD, safeguardTimer, BattleScript_SideStatusWoreOffReturn, MOVE_SAFEGUARD);
         }
         DEFOG_CLEAR_(SIDE_STATUS_SPIKES, spikesAmount, BattleScript_SpikesFree, 0);
-        DEFOG_CLEAR(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, BattleScript_StealthRockFree, 0);
+        DEFOG_CLEAR_(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, BattleScript_StealthRockFree, 0);
         DEFOG_CLEAR_(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, BattleScript_ToxicSpikesFree, 0);
         DEFOG_CLEAR(SIDE_STATUS_STICKY_WEB, stickyWebAmount, BattleScript_StickyWebFree, 0);
     }
@@ -8572,7 +8572,7 @@ static bool32 CourtChangeSwapSideStatuses(void)
     // Lucky Chant doesn't exist in gen 8, but seems like it should be affected by Court Change
     COURTCHANGE_SWAP(SIDE_STATUS_LUCKY_CHANT, luckyChantTimer, temp);
     COURTCHANGE_SWAP_(SIDE_STATUS_SPIKES, spikesAmount, temp);
-    COURTCHANGE_SWAP(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, temp);
+    COURTCHANGE_SWAP_(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, temp);
     COURTCHANGE_SWAP_(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, temp);
     COURTCHANGE_SWAP(SIDE_STATUS_STICKY_WEB, stickyWebAmount, temp);
 
@@ -13883,7 +13883,7 @@ static void Cmd_rapidspinfree(void)
     else if (gBattleStruct->sides[atkSide].status & SIDE_STATUS_STEALTH_ROCK)
     {
         gBattleStruct->sides[atkSide].status &= ~SIDE_STATUS_STEALTH_ROCK;
-        gSideTimers[atkSide].stealthRockAmount = 0;
+        gBattleStruct->sides[atkSide].stealthRockAmount = 0;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_StealthRockFree;
     }
@@ -14665,7 +14665,7 @@ static void Cmd_setstealthrock(void)
     else
     {
         gBattleStruct->sides[targetSide].status |= SIDE_STATUS_STEALTH_ROCK;
-        gSideTimers[targetSide].stealthRockAmount = 1;
+        gBattleStruct->sides[targetSide].stealthRockAmount = 1;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
