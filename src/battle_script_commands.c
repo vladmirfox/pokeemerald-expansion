@@ -10705,14 +10705,14 @@ static void Cmd_various(void)
     case VARIOUS_TRY_NO_RETREAT:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (gDisableStructs[gActiveBattler].noRetreat)
+        if (gBattleStruct->battlers[gActiveBattler].noRetreat)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
         else
         {
             if (!(gBattleMons[gActiveBattler].status2 & STATUS2_ESCAPE_PREVENTION))
-                gDisableStructs[gActiveBattler].noRetreat = TRUE;
+                gBattleStruct->battlers[gActiveBattler].noRetreat = TRUE;
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         return;
