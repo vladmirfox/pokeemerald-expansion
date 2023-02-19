@@ -15914,7 +15914,7 @@ static void Cmd_settelekinesis(void)
     else
     {
         gBattleStruct->battlers[gBattlerTarget].status3 |= STATUS3_TELEKINESIS;
-        gDisableStructs[gBattlerTarget].telekinesisTimer = 3;
+        gBattleStruct->battlers[gBattlerTarget].telekinesisTimer = 3;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }

@@ -3119,7 +3119,7 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_TELEKINESIS:
             if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_TELEKINESIS)
             {
-                if (gDisableStructs[gActiveBattler].telekinesisTimer == 0 || --gDisableStructs[gActiveBattler].telekinesisTimer == 0)
+                if (gBattleStruct->battlers[gActiveBattler].telekinesisTimer == 0 || --gBattleStruct->battlers[gActiveBattler].telekinesisTimer == 0)
                 {
                     gBattleStruct->battlers[gActiveBattler].status3 &= ~STATUS3_TELEKINESIS;
                     BattleScriptExecute(BattleScript_TelekinesisEndTurn);
