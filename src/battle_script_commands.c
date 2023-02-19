@@ -7011,10 +7011,10 @@ static void Cmd_switchineffects(void)
         // The truant counter is not updated in the case where a mon switches in after a lost judgment in the battle arena.
         if (GetBattlerAbility(gActiveBattler) == ABILITY_TRUANT
             && gCurrentActionFuncId != B_ACTION_USE_MOVE
-            && !gDisableStructs[gActiveBattler].truantSwitchInHack)
-            gDisableStructs[gActiveBattler].truantCounter = 1;
+            && !gBattleStruct->battlers[gActiveBattler].truantSwitchInHack)
+            gBattleStruct->battlers[gActiveBattler].truantCounter = 1;
 
-        gDisableStructs[gActiveBattler].truantSwitchInHack = 0;
+        gBattleStruct->battlers[gActiveBattler].truantSwitchInHack = 0;
 
         if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gActiveBattler, 0, 0, 0)
          || (gBattleWeather & B_WEATHER_ANY && WEATHER_HAS_EFFECT && AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, gActiveBattler, 0, 0, 0))
@@ -8999,7 +8999,7 @@ static void Cmd_various(void)
         gBattleMons[1].hp = 0;
         gHitMarker |= HITMARKER_FAINTED(1);
         gBattleStruct->arenaLostOpponentMons |= gBitTable[gBattlerPartyIndexes[1]];
-        gDisableStructs[1].truantSwitchInHack = 1;
+        gBattleStruct->battlers[1].truantSwitchInHack = 1;
         break;
     }
     case VARIOUS_ARENA_PLAYER_MON_LOST:
@@ -9009,7 +9009,7 @@ static void Cmd_various(void)
         gHitMarker |= HITMARKER_FAINTED(0);
         gHitMarker |= HITMARKER_PLAYER_FAINTED;
         gBattleStruct->arenaLostPlayerMons |= gBitTable[gBattlerPartyIndexes[0]];
-        gDisableStructs[0].truantSwitchInHack = 1;
+        gBattleStruct->battlers[0].truantSwitchInHack = 1;
         break;
     }
     case VARIOUS_ARENA_BOTH_MONS_LOST:
@@ -9022,8 +9022,8 @@ static void Cmd_various(void)
         gHitMarker |= HITMARKER_PLAYER_FAINTED;
         gBattleStruct->arenaLostPlayerMons |= gBitTable[gBattlerPartyIndexes[0]];
         gBattleStruct->arenaLostOpponentMons |= gBitTable[gBattlerPartyIndexes[1]];
-        gDisableStructs[0].truantSwitchInHack = 1;
-        gDisableStructs[1].truantSwitchInHack = 1;
+        gBattleStruct->battlers[0].truantSwitchInHack = 1;
+        gBattleStruct->battlers[1].truantSwitchInHack = 1;
         break;
     }
     case VARIOUS_EMIT_YESNOBOX:
@@ -13714,7 +13714,7 @@ static void Cmd_jumpifnopursuitswitchdmg(void)
         && gBattlerAttacker == gBattleStruct->battlers[gBattlerTarget].moveTarget
         && !(gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP | STATUS1_FREEZE))
         && gBattleMons[gBattlerAttacker].hp
-        && !gDisableStructs[gBattlerTarget].truantCounter
+        && !gBattleStruct->battlers[gBattlerTarget].truantCounter
         && gBattleStruct->battlers[gBattlerTarget].chosenMove == MOVE_PURSUIT)
     {
         s32 i;

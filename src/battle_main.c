@@ -3044,7 +3044,7 @@ void SwitchInClearSetData(void)
     u32 perishSongTimer = gBattleStruct->battlers[gActiveBattler].perishSongTimer;
     u32 battlerPreventingEscape = gBattleStruct->battlers[gActiveBattler].battlerPreventingEscape;
     u32 battlerWithSureHit = gBattleStruct->battlers[gActiveBattler].battlerWithSureHit;
-    struct DisableStruct disableStructCopy = gDisableStructs[gActiveBattler];
+    bool32 truantSwitchInHack = gBattleStruct->battlers[gActiveBattler].truantSwitchInHack;
 
     ClearIllusionMon(gActiveBattler);
     if (gBattleMoves[gCurrentMove].effect != EFFECT_BATON_PASS)
@@ -3112,7 +3112,7 @@ void SwitchInClearSetData(void)
 
     gMoveResultFlags = 0;
     gBattleStruct->battlers[gActiveBattler].isFirstTurn = 2;
-    gDisableStructs[gActiveBattler].truantSwitchInHack = disableStructCopy.truantSwitchInHack;
+    gBattleStruct->battlers[gActiveBattler].truantSwitchInHack = truantSwitchInHack;
     gBattleStruct->battlers[gActiveBattler].lastMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitByMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitByType = TYPE_NORMAL;
@@ -4925,7 +4925,7 @@ static void CheckChosenMoveForEffectsBeforeTurnStarts(void)
             gActiveBattler = gBattlerAttacker = gBattleStruct->focusPunchBattlerId;
             gBattleStruct->focusPunchBattlerId++;
             if (!(gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP)
-                && !(gDisableStructs[gBattlerAttacker].truantCounter)
+                && !(gBattleStruct->battlers[gBattlerAttacker].truantCounter)
                 && !(gProtectStructs[gActiveBattler].noValidMoves))
             {
                 switch (gBattleStruct->battlers[gActiveBattler].chosenMove)
@@ -4959,7 +4959,7 @@ static void CheckQuickClaw_CustapBerryActivation(void)
              && gBattleStruct->battlers[gActiveBattler].chosenMove != MOVE_FOCUS_PUNCH   // quick claw message doesn't need to activate here
              && (gProtectStructs[gActiveBattler].usedCustapBerry || gProtectStructs[gActiveBattler].quickDraw)
              && !(gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP)
-             && !(gDisableStructs[gBattlerAttacker].truantCounter)
+             && !(gBattleStruct->battlers[gBattlerAttacker].truantCounter)
              && !(gProtectStructs[gActiveBattler].noValidMoves))
             {
                 if (gProtectStructs[gActiveBattler].usedCustapBerry)

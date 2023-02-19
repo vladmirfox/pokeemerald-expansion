@@ -447,7 +447,7 @@ static u8 ChooseMoveOrAction_Singles(void)
         // Or is using a double turn semi invulnerable move(such as Fly) and is faster.
         if (GetBattlerAbility(sBattler_AI) == ABILITY_TRUANT
             && IsTruantMonVulnerable(sBattler_AI, gBattlerTarget)
-            && gDisableStructs[sBattler_AI].truantCounter
+            && gBattleStruct->battlers[sBattler_AI].truantCounter
             && gBattleMons[sBattler_AI].hp >= gBattleMons[sBattler_AI].maxHP / 2)
         {
             if (GetMostSuitableMonToSwitchInto() != PARTY_SIZE)

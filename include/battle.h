@@ -60,8 +60,6 @@ struct DisableStruct
     u8 rolloutTimer:4;
     u8 rolloutTimerStartValue:4;
     u8 chargeTimer:4;
-    u8 truantCounter:1;
-    u8 truantSwitchInHack:1;
     u8 mimickedMoves:4;
     u8 rechargeTimer;
     u8 autotomizeCount;
@@ -666,6 +664,8 @@ struct BattleStruct
         u8 battlerPreventingEscape;
         u8 battlerWithSureHit;
         u8 isFirstTurn;
+        u8 truantCounter:1;
+        u8 truantSwitchInHack:1;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
