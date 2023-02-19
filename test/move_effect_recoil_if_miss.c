@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("Jump Kick has 50% recoil on protect")
     }
 }
 
-SINGLE_BATTLE_TEST("Jump Kick has no recoil if no target") // Previously issue #2596.
+SINGLE_BATTLE_TEST("Jump Kick has no recoil if no target")
 {
     GIVEN {
         ASSUME(B_HEALING_WISH_SWITCH >= GEN_5);
