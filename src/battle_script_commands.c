@@ -1701,7 +1701,7 @@ static bool8 JumpIfMoveAffectedByProtect(u16 move)
 
 static bool32 AccuracyCalcHelper(u16 move)
 {
-    if (gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+    if (gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_ALWAYS_HITS && gBattleStruct->battlers[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
     {
         JumpIfMoveFailed(7, move);
         return TRUE;
@@ -1883,7 +1883,7 @@ static void Cmd_accuracycheck(void)
 
     if (move == NO_ACC_CALC_CHECK_LOCK_ON)
     {
-        if (gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+        if (gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_ALWAYS_HITS && gBattleStruct->battlers[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
             gBattlescriptCurrInstr = cmd->nextInstr;
         else if (gBattleStruct->battlers[gBattlerTarget].status3 & (STATUS3_SEMI_INVULNERABLE))
             gBattlescriptCurrInstr = cmd->failInstr;
@@ -12428,7 +12428,7 @@ static void Cmd_tryKO(void)
     else
     {
         if ((((gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_ALWAYS_HITS)
-                && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+                && gBattleStruct->battlers[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
             || GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD
             || targetAbility == ABILITY_NO_GUARD)
             && gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
@@ -13073,7 +13073,7 @@ static void Cmd_setalwayshitflag(void)
 
     gBattleStruct->battlers[gBattlerTarget].status3 &= ~STATUS3_ALWAYS_HITS;
     gBattleStruct->battlers[gBattlerTarget].status3 |= STATUS3_ALWAYS_HITS_TURN(2);
-    gDisableStructs[gBattlerTarget].battlerWithSureHit = gBattlerAttacker;
+    gBattleStruct->battlers[gBattlerTarget].battlerWithSureHit = gBattlerAttacker;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 

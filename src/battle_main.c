@@ -3043,6 +3043,7 @@ void SwitchInClearSetData(void)
     u32 substituteHP = gBattleStruct->battlers[gActiveBattler].substituteHP;
     u32 perishSongTimer = gBattleStruct->battlers[gActiveBattler].perishSongTimer;
     u32 battlerPreventingEscape = gBattleStruct->battlers[gActiveBattler].battlerPreventingEscape;
+    u32 battlerWithSureHit = gBattleStruct->battlers[gActiveBattler].battlerWithSureHit;
     struct DisableStruct disableStructCopy = gDisableStructs[gActiveBattler];
 
     ClearIllusionMon(gActiveBattler);
@@ -3054,10 +3055,10 @@ void SwitchInClearSetData(void)
         {
             if ((gBattleMons[i].status2 & STATUS2_ESCAPE_PREVENTION) && gBattleStruct->battlers[i].battlerPreventingEscape == gActiveBattler)
                 gBattleMons[i].status2 &= ~STATUS2_ESCAPE_PREVENTION;
-            if ((gBattleStruct->battlers[i].status3 & STATUS3_ALWAYS_HITS) && gDisableStructs[i].battlerWithSureHit == gActiveBattler)
+            if ((gBattleStruct->battlers[i].status3 & STATUS3_ALWAYS_HITS) && gBattleStruct->battlers[i].battlerWithSureHit == gActiveBattler)
             {
                 gBattleStruct->battlers[i].status3 &= ~STATUS3_ALWAYS_HITS;
-                gDisableStructs[i].battlerWithSureHit = 0;
+                gBattleStruct->battlers[i].battlerWithSureHit = 0;
             }
         }
     }
@@ -3072,7 +3073,7 @@ void SwitchInClearSetData(void)
         {
             if (GetBattlerSide(gActiveBattler) != GetBattlerSide(i)
              && (gBattleStruct->battlers[i].status3 & STATUS3_ALWAYS_HITS) != 0
-             && (gDisableStructs[i].battlerWithSureHit == gActiveBattler))
+             && (gBattleStruct->battlers[i].battlerWithSureHit == gActiveBattler))
             {
                 gBattleStruct->battlers[i].status3 &= ~STATUS3_ALWAYS_HITS;
                 gBattleStruct->battlers[i].status3 |= STATUS3_ALWAYS_HITS_TURN(2);
@@ -3104,7 +3105,7 @@ void SwitchInClearSetData(void)
     if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
     {
         gBattleStruct->battlers[gActiveBattler].substituteHP = substituteHP;
-        gDisableStructs[gActiveBattler].battlerWithSureHit = disableStructCopy.battlerWithSureHit;
+        gBattleStruct->battlers[gActiveBattler].battlerWithSureHit = battlerWithSureHit;
         gBattleStruct->battlers[gActiveBattler].perishSongTimer = perishSongTimer;
         gBattleStruct->battlers[gActiveBattler].battlerPreventingEscape = battlerPreventingEscape;
     }

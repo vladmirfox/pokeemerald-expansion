@@ -1422,7 +1422,7 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
     //TODO - anticipate protect move?
 
     // always hits
-    if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_ALWAYS_HITS || gDisableStructs[battlerDef].battlerWithSureHit == battlerAtk)
+    if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_ALWAYS_HITS || gBattleStruct->battlers[battlerDef].battlerWithSureHit == battlerAtk)
         return TRUE;
 
     if (AI_DATA->abilities[battlerDef] == ABILITY_NO_GUARD || AI_DATA->abilities[battlerAtk] == ABILITY_NO_GUARD)
@@ -1469,7 +1469,7 @@ bool32 ShouldTryOHKO(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbilit
         return FALSE;
 
     if ((((gBattleStruct->battlers[battlerDef].status3 & STATUS3_ALWAYS_HITS)
-        && gDisableStructs[battlerDef].battlerWithSureHit == battlerAtk)
+        && gBattleStruct->battlers[battlerDef].battlerWithSureHit == battlerAtk)
         || atkAbility == ABILITY_NO_GUARD || defAbility == ABILITY_NO_GUARD)
         && gBattleMons[battlerAtk].level >= gBattleMons[battlerDef].level)
     {
