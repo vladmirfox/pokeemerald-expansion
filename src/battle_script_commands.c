@@ -10769,10 +10769,10 @@ static void Cmd_various(void)
             PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_TAUNT);
         }
         // Check encore
-        if (gDisableStructs[gActiveBattler].encoreTimer != 0)
+        if (gBattleStruct->battlers[gActiveBattler].encoreTimer != 0)
         {
             gBattleStruct->battlers[gActiveBattler].encoredMove = MOVE_NONE;
-            gDisableStructs[gActiveBattler].encoreTimer = 0;
+            gBattleStruct->battlers[gActiveBattler].encoreTimer = 0;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MENTALHERBCURE_ENCORE;   // STRINGID_PKMNENCOREENDED
         }
         // Check torment
@@ -12978,8 +12978,7 @@ static void Cmd_trysetencore(void)
     {
         gBattleStruct->battlers[gBattlerTarget].encoredMove = gBattleMons[gBattlerTarget].moves[i];
         gBattleStruct->battlers[gBattlerTarget].encoredMovePosition = i;
-        gDisableStructs[gBattlerTarget].encoreTimer = 3;
-        gDisableStructs[gBattlerTarget].encoreTimer;
+        gBattleStruct->battlers[gBattlerTarget].encoreTimer = 3;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else

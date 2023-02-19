@@ -1430,7 +1430,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             break;
         case EFFECT_ENCORE:
-            if (gDisableStructs[battlerDef].encoreTimer == 0
+            if (gBattleStruct->battlers[battlerDef].encoreTimer == 0
             #if B_MENTAL_HERB >= GEN_5
                 && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_MENTAL_HERB
             #endif
@@ -3673,7 +3673,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
         break;
     case EFFECT_ENCORE:
-        if (gDisableStructs[battlerDef].encoreTimer == 0
+        if (gBattleStruct->battlers[battlerDef].encoreTimer == 0
         #if B_MENTAL_HERB >= GEN_5
             && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_MENTAL_HERB    // mental herb
         #endif

@@ -305,7 +305,7 @@ void HandleAction_UseMove(void)
         gCurrentMove = gChosenMove = gBattleMons[gBattlerAttacker].moves[gCurrMovePos];
         gBattleStruct->battlers[gBattlerAttacker].encoredMove = MOVE_NONE;
         gBattleStruct->battlers[gBattlerAttacker].encoredMovePosition = 0;
-        gDisableStructs[gBattlerAttacker].encoreTimer = 0;
+        gBattleStruct->battlers[gBattlerAttacker].encoreTimer = 0;
         gBattleStruct->battlers[gBattlerAttacker].moveTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
     }
     else if (gBattleMons[gBattlerAttacker].moves[gCurrMovePos] != gBattleStruct->battlers[gBattlerAttacker].chosenMove)
@@ -1988,7 +1988,7 @@ u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u16 check)
         else if (check & MOVE_LIMITATION_IMPRISON && GetImprisonedMovesCount(battlerId, gBattleMons[battlerId].moves[i]))
             unusableMoves |= gBitTable[i];
         // Encore
-        else if (check & MOVE_LIMITATION_ENCORE && gDisableStructs[battlerId].encoreTimer && gBattleStruct->battlers[battlerId].encoredMove != gBattleMons[battlerId].moves[i])
+        else if (check & MOVE_LIMITATION_ENCORE && gBattleStruct->battlers[battlerId].encoreTimer && gBattleStruct->battlers[battlerId].encoredMove != gBattleMons[battlerId].moves[i])
             unusableMoves |= gBitTable[i];
         // Choice Items
         else if (check & MOVE_LIMITATION_CHOICE_ITEM && HOLD_EFFECT_CHOICE(holdEffect) && *choicedMove != MOVE_NONE && *choicedMove != MOVE_UNAVAILABLE && *choicedMove != gBattleMons[battlerId].moves[i])
@@ -3008,18 +3008,18 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_ENCORE:  // encore
-            if (gDisableStructs[gActiveBattler].encoreTimer != 0)
+            if (gBattleStruct->battlers[gActiveBattler].encoreTimer != 0)
             {
                 if (gBattleMons[gActiveBattler].moves[gBattleStruct->battlers[gActiveBattler].encoredMovePosition] != gBattleStruct->battlers[gActiveBattler].encoredMove)  // pokemon does not have the encored move anymore
                 {
                     gBattleStruct->battlers[gActiveBattler].encoredMove = MOVE_NONE;
-                    gDisableStructs[gActiveBattler].encoreTimer = 0;
+                    gBattleStruct->battlers[gActiveBattler].encoreTimer = 0;
                 }
-                else if (--gDisableStructs[gActiveBattler].encoreTimer == 0
+                else if (--gBattleStruct->battlers[gActiveBattler].encoreTimer == 0
                  || gBattleMons[gActiveBattler].pp[gBattleStruct->battlers[gActiveBattler].encoredMovePosition] == 0)
                 {
                     gBattleStruct->battlers[gActiveBattler].encoredMove = MOVE_NONE;
-                    gDisableStructs[gActiveBattler].encoreTimer = 0;
+                    gBattleStruct->battlers[gActiveBattler].encoreTimer = 0;
                     BattleScriptExecute(BattleScript_EncoredNoMore);
                     effect++;
                 }
@@ -6817,10 +6817,10 @@ static bool32 GetMentalHerbEffect(u8 battlerId)
         ret = TRUE;
     }
     // Check encore
-    if (gDisableStructs[battlerId].encoreTimer != 0)
+    if (gBattleStruct->battlers[battlerId].encoreTimer != 0)
     {
         gBattleStruct->battlers[battlerId].encoredMove = MOVE_NONE;
-        gDisableStructs[battlerId].encoreTimer = 0;
+        gBattleStruct->battlers[battlerId].encoreTimer = 0;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MENTALHERBCURE_ENCORE;   // STRINGID_PKMNENCOREENDED
         ret = TRUE;
     }
