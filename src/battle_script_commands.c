@@ -10788,9 +10788,9 @@ static void Cmd_various(void)
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MENTALHERBCURE_HEALBLOCK;
         }
         // Check disable
-        if (gDisableStructs[gActiveBattler].disableTimer != 0)
+        if (gBattleStruct->battlers[gActiveBattler].disableTimer != 0)
         {
-            gDisableStructs[gActiveBattler].disableTimer = 0;
+            gBattleStruct->battlers[gActiveBattler].disableTimer = 0;
             gBattleStruct->battlers[gActiveBattler].disabledMove = MOVE_NONE;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MENTALHERBCURE_DISABLE;
         }
@@ -12707,7 +12707,7 @@ static void Cmd_transformdataexecution(void)
 
         gBattleMons[gBattlerAttacker].status2 |= STATUS2_TRANSFORMED;
         gBattleStruct->battlers[gBattlerAttacker].disabledMove = MOVE_NONE;
-        gDisableStructs[gBattlerAttacker].disableTimer = 0;
+        gBattleStruct->battlers[gBattlerAttacker].disableTimer = 0;
         gDisableStructs[gBattlerAttacker].transformedMonPersonality = gBattleMons[gBattlerTarget].personality;
         gDisableStructs[gBattlerAttacker].mimickedMoves = 0;
         gDisableStructs[gBattlerAttacker].usedMoves = 0;
@@ -12937,11 +12937,11 @@ static void Cmd_disablelastusedattack(void)
 
         gBattleStruct->battlers[gBattlerTarget].disabledMove = gBattleMons[gBattlerTarget].moves[i];
     #if B_DISABLE_TURNS == GEN_3
-        gDisableStructs[gBattlerTarget].disableTimer = (Random() & 3) + 2;
+        gBattleStruct->battlers[gBattlerTarget].disableTimer = (Random() & 3) + 2;
     #elif B_DISABLE_TURNS == GEN_4
-        gDisableStructs[gBattlerTarget].disableTimer = (Random() & 3) + 4;
+        gBattleStruct->battlers[gBattlerTarget].disableTimer = (Random() & 3) + 4;
     #else
-        gDisableStructs[gBattlerTarget].disableTimer = 4;
+        gBattleStruct->battlers[gBattlerTarget].disableTimer = 4;
     #endif
         gBattlescriptCurrInstr = cmd->nextInstr;
     }

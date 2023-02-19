@@ -2986,7 +2986,7 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_DISABLE:  // disable
-            if (gDisableStructs[gActiveBattler].disableTimer != 0)
+            if (gBattleStruct->battlers[gActiveBattler].disableTimer != 0)
             {
                 for (i = 0; i < MAX_MON_MOVES; i++)
                 {
@@ -2996,9 +2996,9 @@ u8 DoBattlerEndTurnEffects(void)
                 if (i == MAX_MON_MOVES)  // pokemon does not have the disabled move anymore
                 {
                     gBattleStruct->battlers[gActiveBattler].disabledMove = MOVE_NONE;
-                    gDisableStructs[gActiveBattler].disableTimer = 0;
+                    gBattleStruct->battlers[gActiveBattler].disableTimer = 0;
                 }
-                else if (--gDisableStructs[gActiveBattler].disableTimer == 0)  // disable ends
+                else if (--gBattleStruct->battlers[gActiveBattler].disableTimer == 0)  // disable ends
                 {
                     gBattleStruct->battlers[gActiveBattler].disabledMove = MOVE_NONE;
                     BattleScriptExecute(BattleScript_DisabledNoMore);
@@ -5405,7 +5405,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && (Random() % 3) == 0)
             {
                 gBattleStruct->battlers[gBattlerAttacker].disabledMove = gChosenMove;
-                gDisableStructs[gBattlerAttacker].disableTimer = 4;
+                gBattleStruct->battlers[gBattlerAttacker].disableTimer = 4;
                 PREPARE_MOVE_BUFFER(gBattleTextBuff1, gChosenMove);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_CursedBodyActivates;
@@ -6839,9 +6839,9 @@ static bool32 GetMentalHerbEffect(u8 battlerId)
         ret = TRUE;
     }
     // Check disable
-    if (gDisableStructs[battlerId].disableTimer != 0)
+    if (gBattleStruct->battlers[battlerId].disableTimer != 0)
     {
-        gDisableStructs[battlerId].disableTimer = 0;
+        gBattleStruct->battlers[battlerId].disableTimer = 0;
         gBattleStruct->battlers[battlerId].disabledMove = MOVE_NONE;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MENTALHERBCURE_DISABLE;
         ret = TRUE;
