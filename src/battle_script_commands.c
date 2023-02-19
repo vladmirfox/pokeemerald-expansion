@@ -10791,7 +10791,7 @@ static void Cmd_various(void)
         if (gDisableStructs[gActiveBattler].disableTimer != 0)
         {
             gDisableStructs[gActiveBattler].disableTimer = 0;
-            gDisableStructs[gActiveBattler].disabledMove = 0;
+            gBattleStruct->battlers[gActiveBattler].disabledMove = MOVE_NONE;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MENTALHERBCURE_DISABLE;
         }
         gBattlescriptCurrInstr = cmd->nextInstr;
@@ -12706,7 +12706,7 @@ static void Cmd_transformdataexecution(void)
         u8 *battleMonAttacker, *battleMonTarget;
 
         gBattleMons[gBattlerAttacker].status2 |= STATUS2_TRANSFORMED;
-        gDisableStructs[gBattlerAttacker].disabledMove = MOVE_NONE;
+        gBattleStruct->battlers[gBattlerAttacker].disabledMove = MOVE_NONE;
         gDisableStructs[gBattlerAttacker].disableTimer = 0;
         gDisableStructs[gBattlerAttacker].transformedMonPersonality = gBattleMons[gBattlerTarget].personality;
         gDisableStructs[gBattlerAttacker].mimickedMoves = 0;
@@ -12930,12 +12930,12 @@ static void Cmd_disablelastusedattack(void)
         if (gBattleMons[gBattlerTarget].moves[i] == gBattleStruct->battlers[gBattlerTarget].lastMove)
             break;
     }
-    if (gDisableStructs[gBattlerTarget].disabledMove == MOVE_NONE
+    if (gBattleStruct->battlers[gBattlerTarget].disabledMove == MOVE_NONE
         && i != MAX_MON_MOVES && gBattleMons[gBattlerTarget].pp[i] != 0)
     {
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerTarget].moves[i])
 
-        gDisableStructs[gBattlerTarget].disabledMove = gBattleMons[gBattlerTarget].moves[i];
+        gBattleStruct->battlers[gBattlerTarget].disabledMove = gBattleMons[gBattlerTarget].moves[i];
     #if B_DISABLE_TURNS == GEN_3
         gDisableStructs[gBattlerTarget].disableTimer = (Random() & 3) + 2;
     #elif B_DISABLE_TURNS == GEN_4

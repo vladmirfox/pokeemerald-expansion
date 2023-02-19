@@ -1742,7 +1742,7 @@ u8 TrySetCantSelectMoveBattleScript(void)
     u32 holdEffect = GetBattlerHoldEffect(gActiveBattler, TRUE);
     u16 *choicedMove = &gBattleStruct->battlers[gActiveBattler].choicedMove;
 
-    if (gDisableStructs[gActiveBattler].disabledMove == move && move != MOVE_NONE)
+    if (gBattleStruct->battlers[gActiveBattler].disabledMove == move && move != MOVE_NONE)
     {
         gBattleScripting.battler = gActiveBattler;
         gCurrentMove = move;
@@ -1976,7 +1976,7 @@ u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u16 check)
         else if (check & MOVE_LIMITATION_PLACEHOLDER && gBattleMoves[gBattleMons[battlerId].moves[i]].effect == EFFECT_PLACEHOLDER)
             unusableMoves |= gBitTable[i];
         // Disable
-        else if (check & MOVE_LIMITATION_DISABLED && gBattleMons[battlerId].moves[i] == gDisableStructs[battlerId].disabledMove)
+        else if (check & MOVE_LIMITATION_DISABLED && gBattleMons[battlerId].moves[i] == gBattleStruct->battlers[battlerId].disabledMove)
             unusableMoves |= gBitTable[i];
         // Torment
         else if (check & MOVE_LIMITATION_TORMENTED && gBattleMons[battlerId].moves[i] == gBattleStruct->battlers[battlerId].lastMove && gBattleMons[battlerId].status2 & STATUS2_TORMENT)
@@ -2990,17 +2990,17 @@ u8 DoBattlerEndTurnEffects(void)
             {
                 for (i = 0; i < MAX_MON_MOVES; i++)
                 {
-                    if (gDisableStructs[gActiveBattler].disabledMove == gBattleMons[gActiveBattler].moves[i])
+                    if (gBattleStruct->battlers[gActiveBattler].disabledMove == gBattleMons[gActiveBattler].moves[i])
                         break;
                 }
                 if (i == MAX_MON_MOVES)  // pokemon does not have the disabled move anymore
                 {
-                    gDisableStructs[gActiveBattler].disabledMove = 0;
+                    gBattleStruct->battlers[gActiveBattler].disabledMove = MOVE_NONE;
                     gDisableStructs[gActiveBattler].disableTimer = 0;
                 }
                 else if (--gDisableStructs[gActiveBattler].disableTimer == 0)  // disable ends
                 {
-                    gDisableStructs[gActiveBattler].disabledMove = 0;
+                    gBattleStruct->battlers[gActiveBattler].disabledMove = MOVE_NONE;
                     BattleScriptExecute(BattleScript_DisabledNoMore);
                     effect++;
                 }
@@ -3534,7 +3534,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_DISABLED: // disabled move
-            if (gDisableStructs[gBattlerAttacker].disabledMove == gCurrentMove && gDisableStructs[gBattlerAttacker].disabledMove != MOVE_NONE)
+            if (gBattleStruct->battlers[gBattlerAttacker].disabledMove == gCurrentMove && gBattleStruct->battlers[gBattlerAttacker].disabledMove != MOVE_NONE)
             {
                 gProtectStructs[gBattlerAttacker].usedDisabledMove = TRUE;
                 gBattleScripting.battler = gBattlerAttacker;
@@ -5398,13 +5398,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_CURSED_BODY:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
-             && gDisableStructs[gBattlerAttacker].disabledMove == MOVE_NONE
+             && gBattleStruct->battlers[gBattlerAttacker].disabledMove == MOVE_NONE
              && IsBattlerAlive(gBattlerAttacker)
              && !IsAbilityOnSide(gBattlerAttacker, ABILITY_AROMA_VEIL)
              && gBattleMons[gBattlerAttacker].pp[gChosenMovePos] != 0
              && (Random() % 3) == 0)
             {
-                gDisableStructs[gBattlerAttacker].disabledMove = gChosenMove;
+                gBattleStruct->battlers[gBattlerAttacker].disabledMove = gChosenMove;
                 gDisableStructs[gBattlerAttacker].disableTimer = 4;
                 PREPARE_MOVE_BUFFER(gBattleTextBuff1, gChosenMove);
                 BattleScriptPushCursor();
@@ -6842,7 +6842,7 @@ static bool32 GetMentalHerbEffect(u8 battlerId)
     if (gDisableStructs[battlerId].disableTimer != 0)
     {
         gDisableStructs[battlerId].disableTimer = 0;
-        gDisableStructs[battlerId].disabledMove = 0;
+        gBattleStruct->battlers[battlerId].disabledMove = MOVE_NONE;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MENTALHERBCURE_DISABLE;
         ret = TRUE;
     }
