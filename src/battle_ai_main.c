@@ -1978,14 +1978,14 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     {
                         score -= 10; //Don't protect if you're going to faint after protecting
                     }
-                    else if (gDisableStructs[battlerAtk].protectUses == 1 && Random() % 100 < 50)
+                    else if (gBattleStruct->battlers[battlerAtk].protectUses == 1 && Random() % 100 < 50)
                     {
                         if (!isDoubleBattle)
                             score -= 6;
                         else
                             score -= 10; //Don't try double protecting in doubles
                     }
-                    else if (gDisableStructs[battlerAtk].protectUses >= 2)
+                    else if (gBattleStruct->battlers[battlerAtk].protectUses >= 2)
                     {
                         score -= 10;
                     }

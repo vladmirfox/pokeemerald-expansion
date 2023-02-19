@@ -11051,12 +11051,12 @@ static void Cmd_setprotectlike(void)
     bool32 notLastTurn = TRUE;
 
     if (!(gBattleMoves[gBattleStruct->battlers[gBattlerAttacker].lastResultingMove].flags & FLAG_PROTECTION_MOVE))
-        gDisableStructs[gBattlerAttacker].protectUses = 0;
+        gBattleStruct->battlers[gBattlerAttacker].protectUses = 0;
 
     if (gCurrentTurnActionNumber == (gBattlersCount - 1))
         notLastTurn = FALSE;
 
-    if (sProtectSuccessRates[gDisableStructs[gBattlerAttacker].protectUses] >= Random() && notLastTurn)
+    if (sProtectSuccessRates[gBattleStruct->battlers[gBattlerAttacker].protectUses] >= Random() && notLastTurn)
     {
         if (!gBattleMoves[gCurrentMove].argument) // Protects one mon only.
         {
@@ -11096,7 +11096,7 @@ static void Cmd_setprotectlike(void)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 0;
             }
 
-            gDisableStructs[gBattlerAttacker].protectUses++;
+            gBattleStruct->battlers[gBattlerAttacker].protectUses++;
             fail = FALSE;
         }
         else // Protects the whole side.
@@ -11106,21 +11106,21 @@ static void Cmd_setprotectlike(void)
             {
                 gBattleStruct->sides[side].status |= SIDE_STATUS_WIDE_GUARD;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
-                gDisableStructs[gBattlerAttacker].protectUses++;
+                gBattleStruct->battlers[gBattlerAttacker].protectUses++;
                 fail = FALSE;
             }
             else if (gCurrentMove == MOVE_QUICK_GUARD && !(gBattleStruct->sides[side].status & SIDE_STATUS_QUICK_GUARD))
             {
                 gBattleStruct->sides[side].status |= SIDE_STATUS_QUICK_GUARD;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
-                gDisableStructs[gBattlerAttacker].protectUses++;
+                gBattleStruct->battlers[gBattlerAttacker].protectUses++;
                 fail = FALSE;
             }
             else if (gCurrentMove == MOVE_CRAFTY_SHIELD && !(gBattleStruct->sides[side].status & SIDE_STATUS_CRAFTY_SHIELD))
             {
                 gBattleStruct->sides[side].status |= SIDE_STATUS_CRAFTY_SHIELD;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_TEAM;
-                gDisableStructs[gBattlerAttacker].protectUses++;
+                gBattleStruct->battlers[gBattlerAttacker].protectUses++;
                 fail = FALSE;
             }
             else if (gCurrentMove == MOVE_MAT_BLOCK && !(gBattleStruct->sides[side].status & SIDE_STATUS_MAT_BLOCK))
@@ -11134,7 +11134,7 @@ static void Cmd_setprotectlike(void)
 
     if (fail)
     {
-        gDisableStructs[gBattlerAttacker].protectUses = 0;
+        gBattleStruct->battlers[gBattlerAttacker].protectUses = 0;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECT_FAILED;
         gMoveResultFlags |= MOVE_RESULT_MISSED;
     }

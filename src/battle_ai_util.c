@@ -1592,7 +1592,7 @@ void ProtectChecks(u8 battlerAtk, u8 battlerDef, u16 move, u16 predictedMove, s1
     // TODO more sophisticated logic
     u16 predictedEffect = gBattleMoves[predictedMove].effect;
     u8 defAbility = AI_DATA->abilities[battlerDef];
-    u32 uses = gDisableStructs[battlerAtk].protectUses;
+    u32 uses = gBattleStruct->battlers[battlerAtk].protectUses;
 
     /*if (GetMoveResultFlags(predictedMove) & (MOVE_RESULT_NO_EFFECT | MOVE_RESULT_MISSED))
     {
