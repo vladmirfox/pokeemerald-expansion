@@ -2697,9 +2697,7 @@ BattleScript_EffectHealingWish:
 	instanthpdrop BS_ATTACKER
 	setatkhptozero
 	tryfaintmon BS_ATTACKER
-.if B_HEALING_WISH_SWITCH >= GEN_5
 	storehealingwish BS_ATTACKER
-.endif
 .if B_HEALING_WISH_SWITCH <= GEN_4
 	openpartyscreen BS_ATTACKER, BattleScript_EffectHealingWishEnd
 	switchoutabilities BS_ATTACKER
