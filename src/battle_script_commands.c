@@ -6957,7 +6957,7 @@ static void Cmd_switchineffects(void)
         if (IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_POISON)) // Absorb the toxic spikes.
         {
             gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status &= ~SIDE_STATUS_TOXIC_SPIKES;
-            gSideTimers[GetBattlerSide(gActiveBattler)].toxicSpikesAmount = 0;
+            gBattleStruct->sides[GetBattlerSide(gActiveBattler)].toxicSpikesAmount = 0;
             gBattleScripting.battler = gActiveBattler;
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_ToxicSpikesAbsorbed;
@@ -6971,7 +6971,7 @@ static void Cmd_switchineffects(void)
                 && !(gBattleStruct->sides[GetBattlerSide(gActiveBattler)].status & SIDE_STATUS_SAFEGUARD)
                 && !(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
             {
-                if (gSideTimers[GetBattlerSide(gActiveBattler)].toxicSpikesAmount >= 2)
+                if (gBattleStruct->sides[GetBattlerSide(gActiveBattler)].toxicSpikesAmount >= 2)
                     gBattleMons[gActiveBattler].status1 |= STATUS1_TOXIC_POISON;
                 else
                     gBattleMons[gActiveBattler].status1 |= STATUS1_POISON;
@@ -8369,7 +8369,7 @@ static bool32 ClearDefogHazards(u8 battlerAtk, bool32 clear)
         }
         DEFOG_CLEAR_(SIDE_STATUS_SPIKES, spikesAmount, BattleScript_SpikesFree, 0);
         DEFOG_CLEAR(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, BattleScript_StealthRockFree, 0);
-        DEFOG_CLEAR(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, BattleScript_ToxicSpikesFree, 0);
+        DEFOG_CLEAR_(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, BattleScript_ToxicSpikesFree, 0);
         DEFOG_CLEAR(SIDE_STATUS_STICKY_WEB, stickyWebAmount, BattleScript_StickyWebFree, 0);
     }
 
@@ -8573,7 +8573,7 @@ static bool32 CourtChangeSwapSideStatuses(void)
     COURTCHANGE_SWAP(SIDE_STATUS_LUCKY_CHANT, luckyChantTimer, temp);
     COURTCHANGE_SWAP_(SIDE_STATUS_SPIKES, spikesAmount, temp);
     COURTCHANGE_SWAP(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, temp);
-    COURTCHANGE_SWAP(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, temp);
+    COURTCHANGE_SWAP_(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, temp);
     COURTCHANGE_SWAP(SIDE_STATUS_STICKY_WEB, stickyWebAmount, temp);
 
     // Change battler IDs of swapped effects. Needed for the correct string when they expire
@@ -13869,7 +13869,7 @@ static void Cmd_rapidspinfree(void)
     else if (gBattleStruct->sides[atkSide].status & SIDE_STATUS_TOXIC_SPIKES)
     {
         gBattleStruct->sides[atkSide].status &= ~SIDE_STATUS_TOXIC_SPIKES;
-        gSideTimers[atkSide].toxicSpikesAmount = 0;
+        gBattleStruct->sides[atkSide].toxicSpikesAmount = 0;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_ToxicSpikesFree;
     }
@@ -14465,13 +14465,13 @@ static void Cmd_settoxicspikes(void)
     CMD_ARGS(const u8 *failInstr);
 
     u8 targetSide = GetBattlerSide(gBattlerTarget);
-    if (gSideTimers[targetSide].toxicSpikesAmount >= 2)
+    if (gBattleStruct->sides[targetSide].toxicSpikesAmount >= 2)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
     else
     {
-        gSideTimers[targetSide].toxicSpikesAmount++;
+        gBattleStruct->sides[targetSide].toxicSpikesAmount++;
         gBattleStruct->sides[targetSide].status |= SIDE_STATUS_TOXIC_SPIKES;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }

@@ -1735,7 +1735,7 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_TOXIC_SPIKES;
         }
-        return &sideTimer->toxicSpikesAmount;
+        return &side->toxicSpikesAmount;
     case LIST_SIDE_STICKY_WEB:
         if (changeStatus)
         {
