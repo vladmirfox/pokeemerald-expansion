@@ -14643,7 +14643,7 @@ static void Cmd_setuserstatus3(void)
     {
         gBattleStruct->battlers[gBattlerAttacker].status3 |= flags;
         if (flags & STATUS3_MAGNET_RISE)
-            gDisableStructs[gBattlerAttacker].magnetRiseTimer = 5;
+            gBattleStruct->battlers[gBattlerAttacker].magnetRiseTimer = 5;
         if (flags & STATUS3_LASER_FOCUS)
             gDisableStructs[gBattlerAttacker].laserFocusTimer = 2;
         gBattlescriptCurrInstr = cmd->nextInstr;

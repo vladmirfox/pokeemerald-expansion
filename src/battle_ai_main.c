@@ -2544,7 +2544,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_MAGNET_RISE:
             if (gFieldStatuses & STATUS_FIELD_GRAVITY
-              ||  gDisableStructs[battlerAtk].magnetRiseTimer != 0
+              ||  gBattleStruct->battlers[battlerAtk].magnetRiseTimer != 0
               || AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_IRON_BALL
               || gBattleStruct->battlers[battlerAtk].status3 & (STATUS3_ROOTED | STATUS3_MAGNET_RISE | STATUS3_SMACKED_DOWN)
               || !IsBattlerGrounded(battlerAtk))

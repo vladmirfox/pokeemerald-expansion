@@ -3106,7 +3106,7 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_MAGNET_RISE:
             if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_MAGNET_RISE)
             {
-                if (gDisableStructs[gActiveBattler].magnetRiseTimer == 0 || --gDisableStructs[gActiveBattler].magnetRiseTimer == 0)
+                if (gBattleStruct->battlers[gActiveBattler].magnetRiseTimer == 0 || --gBattleStruct->battlers[gActiveBattler].magnetRiseTimer == 0)
                 {
                     gBattleStruct->battlers[gActiveBattler].status3 &= ~STATUS3_MAGNET_RISE;
                     BattleScriptExecute(BattleScript_BufferEndTurn);
