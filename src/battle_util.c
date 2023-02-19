@@ -8341,7 +8341,7 @@ u32 GetBattlerWeight(u8 battlerId)
     if (holdEffect == HOLD_EFFECT_FLOAT_STONE)
         weight /= 2;
 
-    for (i = 0; i < gDisableStructs[battlerId].autotomizeCount; i++)
+    for (i = 0; i < gBattleStruct->battlers[battlerId].autotomizeCount; i++)
     {
         if (weight > 1000)
         {

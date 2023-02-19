@@ -9785,7 +9785,7 @@ static void Cmd_various(void)
         VARIOUS_ARGS(const u8 *failInstr);
         if (GetBattlerWeight(gActiveBattler) > 1)
         {
-            gDisableStructs[gActiveBattler].autotomizeCount++;
+            gBattleStruct->battlers[gActiveBattler].autotomizeCount++;
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         else
