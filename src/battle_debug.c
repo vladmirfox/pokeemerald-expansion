@@ -1675,9 +1675,9 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_SAFEGUARD;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_SAFEGUARD;
-            sideTimer->safeguardBattlerId = data->battlerId;
+            side->safeguardBattlerId = data->battlerId;
         }
-        return &sideTimer->safeguardTimer;
+        return &side->safeguardTimer;
     case LIST_SIDE_MIST:
         if (changeStatus)
         {

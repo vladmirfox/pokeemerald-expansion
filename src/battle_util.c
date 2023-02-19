@@ -2266,10 +2266,10 @@ u8 DoFieldEndTurnEffects(void)
             while (gBattleStruct->turnSideTracker < 2)
             {
                 side = gBattleStruct->turnSideTracker;
-                gActiveBattler = gBattlerAttacker = gSideTimers[side].safeguardBattlerId;
+                gActiveBattler = gBattlerAttacker = gBattleStruct->sides[side].safeguardBattlerId;
                 if (gBattleStruct->sides[side].status & SIDE_STATUS_SAFEGUARD)
                 {
-                    if (--gSideTimers[side].safeguardTimer == 0)
+                    if (--gBattleStruct->sides[side].safeguardTimer == 0)
                     {
                         gBattleStruct->sides[side].status &= ~SIDE_STATUS_SAFEGUARD;
                         BattleScriptExecute(BattleScript_SafeguardEnds);
