@@ -1322,6 +1322,11 @@
 	.macro cancelmultiturnmoves battler:req
 	various \battler, VARIOUS_CANCEL_MULTI_TURN_MOVES
 	.endm
+	
+	@ Stores Healing Wish effect.
+	.macro storehealingwish battler:req
+	various \battler, VARIOUS_STORE_HEALING_WISH
+	.endm
 
 	.macro setmagiccoattarget battler:req
 	various \battler, VARIOUS_SET_MAGIC_COAT_TARGET
@@ -2202,6 +2207,7 @@
 	various 0, VARIOUS_SKY_DROP_YAWN
 	.endm
 
+<<<<<<< HEAD
 	@ Used by effects that may proc Symbiosis but do not call removeitem.
 	.macro trysymbiosis
 	various BS_ATTACKER, VARIOUS_TRY_SYMBIOSIS
@@ -2241,4 +2247,3 @@
 	.macro jumpifemergencyexited battler:req, jumpInstr:req
 	various \battler, VARIOUS_JUMP_IF_EMERGENCY_EXITED
 	.4byte \jumpInstr
-	.endm
