@@ -2290,10 +2290,10 @@ u8 DoFieldEndTurnEffects(void)
             while (gBattleStruct->turnSideTracker < 2)
             {
                 side = gBattleStruct->turnSideTracker;
-                gActiveBattler = gBattlerAttacker = gSideTimers[side].luckyChantBattlerId;
+                gActiveBattler = gBattlerAttacker = gBattleStruct->sides[side].luckyChantBattlerId;
                 if (gBattleStruct->sides[side].status & SIDE_STATUS_LUCKY_CHANT)
                 {
-                    if (--gSideTimers[side].luckyChantTimer == 0)
+                    if (--gBattleStruct->sides[side].luckyChantTimer == 0)
                     {
                         gBattleStruct->sides[side].status &= ~SIDE_STATUS_LUCKY_CHANT;
                         BattleScriptExecute(BattleScript_LuckyChantEnds);

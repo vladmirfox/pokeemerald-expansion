@@ -8496,21 +8496,7 @@ static bool32 IsTeatimeAffected(u32 battlerId)
     return TRUE;
 }
 
-#define COURTCHANGE_SWAP(status_, structField, temp)                    \
-{                                                                       \
-    temp = gBattleStruct->sides[B_SIDE_PLAYER].status;                  \
-    if (gBattleStruct->sides[B_SIDE_OPPONENT].status & status_)         \
-        gBattleStruct->sides[B_SIDE_PLAYER].status |= status_;          \
-    else                                                                \
-        gBattleStruct->sides[B_SIDE_PLAYER].status &= ~(status_);       \
-    if (temp & status_)                                                 \
-        gBattleStruct->sides[B_SIDE_OPPONENT].status |= status_;        \
-    else                                                                \
-        gBattleStruct->sides[B_SIDE_OPPONENT].status &= ~(status_);     \
-    SWAP(sideTimerPlayer->structField, sideTimerOpp->structField, temp);\
-}                                                                       \
-
-#define COURTCHANGE_SWAP_(status_, structField, temp) \
+#define COURTCHANGE_SWAP(status_, structField, temp) \
 { \
     temp = gBattleStruct->sides[B_SIDE_PLAYER].status; \
     if (gBattleStruct->sides[B_SIDE_OPPONENT].status & status_) \
@@ -8524,13 +8510,7 @@ static bool32 IsTeatimeAffected(u32 battlerId)
     SWAP(gBattleStruct->sides[B_SIDE_PLAYER].structField, gBattleStruct->sides[B_SIDE_OPPONENT].structField, temp); \
 }
 
-#define UPDATE_COURTCHANGED_BATTLER(structField)\
-{                                               \
-    sideTimerPlayer->structField ^= BIT_SIDE;   \
-    sideTimerOpp->structField ^= BIT_SIDE;      \
-}                                               \
-
-#define UPDATE_COURTCHANGED_BATTLER_(structField) \
+#define UPDATE_COURTCHANGED_BATTLER(structField) \
 { \
     gBattleStruct->sides[B_SIDE_PLAYER].structField ^= BIT_SIDE; \
     gBattleStruct->sides[B_SIDE_OPPONENT].structField ^= BIT_SIDE; \
@@ -8538,35 +8518,33 @@ static bool32 IsTeatimeAffected(u32 battlerId)
 
 static bool32 CourtChangeSwapSideStatuses(void)
 {
-    struct SideTimer *sideTimerPlayer = &gSideTimers[B_SIDE_PLAYER];
-    struct SideTimer *sideTimerOpp = &gSideTimers[B_SIDE_OPPONENT];
     u32 temp;
 
     // TODO: add Pledge-related effects
     // TODO: add Gigantamax-related effects
 
     // Swap timers and statuses
-    COURTCHANGE_SWAP_(SIDE_STATUS_REFLECT, reflectTimer, temp)
-    COURTCHANGE_SWAP_(SIDE_STATUS_LIGHTSCREEN, lightScreenTimer, temp)
-    COURTCHANGE_SWAP_(SIDE_STATUS_MIST, mistTimer, temp);
-    COURTCHANGE_SWAP_(SIDE_STATUS_SAFEGUARD, safeguardTimer, temp);
-    COURTCHANGE_SWAP_(SIDE_STATUS_AURORA_VEIL, auroraVeilTimer, temp);
-    COURTCHANGE_SWAP_(SIDE_STATUS_TAILWIND, tailwindTimer, temp);
+    COURTCHANGE_SWAP(SIDE_STATUS_REFLECT, reflectTimer, temp)
+    COURTCHANGE_SWAP(SIDE_STATUS_LIGHTSCREEN, lightScreenTimer, temp)
+    COURTCHANGE_SWAP(SIDE_STATUS_MIST, mistTimer, temp);
+    COURTCHANGE_SWAP(SIDE_STATUS_SAFEGUARD, safeguardTimer, temp);
+    COURTCHANGE_SWAP(SIDE_STATUS_AURORA_VEIL, auroraVeilTimer, temp);
+    COURTCHANGE_SWAP(SIDE_STATUS_TAILWIND, tailwindTimer, temp);
     // Lucky Chant doesn't exist in gen 8, but seems like it should be affected by Court Change
     COURTCHANGE_SWAP(SIDE_STATUS_LUCKY_CHANT, luckyChantTimer, temp);
-    COURTCHANGE_SWAP_(SIDE_STATUS_SPIKES, spikesAmount, temp);
-    COURTCHANGE_SWAP_(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, temp);
-    COURTCHANGE_SWAP_(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, temp);
-    COURTCHANGE_SWAP_(SIDE_STATUS_STICKY_WEB, stickyWebAmount, temp);
+    COURTCHANGE_SWAP(SIDE_STATUS_SPIKES, spikesAmount, temp);
+    COURTCHANGE_SWAP(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, temp);
+    COURTCHANGE_SWAP(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, temp);
+    COURTCHANGE_SWAP(SIDE_STATUS_STICKY_WEB, stickyWebAmount, temp);
 
     // Change battler IDs of swapped effects. Needed for the correct string when they expire
     // E.g. "Foe's Reflect wore off!"
-    UPDATE_COURTCHANGED_BATTLER_(reflectBattlerId);
-    UPDATE_COURTCHANGED_BATTLER_(lightScreenBattlerId);
-    UPDATE_COURTCHANGED_BATTLER_(mistBattlerId);
-    UPDATE_COURTCHANGED_BATTLER_(safeguardBattlerId);
-    UPDATE_COURTCHANGED_BATTLER_(auroraVeilBattlerId);
-    UPDATE_COURTCHANGED_BATTLER_(tailwindBattlerId);
+    UPDATE_COURTCHANGED_BATTLER(reflectBattlerId);
+    UPDATE_COURTCHANGED_BATTLER(lightScreenBattlerId);
+    UPDATE_COURTCHANGED_BATTLER(mistBattlerId);
+    UPDATE_COURTCHANGED_BATTLER(safeguardBattlerId);
+    UPDATE_COURTCHANGED_BATTLER(auroraVeilBattlerId);
+    UPDATE_COURTCHANGED_BATTLER(tailwindBattlerId);
     UPDATE_COURTCHANGED_BATTLER(luckyChantBattlerId);
 
     // For Mirror Armor only
@@ -9379,8 +9357,8 @@ static void Cmd_various(void)
         if (!(gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].status & SIDE_STATUS_LUCKY_CHANT))
         {
             gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].status |= SIDE_STATUS_LUCKY_CHANT;
-            gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].luckyChantBattlerId = gActiveBattler;
-            gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].luckyChantTimer = 5;
+            gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].luckyChantBattlerId = gActiveBattler;
+            gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].luckyChantTimer = 5;
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         else

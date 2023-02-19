@@ -191,8 +191,6 @@ struct SpecialStatus
 
 struct SideTimer
 {
-    u8 luckyChantTimer;
-    u8 luckyChantBattlerId;
     // Timers below this point are not swapped by Court Change
     u8 followmeTimer;
     u8 followmeTarget:3;
@@ -612,6 +610,8 @@ struct BattleStruct
         u8 auroraVeilBattlerId;
         u8 tailwindTimer;
         u8 tailwindBattlerId;
+        u8 luckyChantTimer;
+        u8 luckyChantBattlerId;
         struct Party
         {
             u16 usedHeldItem; // For harvest, recycle.

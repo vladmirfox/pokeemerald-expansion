@@ -1634,7 +1634,6 @@ static void ValueToCharDigits(u8 *charDigits, u32 newValue, u8 maxDigits)
 
 static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus, bool32 statusTrue)
 {
-    struct SideTimer *sideTimer = &gSideTimers[GET_BATTLER_SIDE(data->battlerId)];
     struct Side *side = &gBattleStruct->sides[GET_BATTLER_SIDE(data->battlerId)];
 
     switch (data->currentSecondaryListItemId)
@@ -1705,9 +1704,9 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_LUCKY_CHANT;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_LUCKY_CHANT;
-            sideTimer->luckyChantBattlerId = data->battlerId;
+            side->luckyChantBattlerId = data->battlerId;
         }
-        return &sideTimer->luckyChantTimer;
+        return &side->luckyChantTimer;
     case LIST_SIDE_TAILWIND:
         if (changeStatus)
         {

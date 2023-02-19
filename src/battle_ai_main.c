@@ -2538,7 +2538,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_LUCKY_CHANT:
-            if (gSideTimers[GET_BATTLER_SIDE(battlerAtk)].luckyChantTimer != 0
+            if (gBattleStruct->sides[GET_BATTLER_SIDE(battlerAtk)].luckyChantTimer != 0
               || PartnerMoveIsSameNoTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
