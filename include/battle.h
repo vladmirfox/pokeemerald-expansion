@@ -60,7 +60,6 @@ struct DisableStruct
     u8 rolloutTimer:4;
     u8 rolloutTimerStartValue:4;
     u8 chargeTimer:4;
-    u8 tarShot:1;
     u8 octolock:1;
     u8 cudChew:1;
 };
@@ -666,6 +665,7 @@ struct BattleStruct
         u8 wrapTurns;
         u8 usedMoves:4;
         u8 noRetreat:1;
+        u8 tarShot:1;
     } battlers[MAX_BATTLERS_COUNT];
 };
 

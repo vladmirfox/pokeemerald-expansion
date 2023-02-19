@@ -10720,13 +10720,13 @@ static void Cmd_various(void)
     case VARIOUS_TRY_TAR_SHOT:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (gDisableStructs[gActiveBattler].tarShot)
+        if (gBattleStruct->battlers[gActiveBattler].tarShot)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
         else
         {
-            gDisableStructs[gActiveBattler].tarShot = TRUE;
+            gBattleStruct->battlers[gActiveBattler].tarShot = TRUE;
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         return;
@@ -10735,7 +10735,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS(const u8 *failInstr);
         // Tar Shot will fail if it's already been used on the target and its speed can't be lowered further
-        if (!gDisableStructs[gActiveBattler].tarShot
+        if (!gBattleStruct->battlers[gActiveBattler].tarShot
             && CompareStat(gActiveBattler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
             gBattlescriptCurrInstr = cmd->nextInstr;
         else
