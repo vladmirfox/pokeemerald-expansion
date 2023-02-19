@@ -3488,7 +3488,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 break;
             case MOVE_EFFECT_PREVENT_ESCAPE:
                 gBattleMons[gBattlerTarget].status2 |= STATUS2_ESCAPE_PREVENTION;
-                gDisableStructs[gBattlerTarget].battlerPreventingEscape = gBattlerAttacker;
+                gBattleStruct->battlers[gBattlerTarget].battlerPreventingEscape = gBattlerAttacker;
                 gBattlescriptCurrInstr++;
                 break;
             case MOVE_EFFECT_NIGHTMARE:
@@ -3713,10 +3713,10 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     gBattlescriptCurrInstr = BattleScript_BothCanNoLongerEscape;
                 }
                 if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_ESCAPE_PREVENTION))
-                    gDisableStructs[gBattlerTarget].battlerPreventingEscape = gBattlerAttacker;
+                    gBattleStruct->battlers[gBattlerTarget].battlerPreventingEscape = gBattlerAttacker;
 
                 if (!(gBattleMons[gBattlerAttacker].status2 & STATUS2_ESCAPE_PREVENTION))
-                    gDisableStructs[gBattlerAttacker].battlerPreventingEscape = gBattlerTarget;
+                    gBattleStruct->battlers[gBattlerAttacker].battlerPreventingEscape = gBattlerTarget;
 
                 gBattleMons[gBattlerTarget].status2 |= STATUS2_ESCAPE_PREVENTION;
                 gBattleMons[gBattlerAttacker].status2 |= STATUS2_ESCAPE_PREVENTION;
@@ -10680,7 +10680,7 @@ static void Cmd_various(void)
         {
             gDisableStructs[gActiveBattler].octolock = TRUE;
             gBattleMons[gActiveBattler].status2 |= STATUS2_ESCAPE_PREVENTION;
-            gDisableStructs[gActiveBattler].battlerPreventingEscape = gBattlerAttacker;
+            gBattleStruct->battlers[gActiveBattler].battlerPreventingEscape = gBattlerAttacker;
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         return;

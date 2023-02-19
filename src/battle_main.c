@@ -3042,6 +3042,7 @@ void SwitchInClearSetData(void)
     s32 i, j;
     u32 substituteHP = gBattleStruct->battlers[gActiveBattler].substituteHP;
     u32 perishSongTimer = gBattleStruct->battlers[gActiveBattler].perishSongTimer;
+    u32 battlerPreventingEscape = gBattleStruct->battlers[gActiveBattler].battlerPreventingEscape;
     struct DisableStruct disableStructCopy = gDisableStructs[gActiveBattler];
 
     ClearIllusionMon(gActiveBattler);
@@ -3051,7 +3052,7 @@ void SwitchInClearSetData(void)
             gBattleMons[gActiveBattler].statStages[i] = DEFAULT_STAT_STAGE;
         for (i = 0; i < gBattlersCount; i++)
         {
-            if ((gBattleMons[i].status2 & STATUS2_ESCAPE_PREVENTION) && gDisableStructs[i].battlerPreventingEscape == gActiveBattler)
+            if ((gBattleMons[i].status2 & STATUS2_ESCAPE_PREVENTION) && gBattleStruct->battlers[i].battlerPreventingEscape == gActiveBattler)
                 gBattleMons[i].status2 &= ~STATUS2_ESCAPE_PREVENTION;
             if ((gBattleStruct->battlers[i].status3 & STATUS3_ALWAYS_HITS) && gDisableStructs[i].battlerWithSureHit == gActiveBattler)
             {
@@ -3105,7 +3106,7 @@ void SwitchInClearSetData(void)
         gBattleStruct->battlers[gActiveBattler].substituteHP = substituteHP;
         gDisableStructs[gActiveBattler].battlerWithSureHit = disableStructCopy.battlerWithSureHit;
         gBattleStruct->battlers[gActiveBattler].perishSongTimer = perishSongTimer;
-        gDisableStructs[gActiveBattler].battlerPreventingEscape = disableStructCopy.battlerPreventingEscape;
+        gBattleStruct->battlers[gActiveBattler].battlerPreventingEscape = battlerPreventingEscape;
     }
 
     gMoveResultFlags = 0;
@@ -3163,7 +3164,7 @@ void FaintClearSetData(void)
 
     for (i = 0; i < gBattlersCount; i++)
     {
-        if ((gBattleMons[i].status2 & STATUS2_ESCAPE_PREVENTION) && gDisableStructs[i].battlerPreventingEscape == gActiveBattler)
+        if ((gBattleMons[i].status2 & STATUS2_ESCAPE_PREVENTION) && gBattleStruct->battlers[i].battlerPreventingEscape == gActiveBattler)
             gBattleMons[i].status2 &= ~STATUS2_ESCAPE_PREVENTION;
         if (gBattleMons[i].status2 & STATUS2_INFATUATED_WITH(gActiveBattler))
             gBattleMons[i].status2 &= ~STATUS2_INFATUATED_WITH(gActiveBattler);
