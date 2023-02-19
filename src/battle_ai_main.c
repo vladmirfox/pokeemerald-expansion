@@ -908,7 +908,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 // the following checks apply to any target (including user)
 
     // throat chop check
-    if (gDisableStructs[battlerAtk].throatChopTimer && TestMoveFlags(move, FLAG_SOUND))
+    if (gBattleStruct->battlers[battlerAtk].throatChopTimer && TestMoveFlags(move, FLAG_SOUND))
         return 0; // Can't even select move at all
     // heal block check
     if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_HEAL_BLOCK && IsHealBlockPreventingMove(battlerAtk, move))

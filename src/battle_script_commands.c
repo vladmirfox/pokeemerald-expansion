@@ -3654,7 +3654,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 break;
             case MOVE_EFFECT_THROAT_CHOP:
-                gDisableStructs[gEffectBattler].throatChopTimer = 2;
+                gBattleStruct->battlers[gEffectBattler].throatChopTimer = 2;
                 gBattlescriptCurrInstr++;
                 break;
             case MOVE_EFFECT_INCINERATE:
