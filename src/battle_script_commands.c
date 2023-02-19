@@ -13480,7 +13480,7 @@ static void Cmd_trysetperishsong(void)
         else
         {
             gBattleStruct->battlers[i].status3 |= STATUS3_PERISH_SONG;
-            gDisableStructs[i].perishSongTimer = 3;
+            gBattleStruct->battlers[i].perishSongTimer = 3;
         }
     }
 

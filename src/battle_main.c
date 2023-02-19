@@ -3041,6 +3041,7 @@ void SwitchInClearSetData(void)
 {
     s32 i, j;
     u32 substituteHP = gBattleStruct->battlers[gActiveBattler].substituteHP;
+    u32 perishSongTimer = gBattleStruct->battlers[gActiveBattler].perishSongTimer;
     struct DisableStruct disableStructCopy = gDisableStructs[gActiveBattler];
 
     ClearIllusionMon(gActiveBattler);
@@ -3103,7 +3104,7 @@ void SwitchInClearSetData(void)
     {
         gBattleStruct->battlers[gActiveBattler].substituteHP = substituteHP;
         gDisableStructs[gActiveBattler].battlerWithSureHit = disableStructCopy.battlerWithSureHit;
-        gDisableStructs[gActiveBattler].perishSongTimer = disableStructCopy.perishSongTimer;
+        gBattleStruct->battlers[gActiveBattler].perishSongTimer = perishSongTimer;
         gDisableStructs[gActiveBattler].battlerPreventingEscape = disableStructCopy.battlerPreventingEscape;
     }
 

@@ -3255,8 +3255,8 @@ bool8 HandleWishPerishSongOnTurnEnd(void)
             gBattleStruct->wishPerishSongBattlerId++;
             if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_PERISH_SONG)
             {
-                PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff1, 1, gDisableStructs[gActiveBattler].perishSongTimer);
-                if (gDisableStructs[gActiveBattler].perishSongTimer == 0)
+                PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff1, 1, gBattleStruct->battlers[gActiveBattler].perishSongTimer);
+                if (gBattleStruct->battlers[gActiveBattler].perishSongTimer == 0)
                 {
                     gBattleStruct->battlers[gActiveBattler].status3 &= ~STATUS3_PERISH_SONG;
                     gBattleMoveDamage = gBattleMons[gActiveBattler].hp;
@@ -3264,7 +3264,7 @@ bool8 HandleWishPerishSongOnTurnEnd(void)
                 }
                 else
                 {
-                    gDisableStructs[gActiveBattler].perishSongTimer--;
+                    gBattleStruct->battlers[gActiveBattler].perishSongTimer--;
                     gBattlescriptCurrInstr = BattleScript_PerishSongCountGoesDown;
                 }
                 BattleScriptExecute(gBattlescriptCurrInstr);
@@ -5755,10 +5755,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (!(gBattleStruct->battlers[battler].status3 & STATUS3_PERISH_SONG))
                 {
                     gBattleStruct->battlers[battler].status3 |= STATUS3_PERISH_SONG;
-                    gDisableStructs[battler].perishSongTimer = 3;
+                    gBattleStruct->battlers[battler].perishSongTimer = 3;
                 }
                 gBattleStruct->battlers[gBattlerAttacker].status3 |= STATUS3_PERISH_SONG;
-                gDisableStructs[gBattlerAttacker].perishSongTimer = 3;
+                gBattleStruct->battlers[gBattlerAttacker].perishSongTimer = 3;
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_PerishBodyActivates;
                 effect++;

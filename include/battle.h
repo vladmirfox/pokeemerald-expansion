@@ -56,7 +56,6 @@
 struct DisableStruct
 {
     u32 transformedMonPersonality;
-    u8 perishSongTimer:4;
     u8 furyCutterCounter;
     u8 rolloutTimer:4;
     u8 rolloutTimerStartValue:4;
@@ -666,6 +665,7 @@ struct BattleStruct
         u8 encoredMovePosition;
         u8 encoreTimer:4;
         u8 disableTimer:4;
+        u8 perishSongTimer:4;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
