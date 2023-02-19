@@ -143,11 +143,11 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
 
     if (HasSuperEffectiveMoveAgainstOpponents(TRUE) && Random() % 3 != 0)
         return FALSE;
-    if (gLastLandedMoves[gActiveBattler] == MOVE_NONE)
+    if (gBattleStruct->battlers[gActiveBattler].lastHitByMove == MOVE_NONE)
         return FALSE;
-    if (gLastLandedMoves[gActiveBattler] == MOVE_UNAVAILABLE)
+    if (gBattleStruct->battlers[gActiveBattler].lastHitByMove == MOVE_UNAVAILABLE)
         return FALSE;
-    if (IS_MOVE_STATUS(gLastLandedMoves[gActiveBattler]))
+    if (IS_MOVE_STATUS(gBattleStruct->battlers[gActiveBattler].lastHitByMove))
         return FALSE;
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
@@ -164,11 +164,11 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
         battlerIn2 = gActiveBattler;
     }
 
-    if (gBattleMoves[gLastLandedMoves[gActiveBattler]].type == TYPE_FIRE)
+    if (gBattleMoves[gBattleStruct->battlers[gActiveBattler].lastHitByMove].type == TYPE_FIRE)
         absorbingTypeAbility = ABILITY_FLASH_FIRE;
-    else if (gBattleMoves[gLastLandedMoves[gActiveBattler]].type == TYPE_WATER)
+    else if (gBattleMoves[gBattleStruct->battlers[gActiveBattler].lastHitByMove].type == TYPE_WATER)
         absorbingTypeAbility = ABILITY_WATER_ABSORB;
-    else if (gBattleMoves[gLastLandedMoves[gActiveBattler]].type == TYPE_ELECTRIC)
+    else if (gBattleMoves[gBattleStruct->battlers[gActiveBattler].lastHitByMove].type == TYPE_ELECTRIC)
         absorbingTypeAbility = ABILITY_VOLT_ABSORB;
     else
         return FALSE;
@@ -198,9 +198,9 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
             continue;
         if (i == gBattlerPartyIndexes[battlerIn2])
             continue;
-        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn1))
+        if (i == gBattleStruct->battlers[battlerIn1].monToSwitchIntoIndex)
             continue;
-        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn2))
+        if (i == gBattleStruct->battlers[battlerIn2].monToSwitchIntoIndex)
             continue;
         if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON 
             && i == (CalculateEnemyPartyCount()-1))
@@ -244,15 +244,15 @@ static bool8 ShouldSwitchIfGameStatePrompt(void)
         chanceReducer = 5; // Reduce switchout probability by factor of 5 if setup
 
     //Perish Song
-    if (gStatuses3[gActiveBattler] & STATUS3_PERISH_SONG
-        && gDisableStructs[gActiveBattler].perishSongTimer == 0
+    if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_PERISH_SONG
+        && gBattleStruct->battlers[gActiveBattler].perishSongTimer == 0
         && monAbility != ABILITY_SOUNDPROOF)
         switchMon = TRUE;
 
     if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING)
     {
         //Yawn
-        if (gStatuses3[gActiveBattler] & STATUS3_YAWN
+        if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_YAWN
             && AI_CanSleep(gActiveBattler, monAbility)
             && gBattleMons[gActiveBattler].hp > gBattleMons[gActiveBattler].maxHP / 3)
         {
@@ -328,7 +328,7 @@ static bool8 ShouldSwitchIfGameStatePrompt(void)
                 && AI_DATA->abilities[opposingBattler] != ABILITY_UNAWARE
                 && AI_DATA->abilities[opposingBattler] != ABILITY_KEEN_EYE
                 && !(gBattleMons[gActiveBattler].status2 & STATUS2_FORESIGHT)
-                && !(gStatuses3[gActiveBattler] & STATUS3_MIRACLE_EYED))     
+                && !(gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_MIRACLE_EYED))     
                 switchMon = FALSE;
 
         }
@@ -358,7 +358,7 @@ static bool8 ShouldSwitchIfGameStatePrompt(void)
 
             //Leech Seed
             moduloChance = 4; //25%
-            if (gStatuses3[gActiveBattler] & STATUS3_LEECHSEED
+            if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_LEECHSEED
                 && (Random() % (moduloChance*chanceReducer)) == 0)
                 switchMon = TRUE;
         }
@@ -372,7 +372,7 @@ static bool8 ShouldSwitchIfGameStatePrompt(void)
         //Pass Wish Heal
         
         //Semi-Invulnerable
-        if (gStatuses3[opposingBattler] & STATUS3_SEMI_INVULNERABLE)
+        if (gBattleStruct->battlers[opposingBattler].status3 & STATUS3_SEMI_INVULNERABLE)
         {
             if (FindMonThatAbsorbsOpponentsMove()) //If find absorber default to switch
                 switchMon = TRUE;
@@ -409,7 +409,7 @@ static bool8 ShouldSwitchIfAbilityBenefit(void)
         chanceReducer = 5; // Reduce switchout probability by factor of 5 if setup
 
     //Check if ability is blocked
-    if (gStatuses3[gActiveBattler] & STATUS3_GASTRO_ACID
+    if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_GASTRO_ACID
         ||IsNeutralizingGasOnField())
         return FALSE;
 
@@ -527,13 +527,13 @@ static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent)
     s32 i, j;
     u16 move;
 
-    if (gLastLandedMoves[gActiveBattler] == MOVE_NONE)
+    if (gBattleStruct->battlers[gActiveBattler].lastHitByMove == MOVE_NONE)
         return FALSE;
-    if (gLastLandedMoves[gActiveBattler] == MOVE_UNAVAILABLE)
+    if (gBattleStruct->battlers[gActiveBattler].lastHitByMove == MOVE_UNAVAILABLE)
         return FALSE;
-    if (gLastHitBy[gActiveBattler] == 0xFF)
+    if (gBattleStruct->battlers[gActiveBattler].lastHitBy == 0xFF)
         return FALSE;
-    if (IS_MOVE_STATUS(gLastLandedMoves[gActiveBattler]))
+    if (IS_MOVE_STATUS(gBattleStruct->battlers[gActiveBattler].lastHitByMove))
         return FALSE;
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
@@ -572,9 +572,9 @@ static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent)
             continue;
         if (i == gBattlerPartyIndexes[battlerIn2])
             continue;
-        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn1))
+        if (i == gBattleStruct->battlers[battlerIn1].monToSwitchIntoIndex)
             continue;
-        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn2))
+        if (i == gBattleStruct->battlers[battlerIn2].monToSwitchIntoIndex)
             continue;
         if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON 
             && i == (CalculateEnemyPartyCount()-1))
@@ -587,10 +587,10 @@ static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent)
         else
             monAbility = gSpeciesInfo[species].abilities[0];
 
-        CalcPartyMonTypeEffectivenessMultiplier(gLastLandedMoves[gActiveBattler], species, monAbility);
+        CalcPartyMonTypeEffectivenessMultiplier(gBattleStruct->battlers[gActiveBattler].lastHitByMove, species, monAbility);
         if (gMoveResultFlags & flags)
         {
-            battlerIn1 = gLastHitBy[gActiveBattler];
+            battlerIn1 = gBattleStruct->battlers[gActiveBattler].lastHitBy;
 
             for (j = 0; j < MAX_MON_MOVES; j++)
             {
@@ -622,7 +622,7 @@ bool32 ShouldSwitch(void)
 
     if (gBattleMons[gActiveBattler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION))
         return FALSE;
-    if (gStatuses3[gActiveBattler] & STATUS3_ROOTED)
+    if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_ROOTED)
         return FALSE;
     if (IsAbilityPreventingEscape(gActiveBattler))
         return FALSE;
@@ -664,9 +664,9 @@ bool32 ShouldSwitch(void)
             continue;
         if (i == gBattlerPartyIndexes[battlerIn2])
             continue;
-        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn1))
+        if (i == gBattleStruct->battlers[battlerIn1].monToSwitchIntoIndex)
             continue;
-        if (i == *(gBattleStruct->monToSwitchIntoId + battlerIn2))
+        if (i == gBattleStruct->battlers[battlerIn2].monToSwitchIntoIndex)
             continue;
         if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON
             && i == (CalculateEnemyPartyCount()-1))
@@ -754,9 +754,9 @@ void AI_TrySwitchOrUseItem(void)
                             continue;
                         if (monToSwitchId == gBattlerPartyIndexes[battlerIn2])
                             continue;
-                        if (monToSwitchId == *(gBattleStruct->monToSwitchIntoId + battlerIn1))
+                        if (monToSwitchId == gBattleStruct->battlers[battlerIn1].monToSwitchIntoIndex)
                             continue;
-                        if (monToSwitchId == *(gBattleStruct->monToSwitchIntoId + battlerIn2))
+                        if (monToSwitchId == gBattleStruct->battlers[battlerIn2].monToSwitchIntoIndex)
                             continue;
                         if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON 
                             && monToSwitchId == (CalculateEnemyPartyCount()-1))
@@ -769,7 +769,7 @@ void AI_TrySwitchOrUseItem(void)
                 *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = monToSwitchId;
             }
 
-            *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler);
+            gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex = *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler);
             return;
         }
         else if (ShouldUseItem())
@@ -918,8 +918,8 @@ u8 GetMostSuitableMonToSwitchInto(void)
     s32 i, j, aliveCount = 0;
     u8 invalidMons = 0;
 
-    if (*(gBattleStruct->monToSwitchIntoId + gActiveBattler) != PARTY_SIZE)
-        return *(gBattleStruct->monToSwitchIntoId + gActiveBattler);
+    if (gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex != PARTY_SIZE)
+        return gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex;
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
         return gBattlerPartyIndexes[gActiveBattler] + 1;
 
@@ -956,8 +956,8 @@ u8 GetMostSuitableMonToSwitchInto(void)
             || GetMonData(&party[i], MON_DATA_HP) == 0
             || gBattlerPartyIndexes[battlerIn1] == i
             || gBattlerPartyIndexes[battlerIn2] == i
-            || i == *(gBattleStruct->monToSwitchIntoId + battlerIn1)
-            || i == *(gBattleStruct->monToSwitchIntoId + battlerIn2)
+            || i == gBattleStruct->battlers[battlerIn1].monToSwitchIntoIndex
+            || i == gBattleStruct->battlers[battlerIn2].monToSwitchIntoIndex
             || (GetMonAbility(&party[i]) == ABILITY_TRUANT && IsTruantMonVulnerable(gActiveBattler, opposingBattler)) // While not really invalid per say, not really wise to switch into this mon.
             || ((AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON)
                 && i == (CalculateEnemyPartyCount() - 1))) //Save Ace Pokemon for last
@@ -1025,10 +1025,10 @@ static bool8 ShouldUseItem(void)
 
     // If teaming up with player and Pokemon is on the right, or Pokemon is currently held by Sky Drop
     if ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && GetBattlerPosition(gActiveBattler) == B_POSITION_PLAYER_RIGHT)
-       || gStatuses3[gActiveBattler] & STATUS3_SKY_DROPPED)
+       || gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_SKY_DROPPED)
         return FALSE;
 
-    if (gStatuses3[gActiveBattler] & STATUS3_EMBARGO)
+    if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_EMBARGO)
         return FALSE;
 
     if (AiExpectsToFaintPlayer())
@@ -1115,7 +1115,7 @@ static bool8 ShouldUseItem(void)
             break;
         case AI_ITEM_X_STAT:
             *(gBattleStruct->AI_itemFlags + gActiveBattler / 2) = 0;
-            if (gDisableStructs[gActiveBattler].isFirstTurn == 0)
+            if (gBattleStruct->battlers[gActiveBattler].isFirstTurn == 0)
                 break;
             if (itemEffects[1] & ITEM1_X_ATTACK)
                 *(gBattleStruct->AI_itemFlags + gActiveBattler / 2) |= (1 << AI_X_ATTACK);
@@ -1135,7 +1135,7 @@ static bool8 ShouldUseItem(void)
             break;
         case AI_ITEM_GUARD_SPEC:
             battlerSide = GetBattlerSide(gActiveBattler);
-            if (gDisableStructs[gActiveBattler].isFirstTurn != 0 && gSideTimers[battlerSide].mistTimer == 0)
+            if (gBattleStruct->battlers[gActiveBattler].isFirstTurn != 0 && gBattleStruct->sides[battlerSide].mistTimer == 0)
                 shouldUse = TRUE;
             break;
         case AI_ITEM_NOT_RECOGNIZABLE:
@@ -1145,7 +1145,7 @@ static bool8 ShouldUseItem(void)
         if (shouldUse)
         {
             BtlController_EmitTwoReturnValues(BUFFER_B, B_ACTION_USE_ITEM, 0);
-            *(gBattleStruct->chosenItem + (gActiveBattler / 2) * 2) = item;
+            gBattleStruct->battlers[(gActiveBattler / 2) * 2].chosenItem = item;
             gBattleResources->battleHistory->trainerItems[i] = 0;
             return shouldUse;
         }

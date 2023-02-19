@@ -195,8 +195,8 @@ bool32 IsViableZMove(u8 battlerId, u16 move)
     }
 
 #if DEBUG_BATTLE_MENU == TRUE
-    if (gBattleStruct->debugHoldEffects[battlerId])
-        holdEffect = gBattleStruct->debugHoldEffects[battlerId];
+    if (gBattleStruct->battlers[battlerId].debugHoldEffect)
+        holdEffect = gBattleStruct->battlers[battlerId].debugHoldEffect;
     else
 #endif
     if (item == ITEM_ENIGMA_BERRY)
@@ -643,8 +643,8 @@ void SetZEffect(void)
         }
         break;
     case Z_EFFECT_FOLLOW_ME:
-        gSideTimers[GetBattlerSide(gBattlerAttacker)].followmeTimer = 1;
-        gSideTimers[GetBattlerSide(gBattlerAttacker)].followmeTarget = gBattlerAttacker;
+        gBattleStruct->sides[GetBattlerSide(gBattlerAttacker)].followMeTimer = 1;
+        gBattleStruct->sides[GetBattlerSide(gBattlerAttacker)].followMeTarget = gBattlerAttacker;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_Z_FOLLOW_ME;
         BattleScriptPush(gBattlescriptCurrInstr + Z_EFFECT_BS_LENGTH);
         gBattlescriptCurrInstr = BattleScript_ZEffectPrintString;

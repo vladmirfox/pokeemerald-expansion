@@ -1430,7 +1430,7 @@ static void PlayerPartnerHandleMoveAnimation(void)
         gAnimFriendship = gBattleResources->bufferA[gActiveBattler][10];
         gWeatherMoveAnim = gBattleResources->bufferA[gActiveBattler][12] | (gBattleResources->bufferA[gActiveBattler][13] << 8);
         gAnimDisableStructPtr = (struct DisableStruct *)&gBattleResources->bufferA[gActiveBattler][16];
-        gTransformedPersonalities[gActiveBattler] = gAnimDisableStructPtr->transformedMonPersonality;
+        gBattleStruct->battlers[gActiveBattler].transformPersonality = gAnimDisableStructPtr->transformedMonPersonality;
         gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].animationState = 0;
         gBattlerControllerFuncs[gActiveBattler] = PlayerPartnerDoMoveAnimation;
     }
@@ -1567,7 +1567,7 @@ static void PlayerPartnerHandleChoosePokemon(void)
         }
     }
 
-    *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = chosenMonId;
+    gBattleStruct->battlers[gActiveBattler].monToSwitchIntoIndex = chosenMonId;
     BtlController_EmitChosenMonReturnValue(BUFFER_B, chosenMonId, NULL);
     PlayerPartnerBufferExecCompleted();
 }

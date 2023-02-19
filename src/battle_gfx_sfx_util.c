@@ -456,8 +456,8 @@ bool8 TryHandleLaunchBattleTableAnimation(u8 activeBattler, u8 atkBattler, u8 de
 
     if (tableId == B_ANIM_ILLUSION_OFF)
     {
-        gBattleStruct->illusion[activeBattler].broken = 1;
-        gBattleStruct->illusion[activeBattler].on = 0;
+        gBattleStruct->battlers[activeBattler].illusion.broken = 1;
+        gBattleStruct->battlers[activeBattler].illusion.on = 0;
     }
 
     gBattleAnimAttacker = atkBattler;
@@ -569,7 +569,7 @@ static void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battlerId, bool32 op
     else
     {
         species = gBattleSpritesDataPtr->battlerData[battlerId].transformSpecies;
-        currentPersonality = gTransformedPersonalities[battlerId];
+        currentPersonality = gBattleStruct->battlers[battlerId].transformPersonality;
     }
 
     otId = GetMonData(mon, MON_DATA_OT_ID);
@@ -888,7 +888,7 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 castform, bo
             HandleLoadSpecialPokePic(FALSE,
                                      gMonSpritesGfxPtr->sprites.ptr[position],
                                      targetSpecies,
-                                     gTransformedPersonalities[battlerAtk]);
+                                     gBattleStruct->battlers[battlerAtk].transformPersonality);
         }
         else
         {
@@ -901,7 +901,7 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 castform, bo
             HandleLoadSpecialPokePic(TRUE,
                                      gMonSpritesGfxPtr->sprites.ptr[position],
                                      targetSpecies,
-                                     gTransformedPersonalities[battlerAtk]);
+                                     gBattleStruct->battlers[battlerAtk].transformPersonality);
         }
     }
 

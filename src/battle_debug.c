@@ -1585,7 +1585,7 @@ static void UpdateBattlerValue(struct BattleDebugMenu *data)
         if (data->currentSecondaryListItemId == 0)
             *(u16 *)(data->modifyArrows.modifiedValPtr) = data->modifyArrows.currValue;
         else if (data->currentSecondaryListItemId == 1)
-            gBattleStruct->debugHoldEffects[data->battlerId] = data->modifyArrows.currValue;
+            gBattleStruct->battlers[data->battlerId].debugHoldEffect = data->modifyArrows.currValue;
         break;
     }
     data->battlerWasChanged[data->battlerId] = TRUE;
@@ -1634,7 +1634,7 @@ static void ValueToCharDigits(u8 *charDigits, u32 newValue, u8 maxDigits)
 
 static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus, bool32 statusTrue)
 {
-    struct SideTimer *sideTimer = &gSideTimers[GET_BATTLER_SIDE(data->battlerId)];
+    struct Side *side = &gBattleStruct->sides[GET_BATTLER_SIDE(data->battlerId)];
 
     switch (data->currentSecondaryListItemId)
     {
@@ -1645,9 +1645,9 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_REFLECT;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_REFLECT;
-            sideTimer->reflectBattlerId = data->battlerId;
+            side->reflectBattlerId = data->battlerId;
         }
-        return &sideTimer->reflectTimer;
+        return &side->reflectTimer;
     case LIST_SIDE_LIGHTSCREEN:
         if (changeStatus)
         {
@@ -1655,9 +1655,9 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_LIGHTSCREEN;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_LIGHTSCREEN;
-            sideTimer->lightscreenBattlerId = data->battlerId;
+            side->lightScreenBattlerId = data->battlerId;
         }
-        return &sideTimer->lightscreenTimer;
+        return &side->lightScreenTimer;
     case LIST_SIDE_SPIKES:
         if (changeStatus)
         {
@@ -1666,7 +1666,7 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_SPIKES;
         }
-        return &sideTimer->spikesAmount;
+        return &side->spikesAmount;
     case LIST_SIDE_SAFEGUARD:
         if (changeStatus)
         {
@@ -1674,9 +1674,9 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_SAFEGUARD;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_SAFEGUARD;
-            sideTimer->safeguardBattlerId = data->battlerId;
+            side->safeguardBattlerId = data->battlerId;
         }
-        return &sideTimer->safeguardTimer;
+        return &side->safeguardTimer;
     case LIST_SIDE_MIST:
         if (changeStatus)
         {
@@ -1684,9 +1684,9 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_MIST;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_MIST;
-            sideTimer->mistBattlerId = data->battlerId;
+            side->mistBattlerId = data->battlerId;
         }
-        return &sideTimer->mistTimer;
+        return &side->mistTimer;
     case LIST_SIDE_AURORA_VEIL:
         if (changeStatus)
         {
@@ -1694,9 +1694,9 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_AURORA_VEIL;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_AURORA_VEIL;
-            sideTimer->auroraVeilBattlerId = data->battlerId;
+            side->auroraVeilBattlerId = data->battlerId;
         }
-        return &sideTimer->auroraVeilTimer;
+        return &side->auroraVeilTimer;
     case LIST_SIDE_LUCKY_CHANT:
         if (changeStatus)
         {
@@ -1704,9 +1704,9 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_LUCKY_CHANT;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_LUCKY_CHANT;
-            sideTimer->luckyChantBattlerId = data->battlerId;
+            side->luckyChantBattlerId = data->battlerId;
         }
-        return &sideTimer->luckyChantTimer;
+        return &side->luckyChantTimer;
     case LIST_SIDE_TAILWIND:
         if (changeStatus)
         {
@@ -1714,9 +1714,9 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_TAILWIND;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_TAILWIND;
-            sideTimer->tailwindBattlerId = data->battlerId;
+            side->tailwindBattlerId = data->battlerId;
         }
-        return &sideTimer->tailwindTimer;
+        return &side->tailwindTimer;
     case LIST_SIDE_STEALTH_ROCK:
         if (changeStatus)
         {
@@ -1725,7 +1725,7 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_STEALTH_ROCK;
         }
-        return &sideTimer->stealthRockAmount;
+        return &side->stealthRockAmount;
     case LIST_SIDE_TOXIC_SPIKES:
         if (changeStatus)
         {
@@ -1734,7 +1734,7 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_TOXIC_SPIKES;
         }
-        return &sideTimer->toxicSpikesAmount;
+        return &side->toxicSpikesAmount;
     case LIST_SIDE_STICKY_WEB:
         if (changeStatus)
         {
@@ -1743,7 +1743,7 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_STICKY_WEB;
         }
-        return &sideTimer->stickyWebAmount;
+        return &side->stickyWebAmount;
     default:
         return NULL;
     }
@@ -1799,7 +1799,7 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
         if (data->currentSecondaryListItemId == 0)
             data->modifyArrows.currValue = gBattleMons[data->battlerId].item;
         else
-            data->modifyArrows.currValue = gBattleStruct->debugHoldEffects[data->battlerId];
+            data->modifyArrows.currValue = gBattleStruct->battlers[data->battlerId].debugHoldEffect;
         break;
     case LIST_ITEM_TYPES:
         data->modifyArrows.minValue = 0;
@@ -1865,9 +1865,9 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
             data->modifyArrows.minValue = 0;
             data->modifyArrows.maxValue = 255;
             data->modifyArrows.maxDigits = 3;
-            data->modifyArrows.modifiedValPtr = &gDisableStructs[data->battlerId].substituteHP;
+            data->modifyArrows.modifiedValPtr = &gBattleStruct->battlers[data->battlerId].substituteHP;
             data->modifyArrows.typeOfVal = VAR_SUBSTITUTE;
-            data->modifyArrows.currValue = gDisableStructs[data->battlerId].substituteHP;
+            data->modifyArrows.currValue = gBattleStruct->battlers[data->battlerId].substituteHP;
         }
         else if (data->currentSecondaryListItemId == VARIOUS_IN_LOVE)
         {
@@ -1890,13 +1890,13 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
         data->modifyArrows.typeOfVal = VAL_BITFIELD_32;
         goto CASE_ITEM_STATUS;
     case LIST_ITEM_STATUS3:
-        data->modifyArrows.modifiedValPtr = &gStatuses3[data->battlerId];
-        data->modifyArrows.currValue = GetBitfieldValue(gStatuses3[data->battlerId], data->bitfield[data->currentSecondaryListItemId].currBit, data->bitfield[data->currentSecondaryListItemId].bitsCount);
+        data->modifyArrows.modifiedValPtr = &gBattleStruct->battlers[data->battlerId].status3;
+        data->modifyArrows.currValue = GetBitfieldValue(gBattleStruct->battlers[data->battlerId].status3, data->bitfield[data->currentSecondaryListItemId].currBit, data->bitfield[data->currentSecondaryListItemId].bitsCount);
         data->modifyArrows.typeOfVal = VAL_BITFIELD_32;
         goto CASE_ITEM_STATUS;
     case LIST_ITEM_STATUS4:
-        data->modifyArrows.modifiedValPtr = &gStatuses4[data->battlerId];
-        data->modifyArrows.currValue = GetBitfieldValue(gStatuses4[data->battlerId], data->bitfield[data->currentSecondaryListItemId].currBit, data->bitfield[data->currentSecondaryListItemId].bitsCount);
+        data->modifyArrows.modifiedValPtr = &gBattleStruct->battlers[data->battlerId].status4;
+        data->modifyArrows.currValue = GetBitfieldValue(gBattleStruct->battlers[data->battlerId].status4, data->bitfield[data->currentSecondaryListItemId].currBit, data->bitfield[data->currentSecondaryListItemId].bitsCount);
         data->modifyArrows.typeOfVal = VAL_BITFIELD_32;
         goto CASE_ITEM_STATUS;
     case LIST_ITEM_AI:
@@ -1920,7 +1920,7 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
             data->modifyArrows.maxValue = 9;
 
         data->modifyArrows.maxDigits = 2;
-        data->modifyArrows.modifiedValPtr = &gSideStatuses[GET_BATTLER_SIDE(data->battlerId)];
+        data->modifyArrows.modifiedValPtr = &gBattleStruct->sides[GET_BATTLER_SIDE(data->battlerId)].status;
         data->modifyArrows.typeOfVal = VAR_SIDE_STATUS;
         data->modifyArrows.currValue = *GetSideStatusValue(data, FALSE, FALSE);
         break;
