@@ -1656,9 +1656,9 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_LIGHTSCREEN;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_LIGHTSCREEN;
-            sideTimer->lightscreenBattlerId = data->battlerId;
+            side->lightScreenBattlerId = data->battlerId;
         }
-        return &sideTimer->lightscreenTimer;
+        return &side->lightScreenTimer;
     case LIST_SIDE_SPIKES:
         if (changeStatus)
         {
