@@ -10672,13 +10672,13 @@ static void Cmd_various(void)
     case VARIOUS_SET_OCTOLOCK:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (gDisableStructs[gActiveBattler].octolock)
+        if (gBattleStruct->battlers[gActiveBattler].octolock)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
         else
         {
-            gDisableStructs[gActiveBattler].octolock = TRUE;
+            gBattleStruct->battlers[gActiveBattler].octolock = TRUE;
             gBattleMons[gActiveBattler].status2 |= STATUS2_ESCAPE_PREVENTION;
             gBattleStruct->battlers[gActiveBattler].battlerPreventingEscape = gBattlerAttacker;
             gBattlescriptCurrInstr = cmd->nextInstr;
