@@ -1624,7 +1624,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score -= 10;
             break;
         case EFFECT_FAKE_OUT:
-            if (!gDisableStructs[battlerAtk].isFirstTurn)
+            if (!gBattleStruct->battlers[battlerAtk].isFirstTurn)
             {
                 score -= 10;
             }
@@ -1952,7 +1952,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     }
                     break;
                 case MOVE_MAT_BLOCK:
-                    if (!gDisableStructs[battlerAtk].isFirstTurn)
+                    if (!gBattleStruct->battlers[battlerAtk].isFirstTurn)
                     {
                         score -= 10;
                         decreased = TRUE;
@@ -3832,7 +3832,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
 
         case MOVE_MAT_BLOCK:
-            if (gDisableStructs[battlerAtk].isFirstTurn && predictedMove != MOVE_NONE
+            if (gBattleStruct->battlers[battlerAtk].isFirstTurn && predictedMove != MOVE_NONE
               && !IS_MOVE_STATUS(predictedMove) && !(AI_GetBattlerMoveTargetType(battlerDef, predictedMove) & MOVE_TARGET_USER))
                 ProtectChecks(battlerAtk, battlerDef, move, predictedMove, &score);
             break;
@@ -3874,7 +3874,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_TOXIC_SPIKES:
         if (AI_DATA->abilities[battlerDef] == ABILITY_MAGIC_BOUNCE || CountUsablePartyMons(battlerDef) == 0)
             break;
-        if (gDisableStructs[battlerAtk].isFirstTurn)
+        if (gBattleStruct->battlers[battlerAtk].isFirstTurn)
             score += 2;
         //TODO - track entire opponent party data to determine hazard effectiveness
         break;
@@ -4350,7 +4350,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_IMPRISON:
         if (predictedMove != MOVE_NONE && HasMove(battlerAtk, predictedMove))
             score += 3;
-        else if (gDisableStructs[battlerAtk].isFirstTurn == 0)
+        else if (gBattleStruct->battlers[battlerAtk].isFirstTurn == 0)
             score++;
         break;
     case EFFECT_REFRESH:

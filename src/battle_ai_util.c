@@ -2909,7 +2909,7 @@ bool32 ShouldFakeOut(u8 battlerAtk, u8 battlerDef, u16 move)
     if (AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_CHOICE_BAND && CountUsablePartyMons(battlerAtk) == 0)
         return FALSE;   // don't lock attacker into fake out if can't switch out
 
-    if (gDisableStructs[battlerAtk].isFirstTurn
+    if (gBattleStruct->battlers[battlerAtk].isFirstTurn
       && ShouldTryToFlinch(battlerAtk, battlerDef, AI_DATA->abilities[battlerAtk], AI_DATA->abilities[battlerDef], move)
       && !DoesSubstituteBlockMove(battlerAtk, battlerDef, move))
         return TRUE;

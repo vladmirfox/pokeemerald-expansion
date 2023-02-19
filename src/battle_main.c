@@ -2936,7 +2936,7 @@ static void BattleStartClearSetData(void)
     {
         gBattleStruct->battlers[i].status3 = 0;
         gBattleStruct->battlers[i].status4 = 0;
-        gDisableStructs[i].isFirstTurn = 2;
+        gBattleStruct->battlers[i].isFirstTurn = 2;
         gBattleStruct->battlers[i].lastMove = MOVE_NONE;
         gBattleStruct->battlers[i].lastHitByMove = MOVE_NONE;
         gBattleStruct->battlers[i].lastHitByType = TYPE_NORMAL;
@@ -3111,7 +3111,7 @@ void SwitchInClearSetData(void)
     }
 
     gMoveResultFlags = 0;
-    gDisableStructs[gActiveBattler].isFirstTurn = 2;
+    gBattleStruct->battlers[gActiveBattler].isFirstTurn = 2;
     gDisableStructs[gActiveBattler].truantSwitchInHack = disableStructCopy.truantSwitchInHack;
     gBattleStruct->battlers[gActiveBattler].lastMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitByMove = MOVE_NONE;
@@ -3210,7 +3210,7 @@ void FaintClearSetData(void)
     gProtectStructs[gActiveBattler].statFell = FALSE;
     gProtectStructs[gActiveBattler].pranksterElevated = FALSE;
 
-    gDisableStructs[gActiveBattler].isFirstTurn = 2;
+    gBattleStruct->battlers[gActiveBattler].isFirstTurn = 2;
 
     gBattleStruct->battlers[gActiveBattler].lastMove = MOVE_NONE;
     gBattleStruct->battlers[gActiveBattler].lastHitByMove = MOVE_NONE;
@@ -4829,8 +4829,8 @@ static void TurnValuesCleanUp(bool8 var0)
         {
             memset(&gProtectStructs[gActiveBattler], 0, sizeof(struct ProtectStruct));
 
-            if (gDisableStructs[gActiveBattler].isFirstTurn)
-                gDisableStructs[gActiveBattler].isFirstTurn--;
+            if (gBattleStruct->battlers[gActiveBattler].isFirstTurn)
+                gBattleStruct->battlers[gActiveBattler].isFirstTurn--;
 
             if (gDisableStructs[gActiveBattler].rechargeTimer)
             {

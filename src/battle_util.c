@@ -4963,7 +4963,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 break;
             case ABILITY_SPEED_BOOST:
-                if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) && gDisableStructs[battler].isFirstTurn != 2)
+                if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) && gBattleStruct->battlers[battler].isFirstTurn != 2)
                 {
                     gBattleMons[battler].statStages[STAT_SPEED]++;
                     gBattleScripting.animArg1 = 14 + STAT_SPEED;
@@ -4974,7 +4974,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 break;
             case ABILITY_MOODY:
-                if (gDisableStructs[battler].isFirstTurn != 2)
+                if (gBattleStruct->battlers[battler].isFirstTurn != 2)
                 {
                     u32 validToRaise = 0, validToLower = 0;
                 #if B_MOODY_ACC_EVASION < GEN_8
@@ -8667,14 +8667,14 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
     case EFFECT_PAYBACK:
         if (GetBattlerTurnOrderNum(battlerAtk) > GetBattlerTurnOrderNum(battlerDef)
         #if B_PAYBACK_SWITCH_BOOST >= GEN_5
-            && (gDisableStructs[battlerDef].isFirstTurn != 2)
+            && (gBattleStruct->battlers[battlerDef].isFirstTurn != 2)
         #endif
         )
             basePower *= 2;
         break;
     case EFFECT_BOLT_BEAK:
         if (GetBattlerTurnOrderNum(battlerAtk) < GetBattlerTurnOrderNum(battlerDef)
-            || gDisableStructs[battlerDef].isFirstTurn == 2)
+            || gBattleStruct->battlers[battlerDef].isFirstTurn == 2)
             basePower *= 2;
         break;
     case EFFECT_ROUND:
@@ -9299,7 +9299,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
     case ABILITY_STAKEOUT:
-        if (gDisableStructs[battlerDef].isFirstTurn == 2) // just switched in
+        if (gBattleStruct->battlers[battlerDef].isFirstTurn == 2) // just switched in
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
     case ABILITY_GUTS:
