@@ -4019,9 +4019,9 @@ static void HandleTurnActionSelectionState(void)
                         gBattleStruct->battlers[gActiveBattler].moveTarget = gBattleResources->bufferB[gActiveBattler][3];
                         return;
                     }
-                    else if (gDisableStructs[gActiveBattler].encoredMove != 0)
+                    else if (gBattleStruct->battlers[gActiveBattler].encoredMove != MOVE_NONE)
                     {
-                        gBattleStruct->battlers[gActiveBattler].chosenMove = gDisableStructs[gActiveBattler].encoredMove;
+                        gBattleStruct->battlers[gActiveBattler].chosenMove = gBattleStruct->battlers[gActiveBattler].encoredMove;
                         gBattleStruct->battlers[gActiveBattler].chosenMovePosition = gDisableStructs[gActiveBattler].encoredMovePos;
                         gBattleCommunication[gActiveBattler] = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
                         return;
@@ -4140,7 +4140,7 @@ static void HandleTurnActionSelectionState(void)
                     }
                     else if (gChosenActionByBattler[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))] == B_ACTION_USE_MOVE
                              && (gProtectStructs[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))].noValidMoves
-                                || gDisableStructs[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))].encoredMove))
+                                || gBattleStruct->battlers[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))].encoredMove))
                     {
                         RecordedBattle_ClearBattlerAction(GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler))), 1);
                     }

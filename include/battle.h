@@ -56,7 +56,6 @@
 struct DisableStruct
 {
     u32 transformedMonPersonality;
-    u16 encoredMove;
     u8 protectUses;
     u8 stockpileCounter;
     s8 stockpileDef;
@@ -666,6 +665,7 @@ struct BattleStruct
         u32 status3;
         u32 status4;
         u16 disabledMove;
+        u16 encoredMove;
     } battlers[MAX_BATTLERS_COUNT];
 };
 

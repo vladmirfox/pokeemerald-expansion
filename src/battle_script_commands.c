@@ -10771,7 +10771,7 @@ static void Cmd_various(void)
         // Check encore
         if (gDisableStructs[gActiveBattler].encoreTimer != 0)
         {
-            gDisableStructs[gActiveBattler].encoredMove = 0;
+            gBattleStruct->battlers[gActiveBattler].encoredMove = MOVE_NONE;
             gDisableStructs[gActiveBattler].encoreTimer = 0;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MENTALHERBCURE_ENCORE;   // STRINGID_PKMNENCOREENDED
         }
@@ -12973,10 +12973,10 @@ static void Cmd_trysetencore(void)
         i = MAX_MON_MOVES;
     }
 
-    if (gDisableStructs[gBattlerTarget].encoredMove == MOVE_NONE
+    if (gBattleStruct->battlers[gBattlerTarget].encoredMove == MOVE_NONE
         && i != MAX_MON_MOVES && gBattleMons[gBattlerTarget].pp[i] != 0)
     {
-        gDisableStructs[gBattlerTarget].encoredMove = gBattleMons[gBattlerTarget].moves[i];
+        gBattleStruct->battlers[gBattlerTarget].encoredMove = gBattleMons[gBattlerTarget].moves[i];
         gDisableStructs[gBattlerTarget].encoredMovePos = i;
         gDisableStructs[gBattlerTarget].encoreTimer = 3;
         gDisableStructs[gBattlerTarget].encoreTimer;
