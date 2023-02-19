@@ -1685,9 +1685,9 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_MIST;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_MIST;
-            sideTimer->mistBattlerId = data->battlerId;
+            side->mistBattlerId = data->battlerId;
         }
-        return &sideTimer->mistTimer;
+        return &side->mistTimer;
     case LIST_SIDE_AURORA_VEIL:
         if (changeStatus)
         {

@@ -1135,7 +1135,7 @@ static bool8 ShouldUseItem(void)
             break;
         case AI_ITEM_GUARD_SPEC:
             battlerSide = GetBattlerSide(gActiveBattler);
-            if (gDisableStructs[gActiveBattler].isFirstTurn != 0 && gSideTimers[battlerSide].mistTimer == 0)
+            if (gDisableStructs[gActiveBattler].isFirstTurn != 0 && gBattleStruct->sides[battlerSide].mistTimer == 0)
                 shouldUse = TRUE;
             break;
         case AI_ITEM_NOT_RECOGNIZABLE:

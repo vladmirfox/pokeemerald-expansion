@@ -2243,8 +2243,8 @@ u8 DoFieldEndTurnEffects(void)
             while (gBattleStruct->turnSideTracker < 2)
             {
                 side = gBattleStruct->turnSideTracker;
-                gActiveBattler = gBattlerAttacker = gSideTimers[side].mistBattlerId;
-                if (gSideTimers[side].mistTimer != 0 && --gSideTimers[side].mistTimer == 0)
+                gActiveBattler = gBattlerAttacker = gBattleStruct->sides[side].mistBattlerId;
+                if (gBattleStruct->sides[side].mistTimer != 0 && --gBattleStruct->sides[side].mistTimer == 0)
                 {
                     gBattleStruct->sides[side].status &= ~SIDE_STATUS_MIST;
                     BattleScriptExecute(BattleScript_SideStatusWoreOff);

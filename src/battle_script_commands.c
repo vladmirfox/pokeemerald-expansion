@@ -5215,7 +5215,7 @@ static void Cmd_playstatchangeanimation(void)
                         changeableStatsCount++;
                     }
                 }
-                else if (!gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].mistTimer
+                else if (!gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].mistTimer
                         && GetBattlerHoldEffect(gActiveBattler, TRUE) != HOLD_EFFECT_CLEAR_AMULET
                         && ability != ABILITY_CLEAR_BODY
                         && ability != ABILITY_FULL_METAL_BODY
@@ -8363,7 +8363,7 @@ static bool32 ClearDefogHazards(u8 battlerAtk, bool32 clear)
         {
             DEFOG_CLEAR_(SIDE_STATUS_REFLECT, reflectTimer, BattleScript_SideStatusWoreOffReturn, MOVE_REFLECT);
             DEFOG_CLEAR_(SIDE_STATUS_LIGHTSCREEN, lightScreenTimer, BattleScript_SideStatusWoreOffReturn, MOVE_LIGHT_SCREEN);
-            DEFOG_CLEAR(SIDE_STATUS_MIST, mistTimer, BattleScript_SideStatusWoreOffReturn, MOVE_MIST);
+            DEFOG_CLEAR_(SIDE_STATUS_MIST, mistTimer, BattleScript_SideStatusWoreOffReturn, MOVE_MIST);
             DEFOG_CLEAR(SIDE_STATUS_AURORA_VEIL, auroraVeilTimer, BattleScript_SideStatusWoreOffReturn, MOVE_AURORA_VEIL);
             DEFOG_CLEAR(SIDE_STATUS_SAFEGUARD, safeguardTimer, BattleScript_SideStatusWoreOffReturn, MOVE_SAFEGUARD);
         }
@@ -8565,7 +8565,7 @@ static bool32 CourtChangeSwapSideStatuses(void)
     // Swap timers and statuses
     COURTCHANGE_SWAP_(SIDE_STATUS_REFLECT, reflectTimer, temp)
     COURTCHANGE_SWAP_(SIDE_STATUS_LIGHTSCREEN, lightScreenTimer, temp)
-    COURTCHANGE_SWAP(SIDE_STATUS_MIST, mistTimer, temp);
+    COURTCHANGE_SWAP_(SIDE_STATUS_MIST, mistTimer, temp);
     COURTCHANGE_SWAP(SIDE_STATUS_SAFEGUARD, safeguardTimer, temp);
     COURTCHANGE_SWAP(SIDE_STATUS_AURORA_VEIL, auroraVeilTimer, temp);
     COURTCHANGE_SWAP(SIDE_STATUS_TAILWIND, tailwindTimer, temp);
@@ -8580,7 +8580,7 @@ static bool32 CourtChangeSwapSideStatuses(void)
     // E.g. "Foe's Reflect wore off!"
     UPDATE_COURTCHANGED_BATTLER_(reflectBattlerId);
     UPDATE_COURTCHANGED_BATTLER_(lightScreenBattlerId);
-    UPDATE_COURTCHANGED_BATTLER(mistBattlerId);
+    UPDATE_COURTCHANGED_BATTLER_(mistBattlerId);
     UPDATE_COURTCHANGED_BATTLER(safeguardBattlerId);
     UPDATE_COURTCHANGED_BATTLER(auroraVeilBattlerId);
     UPDATE_COURTCHANGED_BATTLER(tailwindBattlerId);
@@ -11758,7 +11758,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
 
     if (statValue <= -1) // Stat decrease.
     {
-        if (gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].mistTimer
+        if (gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].mistTimer
             && !certain && gCurrentMove != MOVE_CURSE
             && !(gActiveBattler == gBattlerTarget && GetBattlerAbility(gBattlerAttacker) == ABILITY_INFILTRATOR))
         {
@@ -12695,15 +12695,15 @@ static void Cmd_setmist(void)
 {
     CMD_ARGS();
 
-    if (gSideTimers[GET_BATTLER_SIDE(gBattlerAttacker)].mistTimer)
+    if (gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].mistTimer)
     {
         gMoveResultFlags |= MOVE_RESULT_FAILED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MIST_FAILED;
     }
     else
     {
-        gSideTimers[GET_BATTLER_SIDE(gBattlerAttacker)].mistTimer = 5;
-        gSideTimers[GET_BATTLER_SIDE(gBattlerAttacker)].mistBattlerId = gBattlerAttacker;
+        gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].mistTimer = 5;
+        gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].mistBattlerId = gBattlerAttacker;
         gBattleStruct->sides[GET_BATTLER_SIDE(gBattlerAttacker)].status |= SIDE_STATUS_MIST;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_MIST;
     }
