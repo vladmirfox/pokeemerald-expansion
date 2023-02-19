@@ -18,9 +18,9 @@
 #define GET_BATTLER_SIDE2(battler)        (gBattlerPositions[battler] & BIT_SIDE)
 
 // Used to exclude moves learned temporarily by Transform or Mimic
-#define MOVE_IS_PERMANENT(battler, moveSlot)                        \
-   (!(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)           \
- && !(gDisableStructs[battler].mimickedMoves & gBitTable[moveSlot]))
+#define MOVE_IS_PERMANENT(battler, moveSlot) \
+   (!(gBattleMons[battler].status2 & STATUS2_TRANSFORMED) \
+ && !(gBattleStruct->battlers[battler].mimickedMoves & gBitTable[moveSlot]))
 
 // Battle Actions
 // These determine what each battler will do in a turn
@@ -60,7 +60,6 @@ struct DisableStruct
     u8 rolloutTimer:4;
     u8 rolloutTimerStartValue:4;
     u8 chargeTimer:4;
-    u8 mimickedMoves:4;
     u8 rechargeTimer;
     u8 autotomizeCount;
     u8 slowStartTimer;
@@ -666,6 +665,7 @@ struct BattleStruct
         u8 isFirstTurn;
         u8 truantCounter:1;
         u8 truantSwitchInHack:1;
+        u8 mimickedMoves:4;
     } battlers[MAX_BATTLERS_COUNT];
 };
 

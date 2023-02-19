@@ -10244,7 +10244,7 @@ static void Cmd_various(void)
                 ConvertIntToDecimalStringN(gBattleTextBuff2, ppToDeduct, STR_CONV_MODE_LEFT_ALIGN, 1);
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff2, 1, ppToDeduct)
                 gBattleMons[gActiveBattler].pp[i] -= ppToDeduct;
-                if (!(gDisableStructs[gActiveBattler].mimickedMoves & gBitTable[i])
+                if (!(gBattleStruct->battlers[gActiveBattler].mimickedMoves & gBitTable[i])
                     && !(gBattleMons[gActiveBattler].status2 & STATUS2_TRANSFORMED))
                 {
                     BtlController_EmitSetMonData(BUFFER_A, REQUEST_PPMOVE1_BATTLE + i, 0, sizeof(gBattleMons[gActiveBattler].pp[i]), &gBattleMons[gActiveBattler].pp[i]);
@@ -12709,7 +12709,7 @@ static void Cmd_transformdataexecution(void)
         gBattleStruct->battlers[gBattlerAttacker].disabledMove = MOVE_NONE;
         gBattleStruct->battlers[gBattlerAttacker].disableTimer = 0;
         gDisableStructs[gBattlerAttacker].transformedMonPersonality = gBattleMons[gBattlerTarget].personality;
-        gDisableStructs[gBattlerAttacker].mimickedMoves = 0;
+        gBattleStruct->battlers[gBattlerAttacker].mimickedMoves = 0;
         gDisableStructs[gBattlerAttacker].usedMoves = 0;
 
         PREPARE_SPECIES_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerTarget].species)
@@ -12796,7 +12796,7 @@ static void Cmd_mimicattackcopy(void)
 
             PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->battlers[gBattlerTarget].lastMove)
 
-            gDisableStructs[gBattlerAttacker].mimickedMoves |= gBitTable[gCurrMovePos];
+            gBattleStruct->battlers[gBattlerAttacker].mimickedMoves |= gBitTable[gCurrMovePos];
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         else
@@ -13292,7 +13292,7 @@ static void Cmd_tryspiteppreduce(void)
             gActiveBattler = gBattlerTarget;
 
             // if (MOVE_IS_PERMANENT(gActiveBattler, i)), but backwards
-            if (!(gDisableStructs[gActiveBattler].mimickedMoves & gBitTable[i])
+            if (!(gBattleStruct->battlers[gActiveBattler].mimickedMoves & gBitTable[i])
                 && !(gBattleMons[gActiveBattler].status2 & STATUS2_TRANSFORMED))
             {
                 BtlController_EmitSetMonData(BUFFER_A, REQUEST_PPMOVE1_BATTLE + i, 0, sizeof(gBattleMons[gActiveBattler].pp[i]), &gBattleMons[gActiveBattler].pp[i]);
