@@ -1486,10 +1486,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             break;
         case EFFECT_SPIKES:
-            if (gSideTimers[GetBattlerSide(battlerDef)].spikesAmount >= 3)
+            if (gBattleStruct->sides[GetBattlerSide(battlerDef)].spikesAmount >= 3)
                 score -= 10;
             else if (PartnerMoveIsSameNoTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove)
-              && gSideTimers[GetBattlerSide(battlerDef)].spikesAmount == 2)
+              && gBattleStruct->sides[GetBattlerSide(battlerDef)].spikesAmount == 2)
                 score -= 10; // only one mon needs to set up the last layer of Spikes
             break;
         case EFFECT_STEALTH_ROCK:

@@ -6930,7 +6930,7 @@ static void Cmd_switchineffects(void)
         && IsBattlerAffectedByHazards(gActiveBattler, FALSE)
         && IsBattlerGrounded(gActiveBattler))
     {
-        u8 spikesDmg = (5 - gSideTimers[GetBattlerSide(gActiveBattler)].spikesAmount) * 2;
+        u8 spikesDmg = (5 - gBattleStruct->sides[GetBattlerSide(gActiveBattler)].spikesAmount) * 2;
         gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / (spikesDmg);
         if (gBattleMoveDamage == 0)
             gBattleMoveDamage = 1;
@@ -8367,7 +8367,7 @@ static bool32 ClearDefogHazards(u8 battlerAtk, bool32 clear)
             DEFOG_CLEAR(SIDE_STATUS_AURORA_VEIL, auroraVeilTimer, BattleScript_SideStatusWoreOffReturn, MOVE_AURORA_VEIL);
             DEFOG_CLEAR_(SIDE_STATUS_SAFEGUARD, safeguardTimer, BattleScript_SideStatusWoreOffReturn, MOVE_SAFEGUARD);
         }
-        DEFOG_CLEAR(SIDE_STATUS_SPIKES, spikesAmount, BattleScript_SpikesFree, 0);
+        DEFOG_CLEAR_(SIDE_STATUS_SPIKES, spikesAmount, BattleScript_SpikesFree, 0);
         DEFOG_CLEAR(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, BattleScript_StealthRockFree, 0);
         DEFOG_CLEAR(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, BattleScript_ToxicSpikesFree, 0);
         DEFOG_CLEAR(SIDE_STATUS_STICKY_WEB, stickyWebAmount, BattleScript_StickyWebFree, 0);
@@ -8571,7 +8571,7 @@ static bool32 CourtChangeSwapSideStatuses(void)
     COURTCHANGE_SWAP(SIDE_STATUS_TAILWIND, tailwindTimer, temp);
     // Lucky Chant doesn't exist in gen 8, but seems like it should be affected by Court Change
     COURTCHANGE_SWAP(SIDE_STATUS_LUCKY_CHANT, luckyChantTimer, temp);
-    COURTCHANGE_SWAP(SIDE_STATUS_SPIKES, spikesAmount, temp);
+    COURTCHANGE_SWAP_(SIDE_STATUS_SPIKES, spikesAmount, temp);
     COURTCHANGE_SWAP(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, temp);
     COURTCHANGE_SWAP(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, temp);
     COURTCHANGE_SWAP(SIDE_STATUS_STICKY_WEB, stickyWebAmount, temp);
@@ -13482,7 +13482,7 @@ static void Cmd_trysetspikes(void)
 
     u8 targetSide = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
 
-    if (gSideTimers[targetSide].spikesAmount == 3)
+    if (gBattleStruct->sides[targetSide].spikesAmount == 3)
     {
         gSpecialStatuses[gBattlerAttacker].ppNotAffectedByPressure = TRUE;
         gBattlescriptCurrInstr = cmd->failInstr;
@@ -13490,7 +13490,7 @@ static void Cmd_trysetspikes(void)
     else
     {
         gBattleStruct->sides[targetSide].status |= SIDE_STATUS_SPIKES;
-        gSideTimers[targetSide].spikesAmount++;
+        gBattleStruct->sides[targetSide].spikesAmount++;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
@@ -13862,7 +13862,7 @@ static void Cmd_rapidspinfree(void)
     else if (gBattleStruct->sides[atkSide].status & SIDE_STATUS_SPIKES)
     {
         gBattleStruct->sides[atkSide].status &= ~SIDE_STATUS_SPIKES;
-        gSideTimers[atkSide].spikesAmount = 0;
+        gBattleStruct->sides[atkSide].spikesAmount = 0;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_SpikesFree;
     }

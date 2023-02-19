@@ -1667,7 +1667,7 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_SPIKES;
         }
-        return &sideTimer->spikesAmount;
+        return &side->spikesAmount;
     case LIST_SIDE_SAFEGUARD:
         if (changeStatus)
         {

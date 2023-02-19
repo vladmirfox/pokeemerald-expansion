@@ -191,7 +191,6 @@ struct SpecialStatus
 
 struct SideTimer
 {
-    u8 spikesAmount;
     u8 toxicSpikesAmount;
     u8 stealthRockAmount;
     u8 stickyWebAmount;
@@ -612,6 +611,7 @@ struct BattleStruct
         u8 mistBattlerId;
         u8 safeguardTimer;
         u8 safeguardBattlerId;
+        u8 spikesAmount;
         struct Party
         {
             u16 usedHeldItem; // For harvest, recycle.
