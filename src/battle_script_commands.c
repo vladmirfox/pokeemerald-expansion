@@ -8898,7 +8898,7 @@ static void Cmd_various(void)
         gBattlerAttacker = gBattlerTarget;
         side = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
         if (IsAffectedByFollowMe(gBattlerAttacker, side, gCurrentMove))
-            gBattlerTarget = gSideTimers[side].followmeTarget;
+            gBattlerTarget = gBattleStruct->sides[side].followMeTarget;
         else
             gBattlerTarget = gActiveBattler;
         break;
@@ -10356,8 +10356,8 @@ static void Cmd_various(void)
         gDisableStructs[gBattlerTarget].furyCutterCounter = 0;
 
         // End any Follow Me/Rage Powder effects caused by the target
-        if (gSideTimers[GetBattlerSide(gBattlerTarget)].followmeTimer != 0 && gSideTimers[GetBattlerSide(gBattlerTarget)].followmeTarget == gBattlerTarget)
-            gSideTimers[GetBattlerSide(gBattlerTarget)].followmeTimer = 0;
+        if (gBattleStruct->sides[GetBattlerSide(gBattlerTarget)].followMeTimer != 0 && gBattleStruct->sides[GetBattlerSide(gBattlerTarget)].followMeTarget == gBattlerTarget)
+            gBattleStruct->sides[GetBattlerSide(gBattlerTarget)].followMeTimer = 0;
 
         break;
     }
@@ -12879,7 +12879,7 @@ static void Cmd_counterdamagecalculator(void)
         gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg * 2;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
-            gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
+            gBattlerTarget = gBattleStruct->sides[sideTarget].followMeTarget;
         else
             gBattlerTarget = gProtectStructs[gBattlerAttacker].physicalBattlerId;
 
@@ -12907,7 +12907,7 @@ static void Cmd_mirrorcoatdamagecalculator(void)
         gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg * 2;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
-            gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
+            gBattlerTarget = gBattleStruct->sides[sideTarget].followMeTarget;
         else
             gBattlerTarget = gProtectStructs[gBattlerAttacker].specialBattlerId;
 
@@ -14105,9 +14105,9 @@ static void Cmd_setforcedtarget(void)
 {
     CMD_ARGS();
 
-    gSideTimers[GetBattlerSide(gBattlerTarget)].followmeTimer = 1;
-    gSideTimers[GetBattlerSide(gBattlerTarget)].followmeTarget = gBattlerTarget;
-    gSideTimers[GetBattlerSide(gBattlerTarget)].followmePowder = TestMoveFlags(gCurrentMove, FLAG_POWDER);
+    gBattleStruct->sides[GetBattlerSide(gBattlerTarget)].followMeTimer = 1;
+    gBattleStruct->sides[GetBattlerSide(gBattlerTarget)].followMeTarget = gBattlerTarget;
+    gBattleStruct->sides[GetBattlerSide(gBattlerTarget)].followMePowder = TestMoveFlags(gCurrentMove, FLAG_POWDER);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -16011,7 +16011,7 @@ void BS_CalcMetalBurstDmg(void)
         gBattleMoveDamage = gProtectStructs[gBattlerAttacker].physicalDmg * 150 / 100;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
-            gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
+            gBattlerTarget = gBattleStruct->sides[sideTarget].followMeTarget;
         else
             gBattlerTarget = gProtectStructs[gBattlerAttacker].physicalBattlerId;
 
@@ -16024,7 +16024,7 @@ void BS_CalcMetalBurstDmg(void)
         gBattleMoveDamage = gProtectStructs[gBattlerAttacker].specialDmg * 150 / 100;
 
         if (IsAffectedByFollowMe(gBattlerAttacker, sideTarget, gCurrentMove))
-            gBattlerTarget = gSideTimers[sideTarget].followmeTarget;
+            gBattlerTarget = gBattleStruct->sides[sideTarget].followMeTarget;
         else
             gBattlerTarget = gProtectStructs[gBattlerAttacker].specialBattlerId;
 

@@ -192,9 +192,6 @@ struct SpecialStatus
 struct SideTimer
 {
     // Timers below this point are not swapped by Court Change
-    u8 followmeTimer;
-    u8 followmeTarget:3;
-    u8 followmePowder:1; // Rage powder, does not affect grass type pokemon.
     u8 retaliateTimer;
 };
 
@@ -612,6 +609,9 @@ struct BattleStruct
         u8 tailwindBattlerId;
         u8 luckyChantTimer;
         u8 luckyChantBattlerId;
+        u8 followMeTimer;
+        u8 followMeTarget:3;
+        u8 followMePowder:1; // Rage powder does not affect Grass-types.
         struct Party
         {
             u16 usedHeldItem; // For harvest, recycle.
