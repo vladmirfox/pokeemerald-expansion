@@ -184,7 +184,6 @@ EWRAM_DATA u16 gLastUsedMove = 0;
 EWRAM_DATA u16 gMoveResultFlags = 0;
 EWRAM_DATA u32 gHitMarker = 0;
 EWRAM_DATA u8 gUnusedFirstBattleVar2 = 0; // Never read
-EWRAM_DATA struct SideTimer gSideTimers[NUM_BATTLE_SIDES] = {0};
 EWRAM_DATA u32 gStatuses3[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u32 gStatuses4[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA struct DisableStruct gDisableStructs[MAX_BATTLERS_COUNT] = {0};
@@ -2933,7 +2932,6 @@ static void BattleStartClearSetData(void)
 
     memset(&gDisableStructs, 0, sizeof(gDisableStructs));
     gTerrainTimer = 0;
-    memset(&gSideTimers, 0, sizeof(gSideTimers));
     memset(&gBattleResults, 0, sizeof(gBattleResults));
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)

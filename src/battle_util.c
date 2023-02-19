@@ -2564,10 +2564,10 @@ u8 DoFieldEndTurnEffects(void)
             gBattleStruct->turnCountersTracker++;
             break;
         case ENDTURN_RETALIATE:
-            if (gSideTimers[B_SIDE_PLAYER].retaliateTimer > 0)
-                gSideTimers[B_SIDE_PLAYER].retaliateTimer--;
-            if (gSideTimers[B_SIDE_OPPONENT].retaliateTimer > 0)
-                gSideTimers[B_SIDE_OPPONENT].retaliateTimer--;
+            if (gBattleStruct->sides[B_SIDE_PLAYER].retaliateTimer > 0)
+                gBattleStruct->sides[B_SIDE_PLAYER].retaliateTimer--;
+            if (gBattleStruct->sides[B_SIDE_OPPONENT].retaliateTimer > 0)
+                gBattleStruct->sides[B_SIDE_OPPONENT].retaliateTimer--;
             gBattleStruct->turnCountersTracker++;
             break;
         case ENDTURN_WEATHER_FORM:
@@ -9113,7 +9113,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
     case EFFECT_RETALIATE:
-        if (gSideTimers[atkSide].retaliateTimer == 1)
+        if (gBattleStruct->sides[atkSide].retaliateTimer == 1)
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
     case EFFECT_SOLAR_BEAM:

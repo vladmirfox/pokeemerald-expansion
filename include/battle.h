@@ -189,12 +189,6 @@ struct SpecialStatus
     u8 afterYou:1;
 };
 
-struct SideTimer
-{
-    // Timers below this point are not swapped by Court Change
-    u8 retaliateTimer;
-};
-
 struct AI_SavedBattleMon
 {
     u16 ability;
@@ -612,6 +606,7 @@ struct BattleStruct
         u8 followMeTimer;
         u8 followMeTarget:3;
         u8 followMePowder:1; // Rage powder does not affect Grass-types.
+        u8 retaliateTimer;
         struct Party
         {
             u16 usedHeldItem; // For harvest, recycle.
@@ -927,7 +922,6 @@ extern u16 gLastUsedMove;
 extern u16 gMoveResultFlags;
 extern u32 gHitMarker;
 extern u8 gUnusedFirstBattleVar2;
-extern struct SideTimer gSideTimers[NUM_BATTLE_SIDES];
 extern u32 gStatuses3[MAX_BATTLERS_COUNT];
 extern u32 gStatuses4[MAX_BATTLERS_COUNT];
 extern struct DisableStruct gDisableStructs[MAX_BATTLERS_COUNT];
