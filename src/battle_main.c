@@ -4832,10 +4832,10 @@ static void TurnValuesCleanUp(bool8 var0)
             if (gBattleStruct->battlers[gActiveBattler].isFirstTurn)
                 gBattleStruct->battlers[gActiveBattler].isFirstTurn--;
 
-            if (gDisableStructs[gActiveBattler].rechargeTimer)
+            if (gBattleStruct->battlers[gActiveBattler].rechargeTimer)
             {
-                gDisableStructs[gActiveBattler].rechargeTimer--;
-                if (gDisableStructs[gActiveBattler].rechargeTimer == 0)
+                gBattleStruct->battlers[gActiveBattler].rechargeTimer--;
+                if (gBattleStruct->battlers[gActiveBattler].rechargeTimer == 0)
                     gBattleMons[gActiveBattler].status2 &= ~STATUS2_RECHARGE;
             }
         }

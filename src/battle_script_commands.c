@@ -3424,7 +3424,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 break;
             case MOVE_EFFECT_RECHARGE:
                 gBattleMons[gEffectBattler].status2 |= STATUS2_RECHARGE;
-                gDisableStructs[gEffectBattler].rechargeTimer = 2;
+                gBattleStruct->battlers[gEffectBattler].rechargeTimer = 2;
                 gBattleStruct->battlers[gEffectBattler].lockedMove = gCurrentMove;
                 gBattlescriptCurrInstr++;
                 break;
