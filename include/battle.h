@@ -60,8 +60,6 @@ struct DisableStruct
     u8 rolloutTimer:4;
     u8 rolloutTimerStartValue:4;
     u8 chargeTimer:4;
-    u8 healBlockTimer;
-    u8 laserFocusTimer;
     u8 throatChopTimer;
     u8 wrapTurns;
     u8 usedMoves:4;
@@ -666,6 +664,8 @@ struct BattleStruct
         u8 embargoTimer;
         u8 magnetRiseTimer;
         u8 telekinesisTimer;
+        u8 healBlockTimer;
+        u8 laserFocusTimer;
     } battlers[MAX_BATTLERS_COUNT];
 };
 

@@ -3086,7 +3086,7 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_LASER_FOCUS:
             if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_LASER_FOCUS)
             {
-                if (gDisableStructs[gActiveBattler].laserFocusTimer == 0 || --gDisableStructs[gActiveBattler].laserFocusTimer == 0)
+                if (gBattleStruct->battlers[gActiveBattler].laserFocusTimer == 0 || --gBattleStruct->battlers[gActiveBattler].laserFocusTimer == 0)
                     gBattleStruct->battlers[gActiveBattler].status3 &= ~STATUS3_LASER_FOCUS;
             }
             gBattleStruct->turnEffectsTracker++;
@@ -3131,7 +3131,7 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_HEALBLOCK:
             if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_HEAL_BLOCK)
             {
-                if (gDisableStructs[gActiveBattler].healBlockTimer == 0 || --gDisableStructs[gActiveBattler].healBlockTimer == 0)
+                if (gBattleStruct->battlers[gActiveBattler].healBlockTimer == 0 || --gBattleStruct->battlers[gActiveBattler].healBlockTimer == 0)
                 {
                     gBattleStruct->battlers[gActiveBattler].status3 &= ~STATUS3_HEAL_BLOCK;
                     BattleScriptExecute(BattleScript_BufferEndTurn);

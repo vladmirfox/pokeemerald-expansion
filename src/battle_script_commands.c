@@ -6227,7 +6227,7 @@ static void Cmd_sethealblock(void)
     else
     {
         gBattleStruct->battlers[gBattlerTarget].status3 |= STATUS3_HEAL_BLOCK;
-        gDisableStructs[gBattlerTarget].healBlockTimer = 5;
+        gBattleStruct->battlers[gBattlerTarget].healBlockTimer = 5;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
@@ -14645,7 +14645,7 @@ static void Cmd_setuserstatus3(void)
         if (flags & STATUS3_MAGNET_RISE)
             gBattleStruct->battlers[gBattlerAttacker].magnetRiseTimer = 5;
         if (flags & STATUS3_LASER_FOCUS)
-            gDisableStructs[gBattlerAttacker].laserFocusTimer = 2;
+            gBattleStruct->battlers[gBattlerAttacker].laserFocusTimer = 2;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
