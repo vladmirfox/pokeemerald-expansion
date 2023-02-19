@@ -6924,10 +6924,10 @@ static void Cmd_switchineffects(void)
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_SwitchInAbilityMsgRet;
     }
-    // Healing Wish activates before hazards
-    else if ((B_STORE_HEALING_WISH <= GEN_7
-        && ((gBattleStruct->storedHealingWish & gBitTable[gActiveBattler]) || (gBattleStruct->storedLunarDance & gBitTable[gActiveBattler]))
-        && (gBattleMons[gActiveBattler].hp != gBattleMons[gActiveBattler].maxHP || gBattleMons[gActiveBattler].status1 != 0)))
+    // Healing Wish activates before hazards.
+    // Starting from Gen8 - it heals only pokemon which can be healed. In gens 5,6,7 the effect activates anyways.
+    else if (((gBattleStruct->storedHealingWish & gBitTable[gActiveBattler]) || (gBattleStruct->storedLunarDance & gBitTable[gActiveBattler]))
+        && (gBattleMons[gActiveBattler].hp != gBattleMons[gActiveBattler].maxHP || gBattleMons[gActiveBattler].status1 != 0 || B_HEALING_WISH_SWITCH < GEN_8))
     {
         if (gBattleStruct->storedHealingWish & gBitTable[gActiveBattler])
         {
@@ -10874,7 +10874,6 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         CourtChangeSwapSideStatuses();
         break;
-<<<<<<< HEAD
     }
     case VARIOUS_TRY_SYMBIOSIS: //called by Bestow, Fling, and Bug Bite, which don't work with Cmd_removeitem.
     {
@@ -11061,6 +11060,7 @@ static void Cmd_various(void)
     }
     case VARIOUS_STORE_HEALING_WISH:
     {
+        VARIOUS_ARGS();
         if (gCurrentMove == MOVE_LUNAR_DANCE)
             gBattleStruct->storedLunarDance |= gBitTable[gActiveBattler];
         else

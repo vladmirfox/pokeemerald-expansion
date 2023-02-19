@@ -3055,7 +3055,6 @@ static void BattleStartClearSetData(void)
         gBattleStruct->allowedToChangeFormInWeather[i][B_SIDE_OPPONENT] = FALSE;
     }
 
-    gBattleStruct->storedHealingWish = 0;
     gBattleStruct->swapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
 }
 
