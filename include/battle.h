@@ -664,6 +664,7 @@ struct BattleStruct
         u16 futureSightMove;
         u8 wishCounter;
         u8 wishPartyIndex;
+        u32 status3;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
@@ -922,7 +923,6 @@ extern u16 gLastUsedMove;
 extern u16 gMoveResultFlags;
 extern u32 gHitMarker;
 extern u8 gUnusedFirstBattleVar2;
-extern u32 gStatuses3[MAX_BATTLERS_COUNT];
 extern u32 gStatuses4[MAX_BATTLERS_COUNT];
 extern struct DisableStruct gDisableStructs[MAX_BATTLERS_COUNT];
 extern u16 gPauseCounterBattle;

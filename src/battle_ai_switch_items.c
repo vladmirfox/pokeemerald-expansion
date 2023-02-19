@@ -244,7 +244,7 @@ static bool8 ShouldSwitchIfGameStatePrompt(void)
         chanceReducer = 5; // Reduce switchout probability by factor of 5 if setup
 
     //Perish Song
-    if (gStatuses3[gActiveBattler] & STATUS3_PERISH_SONG
+    if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_PERISH_SONG
         && gDisableStructs[gActiveBattler].perishSongTimer == 0
         && monAbility != ABILITY_SOUNDPROOF)
         switchMon = TRUE;
@@ -252,7 +252,7 @@ static bool8 ShouldSwitchIfGameStatePrompt(void)
     if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING)
     {
         //Yawn
-        if (gStatuses3[gActiveBattler] & STATUS3_YAWN
+        if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_YAWN
             && AI_CanSleep(gActiveBattler, monAbility)
             && gBattleMons[gActiveBattler].hp > gBattleMons[gActiveBattler].maxHP / 3)
         {
@@ -328,7 +328,7 @@ static bool8 ShouldSwitchIfGameStatePrompt(void)
                 && AI_DATA->abilities[opposingBattler] != ABILITY_UNAWARE
                 && AI_DATA->abilities[opposingBattler] != ABILITY_KEEN_EYE
                 && !(gBattleMons[gActiveBattler].status2 & STATUS2_FORESIGHT)
-                && !(gStatuses3[gActiveBattler] & STATUS3_MIRACLE_EYED))     
+                && !(gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_MIRACLE_EYED))     
                 switchMon = FALSE;
 
         }
@@ -358,7 +358,7 @@ static bool8 ShouldSwitchIfGameStatePrompt(void)
 
             //Leech Seed
             moduloChance = 4; //25%
-            if (gStatuses3[gActiveBattler] & STATUS3_LEECHSEED
+            if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_LEECHSEED
                 && (Random() % (moduloChance*chanceReducer)) == 0)
                 switchMon = TRUE;
         }
@@ -372,7 +372,7 @@ static bool8 ShouldSwitchIfGameStatePrompt(void)
         //Pass Wish Heal
         
         //Semi-Invulnerable
-        if (gStatuses3[opposingBattler] & STATUS3_SEMI_INVULNERABLE)
+        if (gBattleStruct->battlers[opposingBattler].status3 & STATUS3_SEMI_INVULNERABLE)
         {
             if (FindMonThatAbsorbsOpponentsMove()) //If find absorber default to switch
                 switchMon = TRUE;
@@ -409,7 +409,7 @@ static bool8 ShouldSwitchIfAbilityBenefit(void)
         chanceReducer = 5; // Reduce switchout probability by factor of 5 if setup
 
     //Check if ability is blocked
-    if (gStatuses3[gActiveBattler] & STATUS3_GASTRO_ACID
+    if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_GASTRO_ACID
         ||IsNeutralizingGasOnField())
         return FALSE;
 
@@ -622,7 +622,7 @@ bool32 ShouldSwitch(void)
 
     if (gBattleMons[gActiveBattler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION))
         return FALSE;
-    if (gStatuses3[gActiveBattler] & STATUS3_ROOTED)
+    if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_ROOTED)
         return FALSE;
     if (IsAbilityPreventingEscape(gActiveBattler))
         return FALSE;
@@ -1025,10 +1025,10 @@ static bool8 ShouldUseItem(void)
 
     // If teaming up with player and Pokemon is on the right, or Pokemon is currently held by Sky Drop
     if ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && GetBattlerPosition(gActiveBattler) == B_POSITION_PLAYER_RIGHT)
-       || gStatuses3[gActiveBattler] & STATUS3_SKY_DROPPED)
+       || gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_SKY_DROPPED)
         return FALSE;
 
-    if (gStatuses3[gActiveBattler] & STATUS3_EMBARGO)
+    if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_EMBARGO)
         return FALSE;
 
     if (AiExpectsToFaintPlayer())

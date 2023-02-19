@@ -421,7 +421,7 @@ static u8 ChooseMoveOrAction_Singles(void)
     if (CountUsablePartyMons(sBattler_AI) > 0
         && !IsAbilityPreventingEscape(sBattler_AI)
         && !(gBattleMons[gActiveBattler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION))
-        && !(gStatuses3[gActiveBattler] & STATUS3_ROOTED)
+        && !(gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_ROOTED)
         && !(gBattleTypeFlags & (BATTLE_TYPE_ARENA | BATTLE_TYPE_PALACE))
         && AI_THINKING_STRUCT->aiFlags & (AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_PREFER_BATON_PASS))
     {
@@ -693,7 +693,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
           && ((AI_DATA->abilities[battlerDef] == ABILITY_LEVITATE
           && DoesBattlerIgnoreAbilityChecks(AI_DATA->abilities[battlerAtk], move))
           || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_AIR_BALLOON
-          || (gStatuses3[battlerDef] & (STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS)))
+          || (gBattleStruct->battlers[battlerDef].status3 & (STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS)))
           && move != MOVE_THOUSAND_ARROWS)
         {
             RETURN_SCORE_MINUS(20);
@@ -911,7 +911,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     if (gDisableStructs[battlerAtk].throatChopTimer && TestMoveFlags(move, FLAG_SOUND))
         return 0; // Can't even select move at all
     // heal block check
-    if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK && IsHealBlockPreventingMove(battlerAtk, move))
+    if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_HEAL_BLOCK && IsHealBlockPreventingMove(battlerAtk, move))
         return 0; // Can't even select heal blocked move
     // primal weather check
     if (WEATHER_HAS_EFFECT)
@@ -1064,7 +1064,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             break;
         case EFFECT_CHARGE:
-            if (gStatuses3[battlerAtk] & STATUS3_CHARGED_UP)
+            if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_CHARGED_UP)
                 score -= 20;
             else if (!HasMoveWithType(battlerAtk, TYPE_ELECTRIC))
                 score -= 10;
@@ -1400,7 +1400,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         #endif
             break;
         case EFFECT_LEECH_SEED:
-            if (gStatuses3[battlerDef] & STATUS3_LEECHSEED
+            if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_LEECHSEED
              || IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)
              || DoesPartnerHaveSameMoveEffect(BATTLE_PARTNER(battlerAtk), battlerDef, move, AI_DATA->partnerMove))
                 score -= 10;
@@ -1528,9 +1528,9 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     score -= 10; //Don't wipe your team if you're going to lose
                 }
                 else if ((!IsBattlerAlive(FOE(battlerAtk)) || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_SOUNDPROOF
-                  || gStatuses3[FOE(battlerAtk)] & STATUS3_PERISH_SONG)
+                  || gBattleStruct->battlers[FOE(battlerAtk)].status3 & STATUS3_PERISH_SONG)
                   && (!IsBattlerAlive(BATTLE_PARTNER(FOE(battlerAtk))) || AI_DATA->abilities[BATTLE_PARTNER(FOE(battlerAtk))] == ABILITY_SOUNDPROOF
-                  || gStatuses3[BATTLE_PARTNER(FOE(battlerAtk))] & STATUS3_PERISH_SONG))
+                  || gBattleStruct->battlers[BATTLE_PARTNER(FOE(battlerAtk))].status3 & STATUS3_PERISH_SONG))
                 {
                     score -= 10; //Both enemies are perish songed
                 }
@@ -1545,7 +1545,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                   && CountUsablePartyMons(battlerDef) >= 1)
                     score -= 10;
 
-                if (gStatuses3[FOE(battlerAtk)] & STATUS3_PERISH_SONG || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_SOUNDPROOF)
+                if (gBattleStruct->battlers[FOE(battlerAtk)].status3 & STATUS3_PERISH_SONG || AI_DATA->abilities[FOE(battlerAtk)] == ABILITY_SOUNDPROOF)
                     score -= 10;
             }
             break;
@@ -1592,7 +1592,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             if (CountUsablePartyMons(battlerAtk) == 0)
                 score -= 10;
             else if (gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE
-              || (gStatuses3[battlerAtk] & (STATUS3_ROOTED | STATUS3_AQUA_RING | STATUS3_MAGNET_RISE | STATUS3_POWER_TRICK))
+              || (gBattleStruct->battlers[battlerAtk].status3 & (STATUS3_ROOTED | STATUS3_AQUA_RING | STATUS3_MAGNET_RISE | STATUS3_POWER_TRICK))
               || AnyStatIsRaised(battlerAtk))
                 break;
             else
@@ -1601,7 +1601,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         case EFFECT_HIT_ESCAPE:
             break;
         case EFFECT_RAPID_SPIN:
-            if ((gBattleMons[battlerAtk].status2 & STATUS2_WRAPPED) || (gStatuses3[battlerAtk] & STATUS3_LEECHSEED))
+            if ((gBattleMons[battlerAtk].status2 & STATUS2_WRAPPED) || (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_LEECHSEED))
                 break;  // check damage/accuracy
             //Spin checks
             if (!(gBattleStruct->sides[GetBattlerSide(battlerAtk)].status & SIDE_STATUS_HAZARDS_ANY))
@@ -1696,11 +1696,11 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_INGRAIN:
-            if (gStatuses3[battlerAtk] & STATUS3_ROOTED)
+            if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_ROOTED)
                 score -= 10;
             break;
         case EFFECT_AQUA_RING:
-            if (gStatuses3[battlerAtk] & STATUS3_AQUA_RING)
+            if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_AQUA_RING)
                 score -= 10;
             break;
         case EFFECT_RECYCLE:
@@ -1708,7 +1708,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_IMPRISON:
-            if (gStatuses3[battlerAtk] & STATUS3_IMPRISONED_OTHERS)
+            if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_IMPRISONED_OTHERS)
                 score -= 10;
             break;
         case EFFECT_REFRESH:
@@ -1773,7 +1773,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10; // don't scare away pokemon twice
             else if (AI_DATA->hpPercents[battlerDef] < 10 && GetBattlerSecondaryDamage(battlerDef))
                 score -= 10;    // don't blow away mon that will faint soon
-            else if (gStatuses3[battlerDef] & STATUS3_PERISH_SONG)
+            else if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_PERISH_SONG)
                 score -= 10;
             break;
         case EFFECT_CONVERSION:
@@ -1904,14 +1904,14 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             //TODO
             break;
         case EFFECT_LOCK_ON:
-            if (gStatuses3[battlerDef] & STATUS3_ALWAYS_HITS
+            if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_ALWAYS_HITS
               || AI_DATA->abilities[battlerAtk] == ABILITY_NO_GUARD
               || AI_DATA->abilities[battlerDef] == ABILITY_NO_GUARD
               || DoesPartnerHaveSameMoveEffect(BATTLE_PARTNER(battlerAtk), battlerDef, move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_LASER_FOCUS:
-            if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS)
+            if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_LASER_FOCUS)
                 score -= 10;
             else if (AI_DATA->abilities[battlerDef] == ABILITY_SHELL_ARMOR || AI_DATA->abilities[battlerDef] == ABILITY_BATTLE_ARMOR)
                 score -= 8;
@@ -2003,7 +2003,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             break;
         case EFFECT_MIRACLE_EYE:
-            if (gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED)
+            if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_MIRACLE_EYED)
                 score -= 10;
 
             if (gBattleMons[battlerDef].statStages[STAT_EVASION] <= 4
@@ -2135,7 +2135,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10; // attacker has not consumed a berry
             break;
         case EFFECT_YAWN:
-            if (gStatuses3[battlerDef] & STATUS3_YAWN)
+            if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_YAWN)
                 score -= 10;
             else if (!AI_CanPutToSleep(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], move, AI_DATA->partnerMove))
                 score -= 10;
@@ -2153,7 +2153,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_GASTRO_ACID:
-            if (gStatuses3[battlerDef] & STATUS3_GASTRO_ACID
+            if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_GASTRO_ACID
               || IsGastroAcidBannedAbility(AI_DATA->abilities[battlerDef]))
                 score -= 10;
             break;
@@ -2393,7 +2393,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_TELEKINESIS:
-            if (gStatuses3[battlerDef] & (STATUS3_TELEKINESIS | STATUS3_ROOTED | STATUS3_SMACKED_DOWN)
+            if (gBattleStruct->battlers[battlerDef].status3 & (STATUS3_TELEKINESIS | STATUS3_ROOTED | STATUS3_SMACKED_DOWN)
               || gFieldStatuses & STATUS_FIELD_GRAVITY
               || AI_DATA->holdEffects[battlerDef] == HOLD_EFFECT_IRON_BALL
               || IsTelekinesisBannedSpecies(gBattleMons[battlerDef].species)
@@ -2437,7 +2437,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         case EFFECT_HIT_ENEMY_HEAL_ALLY:    // pollen puff
             if (IsTargetingPartner(battlerAtk, battlerDef))
             {
-                if (gStatuses3[battlerDef] & STATUS3_HEAL_BLOCK)
+                if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_HEAL_BLOCK)
                     return 0;
                 if (AtMaxHp(battlerDef))
                     score -= 10;
@@ -2546,7 +2546,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             if (gFieldStatuses & STATUS_FIELD_GRAVITY
               ||  gDisableStructs[battlerAtk].magnetRiseTimer != 0
               || AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_IRON_BALL
-              || gStatuses3[battlerAtk] & (STATUS3_ROOTED | STATUS3_MAGNET_RISE | STATUS3_SMACKED_DOWN)
+              || gBattleStruct->battlers[battlerAtk].status3 & (STATUS3_ROOTED | STATUS3_MAGNET_RISE | STATUS3_SMACKED_DOWN)
               || !IsBattlerGrounded(battlerAtk))
                 score -= 10;
             break;
@@ -3284,9 +3284,9 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score--;
         if ((gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY) && AI_DATA->hpPercents[battlerAtk] >= 50 && !AI_RandLessThan(80))
             score += 3;
-        if (gStatuses3[battlerDef] & STATUS3_LEECHSEED && !AI_RandLessThan(70))
+        if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_LEECHSEED && !AI_RandLessThan(70))
             score += 3;
-        if (gStatuses3[battlerAtk] & STATUS3_ROOTED && AI_RandLessThan(128))
+        if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_ROOTED && AI_RandLessThan(128))
             score += 2;
         if (gBattleMons[battlerDef].status2 & STATUS2_CURSED && !AI_RandLessThan(70))
             score += 3;
@@ -3360,9 +3360,9 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score -= 2;
         if (gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY && !AI_RandLessThan(70))
             score += 2;
-        if (gStatuses3[battlerDef] & STATUS3_LEECHSEED && !AI_RandLessThan(70))
+        if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_LEECHSEED && !AI_RandLessThan(70))
             score += 2;
-        if (gStatuses3[battlerDef] & STATUS3_ROOTED && AI_RandLessThan(128))
+        if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_ROOTED && AI_RandLessThan(128))
             score++;
         if (gBattleMons[battlerDef].status2 & STATUS2_CURSED && !AI_RandLessThan(70))
             score += 2;
@@ -3514,7 +3514,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
         break;
     case EFFECT_OHKO:
-        if (gStatuses3[battlerAtk] & STATUS3_ALWAYS_HITS)
+        if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_ALWAYS_HITS)
             score += 5;
         break;
     case EFFECT_TRAP:
@@ -3576,7 +3576,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
         break;
     case EFFECT_SUBSTITUTE:
-        if (gStatuses3[battlerDef] & STATUS3_PERISH_SONG)
+        if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_PERISH_SONG)
             score += 3;
         if (gBattleMons[battlerDef].status1 & (STATUS1_BURN | STATUS1_PSN_ANY))
             score++;
@@ -3600,7 +3600,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         break;
     case EFFECT_LEECH_SEED:
         if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)
-          || gStatuses3[battlerDef] & STATUS3_LEECHSEED
+          || gBattleStruct->battlers[battlerDef].status3 & STATUS3_LEECHSEED
           || HasMoveEffect(battlerDef, EFFECT_RAPID_SPIN)
           || AI_DATA->abilities[battlerDef] == ABILITY_LIQUID_OOZE
           || AI_DATA->abilities[battlerDef] == ABILITY_MAGIC_GUARD)
@@ -3643,7 +3643,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         break;
     case EFFECT_BATON_PASS:
         if (ShouldSwitch() && (gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE
-          || (gStatuses3[battlerAtk] & (STATUS3_ROOTED | STATUS3_AQUA_RING | STATUS3_MAGNET_RISE | STATUS3_POWER_TRICK))
+          || (gBattleStruct->battlers[battlerAtk].status3 & (STATUS3_ROOTED | STATUS3_AQUA_RING | STATUS3_MAGNET_RISE | STATUS3_POWER_TRICK))
           || AnyStatIsRaised(battlerAtk)))
             score += 5;
         break;
@@ -4014,7 +4014,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                   || gBattleMoves[predictedMove].effect == EFFECT_PROTECT)
                     score += 3;
             }
-            else if (gBattleMoves[predictedMove].effect == EFFECT_SEMI_INVULNERABLE && !(gStatuses3[battlerDef] & STATUS3_SEMI_INVULNERABLE))
+            else if (gBattleMoves[predictedMove].effect == EFFECT_SEMI_INVULNERABLE && !(gBattleStruct->battlers[battlerDef].status3 & STATUS3_SEMI_INVULNERABLE))
             {
                 score += 3;
             }
@@ -4136,7 +4136,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             break;
         case MOVE_RAPID_SPIN:
-            if (gStatuses3[battlerAtk] & STATUS3_LEECHSEED || gBattleMons[battlerAtk].status2 & STATUS2_WRAPPED)
+            if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_LEECHSEED || gBattleMons[battlerAtk].status2 & STATUS2_WRAPPED)
                 score += 3;
             break;
         }
@@ -4343,7 +4343,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_ENTRAINMENT:
         if (IsAbilityOfRating(AI_DATA->abilities[battlerDef], 5) || GetAbilityRating(AI_DATA->abilities[battlerAtk]) <= 0)
         {
-            if (AI_DATA->abilities[battlerDef] != AI_DATA->abilities[battlerAtk] && !(gStatuses3[battlerDef] & STATUS3_GASTRO_ACID))
+            if (AI_DATA->abilities[battlerDef] != AI_DATA->abilities[battlerAtk] && !(gBattleStruct->battlers[battlerDef].status3 & STATUS3_GASTRO_ACID))
                 score += 2;
         }
         break;
@@ -4448,7 +4448,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score++;
         break;
     case EFFECT_POWER_TRICK:
-        if (!(gStatuses3[battlerAtk] & STATUS3_POWER_TRICK))
+        if (!(gBattleStruct->battlers[battlerAtk].status3 & STATUS3_POWER_TRICK))
         {
             if (gBattleMons[battlerAtk].defense > gBattleMons[battlerAtk].attack && HasMoveWithSplit(battlerAtk, SPLIT_PHYSICAL))
                 score += 2;
@@ -4525,7 +4525,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         break;
     case EFFECT_ELECTRIC_TERRAIN:
     case EFFECT_MISTY_TERRAIN:
-        if (gStatuses3[battlerAtk] & STATUS3_YAWN && IsBattlerGrounded(battlerAtk))
+        if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_YAWN && IsBattlerGrounded(battlerAtk))
             score += 10;
         //fallthrough
     case EFFECT_GRASSY_TERRAIN:
@@ -4990,11 +4990,11 @@ static s16 AI_PreferBatonPass(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     switch (gBattleMoves[move].effect)
     {
     case EFFECT_INGRAIN:
-        if (!(gStatuses3[battlerAtk] & STATUS3_ROOTED))
+        if (!(gBattleStruct->battlers[battlerAtk].status3 & STATUS3_ROOTED))
             score += 2;
         break;
     case EFFECT_AQUA_RING:
-        if (!(gStatuses3[battlerAtk] & STATUS3_AQUA_RING))
+        if (!(gBattleStruct->battlers[battlerAtk].status3 & STATUS3_AQUA_RING))
             score += 2;
         break;
     case EFFECT_PROTECT:
@@ -5008,9 +5008,9 @@ static s16 AI_PreferBatonPass(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         {
             IncreaseStatUpScore(battlerAtk, battlerDef, i, &score);
         }
-        if (gStatuses3[battlerAtk] & (STATUS3_ROOTED | STATUS3_AQUA_RING))
+        if (gBattleStruct->battlers[battlerAtk].status3 & (STATUS3_ROOTED | STATUS3_AQUA_RING))
             score += 2;
-        if (gStatuses3[battlerAtk] & STATUS3_LEECHSEED)
+        if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_LEECHSEED)
             score -= 3;
         break;
     default:
@@ -5034,7 +5034,7 @@ static s16 AI_HPAware(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
          || (moveType == TYPE_ELECTRIC && AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] == ABILITY_VOLT_ABSORB)
          || (moveType == TYPE_WATER && (AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] == ABILITY_DRY_SKIN || AI_DATA->abilities[BATTLE_PARTNER(battlerAtk)] == ABILITY_WATER_ABSORB)))
         {
-            if (gStatuses3[battlerDef] & STATUS3_HEAL_BLOCK)
+            if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_HEAL_BLOCK)
                 return 0;
 
             if (CanTargetFaintAi(FOE(battlerAtk), BATTLE_PARTNER(battlerAtk))

@@ -616,7 +616,7 @@ bool32 IsBattlerTrapped(u8 battler, bool8 checkSwitch)
         return FALSE;
     else if (gBattleMons[battler].status2 & (STATUS2_ESCAPE_PREVENTION | STATUS2_WRAPPED))
         return TRUE;
-    else if (gStatuses3[battler] & (STATUS3_ROOTED | STATUS3_SKY_DROPPED))
+    else if (gBattleStruct->battlers[battler].status3 & (STATUS3_ROOTED | STATUS3_SKY_DROPPED))
         return TRUE;
     else if (gFieldStatuses & STATUS_FIELD_FAIRY_LOCK)
         return TRUE;
@@ -1209,11 +1209,11 @@ u16 AI_GetHoldEffect(u32 battlerId)
     if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
         return holdEffect;
 
-    if (gStatuses3[battlerId] & STATUS3_EMBARGO)
+    if (gBattleStruct->battlers[battlerId].status3 & STATUS3_EMBARGO)
         return HOLD_EFFECT_NONE;
     if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM)
         return HOLD_EFFECT_NONE;
-    if (AI_DATA->abilities[battlerId] == ABILITY_KLUTZ && !(gStatuses3[battlerId] & STATUS3_GASTRO_ACID))
+    if (AI_DATA->abilities[battlerId] == ABILITY_KLUTZ && !(gBattleStruct->battlers[battlerId].status3 & STATUS3_GASTRO_ACID))
         return HOLD_EFFECT_NONE;
 
     return holdEffect;
@@ -1221,7 +1221,7 @@ u16 AI_GetHoldEffect(u32 battlerId)
 
 bool32 AI_IsTerrainAffected(u8 battlerId, u32 flags)
 {
-    if (gStatuses3[battlerId] & STATUS3_SEMI_INVULNERABLE)
+    if (gBattleStruct->battlers[battlerId].status3 & STATUS3_SEMI_INVULNERABLE)
         return FALSE;
     else if (!(gFieldStatuses & flags))
         return FALSE;
@@ -1237,13 +1237,13 @@ bool32 AI_IsBattlerGrounded(u8 battlerId)
         return TRUE;
     else if (gFieldStatuses & STATUS_FIELD_GRAVITY)
         return TRUE;
-    else if (gStatuses3[battlerId] & STATUS3_ROOTED)
+    else if (gBattleStruct->battlers[battlerId].status3 & STATUS3_ROOTED)
         return TRUE;
-    else if (gStatuses3[battlerId] & STATUS3_SMACKED_DOWN)
+    else if (gBattleStruct->battlers[battlerId].status3 & STATUS3_SMACKED_DOWN)
         return TRUE;
-    else if (gStatuses3[battlerId] & STATUS3_TELEKINESIS)
+    else if (gBattleStruct->battlers[battlerId].status3 & STATUS3_TELEKINESIS)
         return FALSE;
-    else if (gStatuses3[battlerId] & STATUS3_MAGNET_RISE)
+    else if (gBattleStruct->battlers[battlerId].status3 & STATUS3_MAGNET_RISE)
         return FALSE;
     else if (holdEffect == HOLD_EFFECT_AIR_BALLOON)
         return FALSE;
@@ -1402,13 +1402,13 @@ u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 move)
 
 bool32 IsSemiInvulnerable(u8 battlerDef, u16 move)
 {
-    if (gStatuses3[battlerDef] & STATUS3_PHANTOM_FORCE)
+    if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_PHANTOM_FORCE)
         return TRUE;
-    else if (!TestMoveFlags(move, FLAG_DMG_IN_AIR) && gStatuses3[battlerDef] & STATUS3_ON_AIR)
+    else if (!TestMoveFlags(move, FLAG_DMG_IN_AIR) && gBattleStruct->battlers[battlerDef].status3 & STATUS3_ON_AIR)
         return TRUE;
-    else if (!TestMoveFlags(move, FLAG_DMG_UNDERWATER) && gStatuses3[battlerDef] & STATUS3_UNDERWATER)
+    else if (!TestMoveFlags(move, FLAG_DMG_UNDERWATER) && gBattleStruct->battlers[battlerDef].status3 & STATUS3_UNDERWATER)
         return TRUE;
-    else if (!TestMoveFlags(move, FLAG_DMG_UNDERGROUND) && gStatuses3[battlerDef] & STATUS3_UNDERGROUND)
+    else if (!TestMoveFlags(move, FLAG_DMG_UNDERGROUND) && gBattleStruct->battlers[battlerDef].status3 & STATUS3_UNDERGROUND)
         return TRUE;
     else
         return FALSE;
@@ -1422,7 +1422,7 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
     //TODO - anticipate protect move?
 
     // always hits
-    if (gStatuses3[battlerDef] & STATUS3_ALWAYS_HITS || gDisableStructs[battlerDef].battlerWithSureHit == battlerAtk)
+    if (gBattleStruct->battlers[battlerDef].status3 & STATUS3_ALWAYS_HITS || gDisableStructs[battlerDef].battlerWithSureHit == battlerAtk)
         return TRUE;
 
     if (AI_DATA->abilities[battlerDef] == ABILITY_NO_GUARD || AI_DATA->abilities[battlerAtk] == ABILITY_NO_GUARD)
@@ -1444,7 +1444,7 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
             || (((gBattleWeather & B_WEATHER_HAIL) && move == MOVE_BLIZZARD))))
         || (gBattleMoves[move].effect == EFFECT_VITAL_THROW)
     #if B_MINIMIZE_DMG_ACC >= GEN_6
-        || ((gStatuses3[battlerDef] & STATUS3_MINIMIZED) && (gBattleMoves[move].flags & FLAG_DMG_MINIMIZE))
+        || ((gBattleStruct->battlers[battlerDef].status3 & STATUS3_MINIMIZED) && (gBattleMoves[move].flags & FLAG_DMG_MINIMIZE))
     #endif
         || (gBattleMoves[move].accuracy == 0))
     {
@@ -1468,7 +1468,7 @@ bool32 ShouldTryOHKO(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbilit
     if (!DoesBattlerIgnoreAbilityChecks(atkAbility, move) && defAbility == ABILITY_STURDY)
         return FALSE;
 
-    if ((((gStatuses3[battlerDef] & STATUS3_ALWAYS_HITS)
+    if ((((gBattleStruct->battlers[battlerDef].status3 & STATUS3_ALWAYS_HITS)
         && gDisableStructs[battlerDef].battlerWithSureHit == battlerAtk)
         || atkAbility == ABILITY_NO_GUARD || defAbility == ABILITY_NO_GUARD)
         && gBattleMons[battlerAtk].level >= gBattleMons[battlerDef].level)
@@ -1617,14 +1617,14 @@ void ProtectChecks(u8 battlerAtk, u8 battlerDef, u16 move, u16 predictedMove, s1
 
     if (gBattleMons[battlerAtk].status1 & (STATUS1_PSN_ANY | STATUS1_BURN)
      || gBattleMons[battlerAtk].status2 & (STATUS2_CURSED | STATUS2_INFATUATION)
-     || gStatuses3[battlerAtk] & (STATUS3_PERISH_SONG | STATUS3_LEECHSEED | STATUS3_YAWN))
+     || gBattleStruct->battlers[battlerAtk].status3 & (STATUS3_PERISH_SONG | STATUS3_LEECHSEED | STATUS3_YAWN))
     {
         (*score)--;
     }
 
     if (gBattleMons[battlerDef].status1 & STATUS1_TOXIC_POISON
       || gBattleMons[battlerDef].status2 & (STATUS2_CURSED | STATUS2_INFATUATION)
-      || gStatuses3[battlerDef] & (STATUS3_PERISH_SONG | STATUS3_LEECHSEED | STATUS3_YAWN))
+      || gBattleStruct->battlers[battlerDef].status3 & (STATUS3_PERISH_SONG | STATUS3_LEECHSEED | STATUS3_YAWN))
         (*score) += 2;
 }
 
@@ -2224,8 +2224,8 @@ bool32 TestMoveFlagsInMoveset(u8 battler, u32 flags)
 static u32 GetLeechSeedDamage(u8 battlerId)
 {
     u32 damage = 0;
-    if ((gStatuses3[battlerId] & STATUS3_LEECHSEED)
-     && gBattleMons[gStatuses3[battlerId] & STATUS3_LEECHSEED_BATTLER].hp != 0)
+    if ((gBattleStruct->battlers[battlerId].status3 & STATUS3_LEECHSEED)
+     && gBattleMons[gBattleStruct->battlers[battlerId].status3 & STATUS3_LEECHSEED_BATTLER].hp != 0)
      {
         damage = gBattleMons[battlerId].maxHP / 8;
         if (damage == 0)
@@ -2340,7 +2340,7 @@ static u32 GetWeatherDamage(u8 battlerId)
     if (gBattleWeather & B_WEATHER_SANDSTORM)
     {
         if (BattlerAffectedBySandstorm(battlerId, ability)
-          && !(gStatuses3[battlerId] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
+          && !(gBattleStruct->battlers[battlerId].status3 & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
           && holdEffect != HOLD_EFFECT_SAFETY_GOGGLES)
         {
             damage = gBattleMons[battlerId].maxHP / 16;
@@ -2351,7 +2351,7 @@ static u32 GetWeatherDamage(u8 battlerId)
     if ((gBattleWeather & B_WEATHER_HAIL) && ability != ABILITY_ICE_BODY)
     {
         if (BattlerAffectedByHail(battlerId, ability)
-          && !(gStatuses3[battlerId] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
+          && !(gBattleStruct->battlers[battlerId].status3 & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
           && holdEffect != HOLD_EFFECT_SAFETY_GOGGLES)
         {
             damage = gBattleMons[battlerId].maxHP / 16;
@@ -3002,7 +3002,7 @@ bool32 ShouldAbsorb(u8 battlerAtk, u8 battlerDef, u16 move, s32 damage)
         u8 healPercent = (gBattleMoves[move].argument == 0) ? 50 : gBattleMoves[move].argument;
         s32 healDmg = (healPercent * damage) / 100;
 
-        if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
+        if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_HEAL_BLOCK)
             healDmg = 0;
 
         if (CanTargetFaintAi(battlerDef, battlerAtk)
@@ -3028,7 +3028,7 @@ bool32 ShouldRecover(u8 battlerAtk, u8 battlerDef, u16 move, u8 healPercent)
         // using item or user going first
         s32 damage = AI_DATA->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex];
         s32 healAmount = (healPercent * damage) / 100;
-        if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK)
+        if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_HEAL_BLOCK)
             healAmount = 0;
 
         if (CanTargetFaintAi(battlerDef, battlerAtk)
@@ -3546,7 +3546,7 @@ void IncreaseStatUpScore(u8 battlerAtk, u8 battlerDef, u8 statId, s16 *score)
     case STAT_EVASION:
         if (!BattlerWillFaintFromWeather(battlerAtk, AI_DATA->abilities[battlerAtk]))
         {
-            if (!GetBattlerSecondaryDamage(battlerAtk) && !(gStatuses3[battlerAtk] & STATUS3_ROOTED))
+            if (!GetBattlerSecondaryDamage(battlerAtk) && !(gBattleStruct->battlers[battlerAtk].status3 & STATUS3_ROOTED))
                 *score += 2;
             else
                 *(score)++;

@@ -1701,7 +1701,7 @@ static bool8 JumpIfMoveAffectedByProtect(u16 move)
 
 static bool32 AccuracyCalcHelper(u16 move)
 {
-    if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+    if (gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
     {
         JumpIfMoveFailed(7, move);
         return TRUE;
@@ -1728,16 +1728,16 @@ static bool32 AccuracyCalcHelper(u16 move)
         return TRUE;
     }
 
-    if (gBattleStruct->zmove.active && !(gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE))
+    if (gBattleStruct->zmove.active && !(gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_SEMI_INVULNERABLE))
     {
         JumpIfMoveFailed(7, move);
         return TRUE;
     }
 
-    if ((gStatuses3[gBattlerTarget] & STATUS3_PHANTOM_FORCE)
-        || (!(gBattleMoves[move].flags & (FLAG_DMG_IN_AIR | FLAG_DMG_2X_IN_AIR)) && gStatuses3[gBattlerTarget] & STATUS3_ON_AIR)
-        || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERGROUND) && gStatuses3[gBattlerTarget] & STATUS3_UNDERGROUND)
-        || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERWATER) && gStatuses3[gBattlerTarget] & STATUS3_UNDERWATER))
+    if ((gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_PHANTOM_FORCE)
+        || (!(gBattleMoves[move].flags & (FLAG_DMG_IN_AIR | FLAG_DMG_2X_IN_AIR)) && gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_ON_AIR)
+        || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERGROUND) && gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_UNDERGROUND)
+        || (!(gBattleMoves[move].flags & FLAG_DMG_UNDERWATER) && gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_UNDERWATER))
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         JumpIfMoveFailed(7, move);
@@ -1769,7 +1769,7 @@ static bool32 AccuracyCalcHelper(u16 move)
     }
 
 #if B_MINIMIZE_DMG_ACC >= GEN_6
-    if ((gStatuses3[gBattlerTarget] & STATUS3_MINIMIZED) && (gBattleMoves[move].flags & FLAG_DMG_MINIMIZE))
+    if ((gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_MINIMIZED) && (gBattleMoves[move].flags & FLAG_DMG_MINIMIZE))
     {
         JumpIfMoveFailed(7, move);
         return TRUE;
@@ -1802,7 +1802,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     if (defAbility == ABILITY_UNAWARE)
         accStage = DEFAULT_STAT_STAGE;
 
-    if (gBattleMons[battlerDef].status2 & STATUS2_FORESIGHT || gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED)
+    if (gBattleMons[battlerDef].status2 & STATUS2_FORESIGHT || gBattleStruct->battlers[battlerDef].status3 & STATUS3_MIRACLE_EYED)
         buff = accStage;
     else
         buff = accStage + DEFAULT_STAT_STAGE - evasionStage;
@@ -1883,9 +1883,9 @@ static void Cmd_accuracycheck(void)
 
     if (move == NO_ACC_CALC_CHECK_LOCK_ON)
     {
-        if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+        if (gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
             gBattlescriptCurrInstr = cmd->nextInstr;
-        else if (gStatuses3[gBattlerTarget] & (STATUS3_SEMI_INVULNERABLE))
+        else if (gBattleStruct->battlers[gBattlerTarget].status3 & (STATUS3_SEMI_INVULNERABLE))
             gBattlescriptCurrInstr = cmd->failInstr;
         else if (!JumpIfMoveAffectedByProtect(0))
             gBattlescriptCurrInstr = cmd->nextInstr;
@@ -2026,7 +2026,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
 
     if (gBattleStruct->sides[battlerDef].status & SIDE_STATUS_LUCKY_CHANT
-        || gStatuses3[gBattlerAttacker] & STATUS3_CANT_SCORE_A_CRIT)
+        || gBattleStruct->battlers[gBattlerAttacker].status3 & STATUS3_CANT_SCORE_A_CRIT)
     {
         critChance = -1;
     }
@@ -2036,7 +2036,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
             RecordAbilityBattle(battlerDef, abilityDef);
         critChance = -1;
     }
-    else if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS
+    else if (gBattleStruct->battlers[battlerAtk].status3 & STATUS3_LASER_FOCUS
              || gBattleMoves[move].effect == EFFECT_ALWAYS_CRIT
              || (abilityAtk == ABILITY_MERCILESS && gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY)
              || move == MOVE_SURGING_STRIKES)
@@ -3565,7 +3565,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 break;
             case MOVE_EFFECT_FLAME_BURST:
                 if (IsBattlerAlive(BATTLE_PARTNER(gBattlerTarget))
-                        && !(gStatuses3[BATTLE_PARTNER(gBattlerTarget)] & STATUS3_SEMI_INVULNERABLE)
+                        && !(gBattleStruct->battlers[BATTLE_PARTNER(gBattlerTarget)].status3 & STATUS3_SEMI_INVULNERABLE)
                         && GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) != ABILITY_MAGIC_GUARD)
                 {
                     gBattleScripting.savedBattler = BATTLE_PARTNER(gBattlerTarget);
@@ -3879,7 +3879,7 @@ static void Cmd_tryfaintmon(void)
                 gBattleMoveDamage = gBattleMons[battlerId].hp;
                 gBattlescriptCurrInstr = BattleScript_DestinyBondTakesLife;
             }
-            if ((gStatuses3[gBattlerTarget] & STATUS3_GRUDGE)
+            if ((gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_GRUDGE)
              && !(gHitMarker & HITMARKER_GRUDGE)
              && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget)
              && gBattleMons[gBattlerAttacker].hp != 0
@@ -4064,14 +4064,14 @@ static void Cmd_jumpifstatus3condition(void)
 
     if (cmd->jumpIfTrue)
     {
-        if ((gStatuses3[gActiveBattler] & flags) != 0)
+        if ((gBattleStruct->battlers[gActiveBattler].status3 & flags) != 0)
             gBattlescriptCurrInstr = cmd->nextInstr;
         else
             gBattlescriptCurrInstr = jumpInstr;
     }
     else
     {
-        if ((gStatuses3[gActiveBattler] & flags) != 0)
+        if ((gBattleStruct->battlers[gActiveBattler].status3 & flags) != 0)
             gBattlescriptCurrInstr = jumpInstr;
         else
             gBattlescriptCurrInstr = cmd->nextInstr;
@@ -4380,7 +4380,7 @@ static void Cmd_getexp(void)
                     gBattleMons[battlerId].spAttack = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPATK);
                     gBattleMons[battlerId].spDefense = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPDEF);
 
-                    if (gStatuses3[battlerId] & STATUS3_POWER_TRICK)
+                    if (gBattleStruct->battlers[battlerId].status3 & STATUS3_POWER_TRICK)
                         SWAP(gBattleMons[battlerId].attack, gBattleMons[battlerId].defense, temp);
                 }
 
@@ -5075,7 +5075,7 @@ static void Cmd_playanimation(void)
         MarkBattlerForControllerExec(gActiveBattler);
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
-    else if (gStatuses3[gActiveBattler] & STATUS3_SEMI_INVULNERABLE)
+    else if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_SEMI_INVULNERABLE)
     {
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
@@ -5124,7 +5124,7 @@ static void Cmd_playanimation_var(void)
         MarkBattlerForControllerExec(gActiveBattler);
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
-    else if (gStatuses3[gActiveBattler] & STATUS3_SEMI_INVULNERABLE)
+    else if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_SEMI_INVULNERABLE)
     {
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
@@ -5596,8 +5596,8 @@ static void Cmd_moveend(void)
             case MOVE_EFFECT_SMACK_DOWN:
                 if (!IsBattlerGrounded(gBattlerTarget) && IsBattlerAlive(gBattlerTarget))
                 {
-                    gStatuses3[gBattlerTarget] |= STATUS3_SMACKED_DOWN;
-                    gStatuses3[gBattlerTarget] &= ~(STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS | STATUS3_ON_AIR);
+                    gBattleStruct->battlers[gBattlerTarget].status3 |= STATUS3_SMACKED_DOWN;
+                    gBattleStruct->battlers[gBattlerTarget].status3 &= ~(STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS | STATUS3_ON_AIR);
                     effect = TRUE;
                     BattleScriptPush(gBattlescriptCurrInstr);
                     gBattlescriptCurrInstr = BattleScript_MoveEffectSmackDown;
@@ -5645,7 +5645,7 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_ATTACKER_INVISIBLE: // make attacker sprite invisible
-            if (gStatuses3[gBattlerAttacker] & (STATUS3_SEMI_INVULNERABLE)
+            if (gBattleStruct->battlers[gBattlerAttacker].status3 & (STATUS3_SEMI_INVULNERABLE)
                 && gHitMarker & HITMARKER_NO_ANIMATIONS)
             {
                 gActiveBattler = gBattlerAttacker;
@@ -5658,13 +5658,13 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_ATTACKER_VISIBLE: // make attacker sprite visible
             if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT
-                || !(gStatuses3[gBattlerAttacker] & (STATUS3_SEMI_INVULNERABLE))
+                || !(gBattleStruct->battlers[gBattlerAttacker].status3 & (STATUS3_SEMI_INVULNERABLE))
                 || WasUnableToUseMove(gBattlerAttacker))
             {
                 gActiveBattler = gBattlerAttacker;
                 BtlController_EmitSpriteInvisibility(BUFFER_A, FALSE);
                 MarkBattlerForControllerExec(gActiveBattler);
-                gStatuses3[gBattlerAttacker] &= ~STATUS3_SEMI_INVULNERABLE;
+                gBattleStruct->battlers[gBattlerAttacker].status3 &= ~STATUS3_SEMI_INVULNERABLE;
                 gSpecialStatuses[gBattlerAttacker].restoredBattlerSprite = TRUE;
                 gBattleScripting.moveendState++;
                 return;
@@ -5673,12 +5673,12 @@ static void Cmd_moveend(void)
             break;
         case MOVEEND_TARGET_VISIBLE: // make target sprite visible
             if (!gSpecialStatuses[gBattlerTarget].restoredBattlerSprite && gBattlerTarget < gBattlersCount
-                && !(gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE))
+                && !(gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_SEMI_INVULNERABLE))
             {
                 gActiveBattler = gBattlerTarget;
                 BtlController_EmitSpriteInvisibility(BUFFER_A, FALSE);
                 MarkBattlerForControllerExec(gActiveBattler);
-                gStatuses3[gBattlerTarget] &= ~STATUS3_SEMI_INVULNERABLE;
+                gBattleStruct->battlers[gBattlerTarget].status3 &= ~STATUS3_SEMI_INVULNERABLE;
                 gBattleScripting.moveendState++;
                 return;
             }
@@ -6190,7 +6190,7 @@ static void Cmd_moveend(void)
             gProtectStructs[gBattlerAttacker].usesBouncedMove = FALSE;
             gProtectStructs[gBattlerAttacker].targetAffected = FALSE;
             gBattleStruct->battlers[gBattlerAttacker].ateBoost = FALSE;
-            gStatuses3[gBattlerAttacker] &= ~STATUS3_ME_FIRST;
+            gBattleStruct->battlers[gBattlerAttacker].status3 &= ~STATUS3_ME_FIRST;
             gSpecialStatuses[gBattlerAttacker].gemBoost = FALSE;
             gSpecialStatuses[gBattlerAttacker].damagedMons = 0;
             gSpecialStatuses[gBattlerTarget].berryReduced = FALSE;
@@ -6220,13 +6220,13 @@ static void Cmd_sethealblock(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (gStatuses3[gBattlerTarget] & STATUS3_HEAL_BLOCK)
+    if (gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_HEAL_BLOCK)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
     else
     {
-        gStatuses3[gBattlerTarget] |= STATUS3_HEAL_BLOCK;
+        gBattleStruct->battlers[gBattlerTarget].status3 |= STATUS3_HEAL_BLOCK;
         gDisableStructs[gBattlerTarget].healBlockTimer = 5;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
@@ -7569,7 +7569,7 @@ static void Cmd_statusanimation(void)
     if (gBattleControllerExecFlags == 0)
     {
         gActiveBattler = GetBattlerForBattleScript(cmd->battler);
-        if (!(gStatuses3[gActiveBattler] & STATUS3_SEMI_INVULNERABLE)
+        if (!(gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_SEMI_INVULNERABLE)
             && gDisableStructs[gActiveBattler].substituteHP == 0
             && !(gHitMarker & HITMARKER_NO_ANIMATIONS))
         {
@@ -7590,7 +7590,7 @@ static void Cmd_status2animation(void)
     {
         gActiveBattler = GetBattlerForBattleScript(cmd->battler);
         wantedToAnimate = cmd->status2;
-        if (!(gStatuses3[gActiveBattler] & STATUS3_SEMI_INVULNERABLE)
+        if (!(gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_SEMI_INVULNERABLE)
             && gDisableStructs[gActiveBattler].substituteHP == 0
             && !(gHitMarker & HITMARKER_NO_ANIMATIONS))
         {
@@ -7611,7 +7611,7 @@ static void Cmd_chosenstatusanimation(void)
     {
         gActiveBattler = GetBattlerForBattleScript(cmd->battler);
         wantedStatus = cmd->status;
-        if (!(gStatuses3[gActiveBattler] & STATUS3_SEMI_INVULNERABLE)
+        if (!(gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_SEMI_INVULNERABLE)
             && gDisableStructs[gActiveBattler].substituteHP == 0
             && !(gHitMarker & HITMARKER_NO_ANIMATIONS))
         {
@@ -7699,7 +7699,7 @@ static bool32 TryCheekPouch(u32 battlerId, u32 itemId)
 {
     if (ItemId_GetPocket(itemId) == POCKET_BERRIES
         && GetBattlerAbility(battlerId) == ABILITY_CHEEK_POUCH
-        && !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK)
+        && !(gBattleStruct->battlers[battlerId].status3 & STATUS3_HEAL_BLOCK)
         && gBattleStruct->sides[GetBattlerSide(battlerId)].party[gBattlerPartyIndexes[battlerId]].ateBerry
         && !BATTLER_MAX_HP(battlerId))
     {
@@ -8427,7 +8427,7 @@ static bool32 IsRototillerAffected(u32 battlerId)
         return FALSE;   // Only grounded battlers affected
     if (!IS_BATTLER_OF_TYPE(battlerId, TYPE_GRASS))
         return FALSE;   // Only grass types affected
-    if (gStatuses3[battlerId] & STATUS3_SEMI_INVULNERABLE)
+    if (gBattleStruct->battlers[battlerId].status3 & STATUS3_SEMI_INVULNERABLE)
         return FALSE;   // Rototiller doesn't affected semi-invulnerable battlers
     if (BlocksPrankster(MOVE_ROTOTILLER, gBattlerAttacker, battlerId, FALSE))
         return FALSE;
@@ -8490,7 +8490,7 @@ static bool32 IsTeatimeAffected(u32 battlerId)
 {
     if (ItemId_GetPocket(gBattleMons[battlerId].item) != POCKET_BERRIES)
         return FALSE;   // Only berries
-    if (gStatuses3[battlerId] & STATUS3_SEMI_INVULNERABLE)
+    if (gBattleStruct->battlers[battlerId].status3 & STATUS3_SEMI_INVULNERABLE)
         return FALSE;   // Teatime doesn't affected semi-invulnerable battlers
     return TRUE;
 }
@@ -8804,7 +8804,7 @@ static void Cmd_various(void)
     case VARIOUS_CHECK_IF_GRASSY_TERRAIN_HEALS:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if ((gStatuses3[gActiveBattler] & (STATUS3_SEMI_INVULNERABLE | STATUS3_HEAL_BLOCK))
+        if ((gBattleStruct->battlers[gActiveBattler].status3 & (STATUS3_SEMI_INVULNERABLE | STATUS3_HEAL_BLOCK))
             || BATTLER_MAX_HP(gActiveBattler)
             || !gBattleMons[gActiveBattler].hp
             || !(IsBattlerGrounded(gActiveBattler)))
@@ -8826,10 +8826,10 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
         // Cancel all multiturn moves of IN_AIR Pokemon except those being targeted by Sky Drop.
-        if (gStatuses3[gActiveBattler] & STATUS3_ON_AIR && !(gStatuses3[gActiveBattler] & STATUS3_SKY_DROPPED))
+        if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_ON_AIR && !(gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_SKY_DROPPED))
             CancelMultiTurnMoves(gActiveBattler);
 
-        gStatuses3[gActiveBattler] &= ~(STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS | STATUS3_ON_AIR | STATUS3_SKY_DROPPED);
+        gBattleStruct->battlers[gActiveBattler].status3 &= ~(STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS | STATUS3_ON_AIR | STATUS3_SKY_DROPPED);
         break;
     }
     case VARIOUS_SPECTRAL_THIEF:
@@ -9517,7 +9517,7 @@ static void Cmd_various(void)
                 gCalledMove = move;
                 gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
                 gBattlerTarget = GetMoveTarget(gCalledMove, NO_TARGET_OVERRIDE);
-                gStatuses3[gBattlerAttacker] |= STATUS3_ME_FIRST;
+                gBattleStruct->battlers[gBattlerAttacker].status3 |= STATUS3_ME_FIRST;
                 gBattlescriptCurrInstr = cmd->nextInstr;
                 break;
             }
@@ -9941,7 +9941,7 @@ static void Cmd_various(void)
     case VARIOUS_POWER_TRICK:
     {
         VARIOUS_ARGS();
-        gStatuses3[gActiveBattler] ^= STATUS3_POWER_TRICK;
+        gBattleStruct->battlers[gActiveBattler].status3 ^= STATUS3_POWER_TRICK;
         SWAP(gBattleMons[gActiveBattler].attack, gBattleMons[gActiveBattler].defense, i);
         break;
     }
@@ -10340,7 +10340,7 @@ static void Cmd_various(void)
     case VARIOUS_SET_SKY_DROP:
     {
         VARIOUS_ARGS();
-        gStatuses3[gBattlerTarget] |= (STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
+        gBattleStruct->battlers[gBattlerTarget].status3 |= (STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
         /* skyDropTargets holds the information of who is in a particular instance of Sky Drop.
            This is needed in the case that multiple Pokemon use Sky Drop in the same turn or if
            the target of a Sky Drop faints while in the air.*/
@@ -10371,7 +10371,7 @@ static void Cmd_various(void)
         {
             gBattleStruct->battlers[gBattlerAttacker].skyDropTarget = 0xFF;
             gBattleStruct->battlers[gBattlerTarget].skyDropTarget = 0xFF;
-            gStatuses3[gBattlerTarget] &= ~(STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
+            gBattleStruct->battlers[gBattlerTarget].status3 &= ~(STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
 
@@ -10383,7 +10383,7 @@ static void Cmd_various(void)
     case VARIOUS_SKY_DROP_YAWN: // If the mon that's sleeping due to Yawn was holding a Pokemon in Sky Drop, release the target and clear Sky Drop data.
     {
         VARIOUS_ARGS();
-        if (gBattleStruct->battlers[gEffectBattler].skyDropTarget != 0xFF && !(gStatuses3[gEffectBattler] & STATUS3_SKY_DROPPED))
+        if (gBattleStruct->battlers[gEffectBattler].skyDropTarget != 0xFF && !(gBattleStruct->battlers[gEffectBattler].status3 & STATUS3_SKY_DROPPED))
         {
             // Set the target of Sky Drop as gEffectBattler
             gEffectBattler = gBattleStruct->battlers[gEffectBattler].skyDropTarget;
@@ -10782,9 +10782,9 @@ static void Cmd_various(void)
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MENTALHERBCURE_TORMENT;
         }
         // Check heal block
-        if (gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK)
+        if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_HEAL_BLOCK)
         {
-            gStatuses3[gActiveBattler] &= ~(STATUS3_HEAL_BLOCK);
+            gBattleStruct->battlers[gActiveBattler].status3 &= ~(STATUS3_HEAL_BLOCK);
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_MENTALHERBCURE_HEALBLOCK;
         }
         // Check disable
@@ -10948,7 +10948,7 @@ static void Cmd_various(void)
     case VARIOUS_TEATIME_INVUL:
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
-        if (ItemId_GetPocket(gBattleMons[gActiveBattler].item) == POCKET_BERRIES && !(gStatuses3[gBattlerTarget] & (STATUS3_SEMI_INVULNERABLE)))
+        if (ItemId_GetPocket(gBattleMons[gActiveBattler].item) == POCKET_BERRIES && !(gBattleStruct->battlers[gBattlerTarget].status3 & (STATUS3_SEMI_INVULNERABLE)))
             gBattlescriptCurrInstr = cmd->nextInstr;
         else
             gBattlescriptCurrInstr = cmd->jumpInstr;
@@ -11321,7 +11321,7 @@ static void Cmd_setseeded(void)
 {
     CMD_ARGS();
 
-    if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT || gStatuses3[gBattlerTarget] & STATUS3_LEECHSEED)
+    if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT || gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_LEECHSEED)
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_LEECH_SEED_MISS;
@@ -11333,8 +11333,8 @@ static void Cmd_setseeded(void)
     }
     else
     {
-        gStatuses3[gBattlerTarget] |= gBattlerAttacker;
-        gStatuses3[gBattlerTarget] |= STATUS3_LEECHSEED;
+        gBattleStruct->battlers[gBattlerTarget].status3 |= gBattlerAttacker;
+        gBattleStruct->battlers[gBattlerTarget].status3 |= STATUS3_LEECHSEED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_LEECH_SEED_SET;
     }
 
@@ -11440,9 +11440,9 @@ static void Cmd_setmiracleeye(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (!(gStatuses3[gBattlerTarget] & STATUS3_MIRACLE_EYED))
+    if (!(gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_MIRACLE_EYED))
     {
-        gStatuses3[gBattlerTarget] |= STATUS3_MIRACLE_EYED;
+        gBattleStruct->battlers[gBattlerTarget].status3 |= STATUS3_MIRACLE_EYED;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else
@@ -12427,7 +12427,7 @@ static void Cmd_tryKO(void)
     }
     else
     {
-        if ((((gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS)
+        if ((((gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_ALWAYS_HITS)
                 && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
             || GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD
             || targetAbility == ABILITY_NO_GUARD)
@@ -12531,7 +12531,7 @@ static void Cmd_weatherdamage(void)
                 && ability != ABILITY_SAND_FORCE
                 && ability != ABILITY_SAND_RUSH
                 && ability != ABILITY_OVERCOAT
-                && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
+                && !(gBattleStruct->battlers[gBattlerAttacker].status3 & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
                 && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
@@ -12542,9 +12542,9 @@ static void Cmd_weatherdamage(void)
         if (gBattleWeather & B_WEATHER_HAIL)
         {
             if (ability == ABILITY_ICE_BODY
-                && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
+                && !(gBattleStruct->battlers[gBattlerAttacker].status3 & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
                 && !BATTLER_MAX_HP(gBattlerAttacker)
-                && !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK))
+                && !(gBattleStruct->battlers[gBattlerAttacker].status3 & STATUS3_HEAL_BLOCK))
             {
                 gBattlerAbility = gBattlerAttacker;
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
@@ -12556,7 +12556,7 @@ static void Cmd_weatherdamage(void)
                 && ability != ABILITY_SNOW_CLOAK
                 && ability != ABILITY_OVERCOAT
                 && ability != ABILITY_ICE_BODY
-                && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
+                && !(gBattleStruct->battlers[gBattlerAttacker].status3 & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
                 && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
@@ -12695,7 +12695,7 @@ static void Cmd_transformdataexecution(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
     if (gBattleMons[gBattlerTarget].status2 & STATUS2_TRANSFORMED
         || gBattleStruct->battlers[gBattlerTarget].illusion.on
-        || gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE)
+        || gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_SEMI_INVULNERABLE)
     {
         gMoveResultFlags |= MOVE_RESULT_FAILED;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TRANSFORM_FAILED;
@@ -13072,8 +13072,8 @@ static void Cmd_setalwayshitflag(void)
 {
     CMD_ARGS();
 
-    gStatuses3[gBattlerTarget] &= ~STATUS3_ALWAYS_HITS;
-    gStatuses3[gBattlerTarget] |= STATUS3_ALWAYS_HITS_TURN(2);
+    gBattleStruct->battlers[gBattlerTarget].status3 &= ~STATUS3_ALWAYS_HITS;
+    gBattleStruct->battlers[gBattlerTarget].status3 |= STATUS3_ALWAYS_HITS_TURN(2);
     gDisableStructs[gBattlerTarget].battlerWithSureHit = gBattlerAttacker;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
@@ -13472,7 +13472,7 @@ static void Cmd_trysetperishsong(void)
 
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (gStatuses3[i] & STATUS3_PERISH_SONG
+        if (gBattleStruct->battlers[i].status3 & STATUS3_PERISH_SONG
             || GetBattlerAbility(i) == ABILITY_SOUNDPROOF
             || BlocksPrankster(gCurrentMove, gBattlerAttacker, i, TRUE))
         {
@@ -13480,7 +13480,7 @@ static void Cmd_trysetperishsong(void)
         }
         else
         {
-            gStatuses3[i] |= STATUS3_PERISH_SONG;
+            gBattleStruct->battlers[i].status3 |= STATUS3_PERISH_SONG;
             gDisableStructs[i].perishSongTimer = 3;
         }
     }
@@ -13554,13 +13554,13 @@ static void Cmd_setembargo(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (gStatuses3[gBattlerTarget] & STATUS3_EMBARGO)
+    if (gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_EMBARGO)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
     else
     {
-        gStatuses3[gBattlerTarget] |= STATUS3_EMBARGO;
+        gBattleStruct->battlers[gBattlerTarget].status3 |= STATUS3_EMBARGO;
         gDisableStructs[gBattlerTarget].embargoTimer = 5;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
@@ -13812,10 +13812,10 @@ static void Cmd_rapidspinfree(void)
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_WrapFree;
     }
-    else if (gStatuses3[gBattlerAttacker] & STATUS3_LEECHSEED)
+    else if (gBattleStruct->battlers[gBattlerAttacker].status3 & STATUS3_LEECHSEED)
     {
-        gStatuses3[gBattlerAttacker] &= ~STATUS3_LEECHSEED;
-        gStatuses3[gBattlerAttacker] &= ~STATUS3_LEECHSEED_BATTLER;
+        gBattleStruct->battlers[gBattlerAttacker].status3 &= ~STATUS3_LEECHSEED;
+        gBattleStruct->battlers[gBattlerAttacker].status3 &= ~STATUS3_LEECHSEED_BATTLER;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_LeechSeedFree;
     }
@@ -14018,17 +14018,17 @@ static void Cmd_setsemiinvulnerablebit(void)
     case MOVE_FLY:
     case MOVE_BOUNCE:
     case MOVE_SKY_DROP:
-        gStatuses3[gBattlerAttacker] |= STATUS3_ON_AIR;
+        gBattleStruct->battlers[gBattlerAttacker].status3 |= STATUS3_ON_AIR;
         break;
     case MOVE_DIG:
-        gStatuses3[gBattlerAttacker] |= STATUS3_UNDERGROUND;
+        gBattleStruct->battlers[gBattlerAttacker].status3 |= STATUS3_UNDERGROUND;
         break;
     case MOVE_DIVE:
-        gStatuses3[gBattlerAttacker] |= STATUS3_UNDERWATER;
+        gBattleStruct->battlers[gBattlerAttacker].status3 |= STATUS3_UNDERWATER;
         break;
     case MOVE_PHANTOM_FORCE:
     case MOVE_SHADOW_FORCE:
-        gStatuses3[gBattlerAttacker] |= STATUS3_PHANTOM_FORCE;
+        gBattleStruct->battlers[gBattlerAttacker].status3 |= STATUS3_PHANTOM_FORCE;
         break;
     }
 
@@ -14039,7 +14039,7 @@ static void Cmd_clearsemiinvulnerablebit(void)
 {
     CMD_ARGS();
 
-    gStatuses3[gBattlerAttacker] &= ~STATUS3_SEMI_INVULNERABLE;
+    gBattleStruct->battlers[gBattlerAttacker].status3 &= ~STATUS3_SEMI_INVULNERABLE;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -14048,7 +14048,7 @@ static void Cmd_setminimize(void)
     CMD_ARGS();
 
     if (gHitMarker & HITMARKER_OBEYS)
-        gStatuses3[gBattlerAttacker] |= STATUS3_MINIMIZED;
+        gBattleStruct->battlers[gBattlerAttacker].status3 |= STATUS3_MINIMIZED;
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
@@ -14080,7 +14080,7 @@ static void Cmd_trymemento(void)
         && gBattleCommunication[MISS_TYPE] != B_MSG_PROTECTED)
     #else
     if (gBattleCommunication[MISS_TYPE] == B_MSG_PROTECTED
-      || gStatuses3[gBattlerTarget] & STATUS3_SEMI_INVULNERABLE
+      || gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_SEMI_INVULNERABLE
       || IsBattlerProtected(gBattlerTarget, gCurrentMove)
       || DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove))
     #endif
@@ -14114,7 +14114,7 @@ static void Cmd_setcharge(void)
 {
     CMD_ARGS();
 
-    gStatuses3[gBattlerAttacker] |= STATUS3_CHARGED_UP;
+    gBattleStruct->battlers[gBattlerAttacker].status3 |= STATUS3_CHARGED_UP;
     gDisableStructs[gBattlerAttacker].chargeTimer = 2;
     gBattlescriptCurrInstr++;
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -14450,7 +14450,7 @@ static void Cmd_setgastroacid(void)
         if (gBattleMons[gBattlerTarget].ability == ABILITY_NEUTRALIZING_GAS)
             gSpecialStatuses[gBattlerTarget].neutralizingGasRemoved = TRUE;
 
-        gStatuses3[gBattlerTarget] |= STATUS3_GASTRO_ACID;
+        gBattleStruct->battlers[gBattlerTarget].status3 |= STATUS3_GASTRO_ACID;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
@@ -14459,7 +14459,7 @@ static void Cmd_setyawn(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (gStatuses3[gBattlerTarget] & STATUS3_YAWN
+    if (gBattleStruct->battlers[gBattlerTarget].status3 & STATUS3_YAWN
         || gBattleMons[gBattlerTarget].status1 & STATUS1_ANY)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
@@ -14478,7 +14478,7 @@ static void Cmd_setyawn(void)
     }
     else
     {
-        gStatuses3[gBattlerTarget] |= STATUS3_YAWN_TURN(2);
+        gBattleStruct->battlers[gBattlerTarget].status3 |= STATUS3_YAWN_TURN(2);
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
@@ -14573,7 +14573,7 @@ static void Cmd_tryimprison(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if ((gStatuses3[gBattlerAttacker] & STATUS3_IMPRISONED_OTHERS))
+    if ((gBattleStruct->battlers[gBattlerAttacker].status3 & STATUS3_IMPRISONED_OTHERS))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
@@ -14602,7 +14602,7 @@ static void Cmd_tryimprison(void)
                 }
                 if (attackerMoveId != MAX_MON_MOVES)
                 {
-                    gStatuses3[gBattlerAttacker] |= STATUS3_IMPRISONED_OTHERS;
+                    gBattleStruct->battlers[gBattlerAttacker].status3 |= STATUS3_IMPRISONED_OTHERS;
                     gBattlescriptCurrInstr = cmd->nextInstr;
                     break;
                 }
@@ -14636,13 +14636,13 @@ static void Cmd_setuserstatus3(void)
 
     u32 flags = cmd->flags;
 
-    if (gStatuses3[gBattlerAttacker] & flags)
+    if (gBattleStruct->battlers[gBattlerAttacker].status3 & flags)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
     else
     {
-        gStatuses3[gBattlerAttacker] |= flags;
+        gBattleStruct->battlers[gBattlerAttacker].status3 |= flags;
         if (flags & STATUS3_MAGNET_RISE)
             gDisableStructs[gBattlerAttacker].magnetRiseTimer = 5;
         if (flags & STATUS3_LASER_FOCUS)
@@ -15906,7 +15906,7 @@ static void Cmd_settelekinesis(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    if (gStatuses3[gBattlerTarget] & (STATUS3_TELEKINESIS | STATUS3_ROOTED | STATUS3_SMACKED_DOWN)
+    if (gBattleStruct->battlers[gBattlerTarget].status3 & (STATUS3_TELEKINESIS | STATUS3_ROOTED | STATUS3_SMACKED_DOWN)
         || gFieldStatuses & STATUS_FIELD_GRAVITY
         || IsTelekinesisBannedSpecies(gBattleMons[gBattlerTarget].species))
     {
@@ -15914,7 +15914,7 @@ static void Cmd_settelekinesis(void)
     }
     else
     {
-        gStatuses3[gBattlerTarget] |= STATUS3_TELEKINESIS;
+        gBattleStruct->battlers[gBattlerTarget].status3 |= STATUS3_TELEKINESIS;
         gDisableStructs[gBattlerTarget].telekinesisTimer = 3;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }

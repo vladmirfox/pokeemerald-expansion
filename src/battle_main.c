@@ -184,7 +184,6 @@ EWRAM_DATA u16 gLastUsedMove = 0;
 EWRAM_DATA u16 gMoveResultFlags = 0;
 EWRAM_DATA u32 gHitMarker = 0;
 EWRAM_DATA u8 gUnusedFirstBattleVar2 = 0; // Never read
-EWRAM_DATA u32 gStatuses3[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u32 gStatuses4[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA struct DisableStruct gDisableStructs[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gPauseCounterBattle = 0;
@@ -2936,7 +2935,7 @@ static void BattleStartClearSetData(void)
 
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
-        gStatuses3[i] = 0;
+        gBattleStruct->battlers[i].status3 = 0;
         gStatuses4[i] = 0;
         gDisableStructs[i].isFirstTurn = 2;
         gBattleStruct->battlers[i].lastMove = MOVE_NONE;
@@ -3053,9 +3052,9 @@ void SwitchInClearSetData(void)
         {
             if ((gBattleMons[i].status2 & STATUS2_ESCAPE_PREVENTION) && gDisableStructs[i].battlerPreventingEscape == gActiveBattler)
                 gBattleMons[i].status2 &= ~STATUS2_ESCAPE_PREVENTION;
-            if ((gStatuses3[i] & STATUS3_ALWAYS_HITS) && gDisableStructs[i].battlerWithSureHit == gActiveBattler)
+            if ((gBattleStruct->battlers[i].status3 & STATUS3_ALWAYS_HITS) && gDisableStructs[i].battlerWithSureHit == gActiveBattler)
             {
-                gStatuses3[i] &= ~STATUS3_ALWAYS_HITS;
+                gBattleStruct->battlers[i].status3 &= ~STATUS3_ALWAYS_HITS;
                 gDisableStructs[i].battlerWithSureHit = 0;
             }
         }
@@ -3063,27 +3062,27 @@ void SwitchInClearSetData(void)
     if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
     {
         gBattleMons[gActiveBattler].status2 &= (STATUS2_CONFUSION | STATUS2_FOCUS_ENERGY | STATUS2_SUBSTITUTE | STATUS2_ESCAPE_PREVENTION | STATUS2_CURSED);
-        gStatuses3[gActiveBattler] &= (STATUS3_LEECHSEED_BATTLER | STATUS3_LEECHSEED | STATUS3_ALWAYS_HITS | STATUS3_PERISH_SONG | STATUS3_ROOTED
+        gBattleStruct->battlers[gActiveBattler].status3 &= (STATUS3_LEECHSEED_BATTLER | STATUS3_LEECHSEED | STATUS3_ALWAYS_HITS | STATUS3_PERISH_SONG | STATUS3_ROOTED
                                        | STATUS3_GASTRO_ACID | STATUS3_EMBARGO | STATUS3_TELEKINESIS | STATUS3_MAGNET_RISE | STATUS3_HEAL_BLOCK
                                        | STATUS3_AQUA_RING | STATUS3_POWER_TRICK);
         gStatuses4[gActiveBattler] &= (STATUS4_MUD_SPORT | STATUS4_WATER_SPORT);
         for (i = 0; i < gBattlersCount; i++)
         {
             if (GetBattlerSide(gActiveBattler) != GetBattlerSide(i)
-             && (gStatuses3[i] & STATUS3_ALWAYS_HITS) != 0
+             && (gBattleStruct->battlers[i].status3 & STATUS3_ALWAYS_HITS) != 0
              && (gDisableStructs[i].battlerWithSureHit == gActiveBattler))
             {
-                gStatuses3[i] &= ~STATUS3_ALWAYS_HITS;
-                gStatuses3[i] |= STATUS3_ALWAYS_HITS_TURN(2);
+                gBattleStruct->battlers[i].status3 &= ~STATUS3_ALWAYS_HITS;
+                gBattleStruct->battlers[i].status3 |= STATUS3_ALWAYS_HITS_TURN(2);
             }
         }
-        if (gStatuses3[gActiveBattler] & STATUS3_POWER_TRICK)
+        if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_POWER_TRICK)
             SWAP(gBattleMons[gActiveBattler].attack, gBattleMons[gActiveBattler].defense, i);
     }
     else
     {
         gBattleMons[gActiveBattler].status2 = 0;
-        gStatuses3[gActiveBattler] = 0;
+        gBattleStruct->battlers[gActiveBattler].status3 = 0;
         gStatuses4[gActiveBattler] = 0;
     }
 
@@ -3158,7 +3157,7 @@ void FaintClearSetData(void)
         gBattleMons[gActiveBattler].statStages[i] = DEFAULT_STAT_STAGE;
 
     gBattleMons[gActiveBattler].status2 = 0;
-    gStatuses3[gActiveBattler] = 0;
+    gBattleStruct->battlers[gActiveBattler].status3 = 0;
     gStatuses4[gActiveBattler] = 0;
 
     for (i = 0; i < gBattlersCount; i++)
@@ -3260,10 +3259,10 @@ void FaintClearSetData(void)
         gBattleStruct->battlers[otherSkyDropper].skyDropTarget = 0xFF;
 
         // If the other Pokemon involved in this Sky Drop was the target, not the attacker
-        if (gStatuses3[otherSkyDropper] & STATUS3_SKY_DROPPED)
+        if (gBattleStruct->battlers[otherSkyDropper].status3 & STATUS3_SKY_DROPPED)
         {
             // Release the target and take them out of the semi-invulnerable state
-            gStatuses3[otherSkyDropper] &= ~(STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
+            gBattleStruct->battlers[otherSkyDropper].status3 &= ~(STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
 
             // Make the target's sprite visible
             gSprites[gBattlerSpriteIds[otherSkyDropper]].invisible = FALSE;
@@ -4069,7 +4068,7 @@ static void HandleTurnActionSelectionState(void)
                                             | BATTLE_TYPE_EREADER_TRAINER
                                             | BATTLE_TYPE_RECORDED_LINK))
                                             // Or if currently held by Sky Drop
-                                            || gStatuses3[gActiveBattler] & STATUS3_SKY_DROPPED)
+                                            || gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_SKY_DROPPED)
                     {
                         RecordedBattle_ClearBattlerAction(gActiveBattler, 1);
                         gSelectionBattleScripts[gActiveBattler] = BattleScript_ActionSelectionItemsCantBeUsed;
