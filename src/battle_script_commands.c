@@ -8370,7 +8370,7 @@ static bool32 ClearDefogHazards(u8 battlerAtk, bool32 clear)
         DEFOG_CLEAR_(SIDE_STATUS_SPIKES, spikesAmount, BattleScript_SpikesFree, 0);
         DEFOG_CLEAR_(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, BattleScript_StealthRockFree, 0);
         DEFOG_CLEAR_(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, BattleScript_ToxicSpikesFree, 0);
-        DEFOG_CLEAR(SIDE_STATUS_STICKY_WEB, stickyWebAmount, BattleScript_StickyWebFree, 0);
+        DEFOG_CLEAR_(SIDE_STATUS_STICKY_WEB, stickyWebAmount, BattleScript_StickyWebFree, 0);
     }
 
     return FALSE;
@@ -8574,7 +8574,7 @@ static bool32 CourtChangeSwapSideStatuses(void)
     COURTCHANGE_SWAP_(SIDE_STATUS_SPIKES, spikesAmount, temp);
     COURTCHANGE_SWAP_(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, temp);
     COURTCHANGE_SWAP_(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, temp);
-    COURTCHANGE_SWAP(SIDE_STATUS_STICKY_WEB, stickyWebAmount, temp);
+    COURTCHANGE_SWAP_(SIDE_STATUS_STICKY_WEB, stickyWebAmount, temp);
 
     // Change battler IDs of swapped effects. Needed for the correct string when they expire
     // E.g. "Foe's Reflect wore off!"
@@ -8590,7 +8590,7 @@ static bool32 CourtChangeSwapSideStatuses(void)
     gBattleStruct->stickyWebUser = gBattlerAttacker;
 
     // Track which side originally set the Sticky Web
-    SWAP(sideTimerPlayer->stickyWebBattlerSide, sideTimerOpp->stickyWebBattlerSide, temp);
+    SWAP(gBattleStruct->sides[B_SIDE_PLAYER].stickyWebBattlerSide, gBattleStruct->sides[B_SIDE_OPPONENT].stickyWebBattlerSide, temp);
 }
 
 static bool32 CanTeleport(u8 battlerId)
@@ -13876,7 +13876,7 @@ static void Cmd_rapidspinfree(void)
     else if (gBattleStruct->sides[atkSide].status & SIDE_STATUS_STICKY_WEB)
     {
         gBattleStruct->sides[atkSide].status &= ~SIDE_STATUS_STICKY_WEB;
-        gSideTimers[atkSide].stickyWebAmount = 0;
+        gBattleStruct->sides[atkSide].stickyWebAmount = 0;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_StickyWebFree;
     }
@@ -13950,8 +13950,8 @@ static void Cmd_setstickyweb(void)
     else
     {
         gBattleStruct->sides[targetSide].status |= SIDE_STATUS_STICKY_WEB;
-        gSideTimers[targetSide].stickyWebBattlerSide = GetBattlerSide(gBattlerAttacker); // For Court Change/Defiant - set this to the user's side
-        gSideTimers[targetSide].stickyWebAmount = 1;
+        gBattleStruct->sides[targetSide].stickyWebBattlerSide = GetBattlerSide(gBattlerAttacker); // For Court Change/Defiant - set this to the user's side
+        gBattleStruct->sides[targetSide].stickyWebAmount = 1;
         gBattleStruct->stickyWebUser = gBattlerAttacker;    // For Mirror Armor
         gBattlescriptCurrInstr = cmd->nextInstr;
     }

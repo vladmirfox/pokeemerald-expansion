@@ -191,8 +191,6 @@ struct SpecialStatus
 
 struct SideTimer
 {
-    u8 stickyWebAmount;
-    u8 stickyWebBattlerSide; // Used for Court Change
     u8 auroraVeilTimer;
     u8 auroraVeilBattlerId;
     u8 tailwindTimer;
@@ -612,6 +610,8 @@ struct BattleStruct
         u8 spikesAmount;
         u8 toxicSpikesAmount;
         u8 stealthRockAmount;
+        u8 stickyWebAmount;
+        u8 stickyWebBattlerSide; // For Court Change.
         struct Party
         {
             u16 usedHeldItem; // For harvest, recycle.
