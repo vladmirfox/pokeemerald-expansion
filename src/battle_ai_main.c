@@ -2532,7 +2532,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             break;
         case EFFECT_TAILWIND:
-            if (gSideTimers[GetBattlerSide(battlerAtk)].tailwindTimer != 0
+            if (gBattleStruct->sides[GetBattlerSide(battlerAtk)].tailwindTimer != 0
               || PartnerMoveIs(BATTLE_PARTNER(battlerAtk), AI_DATA->partnerMove, MOVE_TAILWIND)
               || (gFieldStatuses & STATUS_FIELD_TRICK_ROOM && gBattleStruct->field.trickRoomTimer > 1)) // Trick Room active and not ending this turn
                 score -= 10;

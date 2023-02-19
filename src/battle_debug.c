@@ -1715,9 +1715,9 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_TAILWIND;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_TAILWIND;
-            sideTimer->tailwindBattlerId = data->battlerId;
+            side->tailwindBattlerId = data->battlerId;
         }
-        return &sideTimer->tailwindTimer;
+        return &side->tailwindTimer;
     case LIST_SIDE_STEALTH_ROCK:
         if (changeStatus)
         {

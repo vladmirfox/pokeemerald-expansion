@@ -8551,7 +8551,7 @@ static bool32 CourtChangeSwapSideStatuses(void)
     COURTCHANGE_SWAP_(SIDE_STATUS_MIST, mistTimer, temp);
     COURTCHANGE_SWAP_(SIDE_STATUS_SAFEGUARD, safeguardTimer, temp);
     COURTCHANGE_SWAP_(SIDE_STATUS_AURORA_VEIL, auroraVeilTimer, temp);
-    COURTCHANGE_SWAP(SIDE_STATUS_TAILWIND, tailwindTimer, temp);
+    COURTCHANGE_SWAP_(SIDE_STATUS_TAILWIND, tailwindTimer, temp);
     // Lucky Chant doesn't exist in gen 8, but seems like it should be affected by Court Change
     COURTCHANGE_SWAP(SIDE_STATUS_LUCKY_CHANT, luckyChantTimer, temp);
     COURTCHANGE_SWAP_(SIDE_STATUS_SPIKES, spikesAmount, temp);
@@ -8566,7 +8566,7 @@ static bool32 CourtChangeSwapSideStatuses(void)
     UPDATE_COURTCHANGED_BATTLER_(mistBattlerId);
     UPDATE_COURTCHANGED_BATTLER_(safeguardBattlerId);
     UPDATE_COURTCHANGED_BATTLER_(auroraVeilBattlerId);
-    UPDATE_COURTCHANGED_BATTLER(tailwindBattlerId);
+    UPDATE_COURTCHANGED_BATTLER_(tailwindBattlerId);
     UPDATE_COURTCHANGED_BATTLER(luckyChantBattlerId);
 
     // For Mirror Armor only
@@ -13262,11 +13262,11 @@ static void Cmd_settailwind(void)
     if (!(gBattleStruct->sides[side].status & SIDE_STATUS_TAILWIND))
     {
         gBattleStruct->sides[side].status |= SIDE_STATUS_TAILWIND;
-        gSideTimers[side].tailwindBattlerId = gBattlerAttacker;
+        gBattleStruct->sides[side].tailwindBattlerId = gBattlerAttacker;
     #if B_TAILWIND_TURNS >= GEN_5
-        gSideTimers[side].tailwindTimer = 4;
+        gBattleStruct->sides[side].tailwindTimer = 4;
     #else
-        gSideTimers[side].tailwindTimer = 3;
+        gBattleStruct->sides[side].tailwindTimer = 3;
     #endif
         gBattlescriptCurrInstr = cmd->nextInstr;
     }

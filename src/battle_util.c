@@ -2314,10 +2314,10 @@ u8 DoFieldEndTurnEffects(void)
             while (gBattleStruct->turnSideTracker < 2)
             {
                 side = gBattleStruct->turnSideTracker;
-                gActiveBattler = gBattlerAttacker = gSideTimers[side].tailwindBattlerId;
+                gActiveBattler = gBattlerAttacker = gBattleStruct->sides[side].tailwindBattlerId;
                 if (gBattleStruct->sides[side].status & SIDE_STATUS_TAILWIND)
                 {
-                    if (--gSideTimers[side].tailwindTimer == 0)
+                    if (--gBattleStruct->sides[side].tailwindTimer == 0)
                     {
                         gBattleStruct->sides[side].status &= ~SIDE_STATUS_TAILWIND;
                         BattleScriptExecute(BattleScript_TailwindEnds);
