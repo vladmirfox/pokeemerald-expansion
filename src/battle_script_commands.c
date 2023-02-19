@@ -13560,7 +13560,7 @@ static void Cmd_setembargo(void)
     else
     {
         gBattleStruct->battlers[gBattlerTarget].status3 |= STATUS3_EMBARGO;
-        gDisableStructs[gBattlerTarget].embargoTimer = 5;
+        gBattleStruct->battlers[gBattlerTarget].embargoTimer = 5;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }

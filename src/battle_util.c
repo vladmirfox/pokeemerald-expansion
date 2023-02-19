@@ -3094,7 +3094,7 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_EMBARGO:
             if (gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_EMBARGO)
             {
-                if (gDisableStructs[gActiveBattler].embargoTimer == 0 || --gDisableStructs[gActiveBattler].embargoTimer == 0)
+                if (gBattleStruct->battlers[gActiveBattler].embargoTimer == 0 || --gBattleStruct->battlers[gActiveBattler].embargoTimer == 0)
                 {
                     gBattleStruct->battlers[gActiveBattler].status3 &= ~STATUS3_EMBARGO;
                     BattleScriptExecute(BattleScript_EmbargoEndTurn);
@@ -10440,7 +10440,7 @@ bool32 CanFling(u8 battlerId)
       || GetBattlerAbility(battlerId) == ABILITY_KLUTZ
       #endif
       || gFieldStatuses & STATUS_FIELD_MAGIC_ROOM
-      || gDisableStructs[battlerId].embargoTimer != 0
+      || gBattleStruct->battlers[battlerId].embargoTimer != 0
       || GetFlingPowerFromItemId(item) == 0
       || !CanBattlerGetOrLoseItem(battlerId, item))
         return FALSE;
