@@ -291,20 +291,20 @@ void HandleAction_UseMove(void)
     }
     // encore forces you to use the same move
     else if (!gBattleStruct->zmove.active && gBattleStruct->battlers[gBattlerAttacker].encoredMove != MOVE_NONE
-             && gBattleStruct->battlers[gBattlerAttacker].encoredMove == gBattleMons[gBattlerAttacker].moves[gDisableStructs[gBattlerAttacker].encoredMovePos])
+             && gBattleStruct->battlers[gBattlerAttacker].encoredMove == gBattleMons[gBattlerAttacker].moves[gBattleStruct->battlers[gBattlerAttacker].encoredMovePosition])
     {
         gCurrentMove = gChosenMove = gBattleStruct->battlers[gBattlerAttacker].encoredMove;
-        gCurrMovePos = gChosenMovePos = gDisableStructs[gBattlerAttacker].encoredMovePos;
+        gCurrMovePos = gChosenMovePos = gBattleStruct->battlers[gBattlerAttacker].encoredMovePosition;
         gBattleStruct->battlers[gBattlerAttacker].moveTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
     }
     // check if the encored move wasn't overwritten
     else if (!gBattleStruct->zmove.active && gBattleStruct->battlers[gBattlerAttacker].encoredMove != MOVE_NONE
-          && gBattleStruct->battlers[gBattlerAttacker].encoredMove != gBattleMons[gBattlerAttacker].moves[gDisableStructs[gBattlerAttacker].encoredMovePos])
+          && gBattleStruct->battlers[gBattlerAttacker].encoredMove != gBattleMons[gBattlerAttacker].moves[gBattleStruct->battlers[gBattlerAttacker].encoredMovePosition])
     {
-        gCurrMovePos = gChosenMovePos = gDisableStructs[gBattlerAttacker].encoredMovePos;
+        gCurrMovePos = gChosenMovePos = gBattleStruct->battlers[gBattlerAttacker].encoredMovePosition;
         gCurrentMove = gChosenMove = gBattleMons[gBattlerAttacker].moves[gCurrMovePos];
         gBattleStruct->battlers[gBattlerAttacker].encoredMove = MOVE_NONE;
-        gDisableStructs[gBattlerAttacker].encoredMovePos = 0;
+        gBattleStruct->battlers[gBattlerAttacker].encoredMovePosition = 0;
         gDisableStructs[gBattlerAttacker].encoreTimer = 0;
         gBattleStruct->battlers[gBattlerAttacker].moveTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
     }
@@ -3010,13 +3010,13 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_ENCORE:  // encore
             if (gDisableStructs[gActiveBattler].encoreTimer != 0)
             {
-                if (gBattleMons[gActiveBattler].moves[gDisableStructs[gActiveBattler].encoredMovePos] != gBattleStruct->battlers[gActiveBattler].encoredMove)  // pokemon does not have the encored move anymore
+                if (gBattleMons[gActiveBattler].moves[gBattleStruct->battlers[gActiveBattler].encoredMovePosition] != gBattleStruct->battlers[gActiveBattler].encoredMove)  // pokemon does not have the encored move anymore
                 {
                     gBattleStruct->battlers[gActiveBattler].encoredMove = MOVE_NONE;
                     gDisableStructs[gActiveBattler].encoreTimer = 0;
                 }
                 else if (--gDisableStructs[gActiveBattler].encoreTimer == 0
-                 || gBattleMons[gActiveBattler].pp[gDisableStructs[gActiveBattler].encoredMovePos] == 0)
+                 || gBattleMons[gActiveBattler].pp[gBattleStruct->battlers[gActiveBattler].encoredMovePosition] == 0)
                 {
                     gBattleStruct->battlers[gActiveBattler].encoredMove = MOVE_NONE;
                     gDisableStructs[gActiveBattler].encoreTimer = 0;

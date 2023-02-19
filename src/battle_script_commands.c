@@ -12977,7 +12977,7 @@ static void Cmd_trysetencore(void)
         && i != MAX_MON_MOVES && gBattleMons[gBattlerTarget].pp[i] != 0)
     {
         gBattleStruct->battlers[gBattlerTarget].encoredMove = gBattleMons[gBattlerTarget].moves[i];
-        gDisableStructs[gBattlerTarget].encoredMovePos = i;
+        gBattleStruct->battlers[gBattlerTarget].encoredMovePosition = i;
         gDisableStructs[gBattlerTarget].encoreTimer = 3;
         gDisableStructs[gBattlerTarget].encoreTimer;
         gBattlescriptCurrInstr = cmd->nextInstr;

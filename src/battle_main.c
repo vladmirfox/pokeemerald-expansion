@@ -4023,7 +4023,7 @@ static void HandleTurnActionSelectionState(void)
                     else if (gBattleStruct->battlers[gActiveBattler].encoredMove != MOVE_NONE)
                     {
                         gBattleStruct->battlers[gActiveBattler].chosenMove = gBattleStruct->battlers[gActiveBattler].encoredMove;
-                        gBattleStruct->battlers[gActiveBattler].chosenMovePosition = gDisableStructs[gActiveBattler].encoredMovePos;
+                        gBattleStruct->battlers[gActiveBattler].chosenMovePosition = gBattleStruct->battlers[gActiveBattler].encoredMovePosition;
                         gBattleCommunication[gActiveBattler] = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
                         return;
                     }
