@@ -1639,15 +1639,15 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             break;
         case EFFECT_STOCKPILE:
-            if (gDisableStructs[battlerAtk].stockpileCounter >= 3)
+            if (gBattleStruct->battlers[battlerAtk].stockpileCounter >= 3)
                 score -= 10;
             break;
         case EFFECT_SPIT_UP:
-            if (gDisableStructs[battlerAtk].stockpileCounter <= 1)
+            if (gBattleStruct->battlers[battlerAtk].stockpileCounter <= 1)
                 score -= 10;
             break;
         case EFFECT_SWALLOW:
-            if (gDisableStructs[battlerAtk].stockpileCounter == 0)
+            if (gBattleStruct->battlers[battlerAtk].stockpileCounter == 0)
             {
                 score -= 10;
             }
@@ -3437,14 +3437,14 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         score += ShouldTryToFlinch(battlerAtk, battlerDef, AI_DATA->abilities[battlerAtk], AI_DATA->abilities[battlerDef], move);
         break;
     case EFFECT_SWALLOW:
-        if (gDisableStructs[battlerAtk].stockpileCounter == 0)
+        if (gBattleStruct->battlers[battlerAtk].stockpileCounter == 0)
         {
             break;
         }
         else
         {
             u32 healPercent = 0;
-            switch (gDisableStructs[battlerAtk].stockpileCounter)
+            switch (gBattleStruct->battlers[battlerAtk].stockpileCounter)
             {
             case 1:
                 healPercent = 25;
@@ -4041,7 +4041,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_SPDEF, &score);
         break;
     case EFFECT_SPIT_UP:
-        if (gDisableStructs[battlerAtk].stockpileCounter >= 2)
+        if (gBattleStruct->battlers[battlerAtk].stockpileCounter >= 2)
             score++;
         break;
     case EFFECT_ROLLOUT:

@@ -56,11 +56,6 @@
 struct DisableStruct
 {
     u32 transformedMonPersonality;
-    u8 stockpileCounter;
-    s8 stockpileDef;
-    s8 stockpileSpDef;
-    s8 stockpileBeforeDef;
-    s8 stockpileBeforeSpDef;
     u8 substituteHP;
     u8 encoredMovePos;
     u8 disableTimer:4;
@@ -666,6 +661,11 @@ struct BattleStruct
         u16 disabledMove;
         u16 encoredMove;
         u8 protectUses;
+        u8 stockpileCounter;
+        s8 stockpileDef;
+        s8 stockpileSpDef;
+        s8 stockpileBeforeDef;
+        s8 stockpileBeforeSpDef;
     } battlers[MAX_BATTLERS_COUNT];
 };
 
