@@ -2378,7 +2378,7 @@ static void Cmd_healthbarupdate(void)
     {
         gActiveBattler = GetBattlerForBattleScript(cmd->battler);
 
-        if (DoesSubstituteBlockMove(gBattlerAttacker, gActiveBattler, gCurrentMove) && gDisableStructs[gActiveBattler].substituteHP && !(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE))
+        if (DoesSubstituteBlockMove(gBattlerAttacker, gActiveBattler, gCurrentMove) && gBattleStruct->battlers[gActiveBattler].substituteHP && !(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE))
         {
             PrepareStringBattle(STRINGID_SUBSTITUTEDAMAGED, gActiveBattler);
         }
@@ -2416,24 +2416,24 @@ static void Cmd_datahpupdate(void)
     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) || (gHitMarker & HITMARKER_PASSIVE_DAMAGE))
     {
         gActiveBattler = GetBattlerForBattleScript(cmd->battler);
-        if (DoesSubstituteBlockMove(gBattlerAttacker, gActiveBattler, gCurrentMove) && gDisableStructs[gActiveBattler].substituteHP && !(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE))
+        if (DoesSubstituteBlockMove(gBattlerAttacker, gActiveBattler, gCurrentMove) && gBattleStruct->battlers[gActiveBattler].substituteHP && !(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE))
         {
-            if (gDisableStructs[gActiveBattler].substituteHP >= gBattleMoveDamage)
+            if (gBattleStruct->battlers[gActiveBattler].substituteHP >= gBattleMoveDamage)
             {
                 if (gSpecialStatuses[gActiveBattler].dmg == 0)
                     gSpecialStatuses[gActiveBattler].dmg = gBattleMoveDamage;
-                gDisableStructs[gActiveBattler].substituteHP -= gBattleMoveDamage;
+                gBattleStruct->battlers[gActiveBattler].substituteHP -= gBattleMoveDamage;
                 gHpDealt = gBattleMoveDamage;
             }
             else
             {
                 if (gSpecialStatuses[gActiveBattler].dmg == 0)
-                    gSpecialStatuses[gActiveBattler].dmg = gDisableStructs[gActiveBattler].substituteHP;
-                gHpDealt = gDisableStructs[gActiveBattler].substituteHP;
-                gDisableStructs[gActiveBattler].substituteHP = 0;
+                    gSpecialStatuses[gActiveBattler].dmg = gBattleStruct->battlers[gActiveBattler].substituteHP;
+                gHpDealt = gBattleStruct->battlers[gActiveBattler].substituteHP;
+                gBattleStruct->battlers[gActiveBattler].substituteHP = 0;
             }
             // check substitute fading
-            if (gDisableStructs[gActiveBattler].substituteHP == 0)
+            if (gBattleStruct->battlers[gActiveBattler].substituteHP == 0)
             {
                 gBattlescriptCurrInstr = cmd->nextInstr;
                 BattleScriptPushCursor();
@@ -5687,7 +5687,7 @@ static void Cmd_moveend(void)
         case MOVEEND_SUBSTITUTE: // update substitute
             for (i = 0; i < gBattlersCount; i++)
             {
-                if (gDisableStructs[i].substituteHP == 0)
+                if (gBattleStruct->battlers[i].substituteHP == 0)
                     gBattleMons[i].status2 &= ~STATUS2_SUBSTITUTE;
             }
             gBattleScripting.moveendState++;
@@ -7336,7 +7336,7 @@ static void Cmd_hitanimation(void)
     {
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
-    else if (!(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE) || !(DoesSubstituteBlockMove(gBattlerAttacker, gActiveBattler, gCurrentMove)) || gDisableStructs[gActiveBattler].substituteHP == 0)
+    else if (!(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE) || !(DoesSubstituteBlockMove(gBattlerAttacker, gActiveBattler, gCurrentMove)) || gBattleStruct->battlers[gActiveBattler].substituteHP == 0)
     {
         BtlController_EmitHitAnimation(BUFFER_A);
         MarkBattlerForControllerExec(gActiveBattler);
@@ -7570,7 +7570,7 @@ static void Cmd_statusanimation(void)
     {
         gActiveBattler = GetBattlerForBattleScript(cmd->battler);
         if (!(gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_SEMI_INVULNERABLE)
-            && gDisableStructs[gActiveBattler].substituteHP == 0
+            && gBattleStruct->battlers[gActiveBattler].substituteHP == 0
             && !(gHitMarker & HITMARKER_NO_ANIMATIONS))
         {
             BtlController_EmitStatusAnimation(BUFFER_A, FALSE, gBattleMons[gActiveBattler].status1);
@@ -7591,7 +7591,7 @@ static void Cmd_status2animation(void)
         gActiveBattler = GetBattlerForBattleScript(cmd->battler);
         wantedToAnimate = cmd->status2;
         if (!(gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_SEMI_INVULNERABLE)
-            && gDisableStructs[gActiveBattler].substituteHP == 0
+            && gBattleStruct->battlers[gActiveBattler].substituteHP == 0
             && !(gHitMarker & HITMARKER_NO_ANIMATIONS))
         {
             BtlController_EmitStatusAnimation(BUFFER_A, TRUE, gBattleMons[gActiveBattler].status2 & wantedToAnimate);
@@ -7612,7 +7612,7 @@ static void Cmd_chosenstatusanimation(void)
         gActiveBattler = GetBattlerForBattleScript(cmd->battler);
         wantedStatus = cmd->status;
         if (!(gBattleStruct->battlers[gActiveBattler].status3 & STATUS3_SEMI_INVULNERABLE)
-            && gDisableStructs[gActiveBattler].substituteHP == 0
+            && gBattleStruct->battlers[gActiveBattler].substituteHP == 0
             && !(gHitMarker & HITMARKER_NO_ANIMATIONS))
         {
             BtlController_EmitStatusAnimation(BUFFER_A, cmd->isStatus2, wantedStatus);
@@ -12757,7 +12757,7 @@ static void Cmd_setsubstitute(void)
 
         gBattleMons[gBattlerAttacker].status2 |= STATUS2_SUBSTITUTE;
         gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_WRAPPED;
-        gDisableStructs[gBattlerAttacker].substituteHP = gBattleMoveDamage;
+        gBattleStruct->battlers[gBattlerAttacker].substituteHP = gBattleMoveDamage;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_SUBSTITUTE;
         gHitMarker |= HITMARKER_IGNORE_SUBSTITUTE;
     }

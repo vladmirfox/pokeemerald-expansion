@@ -3040,6 +3040,7 @@ static void BattleStartClearSetData(void)
 void SwitchInClearSetData(void)
 {
     s32 i, j;
+    u32 substituteHP = gBattleStruct->battlers[gActiveBattler].substituteHP;
     struct DisableStruct disableStructCopy = gDisableStructs[gActiveBattler];
 
     ClearIllusionMon(gActiveBattler);
@@ -3100,7 +3101,7 @@ void SwitchInClearSetData(void)
 
     if (gBattleMoves[gCurrentMove].effect == EFFECT_BATON_PASS)
     {
-        gDisableStructs[gActiveBattler].substituteHP = disableStructCopy.substituteHP;
+        gBattleStruct->battlers[gActiveBattler].substituteHP = substituteHP;
         gDisableStructs[gActiveBattler].battlerWithSureHit = disableStructCopy.battlerWithSureHit;
         gDisableStructs[gActiveBattler].perishSongTimer = disableStructCopy.perishSongTimer;
         gDisableStructs[gActiveBattler].battlerPreventingEscape = disableStructCopy.battlerPreventingEscape;
@@ -4836,7 +4837,7 @@ static void TurnValuesCleanUp(bool8 var0)
             }
         }
 
-        if (gDisableStructs[gActiveBattler].substituteHP == 0)
+        if (gBattleStruct->battlers[gActiveBattler].substituteHP == 0)
             gBattleMons[gActiveBattler].status2 &= ~STATUS2_SUBSTITUTE;
 
         gSpecialStatuses[gActiveBattler].parentalBondState = PARENTAL_BOND_OFF;
