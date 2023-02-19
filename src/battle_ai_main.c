@@ -2022,7 +2022,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         case EFFECT_DEFOG:
             if (gBattleStruct->sides[GetBattlerSide(battlerDef)].status
              & (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL | SIDE_STATUS_SAFEGUARD | SIDE_STATUS_MIST)
-              || gSideTimers[GetBattlerSide(battlerDef)].auroraVeilTimer != 0
+              || gBattleStruct->sides[GetBattlerSide(battlerDef)].auroraVeilTimer != 0
               || gBattleStruct->sides[GetBattlerSide(battlerAtk)].status & SIDE_STATUS_HAZARDS_ANY)
             {
                 if (PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))

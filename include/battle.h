@@ -191,8 +191,6 @@ struct SpecialStatus
 
 struct SideTimer
 {
-    u8 auroraVeilTimer;
-    u8 auroraVeilBattlerId;
     u8 tailwindTimer;
     u8 tailwindBattlerId;
     u8 luckyChantTimer;
@@ -612,6 +610,8 @@ struct BattleStruct
         u8 stealthRockAmount;
         u8 stickyWebAmount;
         u8 stickyWebBattlerSide; // For Court Change.
+        u8 auroraVeilTimer;
+        u8 auroraVeilBattlerId;
         struct Party
         {
             u16 usedHeldItem; // For harvest, recycle.

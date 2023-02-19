@@ -1695,9 +1695,9 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_AURORA_VEIL;
             else
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_AURORA_VEIL;
-            sideTimer->auroraVeilBattlerId = data->battlerId;
+            side->auroraVeilBattlerId = data->battlerId;
         }
-        return &sideTimer->auroraVeilTimer;
+        return &side->auroraVeilTimer;
     case LIST_SIDE_LUCKY_CHANT:
         if (changeStatus)
         {

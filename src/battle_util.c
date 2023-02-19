@@ -2217,10 +2217,10 @@ u8 DoFieldEndTurnEffects(void)
             while (gBattleStruct->turnSideTracker < 2)
             {
                 side = gBattleStruct->turnSideTracker;
-                gActiveBattler = gBattlerAttacker = gSideTimers[side].auroraVeilBattlerId;
+                gActiveBattler = gBattlerAttacker = gBattleStruct->sides[side].auroraVeilBattlerId;
                 if (gBattleStruct->sides[side].status & SIDE_STATUS_AURORA_VEIL)
                 {
-                    if (--gSideTimers[side].auroraVeilTimer == 0)
+                    if (--gBattleStruct->sides[side].auroraVeilTimer == 0)
                     {
                         gBattleStruct->sides[side].status &= ~SIDE_STATUS_AURORA_VEIL;
                         BattleScriptExecute(BattleScript_SideStatusWoreOff);
@@ -10354,7 +10354,7 @@ static bool32 TryRemoveScreens(u8 battler)
         gBattleStruct->sides[battlerSide].status &= ~(SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL);
         gBattleStruct->sides[battlerSide].reflectTimer = 0;
         gBattleStruct->sides[battlerSide].lightScreenTimer = 0;
-        gSideTimers[battlerSide].auroraVeilTimer = 0;
+        gBattleStruct->sides[battlerSide].auroraVeilTimer = 0;
         removed = TRUE;
     }
 
@@ -10364,7 +10364,7 @@ static bool32 TryRemoveScreens(u8 battler)
         gBattleStruct->sides[enemySide].status &= ~(SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL);
         gBattleStruct->sides[enemySide].reflectTimer = 0;
         gBattleStruct->sides[enemySide].lightScreenTimer = 0;
-        gSideTimers[enemySide].auroraVeilTimer = 0;
+        gBattleStruct->sides[enemySide].auroraVeilTimer = 0;
         removed = TRUE;
     }
 

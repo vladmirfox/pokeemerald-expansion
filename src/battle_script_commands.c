@@ -8315,24 +8315,7 @@ bool32 CanUseLastResort(u8 battlerId)
     return (knownMovesCount >= 2 && usedMovesCount >= knownMovesCount - 1);
 }
 
-#define DEFOG_CLEAR(status, structField, battlescript, move)\
-{                                                           \
-    if (*sideStatuses & status)                             \
-    {                                                       \
-        if (clear)                                          \
-        {                                                   \
-            if (move)                                       \
-                PREPARE_MOVE_BUFFER(gBattleTextBuff1, move);\
-            *sideStatuses &= ~status;                       \
-            sideTimer->structField = 0;                     \
-            BattleScriptPushCursor();                       \
-            gBattlescriptCurrInstr = battlescript;          \
-        }                                                   \
-        return TRUE;                                        \
-    }                                                       \
-}
-
-#define DEFOG_CLEAR_(status, structField, battlescript, move) \
+#define DEFOG_CLEAR(status, structField, battlescript, move) \
 { \
     if (*sideStatuses & status) \
     { \
@@ -8361,16 +8344,16 @@ static bool32 ClearDefogHazards(u8 battlerAtk, bool32 clear)
         gBattlerAttacker = i;
         if (GetBattlerSide(battlerAtk) != i)
         {
-            DEFOG_CLEAR_(SIDE_STATUS_REFLECT, reflectTimer, BattleScript_SideStatusWoreOffReturn, MOVE_REFLECT);
-            DEFOG_CLEAR_(SIDE_STATUS_LIGHTSCREEN, lightScreenTimer, BattleScript_SideStatusWoreOffReturn, MOVE_LIGHT_SCREEN);
-            DEFOG_CLEAR_(SIDE_STATUS_MIST, mistTimer, BattleScript_SideStatusWoreOffReturn, MOVE_MIST);
+            DEFOG_CLEAR(SIDE_STATUS_REFLECT, reflectTimer, BattleScript_SideStatusWoreOffReturn, MOVE_REFLECT);
+            DEFOG_CLEAR(SIDE_STATUS_LIGHTSCREEN, lightScreenTimer, BattleScript_SideStatusWoreOffReturn, MOVE_LIGHT_SCREEN);
+            DEFOG_CLEAR(SIDE_STATUS_MIST, mistTimer, BattleScript_SideStatusWoreOffReturn, MOVE_MIST);
             DEFOG_CLEAR(SIDE_STATUS_AURORA_VEIL, auroraVeilTimer, BattleScript_SideStatusWoreOffReturn, MOVE_AURORA_VEIL);
-            DEFOG_CLEAR_(SIDE_STATUS_SAFEGUARD, safeguardTimer, BattleScript_SideStatusWoreOffReturn, MOVE_SAFEGUARD);
+            DEFOG_CLEAR(SIDE_STATUS_SAFEGUARD, safeguardTimer, BattleScript_SideStatusWoreOffReturn, MOVE_SAFEGUARD);
         }
-        DEFOG_CLEAR_(SIDE_STATUS_SPIKES, spikesAmount, BattleScript_SpikesFree, 0);
-        DEFOG_CLEAR_(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, BattleScript_StealthRockFree, 0);
-        DEFOG_CLEAR_(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, BattleScript_ToxicSpikesFree, 0);
-        DEFOG_CLEAR_(SIDE_STATUS_STICKY_WEB, stickyWebAmount, BattleScript_StickyWebFree, 0);
+        DEFOG_CLEAR(SIDE_STATUS_SPIKES, spikesAmount, BattleScript_SpikesFree, 0);
+        DEFOG_CLEAR(SIDE_STATUS_STEALTH_ROCK, stealthRockAmount, BattleScript_StealthRockFree, 0);
+        DEFOG_CLEAR(SIDE_STATUS_TOXIC_SPIKES, toxicSpikesAmount, BattleScript_ToxicSpikesFree, 0);
+        DEFOG_CLEAR(SIDE_STATUS_STICKY_WEB, stickyWebAmount, BattleScript_StickyWebFree, 0);
     }
 
     return FALSE;
@@ -8567,7 +8550,7 @@ static bool32 CourtChangeSwapSideStatuses(void)
     COURTCHANGE_SWAP_(SIDE_STATUS_LIGHTSCREEN, lightScreenTimer, temp)
     COURTCHANGE_SWAP_(SIDE_STATUS_MIST, mistTimer, temp);
     COURTCHANGE_SWAP_(SIDE_STATUS_SAFEGUARD, safeguardTimer, temp);
-    COURTCHANGE_SWAP(SIDE_STATUS_AURORA_VEIL, auroraVeilTimer, temp);
+    COURTCHANGE_SWAP_(SIDE_STATUS_AURORA_VEIL, auroraVeilTimer, temp);
     COURTCHANGE_SWAP(SIDE_STATUS_TAILWIND, tailwindTimer, temp);
     // Lucky Chant doesn't exist in gen 8, but seems like it should be affected by Court Change
     COURTCHANGE_SWAP(SIDE_STATUS_LUCKY_CHANT, luckyChantTimer, temp);
@@ -8582,7 +8565,7 @@ static bool32 CourtChangeSwapSideStatuses(void)
     UPDATE_COURTCHANGED_BATTLER_(lightScreenBattlerId);
     UPDATE_COURTCHANGED_BATTLER_(mistBattlerId);
     UPDATE_COURTCHANGED_BATTLER_(safeguardBattlerId);
-    UPDATE_COURTCHANGED_BATTLER(auroraVeilBattlerId);
+    UPDATE_COURTCHANGED_BATTLER_(auroraVeilBattlerId);
     UPDATE_COURTCHANGED_BATTLER(tailwindBattlerId);
     UPDATE_COURTCHANGED_BATTLER(luckyChantBattlerId);
 
@@ -10113,10 +10096,10 @@ static void Cmd_various(void)
         {
             gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].status |= SIDE_STATUS_AURORA_VEIL;
             if (GetBattlerHoldEffect(gActiveBattler, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
-                gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].auroraVeilTimer = 8;
+                gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].auroraVeilTimer = 8;
             else
-                gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].auroraVeilTimer = 5;
-            gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].auroraVeilBattlerId = gActiveBattler;
+                gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].auroraVeilTimer = 5;
+            gBattleStruct->sides[GET_BATTLER_SIDE(gActiveBattler)].auroraVeilBattlerId = gActiveBattler;
 
             if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && CountAliveMonsInBattle(BATTLE_ALIVE_ATK_SIDE) == 2)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 5;
@@ -15282,14 +15265,14 @@ static void Cmd_removelightscreenreflect(void)
     if (!failed
      && (gBattleStruct->sides[side].reflectTimer
       || gBattleStruct->sides[side].lightScreenTimer
-      || gSideTimers[side].auroraVeilTimer))
+      || gBattleStruct->sides[side].auroraVeilTimer))
     {
         gBattleStruct->sides[side].status &= ~SIDE_STATUS_REFLECT;
         gBattleStruct->sides[side].status &= ~SIDE_STATUS_LIGHTSCREEN;
         gBattleStruct->sides[side].status &= ~SIDE_STATUS_AURORA_VEIL;
         gBattleStruct->sides[side].reflectTimer = 0;
         gBattleStruct->sides[side].lightScreenTimer = 0;
-        gSideTimers[side].auroraVeilTimer = 0;
+        gBattleStruct->sides[side].auroraVeilTimer = 0;
         gBattleScripting.animTurn = 1;
         gBattleScripting.animTargetsHit = 1;
     }
