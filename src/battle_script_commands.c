@@ -9542,7 +9542,7 @@ static void Cmd_various(void)
         }
         else
         {
-            gStatuses4[gBattlerTarget] |= STATUS4_ELECTRIFIED;
+            gBattleStruct->battlers[gBattlerTarget].status4 |= STATUS4_ELECTRIFIED;
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         return;
@@ -10562,7 +10562,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
         for (i = 0; i < gBattlersCount; i++)
-            gStatuses4[i] |= STATUS4_PLASMA_FISTS;
+            gBattleStruct->battlers[i].status4 |= STATUS4_PLASMA_FISTS;
         break;
     }
     case VARIOUS_JUMP_IF_SPECIES:
@@ -15037,9 +15037,9 @@ static void Cmd_settypebasedhalvers(void)
                 worked = TRUE;
             }
         #else
-            if (!(gStatuses4[gBattlerAttacker] & STATUS4_MUD_SPORT))
+            if (!(gBattleStruct->battlers[gBattlerAttacker].status4 & STATUS4_MUD_SPORT))
             {
-                gStatuses4[gBattlerAttacker] |= STATUS4_MUD_SPORT;
+                gBattleStruct->battlers[gBattlerAttacker].status4 |= STATUS4_MUD_SPORT;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEAKEN_ELECTRIC;
                 worked = TRUE;
             }
@@ -15056,9 +15056,9 @@ static void Cmd_settypebasedhalvers(void)
                 worked = TRUE;
             }
         #else
-            if (!(gStatuses4[gBattlerAttacker] & STATUS4_WATER_SPORT))
+            if (!(gBattleStruct->battlers[gBattlerAttacker].status4 & STATUS4_WATER_SPORT))
             {
-                gStatuses4[gBattlerAttacker] |= STATUS4_WATER_SPORT;
+                gBattleStruct->battlers[gBattlerAttacker].status4 |= STATUS4_WATER_SPORT;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_WEAKEN_FIRE;
                 worked = TRUE;
             }

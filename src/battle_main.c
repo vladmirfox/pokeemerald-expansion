@@ -184,7 +184,6 @@ EWRAM_DATA u16 gLastUsedMove = 0;
 EWRAM_DATA u16 gMoveResultFlags = 0;
 EWRAM_DATA u32 gHitMarker = 0;
 EWRAM_DATA u8 gUnusedFirstBattleVar2 = 0; // Never read
-EWRAM_DATA u32 gStatuses4[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA struct DisableStruct gDisableStructs[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gPauseCounterBattle = 0;
 EWRAM_DATA u16 gPaydayMoney = 0;
@@ -2936,7 +2935,7 @@ static void BattleStartClearSetData(void)
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
         gBattleStruct->battlers[i].status3 = 0;
-        gStatuses4[i] = 0;
+        gBattleStruct->battlers[i].status4 = 0;
         gDisableStructs[i].isFirstTurn = 2;
         gBattleStruct->battlers[i].lastMove = MOVE_NONE;
         gBattleStruct->battlers[i].lastHitByMove = MOVE_NONE;
@@ -3065,7 +3064,7 @@ void SwitchInClearSetData(void)
         gBattleStruct->battlers[gActiveBattler].status3 &= (STATUS3_LEECHSEED_BATTLER | STATUS3_LEECHSEED | STATUS3_ALWAYS_HITS | STATUS3_PERISH_SONG | STATUS3_ROOTED
                                        | STATUS3_GASTRO_ACID | STATUS3_EMBARGO | STATUS3_TELEKINESIS | STATUS3_MAGNET_RISE | STATUS3_HEAL_BLOCK
                                        | STATUS3_AQUA_RING | STATUS3_POWER_TRICK);
-        gStatuses4[gActiveBattler] &= (STATUS4_MUD_SPORT | STATUS4_WATER_SPORT);
+        gBattleStruct->battlers[gActiveBattler].status4 &= (STATUS4_MUD_SPORT | STATUS4_WATER_SPORT);
         for (i = 0; i < gBattlersCount; i++)
         {
             if (GetBattlerSide(gActiveBattler) != GetBattlerSide(i)
@@ -3083,7 +3082,7 @@ void SwitchInClearSetData(void)
     {
         gBattleMons[gActiveBattler].status2 = 0;
         gBattleStruct->battlers[gActiveBattler].status3 = 0;
-        gStatuses4[gActiveBattler] = 0;
+        gBattleStruct->battlers[gActiveBattler].status4 = 0;
     }
 
     for (i = 0; i < gBattlersCount; i++)
@@ -3158,7 +3157,7 @@ void FaintClearSetData(void)
 
     gBattleMons[gActiveBattler].status2 = 0;
     gBattleStruct->battlers[gActiveBattler].status3 = 0;
-    gStatuses4[gActiveBattler] = 0;
+    gBattleStruct->battlers[gActiveBattler].status4 = 0;
 
     for (i = 0; i < gBattlersCount; i++)
     {
@@ -5479,7 +5478,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     attackerAbility = GetBattlerAbility(battlerAtk);
     GET_MOVE_TYPE(move, moveType);
     if ((gFieldStatuses & STATUS_FIELD_ION_DELUGE && moveType == TYPE_NORMAL)
-        || gStatuses4[battlerAtk] & STATUS4_ELECTRIFIED)
+        || gBattleStruct->battlers[battlerAtk].status4 & STATUS4_ELECTRIFIED)
     {
         gBattleStruct->dynamicMoveType = TYPE_ELECTRIC | F_DYNAMIC_TYPE_2;
     }
@@ -5511,7 +5510,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     {
         gBattleStruct->dynamicMoveType = TYPE_WATER | F_DYNAMIC_TYPE_2;
     }
-    else if (gStatuses4[battlerAtk] & STATUS4_PLASMA_FISTS && moveType == TYPE_NORMAL)
+    else if (gBattleStruct->battlers[battlerAtk].status4 & STATUS4_PLASMA_FISTS && moveType == TYPE_NORMAL)
     {
         gBattleStruct->dynamicMoveType = TYPE_ELECTRIC | F_DYNAMIC_TYPE_2;
     }

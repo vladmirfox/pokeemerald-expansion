@@ -3151,7 +3151,7 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_ELECTRIFY:
-            gStatuses4[gActiveBattler] &= ~STATUS4_ELECTRIFIED;
+            gBattleStruct->battlers[gActiveBattler].status4 &= ~STATUS4_ELECTRIFIED;
             gBattleStruct->turnEffectsTracker++;
         case ENDTURN_POWDER:
             gBattleMons[gActiveBattler].status2 &= ~STATUS2_POWDER;
@@ -3175,7 +3175,7 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_PLASMA_FISTS:
-            gStatuses4[gActiveBattler] &= ~STATUS4_PLASMA_FISTS;
+            gBattleStruct->battlers[gActiveBattler].status4 &= ~STATUS4_PLASMA_FISTS;
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_CUD_CHEW:
@@ -6153,14 +6153,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITYEFFECT_MUD_SPORT:
             for (i = 0; i < gBattlersCount; i++)
             {
-                if (gStatuses4[i] & STATUS4_MUD_SPORT)
+                if (gBattleStruct->battlers[i].status4 & STATUS4_MUD_SPORT)
                     effect = i + 1;
             }
             break;
         case ABILITYEFFECT_WATER_SPORT:
             for (i = 0; i < gBattlersCount; i++)
             {
-                if (gStatuses4[i] & STATUS4_WATER_SPORT)
+                if (gBattleStruct->battlers[i].status4 & STATUS4_WATER_SPORT)
                     effect = i + 1;
             }
             break;
