@@ -420,6 +420,8 @@ int main(int argc, char *argv[])
             perror("waitpid runners[i] failed");
             exit(2);
         }
+        if (runners[i].output_buffer_size > 0)
+            fwrite(runners[i].output_buffer, 1, runners[i].output_buffer_size, stdout);
         if (WIFEXITED(wstatus) && WEXITSTATUS(wstatus) > exit_code)
             exit_code = WEXITSTATUS(wstatus);
         passes += runners[i].passes;
