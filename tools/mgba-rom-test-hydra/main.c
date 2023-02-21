@@ -420,6 +420,7 @@ int main(int argc, char *argv[])
             perror("waitpid runners[i] failed");
             exit(2);
         }
+        fprintf(stdout, "mgba-rom-test process %d exited with %d\n", i, WEXITSTATUS(wstatus));
         if (WIFEXITED(wstatus) && WEXITSTATUS(wstatus) > exit_code)
             exit_code = WEXITSTATUS(wstatus);
         passes += runners[i].passes;
