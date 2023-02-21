@@ -70,14 +70,6 @@ void CB2_TestRunner(void)
 
         if (gTestRunnerState.test == __stop_tests)
         {
-            MgbaPrintf_("%s%d/%d PASSED\e[0m", gTestRunnerState.exitCode == 0 ? "\e[32m" : "\e[31m", gTestRunnerState.passes, gTestRunnerState.tests);
-            if (gTestRunnerState.skips)
-            {
-                if (gTestRunnerSkipIsFail)
-                    MgbaPrintf_("\e[31m%d SKIPPED\e[0m", gTestRunnerState.skips);
-                else
-                    MgbaPrintf_("%d SKIPPED", gTestRunnerState.skips);
-            }
             gTestRunnerState.state = STATE_EXIT;
             return;
         }
