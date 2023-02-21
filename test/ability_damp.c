@@ -27,7 +27,7 @@ DOUBLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies in a double 
     PARAMETRIZE { move = MOVE_MIND_BLOWN; }
     PARAMETRIZE { move = MOVE_MISTY_EXPLOSION; }
     GIVEN {
-        PLAYER(SPECIES_PARAS) { Ability(ABILITY_DAMP); };
+        PLAYER(SPECIES_PARAS) { Ability(ABILITY_DAMP); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);

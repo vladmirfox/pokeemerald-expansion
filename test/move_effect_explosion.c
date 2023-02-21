@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("Explosion causes the user & the target to faint")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { HP(1); } ;
+        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); }
@@ -73,9 +73,9 @@ DOUBLE_BATTLE_TEST("Explosion causes everyone to faint in a double battle")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WYNAUT) { HP(1); } ;
-        OPPONENT(SPECIES_ABRA) { HP(1); } ;
-        OPPONENT(SPECIES_KADABRA) { HP(1); } ;
+        PLAYER(SPECIES_WYNAUT) { HP(1); }
+        OPPONENT(SPECIES_ABRA) { HP(1); }
+        OPPONENT(SPECIES_KADABRA) { HP(1); }
         OPPONENT(SPECIES_KADABRA);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_EXPLOSION); }
