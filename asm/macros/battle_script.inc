@@ -2247,3 +2247,9 @@
 	various \battler, VARIOUS_JUMP_IF_EMERGENCY_EXITED
 	.4byte \jumpInstr
 	.endm
+
+	@ Used by Shell Trap.
+	.macro jumpifhitbyphys battler:req, ptr:req
+	various \battler, VARIOUS_JUMP_IF_HIT_BY_PHYS
+	.4byte \ptr
+	.endm

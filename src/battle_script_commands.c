@@ -6200,6 +6200,7 @@ static void Cmd_moveend(void)
             gBattleStruct->zmove.toBeUsed[gBattlerAttacker] = MOVE_NONE;
             gBattleStruct->zmove.effect = EFFECT_HIT;
             gBattleScripting.moveendState++;
+            // If a pokemon with Shell Trap
             break;
         case MOVEEND_COUNT:
             break;
@@ -11024,6 +11025,18 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         gBattlescriptCurrInstr = cmd->nextInstr;
         AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, gActiveBattler, 0, 0, 0);
+        return;
+    }
+    case VARIOUS_JUMP_IF_HIT_BY_PHYS:
+    {
+        VARIOUS_ARGS(const u8 *jumpInstr);
+        u8 physicalDmgBattler = gProtectStructs[gActiveBattler].physicalBattlerId;
+        if (GetBattlerSide(physicalDmgBattler) != GetBattlerSide(gActiveBattler)
+            && !TestSheerForceFlag(physicalDmgBattler, gLastResultingMoves[physicalDmgBattler])
+            && gProtectStructs[gActiveBattler].physicalDmg)
+            gBattlescriptCurrInstr = cmd->jumpInstr;
+        else
+            gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
     case VARIOUS_ACTIVATE_TERRAIN_CHANGE_ABILITIES:
