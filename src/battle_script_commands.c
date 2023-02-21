@@ -5731,7 +5731,8 @@ static void Cmd_moveend(void)
                 && gBattlerTarget != gBattlerAttacker
                 && GetBattlerSide(gBattlerTarget) != GetBattlerSide(gBattlerAttacker)
                 && gProtectStructs[gBattlerTarget].physicalDmg
-                && gProtectStructs[gBattlerTarget].physicalBattlerId == gBattlerAttacker)
+                && gProtectStructs[gBattlerTarget].physicalBattlerId == gBattlerAttacker
+                && !TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
             {
                 gProtectStructs[gBattlerTarget].shellTrap = TRUE;
                 // Change move order in double battles, so the hit mon with shell trap moves immediately after being hit.
