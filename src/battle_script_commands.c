@@ -350,6 +350,7 @@ static bool32 CriticalCapture(u32 odds);
 static void BestowItem(u32 battlerAtk, u32 battlerDef);
 static bool8 IsFinalStrikeEffect(u16 move);
 static void TryUpdateRoundTurnOrder(void);
+static bool32 ChangeOrderTargetAfterAttacker(void);
 
 static void Cmd_attackcanceler(void);
 static void Cmd_accuracycheck(void);
@@ -5725,6 +5726,21 @@ static void Cmd_moveend(void)
             else
                 gBattleStruct->lastMoveFailed &= ~(gBitTable[gBattlerAttacker]);
 
+            // Set ShellTrap to activate after the attacker's turn if target was hit by a physical move.
+            if (gBattleMoves[gBattleMons[gBattlerTarget].moves[gBattleStruct->chosenMovePositions[gBattlerTarget]]].effect == EFFECT_SHELL_TRAP
+                && gBattlerTarget != gBattlerAttacker
+                && GetBattlerSide(gBattlerTarget) != GetBattlerSide(gBattlerAttacker)
+                && gProtectStructs[gBattlerTarget].physicalDmg
+                && gProtectStructs[gBattlerTarget].physicalBattlerId == gBattlerAttacker)
+            {
+                gProtectStructs[gBattlerTarget].shellTrap = TRUE;
+                // Change move order in double battles, so the hit mon with shell trap moves immediately after being hit.
+                if (IsDoubleBattle())
+                {
+                    ChangeOrderTargetAfterAttacker();
+                }
+            }
+
             if (gHitMarker & HITMARKER_SWAP_ATTACKER_TARGET)
             {
                 gActiveBattler = gBattlerAttacker;
@@ -6189,6 +6205,7 @@ static void Cmd_moveend(void)
             gBattleStruct->targetsDone[gBattlerAttacker] = 0;
             gProtectStructs[gBattlerAttacker].usesBouncedMove = FALSE;
             gProtectStructs[gBattlerAttacker].targetAffected = FALSE;
+            gProtectStructs[gBattlerAttacker].shellTrap = FALSE;
             gBattleStruct->ateBoost[gBattlerAttacker] = 0;
             gStatuses3[gBattlerAttacker] &= ~STATUS3_ME_FIRST;
             gSpecialStatuses[gBattlerAttacker].gemBoost = FALSE;
@@ -6200,7 +6217,6 @@ static void Cmd_moveend(void)
             gBattleStruct->zmove.toBeUsed[gBattlerAttacker] = MOVE_NONE;
             gBattleStruct->zmove.effect = EFFECT_HIT;
             gBattleScripting.moveendState++;
-            // If a pokemon with Shell Trap
             break;
         case MOVEEND_COUNT:
             break;
@@ -8602,6 +8618,38 @@ static bool32 CanTeleport(u8 battlerId)
     return TRUE;
 }
 
+// Return True if the order was changed, and false if the order was not changed(for example because the target would move after the attacker anyway).
+static bool32 ChangeOrderTargetAfterAttacker(void)
+{
+    u32 i;
+    u8 data[MAX_BATTLERS_COUNT];
+
+    if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget)
+        || GetBattlerTurnOrderNum(gBattlerAttacker) + 1 == GetBattlerTurnOrderNum(gBattlerTarget))
+        return FALSE;
+
+    for (i = 0; i < gBattlersCount; i++)
+        data[i] = gBattlerByTurnOrder[i];
+    if (GetBattlerTurnOrderNum(gBattlerAttacker) == 0 && GetBattlerTurnOrderNum(gBattlerTarget) == 2)
+    {
+        gBattlerByTurnOrder[1] = gBattlerTarget;
+        gBattlerByTurnOrder[2] = data[1];
+        gBattlerByTurnOrder[3] = data[3];
+    }
+    else if (GetBattlerTurnOrderNum(gBattlerAttacker) == 0 && GetBattlerTurnOrderNum(gBattlerTarget) == 3)
+    {
+        gBattlerByTurnOrder[1] = gBattlerTarget;
+        gBattlerByTurnOrder[2] = data[1];
+        gBattlerByTurnOrder[3] = data[2];
+    }
+    else // Attacker == 1, Target == 3
+    {
+        gBattlerByTurnOrder[2] = gBattlerTarget;
+        gBattlerByTurnOrder[3] = data[2];
+    }
+    return TRUE;
+}
+
 static void Cmd_various(void)
 {
     CMD_ARGS(u8 battler, u8 id);
@@ -9969,34 +10017,14 @@ static void Cmd_various(void)
     case VARIOUS_AFTER_YOU:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (GetBattlerTurnOrderNum(gBattlerAttacker) > GetBattlerTurnOrderNum(gBattlerTarget)
-            || GetBattlerTurnOrderNum(gBattlerAttacker) + 1 == GetBattlerTurnOrderNum(gBattlerTarget))
+        if (ChangeOrderTargetAfterAttacker())
         {
-            gBattlescriptCurrInstr = cmd->failInstr;
+            gSpecialStatuses[gBattlerTarget].afterYou = 1;
+            gBattlescriptCurrInstr = cmd->nextInstr;
         }
         else
         {
-            for (i = 0; i < gBattlersCount; i++)
-                data[i] = gBattlerByTurnOrder[i];
-            if (GetBattlerTurnOrderNum(gBattlerAttacker) == 0 && GetBattlerTurnOrderNum(gBattlerTarget) == 2)
-            {
-                gBattlerByTurnOrder[1] = gBattlerTarget;
-                gBattlerByTurnOrder[2] = data[1];
-                gBattlerByTurnOrder[3] = data[3];
-            }
-            else if (GetBattlerTurnOrderNum(gBattlerAttacker) == 0 && GetBattlerTurnOrderNum(gBattlerTarget) == 3)
-            {
-                gBattlerByTurnOrder[1] = gBattlerTarget;
-                gBattlerByTurnOrder[2] = data[1];
-                gBattlerByTurnOrder[3] = data[2];
-            }
-            else
-            {
-                gBattlerByTurnOrder[2] = gBattlerTarget;
-                gBattlerByTurnOrder[3] = data[2];
-            }
-            gSpecialStatuses[gBattlerTarget].afterYou = 1;
-            gBattlescriptCurrInstr = cmd->nextInstr;
+            gBattlescriptCurrInstr = cmd->failInstr;
         }
         return;
     }
@@ -11027,13 +11055,10 @@ static void Cmd_various(void)
         AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, gActiveBattler, 0, 0, 0);
         return;
     }
-    case VARIOUS_JUMP_IF_HIT_BY_PHYS:
+    case VARIOUS_JUMP_IF_SHELL_TRAP:
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
-        u8 physicalDmgBattler = gProtectStructs[gActiveBattler].physicalBattlerId;
-        if (GetBattlerSide(physicalDmgBattler) != GetBattlerSide(gActiveBattler)
-            && !TestSheerForceFlag(physicalDmgBattler, gLastResultingMoves[physicalDmgBattler])
-            && gProtectStructs[gActiveBattler].physicalDmg)
+        if (gProtectStructs[gActiveBattler].shellTrap)
             gBattlescriptCurrInstr = cmd->jumpInstr;
         else
             gBattlescriptCurrInstr = cmd->nextInstr;

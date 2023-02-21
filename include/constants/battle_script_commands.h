@@ -258,7 +258,7 @@
 #define VARIOUS_JUMP_IF_NO_VALID_TARGETS            166
 #define VARIOUS_JUMP_IF_EMERGENCY_EXITED            167
 #define VARIOUS_STORE_HEALING_WISH                  168
-#define VARIOUS_JUMP_IF_HIT_BY_PHYS                 169
+#define VARIOUS_JUMP_IF_SHELL_TRAP                  169
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

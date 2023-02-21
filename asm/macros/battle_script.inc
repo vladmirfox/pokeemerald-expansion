@@ -2248,8 +2248,7 @@
 	.4byte \jumpInstr
 	.endm
 
-	@ Used by Shell Trap.
 	.macro jumpifhitbyphys battler:req, ptr:req
-	various \battler, VARIOUS_JUMP_IF_HIT_BY_PHYS
+	various \battler, VARIOUS_JUMP_IF_SHELL_TRAP
 	.4byte \ptr
 	.endm
