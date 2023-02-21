@@ -421,8 +421,8 @@ int main(int argc, char *argv[])
             exit(2);
         }
         fprintf(stdout, "mgba-rom-test process %d exited with %d\n", i, WEXITSTATUS(wstatus));
-        if (runner[i].output_buffer_size > 0)
-            fwrite(runner[i].output_buffer, 1, runner[i].output_buffer_size, stdout);
+        if (runners[i].output_buffer_size > 0)
+            fwrite(runners[i].output_buffer, 1, runners[i].output_buffer_size, stdout);
         if (WIFEXITED(wstatus) && WEXITSTATUS(wstatus) > exit_code)
             exit_code = WEXITSTATUS(wstatus);
         passes += runners[i].passes;

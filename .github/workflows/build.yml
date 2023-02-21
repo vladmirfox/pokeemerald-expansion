@@ -43,13 +43,13 @@ jobs:
       - name: Agbcc
         run: make -j${nproc} -O all
 
+      - name: Test
+        run: |
+          make -j${nproc} -O pokeemerald-test.elf
+          make -j${nproc} check
+
       - name: Modern
         env:
           MODERN: 1
           COMPARE: 0
         run: make -j${nproc} -O all
-
-      - name: Test
-        run: |
-          make -j${nproc} -O pokeemerald-test.elf
-          make -j${nproc} check
