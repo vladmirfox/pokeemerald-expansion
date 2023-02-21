@@ -146,7 +146,10 @@ void CB2_TestRunner(void)
         {
             gTestRunnerState.skips++;
             if (gTestRunnerSkipIsFail)
+            {
+                MgbaPrintf_("\e[31m== SKIP and SkipIsFail ==\e[0m");
                 gTestRunnerState.exitCode = 1;
+            }
         }
         else
         {
@@ -163,6 +166,7 @@ void CB2_TestRunner(void)
             }
             else if (gTestRunnerState.result != TEST_RESULT_SKIP || gTestRunnerSkipIsFail)
             {
+                MgbaPrintf_("\e[31m== Unexpected result ==\e[0m");
                 gTestRunnerState.exitCode = 1;
                 color = "\e[31m";
             }
