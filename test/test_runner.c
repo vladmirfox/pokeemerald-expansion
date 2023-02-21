@@ -211,6 +211,7 @@ void CB2_TestRunner(void)
         break;
 
     case STATE_EXIT:
+        MgbaPrintf_("Exit with status %d", gTestRunnerState.exitCode);
         MgbaExit_(gTestRunnerState.exitCode);
         break;
     }
