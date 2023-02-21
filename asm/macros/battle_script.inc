@@ -2248,7 +2248,11 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro jumpifhitbyphys battler:req, ptr:req
+	.macro jumpifshelltrap battler:req, ptr:req
 	various \battler, VARIOUS_JUMP_IF_SHELL_TRAP
 	.4byte \ptr
+	.endm
+
+	.macro hitswitchtargetfailed
+	various 0, VARIOUS_HIT_SWITCH_TARGET_FAILED
 	.endm
