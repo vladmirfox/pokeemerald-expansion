@@ -5727,7 +5727,7 @@ static void Cmd_moveend(void)
                 gBattleStruct->lastMoveFailed &= ~(gBitTable[gBattlerAttacker]);
 
             // Set ShellTrap to activate after the attacker's turn if target was hit by a physical move.
-            if (gBattleMoves[gBattleMons[gBattlerTarget].moves[gBattleStruct->chosenMovePositions[gBattlerTarget]]].effect == EFFECT_SHELL_TRAP
+            if (gBattleMoves[gChosenMoveByBattler[gBattlerTarget]].effect == EFFECT_SHELL_TRAP
                 && gBattlerTarget != gBattlerAttacker
                 && GetBattlerSide(gBattlerTarget) != GetBattlerSide(gBattlerAttacker)
                 && gProtectStructs[gBattlerTarget].physicalDmg
