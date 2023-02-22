@@ -10112,7 +10112,7 @@ static void Cmd_various(void)
         if ((i = ShouldDoTrainerSlide(gActiveBattler, TRAINER_SLIDE_FIRST_DOWN)))
         {
             gBattleScripting.battler = gActiveBattler;
-            BattleScriptPush(gBattlescriptCurrInstr + 3);
+            BattleScriptPush(cmd->nextInstr);
             gBattlescriptCurrInstr = (i == 1 ? BattleScript_TrainerASlideMsgRet : BattleScript_TrainerBSlideMsgRet);
             return;
         }
@@ -10124,7 +10124,7 @@ static void Cmd_various(void)
         if ((i = ShouldDoTrainerSlide(gActiveBattler, TRAINER_SLIDE_LAST_SWITCHIN)))
         {
             gBattleScripting.battler = gActiveBattler;
-            BattleScriptPush(gBattlescriptCurrInstr + 3);
+            BattleScriptPush(cmd->nextInstr);
             gBattlescriptCurrInstr = (i == 1 ? BattleScript_TrainerASlideMsgRet : BattleScript_TrainerBSlideMsgRet);
             return;
         }
