@@ -1317,6 +1317,12 @@
 	.2byte \holdEffect
 	.4byte \jumpInstr
 	.endm
+	
+	.macro jumpifmorethanhalfHP battler:req, jumpInstr:req
+	callnative BS_JumpIfMoreThanHalfHP
+	.byte \battler
+	.4byte \jumpInstr
+	.endm
 
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req
@@ -2047,11 +2053,6 @@
 
 	.macro activateterrainchangeabilities battler:req
 	various \battler, VARIOUS_ACTIVATE_TERRAIN_CHANGE_ABILITIES
-	.endm
-
-	.macro jumpifnovalidtargets jumpInstr:req
-	various BS_ATTACKER, VARIOUS_JUMP_IF_NO_VALID_TARGETS
-	.4byte \jumpInstr
 	.endm
 
 @ helpful macros

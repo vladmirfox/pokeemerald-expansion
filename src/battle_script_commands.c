@@ -5018,10 +5018,17 @@ static void Cmd_jumpifabilitypresent(void)
 {
     CMD_ARGS(u16 ability, const u8 *jumpInstr);
 
-    if (IsAbilityOnField(cmd->ability))
+    u16 ability = cmd->ability;
+    u32 abilityBattler = IsAbilityOnField(ability);
+    if (abilityBattler)
+    {
+        gBattlerAbility = abilityBattler - 1;
         gBattlescriptCurrInstr = cmd->jumpInstr;
+    }
     else
+    {
         gBattlescriptCurrInstr = cmd->nextInstr;
+    }
 }
 
 static void Cmd_endselectionscript(void)
@@ -6919,6 +6926,35 @@ static void SetDmgHazardsBattlescript(u8 battlerId, u8 multistringId)
         gBattlescriptCurrInstr = BattleScript_DmgHazardsOnFaintedBattler;
 }
 
+bool32 DoSwitchInAbilitiesItems(u32 battlerId)
+{
+    return (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battlerId, 0, 0, 0)
+             || (gBattleWeather & B_WEATHER_ANY && WEATHER_HAS_EFFECT && AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, battlerId, 0, 0, 0))
+             || (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY && AbilityBattleEffects(ABILITYEFFECT_ON_TERRAIN, battlerId, 0, 0, 0))
+             || ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, battlerId, FALSE)
+             || AbilityBattleEffects(ABILITYEFFECT_TRACE2, 0, 0, 0, 0));
+}
+
+bool32 ShouldPostponeSwitchInAbilities(u32 battlerId)
+{
+    bool32 aliveOpposing1 = IsBattlerAlive(BATTLE_OPPOSITE(battlerId));
+    bool32 aliveOpposing2 = IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(battlerId)));
+    // No pokemon on opposing side - postpone.
+    if (!aliveOpposing1 && !aliveOpposing2)
+        return TRUE;
+
+    // Checks for double battle, so abilities like Intimidate wait until all battlers are switched-in before activating.
+    if (IsDoubleBattle())
+    {
+        if (aliveOpposing1 && !aliveOpposing2 && !HasNoMonsToSwitch(BATTLE_OPPOSITE(battlerId), PARTY_SIZE, PARTY_SIZE))
+            return TRUE;
+        if (!aliveOpposing1 && aliveOpposing2 && !HasNoMonsToSwitch(BATTLE_PARTNER(BATTLE_OPPOSITE(battlerId)), PARTY_SIZE, PARTY_SIZE))
+            return TRUE;
+    }
+
+    return FALSE;
+}
+
 static void Cmd_switchineffects(void)
 {
     CMD_ARGS(u8 battler);
@@ -7053,12 +7089,17 @@ static void Cmd_switchineffects(void)
 
         gDisableStructs[gActiveBattler].truantSwitchInHack = 0;
 
-        if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gActiveBattler, 0, 0, 0)
-         || (gBattleWeather & B_WEATHER_ANY && WEATHER_HAS_EFFECT && AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, gActiveBattler, 0, 0, 0))
-         || (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY && AbilityBattleEffects(ABILITYEFFECT_ON_TERRAIN, gActiveBattler, 0, 0, 0))
-         || ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, gActiveBattler, FALSE)
-         || AbilityBattleEffects(ABILITYEFFECT_TRACE2, 0, 0, 0, 0))
-            return;
+        // Don't activate switch-in abilities if the opposing field is empty.
+        // This could happen when a mon uses explosion and causes everyone to faint.
+        if (ShouldPostponeSwitchInAbilities(gActiveBattler) || gBattleStruct->switchInAbilityPostponed)
+        {
+            gBattleStruct->switchInAbilityPostponed |= gBitTable[gActiveBattler];
+        }
+        else
+        {
+            if (DoSwitchInAbilitiesItems(gActiveBattler))
+                return;
+        }
 
         gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_TOXIC_SPIKES_DAMAGED | SIDE_STATUS_STEALTH_ROCK_DAMAGED | SIDE_STATUS_STICKY_WEB_DAMAGED);
 
@@ -11073,22 +11114,6 @@ static void Cmd_various(void)
         AbilityBattleEffects(ABILITYEFFECT_ON_TERRAIN, gActiveBattler, 0, 0, 0);
         return;
     }
-    case VARIOUS_JUMP_IF_NO_VALID_TARGETS:
-        {
-            VARIOUS_ARGS(const u8 *jumpInstr);
-            u32 count = 0;
-
-            for (i = 0; i < gBattlersCount; i++)
-            {
-                if (GetBattlerSide(i) != GetBattlerSide(gBattlerAttacker) && IsBattlerAlive(i))
-                    count++;
-            }
-            if (count == 0)
-                gBattlescriptCurrInstr = cmd->jumpInstr;
-            else
-                gBattlescriptCurrInstr = cmd->nextInstr;
-            return;
-        }
     case VARIOUS_JUMP_IF_EMERGENCY_EXITED:
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
@@ -11222,14 +11247,15 @@ static void Cmd_tryexplosion(void)
 {
     CMD_ARGS();
 
+    u32 dampBattler;
     if (gBattleControllerExecFlags)
         return;
 
-    if ((gBattlerTarget = IsAbilityOnField(ABILITY_DAMP)))
+    if ((dampBattler = IsAbilityOnField(ABILITY_DAMP)))
     {
         // Failed, a battler has Damp
         gLastUsedAbility = ABILITY_DAMP;
-        RecordAbilityBattle(--gBattlerTarget, ABILITY_DAMP);
+        gBattlerTarget = --dampBattler;
         gBattlescriptCurrInstr = BattleScript_DampStopsExplosion;
         return;
     }
@@ -11239,14 +11265,6 @@ static void Cmd_tryexplosion(void)
     BtlController_EmitHealthBarUpdate(BUFFER_A, INSTANT_HP_BAR_DROP);
     MarkBattlerForControllerExec(gActiveBattler);
     gBattlescriptCurrInstr = cmd->nextInstr;
-
-    for (gBattlerTarget = 0; gBattlerTarget < gBattlersCount; gBattlerTarget++)
-    {
-        if (gBattlerTarget == gBattlerAttacker)
-            continue;
-        if (IsBattlerAlive(gBattlerTarget))
-            break;
-    }
 }
 
 static void Cmd_setatkhptozero(void)
@@ -16070,6 +16088,17 @@ void BS_CalcMetalBurstDmg(void)
         gSpecialStatuses[gBattlerAttacker].ppNotAffectedByPressure = TRUE;
         gBattlescriptCurrInstr = cmd->failInstr;
     }
+}
+
+void BS_JumpIfMoreThanHalfHP(void)
+{
+    NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
+
+    u8 battler = GetBattlerForBattleScript(cmd->battler);
+    if (gBattleMons[battler].hp > (gBattleMons[battler].maxHP + 1) / 2)
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 void BS_JumpIfHoldEffect(void)
