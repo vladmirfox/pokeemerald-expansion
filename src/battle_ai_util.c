@@ -574,9 +574,6 @@ static bool32 ShouldFailForIllusion(u16 illusionSpecies, u32 battlerId)
         return FALSE;
     }
 
-    // Don't fall for illusion if a move which had no effect should hit the target.
-    // For example, Psychic doesn't affect Zoroark, but it should affect the pokemon it disguises itself into.
-
     return TRUE;
 }
 
