@@ -10036,6 +10036,11 @@ BattleScript_HealReplacementZMove::
 	datahpupdate BS_SCRIPTING
 	return
 
+BattleScript_CouldntFullyProtect::
+	printstring STRINGID_COULDNTFULLYPROTECT
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_EffectExtremeEvoboost::
 	attackcanceler
 	attackstring
