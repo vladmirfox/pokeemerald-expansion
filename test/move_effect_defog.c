@@ -154,8 +154,8 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Stealth Rock and S
         if (move == MOVE_DEFOG) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
             MESSAGE("Foe Wobbuffet's evasiveness fell!");
-            MESSAGE("Wobbuffet blew away Stealth Rock!");
-            MESSAGE("Wobbuffet blew away Sticky Web!");
+            MESSAGE("The pointed stones disappeared from around your team!");
+            MESSAGE("The sticky web has disappeared from the ground around your team!");
         }
         // Switch happens
         MESSAGE("Wobbuffet, that's enough! Come back!");
@@ -174,6 +174,116 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Stealth Rock and S
                 MESSAGE("Wobbuffet was caught in a Sticky Web!");
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
                 MESSAGE("Wobbuffet's speed fell!");
+            }
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Spikes from player's side")
+{
+    u16 move;
+
+    PARAMETRIZE { move = MOVE_DEFOG; }
+    PARAMETRIZE { move = MOVE_CELEBRATE; }
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) {Speed(2); }
+        PLAYER(SPECIES_WOBBUFFET) {Speed(2); }
+        OPPONENT(SPECIES_WOBBUFFET) {Speed(5); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SPIKES); MOVE(player, move); }
+        TURN { SWITCH(player, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKES, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, move, player);
+        if (move == MOVE_DEFOG) {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+            MESSAGE("Foe Wobbuffet's evasiveness fell!");
+            MESSAGE("The spikes disappeared from the ground around your team!");
+        }
+        // Switch happens
+        MESSAGE("Wobbuffet, that's enough! Come back!");
+        MESSAGE("Go! Wobbuffet!");
+        if (move != MOVE_DEFOG) {
+            HP_BAR(player);
+            MESSAGE("Wobbuffet is hurt by spikes!");
+        }
+        else {
+            NONE_OF {
+                HP_BAR(player);
+                MESSAGE("Wobbuffet is hurt by spikes!");
+            }
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes terrain")
+{
+    u16 move;
+
+    PARAMETRIZE { move = MOVE_PSYCHIC_TERRAIN; }
+    PARAMETRIZE { move = MOVE_ELECTRIC_TERRAIN; }
+    PARAMETRIZE { move = MOVE_MISTY_TERRAIN; }
+    PARAMETRIZE { move = MOVE_GRASSY_TERRAIN; }
+    GIVEN {
+        ASSUME(B_DEFOG_CLEARS_TERRAIN >= GEN_8);
+        PLAYER(SPECIES_WOBBUFFET) {Speed(50); }
+        OPPONENT(SPECIES_WOBBUFFET) {Speed(5); }
+    } WHEN {
+        TURN { MOVE(player, move); MOVE(opponent, MOVE_DEFOG); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, move, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DEFOG, opponent);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Wobbuffet's evasiveness fell!");
+        if (move == MOVE_PSYCHIC_TERRAIN) {
+            MESSAGE("The weirdness disappeared from the battlefield.");
+        }
+        else if (move == MOVE_ELECTRIC_TERRAIN) {
+            MESSAGE("The electricity disappeared from the battlefield.");
+        }
+        else if (move == MOVE_MISTY_TERRAIN) {
+            MESSAGE("The mist disappeared from the battlefield.");
+        }
+        else if (move == MOVE_GRASSY_TERRAIN) {
+            MESSAGE("The grass disappeared from the battlefield.");
+        }
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG, player);
+    }
+}
+
+SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Toxic Spikes from opponent's side")
+{
+    u16 move;
+
+    PARAMETRIZE { move = MOVE_DEFOG; }
+    PARAMETRIZE { move = MOVE_CELEBRATE; }
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) {Speed(5); }
+        OPPONENT(SPECIES_WOBBUFFET) {Speed(2); }
+        OPPONENT(SPECIES_WOBBUFFET) {Speed(2); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_TOXIC_SPIKES); MOVE(opponent, move); }
+        TURN { SWITCH(opponent, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, player);
+        ANIMATION(ANIM_TYPE_MOVE, move, opponent);
+        if (move == MOVE_DEFOG) {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+            MESSAGE("Wobbuffet's evasiveness fell!");
+            MESSAGE("The poison spikes disappeared from the ground around the opposing team!");
+        }
+        // Switch happens
+        MESSAGE("2 sent out Wobbuffet!");
+        if (move != MOVE_DEFOG) {
+            MESSAGE("Foe Wobbuffet was poisoned!");
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
+            STATUS_ICON(opponent, poison: TRUE);
+        }
+        else {
+            NONE_OF {
+                MESSAGE("Foe Wobbuffet was poisoned!");
+                ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
+                STATUS_ICON(opponent, poison: TRUE);
             }
         }
     }
@@ -215,7 +325,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Aurora Veil from p
     }
 }
 
-DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes everything except screens on the same side")
+DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes everything it can")
 {
     bool32 defogTurn = FALSE;
     GIVEN {
@@ -249,15 +359,17 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes everything except 
             MESSAGE("Ally's Mist wore off!");
             MESSAGE("Ally's Aurora Veil wore off!");
             MESSAGE("Ally's Safeguard wore off!");
-            MESSAGE("Foe Glalie blew away spikes!");
-            MESSAGE("Foe Glalie blew away Stealth Rock!");
-            MESSAGE("Foe Glalie blew away Toxic Spikes!");
-            MESSAGE("Foe Glalie blew away Sticky Web!");
+
+            MESSAGE("The spikes disappeared from the ground around your team!");
+            MESSAGE("The pointed stones disappeared from around your team!");
+            MESSAGE("The poison spikes disappeared from the ground around your team!");
+            MESSAGE("The sticky web has disappeared from the ground around your team!");
+
             // Opponent side
-            MESSAGE("Foe Glalie blew away spikes!");
-            MESSAGE("Foe Glalie blew away Stealth Rock!");
-            MESSAGE("Foe Glalie blew away Toxic Spikes!");
-            MESSAGE("Foe Glalie blew away Sticky Web!");
+            MESSAGE("The spikes disappeared from the ground around the opposing team!");
+            MESSAGE("The pointed stones disappeared from around the opposing team!");
+            MESSAGE("The poison spikes disappeared from the ground around the opposing team!");
+            MESSAGE("The sticky web has disappeared from the ground around the opposing team!");
         }
     }
 }
