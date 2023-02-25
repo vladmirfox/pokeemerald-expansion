@@ -745,9 +745,7 @@ s32 AI_CalcDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 *typeEffectiveness,
 
     gBattleStruct->dynamicMoveType = 0;
 
-    if (move == MOVE_NATURE_POWER)
-        move = GetNaturePowerMove();
-
+    GET_MOVE_CALLED(move, battlerDef);  //For simulated damage for Me First, Copycat, Nature Power, Mimic. Predicted move is the last used move.
     SetTypeBeforeUsingMove(move, battlerAtk);
     GET_MOVE_TYPE(move, moveType);
 

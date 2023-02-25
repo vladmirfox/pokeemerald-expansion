@@ -1821,7 +1821,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_MIMIC] =
     {
         .effect = EFFECT_MIMIC,
-        .power = 0,
+        .power = 1,
         .type = TYPE_NORMAL,
         .accuracy = 0,
         .pp = 10,
@@ -2112,7 +2112,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_MIRROR_MOVE] =
     {
         .effect = EFFECT_MIRROR_MOVE,
-        .power = 0,
+        .power = 1,
         .type = TYPE_FLYING,
         .accuracy = 0,
         .pp = 20,
@@ -6913,7 +6913,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_ME_FIRST] =
     {
         .effect = EFFECT_ME_FIRST,
-        .power = 0,
+        .power = 1,
         .type = TYPE_NORMAL,
         .accuracy = 0,
         .pp = 20,
@@ -6929,7 +6929,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_COPYCAT] =
     {
         .effect = EFFECT_COPYCAT,
-        .power = 0,
+        .power = 1,
         .type = TYPE_NORMAL,
         .accuracy = 0,
         .pp = 20,

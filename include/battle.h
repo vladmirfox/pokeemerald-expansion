@@ -675,6 +675,24 @@ struct BattleStruct
         typeArg = gBattleMoves[move].type;                            \
 }
 
+#define GET_MOVE_CALLED(move, targetArg)                              \
+{                                                                     \
+    switch (gBattleMoves[move].effect)                                \
+    {                                                                 \
+    case EFFECT_COPYCAT:                                              \
+    case EFFECT_MIRROR_MOVE:                                          \
+    case EFFECT_MIMIC:                                                \
+        move = gLastMoves[targetArg];                                 \
+        break;                                                        \
+    case EFFECT_ME_FIRST:                                             \
+        move = AI_DATA->predictedMoves[targetArg];                    \
+        break;                                                        \
+    case EFFECT_NATURE_POWER:                                         \
+        move = GetNaturePowerMove();                                  \
+        break;                                                        \
+    }                                                                 \
+}                                                                       
+
 #define IS_MOVE_PHYSICAL(move)(GetBattleMoveSplit(move) == SPLIT_PHYSICAL)
 #define IS_MOVE_SPECIAL(move)(GetBattleMoveSplit(move) == SPLIT_SPECIAL)
 #define IS_MOVE_STATUS(move)(gBattleMoves[move].split == SPLIT_STATUS)
