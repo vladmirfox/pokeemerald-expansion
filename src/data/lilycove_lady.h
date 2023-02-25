@@ -1,4 +1,3 @@
-#include "constants/easy_chat.h"
 #include "constants/event_objects.h"
 #include "constants/items.h"
 #include "constants/moves.h"
@@ -361,7 +360,7 @@ static const u16 sFavorLadyAcceptedItems_Shiny[] =
     ITEM_HEAL_POWDER,
     ITEM_X_SPEED,
     ITEM_X_ATTACK,
-    ITEM_X_DEFEND,
+    ITEM_X_DEFENSE,
     ITEM_BLUE_FLUTE,
     ITEM_YELLOW_FLUTE,
     ITEM_RED_FLUTE,
