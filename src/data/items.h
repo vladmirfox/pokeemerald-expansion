@@ -9918,4 +9918,15 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
     },
+    [ITEM_BLACK_AUGURITE] =
+    {
+        .name = _("BlackArugrite"),
+        .itemId = ITEM_BLACK_AUGURITE,
+        .price = 8000,
+        .description = sBlackAuguriteDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        .flingPower = 30,
+    },
 };

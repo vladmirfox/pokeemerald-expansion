@@ -933,8 +933,9 @@
 #define ITEM_PUNCHING_GLOVE 760
 #define ITEM_COVERT_CLOAK 761
 #define ITEM_LOADED_DICE 762
+#define ITEM_BLACK_AUGURITE 763
 
-#define ITEMS_COUNT 763
+#define ITEMS_COUNT 764
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations
@@ -1002,6 +1003,6 @@
 #define ITEM_B_USE_OTHER    2
 
 // Check if the item is one that can be used on a Pokemon.
-#define ITEM_HAS_EFFECT(item) ((item) >= ITEM_POTION && (item) <= LAST_BERRY_INDEX)
+#define ITEM_HAS_EFFECT(item) ((item) >= ITEM_POTION && (item) <= ITEMS_COUNT)
 
 #endif  // GUARD_CONSTANTS_ITEMS_H

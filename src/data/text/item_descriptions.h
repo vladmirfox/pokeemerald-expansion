@@ -3817,3 +3817,8 @@ static const u8 sLoadedDiceDesc[] = _(
     "Rolls high numbers.\n"
     "Multihit strikes\n"
     "hit more times.");
+
+static const u8 sBlackAuguriteDesc[] = _(
+    "A glassy black stone\n"
+    "that makes certain\n"
+    "Pokémon evolve.");
