@@ -9918,6 +9918,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
     },
+
     [ITEM_BLACK_AUGURITE] =
     {
         .name = _("BlackArugrite"),
