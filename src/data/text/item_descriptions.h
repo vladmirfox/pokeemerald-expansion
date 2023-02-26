@@ -3819,16 +3819,16 @@ static const u8 sLoadedDiceDesc[] = _(
     "hit more times.");
 
 static const u8 sBlackAuguriteDesc[] = _(
-    "A glassy black\n"
-    "stone that makes\n"
-    "certain Pokémon evolve.");
+    "A black stone that\n"
+    "makes some Pokémon\n"
+    "evolve.");;
 
 static const u8 sLinkingCordDesc[] = _(
-    "Makes certain\n"
-    "species of Pokémon\n"
-    "evolve.");
+    "A mysterious string\n"
+    "that makes some\n"
+    "Pokémon evolve.");
 
 static const u8 sPeatBlockDesc[] = _(
-    "Makes certain\n"
-    "species of Pokémon\n"
-    "evolve.");
+    "A block of material\n"
+    "that makes some\n"
+    "Pokémon evolve.");

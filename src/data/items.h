@@ -9920,7 +9920,7 @@ const struct Item gItems[] =
     },
     [ITEM_BLACK_AUGURITE] =
     {
-        .name = _("BlackArugrite"),
+        .name = _("BlackAugurite"),
         .itemId = ITEM_BLACK_AUGURITE,
         .price = 8000,
         .description = sBlackAuguriteDesc,
