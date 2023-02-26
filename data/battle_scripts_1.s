@@ -417,6 +417,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectVictoryDance            @ EFFECT_VICTORY_DANCE
 	.4byte BattleScript_EffectTeatime                 @ EFFECT_TEATIME
 	.4byte BattleScript_EffectAttackUpUserAlly        @ EFFECT_ATTACK_UP_USER_ALLY
+<<<<<<< HEAD
 	.4byte BattleScript_EffectShellTrap               @ EFFECT_SHELL_TRAP
 	.4byte BattleScript_EffectHit                     @ EFFECT_PSYBLADE
 	.4byte BattleScript_EffectHit                     @ EFFECT_HYDRO_STEAM
@@ -568,6 +569,11 @@ BattleScript_SpikesActivates::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+=======
+	.4byte BattleScript_EffectShellTrap				  @ EFFECT_SHELL_TRAP
+	.4byte BattleScript_EffectHit                     @ EFFECT_DRAGON_DARTS
+	
+>>>>>>> Port Dragon Darts smart targeting from the CFRU
 BattleScript_EffectAttackUpUserAlly:
 	jumpifnoally BS_ATTACKER, BattleScript_EffectAttackUp
 	attackcanceler

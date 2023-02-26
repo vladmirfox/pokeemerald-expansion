@@ -1756,7 +1756,9 @@ static void Cmd_accuracycheck(void)
     u16 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, move);
     u16 gBattlerAttackerAbility = GetBattlerAbility(gBattlerAttacker);
     u8 gBattlerAttackerHoldEffect = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
+    bool8 recalculatedDragonDarts = FALSE;
 
+ACCURACY_CHECK_START:
     if (move == ACC_CURR_MOVE)
         move = gCurrentMove;
 
@@ -1802,6 +1804,18 @@ static void Cmd_accuracycheck(void)
             gMoveResultFlags |= MOVE_RESULT_MISSED;
             if (gBattlerAttackerHoldEffect == HOLD_EFFECT_BLUNDER_POLICY)
                 gBattleStruct->blunderPolicy = TRUE;    // Only activates from missing through acc/evasion checks
+
+            if (gBattleMoves[gCurrentMove].effect == EFFECT_DRAGON_DARTS
+                && !recalculatedDragonDarts // So we don't jump back and forth between targets
+                && CanTargetPartner(gBattlerTarget)
+                && !TargetFullyImmuneToCurrMove(BATTLE_PARTNER(gBattlerTarget)))
+            {
+                // Smart target to partner if miss
+                gBattlerTarget = BATTLE_PARTNER(gBattlerTarget);
+                recalculatedDragonDarts = TRUE;
+                gMoveResultFlags & ~MOVE_RESULT_MISSED;
+                goto ACCURACY_CHECK_START;
+            }
 
             if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE &&
                 (moveTarget == MOVE_TARGET_BOTH || moveTarget == MOVE_TARGET_FOES_AND_ALLY))
@@ -5798,9 +5812,13 @@ static void Cmd_moveend(void)
                 }
                 else
                 {
-                    if (gCurrentMove == MOVE_DRAGON_DARTS)
+                    if (gBattleMoves[gCurrentMove].effect == EFFECT_DRAGON_DARTS
+                    &&  gBattleStruct->moveTarget[gBattlerAttacker] == gBattlerTarget // Haven't already changed targets
+                    &&  CanTargetPartner(gBattlerTarget)
+                    &&  !TargetFullyImmuneToCurrMove(BATTLE_PARTNER(gBattlerTarget)))
                     {
-                        // TODO
+                        gBattlerTarget = BATTLE_PARTNER(gBattlerTarget); // Target the partner in doubles for second hit.
+                        PressurePPLose(gBattlerTarget, gBattlerAttacker, gChosenMove);
                     }
 
                     if (gBattleMons[gBattlerAttacker].hp

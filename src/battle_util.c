@@ -65,6 +65,7 @@ static u32 GetBattlerItemHoldEffectParam(u8 battler, u16 item);
 static uq4_12_t GetInverseTypeMultiplier(uq4_12_t multiplier);
 static uq4_12_t GetSupremeOverlordModifier(u8 battler);
 static bool8 CanBeInfinitelyConfused(u8 battler);
+static bool8 DoesTargetHaveAbilityImmunity(void);
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForRunningByItem[];
@@ -3777,6 +3778,14 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     gMultiHitCounter = gBattleMoves[gCurrentMove].strikeCount;
                     PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 3, 0)
                 }
+                PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+                if (gBattleMoves[gCurrentMove].effect == EFFECT_DRAGON_DARTS
+				&& CanTargetPartner(gBattlerTarget)
+				&& TargetFullyImmuneToCurrMove(gBattlerTarget))
+				{
+					// Smart target to partner
+					gBattlerTarget = BATTLE_PARTNER(gBattlerTarget);
+				}
             }
         #if B_BEAT_UP >= GEN_5
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_BEAT_UP)
@@ -11184,4 +11193,37 @@ bool32 IsGen6ExpShareEnabled(void)
 #else
     return FlagGet(I_EXP_SHARE_FLAG);
 #endif
+}
+
+bool8 CanTargetPartner(u8 battlerDef)
+{
+    return (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        && IsBattlerAlive(BATTLE_PARTNER(battlerDef))
+        && battlerDef != BATTLE_PARTNER(gBattlerAttacker);
+}
+
+bool8 TargetFullyImmuneToCurrMove(u8 battlerDef)
+{
+    u8 moveType = 0;
+    GET_MOVE_TYPE(gCurrentMove, moveType);
+
+    return (CalcTypeEffectivenessMultiplier(gCurrentMove, moveType, gBattlerAttacker, battlerDef, FALSE) & MOVE_RESULT_NO_EFFECT)
+         || IsBattlerProtected(battlerDef, gCurrentMove)
+         || IsSemiInvulnerable(battlerDef, gCurrentMove)
+         || DoesTargetHaveAbilityImmunity();
+}
+
+// For Dragon Darts
+static bool8 DoesTargetHaveAbilityImmunity(void)
+{
+    BattleScriptPushCursor(); // Backup the current script
+
+    if (AbilityBattleEffects(ABILITYEFFECT_MOVES_BLOCK, gBattlerTarget, 0, 0, 0)
+    || AbilityBattleEffects(ABILITYEFFECT_ABSORBING, gBattlerTarget, 0, 0, 0))
+    {
+        BattleScriptPop(); // Restore the original script
+        return TRUE;
+    }
+
+    return FALSE;
 }

@@ -221,6 +221,8 @@ void CopyMonAbilityAndTypesToBattleMon(u32 battler, struct Pokemon *mon);
 void RecalcBattlerStats(u32 battler, struct Pokemon *mon);
 bool32 IsAlly(u32 battlerAtk, u32 battlerDef);
 bool32 IsGen6ExpShareEnabled(void);
+bool8 CanTargetPartner(u8 battlerDef);
+bool8 TargetFullyImmuneToCurrMove(u8 battlerDef);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

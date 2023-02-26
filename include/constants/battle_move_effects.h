@@ -415,7 +415,8 @@
 #define EFFECT_MORTAL_SPIN                  409
 #define EFFECT_GIGATON_HAMMER               410
 #define EFFECT_SALT_CURE                    411
+#define EFFECT_DRAGON_DARTS                 412
 
-#define NUM_BATTLE_MOVE_EFFECTS             412
+#define NUM_BATTLE_MOVE_EFFECTS             413
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H
