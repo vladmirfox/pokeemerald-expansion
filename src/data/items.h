@@ -9942,6 +9942,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
         .flingPower = 30,
     },
+
     [ITEM_PEAT_BLOCK] =
     {
         .name = _("Peat Block"),
