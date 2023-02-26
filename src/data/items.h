@@ -9930,6 +9930,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
         .flingPower = 30,
     },
+
     [ITEM_LINKING_CORD] =
     {
         .name = _("Linking Cord"),
