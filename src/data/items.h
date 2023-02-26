@@ -9918,6 +9918,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
     },
+
     [ITEM_BLACK_AUGURITE] =
     {
         .name = _("BlackAugurite"),
@@ -9929,6 +9930,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
         .flingPower = 30,
     },
+
     [ITEM_LINKING_CORD] =
     {
         .name = _("Linking Cord"),
@@ -9940,6 +9942,7 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
         .flingPower = 30,
     },
+
     [ITEM_PEAT_BLOCK] =
     {
         .name = _("Peat Block"),
