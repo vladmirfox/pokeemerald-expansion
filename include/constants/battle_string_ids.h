@@ -645,8 +645,9 @@
 #define STRINGID_TOXICSPIKESDISAPPEAREDFROMTEAM       643
 #define STRINGID_STICKYWEBDISAPPEAREDFROMTEAM         644
 #define STRINGID_STEALTHROCKDISAPPEAREDFROMTEAM       645
-
-#define BATTLESTRINGS_COUNT                           646
+#define STRINGID_COULDNTFULLYPROTECT                  646
+#define STRINGID_STOCKPILEDEFFECTWOREOFF              647
+#define BATTLESTRINGS_COUNT                           648
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
