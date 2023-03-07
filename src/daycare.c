@@ -510,32 +510,49 @@ static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
 {
     s32 parent;
     s32 natureTries = 0;
+    u32 personality;
+    u32 pidRolls = 1;
+    u32 tid = gSaveBlock2Ptr->playerTrainerId[0]
+           | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
+           | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
+           | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
 
     SeedRng2(gMain.vblankCounter2);
     parent = GetParentToInheritNature(daycare);
 
+    if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+        pidRolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
+
     // don't inherit nature
     if (parent < 0)
     {
-        daycare->offspringPersonality = (Random2() << 16) | ((Random() % 0xfffe) + 1);
+        do
+        {
+            personality = (Random2() << 16) | ((Random() % 0xFFFE) + 1);
+            pidRolls--;
+        } while (GET_SHINY_VALUE(tid, personality) >= SHINY_ODDS && pidRolls > 0);
+        
     }
     // inherit nature
     else
     {
         u8 wantedNature = GetNatureFromPersonality(GetBoxMonData(&daycare->mons[parent].mon, MON_DATA_PERSONALITY, NULL));
-        u32 personality;
 
         do
         {
-            personality = (Random2() << 16) | (Random());
-            if (wantedNature == GetNatureFromPersonality(personality) && personality != 0)
-                break; // found a personality with the same nature
+            do
+            {
+                personality = (Random2() << 16) | (Random());
+                if (wantedNature == GetNatureFromPersonality(personality) && personality != 0)
+                    break; // found a personality with the same nature
 
-            natureTries++;
-        } while (natureTries <= 2400);
-
-        daycare->offspringPersonality = personality;
+                natureTries++;
+            } while (natureTries <= 2400);
+            pidRolls--;
+        } while (GET_SHINY_VALUE(tid, personality) >= SHINY_ODDS && pidRolls > 0);
     }
+
+    daycare->offspringPersonality = personality;
 
     FlagSet(FLAG_PENDING_DAYCARE_EGG);
 }

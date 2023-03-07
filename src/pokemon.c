@@ -836,22 +836,32 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u8 availableIVs[NUM_STATS];
     u8 selectedIvs[LEGENDARY_PERFECT_IV_COUNT];
     bool32 isShiny;
+    u32 pidRolls = 1;
 
     ZeroBoxMonData(boxMon);
 
-    if (hasFixedPersonality)
-        personality = fixedPersonality;
-    else
-        personality = Random32();
+    if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+        pidRolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
+    if (LURE_STEP_COUNT != 0)
+        pidRolls += 1;
 
     // Determine original trainer ID
     if (otIdType == OT_ID_RANDOM_NO_SHINY)
     {
-        value = Random32();
+        if (hasFixedPersonality)
+            personality = fixedPersonality;
+        else
+            personality = Random32();
+
         isShiny = FALSE;
     }
     else if (otIdType == OT_ID_PRESET)
     {
+        if (hasFixedPersonality)
+            personality = fixedPersonality;
+        else
+            personality = Random32();
+
         value = fixedOtId;
         isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS;
     }
@@ -865,23 +875,21 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         if (P_FLAG_FORCE_NO_SHINY != 0 && FlagGet(P_FLAG_FORCE_NO_SHINY))
         {
             isShiny = FALSE;
+            personality = Random32();
         }
         else if (P_FLAG_FORCE_SHINY != 0 && FlagGet(P_FLAG_FORCE_SHINY))
         {
             isShiny = TRUE;
+            personality = Random32();
         }
         else
         {
-            u32 totalRerolls = 0;
-            if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
-                totalRerolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
-            if (LURE_STEP_COUNT != 0)
-                totalRerolls += 1;
-
-            while (GET_SHINY_VALUE(value, personality) >= SHINY_ODDS && totalRerolls > 0)
             {
-                personality = Random32();
-                totalRerolls--;
+                do
+                {
+                    personality = Random32();
+                    pidRolls--;
+                } while (GET_SHINY_VALUE(value, personality) >= SHINY_ODDS && pidRolls > 0);
             }
 
             isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS;
@@ -1008,12 +1016,26 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 void CreateMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 nature)
 {
     u32 personality;
+    u32 pidRolls = 1;
+    u32 tid = gSaveBlock2Ptr->playerTrainerId[0]
+           | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
+           | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
+           | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+    
+    if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+        pidRolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
+    if (LURE_STEP_COUNT != 0)
+        pidRolls += 1;
 
     do
     {
-        personality = Random32();
-    }
-    while (nature != GetNatureFromPersonality(personality));
+        do
+        {
+            personality = Random32();
+        }
+        while (nature != GetNatureFromPersonality(personality));
+        pidRolls--;
+    } while (GET_SHINY_VALUE(tid, personality) >= SHINY_ODDS && pidRolls > 0);
 
     CreateMon(mon, species, level, fixedIV, TRUE, personality, OT_ID_PLAYER_ID, 0);
 }
@@ -1021,6 +1043,16 @@ void CreateMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV,
 void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 gender, u8 nature, u8 unownLetter)
 {
     u32 personality;
+    u32 pidRolls = 1;
+    u32 tid = gSaveBlock2Ptr->playerTrainerId[0]
+           | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
+           | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
+           | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+    
+    if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+        pidRolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
+    if (LURE_STEP_COUNT != 0)
+        pidRolls += 1;
 
     if ((u8)(unownLetter - 1) < NUM_UNOWN_FORMS)
     {
@@ -1028,21 +1060,29 @@ void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level,
 
         do
         {
-            personality = Random32();
-            actualLetter = GET_UNOWN_LETTER(personality);
-        }
-        while (nature != GetNatureFromPersonality(personality)
-            || gender != GetGenderFromSpeciesAndPersonality(species, personality)
-            || actualLetter != unownLetter - 1);
+            do
+            {
+                personality = Random32();
+                actualLetter = GET_UNOWN_LETTER(personality);
+            }
+            while (nature != GetNatureFromPersonality(personality)
+                || gender != GetGenderFromSpeciesAndPersonality(species, personality)
+                || actualLetter != unownLetter - 1);
+            pidRolls--;
+        } while (GET_SHINY_VALUE(tid, personality) >= SHINY_ODDS && pidRolls > 0);
     }
     else
     {
         do
         {
-            personality = Random32();
-        }
-        while (nature != GetNatureFromPersonality(personality)
-            || gender != GetGenderFromSpeciesAndPersonality(species, personality));
+            do
+            {
+                personality = Random32();
+            }
+            while (nature != GetNatureFromPersonality(personality)
+                || gender != GetGenderFromSpeciesAndPersonality(species, personality));
+            pidRolls--;
+        } while (GET_SHINY_VALUE(tid, personality) >= SHINY_ODDS && pidRolls > 0);
     }
 
     CreateMon(mon, species, level, fixedIV, TRUE, personality, OT_ID_PLAYER_ID, 0);
