@@ -927,7 +927,7 @@ void Ability_(u32 sourceLine, u32 ability)
             break;
         }
     }
-    INVALID_IF(i == NUM_ABILITY_SLOTS, "%S cannot have %S", gSpeciesNames[species], gAbilityNames[ability]);
+    INVALID_IF(i == NUM_ABILITY_SLOTS, "%S cannot have %S", GetSpeciesName(species), gAbilityNames[ability]);
 }
 
 void Level_(u32 sourceLine, u32 level)
