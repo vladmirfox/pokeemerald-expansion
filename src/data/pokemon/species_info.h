@@ -128,7 +128,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 6,
         .height = 20,
         .weight = 1000,
-        .evolutions = sVenusaurEvolutions,
         VENUSAUR_MISC_INFO,
     },
 
@@ -282,7 +281,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 3,
         .height = 17,
         .weight = 905,
-        .evolutions = sCharizardEvolutions,
         CHARIZARD_MISC_INFO,
     },
 
@@ -466,7 +464,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 2,
         .height = 16,
         .weight = 855,
-        .evolutions = sBlastoiseEvolutions,
         BLASTOISE_MISC_INFO,
     },
 
@@ -755,7 +752,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = gBeedrillPokedexText,
         .height = 10,
         .weight = 295,
-        .evolutions = sBeedrillEvolutions,
         BEEDRILL_MISC_INFO,
     },
 
@@ -889,7 +885,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 395,
-        .evolutions = sPidgeotEvolutions,
         PIDGEOT_MISC_INFO,
     },
 
@@ -3336,7 +3331,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 15,
-        .evolutions = sAlakazamEvolutions,
         ALAKAZAM_MISC_INFO,
     },
 
@@ -4011,7 +4005,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 785,
         .levelUpLearnset = sSlowbroLevelUpLearnset,
         .teachableLearnset = sSlowbroTeachableLearnset,
-        .evolutions = sSlowbroEvolutions,
         SLOWBRO_MISC_INFO,
     },
 
@@ -4715,7 +4708,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 15,
         .levelUpLearnset = sGengarLevelUpLearnset,
         .teachableLearnset = sGengarTeachableLearnset,
-        .evolutions = sGengarEvolutions,
         GENGAR_MISC_INFO,
     },
 
@@ -4809,7 +4801,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Iron Snake"),
         .height = 92,
         .weight = 4000,
-        .evolutions = sSteelixEvolutions,
         STEELIX_MISC_INFO,
     },
 
@@ -5879,7 +5870,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 800,
         .levelUpLearnset = sKangaskhanLevelUpLearnset,
         .teachableLearnset = sKangaskhanTeachableLearnset,
-        .evolutions = sKangaskhanEvolutions,
         KANGASKHAN_MISC_INFO,
     },
 
@@ -6373,7 +6363,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 18,
         .weight = 1180,
-        .evolutions = sScizorEvolutions,
         SCIZOR_MISC_INFO,
     },
 
@@ -6753,7 +6742,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 550,
-        .evolutions = sPinsirEvolutions,
         PINSIR_MISC_INFO,
     },
 
@@ -6887,7 +6875,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 13,
         .height = 65,
         .weight = 2350,
-        .evolutions = sGyaradosEvolutions,
         GYARADOS_MISC_INFO,
     },
 
@@ -7572,7 +7559,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 4,
         .height = 18,
         .weight = 590,
-        .evolutions = sAerodactylEvolutions,
         AERODACTYL_MISC_INFO,
     },
 
@@ -8011,7 +7997,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 4,
         .height = 20,
         .weight = 1220,
-        .evolutions = sMewtwoEvolutions,
         SPECIES_MEWTWO_MISC_INFO,
     },
 
@@ -9091,7 +9076,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_AMPHAROS,
         .description = gAmpharosPokedexText,
         .categoryName = _("Light"),
-        .evolutions = sAmpharosEvolutions,
         AMPHAROS_MISC_INFO,
     },
 
@@ -10591,7 +10575,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 540,
-        .evolutions = sHeracrossEvolutions,
         HERACROSS_MISC_INFO,
     },
 
@@ -11414,7 +11397,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 14,
         .weight = 350,
-        .evolutions = sHoundoomEvolutions,
         HOUNDOOM_MISC_INFO,
     },
 
@@ -11876,7 +11858,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 7,
         .height = 20,
         .weight = 2020,
-        .evolutions = sTyranitarEvolutions,
         TYRANITAR_MISC_INFO,
     },
 
@@ -12118,7 +12099,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Forest"),
         .height = 17,
         .weight = 522,
-        .evolutions = sSceptileEvolutions,
         SCEPTILE_MISC_INFO,
     },
 
@@ -12249,7 +12229,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_BLAZIKEN,
         .description = gBlazikenPokedexText,
         .categoryName = _("Blaze"),
-        .evolutions = sBlazikenEvolutions,
         BLAZIKEN_MISC_INFO,
     },
 
@@ -12376,7 +12355,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Mud Fish"),
         .height = 15,
         .weight = 819,
-        .evolutions = sSwampertEvolutions,
         SWAMPERT_MISC_INFO,
     },
 
@@ -13265,7 +13243,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_GARDEVOIR,
         .description = gGardevoirPokedexText,
         .categoryName = _("Embrace"),
-        .evolutions = sGardevoirEvolutions,
         GARDEVOIR_MISC_INFO,
     },
 
@@ -13322,7 +13299,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 16,
         .weight = 520,
-        .evolutions = sGalladeEvolutions,
         GALLADE_MISC_INFO,
     },
 
@@ -14069,7 +14045,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Darkness"),
         .height = 5,
         .weight = 110,
-        .evolutions = sSableyeEvolutions,
         SABLEYE_MISC_INFO,
     },
 
@@ -14136,7 +14111,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 6,
         .weight = 115,
-        .evolutions = sMawileEvolutions,
         MAWILE_MISC_INFO,
     },
 
@@ -14272,7 +14246,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 6,
         .height = 21,
         .weight = 3600,
-        .evolutions = sAggronEvolutions,
         AGGRON_MISC_INFO,
     },
 
@@ -14370,7 +14343,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_MEDICHAM,
         .description = gMedichamPokedexText,
         .categoryName = _("Meditate"),
-        .evolutions = sMedichamEvolutions,
         MEDICHAM_MISC_INFO,
     },
 
@@ -14462,7 +14434,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 402,
-        .evolutions = sManectricEvolutions,
         MANECTRIC_MISC_INFO,
     },
 
@@ -14896,7 +14867,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 3,
         .height = 18,
         .weight = 888,
-        .evolutions = sSharpedoEvolutions,
         SHARPEDO_MISC_INFO,
     },
 
@@ -15064,7 +15034,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 6,
         .height = 19,
         .weight = 2200,
-        .evolutions = sCameruptEvolutions,
         CAMERUPT_MISC_INFO,
     },
 
@@ -15485,7 +15454,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 11,
         .weight = 206,
-        .evolutions = sAltariaEvolutions,
         ALTARIA_MISC_INFO,
     },
 
@@ -16254,7 +16222,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 11,
         .weight = 125,
-        .evolutions = sBanetteEvolutions,
         BANETTE_MISC_INFO,
     },
 
@@ -16538,7 +16505,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Disaster"),
         .height = 12,
         .weight = 470,
-        .evolutions = sAbsolEvolutions,
         ABSOL_MISC_INFO,
     },
 
@@ -16633,7 +16599,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 2565,
-        .evolutions = sGlalieEvolutions,
         GLALIE_MISC_INFO,
     },
 
@@ -17086,7 +17051,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 1026,
-        .evolutions = sSalamenceEvolutions,
         SALAMENCE_MISC_INFO,
     },
 
@@ -17222,7 +17186,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 9,
         .height = 16,
         .weight = 5500,
-        .evolutions = sMetagrossEvolutions,
         METAGROSS_MISC_INFO,
     },
 
@@ -17497,7 +17460,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 400,
         .levelUpLearnset = sLatiasLevelUpLearnset,
         .teachableLearnset = sLatiasTeachableLearnset,
-        .evolutions = sLatiasEvolutions,
         LATIS_MISC_INFO,
     },
 
@@ -17556,7 +17518,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 600,
         .levelUpLearnset = sLatiosLevelUpLearnset,
         .teachableLearnset = sLatiosTeachableLearnset,
-        .evolutions = sLatiosEvolutions,
         LATIS_MISC_INFO,
     },
 
@@ -17624,7 +17585,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 13,
         .height = 45,
         .weight = 3520,
-        .evolutions = sKyogreEvolutions,
         KYOGRE_MISC_INFO,
     },
 
@@ -17686,7 +17646,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 14,
         .height = 35,
         .weight = 9500,
-        .evolutions = sGroudonEvolutions,
         GROUDON_MISC_INFO,
     },
 
@@ -17750,7 +17709,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 12,
         .height = 70,
         .weight = 2065,
-        .evolutions = sRayquazaEvolutions,
         RAYQUAZA_MISC_INFO,
     },
 
@@ -19359,7 +19317,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 12,
         .weight = 333,
-        .evolutions = sLopunnyEvolutions,
         LOPUNNY_MISC_INFO,
     },
 
@@ -19773,7 +19730,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_GARCHOMP,
         .description = gGarchompPokedexText,
         .categoryName = _("Mach"),
-        .evolutions = sGarchompEvolutions,
         GARCHOMP_MISC_INFO,
     },
 
@@ -19866,7 +19822,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 12,
         .weight = 540,
-        .evolutions = sLucarioEvolutions,
         LUCARIO_MISC_INFO,
     },
 
@@ -20281,7 +20236,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 22,
         .weight = 1355,
-        .evolutions = sAbomasnowEvolutions,
         ABOMASNOW_MISC_INFO,
     },
 
@@ -22333,7 +22287,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 11,
         .weight = 310,
-        .evolutions = sAudinoEvolutions,
         AUDINO_MISC_INFO,
     },
 
@@ -29968,7 +29921,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 7,
         .weight = 88,
-        .evolutions = sDiancieEvolutions,
         DIANCE_MISC_INFO,
     },
 
