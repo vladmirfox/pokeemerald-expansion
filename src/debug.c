@@ -87,6 +87,7 @@ enum { // Util
     DEBUG_UTIL_MENU_ITEM_TRAINER_NAME,
     DEBUG_UTIL_MENU_ITEM_TRAINER_GENDER,
     DEBUG_UTIL_MENU_ITEM_TRAINER_ID,
+    DEBUG_UTIL_MENU_ITEM_CLEAR_BOXES,
     DEBUG_UTIL_MENU_ITEM_CHEAT,
 };
 enum { // Scripts
@@ -206,7 +207,7 @@ enum { //Sound
 #define DEBUG_NUMBER_DIGITS_VARIABLES 5
 #define DEBUG_NUMBER_DIGITS_VARIABLE_VALUE 5
 #define DEBUG_NUMBER_DIGITS_ITEMS 4
-#define DEBUG_NUMBER_DIGITS_ITEM_QUANTITY 2
+#define DEBUG_NUMBER_DIGITS_ITEM_QUANTITY 3
 
 #define DEBUG_NUMBER_ICON_X 210
 #define DEBUG_NUMBER_ICON_Y 50
@@ -314,6 +315,7 @@ static void DebugAction_Util_WatchCredits(u8 taskId);
 static void DebugAction_Util_Trainer_Name(u8 taskId);
 static void DebugAction_Util_Trainer_Gender(u8 taskId);
 static void DebugAction_Util_Trainer_Id(u8 taskId);
+static void DebugAction_Util_Clear_Boxes(u8 taskId);
 static void DebugAction_Util_CheatStart(u8 taskId);
 
 static void DebugAction_FlagsVars_Flags(u8 taskId);
@@ -371,7 +373,8 @@ static void DebugAction_Sound_MUS(u8 taskId);
 static void DebugAction_Sound_MUS_SelectId(u8 taskId);
 
 
-extern u8 Debug_FlagsNotSetMessage[];
+extern u8 Debug_FlagsNotSetOverworldConfigMessage[];
+extern u8 Debug_FlagsNotSetBattleConfigMessage[];
 extern u8 Debug_Script_1[];
 extern u8 Debug_Script_2[];
 extern u8 Debug_Script_3[];
@@ -434,6 +437,7 @@ static const u8 sDebugText_Util_WatchCredits[] =            _("Watch Credits…{
 static const u8 sDebugText_Util_Trainer_Name[] =            _("Trainer name");
 static const u8 sDebugText_Util_Trainer_Gender[] =          _("Toggle T. Gender");
 static const u8 sDebugText_Util_Trainer_Id[] =              _("New Trainer Id");
+static const u8 sDebugText_Util_Clear_Boxes[] =             _("Clear Storage Boxes");
 static const u8 sDebugText_Util_CheatStart[] =              _("CHEAT Start");
 // Flags/Vars Menu
 static const u8 sDebugText_FlagsVars_Flags[] =                  _("Set Flag XYZ…{CLEAR_TO 110}{RIGHT_ARROW}");
@@ -606,7 +610,8 @@ static const struct ListMenuItem sDebugMenu_Items_Utilities[] =
     [DEBUG_UTIL_MENU_ITEM_TRAINER_NAME]     = {sDebugText_Util_Trainer_Name,     DEBUG_UTIL_MENU_ITEM_TRAINER_NAME},
     [DEBUG_UTIL_MENU_ITEM_TRAINER_GENDER]   = {sDebugText_Util_Trainer_Gender,   DEBUG_UTIL_MENU_ITEM_TRAINER_GENDER},
     [DEBUG_UTIL_MENU_ITEM_TRAINER_ID]       = {sDebugText_Util_Trainer_Id,       DEBUG_UTIL_MENU_ITEM_TRAINER_ID},
-    [DEBUG_UTIL_MENU_ITEM_CHEAT]            = {sDebugText_Util_CheatStart,        DEBUG_UTIL_MENU_ITEM_CHEAT},
+    [DEBUG_UTIL_MENU_ITEM_CLEAR_BOXES]      = {sDebugText_Util_Clear_Boxes,      DEBUG_UTIL_MENU_ITEM_CLEAR_BOXES},
+    [DEBUG_UTIL_MENU_ITEM_CHEAT]            = {sDebugText_Util_CheatStart,       DEBUG_UTIL_MENU_ITEM_CHEAT},
 };
 static const struct ListMenuItem sDebugMenu_Items_Scripts[] =
 {
@@ -740,6 +745,7 @@ static void (*const sDebugMenu_Actions_Utilities[])(u8) =
     [DEBUG_UTIL_MENU_ITEM_TRAINER_NAME]     = DebugAction_Util_Trainer_Name,
     [DEBUG_UTIL_MENU_ITEM_TRAINER_GENDER]   = DebugAction_Util_Trainer_Gender,
     [DEBUG_UTIL_MENU_ITEM_TRAINER_ID]       = DebugAction_Util_Trainer_Id,
+    [DEBUG_UTIL_MENU_ITEM_CLEAR_BOXES]      = DebugAction_Util_Clear_Boxes,
     [DEBUG_UTIL_MENU_ITEM_CHEAT]            = DebugAction_Util_CheatStart,
 };
 static void (*const sDebugMenu_Actions_Scripts[])(u8) =
@@ -1066,9 +1072,9 @@ static u8 Debug_CheckToggleFlags(u8 id)
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_FRONTIER_PASS:
             result = FlagGet(FLAG_SYS_FRONTIER_PASS);
             break;
-    #if DEBUG_FLAG_NO_COLLISION != 0
+    #if OW_FLAG_NO_COLLISION != 0
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_COLISSION:
-            result = FlagGet(DEBUG_FLAG_NO_COLLISION);
+            result = FlagGet(OW_FLAG_NO_COLLISION);
             break;
     #endif
     #if OW_FLAG_NO_ENCOUNTER != 0
@@ -1086,9 +1092,9 @@ static u8 Debug_CheckToggleFlags(u8 id)
             result = FlagGet(B_FLAG_NO_BAG_USE);
             break;
     #endif
-    #if B_FLAG_NO_CATCHING_USE != 0
+    #if B_FLAG_NO_CATCHING != 0
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING:
-            result = FlagGet(B_FLAG_NO_CATCHING_USE);
+            result = FlagGet(B_FLAG_NO_CATCHING);
             break;
     #endif
         default:
@@ -1682,8 +1688,8 @@ static void DebugAction_Util_Warp_SelectMapGroup(u8 taskId)
         gTasks[taskId].data[3] = 0;
         gTasks[taskId].data[4] = 0;
 
-        ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[3], STR_CONV_MODE_LEADING_ZEROS, 2);
-        ConvertIntToDecimalStringN(gStringVar2, MAP_GROUP_COUNT[gTasks[taskId].data[5]] - 1, STR_CONV_MODE_LEADING_ZEROS, 2);
+        ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[3], STR_CONV_MODE_LEADING_ZEROS, (MAP_GROUP_COUNT[gTasks[taskId].data[5]] - 1 >= 100) ? 3 : 2);
+        ConvertIntToDecimalStringN(gStringVar2, MAP_GROUP_COUNT[gTasks[taskId].data[5]] - 1, STR_CONV_MODE_LEADING_ZEROS, (MAP_GROUP_COUNT[gTasks[taskId].data[5]] - 1 >= 100) ? 3 : 2);
         StringExpandPlaceholders(gStringVar1, sDebugText_Util_WarpToMap_SelMax);
         GetMapName(gStringVar2, Overworld_GetMapHeaderByGroupAndId(gTasks[taskId].data[5], gTasks[taskId].data[3])->regionMapSectionId, 0);
         StringCopy(gStringVar3, gText_DigitIndicator[gTasks[taskId].data[4]]);
@@ -1728,8 +1734,8 @@ static void DebugAction_Util_Warp_SelectMap(u8 taskId)
                 gTasks[taskId].data[4] += 1;
         }
 
-        ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[3], STR_CONV_MODE_LEADING_ZEROS, 2);
-        ConvertIntToDecimalStringN(gStringVar2, MAP_GROUP_COUNT[gTasks[taskId].data[5]] - 1, STR_CONV_MODE_LEADING_ZEROS, 2);
+        ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].data[3], STR_CONV_MODE_LEADING_ZEROS, (max_value >= 100) ? 3 : 2);
+        ConvertIntToDecimalStringN(gStringVar2, MAP_GROUP_COUNT[gTasks[taskId].data[5]] - 1, STR_CONV_MODE_LEADING_ZEROS, (max_value >= 100) ? 3 : 2);
         StringExpandPlaceholders(gStringVar1, sDebugText_Util_WarpToMap_SelMax);
         GetMapName(gStringVar2, Overworld_GetMapHeaderByGroupAndId(gTasks[taskId].data[5], gTasks[taskId].data[3])->regionMapSectionId, 0);
         StringCopy(gStringVar3, gText_DigitIndicator[gTasks[taskId].data[4]]);
@@ -1802,8 +1808,8 @@ static void DebugAction_Util_PoisonMons(u8 taskId)
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, 0)
-            && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) != SPECIES_NONE
-            && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) != SPECIES_EGG)
+            && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
+            && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
         {
             u32 curStatus = STATUS1_POISON;
             SetMonData(&gPlayerParty[i], MON_DATA_STATUS, &curStatus);
@@ -1908,7 +1914,7 @@ static void DebugAction_Util_Weather_SelectId(u8 taskId)
         if (gTasks[taskId].data[3] <= 15 || gTasks[taskId].data[3] >= 20)
             StringCopyPadded(gStringVar1, sWeatherNames[gTasks[taskId].data[3]], CHAR_SPACE, 30);
         else
-            StringCopyPadded(gStringVar1, sText_WeatherNotDefined, CHAR_SPACE, 30); 
+            StringCopyPadded(gStringVar1, sText_WeatherNotDefined, CHAR_SPACE, 30);
 
         StringExpandPlaceholders(gStringVar4, sDebugText_Util_Weather_ID);
         AddTextPrinterParameterized(gTasks[taskId].data[2], 1, gStringVar4, 1, 1, 0, NULL);
@@ -1965,6 +1971,12 @@ static void DebugAction_Util_Trainer_Id(u8 taskId)
 {
     u32 trainerId = ((Random() << 16) | Random());
     SetTrainerId(trainerId, gSaveBlock2Ptr->playerTrainerId);
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+static void DebugAction_Util_Clear_Boxes(u8 taskId)
+{
+    ResetPokemonStorageSystem();
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
@@ -2449,16 +2461,16 @@ static void DebugAction_FlagsVars_ToggleFrontierPass(u8 taskId)
 }
 static void DebugAction_FlagsVars_CollisionOnOff(u8 taskId)
 {
-#if DEBUG_FLAG_NO_COLLISION == 0
+#if OW_FLAG_NO_COLLISION == 0
     Debug_DestroyMenu_Full(taskId);
     LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_FlagsNotSetMessage);
+    ScriptContext_SetupScript(Debug_FlagsNotSetOverworldConfigMessage);
 #else
-    if (FlagGet(DEBUG_FLAG_NO_COLLISION))
+    if (FlagGet(OW_FLAG_NO_COLLISION))
         PlaySE(SE_PC_OFF);
     else
         PlaySE(SE_PC_LOGIN);
-    FlagToggle(DEBUG_FLAG_NO_COLLISION);
+    FlagToggle(OW_FLAG_NO_COLLISION);
 #endif
 }
 static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId)
@@ -2466,7 +2478,7 @@ static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId)
 #if OW_FLAG_NO_ENCOUNTER == 0
     Debug_DestroyMenu_Full(taskId);
     LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_FlagsNotSetMessage);
+    ScriptContext_SetupScript(Debug_FlagsNotSetOverworldConfigMessage);
 #else
     if (FlagGet(OW_FLAG_NO_ENCOUNTER))
         PlaySE(SE_PC_OFF);
@@ -2480,7 +2492,7 @@ static void DebugAction_FlagsVars_TrainerSeeOnOff(u8 taskId)
 #if OW_FLAG_NO_TRAINER_SEE == 0
     Debug_DestroyMenu_Full(taskId);
     LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_FlagsNotSetMessage);
+    ScriptContext_SetupScript(Debug_FlagsNotSetOverworldConfigMessage);
 #else
     if (FlagGet(OW_FLAG_NO_TRAINER_SEE))
         PlaySE(SE_PC_OFF);
@@ -2494,7 +2506,7 @@ static void DebugAction_FlagsVars_BagUseOnOff(u8 taskId)
 #if B_FLAG_NO_BAG_USE == 0
     Debug_DestroyMenu_Full(taskId);
     LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_FlagsNotSetMessage);
+    ScriptContext_SetupScript(Debug_FlagsNotSetBattleConfigMessage);
 #else
     if (FlagGet(B_FLAG_NO_BAG_USE))
         PlaySE(SE_PC_OFF);
@@ -2505,10 +2517,10 @@ static void DebugAction_FlagsVars_BagUseOnOff(u8 taskId)
 }
 static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId)
 {
-#if B_FLAG_NO_CATCHING_USE == 0
+#if B_FLAG_NO_CATCHING == 0
     Debug_DestroyMenu_Full(taskId);
     LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_FlagsNotSetMessage);
+    ScriptContext_SetupScript(Debug_FlagsNotSetBattleConfigMessage);
 #else
     if (FlagGet(B_FLAG_NO_CATCHING))
         PlaySE(SE_PC_OFF);
@@ -2625,15 +2637,18 @@ static void DebugAction_Give_Item_SelectId(u8 taskId)
 }
 static void DebugAction_Give_Item_SelectQuantity(u8 taskId)
 {
+    u32 itemId = gTasks[taskId].data[5];
+
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
 
         if (JOY_NEW(DPAD_UP))
         {
+            u32 maxCapacity = (ItemId_GetPocket(itemId) - 1 == BERRIES_POCKET) ? MAX_BERRY_CAPACITY : MAX_BAG_ITEM_CAPACITY;
             gTasks[taskId].data[3] += sPowersOfTen[gTasks[taskId].data[4]];
-            if (gTasks[taskId].data[3] >= 100)
-                gTasks[taskId].data[3] = 99;
+            if (gTasks[taskId].data[3] > maxCapacity)
+                gTasks[taskId].data[3] = maxCapacity;
         }
         if (JOY_NEW(DPAD_DOWN))
         {
@@ -2667,7 +2682,7 @@ static void DebugAction_Give_Item_SelectQuantity(u8 taskId)
         DestroySprite(&gSprites[gTasks[taskId].data[6]]);       //Destroy item icon
 
         PlaySE(MUS_OBTAIN_ITEM);
-        AddBagItem(gTasks[taskId].data[5], gTasks[taskId].data[3]);
+        AddBagItem(itemId, gTasks[taskId].data[3]);
         DebugAction_DestroyExtraWindow(taskId);
     }
     else if (JOY_NEW(B_BUTTON))
@@ -2898,7 +2913,7 @@ static void DebugAction_Give_Pokemon_SelectLevel(u8 taskId)
         {
             PlaySE(MUS_LEVEL_UP);
             ScriptGiveMon(sDebugMonData->mon_speciesId, gTasks[taskId].data[3], ITEM_NONE, 0,0,0);
-            //Set flag for user convenience
+            // Set flag for user convenience
             FlagSet(FLAG_SYS_POKEMON_GET);
             Free(sDebugMonData); //Frees EWRAM of MonData Struct
             DebugAction_DestroyExtraWindow(taskId);
@@ -3454,7 +3469,7 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
         break;
     }
 
-    //Set flag for user convenience
+    // Set flag for user convenience
     FlagSet(FLAG_SYS_POKEMON_GET);
 
     Free(sDebugMonData); //Frees EWRAM of MonData Struct
@@ -3488,11 +3503,12 @@ static void DebugAction_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
     int boxId, boxPosition;
     u32 personality;
     struct BoxPokemon boxMon;
+    u16 species = SPECIES_BULBASAUR;
 
     personality = Random32();
 
     CreateBoxMon(&boxMon,
-                 SPECIES_BULBASAUR,
+                 species,
                  100,
                  32,
                  personality,
@@ -3507,9 +3523,16 @@ static void DebugAction_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
             if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
             {
                 gPokemonStoragePtr->boxes[boxId][boxPosition] = boxMon;
+                SetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SPECIES, &species);
+                GetSetPokedexFlag(species, FLAG_SET_SEEN);
+                GetSetPokedexFlag(species, FLAG_SET_CAUGHT);
+                species++;
             }
         }
     }
+
+    // Set flag for user convenience
+    FlagSet(FLAG_SYS_POKEMON_GET);
 
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
