@@ -1,4 +1,3 @@
-#include "global.h"
 #include "test/battle.h"
 
 SINGLE_BATTLE_TEST("Speed Boost gradually boosts speed")

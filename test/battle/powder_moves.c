@@ -1,4 +1,3 @@
-#include "global.h"
 #include "test/battle.h"
 
 SINGLE_BATTLE_TEST("Powder Moves are blocked by Grass Types")

@@ -415,6 +415,7 @@
 #ifndef GUARD_TEST_BATTLE_H
 #define GUARD_TEST_BATTLE_H
 
+#include "global.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "data.h"

@@ -1,4 +1,3 @@
-#include "global.h"
 #include "test/battle.h"
 
 // TODO: Currently PASSES_RANDOMLY is incapable of testing Cute Charm

@@ -1,4 +1,3 @@
-#include "global.h"
 #include "test/battle.h"
 
 // These tests cover all 3 effects: Stockpile, Spit up and Swallow.

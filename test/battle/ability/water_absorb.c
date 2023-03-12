@@ -1,4 +1,3 @@
-#include "global.h"
 #include "test/battle.h"
 
 #define TEST_MAX_HP (100)
