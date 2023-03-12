@@ -420,7 +420,6 @@
 #include "data.h"
 #include "item.h"
 #include "recorded_battle.h"
-#include "test.h"
 #include "util.h"
 #include "constants/abilities.h"
 #include "constants/battle_anim.h"
@@ -429,6 +428,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/species.h"
+#include "test/test.h"
 
 // NOTE: If the stack is too small the test runner will probably crash
 // or loop.

@@ -1,5 +1,5 @@
 #include "global.h"
-#include "test_battle.h"
+#include "test/battle.h"
 
 // TODO: Currently PASSES_RANDOMLY is incapable of testing Cute Charm
 // because it only activates 33% of the time, but we only want to

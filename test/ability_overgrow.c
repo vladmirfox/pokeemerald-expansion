@@ -1,5 +1,5 @@
 #include "global.h"
-#include "test_battle.h"
+#include "test/battle.h"
 
 SINGLE_BATTLE_TEST("Overgrow boosts Grass-type moves in a pinch", s16 damage)
 {
