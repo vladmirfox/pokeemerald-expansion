@@ -1340,4 +1340,11 @@ static const u16 sCalyrexFormSpeciesIdTable[] = {
     SPECIES_CALYREX_SHADOW_RIDER,
     FORM_SPECIES_END,
 };
+
+static const u16 sBasculegionFormSpeciesIdTable[] = {
+    SPECIES_BASCULEGION_MALE,
+    SPECIES_BASCULEGION_FEMALE,
+    FORM_SPECIES_END,
+};
+
 #endif

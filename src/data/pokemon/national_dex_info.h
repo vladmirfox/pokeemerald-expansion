@@ -567,7 +567,7 @@ const struct NationalDexInfo gNationalDexInfo[NATIONAL_DEX_COUNT + 1] =
     [NATIONAL_DEX_PETILIL] =     { .speciesName = _("Petilil"),      .baseSpeciesId = SPECIES_PETILIL, },
     [NATIONAL_DEX_LILLIGANT] =   { .speciesName = _("Lilligant"),    .baseSpeciesId = SPECIES_LILLIGANT, .formSpeciesIdTable = sLilligantFormSpeciesIdTable, },
     [NATIONAL_DEX_BASCULIN] =    { .speciesName = _("Basculin"),     .baseSpeciesId = SPECIES_BASCULIN_RED_STRIPED, .formSpeciesIdTable = sBasculinFormSpeciesIdTable, },
-    [NATIONAL_DEX_BASCULEGION] = { .speciesName = _("Bsculegion"),   .baseSpeciesId = SPECIES_BASCULEGION_MALE, .formSpeciesIdTable = sBasculinFormSpeciesIdTable },
+    [NATIONAL_DEX_BASCULEGION] = { .speciesName = _("Bsculegion"),   .baseSpeciesId = SPECIES_BASCULEGION_MALE, .formSpeciesIdTable = sBasculegionFormSpeciesIdTable, },
     [NATIONAL_DEX_SANDILE] =     { .speciesName = _("Sandile"),      .baseSpeciesId = SPECIES_SANDILE, },
     [NATIONAL_DEX_KROKOROK] =    { .speciesName = _("Krokorok"),     .baseSpeciesId = SPECIES_KROKOROK, },
     [NATIONAL_DEX_KROOKODILE] =  { .speciesName = _("Krookodile"),   .baseSpeciesId = SPECIES_KROOKODILE, },

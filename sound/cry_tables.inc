@@ -1158,7 +1158,7 @@ gCryTable_Reverse::
 	cry_reverse Cry_Scyther
 	cry_reverse Cry_Scizor
 	cry_reverse Cry_ScizorMega
-    @cry_reverse Cry_Kleavor
+    cry_reverse Cry_Kleavor
 	cry_reverse Cry_Smoochum
 	cry_reverse Cry_Jynx
 	cry_reverse Cry_Elekid
@@ -1266,16 +1266,16 @@ gCryTable_Reverse::
 	cry_reverse Cry_Snubbull
 	cry_reverse Cry_Granbull
 	cry_reverse Cry_Qwilfish
-    @cry_reverse Cry_Overqwil
+    cry_reverse Cry_Overqwil
 	cry_reverse Cry_Shuckle
 	cry_reverse Cry_Heracross
 	cry_reverse Cry_HeracrossMega
 	cry_reverse Cry_Sneasel
 	cry_reverse Cry_Weavile
-    @cry_reverse Cry_Sneasler
+    cry_reverse Cry_Sneasler
 	cry_reverse Cry_Teddiursa
 	cry_reverse Cry_Ursaring
-    @cry_reverse Cry_Ursaluna
+    cry_reverse Cry_Ursaluna
 	cry_reverse Cry_Slugma
 	cry_reverse Cry_Magcargo
 	cry_reverse Cry_Swinub
@@ -1295,7 +1295,7 @@ gCryTable_Reverse::
 	cry_reverse Cry_Phanpy
 	cry_reverse Cry_Donphan
 	cry_reverse Cry_Stantler
-    @cry_reverse Cry_Wyrdeer
+    cry_reverse Cry_Wyrdeer
 	cry_reverse Cry_Smeargle
 	cry_reverse Cry_Miltank
 	cry_reverse Cry_Raikou
@@ -1618,7 +1618,7 @@ gCryTable_Reverse::
 	cry_reverse Cry_Petilil
 	cry_reverse Cry_Lilligant
 	cry_reverse Cry_Basculin
-    @cry_reverse Cry_Basculegion
+    cry_reverse Cry_Basculegion
 	cry_reverse Cry_Sandile
 	cry_reverse Cry_Krokorok
 	cry_reverse Cry_Krookodile
@@ -1718,8 +1718,8 @@ gCryTable_Reverse::
 	cry_reverse Cry_Zekrom
 	cry_reverse Cry_LandorusIncarnate
 	cry_reverse Cry_LandorusTherian
-    @cry_reverse Cry_EnamorusIncarnate
-    @cry_reverse Cry_EnamorusTherian
+    cry_reverse Cry_EnamorusIncarnate
+    cry_reverse Cry_EnamorusTherian
 	cry_reverse Cry_Kyurem
 	cry_reverse Cry_KyuremWhite
 	cry_reverse Cry_KyuremBlack

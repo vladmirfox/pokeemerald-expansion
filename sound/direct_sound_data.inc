@@ -1014,11 +1014,9 @@ Cry_Scizor::
 Cry_ScizorMega::
 	.incbin "sound/direct_sound_samples/cries/scizor_mega.bin"
 
-/*
 	.align 2
 Cry_Kleavor::
 	.incbin "sound/direct_sound_samples/cries/kleavor.bin"
-*/
 
 	.align 2
 Cry_Smoochum::
@@ -1448,11 +1446,9 @@ Cry_Granbull::
 Cry_Qwilfish::
 	.incbin "sound/direct_sound_samples/cries/qwilfish.bin"
 
-/*
 	.align 2
 Cry_Overqwil::
 	.incbin "sound/direct_sound_samples/cries/overqwil.bin"
-*/
 
 	.align 2
 Cry_Shuckle::
@@ -1474,11 +1470,9 @@ Cry_Sneasel::
 Cry_Weavile::
 	.incbin "sound/direct_sound_samples/cries/weavile.bin"
 
-/*
 	.align 2
 Cry_Sneasler::
 	.incbin "sound/direct_sound_samples/cries/sneasler.bin"
-*/
 
 	.align 2
 Cry_Teddiursa::
@@ -1488,11 +1482,9 @@ Cry_Teddiursa::
 Cry_Ursaring::
 	.incbin "sound/direct_sound_samples/cries/ursaring.bin"
 
-/*
 	.align 2
 Cry_Ursaluna::
 	.incbin "sound/direct_sound_samples/cries/ursaluna.bin"
-*/
 
 	.align 2
 Cry_Slugma::
@@ -1570,11 +1562,9 @@ Cry_Donphan::
 Cry_Stantler::
 	.incbin "sound/direct_sound_samples/cries/stantler.bin"
 
-/*
 	.align 2
 Cry_Wyrdeer::
 	.incbin "sound/direct_sound_samples/cries/wyrdeer.bin"
-*/
 
 	.align 2
 Cry_Smeargle::
@@ -2855,11 +2845,9 @@ Cry_Lilligant::
 Cry_Basculin::
 	.incbin "sound/direct_sound_samples/cries/basculin.bin"
 
-/*
 	.align 2
 Cry_Basculegion::
 	.incbin "sound/direct_sound_samples/cries/basculegion.bin"
-*/
 
 	.align 2
 Cry_Sandile::
@@ -3257,15 +3245,13 @@ Cry_LandorusIncarnate::
 Cry_LandorusTherian::
 	.incbin "sound/direct_sound_samples/cries/landorus_therian.bin"
 
-/*
 	.align 2
-Cry_Enamorus::
+Cry_EnamorusIncarnate::
 	.incbin "sound/direct_sound_samples/cries/enamorus.bin"
 
 	.align 2
 Cry_EnamorusTherian::
 	.incbin "sound/direct_sound_samples/cries/enamorus_therian.bin"
-*/
 
 	.align 2
 Cry_Kyurem::
