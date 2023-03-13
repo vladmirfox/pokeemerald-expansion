@@ -211,7 +211,7 @@ DOUBLE_BATTLE_TEST("Red Card activates for only the fastest target")
         PLAYER(SPECIES_WYNAUT) { Speed(2); Item(ITEM_RED_CARD); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(5); }
         OPPONENT(SPECIES_WYNAUT) { Speed(4); }
-        OPPONENT(SPECIES_UNOWN) { Speed(1); }
+        OPPONENT(SPECIES_UNOWN_A) { Speed(1); }
     } WHEN {
         TURN {
             MOVE(opponentLeft, MOVE_ROCK_SLIDE);
@@ -239,7 +239,7 @@ DOUBLE_BATTLE_TEST("Red Card activates but fails if the attacker is rooted")
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_UNOWN);
+        OPPONENT(SPECIES_UNOWN_A);
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_INGRAIN); }
         TURN {
@@ -268,7 +268,7 @@ DOUBLE_BATTLE_TEST("Red Card activates but fails if the attacker has Suction Cup
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_OCTILLERY) { Ability(ABILITY_SUCTION_CUPS); }
         OPPONENT(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_UNOWN);
+        OPPONENT(SPECIES_UNOWN_A);
     } WHEN {
         TURN {
             MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft);
