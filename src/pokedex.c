@@ -26,6 +26,7 @@
 #include "text_window.h"
 #include "trainer_pokemon_sprites.h"
 #include "trig.h"
+#include "util.h"
 #include "window.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -217,6 +218,7 @@ struct PokedexView
     u8 currentPage;
     u8 currentPageBackup;
     bool8 isSearchResults:1;
+    u8 digitCount:3;
     u8 selectedScreen;
     u8 screenSwitchState;
     u8 menuIsOpen;
@@ -331,6 +333,7 @@ static void PrintSelectorArrow(u32);
 static void PrintSearchParameterTitle(u32, const u8 *);
 static void ClearSearchParameterBoxText(void);
 static void HandleFormSwitch_ScrollingList(u16 selectedMon, bool8 nextForm);
+static void SetDexMode(u16 dexMode);
 
 // const rom data
 #include "data/pokemon/pokedex_orders.h"
@@ -868,11 +871,7 @@ static const struct WindowTemplate sPokemonList_WindowTemplate[] =
     DUMMY_WIN_TEMPLATE
 };
 
-#if P_DEX_FOUR_DIGITS_AMOUNT == TRUE
-static const u8 sText_No000[] = _("{NO}0000");
-#else
-static const u8 sText_No000[] = _("{NO}000");
-#endif
+static const u8 sText_No0000[] = _("{NO}0000");
 static const u8 sCaughtBall_Gfx[] = INCBIN_U8("graphics/pokedex/caught_ball.4bpp");
 static const u8 sText_TenDashes[] = _("----------");
 
@@ -1641,6 +1640,7 @@ static void ResetPokedexView(struct PokedexView *pokedexView)
     pokedexView->selectedPokemonBackup = 0;
     pokedexView->dexMode = DEX_MODE_HOENN;
     pokedexView->dexModeBackup = DEX_MODE_HOENN;
+    pokedexView->digitCount = NumberDigitCount(HOENN_DEX_COUNT);
     pokedexView->dexOrder = ORDER_NUMERICAL;
     pokedexView->dexOrderBackup = ORDER_NUMERICAL;
     pokedexView->seenCount = 0;
@@ -1701,9 +1701,7 @@ void CB2_OpenPokedex(void)
         sPokedexView = AllocZeroed(sizeof(struct PokedexView));
         ResetPokedexView(sPokedexView);
         CreateTask(Task_OpenPokedexMainPage, 0);
-        sPokedexView->dexMode = gSaveBlock2Ptr->pokedex.mode;
-        if (!IsNationalPokedexEnabled())
-            sPokedexView->dexMode = DEX_MODE_HOENN;
+        SetDexMode(gSaveBlock2Ptr->pokedex.mode);
         sPokedexView->dexOrder = gSaveBlock2Ptr->pokedex.order;
         sPokedexView->selectedPokemon = sLastSelectedPokemon;
         sPokedexView->pokeBallRotation = sPokeBallRotation;
@@ -1918,9 +1916,7 @@ static void Task_WaitForExitSearch(u8 taskId)
         {
             sPokedexView->pokeBallRotation = sPokedexView->pokeBallRotationBackup;
             sPokedexView->selectedPokemon = sPokedexView->selectedPokemonBackup;
-            sPokedexView->dexMode = sPokedexView->dexModeBackup;
-            if (!IsNationalPokedexEnabled())
-                sPokedexView->dexMode = DEX_MODE_HOENN;
+            SetDexMode(sPokedexView->dexModeBackup);
             sPokedexView->dexOrder = sPokedexView->dexOrderBackup;
             gTasks[taskId].func = Task_OpenPokedexMainPage;
         }
@@ -2109,9 +2105,7 @@ static void Task_ReturnToPokedexFromSearchResults(u8 taskId)
     {
         sPokedexView->pokeBallRotation = sPokedexView->pokeBallRotationBackup;
         sPokedexView->selectedPokemon = sPokedexView->selectedPokemonBackup;
-        sPokedexView->dexMode = sPokedexView->dexModeBackup;
-        if (!IsNationalPokedexEnabled())
-            sPokedexView->dexMode = DEX_MODE_HOENN;
+        SetDexMode(sPokedexView->dexModeBackup);
         sPokedexView->dexOrder = sPokedexView->dexOrderBackup;
         gTasks[taskId].func = Task_OpenPokedexMainPage;
         ClearMonSprites();
@@ -2125,9 +2119,7 @@ static void Task_ClosePokedexFromSearchResultsStartMenu(u8 taskId)
     {
         sPokedexView->pokeBallRotation = sPokedexView->pokeBallRotationBackup;
         sPokedexView->selectedPokemon = sPokedexView->selectedPokemonBackup;
-        sPokedexView->dexMode = sPokedexView->dexModeBackup;
-        if (!IsNationalPokedexEnabled())
-            sPokedexView->dexMode = DEX_MODE_HOENN;
+        SetDexMode(sPokedexView->dexModeBackup);
         sPokedexView->dexOrder = sPokedexView->dexOrderBackup;
         gTasks[taskId].func = Task_ClosePokedex;
     }
@@ -2553,27 +2545,27 @@ static void CreateMonListEntry(u8 position, u16 b, u16 ignored)
 
 static void CreateMonDexNum(u16 entryNum, u8 left, u8 top, u16 unused)
 {
-#if P_DEX_FOUR_DIGITS_AMOUNT == TRUE
     u8 text[7];
-#else
-    u8 text[6];
-#endif
     u16 dexNum;
 
-    memcpy(text, sText_No000, ARRAY_COUNT(text));
+    memcpy(text, sText_No0000, ARRAY_COUNT(text));
     dexNum = sPokedexView->pokedexList[entryNum].dexNum;
     if (sPokedexView->dexMode == DEX_MODE_HOENN)
         dexNum = NationalToHoennOrder(dexNum);
-#if P_DEX_FOUR_DIGITS_AMOUNT == TRUE
-    text[2] = CHAR_0 + dexNum / 1000;
-    text[3] = CHAR_0 + (dexNum % 1000) / 100;
-    text[4] = CHAR_0 + (dexNum % 100) / 10;
-    text[5] = CHAR_0 + (dexNum % 10);
-#else
-    text[2] = CHAR_0 + dexNum / 100;
-    text[3] = CHAR_0 + (dexNum % 100) / 10;
-    text[4] = CHAR_0 + (dexNum % 100) % 10;
-#endif
+    if (sPokedexView->digitCount == 4)
+    {
+        text[2] = CHAR_0 + dexNum / 1000;
+        text[3] = CHAR_0 + (dexNum % 1000) / 100;
+        text[4] = CHAR_0 + (dexNum % 100) / 10;
+        text[5] = CHAR_0 + (dexNum % 10);
+    }
+    else
+    {
+        text[2] = CHAR_0 + dexNum / 100;
+        text[3] = CHAR_0 + (dexNum % 100) / 10;
+        text[4] = CHAR_0 + (dexNum % 100) % 10;
+        text[5] = CHAR_SPACE;
+    }
     PrintMonDexNumAndName(0, FONT_NARROW, text, left, top);
 }
 
@@ -4261,17 +4253,10 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
         value = SpeciesToHoennPokedexNum(num);
     else
         value = SpeciesToNationalPokedexNum(num);
-#if P_DEX_FOUR_DIGITS_AMOUNT == TRUE
-    ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 4);
+    ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, sPokedexView->digitCount);
     PrintInfoScreenText(str, 0x60, 0x19);
     name = GetSpeciesName(num);
-    PrintInfoScreenText(name, 0x8A, 0x19);
-#else
-    ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, 3);
-    PrintInfoScreenText(str, 0x60, 0x19);
-    name = GetSpeciesName(num);
-    PrintInfoScreenText(name, 0x84, 0x19);
-#endif
+    PrintInfoScreenText(name, 0x72 + (sPokedexView->digitCount * 6), 0x19);
     if (owned)
     {
         CopyMonCategoryText(num, str2);
@@ -5276,7 +5261,7 @@ static void Task_SearchCompleteWaitForInput(u8 taskId)
         {
             // Return to dex list and show search results
             sPokedexView->screenSwitchState = 1;
-            sPokedexView->dexMode = GetSearchModeSelection(taskId, SEARCH_MODE);
+            SetDexMode(GetSearchModeSelection(taskId, SEARCH_MODE));
             sPokedexView->dexOrder = GetSearchModeSelection(taskId, SEARCH_ORDER);
             gTasks[taskId].func = Task_ExitSearch;
             PlaySE(SE_PC_OFF);
@@ -5858,4 +5843,17 @@ static void HandleFormSwitch_ScrollingList(u16 selectedMon, bool8 nextForm)
         CreateCaughtBall(sPokedexView->pokedexList[selectedMon].owned, 0x11, sPokedexView->listVOffset * 2, 0);
         PlaySE(SE_DEX_PAGE);
     }
+}
+
+static void SetDexMode(u16 dexMode)
+{
+    if (!IsNationalPokedexEnabled())
+        sPokedexView->dexMode = DEX_MODE_HOENN;
+    else
+        sPokedexView->dexMode = dexMode;
+
+    if (sPokedexView->dexMode == DEX_MODE_HOENN)
+        sPokedexView->digitCount = NumberDigitCount(HOENN_DEX_COUNT);
+    else
+        sPokedexView->digitCount = NumberDigitCount(NATIONAL_DEX_COUNT);
 }

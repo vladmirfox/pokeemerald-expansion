@@ -277,3 +277,16 @@ void BlendPalette(u16 palOffset, u16 numEntries, u8 coeff, u16 blendColor)
                                       b + (((data2->b - b) * coeff) >> 4));
     }
 }
+
+u8 NumberDigitCount(u32 num)
+{
+    u8 count = 0;
+    do
+    {
+        num /= 10;
+        count++;
+    }
+    while (num != 0);
+
+    return count;
+}

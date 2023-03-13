@@ -40,6 +40,7 @@
 #include "task.h"
 #include "text.h"
 #include "tv.h"
+#include "util.h"
 #include "window.h"
 #include "constants/battle_move_effects.h"
 #include "constants/items.h"
@@ -2829,11 +2830,11 @@ static void PrintNotEggInfo(void)
     if (dexNum != 0xFFFF)
     {
         StringCopy(gStringVar1, &gText_NumberClear01[0]);
-    #if P_DEX_FOUR_DIGITS_AMOUNT == TRUE
-        ConvertIntToDecimalStringN(gStringVar2, dexNum, STR_CONV_MODE_LEADING_ZEROS, 4);
-    #else
-        ConvertIntToDecimalStringN(gStringVar2, dexNum, STR_CONV_MODE_LEADING_ZEROS, 3);
-    #endif
+
+        if (IsNationalPokedexEnabled())
+            ConvertIntToDecimalStringN(gStringVar2, dexNum, STR_CONV_MODE_LEADING_ZEROS, NumberDigitCount(NATIONAL_DEX_COUNT));
+        else
+            ConvertIntToDecimalStringN(gStringVar2, dexNum, STR_CONV_MODE_LEADING_ZEROS, NumberDigitCount(HOENN_DEX_COUNT));
         StringAppend(gStringVar1, gStringVar2);
         if (!IsMonShiny(mon))
         {
