@@ -974,8 +974,6 @@ enum {
 };
 #undef HOENN_NUM
 
-#define HOENN_DEX_COUNT (HOENN_DEX_DEOXYS + 1)
-
 // These mirror the order of include/constants/species.h
 enum
 {

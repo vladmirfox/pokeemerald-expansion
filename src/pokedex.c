@@ -2551,7 +2551,13 @@ static void CreateMonDexNum(u16 entryNum, u8 left, u8 top, u16 unused)
     memcpy(text, sText_No0000, ARRAY_COUNT(text));
     dexNum = sPokedexView->pokedexList[entryNum].dexNum;
     if (sPokedexView->dexMode == DEX_MODE_HOENN)
+    {
         dexNum = NationalToHoennOrder(dexNum);
+    #if P_DEX_REGIONAL_DEX_NUMBER_0 == TRUE
+        dexNum--;
+    #endif
+    }
+
     if (sPokedexView->digitCount == 4)
     {
         text[2] = CHAR_0 + dexNum / 1000;

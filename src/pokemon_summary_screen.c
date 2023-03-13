@@ -2834,7 +2834,12 @@ static void PrintNotEggInfo(void)
         if (IsNationalPokedexEnabled())
             ConvertIntToDecimalStringN(gStringVar2, dexNum, STR_CONV_MODE_LEADING_ZEROS, NumberDigitCount(NATIONAL_DEX_COUNT));
         else
+        {
+        #if P_DEX_REGIONAL_DEX_NUMBER_0 == TRUE
+            dexNum--;
+        #endif
             ConvertIntToDecimalStringN(gStringVar2, dexNum, STR_CONV_MODE_LEADING_ZEROS, NumberDigitCount(HOENN_DEX_COUNT));
+        }
     }
     else
     {
