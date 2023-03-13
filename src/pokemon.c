@@ -6049,7 +6049,7 @@ u16 SpeciesToPokedexNum(u16 species)
     else
     {
         species = SpeciesToHoennPokedexNum(species);
-        if (species <= HOENN_DEX_COUNT)
+        if (species <= HOENN_DEX_COUNT && species != 0)
             return species;
         return 0xFFFF;
     }
