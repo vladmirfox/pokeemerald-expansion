@@ -67,6 +67,17 @@ Debug_FlagsNotSetBattleConfigMessage_Text:
 	.string "Please define a usable flag in:\l"
 	.string "'include/config/battle.h'!$"
 
+Debug_BoxFilledMessage::
+	lockall
+	message Debug_BoxFilledMessage_Text
+	waitmessage
+	waitbuttonpress
+	releaseall
+	end
+
+Debug_BoxFilledMessage_Text:
+	.string "Storage boxes filled!$"
+
 Debug_Script_1::
 	end
 

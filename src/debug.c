@@ -388,6 +388,7 @@ extern u8 Debug_ShowFieldMessageStringVar4[];
 extern u8 Debug_CheatStart[];
 extern u8 PlayersHouse_2F_EventScript_SetWallClock[];
 extern u8 PlayersHouse_2F_EventScript_CheckWallClock[];
+extern u8 Debug_BoxFilledMessage[];
 
 #include "data/map_group_count.h"
 
@@ -3522,7 +3523,6 @@ static void DebugAction_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
 
     // Set flag for user convenience
     FlagSet(FLAG_SYS_POKEMON_GET);
-
     Debug_DestroyMenu_Full(taskId);
     ScriptContext_Enable();
 }
@@ -3531,9 +3531,8 @@ static void DebugAction_Fill_PCBoxes_Slow(u8 taskId)
     int boxId, boxPosition;
     u32 personality;
     struct BoxPokemon boxMon;
-    u32 i = 1;
-
-    personality = Random32();
+    u32 species = SPECIES_BULBASAUR;
+    bool8 spaceAvailable = FALSE;
 
     for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
     {
@@ -3541,38 +3540,24 @@ static void DebugAction_Fill_PCBoxes_Slow(u8 taskId)
         {
             if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
             {
-                CreateBoxMon(&boxMon,
-                    i,
-                    100,
-                    32,
-                    personality,
-                    0,
-                    OT_ID_PLAYER_ID,
-                    0);
-
-            #ifndef POKEMON_EXPANSION
-                if (i < SPECIES_CELEBI)
-                    i += 1;
-                else if (i == SPECIES_CELEBI)
-                    i = SPECIES_TREECKO;
-                else if (i < SPECIES_CHIMECHO)
-                    i += 1;
-                else
-                    i = 1;
-            #else
-                if (i < FORMS_START - 1)
-                    i += 1;
-                else
-                    i = 1;
-            #endif
-
+                if (!spaceAvailable)
+                    PlayBGM(MUS_RG_MYSTERY_GIFT);
+                CreateBoxMon(&boxMon, species, 100, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
                 gPokemonStoragePtr->boxes[boxId][boxPosition] = boxMon;
+                species = (species < NUM_SPECIES - 1) ? species + 1 : 1;
+                spaceAvailable = TRUE;
             }
         }
     }
 
+    // Set flag for user convenience
+    FlagSet(FLAG_SYS_POKEMON_GET);
+    if (spaceAvailable)
+        PlayBGM(GetCurrentMapMusic());
+
     Debug_DestroyMenu_Full(taskId);
-    ScriptContext_Enable();
+    LockPlayerFieldControls();
+    ScriptContext_SetupScript(Debug_BoxFilledMessage);
 }
 static void DebugAction_Fill_PCItemStorage(u8 taskId)
 {
