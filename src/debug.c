@@ -1008,6 +1008,7 @@ static void Debug_DestroyMenu_Full_Script(u8 taskId, const u8 *script)
 {
     Debug_DestroyMenu_Full(taskId);
     LockPlayerFieldControls();
+    FreezeObjectEvents();
     ScriptContext_SetupScript(script);
 }
 static void DebugAction_Cancel(u8 taskId)

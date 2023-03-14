@@ -1,12 +1,14 @@
-Debug_ShowFieldMessageStringVar4::
-	special ShowFieldMessageStringVar4
+Debug_MessageEnd:
 	waitmessage
 	waitbuttonpress
 	releaseall
 	end
 
+Debug_ShowFieldMessageStringVar4::
+	special ShowFieldMessageStringVar4
+	goto Debug_MessageEnd
+
 Debug_CheatStart::
-	lockall
 	setflag FLAG_SYS_POKEMON_GET
 	setflag FLAG_RESCUED_BIRCH
 	setflag FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE
@@ -42,12 +44,8 @@ Debug_CheatStart::
 	end
 
 Debug_FlagsNotSetOverworldConfigMessage::
-	lockall
 	message Debug_FlagsNotSetOverworldConfigMessage_Text
-	waitmessage
-	waitbuttonpress
-	releaseall
-	end
+	goto Debug_MessageEnd
 
 Debug_FlagsNotSetOverworldConfigMessage_Text:
 	.string "Feature unavailable!\n"
@@ -55,12 +53,8 @@ Debug_FlagsNotSetOverworldConfigMessage_Text:
 	.string "'include/config/overworld.h'!$"
 
 Debug_FlagsNotSetBattleConfigMessage::
-	lockall
 	message Debug_FlagsNotSetBattleConfigMessage_Text
-	waitmessage
-	waitbuttonpress
-	releaseall
-	end
+	goto Debug_MessageEnd
 
 Debug_FlagsNotSetBattleConfigMessage_Text:
 	.string "Feature unavailable!\n"
@@ -68,12 +62,8 @@ Debug_FlagsNotSetBattleConfigMessage_Text:
 	.string "'include/config/battle.h'!$"
 
 Debug_BoxFilledMessage::
-	lockall
 	message Debug_BoxFilledMessage_Text
-	waitmessage
-	waitbuttonpress
-	releaseall
-	end
+	goto Debug_MessageEnd
 
 Debug_BoxFilledMessage_Text:
 	.string "Storage boxes filled!$"
