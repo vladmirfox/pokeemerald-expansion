@@ -1004,6 +1004,12 @@ static void Debug_DestroyMenu_Full(u8 taskId)
     Free(sDebugMenuListData);
     Free(sDebugBattleData);
 }
+static void Debug_DestroyMenu_Full_Script(u8 taskId, const u8 *script)
+{
+    Debug_DestroyMenu_Full(taskId);
+    LockPlayerFieldControls();
+    ScriptContext_SetupScript(script);
+}
 static void DebugAction_Cancel(u8 taskId)
 {
     Debug_DestroyMenu_Full(taskId);
@@ -1828,9 +1834,7 @@ static void DebugAction_Util_CheckSaveBlock(u8 taskId)
     ConvertIntToDecimalStringN(gStringVar3, sizeof(struct PokemonStorage), STR_CONV_MODE_LEFT_ALIGN, 6);
     StringExpandPlaceholders(gStringVar4, sDebugText_SaveBlockSize);
 
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_ShowFieldMessageStringVar4);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_ShowFieldMessageStringVar4);
 }
 
 static const u8 sWeatherNames[22][24] = {
@@ -1938,15 +1942,11 @@ static void DebugAction_Util_Weather_SelectId(u8 taskId)
 
 static void DebugAction_Util_CheckWallClock(u8 taskId)
 {
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(PlayersHouse_2F_EventScript_CheckWallClock);
+    Debug_DestroyMenu_Full_Script(taskId, PlayersHouse_2F_EventScript_CheckWallClock);
 }
 static void DebugAction_Util_SetWallClock(u8 taskId)
 {
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(PlayersHouse_2F_EventScript_SetWallClock);
+    Debug_DestroyMenu_Full_Script(taskId, PlayersHouse_2F_EventScript_SetWallClock);
 }
 static void DebugAction_Util_WatchCredits(u8 taskId)
 {
@@ -1983,60 +1983,42 @@ static void DebugAction_Util_Clear_Boxes(u8 taskId)
 }
 static void DebugAction_Util_CheatStart(u8 taskId)
 {
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_CheatStart);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_CheatStart);
 }
 
 // *******************************
 // Actions Scripts
 static void DebugAction_Util_Script_1(u8 taskId)
 {
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_Script_1);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_Script_1);
 }
 static void DebugAction_Util_Script_2(u8 taskId)
 {
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_Script_2);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_Script_2);
 }
 static void DebugAction_Util_Script_3(u8 taskId)
 {
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_Script_3);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_Script_3);
 }
 static void DebugAction_Util_Script_4(u8 taskId)
 {
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_Script_4);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_Script_4);
 }
 static void DebugAction_Util_Script_5(u8 taskId)
 {
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_Script_5);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_Script_5);
 }
 static void DebugAction_Util_Script_6(u8 taskId)
 {
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_Script_6);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_Script_6);
 }
 static void DebugAction_Util_Script_7(u8 taskId)
 {
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_Script_7);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_Script_7);
 }
 static void DebugAction_Util_Script_8(u8 taskId)
 {
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_Script_8);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_Script_8);
 }
 
 // *******************************
@@ -2463,9 +2445,7 @@ static void DebugAction_FlagsVars_ToggleFrontierPass(u8 taskId)
 static void DebugAction_FlagsVars_CollisionOnOff(u8 taskId)
 {
 #if OW_FLAG_NO_COLLISION == 0
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_FlagsNotSetOverworldConfigMessage);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_FlagsNotSetOverworldConfigMessage);
 #else
     if (FlagGet(OW_FLAG_NO_COLLISION))
         PlaySE(SE_PC_OFF);
@@ -2477,9 +2457,7 @@ static void DebugAction_FlagsVars_CollisionOnOff(u8 taskId)
 static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId)
 {
 #if OW_FLAG_NO_ENCOUNTER == 0
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_FlagsNotSetOverworldConfigMessage);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_FlagsNotSetOverworldConfigMessage);
 #else
     if (FlagGet(OW_FLAG_NO_ENCOUNTER))
         PlaySE(SE_PC_OFF);
@@ -2491,9 +2469,7 @@ static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId)
 static void DebugAction_FlagsVars_TrainerSeeOnOff(u8 taskId)
 {
 #if OW_FLAG_NO_TRAINER_SEE == 0
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_FlagsNotSetOverworldConfigMessage);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_FlagsNotSetOverworldConfigMessage);
 #else
     if (FlagGet(OW_FLAG_NO_TRAINER_SEE))
         PlaySE(SE_PC_OFF);
@@ -2505,9 +2481,7 @@ static void DebugAction_FlagsVars_TrainerSeeOnOff(u8 taskId)
 static void DebugAction_FlagsVars_BagUseOnOff(u8 taskId)
 {
 #if B_FLAG_NO_BAG_USE == 0
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_FlagsNotSetBattleConfigMessage);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_FlagsNotSetBattleConfigMessage);
 #else
     if (FlagGet(B_FLAG_NO_BAG_USE))
         PlaySE(SE_PC_OFF);
@@ -2519,9 +2493,7 @@ static void DebugAction_FlagsVars_BagUseOnOff(u8 taskId)
 static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId)
 {
 #if B_FLAG_NO_CATCHING == 0
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_FlagsNotSetBattleConfigMessage);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_FlagsNotSetBattleConfigMessage);
 #else
     if (FlagGet(B_FLAG_NO_CATCHING))
         PlaySE(SE_PC_OFF);
@@ -3555,9 +3527,7 @@ static void DebugAction_Fill_PCBoxes_Slow(u8 taskId)
     if (spaceAvailable)
         PlayBGM(GetCurrentMapMusic());
 
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_BoxFilledMessage);
+    Debug_DestroyMenu_Full_Script(taskId, Debug_BoxFilledMessage);
 }
 static void DebugAction_Fill_PCItemStorage(u8 taskId)
 {
@@ -4340,9 +4310,7 @@ SOUND_LIST_SE
 
 static void DebugAction_AccessPC(u8 taskId)
 {
-    Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(EventScript_PC);
+    Debug_DestroyMenu_Full_Script(taskId, EventScript_PC);
 }
 
 #endif //DEBUG_OVERWORLD_MENU == TRUE
