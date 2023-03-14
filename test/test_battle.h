@@ -748,8 +748,14 @@ void SendOut(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 #define ABILITY_POPUP(battler, ...) QueueAbility(__LINE__, battler, (struct AbilityEventContext) { __VA_ARGS__ })
 #define ANIMATION(type, id, ...) QueueAnimation(__LINE__, type, id, (struct AnimationEventContext) { __VA_ARGS__ })
 #define HP_BAR(battler, ...) QueueHP(__LINE__, battler, (struct HPEventContext) { APPEND_TRUE(__VA_ARGS__) })
-#define MESSAGE(pattern) QueueMessage(__LINE__, (const u8 []) _(pattern))
 #define STATUS_ICON(battler, status) QueueStatus(__LINE__, battler, (struct StatusEventContext) { status })
+ 
+ // Some IDEs don't like the "const u8 []" casting.
+#if defined(__APPLE__) || defined(__CYGWIN__) || defined(__INTELLISENSE__)
+#define MESSAGE(pattern)
+#else
+#define MESSAGE(pattern) QueueMessage(__LINE__, (const u8 []) _(pattern))
+#endif
 
 enum QueueGroupType
 {
