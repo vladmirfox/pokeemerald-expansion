@@ -511,45 +511,50 @@ static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
     s32 parent;
     s32 natureTries = 0;
     u32 personality;
-    u32 pidRolls = 1;
-    u32 tid = gSaveBlock2Ptr->playerTrainerId[0]
-           | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
-           | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
-           | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+    struct PIDParameters parameters;
 
-    SeedRng2(gMain.vblankCounter2);
+    parameters.species = 0;
+    parameters.pidType = PID_TYPE_EGG;
+
+#if P_FLAG_FORCE_NO_SHINY != 0
+    if (FlagGet(P_FLAG_FORCE_NO_SHINY))
+        parameters.forceShiny = GENERATE_SHINY_LOCKED;
+#endif
+#if P_FLAG_FORCE_SHINY != 0
+    #if P_FLAG_FORCE_NO_SHINY != 0
+    else
+    #endif
+    if (FlagGet(P_FLAG_FORCE_SHINY))
+        parameters.forceShiny = GENERATE_SHINY_FORCED;
+#endif
+#if P_FLAG_FORCE_SHINY != 0 || P_FLAG_FORCE_NO_SHINY != 0
+    else
+#endif
+        parameters.forceShiny = GENERATE_SHINY_NORMAL;
+
+    parameters.shinyRerolls = TRUE;
+    parameters.forceNature = FALSE;
+    parameters.nature = 0;
+    parameters.forceGender = FALSE;
+    parameters.gender = 0;
+    parameters.forceUnownLetter = FALSE;
+    parameters.unownLetter = 0;
+
     parent = GetParentToInheritNature(daycare);
-
-    if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
-        pidRolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
 
     // don't inherit nature
     if (parent < 0)
     {
-        do
-        {
-            personality = (Random2() << 16) | ((Random() % 0xFFFE) + 1);
-            pidRolls--;
-        } while (GET_SHINY_VALUE(tid, personality) >= SHINY_ODDS && pidRolls > 0);
+        personality = GeneratePIDMaster(parameters);
         
     }
     // inherit nature
     else
     {
-        u8 wantedNature = GetNatureFromPersonality(GetBoxMonData(&daycare->mons[parent].mon, MON_DATA_PERSONALITY, NULL));
+        parameters.forceNature = TRUE;
+        parameters.nature = GetNatureFromPersonality(GetBoxMonData(&daycare->mons[parent].mon, MON_DATA_PERSONALITY, NULL));
 
-        do
-        {
-            do
-            {
-                personality = (Random2() << 16) | (Random());
-                if (wantedNature == GetNatureFromPersonality(personality) && personality != 0)
-                    break; // found a personality with the same nature
-
-                natureTries++;
-            } while (natureTries <= 2400);
-            pidRolls--;
-        } while (GET_SHINY_VALUE(tid, personality) >= SHINY_ODDS && pidRolls > 0);
+        personality = GeneratePIDMaster(parameters);
     }
 
     daycare->offspringPersonality = personality;
