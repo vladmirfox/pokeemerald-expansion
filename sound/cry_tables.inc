@@ -157,7 +157,7 @@ gCryTable::
 	cry Cry_Scyther
 	cry Cry_Scizor
 	cry Cry_ScizorMega
-    @cry Cry_Kleavor
+    cry Cry_Kleavor
 	cry Cry_Smoochum
 	cry Cry_Jynx
 	cry Cry_Elekid
@@ -265,16 +265,16 @@ gCryTable::
 	cry Cry_Snubbull
 	cry Cry_Granbull
 	cry Cry_Qwilfish
-    @cry Cry_Overqwil
+    cry Cry_Overqwil
 	cry Cry_Shuckle
 	cry Cry_Heracross
 	cry Cry_HeracrossMega
 	cry Cry_Sneasel
 	cry Cry_Weavile
-    @cry Cry_Sneasler
+    cry Cry_Sneasler
 	cry Cry_Teddiursa
 	cry Cry_Ursaring
-    @cry Cry_Ursaluna
+    cry Cry_Ursaluna
 	cry Cry_Slugma
 	cry Cry_Magcargo
 	cry Cry_Swinub
@@ -294,7 +294,7 @@ gCryTable::
 	cry Cry_Phanpy
 	cry Cry_Donphan
 	cry Cry_Stantler
-    @cry Cry_Wyrdeer
+    cry Cry_Wyrdeer
 	cry Cry_Smeargle
 	cry Cry_Miltank
 	cry Cry_Raikou
@@ -617,7 +617,7 @@ gCryTable::
 	cry Cry_Petilil
 	cry Cry_Lilligant
 	cry Cry_Basculin
-    @cry Cry_Basculegion
+    cry Cry_Basculegion
 	cry Cry_Sandile
 	cry Cry_Krokorok
 	cry Cry_Krookodile
@@ -717,8 +717,8 @@ gCryTable::
 	cry Cry_Zekrom
 	cry Cry_LandorusIncarnate
 	cry Cry_LandorusTherian
-    @cry Cry_EnamorusIncarnate
-    @cry Cry_EnamorusTherian
+    cry Cry_EnamorusIncarnate
+    cry Cry_EnamorusTherian
 	cry Cry_Kyurem
 	cry Cry_KyuremWhite
 	cry Cry_KyuremBlack
