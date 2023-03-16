@@ -39753,10 +39753,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_WO_CHIEN] =
     {
         .baseHP        = 85,
-        .baseAttack    = 90,
+        .baseAttack    = 85,
         .baseDefense   = 100,
         .baseSpeed     = 70,
-        .baseSpAttack  = 100,
+        .baseSpAttack  = 95,
         .baseSpDefense = 135,
         .types = { TYPE_DARK, TYPE_GRASS },
         .catchRate = 6,
@@ -39788,7 +39788,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_CHIEN_PAO] =
     {
         .baseHP        = 80,
-        .baseAttack    = 130,
+        .baseAttack    = 120,
         .baseDefense   = 80,
         .baseSpeed     = 135,
         .baseSpAttack  = 90,
@@ -39822,11 +39822,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_TING_LU] =
     {
-        .baseHP        = 165,
+        .baseHP        = 155,
         .baseAttack    = 110,
-        .baseDefense   = 130,
+        .baseDefense   = 125,
         .baseSpeed     = 45,
-        .baseSpAttack  = 50,
+        .baseSpAttack  = 55,
         .baseSpDefense = 80,
         .types = { TYPE_DARK, TYPE_GROUND },
         .catchRate = 6,
@@ -39861,7 +39861,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseAttack    = 80,
         .baseDefense   = 80,
         .baseSpeed     = 100,
-        .baseSpAttack  = 145,
+        .baseSpAttack  = 135,
         .baseSpDefense = 120,
         .types = { TYPE_DARK, TYPE_FIRE },
         .catchRate = 6,
