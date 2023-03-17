@@ -1568,8 +1568,10 @@
 #define SPECIES_TAUROS_PALDEAN_COMBAT_BREED                  1477
 #define SPECIES_TAUROS_PALDEAN_BLAZE_BREED                   1478
 #define SPECIES_TAUROS_PALDEAN_AQUA_BREED                    1479
+#define SPECIES_WALKING_WAKE                                 1480
+#define SPECIES_IRON_LEAVES                                  1481
 
-#define SPECIES_EGG                                          SPECIES_TAUROS_PALDEAN_AQUA_BREED + 1
+#define SPECIES_EGG                                          SPECIES_IRON_LEAVES + 1
 
 #define NUM_SPECIES SPECIES_EGG
 

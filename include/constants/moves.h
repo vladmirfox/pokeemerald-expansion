@@ -859,6 +859,10 @@
 #define MOVE_COMBAT_TORQUE 825
 #define MOVE_MAGICAL_TORQUE 826
 
+// placeholders for now
+#define MOVE_HYDRO_STEAM MOVE_NONE
+#define MOVE_PSYBLADE MOVE_NONE
+
 #define MOVES_COUNT_GEN9 827
 
 #define MOVES_COUNT         MOVES_COUNT_GEN9
