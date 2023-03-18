@@ -7189,7 +7189,6 @@ bool32 SpeciesHasGenderDifferences(u16 species)
     return FALSE;
 }
 
-// Returns species that it transformed into. If it didn't, returns SPECIES_NONE.
 bool32 TryFormChange(u32 monId, u32 side, u16 method)
 {
     struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
@@ -7201,7 +7200,7 @@ bool32 TryFormChange(u32 monId, u32 side, u16 method)
 
     targetSpecies = GetFormChangeTargetSpecies(&party[monId], method, 0);
 
-    if (targetSpecies == SPECIES_NONE)
+    if (targetSpecies == SPECIES_NONE && gBattleStruct != NULL)
         targetSpecies = gBattleStruct->changedSpecies[monId];
 
     if (targetSpecies != SPECIES_NONE)
