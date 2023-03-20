@@ -93,7 +93,7 @@ SINGLE_BATTLE_TEST("Eject Button is not triggered after the mon loses Eject Butt
 {
     GIVEN {
         PLAYER(SPECIES_RAICHU);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_BUTTON); }
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_BUTTON); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {
