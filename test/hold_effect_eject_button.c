@@ -11,7 +11,7 @@ SINGLE_BATTLE_TEST("Eject Button is not triggered when there is nothing to switc
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_BUTTON); };
-        PLAYER(SPECIES_WOBBUFFET) { HP(0); };
+        OPPONENT(SPECIES_WOBBUFFET) { HP(0); };
     } WHEN {
         TURN {
             MOVE(player, MOVE_QUICK_ATTACK);
@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("Eject Button will not activate under Substitute")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_RAICHU) { Item(ITEM_EJECT_BUTTON); }
+        OPPONENT(SPECIES_RAICHU) { Item(ITEM_EJECT_BUTTON); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE);
@@ -73,8 +73,8 @@ SINGLE_BATTLE_TEST("Eject Button will not activate under Substitute")
 SINGLE_BATTLE_TEST("Eject Button is not blocked by trapping abilities or moves")
 {
     GIVEN {
-        PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_ARENA_TRAP); }
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_BUTTON); }
+        PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_ARENA_TRAP); };
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_BUTTON); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {
@@ -144,6 +144,10 @@ SINGLE_BATTLE_TEST("Eject Button has no chance to activate after Dragon Tail")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_TAIL, player);
         MESSAGE("Foe Chansey was dragged out!");
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
+            MESSAGE("Foe Chansey is switched out with the Eject Button!");
+        }
     }
 }
 
