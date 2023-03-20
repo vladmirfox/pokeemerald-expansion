@@ -3817,3 +3817,138 @@ static const u8 sLoadedDiceDesc[] = _(
     "Rolls high numbers.\n"
     "Multihit strikes\n"
     "hit more times.");
+
+static const u8 sWonderLauncher_XAttack1_Desc[] = _(
+    "Raises stat\n"
+    "Attack during\n"
+    "one battle.");
+    
+static const u8 sWonderLauncher_XAttack2_Desc[] = _(
+    "Sharply raises\n"
+    "stat Attack\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XAttack3_Desc[] = _(
+    "Drastically raises\n"
+    "stat Attack\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XAttack6_Desc[] = _(
+    "Immensly raises\n"
+    "stat Attack\n"
+    "during one battle.");
+    
+static const u8 sWonderLauncher_XDefense1_Desc[] = _(
+    "Raises stat\n"
+    "Defense during\n"
+    "one battle.");
+    
+static const u8 sWonderLauncher_XDefense2_Desc[] = _(
+    "Sharply raises\n"
+    "stat Defense\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XDefense3_Desc[] = _(
+    "Drastically raises\n"
+    "stat Defense\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XDefense6_Desc[] = _(
+    "Immensly raises\n"
+    "stat Defense\n"
+    "during one battle.");
+    
+static const u8 sWonderLauncher_XSpAtk1_Desc[] = _(
+    "Raises stat\n"
+    "Sp. Atk. during\n"
+    "one battle.");
+    
+static const u8 sWonderLauncher_XSpAtk2_Desc[] = _(
+    "Sharply raises\n"
+    "stat Sp. Atk.\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XSpAtk3_Desc[] = _(
+    "Drastically raises\n"
+    "stat Sp. Atk.\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XSpAtk6_Desc[] = _(
+    "Immensly raises\n"
+    "stat Sp. Atk.\n"
+    "during one battle.");
+    
+static const u8 sWonderLauncher_XSpDef1_Desc[] = _(
+    "Raises stat\n"
+    "Sp. Def. during\n"
+    "one battle.");
+    
+static const u8 sWonderLauncher_XSpDef2_Desc[] = _(
+    "Sharply raises\n"
+    "stat Sp. Def.\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XSpDef3_Desc[] = _(
+    "Drastically raises\n"
+    "stat Sp. Def.\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XSpDef6_Desc[] = _(
+    "Immensly raises\n"
+    "stat Sp. Def.\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XSpeed1_Desc[] = _(
+    "Raises stat\n"
+    "Speed during\n"
+    "one battle.");
+    
+static const u8 sWonderLauncher_XSpeed2_Desc[] = _(
+    "Sharply raises\n"
+    "stat Speed\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XSpeed3_Desc[] = _(
+    "Drastically raises\n"
+    "stat Speed\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XSpeed6_Desc[] = _(
+    "Immensly raises\n"
+    "stat Speed\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XAccuracy1_Desc[] = _(
+    "Raises move\n"
+    "Accuracy during\n"
+    "one battle.");
+    
+static const u8 sWonderLauncher_XAccuracy2_Desc[] = _(
+    "Sharply raises\n"
+    "move Accuracy\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XAccuracy3_Desc[] = _(
+    "Drastically raises\n"
+    "move Accuracy\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_XAccuracy6_Desc[] = _(
+    "Immensly raises\n"
+    "move Accuracy\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_DireHit1_Desc[] = _(
+    "Slightly raises the\n"
+    "critical-hit ratio\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_DireHit2_Desc[] = _(
+    "Raises the\n"
+    "critical-hit ratio\n"
+    "during one battle.");
+
+static const u8 sWonderLauncher_DireHit3_Desc[] = _(
+    "Immensly raises the\n"
+    "critical-hit ratio\n"
+    "during one battle.");

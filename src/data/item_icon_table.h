@@ -808,6 +808,37 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_PUNCHING_GLOVE] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // {gItemIcon_PunchingGlove, gItemIconPalette_PunchingGlove},
     [ITEM_COVERT_CLOAK] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // {gItemIcon_CovertCloak, gItemIconPalette_CovertCloak},
     [ITEM_LOADED_DICE] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // {gItemIcon_LoadedDice, gItemIconPalette_LoadedDice},
+
+    // Wonder Launcher Items
+    [ITEM_WONDER_LAUNCHER_X_ATTACK_1] = {gItemIcon_WonderLauncher_BattleStatItem_1, gItemIconPalette_WonderLauncher_XAttack},
+    [ITEM_WONDER_LAUNCHER_X_ATTACK_2] = {gItemIcon_WonderLauncher_BattleStatItem_2, gItemIconPalette_WonderLauncher_XAttack},
+    [ITEM_WONDER_LAUNCHER_X_ATTACK_3] = {gItemIcon_WonderLauncher_BattleStatItem_3, gItemIconPalette_WonderLauncher_XAttack},
+    [ITEM_WONDER_LAUNCHER_X_ATTACK_6] = {gItemIcon_WonderLauncher_BattleStatItem_6, gItemIconPalette_WonderLauncher_XAttack},
+    [ITEM_WONDER_LAUNCHER_X_DEFENSE_1] = {gItemIcon_WonderLauncher_BattleStatItem_1, gItemIconPalette_WonderLauncher_XDefend},
+    [ITEM_WONDER_LAUNCHER_X_DEFENSE_2] = {gItemIcon_WonderLauncher_BattleStatItem_2, gItemIconPalette_WonderLauncher_XDefend},
+    [ITEM_WONDER_LAUNCHER_X_DEFENSE_3] = {gItemIcon_WonderLauncher_BattleStatItem_3, gItemIconPalette_WonderLauncher_XDefend},
+    [ITEM_WONDER_LAUNCHER_X_DEFENSE_6] = {gItemIcon_WonderLauncher_BattleStatItem_6, gItemIconPalette_WonderLauncher_XDefend},
+    [ITEM_WONDER_LAUNCHER_X_SP_ATK_1] = {gItemIcon_WonderLauncher_BattleStatItem_1, gItemIconPalette_WonderLauncher_XSpecialAttack},
+    [ITEM_WONDER_LAUNCHER_X_SP_ATK_2] = {gItemIcon_WonderLauncher_BattleStatItem_2, gItemIconPalette_WonderLauncher_XSpecialAttack},
+    [ITEM_WONDER_LAUNCHER_X_SP_ATK_3] = {gItemIcon_WonderLauncher_BattleStatItem_3, gItemIconPalette_WonderLauncher_XSpecialAttack},
+    [ITEM_WONDER_LAUNCHER_X_SP_ATK_6] = {gItemIcon_WonderLauncher_BattleStatItem_6, gItemIconPalette_WonderLauncher_XSpecialAttack},
+    [ITEM_WONDER_LAUNCHER_X_SP_DEF_1] = {gItemIcon_WonderLauncher_BattleStatItem_1, gItemIconPalette_WonderLauncher_XSpecialDefense},
+    [ITEM_WONDER_LAUNCHER_X_SP_DEF_2] = {gItemIcon_WonderLauncher_BattleStatItem_2, gItemIconPalette_WonderLauncher_XSpecialDefense},
+    [ITEM_WONDER_LAUNCHER_X_SP_DEF_3] = {gItemIcon_WonderLauncher_BattleStatItem_3, gItemIconPalette_WonderLauncher_XSpecialDefense},
+    [ITEM_WONDER_LAUNCHER_X_SP_DEF_6] = {gItemIcon_WonderLauncher_BattleStatItem_6, gItemIconPalette_WonderLauncher_XSpecialDefense},
+    [ITEM_WONDER_LAUNCHER_X_SPEED_1] = {gItemIcon_WonderLauncher_BattleStatItem_1, gItemIconPalette_WonderLauncher_XSpeed},
+    [ITEM_WONDER_LAUNCHER_X_SPEED_2] = {gItemIcon_WonderLauncher_BattleStatItem_2, gItemIconPalette_WonderLauncher_XSpeed},
+    [ITEM_WONDER_LAUNCHER_X_SPEED_3] = {gItemIcon_WonderLauncher_BattleStatItem_3, gItemIconPalette_WonderLauncher_XSpeed},
+    [ITEM_WONDER_LAUNCHER_X_SPEED_6] = {gItemIcon_WonderLauncher_BattleStatItem_6, gItemIconPalette_WonderLauncher_XSpeed},
+    [ITEM_WONDER_LAUNCHER_X_ACCURACY_1] = {gItemIcon_WonderLauncher_BattleStatItem_1, gItemIconPalette_WonderLauncher_XAccuracy},
+    [ITEM_WONDER_LAUNCHER_X_ACCURACY_2] = {gItemIcon_WonderLauncher_BattleStatItem_2, gItemIconPalette_WonderLauncher_XAccuracy},
+    [ITEM_WONDER_LAUNCHER_X_ACCURACY_3] = {gItemIcon_WonderLauncher_BattleStatItem_3, gItemIconPalette_WonderLauncher_XAccuracy},
+    [ITEM_WONDER_LAUNCHER_X_ACCURACY_6] = {gItemIcon_WonderLauncher_BattleStatItem_6, gItemIconPalette_WonderLauncher_XAccuracy},
+
+    [ITEM_WONDER_LAUNCHER_DIRE_HIT_1] = {gItemIcon_WonderLauncher_BattleStatItem_1, gItemIconPalette_WonderLauncher_DireHit},
+    [ITEM_WONDER_LAUNCHER_DIRE_HIT_2] = {gItemIcon_WonderLauncher_BattleStatItem_2, gItemIconPalette_WonderLauncher_DireHit},
+    [ITEM_WONDER_LAUNCHER_DIRE_HIT_3] = {gItemIcon_WonderLauncher_BattleStatItem_3, gItemIconPalette_WonderLauncher_DireHit},
+
     // Return to field arrow
     [ITEMS_COUNT] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

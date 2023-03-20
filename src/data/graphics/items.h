@@ -1945,3 +1945,24 @@ const u32 gItemIconPalette_Sapphire[] = INCBIN_U32("graphics/items/icon_palettes
 
 //const u32 gItemIcon_LoadedDice[] = INCBIN_U32("graphics/items/icons/loaded_dice.4bpp.lz");
 //const u32 gItemIconPalette_LoadedDice[] = INCBIN_U32("graphics/items/icon_palettes/loaded_dice.gbapal.lz");
+
+// Wonder Launcher Items
+// X Items
+
+const u32 gItemIcon_WonderLauncher_BattleStatItem_1[] = INCBIN_U32("graphics/items/icons/battle_stat_item_WonderLauncher_1.4bpp.lz");
+const u32 gItemIcon_WonderLauncher_BattleStatItem_2[] = INCBIN_U32("graphics/items/icons/battle_stat_item_WonderLauncher_2.4bpp.lz");
+const u32 gItemIcon_WonderLauncher_BattleStatItem_3[] = INCBIN_U32("graphics/items/icons/battle_stat_item_WonderLauncher_3.4bpp.lz");
+const u32 gItemIcon_WonderLauncher_BattleStatItem_6[] = INCBIN_U32("graphics/items/icons/battle_stat_item_WonderLauncher_6.4bpp.lz");
+
+const u32 gItemIconPalette_WonderLauncher_XAttack[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_XAttack.gbapal.lz");
+const u32 gItemIconPalette_WonderLauncher_XDefend[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_XDefense.gbapal.lz");
+const u32 gItemIconPalette_WonderLauncher_XSpecialAttack[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_XSpAtk.gbapal.lz");
+const u32 gItemIconPalette_WonderLauncher_XSpecialDefense[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_XSpDef.gbapal.lz");
+const u32 gItemIconPalette_WonderLauncher_XSpeed[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_XSpeed.gbapal.lz");
+const u32 gItemIconPalette_WonderLauncher_XAccuracy[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_XAccuracy.gbapal.lz");
+
+const u32 gItemIconPalette_WonderLauncher_DireHit[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_DireHit.gbapal.lz");
+
+//const u32 gItemIconPalette_DireHit[] = INCBIN_U32("graphics/items/icon_palettes/dire_hit.gbapal.lz");
+
+//const u32 gItemIconPalette_GuardSpec[] = INCBIN_U32("graphics/items/icon_palettes/guard_spec.gbapal.lz");

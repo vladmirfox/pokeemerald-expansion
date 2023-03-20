@@ -147,6 +147,10 @@
 #define STATUS2_FORESIGHT             (1 << 29)
 #define STATUS2_DEFENSE_CURL          (1 << 30)
 #define STATUS2_TORMENT               (1 << 31)
+#define STATUS2_CRIT_STAGE_1          (1ULL << 32)
+#define STATUS2_CRIT_STAGE_2          STATUS2_FOCUS_ENERGY
+#define STATUS2_CRIT_STAGE_3          (1ULL << 33)
+#define STATUS2_CRIT_STAGE_RAISED     (STATUS2_CRIT_STAGE_1 | STATUS2_CRIT_STAGE_2 | STATUS2_CRIT_STAGE_3)
 
 #define STATUS3_LEECHSEED_BATTLER       (1 << 0 | 1 << 1) // The battler to receive HP from Leech Seed
 #define STATUS3_LEECHSEED               (1 << 2)

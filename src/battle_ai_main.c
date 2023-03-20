@@ -1377,7 +1377,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_FOCUS_ENERGY:
-            if (gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY)
+            if (gBattleMons[battlerAtk].status2 & STATUS2_CRIT_STAGE_RAISED)
                 score -= 10;
             break;
         case EFFECT_CONFUSE:

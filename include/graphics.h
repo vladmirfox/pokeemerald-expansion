@@ -10436,4 +10436,18 @@ extern const u8 gMailTilemap_Retro[];
 extern const u8 gMonMarkingsMenu_Gfx[];
 extern const u16 gMonMarkingsMenu_Pal[];
 
+// Wonder Launcher Items
+extern const u32 gItemIcon_WonderLauncher_BattleStatItem_1[];
+extern const u32 gItemIcon_WonderLauncher_BattleStatItem_2[];
+extern const u32 gItemIcon_WonderLauncher_BattleStatItem_3[];
+extern const u32 gItemIcon_WonderLauncher_BattleStatItem_6[];
+extern const u32 gItemIconPalette_WonderLauncher_XAttack[];
+extern const u32 gItemIconPalette_WonderLauncher_XDefend[];
+extern const u32 gItemIconPalette_WonderLauncher_XSpecialAttack[];
+extern const u32 gItemIconPalette_WonderLauncher_XSpecialDefense[];
+extern const u32 gItemIconPalette_WonderLauncher_XSpeed[];
+extern const u32 gItemIconPalette_WonderLauncher_XAccuracy[];
+
+extern const u32 gItemIconPalette_WonderLauncher_DireHit[];
+
 #endif //GUARD_GRAPHICS_H

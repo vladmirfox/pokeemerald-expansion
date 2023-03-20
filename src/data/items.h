@@ -9918,4 +9918,383 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
     },
+
+    // Wonder Launcher Items
+    [ITEM_WONDER_LAUNCHER_X_ATTACK_1] =
+    {
+        .name = _("X Attack 1"),
+        .itemId = ITEM_X_ATTACK,
+        .price = 1000,
+        .description = sWonderLauncher_XAttack1_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_ATTACK_2] =
+    {
+        .name = _("X Attack 2"),
+        .itemId = ITEM_X_ATTACK,
+        .price = 1000,
+        .description = sWonderLauncher_XAttack2_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_ATTACK_3] =
+    {
+        .name = _("X Attack 3"),
+        .itemId = ITEM_X_ATTACK,
+        .price = 1000,
+        .description = sWonderLauncher_XAttack3_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_ATTACK_6] =
+    {
+        .name = _("X Attack 6"),
+        .itemId = ITEM_X_ATTACK,
+        .price = 1000,
+        .description = sWonderLauncher_XAttack6_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_DEFENSE_1] =
+    {
+        .name = _("X Defense 1"),
+        .itemId = ITEM_X_DEFENSE,
+        .price = 2000,
+        .description = sWonderLauncher_XDefense1_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_DEFENSE_2] =
+    {
+        .name = _("X Defense 2"),
+        .itemId = ITEM_X_DEFENSE,
+        .price = 2000,
+        .description = sWonderLauncher_XDefense2_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_DEFENSE_3] =
+    {
+        .name = _("X Defense 3"),
+        .itemId = ITEM_X_DEFENSE,
+        .price = 2000,
+        .description = sWonderLauncher_XDefense3_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_DEFENSE_6] =
+    {
+        .name = _("X Defense 6"),
+        .itemId = ITEM_X_DEFENSE,
+        .price = 2000,
+        .description = sWonderLauncher_XDefense6_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_SP_ATK_1] =
+    {
+        .name = _("X Sp. Atk 1"),
+        .itemId = ITEM_X_SP_ATK,
+        .price = 1000,
+        .description = sWonderLauncher_XSpAtk1_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_SP_ATK_2] =
+    {
+        .name = _("X Sp. Atk 2"),
+        .itemId = ITEM_X_SP_ATK,
+        .price = 1000,
+        .description = sWonderLauncher_XSpAtk2_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_SP_ATK_3] =
+    {
+        .name = _("X Sp. Atk 3"),
+        .itemId = ITEM_X_SP_ATK,
+        .price = 1000,
+        .description = sWonderLauncher_XSpAtk3_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_SP_ATK_6] =
+    {
+        .name = _("X Sp. Atk 6"),
+        .itemId = ITEM_X_SP_ATK,
+        .price = 1000,
+        .description = sWonderLauncher_XSpAtk6_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_SP_DEF_1] =
+    {
+        .name = _("X Sp. Def 1"),
+        .itemId = ITEM_X_SP_DEF,
+        .price = 2000,
+        .description = sWonderLauncher_XSpDef1_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_SP_DEF_2] =
+    {
+        .name = _("X Sp. Def 2"),
+        .itemId = ITEM_X_SP_DEF,
+        .price = 2000,
+        .description = sWonderLauncher_XSpDef2_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_SP_DEF_3] =
+    {
+        .name = _("X Sp. Def 3"),
+        .itemId = ITEM_X_SP_DEF,
+        .price = 2000,
+        .description = sWonderLauncher_XSpDef3_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_SP_DEF_6] =
+    {
+        .name = _("X Sp. Def 6"),
+        .itemId = ITEM_X_SP_DEF,
+        .price = 2000,
+        .description = sWonderLauncher_XSpDef6_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_SPEED_1] =
+    {
+        .name = _("X Speed 1"),
+        .itemId = ITEM_X_SPEED,
+        .price = 1000,
+        .description = sWonderLauncher_XSpeed1_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_SPEED_2] =
+    {
+        .name = _("X Speed 2"),
+        .itemId = ITEM_X_SPEED,
+        .price = 1000,
+        .description = sWonderLauncher_XSpeed2_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_SPEED_3] =
+    {
+        .name = _("X Speed 3"),
+        .itemId = ITEM_X_SPEED,
+        .price = 1000,
+        .description = sWonderLauncher_XSpeed3_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+    
+    [ITEM_WONDER_LAUNCHER_X_SPEED_6] =
+    {
+        .name = _("X Speed 6"),
+        .itemId = ITEM_X_SPEED,
+        .price = 1000,
+        .description = sWonderLauncher_XSpeed6_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_ACCURACY_1] =
+    {
+        .name = _("X Accuracy 1"),
+        .itemId = ITEM_X_ACCURACY,
+        .price = 1000,
+        .description = sWonderLauncher_XAccuracy1_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_ACCURACY_2] =
+    {
+        .name = _("X Accuracy 2"),
+        .itemId = ITEM_X_ACCURACY,
+        .price = 1000,
+        .description = sWonderLauncher_XAccuracy2_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+    
+    [ITEM_WONDER_LAUNCHER_X_ACCURACY_3] =
+    {
+        .name = _("X Accuracy 3"),
+        .itemId = ITEM_X_ACCURACY,
+        .price = 1000,
+        .description = sWonderLauncher_XAccuracy3_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_X_ACCURACY_6] =
+    {
+        .name = _("X Accuracy 6"),
+        .itemId = ITEM_X_ACCURACY,
+        .price = 1000,
+        .description = sWonderLauncher_XAccuracy6_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_DIRE_HIT_1] =
+    {
+        .name = _("Dire Hit 1"),
+        .itemId = ITEM_DIRE_HIT,
+        .price = 1000,
+        .description = sWonderLauncher_DireHit1_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_DIRE_HIT_2] =
+    {
+        .name = _("Dire Hit 2"),
+        .itemId = ITEM_DIRE_HIT,
+        .price = 1000,
+        .description = sWonderLauncher_DireHit2_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
+
+    [ITEM_WONDER_LAUNCHER_DIRE_HIT_3] =
+    {
+        .name = _("Dire Hit 3"),
+        .itemId = ITEM_DIRE_HIT,
+        .price = 1000,
+        .description = sWonderLauncher_DireHit3_Desc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
 };

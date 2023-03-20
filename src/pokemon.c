@@ -5704,6 +5704,11 @@ bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, u16 item, u8 partyIndex, 
     #define X_ITEM_STAGES 1
 #endif
 
+#define WONDER_LAUNCHER_X_ITEM_STAGES_1 1
+#define WONDER_LAUNCHER_X_ITEM_STAGES_2 2
+#define WONDER_LAUNCHER_X_ITEM_STAGES_3 3
+#define WONDER_LAUNCHER_X_ITEM_STAGES_6 6
+
 // EXP candies store an index for this table in their holdEffectParam.
 const u32 sExpCandyExperienceTable[] = {
     [EXP_100 - 1] = 100,
@@ -5712,6 +5717,55 @@ const u32 sExpCandyExperienceTable[] = {
     [EXP_10000 - 1] = 10000,
     [EXP_30000 - 1] = 30000,
 };
+
+static u8 GetXItemStage(u16 itemId)
+{
+    u8 xItemStages;
+
+    switch(itemId)
+    {
+        case ITEM_WONDER_LAUNCHER_X_ATTACK_1:
+        case ITEM_WONDER_LAUNCHER_X_DEFENSE_1:
+        case ITEM_WONDER_LAUNCHER_X_SP_ATK_1:
+        case ITEM_WONDER_LAUNCHER_X_SP_DEF_1:
+        case ITEM_WONDER_LAUNCHER_X_SPEED_1:
+        case ITEM_WONDER_LAUNCHER_X_ACCURACY_1:
+        case ITEM_WONDER_LAUNCHER_DIRE_HIT_1:
+            xItemStages = WONDER_LAUNCHER_X_ITEM_STAGES_1;
+            break;
+        case ITEM_WONDER_LAUNCHER_X_ATTACK_2:
+        case ITEM_WONDER_LAUNCHER_X_DEFENSE_2:
+        case ITEM_WONDER_LAUNCHER_X_SP_ATK_2:
+        case ITEM_WONDER_LAUNCHER_X_SP_DEF_2:
+        case ITEM_WONDER_LAUNCHER_X_SPEED_2:
+        case ITEM_WONDER_LAUNCHER_X_ACCURACY_2:
+        case ITEM_WONDER_LAUNCHER_DIRE_HIT_2:
+            xItemStages = WONDER_LAUNCHER_X_ITEM_STAGES_2;
+            break;
+        case ITEM_WONDER_LAUNCHER_X_ATTACK_3:
+        case ITEM_WONDER_LAUNCHER_X_DEFENSE_3:
+        case ITEM_WONDER_LAUNCHER_X_SP_ATK_3:
+        case ITEM_WONDER_LAUNCHER_X_SP_DEF_3:
+        case ITEM_WONDER_LAUNCHER_X_SPEED_3:
+        case ITEM_WONDER_LAUNCHER_X_ACCURACY_3:
+        case ITEM_WONDER_LAUNCHER_DIRE_HIT_3:
+            xItemStages = WONDER_LAUNCHER_X_ITEM_STAGES_3;
+            break;
+        case ITEM_WONDER_LAUNCHER_X_ATTACK_6:
+        case ITEM_WONDER_LAUNCHER_X_DEFENSE_6:
+        case ITEM_WONDER_LAUNCHER_X_SP_ATK_6:
+        case ITEM_WONDER_LAUNCHER_X_SP_DEF_6:
+        case ITEM_WONDER_LAUNCHER_X_SPEED_6:
+        case ITEM_WONDER_LAUNCHER_X_ACCURACY_6:
+            xItemStages = WONDER_LAUNCHER_X_ITEM_STAGES_6;
+            break;
+        default:
+            xItemStages = X_ITEM_STAGES;
+            break;
+    }
+
+    return xItemStages;
+}
 
 // Returns TRUE if the item has no effect on the Pokémon, FALSE otherwise
 bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 moveIndex, bool8 usedByAI)
@@ -5732,6 +5786,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
     u8 effectFlags;
     s8 evChange;
     u16 evCount;
+    u8 xItemStages;
+    u8 critStage;
 
     // Get item hold effect
     heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
@@ -5788,6 +5844,9 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
         itemEffect = gItemEffectTable[item - ITEM_POTION];
     }
 
+    // handle different X Items stat levels
+    xItemStages = GetXItemStage(item);
+
     // Do item effect
     for (i = 0; i < ITEM_EFFECT_ARG_START; i++)
     {
@@ -5805,11 +5864,24 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             }
 
             // Dire Hit
-            if ((itemEffect[i] & ITEM0_DIRE_HIT)
-             && !(gBattleMons[gActiveBattler].status2 & STATUS2_FOCUS_ENERGY))
+            if ((itemEffect[i] & ITEM0_DIRE_HIT) 
+             && !(gBattleMons[gActiveBattler].status2 & STATUS2_CRIT_STAGE_RAISED)) // cant increase crit stage when it was increased before
             {
-                gBattleMons[gActiveBattler].status2 |= STATUS2_FOCUS_ENERGY;
-                retVal = FALSE;
+                switch(xItemStages)
+                {
+                    case WONDER_LAUNCHER_X_ITEM_STAGES_1:
+                            gBattleMons[gActiveBattler].status2 |= STATUS2_CRIT_STAGE_1;
+                            retVal = FALSE;
+                        break;
+                    case WONDER_LAUNCHER_X_ITEM_STAGES_2: // X_ITEM_STAGES 
+                            gBattleMons[gActiveBattler].status2 |= STATUS2_CRIT_STAGE_2;
+                            retVal = FALSE;
+                        break;
+                    case WONDER_LAUNCHER_X_ITEM_STAGES_3:
+                            gBattleMons[gActiveBattler].status2 |= STATUS2_CRIT_STAGE_3;
+                            retVal = FALSE;
+                        break;
+                }
             }
             break;
 
@@ -5819,7 +5891,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM1_X_ATTACK)
              && gBattleMons[gActiveBattler].statStages[STAT_ATK] < MAX_STAT_STAGE)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_ATK] += X_ITEM_STAGES;
+                gBattleMons[gActiveBattler].statStages[STAT_ATK] += xItemStages;
                 if (gBattleMons[gActiveBattler].statStages[STAT_ATK] > MAX_STAT_STAGE)
                     gBattleMons[gActiveBattler].statStages[STAT_ATK] = MAX_STAT_STAGE;
                 retVal = FALSE;
@@ -5829,7 +5901,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM1_X_DEFENSE)
              && gBattleMons[gActiveBattler].statStages[STAT_DEF] < MAX_STAT_STAGE)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_DEF] += X_ITEM_STAGES;
+                gBattleMons[gActiveBattler].statStages[STAT_DEF] += xItemStages;
                 if (gBattleMons[gActiveBattler].statStages[STAT_DEF] > MAX_STAT_STAGE)
                     gBattleMons[gActiveBattler].statStages[STAT_DEF] = MAX_STAT_STAGE;
                 retVal = FALSE;
@@ -5839,7 +5911,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM1_X_SPEED)
              && gBattleMons[gActiveBattler].statStages[STAT_SPEED] < MAX_STAT_STAGE)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_SPEED] += X_ITEM_STAGES;
+                gBattleMons[gActiveBattler].statStages[STAT_SPEED] += xItemStages;
                 if (gBattleMons[gActiveBattler].statStages[STAT_SPEED] > MAX_STAT_STAGE)
                     gBattleMons[gActiveBattler].statStages[STAT_SPEED] = MAX_STAT_STAGE;
                 retVal = FALSE;
@@ -5849,7 +5921,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM1_X_SPATK)
              && gBattleMons[gActiveBattler].statStages[STAT_SPATK] < MAX_STAT_STAGE)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_SPATK] += X_ITEM_STAGES;
+                gBattleMons[gActiveBattler].statStages[STAT_SPATK] += xItemStages;
                 if (gBattleMons[gActiveBattler].statStages[STAT_SPATK] > MAX_STAT_STAGE)
                     gBattleMons[gActiveBattler].statStages[STAT_SPATK] = MAX_STAT_STAGE;
                 retVal = FALSE;
@@ -5859,7 +5931,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM1_X_SPDEF)
              && gBattleMons[gActiveBattler].statStages[STAT_SPDEF] < MAX_STAT_STAGE)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_SPDEF] += X_ITEM_STAGES;
+                gBattleMons[gActiveBattler].statStages[STAT_SPDEF] += xItemStages;
                 if (gBattleMons[gActiveBattler].statStages[STAT_SPDEF] > MAX_STAT_STAGE)
                     gBattleMons[gActiveBattler].statStages[STAT_SPDEF] = MAX_STAT_STAGE;
                 retVal = FALSE;
@@ -5869,7 +5941,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM1_X_ACCURACY)
              && gBattleMons[gActiveBattler].statStages[STAT_ACC] < MAX_STAT_STAGE)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_ACC] += X_ITEM_STAGES;
+                gBattleMons[gActiveBattler].statStages[STAT_ACC] += xItemStages;
                 if (gBattleMons[gActiveBattler].statStages[STAT_ACC] > MAX_STAT_STAGE)
                     gBattleMons[gActiveBattler].statStages[STAT_ACC] = MAX_STAT_STAGE;
                 retVal = FALSE;
@@ -6442,16 +6514,29 @@ u8 GetItemEffectParamOffset(u16 itemId, u8 effectByte, u8 effectBit)
     return offset;
 }
 
-static void BufferStatRoseMessage(s32 statIdx)
+static void BufferStatRoseMessage(s32 statIdx, u8 statStage)
 {
     gBattlerTarget = gBattlerInMenuId;
     StringCopy(gBattleTextBuff1, gStatNamesTable[sStatsToRaise[statIdx]]);
-#if B_X_ITEMS_BUFF >= GEN_7
-    StringCopy(gBattleTextBuff2, gText_StatSharply);
-    StringAppend(gBattleTextBuff2, gText_StatRose);
-#else
-    StringCopy(gBattleTextBuff2, gText_StatRose);
-#endif
+
+    switch (statStage)
+    {
+        case WONDER_LAUNCHER_X_ITEM_STAGES_1: // || X_ITEM_STAGES == 1
+            StringCopy(gBattleTextBuff2, gText_StatRose);
+            break;
+        case WONDER_LAUNCHER_X_ITEM_STAGES_2: // || X_ITEM_STAGES == 2
+            StringCopy(gBattleTextBuff2, gText_StatSharply);
+            break;
+        case WONDER_LAUNCHER_X_ITEM_STAGES_3:
+            StringCopy(gBattleTextBuff2, gText_StatDrastically);
+            break;
+        case WONDER_LAUNCHER_X_ITEM_STAGES_6:
+            StringCopy(gBattleTextBuff2, gText_StatImmensly);
+            break;
+    }
+    if (statStage != WONDER_LAUNCHER_X_ITEM_STAGES_1) // || X_ITEM_STAGES == 1
+        	StringAppend(gBattleTextBuff2, gText_StatRose);
+
     BattleStringExpandPlaceholdersToDisplayedString(gText_DefendersStatRose);
 }
 
@@ -6459,6 +6544,7 @@ u8 *UseStatIncreaseItem(u16 itemId)
 {
     int i;
     const u8 *itemEffect;
+    u8 statStage;
 
     if (itemId == ITEM_ENIGMA_BERRY_E_READER)
     {
@@ -6480,25 +6566,27 @@ u8 *UseStatIncreaseItem(u16 itemId)
         BattleStringExpandPlaceholdersToDisplayedString(gText_PkmnGettingPumped);
     }
 
+    statStage = GetXItemStage(itemId);
+
     switch (itemEffect[1])
     {
         case ITEM1_X_ATTACK:
-            BufferStatRoseMessage(STAT_ATK);
+            BufferStatRoseMessage(STAT_ATK, statStage);
             break;
         case ITEM1_X_DEFENSE:
-            BufferStatRoseMessage(STAT_DEF);
+            BufferStatRoseMessage(STAT_DEF, statStage);
             break;
         case ITEM1_X_SPEED:
-            BufferStatRoseMessage(STAT_SPEED);
+            BufferStatRoseMessage(STAT_SPEED, statStage);
             break;
         case ITEM1_X_SPATK:
-            BufferStatRoseMessage(STAT_SPATK);
+            BufferStatRoseMessage(STAT_SPATK, statStage);
             break;
         case ITEM1_X_SPDEF:
-            BufferStatRoseMessage(STAT_SPDEF);
+            BufferStatRoseMessage(STAT_SPDEF, statStage);
             break;
         case ITEM1_X_ACCURACY:
-            BufferStatRoseMessage(STAT_ACC);
+            BufferStatRoseMessage(STAT_ACC, statStage);
             break;
     }
 
