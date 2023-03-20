@@ -105,7 +105,8 @@ SINGLE_BATTLE_TEST("Intimidate and Eject Button force the opponent to Attack")
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_BUTTON); };
         OPPONENT(SPECIES_HITMONTOP);
     } WHEN {
-        TURN { MOVE(player, MOVE_QUICK_ATTACK);
+        TURN { 
+               MOVE(player, MOVE_QUICK_ATTACK);
                MOVE(opponent, MOVE_TACKLE);
                SEND_OUT(opponent, 1);
         }
