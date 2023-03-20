@@ -601,5 +601,6 @@ const u8 *const gItemEffectTable[] =
     [ITEM_WONDER_LAUNCHER_DIRE_HIT_1 - ITEM_POTION]         = gItemEffect_DireHit,
     [ITEM_WONDER_LAUNCHER_DIRE_HIT_2 - ITEM_POTION]         = gItemEffect_DireHit,
     [ITEM_WONDER_LAUNCHER_DIRE_HIT_3 - ITEM_POTION]         = gItemEffect_DireHit,
+    [ITEM_WONDER_LAUNCHER_GUARD_SPEC - ITEM_POTION]         = gItemEffect_GuardSpec,
     
 };

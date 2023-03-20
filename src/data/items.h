@@ -10297,4 +10297,18 @@ const struct Item gItems[] =
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
     },
+
+    [ITEM_WONDER_LAUNCHER_GUARD_SPEC] =
+    {
+        .name = _("Guard Spec."),
+        .itemId = ITEM_GUARD_SPEC,
+        .price = 1500,
+        .description = sGuardSpecDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .flingPower = 30,
+    },
 };
