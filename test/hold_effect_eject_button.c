@@ -10,8 +10,8 @@ SINGLE_BATTLE_TEST("Eject Button is not triggered when there is nothing to switc
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_BUTTON); }
-        PLAYER(SPECIES_WOBBUFFET) { HP(0); }
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_BUTTON); };
+        PLAYER(SPECIES_WOBBUFFET) { HP(0); };
     } WHEN {
         TURN {
             MOVE(player, MOVE_QUICK_ATTACK);
