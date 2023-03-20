@@ -838,8 +838,12 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_WONDER_LAUNCHER_DIRE_HIT_1] = {gItemIcon_WonderLauncher_BattleStatItem_1, gItemIconPalette_WonderLauncher_DireHit},
     [ITEM_WONDER_LAUNCHER_DIRE_HIT_2] = {gItemIcon_WonderLauncher_BattleStatItem_2, gItemIconPalette_WonderLauncher_DireHit},
     [ITEM_WONDER_LAUNCHER_DIRE_HIT_3] = {gItemIcon_WonderLauncher_BattleStatItem_3, gItemIconPalette_WonderLauncher_DireHit},
-
     [ITEM_WONDER_LAUNCHER_GUARD_SPEC] = {gItemIcon_WonderLauncher_BattleStatItem_blank, gItemIconPalette_WonderLauncher_GuardSpec},
+
+    [ITEM_WONDER_LAUNCHER_ABILITY_URGE] = {gItemIcon_WonderLauncher_BattleStatItem_blank2, gItemIconPalette_WonderLauncher_AbilityUrge},
+    [ITEM_WONDER_LAUNCHER_RESET_URGE] = {gItemIcon_WonderLauncher_BattleStatItem_blank2, gItemIconPalette_WonderLauncher_ResetUrge},
+    [ITEM_WONDER_LAUNCHER_ITEM_URGE] = {gItemIcon_WonderLauncher_BattleStatItem_blank2, gItemIconPalette_WonderLauncher_ItemUrge},
+    [ITEM_WONDER_LAUNCHER_ITEM_DROP] = {gItemIcon_WonderLauncher_BattleStatItem_blank2, gItemIconPalette_WonderLauncher_ItemDrop},
 
     // Return to field arrow
     [ITEMS_COUNT] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},

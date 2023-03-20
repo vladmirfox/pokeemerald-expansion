@@ -3952,3 +3952,23 @@ static const u8 sWonderLauncher_DireHit3_Desc[] = _(
     "Immensly raises the\n"
     "critical-hit ratio\n"
     "during one battle.");
+
+static const u8 sAbilityUrgeDesc[] = _(
+    "Activates the\n"
+    "effects of a\n"
+    "Pokémons ability.");
+
+static const u8 sResetUrgeDesc[] = _(
+    "Eliminates all\n"
+    "changes to a\n"
+    "Pokémons stats.");
+
+static const u8 sItemUrgeDesc[] = _(
+    "Activates the\n"
+    "effects of a\n"
+    "Pokémons held item.");
+
+static const u8 sItemDropDesc[] = _(
+    "Removes a Pokémons\n"
+    "held item during\n"
+    "during one battle.");

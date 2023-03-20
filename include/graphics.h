@@ -10442,6 +10442,8 @@ extern const u32 gItemIcon_WonderLauncher_BattleStatItem_2[];
 extern const u32 gItemIcon_WonderLauncher_BattleStatItem_3[];
 extern const u32 gItemIcon_WonderLauncher_BattleStatItem_6[];
 extern const u32 gItemIcon_WonderLauncher_BattleStatItem_blank[];
+extern const u32 gItemIcon_WonderLauncher_BattleStatItem_blank2[];
+
 extern const u32 gItemIconPalette_WonderLauncher_XAttack[];
 extern const u32 gItemIconPalette_WonderLauncher_XDefend[];
 extern const u32 gItemIconPalette_WonderLauncher_XSpecialAttack[];
@@ -10451,5 +10453,10 @@ extern const u32 gItemIconPalette_WonderLauncher_XAccuracy[];
 
 extern const u32 gItemIconPalette_WonderLauncher_DireHit[];
 extern const u32 gItemIconPalette_WonderLauncher_GuardSpec[];
+
+extern const u32 gItemIconPalette_WonderLauncher_AbilityUrge[];
+extern const u32 gItemIconPalette_WonderLauncher_ResetUrge[];
+extern const u32 gItemIconPalette_WonderLauncher_ItemUrge[];
+extern const u32 gItemIconPalette_WonderLauncher_ItemDrop[];
 
 #endif //GUARD_GRAPHICS_H

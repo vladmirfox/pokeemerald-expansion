@@ -1954,6 +1954,7 @@ const u32 gItemIcon_WonderLauncher_BattleStatItem_2[] = INCBIN_U32("graphics/ite
 const u32 gItemIcon_WonderLauncher_BattleStatItem_3[] = INCBIN_U32("graphics/items/icons/battle_stat_item_WonderLauncher_3.4bpp.lz");
 const u32 gItemIcon_WonderLauncher_BattleStatItem_6[] = INCBIN_U32("graphics/items/icons/battle_stat_item_WonderLauncher_6.4bpp.lz");
 const u32 gItemIcon_WonderLauncher_BattleStatItem_blank[] = INCBIN_U32("graphics/items/icons/battle_stat_item_WonderLauncher_blank.4bpp.lz");
+const u32 gItemIcon_WonderLauncher_BattleStatItem_blank2[] = INCBIN_U32("graphics/items/icons/battle_stat_item_WonderLauncher_blank2.4bpp.lz");
 
 const u32 gItemIconPalette_WonderLauncher_XAttack[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_XAttack.gbapal.lz");
 const u32 gItemIconPalette_WonderLauncher_XDefend[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_XDefense.gbapal.lz");
@@ -1964,6 +1965,11 @@ const u32 gItemIconPalette_WonderLauncher_XAccuracy[] = INCBIN_U32("graphics/ite
 
 const u32 gItemIconPalette_WonderLauncher_DireHit[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_DireHit.gbapal.lz");
 const u32 gItemIconPalette_WonderLauncher_GuardSpec[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_GuardSpec.gbapal.lz");
+
+const u32 gItemIconPalette_WonderLauncher_AbilityUrge[]= INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_AbilityUrge.gbapal.lz");
+const u32 gItemIconPalette_WonderLauncher_ResetUrge[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_ResetUrge.gbapal.lz");
+const u32 gItemIconPalette_WonderLauncher_ItemUrge[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_ItemUrge.gbapal.lz");
+ const u32 gItemIconPalette_WonderLauncher_ItemDrop[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_ItemDrop.gbapal.lz");
 
 //const u32 gItemIconPalette_DireHit[] = INCBIN_U32("graphics/items/icon_palettes/dire_hit.gbapal.lz");
 
