@@ -2313,7 +2313,10 @@ static void CreatePokedexList(u8 dexMode, u8 order)
                     #endif
                         {
                             sPokedexView->pokemonListCount++;
-                            sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].dexNum = temp_dexNum - 1;
+                            if (temp_isHoennDex)
+                                sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].dexNum = HoennToNationalOrder(i);
+                            else
+                                sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].dexNum = temp_dexNum - 1;
                             sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].seenSpecies = SPECIES_NONE;
                             sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].owned = SPECIES_NONE;
                         }
