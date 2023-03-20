@@ -130,7 +130,7 @@ SINGLE_BATTLE_TEST("Eject Button is not triggered after given to player by Picke
     }
 }
 
-SINGLE_BATTLE_TEST("Eject Button has no chance to activate after Dragon Tai or Circle Throw")
+SINGLE_BATTLE_TEST("Eject Button has no chance to activate after Dragon Tail")
 {
     GIVEN {
         PLAYER(SPECIES_KOMMO_O);
