@@ -334,6 +334,7 @@ static void PrintSearchParameterTitle(u32, const u8 *);
 static void ClearSearchParameterBoxText(void);
 static void HandleFormSwitch_ScrollingList(u16 selectedMon, bool8 nextForm);
 static void SetDexMode(u16 dexMode);
+static u8 GetDigitCountByDexMode(u16 dexMode);
 
 // const rom data
 #include "data/pokemon/pokedex_orders.h"
@@ -1640,7 +1641,7 @@ static void ResetPokedexView(struct PokedexView *pokedexView)
     pokedexView->selectedPokemonBackup = 0;
     pokedexView->dexMode = DEX_MODE_HOENN;
     pokedexView->dexModeBackup = DEX_MODE_HOENN;
-    pokedexView->digitCount = NumberDigitCount(HOENN_DEX_COUNT);
+    pokedexView->digitCount = GetDigitCountByDexMode(DEX_MODE_HOENN);
     pokedexView->dexOrder = ORDER_NUMERICAL;
     pokedexView->dexOrderBackup = ORDER_NUMERICAL;
     pokedexView->seenCount = 0;
@@ -2316,7 +2317,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
                             if (temp_isHoennDex)
                                 sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].dexNum = HoennToNationalOrder(i);
                             else
-                                sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].dexNum = temp_dexNum - 1;
+                                sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].dexNum = i;
                             sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].seenSpecies = SPECIES_NONE;
                             sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].owned = SPECIES_NONE;
                         }
@@ -4255,17 +4256,48 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     const u8 *name;
     const u8 *category;
     const u8 *description;
+    u8 *txtPtr;
+    u8 digitCount;
+    u8 dexMode;
 
-    if (newEntry)
-        PrintInfoScreenText(gText_PokedexRegistration, GetStringCenterAlignXOffset(FONT_NORMAL, gText_PokedexRegistration, 0xF0), 0);
     if (value == 0)
+    {
         value = SpeciesToHoennPokedexNum(num);
+        dexMode = DEX_MODE_HOENN;
+    }
     else
+    {
         value = SpeciesToNationalPokedexNum(num);
-    ConvertIntToDecimalStringN(StringCopy(str, gText_NumberClear01), value, STR_CONV_MODE_LEADING_ZEROS, sPokedexView->digitCount);
+        dexMode = DEX_MODE_NATIONAL;
+    }
+    if (newEntry)
+    {
+        PrintInfoScreenText(gText_PokedexRegistration, GetStringCenterAlignXOffset(FONT_NORMAL, gText_PokedexRegistration, 0xF0), 0);
+        digitCount = GetDigitCountByDexMode(dexMode);
+    }
+    else
+        digitCount = sPokedexView->digitCount;
+
+    txtPtr = StringCopy(str, gText_NumberClear01);
+    if (value == 0)
+    {
+        if (digitCount == 4)
+            StringAppend(txtPtr, gText_FourQuestionMarks);
+        else
+            StringAppend(txtPtr, gText_ThreeMarks);
+    }
+    else
+    {
+    #if P_DEX_REGIONAL_DEX_NUMBER_0 == TRUE
+        if (dexMode == DEX_MODE_HOENN)
+            value--;
+    #endif
+        ConvertIntToDecimalStringN(txtPtr, value, STR_CONV_MODE_LEADING_ZEROS, digitCount);
+    }
+
     PrintInfoScreenText(str, 0x60, 0x19);
     name = GetSpeciesName(num);
-    PrintInfoScreenText(name, 0x72 + (sPokedexView->digitCount * 6), 0x19);
+    PrintInfoScreenText(name, 0x72 + (digitCount * 6), 0x19);
     if (owned)
     {
         CopyMonCategoryText(num, str2);
@@ -5856,13 +5888,17 @@ static void HandleFormSwitch_ScrollingList(u16 selectedMon, bool8 nextForm)
 
 static void SetDexMode(u16 dexMode)
 {
-    if (!IsNationalPokedexEnabled())
-        sPokedexView->dexMode = DEX_MODE_HOENN;
-    else
-        sPokedexView->dexMode = dexMode;
+    bool8 natDexEnabled = IsNationalPokedexEnabled();
+    if (!natDexEnabled)
+        dexMode = DEX_MODE_HOENN;
+    sPokedexView->dexMode = dexMode;
+    sPokedexView->digitCount = GetDigitCountByDexMode(dexMode);
+}
 
-    if (sPokedexView->dexMode == DEX_MODE_HOENN)
-        sPokedexView->digitCount = NumberDigitCount(HOENN_DEX_COUNT);
+static u8 GetDigitCountByDexMode(u16 dexMode)
+{
+    if (dexMode == DEX_MODE_HOENN)
+        return NumberDigitCount(HOENN_DEX_COUNT);
     else
-        sPokedexView->digitCount = NumberDigitCount(NATIONAL_DEX_COUNT);
+        return NumberDigitCount(NATIONAL_DEX_COUNT);
 }
