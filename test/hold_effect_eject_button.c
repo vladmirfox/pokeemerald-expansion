@@ -55,7 +55,8 @@ SINGLE_BATTLE_TEST("Eject Button will not activate under Substitute")
         OPPONENT(SPECIES_RAICHU) { Item(ITEM_EJECT_BUTTON); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_SUBSTITUTE);
+        TURN { 
+               MOVE(opponent, MOVE_SUBSTITUTE);
                MOVE(player, MOVE_TACKLE);
         }
     } SCENE {
