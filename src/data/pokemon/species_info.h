@@ -2963,6 +2963,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 320,
         .levelUpLearnset = sPrimeapeLevelUpLearnset,
         .teachableLearnset = sPrimeapeTeachableLearnset,
+        .evolutions = sPrimeapeEvolutions,
     },
 
 #define GROWLITHE_FAMILY_MISC_INFO                                                  \
@@ -10166,6 +10167,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 415,
         .levelUpLearnset = sGirafarigLevelUpLearnset,
         .teachableLearnset = sGirafarigTeachableLearnset,
+        .evolutions = sGirafarigEvolutions,
     },
 
     [SPECIES_PINECO] =
@@ -10269,6 +10271,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 140,
         .levelUpLearnset = sDunsparceLevelUpLearnset,
         .teachableLearnset = sDunsparceTeachableLearnset,
+        .evolutions = sDunsparceEvolutions,
     },
 
     [SPECIES_GLIGAR] =
@@ -25974,6 +25977,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 700,
         .levelUpLearnset = sBisharpLevelUpLearnset,
         .teachableLearnset = sBisharpTeachableLearnset,
+        .evolutions = sBisharpEvolutions,
     },
 
     [SPECIES_BOUFFALANT] =
