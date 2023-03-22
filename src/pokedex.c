@@ -2302,11 +2302,11 @@ static void CreatePokedexList(u8 dexMode, u8 order)
                 if (seenSpecies != SPECIES_NONE)
                 {
                     // If it's not the first on the list and the previous entry was not seen, add it to the list.
-                #if P_DEX_EMPTY_ENTRY_AT_ENDS == TRUE
-                    if (!previousWasSeen && !secondPreviousSeen && i > 0)
-                #else
-                    if (!previousWasSeen && !secondPreviousSeen && i > 0 && sPokedexView->pokemonListCount != 0)
-                #endif
+                    if (!previousWasSeen && !secondPreviousSeen && i > 0
+                    #if P_DEX_EMPTY_ENTRY_AT_ENDS == FALSE
+                        && sPokedexView->pokemonListCount != 0
+                    #endif
+                    )
                     {
                         if (temp_isHoennDex)
                             sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = HoennToNationalOrder(i);
@@ -2316,35 +2316,25 @@ static void CreatePokedexList(u8 dexMode, u8 order)
                         sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = FALSE;
                         sPokedexView->pokemonListCount++;
                     }
-                    sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
-                    sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
-                    sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = GetSetPokedexFlag(seenSpecies, FLAG_GET_CAUGHT);
-                    secondPreviousSeen = previousWasSeen;
-                    previousWasSeen = TRUE;
-                    sPokedexView->pokemonListCount++;
                 }
-                else if (previousWasSeen)
+                else if (!previousWasSeen)
                 {
-                    sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
-                    sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
-                    secondPreviousSeen = previousWasSeen;
-                    previousWasSeen = FALSE;
+                    temp_dexNum = 0xFFFF;
+                }
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
+                sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = GetSetPokedexFlag(seenSpecies, FLAG_GET_CAUGHT);
+                if (seenSpecies != SPECIES_NONE || previousWasSeen)
                     sPokedexView->pokemonListCount++;
-                }
-                else
-                {
-                    sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = 0xFFFF;
-                    sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
-                    secondPreviousSeen = previousWasSeen;
-                    previousWasSeen = FALSE;
-                }
             #else
                 sPokedexView->pokedexList[i].dexNum = temp_dexNum;
                 sPokedexView->pokedexList[i].seenSpecies = seenSpecies;
                 sPokedexView->pokedexList[i].owned = GetSetPokedexFlag(seenSpecies, FLAG_GET_CAUGHT);
-                if (sPokedexView->pokedexList[i].seenSpecies != SPECIES_NONE)
+                if (seenSpecies != SPECIES_NONE)
                     sPokedexView->pokemonListCount = i + 1;
             #endif
+                secondPreviousSeen = previousWasSeen;
+                previousWasSeen = seenSpecies != SPECIES_NONE;
             }
         }
         break;
@@ -4434,6 +4424,9 @@ s8 GetSetPokedexFlag(u16 species, u8 caseID)
 {
     u32 index, bit, mask;
     s8 retVal = 0;
+
+    if (species == SPECIES_NONE)
+        return retVal;
 
     species--;
     index = species / 8;
