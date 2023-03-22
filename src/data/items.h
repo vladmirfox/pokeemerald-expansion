@@ -10315,56 +10315,56 @@ const struct Item gItems[] =
     [ITEM_WONDER_LAUNCHER_ABILITY_URGE] =
     {
         .name = _("Ability Urge"),
-        //.itemId = ITEM_GUARD_SPEC,
+        .itemId = ITEM_WONDER_LAUNCHER_ABILITY_URGE,
         .price = 1500,
         .description = sAbilityUrgeDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        //.battleUsage = ITEM_B_USE_OTHER,
-        //.battleUseFunc = ItemUseInBattle_StatIncrease,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
     },
 
     [ITEM_WONDER_LAUNCHER_RESET_URGE] =
     {
         .name = _("Reset Urge"),
-        //.itemId = ITEM_GUARD_SPEC,
+        .itemId = ITEM_WONDER_LAUNCHER_RESET_URGE,
         .price = 1500,
         .description = sResetUrgeDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        //.battleUsage = ITEM_B_USE_OTHER,
-        //.battleUseFunc = ItemUseInBattle_StatIncrease,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
     },
 
     [ITEM_WONDER_LAUNCHER_ITEM_URGE] =
     {
         .name = _("Item Urge"),
-        //.itemId = ITEM_GUARD_SPEC,
+        .itemId = ITEM_WONDER_LAUNCHER_ITEM_URGE,
         .price = 1500,
         .description = sItemUrgeDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        //.battleUsage = ITEM_B_USE_OTHER,
-        //.battleUseFunc = ItemUseInBattle_StatIncrease,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
     },
 
     [ITEM_WONDER_LAUNCHER_ITEM_DROP] =
     {
         .name = _("Item Drop"),
-        //.itemId = ITEM_GUARD_SPEC,
+        .itemId = ITEM_WONDER_LAUNCHER_ITEM_DROP,
         .price = 1500,
         .description = sItemDropDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        //.battleUsage = ITEM_B_USE_OTHER,
-        //.battleUseFunc = ItemUseInBattle_StatIncrease,
+        .battleUsage = ITEM_B_USE_OTHER,
+        .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
     },
 };

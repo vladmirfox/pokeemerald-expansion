@@ -462,4 +462,7 @@ extern const u8 BattleScript_StatUpZMove[];
 extern const u8 BattleScript_HealReplacementZMove[];
 extern const u8 BattleScript_EffectExtremeEvoboost[];
 
+// Wonder Launcher Items
+extern const u8 BattleScript_ItemDrop[];
+
 #endif // GUARD_BATTLE_SCRIPTS_H

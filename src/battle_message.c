@@ -444,6 +444,7 @@ static const u8 sText_SpAttack[] = _("sp. attack");
 static const u8 sText_SpDefense[] = _("sp. defense");
 static const u8 sText_Accuracy[] = _("accuracy");
 static const u8 sText_Evasiveness[] = _("evasiveness");
+static const u8 sText_ItemDrop[] = _("{B_DEF_NAME_WITH_PREFIX} lost it's {B_LAST_ITEM}!");
 
 const u8 *const gStatNamesTable[NUM_BATTLE_STATS] =
 {
@@ -1406,6 +1407,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_TARGETTOOHEAVY - BATTLESTRINGS_TABLE_START] = sText_TargetTooHeavy,
     [STRINGID_ATTACKERLOSTELECTRICTYPE - BATTLESTRINGS_TABLE_START] = sText_AttackerLostElectricType,
     [STRINGID_PKMNSABILITYPREVENTSABILITY - BATTLESTRINGS_TABLE_START] = sText_PkmnsAbilityPreventsAbility,
+    [STRINGID_ITEMDROP - BATTLESTRINGS_TABLE_START] = sText_ItemDrop,
 };
 
 const u16 gZEffectStringIds[] =

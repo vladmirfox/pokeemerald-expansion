@@ -10297,3 +10297,9 @@ BattleScript_PokemonCantUseTheMove::
 	printstring STRINGID_BUTPOKEMONCANTUSETHEMOVE
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
+
+BattleScript_ItemDrop::
+	playanimation BS_SCRIPTING, B_ANIM_ITEM_KNOCKOFF
+	printstring STRINGID_ITEMDROP
+	waitmessage B_WAIT_TIME_LONG
+	end

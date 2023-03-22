@@ -2815,7 +2815,7 @@ u8 GetBattlerTurnOrderNum(u8 battlerId)
     return i;
 }
 
-static void CheckSetUnburden(u8 battlerId)
+void CheckSetUnburden(u8 battlerId)
 {
     if (GetBattlerAbility(battlerId) == ABILITY_UNBURDEN)
     {

@@ -7,6 +7,7 @@
 #include "battle_message.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
+#include "battle_scripts.h"
 #include "battle_setup.h"
 #include "battle_tower.h"
 #include "battle_z_move.h"
@@ -5767,6 +5768,85 @@ static u8 GetXItemStage(u16 itemId)
     return xItemStages;
 }
 
+static u8 ActivateAbilityUrgeEffect(u16 ability)
+{
+    switch (ability)
+    {
+        case ABILITY_ANTICIPATION:
+        case ABILITY_DOWNLOAD:
+        case ABILITY_DRIZZLE:
+        case ABILITY_DROUGHT:
+        case ABILITY_FORECAST:
+        case ABILITY_FOREWARN:
+        case ABILITY_FRISK:
+        case ABILITY_INTIMIDATE:
+            SET_STATCHANGER(STAT_ATK, 1, TRUE);
+            BattleScriptExecute(BattleScript_IntimidateActivates);
+            break;
+        case ABILITY_SAND_STREAM:
+        case ABILITY_SLOW_START:
+        case ABILITY_SNOW_WARNING:
+        case ABILITY_TRACE:
+    }
+}
+
+static bool8 TryActivateAbilityUrge(u16 battler)
+{
+    u16 ability = gBattleMons[battler].ability;
+    u8 special = 0;
+    u16 temp;
+    switch (ability)
+    {
+        case ABILITY_ANTICIPATION:
+        case ABILITY_DOWNLOAD:
+        case ABILITY_FORECAST:
+        case ABILITY_FOREWARN:
+        case ABILITY_FRISK:
+        case ABILITY_INTIMIDATE:
+        case ABILITY_SAND_STREAM:
+        case ABILITY_SLOW_START:
+        case ABILITY_SNOW_WARNING:
+        case ABILITY_TRACE:
+        case ABILITY_DRIZZLE:
+        case ABILITY_DROUGHT:
+            break;
+        default:
+            return FALSE;
+    }
+    gBattlerAttacker = gActiveBattler; // cursed 
+    AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battler, 0, 0, 0);
+    return TRUE;
+}
+
+static bool32 TryKnockOffItemScript(u32 battler)
+{
+    if (gBattleMons[battler].item != ITEM_NONE
+        && CanBattlerGetOrLoseItem(battler, gBattleMons[battler].item))
+    {
+        gLastUsedItem = gBattleMons[battler].item;
+        gBattleMons[battler].item = ITEM_NONE;
+        if (gBattleMons[battler].ability != ABILITY_GORILLA_TACTICS)
+            gBattleStruct->choicedMove[battler] = 0;
+        CheckSetUnburden(battler);
+        gBattleScripting.battler = gActiveBattler;
+        BattleScriptExecute(BattleScript_ItemDrop);
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static bool8 TryActivateHeldItemEffect(u16 battler)
+{
+    u16 item = gBattleMons[battler].item;
+    if (ItemId_GetHoldEffect(item) == HOLD_EFFECT_NONE)
+        return FALSE;
+        
+    ItemId_GetBattleFunc(item)(0);
+    BattleScriptExecute(BattleScript_ItemDrop);
+    return TRUE;
+}
+
+
 // Returns TRUE if the item has no effect on the Pokémon, FALSE otherwise
 bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 moveIndex, bool8 usedByAI)
 {
@@ -5882,6 +5962,34 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                             retVal = FALSE;
                         break;
                 }
+            }
+            
+            /// Ability Urge
+            if ((itemEffect[i] & ITEM0_ABILITY_URGE)
+             && TryActivateAbilityUrge(gActiveBattler))
+            {
+                retVal = FALSE;
+            }
+            
+            // Reset Urge
+            if ((itemEffect[i] & ITEM0_RESET_URGE)
+             && TryResetBattlerStatChanges(gActiveBattler))
+            {
+                retVal = FALSE;
+            }
+
+            // Item Urge
+            if ((itemEffect[i] & ITEM0_ITEM_URGE)
+             /*&& TryActivateHeldItemEffect(gActiveBattler)*/)
+            {
+                retVal = TRUE;
+            }
+
+            // Item Drop
+            if ((itemEffect[i] & ITEM0_ITEM_DROP)
+             && TryKnockOffItemScript(gActiveBattler))
+            {
+                retVal = FALSE;
             }
             break;
 
