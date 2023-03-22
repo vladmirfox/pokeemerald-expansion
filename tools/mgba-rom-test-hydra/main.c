@@ -9,7 +9,11 @@
  * COMMANDS
  * N: Sets the test name to the remainder of the line.
  * R: Sets the result to the remainder of the line, and flushes any
- *    output buffered since the previous R. */
+ *    output buffered since the previous R.
+ * P/K/F/A: Sets the result to the remaining of the line, flushes any
+ *    output since the previous P/K/F/A and increment the number of
+ *    passes/known fails/assumption fails/fails.
+ */
 #include <fcntl.h>
 #include <poll.h>
 #include <signal.h>
@@ -30,7 +34,7 @@ struct Runner
 {
     pid_t pid;
     int outfd;
-    char rom_path[L_tmpnam];
+    char rom_path[FILENAME_MAX];
     char test_name[256];
     size_t input_buffer_size;
     size_t input_buffer_capacity;
@@ -38,6 +42,11 @@ struct Runner
     size_t output_buffer_size;
     size_t output_buffer_capacity;
     char *output_buffer;
+    int passes;
+    int knownFails;
+    int assumptionFails;
+    int fails;
+    int results;
 };
 
 static unsigned nrunners = 0;
@@ -72,7 +81,19 @@ static void handle_read(struct Runner *runner)
                     runner->test_name[eol - soc - 1] = '\0';
                     break;
 
-                case 'R':
+                case 'P':
+                    runner->passes++;
+                    goto add_to_results;
+                case 'K':
+                    runner->knownFails++;
+                    goto add_to_results;
+                case 'A':
+                    runner->assumptionFails++;
+                    goto add_to_results;
+                case 'F':
+                    runner->fails++;
+add_to_results:
+                    runner->results++;
                     soc += 2;
                     fprintf(stdout, "%s: ", runner->test_name);
                     fwrite(soc, 1, eol - soc, stdout);
@@ -234,53 +255,6 @@ int main(int argc, char *argv[])
             perror("pipe failed");
             exit(2);
         }
-        if (!tmpnam(runners[i].rom_path))
-        {
-            perror("tmpnam rom_path failed");
-            exit(2);
-        }
-        int tmpfd;
-        if ((tmpfd = open(runners[i].rom_path, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR)) == -1)
-        {
-            perror("open tmpfd failed");
-            _exit(2);
-        }
-        if ((write(tmpfd, elf, elfst.st_size)) == -1)
-        {
-            perror("write tmpfd failed");
-            _exit(2);
-        }
-        pid_t patchelfpid = fork();
-        if (patchelfpid == -1)
-        {
-            perror("fork patchelf failed");
-            _exit(2);
-        }
-        else if (patchelfpid == 0)
-        {
-            char n_arg[5], i_arg[5];
-            snprintf(n_arg, sizeof(n_arg), "\\x%02x", nrunners);
-            snprintf(i_arg, sizeof(i_arg), "\\x%02x", i);
-            if (execlp("tools/patchelf/patchelf", "tools/patchelf/patchelf", runners[i].rom_path, "gTestRunnerN", n_arg, "gTestRunnerI", i_arg, NULL) == -1)
-            {
-                perror("execlp patchelf failed");
-                _exit(2);
-            }
-        }
-        else
-        {
-            int wstatus;
-            if (waitpid(patchelfpid, &wstatus, 0) == -1)
-            {
-                perror("waitpid patchelfpid failed");
-                _exit(2);
-            }
-            if (!WIFEXITED(wstatus) || WEXITSTATUS(wstatus) != 0)
-            {
-                fprintf(stderr, "patchelf exited with an error\n");
-                _exit(2);
-            }
-        }
         pid_t pid = fork();
         if (pid == -1) {
             perror("fork mgba-rom-test failed");
@@ -310,15 +284,60 @@ int main(int argc, char *argv[])
                 perror("close pipefds[1] failed");
                 _exit(2);
             }
+            char rom_path[FILENAME_MAX];
+            sprintf(rom_path, "/tmp/file%05d", getpid());
+            int tmpfd;
+            if ((tmpfd = open(rom_path, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR)) == -1)
+            {
+                perror("open tmpfd failed");
+                _exit(2);
+            }
+            if ((write(tmpfd, elf, elfst.st_size)) == -1)
+            {
+                perror("write tmpfd failed");
+                _exit(2);
+            }
+            pid_t patchelfpid = fork();
+            if (patchelfpid == -1)
+            {
+                perror("fork patchelf failed");
+                _exit(2);
+            }
+            else if (patchelfpid == 0)
+            {
+                char n_arg[5], i_arg[5];
+                snprintf(n_arg, sizeof(n_arg), "\\x%02x", nrunners);
+                snprintf(i_arg, sizeof(i_arg), "\\x%02x", i);
+                if (execlp("tools/patchelf/patchelf", "tools/patchelf/patchelf", rom_path, "gTestRunnerN", n_arg, "gTestRunnerI", i_arg, NULL) == -1)
+                {
+                    perror("execlp patchelf failed");
+                    _exit(2);
+                }
+            }
+            else
+            {
+                int wstatus;
+                if (waitpid(patchelfpid, &wstatus, 0) == -1)
+                {
+                    perror("waitpid patchelfpid failed");
+                    _exit(2);
+                }
+                if (!WIFEXITED(wstatus) || WEXITSTATUS(wstatus) != 0)
+                {
+                    fprintf(stderr, "patchelf exited with an error\n");
+                    _exit(2);
+                }
+            }
             // stdbuf is required because otherwise mgba never flushes
             // stdout.
-            if (execlp("stdbuf", "stdbuf", "-oL", argv[1], "-l15", "-ClogLevel.gba.dma=16", "-Rr0", runners[i].rom_path, NULL) == -1)
+            if (execlp("stdbuf", "stdbuf", "-oL", argv[1], "-l15", "-ClogLevel.gba.dma=16", "-Rr0", rom_path, NULL) == -1)
             {
                 perror("execl stdbuf mgba-rom-test failed");
                 _exit(2);
             }
         } else {
             runners[i].pid = pid;
+            sprintf(runners[i].rom_path, "/tmp/file%05d", runners[i].pid);
             runners[i].outfd = pipefds[0];
             if (close(pipefds[1]) == -1)
             {
@@ -406,6 +425,11 @@ int main(int argc, char *argv[])
 
     // Reap test runners and collate exit codes.
     int exit_code = 0;
+    int passes = 0;
+    int knownFails = 0;
+    int assumptionFails = 0;
+    int fails = 0;
+    int results = 0;
     for (int i = 0; i < nrunners; i++)
     {
         int wstatus;
@@ -414,8 +438,34 @@ int main(int argc, char *argv[])
             perror("waitpid runners[i] failed");
             exit(2);
         }
+        if (runners[i].output_buffer_size > 0)
+            fwrite(runners[i].output_buffer, 1, runners[i].output_buffer_size, stdout);
         if (WIFEXITED(wstatus) && WEXITSTATUS(wstatus) > exit_code)
             exit_code = WEXITSTATUS(wstatus);
+        passes += runners[i].passes;
+        knownFails += runners[i].knownFails;
+        assumptionFails += runners[i].assumptionFails;
+        fails += runners[i].fails;
+        results += runners[i].results;
     }
+
+    if (results == 0)
+    {
+        fprintf(stdout, "\nNo tests found.\n");
+    }
+    else
+    {
+        fprintf(stdout, "\n- Tests TOTAL:         %d\n", results);
+        fprintf(stdout, "- Tests \e[32mPASSED\e[0m:        %d\n", passes);
+        if (knownFails > 0)
+            fprintf(stdout, "- Tests \e[33mKNOWN_FAILING\e[0m: %d\n", knownFails);
+        if (fails > 0)
+            fprintf(stdout, "- Tests \e[31mFAILED\e[0m :       %d\n", fails);
+        if (assumptionFails > 0)
+            fprintf(stdout, "- \e[33mASSUMPTIONS_FAILED\e[0m:  %d\n", assumptionFails);
+    }
+    fprintf(stdout, "\n");
+
+    fflush(stdout);
     return exit_code;
 }

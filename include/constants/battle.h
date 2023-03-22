@@ -371,8 +371,10 @@
 #define MOVE_EFFECT_RELIC_SONG          69
 #define MOVE_EFFECT_TRAP_BOTH           70
 #define MOVE_EFFECT_DOUBLE_SHOCK        71
+#define MOVE_EFFECT_ROUND               72
+#define MOVE_EFFECT_STOCKPILE_WORE_OFF  74
 
-#define NUM_MOVE_EFFECTS                72
+#define NUM_MOVE_EFFECTS                75
 
 #define MOVE_EFFECT_AFFECTS_USER        0x4000
 #define MOVE_EFFECT_CERTAIN             0x8000
