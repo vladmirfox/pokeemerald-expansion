@@ -2288,10 +2288,9 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     {
     case ORDER_NUMERICAL:
         {
-            s16 r5;
             u16 seenSpecies;
             bool32 previousWasSeen, secondPreviousSeen;
-            for (i = 0, r5 = 0; i < temp_dexCount; i++)
+            for (i = 0; i < temp_dexCount; i++)
             {
                 if (temp_isHoennDex)
                     temp_dexNum = HoennToNationalOrder(i + 1);
@@ -2340,12 +2339,11 @@ static void CreatePokedexList(u8 dexMode, u8 order)
                     previousWasSeen = FALSE;
                 }
             #else
-                sPokedexView->pokedexList[r5].dexNum = temp_dexNum;
-                sPokedexView->pokedexList[r5].seenSpecies = seenSpecies;
-                sPokedexView->pokedexList[r5].owned = GetSetPokedexFlag(seenSpecies, FLAG_GET_CAUGHT);
-                if (sPokedexView->pokedexList[r5].seenSpecies != SPECIES_NONE)
-                    sPokedexView->pokemonListCount = r5 + 1;
-                r5++;
+                sPokedexView->pokedexList[i].dexNum = temp_dexNum;
+                sPokedexView->pokedexList[i].seenSpecies = seenSpecies;
+                sPokedexView->pokedexList[i].owned = GetSetPokedexFlag(seenSpecies, FLAG_GET_CAUGHT);
+                if (sPokedexView->pokedexList[i].seenSpecies != SPECIES_NONE)
+                    sPokedexView->pokemonListCount = i + 1;
             #endif
             }
         }
