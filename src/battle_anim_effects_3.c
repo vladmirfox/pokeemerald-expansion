@@ -2339,6 +2339,7 @@ void AnimTask_TransformMon(u8 taskId)
     u8 *src;
     u16 *bgTilemap;
     u16 stretch;
+    bool32 megaEvo;
 
     switch (gTasks[taskId].data[0])
     {
@@ -2364,7 +2365,8 @@ void AnimTask_TransformMon(u8 taskId)
         }
         break;
     case 2:
-        HandleSpeciesGfxDataChange(gBattleAnimAttacker, gBattleAnimTarget, gTasks[taskId].data[10], gBattleAnimArgs[1], TRUE);
+        megaEvo = gBattleAnimArgs[1];
+        HandleSpeciesGfxDataChange(gBattleAnimAttacker, gBattleAnimTarget, gTasks[taskId].data[10], megaEvo, !megaEvo);
         GetBgDataForTransform(&animBg, gBattleAnimAttacker);
 
         if (IsContest())
