@@ -37356,38 +37356,65 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .teachableLearnset = sArbolivaTeachableLearnset,
     },
 
+#define SQUAWKABILLY_MISC_INFO                                  \
+        .baseHP        = 82,                                    \
+        .baseAttack    = 96,                                    \
+        .baseDefense   = 51,                                    \
+        .baseSpeed     = 92,                                    \
+        .baseSpAttack  = 45,                                    \
+        .baseSpDefense = 51,                                    \
+        .types = { TYPE_NORMAL, TYPE_FLYING },                  \
+        .catchRate = 190,                                       \
+        .expYield = 146,                                        \
+        .evYield_Attack = 1,                                    \
+        .genderRatio = PERCENT_FEMALE(50),                      \
+        .eggCycles = 15,                                        \
+        .friendship = 50,                                       \
+        .growthRate = GROWTH_ERRATIC,                           \
+        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING},     \
+        .noFlip = FALSE,                                        \
+        .natDexNum = NATIONAL_DEX_SQUAWKABILLY,                 \
+        .cryId = CRY_SQUAWKABILLY,                              \
+        .categoryName = _("Parrot"),                            \
+        .pokemonScale = 356,                                    \
+        .pokemonOffset = 17,                                    \
+        .trainerScale = 256,                                    \
+        .trainerOffset = 0,                                     \
+        .height = 6,                                            \
+        .weight = 24,                                           \
+        .levelUpLearnset = sSquawkabillyLevelUpLearnset,        \
+        .teachableLearnset = sSquawkabillyTeachableLearnset
+
     [SPECIES_SQUAWKABILLY] =
     {
-        .baseHP        = 82,
-        .baseAttack    = 96,
-        .baseDefense   = 51,
-        .baseSpeed     = 92,
-        .baseSpAttack  = 45,
-        .baseSpDefense = 51,
-        .types = { TYPE_NORMAL, TYPE_FLYING },
-        .catchRate = 190,
-        .expYield = 146,
-        .evYield_Attack = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = 50,
-        .growthRate = GROWTH_ERRATIC,
-        .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING},
         .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS},
         .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = FALSE,
-        .natDexNum = NATIONAL_DEX_SQUAWKABILLY,
-        .cryId = CRY_SQUAWKABILLY,
         .description = gSquawkabillyPokedexText,
-        .categoryName = _("Parrot"),
-        .pokemonScale = 356,
-        .pokemonOffset = 17,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .height = 6,
-        .weight = 24,
-        .levelUpLearnset = sSquawkabillyLevelUpLearnset,
-        .teachableLearnset = sSquawkabillyTeachableLearnset,
+        SQUAWKABILLY_MISC_INFO,
+    },
+
+    [SPECIES_SQUAWKABILLY_BLUE_PLUMAGE] =
+    {
+        .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS},
+        .bodyColor = BODY_COLOR_BLUE,
+        .description = gSquawkabillyPokedexText,
+        SQUAWKABILLY_MISC_INFO,
+    },
+
+    [SPECIES_SQUAWKABILLY_YELLOW_PLUMAGE] =
+    {
+        .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE},
+        .bodyColor = BODY_COLOR_YELLOW,
+        .description = gSquawkabillyPokedexText,
+        SQUAWKABILLY_MISC_INFO,
+    },
+
+    [SPECIES_SQUAWKABILLY_WHITE_PLUMAGE] =
+    {
+        .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE},
+        .bodyColor = BODY_COLOR_WHITE,
+        .description = gSquawkabillyPokedexText,
+        SQUAWKABILLY_MISC_INFO,
     },
 
     [SPECIES_NACLI] =
