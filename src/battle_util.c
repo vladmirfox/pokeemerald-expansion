@@ -10930,3 +10930,9 @@ static void SetRandomMultiHitCounter()
         gMultiHitCounter = 5 - (Random() & 1);
     }
 }
+
+bool32 IsAlly(u32 battlerAtk, u32 battlerDef)
+{
+    return (GetBattlerSide(battlerAtk) == GetBattlerSide(battlerDef));
+}
+
