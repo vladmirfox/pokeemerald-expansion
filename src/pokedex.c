@@ -2288,10 +2288,10 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     {
     case ORDER_NUMERICAL:
         {
-            s16 r5, r10;
+            s16 listCount;
             u16 seenSpecies;
-            bool32 previousWasSeen;
-            for (i = 0, r5 = 0, r10 = 0; i < temp_dexCount; i++)
+            bool32 previousWasSeen, secondPreviousSeen;
+            for (i = 0, listCount = 0; i < temp_dexCount; i++)
             {
                 if (temp_isHoennDex)
                     temp_dexNum = HoennToNationalOrder(i + 1);
@@ -2299,56 +2299,42 @@ static void CreatePokedexList(u8 dexMode, u8 order)
                     temp_dexNum = i + 1;
 
                 seenSpecies = GetPokedexFlagFirstSeen(temp_dexNum);
+            #if P_DEX_EMPTY_ENTRY_SKIP == FALSE
+                listCount = i;
+            #else
+                listCount = sPokedexView->pokemonListCount;
                 if (seenSpecies != SPECIES_NONE)
-                    r10 = 1;
-                if (r10)
                 {
-                #if P_DEX_EMPTY_ENTRY_SKIP == TRUE
-                    if (seenSpecies != SPECIES_NONE)
-                    {
-                        // If it's not the first on the list and the previous entry was not seen, add it to the list.
-                    #if P_DEX_EMPTY_ENTRY_AT_ENDS == TRUE
-                        if (!previousWasSeen && i > 0)
-                    #else
-                        if (!previousWasSeen && i > 0 && sPokedexView->pokemonListCount != 0)
+                    // If it's not the first on the list and the previous entry was not seen, add it to the list.
+                    if (!previousWasSeen && !secondPreviousSeen && i > 0
+                    #if P_DEX_EMPTY_ENTRY_AT_ENDS == FALSE
+                        && listCount != 0
                     #endif
-                        {
-                            sPokedexView->pokemonListCount++;
-                            if (temp_isHoennDex)
-                                sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].dexNum = HoennToNationalOrder(i);
-                            else
-                                sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].dexNum = i;
-                            sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].seenSpecies = SPECIES_NONE;
-                            sPokedexView->pokedexList[sPokedexView->pokemonListCount - 1].owned = SPECIES_NONE;
-                        }
-                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
-                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
-                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].owned = GetSetPokedexFlag(seenSpecies, FLAG_GET_CAUGHT);
-                        previousWasSeen = TRUE;
-                        sPokedexView->pokemonListCount++;
-                    }
-                    else if (previousWasSeen)
+                    )
                     {
-                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = temp_dexNum;
-                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
-                        previousWasSeen = FALSE;
-                        sPokedexView->pokemonListCount++;
+                        if (temp_isHoennDex)
+                            sPokedexView->pokedexList[listCount].dexNum = HoennToNationalOrder(i);
+                        else
+                            sPokedexView->pokedexList[listCount].dexNum = i;
+                        sPokedexView->pokedexList[listCount].seenSpecies = SPECIES_NONE;
+                        sPokedexView->pokedexList[listCount].owned = FALSE;
+                        listCount++;
                     }
-                    else
-                    {
-                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].dexNum = 0xFFFF;
-                        sPokedexView->pokedexList[sPokedexView->pokemonListCount].seenSpecies = seenSpecies;
-                        previousWasSeen = FALSE;
-                    }
-                #else
-                    sPokedexView->pokedexList[r5].dexNum = temp_dexNum;
-                    sPokedexView->pokedexList[r5].seenSpecies = seenSpecies;
-                    sPokedexView->pokedexList[r5].owned = GetSetPokedexFlag(seenSpecies, FLAG_GET_CAUGHT);
-                    if (sPokedexView->pokedexList[r5].seenSpecies != SPECIES_NONE)
-                        sPokedexView->pokemonListCount = r5 + 1;
-                    r5++;
-                #endif
                 }
+                else if (!previousWasSeen)
+                {
+                    temp_dexNum = 0xFFFF;
+                }
+            #endif
+                sPokedexView->pokedexList[listCount].dexNum = temp_dexNum;
+                sPokedexView->pokedexList[listCount].seenSpecies = seenSpecies;
+                sPokedexView->pokedexList[listCount].owned = GetSetPokedexFlag(seenSpecies, FLAG_GET_CAUGHT);
+                if (seenSpecies != SPECIES_NONE || previousWasSeen)
+                    sPokedexView->pokemonListCount = listCount + 1;
+            #if P_DEX_EMPTY_ENTRY_SKIP == TRUE
+                secondPreviousSeen = previousWasSeen;
+                previousWasSeen = seenSpecies != SPECIES_NONE;
+            #endif
             }
         }
         break;
@@ -4438,6 +4424,9 @@ s8 GetSetPokedexFlag(u16 species, u8 caseID)
 {
     u32 index, bit, mask;
     s8 retVal = 0;
+
+    if (species == SPECIES_NONE)
+        return retVal;
 
     species--;
     index = species / 8;
