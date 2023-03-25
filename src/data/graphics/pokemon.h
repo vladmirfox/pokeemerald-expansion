@@ -8795,11 +8795,25 @@ const u32 gMonShinyPalette_Dondozo[] = INCBIN_U32("graphics/pokemon/dondozo/shin
 // const u8 gMonIcon_Dondozo[] = INCBIN_U8("graphics/pokemon/dondozo/icon.4bpp");
 // const u8 gMonFootprint_Dondozo[] = INCBIN_U8("graphics/pokemon/dondozo/footprint.1bpp");
 
-const u32 gMonFrontPic_Tatsugiri[] = INCBIN_U32("graphics/pokemon/tatsugiri/front.4bpp.lz");
-const u32 gMonPalette_Tatsugiri[] = INCBIN_U32("graphics/pokemon/tatsugiri/normal.gbapal.lz");
-const u32 gMonBackPic_Tatsugiri[] = INCBIN_U32("graphics/pokemon/tatsugiri/back.4bpp.lz");
-const u32 gMonShinyPalette_Tatsugiri[] = INCBIN_U32("graphics/pokemon/tatsugiri/shiny.gbapal.lz");
+const u32 gMonFrontPic_TatsugiriCurly[] = INCBIN_U32("graphics/pokemon/tatsugiri/curly/front.4bpp.lz");
+const u32 gMonPalette_TatsugiriCurly[] = INCBIN_U32("graphics/pokemon/tatsugiri/curly/normal.gbapal.lz");
+const u32 gMonBackPic_TatsugiriCurly[] = INCBIN_U32("graphics/pokemon/tatsugiri/curly/back.4bpp.lz");
+const u32 gMonShinyPalette_TatsugiriCurly[] = INCBIN_U32("graphics/pokemon/tatsugiri/curly/shiny.gbapal.lz");
 const u8 gMonIcon_Tatsugiri[] = INCBIN_U8("graphics/pokemon/tatsugiri/icon.4bpp");
+// const u8 gMonFootprint_Tatsugiri[] = INCBIN_U8("graphics/pokemon/tatsugiri/footprint.1bpp");
+
+const u32 gMonFrontPic_TatsugiriDroopy[] = INCBIN_U32("graphics/pokemon/tatsugiri/droopy/front.4bpp.lz");
+const u32 gMonPalette_TatsugiriDroopy[] = INCBIN_U32("graphics/pokemon/tatsugiri/droopy/normal.gbapal.lz");
+const u32 gMonBackPic_TatsugiriDroopy[] = INCBIN_U32("graphics/pokemon/tatsugiri/droopy/back.4bpp.lz");
+const u32 gMonShinyPalette_TatsugiriDroopy[] = INCBIN_U32("graphics/pokemon/tatsugiri/droopy/shiny.gbapal.lz");
+// const u8 gMonIcon_Tatsugiri[] = INCBIN_U8("graphics/pokemon/tatsugiri/icon.4bpp");
+// const u8 gMonFootprint_Tatsugiri[] = INCBIN_U8("graphics/pokemon/tatsugiri/footprint.1bpp");
+
+const u32 gMonFrontPic_TatsugiriStretchy[] = INCBIN_U32("graphics/pokemon/tatsugiri/stretchy/front.4bpp.lz");
+const u32 gMonPalette_TatsugiriStretchy[] = INCBIN_U32("graphics/pokemon/tatsugiri/stretchy/normal.gbapal.lz");
+const u32 gMonBackPic_TatsugiriStretchy[] = INCBIN_U32("graphics/pokemon/tatsugiri/stretchy/back.4bpp.lz");
+const u32 gMonShinyPalette_TatsugiriStretchy[] = INCBIN_U32("graphics/pokemon/tatsugiri/stretchy/shiny.gbapal.lz");
+// const u8 gMonIcon_Tatsugiri[] = INCBIN_U8("graphics/pokemon/tatsugiri/icon.4bpp");
 // const u8 gMonFootprint_Tatsugiri[] = INCBIN_U8("graphics/pokemon/tatsugiri/footprint.1bpp");
 
 const u32 gMonFrontPic_Annihilape[] = INCBIN_U32("graphics/pokemon/annihilape/front.4bpp.lz");

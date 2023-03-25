@@ -36846,6 +36846,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .teachableLearnset = sLechonkTeachableLearnset,
     },
 
+#define OINKOLOGNE_MISC_INFO                                \
+        .types = { TYPE_NORMAL, TYPE_NORMAL },              \
+        .catchRate = 100,                                   \
+        .expYield = 171,                                    \
+        .evYield_HP = 2,                                    \
+        .eggCycles = 15,                                    \
+        .friendship = 50,                                   \
+        .growthRate = GROWTH_MEDIUM_FAST,                   \
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},   \
+        .bodyColor = BODY_COLOR_GRAY,                       \
+        .noFlip = FALSE,                                    \
+        .natDexNum = NATIONAL_DEX_OINKOLOGNE,               \
+        .cryId = CRY_OINKOLOGNE,                            \
+        .description = gOinkolognePokedexText,              \
+        .categoryName = _("Hog"),                           \
+        .pokemonScale = 356,                                \
+        .pokemonOffset = 17,                                \
+        .trainerScale = 256,                                \
+        .trainerOffset = 0,                                 \
+        .height = 10,                                       \
+        .weight = 1200,                                     \
+        .levelUpLearnset = sOinkologneLevelUpLearnset,      \
+        .teachableLearnset = sOinkologneTeachableLearnset
+
     [SPECIES_OINKOLOGNE] =
     {
         .baseHP        = 110,
@@ -36854,30 +36878,22 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 65,
         .baseSpAttack  = 59,
         .baseSpDefense = 80,
-        .types = { TYPE_NORMAL, TYPE_NORMAL },
-        .catchRate = 100,
-        .expYield = 171,
-        .evYield_HP = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 15,
-        .friendship = 50,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},
+        .genderRatio = PERCENT_FEMALE(0),
         .abilities = {ABILITY_LINGERING_AROMA, ABILITY_GLUTTONY, ABILITY_THICK_FAT},
-        .bodyColor = BODY_COLOR_GRAY,
-        .noFlip = FALSE,
-        .natDexNum = NATIONAL_DEX_OINKOLOGNE,
-        .cryId = CRY_OINKOLOGNE,
-        .description = gOinkolognePokedexText,
-        .categoryName = _("Hog"),
-        .pokemonScale = 356,
-        .pokemonOffset = 17,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .height = 10,
-        .weight = 1200,
-        .levelUpLearnset = sOinkologneLevelUpLearnset,
-        .teachableLearnset = sOinkologneTeachableLearnset,
+        OINKOLOGNE_MISC_INFO,
+    },
+
+    [SPECIES_OINKOLOGNE_FEMALE] =
+    {
+        .baseHP        = 115,
+        .baseAttack    = 90,
+        .baseDefense   = 70,
+        .baseSpeed     = 65,
+        .baseSpAttack  = 59,
+        .baseSpDefense = 90,
+        .genderRatio = PERCENT_FEMALE(100),
+        .abilities = {ABILITY_AROMA_VEIL, ABILITY_GLUTTONY, ABILITY_THICK_FAT},
+        OINKOLOGNE_MISC_INFO,
     },
 
     [SPECIES_TAROUNTULA] =
@@ -38505,38 +38521,57 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .teachableLearnset = sFinizenTeachableLearnset,
     },
 
+#define PALAFIN_MISC_INFO                                   \
+        .baseHP        = 100,                               \
+        .baseSpeed     = 100,                               \
+        .types = { TYPE_WATER, TYPE_WATER },                \
+        .catchRate = 45,                                    \
+        .evYield_HP = 2,                                    \
+        .genderRatio = PERCENT_FEMALE(50),                  \
+        .eggCycles = 40,                                    \
+        .friendship = 50,                                   \
+        .growthRate = GROWTH_SLOW,                          \
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_WATER_2}, \
+        .abilities = {ABILITY_ZERO_TO_HERO, ABILITY_NONE},  \
+        .bodyColor = BODY_COLOR_BLUE,                       \
+        .noFlip = FALSE,                                    \
+        .natDexNum = NATIONAL_DEX_PALAFIN,                  \
+        .cryId = CRY_PALAFIN,                               \
+        .description = gPalafinPokedexText,                 \
+        .categoryName = _("Dolphin"),                       \
+        .levelUpLearnset = sPalafinLevelUpLearnset,         \
+        .teachableLearnset = sPalafinTeachableLearnset
+
     [SPECIES_PALAFIN] =
     {
-        .baseHP        = 100,
         .baseAttack    = 70,
         .baseDefense   = 72,
-        .baseSpeed     = 100,
         .baseSpAttack  = 53,
         .baseSpDefense = 62,
-        .types = { TYPE_WATER, TYPE_WATER },
-        .catchRate = 45,
-        .expYield = 160, //This is for Zero Form. Hero Form has a base experience yield of 228.
-        .evYield_HP = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 40,
-        .friendship = 50,
-        .growthRate = GROWTH_SLOW,
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_WATER_2},
-        .abilities = {ABILITY_ZERO_TO_HERO, ABILITY_NONE},
-        .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
-        .natDexNum = NATIONAL_DEX_PALAFIN,
-        .cryId = CRY_PALAFIN,
-        .description = gPalafinPokedexText,
-        .categoryName = _("Dolphin"),
+        .expYield = 160,
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 13,
         .weight = 602,
-        .levelUpLearnset = sPalafinLevelUpLearnset,
-        .teachableLearnset = sPalafinTeachableLearnset,
+        PALAFIN_MISC_INFO,
+    },
+
+    [SPECIES_PALAFIN_HERO] =
+    {
+        .baseAttack    = 160,
+        .baseDefense   = 97,
+        .baseSpAttack  = 106,
+        .baseSpDefense = 100,
+        .expYield = 228,
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .height = 13,
+        .weight = 602,
+        PALAFIN_MISC_INFO,
     },
 
     [SPECIES_VAROOM] =
