@@ -1294,7 +1294,7 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_CALYREX_SHADOW_RIDER]              = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
 #endif
 #if P_GEN_9_POKEMON == TRUE
-    [SPECIES_SPRIGATITO]                        = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  6 },
+    [SPECIES_SPRIGATITO]                        = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  8 },
     [SPECIES_FLORAGATO]                         = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_MEOWSCARADA]                       = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_FUECOCO]                           = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  7 },
