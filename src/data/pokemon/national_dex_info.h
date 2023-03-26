@@ -942,7 +942,7 @@ const struct NationalDexInfo gNationalDexInfo[NATIONAL_DEX_COUNT + 1] =
     [NATIONAL_DEX_SMOLIV] =      { .speciesName = _("Smoliv"),       .baseSpeciesId = SPECIES_SMOLIV, },
     [NATIONAL_DEX_DOLLIV] =      { .speciesName = _("Dolliv"),       .baseSpeciesId = SPECIES_DOLLIV, },
     [NATIONAL_DEX_ARBOLIVA] =    { .speciesName = _("Arboliva"),     .baseSpeciesId = SPECIES_ARBOLIVA, },
-    [NATIONAL_DEX_SQUAWKABILLY] ={ .speciesName = _("Squawkabil"),   .baseSpeciesId = SPECIES_SQUAWKABILLY, },
+    [NATIONAL_DEX_SQUAWKABILLY] ={ .speciesName = _("Squawkabil"),   .baseSpeciesId = SPECIES_SQUAWKABILLY, .formSpeciesIdTable = sSquawkabillyFormSpeciesIdTable},
     [NATIONAL_DEX_NACLI] =       { .speciesName = _("Nacli"),        .baseSpeciesId = SPECIES_NACLI, },
     [NATIONAL_DEX_NACLSTACK] =   { .speciesName = _("Naclstack"),    .baseSpeciesId = SPECIES_NACLSTACK, },
     [NATIONAL_DEX_GARGANACL] =   { .speciesName = _("Garganacl"),    .baseSpeciesId = SPECIES_GARGANACL, },
