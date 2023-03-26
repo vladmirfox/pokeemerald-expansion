@@ -8,6 +8,7 @@
 #include "event_object_movement.h"
 #include "field_screen_effect.h"
 #include "field_weather.h"
+#include "gpu_regs.h"
 #include "international_string_util.h"
 #include "item.h"
 #include "item_icon.h"
@@ -43,7 +44,9 @@ struct TxRegItemsMenu_Struct
     u8 windowIds[1];
     u8 toSwapPos;
     u8 spriteId;
+    u8 spriteId2;
     u8 swapLineSpriteIds[SWAP_LINE_LENGTH];
+    u8 swapLineSpriteIds2[SWAP_LINE_LENGTH];
 };
 
 // Message IDs for Item Storage
@@ -184,6 +187,13 @@ static void TxRegItemsMenu_ClearAndInitData(u8 taskId)
     //LoadPalette(&gBagSwapLineGfx, 432, 16);
     LoadListMenuSwapLineGfx_RegisteredItemsMenu();
     CreateSwapLineSprites_RegisteredItemsMenu(gTxRegItemsMenu->swapLineSpriteIds, 7);
+    if (GetFlashLevel() > 0)
+    {
+        u8 i;
+        CreateSwapLineSprites_RegisteredItemsMenu(gTxRegItemsMenu->swapLineSpriteIds2, 7);
+        for (i=0; i<SWAP_LINE_LENGTH; i++)
+            gSprites[gTxRegItemsMenu->swapLineSpriteIds2[i]].oam.objMode = ST_OAM_OBJ_WINDOW;
+    }
     gTasks[taskId].func = TxRegItemsMenu_InitDataAndCreateListMenu;
 }
 
@@ -262,6 +272,8 @@ static void TxRegItemsMenu_CloseMenu(u8 taskId)
     TxRegItemsMenu_RemoveScrollIndicator();
     DestroyListMenuTask(data[5], NULL, NULL);
     DestroySwapLineSprites(gTxRegItemsMenu->swapLineSpriteIds, 7);
+    if (GetFlashLevel() > 0)
+        DestroySwapLineSprites(gTxRegItemsMenu->swapLineSpriteIds2, 7);
     TxRegItemsMenu_RemoveWindow();
     TxRegItemsMenu_FreeStructs();
     ScriptUnfreezeObjectEvents();
@@ -294,7 +306,9 @@ static void TxRegItemsMenu_HandleSwapInput(u8 taskId)
     }
     id = ListMenu_ProcessInput(data[5]);
     ListMenuGetScrollAndRow(data[5], &(TxRegItemsMenuItemPageInfo.itemsAbove), &(TxRegItemsMenuItemPageInfo.cursorPos));
-    SetSwapLineSpritesInvisibility(gTxRegItemsMenu->swapLineSpriteIds, 7, FALSE); //fine
+    SetSwapLineSpritesInvisibility(gTxRegItemsMenu->swapLineSpriteIds, 7, FALSE);
+    if (GetFlashLevel() > 0)
+        SetSwapLineSpritesInvisibility(gTxRegItemsMenu->swapLineSpriteIds2, 7, FALSE);
     TxRegItemsMenu_UpdateSwapLinePos(TxRegItemsMenuItemPageInfo.cursorPos);
     switch(id)
     {
@@ -325,6 +339,7 @@ static void TxRegItemsMenu_AllocateStruct(void)
     memset(gTxRegItemsMenu->windowIds, 0xFF, 0x1);
     gTxRegItemsMenu->toSwapPos = 0xFF;
     gTxRegItemsMenu->spriteId = SPRITE_NONE;
+    gTxRegItemsMenu->spriteId2 = SPRITE_NONE;
 }
 
 static u8 TxRegItemsMenu_InitWindow(void)
@@ -403,20 +418,44 @@ static void TxRegItemsMenu_PrintFunc(u8 windowId, u32 id, u8 yOffset)
 
 static void TxRegItemsMenu_PrintItemIcon(u16 itemId)
 {
-    u8 spriteId;
+    u8 spriteId = MAX_SPRITES;
+    u8 spriteId2 = MAX_SPRITES;
     u8* spriteIdLoc = &gTxRegItemsMenu->spriteId;
+    u8* spriteId2Loc = &gTxRegItemsMenu->spriteId2;
+    bool8 handleFlash = FALSE;
+
+    if (GetFlashLevel() > 0)
+    {
+        handleFlash = TRUE;
+        SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJWIN_ON);
+        SetGpuRegBits(REG_OFFSET_WINOUT, WINOUT_WINOBJ_OBJ);
+    }
 
     if (*spriteIdLoc == SPRITE_NONE)
     {
         FreeSpriteTilesByTag(TAG_ITEM_ICON);
         FreeSpritePaletteByTag(TAG_ITEM_ICON);
         spriteId = AddItemIconSprite(TAG_ITEM_ICON, TAG_ITEM_ICON, itemId);
+        
         if (spriteId != MAX_SPRITES)
         {
             *spriteIdLoc = spriteId;
             gSprites[spriteId].oam.priority = 0;
             gSprites[spriteId].x2 = 32;
             gSprites[spriteId].y2 = 132;
+        }
+    }
+
+    if (handleFlash && *spriteId2Loc == SPRITE_NONE)
+    {
+        spriteId2 = AddItemIconSprite(TAG_ITEM_ICON, TAG_ITEM_ICON, itemId);
+        if (spriteId2 != MAX_SPRITES)
+        {
+            *spriteId2Loc = spriteId2;
+            gSprites[spriteId2].oam.priority = 0;
+            gSprites[spriteId2].x2 = 32;
+            gSprites[spriteId2].y2 = 132;
+            gSprites[spriteId2].oam.objMode = ST_OAM_OBJ_WINDOW;
         }
     }
 }
@@ -447,6 +486,8 @@ static void TxRegItemsMenu_DoItemSwap(u8 taskId, bool8 a)
     if (gTxRegItemsMenu->toSwapPos < b)
         TxRegItemsMenuItemPageInfo.cursorPos--;
     SetSwapLineSpritesInvisibility(gTxRegItemsMenu->swapLineSpriteIds, 7, TRUE);
+    if (GetFlashLevel() > 0)
+        SetSwapLineSpritesInvisibility(gTxRegItemsMenu->swapLineSpriteIds2, 7, TRUE);
     gTxRegItemsMenu->toSwapPos = 0xFF;
     data[5] = ListMenuInit(&gMultiuseListMenuTemplate, TxRegItemsMenuItemPageInfo.itemsAbove, TxRegItemsMenuItemPageInfo.cursorPos);
     ScheduleBgCopyTilemapToVram(0);
@@ -462,6 +503,8 @@ static void TxRegItemsMenu_StartScrollIndicator(void)
 static void TxRegItemsMenu_UpdateSwapLinePos(u8 y)
 {
     UpdateSwapLineSpritesPos(gTxRegItemsMenu->swapLineSpriteIds, 7, 48, ((y+1) * 16 + 90));
+    if (GetFlashLevel() > 0)
+        UpdateSwapLineSpritesPos(gTxRegItemsMenu->swapLineSpriteIds2, 7, 48, ((y+1) * 16 + 90));
 }
 
 static void TxRegItemsMenu_CopyItemName(u8 *string, u16 itemId)
@@ -678,12 +721,22 @@ void TxRegItemsMenu_RegisteredItemsMenuNewGame(void)
 static void TxRegItemsMenu_RemoveItemIcon(void) //remove item storage selected item icon
 {
     u8* spriteIdLoc = &(gTxRegItemsMenu->spriteId);
+    u8* spriteId2Loc = &(gTxRegItemsMenu->spriteId2);
+    
     if (*spriteIdLoc != SPRITE_NONE)
     {
         FreeSpriteTilesByTag(TAG_ITEM_ICON);
         FreeSpritePaletteByTag(TAG_ITEM_ICON);
         DestroySprite(&(gSprites[*spriteIdLoc]));
         *spriteIdLoc = SPRITE_NONE;
+    }
+
+    if (GetFlashLevel() > 0 && *spriteId2Loc != SPRITE_NONE)
+    {
+        FreeSpriteTilesByTag(TAG_ITEM_ICON);
+        FreeSpritePaletteByTag(TAG_ITEM_ICON);
+        DestroySprite(&(gSprites[*spriteId2Loc]));
+        *spriteId2Loc = SPRITE_NONE;
     }
 }
 
