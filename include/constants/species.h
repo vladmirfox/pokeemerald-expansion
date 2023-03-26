@@ -1568,6 +1568,7 @@
 #define SPECIES_TAUROS_PALDEAN_COMBAT_BREED                  1477
 #define SPECIES_TAUROS_PALDEAN_BLAZE_BREED                   1478
 #define SPECIES_TAUROS_PALDEAN_AQUA_BREED                    1479
+// Scarlet and Violet 1.2.0 (New Species)
 #define SPECIES_WALKING_WAKE                                 1480
 #define SPECIES_IRON_LEAVES                                  1481
 
