@@ -201,8 +201,8 @@ EWRAM_DATA u32 gHitMarker = 0;
 EWRAM_DATA static u8 sUnusedBattlersArray[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gTakenDmgByBattler[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gUnusedFirstBattleVar2 = 0; // Never read
-EWRAM_DATA u16 gSideStatuses[2] = {0};
-EWRAM_DATA struct SideTimer gSideTimers[2] = {0};
+EWRAM_DATA u16 gSideStatuses[NUM_BATTLE_SIDES] = {0};
+EWRAM_DATA struct SideTimer gSideTimers[NUM_BATTLE_SIDES] = {0};
 EWRAM_DATA u32 gStatuses3[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA struct DisableStruct gDisableStructs[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gPauseCounterBattle = 0;
@@ -2013,7 +2013,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                if (gSaveBlock1Ptr->tx_Random_Trainer) //tx_randomizer_and_challenges
+                if (gSaveBlock1Ptr->tx_Random_Trainer)
                 {
                     species = GetSpeciesRandomSeeded(partyData[i].species, TX_RANDOM_T_TRAINER, trainerNum);
                     CreateMon(&party[i], species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
@@ -2031,7 +2031,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                if (gSaveBlock1Ptr->tx_Random_Trainer) //tx_randomizer_and_challenges
+                if (gSaveBlock1Ptr->tx_Random_Trainer)
                 {
                     species = GetSpeciesRandomSeeded(partyData[i].species, TX_RANDOM_T_TRAINER, trainerNum);
                     CreateMon(&party[i], species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
@@ -2041,7 +2041,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 for (j = 0; j < MAX_MON_MOVES; j++)
                 {
-                    if (gSaveBlock1Ptr->tx_Random_Moves) //tx_randomizer_and_challenges
+                    if (gSaveBlock1Ptr->tx_Random_Moves)
                     {
                         move = GetRandomMove(partyData[i].moves[j], partyData[i].species);
                         SetMonData(&party[i], MON_DATA_MOVE1 + j, &move);
@@ -2049,7 +2049,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     }
                     else
                     {
-                        if (gSaveBlock1Ptr->tx_Random_Trainer) //tx_randomizer_and_challenges
+                        if (gSaveBlock1Ptr->tx_Random_Trainer)
                             continue;
                         SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
                         SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
@@ -2066,7 +2066,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                if (gSaveBlock1Ptr->tx_Random_Trainer) //tx_randomizer_and_challenges
+                if (gSaveBlock1Ptr->tx_Random_Trainer)
                 {
                     species = GetSpeciesRandomSeeded(partyData[i].species, TX_RANDOM_T_TRAINER, trainerNum);
                     CreateMon(&party[i], species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
@@ -2086,7 +2086,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                if (gSaveBlock1Ptr->tx_Random_Trainer) //tx_randomizer_and_challenges
+                if (gSaveBlock1Ptr->tx_Random_Trainer)
                 {
                     species = GetSpeciesRandomSeeded(partyData[i].species, TX_RANDOM_T_TRAINER, trainerNum);
                     CreateMon(&party[i], species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
@@ -2098,7 +2098,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 for (j = 0; j < MAX_MON_MOVES; j++)
                 {
-                    if (gSaveBlock1Ptr->tx_Random_Moves) //tx_randomizer_and_challenges
+                    if (gSaveBlock1Ptr->tx_Random_Moves)
                     {
                         move = GetRandomMove(partyData[i].moves[j], partyData[i].species);
                         SetMonData(&party[i], MON_DATA_MOVE1 + j, &move);
@@ -2106,7 +2106,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     }
                     else
                     {
-                        if (gSaveBlock1Ptr->tx_Random_Trainer) //tx_randomizer_and_challenges
+                        if (gSaveBlock1Ptr->tx_Random_Trainer)
                             continue;
                         SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
                         SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
@@ -2316,7 +2316,7 @@ void CB2_InitEndLinkBattle(void)
         gBattle_BG3_Y = 0;
 
         InitBattleBgsVideo();
-        LoadCompressedPalette(gBattleTextboxPalette, 0, 64);
+        LoadCompressedPalette(gBattleTextboxPalette, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
         LoadBattleMenuWindowGfx();
         ResetSpriteData();
         ResetTasks();
@@ -3199,7 +3199,7 @@ static void BattleStartClearSetData(void)
     gBattleStruct->runTries = 0;
     gBattleStruct->safariGoNearCounter = 0;
     gBattleStruct->safariPkblThrowCounter = 0;
-    *(&gBattleStruct->safariCatchFactor) = gBaseStats[GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)].catchRate * 100 / 1275;
+    *(&gBattleStruct->safariCatchFactor) = gSpeciesInfo[GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)].catchRate * 100 / 1275;
     gBattleStruct->safariEscapeFactor = 3;
     gBattleStruct->wildVictorySong = 0;
     gBattleStruct->moneyMultiplier = 1;
@@ -3434,8 +3434,8 @@ void FaintClearSetData(void)
 
     gBattleResources->flags->flags[gActiveBattler] = 0;
 
-    gBattleMons[gActiveBattler].type1 = GetTypeBySpecies(gBattleMons[gActiveBattler].species, 1); //tx_randomizer_and_challenges
-    gBattleMons[gActiveBattler].type2 = GetTypeBySpecies(gBattleMons[gActiveBattler].species, 2); //tx_randomizer_and_challenges
+    gBattleMons[gActiveBattler].type1 = GetTypeBySpecies(gBattleMons[gActiveBattler].species, 1);
+    gBattleMons[gActiveBattler].type2 = GetTypeBySpecies(gBattleMons[gActiveBattler].species, 2);
 
     ClearBattlerMoveHistory(gActiveBattler);
     ClearBattlerAbilityHistory(gActiveBattler);
@@ -3502,8 +3502,8 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
             for (i = 0; i < sizeof(struct BattlePokemon); i++)
                 ptr[i] = gBattleBufferB[gActiveBattler][4 + i];
 
-            gBattleMons[gActiveBattler].type1 = GetTypeBySpecies(gBattleMons[gActiveBattler].species, 1); //tx_randomizer_and_challenges
-            gBattleMons[gActiveBattler].type2 = GetTypeBySpecies(gBattleMons[gActiveBattler].species, 2); //tx_randomizer_and_challenges
+            gBattleMons[gActiveBattler].type1 = GetTypeBySpecies(gBattleMons[gActiveBattler].species, 1);
+            gBattleMons[gActiveBattler].type2 = GetTypeBySpecies(gBattleMons[gActiveBattler].species, 2);
             gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);
             hpOnSwitchout = &gBattleStruct->hpOnSwitchout[GetBattlerSide(gActiveBattler)];
             *hpOnSwitchout = gBattleMons[gActiveBattler].hp;
@@ -5314,7 +5314,7 @@ static void TryEvolvePokemon(void)
 {
     s32 i;
 
-    while (gLeveledUpInBattle != 0 && gSaveBlock1Ptr->tx_Challenges_EvoLimit != 2) //tx_randomizer_and_challenges
+    while (gLeveledUpInBattle != 0 && gSaveBlock1Ptr->tx_Challenges_EvoLimit != 2)
     {
         for (i = 0; i < PARTY_SIZE; i++)
         {

@@ -380,7 +380,7 @@ static void CreateWildMon(u16 species, u8 level)
     ZeroEnemyPartyMons();
     checkCuteCharm = TRUE;
 
-    if (gSaveBlock1Ptr->tx_Random_WildPokemon) //tx_randomizer_and_challenges
+    if (gSaveBlock1Ptr->tx_Random_WildPokemon)
     {
         #ifndef NDEBUG
         MgbaPrintf(MGBA_LOG_DEBUG, "******** CreateWildMon ********");
@@ -388,7 +388,7 @@ static void CreateWildMon(u16 species, u8 level)
         species = GetSpeciesRandomSeeded(species, TX_RANDOM_T_WILD_POKEMON, 0);
     }
 
-    switch (gBaseStats[species].genderRatio)
+    switch (gSpeciesInfo[species].genderRatio)
     {
     case MON_MALE:
     case MON_FEMALE:

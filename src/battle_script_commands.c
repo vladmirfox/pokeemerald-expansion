@@ -3275,9 +3275,10 @@ static void Cmd_getexp(void)
                     viaExpShare++;
             }
 
-            calculatedExp = gBaseStats[gBattleMons[gBattlerFainted].species].expYield * gBattleMons[gBattlerFainted].level / 7;
+            calculatedExp = gSpeciesInfo[gBattleMons[gBattlerFainted].species].expYield * gBattleMons[gBattlerFainted].level / 7;
 
-            if (gSaveBlock1Ptr->tx_Challenges_ExpMultiplier != 0) //tx_randomizer_and_challenges
+            //tx_randomizer_and_challenges
+            if (gSaveBlock1Ptr->tx_Challenges_ExpMultiplier != 0)
             {
                 if (TX_EXP_MULTIPLER_ONLY_ON_NUZLOCKE_AND_RANDOMIZER) //special for Jaizu
                 {
@@ -6052,7 +6053,7 @@ static void InitLevelUpBanner(void)
     gBattle_BG2_Y = 0;
     gBattle_BG2_X = LEVEL_UP_BANNER_START;
 
-    LoadPalette(sLevelUpBanner_Pal, 0x60, 0x20);
+    LoadPalette(sLevelUpBanner_Pal, BG_PLTT_ID(6), PLTT_SIZE_4BPP);
     CopyToWindowPixelBuffer(B_WIN_LEVEL_UP_BANNER, sLevelUpBanner_Gfx, 0, 0);
     PutWindowTilemap(B_WIN_LEVEL_UP_BANNER);
     CopyWindowToVram(B_WIN_LEVEL_UP_BANNER, COPYWIN_FULL);
@@ -8933,7 +8934,7 @@ static void Cmd_trydobeatup(void)
                 gBattleMoveDamage = baseStat[gSaveBlock1Ptr->tx_Challenges_BaseStatEqualizer];
             }
             else
-                gBattleMoveDamage = gBaseStats[GetMonData(&party[gBattleCommunication[0]], MON_DATA_SPECIES)].baseAttack;
+                gBattleMoveDamage = gSpeciesInfo[GetMonData(&party[gBattleCommunication[0]], MON_DATA_SPECIES)].baseAttack;
             gBattleMoveDamage *= gBattleMoves[gCurrentMove].power;
             gBattleMoveDamage *= (GetMonData(&party[gBattleCommunication[0]], MON_DATA_LEVEL) * 2 / 5 + 2);
             if (gSaveBlock1Ptr->tx_Challenges_BaseStatEqualizer)
@@ -8942,7 +8943,7 @@ static void Cmd_trydobeatup(void)
                 gBattleMoveDamage /= baseStat[gSaveBlock1Ptr->tx_Challenges_BaseStatEqualizer];
             }
             else
-                gBattleMoveDamage /= gBaseStats[gBattleMons[gBattlerTarget].species].baseDefense;
+                gBattleMoveDamage /= gSpeciesInfo[gBattleMons[gBattlerTarget].species].baseDefense;
             gBattleMoveDamage = (gBattleMoveDamage / 50) + 2;
             if (gProtectStructs[gBattlerAttacker].helpingHand)
                 gBattleMoveDamage = gBattleMoveDamage * 15 / 10;
@@ -9882,7 +9883,7 @@ static void Cmd_handleballthrow(void)
         if (gLastUsedItem == ITEM_SAFARI_BALL)
             catchRate = gBattleStruct->safariCatchFactor * 1275 / 100;
         else
-            catchRate = gBaseStats[gBattleMons[gBattlerTarget].species].catchRate;
+            catchRate = gSpeciesInfo[gBattleMons[gBattlerTarget].species].catchRate;
 
         if (gLastUsedItem > ITEM_SAFARI_BALL)
         {
@@ -10167,14 +10168,14 @@ void BattleDestroyYesNoCursorAt(u8 cursorPosition)
 
 static void Cmd_trygivecaughtmonnick(void)
 {
-    u8 typeChallenge = gSaveBlock1Ptr->tx_Challenges_OneTypeChallenge; //tx_randomizer_and_challenges
+    u8 typeChallenge = gSaveBlock1Ptr->tx_Challenges_OneTypeChallenge;
 
     switch (gBattleCommunication[MULTIUSE_STATE])
     {
     case 0:
         HandleBattleWindow(YESNOBOX_X_Y, 0);
 
-        if (IsNuzlockeNicknamingActive()) //tx_randomizer_and_challenges
+        if (IsNuzlockeNicknamingActive())
         {
             gBattleCommunication[MULTIUSE_STATE]++;
             BeginFastPaletteFade(3);
@@ -10188,7 +10189,7 @@ static void Cmd_trygivecaughtmonnick(void)
         }
         break;
     case 1:
-        if (IsNuzlockeNicknamingActive()) //tx_randomizer_and_challenges
+        if (IsNuzlockeNicknamingActive())
             gBattleCommunication[MULTIUSE_STATE]++;
 
         if (JOY_NEW(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] != 0)

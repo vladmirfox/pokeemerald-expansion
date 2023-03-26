@@ -1371,7 +1371,7 @@ void GenerateBattlePyramidWildMon(void)
     }
     SetMonData(&gEnemyParty[0],
                MON_DATA_EXP,
-               &gExperienceTables[gBaseStats[wildMons[id].species].growthRate][lvl]);
+               &gExperienceTables[gSpeciesInfo[wildMons[id].species].growthRate][lvl]);
 
     switch (wildMons[id].abilityNum)
     {
