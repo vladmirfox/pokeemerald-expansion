@@ -3481,6 +3481,7 @@ BattleScript_AbsorbHealBlock::
 	tryfaintmon BS_TARGET
 	goto BattleScript_MoveEnd
 
+BattleScript_EffectInfernalParade::
 BattleScript_EffectBurnHit::
 	setmoveeffect MOVE_EFFECT_BURN
 	goto BattleScript_EffectHit

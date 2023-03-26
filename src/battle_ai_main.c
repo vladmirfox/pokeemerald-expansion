@@ -1807,6 +1807,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         case EFFECT_RESTORE_HP:
         case EFFECT_SOFTBOILED:
         case EFFECT_ROOST:
+        case EFFECT_JUNGLE_HEALING:
             if (AtMaxHp(battlerAtk))
                 score -= 10;
             else if (AI_DATA->hpPercents[battlerAtk] >= 90)
@@ -3525,6 +3526,11 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         if (AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_BIG_ROOT)
             score++;
         break;
+    case EFFECT_JUNGLE_HEALING:
+        if (ShouldRecover(battlerAtk, battlerDef, move, 25)
+         || (ShouldRecover(BATTLE_PARTNER(battlerAtk), battlerDef, move, 25) && ShouldRecover(BATTLE_PARTNER(battlerAtk), BATTLE_PARTNER(battlerDef), move, 25)))
+            score += 3;
+        break;
     case EFFECT_TOXIC:
     case EFFECT_POISON:
     case EFFECT_BARB_BARRAGE:
@@ -3771,8 +3777,9 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         break;
     case EFFECT_WISH:
     case EFFECT_HEAL_BELL:
+    case EFFECT_TAKE_HEART:
         if (ShouldUseWishAromatherapy(battlerAtk, battlerDef, move))
-            score += 7;
+            score += 3;
         break;
     case EFFECT_THIEF:
         {
