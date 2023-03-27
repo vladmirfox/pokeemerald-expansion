@@ -128,9 +128,9 @@ const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES] =
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_AUDINO] = sAudinoFormChangeTable,
     [SPECIES_AUDINO_MEGA] = sAudinoFormChangeTable,
-    [SPECIES_DARMANITAN] = sDarmanitanFormChangeTable,
+    [SPECIES_DARMANITAN_STANDARD_MODE] = sDarmanitanFormChangeTable,
     [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanFormChangeTable,
-    [SPECIES_DARMANITAN_GALARIAN] = sDarmanitanGalarianFormChangeTable,
+    [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] = sDarmanitanGalarianFormChangeTable,
     [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = sDarmanitanGalarianFormChangeTable,
     [SPECIES_TORNADUS_INCARNATE] = sTornadusFormChangeTable,
     [SPECIES_TORNADUS_THERIAN] = sTornadusFormChangeTable,

@@ -9778,8 +9778,8 @@ static void Cmd_various(void)
     case VARIOUS_TRY_REFLECT_TYPE:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (GET_BASE_SPECIES_ID(gBattleMons[gBattlerTarget].species) == SPECIES_ARCEUS
-            || GET_BASE_SPECIES_ID(gBattleMons[gBattlerTarget].species) == SPECIES_SILVALLY)
+        if (GET_BASE_SPECIES_ID(gBattleMons[gBattlerTarget].species) == SPECIES_ARCEUS_NORMAL
+            || GET_BASE_SPECIES_ID(gBattleMons[gBattlerTarget].species) == SPECIES_SILVALLY_NORMAL)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }

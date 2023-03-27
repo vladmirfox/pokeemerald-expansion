@@ -881,7 +881,7 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
         eggSpecies = SPECIES_SINISTEA_PHONY;
     else if (GET_BASE_SPECIES_ID(eggSpecies) == SPECIES_ROTOM)
         eggSpecies = SPECIES_ROTOM;
-    else if (GET_BASE_SPECIES_ID(eggSpecies) == SPECIES_FURFROU)
+    else if (GET_BASE_SPECIES_ID(eggSpecies) == SPECIES_FURFROU_NATURAL)
         eggSpecies = SPECIES_FURFROU_NATURAL;
     else if (GET_BASE_SPECIES_ID(eggSpecies) == SPECIES_ALCREMIE)
         eggSpecies = SPECIES_MILCERY;

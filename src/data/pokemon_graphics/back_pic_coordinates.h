@@ -939,7 +939,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_SPEWPA_JUNGLE]                     = { .size = MON_COORDS_SIZE(48, 48), .y_offset = 12 },
     [SPECIES_SPEWPA_FANCY]                      = { .size = MON_COORDS_SIZE(48, 48), .y_offset = 12 },
     [SPECIES_SPEWPA_POKE_BALL]                  = { .size = MON_COORDS_SIZE(48, 48), .y_offset = 12 },
-    [SPECIES_VIVILLON]                          = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
+    [SPECIES_VIVILLON_ICY_SNOW]                 = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_VIVILLON_POLAR]                    = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_VIVILLON_TUNDRA]                   = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_VIVILLON_CONTINENTAL]              = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
