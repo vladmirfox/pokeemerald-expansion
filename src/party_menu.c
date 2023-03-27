@@ -5519,7 +5519,7 @@ void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc task)
 #define secondFusionSlot     data[11]
 #define unfuseSecondMon      data[12]
 #define moveToLearn          data[13]
-#define forgetMove     data[14]
+#define forgetMove            data[14]
 
 static void Task_TryItemUseFusionChange(u8 taskId);
 static void SpriteCB_FormChangeIconMosaic(struct Sprite *sprite);
@@ -5555,22 +5555,22 @@ u8 IsFusionMon(u16 species) // Helps with control flow, probably not ideal
 
 u16 FusionStorageIndex(u16 species) // Index where the discarded Fused mon is stored in the PokemonStorage fusion array created to hold them
 {
-    switch(species)
+    switch (species)
     {
-        case SPECIES_SOLGALEO:
-            return 0;
-        case SPECIES_LUNALA:
-            return 1;
-        case SPECIES_GLASTRIER:
-            return 2;
-        case SPECIES_SPECTRIER:
-            return 2;
-        case SPECIES_RESHIRAM:
-            return 3;
-        case SPECIES_ZEKROM:
-            return 3;
-        default:
-            return 255;
+    case SPECIES_SOLGALEO:
+        return 0;
+    case SPECIES_LUNALA:
+        return 1;
+    case SPECIES_GLASTRIER:
+        return 2;
+    case SPECIES_SPECTRIER:
+        return 2;
+    case SPECIES_RESHIRAM:
+        return 3;
+    case SPECIES_ZEKROM:
+        return 3;
+    default:
+        return 255;
     }
 }
 
@@ -5635,7 +5635,7 @@ bool32 TryItemUseFusionChange(u8 taskId, TaskFunc task)
     u16 targetSpecies = gTasks[taskId].fusionResult;
     s8 *slotPtr = GetCurrentPartySlotPtr();
     *slotPtr = gTasks[taskId].firstFusionSlot;
-    if(gTasks[taskId].fusionType == FUSE_MON)
+    if (gTasks[taskId].fusionType == FUSE_MON)
         AnimatePartySlot(gTasks[taskId].secondFusionSlot, 0);
     AnimatePartySlot(*slotPtr, 1);
 
@@ -5669,11 +5669,10 @@ static void Task_TryItemUseFusionChange(u8 taskId)
     u16 i;
     u16 targetSpecies;
 
-    
     switch (gTasks[taskId].tState)
     {
     case 0:
-        if(gTasks[taskId].fusionType == FUSE_MON)
+        if (gTasks[taskId].fusionType == FUSE_MON)
         {
             mon2 = &gPlayerParty[gTasks[taskId].secondFusionSlot];
             CopyMon(&gPokemonStoragePtr->fusions[FusionStorageIndex(GetMonData(&gPlayerParty[gTasks[taskId].secondFusionSlot], MON_DATA_SPECIES))], mon2, sizeof(*mon2));
@@ -5693,7 +5692,6 @@ static void Task_TryItemUseFusionChange(u8 taskId)
         break;
     case 1:
         targetSpecies = gTasks[taskId].tTargetSpecies;
-
         if (gTasks[taskId].tAnimWait == 0)
         {
             FreeAndDestroyMonIconSprite(icon);
@@ -5704,7 +5702,8 @@ static void Task_TryItemUseFusionChange(u8 taskId)
             icon->data[2] = taskId;
             icon->callback = SpriteCB_FormChangeIconMosaic;
             SetGpuReg(REG_OFFSET_MOSAIC, (icon->data[0] << 12) | (icon->data[1] << 8));
-            if(gTasks[taskId].fusionType == FUSE_MON){
+            if (gTasks[taskId].fusionType == FUSE_MON)
+            {
                 icon2->oam.mosaic = TRUE;
                 icon2->data[0] = 10;
                 icon2->data[1] = 1;
@@ -5723,12 +5722,12 @@ static void Task_TryItemUseFusionChange(u8 taskId)
     case 2: 
         if (gPaletteFade.active)
             break;
-        if(gTasks[taskId].fusionType == FUSE_MON)
+        if (gTasks[taskId].fusionType == FUSE_MON)
         {
             FreeAndDestroyMonIconSprite(icon2); // place to put the code for clearing out the fused mon and reloading the party screen
             CompactPartySlots();
             CalculatePlayerPartyCount();
-            if(gTasks[taskId].firstFusionSlot > gTasks[taskId].secondFusionSlot)
+            if (gTasks[taskId].firstFusionSlot > gTasks[taskId].secondFusionSlot)
             {
                 gTasks[taskId].firstFusionSlot--;
                 gPartyMenu.slotId--;
@@ -5762,9 +5761,9 @@ static void Task_TryItemUseFusionChange(u8 taskId)
     case 6:
         if (!IsPartyMenuTextPrinterActive())
         {
-            if(gTasks[taskId].moveToLearn != 0)
+            if (gTasks[taskId].moveToLearn != 0)
             {   
-                if(gTasks[taskId].fusionType == FUSE_MON)
+                if (gTasks[taskId].fusionType == FUSE_MON)
                 {
                     
                     TeachFusionMove(taskId, gTasks[taskId].moveToLearn, gTasks[taskId].firstFusionSlot);
@@ -5772,7 +5771,7 @@ static void Task_TryItemUseFusionChange(u8 taskId)
                 else
                 {
                     DeleteMove(mon, gTasks[taskId].forgetMove);
-                    if(!DoesMonHaveAnyMoves(mon))
+                    if (!DoesMonHaveAnyMoves(mon))
                         TeachFusionMove(taskId, gTasks[taskId].moveToLearn, gTasks[taskId].firstFusionSlot);
                 }                
             }
