@@ -1,6 +1,7 @@
 #include "global.h"
 #include "malloc.h"
 #include "battle.h"
+#include "battle_setup.h"
 #include "pokemon.h"
 #include "battle_controllers.h"
 #include "battle_interface.h"
@@ -697,8 +698,14 @@ u32 WhichBattleCoords(u32 battlerId) // 0 - singles, 1 - doubles
         && gPlayerPartyCount == 1
         && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
         return 0;
-    else
-        return IsDoubleBattle();
+
+    // gEnemyParty count is calculated at the start of battle.
+    if (GetBattlerPosition(battlerId) == B_POSITION_OPPONENT_LEFT
+        && ((!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) && gEnemyPartyCount == 1)
+        || (BATTLE_TWO_VS_ONE_OPPONENT)))
+        return 0;
+    
+    return IsDoubleBattle();
 }
 
 u8 CreateBattlerHealthboxSprites(u8 battlerId)
