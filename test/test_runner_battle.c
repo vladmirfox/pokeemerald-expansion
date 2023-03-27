@@ -813,7 +813,8 @@ void TestRunner_Battle_AfterLastTurn(void)
 {
     const struct BattleTest *test = gTestRunnerState.test->data;
 
-    if (DATA.turns - 1 != DATA.lastActionTurn)
+    if (DATA.turns != 0
+     && DATA.turns - 1 != DATA.lastActionTurn)
     {
         const char *filename = gTestRunnerState.test->filename;
         Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: %d TURNs specified, but %d ran", filename, SourceLine(0), DATA.turns, DATA.lastActionTurn + 1);
@@ -1281,7 +1282,8 @@ void BattleTest_CheckBattleRecordActionType(u32 battlerId, u32 recordIndex, u32 
     }
     else
     {
-        if (DATA.lastActionTurn == gBattleResults.battleTurnCounter)
+        if (DATA.turns != 0
+         && DATA.lastActionTurn == gBattleResults.battleTurnCounter)
         {
             const char *filename = gTestRunnerState.test->filename;
             Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: TURN %d incomplete", filename, SourceLine(0), gBattleResults.battleTurnCounter + 1);
