@@ -833,6 +833,42 @@ void TestRunner_Battle_AfterLastTurn(void)
         Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched %s", filename, line, macro);
     }
 
+    if (DATA.hasAI)
+    {
+        u32 i;
+
+        // NOTE: Currently GetAiLogicData is not required because it is
+        // invoked at the end of each turn, but if it was ever moved to
+        // the start of the turn the tests would subtly break (and the
+        // battles would continue working) so we defensively call it.
+        GetAiLogicData();
+
+        gActiveBattler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+        ComputeBattleAiScores(gActiveBattler);
+        for (i = 0; i < MAX_MON_MOVES; i++)
+            DATA.aiScores[B_POSITION_OPPONENT_LEFT][i] = gBattleResources->ai->score[i];
+        if (gBattleResources->ai->switchMon)
+            DATA.aiSwitches[B_POSITION_OPPONENT_LEFT] = GetMostSuitableMonToSwitchInto();
+        else
+            DATA.aiSwitches[B_POSITION_OPPONENT_LEFT] = PARTY_SIZE;
+
+        switch (test->type)
+        {
+        case BATTLE_TEST_SINGLES:
+            break;
+        case BATTLE_TEST_DOUBLES:
+            gActiveBattler = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
+            ComputeBattleAiScores(gActiveBattler);
+            for (i = 0; i < MAX_MON_MOVES; i++)
+                DATA.aiScores[B_POSITION_OPPONENT_RIGHT][i] = gBattleResources->ai->score[i];
+            if (gBattleResources->ai->switchMon)
+                DATA.aiSwitches[B_POSITION_OPPONENT_RIGHT] = GetMostSuitableMonToSwitchInto();
+            else
+                DATA.aiSwitches[B_POSITION_OPPONENT_RIGHT] = PARTY_SIZE;
+            break;
+        }
+    }
+
     STATE->runThen = TRUE;
     STATE->runFinally = STATE->runParameter + 1 == STATE->parameters;
     InvokeTestFunction(test);
@@ -953,6 +989,12 @@ void RNGSeed_(u32 sourceLine, u32 seed)
 {
     INVALID_IF(DATA.recordedBattle.rngSeed != RNG_SEED_DEFAULT, "RNG seed already set");
     DATA.recordedBattle.rngSeed = seed;
+}
+
+void AIFlags_(u32 sourceLine, u32 flags)
+{
+    DATA.recordedBattle.AI_scripts = flags;
+    DATA.hasAI = TRUE;
 }
 
 const struct TestRunner gBattleTestRunner =
@@ -1737,4 +1779,25 @@ void QueueStatus(u32 sourceLine, struct BattlePokemon *battler, struct StatusEve
             .mask = mask,
         }},
     };
+}
+
+s32 AIMoveScore_(u32 sourceLine, struct BattlePokemon *battler, u32 move)
+{
+    s32 battlerId = battler - gBattleMons;
+    u32 i;
+    INVALID_IF((battlerId & BIT_SIDE) == B_SIDE_PLAYER, "AIMoveScore is opponent-only");
+    INVALID_IF(move == MOVE_NONE || move >= MOVES_COUNT, "Illegal move: %d", move);
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (battler->moves[i] == move)
+            return DATA.aiScores[battlerId][i];
+    }
+    INVALID("%s does not know %S", BattlerIdentifier(battlerId), gMoveNames[move]);
+}
+
+u32 AISwitch_(u32 sourceLine, struct BattlePokemon *battler)
+{
+    s32 battlerId = battler - gBattleMons;
+    INVALID_IF((battlerId & BIT_SIDE) == B_SIDE_PLAYER, "AISwitch is opponent-only");
+    return DATA.aiSwitches[battlerId];
 }

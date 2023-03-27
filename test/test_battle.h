@@ -269,7 +269,20 @@
  *     GIVEN {
  *         RNGSeed(0xC0DEIDEA);
  *
- * PLAYER(species) and OPPONENT(species)
+ * AIFlags(flags)
+ * Causes the test to evaluate the AI scores so that they're available
+ * in THEN/FINALLY. For example to test that Bubble is strictly better
+ * than Water Gun:
+ *     GIVEN {
+ *         AIFlags(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY);
+ *         PLAYER(SPECIES_WOBBUFFET);
+ *         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_BUBBLE, MOVE_WATER_GUN); }
+ *     } THEN {
+ *         EXPECT_AI_GT(opponent, MOVE_BUBBLE, MOVE_WATER_GUN);
+ *     }
+ *
+ * PLAYER(species)
+ * OPPONENT(species)
  * Adds the species to the player's or opponent's party respectively.
  * The Pokémon can be further customized with the following functions:
  * - Gender(MON_MALE | MON_FEMALE)
@@ -435,19 +448,34 @@
  * EXPECT(cond)
  * Causes the test to fail if cond is false.
  *
- * EXPECT_EQ(a, b), EXPECT_NE(a, b), EXPECT_LT(a, b), EXPECT_LE(a, b), EXPECT_GT(a, b), EXPECT_GE(a, b)
+ * EXPECT_EQ(a, b)
+ * EXPECT_NE(a, b)
+ * EXPECT_LT(a, b)
+ * EXPECT_LE(a, b)
+ * EXPECT_GT(a, b)
+ * EXPECT_GE(a, b)
  * Causes the test to fail if a and b compare incorrectly, e.g.
  *     EXPECT_EQ(results[0].damage, results[1].damage);
  *
  * EXPECT_MUL_EQ(a, m, b)
  * Causes the test to fail if a*m != b (within a threshold), e.g.
  *     // Expect results[0].damage * 1.5 == results[1].damage.
- *     EXPECT_EQ(results[0].damage, Q_4_12(1.5), results[1].damage); */
+ *     EXPECT_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
+ *
+ * EXPECT_AI_EQ(battler, move1, move2)
+ * EXPECT_AI_LT(battler, move1, move2)
+ * EXPECT_AI_LE(battler, move1, move2)
+ * EXPECT_AI_GT(battler, move1, move2)
+ * EXPECT_AI_GE(battler, move1, move2)
+ * Causes the test to fail if battler's move1 and move2 AI scores
+ * compare incorrectly, e.g.
+ *     EXPECT_AI_GT(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); */
 
 #ifndef GUARD_TEST_BATTLE_H
 #define GUARD_TEST_BATTLE_H
 
 #include "battle.h"
+#include "battle_ai_main.h"
 #include "battle_anim.h"
 #include "data.h"
 #include "item.h"
@@ -456,6 +484,7 @@
 #include "test.h"
 #include "util.h"
 #include "constants/abilities.h"
+#include "constants/battle_ai.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_move_effects.h"
 #include "constants/hold_effects.h"
@@ -581,6 +610,7 @@ struct BattleTestData
     u8 actionBattlers;
     u8 moveBattlers;
 
+    bool8 hasAI;
     struct RecordedBattleSave recordedBattle;
     u8 battleRecordTypes[MAX_BATTLERS_COUNT][BATTLER_RECORD_SIZE];
     u8 battleRecordSourceLineOffsets[MAX_BATTLERS_COUNT][BATTLER_RECORD_SIZE];
@@ -593,6 +623,9 @@ struct BattleTestData
     u8 queueGroupStart;
     u8 queuedEvent;
     struct QueuedEvent queuedEvents[MAX_QUEUED_EVENTS];
+
+    s8 aiScores[MAX_BATTLERS_COUNT][MAX_MON_MOVES];
+    u8 aiSwitches[MAX_BATTLERS_COUNT];
 };
 
 struct BattleTestRunnerState
@@ -715,6 +748,7 @@ void Randomly(u32 sourceLine, u32 passes, u32 trials, struct RandomlyContext);
 #define GIVEN for (; gBattleTestRunnerState->runGiven; gBattleTestRunnerState->runGiven = FALSE)
 
 #define RNGSeed(seed) RNGSeed_(__LINE__, seed)
+#define AIFlags(flags) AIFlags_(__LINE__, flags)
 
 #define PLAYER(species) for (OpenPokemon(__LINE__, B_SIDE_PLAYER, species); gBattleTestRunnerState->data.currentMon; ClosePokemon(__LINE__))
 #define OPPONENT(species) for (OpenPokemon(__LINE__, B_SIDE_OPPONENT, species); gBattleTestRunnerState->data.currentMon; ClosePokemon(__LINE__))
@@ -731,7 +765,11 @@ void Randomly(u32 sourceLine, u32 passes, u32 trials, struct RandomlyContext);
 #define SpDefense(spDefense) SpDefense_(__LINE__, spDefense)
 #define Speed(speed) Speed_(__LINE__, speed)
 #define Item(item) Item_(__LINE__, item)
-#define Moves(move1, ...) Moves_(__LINE__, (const u16 [MAX_MON_MOVES]) { move1, __VA_ARGS__ })
+#define Moves(move1, ...) \
+    do { \
+        u16 _moves[MAX_MON_MOVES] = { move1, __VA_ARGS__ }; \
+        Moves_(__LINE__, _moves); \
+    } while(0)
 #define Friendship(friendship) Friendship_(__LINE__, friendship)
 #define Status1(status1) Status1_(__LINE__, status1)
 
@@ -739,6 +777,7 @@ void OpenPokemon(u32 sourceLine, u32 side, u32 species);
 void ClosePokemon(u32 sourceLine);
 
 void RNGSeed_(u32 sourceLine, u32 seed);
+void AIFlags_(u32 sourceLine, u32 flags);
 void Gender_(u32 sourceLine, u32 gender);
 void Nature_(u32 sourceLine, u32 nature);
 void Ability_(u32 sourceLine, u32 ability);
@@ -887,6 +926,12 @@ void QueueStatus(u32 sourceLine, struct BattlePokemon *battler, struct StatusEve
 
 #define THEN for (; gBattleTestRunnerState->runThen; gBattleTestRunnerState->runThen = FALSE)
 
+#define AIMoveScore(battler, move) AIMoveScore_(__LINE__, battler, move)
+#define AISwitch(battler) AISwitch_(__LINE__, battler)
+
+s32 AIMoveScore_(u32 sourceLine, struct BattlePokemon *battler, u32 move);
+u32 AISwitch_(u32 sourceLine, struct BattlePokemon *battler);
+
 /* Finally */
 
 #define FINALLY for (; gBattleTestRunnerState->runFinally; gBattleTestRunnerState->runFinally = FALSE) if ((gBattleTestRunnerState->runningFinally = TRUE))
@@ -902,5 +947,20 @@ void QueueStatus(u32 sourceLine, struct BattlePokemon *battler, struct StatusEve
         if (abs(_am-_b) > _t) \
             Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: EXPECT_MUL_EQ(%d, %q, %d) failed: %d not in [%d..%d]", gTestRunnerState.test->filename, __LINE__, _a, _m, _b, _am, _b-_t, _b+_t); \
     } while (0)
+
+#define EXPECT_AI_CMP_(battler, move1, move2, m, cmp) \
+    do \
+    { \
+        s32 _a = AIMoveScore(battler, move1); \
+        s32 _b = AIMoveScore(battler, move2); \
+        if (!(_a cmp _b)) \
+            Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: %s(..., %d, %d) failed", gTestRunnerState.test->filename, __LINE__, m, _a, _b); \
+    } while (0)
+
+#define EXPECT_AI_EQ(battler, move1, move2) EXPECT_AI_CMP_(battler, move1, move2, "EXPECT_AI_EQ", ==)
+#define EXPECT_AI_LT(battler, move1, move2) EXPECT_AI_CMP_(battler, move1, move2, "EXPECT_AI_LT", <)
+#define EXPECT_AI_LE(battler, move1, move2) EXPECT_AI_CMP_(battler, move1, move2, "EXPECT_AI_LE", <=)
+#define EXPECT_AI_GT(battler, move1, move2) EXPECT_AI_CMP_(battler, move1, move2, "EXPECT_AI_GT", >)
+#define EXPECT_AI_GE(battler, move1, move2) EXPECT_AI_CMP_(battler, move1, move2, "EXPECT_AI_GE", >=)
 
 #endif
