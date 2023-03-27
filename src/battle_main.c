@@ -3161,6 +3161,8 @@ static void BattleStartClearSetData(void)
     }
 
     gBattleStruct->swapDamageCategory = FALSE; // Photon Geyser, Shell Side Arm, Light That Burns the Sky
+
+    CalculateEnemyPartyCount(); // Can be used to check whether Doubles opponent is alone.
 }
 
 void SwitchInClearSetData(void)
