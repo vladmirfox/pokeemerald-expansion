@@ -241,6 +241,7 @@ static void ClearVramOamPlttRegs(void);
 static void Task_RaidBattleIntroFadeOut(u8 taskId);
 static void Task_RaidBattleIntroWaitForKeyPress(u8 taskId);
 static void Task_RaidBattleIntroFadeIn(u8 taskId);
+static void Task_RaidBattleIntroSetUpBattle(u8 taskId);
 static void InitRaidBattleIntro(void);
 static void ShowStars(void);
 static void ShowRaidPokemonSprite(void);
@@ -248,7 +249,7 @@ static void ShowRaidPokemonTypes(void);
 static void ShowPartnerTeams(void);
 static void ShowRaidCursor(void);
 static void OutlineMonSprite(u8 spriteId);
-static bool8 GetRaidBattleData(void);
+static bool32 GetRaidBattleData(void);
 
 EWRAM_DATA static struct RaidBattleIntro *sRaidBattleIntro = NULL;
 
@@ -333,6 +334,13 @@ static void Task_RaidBattleIntroFadeOut(u8 taskId)
 	}
 }
 
+static void Task_RaidBattleIntroSetUpBattle(u8 taskId)
+{
+	gBattleTypeFlags |= BATTLE_TYPE_RAID;
+	BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+	gTasks[taskId].func = Task_RaidBattleIntroFadeOut;
+}
+
 static void Task_RaidBattleIntroWaitForKeyPress(u8 taskId)
 {
 	u8 i;
@@ -341,18 +349,17 @@ static void Task_RaidBattleIntroWaitForKeyPress(u8 taskId)
 
 	if (gMain.newKeys & A_BUTTON)
 	{
-		PRESSED_A:
         // TODO:
-        //  - Set Raid Partner information.
-        //  - Fade out and mark as battle starting.
+        //  - Set Raid Partner information based on selected trainer.
+		PRESSED_A:
 		PlaySE(SE_SUCCESS);
+		gSpecialVar_Result = TRUE;
+		gTasks[taskId].func = Task_RaidBattleIntroSetUpBattle;
 	}
 	else if (gMain.newKeys & B_BUTTON)
 	{
-		// TODO: 
-        //  - Fade out and mark as no battle starting.
-        //  Original used gSpecialVar_Result = FALSE;
 		PlaySE(SE_FAILURE);
+		gSpecialVar_Result = FALSE;
 		BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
 		gTasks[taskId].func = Task_RaidBattleIntroFadeOut;
 	}
@@ -635,9 +642,16 @@ void InitRaidIntro(void)
 }
 
 
-static bool8 GetRaidBattleData(void)
+static bool32 GetRaidBattleData(void)
 {
-	if (InitRaidData()) {
+	bool32 success;
+	if (gSpecialVar_0x8000 && InitCustomRaidData())
+		success = TRUE;
+	else if (InitRaidData())
+		success = TRUE;
+	
+	if (success)
+	{
 		sRaidBattleIntro->species = GetMonData(gRaidData->mon, MON_DATA_SPECIES, NULL);
 		sRaidBattleIntro->personality = GetMonData(gRaidData->mon, MON_DATA_PERSONALITY, NULL);
 

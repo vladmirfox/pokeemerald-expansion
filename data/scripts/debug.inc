@@ -69,9 +69,15 @@ Debug_FlagsNotSetBattleConfigMessage_Text:
 
 Debug_Script_1::
 	lockall
+	preparefixedraid 0, 5, SPECIES_SALAMENCE
 	special InitRaidIntro
 	waitstate
+	goto_if_eq VAR_RESULT, TRUE, Debug_DoFixedRaid
 	releaseall
+	end
+
+Debug_DoFixedRaid:
+	multi_fixed_wild TRAINER_WALLY_VR_2, TRAINER_BACK_PIC_WALLY
 	end
 
 Debug_Script_2::

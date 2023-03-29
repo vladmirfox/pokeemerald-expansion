@@ -25,5 +25,6 @@ extern struct RaidData* gRaidData;
 
 // Functions
 bool32 InitRaidData(void);
+bool32 InitCustomRaidData(void);
 
 #endif
