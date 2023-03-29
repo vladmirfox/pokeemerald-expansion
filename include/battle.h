@@ -15,6 +15,7 @@
 #include "pokeball.h"
 #include "battle_debug.h"
 #include "battle_dynamax.h"
+#include "battle_raid.h"
 
 #define GET_BATTLER_SIDE(battler)         (GetBattlerPosition(battler) & BIT_SIDE)
 #define GET_BATTLER_SIDE2(battler)        (gBattlerPositions[battler] & BIT_SIDE)
@@ -535,6 +536,17 @@ struct DynamaxData
     u16 levelUpHP;
 };
 
+struct RaidBattleData
+{
+    u8 state;
+    u16 shield;         // stores either num. of barriers (GEN_8) or amount of HP protected (GEN_9)
+    u8 shieldsCreated;  // stores number of times a shield has been made
+    u8 energy;          // stores position of Dynamax Energy or Tera Orb charge
+    u16 battleLimit;    // stores turns remaining (GEN_8) or expiration time (GEN_9)
+    bool8 usedShockwave:1;
+    bool8 movedTwice:1;
+};
+
 struct StolenItem
 {
     u16 originalItem:15;
@@ -639,6 +651,7 @@ struct BattleStruct
     struct MegaEvolutionData mega;
     struct ZMoveData zmove;
     struct DynamaxData dynamax;
+    struct RaidBattleData raid;
     const u8 *trainerSlideMsg;
     bool8 trainerSlideLowHpMsgDone;
     u8 introState;

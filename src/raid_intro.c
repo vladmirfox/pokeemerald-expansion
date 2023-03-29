@@ -62,7 +62,6 @@ struct RaidBattleIntro
 	struct Partner partners[MAX_NUM_PARTNERS];
 	u32 personality;
 	u16 species;
-	u8 rank;
 	u8 selectedTeam;
 	u16 monSpriteId;
 	u8 outlinedSprite;
@@ -253,9 +252,6 @@ static bool8 GetRaidBattleData(void);
 
 EWRAM_DATA static struct RaidBattleIntro *sRaidBattleIntro = NULL;
 
-// TODO: Add global for rank.
-EWRAM_DATA static u8 gRaidBattleRank = 6;
-
 // code
 static void MainCB2_RaidBattleIntro(void)
 {
@@ -429,22 +425,21 @@ static void PrintInstructions(void)
 {
 	const u8 partnerColour[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
 	/*{
-		.bgColor = 0, //Transparent
-		.fgColor = 2, //Dark Gray
-		.shadowColor = 3, //Gray
+		.bgColor = 0, // Transparent
+		.fgColor = 2, // Dark Gray
+		.shadowColor = 3, // Gray
 	};*/
 
 	const u8 colour[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
 	/*{
-		.bgColor = 0, //Transparent
-		.fgColor = 1, //White
-		.shadowColor = 2,
+		.bgColor = 0, // Transparent
+		.fgColor = 1, // White
+		.shadowColor = 2, // Dark Gray
 	};*/
 
 	AddTextPrinterParameterized3(WIN_RULES, 0, 0, 2, colour, 0, sText_RaidBattleRules);
 
 	StringCopy(gStringVar1, sText_RecommendedLevel);
-	// ConvertIntToDecimalStringN(gStringVar2, GetRaidRecommendedLevel(), 0, 3);
     ConvertIntToDecimalStringN(gStringVar2, 50, 0, 3); // placeholder
 	StringAppend(gStringVar1, gStringVar2);
 	AddTextPrinterParameterized3(WIN_RECOMMENDED_LEVEL, 0, 4, 0, colour, 0, gStringVar1);
@@ -460,7 +455,7 @@ static void ShowStars(void)
 	LoadSpritePalette(&sRaidBattleStarSpritePalette);
     LoadSpriteSheet(&sRaidBattleStarSpriteSheet);
 
-	for (i = 0; i < sRaidBattleIntro->rank; i++)
+	for (i = 0; i < gRaidData->rank; i++)
 		CreateSprite(&sRaidBattleStarSpriteTemplate, 10 + (9 * i), 8, 0);
 }
 
@@ -639,66 +634,29 @@ void InitRaidIntro(void)
 	}
 }
 
+
 static bool8 GetRaidBattleData(void)
 {
-	// u32 i, j, k;
-	// bool8 checkedPartners[gNumRaidPartners];
+	if (InitRaidData()) {
+		sRaidBattleIntro->species = GetMonData(gRaidData->mon, MON_DATA_SPECIES, NULL);
+		sRaidBattleIntro->personality = GetMonData(gRaidData->mon, MON_DATA_PERSONALITY, NULL);
 
-	// DetermineRaidStars();
-	// DetermineRaidSpecies();
-	// DetermineRaidLevel();
-	// sRaidBattleIntro->rank = gRaidBattleRank;
-	// sRaidBattleIntro->species = gRaidBattleSpecies;
-
-	// if (gRaidBattleSpecies == SPECIES_NONE)
-	// 	return FALSE;
-
-	// for (i = 0; i < gNumRaidPartners; i++)
-	// 	checkedPartners[i] = FALSE;
-
-	// DetermineRaidPartners(checkedPartners, MAX_NUM_PARTNERS);
-
-	// k = 0;
-	// for (i = 0; i < gNumRaidPartners; i++)
-	// {
-	// 	if (checkedPartners[i] == TRUE) // 0xFF means not viable
-	// 	{
-	// 		struct Partner* partner = &sRaidBattleIntro->partners[k++];
-
-	// 		partner->id = i;
-	// 		partner->graphicsId = gRaidPartners[i].owNum;
-
-	// 		for (j = 0; j < MAX_TEAM_SIZE; ++j)
-	// 		{
-	// 			// TODO: Get species from Raid partner team.
-	// 		}
-	// 	}
-
-	// 	if (k >= MAX_NUM_PARTNERS)
-	// 		break;
-	// }
-
-	// if (k == 0) // No partners found.
-	// 	return FALSE;
-
-	// return TRUE;
-
-    // TEST DATA:
-    gRaidBattleRank = 6;
-	sRaidBattleIntro->species = SPECIES_SALAMENCE;
-	sRaidBattleIntro->rank = 6;
-    sRaidBattleIntro->personality = 0xFFFFFFFF;
-	sRaidBattleIntro->partners[0].graphicsId = OBJ_EVENT_GFX_STEVEN;
-	sRaidBattleIntro->partners[0].team[0] = SPECIES_TYRANITAR;
-	sRaidBattleIntro->partners[0].team[1] = SPECIES_MAMOSWINE;
-	sRaidBattleIntro->partners[0].team[2] = SPECIES_GRANBULL;
-	sRaidBattleIntro->partners[1].graphicsId = OBJ_EVENT_GFX_MAY_NORMAL;
-	sRaidBattleIntro->partners[1].team[0] = SPECIES_GOLURK;
-	sRaidBattleIntro->partners[1].team[1] = SPECIES_MAGNEZONE;
-	sRaidBattleIntro->partners[1].team[2] = SPECIES_SALAMENCE;
-	sRaidBattleIntro->partners[2].graphicsId = OBJ_EVENT_GFX_RED;
-	sRaidBattleIntro->partners[2].team[0] = SPECIES_PIKACHU_ORIGINAL_CAP;
-	sRaidBattleIntro->partners[2].team[1] = SPECIES_SNORLAX;
-	sRaidBattleIntro->partners[2].team[2] = SPECIES_MEWTWO;
-	return TRUE;
+		// Placeholder Data
+		// TODO: Fill using gRaidData->partners.
+		sRaidBattleIntro->partners[0].graphicsId = OBJ_EVENT_GFX_STEVEN;
+		sRaidBattleIntro->partners[0].team[0] = SPECIES_TYRANITAR;
+		sRaidBattleIntro->partners[0].team[1] = SPECIES_MAMOSWINE;
+		sRaidBattleIntro->partners[0].team[2] = SPECIES_GRANBULL;
+		sRaidBattleIntro->partners[1].graphicsId = OBJ_EVENT_GFX_MAY_NORMAL;
+		sRaidBattleIntro->partners[1].team[0] = SPECIES_GOLURK;
+		sRaidBattleIntro->partners[1].team[1] = SPECIES_MAGNEZONE;
+		sRaidBattleIntro->partners[1].team[2] = SPECIES_SALAMENCE;
+		sRaidBattleIntro->partners[2].graphicsId = OBJ_EVENT_GFX_RED;
+		sRaidBattleIntro->partners[2].team[0] = SPECIES_PIKACHU_ORIGINAL_CAP;
+		sRaidBattleIntro->partners[2].team[1] = SPECIES_SNORLAX;
+		sRaidBattleIntro->partners[2].team[2] = SPECIES_MEWTWO;
+		return TRUE;
+	}
+	return FALSE;
 }
+

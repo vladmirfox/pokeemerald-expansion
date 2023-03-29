@@ -68,6 +68,10 @@ Debug_FlagsNotSetBattleConfigMessage_Text:
 	.string "'include/config/battle.h'!$"
 
 Debug_Script_1::
+	lockall
+	special InitRaidIntro
+	waitstate
+	releaseall
 	end
 
 Debug_Script_2::
