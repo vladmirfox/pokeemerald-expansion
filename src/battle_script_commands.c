@@ -12990,6 +12990,11 @@ static void Cmd_metronome(void)
 
         if (!(sForbiddenMoves[gCurrentMove] & FORBIDDEN_METRONOME))
         {
+            if (gBattleMoves[gCurrentMove].effect == EFFECT_MULTI_HIT)
+                gBattleStruct->atkCancellerTracker = CANCELLER_MULTIHIT_MOVES;
+            else if (gBattleMoves[gCurrentMove].flags & FLAG_POWDER)
+                gBattleStruct->atkCancellerTracker = CANCELLER_POWDER_MOVE;
+
             gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
             gBattlescriptCurrInstr = gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect];
             gBattlerTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
