@@ -2027,4 +2027,3 @@
 	setvar VAR_0x8002, \rank
 	setvar VAR_0x8003, \species
 	.endm
-

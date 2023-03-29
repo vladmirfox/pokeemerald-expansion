@@ -28,6 +28,7 @@
 #include "constants/event_objects.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/trainers.h"
 
 #define MAX_NUM_PARTNERS 3
 #define MAX_TEAM_SIZE 3
@@ -640,7 +641,6 @@ void InitRaidIntro(void)
 		SetMainCallback2(CB2_RaidBattleIntro);
 	}
 }
-
 
 static bool32 GetRaidBattleData(void)
 {

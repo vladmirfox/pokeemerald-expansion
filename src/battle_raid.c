@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_anim.h"
 #include "battle_raid.h"
 #include "battle_setup.h"
 #include "data.h"
@@ -9,15 +10,8 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 
-struct RaidType {
-    u8 shield:1;
-    u8 shockwave:1;
-    u8 rules:1;
-    u8 gimmick;
-};
-
 // Settings for each Raid Type.
-static const struct RaidType sRaidTypes[] = {
+const struct RaidType gRaidTypes[NUM_RAID_TYPES] = {
     [MAX_RAID] = {
         .shield = RAID_GEN_8,
         .shockwave = RAID_GEN_8,
@@ -66,4 +60,8 @@ bool32 InitCustomRaidData(void) {
     gRaidData->mon = &gEnemyParty[0];
 
     return TRUE;
+}
+
+bool32 IsRaidBoss(u16 battlerId) {
+    return (gBattleTypeFlags & BATTLE_TYPE_RAID) && GetBattlerPosition(battlerId) == B_POSITION_OPPONENT_LEFT;
 }

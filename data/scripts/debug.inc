@@ -77,7 +77,7 @@ Debug_Script_1::
 	end
 
 Debug_DoFixedRaid:
-	multi_fixed_wild TRAINER_WALLY_VR_2, TRAINER_BACK_PIC_WALLY
+	doraidbattle
 	end
 
 Debug_Script_2::
