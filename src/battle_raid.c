@@ -8,6 +8,7 @@
 #include "event_data.h"
 #include "malloc.h"
 #include "pokemon.h"
+#include "constants/battle_raid.h"
 #include "constants/battle_string_ids.h"
 #include "constants/items.h"
 #include "constants/moves.h"
@@ -99,7 +100,6 @@ void InitRaidBattleData(void)
 
     gBattleStruct->raid.shield = 0;
     gBattleStruct->raid.shieldsRemaining = 0;
-    gBattleStruct->raid.battleLimit = 0;
     gBattleStruct->raid.state |= RAID_INTRO_COMPLETE;
 	gBattleStruct->raid.energy = B_POSITION_PLAYER_LEFT;
 
@@ -141,26 +141,38 @@ bool32 ShouldRaidKickPlayer(void)
     // Gen 8-style raids are capped at 10 turns.
     if (gRaidTypes[gRaidData->raidType].rules == RAID_GEN_8)
     {
-        switch(++gBattleStruct->raid.battleLimit)
+        switch (gBattleResults.battleTurnCounter)
         {
-            case RAID_STORM_LEVEL_1:
+            case RAID_STORM_TURNS_LEVEL_1:
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_GETTING_STRONGER;
-                BattleScriptExecute(BattleScript_RaidStormBrews);
+                BattleScriptExecute(BattleScript_MaxRaidStormBrews);
                 break;
-            case RAID_STORM_LEVEL_2:
+            case RAID_STORM_TURNS_LEVEL_2:
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_GETTING_STRONGER;
-                BattleScriptExecute(BattleScript_RaidStormBrews);
+                BattleScriptExecute(BattleScript_MaxRaidStormBrews);
                 break;
-            case RAID_STORM_LEVEL_3:
+            case RAID_STORM_TURNS_LEVEL_3:
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_GETTING_EVEN_STRONGER;
-                BattleScriptExecute(BattleScript_RaidStormBrews);
+                BattleScriptExecute(BattleScript_MaxRaidStormBrews);
                 break;
-            case RAID_STORM_MAX:
+            case RAID_STORM_TURNS_MAX:
+                gBattleCommunication[MULTIUSE_STATE] = RAID_GEN_8;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_GETTING_TOO_STRONG;
                 BattleScriptExecute(BattleScript_RaidDefeat);
                 return TRUE;
         }
     }
-    // TODO: Gen 9-style raids are timed.
+    // Gen 9-style raids are capped at 7.5 minutes.
+    else if (gBattleStruct->battleTimer >= RAID_STORM_TIMER_MAX)
+    {
+        gBattleCommunication[MULTIUSE_STATE] = RAID_GEN_9;
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PKMN_RELEASED_ENERGY;
+        BattleScriptExecute(BattleScript_RaidDefeat);
+        return TRUE;
+    }
+    else if (gBattleStruct->battleTimer >= RAID_STORM_TIMER_WARNING)
+    {
+        BattleScriptExecute(BattleScript_TeraRaidTimerLow);
+    }
     return FALSE;
 }

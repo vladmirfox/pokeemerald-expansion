@@ -796,6 +796,7 @@ static const u8 sText_CouldntFullyProtect[] = _("{B_DEF_NAME_WITH_PREFIX} couldn
 static const u8 sText_StockpiledEffectWoreOff[] = _("{B_ATK_NAME_WITH_PREFIX}'s stockpiled\neffect wore off!");
 static const u8 sText_MoveBlockedByDynamax[] = _("The move was blocked by\nthe power of Dynamax!");
 static const u8 sText_PkmnAppearsMassive[] = _("{B_OPPONENT_MON1_NAME} appears\nto be massive!");
+static const u8 sText_DynamaxEnergyGathered[] = _("Dynamax Energy gathered\naround {B_PLAYER_NAME}!");
 static const u8 sText_RaidBarrierAppeared[] = _("A mysterious barrier appeared,\nprotecting {B_OPPONENT_MON1_NAME} from attacks.");
 static const u8 sText_RaidBarrierDisappeared[] = _("The mysterious barrier protecting\n{B_OPPONENT_MON1_NAME} disappeared!");
 static const u8 sText_CatchRaidMon[] = _("{B_OPPONENT_MON1_NAME} is weak!\nThrow a Ball?");
@@ -810,9 +811,20 @@ static const u8 sText_StormIsGettingStronger[] = _("The storm above you is\ngett
 static const u8 sText_StormIsGettingEvenStronger[] = _("The storm is growing\neven stronger!");
 static const u8 sText_StormIsGettingTooStrong[] = _("The storm is getting too\nstrong to withstand!");
 static const u8 sText_BlownOutOfDen[] = _("{B_PLAYER_NAME} was blown out\nof the den!");
+static const u8 sText_PkmnRemovedEffectsFromSelf[] = _("{B_OPPONENT_MON1_NAME} removed negative\neffects from itself!");
+static const u8 sText_EnergyGatheredAroundPkmn[] = _("Energy has begun to gather\naround {B_OPPONENT_MON1_NAME}!");
+static const u8 sText_PkmnBrokeItsStance[] = _("{B_OPPONENT_MON1_NAME} succumbed to the\nonslaught and broke its stance!");
+static const u8 sText_RaidNotMuchTimeLeft[] = _("You can feel tremendous energy\ngathering! There isn't much time left!");
+static const u8 sText_RaidPkmnReleasedEnergy[] = _("{B_OPPONENT_MON1_NAME} released its\ngathered energy!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_PKMNREMOVEDEFFECTSFROMSELF - BATTLESTRINGS_TABLE_START] = sText_PkmnRemovedEffectsFromSelf,
+    [STRINGID_ENERGYGATHEREDAROUNDPKMN - BATTLESTRINGS_TABLE_START] = sText_EnergyGatheredAroundPkmn,
+    [STRINGID_PKMNBROKEITSSTANCE - BATTLESTRINGS_TABLE_START] = sText_PkmnBrokeItsStance,
+    [STRINGID_RAIDNOTMUCHTIMELEFT - BATTLESTRINGS_TABLE_START] = sText_RaidNotMuchTimeLeft,
+    [STRINGID_RAIDPKMNRELEASEDENERGY - BATTLESTRINGS_TABLE_START] = sText_RaidPkmnReleasedEnergy,
+    [STRINGID_DYNAMAXENERGYGATHERED - BATTLESTRINGS_TABLE_START] = sText_DynamaxEnergyGathered,
     [STRINGID_PKMNAPPEARSMASSIVE - BATTLESTRINGS_TABLE_START] = sText_PkmnAppearsMassive,
     [STRINGID_RAIDPKMNDISAPPEARED - BATTLESTRINGS_TABLE_START] = sText_RaidPkmnDisappeared,
     [STRINGID_PKMNISTOOSTRONG - BATTLESTRINGS_TABLE_START] = sText_PkmnIsTooStrong,
@@ -1476,13 +1488,13 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNSABILITYPREVENTSABILITY - BATTLESTRINGS_TABLE_START] = sText_PkmnsAbilityPreventsAbility,
 };
 
-const u16 gRaidStormStringIds[] =
+const u16 gRaidStateStringIds[] =
 {
     [B_MSG_RAID_STORM_STARTED] = STRINGID_STORMSTARTEDBREWING,
-    [B_MSG_GETTING_STRONGER] = STRINGID_STORMGETTINGSTRONGER, 
-    [B_MSG_GETTING_EVEN_STRONGER] = STRINGID_STORMGETTINGEVENSTRONGER, 
+    [B_MSG_GETTING_STRONGER] = STRINGID_STORMGETTINGSTRONGER,
+    [B_MSG_GETTING_EVEN_STRONGER] = STRINGID_STORMGETTINGEVENSTRONGER,
     [B_MSG_GETTING_TOO_STRONG] = STRINGID_STORMGETTINGTOOSTRONG,
-    [B_MSG_BLOWN_OUT_OF_DEN] = STRINGID_BLOWNOUTOFDEN
+    [B_MSG_PKMN_RELEASED_ENERGY] = STRINGID_RAIDPKMNRELEASEDENERGY,
 };
 
 const u16 gZEffectStringIds[] =

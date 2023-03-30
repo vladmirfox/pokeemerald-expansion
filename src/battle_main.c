@@ -3038,7 +3038,7 @@ void BeginBattleIntro(void)
 static void BattleMainCB1(void)
 {
     gBattleMainFunc();
-
+    ++gBattleStruct->battleTimer;
     for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
         gBattlerControllerFuncs[gActiveBattler]();
 }
@@ -3815,6 +3815,7 @@ static void TryDoEventsBeforeFirstTurn(void)
         InitRaidBattleData();
         gBattlerAttacker = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
         gBattleCommunication[MULTIUSE_STATE] = gRaidTypes[gRaidData->raidType].gimmick;
+        gBattleCommunication[1] = gRaidTypes[gRaidData->raidType].rules;
         BattleScriptExecute(BattleScript_RaidIntro);
         return;
     }

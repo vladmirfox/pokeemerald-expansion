@@ -4,6 +4,7 @@
 // should they be included here or included individually by every file?
 #include "constants/battle.h"
 #include "constants/form_change_types.h"
+#include "constants/battle_raid.h"
 #include "battle_main.h"
 #include "battle_message.h"
 #include "battle_util.h"
@@ -542,7 +543,6 @@ struct RaidBattleData
     u16 shield;           // stores either num. of shields (GEN_8) or amount of HP protected (GEN_9)
     u8 shieldsRemaining;  // stores the remaining num. of shields
     u8 energy;            // stores position of Dynamax Energy or Tera Orb charge
-    u16 battleLimit;      // stores turns passed (GEN_8) or time passed (GEN_9)
     bool8 usedShockwave:1;
     bool8 movedTwice:1;
     u8 shieldSpriteIds[MAX_SHIELD_COUNT];
@@ -696,6 +696,7 @@ struct BattleStruct
     u8 storedLunarDance:4; // Each battler as a bit.
     u8 bonusCritStages[MAX_BATTLERS_COUNT]; // G-Max Chi Strike boosts crit stages of allies.
     u16 supremeOverlordModifier[MAX_BATTLERS_COUNT];
+    u32 battleTimer; // frame counter to measure battle time length
 };
 
 #define F_DYNAMIC_TYPE_1 (1 << 6)
