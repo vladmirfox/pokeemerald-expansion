@@ -539,12 +539,13 @@ struct DynamaxData
 struct RaidBattleData
 {
     u8 state;
-    u16 shield;         // stores either num. of barriers (GEN_8) or amount of HP protected (GEN_9)
-    u8 shieldsCreated;  // stores number of times a shield has been made
-    u8 energy;          // stores position of Dynamax Energy or Tera Orb charge
-    u16 battleLimit;    // stores turns remaining (GEN_8) or expiration time (GEN_9)
+    u16 shield;           // stores either num. of shields (GEN_8) or amount of HP protected (GEN_9)
+    u8 shieldsRemaining;  // stores the remaining num. of shields
+    u8 energy;            // stores position of Dynamax Energy or Tera Orb charge
+    u16 battleLimit;      // stores turns passed (GEN_8) or time passed (GEN_9)
     bool8 usedShockwave:1;
     bool8 movedTwice:1;
+    u8 shieldSpriteIds[MAX_SHIELD_COUNT];
 };
 
 struct StolenItem

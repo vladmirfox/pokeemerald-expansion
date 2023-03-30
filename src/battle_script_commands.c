@@ -6295,6 +6295,44 @@ static void Cmd_moveend(void)
             gBattleStruct->hitSwitchTargetFailed = FALSE;
             gBattleScripting.moveendState++;
             break;
+        case MOVEEND_RAID:
+            // TODO: Make all this work.
+            // if (gBattleTypeFlags & BATTLE_TYPE_RAID)
+            // {
+            //     // Create / break barriers.
+            //     if (gBattleStruct->raid.state & RAID_CREATE_SHIELD)
+            //     {
+            //         gBattleStruct->raid.state &= ~RAID_CREATE_SHIELD;
+            //         gBattlerTarget = B_POSITION_OPPONENT_LEFT;
+            //         gBattleStruct->raid.shield = 1;
+            //         BattleScriptPushCursor();
+            //         gBattlescriptCurrInstr = BattleScript_RaidBarrierAppeared;
+            //         return;
+            //     }
+            //     else if (gBattleStruct->raid.state & RAID_BREAK_SHIELD)
+            //     {
+            //         gBattleStruct->raid.state &= ~RAID_BREAK_SHIELD;
+            //         if (IsMaxMove(gLastUsedMove) && gBattleStruct->raid.shield >= 2) // bad syntax, TODO!
+            //         {
+            //             gBattleStruct->raid.shield--;
+            //             DestroyRaidShieldSprite(gBattleStruct->raid.shield);
+            //         }
+            //         if (gBattleStruct->raid.shield != 0)
+            //         {
+            //             gBattleStruct->raid.shield--;
+            //             DestroyRaidShieldSprite(gBattleStruct->raid.shield);
+            //         }
+
+            //         BattleScriptPushCursor();
+            //         if (gBattleStruct->raid.shield == 0)
+            //             gBattlescriptCurrInstr = BattleScript_RaidBarrierDisappeared;
+            //         else
+            //             gBattlescriptCurrInstr = BattleScript_RaidShieldBroken;
+            //         return;
+            //     }
+            // }
+            gBattleScripting.moveendState++;
+            break;
         case MOVEEND_COUNT:
             break;
         }

@@ -494,10 +494,19 @@ extern const u8 BattleScript_EffectRaiseCritAlliesAnim[];
 extern const u8 BattleScript_EffectHealOneSixthAllies[];
 extern const u8 BattleScript_EffectCureStatusAllies[];
 extern const u8 BattleScript_EffectRecycleBerriesAllies[];
-
-// dynamax and max raids
 extern const u8 BattleScript_DynamaxBegins[];
 extern const u8 BattleScript_DynamaxEnds[];
 extern const u8 BattleScript_MoveBlockedByDynamax[];
+
+// raids
+extern const u8 BattleScript_RaidIntro[];
+extern const u8 BattleScript_RaidStormBrews[];
+extern const u8 BattleScript_RaidBarrierAppeared[];
+extern const u8 BattleScript_RaidBarrierDisappeared[];
+extern const u8 BattleScript_RaidShieldBroken[];
+extern const u8 BattleScript_RaidShockwave[];
+extern const u8 BattleScript_RaidVictory[];
+extern const u8 BattleScript_FaintRaidBoss[];
+extern const u8 BattleScript_RaidDefeat[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H
