@@ -7058,6 +7058,21 @@ static u8 ItemEffectMoveEnd(u32 battlerId, u16 holdEffect)
             effect = ITEM_EFFECT_OTHER;
         }
         break;
+    case HOLD_EFFECT_BERSERK_GENE:
+        if (TRUE)
+        {
+            BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
+            gEffectBattler = battlerId;
+            SET_STATCHANGER(STAT_ATK, 2, FALSE);
+
+            gBattleScripting.animArg1 = 14 + STAT_ATK;
+            gBattleScripting.animArg2 = 0;
+
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_BerserkGeneRet;
+            effect = ITEM_STATS_CHANGE;
+        }
+        break;
     }
 
     return effect;
@@ -7297,6 +7312,21 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                     }
                 }
                 break;
+            case HOLD_EFFECT_BERSERK_GENE:
+                if (TRUE)
+                {
+                    BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
+                    gEffectBattler = battlerId;
+                    SET_STATCHANGER(STAT_ATK, 2, FALSE);
+
+                    gBattleScripting.animArg1 = 14 + STAT_ATK;
+                    gBattleScripting.animArg2 = 0;
+
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_BerserkGeneRet;
+                    effect = ITEM_STATS_CHANGE;
+                }
+                break; 
             }
             if (effect != 0)
             {
@@ -7580,6 +7610,21 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 if (!moveTurn)
                     effect = TrySetMicleBerry(battlerId, gLastUsedItem, TRUE);
                 break;
+            case HOLD_EFFECT_BERSERK_GENE:
+                if (TRUE)
+                {
+                    BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
+                    gEffectBattler = battlerId;
+                    SET_STATCHANGER(STAT_ATK, 2, FALSE);
+
+                    gBattleScripting.animArg1 = 14 + STAT_ATK;
+                    gBattleScripting.animArg2 = 0;
+
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_BerserkGeneRet;
+                    effect = ITEM_STATS_CHANGE;
+                }
+                break; 
             }
 
             if (effect != 0)

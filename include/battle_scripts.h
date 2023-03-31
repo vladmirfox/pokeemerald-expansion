@@ -471,4 +471,6 @@ extern const u8 BattleScript_StatUpZMove[];
 extern const u8 BattleScript_HealReplacementZMove[];
 extern const u8 BattleScript_EffectExtremeEvoboost[];
 
+extern const u8 BattleScript_BerserkGeneRet[];
+extern const u8 BattleScript_BerserkGeneRet_OwnTempoPrevents[];
 #endif // GUARD_BATTLE_SCRIPTS_H

@@ -840,6 +840,7 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_ADAMANT_CRYSTAL] = {gItemIcon_AdamantCrystal, gItemIconPalette_AdamantCrystal},
     [ITEM_GRISEOUS_CORE] = {gItemIcon_GriseousCore, gItemIconPalette_GriseousCore},
     [ITEM_LUSTROUS_GLOBE] = {gItemIcon_LustrousGlobe, gItemIconPalette_LustrousGlobe},
+    [ITEM_BERSERK_GENE] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     // Return to field arrow
     [ITEMS_COUNT] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };
