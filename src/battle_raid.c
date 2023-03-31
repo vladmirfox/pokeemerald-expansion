@@ -17,7 +17,9 @@
 
 // TODO:
 //  - Switch-in abilities reapplying after Max Mindstorm?
-//  - Battle partner fainting and switching sometimes breaking in Raid.
+//  - Battle partner fainting and switching breaking after Max Flare?
+//  - Raid barrier sprite alignment.
+//  - Raid rank disappears in Intro UI after a Raid has occurred.
 
 // Settings for each Raid Type.
 const struct RaidType gRaidTypes[NUM_RAID_TYPES] = {
@@ -305,7 +307,7 @@ static const struct OamData sOamData_RaidBarrier =
     .affineParam = 0,
 };
 
-static const s8 sBarrierPosition[2] = {48, -1};
+static const s8 sBarrierPosition[2] = {48, 10};
 
 // Sync up barrier sprites with healthbox.
 static void SpriteCb_RaidBarrier(struct Sprite *sprite)

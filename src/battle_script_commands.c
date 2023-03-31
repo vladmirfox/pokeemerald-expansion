@@ -9,6 +9,7 @@
 #include "constants/moves.h"
 #include "constants/abilities.h"
 #include "item.h"
+#include "item_menu.h"
 #include "util.h"
 #include "pokemon.h"
 #include "random.h"
@@ -3932,6 +3933,15 @@ static void Cmd_tryfaintmon(void)
         if (!(gAbsentBattlerFlags & gBitTable[gActiveBattler])
          && gBattleMons[gActiveBattler].hp == 0)
         {
+            // Check to start Raid end sequence.
+            if (IsRaidBoss(gActiveBattler))
+            {
+                u8 hp = 1;
+                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_HP, &hp);
+                gBattlescriptCurrInstr = BattleScript_RaidVictory;
+                return;
+            }
+            // Otherwise proceed as usual.
             gHitMarker |= HITMARKER_FAINTED(gActiveBattler);
             BattleScriptPush(cmd->nextInstr);
             gBattlescriptCurrInstr = instr;
@@ -11417,9 +11427,63 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
-    case VARIOUS_SET_RAID_SHIELD:
+    case VARIOUS_JUMP_IF_NO_BALLS:
+    {
+        VARIOUS_ARGS(const u8 *jumpInstr);
+        if (IsBagPocketNonEmpty(POCKET_POKE_BALLS))
+            gBattlescriptCurrInstr = cmd->nextInstr;
+        else
+            gBattlescriptCurrInstr = cmd->jumpInstr;
+        return;
+    }
+    case VARIOUS_CATCH_RAID_BOSS:
     {
         VARIOUS_ARGS();
+        if (!(gBattleStruct->raid.state & RAID_CATCHING_BOSS)) // open bag if end sequence just began
+        {
+            gBattleStruct->raid.state |= RAID_CATCHING_BOSS;
+            gSpecialVar_ItemId = ITEM_NONE;
+            gActiveBattler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+            RecalcBattlerStats(gActiveBattler, &gEnemyParty[0]);
+            BtlController_EmitChooseItem(BUFFER_A, gBattleStruct->battlerPartyOrders[gActiveBattler]);
+            MarkBattlerForControllerExec(gActiveBattler);
+        }
+        else if (gSpecialVar_ItemId != ITEM_NONE) // do catch sequence if ball selected
+        {
+            gBattleStruct->throwingPokeBall = TRUE;
+            gLastUsedItem = gSpecialVar_ItemId; // selected ball
+            gBattleSpritesDataPtr->animationData->isCriticalCapture = 0;
+            gBattleSpritesDataPtr->animationData->criticalCaptureSuccess = 0;
+            gActiveBattler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+            gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+
+            BtlController_EmitBallThrowAnim(BUFFER_A, BALL_3_SHAKES_SUCCESS);
+            MarkBattlerForControllerExec(gActiveBattler);
+            // UndoFormChange(gBattlerPartyIndexes[gBattlerTarget], GET_BATTLER_SIDE(gBattlerTarget), FALSE);
+            gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
+            SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
+
+            if (CalculatePlayerPartyCount() == PARTY_SIZE)
+                gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+            else
+                gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+
+            MonRestorePP(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]]);
+            HealStatusConditions(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], gBattlerPartyIndexes[gBattlerTarget], STATUS1_ANY, gBattlerTarget);
+            RecalcBattlerStats(gBattlerTarget, &gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]]);
+            gBattleMons[gBattlerTarget].hp = gBattleMons[gBattlerTarget].maxHP;
+            SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &gBattleMons[gBattlerTarget].hp);
+        }
+        else // no item selected
+        {
+            gBattlescriptCurrInstr = BattleScript_FaintRaidBoss;
+        }
+        return;
+    }
+    case VARIOUS_HIDE_HEALTHBOXES:
+    {
+        VARIOUS_ARGS();
+        UpdateOamPriorityInAllHealthboxes(1, TRUE);
         break;
     }
     } // End of switch (cmd->id)

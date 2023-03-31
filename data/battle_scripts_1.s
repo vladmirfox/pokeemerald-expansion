@@ -10776,19 +10776,17 @@ BattleScript_RaidShockwave::
 	return
 
 BattleScript_RaidVictory::
-	@hidehealthboxesonside BS_OPPONENT1
-	@hidehealthboxesonside BS_PLAYER1
+	hidehealthboxes
 	playanimation BS_TARGET, B_ANIM_RAID_BOSS_EXPLOSION
 	waitanimation
 	setbyte sGIVEEXP_STATE, 0
 	getexp BS_TARGET
-	@hidehealthboxesonside BS_PLAYER1
-	@jumpifnoballs BattleScript_FaintRaidBoss
+	jumpifnoballs BattleScript_FaintRaidBoss
 	printstring STRINGID_CATCHRAIDMON
 	setbyte gBattleCommunication, 0
 	yesnobox
 	jumpifbyte CMP_NOT_EQUAL, gBattleCommunication + 1, 0, BattleScript_FaintRaidBoss
-	@catchraidboss
+	catchraidboss
 	end2
 
 BattleScript_FaintRaidBoss::

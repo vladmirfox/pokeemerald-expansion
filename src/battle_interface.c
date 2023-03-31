@@ -702,7 +702,7 @@ u32 WhichBattleCoords(u32 battlerId) // 0 - singles, 1 - doubles
     // gEnemyParty count is calculated at the start of battle.
     if (GetBattlerPosition(battlerId) == B_POSITION_OPPONENT_LEFT
         && ((!(gBattleTypeFlags & BATTLE_TYPE_TRAINER) && gEnemyPartyCount == 1)
-        || (BATTLE_TWO_VS_ONE_OPPONENT)))
+        || (BATTLE_TWO_VS_ONE_OPPONENT) || IsRaidBoss(battlerId)))
         return 0;
     
     return IsDoubleBattle();
@@ -3272,7 +3272,7 @@ bool32 CanThrowLastUsedBall(void)
 #else
     if (!CanThrowBall())
         return FALSE;
-    if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FRONTIER))
+    if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_RAID))
         return FALSE;
     if (!CheckBagHasItem(gLastThrownBall, 1))
         return FALSE;

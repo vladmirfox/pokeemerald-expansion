@@ -269,8 +269,9 @@
 #define VARIOUS_TRY_RECYCLE_BERRY                   177
 #define VARIOUS_UPDATE_DYNAMAX                      178
 #define VARIOUS_JUMP_IF_TARGET_DYNAMAXED            179
-#define VARIOUS_SET_RAID_SHIELD                     180
-#define VARIOUS_CLEAR_RAID_SHIELD                   181
+#define VARIOUS_JUMP_IF_NO_BALLS                    180
+#define VARIOUS_CATCH_RAID_BOSS                     181
+#define VARIOUS_HIDE_HEALTHBOXES                    182
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
