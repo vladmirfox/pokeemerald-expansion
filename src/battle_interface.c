@@ -924,6 +924,7 @@ static void TryToggleHealboxVisibility(u32 priority, u32 healthboxLeftSpriteId, 
     gSprites[healthbarSpriteId].invisible = invisible;
     MegaIndicator_SetVisibilities(healthboxLeftSpriteId, invisible);
     DynamaxIndicator_SetVisibilities(healthboxLeftSpriteId, invisible);
+    RaidBarrier_SetVisibilities(healthboxLeftSpriteId, invisible);
 }
 
 void UpdateOamPriorityInAllHealthboxes(u8 priority, bool32 hideHPBoxes)

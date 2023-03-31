@@ -541,11 +541,12 @@ struct RaidBattleData
 {
     u8 state;
     u16 shield;           // stores either num. of shields (GEN_8) or amount of HP protected (GEN_9)
+    u8 nextShield;        // stores the HP threshold (0 to 100) that the next shield should occur
     u8 shieldsRemaining;  // stores the remaining num. of shields
-    u8 energy;            // stores position of Dynamax Energy or Tera Orb charge
+    u8 energy;            // stores Dynamax Energy position or Tera Orb charge
     bool8 usedShockwave:1;
     bool8 movedTwice:1;
-    u8 shieldSpriteIds[MAX_SHIELD_COUNT];
+    u8 barrierSpriteIds[MAX_BARRIER_COUNT]; // used for Gen 8-style shields
 };
 
 struct StolenItem

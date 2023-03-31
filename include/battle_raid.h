@@ -26,5 +26,9 @@ void InitRaidBattleData(void);
 bool32 IsRaidBoss(u16 battlerId);
 void ApplyRaidHPMultiplier(u16 battlerId, struct Pokemon* mon);
 bool32 ShouldRaidKickPlayer(void);
+bool32 UpdateRaidShield(void);
+u16 GetShieldDamageRequired(u16 hp, u16 maxHP);
+u16 GetShieldDamageReduction(void);
+void RaidBarrier_SetVisibilities(u32 healthboxId, bool32 invisible);
 
 #endif

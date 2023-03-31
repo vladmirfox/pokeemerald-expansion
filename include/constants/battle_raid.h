@@ -44,6 +44,6 @@
 
 // Other Constants
 #define MAX_RAID_DROPS     12
-#define MAX_SHIELD_COUNT   5
+#define MAX_BARRIER_COUNT   5
 
 #endif

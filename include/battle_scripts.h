@@ -501,9 +501,9 @@ extern const u8 BattleScript_MoveBlockedByDynamax[];
 // raids
 extern const u8 BattleScript_RaidIntro[];
 extern const u8 BattleScript_MaxRaidStormBrews[];
-extern const u8 BattleScript_RaidBarrierAppeared[];
-extern const u8 BattleScript_RaidBarrierDisappeared[];
-extern const u8 BattleScript_RaidShieldBroken[];
+extern const u8 BattleScript_RaidShieldAppeared[];
+extern const u8 BattleScript_RaidShieldDisappeared[];
+extern const u8 BattleScript_RaidBarrierBroken[];
 extern const u8 BattleScript_RaidShockwave[];
 extern const u8 BattleScript_RaidVictory[];
 extern const u8 BattleScript_FaintRaidBoss[];

@@ -662,8 +662,8 @@
 #define STRINGID_MOVEBLOCKEDBYDYNAMAX                 660
 #define STRINGID_PKMNAPPEARSMASSIVE                   661
 #define STRINGID_DYNAMAXENERGYGATHERED                662
-#define STRINGID_RAIDBARRIERAPPEARED                  663
-#define STRINGID_RAIDBARRIERDISAPPEARED               664
+#define STRINGID_RAIDSHIELDAPPEARED                   663
+#define STRINGID_RAIDSHIELDDISAPPEARED                664
 #define STRINGID_CATCHRAIDMON                         665
 #define STRINGID_PKMNISTOOSTRONG                      666
 #define STRINGID_PKMNNULLIFIEDOTHERS                  667

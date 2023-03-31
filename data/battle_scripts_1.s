@@ -10729,19 +10729,20 @@ BattleScript_MegaRaidIntro:
 	switchinabilities BS_ATTACKER
 	goto BattleScript_RaidIntroEnd
 
-BattleScript_RaidBarrierAppeared::
-	@setraidbarrier
+BattleScript_RaidShieldAppeared::
 	playanimation BS_TARGET, B_ANIM_RAID_SHIELD_APPEARED
-	printstring STRINGID_RAIDBARRIERAPPEARED
 	waitanimation
+	printstring STRINGID_RAIDSHIELDAPPEARED
+	waitmessage B_WAIT_TIME_LONG
 	end2
 
-BattleScript_RaidBarrierDisappeared::
+BattleScript_RaidShieldDisappeared::
 	playanimation BS_TARGET, B_ANIM_RAID_SHIELD_DISAPPEARED
-	printstring STRINGID_RAIDBARRIERDISAPPEARED
 	waitanimation
+	printstring STRINGID_RAIDSHIELDDISAPPEARED
+	waitmessage B_WAIT_TIME_LONG
 	jumpifstat BS_TARGET, CMP_GREATER_THAN, STAT_DEF, MIN_STAT_STAGE, BattleScript_RaidDefenseDrop
-	jumpifstat BS_TARGET, CMP_EQUAL, STAT_SPDEF, MIN_STAT_STAGE, BattleScript_RaidBarrierDisappearedEnd
+	jumpifstat BS_TARGET, CMP_EQUAL, STAT_SPDEF, MIN_STAT_STAGE, BattleScript_RaidShieldDisappearedEnd
 BattleScript_RaidDefenseDrop:
 	setbyte sSTAT_ANIM_PLAYED, FALSE
 	playstatchangeanimation BS_TARGET, BIT_DEF | BIT_SPDEF, STAT_CHANGE_BY_TWO | STAT_CHANGE_NEGATIVE
@@ -10752,21 +10753,17 @@ BattleScript_RaidDefenseDrop:
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_RaidSpDefenseDrop:
 	setstatchanger STAT_SPDEF, 2, TRUE
-	statbuffchange STAT_CHANGE_ALLOW_PTR, BattleScript_RaidBarrierDisappearedEnd
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_DECREASE, BattleScript_RaidBarrierDisappearedEnd
+	statbuffchange STAT_CHANGE_ALLOW_PTR, BattleScript_RaidShieldDisappearedEnd
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_DECREASE, BattleScript_RaidShieldDisappearedEnd
 	printfromtable gStatDownStringIds
 	waitmessage B_WAIT_TIME_LONG
-BattleScript_RaidBarrierDisappearedEnd:
-	@clearraidbarrier
-	healthbarupdate BS_TARGET
-	datahpupdate BS_TARGET
-	tryfaintmon BS_TARGET
+BattleScript_RaidShieldDisappearedEnd:
 	end2
 
-BattleScript_RaidShieldBroken::
+BattleScript_RaidBarrierBroken::
 	playanimation BS_TARGET, B_ANIM_RAID_BARRIER_BROKEN
 	waitanimation
-	end2
+	return
 
 BattleScript_RaidShockwave::
 	printstring STRINGID_PKMNNULLIFIEDOTHERS

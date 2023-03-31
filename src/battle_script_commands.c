@@ -2285,6 +2285,20 @@ END:
             gBattlescriptCurrInstr = BattleScript_AttackWeakenedByStrongWinds;
         }
     }
+
+    // Raid shields apply a damage reduction that can fully negate damage.
+    if (IsRaidBoss(gBattlerTarget) && gBattleStruct->raid.shield > 0)
+    {
+        gBattleMoveDamage = UQ_4_12_TO_INT((gBattleMoveDamage * GetShieldDamageReduction()) + UQ_4_12_ROUND);
+        gBattleStruct->raid.state |= RAID_BREAK_SHIELD;
+    }
+    // If an attack will trigger a Raid Boss's shield, it will not go past that threshold.
+    else if (IsRaidBoss(gBattlerTarget)
+        && gBattleMoveDamage > GetShieldDamageRequired(gBattleMons[gBattlerTarget].hp, gBattleMons[gBattlerTarget].maxHP))
+    {
+        gBattleMoveDamage = GetShieldDamageRequired(gBattleMons[gBattlerTarget].hp, gBattleMons[gBattlerTarget].maxHP);
+        gBattleStruct->raid.state |= RAID_CREATE_SHIELD;
+    }
 }
 
 static void Cmd_multihitresultmessage(void)
@@ -6265,6 +6279,11 @@ static void Cmd_moveend(void)
             }
             gBattleScripting.moveendState++;
             break;
+        case MOVEEND_RAID:
+            if (gBattleTypeFlags & BATTLE_TYPE_RAID && UpdateRaidShield())
+                return;
+            gBattleScripting.moveendState++;
+            break;
         case MOVEEND_CLEAR_BITS: // Clear/Set bits for things like using a move for all targets and all hits.
             if (gSpecialStatuses[gBattlerAttacker].instructedChosenTarget)
                 *(gBattleStruct->moveTarget + gBattlerAttacker) = gSpecialStatuses[gBattlerAttacker].instructedChosenTarget & 0x3;
@@ -6293,44 +6312,6 @@ static void Cmd_moveend(void)
             gBattleStruct->zmove.toBeUsed[gBattlerAttacker] = MOVE_NONE;
             gBattleStruct->zmove.effect = EFFECT_HIT;
             gBattleStruct->hitSwitchTargetFailed = FALSE;
-            gBattleScripting.moveendState++;
-            break;
-        case MOVEEND_RAID:
-            // TODO: Make all this work.
-            // if (gBattleTypeFlags & BATTLE_TYPE_RAID)
-            // {
-            //     // Create / break barriers.
-            //     if (gBattleStruct->raid.state & RAID_CREATE_SHIELD)
-            //     {
-            //         gBattleStruct->raid.state &= ~RAID_CREATE_SHIELD;
-            //         gBattlerTarget = B_POSITION_OPPONENT_LEFT;
-            //         gBattleStruct->raid.shield = 1;
-            //         BattleScriptPushCursor();
-            //         gBattlescriptCurrInstr = BattleScript_RaidBarrierAppeared;
-            //         return;
-            //     }
-            //     else if (gBattleStruct->raid.state & RAID_BREAK_SHIELD)
-            //     {
-            //         gBattleStruct->raid.state &= ~RAID_BREAK_SHIELD;
-            //         if (IsMaxMove(gLastUsedMove) && gBattleStruct->raid.shield >= 2) // bad syntax, TODO!
-            //         {
-            //             gBattleStruct->raid.shield--;
-            //             DestroyRaidShieldSprite(gBattleStruct->raid.shield);
-            //         }
-            //         if (gBattleStruct->raid.shield != 0)
-            //         {
-            //             gBattleStruct->raid.shield--;
-            //             DestroyRaidShieldSprite(gBattleStruct->raid.shield);
-            //         }
-
-            //         BattleScriptPushCursor();
-            //         if (gBattleStruct->raid.shield == 0)
-            //             gBattlescriptCurrInstr = BattleScript_RaidBarrierDisappeared;
-            //         else
-            //             gBattlescriptCurrInstr = BattleScript_RaidShieldBroken;
-            //         return;
-            //     }
-            // }
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:
@@ -11435,6 +11416,11 @@ static void Cmd_various(void)
         else
             gBattlescriptCurrInstr = cmd->nextInstr;
         return;
+    }
+    case VARIOUS_SET_RAID_SHIELD:
+    {
+        VARIOUS_ARGS();
+        break;
     }
     } // End of switch (cmd->id)
 
