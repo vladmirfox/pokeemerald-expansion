@@ -37405,7 +37405,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sSquawkabillyLevelUpLearnset,        \
         .teachableLearnset = sSquawkabillyTeachableLearnset
 
-    [SPECIES_SQUAWKABILLY] =
+    [SPECIES_SQUAWKABILLY_GREEN_PLUMAGE] =
     {
         .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS},
         .bodyColor = BODY_COLOR_GREEN,
