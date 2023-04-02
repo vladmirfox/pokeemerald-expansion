@@ -7322,8 +7322,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                     gBattleScripting.animArg1 = 14 + STAT_ATK;
                     gBattleScripting.animArg2 = 0;
 
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_BerserkGeneRet;
+                    BattleScriptPushCursorAndCallback(BattleScript_BerserkGeneRet);
                     effect = ITEM_STATS_CHANGE;
                 }
                 break; 

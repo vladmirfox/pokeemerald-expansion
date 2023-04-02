@@ -10406,4 +10406,4 @@ BattleScript_BerserkGeneRet_OwnTempoPrevents:
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_BerserkGeneRet_End:
 	removeitem BS_SCRIPTING
-	return
+	end3
