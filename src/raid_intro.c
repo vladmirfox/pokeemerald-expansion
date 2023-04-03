@@ -46,7 +46,7 @@ enum Windows
 
 enum
 {
-	TAG_RAID_BATTLE_STAR = 0x2710,
+	TAG_RAID_BATTLE_STAR = 10001,
 	TAG_RAID_BATTLE_CURSOR,
 };
 
@@ -184,7 +184,7 @@ static const struct OamData sStarOAM =
 	.objMode = ST_OAM_OBJ_NORMAL,
 	.shape = SPRITE_SHAPE(8x8),
 	.size = SPRITE_SIZE(8x8),
-	.priority = 2, //On BG 2
+	.priority = 0, // On BG 2
 };
 
 static const struct OamData sOamData_RedArrowCursor =
@@ -193,7 +193,7 @@ static const struct OamData sOamData_RedArrowCursor =
 	.objMode = ST_OAM_OBJ_NORMAL,
 	.shape = SPRITE_SHAPE(32x32),
 	.size = SPRITE_SIZE(32x32),
-	.priority = 0, //Above everything
+	.priority = 0, // Above everything
 };
 
 static const struct SpriteTemplate sRaidBattleStarSpriteTemplate =
@@ -460,9 +460,8 @@ static void PrintInstructions(void)
 static void ShowStars(void)
 {
     u8 i;
-	LoadSpritePalette(&sRaidBattleStarSpritePalette);
     LoadSpriteSheet(&sRaidBattleStarSpriteSheet);
-
+	LoadSpritePalette(&sRaidBattleStarSpritePalette);
 	for (i = 0; i < gRaidData->rank; i++)
 		CreateSprite(&sRaidBattleStarSpriteTemplate, 10 + (9 * i), 8, 0);
 }
@@ -566,8 +565,8 @@ static void InitRaidBattleIntro(void)
 	CleanWindows();
 	CommitWindows();
 
-    ShowRaidCursor();
 	ShowStars();
+    ShowRaidCursor();
     PrintInstructions();
 	ShowRaidPokemonTypes();
 	ShowPartnerTeams();

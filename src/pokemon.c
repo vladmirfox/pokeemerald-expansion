@@ -7773,6 +7773,8 @@ u16 GetBattleBGM(void)
             return MUS_VS_TRAINER;
         }
     }
+    else if (gBattleTypeFlags & BATTLE_TYPE_RAID)
+        return MUS_RG_VS_LEGEND;
     else
         return MUS_VS_WILD;
 }

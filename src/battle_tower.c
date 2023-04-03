@@ -2186,7 +2186,7 @@ void DoSpecialTrainerBattle(void)
 
         CreateTask(Task_StartBattleAfterTransition, 1);
         PlayMapChosenOrBattleBGM(0);
-        BattleTransition_StartOnField(GetWildBattleTransition());
+        BattleTransition_StartOnField(GetRaidBattleTransition());
         break;
     }
 }

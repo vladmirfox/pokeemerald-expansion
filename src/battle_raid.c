@@ -5,6 +5,7 @@
 #include "battle_raid.h"
 #include "battle_scripts.h"
 #include "battle_setup.h"
+#include "battle_transition.h"
 #include "data.h"
 #include "event_data.h"
 #include "malloc.h"
@@ -136,6 +137,15 @@ void InitRaidBattleData(void)
 bool32 IsRaidBoss(u16 battlerId)
 {
     return (gBattleTypeFlags & BATTLE_TYPE_RAID) && GetBattlerPosition(battlerId) == B_POSITION_OPPONENT_LEFT;
+}
+
+// Returns the battle transition ID for the Raid battle.
+u8 GetRaidBattleTransition(void)
+{
+    if (gRaidData->raidType == RAID_TYPE_TERA)
+        return B_TRANSITION_TERA_RAID;
+    else
+        return B_TRANSITION_MAX_RAID;
 }
 
 // Applies the HP multiplier for Raid Bosses.

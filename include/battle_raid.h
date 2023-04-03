@@ -24,6 +24,7 @@ bool32 InitRaidData(void);
 bool32 InitCustomRaidData(void);
 void InitRaidBattleData(void);
 bool32 IsRaidBoss(u16 battlerId);
+u8 GetRaidBattleTransition(void);
 void ApplyRaidHPMultiplier(u16 battlerId, struct Pokemon* mon);
 bool32 ShouldRaidKickPlayer(void);
 bool32 UpdateRaidShield(void);
