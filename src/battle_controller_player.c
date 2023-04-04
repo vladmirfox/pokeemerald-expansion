@@ -1575,7 +1575,10 @@ static void OpenPartyMenuToChooseMon(void)
         caseId = gTasks[gBattleControllerData[gActiveBattler]].data[0];
         DestroyTask(gBattleControllerData[gActiveBattler]);
         FreeAllWindowBuffers();
-        OpenPartyMenuInBattle(caseId);
+        if (caseId == PARTY_ACTION_CHOOSE_FAINTED_MON)
+            ChooseMonForRevivalBlessing();
+        else
+            OpenPartyMenuInBattle(caseId);
     }
 }
 

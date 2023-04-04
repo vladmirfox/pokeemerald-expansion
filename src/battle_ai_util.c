@@ -3749,3 +3749,40 @@ bool32 ShouldUseZMove(u8 battlerAtk, u8 battlerDef, u16 chosenMove)
 
     return FALSE;
 }
+
+// Copied from CountUsablePartyMons.
+u8 CountFaintedPartyMons(u8 battlerId)
+{
+    s32 battlerOnField1, battlerOnField2, i, ret;
+    struct Pokemon *party;
+
+    if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
+        party = gPlayerParty;
+    else
+        party = gEnemyParty;
+
+    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    {
+        battlerOnField1 = gBattlerPartyIndexes[battlerId];
+        battlerOnField2 = gBattlerPartyIndexes[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battlerId)))];
+    }
+    else // In singles there's only one battlerId by side.
+    {
+        battlerOnField1 = gBattlerPartyIndexes[battlerId];
+        battlerOnField2 = gBattlerPartyIndexes[battlerId];
+    }
+
+    ret = 0;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (i != battlerOnField1 && i != battlerOnField2
+         && GetMonData(&party[i], MON_DATA_HP) == 0
+         && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
+         && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
+        {
+            ret++;
+        }
+    }
+
+    return ret;
+}

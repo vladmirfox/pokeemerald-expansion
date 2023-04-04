@@ -1354,6 +1354,18 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
                 TryEnterMonForMinigame(taskId, (u8)*slotPtr);
             }
             break;
+        case PARTY_ACTION_CHOOSE_FAINTED_MON:
+            if (GetMonData(&gPlayerParty[GetCursorSelectionMonId()], MON_DATA_HP) > 0)
+            {
+                PlaySE(SE_FAILURE);
+            }
+            else if (IsSelectedMonNotEgg((u8 *)slotPtr))
+            {
+                PlaySE(SE_SELECT);
+                gSelectedMonPartyId = GetCursorSelectionMonId();
+                Task_ClosePartyMenu(taskId);
+            }
+            break;
         default:
         case PARTY_ACTION_ABILITY_PREVENTS:
         case PARTY_ACTION_SWITCHING:
@@ -1379,6 +1391,7 @@ static void HandleChooseMonCancel(u8 taskId, s8 *slotPtr)
     switch (gPartyMenu.action)
     {
     case PARTY_ACTION_SEND_OUT:
+    case PARTY_ACTION_CHOOSE_FAINTED_MON:
         PlaySE(SE_FAILURE);
         break;
     case PARTY_ACTION_SWITCH:
@@ -6199,6 +6212,13 @@ static u8 GetPartyLayoutFromBattleType(void)
 void OpenPartyMenuInBattle(u8 partyAction)
 {
     InitPartyMenu(PARTY_MENU_TYPE_IN_BATTLE, GetPartyLayoutFromBattleType(), partyAction, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_SetUpReshowBattleScreenAfterMenu);
+    ReshowBattleScreenDummy();
+    UpdatePartyToBattleOrder();
+}
+
+void ChooseMonForRevivalBlessing(void)
+{
+    InitPartyMenu(PARTY_MENU_TYPE_IN_BATTLE, GetPartyLayoutFromBattleType(), PARTY_ACTION_CHOOSE_FAINTED_MON, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_SetUpReshowBattleScreenAfterMenu);
     ReshowBattleScreenDummy();
     UpdatePartyToBattleOrder();
 }

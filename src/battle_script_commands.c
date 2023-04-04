@@ -352,6 +352,7 @@ static void BestowItem(u32 battlerAtk, u32 battlerDef);
 static bool8 IsFinalStrikeEffect(u16 move);
 static void TryUpdateRoundTurnOrder(void);
 static bool32 ChangeOrderTargetAfterAttacker(void);
+static u8 GetFirstFaintedPartyIndex(u8 side, u8 battlerId);
 
 static void Cmd_attackcanceler(void);
 static void Cmd_accuracycheck(void);
@@ -11224,6 +11225,47 @@ static void Cmd_various(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
+    case VARIOUS_TRY_REVIVAL_BLESSING:
+    {
+        VARIOUS_ARGS(const u8 *jumpInstr);
+        u32 side = GetBattlerSide(gBattlerAttacker);
+        u8 index = GetFirstFaintedPartyIndex(side, gBattlerAttacker);
+
+        // Move fails if there are no battlers to revive.
+        if (index == PARTY_SIZE)
+        {
+            gBattlescriptCurrInstr = cmd->jumpInstr;
+            return;
+        }
+
+        // Trainer AI chooses first fainted battler, no need to call controllers.
+        if (side == B_SIDE_OPPONENT
+         || (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER
+         && GetBattlerPosition(gBattlerAttacker) == B_POSITION_PLAYER_RIGHT))
+            gSelectedMonPartyId = index;
+
+        // Battler selected! Revive and go to next instruction.
+        if (gSelectedMonPartyId != PARTY_SIZE)
+        {
+            struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
+            
+            u16 hp = GetMonData(&party[gSelectedMonPartyId], MON_DATA_MAX_HP) / 2;
+            SetMonData(&party[gSelectedMonPartyId], MON_DATA_HP, &hp);
+            PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gSelectedMonPartyId], MON_DATA_SPECIES));
+            
+            gSelectedMonPartyId = PARTY_SIZE;
+            gBattlescriptCurrInstr = cmd->nextInstr;
+            return;
+        }
+
+        // Open party menu for Player, wait to go to next instruction.
+        if (side == B_SIDE_PLAYER)
+        {   
+            BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CHOOSE_FAINTED_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
+            MarkBattlerForControllerExec(gBattlerAttacker);
+        }
+        return;
+    }
     } // End of switch (cmd->id)
 
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -16345,3 +16387,31 @@ static void TryUpdateRoundTurnOrder(void)
     }
 }
 
+static u8 GetFirstFaintedPartyIndex(u8 side, u8 battlerId)
+{
+    u32 i;
+    u32 start = 0;
+    u32 end = PARTY_SIZE;
+    struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
+
+    // Check whether partner is separate trainer.
+    if ((side == B_SIDE_PLAYER && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
+     || (side == B_SIDE_OPPONENT && gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
+    {
+        if (GetBattlerPosition(battlerId) == B_POSITION_OPPONENT_LEFT
+         || GetBattlerPosition(battlerId) == B_POSITION_PLAYER_LEFT)
+            end = PARTY_SIZE / 2;
+        else
+            start = PARTY_SIZE / 2;
+    }
+
+    // Loop through to find fainted battler.
+    for (i = start; i < end; ++i)
+        if (GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
+         && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG
+         && GetMonData(&party[i], MON_DATA_HP) == 0)
+            return i;
+
+    // Returns PARTY_SIZE if none found.
+    return PARTY_SIZE;
+}

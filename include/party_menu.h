@@ -75,6 +75,7 @@ void ChooseMonForMoveTutor(void);
 void ChooseMonForWirelessMinigame(void);
 void OpenPartyMenuInBattle(u8 partyAction);
 void ChooseMonForInBattleItem(void);
+void ChooseMonForRevivalBlessing(void);
 void BufferBattlePartyCurrentOrder(void);
 void BufferBattlePartyCurrentOrderBySide(u8 battlerId, u8 flankId);
 void SwitchPartyOrderLinkMulti(u8 battlerId, u8 slot, u8 arrayIndex);
