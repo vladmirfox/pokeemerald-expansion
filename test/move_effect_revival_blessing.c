@@ -64,35 +64,36 @@ SINGLE_BATTLE_TEST("Revival Blessing fails if no party members are fainted")
     }
 }
 
-DOUBLE_BATTLE_TEST("Revival Blessing cannot revive a partner's party member")
-{
-    struct BattlePokemon *user;
-    gBattleTypeFlags |= BATTLE_TYPE_TWO_OPPONENTS;
-    PARAMETRIZE { user = opponentLeft; }
-    PARAMETRIZE { user = opponentRight; }
-    KNOWN_FAILING; // this doesn't seem to function as a Multi Battle, but has been tested in-game
-    GIVEN {
-        ASSUME((gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS) != FALSE);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WYNAUT) { HP(0); }
-        OPPONENT(SPECIES_WYNAUT);
-    } WHEN {
-        TURN { MOVE(user, MOVE_REVIVAL_BLESSING); }
-    } SCENE {
-        if (user == opponentLeft) {
-            MOVE_MESSAGE(Foe Wobbuffet)
-            MESSAGE("But it failed!");
-        } else {
-            MOVE_MESSAGE(Foe Wynaut)
-            MESSAGE("Wynaut was revived and is ready to fight again!");
-        }
-    }
-}
+TO_DO_BATTLE_TEST("Revival Blessing cannot revive a partner's party member");
+// DOUBLE_BATTLE_TEST("Revival Blessing cannot revive a partner's party member")
+// {
+//     struct BattlePokemon *user;
+//     gBattleTypeFlags |= BATTLE_TYPE_TWO_OPPONENTS;
+//     PARAMETRIZE { user = opponentLeft; }
+//     PARAMETRIZE { user = opponentRight; }
+//     KNOWN_FAILING; // this doesn't seem to function as a Multi Battle, but has been tested in-game
+//     GIVEN {
+//         ASSUME((gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS) != FALSE);
+//         PLAYER(SPECIES_WOBBUFFET);
+//         PLAYER(SPECIES_WOBBUFFET);
+//         OPPONENT(SPECIES_WOBBUFFET);
+//         OPPONENT(SPECIES_WOBBUFFET);
+//         OPPONENT(SPECIES_WOBBUFFET);
+//         OPPONENT(SPECIES_WYNAUT);
+//         OPPONENT(SPECIES_WYNAUT) { HP(0); }
+//         OPPONENT(SPECIES_WYNAUT);
+//     } WHEN {
+//         TURN { MOVE(user, MOVE_REVIVAL_BLESSING); }
+//     } SCENE {
+//         if (user == opponentLeft) {
+//             MOVE_MESSAGE(Foe Wobbuffet)
+//             MESSAGE("But it failed!");
+//         } else {
+//             MOVE_MESSAGE(Foe Wynaut)
+//             MESSAGE("Wynaut was revived and is ready to fight again!");
+//         }
+//     }
+// }
 
 DOUBLE_BATTLE_TEST("Revived battlers still lose their turn")
 {
