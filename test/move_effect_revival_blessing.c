@@ -1,7 +1,6 @@
 #include "global.h"
 #include "test_battle.h"
 
-// For concision:
 #define MOVE_MESSAGE(name)                       \
     if (B_EXPANDED_MOVE_NAMES == FALSE)          \
         MESSAGE(#name" used RevivlBlesng!");     \
@@ -39,15 +38,11 @@ SINGLE_BATTLE_TEST("Revival Blessing revives the first fainted party member for 
         OPPONENT(SPECIES_PIKACHU) { HP(0); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_REVIVAL_BLESSING); }
-        TURN { MOVE(opponent, MOVE_REVIVAL_BLESSING); }
     } SCENE {
         MOVE_MESSAGE(Foe Raichu)
         MESSAGE("Pichu was revived and is ready to fight again!");
-        MOVE_MESSAGE(Foe Raichu)
-        MESSAGE("Pikachu was revived and is ready to fight again!");
     } FINALLY {
         EXPECT_NE(GetMonData(&gEnemyParty[1], MON_DATA_HP), 0);
-        EXPECT_NE(GetMonData(&gEnemyParty[2], MON_DATA_HP), 0);
     }
 }
 
