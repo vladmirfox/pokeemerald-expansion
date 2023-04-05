@@ -11252,6 +11252,13 @@ static void Cmd_various(void)
             SetMonData(&party[gSelectedMonPartyId], MON_DATA_HP, &hp);
             PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gSelectedMonPartyId], MON_DATA_SPECIES));
             
+            // If an on-field battler is revived, it needs to be sent out again.
+            if (gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerAttacker)] == gSelectedMonPartyId)
+            {
+                gBattleScripting.battler = BATTLE_PARTNER(gBattlerAttacker);
+                gBattleCommunication[MULTIUSE_STATE] = TRUE;
+            }
+
             gSelectedMonPartyId = PARTY_SIZE;
             gBattlescriptCurrInstr = cmd->nextInstr;
             return;
