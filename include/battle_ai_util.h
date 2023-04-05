@@ -165,7 +165,6 @@ s32 CountUsablePartyMons(u8 battlerId);
 bool32 IsPartyFullyHealedExceptBattler(u8 battler);
 bool32 PartyHasMoveSplit(u8 battlerId, u8 split);
 bool32 SideHasMoveSplit(u8 battlerId, u8 split);
-u8 CountFaintedPartyMons(u8 battlerId);
 
 // score increases
 void IncreaseStatUpScore(u8 battlerAtk, u8 battlerDef, u8 statId, s16 *score);

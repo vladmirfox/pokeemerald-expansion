@@ -2611,7 +2611,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;*/
         case EFFECT_REVIVAL_BLESSING:
-            if (CountFaintedPartyMons(battlerAtk) == 0)
+            if (GetFirstFaintedPartyIndex(battlerAtk) == PARTY_SIZE)
                 score -= 10;
             else if (CanAIFaintTarget(battlerAtk, battlerDef, 0))
                 score -= 10;
@@ -4805,7 +4805,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
         break;
     case EFFECT_REVIVAL_BLESSING:
-        if (CountFaintedPartyMons(battlerAtk) != 0)
+        if (GetFirstFaintedPartyIndex(battlerAtk) != PARTY_SIZE)
             score += 2;
         break;
     //case EFFECT_EXTREME_EVOBOOST: // TODO

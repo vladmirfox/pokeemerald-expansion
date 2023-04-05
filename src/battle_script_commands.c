@@ -352,7 +352,6 @@ static void BestowItem(u32 battlerAtk, u32 battlerDef);
 static bool8 IsFinalStrikeEffect(u16 move);
 static void TryUpdateRoundTurnOrder(void);
 static bool32 ChangeOrderTargetAfterAttacker(void);
-static u8 GetFirstFaintedPartyIndex(u8 side, u8 battlerId);
 
 static void Cmd_attackcanceler(void);
 static void Cmd_accuracycheck(void);
@@ -11229,7 +11228,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
         u32 side = GetBattlerSide(gBattlerAttacker);
-        u8 index = GetFirstFaintedPartyIndex(side, gBattlerAttacker);
+        u8 index = GetFirstFaintedPartyIndex(gBattlerAttacker);
 
         // Move fails if there are no battlers to revive.
         if (index == PARTY_SIZE)
@@ -16387,16 +16386,16 @@ static void TryUpdateRoundTurnOrder(void)
     }
 }
 
-static u8 GetFirstFaintedPartyIndex(u8 side, u8 battlerId)
+u8 GetFirstFaintedPartyIndex(u8 battlerId)
 {
     u32 i;
     u32 start = 0;
     u32 end = PARTY_SIZE;
-    struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
+    struct Pokemon *party = (GetBattlerSide(battlerId) == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
 
     // Check whether partner is separate trainer.
-    if ((side == B_SIDE_PLAYER && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
-     || (side == B_SIDE_OPPONENT && gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
+    if ((GetBattlerSide(battlerId) == B_SIDE_PLAYER && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
+     || (GetBattlerSide(battlerId) == B_SIDE_OPPONENT && gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
     {
         if (GetBattlerPosition(battlerId) == B_POSITION_OPPONENT_LEFT
          || GetBattlerPosition(battlerId) == B_POSITION_PLAYER_LEFT)

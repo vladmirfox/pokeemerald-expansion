@@ -423,7 +423,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHitSetEntryHazard       @ EFFECT_HIT_SET_ENTRY_HAZARD
 	.4byte BattleScript_EffectDireClaw                @ EFFECT_DIRE_CLAW
 	.4byte BattleScript_EffectBarbBarrage             @ EFFECT_BARB_BARRAGE
-	.4byte BattleScript_EffectRevivalBlessing		  @ EFFECT_REVIVAL_BLESSING
+	.4byte BattleScript_EffectRevivalBlessing         @ EFFECT_REVIVAL_BLESSING
 
 BattleScript_EffectRevivalBlessing::
 	attackcanceler
