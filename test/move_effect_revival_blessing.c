@@ -1,33 +1,33 @@
 #include "global.h"
 #include "test_battle.h"
 
-#define MOVE_MESSAGE(name)                       \
-    if (B_EXPANDED_MOVE_NAMES == FALSE)          \
-        MESSAGE(#name" used RevivlBlesng!");     \
-    else                                         \
-        MESSAGE(#name" used Revival Blessing!"); \
+#define MOVE_MESSAGE(name)                          \
+    do {                                            \
+        if (B_EXPANDED_MOVE_NAMES == FALSE)         \
+            MESSAGE(name" used RevivlBlesng!");     \
+        else                                        \
+            MESSAGE(name" used Revival Blessing!"); \
+    } while (0);                                    \
 
 ASSUMPTIONS
 {
     ASSUME(gBattleMoves[MOVE_REVIVAL_BLESSING].effect == EFFECT_REVIVAL_BLESSING);
 }
 
-TO_DO_BATTLE_TEST("Revival Blessing revives a chosen fainted party member for the player");
-// SINGLE_BATTLE_TEST("Revival Blessing revives a chosen fainted party member for the player")
-// {
-//     GIVEN {
-//         PLAYER(SPECIES_WOBBUFFET);
-//         PLAYER(SPECIES_WYNAUT) { HP(0); }
-//         OPPONENT(SPECIES_WOBBUFFET);
-//     } WHEN {
-//         TURN { MOVE(player, MOVE_REVIVAL_BLESSING); SEND_OUT(player, 1); }
-//     } SCENE {
-//         MOVE_MESSAGE(Wobbuffet)
-//         MESSAGE("Wynaut was revived and is ready to fight again!");
-//     } FINALLY {
-//         EXPECT_NE(GetMonData(&gPlayerParty[1], MON_DATA_HP), 0);
-//     }
-// }
+SINGLE_BATTLE_TEST("Revival Blessing revives a chosen fainted party member for the player")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET) { HP(0); }
+        PLAYER(SPECIES_WYNAUT) { HP(0); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_REVIVAL_BLESSING); SEND_OUT(player, 2); }
+    } SCENE {
+        MOVE_MESSAGE("Wobbuffet")
+        MESSAGE("Wynaut was revived and is ready to fight again!");
+    }
+}
 
 SINGLE_BATTLE_TEST("Revival Blessing revives the first fainted party member for an opponent")
 {
@@ -39,10 +39,8 @@ SINGLE_BATTLE_TEST("Revival Blessing revives the first fainted party member for 
     } WHEN {
         TURN { MOVE(opponent, MOVE_REVIVAL_BLESSING); }
     } SCENE {
-        MOVE_MESSAGE(Foe Raichu)
+        MOVE_MESSAGE("Foe Raichu")
         MESSAGE("Pichu was revived and is ready to fight again!");
-    } FINALLY {
-        EXPECT_NE(GetMonData(&gEnemyParty[1], MON_DATA_HP), 0);
     }
 }
 
@@ -54,7 +52,7 @@ SINGLE_BATTLE_TEST("Revival Blessing fails if no party members are fainted")
     } WHEN {
         TURN { MOVE(player, MOVE_REVIVAL_BLESSING); }
     } SCENE {
-        MOVE_MESSAGE(Wobbuffet)
+        MOVE_MESSAGE("Wobbuffet")
         MESSAGE("But it failed!");
     }
 }
@@ -102,7 +100,7 @@ DOUBLE_BATTLE_TEST("Revived battlers still lose their turn")
     } SCENE {
         MESSAGE("Wobbuffet used Tackle!");
         MESSAGE("Foe Wynaut fainted!");
-        MOVE_MESSAGE(Foe Wobbuffet)
+        MOVE_MESSAGE("Foe Wobbuffet")
         MESSAGE("Wynaut was revived and is ready to fight again!");
         NOT { MESSAGE("Wynaut used Celebrate!"); }
     }

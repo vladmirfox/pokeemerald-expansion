@@ -11226,14 +11226,14 @@ static void Cmd_various(void)
     }
     case VARIOUS_TRY_REVIVAL_BLESSING:
     {
-        VARIOUS_ARGS(const u8 *jumpInstr);
+        VARIOUS_ARGS(const u8 *failInstr);
         u32 side = GetBattlerSide(gBattlerAttacker);
         u8 index = GetFirstFaintedPartyIndex(gBattlerAttacker);
 
         // Move fails if there are no battlers to revive.
         if (index == PARTY_SIZE)
         {
-            gBattlescriptCurrInstr = cmd->jumpInstr;
+            gBattlescriptCurrInstr = cmd->failInstr;
             return;
         }
 
@@ -16402,21 +16402,30 @@ u8 GetFirstFaintedPartyIndex(u8 battlerId)
 
     // Check whether partner is separate trainer.
     if ((GetBattlerSide(battlerId) == B_SIDE_PLAYER && gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
-     || (GetBattlerSide(battlerId) == B_SIDE_OPPONENT && gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
+        || (GetBattlerSide(battlerId) == B_SIDE_OPPONENT && gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
     {
         if (GetBattlerPosition(battlerId) == B_POSITION_OPPONENT_LEFT
-         || GetBattlerPosition(battlerId) == B_POSITION_PLAYER_LEFT)
+            || GetBattlerPosition(battlerId) == B_POSITION_PLAYER_LEFT)
+        {
             end = PARTY_SIZE / 2;
+        }
         else
+        {
             start = PARTY_SIZE / 2;
+        }
     }
 
     // Loop through to find fainted battler.
     for (i = start; i < end; ++i)
-        if (GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
-         && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG
-         && GetMonData(&party[i], MON_DATA_HP) == 0)
+    {
+        u32 species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
+        if (species != SPECIES_NONE
+            && species != SPECIES_EGG
+            && GetMonData(&party[i], MON_DATA_HP) == 0)
+        {
             return i;
+        }
+    }
 
     // Returns PARTY_SIZE if none found.
     return PARTY_SIZE;
