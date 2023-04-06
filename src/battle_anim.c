@@ -274,6 +274,7 @@ void LaunchBattleAnimation(u32 animType, u32 animId)
         case B_ANIM_DOOM_DESIRE_HIT:
         case B_ANIM_WISH_HEAL:
         case B_ANIM_MEGA_EVOLUTION:
+        case B_ANIM_PRIMAL_REVERSION:
         case B_ANIM_GULP_MISSILE:
             hideHpBoxes = TRUE;
             break;
@@ -439,22 +440,24 @@ static u8 GetBattleAnimMoveTargets(u8 battlerArgIndex, u8 *targets)
     case MOVE_TARGET_BOTH:
         targets[0] = gBattleAnimArgs[battlerArgIndex];
         numTargets = 1;
-        if (IsBattlerAlive(targets[0] ^ BIT_FLANK)) {
-            targets[1] = targets[0] ^ BIT_FLANK;
-            numTargets++;
+        if (IsBattlerAlive(BATTLE_PARTNER(targets[0])))
+        {
+            targets[1] = BATTLE_PARTNER(targets[0]);
+            numTargets = 2;
         }
         break;
     case MOVE_TARGET_FOES_AND_ALLY:
         targets[0] = gBattleAnimArgs[battlerArgIndex];
         numTargets = 1;
-        
-        if (IsBattlerAlive(targets[0] ^ BIT_FLANK)) {
-            targets[1] = targets[0] ^ BIT_FLANK;
+        if (IsBattlerAlive(BATTLE_PARTNER(targets[0])))
+        {
+            targets[1] = BATTLE_PARTNER(targets[0]);
             numTargets++;
         }
-        
-        if (IsBattlerAlive(gBattleAnimAttacker ^ BIT_FLANK)) {
-            targets[2] = gBattleAnimAttacker ^ BIT_FLANK; 
+
+        if (IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(targets[0]))))
+        {
+            targets[2] = BATTLE_PARTNER(BATTLE_OPPOSITE(targets[0])); 
             numTargets++;
         }
         break;
@@ -463,14 +466,14 @@ static u8 GetBattleAnimMoveTargets(u8 battlerArgIndex, u8 *targets)
         numTargets = 1;
         break;
     }
-    
+
     return numTargets;
 }
 
 static s16 GetSubpriorityForMoveAnim(u8 argVar)
 {
     s16 subpriority;
-    
+
     if (argVar & ANIMSPRITE_IS_TARGET)
     {
         argVar ^= ANIMSPRITE_IS_TARGET;
@@ -493,7 +496,7 @@ static s16 GetSubpriorityForMoveAnim(u8 argVar)
 
     if (subpriority < 3)
         subpriority = 3;
-    
+
     return subpriority;
 }
 
@@ -519,7 +522,7 @@ static void Cmd_createsprite(void)
         gBattleAnimArgs[i] = T1_READ_16(sBattleAnimScriptPtr);
         sBattleAnimScriptPtr += 2;
     }
-    
+
     subpriority = GetSubpriorityForMoveAnim(argVar);
 
     CreateSpriteAndAnimate(
@@ -536,22 +539,22 @@ static void CreateSpriteOnTargets(const struct SpriteTemplate *template, u8 argV
     u8 targets[MAX_BATTLERS_COUNT];
     int ntargets;
     s16 subpriority;
-    
+
     for (i = 0; i < argsCount; i++)
     {
         gBattleAnimArgs[i] = T1_READ_16(sBattleAnimScriptPtr);
         sBattleAnimScriptPtr += 2;
     }
-    
+
     subpriority = GetSubpriorityForMoveAnim(argVar);
-    
+
     ntargets = GetBattleAnimMoveTargets(battlerArgIndex, targets);
-    
+
     for (i = 0; i < ntargets; i++) {
-        
+
         if (overwriteAnimTgt)
             gBattleAnimArgs[battlerArgIndex] = targets[i];
-        
+
         CreateSpriteAndAnimate(
             template,
             GetBattlerSpriteCoord(targets[i], BATTLER_COORD_X_2),
@@ -575,13 +578,13 @@ static void Cmd_createspriteontargets_onpos(void)
 
     argVar = sBattleAnimScriptPtr[0];
     sBattleAnimScriptPtr++;
-    
+
     battlerArgIndex = sBattleAnimScriptPtr[0];
     sBattleAnimScriptPtr++;
 
     argsCount = sBattleAnimScriptPtr[0];
     sBattleAnimScriptPtr++;
-    
+
     CreateSpriteOnTargets(template, argVar, battlerArgIndex, argsCount, FALSE);
 }
 
@@ -599,13 +602,13 @@ static void Cmd_createspriteontargets(void)
 
     argVar = sBattleAnimScriptPtr[0];
     sBattleAnimScriptPtr++;
-    
+
     battlerArgIndex = sBattleAnimScriptPtr[0];
     sBattleAnimScriptPtr++;
 
     argsCount = sBattleAnimScriptPtr[0];
     sBattleAnimScriptPtr++;
-    
+
     CreateSpriteOnTargets(template, argVar, battlerArgIndex, argsCount, TRUE);
 }
 
@@ -656,21 +659,21 @@ static void Cmd_createvisualtaskontargets(void)
 
     taskPriority = sBattleAnimScriptPtr[0];
     sBattleAnimScriptPtr++;
-    
+
     battlerArgIndex = sBattleAnimScriptPtr[0];
     sBattleAnimScriptPtr++;
 
     numArgs = sBattleAnimScriptPtr[0];
     sBattleAnimScriptPtr++;
-    
+
     // copy task arguments
     for (i = 0; i < numArgs; i++) {
         gBattleAnimArgs[i] = T1_READ_16(sBattleAnimScriptPtr);
         sBattleAnimScriptPtr += 2;
     }
-    
+
     numArgs = GetBattleAnimMoveTargets(battlerArgIndex, targets);
-    
+
     for (i = 0; i < numArgs; i++)
     {
         gBattleAnimArgs[battlerArgIndex] = targets[i];
