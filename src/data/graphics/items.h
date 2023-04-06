@@ -1969,8 +1969,4 @@ const u32 gItemIconPalette_WonderLauncher_GuardSpec[] = INCBIN_U32("graphics/ite
 const u32 gItemIconPalette_WonderLauncher_AbilityUrge[]= INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_AbilityUrge.gbapal.lz");
 const u32 gItemIconPalette_WonderLauncher_ResetUrge[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_ResetUrge.gbapal.lz");
 const u32 gItemIconPalette_WonderLauncher_ItemUrge[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_ItemUrge.gbapal.lz");
- const u32 gItemIconPalette_WonderLauncher_ItemDrop[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_ItemDrop.gbapal.lz");
-
-//const u32 gItemIconPalette_DireHit[] = INCBIN_U32("graphics/items/icon_palettes/dire_hit.gbapal.lz");
-
-//const u32 gItemIconPalette_GuardSpec[] = INCBIN_U32("graphics/items/icon_palettes/guard_spec.gbapal.lz");
+const u32 gItemIconPalette_WonderLauncher_ItemDrop[] = INCBIN_U32("graphics/items/icon_palettes/wonderLauncher_ItemDrop.gbapal.lz");

@@ -5768,54 +5768,11 @@ static u8 GetXItemStage(u16 itemId)
     return xItemStages;
 }
 
-static u8 ActivateAbilityUrgeEffect(u16 ability)
-{
-    switch (ability)
-    {
-        case ABILITY_ANTICIPATION:
-        case ABILITY_DOWNLOAD:
-        case ABILITY_DRIZZLE:
-        case ABILITY_DROUGHT:
-        case ABILITY_FORECAST:
-        case ABILITY_FOREWARN:
-        case ABILITY_FRISK:
-        case ABILITY_INTIMIDATE:
-            SET_STATCHANGER(STAT_ATK, 1, TRUE);
-            BattleScriptExecute(BattleScript_IntimidateActivates);
-            break;
-        case ABILITY_SAND_STREAM:
-        case ABILITY_SLOW_START:
-        case ABILITY_SNOW_WARNING:
-        case ABILITY_TRACE:
-    }
-}
-
 static bool8 TryActivateAbilityUrge(u16 battler)
 {
     u16 ability = gBattleMons[battler].ability;
-    u8 special = 0;
-    u16 temp;
-    switch (ability)
-    {
-        case ABILITY_ANTICIPATION:
-        case ABILITY_DOWNLOAD:
-        case ABILITY_FORECAST:
-        case ABILITY_FOREWARN:
-        case ABILITY_FRISK:
-        case ABILITY_INTIMIDATE:
-        case ABILITY_SAND_STREAM:
-        case ABILITY_SLOW_START:
-        case ABILITY_SNOW_WARNING:
-        case ABILITY_TRACE:
-        case ABILITY_DRIZZLE:
-        case ABILITY_DROUGHT:
-            break;
-        default:
-            return FALSE;
-    }
     gBattlerAttacker = gActiveBattler; // cursed 
-    AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battler, 0, 0, 0);
-    return TRUE;
+    return AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battler, 0, 0, 0);
 }
 
 static bool32 TryKnockOffItemScript(u32 battler)
@@ -5823,7 +5780,7 @@ static bool32 TryKnockOffItemScript(u32 battler)
     if (gBattleMons[battler].item != ITEM_NONE
         && CanBattlerGetOrLoseItem(battler, gBattleMons[battler].item))
     {
-        gLastUsedItem = gBattleMons[battler].item;
+        gLastUsedItem = gBattleMons[battler].item; // necessary? 
         gBattleMons[battler].item = ITEM_NONE;
         if (gBattleMons[battler].ability != ABILITY_GORILLA_TACTICS)
             gBattleStruct->choicedMove[battler] = 0;
@@ -5842,7 +5799,7 @@ static bool8 TryActivateHeldItemEffect(u16 battler)
         return FALSE;
         
     ItemId_GetBattleFunc(item)(0);
-    BattleScriptExecute(BattleScript_ItemDrop);
+    BattleScriptExecute(BattleScript_ItemDrop); //dummy
     return TRUE;
 }
 
@@ -5945,7 +5902,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 
             // Dire Hit
             if ((itemEffect[i] & ITEM0_DIRE_HIT) 
-             && !(gBattleMons[gActiveBattler].status2 & STATUS2_CRIT_STAGE_RAISED)) // cant increase crit stage when it was increased before
+             && !(gBattleMons[gActiveBattler].status2 & STATUS2_CRIT_STAGE_RAISED)) // cant increase crit stage if it was increased before
             {
                 switch(xItemStages)
                 {

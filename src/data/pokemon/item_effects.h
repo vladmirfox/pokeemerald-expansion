@@ -619,9 +619,9 @@ const u8 *const gItemEffectTable[] =
     [ITEM_WONDER_LAUNCHER_DIRE_HIT_3 - ITEM_POTION]         = gItemEffect_DireHit,
     [ITEM_WONDER_LAUNCHER_GUARD_SPEC - ITEM_POTION]         = gItemEffect_GuardSpec,
 
-    [ITEM_WONDER_LAUNCHER_ABILITY_URGE - ITEM_POTION]         = gItemEffect_AbilityUrge,
+    [ITEM_WONDER_LAUNCHER_ABILITY_URGE - ITEM_POTION]       = gItemEffect_AbilityUrge,
     [ITEM_WONDER_LAUNCHER_RESET_URGE - ITEM_POTION]         = gItemEffect_ResetUrge,
-    [ITEM_WONDER_LAUNCHER_ITEM_URGE - ITEM_POTION]         = gItemEffect_ItemUrge,
-    [ITEM_WONDER_LAUNCHER_ITEM_DROP - ITEM_POTION]         = gItemEffect_ItemDrop,
+    [ITEM_WONDER_LAUNCHER_ITEM_URGE - ITEM_POTION]          = gItemEffect_ItemUrge,
+    [ITEM_WONDER_LAUNCHER_ITEM_DROP - ITEM_POTION]          = gItemEffect_ItemDrop,
     
 };

@@ -2045,8 +2045,8 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     }
     else
     {
-        critChance  = 2 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
-                    + 1 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_CRIT_STAGE_1) != 0)
+        critChance  = 1 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_CRIT_STAGE_1) != 0)
+                    + 2 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_CRIT_STAGE_2) != 0)
                     + 3 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_CRIT_STAGE_3) != 0)
                     + ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) != 0)
                     + (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
