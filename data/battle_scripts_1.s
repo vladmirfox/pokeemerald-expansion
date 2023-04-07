@@ -10395,9 +10395,14 @@ BattleScript_BerserkGeneRet_Anim:
 	call BattleScript_StatUp
 BattleScript_BerserkGeneRet_TryConfuse:
 	jumpifability BS_SCRIPTING, ABILITY_OWN_TEMPO, BattleScript_BerserkGeneRet_OwnTempoPrevents
-	jumpifsafeguard BattleScript_SafeguardProtected
+	jumpifsafeguard BattleScript_BerserkGeneRet_SafeguardProtected
 	setmoveeffect MOVE_EFFECT_CONFUSION
 	seteffectprimary
+	goto BattleScript_BerserkGeneRet_End
+BattleScript_BerserkGeneRet_SafeguardProtected::
+	pause B_WAIT_TIME_SHORT
+	printstring STRINGID_PKMNUSEDSAFEGUARD
+	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_BerserkGeneRet_End
 BattleScript_BerserkGeneRet_OwnTempoPrevents:
 	pause B_WAIT_TIME_SHORT

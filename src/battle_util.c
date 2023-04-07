@@ -3597,9 +3597,10 @@ u8 AtkCanceller_UnableToUseMove(void)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_CONFUSED: // confusion
-            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_CONFUSION)
+            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_CONFUSION) 
             {
-                gBattleMons[gBattlerAttacker].status2 -= STATUS2_CONFUSION_TURN(1);
+                if (!(gStatuses4[gBattlerAttacker] & STATUS4_INFINITE_CONFUSION))
+                    gBattleMons[gBattlerAttacker].status2 -= STATUS2_CONFUSION_TURN(1);
                 if (gBattleMons[gBattlerAttacker].status2 & STATUS2_CONFUSION)
                 {
                      // confusion dmg
@@ -6980,6 +6981,7 @@ static u8 ItemEffectMoveEnd(u32 battlerId, u16 holdEffect)
         if (gBattleMons[battlerId].status2 & STATUS2_CONFUSION && !UnnerveOn(battlerId, gLastUsedItem))
         {
             gBattleMons[battlerId].status2 &= ~STATUS2_CONFUSION;
+            gStatuses4[battlerId] &= ~STATUS4_INFINITE_CONFUSION;
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_BerryCureConfusionRet;
             effect = ITEM_EFFECT_OTHER;
@@ -7063,6 +7065,7 @@ static u8 ItemEffectMoveEnd(u32 battlerId, u16 holdEffect)
         {
             BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
             gEffectBattler = battlerId;
+            gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
             SET_STATCHANGER(STAT_ATK, 2, FALSE);
 
             gBattleScripting.animArg1 = 14 + STAT_ATK;
@@ -7317,6 +7320,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 {
                     BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
                     gEffectBattler = battlerId;
+                    gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
                     SET_STATCHANGER(STAT_ATK, 2, FALSE);
 
                     gBattleScripting.animArg1 = 14 + STAT_ATK;
@@ -7547,6 +7551,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 if (gBattleMons[battlerId].status2 & STATUS2_CONFUSION && !UnnerveOn(battlerId, gLastUsedItem))
                 {
                     gBattleMons[battlerId].status2 &= ~STATUS2_CONFUSION;
+                    gStatuses4[battlerId] &= ~STATUS4_INFINITE_CONFUSION;
                     BattleScriptExecute(BattleScript_BerryCureConfusionEnd2);
                     effect = ITEM_EFFECT_OTHER;
                 }
@@ -7614,6 +7619,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 {
                     BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
                     gEffectBattler = battlerId;
+                    gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
                     SET_STATCHANGER(STAT_ATK, 2, FALSE);
 
                     gBattleScripting.animArg1 = 14 + STAT_ATK;
