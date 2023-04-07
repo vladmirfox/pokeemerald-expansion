@@ -11237,23 +11237,19 @@ static void Cmd_various(void)
             return;
         }
 
-        // Trainer AI chooses first fainted battler, no need to call controllers.
-        if (side == B_SIDE_OPPONENT
-         || (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER
-         && GetBattlerPosition(gBattlerAttacker) == B_POSITION_PLAYER_RIGHT))
-            gSelectedMonPartyId = index;
-
         // Battler selected! Revive and go to next instruction.
         if (gSelectedMonPartyId != PARTY_SIZE)
         {
             struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
-            
+
             u16 hp = GetMonData(&party[gSelectedMonPartyId], MON_DATA_MAX_HP) / 2;
-            SetMonData(&party[gSelectedMonPartyId], MON_DATA_HP, &hp);
+            BtlController_EmitSetMonData(BUFFER_A, REQUEST_HP_BATTLE, gBitTable[gSelectedMonPartyId], sizeof(hp), &hp);
+            MarkBattlerForControllerExec(gBattlerAttacker);
             PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gSelectedMonPartyId], MON_DATA_SPECIES));
-            
+
             // If an on-field battler is revived, it needs to be sent out again.
-            if (gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerAttacker)] == gSelectedMonPartyId)
+            if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE &&
+                gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerAttacker)] == gSelectedMonPartyId)
             {
                 gBattleScripting.battler = BATTLE_PARTNER(gBattlerAttacker);
                 gBattleCommunication[MULTIUSE_STATE] = TRUE;
@@ -11264,8 +11260,8 @@ static void Cmd_various(void)
             return;
         }
 
-        // Open party menu for Player, wait to go to next instruction.
-        if (side == B_SIDE_PLAYER)
+        // Open party menu, wait to go to next instruction.
+        else
         {   
             BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CHOOSE_FAINTED_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
             MarkBattlerForControllerExec(gBattlerAttacker);

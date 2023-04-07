@@ -1467,7 +1467,7 @@ static void RecordedPlayerHandleChooseItem(void)
 static void RecordedPlayerHandleChoosePokemon(void)
 {
     *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = RecordedBattle_GetBattlerAction(RECORDED_PARTY_INDEX, gActiveBattler);
-    gSelectedMonPartyId = gBattleStruct->monToSwitchIntoId[gActiveBattler];
+    gSelectedMonPartyId = gBattleStruct->monToSwitchIntoId[gActiveBattler]; // Revival Blessing
     BtlController_EmitChosenMonReturnValue(BUFFER_B, *(gBattleStruct->monToSwitchIntoId + gActiveBattler), NULL);
     RecordedPlayerBufferExecCompleted();
 }
