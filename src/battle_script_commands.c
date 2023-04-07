@@ -3228,7 +3228,10 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 else
                 {
-                    gBattleMons[gEffectBattler].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2); // 2-5 turns
+                    if (gLastUsedItem == ITEM_BERSERK_GENE)
+                        gBattleMons[gEffectBattler].status2 |= STATUS2_CONFUSION_TURN(255); // Berserk Gene 255 Turns
+                    else
+                        gBattleMons[gEffectBattler].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2); // 2-5 turns
 
                     // If the confusion is activating due to being released from Sky Drop, go to "confused due to fatigue" script.
                     // Otherwise, do normal confusion script.
