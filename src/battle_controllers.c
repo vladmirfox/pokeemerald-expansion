@@ -1230,7 +1230,7 @@ void BtlController_EmitExpUpdate(u8 bufferId, u8 partyId, s32 expPoints)
     PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, 6);
 }
 
-void BtlController_EmitStatusIconUpdate(u8 bufferId, u32 status1, u64 status2)
+void BtlController_EmitStatusIconUpdate(u8 bufferId, u32 status1, u32 status2)
 {
     sBattleBuffersTransferData[0] = CONTROLLER_STATUSICONUPDATE;
     sBattleBuffersTransferData[1] = status1;
@@ -1238,14 +1238,10 @@ void BtlController_EmitStatusIconUpdate(u8 bufferId, u32 status1, u64 status2)
     sBattleBuffersTransferData[3] = (status1 & 0x00FF0000) >> 16;
     sBattleBuffersTransferData[4] = (status1 & 0xFF000000) >> 24;
     sBattleBuffersTransferData[5] = status2;
-    sBattleBuffersTransferData[6] = (status2 & 0x000000000000FF00) >> 8;
-    sBattleBuffersTransferData[7] = (status2 & 0x0000000000FF0000) >> 16;
-    sBattleBuffersTransferData[8] = (status2 & 0x00000000FF000000) >> 24;
-    sBattleBuffersTransferData[9] = (status2 & 0x000000FF00000000) >> 32;
-    sBattleBuffersTransferData[10] = (status2 & 0x0000FF0000000000) >> 40;
-    sBattleBuffersTransferData[11] = (status2 & 0x00FF000000000000) >> 48;
-    sBattleBuffersTransferData[12] = (status2 & 0xFF00000000000000) >> 56;
-    PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, 13);
+    sBattleBuffersTransferData[6] = (status2 & 0x0000FF00) >> 8;
+    sBattleBuffersTransferData[7] = (status2 & 0x00FF0000) >> 16;
+    sBattleBuffersTransferData[8] = (status2 & 0xFF000000) >> 24;
+    PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, 9);
 }
 
 void BtlController_EmitStatusAnimation(u8 bufferId, bool8 status2, u32 status)
