@@ -147,10 +147,7 @@
 #define STATUS2_FORESIGHT             (1 << 29)
 #define STATUS2_DEFENSE_CURL          (1 << 30)
 #define STATUS2_TORMENT               (1 << 31)
-#define STATUS2_CRIT_STAGE_1          (1ULL << 32)
 #define STATUS2_CRIT_STAGE_2          STATUS2_FOCUS_ENERGY
-#define STATUS2_CRIT_STAGE_3          (1ULL << 33)
-#define STATUS2_CRIT_STAGE_RAISED     (STATUS2_CRIT_STAGE_1 | STATUS2_CRIT_STAGE_2 | STATUS2_CRIT_STAGE_3)
 
 #define STATUS3_LEECHSEED_BATTLER       (1 << 0 | 1 << 1) // The battler to receive HP from Leech Seed
 #define STATUS3_LEECHSEED               (1 << 2)
@@ -189,6 +186,10 @@
 #define STATUS4_PLASMA_FISTS            (1 << 1)
 #define STATUS4_MUD_SPORT               (1 << 2)    // Only used if B_SPORT_TURNS < GEN_6
 #define STATUS4_WATER_SPORT             (1 << 3)    // Only used if B_SPORT_TURNS < GEN_6
+//#define STATUS4_INFINITE_CONFUSION    (1 << 4)    // Used for Berserk Gene
+#define STATUS4_CRIT_STAGE_1            (1 << 5)
+#define STATUS4_CRIT_STAGE_3            (1 << 6)
+#define STATUS4_CRIT_STAGE_RAISED       (STATUS4_CRIT_STAGE_1 | STATUS4_CRIT_STAGE_3) // crit stage 2 not included due to checking different fields
 
 #define HITMARKER_WAKE_UP_CLEAR         (1 << 4) // Cleared when waking up. Never set or checked.
 #define HITMARKER_SKIP_DMG_TRACK        (1 << 5)

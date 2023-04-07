@@ -5900,12 +5900,12 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 
             // Dire Hit
             if ((itemEffect[i] & ITEM0_DIRE_HIT) 
-             && !(gBattleMons[gActiveBattler].status2 & STATUS2_CRIT_STAGE_RAISED)) // cant increase crit stage if it was increased before
+             && !((gBattleMons[battlerId].status2 & STATUS2_CRIT_STAGE_2) || (gStatuses4[battlerId] & STATUS4_CRIT_STAGE_RAISED))) // cant increase crit stage if it was increased before
             {
                 switch(xItemStages)
                 {
                     case WONDER_LAUNCHER_X_ITEM_STAGES_1:
-                            gBattleMons[gActiveBattler].status2 |= STATUS2_CRIT_STAGE_1;
+                            gStatuses4[gActiveBattler] |= STATUS4_CRIT_STAGE_1;
                             retVal = FALSE;
                         break;
                     case WONDER_LAUNCHER_X_ITEM_STAGES_2: // X_ITEM_STAGES 
@@ -5913,7 +5913,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                             retVal = FALSE;
                         break;
                     case WONDER_LAUNCHER_X_ITEM_STAGES_3:
-                            gBattleMons[gActiveBattler].status2 |= STATUS2_CRIT_STAGE_3;
+                            gStatuses4[gActiveBattler] |= STATUS4_CRIT_STAGE_3;
                             retVal = FALSE;
                         break;
                 }
