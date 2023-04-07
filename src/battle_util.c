@@ -7063,7 +7063,6 @@ static u8 ItemEffectMoveEnd(u32 battlerId, u16 holdEffect)
         {
             BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
             gEffectBattler = battlerId;
-            gLastUsedItem = gBattleMons[battlerId].item;
             SET_STATCHANGER(STAT_ATK, 2, FALSE);
 
             gBattleScripting.animArg1 = 14 + STAT_ATK;
@@ -7318,7 +7317,6 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 {
                     BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
                     gEffectBattler = battlerId;
-                    gLastUsedItem = gBattleMons[battlerId].item;
                     SET_STATCHANGER(STAT_ATK, 2, FALSE);
 
                     gBattleScripting.animArg1 = 14 + STAT_ATK;
@@ -7616,7 +7614,6 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 {
                     BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
                     gEffectBattler = battlerId;
-                    gLastUsedItem = gBattleMons[battlerId].item;
                     SET_STATCHANGER(STAT_ATK, 2, FALSE);
 
                     gBattleScripting.animArg1 = 14 + STAT_ATK;
