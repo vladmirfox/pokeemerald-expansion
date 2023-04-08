@@ -4486,6 +4486,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_NORMAL,
+        .isConsumable = TRUE,
     },
 
     [ITEM_FIRE_GEM] =
@@ -4500,6 +4501,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_FIRE,
+        .isConsumable = TRUE,
     },
 
     [ITEM_WATER_GEM] =
@@ -4514,6 +4516,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_WATER,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ELECTRIC_GEM] =
@@ -4528,6 +4531,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_ELECTRIC,
+        .isConsumable = TRUE,
     },
 
     [ITEM_GRASS_GEM] =
@@ -4542,6 +4546,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_GRASS,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ICE_GEM] =
@@ -4556,6 +4561,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_ICE,
+        .isConsumable = TRUE,
     },
 
     [ITEM_FIGHTING_GEM] =
@@ -4570,6 +4576,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_FIGHTING,
+        .isConsumable = TRUE,
     },
 
     [ITEM_POISON_GEM] =
@@ -4584,6 +4591,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_POISON,
+        .isConsumable = TRUE,
     },
 
     [ITEM_GROUND_GEM] =
@@ -4598,6 +4606,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_GROUND,
+        .isConsumable = TRUE,
     },
 
     [ITEM_FLYING_GEM] =
@@ -4612,6 +4621,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_FLYING,
+        .isConsumable = TRUE,
     },
 
     [ITEM_PSYCHIC_GEM] =
@@ -4626,6 +4636,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_PSYCHIC,
+        .isConsumable = TRUE,
     },
 
     [ITEM_BUG_GEM] =
@@ -4640,6 +4651,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_BUG,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ROCK_GEM] =
@@ -4654,6 +4666,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_ROCK,
+        .isConsumable = TRUE,
     },
 
     [ITEM_GHOST_GEM] =
@@ -4668,6 +4681,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_GHOST,
+        .isConsumable = TRUE,
     },
 
     [ITEM_DRAGON_GEM] =
@@ -4682,6 +4696,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_DRAGON,
+        .isConsumable = TRUE,
     },
 
     [ITEM_DARK_GEM] =
@@ -4696,6 +4711,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_DARK,
+        .isConsumable = TRUE,
     },
 
     [ITEM_STEEL_GEM] =
@@ -4710,6 +4726,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_STEEL,
+        .isConsumable = TRUE,
     },
 
     [ITEM_FAIRY_GEM] =
@@ -4724,6 +4741,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .secondaryId = TYPE_FAIRY,
+        .isConsumable = TRUE,
     },
 
 // Z-Crystals
@@ -4738,7 +4756,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_NORMAL
+        .secondaryId = TYPE_NORMAL,
+        .isConsumable = TRUE,
     },
 
     [ITEM_FIRIUM_Z] =
@@ -4751,7 +4770,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_FIRE
+        .secondaryId = TYPE_FIRE,
+        .isConsumable = TRUE,
     },
 
     [ITEM_WATERIUM_Z] =
@@ -4764,7 +4784,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_WATER
+        .secondaryId = TYPE_WATER,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ELECTRIUM_Z] =
@@ -4777,7 +4798,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_ELECTRIC
+        .secondaryId = TYPE_ELECTRIC,
+        .isConsumable = TRUE,
     },
 
     [ITEM_GRASSIUM_Z] =
@@ -4790,7 +4812,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_GRASS
+        .secondaryId = TYPE_GRASS,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ICIUM_Z] =
@@ -4803,7 +4826,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_ICE
+        .secondaryId = TYPE_ICE,
+        .isConsumable = TRUE,
     },
 
     [ITEM_FIGHTINIUM_Z] =
@@ -4816,7 +4840,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_FIGHTING
+        .secondaryId = TYPE_FIGHTING,
+        .isConsumable = TRUE,
     },
 
     [ITEM_POISONIUM_Z] =
@@ -4829,7 +4854,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_POISON
+        .secondaryId = TYPE_POISON,
+        .isConsumable = TRUE,
     },
 
     [ITEM_GROUNDIUM_Z] =
@@ -4842,7 +4868,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_GROUND
+        .secondaryId = TYPE_GROUND,
+        .isConsumable = TRUE,
     },
 
     [ITEM_FLYINIUM_Z] =
@@ -4855,7 +4882,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_FLYING
+        .secondaryId = TYPE_FLYING,
+        .isConsumable = TRUE,
     },
 
     [ITEM_PSYCHIUM_Z] =
@@ -4868,7 +4896,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_PSYCHIC
+        .secondaryId = TYPE_PSYCHIC,
+        .isConsumable = TRUE,
     },
 
     [ITEM_BUGINIUM_Z] =
@@ -4881,7 +4910,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_BUG
+        .secondaryId = TYPE_BUG,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ROCKIUM_Z] =
@@ -4894,7 +4924,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_ROCK
+        .secondaryId = TYPE_ROCK,
+        .isConsumable = TRUE,
     },
 
     [ITEM_GHOSTIUM_Z] =
@@ -4907,7 +4938,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_GHOST
+        .secondaryId = TYPE_GHOST,
+        .isConsumable = TRUE,
     },
 
     [ITEM_DRAGONIUM_Z] =
@@ -4920,7 +4952,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_DRAGON
+        .secondaryId = TYPE_DRAGON,
+        .isConsumable = TRUE,
     },
 
     [ITEM_DARKINIUM_Z] =
@@ -4933,7 +4966,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_DARK
+        .secondaryId = TYPE_DARK,
+        .isConsumable = TRUE,
     },
 
     [ITEM_STEELIUM_Z] =
@@ -4946,7 +4980,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_STEEL
+        .secondaryId = TYPE_STEEL,
+        .isConsumable = TRUE,
     },
 
     [ITEM_FAIRIUM_Z] =
@@ -4959,7 +4994,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = TYPE_FAIRY
+        .secondaryId = TYPE_FAIRY,
+        .isConsumable = TRUE,
     },
 
     [ITEM_PIKANIUM_Z] =
@@ -4972,7 +5008,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_EEVIUM_Z] =
@@ -4985,7 +5022,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_SNORLIUM_Z] =
@@ -4998,7 +5036,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_MEWNIUM_Z] =
@@ -5011,7 +5050,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_DECIDIUM_Z] =
@@ -5024,7 +5064,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_INCINIUM_Z] =
@@ -5037,7 +5078,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_PRIMARIUM_Z] =
@@ -5050,7 +5092,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_LYCANIUM_Z] =
@@ -5063,7 +5106,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_MIMIKIUM_Z] =
@@ -5076,7 +5120,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_KOMMONIUM_Z] =
@@ -5089,7 +5134,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_TAPUNIUM_Z] =
@@ -5102,7 +5148,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  //signature z move
+        .secondaryId = 255,  //signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_SOLGANIUM_Z] =
@@ -5115,7 +5162,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_LUNALIUM_Z] =
@@ -5128,7 +5176,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_MARSHADIUM_Z] =
@@ -5141,7 +5190,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_ALORAICHIUM_Z] =
@@ -5154,7 +5204,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_PIKASHUNIUM_Z] =
@@ -5167,7 +5218,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  // signature z move
+        .secondaryId = 255,  // signature z move
+        .isConsumable = TRUE,
     },
 
     [ITEM_ULTRANECROZIUM_Z] =
@@ -5180,7 +5232,8 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255  //signature z move
+        .secondaryId = 255,  //signature z move
+        .isConsumable = TRUE,
     },
 
 // Species-specific Held Items
@@ -6020,6 +6073,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_PSYCHIC_SEED] =
@@ -6034,6 +6088,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_MISTY_SEED] =
@@ -6048,6 +6103,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_GRASSY_SEED] =
@@ -6062,6 +6118,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
 // Type-activated Stat Modifiers
@@ -6078,6 +6135,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
+        .isConsumable = TRUE,
     },
 
     [ITEM_CELL_BATTERY] =
@@ -6092,6 +6150,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
+        .isConsumable = TRUE,
     },
 
     [ITEM_LUMINOUS_MOSS] =
@@ -6106,6 +6165,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
+        .isConsumable = TRUE,
     },
 
     [ITEM_SNOWBALL] =
@@ -6120,6 +6180,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
+        .isConsumable = TRUE,
     },
 
 // Misc. Held Items
@@ -6149,6 +6210,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_EXP_SHARE] =
@@ -6202,6 +6264,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_KINGS_ROCK] =
@@ -6419,6 +6482,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_FOCUS_SASH] =
@@ -6661,6 +6725,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_RING_TARGET] =
@@ -6702,6 +6767,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
+        .isConsumable = TRUE,
     },
 
     [ITEM_WEAKNESS_POLICY] =
@@ -6716,6 +6782,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 80,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ASSAULT_VEST] =
@@ -6795,6 +6862,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
+        .isConsumable = TRUE,
     },
 
     [ITEM_EJECT_PACK] =
@@ -6808,6 +6876,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 50,
+        .isConsumable = TRUE,
     },
 
     [ITEM_HEAVY_DUTY_BOOTS] =
@@ -6834,6 +6903,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 80,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ROOM_SERVICE] =
@@ -6877,6 +6947,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_MEDICINE,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_CHESTO_BERRY] =
@@ -6892,6 +6963,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_MEDICINE,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_PECHA_BERRY] =
@@ -6907,6 +6979,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_MEDICINE,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_RAWST_BERRY] =
@@ -6922,6 +6995,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_MEDICINE,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ASPEAR_BERRY] =
@@ -6937,6 +7011,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_MEDICINE,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_LEPPA_BERRY] =
@@ -6953,6 +7028,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_MEDICINE,
         .battleUseFunc = ItemUseInBattle_PPRecovery,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ORAN_BERRY] =
@@ -6969,6 +7045,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_MEDICINE,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_PERSIM_BERRY] =
@@ -6984,6 +7061,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_MEDICINE,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_LUM_BERRY] =
@@ -6999,6 +7077,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_MEDICINE,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_SITRUS_BERRY] =
@@ -7020,6 +7099,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_MEDICINE,
         .battleUseFunc = ItemUseInBattle_Medicine,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
 #if B_CONFUSE_BERRIES_HEAL >= GEN_8
@@ -7042,6 +7122,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_WIKI_BERRY] =
@@ -7056,6 +7137,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_MAGO_BERRY] =
@@ -7070,6 +7152,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_AGUAV_BERRY] =
@@ -7084,6 +7167,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_IAPAPA_BERRY] =
@@ -7098,6 +7182,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
 #undef CONFUSE_BERRY_HEAL_FRACTION
@@ -7112,6 +7197,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_BLUK_BERRY] =
@@ -7354,6 +7440,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_OCCA_BERRY] =
@@ -7368,6 +7455,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_PASSHO_BERRY] =
@@ -7382,6 +7470,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_WACAN_BERRY] =
@@ -7396,6 +7485,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_RINDO_BERRY] =
@@ -7410,6 +7500,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_YACHE_BERRY] =
@@ -7424,6 +7515,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_CHOPLE_BERRY] =
@@ -7438,6 +7530,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_KEBIA_BERRY] =
@@ -7452,6 +7545,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_SHUCA_BERRY] =
@@ -7466,6 +7560,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_COBA_BERRY] =
@@ -7480,6 +7575,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_PAYAPA_BERRY] =
@@ -7494,6 +7590,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_TANGA_BERRY] =
@@ -7508,6 +7605,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_CHARTI_BERRY] =
@@ -7522,6 +7620,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_KASIB_BERRY] =
@@ -7536,6 +7635,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_HABAN_BERRY] =
@@ -7550,6 +7650,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_COLBUR_BERRY] =
@@ -7564,6 +7665,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_BABIRI_BERRY] =
@@ -7578,6 +7680,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ROSELI_BERRY] =
@@ -7592,6 +7695,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_LIECHI_BERRY] =
@@ -7606,6 +7710,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_GANLON_BERRY] =
@@ -7620,6 +7725,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_SALAC_BERRY] =
@@ -7634,6 +7740,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_PETAYA_BERRY] =
@@ -7648,6 +7755,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_APICOT_BERRY] =
@@ -7662,6 +7770,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_LANSAT_BERRY] =
@@ -7676,6 +7785,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_STARF_BERRY] =
@@ -7690,6 +7800,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ENIGMA_BERRY] =
@@ -7703,6 +7814,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_MICLE_BERRY] =
@@ -7717,6 +7829,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_CUSTAP_BERRY] =
@@ -7731,6 +7844,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_JABOCA_BERRY] =
@@ -7744,6 +7858,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ROWAP_BERRY] =
@@ -7757,6 +7872,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_KEE_BERRY] =
@@ -7770,6 +7886,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_MARANGA_BERRY] =
@@ -7783,6 +7900,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
+        .isConsumable = TRUE,
     },
 
     [ITEM_ENIGMA_BERRY_E_READER] =
@@ -9941,6 +10059,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
+        .isConsumable = TRUE,
     },
 
     [ITEM_BIG_BAMBOO_SHOOT] =
@@ -10000,6 +10119,7 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
+        .isConsumable = TRUE,
     },
 
     [ITEM_SCROLL_OF_DARKNESS] =

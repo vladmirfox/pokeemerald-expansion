@@ -941,3 +941,8 @@ u8 ItemId_GetFlingPower(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].flingPower;
 }
+
+bool8 ItemId_GetIsConsumable(u16 itemId)
+{
+    return gItems[SanitizeItemId(itemId)].isConsumable;
+}
