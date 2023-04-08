@@ -263,9 +263,11 @@
 #define VAR_ROXANNE_CALL_STEP_COUNTER                    0x40F4
 #define VAR_SCOTT_BF_CALL_STEP_COUNTER                   0x40F5
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER             0x40F6
-#define VAR_UNUSED_0x40F7                                0x40F7 // Unused Var
-#define VAR_UNUSED_0x40F8                                0x40F8 // Unused Var
-#define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
+
+//FR Proxj Vars
+#define VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY                                0x40F7 // Unused Var
+#define VAR_MAP_SCENE_PALLET_TOWN_OAK                                0x40F8 // Unused Var
+#define VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB                                0x40F9 // Unused Var
 #define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
 #define VAR_UNUSED_0x40FB                                0x40FB // Unused Var
 #define VAR_UNUSED_0x40FC                                0x40FC // Unused Var
