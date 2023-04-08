@@ -6567,6 +6567,8 @@ bool32 HasEnoughHpToEatBerry(u32 battlerId, u32 hpFraction, u32 itemId)
 
     if (gBattleMons[battlerId].hp == 0)
         return FALSE;
+    if (gBattleScripting.overrideActivationRequirements)
+        return TRUE;
     if (gBattleScripting.overrideBerryRequirements)
         return TRUE;
     // Unnerve prevents consumption of opponents' berries.
@@ -6737,10 +6739,11 @@ static u8 TrySetMicleBerry(u32 battlerId, u32 itemId, bool32 end2)
 static u8 DamagedStatBoostBerryEffect(u8 battlerId, u8 statId, u8 split)
 {
     if (IsBattlerAlive(battlerId)
-     && TARGET_TURN_DAMAGED
-     && CompareStat(battlerId, statId, MAX_STAT_STAGE, CMP_LESS_THAN)
-     && !DoesSubstituteBlockMove(gBattlerAttacker, battlerId, gCurrentMove)
-     && GetBattleMoveSplit(gCurrentMove) == split)
+     && (gBattleScripting.overrideActivationRequirements
+     || (TARGET_TURN_DAMAGED
+         && CompareStat(battlerId, statId, MAX_STAT_STAGE, CMP_LESS_THAN)
+         && !DoesSubstituteBlockMove(gBattlerAttacker, battlerId, gCurrentMove)
+         && GetBattleMoveSplit(gCurrentMove) == split)))
     {
         BufferStatChange(battlerId, statId, STRINGID_STATROSE);
 
@@ -6761,7 +6764,8 @@ static u8 DamagedStatBoostBerryEffect(u8 battlerId, u8 statId, u8 split)
 
 u8 TryHandleSeed(u8 battler, u32 terrainFlag, u8 statId, u16 itemId, bool32 execute)
 {
-    if (gFieldStatuses & terrainFlag && CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
+    if ((gFieldStatuses & terrainFlag || gBattleScripting.overrideActivationRequirements)
+        && CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
     {
         BufferStatChange(battler, statId, STRINGID_STATROSE);
         gLastUsedItem = itemId; // For surge abilities
@@ -6785,7 +6789,7 @@ u8 TryHandleSeed(u8 battler, u32 terrainFlag, u8 statId, u16 itemId, bool32 exec
 
 static u8 ItemHealHp(u32 battlerId, u32 itemId, bool32 end2, bool32 percentHeal)
 {
-    if (!(gBattleScripting.overrideBerryRequirements && gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
+    if (!((gBattleScripting.overrideBerryRequirements || gBattleScripting.overrideActivationRequirements) && gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
     #if B_HEAL_BLOCKING >= GEN_5
         && !(gStatuses3[battlerId] & STATUS3_HEAL_BLOCK)
     #endif
@@ -7081,6 +7085,8 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
     atkHoldEffect = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
     atkHoldEffectParam = GetBattlerHoldEffectParam(gBattlerAttacker);
 
+    DebugPrintfLevel(MGBA_LOG_ERROR, "battlerhold: %d", battlerHoldEffect);
+    DebugPrintfLevel(MGBA_LOG_ERROR, "attackerhold: %d", atkHoldEffect);
     switch (caseID)
     {
     case ITEMEFFECT_ON_SWITCH_IN:
@@ -7280,9 +7286,10 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_EJECT_PACK:
-                if (gProtectStructs[battlerId].statFell
+                if (gBattleScripting.overrideActivationRequirements
+                 || (gProtectStructs[battlerId].statFell
                  && gProtectStructs[battlerId].disableEjectPack == 0
-                 && !(gCurrentMove == MOVE_PARTING_SHOT && CanBattlerSwitch(gBattlerAttacker))) // Does not activate if attacker used Parting Shot and can switch out
+                 && !(gCurrentMove == MOVE_PARTING_SHOT && CanBattlerSwitch(gBattlerAttacker)))) // Does not activate if attacker used Parting Shot and can switch out
                 {
                     gProtectStructs[battlerId].statFell = FALSE;
                     gActiveBattler = gBattleScripting.battler = battlerId;
@@ -7654,7 +7661,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             }
             break;
         case HOLD_EFFECT_BLUNDER_POLICY:
-            if (gBattleStruct->blunderPolicy
+            if ((gBattleStruct->blunderPolicy || gBattleScripting.overrideActivationRequirements)
              && gBattleMons[gBattlerAttacker].hp != 0
              && CompareStat(gBattlerAttacker, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
@@ -7662,8 +7669,13 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 gLastUsedItem = atkItem;
                 gBattleScripting.statChanger = SET_STATCHANGER(STAT_SPEED, 2, FALSE);
                 effect = ITEM_STATS_CHANGE;
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_AttackerItemStatRaise;
+                if (gBattleScripting.overrideActivationRequirements)
+                    BattleScriptExecute(BattleScript_AttackerItemStatRaiseEnd2);
+                else
+                {
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_AttackerItemStatRaise;
+                }
             }
             break;
         }
@@ -7710,9 +7722,9 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             }
             break;
         case HOLD_EFFECT_THROAT_SPRAY:  // Does NOT need to be a damaging move
-            if (gProtectStructs[gBattlerAttacker].targetAffected
+            if ((gProtectStructs[gBattlerAttacker].targetAffected || gBattleScripting.overrideActivationRequirements)
              && gBattleMons[gBattlerAttacker].hp != 0
-             && gBattleMoves[gCurrentMove].flags & FLAG_SOUND
+             && (gBattleMoves[gCurrentMove].flags & FLAG_SOUND || gBattleScripting.overrideActivationRequirements)
              && CompareStat(gBattlerAttacker, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN)
              && !NoAliveMonsForEitherParty())   // Don't activate if battle will end
             {
@@ -7720,8 +7732,15 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 gBattleScripting.battler = gBattlerAttacker;
                 gBattleScripting.statChanger = SET_STATCHANGER(STAT_SPATK, 1, FALSE);
                 effect = ITEM_STATS_CHANGE;
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_AttackerItemStatRaise;
+                if (gBattleScripting.overrideActivationRequirements)
+                {
+                    BattleScriptExecute(BattleScript_AttackerItemStatRaiseEnd2);
+                }
+                else 
+                {
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_AttackerItemStatRaise;
+                }
             }
             break;
         }
@@ -7757,56 +7776,96 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_WEAKNESS_POLICY:
-                if (IsBattlerAlive(battlerId)
-                    && TARGET_TURN_DAMAGED
-                    && gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
+                if (IsBattlerAlive(battlerId) 
+                    && (gBattleScripting.overrideActivationRequirements 
+                        || (TARGET_TURN_DAMAGED 
+                            && gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE)));
                 {
                     effect = ITEM_STATS_CHANGE;
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_WeaknessPolicy;
+                    if (gBattleScripting.overrideActivationRequirements)
+                    {
+                        BattleScriptExecute(BattleScript_WeaknessPolicyEnd2);
+                    }
+                    else
+                    {
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_WeaknessPolicy;
+                    }
                 }
                 break;
             case HOLD_EFFECT_SNOWBALL:
                 if (IsBattlerAlive(battlerId)
-                    && TARGET_TURN_DAMAGED
-                    && moveType == TYPE_ICE)
+                    && (gBattleScripting.overrideActivationRequirements
+                        || (TARGET_TURN_DAMAGED
+                            && moveType == TYPE_ICE)))
                 {
                     effect = ITEM_STATS_CHANGE;
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_TargetItemStatRaise;
+                    if (gBattleScripting.overrideActivationRequirements)
+                    {
+                        BattleScriptExecute(BattleScript_TargetItemStatRaiseEnd2);
+                    }
+                    else
+                    {
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_TargetItemStatRaise;
+                    }
                     gBattleScripting.statChanger = SET_STATCHANGER(STAT_ATK, 1, FALSE);
                 }
                 break;
             case HOLD_EFFECT_LUMINOUS_MOSS:
                 if (IsBattlerAlive(battlerId)
-                    && TARGET_TURN_DAMAGED
-                    && moveType == TYPE_WATER)
+                    && (gBattleScripting.overrideActivationRequirements
+                        || (TARGET_TURN_DAMAGED
+                            && moveType == TYPE_WATER)))
                 {
                     effect = ITEM_STATS_CHANGE;
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_TargetItemStatRaise;
+                    if (gBattleScripting.overrideActivationRequirements)
+                    {
+                        BattleScriptExecute(BattleScript_TargetItemStatRaiseEnd2);
+                    }
+                    else
+                    {
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_TargetItemStatRaise;
+                    }
                     gBattleScripting.statChanger = SET_STATCHANGER(STAT_SPDEF, 1, FALSE);
                 }
                 break;
             case HOLD_EFFECT_CELL_BATTERY:
                 if (IsBattlerAlive(battlerId)
-                    && TARGET_TURN_DAMAGED
-                    && moveType == TYPE_ELECTRIC)
+                    && (gBattleScripting.overrideActivationRequirements
+                        || (TARGET_TURN_DAMAGED
+                            && moveType == TYPE_ELECTRIC)))
                 {
                     effect = ITEM_STATS_CHANGE;
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_TargetItemStatRaise;
+                    if (gBattleScripting.overrideActivationRequirements)
+                    {
+                        BattleScriptExecute(BattleScript_TargetItemStatRaiseEnd2);
+                    }
+                    else
+                    {
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_TargetItemStatRaise;
+                    }
                     gBattleScripting.statChanger = SET_STATCHANGER(STAT_ATK, 1, FALSE);
                 }
                 break;
             case HOLD_EFFECT_ABSORB_BULB:
                 if (IsBattlerAlive(battlerId)
-                    && TARGET_TURN_DAMAGED
-                    && moveType == TYPE_WATER)
+                    && (gBattleScripting.overrideActivationRequirements
+                        || (TARGET_TURN_DAMAGED
+                            && moveType == TYPE_WATER)))
                 {
                     effect = ITEM_STATS_CHANGE;
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_TargetItemStatRaise;
+                    if (gBattleScripting.overrideActivationRequirements)
+                    {
+                        BattleScriptExecute(BattleScript_TargetItemStatRaiseEnd2);
+                    }
+                    else
+                    {
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_TargetItemStatRaise;
+                    }
                     gBattleScripting.statChanger = SET_STATCHANGER(STAT_SPATK, 1, FALSE);
                 }
                 break;
@@ -7927,6 +7986,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
     if (effect && (gLastUsedItem >= FIRST_BERRY_INDEX && gLastUsedItem <= LAST_BERRY_INDEX))
         gBattleStruct->ateBerry[battlerId & BIT_SIDE] |= gBitTable[gBattlerPartyIndexes[battlerId]];
 
+    DebugPrintfLevel(MGBA_LOG_ERROR, "effect: %d", effect);
     return effect;
 }
 
@@ -10791,7 +10851,8 @@ void BufferStatChange(u8 battlerId, u8 statId, u8 stringId)
 
 bool32 TryRoomService(u8 battlerId)
 {
-    if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM && CompareStat(battlerId, STAT_SPEED, MIN_STAT_STAGE, CMP_GREATER_THAN))
+    if ((gFieldStatuses & STATUS_FIELD_TRICK_ROOM && CompareStat(battlerId, STAT_SPEED, MIN_STAT_STAGE, CMP_GREATER_THAN))
+        || gBattleScripting.overrideActivationRequirements)
     {
         BufferStatChange(battlerId, STAT_SPEED, STRINGID_STATFELL);
         gEffectBattler = gBattleScripting.battler = battlerId;
