@@ -476,5 +476,6 @@ extern const u8 BattleScript_EffectExtremeEvoboost[];
 
 // Wonder Launcher Items
 extern const u8 BattleScript_ItemDrop[];
+extern const u8 BattleScript_ResetStats[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

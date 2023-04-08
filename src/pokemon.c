@@ -5942,6 +5942,8 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM0_RESET_URGE)
              && TryResetBattlerStatChanges(gActiveBattler))
             {
+                gBattleScripting.battler = gActiveBattler;
+                BattleScriptExecute(BattleScript_ResetStats);
                 retVal = FALSE;
             }
 
@@ -6671,6 +6673,26 @@ u8 *UseStatIncreaseItem(u16 itemId)
         BattleStringExpandPlaceholdersToDisplayedString(gText_PkmnShroudedInMist);
     }
 
+    return gDisplayedStringBattle;
+}
+
+const u8 *UseWonderLauncherItem(u16 secondaryId)
+{
+    switch (secondaryId)
+    {
+        case ABILITY_URGE:
+            BattleStringExpandPlaceholdersToDisplayedString(gText_ActivateAbilityUrge);
+            break;
+        case RESET_URGE:
+            BattleStringExpandPlaceholdersToDisplayedString(gText_ActivateResetUrge);
+            break;
+        case ITEM_URGE:
+            BattleStringExpandPlaceholdersToDisplayedString(gText_ActivateItemUrge);
+            break;
+        case ITEM_DROP:
+            BattleStringExpandPlaceholdersToDisplayedString(gText_ActivateItemDrop);
+            break;
+    }
     return gDisplayedStringBattle;
 }
 

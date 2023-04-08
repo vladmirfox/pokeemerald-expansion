@@ -1124,6 +1124,38 @@ void ItemUseInBattle_StatIncrease(u8 taskId)
     }
 }
 
+static void Task_UseWonderLauncherItem(u8 taskId)
+{
+    u8 secondaryId = ItemId_GetSecondaryId(gSpecialVar_ItemId);
+    if(++gTasks[taskId].data[8] > 7)
+    {
+        PlaySE(SE_USE_ITEM);
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+        if (!InBattlePyramid())
+            DisplayItemMessage(taskId, FONT_NORMAL, UseWonderLauncherItem(secondaryId), Task_CloseStatIncreaseMessage);
+        else
+            DisplayItemMessageInBattlePyramid(taskId, UseWonderLauncherItem(secondaryId), Task_CloseStatIncreaseMessage);
+    }
+}
+
+void ItemUseInBattle_WonderLauncherItem(u8 taskId)
+{
+    u16 partyId = gBattlerPartyIndexes[gBattlerInMenuId];
+
+    if (ExecuteTableBasedItemEffect(&gPlayerParty[partyId], gSpecialVar_ItemId, partyId, 0) != FALSE)
+    {
+        if (!InBattlePyramid())
+            DisplayItemMessage(taskId, FONT_NORMAL, gText_WontHaveEffect, CloseItemMessage);
+        else
+            DisplayItemMessageInBattlePyramid(taskId, gText_WontHaveEffect, Task_CloseBattlePyramidBagMessage);
+    }
+    else
+    {
+        gTasks[taskId].func = Task_UseWonderLauncherItem;
+        gTasks[taskId].data[8] = 0;
+    }
+}
+
 static void ItemUseInBattle_ShowPartyMenu(u8 taskId)
 {
     if (!InBattlePyramid())

@@ -1914,6 +1914,10 @@ const u8 gText_BattleSwitchWhich2[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW DYNA
 const u8 gText_BattleSwitchWhich3[] = _("{UP_ARROW}");
 const u8 gText_BattleSwitchWhich4[] = _("{ESCAPE 4}");
 const u8 gText_BattleSwitchWhich5[] = _("-");
+const u8 gText_ActivateAbilityUrge[] = _("{B_PLAYER_NAME} activates Ability Urge!");
+const u8 gText_ActivateResetUrge[] = _("{B_PLAYER_NAME} activates Reset Urge!");
+const u8 gText_ActivateItemUrge[] = _("{B_PLAYER_NAME} activates Item Urge!");
+const u8 gText_ActivateItemDrop[] = _("{B_PLAYER_NAME} activates Item Drop!");
 
 // Unused
 static const u8 *const sStatNamesTable2[] =

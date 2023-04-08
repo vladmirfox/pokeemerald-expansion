@@ -10446,3 +10446,9 @@ BattleScript_ItemDrop::
 	printstring STRINGID_ITEMDROP
 	waitmessage B_WAIT_TIME_LONG
 	end
+
+BattleScript_ResetStats::
+	playanimation BS_SCRIPTING B_ANIM_HELD_ITEM_EFFECT
+	printstring STRINGID_STATCHANGESGONE
+	waitmessage B_WAIT_TIME_LONG
+	end2

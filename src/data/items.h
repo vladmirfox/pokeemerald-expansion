@@ -10807,8 +10807,9 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = ITEM_B_USE_OTHER,
-        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .battleUseFunc = ItemUseInBattle_WonderLauncherItem,
         .flingPower = 30,
+        .secondaryId = ABILITY_URGE,
     },
 
     [ITEM_WONDER_LAUNCHER_RESET_URGE] =
@@ -10821,8 +10822,9 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = ITEM_B_USE_OTHER,
-        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .battleUseFunc = ItemUseInBattle_WonderLauncherItem,
         .flingPower = 30,
+        .secondaryId = RESET_URGE
     },
 
     [ITEM_WONDER_LAUNCHER_ITEM_URGE] =
@@ -10835,8 +10837,9 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = ITEM_B_USE_OTHER,
-        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .battleUseFunc = ItemUseInBattle_WonderLauncherItem,
         .flingPower = 30,
+        .secondaryId = ITEM_URGE,
     },
 
     [ITEM_WONDER_LAUNCHER_ITEM_DROP] =
@@ -10849,7 +10852,8 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = ITEM_B_USE_OTHER,
-        .battleUseFunc = ItemUseInBattle_StatIncrease,
+        .battleUseFunc = ItemUseInBattle_WonderLauncherItem,
         .flingPower = 30,
+        .secondaryId = ITEM_DROP,
     },
 };
