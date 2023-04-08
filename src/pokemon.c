@@ -5794,27 +5794,23 @@ static bool32 TryKnockOffItemScript(u32 battler)
 
 static bool8 TryActivateHeldItemEffect(u16 battler)
 {
+    u8 i;
+    u16 item; 
     gBattleScripting.overrideActivationRequirements = TRUE;
     gBattlerTarget = gBattlerAttacker = battler; // curseder
-    u16 item = gBattleMons[battler].item;
-    u8 i;
+    item = gBattleMons[battler].item;
 
     if (!ItemId_GetIsConsumable(item))
         return FALSE;
     
     for (i = 0; i < ITEMEFFECT_USE_LAST_ITEM; i++) // check all item effect cases until one is found that activates
     {
-        //DebugPrintfLevel(MGBA_LOG_ERROR, "before: %d", i);
-        //DebugPrintfLevel(MGBA_LOG_ERROR, "battleeffect before: %d", ItemBattleEffects(i, battler, FALSE));
         if (ItemBattleEffects(i, battler, FALSE))
         {
-            DebugPrintfLevel(MGBA_LOG_ERROR, "after: %d", i);
-            //DebugPrintfLevel(MGBA_LOG_ERROR, "battleeffect after: %d", ItemBattleEffects(i, battler, FALSE));
             gBattleScripting.overrideActivationRequirements = FALSE;
             return TRUE;
         }
     }
-    
     gBattleScripting.overrideActivationRequirements = FALSE;
     return FALSE;
 }

@@ -7085,8 +7085,6 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
     atkHoldEffect = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
     atkHoldEffectParam = GetBattlerHoldEffectParam(gBattlerAttacker);
 
-    DebugPrintfLevel(MGBA_LOG_ERROR, "battlerhold: %d", battlerHoldEffect);
-    DebugPrintfLevel(MGBA_LOG_ERROR, "attackerhold: %d", atkHoldEffect);
     switch (caseID)
     {
     case ITEMEFFECT_ON_SWITCH_IN:
@@ -7986,7 +7984,6 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
     if (effect && (gLastUsedItem >= FIRST_BERRY_INDEX && gLastUsedItem <= LAST_BERRY_INDEX))
         gBattleStruct->ateBerry[battlerId & BIT_SIDE] |= gBitTable[gBattlerPartyIndexes[battlerId]];
 
-    DebugPrintfLevel(MGBA_LOG_ERROR, "effect: %d", effect);
     return effect;
 }
 
