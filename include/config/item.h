@@ -7,7 +7,11 @@
 #define I_KEY_ESCAPE_ROPE       GEN_LATEST  // In Gen8, Escape Rope became a Key Item. Keep in mind, this will make it free to buy in marts.
 #define I_HEALTH_RECOVERY       GEN_LATEST  // In Gen7+, certain healing items recover a different amount of HP than they used to.
 #define I_SITRUS_BERRY_HEAL     GEN_LATEST  // In Gen4+, Sitrus Berry was changed from healing 30 HP to healing 25% of Max HP.
-#define I_VITAMIN_EV_CAP        GEN_LATEST  // In Gen8, the Vitamins no longer have a cap of 100 EV per stat.
+#define I_VITAMIN_EV_CAP        GEN_LATEST  // In Gen8+, the Vitamins no longer have a cap of 100 EV per stat.
+
+// Exp. Share config
+#define I_EXP_SHARE_FLAG        0           // If this flag is set, every Pokémon in the party will gain experience, regardless if they participated in the battle or not.
+#define I_EXP_SHARE_ITEM        GEN_LATEST  // In Gen6+, the Exp. Share was changed from a held item to a Key item that toggles the effect described above. 
 
 // Repel/Lure config
 // These two settings are both independent and complementary.

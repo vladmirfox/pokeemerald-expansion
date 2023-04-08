@@ -4219,7 +4219,11 @@ static void Cmd_getexp(void)
                 else
                     holdEffect = ItemId_GetHoldEffect(item);
 
+            #if I_EXP_SHARE_FLAG != 0
+                if (holdEffect == HOLD_EFFECT_EXP_SHARE || FlagGet(I_EXP_SHARE_FLAG))
+            #else
                 if (holdEffect == HOLD_EFFECT_EXP_SHARE)
+            #endif
                     viaExpShare++;
             }
             #if (B_SCALED_EXP >= GEN_5) && (B_SCALED_EXP != GEN_6)
@@ -4268,7 +4272,12 @@ static void Cmd_getexp(void)
             else
                 holdEffect = ItemId_GetHoldEffect(item);
 
-            if (holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1))
+        #if I_EXP_SHARE_FLAG != 0
+            if ((holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1) && !FlagGet(I_EXP_SHARE_FLAG))
+        #else
+            if ((holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1))
+        #endif
+             || GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPECIES_OR_EGG) == SPECIES_EGG)
             {
                 *(&gBattleStruct->sentInPokes) >>= 1;
                 gBattleScripting.getexpState = 5;
@@ -4306,14 +4315,18 @@ static void Cmd_getexp(void)
                     else
                         gBattleMoveDamage = 0;
 
-                    // only give exp share bonus in later gens if the mon wasn't sent out
-                #if B_SPLIT_EXP < GEN_6
-                    if (holdEffect == HOLD_EFFECT_EXP_SHARE)
-                        gBattleMoveDamage += gExpShareExp;
-                #else
-                    if (holdEffect == HOLD_EFFECT_EXP_SHARE && gBattleMoveDamage == 0)
-                        gBattleMoveDamage += gExpShareExp;
+                    if ((holdEffect == HOLD_EFFECT_EXP_SHARE
+                #if I_EXP_SHARE_FLAG != 0
+                        || FlagGet(I_EXP_SHARE_FLAG)
                 #endif
+                    )
+                #if B_SPLIT_EXP >= GEN_6
+                    // only give exp share bonus in later gens if the mon wasn't sent out
+                    && gBattleMoveDamage == 0
+                #endif
+                    )
+                        gBattleMoveDamage += gExpShareExp;
+
                     if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
                         gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
                 #if B_TRAINER_EXP_MULTIPLIER <= GEN_7
