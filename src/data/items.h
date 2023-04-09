@@ -10425,6 +10425,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_ATTACK_2] =
@@ -10440,6 +10441,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_ATTACK_3] =
@@ -10455,6 +10457,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_ATTACK_6] =
@@ -10470,6 +10473,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_DEFENSE_1] =
@@ -10485,6 +10489,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_DEFENSE_2] =
@@ -10500,6 +10505,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_DEFENSE_3] =
@@ -10515,6 +10521,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_DEFENSE_6] =
@@ -10530,6 +10537,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_SP_ATK_1] =
@@ -10545,6 +10553,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_SP_ATK_2] =
@@ -10560,6 +10569,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_SP_ATK_3] =
@@ -10575,6 +10585,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_SP_ATK_6] =
@@ -10590,6 +10601,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_SP_DEF_1] =
@@ -10605,6 +10617,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_SP_DEF_2] =
@@ -10620,6 +10633,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_SP_DEF_3] =
@@ -10635,6 +10649,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_SP_DEF_6] =
@@ -10650,6 +10665,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_SPEED_1] =
@@ -10665,6 +10681,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_SPEED_2] =
@@ -10680,6 +10697,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_SPEED_3] =
@@ -10695,6 +10713,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
     
     [ITEM_WONDER_LAUNCHER_X_SPEED_6] =
@@ -10710,6 +10729,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_ACCURACY_1] =
@@ -10725,6 +10745,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_ACCURACY_2] =
@@ -10740,6 +10761,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
     
     [ITEM_WONDER_LAUNCHER_X_ACCURACY_3] =
@@ -10755,6 +10777,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_X_ACCURACY_6] =
@@ -10770,6 +10793,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_DIRE_HIT_1] =
@@ -10785,6 +10809,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_DIRE_HIT_2] =
@@ -10800,6 +10825,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_DIRE_HIT_3] =
@@ -10815,6 +10841,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_GUARD_SPEC] =
@@ -10829,6 +10856,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_StatIncrease,
         .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_ABILITY_URGE] =
@@ -10843,7 +10871,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_WonderLauncherItem,
         .flingPower = 30,
-        .secondaryId = ABILITY_URGE,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_RESET_URGE] =
@@ -10858,7 +10886,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_WonderLauncherItem,
         .flingPower = 30,
-        .secondaryId = RESET_URGE
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_ITEM_URGE] =
@@ -10873,7 +10901,7 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_WonderLauncherItem,
         .flingPower = 30,
-        .secondaryId = ITEM_URGE,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 
     [ITEM_WONDER_LAUNCHER_ITEM_DROP] =
@@ -10888,6 +10916,6 @@ const struct Item gItems[] =
         .battleUsage = ITEM_B_USE_OTHER,
         .battleUseFunc = ItemUseInBattle_WonderLauncherItem,
         .flingPower = 30,
-        .secondaryId = ITEM_DROP,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
     },
 };

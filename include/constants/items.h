@@ -1054,6 +1054,9 @@
 #define MACH_BIKE 0
 #define ACRO_BIKE 1
 
+// secondaryIDs for Wonder Launcher Items
+// For easy distinction in Wonder Launcher Battle Type
+#define ITEM_WONDER_LAUNCHER 1
 
 // HoldEffectParam IDs for Wonder Launcher Items
 // Used to set correct stat increase
