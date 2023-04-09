@@ -10448,7 +10448,7 @@ BattleScript_ItemDrop::
 	end
 
 BattleScript_ResetStats::
-	playanimation BS_SCRIPTING B_ANIM_HELD_ITEM_EFFECT
+	playmoveanimation BS_SCRIPTING MOVE_HAZE
 	printstring STRINGID_STATCHANGESGONE
 	waitmessage B_WAIT_TIME_LONG
 	end2
