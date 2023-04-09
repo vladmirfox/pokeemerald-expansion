@@ -1054,16 +1054,14 @@
 #define MACH_BIKE 0
 #define ACRO_BIKE 1
 
-// Secondary IDs for Wonder Launcher Items
-#define ABILITY_URGE 1
-#define RESET_URGE   2
-#define ITEM_URGE    3
-#define ITEM_DROP    4
 
+// HoldEffectParam IDs for Wonder Launcher Items
+// Used to set correct stat increase
 #define STAT_STAGE_1 1
 #define STAT_STAGE_2 2
 #define STAT_STAGE_3 3
 #define STAT_STAGE_6 6
+#define STAT_STAGE_DEFAULT STAT_STAGE_2
 
 // Item parameters for EXP Candies
 #define EXP_100   1

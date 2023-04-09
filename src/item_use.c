@@ -1132,9 +1132,9 @@ static void Task_UseWonderLauncherItem(u8 taskId)
         PlaySE(SE_USE_ITEM);
         RemoveBagItem(gSpecialVar_ItemId, 1);
         if (!InBattlePyramid())
-            DisplayItemMessage(taskId, FONT_NORMAL, UseWonderLauncherItem(secondaryId), Task_CloseStatIncreaseMessage);
+            DisplayItemMessage(taskId, FONT_NORMAL, UseWonderLauncherItem(gSpecialVar_ItemId), Task_CloseStatIncreaseMessage);
         else
-            DisplayItemMessageInBattlePyramid(taskId, UseWonderLauncherItem(secondaryId), Task_CloseStatIncreaseMessage);
+            DisplayItemMessageInBattlePyramid(taskId, UseWonderLauncherItem(gSpecialVar_ItemId), Task_CloseStatIncreaseMessage);
     }
 }
 

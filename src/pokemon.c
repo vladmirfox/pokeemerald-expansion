@@ -5705,11 +5705,6 @@ bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, u16 item, u8 partyIndex, 
     #define X_ITEM_STAGES 1
 #endif
 
-#define WONDER_LAUNCHER_X_ITEM_STAGES_1 1
-#define WONDER_LAUNCHER_X_ITEM_STAGES_2 2
-#define WONDER_LAUNCHER_X_ITEM_STAGES_3 3
-#define WONDER_LAUNCHER_X_ITEM_STAGES_6 6
-
 // EXP candies store an index for this table in their holdEffectParam.
 const u32 sExpCandyExperienceTable[] = {
     [EXP_100 - 1] = 100,
@@ -5721,51 +5716,7 @@ const u32 sExpCandyExperienceTable[] = {
 
 static u8 GetXItemStage(u16 itemId)
 {
-    u8 xItemStages;
-
-    switch(itemId)
-    {
-        case ITEM_WONDER_LAUNCHER_X_ATTACK_1:
-        case ITEM_WONDER_LAUNCHER_X_DEFENSE_1:
-        case ITEM_WONDER_LAUNCHER_X_SP_ATK_1:
-        case ITEM_WONDER_LAUNCHER_X_SP_DEF_1:
-        case ITEM_WONDER_LAUNCHER_X_SPEED_1:
-        case ITEM_WONDER_LAUNCHER_X_ACCURACY_1:
-        case ITEM_WONDER_LAUNCHER_DIRE_HIT_1:
-            xItemStages = WONDER_LAUNCHER_X_ITEM_STAGES_1;
-            break;
-        case ITEM_WONDER_LAUNCHER_X_ATTACK_2:
-        case ITEM_WONDER_LAUNCHER_X_DEFENSE_2:
-        case ITEM_WONDER_LAUNCHER_X_SP_ATK_2:
-        case ITEM_WONDER_LAUNCHER_X_SP_DEF_2:
-        case ITEM_WONDER_LAUNCHER_X_SPEED_2:
-        case ITEM_WONDER_LAUNCHER_X_ACCURACY_2:
-        case ITEM_WONDER_LAUNCHER_DIRE_HIT_2:
-            xItemStages = WONDER_LAUNCHER_X_ITEM_STAGES_2;
-            break;
-        case ITEM_WONDER_LAUNCHER_X_ATTACK_3:
-        case ITEM_WONDER_LAUNCHER_X_DEFENSE_3:
-        case ITEM_WONDER_LAUNCHER_X_SP_ATK_3:
-        case ITEM_WONDER_LAUNCHER_X_SP_DEF_3:
-        case ITEM_WONDER_LAUNCHER_X_SPEED_3:
-        case ITEM_WONDER_LAUNCHER_X_ACCURACY_3:
-        case ITEM_WONDER_LAUNCHER_DIRE_HIT_3:
-            xItemStages = WONDER_LAUNCHER_X_ITEM_STAGES_3;
-            break;
-        case ITEM_WONDER_LAUNCHER_X_ATTACK_6:
-        case ITEM_WONDER_LAUNCHER_X_DEFENSE_6:
-        case ITEM_WONDER_LAUNCHER_X_SP_ATK_6:
-        case ITEM_WONDER_LAUNCHER_X_SP_DEF_6:
-        case ITEM_WONDER_LAUNCHER_X_SPEED_6:
-        case ITEM_WONDER_LAUNCHER_X_ACCURACY_6:
-            xItemStages = WONDER_LAUNCHER_X_ITEM_STAGES_6;
-            break;
-        default:
-            xItemStages = X_ITEM_STAGES;
-            break;
-    }
-
-    return xItemStages;
+    return ItemId_GetHoldEffectParam(itemId);
 }
 
 static bool8 TryActivateAbilityUrge(u16 battler)
@@ -5891,9 +5842,6 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
         itemEffect = gItemEffectTable[item];
     }
 
-    // handle different X Items stat levels
-    xItemStages = GetXItemStage(item);
-
     // Do item effect
     for (i = 0; i < ITEM_EFFECT_ARG_START; i++)
     {
@@ -5914,20 +5862,22 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM0_DIRE_HIT) 
              && !((gBattleMons[battlerId].status2 & STATUS2_CRIT_STAGE_2) || (gStatuses4[battlerId] & STATUS4_CRIT_STAGE_RAISED))) // cant increase crit stage if it was increased before
             {
-                switch(xItemStages)
+                switch(GetXItemStage(item))
                 {
-                    case WONDER_LAUNCHER_X_ITEM_STAGES_1:
-                            gStatuses4[gActiveBattler] |= STATUS4_CRIT_STAGE_1;
-                            retVal = FALSE;
+                    case STAT_STAGE_1:
+                        gStatuses4[gActiveBattler] |= STATUS4_CRIT_STAGE_1;
+                        retVal = FALSE;
                         break;
-                    case WONDER_LAUNCHER_X_ITEM_STAGES_2: // X_ITEM_STAGES 
-                            gBattleMons[gActiveBattler].status2 |= STATUS2_CRIT_STAGE_2;
-                            retVal = FALSE;
+                    case STAT_STAGE_2:
+                        gBattleMons[gActiveBattler].status2 |= STATUS2_CRIT_STAGE_2;
+                        retVal = FALSE;
                         break;
-                    case WONDER_LAUNCHER_X_ITEM_STAGES_3:
-                            gStatuses4[gActiveBattler] |= STATUS4_CRIT_STAGE_3;
-                            retVal = FALSE;
+                    case STAT_STAGE_3:
+                        gStatuses4[gActiveBattler] |= STATUS4_CRIT_STAGE_3;
+                        retVal = FALSE;
                         break;
+                    default:
+                        retVal = TRUE;
                 }
             }
             
@@ -5968,7 +5918,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM1_X_ATTACK)
              && gBattleMons[gActiveBattler].statStages[STAT_ATK] < MAX_STAT_STAGE)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_ATK] += xItemStages;
+                gBattleMons[gActiveBattler].statStages[STAT_ATK] += GetXItemStage(item);
                 if (gBattleMons[gActiveBattler].statStages[STAT_ATK] > MAX_STAT_STAGE)
                     gBattleMons[gActiveBattler].statStages[STAT_ATK] = MAX_STAT_STAGE;
                 retVal = FALSE;
@@ -5978,7 +5928,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM1_X_DEFENSE)
              && gBattleMons[gActiveBattler].statStages[STAT_DEF] < MAX_STAT_STAGE)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_DEF] += xItemStages;
+                gBattleMons[gActiveBattler].statStages[STAT_DEF] += GetXItemStage(item);
                 if (gBattleMons[gActiveBattler].statStages[STAT_DEF] > MAX_STAT_STAGE)
                     gBattleMons[gActiveBattler].statStages[STAT_DEF] = MAX_STAT_STAGE;
                 retVal = FALSE;
@@ -5988,7 +5938,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM1_X_SPEED)
              && gBattleMons[gActiveBattler].statStages[STAT_SPEED] < MAX_STAT_STAGE)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_SPEED] += xItemStages;
+                gBattleMons[gActiveBattler].statStages[STAT_SPEED] += GetXItemStage(item);
                 if (gBattleMons[gActiveBattler].statStages[STAT_SPEED] > MAX_STAT_STAGE)
                     gBattleMons[gActiveBattler].statStages[STAT_SPEED] = MAX_STAT_STAGE;
                 retVal = FALSE;
@@ -5998,7 +5948,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM1_X_SPATK)
              && gBattleMons[gActiveBattler].statStages[STAT_SPATK] < MAX_STAT_STAGE)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_SPATK] += xItemStages;
+                gBattleMons[gActiveBattler].statStages[STAT_SPATK] += GetXItemStage(item);
                 if (gBattleMons[gActiveBattler].statStages[STAT_SPATK] > MAX_STAT_STAGE)
                     gBattleMons[gActiveBattler].statStages[STAT_SPATK] = MAX_STAT_STAGE;
                 retVal = FALSE;
@@ -6008,7 +5958,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM1_X_SPDEF)
              && gBattleMons[gActiveBattler].statStages[STAT_SPDEF] < MAX_STAT_STAGE)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_SPDEF] += xItemStages;
+                gBattleMons[gActiveBattler].statStages[STAT_SPDEF] += GetXItemStage(item);
                 if (gBattleMons[gActiveBattler].statStages[STAT_SPDEF] > MAX_STAT_STAGE)
                     gBattleMons[gActiveBattler].statStages[STAT_SPDEF] = MAX_STAT_STAGE;
                 retVal = FALSE;
@@ -6018,7 +5968,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM1_X_ACCURACY)
              && gBattleMons[gActiveBattler].statStages[STAT_ACC] < MAX_STAT_STAGE)
             {
-                gBattleMons[gActiveBattler].statStages[STAT_ACC] += xItemStages;
+                gBattleMons[gActiveBattler].statStages[STAT_ACC] += GetXItemStage(item);
                 if (gBattleMons[gActiveBattler].statStages[STAT_ACC] > MAX_STAT_STAGE)
                     gBattleMons[gActiveBattler].statStages[STAT_ACC] = MAX_STAT_STAGE;
                 retVal = FALSE;
@@ -6598,20 +6548,20 @@ static void BufferStatRoseMessage(s32 statIdx, u8 statStage)
 
     switch (statStage)
     {
-        case WONDER_LAUNCHER_X_ITEM_STAGES_1: // || X_ITEM_STAGES == 1
+        case STAT_STAGE_1:
             StringCopy(gBattleTextBuff2, gText_StatRose);
             break;
-        case WONDER_LAUNCHER_X_ITEM_STAGES_2: // || X_ITEM_STAGES == 2
+        case STAT_STAGE_2:
             StringCopy(gBattleTextBuff2, gText_StatSharply);
             break;
-        case WONDER_LAUNCHER_X_ITEM_STAGES_3:
+        case STAT_STAGE_3:
             StringCopy(gBattleTextBuff2, gText_StatDrastically);
             break;
-        case WONDER_LAUNCHER_X_ITEM_STAGES_6:
+        case STAT_STAGE_6:
             StringCopy(gBattleTextBuff2, gText_StatImmensly);
             break;
     }
-    if (statStage != WONDER_LAUNCHER_X_ITEM_STAGES_1) // || X_ITEM_STAGES == 1
+    if (statStage != STAT_STAGE_1) 
         	StringAppend(gBattleTextBuff2, gText_StatRose);
 
     BattleStringExpandPlaceholdersToDisplayedString(gText_DefendersStatRose);
@@ -6676,21 +6626,23 @@ u8 *UseStatIncreaseItem(u16 itemId)
     return gDisplayedStringBattle;
 }
 
-const u8 *UseWonderLauncherItem(u16 secondaryId)
+const u8 *UseWonderLauncherItem(u16 itemId)
 {
-    switch (secondaryId)
+    switch (itemId)
     {
-        case ABILITY_URGE:
+        case ITEM_WONDER_LAUNCHER_ABILITY_URGE:
             BattleStringExpandPlaceholdersToDisplayedString(gText_ActivateAbilityUrge);
             break;
-        case RESET_URGE:
+        case ITEM_WONDER_LAUNCHER_RESET_URGE:
             BattleStringExpandPlaceholdersToDisplayedString(gText_ActivateResetUrge);
             break;
-        case ITEM_URGE:
+        case ITEM_WONDER_LAUNCHER_ITEM_URGE:
             BattleStringExpandPlaceholdersToDisplayedString(gText_ActivateItemUrge);
             break;
-        case ITEM_DROP:
+        case ITEM_WONDER_LAUNCHER_ITEM_DROP:
             BattleStringExpandPlaceholdersToDisplayedString(gText_ActivateItemDrop);
+            break;
+        default:
             break;
     }
     return gDisplayedStringBattle;
