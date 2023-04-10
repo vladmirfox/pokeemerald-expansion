@@ -7063,7 +7063,11 @@ static u8 ItemEffectMoveEnd(u32 battlerId, u16 holdEffect)
     case HOLD_EFFECT_BERSERK_GENE:
         BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
         gEffectBattler = battlerId;
-        gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
+        if (gBattleMons[gEffectBattler].ability != ABILITY_OWN_TEMPO
+         || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+        {
+            gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
+        }
         SET_STATCHANGER(STAT_ATK, 2, FALSE);
 
         gBattleScripting.animArg1 = 14 + STAT_ATK;
@@ -7314,7 +7318,11 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             case HOLD_EFFECT_BERSERK_GENE:
                 BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
                 gEffectBattler = battlerId;
-                gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
+                if (gBattleMons[gEffectBattler].ability != ABILITY_OWN_TEMPO
+                 || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+                {
+                    gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
+                }
                 SET_STATCHANGER(STAT_ATK, 2, FALSE);
 
                 gBattleScripting.animArg1 = 14 + STAT_ATK;
@@ -7610,7 +7618,11 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             case HOLD_EFFECT_BERSERK_GENE:
                 BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
                 gEffectBattler = battlerId;
-                gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
+                if (gBattleMons[gEffectBattler].ability != ABILITY_OWN_TEMPO
+                 || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+                {
+                    gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
+                }
                 SET_STATCHANGER(STAT_ATK, 2, FALSE);
 
                 gBattleScripting.animArg1 = 14 + STAT_ATK;
