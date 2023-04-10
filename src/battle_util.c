@@ -21,6 +21,7 @@
 #include "sprite.h"
 #include "string_util.h"
 #include "task.h"
+#include "test_runner.h"
 #include "trig.h"
 #include "window.h"
 #include "battle_message.h"
@@ -565,7 +566,7 @@ void HandleAction_UseItem(void)
     {
         gBattlescriptCurrInstr = gBattlescriptsForRunningByItem[0]; // BattleScript_RunByUsingItem
     }
-    else if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
+    else if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER && !gTestRunnerEnabled)
     {
         gBattlescriptCurrInstr = gBattlescriptsForUsingItem[0]; // BattleScript_PlayerUsesItem
     }

@@ -3,6 +3,7 @@
 #include "battle_anim.h"
 #include "battle_controllers.h"
 #include "characters.h"
+#include "item_menu.h"
 #include "main.h"
 #include "malloc.h"
 #include "random.h"
@@ -1251,6 +1252,9 @@ void BattleTest_CheckBattleRecordActionType(u32 battlerId, u32 recordIndex, u32 
                 case B_ACTION_SWITCH:
                     actualMacro = "SWITCH";
                     break;
+                case B_ACTION_USE_ITEM:
+                    actualMacro = "USE_ITEM";
+                    break;
                 }
                 break;
             case RECORDED_PARTY_INDEX:
@@ -1506,6 +1510,18 @@ void SendOut(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex)
         Move(sourceLine, battler, (struct MoveContext) { move: MOVE_CELEBRATE, explicitMove: TRUE });
     PushBattlerAction(sourceLine, battlerId, RECORDED_PARTY_INDEX, partyIndex);
     DATA.currentMonIndexes[battlerId] = partyIndex;
+}
+
+void UseItem(u32 sourceLine, struct BattlePokemon *battler, u32 itemId)
+{
+    s32 battlerId = battler - gBattleMons;
+    INVALID_IF(DATA.turnState == TURN_CLOSED, "USE_ITEM outside TURN");
+    INVALID_IF(DATA.actionBattlers & (1 << battlerId), "Multiple battler actions");
+    INVALID_IF(itemId >= ITEMS_COUNT, "Illegal item: %d", itemId);
+    PushBattlerAction(sourceLine, battlerId, RECORDED_ACTION_TYPE, B_ACTION_USE_ITEM);
+    PushBattlerAction(sourceLine, battlerId, RECORDED_ITEM_ID, itemId & 0xFF00);
+    PushBattlerAction(sourceLine, battlerId, RECORDED_ITEM_ID, itemId & 0xFF);
+    DATA.actionBattlers |= 1 << battlerId;
 }
 
 static const char *const sQueueGroupTypeMacros[] =

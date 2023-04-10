@@ -34,6 +34,7 @@ enum {
 void GetAIPartyIndexes(u32 battlerId, s32 *firstId, s32 *lastId);
 void AI_TrySwitchOrUseItem(void);
 u8 GetMostSuitableMonToSwitchInto(void);
+u8 GetAI_ItemType(u16 itemId, const u8 *itemEffect);
 bool32 ShouldSwitch(void);
 
 #endif // GUARD_BATTLE_AI_SWITCH_ITEMS_H

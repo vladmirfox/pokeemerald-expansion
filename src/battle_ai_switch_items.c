@@ -1005,7 +1005,7 @@ u8 GetMostSuitableMonToSwitchInto(void)
     return PARTY_SIZE;
 }
 
-static u8 GetAI_ItemType(u16 itemId, const u8 *itemEffect)
+u8 GetAI_ItemType(u16 itemId, const u8 *itemEffect)
 {
     if (itemId == ITEM_FULL_RESTORE)
         return AI_ITEM_FULL_RESTORE;
