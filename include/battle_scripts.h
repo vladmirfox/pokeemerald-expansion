@@ -461,6 +461,7 @@ extern const u8 BattleScript_CouldntFullyProtect[];
 extern const u8 BattleScript_MoveEffectStockpileWoreOff[];
 extern const u8 BattleScript_StealthRockActivates[];
 extern const u8 BattleScript_SpikesActivates[];
+extern const u8 BattleScript_BerserkGeneRet[];
 
 // zmoves
 extern const u8 BattleScript_ZMoveActivateDamaging[];
@@ -471,5 +472,4 @@ extern const u8 BattleScript_StatUpZMove[];
 extern const u8 BattleScript_HealReplacementZMove[];
 extern const u8 BattleScript_EffectExtremeEvoboost[];
 
-extern const u8 BattleScript_BerserkGeneRet[];
 #endif // GUARD_BATTLE_SCRIPTS_H

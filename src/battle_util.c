@@ -3597,7 +3597,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_CONFUSED: // confusion
-            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_CONFUSION) 
+            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_CONFUSION)
             {
                 if (!(gStatuses4[gBattlerAttacker] & STATUS4_INFINITE_CONFUSION))
                     gBattleMons[gBattlerAttacker].status2 -= STATUS2_CONFUSION_TURN(1);
@@ -7061,20 +7061,16 @@ static u8 ItemEffectMoveEnd(u32 battlerId, u16 holdEffect)
         }
         break;
     case HOLD_EFFECT_BERSERK_GENE:
-        if (TRUE)
-        {
-            BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
-            gEffectBattler = battlerId;
-            gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
-            SET_STATCHANGER(STAT_ATK, 2, FALSE);
+        BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
+        gEffectBattler = battlerId;
+        gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
+        SET_STATCHANGER(STAT_ATK, 2, FALSE);
 
-            gBattleScripting.animArg1 = 14 + STAT_ATK;
-            gBattleScripting.animArg2 = 0;
+        gBattleScripting.animArg1 = 14 + STAT_ATK;
+        gBattleScripting.animArg2 = 0;
 
-            BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_BerserkGeneRet;
-            effect = ITEM_STATS_CHANGE;
-        }
+        BattleScriptPushCursorAndCallback(BattleScript_BerserkGeneRet);
+        effect = ITEM_STATS_CHANGE;
         break;
     }
 
@@ -7316,20 +7312,17 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_BERSERK_GENE:
-                if (TRUE)
-                {
-                    BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
-                    gEffectBattler = battlerId;
-                    gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
-                    SET_STATCHANGER(STAT_ATK, 2, FALSE);
+                BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
+                gEffectBattler = battlerId;
+                gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
+                SET_STATCHANGER(STAT_ATK, 2, FALSE);
 
-                    gBattleScripting.animArg1 = 14 + STAT_ATK;
-                    gBattleScripting.animArg2 = 0;
+                gBattleScripting.animArg1 = 14 + STAT_ATK;
+                gBattleScripting.animArg2 = 0;
 
-                    BattleScriptPushCursorAndCallback(BattleScript_BerserkGeneRet);
-                    effect = ITEM_STATS_CHANGE;
-                }
-                break; 
+                BattleScriptPushCursorAndCallback(BattleScript_BerserkGeneRet);
+                effect = ITEM_STATS_CHANGE;
+                break;
             }
             if (effect != 0)
             {
@@ -7615,21 +7608,17 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                     effect = TrySetMicleBerry(battlerId, gLastUsedItem, TRUE);
                 break;
             case HOLD_EFFECT_BERSERK_GENE:
-                if (TRUE)
-                {
-                    BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
-                    gEffectBattler = battlerId;
-                    gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
-                    SET_STATCHANGER(STAT_ATK, 2, FALSE);
+                BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
+                gEffectBattler = battlerId;
+                gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
+                SET_STATCHANGER(STAT_ATK, 2, FALSE);
 
-                    gBattleScripting.animArg1 = 14 + STAT_ATK;
-                    gBattleScripting.animArg2 = 0;
+                gBattleScripting.animArg1 = 14 + STAT_ATK;
+                gBattleScripting.animArg2 = 0;
 
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_BerserkGeneRet;
-                    effect = ITEM_STATS_CHANGE;
-                }
-                break; 
+                BattleScriptPushCursorAndCallback(BattleScript_BerserkGeneRet);
+                effect = ITEM_STATS_CHANGE;
+                break;
             }
 
             if (effect != 0)
