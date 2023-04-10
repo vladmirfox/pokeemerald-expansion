@@ -301,11 +301,6 @@ static void CreateHealthboxSprite(u8 battler)
         else
             UpdateHealthboxAttribute(gHealthboxSpriteIds[battler], &gPlayerParty[gBattlerPartyIndexes[battler]], HEALTHBOX_ALL);
 
-        if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_RIGHT || GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT)
-            DummyBattleInterfaceFunc(gHealthboxSpriteIds[battler], TRUE);
-        else
-            DummyBattleInterfaceFunc(gHealthboxSpriteIds[battler], FALSE);
-
         if (GetBattlerSide(battler) != B_SIDE_PLAYER)
         {
             if (GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_HP) == 0)
