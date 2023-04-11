@@ -1,14 +1,20 @@
-.set LOCALID_RIVAL, 1
-
 LittlerootTown_BrendansHouse_2F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_BrendansHouse_2F_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_BrendansHouse_2F_OnWarp
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_BrendansHouse_2F_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
 	.byte 0
+
+LittlerootTown_BrendansHouse_2F_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
+	map_script_2 VAR_UNUSED_0x404E, 0, Intro_Sequence
+	.2byte 0
+
+
+.set LOCALID_RIVAL, 1
 
 LittlerootTown_BrendansHouse_2F_OnTransition:
 	call_if_lt VAR_LITTLEROOT_RIVAL_STATE, 2, LittlerootTown_BrendansHouse_2F_EventScript_CheckSetReadyToMeetBrendan
 	call_if_ge VAR_LITTLEROOT_RIVAL_STATE, 3, LittlerootTown_BrendansHouse_2F_EventScript_CheckShouldUpdateBrendanPos
-	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 4, PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet
+	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 5, PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet
 	call SecretBase_EventScript_SetDecorationFlags
 	setvar VAR_SECRET_BASE_INITIALIZED, 0
 	end
@@ -302,3 +308,68 @@ PlayersHouse_2F_Text_ItsAGameCube:
 	.string "It's a Nintendo GameCube.\p"
 	.string "A Game Boy Advance is connected to\n"
 	.string "serve as the Controller.$"
+
+Intro_Sequence::
+	msgbox Intro_Sequence_Text_0
+	release
+	fadescreen 1
+	msgbox Intro_Sequence_Text_1
+	setvar VAR_UNUSED_0x404E, 1
+	release
+	fadescreen 0
+	msgbox Intro_Sequence_Text_2
+	release
+	applymovement OBJ_EVENT_ID_PLAYER, Players_Movement_1
+	applymovement 14, Moms_Movement_1
+	waitmovement 0
+	removeobject 14
+	setflag FLAG_UNUSED_0x020
+	warp MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F, 12, 5
+	return
+
+Intro_Sequence_Text_0:
+	.string "DIALOGUE$"
+
+Intro_Sequence_Text_1:
+	.string "DIALOGUE$"
+
+Intro_Sequence_Text_2:
+	.string "DIALOGUE$"
+
+Players_Movement_1:
+	walk_right
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	delay_8
+	walk_up
+	face_down
+	step_end
+
+Moms_Movement_1:
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	delay_8
+	set_invisible
+	delay_16
+	step_end

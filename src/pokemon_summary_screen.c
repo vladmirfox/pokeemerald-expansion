@@ -1112,7 +1112,7 @@ void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, 
     SummaryScreen_SetAnimDelayTaskId(TASK_NONE);
 
     if (gMonSpritesGfxPtr == NULL)
-        CreateMonSpritesGfxManager(MON_SPR_GFX_MANAGER_A, MON_SPR_GFX_MODE_NORMAL);
+        CreateMonSpritesGfxManager();
 
     SetMainCallback2(CB2_InitSummaryScreen);
 }
@@ -1501,7 +1501,7 @@ static void CloseSummaryScreen(u8 taskId)
         StopCryAndClearCrySongs();
         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
         if (gMonSpritesGfxPtr == NULL)
-            DestroyMonSpritesGfxManager(MON_SPR_GFX_MANAGER_A);
+            DestroyMonSpritesGfxManager();
         FreeSummaryScreen();
         DestroyTask(taskId);
     }
@@ -3889,6 +3889,7 @@ static u8 LoadMonGfxAndSprite(struct Pokemon *mon, s16 *state)
         {
             if (gMonSpritesGfxPtr != NULL)
             {
+<<<<<<< Updated upstream
                 if (sMonSummaryScreen->monList.mons == gPlayerParty || sMonSummaryScreen->mode == SUMMARY_MODE_BOX || sMonSummaryScreen->handleDeoxys == TRUE)
                     HandleLoadSpecialPokePic_2(&gMonFrontPicTable[summary->species2],
                                                gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT],
@@ -3912,6 +3913,19 @@ static u8 LoadMonGfxAndSprite(struct Pokemon *mon, s16 *state)
                                                               MonSpritesGfxManager_GetSpritePtr(MON_SPR_GFX_MANAGER_A, B_POSITION_OPPONENT_LEFT),
                                                               summary->species2,
                                                               summary->pid);
+=======
+                HandleLoadSpecialPokePic(TRUE,
+                                         MonSpritesGfxManager_GetSpritePtr(B_POSITION_OPPONENT_LEFT),
+                                         summary->species2,
+                                         summary->pid);
+            }
+            else
+            {
+                HandleLoadSpecialPokePic(TRUE,
+                                         MonSpritesGfxManager_GetSpritePtr(B_POSITION_OPPONENT_LEFT),
+                                         summary->species2,
+                                         summary->pid);
+>>>>>>> Stashed changes
             }
         }
         (*state)++;

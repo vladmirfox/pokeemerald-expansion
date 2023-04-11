@@ -1,0 +1,2 @@
+GlengroveTownEastHouse_MapScripts::
+	.byte 0

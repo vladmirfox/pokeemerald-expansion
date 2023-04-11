@@ -31,6 +31,13 @@ static void VCountIntr(void);
 static void SerialIntr(void);
 static void IntrDummy(void);
 
+<<<<<<< Updated upstream
+=======
+// Defined in the linker script so that the test build can override it.
+extern void gInitialMainCB2(void);
+extern void CB2_FlashNotDetectedScreen(void);
+
+>>>>>>> Stashed changes
 const u8 gGameVersion = GAME_VERSION;
 
 const u8 gGameLanguage = GAME_LANGUAGE; // English
@@ -114,7 +121,7 @@ void AgbMain()
     gSoftResetDisabled = FALSE;
 
     if (gFlashMemoryPresent != TRUE)
-        SetMainCallback2(NULL);
+        SetMainCallback2(CB2_FlashNotDetectedScreen);
 
     gLinkTransferringData = FALSE;
     sUnusedVar = 0xFC0;
@@ -408,9 +415,13 @@ static void IntrDummy(void)
 static void WaitForVBlank(void)
 {
     gMain.intrCheck &= ~INTR_FLAG_VBLANK;
+<<<<<<< Updated upstream
 
     while (!(gMain.intrCheck & INTR_FLAG_VBLANK))
         ;
+=======
+    asm("swi 0x5");
+>>>>>>> Stashed changes
 }
 
 void SetTrainerHillVBlankCounter(u32 *counter)

@@ -2,17 +2,17 @@
   "id": "MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F",
   "name": "LittlerootTown_MaysHouse_1F",
   "layout": "LAYOUT_LITTLEROOT_TOWN_MAYS_HOUSE_1F",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_VERDANTURF",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
   "allow_cycling": false,
   "allow_escaping": false,
-  "allow_running": false,
+  "allow_running": true,
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_MOM",
@@ -55,8 +55,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_4",
-      "x": 8,
-      "y": 7,
+      "x": 9,
+      "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -95,7 +95,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL",
       "x": 2,
-      "y": 8,
+      "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 1,
@@ -108,32 +108,39 @@
   ],
   "warp_events": [
     {
+      "x": 9,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_LITTLEROOT_TOWN",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 6,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_LITTLEROOT_TOWN",
+      "dest_warp_id": "3"
+    },
+    {
       "x": 1,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_LITTLEROOT_TOWN",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 2,
-      "y": 8,
-      "elevation": 0,
-      "dest_map": "MAP_LITTLEROOT_TOWN",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 2,
       "y": 2,
       "elevation": 0,
       "dest_map": "MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 5,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_LITTLEROOT_TOWN",
+      "dest_warp_id": "3"
     }
   ],
   "coord_events": [
     {
       "type": "trigger",
-      "x": 2,
-      "y": 8,
+      "x": 1,
+      "y": 5,
       "elevation": 0,
       "var": "VAR_LITTLEROOT_INTRO_STATE",
       "var_value": "4",
@@ -167,5 +174,7 @@
       "script": "LittlerootTown_MaysHouse_1F_EventScript_MeetRival2"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ]
 }

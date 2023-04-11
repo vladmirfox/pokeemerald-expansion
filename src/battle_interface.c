@@ -2246,7 +2246,15 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
                     gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
                     gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
                     &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
+<<<<<<< Updated upstream
                     B_HEALTHBAR_PIXELS / 8, 1);
+=======
+                #if B_FAST_HP_DRAIN == TRUE
+                    B_HEALTHBAR_PIXELS / 8, max(gBattleSpritesDataPtr->battleBars[battlerId].maxValue / B_HEALTHBAR_PIXELS, 1));
+                #else
+                    B_HEALTHBAR_PIXELS / 8, max(gBattleSpritesDataPtr->battleBars[battlerId].maxValue / 48, 1));
+                #endif
+>>>>>>> Stashed changes
     }
     else // exp bar
     {
