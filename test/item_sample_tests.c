@@ -5,7 +5,7 @@ SINGLE_BATTLE_TEST("Potion heals 20 HP in battle")
 {
     s16 damage;
     GIVEN {
-        ASSUME(gItems[ITEM_POTION].battleUsage == ITEM_B_USE_MEDICINE);
+        ASSUME(gItems[ITEM_POTION].battleUsage == EFFECT_ITEM_RESTORE_HP);
         PLAYER(SPECIES_WOBBUFFET) { HP(50); MaxHP(100); Item(ITEM_POTION); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -17,10 +17,9 @@ SINGLE_BATTLE_TEST("Potion heals 20 HP in battle")
     }
 }
 
-SINGLE_BATTLE_TEST("X-Attack increases a battler's attack stat", s16 damage)
+SINGLE_BATTLE_TEST("X-Attack sharply raises battler's attack stat", s16 damage)
 {
     u16 useItem;
-    KNOWN_FAILING;
     PARAMETRIZE { useItem = FALSE; }
     PARAMETRIZE { useItem = TRUE; }
     GIVEN {
@@ -34,6 +33,6 @@ SINGLE_BATTLE_TEST("X-Attack increases a battler's attack stat", s16 damage)
         MESSAGE("Wobbuffet used Tackle!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[1].damage);
     }
 }

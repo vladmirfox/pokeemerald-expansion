@@ -12,7 +12,9 @@
 #include "item_use.h"
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
+#include "constants/battle.h"
 #include "constants/items.h"
+#include "constants/item_effects.h"
 #include "constants/hold_effects.h"
 
 static bool8 CheckPyramidBagHasItem(u16 itemId, u16 count);
@@ -927,11 +929,6 @@ u8 ItemId_GetBattleUsage(u16 itemId)
     return gItems[SanitizeItemId(itemId)].battleUsage;
 }
 
-ItemUseFunc ItemId_GetBattleFunc(u16 itemId)
-{
-    return gItems[SanitizeItemId(itemId)].battleUseFunc;
-}
-
 u8 ItemId_GetSecondaryId(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].secondaryId;
@@ -940,4 +937,35 @@ u8 ItemId_GetSecondaryId(u16 itemId)
 u8 ItemId_GetFlingPower(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].flingPower;
+}
+
+
+u32 GetItemStatus1Mask(u16 itemId)
+{
+    switch (gItemEffectTable[itemId][3])
+    {
+        case ITEM3_FREEZE:
+            return STATUS1_FREEZE;
+        case ITEM3_BURN:
+            return STATUS1_BURN;
+        case ITEM3_POISON:
+            return STATUS1_POISON | STATUS1_TOXIC_POISON;
+        case ITEM3_SLEEP:
+            return STATUS1_SLEEP;
+        case ITEM3_STATUS_ALL:
+            return STATUS1_ANY;
+    }
+    return 0;
+}
+
+u32 GetItemStatus2Mask(u16 itemId)
+{
+    if (gItemEffectTable[itemId][3] & ITEM3_STATUS_ALL)
+        return STATUS2_INFATUATION | STATUS2_CONFUSION;
+    else if (gItemEffectTable[itemId][0] & ITEM0_INFATUATION)
+        return STATUS2_INFATUATION;
+    else if (gItemEffectTable[itemId][3] & ITEM3_CONFUSION)
+        return STATUS2_CONFUSION;
+    else
+        return 0;
 }

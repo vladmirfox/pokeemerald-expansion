@@ -52,6 +52,7 @@
 #include "constants/battle_string_ids.h"
 #include "constants/hold_effects.h"
 #include "constants/items.h"
+#include "constants/item_effects.h"
 #include "constants/map_types.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
@@ -11225,6 +11226,101 @@ static void Cmd_various(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
+    case VARIOUS_ITEM_RESTORE_HP:
+    {
+        VARIOUS_ARGS();
+        u16 healAmount;
+        struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
+        u16 hp = GetMonData(&party[gSelectedMonPartyId], MON_DATA_HP);
+        u16 maxHP = GetMonData(&party[gSelectedMonPartyId], MON_DATA_MAX_HP);
+
+        // Get amount to heal.
+        switch (gItemEffectTable[gLastUsedItem][6])
+        {
+            case ITEM6_HEAL_HP_FULL:
+                healAmount = maxHP;
+                break;
+            case ITEM6_HEAL_HP_HALF:
+                healAmount = maxHP / 2;
+                break;
+            case ITEM6_HEAL_HP_QUARTER:
+                healAmount = maxHP / 4;
+                break;
+            default:
+                healAmount = gItemEffectTable[gLastUsedItem][6];
+                break;
+        }
+        if (hp + healAmount > maxHP)
+            healAmount = maxHP - hp;
+        
+        // Heal is applied as move damage if battler is active.
+        if (gSelectedMonPartyId == gBattlerPartyIndexes[gActiveBattler])
+        {
+            gBattleMoveDamage = -healAmount;
+        }
+        else
+        {
+            hp += healAmount;
+            BtlController_EmitSetMonData(BUFFER_A, REQUEST_HP_BATTLE, gBitTable[gSelectedMonPartyId], sizeof(hp), &hp);
+            MarkBattlerForControllerExec(gActiveBattler);
+        }
+        PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gSelectedMonPartyId], MON_DATA_SPECIES));
+        gSelectedMonPartyId = PARTY_SIZE;
+        break;
+    }
+    case VARIOUS_ITEM_CURE_STATUS:
+    {
+        VARIOUS_ARGS();
+        struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
+        HealStatusConditions(&party[gSelectedMonPartyId], gSelectedMonPartyId, GetItemStatus1Mask(gLastUsedItem), gActiveBattler);
+        if (gSelectedMonPartyId == gBattlerPartyIndexes[gActiveBattler])
+            gBattleMons[gActiveBattler].status2 &= ~GetItemStatus2Mask(gLastUsedItem);     
+        PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gSelectedMonPartyId], MON_DATA_SPECIES));
+        gSelectedMonPartyId = PARTY_SIZE;
+        break;
+    }
+    case VARIOUS_ITEM_INCREASE_STAT:
+    {
+        VARIOUS_ARGS();
+        u16 statId = gItemEffectTable[gLastUsedItem][1];
+        u16 stages = (B_X_ITEMS_BUFF >= GEN_7) ? 2 : 1;
+        SET_STATCHANGER(statId, stages, FALSE);
+        break;
+    }
+    case VARIOUS_ITEM_RESTORE_PP:
+    {
+        VARIOUS_ARGS();
+        u32 i, pp, maxPP, moveId;
+        u32 loopEnd = MAX_MON_MOVES;
+        struct Pokemon *mon = (side == B_SIDE_PLAYER) ? &gPlayerParty[gSelectedMonPartyId] : &gEnemyParty[gSelectedMonPartyId];
+        MgbaPrintf(MGBA_LOG_DEBUG, "Selected Mon Id: %d", gSelectedMonPartyId);
+        MgbaPrintf(MGBA_LOG_DEBUG, "Selected Move: %d", gChosenMovePos);
+        // Check whether to apply to all moves.
+        if (gItemEffectTable[gLastUsedItem][4] & ITEM4_HEAL_PP_ONE)
+        {
+            i = gChosenMovePos;
+            loopEnd = gChosenMovePos + 1;
+        }
+        // Heal PP!
+        for (i = 0; i < loopEnd; i++)
+        {
+            pp = GetMonData(mon, MON_DATA_PP1 + i, NULL);
+            moveId = GetMonData(mon, MON_DATA_MOVE1 + i, NULL);
+            maxPP = CalculatePPWithBonus(moveId, GetMonData(mon, MON_DATA_PP_BONUSES, NULL), i);
+            if (pp != maxPP)
+            {
+                pp += gItemEffectTable[gLastUsedItem][6];
+                if (pp > maxPP)
+                    pp = maxPP;
+                SetMonData(mon, MON_DATA_PP1 + i, &pp);
+                if (gSelectedMonPartyId == gBattlerPartyIndexes[gActiveBattler] && MOVE_IS_PERMANENT(gActiveBattler, i))
+                    gBattleMons[gActiveBattler].pp[i] = pp;
+            }
+        }
+        PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(mon, MON_DATA_SPECIES));
+        gSelectedMonPartyId = PARTY_SIZE;
+        break;
+    }
     } // End of switch (cmd->id)
 
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -16345,4 +16441,3 @@ static void TryUpdateRoundTurnOrder(void)
         }
     }
 }
-

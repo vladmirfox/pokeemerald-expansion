@@ -2263,3 +2263,19 @@
 	.macro hitswitchtargetfailed
 	various 0, VARIOUS_HIT_SWITCH_TARGET_FAILED
 	.endm
+
+	.macro itemrestorehp
+	various 0, VARIOUS_ITEM_RESTORE_HP
+	.endm
+
+	.macro itemcurestatus
+	various 0, VARIOUS_ITEM_CURE_STATUS
+	.endm
+
+	.macro itemincreasestat
+	various 0, VARIOUS_ITEM_INCREASE_STAT
+	.endm
+
+	.macro itemrestorepp
+	various 0, VARIOUS_ITEM_RESTORE_PP
+	.endm
