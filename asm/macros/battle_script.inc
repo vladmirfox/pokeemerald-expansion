@@ -2264,6 +2264,11 @@
 	various 0, VARIOUS_HIT_SWITCH_TARGET_FAILED
 	.endm
 
+	.macro tryrevivalblessing, jumpInstr:req
+	various 0, VARIOUS_TRY_REVIVAL_BLESSING
+	.4byte \jumpInstr
+	.endm
+	
 	.macro itemrestorehp
 	various 0, VARIOUS_ITEM_RESTORE_HP
 	.endm
