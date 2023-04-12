@@ -482,7 +482,7 @@ static bool8 SetUpFieldMove_Dive(void);
 void TryItemHoldFormChange(struct Pokemon *mon);
 static void ShowMoveSelectWindow(u8 slot);
 static void Task_HandleWhichMoveInput(u8 taskId);
-static bool32 CanUsePartyMenuItem(u16 itemId, struct Pokemon* mon);
+static bool32 CanUsePartyMenuBattleItem(u16 itemId, struct Pokemon* mon);
 
 // static const data
 #include "data/party_menu.h"
@@ -4375,25 +4375,18 @@ static bool8 IsItemFlute(u16 item)
     return FALSE;
 }
 
-static bool8 ExecuteTableBasedItemEffect_(u8 partyMonIndex, u16 item, u8 monMoveIndex)
-{
-    if (gMain.inBattle)
-    {
-        if ((partyMonIndex == 0 && gStatuses3[B_POSITION_PLAYER_LEFT] & STATUS3_EMBARGO)
-          || (partyMonIndex == 1 && gStatuses3[B_POSITION_PLAYER_RIGHT] & STATUS3_EMBARGO))
-            return TRUE;    // cannot use on this mon
-        else
-            return ExecuteTableBasedItemEffect(&gPlayerParty[partyMonIndex], item, GetPartyIdFromBattleSlot(partyMonIndex), monMoveIndex);
-    }
-    else
-        return ExecuteTableBasedItemEffect(&gPlayerParty[partyMonIndex], item, partyMonIndex, monMoveIndex);
-}
-
-static bool32 CanUsePartyMenuItem(u16 itemId, struct Pokemon* mon)
+static bool32 CanUsePartyMenuBattleItem(u16 itemId, struct Pokemon* mon)
 {
     u8 effect = 0;
     u16 battleUsage = ItemId_GetBattleUsage(itemId);
     u16 hp = GetMonData(mon, MON_DATA_HP);
+
+    // Embargo Check
+    if ((gPartyMenu.slotId == 0 && gStatuses3[B_POSITION_PLAYER_LEFT] & STATUS3_EMBARGO)
+        || (gPartyMenu.slotId == 1 && gStatuses3[B_POSITION_PLAYER_RIGHT] & STATUS3_EMBARGO))
+    {
+        return FALSE;
+    }
     // Items that restore HP (Potions, Sitrus Berry, etc.)
     if ((battleUsage == EFFECT_ITEM_RESTORE_HP || battleUsage == EFFECT_ITEM_HEAL_AND_CURE_STATUS)
         && hp > 0 && hp < GetMonData(mon, MON_DATA_MAX_HP))
@@ -4424,7 +4417,7 @@ static bool32 CanUsePartyMenuItem(u16 itemId, struct Pokemon* mon)
 void ItemUseCB_BattleScript(u8 taskId, TaskFunc task)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    if (CanUsePartyMenuItem(gSpecialVar_ItemId, mon))
+    if (CanUsePartyMenuBattleItem(gSpecialVar_ItemId, mon))
     {
         gSelectedMonPartyId = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
         gPartyMenuUseExitCallback = TRUE;
@@ -4474,7 +4467,7 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
             if (hp == GetMonData(mon, MON_DATA_MAX_HP))
                 canHeal = FALSE;
         }
-        cannotUse = ExecuteTableBasedItemEffect_(gPartyMenu.slotId, item, 0);
+        cannotUse = ExecuteTableBasedItemEffect(mon, gPartyMenu.slotId, item, 0);
     }
 
     if (cannotUse != FALSE)
@@ -4735,7 +4728,7 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
     u8 effectType = GetItemEffectType(item);
     u16 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
     u16 ev = ItemEffectToMonEv(mon, effectType);
-    bool8 cannotUseEffect = ExecuteTableBasedItemEffect_(gPartyMenu.slotId, item, 0);
+    bool8 cannotUseEffect = ExecuteTableBasedItemEffect(mon, gPartyMenu.slotId, item, 0);
     u16 newFriendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
     u16 newEv = ItemEffectToMonEv(mon, effectType);
 
@@ -4896,7 +4889,7 @@ static void TryUseItemOnMove(u8 taskId)
     // In battle, set appropriate variables to be used in battle script.
     if (gMain.inBattle)
     {
-        if (CanUsePartyMenuItem(gSpecialVar_ItemId, mon))
+        if (CanUsePartyMenuBattleItem(gSpecialVar_ItemId, mon))
         {
             gSelectedMonPartyId = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
             gChosenMovePos = ptr->data1;
@@ -4924,7 +4917,7 @@ static void TryUseItemOnMove(u8 taskId)
         s16 *moveSlot = &gPartyMenu.data1;
         u16 item = gSpecialVar_ItemId;
 
-        if (ExecuteTableBasedItemEffect_(ptr->slotId, item, *moveSlot))
+        if (ExecuteTableBasedItemEffect(mon, ptr->slotId, item, *moveSlot))
         {
             gPartyMenuUseExitCallback = FALSE;
             PlaySE(SE_SELECT);
@@ -5257,7 +5250,7 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
     if (sInitialLevel != MAX_LEVEL)
     {
         BufferMonStatsToTaskData(mon, arrayPtr);
-        cannotUseEffect = ExecuteTableBasedItemEffect_(gPartyMenu.slotId, *itemPtr, 0);
+        cannotUseEffect = ExecuteTableBasedItemEffect(mon, gPartyMenu.slotId, *itemPtr, 0);
         BufferMonStatsToTaskData(mon, &ptr->data[NUM_STATS]);
     }
     else
@@ -5524,7 +5517,7 @@ static void UseSacredAsh(u8 taskId)
     }
 
     hp = GetMonData(mon, MON_DATA_HP);
-    if (ExecuteTableBasedItemEffect_(gPartyMenu.slotId, gSpecialVar_ItemId, 0))
+    if (ExecuteTableBasedItemEffect(mon, gPartyMenu.slotId, gSpecialVar_ItemId, 0))
     {
         gTasks[taskId].func = Task_SacredAshLoop;
         return;
@@ -5591,7 +5584,7 @@ void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc task)
 {
     PlaySE(SE_SELECT);
     gCB2_AfterEvolution = gPartyMenu.exitCallback;
-    if (ExecuteTableBasedItemEffect_(gPartyMenu.slotId, gSpecialVar_ItemId, 0))
+    if (ExecuteTableBasedItemEffect(&gPlayerParty[gPartyMenu.slotId], gPartyMenu.slotId, gSpecialVar_ItemId, 0))
     {
         gPartyMenuUseExitCallback = FALSE;
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);

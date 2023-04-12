@@ -1140,6 +1140,12 @@ static bool32 CannotUseBagBattleItem(u16 itemId)
     u16 battleUsage = ItemId_GetBattleUsage(itemId);
     const u8* failStr = NULL;
 
+    // Embargo Check
+    if ((gPartyMenu.slotId == 0 && gStatuses3[B_POSITION_PLAYER_LEFT] & STATUS3_EMBARGO)
+        || (gPartyMenu.slotId == 1 && gStatuses3[B_POSITION_PLAYER_RIGHT] & STATUS3_EMBARGO))
+    {
+        return TRUE;
+    }
     // X-Items
     if (battleUsage == EFFECT_ITEM_INCREASE_STAT
         && gBattleMons[gBattlerInMenuId].statStages[gItemEffectTable[itemId][1]] < MAX_STAT_STAGE)
