@@ -840,7 +840,6 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_ADAMANT_CRYSTAL] = {gItemIcon_AdamantCrystal, gItemIconPalette_AdamantCrystal},
     [ITEM_GRISEOUS_CORE] = {gItemIcon_GriseousCore, gItemIconPalette_GriseousCore},
     [ITEM_LUSTROUS_GLOBE] = {gItemIcon_LustrousGlobe, gItemIconPalette_LustrousGlobe},
-
     // Wonder Launcher Items
     [ITEM_WONDER_LAUNCHER_X_ATTACK_1] = {gItemIcon_WonderLauncher_BattleStatItem_1, gItemIconPalette_WonderLauncher_XAttack},
     [ITEM_WONDER_LAUNCHER_X_ATTACK_2] = {gItemIcon_WonderLauncher_BattleStatItem_2, gItemIconPalette_WonderLauncher_XAttack},
@@ -866,16 +865,31 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_WONDER_LAUNCHER_X_ACCURACY_2] = {gItemIcon_WonderLauncher_BattleStatItem_2, gItemIconPalette_WonderLauncher_XAccuracy},
     [ITEM_WONDER_LAUNCHER_X_ACCURACY_3] = {gItemIcon_WonderLauncher_BattleStatItem_3, gItemIconPalette_WonderLauncher_XAccuracy},
     [ITEM_WONDER_LAUNCHER_X_ACCURACY_6] = {gItemIcon_WonderLauncher_BattleStatItem_6, gItemIconPalette_WonderLauncher_XAccuracy},
-
     [ITEM_WONDER_LAUNCHER_DIRE_HIT_1] = {gItemIcon_WonderLauncher_BattleStatItem_1, gItemIconPalette_WonderLauncher_DireHit},
     [ITEM_WONDER_LAUNCHER_DIRE_HIT_2] = {gItemIcon_WonderLauncher_BattleStatItem_2, gItemIconPalette_WonderLauncher_DireHit},
     [ITEM_WONDER_LAUNCHER_DIRE_HIT_3] = {gItemIcon_WonderLauncher_BattleStatItem_3, gItemIconPalette_WonderLauncher_DireHit},
     [ITEM_WONDER_LAUNCHER_GUARD_SPEC] = {gItemIcon_WonderLauncher_BattleStatItem_blank, gItemIconPalette_WonderLauncher_GuardSpec},
-
     [ITEM_WONDER_LAUNCHER_ABILITY_URGE] = {gItemIcon_WonderLauncher_BattleStatItem_blank2, gItemIconPalette_WonderLauncher_AbilityUrge},
     [ITEM_WONDER_LAUNCHER_RESET_URGE] = {gItemIcon_WonderLauncher_BattleStatItem_blank2, gItemIconPalette_WonderLauncher_ResetUrge},
     [ITEM_WONDER_LAUNCHER_ITEM_URGE] = {gItemIcon_WonderLauncher_BattleStatItem_blank2, gItemIconPalette_WonderLauncher_ItemUrge},
     [ITEM_WONDER_LAUNCHER_ITEM_DROP] = {gItemIcon_WonderLauncher_BattleStatItem_blank2, gItemIconPalette_WonderLauncher_ItemDrop},
+    [ITEM_WONDER_LAUNCHER_POTION] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_Potion},
+    [ITEM_WONDER_LAUNCHER_SUPER_POTION] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_SuperPotion},
+    [ITEM_WONDER_LAUNCHER_HYPER_POTION] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_HyperPotion},
+    [ITEM_WONDER_LAUNCHER_MAX_POTION] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_MaxPotion},
+    [ITEM_WONDER_LAUNCHER_FULL_RESTORE] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_FullRestore},
+    [ITEM_WONDER_LAUNCHER_ANTIDOTE] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_Antidote},
+    [ITEM_WONDER_LAUNCHER_PARALYZE_HEAL] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_ParalyzeHeal},
+    [ITEM_WONDER_LAUNCHER_AWAKENING] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_Awakening},
+    [ITEM_WONDER_LAUNCHER_BURN_HEAL] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_BurnHeal},
+    [ITEM_WONDER_LAUNCHER_ICE_HEAL] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_IceHeal},
+    [ITEM_WONDER_LAUNCHER_FULL_HEAL] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_FullHeal},
+    [ITEM_WONDER_LAUNCHER_REVIVE] = {gItemIcon_WonderLauncher_BattleStatItem_revive, gItemIconPalette_wonderLauncher_Revive},
+    [ITEM_WONDER_LAUNCHER_MAX_REVIVE] = {gItemIcon_WonderLauncher_BattleStatItem_maxRevive, gItemIconPalette_wonderLauncher_MaxRevive},
+    [ITEM_WONDER_LAUNCHER_ETHER] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_Ether},
+    [ITEM_WONDER_LAUNCHER_MAX_ETHER] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_MaxEther},
+    [ITEM_WONDER_LAUNCHER_ELIXIR] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_Elixir},
+    [ITEM_WONDER_LAUNCHER_MAX_ELIXIR] = {gItemIcon_WonderLauncher_BattleStatItem_medicine, gItemIconPalette_wonderLauncher_MaxElixir},
     // Return to field arrow
     [ITEMS_COUNT] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

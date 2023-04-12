@@ -10918,4 +10918,268 @@ const struct Item gItems[] =
         .flingPower = 30,
         .secondaryId = ITEM_WONDER_LAUNCHER,
     },
+
+    [ITEM_WONDER_LAUNCHER_POTION] =
+    {
+        .name = _("Potion"),
+        .itemId = ITEM_WONDER_LAUNCHER_POTION,
+        .price = 200,
+        .holdEffectParam = 20,
+        .description = sPotionDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_Medicine,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_SUPER_POTION] =
+    {
+        .name = _("Super Potion"),
+        .itemId = ITEM_WONDER_LAUNCHER_SUPER_POTION,
+        .price = 700,
+        .holdEffectParam = 60,
+        .description = sSuperPotionDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_Medicine,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_HYPER_POTION] =
+    {
+        .name = _("Hyper Potion"),
+        .itemId = ITEM_WONDER_LAUNCHER_HYPER_POTION,
+        .price = 1500,
+        .holdEffectParam = 120,
+        .description = sHyperPotionDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_Medicine,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_MAX_POTION] =
+    {
+        .name = _("Max Potion"),
+        .itemId = ITEM_WONDER_LAUNCHER_MAX_POTION,
+        .price = 2500,
+        .holdEffectParam = 255,
+        .description = sMaxPotionDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_Medicine,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_FULL_RESTORE] =
+    {
+        .name = _("Full Restore"),
+        .itemId = ITEM_WONDER_LAUNCHER_FULL_RESTORE,
+        .price = 3000,
+        .holdEffectParam = 255,
+        .description = sFullRestoreDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_Medicine,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_REVIVE] =
+    {
+        .name = _("Revive"),
+        .itemId = ITEM_WONDER_LAUNCHER_REVIVE,
+        .price = 2000,
+        .description = sReviveDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_Medicine,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_MAX_REVIVE] =
+    {
+        .name = _("Max Revive"),
+        .itemId = ITEM_WONDER_LAUNCHER_MAX_REVIVE,
+        .price = 4000,
+        .description = sMaxReviveDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_Medicine,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_ANTIDOTE] =
+    {
+        .name = _("Antidote"),
+        .itemId = ITEM_WONDER_LAUNCHER_ANTIDOTE,
+        .price = 200,
+        .description = sAntidoteDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_Medicine,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_PARALYZE_HEAL] =
+    {
+        .name = _("Paralyze Heal"),
+        .itemId = ITEM_PARALYZE_HEAL,
+        .price = 300,
+        .description = sParalyzeHealDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_Medicine,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_BURN_HEAL] =
+    {
+        .name = _("Burn Heal"),
+        .itemId = ITEM_WONDER_LAUNCHER_BURN_HEAL,
+        .price = 300,
+        .description = sBurnHealDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_Medicine,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_ICE_HEAL] =
+    {
+        .name = _("Ice Heal"),
+        .itemId = ITEM_WONDER_LAUNCHER_ICE_HEAL,
+        .price = 100,
+        .description = sIceHealDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_Medicine,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_AWAKENING] =
+    {
+        .name = _("Awakening"),
+        .itemId = ITEM_WONDER_LAUNCHER_AWAKENING,
+        .price = 100,
+        .description = sAwakeningDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_Medicine,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_FULL_HEAL] =
+    {
+        .name = _("Full Heal"),
+        .itemId = ITEM_WONDER_LAUNCHER_FULL_HEAL,
+        .price = 400,
+        .description = sFullHealDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_Medicine,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_ETHER] =
+    {
+        .name = _("Ether"),
+        .itemId = ITEM_WONDER_LAUNCHER_ETHER,
+        .price = 1200,
+        .holdEffectParam = 10,
+        .description = sEtherDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_PPRecovery,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_PPRecovery,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_MAX_ETHER] =
+    {
+        .name = _("Max Ether"),
+        .itemId = ITEM_WONDER_LAUNCHER_MAX_ETHER,
+        .price = 2000,
+        .holdEffectParam = 255,
+        .description = sMaxEtherDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_PPRecovery,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_PPRecovery,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_ELIXIR] =
+    {
+        .name = _("Elixir"),
+        .itemId = ITEM_WONDER_LAUNCHER_ELIXIR,
+        .price = 3000,
+        .holdEffectParam = 10,
+        .description = sElixirDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_PPRecovery,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_PPRecovery,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
+
+    [ITEM_WONDER_LAUNCHER_MAX_ELIXIR] =
+    {
+        .name = _("Max Elixir"),
+        .itemId = ITEM_WONDER_LAUNCHER_MAX_ELIXIR,
+        .price = 4500,
+        .holdEffectParam = 255,
+        .description = sMaxElixirDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_PPRecovery,
+        .battleUsage = ITEM_B_USE_MEDICINE,
+        .battleUseFunc = ItemUseInBattle_PPRecovery,
+        .flingPower = 30,
+        .secondaryId = ITEM_WONDER_LAUNCHER,
+    },
 };
