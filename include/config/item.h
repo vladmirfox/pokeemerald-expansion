@@ -8,6 +8,7 @@
 #define I_HEALTH_RECOVERY       GEN_LATEST  // In Gen7+, certain healing items recover a different amount of HP than they used to.
 #define I_SITRUS_BERRY_HEAL     GEN_LATEST  // In Gen4+, Sitrus Berry was changed from healing 30 HP to healing 25% of Max HP.
 #define I_VITAMIN_EV_CAP        GEN_LATEST  // In Gen8, the Vitamins no longer have a cap of 100 EV per stat.
+#define I_REUSABLE_TMS          GEN_LATEST  // In Gen5+, TMs are reusable. Unusable TMs (TRs) still function normally by removing importance.
 
 // Repel/Lure config
 // These two settings are both independent and complementary.
