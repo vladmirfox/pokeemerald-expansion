@@ -551,7 +551,7 @@ void HandleAction_Switch(void)
 
 void HandleAction_UseItem(void)
 {
-    gBattleScripting.battler = gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
+    gActiveBattler = gBattlerAttacker = gBattlerTarget = gBattlerByTurnOrder[gCurrentTurnActionNumber];
     gBattle_BG0_X = 0;
     gBattle_BG0_Y = 0;
     ClearFuryCutterDestinyBondGrudge(gBattlerAttacker);
