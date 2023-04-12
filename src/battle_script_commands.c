@@ -11275,6 +11275,7 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         u16 healAmount;
         u32 battlerId = MAX_BATTLERS_COUNT;
+        u32 healParam = GetItemEffect(gLastUsedItem)[6];
         bool32 revive = FALSE;
         struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
         u16 hp = GetMonData(&party[gSelectedMonPartyId], MON_DATA_HP);
@@ -11291,7 +11292,7 @@ static void Cmd_various(void)
             battlerId = gBattlerTarget = BATTLE_PARTNER(gActiveBattler);
 
         // Get amount to heal.
-        switch (gItemEffectTable[gLastUsedItem][6])
+        switch (healParam)
         {
             case ITEM6_HEAL_HP_FULL:
                 healAmount = maxHP;
@@ -11303,7 +11304,7 @@ static void Cmd_various(void)
                 healAmount = maxHP / 4;
                 break;
             default:
-                healAmount = gItemEffectTable[gLastUsedItem][6];
+                healAmount = healParam;
                 break;
         }
         if (hp + healAmount > maxHP)
@@ -11354,7 +11355,7 @@ static void Cmd_various(void)
     case VARIOUS_ITEM_INCREASE_STAT:
     {
         VARIOUS_ARGS();
-        u16 statId = gItemEffectTable[gLastUsedItem][1];
+        u16 statId = GetItemEffect(gLastUsedItem)[1];
         u16 stages = (B_X_ITEMS_BUFF >= GEN_7) ? 2 : 1;
         SET_STATCHANGER(statId, stages, FALSE);
         break;
@@ -11362,13 +11363,14 @@ static void Cmd_various(void)
     case VARIOUS_ITEM_RESTORE_PP:
     {
         VARIOUS_ARGS();
+        const u8 *effect = GetItemEffect(gLastUsedItem);
         u32 i, pp, maxPP, moveId;
         u32 loopEnd = MAX_MON_MOVES;
         u32 battlerId = MAX_BATTLERS_COUNT;
         struct Pokemon *mon = (side == B_SIDE_PLAYER) ? &gPlayerParty[gSelectedMonPartyId] : &gEnemyParty[gSelectedMonPartyId];
 
         // Check whether to apply to all moves.
-        if (gItemEffectTable[gLastUsedItem][4] & ITEM4_HEAL_PP_ONE)
+        if (effect[4] & ITEM4_HEAL_PP_ONE)
         {
             i = gChosenMovePos;
             loopEnd = gChosenMovePos + 1;
@@ -11388,7 +11390,7 @@ static void Cmd_various(void)
             maxPP = CalculatePPWithBonus(moveId, GetMonData(mon, MON_DATA_PP_BONUSES, NULL), i);
             if (pp != maxPP)
             {
-                pp += gItemEffectTable[gLastUsedItem][6];
+                pp += effect[6];
                 if (pp > maxPP)
                     pp = maxPP;
                 SetMonData(mon, MON_DATA_PP1 + i, &pp);

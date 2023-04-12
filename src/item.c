@@ -970,7 +970,8 @@ u8 ItemId_GetFlingPower(u16 itemId)
 
 u32 GetItemStatus1Mask(u16 itemId)
 {
-    switch (gItemEffectTable[itemId][3])
+    const u8 *effect = GetItemEffect(itemId);
+    switch (effect[3])
     {
         case ITEM3_FREEZE:
             return STATUS1_FREEZE;
@@ -988,11 +989,12 @@ u32 GetItemStatus1Mask(u16 itemId)
 
 u32 GetItemStatus2Mask(u16 itemId)
 {
-    if (gItemEffectTable[itemId][3] & ITEM3_STATUS_ALL)
+    const u8 *effect = GetItemEffect(itemId);
+    if (effect[3] & ITEM3_STATUS_ALL)
         return STATUS2_INFATUATION | STATUS2_CONFUSION;
-    else if (gItemEffectTable[itemId][0] & ITEM0_INFATUATION)
+    else if (effect[0] & ITEM0_INFATUATION)
         return STATUS2_INFATUATION;
-    else if (gItemEffectTable[itemId][3] & ITEM3_CONFUSION)
+    else if (effect[3] & ITEM3_CONFUSION)
         return STATUS2_CONFUSION;
     else
         return 0;
