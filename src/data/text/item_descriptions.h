@@ -3909,6 +3909,6 @@ static const u8 sLustrousGlobeDesc[] = _(
     "change form.");
 
 static const u8 sBerserkGene[] = _(
-    "Boosts Attack\n"
-    "but causes\n"
-    "confusion.");
+    "Sharply boosts\n"
+    "Attack, but causes\n"
+    "lasting confusion.");
