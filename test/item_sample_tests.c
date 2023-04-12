@@ -23,7 +23,7 @@ SINGLE_BATTLE_TEST("X-Attack sharply raises battler's attack stat", s16 damage)
     PARAMETRIZE { useItem = FALSE; }
     PARAMETRIZE { useItem = TRUE; }
     GIVEN {
-        ASSUME(gItems[ITEM_X_ATTACK].battleUsage == ITEM_B_USE_OTHER);
+        ASSUME(gItems[ITEM_X_ATTACK].battleUsage == EFFECT_ITEM_INCREASE_STAT);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

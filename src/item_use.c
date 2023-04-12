@@ -1230,24 +1230,6 @@ void ItemUseInBattle_BagMenu(u8 taskId)
     }
 }
 
-// Fluffy Tail / Poke Doll
-void ItemUseInBattle_Escape(u8 taskId)
-{
-
-    if((gBattleTypeFlags & BATTLE_TYPE_TRAINER) == FALSE)
-    {
-        RemoveUsedItem();
-        if (!InBattlePyramid())
-            DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, Task_FadeAndCloseBagMenu);
-        else
-            DisplayItemMessageInBattlePyramid(taskId, gStringVar4, CloseBattlePyramidBag);
-    }
-    else
-    {
-        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
-    }
-}
-
 void ItemUseOutOfBattle_EnigmaBerry(u8 taskId)
 {
     switch (GetItemEffectType(gSpecialVar_ItemId))
@@ -1287,33 +1269,6 @@ void ItemUseOutOfBattle_EnigmaBerry(u8 taskId)
         break;
     default:
         gTasks[taskId].tEnigmaBerryType = ITEM_USE_BAG_MENU;
-        ItemUseOutOfBattle_CannotUse(taskId);
-        break;
-    }
-}
-
-void ItemUseInBattle_EnigmaBerry(u8 taskId)
-{
-    switch (GetItemEffectType(gSpecialVar_ItemId))
-    {
-    case ITEM_EFFECT_X_ITEM:
-        // ItemUseInBattle_StatIncrease(taskId);
-        break;
-    case ITEM_EFFECT_HEAL_HP:
-    case ITEM_EFFECT_CURE_POISON:
-    case ITEM_EFFECT_CURE_SLEEP:
-    case ITEM_EFFECT_CURE_BURN:
-    case ITEM_EFFECT_CURE_FREEZE:
-    case ITEM_EFFECT_CURE_PARALYSIS:
-    case ITEM_EFFECT_CURE_ALL_STATUS:
-    case ITEM_EFFECT_CURE_CONFUSION:
-    case ITEM_EFFECT_CURE_INFATUATION:
-        // ItemUseInBattle_Medicine(taskId);
-        break;
-    case ITEM_EFFECT_HEAL_PP:
-        // ItemUseInBattle_PPRecovery(taskId);
-        break;
-    default:
         ItemUseOutOfBattle_CannotUse(taskId);
         break;
     }
