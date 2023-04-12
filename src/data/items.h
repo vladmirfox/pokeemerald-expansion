@@ -7807,7 +7807,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM01_FOCUS_PUNCH,
         .price = 3000,
         .description = sTM01Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -7821,7 +7821,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM02_DRAGON_CLAW,
         .price = 3000,
         .description = sTM02Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -7835,7 +7835,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM03_WATER_PULSE,
         .price = 3000,
         .description = sTM03Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -7849,7 +7849,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM04_CALM_MIND,
         .price = 3000,
         .description = sTM04Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -7863,7 +7863,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM05_ROAR,
         .price = 1000,
         .description = sTM05Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -7877,7 +7877,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM06_TOXIC,
         .price = 3000,
         .description = sTM06Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -7891,7 +7891,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM07_HAIL,
         .price = 3000,
         .description = sTM07Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -7905,7 +7905,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM08_BULK_UP,
         .price = 3000,
         .description = sTM08Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -7919,7 +7919,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM09_BULLET_SEED,
         .price = 3000,
         .description = sTM09Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -7933,7 +7933,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM10_HIDDEN_POWER,
         .price = 3000,
         .description = sTM10Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -7947,7 +7947,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM11_SUNNY_DAY,
         .price = 2000,
         .description = sTM11Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -7961,7 +7961,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM12_TAUNT,
         .price = 3000,
         .description = sTM12Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -7975,7 +7975,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM13_ICE_BEAM,
         .price = 3000,
         .description = sTM13Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -7989,7 +7989,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM14_BLIZZARD,
         .price = 5500,
         .description = sTM14Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8003,7 +8003,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM15_HYPER_BEAM,
         .price = 7500,
         .description = sTM15Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8017,7 +8017,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM16_LIGHT_SCREEN,
         .price = 3000,
         .description = sTM16Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8031,7 +8031,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM17_PROTECT,
         .price = 3000,
         .description = sTM17Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8045,7 +8045,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM18_RAIN_DANCE,
         .price = 2000,
         .description = sTM18Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8059,7 +8059,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM19_GIGA_DRAIN,
         .price = 3000,
         .description = sTM19Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8073,7 +8073,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM20_SAFEGUARD,
         .price = 3000,
         .description = sTM20Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8087,7 +8087,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM21_FRUSTRATION,
         .price = 1000,
         .description = sTM21Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8101,7 +8101,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM22_SOLAR_BEAM,
         .price = 3000,
         .description = sTM22Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8115,7 +8115,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM23_IRON_TAIL,
         .price = 3000,
         .description = sTM23Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8129,7 +8129,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM24_THUNDERBOLT,
         .price = 3000,
         .description = sTM24Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8143,7 +8143,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM25_THUNDER,
         .price = 5500,
         .description = sTM25Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8157,7 +8157,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM26_EARTHQUAKE,
         .price = 3000,
         .description = sTM26Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8171,7 +8171,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM27_RETURN,
         .price = 1000,
         .description = sTM27Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8185,7 +8185,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM28_DIG,
         .price = 2000,
         .description = sTM28Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8199,7 +8199,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM29_PSYCHIC,
         .price = 2000,
         .description = sTM29Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8213,7 +8213,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM30_SHADOW_BALL,
         .price = 3000,
         .description = sTM30Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8227,7 +8227,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM31_BRICK_BREAK,
         .price = 3000,
         .description = sTM31Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8241,7 +8241,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM32_DOUBLE_TEAM,
         .price = 2000,
         .description = sTM32Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8255,7 +8255,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM33_REFLECT,
         .price = 3000,
         .description = sTM33Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8269,7 +8269,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM34_SHOCK_WAVE,
         .price = 3000,
         .description = sTM34Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8283,7 +8283,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM35_FLAMETHROWER,
         .price = 3000,
         .description = sTM35Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8297,7 +8297,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM36_SLUDGE_BOMB,
         .price = 1000,
         .description = sTM36Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8311,7 +8311,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM37_SANDSTORM,
         .price = 2000,
         .description = sTM37Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8325,7 +8325,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM38_FIRE_BLAST,
         .price = 5500,
         .description = sTM38Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8339,7 +8339,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM39_ROCK_TOMB,
         .price = 3000,
         .description = sTM39Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8353,7 +8353,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM40_AERIAL_ACE,
         .price = 3000,
         .description = sTM40Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8367,7 +8367,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM41_TORMENT,
         .price = 3000,
         .description = sTM41Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8381,7 +8381,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM42_FACADE,
         .price = 3000,
         .description = sTM42Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8395,7 +8395,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM43_SECRET_POWER,
         .price = 3000,
         .description = sTM43Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8409,7 +8409,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM44_REST,
         .price = 3000,
         .description = sTM44Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8423,7 +8423,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM45_ATTRACT,
         .price = 3000,
         .description = sTM45Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8437,7 +8437,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM46_THIEF,
         .price = 3000,
         .description = sTM46Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8451,7 +8451,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM47_STEEL_WING,
         .price = 3000,
         .description = sTM47Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8465,7 +8465,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM48_SKILL_SWAP,
         .price = 3000,
         .description = sTM48Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8479,7 +8479,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM49_SNATCH,
         .price = 3000,
         .description = sTM49Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8493,7 +8493,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM50_OVERHEAT,
         .price = 3000,
         .description = sTM50Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8507,7 +8507,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM51,
         .price = 3000,
         .description = sTM51Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8521,7 +8521,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM52,
         .price = 3000,
         .description = sTM52Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8535,7 +8535,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM53,
         .price = 3000,
         .description = sTM53Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8549,7 +8549,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM54,
         .price = 3000,
         .description = sTM54Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8563,7 +8563,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM55,
         .price = 3000,
         .description = sTM55Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8577,7 +8577,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM56,
         .price = 3000,
         .description = sTM56Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8591,7 +8591,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM57,
         .price = 3000,
         .description = sTM57Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8605,7 +8605,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM58,
         .price = 3000,
         .description = sTM58Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8619,7 +8619,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM59,
         .price = 3000,
         .description = sTM59Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8633,7 +8633,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM60,
         .price = 3000,
         .description = sTM60Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8647,7 +8647,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM61,
         .price = 3000,
         .description = sTM61Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8661,7 +8661,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM62,
         .price = 3000,
         .description = sTM62Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8675,7 +8675,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM63,
         .price = 3000,
         .description = sTM63Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8689,7 +8689,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM64,
         .price = 3000,
         .description = sTM64Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8703,7 +8703,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM65,
         .price = 3000,
         .description = sTM65Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8717,7 +8717,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM66,
         .price = 3000,
         .description = sTM66Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8731,7 +8731,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM67,
         .price = 3000,
         .description = sTM67Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8745,7 +8745,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM68,
         .price = 3000,
         .description = sTM68Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8759,7 +8759,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM69,
         .price = 3000,
         .description = sTM69Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8773,7 +8773,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM70,
         .price = 3000,
         .description = sTM70Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8787,7 +8787,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM71,
         .price = 3000,
         .description = sTM71Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8801,7 +8801,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM72,
         .price = 3000,
         .description = sTM72Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8815,7 +8815,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM73,
         .price = 3000,
         .description = sTM73Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8829,7 +8829,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM74,
         .price = 3000,
         .description = sTM74Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8843,7 +8843,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM75,
         .price = 3000,
         .description = sTM75Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8857,7 +8857,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM76,
         .price = 3000,
         .description = sTM76Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8871,7 +8871,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM77,
         .price = 3000,
         .description = sTM77Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8885,7 +8885,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM78,
         .price = 3000,
         .description = sTM78Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8899,7 +8899,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM79,
         .price = 3000,
         .description = sTM79Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8913,7 +8913,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM80,
         .price = 3000,
         .description = sTM80Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8927,7 +8927,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM81,
         .price = 3000,
         .description = sTM81Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8941,7 +8941,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM82,
         .price = 3000,
         .description = sTM82Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8955,7 +8955,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM83,
         .price = 3000,
         .description = sTM83Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8969,7 +8969,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM84,
         .price = 3000,
         .description = sTM84Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8983,7 +8983,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM85,
         .price = 3000,
         .description = sTM85Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -8997,7 +8997,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM86,
         .price = 3000,
         .description = sTM86Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9011,7 +9011,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM87,
         .price = 3000,
         .description = sTM87Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9025,7 +9025,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM88,
         .price = 3000,
         .description = sTM88Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9039,7 +9039,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM89,
         .price = 3000,
         .description = sTM89Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9053,7 +9053,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM90,
         .price = 3000,
         .description = sTM90Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9067,7 +9067,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM91,
         .price = 3000,
         .description = sTM91Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9081,7 +9081,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM92,
         .price = 3000,
         .description = sTM92Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9095,7 +9095,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM93,
         .price = 3000,
         .description = sTM93Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9109,7 +9109,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM94,
         .price = 3000,
         .description = sTM94Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9123,7 +9123,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM95,
         .price = 3000,
         .description = sTM95Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9137,7 +9137,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM96,
         .price = 3000,
         .description = sTM96Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9151,7 +9151,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM97,
         .price = 3000,
         .description = sTM97Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9165,7 +9165,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM98,
         .price = 3000,
         .description = sTM98Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9179,7 +9179,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM99,
         .price = 3000,
         .description = sTM99Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
@@ -9193,7 +9193,7 @@ const struct Item gItems[] =
         .itemId = ITEM_TM100,
         .price = 3000,
         .description = sTM100Desc,
-    #if I_REUSABLE_TMS > GEN_4
+    #if I_REUSABLE_TMS > GEN_4 && I_REUSABLE_TMS < GEN_9
         .importance = 1,
     #endif
         .pocket = POCKET_TM_HM,
