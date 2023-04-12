@@ -1148,7 +1148,7 @@ static bool32 CannotUseBagBattleItem(u16 itemId)
     }
     // X-Items
     if (battleUsage == EFFECT_ITEM_INCREASE_STAT
-        && gBattleMons[gBattlerInMenuId].statStages[gItemEffectTable[itemId][1]] < MAX_STAT_STAGE)
+        && gBattleMons[gBattlerInMenuId].statStages[gItemEffectTable[itemId][1]] == MAX_STAT_STAGE)
     {
         cannotUse++;
     }
