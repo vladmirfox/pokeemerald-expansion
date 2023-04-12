@@ -898,10 +898,6 @@ const u8 *ItemId_GetDescription(u16 itemId)
 
 u8 ItemId_GetImportance(u16 itemId)
 {
-#if I_REUSABLE_TMS == FALSE
-    if (itemId >= ITEM_TM01 && itemId < ITEM_HM01)
-        return FALSE;
-#endif
     return gItems[SanitizeItemId(itemId)].importance;
 }
 
