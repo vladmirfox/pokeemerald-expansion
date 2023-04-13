@@ -11347,6 +11347,8 @@ static void Cmd_various(void)
         {
             gBattleMons[gActiveBattler].status2 &= ~GetItemStatus2Mask(gLastUsedItem); 
             gBattlerTarget = BATTLE_PARTNER(gActiveBattler);
+            if (GetItemStatus1Mask(gLastUsedItem) & STATUS1_SLEEP)
+                gBattleMons[gActiveBattler].status2 &= ~STATUS2_NIGHTMARE;
         }
         
         PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gBattleStruct->itemPartyIndex[gActiveBattler]], MON_DATA_SPECIES));
