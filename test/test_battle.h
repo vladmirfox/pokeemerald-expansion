@@ -765,8 +765,7 @@ enum { TURN_CLOSED, TURN_OPEN, TURN_CLOSING };
 #define SWITCH(battler, partyIndex) Switch(__LINE__, battler, partyIndex)
 #define SKIP_TURN(battler) SkipTurn(__LINE__, battler)
 #define SEND_OUT(battler, partyIndex) SendOut(__LINE__, battler, partyIndex)
-#define USE_ITEM(battler, itemId) UseItem(__LINE__, battler, itemId)
-
+#define USE_ITEM(battler, ...) UseItem(__LINE__, battler, (struct ItemContext) { APPEND_TRUE(__VA_ARGS__) })
 #define WITH_RNG(tag, value) rng: ((struct TurnRNG) { tag, value })
 
 struct MoveContext
@@ -792,13 +791,23 @@ struct MoveContext
     bool8 explicitRNG;
 };
 
+struct ItemContext
+{
+    u16 itemId;
+    u16 explicitItemId:1;
+    u16 partyIndex;
+    u16 explicitPartyIndex:1;
+    u16 move;
+    u16 explicitMove:1;
+};
+
 void OpenTurn(u32 sourceLine);
 void CloseTurn(u32 sourceLine);
 void Move(u32 sourceLine, struct BattlePokemon *, struct MoveContext);
 void ForcedMove(u32 sourceLine, struct BattlePokemon *);
 void Switch(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 void SkipTurn(u32 sourceLine, struct BattlePokemon *);
-void UseItem(u32 sourceLine, struct BattlePokemon *, u32 itemId);
+void UseItem(u32 sourceLine, struct BattlePokemon *, struct ItemContext);
 void SendOut(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 
 /* Scene */
