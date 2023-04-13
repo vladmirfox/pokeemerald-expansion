@@ -482,7 +482,7 @@ static bool8 SetUpFieldMove_Dive(void);
 void TryItemHoldFormChange(struct Pokemon *mon);
 static void ShowMoveSelectWindow(u8 slot);
 static void Task_HandleWhichMoveInput(u8 taskId);
-static bool32 CanUsePartyMenuBattleItem(u16 itemId, struct Pokemon* mon);
+static bool32 CannotUsePartyBattleItem(u16 itemId, struct Pokemon* mon);
 
 // static const data
 #include "data/party_menu.h"
@@ -4394,9 +4394,10 @@ static bool8 IsItemFlute(u16 item)
     return FALSE;
 }
 
-static bool32 CanUsePartyMenuBattleItem(u16 itemId, struct Pokemon* mon)
+static bool32 CannotUsePartyBattleItem(u16 itemId, struct Pokemon* mon)
 {
-    u8 effect = 0;
+    u8 i;
+    u8 cannotUse = FALSE;
     u16 battleUsage = ItemId_GetBattleUsage(itemId);
     u16 hp = GetMonData(mon, MON_DATA_HP);
 
@@ -4407,36 +4408,64 @@ static bool32 CanUsePartyMenuBattleItem(u16 itemId, struct Pokemon* mon)
         return FALSE;
     }
     // Items that restore HP (Potions, Sitrus Berry, etc.)
-    if ((battleUsage == EFFECT_ITEM_RESTORE_HP || battleUsage == EFFECT_ITEM_HEAL_AND_CURE_STATUS)
-        && hp > 0 && hp < GetMonData(mon, MON_DATA_MAX_HP))
+    if (battleUsage == EFFECT_ITEM_RESTORE_HP && (hp == 0 || hp == GetMonData(mon, MON_DATA_MAX_HP)))
     {
-        effect++;
+        cannotUse++;
     }
     // Items that cure status (Burn Heal, Awakening, etc.)
-    if ((battleUsage == EFFECT_ITEM_CURE_STATUS || battleUsage == EFFECT_ITEM_HEAL_AND_CURE_STATUS)
-        && ((GetMonData(mon, MON_DATA_STATUS) & GetItemStatus1Mask(itemId))
+    if (battleUsage == EFFECT_ITEM_CURE_STATUS
+        && !((GetMonData(mon, MON_DATA_STATUS) & GetItemStatus1Mask(itemId))
         || (gPartyMenu.slotId == 0 && gBattleMons[gBattlerInMenuId].status2 & GetItemStatus2Mask(itemId))))
     {
-        effect++;
+        cannotUse++;
+    }
+    // Items that restore HP and cure status (Full Restore)
+    if (battleUsage == EFFECT_ITEM_HEAL_AND_CURE_STATUS
+        && (hp == 0 || hp == GetMonData(mon, MON_DATA_MAX_HP))
+        && !((GetMonData(mon, MON_DATA_STATUS) & GetItemStatus1Mask(itemId))
+        || (gPartyMenu.slotId == 0 && gBattleMons[gBattlerInMenuId].status2 & GetItemStatus2Mask(itemId))))
+    {
+        cannotUse++;
     }
     // Items that revive a party member
-    if (battleUsage == EFFECT_ITEM_REVIVE && hp == 0)
+    if (battleUsage == EFFECT_ITEM_REVIVE && hp != 0)
     {
-        effect++;
+        cannotUse++;
     }
     // Items that restore PP (Elixir, Ether, Leppa Berry)
     if (battleUsage == EFFECT_ITEM_RESTORE_PP)
     {
-        effect++;
+        if (GetItemEffect(itemId)[6] == ITEM4_HEAL_PP)
+        {
+            for (i = 0; i < MAX_MON_MOVES; i++)
+            {
+                if (GetMonData(mon, MON_DATA_PP1 + i) < CalculatePPWithBonus(GetMonData(mon, MON_DATA_MOVE1 + i), GetMonData(mon, MON_DATA_PP_BONUSES), i));
+                    break;
+            }
+            if (i == MAX_MON_MOVES)
+                cannotUse++;
+        }
+        else if (GetMonData(mon, MON_DATA_PP1 + gPartyMenu.slotId2) == CalculatePPWithBonus(GetMonData(mon, MON_DATA_MOVE1 + gPartyMenu.slotId2), GetMonData(mon, MON_DATA_PP_BONUSES), gPartyMenu.slotId2))
+        {
+            cannotUse++;
+        }
     }
-    return effect;
+    return cannotUse;
 }
 
 // Battle scripts called in HandleAction_UseItem
 void ItemUseCB_BattleScript(u8 taskId, TaskFunc task)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    if (CanUsePartyMenuBattleItem(gSpecialVar_ItemId, mon))
+    if (CannotUsePartyBattleItem(gSpecialVar_ItemId, mon))
+    {
+        gPartyMenuUseExitCallback = FALSE;
+        PlaySE(SE_SELECT);
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+    }
+    else
     {
         gBattleStruct->itemPartyIndex[gBattlerInMenuId] = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
         gPartyMenuUseExitCallback = TRUE;
@@ -4446,14 +4475,6 @@ void ItemUseCB_BattleScript(u8 taskId, TaskFunc task)
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         RemoveBagItem(gSpecialVar_ItemId, 1);
-        gTasks[taskId].func = task;
-    }
-    else
-    {
-        gPartyMenuUseExitCallback = FALSE;
-        PlaySE(SE_SELECT);
-        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
-        ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = task;
     }
 }
@@ -4908,7 +4929,15 @@ static void TryUseItemOnMove(u8 taskId)
     // In battle, set appropriate variables to be used in battle script.
     if (gMain.inBattle)
     {
-        if (CanUsePartyMenuBattleItem(gSpecialVar_ItemId, mon))
+        if (CannotUsePartyBattleItem(gSpecialVar_ItemId, mon))
+        {
+            gPartyMenuUseExitCallback = FALSE;
+            PlaySE(SE_SELECT);
+            DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+            ScheduleBgCopyTilemapToVram(2);
+            gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+        }
+        else
         {
             gBattleStruct->itemPartyIndex[gBattlerInMenuId] = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
             gChosenMovePos = ptr->data1;
@@ -4917,14 +4946,6 @@ static void TryUseItemOnMove(u8 taskId)
             CopyItemName(gSpecialVar_ItemId, gStringVar2);
             StringExpandPlaceholders(gStringVar4, gText_PlayerUsedVar2);
             DisplayPartyMenuMessage(gStringVar4, TRUE);
-            ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = Task_ClosePartyMenuAfterText;
-        }
-        else
-        {
-            gPartyMenuUseExitCallback = FALSE;
-            PlaySE(SE_SELECT);
-            DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
             ScheduleBgCopyTilemapToVram(2);
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
         }        
