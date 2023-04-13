@@ -4162,6 +4162,7 @@ static void HandleTurnActionSelectionState(void)
                     }
                     else
                     {
+                        gBattleStruct->itemPartyIndex[gActiveBattler] = PARTY_SIZE;
                         BtlController_EmitChooseAction(BUFFER_A, gChosenActionByBattler[0], gBattleResources->bufferB[0][1] | (gBattleResources->bufferB[0][2] << 8));
                         MarkBattlerForControllerExec(gActiveBattler);
                         gBattleCommunication[gActiveBattler]++;

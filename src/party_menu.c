@@ -4438,7 +4438,7 @@ void ItemUseCB_BattleScript(u8 taskId, TaskFunc task)
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     if (CanUsePartyMenuBattleItem(gSpecialVar_ItemId, mon))
     {
-        gSelectedMonPartyId = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
+        gBattleStruct->itemPartyIndex[gBattlerInMenuId] = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
         gPartyMenuUseExitCallback = TRUE;
         PlaySE(SE_SELECT);
         CopyItemName(gSpecialVar_ItemId, gStringVar2);
@@ -4910,7 +4910,7 @@ static void TryUseItemOnMove(u8 taskId)
     {
         if (CanUsePartyMenuBattleItem(gSpecialVar_ItemId, mon))
         {
-            gSelectedMonPartyId = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
+            gBattleStruct->itemPartyIndex[gBattlerInMenuId] = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
             gChosenMovePos = ptr->data1;
             gPartyMenuUseExitCallback = TRUE;
             RemoveBagItem(gSpecialVar_ItemId, 1);

@@ -11265,7 +11265,7 @@ static void Cmd_various(void)
         // Open party menu, wait to go to next instruction.
         else
         {   
-            BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CHOOSE_FAINTED_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gActiveBattler]);
+            BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CHOOSE_FAINTED_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gBattlerAttacker]);
             MarkBattlerForControllerExec(gBattlerAttacker);
         }
         return;
@@ -11276,19 +11276,20 @@ static void Cmd_various(void)
         u16 healAmount;
         u32 battlerId = MAX_BATTLERS_COUNT;
         u32 healParam = GetItemEffect(gLastUsedItem)[6];
-        bool32 revive = FALSE;
+        u32 side = GetBattlerSide(gActiveBattler);
         struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
-        u16 hp = GetMonData(&party[gSelectedMonPartyId], MON_DATA_HP);
-        u16 maxHP = GetMonData(&party[gSelectedMonPartyId], MON_DATA_MAX_HP);
+        u16 hp = GetMonData(&party[gBattleStruct->itemPartyIndex[gActiveBattler]], MON_DATA_HP);
+        u16 maxHP = GetMonData(&party[gBattleStruct->itemPartyIndex[gActiveBattler]], MON_DATA_MAX_HP);
 
         // Track the number of Revives used in a battle.
         if (hp == 0 && side == B_SIDE_PLAYER && gBattleResults.numRevivesUsed < 255)
             gBattleResults.numRevivesUsed++;
 
         // Check if the recipient is an active battler.
-        if (gSelectedMonPartyId == gBattlerPartyIndexes[gActiveBattler])
+        if (gBattleStruct->itemPartyIndex[gActiveBattler] == gBattlerPartyIndexes[gActiveBattler])
             battlerId = gBattlerTarget = gActiveBattler;
-        else if (gSelectedMonPartyId == gBattlerPartyIndexes[BATTLE_PARTNER(gActiveBattler)])
+        else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
+                 && gBattleStruct->itemPartyIndex[gActiveBattler] == gBattlerPartyIndexes[BATTLE_PARTNER(gActiveBattler)])
             battlerId = gBattlerTarget = BATTLE_PARTNER(gActiveBattler);
 
         // Get amount to heal.
@@ -11318,17 +11319,16 @@ static void Cmd_various(void)
         else
         {
             hp += healAmount;
-            SetMonData(&party[gSelectedMonPartyId], MON_DATA_HP, &hp);
+            SetMonData(&party[gBattleStruct->itemPartyIndex[gActiveBattler]], MON_DATA_HP, &hp);
 
             // Revived battlers on the field need to be brought back.
-            if (battlerId != MAX_BATTLERS_COUNT)
+            if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && battlerId != MAX_BATTLERS_COUNT)
             {
                 gAbsentBattlerFlags &= ~gBitTable[battlerId];
                 gBattleCommunication[MULTIUSE_STATE] = TRUE;
             }
         }
-        PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gSelectedMonPartyId], MON_DATA_SPECIES));
-        gSelectedMonPartyId = PARTY_SIZE;
+        PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gBattleStruct->itemPartyIndex[gActiveBattler]], MON_DATA_SPECIES));
         break;
     }
     case VARIOUS_ITEM_CURE_STATUS:
@@ -11337,19 +11337,19 @@ static void Cmd_various(void)
         struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
         
         // Heal Status1 conditions.
-        HealStatusConditions(&party[gSelectedMonPartyId], gSelectedMonPartyId, GetItemStatus1Mask(gLastUsedItem), gActiveBattler);
+        HealStatusConditions(&party[gBattleStruct->itemPartyIndex[gActiveBattler]], gBattleStruct->itemPartyIndex[gActiveBattler], GetItemStatus1Mask(gLastUsedItem), gActiveBattler);
         
         // Heal Status2 conditions if battler is active.
-        if (gSelectedMonPartyId == gBattlerPartyIndexes[gActiveBattler])
-            gBattleMons[gActiveBattler].status2 &= ~GetItemStatus2Mask(gLastUsedItem); 
-        else if (gSelectedMonPartyId == gBattlerPartyIndexes[BATTLE_PARTNER(gActiveBattler)])
+        if (gBattleStruct->itemPartyIndex[gActiveBattler] == gBattlerPartyIndexes[gActiveBattler])
+            gBattleMons[gBattleStruct->itemPartyIndex[gActiveBattler]].status2 &= ~GetItemStatus2Mask(gLastUsedItem); 
+        else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
+                 && gBattleStruct->itemPartyIndex[gActiveBattler] == gBattlerPartyIndexes[BATTLE_PARTNER(gActiveBattler)])
         {
             gBattleMons[gActiveBattler].status2 &= ~GetItemStatus2Mask(gLastUsedItem); 
-            gBattlerAttacker = BATTLE_PARTNER(gActiveBattler);
+            gBattlerTarget = BATTLE_PARTNER(gActiveBattler);
         }
         
-        PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gSelectedMonPartyId], MON_DATA_SPECIES));
-        gSelectedMonPartyId = PARTY_SIZE;
+        PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gBattleStruct->itemPartyIndex[gActiveBattler]], MON_DATA_SPECIES));
         break;
     }
     case VARIOUS_ITEM_INCREASE_STAT:
@@ -11367,7 +11367,7 @@ static void Cmd_various(void)
         u32 i, pp, maxPP, moveId;
         u32 loopEnd = MAX_MON_MOVES;
         u32 battlerId = MAX_BATTLERS_COUNT;
-        struct Pokemon *mon = (side == B_SIDE_PLAYER) ? &gPlayerParty[gSelectedMonPartyId] : &gEnemyParty[gSelectedMonPartyId];
+        struct Pokemon *mon = (side == B_SIDE_PLAYER) ? &gPlayerParty[gBattleStruct->itemPartyIndex[gActiveBattler]] : &gEnemyParty[gBattleStruct->itemPartyIndex[gActiveBattler]];
 
         // Check whether to apply to all moves.
         if (effect[4] & ITEM4_HEAL_PP_ONE)
@@ -11377,9 +11377,10 @@ static void Cmd_various(void)
         }
 
         // Check if the recipient is an active battler.
-        if (gSelectedMonPartyId == gBattlerPartyIndexes[gActiveBattler])
+        if (gBattleStruct->itemPartyIndex[gActiveBattler] == gBattlerPartyIndexes[gActiveBattler])
             battlerId = gActiveBattler;
-        else if (gSelectedMonPartyId == gBattlerPartyIndexes[BATTLE_PARTNER(gActiveBattler)])
+        else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
+                 && gBattleStruct->itemPartyIndex[gActiveBattler] == gBattlerPartyIndexes[BATTLE_PARTNER(gActiveBattler)])
             battlerId = BATTLE_PARTNER(gActiveBattler);
 
         // Heal PP!
@@ -11397,14 +11398,14 @@ static void Cmd_various(void)
 
                 // Update battler PP if needed.
                 if (battlerId != MAX_BATTLERS_COUNT
-                    && gSelectedMonPartyId == gBattlerPartyIndexes[battlerId] && MOVE_IS_PERMANENT(battlerId, i))
+                    && gBattleStruct->itemPartyIndex[gActiveBattler] == gBattlerPartyIndexes[battlerId]
+                    && MOVE_IS_PERMANENT(battlerId, i))
                 {
                     gBattleMons[battlerId].pp[i] = pp;
                 }
             }
         }
         PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(mon, MON_DATA_SPECIES));
-        gSelectedMonPartyId = PARTY_SIZE;
         break;
     }
     } // End of switch (cmd->id)
