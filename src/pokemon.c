@@ -5933,8 +5933,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             if ((itemEffect[i] & ITEM3_CONFUSION)  // heal confusion
              && gMain.inBattle && battlerId != MAX_BATTLERS_COUNT && (gBattleMons[battlerId].status2 & STATUS2_CONFUSION))
             {
-                gBattleMons[battlerId].status2 &= ~STATUS2_CONFUSION;
-                gStatuses4[battlerId] &= ~STATUS4_INFINITE_CONFUSION;
+                RemoveConfusionStatus(battlerId);
                 retVal = FALSE;
             }
             break;
