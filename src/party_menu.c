@@ -4445,7 +4445,7 @@ static bool32 CannotUsePartyBattleItem(u16 itemId, struct Pokemon* mon)
             if (i == MAX_MON_MOVES)
                 cannotUse++;
         }
-        else if (GetMonData(mon, MON_DATA_PP1 + gPartyMenu.slotId2) == CalculatePPWithBonus(GetMonData(mon, MON_DATA_MOVE1 + gPartyMenu.slotId2), GetMonData(mon, MON_DATA_PP_BONUSES), gPartyMenu.slotId2))
+        else if (GetMonData(mon, MON_DATA_PP1 + gPartyMenu.data1) == CalculatePPWithBonus(GetMonData(mon, MON_DATA_MOVE1 + gPartyMenu.data1), GetMonData(mon, MON_DATA_PP_BONUSES), gPartyMenu.data1))
         {
             cannotUse++;
         }
