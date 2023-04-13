@@ -6043,6 +6043,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     break;
                 case 2: // get rid of confusion
                     gBattleMons[battler].status2 &= ~STATUS2_CONFUSION;
+                    gStatuses4[battler] &= ~STATUS4_INFINITE_CONFUSION;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_AbilityCuredStatus;
                     break;
@@ -7023,6 +7024,7 @@ static u8 ItemEffectMoveEnd(u32 battlerId, u16 holdEffect)
 
             gBattleMons[battlerId].status1 = 0;
             gBattleMons[battlerId].status2 &= ~STATUS2_CONFUSION;
+            gStatuses4[battlerId] &= ~STATUS4_INFINITE_CONFUSION;
             BattleScriptPushCursor();
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_CURED_PROBLEM;
             gBattlescriptCurrInstr = BattleScript_BerryCureChosenStatusRet;
@@ -7255,6 +7257,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_NORMALIZED_STATUS;
                     gBattleMons[battlerId].status1 = 0;
                     gBattleMons[battlerId].status2 &= ~STATUS2_CONFUSION;
+                    gStatuses4[battlerId] &= ~STATUS4_INFINITE_CONFUSION;
                     BattleScriptExecute(BattleScript_BerryCureChosenStatusEnd2);
                     effect = ITEM_STATUS_CHANGE;
                 }
@@ -7598,6 +7601,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_NORMALIZED_STATUS;
                     gBattleMons[battlerId].status1 = 0;
                     gBattleMons[battlerId].status2 &= ~STATUS2_CONFUSION;
+                    gStatuses4[battlerId] &= ~STATUS4_INFINITE_CONFUSION;
                     BattleScriptExecute(BattleScript_BerryCureChosenStatusEnd2);
                     effect = ITEM_STATUS_CHANGE;
                 }
