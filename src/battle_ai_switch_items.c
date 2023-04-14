@@ -1119,7 +1119,7 @@ static bool8 ShouldUseItem(void)
             break;
         case EFFECT_ITEM_REVIVE:
             gBattleStruct->itemPartyIndex[gActiveBattler] = GetFirstFaintedPartyIndex(gActiveBattler);
-            if (!gBattleStruct->itemPartyIndex[gActiveBattler] != PARTY_SIZE) // Revive if possible.
+            if (gBattleStruct->itemPartyIndex[gActiveBattler] != PARTY_SIZE) // Revive if possible.
                 shouldUse = TRUE;
             break;
         default:

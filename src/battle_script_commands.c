@@ -11280,6 +11280,7 @@ static void Cmd_various(void)
         struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
         u16 hp = GetMonData(&party[gBattleStruct->itemPartyIndex[gActiveBattler]], MON_DATA_HP);
         u16 maxHP = GetMonData(&party[gBattleStruct->itemPartyIndex[gActiveBattler]], MON_DATA_MAX_HP);
+        gBattleCommunication[MULTIUSE_STATE] = 0;
 
         // Track the number of Revives used in a battle.
         if (hp == 0 && side == B_SIDE_PLAYER && gBattleResults.numRevivesUsed < 255)
