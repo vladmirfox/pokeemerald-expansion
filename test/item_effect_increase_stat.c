@@ -17,6 +17,9 @@ SINGLE_BATTLE_TEST("X-Attack sharply raises battler's attack stat", s16 damage)
         MESSAGE("Wobbuffet used Tackle!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[1].damage);
+        if (B_X_ITEMS_BUFF >= GEN_7)
+            EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[1].damage);
+        else
+            EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
     }
 }

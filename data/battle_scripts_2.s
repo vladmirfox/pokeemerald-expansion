@@ -40,7 +40,7 @@ BattleScript_UseItemMessage:
     printstring STRINGID_EMPTYSTRING3
     pause B_WAIT_TIME_MED
     playse SE_USE_ITEM
-    getbattlerside BS_TARGET
+    getbattlerside BS_ATTACKER
     copybyte cMULTISTRING_CHOOSER, gBattleCommunication
     printfromtable gTrainerUsedItemStringIds
     waitmessage B_WAIT_TIME_LONG
@@ -54,36 +54,36 @@ BattleScript_ItemRestoreHP::
     jumpifbyte CMP_EQUAL, gBattleCommunication, TRUE, BattleScript_ItemRestoreHP_SendOutRevivedBattler
     bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
     orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
-    healthbarupdate BS_TARGET
-    datahpupdate BS_TARGET
-    updatestatusicon BS_TARGET
+    healthbarupdate BS_ATTACKER
+    datahpupdate BS_ATTACKER
+    updatestatusicon BS_ATTACKER
     end
 
 BattleScript_ItemRestoreHP_SendOutRevivedBattler:
-    switchinanim BS_TARGET, FALSE
+    switchinanim BS_ATTACKER, FALSE
     waitstate
-    switchineffects BS_TARGET
-    goto BattleScript_MoveEnd
+    switchineffects BS_ATTACKER
+    end
 
 BattleScript_ItemCureStatus::
     call BattleScript_UseItemMessage
     itemcurestatus
     printstring STRINGID_ITEMCUREDSPECIESSTATUS
     waitmessage B_WAIT_TIME_LONG
-    updatestatusicon BS_TARGET
+    updatestatusicon BS_ATTACKER
     end
 
 BattleScript_ItemHealAndCureStatus::
     call BattleScript_UseItemMessage
     itemrestorehp
-    curestatus BS_TARGET
+    curestatus BS_ATTACKER
     printstring STRINGID_ITEMRESTOREDSPECIESHEALTH
     waitmessage B_WAIT_TIME_LONG
     bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
     orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
-    healthbarupdate BS_TARGET
-    datahpupdate BS_TARGET
-    updatestatusicon BS_TARGET
+    healthbarupdate BS_ATTACKER
+    datahpupdate BS_ATTACKER
+    updatestatusicon BS_ATTACKER
     end
 
 BattleScript_ItemIncreaseStat::
@@ -91,7 +91,7 @@ BattleScript_ItemIncreaseStat::
     itemincreasestat
     statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_ItemEnd
     setgraphicalstatchangevalues
-    playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+    playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
     printfromtable gStatUpStringIds
     waitmessage B_WAIT_TIME_LONG
     end
@@ -99,7 +99,7 @@ BattleScript_ItemIncreaseStat::
 BattleScript_ItemSetMist::
     call BattleScript_UseItemMessage
     setmist
-    playmoveanimation BS_TARGET, MOVE_MIST
+    playmoveanimation BS_ATTACKER, MOVE_MIST
     waitanimation
     printfromtable gMistUsedStringIds
     waitmessage B_WAIT_TIME_LONG
@@ -107,9 +107,9 @@ BattleScript_ItemSetMist::
 
 BattleScript_ItemSetFocusEnergy::
     call BattleScript_UseItemMessage
-    jumpifstatus2 BS_TARGET, STATUS2_FOCUS_ENERGY, BattleScript_ButItFailed
+    jumpifstatus2 BS_ATTACKER, STATUS2_FOCUS_ENERGY, BattleScript_ButItFailed
     setfocusenergy
-    playmoveanimation BS_TARGET, MOVE_FOCUS_ENERGY
+    playmoveanimation BS_ATTACKER, MOVE_FOCUS_ENERGY
     waitanimation
     printstring STRINGID_PKMNUSEDXTOGETPUMPED
     waitmessage B_WAIT_TIME_LONG
