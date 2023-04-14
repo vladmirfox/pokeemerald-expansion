@@ -1552,11 +1552,14 @@ const struct Item gItems[] =
 
 // X Items
 
+#define X_ITEM_STAGES (B_X_ITEMS_BUFF >= GEN_7) ? 2 : 1
+
     [ITEM_X_ATTACK] =
     {
         .name = _("X Attack"),
         .itemId = ITEM_X_ATTACK,
         .price = 1000,
+        .holdEffectParam = X_ITEM_STAGES,
         .description = sXAttackDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1570,6 +1573,7 @@ const struct Item gItems[] =
         .name = _("X Defense"),
         .itemId = ITEM_X_DEFENSE,
         .price = 2000,
+        .holdEffectParam = X_ITEM_STAGES,
         .description = sXDefenseDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1583,6 +1587,7 @@ const struct Item gItems[] =
         .name = _("X Sp. Atk"),
         .itemId = ITEM_X_SP_ATK,
         .price = 1000,
+        .holdEffectParam = X_ITEM_STAGES,
         .description = sXSpAtkDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1596,6 +1601,7 @@ const struct Item gItems[] =
         .name = _("X Sp. Def"),
         .itemId = ITEM_X_SP_DEF,
         .price = 2000,
+        .holdEffectParam = X_ITEM_STAGES,
         .description = sXSpDefDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1609,6 +1615,7 @@ const struct Item gItems[] =
         .name = _("X Speed"),
         .itemId = ITEM_X_SPEED,
         .price = 1000,
+        .holdEffectParam = X_ITEM_STAGES,
         .description = sXSpeedDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1622,6 +1629,7 @@ const struct Item gItems[] =
         .name = _("X Accuracy"),
         .itemId = ITEM_X_ACCURACY,
         .price = 1000,
+        .holdEffectParam = X_ITEM_STAGES,
         .description = sXAccuracyDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1707,6 +1715,8 @@ const struct Item gItems[] =
         .battleUsage = EFFECT_ITEM_INCREASE_ALL_STATS,
         .flingPower = 30,
     },
+
+#undef X_ITEM_STAGES
 
 // Treasures
 

@@ -16517,7 +16517,7 @@ void BS_ItemCureStatus(void) {
 void BS_ItemIncreaseStat(void) {
     NATIVE_ARGS();
     u16 statId = GetItemEffect(gLastUsedItem)[1];
-    u16 stages = (B_X_ITEMS_BUFF >= GEN_7) ? 2 : 1;
+    u16 stages = ItemId_GetHoldEffectParam(gLastUsedItem);
     SET_STATCHANGER(statId, stages, FALSE);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
