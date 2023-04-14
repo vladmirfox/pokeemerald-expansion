@@ -260,10 +260,6 @@
 #define VARIOUS_HIT_SWITCH_TARGET_FAILED            168
 #define VARIOUS_JUMP_IF_SHELL_TRAP                  169
 #define VARIOUS_TRY_REVIVAL_BLESSING                170
-#define VARIOUS_ITEM_RESTORE_HP                     171
-#define VARIOUS_ITEM_CURE_STATUS                    172
-#define VARIOUS_ITEM_INCREASE_STAT                  173
-#define VARIOUS_ITEM_RESTORE_PP                     174
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
