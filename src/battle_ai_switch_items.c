@@ -1066,8 +1066,6 @@ static bool8 ShouldUseItem(void)
         u8 paramOffset;
         u8 battlerSide;
 
-        // if (i != 0 && validMons > (gBattleResources->battleHistory->itemsNo - i) + 1)
-        //     continue;
         item = gBattleResources->battleHistory->trainerItems[i];
         if (item == ITEM_NONE)
             continue;
