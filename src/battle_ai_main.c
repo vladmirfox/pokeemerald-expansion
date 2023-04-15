@@ -3777,7 +3777,6 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         break;
     case EFFECT_WISH:
     case EFFECT_HEAL_BELL:
-    case EFFECT_TAKE_HEART:
         if (ShouldUseWishAromatherapy(battlerAtk, battlerDef, move))
             score += 3;
         break;
@@ -4428,6 +4427,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score++;
         break;
     case EFFECT_REFRESH:
+    case EFFECT_TAKE_HEART:
         if (gBattleMons[battlerAtk].status1 & STATUS1_ANY)
             score += 2;
         break;
