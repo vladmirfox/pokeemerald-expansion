@@ -144,6 +144,18 @@ Debug_Script_2::
 	end
 
 Debug_Script_3::
+	additem ITEM_DARK_GEM 99
+	additem ITEM_DARKINIUM_Z 99 
+	additem ITEM_ABSORB_BULB 99
+	additem ITEM_BLUNDER_POLICY 99
+	additem ITEM_EJECT_PACK 99
+	additem ITEM_EJECT_BUTTON 99
+	additem ITEM_ELECTRIC_SEED 99
+	additem ITEM_MENTAL_HERB 99
+	additem ITEM_ROOM_SERVICE 99
+	additem ITEM_THROAT_SPRAY 99
+	additem ITEM_WHITE_HERB 99
+	additem ITEM_WEAKNESS_POLICY 99
 	end
 
 Debug_Script_4::
