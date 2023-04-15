@@ -198,10 +198,11 @@ void ItemUseOutOfBattle_Mail(u8 taskId)
     Task_FadeAndCloseBagMenu(taskId);
 }
 
+STATIC_ASSERT(I_EXP_SHARE_ITEM < GEN_6 || I_EXP_SHARE_FLAG > TEMP_FLAGS_END, YouNeedToSetAFlagToUseGen6ExpShare);
+
 void ItemUseOutOfBattle_ExpShare(u8 taskId)
 {
 #if I_EXP_SHARE_ITEM >= GEN_6
-    #if I_EXP_SHARE_FLAG != 0
     if (!FlagGet(I_EXP_SHARE_FLAG))
     {
         FlagSet(I_EXP_SHARE_FLAG);
@@ -220,12 +221,6 @@ void ItemUseOutOfBattle_ExpShare(u8 taskId)
         else
             DisplayItemMessage(taskId, 1, gText_ExpShareOff, CloseItemMessage);
     }
-    #else
-    if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
-        DisplayItemMessageOnField(taskId, gText_FeatureUnavailableConfigItem, Task_CloseCantUseKeyItemMessage);
-    else
-        DisplayItemMessage(taskId, 1, gText_FeatureUnavailableConfigItem, CloseItemMessage);
-    #endif
 #else
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 #endif
