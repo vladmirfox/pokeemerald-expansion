@@ -1437,7 +1437,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_DUDUNSPARCE_TWO_SEGMENT]           = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  11 },
     [SPECIES_DUDUNSPARCE_THREE_SEGMENT]         = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  11 },
     [SPECIES_KINGAMBIT]                         = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
-    [SPECIES_GREAT_TUSK]                        = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
+    [SPECIES_GREAT_TUSK]                        = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  10 },
     [SPECIES_SCREAM_TAIL]                       = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_BRUTE_BONNET]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  12 },
     [SPECIES_FLUTTER_MANE]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  10 },
