@@ -93,8 +93,8 @@ static void GetAffineAnimFrame(u8 matrixNum, struct Sprite *sprite, struct Affin
 static void ApplyAffineAnimFrame(u8 matrixNum, struct AffineAnimFrameCmd *frameCmd);
 static u8 IndexOfSpriteTileTag(u16 tag);
 static void AllocSpriteTileRange(u16 tag, u16 start, u16 count);
-static void DoLoadSpritePalette(const u16 *src, u16 paletteOffset);
 static void UpdateSpriteMatrixAnchorPos(struct Sprite *, s32, s32);
+static u8 LoadSpritePaletteInternal(const struct SpritePalette *palette, bool32 loadFaded);
 
 typedef void (*AnimFunc)(struct Sprite *);
 typedef void (*AnimCmdFunc)(struct Sprite *);
@@ -1584,7 +1584,7 @@ void FreeAllSpritePalettes(void)
         sSpritePaletteTags[i] = TAG_NONE;
 }
 
-u8 LoadSpritePalette(const struct SpritePalette *palette)
+static u8 LoadSpritePaletteInternal(const struct SpritePalette *palette, bool32 loadFaded)
 {
     u8 index = IndexOfSpritePaletteTag(palette->tag);
 
@@ -1600,9 +1600,22 @@ u8 LoadSpritePalette(const struct SpritePalette *palette)
     else
     {
         sSpritePaletteTags[index] = palette->tag;
-        DoLoadSpritePalette(palette->data, index * 16);
+        if (loadFaded)
+            LoadPalette(palette->data, OBJ_PLTT_OFFSET + (index * 16), PLTT_SIZE_4BPP);
+        else
+            CpuCopy16(palette->data, &gPlttBufferUnfaded[OBJ_PLTT_OFFSET + (index * 16)], PLTT_SIZE_4BPP);
         return index;
     }
+}
+
+u8 LoadSpritePaletteUnfaded(const struct SpritePalette *palette)
+{
+    LoadSpritePaletteInternal(palette, FALSE);
+}
+
+u8 LoadSpritePalette(const struct SpritePalette *palette)
+{
+    LoadSpritePaletteInternal(palette, TRUE);
 }
 
 void LoadSpritePalettes(const struct SpritePalette *palettes)
@@ -1611,11 +1624,6 @@ void LoadSpritePalettes(const struct SpritePalette *palettes)
     for (i = 0; palettes[i].data != NULL; i++)
         if (LoadSpritePalette(&palettes[i]) == 0xFF)
             break;
-}
-
-void DoLoadSpritePalette(const u16 *src, u16 paletteOffset)
-{
-    LoadPalette(src, OBJ_PLTT_OFFSET + paletteOffset, PLTT_SIZE_4BPP);
 }
 
 u8 AllocSpritePalette(u16 tag)
