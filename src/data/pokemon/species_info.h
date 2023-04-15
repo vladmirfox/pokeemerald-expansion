@@ -6772,39 +6772,81 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PINSIR_MISC_INFO,
     },
 
+#define TAUROS_MISC_INFO                                      \
+        .baseHP        = 75,                                  \
+        .baseAttack    = 100,                                 \
+        .baseDefense   = 95,                                  \
+        .baseSpeed     = 110,                                 \
+        .baseSpAttack  = 40,                                  \
+        .baseSpDefense = 70,                                  \
+        .catchRate = 45,                                      \
+        .expYield = 172,                                      \
+        .cryId = CRY_TAUROS,                                  \
+        .genderRatio = MON_MALE,                              \
+        .eggCycles = 20,                                      \
+        .friendship = STANDARD_FRIENDSHIP,                    \
+        .growthRate = GROWTH_SLOW,                            \
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},     \
+        .noFlip = FALSE,                                      \
+        .natDexNum = NATIONAL_DEX_TAUROS,                     \
+        .categoryName = _("Wild Bull"),                       \
+        .pokemonScale = 256,                                  \
+        .pokemonOffset = 0,                                   \
+        .trainerScale = 256,                                  \
+        .trainerOffset = 0,                                   \
+        .height = 14,                                         \
+
     [SPECIES_TAUROS] =
     {
-        .baseHP        = 75,
-        .baseAttack    = 100,
-        .baseDefense   = 95,
-        .baseSpeed     = 110,
-        .baseSpAttack  = 40,
-        .baseSpDefense = 70,
         .types = { TYPE_NORMAL, TYPE_NORMAL },
-        .catchRate = 45,
-        .expYield = 172,
         .evYield_Attack    = 1,
         .evYield_Speed     = 1,
-        .genderRatio = MON_MALE,
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_SLOW,
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},
         .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_BROWN,
-        .noFlip = FALSE,
-        .natDexNum = NATIONAL_DEX_TAUROS,
-        .cryId = CRY_TAUROS,
         .description = gTaurosPokedexText,
-        .categoryName = _("Wild Bull"),
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .height = 14,
         .weight = 884,
         .levelUpLearnset = sTaurosLevelUpLearnset,
         .teachableLearnset = sTaurosTeachableLearnset,
+        TAUROS_MISC_INFO
+    },
+
+    [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] =
+    {
+        .types = { TYPE_FIGHTING, TYPE_FIGHTING },
+        .evYield_Attack    = 2,
+        .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW},
+        .bodyColor = BODY_COLOR_BROWN,
+        .description = gTaurosCombatBreedPokedexText,
+        .weight = 1150,
+        .levelUpLearnset = sTaurosLevelUpLearnset,
+        .teachableLearnset = sTaurosTeachableLearnset,
+        TAUROS_MISC_INFO
+    },
+
+    [SPECIES_TAUROS_PALDEAN_BLAZE_BREED] =
+    {
+        .types = { TYPE_FIGHTING, TYPE_FIRE },
+        .evYield_Attack    = 2,
+        .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW},
+        .bodyColor = BODY_COLOR_BROWN,
+        .description = gTaurosBlazeBreedPokedexText,
+        .weight = 850,
+        .levelUpLearnset = sTaurosLevelUpLearnset,
+        .teachableLearnset = sTaurosTeachableLearnset,
+        TAUROS_MISC_INFO
+    },
+
+    [SPECIES_TAUROS_PALDEAN_AQUA_BREED] =
+    {
+        .types = { TYPE_FIGHTING, TYPE_WATER },
+        .evYield_Attack    = 2,
+        .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW},
+        .bodyColor = BODY_COLOR_BROWN,
+        .description = gTaurosAquaBreedPokedexText,
+        .weight = 1100,
+        .levelUpLearnset = sTaurosLevelUpLearnset,
+        .teachableLearnset = sTaurosTeachableLearnset,
+        TAUROS_MISC_INFO
     },
 
     [SPECIES_MAGIKARP] =
@@ -9600,39 +9642,55 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .teachableLearnset = sYanmegaTeachableLearnset,
     },
 
+#define WOOPER_MISC_INFO                                                        \
+        .baseHP        = 55,                                                    \
+        .baseAttack    = 45,                                                    \
+        .baseDefense   = 45,                                                    \
+        .baseSpeed     = 15,                                                    \
+        .baseSpAttack  = 25,                                                    \
+        .baseSpDefense = 25,                                                    \
+        .catchRate = 255,                                                       \
+        .expYield = 42,                                                         \
+        .evYield_HP        = 1,                                                 \
+        .genderRatio = PERCENT_FEMALE(50),                                      \
+        .eggCycles = 20,                                                        \
+        .friendship = STANDARD_FRIENDSHIP,                                      \
+        .growthRate = GROWTH_MEDIUM_FAST,                                       \
+        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD},                     \
+        .noFlip = FALSE,                                                        \
+        .natDexNum = NATIONAL_DEX_WOOPER,                                       \
+        .cryId = CRY_WOOPER,                                                    \
+        .categoryName = _("Water Fish"),                                        \
+        .pokemonScale = 479,                                                    \
+        .pokemonOffset = 21,                                                    \
+        .trainerScale = 256,                                                    \
+        .trainerOffset = 0,                                                     \
+        .height = 4,                                                            \
+
     [SPECIES_WOOPER] =
     {
-        .baseHP        = 55,
-        .baseAttack    = 45,
-        .baseDefense   = 45,
-        .baseSpeed     = 15,
-        .baseSpAttack  = 25,
-        .baseSpDefense = 25,
         .types = { TYPE_WATER, TYPE_GROUND },
-        .catchRate = 255,
-        .expYield = 42,
-        .evYield_HP        = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD},
         .abilities = {ABILITY_DAMP, ABILITY_WATER_ABSORB, ABILITY_UNAWARE},
         .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
-        .natDexNum = NATIONAL_DEX_WOOPER,
-        .cryId = CRY_WOOPER,
         .description = gWooperPokedexText,
-        .categoryName = _("Water Fish"),
-        .pokemonScale = 479,
-        .pokemonOffset = 21,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .height = 4,
         .weight = 85,
         .levelUpLearnset = sWooperLevelUpLearnset,
         .teachableLearnset = sWooperTeachableLearnset,
         .evolutions = sWooperEvolutions,
+        WOOPER_MISC_INFO
+    },
+
+    [SPECIES_WOOPER_PALDEAN] =
+    {
+        .types = { TYPE_WATER, TYPE_GROUND },
+        .abilities = {ABILITY_POISON_POINT, ABILITY_WATER_ABSORB, ABILITY_UNAWARE},
+        .bodyColor = BODY_COLOR_BROWN,
+        .description = gWooperPaldeaPokedexText,
+        .weight = 110,
+        .levelUpLearnset = sWooperLevelUpLearnset,
+        .teachableLearnset = sWooperTeachableLearnset,
+        .evolutions = sWooperEvolutions,
+        WOOPER_MISC_INFO
     },
 
     [SPECIES_QUAGSIRE] =
