@@ -1440,7 +1440,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_GREAT_TUSK]                        = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_SCREAM_TAIL]                       = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_BRUTE_BONNET]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  12 },
-    [SPECIES_FLUTTER_MANE]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
+    [SPECIES_FLUTTER_MANE]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  10 },
     [SPECIES_SLITHER_WING]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_SANDY_SHOCKS]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  10 },
     [SPECIES_IRON_TREADS]                       = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  4 },
