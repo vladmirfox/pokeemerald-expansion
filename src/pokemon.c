@@ -5736,7 +5736,7 @@ static bool32 TryKnockOffItemScript(u32 battler)
         if (gBattleMons[battler].ability != ABILITY_GORILLA_TACTICS)
             gBattleStruct->choicedMove[battler] = 0;
         CheckSetUnburden(battler);
-        gBattleScripting.battler = gActiveBattler;
+        gBattlerAttacker = gBattleScripting.battler = gActiveBattler; // I hate this
         BattleScriptExecute(BattleScript_ItemDrop);
         return TRUE;
     }
