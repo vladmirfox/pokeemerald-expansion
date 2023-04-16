@@ -7997,6 +7997,12 @@ extern const u32 gItemIcon_RibbonSweet[];
 extern const u32 gItemIconPalette_RibbonSweet[];
 extern const u32 gItemIcon_Everstone[];
 extern const u32 gItemIconPalette_Everstone[];
+extern const u32 gItemIcon_BlackAugurite[];
+extern const u32 gItemIconPalette_BlackAugurite[];
+extern const u32 gItemIcon_LinkingCord[];
+extern const u32 gItemIconPalette_LinkingCord[];
+extern const u32 gItemIcon_PeatBlock[];
+extern const u32 gItemIconPalette_PeatBlock[];
 // Nectars
 extern const u32 gItemIcon_RedNectar[];
 extern const u32 gItemIconPalette_RedNectar[];
@@ -8833,6 +8839,45 @@ extern const u32 gItemIconPalette_Tea[];
 extern const u32 gItemIcon_Gem[];
 extern const u32 gItemIconPalette_Ruby[];
 extern const u32 gItemIconPalette_Sapphire[];
+
+// GEN IX ITEMS
+extern const u32 gItemIcon_AbilityShield[];
+extern const u32 gItemIconPalette_AbilityShield[];
+extern const u32 gItemIcon_AuspiciousArmor[];
+extern const u32 gItemIconPalette_AuspiciousArmor[];
+extern const u32 gItemIcon_BigBambooShoot[];
+extern const u32 gItemIconPalette_BigBambooShoot[];
+extern const u32 gItemIcon_BoosterEnergy[];
+extern const u32 gItemIconPalette_BoosterEnergy[];
+extern const u32 gItemIcon_CovertCloak[];
+extern const u32 gItemIconPalette_CovertCloak[];
+extern const u32 gItemIcon_GimmighoulCoin[];
+extern const u32 gItemIconPalette_GimmighoulCoin[];
+extern const u32 gItemIcon_LeadersCrest[];
+extern const u32 gItemIconPalette_LeadersCrest[];
+extern const u32 gItemIcon_LoadedDice[];
+extern const u32 gItemIconPalette_LoadedDice[];
+extern const u32 gItemIcon_MaliciousArmor[];
+extern const u32 gItemIconPalette_MaliciousArmor[];
+extern const u32 gItemIcon_MirrorHerb[];
+extern const u32 gItemIconPalette_MirrorHerb[];
+extern const u32 gItemIcon_PunchingGlove[];
+extern const u32 gItemIconPalette_PunchingGlove[];
+extern const u32 gItemIcon_ScrollOfDarkness[];
+extern const u32 gItemIconPalette_ScrollOfDarkness[];
+extern const u32 gItemIcon_ScrollOfWaters[];
+extern const u32 gItemIconPalette_ScrollOfWaters[];
+extern const u32 gItemIcon_TeraOrb[];
+extern const u32 gItemIconPalette_TeraOrb[];
+extern const u32 gItemIcon_TinyBambooShoot[];
+extern const u32 gItemIconPalette_TinyBambooShoot[];
+
+extern const u32 gItemIcon_AdamantCrystal[];
+extern const u32 gItemIconPalette_AdamantCrystal[];
+extern const u32 gItemIcon_GriseousCore[];
+extern const u32 gItemIconPalette_GriseousCore[];
+extern const u32 gItemIcon_LustrousGlobe[];
+extern const u32 gItemIconPalette_LustrousGlobe[];
 
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u32 gItemIconPalette_ReturnToFieldArrow[];
