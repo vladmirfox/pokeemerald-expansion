@@ -10792,7 +10792,7 @@ bool32 IsBattlerWeatherAffected(u8 battlerId, u32 weatherFlags)
 }
 
 // Utility Umbrella holders take normal damage from what would be rain- and sun-weakened attacks.
-u32 ApplyWeatherDamageMultiplier(u8 battlerAtk, u8 move, u8 moveType, u32 dmg, u16 holdEffectAtk, u16 holdEffectDef)
+u32 ApplyWeatherDamageMultiplier(u8 battlerAtk, u16 move, u8 moveType, u32 dmg, u16 holdEffectAtk, u16 holdEffectDef)
 {
     u16 holdEffect;
     if (WEATHER_HAS_EFFECT)
