@@ -7,7 +7,7 @@ ASSUMPTIONS
 
 SINGLE_BATTLE_TEST("Thrash lasts for 2 or 3 turns")
 {
-    PASSES_RANDOMLY(1, 2);
+    PASSES_RANDOMLY(1, 2, RNG_RAMPAGE_TURNS);
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -25,7 +25,6 @@ SINGLE_BATTLE_TEST("Thrash lasts for 2 or 3 turns")
 SINGLE_BATTLE_TEST("Thrash confuses the user after it finishes")
 {
     GIVEN {
-        RNGSeed(0x00000000);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -44,7 +43,6 @@ SINGLE_BATTLE_TEST("Thrash does not confuse the user if it is canceled on turn 1
 {
     GIVEN {
         ASSUME(B_RAMPAGE_CANCELLING >= GEN_5);
-        RNGSeed(0x00000000);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -60,7 +58,6 @@ SINGLE_BATTLE_TEST("Thrash does not confuse the user if it is canceled on turn 2
 {
     GIVEN {
         ASSUME(B_RAMPAGE_CANCELLING >= GEN_5);
-        RNGSeed(0x00000000);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -77,7 +74,6 @@ SINGLE_BATTLE_TEST("Thrash confuses the user if it is canceled on turn 3 of 3")
     KNOWN_FAILING;
     GIVEN {
         ASSUME(B_RAMPAGE_CANCELLING >= GEN_5);
-        RNGSeed(0x00000000);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
