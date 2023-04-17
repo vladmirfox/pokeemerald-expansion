@@ -1,5 +1,4 @@
-#include "global.h"
-#include "test_battle.h"
+#include "test/battle.h"
 
 SINGLE_BATTLE_TEST("Ether restores the PP of one of a battler's moves")
 {

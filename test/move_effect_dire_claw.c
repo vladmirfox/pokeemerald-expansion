@@ -1,5 +1,4 @@
-#include "global.h"
-#include "test_battle.h"
+#include "test/battle.h"
 
 ASSUMPTIONS
 {

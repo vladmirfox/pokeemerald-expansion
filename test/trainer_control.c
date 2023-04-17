@@ -1,5 +1,5 @@
 #include "global.h"
-#include "test.h"
+#include "test/test.h"
 #include "battle.h"
 #include "battle_main.h"
 #include "data.h"

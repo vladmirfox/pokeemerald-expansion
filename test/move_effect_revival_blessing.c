@@ -1,5 +1,4 @@
-#include "global.h"
-#include "test_battle.h"
+#include "test/battle.h"
 
 // Note: Since these tests are recorded battle, they don't test the right battle controller
 // behaviors. These have been tested in-game, in double, in multi, and in link battles. AI will always
