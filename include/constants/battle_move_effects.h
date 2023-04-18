@@ -408,6 +408,6 @@
 #define EFFECT_FROSTBITE_HIT                402
 #define EFFECT_SNOWSCAPE                    403
 
-#define NUM_BATTLE_MOVE_EFFECTS             405
+#define NUM_BATTLE_MOVE_EFFECTS             404
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H
