@@ -175,7 +175,7 @@ static void PrintTestName(void)
 static void SetImplicitSpeeds(void)
 {
     s32 i, j;
-    u32 speed = 12;
+    u32 Speed = 12;
     u32 hasSpeeds = 0;
     u32 allSpeeds = ((1 << DATA.playerPartySize) - 1) | (((1 << DATA.opponentPartySize) - 1) << 6);
     bool32 madeProgress;
@@ -187,8 +187,8 @@ static void SetImplicitSpeeds(void)
             if (!(hasSpeeds & (1 << i))
              && !(DATA.slowerThan[B_SIDE_PLAYER][i] & ~hasSpeeds))
             {
-                SetMonData(&DATA.recordedBattle.playerParty[i], MON_DATA_SPEED, &speed);
-                speed--;
+                SetMonData(&DATA.recordedBattle.playerParty[i], MON_DATA_SPEED, &Speed);
+                Speed--;
                 hasSpeeds |= 1 << i;
                 madeProgress = TRUE;
             }
@@ -198,8 +198,8 @@ static void SetImplicitSpeeds(void)
             if (!(hasSpeeds & ((1 << 6) << i))
              && !(DATA.slowerThan[B_SIDE_OPPONENT][i] & ~hasSpeeds))
             {
-                SetMonData(&DATA.recordedBattle.opponentParty[i], MON_DATA_SPEED, &speed);
-                speed--;
+                SetMonData(&DATA.recordedBattle.opponentParty[i], MON_DATA_SPEED, &Speed);
+                Speed--;
                 hasSpeeds |= (1 << 6) << i;
                 madeProgress = TRUE;
             }
@@ -1102,39 +1102,39 @@ void HP_(u32 sourceLine, u32 hp)
     SetMonData(DATA.currentMon, MON_DATA_HP, &hp);
 }
 
-void Attack_(u32 sourceLine, u32 attack)
+void Attack_(u32 sourceLine, u32 Attack)
 {
     INVALID_IF(!DATA.currentMon, "Attack outside of PLAYER/OPPONENT");
-    INVALID_IF(attack == 0, "Illegal attack: %d", attack);
-    SetMonData(DATA.currentMon, MON_DATA_ATK, &attack);
+    INVALID_IF(Attack == 0, "Illegal Attack: %d", Attack);
+    SetMonData(DATA.currentMon, MON_DATA_ATK, &Attack);
 }
 
-void Defense_(u32 sourceLine, u32 defense)
+void Defense_(u32 sourceLine, u32 Defense)
 {
     INVALID_IF(!DATA.currentMon, "Defense outside of PLAYER/OPPONENT");
-    INVALID_IF(defense == 0, "Illegal defense: %d", defense);
-    SetMonData(DATA.currentMon, MON_DATA_DEF, &defense);
+    INVALID_IF(Defense == 0, "Illegal Defense: %d", Defense);
+    SetMonData(DATA.currentMon, MON_DATA_DEF, &Defense);
 }
 
 void SpAttack_(u32 sourceLine, u32 spAttack)
 {
     INVALID_IF(!DATA.currentMon, "SpAttack outside of PLAYER/OPPONENT");
-    INVALID_IF(spAttack == 0, "Illegal special attack: %d", spAttack);
+    INVALID_IF(spAttack == 0, "Illegal special Attack: %d", spAttack);
     SetMonData(DATA.currentMon, MON_DATA_SPATK, &spAttack);
 }
 
 void SpDefense_(u32 sourceLine, u32 spDefense)
 {
     INVALID_IF(!DATA.currentMon, "SpDefense outside of PLAYER/OPPONENT");
-    INVALID_IF(spDefense == 0, "Illegal special defense: %d", spDefense);
+    INVALID_IF(spDefense == 0, "Illegal special Defense: %d", spDefense);
     SetMonData(DATA.currentMon, MON_DATA_SPDEF, &spDefense);
 }
 
-void Speed_(u32 sourceLine, u32 speed)
+void Speed_(u32 sourceLine, u32 Speed)
 {
     INVALID_IF(!DATA.currentMon, "Speed outside of PLAYER/OPPONENT");
-    INVALID_IF(speed == 0, "Illegal speed: %d", speed);
-    SetMonData(DATA.currentMon, MON_DATA_SPEED, &speed);
+    INVALID_IF(Speed == 0, "Illegal Speed: %d", Speed);
+    SetMonData(DATA.currentMon, MON_DATA_SPEED, &Speed);
     DATA.hasExplicitSpeeds = TRUE;
     DATA.explicitSpeeds[DATA.currentSide] |= 1 << DATA.currentPartyIndex;
 }
