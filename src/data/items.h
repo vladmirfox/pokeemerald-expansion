@@ -10642,7 +10642,6 @@ const struct Item gItems[] =
         .description = sWonderLauncher_XSpeed3_Desc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
-        .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .battleUsage = EFFECT_ITEM_INCREASE_STAT,
         .flingPower = 30,
