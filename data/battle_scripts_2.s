@@ -19,12 +19,16 @@ gBattlescriptsForUsingItem::
     .4byte BattleScript_ItemHealAndCureStatus        @ EFFECT_ITEM_HEAL_AND_CURE_STATUS
     .4byte BattleScript_ItemIncreaseStat             @ EFFECT_ITEM_INCREASE_STAT
     .4byte BattleScript_ItemSetMist                  @ EFFECT_ITEM_SET_MIST
-    .4byte BattleScript_ItemSetFocusEnergy           @ EFFECT_ITEM_SET_FOCUS_ENERGY
+    .4byte BattleScript_ItemIncreaseCrit             @ EFFECT_ITEM_INCREASE_CRIT
     .4byte BattleScript_RunByUsingItem               @ EFFECT_ITEM_ESCAPE
     .4byte BattleScript_BallThrow                    @ EFFECT_ITEM_THROW_BALL
     .4byte BattleScript_ItemRestoreHP                @ EFFECT_ITEM_REVIVE
     .4byte BattleScript_ItemRestorePP                @ EFFECT_ITEM_RESTORE_PP
     .4byte BattleScript_ItemIncreaseAllStats         @ EFFECT_ITEM_INCREASE_ALL_STATS
+    .4byte BattleScript_ItemActivateAbility          @ EFFECT_ITEM_ACTIVATE_ABILITY
+    .4byte BattleScript_ItemResetStatStages          @ EFFECT_ITEM_RESET_STAT_STAGES
+    .4byte BattleScript_ItemActivateHeldItem         @ EFFECT_ITEM_ACTIVATE_HELD_ITEM
+    .4byte BattleScript_ItemDropHeldItem             @ EFFECT_ITEM_DROP_HELD_ITEM
 
     .align 2
 gBattlescriptsForSafariActions::
@@ -105,10 +109,11 @@ BattleScript_ItemSetMist::
     waitmessage B_WAIT_TIME_LONG
     end
 
-BattleScript_ItemSetFocusEnergy::
+BattleScript_ItemIncreaseCrit::
     call BattleScript_UseItemMessage
-    jumpifstatus2 BS_ATTACKER, STATUS2_FOCUS_ENERGY, BattleScript_ButItFailed
-    setfocusenergy
+    jumpifstatus4 BS_ATTACKER, STATUS4_CRIT_STAGE_RAISED, BattleScript_ButItFailed
+    jumpifstatus2 BS_ATTACKER, STATUS2_CRIT_STAGE_2, BattleScript_ButItFailed
+    itemincreasecrit
     playmoveanimation BS_ATTACKER, MOVE_FOCUS_ENERGY
     waitanimation
     printstring STRINGID_PKMNUSEDXTOGETPUMPED
@@ -256,3 +261,19 @@ BattleScript_TrainerBSlideMsgRet::
 BattleScript_TrainerBSlideMsgEnd2::
     call BattleScript_TrainerBSlideMsgRet
     end2
+
+BattleScript_ItemActivateAbility::
+    call BattleScript_UseItemMessage
+    end
+
+BattleScript_ItemResetStatStages::
+    call BattleScript_UseItemMessage
+    end
+
+BattleScript_ItemActivateHeldItem::
+    call BattleScript_UseItemMessage
+    end
+
+BattleScript_ItemDropHeldItem::
+    call BattleScript_UseItemMessage
+    end

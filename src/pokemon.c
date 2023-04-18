@@ -6321,7 +6321,7 @@ static void BufferStatRoseMessage(s32 statIdx, u8 statStage)
             StringCopy(gBattleTextBuff2, gText_StatDrastically);
             break;
         case STAT_STAGE_6:
-            StringCopy(gBattleTextBuff2, gText_StatImmensly);
+            StringCopy(gBattleTextBuff2, gText_StatImmensely);
             break;
     }
     if (statStage != STAT_STAGE_1) 

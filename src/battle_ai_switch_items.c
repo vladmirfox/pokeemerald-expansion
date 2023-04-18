@@ -1093,7 +1093,7 @@ static bool8 ShouldUseItem(void)
                 break;
             shouldUse = TRUE;
             break;
-        case EFFECT_ITEM_SET_FOCUS_ENERGY:
+        case EFFECT_ITEM_INCREASE_CRIT:
             if (!gDisableStructs[gActiveBattler].isFirstTurn
                 || gBattleMons[gActiveBattler].status2 & STATUS2_FOCUS_ENERGY
                 || AI_OpponentCanFaintAiWithMod(0))

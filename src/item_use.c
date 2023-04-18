@@ -1153,8 +1153,9 @@ static bool32 CannotUseBagBattleItem(u16 itemId)
         cannotUse++;
     }
     // Dire Hit
-    if (battleUsage == EFFECT_ITEM_SET_FOCUS_ENERGY
-        && !(gBattleMons[gBattlerInMenuId].status2 & STATUS2_FOCUS_ENERGY))
+    if (battleUsage == EFFECT_ITEM_INCREASE_CRIT
+        && (gBattleMons[gBattlerInMenuId].status2 & STATUS2_CRIT_STAGE_2
+         || gStatuses4[gBattlerInMenuId] & STATUS4_CRIT_STAGE_RAISED))
     {
         cannotUse++;
     }

@@ -1106,12 +1106,16 @@
 #define EFFECT_ITEM_HEAL_AND_CURE_STATUS    3
 #define EFFECT_ITEM_INCREASE_STAT           4
 #define EFFECT_ITEM_SET_MIST                5
-#define EFFECT_ITEM_SET_FOCUS_ENERGY        6
+#define EFFECT_ITEM_INCREASE_CRIT        6
 #define EFFECT_ITEM_ESCAPE                  7
 #define EFFECT_ITEM_THROW_BALL              8
 #define EFFECT_ITEM_REVIVE                  9
 #define EFFECT_ITEM_RESTORE_PP              10
 #define EFFECT_ITEM_INCREASE_ALL_STATS      11
+#define EFFECT_ITEM_ACTIVATE_ABILITY        12
+#define EFFECT_ITEM_RESET_STAT_STAGES       13
+#define EFFECT_ITEM_ACTIVATE_HELD_ITEM      14
+#define EFFECT_ITEM_DROP_HELD_ITEM          15
 
 // Enigma Berry dummy constant
 #define EFFECT_ITEM_ENIGMA_BERRY_EREADER    1

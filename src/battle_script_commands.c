@@ -16432,6 +16432,19 @@ u8 GetFirstFaintedPartyIndex(u8 battlerId)
     return PARTY_SIZE;
 }
 
+void BS_JumpIfStatus4(void) {
+    NATIVE_ARGS(u8 battler, u32 flags, const u8* jumpInstr);
+
+    u8 battlerId = GetBattlerForBattleScript(cmd->battler);
+    u32 flags = cmd->flags;
+    const u8 *jumpInstr = cmd->jumpInstr;
+
+    if (gStatuses4[battlerId] & flags && gBattleMons[battlerId].hp != 0)
+        gBattlescriptCurrInstr = jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
 void BS_ItemRestoreHP(void) {
     NATIVE_ARGS();
     u16 healAmount;
@@ -16570,5 +16583,20 @@ void BS_ItemRestorePP(void) {
         }
     }
     PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(mon, MON_DATA_SPECIES));
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_ItemIncreaseCrit(void) {
+    NATIVE_ARGS();
+    u16 stages = ItemId_GetHoldEffectParam(gLastUsedItem);
+    
+    if (stages == STAT_STAGE_1)
+        gStatuses4[gBattlerAttacker] |= STATUS4_CRIT_STAGE_1;
+    else if (stages == STAT_STAGE_2)
+        gBattleMons[gBattlerAttacker].status2 |= STATUS2_CRIT_STAGE_2;
+    else if (stages == STAT_STAGE_3)
+        gStatuses4[gBattlerAttacker] |= STATUS4_CRIT_STAGE_3;
+
+    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_GETTING_PUMPED;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }

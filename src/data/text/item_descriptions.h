@@ -3924,7 +3924,7 @@ static const u8 sWonderLauncher_XAttack3_Desc[] = _(
     "during one battle.");
 
 static const u8 sWonderLauncher_XAttack6_Desc[] = _(
-    "Immensly raises\n"
+    "Immensely raises\n"
     "stat Attack\n"
     "during one battle.");
     
@@ -3944,7 +3944,7 @@ static const u8 sWonderLauncher_XDefense3_Desc[] = _(
     "during one battle.");
 
 static const u8 sWonderLauncher_XDefense6_Desc[] = _(
-    "Immensly raises\n"
+    "Immensely raises\n"
     "stat Defense\n"
     "during one battle.");
     
@@ -3964,7 +3964,7 @@ static const u8 sWonderLauncher_XSpAtk3_Desc[] = _(
     "during one battle.");
 
 static const u8 sWonderLauncher_XSpAtk6_Desc[] = _(
-    "Immensly raises\n"
+    "Immensely raises\n"
     "stat Sp. Atk.\n"
     "during one battle.");
     
@@ -3984,7 +3984,7 @@ static const u8 sWonderLauncher_XSpDef3_Desc[] = _(
     "during one battle.");
 
 static const u8 sWonderLauncher_XSpDef6_Desc[] = _(
-    "Immensly raises\n"
+    "Immensely raises\n"
     "stat Sp. Def.\n"
     "during one battle.");
 
@@ -4004,7 +4004,7 @@ static const u8 sWonderLauncher_XSpeed3_Desc[] = _(
     "during one battle.");
 
 static const u8 sWonderLauncher_XSpeed6_Desc[] = _(
-    "Immensly raises\n"
+    "Immensely raises\n"
     "stat Speed\n"
     "during one battle.");
 
@@ -4024,7 +4024,7 @@ static const u8 sWonderLauncher_XAccuracy3_Desc[] = _(
     "during one battle.");
 
 static const u8 sWonderLauncher_XAccuracy6_Desc[] = _(
-    "Immensly raises\n"
+    "Immensely raises\n"
     "move Accuracy\n"
     "during one battle.");
 
@@ -4039,7 +4039,7 @@ static const u8 sWonderLauncher_DireHit2_Desc[] = _(
     "during one battle.");
 
 static const u8 sWonderLauncher_DireHit3_Desc[] = _(
-    "Immensly raises the\n"
+    "Drastically raises\n"
     "critical-hit ratio\n"
     "during one battle.");
 
