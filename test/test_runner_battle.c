@@ -1133,7 +1133,7 @@ void SpDefense_(u32 sourceLine, u32 spDefense)
 void Speed_(u32 sourceLine, u32 speed)
 {
     INVALID_IF(!DATA.currentMon, "Speed outside of PLAYER/OPPONENT");
-    INVALID_IF(Speed == 0, "Illegal Speed: %d", speed);
+    INVALID_IF(speed == 0, "Illegal speed: %d", speed);
     SetMonData(DATA.currentMon, MON_DATA_SPEED, &speed);
     DATA.hasExplicitSpeeds = TRUE;
     DATA.explicitSpeeds[DATA.currentSide] |= 1 << DATA.currentPartyIndex;
