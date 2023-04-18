@@ -840,6 +840,9 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_ADAMANT_CRYSTAL] = {gItemIcon_AdamantCrystal, gItemIconPalette_AdamantCrystal},
     [ITEM_GRISEOUS_CORE] = {gItemIcon_GriseousCore, gItemIconPalette_GriseousCore},
     [ITEM_LUSTROUS_GLOBE] = {gItemIcon_LustrousGlobe, gItemIconPalette_LustrousGlobe},
+    [ITEM_BLACK_AUGURITE] = {gItemIcon_BlackAugurite, gItemIconPalette_BlackAugurite},
+    [ITEM_LINKING_CORD] = {gItemIcon_LinkingCord, gItemIconPalette_LinkingCord},
+    [ITEM_PEAT_BLOCK] = {gItemIcon_PeatBlock, gItemIconPalette_PeatBlock},
     // Wonder Launcher Items
     [ITEM_WONDER_LAUNCHER_X_ATTACK_1] = {gItemIcon_WonderLauncher_BattleStatItem_1, gItemIconPalette_WonderLauncher_XAttack},
     [ITEM_WONDER_LAUNCHER_X_ATTACK_2] = {gItemIcon_WonderLauncher_BattleStatItem_2, gItemIconPalette_WonderLauncher_XAttack},
