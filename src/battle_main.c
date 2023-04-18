@@ -4114,6 +4114,7 @@ static void HandleTurnActionSelectionState(void)
     gBattleCommunication[ACTIONS_CONFIRMED_COUNT] = 0;
     for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
     {
+        DebugPrintfLevel(MGBA_LOG_ERROR, "inf: %d", gStatuses4[gActiveBattler] & STATUS4_INFINITE_CONFUSION);
         u8 position = GetBattlerPosition(gActiveBattler);
         switch (gBattleCommunication[gActiveBattler])
         {

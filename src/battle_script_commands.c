@@ -11264,7 +11264,7 @@ static void Cmd_various(void)
 
         // Open party menu, wait to go to next instruction.
         else
-        {   
+        {
             BtlController_EmitChoosePokemon(BUFFER_A, PARTY_ACTION_CHOOSE_FAINTED_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gBattlerAttacker]);
             MarkBattlerForControllerExec(gBattlerAttacker);
         }
@@ -16469,7 +16469,7 @@ void BS_ItemRestoreHP(void) {
     }
     if (hp + healAmount > maxHP)
         healAmount = maxHP - hp;
-    
+
     // Heal is applied as move damage if battler is active.
     if (battlerId != MAX_BATTLERS_COUNT && hp != 0)
     {
@@ -16494,10 +16494,10 @@ void BS_ItemRestoreHP(void) {
 void BS_ItemCureStatus(void) {
     NATIVE_ARGS();
     struct Pokemon *party = (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
-    
+
     // Heal Status1 conditions.
     HealStatusConditions(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], gBattleStruct->itemPartyIndex[gBattlerAttacker], GetItemStatus1Mask(gLastUsedItem), gBattlerAttacker);
-    
+
     // Heal Status2 conditions if battler is active.
     if (gBattleStruct->itemPartyIndex[gBattlerAttacker] == gBattlerPartyIndexes[gBattlerAttacker])
     {
@@ -16512,6 +16512,8 @@ void BS_ItemCureStatus(void) {
     
     if (GetItemStatus1Mask(gLastUsedItem) & STATUS1_SLEEP)
         gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
+    if (GetItemStatus2Mask(gLastUsedItem) & STATUS2_CONFUSION)
+        gStatuses4[gBattlerAttacker] &= ~STATUS4_INFINITE_CONFUSION;
 
     PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], MON_DATA_SPECIES));
     gBattlescriptCurrInstr = cmd->nextInstr;
