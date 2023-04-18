@@ -10,7 +10,7 @@
 #define I_VITAMIN_EV_CAP        GEN_LATEST  // In Gen8, the Vitamins no longer have a cap of 100 EV per stat.
 
 // TM config
-#define I_REUSABLE_TMS          TRUE        // In Generations 5 to 8, TMs are reusable. If this config is on, TRs can be made by removing the importance field from TMs.
+#define I_REUSABLE_TMS          FALSE       // In Gen5-8, TMs are reusable. Setting this to TRUE will make all vanilla TMs reusable, though they can also be cherry-picked by setting their importance to 1.
 
 // Repel/Lure config
 // These two settings are both independent and complementary.
