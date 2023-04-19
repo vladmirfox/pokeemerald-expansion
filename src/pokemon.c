@@ -6253,7 +6253,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                                 break;
                             }
                             dataSigned += evChange;
-                            #if I_EV_LOWERING_BERRY_JUMP == GEN_4
+                            #if I_BERRY_EV_JUMP == GEN_4
                             if (dataSigned > 100)
                                 dataSigned = 100;
                             #endif
