@@ -1529,7 +1529,7 @@ const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
     {gBattleAnimSpritePal_HumanoidFoot, ANIM_TAG_RED_FIST},
     {gBattleAnimSpritePal_SlamHit, ANIM_TAG_SLAM_HIT},
     {gBattleAnimSpritePal_Ring, ANIM_TAG_RING},
-#if B_NEW_ROCKS_PARTICLE
+#if B_NEW_ROCKS_PARTICLE == TRUE
     {gBattleAnimSpritePal_NewRocks, ANIM_TAG_ROCKS},
 #else
     {gBattleAnimSpritePal_Rocks, ANIM_TAG_ROCKS},
