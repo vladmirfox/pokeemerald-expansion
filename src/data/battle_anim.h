@@ -1079,7 +1079,7 @@ const struct CompressedSpriteSheet gBattleAnimPicTable[] =
     {gBattleAnimSpriteGfx_RedFist, 0x0200, ANIM_TAG_RED_FIST},
     {gBattleAnimSpriteGfx_SlamHit, 0x1000, ANIM_TAG_SLAM_HIT},
     {gBattleAnimSpriteGfx_Ring, 0x0180, ANIM_TAG_RING},
-#if B_NEW_ROCKS_PARTICLE
+#if B_NEW_ROCKS_PARTICLE == TRUE
     {gBattleAnimSpriteGfx_NewRocks, 0x0C00, ANIM_TAG_ROCKS},
 #else
     {gBattleAnimSpriteGfx_Rocks, 0x0C00, ANIM_TAG_ROCKS},
