@@ -145,16 +145,22 @@ SINGLE_BATTLE_TEST("Berserk Gene causes infinite confusion") // check if bit is 
     }
 }
 
-SINGLE_BATTLE_TEST("Berserk Gene causes confusion timer to not tick down", u32 flags)
+SINGLE_BATTLE_TEST("Berserk Gene causes confusion timer to not tick down", u32 status2)
 {
+    u32 turns;
+    PARAMETRIZE { turns = 1; }
+    PARAMETRIZE { turns = 2; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_BERSERK_GENE); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { results[i].flags = player->status2; } 
-        TURN { results[i].flags = player->status2; }
-    } SCENE {
+        u32 count;
+        for (count = 0; count < turns; count++) {
+            TURN {}
+        }
+    } THEN {
+        results[i].status2 = player->status2;
     } FINALLY {
-        EXPECT_EQ(results[0].flags, results[1].flags);
+        EXPECT_EQ(results[0].status2, results[1].status2);
     }
 }
