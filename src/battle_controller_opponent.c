@@ -2,6 +2,7 @@
 #include "battle.h"
 #include "battle_ai_main.h"
 #include "battle_ai_util.h"
+#include "constants/battle_ai.h"
 #include "battle_anim.h"
 #include "battle_arena.h"
 #include "battle_controllers.h"
@@ -19,6 +20,7 @@
 #include "main.h"
 #include "m4a.h"
 #include "palette.h"
+#include "party_menu.h"
 #include "pokeball.h"
 #include "pokemon.h"
 #include "random.h"
@@ -32,6 +34,7 @@
 #include "constants/battle_anim.h"
 #include "constants/items.h"
 #include "constants/moves.h"
+#include "constants/party_menu.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "trainer_hill.h"
@@ -94,6 +97,7 @@ static void OpponentHandleResetActionMoveSelection(void);
 static void OpponentHandleEndLinkBattle(void);
 static void OpponentHandleDebugMenu(void);
 static void OpponentCmdEnd(void);
+static u8 CountAIAliveNonEggMonsExcept(u8 slotToIgnore);
 
 static void OpponentBufferRunCommand(void);
 static void OpponentBufferExecCompleted(void);
@@ -224,9 +228,11 @@ static void Intro_DelayAndEnd(void)
     }
 }
 
-static bool32 TwoIntroMons(u32 battlerId) // Double battle with both player pokemon active.
+static bool32 TwoIntroMons(u32 battlerId) // Double battle with both opponent pokemon active.
 {
-    return (IsDoubleBattle() && IsValidForBattle(&gEnemyParty[gBattlerPartyIndexes[BATTLE_PARTNER(battlerId)]]));
+    return (IsDoubleBattle()
+            && IsValidForBattle(&gEnemyParty[gBattlerPartyIndexes[battlerId]])
+            && IsValidForBattle(&gEnemyParty[gBattlerPartyIndexes[BATTLE_PARTNER(battlerId)]]));
 }
 
 static void Intro_WaitForShinyAnimAndHealthbox(void)
@@ -409,9 +415,7 @@ static void CompleteOnHealthbarDone(void)
     s16 hpValue = MoveBattleBar(gActiveBattler, gHealthboxSpriteIds[gActiveBattler], HEALTH_BAR, 0);
     SetHealthboxSpriteVisible(gHealthboxSpriteIds[gActiveBattler]);
     if (hpValue != -1)
-    {
         UpdateHpTextInHealthbox(gHealthboxSpriteIds[gActiveBattler], HP_CURRENT, hpValue, gBattleMons[gActiveBattler].maxHP);
-    }
     else
         OpponentBufferExecCompleted();
 }
@@ -612,6 +616,7 @@ static u32 GetOpponentMonData(u8 monId, u8 *dst)
         battleMon.spDefense = GetMonData(&gEnemyParty[monId], MON_DATA_SPDEF);
         battleMon.abilityNum = GetMonData(&gEnemyParty[monId], MON_DATA_ABILITY_NUM);
         battleMon.otId = GetMonData(&gEnemyParty[monId], MON_DATA_OT_ID);
+        battleMon.metLevel = GetMonData(&gEnemyParty[monId], MON_DATA_MET_LEVEL);
         GetMonData(&gEnemyParty[monId], MON_DATA_NICKNAME, nickname);
         StringCopy_Nickname(battleMon.nickname, nickname);
         GetMonData(&gEnemyParty[monId], MON_DATA_OT_NAME, battleMon.otName);
@@ -1164,7 +1169,7 @@ static void OpponentHandleLoadMonSprite(void)
 
 static void OpponentHandleSwitchInAnim(void)
 {
-    *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = 6;
+    *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
     gBattlerPartyIndexes[gActiveBattler] = gBattleResources->bufferA[gActiveBattler][1];
     StartSendOutAnim(gActiveBattler, gBattleResources->bufferA[gActiveBattler][2]);
     gBattlerControllerFuncs[gActiveBattler] = SwitchIn_TryShinyAnim;
@@ -1176,7 +1181,9 @@ static void StartSendOutAnim(u8 battlerId, bool8 dontClearSubstituteBit)
 
     ClearTemporarySpeciesSpriteData(battlerId, dontClearSubstituteBit);
     gBattlerPartyIndexes[battlerId] = gBattleResources->bufferA[battlerId][1];
-    species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES);
+    species = GetIllusionMonSpecies(battlerId);
+    if (species == SPECIES_NONE)
+        species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES);
     gBattleControllerData[battlerId] = CreateInvisibleSpriteWithCallback(SpriteCB_WaitForBattlerBallReleaseAnim);
     BattleLoadOpponentMonSpriteGfx(&gEnemyParty[gBattlerPartyIndexes[battlerId]], battlerId);
     SetMultiuseSpriteTemplateToPokemon(species, GetBattlerPosition(battlerId));
@@ -1548,18 +1555,17 @@ static void OpponentHandleYesNoBox(void)
 
 static void OpponentHandleChooseMove(void)
 {
-    if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
-    {
-        BtlController_EmitTwoReturnValues(BUFFER_B, 10, ChooseMoveAndTargetInBattlePalace());
-        OpponentBufferExecCompleted();
-    }
-    else
-    {
-        u8 chosenMoveId;
-        struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[gActiveBattler][4]);
+    u8 chosenMoveId;
+    struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[gActiveBattler][4]);
 
-        if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FIRST_BATTLE | BATTLE_TYPE_SAFARI | BATTLE_TYPE_ROAMER)
-         || IsWildMonSmart())
+    if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FIRST_BATTLE | BATTLE_TYPE_SAFARI | BATTLE_TYPE_ROAMER)
+     || IsWildMonSmart())
+    {
+        if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
+        {
+            BtlController_EmitTwoReturnValues(BUFFER_B, 10, ChooseMoveAndTargetInBattlePalace());
+        }
+        else
         {
             chosenMoveId = gBattleStruct->aiMoveOrAction[gActiveBattler];
             gBattlerTarget = gBattleStruct->aiChosenTarget[gActiveBattler];
@@ -1598,80 +1604,87 @@ static void OpponentHandleChooseMove(void)
                 }
                 break;
             }
-            OpponentBufferExecCompleted();
         }
-        else // Wild pokemon - use random move
+        OpponentBufferExecCompleted();
+    }
+    else // Wild pokemon - use random move
+    {
+        u16 move;
+        u8 target;
+        do
         {
-            u16 move;
-            u8 target;
-            do
-            {
-                chosenMoveId = Random() & 3;
-                move = moveInfo->moves[chosenMoveId];
-            } while (move == MOVE_NONE);
+            chosenMoveId = Random() & 3;
+            move = moveInfo->moves[chosenMoveId];
+        } while (move == MOVE_NONE);
 
-            if (GetBattlerMoveTargetType(gActiveBattler, move) & (MOVE_TARGET_USER_OR_SELECTED | MOVE_TARGET_USER))
-                BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (gActiveBattler << 8));
-            else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-            {
-                do {
-                    target = GetBattlerAtPosition(Random() & 2);
-                } while (!CanTargetBattler(gActiveBattler, target, move));
+        if (GetBattlerMoveTargetType(gActiveBattler, move) & (MOVE_TARGET_USER_OR_SELECTED | MOVE_TARGET_USER))
+            BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (gActiveBattler << 8));
+        else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        {
+            do {
+                target = GetBattlerAtPosition(Random() & 2);
+            } while (!CanTargetBattler(gActiveBattler, target, move));
 
-            #if B_WILD_NATURAL_ENEMIES == TRUE
-                // Don't bother to loop through table if the move can't attack ally
-                if (!(gBattleMoves[move].target & MOVE_TARGET_BOTH))
+        #if B_WILD_NATURAL_ENEMIES == TRUE
+            // Don't bother to loop through table if the move can't attack ally
+            if (!(gBattleMoves[move].target & MOVE_TARGET_BOTH))
+            {
+                u16 i, speciesAttacker, speciesTarget, isPartnerEnemy = FALSE;
+                static const u16 naturalEnemies[][2] =
                 {
-                    u16 i, speciesAttacker, speciesTarget, isPartnerEnemy = FALSE;
-                    static const u16 naturalEnemies[][2] =
-                    {
-                        // Attacker         Target
-                        {SPECIES_ZANGOOSE,  SPECIES_SEVIPER},
-                        {SPECIES_SEVIPER,   SPECIES_ZANGOOSE},
-                        {SPECIES_HEATMOR,   SPECIES_DURANT},
-                        {SPECIES_DURANT,    SPECIES_HEATMOR},
-                        {SPECIES_SABLEYE,   SPECIES_CARBINK},
-                        {SPECIES_MAREANIE,  SPECIES_CORSOLA},
-                    };
-                    speciesAttacker = gBattleMons[gActiveBattler].species;
-                    speciesTarget = gBattleMons[GetBattlerAtPosition(BATTLE_PARTNER(gActiveBattler))].species;
+                    // Attacker         Target
+                    {SPECIES_ZANGOOSE,  SPECIES_SEVIPER},
+                    {SPECIES_SEVIPER,   SPECIES_ZANGOOSE},
+                    {SPECIES_HEATMOR,   SPECIES_DURANT},
+                    {SPECIES_DURANT,    SPECIES_HEATMOR},
+                    {SPECIES_SABLEYE,   SPECIES_CARBINK},
+                    {SPECIES_MAREANIE,  SPECIES_CORSOLA},
+                };
+                speciesAttacker = gBattleMons[gActiveBattler].species;
+                speciesTarget = gBattleMons[GetBattlerAtPosition(BATTLE_PARTNER(gActiveBattler))].species;
 
-                    for (i = 0; i < ARRAY_COUNT(naturalEnemies); i++)
+                for (i = 0; i < ARRAY_COUNT(naturalEnemies); i++)
+                {
+                    if (speciesAttacker == naturalEnemies[i][0] && speciesTarget == naturalEnemies[i][1])
                     {
-                        if (speciesAttacker == naturalEnemies[i][0] && speciesTarget == naturalEnemies[i][1])
-                        {
-                            isPartnerEnemy = TRUE;
-                            break;
-                        }
+                        isPartnerEnemy = TRUE;
+                        break;
                     }
-                    if (isPartnerEnemy && CanTargetBattler(gActiveBattler, target, move))
-                        BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (GetBattlerAtPosition(BATTLE_PARTNER(gActiveBattler)) << 8));
-                    else
-                        BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (target << 8));
                 }
+                if (isPartnerEnemy && CanTargetBattler(gActiveBattler, target, move))
+                    BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (GetBattlerAtPosition(BATTLE_PARTNER(gActiveBattler)) << 8));
                 else
-            #endif
                     BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (target << 8));
             }
             else
-                BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (GetBattlerAtPosition(B_POSITION_PLAYER_LEFT) << 8));
-
-            OpponentBufferExecCompleted();
+        #endif
+                BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (target << 8));
         }
+        else
+            BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (GetBattlerAtPosition(B_POSITION_PLAYER_LEFT) << 8));
+
+        OpponentBufferExecCompleted();
     }
 }
 
 static void OpponentHandleChooseItem(void)
 {
-    BtlController_EmitOneReturnValue(BUFFER_B, *(gBattleStruct->chosenItem + (gActiveBattler / 2) * 2));
+    BtlController_EmitOneReturnValue(BUFFER_B, gBattleStruct->chosenItem[gActiveBattler]);
     OpponentBufferExecCompleted();
 }
 
 static void OpponentHandleChoosePokemon(void)
 {
     s32 chosenMonId;
+    s32 pokemonInBattle = 1;
 
-    if (*(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) == PARTY_SIZE)
+    // Choosing Revival Blessing target
+    if ((gBattleResources->bufferA[gActiveBattler][1] & 0xF) == PARTY_ACTION_CHOOSE_FAINTED_MON)
+    {
+        chosenMonId = gSelectedMonPartyId = GetFirstFaintedPartyIndex(gActiveBattler);
+    }
+    // Switching out
+    else if (*(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) == PARTY_SIZE)
     {
         chosenMonId = GetMostSuitableMonToSwitchInto();
 
@@ -1687,31 +1700,54 @@ static void OpponentHandleChoosePokemon(void)
             {
                 battler1 = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
                 battler2 = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
+                pokemonInBattle = 2;
+
             }
 
             GetAIPartyIndexes(gActiveBattler, &firstId, &lastId);
 
-            for (chosenMonId = firstId; chosenMonId < lastId; chosenMonId++)
+            for (chosenMonId = (lastId-1); chosenMonId >= firstId; chosenMonId--)
             {
                 if (GetMonData(&gEnemyParty[chosenMonId], MON_DATA_HP) != 0
                     && chosenMonId != gBattlerPartyIndexes[battler1]
-                    && chosenMonId != gBattlerPartyIndexes[battler2])
+                    && chosenMonId != gBattlerPartyIndexes[battler2]
+                    && (!(AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON)
+                        || chosenMonId != CalculateEnemyPartyCount() - 1
+                        || CountAIAliveNonEggMonsExcept(PARTY_SIZE) == pokemonInBattle))
                 {
                     break;
                 }
             }
         }
+        *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = chosenMonId;
     }
     else
     {
         chosenMonId = *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler);
         *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
+        *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = chosenMonId;
     }
-
-
-    *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = chosenMonId;
     BtlController_EmitChosenMonReturnValue(BUFFER_B, chosenMonId, NULL);
     OpponentBufferExecCompleted();
+
+}
+
+static u8 CountAIAliveNonEggMonsExcept(u8 slotToIgnore)
+{
+    u16 i, count;
+
+    for (i = 0, count = 0; i < PARTY_SIZE; i++)
+    {
+        if (i != slotToIgnore
+            && GetMonData(&gEnemyParty[i], MON_DATA_SPECIES) != SPECIES_NONE
+            && !GetMonData(&gEnemyParty[i], MON_DATA_IS_EGG)
+            && GetMonData(&gEnemyParty[i], MON_DATA_HP) != 0)
+        {
+            count++;
+        }
+    }
+
+    return count;
 }
 
 static void OpponentHandleCmd23(void)
@@ -1935,7 +1971,7 @@ static void SpriteCB_FreeOpponentSprite(struct Sprite *sprite)
 
 static void Task_StartSendOutAnim(u8 taskId)
 {
-    u8 savedActiveBank = gActiveBattler;
+    u8 savedActiveBattler = gActiveBattler;
 
     gActiveBattler = gTasks[taskId].data[0];
     if ((!TwoIntroMons(gActiveBattler) || (gBattleTypeFlags & BATTLE_TYPE_MULTI)) && !BATTLE_TWO_VS_ONE_OPPONENT)
@@ -1943,7 +1979,7 @@ static void Task_StartSendOutAnim(u8 taskId)
         gBattleResources->bufferA[gActiveBattler][1] = gBattlerPartyIndexes[gActiveBattler];
         StartSendOutAnim(gActiveBattler, FALSE);
     }
-    else if ((gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
+    else if ((gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS) || (BATTLE_TWO_VS_ONE_OPPONENT && !TwoIntroMons(gActiveBattler)))
     {
         gBattleResources->bufferA[gActiveBattler][1] = gBattlerPartyIndexes[gActiveBattler];
         StartSendOutAnim(gActiveBattler, FALSE);
@@ -1958,7 +1994,7 @@ static void Task_StartSendOutAnim(u8 taskId)
         gActiveBattler ^= BIT_FLANK;
     }
     gBattlerControllerFuncs[gActiveBattler] = Intro_TryShinyAnimShowHealthbox;
-    gActiveBattler = savedActiveBank;
+    gActiveBattler = savedActiveBattler;
     DestroyTask(taskId);
 }
 

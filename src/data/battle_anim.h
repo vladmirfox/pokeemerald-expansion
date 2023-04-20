@@ -1079,7 +1079,7 @@ const struct CompressedSpriteSheet gBattleAnimPicTable[] =
     {gBattleAnimSpriteGfx_RedFist, 0x0200, ANIM_TAG_RED_FIST},
     {gBattleAnimSpriteGfx_SlamHit, 0x1000, ANIM_TAG_SLAM_HIT},
     {gBattleAnimSpriteGfx_Ring, 0x0180, ANIM_TAG_RING},
-#if NEW_ROCKS_PARTICLE
+#if B_NEW_ROCKS_PARTICLE == TRUE
     {gBattleAnimSpriteGfx_NewRocks, 0x0C00, ANIM_TAG_ROCKS},
 #else
     {gBattleAnimSpriteGfx_Rocks, 0x0C00, ANIM_TAG_ROCKS},
@@ -1448,9 +1448,9 @@ const struct CompressedSpriteSheet gBattleAnimPicTable[] =
     {gBattleAnimSpriteGfx_StonePillar, 0x1800, ANIM_TAG_STONE_PILLAR_MULTI},
     {gBattleAnimSpriteGfx_AlphaSymbol, 0x0200, ANIM_TAG_ALPHA_SYMBOL},
     {gBattleAnimSpriteGfx_OmegaSymbol, 0x0200, ANIM_TAG_OMEGA_SYMBOL},
-    {gBattleAnimSpriteGfx_PrimalParticles, 0x0180, ANIM_TAG_PRIMAL_PARTICLES},
     {gBattleAnimSpriteGfx_Orbs, 0x0180, ANIM_TAG_STEEL_BEAM},
     {gBattleAnimSpriteGfx_AuraSphere, 0x200, ANIM_TAG_POLTERGEIST},
+    {gBattleAnimSpriteGfx_Teapot, 0x1800, ANIM_TAG_TEAPOT},
 };
 
 const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
@@ -1529,7 +1529,7 @@ const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
     {gBattleAnimSpritePal_HumanoidFoot, ANIM_TAG_RED_FIST},
     {gBattleAnimSpritePal_SlamHit, ANIM_TAG_SLAM_HIT},
     {gBattleAnimSpritePal_Ring, ANIM_TAG_RING},
-#if NEW_ROCKS_PARTICLE
+#if B_NEW_ROCKS_PARTICLE == TRUE
     {gBattleAnimSpritePal_NewRocks, ANIM_TAG_ROCKS},
 #else
     {gBattleAnimSpritePal_Rocks, ANIM_TAG_ROCKS},
@@ -1899,9 +1899,9 @@ const struct CompressedSpritePalette gBattleAnimPaletteTable[] =
     {gBattleAnimSpritePal_StonePillar, ANIM_TAG_STONE_PILLAR_MULTI},
     {gBattleAnimSpritePal_AlphaSymbol, ANIM_TAG_ALPHA_SYMBOL},
     {gBattleAnimSpritePal_OmegaSymbol, ANIM_TAG_OMEGA_SYMBOL},
-    {gBattleAnimSpritePal_PrimalParticles, ANIM_TAG_PRIMAL_PARTICLES},
     {gBattleAnimSpritePal_SteelBeam, ANIM_TAG_STEEL_BEAM},
     {gBattleAnimSpritePal_Poltergeist, ANIM_TAG_POLTERGEIST},
+    {gBattleAnimSpritePal_Teapot, ANIM_TAG_TEAPOT},
 };
 
 const struct BattleAnimBackground gBattleAnimBackgroundTable[] =
@@ -1937,7 +1937,7 @@ const struct BattleAnimBackground gBattleAnimBackgroundTable[] =
     [BG_MAGMA_STORM]               = {gBattleAnimBgImage_InAir,                   gBattleAnimBgPalette_MagmaStorm,              gBattleAnimBgTilemap_InAir},
     [BG_GIGA_IMPACT_OPPONENT]      = {gBattleAnimBgImage_GigaImpact,              gBattleAnimBgPalette_GigaImpact,              gBattleAnimBgTilemap_GigaImpactOpponent},
     [BG_GIGA_IMPACT_PLAYER]        = {gBattleAnimBgImage_GigaImpact,              gBattleAnimBgPalette_GigaImpact,              gBattleAnimBgTilemap_GigaImpactPlayer},
-    [BG_GIGA_IMPACT_CONTEST]       = {gBattleAnimBgImage_GigaImpact,              gBattleAnimBgPalette_GigaImpact,              gBattleAnimBgTilemap_GigaImpactContest},
+    [BG_GIGA_IMPACT_CONTEST]       = {gBattleAnimBgImage_GigaImpactContest,       gBattleAnimBgPalette_GigaImpact,              gBattleAnimBgTilemap_GigaImpactContest},
     [BG_TRICK_ROOM]                = {gBattleAnimBgImage_TrickRoom,               gBattleAnimBgPalette_TrickRoom,               gBattleAnimBgTilemap_TrickRoom},
     [BG_ROCK_WRECKER]              = {gBattleAnimBgImage_Hurricane,               gBattleAnimBgPalette_RockWrecker,             gBattleAnimBgTilemap_Hurricane},
     [BG_SPACIAL_REND_ON_OPPONENT]  = {gBattleAnimBgImage_SpacialRend,             gBattleAnimBgPalette_SpacialRend,             gBattleAnimBgTilemap_GigaImpactOpponent},

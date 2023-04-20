@@ -392,15 +392,23 @@
 #define ANIM_TAG_STONE_PILLAR_MULTI         (ANIM_SPRITES_START + 380)
 #define ANIM_TAG_ALPHA_SYMBOL               (ANIM_SPRITES_START + 381)
 #define ANIM_TAG_OMEGA_SYMBOL               (ANIM_SPRITES_START + 382)
-#define ANIM_TAG_PRIMAL_PARTICLES           (ANIM_SPRITES_START + 383)
-#define ANIM_TAG_STEEL_BEAM                 (ANIM_SPRITES_START + 384)
-#define ANIM_TAG_POLTERGEIST                (ANIM_SPRITES_START + 385)
+#define ANIM_TAG_STEEL_BEAM                 (ANIM_SPRITES_START + 383)
+#define ANIM_TAG_POLTERGEIST                (ANIM_SPRITES_START + 384)
+#define ANIM_TAG_TEAPOT                     (ANIM_SPRITES_START + 385)
+
 
 // battlers
-#define ANIM_ATTACKER    0
-#define ANIM_TARGET      1
-#define ANIM_ATK_PARTNER 2
-#define ANIM_DEF_PARTNER 3
+#define ANIM_ATTACKER         0
+#define ANIM_TARGET           1
+#define ANIM_ATK_PARTNER      2
+#define ANIM_DEF_PARTNER      3
+
+// Below are used by AnimTask_ShakeMon2 and AnimTask_SetGrayscaleOrOriginalPal
+#define ANIM_PLAYER_LEFT      (MAX_BATTLERS_COUNT + 0)
+#define ANIM_PLAYER_RIGHT     (MAX_BATTLERS_COUNT + 1)
+#define ANIM_OPPONENT_LEFT    (MAX_BATTLERS_COUNT + 2)
+#define ANIM_OPPONENT_RIGHT   (MAX_BATTLERS_COUNT + 3)
+#define ANIM_ATTACKER_FORCE   (MAX_BATTLERS_COUNT + 4)
 
 // stereo panning constants [0-255]
 //
@@ -461,7 +469,7 @@
 #define BG_WATER_2 41
 #define BG_POISON 42
 #define BG_AEROBLAST 43
-#define BG_HURRICANE 44  
+#define BG_HURRICANE 44
 #define BG_ELECTRIC_TERRAIN 45
 #define BG_GRASSY_TERRAIN 46
 #define BG_MISTY_TERRAIN 47
