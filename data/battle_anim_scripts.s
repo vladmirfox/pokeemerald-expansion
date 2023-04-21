@@ -5535,9 +5535,8 @@ Move_SHELL_SMASH:
 	loadspritegfx ANIM_TAG_ROCKS
 	loadspritegfx ANIM_TAG_HANDS_AND_FEET
 	playsewithpan SE_M_SCRATCH, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_ShellSmashShrinkAttacker, 0x2, 
-	createsprite gShellSmashRightShellSpriteTemplate, ANIM_ATTACKER, 2, -SHELL_SMASH_STARTING_X, -SHELL_SMASH_STARTING_X + SHELL_SMASH_MOVEMENT_DISTANCE, SHELL_SMASH_SHELL_MOVE_IN_DURATION, 0x2
-	createsprite gShellSmashLeftShellSpriteTemplate, ANIM_ATTACKER, 2, SHELL_SMASH_STARTING_X, SHELL_SMASH_STARTING_X - SHELL_SMASH_MOVEMENT_DISTANCE, SHELL_SMASH_SHELL_MOVE_IN_DURATION, 0x6
+	createsprite gShellSmashRightShellSpriteTemplate, ANIM_ATTACKER, 2, 0xffd7, 0x0, 0x2, 0x333, 0x0, 10, 30
+	createsprite gShellSmashLeftShellSpriteTemplate, ANIM_ATTACKER, 2, 0x20, 0x0, 0x6, 0xfccd, 0x0, 10, 30
 	delay 10
 	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0x0, 0x0, 0x1, 0x1
 	createsprite gFistFootSpriteTemplate, ANIM_ATTACKER, 3, 0x0, 0x0, 0x8, 0x1, 0x0
@@ -13983,6 +13982,7 @@ SmallAppleShower:
 	delay 0x2
 	return
 
+@ credits to Skeli
 Move_SPIRIT_BREAK::
 	loadspritegfx ANIM_TAG_CIRCLE_OF_LIGHT
 	loadspritegfx ANIM_TAG_TEAL_ALERT
@@ -15211,28 +15211,29 @@ SURGING_STRIKES_2:
 
 @Credits to Skeli
 Move_THUNDER_CAGE::
-	loadspritegfx ANIM_TAG_SHOCK_3 @;Thunderbolt Ball
-	loadspritegfx ANIM_TAG_SPARK @;Electric lines
-	loadspritegfx ANIM_TAG_SPARK_H @;Thunder Wave
+	loadspritegfx ANIM_TAG_SHOCK_3 	@Thunderbolt Ball
+	loadspritegfx ANIM_TAG_SPARK 	@Electric lines
+	loadspritegfx ANIM_TAG_SPARK_H 	@Thunder Wave
+	loadspritegfx ANIM_TAG_SPARK_2
 	monbg ANIM_TARGET
 	splitbgprio ANIM_TARGET
 	loopsewithpan SE_M_THUNDERBOLT2, SOUND_PAN_TARGET, 0xA, 0x9
-	createsprite gThunderboltOrbSpriteTemplate, ANIM_TARGET, 3, THUNDER_CAGE_BALL_TIME, -25, -30, 0x0 
-	createsprite gThunderboltOrbSpriteTemplate, ANIM_TARGET, 3, THUNDER_CAGE_BALL_TIME, 0, -30, 0x0 
-	createsprite gThunderboltOrbSpriteTemplate, ANIM_TARGET, 3, THUNDER_CAGE_BALL_TIME, 25, -30, 0x0 
-	createsprite gThunderWaveSpriteTemplate, ANIM_TARGET, 1, 0xfff0, 0xfff0 
-	delay 0x4 
-	createsprite gThunderWaveSpriteTemplate, ANIM_TARGET, 1, 0xfff0, 0x0 
-	delay 0x4 
-	createsprite gThunderWaveSpriteTemplate, ANIM_TARGET, 1, 0xfff0, 0x10 
+	createsprite gThunderboltOrbSpriteTemplate, ANIM_TARGET, 3, 100, -25, -30, 0x0 
+	createsprite gThunderboltOrbSpriteTemplate, ANIM_TARGET, 3, 100, 0, -30, 0x0 
+	createsprite gThunderboltOrbSpriteTemplate, ANIM_TARGET, 3, 100, 25, -30, 0x0 
+	createsprite gThunderWaveSpriteTemplate, ANIM_TARGET, 2, -16, -16
+	delay 4
+	createsprite gThunderWaveSpriteTemplate, ANIM_TARGET, 2, -16, 0
+	delay 4
+	createsprite gThunderWaveSpriteTemplate, ANIM_TARGET, 2, -16, 16
 	createvisualtask AnimTask_ShakeMon, 0x5, ANIM_TARGET, 0x3, 0x0, 0x32, 0x1 
 	call ThunderCageBolts
 	delay 0x4
-	createsprite gThunderWaveSpriteTemplate, ANIM_TARGET, 1, 0xfff0, 0xfff0 
-	delay 0x4 
-	createsprite gThunderWaveSpriteTemplate, ANIM_TARGET, 1, 0xfff0, 0x0 
-	delay 0x4 
-	createsprite gThunderWaveSpriteTemplate, ANIM_TARGET, 1, 0xfff0, 0x10 
+	createsprite gThunderWaveSpriteTemplate, ANIM_TARGET, 2, -16, -16
+	delay 4
+	createsprite gThunderWaveSpriteTemplate, ANIM_TARGET, 2, -16, 0
+	delay 4
+	createsprite gThunderWaveSpriteTemplate, ANIM_TARGET, 2, -16, 16 
 	call ThunderCageBolts
 	waitforvisualfinish
 	clearmonbg ANIM_TARGET
@@ -15245,7 +15246,6 @@ ThunderCageBolts:
 	createvisualtask AnimTask_ElectricBolt, 2, 0, -40, 1 
 	delay 0x9
 	return
-
 
 
 @Credits to Skeli
@@ -16045,17 +16045,16 @@ BitterMaliceSwirl:
 	delay 0x2
 	return
 
+@ credits to Skeli
 Move_SHELTER::
 	loadspritegfx ANIM_TAG_SHELL_LEFT
 	loadspritegfx ANIM_TAG_SHELL_RIGHT
 	playsewithpan SE_M_HEADBUTT, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_ShellSmashShrinkAttacker, 0x2, 
-	createsprite gShellSmashLeftShellSpriteTemplate, ANIM_ATTACKER, 2, -SHELL_SMASH_STARTING_X, -SHELL_SMASH_STARTING_X + SHELL_SMASH_MOVEMENT_DISTANCE, SHELL_SMASH_SHELL_MOVE_IN_DURATION, 0x2
-	createsprite gShellSmashRightShellSpriteTemplate, ANIM_ATTACKER, 2, SHELL_SMASH_STARTING_X, SHELL_SMASH_STARTING_X - SHELL_SMASH_MOVEMENT_DISTANCE, SHELL_SMASH_SHELL_MOVE_IN_DURATION, 0x6
+	createvisualtask AnimTask_ShellSmashShrinkAttacker, 0x2
 	createvisualtask AnimTask_BlendParticle, 0x5, ANIM_TAG_SHELL_LEFT, 0x1, 0x0, 0xE, 0x6B5A @ light light, gray 
 	createvisualtask AnimTask_BlendParticle, 0x5, ANIM_TAG_SHELL_RIGHT, 0x1, 0x0, 0xE, 0x6B5A @ light light, gray 
-	delay SHELL_SMASH_SHELL_MOVE_IN_DURATION
-	delay SHELL_SMASH_PAUSE_DURATION
+	createsprite gShellSmashRightShellSpriteTemplate, ANIM_ATTACKER, 2, 0xffd7, 0x0, 0x2, 0x333, 0x0, 10, 30
+	createsprite gShellSmashLeftShellSpriteTemplate, ANIM_ATTACKER, 2, 0x20, 0x0, 0x6, 0xfccd, 0x0, 10, 30
 	createvisualtask AnimTask_FadeOutParticles, 0x2, 0 
 	waitforvisualfinish
 	blendoff

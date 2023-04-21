@@ -148,7 +148,7 @@ const struct SpriteTemplate gShellSmashLeftShellSpriteTemplate =
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gAffineAnims_Bite,
-    .callback = SpriteCB_ShellSmashShell
+    .callback = SpriteCB_LockingJaw
 };
 
 const struct SpriteTemplate gShellSmashRightShellSpriteTemplate =
@@ -159,7 +159,7 @@ const struct SpriteTemplate gShellSmashRightShellSpriteTemplate =
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gAffineAnims_Bite,
-    .callback = SpriteCB_ShellSmashShell
+    .callback = SpriteCB_LockingJaw
 };
 
 const struct SpriteTemplate gShellSmashPurpleRocksSpriteTemplate =
