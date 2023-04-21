@@ -23,7 +23,7 @@ SINGLE_BATTLE_TEST("Berserk Gene activates at the start of battle", s16 damage)
         if (useItem)
         {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Using Berserk Gene, the attack of Wobbuffet sharply rose!");
+            MESSAGE("Using Berserk Gene, the Attack of Wobbuffet sharply rose!");
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, player);
             MESSAGE("Wobbuffet became confused!");
         }
@@ -53,7 +53,7 @@ SINGLE_BATTLE_TEST("Berserk Gene activates on switch in", s16 damage)
         if (useItem)
         {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Using Berserk Gene, the attack of Wobbuffet sharply rose!");
+            MESSAGE("Using Berserk Gene, the Attack of Wobbuffet sharply rose!");
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, player);
             MESSAGE("Wobbuffet became confused!");
         }
@@ -79,7 +79,7 @@ SINGLE_BATTLE_TEST("Berserk Gene does not confuse a Pokemon with Own Tempo but r
         if (useItem)
         {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Using Berserk Gene, the attack of Slowbro sharply rose!");
+            MESSAGE("Using Berserk Gene, the Attack of Slowbro sharply rose!");
             ABILITY_POPUP(player, ABILITY_OWN_TEMPO);
             MESSAGE("Slowbro's Own Tempo prevents confusion!");
         }
@@ -104,7 +104,7 @@ SINGLE_BATTLE_TEST("Berserk Gene does not confuse on Misty Terrain")
         }
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Using Berserk Gene, the attack of Tapu Fini sharply rose!");
+        MESSAGE("Using Berserk Gene, the Attack of Tapu Fini sharply rose!");
         NONE_OF
         {
             MESSAGE("Tapu Fini became confused!");
