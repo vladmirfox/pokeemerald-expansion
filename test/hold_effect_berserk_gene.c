@@ -112,6 +112,26 @@ SINGLE_BATTLE_TEST("Berserk Gene does not confuse on Misty Terrain")
     }
 }
 
+SINGLE_BATTLE_TEST("Berserk Gene does not confuse when Safeguard is active")
+{
+    GIVEN {
+        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_BERSERK_GENE); };
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SAFEGUARD); }
+        TURN { SWITCH(player, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Using Berserk Gene, the Attack of Wobbuffet sharply rose!");
+        MESSAGE("Wobbuffet's party is protected by SAFEGUARD!");
+        NONE_OF
+        {
+            MESSAGE("Wobbuffet became confused!");
+        }
+    }
+}
+
 SINGLE_BATTLE_TEST("Berserk Gene causes confusion for more than 5 turns") // how else would be check for infinite?
 {
     GIVEN {
