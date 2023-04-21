@@ -64,6 +64,7 @@ static void SetRandomMultiHitCounter();
 static u32 GetBattlerItemHoldEffectParam(u8 battlerId, u16 item);
 static u16 GetInverseTypeMultiplier(u16 multiplier);
 static u16 GetSupremeOverlordModifier(u8 battlerId);
+static bool8 CanBeInfinitelyConfused(u8 battlerId);
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForRunningByItem[];
@@ -6983,8 +6984,7 @@ static u8 ItemEffectMoveEnd(u32 battlerId, u16 holdEffect)
     case HOLD_EFFECT_BERSERK_GENE:
         BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
         gEffectBattler = battlerId;
-        if (gBattleMons[gEffectBattler].ability != ABILITY_OWN_TEMPO
-         || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+        if (CanBeInfinitelyConfused(gEffectBattler))
         {
             gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
         }
@@ -7238,8 +7238,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             case HOLD_EFFECT_BERSERK_GENE:
                 BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
                 gEffectBattler = battlerId;
-                if (gBattleMons[gEffectBattler].ability != ABILITY_OWN_TEMPO
-                 || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+                if (CanBeInfinitelyConfused(gEffectBattler))
                 {
                     gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
                 }
@@ -7537,8 +7536,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             case HOLD_EFFECT_BERSERK_GENE:
                 BufferStatChange(battlerId, STAT_ATK, STRINGID_STATROSE);
                 gEffectBattler = battlerId;
-                if (gBattleMons[gEffectBattler].ability != ABILITY_OWN_TEMPO
-                 || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+                if (CanBeInfinitelyConfused(gEffectBattler))
                 {
                     gStatuses4[gEffectBattler] |= STATUS4_INFINITE_CONFUSION;
                 }
@@ -10913,3 +10911,15 @@ void RemoveConfusionStatus(u8 battlerId)
     gBattleMons[battlerId].status2 &= ~STATUS2_CONFUSION;
     gStatuses4[battlerId] &= ~STATUS4_INFINITE_CONFUSION;
 }
+
+static bool8 CanBeInfinitelyConfused(u8 battlerId)
+{
+    if  (gBattleMons[battlerId].ability == ABILITY_OWN_TEMPO
+         || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN)
+         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD)
+    {
+        return FALSE;
+    }
+    return TRUE;
+}
+
