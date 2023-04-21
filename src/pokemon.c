@@ -1919,7 +1919,7 @@ const struct SpindaSpot gSpindaSpotGraphics[] =
 #include "data/pokemon/item_effects.h"
 
 const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
-{                      // Attack  Defense  Speed  Sp.Atk  Sp.Def
+{                      // Attack  Defense  Speed  Sp.Atk  Sp. Def
     [NATURE_HARDY]   = {    0,      0,      0,      0,      0   },
     [NATURE_LONELY]  = {   +1,     -1,      0,      0,      0   },
     [NATURE_BRAVE]   = {   +1,      0,     -1,      0,      0   },
