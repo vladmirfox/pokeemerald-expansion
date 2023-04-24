@@ -13,6 +13,7 @@
 #include "gba/flash_internal.h"
 #include "decoration_inventory.h"
 #include "agb_flash.h"
+#include "event_data.h"
 
 static void ApplyNewEncryptionKeyToAllEncryptedData(u32 encryptionKey);
 
@@ -175,6 +176,19 @@ void LoadPlayerParty(void)
 
     for (i = 0; i < PARTY_SIZE; i++)
         gPlayerParty[i] = gSaveBlock1Ptr->playerParty[i];
+}
+
+void UpdatePlayerSavedPartyAfterSkyBattle(void)
+{
+    int i;
+    int c = 0;
+    int skyPokemonVar = VarGet(VAR_SKY_BATTLE_POKEMON_POSITIONS);
+
+    for (i = 0; i < PARTY_SIZE; i++)
+        if ((skyPokemonVar >> i & 1) == 1){
+            gSaveBlock1Ptr->playerParty[i] = gPlayerParty[c];
+            c++;
+        }
 }
 
 void SaveObjectEvents(void)

@@ -20,6 +20,7 @@
 #include "international_string_util.h"
 #include "item_icon.h"
 #include "link.h"
+#include "load_save.h"
 #include "list_menu.h"
 #include "main.h"
 #include "mystery_gift.h"
@@ -45,6 +46,7 @@
 #include "tv.h"
 #include "wallclock.h"
 #include "window.h"
+#include "constants/abilities.h"
 #include "constants/battle_frontier.h"
 #include "constants/battle_pyramid.h"
 #include "constants/battle_tower.h"
@@ -4206,4 +4208,42 @@ void SetPlayerGotFirstFans(void)
 u8 Script_TryGainNewFanFromCounter(void)
 {
     return TryGainNewFanFromCounter(gSpecialVar_0x8004);
+}
+
+void CanDoSkyBattle(void)
+{
+    int i;
+    for (i = 0; i < CalculatePlayerPartyCount(); i++)
+    {
+        struct Pokemon* pokemon = &gPlayerParty[i];
+
+        if (CanMonParticipateInSkyBattle(pokemon) && GetMonData(pokemon, MON_DATA_HP, NULL) > 0)
+        {
+            gSpecialVar_Result = TRUE;
+            return;
+        }
+    }
+    gSpecialVar_Result = FALSE;
+}
+
+void PrepareSkyBattle(void)
+{
+    int i, var;
+    u8 partyCount;
+    u16 species;
+    partyCount = CalculatePlayerPartyCount();
+    SavePlayerParty();
+    FlagSet(FLAG_IS_IN_SKY_BATTLE);
+    var = 0;
+    for (i = 0; i < partyCount; i++)
+    {
+        struct Pokemon* pokemon = &gPlayerParty[i];
+
+        if (CanMonParticipateInSkyBattle(pokemon))
+            var += 1 << i; //This part savces the value of the Pokémon that participate or not, and this allows us to save them after the battle, instread of loading them back from befor the battle, so they lose HP, PP, etc.
+        else
+            ZeroMonData(pokemon);
+    }
+    VarSet(VAR_SKY_BATTLE_POKEMON_POSITIONS,var);
+    CompactPartySlots();
 }
