@@ -4233,7 +4233,7 @@ void PrepareSkyBattle(void)
     u16 species;
     partyCount = CalculatePlayerPartyCount();
     SavePlayerParty();
-    FlagSet(FLAG_IS_IN_SKY_BATTLE);
+    FlagSet(B_FLAG_SKY_BATTLE);
     var = 0;
     for (i = 0; i < partyCount; i++)
     {
@@ -4244,6 +4244,6 @@ void PrepareSkyBattle(void)
         else
             ZeroMonData(pokemon);
     }
-    VarSet(VAR_SKY_BATTLE_POKEMON_POSITIONS,var);
+    VarSet(B_VAR_SKY_BATTLE,var);
     CompactPartySlots();
 }

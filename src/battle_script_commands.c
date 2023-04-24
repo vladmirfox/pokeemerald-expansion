@@ -1560,7 +1560,7 @@ static void Cmd_attackcanceler(void)
     }
 
     gHitMarker |= HITMARKER_OBEYS;
-    if ((NoTargetPresent(gBattlerAttacker, gCurrentMove) && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))) || ((FlagGet(FLAG_IS_IN_SKY_BATTLE) && IsMoveBannedFromSkyBattles(gCurrentMove)))))
+    if ((NoTargetPresent(gBattlerAttacker, gCurrentMove) && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))) || ((FlagGet(B_FLAG_SKY_BATTLE) && IsMoveBannedFromSkyBattles(gCurrentMove))))
     {
         gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce;
         if (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))

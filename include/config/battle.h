@@ -140,6 +140,10 @@
 #define B_SPORT_BALL_MODIFIER       GEN_LATEST // In Gen8, Sport Ball's catch multiplier was reduced from x1.5 to x1.
 #define B_SERENE_GRACE_BOOST        GEN_LATEST // In Gen5+, Serene Grace boosts the added flinch chance of King's Rock and Razor Fang.
 
+// Sky Battles
+#define B_FLAG_SKY_BATTLE           FLAG_UNUSED_0x493     // If this flag is set, the player will be able to engage in scripted Sky Battles.
+#define B_VAR_SKY_BATTLE            VAR_UNUSED_0x40F7     // If this var is set, the game will remember the positions of Pokémon used in Sky Battles.
+
 // Flag settings
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.
 // Eg: Replace with FLAG_UNUSED_0x264 so you can use that flag to toggle the feature.

@@ -234,7 +234,6 @@ u32 GetBattlerFriendshipScore(u8 battlerId);
 u32 CountBattlerStatIncreases(u8 battlerId, bool32 countEvasionAcc);
 bool32 IsMyceliumMightOnField(void);
 bool8 ChangeTypeBasedOnTerrain(u8 battlerId);
-
 bool8 CanMonParticipateInSkyBattle(struct Pokemon* pokemon);
 bool8 IsMonBannedFromSkyBattles(u16 species);
 bool8 IsMoveBannedFromSkyBattles(u16 move);

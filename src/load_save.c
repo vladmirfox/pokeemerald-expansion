@@ -182,7 +182,7 @@ void UpdatePlayerSavedPartyAfterSkyBattle(void)
 {
     int i;
     int c = 0;
-    int skyPokemonVar = VarGet(VAR_SKY_BATTLE_POKEMON_POSITIONS);
+    int skyPokemonVar = VarGet(B_VAR_SKY_BATTLE);
 
     for (i = 0; i < PARTY_SIZE; i++)
         if ((skyPokemonVar >> i & 1) == 1){

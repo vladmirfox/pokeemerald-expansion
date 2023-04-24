@@ -1356,13 +1356,9 @@ static void CB2_EndTrainerBattle(void)
     u8 partyCount;
     u8 i;
 
-    if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
+    if (FlagGet(B_FLAG_SKY_BATTLE))
     {
-        SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
-    }
-    else if (FlagGet(FLAG_IS_IN_SKY_BATTLE))
-    {
-        FlagClear(FLAG_IS_IN_SKY_BATTLE);
+        FlagClear(B_FLAG_SKY_BATTLE);
         UpdatePlayerSavedPartyAfterSkyBattle(); // Only updates the pokemon that participated in the battle
         LoadPlayerParty(); // Load the saved pokemons
         if (IsPlayerDefeated(gBattleOutcome) == TRUE) { // Check if every pokemon is fainted;
@@ -1381,6 +1377,10 @@ static void CB2_EndTrainerBattle(void)
             else
                 SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
         }
+        SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+    }
+    else if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
+    {
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
     }
     else if (IsPlayerDefeated(gBattleOutcome) == TRUE)
