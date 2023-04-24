@@ -349,7 +349,8 @@ struct BattleMove
     u8 argument;
     u8 zMoveEffect;
     // Flags
-    u32 flagSlicingMove:1;  // Damage increased by Sharpness ability.
+    u32 flagWindMove:1;
+    u32 flagSlicingMove:1;
 };
 
 #define SPINDA_SPOT_WIDTH 16
