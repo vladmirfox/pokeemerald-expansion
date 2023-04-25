@@ -349,6 +349,7 @@ struct BattleMove
     u8 argument;
     u8 zMoveEffect;
     // Flags
+    u32 flagTwoStrikes:1;   // A move with this flag will strike twice, and may apply its effect on each hit
     u32 flagWindMove:1;
     u32 flagSlicingMove:1;
 };

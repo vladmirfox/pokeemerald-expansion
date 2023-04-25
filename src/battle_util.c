@@ -3736,7 +3736,7 @@ u8 AtkCanceller_UnableToUseMove(void)
 
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
-            else if (gBattleMoves[gCurrentMove].flags & FLAG_TWO_STRIKES)
+            else if (gBattleMoves[gCurrentMove].flagTwoStrikes)
             {
                 gMultiHitCounter = 2;
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
