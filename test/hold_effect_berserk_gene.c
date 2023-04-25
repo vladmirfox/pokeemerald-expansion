@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(gItems[ITEM_BERSERK_GENE].holdEffect == HOLD_EFFECT_BERSERK_GENE);
 }
 
-SINGLE_BATTLE_TEST("Berserk Gene activates at the start of battle", s16 damage)
+SINGLE_BATTLE_TEST("Berserk Gene sharply raises attack at the start of battle", s16 damage)
 {
     u16 useItem;
     PARAMETRIZE { useItem = FALSE; }
