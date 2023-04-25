@@ -11353,7 +11353,7 @@ static void Cmd_setprotectlike(void)
     bool32 fail = TRUE;
     bool32 notLastTurn = TRUE;
 
-    if (!(gBattleMoves[gLastResultingMoves[gBattlerAttacker]].flags & FLAG_PROTECTION_MOVE))
+    if (!gBattleMoves[gLastResultingMoves[gBattlerAttacker]].protectionMove)
         gDisableStructs[gBattlerAttacker].protectUses = 0;
 
     if (gCurrentTurnActionNumber == (gBattlersCount - 1))

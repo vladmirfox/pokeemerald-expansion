@@ -786,7 +786,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     RETURN_SCORE_MINUS(10);
                 break;
             case ABILITY_BULLETPROOF:
-                if (TestMoveFlags(move, FLAG_BALLISTIC))
+                if (gBattleMoves[move].ballisticMove)
                     RETURN_SCORE_MINUS(10);
                 break;
             case ABILITY_DAZZLING:

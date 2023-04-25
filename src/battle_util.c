@@ -5065,7 +5065,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             u16 targetAbility = GetBattlerAbility(gBattlerTarget);
 
             if ((gLastUsedAbility == ABILITY_SOUNDPROOF && gBattleMoves[move].flags & FLAG_SOUND && !(moveTarget & MOVE_TARGET_USER))
-             || (gLastUsedAbility == ABILITY_BULLETPROOF && gBattleMoves[move].flags & FLAG_BALLISTIC))
+             || (gLastUsedAbility == ABILITY_BULLETPROOF && gBattleMoves[move].ballisticMove))
             {
                 if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
                     gHitMarker |= HITMARKER_NO_PPDEDUCT;
