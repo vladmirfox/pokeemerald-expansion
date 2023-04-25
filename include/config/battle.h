@@ -143,6 +143,9 @@
 // Sky Battles
 #define B_FLAG_SKY_BATTLE           FLAG_UNUSED_0x493     // If this flag is set, the player will be able to engage in scripted Sky Battles.
 #define B_VAR_SKY_BATTLE            VAR_UNUSED_0x40F7     // If this var is set, the game will remember the positions of Pokémon used in Sky Battles.
+#define B_SKY_BATTLE_STRICT_ELIGIBILITY FALSE           //When TRUE, Sky Battles will use the eligibility from Pokémon XY. When FALSE, all Flying-types or Pokémon with Levitate are allowed.
+
+#define B_SKY_BATTLE_STRICT_MOVES FALSE                 //When TRUE, Sky Battles will use the banned moves from Pokémon XY. When FALSE, more moves that debuted after Pokémon XY are added.
 
 // Flag settings
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.

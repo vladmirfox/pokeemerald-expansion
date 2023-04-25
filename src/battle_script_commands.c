@@ -1501,6 +1501,18 @@ bool32 DoesSkyBattleCancelCurrentMove(u32 gCurrentMove)
         case MOVE_TOXIC_SPIKES:
         case MOVE_WATER_PLEDGE:
         case MOVE_WATER_SPORT:
+#if B_SKY_BATTLE_STRICT_MOVES == FALSE
+        case MOVE_TECTONIC_RAGE:
+        //case MOVE_MAX_QUAKE:
+        case MOVE_STOMPING_TANTRUM:
+        case MOVE_BODY_PRESS:
+        case MOVE_SNAP_TRAP:
+        case MOVE_GRASSY_GLIDE:
+        case MOVE_WAVE_CRASH:
+        case MOVE_SPIN_OUT:
+        case MOVE_ICE_SPINNER:
+        case MOVE_VOLT_CRASH:
+#endif
             moveBannedFromSkyBattles = TRUE;
             break;
         default:
