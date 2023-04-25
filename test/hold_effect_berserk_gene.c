@@ -63,7 +63,7 @@ SINGLE_BATTLE_TEST("Berserk Gene activates on switch in", s16 damage)
     }
 }
 
-SINGLE_BATTLE_TEST("Berserk Gene does not confuse a Pokemon with Own Tempo but raises attack sharply", s16 damage)
+SINGLE_BATTLE_TEST("Berserk Gene does not confuse a Pokemon with Own Tempo but still raises attack sharply", s16 damage)
 {
     u16 useItem;
     PARAMETRIZE { useItem = FALSE; }
@@ -93,9 +93,10 @@ SINGLE_BATTLE_TEST("Berserk Gene does not confuse a Pokemon with Own Tempo but r
     }
 }
 
-SINGLE_BATTLE_TEST("Berserk Gene does not confuse on Misty Terrain")
+SINGLE_BATTLE_TEST("Berserk Gene does not confuse on Misty Terrain but still raises attack sharply")
 {
     GIVEN {
+        ASSUME(P_GEN_7_POKEMON == TRUE);
         PLAYER(SPECIES_TAPU_FINI) { Ability(ABILITY_MISTY_SURGE); Item(ITEM_BERSERK_GENE); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
