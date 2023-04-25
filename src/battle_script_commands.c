@@ -15234,7 +15234,6 @@ u16 GetSecretPowerMoveEffect(void)
     return moveEffect;
 }
 
-
 static void Cmd_pickup(void)
 {
     CMD_ARGS();
