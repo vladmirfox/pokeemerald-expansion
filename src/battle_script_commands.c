@@ -1511,7 +1511,7 @@ bool32 DoesSkyBattleCancelCurrentMove(u32 gCurrentMove)
         case MOVE_WAVE_CRASH:
         case MOVE_SPIN_OUT:
         case MOVE_ICE_SPINNER:
-        case MOVE_VOLT_CRASH:
+        //case MOVE_VOLT_CRASH:
 #endif
             moveBannedFromSkyBattles = TRUE;
             break;
