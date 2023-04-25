@@ -695,7 +695,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     {
         // handle negative checks on non-user target
         // check powder moves
-        if (TestMoveFlags(move, FLAG_POWDER) && !IsAffectedByPowder(battlerDef, AI_DATA->abilities[battlerDef], AI_DATA->holdEffects[battlerDef]))
+        if (gBattleMoves[move].powderMove && !IsAffectedByPowder(battlerDef, AI_DATA->abilities[battlerDef], AI_DATA->holdEffects[battlerDef]))
         {
             RETURN_SCORE_MINUS(20);
         }

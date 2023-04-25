@@ -349,12 +349,15 @@ struct BattleMove
     u8 argument;
     u8 zMoveEffect;
     // Flags
+    u32 powderMove:1;
+    u32 ignoresTargetAbility:1;
+    u32 danceMove:1;
     u32 damagesAirborne:1;
     u32 damagesAirborneDoubleDamage:1;
     u32 ignoreTypeIfFlyingAndUngrounded:1;
     u32 thawsUser:1;
-    u32 hitsPastSubstitute:1;               // Hyperspace Fury
-    u32 twoStrikes:1;                       // A move with this flag will strike twice, and may apply its effect on each hit
+    u32 hitsPastSubstitute:1;
+    u32 twoStrikes:1; // May apply its effect on each hit.
     u32 windMove:1;
     u32 slicingMove:1;
 };

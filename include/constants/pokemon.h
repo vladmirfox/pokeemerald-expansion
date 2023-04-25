@@ -233,9 +233,6 @@
 #define FLAG_SOUND                                (1 << 16)
 #define FLAG_BALLISTIC                            (1 << 17)
 #define FLAG_PROTECTION_MOVE                      (1 << 18)
-#define FLAG_POWDER                               (1 << 19)
-#define FLAG_TARGET_ABILITY_IGNORED               (1 << 20)
-#define FLAG_DANCE                                (1 << 21)
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0
