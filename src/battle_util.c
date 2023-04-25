@@ -3736,7 +3736,7 @@ u8 AtkCanceller_UnableToUseMove(void)
 
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
-            else if (gBattleMoves[gCurrentMove].flagTwoStrikes)
+            else if (gBattleMoves[gCurrentMove].twoStrikes)
             {
                 gMultiHitCounter = 2;
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
@@ -5177,7 +5177,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect = 2, statId = STAT_DEF, statAmount = 2;
                 break;
             case ABILITY_WIND_RIDER:
-                if (gBattleMoves[gCurrentMove].flagWindMove && !(GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove) & MOVE_TARGET_USER))
+                if (gBattleMoves[gCurrentMove].windMove && !(GetBattlerMoveTargetType(gBattlerAttacker, gCurrentMove) & MOVE_TARGET_USER))
                     effect = 2, statId = STAT_ATK;
                 break;
             case ABILITY_EARTH_EATER:
@@ -5794,7 +5794,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         case ABILITY_WIND_POWER:
-            if (!(gBattleMoves[gCurrentMove].flagWindMove))
+            if (!(gBattleMoves[gCurrentMove].windMove))
                 break;
             // fall through
         case ABILITY_ELECTROMORPHOSIS:
@@ -8867,7 +8867,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
            MulModifier(&modifier, UQ_4_12(1.3));
         break;
     case ABILITY_SHARPNESS:
-        if (gBattleMoves[move].flagSlicingMove)
+        if (gBattleMoves[move].slicingMove)
            MulModifier(&modifier, UQ_4_12(1.5));
         break;
     case ABILITY_SUPREME_OVERLORD:
