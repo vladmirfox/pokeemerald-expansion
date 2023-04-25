@@ -1,14 +1,14 @@
 #include "global.h"
 #include "test_battle.h"
 
-
-SINGLE_BATTLE_TEST("Three Strikes are used on Triple Dive")
+SINGLE_BATTLE_TEST("Three-strike flag turns a move into a 3-hit move")
 {
     s16 firstHit;
     s16 secondHit;
     s16 thirdHit;
 
     GIVEN {
+        ASSUME(gBattleMoves[MOVE_TRIPLE_DIVE].flags & FLAG_THREE_STRIKES);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -27,13 +27,14 @@ SINGLE_BATTLE_TEST("Three Strikes are used on Triple Dive")
     }
 }
 
-SINGLE_BATTLE_TEST("Three Strikes on Surging Strikes do critical damage")
+SINGLE_BATTLE_TEST("Surging Strikes hits 3 times with each hit being a critical hit")
 {
     s16 firstHit;
     s16 secondHit;
     s16 thirdHit;
 
     GIVEN {
+        ASSUME(gBattleMoves[MOVE_SURGING_STRIKES].flags & FLAG_THREE_STRIKES);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
