@@ -82,23 +82,12 @@ Debug_FlagsAndVarNotSetBattleConfigMessage_Text:
 
 
 Debug_Script_1::
-    setflag FLAG_BADGE08_GET
-    setflag FLAG_SYS_POKEMON_GET
-    givemon SPECIES_PIDGEOT, 100, 0
-    givemon SPECIES_RUFFLET, 100, 0
-    givemon SPECIES_BLASTOISE, 100, 0
-    givemon SPECIES_LATIOS, 100, 0
 	end
 
 Debug_Script_2::
-    special TrySkyBattle
-    compare VAR_RESULT, FALSE
-    goto_if_eq Debug_Script_3
-	trainerbattle_single TRAINER_WALLACE, Route118_Text_RoseIntro, Route118_Text_RoseDefeat, Route118_EventScript_RegisterRose
 	end
 
 Debug_Script_3::
-    msgbox(Debug_FlagsNotSetBattleConfigMessage_Text)
 	end
 
 Debug_Script_4::
