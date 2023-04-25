@@ -1367,7 +1367,7 @@ static bool8 PlayerHasHealthyPokemon(void){
     partyCount = CalculatePlayerPartyCount();
     for (i = 0; i < partyCount; i++)
     {
-        if (GetMonData(&gPlayerParty[i], MON_DATA_HP, NULL) > 0)
+        if ((GetMonData(&gPlayerParty[i], MON_DATA_HP, NULL) > 0) && (!GetMonData(&gPlayerParty[i],MON_DATA_IS_EGG,NULL)))
         {
             return TRUE;
         }
