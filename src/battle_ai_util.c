@@ -732,7 +732,7 @@ bool32 MovesWithSplitUnusable(u32 attacker, u32 target, u32 split)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (moves[i] != MOVE_NONE
-            && moves[i] != 0xFFFF
+            && moves[i] != MOVE_UNAVAILABLE
             && GetBattleMoveSplit(moves[i]) == split
             && !(unusable & gBitTable[i]))
         {
@@ -1094,7 +1094,7 @@ u8 AI_WhoStrikesFirst(u8 battlerAI, u8 battler2, u16 moveConsidered)
     prioAI = GetMovePriority(battlerAI, moveConsidered);
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (battler2Moves[i] == 0 || battler2Moves[i] == 0xFFFF)
+        if (battler2Moves[i] == MOVE_NONE || battler2Moves[i] == MOVE_UNAVAILABLE)
             continue;
 
         prioBattler2 = GetMovePriority(battler2, battler2Moves[i]);
@@ -1133,7 +1133,7 @@ bool32 CanTargetFaintAi(u8 battlerDef, u8 battlerAtk)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && !(unusable & gBitTable[i])
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && !(unusable & gBitTable[i])
             && AI_DATA->simulatedDmg[battlerDef][battlerAtk][moves[i]] >= gBattleMons[battlerAtk].hp)
         {
             return TRUE;
@@ -1153,7 +1153,7 @@ bool32 CanAIFaintTarget(u8 battlerAtk, u8 battlerDef, u8 numHits)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && !(moveLimitations & gBitTable[i]))
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && !(moveLimitations & gBitTable[i]))
         {
             // Use the pre-calculated value in simulatedDmg instead of re-calculating it
             dmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][i];
@@ -1202,7 +1202,7 @@ bool32 CanTargetFaintAiWithMod(u8 battlerDef, u8 battlerAtk, s32 hpMod, s32 dmgM
         if (dmgMod)
             dmg *= dmgMod;
 
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && !(unusable & gBitTable[i]) && dmg >= hpCheck)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && !(unusable & gBitTable[i]) && dmg >= hpCheck)
         {
             return TRUE;
         }
@@ -1904,7 +1904,7 @@ bool32 HasOnlyMovesWithSplit(u32 battlerId, u32 split, bool32 onlyOffensive)
     {
         if (onlyOffensive && IS_MOVE_STATUS(moves[i]))
             continue;
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && GetBattleMoveSplit(moves[i]) != split)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && GetBattleMoveSplit(moves[i]) != split)
             return FALSE;
     }
 
@@ -1918,7 +1918,7 @@ bool32 HasMoveWithSplit(u32 battler, u32 split)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && GetBattleMoveSplit(moves[i]) == split)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && GetBattleMoveSplit(moves[i]) == split)
             return TRUE;
     }
 
@@ -1932,7 +1932,7 @@ bool32 HasMoveWithType(u32 battler, u8 type)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && gBattleMoves[moves[i]].type == type)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].type == type)
             return TRUE;
     }
 
@@ -1946,7 +1946,7 @@ bool32 HasMoveEffect(u32 battlerId, u16 moveEffect)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && gBattleMoves[moves[i]].effect == moveEffect)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].effect == moveEffect)
             return TRUE;
     }
 
@@ -1960,7 +1960,7 @@ bool32 HasMove(u32 battlerId, u32 move)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && moves[i] == move)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && moves[i] == move)
             return TRUE;
     }
 
@@ -1975,7 +1975,7 @@ bool32 HasMoveWithLowAccuracy(u8 battlerAtk, u8 battlerDef, u8 accCheck, bool32 
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] == MOVE_NONE || moves[i] == 0xFFFF)
+        if (moves[i] == MOVE_NONE || moves[i] == MOVE_UNAVAILABLE)
             continue;
 
         if (!(gBitTable[i] & moveLimitations))
@@ -2042,7 +2042,7 @@ bool32 HasHealingEffect(u32 battlerId)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && IsHealingMoveEffect(gBattleMoves[moves[i]].effect))
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && IsHealingMoveEffect(gBattleMoves[moves[i]].effect))
             return TRUE;
     }
 
@@ -2071,7 +2071,7 @@ bool32 HasTrappingMoveEffect(u8 battler)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && IsTrappingMoveEffect(gBattleMoves[moves[i]].effect))
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && IsTrappingMoveEffect(gBattleMoves[moves[i]].effect))
             return TRUE;
     }
 
@@ -2085,7 +2085,7 @@ bool32 HasThawingMove(u8 battlerId)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && gBattleMoves[moves[i]].thawsUser)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].thawsUser)
             return TRUE;
     }
 
@@ -2204,7 +2204,7 @@ bool32 HasDamagingMove(u8 battlerId)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && gBattleMoves[moves[i]].power != 0)
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].power != 0)
             return TRUE;
     }
 
@@ -2218,7 +2218,7 @@ bool32 HasDamagingMoveOfType(u8 battlerId, u8 type)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE
           && gBattleMoves[moves[i]].type == type && gBattleMoves[moves[i]].power != 0)
             return TRUE;
     }
@@ -2278,7 +2278,7 @@ bool32 TestMoveFlagsInMoveset(u8 battler, u32 flags)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (moves[i] != MOVE_NONE && moves[i] != 0xFFFF && TestMoveFlags(moves[i], flags))
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && TestMoveFlags(moves[i], flags))
             return TRUE;
     }
     return FALSE;
