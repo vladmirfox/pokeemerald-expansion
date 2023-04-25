@@ -279,6 +279,7 @@ static void DebugAction_OpenSubMenu(u8 taskId, struct ListMenuTemplate LMtemplat
 
 extern u8 Debug_FlagsNotSetOverworldConfigMessage[];
 extern u8 Debug_FlagsNotSetBattleConfigMessage[];
+extern u8 Debug_FlagsAndVarNotSetBattleConfigMessage[];
 extern u8 Debug_Script_1[];
 extern u8 Debug_Script_2[];
 extern u8 Debug_Script_3[];

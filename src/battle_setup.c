@@ -1350,42 +1350,42 @@ void BattleSetup_StartTrainerBattle(void)
     ScriptContext_Stop();
 }
 
-static void CB2_EndTrainerBattle(void)
+static void HandleSpecialBattleParty(void)
 {
-    bool8 everyPokemonFainted;
-    u8 partyCount;
-    u8 i;
-
     if (FlagGet(B_FLAG_SKY_BATTLE))
     {
+        SaveChangesToPlayerParty();
+        LoadPlayerParty(); 
         FlagClear(B_FLAG_SKY_BATTLE);
-        UpdatePlayerSavedPartyAfterSkyBattle(); // Only updates the pokemon that participated in the battle
-        LoadPlayerParty(); // Load the saved pokemons
-        if (IsPlayerDefeated(gBattleOutcome) == TRUE) { // Check if every pokemon is fainted;
-            everyPokemonFainted = TRUE;
-            partyCount = CalculatePlayerPartyCount();
-            for (i = 0; i < partyCount; i++)
-            {
-                if (GetMonData(&gPlayerParty[i], MON_DATA_HP, NULL) > 0)
-                {
-                    everyPokemonFainted = FALSE;
-                    break;
-                }
-            }
-            if (everyPokemonFainted)
-                SetMainCallback2(CB2_WhiteOut);
-            else
-                SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
-        }
-        SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
     }
-    else if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
+}
+
+static bool8 PlayerHasHealthyPokemon(void){
+    u8 i;
+    u8 partyCount;
+
+    partyCount = CalculatePlayerPartyCount();
+    for (i = 0; i < partyCount; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_HP, NULL) > 0)
+        {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+static void CB2_EndTrainerBattle(void)
+{
+    HandleSpecialBattleParty();
+
+    if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
     {
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
     }
     else if (IsPlayerDefeated(gBattleOutcome) == TRUE)
     {
-        if (InBattlePyramid() || InTrainerHillChallenge())
+        if (InBattlePyramid() || InTrainerHillChallenge() || PlayerHasHealthyPokemon() )
             SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
         else
             SetMainCallback2(CB2_WhiteOut);

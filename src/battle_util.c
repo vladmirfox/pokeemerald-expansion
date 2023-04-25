@@ -10860,22 +10860,19 @@ static void SetRandomMultiHitCounter()
 }
 
 bool8 CanMonParticipateInSkyBattle(struct Pokemon* pokemon){
-    int i;
-    bool8 isFlyingType = FALSE;
-    bool8 isLevitating = GetMonData(pokemon, MON_DATA_ABILITY_NUM, NULL) == ABILITY_LEVITATE;
-    bool8 hasFlyMove = FALSE;
+    u16 species = GetMonData(pokemon, MON_DATA_SPECIES);
+    u8 monAbilityNum = GetMonData(pokemon, MON_DATA_ABILITY_NUM, NULL);
 
-    if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(pokemon, MON_DATA_IS_EGG))
+    bool8 hasLevitateAbility = gSpeciesInfo[species].abilities[monAbilityNum] == ABILITY_LEVITATE;
+    bool8 isFlyingType = gSpeciesInfo[species].types[0] == TYPE_FLYING || gSpeciesInfo[species].types[1] == TYPE_FLYING;
+    bool8 monIsValidAndNotEgg = GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(pokemon, MON_DATA_IS_EGG);
+
+    if (monIsValidAndNotEgg)
     {
-        u16 species = GetMonData(pokemon, MON_DATA_SPECIES);
-        isFlyingType = gSpeciesInfo[species].types[0] == TYPE_FLYING || gSpeciesInfo[species].types[1] == TYPE_FLYING;
-        if (isFlyingType)
-        {
-            gSpecialVar_Result = TRUE;
-            return;
-        }
+        if ((hasLevitateAbility || isFlyingType) && !IsMonBannedFromSkyBattles(species))
+            return TRUE;
     }
-    return (isFlyingType || isLevitating) && !IsMonBannedFromSkyBattles(GetMonData(pokemon,MON_DATA_SPECIES_OR_EGG));
+    return FALSE;
 }
 
 bool8 IsMonBannedFromSkyBattles(u16 species){
@@ -10903,52 +10900,7 @@ bool8 IsMonBannedFromSkyBattles(u16 species){
         case SPECIES_ROWLET:
         case SPECIES_PIKIPEK:
             return TRUE;
-        default:
-            return FALSE;
-    }
-}
-
-bool8 IsMoveBannedFromSkyBattles(u16 move){
-    switch (move) {
-        case MOVE_BODY_SLAM:
-        case MOVE_BULLDOZE:
-        case MOVE_DIG:
-        case MOVE_DIVE:
-        case MOVE_EARTH_POWER:
-        case MOVE_EARTHQUAKE:
-        case MOVE_ELECTRIC_TERRAIN:
-        case MOVE_FIRE_PLEDGE:
-        case MOVE_FISSURE:
-        case MOVE_FLYING_PRESS:
-        case MOVE_FRENZY_PLANT:
-        case MOVE_GEOMANCY:
-        case MOVE_GRASS_KNOT:
-        case MOVE_GRASS_PLEDGE:
-        case MOVE_GRASSY_TERRAIN:
-        case MOVE_GRAVITY:
-        case MOVE_HEAT_CRASH:
-        case MOVE_HEAVY_SLAM:
-        case MOVE_INGRAIN:
-        case MOVE_LANDS_WRATH:
-        case MOVE_MAGNITUDE:
-        case MOVE_MAT_BLOCK:
-        case MOVE_MISTY_TERRAIN:
-        case MOVE_MUD_SPORT:
-        case MOVE_MUDDY_WATER:
-        case MOVE_ROTOTILLER:
-        case MOVE_SEISMIC_TOSS:
-        case MOVE_SLAM:
-        case MOVE_SMACK_DOWN:
-        case MOVE_SPIKES:
-        case MOVE_STOMP:
-        case MOVE_SUBSTITUTE:
-        case MOVE_SURF:
-        case MOVE_THOUSAND_ARROWS:
-        case MOVE_THOUSAND_WAVES:
-        case MOVE_TOXIC_SPIKES:
-        case MOVE_WATER_PLEDGE:
-        case MOVE_WATER_SPORT:
-            return TRUE;
+            break;
         default:
             return FALSE;
     }

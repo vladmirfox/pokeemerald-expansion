@@ -1458,6 +1458,62 @@ bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
     return FALSE;
 }
 
+bool32 DoesSkyBattleCancelCurrentMove(u32 gCurrentMove)
+{
+    bool8 moveBannedFromSkyBattles = FALSE;
+
+    switch (gCurrentMove) {
+        case MOVE_BODY_SLAM:
+        case MOVE_BULLDOZE:
+        case MOVE_DIG:
+        case MOVE_DIVE:
+        case MOVE_EARTH_POWER:
+        case MOVE_EARTHQUAKE:
+        case MOVE_ELECTRIC_TERRAIN:
+        case MOVE_FIRE_PLEDGE:
+        case MOVE_FISSURE:
+        case MOVE_FLYING_PRESS:
+        case MOVE_FRENZY_PLANT:
+        case MOVE_GEOMANCY:
+        case MOVE_GRASS_KNOT:
+        case MOVE_GRASS_PLEDGE:
+        case MOVE_GRASSY_TERRAIN:
+        case MOVE_GRAVITY:
+        case MOVE_HEAT_CRASH:
+        case MOVE_HEAVY_SLAM:
+        case MOVE_INGRAIN:
+        case MOVE_LANDS_WRATH:
+        case MOVE_MAGNITUDE:
+        case MOVE_MAT_BLOCK:
+        case MOVE_MISTY_TERRAIN:
+        case MOVE_MUD_SPORT:
+        case MOVE_MUDDY_WATER:
+        case MOVE_ROTOTILLER:
+        case MOVE_SEISMIC_TOSS:
+        case MOVE_SLAM:
+        case MOVE_SMACK_DOWN:
+        case MOVE_SPIKES:
+        case MOVE_STOMP:
+        case MOVE_SUBSTITUTE:
+        case MOVE_SURF:
+        case MOVE_THOUSAND_ARROWS:
+        case MOVE_THOUSAND_WAVES:
+        case MOVE_TOXIC_SPIKES:
+        case MOVE_WATER_PLEDGE:
+        case MOVE_WATER_SPORT:
+            moveBannedFromSkyBattles = TRUE;
+            break;
+        default:
+            moveBannedFromSkyBattles = FALSE;
+    }
+
+    if (FlagGet(B_FLAG_SKY_BATTLE) && (moveBannedFromSkyBattles)){
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 static void Cmd_attackcanceler(void)
 {
     CMD_ARGS();
@@ -1560,7 +1616,7 @@ static void Cmd_attackcanceler(void)
     }
 
     gHitMarker |= HITMARKER_OBEYS;
-    if ((NoTargetPresent(gBattlerAttacker, gCurrentMove) && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))) || ((FlagGet(B_FLAG_SKY_BATTLE) && IsMoveBannedFromSkyBattles(gCurrentMove))))
+    if ((NoTargetPresent(gBattlerAttacker, gCurrentMove) && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))) || (DoesSkyBattleCancelCurrentMove(gCurrentMove)))
     {
         gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce;
         if (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
@@ -15094,6 +15150,7 @@ u16 GetSecretPowerMoveEffect(void)
     }
     return moveEffect;
 }
+
 
 static void Cmd_pickup(void)
 {

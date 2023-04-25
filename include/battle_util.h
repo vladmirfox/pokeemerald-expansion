@@ -236,6 +236,5 @@ bool32 IsMyceliumMightOnField(void);
 bool8 ChangeTypeBasedOnTerrain(u8 battlerId);
 bool8 CanMonParticipateInSkyBattle(struct Pokemon* pokemon);
 bool8 IsMonBannedFromSkyBattles(u16 species);
-bool8 IsMoveBannedFromSkyBattles(u16 move);
 
 #endif // GUARD_BATTLE_UTIL_H
