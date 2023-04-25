@@ -4470,11 +4470,8 @@ void ItemUseCB_BattleScript(u8 taskId, TaskFunc task)
         gBattleStruct->itemPartyIndex[gBattlerInMenuId] = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
         gPartyMenuUseExitCallback = TRUE;
         PlaySE(SE_SELECT);
-        CopyItemName(gSpecialVar_ItemId, gStringVar2);
-        StringExpandPlaceholders(gStringVar4, gText_PlayerUsedVar2);
-        DisplayPartyMenuMessage(gStringVar4, TRUE);
-        ScheduleBgCopyTilemapToVram(2);
         RemoveBagItem(gSpecialVar_ItemId, 1);
+        ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = task;
     }
 }
@@ -4943,9 +4940,6 @@ static void TryUseItemOnMove(u8 taskId)
             gChosenMovePos = ptr->data1;
             gPartyMenuUseExitCallback = TRUE;
             RemoveBagItem(gSpecialVar_ItemId, 1);
-            CopyItemName(gSpecialVar_ItemId, gStringVar2);
-            StringExpandPlaceholders(gStringVar4, gText_PlayerUsedVar2);
-            DisplayPartyMenuMessage(gStringVar4, TRUE);
             ScheduleBgCopyTilemapToVram(2);
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
         }
@@ -5090,7 +5084,7 @@ static void Task_LearnedMove(u8 taskId)
     if (move[1] == 0)
     {
         AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
-        if (item < ITEM_HM01_CUT)
+        if (!ItemId_GetImportance(item))
             RemoveBagItem(item, 1);
     }
     GetMonNickname(mon, gStringVar1);
