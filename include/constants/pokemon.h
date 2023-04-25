@@ -227,7 +227,6 @@
 #define FLAG_STRONG_JAW_BOOST                     (1 << 10)
 #define FLAG_MEGA_LAUNCHER_BOOST                  (1 << 11)
 #define FLAG_STAT_STAGES_IGNORED                  (1 << 12)
-#define FLAG_DMG_MINIMIZE                         (1 << 13)
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0
