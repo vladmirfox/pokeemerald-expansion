@@ -15330,7 +15330,7 @@ bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
     if (!(gBattleMons[battlerDef].status2 & STATUS2_SUBSTITUTE))
         return FALSE;
 #if B_SOUND_SUBSTITUTE >= GEN_6
-    else if (gBattleMoves[move].flags & FLAG_SOUND)
+    else if (gBattleMoves[move].soundMove)
         return FALSE;
 #endif
     else if (gBattleMoves[move].hitsPastSubstitute)

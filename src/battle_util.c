@@ -1718,7 +1718,7 @@ u8 TrySetCantSelectMoveBattleScript(void)
         }
     }
 
-    if (gBattleStruct->zmove.toBeUsed[gBattlerAttacker] == MOVE_NONE && gDisableStructs[gActiveBattler].throatChopTimer != 0 && gBattleMoves[move].flags & FLAG_SOUND)
+    if (gBattleStruct->zmove.toBeUsed[gBattlerAttacker] == MOVE_NONE && gDisableStructs[gActiveBattler].throatChopTimer != 0 && gBattleMoves[move].soundMove)
     {
         gCurrentMove = move;
         if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
@@ -1936,7 +1936,7 @@ u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u16 check)
         else if (check & MOVE_LIMITATION_BELCH && IsBelchPreventingMove(battlerId, gBattleMons[battlerId].moves[i]))
             unusableMoves |= gBitTable[i];
         // Throat Chop
-        else if (check & MOVE_LIMITATION_THROAT_CHOP && gDisableStructs[battlerId].throatChopTimer && gBattleMoves[gBattleMons[battlerId].moves[i]].flags & FLAG_SOUND)
+        else if (check & MOVE_LIMITATION_THROAT_CHOP && gDisableStructs[battlerId].throatChopTimer && gBattleMoves[gBattleMons[battlerId].moves[i]].soundMove)
             unusableMoves |= gBitTable[i];
         // Stuff Cheeks
         else if (check & MOVE_LIMITATION_STUFF_CHEEKS && gBattleMons[battlerId].moves[i] == MOVE_STUFF_CHEEKS && ItemId_GetPocket(gBattleMons[gActiveBattler].item) != POCKET_BERRIES)
@@ -3677,7 +3677,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_THROAT_CHOP:
-            if (gBattleStruct->zmove.toBeUsed[gBattlerAttacker] == MOVE_NONE && gDisableStructs[gBattlerAttacker].throatChopTimer && gBattleMoves[gCurrentMove].flags & FLAG_SOUND)
+            if (gBattleStruct->zmove.toBeUsed[gBattlerAttacker] == MOVE_NONE && gDisableStructs[gBattlerAttacker].throatChopTimer && gBattleMoves[gCurrentMove].soundMove)
             {
                 gProtectStructs[gBattlerAttacker].usedThroatChopPreventedMove = TRUE;
                 CancelMultiTurnMoves(gBattlerAttacker);
@@ -5064,7 +5064,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             u16 battlerAbility = GetBattlerAbility(battler);
             u16 targetAbility = GetBattlerAbility(gBattlerTarget);
 
-            if ((gLastUsedAbility == ABILITY_SOUNDPROOF && gBattleMoves[move].flags & FLAG_SOUND && !(moveTarget & MOVE_TARGET_USER))
+            if ((gLastUsedAbility == ABILITY_SOUNDPROOF && gBattleMoves[move].soundMove && !(moveTarget & MOVE_TARGET_USER))
              || (gLastUsedAbility == ABILITY_BULLETPROOF && gBattleMoves[move].ballisticMove))
             {
                 if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
@@ -7638,7 +7638,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
         case HOLD_EFFECT_THROAT_SPRAY:  // Does NOT need to be a damaging move
             if (gProtectStructs[gBattlerAttacker].targetAffected
              && gBattleMons[gBattlerAttacker].hp != 0
-             && gBattleMoves[gCurrentMove].flags & FLAG_SOUND
+             && gBattleMoves[gCurrentMove].soundMove
              && CompareStat(gBattlerAttacker, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN)
              && !NoAliveMonsForEitherParty())   // Don't activate if battle will end
             {
@@ -8821,7 +8821,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
     case ABILITY_PUNK_ROCK:
-        if (gBattleMoves[move].flags & FLAG_SOUND)
+        if (gBattleMoves[move].soundMove)
             MulModifier(&modifier, UQ_4_12(1.3));
         break;
     case ABILITY_STEELY_SPIRIT:
@@ -9414,7 +9414,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
     case ABILITY_PUNK_ROCK:
-        if (gBattleMoves[move].flags & FLAG_SOUND)
+        if (gBattleMoves[move].soundMove)
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
     case ABILITY_PURIFYING_SALT:

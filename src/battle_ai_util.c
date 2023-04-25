@@ -2226,6 +2226,19 @@ bool32 HasDamagingMoveOfType(u8 battlerId, u8 type)
     return FALSE;
 }
 
+bool32 HasSoundMove(u8 battler)
+{
+    s32 i;
+    u16 *moves = GetMovesArray(battler);
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].soundMove)
+            return TRUE;
+    }
+    return FALSE;
+}
+
 bool32 IsInstructBannedMove(u16 move)
 {
     u32 i;

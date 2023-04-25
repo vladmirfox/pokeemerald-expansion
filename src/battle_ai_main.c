@@ -782,7 +782,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     RETURN_SCORE_MINUS(10);
                 break;
             case ABILITY_SOUNDPROOF:
-                if (TestMoveFlags(move, FLAG_SOUND))
+                if (gBattleMoves[move].soundMove)
                     RETURN_SCORE_MINUS(10);
                 break;
             case ABILITY_BULLETPROOF:
@@ -921,7 +921,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 // the following checks apply to any target (including user)
 
     // throat chop check
-    if (gDisableStructs[battlerAtk].throatChopTimer && TestMoveFlags(move, FLAG_SOUND))
+    if (gDisableStructs[battlerAtk].throatChopTimer && gBattleMoves[move].soundMove)
         return 0; // Can't even select move at all
     // heal block check
     if (gStatuses3[battlerAtk] & STATUS3_HEAL_BLOCK && IsHealBlockPreventingMove(battlerAtk, move))
@@ -1408,7 +1408,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             else if (AI_DATA->hpPercents[battlerAtk] <= 25)
                 score -= 10;
         #if B_SOUND_SUBSTITUTE >= GEN_6
-            else if (TestMoveFlagsInMoveset(battlerDef, FLAG_SOUND))
+            else if (HasSoundMove(battlerDef))
                 score -= 8;
         #endif
             break;
@@ -1941,7 +1941,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             // TODO
             break;
         case EFFECT_HEAL_BELL:
-            if (!AnyPartyMemberStatused(battlerAtk, TestMoveFlags(move, FLAG_SOUND)) || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+            if (!AnyPartyMemberStatused(battlerAtk, gBattleMoves[move].soundMove) || PartnerHasSameMoveEffectWithoutTarget(BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_HIT_PREVENT_ESCAPE:
@@ -4643,9 +4643,9 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score++;
         break;
     case EFFECT_THROAT_CHOP:
-        if (predictedMove != MOVE_NONE && TestMoveFlags(predictedMove, FLAG_SOUND) && AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER)
+        if (predictedMove != MOVE_NONE && gBattleMoves[predictedMove].soundMove && AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER)
             score += 3; // Ai goes first and predicts the target will use a sound move
-        else if (TestMoveFlagsInMoveset(battlerDef, FLAG_SOUND))
+        else if (HasSoundMove(battlerDef))
             score += 3;
         break;
     case EFFECT_HEAL_BLOCK:
