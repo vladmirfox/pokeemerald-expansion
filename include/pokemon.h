@@ -355,6 +355,8 @@ struct BattleMove
     u32 powderMove:1;
     u32 ignoresTargetAbility:1;
     u32 danceMove:1;
+    u32 damagesUnderground:1;
+    u32 damagesUnderwater:1;
     u32 damagesAirborne:1;
     u32 damagesAirborneDoubleDamage:1;
     u32 ignoreTypeIfFlyingAndUngrounded:1;

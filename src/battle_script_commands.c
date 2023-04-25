@@ -1792,8 +1792,8 @@ static bool32 AccuracyCalcHelper(u16 move)
 
     if ((gStatuses3[gBattlerTarget] & STATUS3_PHANTOM_FORCE)
     || ((gStatuses3[gBattlerTarget] & STATUS3_ON_AIR) && !(gBattleMoves[move].damagesAirborne || gBattleMoves[move].damagesAirborneDoubleDamage))
-    || ((gStatuses3[gBattlerTarget] & STATUS3_UNDERGROUND) && !(gBattleMoves[move].flags & FLAG_DMG_UNDERGROUND))
-    || ((gStatuses3[gBattlerTarget] & STATUS3_UNDERWATER) && !(gBattleMoves[move].flags & FLAG_DMG_UNDERWATER)))
+    || ((gStatuses3[gBattlerTarget] & STATUS3_UNDERGROUND) && !gBattleMoves[move].damagesUnderground)
+    || ((gStatuses3[gBattlerTarget] & STATUS3_UNDERWATER) && !gBattleMoves[move].damagesUnderwater))
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         JumpIfMoveFailed(7, move);
