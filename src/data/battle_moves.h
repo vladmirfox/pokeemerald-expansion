@@ -10727,6 +10727,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_POLLEN_PUFF] =
     {
+        #if B_MOVE_FLAGS_BALLISTIC < GEN_9
+            .ballisticMove = TRUE,
+        #endif
         .effect = EFFECT_HIT_ENEMY_HEAL_ALLY,
         .power = 90,
         .type = TYPE_BUG,
@@ -10738,7 +10741,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .ballisticMove = TRUE,
     },
 
     [MOVE_ANCHOR_SHOT] =
