@@ -6772,39 +6772,81 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PINSIR_MISC_INFO,
     },
 
+#define TAUROS_MISC_INFO                                      \
+        .baseHP        = 75,                                  \
+        .baseAttack    = 100,                                 \
+        .baseDefense   = 95,                                  \
+        .baseSpeed     = 110,                                 \
+        .baseSpAttack  = 40,                                  \
+        .baseSpDefense = 70,                                  \
+        .catchRate = 45,                                      \
+        .expYield = 172,                                      \
+        .cryId = CRY_TAUROS,                                  \
+        .genderRatio = MON_MALE,                              \
+        .eggCycles = 20,                                      \
+        .friendship = STANDARD_FRIENDSHIP,                    \
+        .growthRate = GROWTH_SLOW,                            \
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},     \
+        .noFlip = FALSE,                                      \
+        .natDexNum = NATIONAL_DEX_TAUROS,                     \
+        .categoryName = _("Wild Bull"),                       \
+        .pokemonScale = 256,                                  \
+        .pokemonOffset = 0,                                   \
+        .trainerScale = 256,                                  \
+        .trainerOffset = 0,                                   \
+        .height = 14,                                         \
+
     [SPECIES_TAUROS] =
     {
-        .baseHP        = 75,
-        .baseAttack    = 100,
-        .baseDefense   = 95,
-        .baseSpeed     = 110,
-        .baseSpAttack  = 40,
-        .baseSpDefense = 70,
         .types = { TYPE_NORMAL, TYPE_NORMAL },
-        .catchRate = 45,
-        .expYield = 172,
         .evYield_Attack    = 1,
         .evYield_Speed     = 1,
-        .genderRatio = MON_MALE,
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_SLOW,
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},
         .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_BROWN,
-        .noFlip = FALSE,
-        .natDexNum = NATIONAL_DEX_TAUROS,
-        .cryId = CRY_TAUROS,
         .description = gTaurosPokedexText,
-        .categoryName = _("Wild Bull"),
-        .pokemonScale = 256,
-        .pokemonOffset = 0,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .height = 14,
         .weight = 884,
         .levelUpLearnset = sTaurosLevelUpLearnset,
         .teachableLearnset = sTaurosTeachableLearnset,
+        TAUROS_MISC_INFO
+    },
+
+    [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] =
+    {
+        .types = { TYPE_FIGHTING, TYPE_FIGHTING },
+        .evYield_Attack    = 2,
+        .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW},
+        .bodyColor = BODY_COLOR_BROWN,
+        .description = gTaurosCombatBreedPokedexText,
+        .weight = 1150,
+        .levelUpLearnset = sTaurosLevelUpLearnset,
+        .teachableLearnset = sTaurosTeachableLearnset,
+        TAUROS_MISC_INFO
+    },
+
+    [SPECIES_TAUROS_PALDEAN_BLAZE_BREED] =
+    {
+        .types = { TYPE_FIGHTING, TYPE_FIRE },
+        .evYield_Attack    = 2,
+        .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW},
+        .bodyColor = BODY_COLOR_BROWN,
+        .description = gTaurosBlazeBreedPokedexText,
+        .weight = 850,
+        .levelUpLearnset = sTaurosLevelUpLearnset,
+        .teachableLearnset = sTaurosTeachableLearnset,
+        TAUROS_MISC_INFO
+    },
+
+    [SPECIES_TAUROS_PALDEAN_AQUA_BREED] =
+    {
+        .types = { TYPE_FIGHTING, TYPE_WATER },
+        .evYield_Attack    = 2,
+        .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW},
+        .bodyColor = BODY_COLOR_BROWN,
+        .description = gTaurosAquaBreedPokedexText,
+        .weight = 1100,
+        .levelUpLearnset = sTaurosLevelUpLearnset,
+        .teachableLearnset = sTaurosTeachableLearnset,
+        TAUROS_MISC_INFO
     },
 
     [SPECIES_MAGIKARP] =
@@ -9600,39 +9642,55 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .teachableLearnset = sYanmegaTeachableLearnset,
     },
 
+#define WOOPER_MISC_INFO                                                        \
+        .baseHP        = 55,                                                    \
+        .baseAttack    = 45,                                                    \
+        .baseDefense   = 45,                                                    \
+        .baseSpeed     = 15,                                                    \
+        .baseSpAttack  = 25,                                                    \
+        .baseSpDefense = 25,                                                    \
+        .catchRate = 255,                                                       \
+        .expYield = 42,                                                         \
+        .evYield_HP        = 1,                                                 \
+        .genderRatio = PERCENT_FEMALE(50),                                      \
+        .eggCycles = 20,                                                        \
+        .friendship = STANDARD_FRIENDSHIP,                                      \
+        .growthRate = GROWTH_MEDIUM_FAST,                                       \
+        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD},                     \
+        .noFlip = FALSE,                                                        \
+        .natDexNum = NATIONAL_DEX_WOOPER,                                       \
+        .cryId = CRY_WOOPER,                                                    \
+        .categoryName = _("Water Fish"),                                        \
+        .pokemonScale = 479,                                                    \
+        .pokemonOffset = 21,                                                    \
+        .trainerScale = 256,                                                    \
+        .trainerOffset = 0,                                                     \
+        .height = 4,                                                            \
+
     [SPECIES_WOOPER] =
     {
-        .baseHP        = 55,
-        .baseAttack    = 45,
-        .baseDefense   = 45,
-        .baseSpeed     = 15,
-        .baseSpAttack  = 25,
-        .baseSpDefense = 25,
         .types = { TYPE_WATER, TYPE_GROUND },
-        .catchRate = 255,
-        .expYield = 42,
-        .evYield_HP        = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = STANDARD_FRIENDSHIP,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_FIELD},
         .abilities = {ABILITY_DAMP, ABILITY_WATER_ABSORB, ABILITY_UNAWARE},
         .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
-        .natDexNum = NATIONAL_DEX_WOOPER,
-        .cryId = CRY_WOOPER,
         .description = gWooperPokedexText,
-        .categoryName = _("Water Fish"),
-        .pokemonScale = 479,
-        .pokemonOffset = 21,
-        .trainerScale = 256,
-        .trainerOffset = 0,
-        .height = 4,
         .weight = 85,
         .levelUpLearnset = sWooperLevelUpLearnset,
         .teachableLearnset = sWooperTeachableLearnset,
         .evolutions = sWooperEvolutions,
+        WOOPER_MISC_INFO
+    },
+
+    [SPECIES_WOOPER_PALDEAN] =
+    {
+        .types = { TYPE_WATER, TYPE_GROUND },
+        .abilities = {ABILITY_POISON_POINT, ABILITY_WATER_ABSORB, ABILITY_UNAWARE},
+        .bodyColor = BODY_COLOR_BROWN,
+        .description = gWooperPaldeaPokedexText,
+        .weight = 110,
+        .levelUpLearnset = sWooperLevelUpLearnset,
+        .teachableLearnset = sWooperTeachableLearnset,
+        .evolutions = sWooperEvolutions,
+        WOOPER_MISC_INFO
     },
 
     [SPECIES_QUAGSIRE] =
@@ -35365,7 +35423,60 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL]    = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Strawberry, RubySwirl),
     [SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL] = ALCREMIE_SPECIES_INFO(BODY_COLOR_BROWN, Strawberry, CaramelSwirl),
     [SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL] = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Strawberry, RainbowSwirl),
-
+    [SPECIES_ALCREMIE_BERRY_VANILLA_CREAM]      = ALCREMIE_SPECIES_INFO(BODY_COLOR_WHITE, Berry, VanillaCream),
+    [SPECIES_ALCREMIE_BERRY_RUBY_CREAM]         = ALCREMIE_SPECIES_INFO(BODY_COLOR_PINK, Berry, RubyCream),
+    [SPECIES_ALCREMIE_BERRY_MATCHA_CREAM]       = ALCREMIE_SPECIES_INFO(BODY_COLOR_GREEN, Berry, MatchaCream),
+    [SPECIES_ALCREMIE_BERRY_MINT_CREAM]         = ALCREMIE_SPECIES_INFO(BODY_COLOR_BLUE, Berry, MintCream),
+    [SPECIES_ALCREMIE_BERRY_LEMON_CREAM]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Berry, LemonCream),
+    [SPECIES_ALCREMIE_BERRY_SALTED_CREAM]       = ALCREMIE_SPECIES_INFO(BODY_COLOR_WHITE, Berry, SaltedCream),
+    [SPECIES_ALCREMIE_BERRY_RUBY_SWIRL]         = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Berry, RubySwirl),
+    [SPECIES_ALCREMIE_BERRY_CARAMEL_SWIRL]      = ALCREMIE_SPECIES_INFO(BODY_COLOR_BROWN, Berry, CaramelSwirl),
+    [SPECIES_ALCREMIE_BERRY_RAINBOW_SWIRL]      = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Berry, RainbowSwirl),
+    [SPECIES_ALCREMIE_LOVE_VANILLA_CREAM]       = ALCREMIE_SPECIES_INFO(BODY_COLOR_WHITE, Love, VanillaCream),
+    [SPECIES_ALCREMIE_LOVE_RUBY_CREAM]          = ALCREMIE_SPECIES_INFO(BODY_COLOR_PINK, Love, RubyCream),
+    [SPECIES_ALCREMIE_LOVE_MATCHA_CREAM]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_GREEN, Love, MatchaCream),
+    [SPECIES_ALCREMIE_LOVE_MINT_CREAM]          = ALCREMIE_SPECIES_INFO(BODY_COLOR_BLUE, Love, MintCream),
+    [SPECIES_ALCREMIE_LOVE_LEMON_CREAM]         = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Love, LemonCream),
+    [SPECIES_ALCREMIE_LOVE_SALTED_CREAM]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_WHITE, Love, SaltedCream),
+    [SPECIES_ALCREMIE_LOVE_RUBY_SWIRL]          = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Love, RubySwirl),
+    [SPECIES_ALCREMIE_LOVE_CARAMEL_SWIRL]       = ALCREMIE_SPECIES_INFO(BODY_COLOR_BROWN, Love, CaramelSwirl),
+    [SPECIES_ALCREMIE_LOVE_RAINBOW_SWIRL]       = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Love, RainbowSwirl),
+    [SPECIES_ALCREMIE_STAR_VANILLA_CREAM]       = ALCREMIE_SPECIES_INFO(BODY_COLOR_WHITE, Star, VanillaCream),
+    [SPECIES_ALCREMIE_STAR_RUBY_CREAM]          = ALCREMIE_SPECIES_INFO(BODY_COLOR_PINK, Star, RubyCream),
+    [SPECIES_ALCREMIE_STAR_MATCHA_CREAM]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_GREEN, Star, MatchaCream),
+    [SPECIES_ALCREMIE_STAR_MINT_CREAM]          = ALCREMIE_SPECIES_INFO(BODY_COLOR_BLUE, Star, MintCream),
+    [SPECIES_ALCREMIE_STAR_LEMON_CREAM]         = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Star, LemonCream),
+    [SPECIES_ALCREMIE_STAR_SALTED_CREAM]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_WHITE, Star, SaltedCream),
+    [SPECIES_ALCREMIE_STAR_RUBY_SWIRL]          = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Star, RubySwirl),
+    [SPECIES_ALCREMIE_STAR_CARAMEL_SWIRL]       = ALCREMIE_SPECIES_INFO(BODY_COLOR_BROWN, Star, CaramelSwirl),
+    [SPECIES_ALCREMIE_STAR_RAINBOW_SWIRL]       = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Star, RainbowSwirl),
+    [SPECIES_ALCREMIE_CLOVER_VANILLA_CREAM]     = ALCREMIE_SPECIES_INFO(BODY_COLOR_WHITE, Clover, VanillaCream),
+    [SPECIES_ALCREMIE_CLOVER_RUBY_CREAM]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_PINK, Clover, RubyCream),
+    [SPECIES_ALCREMIE_CLOVER_MATCHA_CREAM]      = ALCREMIE_SPECIES_INFO(BODY_COLOR_GREEN, Clover, MatchaCream),
+    [SPECIES_ALCREMIE_CLOVER_MINT_CREAM]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_BLUE, Clover, MintCream),
+    [SPECIES_ALCREMIE_CLOVER_LEMON_CREAM]       = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Clover, LemonCream),
+    [SPECIES_ALCREMIE_CLOVER_SALTED_CREAM]      = ALCREMIE_SPECIES_INFO(BODY_COLOR_WHITE, Clover, SaltedCream),
+    [SPECIES_ALCREMIE_CLOVER_RUBY_SWIRL]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Clover, RubySwirl),
+    [SPECIES_ALCREMIE_CLOVER_CARAMEL_SWIRL]     = ALCREMIE_SPECIES_INFO(BODY_COLOR_BROWN, Clover, CaramelSwirl),
+    [SPECIES_ALCREMIE_CLOVER_RAINBOW_SWIRL]     = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Clover, RainbowSwirl),
+    [SPECIES_ALCREMIE_FLOWER_VANILLA_CREAM]     = ALCREMIE_SPECIES_INFO(BODY_COLOR_WHITE, Flower, VanillaCream),
+    [SPECIES_ALCREMIE_FLOWER_RUBY_CREAM]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_PINK, Flower, RubyCream),
+    [SPECIES_ALCREMIE_FLOWER_MATCHA_CREAM]      = ALCREMIE_SPECIES_INFO(BODY_COLOR_GREEN, Flower, MatchaCream),
+    [SPECIES_ALCREMIE_FLOWER_MINT_CREAM]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_BLUE, Flower, MintCream),
+    [SPECIES_ALCREMIE_FLOWER_LEMON_CREAM]       = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Flower, LemonCream),
+    [SPECIES_ALCREMIE_FLOWER_SALTED_CREAM]      = ALCREMIE_SPECIES_INFO(BODY_COLOR_WHITE, Flower, SaltedCream),
+    [SPECIES_ALCREMIE_FLOWER_RUBY_SWIRL]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Flower, RubySwirl),
+    [SPECIES_ALCREMIE_FLOWER_CARAMEL_SWIRL]     = ALCREMIE_SPECIES_INFO(BODY_COLOR_BROWN, Flower, CaramelSwirl),
+    [SPECIES_ALCREMIE_FLOWER_RAINBOW_SWIRL]     = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Flower, RainbowSwirl),
+    [SPECIES_ALCREMIE_RIBBON_VANILLA_CREAM]     = ALCREMIE_SPECIES_INFO(BODY_COLOR_WHITE, Ribbon, VanillaCream),
+    [SPECIES_ALCREMIE_RIBBON_RUBY_CREAM]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_PINK, Ribbon, RubyCream),
+    [SPECIES_ALCREMIE_RIBBON_MATCHA_CREAM]      = ALCREMIE_SPECIES_INFO(BODY_COLOR_GREEN, Ribbon, MatchaCream),
+    [SPECIES_ALCREMIE_RIBBON_MINT_CREAM]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_BLUE, Ribbon, MintCream),
+    [SPECIES_ALCREMIE_RIBBON_LEMON_CREAM]       = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Ribbon, LemonCream),
+    [SPECIES_ALCREMIE_RIBBON_SALTED_CREAM]      = ALCREMIE_SPECIES_INFO(BODY_COLOR_WHITE, Ribbon, SaltedCream),
+    [SPECIES_ALCREMIE_RIBBON_RUBY_SWIRL]        = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Ribbon, RubySwirl),
+    [SPECIES_ALCREMIE_RIBBON_CARAMEL_SWIRL]     = ALCREMIE_SPECIES_INFO(BODY_COLOR_BROWN, Ribbon, CaramelSwirl),
+    [SPECIES_ALCREMIE_RIBBON_RAINBOW_SWIRL]     = ALCREMIE_SPECIES_INFO(BODY_COLOR_YELLOW, Ribbon, RainbowSwirl),
     [SPECIES_FALINKS] =
     {
         .baseHP        = 65,
@@ -37405,7 +37516,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sSquawkabillyLevelUpLearnset,        \
         .teachableLearnset = sSquawkabillyTeachableLearnset
 
-    [SPECIES_SQUAWKABILLY] =
+    [SPECIES_SQUAWKABILLY_GREEN_PLUMAGE] =
     {
         .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS},
         .bodyColor = BODY_COLOR_GREEN,
