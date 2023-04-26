@@ -10797,19 +10797,24 @@ u32 ApplyWeatherDamageMultiplier(u8 battlerAtk, u16 move, u8 moveType, u32 dmg, 
     u16 holdEffect;
     if (WEATHER_HAS_EFFECT)
     {
-        if ((gBattleWeather & B_WEATHER_RAIN) && holdEffectAtk != HOLD_EFFECT_UTILITY_UMBRELLA)
+        if (gBattleMoves[move].effect == EFFECT_HYDRO_STEAM && (gBattleWeather & B_WEATHER_SUN) && holdEffectAtk != HOLD_EFFECT_UTILITY_UMBRELLA)
+            dmg = ApplyModifier(UQ_4_12(1.5), dmg);
+        else if (holdEffectDef != HOLD_EFFECT_UTILITY_UMBRELLA)
         {
-            if (moveType == TYPE_FIRE && holdEffectDef != HOLD_EFFECT_UTILITY_UMBRELLA)
-                dmg = ApplyModifier(UQ_4_12(0.5), dmg);
-            else if (moveType == TYPE_WATER)
-                dmg = ApplyModifier(UQ_4_12(1.5), dmg);
-        }
-        else if ((gBattleWeather & B_WEATHER_SUN) && holdEffectAtk != HOLD_EFFECT_UTILITY_UMBRELLA)
-        {
-            if (moveType == TYPE_FIRE || gBattleMoves[move].effect == EFFECT_HYDRO_STEAM)
-                dmg = ApplyModifier(UQ_4_12(1.5), dmg);
-            else if (moveType == TYPE_WATER && holdEffectDef != HOLD_EFFECT_UTILITY_UMBRELLA)
-                dmg = ApplyModifier(UQ_4_12(0.5), dmg);
+            if (gBattleWeather & B_WEATHER_RAIN)
+            {
+                if (moveType == TYPE_FIRE)
+                    dmg = ApplyModifier(UQ_4_12(0.5), dmg);
+                else if (moveType == TYPE_WATER)
+                    dmg = ApplyModifier(UQ_4_12(1.5), dmg);
+            }
+            else if (gBattleWeather & B_WEATHER_SUN)
+            {
+                if (moveType == TYPE_FIRE)
+                    dmg = ApplyModifier(UQ_4_12(1.5), dmg);
+                else if (moveType == TYPE_WATER)
+                    dmg = ApplyModifier(UQ_4_12(0.5), dmg);
+            }
         }
     }
     return dmg;
