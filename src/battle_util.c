@@ -8785,11 +8785,11 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
            MulModifier(&modifier, UQ_4_12(1.3));
         break;
     case ABILITY_STRONG_JAW:
-        if (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)
+        if (gBattleMoves[move].bitingMove)
            MulModifier(&modifier, UQ_4_12(1.5));
         break;
     case ABILITY_MEGA_LAUNCHER:
-        if (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
+        if (gBattleMoves[move].pulseMove)
            MulModifier(&modifier, UQ_4_12(1.5));
         break;
     case ABILITY_WATER_BUBBLE:

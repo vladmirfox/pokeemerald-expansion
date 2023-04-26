@@ -349,14 +349,18 @@ struct BattleMove
     u8 argument;
     u8 zMoveEffect;
     // Flags
-    u32 minimizeDoubleDamage:1;
+    u32 bitingMove:1;
+    u32 pulseMove:1;
     u32 soundMove:1;
     u32 ballisticMove:1;
     u32 protectionMove:1;
     u32 powderMove:1;
+    u32 danceMove:1;
+    u32 windMove:1;
+    u32 slicingMove:1;
+    u32 minimizeDoubleDamage:1;
     u32 ignoresTargetAbility:1;
     u32 ignoresTargetDefenseEvasionStages:1;
-    u32 danceMove:1;
     u32 damagesUnderground:1;
     u32 damagesUnderwater:1;
     u32 damagesAirborne:1;
@@ -365,8 +369,6 @@ struct BattleMove
     u32 thawsUser:1;
     u32 hitsPastSubstitute:1;
     u32 twoStrikes:1; // May apply its effect on each hit.
-    u32 windMove:1;
-    u32 slicingMove:1;
 };
 
 #define SPINDA_SPOT_WIDTH 16
