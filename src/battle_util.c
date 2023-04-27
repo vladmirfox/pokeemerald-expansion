@@ -4098,19 +4098,23 @@ bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility)
 
 static bool32 TryChangeBattleTerrain(u32 battler, u32 statusFlag, u8 *timer)
 {
+#if B_SKY_BATTLE_STRICT_MECHANICS == TRUE
     if (!(gFieldStatuses & statusFlag))
-    {
-        gFieldStatuses &= ~(STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_GRASSY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_PSYCHIC_TERRAIN);
-        gFieldStatuses |= statusFlag;
+#else
+    if (!(gFieldStatuses & statusFlag) && !FlagGet(B_FLAG_SKY_BATTLE))
+#endif
+        {
+            gFieldStatuses &= ~(STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_GRASSY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_PSYCHIC_TERRAIN);
+            gFieldStatuses |= statusFlag;
 
-        if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_TERRAIN_EXTENDER)
-            *timer = 8;
-        else
-            *timer = 5;
+            if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_TERRAIN_EXTENDER)
+                *timer = 8;
+            else
+                *timer = 5;
 
-        gBattlerAttacker = gBattleScripting.battler = battler;
-        return TRUE;
-    }
+            gBattlerAttacker = gBattleScripting.battler = battler;
+            return TRUE;
+        }
 
     return FALSE;
 }
@@ -5794,6 +5798,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             break;
         case ABILITY_TOXIC_DEBRIS:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+            #if B_SKY_BATTLE_STRICT_MECHANICS == TRUE
+             && !FlagGet(B_FLAG_SKY_BATTLE)
+            #endif
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && IS_MOVE_PHYSICAL(gCurrentMove)
              && TARGET_TURN_DAMAGED

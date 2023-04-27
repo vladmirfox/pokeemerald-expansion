@@ -3858,7 +3858,11 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 {
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SPIKESSCATTERED;
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
+                #if B_SKY_BATTLE_STRICT_MECHANICS == TRUE
+                    gBattlescriptCurrInstr++;
+                #else
                     gBattlescriptCurrInstr = BattleScript_SpikesActivates;
+                #endif
                 }
                 break;
             }
