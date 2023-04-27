@@ -34,6 +34,7 @@ SINGLE_BATTLE_TEST("Leaf Guard prevents non-volatile status conditions from item
 SINGLE_BATTLE_TEST("Leaf Guard prevents Rest during sun")
 {
     GIVEN {
+        ASSUME(B_LEAF_GUARD_PREVENTS_REST >= GEN_5);
         ASSUME(gBattleMoves[MOVE_REST].effect == EFFECT_REST);
         PLAYER(SPECIES_LEAFEON) { Ability(ABILITY_LEAF_GUARD); HP(100); MaxHP(200); };
         OPPONENT(SPECIES_WOBBUFFET);
