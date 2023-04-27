@@ -9446,6 +9446,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_STICKY_WEB] =
     {
+        #if B_SKY_BATTLE_STRICT_MOVES == TRUE
+            .flags = FLAG_MAGIC_COAT_AFFECTED,
+        #else
+            .flags = FLAG_MAGIC_COAT_AFFECTED | FLAG_DISABLED_IN_SKY_BATTLE,
+        #endif
         .effect = EFFECT_STICKY_WEB,
         .power = 0,
         .type = TYPE_BUG,
@@ -9454,7 +9459,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_OPPONENTS_FIELD,
         .priority = 0,
-        .flags = FLAG_MAGIC_COAT_AFFECTED,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_SPD_UP_1,
     },
