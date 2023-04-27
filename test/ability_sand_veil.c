@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Sand Veil prevents damage from sandstorm")
     }
 }
 
-SINGLE_BATTLE_TEST("Sand Veil reduces accuracy during sandstorm")
+SINGLE_BATTLE_TEST("Sand Veil increases evasion during sandstorm")
 {
     PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
     GIVEN {

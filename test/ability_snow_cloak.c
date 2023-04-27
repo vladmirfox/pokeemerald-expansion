@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("Snow Cloak prevents damage from hail")
     }
 }
 
-SINGLE_BATTLE_TEST("Snow Cloak reduces accuracy during hail")
+SINGLE_BATTLE_TEST("Snow Cloak increases evasion during hail")
 {
     PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
     GIVEN {
