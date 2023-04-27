@@ -40,9 +40,8 @@ SINGLE_BATTLE_TEST("Leaf Guard prevents Rest during sun")
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUNNY_DAY); MOVE(player, MOVE_REST); }
     } SCENE {
-        NOT MESSAGE("Leafeon went to sleep!");
+        MESSAGE("But it failed!");
         NOT STATUS_ICON(player, sleep: TRUE);
-        NOT MESSAGE("Leafeon regained health!");
         NONE_OF {HP_BAR(player);}
     }
 }
