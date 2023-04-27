@@ -1498,67 +1498,12 @@ bool32 DoesSkyBattleCancelCurrentMove(u32 gCurrentMove)
 {
     bool8 moveBannedFromSkyBattles = FALSE;
 
-    switch (gCurrentMove) {
-        case MOVE_BODY_SLAM:
-        case MOVE_BULLDOZE:
-        case MOVE_DIG:
-        case MOVE_DIVE:
-        case MOVE_EARTH_POWER:
-        case MOVE_EARTHQUAKE:
-        case MOVE_ELECTRIC_TERRAIN:
-        case MOVE_FIRE_PLEDGE:
-        case MOVE_FISSURE:
-        case MOVE_FLYING_PRESS:
-        case MOVE_FRENZY_PLANT:
-        case MOVE_GEOMANCY:
-        case MOVE_GRASS_KNOT:
-        case MOVE_GRASS_PLEDGE:
-        case MOVE_GRASSY_TERRAIN:
-        case MOVE_GRAVITY:
-        case MOVE_HEAT_CRASH:
-        case MOVE_HEAVY_SLAM:
-        case MOVE_INGRAIN:
-        case MOVE_LANDS_WRATH:
-        case MOVE_MAGNITUDE:
-        case MOVE_MAT_BLOCK:
-        case MOVE_MISTY_TERRAIN:
-        case MOVE_MUD_SPORT:
-        case MOVE_MUDDY_WATER:
-        case MOVE_ROTOTILLER:
-        case MOVE_SEISMIC_TOSS:
-        case MOVE_SLAM:
-        case MOVE_SMACK_DOWN:
-        case MOVE_SPIKES:
-        case MOVE_STOMP:
-        case MOVE_SUBSTITUTE:
-        case MOVE_SURF:
-        case MOVE_THOUSAND_ARROWS:
-        case MOVE_THOUSAND_WAVES:
-        case MOVE_TOXIC_SPIKES:
-        case MOVE_WATER_PLEDGE:
-        case MOVE_WATER_SPORT:
-#if B_SKY_BATTLE_STRICT_MOVES == FALSE
-        case MOVE_TECTONIC_RAGE:
-        //case MOVE_MAX_QUAKE:
-        case MOVE_STOMPING_TANTRUM:
-        case MOVE_BODY_PRESS:
-        case MOVE_SNAP_TRAP:
-        case MOVE_GRASSY_GLIDE:
-        case MOVE_WAVE_CRASH:
-        case MOVE_SPIN_OUT:
-        case MOVE_ICE_SPINNER:
-        //case MOVE_VOLT_CRASH:
-#endif
-            moveBannedFromSkyBattles = TRUE;
-            break;
-        default:
-            moveBannedFromSkyBattles = FALSE;
-    }
+    if (gBattleMoves[gCurrentMove].flags & FLAG_DISABLED_IN_SKY_BATTLE)
+        moveBannedFromSkyBattles = TRUE;
 
     if (FlagGet(B_FLAG_SKY_BATTLE) && (moveBannedFromSkyBattles)){
         return TRUE;
     }
-
     return FALSE;
 }
 
