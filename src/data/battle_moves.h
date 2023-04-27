@@ -12017,6 +12017,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_STEEL_ROLLER] =
     {
+        #if B_SKY_BATTLE_STRICT_MOVES == TRUE
+            .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        #else
+            .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_DISABLED_IN_SKY_BATTLE,
+        #endif
         .effect = EFFECT_REMOVE_TERRAIN,
         .power = 130,
         .type = TYPE_STEEL,
@@ -12025,7 +12030,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
     },
