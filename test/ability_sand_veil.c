@@ -4,7 +4,7 @@
 SINGLE_BATTLE_TEST("Sand Veil prevents damage from sandstorm")
 {
     GIVEN {
-        PLAYER(SPECIES_SANDSHREW) { Ability(ABILITY_SAND_VEIL); };
+        PLAYER(SPECIES_CACNEA) { Ability(ABILITY_SAND_VEIL); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SANDSTORM); }
