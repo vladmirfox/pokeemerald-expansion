@@ -16541,7 +16541,6 @@ void BS_ItemCureStatus(void) {
     NATIVE_ARGS();
     struct Pokemon *party = GetBattlerParty(gBattlerAttacker);
 
-
     // Heal Status1 conditions.
     HealStatusConditions(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], gBattleStruct->itemPartyIndex[gBattlerAttacker], GetItemStatus1Mask(gLastUsedItem), gBattlerAttacker);
 
