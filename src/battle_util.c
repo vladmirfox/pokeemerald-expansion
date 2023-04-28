@@ -5798,7 +5798,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             break;
         case ABILITY_TOXIC_DEBRIS:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-            #if B_SKY_BATTLE_STRICT_MECHANICS == TRUE
+            #if B_SKY_BATTLE_STRICT_MECHANICS == FALSE
              && !FlagGet(B_FLAG_SKY_BATTLE)
             #endif
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
