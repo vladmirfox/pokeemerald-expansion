@@ -523,6 +523,13 @@ struct LostItem
     u16 stolen:1;
 };
 
+struct BattleRulesVariant 
+{
+    bool8 skyBattle:1;
+    //bool8 inverseBattle:1;
+};
+
+
 struct BattleStruct
 {
     u8 turnEffectsTracker;
@@ -669,6 +676,7 @@ struct BattleStruct
     bool8 trainerSlideMegaEvolutionMsgDone;
     bool8 trainerSlideZMoveMsgDone;
     bool8 trainerSlideBeforeFirstTurnMsgDone;
+    struct BattleRulesVariant rulesVariants;
 };
 
 #define F_DYNAMIC_TYPE_1 (1 << 6)
