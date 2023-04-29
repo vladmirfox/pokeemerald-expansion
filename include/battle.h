@@ -526,9 +526,7 @@ struct LostItem
 struct BattleRulesVariant 
 {
     bool8 skyBattle:1;
-    //bool8 inverseBattle:1;
 };
-
 
 struct BattleStruct
 {

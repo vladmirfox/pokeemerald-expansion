@@ -4103,18 +4103,18 @@ static bool32 TryChangeBattleTerrain(u32 battler, u32 statusFlag, u8 *timer)
 #else
     if ((!(gFieldStatuses & statusFlag) && (!gBattleStruct->rulesVariants.skyBattle)))
 #endif
-        {
-            gFieldStatuses &= ~(STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_GRASSY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_PSYCHIC_TERRAIN);
-            gFieldStatuses |= statusFlag;
+    {
+        gFieldStatuses &= ~(STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_GRASSY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_PSYCHIC_TERRAIN);
+        gFieldStatuses |= statusFlag;
 
-            if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_TERRAIN_EXTENDER)
-                *timer = 8;
-            else
-                *timer = 5;
+        if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_TERRAIN_EXTENDER)
+            *timer = 8;
+        else
+            *timer = 5;
 
-            gBattlerAttacker = gBattleScripting.battler = battler;
-            return TRUE;
-        }
+        gBattlerAttacker = gBattleScripting.battler = battler;
+        return TRUE;
+    }
 
     return FALSE;
 }
