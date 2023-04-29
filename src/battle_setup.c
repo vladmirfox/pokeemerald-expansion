@@ -1350,7 +1350,7 @@ void BattleSetup_StartTrainerBattle(void)
     ScriptContext_Stop();
 }
 
-static void HandleSpecialBattleParty(void)
+static void HandleBattleVariantParty(void)
 {
     if (FlagGet(B_FLAG_SKY_BATTLE))
     {
@@ -1377,7 +1377,7 @@ static bool8 PlayerHasHealthyPokemon(void){
 
 static void CB2_EndTrainerBattle(void)
 {
-    HandleSpecialBattleParty();
+    HandleBattleVariantParty();
 
     if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
     {

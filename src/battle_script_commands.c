@@ -1501,7 +1501,7 @@ bool32 DoesSkyBattleCancelCurrentMove(u32 gCurrentMove)
     if (gBattleMoves[gCurrentMove].flags & FLAG_DISABLED_IN_SKY_BATTLE)
         moveBannedFromSkyBattles = TRUE;
 
-    if (FlagGet(B_FLAG_SKY_BATTLE) && (moveBannedFromSkyBattles)){
+    if ((gBattleStruct->rulesVariants.skyBattle) && (moveBannedFromSkyBattles)){
         return TRUE;
     }
     return FALSE;

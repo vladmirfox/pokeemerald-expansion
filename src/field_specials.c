@@ -4218,13 +4218,6 @@ void TrySkyBattle(void)
 #else
     int i;
 
-    /*
-    if (B_VAR_SKY_BATTLE == 0 || B_FLAG_SKY_BATTLE == 0){
-        gSpecialVar_Result = FALSE;
-        return;
-    }
-    */
-
     for (i = 0; i < CalculatePlayerPartyCount(); i++)
     {
         struct Pokemon* pokemon = &gPlayerParty[i];

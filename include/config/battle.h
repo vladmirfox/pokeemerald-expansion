@@ -142,8 +142,8 @@
 #define B_SERENE_GRACE_BOOST        GEN_LATEST // In Gen5+, Serene Grace boosts the added flinch chance of King's Rock and Razor Fang.
 
 // Sky Battles
-#define B_FLAG_SKY_BATTLE           0           // If this flag is set, the player will be able to engage in scripted Sky Battles.
-#define B_VAR_SKY_BATTLE            0           // If this var is set, the game will remember the positions of Pokémon used in Sky Battles.
+#define B_FLAG_SKY_BATTLE           FLAG_UNUSED_0x264           // If this flag is set, the player will be able to engage in scripted Sky Battles.
+#define B_VAR_SKY_BATTLE            VAR_UNUSED_0x40F7           // If this var is set, the game will remember the positions of Pokémon used in Sky Battles.
 
 #define B_SKY_BATTLE_STRICT_ELIGIBILITY FALSE //If TRUE, Sky Battles will use the eligibility from Pokémon XY. If FALSE, all Flying-types or Pokémon with Levitate are allowed.
 #define B_SKY_BATTLE_STRICT_MOVES       FALSE //If TRUE, Sky Battles will use the banned moves from Pokémon XY. If FALSE, more moves that debuted after Pokémon XY are added.
