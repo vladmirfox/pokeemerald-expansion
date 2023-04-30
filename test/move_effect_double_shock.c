@@ -4,13 +4,12 @@
 ASSUMPTIONS
 {
     ASSUME(gBattleMoves[MOVE_DOUBLE_SHOCK].effect == EFFECT_DOUBLE_SHOCK);
+    ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] != TYPE_ELECTRIC || gSpeciesInfo[SPECIES_WOBBUFFET].types[1] != TYPE_ELECTRIC);
+    ASSUME(gSpeciesInfo[SPECIES_PIKACHU].types[0] == TYPE_ELECTRIC || gSpeciesInfo[SPECIES_PIKACHU].types[1] == TYPE_ELECTRIC);
 }
 
-SINGLE_BATTLE_TEST("Double Shock user loses it's typing", s16 damage)
+SINGLE_BATTLE_TEST("Double Shock user loses its Electric-type")
 {
-    s16 stabDamage;
-    s16 nonStabDamage;
-
     GIVEN {
         PLAYER(SPECIES_PIKACHU);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -25,7 +24,7 @@ SINGLE_BATTLE_TEST("Double Shock user loses it's typing", s16 damage)
     }
 }
 
-SINGLE_BATTLE_TEST("Double Shock fails if the user isn't a fire type", s16 damage)
+SINGLE_BATTLE_TEST("Double Shock fails if the user isn't an Electric-type")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -39,11 +38,8 @@ SINGLE_BATTLE_TEST("Double Shock fails if the user isn't a fire type", s16 damag
     }
 }
 
-SINGLE_BATTLE_TEST("Double Shock user loses it's typing if enemy faints", s16 damage)
+SINGLE_BATTLE_TEST("Double Shock user loses its Electric-type if enemy faints")
 {
-    s16 stabDamage;
-    s16 nonStabDamage;
-
     GIVEN {
         PLAYER(SPECIES_PIKACHU);
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
