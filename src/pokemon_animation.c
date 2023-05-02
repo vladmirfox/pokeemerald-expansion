@@ -712,9 +712,9 @@ static const u8 sSpeciesToBackAnimSet[NUM_SPECIES] =
     [SPECIES_ARCEUS]                       = BACK_ANIM_GROW,
         
         //Gen 4 Forms
-    [SPECIES_DEOXYS_ATTACK]                = BACK_ANIM_V_SHAKE_H_SLIDE,
-    [SPECIES_DEOXYS_DEFENSE]               = BACK_ANIM_GROW_STUTTER,
-    [SPECIES_DEOXYS_SPEED]                 = BACK_ANIM_H_SPRING_REPEATED,
+    [SPECIES_DEOXYS_ATTACK]                = BACK_ANIM_GROW_STUTTER,
+    [SPECIES_DEOXYS_DEFENSE]               = BACK_ANIM_DIP_RIGHT_SIDE,
+    [SPECIES_DEOXYS_SPEED]                 = BACK_ANIM_V_SHAKE_H_SLIDE,
     [SPECIES_BURMY_SANDY_CLOAK]            = BACK_ANIM_H_SHAKE,
     [SPECIES_BURMY_TRASH_CLOAK]            = BACK_ANIM_H_SHAKE,
     [SPECIES_WORMADAM_SANDY_CLOAK]         = BACK_ANIM_V_SHAKE,
