@@ -334,6 +334,13 @@
  * via Switch, e.g. after fainting or due to a U-turn.
  *     SEND_OUT(player, 1);
  *
+ * USE_ITEM(battler, itemId, [partyIndex:], [move:])
+ * Used when the battler chooses to use an item from the Bag. The item
+ * ID must be specified, and party index and move slot if applicable, e.g:
+ *      USE_ITEM(player, ITEM_X_ATTACK);
+ *      USE_ITEM(player, ITEM_POTION, partyIndex: 0);
+ *      USE_ITEM(player, ITEM_LEPPA_BERRY, partyIndex: 0, move: MOVE_TACKLE);
+ *
  * SCENE
  * Contains an abridged description of the UI during the THEN. The order
  * of the description must match too, e.g.
@@ -519,8 +526,7 @@ struct QueuedMessageEvent
 struct QueuedStatusEvent
 {
     u32 battlerId:3;
-    u32 mask:8;
-    u32 unused_01:21;
+    u32 mask:29;
 };
 
 struct QueuedEvent
@@ -765,7 +771,7 @@ enum { TURN_CLOSED, TURN_OPEN, TURN_CLOSING };
 #define SWITCH(battler, partyIndex) Switch(__LINE__, battler, partyIndex)
 #define SKIP_TURN(battler) SkipTurn(__LINE__, battler)
 #define SEND_OUT(battler, partyIndex) SendOut(__LINE__, battler, partyIndex)
-
+#define USE_ITEM(battler, ...) UseItem(__LINE__, battler, (struct ItemContext) { APPEND_TRUE(__VA_ARGS__) })
 #define WITH_RNG(tag, value) rng: ((struct TurnRNG) { tag, value })
 
 struct MoveContext
@@ -791,13 +797,23 @@ struct MoveContext
     bool8 explicitRNG;
 };
 
+struct ItemContext
+{
+    u16 itemId;
+    u16 explicitItemId:1;
+    u16 partyIndex;
+    u16 explicitPartyIndex:1;
+    u16 move;
+    u16 explicitMove:1;
+};
+
 void OpenTurn(u32 sourceLine);
 void CloseTurn(u32 sourceLine);
 void Move(u32 sourceLine, struct BattlePokemon *, struct MoveContext);
 void ForcedMove(u32 sourceLine, struct BattlePokemon *);
 void Switch(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 void SkipTurn(u32 sourceLine, struct BattlePokemon *);
-
+void UseItem(u32 sourceLine, struct BattlePokemon *, struct ItemContext);
 void SendOut(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 
 /* Scene */
@@ -855,6 +871,7 @@ struct StatusEventContext
     bool8 freeze:1;
     bool8 paralysis:1;
     bool8 badPoison:1;
+    bool8 frostbite:1;
 };
 
 void OpenQueueGroup(u32 sourceLine, enum QueueGroupType);
