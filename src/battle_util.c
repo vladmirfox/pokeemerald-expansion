@@ -3780,12 +3780,12 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 }
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
                 if (gBattleMoves[gCurrentMove].effect == EFFECT_DRAGON_DARTS
-				&& CanTargetPartner(gBattlerTarget)
-				&& TargetFullyImmuneToCurrMove(gBattlerTarget))
-				{
-					// Smart target to partner
-					gBattlerTarget = BATTLE_PARTNER(gBattlerTarget);
-				}
+                && CanTargetPartner(gBattlerTarget)
+                && TargetFullyImmuneToCurrMove(gBattlerTarget))
+                {
+                    // Smart target to partner
+                    gBattlerTarget = BATTLE_PARTNER(gBattlerTarget);
+                }
             }
         #if B_BEAT_UP >= GEN_5
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_BEAT_UP)
