@@ -41,6 +41,16 @@ void TestRunner_Battle_AfterLastTurn(void)
 }
 
 __attribute__((weak))
-void BattleTest_CheckBattleRecordActionType(u32 battlerId, u32 recordIndex, u32 actionType)
+void TestRunner_Battle_CheckBattleRecordActionType(u32 battlerId, u32 recordIndex, u32 actionType)
+{
+}
+
+__attribute__((weak))
+void TestRunner_Battle_AISetScore(const char *file, u32 line, u32 battlerId, u32 moveIndex, u32 score)
+{
+}
+
+__attribute__((weak))
+void TestRunner_Battle_AIAdjustScore(const char *file, u32 line, u32 battlerId, u32 moveIndex, s32 score)
 {
 }

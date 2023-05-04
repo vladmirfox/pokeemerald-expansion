@@ -841,6 +841,7 @@ void TestRunner_Battle_AfterLastTurn(void)
         // invoked at the end of each turn, but if it was ever moved to
         // the start of the turn the tests would subtly break (and the
         // battles would continue working) so we defensively call it.
+        DATA.logAI = TRUE;
         GetAiLogicData();
 
         gActiveBattler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
@@ -1255,7 +1256,7 @@ static void PushBattlerAction(u32 sourceLine, s32 battlerId, u32 actionType, u32
     DATA.recordedBattle.battleRecord[battlerId][recordIndex] = byte;
 }
 
-void BattleTest_CheckBattleRecordActionType(u32 battlerId, u32 recordIndex, u32 actionType)
+void TestRunner_Battle_CheckBattleRecordActionType(u32 battlerId, u32 recordIndex, u32 actionType)
 {
     // An illegal move choice will cause the battle to request a new
     // move slot and target. This detects the move slot.
@@ -1781,23 +1782,139 @@ void QueueStatus(u32 sourceLine, struct BattlePokemon *battler, struct StatusEve
     };
 }
 
-s32 AIMoveScore_(u32 sourceLine, struct BattlePokemon *battler, u32 move)
+struct AILog AIMoveLog_(u32 sourceLine, struct BattlePokemon *battler, u32 move)
 {
+    struct AILog moveLog = {};
     s32 battlerId = battler - gBattleMons;
-    u32 i;
-    INVALID_IF((battlerId & BIT_SIDE) == B_SIDE_PLAYER, "AIMoveScore is opponent-only");
+    u32 moveIndex;
+    s32 i, j;
+    INVALID_IF(!DATA.hasAI, "AIMoveLog without AIFlags");
+    INVALID_IF((battlerId & BIT_SIDE) == B_SIDE_PLAYER, "AIMoveLog is opponent-only");
     INVALID_IF(move == MOVE_NONE || move >= MOVES_COUNT, "Illegal move: %d", move);
+    moveLog.move = move;
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (battler->moves[i] == move)
-            return DATA.aiScores[battlerId][i];
+        {
+            moveLog.score = DATA.aiScores[battlerId][i];
+            moveIndex = i;
+            break;
+        }
     }
-    INVALID("%s does not know %S", BattlerIdentifier(battlerId), gMoveNames[move]);
+    INVALID_IF(i == MAX_MON_MOVES, "%s does not know %S", BattlerIdentifier(battlerId), gMoveNames[move]);
+
+    for (i = j = 0; i < ARRAY_COUNT(DATA.aiLogLines); i++)
+    {
+        const struct AILogLine *log = &DATA.aiLogLines[i];
+        if (log->file && log->battlerId == battlerId && log->moveIndex == moveIndex)
+        {
+            moveLog.logLines[j] = *log;
+            j++;
+            if (j == ARRAY_COUNT(moveLog.logLines))
+                Test_ExitWithResult(TEST_RESULT_ERROR, "%s:%d: AIMoveLog exceeds MAX_AI_MOVE_LOG_LINES", gTestRunnerState.test->filename, sourceLine);
+        }
+    }
+
+    return moveLog;
 }
 
 u32 AISwitch_(u32 sourceLine, struct BattlePokemon *battler)
 {
     s32 battlerId = battler - gBattleMons;
+    INVALID_IF(!DATA.hasAI, "AISwitch without AIFlags");
     INVALID_IF((battlerId & BIT_SIDE) == B_SIDE_PLAYER, "AISwitch is opponent-only");
     return DATA.aiSwitches[battlerId];
+}
+
+// TODO: Consider storing the last successful i and searching from i+1
+// to improve performance.
+struct AILogLine *GetLogLine(void)
+{
+    s32 i, j;
+
+    for (i = 0; i < ARRAY_COUNT(DATA.aiLogLines); i++)
+    {
+        struct AILogLine *log = &DATA.aiLogLines[i];
+        if (!log->file)
+            return log;
+    }
+
+    // Try compacting.
+    for (i = j = 0; i < ARRAY_COUNT(DATA.aiLogLines); i++)
+    {
+        struct AILogLine *log = &DATA.aiLogLines[i];
+        if (log->battlerId == MAX_BATTLERS_COUNT)
+        {
+            if (i != j)
+                DATA.aiLogLines[j] = DATA.aiLogLines[i];
+            j++;
+        }
+    }
+
+    if (j == ARRAY_COUNT(DATA.aiLogLines))
+        Test_ExitWithResult(TEST_RESULT_ERROR, "Too many AI log lines");
+
+    return &DATA.aiLogLines[j];
+}
+
+void TestRunner_Battle_AISetScore(const char *file, u32 line, u32 battlerId, u32 moveIndex, u32 score)
+{
+    s32 i;
+    struct AILogLine *log;
+
+    if (!DATA.logAI) return;
+
+    for (i = 0; i < ARRAY_COUNT(DATA.aiLogLines); i++)
+    {
+        struct AILogLine *log = &DATA.aiLogLines[i];
+        if (log->file && log->battlerId == battlerId && log->moveIndex == moveIndex)
+        {
+            log->battlerId = MAX_BATTLERS_COUNT;
+        }
+    }
+
+    log = GetLogLine();
+    log->file = file;
+    log->line = line;
+    log->battlerId = battlerId;
+    log->moveIndex = moveIndex;
+    log->score = score;
+}
+
+void TestRunner_Battle_AIAdjustScore(const char *file, u32 line, u32 battlerId, u32 moveIndex, s32 score)
+{
+    s32 i;
+    struct AILogLine *log;
+
+    if (!DATA.logAI) return;
+
+    log = GetLogLine();
+    log->file = file;
+    log->line = line;
+    log->battlerId = battlerId;
+    log->moveIndex = moveIndex;
+    log->score = score;
+}
+
+void PrintAIMoveLog(const struct AILog *moveLog)
+{
+    s32 i;
+    bool32 first;
+
+    MgbaPrintf_("%S:", gMoveNames[moveLog->move]);
+    first = TRUE;
+    for (i = 0; i < ARRAY_COUNT(moveLog->logLines); i++)
+    {
+        const struct AILogLine *log = &moveLog->logLines[i];
+        if (log->file)
+        {
+            if (first)
+                MgbaPrintf_("  %s:%d: %d", log->file, log->line, (u8)log->score);
+            else if (log->score > 0)
+                MgbaPrintf_("  %s:%d: +%d", log->file, log->line, log->score);
+            else
+                MgbaPrintf_("  %s:%d: %d", log->file, log->line, log->score);
+            first = FALSE;
+        }
+    }
 }

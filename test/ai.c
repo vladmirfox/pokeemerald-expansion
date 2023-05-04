@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test_battle.h"
 
-SINGLE_BATTLE_TEST("AI scores are order-independent", s8 score1, s8 score2)
+SINGLE_BATTLE_TEST("AI scores are order-independent", struct AILog logTackle, struct AILog logHornAttack)
 {
     u32 move1, move2;
     PARAMETRIZE { move1 = MOVE_TACKLE; move2 = MOVE_HORN_ATTACK; }
@@ -11,11 +11,11 @@ SINGLE_BATTLE_TEST("AI scores are order-independent", s8 score1, s8 score2)
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Moves(move1, move2); }
     } THEN {
-        results[i].score1 = AIMoveScore(opponent, move1);
-        results[i].score2 = AIMoveScore(opponent, move2);
+        results[i].logTackle = AIMoveLog(opponent, MOVE_TACKLE);
+        results[i].logHornAttack = AIMoveLog(opponent, MOVE_HORN_ATTACK);
         if (i > 0) {
-            EXPECT_EQ(results[0].score1, results[i].score1);
-            EXPECT_EQ(results[0].score2, results[i].score2);
+            EXPECT_AI_EQ(&results[0].logTackle, &results[i].logTackle);
+            EXPECT_AI_EQ(&results[0].logHornAttack, &results[i].logHornAttack);
         }
     }
 }

@@ -462,14 +462,16 @@
  *     // Expect results[0].damage * 1.5 == results[1].damage.
  *     EXPECT_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
  *
- * EXPECT_AI_EQ(battler, move1, move2)
- * EXPECT_AI_LT(battler, move1, move2)
- * EXPECT_AI_LE(battler, move1, move2)
- * EXPECT_AI_GT(battler, move1, move2)
- * EXPECT_AI_GE(battler, move1, move2)
- * Causes the test to fail if battler's move1 and move2 AI scores
- * compare incorrectly, e.g.
- *     EXPECT_AI_GT(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); */
+ * EXPECT_AI_EQ(log1, log2)
+ * EXPECT_AI_LT(log1, log2)
+ * EXPECT_AI_LE(log1, log2)
+ * EXPECT_AI_GT(log1, log2)
+ * EXPECT_AI_GE(log1, log2)
+ * Causes the test to fail if log1 and log2 AI scores compare
+ * incorrectly, e.g.
+ *     struct AILog bubble = AIMoveLog(opponent, MOVE_BUBBLE);
+ *     struct AILog waterGun = AIMoveLog(opponent, MOVE_WATER_GUN);
+ *     EXPECT_AI_GT(&bubble, &waterGun); */
 
 #ifndef GUARD_TEST_BATTLE_H
 #define GUARD_TEST_BATTLE_H
@@ -497,6 +499,8 @@
 #define BATTLE_TEST_STACK_SIZE 1024
 #define MAX_TURNS 16
 #define MAX_QUEUED_EVENTS 25
+#define MAX_AI_LOG_LINES 256
+#define MAX_AI_MOVE_LOG_LINES 8
 
 enum { BATTLE_TEST_SINGLES, BATTLE_TEST_DOUBLES };
 
@@ -588,6 +592,23 @@ struct BattlerTurn
     struct TurnRNG rng;
 };
 
+struct AILogLine
+{
+    const char *file;
+    u16 line;
+    u8 battlerId;
+    u8 moveIndex;
+    s8 score;
+};
+
+// TODO: Support non-move logs.
+struct AILog
+{
+    u16 move;
+    s8 score;
+    struct AILogLine logLines[MAX_AI_MOVE_LOG_LINES];
+};
+
 struct BattleTestData
 {
     u8 stack[BATTLE_TEST_STACK_SIZE];
@@ -610,7 +631,8 @@ struct BattleTestData
     u8 actionBattlers;
     u8 moveBattlers;
 
-    bool8 hasAI;
+    bool8 hasAI:1;
+    bool8 logAI:1;
     struct RecordedBattleSave recordedBattle;
     u8 battleRecordTypes[MAX_BATTLERS_COUNT][BATTLER_RECORD_SIZE];
     u8 battleRecordSourceLineOffsets[MAX_BATTLERS_COUNT][BATTLER_RECORD_SIZE];
@@ -626,6 +648,7 @@ struct BattleTestData
 
     s8 aiScores[MAX_BATTLERS_COUNT][MAX_MON_MOVES];
     u8 aiSwitches[MAX_BATTLERS_COUNT];
+    struct AILogLine aiLogLines[MAX_AI_LOG_LINES];
 };
 
 struct BattleTestRunnerState
@@ -926,10 +949,10 @@ void QueueStatus(u32 sourceLine, struct BattlePokemon *battler, struct StatusEve
 
 #define THEN for (; gBattleTestRunnerState->runThen; gBattleTestRunnerState->runThen = FALSE)
 
-#define AIMoveScore(battler, move) AIMoveScore_(__LINE__, battler, move)
+#define AIMoveLog(battler, move) AIMoveLog_(__LINE__, battler, move)
 #define AISwitch(battler) AISwitch_(__LINE__, battler)
 
-s32 AIMoveScore_(u32 sourceLine, struct BattlePokemon *battler, u32 move);
+struct AILog AIMoveLog_(u32 sourceLine, struct BattlePokemon *battler, u32 move);
 u32 AISwitch_(u32 sourceLine, struct BattlePokemon *battler);
 
 /* Finally */
@@ -948,19 +971,23 @@ u32 AISwitch_(u32 sourceLine, struct BattlePokemon *battler);
             Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: EXPECT_MUL_EQ(%d, %q, %d) failed: %d not in [%d..%d]", gTestRunnerState.test->filename, __LINE__, _a, _m, _b, _am, _b-_t, _b+_t); \
     } while (0)
 
-#define EXPECT_AI_CMP_(battler, move1, move2, m, cmp) \
+void PrintAIMoveLog(const struct AILog *);
+
+#define EXPECT_AI_CMP_(log1, log2, m, cmp) \
     do \
     { \
-        s32 _a = AIMoveScore(battler, move1); \
-        s32 _b = AIMoveScore(battler, move2); \
-        if (!(_a cmp _b)) \
-            Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: %s(..., %d, %d) failed", gTestRunnerState.test->filename, __LINE__, m, _a, _b); \
+        if (!((log1)->score cmp (log2)->score)) \
+        { \
+            PrintAIMoveLog((log1)); \
+            PrintAIMoveLog((log2)); \
+            Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: %s(%d, %d) failed", gTestRunnerState.test->filename, __LINE__, m, (log1)->score, (log2)->score); \
+        } \
     } while (0)
 
-#define EXPECT_AI_EQ(battler, move1, move2) EXPECT_AI_CMP_(battler, move1, move2, "EXPECT_AI_EQ", ==)
-#define EXPECT_AI_LT(battler, move1, move2) EXPECT_AI_CMP_(battler, move1, move2, "EXPECT_AI_LT", <)
-#define EXPECT_AI_LE(battler, move1, move2) EXPECT_AI_CMP_(battler, move1, move2, "EXPECT_AI_LE", <=)
-#define EXPECT_AI_GT(battler, move1, move2) EXPECT_AI_CMP_(battler, move1, move2, "EXPECT_AI_GT", >)
-#define EXPECT_AI_GE(battler, move1, move2) EXPECT_AI_CMP_(battler, move1, move2, "EXPECT_AI_GE", >=)
+#define EXPECT_AI_EQ(log1, log2) EXPECT_AI_CMP_(log1, log2, "EXPECT_AI_EQ", ==)
+#define EXPECT_AI_LT(log1, log2) EXPECT_AI_CMP_(log1, log2, "EXPECT_AI_LT", <)
+#define EXPECT_AI_LE(log1, log2) EXPECT_AI_CMP_(log1, log2, "EXPECT_AI_LE", <=)
+#define EXPECT_AI_GT(log1, log2) EXPECT_AI_CMP_(log1, log2, "EXPECT_AI_GT", >)
+#define EXPECT_AI_GE(log1, log2) EXPECT_AI_CMP_(log1, log2, "EXPECT_AI_GE", >=)
 
 #endif
