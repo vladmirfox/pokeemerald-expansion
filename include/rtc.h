@@ -17,6 +17,9 @@
 
 #define RTC_ERR_FLAG_MASK      0x0FF0
 
+#define TIME_DAY     0
+#define TIME_NIGHT   1
+
 extern struct Time gLocalTime;
 
 void RtcDisableInterrupts(void);
@@ -40,6 +43,7 @@ void FormatDecimalDate(u8 *dest, s32 year, s32 month, s32 day);
 void FormatHexDate(u8 *dest, s32 year, s32 month, s32 day);
 void RtcCalcTimeDifference(struct SiiRtcInfo *rtc, struct Time *result, struct Time *t);
 void RtcCalcLocalTime(void);
+u8 GetTimeOfDay(void);
 void RtcInitLocalTimeOffset(s32 hour, s32 minute);
 void RtcCalcLocalTimeOffset(s32 days, s32 hours, s32 minutes, s32 seconds);
 void CalcTimeDifference(struct Time *result, struct Time *t1, struct Time *t2);
