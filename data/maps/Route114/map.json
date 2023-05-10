@@ -22,6 +22,11 @@
       "map": "MAP_FALLARBOR_TOWN",
       "offset": 0,
       "direction": "right"
+    },
+    {
+      "map": "MAP_METEOR_FALLS_ROOF",
+      "offset": 10,
+      "direction": "left"
     }
   ],
   "object_events": [
@@ -414,7 +419,9 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
