@@ -12150,13 +12150,13 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                 if (GetBattlerAbility(index) == ABILITY_OPPORTUNIST && gProtectStructs[gActiveBattler].activateOpportunist == 0) {
                     gProtectStructs[index].activateOpportunist = 2;      // set stats to copy
                     gTotemBoosts[index].stats |= (1 << (statId - 1));    // -1 to start at atk
-                    gTotemBoosts[index].statChanges[statId - 1] = statValue;
+                    gTotemBoosts[index].statChanges[statId - 1] += statValue; // cumulative in case of multiple opponent boosts
                 } else if (GetBattlerHoldEffect(index, TRUE) == HOLD_EFFECT_MIRROR_HERB
                         && gBattleMons[index].statStages[statId] < MAX_STAT_STAGE)
                 {                    
                     gProtectStructs[index].eatMirrorHerb = TRUE;
                     gTotemBoosts[index].stats |= (1 << (statId - 1));    // -1 to start at atk
-                    gTotemBoosts[index].statChanges[statId - 1] = statValue;
+                    gTotemBoosts[index].statChanges[statId - 1] += statValue;
                 }
             }
         }
