@@ -5903,7 +5903,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (gProtectStructs[battler].activateOpportunist == 2) {
                     gBattleScripting.savedBattler = gBattlerAttacker;
                     gBattleScripting.battler = gBattlerAttacker = gBattlerAbility = battler;
-                    gProtectStructs[battler].activateOpportunist--; // TODO if after switch in, this should be set to 0
+                    gProtectStructs[battler].activateOpportunist--;
                     BattleScriptPushCursorAndCallback(BattleScript_OpportunistCopyStatChange);
                     effect = 1;
                 }
