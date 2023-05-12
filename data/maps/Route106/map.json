@@ -20,7 +20,7 @@
     },
     {
       "map": "MAP_DEWFORD_TOWN",
-      "offset": 60,
+      "offset": 58,
       "direction": "down"
     }
   ],
@@ -100,7 +100,9 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "hidden_item",
