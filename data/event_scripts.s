@@ -1061,3 +1061,7 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/text/birch_speech.inc"
 
 	.include "data/maps/MeteorFallsRoof/scripts.inc"
+
+	.include "data/maps/LimeTunnelExterior/scripts.inc"
+
+	.include "data/maps/LimeTunnel_1F/scripts.inc"

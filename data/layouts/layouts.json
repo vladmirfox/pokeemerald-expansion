@@ -4420,6 +4420,26 @@
       "secondary_tileset": "gTileset_Fallarbor",
       "border_filepath": "data/layouts/MeteorFallsRoof/border.bin",
       "blockdata_filepath": "data/layouts/MeteorFallsRoof/map.bin"
+    },
+    {
+      "id": "LAYOUT_LIME_TUNNEL_EXTERIOR",
+      "name": "LimeTunnelExterior_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Mauville",
+      "border_filepath": "data/layouts/LimeTunnelExterior/border.bin",
+      "blockdata_filepath": "data/layouts/LimeTunnelExterior/map.bin"
+    },
+    {
+      "id": "LAYOUT_LIME_TUNNEL_1F",
+      "name": "LimeTunnel_1F_Layout",
+      "width": 15,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_NavelRock",
+      "border_filepath": "data/layouts/LimeTunnel_1F/border.bin",
+      "blockdata_filepath": "data/layouts/LimeTunnel_1F/map.bin"
     }
   ]
 }

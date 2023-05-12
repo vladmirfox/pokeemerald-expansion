@@ -93,7 +93,8 @@
     "Underwater_Route129",
     "Underwater_Route105",
     "Underwater_Route125",
-    "MeteorFallsRoof"
+    "MeteorFallsRoof",
+    "LimeTunnelExterior"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
@@ -430,7 +431,8 @@
     "TerraCave_Entrance",
     "TerraCave_End",
     "AlteringCave",
-    "MeteorFalls_StevensCave"
+    "MeteorFalls_StevensCave",
+    "LimeTunnel_1F"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",
