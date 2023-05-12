@@ -553,28 +553,15 @@ extern const u8 BattleFrontier_Lounge2_Text_PyramidKingSilverMons[];
 extern const u8 BattleFrontier_Lounge2_Text_PyramidKingGoldMons[];
 
 // Battle Frontier Nature Girl
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlHardy[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlLonely[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlBrave[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlAdamant[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlNaughty[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlBold[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlDocileNaiveQuietQuirky[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlRelaxed[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlImpish[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlLax[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlTimid[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlHasty[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlSerious[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlJolly[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlModest[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlMild[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlBashful[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlRash[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlCalm[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlGentle[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlSassy[];
-extern const u8 BattleFrontier_Lounge5_Text_NatureGirlCareful[];
+extern const u8 BattleFrontier_Lounge5_Text_NatureGirlAttackAttack[];
+extern const u8 BattleFrontier_Lounge5_Text_NatureGirlAttackDefense[];
+extern const u8 BattleFrontier_Lounge5_Text_NatureGirlAttackSupport[];
+extern const u8 BattleFrontier_Lounge5_Text_NatureGirlDefenseAttack[];
+extern const u8 BattleFrontier_Lounge5_Text_NatureGirlDefenseDefense[];
+extern const u8 BattleFrontier_Lounge5_Text_NatureGirlDefenseSupport[];
+extern const u8 BattleFrontier_Lounge5_Text_NatureGirlSupportAttack[];
+extern const u8 BattleFrontier_Lounge5_Text_NatureGirlSupportDefense[];
+extern const u8 BattleFrontier_Lounge5_Text_NatureGirlSupportSupport[];
 
 // Battle Frontier Gambler
 extern const u8 BattleFrontier_Lounge3_Text_ChallengeBattleTowerSingle[];
