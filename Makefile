@@ -41,9 +41,14 @@ GAME_CODE   := BPEE
 MAKER_CODE  := 01
 REVISION    := 0
 MODERN      ?= 0
+TEST        ?= 0
 
 ifeq (modern,$(MAKECMDGOALS))
   MODERN := 1
+endif
+
+ifeq (check,$(MAKECMDGOALS))
+  TEST := 1
 endif
 
 # use arm-none-eabi-cpp for macOS
@@ -79,6 +84,7 @@ ELF = $(ROM:.gba=.elf)
 MAP = $(ROM:.gba=.map)
 SYM = $(ROM:.gba=.sym)
 
+TEST_OBJ_DIR_NAME := build/test
 TESTELF = $(ROM:.gba=-test.elf)
 HEADLESSELF = $(ROM:.gba=-test-headless.elf)
 
@@ -119,7 +125,11 @@ LIBPATH := -L "$(dir $(shell $(PATH_MODERNCC) -mthumb -print-file-name=libgcc.a)
 LIB := $(LIBPATH) -lc -lnosys -lgcc -L../../libagbsyscall -lagbsyscall
 endif
 
-CPPFLAGS := -iquote include -iquote $(GFLIB_SUBDIR) -Wno-trigraphs -DMODERN=$(MODERN)
+ifeq ($(TEST),1)
+OBJ_DIR := $(TEST_OBJ_DIR_NAME)
+endif
+
+CPPFLAGS := -iquote include -iquote $(GFLIB_SUBDIR) -Wno-trigraphs -DMODERN=$(MODERN) -DTESTING=$(TEST)
 ifneq ($(MODERN),1)
 CPPFLAGS += -I tools/agbcc/include -I tools/agbcc -nostdinc -undef
 endif
