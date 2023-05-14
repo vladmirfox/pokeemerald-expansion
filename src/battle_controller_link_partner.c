@@ -490,6 +490,7 @@ static u32 CopyLinkPartnerMonData(u8 monId, u8 *dst)
         battleMon.abilityNum = GetMonData(&gPlayerParty[monId], MON_DATA_ABILITY_NUM);
         battleMon.otId = GetMonData(&gPlayerParty[monId], MON_DATA_OT_ID);
         battleMon.metLevel = GetMonData(&gPlayerParty[monId], MON_DATA_MET_LEVEL);
+        battleMon.isShiny = GetMonData(&gPlayerParty[monId], MON_DATA_IS_SHINY);
         GetMonData(&gPlayerParty[monId], MON_DATA_NICKNAME, nickname);
         StringCopy_Nickname(battleMon.nickname, nickname);
         GetMonData(&gPlayerParty[monId], MON_DATA_OT_NAME, battleMon.otName);
@@ -644,12 +645,6 @@ static u32 CopyLinkPartnerMonData(u8 monId, u8 *dst)
         dst[2] = (data32 & 0x00FF0000) >> 16;
         dst[3] = (data32 & 0xFF000000) >> 24;
         size = 4;
-        break;
-    case REQUEST_CHECKSUM_BATTLE:
-        data16 = GetMonData(&gPlayerParty[monId], MON_DATA_CHECKSUM);
-        dst[0] = data16;
-        dst[1] = data16 >> 8;
-        size = 2;
         break;
     case REQUEST_STATUS_BATTLE:
         data32 = GetMonData(&gPlayerParty[monId], MON_DATA_STATUS);
@@ -930,9 +925,6 @@ static void SetLinkPartnerMonData(u8 monId)
         break;
     case REQUEST_PERSONALITY_BATTLE:
         SetMonData(&gPlayerParty[monId], MON_DATA_PERSONALITY, &gBattleResources->bufferA[gActiveBattler][3]);
-        break;
-    case REQUEST_CHECKSUM_BATTLE:
-        SetMonData(&gPlayerParty[monId], MON_DATA_CHECKSUM, &gBattleResources->bufferA[gActiveBattler][3]);
         break;
     case REQUEST_STATUS_BATTLE:
         SetMonData(&gPlayerParty[monId], MON_DATA_STATUS, &gBattleResources->bufferA[gActiveBattler][3]);

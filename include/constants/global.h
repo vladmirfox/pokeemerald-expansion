@@ -99,7 +99,9 @@
 
 // string lengths
 #define ITEM_NAME_LENGTH 14
-#define POKEMON_NAME_LENGTH 10
+#define POKEMON_NAME_LENGTH_NEW 12 // Prone to bugs. Interfaces are not changed to support 12 chars.
+#define POKEMON_NAME_LENGTH_OLD 10
+#define POKEMON_NAME_LENGTH POKEMON_NAME_LENGTH_OLD
 #define PLAYER_NAME_LENGTH 7
 #define MAIL_WORDS_COUNT 9
 #define EASY_CHAT_BATTLE_WORDS_COUNT 6

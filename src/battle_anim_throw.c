@@ -2482,20 +2482,15 @@ void TryShinyAnimation(u8 battler, struct Pokemon *mon)
 {
     bool8 isShiny;
     u32 otId, personality;
-    u32 shinyValue;
     u8 taskCirc, taskDgnl;
 
-    isShiny = FALSE;
+    isShiny = GetMonData(mon, MON_DATA_IS_SHINY);
     gBattleSpritesDataPtr->healthBoxesData[battler].triedShinyMonAnim = TRUE;
     otId = GetMonData(mon, MON_DATA_OT_ID);
     personality = GetMonData(mon, MON_DATA_PERSONALITY);
 
     if (IsBattlerSpriteVisible(battler))
     {
-        shinyValue = GET_SHINY_VALUE(otId, personality);
-        if (shinyValue < SHINY_ODDS)
-            isShiny = TRUE;
-
         if (isShiny)
         {
             if (GetSpriteTileStartByTag(ANIM_TAG_GOLD_STARS) == 0xFFFF)
