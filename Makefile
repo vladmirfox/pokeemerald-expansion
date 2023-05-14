@@ -88,10 +88,6 @@ TEST_OBJ_DIR_NAME := build/test
 TESTELF = $(ROM:.gba=-test.elf)
 HEADLESSELF = $(ROM:.gba=-test-headless.elf)
 
-ifeq ($(TESTELF),$(MAKECMDGOALS))
-  TEST := 1
-endif
-
 C_SUBDIR = src
 GFLIB_SUBDIR = gflib
 ASM_SUBDIR = asm
@@ -127,6 +123,10 @@ ROM := $(MODERN_ROM_NAME)
 OBJ_DIR := $(MODERN_OBJ_DIR_NAME)
 LIBPATH := -L "$(dir $(shell $(PATH_MODERNCC) -mthumb -print-file-name=libgcc.a))" -L "$(dir $(shell $(PATH_MODERNCC) -mthumb -print-file-name=libnosys.a))" -L "$(dir $(shell $(PATH_MODERNCC) -mthumb -print-file-name=libc.a))"
 LIB := $(LIBPATH) -lc -lnosys -lgcc -L../../libagbsyscall -lagbsyscall
+endif
+
+ifeq ($(TESTELF),$(MAKECMDGOALS))
+  TEST := 1
 endif
 
 ifeq ($(TEST),1)
@@ -194,7 +194,7 @@ ifeq (,$(MAKECMDGOALS))
 else
   # clean, tidy, tools, check-tools, mostlyclean, clean-tools, clean-check-tools, $(TOOLDIRS), $(CHECKTOOLDIRS), tidymodern, tidynonmodern don't even build the ROM
   # libagbsyscall does its own thing
-  ifeq (,$(filter-out clean tidy tools mostlyclean clean-tools $(TOOLDIRS) clean-check-tools $(CHECKTOOLDIRS) tidymodern tidynonmodern libagbsyscall,$(MAKECMDGOALS)))
+  ifeq (,$(filter-out clean tidy tools mostlyclean clean-tools $(TOOLDIRS) clean-check-tools $(CHECKTOOLDIRS) tidymodern tidynonmodern tidycheck libagbsyscall,$(MAKECMDGOALS)))
     SCAN_DEPS ?= 0
   else
     SCAN_DEPS ?= 1
@@ -271,7 +271,7 @@ clean-tools:
 clean-check-tools:
 	@$(foreach tooldir,$(CHECKTOOLDIRS),$(MAKE) clean -C $(tooldir);)
 
-mostlyclean: tidynonmodern tidymodern
+mostlyclean: tidynonmodern tidymodern tidycheck
 	rm -f $(SAMPLE_SUBDIR)/*.bin
 	rm -f $(CRY_SUBDIR)/*.bin
 	rm -f $(MID_SUBDIR)/*.s
@@ -282,7 +282,7 @@ mostlyclean: tidynonmodern tidymodern
 	rm -f $(AUTO_GEN_TARGETS)
 	@$(MAKE) clean -C libagbsyscall
 
-tidy: tidynonmodern tidymodern
+tidy: tidynonmodern tidymodern tidycheck
 
 tidynonmodern:
 	rm -f $(ROM_NAME) $(ELF_NAME) $(MAP_NAME)
@@ -291,6 +291,10 @@ tidynonmodern:
 tidymodern:
 	rm -f $(MODERN_ROM_NAME) $(MODERN_ELF_NAME) $(MODERN_MAP_NAME)
 	rm -rf $(MODERN_OBJ_DIR_NAME)
+
+tidycheck:
+	rm -f $(TESTELF) $(HEADLESSELF)
+	rm -rf $(TEST_OBJ_DIR_NAME)
 
 ifneq ($(MODERN),0)
 $(C_BUILDDIR)/berry_crush.o: override CFLAGS += -Wno-address-of-packed-member
