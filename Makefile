@@ -88,6 +88,10 @@ TEST_OBJ_DIR_NAME := build/test
 TESTELF = $(ROM:.gba=-test.elf)
 HEADLESSELF = $(ROM:.gba=-test-headless.elf)
 
+ifeq ($(TESTELF),$(MAKECMDGOALS))
+  TEST := 1
+endif
+
 C_SUBDIR = src
 GFLIB_SUBDIR = gflib
 ASM_SUBDIR = asm
