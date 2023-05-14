@@ -1712,7 +1712,7 @@ static void OpponentHandleChoosePokemon(void)
                 if (GetMonData(&gEnemyParty[chosenMonId], MON_DATA_HP) != 0
                     && chosenMonId != gBattlerPartyIndexes[battler1]
                     && chosenMonId != gBattlerPartyIndexes[battler2]
-                    && (!(AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON)
+                    && (!(AI_THINKING_STRUCT->aiFlags[gActiveBattler] & AI_FLAG_ACE_POKEMON)
                         || chosenMonId != CalculateEnemyPartyCount() - 1
                         || CountAIAliveNonEggMonsExcept(PARTY_SIZE) == pokemonInBattle))
                 {
