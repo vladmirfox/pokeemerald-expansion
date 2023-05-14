@@ -31,7 +31,7 @@ static bool32 AI_OpponentCanFaintAiWithMod(u32 healAmount);
 
 static bool32 IsAceMon(u32 battlerId, u32 monPartyId)
 {
-    if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_ACE_POKEMON
+    if (AI_THINKING_STRUCT->aiFlags[battlerId] & AI_FLAG_ACE_POKEMON
         && !(gBattleStruct->forcedSwitch & gBitTable[battlerId])
         && monPartyId == CalculateEnemyPartyCount()-1)
             return TRUE;
@@ -252,7 +252,7 @@ static bool8 ShouldSwitchIfGameStatePrompt(void)
         && monAbility != ABILITY_SOUNDPROOF)
         switchMon = TRUE;
 
-    if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING)
+    if (AI_THINKING_STRUCT->aiFlags[gActiveBattler] & AI_FLAG_SMART_SWITCHING)
     {
         //Yawn
         if (gStatuses3[gActiveBattler] & STATUS3_YAWN

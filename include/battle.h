@@ -300,10 +300,10 @@ struct AI_ThinkingStruct
     u16 moveConsidered;
     s8 score[MAX_MON_MOVES];
     u32 funcResult;
-    u32 aiFlags;
+    u32 aiFlags[MAX_BATTLERS_COUNT];
     u8 aiAction;
     u8 aiLogicId;
-    struct AI_SavedBattleMon saved[4];
+    struct AI_SavedBattleMon saved[MAX_BATTLERS_COUNT];
     bool8 switchMon; // Because all available moves have no/little effect.
 };
 
