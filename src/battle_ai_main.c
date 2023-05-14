@@ -219,6 +219,7 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves)
 {
     s32 i, move, dmg;
     u8 moveLimitations;
+    u32 flags[MAX_BATTLERS_COUNT];
 
     // Clear AI data but preserve the flags.
     memcpy(&flags[0], &AI_THINKING_STRUCT->aiFlags[0], sizeof(u32) * MAX_BATTLERS_COUNT);
