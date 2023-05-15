@@ -4923,9 +4923,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             case ABILITY_SPEED_BOOST:
                 if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) && gDisableStructs[battler].isFirstTurn != 2)
                 {
-                    gBattleMons[battler].statStages[STAT_SPEED]++;
-                    gBattleScripting.animArg1 = 14 + STAT_SPEED;
-                    gBattleScripting.animArg2 = 0;
+                    SET_STATCHANGER(STAT_SPEED, 1, FALSE);
                     BattleScriptPushCursorAndCallback(BattleScript_SpeedBoostActivates);
                     gBattleScripting.battler = battler;
                     effect++;
