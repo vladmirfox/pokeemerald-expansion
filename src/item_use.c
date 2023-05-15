@@ -1229,10 +1229,11 @@ void ItemUseInBattle_BagMenu(u8 taskId)
     {
         PlaySE(SE_SELECT);
         RemoveUsedItem();
+        ScheduleBgCopyTilemapToVram(2);
         if (!InBattlePyramid())
-            DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, Task_FadeAndCloseBagMenu);
+            gTasks[taskId].func = Task_FadeAndCloseBagMenu;
         else
-            DisplayItemMessageInBattlePyramid(taskId, gStringVar4, CloseBattlePyramidBag);
+            gTasks[taskId].func = CloseBattlePyramidBag;
     }
 }
 
@@ -1244,7 +1245,7 @@ void ItemUseOutOfBattle_EnigmaBerry(u8 taskId)
     case ITEM_EFFECT_CURE_POISON:
     case ITEM_EFFECT_CURE_SLEEP:
     case ITEM_EFFECT_CURE_BURN:
-    case ITEM_EFFECT_CURE_FREEZE:
+    case ITEM_EFFECT_CURE_FREEZE_FROSTBITE:
     case ITEM_EFFECT_CURE_PARALYSIS:
     case ITEM_EFFECT_CURE_ALL_STATUS:
     case ITEM_EFFECT_ATK_EV:
