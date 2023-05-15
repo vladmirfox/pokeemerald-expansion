@@ -5579,7 +5579,7 @@ static void Cmd_moveend(void)
                 && gBattleMoves[gCurrentMove].power != 0
                 && CompareStat(gBattlerTarget, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
-                gBattleMons[gBattlerTarget].statStages[STAT_ATK]++;
+                SET_STATCHANGER(STAT_ATK, 1, FALSE);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_RageIsBuilding;
                 effect = TRUE;

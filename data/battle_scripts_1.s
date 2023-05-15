@@ -7173,8 +7173,10 @@ BattleScript_MistProtected::
 	return
 
 BattleScript_RageIsBuilding::
+	statbuffchange STAT_CHANGE_ALLOW_PTR, BattleScript_RageIsBuildingEnd
 	printstring STRINGID_PKMNRAGEBUILDING
 	waitmessage B_WAIT_TIME_LONG
+BattleScript_RageIsBuildingEnd:
 	return
 
 BattleScript_MoveUsedIsDisabled::
