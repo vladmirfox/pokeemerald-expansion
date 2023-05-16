@@ -6503,8 +6503,13 @@ const struct Item gItems[] =
         .holdEffect = HOLD_EFFECT_SCOPE_LENS,
         .description = sRazorClawDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        #if I_RAZOR_CLAW_ON_FIELD >= GEN_8
+            .type = ITEM_USE_PARTY_MENU,
+            .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
+        #else
+            .type = ITEM_USE_BAG_MENU,
+            .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        #endif
         .flingPower = 80,
     },
 

@@ -313,6 +313,7 @@
 #define EVO_DARK_SCROLL                   37     // interacts with Scroll of Darkness
 #define EVO_WATER_SCROLL                  38     // interacts with Scroll of Waters
 #define EVO_ITEM_NIGHT                    39     // specified item is used on Pokémon at night
+#define EVO_ITEM_DAY                      40     // specified item is used on Pokémon, is day
 
 #define EVOS_PER_MON 10
 

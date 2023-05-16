@@ -550,6 +550,9 @@ const u8 *const gItemEffectTable[ITEMS_COUNT] =
     [ITEM_CHIPPED_POT]        = gItemEffect_EvoItem,
     [ITEM_GALARICA_CUFF]      = gItemEffect_EvoItem,
     [ITEM_GALARICA_WREATH]    = gItemEffect_EvoItem,
+#if I_RAZOR_CLAW_ON_FIELD >= GEN_8
+    [ITEM_RAZOR_CLAW - ITEM_POTION]       = gItemEffect_EvoItem,
+#endif
     [ITEM_AUSPICIOUS_ARMOR]   = gItemEffect_EvoItem,
     [ITEM_MALICIOUS_ARMOR]    = gItemEffect_EvoItem,
     [ITEM_SCROLL_OF_DARKNESS] = gItemEffect_EvoItem,
