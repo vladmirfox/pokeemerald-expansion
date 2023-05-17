@@ -5379,7 +5379,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && IsBattlerAlive(gBattlerAttacker)
              && TARGET_TURN_DAMAGED
-             && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
+             && IsMoveMakingContact(move, gBattlerAttacker))
             {
                 switch (gBattleMons[gBattlerAttacker].ability)
                 {
@@ -8227,7 +8227,7 @@ bool32 IsMoveMakingContact(u16 move, u8 battlerAtk)
 {
     u16 atkHoldEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
 
-    if (!(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
+    if (!gBattleMoves[move].makesContact)
     {
         if (gBattleMoves[move].effect == EFFECT_SHELL_SIDE_ARM && gBattleStruct->swapDamageCategory)
             return TRUE;
@@ -8271,7 +8271,7 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
     // Protective Pads doesn't stop Unseen Fist from bypassing Protect effects, so IsMoveMakingContact() isn't used here.
     // This means extra logic is needed to handle Shell Side Arm.
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_UNSEEN_FIST
-        && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT || (gBattleMoves[move].effect == EFFECT_SHELL_SIDE_ARM && gBattleStruct->swapDamageCategory)))
+        && (gBattleMoves[move].makesContact || (gBattleMoves[move].effect == EFFECT_SHELL_SIDE_ARM && gBattleStruct->swapDamageCategory)))
         return FALSE;
     else if (!(gBattleMoves[move].flags & FLAG_PROTECT_AFFECTED))
         return FALSE;

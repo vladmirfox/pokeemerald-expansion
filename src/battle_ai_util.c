@@ -3753,7 +3753,7 @@ void IncreaseFrostbiteScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score)
 
 bool32 AI_MoveMakesContact(u32 ability, u32 holdEffect, u16 move)
 {
-    if (TestMoveFlags(move, FLAG_MAKES_CONTACT)
+    if (gBattleMoves[move].makesContact
       && ability != ABILITY_LONG_REACH
       && holdEffect != HOLD_EFFECT_PROTECTIVE_PADS)
         return TRUE;

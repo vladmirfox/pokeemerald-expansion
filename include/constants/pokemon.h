@@ -214,7 +214,6 @@
 #endif
 
 // Battle move flags
-#define FLAG_MAKES_CONTACT                        (1 << 0)
 #define FLAG_PROTECT_AFFECTED                     (1 << 1)
 #define FLAG_MAGIC_COAT_AFFECTED                  (1 << 2)
 #define FLAG_SNATCH_AFFECTED                      (1 << 3)
