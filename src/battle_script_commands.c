@@ -5110,7 +5110,7 @@ static void Cmd_setroost(void)
 #endif
     }
     // Dual type with flying type.
-    else if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING || gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING
+    else if ((gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING || gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
              && !IsTerastallized(gBattlerAttacker))
     {
         gBattleStruct->roostTypes[gBattlerAttacker][0] = gBattleMons[gBattlerAttacker].type1;

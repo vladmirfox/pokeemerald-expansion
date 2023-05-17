@@ -4412,7 +4412,7 @@ static void HandleTurnActionSelectionState(void)
                             if (gBattleResources->bufferB[gActiveBattler][2] & RET_MEGA_EVOLUTION)
                                 gBattleStruct->mega.toEvolve |= gBitTable[gActiveBattler];
                             else if (gBattleResources->bufferB[gActiveBattler][2] & RET_TERASTAL)
-                                gBattleStruct->tera.toTera[gActiveBattler] = TRUE;
+                                gBattleStruct->tera.toTera |= gBitTable[gActiveBattler];
 
                             gBattleCommunication[gActiveBattler]++;
                         }
@@ -5026,15 +5026,16 @@ static void PopulateArrayWithBattlers(u8 *battlers)
 
 static bool32 TryDoGimmicksBeforeMoves(void)
 {
-    if (!(gHitMarker & HITMARKER_RUN) && gBattleStruct->mega.toEvolve)
+    if (!(gHitMarker & HITMARKER_RUN)
+        && (gBattleStruct->mega.toEvolve || gBattleStruct->tera.toTera))
     {
         u32 i;
         struct Pokemon *party;
         struct Pokemon *mon;
-        u8 megaOrder[MAX_BATTLERS_COUNT];
+        u8 order[MAX_BATTLERS_COUNT];
 
-        PopulateArrayWithBattlers(megaOrder);
-        SortBattlersBySpeed(megaOrder, FALSE);
+        PopulateArrayWithBattlers(order);
+        SortBattlersBySpeed(order, FALSE);
         for (i = 0; i < gBattlersCount; i++)
         {
             gActiveBattler = gBattlerAttacker = gBattleStruct->mega.battlerId;
@@ -5043,7 +5044,7 @@ static bool32 TryDoGimmicksBeforeMoves(void)
             if (gBattleStruct->mega.toEvolve & gBitTable[gActiveBattler]
                 && !(gProtectStructs[gActiveBattler].noValidMoves))
             {
-                gActiveBattler = gBattlerAttacker = megaOrder[i];
+                gActiveBattler = gBattlerAttacker = order[i];
                 gBattleStruct->mega.toEvolve &= ~(gBitTable[gActiveBattler]);
                 gLastUsedItem = gBattleMons[gActiveBattler].item;
                 party = GetBattlerParty(gActiveBattler);
@@ -5055,8 +5056,9 @@ static bool32 TryDoGimmicksBeforeMoves(void)
                 return TRUE;
             }
             // Check Terastallization.
-            if (gBattleStruct->tera.toTera[gActiveBattler])
+            if (gBattleStruct->tera.toTera & gBitTable[order[i]])
             {
+                gActiveBattler = order[i];
                 // TODO: Execute script.
                 gBattleStruct->tera.isTerastallized[GetBattlerSide(gActiveBattler)] |= gBitTable[gBattlerPartyIndexes[gActiveBattler]];
             }

@@ -186,6 +186,44 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization's 60 BP floor occurs after Technicia
     }
 }
 
+SINGLE_BATTLE_TEST("(TERA) Terastallization's 60 BP floor does not apply to multi-hit moves", s16 damage)
+{
+    bool32 tera;
+    PARAMETRIZE { tera = FALSE; }
+    PARAMETRIZE { tera = TRUE; }
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_NORMAL); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_FURY_SWIPES, tera: tera); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Fury Swipes!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FURY_SWIPES, player);
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Terastallization's 60 BP floor does not apply to priority moves", s16 damage)
+{
+    bool32 tera;
+    PARAMETRIZE { tera = FALSE; }
+    PARAMETRIZE { tera = TRUE; }
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_NORMAL); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_QUICK_ATTACK, tera: tera); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Quick Attack!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, player);
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
+    }
+}
+
 // Defensive Type Checks
 
 SINGLE_BATTLE_TEST("(TERA) Terastallization changes type effectiveness", s16 damage)
@@ -216,8 +254,8 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization changes type effectiveness")
         TURN { MOVE(player, MOVE_CELEBRATE, tera: TRUE); MOVE(opponent, MOVE_EARTHQUAKE); }
     } SCENE {
         MESSAGE("Foe Wobbuffet used Earthquake!");
-        NOT { HP_BAR(player); }
         MESSAGE("It doesn't affect Wobbuffet…");
+        NOT { HP_BAR(player); }
     }
 }
 
@@ -235,12 +273,12 @@ SINGLE_BATTLE_TEST("(TERA) Terastallization persists across switches")
     } SCENE {
         // turn 1
         MESSAGE("Foe Wobbuffet used Earthquake!");
-        NOT { HP_BAR(player); }
         MESSAGE("It doesn't affect Wobbuffet…");
+        NOT { HP_BAR(player); }
         // turn 4
         MESSAGE("Foe Wobbuffet used Earthquake!");
-        NOT { HP_BAR(player); }
         MESSAGE("It doesn't affect Wobbuffet…");
+        NOT { HP_BAR(player); }
     }
 }
 
@@ -277,10 +315,149 @@ SINGLE_BATTLE_TEST("(TERA) Roost does not remove the user's Flying type while Te
     }
 }
 
-TO_DO_BATTLE_TEST("Soak fails against a Terastallized Pokemon");
-TO_DO_BATTLE_TEST("Transform does not copy the target's Tera Type, and if the user is Terastallized it keeps its own Tera Type");
-TO_DO_BATTLE_TEST("Reflect Type fails if the user is Terastallized");
-TO_DO_BATTLE_TEST("Illusion copies a Terastallized party member's appearance as if it was not Terastallized");
-TO_DO_BATTLE_TEST("Revelation Dance matches the user's Tera Type while Terastallized");
-TO_DO_BATTLE_TEST("Double Shock does not remove the user's Electric type while Terastallized, and changes STAB modifier depending on when it is used");
-TO_DO_BATTLE_TEST("STAB takes into consideration what the Pokemon's types were prior to Terastallizing if they were changed - switching out and back in while Terastallized resets the Pokemon's original types");
+SINGLE_BATTLE_TEST("(TERA) Type-changing moves fail against a Terastallized Pokemon")
+{
+    u16 move;
+    PARAMETRIZE { move = MOVE_SOAK; }
+    PARAMETRIZE { move = MOVE_FORESTS_CURSE; }
+    PARAMETRIZE { move = MOVE_TRICK_OR_TREAT; }
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_PSYCHIC); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE, tera: TRUE); MOVE(opponent, move); }
+    } SCENE {
+        if (move != MOVE_SOAK)
+            NOT { ANIMATION(ANIM_TYPE_MOVE, move, opponent); }
+        MESSAGE("But it failed!");
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Reflect Type fails if used by a Terastallized Pokemon")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_PSYCHIC); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_REFLECT_TYPE, tera: TRUE); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Reflect Type!");
+        MESSAGE("But it failed!");
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Reflect Type copies a Terastallized Pokemon's Tera Type")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GHOST); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE, tera: TRUE); }
+        TURN { MOVE(opponent, MOVE_REFLECT_TYPE); }
+        TURN { MOVE(player, MOVE_TACKLE); }
+    } SCENE {
+        // turn 2
+        MESSAGE("Foe Wobbuffet used Reflect Type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, opponent);
+        // turn 3
+        MESSAGE("Wobbuffet used Tackle!");
+        MESSAGE("It doesn't affect Foe Wobbuffet…");
+        NOT { HP_BAR(opponent); }
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Synchronoise uses a Terastallized Pokemon's Tera Type")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GHOST); }
+        OPPONENT(SPECIES_WOBBUFFET) { TeraType(TYPE_GHOST); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SYNCHRONOISE); MOVE(player, MOVE_CELEBRATE, tera: TRUE); }
+        TURN { MOVE(opponent, MOVE_SYNCHRONOISE, tera: TRUE); }
+    } SCENE {
+        // turn 1
+        MESSAGE("Foe Wobbuffet used Synchronoise!");
+        MESSAGE("It had no effect on Wobbuffet!");
+        // turn 2
+        MESSAGE("Foe Wobbuffet used Synchronoise!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SYNCHRONOISE, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Revelation Dance uses a Terastallized Pokemon's Tera Type")
+{
+    GIVEN {
+        ASSUME(P_GEN_7_POKEMON);
+        PLAYER(SPECIES_ORICORIO) { TeraType(TYPE_NORMAL); }
+        OPPONENT(SPECIES_GENGAR);
+    } WHEN {
+        TURN { MOVE(player, MOVE_REVELATION_DANCE, tera: TRUE); }
+    } SCENE {
+        #if B_EXPANDED_MOVE_NAMES == TRUE
+        MESSAGE("Oricorio used Revelation Dance!");
+        #else
+        MESSAGE("Oricorio used RvlationDnce!");
+        #endif
+        MESSAGE("It doesn't affect Foe Gengar…");
+        NOT { HP_BAR(opponent); }
+    }
+}
+
+// This tests that Tera STAB modifiers depend on the user's original types, too.
+SINGLE_BATTLE_TEST("(TERA) Double Shock does not remove the user's Electric type while Terastallized, and changes STAB modifier depending on when it is used")
+{
+    s16 damage[3];
+    GIVEN {
+        PLAYER(SPECIES_PICHU) { TeraType(TYPE_ELECTRIC); }
+        PLAYER(SPECIES_WOBBUFFET)
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_DOUBLE_SHOCK); MOVE(opponent, MOVE_RECOVER); }
+        TURN { MOVE(player, MOVE_DOUBLE_SHOCK, tera: TRUE); MOVE(opponent, MOVE_RECOVER); }
+        TURN { MOVE(player, MOVE_DOUBLE_SHOCK); MOVE(opponent, MOVE_RECOVER); }
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_RECOVER); }
+        TURN { SWITCH(player, 0); MOVE(opponent, MOVE_RECOVER); }
+        TURN { MOVE(player, MOVE_DOUBLE_SHOCK); }
+    } SCENE {
+        // turn 1 - regular STAB
+        MESSAGE("Pichu used Double Shock!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SHOCK, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        // turn 2 - lost Electric type, gained back from Tera
+        MESSAGE("Pichu used Double Shock!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SHOCK, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+        // turn 3 - retained Electric type
+        MESSAGE("Pichu used Double Shock!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SHOCK, player);
+        // turn 6 - original type reset, regular STAB + Tera boost
+        MESSAGE("Pichu used Double Shock!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SHOCK, player);
+        HP_BAR(opponent, captureDamage: &damage[2]);
+    } THEN {
+        EXPECT_EQ(damage[0], damage[1]);
+        EXPECT_MUL_EQ(damage[0], Q_4_12(1.333), damage[2]);
+    }
+}
+
+SINGLE_BATTLE_TEST("(TERA) Transform does not copy the target's Tera Type, and if the user is Terastallized it keeps its own Tera Type")
+{
+    KNOWN_FAILING; // Transform seems to be bugged in tests.
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_CELEBRATE, MOVE_TACKLE, MOVE_EARTHQUAKE); TeraType(TYPE_GHOST); }
+        OPPONENT(SPECIES_DITTO) { TeraType(TYPE_FLYING); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE, tera: TRUE); MOVE(opponent, MOVE_TRANSFORM); }
+        TURN { MOVE(player, MOVE_EARTHQUAKE); }
+        // TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_TACKLE, target: player, tera: TRUE); }
+    } SCENE {
+        // turn 2
+        MESSAGE("Wobbuffet used Earthquake!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, player);
+        HP_BAR(opponent);
+        // turn 3
+        MESSAGE("Wobbuffet used Tackle!");
+        MESSAGE("It doesn't affect Ditto…");
+        NOT { HP_BAR(opponent); }
+    }
+}

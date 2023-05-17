@@ -10360,15 +10360,9 @@ bool32 DoBattlersShareType(u32 battler1, u32 battler2)
 
     // Tera Check
     if (IsTerastallized(battler1))
-    {
-        u8 teraType = GetTeraType(battler1);
-        types1[0] = types1[1] = types1[2] = teraType;
-    }
+        types1[0] = types1[1] = types1[2] = GetTeraType(battler1);
     if (IsTerastallized(battler2))
-    {
-        u8 teraType = GetTeraType(battler2);
-        types2[0] = types2[1] = types2[2] = teraType;
-    }
+        types2[0] = types2[1] = types2[2] = GetTeraType(battler2);
 
     if (types1[2] == TYPE_MYSTERY)
         types1[2] = types1[0];
@@ -10380,7 +10374,6 @@ bool32 DoBattlersShareType(u32 battler1, u32 battler2)
         if (types1[i] == types2[0] || types1[i] == types2[1] || types1[i] == types2[2])
             return TRUE;
     }
-
     return FALSE;
 }
 
