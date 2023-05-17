@@ -759,15 +759,15 @@ static bool32 AI_GetIfCrit(u32 move, u8 battlerAtk, u8 battlerDef)
         isCrit = FALSE;
         break;
     case 1:
-        if (gBattleMoves[move].flags & FLAG_HIGH_CRIT && (Random() % 5 == 0))
+        if (gBattleMoves[move].highCritRatio && (Random() % 5 == 0))
             isCrit = TRUE;
         else
             isCrit = FALSE;
         break;
     case 2:
-        if (gBattleMoves[move].flags & FLAG_HIGH_CRIT && (Random() % 2 == 0))
+        if (gBattleMoves[move].highCritRatio && (Random() % 2 == 0))
             isCrit = TRUE;
-        else if (!(gBattleMoves[move].flags & FLAG_HIGH_CRIT) && (Random() % 4) == 0)
+        else if (!(gBattleMoves[move].highCritRatio) && (Random() % 4) == 0)
             isCrit = TRUE;
         else
             isCrit = FALSE;
@@ -2235,6 +2235,19 @@ bool32 HasSoundMove(u8 battler)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].soundMove)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+bool32 HasHighCritRatioMove(u8 battler)
+{
+    s32 i;
+    u16 *moves = GetMovesArray(battler);
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].highCritRatio)
             return TRUE;
     }
     return FALSE;
