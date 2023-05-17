@@ -224,7 +224,6 @@
 #define FLAG_RECKLESS_BOOST                       (1 << 7)
 #define FLAG_IRON_FIST_BOOST                      (1 << 8)
 #define FLAG_SHEER_FORCE_BOOST                    (1 << 9)
-#define FLAG_THREE_STRIKES                        (1 << 28) // A move with this flag will strike thrice, and may apply its effect on each hit
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0

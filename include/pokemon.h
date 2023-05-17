@@ -369,6 +369,7 @@ struct BattleMove
     u32 thawsUser:1;
     u32 hitsPastSubstitute:1;
     u32 twoStrikes:1; // May apply its effect on each hit.
+    u32 threeStrikes:1; // May apply its effect on each hit.
 };
 
 #define SPINDA_SPOT_WIDTH 16
