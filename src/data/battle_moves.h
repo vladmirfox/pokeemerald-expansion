@@ -332,6 +332,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .gravityPreventsMove = TRUE,
     },
 
     [MOVE_BIND] =
@@ -459,6 +460,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .gravityPreventsMove = TRUE,
     },
 
     [MOVE_ROLLING_KICK] =
@@ -2338,6 +2340,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .gravityPreventsMove = TRUE,
     },
 
     [MOVE_GLARE] =
@@ -2585,6 +2588,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_ATK_UP_3,
+        .gravityPreventsMove = TRUE,
     },
 
     [MOVE_ACID_ARMOR] =
@@ -5858,6 +5862,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .argument = MOVE_EFFECT_PARALYSIS,
         .zMoveEffect = Z_EFFECT_NONE,
+        .gravityPreventsMove = TRUE,
     },
 
     [MOVE_MUD_SHOT] =
@@ -6773,6 +6778,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_EVSN_UP_1,
+        .gravityPreventsMove = TRUE,
     },
 
     [MOVE_FLARE_BLITZ] =
@@ -8190,6 +8196,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MAGIC_COAT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_SPATK_UP_1,
+        .gravityPreventsMove = TRUE,
     },
 
     [MOVE_MAGIC_ROOM] =
@@ -8677,6 +8684,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .gravityPreventsMove = TRUE,
     },
 
     [MOVE_SHIFT_GEAR] =
@@ -9539,6 +9547,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .argument = TYPE_FLYING,
         .zMoveEffect = Z_EFFECT_NONE,
         .minimizeDoubleDamage = TRUE,
+        .gravityPreventsMove = TRUE,
     },
 
     [MOVE_MAT_BLOCK] =
@@ -11387,6 +11396,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .gravityPreventsMove = TRUE,
     },
 
     [MOVE_PIKA_PAPOW] =

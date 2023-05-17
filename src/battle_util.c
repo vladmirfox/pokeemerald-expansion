@@ -1607,22 +1607,7 @@ static bool32 IsGravityPreventingMove(u32 move)
     if (!(gFieldStatuses & STATUS_FIELD_GRAVITY))
         return FALSE;
 
-    switch (move)
-    {
-    case MOVE_BOUNCE:
-    case MOVE_FLY:
-    case MOVE_FLYING_PRESS:
-    case MOVE_HIGH_JUMP_KICK:
-    case MOVE_JUMP_KICK:
-    case MOVE_MAGNET_RISE:
-    case MOVE_SKY_DROP:
-    case MOVE_SPLASH:
-    case MOVE_TELEKINESIS:
-    case MOVE_FLOATY_FALL:
-        return TRUE;
-    default:
-        return FALSE;
-    }
+    return gBattleMoves[move].gravityPreventsMove;
 }
 
 bool32 IsHealBlockPreventingMove(u32 battler, u32 move)
