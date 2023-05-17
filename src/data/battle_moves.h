@@ -2761,8 +2761,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_SNATCH_AFFECTED,
-        #else
-            .flags = 0,
         #endif
         .effect = EFFECT_CONVERSION,
         .power = 0,
@@ -3307,8 +3305,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_MAGIC_COAT_AFFECTED,
-        #else
-            .flags = 0,
         #endif
         .effect = EFFECT_SPIKES,
         .power = 0,
@@ -4197,7 +4193,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_PROTECT_AFFECTED,
         #elif B_UPDATED_MOVE_DATA == GEN_4
-            .flags = 0,
         #else
             .flags = FLAG_MIRROR_MOVE_AFFECTED,
         #endif
@@ -4216,9 +4211,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_PSYCH_UP] =
     {
-        #if B_UPDATED_MOVE_DATA >= GEN_5
-            .flags = 0,
-        #else
+        #if B_UPDATED_MOVE_DATA < GEN_5
             .flags = FLAG_SNATCH_AFFECTED,
         #endif
         .effect = EFFECT_PSYCH_UP,
@@ -4743,8 +4736,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_SNATCH_AFFECTED,
-        #else
-            .flags = 0,
         #endif
         .effect = EFFECT_WISH,
         .power = 0,
@@ -4821,8 +4812,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_SNATCH_AFFECTED,
-        #else
-            .flags = 0,
         #endif
         .effect = EFFECT_RECYCLE,
         .power = 0,
@@ -6249,8 +6238,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_SNATCH_AFFECTED,
-        #else
-            .flags = 0,
         #endif
         .effect = EFFECT_HEALING_WISH,
         .power = 0,
@@ -6301,10 +6288,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
             .flags = FLAG_MIRROR_MOVE_AFFECTED,
         #elif B_UPDATED_MOVE_DATA >= GEN_5
             .power = 30,
-            .flags = 0,
         #else
             .power = 50,
-            .flags = 0,
         #endif
         .effect = EFFECT_FEINT,
         .type = TYPE_NORMAL,
@@ -6354,9 +6339,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_ACUPRESSURE] =
     {
-        #if B_UPDATED_MOVE_DATA >= GEN_5
-            .flags = 0,
-        #else
+        #if B_UPDATED_MOVE_DATA < GEN_5
             .flags = FLAG_SNATCH_AFFECTED,
         #endif
         .effect = EFFECT_ACUPRESSURE,
@@ -6559,8 +6542,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_SNATCH_AFFECTED,
-        #else
-            .flags = 0,
         #endif
         .effect = EFFECT_POWER_TRICK,
         .power = 0,
@@ -6593,8 +6574,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_SNATCH_AFFECTED,
-        #else
-            .flags = 0,
         #endif
         .effect = EFFECT_LUCKY_CHANT,
         .power = 0,
@@ -6741,8 +6720,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_MAGIC_COAT_AFFECTED,
-        #else
-            .flags = 0,
         #endif
         .effect = EFFECT_TOXIC_SPIKES,
         .power = 0,
@@ -6775,8 +6752,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_SNATCH_AFFECTED,
-        #else
-            .flags = 0,
         #endif
         .effect = EFFECT_AQUA_RING,
         .power = 0,
@@ -6794,8 +6769,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_SNATCH_AFFECTED,
-        #else
-            .flags = 0,
         #endif
         .effect = EFFECT_MAGNET_RISE,
         .power = 0,
@@ -7702,8 +7675,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_MAGIC_COAT_AFFECTED,
-        #else
-            .flags = 0,
         #endif
         .effect = EFFECT_STEALTH_ROCK,
         .power = 0,
@@ -7949,8 +7920,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_SNATCH_AFFECTED,
-        #else
-            .flags = 0,
         #endif
         .effect = EFFECT_HEALING_WISH,
         .power = 0,
