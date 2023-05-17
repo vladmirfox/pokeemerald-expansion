@@ -107,7 +107,6 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move);
 bool32 IsHazardMoveEffect(u16 moveEffect);
 bool32 MoveCallsOtherMove(u16 move);
 bool32 MoveRequiresRecharging(u16 move);
-bool32 IsInstructBannedMove(u16 move);
 bool32 IsEncoreEncouragedEffect(u16 moveEffect);
 void ProtectChecks(u8 battlerAtk, u8 battlerDef, u16 move, u16 predictedMove, s16 *score);
 bool32 ShouldSetSandstorm(u8 battler, u16 ability, u16 holdEffect);

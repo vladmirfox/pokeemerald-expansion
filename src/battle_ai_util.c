@@ -381,35 +381,6 @@ static const u16 sIgnoreMoldBreakerMoves[] =
     MOVE_SEARING_SUNRAZE_SMASH,
 };
 
-static const u16 sInstructBannedMoves[] =
-{
-    MOVE_INSTRUCT,
-    MOVE_BIDE,
-    MOVE_FOCUS_PUNCH,
-    MOVE_BEAK_BLAST,
-    MOVE_SHELL_TRAP,
-    MOVE_SKETCH,
-    MOVE_TRANSFORM,
-    MOVE_MIMIC,
-    MOVE_KINGS_SHIELD,
-    MOVE_STRUGGLE,
-    MOVE_BOUNCE,
-    MOVE_DIG,
-    MOVE_DIVE,
-    MOVE_FLY,
-    MOVE_FREEZE_SHOCK,
-    MOVE_GEOMANCY,
-    MOVE_ICE_BURN,
-    MOVE_PHANTOM_FORCE,
-    MOVE_RAZOR_WIND,
-    MOVE_SHADOW_FORCE,
-    MOVE_SKULL_BASH,
-    MOVE_SKY_ATTACK,
-    MOVE_SKY_DROP,
-    MOVE_SOLAR_BEAM,
-    MOVE_SOLAR_BLADE,
-};
-
 static const u16 sRechargeMoves[] =
 {
     MOVE_HYPER_BEAM,
@@ -2248,17 +2219,6 @@ bool32 HasHighCritRatioMove(u8 battler)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].highCritRatio)
-            return TRUE;
-    }
-    return FALSE;
-}
-
-bool32 IsInstructBannedMove(u16 move)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sInstructBannedMoves); i++)
-    {
-        if (move == sInstructBannedMoves[i])
             return TRUE;
     }
     return FALSE;

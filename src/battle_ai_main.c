@@ -2506,7 +2506,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     instructedMove = gLastMoves[battlerDef];
 
                 if (instructedMove == MOVE_NONE
-                  || IsInstructBannedMove(instructedMove)
+                  || gBattleMoves[instructedMove].instructBanned
                   || MoveRequiresRecharging(instructedMove)
                   || MoveCallsOtherMove(instructedMove)
                   || IsZMove(instructedMove)
