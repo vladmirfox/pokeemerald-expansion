@@ -9638,12 +9638,14 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
             dmg = ApplyModifier(UQ_4_12(0.5), dmg);
     }
 
-    // check stab
-    if (IsBattlerOfType(battlerAtk, moveType) && move != MOVE_STRUGGLE && move != MOVE_NONE)
+    // check stab and tera
+    if (IsTerastallized(battlerAtk))
     {
-        if (IsTerastallized(battlerAtk))
-            MulModifier(&finalModifier, GetTeraMultiplier(battlerAtk, moveType));
-        else if (abilityAtk == ABILITY_ADAPTABILITY)
+        MulModifier(&finalModifier, GetTeraMultiplier(battlerAtk, moveType));
+    }
+    else if (IsBattlerOfType(battlerAtk, moveType) && move != MOVE_STRUGGLE && move != MOVE_NONE)
+    {
+        if (abilityAtk == ABILITY_ADAPTABILITY)
             MulModifier(&finalModifier, UQ_4_12(2.0));
         else
             MulModifier(&finalModifier, UQ_4_12(1.5));

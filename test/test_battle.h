@@ -741,6 +741,7 @@ struct moveWithPP {
 #define MovesWithPP(movewithpp1, ...) MovesWithPP_(__LINE__, (struct moveWithPP[MAX_MON_MOVES]) {movewithpp1, __VA_ARGS__})
 #define Friendship(friendship) Friendship_(__LINE__, friendship)
 #define Status1(status1) Status1_(__LINE__, status1)
+#define TeraType(type) TeraType_(__LINE__, type)
 
 void OpenPokemon(u32 sourceLine, u32 side, u32 species);
 void ClosePokemon(u32 sourceLine);
@@ -762,6 +763,7 @@ void Moves_(u32 sourceLine, const u16 moves[MAX_MON_MOVES]);
 void MovesWithPP_(u32 sourceLine, struct moveWithPP moveWithPP[MAX_MON_MOVES]);
 void Friendship_(u32 sourceLine, u32 friendship);
 void Status1_(u32 sourceLine, u32 status1);
+void TeraType_(u32 sourceLine, u32 type);
 
 #define PLAYER_PARTY (gBattleTestRunnerState->data.recordedBattle.playerParty)
 #define OPPONENT_PARTY (gBattleTestRunnerState->data.recordedBattle.opponentParty)
@@ -797,6 +799,8 @@ struct MoveContext
     u16 megaEvolve:1;
     u16 explicitMegaEvolve:1;
     // TODO: u8 zMove:1;
+    u16 tera:1;
+    u16 explicitTera:1;
     u16 allowed:1;
     u16 explicitAllowed:1;
     struct BattlePokemon *target;

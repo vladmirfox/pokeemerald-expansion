@@ -1205,6 +1205,13 @@ void Status1_(u32 sourceLine, u32 status1)
     SetMonData(DATA.currentMon, MON_DATA_STATUS, &status1);
 }
 
+void TeraType_(u32 sourceLine, u32 type)
+{
+    INVALID_IF(!DATA.currentMon, "TeraType outside of PLAYER/OPPONENT");
+    INVALID_IF(type >= NUMBER_OF_MON_TYPES, "Illegal TeraType: %d", type);
+    SetMonData(DATA.currentMon, MON_DATA_TERA_TYPE, &type);
+}
+
 static const char *const sBattlerIdentifiersSingles[] =
 {
     "player",
@@ -1416,6 +1423,9 @@ void Move(u32 sourceLine, struct BattlePokemon *battler, struct MoveContext ctx)
 
     if (ctx.explicitMegaEvolve && ctx.megaEvolve)
         moveSlot |= RET_MEGA_EVOLUTION;
+    
+    if (ctx.explicitTera && ctx.tera)
+        moveSlot |= RET_TERASTAL;
 
     if (ctx.explicitTarget)
     {

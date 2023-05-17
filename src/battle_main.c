@@ -103,7 +103,7 @@ static void UpdateBattlerPartyOrdersOnSwitch(void);
 static bool8 AllAtActionConfirmed(void);
 static void TryChangeTurnOrder(void);
 static void CheckChosenMoveForEffectsBeforeTurnStarts(void);
-static void CheckMegaEvolutionBeforeTurn(void);
+static void CheckGimmicksBeforeTurn(void);
 static void CheckQuickClaw_CustapBerryActivation(void);
 static void FreeResetData_ReturnToOvOrDoEvolutions(void);
 static void ReturnFromBattleToOverworld(void);
@@ -4404,11 +4404,17 @@ static void HandleTurnActionSelectionState(void)
                                 RecordedBattle_SetBattlerAction(gActiveBattler, gBattleResources->bufferB[gActiveBattler][2]);
                                 RecordedBattle_SetBattlerAction(gActiveBattler, gBattleResources->bufferB[gActiveBattler][3]);
                             }
-                            *(gBattleStruct->chosenMovePositions + gActiveBattler) = gBattleResources->bufferB[gActiveBattler][2] & ~RET_MEGA_EVOLUTION;
-                            gChosenMoveByBattler[gActiveBattler] = gBattleMons[gActiveBattler].moves[*(gBattleStruct->chosenMovePositions + gActiveBattler)];
-                            *(gBattleStruct->moveTarget + gActiveBattler) = gBattleResources->bufferB[gActiveBattler][3];
+                            // Get the chosen move position (and thus the chosen move) and target from the returned buffer.
+                            gBattleStruct->chosenMovePositions[gActiveBattler] = gBattleResources->bufferB[gActiveBattler][2] & ~(RET_MEGA_EVOLUTION | RET_TERASTAL);
+                            gChosenMoveByBattler[gActiveBattler] = gBattleMons[gActiveBattler].moves[gBattleStruct->chosenMovePositions[gActiveBattler]];
+                            gBattleStruct->moveTarget[gActiveBattler] = gBattleResources->bufferB[gActiveBattler][3];
+
+                            // Check to see if any gimmicks need to be prepared.
                             if (gBattleResources->bufferB[gActiveBattler][2] & RET_MEGA_EVOLUTION)
                                 gBattleStruct->mega.toEvolve |= gBitTable[gActiveBattler];
+                            else if (gBattleResources->bufferB[gActiveBattler][2] & RET_TERASTAL)
+                                gBattleStruct->tera.toTera[gActiveBattler] = TRUE;
+
                             gBattleCommunication[gActiveBattler]++;
                         }
                         break;
@@ -4917,7 +4923,7 @@ static void SetActionsAndBattlersTurnOrder(void)
                     turnOrderId++;
                 }
             }
-            gBattleMainFunc = CheckMegaEvolutionBeforeTurn;
+            gBattleMainFunc = CheckGimmicksBeforeTurn;
             gBattleStruct->mega.battlerId = 0;
             return;
         }
@@ -4965,7 +4971,7 @@ static void SetActionsAndBattlersTurnOrder(void)
             }
         }
     }
-    gBattleMainFunc = CheckMegaEvolutionBeforeTurn;
+    gBattleMainFunc = CheckGimmicksBeforeTurn;
     gBattleStruct->mega.battlerId = 0;
 }
 
@@ -5015,7 +5021,7 @@ void SpecialStatusesClear(void)
     memset(&gSpecialStatuses, 0, sizeof(gSpecialStatuses));
 }
 
-static void CheckMegaEvolutionBeforeTurn(void)
+static void CheckGimmicksBeforeTurn(void)
 {
     if (!(gHitMarker & HITMARKER_RUN))
     {
@@ -5023,6 +5029,7 @@ static void CheckMegaEvolutionBeforeTurn(void)
         {
             gActiveBattler = gBattlerAttacker = gBattleStruct->mega.battlerId;
             gBattleStruct->mega.battlerId++;
+            // Check Mega Evolution.
             if (gBattleStruct->mega.toEvolve & gBitTable[gActiveBattler]
                 && !(gProtectStructs[gActiveBattler].noValidMoves))
             {
@@ -5036,6 +5043,12 @@ static void CheckMegaEvolutionBeforeTurn(void)
                 else
                     BattleScriptExecute(BattleScript_MegaEvolution);
                 return;
+            }
+            // Check Terastallization.
+            if (gBattleStruct->tera.toTera[gActiveBattler])
+            {
+                // TODO: Execute script.
+                gBattleStruct->tera.isTerastallized[GetBattlerSide(gActiveBattler)] |= gBitTable[gBattlerPartyIndexes[gActiveBattler]];
             }
         }
     }

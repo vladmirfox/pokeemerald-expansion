@@ -518,6 +518,7 @@ struct ZMoveData
 struct TeraData
 {
     bool8 isTerastallized[NUM_BATTLE_SIDES]; // stored as a bitfield for each side's party members
+    bool8 toTera[MAX_BATTLERS_COUNT];
 };
 
 struct LostItem
