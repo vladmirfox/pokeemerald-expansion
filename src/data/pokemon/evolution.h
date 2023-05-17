@@ -57,7 +57,6 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
     [SPECIES_SLOWPOKE]              = {{EVO_LEVEL, 37, SPECIES_SLOWBRO},
                                        {EVO_TRADE_ITEM, ITEM_KINGS_ROCK, SPECIES_SLOWKING},
                                        {EVO_ITEM, ITEM_KINGS_ROCK, SPECIES_SLOWKING}},
-    [SPECIES_SLOWBRO]               = {{EVO_MEGA_EVOLUTION, ITEM_SLOWBRONITE, SPECIES_SLOWBRO_MEGA}},
     [SPECIES_MAGNEMITE]             = {{EVO_LEVEL, 30, SPECIES_MAGNETON}},
 #if P_GEN_4_POKEMON == TRUE
     [SPECIES_MAGNETON]              = {{EVO_MAPSEC, MAPSEC_NEW_MAUVILLE, SPECIES_MAGNEZONE},
@@ -70,7 +69,6 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
     [SPECIES_GASTLY]                = {{EVO_LEVEL, 25, SPECIES_HAUNTER}},
     [SPECIES_HAUNTER]               = {{EVO_TRADE, 0, SPECIES_GENGAR},
                                        {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GENGAR}},
-    [SPECIES_GENGAR]                = {{EVO_MEGA_EVOLUTION, ITEM_GENGARITE, SPECIES_GENGAR_MEGA}},
     [SPECIES_ONIX]                  = {{EVO_TRADE_ITEM, ITEM_METAL_COAT, SPECIES_STEELIX},
                                        {EVO_ITEM, ITEM_METAL_COAT, SPECIES_STEELIX}},
     [SPECIES_DROWZEE]               = {{EVO_LEVEL, 26, SPECIES_HYPNO}},
@@ -261,7 +259,6 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
                                        {EVO_TRADE_ITEM, ITEM_DEEP_SEA_SCALE, SPECIES_GOREBYSS},
                                        {EVO_ITEM, ITEM_DEEP_SEA_TOOTH, SPECIES_HUNTAIL},
                                        {EVO_ITEM, ITEM_DEEP_SEA_SCALE, SPECIES_GOREBYSS}},
-    [SPECIES_ABSOL]                 = {{EVO_MEGA_EVOLUTION, ITEM_ABSOLITE, SPECIES_ABSOL_MEGA}},
     [SPECIES_SHUPPET]               = {{EVO_LEVEL, 37, SPECIES_BANETTE}},
     [SPECIES_ARON]                  = {{EVO_LEVEL, 32, SPECIES_LAIRON}},
     [SPECIES_LAIRON]                = {{EVO_LEVEL, 42, SPECIES_AGGRON}},
