@@ -1190,6 +1190,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = -5,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .meFirstFail = TRUE,
     },
 
     [MOVE_SEISMIC_TOSS] =
@@ -2840,6 +2841,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .meFirstFail = TRUE,
     },
 
     [MOVE_SKETCH] =
@@ -2889,6 +2891,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .meFirstFail = TRUE,
     },
 
     [MOVE_SPIDER_WEB] =
@@ -4187,6 +4190,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = -5,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .meFirstFail = TRUE,
     },
 
     [MOVE_PSYCH_UP] =
@@ -4573,6 +4577,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .punchingMove = TRUE,
+        .meFirstFail = TRUE,
     },
 
     [MOVE_SMELLING_SALTS] =
@@ -5913,6 +5918,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .meFirstFail = TRUE,
     },
 
     [MOVE_VOLT_TACKLE] =
@@ -6350,6 +6356,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .meFirstFail = TRUE,
     },
 
     [MOVE_U_TURN] =
@@ -7712,6 +7719,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .soundMove = TRUE,
+        .meFirstFail = TRUE,
     },
 
     [MOVE_JUDGMENT] =
@@ -9562,6 +9570,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_PROTECT_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .meFirstFail = TRUE,
     },
 
     [MOVE_ROTOTILLER] =
@@ -10975,6 +10984,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .ballisticMove = TRUE,
+        .meFirstFail = TRUE,
     },
 
     [MOVE_CLANGING_SCALES] =
@@ -11051,6 +11061,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_PROTECT_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .meFirstFail = TRUE,
     },
 
     [MOVE_FLEUR_CANNON] =
