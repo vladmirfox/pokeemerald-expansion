@@ -595,7 +595,7 @@ void SetZEffect(void)
     gBattleStruct->zmove.zStatusActive = TRUE;
     if (gBattleStruct->zmove.effect == Z_EFFECT_CURSE)
     {
-        if (IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST))
+        if (IsBattlerOfType(gBattlerAttacker, TYPE_GHOST))
             gBattleStruct->zmove.effect = Z_EFFECT_RECOVER_HP;
         else
             gBattleStruct->zmove.effect = Z_EFFECT_ATK_UP_1;

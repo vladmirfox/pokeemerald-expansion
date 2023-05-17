@@ -14,6 +14,7 @@
 #include "battle_bg.h"
 #include "pokeball.h"
 #include "battle_debug.h"
+#include "battle_terastal.h"
 
 #define GET_BATTLER_SIDE(battler)         (GetBattlerPosition(battler) & BIT_SIDE)
 #define GET_BATTLER_SIDE2(battler)        (gBattlerPositions[battler] & BIT_SIDE)
@@ -514,6 +515,11 @@ struct ZMoveData
     u8 splits[MAX_BATTLERS_COUNT];
 };
 
+struct TeraData
+{
+    bool8 isTerastallized[NUM_BATTLE_SIDES]; // stored as a bitfield for each side's party members
+};
+
 struct LostItem
 {
     u16 originalItem:15;
@@ -615,6 +621,7 @@ struct BattleStruct
     bool8 throwingPokeBall;
     struct MegaEvolutionData mega;
     struct ZMoveData zmove;
+    struct TeraData tera;
     const u8 *trainerSlideMsg;
     bool8 trainerSlideLowHpMsgDone;
     u8 introState;
@@ -689,6 +696,7 @@ struct BattleStruct
 #define TARGET_TURN_DAMAGED ((gSpecialStatuses[gBattlerTarget].physicalDmg != 0 || gSpecialStatuses[gBattlerTarget].specialDmg != 0))
 #define BATTLER_DAMAGED(battlerId) ((gSpecialStatuses[battlerId].physicalDmg != 0 || gSpecialStatuses[battlerId].specialDmg != 0))
 
+// This macro ignores Terastallization and IsBattlerOfType should be used most of the time instead.
 #define IS_BATTLER_OF_TYPE(battlerId, type)((gBattleMons[battlerId].type1 == type || gBattleMons[battlerId].type2 == type || (gBattleMons[battlerId].type3 != TYPE_MYSTERY && gBattleMons[battlerId].type3 == type)))
 #define SET_BATTLER_TYPE(battlerId, type)           \
 {                                                   \

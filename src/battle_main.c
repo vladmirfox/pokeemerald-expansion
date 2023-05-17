@@ -4033,7 +4033,7 @@ u8 IsRunningFromBattleImpossible(void)
     if (holdEffect == HOLD_EFFECT_CAN_ALWAYS_RUN)
         return BATTLE_RUN_SUCCESS;
     #if B_GHOSTS_ESCAPE >= GEN_6
-        if (IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_GHOST))
+        if (IsBattlerOfType(gActiveBattler, TYPE_GHOST))
             return BATTLE_RUN_SUCCESS;
     #endif
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)

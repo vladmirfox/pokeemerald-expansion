@@ -578,7 +578,7 @@ bool8 TryRunFromBattle(u8 battler)
         effect++;
     }
     #if B_GHOSTS_ESCAPE >= GEN_6
-    else if (IS_BATTLER_OF_TYPE(battler, TYPE_GHOST))
+    else if (IsBattlerOfType(battler, TYPE_GHOST))
     {
         effect++;
     }
@@ -3667,7 +3667,7 @@ u8 AtkCanceller_UnableToUseMove(void)
         case CANCELLER_THAW: // move thawing
             if (gBattleMons[gBattlerAttacker].status1 & STATUS1_FREEZE)
             {
-                if (!(gBattleMoves[gCurrentMove].effect == EFFECT_BURN_UP && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_FIRE)))
+                if (!(gBattleMoves[gCurrentMove].effect == EFFECT_BURN_UP && !IsBattlerOfType(gBattlerAttacker, TYPE_FIRE)))
                 {
                     gBattleMons[gBattlerAttacker].status1 &= ~STATUS1_FREEZE;
                     BattleScriptPushCursor();
@@ -3678,7 +3678,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             }
             if (gBattleMons[gBattlerAttacker].status1 & STATUS1_FROSTBITE && (gBattleMoves[gCurrentMove].flags & FLAG_THAW_USER))
             {
-                if (!(gBattleMoves[gCurrentMove].effect == EFFECT_BURN_UP && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_FIRE)))
+                if (!(gBattleMoves[gCurrentMove].effect == EFFECT_BURN_UP && !IsBattlerOfType(gBattlerAttacker, TYPE_FIRE)))
                 {
                     gBattleMons[gBattlerAttacker].status1 &= ~STATUS1_FROSTBITE;
                     BattleScriptPushCursor();
@@ -3693,7 +3693,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             if ((gBattleMoves[gCurrentMove].flags & FLAG_POWDER) && (gBattlerAttacker != gBattlerTarget))
             {
             #if B_POWDER_GRASS >= GEN_6
-                if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS) || GetBattlerAbility(gBattlerTarget) == ABILITY_OVERCOAT)
+                if (IsBattlerOfType(gBattlerTarget, TYPE_GRASS) || GetBattlerAbility(gBattlerTarget) == ABILITY_OVERCOAT)
             #else
                 if (GetBattlerAbility(gBattlerTarget) == ABILITY_OVERCOAT)
             #endif
@@ -4025,7 +4025,7 @@ u8 TryWeatherFormChange(u8 battler)
         }
         else if (GetBattlerAbility(battler) != ABILITY_FORECAST || !weatherEffect)
         {
-            if (!IS_BATTLER_OF_TYPE(battler, TYPE_NORMAL))
+            if (!IsBattlerOfType(battler, TYPE_NORMAL))
             {
                 SET_BATTLER_TYPE(battler, TYPE_NORMAL);
                 ret = CASTFORM_NORMAL + 1;
@@ -4042,7 +4042,7 @@ u8 TryWeatherFormChange(u8 battler)
         }
         else if (!weatherEffect)
         {
-            if (!IS_BATTLER_OF_TYPE(battler, TYPE_NORMAL))
+            if (!IsBattlerOfType(battler, TYPE_NORMAL))
             {
                 SET_BATTLER_TYPE(battler, TYPE_NORMAL);
                 ret = CASTFORM_NORMAL + 1;
@@ -4053,22 +4053,22 @@ u8 TryWeatherFormChange(u8 battler)
             }
         }
 #endif
-        else if (holdEffect == HOLD_EFFECT_UTILITY_UMBRELLA || (!(gBattleWeather & (B_WEATHER_RAIN | B_WEATHER_SUN | B_WEATHER_HAIL | B_WEATHER_SNOW)) && !IS_BATTLER_OF_TYPE(battler, TYPE_NORMAL)))
+        else if (holdEffect == HOLD_EFFECT_UTILITY_UMBRELLA || (!(gBattleWeather & (B_WEATHER_RAIN | B_WEATHER_SUN | B_WEATHER_HAIL | B_WEATHER_SNOW)) && !IsBattlerOfType(battler, TYPE_NORMAL)))
         {
             SET_BATTLER_TYPE(battler, TYPE_NORMAL);
             ret = CASTFORM_NORMAL + 1;
         }
-        else if (gBattleWeather & B_WEATHER_SUN && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && !IS_BATTLER_OF_TYPE(battler, TYPE_FIRE))
+        else if (gBattleWeather & B_WEATHER_SUN && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && !IsBattlerOfType(battler, TYPE_FIRE))
         {
             SET_BATTLER_TYPE(battler, TYPE_FIRE);
             ret = CASTFORM_FIRE + 1;
         }
-        else if (gBattleWeather & B_WEATHER_RAIN && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && !IS_BATTLER_OF_TYPE(battler, TYPE_WATER))
+        else if (gBattleWeather & B_WEATHER_RAIN && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && !IsBattlerOfType(battler, TYPE_WATER))
         {
             SET_BATTLER_TYPE(battler, TYPE_WATER);
             ret = CASTFORM_WATER + 1;
         }
-        else if (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW) && !IS_BATTLER_OF_TYPE(battler, TYPE_ICE))
+        else if (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW) && !IsBattlerOfType(battler, TYPE_ICE))
         {
             SET_BATTLER_TYPE(battler, TYPE_ICE);
             ret = CASTFORM_ICE + 1;
@@ -5450,7 +5450,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && move != MOVE_STRUGGLE
              && gBattleMoves[move].power != 0
              && TARGET_TURN_DAMAGED
-             && !IS_BATTLER_OF_TYPE(battler, moveType)
+             && !IsBattlerOfType(battler, moveType)
              && gBattleMons[battler].hp != 0)
             {
                 SET_BATTLER_TYPE(battler, moveType);
@@ -5535,7 +5535,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         case ABILITY_EFFECT_SPORE:
-            if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
+            if (!IsBattlerOfType(gBattlerAttacker, TYPE_GRASS)
              && GetBattlerAbility(gBattlerAttacker) != ABILITY_OVERCOAT
              && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
@@ -6315,7 +6315,7 @@ u32 IsAbilityPreventingEscape(u32 battlerId)
 {
     u32 id;
 #if B_GHOSTS_ESCAPE >= GEN_6
-    if (IS_BATTLER_OF_TYPE(battlerId, TYPE_GHOST))
+    if (IsBattlerOfType(battlerId, TYPE_GHOST))
         return 0;
 #endif
 #if B_SHADOW_TAG_ESCAPE >= GEN_4
@@ -6326,7 +6326,7 @@ u32 IsAbilityPreventingEscape(u32 battlerId)
         return id;
     if ((id = IsAbilityOnOpposingSide(battlerId, ABILITY_ARENA_TRAP)) && IsBattlerGrounded(battlerId))
         return id;
-    if ((id = IsAbilityOnOpposingSide(battlerId, ABILITY_MAGNET_PULL)) && IS_BATTLER_OF_TYPE(battlerId, TYPE_STEEL))
+    if ((id = IsAbilityOnOpposingSide(battlerId, ABILITY_MAGNET_PULL)) && IsBattlerOfType(battlerId, TYPE_STEEL))
         return id;
 
     return 0;
@@ -6337,7 +6337,7 @@ bool32 CanBattlerEscape(u32 battlerId) // no ability check
     if (GetBattlerHoldEffect(battlerId, TRUE) == HOLD_EFFECT_SHED_SHELL)
         return TRUE;
 #if B_GHOSTS_ESCAPE >= GEN_6
-    else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_GHOST))
+    else if (IsBattlerOfType(battlerId, TYPE_GHOST))
         return TRUE;
 #endif
     else if (gBattleMons[battlerId].status2 & (STATUS2_ESCAPE_PREVENTION | STATUS2_WRAPPED))
@@ -6422,7 +6422,7 @@ bool32 CanBePoisoned(u8 battlerAttacker, u8 battlerTarget)
 bool32 CanBeBurned(u8 battlerId)
 {
     u16 ability = GetBattlerAbility(battlerId);
-    if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FIRE)
+    if (IsBattlerOfType(battlerId, TYPE_FIRE)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || ability == ABILITY_WATER_VEIL
@@ -6440,7 +6440,7 @@ bool32 CanBeParalyzed(u8 battlerId)
     u16 ability = GetBattlerAbility(battlerId);
     if (
     #if B_PARALYZE_ELECTRIC >= GEN_6
-        IS_BATTLER_OF_TYPE(battlerId, TYPE_ELECTRIC) ||
+        IsBattlerOfType(battlerId, TYPE_ELECTRIC) ||
     #endif
         gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
         || ability == ABILITY_LIMBER
@@ -6455,7 +6455,7 @@ bool32 CanBeParalyzed(u8 battlerId)
 bool32 CanBeFrozen(u8 battlerId)
 {
     u16 ability = GetBattlerAbility(battlerId);
-    if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ICE)
+    if (IsBattlerOfType(battlerId, TYPE_ICE)
       || IsBattlerWeatherAffected(battlerId, B_WEATHER_SUN)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
       || ability == ABILITY_MAGMA_ARMOR
@@ -6470,7 +6470,7 @@ bool32 CanBeFrozen(u8 battlerId)
 bool32 CanGetFrostbite(u8 battlerId)
 {
     u16 ability = GetBattlerAbility(battlerId);
-    if (IS_BATTLER_OF_TYPE(battlerId, TYPE_ICE)
+    if (IsBattlerOfType(battlerId, TYPE_ICE)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
       || ability == ABILITY_MAGMA_ARMOR
       || ability == ABILITY_COMATOSE
@@ -7383,7 +7383,7 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 }
                 break;
             case HOLD_EFFECT_BLACK_SLUDGE:
-                if (IS_BATTLER_OF_TYPE(battlerId, TYPE_POISON))
+                if (IsBattlerOfType(battlerId, TYPE_POISON))
                 {
                     goto LEFTOVERS;
                 }
@@ -7996,7 +7996,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
         moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, move);
 
     // Special cases
-    if (move == MOVE_CURSE && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST))
+    if (move == MOVE_CURSE && !IsBattlerOfType(gBattlerAttacker, TYPE_GHOST))
         moveTarget = MOVE_TARGET_USER;
 
     switch (moveTarget)
@@ -8339,7 +8339,7 @@ static bool32 IsBattlerGrounded2(u8 battlerId, bool32 considerInverse)
         return FALSE;
     if (GetBattlerAbility(battlerId) == ABILITY_LEVITATE)
         return FALSE;
-    if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING) && (!considerInverse || !FlagGet(B_FLAG_INVERSE_BATTLE)))
+    if (IsBattlerOfType(battlerId, TYPE_FLYING) && (!considerInverse || !FlagGet(B_FLAG_INVERSE_BATTLE)))
         return FALSE;
     return TRUE;
 }
@@ -9202,6 +9202,18 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     #else
             MulModifier(&modifier, UQ_4_12(0.5));
     #endif
+
+    // Terastallization boosts weak, non-priority, non-multi hit moves to 60 BP.
+    if (IsTerastallized(battlerAtk)
+        && moveType == GetTeraType(battlerAtk)
+        && ApplyModifier(modifier, basePower) < 60
+        && !(gBattleMoves[move].flags & (FLAG_TWO_STRIKES | FLAG_THREE_STRIKES))
+        && gBattleMoves[move].effect != EFFECT_MULTI_HIT
+        && gBattleMoves[move].priority == 0)
+    {
+        return 60;
+    }
+
     return ApplyModifier(modifier, basePower);
 }
 #undef TERRAIN_TYPE_BOOST
@@ -9550,10 +9562,10 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
     }
 
     // sandstorm sp.def boost for rock types
-    if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_ROCK) && gBattleWeather & B_WEATHER_SANDSTORM && WEATHER_HAS_EFFECT && !usesDefStat)
+    if (IsBattlerOfType(battlerDef, TYPE_ROCK) && gBattleWeather & B_WEATHER_SANDSTORM && WEATHER_HAS_EFFECT && !usesDefStat)
         MulModifier(&modifier, UQ_4_12(1.5));
     // snow def boost for ice types
-    if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE) && gBattleWeather & B_WEATHER_SNOW && WEATHER_HAS_EFFECT && usesDefStat)
+    if (IsBattlerOfType(battlerDef, TYPE_ICE) && gBattleWeather & B_WEATHER_SNOW && WEATHER_HAS_EFFECT && usesDefStat)
         MulModifier(&modifier, UQ_4_12(1.5));
 
     // The defensive stats of a Player's Pokémon are boosted by x1.1 (+10%) if they have the 5th badge and 7th badges.
@@ -9627,9 +9639,11 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     }
 
     // check stab
-    if (IS_BATTLER_OF_TYPE(battlerAtk, moveType) && move != MOVE_STRUGGLE && move != MOVE_NONE)
+    if (IsBattlerOfType(battlerAtk, moveType) && move != MOVE_STRUGGLE && move != MOVE_NONE)
     {
-        if (abilityAtk == ABILITY_ADAPTABILITY)
+        if (IsTerastallized(battlerAtk))
+            MulModifier(&finalModifier, GetTeraMultiplier(battlerAtk, moveType));
+        else if (abilityAtk == ABILITY_ADAPTABILITY)
             MulModifier(&finalModifier, UQ_4_12(2.0));
         else
             MulModifier(&finalModifier, UQ_4_12(1.5));
@@ -9886,15 +9900,29 @@ static void UpdateMoveResultFlags(u16 modifier)
 
 static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 battlerAtk, u8 battlerDef, bool32 recordAbilities, u16 modifier)
 {
-    u32 illusionSpecies;
+    u32 illusionSpecies, type1, type2, type3;
     u16 defAbility = GetBattlerAbility(battlerDef);
 
-    MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, gBattleMons[battlerDef].type1, battlerAtk, recordAbilities);
-    if (gBattleMons[battlerDef].type2 != gBattleMons[battlerDef].type1)
-        MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, gBattleMons[battlerDef].type2, battlerAtk, recordAbilities);
-    if (gBattleMons[battlerDef].type3 != TYPE_MYSTERY && gBattleMons[battlerDef].type3 != gBattleMons[battlerDef].type2
-        && gBattleMons[battlerDef].type3 != gBattleMons[battlerDef].type1)
-        MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, gBattleMons[battlerDef].type3, battlerAtk, recordAbilities);
+    // Terastallization overrides typing.
+    if (IsTerastallized(battlerDef))
+    {
+        type1 = type2 = GetTeraType(battlerDef);
+        type3 = TYPE_MYSTERY;
+    }
+    else
+    {
+        type1 = gBattleMons[battlerDef].type1;
+        type2 = gBattleMons[battlerDef].type2;
+        type3 = gBattleMons[battlerDef].type3;
+    }
+
+
+    MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, type1, battlerAtk, recordAbilities);
+    if (type2 != type1)
+        MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, type2, battlerAtk, recordAbilities);
+    if (type3 != TYPE_MYSTERY && type3 != type2
+        && type3 != type1)
+        MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, type3, battlerAtk, recordAbilities);
 
     if (recordAbilities && (illusionSpecies = GetIllusionMonSpecies(battlerDef)))
         TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, battlerDef, modifier, illusionSpecies);
@@ -9903,7 +9931,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
     {
         modifier = UQ_4_12(1.0);
     #if B_GLARE_GHOST <= GEN_3
-        if (move == MOVE_GLARE && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GHOST))
+        if (move == MOVE_GLARE && IsBattlerOfType(battlerDef, TYPE_GHOST))
         {
             modifier = UQ_4_12(0.0);
         }
@@ -9922,7 +9950,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         }
     }
 #if B_SHEER_COLD_IMMUNITY >= GEN_7
-    else if (move == MOVE_SHEER_COLD && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE))
+    else if (move == MOVE_SHEER_COLD && IsBattlerOfType(battlerDef, TYPE_ICE))
     {
         modifier = UQ_4_12(0.0);
     }
@@ -9930,7 +9958,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
 
     // Thousand Arrows ignores type modifiers for flying mons
     if (!IsBattlerGrounded(battlerDef) && (gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)
-        && (gBattleMons[battlerDef].type1 == TYPE_FLYING || gBattleMons[battlerDef].type2 == TYPE_FLYING || gBattleMons[battlerDef].type3 == TYPE_FLYING))
+        && (type1 == TYPE_FLYING || type2 == TYPE_FLYING || type3 == TYPE_FLYING))
     {
         modifier = UQ_4_12(1.0);
     }
@@ -10748,7 +10776,7 @@ bool32 IsBattlerAffectedByHazards(u8 battlerId, bool32 toxicSpikes)
 {
     bool32 ret = TRUE;
     u32 holdEffect = GetBattlerHoldEffect(gActiveBattler, TRUE);
-    if (toxicSpikes && holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS && !IS_BATTLER_OF_TYPE(battlerId, TYPE_POISON))
+    if (toxicSpikes && holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS && !IsBattlerOfType(battlerId, TYPE_POISON))
     {
         ret = FALSE;
         RecordItemEffectBattle(battlerId, holdEffect);
@@ -10873,7 +10901,7 @@ bool32 BlocksPrankster(u16 move, u8 battlerPrankster, u8 battlerDef, bool32 chec
         return FALSE;
     if (checkTarget && (GetBattlerMoveTargetType(battlerPrankster, move) & (MOVE_TARGET_OPPONENTS_FIELD | MOVE_TARGET_DEPENDS)))
         return FALSE;
-    if (!IS_BATTLER_OF_TYPE(battlerDef, TYPE_DARK))
+    if (!IsBattlerOfType(battlerDef, TYPE_DARK))
         return FALSE;
     if (gStatuses3[battlerDef] & STATUS3_SEMI_INVULNERABLE)
         return FALSE;
@@ -11001,3 +11029,11 @@ static bool8 CanBeInfinitelyConfused(u8 battlerId)
     return TRUE;
 }
 
+// Returns whether the battler 
+bool32 IsBattlerOfType(u32 battlerId, u32 type)
+{
+    if (IsTerastallized(battlerId))
+        return GetTeraType(battlerId) == type;
+    else
+        return IS_BATTLER_OF_TYPE(battlerId, type);
+}
