@@ -1607,7 +1607,7 @@ static bool32 IsGravityPreventingMove(u32 move)
     if (!(gFieldStatuses & STATUS_FIELD_GRAVITY))
         return FALSE;
 
-    return gBattleMoves[move].gravityPreventsMove;
+    return gBattleMoves[move].gravityBanned;
 }
 
 bool32 IsHealBlockPreventingMove(u32 battler, u32 move)

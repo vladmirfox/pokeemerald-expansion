@@ -372,8 +372,8 @@ struct BattleMove
     u32 hitsPastSubstitute:1;
     u32 twoStrikes:1; // May apply its effect on each hit.
     u32 threeStrikes:1; // May apply its effect on each hit.
-    u32 meFirstFail:1;
-    u32 gravityPreventsMove:1;
+    u32 meFirstBanned:1;
+    u32 gravityBanned:1;
 };
 
 #define SPINDA_SPOT_WIDTH 16
