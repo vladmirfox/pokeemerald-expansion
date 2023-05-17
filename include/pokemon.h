@@ -349,6 +349,7 @@ struct BattleMove
     u16 argument;
     u8 zMoveEffect;
     // Flags
+    u32 punchingMove:1;
     u32 bitingMove:1;
     u32 pulseMove:1;
     u32 soundMove:1;
