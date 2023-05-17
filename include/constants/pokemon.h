@@ -221,7 +221,6 @@
 #define FLAG_MIRROR_MOVE_AFFECTED                 (1 << 4)
 #define FLAG_KINGS_ROCK_AFFECTED                  (1 << 5)
 #define FLAG_HIGH_CRIT                            (1 << 6)
-#define FLAG_RECKLESS_BOOST                       (1 << 7)
 #define FLAG_SHEER_FORCE_BOOST                    (1 << 9)
 
 // Split defines.
