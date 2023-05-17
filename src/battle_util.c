@@ -5452,7 +5452,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMoves[move].power != 0
              && TARGET_TURN_DAMAGED
              && !IsBattlerOfType(battler, moveType)
-             && gBattleMons[battler].hp != 0)
+             && gBattleMons[battler].hp != 0
+             && !IsTerastallized(battler))
             {
                 SET_BATTLER_TYPE(battler, moveType);
                 PREPARE_TYPE_BUFFER(gBattleTextBuff1, moveType);
@@ -10357,6 +10358,18 @@ bool32 DoBattlersShareType(u32 battler1, u32 battler2)
     u8 types1[3] = {gBattleMons[battler1].type1, gBattleMons[battler1].type2, gBattleMons[battler1].type3};
     u8 types2[3] = {gBattleMons[battler2].type1, gBattleMons[battler2].type2, gBattleMons[battler2].type3};
 
+    // Tera Check
+    if (IsTerastallized(battler1))
+    {
+        u8 teraType = GetTeraType(battler1);
+        types1[0] = types1[1] = types1[2] = teraType;
+    }
+    if (IsTerastallized(battler2))
+    {
+        u8 teraType = GetTeraType(battler2);
+        types2[0] = types2[1] = types2[2] = teraType;
+    }
+
     if (types1[2] == TYPE_MYSTERY)
         types1[2] = types1[0];
     if (types2[2] == TYPE_MYSTERY)
@@ -11037,7 +11050,7 @@ static bool8 CanBeInfinitelyConfused(u8 battlerId)
     return TRUE;
 }
 
-// Returns whether the battler 
+// Returns whether the battler is of the given type, checking Terastallization.
 bool32 IsBattlerOfType(u32 battlerId, u32 type)
 {
     if (IsTerastallized(battlerId))

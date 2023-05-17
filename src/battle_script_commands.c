@@ -1489,7 +1489,8 @@ bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
       if ((ability == ABILITY_PROTEAN || ability == ABILITY_LIBERO)
          && (gBattleMons[battler].type1 != moveType || gBattleMons[battler].type2 != moveType
              || (gBattleMons[battler].type3 != moveType && gBattleMons[battler].type3 != TYPE_MYSTERY))
-         && move != MOVE_STRUGGLE)
+         && move != MOVE_STRUGGLE
+         && !IsTerastallized(battler))
     {
         SET_BATTLER_TYPE(gBattlerAttacker, moveType);
         return TRUE;
@@ -5097,7 +5098,8 @@ static void Cmd_setroost(void)
     gBattleResources->flags->flags[gBattlerAttacker] |= RESOURCE_FLAG_ROOST;
 
     // Pure flying type.
-    if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING && gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
+    if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING && gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING
+        && !IsTerastallized(gBattlerAttacker))
     {
         gBattleStruct->roostTypes[gBattlerAttacker][0] = TYPE_FLYING;
         gBattleStruct->roostTypes[gBattlerAttacker][1] = TYPE_FLYING;
@@ -5108,7 +5110,8 @@ static void Cmd_setroost(void)
 #endif
     }
     // Dual type with flying type.
-    else if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING || gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
+    else if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING || gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING
+             && !IsTerastallized(gBattlerAttacker))
     {
         gBattleStruct->roostTypes[gBattlerAttacker][0] = gBattleMons[gBattlerAttacker].type1;
         gBattleStruct->roostTypes[gBattlerAttacker][1] = gBattleMons[gBattlerAttacker].type2;
@@ -9829,9 +9832,17 @@ static void Cmd_various(void)
     case VARIOUS_TRY_REFLECT_TYPE:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (gBattleMons[gBattlerTarget].species == SPECIES_ARCEUS || gBattleMons[gBattlerTarget].species == SPECIES_SILVALLY)
+        if (gBattleMons[gBattlerTarget].species == SPECIES_ARCEUS || gBattleMons[gBattlerTarget].species == SPECIES_SILVALLY
+            || IsTerastallized(gBattlerAttacker))
         {
             gBattlescriptCurrInstr = cmd->failInstr;
+        }
+        else if (IsTerastallized(gBattlerTarget))
+        {
+            u32 teraType = GetTeraType(gBattlerTarget);
+            gBattleMons[gBattlerAttacker].type1 = teraType;
+            gBattleMons[gBattlerAttacker].type2 = teraType;
+            gBattlescriptCurrInstr = cmd->nextInstr;
         }
         else if (gBattleMons[gBattlerTarget].type1 == TYPE_MYSTERY && gBattleMons[gBattlerTarget].type2 != TYPE_MYSTERY)
         {
@@ -9860,8 +9871,9 @@ static void Cmd_various(void)
     case VARIOUS_TRY_SOAK:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (gBattleMons[gBattlerTarget].type1 == gBattleMoves[gCurrentMove].type
+        if ((gBattleMons[gBattlerTarget].type1 == gBattleMoves[gCurrentMove].type
             && gBattleMons[gBattlerTarget].type2 == gBattleMoves[gCurrentMove].type)
+            || IsTerastallized(gBattlerTarget))
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
@@ -10097,10 +10109,13 @@ static void Cmd_various(void)
     case VARIOUS_LOSE_TYPE:
     {
         VARIOUS_ARGS(u8 type);
-        for (i = 0; i < 3; i++)
+        if (!IsTerastallized(gActiveBattler))
         {
-            if (*(u8 *)(&gBattleMons[gActiveBattler].type1 + i) == cmd->type)
-                *(u8 *)(&gBattleMons[gActiveBattler].type1 + i) = TYPE_MYSTERY;
+            for (i = 0; i < 3; i++)
+            {
+                if (*(u8 *)(&gBattleMons[gActiveBattler].type1 + i) == cmd->type)
+                    *(u8 *)(&gBattleMons[gActiveBattler].type1 + i) = TYPE_MYSTERY;
+            }
         }
         gBattlescriptCurrInstr = cmd->nextInstr;
         return;
@@ -10279,7 +10294,8 @@ static void Cmd_various(void)
     case VARIOUS_TRY_THIRD_TYPE:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (IsBattlerOfType(gActiveBattler, gBattleMoves[gCurrentMove].argument))
+        if (IsBattlerOfType(gActiveBattler, gBattleMoves[gCurrentMove].argument)
+            || IsTerastallized(gActiveBattler))
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
@@ -12455,7 +12471,7 @@ static void Cmd_tryconversiontypechange(void)
             break;
         }
     }
-    if (IsBattlerOfType(gBattlerAttacker, moveType))
+    if (IsBattlerOfType(gBattlerAttacker, moveType) || IsTerastallized(gBattlerAttacker))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
@@ -12494,7 +12510,7 @@ static void Cmd_tryconversiontypechange(void)
         }
     }
 
-    if (moveChecked == validMoves)
+    if (moveChecked == validMoves || IsTerastallized(gBattlerAttacker))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
@@ -13209,7 +13225,8 @@ static void Cmd_settypetorandomresistance(void)
     CMD_ARGS(const u8 *failInstr);
 
     if (gLastLandedMoves[gBattlerAttacker] == MOVE_NONE
-     || gLastLandedMoves[gBattlerAttacker] == MOVE_UNAVAILABLE)
+     || gLastLandedMoves[gBattlerAttacker] == MOVE_UNAVAILABLE
+     || IsTerastallized(gBattlerAttacker))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
@@ -15318,7 +15335,7 @@ static void Cmd_settypetoterrain(void)
         break;
     }
 
-    if (!IsBattlerOfType(gBattlerAttacker, terrainType))
+    if (!IsBattlerOfType(gBattlerAttacker, terrainType) || IsTerastallized(gBattlerAttacker))
     {
         SET_BATTLER_TYPE(gBattlerAttacker, terrainType);
         PREPARE_TYPE_BUFFER(gBattleTextBuff1, terrainType);

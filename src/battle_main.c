@@ -5655,7 +5655,9 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     }
     else if (gBattleMoves[move].effect == EFFECT_REVELATION_DANCE)
     {
-        if (gBattleMons[battlerAtk].type1 != TYPE_MYSTERY)
+        if (IsTerastallized(battlerAtk))
+            gBattleStruct->dynamicMoveType = GetTeraType(battlerAtk) | F_DYNAMIC_TYPE_2;
+        else if (gBattleMons[battlerAtk].type1 != TYPE_MYSTERY)
             gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type1 | F_DYNAMIC_TYPE_2;
         else if (gBattleMons[battlerAtk].type2 != TYPE_MYSTERY)
             gBattleStruct->dynamicMoveType = gBattleMons[battlerAtk].type2 | F_DYNAMIC_TYPE_2;
