@@ -5038,8 +5038,6 @@ static bool32 TryDoGimmicksBeforeMoves(void)
         SortBattlersBySpeed(order, FALSE);
         for (i = 0; i < gBattlersCount; i++)
         {
-            gActiveBattler = gBattlerAttacker = gBattleStruct->mega.battlerId;
-            gBattleStruct->mega.battlerId++;
             // Check Mega Evolution.
             if (gBattleStruct->mega.toEvolve & gBitTable[gActiveBattler]
                 && !(gProtectStructs[gActiveBattler].noValidMoves))
@@ -5058,9 +5056,12 @@ static bool32 TryDoGimmicksBeforeMoves(void)
             // Check Terastallization.
             if (gBattleStruct->tera.toTera & gBitTable[order[i]])
             {
-                gActiveBattler = order[i];
-                // TODO: Execute script.
-                gBattleStruct->tera.isTerastallized[GetBattlerSide(gActiveBattler)] |= gBitTable[gBattlerPartyIndexes[gActiveBattler]];
+                gActiveBattler = gBattlerAttacker = order[i];
+                gBattleStruct->tera.toTera &= ~(gBitTable[gActiveBattler]);
+                PrepareBattlerForTerastallization(gActiveBattler);
+                PREPARE_TYPE_BUFFER(gBattleTextBuff1, GetTeraType(gActiveBattler));
+                BattleScriptExecute(BattleScript_Terastallization);
+                return TRUE;
             }
         }
     }

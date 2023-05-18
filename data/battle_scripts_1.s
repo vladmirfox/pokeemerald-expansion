@@ -10498,3 +10498,11 @@ BattleScript_EffectSnow::
 	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_STRONG_WINDS, BattleScript_MysteriousAirCurrentBlowsOn
 	setsnow
 	goto BattleScript_MoveWeatherChange
+
+BattleScript_Terastallization::
+	@ TODO: no string prints in S/V, but right now this helps with clarity
+	printstring STRINGID_PKMNTERASTALLIZEDINTO
+	@ TODO: replace this animation
+	playanimation BS_ATTACKER, B_ANIM_TOTEM_FLARE
+	waitanimation
+	end3
