@@ -8273,9 +8273,9 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_UNSEEN_FIST
         && (gBattleMoves[move].makesContact || (gBattleMoves[move].effect == EFFECT_SHELL_SIDE_ARM && gBattleStruct->swapDamageCategory)))
         return FALSE;
-    else if (!(gBattleMoves[move].flags & FLAG_PROTECT_AFFECTED))
+    else if (gBattleMoves[move].ignoresProtect)
         return FALSE;
-    else if (gBattleMoves[move].effect == MOVE_EFFECT_FEINT)
+    else if (gBattleMoves[move].effect == EFFECT_FEINT)
         return FALSE;
     else if (gProtectStructs[battlerId].protected)
         return TRUE;

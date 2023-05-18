@@ -63,6 +63,7 @@
 #define B_PP_REDUCED_BY_SPITE       GEN_LATEST // In Gen4+, Spite reduces the foe's last move's PP by 4, instead of 2 to 5.
 
 // Move flags settings
+#define B_MOVE_FLAGS_BYPASS_PROTECT GEN_LATEST // Updates moves unaffected by Protect.
 #define B_MOVE_FLAGS_MINIMIZE       GEN_LATEST // Updates moves affected by Minimize.
 #define B_MOVE_FLAGS_SOUND          GEN_LATEST // Updates moves defined as sound-based moves.
 #define B_MOVE_FLAGS_BALLISTIC      GEN_LATEST // Updates moves defined as projectile moves.
