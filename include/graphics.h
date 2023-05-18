@@ -8724,6 +8724,12 @@ extern const u32 gItemIcon_RibbonSweet[];
 extern const u32 gItemIconPalette_RibbonSweet[];
 extern const u32 gItemIcon_Everstone[];
 extern const u32 gItemIconPalette_Everstone[];
+extern const u32 gItemIcon_BlackAugurite[];
+extern const u32 gItemIconPalette_BlackAugurite[];
+extern const u32 gItemIcon_LinkingCord[];
+extern const u32 gItemIconPalette_LinkingCord[];
+extern const u32 gItemIcon_PeatBlock[];
+extern const u32 gItemIconPalette_PeatBlock[];
 // Nectars
 extern const u32 gItemIcon_RedNectar[];
 extern const u32 gItemIconPalette_RedNectar[];
@@ -9599,6 +9605,8 @@ extern const u32 gItemIcon_GriseousCore[];
 extern const u32 gItemIconPalette_GriseousCore[];
 extern const u32 gItemIcon_LustrousGlobe[];
 extern const u32 gItemIconPalette_LustrousGlobe[];
+extern const u32 gItemIcon_BerserkGene[];
+extern const u32 gItemIconPalette_BerserkGene[];
 
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u32 gItemIconPalette_ReturnToFieldArrow[];

@@ -213,11 +213,7 @@ bool32 IsViableZMove(u8 battlerId, u16 move)
 
         if (move != MOVE_NONE && zMove != MOVE_Z_STATUS && gBattleMoves[move].type == ItemId_GetSecondaryId(item))
         {
-            if (IS_MOVE_STATUS(move))
-                gBattleStruct->zmove.chosenZMove = move;
-            else
-                gBattleStruct->zmove.chosenZMove = GetTypeBasedZMove(move, battlerId);
-
+            gBattleStruct->zmove.chosenZMove = GetTypeBasedZMove(move, battlerId);
             return TRUE;
         }
     }
@@ -587,7 +583,7 @@ const u8 *GetZMoveName(u16 move)
         return gZMoveNames[0];   // Failsafe
 }
 
-#define Z_EFFECT_BS_LENGTH  3
+#define Z_EFFECT_BS_LENGTH  5
 // This function kinda cheats by setting a return battle script to after the setzeffect various command
 // and then jumping to a z effect script
 void SetZEffect(void)
@@ -678,7 +674,7 @@ void SetZEffect(void)
         gBattlescriptCurrInstr = BattleScript_StatUpZMove;
         break;
     default:
-        gBattlescriptCurrInstr += 3;
+        gBattlescriptCurrInstr += Z_EFFECT_BS_LENGTH;
         break;
     }
 
