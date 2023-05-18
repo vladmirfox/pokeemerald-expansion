@@ -2,13 +2,46 @@
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_terastal.h"
+#include "event_data.h"
 #include "pokemon.h"
 #include "util.h"
 #include "constants/abilities.h"
+#include "constants/hold_effects.h"
 
 // Returns whether a battler can Terastallize.
 bool32 CanTerastallize(u32 battlerId)
 {
+    u32 side = GetBattlerSide(battlerId);
+    u32 holdEffect =GetBattlerHoldEffect(battlerId, FALSE);
+
+    // Check if Player has Tera Orb and has charge.
+#if B_FLAG_TERA_ORB_CHARGE != 0
+    if ((battlerId == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && battlerId == B_POSITION_PLAYER_RIGHT))
+        && !(CheckBagHasItem(ITEM_TERA_ORB, 1) && FlagGet(B_FLAG_TERA_ORB_CHARGE)))
+#endif
+        return FALSE;
+
+    // Check if Trainer has already Terastallized.
+    if (gBattleStruct->tera.alreadyTerastallized[battlerId])
+    {
+        return FALSE;
+    }
+
+    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
+        && IsPartnerMonFromSameTrainer(battlerId)
+        && (gBattleStruct->tera.alreadyTerastallized[BATTLE_PARTNER(battlerId)]
+        || (gBattleStruct->tera.toTera & gBitTable[BATTLE_PARTNER(battlerId)])))
+    {
+        return FALSE;
+    }
+
+    // Check if battler is holding a Z-Crystal or Mega Stone.
+    if (holdEffect == HOLD_EFFECT_Z_CRYSTAL || holdEffect == HOLD_EFFECT_MEGA_STONE)
+    {
+        return FALSE;
+    }
+
+    // Every check passed!
     return TRUE;
 }
 
