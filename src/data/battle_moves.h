@@ -612,9 +612,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_BODY_SLAM] =
     {
-        #if B_MOVE_FLAGS_MINIMIZE >= GEN_6
-            .minimizeDoubleDamage = TRUE,
-        #endif
         .effect = EFFECT_PARALYZE_HIT,
         .power = 85,
         .type = TYPE_NORMAL,
@@ -627,6 +624,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE >= GEN_6,
     },
 
     [MOVE_WRAP] =
@@ -3805,9 +3803,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_HEAL_BELL] =
     {
-        #if B_MOVE_FLAGS_SOUND != GEN_5
-            .soundMove = TRUE,
-        #endif
         .effect = EFFECT_HEAL_BELL,
         .power = 0,
         .type = TYPE_NORMAL,
@@ -3819,6 +3814,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_SNATCH_AFFECTED,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_RECOVER_HP,
+        .soundMove = B_MOVE_FLAGS_SOUND != GEN_5,
     },
 
     [MOVE_RETURN] =
@@ -5290,9 +5286,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_NEEDLE_ARM] =
     {
-        #if B_MOVE_FLAGS_MINIMIZE < GEN_4
-            .minimizeDoubleDamage = TRUE,
-        #endif
         .effect = EFFECT_FLINCH_HIT,
         .power = 60,
         .type = TYPE_GRASS,
@@ -5305,6 +5298,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE < GEN_4,
     },
 
     [MOVE_SLACK_OFF] =
@@ -5435,9 +5429,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_ASTONISH] =
     {
-        #if B_MOVE_FLAGS_MINIMIZE < GEN_4
-            .minimizeDoubleDamage = TRUE,
-        #endif
         .effect = EFFECT_FLINCH_HIT,
         .power = 30,
         .type = TYPE_GHOST,
@@ -5450,6 +5441,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE < GEN_4,
     },
 
     [MOVE_WEATHER_BALL] =
@@ -5717,9 +5709,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         #else
             .pp = 30,
         #endif
-        #if B_MOVE_FLAGS_MINIMIZE < GEN_4
-            .minimizeDoubleDamage = TRUE,
-        #endif
         .effect = EFFECT_FLINCH_HIT,
         .power = 80,
         .type = TYPE_PSYCHIC,
@@ -5730,6 +5719,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE < GEN_4,
     },
 
     [MOVE_SKY_UPPERCUT] =
@@ -5898,9 +5888,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         #else
             .effect = EFFECT_ATTACK_UP,
         #endif
-        #if B_MOVE_FLAGS_SOUND >= GEN_8
-            .soundMove = TRUE,
-        #endif
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -5911,6 +5898,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_SNATCH_AFFECTED,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_ATK_UP_1,
+        .soundMove = B_MOVE_FLAGS_SOUND >= GEN_8,
     },
 
     [MOVE_DRAGON_CLAW] =
@@ -6150,9 +6138,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         #else
             .accuracy = 80,
         #endif
-        #if B_MOVE_FLAGS_BALLISTIC >= GEN_6
-            .ballisticMove = TRUE,
-        #endif
         .effect = EFFECT_MULTI_HIT,
         .power = 25,
         .type = TYPE_ROCK,
@@ -6163,6 +6148,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .ballisticMove = B_MOVE_FLAGS_BALLISTIC >= GEN_6,
     },
 
     [MOVE_SHOCK_WAVE] =
@@ -7133,9 +7119,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_DRAGON_RUSH] =
     {
-        #if B_MOVE_FLAGS_MINIMIZE >= GEN_6
-            .minimizeDoubleDamage = TRUE,
-        #endif
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         #else
@@ -7152,6 +7135,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE >= GEN_6,
     },
 
     [MOVE_POWER_GEM] =
@@ -8167,9 +8151,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_SHADOW_FORCE] =
     {
-        #if B_MOVE_FLAGS_MINIMIZE == GEN_6
-            .minimizeDoubleDamage = TRUE,
-        #endif
         .effect = EFFECT_SEMI_INVULNERABLE,
         .power = 120,
         .type = TYPE_GHOST,
@@ -8184,6 +8165,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .makesContact = TRUE,
         .argument = MOVE_EFFECT_FEINT,
         .ignoresProtect = TRUE,
+        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE == GEN_6,
         .instructBanned = TRUE,
     },
 
@@ -8448,9 +8430,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_HEAVY_SLAM] =
     {
-        #if B_MOVE_FLAGS_MINIMIZE >= GEN_7
-            .minimizeDoubleDamage = TRUE,
-        #endif
         .effect = EFFECT_HEAT_CRASH,
         .power = 1,
         .type = TYPE_STEEL,
@@ -8464,6 +8443,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .danceMove = TRUE,
+        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE >= GEN_7,
     },
 
     [MOVE_SYNCHRONOISE] =
@@ -9294,9 +9274,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_HEAT_CRASH] =
     {
-        #if B_MOVE_FLAGS_MINIMIZE >= GEN_6
-            .minimizeDoubleDamage = TRUE,
-        #endif
         .effect = EFFECT_HEAT_CRASH,
         .power = 1,
         .type = TYPE_FIRE,
@@ -9309,6 +9286,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE >= GEN_6,
     },
 
     [MOVE_LEAF_TORNADO] =
@@ -9807,9 +9785,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_PHANTOM_FORCE] =
     {
-        #if B_MOVE_FLAGS_MINIMIZE == GEN_6
-            .minimizeDoubleDamage = TRUE,
-        #endif
         .effect = EFFECT_SEMI_INVULNERABLE,
         .power = 90,
         .type = TYPE_GHOST,
@@ -9824,6 +9799,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .ignoresProtect = TRUE,
         .makesContact = TRUE,
+        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE == GEN_6,
         .instructBanned = TRUE,
     },
 
@@ -11840,9 +11816,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_DOUBLE_IRON_BASH] =
     {
-        #if B_MOVE_FLAGS_MINIMIZE < GEN_8
-            .minimizeDoubleDamage = TRUE,
-        #endif
         .effect = EFFECT_FLINCH_HIT,
         .power = 60,
         .type = TYPE_STEEL,
@@ -11857,6 +11830,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .makesContact = TRUE,
         .punchingMove = TRUE,
         .twoStrikes = TRUE,
+        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE < GEN_8,
     },
 
     [MOVE_DYNAMAX_CANNON] =
