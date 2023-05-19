@@ -58,6 +58,13 @@ void HealPlayerParty(void)
         arg[3] = 0;
         SetMonData(&gPlayerParty[i], MON_DATA_STATUS, arg);
     }
+
+    // Recharge Tera Orb, if possible.
+#if B_FLAG_TERA_ORB_CHARGE != 0
+    if (CheckBagHasItem(ITEM_TERA_ORB, 1))
+        FlagSet(B_FLAG_TERA_ORB_CHARGE);
+#endif
+
     HealPlayerBoxes();
 }
 
