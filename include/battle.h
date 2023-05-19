@@ -520,6 +520,8 @@ struct TeraData
     bool8 isTerastallized[NUM_BATTLE_SIDES]; // stored as a bitfield for each side's party members
     bool8 alreadyTerastallized[MAX_BATTLERS_COUNT];
     bool8 toTera; // flags using gBitTable
+    bool8 playerSelect;
+    u8 triggerSpriteId;
 };
 
 struct LostItem

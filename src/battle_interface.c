@@ -1420,6 +1420,7 @@ void HideTriggerSprites(void)
 {
     HideMegaTriggerSprite();
     HideZMoveTriggerSprite();
+    HideTeraTriggerSprite();
 }
 
 void DestroyMegaTriggerSprite(void)
