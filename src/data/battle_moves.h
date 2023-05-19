@@ -2915,6 +2915,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .meFirstBanned = TRUE,
+        .metronomeBanned = TRUE,
         .instructBanned = TRUE,
     },
 
