@@ -371,7 +371,7 @@ struct BattleMove
     u32 damagesAirborneDoubleDamage:1;
     u32 ignoreTypeIfFlyingAndUngrounded:1;
     u32 thawsUser:1;
-    u32 hitsPastSubstitute:1;
+    u32 ignoresSubstitute:1;
     u32 twoStrikes:1; // May apply its effect on each hit.
     u32 threeStrikes:1; // May apply its effect on each hit.
     u32 meFirstBanned:1;

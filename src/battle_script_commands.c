@@ -15100,7 +15100,7 @@ bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
     else if (gBattleMoves[move].soundMove)
         return FALSE;
 #endif
-    else if (gBattleMoves[move].hitsPastSubstitute)
+    else if (gBattleMoves[move].ignoresSubstitute)
         return FALSE;
     else if (GetBattlerAbility(battlerAtk) == ABILITY_INFILTRATOR)
         return FALSE;
