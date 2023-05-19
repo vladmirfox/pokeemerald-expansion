@@ -5039,7 +5039,7 @@ static bool32 TryDoGimmicksBeforeMoves(void)
         for (i = 0; i < gBattlersCount; i++)
         {
             // Check Mega Evolution.
-            if (gBattleStruct->mega.toEvolve & gBitTable[gActiveBattler]
+            if (gBattleStruct->mega.toEvolve & gBitTable[order[i]]
                 && !(gProtectStructs[gActiveBattler].noValidMoves))
             {
                 gActiveBattler = gBattlerAttacker = order[i];
