@@ -376,6 +376,8 @@ struct BattleMove
     u32 threeStrikes:1; // May apply its effect on each hit.
     u32 meFirstBanned:1;
     u32 gravityBanned:1;
+    // Forbidden Table
+    u32 metronomeBanned:1;
     u32 instructBanned:1;
 };
 

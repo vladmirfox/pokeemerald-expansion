@@ -67,6 +67,7 @@
 #define B_MOVE_FLAGS_MINIMIZE       GEN_LATEST // Updates moves affected by Minimize.
 #define B_MOVE_FLAGS_SOUND          GEN_LATEST // Updates moves defined as sound-based moves.
 #define B_MOVE_FLAGS_BALLISTIC      GEN_LATEST // Updates moves defined as projectile moves.
+#define B_MOVE_FLAGS_METRONOME      GEN_LATEST // Updates moves uncallable by Metronome.
 
 // Move accuracy settings
 #define B_TOXIC_NEVER_MISS          GEN_LATEST // In Gen6+, if Toxic is used by a Poison-type Pokémon, it will never miss.
