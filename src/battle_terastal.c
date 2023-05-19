@@ -5,11 +5,13 @@
 #include "battle_interface.h"
 #include "battle_terastal.h"
 #include "event_data.h"
+#include "palette.h"
 #include "pokemon.h"
 #include "sprite.h"
 #include "util.h"
 #include "constants/abilities.h"
 #include "constants/hold_effects.h"
+#include "constants/rgb.h"
 
 // Sets flags and variables upon a battler's Terastallization.
 void PrepareBattlerForTerastallization(u32 battlerId)
@@ -31,8 +33,10 @@ void PrepareBattlerForTerastallization(u32 battlerId)
     }
 #endif
 
-    // Show indicator.
+    // Show indicator and do palette blend.
     UpdateHealthboxAttribute(gHealthboxSpriteIds[battlerId], &party[index], HEALTHBOX_ALL);
+    BlendPalette(OBJ_PLTT_ID(battlerId), 16, 8, GetTeraTypeRGB(GetTeraType(battlerId)));
+    CpuCopy32(gPlttBufferFaded + OBJ_PLTT_ID(battlerId), gPlttBufferUnfaded + OBJ_PLTT_ID(battlerId), PLTT_SIZEOF(16));
 }
 
 // Returns whether a battler can Terastallize.
@@ -116,6 +120,33 @@ u32 GetTeraMultiplier(u32 battlerId, u32 type)
     {
         return UQ_4_12(1.0);
     }
+}
+
+// Most values pulled from the Tera type icon palette.
+const u16 sTeraTypeRGBValues[NUMBER_OF_MON_TYPES] = {
+    [TYPE_NORMAL] = RGB_WHITE, // custom
+    [TYPE_FIGHTING] = RGB(26, 8, 14),
+    [TYPE_FLYING] = RGB(31, 26, 7),
+    [TYPE_POISON] = RGB(26, 10, 25), // custom
+    [TYPE_GROUND] = RGB(25, 23, 18),
+    [TYPE_ROCK] = RGB(18, 16, 8), // custom
+    [TYPE_BUG] = RGB(18, 24, 6),
+    [TYPE_GHOST] = RGB(12, 10, 16),
+    [TYPE_STEEL] = RGB(19, 19, 20),
+    [TYPE_FIRE] = RGB(31, 20, 11),
+    [TYPE_WATER] = RGB(10, 18, 27),
+    [TYPE_GRASS] = RGB(12, 24, 11),
+    [TYPE_ELECTRIC] = RGB(30, 26, 7),
+    [TYPE_PSYCHIC] = RGB(31, 14, 15),
+    [TYPE_ICE] = RGB(14, 26, 25),
+    [TYPE_DRAGON] = RGB(10, 18, 27),
+    [TYPE_DARK] = RGB(6, 5, 8),
+    [TYPE_FAIRY] = RGB(31, 15, 21),
+};
+
+u16 GetTeraTypeRGB(u32 type)
+{
+    return sTeraTypeRGBValues[type];
 }
 
 // TERASTAL TRIGGER:
