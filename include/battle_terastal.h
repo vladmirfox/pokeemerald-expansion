@@ -13,4 +13,14 @@ bool32 IsTeraTriggerSpriteActive(void);
 void HideTeraTriggerSprite(void);
 void DestroyTeraTriggerSprite(void);
 
+void TeraIndicator_LoadSpriteGfx(void);
+bool32 TeraIndicator_ShouldBeInvisible(u32 battlerId);
+u8 TeraIndicator_GetSpriteId(u32 healthboxSpriteId);
+void TeraIndicator_SetVisibilities(u32 healthboxId, bool32 invisible);
+void TeraIndicator_UpdateOamPriorities(u32 healthboxId, u32 oamPriority);
+void TeraIndicator_UpdateLevel(u32 healthboxId, u32 level);
+void TeraIndicator_CreateSprite(u32 battlerId, u32 healthboxSpriteId);
+void TeraIndicator_DestroySprite(u32 healthboxSpriteId);
+void TeraIndicator_UpdateType(u32 battlerId, u32 healthboxSpriteId);
+
 #endif

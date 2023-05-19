@@ -53,13 +53,33 @@ enum
 #define TAG_ALPHA_INDICATOR_TILE        0xD779
 #define TAG_OMEGA_INDICATOR_TILE        0xD77A
 #define TAG_ZMOVE_TRIGGER_TILE          0xD77B
-#define TAG_TERA_TRIGGER_TILE           0xD77D // leaving room for Dynamax
+#define TAG_TERA_TRIGGER_TILE           0xD77E // leaving room for Dynamax
+#define TAG_NORMAL_INDICATOR_TILE       0xD77F
+#define TAG_FIGHTING_INDICATOR_TILE     0xD780
+#define TAG_FLYING_INDICATOR_TILE       0xD781
+#define TAG_POISON_INDICATOR_TILE       0xD782
+#define TAG_GROUND_INDICATOR_TILE       0xD783
+#define TAG_ROCK_INDICATOR_TILE         0xD784
+#define TAG_BUG_INDICATOR_TILE          0xD785
+#define TAG_GHOST_INDICATOR_TILE        0xD786
+#define TAG_STEEL_INDICATOR_TILE        0xD787
+// empty spot for TYPE_MYSTERY
+#define TAG_FIRE_INDICATOR_TILE         0xD788
+#define TAG_WATER_INDICATOR_TILE        0xD789
+#define TAG_GRASS_INDICATOR_TILE        0xD78A
+#define TAG_ELECTRIC_INDICATOR_TILE     0xD78B
+#define TAG_PSYCHIC_INDICATOR_TILE      0xD78C
+#define TAG_ICE_INDICATOR_TILE          0xD78D
+#define TAG_DRAGON_INDICATOR_TILE       0xD78E
+#define TAG_DARK_INDICATOR_TILE         0xD78F
+#define TAG_FAIRY_INDICATOR_TILE        0xD790
 
 #define TAG_MEGA_TRIGGER_PAL            0xD777
 #define TAG_MEGA_INDICATOR_PAL          0xD778
 #define TAG_ALPHA_OMEGA_INDICATOR_PAL   0xD779 // Alpha and Omega indicators use the same palette as each of them only uses 4 different colors.
 #define TAG_ZMOVE_TRIGGER_PAL           0xD77B
 #define TAG_TERA_TRIGGER_PAL            0xD77D
+#define TAG_TERA_INDICATOR_PAL          0xD77E
 
 enum
 {
@@ -108,5 +128,6 @@ void TryHideLastUsedBall(void);
 void TryRestoreLastUsedBall(void);
 void TryAddLastUsedBallItemSprites(void);
 void UpdateAbilityPopup(u8 battlerId);
+void GetBattlerHealthboxCoords(u8 battler, s16 *x, s16 *y);
 
 #endif // GUARD_BATTLE_INTERFACE_H

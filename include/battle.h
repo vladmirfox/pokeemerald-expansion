@@ -522,6 +522,7 @@ struct TeraData
     bool8 toTera; // flags using gBitTable
     bool8 playerSelect;
     u8 triggerSpriteId;
+    u8 indicatorSpriteId[MAX_BATTLERS_COUNT];
 };
 
 struct LostItem
