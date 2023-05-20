@@ -331,6 +331,7 @@ static const u16 sEncouragedEncoreEffects[] =
     EFFECT_SPIT_UP,
     EFFECT_SWALLOW,
     EFFECT_HAIL,
+    EFFECT_SNOWSCAPE,
     EFFECT_TORMENT,
     EFFECT_WILL_O_WISP,
     EFFECT_FOLLOW_ME,
@@ -856,7 +857,7 @@ s32 AI_CalcDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 *typeEffectiveness,
         // Handle other multi-strike moves
         if (gBattleMoves[move].flags & FLAG_TWO_STRIKES)
             dmg *= 2;
-        else if (move == MOVE_SURGING_STRIKES || (move == MOVE_WATER_SHURIKEN && gBattleMons[battlerAtk].species == SPECIES_GRENINJA_ASH))
+        else if (gBattleMoves[move].flags & FLAG_THREE_STRIKES || (move == MOVE_WATER_SHURIKEN && gBattleMons[battlerAtk].species == SPECIES_GRENINJA_ASH))
             dmg *= 3;
 
         if (dmg == 0)
@@ -1504,7 +1505,7 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
     // increased accuracy but don't always hit
     if ((AI_WeatherHasEffect() &&
             (((gBattleWeather & B_WEATHER_RAIN) && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
-            || (((gBattleWeather & B_WEATHER_HAIL) && move == MOVE_BLIZZARD))))
+            || (((gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)) && move == MOVE_BLIZZARD))))
         || (gBattleMoves[move].effect == EFFECT_VITAL_THROW)
     #if B_MINIMIZE_DMG_ACC >= GEN_6
         || ((gStatuses3[battlerDef] & STATUS3_MINIMIZED) && (gBattleMoves[move].flags & FLAG_DMG_MINIMIZE))
@@ -1579,7 +1580,7 @@ bool32 ShouldSetHail(u8 battler, u16 ability, u16 holdEffect)
 {
     if (!AI_WeatherHasEffect())
         return FALSE;
-    else if (gBattleWeather & B_WEATHER_HAIL)
+    else if (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW))
         return FALSE;
 
     if (ability == ABILITY_SNOW_CLOAK
@@ -1649,6 +1650,26 @@ bool32 ShouldSetSun(u8 battlerAtk, u16 atkAbility, u16 holdEffect)
     return FALSE;
 }
 
+bool32 ShouldSetSnow(u8 battler, u16 ability, u16 holdEffect)
+{
+    if (!AI_WeatherHasEffect())
+        return FALSE;
+    else if (gBattleWeather & (B_WEATHER_SNOW | B_WEATHER_HAIL))
+        return FALSE;
+
+    if (ability == ABILITY_SNOW_CLOAK
+      || ability == ABILITY_ICE_BODY
+      || ability == ABILITY_FORECAST
+      || ability == ABILITY_SLUSH_RUSH
+      || IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
+      || HasMove(battler, MOVE_BLIZZARD)
+      || HasMoveEffect(battler, EFFECT_AURORA_VEIL)
+      || HasMoveEffect(battler, EFFECT_WEATHER_BALL))
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
 
 void ProtectChecks(u8 battlerAtk, u8 battlerDef, u16 move, u16 predictedMove, s16 *score)
 {
@@ -1678,7 +1699,7 @@ void ProtectChecks(u8 battlerAtk, u8 battlerDef, u16 move, u16 predictedMove, s1
             (*score) -= min(uses, 3);
     }
 
-    if (gBattleMons[battlerAtk].status1 & (STATUS1_PSN_ANY | STATUS1_BURN)
+    if (gBattleMons[battlerAtk].status1 & (STATUS1_PSN_ANY | STATUS1_BURN | STATUS1_FROSTBITE)
      || gBattleMons[battlerAtk].status2 & (STATUS2_CURSED | STATUS2_INFATUATION)
      || gStatuses3[battlerAtk] & (STATUS3_PERISH_SONG | STATUS3_LEECHSEED | STATUS3_YAWN))
     {
@@ -2766,6 +2787,7 @@ bool32 AI_CanSleep(u8 battler, u16 ability)
 {
     if (ability == ABILITY_INSOMNIA
       || ability == ABILITY_VITAL_SPIRIT
+      || ability == ABILITY_COMATOSE
       || gBattleMons[battler].status1 & STATUS1_ANY
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
       || (gFieldStatuses & (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN))
@@ -2839,6 +2861,7 @@ bool32 AI_CanPoison(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u16 
 static bool32 AI_CanBeParalyzed(u8 battler, u16 ability)
 {
     if (ability == ABILITY_LIMBER
+      || ability == ABILITY_COMATOSE
       || IS_BATTLER_OF_TYPE(battler, TYPE_ELECTRIC)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler))
@@ -2884,7 +2907,20 @@ bool32 AI_CanBeBurned(u8 battler, u16 ability)
 {
     if (ability == ABILITY_WATER_VEIL
       || ability == ABILITY_WATER_BUBBLE
+      || ability == ABILITY_COMATOSE
       || IS_BATTLER_OF_TYPE(battler, TYPE_FIRE)
+      || gBattleMons[battler].status1 & STATUS1_ANY
+      || IsAbilityStatusProtected(battler)
+      || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD)
+        return FALSE;
+    return TRUE;
+}
+
+bool32 AI_CanGetFrostbite(u8 battler, u16 ability)
+{
+    if (ability == ABILITY_MAGMA_ARMOR
+      || ability == ABILITY_COMATOSE
+      || IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler)
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD)
@@ -2909,6 +2945,18 @@ bool32 ShouldBurnSelf(u8 battler, u16 ability)
 bool32 AI_CanBurn(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 battlerAtkPartner, u16 move, u16 partnerMove)
 {
     if (!AI_CanBeBurned(battlerDef, defAbility)
+      || AI_GetMoveEffectiveness(move, battlerAtk, battlerDef) == AI_EFFECTIVENESS_x0
+      || DoesSubstituteBlockMove(battlerAtk, battlerDef, move)
+      || PartnerMoveEffectIsStatusSameTarget(battlerAtkPartner, battlerDef, partnerMove))
+    {
+        return FALSE;
+    }
+    return TRUE;
+}
+
+bool32 AI_CanGiveFrostbite(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 battlerAtkPartner, u16 move, u16 partnerMove)
+{
+    if (!AI_CanGetFrostbite(battlerDef, defAbility)
       || AI_GetMoveEffectiveness(move, battlerAtk, battlerDef) == AI_EFFECTIVENESS_x0
       || DoesSubstituteBlockMove(battlerAtk, battlerDef, move)
       || PartnerMoveEffectIsStatusSameTarget(battlerAtkPartner, battlerDef, partnerMove))
@@ -3110,7 +3158,7 @@ bool32 ShouldSetScreen(u8 battlerAtk, u8 battlerDef, u16 moveEffect)
     {
     case EFFECT_AURORA_VEIL:
         // Use only in Hail and only if AI doesn't already have Reflect, Light Screen or Aurora Veil itself active.
-        if (gBattleWeather & B_WEATHER_HAIL
+        if ((gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW))
             && !(gSideStatuses[atkSide] & (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL)))
             return TRUE;
         break;
@@ -3215,7 +3263,8 @@ bool32 PartnerMoveEffectIsWeather(u8 battlerAtkPartner, u16 partnerMove)
      && (gBattleMoves[partnerMove].effect == EFFECT_SUNNY_DAY
       || gBattleMoves[partnerMove].effect == EFFECT_RAIN_DANCE
       || gBattleMoves[partnerMove].effect == EFFECT_SANDSTORM
-      || gBattleMoves[partnerMove].effect == EFFECT_HAIL))
+      || gBattleMoves[partnerMove].effect == EFFECT_HAIL
+      || gBattleMoves[partnerMove].effect == EFFECT_SNOWSCAPE))
         return TRUE;
 
     return FALSE;
@@ -3420,7 +3469,7 @@ bool32 IsPartyFullyHealedExceptBattler(u8 battlerId)
 bool32 PartyHasMoveSplit(u8 battlerId, u8 split)
 {
     u8 firstId, lastId;
-    struct Pokemon* party = GetBattlerPartyData(battlerId);
+    struct Pokemon *party = GetBattlerParty(battlerId);
     u32 i, j;
 
     for (i = 0; i < PARTY_SIZE; i++)
@@ -3714,6 +3763,25 @@ void IncreaseConfusionScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score)
             *score += 3;
         else
             *score += 2;
+    }
+}
+
+void IncreaseFrostbiteScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score)
+{
+    if ((AI_THINKING_STRUCT->aiFlags & AI_FLAG_TRY_TO_FAINT) && CanAIFaintTarget(battlerAtk, battlerDef, 0))
+        return;
+
+    if (AI_CanGiveFrostbite(battlerAtk, battlerDef, AI_DATA->abilities[battlerDef], BATTLE_PARTNER(battlerAtk), move, AI_DATA->partnerMove))
+    {
+        (*score)++; // frostbite is good
+        if (HasMoveWithSplit(battlerDef, SPLIT_SPECIAL))
+        {
+            if (CanTargetFaintAi(battlerDef, battlerAtk))
+                *score += 2; // frostbiting the target to stay alive is cool
+        }
+
+        if (HasMoveEffect(battlerAtk, EFFECT_HEX) || HasMoveEffect(BATTLE_PARTNER(battlerAtk), EFFECT_HEX))
+            (*score)++;
     }
 }
 
