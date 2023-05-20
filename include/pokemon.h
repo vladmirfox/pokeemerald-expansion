@@ -377,6 +377,7 @@ struct BattleMove
     u32 meFirstBanned:1;
     u32 gravityBanned:1;
     // Forbidden Table
+    u32 mimicBanned:1;
     u32 metronomeBanned:1;
     u32 instructBanned:1;
 };
