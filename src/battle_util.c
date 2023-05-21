@@ -7637,21 +7637,25 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
         switch (atkHoldEffect)
         {
         case HOLD_EFFECT_FLINCH:
-        #if B_SERENE_GRACE_BOOST >= GEN_5
-            if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE)
-                atkHoldEffectParam *= 2;
-        #endif
-            if (gBattleMoveDamage != 0  // Need to have done damage
-                && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-                && TARGET_TURN_DAMAGED
-                && !gBattleMoves[gCurrentMove].ignoresKingsRock
-                && gBattleMons[gBattlerTarget].hp
-                && RandomPercentage(RNG_HOLD_EFFECT_FLINCH, atkHoldEffectParam))
             {
-                gBattleScripting.moveEffect = MOVE_EFFECT_FLINCH;
-                BattleScriptPushCursor();
-                SetMoveEffect(FALSE, 0);
-                BattleScriptPop();
+                u16 ability = GetBattlerAbility(gBattlerAttacker);
+            #if B_SERENE_GRACE_BOOST >= GEN_5
+                if (ability == ABILITY_SERENE_GRACE)
+                    atkHoldEffectParam *= 2;
+            #endif
+                if (gBattleMoveDamage != 0  // Need to have done damage
+                    && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                    && TARGET_TURN_DAMAGED
+                    && !gBattleMoves[gCurrentMove].ignoresKingsRock
+                    && gBattleMons[gBattlerTarget].hp
+                    && RandomPercentage(RNG_HOLD_EFFECT_FLINCH, atkHoldEffectParam)
+                    && ability != ABILITY_STENCH)
+                {
+                    gBattleScripting.moveEffect = MOVE_EFFECT_FLINCH;
+                    BattleScriptPushCursor();
+                    SetMoveEffect(FALSE, 0);
+                    BattleScriptPop();
+                }
             }
             break;
         case HOLD_EFFECT_BLUNDER_POLICY:
