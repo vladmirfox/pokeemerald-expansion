@@ -286,7 +286,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_4, // || B_UPDATED_MOVE_FLAGS == GEN_2
+        .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_4) || (B_UPDATED_MOVE_FLAGS < GEN_3),
         .damagesAirborneDoubleDamage = TRUE,
         .windMove = TRUE,
     },
@@ -369,7 +369,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_3,
     },
 
     [MOVE_SLAM] =
@@ -505,7 +505,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_3,
     },
 
     [MOVE_SAND_ATTACK] =
@@ -1146,7 +1146,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_3,
         .instructBanned = TRUE,
     },
 
@@ -1492,7 +1492,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_4, // || B_UPDATED_MOVE_FLAGS == GEN_2
+        .ignoresKingsRock = (B_UPDATED_MOVE_FLAGS == GEN_4) || (B_UPDATED_MOVE_FLAGS < GEN_3),
     },
 
     [MOVE_FIRE_SPIN] =
@@ -1513,7 +1513,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_3,
     },
 
     [MOVE_THUNDER_SHOCK] =
@@ -1618,7 +1618,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_3,
         .damagesUnderground = TRUE,
     },
 
@@ -2275,7 +2275,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_3,
     },
 
     [MOVE_SWIFT] =
@@ -4012,7 +4012,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_3,
     },
 
     [MOVE_BATON_PASS] =
