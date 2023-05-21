@@ -7644,9 +7644,9 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
             if (gBattleMoveDamage != 0  // Need to have done damage
                 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && TARGET_TURN_DAMAGED
-                && RandomPercentage(RNG_HOLD_EFFECT_FLINCH, atkHoldEffectParam)
-                && gBattleMoves[gCurrentMove].flags & FLAG_KINGS_ROCK_AFFECTED
-                && gBattleMons[gBattlerTarget].hp)
+                && !gBattleMoves[gCurrentMove].ignoresKingsRock
+                && gBattleMons[gBattlerTarget].hp
+                && RandomPercentage(RNG_HOLD_EFFECT_FLINCH, atkHoldEffectParam))
             {
                 gBattleScripting.moveEffect = MOVE_EFFECT_FLINCH;
                 BattleScriptPushCursor();

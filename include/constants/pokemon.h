@@ -217,7 +217,6 @@
 #define FLAG_MAGIC_COAT_AFFECTED                  (1 << 2)
 #define FLAG_SNATCH_AFFECTED                      (1 << 3)
 #define FLAG_MIRROR_MOVE_AFFECTED                 (1 << 4)
-#define FLAG_KINGS_ROCK_AFFECTED                  (1 << 5)
 #define FLAG_SHEER_FORCE_BOOST                    (1 << 9)
 
 // Split defines.
