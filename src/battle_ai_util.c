@@ -2214,6 +2214,11 @@ bool32 HasMagicCoatAffectedMove(u8 battler)
     CHECK_MOVE_FLAG(magicCoatAffected);
 }
 
+bool32 HasSnatchAffectedMove(u8 battler)
+{
+    CHECK_MOVE_FLAG(snatchAffected);
+}
+
 bool32 IsEncoreEncouragedEffect(u16 moveEffect)
 {
     u32 i;

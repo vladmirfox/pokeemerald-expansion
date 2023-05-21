@@ -130,6 +130,7 @@ bool32 IsSemiInvulnerable(u8 battlerDef, u16 move);
 bool32 HasSoundMove(u8 battler);
 bool32 HasHighCritRatioMove(u8 battler);
 bool32 HasMagicCoatAffectedMove(u8 battler);
+bool32 HasSnatchAffectedMove(u8 battler);
 
 // status checks
 bool32 AI_CanBeBurned(u8 battler, u16 ability);
