@@ -217,11 +217,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_RAZOR_WIND] =
     {
-        #if B_UPDATED_MOVE_DATA >= GEN_4
-            .flags = FLAG_MIRROR_MOVE_AFFECTED,
-        #else
-            .flags = FLAG_MIRROR_MOVE_AFFECTED,
-        #endif
         .effect = EFFECT_TWO_TURNS_ATTACK,
         .power = 80,
         .type = TYPE_NORMAL,
@@ -230,9 +225,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
+        .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .highCritRatio = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -348,6 +345,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .gravityBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -1380,6 +1378,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -1656,6 +1655,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -1830,6 +1830,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_ACC_UP_1,
         .mimicBanned = TRUE,
         .metronomeBanned = TRUE, // B_UPDATED_MOVE_FLAGS >= GEN_2
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -2058,6 +2059,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_ACC_UP_1,
         .snatchAffected = TRUE,
+        .sleepTalkBanned = TRUE,
     },
 
     [MOVE_BIDE] =
@@ -2078,6 +2080,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -2094,6 +2097,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = B_UPDATED_MOVE_FLAGS >= GEN_3,
         .instructBanned = TRUE,
     },
 
@@ -2110,6 +2114,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_ATK_UP_2,
         .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_4,
+        .sleepTalkBanned = B_UPDATED_MOVE_FLAGS >= GEN_3,
         .instructBanned = TRUE,
     },
 
@@ -2312,6 +2317,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -2539,11 +2545,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_SKY_ATTACK] =
     {
-        #if B_UPDATED_MOVE_DATA >= GEN_5
-            .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST,
-        #else
-            .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST,
-        #endif
         .effect = EFFECT_TWO_TURNS_ATTACK,
         .power = 140,
         .type = TYPE_FLYING,
@@ -2552,9 +2553,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .secondaryEffectChance = 30,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_PHYSICAL,
         .argument = MOVE_EFFECT_FLINCH,
         .zMoveEffect = Z_EFFECT_NONE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -2960,6 +2963,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .ignoresProtect = TRUE,
         .mimicBanned = TRUE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .instructBanned = TRUE,
     },
 
@@ -3837,6 +3841,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_BOOST_CRITS,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -4515,6 +4520,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .soundMove = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -4759,6 +4765,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_4,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -4872,6 +4879,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .instructBanned = TRUE,
         .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_4,
+        .sleepTalkBanned = TRUE,
     },
 
     [MOVE_INGRAIN] =
@@ -5143,6 +5151,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -5993,6 +6002,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .gravityBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -6716,6 +6726,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_SPD_UP_2,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -6733,6 +6744,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_ACC_UP_1,
         .instructBanned = TRUE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
     },
 
     [MOVE_POWER_SWAP] =
@@ -7861,6 +7873,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .meFirstBanned = TRUE,
         .mimicBanned = TRUE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -8176,6 +8189,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .argument = MOVE_EFFECT_FEINT,
         .ignoresProtect = TRUE,
         .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS == GEN_6,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -8837,6 +8851,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .gravityBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -9604,6 +9619,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .argument = MOVE_EFFECT_PARALYSIS,
         .zMoveEffect = Z_EFFECT_NONE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -9622,6 +9638,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .argument = MOVE_EFFECT_BURN,
         .zMoveEffect = Z_EFFECT_NONE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -9759,6 +9776,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .meFirstBanned = TRUE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -9829,6 +9847,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .ignoresProtect = TRUE,
         .makesContact = TRUE,
         .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS == GEN_6,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -10402,6 +10421,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_ALL_STATS_UP_1,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -10476,6 +10496,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_ALL_STATS_UP_1,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -10493,6 +10514,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_ALL_STATS_UP_1,
         .ignoresProtect = TRUE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -10904,6 +10926,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .slicingMove = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -11234,6 +11257,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .ballisticMove = TRUE,
         .meFirstBanned = TRUE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -11315,6 +11339,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .meFirstBanned = TRUE,
         .instructBanned = TRUE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
     },
 
     [MOVE_FLEUR_CANNON] =
@@ -11915,6 +11940,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .instructBanned = TRUE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
     },
 
     [MOVE_SNIPE_SHOT] =
@@ -14115,6 +14141,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .mimicBanned = TRUE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -14133,6 +14160,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .mimicBanned = TRUE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -14151,6 +14179,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .mimicBanned = TRUE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -14169,6 +14198,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .mimicBanned = TRUE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 
@@ -14187,6 +14217,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .mimicBanned = TRUE,
         .metronomeBanned = TRUE,
+        .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
     },
 

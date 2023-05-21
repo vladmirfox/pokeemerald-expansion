@@ -381,6 +381,7 @@ struct BattleMove
     u32 gravityBanned:1;
     u32 mimicBanned:1;
     u32 metronomeBanned:1;
+    u32 sleepTalkBanned:1;
     u32 instructBanned:1;
 };
 
