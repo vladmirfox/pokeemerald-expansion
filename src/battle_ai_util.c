@@ -2209,6 +2209,11 @@ bool32 HasHighCritRatioMove(u8 battler)
     CHECK_MOVE_FLAG(highCritRatio);
 }
 
+bool32 HasMagicCoatAffectedMove(u8 battler)
+{
+    CHECK_MOVE_FLAG(highCritRatio);
+}
+
 bool32 IsEncoreEncouragedEffect(u16 moveEffect)
 {
     u32 i;

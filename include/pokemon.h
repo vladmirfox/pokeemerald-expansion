@@ -351,6 +351,7 @@ struct BattleMove
     // Flags
     u32 makesContact:1;
     u32 ignoresProtect:1;
+    u32 magicCoatAffected:1;
     u32 ignoresKingsRock:1;
     u32 highCritRatio:1;
     u32 punchingMove:1;
@@ -377,7 +378,6 @@ struct BattleMove
     u32 threeStrikes:1; // May apply its effect on each hit.
     u32 meFirstBanned:1;
     u32 gravityBanned:1;
-    // Forbidden Table
     u32 mimicBanned:1;
     u32 metronomeBanned:1;
     u32 instructBanned:1;
