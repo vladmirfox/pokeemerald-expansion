@@ -27,7 +27,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .ignoresKingsRock = B_UPDATED_MOVE_DATA == GEN_4,
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_4,
     },
 
     [MOVE_KARATE_CHOP] =
@@ -286,7 +286,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .ignoresKingsRock = B_UPDATED_MOVE_DATA == GEN_4, // || B_UPDATED_MOVE_DATA == GEN_2
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_4, // || B_UPDATED_MOVE_FLAGS == GEN_2
         .damagesAirborneDoubleDamage = TRUE,
         .windMove = TRUE,
     },
@@ -329,7 +329,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_SPDEF_UP_1,
         .windMove = TRUE,
-        .ignoresProtect = B_MOVE_FLAGS_BYPASS_PROTECT >= GEN_6,
+        .ignoresProtect = B_UPDATED_MOVE_FLAGS >= GEN_6,
     },
 
     [MOVE_FLY] =
@@ -372,7 +372,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_DATA == GEN_2,
+        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
     },
 
     [MOVE_SLAM] =
@@ -508,7 +508,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_DATA == GEN_2,
+        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
     },
 
     [MOVE_SAND_ATTACK] =
@@ -628,7 +628,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE >= GEN_6,
+        .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS >= GEN_6,
     },
 
     [MOVE_WRAP] =
@@ -747,7 +747,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .ignoresKingsRock = B_UPDATED_MOVE_DATA < GEN_5, // && B_UPDATED_MOVE_DATA > GEN_2
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_5, // && B_UPDATED_MOVE_FLAGS > GEN_2
         .twoStrikes = TRUE,
     },
 
@@ -840,7 +840,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = -6,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_DEF_UP_1,
-        .ignoresProtect = B_MOVE_FLAGS_BYPASS_PROTECT >= GEN_6,
+        .ignoresProtect = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .soundMove = TRUE,
     },
 
@@ -1147,7 +1147,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_DATA == GEN_2,
+        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
         .instructBanned = TRUE,
     },
 
@@ -1235,9 +1235,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .ignoresKingsRock = B_UPDATED_MOVE_DATA < GEN_5, // && B_UPDATED_MOVE_DATA > GEN_2
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_5, // && B_UPDATED_MOVE_FLAGS > GEN_2
         .meFirstBanned = TRUE,
-        .metronomeBanned = TRUE, // B_MOVE_FLAGS_METRONOME >= GEN_2
+        .metronomeBanned = TRUE, // B_UPDATED_MOVE_FLAGS >= GEN_2
     },
 
     [MOVE_SEISMIC_TOSS] =
@@ -1289,7 +1289,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .ignoresKingsRock = B_UPDATED_MOVE_DATA < GEN_5, // && B_UPDATED_MOVE_DATA > GEN_2
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_5, // && B_UPDATED_MOVE_FLAGS > GEN_2
     },
 
     [MOVE_MEGA_DRAIN] =
@@ -1309,7 +1309,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .ignoresKingsRock = B_UPDATED_MOVE_DATA < GEN_5, // && B_UPDATED_MOVE_DATA > GEN_2
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_5, // && B_UPDATED_MOVE_FLAGS > GEN_2
     },
 
     [MOVE_LEECH_SEED] =
@@ -1488,7 +1488,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .ignoresKingsRock = B_UPDATED_MOVE_DATA == GEN_4, // || B_UPDATED_MOVE_DATA == GEN_2
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_4, // || B_UPDATED_MOVE_FLAGS == GEN_2
     },
 
     [MOVE_FIRE_SPIN] =
@@ -1509,7 +1509,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_DATA == GEN_2,
+        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
     },
 
     [MOVE_THUNDER_SHOCK] =
@@ -1613,7 +1613,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_DATA == GEN_2,
+        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
         .damagesUnderground = TRUE,
     },
 
@@ -1822,7 +1822,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_ACC_UP_1,
         .mimicBanned = TRUE,
-        .metronomeBanned = TRUE, // B_MOVE_FLAGS_METRONOME >= GEN_2
+        .metronomeBanned = TRUE, // B_UPDATED_MOVE_FLAGS >= GEN_2
         .instructBanned = TRUE,
     },
 
@@ -2099,7 +2099,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_ATK_UP_2,
-        .metronomeBanned = B_MOVE_FLAGS_METRONOME >= GEN_4,
+        .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_4,
         .instructBanned = TRUE,
     },
 
@@ -2265,7 +2265,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_DATA == GEN_2,
+        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
     },
 
     [MOVE_SWIFT] =
@@ -2508,7 +2508,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .ignoresKingsRock = B_UPDATED_MOVE_DATA < GEN_5, // && B_UPDATED_MOVE_DATA > GEN_2
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_5, // && B_UPDATED_MOVE_FLAGS > GEN_2
     },
 
     [MOVE_LOVELY_KISS] =
@@ -2562,7 +2562,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .ignoresProtect = TRUE,
         .mimicBanned = TRUE,
         .instructBanned = TRUE,
-        .metronomeBanned = B_MOVE_FLAGS_METRONOME >= GEN_5,
+        .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_5,
     },
 
     [MOVE_BUBBLE] =
@@ -2873,7 +2873,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .ignoresKingsRock = B_UPDATED_MOVE_DATA < GEN_5, // && B_UPDATED_MOVE_DATA > GEN_2
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_5, // && B_UPDATED_MOVE_FLAGS > GEN_2
     },
 
     [MOVE_SLASH] =
@@ -2987,7 +2987,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .ignoresKingsRock = B_UPDATED_MOVE_DATA < GEN_5, // && B_UPDATED_MOVE_DATA > GEN_2
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_5, // && B_UPDATED_MOVE_FLAGS > GEN_2
         .meFirstBanned = TRUE,
         .metronomeBanned = TRUE,
     },
@@ -3005,7 +3005,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MAGIC_COAT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_DEF_UP_1,
-        .ignoresProtect = (B_MOVE_FLAGS_BYPASS_PROTECT >= GEN_6) || (B_MOVE_FLAGS_BYPASS_PROTECT <= GEN_3),
+        .ignoresProtect = (B_UPDATED_MOVE_FLAGS >= GEN_6) || (B_UPDATED_MOVE_FLAGS <= GEN_3),
     },
 
     [MOVE_MIND_READER] =
@@ -3044,7 +3044,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_SPATK_UP_1,
-        .ignoresProtect = B_MOVE_FLAGS_BYPASS_PROTECT <= GEN_3,
+        .ignoresProtect = B_UPDATED_MOVE_FLAGS <= GEN_3,
     },
 
     [MOVE_FLAME_WHEEL] =
@@ -3086,7 +3086,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .soundMove = TRUE,
-        .metronomeBanned = B_MOVE_FLAGS_METRONOME >= GEN_5,
+        .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_5,
     },
 
     [MOVE_CURSE] =
@@ -3136,7 +3136,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_RECOVER_HP,
-        .ignoresProtect = B_MOVE_FLAGS_BYPASS_PROTECT >= GEN_5,
+        .ignoresProtect = B_UPDATED_MOVE_FLAGS >= GEN_5,
     },
 
     [MOVE_AEROBLAST] =
@@ -3614,7 +3614,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .ignoresKingsRock = B_UPDATED_MOVE_DATA < GEN_5, // && B_UPDATED_MOVE_DATA > GEN_2
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_5, // && B_UPDATED_MOVE_FLAGS > GEN_2
     },
 
     [MOVE_ENDURE] =
@@ -3799,7 +3799,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_SPDEF_UP_1,
-        .ignoresProtect = (B_MOVE_FLAGS_BYPASS_PROTECT >= GEN_6) || (B_MOVE_FLAGS_BYPASS_PROTECT <= GEN_3),
+        .ignoresProtect = (B_UPDATED_MOVE_FLAGS >= GEN_6) || (B_UPDATED_MOVE_FLAGS <= GEN_3),
     },
 
     [MOVE_ATTRACT] =
@@ -3846,7 +3846,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_SNATCH_AFFECTED,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_RECOVER_HP,
-        .soundMove = B_MOVE_FLAGS_SOUND != GEN_5,
+        .soundMove = B_UPDATED_MOVE_FLAGS != GEN_5,
     },
 
     [MOVE_RETURN] =
@@ -3878,7 +3878,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .ignoresKingsRock = B_UPDATED_MOVE_DATA < GEN_5, // && B_UPDATED_MOVE_DATA > GEN_2
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_5, // && B_UPDATED_MOVE_FLAGS > GEN_2
     },
 
     [MOVE_FRUSTRATION] =
@@ -4005,7 +4005,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        //.ignoresKingsRock = B_UPDATED_MOVE_DATA == GEN_2,
+        //.ignoresKingsRock = B_UPDATED_MOVE_FLAGS == GEN_2,
     },
 
     [MOVE_BATON_PASS] =
@@ -4055,7 +4055,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .ignoresKingsRock = B_UPDATED_MOVE_DATA < GEN_5, // && B_UPDATED_MOVE_DATA > GEN_2
+        .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_5, // && B_UPDATED_MOVE_FLAGS > GEN_2
     },
 
     [MOVE_RAPID_SPIN] =
@@ -4761,7 +4761,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
-        .metronomeBanned = B_MOVE_FLAGS_METRONOME >= GEN_4,
+        .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_4,
         .instructBanned = TRUE,
     },
 
@@ -4880,7 +4880,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .instructBanned = TRUE,
-        .metronomeBanned = B_MOVE_FLAGS_METRONOME >= GEN_4,
+        .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_4,
     },
 
     [MOVE_INGRAIN] =
@@ -5338,7 +5338,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE < GEN_4,
+        .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS < GEN_4,
     },
 
     [MOVE_SLACK_OFF] =
@@ -5481,7 +5481,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE < GEN_4,
+        .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS < GEN_4,
     },
 
     [MOVE_WEATHER_BALL] =
@@ -5759,7 +5759,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE < GEN_4,
+        .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS < GEN_4,
     },
 
     [MOVE_SKY_UPPERCUT] =
@@ -5918,7 +5918,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MAGIC_COAT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_DEF_UP_1,
-        .ignoresProtect = (B_MOVE_FLAGS_BYPASS_PROTECT >= GEN_6) || (B_MOVE_FLAGS_BYPASS_PROTECT <= GEN_3),
+        .ignoresProtect = (B_UPDATED_MOVE_FLAGS >= GEN_6) || (B_UPDATED_MOVE_FLAGS <= GEN_3),
     },
 
     [MOVE_HOWL] =
@@ -5938,7 +5938,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_SNATCH_AFFECTED,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_ATK_UP_1,
-        .soundMove = B_MOVE_FLAGS_SOUND >= GEN_8,
+        .soundMove = B_UPDATED_MOVE_FLAGS >= GEN_8,
     },
 
     [MOVE_DRAGON_CLAW] =
@@ -6189,7 +6189,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .ballisticMove = B_MOVE_FLAGS_BALLISTIC >= GEN_6,
+        .ballisticMove = B_UPDATED_MOVE_FLAGS >= GEN_6,
     },
 
     [MOVE_SHOCK_WAVE] =
@@ -7179,7 +7179,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE >= GEN_6,
+        .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS >= GEN_6,
     },
 
     [MOVE_POWER_GEM] =
@@ -8212,7 +8212,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .makesContact = TRUE,
         .argument = MOVE_EFFECT_FEINT,
         .ignoresProtect = TRUE,
-        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE == GEN_6,
+        .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS == GEN_6,
         .instructBanned = TRUE,
     },
 
@@ -8492,7 +8492,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .danceMove = TRUE,
-        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE >= GEN_7,
+        .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS >= GEN_7,
     },
 
     [MOVE_SYNCHRONOISE] =
@@ -9013,7 +9013,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_SPD_UP_2,
-        .ignoresProtect = B_MOVE_FLAGS_BYPASS_PROTECT >= GEN_6,
+        .ignoresProtect = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .metronomeBanned = TRUE,
     },
 
@@ -9338,7 +9338,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE >= GEN_6,
+        .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS >= GEN_6,
     },
 
     [MOVE_LEAF_TORNADO] =
@@ -9860,7 +9860,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .ignoresProtect = TRUE,
         .makesContact = TRUE,
-        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE == GEN_6,
+        .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS == GEN_6,
         .instructBanned = TRUE,
     },
 
@@ -11023,9 +11023,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_POLLEN_PUFF] =
     {
-        #if B_MOVE_FLAGS_BALLISTIC < GEN_9
-            .ballisticMove = TRUE,
-        #endif
         .effect = EFFECT_HIT_ENEMY_HEAL_ALLY,
         .power = 90,
         .type = TYPE_BUG,
@@ -11037,6 +11034,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .ballisticMove = B_UPDATED_MOVE_FLAGS < GEN_9,
     },
 
     [MOVE_ANCHOR_SHOT] =
@@ -11484,7 +11482,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .ignoresTargetAbility = TRUE,
-        .metronomeBanned = B_MOVE_FLAGS_METRONOME >= GEN_8,
+        .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_8,
     },
 
     [MOVE_MOONGEIST_BEAM] =
@@ -11501,7 +11499,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .ignoresTargetAbility = TRUE,
-        .metronomeBanned = B_MOVE_FLAGS_METRONOME >= GEN_8,
+        .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_8,
     },
 
     [MOVE_TEARFUL_LOOK] =
@@ -11550,7 +11548,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .metronomeBanned = B_MOVE_FLAGS_METRONOME >= GEN_8,
+        .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_8,
     },
 
     [MOVE_MULTI_ATTACK] =
@@ -11919,7 +11917,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .makesContact = TRUE,
         .punchingMove = TRUE,
         .twoStrikes = TRUE,
-        .minimizeDoubleDamage = B_MOVE_FLAGS_MINIMIZE < GEN_8,
+        .minimizeDoubleDamage = B_UPDATED_MOVE_FLAGS < GEN_8,
         .metronomeBanned = TRUE,
     },
 
@@ -12164,7 +12162,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_DECORATE] =
     {
-        .ignoresProtect = B_MOVE_FLAGS_BYPASS_PROTECT >= GEN_5,
+        .ignoresProtect = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .effect = EFFECT_DECORATE,
         .power = 0,
         .type = TYPE_FAIRY,
