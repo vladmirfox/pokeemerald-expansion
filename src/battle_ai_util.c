@@ -21,6 +21,16 @@
 #include "constants/moves.h"
 #include "constants/items.h"
 
+#define CHECK_MOVE_FLAG(flag)                                                                                   \
+    s32 i;                                                                                                      \
+    u16 *moves = GetMovesArray(battler);                                                                        \
+    for (i = 0; i < MAX_MON_MOVES; i++)                                                                         \
+    {                                                                                                           \
+        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].flag)               \
+            return TRUE;                                                                                        \
+    }                                                                                                           \
+    return FALSE
+
 static u32 AI_GetEffectiveness(u16 multiplier);
 
 // Const Data
@@ -2050,18 +2060,9 @@ bool32 HasTrappingMoveEffect(u8 battler)
     return FALSE;
 }
 
-bool32 HasThawingMove(u8 battlerId)
+bool32 HasThawingMove(u8 battler)
 {
-    s32 i;
-    u16 *moves = GetMovesArray(battlerId);
-
-    for (i = 0; i < MAX_MON_MOVES; i++)
-    {
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].thawsUser)
-            return TRUE;
-    }
-
-    return FALSE;
+    CHECK_MOVE_FLAG(thawsUser);
 }
 
 bool32 IsUngroundingEffect(u16 effect)
@@ -2200,28 +2201,12 @@ bool32 HasDamagingMoveOfType(u8 battlerId, u8 type)
 
 bool32 HasSoundMove(u8 battler)
 {
-    s32 i;
-    u16 *moves = GetMovesArray(battler);
-
-    for (i = 0; i < MAX_MON_MOVES; i++)
-    {
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].soundMove)
-            return TRUE;
-    }
-    return FALSE;
+    CHECK_MOVE_FLAG(soundMove);
 }
 
 bool32 HasHighCritRatioMove(u8 battler)
 {
-    s32 i;
-    u16 *moves = GetMovesArray(battler);
-
-    for (i = 0; i < MAX_MON_MOVES; i++)
-    {
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && gBattleMoves[moves[i]].highCritRatio)
-            return TRUE;
-    }
-    return FALSE;
+    CHECK_MOVE_FLAG(highCritRatio);
 }
 
 bool32 IsEncoreEncouragedEffect(u16 moveEffect)
