@@ -2004,19 +2004,16 @@ static bool32 EndTurnTerrain(u32 terrainFlag, u32 stringTableId)
 {
     if (gFieldStatuses & terrainFlag)
     {
+        if (terrainFlag & STATUS_FIELD_GRASSY_TERRAIN)
+            BattleScriptExecute(BattleScript_GrassyTerrainHeals);
         if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_PERMANENT) && --gFieldTimers.terrainTimer == 0)
         {
             gFieldStatuses &= ~terrainFlag;
             TryToRevertMimicry();
-            if (!(terrainFlag & STATUS_FIELD_GRASSY_TERRAIN))
-            {
-                gBattleCommunication[MULTISTRING_CHOOSER] = stringTableId;
-                BattleScriptExecute(BattleScript_TerrainEnds);
-            }
+            gBattleCommunication[MULTISTRING_CHOOSER] = stringTableId;
+            BattleScriptExecute(BattleScript_TerrainEnds);
+            return TRUE;
         }
-        if (terrainFlag & STATUS_FIELD_GRASSY_TERRAIN)
-            BattleScriptExecute(BattleScript_GrassyTerrainHeals);
-        return TRUE;
     }
     return FALSE;
 }
@@ -6756,7 +6753,7 @@ static bool32 GetMentalHerbEffect(u8 battlerId)
 static u8 TryConsumeMirrorHerb(u8 battlerId, bool32 execute)
 {
     u8 effect = 0;
-    
+
     if (gProtectStructs[battlerId].eatMirrorHerb) {
         gLastUsedItem = gBattleMons[battlerId].item;
         gBattleScripting.savedBattler = gBattlerAttacker;
