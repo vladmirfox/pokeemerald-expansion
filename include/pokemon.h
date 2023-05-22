@@ -353,6 +353,7 @@ struct BattleMove
     u32 ignoresProtect:1;
     u32 magicCoatAffected:1;
     u32 snatchAffected:1;
+    u32 mirrorMoveBanned:1;
     u32 ignoresKingsRock:1;
     u32 highCritRatio:1;
     u32 punchingMove:1;

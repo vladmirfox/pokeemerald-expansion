@@ -214,7 +214,6 @@
 #endif
 
 // Battle move flags
-#define FLAG_MIRROR_MOVE_AFFECTED                 (1 << 4)
 #define FLAG_SHEER_FORCE_BOOST                    (1 << 9)
 
 // Split defines.
