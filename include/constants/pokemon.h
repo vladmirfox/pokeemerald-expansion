@@ -213,9 +213,6 @@
 #define EV_ITEM_RAISE_LIMIT 100
 #endif
 
-// Battle move flags
-#define FLAG_SHEER_FORCE_BOOST                    (1 << 9)
-
 // Split defines.
 #define SPLIT_PHYSICAL  0x0
 #define SPLIT_SPECIAL   0x1
