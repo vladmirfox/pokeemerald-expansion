@@ -11000,7 +11000,7 @@ u8 GetBattlerGender(u8 battlerId)
                                               gBattleMons[battlerId].personality);
 }
 
-u8 AreBattlersOfOppositeGender(u8 battler1, u8 battler2)
+bool8 AreBattlersOfOppositeGender(u8 battler1, u8 battler2)
 {
     u8 gender1 = GetBattlerGender(battler1);
     u8 gender2 = GetBattlerGender(battler2);

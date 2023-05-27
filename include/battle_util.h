@@ -236,6 +236,6 @@ bool32 IsMyceliumMightOnField(void);
 bool8 ChangeTypeBasedOnTerrain(u8 battlerId);
 void RemoveConfusionStatus(u8 battlerId);
 u8 GetBattlerGender(u8 battlerId);
-u8 AreBattlersOfOppositeGender(u8 battler1, u8 battler2);
+bool8 AreBattlersOfOppositeGender(u8 battler1, u8 battler2);
 
 #endif // GUARD_BATTLE_UTIL_H
