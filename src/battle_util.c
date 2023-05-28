@@ -6086,6 +6086,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     return effect;
 }
 
+bool32 TryPrimalReversion(u8 battlerId)
+{
+    if (GetBattlerHoldEffect(battlerId, FALSE) == HOLD_EFFECT_PRIMAL_ORB
+     && GetBattleFormChangeTargetSpecies(battlerId, FORM_CHANGE_BATTLE_PRIMAL_REVERSION) != SPECIES_NONE)
+    {
+        BattleScriptExecute(BattleScript_PrimalReversion);
+        return TRUE;
+    }
+    return FALSE;
+}
+
 bool32 IsNeutralizingGasBannedAbility(u32 ability)
 {
     switch (ability)
