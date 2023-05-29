@@ -288,12 +288,17 @@ static void HandleInputChooseAction(void)
         gPlayerDpadHoldFrames = 0;
 
 #if B_LAST_USED_BALL == TRUE && B_LAST_USED_BALL_CYCLE == TRUE
-    if (!gLastUsedBallMenuPresent)
+    if (!gLastUsedBallMenuPresent){
         sAckBallUseBtn = FALSE;
-    else if(JOY_NEW(B_LAST_USED_BALL_BUTTON))
+        ArrowsChangeColorLastBallCycle(FALSE);
+    }
+    else if(JOY_NEW(B_LAST_USED_BALL_BUTTON)){
         sAckBallUseBtn = TRUE;
-    else if (sAckBallUseBtn && JOY_NEW(B_BUTTON)){
+        ArrowsChangeColorLastBallCycle(TRUE);
+    }
+    else if (sAckBallUseBtn && JOY_NEW(B_LAST_USED_BTN_CANCEL_CYC)){
         sAckBallUseBtn = FALSE;
+        ArrowsChangeColorLastBallCycle(FALSE);
         PlaySE(SE_PC_OFF);
     }
     if(sAckBallUseBtn){

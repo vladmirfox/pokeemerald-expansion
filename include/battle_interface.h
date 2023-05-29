@@ -106,6 +106,7 @@ void TryHideLastUsedBall(void);
 void TryRestoreLastUsedBall(void);
 void TryAddLastUsedBallItemSprites(void);
 void SwapBallToDisplay(bool32 sameBall);
+void ArrowsChangeColorLastBallCycle(bool32 showBall);
 void UpdateAbilityPopup(u8 battlerId);
 
 #endif // GUARD_BATTLE_INTERFACE_H
