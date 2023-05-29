@@ -1682,6 +1682,7 @@ BattleScript_EffectPartingShotSwitch:
 	printstring STRINGID_SWITCHINMON
 	switchinanim BS_ATTACKER, TRUE
 	waitstate
+	call BattleScript_TryPrimalReversionRet
 	switchineffects BS_ATTACKER
 BattleScript_PartingShotEnd:
 	end
@@ -2790,6 +2791,7 @@ BattleScript_EffectHealingWish:
 	printstring STRINGID_SWITCHINMON
 	switchinanim BS_ATTACKER, TRUE
 	waitstate
+	call BattleScript_TryPrimalReversionRet
 	switchineffects BS_ATTACKER
 .endif
 BattleScript_EffectHealingWishEnd:
@@ -3198,6 +3200,7 @@ BattleScript_EffectHitEscape:
 	printstring STRINGID_SWITCHINMON
 	switchinanim BS_ATTACKER, TRUE
 	waitstate
+	call BattleScript_TryPrimalReversionRet
 	switchineffects BS_ATTACKER
 BattleScript_HitEscapeEnd:
 	end
@@ -5127,6 +5130,7 @@ BattleScript_EffectBatonPass::
 	printstring STRINGID_SWITCHINMON
 	switchinanim BS_ATTACKER, TRUE
 	waitstate
+	call BattleScript_TryPrimalReversionRet
 	switchineffects BS_ATTACKER
 	goto BattleScript_MoveEnd
 
@@ -5444,6 +5448,7 @@ BattleScript_EffectTeleportNew:
 	printstring STRINGID_SWITCHINMON
 	switchinanim BS_ATTACKER, TRUE
 	waitstate
+	call BattleScript_TryPrimalReversionRet
 	switchineffects BS_ATTACKER
 BattleScript_EffectTeleportNewEnd:
 	goto BattleScript_MoveEnd
@@ -6499,6 +6504,7 @@ BattleScript_FaintedMonTryChoose:
 	switchinanim BS_ATTACKER, 0
 	waitstate
 	setbyte sSHIFT_SWITCHED, 1
+	call BattleScript_TryPrimalReversionRet
 BattleScript_FaintedMonSendOutNew:
 	drawpartystatussummary BS_FAINTED
 	getswitchedmondata BS_FAINTED
@@ -6513,6 +6519,7 @@ BattleScript_FaintedMonSendOutNew:
 	waitstate
 	resetplayerfainted
 	trytrainerslidelastonmsg BS_FAINTED
+	call BattleScript_TryPrimalReversionRet
 	jumpifbytenotequal sSHIFT_SWITCHED, sZero, BattleScript_FaintedMonShiftSwitched
 BattleScript_FaintedMonSendOutNewEnd:
 	switchineffects BS_FAINTED
@@ -6546,6 +6553,8 @@ BattleScript_LinkHandleFaintedMonLoop::
 	hidepartystatussummary BS_FAINTED
 	switchinanim BS_FAINTED, FALSE
 	waitstate
+	copybyte gBattlerAttacker, gBattlerFainted
+	call BattleScript_TryPrimalReversionRet
 	switchineffects BS_FAINTED_LINK_MULTIPLE_1
 	jumpifbytenotequal gBattlerFainted, gBattlersCount, BattleScript_LinkHandleFaintedMonLoop
 BattleScript_LinkHandleFaintedMonMultipleEnd::
@@ -6770,9 +6779,7 @@ BattleScript_DoSwitchOut::
 	hidepartystatussummary BS_ATTACKER
 	switchinanim BS_ATTACKER, FALSE
 	waitstate
-	jumpifcantreverttoprimal BattleScript_DoSwitchOut2
-	call BattleScript_PrimalReversionRet
-BattleScript_DoSwitchOut2:
+	call BattleScript_TryPrimalReversionRet
 	switchineffects BS_ATTACKER
 	moveendcase MOVEEND_STATUS_IMMUNITY_ABILITIES
 	moveendcase MOVEEND_MIRROR_MOVE
@@ -7940,7 +7947,8 @@ BattleScript_PrimalReversion::
 	switchinabilities BS_ATTACKER
 	end2
 
-BattleScript_PrimalReversionRet::
+BattleScript_TryPrimalReversionRet::
+	jumpifcantreverttoprimal BattleScript_TryPrimalReversionRetEnd
 	printstring STRINGID_EMPTYSTRING3
 	waitmessage 1
 	setbyte gIsCriticalHit, 0
@@ -7951,6 +7959,7 @@ BattleScript_PrimalReversionRet::
 	handleprimalreversion BS_ATTACKER, 2
 	printstring STRINGID_PKMNREVERTEDTOPRIMAL
 	waitmessage B_WAIT_TIME_LONG
+BattleScript_TryPrimalReversionRetEnd:
 	return
 
 BattleScript_AttackerFormChange::
@@ -8572,6 +8581,8 @@ BattleScript_EmergencyExitNoPopUp::
 	printstring STRINGID_SWITCHINMON
 	switchinanim BS_TARGET, TRUE
 	waitstate
+	copybyte gBattlerAttacker, gBattlerTarget
+	call BattleScript_TryPrimalReversionRet
 	switchineffects BS_TARGET
 BattleScript_EmergencyExitRet:
 	return
@@ -10355,6 +10366,8 @@ BattleScript_EjectButtonActivates::
 	printstring 0x3
 	switchinanim BS_SCRIPTING 0x1
 	waitstate
+	copybyte gBattlerAttacker, gBattleScripting
+	call BattleScript_TryPrimalReversionRet
 	switchineffects BS_SCRIPTING
 BattleScript_EjectButtonEnd:
 	return
