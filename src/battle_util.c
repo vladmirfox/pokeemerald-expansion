@@ -63,7 +63,6 @@ static u8 GetFlingPowerFromItemId(u16 itemId);
 static void SetRandomMultiHitCounter();
 static u32 GetBattlerItemHoldEffectParam(u8 battlerId, u16 item);
 static u16 GetInverseTypeMultiplier(u16 multiplier);
-static u16 GetSupremeOverlordModifier(u8 battlerId);
 static bool8 CanBeInfinitelyConfused(u8 battlerId);
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
@@ -4158,23 +4157,14 @@ bool8 ChangeTypeBasedOnTerrain(u8 battlerId)
     return TRUE;
 }
 
-// Supreme Overlord adds a damage boost for each fainted ally.
-// The first ally adds a x1.2 boost, and subsequent allies add an extra x0.1 boost each.
+// Supreme Overlord adds a x0.1 damage boost for each fainted ally.
 static u16 GetSupremeOverlordModifier(u8 battlerId)
 {
     u32 i;
-    struct Pokemon *party = GetBattlerParty(battlerId);
     u16 modifier = UQ_4_12(1.0);
-    bool8 appliedFirstBoost = FALSE;
 
-    for (i = 0; i < PARTY_SIZE; i++)
-    {
-        if (GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE
-         && !GetMonData(&party[i], MON_DATA_IS_EGG)
-         && GetMonData(&party[i], MON_DATA_HP) == 0)
-            modifier += (!appliedFirstBoost) ? UQ_4_12(0.2) : UQ_4_12(0.1);
-        appliedFirstBoost = TRUE;
-    }
+    for (i = 0; i < gBattleStruct->supremeOverlordCounter[battlerId]; i++)
+        modifier += UQ_4_12(0.1);
 
     return modifier;
 }
@@ -4729,10 +4719,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         case ABILITY_SUPREME_OVERLORD:
-            if (!gSpecialStatuses[battler].switchInAbilityDone && CountUsablePartyMons(battler) < PARTY_SIZE)
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                gBattleStruct->supremeOverlordModifier[battler] = GetSupremeOverlordModifier(battler);
+                gBattleStruct->supremeOverlordCounter[battler] = min(5, gBattleStruct->faintedMonCount[GetBattlerSide(battler)]);
                 BattleScriptPushCursorAndCallback(BattleScript_SupremeOverlordActivates);
                 effect++;
             }
@@ -8687,6 +8677,9 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_ELECTRIC_TERRAIN))
             MulModifier(&basePower, UQ_4_12(1.5));
         break;
+    case EFFECT_LAST_RESPECTS:
+        basePower += (basePower * gBattleStruct->faintedMonCount[GetBattlerSide(battlerAtk)]);
+        break;
     }
 
     // Move-specific base power changes
@@ -8847,7 +8840,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
            MulModifier(&modifier, UQ_4_12(1.5));
         break;
     case ABILITY_SUPREME_OVERLORD:
-        MulModifier(&modifier, gBattleStruct->supremeOverlordModifier[battlerAtk]);
+        MulModifier(&modifier, GetSupremeOverlordModifier(battlerAtk));
         break;
     }
 

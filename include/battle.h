@@ -657,7 +657,6 @@ struct BattleStruct
     u8 battleBondTransformed[NUM_BATTLE_SIDES]; // Bitfield for each party.
     u8 storedHealingWish:4; // Each battler as a bit.
     u8 storedLunarDance:4; // Each battler as a bit.
-    u16 supremeOverlordModifier[MAX_BATTLERS_COUNT];
     u8 itemPartyIndex[MAX_BATTLERS_COUNT];
     u8 itemMoveIndex[MAX_BATTLERS_COUNT];
     bool8 trainerSlideHalfHpMsgDone;
@@ -668,6 +667,8 @@ struct BattleStruct
     bool8 trainerSlideMegaEvolutionMsgDone;
     bool8 trainerSlideZMoveMsgDone;
     bool8 trainerSlideBeforeFirstTurnMsgDone;
+    u8 faintedMonCount[NUM_BATTLE_SIDES];
+    u8 supremeOverlordCounter[MAX_BATTLERS_COUNT];
 };
 
 #define F_DYNAMIC_TYPE_1 (1 << 6)

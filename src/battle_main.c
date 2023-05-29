@@ -3308,6 +3308,7 @@ void SwitchInClearSetData(void)
 void FaintClearSetData(void)
 {
     s32 i;
+    u8 battlerSide = GetBattlerSide(gActiveBattler);
 
     for (i = 0; i < NUM_BATTLE_STATS; i++)
         gBattleMons[gActiveBattler].statStages[i] = DEFAULT_STAT_STAGE;
@@ -3387,7 +3388,7 @@ void FaintClearSetData(void)
 
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (i != gActiveBattler && GetBattlerSide(i) != GetBattlerSide(gActiveBattler))
+        if (i != gActiveBattler && GetBattlerSide(i) != battlerSide)
             gBattleStruct->lastTakenMove[i] = MOVE_NONE;
 
         gBattleStruct->lastTakenMoveFrom[i][gActiveBattler] = 0;
@@ -3447,6 +3448,10 @@ void FaintClearSetData(void)
     gBattleStruct->zmove.active = FALSE;
     gBattleStruct->zmove.toBeUsed[gActiveBattler] = MOVE_NONE;
     gBattleStruct->zmove.effect = EFFECT_HIT;
+
+    // Adds to the fainted mon counter (with a max of 100)
+    if (gBattleStruct->faintedMonCount[battlerSide] < 100)
+        gBattleStruct->faintedMonCount[battlerSide]++;
 }
 
 static void DoBattleIntro(void)
