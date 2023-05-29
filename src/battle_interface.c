@@ -3282,10 +3282,18 @@ static const struct OamData sOamData_LastUsedBall =
     .objMode = 0,
     .mosaic = 0,
     .bpp = 0,
+#if B_LAST_USED_BALL_CYCLE == TRUE
+    .shape = SPRITE_SHAPE(32x64),
+#else
     .shape = SPRITE_SHAPE(32x32),
+#endif
     .x = 0,
     .matrixNum = 0,
+#if B_LAST_USED_BALL_CYCLE == TRUE
+    .size = SPRITE_SIZE(32x64),
+#else
     .size = SPRITE_SIZE(32x32),
+#endif
     .tileNum = 0,
     .priority = 1,
     .paletteNum = 0,
@@ -3303,8 +3311,12 @@ static const struct SpriteTemplate sSpriteTemplate_LastUsedBallWindow =
     .callback = SpriteCB_LastUsedBallWin
 };
 
-#if B_LAST_USED_BALL_BUTTON == R_BUTTON
-    static const u8 sLastUsedBallWindowGfx[] = INCBIN_U8("graphics/battle_interface/last_used_ball_r.4bpp");
+#if B_LAST_USED_BALL_BUTTON == R_BUTTON && B_LAST_USED_BALL_CYCLE == TRUE
+    static const u8 ALIGNED(4) sLastUsedBallWindowGfx[] = INCBIN_U8("graphics/battle_interface/last_used_ball_r_cycle.4bpp");
+#elif B_LAST_USED_BALL_CYCLE == TRUE
+    static const u8 ALIGNED(4) sLastUsedBallWindowGfx[] = INCBIN_U8("graphics/battle_interface/last_used_ball_l_cycle.4bpp");
+#elif B_LAST_USED_BALL_BUTTON == R_BUTTON
+    static const u8 ALIGNED(4) sLastUsedBallWindowGfx[] = INCBIN_U8("graphics/battle_interface/last_used_ball_r.4bpp");
 #else
     static const u8 sLastUsedBallWindowGfx[] = INCBIN_U8("graphics/battle_interface/last_used_ball_l.4bpp");
 #endif
@@ -3386,6 +3398,9 @@ void TryAddLastUsedBallItemSprites(void)
         gSprites[gBattleStruct->ballSpriteIds[0]].sHide = FALSE;   // restore
         gLastUsedBallMenuPresent = TRUE;
     }
+#if B_LAST_USED_BALL_CYCLE == TRUE
+    ArrowsChangeColorLastBallCycle(0); //Default the arrows to be invisible
+#endif
 #endif
 }
 
@@ -3465,6 +3480,9 @@ static void TryHideOrRestoreLastUsedBall(u8 caseId)
         gLastUsedBallMenuPresent = TRUE;
         break;
     }
+#if B_LAST_USED_BALL_CYCLE == TRUE
+    ArrowsChangeColorLastBallCycle(0); //Default the arrows to be invisible
+#endif
 #endif
 }
 
@@ -3556,4 +3574,35 @@ void SwapBallToDisplay(bool32 sameBall){
     u8 taskId;
     taskId = CreateTask(Task_BounceBall, 10);
     gTasks[taskId].sSameBall = sameBall;
+}
+
+void ArrowsChangeColorLastBallCycle(bool32 showBall)
+{
+    u16 paletteNum = 16 + gSprites[gBattleStruct->ballSpriteIds[1]].oam.paletteNum;
+    struct PlttData *defaultPlttArrow;
+    struct PlttData *defaultPlttOutline;
+    struct PlttData *pltArrow;
+    struct PlttData *pltOutline;
+    paletteNum *= 16;
+    pltArrow = (struct PlttData *)&gPlttBufferFaded[paletteNum + 9];  // Arrow color is in idx 9
+    pltOutline = (struct PlttData *)&gPlttBufferFaded[paletteNum + 8];  // Arrow outline is in idx 8
+    if(!showBall){  //Make invisible
+        defaultPlttArrow = (struct PlttData *)&gPlttBufferFaded[paletteNum + 13];  // Background color is idx 13
+        pltArrow->r = defaultPlttArrow->r;
+        pltArrow->g = defaultPlttArrow->g;
+        pltArrow->b = defaultPlttArrow->b;
+        pltOutline->r = defaultPlttArrow->r;
+        pltOutline->g = defaultPlttArrow->g;
+        pltOutline->b = defaultPlttArrow->b;
+    }
+    else{  // Make gray
+        defaultPlttArrow = (struct PlttData *)&gPlttBufferFaded[paletteNum + 11];  // Grey color is idx 11
+        defaultPlttOutline = (struct PlttData *)&gPlttBufferFaded[paletteNum + 10];  //Light grey color for outline is idx 10
+        pltArrow->r = defaultPlttArrow->r;
+        pltArrow->g = defaultPlttArrow->g;
+        pltArrow->b = defaultPlttArrow->b;
+        pltOutline->r = defaultPlttOutline->r;
+        pltOutline->g = defaultPlttOutline->g;
+        pltOutline->b = defaultPlttOutline->b;
+    }
 }
