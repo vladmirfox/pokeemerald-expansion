@@ -2254,19 +2254,6 @@ bool32 MoveCallsOtherMove(u16 move)
     return FALSE;
 }
 
-bool32 TestMoveFlagsInMoveset(u8 battler, u32 flags)
-{
-    s32 i;
-    u16 *moves = GetMovesArray(battler);
-
-    for (i = 0; i < MAX_MON_MOVES; i++)
-    {
-        if (moves[i] != MOVE_NONE && moves[i] != MOVE_UNAVAILABLE && TestMoveFlags(moves[i], flags))
-            return TRUE;
-    }
-    return FALSE;
-}
-
 static u32 GetLeechSeedDamage(u8 battlerId)
 {
     u32 damage = 0;

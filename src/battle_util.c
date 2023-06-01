@@ -10382,13 +10382,6 @@ u8 GetSplitBasedOnStats(u8 battlerId)
         return SPLIT_PHYSICAL;
 }
 
-bool32 TestMoveFlags(u16 move, u32 flag)
-{
-    if (gBattleMoves[move].flags & flag)
-        return TRUE;
-    return FALSE;
-}
-
 static u8 GetFlingPowerFromItemId(u16 itemId)
 {
     if (itemId >= ITEM_TM01 && itemId <= ITEM_HM08)
