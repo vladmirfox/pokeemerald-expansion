@@ -1,5 +1,5 @@
 from pcpp import Preprocessor, Evaluator
-from cxxheaderparser.simple import parse_file
+from cxxheaderparser.simple import parse_file, CxxParser, SimpleCxxVisitor
 import os
 
 globalVersion = 0
@@ -26,14 +26,29 @@ def pull_new_version():
         print("v0 saved. please make changes in order to enable v1")
         quit()
 
-def parse_field(field):
+def is_integer(n):
+    try:
+        float(n)
+    except ValueError:
+        return False
+    else:
+        return float(n).is_integer()
+
+def parse_field(field, enumlist):
     cl = {}
     e = Evaluator()
     cl['type'] = field.type.__class__.__name__
     if hasattr(field.type, 'size'):
         sizetokens = ""
         for x in field.type.size.tokens:
-            sizetokens += str(x.value)
+            if is_integer(x.value) or x.value in ['+', '-', '%', '(', ')', '/', '?', ':'] or str(x.value).startswith("0x"):
+                sizetokens += str(x.value)
+            else:
+                if x.value in enumlist:
+                    sizetokens += str(enumlist[x.value])
+                else:
+                    print("Error: unable to figure out enum value of %s" % x.value)
+                    quit()
         cl['size'] = e(sizetokens)
     if (field.bits != None):
         cl['bits'] = field.bits
@@ -45,9 +60,19 @@ pull_new_version()
 classes_old = {}
 classes_new = {}
 
+def parse_file2(path):
+    out = parse_file(path)
+    enum_out = {}
+    for x in out.namespace.enums:
+        val = 0
+        for y in x.values:
+            enum_out[y.name] = val
+            val += 1
+    return(out, enum_out)
+
 # global
-contents_old = parse_file('versioning/global_v0.c')
-contents_new = parse_file('versioning/global_v1.c')
+contents_old, enums_old = parse_file2('versioning/global_v0.c')
+contents_new, enums_new = parse_file2('versioning/global_v1.c')
 for x in contents_old.namespace.classes:
     if hasattr(x.class_decl.typename.segments[0], 'name'):
         classes_old[x.class_decl.typename.segments[0].name] = x
@@ -56,8 +81,8 @@ for x in contents_new.namespace.classes:
         classes_new[x.class_decl.typename.segments[0].name] = x
 
 # pokemon_storage_system
-contents_old = parse_file('versioning/pokemon_storage_system_v0.c')
-contents_new = parse_file('versioning/pokemon_storage_system_v1.c')
+contents_old = parse_file2('versioning/pokemon_storage_system_v0.c')[0]
+contents_new = parse_file2('versioning/pokemon_storage_system_v1.c')[0]
 for x in contents_old.namespace.classes:
     if hasattr(x.class_decl.typename.segments[0], 'name'):
         classes_old[x.class_decl.typename.segments[0].name] = x
@@ -76,8 +101,10 @@ def compareFields(fieldname):
     # compare
     print("Comparing %s" % fieldname)
     for x in classes_new[fieldname].fields:
-        oldclass = parse_field(fields_old[x.name])
-        newclass = parse_field(x)
+        oldclass = parse_field(fields_old[x.name], enums_old)
+        newclass = parse_field(x, enums_new)
+
+        #print(oldclass, newclass)
 
         if (x.name in fields_old_array):
             fields_old_array.remove(x.name)
