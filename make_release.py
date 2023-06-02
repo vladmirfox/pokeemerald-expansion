@@ -40,7 +40,7 @@ def parse_size(tokens, enumlist):
     sizetokens = ""
     e = Evaluator()
     for x in tokens:
-        if is_integer(x.value) or x.value in ['+', '-', '%', '(', ')', '/', '?', ':', '*'] or str(x.value).startswith("0x"):
+        if is_integer(x.value) or x.value in ['+', '-', '%', '(', ')', '/', '?', ':', '*', '>', '<', '='] or str(x.value).startswith("0x"):
             sizetokens += str(x.value)
         else:
             if x.value in enumlist:
@@ -62,17 +62,27 @@ def parse_field(field, enumlist):
         if field.type.typename.classkey == 'union':
             cl['is_union'] = True
     elif (cl['type'] == "Array"):
-        if (field.type.array_of.__class__.__name__ == "Type"):
+        if (field.type.array_of.__class__.__name__ == "Type"): #1D ARRAY
             cl['kind'] = field.type.array_of.typename.segments[0].name
             cl['is_struct'] = (field.type.array_of.typename.classkey == 'struct')
         elif (field.type.array_of.__class__.__name__ == "Array"):
-            cl['kind'] = field.type.array_of.array_of.typename.segments[0].name
-            cl['is_struct'] = (field.type.array_of.array_of.typename.classkey == 'struct')
+            if (field.type.array_of.array_of.__class__.__name__ == "Type"): #2D ARRAY
+                cl['kind'] = field.type.array_of.array_of.typename.segments[0].name
+                cl['is_struct'] = (field.type.array_of.array_of.typename.classkey == 'struct')
+            elif (field.type.array_of.__class__.__name__ == "Array"): #3D ARRAY
+                cl['kind'] = field.type.array_of.array_of.array_of.typename.segments[0].name
+                cl['is_struct'] = (field.type.array_of.array_of.array_of.typename.classkey == 'struct')
+    elif (cl['type'] == "Pointer"):
+        cl['kind'] = field.type.ptr_to.typename.segments[0].name
+        cl['is_pointer'] = True
     if hasattr(field.type, 'size'):
         cl['size'] = parse_size(field.type.size.tokens, enumlist)
     if hasattr(field.type, 'array_of'):
         if hasattr(field.type.array_of, 'size'):
             cl['size2'] = parse_size(field.type.array_of.size.tokens, enumlist)
+        if hasattr(field.type.array_of, 'array_of'):
+            if hasattr(field.type.array_of.array_of, 'size'):
+                cl['size3'] = parse_size(field.type.array_of.array_of.size.tokens, enumlist)
     if (field.bits != None):
         cl['bits'] = field.bits
     return(cl)
@@ -130,6 +140,7 @@ def compareFields(fieldname, inline):
         # print(oldclass, newclass)
 
         if (x.name in fields_old_array):
+            print(x)
             fields_old_array.remove(x.name)
             if (x == fields_old[x.name]):
                 print("  " * inline + "%s is identical" % x.name)
