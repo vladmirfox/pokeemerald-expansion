@@ -2,7 +2,7 @@ from pcpp import Preprocessor, Evaluator
 from cxxheaderparser.simple import parse_file, CxxParser, SimpleCxxVisitor
 import os
 
-trusted_typedefs = ['u8', 'u16', 'u32', 'u64', 's8', 's16', 's32', 's64', 'bool8', 'bool16', 'bool32']
+trusted_typedefs = ['u8', 'u16', 'u32', 'u64', 's8', 's16', 's32', 's64', 'bool8', 'bool16', 'bool32', 'int']
 
 globalVersion = 0
 globalHasChanges = False
@@ -132,7 +132,7 @@ def compareFields(fieldname, inline):
         fields_old_array.append(x.name)
 
     # compare
-    print("  " * inline + "Comparing %s" % fieldname)
+    print("  " * (inline - 1) + "Comparing %s" % fieldname)
     for x in classes_new[fieldname].fields:
         oldclass = parse_field(fields_old[x.name], enums_old)
         newclass = parse_field(x, enums_new)
@@ -140,12 +140,17 @@ def compareFields(fieldname, inline):
         # print(oldclass, newclass)
 
         if (x.name in fields_old_array):
-            print(x)
             fields_old_array.remove(x.name)
             if (x == fields_old[x.name]):
                 print("  " * inline + "%s is identical" % x.name)
                 # if identical, check the actual kind to make sure the underlying struct didn't change
-                if newclass['kind'] not in trusted_typedefs and not 'is_union' in newclass: # union support is left to do!
+                if newclass['kind'] not in trusted_typedefs:
+                    if 'is_union' in newclass:
+                        print("  " * inline + "WARNING: Union support is currently still missing (%s)" % newclass['kind'])
+                        continue
+                    if newclass['kind'] in ['TVShow', 'PokeNews', 'LilycoveLady']:
+                        print("  " * inline + "WARNING: The following structs are unsupported: %s" % newclass['kind'])
+                        continue
                     compareFields(newclass['kind'], inline + 1)
                 continue
             # figure out what exactly is different, starting with size
@@ -167,9 +172,9 @@ def compareFields(fieldname, inline):
     if len(fields_old_array) > 0:
         print("  " * inline + "The following old fields are not retained: %s" % fields_old_array)
 
-compareFields('SaveBlock2', 0)
-compareFields('SaveBlock1', 0)
-compareFields('PokemonStorage', 0)
+compareFields('SaveBlock2', 1)
+compareFields('SaveBlock1', 1)
+compareFields('PokemonStorage', 1)
 
 # clean up if no changes
 if not globalHasChanges:
