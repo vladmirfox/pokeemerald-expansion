@@ -1,6 +1,7 @@
 from pcpp import Preprocessor, Evaluator
 from cxxheaderparser.simple import parse_file, CxxParser, SimpleCxxVisitor
 import os
+import sys
 
 trusted_typedefs = ['u8', 'u16', 'u32', 'u64', 's8', 's16', 's32', 's64', 'bool8', 'bool16', 'bool32', 'int']
 
@@ -87,12 +88,6 @@ def parse_field(field, enumlist):
         cl['bits'] = field.bits
     return(cl)
 
-pull_new_version()
-
-# use cxxheaderparser to figure out everything
-classes_old = {}
-classes_new = {}
-
 def parse_file2(path):
     out = parse_file(path)
     enum_out = {}
@@ -103,26 +98,6 @@ def parse_file2(path):
             val += 1
     return(out, enum_out)
 
-# global
-contents_old, enums_old = parse_file2('versioning/global_v0.c')
-contents_new, enums_new = parse_file2('versioning/global_v1.c')
-for x in contents_old.namespace.classes:
-    if hasattr(x.class_decl.typename.segments[0], 'name'):
-        classes_old[x.class_decl.typename.segments[0].name] = x
-for x in contents_new.namespace.classes:
-    if hasattr(x.class_decl.typename.segments[0], 'name'):
-        classes_new[x.class_decl.typename.segments[0].name] = x
-
-# pokemon_storage_system
-contents_old = parse_file2('versioning/pokemon_storage_system_v0.c')[0]
-contents_new = parse_file2('versioning/pokemon_storage_system_v1.c')[0]
-for x in contents_old.namespace.classes:
-    if hasattr(x.class_decl.typename.segments[0], 'name'):
-        classes_old[x.class_decl.typename.segments[0].name] = x
-for x in contents_new.namespace.classes:
-    if hasattr(x.class_decl.typename.segments[0], 'name'):
-        classes_new[x.class_decl.typename.segments[0].name] = x
-
 def compareFields(fieldname, inline):
     # make list of fields
     fields_old = {}
@@ -132,7 +107,10 @@ def compareFields(fieldname, inline):
         fields_old_array.append(x.name)
 
     # compare
-    print("  " * (inline - 1) + "Comparing %s" % fieldname)
+    if '--verbose' in sys.argv or (inline == 1):
+        print("  " * (inline - 1) + "Comparing %s" % fieldname)
+    if not '--verbose' in sys.argv:
+        inline = 0
     for x in classes_new[fieldname].fields:
         oldclass = parse_field(fields_old[x.name], enums_old)
         newclass = parse_field(x, enums_new)
@@ -142,7 +120,8 @@ def compareFields(fieldname, inline):
         if (x.name in fields_old_array):
             fields_old_array.remove(x.name)
             if (x == fields_old[x.name]):
-                print("  " * inline + "%s is identical" % x.name)
+                if '--verbose' in sys.argv:
+                    print("  " * inline + "%s is identical" % x.name)
                 # if identical, check the actual kind to make sure the underlying struct didn't change
                 if newclass['kind'] not in trusted_typedefs:
                     if 'is_union' in newclass:
@@ -172,12 +151,38 @@ def compareFields(fieldname, inline):
     if len(fields_old_array) > 0:
         print("  " * inline + "The following old fields are not retained: %s" % fields_old_array)
 
-compareFields('SaveBlock2', 1)
-compareFields('SaveBlock1', 1)
-compareFields('PokemonStorage', 1)
 
-# clean up if no changes
-if not globalHasChanges:
-    print("No save migration needed!")
-    os.remove("versioning/global_v%s.c" % globalVersion)
-    os.remove("versioning/pokemon_storage_system_v%s.c" % globalVersion)
+if __name__ == "__main__":
+    pull_new_version()
+    # use cxxheaderparser to figure out everything
+    classes_old = {}
+    classes_new = {}
+
+    # global
+    contents_old, enums_old = parse_file2('versioning/global_v0.c')
+    contents_new, enums_new = parse_file2('versioning/global_v1.c')
+    for x in contents_old.namespace.classes:
+        if hasattr(x.class_decl.typename.segments[0], 'name'):
+            classes_old[x.class_decl.typename.segments[0].name] = x
+    for x in contents_new.namespace.classes:
+        if hasattr(x.class_decl.typename.segments[0], 'name'):
+            classes_new[x.class_decl.typename.segments[0].name] = x
+
+    # pokemon_storage_system
+    contents_old = parse_file2('versioning/pokemon_storage_system_v0.c')[0]
+    contents_new = parse_file2('versioning/pokemon_storage_system_v1.c')[0]
+    for x in contents_old.namespace.classes:
+        if hasattr(x.class_decl.typename.segments[0], 'name'):
+            classes_old[x.class_decl.typename.segments[0].name] = x
+    for x in contents_new.namespace.classes:
+        if hasattr(x.class_decl.typename.segments[0], 'name'):
+            classes_new[x.class_decl.typename.segments[0].name] = x
+
+    compareFields('SaveBlock2', 1)
+    compareFields('SaveBlock1', 1)
+    compareFields('PokemonStorage', 1)
+    # clean up if no changes
+    if not globalHasChanges:
+        print("No save migration needed!")
+        os.remove("versioning/global_v%s.c" % globalVersion)
+        os.remove("versioning/pokemon_storage_system_v%s.c" % globalVersion)
