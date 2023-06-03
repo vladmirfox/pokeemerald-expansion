@@ -99,6 +99,9 @@ def parse_file2(path):
     return(out, enum_out)
 
 def compareFields(fieldname, inline):
+    if fieldname not in classes_new:
+        print("WARNING: Unable to resolve %s" % fieldname)
+        return
     # make list of fields
     fields_old = {}
     fields_old_array = []
@@ -107,15 +110,11 @@ def compareFields(fieldname, inline):
         fields_old_array.append(x.name)
 
     # compare
-    if '--verbose' in sys.argv or (inline == 1):
+    if '--verbose' in sys.argv or '--detailed' in sys.argv or (inline == 1):
         print("  " * (inline - 1) + "Comparing %s" % fieldname)
-    if not '--verbose' in sys.argv:
-        inline = 0
     for x in classes_new[fieldname].fields:
         oldclass = parse_field(fields_old[x.name], enums_old)
         newclass = parse_field(x, enums_new)
-
-        # print(oldclass, newclass)
 
         if (x.name in fields_old_array):
             fields_old_array.remove(x.name)
@@ -124,12 +123,6 @@ def compareFields(fieldname, inline):
                     print("  " * inline + "%s is identical" % x.name)
                 # if identical, check the actual kind to make sure the underlying struct didn't change
                 if newclass['kind'] not in trusted_typedefs:
-                    if 'is_union' in newclass:
-                        print("  " * inline + "WARNING: Union support is currently still missing (%s)" % newclass['kind'])
-                        continue
-                    if newclass['kind'] in ['TVShow', 'PokeNews', 'LilycoveLady']:
-                        print("  " * inline + "WARNING: The following structs are unsupported: %s" % newclass['kind'])
-                        continue
                     compareFields(newclass['kind'], inline + 1)
                 continue
             # figure out what exactly is different, starting with size
