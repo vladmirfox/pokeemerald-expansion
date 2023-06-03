@@ -53,6 +53,7 @@ def parse_size(tokens, enumlist):
 
 def parse_field(field, enumlist):
     cl = {}
+    cl['name'] = field.name
     cl['type'] = field.type.__class__.__name__
     if (cl['type'] == "Type"):
         if hasattr(field.type.typename.segments[0], 'name'):
@@ -98,7 +99,11 @@ def parse_file2(path):
             val += 1
     return(out, enum_out)
 
-def compareFields(fieldname, inline):
+def compareFields(fieldname, inline, extratext):
+    extratext_display = ""
+    if extratext != "":
+        extratext_display = " (%s)" % extratext
+
     if fieldname not in GlobalClassesNew:
         invalid_resolve = True
         # check if exists in GlobalClassesOld
@@ -109,7 +114,7 @@ def compareFields(fieldname, inline):
                     fieldname = GlobalReferNew[fieldname] # get referral (eg lilycovelady > anonymousname...)
                     invalid_resolve = False
         if invalid_resolve:
-            print("WARNING: Unable to resolve %s" % fieldname)
+            print("WARNING: Unable to resolve %s%s" % (fieldname, extratext_display))
             return
     # make list of fields
     fields_old = {}
@@ -120,7 +125,7 @@ def compareFields(fieldname, inline):
 
     # compare
     if '--verbose' in sys.argv or '--detailed' in sys.argv or (inline == 1):
-        print("  " * (inline - 1) + "Comparing %s" % fieldname)
+        print("  " * (inline - 1) + "Comparing %s%s" % (fieldname, extratext_display))
     for x in GlobalClassesNew[fieldname].fields:
         oldclass = parse_field(fields_old[x.name], GlobalEnumsOld)
         newclass = parse_field(x, GlobalEnumsNew)
@@ -132,7 +137,7 @@ def compareFields(fieldname, inline):
                     print("  " * inline + "%s is identical" % x.name)
                 # if identical, check the actual kind to make sure the underlying struct didn't change
                 if newclass['kind'] not in trusted_typedefs:
-                    compareFields(newclass['kind'], inline + 1)
+                    compareFields(newclass['kind'], inline + 1, "%s -> %s" % (extratext, x.name))
                 continue
             # figure out what exactly is different, starting with size
             global globalHasChanges
@@ -164,7 +169,6 @@ def prepare_comparison(filename, starting_version):
             GlobalClassesOld[x.class_decl.typename.segments[0].name] = x
         else:
             GlobalClassesOld["__AnonymousName%s" % x.class_decl.typename.segments[0].id] = x
-            print(x)
     for x in contents_new.namespace.classes:
         if hasattr(x.class_decl.typename.segments[0], 'name'):
             GlobalClassesNew[x.class_decl.typename.segments[0].name] = x
@@ -201,9 +205,9 @@ if __name__ == "__main__":
     GlobalEnumsOld, GlobalEnumsNew = prepare_comparison('global', 0)
     prepare_comparison('pokemon_storage_system', 0) # no enum output because this file doesn't contain any
 
-    compareFields('SaveBlock2', 1)
-    compareFields('SaveBlock1', 1)
-    compareFields('PokemonStorage', 1)
+    compareFields('SaveBlock2', 1, 'gSaveBlock1Ptr')
+    compareFields('SaveBlock1', 1, 'gSaveBlock2Ptr')
+    compareFields('PokemonStorage', 1, 'gPokemonStoragePtr')
     # clean up if no changes
     if not globalHasChanges:
         print("No save migration needed!")
