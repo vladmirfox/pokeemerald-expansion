@@ -58,7 +58,7 @@ def parse_field(field, enumlist):
         if hasattr(field.type.typename.segments[0], 'name'):
             cl['kind'] = field.type.typename.segments[0].name
         else:
-            cl['kind'] = "SM_union%s" % field.type.typename.segments[0].id
+            cl['kind'] = "__AnonymousName%s" % field.type.typename.segments[0].id
         cl['is_struct'] = (field.type.typename.classkey == 'struct')
         if field.type.typename.classkey == 'union':
             cl['is_union'] = True
@@ -100,8 +100,17 @@ def parse_file2(path):
 
 def compareFields(fieldname, inline):
     if fieldname not in classes_new:
-        print("WARNING: Unable to resolve %s" % fieldname)
-        return
+        invalid_resolve = True
+        # check if exists in classes_old
+        if fieldname not in classes_old:
+            # fieldname can not be found, so check if it's in both referals
+            if fieldname in refer_new and fieldname in refer_old:
+                if refer_new[fieldname] == refer_old[fieldname]:
+                    fieldname = refer_new[fieldname] # get referral (eg lilycovelady > anonymousname...)
+                    invalid_resolve = False
+        if invalid_resolve:
+            print("WARNING: Unable to resolve %s" % fieldname)
+            return
     # make list of fields
     fields_old = {}
     fields_old_array = []
@@ -151,15 +160,39 @@ if __name__ == "__main__":
     classes_old = {}
     classes_new = {}
 
+    refer_old = {}
+    refer_new = {}
+
     # global
     contents_old, enums_old = parse_file2('versioning/global_v0.c')
     contents_new, enums_new = parse_file2('versioning/global_v1.c')
     for x in contents_old.namespace.classes:
         if hasattr(x.class_decl.typename.segments[0], 'name'):
             classes_old[x.class_decl.typename.segments[0].name] = x
+        else:
+            classes_old["__AnonymousName%s" % x.class_decl.typename.segments[0].id] = x
     for x in contents_new.namespace.classes:
         if hasattr(x.class_decl.typename.segments[0], 'name'):
             classes_new[x.class_decl.typename.segments[0].name] = x
+        else:
+            classes_new["__AnonymousName%s" % x.class_decl.typename.segments[0].id] = x
+
+    for x in contents_old.namespace.typedefs:
+        if hasattr(x.type, 'typename'):
+            if x.type.typename.classkey != None:
+                if hasattr(x.type.typename.segments[0], 'name'):
+                    if x.type.typename.segments[0].name != x.name:
+                        refer_old[x.name] = x.type.typename.segments[0].name
+                else:
+                    refer_old[x.name] = "__AnonymousName%s" % x.type.typename.segments[0].id
+    for x in contents_new.namespace.typedefs:
+        if hasattr(x.type, 'typename'):
+            if x.type.typename.classkey != None:
+                if hasattr(x.type.typename.segments[0], 'name'):
+                    if x.type.typename.segments[0].name != x.name:
+                        refer_new[x.name] = x.type.typename.segments[0].name
+                else:
+                    refer_new[x.name] = "__AnonymousName%s" % x.type.typename.segments[0].id
 
     # pokemon_storage_system
     contents_old = parse_file2('versioning/pokemon_storage_system_v0.c')[0]
@@ -167,9 +200,30 @@ if __name__ == "__main__":
     for x in contents_old.namespace.classes:
         if hasattr(x.class_decl.typename.segments[0], 'name'):
             classes_old[x.class_decl.typename.segments[0].name] = x
+        else:
+            classes_old["__AnonymousName%s" % x.class_decl.typename.segments[0].id] = x
     for x in contents_new.namespace.classes:
         if hasattr(x.class_decl.typename.segments[0], 'name'):
             classes_new[x.class_decl.typename.segments[0].name] = x
+        else:
+            classes_new["__AnonymousName%s" % x.class_decl.typename.segments[0].id] = x
+
+    for x in contents_old.namespace.typedefs:
+        if hasattr(x.type, 'typename'):
+            if x.type.typename.classkey != None:
+                if hasattr(x.type.typename.segments[0], 'name'):
+                    if x.type.typename.segments[0].name != x.name:
+                        refer_old[x.name] = x.type.typename.segments[0].name
+                else:
+                    refer_old[x.name] = "__AnonymousName%s" % x.type.typename.segments[0].id
+    for x in contents_new.namespace.typedefs:
+        if hasattr(x.type, 'typename'):
+            if x.type.typename.classkey != None:
+                if hasattr(x.type.typename.segments[0], 'name'):
+                    if x.type.typename.segments[0].name != x.name:
+                        refer_new[x.name] = x.type.typename.segments[0].name
+                else:
+                    refer_new[x.name] = "__AnonymousName%s" % x.type.typename.segments[0].id
 
     compareFields('SaveBlock2', 1)
     compareFields('SaveBlock1', 1)
