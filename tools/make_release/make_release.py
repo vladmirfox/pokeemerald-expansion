@@ -37,16 +37,13 @@ def pull_new_version():
     preprocess_files("global", globalVersion)
     preprocess_files("pokemon_storage_system", globalVersion)
     if (globalVersion == 0):
-        print("v0 saved. please make changes in order to enable v1")
+        out("v0 saved. please make changes in order to enable v1")
         quit()
 
-def is_integer(n):
-    try:
-        float(n)
-    except ValueError:
-        return False
-    else:
-        return float(n).is_integer()
+def out(str):
+    print(str)
+    if '--log' in sys.argv:
+        f.write(str + '\n')
     
 def parse_size(tokens, enumlist):
     sizetokens = ""
@@ -121,7 +118,7 @@ def compareFields(fieldname, inline, extratext):
                     fieldname = GlobalReferNew[fieldname] # get referral (eg lilycovelady > anonymousname...)
                     invalid_resolve = False
         if invalid_resolve:
-            print("WARNING: Unable to resolve %s%s" % (fieldname, extratext_display))
+            out("WARNING: Unable to resolve %s%s" % (fieldname, extratext_display))
             return
     # make list of fields
     fields_old = {}
@@ -132,7 +129,7 @@ def compareFields(fieldname, inline, extratext):
 
     # compare
     if '--verbose' in sys.argv or '--detailed' in sys.argv or (inline == 1):
-        print("  " * (inline - 1) + "Comparing %s%s" % (fieldname, extratext_display))
+        out("  " * (inline - 1) + "Comparing %s%s" % (fieldname, extratext_display))
     for x in GlobalClassesNew[fieldname].fields:
         oldclass = parse_field(fields_old[x.name], GlobalEnumsOld)
         newclass = parse_field(x, GlobalEnumsNew)
@@ -141,7 +138,7 @@ def compareFields(fieldname, inline, extratext):
             fields_old_array.remove(x.name)
             if (x == fields_old[x.name]):
                 if '--verbose' in sys.argv:
-                    print("  " * inline + "%s is identical" % x.name)
+                    out("  " * inline + "%s is identical" % x.name)
                 # if identical, check the actual kind to make sure the underlying struct didn't change
                 if newclass['kind'] not in trusted_typedefs:
                     compareFields(newclass['kind'], inline + 1, "%s -> %s" % (extratext, x.name))
@@ -154,16 +151,16 @@ def compareFields(fieldname, inline, extratext):
                 newsize = newclass['size']
                 if (oldsize != newsize):
                     if (oldsize < newsize):
-                        print("  " * inline + "%s was expanded in size from %s to %s" % (x.name, oldsize, newsize))
+                        out("  " * inline + "%s was expanded in size from %s to %s" % (x.name, oldsize, newsize))
                     else:
-                        print("  " * inline + "IMPORTANT: %s was truncated in size from %s to %s" % (x.name, oldsize, newsize))
+                        out("  " * inline + "IMPORTANT: %s was truncated in size from %s to %s" % (x.name, oldsize, newsize))
                     continue
-            print("  " * inline + "%s is different, but can't identify why!" % x.name)
+            out("  " * inline + "%s is different, but can't identify why!" % x.name)
         else:
-            print("  " * inline + "%s is a new field; defaulting values to zero" % x.name)
+            out("  " * inline + "%s is a new field; defaulting values to zero" % x.name)
 
     if len(fields_old_array) > 0:
-        print("  " * inline + "The following old fields are not retained: %s" % fields_old_array)
+        out("  " * inline + "The following old fields are not retained: %s" % fields_old_array)
 
 def prepare_comparison(filename, starting_version):
     global GlobalClassesOld
@@ -220,14 +217,20 @@ if __name__ == "__main__":
     GlobalReferOld = {}
     GlobalReferNew = {}
 
+    if '--log' in sys.argv:
+        f = open('log.txt', 'w')
+
     GlobalEnumsOld, GlobalEnumsNew = prepare_comparison('global', 0)
     prepare_comparison('pokemon_storage_system', 0) # no enum output because this file doesn't contain any
 
-    compareFields('SaveBlock2', 1, 'gSaveBlock1Ptr')
-    compareFields('SaveBlock1', 1, 'gSaveBlock2Ptr')
+    compareFields('SaveBlock1', 1, 'gSaveBlock1Ptr')
+    compareFields('SaveBlock2', 1, 'gSaveBlock2Ptr')
     compareFields('PokemonStorage', 1, 'gPokemonStoragePtr')
     # clean up if no changes
     if not globalHasChanges:
-        print("No save migration needed!")
+        out("No save migration needed!")
         os.remove("versioning/global_v%s.c" % globalVersion)
         os.remove("versioning/pokemon_storage_system_v%s.c" % globalVersion)
+
+    if '--log' in sys.argv:
+        f.close()
