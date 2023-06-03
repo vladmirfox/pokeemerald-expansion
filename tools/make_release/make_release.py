@@ -99,14 +99,14 @@ def parse_file2(path):
     return(out, enum_out)
 
 def compareFields(fieldname, inline):
-    if fieldname not in classes_new:
+    if fieldname not in GlobalClassesNew:
         invalid_resolve = True
-        # check if exists in classes_old
-        if fieldname not in classes_old:
+        # check if exists in GlobalClassesOld
+        if fieldname not in GlobalClassesOld:
             # fieldname can not be found, so check if it's in both referals
-            if fieldname in refer_new and fieldname in refer_old:
-                if refer_new[fieldname] == refer_old[fieldname]:
-                    fieldname = refer_new[fieldname] # get referral (eg lilycovelady > anonymousname...)
+            if fieldname in GlobalReferNew and fieldname in GlobalReferOld:
+                if GlobalReferNew[fieldname] == GlobalReferOld[fieldname]:
+                    fieldname = GlobalReferNew[fieldname] # get referral (eg lilycovelady > anonymousname...)
                     invalid_resolve = False
         if invalid_resolve:
             print("WARNING: Unable to resolve %s" % fieldname)
@@ -114,16 +114,16 @@ def compareFields(fieldname, inline):
     # make list of fields
     fields_old = {}
     fields_old_array = []
-    for x in classes_old[fieldname].fields:
+    for x in GlobalClassesOld[fieldname].fields:
         fields_old[x.name] = x
         fields_old_array.append(x.name)
 
     # compare
     if '--verbose' in sys.argv or '--detailed' in sys.argv or (inline == 1):
         print("  " * (inline - 1) + "Comparing %s" % fieldname)
-    for x in classes_new[fieldname].fields:
-        oldclass = parse_field(fields_old[x.name], enums_old)
-        newclass = parse_field(x, enums_new)
+    for x in GlobalClassesNew[fieldname].fields:
+        oldclass = parse_field(fields_old[x.name], GlobalEnumsOld)
+        newclass = parse_field(x, GlobalEnumsNew)
 
         if (x.name in fields_old_array):
             fields_old_array.remove(x.name)
@@ -153,77 +153,53 @@ def compareFields(fieldname, inline):
     if len(fields_old_array) > 0:
         print("  " * inline + "The following old fields are not retained: %s" % fields_old_array)
 
+def prepare_comparison(filename, starting_version):
+    global GlobalClassesOld
+    global GlobalClassesNew
+    contents_old, enums_old = parse_file2('versioning/%s_v%s.c' % (filename, starting_version))
+    contents_new, enums_new = parse_file2('versioning/%s_v%s.c' % (filename, (starting_version + 1)))
+    # classes
+    for x in contents_old.namespace.classes:
+        if hasattr(x.class_decl.typename.segments[0], 'name'):
+            GlobalClassesOld[x.class_decl.typename.segments[0].name] = x
+        else:
+            GlobalClassesOld["__AnonymousName%s" % x.class_decl.typename.segments[0].id] = x
+            print(x)
+    for x in contents_new.namespace.classes:
+        if hasattr(x.class_decl.typename.segments[0], 'name'):
+            GlobalClassesNew[x.class_decl.typename.segments[0].name] = x
+        else:
+            GlobalClassesNew["__AnonymousName%s" % x.class_decl.typename.segments[0].id] = x
+    # typedefs (for referals)
+    for x in contents_old.namespace.typedefs:
+        if hasattr(x.type, 'typename'):
+            if x.type.typename.classkey != None:
+                if hasattr(x.type.typename.segments[0], 'name'):
+                    if x.type.typename.segments[0].name != x.name:
+                        GlobalReferOld[x.name] = x.type.typename.segments[0].name
+                else:
+                    GlobalReferOld[x.name] = "__AnonymousName%s" % x.type.typename.segments[0].id
+    for x in contents_new.namespace.typedefs:
+        if hasattr(x.type, 'typename'):
+            if x.type.typename.classkey != None:
+                if hasattr(x.type.typename.segments[0], 'name'):
+                    if x.type.typename.segments[0].name != x.name:
+                        GlobalReferNew[x.name] = x.type.typename.segments[0].name
+                else:
+                    GlobalReferNew[x.name] = "__AnonymousName%s" % x.type.typename.segments[0].id
+    return(enums_old, enums_new)
 
 if __name__ == "__main__":
     pull_new_version()
     # use cxxheaderparser to figure out everything
-    classes_old = {}
-    classes_new = {}
+    GlobalClassesOld = {}
+    GlobalClassesNew = {}
 
-    refer_old = {}
-    refer_new = {}
+    GlobalReferOld = {}
+    GlobalReferNew = {}
 
-    # global
-    contents_old, enums_old = parse_file2('versioning/global_v0.c')
-    contents_new, enums_new = parse_file2('versioning/global_v1.c')
-    for x in contents_old.namespace.classes:
-        if hasattr(x.class_decl.typename.segments[0], 'name'):
-            classes_old[x.class_decl.typename.segments[0].name] = x
-        else:
-            classes_old["__AnonymousName%s" % x.class_decl.typename.segments[0].id] = x
-    for x in contents_new.namespace.classes:
-        if hasattr(x.class_decl.typename.segments[0], 'name'):
-            classes_new[x.class_decl.typename.segments[0].name] = x
-        else:
-            classes_new["__AnonymousName%s" % x.class_decl.typename.segments[0].id] = x
-
-    for x in contents_old.namespace.typedefs:
-        if hasattr(x.type, 'typename'):
-            if x.type.typename.classkey != None:
-                if hasattr(x.type.typename.segments[0], 'name'):
-                    if x.type.typename.segments[0].name != x.name:
-                        refer_old[x.name] = x.type.typename.segments[0].name
-                else:
-                    refer_old[x.name] = "__AnonymousName%s" % x.type.typename.segments[0].id
-    for x in contents_new.namespace.typedefs:
-        if hasattr(x.type, 'typename'):
-            if x.type.typename.classkey != None:
-                if hasattr(x.type.typename.segments[0], 'name'):
-                    if x.type.typename.segments[0].name != x.name:
-                        refer_new[x.name] = x.type.typename.segments[0].name
-                else:
-                    refer_new[x.name] = "__AnonymousName%s" % x.type.typename.segments[0].id
-
-    # pokemon_storage_system
-    contents_old = parse_file2('versioning/pokemon_storage_system_v0.c')[0]
-    contents_new = parse_file2('versioning/pokemon_storage_system_v1.c')[0]
-    for x in contents_old.namespace.classes:
-        if hasattr(x.class_decl.typename.segments[0], 'name'):
-            classes_old[x.class_decl.typename.segments[0].name] = x
-        else:
-            classes_old["__AnonymousName%s" % x.class_decl.typename.segments[0].id] = x
-    for x in contents_new.namespace.classes:
-        if hasattr(x.class_decl.typename.segments[0], 'name'):
-            classes_new[x.class_decl.typename.segments[0].name] = x
-        else:
-            classes_new["__AnonymousName%s" % x.class_decl.typename.segments[0].id] = x
-
-    for x in contents_old.namespace.typedefs:
-        if hasattr(x.type, 'typename'):
-            if x.type.typename.classkey != None:
-                if hasattr(x.type.typename.segments[0], 'name'):
-                    if x.type.typename.segments[0].name != x.name:
-                        refer_old[x.name] = x.type.typename.segments[0].name
-                else:
-                    refer_old[x.name] = "__AnonymousName%s" % x.type.typename.segments[0].id
-    for x in contents_new.namespace.typedefs:
-        if hasattr(x.type, 'typename'):
-            if x.type.typename.classkey != None:
-                if hasattr(x.type.typename.segments[0], 'name'):
-                    if x.type.typename.segments[0].name != x.name:
-                        refer_new[x.name] = x.type.typename.segments[0].name
-                else:
-                    refer_new[x.name] = "__AnonymousName%s" % x.type.typename.segments[0].id
+    GlobalEnumsOld, GlobalEnumsNew = prepare_comparison('global', 0)
+    prepare_comparison('pokemon_storage_system', 0) # no enum output because this file doesn't contain any
 
     compareFields('SaveBlock2', 1)
     compareFields('SaveBlock1', 1)
