@@ -1,16 +1,27 @@
-from pcpp import Preprocessor, Evaluator
+from pcpp import Preprocessor, Evaluator, OutputDirective, Action
 from cxxheaderparser.simple import parse_file, CxxParser, SimpleCxxVisitor
 import os
 import sys
 
 trusted_typedefs = ['u8', 'u16', 'u32', 'u64', 's8', 's16', 's32', 's64', 'bool8', 'bool16', 'bool32', 'int']
+ignoreable_includes = ['string.h', 'stddef.h', 'stdint.h', 'sprite.h', 'limits.h']
 
 globalVersion = 0
 globalHasChanges = False
 
+class PcppPreprocessor(Preprocessor):
+    def on_include_not_found(self,is_malformed,is_system_include,curdir,includepath):
+        if includepath not in ignoreable_includes:
+            if is_malformed:
+                self.on_error(self.lastdirective.source,self.lastdirective.lineno, "Malformed #include statement: %s" % includepath)
+            else:
+                self.on_error(self.lastdirective.source,self.lastdirective.lineno, "Include file '%s' not found" % includepath)
+        raise OutputDirective(Action.IgnoreAndPassThrough)
+
 def preprocess_files(filename, version):
 # preprocess a file and store it as files in /versioning with pcpp
-    p = Preprocessor()
+    p = PcppPreprocessor()
+
     path = "include/%s.h" % filename
     with open(path, 'rt') as ih:
         p.parse(ih.read(), path)
