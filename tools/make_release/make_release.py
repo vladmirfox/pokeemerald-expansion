@@ -41,14 +41,10 @@ def parse_size(tokens, enumlist):
     sizetokens = ""
     e = Evaluator()
     for x in tokens:
-        if is_integer(x.value) or x.value in ['+', '-', '%', '(', ')', '/', '?', ':', '*', '>', '<', '='] or str(x.value).startswith("0x"):
-            sizetokens += str(x.value)
+        if x.value in enumlist:
+            sizetokens += str(enumlist[x.value])
         else:
-            if x.value in enumlist:
-                sizetokens += str(enumlist[x.value])
-            else:
-                print("Error: unable to figure out enum value of %s" % x.value)
-                quit()
+            sizetokens += str(x.value)
     return e(sizetokens)
 
 def parse_field(field, enumlist):
@@ -163,17 +159,28 @@ def prepare_comparison(filename, starting_version):
     global GlobalClassesNew
     contents_old, enums_old = parse_file2('versioning/%s_v%s.c' % (filename, starting_version))
     contents_new, enums_new = parse_file2('versioning/%s_v%s.c' % (filename, (starting_version + 1)))
+
     # classes
     for x in contents_old.namespace.classes:
         if hasattr(x.class_decl.typename.segments[0], 'name'):
             GlobalClassesOld[x.class_decl.typename.segments[0].name] = x
         else:
             GlobalClassesOld["__AnonymousName%s" % x.class_decl.typename.segments[0].id] = x
+        for y in x.classes:
+            if hasattr(y.class_decl.typename.segments[0], 'name'):
+                GlobalClassesOld[y.class_decl.typename.segments[0].name] = y
+            else:
+                GlobalClassesOld["__AnonymousName%s" % y.class_decl.typename.segments[0].id] = y
     for x in contents_new.namespace.classes:
         if hasattr(x.class_decl.typename.segments[0], 'name'):
             GlobalClassesNew[x.class_decl.typename.segments[0].name] = x
         else:
             GlobalClassesNew["__AnonymousName%s" % x.class_decl.typename.segments[0].id] = x
+        for y in x.classes:
+            if hasattr(y.class_decl.typename.segments[0], 'name'):
+                GlobalClassesNew[y.class_decl.typename.segments[0].name] = y
+            else:
+                GlobalClassesNew["__AnonymousName%s" % y.class_decl.typename.segments[0].id] = y
     # typedefs (for referals)
     for x in contents_old.namespace.typedefs:
         if hasattr(x.type, 'typename'):
