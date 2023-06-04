@@ -113,7 +113,7 @@ struct PokemonSubstruct0
     /*0x08*/ u8 ppBonuses;
     /*0x09*/ u8 friendship;
     /*0x0A*/ u16 pokeball:5; //31 balls
-             u16 filler:11;
+             u16 shadowID:11;
 }; /* size = 12 */
 
 struct PokemonSubstruct1
@@ -319,6 +319,7 @@ struct BattlePokemon
     /*0x5B*/ u8 isReverse;
     /*0x5C*/ u16 heartVal;
     /*0x5E*/ u16 heartMax;
+    /*0x60*/ u16 shadowID;
 };
 
 struct SpeciesInfo /*0x24*/

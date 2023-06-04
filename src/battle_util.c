@@ -9969,9 +9969,16 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         }
     }
 
-    // Shadow Pokemon resist shadow moves
-    if (gBattleMons[battlerDef].isShadow != 0)
-        modifier = UQ_4_12(0.5);
+    // Shadow Move conditional type effectiveness
+    
+    if (gBattleMoves[move].type == TYPE_SHADOW){
+        if (gBattleMons[battlerDef].isShadow != 0){
+            modifier = UQ_4_12(0.5);
+        }
+        if (gBattleMons[battlerDef].isShadow == 0){
+            modifier = UQ_4_12(2.0);
+        }
+	}
 
     return modifier;
 }
