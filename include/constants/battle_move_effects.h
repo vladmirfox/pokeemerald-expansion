@@ -407,7 +407,8 @@
 //Shadow Move Effects
 #define EFFECT_SHADOW_HALF                  401
 #define EFFECT_SHADOW_SKY                   402
+#define EFFECT_TRIGGER_REVERSE_MODE			403
 
-#define NUM_BATTLE_MOVE_EFFECTS             403
+#define NUM_BATTLE_MOVE_EFFECTS             404
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

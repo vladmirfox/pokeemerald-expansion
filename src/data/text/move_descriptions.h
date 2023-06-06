@@ -3317,6 +3317,10 @@ static const u8 sShadowSkyDescription[] = _(
     "Darkness hurts all but Shadow\n"
     "Pokémon for 5 turns.");
 
+    static const u8 sTriggerReverseModeDescription[] = _(
+    "An instant test trigger for\n"
+    "Reverse Mode. Unfinished.");
+
 // End
 const u8 gNotDoneYetDescription[] = _(
     "This move can't be used. Its\n"
@@ -4157,6 +4161,8 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_MAGICAL_TORQUE - 1] = sMagicalTorqueDescription,
     [MOVE_PSYBLADE - 1] = sPsybladeDescription,
     [MOVE_HYDRO_STEAM - 1] = sHydroSteamDescription,
+
+    //Shadow Moves
     [MOVE_SHADOW_BLITZ - 1] = sShadowBlitzDescription,
     [MOVE_SHADOW_WAVE - 1] = sShadowWaveDescription,
     [MOVE_SHADOW_RUSH - 1] = sShadowRushDescription,
@@ -4175,4 +4181,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_SHADOW_HOLD - 1] = sShadowHoldDescription,
     [MOVE_SHADOW_PANIC - 1] = sShadowPanicDescription,
     [MOVE_SHADOW_SKY - 1] = sShadowSkyDescription,
+    [MOVE_REVERSE_MODE - 1] = sTriggerReverseModeDescription,
 };

@@ -33,6 +33,13 @@ FORM_BATTLE_END:
     param1 = item to hold, optional
     param2 = a move that will be replaced, optional
     param3 = a new move to replace it with, optional
+
+FORM_PURIFY:
+    Form change activates upon purification, for special Shadow Pokemon.
+    no parameters
+
+FORM_SHADOW:
+    Hypothetical, form change activates upon becoming a Shadow Pokemon. Just listed and commented out for easy comprehension.
 */
 
 // FORM_MOVE param2 Arguments
@@ -208,6 +215,19 @@ static const struct FormChange sEnamorusFormChangeTable[] = {
     {FORM_CHANGE_END},
 };
 #endif
+
+// Shadow Forms
+
+static const struct FormChange sMewtwoFormChangeTable[] = {
+    {FORM_PURIFY, SPECIES_MEWTWO}
+    // {FORM_SHADOW, SPECIES_MEWTWO_SHADOW},
+    {FORM_CHANGE_END},
+
+static const struct FormChange sLugiaFormChangeTable[] = {
+    {FORM_PURIFY, SPECIES_LUGIA}
+    // {FORM_SHADOW, SPECIES_LUGIA_SHADOW},
+    {FORM_CHANGE_END},
+};
 
 #undef WHEN_LEARNED
 #undef WHEN_FORGOTTEN

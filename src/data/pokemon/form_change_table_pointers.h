@@ -81,4 +81,8 @@ const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES] =
     [SPECIES_ENAMORUS] = sEnamorusFormChangeTable,
     [SPECIES_ENAMORUS_THERIAN] = sEnamorusFormChangeTable,
 #endif
+
+//Shadow Forms
+    [SPECIES_MEWTWO] = sMewtwoFormChangeTable,
+    [SPECIES_LUGIA] = sLugiaFormChangeTable,
 };

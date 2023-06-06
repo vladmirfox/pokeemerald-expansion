@@ -16,7 +16,7 @@ struct ShadowListData
 {
     /*0x00*/ u16 shadowState:1; // 0 is purified, 1 is Shadow
              u16 shadowVar:4; //  Can be used to designate "varieties" of Shadows -- by default, 0 does not go into Hyper/Reverse mode, 1-7 are "normal" Shadows (used for aggression values), 8-15 are Shadow Lugia style (unpurifiable).
-             u16 shadowId:11; // due to the way this is handled elsewhere, keep to 11 bytes (2048 max possible IDs)
+             u16 shadowId:11; // due to the way this is handled elsewhere, keep to 11 bits (2048 max possible IDs)
     /*0x02*/ u16 species;
     /*0x04*/ u32 experience;
     /*0x08*/ u16 shadowMoves[MAX_MON_MOVES];

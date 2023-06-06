@@ -425,6 +425,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectBarbBarrage             @ EFFECT_BARB_BARRAGE
 	.4byte BattleScript_EffectShadowHalf              @ EFFECT_SHADOW_HALF
 	.4byte BattleScript_EffectShadowSky               @ EFFECT_SHADOW_SKY
+	.4byte BattleScript_EffectTriggerReverseMode	  @ EFFECT_TRIGGER_REVERSE_MODE
 
 BattleScript_StealthRockActivates::
 	setstealthrock BattleScript_MoveEnd
@@ -5683,6 +5684,20 @@ BattleScript_EffectShadowSky::
 	setshadowsky BattleScript_ButItFailed
 	goto BattleScript_MoveWeatherChange
 
+BattleScript_EffectTriggerReverseMode
+	attackcanceler
+	attackstring
+	ppreduce
+	jumpifmove MOVE_HOLD_HANDS, BattleScript_EffectHoldHands
+	attackanimation
+	waitanimation
+	jumpifmove MOVE_CELEBRATE, BattleScript_EffectCelebrate
+	jumpifmove MOVE_HAPPY_HOUR, BattleScript_EffectHappyHour
+	incrementgamestat GAME_STAT_USED_SPLASH
+	printstring STRINGID_BUTNOTHINGHAPPENED
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
 BattleScript_EffectTorment::
 	attackcanceler
 	attackstring
@@ -9412,7 +9427,7 @@ BattleScript_RoughSkinActivates::
 	return
 
 BattleScript_RockyHelmetActivates::
-	@ don't play the animation for a fainted mon
+	@ dont play the animation for a fainted mon
 	jumpifabsent BS_TARGET, BattleScript_RockyHelmetActivatesDmg
 	playanimation BS_TARGET, B_ANIM_HELD_ITEM_EFFECT
 	waitanimation

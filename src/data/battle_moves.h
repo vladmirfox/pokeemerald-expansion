@@ -14392,4 +14392,19 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_SPD_UP_1,
     },
+
+    [MOVE_REVERSE_MODE] =
+    {
+        .effect = EFFECT_TRIGGER_REVERSE_MODE,
+        .power = 0,
+        .type = TYPE_SHADOW,
+        .accuracy = 0,
+        .pp = 25,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .priority = 0,
+        .flags = 0,
+        .split = SPLIT_STATUS,
+        .zMoveEffect = Z_EFFECT_BOOST_CRITS,
+    },
 };

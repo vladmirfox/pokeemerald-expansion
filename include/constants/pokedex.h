@@ -1176,11 +1176,17 @@ enum {
 
 #define HOENN_DEX_COUNT (HOENN_DEX_DEOXYS + 1)
 
-//Shadow List -- for now, it counts as a dex; using combined Colo/XD shadow lists as a default, plus Pokken's Shadow Mewtwo
+//Shadow List -- for now, it counts as a dex; using combined Colo/XD shadow lists as a default, plus Pokken's Shadow Mewtwo and a set of Eeveelutions for easy testing purposes
 
 enum {
     SHADOW_LIST_NONE,
-    SHADOW_LIST_LEDYBA,
+    SHADOW_LIST_EEVEE,
+    SHADOW_LIST_VAPOREON,
+    SHADOW_LIST_JOLTEON,
+    SHADOW_LIST_FLAREON,
+    SHADOW_LIST_LEAFEON,
+    SHADOW_LIST_GLACEON,
+    /* SHADOW_LIST_LEDYBA,
     SHADOW_LIST_POOCHYENA,
     SHADOW_LIST_TEDDIURSA,
     SHADOW_LIST_SPINARAK,
@@ -1307,11 +1313,11 @@ enum {
     SHADOW_LIST_DRAGONITE,
     SHADOW_LIST_ARTICUNO,
     SHADOW_LIST_ZAPDOS,
-    SHADOW_LIST_MOLTRES,
+    SHADOW_LIST_MOLTRES, */
     SHADOW_LIST_MEWTWO,
-    SHADOW_LIST_RAIKOU,
+    /* SHADOW_LIST_RAIKOU,
     SHADOW_LIST_ENTEI,
-    SHADOW_LIST_SUICUNE,
+    SHADOW_LIST_SUICUNE, */
     SHADOW_LIST_LUGIA,
 };
 

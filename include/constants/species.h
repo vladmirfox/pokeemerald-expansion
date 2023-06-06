@@ -1374,10 +1374,10 @@
 // Special Shadow Forms
 #define SPECIES_LUGIA_SHADOW				 FORMS_START + 330
 #define SPECIES_MEWTWO_SHADOW				 FORMS_START + 331	// This is the Shadow Mewtwo from Pokken
-#define SPECIES_MEWTWO_MEGA_X_SHADOW		 FORMS_START + 332	// Same one but Mega Evolved
+#define SPECIES_MEWTWO_SHADOW_MEGA_X		 FORMS_START + 332	// Same one but Mega Evolved
 
 #define FORMS_START SPECIES_ENAMORUS
-#define SPECIES_EGG SPECIES_MEWTWO_MEGA_X_SHADOW + 1
+#define SPECIES_EGG SPECIES_MEWTWO_SHADOW_MEGA_X + 1
 
 #define NUM_SPECIES SPECIES_EGG
 
