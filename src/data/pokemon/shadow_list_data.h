@@ -1,0 +1,71 @@
+const struct ShadowListEntry gShadowListEntries[] =
+{
+    [SHADOW_LIST_NONE] =
+    {
+        .shadowState = 0,
+        .shadowVar = 0,
+        .shadowId = 0,
+        .species = SPECIES_NONE,
+        .experience = 0,
+        .shadowMoves = {MOVE_SHADOW_RUSH, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+        .purifyMoves = {MOVE_POUND, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+        .hpEV = 0,
+        .attackEV = 0,
+        .defenseEV = 0,
+        .speedEV = 0,
+        .spAttackEV = 0,
+        .spDefenseEV = 0,
+        .hpIV = 0,
+        .attackIV = 0,
+        .defenseIV = 0,
+        .speedIV = 0,
+        .spAttackIV = 0,
+        .spDefenseIV = 0,
+        .boostLevel = 0,
+        .level = 1,
+        .heartValue = 2000,
+        .heartMax = 2000,
+        .personality = 0,
+        .status = 0,
+        .maxHP = 1,
+        .hp = 1,
+        .snagLocation = 0,
+        .snagTrainerName = _("Unknown")
+    }, 
+    
+    [SHADOW_LIST_LEDYBA] =
+    {
+        .shadowState = 1,
+        .shadowVar = 1,
+        .shadowId = 1,
+        .species = SPECIES_LEDYBA,
+        .experience = 0,
+        .shadowMoves = {MOVE_SHADOW_BLITZ, MOVE_SHADOW_SHED, MOVE_NONE, MOVE_NONE},
+        .purifyMoves = {MOVE_PSYBEAM, MOVE_REFRESH, MOVE_AERIAL_ACE, MOVE_SUPERSONIC},
+        .hpEV = 0,
+        .attackEV = 0,
+        .defenseEV = 0,
+        .speedEV = 0,
+        .spAttackEV = 0,
+        .spDefenseEV = 0,
+        .hpIV = 10,
+        .attackIV = 10,
+        .defenseIV = 10,
+        .speedIV = 10,
+        .spAttackIV = 10,
+        .spDefenseIV = 10,
+        .boostLevel = 1,
+        .level = 10,
+        .heartMax = 2500,
+        .heartValue = 2500,
+        .personality = 0,
+        .status = 0,
+        .maxHP = 1,
+        .hp = 1,
+        .snagLocation = 0,
+        .snagTrainerName = _("Cyle")
+
+    },
+
+
+};

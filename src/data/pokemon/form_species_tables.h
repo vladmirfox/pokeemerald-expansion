@@ -286,7 +286,9 @@ static const u16 sTyphlosionFormSpeciesIdTable[] = {
 
 static const u16 sMewtwoFormSpeciesIdTable[] = {
     SPECIES_MEWTWO,
+    SPECIES_MEWTWO_SHADOW,
     SPECIES_MEWTWO_MEGA_X,
+    SPECIES_MEWTWO_MEGA_X_SHADOW,
     SPECIES_MEWTWO_MEGA_Y,
     FORM_SPECIES_END,
 };
@@ -388,6 +390,13 @@ static const u16 sTyranitarFormSpeciesIdTable[] = {
     SPECIES_TYRANITAR_MEGA,
     FORM_SPECIES_END,
 };
+
+static const u16 sLugiaFormSpeciesIdTable[] = {
+    SPECIES_LUGIA,
+    SPECIES_LUGIA_SHADOW,
+    FORM_SPECIES_END,
+};
+
 
 static const u16 sSceptileFormSpeciesIdTable[] = {
     SPECIES_SCEPTILE,
