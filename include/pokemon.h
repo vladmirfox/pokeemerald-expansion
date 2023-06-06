@@ -602,6 +602,6 @@ void TryToSetBattleFormChangeMoves(struct Pokemon *mon, u16 method);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);
 void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality);
 u16 GetCryIdBySpecies(u16 species);
-bool8 IsSpeciesEnabled(u16 species);
+bool32 IsSpeciesEnabled(u16 species);
 
 #endif // GUARD_POKEMON_H

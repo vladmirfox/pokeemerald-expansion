@@ -7190,4 +7190,9 @@ u16 GetCryIdBySpecies(u16 species)
     if (gSpeciesInfo[species].cryId >= CRY_COUNT)
         return 0;
     return gSpeciesInfo[species].cryId;
-};
+}
+
+bool32 IsSpeciesEnabled(u16 species)
+{
+    return gSpeciesInfo[species].baseHP > 0;
+}
