@@ -627,13 +627,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TAKE_DOWN] =
     {
-        .effect = EFFECT_RECOIL_25,
+        .effect = EFFECT_RECOIL,
         .power = 90,
         .type = TYPE_NORMAL,
         .accuracy = 85,
         .pp = 20,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .secondaryData = 4,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
@@ -663,13 +664,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DOUBLE_EDGE] =
     {
-        .effect = EFFECT_RECOIL_33,
+        .effect = EFFECT_RECOIL,
         .power = 120,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .secondaryData = 3,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
@@ -1156,12 +1158,13 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         #else
             .pp = 25,
         #endif
-        .effect = EFFECT_RECOIL_25,
+        .effect = EFFECT_RECOIL,
         .power = 80,
         .type = TYPE_FIGHTING,
         .accuracy = 80,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .secondaryData = 4,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
@@ -2922,7 +2925,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
             .effect = EFFECT_RECOIL_HP_25,
         #else
             .accuracy = 100,
-            .effect = EFFECT_RECOIL_25,
+            .effect = EFFECT_RECOIL,
         #endif
         .power = 50,
         .type = TYPE_NORMAL,
@@ -6136,17 +6139,16 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
     [MOVE_VOLT_TACKLE] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_4
-            .effect = EFFECT_RECOIL_33_STATUS,
             .argument = STATUS1_PARALYSIS,
-        #else
-            .effect = EFFECT_RECOIL_33,
         #endif
+        .effect = EFFECT_RECOIL,
         .power = 120,
         .type = TYPE_ELECTRIC,
         .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 10,
         .target = MOVE_TARGET_SELECTED,
+        .secondaryData = 3,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
@@ -6988,13 +6990,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLARE_BLITZ] =
     {
-        .effect = EFFECT_RECOIL_33_STATUS,
+        .effect = EFFECT_RECOIL,
         .power = 120,
         .type = TYPE_FIRE,
         .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 10,
         .target = MOVE_TARGET_SELECTED,
+        .secondaryData = 3,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .argument = STATUS1_BURN,
@@ -7317,13 +7320,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_BRAVE_BIRD] =
     {
-        .effect = EFFECT_RECOIL_33,
+        .effect = EFFECT_RECOIL,
         .power = 120,
         .type = TYPE_FLYING,
         .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .secondaryData = 3,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
@@ -7959,13 +7963,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WOOD_HAMMER] =
     {
-        .effect = EFFECT_RECOIL_33,
+        .effect = EFFECT_RECOIL,
         .power = 120,
         .type = TYPE_GRASS,
         .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .secondaryData = 3,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
@@ -8039,13 +8044,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEAD_SMASH] =
     {
-        .effect = EFFECT_RECOIL_50,
+        .effect = EFFECT_RECOIL,
         .power = 150,
         .type = TYPE_ROCK,
         .accuracy = 80,
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .secondaryData = 2,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
@@ -9232,13 +9238,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_WILD_CHARGE] =
     {
-        .effect = EFFECT_RECOIL_25,
+        .effect = EFFECT_RECOIL,
         .power = 90,
         .type = TYPE_ELECTRIC,
         .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .secondaryData = 4,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
@@ -9480,13 +9487,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_HEAD_CHARGE] =
     {
-        .effect = EFFECT_RECOIL_25,
+        .effect = EFFECT_RECOIL,
         .power = 120,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .secondaryData = 4,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
@@ -10737,13 +10745,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_LIGHT_OF_RUIN] =
     {
-        .effect = EFFECT_RECOIL_50,
+        .effect = EFFECT_RECOIL,
         .power = 140,
         .type = TYPE_FAIRY,
         .accuracy = 90,
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .secondaryData = 2,
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
@@ -13189,12 +13198,13 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         #else
             .power = 75,
         #endif
-        .effect = EFFECT_RECOIL_33,
+        .effect = EFFECT_RECOIL,
         .type = TYPE_WATER,
         .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
+        .secondaryData = 3,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
@@ -13214,6 +13224,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
+        .secondaryData = 2,
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
