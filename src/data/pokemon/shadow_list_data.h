@@ -37,7 +37,7 @@ const struct ShadowListEntry gShadowListEntries[] =
     [SHADOW_LIST_EEVEE] =
     {
         .shadowState = 1,
-        .shadowVar = 1,
+        .shadowVar = 0,
         .shadowId = 1,
         .species = SPECIES_EEVEE,
         .experience = 0,
@@ -70,7 +70,7 @@ const struct ShadowListEntry gShadowListEntries[] =
     [SHADOW_LIST_VAPOREON] =
     {
         .shadowState = 1,
-        .shadowVar = 2,
+        .shadowVar = 1,
         .shadowId = 2,
         .species = SPECIES_VAPOREON,
         .experience = 0,
@@ -103,7 +103,7 @@ const struct ShadowListEntry gShadowListEntries[] =
     [SHADOW_LIST_JOLTEON] =
     {
         .shadowState = 1,
-        .shadowVar = 3,
+        .shadowVar = 2,
         .shadowId = 3,
         .species = SPECIES_JOLTEON,
         .experience = 0,
@@ -136,7 +136,7 @@ const struct ShadowListEntry gShadowListEntries[] =
     [SHADOW_LIST_FLAREON] =
     {
         .shadowState = 1,
-        .shadowVar = 4,
+        .shadowVar = 3,
         .shadowId = 4,
         .species = SPECIES_FLAREON,
         .experience = 0,
@@ -169,7 +169,7 @@ const struct ShadowListEntry gShadowListEntries[] =
     [SHADOW_LIST_LEAFEON] =
     {
         .shadowState = 1,
-        .shadowVar = 5,
+        .shadowVar = 4,
         .shadowId = 5,
         .species = SPECIES_LEAFEON,
         .experience = 0,
@@ -202,7 +202,7 @@ const struct ShadowListEntry gShadowListEntries[] =
     [SHADOW_LIST_GLACEON] =
     {
         .shadowState = 1,
-        .shadowVar = 6,
+        .shadowVar = 5,
         .shadowId = 6,
         .species = SPECIES_GLACEON,
         .experience = 0,
