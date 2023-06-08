@@ -55,7 +55,7 @@
 #define BATTLE_TYPE_SAFARI             (1 << 7)
 #define BATTLE_TYPE_BATTLE_TOWER       (1 << 8)
 #define BATTLE_TYPE_WALLY_TUTORIAL     (1 << 9) // Used in pokefirered as BATTLE_TYPE_OLD_MAN_TUTORIAL.
-#define BATTLE_TYPE_ROAMER             (1 << 10)
+#define BATTLE_TYPE_SPECIAL_WILD       (1 << 10) // Used for both roaming legendaries and Feral Shadow Pokemon
 #define BATTLE_TYPE_EREADER_TRAINER    (1 << 11)
 #define BATTLE_TYPE_KYOGRE_GROUDON     (1 << 12)
 #define BATTLE_TYPE_LEGENDARY          (1 << 13)
@@ -88,6 +88,7 @@
 #define WILD_DOUBLE_BATTLE ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER))))
 #define BATTLE_TWO_VS_ONE_OPPONENT ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gTrainerBattleOpponent_B == 0xFFFF))
 #define BATTLE_TYPE_HAS_AI          (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FIRST_BATTLE | BATTLE_TYPE_SAFARI | BATTLE_TYPE_ROAMER | BATTLE_TYPE_INGAME_PARTNER)
+#define BATTLE_TYPE_ROAMER          ((gBattleTypeFlags & BATTLE_TYPE_SPECIAL_WILD && gBattleTypeFlags & BATTLE_TYPE_LEGENDARY)) // Specifies that it refers only to legendary roamers e.g. Latios/Latias, while keeping the functionality intact
 
 
 // Battle Outcome defines

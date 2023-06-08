@@ -37,14 +37,12 @@ struct ShadowListData
     /*0x21*/ u8 level;
     /*0x22*/ u16 heartValue;
     /*0x24*/ u16 heartMax;
-    /*0x26*/ u32 personality; 
-    /*0x2A*/ u32 status; // useful if wild/roaming
-    /*0x2E*/ u16 maxHP; // useful if wild/roaming
-    /*0x30*/ u16 hp; //useful if wild/roaming
-    /*0x32*/ u8 snagLocation; //If unsnagged, it's where you can snag them, with potential to change if wild/roaming; once snagged, this is then used for where you caught them
-    /*0x33*/ u8 snagTrainerName[TRAINER_NAME_LENGTH]; //if wild/roaming, you can designate it as N/A, or just fill it in with a random name for lore or something.
-    // /*0x20*/ u8 trueTrainerReunited // Offering this in case you want to implement a system of returning purified Shadow Pokemon to the trainers they were originally stolen from. I dunno, just an idea.
-    // /*0x??*/ u32 trueTrainerId; // Again, if you want to implement a reunion system
+    /*0x26*/ u8 gender;
+    /*0x27*/ u8 nature;
+    /*0x28*/ u8 shiny;
+    /*0x29*/ u8 snagLocation; //If unsnagged, it's where you can snag them, with potential to change if wild/roaming; once snagged, this is then used for where you caught them
+    /*0x2A*/ u8 snagTrainerName[TRAINER_NAME_LENGTH]; //if wild/roaming, you can designate it as N/A, or just fill it in with a random name for lore or something.
+    // /*0x??*/ u32 trueTrainerId; // If you want to implement a reunion system
     // /*0x??*/ u8 trueTrainerName[TRAINER_NAME_LENGTH]
 };  /*size = 0x34*/
 

@@ -91,7 +91,9 @@ enum {
     MON_DATA_EARTH_RIBBON,
     MON_DATA_WORLD_RIBBON,
     MON_DATA_UNUSED_RIBBONS,
+    MON_DATA_SHADOW_ID,
     MON_DATA_IS_SHADOW,
+    MON_DATA_BOOST_LEVEL,
     MON_DATA_REVERSE_MODE,
     MON_DATA_HEART_VALUE,
     MON_DATA_HEART_MAX,
@@ -145,7 +147,8 @@ struct PokemonSubstruct3
 
  /* 0x02 */ u16 metLevel:7;
  /* 0x02 */ u16 metGame:4;
- /* 0x03 */ u16 unused1:4;
+ /* 0x03 */ u16 boostLevel:2;               // Shadow Pokemon in XD have a mechanic called Shadow Boost, where their stats are calculated based on a few levels above what their actual level is.
+ /* 0x03 */ u16 unused1:2;
  /* 0x03 */ u16 otGender:1;
 
  /* 0x04 */ u32 hpIV:5;

@@ -1671,6 +1671,10 @@ static const u16 sSpeciesToNationalPokedexNum[NUM_SPECIES - 1] =
     [SPECIES_CALYREX_SHADOW_RIDER - 1] = NATIONAL_DEX_CALYREX,
     [SPECIES_ENAMORUS_THERIAN - 1] = NATIONAL_DEX_ENAMORUS,
     [SPECIES_BASCULEGION_FEMALE - 1] = NATIONAL_DEX_BASCULEGION,
+    //Shadow Forms
+    [SPECIES_LUGIA_SHADOW - 1] = NATIONAL_DEX_LUGIA,
+    [SPECIES_MEWTWO_SHADOW - 1] = NATIONAL_DEX_MEWTWO,
+    [SPECIES_MEWTWO_SHADOW_MEGA_X - 1] = NATIONAL_DEX_MEWTWO,
 #endif
 };
 
@@ -4069,7 +4073,7 @@ static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
 #define CALC_STAT(base, iv, ev, statIndex, field)               \
 {                                                               \
     u8 baseStat = gSpeciesInfo[species].base;                   \
-    s32 n = (((2 * baseStat + iv + ev / 4) * level) / 100) + 5; \
+    s32 n = (((2 * baseStat + iv + ev / 4) * (level + boostLevel) / 100) + 5; \
     u8 nature = GetNature(mon);                                 \
     n = ModifyStatByNature(nature, n, statIndex);               \
     SetMonData(mon, field, &n);                                 \
@@ -4093,6 +4097,13 @@ void CalculateMonStats(struct Pokemon *mon)
     s32 spDefenseEV = GetMonData(mon, MON_DATA_SPDEF_EV, NULL);
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     s32 level = GetLevelFromMonExp(mon);
+    u32 isShadow = GetMonData(mon, MON_DATA_IS_SHADOW, NULL);
+    if (isShadow != 0)
+    {
+        u16 boostLevel = GetMonData(mon, MON_DATA_BOOST_LEVEL, NULL);
+    }
+    else
+        u16 boostLevel = 0
     s32 newMaxHP;
 
     SetMonData(mon, MON_DATA_LEVEL, &level);
@@ -4104,7 +4115,7 @@ void CalculateMonStats(struct Pokemon *mon)
     else
     {
         s32 n = 2 * gSpeciesInfo[species].baseHP + hpIV;
-        newMaxHP = (((n + hpEV / 4) * level) / 100) + level + 10;
+        newMaxHP = (((n + hpEV / 4) * (level + boostLevel)) / 100) + (level + boostLevel) + 10;
     }
 
     gBattleScripting.levelUpHP = newMaxHP - oldMaxHP;
@@ -5019,8 +5030,15 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
                 | (substruct3->worldRibbon << 26);
         }
         break;
+        
+    case MON_DATA_SHADOW_ID:
+        retVal = substruct0->shadowId;
+        break;
     case MON_DATA_IS_SHADOW:
         retVal = substruct3->isShadow;
+        break;
+    case MON_DATA_BOOST_LEVEL:
+        retVal = substruct0->boostLevel;
         break;
     case MON_DATA_REVERSE_MODE:
         if (substruct3->isShadow)

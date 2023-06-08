@@ -1,3 +1,5 @@
+//      There are up to 2047 possible values for shadowId, but only 80 have flags established for meeting and snagging. If you need more, manually designate a new block of flags using the unused flags in constants/flags.h
+
 const struct ShadowListEntry gShadowListEntries[] =
 {
     [SHADOW_LIST_NONE] =
@@ -23,14 +25,13 @@ const struct ShadowListEntry gShadowListEntries[] =
         .spDefenseIV = 0,
         .boostLevel = 0,
         .level = 1,
-        .heartValue = 2000,
         .heartMax = 2000,
-        .personality = 0,
-        .status = 0,
-        .maxHP = 1,
-        .hp = 1,
+        .gender = MON_GENDERLESS,
+        .nature = NATURE_HARDY
+        .ability = 0
+        .shiny = 0,
         .snagLocation = 0,
-        .snagTrainerName = _("Unknown")
+        .snagTrainerName = _("Unknown"),
     }, 
     
     [SHADOW_LIST_EEVEE] =
@@ -57,13 +58,12 @@ const struct ShadowListEntry gShadowListEntries[] =
         .boostLevel = 3,
         .level = 10,
         .heartMax = 4000,
-        .heartValue = 4000,
-        .personality = 0,
-        .status = 0,
-        .maxHP = 1,
-        .hp = 1,
+        .gender = MON_MALE,
+        .nature = NATURE_HARDY
+        .ability = 0
+        .shiny = 0,
         .snagLocation = 0,
-        .snagTrainerName = _("Michael")
+        .snagTrainerName = _("Unknown"),
 
     },
 
@@ -91,13 +91,12 @@ const struct ShadowListEntry gShadowListEntries[] =
         .boostLevel = 3,
         .level = 10,
         .heartMax = 4000,
-        .heartValue = 4000,
-        .personality = 0,
-        .status = 0,
-        .maxHP = 1,
-        .hp = 1,
+        .gender = MON_FEMALE,
+        .nature = NATURE_HARDY
+        .ability = 0
+        .shiny = 0,
         .snagLocation = 0,
-        .snagTrainerName = _("Michael")
+        .snagTrainerName = _("Unknown"),
 
     },
 
@@ -125,13 +124,12 @@ const struct ShadowListEntry gShadowListEntries[] =
         .boostLevel = 3,
         .level = 10,
         .heartMax = 4000,
-        .heartValue = 4000,
-        .personality = 0,
-        .status = 0,
-        .maxHP = 1,
-        .hp = 1,
+        .gender = MON_MALE,
+        .nature = NATURE_HARDY
+        .ability = 0
+        .shiny = 0,
         .snagLocation = 0,
-        .snagTrainerName = _("Michael")
+        .snagTrainerName = _("Unknown"),
 
     },
 
@@ -159,13 +157,12 @@ const struct ShadowListEntry gShadowListEntries[] =
         .boostLevel = 3,
         .level = 10,
         .heartMax = 4000,
-        .heartValue = 4000,
-        .personality = 0,
-        .status = 0,
-        .maxHP = 1,
-        .hp = 1,
+        .gender = MON_FEMALE,
+        .nature = NATURE_HARDY
+        .ability = 0
+        .shiny = 0,
         .snagLocation = 0,
-        .snagTrainerName = _("Michael")
+        .snagTrainerName = _("Unknown"),
 
     },
 
@@ -193,13 +190,12 @@ const struct ShadowListEntry gShadowListEntries[] =
         .boostLevel = 3,
         .level = 10,
         .heartMax = 4000,
-        .heartValue = 4000,
-        .personality = 0,
-        .status = 0,
-        .maxHP = 1,
-        .hp = 1,
+        .gender = MON_MALE,
+        .nature = NATURE_HARDY
+        .ability = 0
+        .shiny = 0,
         .snagLocation = 0,
-        .snagTrainerName = _("Michael")
+        .snagTrainerName = _("Unknown"),
 
     },
 
@@ -227,13 +223,45 @@ const struct ShadowListEntry gShadowListEntries[] =
         .boostLevel = 3,
         .level = 10,
         .heartMax = 4000,
-        .heartValue = 4000,
-        .personality = 0,
-        .status = 0,
-        .maxHP = 1,
-        .hp = 1,
+        .gender = MON_FEMALE,
+        .nature = NATURE_HARDY
+        .ability = 0
+        .shiny = 0,
         .snagLocation = 0,
-        .snagTrainerName = _("Michael")
+        .snagTrainerName = _("Unknown"),
+
+    },
+    
+    [SHADOW_LIST_SNEASEL] =
+    {
+        .shadowState = 1,
+        .shadowVar = 4,
+        .shadowId = 7,
+        .species = SPECIES_SNEASEL,
+        .experience = 0,
+        .shadowMoves = {MOVE_SHADOW_RUSH, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+        .purifyMoves = {MOVE_FEINT_ATTACK, MOVE_SCREECH, MOVE_FURY_SWIPES, MOVE_ICE_SHARD},
+        .hpEV = 0,
+        .attackEV = 0,
+        .defenseEV = 0,
+        .speedEV = 0,
+        .spAttackEV = 0,
+        .spDefenseEV = 0,
+        .hpIV = 31,
+        .attackIV = 31,
+        .defenseIV = 31,
+        .speedIV = 31,
+        .spAttackIV = 31,
+        .spDefenseIV = 31,
+        .boostLevel = 2,
+        .level = 43,
+        .heartMax = 6000,
+        .gender = MON_FEMALE,
+        .nature = NATURE_IMPISH
+        .ability = 2
+        .shiny = 0,
+        .snagLocation = 0,
+        .snagTrainerName = _("Unknown"),
 
     },
 
@@ -241,7 +269,7 @@ const struct ShadowListEntry gShadowListEntries[] =
     {
         .shadowState = 1,
         .shadowVar = 8,
-        .shadowId = 137,
+        .shadowId = 79,
         .species = SPECIES_LUGIA_SHADOW,
         .experience = 0,
         .shadowMoves = {MOVE_SHADOW_BLAST, MOVE_SHADOW_DOWN, MOVE_SHADOW_SHED, MOVE_SHADOW_STORM},
@@ -261,13 +289,12 @@ const struct ShadowListEntry gShadowListEntries[] =
         .boostLevel = 3,
         .level = 50,
         .heartMax = 12000,
-        .heartValue = 12000,
-        .personality = 0,
-        .status = 0,
-        .maxHP = 1,
-        .hp = 1,
+        .gender = MON_GENDERLESS,
+        .nature = NATURE_BOLD
+        .ability = 0
+        .shiny = 0,
         .snagLocation = 0,
-        .snagTrainerName = _("Greevil")
+        .snagTrainerName = _("Greevil"),
 
     },
 
@@ -275,7 +302,7 @@ const struct ShadowListEntry gShadowListEntries[] =
     {
         .shadowState = 1,
         .shadowVar = 8,
-        .shadowId = 138,
+        .shadowId = 80,
         .species = SPECIES_MEWTWO_SHADOW,
         .experience = 0,
         .shadowMoves = {MOVE_SHADOW_END, MOVE_SHADOW_STORM, MOVE_SHADOW_RAVE, MOVE_SHADOW_PANIC},
@@ -295,13 +322,12 @@ const struct ShadowListEntry gShadowListEntries[] =
         .boostLevel = 3,
         .level = 70,
         .heartMax = 12000,
-        .heartValue = 12000,
-        .personality = 0,
-        .status = 0,
-        .maxHP = 1,
-        .hp = 1,
+        .gender = MON_GENDERLESS,
+        .nature = NATURE_SERIOUS
+        .ability = 0
+        .shiny = 0,
         .snagLocation = 0,
-        .snagTrainerName = _("Anne")
+        .snagTrainerName = _("Anne"),
 
     },
 
