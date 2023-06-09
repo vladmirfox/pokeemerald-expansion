@@ -115,7 +115,7 @@ struct PokemonSubstruct0
     /*0x08*/ u8 ppBonuses;
     /*0x09*/ u8 friendship;
     /*0x0A*/ u16 pokeball:5; //31 balls
-             u16 shadowID:11;
+             u16 shadowId:11;
 }; /* size = 12 */
 
 struct PokemonSubstruct1

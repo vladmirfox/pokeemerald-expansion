@@ -83,6 +83,6 @@ const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES] =
 #endif
 
 //Shadow Forms
-    [SPECIES_MEWTWO] = sMewtwoFormChangeTable,
-    [SPECIES_LUGIA] = sLugiaFormChangeTable,
+    [SPECIES_MEWTWO_SHADOW] = sMewtwoFormChangeTable,
+    [SPECIES_LUGIA_SHADOW] = sLugiaFormChangeTable,
 };

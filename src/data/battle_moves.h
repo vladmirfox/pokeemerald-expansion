@@ -14395,7 +14395,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_REVERSE_MODE] =
     {
-        .effect = EFFECT_TRIGGER_REVERSE_MODE,
+        .effect = EFFECT_DO_NOTHING,
         .power = 0,
         .type = TYPE_SHADOW,
         .accuracy = 0,

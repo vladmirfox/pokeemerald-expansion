@@ -219,12 +219,13 @@ static const struct FormChange sEnamorusFormChangeTable[] = {
 // Shadow Forms
 
 static const struct FormChange sMewtwoFormChangeTable[] = {
-    {FORM_PURIFY, SPECIES_MEWTWO}
+    {FORM_PURIFY, SPECIES_MEWTWO},
     // {FORM_SHADOW, SPECIES_MEWTWO_SHADOW},
     {FORM_CHANGE_END},
+};
 
 static const struct FormChange sLugiaFormChangeTable[] = {
-    {FORM_PURIFY, SPECIES_LUGIA}
+    {FORM_PURIFY, SPECIES_LUGIA},
     // {FORM_SHADOW, SPECIES_LUGIA_SHADOW},
     {FORM_CHANGE_END},
 };

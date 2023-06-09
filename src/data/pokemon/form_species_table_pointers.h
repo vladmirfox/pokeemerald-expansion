@@ -58,6 +58,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_CORSOLA] = sCorsolaFormSpeciesIdTable,
     [SPECIES_HOUNDOOM] = sHoundoomFormSpeciesIdTable,
     [SPECIES_TYRANITAR] = sTyranitarFormSpeciesIdTable,
+    [SPECIES_LUGIA] = sLugiaFormSpeciesIdTable,
     [SPECIES_SCEPTILE] = sSceptileFormSpeciesIdTable,
     [SPECIES_BLAZIKEN] = sBlazikenFormSpeciesIdTable,
     [SPECIES_SWAMPERT] = sSwampertFormSpeciesIdTable,
@@ -593,5 +594,10 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_ENAMORUS_THERIAN] = sEnamorusFormSpeciesIdTable,
     // Basculegion
     [SPECIES_BASCULEGION_FEMALE] = sBasculegionFormSpeciesIdTable,
+
+    // Shadows
+    [SPECIES_LUGIA_SHADOW] = sLugiaFormSpeciesIdTable,
+    [SPECIES_MEWTWO_SHADOW] = sMewtwoFormSpeciesIdTable,
+    [SPECIES_MEWTWO_SHADOW_MEGA_X] = sMewtwoFormSpeciesIdTable,
 #endif
 };

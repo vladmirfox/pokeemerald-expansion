@@ -330,6 +330,7 @@
 #define FORM_WITHDRAW           4
 #define FORM_BATTLE_BEGIN       5
 #define FORM_BATTLE_END         6
+#define FORM_PURIFY				7
 
 #define MON_PIC_WIDTH 64
 #define MON_PIC_HEIGHT 64
