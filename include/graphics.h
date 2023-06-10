@@ -265,6 +265,7 @@ extern const u32 gMonFrontPic_Wooper[];
 extern const u32 gMonFrontPic_Quagsire[];
 extern const u32 gMonFrontPic_Espeon[];
 extern const u32 gMonFrontPic_Umbreon[];
+extern const u32 gMonFrontPic_Mei[];
 extern const u32 gMonFrontPic_Murkrow[];
 extern const u32 gMonFrontPic_Slowking[];
 extern const u32 gMonFrontPic_Misdreavus[];
@@ -1277,6 +1278,7 @@ extern const u32 gMonFrontPic_CalyrexIceRider[];
 extern const u32 gMonFrontPic_CalyrexShadowRider[];
 extern const u32 gMonFrontPic_EnamorusTherian[];
 extern const u32 gMonFrontPic_BasculegionFemale[];
+
 #endif
 extern const u32 gMonFrontPic_Egg[];
 
@@ -2489,6 +2491,7 @@ extern const u32 gMonBackPic_CalyrexIceRider[];
 extern const u32 gMonBackPic_CalyrexShadowRider[];
 extern const u32 gMonBackPic_EnamorusTherian[];
 extern const u32 gMonBackPic_BasculegionFemale[];
+extern const u32 gMonBackPic_Mei[];
 #endif
 
 extern const u32 gMonPalette_CircledQuestionMark[];
@@ -3721,6 +3724,7 @@ extern const u32 gMonPalette_CalyrexIceRider[];
 extern const u32 gMonPalette_CalyrexShadowRider[];
 extern const u32 gMonPalette_EnamorusTherian[];
 extern const u32 gMonPalette_BasculegionFemale[];
+extern const u32 gMonPalette_Mei[];
 #endif
 extern const u32 gMonPalette_Egg[];
 
@@ -4948,6 +4952,7 @@ extern const u32 gMonShinyPalette_CalyrexIceRider[];
 extern const u32 gMonShinyPalette_CalyrexShadowRider[];
 extern const u32 gMonShinyPalette_EnamorusTherian[];
 extern const u32 gMonShinyPalette_BasculegionFemale[];
+extern const u32 gMonShinyPalette_Mei[];
 #endif
 
 extern const u8 gMonIcon_QuestionMark[];
@@ -6168,6 +6173,7 @@ extern const u8 gMonIcon_CalyrexIceRider[];
 extern const u8 gMonIcon_CalyrexShadowRider[];
 extern const u8 gMonIcon_EnamorusTherian[];
 extern const u8 gMonIcon_BasculegionFemale[];
+extern const u8 gMonIcon_Mei[];
 #endif
 extern const u8 gMonIcon_Egg[];
 
@@ -7079,6 +7085,7 @@ extern const u8 gMonFootprint_Regidrago[];
 extern const u8 gMonFootprint_Glastrier[];
 extern const u8 gMonFootprint_Spectrier[];
 extern const u8 gMonFootprint_Calyrex[];
+extern const u8 gMonFootprint_Mei[];
 //extern const u8 gMonFootprint_Wyrdeer[];
 //extern const u8 gMonFootprint_Kleavor[];
 //extern const u8 gMonFootprint_Ursaluna[];

@@ -1186,6 +1186,11 @@ const u8 gUmbreonPokedexText[] = _(
     "and waits for its foes to move. The rings\n"
     "on its body glow when it leaps to attack.");
 
+const u8 gMeiPokedexText[] = _(
+    "Round, Anti-Social, but extremely loyal. Cautious around Strangers\n"
+    "but is a lifelong partner to those she trusts\n"
+    "Have to emphasize how round she is");
+
 const u8 gMurkrowPokedexText[] = _(
     "Murkrow were feared as the alleged\n"
     "bearers of ill fortune. It shows strong\n"

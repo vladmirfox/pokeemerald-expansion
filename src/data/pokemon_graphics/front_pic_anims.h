@@ -1,4 +1,4 @@
-﻿static const union AnimCmd sAnim_None_1[] =
+static const union AnimCmd sAnim_None_1[] =
 {
     ANIMCMD_FRAME(0, 30),
     ANIMCMD_FRAME(1, 30),
@@ -9464,6 +9464,12 @@ static const union AnimCmd sAnim_Spectrier_1[] =
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_Mei_1[] = {
+    ANIMCMD_FRAME(1, 40),
+    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd sAnim_Calyrex_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -11459,6 +11465,7 @@ SINGLE_ANIMATION(Regieleki);
 SINGLE_ANIMATION(Regidrago);
 SINGLE_ANIMATION(Glastrier);
 SINGLE_ANIMATION(Spectrier);
+SINGLE_ANIMATION(Mei);
 SINGLE_ANIMATION(Calyrex);
 SINGLE_ANIMATION(Wyrdeer);
 SINGLE_ANIMATION(Kleavor);
@@ -11640,6 +11647,7 @@ SINGLE_ANIMATION(EnamorusTherian);
 const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
 {
     [SPECIES_NONE]        = sAnims_None,
+    [SPECIES_MEI]         = sAnims_Mei,
     [SPECIES_BULBASAUR]   = sAnims_Bulbasaur,
     [SPECIES_IVYSAUR]     = sAnims_Ivysaur,
     [SPECIES_VENUSAUR]    = sAnims_Venusaur,

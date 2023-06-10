@@ -493,6 +493,7 @@ const u16 gPokedexOrder_Alphabetical[] =
     NATIONAL_DEX_MEDICHAM,
     NATIONAL_DEX_MEDITITE,
     NATIONAL_DEX_MEGANIUM,
+    NATIONAL_DEX_MEI,
     NATIONAL_DEX_MELMETAL,
     NATIONAL_DEX_MELOETTA,
     NATIONAL_DEX_MELTAN,
@@ -935,6 +936,7 @@ const u16 gPokedexOrder_Alphabetical[] =
 const u16 gPokedexOrder_Weight[] =
 {
     // 0.0 - 21.8 lbs / 0.0 - 9.9 kg
+    NATIONAL_DEX_MEI,
     NATIONAL_DEX_GASTLY,
     NATIONAL_DEX_HAUNTER,
     NATIONAL_DEX_FLABEBE,
@@ -2000,6 +2002,7 @@ const u16 gPokedexOrder_Weight[] =
 const u16 gPokedexOrder_Height[] =
 {
     // 0'04" / 0.1m
+    NATIONAL_DEX_MEI,
     NATIONAL_DEX_JOLTIK,
     NATIONAL_DEX_FLABEBE,
     NATIONAL_DEX_CUTIEFLY,

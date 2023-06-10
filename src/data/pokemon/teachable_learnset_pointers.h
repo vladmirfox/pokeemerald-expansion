@@ -198,6 +198,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_QUAGSIRE] = sQuagsireTeachableLearnset,
     [SPECIES_ESPEON] = sEspeonTeachableLearnset,
     [SPECIES_UMBREON] = sUmbreonTeachableLearnset,
+    [SPECIES_MEI] = sMeiTeachableLearnset,
     [SPECIES_MURKROW] = sMurkrowTeachableLearnset,
     [SPECIES_SLOWKING] = sSlowkingTeachableLearnset,
     [SPECIES_MISDREAVUS] = sMisdreavusTeachableLearnset,

@@ -197,6 +197,7 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_QUAGSIRE] = _("Quagsire"),
     [SPECIES_ESPEON] = _("Espeon"),
     [SPECIES_UMBREON] = _("Umbreon"),
+    [SPECIES_MEI] = _("Mei"),
     [SPECIES_MURKROW] = _("Murkrow"),
     [SPECIES_SLOWKING] = _("Slowking"),
     [SPECIES_MISDREAVUS] = _("Misdreavus"),

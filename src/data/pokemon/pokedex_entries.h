@@ -2376,6 +2376,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_MEI] =
+    {
+        .categoryName = _("Roundness"),
+        .height = 10,
+        .weight = 3,
+        .description = gMeiPokedexText,
+        .pokemonScale = 317,
+        .pokemonOffset = 11,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_MURKROW] =
     {
         .categoryName = _("Darkness"),
