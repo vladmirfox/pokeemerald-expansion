@@ -353,6 +353,8 @@ struct SpeciesInfo /*0x55*/
             // Graphical Data
             u8 noFlip : 1;
  /* 0xB0 */ u8 frontAnimDelay;
+ /* 0xB1 */ u8 frontAnimId;
+ /* 0xB2 */ u8 backAnimId;
             // Flags
  /* 0x43 */ u16 flags;
             // Move Data

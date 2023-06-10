@@ -20,6 +20,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 0,
         .levelUpLearnset = sBulbasaurLevelUpLearnset,
         .teachableLearnset = sBulbasaurTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_BULBASAUR] =
@@ -54,6 +56,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 69,
         .levelUpLearnset = sBulbasaurLevelUpLearnset,
         .teachableLearnset = sBulbasaurTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sBulbasaurEvolutions,
     },
 
@@ -90,6 +94,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 130,
         .levelUpLearnset = sIvysaurLevelUpLearnset,
         .teachableLearnset = sIvysaurTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sIvysaurEvolutions,
     },
 
@@ -128,6 +134,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 6,
         .height = 20,
         .weight = 1000,
+        .frontAnimId = ANIM_ROTATE_UP_SLAM_DOWN,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         VENUSAUR_MISC_INFO,
     },
 
@@ -152,6 +160,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 6,
         .height = 24,
         .weight = 1555,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         VENUSAUR_MISC_INFO,
     },
 
@@ -173,6 +183,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 388,
         .trainerOffset = 6,
         .height = 240,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         VENUSAUR_MISC_INFO,
     },
 
@@ -208,6 +220,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 85,
         .levelUpLearnset = sCharmanderLevelUpLearnset,
         .teachableLearnset = sCharmanderTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sCharmanderEvolutions,
     },
 
@@ -244,6 +258,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 190,
         .levelUpLearnset = sCharmeleonLevelUpLearnset,
         .teachableLearnset = sCharmeleonTeachableLearnset,
+        .frontAnimId = ANIM_BACK_AND_LUNGE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sCharmeleonEvolutions,
     },
 
@@ -281,6 +297,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 3,
         .height = 17,
         .weight = 905,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         CHARIZARD_MISC_INFO,
     },
 
@@ -307,6 +325,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 3,
         .height = 17,
         .weight = 1105,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         CHARIZARD_MISC_INFO,
     },
 
@@ -333,6 +353,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 3,
         .height = 17,
         .weight = 1005,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         CHARIZARD_MISC_INFO,
     },
 
@@ -356,6 +378,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 280,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         CHARIZARD_MISC_INFO,
     },
 
@@ -391,6 +415,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 90,
         .levelUpLearnset = sSquirtleLevelUpLearnset,
         .teachableLearnset = sSquirtleTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sSquirtleEvolutions,
     },
 
@@ -427,6 +453,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 225,
         .levelUpLearnset = sWartortleLevelUpLearnset,
         .teachableLearnset = sWartortleTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sWartortleEvolutions,
     },
 
@@ -465,6 +493,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 16,
         .weight = 855,
         .frontAnimDelay = 50,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         BLASTOISE_MISC_INFO,
     },
 
@@ -489,6 +519,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 2,
         .height = 16,
         .weight = 1011,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         BLASTOISE_MISC_INFO,
     },
 
@@ -510,6 +542,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 250,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         BLASTOISE_MISC_INFO,
     },
 
@@ -545,6 +579,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 29,
         .levelUpLearnset = sCaterpieLevelUpLearnset,
         .teachableLearnset = sCaterpieTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sCaterpieEvolutions,
     },
 
@@ -580,6 +616,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 99,
         .levelUpLearnset = sMetapodLevelUpLearnset,
         .teachableLearnset = sMetapodTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sMetapodEvolutions,
     },
 
@@ -625,6 +663,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 11,
         .weight = 320,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         BUTTERFREE_MISC_STATS,
     },
 
@@ -638,6 +678,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 170,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         BUTTERFREE_MISC_STATS,
     },
 
@@ -674,6 +716,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sWeedleLevelUpLearnset,
         .teachableLearnset = sWeedleTeachableLearnset,
         .frontAnimDelay = 10,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sWeedleEvolutions,
     },
 
@@ -710,6 +754,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sKakunaLevelUpLearnset,
         .teachableLearnset = sKakunaTeachableLearnset,
         .frontAnimDelay = 20,
+        .frontAnimId = ANIM_GLOW_ORANGE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sKakunaEvolutions,
     },
 
@@ -756,6 +802,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 10,
         .weight = 295,
         .frontAnimDelay = 35,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         BEEDRILL_MISC_INFO,
     },
 
@@ -776,6 +824,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = gBeedrillMegaPokedexText,
         .height = 14,
         .weight = 405,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         BEEDRILL_MISC_INFO,
     },
 
@@ -811,6 +861,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 18,
         .levelUpLearnset = sPidgeyLevelUpLearnset,
         .teachableLearnset = sPidgeyTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sPidgeyEvolutions,
     },
 
@@ -847,6 +899,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sPidgeottoLevelUpLearnset,
         .teachableLearnset = sPidgeottoTeachableLearnset,
         .frontAnimDelay = 25,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sPidgeottoEvolutions,
     },
 
@@ -890,6 +944,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 395,
+        .frontAnimId = ANIM_FRONT_FLIP,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         PIDGEOT_MISC_INFO,
     },
 
@@ -914,6 +970,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 22,
         .weight = 505,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         PIDGEOT_MISC_INFO,
     },
 
@@ -954,6 +1012,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 35,
         .levelUpLearnset = sRattataLevelUpLearnset,
         .teachableLearnset = sRattataTeachableLearnset,
+        .frontAnimId = ANIM_RAPID_H_HOPS,
+        .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         .evolutions = sRattataEvolutions,
         RATTATA_MISC_INFO,
     },
@@ -973,6 +1033,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 38,
         .levelUpLearnset = sRattataAlolanLevelUpLearnset,
         .teachableLearnset = sRattataAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sRattataAlolanEvolutions,
         RATTATA_MISC_INFO,
     },
@@ -1006,6 +1068,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 185,
         .levelUpLearnset = sRaticateLevelUpLearnset,
         .teachableLearnset = sRaticateTeachableLearnset,
+        .frontAnimId = ANIM_FIGURE_8,
+        .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         RATICATE_MISC_INFO,
     },
     [SPECIES_RATICATE_ALOLAN] =
@@ -1030,6 +1094,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 255,
         .levelUpLearnset = sRaticateAlolanLevelUpLearnset,
         .teachableLearnset = sRaticateAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         RATICATE_MISC_INFO,
     },
 
@@ -1066,6 +1132,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 20,
         .levelUpLearnset = sSpearowLevelUpLearnset,
         .teachableLearnset = sSpearowTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sSpearowEvolutions,
     },
 
@@ -1103,6 +1171,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sFearowLevelUpLearnset,
         .teachableLearnset = sFearowTeachableLearnset,
         .frontAnimDelay = 2,
+        .frontAnimId = ANIM_FIGURE_8,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
     },
 
     [SPECIES_EKANS] =
@@ -1138,6 +1208,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sEkansLevelUpLearnset,
         .teachableLearnset = sEkansTeachableLearnset,
         .frontAnimDelay = 30,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sEkansEvolutions,
     },
 
@@ -1177,6 +1249,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 650,
         .levelUpLearnset = sArbokLevelUpLearnset,
         .teachableLearnset = sArbokTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
 #define PICHU_MISC_INFO                                                     \
@@ -1207,7 +1281,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 3,                                                        \
         .weight = 20,                                                       \
         .levelUpLearnset = sPichuLevelUpLearnset,                           \
-        .teachableLearnset = sPichuTeachableLearnset
+        .teachableLearnset = sPichuTeachableLearnset,                       \
+        .frontAnimId = ANIM_V_JUMPS_BIG,                                    \
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL
 
     [SPECIES_PICHU] =
     {
@@ -1258,7 +1334,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,                                                \
         .trainerOffset = 0,                                                 \
         .height = 4,                                                        \
-        .weight = 60
+        .weight = 60,                                                       \
+        .frontAnimId = ANIM_FLASH_YELLOW,                                   \
+        .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW
 
     [SPECIES_PIKACHU] =
     {
@@ -1400,6 +1478,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 300,
         .levelUpLearnset = sRaichuLevelUpLearnset,
         .teachableLearnset = sRaichuTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
         RAICHU_MISC_INFO,
     },
     [SPECIES_RAICHU_ALOLAN] =
@@ -1421,6 +1501,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 210,
         .levelUpLearnset = sRaichuAlolanLevelUpLearnset,
         .teachableLearnset = sRaichuAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define SANDSHREW_FAMILY_MISC_INFO                          \
@@ -1461,6 +1543,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 120,
         .levelUpLearnset = sSandshrewLevelUpLearnset,
         .teachableLearnset = sSandshrewTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE_FAST_SHORT,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sSandshrewEvolutions,
         SANDSHREW_MISC_INFO,
     },
@@ -1482,6 +1566,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 400,
         .levelUpLearnset = sSandshrewAlolanLevelUpLearnset,
         .teachableLearnset = sSandshrewAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSandshrewAlolanEvolutions,
         SANDSHREW_MISC_INFO,
     },
@@ -1515,6 +1601,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 295,
         .levelUpLearnset = sSandslashLevelUpLearnset,
         .teachableLearnset = sSandslashTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         SANDSLASH_MISC_INFO,
     },
     [SPECIES_SANDSLASH_ALOLAN] =
@@ -1535,6 +1623,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 550,
         .levelUpLearnset = sSandslashAlolanLevelUpLearnset,
         .teachableLearnset = sSandslashAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SANDSLASH_MISC_INFO,
     },
 
@@ -1571,6 +1661,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sNidoranFLevelUpLearnset,
         .teachableLearnset = sNidoranFTeachableLearnset,
         .frontAnimDelay = 28,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sNidoranFEvolutions,
     },
 
@@ -1606,6 +1698,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 200,
         .levelUpLearnset = sNidorinaLevelUpLearnset,
         .teachableLearnset = sNidorinaTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sNidorinaEvolutions,
     },
 
@@ -1645,6 +1739,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 600,
         .levelUpLearnset = sNidoqueenLevelUpLearnset,
         .teachableLearnset = sNidoqueenTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
     [SPECIES_NIDORAN_M] =
@@ -1679,6 +1775,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 90,
         .levelUpLearnset = sNidoranMLevelUpLearnset,
         .teachableLearnset = sNidoranMTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sNidoranMEvolutions,
     },
 
@@ -1714,6 +1812,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 195,
         .levelUpLearnset = sNidorinoLevelUpLearnset,
         .teachableLearnset = sNidorinoTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sNidorinoEvolutions,
     },
 
@@ -1754,6 +1854,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sNidokingLevelUpLearnset,
         .teachableLearnset = sNidokingTeachableLearnset,
         .frontAnimDelay = 25,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
 #if P_UPDATED_TYPES >= GEN_6
@@ -1795,6 +1897,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 30,
         .levelUpLearnset = sCleffaLevelUpLearnset,
         .teachableLearnset = sCleffaTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sCleffaEvolutions,
     },
 
@@ -1831,6 +1935,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 75,
         .levelUpLearnset = sClefairyLevelUpLearnset,
         .teachableLearnset = sClefairyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sClefairyEvolutions,
     },
 
@@ -1871,6 +1977,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 400,
         .levelUpLearnset = sClefableLevelUpLearnset,
         .teachableLearnset = sClefableTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
     },
 
 #define VULPIX_FAMILY_MISC_INFO                             \
@@ -1911,6 +2019,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Fox"),
         .levelUpLearnset = sVulpixLevelUpLearnset,
         .teachableLearnset = sVulpixTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .evolutions = sVulpixEvolutions,
         VULPIX_MISC_INFO,
     },
@@ -1925,6 +2035,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Fox"),
         .levelUpLearnset = sVulpixAlolanLevelUpLearnset,
         .teachableLearnset = sVulpixAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sVulpixAlolanEvolutions,
         VULPIX_MISC_INFO,
     },
@@ -1960,6 +2072,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Fox"),
         .levelUpLearnset = sNinetalesLevelUpLearnset,
         .teachableLearnset = sNinetalesTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         NINETALES_MISC_INFO,
     },
     [SPECIES_NINETALES_ALOLAN] =
@@ -1979,6 +2093,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Fox"),
         .levelUpLearnset = sNinetalesAlolanLevelUpLearnset,
         .teachableLearnset = sNinetalesAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         NINETALES_MISC_INFO,
     },
 
@@ -2020,6 +2136,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 10,
         .levelUpLearnset = sIgglybuffLevelUpLearnset,
         .teachableLearnset = sIgglybuffTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE_FAST,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sIgglybuffEvolutions,
     },
 
@@ -2056,6 +2174,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 55,
         .levelUpLearnset = sJigglypuffLevelUpLearnset,
         .teachableLearnset = sJigglypuffTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sJigglypuffEvolutions,
     },
 
@@ -2096,6 +2216,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 120,
         .levelUpLearnset = sWigglytuffLevelUpLearnset,
         .teachableLearnset = sWigglytuffTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_GROW,
     },
 
     [SPECIES_ZUBAT] =
@@ -2130,6 +2252,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 75,
         .levelUpLearnset = sZubatLevelUpLearnset,
         .teachableLearnset = sZubatTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         .evolutions = sZubatEvolutions,
     },
 
@@ -2165,6 +2289,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 550,
         .levelUpLearnset = sGolbatLevelUpLearnset,
         .teachableLearnset = sGolbatTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sGolbatEvolutions,
     },
 
@@ -2200,6 +2326,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 750,
         .levelUpLearnset = sCrobatLevelUpLearnset,
         .teachableLearnset = sCrobatTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
     },
 
     [SPECIES_ODDISH] =
@@ -2235,6 +2363,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 54,
         .levelUpLearnset = sOddishLevelUpLearnset,
         .teachableLearnset = sOddishTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sOddishEvolutions,
     },
 
@@ -2271,6 +2401,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 86,
         .levelUpLearnset = sGloomLevelUpLearnset,
         .teachableLearnset = sGloomTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sGloomEvolutions,
     },
 
@@ -2311,6 +2443,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 186,
         .levelUpLearnset = sVileplumeLevelUpLearnset,
         .teachableLearnset = sVileplumeTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
     },
 
     [SPECIES_BELLOSSOM] =
@@ -2350,6 +2484,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 58,
         .levelUpLearnset = sBellossomLevelUpLearnset,
         .teachableLearnset = sBellossomTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
     [SPECIES_PARAS] =
@@ -2387,6 +2523,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sParasLevelUpLearnset,
         .teachableLearnset = sParasTeachableLearnset,
         .frontAnimDelay = 10,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sParasEvolutions,
     },
 
@@ -2426,6 +2564,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sParasectLevelUpLearnset,
         .teachableLearnset = sParasectTeachableLearnset,
         .frontAnimDelay = 45,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_H_SHAKE,
     },
 
     [SPECIES_VENONAT] =
@@ -2461,6 +2601,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sVenonatLevelUpLearnset,
         .teachableLearnset = sVenonatTeachableLearnset,
         .frontAnimDelay = 20,
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
+        .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         .evolutions = sVenonatEvolutions,
     },
 
@@ -2498,6 +2640,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 125,
         .levelUpLearnset = sVenomothLevelUpLearnset,
         .teachableLearnset = sVenomothTeachableLearnset,
+        .frontAnimId = ANIM_ZIGZAG_SLOW,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
 #define DIGLETT_FAMILY_MISC_INFO                            \
@@ -2539,6 +2683,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sDiglettLevelUpLearnset,
         .teachableLearnset = sDiglettTeachableLearnset,
         .frontAnimDelay = 25,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sDiglettEvolutions,
         DIGLETT_MISC_INFO,
     },
@@ -2562,6 +2708,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 10,
         .levelUpLearnset = sDiglettAlolanLevelUpLearnset,
         .teachableLearnset = sDiglettAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDiglettAlolanEvolutions,
         DIGLETT_MISC_INFO,
     },
@@ -2602,6 +2750,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sDugtrioLevelUpLearnset,
         .teachableLearnset = sDugtrioTeachableLearnset,
         .frontAnimDelay = 35,
+        .frontAnimId = ANIM_H_SHAKE_SLOW,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         DUGTRIO_MISC_INFO,
     },
     [SPECIES_DUGTRIO_ALOLAN] =
@@ -2625,6 +2775,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 666,
         .levelUpLearnset = sDugtrioAlolanLevelUpLearnset,
         .teachableLearnset = sDugtrioAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         DUGTRIO_MISC_INFO,
     },
 
@@ -2664,6 +2816,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sMeowthLevelUpLearnset,
         .teachableLearnset = sMeowthTeachableLearnset,
         .frontAnimDelay = 40,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .evolutions = sMeowthEvolutions,
         MEOWTH_MISC_INFO,
     },
@@ -2692,6 +2846,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 42,
         .levelUpLearnset = sMeowthAlolanLevelUpLearnset,
         .teachableLearnset = sMeowthAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMeowthAlolanEvolutions,
         MEOWTH_MISC_INFO,
     },
@@ -2719,6 +2875,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 75,
         .levelUpLearnset = sMeowthGalarianLevelUpLearnset,
         .teachableLearnset = sMeowthGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMeowthGalarianEvolutions,
         MEOWTH_MISC_INFO,
     },
@@ -2743,6 +2901,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 330,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         MEOWTH_MISC_INFO,
     },
 
@@ -2782,6 +2942,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sPersianLevelUpLearnset,
         .teachableLearnset = sPersianTeachableLearnset,
         .frontAnimDelay = 20,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         PERSIAN_MISC_INFO,
     },
     [SPECIES_PERSIAN_ALOLAN] =
@@ -2806,6 +2968,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 330,
         .levelUpLearnset = sPersianAlolanLevelUpLearnset,
         .teachableLearnset = sPersianAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         PERSIAN_MISC_INFO,
     },
 
@@ -2841,6 +3005,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 280,
         .levelUpLearnset = sPerrserkerLevelUpLearnset,
         .teachableLearnset = sPerrserkerTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PSYDUCK] =
@@ -2875,6 +3041,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 196,
         .levelUpLearnset = sPsyduckLevelUpLearnset,
         .teachableLearnset = sPsyduckTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sPsyduckEvolutions,
     },
 
@@ -2910,6 +3078,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 766,
         .levelUpLearnset = sGolduckLevelUpLearnset,
         .teachableLearnset = sGolduckTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE_SLOW,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
     },
 
     [SPECIES_MANKEY] =
@@ -2945,6 +3115,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sMankeyLevelUpLearnset,
         .teachableLearnset = sMankeyTeachableLearnset,
         .frontAnimDelay = 20,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .evolutions = sMankeyEvolutions,
     },
 
@@ -2980,6 +3152,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 320,
         .levelUpLearnset = sPrimeapeLevelUpLearnset,
         .teachableLearnset = sPrimeapeTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .evolutions = sPrimeapeEvolutions,
     },
 
@@ -3021,6 +3195,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sGrowlitheLevelUpLearnset,
         .teachableLearnset = sGrowlitheTeachableLearnset,
         .frontAnimDelay = 30,
+        .frontAnimId = ANIM_BACK_AND_LUNGE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sGrowlitheEvolutions,
         GROWLITHE_MISC_INFO,
     },
@@ -3040,6 +3216,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 227,
         .levelUpLearnset = sGrowlitheHisuianLevelUpLearnset,
         .teachableLearnset = sGrowlitheHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGrowlitheHisuianEvolutions,
         GROWLITHE_MISC_INFO,
     },
@@ -3072,6 +3250,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sArcanineLevelUpLearnset,
         .teachableLearnset = sArcanineTeachableLearnset,
         .frontAnimDelay = 40,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         ARCANINE_MISC_INFO,
     },
     [SPECIES_ARCANINE_HISUIAN] =
@@ -3090,6 +3270,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1680,
         .levelUpLearnset = sArcanineHisuianLevelUpLearnset,
         .teachableLearnset = sArcanineHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ARCANINE_MISC_INFO,
     },
 
@@ -3125,6 +3307,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 124,
         .levelUpLearnset = sPoliwagLevelUpLearnset,
         .teachableLearnset = sPoliwagTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sPoliwagEvolutions,
     },
 
@@ -3162,6 +3346,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sPoliwhirlLevelUpLearnset,
         .teachableLearnset = sPoliwhirlTeachableLearnset,
         .frontAnimDelay = 5,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sPoliwhirlEvolutions,
     },
 
@@ -3202,6 +3388,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 540,
         .levelUpLearnset = sPoliwrathLevelUpLearnset,
         .teachableLearnset = sPoliwrathTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
     },
 
     [SPECIES_POLITOED] =
@@ -3238,6 +3426,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sPolitoedLevelUpLearnset,
         .teachableLearnset = sPolitoedTeachableLearnset,
         .frontAnimDelay = 40,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
     },
 
     [SPECIES_ABRA] =
@@ -3273,6 +3463,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 195,
         .levelUpLearnset = sAbraLevelUpLearnset,
         .teachableLearnset = sAbraTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         .evolutions = sAbraEvolutions,
     },
 
@@ -3309,6 +3501,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 565,
         .levelUpLearnset = sKadabraLevelUpLearnset,
         .teachableLearnset = sKadabraTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         .evolutions = sKadabraEvolutions,
     },
 
@@ -3353,6 +3547,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 15,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_GROW_STUTTER,
         ALAKAZAM_MISC_INFO,
     },
 
@@ -3377,6 +3573,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 12,
         ALAKAZAM_MISC_INFO,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_MACHOP] =
@@ -3412,6 +3610,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 195,
         .levelUpLearnset = sMachopLevelUpLearnset,
         .teachableLearnset = sMachopTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sMachopEvolutions,
     },
 
@@ -3448,6 +3648,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 705,
         .levelUpLearnset = sMachokeLevelUpLearnset,
         .teachableLearnset = sMachokeTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sMachokeEvolutions,
     },
 
@@ -3484,6 +3686,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1300,
         .levelUpLearnset = sMachampLevelUpLearnset,
         .teachableLearnset = sMachampTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
     [SPECIES_BELLSPROUT] =
@@ -3518,6 +3722,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 40,
         .levelUpLearnset = sBellsproutLevelUpLearnset,
         .teachableLearnset = sBellsproutTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_V_STRETCH,
         .evolutions = sBellsproutEvolutions,
     },
 
@@ -3554,6 +3760,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sWeepinbellLevelUpLearnset,
         .teachableLearnset = sWeepinbellTeachableLearnset,
         .frontAnimDelay = 3,
+        .frontAnimId = ANIM_SWING_CONVEX,
+        .backAnimId = BACK_ANIM_V_STRETCH,
         .evolutions = sWeepinbellEvolutions,
     },
 
@@ -3593,6 +3801,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 155,
         .levelUpLearnset = sVictreebelLevelUpLearnset,
         .teachableLearnset = sVictreebelTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_V_STRETCH,
     },
 
     [SPECIES_TENTACOOL] =
@@ -3628,6 +3838,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 455,
         .levelUpLearnset = sTentacoolLevelUpLearnset,
         .teachableLearnset = sTentacoolTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sTentacoolEvolutions,
     },
 
@@ -3664,6 +3876,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 550,
         .levelUpLearnset = sTentacruelLevelUpLearnset,
         .teachableLearnset = sTentacruelTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_H_SLIDE,
     },
 
 #define KANTONIAN_GEODUDE_FAMILY_INFO                                       \
@@ -3706,6 +3920,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 200,
         .levelUpLearnset = sGeodudeLevelUpLearnset,
         .teachableLearnset = sGeodudeTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         KANTONIAN_GEODUDE_FAMILY_INFO,
         .evolutions = sGeodudeEvolutions,
         GEODUDE_MISC_INFO,
@@ -3728,6 +3944,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 203,
         .levelUpLearnset = sGeodudeAlolanLevelUpLearnset,
         .teachableLearnset = sGeodudeAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ALOLAN_GEODUDE_FAMILY_INFO,
         .evolutions = sGeodudeAlolanEvolutions,
         GEODUDE_MISC_INFO,
@@ -3759,6 +3977,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1050,
         .levelUpLearnset = sGravelerLevelUpLearnset,
         .teachableLearnset = sGravelerTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
+        .backAnimId = BACK_ANIM_H_SHAKE,
         KANTONIAN_GEODUDE_FAMILY_INFO,
         .evolutions = sGravelerEvolutions,
         GRAVELER_MISC_INFO,
@@ -3774,6 +3994,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1100,
         .levelUpLearnset = sGravelerAlolanLevelUpLearnset,
         .teachableLearnset = sGravelerAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ALOLAN_GEODUDE_FAMILY_INFO,
         .evolutions = sGravelerAlolanEvolutions,
         GRAVELER_MISC_INFO,
@@ -3810,6 +4032,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3000,
         .levelUpLearnset = sGolemLevelUpLearnset,
         .teachableLearnset = sGolemTeachableLearnset,
+        .frontAnimId = ANIM_ROTATE_UP_SLAM_DOWN,
+        .backAnimId = BACK_ANIM_H_SHAKE,
         KANTONIAN_GEODUDE_FAMILY_INFO,
         GOLEM_MISC_INFO,
     },
@@ -3825,6 +4049,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3160,
         .levelUpLearnset = sGolemAlolanLevelUpLearnset,
         .teachableLearnset = sGolemAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ALOLAN_GEODUDE_FAMILY_INFO,
         GOLEM_MISC_INFO,
     },
@@ -3868,6 +4094,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 300,
         .levelUpLearnset = sPonytaLevelUpLearnset,
         .teachableLearnset = sPonytaTeachableLearnset,
+        .frontAnimId = ANIM_GLOW_ORANGE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         KANTONIAN_PONYTA_FAMILY_INFO,
         .evolutions = sPonytaEvolutions,
         PONYTA_MISC_INFO,
@@ -3891,6 +4119,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 240,
         .levelUpLearnset = sPonytaGalarianLevelUpLearnset,
         .teachableLearnset = sPonytaGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         GALARIAN_PONYTA_FAMILY_INFO,
         .evolutions = sPonytaGalarianEvolutions,
         PONYTA_MISC_INFO,
@@ -3922,6 +4152,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 950,
         .levelUpLearnset = sRapidashLevelUpLearnset,
         .teachableLearnset = sRapidashTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         KANTONIAN_PONYTA_FAMILY_INFO,
         RAPIDASH_MISC_INFO,
     },
@@ -3937,6 +4169,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 800,
         .levelUpLearnset = sRapidashGalarianLevelUpLearnset,
         .teachableLearnset = sRapidashGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         GALARIAN_PONYTA_FAMILY_INFO,
         RAPIDASH_MISC_INFO,
     },
@@ -3976,6 +4210,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Dopey"),
         .levelUpLearnset = sSlowpokeLevelUpLearnset,
         .teachableLearnset = sSlowpokeTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sSlowpokeEvolutions,
         SLOWPOKE_MISC_INFO,
     },
@@ -3989,6 +4225,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Dopey"),
         .levelUpLearnset = sSlowpokeGalarianLevelUpLearnset,
         .teachableLearnset = sSlowpokeGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSlowpokeGalarianEvolutions,
         SLOWPOKE_MISC_INFO,
     },
@@ -4028,6 +4266,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 785,
         .levelUpLearnset = sSlowbroLevelUpLearnset,
         .teachableLearnset = sSlowbroTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         SLOWBRO_MISC_INFO,
     },
 
@@ -4057,6 +4297,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1200,
         .levelUpLearnset = sSlowbroLevelUpLearnset,
         .teachableLearnset = sSlowbroTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SLOWBRO_MISC_INFO,
     },
     [SPECIES_SLOWBRO_GALARIAN] =
@@ -4083,6 +4325,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 705,
         .levelUpLearnset = sSlowbroGalarianLevelUpLearnset,
         .teachableLearnset = sSlowbroGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SLOWBRO_MISC_INFO,
     },
 
@@ -4119,6 +4363,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 60,
         .levelUpLearnset = sMagnemiteLevelUpLearnset,
         .teachableLearnset = sMagnemiteTeachableLearnset,
+        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sMagnemiteEvolutions,
     },
 
@@ -4155,6 +4401,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 600,
         .levelUpLearnset = sMagnetonLevelUpLearnset,
         .teachableLearnset = sMagnetonTeachableLearnset,
+        .frontAnimId = ANIM_FLASH_YELLOW,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sMagnetonEvolutions,
     },
 
@@ -4191,6 +4439,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1800,
         .levelUpLearnset = sMagnezoneLevelUpLearnset,
         .teachableLearnset = sMagnezoneTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #if P_UPDATED_STATS >= GEN_7
@@ -4234,6 +4484,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 150,
         .levelUpLearnset = sFarfetchdLevelUpLearnset,
         .teachableLearnset = sFarfetchdTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         FARFETCHD_MISC_INFO,
     },
     [SPECIES_FARFETCHD_GALARIAN] =
@@ -4253,6 +4505,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 420,
         .levelUpLearnset = sFarfetchdGalarianLevelUpLearnset,
         .teachableLearnset = sFarfetchdGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sFarfetchdGalarianEvolutions,
         FARFETCHD_MISC_INFO,
     },
@@ -4290,6 +4544,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1170,
         .levelUpLearnset = sSirfetchdLevelUpLearnset,
         .teachableLearnset = sSirfetchdTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DODUO] =
@@ -4325,6 +4581,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 392,
         .levelUpLearnset = sDoduoLevelUpLearnset,
         .teachableLearnset = sDoduoTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE_SLOW,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sDoduoEvolutions,
     },
 
@@ -4365,6 +4623,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 852,
         .levelUpLearnset = sDodrioLevelUpLearnset,
         .teachableLearnset = sDodrioTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
     },
 
     [SPECIES_SEEL] =
@@ -4399,6 +4659,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 900,
         .levelUpLearnset = sSeelLevelUpLearnset,
         .teachableLearnset = sSeelTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sSeelEvolutions,
     },
 
@@ -4434,6 +4696,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1200,
         .levelUpLearnset = sDewgongLevelUpLearnset,
         .teachableLearnset = sDewgongTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_H_SLIDE,
     },
 
 #define GRIMER_FAMILY_MISC_INFO                                     \
@@ -4476,6 +4740,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 300,
         .levelUpLearnset = sGrimerLevelUpLearnset,
         .teachableLearnset = sGrimerTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_V_STRETCH,
         .evolutions = sGrimerEvolutions,
         KANTONIAN_GRIMER_FAMILY_INFO,
         GRIMER_MISC_INFO,
@@ -4499,6 +4765,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 420,
         .levelUpLearnset = sGrimerAlolanLevelUpLearnset,
         .teachableLearnset = sGrimerAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGrimerAlolanEvolutions,
         ALOLAN_GRIMER_FAMILY_INFO,
         GRIMER_MISC_INFO,
@@ -4532,6 +4800,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sMukLevelUpLearnset,
         .teachableLearnset = sMukTeachableLearnset,
         .frontAnimDelay = 45,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_H_STRETCH,
         KANTONIAN_GRIMER_FAMILY_INFO,
         MUK_MISC_INFO,
     },
@@ -4547,6 +4817,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 520,
         .levelUpLearnset = sMukAlolanLevelUpLearnset,
         .teachableLearnset = sMukAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ALOLAN_GRIMER_FAMILY_INFO,
         MUK_MISC_INFO,
     },
@@ -4586,6 +4858,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sShellderLevelUpLearnset,
         .teachableLearnset = sShellderTeachableLearnset,
         .frontAnimDelay = 20,
+        .frontAnimId = ANIM_TWIST,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sShellderEvolutions,
     },
 
@@ -4623,6 +4897,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1325,
         .levelUpLearnset = sCloysterLevelUpLearnset,
         .teachableLearnset = sCloysterTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
     },
 
     [SPECIES_GASTLY] =
@@ -4657,6 +4933,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1,
         .levelUpLearnset = sGastlyLevelUpLearnset,
         .teachableLearnset = sGastlyTeachableLearnset,
+        .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         .evolutions = sGastlyEvolutions,
     },
 
@@ -4693,6 +4971,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sHaunterLevelUpLearnset,
         .teachableLearnset = sHaunterTeachableLearnset,
         .frontAnimDelay = 23,
+        .frontAnimId = ANIM_FLICKER_INCREASING,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         .evolutions = sHaunterEvolutions,
     },
 
@@ -4734,6 +5014,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 15,
         .levelUpLearnset = sGengarLevelUpLearnset,
         .teachableLearnset = sGengarTeachableLearnset,
+        .frontAnimId = ANIM_GROW_IN_STAGES,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         GENGAR_MISC_INFO,
     },
 
@@ -4754,6 +5036,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 14,
         .levelUpLearnset = sGengarLevelUpLearnset,
         .teachableLearnset = sGengarTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         GENGAR_MISC_INFO,
     },
 
@@ -4789,6 +5073,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2100,
         .levelUpLearnset = sOnixLevelUpLearnset,
         .teachableLearnset = sOnixTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sOnixEvolutions,
     },
 
@@ -4828,6 +5114,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 92,
         .weight = 4000,
         .frontAnimDelay = 45,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         STEELIX_MISC_INFO,
     },
 
@@ -4849,6 +5137,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Iron Snake"),
         .height = 105,
         .weight = 7400,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         STEELIX_MISC_INFO,
     },
 
@@ -4885,6 +5175,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sDrowzeeLevelUpLearnset,
         .teachableLearnset = sDrowzeeTeachableLearnset,
         .frontAnimDelay = 48,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sDrowzeeEvolutions,
     },
 
@@ -4921,6 +5213,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sHypnoLevelUpLearnset,
         .teachableLearnset = sHypnoTeachableLearnset,
         .frontAnimDelay = 40,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
     },
 
     [SPECIES_KRABBY] =
@@ -4955,6 +5249,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 65,
         .levelUpLearnset = sKrabbyLevelUpLearnset,
         .teachableLearnset = sKrabbyTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         .evolutions = sKrabbyEvolutions,
     },
 
@@ -4990,6 +5286,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 600,
         .levelUpLearnset = sKinglerLevelUpLearnset,
         .teachableLearnset = sKinglerTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
 #define VOLTORB_FAMILY_MISC_INFO                                                \
@@ -5029,6 +5327,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 104,
         .levelUpLearnset = sVoltorbLevelUpLearnset,
         .teachableLearnset = sVoltorbTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sVoltorbEvolutions,
         VOLTORB_MISC_INFO,
     },
@@ -5042,6 +5342,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 130,
         .levelUpLearnset = sVoltorbHisuianLevelUpLearnset,
         .teachableLearnset = sVoltorbHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sVoltorbHisuianEvolutions,
         VOLTORB_MISC_INFO,
     },
@@ -5079,6 +5381,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 666,
         .levelUpLearnset = sElectrodeLevelUpLearnset,
         .teachableLearnset = sElectrodeTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         ELECTRODE_MISC_INFO,
     },
     [SPECIES_ELECTRODE_HISUIAN] =
@@ -5091,6 +5395,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 710,
         .levelUpLearnset = sElectrodeHisuianLevelUpLearnset,
         .teachableLearnset = sElectrodeHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ELECTRODE_MISC_INFO,
     },
 
@@ -5127,6 +5433,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 25,
         .levelUpLearnset = sExeggcuteLevelUpLearnset,
         .teachableLearnset = sExeggcuteTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sExeggcuteEvolutions,
     },
 
@@ -5170,6 +5478,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1200,
         .levelUpLearnset = sExeggutorLevelUpLearnset,
         .teachableLearnset = sExeggutorTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         EXEGGUTOR_MISC_INFO,
     },
     [SPECIES_EXEGGUTOR_ALOLAN] =
@@ -5193,6 +5503,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 4156,
         .levelUpLearnset = sExeggutorAlolanLevelUpLearnset,
         .teachableLearnset = sExeggutorAlolanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         EXEGGUTOR_MISC_INFO,
     },
 
@@ -5229,6 +5541,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 65,
         .levelUpLearnset = sCuboneLevelUpLearnset,
         .teachableLearnset = sCuboneTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sCuboneEvolutions,
     },
 
@@ -5267,6 +5581,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 450,
         .levelUpLearnset = sMarowakLevelUpLearnset,
         .teachableLearnset = sMarowakTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         MAROWAK_MISC_INFO,
     },
     [SPECIES_MAROWAK_ALOLAN] =
@@ -5281,6 +5597,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 340,
         .levelUpLearnset = sMarowakAlolanLevelUpLearnset,
         .teachableLearnset = sMarowakAlolanTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         MAROWAK_MISC_INFO,
     },
 
@@ -5316,6 +5634,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 210,
         .levelUpLearnset = sTyrogueLevelUpLearnset,
         .teachableLearnset = sTyrogueTeachableLearnset,
+        .frontAnimId = ANIM_BACK_AND_LUNGE,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sTyrogueEvolutions,
     },
 
@@ -5351,6 +5671,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 498,
         .levelUpLearnset = sHitmonleeLevelUpLearnset,
         .teachableLearnset = sHitmonleeTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_H_SLIDE,
     },
 
     [SPECIES_HITMONCHAN] =
@@ -5386,6 +5708,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sHitmonchanLevelUpLearnset,
         .teachableLearnset = sHitmonchanTeachableLearnset,
         .frontAnimDelay = 25,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
     },
 
     [SPECIES_HITMONTOP] =
@@ -5420,6 +5744,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 480,
         .levelUpLearnset = sHitmontopLevelUpLearnset,
         .teachableLearnset = sHitmontopTeachableLearnset,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,
     },
 
     [SPECIES_LICKITUNG] =
@@ -5455,6 +5781,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 655,
         .levelUpLearnset = sLickitungLevelUpLearnset,
         .teachableLearnset = sLickitungTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sLickitungEvolutions,
     },
 
@@ -5491,6 +5819,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1400,
         .levelUpLearnset = sLickilickyLevelUpLearnset,
         .teachableLearnset = sLickilickyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_KOFFING] =
@@ -5526,6 +5856,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 10,
         .levelUpLearnset = sKoffingLevelUpLearnset,
         .teachableLearnset = sKoffingTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
+        .backAnimId = BACK_ANIM_GROW,
         .evolutions = sKoffingEvolutions,
     },
 
@@ -5564,6 +5896,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 95,
         .levelUpLearnset = sWeezingLevelUpLearnset,
         .teachableLearnset = sWeezingTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE,
+        .backAnimId = BACK_ANIM_GROW,
         WEEZING_MISC_INFO,
     },
     [SPECIES_WEEZING_GALARIAN] =
@@ -5583,6 +5917,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 160,
         .levelUpLearnset = sWeezingGalarianLevelUpLearnset,
         .teachableLearnset = sWeezingGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         WEEZING_MISC_INFO,
     },
 
@@ -5618,6 +5954,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1150,
         .levelUpLearnset = sRhyhornLevelUpLearnset,
         .teachableLearnset = sRhyhornTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .evolutions = sRhyhornEvolutions,
     },
 
@@ -5653,6 +5991,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1200,
         .levelUpLearnset = sRhydonLevelUpLearnset,
         .teachableLearnset = sRhydonTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .evolutions = sRhydonEvolutions,
     },
 
@@ -5688,6 +6028,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2828,
         .levelUpLearnset = sRhyperiorLevelUpLearnset,
         .teachableLearnset = sRhyperiorTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_HAPPINY] =
@@ -5723,6 +6065,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 244,
         .levelUpLearnset = sHappinyLevelUpLearnset,
         .teachableLearnset = sHappinyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sHappinyEvolutions,
     },
 
@@ -5759,6 +6103,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 346,
         .levelUpLearnset = sChanseyLevelUpLearnset,
         .teachableLearnset = sChanseyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sChanseyEvolutions,
     },
 
@@ -5795,6 +6141,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 468,
         .levelUpLearnset = sBlisseyLevelUpLearnset,
         .teachableLearnset = sBlisseyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
     },
 
     [SPECIES_TANGELA] =
@@ -5829,6 +6177,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 350,
         .levelUpLearnset = sTangelaLevelUpLearnset,
         .teachableLearnset = sTangelaTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
+        .backAnimId = BACK_ANIM_V_STRETCH,
         .evolutions = sTangelaEvolutions,
     },
 
@@ -5864,6 +6214,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1286,
         .levelUpLearnset = sTangrowthLevelUpLearnset,
         .teachableLearnset = sTangrowthTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define KANGASKHAN_MISC_INFO                                    \
@@ -5900,6 +6252,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 800,
         .levelUpLearnset = sKangaskhanLevelUpLearnset,
         .teachableLearnset = sKangaskhanTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         KANGASKHAN_MISC_INFO,
     },
 
@@ -5927,6 +6281,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1000,
         .levelUpLearnset = sKangaskhanLevelUpLearnset,
         .teachableLearnset = sKangaskhanTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         KANGASKHAN_MISC_INFO,
     },
 
@@ -5963,6 +6319,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 80,
         .levelUpLearnset = sHorseaLevelUpLearnset,
         .teachableLearnset = sHorseaTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sHorseaEvolutions,
     },
 
@@ -6000,6 +6358,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 250,
         .levelUpLearnset = sSeadraLevelUpLearnset,
         .teachableLearnset = sSeadraTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         .evolutions = sSeadraEvolutions,
     },
 
@@ -6038,6 +6398,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1520,
         .levelUpLearnset = sKingdraLevelUpLearnset,
         .teachableLearnset = sKingdraTeachableLearnset,
+        .frontAnimId = ANIM_CIRCLE_INTO_BG,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
     },
 
     [SPECIES_GOLDEEN] =
@@ -6073,6 +6435,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 150,
         .levelUpLearnset = sGoldeenLevelUpLearnset,
         .teachableLearnset = sGoldeenTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         .evolutions = sGoldeenEvolutions,
     },
 
@@ -6109,6 +6473,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 390,
         .levelUpLearnset = sSeakingLevelUpLearnset,
         .teachableLearnset = sSeakingTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
     [SPECIES_STARYU] =
@@ -6145,6 +6511,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 345,
         .levelUpLearnset = sStaryuLevelUpLearnset,
         .teachableLearnset = sStaryuTeachableLearnset,
+        .frontAnimId = ANIM_TWIST_TWICE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sStaryuEvolutions,
     },
 
@@ -6182,6 +6550,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 800,
         .levelUpLearnset = sStarmieLevelUpLearnset,
         .teachableLearnset = sStarmieTeachableLearnset,
+        .frontAnimId = ANIM_TWIST,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
     },
 
     [SPECIES_MIME_JR] =
@@ -6220,6 +6590,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 130,
         .levelUpLearnset = sMimeJrLevelUpLearnset,
         .teachableLearnset = sMimeJrTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMimeJrEvolutions,
     },
 
@@ -6261,6 +6633,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 545,
         .levelUpLearnset = sMrMimeLevelUpLearnset,
         .teachableLearnset = sMrMimeTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         MR_MIME_MISC_INFO,
     },
     [SPECIES_MR_MIME_GALARIAN] =
@@ -6286,6 +6660,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 568,
         .levelUpLearnset = sMrMimeGalarianLevelUpLearnset,
         .teachableLearnset = sMrMimeGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMrMimeGalarianEvolutions,
         MR_MIME_MISC_INFO,
     },
@@ -6322,6 +6698,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 582,
         .levelUpLearnset = sMrRimeLevelUpLearnset,
         .teachableLearnset = sMrRimeTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SCYTHER] =
@@ -6357,6 +6735,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sScytherLevelUpLearnset,
         .teachableLearnset = sScytherTeachableLearnset,
         .frontAnimDelay = 10,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sScytherEvolutions,
     },
 
@@ -6395,6 +6775,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 18,
         .weight = 1180,
         .frontAnimDelay = 19,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         SCIZOR_MISC_INFO,
     },
 
@@ -6420,6 +6802,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 6,
         .height = 20,
         .weight = 1250,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SCIZOR_MISC_INFO,
     },
 
@@ -6455,6 +6839,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 890,
         .levelUpLearnset = sKleavorLevelUpLearnset,
         .teachableLearnset = sKleavorTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SMOOCHUM] =
@@ -6490,6 +6876,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sSmoochumLevelUpLearnset,
         .teachableLearnset = sSmoochumTeachableLearnset,
         .frontAnimDelay = 40,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sSmoochumEvolutions,
     },
 
@@ -6525,6 +6913,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 406,
         .levelUpLearnset = sJynxLevelUpLearnset,
         .teachableLearnset = sJynxTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
     },
 
     [SPECIES_ELEKID] =
@@ -6560,6 +6950,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 235,
         .levelUpLearnset = sElekidLevelUpLearnset,
         .teachableLearnset = sElekidTeachableLearnset,
+        .frontAnimId = ANIM_FLASH_YELLOW,
+        .backAnimId = BACK_ANIM_H_SHAKE,
         .evolutions = sElekidEvolutions,
     },
 
@@ -6596,6 +6988,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 300,
         .levelUpLearnset = sElectabuzzLevelUpLearnset,
         .teachableLearnset = sElectabuzzTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL_SLOW,
+        .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
         .evolutions = sElectabuzzEvolutions,
     },
 
@@ -6632,6 +7026,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1386,
         .levelUpLearnset = sElectivireLevelUpLearnset,
         .teachableLearnset = sElectivireTeachableLearnset,
+        .frontAnimId = ANIM_GLOW_YELLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_MAGBY] =
@@ -6667,6 +7063,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 214,
         .levelUpLearnset = sMagbyLevelUpLearnset,
         .teachableLearnset = sMagbyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         .evolutions = sMagbyEvolutions,
     },
 
@@ -6703,6 +7101,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 445,
         .levelUpLearnset = sMagmarLevelUpLearnset,
         .teachableLearnset = sMagmarTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         .evolutions = sMagmarEvolutions,
     },
 
@@ -6739,6 +7139,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 680,
         .levelUpLearnset = sMagmortarLevelUpLearnset,
         .teachableLearnset = sMagmortarTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define PINSIR_MISC_INFO                                \
@@ -6775,6 +7177,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 550,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         PINSIR_MISC_INFO,
     },
 
@@ -6801,6 +7205,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 17,
         .weight = 590,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         PINSIR_MISC_INFO,
     },
 
@@ -6840,6 +7246,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sTaurosLevelUpLearnset,
         .teachableLearnset = sTaurosTeachableLearnset,
         .frontAnimDelay = 10,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         TAUROS_MISC_INFO
     },
 
@@ -6878,8 +7286,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = gTaurosAquaBreedPokedexText,
         .weight = 1100,
         .levelUpLearnset = sTaurosLevelUpLearnset,
-        .teachableLearnset = sTaurosTeachableLearnset,
-        TAUROS_MISC_INFO
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
     },
 
     [SPECIES_MAGIKARP] =
@@ -6914,6 +7321,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 100,
         .levelUpLearnset = sMagikarpLevelUpLearnset,
         .teachableLearnset = sMagikarpTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .evolutions = sMagikarpEvolutions,
     },
 
@@ -6951,6 +7360,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 13,
         .height = 65,
         .weight = 2350,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         GYARADOS_MISC_INFO,
     },
 
@@ -6977,6 +7388,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 13,
         .height = 65,
         .weight = 3050,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         GYARADOS_MISC_INFO,
     },
 
@@ -7014,6 +7427,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2200,
         .levelUpLearnset = sLaprasLevelUpLearnset,
         .teachableLearnset = sLaprasTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
     },
 
     [SPECIES_DITTO] =
@@ -7050,6 +7465,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 40,
         .levelUpLearnset = sDittoLevelUpLearnset,
         .teachableLearnset = sDittoTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW,
     },
 
     [SPECIES_EEVEE] =
@@ -7084,6 +7501,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 65,
         .levelUpLearnset = sEeveeLevelUpLearnset,
         .teachableLearnset = sEeveeTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sEeveelutions,
     },
 
@@ -7119,6 +7538,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 290,
         .levelUpLearnset = sVaporeonLevelUpLearnset,
         .teachableLearnset = sVaporeonTeachableLearnset,
+        .frontAnimId = ANIM_GLOW_BLUE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
     },
 
     [SPECIES_JOLTEON] =
@@ -7153,6 +7574,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 245,
         .levelUpLearnset = sJolteonLevelUpLearnset,
         .teachableLearnset = sJolteonTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
     },
 
     [SPECIES_FLAREON] =
@@ -7187,6 +7610,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 250,
         .levelUpLearnset = sFlareonLevelUpLearnset,
         .teachableLearnset = sFlareonTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
     },
 
     [SPECIES_ESPEON] =
@@ -7221,6 +7646,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 265,
         .levelUpLearnset = sEspeonLevelUpLearnset,
         .teachableLearnset = sEspeonTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
     },
 
     [SPECIES_UMBREON] =
@@ -7255,6 +7682,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 270,
         .levelUpLearnset = sUmbreonLevelUpLearnset,
         .teachableLearnset = sUmbreonTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
     },
 
     [SPECIES_LEAFEON] =
@@ -7289,6 +7718,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 255,
         .levelUpLearnset = sLeafeonLevelUpLearnset,
         .teachableLearnset = sLeafeonTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_GLACEON] =
@@ -7323,6 +7754,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 259,
         .levelUpLearnset = sGlaceonLevelUpLearnset,
         .teachableLearnset = sGlaceonTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SYLVEON] =
@@ -7357,6 +7790,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 235,
         .levelUpLearnset = sSylveonLevelUpLearnset,
         .teachableLearnset = sSylveonTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PORYGON] =
@@ -7391,6 +7826,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 365,
         .levelUpLearnset = sPorygonLevelUpLearnset,
         .teachableLearnset = sPorygonTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         .evolutions = sPorygonEvolutions,
     },
 
@@ -7426,6 +7863,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 325,
         .levelUpLearnset = sPorygon2LevelUpLearnset,
         .teachableLearnset = sPorygon2TeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         .evolutions = sPorygon2Evolutions,
     },
 
@@ -7461,6 +7900,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 340,
         .levelUpLearnset = sPorygonZLevelUpLearnset,
         .teachableLearnset = sPorygonZTeachableLearnset,
+        .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_OMANYTE] =
@@ -7495,6 +7936,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 75,
         .levelUpLearnset = sOmanyteLevelUpLearnset,
         .teachableLearnset = sOmanyteTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sOmanyteEvolutions,
     },
 
@@ -7530,6 +7973,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 350,
         .levelUpLearnset = sOmastarLevelUpLearnset,
         .teachableLearnset = sOmastarTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
     },
 
     [SPECIES_KABUTO] =
@@ -7564,6 +8009,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 115,
         .levelUpLearnset = sKabutoLevelUpLearnset,
         .teachableLearnset = sKabutoTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sKabutoEvolutions,
     },
 
@@ -7599,6 +8046,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 405,
         .levelUpLearnset = sKabutopsLevelUpLearnset,
         .teachableLearnset = sKabutopsTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
     },
 
 #define AERODACTYL_MISC_INFO                                \
@@ -7635,6 +8084,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 4,
         .height = 18,
         .weight = 590,
+        .frontAnimId = ANIM_V_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         AERODACTYL_MISC_INFO,
     },
 
@@ -7660,6 +8111,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 4,
         .height = 21,
         .weight = 790,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         AERODACTYL_MISC_INFO,
     },
 
@@ -7697,6 +8150,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 4600,
         .levelUpLearnset = sSnorlaxLevelUpLearnset,
         .teachableLearnset = sSnorlaxTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
     },
 
     [SPECIES_MUNCHLAX] =
@@ -7733,6 +8188,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1050,
         .levelUpLearnset = sMunchlaxLevelUpLearnset,
         .teachableLearnset = sMunchlaxTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMunchlaxEvolutions,
     },
 
@@ -7771,6 +8228,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 554,
         .levelUpLearnset = sArticunoLevelUpLearnset,
         .teachableLearnset = sArticunoTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         ARTICUNO_MISC_INFO,
     },
     [SPECIES_ARTICUNO_GALARIAN] =
@@ -7797,6 +8256,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 509,
         .levelUpLearnset = sArticunoGalarianLevelUpLearnset,
         .teachableLearnset = sArticunoGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ARTICUNO_MISC_INFO,
     },
 
@@ -7839,6 +8300,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 526,
         .levelUpLearnset = sZapdosLevelUpLearnset,
         .teachableLearnset = sZapdosTeachableLearnset,
+        .frontAnimId = ANIM_FLASH_YELLOW,
+        .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
         ZAPDOS_MISC_INFO,
     },
     [SPECIES_ZAPDOS_GALARIAN] =
@@ -7864,6 +8327,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 582,
         .levelUpLearnset = sZapdosGalarianLevelUpLearnset,
         .teachableLearnset = sZapdosGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ZAPDOS_MISC_INFO,
     },
 
@@ -7902,6 +8367,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 600,
         .levelUpLearnset = sMoltresLevelUpLearnset,
         .teachableLearnset = sMoltresTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         MOLTRES_MISC_INFO,
     },
     [SPECIES_MOLTRES_GALARIAN] =
@@ -7929,6 +8396,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         MOLTRES_MISC_INFO,
         .levelUpLearnset = sMoltresGalarianLevelUpLearnset,
         .teachableLearnset = sMoltresGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DRATINI] =
@@ -7964,6 +8433,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 33,
         .levelUpLearnset = sDratiniLevelUpLearnset,
         .teachableLearnset = sDratiniTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sDratiniEvolutions,
     },
 
@@ -8000,6 +8471,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 165,
         .levelUpLearnset = sDragonairLevelUpLearnset,
         .teachableLearnset = sDragonairTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sDragonairEvolutions,
     },
 
@@ -8036,6 +8509,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2100,
         .levelUpLearnset = sDragoniteLevelUpLearnset,
         .teachableLearnset = sDragoniteTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
 #define SPECIES_MEWTWO_MISC_INFO                                        \
@@ -8073,6 +8548,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 4,
         .height = 20,
         .weight = 1220,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_GROW_STUTTER,
         SPECIES_MEWTWO_MISC_INFO,
     },
 
@@ -8099,6 +8576,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 4,
         .height = 23,
         .weight = 1270,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SPECIES_MEWTWO_MISC_INFO,
     },
 
@@ -8125,6 +8604,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 4,
         .height = 15,
         .weight = 330,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SPECIES_MEWTWO_MISC_INFO,
     },
 
@@ -8163,6 +8644,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 40,
         .levelUpLearnset = sMewLevelUpLearnset,
         .teachableLearnset = sMewTeachableLearnset,
+        .frontAnimId = ANIM_ZIGZAG_SLOW,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
     },
 
     [SPECIES_CHIKORITA] =
@@ -8197,6 +8680,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 64,
         .levelUpLearnset = sChikoritaLevelUpLearnset,
         .teachableLearnset = sChikoritaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sChikoritaEvolutions,
     },
 
@@ -8233,6 +8718,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 158,
         .levelUpLearnset = sBayleefLevelUpLearnset,
         .teachableLearnset = sBayleefTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sBayleefEvolutions,
     },
 
@@ -8269,6 +8756,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1005,
         .levelUpLearnset = sMeganiumLevelUpLearnset,
         .teachableLearnset = sMeganiumTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
     [SPECIES_CYNDAQUIL] =
@@ -8303,6 +8792,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 79,
         .levelUpLearnset = sCyndaquilLevelUpLearnset,
         .teachableLearnset = sCyndaquilTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sCyndaquilEvolutions,
     },
 
@@ -8339,6 +8830,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 190,
         .levelUpLearnset = sQuilavaLevelUpLearnset,
         .teachableLearnset = sQuilavaTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sQuilavaEvolutions,
     },
 
@@ -8377,6 +8870,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sTyphlosionLevelUpLearnset,
         .teachableLearnset = sTyphlosionTeachableLearnset,
         .frontAnimDelay = 20,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         TYPHLOSION_MISC_INFO,
     },
     [SPECIES_TYPHLOSION_HISUIAN] =
@@ -8399,6 +8894,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 698,
         .levelUpLearnset = sTyphlosionHisuianLevelUpLearnset,
         .teachableLearnset = sTyphlosionHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         TYPHLOSION_MISC_INFO,
     },
 
@@ -8434,6 +8931,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 95,
         .levelUpLearnset = sTotodileLevelUpLearnset,
         .teachableLearnset = sTotodileTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sTotodileEvolutions,
     },
 
@@ -8470,6 +8969,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 250,
         .levelUpLearnset = sCroconawLevelUpLearnset,
         .teachableLearnset = sCroconawTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sCroconawEvolutions,
     },
 
@@ -8507,6 +9008,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sFeraligatrLevelUpLearnset,
         .teachableLearnset = sFeraligatrTeachableLearnset,
         .frontAnimDelay = 5,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
     [SPECIES_SENTRET] =
@@ -8541,6 +9044,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 60,
         .levelUpLearnset = sSentretLevelUpLearnset,
         .teachableLearnset = sSentretTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sSentretEvolutions,
     },
 
@@ -8576,6 +9081,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 325,
         .levelUpLearnset = sFurretLevelUpLearnset,
         .teachableLearnset = sFurretTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
     },
 
     [SPECIES_HOOTHOOT] =
@@ -8610,6 +9117,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 212,
         .levelUpLearnset = sHoothootLevelUpLearnset,
         .teachableLearnset = sHoothootTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         .evolutions = sHoothootEvolutions,
     },
 
@@ -8649,6 +9158,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 408,
         .levelUpLearnset = sNoctowlLevelUpLearnset,
         .teachableLearnset = sNoctowlTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
     },
 
     [SPECIES_LEDYBA] =
@@ -8683,6 +9194,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 108,
         .levelUpLearnset = sLedybaLevelUpLearnset,
         .teachableLearnset = sLedybaTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         .evolutions = sLedybaEvolutions,
     },
 
@@ -8718,6 +9231,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 356,
         .levelUpLearnset = sLedianLevelUpLearnset,
         .teachableLearnset = sLedianTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
     [SPECIES_SPINARAK] =
@@ -8752,6 +9267,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 85,
         .levelUpLearnset = sSpinarakLevelUpLearnset,
         .teachableLearnset = sSpinarakTeachableLearnset,
+        .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
+        .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         .evolutions = sSpinarakEvolutions,
     },
 
@@ -8791,6 +9308,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 335,
         .levelUpLearnset = sAriadosLevelUpLearnset,
         .teachableLearnset = sAriadosTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_H_SLIDE,
     },
 
     [SPECIES_CHINCHOU] =
@@ -8826,6 +9345,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 120,
         .levelUpLearnset = sChinchouLevelUpLearnset,
         .teachableLearnset = sChinchouTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_V_STRETCH,
         .evolutions = sChinchouEvolutions,
     },
 
@@ -8862,6 +9383,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 225,
         .levelUpLearnset = sLanturnLevelUpLearnset,
         .teachableLearnset = sLanturnTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
+        .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
     },
 
 #if P_UPDATED_TYPES >= GEN_6
@@ -8901,6 +9424,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 15,
         .levelUpLearnset = sTogepiLevelUpLearnset,
         .teachableLearnset = sTogepiTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_BIG,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sTogepiEvolutions,
     },
 
@@ -8936,6 +9461,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 32,
         .levelUpLearnset = sTogeticLevelUpLearnset,
         .teachableLearnset = sTogeticTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         .evolutions = sTogeticEvolutions,
     },
 
@@ -8972,6 +9499,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 380,
         .levelUpLearnset = sTogekissLevelUpLearnset,
         .teachableLearnset = sTogekissTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONVEX,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_NATU] =
@@ -9007,6 +9536,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sNatuLevelUpLearnset,
         .teachableLearnset = sNatuTeachableLearnset,
         .frontAnimDelay = 30,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sNatuEvolutions,
     },
 
@@ -9043,6 +9574,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 150,
         .levelUpLearnset = sXatuLevelUpLearnset,
         .teachableLearnset = sXatuTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
     },
 
     [SPECIES_MAREEP] =
@@ -9078,6 +9611,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sMareepLevelUpLearnset,
         .teachableLearnset = sMareepTeachableLearnset,
         .frontAnimDelay = 50,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sMareepEvolutions,
     },
 
@@ -9113,6 +9648,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 133,
         .levelUpLearnset = sFlaaffyLevelUpLearnset,
         .teachableLearnset = sFlaaffyTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sFlaaffyEvolutions,
     },
 
@@ -9157,6 +9694,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = gAmpharosPokedexText,
         .categoryName = _("Light"),
         .frontAnimDelay = 10,
+        .frontAnimId = ANIM_FLASH_YELLOW,
+        .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
         AMPHAROS_MISC_INFO,
     },
 
@@ -9177,6 +9716,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_AMPHAROS_MEGA,
         .description = gAmpharosMegaPokedexText,
         .categoryName = _("Light"),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         AMPHAROS_MISC_INFO,
     },
 
@@ -9218,6 +9759,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 20,
         .levelUpLearnset = sAzurillLevelUpLearnset,
         .teachableLearnset = sAzurillTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .evolutions = sAzurillEvolutions,
     },
 
@@ -9253,6 +9796,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 85,
         .levelUpLearnset = sMarillLevelUpLearnset,
         .teachableLearnset = sMarillTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sMarillEvolutions,
     },
 
@@ -9292,6 +9837,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 285,
         .levelUpLearnset = sAzumarillLevelUpLearnset,
         .teachableLearnset = sAzumarillTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
     },
 
     [SPECIES_SUDOWOODO] =
@@ -9326,6 +9873,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 380,
         .levelUpLearnset = sSudowoodoLevelUpLearnset,
         .teachableLearnset = sSudowoodoTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_H_SLIDE,
     },
 
     [SPECIES_BONSLY] =
@@ -9360,6 +9909,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 150,
         .levelUpLearnset = sBonslyLevelUpLearnset,
         .teachableLearnset = sBonslyTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBonslyEvolutions,
     },
 
@@ -9395,6 +9946,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 5,
         .levelUpLearnset = sHoppipLevelUpLearnset,
         .teachableLearnset = sHoppipTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         .evolutions = sHoppipEvolutions,
     },
 
@@ -9430,6 +9983,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 10,
         .levelUpLearnset = sSkiploomLevelUpLearnset,
         .teachableLearnset = sSkiploomTeachableLearnset,
+        .frontAnimId = ANIM_RISING_WOBBLE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         .evolutions = sSkiploomEvolutions,
     },
 
@@ -9469,6 +10024,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 30,
         .levelUpLearnset = sJumpluffLevelUpLearnset,
         .teachableLearnset = sJumpluffTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
     [SPECIES_AIPOM] =
@@ -9503,6 +10060,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 115,
         .levelUpLearnset = sAipomLevelUpLearnset,
         .teachableLearnset = sAipomTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .evolutions = sAipomEvolutions,
     },
 
@@ -9538,6 +10097,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 203,
         .levelUpLearnset = sAmbipomLevelUpLearnset,
         .teachableLearnset = sAmbipomTeachableLearnset,
+        .frontAnimId = ANIM_BACK_AND_LUNGE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SUNKERN] =
@@ -9572,6 +10133,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 18,
         .levelUpLearnset = sSunkernLevelUpLearnset,
         .teachableLearnset = sSunkernTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sSunkernEvolutions,
     },
 
@@ -9607,6 +10170,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 85,
         .levelUpLearnset = sSunfloraLevelUpLearnset,
         .teachableLearnset = sSunfloraTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_H_SLIDE,
     },
 
     [SPECIES_YANMA] =
@@ -9642,6 +10207,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 380,
         .levelUpLearnset = sYanmaLevelUpLearnset,
         .teachableLearnset = sYanmaTeachableLearnset,
+        .frontAnimId = ANIM_FIGURE_8,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         .evolutions = sYanmaEvolutions,
     },
 
@@ -9678,6 +10245,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 515,
         .levelUpLearnset = sYanmegaLevelUpLearnset,
         .teachableLearnset = sYanmegaTeachableLearnset,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define WOOPER_MISC_INFO                                                        \
@@ -9714,6 +10283,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 85,
         .levelUpLearnset = sWooperLevelUpLearnset,
         .teachableLearnset = sWooperTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_V_STRETCH,
         .evolutions = sWooperEvolutions,
         WOOPER_MISC_INFO
     },
@@ -9763,6 +10334,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 750,
         .levelUpLearnset = sQuagsireLevelUpLearnset,
         .teachableLearnset = sQuagsireTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_H_SLIDE,
     },
 
     [SPECIES_MURKROW] =
@@ -9797,6 +10370,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 21,
         .levelUpLearnset = sMurkrowLevelUpLearnset,
         .teachableLearnset = sMurkrowTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sMurkrowEvolutions,
     },
 
@@ -9832,6 +10407,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 273,
         .levelUpLearnset = sHonchkrowLevelUpLearnset,
         .teachableLearnset = sHonchkrowTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define SLOWKING_MISC_INFO                                      \
@@ -9869,6 +10446,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 795,
         .levelUpLearnset = sSlowkingLevelUpLearnset,
         .teachableLearnset = sSlowkingTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         SLOWKING_MISC_INFO,
     },
     [SPECIES_SLOWKING_GALARIAN] =
@@ -9889,6 +10468,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 795,
         .levelUpLearnset = sSlowkingGalarianLevelUpLearnset,
         .teachableLearnset = sSlowkingGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SLOWKING_MISC_INFO,
     },
 
@@ -9924,6 +10505,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 10,
         .levelUpLearnset = sMisdreavusLevelUpLearnset,
         .teachableLearnset = sMisdreavusTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         .evolutions = sMisdreavusEvolutions,
     },
 
@@ -9960,6 +10543,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 44,
         .levelUpLearnset = sMismagiusLevelUpLearnset,
         .teachableLearnset = sMismagiusTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define UNOWN_MISC_INFO(letter)                                         \
@@ -9992,7 +10577,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 5,                                                    \
         .weight = 50,                                                   \
         .levelUpLearnset = sUnownLevelUpLearnset,                       \
-        .teachableLearnset = sUnownTeachableLearnset
+        .teachableLearnset = sUnownTeachableLearnset,                   \
+        .frontAnimId = ANIM_ZIGZAG_FAST,                                \
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE
 
     [SPECIES_UNOWN_A] =
     {
@@ -10194,6 +10781,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 285,
         .levelUpLearnset = sWobbuffetLevelUpLearnset,
         .teachableLearnset = sWobbuffetTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_V_STRETCH,
     },
 
     [SPECIES_WYNAUT] =
@@ -10229,6 +10818,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sWynautLevelUpLearnset,
         .teachableLearnset = sWynautTeachableLearnset,
         .frontAnimDelay = 15,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sWynautEvolutions,
     },
 
@@ -10264,6 +10855,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 415,
         .levelUpLearnset = sGirafarigLevelUpLearnset,
         .teachableLearnset = sGirafarigTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         .evolutions = sGirafarigEvolutions,
     },
 
@@ -10299,6 +10892,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 72,
         .levelUpLearnset = sPinecoLevelUpLearnset,
         .teachableLearnset = sPinecoTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE,
+        .backAnimId = BACK_ANIM_H_SHAKE,
         .evolutions = sPinecoEvolutions,
     },
 
@@ -10334,6 +10929,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1258,
         .levelUpLearnset = sForretressLevelUpLearnset,
         .teachableLearnset = sForretressTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
     [SPECIES_DUNSPARCE] =
@@ -10369,6 +10966,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sDunsparceLevelUpLearnset,
         .teachableLearnset = sDunsparceTeachableLearnset,
         .frontAnimDelay = 10,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sDunsparceEvolutions,
     },
 
@@ -10404,6 +11003,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 648,
         .levelUpLearnset = sGligarLevelUpLearnset,
         .teachableLearnset = sGligarTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_SHRINK_GROW,
         .evolutions = sGligarEvolutions,
     },
 
@@ -10439,6 +11040,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 425,
         .levelUpLearnset = sGliscorLevelUpLearnset,
         .teachableLearnset = sGliscorTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONVEX,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #if P_UPDATED_TYPES >= GEN_6
@@ -10479,6 +11082,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 78,
         .levelUpLearnset = sSnubbullLevelUpLearnset,
         .teachableLearnset = sSnubbullTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sSnubbullEvolutions,
     },
 
@@ -10514,6 +11119,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 487,
         .levelUpLearnset = sGranbullLevelUpLearnset,
         .teachableLearnset = sGranbullTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
 #if P_UPDATED_STATS >= GEN_7
@@ -10558,6 +11165,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sQwilfishLevelUpLearnset,
         .teachableLearnset = sQwilfishTeachableLearnset,
         .frontAnimDelay = 39,
+        .frontAnimId = ANIM_GROW_IN_STAGES,
+        .backAnimId = BACK_ANIM_GROW_STUTTER,
         QWILFISH_MISC_INFO,
     },
     [SPECIES_QWILFISH_HISUIAN] =
@@ -10568,6 +11177,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Balloon"),
         .levelUpLearnset = sQwilfishHisuianLevelUpLearnset,
         .teachableLearnset = sQwilfishHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sQwilfishHisuianEvolutions,
         QWILFISH_MISC_INFO,
     },
@@ -10604,6 +11215,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 605,
         .levelUpLearnset = sOverqwilLevelUpLearnset,
         .teachableLearnset = sOverqwilTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SHUCKLE] =
@@ -10641,6 +11254,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 205,
         .levelUpLearnset = sShuckleLevelUpLearnset,
         .teachableLearnset = sShuckleTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
     },
 
 #define HERACROSS_MISC_INFO                                 \
@@ -10677,6 +11292,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 540,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         HERACROSS_MISC_INFO,
     },
 
@@ -10702,6 +11319,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 1,
         .height = 17,
         .weight = 625,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         HERACROSS_MISC_INFO,
     },
 
@@ -10740,6 +11359,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 280,
         .levelUpLearnset = sSneaselLevelUpLearnset,
         .teachableLearnset = sSneaselTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sSneaselEvolutions,
         SNEASEL_MISC_INFO,
     },
@@ -10754,6 +11375,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 270,
         .levelUpLearnset = sSneaselHisuianLevelUpLearnset,
         .teachableLearnset = sSneaselHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSneaselHisuianEvolutions,
         SNEASEL_MISC_INFO,
     },
@@ -10792,6 +11415,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 340,
         .levelUpLearnset = sWeavileLevelUpLearnset,
         .teachableLearnset = sWeavileTeachableLearnset,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SNEASLER] =
@@ -10828,6 +11453,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sSneaslerLevelUpLearnset,
         .teachableLearnset = sSneaslerTeachableLearnset,
         //.frontPic = gMonFrontPic_Sneasler,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TEDDIURSA] =
@@ -10862,6 +11489,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 88,
         .levelUpLearnset = sTeddiursaLevelUpLearnset,
         .teachableLearnset = sTeddiursaTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sTeddiursaEvolutions,
     },
 
@@ -10897,6 +11526,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1258,
         .levelUpLearnset = sUrsaringLevelUpLearnset,
         .teachableLearnset = sUrsaringTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sUrsaringEvolutions,
     },
 
@@ -10932,6 +11563,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2900,
         .levelUpLearnset = sUrsalunaLevelUpLearnset,
         .teachableLearnset = sUrsalunaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SLUGMA] =
@@ -10966,6 +11599,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 350,
         .levelUpLearnset = sSlugmaLevelUpLearnset,
         .teachableLearnset = sSlugmaTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         .evolutions = sSlugmaEvolutions,
     },
 
@@ -11006,6 +11641,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 550,
         .levelUpLearnset = sMagcargoLevelUpLearnset,
         .teachableLearnset = sMagcargoTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
     },
 
     [SPECIES_SWINUB] =
@@ -11040,6 +11677,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 65,
         .levelUpLearnset = sSwinubLevelUpLearnset,
         .teachableLearnset = sSwinubTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         .evolutions = sSwinubEvolutions,
     },
 
@@ -11076,6 +11715,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 558,
         .levelUpLearnset = sPiloswineLevelUpLearnset,
         .teachableLearnset = sPiloswineTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_H_SHAKE,
         .evolutions = sPiloswineEvolutions,
     },
 
@@ -11111,6 +11752,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2910,
         .levelUpLearnset = sMamoswineLevelUpLearnset,
         .teachableLearnset = sMamoswineTeachableLearnset,
+        .frontAnimId = ANIM_BACK_AND_LUNGE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #if P_UPDATED_STATS >= GEN_7
@@ -11157,6 +11800,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 50,
         .levelUpLearnset = sCorsolaLevelUpLearnset,
         .teachableLearnset = sCorsolaTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         CORSOLA_MISC_INFO,
     },
     [SPECIES_CORSOLA_GALARIAN] =
@@ -11181,6 +11826,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 5,
         .levelUpLearnset = sCorsolaGalarianLevelUpLearnset,
         .teachableLearnset = sCorsolaGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCorsolaGalarianEvolutions,
         CORSOLA_MISC_INFO,
     },
@@ -11217,6 +11864,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 4,
         .levelUpLearnset = sCursolaLevelUpLearnset,
         .teachableLearnset = sCursolaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_REMORAID] =
@@ -11251,6 +11900,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 120,
         .levelUpLearnset = sRemoraidLevelUpLearnset,
         .teachableLearnset = sRemoraidTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sRemoraidEvolutions,
     },
 
@@ -11288,6 +11939,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sOctilleryLevelUpLearnset,
         .teachableLearnset = sOctilleryTeachableLearnset,
         .frontAnimDelay = 20,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_SHRINK_GROW,
     },
 
     [SPECIES_DELIBIRD] =
@@ -11322,6 +11975,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 160,
         .levelUpLearnset = sDelibirdLevelUpLearnset,
         .teachableLearnset = sDelibirdTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
     },
 
     [SPECIES_MANTYKE] =
@@ -11356,6 +12011,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 650,
         .levelUpLearnset = sMantykeLevelUpLearnset,
         .teachableLearnset = sMantykeTeachableLearnset,
+        .frontAnimId = ANIM_TWIST_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMantykeEvolutions,
     },
 
@@ -11395,6 +12052,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2200,
         .levelUpLearnset = sMantineLevelUpLearnset,
         .teachableLearnset = sMantineTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONVEX,
+        .backAnimId = BACK_ANIM_H_SLIDE,
     },
 
     [SPECIES_SKARMORY] =
@@ -11430,6 +12089,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 505,
         .levelUpLearnset = sSkarmoryLevelUpLearnset,
         .teachableLearnset = sSkarmoryTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
     },
 
     [SPECIES_HOUNDOUR] =
@@ -11464,6 +12125,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 108,
         .levelUpLearnset = sHoundourLevelUpLearnset,
         .teachableLearnset = sHoundourTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sHoundourEvolutions,
     },
 
@@ -11501,6 +12164,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 14,
         .weight = 350,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         HOUNDOOM_MISC_INFO,
     },
 
@@ -11526,6 +12191,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 19,
         .weight = 495,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         HOUNDOOM_MISC_INFO,
     },
 
@@ -11561,6 +12228,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 335,
         .levelUpLearnset = sPhanpyLevelUpLearnset,
         .teachableLearnset = sPhanpyTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sPhanpyEvolutions,
     },
 
@@ -11597,6 +12266,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1200,
         .levelUpLearnset = sDonphanLevelUpLearnset,
         .teachableLearnset = sDonphanTeachableLearnset,
+        .frontAnimId = ANIM_ROTATE_UP_SLAM_DOWN,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
     },
 
     [SPECIES_STANTLER] =
@@ -11631,6 +12302,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 712,
         .levelUpLearnset = sStantlerLevelUpLearnset,
         .teachableLearnset = sStantlerTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sStantlerEvolutions,
     },
 
@@ -11667,6 +12340,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sWyrdeerLevelUpLearnset,
         .teachableLearnset = sWyrdeerTeachableLearnset,
         //.frontPic = gMonFrontPic_Wyrdeer,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SMEARGLE] =
@@ -11701,6 +12376,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 580,
         .levelUpLearnset = sSmeargleLevelUpLearnset,
         .teachableLearnset = sSmeargleTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_H_SLIDE,
     },
 
     [SPECIES_MILTANK] =
@@ -11737,6 +12414,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 755,
         .levelUpLearnset = sMiltankLevelUpLearnset,
         .teachableLearnset = sMiltankTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_H_SLIDE,
     },
 
     [SPECIES_RAIKOU] =
@@ -11777,6 +12456,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1780,
         .levelUpLearnset = sRaikouLevelUpLearnset,
         .teachableLearnset = sRaikouTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
     },
 
     [SPECIES_ENTEI] =
@@ -11817,6 +12498,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1980,
         .levelUpLearnset = sEnteiLevelUpLearnset,
         .teachableLearnset = sEnteiTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
     },
 
     [SPECIES_SUICUNE] =
@@ -11857,6 +12540,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1870,
         .levelUpLearnset = sSuicuneLevelUpLearnset,
         .teachableLearnset = sSuicuneTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
     },
 
     [SPECIES_LARVITAR] =
@@ -11891,6 +12576,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 720,
         .levelUpLearnset = sLarvitarLevelUpLearnset,
         .teachableLearnset = sLarvitarTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .evolutions = sLarvitarEvolutions,
     },
 
@@ -11926,6 +12613,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1520,
         .levelUpLearnset = sPupitarLevelUpLearnset,
         .teachableLearnset = sPupitarTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sPupitarEvolutions,
     },
 
@@ -11964,6 +12653,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 20,
         .weight = 2020,
         .frontAnimDelay = 10,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         TYRANITAR_MISC_INFO,
     },
 
@@ -11989,6 +12680,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 8,
         .height = 25,
         .weight = 2550,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         TYRANITAR_MISC_INFO,
     },
 
@@ -12026,6 +12719,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sLugiaLevelUpLearnset,
         .teachableLearnset = sLugiaTeachableLearnset,
         .frontAnimDelay = 20,
+        .frontAnimId = ANIM_GROW_IN_STAGES,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
     },
 
     [SPECIES_HO_OH] =
@@ -12063,6 +12758,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1990,
         .levelUpLearnset = sHoOhLevelUpLearnset,
         .teachableLearnset = sHoOhTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
     },
 
     [SPECIES_CELEBI] =
@@ -12100,6 +12797,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 50,
         .levelUpLearnset = sCelebiLevelUpLearnset,
         .teachableLearnset = sCelebiTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
     },
 
     [SPECIES_TREECKO] =
@@ -12134,6 +12833,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 50,
         .levelUpLearnset = sTreeckoLevelUpLearnset,
         .teachableLearnset = sTreeckoTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .evolutions = sTreeckoEvolutions,
     },
 
@@ -12169,6 +12870,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 216,
         .levelUpLearnset = sGrovyleLevelUpLearnset,
         .teachableLearnset = sGrovyleTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sGrovyleEvolutions,
     },
 
@@ -12206,6 +12909,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Forest"),
         .height = 17,
         .weight = 522,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         SCEPTILE_MISC_INFO,
     },
 
@@ -12228,6 +12933,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Forest"),
         .height = 19,
         .weight = 522,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SCEPTILE_MISC_INFO,
     },
 
@@ -12263,6 +12970,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 25,
         .levelUpLearnset = sTorchicLevelUpLearnset,
         .teachableLearnset = sTorchicTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sTorchicEvolutions,
     },
 
@@ -12299,6 +13008,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 195,
         .levelUpLearnset = sCombuskenLevelUpLearnset,
         .teachableLearnset = sCombuskenTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .evolutions = sCombuskenEvolutions,
     },
 
@@ -12336,6 +13047,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_BLAZIKEN,
         .description = gBlazikenPokedexText,
         .categoryName = _("Blaze"),
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         BLAZIKEN_MISC_INFO,
     },
 
@@ -12355,6 +13068,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_BLAZIKEN_MEGA,
         .description = gBlazikenMegaPokedexText,
         .categoryName = _("Blaze"),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         BLAZIKEN_MISC_INFO,
     },
 
@@ -12390,6 +13105,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 76,
         .levelUpLearnset = sMudkipLevelUpLearnset,
         .teachableLearnset = sMudkipTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sMudkipEvolutions,
     },
 
@@ -12425,6 +13142,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 280,
         .levelUpLearnset = sMarshtompLevelUpLearnset,
         .teachableLearnset = sMarshtompTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sMarshtompEvolutions,
     },
 
@@ -12462,6 +13181,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Mud Fish"),
         .height = 15,
         .weight = 819,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         SWAMPERT_MISC_INFO,
     },
 
@@ -12483,6 +13204,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Mud Fish"),
         .height = 19,
         .weight = 1020,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SWAMPERT_MISC_INFO,
     },
 
@@ -12518,6 +13241,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 136,
         .levelUpLearnset = sPoochyenaLevelUpLearnset,
         .teachableLearnset = sPoochyenaTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sPoochyenaEvolutions,
     },
 
@@ -12553,6 +13278,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 370,
         .levelUpLearnset = sMightyenaLevelUpLearnset,
         .teachableLearnset = sMightyenaTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_H_SHAKE,
     },
 
 #define ZIGZAGOON_MISC_INFO                                                 \
@@ -12591,6 +13318,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Tiny Raccoon"),
         .levelUpLearnset = sZigzagoonLevelUpLearnset,
         .teachableLearnset = sZigzagoonTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sZigzagoonEvolutions,
         ZIGZAGOON_MISC_INFO,
     },
@@ -12603,6 +13332,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Tiny Raccoon"),
         .levelUpLearnset = sZigzagoonGalarianLevelUpLearnset,
         .teachableLearnset = sZigzagoonGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sZigzagoonGalarianEvolutions,
         ZIGZAGOON_MISC_INFO,
     },
@@ -12643,6 +13374,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Rushing"),
         .levelUpLearnset = sLinooneLevelUpLearnset,
         .teachableLearnset = sLinooneTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         LINOONE_MISC_INFO,
     },
     [SPECIES_LINOONE_GALARIAN] =
@@ -12653,6 +13386,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Rushing"),
         .levelUpLearnset = sLinooneGalarianLevelUpLearnset,
         .teachableLearnset = sLinooneGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sLinooneGalarianEvolutions,
         LINOONE_MISC_INFO,
     },
@@ -12689,6 +13424,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 460,
         .levelUpLearnset = sObstagoonLevelUpLearnset,
         .teachableLearnset = sObstagoonTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_WURMPLE] =
@@ -12725,6 +13462,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 36,
         .levelUpLearnset = sWurmpleLevelUpLearnset,
         .teachableLearnset = sWurmpleTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_V_STRETCH,
         .evolutions = sWurmpleEvolutions,
     },
 
@@ -12760,6 +13499,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 100,
         .levelUpLearnset = sSilcoonLevelUpLearnset,
         .teachableLearnset = sSilcoonTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_H_SHAKE,
         .evolutions = sSilcoonEvolutions,
     },
 
@@ -12800,6 +13541,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 284,
         .levelUpLearnset = sBeautiflyLevelUpLearnset,
         .teachableLearnset = sBeautiflyTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
     [SPECIES_CASCOON] =
@@ -12834,6 +13577,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 115,
         .levelUpLearnset = sCascoonLevelUpLearnset,
         .teachableLearnset = sCascoonTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE,
+        .backAnimId = BACK_ANIM_H_SHAKE,
         .evolutions = sCascoonEvolutions,
     },
 
@@ -12870,6 +13615,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 316,
         .levelUpLearnset = sDustoxLevelUpLearnset,
         .teachableLearnset = sDustoxTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
     },
 
     [SPECIES_LOTAD] =
@@ -12905,6 +13652,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 26,
         .levelUpLearnset = sLotadLevelUpLearnset,
         .teachableLearnset = sLotadTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sLotadEvolutions,
     },
 
@@ -12941,6 +13690,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 325,
         .levelUpLearnset = sLombreLevelUpLearnset,
         .teachableLearnset = sLombreTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .evolutions = sLombreEvolutions,
     },
 
@@ -12977,6 +13728,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 550,
         .levelUpLearnset = sLudicoloLevelUpLearnset,
         .teachableLearnset = sLudicoloTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
     },
 
     [SPECIES_SEEDOT] =
@@ -13012,6 +13765,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 40,
         .levelUpLearnset = sSeedotLevelUpLearnset,
         .teachableLearnset = sSeedotTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sSeedotEvolutions,
     },
 
@@ -13048,6 +13803,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 280,
         .levelUpLearnset = sNuzleafLevelUpLearnset,
         .teachableLearnset = sNuzleafTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sNuzleafEvolutions,
     },
 
@@ -13084,6 +13841,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 596,
         .levelUpLearnset = sShiftryLevelUpLearnset,
         .teachableLearnset = sShiftryTeachableLearnset,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
     },
 
     [SPECIES_TAILLOW] =
@@ -13118,6 +13877,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 23,
         .levelUpLearnset = sTaillowLevelUpLearnset,
         .teachableLearnset = sTaillowTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_BIG,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
         .evolutions = sTaillowEvolutions,
     },
 
@@ -13157,6 +13918,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 198,
         .levelUpLearnset = sSwellowLevelUpLearnset,
         .teachableLearnset = sSwellowTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
     },
 
     [SPECIES_WINGULL] =
@@ -13192,6 +13955,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 95,
         .levelUpLearnset = sWingullLevelUpLearnset,
         .teachableLearnset = sWingullTeachableLearnset,
+        .frontAnimId = ANIM_H_PIVOT,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         .evolutions = sWingullEvolutions,
     },
 
@@ -13232,6 +13997,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 280,
         .levelUpLearnset = sPelipperLevelUpLearnset,
         .teachableLearnset = sPelipperTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
 #if P_UPDATED_TYPES >= GEN_6
@@ -13278,6 +14045,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 66,
         .levelUpLearnset = sRaltsLevelUpLearnset,
         .teachableLearnset = sRaltsTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         .evolutions = sRaltsEvolutions,
     },
 
@@ -13313,6 +14082,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 202,
         .levelUpLearnset = sKirliaLevelUpLearnset,
         .teachableLearnset = sKirliaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         .evolutions = sKirliaEvolutions,
     },
 
@@ -13350,6 +14121,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_GARDEVOIR,
         .description = gGardevoirPokedexText,
         .categoryName = _("Embrace"),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         GARDEVOIR_MISC_INFO,
     },
 
@@ -13369,6 +14142,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_GARDEVOIR_MEGA,
         .description = gGardevoirMegaPokedexText,
         .categoryName = _("Embrace"),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         GARDEVOIR_MISC_INFO,
     },
 
@@ -13406,6 +14181,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 16,
         .weight = 520,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         GALLADE_MISC_INFO,
     },
 
@@ -13430,6 +14207,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 16,
         .weight = 564,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         GALLADE_MISC_INFO,
     },
 
@@ -13466,6 +14245,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 17,
         .levelUpLearnset = sSurskitLevelUpLearnset,
         .teachableLearnset = sSurskitTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_H_SPRING,
         .evolutions = sSurskitEvolutions,
     },
 
@@ -13508,6 +14289,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 36,
         .levelUpLearnset = sMasquerainLevelUpLearnset,
         .teachableLearnset = sMasquerainTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
     [SPECIES_SHROOMISH] =
@@ -13544,6 +14327,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 45,
         .levelUpLearnset = sShroomishLevelUpLearnset,
         .teachableLearnset = sShroomishTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sShroomishEvolutions,
     },
 
@@ -13581,6 +14366,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 392,
         .levelUpLearnset = sBreloomLevelUpLearnset,
         .teachableLearnset = sBreloomTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
     },
 
     [SPECIES_SLAKOTH] =
@@ -13615,6 +14402,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 240,
         .levelUpLearnset = sSlakothLevelUpLearnset,
         .teachableLearnset = sSlakothTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_H_SLIDE,
         .evolutions = sSlakothEvolutions,
     },
 
@@ -13650,6 +14439,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 465,
         .levelUpLearnset = sVigorothLevelUpLearnset,
         .teachableLearnset = sVigorothTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .evolutions = sVigorothEvolutions,
     },
 
@@ -13685,6 +14476,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1305,
         .levelUpLearnset = sSlakingLevelUpLearnset,
         .teachableLearnset = sSlakingTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_H_SHAKE,
     },
 
     [SPECIES_NINCADA] =
@@ -13720,6 +14513,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 55,
         .levelUpLearnset = sNincadaLevelUpLearnset,
         .teachableLearnset = sNincadaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         .evolutions = sNincadaEvolutions,
     },
 
@@ -13755,6 +14550,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 120,
         .levelUpLearnset = sNinjaskLevelUpLearnset,
         .teachableLearnset = sNinjaskTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
     },
 
     [SPECIES_SHEDINJA] =
@@ -13789,6 +14586,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 12,
         .levelUpLearnset = sShedinjaLevelUpLearnset,
         .teachableLearnset = sShedinjaTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
     },
 
     [SPECIES_WHISMUR] =
@@ -13823,6 +14622,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 163,
         .levelUpLearnset = sWhismurLevelUpLearnset,
         .teachableLearnset = sWhismurTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sWhismurEvolutions,
     },
 
@@ -13858,6 +14659,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 405,
         .levelUpLearnset = sLoudredLevelUpLearnset,
         .teachableLearnset = sLoudredTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sLoudredEvolutions,
     },
 
@@ -13897,6 +14700,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 840,
         .levelUpLearnset = sExploudLevelUpLearnset,
         .teachableLearnset = sExploudTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_GROW_STUTTER,
     },
 
     [SPECIES_MAKUHITA] =
@@ -13932,6 +14737,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 864,
         .levelUpLearnset = sMakuhitaLevelUpLearnset,
         .teachableLearnset = sMakuhitaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .evolutions = sMakuhitaEvolutions,
     },
 
@@ -13968,6 +14775,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2538,
         .levelUpLearnset = sHariyamaLevelUpLearnset,
         .teachableLearnset = sHariyamaTeachableLearnset,
+        .frontAnimId = ANIM_ROTATE_UP_TO_SIDES,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
     },
 
     [SPECIES_NOSEPASS] =
@@ -14003,6 +14812,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 970,
         .levelUpLearnset = sNosepassLevelUpLearnset,
         .teachableLearnset = sNosepassTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .evolutions = sNosepassEvolutions,
     },
 
@@ -14040,6 +14851,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3400,
         .levelUpLearnset = sProbopassLevelUpLearnset,
         .teachableLearnset = sProbopassTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SKITTY] =
@@ -14074,6 +14887,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 110,
         .levelUpLearnset = sSkittyLevelUpLearnset,
         .teachableLearnset = sSkittyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sSkittyEvolutions,
     },
 
@@ -14114,6 +14929,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 326,
         .levelUpLearnset = sDelcattyLevelUpLearnset,
         .teachableLearnset = sDelcattyTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
     },
 
 #define SABLEYE_MISC_INFO                                           \
@@ -14152,6 +14969,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Darkness"),
         .height = 5,
         .weight = 110,
+        .frontAnimId = ANIM_GLOW_BLACK,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         SABLEYE_MISC_INFO,
     },
 
@@ -14173,6 +14992,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Darkness"),
         .height = 5,
         .weight = 1610,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SABLEYE_MISC_INFO,
     },
 
@@ -14218,6 +15039,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 6,
         .weight = 115,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         MAWILE_MISC_INFO,
     },
 
@@ -14243,6 +15066,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 10,
         .weight = 235,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         MAWILE_MISC_INFO,
     },
 
@@ -14279,6 +15104,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 600,
         .levelUpLearnset = sAronLevelUpLearnset,
         .teachableLearnset = sAronTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sAronEvolutions,
     },
 
@@ -14315,6 +15142,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1200,
         .levelUpLearnset = sLaironLevelUpLearnset,
         .teachableLearnset = sLaironTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sLaironEvolutions,
     },
 
@@ -14353,6 +15182,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 6,
         .height = 21,
         .weight = 3600,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         AGGRON_MISC_INFO,
     },
 
@@ -14378,6 +15209,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 8,
         .height = 22,
         .weight = 3950,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         AGGRON_MISC_INFO,
     },
 
@@ -14413,6 +15246,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 112,
         .levelUpLearnset = sMedititeLevelUpLearnset,
         .teachableLearnset = sMedititeTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         .evolutions = sMedititeEvolutions,
     },
 
@@ -14450,6 +15285,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_MEDICHAM,
         .description = gMedichamPokedexText,
         .categoryName = _("Meditate"),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         MEDICHAM_MISC_INFO,
     },
 
@@ -14469,6 +15306,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_MEDICHAM_MEGA,
         .description = gMedichamMegaPokedexText,
         .categoryName = _("Meditate"),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         MEDICHAM_MISC_INFO,
     },
 
@@ -14504,6 +15343,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 152,
         .levelUpLearnset = sElectrikeLevelUpLearnset,
         .teachableLearnset = sElectrikeTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sElectrikeEvolutions,
     },
 
@@ -14541,6 +15382,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 402,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         MANECTRIC_MISC_INFO,
     },
 
@@ -14566,6 +15409,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 18,
         .weight = 440,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         MANECTRIC_MISC_INFO,
     },
 
@@ -14602,6 +15447,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 42,
         .levelUpLearnset = sPlusleLevelUpLearnset,
         .teachableLearnset = sPlusleTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
     },
 
     [SPECIES_MINUN] =
@@ -14637,6 +15484,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 42,
         .levelUpLearnset = sMinunLevelUpLearnset,
         .teachableLearnset = sMinunTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
     },
 
     [SPECIES_VOLBEAT] =
@@ -14677,6 +15526,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 177,
         .levelUpLearnset = sVolbeatLevelUpLearnset,
         .teachableLearnset = sVolbeatTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
     [SPECIES_ILLUMISE] =
@@ -14717,6 +15568,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 177,
         .levelUpLearnset = sIllumiseLevelUpLearnset,
         .teachableLearnset = sIllumiseTeachableLearnset,
+        .frontAnimId = ANIM_RISING_WOBBLE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
     [SPECIES_BUDEW] =
@@ -14752,6 +15605,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 12,
         .levelUpLearnset = sBudewLevelUpLearnset,
         .teachableLearnset = sBudewTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBudewEvolutions,
     },
 
@@ -14788,6 +15643,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 20,
         .levelUpLearnset = sRoseliaLevelUpLearnset,
         .teachableLearnset = sRoseliaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
         .evolutions = sRoseliaEvolutions,
     },
 
@@ -14828,6 +15685,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 145,
         .levelUpLearnset = sRoseradeLevelUpLearnset,
         .teachableLearnset = sRoseradeTeachableLearnset,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_GULPIN] =
@@ -14864,6 +15723,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 103,
         .levelUpLearnset = sGulpinLevelUpLearnset,
         .teachableLearnset = sGulpinTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_V_STRETCH,
         .evolutions = sGulpinEvolutions,
     },
 
@@ -14901,6 +15762,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 800,
         .levelUpLearnset = sSwalotLevelUpLearnset,
         .teachableLearnset = sSwalotTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_V_STRETCH,
     },
 
     [SPECIES_CARVANHA] =
@@ -14936,6 +15799,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 208,
         .levelUpLearnset = sCarvanhaLevelUpLearnset,
         .teachableLearnset = sCarvanhaTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW,
+        .backAnimId = BACK_ANIM_H_SPRING_REPEATED,
         .evolutions = sCarvanhaEvolutions,
     },
 
@@ -14974,6 +15839,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 3,
         .height = 18,
         .weight = 888,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         SHARPEDO_MISC_INFO,
     },
 
@@ -14999,6 +15866,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 8,
         .height = 25,
         .weight = 1303,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SHARPEDO_MISC_INFO,
     },
 
@@ -15034,6 +15903,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1300,
         .levelUpLearnset = sWailmerLevelUpLearnset,
         .teachableLearnset = sWailmerTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         .evolutions = sWailmerEvolutions,
     },
 
@@ -15070,6 +15941,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sWailordLevelUpLearnset,
         .teachableLearnset = sWailordTeachableLearnset,
         .frontAnimDelay = 10,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
     },
 
     [SPECIES_NUMEL] =
@@ -15104,6 +15977,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 240,
         .levelUpLearnset = sNumelLevelUpLearnset,
         .teachableLearnset = sNumelTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         .evolutions = sNumelEvolutions,
     },
 
@@ -15142,6 +16017,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 6,
         .height = 19,
         .weight = 2200,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         CAMERUPT_MISC_INFO,
     },
 
@@ -15167,6 +16044,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 8,
         .height = 25,
         .weight = 3205,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         CAMERUPT_MISC_INFO,
     },
 
@@ -15203,6 +16082,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 804,
         .levelUpLearnset = sTorkoalLevelUpLearnset,
         .teachableLearnset = sTorkoalTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
     },
 
     [SPECIES_SPOINK] =
@@ -15237,6 +16118,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 306,
         .levelUpLearnset = sSpoinkLevelUpLearnset,
         .teachableLearnset = sSpoinkTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
         .evolutions = sSpoinkEvolutions,
     },
 
@@ -15273,6 +16156,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sGrumpigLevelUpLearnset,
         .teachableLearnset = sGrumpigTeachableLearnset,
         .frontAnimDelay = 15,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
     },
 
     [SPECIES_SPINDA] =
@@ -15307,6 +16192,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 50,
         .levelUpLearnset = sSpindaLevelUpLearnset,
         .teachableLearnset = sSpindaTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,
     },
 
 #if P_UPDATED_EGG_GROUPS >= GEN_8
@@ -15348,6 +16235,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 150,
         .levelUpLearnset = sTrapinchLevelUpLearnset,
         .teachableLearnset = sTrapinchTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sTrapinchEvolutions,
     },
 
@@ -15384,6 +16273,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 153,
         .levelUpLearnset = sVibravaLevelUpLearnset,
         .teachableLearnset = sVibravaTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         .evolutions = sVibravaEvolutions,
     },
 
@@ -15420,6 +16311,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 820,
         .levelUpLearnset = sFlygonLevelUpLearnset,
         .teachableLearnset = sFlygonTeachableLearnset,
+        .frontAnimId = ANIM_ZIGZAG_SLOW,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
     },
 
     [SPECIES_CACNEA] =
@@ -15455,6 +16348,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 513,
         .levelUpLearnset = sCacneaLevelUpLearnset,
         .teachableLearnset = sCacneaTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW,
+        .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
         .evolutions = sCacneaEvolutions,
     },
 
@@ -15492,6 +16387,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 774,
         .levelUpLearnset = sCacturneLevelUpLearnset,
         .teachableLearnset = sCacturneTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE,
+        .backAnimId = BACK_ANIM_H_SHAKE,
     },
 
     [SPECIES_SWABLU] =
@@ -15526,6 +16423,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 12,
         .levelUpLearnset = sSwabluLevelUpLearnset,
         .teachableLearnset = sSwabluTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         .evolutions = sSwabluEvolutions,
     },
 
@@ -15563,6 +16462,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 11,
         .weight = 206,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
         ALTARIA_MISC_INFO,
     },
 
@@ -15588,6 +16489,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 206,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ALTARIA_MISC_INFO,
     },
 
@@ -15624,6 +16527,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 403,
         .levelUpLearnset = sZangooseLevelUpLearnset,
         .teachableLearnset = sZangooseTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
     },
 
     [SPECIES_SEVIPER] =
@@ -15660,6 +16565,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 525,
         .levelUpLearnset = sSeviperLevelUpLearnset,
         .teachableLearnset = sSeviperTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_V_STRETCH,
     },
 
     [SPECIES_LUNATONE] =
@@ -15700,6 +16607,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1680,
         .levelUpLearnset = sLunatoneLevelUpLearnset,
         .teachableLearnset = sLunatoneTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONVEX_FAST,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
     },
 
     [SPECIES_SOLROCK] =
@@ -15740,6 +16649,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1540,
         .levelUpLearnset = sSolrockLevelUpLearnset,
         .teachableLearnset = sSolrockTeachableLearnset,
+        .frontAnimId = ANIM_ROTATE_TO_SIDES_TWICE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
     },
 
     [SPECIES_BARBOACH] =
@@ -15774,6 +16685,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 19,
         .levelUpLearnset = sBarboachLevelUpLearnset,
         .teachableLearnset = sBarboachTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW,
+        .backAnimId = BACK_ANIM_V_STRETCH,
         .evolutions = sBarboachEvolutions,
     },
 
@@ -15809,6 +16722,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 236,
         .levelUpLearnset = sWhiscashLevelUpLearnset,
         .teachableLearnset = sWhiscashTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
     [SPECIES_CORPHISH] =
@@ -15843,6 +16758,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 115,
         .levelUpLearnset = sCorphishLevelUpLearnset,
         .teachableLearnset = sCorphishTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sCorphishEvolutions,
     },
 
@@ -15878,6 +16795,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 328,
         .levelUpLearnset = sCrawdauntLevelUpLearnset,
         .teachableLearnset = sCrawdauntTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
     },
 
     [SPECIES_BALTOY] =
@@ -15913,6 +16832,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 215,
         .levelUpLearnset = sBaltoyLevelUpLearnset,
         .teachableLearnset = sBaltoyTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sBaltoyEvolutions,
     },
 
@@ -15949,6 +16870,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1080,
         .levelUpLearnset = sClaydolLevelUpLearnset,
         .teachableLearnset = sClaydolTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
     },
 
     [SPECIES_LILEEP] =
@@ -15984,6 +16907,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 238,
         .levelUpLearnset = sLileepLevelUpLearnset,
         .teachableLearnset = sLileepTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_H_STRETCH,
         .evolutions = sLileepEvolutions,
     },
 
@@ -16020,6 +16945,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 604,
         .levelUpLearnset = sCradilyLevelUpLearnset,
         .teachableLearnset = sCradilyTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_V_STRETCH,
     },
 
     [SPECIES_ANORITH] =
@@ -16054,6 +16981,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 125,
         .levelUpLearnset = sAnorithLevelUpLearnset,
         .teachableLearnset = sAnorithTeachableLearnset,
+        .frontAnimId = ANIM_TWIST,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sAnorithEvolutions,
     },
 
@@ -16089,6 +17018,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 682,
         .levelUpLearnset = sArmaldoLevelUpLearnset,
         .teachableLearnset = sArmaldoTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
     [SPECIES_FEEBAS] =
@@ -16123,6 +17054,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 74,
         .levelUpLearnset = sFeebasLevelUpLearnset,
         .teachableLearnset = sFeebasTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW,
+        .backAnimId = BACK_ANIM_H_SPRING,
         .evolutions = sFeebasEvolutions,
     },
 
@@ -16159,6 +17092,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sMiloticLevelUpLearnset,
         .teachableLearnset = sMiloticTeachableLearnset,
         .frontAnimDelay = 45,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
     },
 
 #define CASTFORM_MISC_INFO                                      \
@@ -16189,7 +17124,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 3,                                            \
         .weight = 8,                                            \
         .levelUpLearnset = sCastformLevelUpLearnset,            \
-        .teachableLearnset = sCastformTeachableLearnset
+        .teachableLearnset = sCastformTeachableLearnset,        \
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,                     \
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC
 
     [SPECIES_CASTFORM_NORMAL] =
     {
@@ -16260,6 +17197,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sKecleonLevelUpLearnset,
         .teachableLearnset = sKecleonTeachableLearnset,
         .frontAnimDelay = 30,
+        .frontAnimId = ANIM_FLICKER_INCREASING,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
     },
 
     [SPECIES_SHUPPET] =
@@ -16295,6 +17234,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 23,
         .levelUpLearnset = sShuppetLevelUpLearnset,
         .teachableLearnset = sShuppetTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         .evolutions = sShuppetEvolutions,
     },
 
@@ -16333,6 +17274,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 11,
         .weight = 125,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         BANETTE_MISC_INFO,
     },
 
@@ -16358,6 +17301,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 12,
         .weight = 130,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         BANETTE_MISC_INFO,
     },
 
@@ -16394,6 +17339,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 150,
         .levelUpLearnset = sDuskullLevelUpLearnset,
         .teachableLearnset = sDuskullTeachableLearnset,
+        .frontAnimId = ANIM_ZIGZAG_FAST,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         .evolutions = sDuskullEvolutions,
     },
 
@@ -16432,6 +17379,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sDusclopsLevelUpLearnset,
         .teachableLearnset = sDusclopsTeachableLearnset,
         .frontAnimDelay = 30,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         .evolutions = sDusclopsEvolutions,
     },
 
@@ -16469,6 +17418,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1066,
         .levelUpLearnset = sDusknoirLevelUpLearnset,
         .teachableLearnset = sDusknoirTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TROPIUS] =
@@ -16503,6 +17454,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1000,
         .levelUpLearnset = sTropiusLevelUpLearnset,
         .teachableLearnset = sTropiusTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
     },
 
     [SPECIES_CHINGLING] =
@@ -16538,6 +17491,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 6,
         .levelUpLearnset = sChinglingLevelUpLearnset,
         .teachableLearnset = sChinglingTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sChinglingEvolutions,
     },
 
@@ -16581,6 +17536,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 10,
         .levelUpLearnset = sChimechoLevelUpLearnset,
         .teachableLearnset = sChimechoTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
 #define ABSOL_MISC_INFO                                     \
@@ -16618,6 +17575,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 12,
         .weight = 470,
         .frontAnimDelay = 45,
+        .frontAnimId = ANIM_CIRCULAR_VIBRATE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         ABSOL_MISC_INFO,
     },
 
@@ -16639,6 +17598,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Disaster"),
         .height = 12,
         .weight = 490,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ABSOL_MISC_INFO,
     },
 
@@ -16676,6 +17637,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sSnoruntLevelUpLearnset,
         .teachableLearnset = sSnoruntTeachableLearnset,
         .frontAnimDelay = 20,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sSnoruntEvolutions,
     },
 
@@ -16713,6 +17676,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 2565,
+        .frontAnimId = ANIM_ZIGZAG_FAST,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         GLALIE_MISC_INFO,
     },
 
@@ -16738,6 +17703,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 11,
         .height = 21,
         .weight = 3502,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         GLALIE_MISC_INFO,
     },
 
@@ -16773,6 +17740,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 266,
         .levelUpLearnset = sFroslassLevelUpLearnset,
         .teachableLearnset = sFroslassTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SPHEAL] =
@@ -16808,6 +17777,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sSphealLevelUpLearnset,
         .teachableLearnset = sSphealTeachableLearnset,
         .frontAnimDelay = 15,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sSphealEvolutions,
     },
 
@@ -16843,6 +17814,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 876,
         .levelUpLearnset = sSealeoLevelUpLearnset,
         .teachableLearnset = sSealeoTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sSealeoEvolutions,
     },
 
@@ -16878,6 +17851,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1506,
         .levelUpLearnset = sWalreinLevelUpLearnset,
         .teachableLearnset = sWalreinTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
     [SPECIES_CLAMPERL] =
@@ -16914,6 +17889,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 525,
         .levelUpLearnset = sClamperlLevelUpLearnset,
         .teachableLearnset = sClamperlTeachableLearnset,
+        .frontAnimId = ANIM_TWIST,
+        .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
         .evolutions = sClamperlEvolutions,
     },
 
@@ -16951,6 +17928,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 270,
         .levelUpLearnset = sHuntailLevelUpLearnset,
         .teachableLearnset = sHuntailTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
     [SPECIES_GOREBYSS] =
@@ -16986,6 +17965,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 226,
         .levelUpLearnset = sGorebyssLevelUpLearnset,
         .teachableLearnset = sGorebyssTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
     [SPECIES_RELICANTH] =
@@ -17022,6 +18003,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 234,
         .levelUpLearnset = sRelicanthLevelUpLearnset,
         .teachableLearnset = sRelicanthTeachableLearnset,
+        .frontAnimId = ANIM_TIP_MOVE_FORWARD,
+        .backAnimId = BACK_ANIM_H_SLIDE,
     },
 
     [SPECIES_LUVDISC] =
@@ -17057,6 +18040,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 87,
         .levelUpLearnset = sLuvdiscLevelUpLearnset,
         .teachableLearnset = sLuvdiscTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_H_SPRING_REPEATED,
     },
 
     [SPECIES_BAGON] =
@@ -17092,6 +18077,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 421,
         .levelUpLearnset = sBagonLevelUpLearnset,
         .teachableLearnset = sBagonTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sBagonEvolutions,
     },
 
@@ -17128,6 +18115,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1105,
         .levelUpLearnset = sShelgonLevelUpLearnset,
         .teachableLearnset = sShelgonTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         .evolutions = sShelgonEvolutions,
     },
 
@@ -17167,6 +18156,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 15,
         .weight = 1026,
         .frontAnimDelay = 70,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_H_SHAKE,
         SALAMENCE_MISC_INFO,
     },
 
@@ -17192,6 +18183,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 18,
         .weight = 1126,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SALAMENCE_MISC_INFO,
     },
 
@@ -17228,6 +18221,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 952,
         .levelUpLearnset = sBeldumLevelUpLearnset,
         .teachableLearnset = sBeldumTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
         .evolutions = sBeldumEvolutions,
     },
 
@@ -17264,6 +18259,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2025,
         .levelUpLearnset = sMetangLevelUpLearnset,
         .teachableLearnset = sMetangTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE,
+        .backAnimId = BACK_ANIM_JOLT_RIGHT,
         .evolutions = sMetangEvolutions,
     },
 
@@ -17302,6 +18299,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 9,
         .height = 16,
         .weight = 5500,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
         METAGROSS_MISC_INFO,
     },
 
@@ -17327,6 +18326,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 8,
         .height = 25,
         .weight = 9429,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         METAGROSS_MISC_INFO,
     },
 
@@ -17363,6 +18364,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2300,
         .levelUpLearnset = sRegirockLevelUpLearnset,
         .teachableLearnset = sRegirockTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
     [SPECIES_REGICE] =
@@ -17398,6 +18401,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1750,
         .levelUpLearnset = sRegiceLevelUpLearnset,
         .teachableLearnset = sRegiceTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
     [SPECIES_REGISTEEL] =
@@ -17434,6 +18439,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2050,
         .levelUpLearnset = sRegisteelLevelUpLearnset,
         .teachableLearnset = sRegisteelTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_V_SHAKE,
     },
 
     [SPECIES_REGIELEKI] =
@@ -17469,6 +18476,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1450,
         .levelUpLearnset = sRegielekiLevelUpLearnset,
         .teachableLearnset = sRegielekiTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_REGIDRAGO] =
@@ -17504,6 +18513,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2000,
         .levelUpLearnset = sRegidragoLevelUpLearnset,
         .teachableLearnset = sRegidragoTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_REGIGIGAS] =
@@ -17539,6 +18550,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 4200,
         .levelUpLearnset = sRegigigasLevelUpLearnset,
         .teachableLearnset = sRegigigasTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define LATIS_MISC_INFO                                                 \
@@ -17576,6 +18589,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 400,
         .levelUpLearnset = sLatiasLevelUpLearnset,
         .teachableLearnset = sLatiasTeachableLearnset,
+        .frontAnimId = ANIM_ZIGZAG_SLOW,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         LATIS_MISC_INFO,
     },
 
@@ -17606,6 +18621,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 520,
         .levelUpLearnset = sLatiasLevelUpLearnset,
         .teachableLearnset = sLatiasTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         LATIS_MISC_INFO,
     },
 
@@ -17634,6 +18651,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 600,
         .levelUpLearnset = sLatiosLevelUpLearnset,
         .teachableLearnset = sLatiosTeachableLearnset,
+        .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
         LATIS_MISC_INFO,
     },
 
@@ -17663,6 +18682,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 700,
         .levelUpLearnset = sLatiosLevelUpLearnset,
         .teachableLearnset = sLatiosTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         LATIS_MISC_INFO,
     },
 
@@ -17702,6 +18723,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 45,
         .weight = 3520,
         .frontAnimDelay = 60,
+        .frontAnimId = ANIM_SWING_CONCAVE_FAST_SHORT,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
         KYOGRE_MISC_INFO,
     },
 
@@ -17725,6 +18748,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 13,
         .height = 98,
         .weight = 4300,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         KYOGRE_MISC_INFO,
     },
 
@@ -17763,6 +18788,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 14,
         .height = 35,
         .weight = 9500,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         GROUDON_MISC_INFO,
     },
 
@@ -17787,6 +18814,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 14,
         .height = 50,
         .weight = 9997,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         GROUDON_MISC_INFO,
     },
 
@@ -17827,6 +18856,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 70,
         .weight = 2065,
         .frontAnimDelay = 60,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_GROW_STUTTER,
         RAYQUAZA_MISC_INFO,
     },
 
@@ -17849,6 +18880,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 12,
         .height = 108,
         .weight = 3920,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         RAYQUAZA_MISC_INFO,
     },
 
@@ -17887,6 +18920,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 11,
         .levelUpLearnset = sJirachiLevelUpLearnset,
         .teachableLearnset = sJirachiTeachableLearnset,
+        .frontAnimId = ANIM_RISING_WOBBLE,
+        .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
     },
 
 #define DEOXYS_MISC_INFO                                                \
@@ -17926,6 +18961,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpAttack  = 1,
         .levelUpLearnset = sDeoxysNormalLevelUpLearnset,
         .teachableLearnset = sDeoxysNormalTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         DEOXYS_MISC_INFO,
     },
 
@@ -17941,6 +18978,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpAttack  = 1,
         .levelUpLearnset = sDeoxysAttackLevelUpLearnset,
         .teachableLearnset = sDeoxysAttackTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         DEOXYS_MISC_INFO,
     },
 
@@ -17956,6 +18995,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpDefense = 1,
         .levelUpLearnset = sDeoxysDefenseLevelUpLearnset,
         .teachableLearnset = sDeoxysDefenseTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         DEOXYS_MISC_INFO,
     },
 
@@ -17970,6 +19011,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Speed     = 3,
         .levelUpLearnset = sDeoxysSpeedLevelUpLearnset,
         .teachableLearnset = sDeoxysSpeedTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
         DEOXYS_MISC_INFO,
     },
 
@@ -18006,6 +19049,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 102,
         .levelUpLearnset = sTurtwigLevelUpLearnset,
         .teachableLearnset = sTurtwigTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sTurtwigEvolutions,
     },
 
@@ -18042,6 +19087,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 970,
         .levelUpLearnset = sGrotleLevelUpLearnset,
         .teachableLearnset = sGrotleTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGrotleEvolutions,
     },
 
@@ -18078,6 +19125,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3100,
         .levelUpLearnset = sTorterraLevelUpLearnset,
         .teachableLearnset = sTorterraTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CHIMCHAR] =
@@ -18112,6 +19161,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 62,
         .levelUpLearnset = sChimcharLevelUpLearnset,
         .teachableLearnset = sChimcharTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_BIG,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sChimcharEvolutions,
     },
 
@@ -18148,6 +19199,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 220,
         .levelUpLearnset = sMonfernoLevelUpLearnset,
         .teachableLearnset = sMonfernoTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMonfernoEvolutions,
     },
 
@@ -18185,6 +19238,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 550,
         .levelUpLearnset = sInfernapeLevelUpLearnset,
         .teachableLearnset = sInfernapeTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PIPLUP] =
@@ -18219,6 +19274,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 52,
         .levelUpLearnset = sPiplupLevelUpLearnset,
         .teachableLearnset = sPiplupTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPiplupEvolutions,
     },
 
@@ -18254,6 +19311,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 230,
         .levelUpLearnset = sPrinplupLevelUpLearnset,
         .teachableLearnset = sPrinplupTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPrinplupEvolutions,
     },
 
@@ -18289,6 +19348,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 845,
         .levelUpLearnset = sEmpoleonLevelUpLearnset,
         .teachableLearnset = sEmpoleonTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_STARLY] =
@@ -18323,6 +19384,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 20,
         .levelUpLearnset = sStarlyLevelUpLearnset,
         .teachableLearnset = sStarlyTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sStarlyEvolutions,
     },
 
@@ -18358,6 +19421,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 155,
         .levelUpLearnset = sStaraviaLevelUpLearnset,
         .teachableLearnset = sStaraviaTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sStaraviaEvolutions,
     },
 
@@ -18397,6 +19462,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 249,
         .levelUpLearnset = sStaraptorLevelUpLearnset,
         .teachableLearnset = sStaraptorTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_BIDOOF] =
@@ -18431,6 +19498,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 200,
         .levelUpLearnset = sBidoofLevelUpLearnset,
         .teachableLearnset = sBidoofTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBidoofEvolutions,
     },
 
@@ -18466,6 +19535,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 315,
         .levelUpLearnset = sBibarelLevelUpLearnset,
         .teachableLearnset = sBibarelTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_KRICKETOT] =
@@ -18501,6 +19572,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 22,
         .levelUpLearnset = sKricketotLevelUpLearnset,
         .teachableLearnset = sKricketotTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sKricketotEvolutions,
     },
 
@@ -18537,6 +19610,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 255,
         .levelUpLearnset = sKricketuneLevelUpLearnset,
         .teachableLearnset = sKricketuneTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SHINX] =
@@ -18571,6 +19646,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 95,
         .levelUpLearnset = sShinxLevelUpLearnset,
         .teachableLearnset = sShinxTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sShinxEvolutions,
     },
 
@@ -18606,6 +19683,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 305,
         .levelUpLearnset = sLuxioLevelUpLearnset,
         .teachableLearnset = sLuxioTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sLuxioEvolutions,
     },
 
@@ -18641,6 +19720,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 420,
         .levelUpLearnset = sLuxrayLevelUpLearnset,
         .teachableLearnset = sLuxrayTeachableLearnset,
+        .frontAnimId = ANIM_GLOW_YELLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CRANIDOS] =
@@ -18675,6 +19756,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 315,
         .levelUpLearnset = sCranidosLevelUpLearnset,
         .teachableLearnset = sCranidosTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCranidosEvolutions,
     },
 
@@ -18710,6 +19793,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1025,
         .levelUpLearnset = sRampardosLevelUpLearnset,
         .teachableLearnset = sRampardosTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SHIELDON] =
@@ -18744,6 +19829,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 570,
         .levelUpLearnset = sShieldonLevelUpLearnset,
         .teachableLearnset = sShieldonTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sShieldonEvolutions,
     },
 
@@ -18779,6 +19866,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1495,
         .levelUpLearnset = sBastiodonLevelUpLearnset,
         .teachableLearnset = sBastiodonTeachableLearnset,
+        .frontAnimId = ANIM_BACK_AND_LUNGE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define BURMY_MISC_INFO                                                     \
@@ -18808,7 +19897,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 2,                                                        \
         .weight = 34,                                                       \
         .levelUpLearnset = sBurmyLevelUpLearnset,                           \
-        .teachableLearnset = sBurmyTeachableLearnset
+        .teachableLearnset = sBurmyTeachableLearnset,                       \
+        .frontAnimId = ANIM_V_STRETCH,                                      \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_BURMY_PLANT_CLOAK] =
     {
@@ -18855,7 +19946,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,                                                \
         .trainerOffset = 0,                                                 \
         .height = 5,                                                        \
-        .weight = 65
+        .weight = 65,                                                       \
+        .frontAnimId = ANIM_SWING_CONVEX_FAST_SHORT,                        \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_WORMADAM_PLANT_CLOAK] =
     {
@@ -18946,6 +20039,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 233,
         .levelUpLearnset = sMothimLevelUpLearnset,
         .teachableLearnset = sMothimTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_COMBEE] =
@@ -18981,6 +20076,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 55,
         .levelUpLearnset = sCombeeLevelUpLearnset,
         .teachableLearnset = sCombeeTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCombeeEvolutions,
     },
 
@@ -19018,6 +20115,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 385,
         .levelUpLearnset = sVespiquenLevelUpLearnset,
         .teachableLearnset = sVespiquenTeachableLearnset,
+        .frontAnimId = ANIM_LUNGE_GROW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PACHIRISU] =
@@ -19052,6 +20151,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 39,
         .levelUpLearnset = sPachirisuLevelUpLearnset,
         .teachableLearnset = sPachirisuTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_BUIZEL] =
@@ -19086,6 +20187,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 295,
         .levelUpLearnset = sBuizelLevelUpLearnset,
         .teachableLearnset = sBuizelTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBuizelEvolutions,
     },
 
@@ -19121,6 +20224,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 335,
         .levelUpLearnset = sFloatzelLevelUpLearnset,
         .teachableLearnset = sFloatzelTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CHERUBI] =
@@ -19156,6 +20261,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 33,
         .levelUpLearnset = sCherubiLevelUpLearnset,
         .teachableLearnset = sCherubiTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCherubiEvolutions,
     },
 
@@ -19187,7 +20294,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 5,                                        \
         .weight = 93,                                       \
         .levelUpLearnset = sCherrimLevelUpLearnset,         \
-        .teachableLearnset = sCherrimTeachableLearnset
+        .teachableLearnset = sCherrimTeachableLearnset,     \
+        .frontAnimId = ANIM_DEEP_V_SQUISH_AND_BOUNCE,       \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_CHERRIM_OVERCAST] =
     {
@@ -19232,7 +20341,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 3,                                                                \
         .weight = 63,                                                               \
         .levelUpLearnset = sShellosLevelUpLearnset,                                 \
-        .teachableLearnset = sShellosTeachableLearnset
+        .teachableLearnset = sShellosTeachableLearnset,                             \
+        .frontAnimId = ANIM_V_STRETCH,                                              \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_SHELLOS_WEST_SEA] =
     {
@@ -19279,7 +20390,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 9,                                                                \
         .weight = 299,                                                              \
         .levelUpLearnset = sGastrodonLevelUpLearnset,                               \
-        .teachableLearnset = sGastrodonTeachableLearnset
+        .teachableLearnset = sGastrodonTeachableLearnset,                           \
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,                                 \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_GASTRODON_WEST_SEA] =
     {
@@ -19329,6 +20442,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 12,
         .levelUpLearnset = sDrifloonLevelUpLearnset,
         .teachableLearnset = sDrifloonTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDrifloonEvolutions,
     },
 
@@ -19364,6 +20479,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 150,
         .levelUpLearnset = sDrifblimLevelUpLearnset,
         .teachableLearnset = sDrifblimTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_BUNEARY] =
@@ -19398,6 +20515,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 55,
         .levelUpLearnset = sBunearyLevelUpLearnset,
         .teachableLearnset = sBunearyTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBunearyEvolutions,
     },
 
@@ -19435,6 +20554,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 12,
         .weight = 333,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_NONE,
         LOPUNNY_MISC_INFO,
     },
 
@@ -19461,6 +20582,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 13,
         .weight = 283,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         LOPUNNY_MISC_INFO,
     },
 
@@ -19496,6 +20619,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 39,
         .levelUpLearnset = sGlameowLevelUpLearnset,
         .teachableLearnset = sGlameowTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGlameowEvolutions,
     },
 
@@ -19531,6 +20656,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 438,
         .levelUpLearnset = sPuruglyLevelUpLearnset,
         .teachableLearnset = sPuruglyTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_STUNKY] =
@@ -19565,6 +20692,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 192,
         .levelUpLearnset = sStunkyLevelUpLearnset,
         .teachableLearnset = sStunkyTeachableLearnset,
+        .frontAnimId = ANIM_TIP_MOVE_FORWARD,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sStunkyEvolutions,
     },
 
@@ -19600,6 +20729,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 380,
         .levelUpLearnset = sSkuntankLevelUpLearnset,
         .teachableLearnset = sSkuntankTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_BRONZOR] =
@@ -19635,6 +20766,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 605,
         .levelUpLearnset = sBronzorLevelUpLearnset,
         .teachableLearnset = sBronzorTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBronzorEvolutions,
     },
 
@@ -19672,6 +20805,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1870,
         .levelUpLearnset = sBronzongLevelUpLearnset,
         .teachableLearnset = sBronzongTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CHATOT] =
@@ -19707,6 +20842,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 19,
         .levelUpLearnset = sChatotLevelUpLearnset,
         .teachableLearnset = sChatotTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SPIRITOMB] =
@@ -19742,6 +20879,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1080,
         .levelUpLearnset = sSpiritombLevelUpLearnset,
         .teachableLearnset = sSpiritombTeachableLearnset,
+        .frontAnimId = ANIM_GROW_IN_STAGES,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_GIBLE] =
@@ -19776,6 +20915,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 205,
         .levelUpLearnset = sGibleLevelUpLearnset,
         .teachableLearnset = sGibleTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGibleEvolutions,
     },
 
@@ -19811,6 +20952,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 560,
         .levelUpLearnset = sGabiteLevelUpLearnset,
         .teachableLearnset = sGabiteTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGabiteEvolutions,
     },
 
@@ -19848,6 +20991,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_GARCHOMP,
         .description = gGarchompPokedexText,
         .categoryName = _("Mach"),
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
         GARCHOMP_MISC_INFO,
     },
 
@@ -19867,6 +21012,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_GARCHOMP_MEGA,
         .description = gGarchompMegaPokedexText,
         .categoryName = _("Mach"),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         GARCHOMP_MISC_INFO,
     },
 
@@ -19902,6 +21049,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 202,
         .levelUpLearnset = sRioluLevelUpLearnset,
         .teachableLearnset = sRioluTeachableLearnset,
+        .frontAnimId = ANIM_RAPID_H_HOPS,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sRioluEvolutions,
     },
 
@@ -19940,6 +21089,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 12,
         .weight = 540,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         LUCARIO_MISC_INFO,
     },
 
@@ -19965,6 +21116,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 13,
         .weight = 575,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         LUCARIO_MISC_INFO,
     },
 
@@ -20000,6 +21153,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 495,
         .levelUpLearnset = sHippopotasLevelUpLearnset,
         .teachableLearnset = sHippopotasTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sHippopotasEvolutions,
     },
 
@@ -20035,6 +21190,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3000,
         .levelUpLearnset = sHippowdonLevelUpLearnset,
         .teachableLearnset = sHippowdonTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SKORUPI] =
@@ -20070,6 +21227,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 120,
         .levelUpLearnset = sSkorupiLevelUpLearnset,
         .teachableLearnset = sSkorupiTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSkorupiEvolutions,
     },
 
@@ -20106,6 +21265,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 615,
         .levelUpLearnset = sDrapionLevelUpLearnset,
         .teachableLearnset = sDrapionTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_BIG,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CROAGUNK] =
@@ -20141,6 +21302,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 230,
         .levelUpLearnset = sCroagunkLevelUpLearnset,
         .teachableLearnset = sCroagunkTeachableLearnset,
+        .frontAnimId = ANIM_RAPID_H_HOPS,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCroagunkEvolutions,
     },
 
@@ -20177,6 +21340,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 444,
         .levelUpLearnset = sToxicroakLevelUpLearnset,
         .teachableLearnset = sToxicroakTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CARNIVINE] =
@@ -20211,6 +21376,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 270,
         .levelUpLearnset = sCarnivineLevelUpLearnset,
         .teachableLearnset = sCarnivineTeachableLearnset,
+        .frontAnimId = ANIM_FIGURE_8,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_FINNEON] =
@@ -20245,6 +21412,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 70,
         .levelUpLearnset = sFinneonLevelUpLearnset,
         .teachableLearnset = sFinneonTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sFinneonEvolutions,
     },
 
@@ -20280,6 +21449,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 240,
         .levelUpLearnset = sLumineonLevelUpLearnset,
         .teachableLearnset = sLumineonTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SNOVER] =
@@ -20315,6 +21486,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 505,
         .levelUpLearnset = sSnoverLevelUpLearnset,
         .teachableLearnset = sSnoverTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSnoverEvolutions,
     },
 
@@ -20354,6 +21527,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 22,
         .weight = 1355,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         ABOMASNOW_MISC_INFO,
     },
 
@@ -20378,6 +21553,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 27,
         .weight = 1850,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ABOMASNOW_MISC_INFO,
     },
 
@@ -20416,6 +21593,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 154,
         .noFlip = FALSE,
         .description = gRotomPokedexText,
+        .frontAnimId = ANIM_GLOW_YELLOW,
+        .backAnimId = BACK_ANIM_NONE,
         ROTOM_MISC_INFO,
     },
 
@@ -20433,6 +21612,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
     {
         .types = { TYPE_ELECTRIC, TYPE_FIRE },
         .noFlip = FALSE,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ROTOM_APPLIANCE_INFO(Heat),
         ROTOM_MISC_INFO,
     },
@@ -20441,6 +21622,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
     {
         .types = { TYPE_ELECTRIC, TYPE_WATER },
         .noFlip = TRUE,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
         ROTOM_APPLIANCE_INFO(Wash),
         ROTOM_MISC_INFO,
     },
@@ -20449,6 +21632,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
     {
         .types = { TYPE_ELECTRIC, TYPE_ICE },
         .noFlip = FALSE,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         ROTOM_APPLIANCE_INFO(Frost),
         ROTOM_MISC_INFO,
     },
@@ -20458,6 +21643,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_ELECTRIC, TYPE_FLYING },
         .noFlip = FALSE,
         .frontAnimDelay = 7,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         ROTOM_APPLIANCE_INFO(Fan),
         ROTOM_MISC_INFO,
     },
@@ -20466,6 +21653,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
     {
         .types = { TYPE_ELECTRIC, TYPE_GRASS },
         .noFlip = FALSE,
+        .frontAnimId = ANIM_TIP_MOVE_FORWARD,
+        .backAnimId = BACK_ANIM_NONE,
         ROTOM_APPLIANCE_INFO(Mow),
         ROTOM_MISC_INFO,
     },
@@ -20504,6 +21693,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3,
         .levelUpLearnset = sUxieLevelUpLearnset,
         .teachableLearnset = sUxieTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_MESPRIT] =
@@ -20541,6 +21732,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3,
         .levelUpLearnset = sMespritLevelUpLearnset,
         .teachableLearnset = sMespritTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_AZELF] =
@@ -20577,6 +21770,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3,
         .levelUpLearnset = sAzelfLevelUpLearnset,
         .teachableLearnset = sAzelfTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define DIALGA_MISC_INFO                                                    \
@@ -20614,6 +21809,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 54,
         .weight = 6830,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         DIALGA_MISC_INFO,
     },
 
@@ -20633,6 +21830,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 70,
         .weight = 8500,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         DIALGA_MISC_INFO,
     },
 
@@ -20671,6 +21870,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 42,
         .weight = 3360,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         PALKIA_MISC_INFO,
     },
 
@@ -20690,6 +21891,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 63,
         .weight = 6600,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         PALKIA_MISC_INFO,
     },
 
@@ -20726,6 +21929,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 4300,
         .levelUpLearnset = sHeatranLevelUpLearnset,
         .teachableLearnset = sHeatranTeachableLearnset,
+        .frontAnimId = ANIM_GLOW_ORANGE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define GIRATINA_MISC_INFO                                              \
@@ -20763,6 +21968,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 45,
         .weight = 7500,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         GIRATINA_MISC_INFO,
     },
 
@@ -20783,6 +21990,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 69,
         .weight = 6500,
+        .frontAnimId = ANIM_LUNGE_GROW,
+        .backAnimId = BACK_ANIM_NONE,
         GIRATINA_MISC_INFO,
     },
 
@@ -20819,6 +22028,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 856,
         .levelUpLearnset = sCresseliaLevelUpLearnset,
         .teachableLearnset = sCresseliaTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PHIONE] =
@@ -20854,6 +22065,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 31,
         .levelUpLearnset = sPhioneLevelUpLearnset,
         .teachableLearnset = sPhioneTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_MANAPHY] =
@@ -20889,6 +22102,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 14,
         .levelUpLearnset = sManaphyLevelUpLearnset,
         .teachableLearnset = sManaphyTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONVEX,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DARKRAI] =
@@ -20925,6 +22140,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 505,
         .levelUpLearnset = sDarkraiLevelUpLearnset,
         .teachableLearnset = sDarkraiTeachableLearnset,
+        .frontAnimId = ANIM_GLOW_BLACK,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define SHAYMIN_MISC_INFO                                               \
@@ -20964,6 +22181,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 2,
         .weight = 21,
         .levelUpLearnset = sShayminLandLevelUpLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SHAYMIN_MISC_INFO,
     },
 
@@ -20988,6 +22207,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 4,
         .weight = 52,
         .levelUpLearnset = sShayminSkyLevelUpLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         SHAYMIN_MISC_INFO,
     },
 
@@ -21024,6 +22245,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3200,                                                 \
         .levelUpLearnset = sArceusLevelUpLearnset,                      \
         .teachableLearnset = sArceusTeachableLearnset,                  \
+        .frontAnimId = ANIM_GROW_VIBRATE,                               \
+        .backAnimId = BACK_ANIM_NONE,                                   \
     }
 
     [SPECIES_ARCEUS_NORMAL]     = ARCEUS_SPECIES_INFO(TYPE_NORMAL,   Normal),
@@ -21080,6 +22303,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 40,
         .levelUpLearnset = sVictiniLevelUpLearnset,
         .teachableLearnset = sVictiniTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SNIVY] =
@@ -21114,6 +22339,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 81,
         .levelUpLearnset = sSnivyLevelUpLearnset,
         .teachableLearnset = sSnivyTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSnivyEvolutions,
     },
 
@@ -21149,6 +22376,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 160,
         .levelUpLearnset = sServineLevelUpLearnset,
         .teachableLearnset = sServineTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sServineEvolutions,
     },
 
@@ -21184,6 +22413,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 630,
         .levelUpLearnset = sSerperiorLevelUpLearnset,
         .teachableLearnset = sSerperiorTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TEPIG] =
@@ -21218,6 +22449,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 99,
         .levelUpLearnset = sTepigLevelUpLearnset,
         .teachableLearnset = sTepigTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sTepigEvolutions,
     },
 
@@ -21253,6 +22486,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 555,
         .levelUpLearnset = sPigniteLevelUpLearnset,
         .teachableLearnset = sPigniteTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPigniteEvolutions,
     },
 
@@ -21288,6 +22523,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1500,
         .levelUpLearnset = sEmboarLevelUpLearnset,
         .teachableLearnset = sEmboarTeachableLearnset,
+        .frontAnimId = ANIM_DEEP_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_OSHAWOTT] =
@@ -21322,6 +22559,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 59,
         .levelUpLearnset = sOshawottLevelUpLearnset,
         .teachableLearnset = sOshawottTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sOshawottEvolutions,
     },
 
@@ -21357,6 +22596,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 245,
         .levelUpLearnset = sDewottLevelUpLearnset,
         .teachableLearnset = sDewottTeachableLearnset,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDewottEvolutions,
     },
 
@@ -21394,6 +22635,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 946,
         .levelUpLearnset = sSamurottLevelUpLearnset,
         .teachableLearnset = sSamurottTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         SAMUROTT_MISC_INFO,
     },
     [SPECIES_SAMUROTT_HISUIAN] =
@@ -21412,6 +22655,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sSamurottHisuianLevelUpLearnset,
         .teachableLearnset = sSamurottHisuianTeachableLearnset,
         //.frontPic = gMonFrontPic_SamurottHisuian,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         SAMUROTT_MISC_INFO,
     },
 
@@ -21447,6 +22692,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 116,
         .levelUpLearnset = sPatratLevelUpLearnset,
         .teachableLearnset = sPatratTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPatratEvolutions,
     },
 
@@ -21482,6 +22729,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 270,
         .levelUpLearnset = sWatchogLevelUpLearnset,
         .teachableLearnset = sWatchogTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_LILLIPUP] =
@@ -21516,6 +22765,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 41,
         .levelUpLearnset = sLillipupLevelUpLearnset,
         .teachableLearnset = sLillipupTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sLillipupEvolutions,
     },
 
@@ -21551,6 +22802,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 147,
         .levelUpLearnset = sHerdierLevelUpLearnset,
         .teachableLearnset = sHerdierTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sHerdierEvolutions,
     },
 
@@ -21590,6 +22843,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 610,
         .levelUpLearnset = sStoutlandLevelUpLearnset,
         .teachableLearnset = sStoutlandTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PURRLOIN] =
@@ -21624,6 +22879,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 101,
         .levelUpLearnset = sPurrloinLevelUpLearnset,
         .teachableLearnset = sPurrloinTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPurrloinEvolutions,
     },
 
@@ -21659,6 +22916,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 375,
         .levelUpLearnset = sLiepardLevelUpLearnset,
         .teachableLearnset = sLiepardTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PANSAGE] =
@@ -21693,6 +22952,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 105,
         .levelUpLearnset = sPansageLevelUpLearnset,
         .teachableLearnset = sPansageTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPansageEvolutions,
     },
 
@@ -21728,6 +22989,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 305,
         .levelUpLearnset = sSimisageLevelUpLearnset,
         .teachableLearnset = sSimisageTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PANSEAR] =
@@ -21762,6 +23025,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 110,
         .levelUpLearnset = sPansearLevelUpLearnset,
         .teachableLearnset = sPansearTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPansearEvolutions,
     },
 
@@ -21797,6 +23062,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 280,
         .levelUpLearnset = sSimisearLevelUpLearnset,
         .teachableLearnset = sSimisearTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE_FAST,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PANPOUR] =
@@ -21831,6 +23098,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 135,
         .levelUpLearnset = sPanpourLevelUpLearnset,
         .teachableLearnset = sPanpourTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPanpourEvolutions,
     },
 
@@ -21866,6 +23135,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 290,
         .levelUpLearnset = sSimipourLevelUpLearnset,
         .teachableLearnset = sSimipourTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_MUNNA] =
@@ -21900,6 +23171,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 233,
         .levelUpLearnset = sMunnaLevelUpLearnset,
         .teachableLearnset = sMunnaTeachableLearnset,
+        .frontAnimId = ANIM_RISING_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMunnaEvolutions,
     },
 
@@ -21935,6 +23208,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 605,
         .levelUpLearnset = sMusharnaLevelUpLearnset,
         .teachableLearnset = sMusharnaTeachableLearnset,
+        .frontAnimId = ANIM_ROTATE_TO_SIDES_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PIDOVE] =
@@ -21969,6 +23244,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 21,
         .levelUpLearnset = sPidoveLevelUpLearnset,
         .teachableLearnset = sPidoveTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPidoveEvolutions,
     },
 
@@ -22004,6 +23281,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 150,
         .levelUpLearnset = sTranquillLevelUpLearnset,
         .teachableLearnset = sTranquillTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sTranquillEvolutions,
     },
 
@@ -22043,6 +23322,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 290,
         .levelUpLearnset = sUnfezantLevelUpLearnset,
         .teachableLearnset = sUnfezantTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_BLITZLE] =
@@ -22077,6 +23358,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 298,
         .levelUpLearnset = sBlitzleLevelUpLearnset,
         .teachableLearnset = sBlitzleTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBlitzleEvolutions,
     },
 
@@ -22112,6 +23395,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 795,
         .levelUpLearnset = sZebstrikaLevelUpLearnset,
         .teachableLearnset = sZebstrikaTeachableLearnset,
+        .frontAnimId = ANIM_BACK_AND_LUNGE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_ROGGENROLA] =
@@ -22148,6 +23433,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 180,
         .levelUpLearnset = sRoggenrolaLevelUpLearnset,
         .teachableLearnset = sRoggenrolaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sRoggenrolaEvolutions,
     },
 
@@ -22186,6 +23473,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1020,
         .levelUpLearnset = sBoldoreLevelUpLearnset,
         .teachableLearnset = sBoldoreTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBoldoreEvolutions,
     },
 
@@ -22227,6 +23516,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2600,
         .levelUpLearnset = sGigalithLevelUpLearnset,
         .teachableLearnset = sGigalithTeachableLearnset,
+        .frontAnimId = ANIM_ROTATE_UP_SLAM_DOWN,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_WOOBAT] =
@@ -22265,6 +23556,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 21,
         .levelUpLearnset = sWoobatLevelUpLearnset,
         .teachableLearnset = sWoobatTeachableLearnset,
+        .frontAnimId = ANIM_FOUR_PETAL,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sWoobatEvolutions,
     },
 
@@ -22300,6 +23593,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 105,
         .levelUpLearnset = sSwoobatLevelUpLearnset,
         .teachableLearnset = sSwoobatTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DRILBUR] =
@@ -22334,6 +23629,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 85,
         .levelUpLearnset = sDrilburLevelUpLearnset,
         .teachableLearnset = sDrilburTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE_FAST_SHORT,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDrilburEvolutions,
     },
 
@@ -22369,6 +23666,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 404,
         .levelUpLearnset = sExcadrillLevelUpLearnset,
         .teachableLearnset = sExcadrillTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define AUDINO_MISC_INFO                                    \
@@ -22407,6 +23706,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 11,
         .weight = 310,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         AUDINO_MISC_INFO,
     },
 
@@ -22434,6 +23735,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 320,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         AUDINO_MISC_INFO,
     },
 
@@ -22469,6 +23772,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 125,
         .levelUpLearnset = sTimburrLevelUpLearnset,
         .teachableLearnset = sTimburrTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sTimburrEvolutions,
     },
 
@@ -22504,6 +23809,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 400,
         .levelUpLearnset = sGurdurrLevelUpLearnset,
         .teachableLearnset = sGurdurrTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGurdurrEvolutions,
     },
 
@@ -22539,6 +23846,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 870,
         .levelUpLearnset = sConkeldurrLevelUpLearnset,
         .teachableLearnset = sConkeldurrTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TYMPOLE] =
@@ -22573,6 +23882,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 45,
         .levelUpLearnset = sTympoleLevelUpLearnset,
         .teachableLearnset = sTympoleTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sTympoleEvolutions,
     },
 
@@ -22608,6 +23919,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 170,
         .levelUpLearnset = sPalpitoadLevelUpLearnset,
         .teachableLearnset = sPalpitoadTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPalpitoadEvolutions,
     },
 
@@ -22647,6 +23960,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 620,
         .levelUpLearnset = sSeismitoadLevelUpLearnset,
         .teachableLearnset = sSeismitoadTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_THROH] =
@@ -22682,6 +23997,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 555,
         .levelUpLearnset = sThrohLevelUpLearnset,
         .teachableLearnset = sThrohTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SAWK] =
@@ -22717,6 +24034,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 510,
         .levelUpLearnset = sSawkLevelUpLearnset,
         .teachableLearnset = sSawkTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SEWADDLE] =
@@ -22752,6 +24071,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 25,
         .levelUpLearnset = sSewaddleLevelUpLearnset,
         .teachableLearnset = sSewaddleTeachableLearnset,
+        .frontAnimId = ANIM_CIRCLE_INTO_BG,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSewaddleEvolutions,
     },
 
@@ -22788,6 +24109,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 73,
         .levelUpLearnset = sSwadloonLevelUpLearnset,
         .teachableLearnset = sSwadloonTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSwadloonEvolutions,
     },
 
@@ -22828,6 +24151,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 205,
         .levelUpLearnset = sLeavannyLevelUpLearnset,
         .teachableLearnset = sLeavannyTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_VENIPEDE] =
@@ -22867,6 +24192,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 53,
         .levelUpLearnset = sVenipedeLevelUpLearnset,
         .teachableLearnset = sVenipedeTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sVenipedeEvolutions,
     },
 
@@ -22907,6 +24234,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 585,
         .levelUpLearnset = sWhirlipedeLevelUpLearnset,
         .teachableLearnset = sWhirlipedeTeachableLearnset,
+        .frontAnimId = ANIM_TIP_MOVE_FORWARD,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sWhirlipedeEvolutions,
     },
 
@@ -22951,6 +24280,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2005,
         .levelUpLearnset = sScolipedeLevelUpLearnset,
         .teachableLearnset = sScolipedeTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #if P_UPDATED_TYPES >= GEN_6
@@ -22992,6 +24323,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 6,
         .levelUpLearnset = sCottoneeLevelUpLearnset,
         .teachableLearnset = sCottoneeTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCottoneeEvolutions,
     },
 
@@ -23028,6 +24361,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 66,
         .levelUpLearnset = sWhimsicottLevelUpLearnset,
         .teachableLearnset = sWhimsicottTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PETILIL] =
@@ -23063,6 +24398,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 66,
         .levelUpLearnset = sPetililLevelUpLearnset,
         .teachableLearnset = sPetililTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPetililEvolutions,
     },
 
@@ -23101,6 +24438,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 163,
         .levelUpLearnset = sLilligantLevelUpLearnset,
         .teachableLearnset = sLilligantTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         LILLIGANT_MISC_INFO,
     },
     [SPECIES_LILLIGANT_HISUIAN] =
@@ -23125,6 +24464,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 192,
         .levelUpLearnset = sLilligantHisuianLevelUpLearnset,
         .teachableLearnset = sLilligantHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         LILLIGANT_MISC_INFO,
     },
 
@@ -23153,7 +24494,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,                                    \
         .trainerOffset = 0,                                     \
         .height = 10,                                           \
-        .weight = 180
+        .weight = 180,                                          \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_BASCULIN_RED_STRIPED] =
     {
@@ -23210,7 +24553,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 30,                                                               \
         .weight = 1100,                                                             \
         .levelUpLearnset = sBasculegionLevelUpLearnset,                             \
-        .teachableLearnset = sBasculegionTeachableLearnset
+        .teachableLearnset = sBasculegionTeachableLearnset,                         \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                    \
+        .backAnimId = BACK_ANIM_NONE
         //.cryId = CRY_BASCULEGION,
 
     [SPECIES_BASCULEGION_MALE] =
@@ -23272,6 +24617,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 152,
         .levelUpLearnset = sSandileLevelUpLearnset,
         .teachableLearnset = sSandileTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSandileEvolutions,
     },
 
@@ -23308,6 +24655,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 334,
         .levelUpLearnset = sKrokorokLevelUpLearnset,
         .teachableLearnset = sKrokorokTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sKrokorokEvolutions,
     },
 
@@ -23348,6 +24697,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 963,
         .levelUpLearnset = sKrookodileLevelUpLearnset,
         .teachableLearnset = sKrookodileTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE_FAST_SHORT,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define DARUMAKA_MISC_INFO                                                  \
@@ -23384,6 +24735,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 375,
         .levelUpLearnset = sDarumakaLevelUpLearnset,
         .teachableLearnset = sDarumakaTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDarumakaEvolutions,
         DARUMAKA_MISC_INFO,
     },
@@ -23401,6 +24754,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 400,
         .levelUpLearnset = sDarumakaGalarianLevelUpLearnset,
         .teachableLearnset = sDarumakaGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDarumakaGalarianEvolutions,
         DARUMAKA_MISC_INFO,
     },
@@ -23444,6 +24799,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         .description = gDarmanitanStandardModePokedexText,
         .categoryName = _("Blazing"),
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
         DARMANITAN_UNOVAN_MISC_INFO,
         DARMANITAN_STANDARD_MISC_INFO,
     },
@@ -23464,6 +24821,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .description = gDarmanitanZenModePokedexText,
         .categoryName = _("Blazing"),
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         DARMANITAN_UNOVAN_MISC_INFO,
         DARMANITAN_ZEN_MODE_MISC_INFO,
     },
@@ -23486,6 +24845,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_ICE, TYPE_ICE },
         .description = gDarmanitanGalarianStandardModePokedexText,
         .categoryName = _("Zen Charm"),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         DARMANITAN_GALARIAN_MISC_INFO,
         DARMANITAN_STANDARD_MISC_INFO,
     },
@@ -23501,6 +24862,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_ICE, TYPE_FIRE },
         .description = gDarmanitanGalarianZenModePokedexText,
         .categoryName = _("Zen Charm"),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         DARMANITAN_GALARIAN_MISC_INFO,
         DARMANITAN_ZEN_MODE_MISC_INFO,
     },
@@ -23538,6 +24901,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 280,
         .levelUpLearnset = sMaractusLevelUpLearnset,
         .teachableLearnset = sMaractusTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DWEBBLE] =
@@ -23573,6 +24938,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 145,
         .levelUpLearnset = sDwebbleLevelUpLearnset,
         .teachableLearnset = sDwebbleTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDwebbleEvolutions,
     },
 
@@ -23613,6 +24980,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2000,
         .levelUpLearnset = sCrustleLevelUpLearnset,
         .teachableLearnset = sCrustleTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SCRAGGY] =
@@ -23648,6 +25017,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 118,
         .levelUpLearnset = sScraggyLevelUpLearnset,
         .teachableLearnset = sScraggyTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sScraggyEvolutions,
     },
 
@@ -23685,6 +25056,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 300,
         .levelUpLearnset = sScraftyLevelUpLearnset,
         .teachableLearnset = sScraftyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SIGILYPH] =
@@ -23719,6 +25092,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 140,
         .levelUpLearnset = sSigilyphLevelUpLearnset,
         .teachableLearnset = sSigilyphTeachableLearnset,
+        .frontAnimId = ANIM_FIGURE_8,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define YAMASK_MISC_INFO                                        \
@@ -23756,6 +25131,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = gYamaskPokedexText,
         .levelUpLearnset = sYamaskLevelUpLearnset,
         .teachableLearnset = sYamaskTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sYamaskEvolutions,
         YAMASK_MISC_INFO,
     },
@@ -23773,6 +25150,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = gYamaskGalarianPokedexText,
         .levelUpLearnset = sYamaskGalarianLevelUpLearnset,
         .teachableLearnset = sYamaskGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sYamaskGalarianEvolutions,
         YAMASK_MISC_INFO,
     },
@@ -23810,6 +25189,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 765,
         .levelUpLearnset = sCofagrigusLevelUpLearnset,
         .teachableLearnset = sCofagrigusTeachableLearnset,
+        .frontAnimId = ANIM_GLOW_BLACK,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_RUNERIGUS] =
@@ -23844,6 +25225,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 666,
         .levelUpLearnset = sRunerigusLevelUpLearnset,
         .teachableLearnset = sRunerigusTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TIRTOUGA] =
@@ -23878,6 +25261,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 165,
         .levelUpLearnset = sTirtougaLevelUpLearnset,
         .teachableLearnset = sTirtougaTeachableLearnset,
+        .frontAnimId = ANIM_RISING_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sTirtougaEvolutions,
     },
 
@@ -23913,6 +25298,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 810,
         .levelUpLearnset = sCarracostaLevelUpLearnset,
         .teachableLearnset = sCarracostaTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_ARCHEN] =
@@ -23947,6 +25334,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 95,
         .levelUpLearnset = sArchenLevelUpLearnset,
         .teachableLearnset = sArchenTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sArchenEvolutions,
     },
 
@@ -23982,6 +25371,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 320,
         .levelUpLearnset = sArcheopsLevelUpLearnset,
         .teachableLearnset = sArcheopsTeachableLearnset,
+        .frontAnimId = ANIM_RISING_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TRUBBISH] =
@@ -24017,6 +25408,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 310,
         .levelUpLearnset = sTrubbishLevelUpLearnset,
         .teachableLearnset = sTrubbishTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sTrubbishEvolutions,
     },
 
@@ -24054,6 +25447,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1073,
         .levelUpLearnset = sGarbodorLevelUpLearnset,
         .teachableLearnset = sGarbodorTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define ZORUA_MISC_INFO                                     \
@@ -24090,6 +25485,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Tricky Fox"),
         .levelUpLearnset = sZoruaLevelUpLearnset,
         .teachableLearnset = sZoruaTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sZoruaEvolutions,
         ZORUA_MISC_INFO,
     },
@@ -24107,6 +25504,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Spiteful Fox"),
         .levelUpLearnset = sZoruaHisuianLevelUpLearnset,
         .teachableLearnset = sZoruaHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sZoruaHisuianEvolutions,
         ZORUA_MISC_INFO,
     },
@@ -24145,6 +25544,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 811,
         .levelUpLearnset = sZoroarkLevelUpLearnset,
         .teachableLearnset = sZoroarkTeachableLearnset,
+        .frontAnimId = ANIM_FLICKER_INCREASING,
+        .backAnimId = BACK_ANIM_NONE,
         ZOROARK_MISC_INFO,
     },
     [SPECIES_ZOROARK_HISUIAN] =
@@ -24163,6 +25564,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 730,
         .levelUpLearnset = sZoroarkHisuianLevelUpLearnset,
         .teachableLearnset = sZoroarkHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ZOROARK_MISC_INFO,
     },
 
@@ -24198,6 +25601,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 58,
         .levelUpLearnset = sMinccinoLevelUpLearnset,
         .teachableLearnset = sMinccinoTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMinccinoEvolutions,
     },
 
@@ -24233,6 +25638,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 75,
         .levelUpLearnset = sCinccinoLevelUpLearnset,
         .teachableLearnset = sCinccinoTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_GOTHITA] =
@@ -24267,6 +25674,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 58,
         .levelUpLearnset = sGothitaLevelUpLearnset,
         .teachableLearnset = sGothitaTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGothitaEvolutions,
     },
 
@@ -24302,6 +25711,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 180,
         .levelUpLearnset = sGothoritaLevelUpLearnset,
         .teachableLearnset = sGothoritaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGothoritaEvolutions,
     },
 
@@ -24337,6 +25748,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 440,
         .levelUpLearnset = sGothitelleLevelUpLearnset,
         .teachableLearnset = sGothitelleTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SOLOSIS] =
@@ -24371,6 +25784,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 10,
         .levelUpLearnset = sSolosisLevelUpLearnset,
         .teachableLearnset = sSolosisTeachableLearnset,
+        .frontAnimId = ANIM_TWIST,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSolosisEvolutions,
     },
 
@@ -24406,6 +25821,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 80,
         .levelUpLearnset = sDuosionLevelUpLearnset,
         .teachableLearnset = sDuosionTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDuosionEvolutions,
     },
 
@@ -24441,6 +25858,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 201,
         .levelUpLearnset = sReuniclusLevelUpLearnset,
         .teachableLearnset = sReuniclusTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DUCKLETT] =
@@ -24475,6 +25894,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 55,
         .levelUpLearnset = sDucklettLevelUpLearnset,
         .teachableLearnset = sDucklettTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDucklettEvolutions,
     },
 
@@ -24510,6 +25931,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 242,
         .levelUpLearnset = sSwannaLevelUpLearnset,
         .teachableLearnset = sSwannaTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_VANILLITE] =
@@ -24545,6 +25968,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 57,
         .levelUpLearnset = sVanilliteLevelUpLearnset,
         .teachableLearnset = sVanilliteTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sVanilliteEvolutions,
     },
 
@@ -24581,6 +26006,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 410,
         .levelUpLearnset = sVanillishLevelUpLearnset,
         .teachableLearnset = sVanillishTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sVanillishEvolutions,
     },
 
@@ -24617,6 +26044,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 575,
         .levelUpLearnset = sVanilluxeLevelUpLearnset,
         .teachableLearnset = sVanilluxeTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define DEERLING_SPECIES_INFO(form, color)                                              \
@@ -24651,6 +26080,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 195,                                                                  \
         .levelUpLearnset = sDeerlingLevelUpLearnset,                                    \
         .teachableLearnset = sDeerlingTeachableLearnset,                                \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                        \
+        .backAnimId = BACK_ANIM_NONE,                                                   \
         .evolutions = sDeerling##form##Evolutions,                                      \
     }
 
@@ -24691,6 +26122,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 925,                                                                  \
         .levelUpLearnset = sSawsbuckLevelUpLearnset,                                    \
         .teachableLearnset = sSawsbuckTeachableLearnset,                                \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                        \
+        .backAnimId = BACK_ANIM_NONE,                                                   \
     }
 
     [SPECIES_SAWSBUCK_SPRING] = SAWSBUCK_SPECIES_INFO(Spring, 56, 48),
@@ -24730,6 +26163,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 50,
         .levelUpLearnset = sEmolgaLevelUpLearnset,
         .teachableLearnset = sEmolgaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_KARRABLAST] =
@@ -24764,6 +26199,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 59,
         .levelUpLearnset = sKarrablastLevelUpLearnset,
         .teachableLearnset = sKarrablastTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sKarrablastEvolutions,
     },
 
@@ -24799,6 +26236,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 330,
         .levelUpLearnset = sEscavalierLevelUpLearnset,
         .teachableLearnset = sEscavalierTeachableLearnset,
+        .frontAnimId = ANIM_BACK_AND_LUNGE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_FOONGUS] =
@@ -24835,6 +26274,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 10,
         .levelUpLearnset = sFoongusLevelUpLearnset,
         .teachableLearnset = sFoongusTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE_FAST,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sFoongusEvolutions,
     },
 
@@ -24872,6 +26313,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 105,
         .levelUpLearnset = sAmoongussLevelUpLearnset,
         .teachableLearnset = sAmoongussTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_FRILLISH] =
@@ -24906,6 +26349,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 330,
         .levelUpLearnset = sFrillishLevelUpLearnset,
         .teachableLearnset = sFrillishTeachableLearnset,
+        .frontAnimId = ANIM_RISING_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sFrillishEvolutions,
     },
 
@@ -24941,6 +26386,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1350,
         .levelUpLearnset = sJellicentLevelUpLearnset,
         .teachableLearnset = sJellicentTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_ALOMOMOLA] =
@@ -24975,6 +26422,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 316,
         .levelUpLearnset = sAlomomolaLevelUpLearnset,
         .teachableLearnset = sAlomomolaTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_JOLTIK] =
@@ -25009,6 +26458,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 6,
         .levelUpLearnset = sJoltikLevelUpLearnset,
         .teachableLearnset = sJoltikTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sJoltikEvolutions,
     },
 
@@ -25044,6 +26495,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 143,
         .levelUpLearnset = sGalvantulaLevelUpLearnset,
         .teachableLearnset = sGalvantulaTeachableLearnset,
+        .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_FERROSEED] =
@@ -25079,6 +26532,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 188,
         .levelUpLearnset = sFerroseedLevelUpLearnset,
         .teachableLearnset = sFerroseedTeachableLearnset,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sFerroseedEvolutions,
     },
 
@@ -25115,6 +26570,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1100,
         .levelUpLearnset = sFerrothornLevelUpLearnset,
         .teachableLearnset = sFerrothornTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_KLINK] =
@@ -25149,6 +26606,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 210,
         .levelUpLearnset = sKlinkLevelUpLearnset,
         .teachableLearnset = sKlinkTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sKlinkEvolutions,
     },
 
@@ -25184,6 +26643,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 510,
         .levelUpLearnset = sKlangLevelUpLearnset,
         .teachableLearnset = sKlangTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sKlangEvolutions,
     },
 
@@ -25219,6 +26680,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 810,
         .levelUpLearnset = sKlinklangLevelUpLearnset,
         .teachableLearnset = sKlinklangTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TYNAMO] =
@@ -25253,6 +26716,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3,
         .levelUpLearnset = sTynamoLevelUpLearnset,
         .teachableLearnset = sTynamoTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sTynamoEvolutions,
     },
 
@@ -25288,6 +26753,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 220,
         .levelUpLearnset = sEelektrikLevelUpLearnset,
         .teachableLearnset = sEelektrikTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sEelektrikEvolutions,
     },
 
@@ -25323,6 +26790,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 805,
         .levelUpLearnset = sEelektrossLevelUpLearnset,
         .teachableLearnset = sEelektrossTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_ELGYEM] =
@@ -25357,6 +26826,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 90,
         .levelUpLearnset = sElgyemLevelUpLearnset,
         .teachableLearnset = sElgyemTeachableLearnset,
+        .frontAnimId = ANIM_RISING_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sElgyemEvolutions,
     },
 
@@ -25392,6 +26863,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 345,
         .levelUpLearnset = sBeheeyemLevelUpLearnset,
         .teachableLearnset = sBeheeyemTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_LITWICK] =
@@ -25430,6 +26903,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 31,
         .levelUpLearnset = sLitwickLevelUpLearnset,
         .teachableLearnset = sLitwickTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sLitwickEvolutions,
     },
 
@@ -25469,6 +26944,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 130,
         .levelUpLearnset = sLampentLevelUpLearnset,
         .teachableLearnset = sLampentTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sLampentEvolutions,
     },
 
@@ -25508,6 +26985,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 343,
         .levelUpLearnset = sChandelureLevelUpLearnset,
         .teachableLearnset = sChandelureTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_AXEW] =
@@ -25542,6 +27021,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 180,
         .levelUpLearnset = sAxewLevelUpLearnset,
         .teachableLearnset = sAxewTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sAxewEvolutions,
     },
 
@@ -25577,6 +27058,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 360,
         .levelUpLearnset = sFraxureLevelUpLearnset,
         .teachableLearnset = sFraxureTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sFraxureEvolutions,
     },
 
@@ -25612,6 +27095,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1055,
         .levelUpLearnset = sHaxorusLevelUpLearnset,
         .teachableLearnset = sHaxorusTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CUBCHOO] =
@@ -25646,6 +27131,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 85,
         .levelUpLearnset = sCubchooLevelUpLearnset,
         .teachableLearnset = sCubchooTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCubchooEvolutions,
     },
 
@@ -25685,6 +27172,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2600,
         .levelUpLearnset = sBearticLevelUpLearnset,
         .teachableLearnset = sBearticTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CRYOGONAL] =
@@ -25725,6 +27214,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1480,
         .levelUpLearnset = sCryogonalLevelUpLearnset,
         .teachableLearnset = sCryogonalTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SHELMET] =
@@ -25759,6 +27250,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 77,
         .levelUpLearnset = sShelmetLevelUpLearnset,
         .teachableLearnset = sShelmetTeachableLearnset,
+        .frontAnimId = ANIM_TWIST,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sShelmetEvolutions,
     },
 
@@ -25794,6 +27287,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 253,
         .levelUpLearnset = sAccelgorLevelUpLearnset,
         .teachableLearnset = sAccelgorTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define STUNFISK_MISC_INFO                                      \
@@ -25831,6 +27326,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 110,
         .levelUpLearnset = sStunfiskLevelUpLearnset,
         .teachableLearnset = sStunfiskTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         STUNFISK_MISC_INFO,
     },
     [SPECIES_STUNFISK_GALARIAN] =
@@ -25851,6 +27348,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 205,
         .levelUpLearnset = sStunfiskGalarianLevelUpLearnset,
         .teachableLearnset = sStunfiskGalarianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         STUNFISK_MISC_INFO,
     },
 
@@ -25886,6 +27385,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 200,
         .levelUpLearnset = sMienfooLevelUpLearnset,
         .teachableLearnset = sMienfooTeachableLearnset,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMienfooEvolutions,
     },
 
@@ -25921,6 +27422,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 355,
         .levelUpLearnset = sMienshaoLevelUpLearnset,
         .teachableLearnset = sMienshaoTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DRUDDIGON] =
@@ -25956,6 +27459,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1390,
         .levelUpLearnset = sDruddigonLevelUpLearnset,
         .teachableLearnset = sDruddigonTeachableLearnset,
+        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_GOLETT] =
@@ -25991,6 +27496,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 920,
         .levelUpLearnset = sGolettLevelUpLearnset,
         .teachableLearnset = sGolettTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGolettEvolutions,
     },
 
@@ -26027,6 +27534,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3300,
         .levelUpLearnset = sGolurkLevelUpLearnset,
         .teachableLearnset = sGolurkTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PAWNIARD] =
@@ -26061,6 +27570,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 102,
         .levelUpLearnset = sPawniardLevelUpLearnset,
         .teachableLearnset = sPawniardTeachableLearnset,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPawniardEvolutions,
     },
 
@@ -26096,6 +27607,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 700,
         .levelUpLearnset = sBisharpLevelUpLearnset,
         .teachableLearnset = sBisharpTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBisharpEvolutions,
     },
 
@@ -26131,6 +27644,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 946,
         .levelUpLearnset = sBouffalantLevelUpLearnset,
         .teachableLearnset = sBouffalantTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_RUFFLET] =
@@ -26165,6 +27680,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 105,
         .levelUpLearnset = sRuffletLevelUpLearnset,
         .teachableLearnset = sRuffletTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sRuffletEvolutions,
     },
 
@@ -26202,6 +27719,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 410,
         .levelUpLearnset = sBraviaryLevelUpLearnset,
         .teachableLearnset = sBraviaryTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         BRAVIARY_MISC_INFO,
     },
     [SPECIES_BRAVIARY_HISUIAN] =
@@ -26227,6 +27746,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 434,
         .levelUpLearnset = sBraviaryHisuianLevelUpLearnset,
         .teachableLearnset = sBraviaryHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         BRAVIARY_MISC_INFO,
     },
 
@@ -26262,6 +27783,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 90,
         .levelUpLearnset = sVullabyLevelUpLearnset,
         .teachableLearnset = sVullabyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sVullabyEvolutions,
     },
 
@@ -26297,6 +27820,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 395,
         .levelUpLearnset = sMandibuzzLevelUpLearnset,
         .teachableLearnset = sMandibuzzTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_HEATMOR] =
@@ -26331,6 +27856,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 580,
         .levelUpLearnset = sHeatmorLevelUpLearnset,
         .teachableLearnset = sHeatmorTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DURANT] =
@@ -26365,6 +27892,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 330,
         .levelUpLearnset = sDurantLevelUpLearnset,
         .teachableLearnset = sDurantTeachableLearnset,
+        .frontAnimId = ANIM_RAPID_H_HOPS,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DEINO] =
@@ -26399,6 +27928,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 173,
         .levelUpLearnset = sDeinoLevelUpLearnset,
         .teachableLearnset = sDeinoTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDeinoEvolutions,
     },
 
@@ -26434,6 +27965,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 500,
         .levelUpLearnset = sZweilousLevelUpLearnset,
         .teachableLearnset = sZweilousTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sZweilousEvolutions,
     },
 
@@ -26469,6 +28002,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1600,
         .levelUpLearnset = sHydreigonLevelUpLearnset,
         .teachableLearnset = sHydreigonTeachableLearnset,
+        .frontAnimId = ANIM_RISING_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_LARVESTA] =
@@ -26503,6 +28038,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 288,
         .levelUpLearnset = sLarvestaLevelUpLearnset,
         .teachableLearnset = sLarvestaTeachableLearnset,
+        .frontAnimId = ANIM_GLOW_ORANGE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sLarvestaEvolutions,
     },
 
@@ -26540,6 +28077,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 460,
         .levelUpLearnset = sVolcaronaLevelUpLearnset,
         .teachableLearnset = sVolcaronaTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_COBALION] =
@@ -26575,6 +28114,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2500,
         .levelUpLearnset = sCobalionLevelUpLearnset,
         .teachableLearnset = sCobalionTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TERRAKION] =
@@ -26610,6 +28151,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2600,
         .levelUpLearnset = sTerrakionLevelUpLearnset,
         .teachableLearnset = sTerrakionTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_VIRIZION] =
@@ -26645,6 +28188,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2000,
         .levelUpLearnset = sVirizionLevelUpLearnset,
         .teachableLearnset = sVirizionTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define TORNADUS_MISC_INFO                                              \
@@ -26682,6 +28227,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 630,
+        .frontAnimId = ANIM_FIGURE_8,
+        .backAnimId = BACK_ANIM_NONE,
         TORNADUS_MISC_INFO,
     },
 
@@ -26703,6 +28250,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 14,
         .weight = 630,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         TORNADUS_MISC_INFO,
     },
 
@@ -26741,6 +28290,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 610,
+        .frontAnimId = ANIM_FIGURE_8,
+        .backAnimId = BACK_ANIM_NONE,
         THUNDURUS_MISC_INFO,
     },
 
@@ -26763,6 +28314,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 30,
         .weight = 610,
+        .frontAnimId = ANIM_RISING_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         THUNDURUS_MISC_INFO,
     },
 
@@ -26799,6 +28352,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3300,
         .levelUpLearnset = sReshiramLevelUpLearnset,
         .teachableLearnset = sReshiramTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_ZEKROM] =
@@ -26834,6 +28389,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3450,
         .levelUpLearnset = sZekromLevelUpLearnset,
         .teachableLearnset = sZekromTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define LANDORUS_MISC_INFO                                              \
@@ -26871,6 +28428,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 15,
         .weight = 680,
+        .frontAnimId = ANIM_FIGURE_8,
+        .backAnimId = BACK_ANIM_NONE,
         LANDORUS_MISC_INFO,
     },
 
@@ -26893,6 +28452,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 13,
         .weight = 680,
+        .frontAnimId = ANIM_CIRCULAR_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         LANDORUS_MISC_INFO,
     },
 
@@ -26932,6 +28493,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = gEnamorusIncarnatePokedexText,
         .categoryName = _("Love-Hate"),
         //.frontPic = gMonFrontPic_EnamorusIncarnate,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ENAMORUS_MISC_INFO,
     },
 
@@ -26949,6 +28512,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = gEnamorusTherianPokedexText,
         .categoryName = _("Love-Hate"),
         //.frontPic = gMonFrontPic_EnamorusTherian,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ENAMORUS_MISC_INFO,
     },
 
@@ -26989,6 +28554,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 30,
         .weight = 3250,
         .levelUpLearnset = sKyuremLevelUpLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         KYUREM_MISC_INFO,
     },
 
@@ -27014,6 +28581,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 36,
         .weight = 3250,
         .levelUpLearnset = sKyuremWhiteLevelUpLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         KYUREM_MISC_INFO,
     },
 
@@ -27039,6 +28608,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 33,
         .weight = 3250,
         .levelUpLearnset = sKyuremBlackLevelUpLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         KYUREM_MISC_INFO,
     },
 
@@ -27077,6 +28648,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
         .description = gKeldeoOrdinaryPokedexText,
         .categoryName = _("Colt"),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         KELDEO_MISC_INFO,
     },
 
@@ -27085,6 +28658,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = TRUE,
         .description = gKeldeoResolutePokedexText,
         .categoryName = _("Colt"),
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         KELDEO_MISC_INFO,
     },
 
@@ -27127,6 +28702,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpDefense = 1,
         .description = gMeloettaAriaPokedexText,
         .categoryName = _("Melody"),
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         MELOETTA_MISC_INFO,
     },
 
@@ -27143,6 +28720,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Defense = 1,
         .description = gMeloettaPirouettePokedexText,
         .categoryName = _("Melody"),
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         MELOETTA_MISC_INFO,
     },
 
@@ -27181,6 +28760,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 825,                                                  \
         .levelUpLearnset = sGenesectLevelUpLearnset,                    \
         .teachableLearnset = sGenesectTeachableLearnset,                \
+        .frontAnimId = ANIM_H_VIBRATE,                                  \
+        .backAnimId = BACK_ANIM_NONE,                                   \
     }
 
     [SPECIES_GENESECT]             = GENESECT_MISC_INFO(Genesect),
@@ -27223,6 +28804,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 90,
         .levelUpLearnset = sChespinLevelUpLearnset,
         .teachableLearnset = sChespinTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sChespinEvolutions,
     },
 
@@ -27258,6 +28841,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 290,
         .levelUpLearnset = sQuilladinLevelUpLearnset,
         .teachableLearnset = sQuilladinTeachableLearnset,
+        .frontAnimId = ANIM_LUNGE_GROW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sQuilladinEvolutions,
     },
 
@@ -27293,6 +28878,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 900,
         .levelUpLearnset = sChesnaughtLevelUpLearnset,
         .teachableLearnset = sChesnaughtTeachableLearnset,
+        .frontAnimId = ANIM_GROW_IN_STAGES,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_FENNEKIN] =
@@ -27327,6 +28914,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 94,
         .levelUpLearnset = sFennekinLevelUpLearnset,
         .teachableLearnset = sFennekinTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sFennekinEvolutions,
     },
 
@@ -27362,6 +28951,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 145,
         .levelUpLearnset = sBraixenLevelUpLearnset,
         .teachableLearnset = sBraixenTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBraixenEvolutions,
     },
 
@@ -27397,6 +28988,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 390,
         .levelUpLearnset = sDelphoxLevelUpLearnset,
         .teachableLearnset = sDelphoxTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_FROAKIE] =
@@ -27431,6 +29024,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 70,
         .levelUpLearnset = sFroakieLevelUpLearnset,
         .teachableLearnset = sFroakieTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sFroakieEvolutions,
     },
 
@@ -27466,6 +29061,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 109,
         .levelUpLearnset = sFrogadierLevelUpLearnset,
         .teachableLearnset = sFrogadierTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sFrogadierEvolutions,
     },
 
@@ -27477,7 +29074,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 103,                       \
         .baseSpDefense = 71,                        \
         .description = gGreninjaPokedexText,        \
-        .categoryName = _("Ninja")
+        .categoryName = _("Ninja"),                 \
+        .frontAnimId = ANIM_V_STRETCH,              \
+        .backAnimId = BACK_ANIM_NONE
 
 #define GRENINJA_MISC_INFO                              \
         .types = { TYPE_WATER, TYPE_DARK},              \
@@ -27531,6 +29130,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_BATTLE_BOND, ABILITY_NONE, ABILITY_NONE},
         .description = gGreninjaAshPokedexText,
         .categoryName = _("Ninja"),
+        .frontAnimId = ANIM_FLICKER_INCREASING,
+        .backAnimId = BACK_ANIM_NONE,
         GRENINJA_MISC_INFO,
     },
 
@@ -27566,6 +29167,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 50,
         .levelUpLearnset = sBunnelbyLevelUpLearnset,
         .teachableLearnset = sBunnelbyTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBunnelbyEvolutions,
     },
 
@@ -27601,6 +29204,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 424,
         .levelUpLearnset = sDiggersbyLevelUpLearnset,
         .teachableLearnset = sDiggersbyTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_FLETCHLING] =
@@ -27635,6 +29240,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 17,
         .levelUpLearnset = sFletchlingLevelUpLearnset,
         .teachableLearnset = sFletchlingTeachableLearnset,
+        .frontAnimId = ANIM_RAPID_H_HOPS,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sFletchlingEvolutions,
     },
 
@@ -27670,6 +29277,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 160,
         .levelUpLearnset = sFletchinderLevelUpLearnset,
         .teachableLearnset = sFletchinderTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sFletchinderEvolutions,
     },
 
@@ -27705,6 +29314,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 245,
         .levelUpLearnset = sTalonflameLevelUpLearnset,
         .teachableLearnset = sTalonflameTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONCAVE_FAST,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define SCATTERBUG_SPECIES_INFO(form)                                                   \
@@ -27739,6 +29350,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 25,                                                                   \
         .levelUpLearnset = sScatterbugLevelUpLearnset,                                  \
         .teachableLearnset = sScatterbugTeachableLearnset,                              \
+        .frontAnimId = ANIM_V_STRETCH,                                                  \
+        .backAnimId = BACK_ANIM_NONE,                                                   \
         .evolutions = sScatterbug##form##Evolutions,                                    \
     }
     [SPECIES_SCATTERBUG_ICY_SNOW]    = SCATTERBUG_SPECIES_INFO(IcySnow),
@@ -27794,6 +29407,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 84,                                                           \
         .levelUpLearnset = sSpewpaLevelUpLearnset,                              \
         .teachableLearnset = sSpewpaTeachableLearnset,                          \
+        .frontAnimId = ANIM_V_SHAKE,                                            \
+        .backAnimId = BACK_ANIM_NONE,                                           \
         .evolutions = sSpewpa##form##Evolutions,                                \
     }
     [SPECIES_SPEWPA_ICY_SNOW]    = SPEWPA_SPECIES_INFO(IcySnow),
@@ -27851,6 +29466,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 170,                                                                  \
         .levelUpLearnset = sVivillonLevelUpLearnset,                                    \
         .teachableLearnset = sVivillonTeachableLearnset,                                \
+        .frontAnimId = ANIM_ZIGZAG_SLOW,                                                \
+        .backAnimId = BACK_ANIM_NONE,                                                   \
     }
 
     [SPECIES_VIVILLON_ICY_SNOW]    = VIVILLON_SPECIES_INFO(BODY_COLOR_WHITE, IcySnow),
@@ -27906,6 +29523,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 135,
         .levelUpLearnset = sLitleoLevelUpLearnset,
         .teachableLearnset = sLitleoTeachableLearnset,
+        .frontAnimId = ANIM_BACK_AND_LUNGE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sLitleoEvolutions,
     },
 
@@ -27941,6 +29560,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 815,
         .levelUpLearnset = sPyroarLevelUpLearnset,
         .teachableLearnset = sPyroarTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define FLABEBE_SPECIES_INFO(form, iconPal)                                     \
@@ -27975,6 +29596,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1,                                                            \
         .levelUpLearnset = sFlabebeLevelUpLearnset,                             \
         .teachableLearnset = sFlabebeTeachableLearnset,                         \
+        .frontAnimId = ANIM_SWING_CONCAVE_FAST_SHORT,                           \
+        .backAnimId = BACK_ANIM_NONE,                                           \
         .evolutions = sFlabebe##form##Evolutions,                               \
     }
     [SPECIES_FLABEBE_RED_FLOWER]    = FLABEBE_SPECIES_INFO(RedFlower, 1),
@@ -28017,6 +29640,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 9,                                        \
         .levelUpLearnset = sFloetteLevelUpLearnset,         \
         .teachableLearnset = sFloetteTeachableLearnset,     \
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,                 \
+        .backAnimId = BACK_ANIM_NONE,                       \
         .evolutions = sFloette##form##Evolutions,           \
         FLOETTE_MISC_INFO,                                  \
     }
@@ -28047,6 +29672,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 9,
         .levelUpLearnset = sFloetteEternalFlowerLevelUpLearnset,
         .teachableLearnset = sFloetteTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         FLOETTE_MISC_INFO,
     },
 
@@ -28082,6 +29709,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 100,                                                      \
         .levelUpLearnset = sFlorgesLevelUpLearnset,                         \
         .teachableLearnset = sFlorgesTeachableLearnset,                     \
+        .frontAnimId = ANIM_GROW_VIBRATE,                                   \
+        .backAnimId = BACK_ANIM_NONE,                                       \
     }
     [SPECIES_FLORGES_RED_FLOWER]    = FLORGES_SPECIES_INFO(RedFlower, 0),
     [SPECIES_FLORGES_YELLOW_FLOWER] = FLORGES_SPECIES_INFO(YellowFlower, 1),
@@ -28121,6 +29750,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 310,
         .levelUpLearnset = sSkiddoLevelUpLearnset,
         .teachableLearnset = sSkiddoTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_GOGOAT] =
@@ -28155,6 +29786,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 910,
         .levelUpLearnset = sGogoatLevelUpLearnset,
         .teachableLearnset = sGogoatTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PANCHAM] =
@@ -28190,6 +29823,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 80,
         .levelUpLearnset = sPanchamLevelUpLearnset,
         .teachableLearnset = sPanchamTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PANGORO] =
@@ -28225,6 +29860,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1360,
         .levelUpLearnset = sPangoroLevelUpLearnset,
         .teachableLearnset = sPangoroTeachableLearnset,
+        .frontAnimId = ANIM_BACK_AND_LUNGE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define FURFROU_SPECIES_INFO(flip, form, iconPal)               \
@@ -28259,6 +29896,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 280,                                          \
         .levelUpLearnset = sFurfrouLevelUpLearnset,             \
         .teachableLearnset = sFurfrouTeachableLearnset,         \
+        .frontAnimId = ANIM_H_SLIDE,                            \
+        .backAnimId = BACK_ANIM_NONE,                           \
     }
     [SPECIES_FURFROU_NATURAL]        = FURFROU_SPECIES_INFO(FLIP, Natural, 0),
     [SPECIES_FURFROU_HEART_TRIM]     = FURFROU_SPECIES_INFO(FLIP, HeartTrim, 0),
@@ -28303,6 +29942,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 35,
         .levelUpLearnset = sEspurrLevelUpLearnset,
         .teachableLearnset = sEspurrTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define MEOWSTIC_MISC_INFO                                  \
@@ -28328,7 +29969,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,                                \
         .trainerOffset = 0,                                 \
         .height = 6,                                        \
-        .weight = 85
+        .weight = 85,                                       \
+        .frontAnimId = ANIM_GROW_VIBRATE,                   \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_MEOWSTIC_MALE] =
     {
@@ -28386,6 +30029,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 20,
         .levelUpLearnset = sHonedgeLevelUpLearnset,
         .teachableLearnset = sHonedgeTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONVEX,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DOUBLADE] =
@@ -28420,6 +30065,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 45,
         .levelUpLearnset = sDoubladeLevelUpLearnset,
         .teachableLearnset = sDoubladeTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 
@@ -28464,6 +30111,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpDefense = 1,
         .description = gAegislashShieldPokedexText,
         .categoryName = _("Royal Sword"),
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         AEGISLASH_MISC_INFO,
     },
 
@@ -28479,6 +30128,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpAttack  = 1,
         .description = gAegislashBladePokedexText,
         .categoryName = _("Royal Sword"),
+        .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         AEGISLASH_MISC_INFO,
     },
 
@@ -28514,6 +30165,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 5,
         .levelUpLearnset = sSpritzeeLevelUpLearnset,
         .teachableLearnset = sSpritzeeTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_AROMATISSE] =
@@ -28548,6 +30201,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 155,
         .levelUpLearnset = sAromatisseLevelUpLearnset,
         .teachableLearnset = sAromatisseTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SWIRLIX] =
@@ -28582,6 +30237,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 35,
         .levelUpLearnset = sSwirlixLevelUpLearnset,
         .teachableLearnset = sSwirlixTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SLURPUFF] =
@@ -28616,6 +30273,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 50,
         .levelUpLearnset = sSlurpuffLevelUpLearnset,
         .teachableLearnset = sSlurpuffTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_INKAY] =
@@ -28650,6 +30309,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 35,
         .levelUpLearnset = sInkayLevelUpLearnset,
         .teachableLearnset = sInkayTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_MALAMAR] =
@@ -28684,6 +30345,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 470,
         .levelUpLearnset = sMalamarLevelUpLearnset,
         .teachableLearnset = sMalamarTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_BINACLE] =
@@ -28718,6 +30381,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 310,
         .levelUpLearnset = sBinacleLevelUpLearnset,
         .teachableLearnset = sBinacleTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_BARBARACLE] =
@@ -28752,6 +30417,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 960,
         .levelUpLearnset = sBarbaracleLevelUpLearnset,
         .teachableLearnset = sBarbaracleTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SKRELP] =
@@ -28786,6 +30453,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 73,
         .levelUpLearnset = sSkrelpLevelUpLearnset,
         .teachableLearnset = sSkrelpTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DRAGALGE] =
@@ -28820,6 +30489,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 815,
         .levelUpLearnset = sDragalgeLevelUpLearnset,
         .teachableLearnset = sDragalgeTeachableLearnset,
+        .frontAnimId = ANIM_FRONT_FLIP,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CLAUNCHER] =
@@ -28854,6 +30525,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 83,
         .levelUpLearnset = sClauncherLevelUpLearnset,
         .teachableLearnset = sClauncherTeachableLearnset,
+        .frontAnimId = ANIM_TIP_MOVE_FORWARD,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CLAWITZER] =
@@ -28888,6 +30561,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 353,
         .levelUpLearnset = sClawitzerLevelUpLearnset,
         .teachableLearnset = sClawitzerTeachableLearnset,
+        .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_HELIOPTILE] =
@@ -28922,6 +30597,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 60,
         .levelUpLearnset = sHelioptileLevelUpLearnset,
         .teachableLearnset = sHelioptileTeachableLearnset,
+        .frontAnimId = ANIM_GLOW_YELLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_HELIOLISK] =
@@ -28957,6 +30634,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 210,
         .levelUpLearnset = sHelioliskLevelUpLearnset,
         .teachableLearnset = sHelioliskTeachableLearnset,
+        .frontAnimId = ANIM_RAPID_H_HOPS,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TYRUNT] =
@@ -28991,6 +30670,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 260,
         .levelUpLearnset = sTyruntLevelUpLearnset,
         .teachableLearnset = sTyruntTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TYRANTRUM] =
@@ -29025,6 +30706,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2700,
         .levelUpLearnset = sTyrantrumLevelUpLearnset,
         .teachableLearnset = sTyrantrumTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_AMAURA] =
@@ -29059,6 +30742,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 252,
         .levelUpLearnset = sAmauraLevelUpLearnset,
         .teachableLearnset = sAmauraTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_AURORUS] =
@@ -29093,6 +30778,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2250,
         .levelUpLearnset = sAurorusLevelUpLearnset,
         .teachableLearnset = sAurorusTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_HAWLUCHA] =
@@ -29132,6 +30819,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 215,
         .levelUpLearnset = sHawluchaLevelUpLearnset,
         .teachableLearnset = sHawluchaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DEDENNE] =
@@ -29166,6 +30855,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 22,
         .levelUpLearnset = sDedenneLevelUpLearnset,
         .teachableLearnset = sDedenneTeachableLearnset,
+        .frontAnimId = ANIM_GLOW_YELLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CARBINK] =
@@ -29201,6 +30892,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 57,
         .levelUpLearnset = sCarbinkLevelUpLearnset,
         .teachableLearnset = sCarbinkTeachableLearnset,
+        .frontAnimId = ANIM_ZIGZAG_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_GOOMY] =
@@ -29236,6 +30929,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 28,
         .levelUpLearnset = sGoomyLevelUpLearnset,
         .teachableLearnset = sGoomyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGoomyEvolutions,
     },
 
@@ -29274,6 +30969,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 175,
         .levelUpLearnset = sSliggooLevelUpLearnset,
         .teachableLearnset = sSliggooTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSliggooEvolutions,
         SLIGGOO_MISC_INFO,
     },
@@ -29298,6 +30995,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 685,
         .levelUpLearnset = sSliggooHisuianLevelUpLearnset,
         .teachableLearnset = sSliggooHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSliggooHisuianEvolutions,
         SLIGGOO_MISC_INFO,
     },
@@ -29336,6 +31035,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1505,
         .levelUpLearnset = sGoodraLevelUpLearnset,
         .teachableLearnset = sGoodraTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         GOODRA_MISC_INFO,
     },
     [SPECIES_GOODRA_HISUIAN] =
@@ -29359,6 +31060,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3341,
         .levelUpLearnset = sGoodraHisuianLevelUpLearnset,
         .teachableLearnset = sGoodraHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         GOODRA_MISC_INFO,
     },
 
@@ -29394,6 +31097,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 30,
         .levelUpLearnset = sKlefkiLevelUpLearnset,
         .teachableLearnset = sKlefkiTeachableLearnset,
+        .frontAnimId = ANIM_FOUR_PETAL,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PHANTUMP] =
@@ -29428,6 +31133,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 70,
         .levelUpLearnset = sPhantumpLevelUpLearnset,
         .teachableLearnset = sPhantumpTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPhantumpEvolutions,
     },
 
@@ -29463,6 +31170,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 710,
         .levelUpLearnset = sTrevenantLevelUpLearnset,
         .teachableLearnset = sTrevenantTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define PUMKPABOO_MISC_INFO                                             \
@@ -29480,7 +31189,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,                                                \
         .natDexNum = NATIONAL_DEX_PUMPKABOO,                            \
         .levelUpLearnset = sPumpkabooLevelUpLearnset,                   \
-        .teachableLearnset = sPumpkabooTeachableLearnset
+        .teachableLearnset = sPumpkabooTeachableLearnset,               \
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,                             \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_PUMPKABOO_AVERAGE] =
     {
@@ -29583,7 +31294,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,                                                \
         .natDexNum = NATIONAL_DEX_GOURGEIST,                            \
         .levelUpLearnset = sGourgeistLevelUpLearnset,                   \
-        .teachableLearnset = sGourgeistTeachableLearnset
+        .teachableLearnset = sGourgeistTeachableLearnset,               \
+        .frontAnimId = ANIM_SHRINK_GROW,                                \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_GOURGEIST_AVERAGE] =
     {
@@ -29705,6 +31418,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 995,
         .levelUpLearnset = sBergmiteLevelUpLearnset,
         .teachableLearnset = sBergmiteTeachableLearnset,
+        .frontAnimId = ANIM_LUNGE_GROW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBergmiteEvolutions,
     },
 
@@ -29742,6 +31457,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 5050,
         .levelUpLearnset = sAvaluggLevelUpLearnset,
         .teachableLearnset = sAvaluggTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         AVALUGG_MISC_INFO,
     },
     [SPECIES_AVALUGG_HISUIAN] =
@@ -29765,6 +31482,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2624,
         .levelUpLearnset = sAvaluggHisuianLevelUpLearnset,
         .teachableLearnset = sAvaluggHisuianTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         AVALUGG_MISC_INFO,
     },
 
@@ -29804,6 +31523,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 80,
         .levelUpLearnset = sNoibatLevelUpLearnset,
         .teachableLearnset = sNoibatTeachableLearnset,
+        .frontAnimId = ANIM_RISING_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sNoibatEvolutions,
     },
 
@@ -29843,6 +31564,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 850,
         .levelUpLearnset = sNoivernLevelUpLearnset,
         .teachableLearnset = sNoivernTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define XERNEAS_MISC_INFO                                               \
@@ -29876,7 +31599,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 30,                                                   \
         .weight = 2150,                                                 \
         .levelUpLearnset = sXerneasLevelUpLearnset,                     \
-        .teachableLearnset = sXerneasTeachableLearnset
+        .teachableLearnset = sXerneasTeachableLearnset,                 \
+        .frontAnimId = ANIM_GROW_VIBRATE,                               \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_XERNEAS_NEUTRAL] =
     {
@@ -29921,6 +31646,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2030,
         .levelUpLearnset = sYveltalLevelUpLearnset,
         .teachableLearnset = sYveltalTeachableLearnset,
+        .frontAnimId = ANIM_FRONT_FLIP,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define ZYGARDE_MISC_INFO                                               \
@@ -29958,6 +31685,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,                         \
         .height = 50,                               \
         .weight = 3050,                             \
+        .frontAnimId = ANIM_TIP_MOVE_FORWARD,       \
+        .backAnimId = BACK_ANIM_NONE,               \
         ZYGARDE_MISC_INFO,                          \
     }
 
@@ -29981,6 +31710,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,                         \
         .height = 12,                               \
         .weight = 335,                              \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,    \
+        .backAnimId = BACK_ANIM_NONE,               \
         ZYGARDE_MISC_INFO,                          \
     }
     [SPECIES_ZYGARDE_50] = ZYGARDE_50_MISC_INFO(ABILITY_AURA_BREAK),
@@ -30007,6 +31738,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 45,
         .weight = 6100,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         ZYGARDE_MISC_INFO,
     },
 
@@ -30046,6 +31779,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 7,
         .weight = 88,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         DIANCE_MISC_INFO,
     },
 
@@ -30071,6 +31806,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 11,
         .weight = 278,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         DIANCE_MISC_INFO,
     },
 
@@ -30109,6 +31846,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 5,
         .weight = 90,
         .levelUpLearnset = sHoopaConfinedLevelUpLearnset,
+        .frontAnimId = ANIM_ZIGZAG_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         HOOPA_MISC_INFO,
     },
 
@@ -30131,6 +31870,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 65,
         .weight = 4900,
         .levelUpLearnset = sHoopaUnboundLevelUpLearnset,
+        .frontAnimId = ANIM_GROW_IN_STAGES,
+        .backAnimId = BACK_ANIM_NONE,
         HOOPA_MISC_INFO,
     },
 
@@ -30167,6 +31908,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1950,
         .levelUpLearnset = sVolcanionLevelUpLearnset,
         .teachableLearnset = sVolcanionTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 #endif
 
@@ -30203,6 +31946,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 15,
         .levelUpLearnset = sRowletLevelUpLearnset,
         .teachableLearnset = sRowletTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sRowletEvolutions,
     },
 
@@ -30238,6 +31983,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 160,
         .levelUpLearnset = sDartrixLevelUpLearnset,
         .teachableLearnset = sDartrixTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDartrixEvolutions,
     },
 
@@ -30275,6 +32022,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 366,
         .levelUpLearnset = sDecidueyeLevelUpLearnset,
         .teachableLearnset = sDecidueyeTeachableLearnset,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         DECIDUEYE_MISC_INFO,
     },
     [SPECIES_DECIDUEYE_HISUIAN] =
@@ -30295,6 +32044,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sDecidueyeHisuianLevelUpLearnset,
         .teachableLearnset = sDecidueyeHisuianTeachableLearnset,
         //.frontPic = gMonFrontPic_DecidueyeHisuian,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         DECIDUEYE_MISC_INFO,
     },
 
@@ -30330,6 +32081,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 43,
         .levelUpLearnset = sLittenLevelUpLearnset,
         .teachableLearnset = sLittenTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sLittenEvolutions,
     },
 
@@ -30365,6 +32118,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 250,
         .levelUpLearnset = sTorracatLevelUpLearnset,
         .teachableLearnset = sTorracatTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sTorracatEvolutions,
     },
 
@@ -30400,6 +32155,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 830,
         .levelUpLearnset = sIncineroarLevelUpLearnset,
         .teachableLearnset = sIncineroarTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_POPPLIO] =
@@ -30434,6 +32191,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 75,
         .levelUpLearnset = sPopplioLevelUpLearnset,
         .teachableLearnset = sPopplioTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPopplioEvolutions,
     },
 
@@ -30469,6 +32228,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 175,
         .levelUpLearnset = sBrionneLevelUpLearnset,
         .teachableLearnset = sBrionneTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBrionneEvolutions,
     },
 
@@ -30504,6 +32265,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 440,
         .levelUpLearnset = sPrimarinaLevelUpLearnset,
         .teachableLearnset = sPrimarinaTeachableLearnset,
+        .frontAnimId = ANIM_SHAKE_GLOW_BLUE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PIKIPEK] =
@@ -30539,6 +32302,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 12,
         .levelUpLearnset = sPikipekLevelUpLearnset,
         .teachableLearnset = sPikipekTeachableLearnset,
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPikipekEvolutions,
     },
 
@@ -30575,6 +32340,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 148,
         .levelUpLearnset = sTrumbeakLevelUpLearnset,
         .teachableLearnset = sTrumbeakTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sTrumbeakEvolutions,
     },
 
@@ -30611,6 +32378,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 260,
         .levelUpLearnset = sToucannonLevelUpLearnset,
         .teachableLearnset = sToucannonTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_FAST,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_YUNGOOS] =
@@ -30646,6 +32415,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 60,
         .levelUpLearnset = sYungoosLevelUpLearnset,
         .teachableLearnset = sYungoosTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sYungoosEvolutions,
     },
 
@@ -30682,6 +32453,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 142,
         .levelUpLearnset = sGumshoosLevelUpLearnset,
         .teachableLearnset = sGumshoosTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_GRUBBIN] =
@@ -30716,6 +32489,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 44,
         .levelUpLearnset = sGrubbinLevelUpLearnset,
         .teachableLearnset = sGrubbinTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGrubbinEvolutions,
     },
 
@@ -30752,6 +32527,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 105,
         .levelUpLearnset = sCharjabugLevelUpLearnset,
         .teachableLearnset = sCharjabugTeachableLearnset,
+        .frontAnimId = ANIM_SHAKE_FLASH_YELLOW_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCharjabugEvolutions,
     },
 
@@ -30787,6 +32564,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 450,
         .levelUpLearnset = sVikavoltLevelUpLearnset,
         .teachableLearnset = sVikavoltTeachableLearnset,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CRABRAWLER] =
@@ -30822,6 +32601,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 70,
         .levelUpLearnset = sCrabrawlerLevelUpLearnset,
         .teachableLearnset = sCrabrawlerTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCrabrawlerEvolutions,
     },
 
@@ -30858,6 +32639,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1800,
         .levelUpLearnset = sCrabominableLevelUpLearnset,
         .teachableLearnset = sCrabominableTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_FAST,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define ORICORIO_MISC_INFO                                  \
@@ -30895,6 +32678,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_ORICORIO_BAILE,
         .description = gOricorioBailePokedexText,
         .categoryName = _("Dancing"),
+        .frontAnimId = ANIM_CONCAVE_ARC_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
         ORICORIO_MISC_INFO,
     },
 
@@ -30905,6 +32690,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_ORICORIO_POM_POM,
         .description = gOricorioPomPomPokedexText,
         .categoryName = _("Dancing"),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ORICORIO_MISC_INFO,
     },
 
@@ -30915,6 +32702,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_ORICORIO_PAU,
         .description = gOricorioPauPokedexText,
         .categoryName = _("Dancing"),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ORICORIO_MISC_INFO,
     },
 
@@ -30925,6 +32714,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .cryId = CRY_ORICORIO_SENSU,
         .description = gOricorioSensuPokedexText,
         .categoryName = _("Dancing"),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         ORICORIO_MISC_INFO,
     },
 
@@ -30961,6 +32752,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2,
         .levelUpLearnset = sCutieflyLevelUpLearnset,
         .teachableLearnset = sCutieflyTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCutieflyEvolutions,
     },
 
@@ -30997,6 +32790,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 5,
         .levelUpLearnset = sRibombeeLevelUpLearnset,
         .teachableLearnset = sRibombeeTeachableLearnset,
+        .frontAnimId = ANIM_CONVEX_DOUBLE_ARC_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define ROCKRUFF_MISC_INFO                                  \
@@ -31028,7 +32823,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 5,                                        \
         .weight = 92,                                       \
         .levelUpLearnset = sRockruffLevelUpLearnset,        \
-        .teachableLearnset = sRockruffTeachableLearnset
+        .teachableLearnset = sRockruffTeachableLearnset,    \
+        .frontAnimId = ANIM_V_STRETCH,                      \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_ROCKRUFF] =
     {
@@ -31077,6 +32874,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 250,
         .levelUpLearnset = sLycanrocMiddayLevelUpLearnset,
         .teachableLearnset = sLycanrocMiddayTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         LYCANROC_MISC_INFO,
     },
 
@@ -31101,6 +32900,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 250,
         .levelUpLearnset = sLycanrocMidnightLevelUpLearnset,
         .teachableLearnset = sLycanrocMidnightTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         LYCANROC_MISC_INFO,
     },
 
@@ -31125,6 +32926,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 250,
         .levelUpLearnset = sLycanrocDuskLevelUpLearnset,
         .teachableLearnset = sLycanrocDuskTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         LYCANROC_MISC_INFO,
     },
 
@@ -31162,6 +32965,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 2,
         .weight = 3,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
         WISHIWASHI_MISC_INFO,
     },
 
@@ -31182,6 +32987,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 82,
         .weight = 786,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         WISHIWASHI_MISC_INFO,
     },
 
@@ -31218,6 +33025,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 80,
         .levelUpLearnset = sMareanieLevelUpLearnset,
         .teachableLearnset = sMareanieTeachableLearnset,
+        .frontAnimId = ANIM_GLOW_PURPLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMareanieEvolutions,
     },
 
@@ -31254,6 +33063,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 145,
         .levelUpLearnset = sToxapexLevelUpLearnset,
         .teachableLearnset = sToxapexTeachableLearnset,
+        .frontAnimId = ANIM_SHAKE_GLOW_PURPLE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_MUDBRAY] =
@@ -31289,6 +33100,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1100,
         .levelUpLearnset = sMudbrayLevelUpLearnset,
         .teachableLearnset = sMudbrayTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMudbrayEvolutions,
     },
 
@@ -31325,6 +33138,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 9200,
         .levelUpLearnset = sMudsdaleLevelUpLearnset,
         .teachableLearnset = sMudsdaleTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DEWPIDER] =
@@ -31360,6 +33175,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 40,
         .levelUpLearnset = sDewpiderLevelUpLearnset,
         .teachableLearnset = sDewpiderTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDewpiderEvolutions,
     },
 
@@ -31396,6 +33213,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 820,
         .levelUpLearnset = sAraquanidLevelUpLearnset,
         .teachableLearnset = sAraquanidTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_FOMANTIS] =
@@ -31431,6 +33250,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 15,
         .levelUpLearnset = sFomantisLevelUpLearnset,
         .teachableLearnset = sFomantisTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sFomantisEvolutions,
     },
 
@@ -31467,6 +33288,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 185,
         .levelUpLearnset = sLurantisLevelUpLearnset,
         .teachableLearnset = sLurantisTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_MORELULL] =
@@ -31503,6 +33326,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 15,
         .levelUpLearnset = sMorelullLevelUpLearnset,
         .teachableLearnset = sMorelullTeachableLearnset,
+        .frontAnimId = ANIM_SHAKE_FLASH_YELLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMorelullEvolutions,
     },
 
@@ -31540,6 +33365,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 115,
         .levelUpLearnset = sShiinoticLevelUpLearnset,
         .teachableLearnset = sShiinoticTeachableLearnset,
+        .frontAnimId = ANIM_SHAKE_GLOW_WHITE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SALANDIT] =
@@ -31575,6 +33402,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 48,
         .levelUpLearnset = sSalanditLevelUpLearnset,
         .teachableLearnset = sSalanditTeachableLearnset,
+        .frontAnimId = ANIM_SHAKE_GLOW_RED_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSalanditEvolutions,
     },
 
@@ -31611,6 +33440,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 222,
         .levelUpLearnset = sSalazzleLevelUpLearnset,
         .teachableLearnset = sSalazzleTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_STUFFUL] =
@@ -31645,6 +33476,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 68,
         .levelUpLearnset = sStuffulLevelUpLearnset,
         .teachableLearnset = sStuffulTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sStuffulEvolutions,
     },
 
@@ -31680,6 +33513,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1350,
         .levelUpLearnset = sBewearLevelUpLearnset,
         .teachableLearnset = sBewearTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_BOUNSWEET] =
@@ -31715,6 +33550,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 32,
         .levelUpLearnset = sBounsweetLevelUpLearnset,
         .teachableLearnset = sBounsweetTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBounsweetEvolutions,
     },
 
@@ -31751,6 +33588,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 82,
         .levelUpLearnset = sSteeneeLevelUpLearnset,
         .teachableLearnset = sSteeneeTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSteeneeEvolutions,
     },
 
@@ -31787,6 +33626,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 214,
         .levelUpLearnset = sTsareenaLevelUpLearnset,
         .teachableLearnset = sTsareenaTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_COMFEY] =
@@ -31822,6 +33663,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3,
         .levelUpLearnset = sComfeyLevelUpLearnset,
         .teachableLearnset = sComfeyTeachableLearnset,
+        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_ORANGURU] =
@@ -31856,6 +33699,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 760,
         .levelUpLearnset = sOranguruLevelUpLearnset,
         .teachableLearnset = sOranguruTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PASSIMIAN] =
@@ -31890,6 +33735,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 828,
         .levelUpLearnset = sPassimianLevelUpLearnset,
         .teachableLearnset = sPassimianTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_WIMPOD] =
@@ -31924,6 +33771,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 120,
         .levelUpLearnset = sWimpodLevelUpLearnset,
         .teachableLearnset = sWimpodTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_H_SLIDE_FAST,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sWimpodEvolutions,
     },
 
@@ -31959,6 +33808,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1080,
         .levelUpLearnset = sGolisopodLevelUpLearnset,
         .teachableLearnset = sGolisopodTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_FAST,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SANDYGAST] =
@@ -31994,6 +33845,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 700,
         .levelUpLearnset = sSandygastLevelUpLearnset,
         .teachableLearnset = sSandygastTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSandygastEvolutions,
     },
 
@@ -32030,6 +33883,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2500,
         .levelUpLearnset = sPalossandLevelUpLearnset,
         .teachableLearnset = sPalossandTeachableLearnset,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PYUKUMUKU] =
@@ -32064,6 +33919,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 12,
         .levelUpLearnset = sPyukumukuLevelUpLearnset,
         .teachableLearnset = sPyukumukuTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TYPE_NULL] =
@@ -32099,6 +33956,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1205,
         .levelUpLearnset = sTypeNullLevelUpLearnset,
         .teachableLearnset = sTypeNullTeachableLearnset,
+        .frontAnimId = ANIM_H_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sTypeNullEvolutions,
     },
 
@@ -32135,6 +33994,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1005,                                                 \
         .levelUpLearnset = sSilvallyLevelUpLearnset,                    \
         .teachableLearnset = sSilvallyTeachableLearnset,                \
+        .frontAnimId = ANIM_V_SHAKE,                                    \
+        .backAnimId = BACK_ANIM_NONE,                                   \
     }
     [SPECIES_SILVALLY_NORMAL]   = SILVALLY_SPECIES_INFO(TYPE_NORMAL, Normal),
     [SPECIES_SILVALLY_FIGHTING] = SILVALLY_SPECIES_INFO(TYPE_FIGHTING, Fighting),
@@ -32191,6 +34052,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Meteor"),                    \
         .height = 3,                                    \
         .weight = 400,                                  \
+        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,  \
+        .backAnimId = BACK_ANIM_NONE,                   \
         MINIOR_MISC_INFO,                               \
     }
 
@@ -32207,6 +34070,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Meteor"),                    \
         .height = 3,                                    \
         .weight = 3,                                    \
+        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,  \
+        .backAnimId = BACK_ANIM_NONE,                   \
         MINIOR_MISC_INFO,                               \
     }
 
@@ -32257,6 +34122,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 199,
         .levelUpLearnset = sKomalaLevelUpLearnset,
         .teachableLearnset = sKomalaTeachableLearnset,
+        .frontAnimId = ANIM_H_DIP,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TURTONATOR] =
@@ -32292,6 +34159,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2120,
         .levelUpLearnset = sTurtonatorLevelUpLearnset,
         .teachableLearnset = sTurtonatorTeachableLearnset,
+        .frontAnimId = ANIM_SHAKE_GLOW_RED,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TOGEDEMARU] =
@@ -32327,6 +34196,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 33,
         .levelUpLearnset = sTogedemaruLevelUpLearnset,
         .teachableLearnset = sTogedemaruTeachableLearnset,
+        .frontAnimId = ANIM_SHAKE_FLASH_YELLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define MIMIKYU_MISC_INFO                                           \
@@ -32364,6 +34235,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
     {
         .description = gMimikyuDisguisedPokedexText,
         .categoryName = _("Disguise"),
+        .frontAnimId = ANIM_DEEP_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         MIMIKYU_MISC_INFO,
     },
 
@@ -32371,6 +34244,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
     {
         .description = gMimikyuBustedPokedexText,
         .categoryName = _("Disguise"),
+        .frontAnimId = ANIM_DEEP_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         MIMIKYU_MISC_INFO,
     },
 
@@ -32407,6 +34282,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 190,
         .levelUpLearnset = sBruxishLevelUpLearnset,
         .teachableLearnset = sBruxishTeachableLearnset,
+        .frontAnimId = ANIM_RISING_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DRAMPA] =
@@ -32442,6 +34319,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1850,
         .levelUpLearnset = sDrampaLevelUpLearnset,
         .teachableLearnset = sDrampaTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DHELMISE] =
@@ -32476,6 +34355,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2100,
         .levelUpLearnset = sDhelmiseLevelUpLearnset,
         .teachableLearnset = sDhelmiseTeachableLearnset,
+        .frontAnimId = ANIM_SWING_CONVEX,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_JANGMO_O] =
@@ -32511,6 +34392,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 297,
         .levelUpLearnset = sJangmoOLevelUpLearnset,
         .teachableLearnset = sJangmoOTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sJangmoOEvolutions,
     },
 
@@ -32547,6 +34430,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 470,
         .levelUpLearnset = sHakamoOLevelUpLearnset,
         .teachableLearnset = sHakamoOTeachableLearnset,
+        .frontAnimId = ANIM_H_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sHakamoOEvolutions,
     },
 
@@ -32583,6 +34468,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 782,
         .levelUpLearnset = sKommoOLevelUpLearnset,
         .teachableLearnset = sKommoOTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TAPU_KOKO] =
@@ -32618,6 +34505,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 205,
         .levelUpLearnset = sTapuKokoLevelUpLearnset,
         .teachableLearnset = sTapuKokoTeachableLearnset,
+        .frontAnimId = ANIM_TRIANGLE_DOWN_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TAPU_LELE] =
@@ -32653,6 +34542,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 186,
         .levelUpLearnset = sTapuLeleLevelUpLearnset,
         .teachableLearnset = sTapuLeleTeachableLearnset,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TAPU_BULU] =
@@ -32688,6 +34579,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 455,
         .levelUpLearnset = sTapuBuluLevelUpLearnset,
         .teachableLearnset = sTapuBuluTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TAPU_FINI] =
@@ -32724,6 +34617,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sTapuFiniLevelUpLearnset,
         .teachableLearnset = sTapuFiniTeachableLearnset,
         .frontAnimDelay = 5,
+        .frontAnimId = ANIM_SHAKE_GLOW_BLUE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_COSMOG] =
@@ -32759,6 +34654,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1,
         .levelUpLearnset = sCosmogLevelUpLearnset,
         .teachableLearnset = sCosmogTeachableLearnset,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCosmogEvolutions,
     },
 
@@ -32796,6 +34693,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 9999,
         .levelUpLearnset = sCosmoemLevelUpLearnset,
         .teachableLearnset = sCosmoemTeachableLearnset,
+        .frontAnimId = ANIM_RISING_WOBBLE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCosmoemEvolutions,
     },
 
@@ -32832,6 +34731,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2300,
         .levelUpLearnset = sSolgaleoLevelUpLearnset,
         .teachableLearnset = sSolgaleoTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_LUNALA] =
@@ -32867,6 +34768,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1200,
         .levelUpLearnset = sLunalaLevelUpLearnset,
         .teachableLearnset = sLunalaTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_NIHILEGO] =
@@ -32902,6 +34805,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 555,
         .levelUpLearnset = sNihilegoLevelUpLearnset,
         .teachableLearnset = sNihilegoTeachableLearnset,
+        .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_BUZZWOLE] =
@@ -32938,6 +34843,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3336,
         .levelUpLearnset = sBuzzwoleLevelUpLearnset,
         .teachableLearnset = sBuzzwoleTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_FAST,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PHEROMOSA] =
@@ -32973,6 +34880,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 250,
         .levelUpLearnset = sPheromosaLevelUpLearnset,
         .teachableLearnset = sPheromosaTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_XURKITREE] =
@@ -33008,6 +34917,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1000,
         .levelUpLearnset = sXurkitreeLevelUpLearnset,
         .teachableLearnset = sXurkitreeTeachableLearnset,
+        .frontAnimId = ANIM_SHAKE_FLASH_YELLOW_FAST,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CELESTEELA] =
@@ -33045,6 +34956,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 9999,
         .levelUpLearnset = sCelesteelaLevelUpLearnset,
         .teachableLearnset = sCelesteelaTeachableLearnset,
+        .frontAnimId = ANIM_GROW_STUTTER_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_KARTANA] =
@@ -33080,6 +34993,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1,
         .levelUpLearnset = sKartanaLevelUpLearnset,
         .teachableLearnset = sKartanaTeachableLearnset,
+        .frontAnimId = ANIM_H_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_GUZZLORD] =
@@ -33115,6 +35030,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 8880,
         .levelUpLearnset = sGuzzlordLevelUpLearnset,
         .teachableLearnset = sGuzzlordTeachableLearnset,
+        .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_FAST,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define NECROZMA_MISC_INFO                                              \
@@ -33153,6 +35070,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 24,
         .weight = 2300,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
         NECROZMA_MISC_INFO,
     },
 
@@ -33179,6 +35098,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 38,
         .weight = 4600,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         NECROZMA_MISC_INFO,
     },
 
@@ -33205,6 +35126,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 42,
         .weight = 3500,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         NECROZMA_MISC_INFO,
     },
 
@@ -33233,6 +35156,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         .height = 75,
         .weight = 2300,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         NECROZMA_MISC_INFO,
     },
 
@@ -33269,6 +35194,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 805,                                                  \
         .levelUpLearnset = sMagearnaLevelUpLearnset,                    \
         .teachableLearnset = sMagearnaTeachableLearnset,                \
+        .frontAnimId = ANIM_H_SLIDE_SLOW,                               \
+        .backAnimId = BACK_ANIM_NONE,                                   \
     }
     [SPECIES_MAGEARNA]                = MAGEARNA_SPECIES_INFO(BODY_COLOR_GRAY, Magearna),
     [SPECIES_MAGEARNA_ORIGINAL_COLOR] = MAGEARNA_SPECIES_INFO(BODY_COLOR_RED, MagearnaOriginalColor),
@@ -33307,6 +35234,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 222,
         .levelUpLearnset = sMarshadowLevelUpLearnset,
         .teachableLearnset = sMarshadowTeachableLearnset,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_POIPOLE] =
@@ -33342,6 +35271,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 18,
         .levelUpLearnset = sPoipoleLevelUpLearnset,
         .teachableLearnset = sPoipoleTeachableLearnset,
+        .frontAnimId = ANIM_SHAKE_GLOW_PURPLE_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sPoipoleEvolutions,
     },
 
@@ -33378,6 +35309,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1500,
         .levelUpLearnset = sNaganadelLevelUpLearnset,
         .teachableLearnset = sNaganadelTeachableLearnset,
+        .frontAnimId = ANIM_TRIANGLE_DOWN_TWICE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_STAKATAKA] =
@@ -33413,6 +35346,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 8200,
         .levelUpLearnset = sStakatakaLevelUpLearnset,
         .teachableLearnset = sStakatakaTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_BLACEPHALON] =
@@ -33448,6 +35383,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 130,
         .levelUpLearnset = sBlacephalonLevelUpLearnset,
         .teachableLearnset = sBlacephalonTeachableLearnset,
+        .frontAnimId = ANIM_SHAKE_GLOW_RED,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_ZERAORA] =
@@ -33483,6 +35420,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 445,
         .levelUpLearnset = sZeraoraLevelUpLearnset,
         .teachableLearnset = sZeraoraTeachableLearnset,
+        .frontAnimId = ANIM_V_STRETCH,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_MELTAN] =
@@ -33518,6 +35457,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 80,
         .levelUpLearnset = sMeltanLevelUpLearnset,
         .teachableLearnset = sMeltanTeachableLearnset,
+        .frontAnimId = ANIM_GROW_STUTTER_SLOW,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_MELMETAL] =
@@ -33553,6 +35494,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 800,
         .levelUpLearnset = sMelmetalLevelUpLearnset,
         .teachableLearnset = sMelmetalTeachableLearnset,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 #endif
 
@@ -33589,6 +35532,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 50,
         .levelUpLearnset = sGrookeyLevelUpLearnset,
         .teachableLearnset = sGrookeyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGrookeyEvolutions,
     },
 
@@ -33624,6 +35569,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 140,
         .levelUpLearnset = sThwackeyLevelUpLearnset,
         .teachableLearnset = sThwackeyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sThwackeyEvolutions,
     },
 
@@ -33659,6 +35606,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 900,
         .levelUpLearnset = sRillaboomLevelUpLearnset,
         .teachableLearnset = sRillaboomTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SCORBUNNY] =
@@ -33693,6 +35642,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 45,
         .levelUpLearnset = sScorbunnyLevelUpLearnset,
         .teachableLearnset = sScorbunnyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sScorbunnyEvolutions,
     },
 
@@ -33728,6 +35679,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 90,
         .levelUpLearnset = sRabootLevelUpLearnset,
         .teachableLearnset = sRabootTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sRabootEvolutions,
     },
 
@@ -33763,6 +35716,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 330,
         .levelUpLearnset = sCinderaceLevelUpLearnset,
         .teachableLearnset = sCinderaceTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SOBBLE] =
@@ -33798,6 +35753,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 40,
         .levelUpLearnset = sSobbleLevelUpLearnset,
         .teachableLearnset = sSobbleTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSobbleEvolutions,
     },
 
@@ -33833,6 +35790,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 115,
         .levelUpLearnset = sDrizzileLevelUpLearnset,
         .teachableLearnset = sDrizzileTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDrizzileEvolutions,
     },
 
@@ -33868,6 +35827,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 452,
         .levelUpLearnset = sInteleonLevelUpLearnset,
         .teachableLearnset = sInteleonTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SKWOVET] =
@@ -33903,6 +35864,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 25,
         .levelUpLearnset = sSkwovetLevelUpLearnset,
         .teachableLearnset = sSkwovetTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSkwovetEvolutions,
     },
 
@@ -33939,6 +35902,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 60,
         .levelUpLearnset = sGreedentLevelUpLearnset,
         .teachableLearnset = sGreedentTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_ROOKIDEE] =
@@ -33973,6 +35938,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 18,
         .levelUpLearnset = sRookideeLevelUpLearnset,
         .teachableLearnset = sRookideeTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sRookideeEvolutions,
     },
 
@@ -34008,6 +35975,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 160,
         .levelUpLearnset = sCorvisquireLevelUpLearnset,
         .teachableLearnset = sCorvisquireTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCorvisquireEvolutions,
     },
 
@@ -34043,6 +36012,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 750,
         .levelUpLearnset = sCorviknightLevelUpLearnset,
         .teachableLearnset = sCorviknightTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_BLIPBUG] =
@@ -34077,6 +36048,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 80,
         .levelUpLearnset = sBlipbugLevelUpLearnset,
         .teachableLearnset = sBlipbugTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sBlipbugEvolutions,
     },
 
@@ -34113,6 +36086,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 195,
         .levelUpLearnset = sDottlerLevelUpLearnset,
         .teachableLearnset = sDottlerTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDottlerEvolutions,
     },
 
@@ -34149,6 +36124,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 408,
         .levelUpLearnset = sOrbeetleLevelUpLearnset,
         .teachableLearnset = sOrbeetleTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_NICKIT] =
@@ -34183,6 +36160,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 89,
         .levelUpLearnset = sNickitLevelUpLearnset,
         .teachableLearnset = sNickitTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sNickitEvolutions,
     },
 
@@ -34218,6 +36197,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 199,
         .levelUpLearnset = sThievulLevelUpLearnset,
         .teachableLearnset = sThievulTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_GOSSIFLEUR] =
@@ -34252,6 +36233,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 22,
         .levelUpLearnset = sGossifleurLevelUpLearnset,
         .teachableLearnset = sGossifleurTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sGossifleurEvolutions,
     },
 
@@ -34287,6 +36270,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 25,
         .levelUpLearnset = sEldegossLevelUpLearnset,
         .teachableLearnset = sEldegossTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_WOOLOO] =
@@ -34321,6 +36306,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 60,
         .levelUpLearnset = sWoolooLevelUpLearnset,
         .teachableLearnset = sWoolooTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sWoolooEvolutions,
     },
 
@@ -34356,6 +36343,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 430,
         .levelUpLearnset = sDubwoolLevelUpLearnset,
         .teachableLearnset = sDubwoolTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CHEWTLE] =
@@ -34390,6 +36379,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 85,
         .levelUpLearnset = sChewtleLevelUpLearnset,
         .teachableLearnset = sChewtleTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sChewtleEvolutions,
     },
 
@@ -34425,6 +36416,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1155,
         .levelUpLearnset = sDrednawLevelUpLearnset,
         .teachableLearnset = sDrednawTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_YAMPER] =
@@ -34459,6 +36452,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 135,
         .levelUpLearnset = sYamperLevelUpLearnset,
         .teachableLearnset = sYamperTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sYamperEvolutions,
     },
 
@@ -34494,6 +36489,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 340,
         .levelUpLearnset = sBoltundLevelUpLearnset,
         .teachableLearnset = sBoltundTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_ROLYCOLY] =
@@ -34528,6 +36525,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 120,
         .levelUpLearnset = sRolycolyLevelUpLearnset,
         .teachableLearnset = sRolycolyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sRolycolyEvolutions,
     },
 
@@ -34563,6 +36562,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 780,
         .levelUpLearnset = sCarkolLevelUpLearnset,
         .teachableLearnset = sCarkolTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCarkolEvolutions,
     },
 
@@ -34598,6 +36599,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3105,
         .levelUpLearnset = sCoalossalLevelUpLearnset,
         .teachableLearnset = sCoalossalTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_APPLIN] =
@@ -34632,6 +36635,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 5,
         .levelUpLearnset = sApplinLevelUpLearnset,
         .teachableLearnset = sApplinTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sApplinEvolutions,
     },
 
@@ -34667,6 +36672,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 10,
         .levelUpLearnset = sFlappleLevelUpLearnset,
         .teachableLearnset = sFlappleTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_APPLETUN] =
@@ -34701,6 +36708,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 130,
         .levelUpLearnset = sAppletunLevelUpLearnset,
         .teachableLearnset = sAppletunTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SILICOBRA] =
@@ -34735,6 +36744,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 76,
         .levelUpLearnset = sSilicobraLevelUpLearnset,
         .teachableLearnset = sSilicobraTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSilicobraEvolutions,
     },
 
@@ -34770,6 +36781,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 655,
         .levelUpLearnset = sSandacondaLevelUpLearnset,
         .teachableLearnset = sSandacondaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define CRAMORANT_MISC_INFO                                 \
@@ -34800,7 +36813,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 8,                                        \
         .weight = 180,                                      \
         .levelUpLearnset = sCramorantLevelUpLearnset,       \
-        .teachableLearnset = sCramorantTeachableLearnset
+        .teachableLearnset = sCramorantTeachableLearnset,   \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,            \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_CRAMORANT] =
     {
@@ -34855,6 +36870,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 10,
         .levelUpLearnset = sArrokudaLevelUpLearnset,
         .teachableLearnset = sArrokudaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sArrokudaEvolutions,
     },
 
@@ -34890,6 +36907,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 300,
         .levelUpLearnset = sBarraskewdaLevelUpLearnset,
         .teachableLearnset = sBarraskewdaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_TOXEL] =
@@ -34924,6 +36943,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 110,
         .levelUpLearnset = sToxelLevelUpLearnset,
         .teachableLearnset = sToxelTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sToxelEvolutions,
     },
 
@@ -34952,7 +36973,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,                                         \
         .height = 16,                                               \
         .weight = 400,                                              \
-        .teachableLearnset = sToxtricityTeachableLearnset
+        .teachableLearnset = sToxtricityTeachableLearnset,          \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                    \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_TOXTRICITY_AMPED] =
     {
@@ -35006,6 +37029,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 10,
         .levelUpLearnset = sSizzlipedeLevelUpLearnset,
         .teachableLearnset = sSizzlipedeTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSizzlipedeEvolutions,
     },
 
@@ -35041,6 +37066,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1200,
         .levelUpLearnset = sCentiskorchLevelUpLearnset,
         .teachableLearnset = sCentiskorchTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CLOBBOPUS] =
@@ -35075,6 +37102,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 40,
         .levelUpLearnset = sClobbopusLevelUpLearnset,
         .teachableLearnset = sClobbopusTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sClobbopusEvolutions,
     },
 
@@ -35110,6 +37139,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 390,
         .levelUpLearnset = sGrapploctLevelUpLearnset,
         .teachableLearnset = sGrapploctTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define SINISTEA_MISC_INFO                                                      \
@@ -35140,7 +37171,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 1,                                                            \
         .weight = 2,                                                            \
         .levelUpLearnset = sSinisteaLevelUpLearnset,                            \
-        .teachableLearnset = sSinisteaTeachableLearnset
+        .teachableLearnset = sSinisteaTeachableLearnset,                        \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_SINISTEA_PHONY] =
     {
@@ -35186,7 +37219,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 2,                                                            \
         .weight = 4,                                                            \
         .levelUpLearnset = sPolteageistLevelUpLearnset,                         \
-        .teachableLearnset = sPolteageistTeachableLearnset
+        .teachableLearnset = sPolteageistTeachableLearnset,                     \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_POLTEAGEIST_PHONY] =
     {
@@ -35234,6 +37269,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 34,
         .levelUpLearnset = sHatennaLevelUpLearnset,
         .teachableLearnset = sHatennaTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sHatennaEvolutions,
     },
 
@@ -35269,6 +37306,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 48,
         .levelUpLearnset = sHattremLevelUpLearnset,
         .teachableLearnset = sHattremTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sHattremEvolutions,
     },
 
@@ -35304,6 +37343,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 51,
         .levelUpLearnset = sHattereneLevelUpLearnset,
         .teachableLearnset = sHattereneTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_IMPIDIMP] =
@@ -35338,6 +37379,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 55,
         .levelUpLearnset = sImpidimpLevelUpLearnset,
         .teachableLearnset = sImpidimpTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sImpidimpEvolutions,
     },
 
@@ -35373,6 +37416,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 125,
         .levelUpLearnset = sMorgremLevelUpLearnset,
         .teachableLearnset = sMorgremTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMorgremEvolutions,
     },
 
@@ -35408,6 +37453,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 610,
         .levelUpLearnset = sGrimmsnarlLevelUpLearnset,
         .teachableLearnset = sGrimmsnarlTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_MILCERY] =
@@ -35442,6 +37489,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3,
         .levelUpLearnset = sMilceryLevelUpLearnset,
         .teachableLearnset = sMilceryTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sMilceryEvolutions,
     },
 
@@ -35477,6 +37526,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 5,                                                        \
         .levelUpLearnset = sAlcremieLevelUpLearnset,                        \
         .teachableLearnset = sAlcremieTeachableLearnset,                    \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                            \
+        .backAnimId = BACK_ANIM_NONE,                                       \
     }
         //ICON(Alcremie##cream, 1),
 
@@ -35576,6 +37627,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 620,
         .levelUpLearnset = sFalinksLevelUpLearnset,
         .teachableLearnset = sFalinksTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_PINCURCHIN] =
@@ -35610,6 +37663,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 10,
         .levelUpLearnset = sPincurchinLevelUpLearnset,
         .teachableLearnset = sPincurchinTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SNOM] =
@@ -35645,6 +37700,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 38,
         .levelUpLearnset = sSnomLevelUpLearnset,
         .teachableLearnset = sSnomTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sSnomEvolutions,
     },
 
@@ -35680,6 +37737,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 420,
         .levelUpLearnset = sFrosmothLevelUpLearnset,
         .teachableLearnset = sFrosmothTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_STONJOURNER] =
@@ -35714,6 +37773,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 5200,
         .levelUpLearnset = sStonjournerLevelUpLearnset,
         .teachableLearnset = sStonjournerTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define EISCUE_MISC_INFO(form)                              \
@@ -35739,7 +37800,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 14,                                       \
         .weight = 890,                                      \
         .levelUpLearnset = sEiscueLevelUpLearnset,          \
-        .teachableLearnset = sEiscueTeachableLearnset
+        .teachableLearnset = sEiscueTeachableLearnset,      \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,            \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_EISCUE_ICE_FACE] =
     {
@@ -35781,7 +37844,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,                                \
         .trainerOffset = 0,                                 \
         .height = 9,                                        \
-        .weight = 280
+        .weight = 280,                                      \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,            \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_INDEEDEE_MALE] =
     {
@@ -35848,7 +37913,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 3,                                        \
         .weight = 30,                                       \
         .levelUpLearnset = sMorpekoLevelUpLearnset,         \
-        .teachableLearnset = sMorpekoTeachableLearnset
+        .teachableLearnset = sMorpekoTeachableLearnset,     \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,            \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_MORPEKO_FULL_BELLY] =
     {
@@ -35899,6 +37966,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1000,
         .levelUpLearnset = sCufantLevelUpLearnset,
         .teachableLearnset = sCufantTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sCufantEvolutions,
     },
 
@@ -35935,6 +38004,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 6500,
         .levelUpLearnset = sCopperajahLevelUpLearnset,
         .teachableLearnset = sCopperajahTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DRACOZOLT] =
@@ -35969,6 +38040,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1900,
         .levelUpLearnset = sDracozoltLevelUpLearnset,
         .teachableLearnset = sDracozoltTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_ARCTOZOLT] =
@@ -36003,6 +38076,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1500,
         .levelUpLearnset = sArctozoltLevelUpLearnset,
         .teachableLearnset = sArctozoltTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DRACOVISH] =
@@ -36037,6 +38112,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 2150,
         .levelUpLearnset = sDracovishLevelUpLearnset,
         .teachableLearnset = sDracovishTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_ARCTOVISH] =
@@ -36071,6 +38148,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 1750,
         .levelUpLearnset = sArctovishLevelUpLearnset,
         .teachableLearnset = sArctovishTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DURALUDON] =
@@ -36105,6 +38184,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 400,
         .levelUpLearnset = sDuraludonLevelUpLearnset,
         .teachableLearnset = sDuraludonTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_DREEPY] =
@@ -36139,6 +38220,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 20,
         .levelUpLearnset = sDreepyLevelUpLearnset,
         .teachableLearnset = sDreepyTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDreepyEvolutions,
     },
 
@@ -36174,6 +38257,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 110,
         .levelUpLearnset = sDrakloakLevelUpLearnset,
         .teachableLearnset = sDrakloakTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sDrakloakEvolutions,
     },
 
@@ -36209,6 +38294,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 500,
         .levelUpLearnset = sDragapultLevelUpLearnset,
         .teachableLearnset = sDragapultTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
 #define ZACIAN_MISC_INFO                                                \
@@ -36229,7 +38316,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,                                            \
         .trainerOffset = 0,                                             \
         .levelUpLearnset = sZacianLevelUpLearnset,                      \
-        .teachableLearnset = sZacianTeachableLearnset
+        .teachableLearnset = sZacianTeachableLearnset,                  \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                        \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_ZACIAN_HERO_OF_MANY_BATTLES] =
     {
@@ -36285,7 +38374,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,                                            \
         .trainerOffset = 0,                                             \
         .levelUpLearnset = sZamazentaLevelUpLearnset,                   \
-        .teachableLearnset = sZamazentaTeachableLearnset
+        .teachableLearnset = sZamazentaTeachableLearnset,               \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                        \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_ZAMAZENTA_HERO_OF_MANY_BATTLES] =
     {
@@ -36338,7 +38429,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,                                \
         .natDexNum = NATIONAL_DEX_ETERNATUS,                            \
         .levelUpLearnset = sEternatusLevelUpLearnset,                   \
-        .teachableLearnset = sEternatusTeachableLearnset
+        .teachableLearnset = sEternatusTeachableLearnset,               \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                        \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_ETERNATUS] =
     {
@@ -36415,6 +38508,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 120,
         .levelUpLearnset = sKubfuLevelUpLearnset,
         .teachableLearnset = sKubfuTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
         .evolutions = sKubfuEvolutions,
     },
 
@@ -36447,7 +38542,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 19,                                                   \
         .weight = 1050,                                                 \
         .levelUpLearnset = sUrshifu##style##StyleLevelUpLearnset,       \
-        .teachableLearnset = sUrshifu##style##StyleTeachableLearnset
+        .teachableLearnset = sUrshifu##style##StyleTeachableLearnset,   \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                        \
+        .backAnimId = BACK_ANIM_NONE
 
     [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE] =
     {
@@ -36496,6 +38593,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 700,                                                  \
         .levelUpLearnset = sZarudeLevelUpLearnset,                      \
         .teachableLearnset = sZarudeTeachableLearnset,                  \
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                        \
+        .backAnimId = BACK_ANIM_NONE,                                   \
     }
     [SPECIES_ZARUDE]      = ZARUDE_SPECIES_INFO(Zarude),
     [SPECIES_ZARUDE_DADA] = ZARUDE_SPECIES_INFO(ZarudeDada),
@@ -36544,6 +38643,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 8000,
         .levelUpLearnset = sGlastrierLevelUpLearnset,
         .teachableLearnset = sGlastrierTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_SPECTRIER] =
@@ -36579,6 +38680,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 445,
         .levelUpLearnset = sSpectrierLevelUpLearnset,
         .teachableLearnset = sSpectrierTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CALYREX] =
@@ -36614,6 +38717,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 77,
         .levelUpLearnset = sCalyrexLevelUpLearnset,
         .teachableLearnset = sCalyrexTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CALYREX_ICE_RIDER] =
@@ -36649,6 +38754,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 8091,
         .levelUpLearnset = sCalyrexIceRiderLevelUpLearnset,
         .teachableLearnset = sCalyrexIceRiderTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 
     [SPECIES_CALYREX_SHADOW_RIDER] =
@@ -36684,6 +38791,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 536,
         .levelUpLearnset = sCalyrexShadowRiderLevelUpLearnset,
         .teachableLearnset = sCalyrexShadowRiderTeachableLearnset,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 #endif
 #if P_GEN_9_POKEMON == TRUE
@@ -40345,5 +42454,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif
     [SPECIES_EGG] =
     {
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backAnimId = BACK_ANIM_NONE,
     },
 };
