@@ -350,7 +350,9 @@ struct SpeciesInfo /*0x55*/
  /* 0x3C */ u16 trainerOffset;
  /* 0x3E */ const u8 *description;
  /* 0x42 */ u8 bodyColor : 7;
+            // Graphical Data
             u8 noFlip : 1;
+ /* 0xB0 */ u8 frontAnimDelay;
             // Flags
  /* 0x43 */ u16 flags;
             // Move Data
