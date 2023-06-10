@@ -1021,8 +1021,6 @@ static const struct WindowTemplate sNewEntryInfoScreen_WindowTemplates[] =
 
 static const u8 sText_TenDashes2[] = _("----------");
 
-#include "data/pokemon_graphics/footprint_table.h"
-
 // First character in range followed by number of characters in range for upper and lowercase
 static const u8 sLetterSearchRanges[][4] =
 {
@@ -4771,7 +4769,7 @@ static void PrintDecimalNum(u8 windowId, u16 num, u8 left, u8 top)
 static void DrawFootprint(u8 windowId, u16 species)
 {
     u8 footprint4bpp[TILE_SIZE_4BPP * NUM_FOOTPRINT_TILES];
-    const u8 *footprintGfx = gMonFootprintTable[species];
+    const u8 *footprintGfx = gSpeciesInfo[species].footprint;
     u32 i, j, tileIdx = 0;
 
     if (footprintGfx != NULL)
