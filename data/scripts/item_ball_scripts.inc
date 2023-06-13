@@ -1,5 +1,5 @@
-Route101_EventScript_ItemRareCandy::
-	finditem ITEM_RARE_CANDY
+Route101_EventScript_ItemPokeBall::
+	finditem ITEM_POKE_BALL
 	end
 
 Route102_EventScript_ItemPotion::
