@@ -1,3 +1,7 @@
+Route101_EventScript_ItemRareCandy::
+	finditem ITEM_RARE_CANDY
+	end
+
 Route102_EventScript_ItemPotion::
 	finditem ITEM_POTION
 	end
