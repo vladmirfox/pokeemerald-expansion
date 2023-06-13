@@ -1,3 +1,9 @@
+# JoorrorsEmerald
+Pokemon Emerelad ROM Hack - work in progress
+
+Everything based on:
+
+
 # pokeemerald Expansion
 
 ## What is the pokeemerald Expansion?
