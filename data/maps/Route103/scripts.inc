@@ -8,6 +8,7 @@ Route103_MapScripts::
 Route103_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	call ProfBirch_EventScript_UpdateLocation
+	call_if_unset FLAG_UNUSED_0x020, Route103_SetupDadRival
 	end
 
 Route103_OnLoad:
@@ -353,3 +354,56 @@ Route103_Text_RouteSign:
 	.string "ROUTE 103\n"
 	.string "{DOWN_ARROW} OLDALE TOWN$"
 
+Route103_SetupDadRival::
+	goto_if_unset FLAG_ROUTE103_DAD_RIVAL_W, Route103_SetupDadRival_1
+	setflag FLAG_ROUTE103_DAD_RIVAL
+	return
+
+Route103_SetupDadRival_1:
+	clearflag FLAG_ROUTE103_DAD_RIVAL
+	return
+
+
+Route103_EventScript_DadRival::
+	lockall
+	faceplayer
+	compare VAR_STARTER_MON, 0
+	goto_if_eq Route103_EventScript_DadRival_2
+	compare VAR_STARTER_MON, 1
+	goto_if_eq Route103_EventScript_DadRival_3
+	trainerbattle_single TRAINER_DAD_ROUTE103_MUDKIP, Route103_Text_dadIntro, Route103_Text_dadDefeated
+Route103_EventScript_DadRival_1:
+	releaseall
+	return
+
+Route103_EventScript_DadRival_2:
+	trainerbattle_single TRAINER_DAD_ROUTE103_TREECKO, Route103_Text_dadIntro, Route103_Text_dadDefeated
+	goto Route103_EventScript_DadRival_1
+
+Route103_EventScript_DadRival_3:
+	trainerbattle_single TRAINER_DAD_ROUTE103_TORCHIC, Route103_Text_dadIntro, Route103_Text_dadDefeated
+	goto Route103_EventScript_DadRival_1
+
+
+Route103_Text_dadIntro::
+	.string "Hello there, my CHILD. I knew I would be\n"
+	.string "able to catch you on your way to\l"
+	.string "PETALBURG CITY.\p"
+	.string "I got wind that you recieved a POKéMON\n"
+	.string "from Prof. BIRCH...\p"
+	.string "Finally that dream has become a reality\n"
+	.string "and you can become a Trainer like me.\p"
+	.string "Maybe if you work hard enough you could\n"
+	.string "one day even be my successor as the\l"
+	.string "NORMAL Type GYM LEADER.\p"
+	.string "But enough chatter. Make your DAD\n"
+	.string "proud and give me a good fight. Right\l"
+	.string "here, right now.$"
+
+Route103_Text_dadDefeated::
+	.string "I KNEW IT! You battle just like your old\n"
+	.string "man when I was your age...\p"
+	.string "We will make you a good trainer one day.\p"
+	.string "For now, go on. Make your way to the\n"
+	.string "RUSTBORO GYM. I will be keeping an eye\l"
+	.string "on you fro sure.$"

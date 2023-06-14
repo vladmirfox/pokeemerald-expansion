@@ -9,6 +9,7 @@ Route103_MapScripts::
 Route103_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	call ProfBirch_EventScript_UpdateLocation
+	call_if_unset FLAG_UNUSED_0x020, Route103_SetupDadRival
 	end
 
 Route103_OnLoad:
@@ -355,3 +356,34 @@ Route103_Text_RouteSign:
 	.string "{DOWN_ARROW} OLDALE TOWN$"
 
 `
+script Route103_SetupDadRival{
+	if(!flag(FLAG_ROUTE103_DAD_RIVAL_W)){
+		clearflag(FLAG_ROUTE103_DAD_RIVAL)
+	}
+	else{
+		setflag(FLAG_ROUTE103_DAD_RIVAL)
+	}
+}
+
+script Route103_EventScript_DadRival{
+	lockall
+	faceplayer
+	if (var(VAR_STARTER_MON) == 0){
+		trainerbattle_single(TRAINER_DAD_ROUTE103_TREECKO, Route103_Text_dadIntro, Route103_Text_dadDefeated)
+	}
+	elif (var(VAR_STARTER_MON) == 1) {
+		trainerbattle_single(TRAINER_DAD_ROUTE103_TORCHIC, Route103_Text_dadIntro, Route103_Text_dadDefeated)
+	}
+	else{
+		trainerbattle_single(TRAINER_DAD_ROUTE103_MUDKIP, Route103_Text_dadIntro, Route103_Text_dadDefeated)
+	}
+	releaseall
+}
+
+text Route103_Text_dadIntro{
+	format("Hello there, my CHILD. I knew I would be able to catch you on your way to PETALBURG CITY.\pI got wind that you recieved a POKéMON from Prof. BIRCH...\pFinally that dream has become a reality and you can become a Trainer like me.\pMaybe if you work hard enough you could one day even be my successor as the NORMAL Type GYM LEADER.\pBut enough chatter. Make your DAD proud and give me a good fight. Right here, right now.")
+}
+
+text Route103_Text_dadDefeated{
+	format("I KNEW IT! You battle just like your old man when I was your age...\pWe will make you a good trainer one day.\pFor now, go on. Make your way to the RUSTBORO GYM. I will be keeping an eye on you fro sure.")
+}

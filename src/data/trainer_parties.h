@@ -12434,3 +12434,54 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayLinkPlaceholder[] = {
     .species = SPECIES_KYOGRE,
     }
 };
+
+static const struct TrainerMonItemCustomMoves sParty_Route103DadTreecko[] = {
+    {
+    .iv = 255,
+    .lvl = 10,
+    .species = SPECIES_SLAKOTH,
+    .heldItem = ITEM_ORAN_BERRY,
+    .moves = {MOVE_SCRATCH, MOVE_YAWN, MOVE_FLAIL, MOVE_SLACK_OFF}
+    },
+    {
+    .iv = 255,
+    .lvl = 12,
+    .species = SPECIES_CHARMANDER,
+    .heldItem = ITEM_ORAN_BERRY,
+    .moves = {MOVE_SCRATCH, MOVE_EMBER, MOVE_FIRE_SPIN, MOVE_METAL_CLAW},
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Route103DadTorchic[] = {
+    {
+    .iv = 255,
+    .lvl = 10,
+    .species = SPECIES_SLAKOTH,
+    .heldItem = ITEM_ORAN_BERRY,
+    .moves = {MOVE_SCRATCH, MOVE_YAWN, MOVE_FLAIL, MOVE_SLACK_OFF}
+    },
+    {
+    .iv = 255,
+    .lvl = 12,
+    .species = SPECIES_SQUIRTLE,
+    .heldItem = ITEM_ORAN_BERRY,
+    .moves = {MOVE_TACKLE, MOVE_WATER_GUN, MOVE_AQUA_JET, MOVE_FAKE_OUT},
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Route103DadMudkip[] = {
+    {
+    .iv = 255,
+    .lvl = 10,
+    .species = SPECIES_SLAKOTH,
+    .heldItem = ITEM_ORAN_BERRY,
+    .moves = {MOVE_SCRATCH, MOVE_YAWN, MOVE_FLAIL, MOVE_SLACK_OFF}
+    },
+    {
+    .iv = 255,
+    .lvl = 12,
+    .species = SPECIES_BULBASAUR,
+    .heldItem = ITEM_ORAN_BERRY,
+    .moves = {MOVE_TACKLE, MOVE_VINE_WHIP, MOVE_LEECH_SEED, MOVE_BULLET_SEED},
+    }
+};
