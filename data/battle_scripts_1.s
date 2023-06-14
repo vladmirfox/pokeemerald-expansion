@@ -1489,7 +1489,6 @@ BattleScript_DefDown_Ret:
 
 BattleScript_ReduceDefenseAndFlinch::
 	modifybattlerstatstage BS_TARGET, STAT_DEF, DECREASE, 1, BattleScript_DefDownAndFlinch_Ret, ANIM_ON
-	jumpifability BS_TARGET, ABILITY_INNER_FOCUS, BattleScript_DefDownAndFlinch_Ret
 	setmoveeffect MOVE_EFFECT_FLINCH
 	seteffectprimary
 BattleScript_DefDownAndFlinch_Ret:
@@ -6358,6 +6357,7 @@ BattleScript_EffectCalmMind::
 	attackcanceler
 	attackstring
 	ppreduce
+BattleScript_CalmMindTryToRaiseStats::
 	jumpifstat BS_ATTACKER, CMP_LESS_THAN, STAT_SPATK, MAX_STAT_STAGE, BattleScript_CalmMindDoMoveAnim
 	jumpifstat BS_ATTACKER, CMP_EQUAL, STAT_SPDEF, MAX_STAT_STAGE, BattleScript_CantRaiseMultipleStats
 BattleScript_CalmMindDoMoveAnim::

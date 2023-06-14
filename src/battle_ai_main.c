@@ -4876,9 +4876,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         //break;
     case EFFECT_JUNGLE_HEALING:
         if (ShouldRecover(battlerAtk, battlerDef, move, 25)
-         || ShouldRecover(battlerAtk, BATTLE_PARTNER(battlerDef), move, 25)
          || ShouldRecover(BATTLE_PARTNER(battlerAtk), battlerDef, move, 25)
-         || ShouldRecover(BATTLE_PARTNER(battlerAtk), BATTLE_PARTNER(battlerDef), move, 25)
          || gBattleMons[battlerAtk].status1 & STATUS1_ANY
          || gBattleMons[BATTLE_PARTNER(battlerAtk)].status1 & STATUS1_ANY)
             score += 3;
