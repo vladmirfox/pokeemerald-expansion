@@ -151,6 +151,7 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 #include "data/pokemon/form_change_tables.h"
 #include "data/pokemon/form_change_table_pointers.h"
 #include "data/graphics/pokemon.h"
+#include "data/pokemon_graphics/front_pic_anims.h"
 #include "data/pokemon/species_info.h"
 #include "data/pokemon/national_dex_info.h"
 
@@ -1558,17 +1559,17 @@ void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition)
         gMultiuseSpriteTemplate.anims = gAnims_MonPic;
     else if (speciesTag > SPECIES_SHINY_TAG)
     {
-        if (gMonFrontAnimsPtrTable[speciesTag - SPECIES_SHINY_TAG] != NULL)
-            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[speciesTag - SPECIES_SHINY_TAG];
+        if (gSpeciesInfo[speciesTag - SPECIES_SHINY_TAG].frontAnimFrames != NULL)
+            gMultiuseSpriteTemplate.anims = gSpeciesInfo[speciesTag - SPECIES_SHINY_TAG].frontAnimFrames;
         else
-            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[SPECIES_NONE];
+            gMultiuseSpriteTemplate.anims = gSpeciesInfo[SPECIES_NONE].frontAnimFrames;
     }
     else
     {
-        if (gMonFrontAnimsPtrTable[speciesTag] != NULL)
-            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[speciesTag];
+        if (gSpeciesInfo[speciesTag].frontAnimFrames != NULL)
+            gMultiuseSpriteTemplate.anims = gSpeciesInfo[speciesTag].frontAnimFrames;
         else
-            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[SPECIES_NONE];
+            gMultiuseSpriteTemplate.anims = gSpeciesInfo[SPECIES_NONE].frontAnimFrames;
     }
 }
 

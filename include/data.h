@@ -156,7 +156,6 @@ extern const struct CompressedSpritePalette gTrainerBackPicPaletteTable[];
 
 extern const u8 gEnemyMonElevation[NUM_SPECIES + 1];
 
-extern const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1];
 extern const u32 *const gMonFrontPicTable[NUM_SPECIES + 1];
 extern const u32 *const gMonFrontPicTableFemale[NUM_SPECIES + 1];
 
