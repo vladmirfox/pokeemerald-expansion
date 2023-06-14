@@ -1045,7 +1045,6 @@
 #define FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT                0x3E7
 
 // Item Ball Flags
-#define FLAG_ITEM_ROUTE_101_POKE_BALL                               0x5000
 //Default Flags
 #define FLAG_ITEM_ROUTE_102_POTION                                  0x3E8
 #define FLAG_ITEM_ROUTE_116_X_SPECIAL                               0x3E9
@@ -1219,10 +1218,12 @@
 #define FLAG_ITEM_SAFARI_ZONE_NORTH_EAST_NUGGET                     0x491
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL                  0x492
 
-#define FLAG_UNUSED_0x493                                           0x493 // Unused Flag
-#define FLAG_UNUSED_0x494                                           0x494 // Unused Flag
-#define FLAG_UNUSED_0x495                                           0x495 // Unused Flag
-#define FLAG_UNUSED_0x496                                           0x496 // Unused Flag
+
+//New Item Balls/Hidden Items Emerald+
+#define FLAG_HIDDEN_ITEM_LITTLEROOT_MINT_ADAMANT					0x493 // Mint in additional Area in Littleroot
+#define FLAG_HIDDEN_ITEM_LITTLEROOT_MINT_MODEST						0x494 // Mint in additional Area in Littleroot
+#define FLAG_ITEM_LITTLEROOT_TM04									0x495 // TM04 Calm Mind - only obtainable after getting Surf
+#define FLAG_ITEM_ROUTE_101_POKE_BALL                               0x496 // Pokeball in the Addition of Route 101
 #define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
 #define FLAG_UNUSED_0x498                                           0x498 // Unused Flag
 #define FLAG_UNUSED_0x499                                           0x499 // Unused Flag

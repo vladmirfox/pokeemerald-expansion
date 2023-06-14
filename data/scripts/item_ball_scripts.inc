@@ -1,3 +1,7 @@
+LittlerootTown_EventScript_ItemTM04::
+	finditem ITEM_TM04
+	end
+
 Route101_EventScript_ItemPokeBall::
 	finditem ITEM_POKE_BALL
 	end
