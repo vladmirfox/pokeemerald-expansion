@@ -179,14 +179,14 @@ u8 GetBattlerYDelta(u8 battlerId, u16 species)
         if (species == SPECIES_CASTFORM)
             ret = sCastformBackSpriteYCoords[gBattleMonForms[battlerId]];
         else
-            ret = gMonBackPicCoords[SanitizeSpeciesId(species)].y_offset;
+            ret = gSpeciesInfo[SanitizeSpeciesId(species)].backPicYOffset;
     }
     else
     {
         if (species == SPECIES_CASTFORM)
             ret = gCastformFrontSpriteCoords[gBattleMonForms[battlerId]].y_offset;
         else
-            ret = gMonFrontPicCoords[SanitizeSpeciesId(species)].y_offset;
+            ret = gSpeciesInfo[SanitizeSpeciesId(species)].frontPicYOffset;
     }
     return ret;
 }
@@ -1885,7 +1885,7 @@ static u16 GetBattlerYDeltaFromSpriteId(u8 spriteId)
             if (IsContest())
             {
                 species = gContestResources->moveAnim->species;
-                return gMonBackPicCoords[species].y_offset;
+                return gSpeciesInfo[species].backPicYOffset;
             }
             else
             {
@@ -1900,7 +1900,7 @@ static u16 GetBattlerYDeltaFromSpriteId(u8 spriteId)
                     if (species == SPECIES_CASTFORM)
                         return sCastformBackSpriteYCoords[gBattleMonForms[battlerId]];
                     else
-                        return gMonBackPicCoords[species].y_offset;
+                        return gSpeciesInfo[species].backPicYOffset;
                 }
                 else
                 {
@@ -1913,7 +1913,7 @@ static u16 GetBattlerYDeltaFromSpriteId(u8 spriteId)
                     if (species == SPECIES_CASTFORM)
                         return sCastformElevations[gBattleMonForms[battlerId]];
                     else
-                        return gMonFrontPicCoords[species].y_offset;
+                        return gSpeciesInfo[species].frontPicYOffset;
                 }
             }
         }
@@ -2093,9 +2093,9 @@ u8 CreateAdditionalMonSpriteForMoveAnim(u16 species, bool8 isBackpic, u8 id, s16
     FREE_AND_SET_NULL(gMonSpritesGfxPtr->buffer);
 
     if (!isBackpic)
-        spriteId = CreateSprite(&sSpriteTemplates_MoveEffectMons[id], x, y + gMonFrontPicCoords[species].y_offset, subpriority);
+        spriteId = CreateSprite(&sSpriteTemplates_MoveEffectMons[id], x, y + gSpeciesInfo[species].frontPicYOffset, subpriority);
     else
-        spriteId = CreateSprite(&sSpriteTemplates_MoveEffectMons[id], x, y + gMonBackPicCoords[species].y_offset, subpriority);
+        spriteId = CreateSprite(&sSpriteTemplates_MoveEffectMons[id], x, y + gSpeciesInfo[species].backPicYOffset, subpriority);
 
     if (IsContest())
     {
@@ -2115,7 +2115,8 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
     u16 species;
     u32 personality;
     int ret;
-    const struct MonCoords *coords;
+    u8 size;
+    u8 y_offset;
     struct BattleSpriteInfo *spriteInfo;
 
     if (IsContest())
@@ -2133,15 +2134,18 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
 
         if (species == SPECIES_CASTFORM)
         {
-            coords = &gCastformFrontSpriteCoords[gBattleMonForms[battlerId]];
+            size = gCastformFrontSpriteCoords[gBattleMonForms[battlerId]].size;
+            y_offset = gCastformFrontSpriteCoords[gBattleMonForms[battlerId]].y_offset;
         }
         else if (species <= SPECIES_EGG)
         {
-            coords = &gMonBackPicCoords[species];
+            size = gSpeciesInfo[species].backPicSize;
+            y_offset = gSpeciesInfo[species].backPicYOffset;
         }
         else
         {
-            coords = &gMonBackPicCoords[SPECIES_NONE];
+            size = gSpeciesInfo[SPECIES_NONE].backPicSize;
+            y_offset = gSpeciesInfo[SPECIES_NONE].backPicYOffset;
         }
     }
     else
@@ -2160,7 +2164,8 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
                 personality = gTransformedPersonalities[battlerId];
             }
 
-            coords = &gMonBackPicCoords[SanitizeSpeciesId(species)];
+            size = gSpeciesInfo[SanitizeSpeciesId(species)].backPicSize;
+            y_offset = gSpeciesInfo[SanitizeSpeciesId(species)].backPicYOffset;
         }
         else
         {
@@ -2178,11 +2183,13 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
 
             if (species == SPECIES_CASTFORM)
             {
-                coords = &gCastformFrontSpriteCoords[gBattleMonForms[battlerId]];
+                size = gCastformFrontSpriteCoords[gBattleMonForms[battlerId]].size;
+                y_offset = gCastformFrontSpriteCoords[gBattleMonForms[battlerId]].y_offset;
             }
             else
             {
-                coords = &gMonFrontPicCoords[SanitizeSpeciesId(species)];
+                size = gSpeciesInfo[SanitizeSpeciesId(species)].frontPicSize;
+                y_offset = gSpeciesInfo[SanitizeSpeciesId(species)].frontPicYOffset;
             }
         }
     }
@@ -2190,20 +2197,20 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
     switch (attr)
     {
     case BATTLER_COORD_ATTR_HEIGHT:
-        return GET_MON_COORDS_HEIGHT(coords->size);
+        return GET_MON_COORDS_HEIGHT(size);
     case BATTLER_COORD_ATTR_WIDTH:
-        return GET_MON_COORDS_WIDTH(coords->size);
+        return GET_MON_COORDS_WIDTH(size);
     case BATTLER_COORD_ATTR_LEFT:
-        return GetBattlerSpriteCoord(battlerId, BATTLER_COORD_X_2) - (GET_MON_COORDS_WIDTH(coords->size) / 2);
+        return GetBattlerSpriteCoord(battlerId, BATTLER_COORD_X_2) - (GET_MON_COORDS_WIDTH(size) / 2);
     case BATTLER_COORD_ATTR_RIGHT:
-        return GetBattlerSpriteCoord(battlerId, BATTLER_COORD_X_2) + (GET_MON_COORDS_WIDTH(coords->size) / 2);
+        return GetBattlerSpriteCoord(battlerId, BATTLER_COORD_X_2) + (GET_MON_COORDS_WIDTH(size) / 2);
     case BATTLER_COORD_ATTR_TOP:
-        return GetBattlerSpriteCoord(battlerId, BATTLER_COORD_Y_PIC_OFFSET) - (GET_MON_COORDS_HEIGHT(coords->size) / 2);
+        return GetBattlerSpriteCoord(battlerId, BATTLER_COORD_Y_PIC_OFFSET) - (GET_MON_COORDS_HEIGHT(size) / 2);
     case BATTLER_COORD_ATTR_BOTTOM:
-        return GetBattlerSpriteCoord(battlerId, BATTLER_COORD_Y_PIC_OFFSET) + (GET_MON_COORDS_HEIGHT(coords->size) / 2);
+        return GetBattlerSpriteCoord(battlerId, BATTLER_COORD_Y_PIC_OFFSET) + (GET_MON_COORDS_HEIGHT(size) / 2);
     case BATTLER_COORD_ATTR_RAW_BOTTOM:
         ret = GetBattlerSpriteCoord(battlerId, BATTLER_COORD_Y) + 31;
-        return ret - coords->y_offset;
+        return ret - y_offset;
     default:
         return 0;
     }

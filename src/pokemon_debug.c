@@ -781,9 +781,9 @@ static u8 GetElevationValue(u16 species)
 static void SetConstSpriteValues(struct PokemonDebugMenu *data)
 {
     u16 species = data->currentmonId;
-    data->constSpriteValues.frontPicCoords = gMonFrontPicCoords[species].y_offset;
+    data->constSpriteValues.frontPicCoords = gSpeciesInfo[species].frontPicYOffset;
     data->constSpriteValues.frontElevation = GetElevationValue(species);
-    data->constSpriteValues.backPicCoords = gMonBackPicCoords[species].y_offset;
+    data->constSpriteValues.backPicCoords = gSpeciesInfo[species].backPicYOffset;
 }
 
 static void ResetOffsetSpriteValues(struct PokemonDebugMenu *data)
@@ -799,7 +799,7 @@ static u8 GetBattlerSpriteFinal_YCustom(u16 species, s8 offset_picCoords, s8 off
     u8 y;
 
     //FrontPicCoords
-    offset = gMonFrontPicCoords[species].y_offset + offset_picCoords;
+    offset = gSpeciesInfo[species].frontPicYOffset + offset_picCoords;
 
     //Elevation
     offset -= GetElevationValue(species) + offset_elevation;
@@ -1205,7 +1205,7 @@ void CB2_Debug_Pokemon(void)
             HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->sprites.ptr[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
             BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 4);
             SetMultiuseSpriteTemplateToPokemon(species, 2);
-            offset_y = gMonBackPicCoords[species].y_offset;
+            offset_y = gSpeciesInfo[species].backPicYOffset;
             data->backspriteId = CreateSprite(&gMultiuseSpriteTemplate, DEBUG_MON_BACK_X, DEBUG_MON_BACK_Y + offset_y, 0);
             gSprites[data->backspriteId].oam.paletteNum = 4;
             gSprites[data->backspriteId].callback = SpriteCallbackDummy;
@@ -1299,7 +1299,7 @@ static void ApplyOffsetSpriteValues(struct PokemonDebugMenu *data)
 {
     u16 species = data->currentmonId;
     //Back
-    gSprites[data->backspriteId].y = DEBUG_MON_BACK_Y + gMonBackPicCoords[species].y_offset + data->offsetsSpriteValues.offset_back_picCoords;
+    gSprites[data->backspriteId].y = DEBUG_MON_BACK_Y + gSpeciesInfo[species].backPicYOffset + data->offsetsSpriteValues.offset_back_picCoords;
     //Front
     gSprites[data->frontspriteId].y = GetBattlerSpriteFinal_YCustom(species, data->offsetsSpriteValues.offset_front_picCoords, data->offsetsSpriteValues.offset_front_elevation);
     //Shadow if one was added
@@ -1423,7 +1423,7 @@ static void UpdateSubmenuTwoOptionValue(u8 taskId, bool8 increment)
                 offset -= 1;
         }
         data->offsetsSpriteValues.offset_back_picCoords = offset;
-        gSprites[data->backspriteId].y = DEBUG_MON_BACK_Y + gMonBackPicCoords[species].y_offset + offset;
+        gSprites[data->backspriteId].y = DEBUG_MON_BACK_Y + gSpeciesInfo[species].backPicYOffset + offset;
         break;
     case 1: //Front picCoords
         offset = data->offsetsSpriteValues.offset_front_picCoords;
@@ -1718,7 +1718,7 @@ static void ReloadPokemonSprites(struct PokemonDebugMenu *data)
     HandleLoadSpecialPokePic(FALSE, gMonSpritesGfxPtr->sprites.ptr[2], species, (data->isFemale ? FEMALE_PERSONALITY : MALE_PERSONALITY));
     BattleLoadOpponentMonSpriteGfxCustom(species, data->isFemale, data->isShiny, 5);
     SetMultiuseSpriteTemplateToPokemon(species, 2);
-    offset_y = gMonBackPicCoords[species].y_offset;
+    offset_y = gSpeciesInfo[species].backPicYOffset;
     data->backspriteId = CreateSprite(&gMultiuseSpriteTemplate, DEBUG_MON_BACK_X, DEBUG_MON_BACK_Y + offset_y, 0);
     gSprites[data->backspriteId].oam.paletteNum = 5;
     gSprites[data->backspriteId].callback = SpriteCallbackDummy;

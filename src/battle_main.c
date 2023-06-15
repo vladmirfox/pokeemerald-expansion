@@ -2800,7 +2800,7 @@ void SpriteCB_FaintOpponentMon(struct Sprite *sprite)
     if (species == SPECIES_CASTFORM)
         yOffset = gCastformFrontSpriteCoords[gBattleMonForms[battler]].y_offset;
     else
-        yOffset = gMonFrontPicCoords[SanitizeSpeciesId(species)].y_offset;
+        yOffset = gSpeciesInfo[SanitizeSpeciesId(species)].frontPicYOffset;
 
     sprite->data[3] = 8 - yOffset / 8;
     sprite->data[4] = 1;
