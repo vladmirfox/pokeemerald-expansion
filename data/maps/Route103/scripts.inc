@@ -397,6 +397,7 @@ Route103_EventScript_DadRival_4:
 Route103_EventScript_DadRivalIntro::
 	lockall
 	applymovement LOCALID_DAD, Route103_Move_dadIntro
+	waitmovement 0
 	goto Route103_EventScript_DadRival
 	release
 	return
@@ -406,6 +407,9 @@ Route103_EventScript_DadRivalExit::
 	lockall
 	msgbox Route103_Text_dadExit
 	applymovement LOCALID_DAD, Route103_Move_dadExit
+	waitmovement 0
+	removeobject LOCALID_DAD
+	release
 	return
 
 
