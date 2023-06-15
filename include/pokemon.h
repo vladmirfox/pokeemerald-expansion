@@ -367,6 +367,7 @@ struct SpeciesInfo /*0x55*/
  /* 0xE7 */ u8 iconPalIndex:3;
             u8 iconPalIndexFemale:3;
             u8 padding3:2;
+ /* 0xE8 */ u8 enemyMonElevation; // This determines how much higher above the usual position the enemy Pokémon is during battle. Species that float or fly have nonzero values.
             // Flags
  /* 0x43 */ u16 flags;
             // Move Data

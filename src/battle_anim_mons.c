@@ -201,7 +201,7 @@ u8 GetBattlerElevation(u8 battlerId, u16 species)
             if (species == SPECIES_CASTFORM)
                 ret = sCastformElevations[gBattleMonForms[battlerId]];
             else
-                ret = gEnemyMonElevation[SanitizeSpeciesId(species)];
+                ret = gSpeciesInfo[SanitizeSpeciesId(species)].enemyMonElevation;
         }
     }
     return ret;
