@@ -141,8 +141,6 @@ extern const u32 *const gMonBackPicTable[NUM_SPECIES + 1];
 extern const u32 *const gMonBackPicTableFemale[NUM_SPECIES + 1];
 extern const u32 *const gMonPaletteTable[NUM_SPECIES + 1];
 extern const u32 *const gMonPaletteTableFemale[NUM_SPECIES + 1];
-extern const u32 *const gMonShinyPaletteTable[NUM_SPECIES + 1];
-extern const u32 *const gMonShinyPaletteTableFemale[NUM_SPECIES + 1];
 extern const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[];
 extern const struct MonCoords gTrainerFrontPicCoords[];
 extern const struct CompressedSpriteSheet gTrainerFrontPicTable[];
