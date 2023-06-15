@@ -356,6 +356,8 @@ struct SpeciesInfo /*0x55*/
  /* 0xB1 */ u8 frontAnimId;
  /* 0xB2 */ u8 backAnimId;
  /* 0xB3 */ const union AnimCmd *const *frontAnimFrames;
+ /* 0xB7 */ const u32 *const frontPic;
+ /* 0xBB */ const u32 *const frontPicFemale;
  /* 0xBF */ const u32 *const backPic;
  /* 0xC3 */ const u32 *const backPicFemale;
  /* 0xC7 */ const u32 *const palette;

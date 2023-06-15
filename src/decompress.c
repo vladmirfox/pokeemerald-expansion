@@ -78,12 +78,12 @@ void DecompressPicFromTable(const struct CompressedSpriteSheet *src, void *buffe
 void DecompressPicFromTableGender(void* buffer, s32 species, u32 personality)
 {
     species = SanitizeSpeciesId(species);
-    if (gMonFrontPicTableFemale[species] != NULL && IsPersonalityFemale(species, personality))
-        LZ77UnCompWram(gMonFrontPicTableFemale[species], buffer);
-    else if (gMonFrontPicTable[species] != NULL)
-        LZ77UnCompWram(gMonFrontPicTable[species], buffer);
+    if (gSpeciesInfo[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
+        LZ77UnCompWram(gSpeciesInfo[species].frontPicFemale, buffer);
+    else if (gSpeciesInfo[species].frontPic != NULL)
+        LZ77UnCompWram(gSpeciesInfo[species].frontPic, buffer);
     else
-        LZ77UnCompWram(gMonFrontPicTable[SPECIES_NONE], buffer);
+        LZ77UnCompWram(gSpeciesInfo[SPECIES_NONE].frontPic, buffer);
 }
 
 void HandleLoadSpecialPokePic(bool32 isFrontPic, void *dest, s32 species, u32 personality)
@@ -95,12 +95,12 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
 {
     if (isFrontPic)
     {
-        if (gMonFrontPicTableFemale[species] != NULL && IsPersonalityFemale(species, personality))
-            LZ77UnCompWram(gMonFrontPicTableFemale[species], dest); // Is female with sprite differences
-        else if (gMonFrontPicTable[species] != NULL)
-            LZ77UnCompWram(gMonFrontPicTable[species], dest);
+        if (gSpeciesInfo[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
+            LZ77UnCompWram(gSpeciesInfo[species].frontPicFemale, dest); // Is female with sprite differences
+        else if (gSpeciesInfo[species].frontPic != NULL)
+            LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
         else
-            LZ77UnCompWram(gMonFrontPicTable[SPECIES_NONE], dest); // No sprite defined, draw ? icon
+            LZ77UnCompWram(gSpeciesInfo[SPECIES_NONE].frontPic, dest); // No sprite defined, draw ? icon
     }
     else
     {

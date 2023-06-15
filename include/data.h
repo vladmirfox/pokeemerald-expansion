@@ -146,9 +146,6 @@ extern const struct MonCoords gTrainerBackPicCoords[];
 extern const struct CompressedSpriteSheet gTrainerBackPicTable[]; // functionally unused
 extern const struct CompressedSpritePalette gTrainerBackPicPaletteTable[];
 
-extern const u32 *const gMonFrontPicTable[NUM_SPECIES + 1];
-extern const u32 *const gMonFrontPicTableFemale[NUM_SPECIES + 1];
-
 extern const struct Trainer gTrainers[];
 extern const u8 gTrainerClassNames[][13];
 extern const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1];

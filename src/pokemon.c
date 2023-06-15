@@ -5539,7 +5539,7 @@ void TrySpecialOverworldEvo(void)
 
 bool32 SpeciesHasGenderDifferences(u16 species)
 {
-    if (gMonFrontPicTableFemale[species] != NULL
+    if (gSpeciesInfo[species].frontPicFemale != NULL
         || gSpeciesInfo[species].paletteFemale != NULL
         || gSpeciesInfo[species].backPicFemale != NULL
         || gSpeciesInfo[species].shinyPaletteFemale != NULL
