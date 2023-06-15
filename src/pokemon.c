@@ -5541,7 +5541,7 @@ bool32 SpeciesHasGenderDifferences(u16 species)
 {
     if (gMonFrontPicTableFemale[species] != NULL
         || gSpeciesInfo[species].paletteFemale != NULL
-        || gMonBackPicTableFemale[species] != NULL
+        || gSpeciesInfo[species].backPicFemale != NULL
         || gSpeciesInfo[species].shinyPaletteFemale != NULL
         || gSpeciesInfo[species].iconSpriteFemale != NULL)
         return TRUE;
