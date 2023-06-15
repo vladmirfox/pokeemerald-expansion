@@ -3,12 +3,14 @@
     "",
     "\\data",
     "\\data\\maps",
-    "\\data\\maps\\LittlerootPokemonArea",
-    "\\data\\maps\\OldaleTown",
-    "\\data\\maps\\Route101",
+    "\\data\\maps\\LittlerootTown",
     "\\data\\maps\\Route102",
-    "\\data\\maps\\Route110_SeasideCyclingRoadSouthEntrance"
+    "\\data\\maps\\Route103",
+    "\\data\\maps\\Route110",
+    "\\data\\maps\\Route110_SeasideCyclingRoadSouthEntrance",
+    "\\include",
+    "\\include\\constants"
   ],
-  "SelectedNode": "\\data\\maps\\LittlerootPokemonArea\\scripts.inc",
+  "SelectedNode": "\\data\\maps\\Route103\\scripts.inc",
   "PreviewInSolutionExplorer": false
 }

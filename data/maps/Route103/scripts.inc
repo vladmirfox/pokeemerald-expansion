@@ -1,4 +1,5 @@
 .set LOCALID_RIVAL, 2
+.set LOCALID_DAD, 21
 
 Route103_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route103_OnTransition
@@ -365,25 +366,67 @@ Route103_SetupDadRival_1:
 
 
 Route103_EventScript_DadRival::
-	lockall
-	faceplayer
-	compare VAR_STARTER_MON, 0
-	goto_if_eq Route103_EventScript_DadRival_2
-	compare VAR_STARTER_MON, 1
-	goto_if_eq Route103_EventScript_DadRival_3
-	trainerbattle_single TRAINER_DAD_ROUTE103_MUDKIP, Route103_Text_dadIntro, Route103_Text_dadDefeated
-Route103_EventScript_DadRival_1:
-	releaseall
+	switch VAR_STARTER_MON
+	case 0, Route103_EventScript_DadRival_2
+	case 1, Route103_EventScript_DadRival_3
+	case 2, Route103_EventScript_DadRival_4
 	return
 
 Route103_EventScript_DadRival_2:
 	trainerbattle_single TRAINER_DAD_ROUTE103_TREECKO, Route103_Text_dadIntro, Route103_Text_dadDefeated
-	goto Route103_EventScript_DadRival_1
+	setflag FLAG_ROUTE103_DAD_RIVAL_W
+	setvar VAR_ROUTE103_STATE, 1
+	goto Route103_EventScript_DadRivalExit
+	end
 
 Route103_EventScript_DadRival_3:
 	trainerbattle_single TRAINER_DAD_ROUTE103_TORCHIC, Route103_Text_dadIntro, Route103_Text_dadDefeated
-	goto Route103_EventScript_DadRival_1
+	setflag FLAG_ROUTE103_DAD_RIVAL_W
+	setvar VAR_ROUTE103_STATE, 1
+	goto Route103_EventScript_DadRivalExit
+	end
 
+Route103_EventScript_DadRival_4:
+	trainerbattle_single TRAINER_DAD_ROUTE103_MUDKIP, Route103_Text_dadIntro, Route103_Text_dadDefeated
+	setflag FLAG_ROUTE103_DAD_RIVAL_W
+	setvar VAR_ROUTE103_STATE, 1
+	goto Route103_EventScript_DadRivalExit
+	end
+
+
+Route103_EventScript_DadRivalIntro::
+	lockall
+	applymovement LOCALID_DAD, Route103_Move_dadIntro
+	goto Route103_EventScript_DadRival
+	release
+	return
+
+
+Route103_EventScript_DadRivalExit::
+	lockall
+	msgbox Route103_Text_dadExit
+	applymovement LOCALID_DAD, Route103_Move_dadExit
+	return
+
+
+Route103_Move_dadIntro:
+	face_right
+	walk_right
+	face_up
+	walk_up
+	step_end
+
+Route103_Move_dadExit:
+	face_right
+	walk_right
+	walk_right
+	face_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	step_end
 
 Route103_Text_dadIntro::
 	.string "Hello there, my CHILD. I knew I would be\n"
@@ -402,7 +445,9 @@ Route103_Text_dadIntro::
 
 Route103_Text_dadDefeated::
 	.string "I KNEW IT! You battle just like your old\n"
-	.string "man when I was your age...\p"
+	.string "man when I was your age...$"
+
+Route103_Text_dadExit::
 	.string "We will make you a good trainer one day.\p"
 	.string "For now, go on. Make your way to the\n"
 	.string "RUSTBORO GYM. I will be keeping an eye\l"

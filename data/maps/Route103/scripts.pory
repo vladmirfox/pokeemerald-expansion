@@ -1,5 +1,6 @@
 raw `
 .set LOCALID_RIVAL, 2
+.set LOCALID_DAD, 21
 
 Route103_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route103_OnTransition
@@ -366,18 +367,40 @@ script Route103_SetupDadRival{
 }
 
 script Route103_EventScript_DadRival{
+
+	switch (var(VAR_STARTER_MON)) {
+		case 0:
+			trainerbattle_single(TRAINER_DAD_ROUTE103_TREECKO, Route103_Text_dadIntro, Route103_Text_dadDefeated)
+			setflag(FLAG_ROUTE103_DAD_RIVAL_W)
+			setvar(VAR_ROUTE103_STATE, 1)
+			goto(Route103_EventScript_DadRivalExit)
+			end
+		case 1:
+			trainerbattle_single(TRAINER_DAD_ROUTE103_TORCHIC, Route103_Text_dadIntro, Route103_Text_dadDefeated)
+			setflag(FLAG_ROUTE103_DAD_RIVAL_W)
+			setvar(VAR_ROUTE103_STATE, 1)
+			goto(Route103_EventScript_DadRivalExit)
+			end
+		case 2:
+			trainerbattle_single(TRAINER_DAD_ROUTE103_MUDKIP, Route103_Text_dadIntro, Route103_Text_dadDefeated)
+			setflag(FLAG_ROUTE103_DAD_RIVAL_W)
+			setvar(VAR_ROUTE103_STATE, 1)
+			goto(Route103_EventScript_DadRivalExit)
+			end
+	}
+}
+
+script Route103_EventScript_DadRivalIntro{
 	lockall
-	faceplayer
-	if (var(VAR_STARTER_MON) == 0){
-		trainerbattle_single(TRAINER_DAD_ROUTE103_TREECKO, Route103_Text_dadIntro, Route103_Text_dadDefeated)
-	}
-	elif (var(VAR_STARTER_MON) == 1) {
-		trainerbattle_single(TRAINER_DAD_ROUTE103_TORCHIC, Route103_Text_dadIntro, Route103_Text_dadDefeated)
-	}
-	else{
-		trainerbattle_single(TRAINER_DAD_ROUTE103_MUDKIP, Route103_Text_dadIntro, Route103_Text_dadDefeated)
-	}
-	releaseall
+	applymovement(LOCALID_DAD, Route103_Move_dadIntro)
+	goto(Route103_EventScript_DadRival)
+	release
+}
+
+script Route103_EventScript_DadRivalExit{
+	lockall
+	msgbox(Route103_Text_dadExit)
+	applymovement(LOCALID_DAD, Route103_Move_dadExit)
 }
 
 text Route103_Text_dadIntro{
@@ -385,5 +408,23 @@ text Route103_Text_dadIntro{
 }
 
 text Route103_Text_dadDefeated{
-	format("I KNEW IT! You battle just like your old man when I was your age...\pWe will make you a good trainer one day.\pFor now, go on. Make your way to the RUSTBORO GYM. I will be keeping an eye on you fro sure.")
+	format("I KNEW IT! You battle just like your old man when I was your age...")
+}
+
+text Route103_Text_dadExit{
+	format("We will make you a good trainer one day.\pFor now, go on. Make your way to the RUSTBORO GYM. I will be keeping an eye on you fro sure.")
+}
+
+movement Route103_Move_dadIntro{
+	face_right
+	walk_right
+	face_up
+	walk_up
+}
+
+movement Route103_Move_dadExit{
+	face_right
+	walk_right * 2
+	face_down
+	walk_down * 5
 }
