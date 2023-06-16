@@ -1,14 +1,20 @@
+# pcpp contains the C Preprocessor/Evaluator that allows the script to go through includes etc
 from pcpp import Preprocessor, Evaluator, OutputDirective, Action
-from cxxheaderparser.simple import parse_file, CxxParser, SimpleCxxVisitor
+# cxxheaderparser effectively goes through the C file and processes it, allowing the Python script to read it
+from cxxheaderparser.simple import parse_file
+# os and sys for interaction with the file system
 import os
 import sys
 
+# trusted_typedefs clarifies that the underlying construction doesn't need to be compared (unlike say two instances of a BoxPokemon struct) 
 trusted_typedefs = ['u8', 'u16', 'u32', 'u64', 's8', 's16', 's32', 's64', 'bool8', 'bool16', 'bool32', 'int']
+# ignoreable includes prevents the preprocessor from complaining about include files that don't exist that we don't need anyway
 ignoreable_includes = ['string.h', 'stddef.h', 'stdint.h', 'sprite.h', 'limits.h']
 
 globalVersion = 0
 globalHasChanges = False
 
+# this class overrides the "include not found" error and prevents it from displaying if it is in ignoreable_includes (i.e. irrelevant)
 class PcppPreprocessor(Preprocessor):
     def on_include_not_found(self,is_malformed,is_system_include,curdir,includepath):
         if includepath not in ignoreable_includes:
@@ -18,16 +24,16 @@ class PcppPreprocessor(Preprocessor):
                 self.on_error(self.lastdirective.source,self.lastdirective.lineno, "Include file '%s' not found" % includepath)
         raise OutputDirective(Action.IgnoreAndPassThrough)
 
-def preprocess_files(filename, version):
 # preprocess a file and store it as files in /versioning with pcpp
+def preprocess_files(filename, version):
     p = PcppPreprocessor()
-
     path = "include/%s.h" % filename
     with open(path, 'rt') as ih:
         p.parse(ih.read(), path)
     with open('versioning/%s_v%s.c' % (filename, version), 'w') as oh:
         p.write(oh)
 
+# pulls global.h and pokemon_storage_system from the source, storing them in a separate versioning folder
 def pull_new_version():
     if not os.path.exists("versioning/"):
         os.mkdir("versioning/")
@@ -40,11 +46,13 @@ def pull_new_version():
         out("v0 saved. please make changes in order to enable v1")
         quit()
 
+# alternative of plain old "print" that allows for logging
 def out(str):
     print(str)
     if '--log' in sys.argv:
         f.write(str + '\n')
-    
+
+# a hacky solution that replaces enums with their actual values, allowing the Evaluator to deal with it
 def parse_size(tokens, enumlist):
     sizetokens = ""
     e = Evaluator()
