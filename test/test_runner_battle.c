@@ -402,7 +402,7 @@ const void *RandomElementArray(enum RandomTag tag, const void *array, size_t siz
 
     if (turn && turn->rng.tag == tag)
     {
-        u32 element;
+        u32 element = 0;
         for (index = 0; index < count; index++)
         {
             memcpy(&element, (const u8 *)array + size * index, size);
@@ -1241,7 +1241,7 @@ static void PushBattlerAction(u32 sourceLine, s32 battlerId, u32 actionType, u32
     DATA.recordedBattle.battleRecord[battlerId][recordIndex] = byte;
 }
 
-void BattleTest_CheckBattleRecordActionType(u32 battlerId, u32 recordIndex, u32 actionType)
+void TestRunner_Battle_CheckBattleRecordActionType(u32 battlerId, u32 recordIndex, u32 actionType)
 {
     // An illegal move choice will cause the battle to request a new
     // move slot and target. This detects the move slot.
