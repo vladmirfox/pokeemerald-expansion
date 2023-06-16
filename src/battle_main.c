@@ -239,7 +239,7 @@ EWRAM_DATA u32 gFieldStatuses = 0;
 EWRAM_DATA struct FieldTimer gFieldTimers = {0};
 EWRAM_DATA u8 gBattlerAbility = 0;
 EWRAM_DATA u16 gPartnerSpriteId = 0;
-EWRAM_DATA struct TotemBoost gTotemBoosts[MAX_BATTLERS_COUNT] = {0};
+EWRAM_DATA struct QueuedStatBoost gQueuedStatBoosts[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA bool8 gHasFetchedBall = FALSE;
 EWRAM_DATA u8 gLastUsedBall = 0;
 EWRAM_DATA u16 gLastThrownBall = 0;
@@ -3823,7 +3823,7 @@ static void TryDoEventsBeforeFirstTurn(void)
     // Totem boosts
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (gTotemBoosts[i].stats != 0 && !gProtectStructs[i].eatMirrorHerb && gProtectStructs[i].activateOpportunist == 0)
+        if (gQueuedStatBoosts[i].stats != 0 && !gProtectStructs[i].eatMirrorHerb && gProtectStructs[i].activateOpportunist == 0)
         {
             gBattlerAttacker = i;
             BattleScriptExecute(BattleScript_TotemVar);
@@ -3895,7 +3895,7 @@ static void TryDoEventsBeforeFirstTurn(void)
 
     gRandomTurnNumber = Random();
     
-    memset(gTotemBoosts, 0, sizeof(gTotemBoosts));  // erase all totem boosts just to be safe
+    memset(gQueuedStatBoosts, 0, sizeof(gQueuedStatBoosts));  // erase all totem boosts just to be safe
 
     GetAiLogicData(); // get assumed abilities, hold effects, etc of all battlers
 
@@ -5740,9 +5740,9 @@ void SetTotemBoost(void)
     {
         if (*(&gSpecialVar_0x8001 + i))
         {
-            gTotemBoosts[battlerId].stats |= (1 << i);
-            gTotemBoosts[battlerId].statChanges[i] = *(&gSpecialVar_0x8001 + i);
-            gTotemBoosts[battlerId].stats |= 0x80;  // used as a flag for the "totem flared to life" script
+            gQueuedStatBoosts[battlerId].stats |= (1 << i);
+            gQueuedStatBoosts[battlerId].statChanges[i] = *(&gSpecialVar_0x8001 + i);
+            gQueuedStatBoosts[battlerId].stats |= 0x80;  // used as a flag for the "totem flared to life" script
         }
     }
 }

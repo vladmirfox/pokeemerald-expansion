@@ -10307,7 +10307,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
         gActiveBattler = gBattlerAttacker;
-        if (gTotemBoosts[gActiveBattler].stats == 0)
+        if (gQueuedStatBoosts[gActiveBattler].stats == 0)
         {
             gBattlescriptCurrInstr = cmd->nextInstr;    // stats done, exit
         }
@@ -10315,19 +10315,19 @@ static void Cmd_various(void)
         {
             for (i = 0; i < (NUM_BATTLE_STATS - 1); i++)
             {
-                if (gTotemBoosts[gActiveBattler].stats & (1 << i))
+                if (gQueuedStatBoosts[gActiveBattler].stats & (1 << i))
                 {
-                    if (gTotemBoosts[gActiveBattler].statChanges[i] <= -1)
-                        SET_STATCHANGER(i + 1, abs(gTotemBoosts[gActiveBattler].statChanges[i]), TRUE);
+                    if (gQueuedStatBoosts[gActiveBattler].statChanges[i] <= -1)
+                        SET_STATCHANGER(i + 1, abs(gQueuedStatBoosts[gActiveBattler].statChanges[i]), TRUE);
                     else
-                        SET_STATCHANGER(i + 1, gTotemBoosts[gActiveBattler].statChanges[i], FALSE);
+                        SET_STATCHANGER(i + 1, gQueuedStatBoosts[gActiveBattler].statChanges[i], FALSE);
 
-                    gTotemBoosts[gActiveBattler].stats &= ~(1 << i);
+                    gQueuedStatBoosts[gActiveBattler].stats &= ~(1 << i);
                     gBattleScripting.battler = gActiveBattler;
                     gBattlerTarget = gActiveBattler;
-                    if (gTotemBoosts[gActiveBattler].stats & 0x80)
+                    if (gQueuedStatBoosts[gActiveBattler].stats & 0x80)
                     {
-                        gTotemBoosts[gActiveBattler].stats &= ~0x80; // set 'aura flared to life' flag
+                        gQueuedStatBoosts[gActiveBattler].stats &= ~0x80; // set 'aura flared to life' flag
                         gBattlescriptCurrInstr = BattleScript_TotemFlaredToLife;
                     }
                     else
@@ -12101,14 +12101,14 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                     continue; // Only triggers on opposing side 
                 if (GetBattlerAbility(index) == ABILITY_OPPORTUNIST && gProtectStructs[gActiveBattler].activateOpportunist == 0) {
                     gProtectStructs[index].activateOpportunist = 2;      // set stats to copy
-                    gTotemBoosts[index].stats |= (1 << (statId - 1));    // -1 to start at atk
-                    gTotemBoosts[index].statChanges[statId - 1] += statValue; // cumulative in case of multiple opponent boosts
+                    gQueuedStatBoosts[index].stats |= (1 << (statId - 1));    // -1 to start at atk
+                    gQueuedStatBoosts[index].statChanges[statId - 1] += statValue; // cumulative in case of multiple opponent boosts
                 } else if (GetBattlerHoldEffect(index, TRUE) == HOLD_EFFECT_MIRROR_HERB
                         && gBattleMons[index].statStages[statId] < MAX_STAT_STAGE)
                 {                    
                     gProtectStructs[index].eatMirrorHerb = TRUE;
-                    gTotemBoosts[index].stats |= (1 << (statId - 1));    // -1 to start at atk
-                    gTotemBoosts[index].statChanges[statId - 1] += statValue;
+                    gQueuedStatBoosts[index].stats |= (1 << (statId - 1));    // -1 to start at atk
+                    gQueuedStatBoosts[index].statChanges[statId - 1] += statValue;
                 }
             }
         }
