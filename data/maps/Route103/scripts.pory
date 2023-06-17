@@ -366,36 +366,61 @@ script Route103_SetupDadRival{
 	}
 }
 
-script Route103_EventScript_DadRival{
-
-	switch (var(VAR_STARTER_MON)) {
-		case 0:
-			trainerbattle_single(TRAINER_DAD_ROUTE103_TREECKO, Route103_Text_dadIntro, Route103_Text_dadDefeated)
-		case 1:
-			trainerbattle_single(TRAINER_DAD_ROUTE103_TORCHIC, Route103_Text_dadIntro, Route103_Text_dadDefeated)
-		case 2:
-			trainerbattle_single(TRAINER_DAD_ROUTE103_MUDKIP, Route103_Text_dadIntro, Route103_Text_dadDefeated)
-	}
-	goto(Route103_EventScript_DadRivalExit)
-}
-
 script Route103_EventScript_DadRivalIntro{
 	lockall
+	faceplayer
 	applymovement(LOCALID_DAD, Route103_Move_dadIntro)
 	waitmovement(0)
-	goto(Route103_EventScript_DadRival)
-	release
+	goto(Route103_EventScript_DadRivalBattle)
+	end
+}
+
+script Route103_EventScript_DadRivalBattle{
+	switch (var(VAR_STARTER_MON)) {
+		case 0: 
+			goto(Route103_EventScript_DadRivalBattleTreecko)
+		case 1: 
+			goto(Route103_EventScript_DadRivalBattleTorchic)
+		case 2: 
+			goto(Route103_EventScript_DadRivalBattleMudkip)
+	}
+}
+
+script Route103_EventScript_DadRivalBattleTreecko{
+	msgbox( Route103_Text_dadIntro)
+	trainerbattle_no_intro(TRAINER_DAD_ROUTE103_TREECKO, Route103_Text_dadDefeated)
+	goto(Route103_EventScript_DadRivalDefeated)
+	end
+}
+
+script Route103_EventScript_DadRivalBattleTorchic{
+	msgbox( Route103_Text_dadIntro)
+	trainerbattle_no_intro(TRAINER_DAD_ROUTE103_TORCHIC, Route103_Text_dadDefeated)
+	goto(Route103_EventScript_DadRivalDefeated)
+	end
+}
+
+script Route103_EventScript_DadRivalBattleMudkip{
+	msgbox( Route103_Text_dadIntro)
+	trainerbattle_no_intro(TRAINER_DAD_ROUTE103_MUDKIP, Route103_Text_dadDefeated)
+	goto(Route103_EventScript_DadRivalDefeated)
+	end
+}
+
+script Route103_EventScript_DadRivalDefeated {
+	msgbox(Route103_Text_dadExit)
+	goto(Route103_EventScript_DadRivalExit)
 }
 
 script Route103_EventScript_DadRivalExit{
 	lockall
 	setflag(FLAG_ROUTE103_DAD_RIVAL_W)
 	setvar(VAR_ROUTE103_STATE, 1)
-	msgbox(Route103_Text_dadExit)
 	applymovement(LOCALID_DAD, Route103_Move_dadExit)
 	waitmovement(0)
 	removeobject(LOCALID_DAD)
-	release
+	releaseall
+	end
 }
 
 text Route103_Text_dadIntro{
@@ -407,7 +432,7 @@ text Route103_Text_dadDefeated{
 }
 
 text Route103_Text_dadExit{
-	format("We will make you a good trainer one day.\pFor now, go on. Make your way to the RUSTBORO GYM. I will be keeping an eye on you fro sure.")
+	format("We will make you a good trainer one day.\pFor now, go on. Make your way to the RUSTBORO GYM. I will be keeping an eye on you for sure.")
 }
 
 movement Route103_Move_dadIntro{

@@ -365,34 +365,59 @@ Route103_SetupDadRival_1:
 	return
 
 
-Route103_EventScript_DadRival::
-	switch VAR_STARTER_MON
-	case 0, Route103_EventScript_DadRival_3
-	case 1, Route103_EventScript_DadRival_4
-	case 2, Route103_EventScript_DadRival_5
-Route103_EventScript_DadRival_1:
-	goto Route103_EventScript_DadRivalExit
-	return
-
-Route103_EventScript_DadRival_3:
-	trainerbattle_single TRAINER_DAD_ROUTE103_TREECKO, Route103_Text_dadIntro, Route103_Text_dadDefeated
-	goto Route103_EventScript_DadRival_1
-
-Route103_EventScript_DadRival_4:
-	trainerbattle_single TRAINER_DAD_ROUTE103_TORCHIC, Route103_Text_dadIntro, Route103_Text_dadDefeated
-	goto Route103_EventScript_DadRival_1
-
-Route103_EventScript_DadRival_5:
-	trainerbattle_single TRAINER_DAD_ROUTE103_MUDKIP, Route103_Text_dadIntro, Route103_Text_dadDefeated
-	goto Route103_EventScript_DadRival_1
-
-
 Route103_EventScript_DadRivalIntro::
 	lockall
+	faceplayer
 	applymovement LOCALID_DAD, Route103_Move_dadIntro
 	waitmovement 0
-	goto Route103_EventScript_DadRival
-	release
+	goto Route103_EventScript_DadRivalBattle
+	end
+
+
+Route103_EventScript_DadRivalBattle::
+	switch VAR_STARTER_MON
+	case 0, Route103_EventScript_DadRivalBattle_2
+	case 1, Route103_EventScript_DadRivalBattle_3
+	case 2, Route103_EventScript_DadRivalBattle_4
+	return
+
+Route103_EventScript_DadRivalBattle_2:
+	goto Route103_EventScript_DadRivalBattleTreecko
+	return
+
+Route103_EventScript_DadRivalBattle_3:
+	goto Route103_EventScript_DadRivalBattleTorchic
+	return
+
+Route103_EventScript_DadRivalBattle_4:
+	goto Route103_EventScript_DadRivalBattleMudkip
+	return
+
+
+Route103_EventScript_DadRivalBattleTreecko::
+	msgbox Route103_Text_dadIntro
+	trainerbattle_no_intro TRAINER_DAD_ROUTE103_TREECKO, Route103_Text_dadDefeated
+	goto Route103_EventScript_DadRivalDefeated
+	end
+
+
+Route103_EventScript_DadRivalBattleTorchic::
+	msgbox Route103_Text_dadIntro
+	trainerbattle_no_intro TRAINER_DAD_ROUTE103_TORCHIC, Route103_Text_dadDefeated
+	goto Route103_EventScript_DadRivalDefeated
+	end
+
+
+Route103_EventScript_DadRivalBattleMudkip::
+	msgbox Route103_Text_dadIntro
+	trainerbattle_no_intro TRAINER_DAD_ROUTE103_MUDKIP, Route103_Text_dadDefeated
+	goto Route103_EventScript_DadRivalDefeated
+	end
+
+
+Route103_EventScript_DadRivalDefeated::
+	msgbox Route103_Text_dadExit
+	goto Route103_EventScript_DadRivalExit
 	return
 
 
@@ -400,12 +425,11 @@ Route103_EventScript_DadRivalExit::
 	lockall
 	setflag FLAG_ROUTE103_DAD_RIVAL_W
 	setvar VAR_ROUTE103_STATE, 1
-	msgbox Route103_Text_dadExit
 	applymovement LOCALID_DAD, Route103_Move_dadExit
 	waitmovement 0
 	removeobject LOCALID_DAD
-	release
-	return
+	releaseall
+	end
 
 
 Route103_Move_dadIntro:
@@ -450,4 +474,4 @@ Route103_Text_dadExit::
 	.string "We will make you a good trainer one day.\p"
 	.string "For now, go on. Make your way to the\n"
 	.string "RUSTBORO GYM. I will be keeping an eye\l"
-	.string "on you fro sure.$"
+	.string "on you for sure.$"
