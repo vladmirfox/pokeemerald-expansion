@@ -367,31 +367,24 @@ Route103_SetupDadRival_1:
 
 Route103_EventScript_DadRival::
 	switch VAR_STARTER_MON
-	case 0, Route103_EventScript_DadRival_2
-	case 1, Route103_EventScript_DadRival_3
-	case 2, Route103_EventScript_DadRival_4
+	case 0, Route103_EventScript_DadRival_3
+	case 1, Route103_EventScript_DadRival_4
+	case 2, Route103_EventScript_DadRival_5
+Route103_EventScript_DadRival_1:
+	goto Route103_EventScript_DadRivalExit
 	return
 
-Route103_EventScript_DadRival_2:
-	trainerbattle_single TRAINER_DAD_ROUTE103_TREECKO, Route103_Text_dadIntro, Route103_Text_dadDefeated
-	setflag FLAG_ROUTE103_DAD_RIVAL_W
-	setvar VAR_ROUTE103_STATE, 1
-	goto Route103_EventScript_DadRivalExit
-	end
-
 Route103_EventScript_DadRival_3:
-	trainerbattle_single TRAINER_DAD_ROUTE103_TORCHIC, Route103_Text_dadIntro, Route103_Text_dadDefeated
-	setflag FLAG_ROUTE103_DAD_RIVAL_W
-	setvar VAR_ROUTE103_STATE, 1
-	goto Route103_EventScript_DadRivalExit
-	end
+	trainerbattle_single TRAINER_DAD_ROUTE103_TREECKO, Route103_Text_dadIntro, Route103_Text_dadDefeated
+	goto Route103_EventScript_DadRival_1
 
 Route103_EventScript_DadRival_4:
+	trainerbattle_single TRAINER_DAD_ROUTE103_TORCHIC, Route103_Text_dadIntro, Route103_Text_dadDefeated
+	goto Route103_EventScript_DadRival_1
+
+Route103_EventScript_DadRival_5:
 	trainerbattle_single TRAINER_DAD_ROUTE103_MUDKIP, Route103_Text_dadIntro, Route103_Text_dadDefeated
-	setflag FLAG_ROUTE103_DAD_RIVAL_W
-	setvar VAR_ROUTE103_STATE, 1
-	goto Route103_EventScript_DadRivalExit
-	end
+	goto Route103_EventScript_DadRival_1
 
 
 Route103_EventScript_DadRivalIntro::
@@ -405,6 +398,8 @@ Route103_EventScript_DadRivalIntro::
 
 Route103_EventScript_DadRivalExit::
 	lockall
+	setflag FLAG_ROUTE103_DAD_RIVAL_W
+	setvar VAR_ROUTE103_STATE, 1
 	msgbox Route103_Text_dadExit
 	applymovement LOCALID_DAD, Route103_Move_dadExit
 	waitmovement 0

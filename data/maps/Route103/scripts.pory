@@ -371,23 +371,12 @@ script Route103_EventScript_DadRival{
 	switch (var(VAR_STARTER_MON)) {
 		case 0:
 			trainerbattle_single(TRAINER_DAD_ROUTE103_TREECKO, Route103_Text_dadIntro, Route103_Text_dadDefeated)
-			setflag(FLAG_ROUTE103_DAD_RIVAL_W)
-			setvar(VAR_ROUTE103_STATE, 1)
-			goto(Route103_EventScript_DadRivalExit)
-			end
 		case 1:
 			trainerbattle_single(TRAINER_DAD_ROUTE103_TORCHIC, Route103_Text_dadIntro, Route103_Text_dadDefeated)
-			setflag(FLAG_ROUTE103_DAD_RIVAL_W)
-			setvar(VAR_ROUTE103_STATE, 1)
-			goto(Route103_EventScript_DadRivalExit)
-			end
 		case 2:
 			trainerbattle_single(TRAINER_DAD_ROUTE103_MUDKIP, Route103_Text_dadIntro, Route103_Text_dadDefeated)
-			setflag(FLAG_ROUTE103_DAD_RIVAL_W)
-			setvar(VAR_ROUTE103_STATE, 1)
-			goto(Route103_EventScript_DadRivalExit)
-			end
 	}
+	goto(Route103_EventScript_DadRivalExit)
 }
 
 script Route103_EventScript_DadRivalIntro{
@@ -400,6 +389,8 @@ script Route103_EventScript_DadRivalIntro{
 
 script Route103_EventScript_DadRivalExit{
 	lockall
+	setflag(FLAG_ROUTE103_DAD_RIVAL_W)
+	setvar(VAR_ROUTE103_STATE, 1)
 	msgbox(Route103_Text_dadExit)
 	applymovement(LOCALID_DAD, Route103_Move_dadExit)
 	waitmovement(0)
