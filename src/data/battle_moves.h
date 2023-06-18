@@ -40,9 +40,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
-        .highCritRatio = TRUE,
     },
 
     [MOVE_DOUBLE_SLAP] =
@@ -206,8 +206,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_SPECIAL,
-        .highCritRatio = TRUE,
         .twoTurnMove = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
@@ -1265,8 +1265,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
-        .highCritRatio = TRUE,
         .slicingMove = TRUE,
     },
 
@@ -2613,9 +2613,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
-        .highCritRatio = TRUE,
     },
 
     [MOVE_EXPLOSION] =
@@ -2785,9 +2785,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
-        .highCritRatio = TRUE,
         .slicingMove = TRUE,
     },
 
@@ -3052,8 +3052,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_SPECIAL,
-        .highCritRatio = TRUE,
     },
 
     [MOVE_COTTON_SPORE] =
@@ -4108,9 +4108,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
-        .highCritRatio = TRUE,
     },
 
     [MOVE_TWISTER] =
@@ -5172,9 +5172,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 10,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
-        .highCritRatio = TRUE,
         .sheerForceBoost = TRUE,
     },
 
@@ -5422,8 +5422,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_SPECIAL,
-        .highCritRatio = TRUE,
         .windMove = TRUE,
         .slicingMove = TRUE,
     },
@@ -5889,9 +5889,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 10,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
-        .highCritRatio = TRUE,
         .sheerForceBoost = TRUE,
     },
 
@@ -6005,9 +6005,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
-        .highCritRatio = TRUE,
         .slicingMove = TRUE,
     },
 
@@ -6861,9 +6861,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
-        .highCritRatio = TRUE,
         .slicingMove = TRUE,
     },
 
@@ -7193,9 +7193,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
-        .highCritRatio = TRUE,
     },
 
     [MOVE_THUNDER_FANG] =
@@ -7292,8 +7292,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
-        .highCritRatio = TRUE,
         .slicingMove = TRUE,
     },
 
@@ -7486,9 +7486,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 10,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
-        .highCritRatio = TRUE,
         .sheerForceBoost = TRUE,
         .slicingMove = TRUE,
     },
@@ -7550,8 +7550,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
-        .highCritRatio = TRUE,
     },
 
     [MOVE_CAPTIVATE] =
@@ -7713,8 +7713,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
-        .highCritRatio = TRUE,
     },
 
     [MOVE_DEFEND_ORDER] =
@@ -7805,8 +7805,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_SPECIAL,
-        .highCritRatio = TRUE,
     },
 
     [MOVE_LUNAR_DANCE] =
@@ -8140,13 +8140,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         #else
             .power = 40,
         #endif
-        .effect = EFFECT_ALWAYS_CRIT,
+        .effect = EFFECT_HIT,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 3,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
     },
@@ -8843,13 +8844,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         #else
             .power = 40,
         #endif
-        .effect = EFFECT_ALWAYS_CRIT,
+        .effect = EFFECT_HIT,
         .type = TYPE_ICE,
         .accuracy = 90,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 3,
         .split = SPLIT_SPECIAL,
     },
 
@@ -8925,9 +8927,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
-        .highCritRatio = TRUE,
     },
 
     [MOVE_DUAL_CHOP] =
@@ -11277,7 +11279,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
             .pp = 10,
             .sheerForceBoost = TRUE,
         #else
-            .effect = EFFECT_ALWAYS_CRIT,
             .power = 50,
             .pp = 15,
         #endif
@@ -11286,6 +11287,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
         .priority = 2,
+        .critRate = 3,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
         .mirrorMoveBanned = B_UPDATED_MOVE_FLAGS < GEN_8,
@@ -11576,8 +11578,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_SPECIAL,
-        .highCritRatio = TRUE,
     },
 
     [MOVE_JAW_LOCK] =
@@ -12394,13 +12396,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         #else
             .power = 80,
         #endif
-        .effect = EFFECT_ALWAYS_CRIT,
+        .effect = EFFECT_HIT,
         .type = TYPE_DARK,
         .accuracy = 100,
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 3,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
         .punchingMove = TRUE,
@@ -12409,7 +12412,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_SURGING_STRIKES] =
     {
-        .effect = EFFECT_ALWAYS_CRIT,
+        .effect = EFFECT_HIT,
         .power = 25,
         .type = TYPE_WATER,
         .accuracy = 100,
@@ -12417,6 +12420,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 3,
         .split = SPLIT_PHYSICAL,
         .makesContact = TRUE,
         .punchingMove = TRUE,
@@ -12788,8 +12792,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_SPECIAL,
-        .highCritRatio = TRUE,
         .sheerForceBoost = TRUE,
     },
 
@@ -12843,7 +12847,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
-        .highCritRatio = TRUE,
         .sheerForceBoost = TRUE,
     },
 
@@ -13267,7 +13270,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_FLOWER_TRICK] =
     {
-        .effect = EFFECT_ALWAYS_CRIT,
+        .effect = EFFECT_HIT,
         .power = 70,
         .type = TYPE_GRASS,
         .accuracy = 0,
@@ -13275,6 +13278,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 3,
         .split = SPLIT_PHYSICAL,
     },
 
@@ -13626,9 +13630,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 1,
         .split = SPLIT_PHYSICAL,
         .slicingMove = TRUE,
-        .highCritRatio = TRUE,
     },
 
     [MOVE_BLAZING_TORQUE] =
@@ -13831,7 +13835,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
-        .highCritRatio = TRUE,
         .metronomeBanned = TRUE,
     },
 
@@ -14093,9 +14096,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
+        .critRate = 2,
         .split = SPLIT_SPECIAL,
         .zMove = { .effect = 0 },
-        .highCritRatio = TRUE,
     },
     [MOVE_STOKED_SPARKSURFER] =
     {
