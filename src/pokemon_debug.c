@@ -730,16 +730,11 @@ static void BattleLoadOpponentMonSpriteGfxCustom(u16 species, bool8 isFemale, bo
     LoadPalette(gDecompressionBuffer, 0x80 + battlerId * 16, 0x20);
 }
 
-static u8 GetElevationValue(u16 species)
-{
-    return gEnemyMonElevation[species];
-}
-
 static void SetConstSpriteValues(struct PokemonDebugMenu *data)
 {
     u16 species = data->currentmonId;
     data->constSpriteValues.frontPicCoords = gMonFrontPicCoords[species].y_offset;
-    data->constSpriteValues.frontElevation = GetElevationValue(species);
+    data->constSpriteValues.frontElevation = gEnemyMonElevation[species];
     data->constSpriteValues.backPicCoords = gMonBackPicCoords[species].y_offset;
 }
 
@@ -759,7 +754,7 @@ static u8 GetBattlerSpriteFinal_YCustom(u16 species, s8 offset_picCoords, s8 off
     offset = gMonFrontPicCoords[species].y_offset + offset_picCoords;
 
     //Elevation
-    offset -= GetElevationValue(species) + offset_elevation;
+    offset -= gEnemyMonElevation[species] + offset_elevation;
 
     //Main position
     y = offset + sBattlerCoords[0][1].y;
