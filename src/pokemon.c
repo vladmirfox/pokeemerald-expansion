@@ -51,6 +51,7 @@
 #include "constants/trainers.h"
 #include "constants/union_room.h"
 #include "constants/weather.h"
+#include "data/pokemon/shadow_list_data.h"
 
 struct SpeciesItem
 {
@@ -4678,6 +4679,101 @@ u32 GetMonData(struct Pokemon *mon, s32 field, u8 *data)
         break;
     default:
         ret = GetBoxMonData(&mon->box, field, data);
+        break;
+    }
+    return ret;
+}
+
+u32 GetShadowMonData(struct ShadowListEntry *mon, s32 field, u8 *data)
+{
+    u32 ret;
+
+    switch (field)
+    {
+    case MON_DATA_IS_SHADOW:
+        ret = mon->shadowState;
+        break;
+    case MON_DATA_SHADOW_VARIETY:
+        ret = mon->shadowVar;
+        break;
+    case MON_DATA_SHADOW_ID:
+        ret = mon->shadowId;
+        break;
+    case MON_DATA_SPECIES:
+        ret = mon->species;
+        break;
+    case MON_DATA_MOVE1:
+    case MON_DATA_MOVE2:
+    case MON_DATA_MOVE3:
+    case MON_DATA_MOVE4:
+        ret = mon->shadowMoves[field - MON_DATA_MOVE1];
+        break;
+    case MON_DATA_MOVE1_PURIFY:
+    case MON_DATA_MOVE2_PURIFY:
+    case MON_DATA_MOVE3_PURIFY:
+    case MON_DATA_MOVE4_PURIFY:
+        ret = mon->purifyMoves[field - MON_DATA_MOVE1_PURIFY];
+        break;
+    case MON_DATA_HP_EV:
+        ret = mon->hpEV;
+        break;
+    case MON_DATA_ATK_EV:
+        ret = mon->attackEV;
+        break;
+    case MON_DATA_DEF_EV:
+        ret = mon->defenseEV;
+        break;
+    case MON_DATA_SPEED_EV:
+        ret = mon->speedEV;
+        break;
+    case MON_DATA_SPATK_EV:
+        ret = mon->spAttackEV;
+        break;
+    case MON_DATA_SPDEF_EV:
+        ret = mon->spDefenseEV;
+        break;
+    case MON_DATA_HP_IV:
+        ret = mon->hpIV;
+        break;
+    case MON_DATA_ATK_IV:
+        ret = mon->attackIV;
+        break;
+    case MON_DATA_DEF_IV:
+        ret = mon->defenseIV;
+        break;
+    case MON_DATA_SPEED_IV:
+        ret = mon->speed;
+        break;
+    case MON_DATA_SPATK_IV:
+        ret = mon->spAttackIV;
+        break;
+    case MON_DATA_SPDEF_IV:
+        ret = mon->spDefenseIV;
+        break;
+    case MON_DATA_BOOST_LEVEL:
+        ret = mon->boostLevel;
+        break;
+    case MON_DATA_LEVEL:
+        ret = mon->level;
+        break;
+    case MON_DATA_HEART_MAX:
+        ret = mon->heartMax;
+        break;
+    case MON_DATA_PERSONALITY:
+        do
+        {
+            u32 personality = Random32();
+            u32 value = gSaveBlock2Ptr->playerTrainerId[0]
+              | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
+              | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
+              | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
+        }
+        while (mon->nature != GetNatureFromPersonality(personality)
+            || mon->gender != GetGenderFromSpeciesAndPersonality(mon->species, personality)
+            || GET_SHINY_VALUE(value, personality) < (SHINY_ODDS * mon->shiny));
+        ret = personality;
+        break;
+    default:
         break;
     }
     return ret;

@@ -28,6 +28,10 @@ enum {
     MON_DATA_MOVE2,
     MON_DATA_MOVE3,
     MON_DATA_MOVE4,
+    MON_DATA_MOVE1_PURIFY,
+    MON_DATA_MOVE2_PURIFY,
+    MON_DATA_MOVE3_PURIFY,
+    MON_DATA_MOVE4_PURIFY,
     MON_DATA_PP1,
     MON_DATA_PP2,
     MON_DATA_PP3,
@@ -92,6 +96,7 @@ enum {
     MON_DATA_WORLD_RIBBON,
     MON_DATA_UNUSED_RIBBONS,
     MON_DATA_SHADOW_ID,
+    MON_DATA_SHADOW_VARIETY,
     MON_DATA_IS_SHADOW,
     MON_DATA_BOOST_LEVEL,
     MON_DATA_REVERSE_MODE,
@@ -488,6 +493,7 @@ void SetMultiuseSpriteTemplateToTrainerFront(u16 trainerPicId, u8 battlerPositio
 // u32 GetMonData(struct Pokemon *mon, s32 field, u8 *data);
 // u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data);
 u32 GetMonData();
+u32 GetShadowMonData();
 u32 GetBoxMonData();
 
 void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg);
