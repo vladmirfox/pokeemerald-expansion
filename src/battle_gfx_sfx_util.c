@@ -847,7 +847,7 @@ void CopyBattleSpriteInvisibility(u8 battlerId)
     gBattleSpritesDataPtr->battlerData[battlerId].invisible = gSprites[gBattlerSpriteIds[battlerId]].invisible;
 }
 
-void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 castform, bool32 megaEvo, bool8 trackEnemyPersonality)
+void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool32 megaEvo, bool8 trackEnemyPersonality)
 {
     u32 personalityValue, otId, position, paletteOffset, targetSpecies;
     const void *lzPaletteData, *src;
@@ -917,50 +917,27 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool8 castform, bo
                                      gTransformedPersonalities[battlerAtk]);
         }
     }
+    src = gMonSpritesGfxPtr->sprites.ptr[position];
+    dst = (void *)(OBJ_VRAM0 + gSprites[gBattlerSpriteIds[battlerAtk]].oam.tileNum * 32);
+    DmaCopy32(3, src, dst, MON_PIC_SIZE);
+    paletteOffset = OBJ_PLTT_ID(battlerAtk);
+    lzPaletteData = GetMonSpritePalFromSpeciesAndPersonality(targetSpecies, otId, personalityValue);
+    LZDecompressWram(lzPaletteData, gDecompressionBuffer);
+    LoadPalette(gDecompressionBuffer, paletteOffset, PLTT_SIZE_4BPP);
 
-    if (castform)
+    if (!megaEvo)
     {
-        StartSpriteAnim(&gSprites[gBattlerSpriteIds[battlerAtk]], gBattleSpritesDataPtr->animationData->animArg);
-        paletteOffset = OBJ_PLTT_ID(battlerAtk);
-        lzPaletteData = GetMonSpritePalFromSpeciesAndPersonality(targetSpecies, otId, personalityValue);
-        gBattleMonForms[battlerAtk] = gBattleSpritesDataPtr->animationData->animArg;
-        if (gBattleSpritesDataPtr->battlerData[battlerAtk].transformSpecies != SPECIES_NONE)
-        {
-            BlendPalette(paletteOffset, 16, 6, RGB_WHITE);
-            CpuCopy32(&gPlttBufferFaded[paletteOffset], &gPlttBufferUnfaded[paletteOffset], PLTT_SIZEOF(16));
-        }
-        gSprites[gBattlerSpriteIds[battlerAtk]].y = GetBattlerSpriteDefault_Y(battlerAtk);
-    }
-    else
-    {
-        src = gMonSpritesGfxPtr->sprites.ptr[position];
-        dst = (void *)(OBJ_VRAM0 + gSprites[gBattlerSpriteIds[battlerAtk]].oam.tileNum * 32);
-        DmaCopy32(3, src, dst, MON_PIC_SIZE);
-        paletteOffset = OBJ_PLTT_ID(battlerAtk);
-        lzPaletteData = GetMonSpritePalFromSpeciesAndPersonality(targetSpecies, otId, personalityValue);
-        LZDecompressWram(lzPaletteData, gDecompressionBuffer);
-        LoadPalette(gDecompressionBuffer, paletteOffset, PLTT_SIZE_4BPP);
-
-        if (targetSpecies == SPECIES_CASTFORM || targetSpecies == SPECIES_CHERRIM)
-        {
-            gSprites[gBattlerSpriteIds[battlerAtk]].anims = gMonFrontAnimsPtrTable[targetSpecies];
-        }
-
-        if (!megaEvo)
-        {
-            BlendPalette(paletteOffset, 16, 6, RGB_WHITE);
-            CpuCopy32(&gPlttBufferFaded[paletteOffset], &gPlttBufferUnfaded[paletteOffset], PLTT_SIZEOF(16));
-        }
-
-        if (!IsContest() && !megaEvo)
+        BlendPalette(paletteOffset, 16, 6, RGB_WHITE);
+        CpuCopy32(&gPlttBufferFaded[paletteOffset], &gPlttBufferUnfaded[paletteOffset], PLTT_SIZEOF(16));
+        if (!IsContest())
         {
             gBattleSpritesDataPtr->battlerData[battlerAtk].transformSpecies = targetSpecies;
             gBattleMonForms[battlerAtk] = gBattleMonForms[battlerDef];
         }
-
-        gSprites[gBattlerSpriteIds[battlerAtk]].y = GetBattlerSpriteDefault_Y(battlerAtk);
-        StartSpriteAnim(&gSprites[gBattlerSpriteIds[battlerAtk]], gBattleMonForms[battlerAtk]);
     }
+
+    gSprites[gBattlerSpriteIds[battlerAtk]].y = GetBattlerSpriteDefault_Y(battlerAtk);
+    StartSpriteAnim(&gSprites[gBattlerSpriteIds[battlerAtk]], gBattleMonForms[battlerAtk]);
 }
 
 void BattleLoadSubstituteOrMonSpriteGfx(u8 battlerId, bool8 loadMonSprite)
