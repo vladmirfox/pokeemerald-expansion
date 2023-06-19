@@ -41891,10 +41891,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,                                  \
         .noFlip = FALSE,                                                \
         .natDexNum = NATIONAL_DEX_PUMPKABOO,                            \
+        .description = gPumpkaboo##form##PokedexText,                                   \
+        .categoryName = _("Pumpkin"),                                                   \
         .levelUpLearnset = sPumpkabooLevelUpLearnset,                   \
         .teachableLearnset = sPumpkabooTeachableLearnset,               \
+        .frontPic = gMonFrontPic_Pumpkaboo##form,                                       \
+        .backPic = gMonBackPic_Pumpkaboo##form,                                         \
         .palette = gMonPalette_Pumpkaboo,                               \
         .shinyPalette = gMonShinyPalette_Pumpkaboo,                     \
+        .iconSprite = gMonIcon_Pumpkaboo,                                               \
         .iconPalIndex = 2,                                              \
         .footprint = gMonFootprint_Pumpkaboo,                           \
         .frontAnimFrames = sAnims_Pumpkaboo,                            \
@@ -41912,16 +41917,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 44,
         .baseSpDefense = 55,
         .cryId = CRY_PUMPKABOO,
-        .description = gPumpkabooAveragePokedexText,
-        .categoryName = _("Pumpkin"),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 4,
         .weight = 50,
-        .frontPic = gMonFrontPic_PumpkabooAverage,
-        .backPic = gMonBackPic_PumpkabooAverage,
         .frontPicSize = MON_COORDS_SIZE(40, 40),
         .backPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 13,
@@ -41938,16 +41939,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 44,
         .baseSpDefense = 55,
         .cryId = CRY_PUMPKABOO,
-        .description = gPumpkabooSmallPokedexText,
-        .categoryName = _("Pumpkin"),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 3,
         .weight = 35,
-        .frontPic = gMonFrontPic_PumpkabooSmall,
-        .backPic = gMonBackPic_PumpkabooSmall,
         .frontPicSize = MON_COORDS_SIZE(40, 40),
         .backPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 15,
@@ -41964,16 +41961,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 44,
         .baseSpDefense = 55,
         .cryId = CRY_PUMPKABOO,
-        .description = gPumpkabooLargePokedexText,
-        .categoryName = _("Pumpkin"),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 5,
         .weight = 75,
-        .frontPic = gMonFrontPic_PumpkabooLarge,
-        .backPic = gMonBackPic_PumpkabooLarge,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .backPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 12,
@@ -41992,16 +41985,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemCommon = ITEM_MIRACLE_SEED,
         .itemRare = ITEM_MIRACLE_SEED,
         .cryId = CRY_PUMPKABOO_SUPER,
-        .description = gPumpkabooSuperPokedexText,
-        .categoryName = _("Pumpkin"),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 8,
         .weight = 150,
-        .frontPic = gMonFrontPic_PumpkabooSuper,
-        .backPic = gMonBackPic_PumpkabooSuper,
         .frontPicSize = MON_COORDS_SIZE(48, 48),
         .backPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 10,
@@ -42009,7 +41998,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PUMKPABOO_MISC_INFO(Super, SUPER),
     },
 
-#define GOURGEIST_MISC_INFO                                             \
+#define GOURGEIST_MISC_INFO(form)                                       \
         .types = { TYPE_GHOST, TYPE_GRASS},                             \
         .catchRate = 60,                                                \
         .expYield = 173,                                                \
@@ -42023,8 +42012,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,                                  \
         .noFlip = FALSE,                                                \
         .natDexNum = NATIONAL_DEX_GOURGEIST,                            \
+        .description = gGourgeist##form##PokedexText,                   \
+        .categoryName = _("Pumpkin"),                                   \
         .levelUpLearnset = sGourgeistLevelUpLearnset,                   \
         .teachableLearnset = sGourgeistTeachableLearnset,               \
+        .frontPic = gMonFrontPic_Gourgeist##form,                       \
+        .backPic = gMonBackPic_Gourgeist##form,                         \
         .palette = gMonPalette_Gourgeist,                               \
         .shinyPalette = gMonShinyPalette_Gourgeist,                     \
         .iconPalIndex = 2,                                              \
@@ -42042,21 +42035,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 58,
         .baseSpDefense = 75,
         .cryId = CRY_GOURGEIST,
-        .description = gGourgeistAveragePokedexText,
-        .categoryName = _("Pumpkin"),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 9,
         .weight = 125,
-        .frontPic = gMonFrontPic_GourgeistAverage,
-        .backPic = gMonBackPic_GourgeistAverage,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .backPicSize = MON_COORDS_SIZE(48, 64),
         .frontPicYOffset = 4,
         .backPicYOffset = 3,
-        GOURGEIST_MISC_INFO,
+        GOURGEIST_MISC_INFO(Average),
     },
 
     [SPECIES_GOURGEIST_SMALL] =
@@ -42068,21 +42057,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 58,
         .baseSpDefense = 75,
         .cryId = CRY_GOURGEIST,
-        .description = gGourgeistSmallPokedexText,
-        .categoryName = _("Pumpkin"),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 7,
         .weight = 95,
-        .frontPic = gMonFrontPic_GourgeistSmall,
-        .backPic = gMonBackPic_GourgeistSmall,
         .frontPicSize = MON_COORDS_SIZE(56, 64),
         .backPicSize = MON_COORDS_SIZE(48, 56),
         .frontPicYOffset = 5,
         .backPicYOffset = 4,
-        GOURGEIST_MISC_INFO,
+        GOURGEIST_MISC_INFO(Small),
     },
 
     [SPECIES_GOURGEIST_LARGE] =
@@ -42094,21 +42079,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 58,
         .baseSpDefense = 75,
         .cryId = CRY_GOURGEIST,
-        .description = gGourgeistLargePokedexText,
-        .categoryName = _("Pumpkin"),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 11,
         .weight = 140,
-        .frontPic = gMonFrontPic_GourgeistLarge,
-        .backPic = gMonBackPic_GourgeistLarge,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
         .backPicSize = MON_COORDS_SIZE(48, 64),
         .frontPicYOffset = 2,
         .backPicYOffset = 2,
-        GOURGEIST_MISC_INFO,
+        GOURGEIST_MISC_INFO(Large),
     },
 
     [SPECIES_GOURGEIST_SUPER] =
@@ -42122,20 +42103,16 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemCommon = ITEM_MIRACLE_SEED,
         .itemRare = ITEM_MIRACLE_SEED,
         .cryId = CRY_GOURGEIST_SUPER,
-        .description = gGourgeistSuperPokedexText,
-        .categoryName = _("Pumpkin"),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
         .trainerOffset = 0,
         .height = 17,
         .weight = 390,
-        .frontPic = gMonFrontPic_GourgeistSuper,
         .frontPicSize = MON_COORDS_SIZE(64, 64),
-        .backPic = gMonBackPic_GourgeistSuper,
         .backPicSize = MON_COORDS_SIZE(56, 64),
         .backPicYOffset = 1,
-        GOURGEIST_MISC_INFO,
+        GOURGEIST_MISC_INFO(Super),
     },
 
 #if P_UPDATED_EGG_GROUPS >= GEN_8
