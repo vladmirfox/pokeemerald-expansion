@@ -45,7 +45,6 @@ extern const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow;
 extern const struct SpriteTemplate gSpriteTemplate_EnemyShadow;
 extern const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[2];
 extern const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] ;
-extern const u8 sCastformElevations[NUM_CASTFORM_FORMS];
 extern const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1];
 static const u16 sBgColor[] = {RGB_WHITE};
 
@@ -731,25 +730,9 @@ static void BattleLoadOpponentMonSpriteGfxCustom(u16 species, bool8 isFemale, bo
     LoadPalette(gDecompressionBuffer, 0x80 + battlerId * 16, 0x20);
 }
 
-static bool8 IsCastformForm(species)
-{
-    if (species == SPECIES_CASTFORM_SUNNY || species == SPECIES_CASTFORM_RAINY || species == SPECIES_CASTFORM_SNOWY)
-        return TRUE;
-
-    return FALSE;
-}
-
 static u8 GetElevationValue(u16 species)
 {
-    u8 val;
-    if (species == SPECIES_CASTFORM)
-        val = sCastformElevations[0];
-    else if (IsCastformForm(species))
-        val = sCastformElevations[species - SPECIES_CASTFORM_SUNNY + 1];
-    else
-        val = gEnemyMonElevation[species];
-
-    return val;
+    return gEnemyMonElevation[species];
 }
 
 static void SetConstSpriteValues(struct PokemonDebugMenu *data)
@@ -808,7 +791,7 @@ static void LoadAndCreateEnemyShadowSpriteCustom(struct PokemonDebugMenu *data, 
 {
     u8 x, y;
     bool8 invisible = FALSE;
-    if (gEnemyMonElevation[species] == 0 && !IsCastformForm(species))
+    if (gEnemyMonElevation[species] == 0)
         invisible = TRUE;
     LoadCompressedSpriteSheet(&gSpriteSheet_EnemyShadow);
     LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);

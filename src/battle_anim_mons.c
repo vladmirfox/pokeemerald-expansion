@@ -52,14 +52,6 @@ const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] =
     },
 };
 
-const u8 sCastformElevations[NUM_CASTFORM_FORMS] =
-{
-    [CASTFORM_NORMAL] = 13,
-    [CASTFORM_FIRE]   = 14,
-    [CASTFORM_WATER]  = 13,
-    [CASTFORM_ICE]    = 13,
-};
-
 // Y position of the backsprite for each of the four Castform forms.
 static const u8 sCastformBackSpriteYCoords[NUM_CASTFORM_FORMS] =
 {
@@ -233,9 +225,7 @@ u8 GetBattlerElevation(u8 battlerId, u16 species)
     {
         if (!IsContest())
         {
-            if (species == SPECIES_CASTFORM)
-                ret = sCastformElevations[gBattleMonForms[battlerId]];
-            else if (species > NUM_SPECIES)
+            if (species > NUM_SPECIES)
                 ret = gEnemyMonElevation[0];
             else
                 ret = gEnemyMonElevation[species];
@@ -1963,10 +1953,7 @@ static u16 GetBattlerYDeltaFromSpriteId(u8 spriteId)
                     else
                         species = spriteInfo[battlerId].transformSpecies;
 
-                    if (species == SPECIES_CASTFORM)
-                        return sCastformElevations[gBattleMonForms[battlerId]];
-                    else
-                        return gMonFrontPicCoords[species].y_offset;
+                    return gMonFrontPicCoords[species].y_offset;
                 }
             }
         }
