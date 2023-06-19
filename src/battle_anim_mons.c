@@ -52,15 +52,6 @@ const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] =
     },
 };
 
-// One entry for each of the four Castform forms.
-const struct MonCoords gCastformFrontSpriteCoords[NUM_CASTFORM_FORMS] =
-{
-    [CASTFORM_NORMAL] = { .size = MON_COORDS_SIZE(32, 32), .y_offset = 17 },
-    [CASTFORM_FIRE]   = { .size = MON_COORDS_SIZE(48, 48), .y_offset =  9 },
-    [CASTFORM_WATER]  = { .size = MON_COORDS_SIZE(32, 48), .y_offset =  9 },
-    [CASTFORM_ICE]    = { .size = MON_COORDS_SIZE(64, 48), .y_offset =  8 },
-};
-
 const u8 sCastformElevations[NUM_CASTFORM_FORMS] =
 {
     [CASTFORM_NORMAL] = 13,
@@ -222,10 +213,6 @@ u8 GetBattlerYDelta(u8 battlerId, u16 species)
 
             coordSpecies = GetUnownSpeciesId(personality);
             ret = gMonFrontPicCoords[coordSpecies].y_offset;
-        }
-        else if (species == SPECIES_CASTFORM)
-        {
-            ret = gCastformFrontSpriteCoords[gBattleMonForms[battlerId]].y_offset;
         }
         else if (species > NUM_SPECIES)
         {
@@ -2201,10 +2188,6 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
             species = GetUnownSpeciesId(personality);
             coords = &gMonBackPicCoords[species];
         }
-        else if (species == SPECIES_CASTFORM)
-        {
-            coords = &gCastformFrontSpriteCoords[gBattleMonForms[battlerId]];
-        }
         else if (species <= SPECIES_EGG)
         {
             coords = &gMonBackPicCoords[species];
@@ -2262,10 +2245,6 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
             {
                 species = GetUnownSpeciesId(personality);
                 coords = &gMonFrontPicCoords[species];
-            }
-            else if (species == SPECIES_CASTFORM)
-            {
-                coords = &gCastformFrontSpriteCoords[gBattleMonForms[battlerId]];
             }
             else if (species > NUM_SPECIES)
             {

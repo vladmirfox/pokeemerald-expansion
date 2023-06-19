@@ -45,7 +45,6 @@ extern const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow;
 extern const struct SpriteTemplate gSpriteTemplate_EnemyShadow;
 extern const struct SpritePalette sSpritePalettes_HealthBoxHealthBar[2];
 extern const struct UCoords8 sBattlerCoords[][MAX_BATTLERS_COUNT] ;
-extern const struct MonCoords gCastformFrontSpriteCoords[NUM_CASTFORM_FORMS];
 extern const u8 sCastformElevations[NUM_CASTFORM_FORMS];
 extern const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1];
 static const u16 sBgColor[] = {RGB_WHITE};
@@ -738,27 +737,6 @@ static bool8 IsCastformForm(species)
         return TRUE;
 
     return FALSE;
-}
-
-static u8 GetCastformYCustom(species)
-{
-    u8 ret;
-    switch (species)
-    {
-    case SPECIES_CASTFORM:
-        ret = gCastformFrontSpriteCoords[CASTFORM_NORMAL].y_offset;
-        break;
-    case SPECIES_CASTFORM_SUNNY:
-        ret = gCastformFrontSpriteCoords[CASTFORM_FIRE].y_offset;
-        break;
-    case SPECIES_CASTFORM_RAINY:
-        ret = gCastformFrontSpriteCoords[CASTFORM_WATER].y_offset;
-        break;
-    case SPECIES_CASTFORM_SNOWY:
-        ret = gCastformFrontSpriteCoords[CASTFORM_ICE].y_offset;
-        break;
-    }
-    return ret;
 }
 
 static u8 GetElevationValue(u16 species)
