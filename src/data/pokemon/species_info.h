@@ -2,6 +2,8 @@
 // 255 (MON_GENDERLESS) is reserved for genderless Pokémon.
 #define PERCENT_FEMALE(percent) min(254, ((percent * 255) / 100))
 
+#define EVOLUTION(...) (struct Evolution[]) { __VA_ARGS__, EVOLUTIONS_END, }
+
 #define FLIP    0
 #define NO_FLIP 1
 
@@ -82,7 +84,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Bulbasaur,
         .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sBulbasaurEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_IVYSAUR}),
     },
 
     [SPECIES_IVYSAUR] =
@@ -132,7 +134,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Ivysaur,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sIvysaurEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_VENUSAUR}),
     },
 
 #define VENUSAUR_MISC_INFO                                  \
@@ -304,7 +306,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Charmander,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sCharmanderEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_CHARMELEON}),
     },
 
     [SPECIES_CHARMELEON] =
@@ -354,7 +356,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Charmeleon,
         .frontAnimId = ANIM_BACK_AND_LUNGE,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sCharmeleonEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_CHARIZARD}),
     },
 
 #define CHARIZARD_MISC_INFO                                 \
@@ -568,7 +570,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Squirtle,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sSquirtleEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_WARTORTLE}),
     },
 
     [SPECIES_WARTORTLE] =
@@ -618,7 +620,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Wartortle,
         .frontAnimId = ANIM_SHRINK_GROW,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sWartortleEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_BLASTOISE}),
     },
 
 #define BLASTOISE_MISC_INFO                                     \
@@ -790,7 +792,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Caterpie,
         .frontAnimId = ANIM_SWING_CONCAVE,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sCaterpieEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_METAPOD}),
     },
 
     [SPECIES_METAPOD] =
@@ -839,7 +841,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Metapod,
         .frontAnimId = ANIM_SWING_CONCAVE,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sMetapodEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BUTTERFREE}),
     },
 
 #if P_UPDATED_STATS >= GEN_6
@@ -976,7 +978,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 10,
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sWeedleEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 7, SPECIES_KAKUNA}),
     },
 
     [SPECIES_KAKUNA] =
@@ -1026,7 +1028,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 20,
         .frontAnimId = ANIM_GLOW_ORANGE,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sKakunaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BEEDRILL}),
     },
 
 #if P_UPDATED_STATS >= GEN_6
@@ -1170,7 +1172,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Pidgey,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sPidgeyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_PIDGEOTTO}),
     },
 
     [SPECIES_PIDGEOTTO] =
@@ -1220,7 +1222,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 25,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sPidgeottoEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_PIDGEOT}),
     },
 
 #if P_UPDATED_STATS >= GEN_6
@@ -1370,7 +1372,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Rattata,
         .frontAnimId = ANIM_RAPID_H_HOPS,
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
-        .evolutions = sRattataEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_RATICATE}),
         RATTATA_MISC_INFO,
     },
     [SPECIES_RATTATA_ALOLAN] =
@@ -1402,7 +1404,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_RattataAlolan,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sRattataAlolanEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 20, SPECIES_RATICATE_ALOLAN}),
         RATTATA_MISC_INFO,
     },
 
@@ -1536,7 +1538,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Spearow,
         .frontAnimId = ANIM_H_JUMPS,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sSpearowEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_FEAROW}),
     },
 
     [SPECIES_FEAROW] =
@@ -1637,7 +1639,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 30,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sEkansEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_ARBOK}),
     },
 
     [SPECIES_ARBOK] =
@@ -1739,7 +1741,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPic = gMonBackPic_Pichu,
         .palette = gMonPalette_Pichu,
         .shinyPalette = gMonShinyPalette_Pichu,
-        .evolutions = sPichuEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_PIKACHU}),
         PICHU_MISC_INFO,
     },
     [SPECIES_PICHU_SPIKY_EARED] =
@@ -1814,7 +1816,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .iconSprite = gMonIcon_Pikachu,
         .iconPalIndex = 2,
         .frontAnimFrames = sAnims_Pikachu,
-        .evolutions = sPikachuEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_RAICHU},
+                                {EVO_NONE, 0, SPECIES_RAICHU_ALOLAN}),
         PIKACHU_MISC_INFO,
     },
 
@@ -2134,7 +2137,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Sandshrew,
         .frontAnimId = ANIM_SWING_CONCAVE_FAST_SHORT,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sSandshrewEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_SANDSLASH}),
         SANDSHREW_MISC_INFO,
     },
     [SPECIES_SANDSHREW_ALOLAN] =
@@ -2168,7 +2171,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_SandshrewAlolan,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSandshrewAlolanEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_SANDSLASH_ALOLAN}),
         SANDSHREW_MISC_INFO,
     },
 
@@ -2298,7 +2301,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 28,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sNidoranFEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_NIDORINA}),
     },
 
     [SPECIES_NIDORINA] =
@@ -2347,7 +2350,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Nidorina,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sNidorinaEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MOON_STONE, SPECIES_NIDOQUEEN}),
     },
 
     [SPECIES_NIDOQUEEN] =
@@ -2448,7 +2451,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_NidoranM,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sNidoranMEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_NIDORINO}),
     },
 
     [SPECIES_NIDORINO] =
@@ -2497,7 +2500,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Nidorino,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sNidorinoEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MOON_STONE, SPECIES_NIDOKING}),
     },
 
     [SPECIES_NIDOKING] =
@@ -2606,7 +2609,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cleffa,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sCleffaEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_CLEFAIRY}),
     },
 
     [SPECIES_CLEFAIRY] =
@@ -2656,7 +2659,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Clefairy,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sClefairyEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MOON_STONE, SPECIES_CLEFABLE}),
     },
 
     [SPECIES_CLEFABLE] =
@@ -2764,7 +2767,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Vulpix,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
-        .evolutions = sVulpixEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_NINETALES}),
         VULPIX_MISC_INFO,
     },
     [SPECIES_VULPIX_ALOLAN] =
@@ -2791,7 +2794,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_VulpixAlolan,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sVulpixAlolanEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_NINETALES_ALOLAN}),
         VULPIX_MISC_INFO,
     },
 
@@ -2927,7 +2930,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Igglybuff,
         .frontAnimId = ANIM_SWING_CONCAVE_FAST,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sIgglybuffEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_JIGGLYPUFF}),
     },
 
     [SPECIES_JIGGLYPUFF] =
@@ -2977,7 +2980,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Jigglypuff,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sJigglypuffEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MOON_STONE, SPECIES_WIGGLYTUFF}),
     },
 
     [SPECIES_WIGGLYTUFF] =
@@ -3080,7 +3083,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Zubat,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
-        .evolutions = sZubatEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_GOLBAT}),
     },
 
     [SPECIES_GOLBAT] =
@@ -3130,7 +3133,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Golbat,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sGolbatEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_CROBAT}),
     },
 
     [SPECIES_CROBAT] =
@@ -3229,7 +3232,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Oddish,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sOddishEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 21, SPECIES_GLOOM}),
     },
 
     [SPECIES_GLOOM] =
@@ -3279,7 +3282,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Gloom,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sGloomEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_LEAF_STONE, SPECIES_VILEPLUME},
+                                {EVO_ITEM, ITEM_SUN_STONE, SPECIES_BELLOSSOM}),
     },
 
     [SPECIES_VILEPLUME] =
@@ -3437,7 +3441,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 10,
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sParasEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_PARASECT}),
     },
 
     [SPECIES_PARASECT] =
@@ -3539,7 +3543,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 20,
         .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
-        .evolutions = sVenonatEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 31, SPECIES_VENOMOTH}),
     },
 
     [SPECIES_VENOMOTH] =
@@ -3646,7 +3650,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 25,
         .frontAnimId = ANIM_V_SHAKE,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sDiglettEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DUGTRIO}),
         DIGLETT_MISC_INFO,
     },
     [SPECIES_DIGLETT_ALOLAN] =
@@ -3682,7 +3686,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_DiglettAlolan,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDiglettAlolanEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DUGTRIO_ALOLAN}),
         DIGLETT_MISC_INFO,
     },
 
@@ -3825,7 +3829,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 40,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
-        .evolutions = sMeowthEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_PERSIAN}),
         MEOWTH_MISC_INFO,
     },
     [SPECIES_MEOWTH_ALOLAN] =
@@ -3866,7 +3870,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_MeowthAlolan,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMeowthAlolanEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 28, SPECIES_PERSIAN_ALOLAN}),
         MEOWTH_MISC_INFO,
     },
     [SPECIES_MEOWTH_GALARIAN] =
@@ -3906,7 +3910,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_MeowthGalarian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMeowthGalarianEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_PERRSERKER}),
         MEOWTH_MISC_INFO,
     },
     [SPECIES_MEOWTH_GIGANTAMAX] =
@@ -4130,7 +4134,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Psyduck,
         .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sPsyduckEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 33, SPECIES_GOLDUCK}),
     },
 
     [SPECIES_GOLDUCK] =
@@ -4228,7 +4232,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 20,
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
-        .evolutions = sMankeyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_PRIMEAPE}),
     },
 
     [SPECIES_PRIMEAPE] =
@@ -4277,7 +4281,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Primeape,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
-        .evolutions = sPrimeapeEvolutions,
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_ANNIHILAPE}),
     },
 
 #define GROWLITHE_FAMILY_MISC_INFO                                                  \
@@ -4332,7 +4336,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 30,
         .frontAnimId = ANIM_BACK_AND_LUNGE,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sGrowlitheEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_ARCANINE}),
         GROWLITHE_MISC_INFO,
     },
     [SPECIES_GROWLITHE_HISUIAN] =
@@ -4364,7 +4368,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_GrowlitheHisuian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGrowlitheHisuianEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_ARCANINE_HISUIAN}),
         GROWLITHE_MISC_INFO,
     },
 
@@ -4490,7 +4494,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Poliwag,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sPoliwagEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_POLIWHIRL}),
     },
 
     [SPECIES_POLIWHIRL] =
@@ -4541,7 +4545,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 5,
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sPoliwhirlEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_WATER_STONE, SPECIES_POLIWRATH},
+                                {EVO_TRADE_ITEM, ITEM_KINGS_ROCK, SPECIES_POLITOED},
+                                {EVO_ITEM, ITEM_KINGS_ROCK, SPECIES_POLITOED}),
     },
 
     [SPECIES_POLIWRATH] =
@@ -4694,7 +4700,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Abra,
         .frontAnimId = ANIM_H_JUMPS,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
-        .evolutions = sAbraEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_KADABRA}),
     },
 
     [SPECIES_KADABRA] =
@@ -4744,7 +4750,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Kadabra,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
-        .evolutions = sKadabraEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_ALAKAZAM},
+                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_ALAKAZAM}),
     },
 
 #if P_UPDATED_STATS >= GEN_6
@@ -4889,7 +4896,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Machop,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sMachopEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_MACHOKE}),
     },
 
     [SPECIES_MACHOKE] =
@@ -4939,7 +4946,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Machoke,
         .frontAnimId = ANIM_V_SHAKE,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sMachokeEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_MACHAMP},
+                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_MACHAMP}),
     },
 
     [SPECIES_MACHAMP] =
@@ -5037,7 +5045,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Bellsprout,
         .frontAnimId = ANIM_H_JUMPS,
         .backAnimId = BACK_ANIM_V_STRETCH,
-        .evolutions = sBellsproutEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 21, SPECIES_WEEPINBELL}),
     },
 
     [SPECIES_WEEPINBELL] =
@@ -5087,7 +5095,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 3,
         .frontAnimId = ANIM_SWING_CONVEX,
         .backAnimId = BACK_ANIM_V_STRETCH,
-        .evolutions = sWeepinbellEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_LEAF_STONE, SPECIES_VICTREEBEL}),
     },
 
     [SPECIES_VICTREEBEL] =
@@ -5189,7 +5197,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tentacool,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sTentacoolEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_TENTACRUEL}),
     },
 
     [SPECIES_TENTACRUEL] =
@@ -5297,7 +5305,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
         KANTONIAN_GEODUDE_FAMILY_INFO,
-        .evolutions = sGeodudeEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_GRAVELER}),
         GEODUDE_MISC_INFO,
     },
 
@@ -5333,7 +5341,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
         ALOLAN_GEODUDE_FAMILY_INFO,
-        .evolutions = sGeodudeAlolanEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_GRAVELER_ALOLAN}),
         GEODUDE_MISC_INFO,
     },
 
@@ -5378,7 +5386,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
         .backAnimId = BACK_ANIM_H_SHAKE,
         KANTONIAN_GEODUDE_FAMILY_INFO,
-        .evolutions = sGravelerEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GOLEM},
+                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOLEM}),
         GRAVELER_MISC_INFO,
     },
     [SPECIES_GRAVELER_ALOLAN] =
@@ -5406,7 +5415,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
         ALOLAN_GEODUDE_FAMILY_INFO,
-        .evolutions = sGravelerAlolanEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GOLEM_ALOLAN},
+                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOLEM_ALOLAN}),
         GRAVELER_MISC_INFO,
     },
 
@@ -5541,7 +5551,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_GLOW_ORANGE,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
         KANTONIAN_PONYTA_FAMILY_INFO,
-        .evolutions = sPonytaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_RAPIDASH}),
         PONYTA_MISC_INFO,
     },
 
@@ -5577,7 +5587,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
         GALARIAN_PONYTA_FAMILY_INFO,
-        .evolutions = sPonytaGalarianEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_RAPIDASH_GALARIAN}),
         PONYTA_MISC_INFO,
     },
 
@@ -5702,7 +5712,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Slowpoke,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sSlowpokeEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_SLOWBRO},
+                                {EVO_TRADE_ITEM, ITEM_KINGS_ROCK, SPECIES_SLOWKING},
+                                {EVO_ITEM, ITEM_KINGS_ROCK, SPECIES_SLOWKING}),
         SLOWPOKE_MISC_INFO,
     },
     [SPECIES_SLOWPOKE_GALARIAN] =
@@ -5728,7 +5740,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_SlowpokeGalarian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSlowpokeGalarianEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_GALARICA_CUFF, SPECIES_SLOWBRO_GALARIAN},
+                                {EVO_ITEM, ITEM_GALARICA_WREATH, SPECIES_SLOWKING_GALARIAN}),
         SLOWPOKE_MISC_INFO,
     },
 
@@ -5913,7 +5926,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Magnemite,
         .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sMagnemiteEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_MAGNETON}),
     },
 
     [SPECIES_MAGNETON] =
@@ -5964,7 +5977,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Magneton,
         .frontAnimId = ANIM_FLASH_YELLOW,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sMagnetonEvolutions,
+        .evolutions = EVOLUTION({EVO_MAPSEC, MAPSEC_NEW_MAUVILLE, SPECIES_MAGNEZONE},
+                                {EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_MAGNEZONE}),
     },
 
     [SPECIES_MAGNEZONE] =
@@ -6104,7 +6118,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_FarfetchdGalarian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sFarfetchdGalarianEvolutions,
+        .evolutions = EVOLUTION({EVO_CRITICAL_HITS, 3, SPECIES_SIRFETCHD}),
         FARFETCHD_MISC_INFO,
     },
 
@@ -6204,7 +6218,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Doduo,
         .frontAnimId = ANIM_H_SHAKE_SLOW,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sDoduoEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 31, SPECIES_DODRIO}),
     },
 
     [SPECIES_DODRIO] =
@@ -6306,7 +6320,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Seel,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sSeelEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_DEWGONG}),
     },
 
     [SPECIES_DEWGONG] =
@@ -6411,7 +6425,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Grimer,
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         .backAnimId = BACK_ANIM_V_STRETCH,
-        .evolutions = sGrimerEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_MUK}),
         KANTONIAN_GRIMER_FAMILY_INFO,
         GRIMER_MISC_INFO,
     },
@@ -6447,7 +6461,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_GrimerAlolan,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGrimerAlolanEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_MUK_ALOLAN}),
         ALOLAN_GRIMER_FAMILY_INFO,
         GRIMER_MISC_INFO,
     },
@@ -6575,7 +6589,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 20,
         .frontAnimId = ANIM_TWIST,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sShellderEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_WATER_STONE, SPECIES_CLOYSTER}),
     },
 
     [SPECIES_CLOYSTER] =
@@ -6675,7 +6689,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Gastly,
         .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
         .backAnimId = BACK_ANIM_H_VIBRATE,
-        .evolutions = sGastlyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_HAUNTER}),
     },
 
     [SPECIES_HAUNTER] =
@@ -6726,7 +6740,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 23,
         .frontAnimId = ANIM_FLICKER_INCREASING,
         .backAnimId = BACK_ANIM_H_VIBRATE,
-        .evolutions = sHaunterEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GENGAR},
+                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GENGAR}),
     },
 
 #define GENGAR_MISC_INFO                                            \
@@ -6863,7 +6878,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Onix,
         .frontAnimId = ANIM_H_SHAKE,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sOnixEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_METAL_COAT, SPECIES_STEELIX},
+                                {EVO_ITEM, ITEM_METAL_COAT, SPECIES_STEELIX}),
     },
 
 #define STEELIX_MISC_INFO                                       \
@@ -7000,7 +7016,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 48,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sDrowzeeEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_HYPNO}),
     },
 
     [SPECIES_HYPNO] =
@@ -7098,7 +7114,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Krabby,
         .frontAnimId = ANIM_H_SLIDE,
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
-        .evolutions = sKrabbyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_KINGLER}),
     },
 
     [SPECIES_KINGLER] =
@@ -7200,7 +7216,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Voltorb,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sVoltorbEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ELECTRODE}),
         VOLTORB_MISC_INFO,
     },
     [SPECIES_VOLTORB_HISUIAN] =
@@ -7226,7 +7242,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_VoltorbHisuian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sVoltorbHisuianEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ELECTRODE_HISUIAN}),
         VOLTORB_MISC_INFO,
     },
 
@@ -7352,7 +7368,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Exeggcute,
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sExeggcuteEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_LEAF_STONE, SPECIES_EXEGGUTOR},
+                                {EVO_NONE, 0, SPECIES_EXEGGUTOR_ALOLAN}),
     },
 
 #define EXEGGUTOR_MISC_INFO                                 \
@@ -7495,7 +7512,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cubone,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sCuboneEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_MAROWAK},
+                                {EVO_NONE, 0, SPECIES_MAROWAK_ALOLAN}),
     },
 
 #define MAROWAK_MISC_INFO                                       \
@@ -7623,7 +7641,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tyrogue,
         .frontAnimId = ANIM_BACK_AND_LUNGE,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sTyrogueEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_ATK_LT_DEF, 20, SPECIES_HITMONCHAN},
+                                {EVO_LEVEL_ATK_GT_DEF, 20, SPECIES_HITMONLEE},
+                                {EVO_LEVEL_ATK_GT_DEF, 20, SPECIES_HITMONLEE}),
     },
 
     [SPECIES_HITMONLEE] =
@@ -7818,7 +7838,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Lickitung,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sLickitungEvolutions,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_ROLLOUT, SPECIES_LICKILICKY}),
     },
 
     [SPECIES_LICKILICKY] =
@@ -7918,7 +7938,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Koffing,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
         .backAnimId = BACK_ANIM_GROW,
-        .evolutions = sKoffingEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_WEEZING},
+                                {EVO_NONE, 0, SPECIES_WEEZING_GALARIAN}),
     },
 
 #define WEEZING_MISC_INFO                                           \
@@ -8053,7 +8074,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Rhyhorn,
         .frontAnimId = ANIM_V_SHAKE,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
-        .evolutions = sRhyhornEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_RHYDON}),
     },
 
     [SPECIES_RHYDON] =
@@ -8102,7 +8123,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Rhydon,
         .frontAnimId = ANIM_H_SHAKE,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
-        .evolutions = sRhydonEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_PROTECTOR, SPECIES_RHYPERIOR},
+                                {EVO_ITEM, ITEM_PROTECTOR, SPECIES_RHYPERIOR}),
     },
 
     [SPECIES_RHYPERIOR] =
@@ -8200,7 +8222,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Happiny,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sHappinyEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM_HOLD_DAY, ITEM_OVAL_STONE, SPECIES_CHANSEY},
+                                {EVO_ITEM_DAY, ITEM_OVAL_STONE, SPECIES_CHANSEY}),
     },
 
     [SPECIES_CHANSEY] =
@@ -8250,7 +8273,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Chansey,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sChanseyEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_BLISSEY}),
     },
 
     [SPECIES_BLISSEY] =
@@ -8348,7 +8371,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tangela,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
         .backAnimId = BACK_ANIM_V_STRETCH,
-        .evolutions = sTangelaEvolutions,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_ANCIENT_POWER, SPECIES_TANGROWTH}),
     },
 
     [SPECIES_TANGROWTH] =
@@ -8537,7 +8560,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Horsea,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sHorseaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_SEADRA}),
     },
 
     [SPECIES_SEADRA] =
@@ -8588,7 +8611,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Seadra,
         .frontAnimId = ANIM_V_SLIDE,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
-        .evolutions = sSeadraEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_DRAGON_SCALE, SPECIES_KINGDRA},
+                                {EVO_ITEM, ITEM_DRAGON_SCALE, SPECIES_KINGDRA}),
     },
 
     [SPECIES_KINGDRA] =
@@ -8689,7 +8713,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Goldeen,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
-        .evolutions = sGoldeenEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 33, SPECIES_SEAKING}),
     },
 
     [SPECIES_SEAKING] =
@@ -8789,7 +8813,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Staryu,
         .frontAnimId = ANIM_TWIST_TWICE,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sStaryuEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_WATER_STONE, SPECIES_STARMIE}),
     },
 
     [SPECIES_STARMIE] =
@@ -8892,7 +8916,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_MimeJr,
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMimeJrEvolutions,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_MIMIC, SPECIES_MR_MIME}),
     },
 
 #define MR_MIME_MISC_INFO                                           \
@@ -8985,7 +9009,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_MrMimeGalarian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMrMimeGalarianEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_MR_RIME}),
         MR_MIME_MISC_INFO,
     },
 
@@ -9084,7 +9108,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 10,
         .frontAnimId = ANIM_H_VIBRATE,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sScytherEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_METAL_COAT, SPECIES_SCIZOR},
+                                {EVO_ITEM, ITEM_METAL_COAT, SPECIES_SCIZOR},
+                                {EVO_ITEM, ITEM_BLACK_AUGURITE, SPECIES_KLEAVOR}),
     },
 
 #define SCIZOR_MISC_INFO                                \
@@ -9272,7 +9298,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 40,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sSmoochumEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_JYNX}),
     },
 
     [SPECIES_JYNX] =
@@ -9370,7 +9396,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Elekid,
         .frontAnimId = ANIM_FLASH_YELLOW,
         .backAnimId = BACK_ANIM_H_SHAKE,
-        .evolutions = sElekidEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ELECTABUZZ}),
     },
 
     [SPECIES_ELECTABUZZ] =
@@ -9420,7 +9446,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Electabuzz,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL_SLOW,
         .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
-        .evolutions = sElectabuzzEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_ELECTIRIZER, SPECIES_ELECTIVIRE},
+                                {EVO_ITEM, ITEM_ELECTIRIZER, SPECIES_ELECTIVIRE}),
     },
 
     [SPECIES_ELECTIVIRE] =
@@ -9519,7 +9546,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Magby,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
-        .evolutions = sMagbyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_MAGMAR}),
     },
 
     [SPECIES_MAGMAR] =
@@ -9569,7 +9596,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Magmar,
         .frontAnimId = ANIM_H_SHAKE,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
-        .evolutions = sMagmarEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_MAGMARIZER, SPECIES_MAGMORTAR},
+                                {EVO_ITEM, ITEM_MAGMARIZER, SPECIES_MAGMORTAR}),
     },
 
     [SPECIES_MAGMORTAR] =
@@ -9849,7 +9877,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Magikarp,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
-        .evolutions = sMagikarpEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_GYARADOS}),
     },
 
 #define GYARADOS_MISC_INFO                                  \
@@ -10091,7 +10119,16 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Eevee,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sEeveelutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_JOLTEON},
+                                {EVO_ITEM, ITEM_WATER_STONE, SPECIES_VAPOREON},
+                                {EVO_ITEM, ITEM_FIRE_STONE, SPECIES_FLAREON},
+                                {EVO_FRIENDSHIP_DAY, 0, SPECIES_ESPEON},
+                                {EVO_FRIENDSHIP_NIGHT, 0, SPECIES_UMBREON},
+                                {EVO_SPECIFIC_MAP, MAP_PETALBURG_WOODS, SPECIES_LEAFEON},
+                                {EVO_SPECIFIC_MAP, MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM, SPECIES_GLACEON},
+                                {EVO_ITEM, ITEM_LEAF_STONE, SPECIES_LEAFEON},
+                                {EVO_ITEM, ITEM_ICE_STONE, SPECIES_GLACEON},
+                                {EVO_FRIENDSHIP_MOVE_TYPE, TYPE_FAIRY, SPECIES_SYLVEON}),
     },
 
     [SPECIES_VAPOREON] =
@@ -10524,7 +10561,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Porygon,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_H_VIBRATE,
-        .evolutions = sPorygonEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_UPGRADE, SPECIES_PORYGON2},
+                                {EVO_ITEM, ITEM_UPGRADE, SPECIES_PORYGON2}),
     },
 
     [SPECIES_PORYGON2] =
@@ -10574,7 +10612,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Porygon2,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_H_VIBRATE,
-        .evolutions = sPorygon2Evolutions,
+        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_DUBIOUS_DISC, SPECIES_PORYGON_Z},
+                                {EVO_ITEM, ITEM_DUBIOUS_DISC, SPECIES_PORYGON_Z}),
     },
 
     [SPECIES_PORYGON_Z] =
@@ -10672,7 +10711,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Omanyte,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sOmanyteEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_OMASTAR}),
     },
 
     [SPECIES_OMASTAR] =
@@ -10769,7 +10808,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Kabuto,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sKabutoEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_KABUTOPS}),
     },
 
     [SPECIES_KABUTOPS] =
@@ -11009,7 +11048,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Munchlax,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMunchlaxEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_SNORLAX}),
     },
 
 #define ARTICUNO_MISC_INFO                                              \
@@ -11337,7 +11376,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Dratini,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sDratiniEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_DRAGONAIR}),
     },
 
     [SPECIES_DRAGONAIR] =
@@ -11387,7 +11426,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Dragonair,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sDragonairEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 55, SPECIES_DRAGONITE}),
     },
 
     [SPECIES_DRAGONITE] =
@@ -11668,7 +11707,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Chikorita,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sChikoritaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_BAYLEEF}),
     },
 
     [SPECIES_BAYLEEF] =
@@ -11718,7 +11757,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Bayleef,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sBayleefEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_MEGANIUM}),
     },
 
     [SPECIES_MEGANIUM] =
@@ -11816,7 +11855,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cyndaquil,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sCyndaquilEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 14, SPECIES_QUILAVA}),
     },
 
     [SPECIES_QUILAVA] =
@@ -11866,7 +11905,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Quilava,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sQuilavaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_TYPHLOSION},
+                                {EVO_NONE, 0, SPECIES_TYPHLOSION_HISUIAN}),
     },
 
 #define TYPHLOSION_MISC_INFO                                            \
@@ -12002,7 +12042,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Totodile,
         .frontAnimId = ANIM_H_JUMPS,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sTotodileEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_CROCONAW}),
     },
 
     [SPECIES_CROCONAW] =
@@ -12052,7 +12092,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Croconaw,
         .frontAnimId = ANIM_H_SHAKE,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sCroconawEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_FERALIGATR}),
     },
 
     [SPECIES_FERALIGATR] =
@@ -12151,7 +12191,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Sentret,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sSentretEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_FURRET}),
     },
 
     [SPECIES_FURRET] =
@@ -12248,7 +12288,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Hoothoot,
         .frontAnimId = ANIM_V_SLIDE_SLOW,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
-        .evolutions = sHoothootEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_NOCTOWL}),
     },
 
     [SPECIES_NOCTOWL] =
@@ -12349,7 +12389,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Ledyba,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
-        .evolutions = sLedybaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_LEDIAN}),
     },
 
     [SPECIES_LEDIAN] =
@@ -12447,7 +12487,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Spinarak,
         .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
-        .evolutions = sSpinarakEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_ARIADOS}),
     },
 
     [SPECIES_ARIADOS] =
@@ -12549,7 +12589,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Chinchou,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_V_STRETCH,
-        .evolutions = sChinchouEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 27, SPECIES_LANTURN}),
     },
 
     [SPECIES_LANTURN] =
@@ -12652,7 +12692,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Togepi,
         .frontAnimId = ANIM_V_JUMPS_BIG,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sTogepiEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_TOGETIC}),
     },
 
     [SPECIES_TOGETIC] =
@@ -12701,7 +12741,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Togetic,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
-        .evolutions = sTogeticEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_TOGEKISS}),
     },
 
     [SPECIES_TOGEKISS] =
@@ -12801,7 +12841,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 30,
         .frontAnimId = ANIM_H_JUMPS,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sNatuEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_XATU}),
     },
 
     [SPECIES_XATU] =
@@ -12900,7 +12940,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 50,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sMareepEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_FLAAFFY}),
     },
 
     [SPECIES_FLAAFFY] =
@@ -12949,7 +12989,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Flaaffy,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sFlaaffyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_AMPHAROS}),
     },
 
 #define AMPHAROS_MISC_INFO                                  \
@@ -13095,7 +13135,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Azurill,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
-        .evolutions = sAzurillEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_MARILL}),
     },
 
     [SPECIES_MARILL] =
@@ -13144,7 +13184,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Marill,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sMarillEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_AZUMARILL}),
     },
 
     [SPECIES_AZUMARILL] =
@@ -13293,7 +13333,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Bonsly,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBonslyEvolutions,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_MIMIC, SPECIES_SUDOWOODO}),
     },
 
     [SPECIES_HOPPIP] =
@@ -13343,7 +13383,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Hoppip,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
-        .evolutions = sHoppipEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_SKIPLOOM}),
     },
 
     [SPECIES_SKIPLOOM] =
@@ -13393,7 +13433,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Skiploom,
         .frontAnimId = ANIM_RISING_WOBBLE,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
-        .evolutions = sSkiploomEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 27, SPECIES_JUMPLUFF}),
     },
 
     [SPECIES_JUMPLUFF] =
@@ -13495,7 +13535,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Aipom,
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
-        .evolutions = sAipomEvolutions,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_DOUBLE_HIT, SPECIES_AMBIPOM}),
     },
 
     [SPECIES_AMBIPOM] =
@@ -13592,7 +13632,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Sunkern,
         .frontAnimId = ANIM_H_JUMPS,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sSunkernEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SUN_STONE, SPECIES_SUNFLORA}),
     },
 
     [SPECIES_SUNFLORA] =
@@ -13691,7 +13731,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Yanma,
         .frontAnimId = ANIM_FIGURE_8,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
-        .evolutions = sYanmaEvolutions,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_ANCIENT_POWER, SPECIES_YANMEGA}),
     },
 
     [SPECIES_YANMEGA] =
@@ -13792,7 +13832,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Wooper,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_V_STRETCH,
-        .evolutions = sWooperEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_QUAGSIRE}),
         WOOPER_MISC_INFO
     },
 
@@ -13805,7 +13845,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 110,
         .levelUpLearnset = sWooperLevelUpLearnset,
         .teachableLearnset = sWooperTeachableLearnset,
-        .evolutions = sWooperEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_CLODSIRE}),
         WOOPER_MISC_INFO
     },
 
@@ -13904,7 +13944,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Murkrow,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sMurkrowEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_HONCHKROW}),
     },
 
     [SPECIES_HONCHKROW] =
@@ -14087,7 +14127,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Misdreavus,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_H_VIBRATE,
-        .evolutions = sMisdreavusEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_MISMAGIUS}),
     },
 
     [SPECIES_MISMAGIUS] =
@@ -14557,7 +14597,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 15,
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sWynautEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_WOBBUFFET}),
     },
 
     [SPECIES_GIRAFARIG] =
@@ -14606,7 +14646,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Girafarig,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
-        .evolutions = sGirafarigEvolutions,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_TWIN_BEAM, SPECIES_FARIGIRAF}),
     },
 
     [SPECIES_PINECO] =
@@ -14655,7 +14695,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Pineco,
         .frontAnimId = ANIM_SWING_CONCAVE,
         .backAnimId = BACK_ANIM_H_SHAKE,
-        .evolutions = sPinecoEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 31, SPECIES_FORRETRESS}),
     },
 
     [SPECIES_FORRETRESS] =
@@ -14753,7 +14793,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 10,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sDunsparceEvolutions,
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_DUDUNSPARCE}),
     },
 
     [SPECIES_GLIGAR] =
@@ -14803,7 +14843,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Gligar,
         .frontAnimId = ANIM_SHRINK_GROW,
         .backAnimId = BACK_ANIM_SHRINK_GROW,
-        .evolutions = sGligarEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM_HOLD_NIGHT, ITEM_RAZOR_FANG, SPECIES_GLISCOR},
+                                {EVO_ITEM_NIGHT, ITEM_RAZOR_FANG, SPECIES_GLISCOR}),
     },
 
     [SPECIES_GLISCOR] =
@@ -14907,7 +14948,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Snubbull,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sSnubbullEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 23, SPECIES_GRANBULL}),
     },
 
     [SPECIES_GRANBULL] =
@@ -15037,7 +15078,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_QwilfishHisuian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sQwilfishHisuianEvolutions,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_BARB_BARRAGE, SPECIES_OVERQWIL}),
         QWILFISH_MISC_INFO,
     },
 
@@ -15278,7 +15319,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Sneasel,
         .frontAnimId = ANIM_H_JUMPS,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sSneaselEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM_HOLD_NIGHT, ITEM_RAZOR_CLAW, SPECIES_WEAVILE},
+                                {EVO_ITEM_NIGHT, ITEM_RAZOR_CLAW, SPECIES_WEAVILE}),
         SNEASEL_MISC_INFO,
     },
     [SPECIES_SNEASEL_HISUIAN] =
@@ -15305,7 +15347,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_SneaselHisuian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSneaselHisuianEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM_HOLD_DAY, ITEM_RAZOR_CLAW, SPECIES_SNEASLER},
+                                {EVO_ITEM_DAY, ITEM_RAZOR_CLAW, SPECIES_SNEASLER}),
         SNEASEL_MISC_INFO,
     },
 
@@ -15452,7 +15495,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Teddiursa,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sTeddiursaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_URSARING}),
     },
 
     [SPECIES_URSARING] =
@@ -15501,7 +15544,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Ursaring,
         .frontAnimId = ANIM_H_SHAKE,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sUrsaringEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM_NIGHT, ITEM_PEAT_BLOCK, SPECIES_URSALUNA}),
     },
 
     [SPECIES_URSALUNA] =
@@ -15598,7 +15641,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Slugma,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
-        .evolutions = sSlugmaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_MAGCARGO}),
     },
 
     [SPECIES_MAGCARGO] =
@@ -15700,7 +15743,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Swinub,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
-        .evolutions = sSwinubEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 33, SPECIES_PILOSWINE}),
     },
 
     [SPECIES_PILOSWINE] =
@@ -15750,7 +15793,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Piloswine,
         .frontAnimId = ANIM_H_SHAKE,
         .backAnimId = BACK_ANIM_H_SHAKE,
-        .evolutions = sPiloswineEvolutions,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_ANCIENT_POWER, SPECIES_MAMOSWINE}),
     },
 
     [SPECIES_MAMOSWINE] =
@@ -15896,7 +15939,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_CorsolaGalarian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCorsolaGalarianEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_CURSOLA}),
         CORSOLA_MISC_INFO,
     },
 
@@ -15994,7 +16037,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Remoraid,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sRemoraidEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_OCTILLERY}),
     },
 
     [SPECIES_OCTILLERY] =
@@ -16141,7 +16184,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Mantyke,
         .frontAnimId = ANIM_TWIST_TWICE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMantykeEvolutions,
+        .evolutions = EVOLUTION({EVO_SPECIFIC_MON_IN_PARTY, SPECIES_REMORAID, SPECIES_MANTINE}),
     },
 
     [SPECIES_MANTINE] =
@@ -16292,7 +16335,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Houndour,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sHoundourEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_HOUNDOOM}),
     },
 
 #define HOUNDOOM_MISC_INFO                                  \
@@ -16430,7 +16473,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Phanpy,
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sPhanpyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_DONPHAN}),
     },
 
     [SPECIES_DONPHAN] =
@@ -16528,7 +16571,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Stantler,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sStantlerEvolutions,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_PSYSHIELD_BASH, SPECIES_WYRDEER}),
     },
 
     [SPECIES_WYRDEER] =
@@ -16883,7 +16926,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Larvitar,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
-        .evolutions = sLarvitarEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_PUPITAR}),
     },
 
     [SPECIES_PUPITAR] =
@@ -16932,7 +16975,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Pupitar,
         .frontAnimId = ANIM_H_SHAKE,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sPupitarEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 55, SPECIES_TYRANITAR}),
     },
 
 #define TYRANITAR_MISC_INFO                                     \
@@ -17226,7 +17269,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Treecko,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
-        .evolutions = sTreeckoEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_GROVYLE}),
     },
 
     [SPECIES_GROVYLE] =
@@ -17275,7 +17318,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Grovyle,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sGrovyleEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SCEPTILE}),
     },
 
 #define SCEPTILE_MISC_INFO                                  \
@@ -17410,7 +17453,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Torchic,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sTorchicEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_COMBUSKEN}),
     },
 
     [SPECIES_COMBUSKEN] =
@@ -17460,7 +17503,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Combusken,
         .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
-        .evolutions = sCombuskenEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_BLAZIKEN}),
     },
 
 #define BLAZIKEN_MISC_INFO                                  \
@@ -17592,7 +17635,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Mudkip,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sMudkipEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_MARSHTOMP}),
     },
 
     [SPECIES_MARSHTOMP] =
@@ -17641,7 +17684,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Marshtomp,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sMarshtompEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SWAMPERT}),
     },
 
 #define SWAMPERT_MISC_INFO                                      \
@@ -17775,7 +17818,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Poochyena,
         .frontAnimId = ANIM_V_SHAKE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sPoochyenaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_MIGHTYENA}),
     },
 
     [SPECIES_MIGHTYENA] =
@@ -17876,7 +17919,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Zigzagoon,
         .frontAnimId = ANIM_H_SLIDE,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sZigzagoonEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_LINOONE}),
         ZIGZAGOON_MISC_INFO,
     },
     [SPECIES_ZIGZAGOON_GALARIAN] =
@@ -17901,7 +17944,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_ZigzagoonGalarian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sZigzagoonGalarianEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_LINOONE_GALARIAN}),
         ZIGZAGOON_MISC_INFO,
     },
 
@@ -17978,7 +18021,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_LinooneGalarian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sLinooneGalarianEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 35, SPECIES_OBSTAGOON}),
         LINOONE_MISC_INFO,
     },
 
@@ -18078,7 +18121,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Wurmple,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_V_STRETCH,
-        .evolutions = sWurmpleEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_SILCOON, 7, SPECIES_SILCOON},
+                                {EVO_LEVEL_CASCOON, 7, SPECIES_CASCOON}),
     },
 
     [SPECIES_SILCOON] =
@@ -18127,7 +18171,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Silcoon,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_H_SHAKE,
-        .evolutions = sSilcoonEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_BEAUTIFLY}),
     },
 
     [SPECIES_BEAUTIFLY] =
@@ -18230,7 +18274,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cascoon,
         .frontAnimId = ANIM_V_SLIDE,
         .backAnimId = BACK_ANIM_H_SHAKE,
-        .evolutions = sCascoonEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_DUSTOX}),
     },
 
     [SPECIES_DUSTOX] =
@@ -18330,7 +18374,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Lotad,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sLotadEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 14, SPECIES_LOMBRE}),
     },
 
     [SPECIES_LOMBRE] =
@@ -18380,7 +18424,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Lombre,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
-        .evolutions = sLombreEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_WATER_STONE, SPECIES_LUDICOLO}),
     },
 
     [SPECIES_LUDICOLO] =
@@ -18479,7 +18523,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Seedot,
         .frontAnimId = ANIM_V_JUMPS_H_JUMPS,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sSeedotEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 14, SPECIES_NUZLEAF}),
     },
 
     [SPECIES_NUZLEAF] =
@@ -18529,7 +18573,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Nuzleaf,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sNuzleafEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_LEAF_STONE, SPECIES_SHIFTRY}),
     },
 
     [SPECIES_SHIFTRY] =
@@ -18627,7 +18671,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Taillow,
         .frontAnimId = ANIM_V_JUMPS_BIG,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .evolutions = sTaillowEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_SWELLOW}),
     },
 
     [SPECIES_SWELLOW] =
@@ -18730,7 +18774,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Wingull,
         .frontAnimId = ANIM_H_PIVOT,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
-        .evolutions = sWingullEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_PELIPPER}),
     },
 
     [SPECIES_PELIPPER] =
@@ -18845,7 +18889,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Ralts,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
-        .evolutions = sRaltsEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_KIRLIA}),
     },
 
     [SPECIES_KIRLIA] =
@@ -18894,7 +18938,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Kirlia,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
-        .evolutions = sKirliaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GARDEVOIR},
+                                {EVO_ITEM_MALE, ITEM_DAWN_STONE, SPECIES_GALLADE}),
     },
 
 #define GARDEVOIR_MISC_INFO                                 \
@@ -19115,7 +19160,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Surskit,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_H_SPRING,
-        .evolutions = sSurskitEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_MASQUERAIN}),
     },
 
     [SPECIES_MASQUERAIN] =
@@ -19222,7 +19267,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Shroomish,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sShroomishEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 23, SPECIES_BRELOOM}),
     },
 
     [SPECIES_BRELOOM] =
@@ -19321,7 +19366,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Slakoth,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_H_SLIDE,
-        .evolutions = sSlakothEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_VIGOROTH}),
     },
 
     [SPECIES_VIGOROTH] =
@@ -19370,7 +19415,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Vigoroth,
         .frontAnimId = ANIM_H_JUMPS,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
-        .evolutions = sVigorothEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SLAKING}),
     },
 
     [SPECIES_SLAKING] =
@@ -19468,7 +19513,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Nincada,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
-        .evolutions = sNincadaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_NINJASK, 20, SPECIES_NINJASK},
+                                {EVO_LEVEL_SHEDINJA, 20, SPECIES_SHEDINJA}),
     },
 
     [SPECIES_NINJASK] =
@@ -19615,7 +19661,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Whismur,
         .frontAnimId = ANIM_H_SLIDE,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sWhismurEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_LOUDRED}),
     },
 
     [SPECIES_LOUDRED] =
@@ -19664,7 +19710,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Loudred,
         .frontAnimId = ANIM_SHRINK_GROW,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sLoudredEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_EXPLOUD}),
     },
 
     [SPECIES_EXPLOUD] =
@@ -19766,7 +19812,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Makuhita,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
-        .evolutions = sMakuhitaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_HARIYAMA}),
     },
 
     [SPECIES_HARIYAMA] =
@@ -19865,7 +19911,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Nosepass,
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
-        .evolutions = sNosepassEvolutions,
+        .evolutions = EVOLUTION({EVO_MAPSEC, MAPSEC_NEW_MAUVILLE, SPECIES_PROBOPASS},
+                                {EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_PROBOPASS}),
     },
 
     [SPECIES_PROBOPASS] =
@@ -19965,7 +20012,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Skitty,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sSkittyEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MOON_STONE, SPECIES_DELCATTY}),
     },
 
     [SPECIES_DELCATTY] =
@@ -20252,7 +20299,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Aron,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sAronEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_LAIRON}),
     },
 
     [SPECIES_LAIRON] =
@@ -20302,7 +20349,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Lairon,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sLaironEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_AGGRON}),
     },
 
 #define AGGRON_MISC_INFO                                        \
@@ -20441,7 +20488,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Meditite,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
-        .evolutions = sMedititeEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_MEDICHAM}),
     },
 
 #define MEDICHAM_MISC_INFO                                          \
@@ -20573,7 +20620,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Electrike,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sElectrikeEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_MANECTRIC}),
     },
 
 #define MANECTRIC_MISC_INFO                                 \
@@ -20918,7 +20965,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Budew,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBudewEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_ROSELIA}),
     },
 
     [SPECIES_ROSELIA] =
@@ -20968,7 +21015,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Roselia,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
-        .evolutions = sRoseliaEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_ROSERADE}),
     },
 
     [SPECIES_ROSERADE] =
@@ -21072,7 +21119,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Gulpin,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_V_STRETCH,
-        .evolutions = sGulpinEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_SWALOT}),
     },
 
     [SPECIES_SWALOT] =
@@ -21172,7 +21219,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Carvanha,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW,
         .backAnimId = BACK_ANIM_H_SPRING_REPEATED,
-        .evolutions = sCarvanhaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_SHARPEDO}),
     },
 
 #define SHARPEDO_MISC_INFO                                      \
@@ -21312,7 +21359,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Wailmer,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
         .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
-        .evolutions = sWailmerEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_WAILORD}),
     },
 
     [SPECIES_WAILORD] =
@@ -21410,7 +21457,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Numel,
         .frontAnimId = ANIM_V_SLIDE,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
-        .evolutions = sNumelEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 33, SPECIES_CAMERUPT}),
     },
 
 #define CAMERUPT_MISC_INFO                                  \
@@ -21598,7 +21645,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Spoink,
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH_TWICE,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_LARGE,
-        .evolutions = sSpoinkEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_GRUMPIG}),
     },
 
     [SPECIES_GRUMPIG] =
@@ -21751,7 +21798,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Trapinch,
         .frontAnimId = ANIM_V_SHAKE,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sTrapinchEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_VIBRAVA}),
     },
 
     [SPECIES_VIBRAVA] =
@@ -21801,7 +21848,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Vibrava,
         .frontAnimId = ANIM_H_SHAKE,
         .backAnimId = BACK_ANIM_H_VIBRATE,
-        .evolutions = sVibravaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 45, SPECIES_FLYGON}),
     },
 
     [SPECIES_FLYGON] =
@@ -21901,7 +21948,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cacnea,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW,
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
-        .evolutions = sCacneaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_CACTURNE}),
     },
 
     [SPECIES_CACTURNE] =
@@ -22000,7 +22047,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Swablu,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
-        .evolutions = sSwabluEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_ALTARIA}),
     },
 
 #define ALTARIA_MISC_INFO                                   \
@@ -22349,7 +22396,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Barboach,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW,
         .backAnimId = BACK_ANIM_V_STRETCH,
-        .evolutions = sBarboachEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_WHISCASH}),
     },
 
     [SPECIES_WHISCASH] =
@@ -22446,7 +22493,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Corphish,
         .frontAnimId = ANIM_V_SHAKE,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sCorphishEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_CRAWDAUNT}),
     },
 
     [SPECIES_CRAWDAUNT] =
@@ -22545,7 +22592,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Baltoy,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sBaltoyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_CLAYDOL}),
     },
 
     [SPECIES_CLAYDOL] =
@@ -22645,7 +22692,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Lileep,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_H_STRETCH,
-        .evolutions = sLileepEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_CRADILY}),
     },
 
     [SPECIES_CRADILY] =
@@ -22743,7 +22790,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Anorith,
         .frontAnimId = ANIM_TWIST,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sAnorithEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_ARMALDO}),
     },
 
     [SPECIES_ARMALDO] =
@@ -22840,7 +22887,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Feebas,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW,
         .backAnimId = BACK_ANIM_H_SPRING,
-        .evolutions = sFeebasEvolutions,
+        .evolutions = EVOLUTION({EVO_BEAUTY, 170, SPECIES_MILOTIC},
+                                {EVO_TRADE_ITEM, ITEM_PRISM_SCALE, SPECIES_MILOTIC},
+                                {EVO_TRADE_ITEM, ITEM_PRISM_SCALE, SPECIES_MILOTIC}),
     },
 
     [SPECIES_MILOTIC] =
@@ -23103,7 +23152,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Shuppet,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_H_VIBRATE,
-        .evolutions = sShuppetEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_BANETTE}),
     },
 
 #define BANETTE_MISC_INFO                                           \
@@ -23246,7 +23295,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Duskull,
         .frontAnimId = ANIM_ZIGZAG_FAST,
         .backAnimId = BACK_ANIM_H_VIBRATE,
-        .evolutions = sDuskullEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_DUSCLOPS}),
     },
 
     [SPECIES_DUSCLOPS] =
@@ -23298,7 +23347,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 30,
         .frontAnimId = ANIM_H_VIBRATE,
         .backAnimId = BACK_ANIM_H_VIBRATE,
-        .evolutions = sDusclopsEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_REAPER_CLOTH, SPECIES_DUSKNOIR},
+                                {EVO_ITEM, ITEM_REAPER_CLOTH, SPECIES_DUSKNOIR}),
     },
 
     [SPECIES_DUSKNOIR] =
@@ -23447,7 +23497,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Chingling,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sChinglingEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP_NIGHT, 0, SPECIES_CHIMECHO}),
     },
 
     [SPECIES_CHIMECHO] =
@@ -23641,7 +23691,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 20,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sSnoruntEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_GLALIE},
+                                {EVO_ITEM_FEMALE, ITEM_DAWN_STONE, SPECIES_FROSLASS}),
     },
 
 #define GLALIE_MISC_INFO                                    \
@@ -23830,7 +23881,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimDelay = 15,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sSphealEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_SEALEO}),
     },
 
     [SPECIES_SEALEO] =
@@ -23879,7 +23930,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Sealeo,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sSealeoEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 44, SPECIES_WALREIN}),
     },
 
     [SPECIES_WALREIN] =
@@ -23978,7 +24029,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Clamperl,
         .frontAnimId = ANIM_TWIST,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
-        .evolutions = sClamperlEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_DEEP_SEA_TOOTH, SPECIES_HUNTAIL},
+                                {EVO_ITEM, ITEM_DEEP_SEA_TOOTH, SPECIES_HUNTAIL},
+                                {EVO_TRADE_ITEM, ITEM_DEEP_SEA_SCALE, SPECIES_GOREBYSS},
+                                {EVO_ITEM, ITEM_DEEP_SEA_SCALE, SPECIES_GOREBYSS}),
     },
 
     [SPECIES_HUNTAIL] =
@@ -24226,7 +24280,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Bagon,
         .frontAnimId = ANIM_H_SHAKE,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sBagonEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_SHELGON}),
     },
 
     [SPECIES_SHELGON] =
@@ -24276,7 +24330,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Shelgon,
         .frontAnimId = ANIM_V_SLIDE,
         .backAnimId = BACK_ANIM_V_SHAKE,
-        .evolutions = sShelgonEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 50, SPECIES_SALAMENCE}),
     },
 
 #define SALAMENCE_MISC_INFO                                 \
@@ -24418,7 +24472,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Beldum,
         .frontAnimId = ANIM_H_SHAKE,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
-        .evolutions = sBeldumEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_METANG}),
     },
 
     [SPECIES_METANG] =
@@ -24468,7 +24522,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Metang,
         .frontAnimId = ANIM_V_SLIDE,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
-        .evolutions = sMetangEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 45, SPECIES_METAGROSS}),
     },
 
 #define METAGROSS_MISC_INFO                                     \
@@ -25549,7 +25603,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Turtwig,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sTurtwigEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_GROTLE}),
     },
 
     [SPECIES_GROTLE] =
@@ -25599,7 +25653,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Grotle,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGrotleEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_TORTERRA}),
     },
 
     [SPECIES_TORTERRA] =
@@ -25697,7 +25751,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Chimchar,
         .frontAnimId = ANIM_V_JUMPS_BIG,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sChimcharEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 14, SPECIES_MONFERNO}),
     },
 
     [SPECIES_MONFERNO] =
@@ -25747,7 +25801,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Monferno,
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMonfernoEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_INFERNAPE}),
     },
 
     [SPECIES_INFERNAPE] =
@@ -25846,7 +25900,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Piplup,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPiplupEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_PRINPLUP}),
     },
 
     [SPECIES_PRINPLUP] =
@@ -25895,7 +25949,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Prinplup,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPrinplupEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_EMPOLEON}),
     },
 
     [SPECIES_EMPOLEON] =
@@ -25994,7 +26048,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Starly,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sStarlyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 14, SPECIES_STARAVIA}),
     },
 
     [SPECIES_STARAVIA] =
@@ -26045,7 +26099,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Staravia,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sStaraviaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_STARAPTOR}),
     },
 
     [SPECIES_STARAPTOR] =
@@ -26149,7 +26203,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Bidoof,
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBidoofEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_BIBAREL}),
     },
 
     [SPECIES_BIBAREL] =
@@ -26249,7 +26303,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Kricketot,
         .frontAnimId = ANIM_H_JUMPS,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sKricketotEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_KRICKETUNE}),
     },
 
     [SPECIES_KRICKETUNE] =
@@ -26351,7 +26405,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Shinx,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sShinxEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_LUXIO}),
     },
 
     [SPECIES_LUXIO] =
@@ -26400,7 +26454,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Luxio,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sLuxioEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_LUXRAY}),
     },
 
     [SPECIES_LUXRAY] =
@@ -26497,7 +26551,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cranidos,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCranidosEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_RAMPARDOS}),
     },
 
     [SPECIES_RAMPARDOS] =
@@ -26594,7 +26648,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Shieldon,
         .frontAnimId = ANIM_V_SHAKE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sShieldonEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_BASTIODON}),
     },
 
     [SPECIES_BASTIODON] =
@@ -26693,7 +26747,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_BurmyPlantCloak,
         .iconSprite = gMonIcon_BurmyPlantCloak,
         .iconPalIndex = 1,
-        .evolutions = sBurmyPlantCloakEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_PLANT_CLOAK},
+                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM}),
         BURMY_MISC_INFO,
     },
 
@@ -26712,7 +26767,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_BurmySandyCloak,
         .iconSprite = gMonIcon_BurmySandyCloak,
         .iconPalIndex = 1,
-        .evolutions = sBurmySandyCloakEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_SANDY_CLOAK},
+                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM}),
         BURMY_MISC_INFO,
     },
 
@@ -26731,7 +26787,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_BurmyTrashCloak,
         .iconSprite = gMonIcon_BurmyTrashCloak,
         .iconPalIndex = 0,
-        .evolutions = sBurmyTrashCloakEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 20, SPECIES_WORMADAM_TRASH_CLOAK},
+                                {EVO_LEVEL_MALE, 20, SPECIES_MOTHIM}),
         BURMY_MISC_INFO,
     },
 
@@ -26944,7 +27001,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Combee,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCombeeEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 21, SPECIES_VESPIQUEN}),
     },
 
     [SPECIES_VESPIQUEN] =
@@ -27092,7 +27149,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Buizel,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBuizelEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_FLOATZEL}),
     },
 
     [SPECIES_FLOATZEL] =
@@ -27190,7 +27247,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cherubi,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCherubiEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_CHERRIM_OVERCAST}),
     },
 
 #define CHERRIM_MISC_INFO                                   \
@@ -27312,7 +27369,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_ShellosWestSea,
         .iconSprite = gMonIcon_ShellosWestSea,
         .iconPalIndex = 0,
-        .evolutions = sShellosWestSeaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GASTRODON_WEST_SEA}),
         SHELLOS_MISC_INFO,
     },
 
@@ -27331,7 +27388,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_ShellosEastSea,
         .iconSprite = gMonIcon_ShellosEastSea,
         .iconPalIndex = 0,
-        .evolutions = sShellosEastSeaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GASTRODON_EAST_SEA}),
         SHELLOS_MISC_INFO,
     },
 
@@ -27451,7 +27508,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Drifloon,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDrifloonEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_DRIFBLIM}),
     },
 
     [SPECIES_DRIFBLIM] =
@@ -27549,7 +27606,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Buneary,
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBunearyEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LOPUNNY}),
     },
 
 #define LOPUNNY_MISC_INFO                                       \
@@ -27688,7 +27745,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Glameow,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGlameowEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_PURUGLY}),
     },
 
     [SPECIES_PURUGLY] =
@@ -27785,7 +27842,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Stunky,
         .frontAnimId = ANIM_TIP_MOVE_FORWARD,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sStunkyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_SKUNTANK}),
     },
 
     [SPECIES_SKUNTANK] =
@@ -27883,7 +27940,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Bronzor,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBronzorEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 33, SPECIES_BRONZONG}),
     },
 
     [SPECIES_BRONZONG] =
@@ -28081,7 +28138,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Gible,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGibleEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_GABITE}),
     },
 
     [SPECIES_GABITE] =
@@ -28130,7 +28187,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Gabite,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGabiteEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 48, SPECIES_GARCHOMP}),
     },
 
 #define GARCHOMP_MISC_INFO                                  \
@@ -28262,7 +28319,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Riolu,
         .frontAnimId = ANIM_RAPID_H_HOPS,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sRioluEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP_DAY, 0, SPECIES_LUCARIO}),
     },
 
 #define LUCARIO_MISC_INFO                                       \
@@ -28407,7 +28464,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Hippopotas,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sHippopotasEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_HIPPOWDON}),
     },
 
     [SPECIES_HIPPOWDON] =
@@ -28511,7 +28568,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Skorupi,
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSkorupiEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_DRAPION}),
     },
 
     [SPECIES_DRAPION] =
@@ -28610,7 +28667,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Croagunk,
         .frontAnimId = ANIM_RAPID_H_HOPS,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCroagunkEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_TOXICROAK}),
     },
 
     [SPECIES_TOXICROAK] =
@@ -28756,7 +28813,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Finneon,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sFinneonEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 31, SPECIES_LUMINEON}),
     },
 
     [SPECIES_LUMINEON] =
@@ -28854,7 +28911,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Snover,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSnoverEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_ABOMASNOW}),
     },
 
 #define ABOMASNOW_MISC_INFO                                 \
@@ -30006,7 +30063,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Snivy,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSnivyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 17, SPECIES_SERVINE}),
     },
 
     [SPECIES_SERVINE] =
@@ -30055,7 +30112,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Servine,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sServineEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SERPERIOR}),
     },
 
     [SPECIES_SERPERIOR] =
@@ -30152,7 +30209,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tepig,
         .frontAnimId = ANIM_H_SLIDE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sTepigEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 17, SPECIES_PIGNITE}),
     },
 
     [SPECIES_PIGNITE] =
@@ -30201,7 +30258,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Pignite,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPigniteEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_EMBOAR}),
     },
 
     [SPECIES_EMBOAR] =
@@ -30298,7 +30355,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Oshawott,
         .frontAnimId = ANIM_H_JUMPS,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sOshawottEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 17, SPECIES_DEWOTT}),
     },
 
     [SPECIES_DEWOTT] =
@@ -30347,7 +30404,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Dewott,
         .frontAnimId = ANIM_H_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDewottEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SAMUROTT},
+                                {EVO_NONE, 0, SPECIES_SAMUROTT_HISUIAN}),
     },
 
 #define SAMUROTT_MISC_INFO                                                  \
@@ -30475,7 +30533,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Patrat,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPatratEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_WATCHOG}),
     },
 
     [SPECIES_WATCHOG] =
@@ -30572,7 +30630,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Lillipup,
         .frontAnimId = ANIM_H_JUMPS,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sLillipupEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_HERDIER}),
     },
 
     [SPECIES_HERDIER] =
@@ -30621,7 +30679,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Herdier,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sHerdierEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_STOUTLAND}),
     },
 
     [SPECIES_STOUTLAND] =
@@ -30722,7 +30780,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Purrloin,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPurrloinEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_LIEPARD}),
     },
 
     [SPECIES_LIEPARD] =
@@ -30819,7 +30877,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Pansage,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPansageEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_LEAF_STONE, SPECIES_SIMISAGE}),
     },
 
     [SPECIES_SIMISAGE] =
@@ -30916,7 +30974,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Pansear,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPansearEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_SIMISEAR}),
     },
 
     [SPECIES_SIMISEAR] =
@@ -31013,7 +31071,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Panpour,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPanpourEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_WATER_STONE, SPECIES_SIMIPOUR}),
     },
 
     [SPECIES_SIMIPOUR] =
@@ -31111,7 +31169,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Munna,
         .frontAnimId = ANIM_RISING_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMunnaEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MOON_STONE, SPECIES_MUSHARNA}),
     },
 
     [SPECIES_MUSHARNA] =
@@ -31209,7 +31267,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Pidove,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPidoveEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 21, SPECIES_TRANQUILL}),
     },
 
     [SPECIES_TRANQUILL] =
@@ -31258,7 +31316,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tranquill,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sTranquillEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_UNFEZANT}),
     },
 
     [SPECIES_UNFEZANT] =
@@ -31364,7 +31422,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Blitzle,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBlitzleEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 27, SPECIES_ZEBSTRIKA}),
     },
 
     [SPECIES_ZEBSTRIKA] =
@@ -31463,7 +31521,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Roggenrola,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sRoggenrolaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_BOLDORE}),
     },
 
     [SPECIES_BOLDORE] =
@@ -31515,7 +31573,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Boldore,
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBoldoreEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GIGALITH},
+                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GIGALITH}),
     },
 
     [SPECIES_GIGALITH] =
@@ -31623,7 +31682,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Woobat,
         .frontAnimId = ANIM_FOUR_PETAL,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sWoobatEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_SWOOBAT}),
     },
 
     [SPECIES_SWOOBAT] =
@@ -31721,7 +31780,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Drilbur,
         .frontAnimId = ANIM_SWING_CONCAVE_FAST_SHORT,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDrilburEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 31, SPECIES_EXCADRILL}),
     },
 
     [SPECIES_EXCADRILL] =
@@ -31911,7 +31970,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Timburr,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sTimburrEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_GURDURR}),
     },
 
     [SPECIES_GURDURR] =
@@ -31960,7 +32019,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Gurdurr,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGurdurrEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_CONKELDURR},
+                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_CONKELDURR}),
     },
 
     [SPECIES_CONKELDURR] =
@@ -32057,7 +32117,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tympole,
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sTympoleEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_PALPITOAD}),
     },
 
     [SPECIES_PALPITOAD] =
@@ -32106,7 +32166,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Palpitoad,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPalpitoadEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SEISMITOAD}),
     },
 
     [SPECIES_SEISMITOAD] =
@@ -32306,7 +32366,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Sewaddle,
         .frontAnimId = ANIM_CIRCLE_INTO_BG,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSewaddleEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_SWADLOON}),
     },
 
     [SPECIES_SWADLOON] =
@@ -32356,7 +32416,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Swadloon,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSwadloonEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LEAVANNY}),
     },
 
     [SPECIES_LEAVANNY] =
@@ -32463,7 +32523,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Venipede,
         .frontAnimId = ANIM_H_SLIDE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sVenipedeEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_WHIRLIPEDE}),
     },
 
     [SPECIES_WHIRLIPEDE] =
@@ -32517,7 +32577,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Whirlipede,
         .frontAnimId = ANIM_TIP_MOVE_FORWARD,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sWhirlipedeEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_SCOLIPEDE}),
     },
 
     [SPECIES_SCOLIPEDE] =
@@ -32630,7 +32690,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cottonee,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCottoneeEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SUN_STONE, SPECIES_WHIMSICOTT}),
     },
 
     [SPECIES_WHIMSICOTT] =
@@ -32730,7 +32790,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Petilil,
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPetililEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SUN_STONE, SPECIES_LILLIGANT},
+                                {EVO_NONE, 0, SPECIES_LILLIGANT_HISUIAN}),
     },
 
 #define LILLIGANT_MISC_INFO                                 \
@@ -32912,7 +32973,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_BasculinWhiteStriped,
         .iconSprite = gMonIcon_BasculinWhiteStriped,
         .iconPalIndex = 0,
-        .evolutions = sBasculinWhiteStripedEvolutions,
+        .evolutions = EVOLUTION({EVO_RECOIL_DMG_MALE, 294, SPECIES_BASCULEGION_MALE},
+                                {EVO_RECOIL_DMG_FEMALE, 294, SPECIES_BASCULEGION_FEMALE}),
         BASCULIN_MISC_INFO,
     },
 
@@ -33032,7 +33094,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Sandile,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSandileEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 29, SPECIES_KROKOROK}),
     },
 
     [SPECIES_KROKOROK] =
@@ -33082,7 +33144,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Krokorok,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sKrokorokEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_KROOKODILE}),
     },
 
     [SPECIES_KROOKODILE] =
@@ -33186,7 +33248,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Darumaka,
         .frontAnimId = ANIM_SWING_CONCAVE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDarumakaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_DARMANITAN_STANDARD_MODE}),
         DARUMAKA_MISC_INFO,
     },
     [SPECIES_DARUMAKA_GALARIAN] =
@@ -33216,7 +33278,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_DarumakaGalarian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDarumakaGalarianEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE}),
         DARUMAKA_MISC_INFO,
     },
 
@@ -33469,7 +33531,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Dwebble,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDwebbleEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_CRUSTLE}),
     },
 
     [SPECIES_CRUSTLE] =
@@ -33572,7 +33634,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Scraggy,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sScraggyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 39, SPECIES_SCRAFTY}),
     },
 
     [SPECIES_SCRAFTY] =
@@ -33724,7 +33786,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Yamask,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sYamaskEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_COFAGRIGUS}),
         YAMASK_MISC_INFO,
     },
     [SPECIES_YAMASK_GALARIAN] =
@@ -33755,7 +33817,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_YamaskGalarian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sYamaskGalarianEvolutions,
+        .evolutions = EVOLUTION({EVO_SCRIPT_TRIGGER_DMG, 49, SPECIES_RUNERIGUS}),
         YAMASK_MISC_INFO,
     },
 
@@ -33903,7 +33965,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tirtouga,
         .frontAnimId = ANIM_RISING_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sTirtougaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_CARRACOSTA}),
     },
 
     [SPECIES_CARRACOSTA] =
@@ -34000,7 +34062,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Archen,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sArchenEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_ARCHEOPS}),
     },
 
     [SPECIES_ARCHEOPS] =
@@ -34099,7 +34161,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Trubbish,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sTrubbishEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_GARBODOR}),
     },
 
     [SPECIES_GARBODOR] =
@@ -34200,7 +34262,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Zorua,
         .frontAnimId = ANIM_CIRCULAR_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sZoruaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ZOROARK}),
         ZORUA_MISC_INFO,
     },
     [SPECIES_ZORUA_HISUIAN] =
@@ -34230,7 +34292,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_ZoruaHisuian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sZoruaHisuianEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ZOROARK_HISUIAN}),
         ZORUA_MISC_INFO,
     },
 
@@ -34362,7 +34424,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Minccino,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMinccinoEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_CINCCINO}),
     },
 
     [SPECIES_CINCCINO] =
@@ -34459,7 +34521,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Gothita,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGothitaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_GOTHORITA}),
     },
 
     [SPECIES_GOTHORITA] =
@@ -34508,7 +34570,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Gothorita,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGothoritaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 41, SPECIES_GOTHITELLE}),
     },
 
     [SPECIES_GOTHITELLE] =
@@ -34606,7 +34668,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Solosis,
         .frontAnimId = ANIM_TWIST,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSolosisEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_DUOSION}),
     },
 
     [SPECIES_DUOSION] =
@@ -34656,7 +34718,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Duosion,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDuosionEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 41, SPECIES_REUNICLUS}),
     },
 
     [SPECIES_REUNICLUS] =
@@ -34754,7 +34816,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Ducklett,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDucklettEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_SWANNA}),
     },
 
     [SPECIES_SWANNA] =
@@ -34852,7 +34914,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Vanillite,
         .frontAnimId = ANIM_H_SLIDE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sVanilliteEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_VANILLISH}),
     },
 
     [SPECIES_VANILLISH] =
@@ -34902,7 +34964,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Vanillish,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sVanillishEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 47, SPECIES_VANILLUXE}),
     },
 
     [SPECIES_VANILLUXE] =
@@ -34954,7 +35016,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_NONE,
     },
 
-#define DEERLING_SPECIES_INFO(form, color)                                              \
+#define DEERLING_SPECIES_INFO(form, FORM, color)                                        \
     {                                                                                   \
         .baseHP        = 60,                                                            \
         .baseAttack    = 60,                                                            \
@@ -34999,13 +35061,13 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Deerling,                                             \
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,                                        \
         .backAnimId = BACK_ANIM_NONE,                                                   \
-        .evolutions = sDeerling##form##Evolutions,                                      \
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_SAWSBUCK_##FORM}),              \
     }
 
-    [SPECIES_DEERLING_SPRING] = DEERLING_SPECIES_INFO(Spring, BODY_COLOR_PINK),
-    [SPECIES_DEERLING_SUMMER] = DEERLING_SPECIES_INFO(Summer, BODY_COLOR_GREEN),
-    [SPECIES_DEERLING_AUTUMN] = DEERLING_SPECIES_INFO(Autumn, BODY_COLOR_RED),
-    [SPECIES_DEERLING_WINTER] = DEERLING_SPECIES_INFO(Winter, BODY_COLOR_BROWN),
+    [SPECIES_DEERLING_SPRING] = DEERLING_SPECIES_INFO(Spring, SPRING, BODY_COLOR_PINK),
+    [SPECIES_DEERLING_SUMMER] = DEERLING_SPECIES_INFO(Summer, SUMMER, BODY_COLOR_GREEN),
+    [SPECIES_DEERLING_AUTUMN] = DEERLING_SPECIES_INFO(Autumn, AUTUMN, BODY_COLOR_RED),
+    [SPECIES_DEERLING_WINTER] = DEERLING_SPECIES_INFO(Winter, WINTER, BODY_COLOR_BROWN),
 
 #define SAWSBUCK_SPECIES_INFO(form, frontSpriteWidth, backSpriteWidth)                  \
     {                                                                                   \
@@ -35153,7 +35215,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Karrablast,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sKarrablastEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE_SPECIFIC_MON, SPECIES_SHELMET, SPECIES_ESCAVALIER}),
     },
 
     [SPECIES_ESCAVALIER] =
@@ -35252,7 +35314,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Foongus,
         .frontAnimId = ANIM_SWING_CONCAVE_FAST,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sFoongusEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 39, SPECIES_AMOONGUSS}),
     },
 
     [SPECIES_AMOONGUSS] =
@@ -35357,7 +35419,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Frillish,
         .frontAnimId = ANIM_RISING_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sFrillishEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_JELLICENT}),
     },
 
     [SPECIES_JELLICENT] =
@@ -35508,7 +35570,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Joltik,
         .frontAnimId = ANIM_H_SLIDE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sJoltikEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_GALVANTULA}),
     },
 
     [SPECIES_GALVANTULA] =
@@ -35606,7 +35668,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Ferroseed,
         .frontAnimId = ANIM_H_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sFerroseedEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_FERROTHORN}),
     },
 
     [SPECIES_FERROTHORN] =
@@ -35704,7 +35766,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Klink,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sKlinkEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_KLANG}),
     },
 
     [SPECIES_KLANG] =
@@ -35753,7 +35815,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Klang,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sKlangEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 49, SPECIES_KLINKLANG}),
     },
 
     [SPECIES_KLINKLANG] =
@@ -35851,7 +35913,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tynamo,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sTynamoEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 39, SPECIES_EELEKTRIK}),
     },
 
     [SPECIES_EELEKTRIK] =
@@ -35901,7 +35963,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Eelektrik,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sEelektrikEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_EELEKTROSS}),
     },
 
     [SPECIES_EELEKTROSS] =
@@ -35999,7 +36061,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Elgyem,
         .frontAnimId = ANIM_RISING_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sElgyemEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_BEHEEYEM}),
     },
 
     [SPECIES_BEHEEYEM] =
@@ -36100,7 +36162,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Litwick,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sLitwickEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 41, SPECIES_LAMPENT}),
     },
 
     [SPECIES_LAMPENT] =
@@ -36153,7 +36215,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Lampent,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sLampentEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_CHANDELURE}),
     },
 
     [SPECIES_CHANDELURE] =
@@ -36254,7 +36316,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Axew,
         .frontAnimId = ANIM_H_SHAKE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sAxewEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_FRAXURE}),
     },
 
     [SPECIES_FRAXURE] =
@@ -36303,7 +36365,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Fraxure,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sFraxureEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 48, SPECIES_HAXORUS}),
     },
 
     [SPECIES_HAXORUS] =
@@ -36400,7 +36462,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cubchoo,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCubchooEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_BEARTIC}),
     },
 
     [SPECIES_BEARTIC] =
@@ -36556,7 +36618,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Shelmet,
         .frontAnimId = ANIM_TWIST,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sShelmetEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE_SPECIFIC_MON, SPECIES_KARRABLAST, SPECIES_ACCELGOR}),
     },
 
     [SPECIES_ACCELGOR] =
@@ -36738,7 +36800,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Mienfoo,
         .frontAnimId = ANIM_H_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMienfooEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 50, SPECIES_MIENSHAO}),
     },
 
     [SPECIES_MIENSHAO] =
@@ -36885,7 +36947,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Golett,
         .frontAnimId = ANIM_V_SHAKE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGolettEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 43, SPECIES_GOLURK}),
     },
 
     [SPECIES_GOLURK] =
@@ -36983,7 +37045,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Pawniard,
         .frontAnimId = ANIM_H_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPawniardEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 52, SPECIES_BISHARP}),
     },
 
     [SPECIES_BISHARP] =
@@ -37032,7 +37094,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Bisharp,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBisharpEvolutions,
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_KINGAMBIT}),
     },
 
     [SPECIES_BOUFFALANT] =
@@ -37129,7 +37191,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Rufflet,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sRuffletEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 54, SPECIES_BRAVIARY},
+                                {EVO_NONE, 0, SPECIES_BRAVIARY_HISUIAN}),
     },
 
 #define BRAVIARY_MISC_INFO                                  \
@@ -37269,7 +37332,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Vullaby,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sVullabyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 54, SPECIES_MANDIBUZZ}),
     },
 
     [SPECIES_MANDIBUZZ] =
@@ -37462,7 +37525,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Deino,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDeinoEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 50, SPECIES_ZWEILOUS}),
     },
 
     [SPECIES_ZWEILOUS] =
@@ -37511,7 +37574,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Zweilous,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sZweilousEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 64, SPECIES_HYDREIGON}),
     },
 
     [SPECIES_HYDREIGON] =
@@ -37609,7 +37672,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Larvesta,
         .frontAnimId = ANIM_GLOW_ORANGE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sLarvestaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 59, SPECIES_VOLCARONA}),
     },
 
     [SPECIES_VOLCARONA] =
@@ -38642,7 +38705,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Chespin,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sChespinEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_QUILLADIN}),
     },
 
     [SPECIES_QUILLADIN] =
@@ -38691,7 +38754,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Quilladin,
         .frontAnimId = ANIM_LUNGE_GROW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sQuilladinEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_CHESNAUGHT}),
     },
 
     [SPECIES_CHESNAUGHT] =
@@ -38788,7 +38851,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Fennekin,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sFennekinEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_BRAIXEN}),
     },
 
     [SPECIES_BRAIXEN] =
@@ -38837,7 +38900,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Braixen,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBraixenEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_DELPHOX}),
     },
 
     [SPECIES_DELPHOX] =
@@ -38934,7 +38997,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Froakie,
         .frontAnimId = ANIM_H_JUMPS,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sFroakieEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_FROGADIER}),
     },
 
     [SPECIES_FROGADIER] =
@@ -38983,7 +39046,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Frogadier,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sFrogadierEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_GRENINJA}),
     },
 
 #define GRENINJA_NORMAL_MISC_INFO                   \
@@ -39123,7 +39186,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Bunnelby,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBunnelbyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_DIGGERSBY}),
     },
 
     [SPECIES_DIGGERSBY] =
@@ -39220,7 +39283,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Fletchling,
         .frontAnimId = ANIM_RAPID_H_HOPS,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sFletchlingEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 17, SPECIES_FLETCHINDER}),
     },
 
     [SPECIES_FLETCHINDER] =
@@ -39270,7 +39333,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Fletchinder,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sFletchinderEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_TALONFLAME}),
     },
 
     [SPECIES_TALONFLAME] =
@@ -39322,7 +39385,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_NONE,
     },
 
-#define SCATTERBUG_SPECIES_INFO(form)                                                   \
+#define SCATTERBUG_SPECIES_INFO(form, FORM)                                             \
     {                                                                                   \
         .baseHP        = 38,                                                            \
         .baseAttack    = 35,                                                            \
@@ -39367,30 +39430,31 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Scatterbug,                                           \
         .frontAnimId = ANIM_V_STRETCH,                                                  \
         .backAnimId = BACK_ANIM_NONE,                                                   \
-        .evolutions = sScatterbug##form##Evolutions,                                    \
+        .evolutions = EVOLUTION({EVO_LEVEL, 9, SPECIES_SPEWPA_##FORM}),                 \
     }
-    [SPECIES_SCATTERBUG_ICY_SNOW]    = SCATTERBUG_SPECIES_INFO(IcySnow),
-    [SPECIES_SCATTERBUG_POLAR]       = SCATTERBUG_SPECIES_INFO(Polar),
-    [SPECIES_SCATTERBUG_TUNDRA]      = SCATTERBUG_SPECIES_INFO(Tundra),
-    [SPECIES_SCATTERBUG_CONTINENTAL] = SCATTERBUG_SPECIES_INFO(Continental),
-    [SPECIES_SCATTERBUG_GARDEN]      = SCATTERBUG_SPECIES_INFO(Garden),
-    [SPECIES_SCATTERBUG_ELEGANT]     = SCATTERBUG_SPECIES_INFO(Elegant),
-    [SPECIES_SCATTERBUG_MEADOW]      = SCATTERBUG_SPECIES_INFO(Meadow),
-    [SPECIES_SCATTERBUG_MODERN]      = SCATTERBUG_SPECIES_INFO(Modern),
-    [SPECIES_SCATTERBUG_MARINE]      = SCATTERBUG_SPECIES_INFO(Marine),
-    [SPECIES_SCATTERBUG_ARCHIPELAGO] = SCATTERBUG_SPECIES_INFO(Archipelago),
-    [SPECIES_SCATTERBUG_HIGH_PLAINS] = SCATTERBUG_SPECIES_INFO(HighPlains),
-    [SPECIES_SCATTERBUG_SANDSTORM]   = SCATTERBUG_SPECIES_INFO(Sandstorm),
-    [SPECIES_SCATTERBUG_RIVER]       = SCATTERBUG_SPECIES_INFO(River),
-    [SPECIES_SCATTERBUG_MONSOON]     = SCATTERBUG_SPECIES_INFO(Monsoon),
-    [SPECIES_SCATTERBUG_SAVANNA]     = SCATTERBUG_SPECIES_INFO(Savanna),
-    [SPECIES_SCATTERBUG_SUN]         = SCATTERBUG_SPECIES_INFO(Sun),
-    [SPECIES_SCATTERBUG_OCEAN]       = SCATTERBUG_SPECIES_INFO(Ocean),
-    [SPECIES_SCATTERBUG_JUNGLE]      = SCATTERBUG_SPECIES_INFO(Jungle),
-    [SPECIES_SCATTERBUG_FANCY]       = SCATTERBUG_SPECIES_INFO(Fancy),
-    [SPECIES_SCATTERBUG_POKE_BALL]   = SCATTERBUG_SPECIES_INFO(PokeBall),
 
-#define SPEWPA_SPECIES_INFO(form)                                               \
+    [SPECIES_SCATTERBUG_ICY_SNOW]    = SCATTERBUG_SPECIES_INFO(IcySnow, ICY_SNOW),
+    [SPECIES_SCATTERBUG_POLAR]       = SCATTERBUG_SPECIES_INFO(Polar, POLAR),
+    [SPECIES_SCATTERBUG_TUNDRA]      = SCATTERBUG_SPECIES_INFO(Tundra, TUNDRA),
+    [SPECIES_SCATTERBUG_CONTINENTAL] = SCATTERBUG_SPECIES_INFO(Continental, CONTINENTAL),
+    [SPECIES_SCATTERBUG_GARDEN]      = SCATTERBUG_SPECIES_INFO(Garden, GARDEN),
+    [SPECIES_SCATTERBUG_ELEGANT]     = SCATTERBUG_SPECIES_INFO(Elegant, ELEGANT),
+    [SPECIES_SCATTERBUG_MEADOW]      = SCATTERBUG_SPECIES_INFO(Meadow, MEADOW),
+    [SPECIES_SCATTERBUG_MODERN]      = SCATTERBUG_SPECIES_INFO(Modern, MODERN),
+    [SPECIES_SCATTERBUG_MARINE]      = SCATTERBUG_SPECIES_INFO(Marine, MARINE),
+    [SPECIES_SCATTERBUG_ARCHIPELAGO] = SCATTERBUG_SPECIES_INFO(Archipelago, ARCHIPELAGO),
+    [SPECIES_SCATTERBUG_HIGH_PLAINS] = SCATTERBUG_SPECIES_INFO(HighPlains, HIGH_PLAINS),
+    [SPECIES_SCATTERBUG_SANDSTORM]   = SCATTERBUG_SPECIES_INFO(Sandstorm, SANDSTORM),
+    [SPECIES_SCATTERBUG_RIVER]       = SCATTERBUG_SPECIES_INFO(River, RIVER),
+    [SPECIES_SCATTERBUG_MONSOON]     = SCATTERBUG_SPECIES_INFO(Monsoon, MONSOON),
+    [SPECIES_SCATTERBUG_SAVANNA]     = SCATTERBUG_SPECIES_INFO(Savanna, SAVANNA),
+    [SPECIES_SCATTERBUG_SUN]         = SCATTERBUG_SPECIES_INFO(Sun, SUN),
+    [SPECIES_SCATTERBUG_OCEAN]       = SCATTERBUG_SPECIES_INFO(Ocean, OCEAN),
+    [SPECIES_SCATTERBUG_JUNGLE]      = SCATTERBUG_SPECIES_INFO(Jungle, JUNGLE),
+    [SPECIES_SCATTERBUG_FANCY]       = SCATTERBUG_SPECIES_INFO(Fancy, FANCY),
+    [SPECIES_SCATTERBUG_POKE_BALL]   = SCATTERBUG_SPECIES_INFO(PokeBall, POKE_BALL),
+
+#define SPEWPA_SPECIES_INFO(form, FORM)                                         \
     {                                                                           \
         .baseHP        = 45,                                                    \
         .baseAttack    = 22,                                                    \
@@ -39435,28 +39499,29 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Spewpa,                                       \
         .frontAnimId = ANIM_V_SHAKE,                                            \
         .backAnimId = BACK_ANIM_NONE,                                           \
-        .evolutions = sSpewpa##form##Evolutions,                                \
+        .evolutions = EVOLUTION({EVO_LEVEL, 12, SPECIES_VIVILLON_##FORM}),      \
     }
-    [SPECIES_SPEWPA_ICY_SNOW]    = SPEWPA_SPECIES_INFO(IcySnow),
-    [SPECIES_SPEWPA_POLAR]       = SPEWPA_SPECIES_INFO(Polar),
-    [SPECIES_SPEWPA_TUNDRA]      = SPEWPA_SPECIES_INFO(Tundra),
-    [SPECIES_SPEWPA_CONTINENTAL] = SPEWPA_SPECIES_INFO(Continental),
-    [SPECIES_SPEWPA_GARDEN]      = SPEWPA_SPECIES_INFO(Garden),
-    [SPECIES_SPEWPA_ELEGANT]     = SPEWPA_SPECIES_INFO(Elegant),
-    [SPECIES_SPEWPA_MEADOW]      = SPEWPA_SPECIES_INFO(Meadow),
-    [SPECIES_SPEWPA_MODERN]      = SPEWPA_SPECIES_INFO(Modern),
-    [SPECIES_SPEWPA_MARINE]      = SPEWPA_SPECIES_INFO(Marine),
-    [SPECIES_SPEWPA_ARCHIPELAGO] = SPEWPA_SPECIES_INFO(Archipelago),
-    [SPECIES_SPEWPA_HIGH_PLAINS] = SPEWPA_SPECIES_INFO(HighPlains),
-    [SPECIES_SPEWPA_SANDSTORM]   = SPEWPA_SPECIES_INFO(Sandstorm),
-    [SPECIES_SPEWPA_RIVER]       = SPEWPA_SPECIES_INFO(River),
-    [SPECIES_SPEWPA_MONSOON]     = SPEWPA_SPECIES_INFO(Monsoon),
-    [SPECIES_SPEWPA_SAVANNA]     = SPEWPA_SPECIES_INFO(Savanna),
-    [SPECIES_SPEWPA_SUN]         = SPEWPA_SPECIES_INFO(Sun),
-    [SPECIES_SPEWPA_OCEAN]       = SPEWPA_SPECIES_INFO(Ocean),
-    [SPECIES_SPEWPA_JUNGLE]      = SPEWPA_SPECIES_INFO(Jungle),
-    [SPECIES_SPEWPA_FANCY]       = SPEWPA_SPECIES_INFO(Fancy),
-    [SPECIES_SPEWPA_POKE_BALL]   = SPEWPA_SPECIES_INFO(PokeBall),
+
+    [SPECIES_SPEWPA_ICY_SNOW]    = SPEWPA_SPECIES_INFO(IcySnow, ICY_SNOW),
+    [SPECIES_SPEWPA_POLAR]       = SPEWPA_SPECIES_INFO(Polar, POLAR),
+    [SPECIES_SPEWPA_TUNDRA]      = SPEWPA_SPECIES_INFO(Tundra, TUNDRA),
+    [SPECIES_SPEWPA_CONTINENTAL] = SPEWPA_SPECIES_INFO(Continental, CONTINENTAL),
+    [SPECIES_SPEWPA_GARDEN]      = SPEWPA_SPECIES_INFO(Garden, GARDEN),
+    [SPECIES_SPEWPA_ELEGANT]     = SPEWPA_SPECIES_INFO(Elegant, ELEGANT),
+    [SPECIES_SPEWPA_MEADOW]      = SPEWPA_SPECIES_INFO(Meadow, MEADOW),
+    [SPECIES_SPEWPA_MODERN]      = SPEWPA_SPECIES_INFO(Modern, MODERN),
+    [SPECIES_SPEWPA_MARINE]      = SPEWPA_SPECIES_INFO(Marine, MARINE),
+    [SPECIES_SPEWPA_ARCHIPELAGO] = SPEWPA_SPECIES_INFO(Archipelago, ARCHIPELAGO),
+    [SPECIES_SPEWPA_HIGH_PLAINS] = SPEWPA_SPECIES_INFO(HighPlains, HIGH_PLAINS),
+    [SPECIES_SPEWPA_SANDSTORM]   = SPEWPA_SPECIES_INFO(Sandstorm, SANDSTORM),
+    [SPECIES_SPEWPA_RIVER]       = SPEWPA_SPECIES_INFO(River, RIVER),
+    [SPECIES_SPEWPA_MONSOON]     = SPEWPA_SPECIES_INFO(Monsoon, MONSOON),
+    [SPECIES_SPEWPA_SAVANNA]     = SPEWPA_SPECIES_INFO(Savanna, SAVANNA),
+    [SPECIES_SPEWPA_SUN]         = SPEWPA_SPECIES_INFO(Sun, SUN),
+    [SPECIES_SPEWPA_OCEAN]       = SPEWPA_SPECIES_INFO(Ocean, OCEAN),
+    [SPECIES_SPEWPA_JUNGLE]      = SPEWPA_SPECIES_INFO(Jungle, JUNGLE),
+    [SPECIES_SPEWPA_FANCY]       = SPEWPA_SPECIES_INFO(Fancy, FANCY),
+    [SPECIES_SPEWPA_POKE_BALL]   = SPEWPA_SPECIES_INFO(PokeBall, POKE_BALL),
 
 #define VIVILLON_SPECIES_INFO(color, form)                                              \
     {                                                                                   \
@@ -39573,7 +39638,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Litleo,
         .frontAnimId = ANIM_BACK_AND_LUNGE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sLitleoEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_PYROAR}),
     },
 
     [SPECIES_PYROAR] =
@@ -39627,7 +39692,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_NONE,
     },
 
-#define FLABEBE_SPECIES_INFO(form, iconPal)                                     \
+#define FLABEBE_SPECIES_INFO(form, FORM, iconPal)                               \
     {                                                                           \
         .baseHP        = 44,                                                    \
         .baseAttack    = 38,                                                    \
@@ -39673,13 +39738,14 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Flabebe,                                      \
         .frontAnimId = ANIM_SWING_CONCAVE_FAST_SHORT,                           \
         .backAnimId = BACK_ANIM_NONE,                                           \
-        .evolutions = sFlabebe##form##Evolutions,                               \
+        .evolutions = EVOLUTION({EVO_LEVEL, 19, SPECIES_FLOETTE_##FORM}),       \
     }
-    [SPECIES_FLABEBE_RED_FLOWER]    = FLABEBE_SPECIES_INFO(RedFlower, 1),
-    [SPECIES_FLABEBE_YELLOW_FLOWER] = FLABEBE_SPECIES_INFO(YellowFlower, 1),
-    [SPECIES_FLABEBE_ORANGE_FLOWER] = FLABEBE_SPECIES_INFO(OrangeFlower, 0),
-    [SPECIES_FLABEBE_BLUE_FLOWER]   = FLABEBE_SPECIES_INFO(BlueFlower, 0),
-    [SPECIES_FLABEBE_WHITE_FLOWER]  = FLABEBE_SPECIES_INFO(WhiteFlower, 1),
+        
+    [SPECIES_FLABEBE_RED_FLOWER]    = FLABEBE_SPECIES_INFO(RedFlower, RED_FLOWER, 1),
+    [SPECIES_FLABEBE_YELLOW_FLOWER] = FLABEBE_SPECIES_INFO(YellowFlower, YELLOW_FLOWER, 1),
+    [SPECIES_FLABEBE_ORANGE_FLOWER] = FLABEBE_SPECIES_INFO(OrangeFlower, ORANGE_FLOWER, 0),
+    [SPECIES_FLABEBE_BLUE_FLOWER]   = FLABEBE_SPECIES_INFO(BlueFlower, BLUE_FLOWER, 0),
+    [SPECIES_FLABEBE_WHITE_FLOWER]  = FLABEBE_SPECIES_INFO(WhiteFlower, WHITE_FLOWER, 1),
 
 #define FLOETTE_MISC_INFO                                                   \
         .types = { TYPE_FAIRY, TYPE_FAIRY},                                 \
@@ -39695,7 +39761,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .natDexNum = NATIONAL_DEX_FLOETTE,                                  \
         .footprint = gMonFootprint_Floette
 
-#define FLOETTE_NORMAL_INFO(form, iconPal)                  \
+#define FLOETTE_NORMAL_INFO(form, FORM, iconPal)                                        \
     {                                                       \
         .baseHP        = 54,                                \
         .baseAttack    = 45,                                \
@@ -39728,15 +39794,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Floette,                  \
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,                 \
         .backAnimId = BACK_ANIM_NONE,                       \
-        .evolutions = sFloette##form##Evolutions,           \
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_FLORGES_##FORM}),  \
         FLOETTE_MISC_INFO,                                  \
     }
 
-    [SPECIES_FLOETTE_RED_FLOWER]    = FLOETTE_NORMAL_INFO(RedFlower, 1),
-    [SPECIES_FLOETTE_YELLOW_FLOWER] = FLOETTE_NORMAL_INFO(YellowFlower, 1),
-    [SPECIES_FLOETTE_ORANGE_FLOWER] = FLOETTE_NORMAL_INFO(OrangeFlower, 0),
-    [SPECIES_FLOETTE_BLUE_FLOWER]   = FLOETTE_NORMAL_INFO(BlueFlower, 0),
-    [SPECIES_FLOETTE_WHITE_FLOWER]  = FLOETTE_NORMAL_INFO(WhiteFlower, 1),
+    [SPECIES_FLOETTE_RED_FLOWER]    = FLOETTE_NORMAL_INFO(RedFlower, RED_FLOWER, 1),
+    [SPECIES_FLOETTE_YELLOW_FLOWER] = FLOETTE_NORMAL_INFO(YellowFlower, YELLOW_FLOWER, 1),
+    [SPECIES_FLOETTE_ORANGE_FLOWER] = FLOETTE_NORMAL_INFO(OrangeFlower, ORANGE_FLOWER, 0),
+    [SPECIES_FLOETTE_BLUE_FLOWER]   = FLOETTE_NORMAL_INFO(BlueFlower, BLUE_FLOWER, 0),
+    [SPECIES_FLOETTE_WHITE_FLOWER]  = FLOETTE_NORMAL_INFO(WhiteFlower, WHITE_FLOWER, 1),
     [SPECIES_FLOETTE_ETERNAL_FLOWER] =
     {
         .baseHP        = 74,
@@ -39872,6 +39938,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Skiddo,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_GOGOAT}),
     },
 
     [SPECIES_GOGOAT] =
@@ -39969,6 +40036,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Pancham,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_LEVEL_DARK_TYPE_MON_IN_PARTY, 32, SPECIES_PANGORO}),
     },
 
     [SPECIES_PANGORO] =
@@ -40123,6 +40191,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Espurr,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_LEVEL_MALE, 25, SPECIES_MEOWSTIC_MALE},
+                                {EVO_LEVEL_FEMALE, 25, SPECIES_MEOWSTIC_FEMALE}),
     },
 
 #define MEOWSTIC_MISC_INFO                                  \
@@ -40245,6 +40315,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Honedge,
         .frontAnimId = ANIM_SWING_CONVEX,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_DOUBLADE}),
     },
 
     [SPECIES_DOUBLADE] =
@@ -40294,6 +40365,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Doublade,
         .frontAnimId = ANIM_GROW_VIBRATE,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_AEGISLASH_SHIELD}),
     },
 
 
@@ -40431,6 +40503,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Spritzee,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_SACHET, SPECIES_AROMATISSE},
+                                {EVO_ITEM, ITEM_SACHET, SPECIES_AROMATISSE}),
     },
 
     [SPECIES_AROMATISSE] =
@@ -40527,6 +40601,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Swirlix,
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_TRADE_ITEM, ITEM_WHIPPED_DREAM, SPECIES_SLURPUFF},
+                                {EVO_ITEM, ITEM_WHIPPED_DREAM, SPECIES_SLURPUFF}),
     },
 
     [SPECIES_SLURPUFF] =
@@ -40624,6 +40700,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Inkay,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_MALAMAR}),
     },
 
     [SPECIES_MALAMAR] =
@@ -40720,6 +40797,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Binacle,
         .frontAnimId = ANIM_H_SLIDE,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 39, SPECIES_BARBARACLE}),
     },
 
     [SPECIES_BARBARACLE] =
@@ -40816,6 +40894,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Skrelp,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 48, SPECIES_DRAGALGE}),
     },
 
     [SPECIES_DRAGALGE] =
@@ -40912,6 +40991,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Clauncher,
         .frontAnimId = ANIM_TIP_MOVE_FORWARD,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_CLAWITZER}),
     },
 
     [SPECIES_CLAWITZER] =
@@ -41008,6 +41088,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Helioptile,
         .frontAnimId = ANIM_GLOW_YELLOW,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_SUN_STONE, SPECIES_HELIOLISK}),
     },
 
     [SPECIES_HELIOLISK] =
@@ -41105,6 +41186,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tyrunt,
         .frontAnimId = ANIM_V_SHAKE,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_LEVEL_DAY, 39, SPECIES_TYRANTRUM}),
     },
 
     [SPECIES_TYRANTRUM] =
@@ -41201,6 +41283,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Amaura,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 39, SPECIES_AURORUS}),
     },
 
     [SPECIES_AURORUS] =
@@ -41449,7 +41532,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Goomy,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGoomyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_SLIGGOO},
+                                {EVO_NONE, 0, SPECIES_SLIGGOO_HISUIAN}),
     },
 
 #define SLIGGOO_MISC_INFO                                   \
@@ -41501,7 +41585,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Sliggoo,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSliggooEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_RAIN, 50, SPECIES_GOODRA}),
         SLIGGOO_MISC_INFO,
     },
     [SPECIES_SLIGGOO_HISUIAN] =
@@ -41538,7 +41622,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_SliggooHisuian,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSliggooHisuianEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_RAIN, 50, SPECIES_GOODRA_HISUIAN}),
         SLIGGOO_MISC_INFO,
     },
 
@@ -41725,7 +41809,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Phantump,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPhantumpEvolutions,
+        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_TREVENANT},
+                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_TREVENANT}),
     },
 
     [SPECIES_TREVENANT] =
@@ -41776,7 +41861,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_NONE,
     },
 
-#define PUMKPABOO_MISC_INFO                                             \
+#define PUMKPABOO_MISC_INFO(form, FORM)                                                 \
         .types = { TYPE_GHOST, TYPE_GRASS},                             \
         .catchRate = 120,                                               \
         .expYield = 67,                                                 \
@@ -41798,7 +41883,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .footprint = gMonFootprint_Pumpkaboo,                           \
         .frontAnimFrames = sAnims_Pumpkaboo,                            \
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,                             \
-        .backAnimId = BACK_ANIM_NONE
+        .backAnimId = BACK_ANIM_NONE,                                                   \
+        .evolutions = EVOLUTION({EVO_TRADE, 0, SPECIES_GOURGEIST_##FORM},               \
+                                {EVO_ITEM, ITEM_LINKING_CORD, SPECIES_GOURGEIST_##FORM})
 
     [SPECIES_PUMPKABOO_AVERAGE] =
     {
@@ -41823,8 +41910,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 13,
         .backPicYOffset = 13,
-        .evolutions = sPumpkabooAverageEvolutions,
-        PUMKPABOO_MISC_INFO,
+        PUMKPABOO_MISC_INFO(Average, AVERAGE),
     },
 
     [SPECIES_PUMPKABOO_SMALL] =
@@ -41850,8 +41936,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 15,
         .backPicYOffset = 14,
-        .evolutions = sPumpkabooSmallEvolutions,
-        PUMKPABOO_MISC_INFO,
+        PUMKPABOO_MISC_INFO(Small, SMALL),
     },
 
     [SPECIES_PUMPKABOO_LARGE] =
@@ -41877,8 +41962,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 12,
         .backPicYOffset = 13,
-        .evolutions = sPumpkabooLargeEvolutions,
-        PUMKPABOO_MISC_INFO,
+        PUMKPABOO_MISC_INFO(Large, LARGE),
     },
 
     [SPECIES_PUMPKABOO_SUPER] =
@@ -41906,8 +41990,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicSize = MON_COORDS_SIZE(56, 48),
         .frontPicYOffset = 10,
         .backPicYOffset = 12,
-        .evolutions = sPumpkabooSuperEvolutions,
-        PUMKPABOO_MISC_INFO,
+        PUMKPABOO_MISC_INFO(Super, SUPER),
     },
 
 #define GOURGEIST_MISC_INFO                                             \
@@ -42091,7 +42174,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Bergmite,
         .frontAnimId = ANIM_LUNGE_GROW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBergmiteEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_AVALUGG},
+                                {EVO_NONE, 0, SPECIES_AVALUGG_HISUIAN}),
     },
 
 #define AVALUGG_MISC_INFO                   \
@@ -42232,7 +42316,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Noibat,
         .frontAnimId = ANIM_RISING_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sNoibatEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 48, SPECIES_NOIVERN}),
     },
 
     [SPECIES_NOIVERN] =
@@ -42805,7 +42889,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Rowlet,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sRowletEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 17, SPECIES_DARTRIX}),
     },
 
     [SPECIES_DARTRIX] =
@@ -42854,7 +42938,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Dartrix,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDartrixEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_DECIDUEYE},
+                                {EVO_NONE, 0, SPECIES_DECIDUEYE_HISUIAN}),
     },
 
 #define DECIDUEYE_MISC_INFO                                 \
@@ -42984,7 +43069,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Litten,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sLittenEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 17, SPECIES_TORRACAT}),
     },
 
     [SPECIES_TORRACAT] =
@@ -43033,7 +43118,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Torracat,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sTorracatEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_INCINEROAR}),
     },
 
     [SPECIES_INCINEROAR] =
@@ -43130,7 +43215,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Popplio,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPopplioEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 17, SPECIES_BRIONNE}),
     },
 
     [SPECIES_BRIONNE] =
@@ -43179,7 +43264,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Brionne,
         .frontAnimId = ANIM_SHRINK_GROW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBrionneEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_PRIMARINA}),
     },
 
     [SPECIES_PRIMARINA] =
@@ -43277,7 +43362,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Pikipek,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPikipekEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 14, SPECIES_TRUMBEAK}),
     },
 
     [SPECIES_TRUMBEAK] =
@@ -43327,7 +43412,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Trumbeak,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sTrumbeakEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_TOUCANNON}),
     },
 
     [SPECIES_TOUCANNON] =
@@ -43426,7 +43511,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Yungoos,
         .frontAnimId = ANIM_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sYungoosEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_DAY, 20, SPECIES_GUMSHOOS}),
     },
 
     [SPECIES_GUMSHOOS] =
@@ -43524,7 +43609,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Grubbin,
         .frontAnimId = ANIM_H_SLIDE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGrubbinEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_CHARJABUG}),
     },
 
     [SPECIES_CHARJABUG] =
@@ -43574,7 +43659,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Charjabug,
         .frontAnimId = ANIM_SHAKE_FLASH_YELLOW_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCharjabugEvolutions,
+        .evolutions = EVOLUTION({EVO_MAPSEC, MAPSEC_NEW_MAUVILLE, SPECIES_VIKAVOLT},
+                                {EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_VIKAVOLT}),
     },
 
     [SPECIES_VIKAVOLT] =
@@ -43673,7 +43759,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Crabrawler,
         .frontAnimId = ANIM_V_SHAKE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCrabrawlerEvolutions,
+        .evolutions = EVOLUTION({EVO_SPECIFIC_MAP, MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM, SPECIES_CRABOMINABLE}),
     },
 
     [SPECIES_CRABOMINABLE] =
@@ -43894,7 +43980,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cutiefly,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCutieflyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_RIBOMBEE}),
     },
 
     [SPECIES_RIBOMBEE] =
@@ -43994,13 +44080,14 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_ROCKRUFF] =
     {
         .abilities = {ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_STEADFAST},
-        .evolutions = sRockruffEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_DAY, 25, SPECIES_LYCANROC_MIDDAY},
+                                {EVO_LEVEL_NIGHT, 25, SPECIES_LYCANROC_MIDNIGHT}),
         ROCKRUFF_MISC_INFO,
     },
     [SPECIES_ROCKRUFF_OWN_TEMPO] =
     {
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_NONE},
-        .evolutions = sRockruffOwnTempoEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_DUSK, 25, SPECIES_LYCANROC_DUSK}),
         ROCKRUFF_MISC_INFO,
     },
 
@@ -44260,7 +44347,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Mareanie,
         .frontAnimId = ANIM_GLOW_PURPLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMareanieEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_TOXAPEX}),
     },
 
     [SPECIES_TOXAPEX] =
@@ -44359,7 +44446,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Mudbray,
         .frontAnimId = ANIM_V_SHAKE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMudbrayEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_MUDSDALE}),
     },
 
     [SPECIES_MUDSDALE] =
@@ -44458,7 +44545,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Dewpider,
         .frontAnimId = ANIM_SHRINK_GROW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDewpiderEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_ARAQUANID}),
     },
 
     [SPECIES_ARAQUANID] =
@@ -44557,7 +44644,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Fomantis,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sFomantisEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_DAY, 34, SPECIES_LURANTIS}),
     },
 
     [SPECIES_LURANTIS] =
@@ -44657,7 +44744,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Morelull,
         .frontAnimId = ANIM_SHAKE_FLASH_YELLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMorelullEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_SHIINOTIC}),
     },
 
     [SPECIES_SHIINOTIC] =
@@ -44757,7 +44844,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Salandit,
         .frontAnimId = ANIM_SHAKE_GLOW_RED_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSalanditEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_FEMALE, 33, SPECIES_SALAZZLE}),
     },
 
     [SPECIES_SALAZZLE] =
@@ -44855,7 +44942,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Stufful,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sStuffulEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 27, SPECIES_BEWEAR}),
     },
 
     [SPECIES_BEWEAR] =
@@ -44953,7 +45040,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Bounsweet,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBounsweetEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_STEENEE}),
     },
 
     [SPECIES_STEENEE] =
@@ -45003,7 +45090,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Steenee,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSteeneeEvolutions,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_STOMP, SPECIES_TSAREENA}),
     },
 
     [SPECIES_TSAREENA] =
@@ -45247,7 +45334,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Wimpod,
         .frontAnimId = ANIM_V_SHAKE_H_SLIDE_FAST,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sWimpodEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_GOLISOPOD}),
     },
 
     [SPECIES_GOLISOPOD] =
@@ -45345,7 +45432,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Sandygast,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSandygastEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_PALOSSAND}),
     },
 
     [SPECIES_PALOSSAND] =
@@ -45492,7 +45579,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_TypeNull,
         .frontAnimId = ANIM_H_SHAKE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sTypeNullEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_SILVALLY_NORMAL}),
     },
 
 #define SILVALLY_SPECIES_INFO(type, form)                               \
@@ -46066,7 +46153,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_JangmoO,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sJangmoOEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_HAKAMO_O}),
     },
 
     [SPECIES_HAKAMO_O] =
@@ -46116,7 +46203,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_HakamoO,
         .frontAnimId = ANIM_H_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sHakamoOEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 45, SPECIES_KOMMO_O}),
     },
 
     [SPECIES_KOMMO_O] =
@@ -46417,7 +46504,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cosmog,
         .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCosmogEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 43, SPECIES_COSMOEM}),
     },
 
     [SPECIES_COSMOEM] =
@@ -46469,7 +46556,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cosmoem,
         .frontAnimId = ANIM_RISING_WOBBLE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCosmoemEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_DAY, 53, SPECIES_SOLGALEO},
+                                {EVO_LEVEL_NIGHT, 53, SPECIES_LUNALA}),
     },
 
     [SPECIES_SOLGALEO] =
@@ -47241,7 +47329,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Poipole,
         .frontAnimId = ANIM_SHAKE_GLOW_PURPLE_SLOW,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sPoipoleEvolutions,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_DRAGON_PULSE, SPECIES_NAGANADEL}),
     },
 
     [SPECIES_NAGANADEL] =
@@ -47587,7 +47675,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Grookey,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGrookeyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_THWACKEY}),
     },
 
     [SPECIES_THWACKEY] =
@@ -47636,7 +47724,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Thwackey,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sThwackeyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_RILLABOOM}),
     },
 
     [SPECIES_RILLABOOM] =
@@ -47733,7 +47821,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Scorbunny,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sScorbunnyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_RABOOT}),
     },
 
     [SPECIES_RABOOT] =
@@ -47782,7 +47870,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Raboot,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sRabootEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_CINDERACE}),
     },
 
     [SPECIES_CINDERACE] =
@@ -47880,7 +47968,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Sobble,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSobbleEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_DRIZZILE}),
     },
 
     [SPECIES_DRIZZILE] =
@@ -47929,7 +48017,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Drizzile,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDrizzileEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_INTELEON}),
     },
 
     [SPECIES_INTELEON] =
@@ -48027,7 +48115,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Skwovet,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSkwovetEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_GREEDENT}),
     },
 
     [SPECIES_GREEDENT] =
@@ -48125,7 +48213,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Rookidee,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sRookideeEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_CORVISQUIRE}),
     },
 
     [SPECIES_CORVISQUIRE] =
@@ -48175,7 +48263,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Corvisquire,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCorvisquireEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_CORVIKNIGHT}),
     },
 
     [SPECIES_CORVIKNIGHT] =
@@ -48272,7 +48360,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Blipbug,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sBlipbugEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 10, SPECIES_DOTTLER}),
     },
 
     [SPECIES_DOTTLER] =
@@ -48322,7 +48410,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Dottler,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDottlerEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_ORBEETLE}),
     },
 
     [SPECIES_ORBEETLE] =
@@ -48421,7 +48509,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Nickit,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sNickitEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_THIEVUL}),
     },
 
     [SPECIES_THIEVUL] =
@@ -48518,7 +48606,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Gossifleur,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sGossifleurEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_ELDEGOSS}),
     },
 
     [SPECIES_ELDEGOSS] =
@@ -48615,7 +48703,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Wooloo,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sWoolooEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_DUBWOOL}),
     },
 
     [SPECIES_DUBWOOL] =
@@ -48712,7 +48800,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Chewtle,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sChewtleEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_DREDNAW}),
     },
 
     [SPECIES_DREDNAW] =
@@ -48809,7 +48897,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Yamper,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sYamperEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_BOLTUND}),
     },
 
     [SPECIES_BOLTUND] =
@@ -48906,7 +48994,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Rolycoly,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sRolycolyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_CARKOL}),
     },
 
     [SPECIES_CARKOL] =
@@ -48955,7 +49043,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Carkol,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCarkolEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_COALOSSAL}),
     },
 
     [SPECIES_COALOSSAL] =
@@ -49052,7 +49140,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Applin,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sApplinEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_TART_APPLE, SPECIES_FLAPPLE},
+                                {EVO_ITEM, ITEM_SWEET_APPLE, SPECIES_APPLETUN}),
     },
 
     [SPECIES_FLAPPLE] =
@@ -49198,7 +49287,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Silicobra,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSilicobraEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SANDACONDA}),
     },
 
     [SPECIES_SANDACONDA] =
@@ -49380,7 +49469,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Arrokuda,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sArrokudaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_BARRASKEWDA}),
     },
 
     [SPECIES_BARRASKEWDA] =
@@ -49477,7 +49566,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Toxel,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sToxelEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL_NATURE_AMPED, 30, SPECIES_TOXTRICITY_AMPED},
+                                {EVO_LEVEL_NATURE_LOW_KEY, 30, SPECIES_TOXTRICITY_LOW_KEY}),
     },
 
 #define TOXTRICITY_MISC_INFO                                        \
@@ -49597,7 +49687,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Sizzlipede,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSizzlipedeEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_CENTISKORCH}),
     },
 
     [SPECIES_CENTISKORCH] =
@@ -49694,7 +49784,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Clobbopus,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sClobbopusEvolutions,
+        .evolutions = EVOLUTION({EVO_MOVE, MOVE_TAUNT, SPECIES_GRAPPLOCT}),
     },
 
     [SPECIES_GRAPPLOCT] =
@@ -49793,7 +49883,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     {
         .description = gSinisteaPhonyPokedexText,
         .categoryName = _("Black Tea"),
-        .evolutions = sSinisteaPhonyEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_CRACKED_POT, SPECIES_POLTEAGEIST_PHONY}),
         SINISTEA_MISC_INFO,
     },
 
@@ -49801,7 +49891,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     {
         .description = gSinisteaAntiquePokedexText,
         .categoryName = _("Black Tea"),
-        .evolutions = sSinisteaAntiqueEvolutions,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_CHIPPED_POT, SPECIES_POLTEAGEIST_ANTIQUE}),
         SINISTEA_MISC_INFO,
     },
 
@@ -49909,7 +49999,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Hatenna,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sHatennaEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_HATTREM}),
     },
 
     [SPECIES_HATTREM] =
@@ -49958,7 +50048,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Hattrem,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sHattremEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_HATTERENE}),
     },
 
     [SPECIES_HATTERENE] =
@@ -50055,7 +50145,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Impidimp,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sImpidimpEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_MORGREM}),
     },
 
     [SPECIES_MORGREM] =
@@ -50104,7 +50194,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Morgrem,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMorgremEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_GRIMMSNARL}),
     },
 
     [SPECIES_GRIMMSNARL] =
@@ -50202,7 +50292,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Milcery,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sMilceryEvolutions,
+        .evolutions = EVOLUTION({EVO_ALCREMIE, 0, SPECIES_ALCREMIE}),
     },
 
 #define ALCREMIE_SPECIES_INFO(color, sweet, cream)                          \
@@ -50458,7 +50548,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Snom,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sSnomEvolutions,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP_NIGHT, 0, SPECIES_FROSMOTH}),
     },
 
     [SPECIES_FROSMOTH] =
@@ -50814,7 +50904,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cufant,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sCufantEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_COPPERAJAH}),
     },
 
     [SPECIES_COPPERAJAH] =
@@ -51153,7 +51243,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Dreepy,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDreepyEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 50, SPECIES_DRAKLOAK}),
     },
 
     [SPECIES_DRAKLOAK] =
@@ -51203,7 +51293,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Drakloak,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sDrakloakEvolutions,
+        .evolutions = EVOLUTION({EVO_LEVEL, 60, SPECIES_DRAGAPULT}),
     },
 
     [SPECIES_DRAGAPULT] =
@@ -51547,7 +51637,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Kubfu,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .backAnimId = BACK_ANIM_NONE,
-        .evolutions = sKubfuEvolutions,
+        .evolutions = EVOLUTION({EVO_DARK_SCROLL, 0, SPECIES_URSHIFU_SINGLE_STRIKE_STYLE},
+                                {EVO_ITEM, ITEM_SCROLL_OF_DARKNESS, SPECIES_URSHIFU_SINGLE_STRIKE_STYLE},
+                                {EVO_WATER_SCROLL, 0, SPECIES_URSHIFU_RAPID_STRIKE_STYLE},
+                                {EVO_ITEM, ITEM_SCROLL_OF_WATERS, SPECIES_URSHIFU_RAPID_STRIKE_STYLE}),
     },
 
 #define URSHIFU_MISC_INFO(style)                                               \
@@ -51962,6 +52055,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Sprigatito,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_FLORAGATO}),
     },
 
     [SPECIES_FLORAGATO] =
@@ -52011,6 +52105,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Floragato,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_MEOWSCARADA}),
     },
 
     [SPECIES_MEOWSCARADA] =
@@ -52109,6 +52204,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Fuecoco,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_CROCALOR}),
     },
 
     [SPECIES_CROCALOR] =
@@ -52158,6 +52254,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Crocalor,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SKELEDIRGE}),
     },
 
     [SPECIES_SKELEDIRGE] =
@@ -52256,6 +52353,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Quaxly,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_QUAXWELL}),
     },
 
     [SPECIES_QUAXWELL] =
@@ -52305,6 +52403,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Quaxwell,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_QUAQUAVAL}),
     },
 
     [SPECIES_QUAQUAVAL] =
@@ -52403,6 +52502,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Lechonk,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL_MALE, 18, SPECIES_OINKOLOGNE},
+                                {EVO_LEVEL_FEMALE, 18, SPECIES_OINKOLOGNE}),
     },
 
 #define OINKOLOGNE_MISC_INFO                                \
@@ -52502,6 +52603,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tarountula,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_SPIDOPS}),
     },
 
     [SPECIES_SPIDOPS] =
@@ -52600,6 +52702,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Nymble,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_LOKIX}),
     },
 
     [SPECIES_LOKIX] =
@@ -52698,6 +52801,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Pawmi,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_PAWMO}),
     },
 
     [SPECIES_PAWMO] =
@@ -52747,6 +52851,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Pawmo,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_PAWMOT}),
     },
 
     [SPECIES_PAWMOT] =
@@ -52845,6 +52950,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tandemaus,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_MAUSHOLD_FAMILY_OF_FOUR},
+                                {EVO_NONE, 0, SPECIES_MAUSHOLD_FAMILY_OF_THREE}),
     },
 
     [SPECIES_MAUSHOLD] =
@@ -52943,6 +53050,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Fidough,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DACHSBUN}),
     },
 
     [SPECIES_DACHSBUN] =
@@ -53041,6 +53149,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Smoliv,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_DOLLIV}),
     },
 
     [SPECIES_DOLLIV] =
@@ -53090,6 +53199,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Dolliv,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_ARBOLIVA}),
     },
 
     [SPECIES_ARBOLIVA] =
@@ -53249,6 +53359,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Nacli,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_NACLSTACK}),
     },
 
     [SPECIES_NACLSTACK] =
@@ -53298,6 +53409,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Naclstack,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_GARGANACL}),
     },
 
     [SPECIES_GARGANACL] =
@@ -53396,6 +53508,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Charcadet,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_AUSPICIOUS_ARMOR, SPECIES_ARMAROUGE},
+                                {EVO_ITEM, ITEM_MALICIOUS_ARMOR, SPECIES_CERULEDGE}),
     },
 
     [SPECIES_ARMAROUGE] =
@@ -53543,6 +53657,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tadbulb,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_BELLIBOLT}),
     },
 
     [SPECIES_BELLIBOLT] =
@@ -53641,6 +53756,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Wattrel,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_KILOWATTREL}),
     },
 
     [SPECIES_KILOWATTREL] =
@@ -53739,6 +53855,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Maschiff,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_MABOSSTIFF}),
     },
 
     [SPECIES_MABOSSTIFF] =
@@ -53837,6 +53954,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Shroodle,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_GRAFAIAI}),
     },
 
     [SPECIES_GRAFAIAI] =
@@ -53935,6 +54053,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Bramblin,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_BRAMBLEGHAST}),
     },
 
     [SPECIES_BRAMBLEGHAST] =
@@ -54033,6 +54152,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Toedscool,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_TOEDSCRUEL}),
     },
 
     [SPECIES_TOEDSCRUEL] =
@@ -54180,6 +54300,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Capsakid,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_SCOVILLAIN}),
     },
 
     [SPECIES_SCOVILLAIN] =
@@ -54278,6 +54399,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Rellor,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_RABSCA}),
     },
 
     [SPECIES_RABSCA] =
@@ -54376,6 +54498,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Flittle,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_ESPATHRA}),
     },
 
     [SPECIES_ESPATHRA] =
@@ -54474,6 +54597,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tinkatink,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_TINKATUFF}),
     },
 
     [SPECIES_TINKATUFF] =
@@ -54523,6 +54647,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Tinkatuff,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_TINKATON}),
     },
 
     [SPECIES_TINKATON] =
@@ -54621,6 +54746,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Wiglett,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_WUGTRIO}),
     },
 
     [SPECIES_WUGTRIO] =
@@ -54768,6 +54894,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Finizen,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_PALAFIN}),
     },
 
 #define PALAFIN_MISC_INFO                                   \
@@ -54870,6 +54997,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Varoom,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_REVAVROOM}),
     },
 
     [SPECIES_REVAVROOM] =
@@ -55066,6 +55194,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Glimmet,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_GLIMMORA}),
     },
 
     [SPECIES_GLIMMORA] =
@@ -55164,6 +55293,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Greavard,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 30, SPECIES_HOUNDSTONE}),
     },
 
     [SPECIES_HOUNDSTONE] =
@@ -55311,6 +55441,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Cetoddle,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_CETITAN}),
     },
 
     [SPECIES_CETITAN] =
@@ -56403,6 +56534,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Frigibax,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_ARCTIBAX}),
     },
 
     [SPECIES_ARCTIBAX] =
@@ -56452,6 +56584,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Arctibax,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_LEVEL, 54, SPECIES_BAXCALIBUR}),
     },
 
     [SPECIES_BAXCALIBUR] =
@@ -56550,6 +56683,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Gimmighoul,
         .frontAnimId = -1,
         .backAnimId = -1,
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_GHOLDENGO}),
     },
 
     [SPECIES_GHOLDENGO] =
