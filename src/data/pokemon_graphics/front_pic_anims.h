@@ -2733,6 +2733,7 @@ static const union AnimCmd sAnim_Wooper_1[] =
     ANIMCMD_END,
 };
 
+PLACEHOLDER_ANIM_SINGLE_FRAME(WooperPaldean);
 static const union AnimCmd sAnim_Quagsire_1[] =
 {
     ANIMCMD_FRAME(1, 32),
@@ -9302,6 +9303,7 @@ SINGLE_ANIMATION(Sunflora);
 SINGLE_ANIMATION(Yanma);
 SINGLE_ANIMATION(Yanmega);
 SINGLE_ANIMATION(Wooper);
+SINGLE_ANIMATION(WooperPaldean);
 SINGLE_ANIMATION(Quagsire);
 SINGLE_ANIMATION(Murkrow);
 SINGLE_ANIMATION(Honchkrow);

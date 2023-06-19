@@ -1773,7 +1773,7 @@ const u8 gWooperPokedexText[] = _(
     "On land, they coat their bodies with a\n"
     "gooey, toxic film.");
 
-const u8 gWooperPaldeaPokedexText[] = _(
+const u8 gWooperPaldeanPokedexText[] = _(
     "After losing a territorial struggle,\n"
     "Wooper began living on land.\n"
     "The Pokémon changed over time, developing\n"
