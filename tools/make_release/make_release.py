@@ -7,7 +7,20 @@ import os
 import sys
 
 # trusted_typedefs clarifies that the underlying construction doesn't need to be compared (unlike say two instances of a BoxPokemon struct) 
-trusted_typedefs = ['u8', 'u16', 'u32', 'u64', 's8', 's16', 's32', 's64', 'bool8', 'bool16', 'bool32', 'int']
+trusted_typedefs = {
+    'u8': [0, pow(2, 8) - 1],
+    'u16': [0, pow(2, 16) - 1],
+    'u32': [0, pow(2, 32) - 1],
+    'u64': [0, pow(2, 64) - 1],
+    's8': [-(pow(2, 7) - 1), pow(2, 7) - 1],
+    's16': [-(pow(2, 15) - 1), pow(2, 15) - 1],
+    's32': [-(pow(2, 31) - 1), pow(2, 31) - 1],
+    's64': [-(pow(2, 63) - 1), pow(2, 63) - 1],
+    'bool8': [0, 1],
+    'bool16': [0, 1],
+    'bool32': [0, 1],
+    'int': [0, 0]
+}
 # ignoreable includes prevents the preprocessor from complaining about include files that don't exist that we don't need anyway
 ignoreable_includes = ['string.h', 'stddef.h', 'stdint.h', 'sprite.h', 'limits.h']
 
@@ -148,7 +161,7 @@ def compareFields(fieldname, inline, extratext):
                 if '--verbose' in sys.argv:
                     out("  " * inline + "%s is identical" % x.name)
                 # if identical, check the actual kind to make sure the underlying struct didn't change
-                if newclass['kind'] not in trusted_typedefs:
+                if newclass['kind'] not in trusted_typedefs.keys():
                     compareFields(newclass['kind'], inline + 1, "%s -> %s" % (extratext, x.name))
                 continue
             # figure out what exactly is different, starting with size
