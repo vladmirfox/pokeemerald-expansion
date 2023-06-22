@@ -1302,6 +1302,8 @@ const u8 *const gMonIconTableFemale[] =
 {
     [SPECIES_PIKACHU] = gMonIcon_Pikachu,
     [SPECIES_RAICHU] = gMonIcon_Raichu,
+    [SPECIES_GLOOM] = gMonIcon_Gloom,
+    [SPECIES_VILEPLUME] = gMonIcon_Vileplume,
     [SPECIES_DODUO] = gMonIcon_Doduo,
     [SPECIES_DODRIO] = gMonIcon_Dodrio,
     [SPECIES_GOLDEEN] = gMonIcon_Goldeen,
@@ -2562,6 +2564,8 @@ const u8 gMonIconPaletteIndicesFemale[] =
 {
     [SPECIES_PIKACHU] = 2,
     [SPECIES_RAICHU] = 0,
+    [SPECIES_GLOOM] = 0,
+    [SPECIES_VILEPLUME] = 0,
     [SPECIES_DODUO] = 2,
     [SPECIES_DODRIO] = 2,
     [SPECIES_GOLDEEN] = 0,
