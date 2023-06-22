@@ -405,7 +405,11 @@
 #define EFFECT_REVIVAL_BLESSING             399
 #define EFFECT_FROSTBITE_HIT                400
 #define EFFECT_SNOWSCAPE                    401
+#define EFFECT_TRIPLE_ARROWS                402
+#define EFFECT_INFERNAL_PARADE              403
+#define EFFECT_TAKE_HEART                   404
+#define EFFECT_AXE_KICK                     405
 
-#define NUM_BATTLE_MOVE_EFFECTS             402
+#define NUM_BATTLE_MOVE_EFFECTS             406
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H
