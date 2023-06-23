@@ -30,7 +30,9 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-#define MAX_PROCESSES 32 // See also test/test.h
+#define MAX_PROCESSES               32 // See also test/test.h
+#define MAX_FAILED_TESTS_TO_LIST    100
+#define MAX_TEST_LIST_BUFFER_LENGTH 256
 
 struct Runner
 {
@@ -50,6 +52,7 @@ struct Runner
     int assumptionFails;
     int fails;
     int results;
+    char failedTestNames[MAX_FAILED_TESTS_TO_LIST][MAX_TEST_LIST_BUFFER_LENGTH];
 };
 
 static unsigned nrunners = 0;
@@ -97,6 +100,8 @@ static void handle_read(struct Runner *runner)
                     runner->assumptionFails++;
                     goto add_to_results;
                 case 'F':
+                    if (runner->fails < MAX_FAILED_TESTS_TO_LIST)
+                        strcpy(runner->failedTestNames[runner->fails], runner->test_name);
                     runner->fails++;
 add_to_results:
                     runner->results++;
@@ -469,6 +474,9 @@ int main(int argc, char *argv[])
     int assumptionFails = 0;
     int fails = 0;
     int results = 0;
+
+    char failedTestNames[MAX_FAILED_TESTS_TO_LIST * MAX_PROCESSES][MAX_TEST_LIST_BUFFER_LENGTH];
+
     for (int i = 0; i < nrunners; i++)
     {
         int wstatus;
@@ -485,8 +493,29 @@ int main(int argc, char *argv[])
         knownFails += runners[i].knownFails;
         todos += runners[i].todos;
         assumptionFails += runners[i].assumptionFails;
-        fails += runners[i].fails;
+        for (int j = 0; j < runners[i].fails; j++)
+        {
+            if (j < MAX_FAILED_TESTS_TO_LIST)
+                strcpy(failedTestNames[fails], runners[i].failedTestNames[j]);
+            fails++;
+        }
         results += runners[i].results;
+    }
+
+    // Bubblesort failed test names.
+    char temp[MAX_TEST_LIST_BUFFER_LENGTH];
+    for (int i = 0; i < fails; i++)
+    {
+        for (int j = 0; j < fails - 1 - i; j++)
+        {
+            if (strcmp(failedTestNames[j], failedTestNames[j + 1]) > 0)
+            {
+                //swap array[j] and array[j + 1]
+                strcpy(temp, failedTestNames[j]);
+                strcpy(failedTestNames[j], failedTestNames[j + 1]);
+                strcpy(failedTestNames[j + 1], temp);
+            }
+        }
     }
 
     if (results == 0)
@@ -495,16 +524,28 @@ int main(int argc, char *argv[])
     }
     else
     {
-        fprintf(stdout, "\n- Tests TOTAL:         %d\n", results);
+        if (fails > 0)
+        {
+            fprintf(stdout, "\n- Tests \e[31mFAILED\e[0m :       %d    Add TESTS='X' to run tests with the defined prefix.\n", fails);
+            for (int i = 0; i < fails; i++)
+            {
+                if (i >= MAX_FAILED_TESTS_TO_LIST)
+                {
+                    fprintf(stdout, "  - and %d more...\n", fails - MAX_FAILED_TESTS_TO_LIST);
+                    break;
+                }
+                fprintf(stdout, "  - \e[31m%s\e[0m.\n", failedTestNames[i]);
+            }
+        }
         fprintf(stdout, "- Tests \e[32mPASSED\e[0m:        %d\n", passes);
         if (knownFails > 0)
             fprintf(stdout, "- Tests \e[33mKNOWN_FAILING\e[0m: %d\n", knownFails);
         if (todos > 0)
             fprintf(stdout, "- Tests \e[33mTO_DO\e[0m:         %d\n", todos);
-        if (fails > 0)
-            fprintf(stdout, "- Tests \e[31mFAILED\e[0m :       %d\n", fails);
         if (assumptionFails > 0)
             fprintf(stdout, "- \e[33mASSUMPTIONS_FAILED\e[0m:  %d\n", assumptionFails);
+
+        fprintf(stdout, "- Tests \e[34mTOTAL\e[0m:         %d\n", results);
     }
     fprintf(stdout, "\n");
 
