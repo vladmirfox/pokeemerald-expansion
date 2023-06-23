@@ -17,7 +17,6 @@
 #endif
 
 #define PIKACHU_SPECIES_INFO(gender, flip)                                 \
-    {                                                                      \
         .baseHP        = 35,                                               \
         .baseAttack    = 55,                                               \
         .baseSpeed     = 90,                                               \
@@ -35,12 +34,10 @@
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FAIRY},                  \
         .abilities = {ABILITY_STATIC, ABILITY_NONE, ABILITY_LIGHTNING_ROD},\
         .bodyColor = BODY_COLOR_YELLOW,                                    \
-        .noFlip = flip,                                                    \
-        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,                           \
-    }
+        .noFlip = flip
 
-#define COSPLAY_PIKACHU_SPECIES_INFO(flip) PIKACHU_SPECIES_INFO(MON_FEMALE, flip)
-#define CAP_PIKACHU_SPECIES_INFO(flip)     PIKACHU_SPECIES_INFO(MON_MALE, flip)
+#define COSPLAY_PIKACHU_SPECIES_INFO(flip) { PIKACHU_SPECIES_INFO(MON_FEMALE, flip), }
+#define CAP_PIKACHU_SPECIES_INFO(flip)     { PIKACHU_SPECIES_INFO(MON_MALE, flip), }
 
 #define PICHU_SPECIES_INFO(flip)                                           \
     {                                                                      \
@@ -1396,7 +1393,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_PIKACHU] = PIKACHU_SPECIES_INFO(PERCENT_FEMALE(50), FLIP),
+    [SPECIES_PIKACHU] = 
+    {
+        .flags = SPECIES_FLAG_GENDER_DIFFERENCE,
+        PIKACHU_SPECIES_INFO(PERCENT_FEMALE(50), FLIP),
+    },
 
     [SPECIES_RAICHU] =
     {
