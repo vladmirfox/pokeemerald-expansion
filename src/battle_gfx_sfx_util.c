@@ -763,11 +763,7 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
         {
             if (state == 2)
             {
-                if (WhichBattleCoords(0))
-                    LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[0]);
-                else
-                    ShdwLoadHealthboxSprite();
-
+                LoadCompressedSpriteSheet(&sSpriteSheets_DoublesPlayerHealthbox[0]);
                 ShdwLoadHealthboxPalette(0);
             }
             else if (state == 3)
@@ -782,7 +778,7 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
             }
             else if (state == 5)
             {
-                LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[0]);
+                LoadCompressedSpriteSheet(&sSpriteSheets_DoublesOpponentHealthbox[1]);
                 ShdwLoadHealthboxPalette(3);
             }
             else if (state == 6)
