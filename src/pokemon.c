@@ -4687,6 +4687,8 @@ u32 GetMonData(struct Pokemon *mon, s32 field, u8 *data)
 u32 GetShadowMonData(struct ShadowListEntry *mon, s32 field, u8 *data)
 {
     u32 ret;
+    u32 personality;
+	u32 value;
 
     switch (field)
     {
@@ -4742,7 +4744,7 @@ u32 GetShadowMonData(struct ShadowListEntry *mon, s32 field, u8 *data)
         ret = mon->defenseIV;
         break;
     case MON_DATA_SPEED_IV:
-        ret = mon->speed;
+        ret = mon->speedIV;
         break;
     case MON_DATA_SPATK_IV:
         ret = mon->spAttackIV;
@@ -4762,8 +4764,8 @@ u32 GetShadowMonData(struct ShadowListEntry *mon, s32 field, u8 *data)
     case MON_DATA_PERSONALITY:
         do
         {
-            u32 personality = Random32();
-            u32 value = gSaveBlock2Ptr->playerTrainerId[0]
+            personality = Random32();
+            value = gSaveBlock2Ptr->playerTrainerId[0]
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);

@@ -1,6 +1,6 @@
 //      There are up to 2047 possible values for shadowId, but only 80 have flags established for meeting and snagging. If you need more, manually designate a new block of flags using the unused flags in constants/flags.h
 
-const struct ShadowListEntry gShadowListEntries[] =
+struct ShadowListEntry gShadowListEntries[] =
 {
     [SHADOW_LIST_NONE] =
     {
@@ -27,10 +27,9 @@ const struct ShadowListEntry gShadowListEntries[] =
         .heartMax = 2000,
         .gender = MON_GENDERLESS,
         .nature = NATURE_HARDY,
-        .ability = 0,
+        .abilityNum = 0,
         .shiny = 0,
-        .snagLocation = 0,
-        .snagTrainerName = _("Unknown"),
+		.heldItem = 0,
     }, 
     
     [SHADOW_LIST_EEVEE] =
@@ -58,10 +57,8 @@ const struct ShadowListEntry gShadowListEntries[] =
         .heartMax = 4000,
         .gender = MON_MALE,
         .nature = NATURE_HARDY,
-        .ability = 0,
+        .abilityNum = 0,
         .shiny = 0,
-        .snagLocation = 0,
-        .snagTrainerName = _("Unknown"),
 
     },
 
@@ -90,10 +87,8 @@ const struct ShadowListEntry gShadowListEntries[] =
         .heartMax = 4000,
         .gender = MON_FEMALE,
         .nature = NATURE_HARDY,
-        .ability = 0,
+        .abilityNum = 0,
         .shiny = 0,
-        .snagLocation = 0,
-        .snagTrainerName = _("Unknown"),
 
     },
 
@@ -122,10 +117,8 @@ const struct ShadowListEntry gShadowListEntries[] =
         .heartMax = 4000,
         .gender = MON_MALE,
         .nature = NATURE_HARDY,
-        .ability = 0,
+        .abilityNum = 0,
         .shiny = 0,
-        .snagLocation = 0,
-        .snagTrainerName = _("Unknown"),
 
     },
 
@@ -154,10 +147,8 @@ const struct ShadowListEntry gShadowListEntries[] =
         .heartMax = 4000,
         .gender = MON_FEMALE,
         .nature = NATURE_HARDY,
-        .ability = 0,
+        .abilityNum = 0,
         .shiny = 0,
-        .snagLocation = 0,
-        .snagTrainerName = _("Unknown"),
 
     },
 
@@ -186,10 +177,8 @@ const struct ShadowListEntry gShadowListEntries[] =
         .heartMax = 4000,
         .gender = MON_MALE,
         .nature = NATURE_HARDY,
-        .ability = 0,
+        .abilityNum = 0,
         .shiny = 0,
-        .snagLocation = 0,
-        .snagTrainerName = _("Unknown"),
 
     },
 
@@ -218,10 +207,8 @@ const struct ShadowListEntry gShadowListEntries[] =
         .heartMax = 4000,
         .gender = MON_FEMALE,
         .nature = NATURE_HARDY,
-        .ability = 0,
+        .abilityNum = 0,
         .shiny = 0,
-        .snagLocation = 0,
-        .snagTrainerName = _("Unknown"),
 
     },
     
@@ -250,19 +237,18 @@ const struct ShadowListEntry gShadowListEntries[] =
         .heartMax = 6000,
         .gender = MON_FEMALE,
         .nature = NATURE_IMPISH,
-        .ability = 2,
+        .abilityNum = 2,
         .shiny = 0,
-        .snagLocation = 0,
-        .snagTrainerName = _("Unknown"),
 
     },
 
+	/* "Third Starter" not currently working, will rework eventually
     [SHADOW_LIST_THIRD_STARTER] =
     {
         .shadowState = 1,
         .shadowVar = 4,
         .shadowId = 8,
-        .shadowMoves = {MOVE_SHADOW_BLITZ, SHADOW_RAVE, MOVE_SHADOW_DOWN, MOVE_NONE},
+        .shadowMoves = {MOVE_SHADOW_BLITZ, MOVE_SHADOW_RAVE, MOVE_SHADOW_DOWN, MOVE_NONE},
         .purifyMoves = {MOVE_FLARE_BLITZ, MOVE_WOOD_HAMMER, MOVE_WAVE_CRASH, MOVE_TRI_ATTACK},
         .hpEV = 0,
         .attackEV = 0,
@@ -280,11 +266,10 @@ const struct ShadowListEntry gShadowListEntries[] =
         .level = 10,
         .heartMax = 6000,
         .gender = (1 - gSaveBlock2Ptr->playerGender),
-        .nature = gSaveBlock2Ptr->playerTrainerId % NUM_NATURES,
-        .ability = 2,
+        .nature = gSaveBlock2Ptr->(playerTrainerId % NUM_NATURES),
+        .abilityNum = 2,
         .shiny = 1,
-        .snagLocation = 0,
-        .snagTrainerName = _("Unknown"),
+
         switch(VAR_STARTER_MON){
             case 0:
                 .species = SPECIES_MARSHTOMP;
@@ -298,13 +283,14 @@ const struct ShadowListEntry gShadowListEntries[] =
         },
     },
 
+    */
+
     [SHADOW_LIST_LUGIA] =
     {
         .shadowState = 1,
         .shadowVar = 8,
         .shadowId = 79,
         .species = SPECIES_LUGIA_SHADOW,
-        .experience = 0,
         .shadowMoves = {MOVE_SHADOW_BLAST, MOVE_SHADOW_DOWN, MOVE_SHADOW_SHED, MOVE_SHADOW_STORM},
         .purifyMoves = {MOVE_PSYCHO_BOOST, MOVE_FEATHER_DANCE, MOVE_EARTHQUAKE, MOVE_HYDRO_PUMP},
         .hpEV = 0,
@@ -323,11 +309,9 @@ const struct ShadowListEntry gShadowListEntries[] =
         .level = 50,
         .heartMax = 12000,
         .gender = MON_GENDERLESS,
-        .nature = NATURE_BOLD
-        .ability = 0
+        .nature = NATURE_BOLD,
+        .abilityNum = 0,
         .shiny = 0,
-        .snagLocation = 0,
-        .snagTrainerName = _("Greevil"),
 
     },
 
@@ -337,7 +321,6 @@ const struct ShadowListEntry gShadowListEntries[] =
         .shadowVar = 8,
         .shadowId = 80,
         .species = SPECIES_MEWTWO_SHADOW,
-        .experience = 0,
         .shadowMoves = {MOVE_SHADOW_END, MOVE_SHADOW_STORM, MOVE_SHADOW_RAVE, MOVE_SHADOW_PANIC},
         .purifyMoves = {MOVE_ZEN_HEADBUTT, MOVE_PSYSTRIKE, MOVE_PSYWAVE, MOVE_MIRACLE_EYE},
         .hpEV = 0,
@@ -356,11 +339,9 @@ const struct ShadowListEntry gShadowListEntries[] =
         .level = 70,
         .heartMax = 12000,
         .gender = MON_GENDERLESS,
-        .nature = NATURE_SERIOUS
-        .ability = 0
+        .nature = NATURE_SERIOUS,
+        .abilityNum = 0,
         .shiny = 0,
-        .snagLocation = 0,
-        .snagTrainerName = _("Anne"),
 
     },
 

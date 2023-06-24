@@ -11,6 +11,7 @@ const struct Trainer gTrainers[] = {
         .aiFlags = 0,
         .partySize = 0,
         .party = {.NoItemDefaultMoves = NULL},
+		.possibleShadows = {0, 0, 0, 0, 0, 0},
     },
 
     [TRAINER_SAWYER_1] =
@@ -131,6 +132,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
         .party = NO_ITEM_DEFAULT_MOVES(sParty_GruntPetalburgWoods),
+		.possibleShadows = {0, SHADOW_LIST_VAPOREON, 0, 0, 0, 0},
     },
 
     [TRAINER_MARCEL] =

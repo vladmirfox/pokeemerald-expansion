@@ -122,6 +122,7 @@ struct Trainer
     /*0x1E*/ bool8 doubleBattle:1;
              u8 partyFlags:7;
     /*0x1F*/ u8 partySize;
+    /*0x20*/ u8 possibleShadows[6];
 };
 
 #define TRAINER_ENCOUNTER_MUSIC(trainer)((gTrainers[trainer].encounterMusic_gender & 0x7F))

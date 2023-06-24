@@ -362,6 +362,39 @@ struct SpeciesInfo /*0x24*/
  /* 0x20 */ u16 flags;
 };
 
+struct ShadowListEntry
+{
+/* 0x00 */	u16 shadowState:1;
+/* 0x00 */	u16 shadowVar:4;
+/* 0x00 */	u16 shadowId:11;
+/* 0x02 */	u16 species;
+/* 0x04 */	u16 shadowMoves[MAX_MON_MOVES];
+/* 0x0C */	u16 purifyMoves[MAX_MON_MOVES];
+/* 0x14 */	u8 hpEV;
+/* 0x15 */	u8 attackEV;
+/* 0x16 */	u8 defenseEV;
+/* 0x17 */	u8 speedEV;
+/* 0x18 */	u8 spAttackEV;
+/* 0x19 */	u8 spDefenseEV;
+/* 0x1A */  u32 hpIV:5;
+/* 0x1A */  u32 attackIV:5;
+/* 0x1B */  u32 defenseIV:5;
+/* 0x1B */  u32 speedIV:5;
+/* 0x1C */  u32 spAttackIV:5;
+/* 0x1D */  u32 spDefenseIV:5;
+/* 0x1D */  u32 boostLevel:2;
+/* 0x1E */  u8 level;
+/* 0x1F */  u16 heartMax;
+/* 0x21 */  u8 gender;
+/* 0x22 */  u8 nature:5;
+/* 0x22 */  u8 abilityNum:2;
+/* 0x22 */  u8 shiny:1;
+/* 0x23 */	u16 heldItem;
+};
+
+
+extern struct ShadowListEntry gShadowListEntries[];
+
 struct BattleMove
 {
     u16 effect;
