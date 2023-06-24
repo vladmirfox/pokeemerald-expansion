@@ -7417,6 +7417,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
         .party = NO_ITEM_DEFAULT_MOVES(sParty_Lyle),
+		.possibleShadows = {SHADOW_LIST_VAPOREON, 0, 0, 0, 0, 0},
     },
 
     [TRAINER_JOSE] =
@@ -7477,6 +7478,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
         .party = NO_ITEM_DEFAULT_MOVES(sParty_James1),
+		.possibleShadows = {0, 0, 0, 0, SHADOW_LIST_VAPOREON, 0},
     },
 
     [TRAINER_JAMES_2] =

@@ -1959,24 +1959,30 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
     u8 fixedIV;
     s32 i, j;
     u8 monsCount;
+    u8 extraShadows = 0;
     s32 ball = -1;
+    u8 whichShadow;
     if (battleTypeFlags & BATTLE_TYPE_TRAINER && !(battleTypeFlags & (BATTLE_TYPE_FRONTIER
                                                                         | BATTLE_TYPE_EREADER_TRAINER
                                                                         | BATTLE_TYPE_TRAINER_HILL)))
     {
         if (firstTrainer == TRUE)
             ZeroEnemyPartyMons();
+        for (i = trainer->partySize && trainer->possibleShadows[i] > 0; i < 6; i++)
+        {
+        		extraShadows++;
+        }
 
         if (battleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
         {
-            if (trainer->partySize > PARTY_SIZE / 2)
+            if (trainer->partySize + extraShadows > PARTY_SIZE / 2)
                 monsCount = PARTY_SIZE / 2;
             else
-                monsCount = trainer->partySize;
+                monsCount = trainer->partySize + extraShadows;
         }
         else
         {
-            monsCount = trainer->partySize;
+            monsCount = trainer->partySize + extraShadows;
         }
 
         for (i = 0; i < monsCount; i++)
@@ -1990,6 +1996,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 personalityValue = 0x88; // Use personality more likely to result in a male Pokémon
 
             personalityValue += personalityHash << 8;
+            whichShadow = trainer->possibleShadows[i];
             switch (trainer->partyFlags)
             {
             case 0:
@@ -1997,6 +2004,8 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 const struct TrainerMonNoItemDefaultMoves *partyData = trainer->party.NoItemDefaultMoves;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                if (whichShadow > 0)
+                	ReplaceWithShadowMon(&party[i], &gShadowListEntries[whichShadow]);
                 break;
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET:
@@ -2010,6 +2019,9 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
                     SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
                 }
+                if (whichShadow > 0)
+                	ReplaceWithShadowMon(&party[i], &gShadowListEntries[whichShadow]);
+
                 break;
             }
             case F_TRAINER_PARTY_HELD_ITEM:
@@ -2019,6 +2031,9 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+                if (whichShadow > 0)
+                	ReplaceWithShadowMon(&party[i], &gShadowListEntries[whichShadow]);
+
                 break;
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
@@ -2034,6 +2049,9 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
                     SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
                 }
+                if (whichShadow > 0)
+                	ReplaceWithShadowMon(&party[i], &gShadowListEntries[whichShadow]);
+
                 break;
             }
             case F_TRAINER_PARTY_EVERYTHING_CUSTOMIZED:
@@ -2093,9 +2111,12 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 {
                     SetMonData(&party[i], MON_DATA_NICKNAME, partyData[i].nickname);
                 }
+                if (whichShadow > 0)
+                	ReplaceWithShadowMon(&party[i], &gShadowListEntries[whichShadow]);
+
                 CalculateMonStats(&party[i]);
             }
-            case F_TRAINER_PARTY_SHADOW_TEST:
+            case F_TRAINER_PARTY_SHADOW_TEST: //hopefully obsolete now, but remaining just in case
             {
                 const struct TrainerMonNoItemDefaultMovesShadow *partyData = trainer->party.NoItemDefaultMovesShadow;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;

@@ -3943,6 +3943,44 @@ void ConvertPokemonToBattleTowerPokemon(struct Pokemon *mon, struct BattleTowerP
     GetMonData(mon, MON_DATA_NICKNAME, dest->nickname);
 }
 
+void ReplaceWithShadowMon(struct Pokemon *mon, struct Pokemon *dest)
+{
+    s32 i;
+    u16 heldItem;
+
+    dest->species = GetShadowMonData(mon, MON_DATA_SPECIES, NULL);
+    heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+
+    if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
+        heldItem = ITEM_NONE;
+
+    dest->heldItem = heldItem;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+        dest->moves[i] = GetShadowMonData(mon, MON_DATA_MOVE1 + i, NULL);
+
+    dest->level = GetShadowMonData(mon, MON_DATA_LEVEL, NULL);
+    dest->boostLevel = GetShadowMonData(mon, MON_DATA_BOOST_LEVEL, NULL);
+    dest->isShadow = GetShadowMonData(mon, MON_DATA_IS_SHADOW, NULL);
+    dest->shadowVar = GetShadowMonData(mon, MON_DATA_SHADOW_VARIETY, NULL);
+    dest->shadowId = GetShadowMonData(mon, MON_DATA_SHADOW_ID, NULL);
+    dest->hpEV = GetShadowMonData(mon, MON_DATA_HP_EV, NULL);
+    dest->attackEV = GetShadowMonData(mon, MON_DATA_ATK_EV, NULL);
+    dest->defenseEV = GetShadowMonData(mon, MON_DATA_DEF_EV, NULL);
+    dest->speedEV = GetShadowMonData(mon, MON_DATA_SPEED_EV, NULL);
+    dest->spAttackEV = GetShadowMonData(mon, MON_DATA_SPATK_EV, NULL);
+    dest->spDefenseEV = GetShadowMonData(mon, MON_DATA_SPDEF_EV, NULL);
+    dest->heartMax = GetShadowMonData(mon, MON_DATA_HEART_MAX, NULL);
+    dest->hpIV = GetShadowMonData(mon, MON_DATA_HP_IV, NULL);
+    dest->attackIV = GetShadowMonData(mon, MON_DATA_ATK_IV, NULL);
+    dest->defenseIV = GetShadowMonData(mon, MON_DATA_DEF_IV, NULL);
+    dest->speedIV  = GetShadowMonData(mon, MON_DATA_SPEED_IV, NULL);
+    dest->spAttackIV  = GetShadowMonData(mon, MON_DATA_SPATK_IV, NULL);
+    dest->spDefenseIV  = GetShadowMonData(mon, MON_DATA_SPDEF_IV, NULL);
+    dest->abilityNum = GetShadowMonData(mon, MON_DATA_ABILITY_NUM, NULL);
+    dest->personality = GetShadowMonData(mon, MON_DATA_PERSONALITY, NULL);
+}
+
 // If FALSE, should load this game's Deoxys form. If TRUE, should load normal Deoxys form
 bool8 ShouldIgnoreDeoxysForm(u8 caseId, u8 battlerId)
 {
