@@ -8550,8 +8550,6 @@ extern const u32 gItemIcon_RoomService[];
 extern const u32 gItemIconPalette_RoomService[];
 extern const u32 gItemIcon_UtilityUmbrella[];
 extern const u32 gItemIconPalette_UtilityUmbrella[];
-extern const u32 gItemIcon_ClearAmulet[];
-extern const u32 gItemIconPalette_ClearAmulet[];
 // Berries
 extern const u32 gItemIcon_CheriBerry[];
 extern const u32 gItemIconPalette_CheriBerry[];
@@ -8845,6 +8843,8 @@ extern const u32 gItemIconPalette_Sapphire[];
 // GEN IX ITEMS
 extern const u32 gItemIcon_AbilityShield[];
 extern const u32 gItemIconPalette_AbilityShield[];
+extern const u32 gItemIcon_ClearAmulet[];
+extern const u32 gItemIconPalette_ClearAmulet[];
 extern const u32 gItemIcon_AuspiciousArmor[];
 extern const u32 gItemIconPalette_AuspiciousArmor[];
 extern const u32 gItemIcon_BigBambooShoot[];
