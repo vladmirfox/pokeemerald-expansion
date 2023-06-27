@@ -1990,6 +1990,62 @@ const u32 gItemIconPalette_TinyBambooShoot[] = INCBIN_U32("graphics/items/icon_p
 
 // Tera Shards here
 
+const u32 gItemIcon_NormalTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_NormalTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/normal_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_FireTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_FireTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/fire_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_WaterTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_WaterTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/water_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_GrassTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_GrassTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/grass_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_ElectricTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_ElectricTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/electric_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_IceTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_IceTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/ice_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_FightingTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_FightingTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/fighting_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_PoisonTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_PoisonTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/poison_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_GroundTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_GroundTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/ground_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_FlyingTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_FlyingTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/flying_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_PsychicTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_PsychicTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/psychic_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_BugTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_BugTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/bug_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_RockTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_RockTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/rock_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_GhostTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_GhostTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/ghost_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_DarkTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_DarkTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/dark_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_DragonTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_DragonTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/dragon_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_SteelTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_SteelTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/steel_tera_shard.gbapal.lz");
+
+const u32 gItemIcon_FairyTeraShard[] = INCBIN_U32("graphics/items/icons/normal_tera_shard.4bpp.lz");
+const u32 gItemIconPalette_FairyTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/fairy_tera_shard.gbapal.lz");
+
+// Misc. Items
+
 const u32 gItemIcon_AdamantCrystal[] = INCBIN_U32("graphics/items/icons/adamant_crystal.4bpp.lz");
 const u32 gItemIconPalette_AdamantCrystal[] = INCBIN_U32("graphics/items/icon_palettes/adamant_crystal.gbapal.lz");
 
