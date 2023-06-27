@@ -786,7 +786,7 @@ u8 *StringCopyUppercase(u8 *dest, const u8 *src)
     while (*src != EOS)
     {
         if (*src >= CHAR_a && *src <= CHAR_z)
-            *dest = sCaseToggleTable[*src];
+            *dest = gCaseToggleTable[*src];
         else
             *dest = *src;
         dest++;
