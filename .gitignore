@@ -40,3 +40,4 @@ prefabs.json
 *.sym
 *.js
 __pycache__/
+log.txt

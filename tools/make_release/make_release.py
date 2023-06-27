@@ -56,8 +56,36 @@ def pull_new_version():
     preprocess_files("global", globalVersion)
     preprocess_files("pokemon_storage_system", globalVersion)
     if (globalVersion == 0):
-        out("v0 saved. please make changes in order to enable v1")
+        injectTustin()
         quit()
+
+# injects Tustin's implementation to the game where necessary
+def injectTustin():
+    out("Saved the current version as v0. Please wait…")
+    # add save sentinel to the new saveblock
+    with open("include/global.h", 'r') as file:
+        content = file.read()
+    if not 'u8 _saveSentinel;' in content:
+        ncontent = content.replace('struct SaveBlock2\n{\n    ', 'struct SaveBlock2\n{\n    u8 _saveSentinel; // 0xFF\n    // u8 unused;\n    u16 saveVersion;\n    ')
+        if ncontent == content: # the injection failed for whatever reason
+            failTustinInjection("Unable to inject the necessary data into SaveBlock2! Aborting procedure.")
+        with open("include/global.h", 'w') as file:
+            file.write(ncontent)
+        out("Injected the save sentinel into the new saveblock")
+    # uncomment the versioning include in include/constants/global.h
+    with open("include/constants/global.h", 'r') as file:
+        content = file.read()
+    if '//#include "constants/versioning.h"' in content:
+        content = content.replace('//#include "constants/versioning.h"', '#include "constants/versioning.h"')
+        with open("include/constants/global.h", 'w') as file:
+            file.write(ncontent)
+        out("Uncommented the versioning include in the global constants")
+
+def failTustinInjection(msg):
+    out(msg)
+    os.remove("versioning/global_v%s.c" % globalVersion)
+    os.remove("versioning/pokemon_storage_system_v%s.c" % globalVersion)
+    quit()
 
 # alternative of plain old "print" that allows for logging
 def out(str):
@@ -230,6 +258,9 @@ def prepare_comparison(filename, starting_version):
     return(enums_old, enums_new)
 
 if __name__ == "__main__":
+    if '--log' in sys.argv:
+        f = open('log.txt', 'w')
+    
     pull_new_version()
     # use cxxheaderparser to figure out everything
     GlobalClassesOld = {}
@@ -237,9 +268,6 @@ if __name__ == "__main__":
 
     GlobalReferOld = {}
     GlobalReferNew = {}
-
-    if '--log' in sys.argv:
-        f = open('log.txt', 'w')
 
     # for now, this will only take care of migrations from version x - 1 to version x
     # in the future, this can be improved to allow direct migrations from one version to another, but for now this iterative approach will work (albeit more slowly)

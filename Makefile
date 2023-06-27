@@ -486,7 +486,7 @@ libagbsyscall:
 	@$(MAKE) -C libagbsyscall TOOLCHAIN=$(TOOLCHAIN) MODERN=$(MODERN)
 
 release:
-	python3 tools/make_release/make_release.py --verbose --log
+	python3 tools/make_release/make_release.py --verbose
 
 ###################
 ### Symbol file ###
