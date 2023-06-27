@@ -113,4 +113,6 @@ void Task_LinkFullSave(u8 taskId);
 // save_failed_screen.c
 void DoSaveFailedScreen(u8 saveType);
 
+bool8 UpdateSaveFile(void);
+
 #endif // GUARD_SAVE_H
