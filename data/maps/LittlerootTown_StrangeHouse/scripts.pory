@@ -1,0 +1,57 @@
+raw `
+LittlerootTown_StrangeHouse_MapScripts::
+	.byte 0
+
+LittlerootTown_StrangeHouse_Fridge::
+	lockall
+	msgbox LittlerootTown_StrangeHouse_Fridge_Text_0
+	releaseall
+	return
+
+
+LittlerootTown_StrangeHouse_Fridge_Text_0:
+	.string "Heck yeah, two refrigerators!$"
+
+`
+
+script LittlerootTown_StrangeHouse_Fridge {
+	lockall
+	msgbox("Heck yeah, two refrigerators!")
+	releaseall
+}
+
+script LittlerootTown_StrangeHouse_GiftPokemon {
+    lockall
+    showmonpic(SPECIES_CHARMANDER, 10, 3)
+    msgbox("Will you take the {SPECIES}?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_CHARMANDER,5)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("You recieved the {SPECIES}!")
+            removeobject(1)
+            setflag(FLAG_UNUSED_0x493)
+            call(nicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("You recieved the {SPECIES}!")
+            removeobject(1)
+            setflag(FLAG_UNUSED_0x493)
+            call(nicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("No More Room.")
+        }
+    }
+    else{
+        hidemonpic
+        msgbox(StrangeHouse_MonNotChosen)
+    }
+    waitmessage
+    releaseall
+    end
+}
+
+script nicknamePartyMon
