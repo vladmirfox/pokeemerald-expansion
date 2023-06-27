@@ -1063,6 +1063,10 @@ void Task_LinkFullSave(u8 taskId)
     }
 }
 
+// DO NOT TOUCH THE FOLLOWING BLOCK OF CODE - IT IS AUTOMATICALLY CHANGED AND UPDATED BY MAKE RELEASE
+// START Include old save data
+// END Include old save data
+
 u16 DetermineSaveVersion()
 {
 #ifdef SAVE_VERSION

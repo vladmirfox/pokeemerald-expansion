@@ -5,6 +5,8 @@ from cxxheaderparser.simple import parse_file
 # os and sys for interaction with the file system
 import os
 import sys
+import re
+import shutil
 
 # trusted_typedefs clarifies that the underlying construction doesn't need to be compared (unlike say two instances of a BoxPokemon struct) 
 trusted_typedefs = {
@@ -26,6 +28,7 @@ ignoreable_includes = ['string.h', 'stddef.h', 'stdint.h', 'sprite.h', 'limits.h
 
 globalVersion = 0
 globalHasChanges = False
+globalDifferences = {}
 
 # this class overrides the "include not found" error and prevents it from displaying if it is in ignoreable_includes (i.e. irrelevant)
 class PcppPreprocessor(Preprocessor):
@@ -43,7 +46,7 @@ def preprocess_files(filename, version):
     path = "include/%s.h" % filename
     with open(path, 'rt') as ih:
         p.parse(ih.read(), path)
-    with open('versioning/%s_v%s.i' % (filename, version), 'w') as oh:
+    with open('versioning/%s_v%s.c' % (filename, version), 'w') as oh:
         p.write(oh)
 
 # pulls global.h and pokemon_storage_system from the source, storing them in a separate versioning folder
@@ -51,7 +54,7 @@ def pull_new_version():
     if not os.path.exists("versioning/"):
         os.mkdir("versioning/")
     global globalVersion
-    while os.path.exists("versioning/global_v%s.i" % globalVersion):
+    while os.path.exists("versioning/global_v%s.c" % globalVersion):
         globalVersion += 1
     preprocess_files("global", globalVersion)
     preprocess_files("pokemon_storage_system", globalVersion)
@@ -91,12 +94,15 @@ def injectTustin():
             file.write(content)
         out("Updated include/constants/global.h")
     makeSaveVersionConstants()
+    out("Successfully applied the necessary changes to the codebase.")
+    out("You will currently be unable to load previous save files until you make a new release.")
+    out("Even if you delay this in function of more saveblock changes, you will be able to play with newly created save files.")
 
 def failTustinInjection(msg):
     out(msg)
     # remove the latest versioning backups
-    os.remove("versioning/global_v%s.i" % globalVersion)
-    os.remove("versioning/pokemon_storage_system_v%s.i" % globalVersion)
+    os.remove("versioning/global_v%s.c" % globalVersion)
+    os.remove("versioning/pokemon_storage_system_v%s.c" % globalVersion)
     quit()
 
 # the following function defines all the save versions constants
@@ -109,6 +115,20 @@ def makeSaveVersionConstants():
     with open("include/constants/versioning.h", 'w') as file:
         file.write(content)
     out("Updated include/constants/versioning.h")
+
+def updateSwitchVersion():
+    switchcase = ""
+    for x in range(globalVersion + 1):
+        switchcase += "        case %s: // Upgrading from vanilla to version %x\n            result = UpdateSave_v%s_v%s(gRamSaveSectorLocations);\n            break;\n" % (x, globalVersion, x, globalVersion)
+    with open("src/save.c", 'r') as file:
+        content = file.read()
+        ncontent = re.sub("(\/\/ START Attempt to update the save\n    switch \(version\)\n    {)[^}]*(        default: \/\/ Unsupported version to upgrade\n            result = FALSE;\n            break;)", "\\1" + switchcase + "\\2", content)
+        if content == ncontent:
+            out("Error: unable to update src/save.c!")
+            quit()
+    with open("src/save.c", 'w') as file:
+        file.write(ncontent)
+    out("Updated src/save.c")
 
 # alternative of plain old "print" that allows for logging
 def out(str):
@@ -203,6 +223,9 @@ def compareFields(fieldname, inline, extratext):
     if '--verbose' in sys.argv or '--detailed' in sys.argv or (inline == 1):
         out("  " * (inline - 1) + "Comparing %s%s" % (fieldname, extratext_display))
     for x in GlobalClassesNew[fieldname].fields:
+        if not x.name in fields_old:
+            out("  " * inline  + "%s is a new field that was not present in the first version!" % x.name)
+            continue
         oldclass = parse_field(fields_old[x.name], GlobalEnumsOld)
         newclass = parse_field(x, GlobalEnumsNew)
 
@@ -237,8 +260,8 @@ def compareFields(fieldname, inline, extratext):
 def prepare_comparison(filename, starting_version):
     global GlobalClassesOld
     global GlobalClassesNew
-    contents_old, enums_old = parse_file2('versioning/%s_v%s.i' % (filename, starting_version))
-    contents_new, enums_new = parse_file2('versioning/%s_v%s.i' % (filename, (starting_version + 1)))
+    contents_old, enums_old = parse_file2('versioning/%s_v%s.c' % (filename, starting_version))
+    contents_new, enums_new = parse_file2('versioning/%s_v%s.c' % (filename, globalVersion))
 
     # classes
     for x in contents_old.namespace.classes:
@@ -280,6 +303,20 @@ def prepare_comparison(filename, starting_version):
                     GlobalReferNew[x.name] = "__AnonymousName%s" % x.type.typename.segments[0].id
     return(enums_old, enums_new)
 
+def prepareMigration(listofchanges, versionnumber):
+    # content header
+    content = '#include "global.h"\n#include "save.h"\n\n// This file contains the backups for the save file of v%s.\n// Editing this file may cause unwanted behaviour.\n// Please use make release in case problems arise.\n\n' % versionnumber
+    # add actual backups
+
+    # add migration function
+    content += "\n\nbool8 UpdateSave_v%s_v%s(const struct SaveSectorLocation *locations)\n{\n" % (versionnumber, globalVersion)
+
+    content += "    SetContinueGameWarpStatus();\n    gSaveBlock1Ptr->continueGameWarp = gSaveBlock1Ptr->lastHealLocation;\n\n    return TRUE;\n}\n"
+
+    # write it to file
+    with open("src/data/old_saves/save.v%s.h" % versionnumber, 'w') as file:
+        file.write(content)
+
 if __name__ == "__main__":
     if '--log' in sys.argv:
         f = open('log.txt', 'w')
@@ -292,8 +329,7 @@ if __name__ == "__main__":
     GlobalReferOld = {}
     GlobalReferNew = {}
 
-    # for now, this will only take care of migrations from version x - 1 to version x
-    # in the future, this can be improved to allow direct migrations from one version to another, but for now this iterative approach will work (albeit more slowly)
+    # first compare the current state of affairs with the latest version. only if this is changed (see globalHasChanges) do we need to recompare with the older changes
     GlobalEnumsOld, GlobalEnumsNew = prepare_comparison('global', globalVersion - 1)
     prepare_comparison('pokemon_storage_system', globalVersion - 1) # no enum output because this file doesn't contain any
 
@@ -303,8 +339,32 @@ if __name__ == "__main__":
     # clean up if no changes
     if not globalHasChanges:
         out("No save migration needed!")
-        os.remove("versioning/global_v%s.i" % globalVersion)
-        os.remove("versioning/pokemon_storage_system_v%s.i" % globalVersion)
+        os.remove("versioning/global_v%s.c" % globalVersion)
+        os.remove("versioning/pokemon_storage_system_v%s.c" % globalVersion)
+    # prepare for actual upgrade otherwise
+    else:
+        # update constants and code
+        makeSaveVersionConstants()
+        updateSwitchVersion()
+        # there is a new latest version, so we'll delete the src/data/old_saves folder and rebuild it from scratch
+        if os.path.exists("src/data/old_saves/"):
+            shutil.rmtree("src/data/old_saves/")
+        os.mkdir("src/data/old_saves/")
+        # start by updating the previous version to the current version
+        prepareMigration(globalDifferences, globalVersion - 1)
+        # loop through previous versions, compare and make migration scripts
+        currentLoopingVersion = globalVersion - 2
+        while (currentLoopingVersion >= 0):
+            globalHasChanges = False
+            globalDifferences = {}
+            GlobalEnumsOld, GlobalEnumsNew = prepare_comparison('global', currentLoopingVersion)
+            prepare_comparison('pokemon_storage_system', currentLoopingVersion) # no enum output because this file doesn't contain any
+            compareFields('SaveBlock1', 1, 'gSaveBlock1Ptr')
+            compareFields('SaveBlock2', 1, 'gSaveBlock2Ptr')
+            compareFields('PokemonStorage', 1, 'gPokemonStoragePtr')
+            prepareMigration(globalDifferences, currentLoopingVersion)
+            currentLoopingVersion -= 1
+        # TO DO: update list of include in save.c
 
     if '--log' in sys.argv:
         f.close()
