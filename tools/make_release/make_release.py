@@ -43,7 +43,7 @@ def preprocess_files(filename, version):
     path = "include/%s.h" % filename
     with open(path, 'rt') as ih:
         p.parse(ih.read(), path)
-    with open('versioning/%s_v%s.c' % (filename, version), 'w') as oh:
+    with open('versioning/%s_v%s.i' % (filename, version), 'w') as oh:
         p.write(oh)
 
 # pulls global.h and pokemon_storage_system from the source, storing them in a separate versioning folder
@@ -51,7 +51,7 @@ def pull_new_version():
     if not os.path.exists("versioning/"):
         os.mkdir("versioning/")
     global globalVersion
-    while os.path.exists("versioning/global_v%s.c" % globalVersion):
+    while os.path.exists("versioning/global_v%s.i" % globalVersion):
         globalVersion += 1
     preprocess_files("global", globalVersion)
     preprocess_files("pokemon_storage_system", globalVersion)
@@ -95,8 +95,8 @@ def injectTustin():
 def failTustinInjection(msg):
     out(msg)
     # remove the latest versioning backups
-    os.remove("versioning/global_v%s.c" % globalVersion)
-    os.remove("versioning/pokemon_storage_system_v%s.c" % globalVersion)
+    os.remove("versioning/global_v%s.i" % globalVersion)
+    os.remove("versioning/pokemon_storage_system_v%s.i" % globalVersion)
     quit()
 
 # the following function defines all the save versions constants
@@ -237,8 +237,8 @@ def compareFields(fieldname, inline, extratext):
 def prepare_comparison(filename, starting_version):
     global GlobalClassesOld
     global GlobalClassesNew
-    contents_old, enums_old = parse_file2('versioning/%s_v%s.c' % (filename, starting_version))
-    contents_new, enums_new = parse_file2('versioning/%s_v%s.c' % (filename, (starting_version + 1)))
+    contents_old, enums_old = parse_file2('versioning/%s_v%s.i' % (filename, starting_version))
+    contents_new, enums_new = parse_file2('versioning/%s_v%s.i' % (filename, (starting_version + 1)))
 
     # classes
     for x in contents_old.namespace.classes:
@@ -303,8 +303,8 @@ if __name__ == "__main__":
     # clean up if no changes
     if not globalHasChanges:
         out("No save migration needed!")
-        os.remove("versioning/global_v%s.c" % globalVersion)
-        os.remove("versioning/pokemon_storage_system_v%s.c" % globalVersion)
+        os.remove("versioning/global_v%s.i" % globalVersion)
+        os.remove("versioning/pokemon_storage_system_v%s.i" % globalVersion)
 
     if '--log' in sys.argv:
         f.close()
