@@ -65,9 +65,9 @@ SINGLE_BATTLE_TEST("Own Tempo cures confusion obtained from an opponent with Mol
 {
     KNOWN_FAILING;
     GIVEN {
-    ASSUME(gBattleMoves[MOVE_CONFUSE_RAY].effect == EFFECT_CONFUSE);
-    PLAYER(SPECIES_PINSIR) { Ability(ABILITY_MOLD_BREAKER); };
-    OPPONENT(SPECIES_SLOWPOKE) { Ability(ABILITY_OWN_TEMPO); };
+        ASSUME(gBattleMoves[MOVE_CONFUSE_RAY].effect == EFFECT_CONFUSE);
+        PLAYER(SPECIES_PINSIR) { Ability(ABILITY_MOLD_BREAKER); };
+        OPPONENT(SPECIES_SLOWPOKE) { Ability(ABILITY_OWN_TEMPO); };
     } WHEN {
         TURN { MOVE(player, MOVE_CONFUSE_RAY); }
     } SCENE {
@@ -84,10 +84,10 @@ SINGLE_BATTLE_TEST("Own Tempo cures confusion obtained from an opponent with Mol
 SINGLE_BATTLE_TEST("Own Tempo cures confusion if it's obtained via Skill Swap")
 {
     GIVEN {
-    ASSUME(gBattleMoves[MOVE_CONFUSE_RAY].effect == EFFECT_CONFUSE);
-    ASSUME(gBattleMoves[MOVE_SKILL_SWAP].effect == EFFECT_SKILL_SWAP);
-    PLAYER(SPECIES_SLOWPOKE) { Ability(ABILITY_OWN_TEMPO); };
-    OPPONENT(SPECIES_WOBBUFFET);
+        ASSUME(gBattleMoves[MOVE_CONFUSE_RAY].effect == EFFECT_CONFUSE);
+        ASSUME(gBattleMoves[MOVE_SKILL_SWAP].effect == EFFECT_SKILL_SWAP);
+        PLAYER(SPECIES_SLOWPOKE) { Ability(ABILITY_OWN_TEMPO); };
+        OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_CONFUSE_RAY); }
         TURN { MOVE(player, MOVE_SKILL_SWAP);

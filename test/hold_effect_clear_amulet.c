@@ -56,20 +56,30 @@ SINGLE_BATTLE_TEST("Clear Amulet prevents stat reducing effects")
         TURN { MOVE(player, move); }
     } SCENE {
         NONE_OF { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent); }
-        if (move == MOVE_GROWL)
+        switch (move)
+        {
+        case MOVE_GROWL:
             MESSAGE("Foe Wobbuffet's Attack was not lowered!");
-        else if (move == MOVE_LEER)
+            break;
+        case MOVE_LEER:
             MESSAGE("Foe Wobbuffet's Defense was not lowered!");
-        else if (move == MOVE_CONFIDE)
+            break;
+        case MOVE_CONFIDE:
             MESSAGE("Foe Wobbuffet's Sp. Atk was not lowered!");
-        else if (move == MOVE_FAKE_TEARS)
+            break;
+        case MOVE_FAKE_TEARS:
             MESSAGE("Foe Wobbuffet's Sp. Def was not lowered!");
-        else if (move == MOVE_SCARY_FACE)
+            break;
+        case MOVE_SCARY_FACE:
             MESSAGE("Foe Wobbuffet's Speed was not lowered!");
-        else if (move == MOVE_SWEET_SCENT)
+            break;
+        case MOVE_SWEET_SCENT:
             MESSAGE("Foe Wobbuffet's evasiveness was not lowered!");
-        else if (move == MOVE_SAND_ATTACK)
+            break;
+        case MOVE_SAND_ATTACK:
             MESSAGE("Foe Wobbuffet's accuracy was not lowered!");
+            break;
+        }
     }
 }
 
