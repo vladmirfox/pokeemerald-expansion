@@ -352,36 +352,37 @@ struct SpeciesInfo /*0x55*/
  /* 0x42 */ u8 bodyColor : 7;
             // Graphical Data
             u8 noFlip : 1;
- /* 0xB0 */ u8 frontAnimDelay;
- /* 0xB1 */ u8 frontAnimId;
- /* 0xB2 */ u8 backAnimId;
- /* 0xB3 */ const union AnimCmd *const *frontAnimFrames;
- /* 0xB7 */ const u32 *const frontPic;
- /* 0xBB */ const u32 *const frontPicFemale;
- /* 0xBF */ const u32 *const backPic;
- /* 0xC3 */ const u32 *const backPicFemale;
- /* 0xC7 */ const u32 *const palette;
- /* 0xCB */ const u32 *const paletteFemale;
- /* 0xCF */ const u32 *const shinyPalette;
- /* 0xD3 */ const u32 *const shinyPaletteFemale;
- /* 0xD7 */ const u8 *const iconSprite;
- /* 0xDB */ const u8 *const iconSpriteFemale;
- /* 0xDF */ const u8 *const footprint;
+ /* 0x43 */ u8 frontAnimDelay;
+ /* 0x44 */ u8 frontAnimId;
+ /* 0x45 */ u8 backAnimId;
+ /* 0x46 */ const union AnimCmd *const *frontAnimFrames;
+ /* 0x4A */ const u32 *const frontPic;
+ /* 0x4E */ const u32 *const frontPicFemale;
+ /* 0x52 */ const u32 *const backPic;
+ /* 0x56 */ const u32 *const backPicFemale;
+ /* 0x5A */ const u32 *const palette;
+ /* 0x5E */ const u32 *const paletteFemale;
+ /* 0x62 */ const u32 *const shinyPalette;
+ /* 0x66 */ const u32 *const shinyPaletteFemale;
+ /* 0x6A */ const u8 *const iconSprite;
+ /* 0x6E */ const u8 *const iconSpriteFemale;
+ /* 0x72 */ const u8 *const footprint;
             // All Pokémon pics are 64x64, but this data table defines where in this 64x64 frame the sprite's non-transparent pixels actually are.
- /* 0xE3 */ u8 frontPicSize; // The dimensions of this drawn pixel area.
- /* 0xE4 */ u8 frontPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
- /* 0xE5 */ u8 backPicSize; // The dimensions of this drawn pixel area.
- /* 0xE6 */ u8 backPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
- /* 0xE7 */ u8 iconPalIndex:3;
+ /* 0x76 */ u8 frontPicSize; // The dimensions of this drawn pixel area.
+ /* 0x77 */ u8 frontPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
+ /* 0x78 */ u8 backPicSize; // The dimensions of this drawn pixel area.
+ /* 0x79 */ u8 backPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
+ /* 0x80 */ u8 iconPalIndex:3;
             u8 iconPalIndexFemale:3;
             u8 padding3:2;
- /* 0xE8 */ u8 enemyMonElevation; // This determines how much higher above the usual position the enemy Pokémon is during battle. Species that float or fly have nonzero values.
+ /* 0x81 */ u8 enemyMonElevation; // This determines how much higher above the usual position the enemy Pokémon is during battle. Species that float or fly have nonzero values.
             // Flags
- /* 0x43 */ u16 flags;
+ /* 0x82 */ u16 flags;
             // Move Data
- /* 0x45 */ const struct LevelUpMove *const levelUpLearnset;
- /* 0x4D */ const u16 *const teachableLearnset;
- /* 0x51 */ const struct Evolution *const evolutions;
+ /* 0x84 */ const struct LevelUpMove *const levelUpLearnset;
+ /* 0x8A */ const u16 *const teachableLearnset;
+ /* 0x8E */ const struct Evolution *const evolutions;
+ /* 0x92 */
 };
 
 struct NationalDexInfo
