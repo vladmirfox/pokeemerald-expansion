@@ -71,21 +71,44 @@ def injectTustin():
             failTustinInjection("Unable to inject the necessary data into SaveBlock2! Aborting procedure.")
         with open("include/global.h", 'w') as file:
             file.write(ncontent)
-        out("Injected the save sentinel into the new saveblock")
+        out("Updated include/global.h")
+    # add new game defining
+    with open("src/new_game.c", 'r') as file:
+        content = file.read()
+    if not 'gSaveBlock2Ptr->_saveSentinel = 0xFF;' in content:
+        ncontent = content.replace('gSaveBlock2Ptr->encryptionKey = 0;', 'gSaveBlock2Ptr->_saveSentinel = 0xFF;\n    gSaveBlock2Ptr->saveVersion = SAVE_VERSION;\n    gSaveBlock2Ptr->encryptionKey = 0;')
+        if ncontent == content: # the injection failed for whatever reason
+            failTustinInjection("Unable to inject the necessary data into new_game.c! Aborting procedure.")
+        with open("src/new_game.c", 'w') as file:
+            file.write(ncontent)
+        out("Updated src/new_game.c")
     # uncomment the versioning include in include/constants/global.h
     with open("include/constants/global.h", 'r') as file:
         content = file.read()
     if '//#include "constants/versioning.h"' in content:
         content = content.replace('//#include "constants/versioning.h"', '#include "constants/versioning.h"')
         with open("include/constants/global.h", 'w') as file:
-            file.write(ncontent)
-        out("Uncommented the versioning include in the global constants")
+            file.write(content)
+        out("Updated include/constants/global.h")
+    makeSaveVersionConstants()
 
 def failTustinInjection(msg):
     out(msg)
+    # remove the latest versioning backups
     os.remove("versioning/global_v%s.c" % globalVersion)
     os.remove("versioning/pokemon_storage_system_v%s.c" % globalVersion)
     quit()
+
+# the following function defines all the save versions constants
+def makeSaveVersionConstants():
+    content = "#ifndef GUARD_CONSTANTS_VERSIONING_H\n#define GUARD_CONSTANTS_VERSIONING_H\n\n"
+    for x in range(globalVersion + 1):
+        content += "#define SAVE_VERSION_%s %s\n" % (x, x)
+    content += "\n#define SAVE_VERSION (SAVE_VERSION_%s)\n\n#endif // GUARD_CONSTANTS_VERSIONING_H\n" % globalVersion
+    # write to file
+    with open("include/constants/versioning.h", 'w') as file:
+        file.write(content)
+    out("Updated include/constants/versioning.h")
 
 # alternative of plain old "print" that allows for logging
 def out(str):
