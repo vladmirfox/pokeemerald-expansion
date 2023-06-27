@@ -241,8 +241,10 @@ if __name__ == "__main__":
     if '--log' in sys.argv:
         f = open('log.txt', 'w')
 
-    GlobalEnumsOld, GlobalEnumsNew = prepare_comparison('global', 0)
-    prepare_comparison('pokemon_storage_system', 0) # no enum output because this file doesn't contain any
+    # for now, this will only take care of migrations from version x - 1 to version x
+    # in the future, this can be improved to allow direct migrations from one version to another, but for now this iterative approach will work (albeit more slowly)
+    GlobalEnumsOld, GlobalEnumsNew = prepare_comparison('global', globalVersion - 1)
+    prepare_comparison('pokemon_storage_system', globalVersion - 1) # no enum output because this file doesn't contain any
 
     compareFields('SaveBlock1', 1, 'gSaveBlock1Ptr')
     compareFields('SaveBlock2', 1, 'gSaveBlock2Ptr')
