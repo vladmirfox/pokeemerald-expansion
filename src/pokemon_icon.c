@@ -594,7 +594,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_DEOXYS_ATTACK] = gMonIcon_DeoxysAttack,
     [SPECIES_DEOXYS_DEFENSE] = gMonIcon_DeoxysDefense,
     [SPECIES_DEOXYS_SPEED] = gMonIcon_DeoxysSpeed,
-#if P_GEN_4_POKEMON == TRUE
     [SPECIES_TURTWIG] = gMonIcon_Turtwig,
     [SPECIES_GROTLE] = gMonIcon_Grotle,
     [SPECIES_TORTERRA] = gMonIcon_Torterra,
@@ -711,8 +710,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_ARCEUS_DRAGON] = gMonIcon_Arceus,
     [SPECIES_ARCEUS_DARK] = gMonIcon_Arceus,
     [SPECIES_ARCEUS_FAIRY] = gMonIcon_Arceus,
-#endif
-#if P_GEN_5_POKEMON == TRUE
     [SPECIES_VICTINI] = gMonIcon_Victini,
     [SPECIES_SNIVY] = gMonIcon_Snivy,
     [SPECIES_SERVINE] = gMonIcon_Servine,
@@ -905,8 +902,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_GENESECT_SHOCK_DRIVE] = gMonIcon_Genesect,
     [SPECIES_GENESECT_BURN_DRIVE] = gMonIcon_Genesect,
     [SPECIES_GENESECT_CHILL_DRIVE] = gMonIcon_Genesect,
-#endif
-#if P_GEN_6_POKEMON == TRUE
     [SPECIES_CHESPIN] = gMonIcon_Chespin,
     [SPECIES_QUILLADIN] = gMonIcon_Quilladin,
     [SPECIES_CHESNAUGHT] = gMonIcon_Chesnaught,
@@ -1077,8 +1072,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_HOOPA_CONFINED] = gMonIcon_HoopaConfined,
     [SPECIES_HOOPA_UNBOUND] = gMonIcon_HoopaUnbound,
     [SPECIES_VOLCANION] = gMonIcon_Volcanion,
-#endif
-#if P_GEN_7_POKEMON == TRUE
     [SPECIES_ROWLET] = gMonIcon_Rowlet,
     [SPECIES_DARTRIX] = gMonIcon_Dartrix,
     [SPECIES_DECIDUEYE] = gMonIcon_Decidueye,
@@ -1210,8 +1203,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_ZERAORA] = gMonIcon_Zeraora,
     [SPECIES_MELTAN] = gMonIcon_Meltan,
     [SPECIES_MELMETAL] = gMonIcon_Melmetal,
-#endif
-#if P_GEN_8_POKEMON == TRUE
     [SPECIES_GROOKEY] = gMonIcon_Grookey,
     [SPECIES_THWACKEY] = gMonIcon_Thwackey,
     [SPECIES_RILLABOOM] = gMonIcon_Rillaboom,
@@ -1316,8 +1307,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_CALYREX] = gMonIcon_Calyrex,
     [SPECIES_CALYREX_ICE_RIDER] = gMonIcon_CalyrexIceRider,
     [SPECIES_CALYREX_SHADOW_RIDER] = gMonIcon_CalyrexShadowRider,
-#endif
-#if P_GEN_9_POKEMON == TRUE
     [SPECIES_SPRIGATITO] = gMonIcon_Sprigatito,
     // [SPECIES_FLORAGATO] = gMonIcon_Floragato,
     [SPECIES_MEOWSCARADA] = gMonIcon_Meowscarada,
@@ -1432,7 +1421,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_MIRAIDON] = gMonIcon_Miraidon,
     //[SPECIES_WALKING_WAKE] = gMonIcon_WalkingWake,
     //[SPECIES_IRON_LEAVES] = gMonIcon_IronLeaves,
-#endif
     [SPECIES_EGG] = gMonIcon_Egg,
 };
 */
