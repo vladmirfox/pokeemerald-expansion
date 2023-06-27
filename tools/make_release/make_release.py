@@ -28,7 +28,7 @@ ignoreable_includes = ['string.h', 'stddef.h', 'stdint.h', 'sprite.h', 'limits.h
 
 globalVersion = 0
 globalHasChanges = False
-globalDifferences = {}
+globalDifferences = {'SaveBlock1': {}, 'SaveBlock2': {}, 'PokemonStorage': {}}
 
 # this class overrides the "include not found" error and prevents it from displaying if it is in ignoreable_includes (i.e. irrelevant)
 class PcppPreprocessor(Preprocessor):
@@ -118,13 +118,21 @@ def makeSaveVersionConstants():
 
 def updateSwitchVersion():
     switchcase = ""
-    for x in range(globalVersion + 1):
-        switchcase += "        case %s: // Upgrading from vanilla to version %x\n            result = UpdateSave_v%s_v%s(gRamSaveSectorLocations);\n            break;\n" % (x, globalVersion, x, globalVersion)
+    includelist = ""
+    for x in range(globalVersion):
+        switchcase += "        case %s: // Upgrading from version %s to version %s\n            result = UpdateSave_v%s_v%s(gRamSaveSectorLocations);\n            break;\n" % (x, x, globalVersion, x, globalVersion)
+        includelist += '#include "data/old_saves/save.v%s.h"\n' % x
+
     with open("src/save.c", 'r') as file:
         content = file.read()
-        ncontent = re.sub("(\/\/ START Attempt to update the save\n    switch \(version\)\n    {)[^}]*(        default: \/\/ Unsupported version to upgrade\n            result = FALSE;\n            break;)", "\\1" + switchcase + "\\2", content)
+        ncontent = re.sub("(\/\/ START Attempt to update the save\n    switch \(version\)\n    {\n)[^}]*(        default: \/\/ Unsupported version to upgrade\n            result = FALSE;\n            break;)", "\\1" + switchcase + "\\2", content)
         if content == ncontent:
-            out("Error: unable to update src/save.c!")
+            out("Error: unable to update src/save.c (switch case)!")
+            quit()
+        content = ncontent
+        ncontent = re.sub("(\/\/ START Include old save data\n)[^\/]*(\/\/ END Include old save data)", "\\1" + includelist + "\\2", content)
+        if content == ncontent:
+            out("Error: unable to update src/save.c (include list)!")
             quit()
     with open("src/save.c", 'w') as file:
         file.write(ncontent)
@@ -220,11 +228,13 @@ def compareFields(fieldname, inline, extratext):
         fields_old_array.append(x.name)
 
     # compare
+    global globalHasChanges
     if '--verbose' in sys.argv or '--detailed' in sys.argv or (inline == 1):
         out("  " * (inline - 1) + "Comparing %s%s" % (fieldname, extratext_display))
     for x in GlobalClassesNew[fieldname].fields:
         if not x.name in fields_old:
-            out("  " * inline  + "%s is a new field that was not present in the first version!" % x.name)
+            out("  " * inline  + "%s is a new field that was not present in the previous version!" % x.name)
+            globalHasChanges = True
             continue
         oldclass = parse_field(fields_old[x.name], GlobalEnumsOld)
         newclass = parse_field(x, GlobalEnumsNew)
@@ -239,7 +249,6 @@ def compareFields(fieldname, inline, extratext):
                     compareFields(newclass['kind'], inline + 1, "%s -> %s" % (extratext, x.name))
                 continue
             # figure out what exactly is different, starting with size
-            global globalHasChanges
             globalHasChanges = True
             if 'size' in newclass and 'size' in oldclass:
                 oldsize = oldclass['size']
@@ -316,6 +325,7 @@ def prepareMigration(listofchanges, versionnumber):
     # write it to file
     with open("src/data/old_saves/save.v%s.h" % versionnumber, 'w') as file:
         file.write(content)
+    out("Added migration support from version %s to version %s (src/data/old_saves/save.v%s.h)" % (versionnumber, globalVersion, versionnumber))
 
 if __name__ == "__main__":
     if '--log' in sys.argv:
@@ -356,7 +366,7 @@ if __name__ == "__main__":
         currentLoopingVersion = globalVersion - 2
         while (currentLoopingVersion >= 0):
             globalHasChanges = False
-            globalDifferences = {}
+            globalDifferences = {'SaveBlock1': {}, 'SaveBlock2': {}, 'PokemonStorage': {}}
             GlobalEnumsOld, GlobalEnumsNew = prepare_comparison('global', currentLoopingVersion)
             prepare_comparison('pokemon_storage_system', currentLoopingVersion) # no enum output because this file doesn't contain any
             compareFields('SaveBlock1', 1, 'gSaveBlock1Ptr')
