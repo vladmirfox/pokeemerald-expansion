@@ -509,7 +509,7 @@ static u8 CopySaveSlotData(u16 sectorId, struct SaveSectorLocation *locations)
         if (id == 0)
             gLastWrittenSector = i;
 
-        checksum = CalculateChecksum(gReadWriteSector->data, locations[id].size);
+        checksum = CalculateChecksum(gReadWriteSector->data, SECTOR_DATA_SIZE);
 
         // Only copy data for sectors whose signature and checksum fields are correct
         if (gReadWriteSector->signature == SECTOR_SIGNATURE && gReadWriteSector->checksum == checksum)
@@ -541,7 +541,7 @@ static u8 GetSaveValidStatus(const struct SaveSectorLocation *locations)
         if (gReadWriteSector->signature == SECTOR_SIGNATURE)
         {
             signatureValid = TRUE;
-            checksum = CalculateChecksum(gReadWriteSector->data, locations[gReadWriteSector->id].size);
+            checksum = CalculateChecksum(gReadWriteSector->data, SECTOR_DATA_SIZE);
             if (gReadWriteSector->checksum == checksum)
             {
                 saveSlot1Counter = gReadWriteSector->counter;
@@ -573,7 +573,7 @@ static u8 GetSaveValidStatus(const struct SaveSectorLocation *locations)
         if (gReadWriteSector->signature == SECTOR_SIGNATURE)
         {
             signatureValid = TRUE;
-            checksum = CalculateChecksum(gReadWriteSector->data, locations[gReadWriteSector->id].size);
+            checksum = CalculateChecksum(gReadWriteSector->data, SECTOR_DATA_SIZE);
             if (gReadWriteSector->checksum == checksum)
             {
                 saveSlot2Counter = gReadWriteSector->counter;
@@ -655,7 +655,7 @@ static u8 TryLoadSaveSector(u8 sectorId, u8 *data, u16 size)
     ReadFlashSector(sectorId, sector);
     if (sector->signature == SECTOR_SIGNATURE)
     {
-        u16 checksum = CalculateChecksum(sector->data, size);
+        u16 checksum = CalculateChecksum(sector->data, SECTOR_DATA_SIZE);
         if (sector->id == checksum)
         {
             // Signature and checksum are correct, copy data
@@ -1078,7 +1078,7 @@ bool8 UpdateSaveFile(void)
     u16 version = DetermineSaveVersion();
     u8* sOldSaveBlock;
     bool8 result = FALSE;
-    
+
     // Load the old save file into the heap
     sOldSaveBlock = AllocZeroed(SECTOR_DATA_SIZE * NUM_SECTORS_PER_SLOT);
     {
