@@ -8719,6 +8719,8 @@ static const union AnimCmd sAnim_Palossand_1[] =
 static const union AnimCmd sAnim_Pyukumuku_1[] =
 {
     ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 25),
+    ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 
