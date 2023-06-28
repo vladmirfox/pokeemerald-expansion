@@ -2,41 +2,34 @@ raw `
 LittlerootTown_StrangeHouse_MapScripts::
 	.byte 0
 
-LittlerootTown_StrangeHouse_Fridge::
-	lockall
-	msgbox LittlerootTown_StrangeHouse_Fridge_Text_0
-	releaseall
-	return
-
-
-LittlerootTown_StrangeHouse_Fridge_Text_0:
-	.string "Heck yeah, two refrigerators!$"
-
 `
-
 script LittlerootTown_StrangeHouse_Fridge {
 	lockall
 	msgbox("Heck yeah, two refrigerators!")
 	releaseall
 }
 
-script LittlerootTown_StrangeHouse_GiftPokemon {
+script LittlerootTown_StrangeHouse_GiftPokemon1 {
     lockall
-    showmonpic(SPECIES_CHARMANDER, 10, 3)
-    msgbox("Will you take the {SPECIES}?", MSGBOX_YESNO)
+    showmonpic(SPECIES_BULBASAUR, 10, 3)
+    msgbox("Will you take the BULBASAUR?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES){
-        givemon(SPECIES_CHARMANDER,5)
+        givemon(SPECIES_BULBASAUR,5)
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
             playfanfare(MUS_OBTAIN_ITEM)
-            msgbox("You recieved the {SPECIES}!")
+            msgbox("You recieved the BULBASAUR!")
             removeobject(1)
+            removeobject(2)
+            removeobject(3)
             setflag(FLAG_UNUSED_0x493)
             call(nicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC) {
             playfanfare(MUS_OBTAIN_ITEM)
-            msgbox("You recieved the {SPECIES}!")
+            msgbox("You recieved the BULBASAUR!")
             removeobject(1)
+            removeobject(2)
+            removeobject(3)
             setflag(FLAG_UNUSED_0x493)
             call(nicknameBoxMon)
         }
@@ -47,11 +40,103 @@ script LittlerootTown_StrangeHouse_GiftPokemon {
     }
     else{
         hidemonpic
-        msgbox(StrangeHouse_MonNotChosen)
     }
     waitmessage
     releaseall
     end
 }
 
-script nicknamePartyMon
+script LittlerootTown_StrangeHouse_GiftPokemon2 {
+    lockall
+    showmonpic(SPECIES_CHARMANDER, 10, 3)
+    msgbox("Will you take the CHARMANDER?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_CHARMANDER,5)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("You recieved the CHARMANDER!")
+            removeobject(1)
+            removeobject(2)
+            removeobject(3)
+            setflag(FLAG_UNUSED_0x494)
+            call(nicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("You recieved the CHARMANDER!")
+            removeobject(1)
+            removeobject(2)
+            removeobject(3)
+            setflag(FLAG_UNUSED_0x494)
+            call(nicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("No More Room.")
+        }
+    }
+    else{
+        hidemonpic
+    }
+    waitmessage
+    releaseall
+    end
+}
+
+script LittlerootTown_StrangeHouse_GiftPokemon3 {
+    lockall
+    showmonpic(SPECIES_SQUIRTLE, 10, 3)
+    msgbox("Will you take the SQUIRTLE?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_SQUIRTLE,5)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("You recieved the SQUIRTLE!")
+            removeobject(1)
+            removeobject(2)
+            removeobject(3)
+            setflag(FLAG_UNUSED_0x495)
+            call(nicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("You recieved the SQUIRTLE!")
+            removeobject(1)
+            removeobject(2)
+            removeobject(3)
+            setflag(FLAG_UNUSED_0x495)
+            call(nicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("No More Room.")
+        }
+    }
+    else{
+        hidemonpic
+    }
+    waitmessage
+    releaseall
+    end
+}
+
+script nicknamePartyMon {
+//    msgbox(gText_UnusedNicknameReceivedPokemon, MSGBOX_YESNO)
+  msgbox("Give it a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES) {
+        call(Common_EventScript_GetGiftMonPartySlot)
+        call(Common_EventScript_NameReceivedPartyMon)
+    }
+}
+
+script nicknameBoxMon {
+ //   msgbox(gText_UnusedNicknameReceivedPokemon, MSGBOX_YESNO)
+  msgbox("Give it a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES) {
+        call(Common_EventScript_GetGiftMonPartySlot)
+    }
+    msgbox("Transferred to PC.")
+}
+
