@@ -30,7 +30,7 @@ ignored_map_fields = ['weather', 'weatherCycleStage', 'flashLevel', 'savedMusic'
 
 globalVersion = 0
 globalHasChanges = False
-globalDifferences = {'SaveBlock2': {}, 'SaveBlock1': {}, 'PokemonStorage': {}}
+globalDifferences = []
 
 # this class overrides the "include not found" error and prevents it from displaying if it is in ignoreable_includes (i.e. irrelevant)
 class PcppPreprocessor(Preprocessor):
@@ -241,12 +241,15 @@ def compareFields(fieldname, inline, extratext):
 
     # compare
     global globalHasChanges
+    global globalDifferences
     if '--verbose' in sys.argv or '--detailed' in sys.argv or (inline == 1):
         out("  " * (inline - 1) + "Comparing %s%s" % (fieldname, extratext_display))
     for x in GlobalClassesNew[fieldname].fields:
         if not x.name in fields_old:
             out("  " * inline  + "%s is a new field that was not present in the previous version!" % x.name)
             globalHasChanges = True
+            if not fieldname in globalDifferences:
+                globalDifferences.append(fieldname)
             continue
         oldclass = parse_field(fields_old[x.name], GlobalEnumsOld)
         newclass = parse_field(x, GlobalEnumsNew)
@@ -331,19 +334,21 @@ def prepareMigration(listofchanges, versionnumber):
     # content header
     content = '#include "global.h"\n#include "save.h"\n\n// This file contains the backups for the save file of v%s.\n// Editing this file may cause unwanted behaviour.\n// Please use make release in case problems arise.\n\n' % versionnumber
     # add actual backups
+    for x in listofchanges:
+        content += backupDump(x, versionnumber, listofchanges)
 
     # add migration function
     content += "\n\nbool8 UpdateSave_v%s_v%s(const struct SaveSectorLocation *locations)\n{\n" % (versionnumber, globalVersion)
     # add const structs
-    if listofchanges['SaveBlock2']:
+    if 'SaveBlock2' in listofchanges:
         content += "    const struct SaveBlock2_v%s* sOldSaveBlock2Ptr = (struct SaveBlock2_v%s*)(locations[%s].data); // SECTOR_ID_SAVEBLOCK2\n" % (versionnumber, versionnumber, sectorids[0])
     else:
         content += "    const struct SaveBlock2* sOldSaveBlock2Ptr = (struct SaveBlock2*)(locations[%s].data); // SECTOR_ID_SAVEBLOCK2\n" % (sectorids[0])
-    if listofchanges['SaveBlock1']:
+    if 'SaveBlock1' in listofchanges:
         content += "    const struct SaveBlock1_v%s* sOldSaveBlock1Ptr = (struct SaveBlock1_v%s*)(locations[%s].data); // SECTOR_ID_SAVEBLOCK1_START\n" % (versionnumber, versionnumber, sectorids[1])
     else:
         content += "    const struct SaveBlock1* sOldSaveBlock1Ptr = (struct SaveBlock1*)(locations[%s].data); // SECTOR_ID_SAVEBLOCK1_START\n" % (sectorids[1])
-    if listofchanges['PokemonStorage']:
+    if 'PokemonStorage' in listofchanges:
         content += "    const struct PokemonStorage_v%s* sOldPokemonStoragePtr = (struct PokemonStorage_v%s*)(locations[%s].data); // SECTOR_ID_PKMN_STORAGE_START\n" % (versionnumber, versionnumber, sectorids[2])
     else:
         content += "    const struct PokemonStorage* sOldPokemonStoragePtr = (struct PokemonStorage*)(locations[%s].data); // SECTOR_ID_PKMN_STORAGE_START\n" % (sectorids[2])
@@ -352,7 +357,7 @@ def prepareMigration(listofchanges, versionnumber):
     # saveblock2
     content += "    // SaveBlock2 \n"
 
-    if not listofchanges['SaveBlock2']:
+    if not 'SaveBlock2' in listofchanges:
         content += "    *gSaveBlock2Ptr = *sOldSaveBlock2Ptr;\n"
     else:
         content += defineCopies('SaveBlock2')
@@ -362,7 +367,7 @@ def prepareMigration(listofchanges, versionnumber):
     # saveblock1
     content += "\n    // SaveBlock1 \n"
 
-    if not listofchanges['SaveBlock1']:
+    if not 'SaveBlock1' in listofchanges:
         content += "    *gSaveBlock1Ptr = *sOldSaveBlock1Ptr;\n"
     else:
         content += defineCopies('SaveBlock1')
@@ -372,7 +377,7 @@ def prepareMigration(listofchanges, versionnumber):
     # pokemonstorage
     content += "\n    // PokemonStorage \n"
 
-    if not listofchanges['PokemonStorage']:
+    if not 'PokemonStorage' in listofchanges:
         content += "    *gPokemonStoragePtr = *sOldPokemonStoragePtr;\n"
     else:
         content += defineCopies('PokemonStorage')
@@ -398,6 +403,37 @@ def defineCopies(name):
 
 def undefineCopies():
     return "#undef COPY_FIELD\n#undef COPY_BLOCK\n#undef COPY_ARRAY\n"
+
+def backupDump(structname, versionnumber, listofchanges):
+    # we make a struct and add its components
+    out = "struct %s_v%s\n{\n" % (structname, versionnumber)
+    for field in GlobalClassesOld[structname].fields:
+        out += "    "
+        # we cycle through arrays of arrays until we find the relevant information
+        field_type = field.type
+        while (field_type.__class__.__name__ == "Array"):
+            field_type = field_type.array_of
+        # add "struct" etc if necessary
+        if field_type.typename.classkey != None:
+            out += "%s " % field_type.typename.classkey
+        out += field_type.typename.segments[0].name
+        # if the referenced struct is different from the modern one, refer to the old one
+        if field_type.typename.segments[0].name in listofchanges and field_type.typename.segments[0].name not in trusted_typedefs:
+            out += "_v%s" % versionnumber
+        out += " %s" % field.name
+        # add sizes for arrays
+        field_type = field.type
+        while hasattr(field_type, 'size'):
+            out += "[%s]" % int(parse_size(field_type.size.tokens, GlobalEnumsOld))
+            if (field_type.__class__.__name__ == "Array"):
+                field_type = field_type.array_of
+            else:
+                break
+        # add bits if necessary
+        if field.bits != None:
+            out += ":%s" % field.bits
+        out += ";\n"
+    return (out + "}\n\n")
 
 if __name__ == "__main__":
     if '--log' in sys.argv:
@@ -439,7 +475,7 @@ if __name__ == "__main__":
         currentLoopingVersion = globalVersion - 2
         while (currentLoopingVersion >= 0):
             globalHasChanges = False
-            globalDifferences = {'SaveBlock2': {}, 'SaveBlock1': {}, 'PokemonStorage': {}}
+            globalDifferences = []
             GlobalEnumsOld, GlobalEnumsNew = prepare_comparison('global', currentLoopingVersion)
             prepare_comparison('pokemon_storage_system', currentLoopingVersion) # no enum output because this file doesn't contain any
             compareFields('SaveBlock2', 1, 'gSaveBlock2Ptr')
@@ -447,7 +483,6 @@ if __name__ == "__main__":
             compareFields('PokemonStorage', 1, 'gPokemonStoragePtr')
             prepareMigration(globalDifferences, currentLoopingVersion)
             currentLoopingVersion -= 1
-        # TO DO: update list of include in save.c
 
     if '--log' in sys.argv:
         f.close()
