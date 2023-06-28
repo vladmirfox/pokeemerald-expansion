@@ -1,4 +1,13 @@
-﻿static const union AnimCmd sAnim_None_1[] =
+﻿#define PLACEHOLDER_TWO_FRAME_ANIMATION(name)   \
+static const union AnimCmd sAnim_##name##_1[] = \
+{                                               \
+    ANIMCMD_FRAME(0, 30),                       \
+    ANIMCMD_FRAME(1, 30),                       \
+    ANIMCMD_FRAME(0, 1),                        \
+    ANIMCMD_END,                                \
+}
+
+static const union AnimCmd sAnim_None_1[] =
 {
     ANIMCMD_FRAME(0, 30),
     ANIMCMD_FRAME(1, 30),
@@ -9116,23 +9125,9 @@ static const union AnimCmd sAnim_Coalossal_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Applin_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_Flapple_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_Appletun_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
+PLACEHOLDER_TWO_FRAME_ANIMATION(Applin);
+PLACEHOLDER_TWO_FRAME_ANIMATION(Flapple);
+PLACEHOLDER_TWO_FRAME_ANIMATION(Appletun);
 
 static const union AnimCmd sAnim_Silicobra_1[] =
 {
