@@ -30,7 +30,7 @@ ignored_map_fields = ['weather', 'weatherCycleStage', 'flashLevel', 'savedMusic'
 
 globalVersion = 0
 globalHasChanges = False
-globalDifferences = {'SaveBlock1': {}, 'SaveBlock2': {}, 'PokemonStorage': {}}
+globalDifferences = {'SaveBlock2': {}, 'SaveBlock1': {}, 'PokemonStorage': {}}
 
 # this class overrides the "include not found" error and prevents it from displaying if it is in ignoreable_includes (i.e. irrelevant)
 class PcppPreprocessor(Preprocessor):
@@ -335,27 +335,49 @@ def prepareMigration(listofchanges, versionnumber):
     # add migration function
     content += "\n\nbool8 UpdateSave_v%s_v%s(const struct SaveSectorLocation *locations)\n{\n" % (versionnumber, globalVersion)
     # add const structs
-    content += "    const struct SaveBlock2_v%s* sOldSaveBlock2Ptr = (struct SaveBlock2_v%s*)(locations[%s].data); // SECTOR_ID_SAVEBLOCK2\n" % (versionnumber, versionnumber, sectorids[0])
-    content += "    const struct SaveBlock1_v%s* sOldSaveBlock1Ptr = (struct SaveBlock1_v%s*)(locations[%s].data); // SECTOR_ID_SAVEBLOCK1_START\n" % (versionnumber, versionnumber, sectorids[1])
-    content += "    const struct PokemonStorage_v%s* sOldPokemonStoragePtr = (struct PokemonStorage_v%s*)(locations[%s].data); // SECTOR_ID_PKMN_STORAGE_START\n    u32 arg, i, j, k;\n\n" % (versionnumber, versionnumber, sectorids[2])
+    if listofchanges['SaveBlock2']:
+        content += "    const struct SaveBlock2_v%s* sOldSaveBlock2Ptr = (struct SaveBlock2_v%s*)(locations[%s].data); // SECTOR_ID_SAVEBLOCK2\n" % (versionnumber, versionnumber, sectorids[0])
+    else:
+        content += "    const struct SaveBlock2* sOldSaveBlock2Ptr = (struct SaveBlock2*)(locations[%s].data); // SECTOR_ID_SAVEBLOCK2\n" % (sectorids[0])
+    if listofchanges['SaveBlock1']:
+        content += "    const struct SaveBlock1_v%s* sOldSaveBlock1Ptr = (struct SaveBlock1_v%s*)(locations[%s].data); // SECTOR_ID_SAVEBLOCK1_START\n" % (versionnumber, versionnumber, sectorids[1])
+    else:
+        content += "    const struct SaveBlock1* sOldSaveBlock1Ptr = (struct SaveBlock1*)(locations[%s].data); // SECTOR_ID_SAVEBLOCK1_START\n" % (sectorids[1])
+    if listofchanges['PokemonStorage']:
+        content += "    const struct PokemonStorage_v%s* sOldPokemonStoragePtr = (struct PokemonStorage_v%s*)(locations[%s].data); // SECTOR_ID_PKMN_STORAGE_START\n" % (versionnumber, versionnumber, sectorids[2])
+    else:
+        content += "    const struct PokemonStorage* sOldPokemonStoragePtr = (struct PokemonStorage*)(locations[%s].data); // SECTOR_ID_PKMN_STORAGE_START\n" % (sectorids[2])
+    content += "    u32 arg, i, j, k;\n\n"
 
     # saveblock2
     content += "    // SaveBlock2 \n"
 
     if not listofchanges['SaveBlock2']:
         content += "    *gSaveBlock2Ptr = *sOldSaveBlock2Ptr;\n"
+    else:
+        content += defineCopies('SaveBlock2')
+
+        content += undefineCopies()
 
     # saveblock1
     content += "\n    // SaveBlock1 \n"
 
     if not listofchanges['SaveBlock1']:
         content += "    *gSaveBlock1Ptr = *sOldSaveBlock1Ptr;\n"
+    else:
+        content += defineCopies('SaveBlock1')
+
+        content += undefineCopies()
 
     # pokemonstorage
     content += "\n    // PokemonStorage \n"
 
     if not listofchanges['PokemonStorage']:
         content += "    *gPokemonStoragePtr = *sOldPokemonStoragePtr;\n"
+    else:
+        content += defineCopies('PokemonStorage')
+
+        content += undefineCopies()
 
     # take care of continue game warp
     content += "\n    SetContinueGameWarpStatus();\n    gSaveBlock1Ptr->continueGameWarp = gSaveBlock1Ptr->lastHealLocation;\n\n    return TRUE;\n}\n"
@@ -370,6 +392,12 @@ def fetchDefineValue(name, code):
     if len(z) == 1:
         return z[0]
     return None
+
+def defineCopies(name):
+    return "#define COPY_FIELD(field) g{st}Ptr->field = sOld{st}Ptr->field\n#define COPY_BLOCK(field) CpuCopy16(&sOld{st}Ptr->field, &g{st}Ptr->field, sizeof(g{st}Ptr->field))\n#define COPY_ARRAY(field) for(i = 0; i < min(ARRAY_COUNT(g{st}Ptr->field), ARRAY_COUNT(sOld{st}Ptr->field)); i++) g{st}Ptr->field[i] = sOld{st}Ptr->field[i];\n\n".format(st=name)
+
+def undefineCopies():
+    return "#undef COPY_FIELD\n#undef COPY_BLOCK\n#undef COPY_ARRAY\n"
 
 if __name__ == "__main__":
     if '--log' in sys.argv:
@@ -387,8 +415,8 @@ if __name__ == "__main__":
     GlobalEnumsOld, GlobalEnumsNew = prepare_comparison('global', globalVersion - 1)
     prepare_comparison('pokemon_storage_system', globalVersion - 1) # no enum output because this file doesn't contain any
 
-    compareFields('SaveBlock1', 1, 'gSaveBlock1Ptr')
     compareFields('SaveBlock2', 1, 'gSaveBlock2Ptr')
+    compareFields('SaveBlock1', 1, 'gSaveBlock1Ptr')
     compareFields('PokemonStorage', 1, 'gPokemonStoragePtr')
     # clean up if no changes
     if not globalHasChanges:
@@ -411,11 +439,11 @@ if __name__ == "__main__":
         currentLoopingVersion = globalVersion - 2
         while (currentLoopingVersion >= 0):
             globalHasChanges = False
-            globalDifferences = {'SaveBlock1': {}, 'SaveBlock2': {}, 'PokemonStorage': {}}
+            globalDifferences = {'SaveBlock2': {}, 'SaveBlock1': {}, 'PokemonStorage': {}}
             GlobalEnumsOld, GlobalEnumsNew = prepare_comparison('global', currentLoopingVersion)
             prepare_comparison('pokemon_storage_system', currentLoopingVersion) # no enum output because this file doesn't contain any
-            compareFields('SaveBlock1', 1, 'gSaveBlock1Ptr')
             compareFields('SaveBlock2', 1, 'gSaveBlock2Ptr')
+            compareFields('SaveBlock1', 1, 'gSaveBlock1Ptr')
             compareFields('PokemonStorage', 1, 'gPokemonStoragePtr')
             prepareMigration(globalDifferences, currentLoopingVersion)
             currentLoopingVersion -= 1
