@@ -325,15 +325,40 @@ def prepare_comparison(filename, starting_version):
     return(enums_old, enums_new)
 
 def prepareMigration(listofchanges, versionnumber):
+    # get sector ids
+    with open("versioning/sectors_v%s.txt" % versionnumber, 'r') as file:
+        sectorids = file.read().split("\n")
     # content header
     content = '#include "global.h"\n#include "save.h"\n\n// This file contains the backups for the save file of v%s.\n// Editing this file may cause unwanted behaviour.\n// Please use make release in case problems arise.\n\n' % versionnumber
     # add actual backups
 
     # add migration function
     content += "\n\nbool8 UpdateSave_v%s_v%s(const struct SaveSectorLocation *locations)\n{\n" % (versionnumber, globalVersion)
-    # ADD CONST STRUCTS HERE
+    # add const structs
+    content += "    const struct SaveBlock2_v%s* sOldSaveBlock2Ptr = (struct SaveBlock2_v%s*)(locations[%s].data); // SECTOR_ID_SAVEBLOCK2\n" % (versionnumber, versionnumber, sectorids[0])
+    content += "    const struct SaveBlock1_v%s* sOldSaveBlock1Ptr = (struct SaveBlock1_v%s*)(locations[%s].data); // SECTOR_ID_SAVEBLOCK1_START\n" % (versionnumber, versionnumber, sectorids[1])
+    content += "    const struct PokemonStorage_v%s* sOldPokemonStoragePtr = (struct PokemonStorage_v%s*)(locations[%s].data); // SECTOR_ID_PKMN_STORAGE_START\n    u32 arg, i, j, k;\n\n" % (versionnumber, versionnumber, sectorids[2])
 
-    content += "    SetContinueGameWarpStatus();\n    gSaveBlock1Ptr->continueGameWarp = gSaveBlock1Ptr->lastHealLocation;\n\n    return TRUE;\n}\n"
+    # saveblock2
+    content += "    // SaveBlock2 \n"
+
+    if not listofchanges['SaveBlock2']:
+        content += "    *gSaveBlock2Ptr = *sOldSaveBlock2Ptr;\n"
+
+    # saveblock1
+    content += "\n    // SaveBlock1 \n"
+
+    if not listofchanges['SaveBlock1']:
+        content += "    *gSaveBlock1Ptr = *sOldSaveBlock1Ptr;\n"
+
+    # pokemonstorage
+    content += "\n    // PokemonStorage \n"
+
+    if not listofchanges['PokemonStorage']:
+        content += "    *gPokemonStoragePtr = *sOldPokemonStoragePtr;\n"
+
+    # take care of continue game warp
+    content += "\n    SetContinueGameWarpStatus();\n    gSaveBlock1Ptr->continueGameWarp = gSaveBlock1Ptr->lastHealLocation;\n\n    return TRUE;\n}\n"
 
     # write it to file
     with open("src/data/old_saves/save.v%s.h" % versionnumber, 'w') as file:
