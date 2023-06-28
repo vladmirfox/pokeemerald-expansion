@@ -25,6 +25,8 @@ trusted_typedefs = {
 }
 # ignoreable includes prevents the preprocessor from complaining about include files that don't exist that we don't need anyway
 ignoreable_includes = ['string.h', 'stddef.h', 'stdint.h', 'sprite.h', 'limits.h']
+# the following fields are ignored when it comes to migration because they are related to maps and SetContinueGameWarpStatus(); takes care of that
+ignored_map_fields = ['weather', 'weatherCycleStage', 'flashLevel', 'savedMusic', 'mapLayoutId', 'mapView', 'objectEvents', 'objectEventTemplates']
 
 globalVersion = 0
 globalHasChanges = False
@@ -58,9 +60,18 @@ def pull_new_version():
         globalVersion += 1
     preprocess_files("global", globalVersion)
     preprocess_files("pokemon_storage_system", globalVersion)
+    get_sector_id_values(globalVersion)
     if (globalVersion == 0):
         injectTustin()
         quit()
+
+def get_sector_id_values(version):
+    with open("include/save.h", 'r') as file:
+        rawcode = file.read()
+    with open("versioning/sectors_v%s.txt" % version, 'w') as file:
+        file.write("%s\n" % fetchDefineValue("SECTOR_ID_SAVEBLOCK2", rawcode))
+        file.write("%s\n" % fetchDefineValue("SECTOR_ID_SAVEBLOCK1_START", rawcode))
+        file.write("%s\n" % fetchDefineValue("SECTOR_ID_PKMN_STORAGE_START", rawcode))
 
 # injects Tustin's implementation to the game where necessary
 def injectTustin():
@@ -103,6 +114,7 @@ def failTustinInjection(msg):
     # remove the latest versioning backups
     os.remove("versioning/global_v%s.c" % globalVersion)
     os.remove("versioning/pokemon_storage_system_v%s.c" % globalVersion)
+    os.remove("versioning/sectors_v%s.txt" % globalVersion)
     quit()
 
 # the following function defines all the save versions constants
@@ -319,6 +331,7 @@ def prepareMigration(listofchanges, versionnumber):
 
     # add migration function
     content += "\n\nbool8 UpdateSave_v%s_v%s(const struct SaveSectorLocation *locations)\n{\n" % (versionnumber, globalVersion)
+    # ADD CONST STRUCTS HERE
 
     content += "    SetContinueGameWarpStatus();\n    gSaveBlock1Ptr->continueGameWarp = gSaveBlock1Ptr->lastHealLocation;\n\n    return TRUE;\n}\n"
 
@@ -326,6 +339,12 @@ def prepareMigration(listofchanges, versionnumber):
     with open("src/data/old_saves/save.v%s.h" % versionnumber, 'w') as file:
         file.write(content)
     out("Added migration support from version %s to version %s (src/data/old_saves/save.v%s.h)" % (versionnumber, globalVersion, versionnumber))
+
+def fetchDefineValue(name, code):
+    z = re.findall('#define %s *(.*)' % name, code)
+    if len(z) == 1:
+        return z[0]
+    return None
 
 if __name__ == "__main__":
     if '--log' in sys.argv:
@@ -351,6 +370,7 @@ if __name__ == "__main__":
         out("No save migration needed!")
         os.remove("versioning/global_v%s.c" % globalVersion)
         os.remove("versioning/pokemon_storage_system_v%s.c" % globalVersion)
+        os.remove("versioning/sectors_v%s.txt" % globalVersion)
     # prepare for actual upgrade otherwise
     else:
         # update constants and code
