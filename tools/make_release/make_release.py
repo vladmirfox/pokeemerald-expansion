@@ -80,7 +80,7 @@ def injectTustin():
     with open("include/global.h", 'r') as file:
         content = file.read()
     if not 'u8 _saveSentinel;' in content:
-        ncontent = content.replace('struct SaveBlock2\n{\n    ', 'struct SaveBlock2\n{\n    u8 _saveSentinel; // 0xFF\n    // u8 unused;\n    u16 saveVersion;\n    ')
+        ncontent = content.replace('struct SaveBlock2\n{\n    ', 'struct SaveBlock2\n{\n    // _saveSentinel and saveVersion are used by the save migration system. Please do not (re)move them.\n    u8 _saveSentinel; // 0xFF\n    // u8 unused;\n    u16 saveVersion;\n    ')
         if ncontent == content: # the injection failed for whatever reason
             failTustinInjection("Unable to inject the necessary data into SaveBlock2! Aborting procedure.")
         with open("include/global.h", 'w') as file:
@@ -338,7 +338,7 @@ def prepareMigration(listofchanges, versionnumber):
         content += backupDump(x, versionnumber, listofchanges)
 
     # add migration function
-    content += "\n\nbool8 UpdateSave_v%s_v%s(const struct SaveSectorLocation *locations)\n{\n" % (versionnumber, globalVersion)
+    content += "\nbool8 UpdateSave_v%s_v%s(const struct SaveSectorLocation *locations)\n{\n" % (versionnumber, globalVersion)
     # add const structs
     if 'SaveBlock2' in listofchanges:
         content += "    const struct SaveBlock2_v%s* sOldSaveBlock2Ptr = (struct SaveBlock2_v%s*)(locations[%s].data); // SECTOR_ID_SAVEBLOCK2\n" % (versionnumber, versionnumber, sectorids[0])
@@ -360,9 +360,7 @@ def prepareMigration(listofchanges, versionnumber):
     if not 'SaveBlock2' in listofchanges:
         content += "    *gSaveBlock2Ptr = *sOldSaveBlock2Ptr;\n"
     else:
-        content += defineCopies('SaveBlock2')
-
-        content += undefineCopies()
+        content += dealWithMigration('SaveBlock2')
 
     # saveblock1
     content += "\n    // SaveBlock1 \n"
@@ -370,9 +368,7 @@ def prepareMigration(listofchanges, versionnumber):
     if not 'SaveBlock1' in listofchanges:
         content += "    *gSaveBlock1Ptr = *sOldSaveBlock1Ptr;\n"
     else:
-        content += defineCopies('SaveBlock1')
-
-        content += undefineCopies()
+        content += dealWithMigration('SaveBlock1')
 
     # pokemonstorage
     content += "\n    // PokemonStorage \n"
@@ -380,9 +376,7 @@ def prepareMigration(listofchanges, versionnumber):
     if not 'PokemonStorage' in listofchanges:
         content += "    *gPokemonStoragePtr = *sOldPokemonStoragePtr;\n"
     else:
-        content += defineCopies('PokemonStorage')
-
-        content += undefineCopies()
+        content += dealWithMigration('PokemonStorage')
 
     # take care of continue game warp
     content += "\n    SetContinueGameWarpStatus();\n    gSaveBlock1Ptr->continueGameWarp = gSaveBlock1Ptr->lastHealLocation;\n\n    return TRUE;\n}\n"
@@ -398,11 +392,33 @@ def fetchDefineValue(name, code):
         return z[0]
     return None
 
-def defineCopies(name):
-    return "#define COPY_FIELD(field) g{st}Ptr->field = sOld{st}Ptr->field\n#define COPY_BLOCK(field) CpuCopy16(&sOld{st}Ptr->field, &g{st}Ptr->field, sizeof(g{st}Ptr->field))\n#define COPY_ARRAY(field) for(i = 0; i < min(ARRAY_COUNT(g{st}Ptr->field), ARRAY_COUNT(sOld{st}Ptr->field)); i++) g{st}Ptr->field[i] = sOld{st}Ptr->field[i];\n\n".format(st=name)
-
-def undefineCopies():
-    return "#undef COPY_FIELD\n#undef COPY_BLOCK\n#undef COPY_ARRAY\n"
+def dealWithMigration(name):
+    out = "#define COPY_FIELD(field) g{st}Ptr->field = sOld{st}Ptr->field\n#define COPY_BLOCK(field) CpuCopy16(&sOld{st}Ptr->field, &g{st}Ptr->field, sizeof(g{st}Ptr->field))\n#define COPY_ARRAY(field) for(i = 0; i < min(ARRAY_COUNT(g{st}Ptr->field), ARRAY_COUNT(sOld{st}Ptr->field)); i++) g{st}Ptr->field[i] = sOld{st}Ptr->field[i];\n\n".format(st=name)
+    for field in GlobalClassesNew[name].fields:
+        # hardcoded feature to make save migration work
+        if (name == "SaveBlock2" and field.name in ['_saveSentinel', 'saveVersion']):
+            if field.name == '_saveSentinel':
+                out += "    gSaveBlock2Ptr->_saveSentinel = 0xFF;\n"
+            if field.name == 'saveVersion':
+                out += "    gSaveBlock2Ptr->saveVersion = %s;\n" % globalVersion
+            continue
+        # ignore map-based save stuff
+        if (field.name in ignored_map_fields):
+            continue
+        # check other fields
+        # add check to see if it actually stays the same here later
+        if (field.type.__class__.__name__ == "Array"):
+            if (field.type.array_of.__class__.__name__ == "Array"):
+                out += "    COPY_BLOCK(%s);\n" % field.name
+                continue
+            elif (field.type.array_of.__class__.__name__ == "Type"):
+                if (field.type.array_of.typename.classkey == "struct"):
+                    out += "    COPY_BLOCK(%s);\n" % field.name
+                    continue
+            out += "    COPY_ARRAY(%s);\n" % field.name
+        else:
+            out += "    COPY_FIELD(%s);\n" % field.name
+    return out + "\n#undef COPY_FIELD\n#undef COPY_BLOCK\n#undef COPY_ARRAY\n"
 
 def backupDump(structname, versionnumber, listofchanges):
     # we make a struct and add its components
