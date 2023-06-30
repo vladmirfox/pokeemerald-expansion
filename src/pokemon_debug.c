@@ -732,7 +732,7 @@ static void BattleLoadOpponentMonSpriteGfxCustom(u16 species, bool8 isFemale, bo
     LoadPalette(gDecompressionBuffer, 0x80 + battlerId * 16, 0x20);
 }
 
-static bool8 IsCastformForm(species)
+static bool8 IsCastformForm(u16 species)
 {
     if (species == SPECIES_CASTFORM_SUNNY || species == SPECIES_CASTFORM_RAINY || species == SPECIES_CASTFORM_SNOWY)
         return TRUE;
@@ -740,7 +740,7 @@ static bool8 IsCastformForm(species)
     return FALSE;
 }
 
-static u8 GetCastformYCustom(species)
+static u8 GetCastformYCustom(u16 species)
 {
     u8 ret;
     switch (species)
@@ -1298,8 +1298,9 @@ static void ApplyOffsetSpriteValues(struct PokemonDebugMenu *data)
     gSprites[data->backspriteId].y = DEBUG_MON_BACK_Y + gMonBackPicCoords[species].y_offset + data->offsetsSpriteValues.offset_back_picCoords;
     //Front
     gSprites[data->frontspriteId].y = GetBattlerSpriteFinal_YCustom(species, data->offsetsSpriteValues.offset_front_picCoords, data->offsetsSpriteValues.offset_front_elevation);
-    //Shadow if one was added
-    UpdateShadowSpriteInvisible(data);
+    
+    if (data->currentSubmenu == 2)
+        UpdateShadowSpriteInvisible(data);
 }
 
 static void UpdateSubmenuOneOptionValue(u8 taskId, bool8 increment)
