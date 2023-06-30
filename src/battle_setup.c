@@ -1355,24 +1355,9 @@ static void HandleBattleVariantParty(void)
     if (FlagGet(B_FLAG_SKY_BATTLE))
     {
         SaveChangesToPlayerParty();
-        LoadPlayerParty(); 
+        LoadPlayerParty();
         FlagClear(B_FLAG_SKY_BATTLE);
     }
-}
-
-static bool8 PlayerHasHealthyPokemon(void){
-    u8 i;
-    u8 partyCount;
-
-    partyCount = CalculatePlayerPartyCount();
-    for (i = 0; i < partyCount; i++)
-    {
-        if ((GetMonData(&gPlayerParty[i], MON_DATA_HP, NULL) > 0) && (!GetMonData(&gPlayerParty[i],MON_DATA_IS_EGG,NULL)))
-        {
-            return TRUE;
-        }
-    }
-    return FALSE;
 }
 
 static void CB2_EndTrainerBattle(void)
@@ -1385,7 +1370,7 @@ static void CB2_EndTrainerBattle(void)
     }
     else if (IsPlayerDefeated(gBattleOutcome) == TRUE)
     {
-        if (InBattlePyramid() || InTrainerHillChallenge() || PlayerHasHealthyPokemon() )
+        if (InBattlePyramid() || InTrainerHillChallenge() || (!NoAliveMonsForPlayer()))
             SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
         else
             SetMainCallback2(CB2_WhiteOut);

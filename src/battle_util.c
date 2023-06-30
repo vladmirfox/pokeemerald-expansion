@@ -10950,9 +10950,10 @@ bool32 IsAlly(u32 battlerAtk, u32 battlerDef)
     return (GetBattlerSide(battlerAtk) == GetBattlerSide(battlerDef));
 }
 
-bool8 CanMonParticipateInSkyBattle(struct Pokemon* pokemon){
+bool8 CanMonParticipateInSkyBattle(struct Pokemon* pokemon)
+{
     u16 species = GetMonData(pokemon, MON_DATA_SPECIES);
-    u8 monAbilityNum = GetMonData(pokemon, MON_DATA_ABILITY_NUM, NULL);
+    u16 monAbilityNum = GetMonData(pokemon, MON_DATA_ABILITY_NUM, NULL);
 
     bool8 hasLevitateAbility = gSpeciesInfo[species].abilities[monAbilityNum] == ABILITY_LEVITATE;
     bool8 isFlyingType = gSpeciesInfo[species].types[0] == TYPE_FLYING || gSpeciesInfo[species].types[1] == TYPE_FLYING;
