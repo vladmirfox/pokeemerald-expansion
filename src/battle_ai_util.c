@@ -331,6 +331,7 @@ static const u16 sEncouragedEncoreEffects[] =
     EFFECT_SPIT_UP,
     EFFECT_SWALLOW,
     EFFECT_HAIL,
+    EFFECT_SNOWSCAPE,
     EFFECT_TORMENT,
     EFFECT_WILL_O_WISP,
     EFFECT_FOLLOW_ME,
@@ -590,7 +591,8 @@ void SetBattlerData(u8 battlerId)
 {
     if (!BattlerHasAi(battlerId))
     {
-        u32 i, species, illusionSpecies;
+        u32 i, species, illusionSpecies, side;
+        side = GetBattlerSide(battlerId);
 
         // Simulate Illusion
         species = gBattleMons[battlerId].species;
@@ -608,22 +610,22 @@ void SetBattlerData(u8 battlerId)
         }
 
         // Use the known battler's ability.
-        if (BATTLE_HISTORY->abilities[battlerId] != ABILITY_NONE)
-            gBattleMons[battlerId].ability = BATTLE_HISTORY->abilities[battlerId];
+        if (AI_PARTY->mons[side][gBattlerPartyIndexes[battlerId]].ability != ABILITY_NONE)
+            gBattleMons[battlerId].ability = AI_PARTY->mons[side][gBattlerPartyIndexes[battlerId]].ability;
         // Check if mon can only have one ability.
         else if (gSpeciesInfo[species].abilities[1] == ABILITY_NONE
-                 || gSpeciesInfo[species].abilities[1] == gSpeciesInfo[species].abilities[0])
+                || gSpeciesInfo[species].abilities[1] == gSpeciesInfo[species].abilities[0])
             gBattleMons[battlerId].ability = gSpeciesInfo[species].abilities[0];
         // The ability is unknown.
         else
             gBattleMons[battlerId].ability = ABILITY_NONE;
 
-        if (BATTLE_HISTORY->itemEffects[battlerId] == 0)
+        if (AI_PARTY->mons[side][gBattlerPartyIndexes[battlerId]].heldEffect == 0)
             gBattleMons[battlerId].item = 0;
 
-        for (i = 0; i < 4; i++)
+        for (i = 0; i < MAX_MON_MOVES; i++)
         {
-            if (BATTLE_HISTORY->usedMoves[battlerId][i] == 0)
+            if (AI_PARTY->mons[side][gBattlerPartyIndexes[battlerId]].moves[i] == 0)
                 gBattleMons[battlerId].moves[i] = 0;
         }
     }
@@ -820,47 +822,47 @@ s32 AI_CalcDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 *typeEffectiveness,
         else
             dmg = (critDmg + normalDmg * (critChance - 1)) / critChance;
 
-        // Handle dynamic move damage
-        switch (gBattleMoves[move].effect)
+        if (!gBattleStruct->zmove.active)
         {
-        case EFFECT_LEVEL_DAMAGE:
-        case EFFECT_PSYWAVE:
-            dmg = gBattleMons[battlerAtk].level * (AI_DATA->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
-            break;
-        case EFFECT_DRAGON_RAGE:
-            dmg = 40 * (AI_DATA->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
-            break;
-        case EFFECT_SONICBOOM:
-            dmg = 20 * (AI_DATA->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
-            break;
-        case EFFECT_MULTI_HIT:
-            dmg *= (AI_DATA->abilities[battlerAtk] == ABILITY_SKILL_LINK ? 5 : 3);
-            break;
-        case EFFECT_TRIPLE_KICK:
-            dmg *= (AI_DATA->abilities[battlerAtk] == ABILITY_SKILL_LINK ? 6 : 5);
-            break;
-        case EFFECT_ENDEAVOR:
-            // If target has less HP than user, Endeavor does no damage
-            dmg = max(0, gBattleMons[battlerDef].hp - gBattleMons[battlerAtk].hp);
-            break;
-        case EFFECT_SUPER_FANG:
-            dmg = (AI_DATA->abilities[battlerAtk] == ABILITY_PARENTAL_BOND
-                ? max(2, gBattleMons[battlerDef].hp * 3 / 4)
-                : max(1, gBattleMons[battlerDef].hp / 2));
-            break;
-        case EFFECT_FINAL_GAMBIT:
-            dmg = gBattleMons[battlerAtk].hp;
-            break;
+            // Handle dynamic move damage
+            switch (gBattleMoves[move].effect)
+            {
+            case EFFECT_LEVEL_DAMAGE:
+            case EFFECT_PSYWAVE:
+                dmg = gBattleMons[battlerAtk].level * (AI_DATA->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
+                break;
+            case EFFECT_DRAGON_RAGE:
+                dmg = 40 * (AI_DATA->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
+                break;
+            case EFFECT_SONICBOOM:
+                dmg = 20 * (AI_DATA->abilities[battlerAtk] == ABILITY_PARENTAL_BOND ? 2 : 1);
+                break;
+            case EFFECT_MULTI_HIT:
+                dmg *= (AI_DATA->abilities[battlerAtk] == ABILITY_SKILL_LINK ? 5 : 3);
+                break;
+            case EFFECT_ENDEAVOR:
+                // If target has less HP than user, Endeavor does no damage
+                dmg = max(0, gBattleMons[battlerDef].hp - gBattleMons[battlerAtk].hp);
+                break;
+            case EFFECT_SUPER_FANG:
+                dmg = (AI_DATA->abilities[battlerAtk] == ABILITY_PARENTAL_BOND
+                    ? max(2, gBattleMons[battlerDef].hp * 3 / 4)
+                    : max(1, gBattleMons[battlerDef].hp / 2));
+                break;
+            case EFFECT_FINAL_GAMBIT:
+                dmg = gBattleMons[battlerAtk].hp;
+                break;
+            }
+
+            // Handle other multi-strike moves
+            if (gBattleMoves[move].flags & FLAG_TWO_STRIKES)
+                dmg *= 2;
+            else if (gBattleMoves[move].flags & FLAG_THREE_STRIKES || (move == MOVE_WATER_SHURIKEN && gBattleMons[battlerAtk].species == SPECIES_GRENINJA_ASH))
+                dmg *= 3;
+
+            if (dmg == 0)
+                dmg = 1;
         }
-
-        // Handle other multi-strike moves
-        if (gBattleMoves[move].flags & FLAG_TWO_STRIKES)
-            dmg *= 2;
-        else if (gBattleMoves[move].flags & FLAG_THREE_STRIKES || (move == MOVE_WATER_SHURIKEN && gBattleMons[battlerAtk].species == SPECIES_GRENINJA_ASH))
-            dmg *= 3;
-
-        if (dmg == 0)
-            dmg = 1;
     }
     else
     {
@@ -1094,10 +1096,11 @@ u8 AI_WhoStrikesFirst(u8 battlerAI, u8 battler2, u16 moveConsidered)
     prioAI = GetMovePriority(battlerAI, moveConsidered);
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (battler2Moves[i] == 0 || battler2Moves[i] == 0xFFFF)
+        prioBattler2 = GetMovePriority(battler2, battler2Moves[i]);
+        if (battler2Moves[i] == 0 || battler2Moves[i] == 0xFFFF
+            || (prioBattler2 > prioAI && !CanIndexMoveFaintTarget(battler2, battlerAI, i , 2)))
             continue;
 
-        prioBattler2 = GetMovePriority(battler2, battler2Moves[i]);
         if (prioAI > prioBattler2)
             fasterAI++;
         else if (prioBattler2 > prioAI)
@@ -1504,7 +1507,7 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
     // increased accuracy but don't always hit
     if ((AI_WeatherHasEffect() &&
             (((gBattleWeather & B_WEATHER_RAIN) && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
-            || (((gBattleWeather & B_WEATHER_HAIL) && move == MOVE_BLIZZARD))))
+            || (((gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)) && move == MOVE_BLIZZARD))))
         || (gBattleMoves[move].effect == EFFECT_VITAL_THROW)
     #if B_MINIMIZE_DMG_ACC >= GEN_6
         || ((gStatuses3[battlerDef] & STATUS3_MINIMIZED) && (gBattleMoves[move].flags & FLAG_DMG_MINIMIZE))
@@ -1579,7 +1582,7 @@ bool32 ShouldSetHail(u8 battler, u16 ability, u16 holdEffect)
 {
     if (!AI_WeatherHasEffect())
         return FALSE;
-    else if (gBattleWeather & B_WEATHER_HAIL)
+    else if (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW))
         return FALSE;
 
     if (ability == ABILITY_SNOW_CLOAK
@@ -1649,6 +1652,26 @@ bool32 ShouldSetSun(u8 battlerAtk, u16 atkAbility, u16 holdEffect)
     return FALSE;
 }
 
+bool32 ShouldSetSnow(u8 battler, u16 ability, u16 holdEffect)
+{
+    if (!AI_WeatherHasEffect())
+        return FALSE;
+    else if (gBattleWeather & (B_WEATHER_SNOW | B_WEATHER_HAIL))
+        return FALSE;
+
+    if (ability == ABILITY_SNOW_CLOAK
+      || ability == ABILITY_ICE_BODY
+      || ability == ABILITY_FORECAST
+      || ability == ABILITY_SLUSH_RUSH
+      || IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
+      || HasMove(battler, MOVE_BLIZZARD)
+      || HasMoveEffect(battler, EFFECT_AURORA_VEIL)
+      || HasMoveEffect(battler, EFFECT_WEATHER_BALL))
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
 
 void ProtectChecks(u8 battlerAtk, u8 battlerDef, u16 move, u16 predictedMove, s16 *score)
 {
@@ -2029,6 +2052,7 @@ bool32 IsHealingMoveEffect(u16 effect)
     case EFFECT_HEALING_WISH:
     case EFFECT_HEAL_PULSE:
     case EFFECT_REST:
+    case EFFECT_JUNGLE_HEALING:
         return TRUE;
     default:
         return FALSE;
@@ -2945,14 +2969,12 @@ bool32 AI_CanGiveFrostbite(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 batt
     return TRUE;
 }
 
-bool32 AI_CanBeInfatuated(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 atkGender, u8 defGender)
+bool32 AI_CanBeInfatuated(u8 battlerAtk, u8 battlerDef, u16 defAbility)
 {
     if ((gBattleMons[battlerDef].status2 & STATUS2_INFATUATION)
       || AI_GetMoveEffectiveness(AI_THINKING_STRUCT->moveConsidered, battlerAtk, battlerDef) == AI_EFFECTIVENESS_x0
       || defAbility == ABILITY_OBLIVIOUS
-      || atkGender == defGender
-      || atkGender == MON_GENDERLESS
-      || defGender == MON_GENDERLESS
+      || !AreBattlersOfOppositeGender(battlerAtk, battlerDef)
       || AI_IsAbilityOnSide(battlerDef, ABILITY_AROMA_VEIL))
         return FALSE;
     return TRUE;
@@ -3137,7 +3159,7 @@ bool32 ShouldSetScreen(u8 battlerAtk, u8 battlerDef, u16 moveEffect)
     {
     case EFFECT_AURORA_VEIL:
         // Use only in Hail and only if AI doesn't already have Reflect, Light Screen or Aurora Veil itself active.
-        if (gBattleWeather & B_WEATHER_HAIL
+        if ((gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW))
             && !(gSideStatuses[atkSide] & (SIDE_STATUS_REFLECT | SIDE_STATUS_LIGHTSCREEN | SIDE_STATUS_AURORA_VEIL)))
             return TRUE;
         break;
@@ -3242,7 +3264,8 @@ bool32 PartnerMoveEffectIsWeather(u8 battlerAtkPartner, u16 partnerMove)
      && (gBattleMoves[partnerMove].effect == EFFECT_SUNNY_DAY
       || gBattleMoves[partnerMove].effect == EFFECT_RAIN_DANCE
       || gBattleMoves[partnerMove].effect == EFFECT_SANDSTORM
-      || gBattleMoves[partnerMove].effect == EFFECT_HAIL))
+      || gBattleMoves[partnerMove].effect == EFFECT_HAIL
+      || gBattleMoves[partnerMove].effect == EFFECT_SNOWSCAPE))
         return TRUE;
 
     return FALSE;

@@ -249,7 +249,7 @@ static const struct ListMenuTemplate sItemListMenu =
     .itemPrintFunc = BagMenu_ItemPrintCallback,
     .totalItems = 0,
     .maxShowed = 0,
-    .windowId = 0,
+    .windowId = WIN_ITEM_LIST,
     .header_X = 0,
     .item_X = 8,
     .cursor_X = 0,
@@ -2075,7 +2075,7 @@ static void Task_ItemContext_Sell(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    if (ItemId_GetPrice(gSpecialVar_ItemId) == 0)
+    if (ItemId_GetPrice(gSpecialVar_ItemId) == 0 || ItemId_GetImportance(gSpecialVar_ItemId))
     {
         CopyItemName(gSpecialVar_ItemId, gStringVar2);
         StringExpandPlaceholders(gStringVar4, gText_CantBuyKeyItem);

@@ -147,6 +147,7 @@ struct ProtectStruct
     u16 quash:1;
     u16 shellTrap:1;
     u16 silkTrapped:1;
+    u16 eatMirrorHerb:1;
     u32 physicalDmg;
     u32 specialDmg;
     u8 physicalBattlerId;
@@ -535,7 +536,7 @@ struct BattleStruct
     u8 wildVictorySong;
     u8 dynamicMoveType;
     u8 wrappedBy[MAX_BATTLERS_COUNT];
-    u8 focusPunchBattlerId;
+    u8 focusPunchBattlers; // as bits
     u8 battlerPreventingSwitchout;
     u8 moneyMultiplier:6;
     u8 moneyMultiplierItem:1;
@@ -589,7 +590,6 @@ struct BattleStruct
     u8 turnSideTracker;
     u8 givenExpMons; // Bits for enemy party's pokemon that gave exp to player's party.
     u16 lastTakenMoveFrom[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT]; // a 2-D array [target][attacker]
-    u16 castformPalette[NUM_CASTFORM_FORMS][16];
     union {
         struct LinkBattlerHeader linkBattlerHeader;
         u32 battleVideo[2];
@@ -654,6 +654,7 @@ struct BattleStruct
     u8 attackerBeforeBounce:2;
     u8 beatUpSlot:3;
     bool8 hitSwitchTargetFailed:1;
+    bool8 effectsBeforeUsingMoveDone:1; // Mega Evo and Focus Punch/Shell Trap effects.
     u8 targetsDone[MAX_BATTLERS_COUNT]; // Each battler as a bit.
     u16 overwrittenAbilities[MAX_BATTLERS_COUNT];    // abilities overwritten during battle (keep separate from battle history in case of switching)
     bool8 allowedToChangeFormInWeather[PARTY_SIZE][2]; // For each party member and side, used by Ice Face.
@@ -662,6 +663,7 @@ struct BattleStruct
     u8 storedLunarDance:4; // Each battler as a bit.
     u16 supremeOverlordModifier[MAX_BATTLERS_COUNT];
     u8 itemPartyIndex[MAX_BATTLERS_COUNT];
+    u8 itemMoveIndex[MAX_BATTLERS_COUNT];
     bool8 trainerSlideHalfHpMsgDone;
     u8 trainerSlideFirstCriticalHitMsgState:2;
     u8 trainerSlideFirstSuperEffectiveHitMsgState:2;
@@ -991,7 +993,6 @@ extern struct BattleHealthboxInfo *gBattleControllerOpponentHealthboxData;
 extern struct BattleHealthboxInfo *gBattleControllerOpponentFlankHealthboxData;
 extern u16 gBattleMovePower;
 extern u16 gMoveToLearn;
-extern u8 gBattleMonForms[MAX_BATTLERS_COUNT];
 extern u32 gFieldStatuses;
 extern struct FieldTimer gFieldTimers;
 extern u8 gBattlerAbility;

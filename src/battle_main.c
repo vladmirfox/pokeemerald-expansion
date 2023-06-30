@@ -234,7 +234,6 @@ EWRAM_DATA struct BattleHealthboxInfo *gBattleControllerOpponentHealthboxData = 
 EWRAM_DATA struct BattleHealthboxInfo *gBattleControllerOpponentFlankHealthboxData = NULL; // Never read
 EWRAM_DATA u16 gBattleMovePower = 0;
 EWRAM_DATA u16 gMoveToLearn = 0;
-EWRAM_DATA u8 gBattleMonForms[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u32 gFieldStatuses = 0;
 EWRAM_DATA struct FieldTimer gFieldTimers = {0};
 EWRAM_DATA u8 gBattlerAbility = 0;
@@ -2784,7 +2783,6 @@ static void SpriteCB_Flicker(struct Sprite *sprite)
 #undef sDelay
 
 extern const struct MonCoords gMonFrontPicCoords[];
-extern const struct MonCoords gCastformFrontSpriteCoords[];
 
 void SpriteCB_FaintOpponentMon(struct Sprite *sprite)
 {
@@ -2804,10 +2802,6 @@ void SpriteCB_FaintOpponentMon(struct Sprite *sprite)
     {
         species = GetUnownSpeciesId(personality);
         yOffset = gMonFrontPicCoords[species].y_offset;
-    }
-    else if (species == SPECIES_CASTFORM)
-    {
-        yOffset = gCastformFrontSpriteCoords[gBattleMonForms[battler]].y_offset;
     }
     else if (species > NUM_SPECIES)
     {
@@ -2838,12 +2832,12 @@ static void SpriteCB_AnimFaintOpponent(struct Sprite *sprite)
         }
         else // Erase bottom part of the sprite to create a smooth illusion of mon falling down.
         {
-            u8 *dst = gMonSpritesGfxPtr->sprites.byte[GetBattlerPosition(sprite->sBattler)] + (gBattleMonForms[sprite->sBattler] << 11) + (sprite->data[3] << 8);
+            u8 *dst = gMonSpritesGfxPtr->sprites.byte[GetBattlerPosition(sprite->sBattler)] + (sprite->data[3] << 8);
 
             for (i = 0; i < 0x100; i++)
                 *(dst++) = 0;
 
-            StartSpriteAnim(sprite, gBattleMonForms[sprite->sBattler]);
+            StartSpriteAnim(sprite, 0);
         }
     }
 }
@@ -3301,6 +3295,15 @@ void SwitchInClearSetData(void)
 
     // Clear selected party ID so Revival Blessing doesn't get confused.
     gSelectedMonPartyId = PARTY_SIZE;
+
+    // Allow for illegal abilities within tests.
+    if (gTestRunnerEnabled)
+    {
+        u32 side = GetBattlerSide(gActiveBattler);
+        u32 partyIndex = gBattlerPartyIndexes[gActiveBattler];
+        if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
+            gBattleMons[i].ability = gBattleStruct->overwrittenAbilities[i] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
+    }
 
     Ai_UpdateSwitchInData(gActiveBattler);
 }
@@ -3791,6 +3794,18 @@ static void TryDoEventsBeforeFirstTurn(void)
             struct Pokemon *mon = &party[gBattlerPartyIndexes[i]];
             if (gBattleMons[i].hp == 0 || gBattleMons[i].species == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG))
                 gAbsentBattlerFlags |= gBitTable[i];
+        }
+    }
+
+    // Allow for illegal abilities within tests.
+    if (gTestRunnerEnabled && gBattleStruct->switchInAbilitiesCounter == 0)
+    {
+        for (i = 0; i < gBattlersCount; ++i)
+        {
+            u32 side = GetBattlerSide(i);
+            u32 partyIndex = gBattlerPartyIndexes[i];
+            if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
+                gBattleMons[i].ability = gBattleStruct->overwrittenAbilities[i] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
         }
     }
 
@@ -4642,7 +4657,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
             speed *= 2;
         else if (ability == ABILITY_SAND_RUSH   && gBattleWeather & B_WEATHER_SANDSTORM)
             speed *= 2;
-        else if (ability == ABILITY_SLUSH_RUSH  && gBattleWeather & B_WEATHER_HAIL)
+        else if (ability == ABILITY_SLUSH_RUSH  && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
             speed *= 2;
     }
 
@@ -4749,6 +4764,7 @@ s8 GetMovePriority(u32 battlerId, u16 move)
         case EFFECT_SOFTBOILED:
         case EFFECT_ABSORB:
         case EFFECT_ROOST:
+        case EFFECT_JUNGLE_HEALING:
             priority += 3;
             break;
         }
@@ -4917,9 +4933,6 @@ static void SetActionsAndBattlersTurnOrder(void)
                     turnOrderId++;
                 }
             }
-            gBattleMainFunc = CheckMegaEvolutionBeforeTurn;
-            gBattleStruct->mega.battlerId = 0;
-            return;
         }
         else
         {
@@ -4965,8 +4978,8 @@ static void SetActionsAndBattlersTurnOrder(void)
             }
         }
     }
-    gBattleMainFunc = CheckMegaEvolutionBeforeTurn;
-    gBattleStruct->mega.battlerId = 0;
+    gBattleMainFunc = CheckQuickClaw_CustapBerryActivation;
+    gBattleStruct->quickClawBattlerId = 0;
 }
 
 static void TurnValuesCleanUp(bool8 var0)
@@ -5015,49 +5028,98 @@ void SpecialStatusesClear(void)
     memset(&gSpecialStatuses, 0, sizeof(gSpecialStatuses));
 }
 
-static void CheckMegaEvolutionBeforeTurn(void)
+static void PopulateArrayWithBattlers(u8 *battlers)
 {
-    if (!(gHitMarker & HITMARKER_RUN))
-    {
-        while (gBattleStruct->mega.battlerId < gBattlersCount)
-        {
-            gActiveBattler = gBattlerAttacker = gBattleStruct->mega.battlerId;
-            gBattleStruct->mega.battlerId++;
-            if (gBattleStruct->mega.toEvolve & gBitTable[gActiveBattler]
-                && !(gProtectStructs[gActiveBattler].noValidMoves))
-            {
-                struct Pokemon *party = GetBattlerParty(gActiveBattler);
-                struct Pokemon *mon = &party[gBattlerPartyIndexes[gActiveBattler]];
+    u32 i;
+    for (i = 0; i < gBattlersCount; i++)
+        battlers[i] = i;
+}
 
+static bool32 TryDoMegaEvosBeforeMoves(void)
+{
+    if (!(gHitMarker & HITMARKER_RUN) && gBattleStruct->mega.toEvolve)
+    {
+        u32 i;
+        struct Pokemon *party;
+        struct Pokemon *mon;
+        u8 megaOrder[MAX_BATTLERS_COUNT];
+
+        PopulateArrayWithBattlers(megaOrder);
+        SortBattlersBySpeed(megaOrder, FALSE);
+        for (i = 0; i < gBattlersCount; i++)
+        {
+            if (gBattleStruct->mega.toEvolve & gBitTable[megaOrder[i]]
+                && !(gProtectStructs[megaOrder[i]].noValidMoves))
+            {
+                gActiveBattler = gBattlerAttacker = megaOrder[i];
                 gBattleStruct->mega.toEvolve &= ~(gBitTable[gActiveBattler]);
                 gLastUsedItem = gBattleMons[gActiveBattler].item;
+                party = GetBattlerParty(gActiveBattler);
+                mon = &party[gBattlerPartyIndexes[gActiveBattler]];
                 if (GetBattleFormChangeTargetSpecies(gActiveBattler, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_MOVE) != SPECIES_NONE)
                     BattleScriptExecute(BattleScript_WishMegaEvolution);
                 else
                     BattleScriptExecute(BattleScript_MegaEvolution);
-                return;
+                return TRUE;
             }
         }
     }
 
-    #if B_MEGA_EVO_TURN_ORDER <= GEN_6
-        gBattleMainFunc = CheckChosenMoveForEffectsBeforeTurnStarts;
-        gBattleStruct->focusPunchBattlerId = 0;
-    #else
-        gBattleMainFunc = TryChangeTurnOrder; // This will just do nothing if no mon has mega evolved
+    #if B_MEGA_EVO_TURN_ORDER >= GEN_7
+        TryChangeTurnOrder(); // This will just do nothing if no mon has mega evolved.
     #endif
+    return FALSE;
+}
+
+static bool32 TryDoMoveEffectsBeforeMoves(void)
+{
+    if (!(gHitMarker & HITMARKER_RUN))
+    {
+        u32 i;
+        struct Pokemon *mon;
+        u8 battlers[MAX_BATTLERS_COUNT];
+
+        PopulateArrayWithBattlers(battlers);
+        SortBattlersBySpeed(battlers, FALSE);
+        for (i = 0; i < gBattlersCount; i++)
+        {
+            if (!(gBattleStruct->focusPunchBattlers & gBitTable[battlers[i]])
+                && !(gBattleMons[battlers[i]].status1 & STATUS1_SLEEP)
+                && !(gDisableStructs[battlers[i]].truantCounter)
+                && !(gProtectStructs[battlers[i]].noValidMoves))
+            {
+                gBattleStruct->focusPunchBattlers |= gBitTable[battlers[i]];
+                gActiveBattler = gBattlerAttacker = battlers[i];
+                switch (gChosenMoveByBattler[gActiveBattler])
+                {
+                case MOVE_FOCUS_PUNCH:
+                    BattleScriptExecute(BattleScript_FocusPunchSetUp);
+                    return TRUE;
+                case MOVE_BEAK_BLAST:
+                    BattleScriptExecute(BattleScript_BeakBlastSetUp);
+                    return TRUE;
+                case MOVE_SHELL_TRAP:
+                    BattleScriptExecute(BattleScript_ShellTrapSetUp);
+                    return TRUE;
+                }
+            }
+        }
+    }
+
+    return FALSE;
 }
 
 // In gen7, priority and speed are recalculated during the turn in which a pokemon mega evolves
 static void TryChangeTurnOrder(void)
 {
-    s32 i, j;
+    u32 i, j;
     for (i = 0; i < gBattlersCount - 1; i++)
     {
         for (j = i + 1; j < gBattlersCount; j++)
         {
-            u8 battler1 = gBattlerByTurnOrder[i];
-            u8 battler2 = gBattlerByTurnOrder[j];
+            u32 battler1 = gBattlerByTurnOrder[i];
+            u32 battler2 = gBattlerByTurnOrder[j];
+
             if (gActionsByTurnOrder[i] == B_ACTION_USE_MOVE
                 && gActionsByTurnOrder[j] == B_ACTION_USE_MOVE)
             {
@@ -5066,42 +5128,6 @@ static void TryChangeTurnOrder(void)
             }
         }
     }
-    gBattleMainFunc = CheckChosenMoveForEffectsBeforeTurnStarts;
-    gBattleStruct->focusPunchBattlerId = 0;
-}
-
-static void CheckChosenMoveForEffectsBeforeTurnStarts(void)
-{
-    u32 i;
-
-    if (!(gHitMarker & HITMARKER_RUN))
-    {
-        while (gBattleStruct->focusPunchBattlerId < gBattlersCount)
-        {
-            gActiveBattler = gBattlerAttacker = gBattleStruct->focusPunchBattlerId;
-            gBattleStruct->focusPunchBattlerId++;
-            if (!(gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP)
-                && !(gDisableStructs[gBattlerAttacker].truantCounter)
-                && !(gProtectStructs[gActiveBattler].noValidMoves))
-            {
-                switch (gChosenMoveByBattler[gActiveBattler])
-                {
-                case MOVE_FOCUS_PUNCH:
-                    BattleScriptExecute(BattleScript_FocusPunchSetUp);
-                    return;
-                case MOVE_BEAK_BLAST:
-                    BattleScriptExecute(BattleScript_BeakBlastSetUp);
-                    return;
-                case MOVE_SHELL_TRAP:
-                    BattleScriptExecute(BattleScript_ShellTrapSetUp);
-                    return;
-                }
-            }
-        }
-    }
-
-    gBattleMainFunc = CheckQuickClaw_CustapBerryActivation;
-    gBattleStruct->quickClawBattlerId = 0;
 }
 
 static void CheckQuickClaw_CustapBerryActivation(void)
@@ -5156,6 +5182,8 @@ static void CheckQuickClaw_CustapBerryActivation(void)
     gCurrentTurnActionNumber = 0;
     gCurrentActionFuncId = gActionsByTurnOrder[0];
     gBattleStruct->dynamicMoveType = 0;
+    gBattleStruct->effectsBeforeUsingMoveDone = FALSE;
+    gBattleStruct->focusPunchBattlers = 0;
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
         gBattleStruct->ateBoost[i] = FALSE;
@@ -5173,6 +5201,16 @@ static void RunTurnActionsFunctions(void)
 {
     if (gBattleOutcome != 0)
         gCurrentActionFuncId = B_ACTION_FINISHED;
+
+    // Mega Evolve / Focus Punch-like moves after switching, items, running, but before using a move.
+    if (gCurrentActionFuncId == B_ACTION_USE_MOVE && !gBattleStruct->effectsBeforeUsingMoveDone)
+    {
+        if (TryDoMegaEvosBeforeMoves())
+            return;
+        else if (TryDoMoveEffectsBeforeMoves())
+            return;
+        gBattleStruct->effectsBeforeUsingMoveDone = TRUE;
+    }
 
     *(&gBattleStruct->savedTurnActionNumber) = gCurrentTurnActionNumber;
     sTurnActionsFuncsTable[gCurrentActionFuncId]();
@@ -5382,7 +5420,6 @@ static void HandleEndTurn_FinishBattle(void)
         BeginFastPaletteFade(3);
         FadeOutMapMusic(5);
     #if B_TRAINERS_KNOCK_OFF_ITEMS == TRUE || B_RESTORE_HELD_BATTLE_ITEMS == TRUE
-        if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
             TryRestoreHeldItems();
     #endif
         for (i = 0; i < PARTY_SIZE; i++)
@@ -5590,7 +5627,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
                 gBattleStruct->dynamicMoveType = TYPE_ROCK | F_DYNAMIC_TYPE_2;
             else if (gBattleWeather & B_WEATHER_SUN && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
                 gBattleStruct->dynamicMoveType = TYPE_FIRE | F_DYNAMIC_TYPE_2;
-            else if (gBattleWeather & B_WEATHER_HAIL)
+            else if (gBattleWeather & (B_WEATHER_HAIL |B_WEATHER_SNOW))
                 gBattleStruct->dynamicMoveType = TYPE_ICE | F_DYNAMIC_TYPE_2;
             else
                 gBattleStruct->dynamicMoveType = TYPE_NORMAL | F_DYNAMIC_TYPE_2;
