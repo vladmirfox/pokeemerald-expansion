@@ -138,11 +138,11 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
     else if (heldKeys & DPAD_RIGHT)
         input->dpadDirection = DIR_EAST;
 
-#if DEBUG_OVERWORLD_MENU == TRUE && DEBUG_OVERWORLD_IN_MENU == FALSE
-    if ((heldKeys & DEBUG_OVERWORLD_HELD_KEYS) && input->DEBUG_OVERWORLD_TRIGGER_EVENT)
+#if DEBUGGING
+    if ((heldKeys & R_BUTTON) && input->pressedStartButton)
     {
         input->input_field_1_2 = TRUE;
-        input->DEBUG_OVERWORLD_TRIGGER_EVENT = FALSE;
+        input->pressedStartButton = FALSE;
     }
 #endif
 }
@@ -214,6 +214,15 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     {
         PlaySE(SE_WIN_OPEN);
         FreezeObjectEvents();
+        Debug_ShowMainMenu();
+        return TRUE;
+    }
+#endif
+
+#if DEBUGGING
+    if (input->input_field_1_2)
+    {
+        PlaySE(SE_WIN_OPEN);
         Debug_ShowMainMenu();
         return TRUE;
     }
