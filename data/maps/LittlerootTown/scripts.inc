@@ -1019,3 +1019,12 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
 
+LittlerootTown_StrangeHouse_Sign::
+	lockall
+	msgbox LittlerootTown_StrangeHouse_Sign_Text_0
+	releaseall
+	return
+
+
+LittlerootTown_StrangeHouse_Sign_Text_0:
+	.string "CONDEMNED$"

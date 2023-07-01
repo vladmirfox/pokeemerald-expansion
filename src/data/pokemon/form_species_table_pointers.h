@@ -594,4 +594,5 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     // Basculegion
     [SPECIES_BASCULEGION_FEMALE] = sBasculegionFormSpeciesIdTable,
 #endif
+
 };

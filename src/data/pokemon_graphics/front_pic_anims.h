@@ -11932,6 +11932,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     [SPECIES_SKITTY]      = sAnims_Skitty,
     [SPECIES_DELCATTY]    = sAnims_Delcatty,
     [SPECIES_KECLEON]     = sAnims_Kecleon,
+
     [SPECIES_BALTOY]      = sAnims_Baltoy,
     [SPECIES_CLAYDOL]     = sAnims_Claydol,
     [SPECIES_NOSEPASS]    = sAnims_Nosepass,

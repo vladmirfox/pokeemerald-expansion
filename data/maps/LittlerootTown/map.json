@@ -166,6 +166,20 @@
       "elevation": 0,
       "dest_map": "MAP_LITTLEROOT_TOWN_STRANGE_HOUSE",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 31,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_LITTLEROOT_TOWN_SECRET_TREE1",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 34,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_LITTLEROOT_TOWN_SECRET_TREE2",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
@@ -283,6 +297,22 @@
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "LittlerootTown_EventScript_MaysHouseSign"
+    },
+    {
+      "type": "sign",
+      "x": 30,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LittlerootTown_StrangeHouse_Sign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 30,
+      "y": 2,
+      "elevation": 0,
+      "item": "ITEM_PREMIER_BALL",
+      "flag": "FLAG_UNUSED_0x920"
     }
   ]
 }

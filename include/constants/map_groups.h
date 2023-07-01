@@ -71,6 +71,10 @@
 #define MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F        (3 | (1 << 8))
 #define MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB (4 | (1 << 8))
 #define MAP_LITTLEROOT_TOWN_STRANGE_HOUSE        (5 | (1 << 8))
+#define MAP_LITTLEROOT_TOWN_SECRET_TREE1         (6 | (1 << 8))
+#define MAP_LITTLEROOT_TOWN_SECRET_TREE2         (7 | (1 << 8))
+#define MAP_LITTLEROOT_TOWN_SECRET_CAVE1         (8 | (1 << 8))
+#define MAP_LITTLEROOT_TOWN_SECRET_CAVE2         (9 | (1 << 8))
 
 // gMapGroup_IndoorOldale
 #define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))

@@ -3034,4 +3034,17 @@ extern const u8 gText_BoxName[];
 extern const u8 gText_PkmnsNickname[];
 extern const u8 gText_TellHimTheWords[];
 
+// Begin custom strings
+extern const u8 gText_RegionKanto[];
+extern const u8 gText_RegionJohto[];
+extern const u8 gText_RegionHoenn[];
+extern const u8 gText_RegionSinnoh[];
+extern const u8 gText_RegionUnova[];
+extern const u8 gText_RegionKalos[];
+extern const u8 gText_RegionAlola[];
+extern const u8 gText_RegionGalar[];
+extern const u8 gText_RegionPaldea[];
+extern const u8 gText_RegionHisui[];
+extern const u8 gText_RegionUltra[];
+
 #endif // GUARD_STRINGS_H

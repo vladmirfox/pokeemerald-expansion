@@ -24,8 +24,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LittlerootTown_StrangeHouse_GiftPokemon1",
-      "flag": "FLAG_UNUSED_0x493"
+      "script": "StrangeHouse_EventScript_PokeballOne",
+      "flag": "STRANGEHOUSE_BALL_ONE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -37,8 +37,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LittlerootTown_StrangeHouse_GiftPokemon2",
-      "flag": "FLAG_UNUSED_0x494"
+      "script": "StrangeHouse_EventScript_PokeballTwo",
+      "flag": "STRANGEHOUSE_BALL_TWO"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -50,8 +50,21 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LittlerootTown_StrangeHouse_GiftPokemon3",
-      "flag": "FLAG_UNUSED_0x495"
+      "script": "StrangeHouse_EventScript_PokeballThree",
+      "flag": "STRANGEHOUSE_BALL_THREE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MOVING_BOX",
+      "x": 7,
+      "y": 1,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "StrangeHouse_EventScript_StrangePC",
+      "flag": "0"
     }
   ],
   "warp_events": [

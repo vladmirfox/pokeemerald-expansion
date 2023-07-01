@@ -4420,6 +4420,46 @@
       "secondary_tileset": "gTileset_Lab",
       "border_filepath": "data/layouts/LittlerootTown_StrangeHouse/border.bin",
       "blockdata_filepath": "data/layouts/LittlerootTown_StrangeHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_SECRET_TREE1",
+      "name": "LittlerootTown_SecretTree1_Layout",
+      "width": 5,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/LittlerootTown_SecretTree1/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_SecretTree1/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_SECRET_TREE2",
+      "name": "LittlerootTown_SecretTree2_Layout",
+      "width": 5,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/LittlerootTown_SecretTree2/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_SecretTree2/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_SECRET_CAVE1",
+      "name": "LittlerootTown_SecretCave1_Layout",
+      "width": 19,
+      "height": 19,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/LittlerootTown_SecretCave1/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_SecretCave1/map.bin"
+    },
+    {
+      "id": "LAYOUT_LITTLEROOT_TOWN_SECRET_CAVE2",
+      "name": "LittlerootTown_SecretCave2_Layout",
+      "width": 19,
+      "height": 19,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/LittlerootTown_SecretCave2/border.bin",
+      "blockdata_filepath": "data/layouts/LittlerootTown_SecretCave2/map.bin"
     }
   ]
 }

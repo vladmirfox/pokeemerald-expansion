@@ -1061,3 +1061,11 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/text/birch_speech.inc"
 
 	.include "data/maps/LittlerootTown_StrangeHouse/scripts.inc"
+
+	.include "data/maps/LittlerootTown_SecretTree1/scripts.inc"
+
+	.include "data/maps/LittlerootTown_SecretTree2/scripts.inc"
+
+	.include "data/maps/LittlerootTown_SecretCave1/scripts.inc"
+
+	.include "data/maps/LittlerootTown_SecretCave2/scripts.inc"

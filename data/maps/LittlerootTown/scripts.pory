@@ -1021,3 +1021,9 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "Let's go to my LAB.$"
 
 `
+
+script LittlerootTown_StrangeHouse_Sign {
+	lockall
+	msgbox("CONDEMNED")
+	releaseall
+}
