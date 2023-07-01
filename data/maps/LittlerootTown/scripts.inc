@@ -909,6 +909,29 @@ LittlerootTown_EventScript_GiveRunningShoes::
 	delay 30
 	return
 
+LittlerootTown_EventScript_SuperRodFisherman::
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_SUPER_ROD, LittlerootTown_EventScript_ReceivedSuperRod
+	msgbox LittlerootTown_Text_YouWantSuperRod, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, LittlerootTown_EventScript_DeclineSuperRod
+	msgbox LittlerootTown_Text_SuperRodIsSuper, MSGBOX_DEFAULT
+	giveitem ITEM_SUPER_ROD
+	setflag FLAG_RECEIVED_SUPER_ROD
+	msgbox LittlerootTown_Text_TryDroppingRodInWater, MSGBOX_DEFAULT
+	release
+	end
+
+LittlerootTown_EventScript_ReceivedSuperRod::
+	msgbox LittlerootTown_Text_GoAfterSeafloorPokemon, MSGBOX_DEFAULT
+	release
+	end
+
+LittlerootTown_EventScript_DeclineSuperRod::
+	msgbox LittlerootTown_Text_DontYouLikeToFish, MSGBOX_DEFAULT
+	release
+	end
+
 LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "MOM: {PLAYER}, we're here, honey!\p"
 	.string "It must be tiring riding with our things\n"
@@ -1019,3 +1042,36 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
 
+LittlerootTown_Text_YouWantSuperRod:
+	.string "Hey there, TRAINER!\n"
+	.string "A SUPER ROD really is super!\p"
+	.string "Say all you want, but this baby can\n"
+	.string "catch POKéMON off the seafloor!\p"
+	.string "What do you think?\n"
+	.string "You want it, don't you?$"
+
+LittlerootTown_Text_SuperRodIsSuper:
+	.string "You bet, you bet!\n"
+	.string "After all, a SUPER ROD is really super!$"
+
+LittlerootTown_Text_TryDroppingRodInWater:
+	.string "If there's any water, try dropping in\n"
+	.string "your ROD and see what bites!$"
+
+LittlerootTown_Text_DontYouLikeToFish:
+	.string "Hunh?\n"
+	.string "Don't you like to fish?$"
+
+LittlerootTown_Text_GoAfterSeafloorPokemon:
+	.string "Go after the seafloor POKéMON with\n"
+	.string "your SUPER ROD.$"
+
+LittlerootTown_EventScript_NewSign::
+	lockall
+	msgbox LittlerootTown_EventScript_NewSign_Text_0
+	releaseall
+	return
+
+
+LittlerootTown_EventScript_NewSign_Text_0:
+	.string "You read this sign!$"
