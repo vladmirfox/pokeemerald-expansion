@@ -89,7 +89,6 @@ script StrangeHouse_EventScript_PokeballOne{
             case 5: call(StrangeHouse_EventScript_Chespin)
             case 6: call(StrangeHouse_EventScript_Rowlet)
             case 7: call(StrangeHouse_EventScript_Grookey)
-//            case 8: call(StrangeHouse_EventScript_Sprigatito)
         }
    }
     else{
@@ -112,7 +111,6 @@ script StrangeHouse_EventScript_PokeballTwo{
 			case 5: call(StrangeHouse_EventScript_Fennekin)
 			case 6: call(StrangeHouse_EventScript_Litten)
 			case 7: call(StrangeHouse_EventScript_Scorbunny)
-            case 8: call(StrangeHouse_EventScript_Kecleon_Mystery)
         }
     }
     else{
