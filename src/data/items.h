@@ -4503,8 +4503,8 @@ const struct Item gItems[] =
         .holdEffectParam = 30,
         .description = sFightingGemDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
         .secondaryId = TYPE_FIGHTING,
     },
 
@@ -4559,8 +4559,8 @@ const struct Item gItems[] =
         .holdEffectParam = 30,
         .description = sPsychicGemDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
         .secondaryId = TYPE_PSYCHIC,
     },
 
@@ -4657,8 +4657,8 @@ const struct Item gItems[] =
         .holdEffectParam = 30,
         .description = sFairyGemDesc,
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_EvolutionStone,
         .secondaryId = TYPE_FAIRY,
     },
 

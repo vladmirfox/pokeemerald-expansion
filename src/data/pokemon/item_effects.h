@@ -573,6 +573,10 @@ const u8 *const gItemEffectTable[ITEMS_COUNT] =
     [ITEM_BLACK_AUGURITE]     = gItemEffect_EvoItem,
     [ITEM_LINKING_CORD]       = gItemEffect_EvoItem,
     [ITEM_PEAT_BLOCK]         = gItemEffect_EvoItem,
+    // Magiya's custom evo items
+    [ITEM_FIGHTING_GEM]       = gItemEffect_EvoItem,
+    [ITEM_FAIRY_GEM]          = gItemEffect_EvoItem,
+    [ITEM_PSYCHIC_GEM]        = gItemEffect_EvoItem,
 
     // Berries
     [ITEM_CHERI_BERRY]        = gItemEffect_CheriBerry,
