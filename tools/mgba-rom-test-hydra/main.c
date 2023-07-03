@@ -30,6 +30,8 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+#define min(a, b) ((a) < (b) ? (a) : (b))
+
 #define MAX_PROCESSES               32 // See also test/test.h
 #define MAX_FAILED_TESTS_TO_LIST    100
 #define MAX_TEST_LIST_BUFFER_LENGTH 256
@@ -179,6 +181,14 @@ static void unlink_roms(void)
 static void exit2(int _)
 {
     exit(2);
+}
+
+int compare_strings(const void * a, const void * b)
+{
+    const char *arg1 = (const char *) a;
+    const char *arg2 = (const char *) b;
+
+    return strcmp(arg1, arg2);
 }
 
 int main(int argc, char *argv[])
@@ -502,21 +512,7 @@ int main(int argc, char *argv[])
         results += runners[i].results;
     }
 
-    // Bubblesort failed test names.
-    char temp[MAX_TEST_LIST_BUFFER_LENGTH];
-    for (int i = 0; i < fails; i++)
-    {
-        for (int j = 0; j < fails - 1 - i; j++)
-        {
-            if (strcmp(failedTestNames[j], failedTestNames[j + 1]) > 0)
-            {
-                //swap array[j] and array[j + 1]
-                strcpy(temp, failedTestNames[j]);
-                strcpy(failedTestNames[j], failedTestNames[j + 1]);
-                strcpy(failedTestNames[j + 1], temp);
-            }
-        }
-    }
+    qsort(failedTestNames, min(fails, MAX_FAILED_TESTS_TO_LIST), sizeof(char) * MAX_TEST_LIST_BUFFER_LENGTH, compare_strings);
 
     if (results == 0)
     {
@@ -531,7 +527,7 @@ int main(int argc, char *argv[])
             {
                 if (i >= MAX_FAILED_TESTS_TO_LIST)
                 {
-                    fprintf(stdout, "  - and %d more...\n", fails - MAX_FAILED_TESTS_TO_LIST);
+                    fprintf(stdout, "  - \e[31mand %d more...\e[0m\n", fails - MAX_FAILED_TESTS_TO_LIST);
                     break;
                 }
                 fprintf(stdout, "  - \e[31m%s\e[0m.\n", failedTestNames[i]);
