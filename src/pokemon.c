@@ -1671,7 +1671,10 @@ static const u16 sSpeciesToNationalPokedexNum[NUM_SPECIES - 1] =
     [SPECIES_CALYREX_SHADOW_RIDER - 1] = NATIONAL_DEX_CALYREX,
     [SPECIES_ENAMORUS_THERIAN - 1] = NATIONAL_DEX_ENAMORUS,
     [SPECIES_BASCULEGION_FEMALE - 1] = NATIONAL_DEX_BASCULEGION,
-
+// Begin Magiya Custom Additions //
+    // Seviian Charmander
+    [SPECIES_CHARMANDER_SEVII - 1] = NATIONAL_DEX_CHARMANDER,
+// End Magiya Custom Additions //
 #endif
 };
 
@@ -1946,6 +1949,7 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
     [NATURE_SASSY]   = {    0,      0,     -1,      0,     +1   },
     [NATURE_CAREFUL] = {    0,      0,      0,     -1,     +1   },
     [NATURE_QUIRKY]  = {    0,      0,      0,      0,      0   },
+//    [NATURE_GODLIKE] = {   +1,     +1,     +1,     +1,     +1   },  // probably not gonna use this for the final project but its an experiment
 };
 
 #include "data/pokemon/trainer_class_lookups.h"
@@ -3034,6 +3038,10 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_NECROZMA_DAWN_WINGS - 1]       = ANIM_V_SQUISH_AND_BOUNCE, //Todo
     [SPECIES_NECROZMA_ULTRA - 1]            = ANIM_V_SQUISH_AND_BOUNCE, //Todo
     [SPECIES_MAGEARNA_ORIGINAL_COLOR - 1]   = ANIM_H_SLIDE_SLOW,
+// Begin Magiya Custom Animations //
+    // Seviian Charmander
+    [SPECIES_CHARMANDER_SEVII - 1]          = ANIM_V_JUMPS_SMALL,
+// End Magiya Custom Animations //
 };
 
 static const u8 sMonAnimationDelayTable[NUM_SPECIES - 1] =

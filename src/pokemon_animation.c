@@ -1108,7 +1108,10 @@ static const u8 sSpeciesToBackAnimSet[NUM_SPECIES] =
     [SPECIES_RAYQUAZA_MEGA]                = BACK_ANIM_SHAKE_GLOW_GREEN,
     [SPECIES_KYOGRE_PRIMAL]                = BACK_ANIM_SHAKE_GLOW_BLUE,
     [SPECIES_GROUDON_PRIMAL]               = BACK_ANIM_SHAKE_GLOW_RED,
-    
+// Begin Magiya Custom Additions //
+    // Seviian Charmander
+    [SPECIES_CHARMANDER_SEVII]             = BACK_ANIM_CONCAVE_ARC_SMALL,
+// End Magiya Custom Additions //
 };
 
 // Equivalent to struct YellowFlashData, but doesn't match as a struct

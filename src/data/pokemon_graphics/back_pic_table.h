@@ -1361,4 +1361,8 @@ const struct CompressedSpriteSheet gMonBackPicTableFemale[] =
 #if P_GEN_6_POKEMON == TRUE
     SPECIES_SPRITE(PYROAR, gMonBackPic_PyroarF),
 #endif
+// Begin Magiya Custom Additions //
+    // Seviian Charmander
+    SPECIES_SPRITE(CHARMANDER_SEVII, gMonBackPic_CharmanderSevii),
+// End Magiya Custom Additions //
 };

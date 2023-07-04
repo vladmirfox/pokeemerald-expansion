@@ -1278,6 +1278,10 @@ extern const u32 gMonFrontPic_CalyrexShadowRider[];
 extern const u32 gMonFrontPic_EnamorusTherian[];
 extern const u32 gMonFrontPic_BasculegionFemale[];
 #endif
+// Begin Magiya Custom Additions //
+    //Seviian Charmander
+extern const u32 gMonFrontPic_CharmanderSevii[];
+// End Magiya Custom Additions //
 extern const u32 gMonFrontPic_Egg[];
 
 extern const u32 gMonBackPic_CircledQuestionMark[];
@@ -2490,6 +2494,10 @@ extern const u32 gMonBackPic_CalyrexShadowRider[];
 extern const u32 gMonBackPic_EnamorusTherian[];
 extern const u32 gMonBackPic_BasculegionFemale[];
 #endif
+// Begin Magiya Custom Additions //
+    //Seviian Charmander
+extern const u32 gMonBackPic_CharmanderSevii[];
+// End Magiya Custom Additions //
 
 extern const u32 gMonPalette_CircledQuestionMark[];
 extern const u32 gMonPalette_DoubleQuestionMark[];
@@ -3722,6 +3730,10 @@ extern const u32 gMonPalette_CalyrexShadowRider[];
 extern const u32 gMonPalette_EnamorusTherian[];
 extern const u32 gMonPalette_BasculegionFemale[];
 #endif
+// Begin Magiya Custom Additions //
+    //Seviian Charmander
+extern const u32 gMonPalette_CharmanderSevii[];
+// End Magiya Custom Additions //
 extern const u32 gMonPalette_Egg[];
 
 extern const u32 gMonShinyPalette_CircledQuestionMark[];
@@ -4949,6 +4961,10 @@ extern const u32 gMonShinyPalette_CalyrexShadowRider[];
 extern const u32 gMonShinyPalette_EnamorusTherian[];
 extern const u32 gMonShinyPalette_BasculegionFemale[];
 #endif
+// Begin Magiya Custom Additions //
+    //Seviian Charmander
+extern const u32 gMonShinyPalette_CharmanderSevii[];
+// End Magiya Custom Additions //
 
 extern const u8 gMonIcon_QuestionMark[];
 extern const u8 gMonIcon_Bulbasaur[];
@@ -6169,6 +6185,10 @@ extern const u8 gMonIcon_CalyrexShadowRider[];
 extern const u8 gMonIcon_EnamorusTherian[];
 extern const u8 gMonIcon_BasculegionFemale[];
 #endif
+// Begin Magiya Custom Additions //
+    //Seviian Charmander
+extern const u8 gMonIcon_CharmanderSevii[];
+// End Magiya Custom Additions //
 extern const u8 gMonIcon_Egg[];
 
 extern const u8 gMonFootprint_QuestionMark[];
@@ -7087,6 +7107,10 @@ extern const u8 gMonFootprint_Calyrex[];
 //extern const u8 gMonFootprint_Overqwil[];
 //extern const u8 gMonFootprint_Enamorus[];
 #endif
+// Begin Magiya Custom Additions //
+    //Seviian Charmander
+// extern const u32 gMonFootprint_CharmanderSevii[];
+// End Magiya Custom Additions //
 
 // trainer sprites
 extern const u32 gTrainerFrontPic_Hiker[];

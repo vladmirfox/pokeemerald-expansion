@@ -787,6 +787,8 @@ static const struct MenuAction MultiChoiceList_Starters[] =
     {gText_RegionAlola},
     {gText_RegionGalar},
     {gText_RegionPaldea},
+    {gText_RegionSevii},
+    {gText_RegionHisui},
 };
 
 struct MultichoiceListStruct

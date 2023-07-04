@@ -3045,7 +3045,7 @@ extern const u8 gText_RegionKalos[];
 extern const u8 gText_RegionAlola[];
 extern const u8 gText_RegionGalar[];
 extern const u8 gText_RegionPaldea[];
+extern const u8 gText_RegionSevii[];
 extern const u8 gText_RegionHisui[];
-extern const u8 gText_RegionUltra[];
 
 #endif // GUARD_STRINGS_H

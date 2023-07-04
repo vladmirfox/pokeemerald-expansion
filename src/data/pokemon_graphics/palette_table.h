@@ -1359,4 +1359,8 @@ const struct CompressedSpritePalette gMonPaletteTableFemale[] =
 #if P_GEN_6_POKEMON == TRUE
     SPECIES_PAL(PYROAR, gMonPalette_Pyroar),
 #endif
+// Begin Magiya Custom Additions //
+    // Seviian Charmander
+    SPECIES_PAL(CHARMANDER_SEVII, gMonPalette_CharmanderSevii),
+// End Magiya Custom Additions //
 };

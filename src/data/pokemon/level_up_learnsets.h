@@ -19579,4 +19579,22 @@ static const struct LevelUpMove sCalyrexShadowRiderLevelUpLearnset[] = {
     LEVEL_UP_MOVE(88, MOVE_FUTURE_SIGHT),
     LEVEL_UP_END
 };
+// Begin Magiya Custom Additions //
+    // Seviian Charmander
+static const struct LevelUpMove sCharmanderSeviiLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_SCRATCH),
+    LEVEL_UP_MOVE( 1, MOVE_GROWL),
+    LEVEL_UP_MOVE( 7, MOVE_BUBBLE),
+    LEVEL_UP_MOVE(10, MOVE_SMOKESCREEN),
+    LEVEL_UP_MOVE(16, MOVE_DRAGON_RAGE),
+    LEVEL_UP_MOVE(19, MOVE_SCARY_FACE),
+    LEVEL_UP_MOVE(25, MOVE_BITE),
+    LEVEL_UP_MOVE(28, MOVE_AQUA_JET),
+    LEVEL_UP_MOVE(34, MOVE_SLASH),
+    LEVEL_UP_MOVE(37, MOVE_SCALD),
+    LEVEL_UP_MOVE(43, MOVE_WHIRLPOOL),
+    LEVEL_UP_MOVE(46, MOVE_HYDRO_PUMP),
+    LEVEL_UP_END
+};
+// End Magiya Custom Additions //
 #endif

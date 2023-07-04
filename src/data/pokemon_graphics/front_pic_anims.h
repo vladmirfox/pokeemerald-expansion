@@ -10488,6 +10488,8 @@ static const union AnimCmd sAnim_EnamorusTherian_1[] =
 };
 #endif
 
+
+
 #define SINGLE_ANIMATION(name)                      \
 static const union AnimCmd *const sAnims_##name[] = \
 {                                                   \
@@ -11636,6 +11638,10 @@ SINGLE_ANIMATION(LycanrocDusk);
 #if P_GEN_8_POKEMON == TRUE
 SINGLE_ANIMATION(EnamorusTherian);
 #endif
+// Begin Magiya Custom Additions //
+    // Seviian Charmander
+// SINGLE_ANIMATION(CharmanderSevii);
+// End Magiya Custom Additions //
 
 const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
 {
@@ -11932,7 +11938,6 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     [SPECIES_SKITTY]      = sAnims_Skitty,
     [SPECIES_DELCATTY]    = sAnims_Delcatty,
     [SPECIES_KECLEON]     = sAnims_Kecleon,
-
     [SPECIES_BALTOY]      = sAnims_Baltoy,
     [SPECIES_CLAYDOL]     = sAnims_Claydol,
     [SPECIES_NOSEPASS]    = sAnims_Nosepass,
@@ -12909,5 +12914,9 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     [SPECIES_ENAMORUS_THERIAN] = sAnims_EnamorusTherian,
     [SPECIES_BASCULEGION_FEMALE] = sAnims_Basculegion,
 #endif
+// Begin Magiya Custom Additions //
+    //Seviian Charmander
+    [SPECIES_CHARMANDER_SEVII] = sAnims_Charmander,
+// End Magiya Custom Additions //
     [SPECIES_EGG]         = sAnims_Egg,
 };

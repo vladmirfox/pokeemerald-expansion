@@ -1371,9 +1371,14 @@
 // Basculegion
 #define SPECIES_BASCULEGION_FEMALE           FORMS_START + 329
 
-#define FORMS_START SPECIES_ENAMORUS
-#define SPECIES_EGG SPECIES_BASCULEGION_FEMALE + 1
+// Begin Magiya Custom Additions //
+    // Seviian Charmander
+#define SPECIES_CHARMANDER_SEVII             FORMS_START + 330
+// End Magiya Custom Additions //
 
-#define NUM_SPECIES SPECIES_EGG
+#define SPECIES_EGG                          SPECIES_CHARMANDER_SEVII + 1
+
+#define NUM_SPECIES                          SPECIES_EGG
+#define FORMS_START                          SPECIES_ENAMORUS
 
 #endif  // GUARD_CONSTANTS_SPECIES_H

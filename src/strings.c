@@ -1842,5 +1842,5 @@ const u8 gText_RegionKalos[] = _("KALOS");
 const u8 gText_RegionAlola[] = _("ALOLA");
 const u8 gText_RegionGalar[] = _("GALAR");
 const u8 gText_RegionPaldea[] = _("PALDEA");
+const u8 gText_RegionSevii[] = _("SEVII ISLES");
 const u8 gText_RegionHisui[] = _("HISUI");
-const u8 gText_RegionUltra[] = _("ULTRA SPACE");
