@@ -21,7 +21,6 @@
 #include "constants/items.h"
 #include "constants/script_menu.h"
 #include "constants/songs.h"
-#include "list_menu.h"      // to allow scrolling multichoice lists
 #include "data/script_menu.h"
 
 struct DynamicListMenuEventArgs
@@ -242,6 +241,28 @@ static u16 GetLengthWithExpandedPlayerName(const u8 *str)
     }
 
     return length;
+}
+
+static void DrawMultichoiceMenuInternal(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPress, u8 cursorPos, const struct MenuAction *actions, int count)
+{
+    int i;
+    u8 windowId;
+    int width = 0;
+    u8 newWidth;
+
+    for (i = 0; i < count; i++)
+    {
+        width = DisplayTextAndGetWidth(actions[i].text, width);
+    }
+
+    newWidth = ConvertPixelWidthToTileWidth(width);
+    left = ScriptMenu_AdjustLeftCoordFromWidth(left, newWidth);
+    windowId = CreateWindowFromRect(left, top, newWidth, count * 2);
+    SetStandardWindowBorderStyle(windowId, FALSE);
+    PrintMenuTable(windowId, count, actions);
+    InitMenuInUpperLeftCornerNormal(windowId, count, cursorPos);
+    ScheduleBgCopyTilemapToVram(0);
+    InitMultichoiceCheckWrap(ignoreBPress, count, windowId, multichoiceId);
 }
 
 void MultichoiceDynamic_InitStack(u32 capacity)

@@ -1,7 +1,7 @@
 raw `
 LittlerootTown_StrangeHouse_MapScripts::
 	.byte 0
-    `
+`
 
 script LittlerootTown_StrangeHouse_Fridge {
 	lockall
@@ -21,9 +21,7 @@ script StrangeHouse_EventScript_StrangePC{
     if(!(flag(STRANGEHOUSE_BALL_ONE) || flag(STRANGEHOUSE_BALL_TWO) || flag(STRANGEHOUSE_BALL_THREE))){
         lock
         message("Where are you from?")
-//        multichoice(25, 0, MULTI_REGION_CHOICE, 0)
-//        scrollingmultichoice(0, 25, 5, 5, TRUE)
-        dynmultichoice(25, 0, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, "Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar", "Paldea", "Sevii Isles", "Hisui")
+        dynmultichoice(25, 5, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, "Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar", "Paldea", "Sevii Isles", "Hisui")
         closemessage
         switch(var(VAR_RESULT)){
             case  0: setvar(STRANGEHOUSE_REGION,  0)
