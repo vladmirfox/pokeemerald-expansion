@@ -769,7 +769,6 @@ s32 AI_CalcDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 *typeEffectiveness,
     s32 dmg, moveType, critDmg, normalDmg;
     s8 critChance;
     u16 effectivenessMultiplier;
-    u32 i;
 
     if (considerZPower && IsViableZMove(battlerAtk, move))
     {
@@ -836,12 +835,16 @@ s32 AI_CalcDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 *typeEffectiveness,
                 break;
             #if B_BEAT_UP >= GEN_5
             case EFFECT_BEAT_UP:
-                gBattleStruct->beatUpSlot = 0;
-                dmg = 0;
-                for (i = 0; i < CalculatePartyCount(GetBattlerParty(battlerAtk)); i++) {
-                    dmg += CalculateMoveDamage(move, battlerAtk, battlerDef, moveType, 0, FALSE, FALSE, FALSE);
+                {
+                    u32 partyCount = CalculatePartyCount(GetBattlerParty(battlerAtk));
+                    u32 i;
+                    gBattleStruct->beatUpSlot = 0;
+                    dmg = 0;
+                    for (i = 0; i < partyCount; i++) {
+                        dmg += CalculateMoveDamage(move, battlerAtk, battlerDef, moveType, 0, FALSE, FALSE, FALSE);
+                    }
+                    gBattleStruct->beatUpSlot = 0;
                 }
-                gBattleStruct->beatUpSlot = 0;
                 break;
             #endif
             }
