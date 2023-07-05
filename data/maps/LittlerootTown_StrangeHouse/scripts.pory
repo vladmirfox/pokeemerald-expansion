@@ -21,7 +21,7 @@ script StrangeHouse_EventScript_StrangePC{
     if(!(flag(STRANGEHOUSE_BALL_ONE) || flag(STRANGEHOUSE_BALL_TWO) || flag(STRANGEHOUSE_BALL_THREE))){
         lock
         message("Where are you from?")
-        dynmultichoice(25, 5, FALSE, 5, 0, DYN_MULTICHOICE_CB_NONE, "Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar", "Paldea", "Sevii Isles", "Hisui")
+        dynmultichoice(25, 3, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, "Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar", "Paldea", "Sevii Isles", "Hisui")
         closemessage
         switch(var(VAR_RESULT)){
             case  0: setvar(STRANGEHOUSE_REGION,  0)
@@ -66,9 +66,9 @@ script StrangeHouse_EventScript_PokeballOne{
             case  5: call(StrangeHouse_EventScript_Chespin)
             case  6: call(StrangeHouse_EventScript_Rowlet)
             case  7: call(StrangeHouse_EventScript_Grookey)
-//          case  8: call(StrangeHouse_EventScript_RowletHisui)
-//          case  9: call(StrangeHouse_EventScript_SquirtleSevii)
-//          case 10: call(StrangeHouse_EventScript_RowletHisui)
+//            case  8: call(StrangeHouse_EventScript_RowletHisui)
+//            case  9: call(StrangeHouse_EventScript_SquirtleSevii)
+//            case 10: call(StrangeHouse_EventScript_RowletHisui)
         }
    }
     else{
@@ -91,9 +91,9 @@ script StrangeHouse_EventScript_PokeballTwo{
 			case  5: call(StrangeHouse_EventScript_Fennekin)
 			case  6: call(StrangeHouse_EventScript_Litten)
 			case  7: call(StrangeHouse_EventScript_Scorbunny)
-//          case  8: call(StrangeHouse_EventScript_Fuecoco)
-//          case  9: call(StrangeHouse_EventScript_BulbasaurSevii)
-//          case 10: call(StrangeHosue_EventScript_CyndaquilHisui)
+//            case  8: call(StrangeHouse_EventScript_Fuecoco)
+            case  9: call(StrangeHouse_EventScript_BulbasaurSevii)
+//            case 10: call(StrangeHosue_EventScript_CyndaquilHisui)
         }
     }
     else{
@@ -116,9 +116,9 @@ script StrangeHouse_EventScript_PokeballThree{
             case  5: call(StrangeHouse_EventScript_Froakie)
             case  6: call(StrangeHouse_EventScript_Popplio)
             case  7: call(StrangeHouse_EventScript_Sobble)
-//          case  8: call(StrangeHouse_EventScript_Quaxly)
+//            case  8: call(StrangeHouse_EventScript_Quaxly)
             case  9: call(StrangeHouse_EventScript_CharmanderSevii)
-//          case 10: call(StrangeHouse_EventScript_OshawottHisui)
+//            case 10: call(StrangeHouse_EventScript_OshawottHisui)
         }
     }
     else{

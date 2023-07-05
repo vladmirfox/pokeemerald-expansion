@@ -33558,7 +33558,7 @@ static const u16 sCharmanderSeviiTeachableLearnset[] = {
     MOVE_FOCUS_PUNCH,
     MOVE_FRUSTRATION,
     MOVE_HIDDEN_POWER,
-    MOVE_IRON_TAIL,
+    MOVE_LEAF_BLADE,
     MOVE_DRACO_METEOR,
     MOVE_PROTECT,
     MOVE_REFLECT,

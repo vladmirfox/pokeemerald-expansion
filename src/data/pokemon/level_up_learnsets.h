@@ -19583,7 +19583,7 @@ static const struct LevelUpMove sCalyrexShadowRiderLevelUpLearnset[] = {
     // Seviian Charmander
 static const struct LevelUpMove sCharmanderSeviiLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SCRATCH),
-    LEVEL_UP_MOVE( 1, MOVE_GROWL),
+    LEVEL_UP_MOVE( 1, MOVE_LEER),
     LEVEL_UP_MOVE( 7, MOVE_BUBBLE),
     LEVEL_UP_MOVE(10, MOVE_SMOKESCREEN),
     LEVEL_UP_MOVE(16, MOVE_DRAGON_RAGE),
