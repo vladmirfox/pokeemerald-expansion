@@ -19580,7 +19580,25 @@ static const struct LevelUpMove sCalyrexShadowRiderLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 // Begin Magiya Custom Additions //
-    // Seviian Charmander
+    // Seviian Forms
+static const struct LevelUpMove sBulbasaurSeviiLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 3, MOVE_GROWL),
+    LEVEL_UP_MOVE( 7, MOVE_SAND_ATTACK),
+    LEVEL_UP_MOVE( 9, MOVE_EMBER),
+    LEVEL_UP_MOVE(13, MOVE_WILL_O_WISP),
+    LEVEL_UP_MOVE(15, MOVE_TAKE_DOWN),
+    LEVEL_UP_MOVE(19, MOVE_SMACK_DOWN),
+    LEVEL_UP_MOVE(21, MOVE_STEALTH_ROCK),
+    LEVEL_UP_MOVE(25, MOVE_GROWTH),
+    LEVEL_UP_MOVE(27, MOVE_DOUBLE_EDGE),
+    LEVEL_UP_MOVE(31, MOVE_SUNNY_DAY),
+    LEVEL_UP_MOVE(33, MOVE_SYNTHESIS),
+    LEVEL_UP_MOVE(37, MOVE_SEED_BOMB),
+    LEVEL_UP_MOVE(43, MOVE_SHELL_TRAP),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sCharmanderSeviiLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SCRATCH),
     LEVEL_UP_MOVE( 1, MOVE_LEER),

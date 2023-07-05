@@ -1210,7 +1210,8 @@ const u32 gMonFrontPic_EnamorusTherian[] = INCBIN_U32("graphics/pokemon/enamorus
 const u32 gMonFrontPic_BasculegionFemale[] = INCBIN_U32("graphics/pokemon/basculegion/female/front.4bpp.lz");
 #endif
 // Begin Magiya Custom Additions //
-    //Seviian Charmander
+    //Seviian Forms
+const u32 gMonFrontPic_BulbasaurSevii[] = INCBIN_U32("graphics/pokemon/bulbasaur/sevii/anim_front.4bpp.lz");
 const u32 gMonFrontPic_CharmanderSevii[] = INCBIN_U32("graphics/pokemon/charmander/sevii/anim_front.4bpp.lz");
 // End Magiya Custom Additions //
 const u32 gMonFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.lz");
@@ -2426,7 +2427,8 @@ const u32 gMonBackPic_EnamorusTherian[] = INCBIN_U32("graphics/pokemon/enamorus/
 const u32 gMonBackPic_BasculegionFemale[] = INCBIN_U32("graphics/pokemon/basculegion/female/back.4bpp.lz");
 #endif
 // Begin Magiya Custom Additions //
-    //Seviian Charmander
+    //Seviian Forms
+const u32 gMonBackPic_BulbasaurSevii[] = INCBIN_U32("graphics/pokemon/bulbasaur/sevii/back.4bpp.lz");
 const u32 gMonBackPic_CharmanderSevii[] = INCBIN_U32("graphics/pokemon/charmander/sevii/back.4bpp.lz");
 // End Magiya Custom Additions //
 
@@ -3662,7 +3664,8 @@ const u32 gMonPalette_EnamorusTherian[] = INCBIN_U32("graphics/pokemon/enamorus/
 const u32 gMonPalette_BasculegionFemale[] = INCBIN_U32("graphics/pokemon/basculegion/female/normal.gbapal.lz");
 #endif
 // Begin Magiya Custom Additions //
-    //Seviian Charmander
+    //Seviian Forms
+const u32 gMonPalette_BulbasaurSevii[] = INCBIN_U32("graphics/pokemon/bulbasaur/sevii/normal.gbapal.lz");
 const u32 gMonPalette_CharmanderSevii[] = INCBIN_U32("graphics/pokemon/charmander/sevii/normal.gbapal.lz");
 // End Magiya Custom Additions //
 const u32 gMonPalette_Egg[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
@@ -4893,7 +4896,8 @@ const u32 gMonShinyPalette_EnamorusTherian[] = INCBIN_U32("graphics/pokemon/enam
 const u32 gMonShinyPalette_BasculegionFemale[] = INCBIN_U32("graphics/pokemon/basculegion/female/shiny.gbapal.lz");
 #endif
 // Begin Magiya Custom Additions //
-    //Seviian Charmander
+    //Seviian Forms
+const u32 gMonShinyPalette_BulbasaurSevii[] = INCBIN_U32("graphics/pokemon/bulbasaur/sevii/shiny.gbapal.lz");
 const u32 gMonShinyPalette_CharmanderSevii[] = INCBIN_U32("graphics/pokemon/charmander/sevii/shiny.gbapal.lz");
 // End Magiya Custom Additions //
 
@@ -6117,7 +6121,8 @@ const u8 gMonIcon_EnamorusTherian[] = INCBIN_U8("graphics/pokemon/enamorus/theri
 const u8 gMonIcon_BasculegionFemale[] = INCBIN_U8("graphics/pokemon/basculegion/female/icon.4bpp");
 #endif
 // Begin Magiya Custom Additions //
-    //Seviian Charmander
+    //Seviian Forms
+const u8 gMonIcon_BulbasaurSevii[] = INCBIN_U8("graphics/pokemon/bulbasaur/sevii/icon.4bpp");
 const u8 gMonIcon_CharmanderSevii[] = INCBIN_U8("graphics/pokemon/charmander/sevii/icon.4bpp");
 // End Magiya Custom Additions //
 const u8 gMonIcon_Egg[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");
@@ -7039,6 +7044,5 @@ const u8 gMonFootprint_Calyrex[] = INCBIN_U8("graphics/pokemon/calyrex/footprint
 //const u8 gMonFootprint_Enamorus[] = INCBIN_U8("graphics/pokemon/enamorus/footprint.1bpp");
 #endif
 // Begin Magiya Custom Additions //
-    //Seviian Charmander
-//const u8 gMonFootprint_CharmanderSevii[] = INCBIN_U8("graphics/pokemon/charmander/sevii/footprint.1bpp");
+    // TBA
 // End Magiya Custom Additions //

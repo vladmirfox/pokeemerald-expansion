@@ -1672,7 +1672,8 @@ static const u16 sSpeciesToNationalPokedexNum[NUM_SPECIES - 1] =
     [SPECIES_ENAMORUS_THERIAN - 1] = NATIONAL_DEX_ENAMORUS,
     [SPECIES_BASCULEGION_FEMALE - 1] = NATIONAL_DEX_BASCULEGION,
 // Begin Magiya Custom Additions //
-    // Seviian Charmander
+    // Seviian Forms
+    [SPECIES_BULBASAUR_SEVII - 1] = NATIONAL_DEX_BULBASAUR,
     [SPECIES_CHARMANDER_SEVII - 1] = NATIONAL_DEX_CHARMANDER,
 // End Magiya Custom Additions //
 #endif
@@ -3039,7 +3040,8 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_NECROZMA_ULTRA - 1]            = ANIM_V_SQUISH_AND_BOUNCE, //Todo
     [SPECIES_MAGEARNA_ORIGINAL_COLOR - 1]   = ANIM_H_SLIDE_SLOW,
 // Begin Magiya Custom Animations //
-    // Seviian Charmander
+    // Seviian Forms
+    [SPECIES_BULBASAUR_SEVII - 1]           = ANIM_V_JUMPS_H_JUMPS,
     [SPECIES_CHARMANDER_SEVII - 1]          = ANIM_V_JUMPS_SMALL,
 // End Magiya Custom Animations //
 };
@@ -3051,7 +3053,7 @@ static const u8 sMonAnimationDelayTable[NUM_SPECIES - 1] =
     [SPECIES_KAKUNA - 1]     = 20,
     [SPECIES_BEEDRILL - 1]   = 35,
     [SPECIES_PIDGEOTTO - 1]  = 25,
-    [SPECIES_FEAROW - 1]     = 2,
+    [SPECIES_FEAROW - 1]     =  2,
     [SPECIES_EKANS - 1]      = 30,
     [SPECIES_NIDORAN_F - 1]  = 28,
     [SPECIES_NIDOKING - 1]   = 25,
@@ -3065,8 +3067,8 @@ static const u8 sMonAnimationDelayTable[NUM_SPECIES - 1] =
     [SPECIES_MANKEY - 1]     = 20,
     [SPECIES_GROWLITHE - 1]  = 30,
     [SPECIES_ARCANINE - 1]   = 40,
-    [SPECIES_POLIWHIRL - 1]  = 5,
-    [SPECIES_WEEPINBELL - 1] = 3,
+    [SPECIES_POLIWHIRL - 1]  =  5,
+    [SPECIES_WEEPINBELL - 1] =  3,
     [SPECIES_MUK - 1]        = 45,
     [SPECIES_SHELLDER - 1]   = 20,
     [SPECIES_HAUNTER - 1]    = 23,
@@ -3076,7 +3078,7 @@ static const u8 sMonAnimationDelayTable[NUM_SPECIES - 1] =
     [SPECIES_SCYTHER - 1]    = 10,
     [SPECIES_TAUROS - 1]     = 10,
     [SPECIES_TYPHLOSION - 1] = 20,
-    [SPECIES_FERALIGATR - 1] = 5,
+    [SPECIES_FERALIGATR - 1] =  5,
     [SPECIES_NATU - 1]       = 30,
     [SPECIES_MAREEP - 1]     = 50,
     [SPECIES_AMPHAROS - 1]   = 10,
@@ -3102,10 +3104,10 @@ static const u8 sMonAnimationDelayTable[NUM_SPECIES - 1] =
     [SPECIES_KYOGRE - 1]     = 60,
     [SPECIES_RAYQUAZA - 1]   = 60,
 #if P_GEN_7_POKEMON == TRUE
-    [SPECIES_TAPU_FINI - 1]  = 5,
+    [SPECIES_TAPU_FINI - 1]  =  5,
 #endif
 #if P_GEN_4_POKEMON == TRUE
-    [SPECIES_ROTOM_FAN - 1]  = 7,
+    [SPECIES_ROTOM_FAN - 1]  =  7,
 #endif
 };
 

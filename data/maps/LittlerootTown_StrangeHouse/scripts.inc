@@ -190,6 +190,7 @@ StrangeHouse_EventScript_PokeballTwo_2:
 	case 5, StrangeHouse_EventScript_PokeballTwo_15
 	case 6, StrangeHouse_EventScript_PokeballTwo_16
 	case 7, StrangeHouse_EventScript_PokeballTwo_17
+	case 9, StrangeHouse_EventScript_PokeballTwo_18
 	goto StrangeHouse_EventScript_PokeballTwo_1
 
 StrangeHouse_EventScript_PokeballTwo_4:
@@ -230,6 +231,10 @@ StrangeHouse_EventScript_PokeballTwo_16:
 
 StrangeHouse_EventScript_PokeballTwo_17:
 	call StrangeHouse_EventScript_Scorbunny
+	goto StrangeHouse_EventScript_PokeballTwo_1
+
+StrangeHouse_EventScript_PokeballTwo_18:
+	call StrangeHouse_EventScript_BulbasaurSevii
 	goto StrangeHouse_EventScript_PokeballTwo_1
 
 
@@ -1099,6 +1104,45 @@ StrangeHouse_EventScript_CharmanderSevii_4:
 StrangeHouse_EventScript_CharmanderSevii_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Charmander_Text_1
+	call NicknameBoxMon
+	return
+
+
+StrangeHouse_EventScript_BulbasaurSevii::
+	showmonpic SPECIES_BULBASAUR_SEVII, 10, 3
+	msgbox StrangeHouse_EventScript_Bulbasaur_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq StrangeHouse_EventScript_BulbasaurSevii_1
+	hidemonpic
+	return
+
+StrangeHouse_EventScript_BulbasaurSevii_1:
+	givemon SPECIES_BULBASAUR_SEVII, 5
+	compare VAR_RESULT, MON_GIVEN_TO_PARTY
+	goto_if_eq StrangeHouse_EventScript_BulbasaurSevii_4
+	compare VAR_RESULT, MON_GIVEN_TO_PC
+	goto_if_eq StrangeHouse_EventScript_BulbasaurSevii_5
+	hidemonpic
+	msgbox StrangeHouse_EventScript_Bulbasaur_Text_2
+	return
+
+StrangeHouse_EventScript_BulbasaurSevii_4:
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox StrangeHouse_EventScript_Bulbasaur_Text_1
+	removeobject 1
+	removeobject 2
+	removeobject 3
+	setflag STRANGEHOUSE_BALL_ONE
+	call NicknamePartyMon
+	return
+
+StrangeHouse_EventScript_BulbasaurSevii_5:
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox StrangeHouse_EventScript_Bulbasaur_Text_1
+	removeobject 1
+	removeobject 2
+	removeobject 3
+	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 

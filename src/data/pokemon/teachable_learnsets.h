@@ -33543,7 +33543,45 @@ static const u16 sCalyrexShadowRiderTeachableLearnset[] = {
 #endif
 
 // Begin Magiya Custom Additions //
-    // Seviian Charmander
+    // Seviian Forms
+static const u16 sBulbasaurSeviiTeachableLearnset[] = {
+    MOVE_ATTRACT,
+    MOVE_ROCK_BLAST,
+    MOVE_CUT,
+    MOVE_DOUBLE_TEAM,
+    MOVE_FACADE,
+    MOVE_FLASH,
+    MOVE_FRUSTRATION,
+    MOVE_FLAME_CHARGE,
+    MOVE_HIDDEN_POWER,
+    MOVE_LIGHT_SCREEN,
+    MOVE_PROTECT,
+    MOVE_REFLECT,
+    MOVE_REST,
+    MOVE_RETURN,
+    MOVE_ROCK_SMASH,
+    MOVE_SAFEGUARD,
+    MOVE_SECRET_POWER,
+    MOVE_FLAMETHROWER,
+    MOVE_SOLAR_BEAM,
+    MOVE_STRENGTH,
+    MOVE_SUNNY_DAY,
+    MOVE_TOXIC,
+    MOVE_BODY_SLAM,
+    MOVE_DEFENSE_CURL,
+    MOVE_DOUBLE_EDGE,
+    MOVE_ENDURE,
+    MOVE_FURY_CUTTER,
+    MOVE_MIMIC,
+    MOVE_MUD_SLAP,
+    MOVE_SLEEP_TALK,
+    MOVE_SNORE,
+    MOVE_SUBSTITUTE,
+    MOVE_SWAGGER,
+    MOVE_SWORDS_DANCE,
+    MOVE_UNAVAILABLE,
+};
+
 static const u16 sCharmanderSeviiTeachableLearnset[] = {
     MOVE_AERIAL_ACE,
     MOVE_ATTRACT,

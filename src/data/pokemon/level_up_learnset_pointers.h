@@ -1337,7 +1337,8 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_BASCULEGION_FEMALE] = sBasculegionLevelUpLearnset,
 #endif
 // Begin Magiya Custom Additions //
-    // Seviian Charmander
+    // Seviian Forms
+    [SPECIES_BULBASAUR_SEVII] = sBulbasaurSeviiLevelUpLearnset,
     [SPECIES_CHARMANDER_SEVII] = sCharmanderSeviiLevelUpLearnset,
 // End Magiya Custom Additions //
 };

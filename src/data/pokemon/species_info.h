@@ -24734,7 +24734,29 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #endif
 // Begin Magiya Custom Additions //
-    // Seviian Charmander
+    // Seviian Forms
+    [SPECIES_BULBASAUR_SEVII] =
+    {
+        .baseHP        = 65,
+        .baseAttack    = 49,
+        .baseDefense   = 45,
+        .baseSpeed     = 49,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 45,
+        .types = { TYPE_FIRE, TYPE_FIRE },
+        .catchRate = 45,
+        .expYield = 64,
+        .evYield_SpAttack  = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS},
+        .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_DROUGHT},
+        .bodyColor = BODY_COLOR_RED,
+        .noFlip = FALSE,
+    },
+
     [SPECIES_CHARMANDER_SEVII] =
     {
         .baseHP             = 43,

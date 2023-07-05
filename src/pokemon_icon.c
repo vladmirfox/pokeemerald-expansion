@@ -943,7 +943,8 @@ const u8 *const gMonIconTable[] =
     [SPECIES_ENAMORUS] = gMonIcon_Enamorus,
 #endif
 // Begin Magiya Custom Additions //
-    // Seviian Charmander
+    // Seviian Forms
+    [SPECIES_BULBASAUR_SEVII] = gMonIcon_BulbasaurSevii,
     [SPECIES_CHARMANDER_SEVII] = gMonIcon_CharmanderSevii,
 // End Magiya Custom Additions //
 
@@ -2548,7 +2549,8 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_BASCULEGION_FEMALE] = 0,
 #endif
 // Begin Magiya Custom Additions //
-    // Seviian Charmander
+    // Seviian Forms
+    [SPECIES_BULBASAUR_SEVII] = 4,
     [SPECIES_CHARMANDER_SEVII] = 0,
 // End Magiya Custom Additions //
     [SPECIES_EGG] = 1,

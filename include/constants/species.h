@@ -1372,8 +1372,9 @@
 #define SPECIES_BASCULEGION_FEMALE           FORMS_START + 329
 
 // Begin Magiya Custom Additions //
-    // Seviian Charmander
-#define SPECIES_CHARMANDER_SEVII             FORMS_START + 330
+    // Seviian Forms
+#define SPECIES_BULBASAUR_SEVII              FORMS_START + 330
+#define SPECIES_CHARMANDER_SEVII             FORMS_START + 331
 // End Magiya Custom Additions //
 
 #define SPECIES_EGG                          SPECIES_CHARMANDER_SEVII + 1

@@ -1337,7 +1337,8 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_BASCULEGION_FEMALE] = sBasculegionTeachableLearnset,
 #endif
 // Begin Magiya Custom Additions //
-    // Seviian Charmander
+    // Seviian Forms
+    [SPECIES_BULBASAUR_SEVII] = sBulbasaurSeviiTeachableLearnset,
     [SPECIES_CHARMANDER_SEVII] = sCharmanderSeviiTeachableLearnset,
 // End Magiya Custom Additions //
 };

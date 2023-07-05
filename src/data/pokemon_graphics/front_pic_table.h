@@ -1335,7 +1335,8 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
     SPECIES_SPRITE(BASCULEGION_FEMALE, gMonFrontPic_BasculegionFemale),
 #endif
 // Begin Magiya Custom Additions //
-    // Seviian Charmander
+    // Seviian Forms
+    SPECIES_SPRITE(BULBASAUR_SEVII, gMonFrontPic_BulbasaurSevii),
     SPECIES_SPRITE(CHARMANDER_SEVII, gMonFrontPic_CharmanderSevii),
 // End Magiya Custom Additions //
     SPECIES_SPRITE(EGG, gMonFrontPic_Egg),
