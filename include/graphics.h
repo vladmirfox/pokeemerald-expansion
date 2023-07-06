@@ -4969,7 +4969,7 @@ extern const u32 gMonShinyPalette_BasculegionFemale[];
 #endif
 // Begin Magiya Custom Additions //
     //Seviian Forms
-extern const u32 gMonShinyPalettePic_SquirtleSevii[];
+extern const u32 gMonShinyPalette_SquirtleSevii[];
 extern const u32 gMonShinyPalette_BulbasaurSevii[];
 extern const u32 gMonShinyPalette_CharmanderSevii[];
 // End Magiya Custom Additions //
