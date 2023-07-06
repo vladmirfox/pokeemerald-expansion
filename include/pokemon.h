@@ -2,6 +2,7 @@
 #define GUARD_POKEMON_H
 
 #include "sprite.h"
+#include "constants/items.h"
 #include "constants/region_map_sections.h"
 #include "constants/map_groups.h"
 
@@ -343,10 +344,47 @@ struct BattleMove
     u8 secondaryEffectChance;
     u16 target;
     s8 priority;
-    u32 flags;
     u8 split;
-    u8 argument;
+    u16 argument;
     u8 zMoveEffect;
+    // Flags
+    u32 makesContact:1;
+    u32 ignoresProtect:1;
+    u32 magicCoatAffected:1;
+    u32 snatchAffected:1;
+    u32 mirrorMoveBanned:1;
+    u32 ignoresKingsRock:1;
+    u32 highCritRatio:1;
+    u32 punchingMove:1;
+    u32 sheerForceBoost:1;
+    u32 bitingMove:1;
+    u32 pulseMove:1;
+    u32 soundMove:1;
+    u32 ballisticMove:1;
+    u32 protectionMove:1;
+    u32 powderMove:1;
+    u32 danceMove:1;
+    u32 windMove:1;
+    u32 slicingMove:1;
+    u32 minimizeDoubleDamage:1;
+    u32 ignoresTargetAbility:1;
+    u32 ignoresTargetDefenseEvasionStages:1;
+    u32 damagesUnderground:1;
+    u32 damagesUnderwater:1;
+    u32 damagesAirborne:1;
+    u32 damagesAirborneDoubleDamage:1;
+    u32 ignoreTypeIfFlyingAndUngrounded:1;
+    u32 thawsUser:1;
+    u32 ignoresSubstitute:1;
+    u32 twoStrikes:1; // May apply its effect on each hit.
+    u32 threeStrikes:1; // May apply its effect on each hit.
+    u32 meFirstBanned:1;
+    u32 gravityBanned:1;
+    u32 mimicBanned:1;
+    u32 metronomeBanned:1;
+    u32 copycatBanned:1;
+    u32 sleepTalkBanned:1;
+    u32 instructBanned:1;
 };
 
 #define SPINDA_SPOT_WIDTH 16
@@ -401,7 +439,7 @@ extern const struct BattleMove gBattleMoves[];
 extern const u8 gFacilityClassToPicIndex[];
 extern const u8 gFacilityClassToTrainerClass[];
 extern const struct SpeciesInfo gSpeciesInfo[];
-extern const u8 *const gItemEffectTable[];
+extern const u8 *const gItemEffectTable[ITEMS_COUNT];
 extern const u32 gExperienceTables[][MAX_LEVEL + 1];
 extern const struct LevelUpMove *const gLevelUpLearnsets[];
 extern const u16 *const gTeachableLearnsets[];
@@ -413,6 +451,7 @@ extern const u16 gUnionRoomFacilityClasses[];
 extern const struct SpriteTemplate gBattlerSpriteTemplates[];
 extern const s8 gNatureStatTable[][5];
 extern const u16 *const gFormSpeciesIdTables[NUM_SPECIES];
+extern const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES];
 extern const u32 sExpCandyExperienceTable[];
 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);
@@ -441,6 +480,7 @@ void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest);
 u8 GetLevelFromMonExp(struct Pokemon *mon);
 u8 GetLevelFromBoxMonExp(struct BoxPokemon *boxMon);
 u16 GiveMoveToMon(struct Pokemon *mon, u16 move);
+u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move);
 u16 GiveMoveToBattleMon(struct BattlePokemon *mon, u16 move);
 void SetMonMoveSlot(struct Pokemon *mon, u16 move, u8 slot);
 void SetBattleMonMoveSlot(struct BattlePokemon *mon, u16 move, u8 slot);
@@ -526,7 +566,6 @@ u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves);
 u8 GetNumberOfRelearnableMoves(struct Pokemon *mon);
 u16 SpeciesToPokedexNum(u16 species);
 bool32 IsSpeciesInHoennDex(u16 species);
-void ClearBattleMonForms(void);
 u16 GetBattleBGM(void);
 void PlayBattleBGM(void);
 void PlayMapChosenOrBattleBGM(u16 songId);
@@ -566,11 +605,14 @@ u8 *MonSpritesGfxManager_GetSpritePtr(u8 managerId, u8 spriteNum);
 u16 GetFormSpeciesId(u16 speciesId, u8 formId);
 u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId);
 u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg);
-u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *mon, u16 method, u32 arg);
+u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 arg);
+bool32 DoesSpeciesHaveFormChangeMethod(u16 species, u16 method);
 u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove);
 bool32 ShouldShowFemaleDifferences(u16 species, u32 personality);
-void TryToSetBattleFormChangeMoves(struct Pokemon *mon);
+bool32 TryFormChange(u32 monId, u32 side, u16 method);
+void TryToSetBattleFormChangeMoves(struct Pokemon *mon, u16 method);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);
 void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality);
+u8 CalculatePartyCount(struct Pokemon *party);
 
 #endif // GUARD_POKEMON_H

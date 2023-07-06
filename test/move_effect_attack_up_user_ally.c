@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Howl raises user's Attack", s16 damage)
         if (raiseAttack) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_HOWL, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Wobbuffet's attack rose!");
+            MESSAGE("Wobbuffet's Attack rose!");
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
@@ -38,10 +38,10 @@ DOUBLE_BATTLE_TEST("Howl raises user's and partner's Attack", s16 damageLeft, s1
     PARAMETRIZE { raiseAttack = TRUE; }
     GIVEN {
         ASSUME(gBattleMoves[MOVE_TACKLE].split == SPLIT_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET) { Speed(15); };
-        PLAYER(SPECIES_WYNAUT) { Speed(10); };
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(13); };
-        OPPONENT(SPECIES_WYNAUT) { Speed(12); };
+        PLAYER(SPECIES_WOBBUFFET) { Speed(15); }
+        PLAYER(SPECIES_WYNAUT) { Speed(10); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(13); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(12); }
     } WHEN {
         if (raiseAttack) TURN { MOVE(playerLeft, MOVE_HOWL); }
         TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); }
@@ -50,9 +50,9 @@ DOUBLE_BATTLE_TEST("Howl raises user's and partner's Attack", s16 damageLeft, s1
         if (raiseAttack) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_HOWL, playerLeft);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-            MESSAGE("Wobbuffet's attack rose!");
+            MESSAGE("Wobbuffet's Attack rose!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-            MESSAGE("Wynaut's attack rose!");
+            MESSAGE("Wynaut's Attack rose!");
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerLeft);
         HP_BAR(opponentLeft, captureDamage: &results[i].damageLeft);

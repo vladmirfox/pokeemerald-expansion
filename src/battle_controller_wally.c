@@ -1115,6 +1115,7 @@ static void WallyHandleMoveAnimation(void)
     gWeatherMoveAnim = gBattleResources->bufferA[gActiveBattler][12] | (gBattleResources->bufferA[gActiveBattler][13] << 8);
     gAnimDisableStructPtr = (struct DisableStruct *)&gBattleResources->bufferA[gActiveBattler][16];
     gTransformedPersonalities[gActiveBattler] = gAnimDisableStructPtr->transformedMonPersonality;
+    gTransformedOtIds[gActiveBattler] = gAnimDisableStructPtr->transformedMonOtId;
     gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].animationState = 0;
     gBattlerControllerFuncs[gActiveBattler] = WallyDoMoveAnimation;
 }
@@ -1473,7 +1474,7 @@ static void StartSendOutAnim(u8 battlerId)
     gSprites[gBattlerSpriteIds[battlerId]].data[2] = species;
     gSprites[gBattlerSpriteIds[battlerId]].oam.paletteNum = battlerId;
 
-    StartSpriteAnim(&gSprites[gBattlerSpriteIds[battlerId]], gBattleMonForms[battlerId]);
+    StartSpriteAnim(&gSprites[gBattlerSpriteIds[battlerId]], 0);
     gSprites[gBattlerSpriteIds[battlerId]].invisible = TRUE;
     gSprites[gBattlerSpriteIds[battlerId]].callback = SpriteCallbackDummy;
     gSprites[gBattleControllerData[battlerId]].data[0] = DoPokeballSendOutAnimation(0, POKEBALL_PLAYER_SENDOUT);

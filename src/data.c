@@ -3,6 +3,7 @@
 #include "battle.h"
 #include "data.h"
 #include "graphics.h"
+#include "constants/abilities.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/trainers.h"
@@ -278,24 +279,10 @@ static const union AnimCmd sAnim_MonPic_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_MonPic_2[] =
-{
-    ANIMCMD_FRAME(2, 0),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_MonPic_3[] =
-{
-    ANIMCMD_FRAME(3, 0),
-    ANIMCMD_END,
-};
-
 const union AnimCmd *const gAnims_MonPic[MAX_MON_PIC_FRAMES] =
 {
     sAnim_MonPic_0,
     sAnim_MonPic_1,
-    sAnim_MonPic_2,
-    sAnim_MonPic_3,
 };
 
 #define SPECIES_SPRITE(species, sprite) [SPECIES_##species] = {sprite, MON_PIC_SIZE, SPECIES_##species}

@@ -15,6 +15,7 @@
  *    passes/known fails/assumption fails/fails.
  */
 #include <fcntl.h>
+#include <math.h>
 #include <poll.h>
 #include <signal.h>
 #include <stdbool.h>
@@ -23,7 +24,9 @@
 #include <string.h>
 #include <sys/ioctl.h>
 #include <sys/mman.h>
+#ifndef __APPLE__
 #include <sys/prctl.h>
+#endif
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -44,15 +47,17 @@ struct Runner
     char *output_buffer;
     int passes;
     int knownFails;
+    int todos;
     int assumptionFails;
     int fails;
     int results;
 };
 
 static unsigned nrunners = 0;
+static unsigned runners_digits = 0;
 static struct Runner *runners = NULL;
 
-static void handle_read(struct Runner *runner)
+static void handle_read(int i, struct Runner *runner)
 {
     char *sol = runner->input_buffer;
     char *eol;
@@ -87,6 +92,9 @@ static void handle_read(struct Runner *runner)
                 case 'K':
                     runner->knownFails++;
                     goto add_to_results;
+                case 'T':
+                    runner->todos++;
+                    goto add_to_results;
                 case 'A':
                     runner->assumptionFails++;
                     goto add_to_results;
@@ -95,7 +103,7 @@ static void handle_read(struct Runner *runner)
 add_to_results:
                     runner->results++;
                     soc += 2;
-                    fprintf(stdout, "%s: ", runner->test_name);
+                    fprintf(stdout, "[%0*d] %s: ", runners_digits, i, runner->test_name);
                     fwrite(soc, 1, eol - soc, stdout);
                     fwrite(runner->output_buffer, 1, runner->output_buffer_size, stdout);
                     strcpy(runner->test_name, "WAITING...");
@@ -160,7 +168,11 @@ static void unlink_roms(void)
         if (runners[i].rom_path[0])
         {
             if (unlink(runners[i].rom_path) == -1)
-                perror("unlink rom_path failed");
+            {
+                int fd;
+                if ((fd = open(runners[i].rom_path, O_RDONLY)) != -1)
+                    perror("unlink rom_path failed");
+            }
         }
     }
 }
@@ -172,9 +184,9 @@ static void exit2(int _)
 
 int main(int argc, char *argv[])
 {
-    if (argc < 3)
+    if (argc < 4)
     {
-        fprintf(stderr, "usage %s mgba-rom-test rom\n", argv[0]);
+        fprintf(stderr, "usage %s mgba-rom-test objcopy rom\n", argv[0]);
         exit(2);
     }
 
@@ -201,7 +213,7 @@ int main(int argc, char *argv[])
     }
 
     int elffd;
-    if ((elffd = open(argv[2], O_RDONLY)) == -1)
+    if ((elffd = open(argv[3], O_RDONLY)) == -1)
     {
         perror("open elffd failed");
         exit(2);
@@ -224,6 +236,7 @@ int main(int argc, char *argv[])
     nrunners = sysconf(_SC_NPROCESSORS_ONLN);
     if (nrunners > MAX_PROCESSES)
         nrunners = MAX_PROCESSES;
+    runners_digits = ceil(log10(nrunners));
     runners = calloc(nrunners, sizeof(*runners));
     if (!runners)
     {
@@ -238,7 +251,7 @@ int main(int argc, char *argv[])
         runners[i].output_buffer = malloc(runners[i].output_buffer_capacity);
         strcpy(runners[i].test_name, "WAITING...");
         if (tty)
-            fprintf(stdout, "%s\n", runners[i].test_name);
+            fprintf(stdout, "[%0*d] %s\n", runners_digits, i, runners[i].test_name);
     }
     fflush(stdout);
     atexit(unlink_roms);
@@ -260,11 +273,13 @@ int main(int argc, char *argv[])
             perror("fork mgba-rom-test failed");
             exit(2);
         } else if (pid == 0) {
+            #ifndef __APPLE__
             if (prctl(PR_SET_PDEATHSIG, SIGTERM) == -1)
             {
                 perror("prctl failed");
                 _exit(2);
             }
+            #endif
             if (getppid() != parent_pid) // Parent died.
             {
                 _exit(2);
@@ -285,7 +300,7 @@ int main(int argc, char *argv[])
                 _exit(2);
             }
             char rom_path[FILENAME_MAX];
-            sprintf(rom_path, "/tmp/file%05d", getpid());
+            sprintf(rom_path, "/tmp/mgba-rom-test-hydra-%05d", getpid());
             int tmpfd;
             if ((tmpfd = open(rom_path, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR)) == -1)
             {
@@ -328,6 +343,36 @@ int main(int argc, char *argv[])
                     _exit(2);
                 }
             }
+#ifdef __APPLE__
+            pid_t objcopypid = fork();
+            if (objcopypid == -1)
+            {
+                perror("fork objcopy failed");
+                _exit(2);
+            }
+            else if (objcopypid == 0)
+            {
+                if (execlp(argv[2], argv[2], "-O", "binary", rom_path, rom_path, NULL) == -1)
+                {
+                    perror("execlp objcopy failed");
+                    _exit(2);
+                }
+            }
+            else
+            {
+                int wstatus;
+                if (waitpid(objcopypid, &wstatus, 0) == -1)
+                {
+                    perror("waitpid objcopy failed");
+                    _exit(2);
+                }
+                if (!WIFEXITED(wstatus) || WEXITSTATUS(wstatus) != 0)
+                {
+                    fprintf(stderr, "objcopy exited with an error\n");
+                    _exit(2);
+                }
+            }
+#endif
             // stdbuf is required because otherwise mgba never flushes
             // stdout.
             if (execlp("stdbuf", "stdbuf", "-oL", argv[1], "-l15", "-ClogLevel.gba.dma=16", "-Rr0", rom_path, NULL) == -1)
@@ -337,7 +382,7 @@ int main(int argc, char *argv[])
             }
         } else {
             runners[i].pid = pid;
-            sprintf(runners[i].rom_path, "/tmp/file%05d", runners[i].pid);
+            sprintf(runners[i].rom_path, "/tmp/mgba-rom-test-hydra-%05d", runners[i].pid);
             runners[i].outfd = pipefds[0];
             if (close(pipefds[1]) == -1)
             {
@@ -374,7 +419,7 @@ int main(int argc, char *argv[])
             for (int i = 0; i < nrunners; i++)
             {
                 if (runners[i].outfd >= 0)
-                    scrollback += (strlen(runners[i].test_name) + winsize.ws_col - 1) / winsize.ws_col;
+                    scrollback += (3 + runners_digits + strlen(runners[i].test_name) + winsize.ws_col - 1) / winsize.ws_col;
             }
             if (scrollback > 0)
                 fprintf(stdout, "\e[%dF\e[J", scrollback);
@@ -396,7 +441,7 @@ int main(int argc, char *argv[])
                     exit(2);
                 }
                 runners[i].input_buffer_size += n;
-                handle_read(&runners[i]);
+                handle_read(i, &runners[i]);
             }
 
             if (pollfds[i].revents & (POLLERR | POLLHUP))
@@ -416,7 +461,7 @@ int main(int argc, char *argv[])
             for (int i = 0; i < nrunners; i++)
             {
                 if (runners[i].outfd >= 0)
-                    fprintf(stdout, "%s\n", runners[i].test_name);
+                    fprintf(stdout, "[%0*d] %s\n", runners_digits, i, runners[i].test_name);
             }
 
             fflush(stdout);
@@ -427,6 +472,7 @@ int main(int argc, char *argv[])
     int exit_code = 0;
     int passes = 0;
     int knownFails = 0;
+    int todos = 0;
     int assumptionFails = 0;
     int fails = 0;
     int results = 0;
@@ -444,6 +490,7 @@ int main(int argc, char *argv[])
             exit_code = WEXITSTATUS(wstatus);
         passes += runners[i].passes;
         knownFails += runners[i].knownFails;
+        todos += runners[i].todos;
         assumptionFails += runners[i].assumptionFails;
         fails += runners[i].fails;
         results += runners[i].results;
@@ -459,6 +506,8 @@ int main(int argc, char *argv[])
         fprintf(stdout, "- Tests \e[32mPASSED\e[0m:        %d\n", passes);
         if (knownFails > 0)
             fprintf(stdout, "- Tests \e[33mKNOWN_FAILING\e[0m: %d\n", knownFails);
+        if (todos > 0)
+            fprintf(stdout, "- Tests \e[33mTO_DO\e[0m:         %d\n", todos);
         if (fails > 0)
             fprintf(stdout, "- Tests \e[31mFAILED\e[0m :       %d\n", fails);
         if (assumptionFails > 0)
