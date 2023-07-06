@@ -3102,7 +3102,7 @@ static bool32 IsPinchBerryItemEffect(u16 holdEffect)
     return FALSE;
 }
 
-static u32 GetAIMostDamagingMove(u8 battlerAtk, u8 battlerDef)
+static u32 GetAIMostDamagingMoveId(u8 battlerAtk, u8 battlerDef)
 {
     u32 i, id = 0;
     u32 mostDmg = 0;
@@ -3138,7 +3138,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         // If 2 moves can KO the target in the same number of turns, but one of them always hits and there is a risk the other move could miss, prioritize the always hits move.
         if (gBattleMons[battlerDef].statStages[STAT_EVASION] > 6 || gBattleMons[battlerAtk].statStages[STAT_ACC] < 6)
         {
-            u32 mostDmgMoveId = GetAIMostDamagingMove(battlerAtk, battlerDef);
+            u32 mostDmgMoveId = GetAIMostDamagingMoveId(battlerAtk, battlerDef);
             u32 *dmgs = AI_DATA->simulatedDmg[battlerAtk][battlerDef];
             if (GetNoOfHitsToKO(dmgs[mostDmgMoveId], gBattleMons[battlerDef].hp) == GetNoOfHitsToKO(dmgs[AI_THINKING_STRUCT->movesetIndex], gBattleMons[battlerDef].hp))
                 score++;
