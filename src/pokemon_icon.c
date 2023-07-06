@@ -944,8 +944,9 @@ const u8 *const gMonIconTable[] =
 #endif
 // Begin Magiya Custom Additions //
     // Seviian Forms
-    [SPECIES_BULBASAUR_SEVII] = gMonIcon_BulbasaurSevii,
-    [SPECIES_CHARMANDER_SEVII] = gMonIcon_CharmanderSevii,
+    [SPECIES_SQUIRTLE_SEVII]        = gMonIcon_SquirtleSevii,
+    [SPECIES_BULBASAUR_SEVII]       = gMonIcon_BulbasaurSevii,
+    [SPECIES_CHARMANDER_SEVII]      = gMonIcon_CharmanderSevii,
 // End Magiya Custom Additions //
 
     [SPECIES_VENUSAUR_MEGA] = gMonIcon_VenusaurMega,
@@ -2550,8 +2551,9 @@ const u8 gMonIconPaletteIndices[] =
 #endif
 // Begin Magiya Custom Additions //
     // Seviian Forms
-    [SPECIES_BULBASAUR_SEVII] = 4,
-    [SPECIES_CHARMANDER_SEVII] = 0,
+    [SPECIES_SQUIRTLE_SEVII]            = 0,
+    [SPECIES_BULBASAUR_SEVII]           = 4,
+    [SPECIES_CHARMANDER_SEVII]          = 0,
 // End Magiya Custom Additions //
     [SPECIES_EGG] = 1,
 };

@@ -1339,6 +1339,7 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_BASCULEGION_FEMALE] = _("Bsculegion"),
 // Begin Magiya Custom Additions //
     // Seviian Forms
+    [SPECIES_SQUIRTLE_SEVII]        = _("Squirtle"),
     [SPECIES_BULBASAUR_SEVII]       = _("Bulbasaur"),
     [SPECIES_CHARMANDER_SEVII]      = _("Charmander"),
 // End Magiya Custom Additions //

@@ -1338,7 +1338,8 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
 #endif
 // Begin Magiya Custom Additions //
     // Seviian Forms
-    [SPECIES_BULBASAUR_SEVII] = sBulbasaurSeviiTeachableLearnset,
-    [SPECIES_CHARMANDER_SEVII] = sCharmanderSeviiTeachableLearnset,
+    [SPECIES_SQUIRTLE_SEVII]        = sSquirtleSeviiTeachableLearnset,
+    [SPECIES_BULBASAUR_SEVII]       = sBulbasaurSeviiTeachableLearnset,
+    [SPECIES_CHARMANDER_SEVII]      = sCharmanderSeviiTeachableLearnset,
 // End Magiya Custom Additions //
 };

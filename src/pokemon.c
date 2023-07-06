@@ -1673,8 +1673,9 @@ static const u16 sSpeciesToNationalPokedexNum[NUM_SPECIES - 1] =
     [SPECIES_BASCULEGION_FEMALE - 1] = NATIONAL_DEX_BASCULEGION,
 // Begin Magiya Custom Additions //
     // Seviian Forms
-    [SPECIES_BULBASAUR_SEVII - 1] = NATIONAL_DEX_BULBASAUR,
-    [SPECIES_CHARMANDER_SEVII - 1] = NATIONAL_DEX_CHARMANDER,
+    [SPECIES_SQUIRTLE_SEVII - 1]            = NATIONAL_DEX_SQUIRTLE,
+    [SPECIES_BULBASAUR_SEVII - 1]           = NATIONAL_DEX_BULBASAUR,
+    [SPECIES_CHARMANDER_SEVII - 1]          = NATIONAL_DEX_CHARMANDER,
 // End Magiya Custom Additions //
 #endif
 };
@@ -3041,6 +3042,7 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_MAGEARNA_ORIGINAL_COLOR - 1]   = ANIM_H_SLIDE_SLOW,
 // Begin Magiya Custom Animations //
     // Seviian Forms
+    [SPECIES_SQUIRTLE_SEVII - 1]            = ANIM_V_JUMPS_SMALL,
     [SPECIES_BULBASAUR_SEVII - 1]           = ANIM_V_JUMPS_H_JUMPS,
     [SPECIES_CHARMANDER_SEVII - 1]          = ANIM_V_JUMPS_SMALL,
 // End Magiya Custom Animations //

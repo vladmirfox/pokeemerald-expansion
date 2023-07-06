@@ -1361,6 +1361,7 @@ const struct MonCoords gMonBackPicCoords[] =
 #endif
 // Begin Magiya Custom Additions //
     // Seviian Forms
+    [SPECIES_SQUIRTLE_SEVII]               = { .size = MON_COORDS_SIZE(48, 48), .y_offset =  9 },
     [SPECIES_BULBASAUR_SEVII]              = { .size = MON_COORDS_SIZE(56, 40), .y_offset = 13 },
     [SPECIES_CHARMANDER_SEVII]             = { .size = MON_COORDS_SIZE(48, 48), .y_offset =  9 },
 // End Magiya Custom Additions //

@@ -12915,6 +12915,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
 #endif
 // Begin Magiya Custom Additions //
     //Seviian Forms
+    [SPECIES_SQUIRTLE_SEVII]                    = sAnims_Squirtle,
     [SPECIES_BULBASAUR_SEVII]                   = sAnims_Bulbasaur,
     [SPECIES_CHARMANDER_SEVII]                  = sAnims_Charmander,
 // End Magiya Custom Additions //

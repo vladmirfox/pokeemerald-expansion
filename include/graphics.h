@@ -1280,6 +1280,7 @@ extern const u32 gMonFrontPic_BasculegionFemale[];
 #endif
 // Begin Magiya Custom Additions //
     //Seviian Forms
+extern const u32 gMonFrontPic_SquirtleSevii[];
 extern const u32 gMonFrontPic_BulbasaurSevii[];
 extern const u32 gMonFrontPic_CharmanderSevii[];
 // End Magiya Custom Additions //
@@ -2497,6 +2498,7 @@ extern const u32 gMonBackPic_BasculegionFemale[];
 #endif
 // Begin Magiya Custom Additions //
     //Seviian Forms
+extern const u32 gMonBackPic_SquirtleSevii[];
 extern const u32 gMonBackPic_BulbasaurSevii[];
 extern const u32 gMonBackPic_CharmanderSevii[];
 // End Magiya Custom Additions //
@@ -3734,6 +3736,7 @@ extern const u32 gMonPalette_BasculegionFemale[];
 #endif
 // Begin Magiya Custom Additions //
     //Seviian Forms
+extern const u32 gMonPalette_SquirtleSevii[];
 extern const u32 gMonPalette_BulbasaurSevii[];
 extern const u32 gMonPalette_CharmanderSevii[];
 // End Magiya Custom Additions //
@@ -4966,6 +4969,7 @@ extern const u32 gMonShinyPalette_BasculegionFemale[];
 #endif
 // Begin Magiya Custom Additions //
     //Seviian Forms
+extern const u32 gMonShinyPalettePic_SquirtleSevii[];
 extern const u32 gMonShinyPalette_BulbasaurSevii[];
 extern const u32 gMonShinyPalette_CharmanderSevii[];
 // End Magiya Custom Additions //
@@ -6191,6 +6195,7 @@ extern const u8 gMonIcon_BasculegionFemale[];
 #endif
 // Begin Magiya Custom Additions //
     //Seviian Forms
+extern const u8 gMonIcon_SquirtleSevii[];
 extern const u8 gMonIcon_BulbasaurSevii[];
 extern const u8 gMonIcon_CharmanderSevii[];
 // End Magiya Custom Additions //

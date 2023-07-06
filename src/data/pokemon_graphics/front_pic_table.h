@@ -1336,6 +1336,7 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
 #endif
 // Begin Magiya Custom Additions //
     // Seviian Forms
+    SPECIES_SPRITE(SQUIRTLE_SEVII, gMonFrontPic_SquirtleSevii),
     SPECIES_SPRITE(BULBASAUR_SEVII, gMonFrontPic_BulbasaurSevii),
     SPECIES_SPRITE(CHARMANDER_SEVII, gMonFrontPic_CharmanderSevii),
 // End Magiya Custom Additions //

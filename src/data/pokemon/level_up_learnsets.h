@@ -19581,6 +19581,24 @@ static const struct LevelUpMove sCalyrexShadowRiderLevelUpLearnset[] = {
 };
 // Begin Magiya Custom Additions //
     // Seviian Forms
+static const struct LevelUpMove sSquirtleSeviiLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 4, MOVE_TAIL_WHIP),
+    LEVEL_UP_MOVE( 7, MOVE_ABSORB),
+    LEVEL_UP_MOVE(10, MOVE_WITHDRAW),
+    LEVEL_UP_MOVE(13, MOVE_SLEEP_POWDER),
+    LEVEL_UP_MOVE(16, MOVE_BITE),
+    LEVEL_UP_MOVE(19, MOVE_RAPID_SPIN),
+    LEVEL_UP_MOVE(22, MOVE_PROTECT),
+    LEVEL_UP_MOVE(25, MOVE_MEGA_DRAIN),
+    LEVEL_UP_MOVE(28, MOVE_RAZOR_LEAF),
+    LEVEL_UP_MOVE(31, MOVE_SKULL_BASH),
+    LEVEL_UP_MOVE(34, MOVE_IRON_DEFENSE),
+    LEVEL_UP_MOVE(37, MOVE_SUNNY_DAY),
+    LEVEL_UP_MOVE(40, MOVE_ENERGY_BALL),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sBulbasaurSeviiLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 3, MOVE_GROWL),

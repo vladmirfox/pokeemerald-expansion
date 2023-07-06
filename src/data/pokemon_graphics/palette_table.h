@@ -1335,6 +1335,7 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
 #endif
 // Begin Magiya Custom Additions //
     // Seviian Forms
+    SPECIES_PAL(SQUIRTLE_SEVII, gMonPalette_SquirtleSevii),
     SPECIES_PAL(BULBASAUR_SEVII, gMonPalette_BulbasaurSevii),
     SPECIES_PAL(CHARMANDER_SEVII, gMonPalette_CharmanderSevii),
 // End Magiya Custom Additions //

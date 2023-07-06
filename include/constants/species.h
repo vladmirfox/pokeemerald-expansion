@@ -1373,8 +1373,9 @@
 
 // Begin Magiya Custom Additions //
     // Seviian Forms
-#define SPECIES_BULBASAUR_SEVII              FORMS_START + 330
-#define SPECIES_CHARMANDER_SEVII             FORMS_START + 331
+#define SPECIES_SQUIRTLE_SEVII               FORMS_START + 330
+#define SPECIES_BULBASAUR_SEVII              FORMS_START + 331
+#define SPECIES_CHARMANDER_SEVII             FORMS_START + 332
 // End Magiya Custom Additions //
 
 #define SPECIES_EGG                          SPECIES_CHARMANDER_SEVII + 1

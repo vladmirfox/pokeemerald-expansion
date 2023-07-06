@@ -1338,6 +1338,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
 #endif
 // Begin Magiya Custom Additions //
     // Seviian Forms
+    [SPECIES_SQUIRTLE_SEVII] = sSquirtleSeviiLevelUpLearnset,
     [SPECIES_BULBASAUR_SEVII] = sBulbasaurSeviiLevelUpLearnset,
     [SPECIES_CHARMANDER_SEVII] = sCharmanderSeviiLevelUpLearnset,
 // End Magiya Custom Additions //
