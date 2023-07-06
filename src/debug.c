@@ -51,6 +51,7 @@
 #include "pokemon_summary_screen.h"
 #include "wild_encounter.h"
 #include "constants/abilities.h"
+#include "constants/battle_ai.h"
 #include "constants/battle_frontier.h"
 #include "constants/flags.h"
 #include "constants/items.h"
@@ -121,9 +122,7 @@ enum { // Flags and Vars
 };
 enum { // Battle 0 Type
     DEBUG_BATTLE_0_MENU_ITEM_WILD,
-#ifdef BATTLE_ENGINE
     DEBUG_BATTLE_0_MENU_ITEM_WILD_DOUBLE,
-#endif
     DEBUG_BATTLE_0_MENU_ITEM_SINGLE,
     DEBUG_BATTLE_0_MENU_ITEM_DOUBLE,
     DEBUG_BATTLE_0_MENU_ITEM_MULTI,
@@ -139,7 +138,6 @@ enum { // Battle 1 AI FLags
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_07,
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_08,
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_09,
-#ifdef BATTLE_ENGINE
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_10,
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_11,
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_12,
@@ -147,7 +145,7 @@ enum { // Battle 1 AI FLags
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_14,
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_15,
     DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_16,
-#endif
+    DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_17,
     DEBUG_BATTLE_1_MENU_ITEM_CONTINUE,
 };
 enum { // Battle 2 Terrain
@@ -245,11 +243,7 @@ struct DebugBattleData
     u8 submenu;
     u8 battleType;
     u8 battleTerrain;
-#ifdef BATTLE_ENGINE
-    bool8 aiFlags[17];
-#else
-    bool8 aiFlags[10];
-#endif
+    bool8 aiFlags[AI_FLAG_COUNT];
 };
 
 // EWRAM
@@ -470,18 +464,6 @@ static const u8 sDebugText_Battle_0_WildDouble[] =  _("Wild Double…{CLEAR_TO 1
 static const u8 sDebugText_Battle_0_Single[] =      _("Single…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Battle_0_Double[] =      _("Double…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Battle_0_Mulit[] =       _("Multi…{CLEAR_TO 110}{RIGHT_ARROW}");
-#ifndef BATTLE_ENGINE
-static const u8 sDebugText_Battle_1_AIFlag_00[] =   _("{STR_VAR_1}Check bad move");
-static const u8 sDebugText_Battle_1_AIFlag_01[] =   _("{STR_VAR_1}Try to faint");
-static const u8 sDebugText_Battle_1_AIFlag_02[] =   _("{STR_VAR_1}Check viability");
-static const u8 sDebugText_Battle_1_AIFlag_03[] =   _("{STR_VAR_1}Setup first turn");
-static const u8 sDebugText_Battle_1_AIFlag_04[] =   _("{STR_VAR_1}Risky");
-static const u8 sDebugText_Battle_1_AIFlag_05[] =   _("{STR_VAR_1}Prefer power extremes");
-static const u8 sDebugText_Battle_1_AIFlag_06[] =   _("{STR_VAR_1}Prefer baton pass");
-static const u8 sDebugText_Battle_1_AIFlag_07[] =   _("{STR_VAR_1}Double battle");
-static const u8 sDebugText_Battle_1_AIFlag_08[] =   _("{STR_VAR_1}Hp aware");
-static const u8 sDebugText_Battle_1_AIFlag_09[] =   _("{STR_VAR_1}Try sunny day start");
-#else
 static const u8 sDebugText_Battle_1_AIFlag_00[] =   _("{STR_VAR_1}Check bad move");
 static const u8 sDebugText_Battle_1_AIFlag_01[] =   _("{STR_VAR_1}Try to faint");
 static const u8 sDebugText_Battle_1_AIFlag_02[] =   _("{STR_VAR_1}Check viability");
@@ -499,7 +481,7 @@ static const u8 sDebugText_Battle_1_AIFlag_13[] =   _("{STR_VAR_1}Stall");
 static const u8 sDebugText_Battle_1_AIFlag_14[] =   _("{STR_VAR_1}Screener");
 static const u8 sDebugText_Battle_1_AIFlag_15[] =   _("{STR_VAR_1}Smart switching");
 static const u8 sDebugText_Battle_1_AIFlag_16[] =   _("{STR_VAR_1}Ace pokemon");
-#endif
+static const u8 sDebugText_Battle_1_AIFlag_17[] =   _("{STR_VAR_1}Omniscient");
 static const u8 sDebugText_Battle_2_Terrain_0[] =   _("Grass…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Battle_2_Terrain_1[] =   _("Long grass…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Battle_2_Terrain_2[] =   _("Sand…{CLEAR_TO 110}{RIGHT_ARROW}");
@@ -649,9 +631,7 @@ static const struct ListMenuItem sDebugMenu_Items_FlagsVars[] =
 static const struct ListMenuItem sDebugMenu_Items_Battle_0[] =
 {
     [DEBUG_BATTLE_0_MENU_ITEM_WILD]        = {sDebugText_Battle_0_Wild,       DEBUG_BATTLE_0_MENU_ITEM_WILD},
-    #ifdef BATTLE_ENGINE
     [DEBUG_BATTLE_0_MENU_ITEM_WILD_DOUBLE] = {sDebugText_Battle_0_WildDouble, DEBUG_BATTLE_0_MENU_ITEM_WILD_DOUBLE},
-    #endif
     [DEBUG_BATTLE_0_MENU_ITEM_SINGLE]      = {sDebugText_Battle_0_Single,     DEBUG_BATTLE_0_MENU_ITEM_SINGLE},
     [DEBUG_BATTLE_0_MENU_ITEM_DOUBLE]      = {sDebugText_Battle_0_Double,     DEBUG_BATTLE_0_MENU_ITEM_DOUBLE},
     [DEBUG_BATTLE_0_MENU_ITEM_MULTI]       = {sDebugText_Battle_0_Mulit,      DEBUG_BATTLE_0_MENU_ITEM_MULTI},
@@ -668,7 +648,6 @@ static const struct ListMenuItem sDebugMenu_Items_Battle_1[] =
     [DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_07] = {sDebugText_Battle_1_AIFlag_07, DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_07},
     [DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_08] = {sDebugText_Battle_1_AIFlag_08, DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_08},
     [DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_09] = {sDebugText_Battle_1_AIFlag_09, DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_09},
-#ifdef BATTLE_ENGINE
     [DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_10] = {sDebugText_Battle_1_AIFlag_10, DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_10},
     [DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_11] = {sDebugText_Battle_1_AIFlag_11, DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_11},
     [DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_12] = {sDebugText_Battle_1_AIFlag_12, DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_12},
@@ -676,7 +655,7 @@ static const struct ListMenuItem sDebugMenu_Items_Battle_1[] =
     [DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_14] = {sDebugText_Battle_1_AIFlag_14, DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_14},
     [DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_15] = {sDebugText_Battle_1_AIFlag_15, DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_15},
     [DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_16] = {sDebugText_Battle_1_AIFlag_16, DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_16},
-#endif
+    [DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_17] = {sDebugText_Battle_1_AIFlag_17, DEBUG_BATTLE_1_MENU_ITEM_AI_FLAG_17},
     [DEBUG_BATTLE_1_MENU_ITEM_CONTINUE]   = {sDebugText_Continue,           DEBUG_BATTLE_1_MENU_ITEM_CONTINUE},
 };
 static const struct ListMenuItem sDebugMenu_Items_Battle_2[] =
@@ -1123,13 +1102,8 @@ static void Debug_InitDebugBattleData(void)
     sDebugBattleData->battleType    = 0xFF;
     sDebugBattleData->battleTerrain = 0xFF;
     
-#ifdef BATTLE_ENGINE
-    for (i = 0; i < 17; i++)
+    for (i = 0; i < AI_FLAG_COUNT; i++)
         sDebugBattleData->aiFlags[i] = FALSE;
-#else
-    for (i = 0; i < 10; i++)
-        sDebugBattleData->aiFlags[i] = FALSE;
-#endif
 }
 
 static void Debug_RefreshListMenu(u8 taskId)
@@ -1383,10 +1357,7 @@ static void DebugTask_HandleMenuInput_Battle(u8 taskId)
             Debug_DestroyMenu(taskId);
 
             if (sDebugBattleData->battleType == DEBUG_BATTLE_0_MENU_ITEM_WILD // Skip AI Flag selection if wild battle
-                #ifdef BATTLE_ENGINE
-                || sDebugBattleData->battleType == DEBUG_BATTLE_0_MENU_ITEM_WILD_DOUBLE
-                #endif
-                )
+             || sDebugBattleData->battleType == DEBUG_BATTLE_0_MENU_ITEM_WILD_DOUBLE)
             {
                 sDebugBattleData->submenu++;
                 Debug_ShowMenu(DebugTask_HandleMenuInput_Battle, sDebugMenu_ListTemplate_Battle_2);
@@ -1433,10 +1404,7 @@ static void DebugTask_HandleMenuInput_Battle(u8 taskId)
             break;
         case 2: // Skip AI Flag selection if wild battle
             if (sDebugBattleData->battleType == DEBUG_BATTLE_0_MENU_ITEM_WILD 
-                #ifdef BATTLE_ENGINE
-                || sDebugBattleData->battleType == DEBUG_BATTLE_0_MENU_ITEM_WILD_DOUBLE
-                #endif
-                )
+             || sDebugBattleData->battleType == DEBUG_BATTLE_0_MENU_ITEM_WILD_DOUBLE)
             {
                 sDebugBattleData->submenu = 0;
             }
