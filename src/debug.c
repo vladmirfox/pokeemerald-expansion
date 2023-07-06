@@ -3501,6 +3501,8 @@ static void DebugAction_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
     struct BoxPokemon boxMon;
     u16 species = SPECIES_BULBASAUR;
 
+    personality = Random32();
+
     CreateBoxMon(&boxMon, species, 100, USE_RANDOM_IVS, FALSE, personality, OT_ID_PLAYER_ID, 0);
 
     for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
