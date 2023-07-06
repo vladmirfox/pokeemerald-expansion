@@ -66,8 +66,8 @@ script StrangeHouse_EventScript_PokeballOne{
             case  5: call(StrangeHouse_EventScript_Chespin)
             case  6: call(StrangeHouse_EventScript_Rowlet)
             case  7: call(StrangeHouse_EventScript_Grookey)
-//            case  8: call(StrangeHouse_EventScript_RowletHisui)
-//            case  9: call(StrangeHouse_EventScript_SquirtleSevii)
+//            case  8: call(StrangeHouse_EventScript_Sprigatito)
+            case  9: call(StrangeHouse_EventScript_SquirtleSevii)
 //            case 10: call(StrangeHouse_EventScript_RowletHisui)
         }
    }
@@ -982,19 +982,52 @@ script StrangeHouse_EventScript_BulbasaurSevii{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Bulbasaur")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Bulbasaur")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
+            call(NicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("Your PC is full!")
+        }
+    }
+    else{
+        hidemonpic
+    }
+}
+
+script StrangeHouse_EventScript_SquirtleSevii{
+    showmonpic(SPECIES_SQUIRTLE_SEVII, 10,3)
+    msgbox("Will you take the Squirtle?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_SQUIRTLE_SEVII, 5)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Squirtle")
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
+            call(NicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Squirtle")
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
