@@ -1332,6 +1332,12 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(BASCULEGION_FEMALE, gMonShinyPalette_BasculegionFemale),
     SPECIES_SHINY_PAL(ENAMORUS_THERIAN, gMonShinyPalette_EnamorusTherian),
 #endif
+// Begin Magiya Custom Additions //
+    // Seviian Forms
+    SPECIES_SHINY_PAL(SQUIRTLE_SEVII,   gMonShinyPalette_SquirtleSevii),
+    SPECIES_SHINY_PAL(BULBASAUR_SEVII,  gMonShinyPalette_BulbasaurSevii),
+    SPECIES_SHINY_PAL(CHARMANDER_SEVII, gMonShinyPalette_CharmanderSevii),
+// End Magiya Custom Additions //
     SPECIES_SHINY_PAL(EGG, gMonPalette_Egg),
 };
 

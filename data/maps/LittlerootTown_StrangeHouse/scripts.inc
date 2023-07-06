@@ -21,35 +21,29 @@ StrangeHouse_EventScript_BallDefault::
 StrangeHouse_EventScript_StrangePC::
 	goto_if_unset STRANGEHOUSE_BALL_ONE, StrangeHouse_EventScript_StrangePC_4
 StrangeHouse_EventScript_StrangePC_3:
-	msgbox StrangeHouse_EventScript_StrangePC_Text_1, MSGBOX_NPC
+	msgbox StrangeHouse_EventScript_StrangePC_Text_12, MSGBOX_NPC
 StrangeHouse_EventScript_StrangePC_1:
 	end
 
 StrangeHouse_EventScript_StrangePC_2:
 	lock
-	faceplayer
 	message StrangeHouse_EventScript_StrangePC_Text_0
-	multichoice 25, 0, MULTI_REGION_CHOICE, 0
+	dynmultichoice 25, 3, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, StrangeHouse_EventScript_StrangePC_Text_1, StrangeHouse_EventScript_StrangePC_Text_2, StrangeHouse_EventScript_StrangePC_Text_3, StrangeHouse_EventScript_StrangePC_Text_4, StrangeHouse_EventScript_StrangePC_Text_5, StrangeHouse_EventScript_StrangePC_Text_6, StrangeHouse_EventScript_StrangePC_Text_7, StrangeHouse_EventScript_StrangePC_Text_8, StrangeHouse_EventScript_StrangePC_Text_9, StrangeHouse_EventScript_StrangePC_Text_10, StrangeHouse_EventScript_StrangePC_Text_11
 	closemessage
-	compare VAR_RESULT, 0
-	goto_if_eq StrangeHouse_EventScript_StrangePC_10
-	compare VAR_RESULT, 1
-	goto_if_eq StrangeHouse_EventScript_StrangePC_11
-	compare VAR_RESULT, 2
-	goto_if_eq StrangeHouse_EventScript_StrangePC_12
-	compare VAR_RESULT, 3
-	goto_if_eq StrangeHouse_EventScript_StrangePC_13
-	compare VAR_RESULT, 4
-	goto_if_eq StrangeHouse_EventScript_StrangePC_14
-	compare VAR_RESULT, 5
-	goto_if_eq StrangeHouse_EventScript_StrangePC_15
-	compare VAR_RESULT, 6
-	goto_if_eq StrangeHouse_EventScript_StrangePC_16
-	compare VAR_RESULT, 7
-	goto_if_eq StrangeHouse_EventScript_StrangePC_17
-	compare VAR_RESULT, 8
-	goto_if_eq StrangeHouse_EventScript_StrangePC_18
+	switch VAR_RESULT
+	case 0, StrangeHouse_EventScript_StrangePC_11
+	case 1, StrangeHouse_EventScript_StrangePC_12
+	case 2, StrangeHouse_EventScript_StrangePC_13
+	case 3, StrangeHouse_EventScript_StrangePC_14
+	case 4, StrangeHouse_EventScript_StrangePC_15
+	case 5, StrangeHouse_EventScript_StrangePC_16
+	case 6, StrangeHouse_EventScript_StrangePC_17
+	case 7, StrangeHouse_EventScript_StrangePC_18
+	case 8, StrangeHouse_EventScript_StrangePC_19
+	case 9, StrangeHouse_EventScript_StrangePC_20
+	case 10, StrangeHouse_EventScript_StrangePC_21
 StrangeHouse_EventScript_StrangePC_9:
+	call StarterFade
 	release
 	goto StrangeHouse_EventScript_StrangePC_1
 
@@ -61,55 +55,53 @@ StrangeHouse_EventScript_StrangePC_6:
 	goto_if_unset STRANGEHOUSE_BALL_THREE, StrangeHouse_EventScript_StrangePC_2
 	goto StrangeHouse_EventScript_StrangePC_3
 
-StrangeHouse_EventScript_StrangePC_10:
-	call StarterFade
+StrangeHouse_EventScript_StrangePC_11:
 	setvar STRANGEHOUSE_REGION, 0
 	goto StrangeHouse_EventScript_StrangePC_9
 
-StrangeHouse_EventScript_StrangePC_11:
-	call StarterFade
+StrangeHouse_EventScript_StrangePC_12:
 	setvar STRANGEHOUSE_REGION, 1
 	goto StrangeHouse_EventScript_StrangePC_9
 
-StrangeHouse_EventScript_StrangePC_12:
-	call StarterFade
+StrangeHouse_EventScript_StrangePC_13:
 	setvar STRANGEHOUSE_REGION, 2
 	goto StrangeHouse_EventScript_StrangePC_9
 
-StrangeHouse_EventScript_StrangePC_13:
-	call StarterFade
+StrangeHouse_EventScript_StrangePC_14:
 	setvar STRANGEHOUSE_REGION, 3
 	goto StrangeHouse_EventScript_StrangePC_9
 
-StrangeHouse_EventScript_StrangePC_14:
-	call StarterFade
+StrangeHouse_EventScript_StrangePC_15:
 	setvar STRANGEHOUSE_REGION, 4
 	goto StrangeHouse_EventScript_StrangePC_9
 
-StrangeHouse_EventScript_StrangePC_15:
-	call StarterFade
+StrangeHouse_EventScript_StrangePC_16:
 	setvar STRANGEHOUSE_REGION, 5
 	goto StrangeHouse_EventScript_StrangePC_9
 
-StrangeHouse_EventScript_StrangePC_16:
-	call StarterFade
+StrangeHouse_EventScript_StrangePC_17:
 	setvar STRANGEHOUSE_REGION, 6
 	goto StrangeHouse_EventScript_StrangePC_9
 
-StrangeHouse_EventScript_StrangePC_17:
-	call StarterFade
+StrangeHouse_EventScript_StrangePC_18:
 	setvar STRANGEHOUSE_REGION, 7
 	goto StrangeHouse_EventScript_StrangePC_9
 
-StrangeHouse_EventScript_StrangePC_18:
-	call StarterFade
+StrangeHouse_EventScript_StrangePC_19:
 	setvar STRANGEHOUSE_REGION, 8
+	goto StrangeHouse_EventScript_StrangePC_9
+
+StrangeHouse_EventScript_StrangePC_20:
+	setvar STRANGEHOUSE_REGION, 9
+	goto StrangeHouse_EventScript_StrangePC_9
+
+StrangeHouse_EventScript_StrangePC_21:
+	setvar STRANGEHOUSE_REGION, 10
 	goto StrangeHouse_EventScript_StrangePC_9
 
 
 StarterFade::
 	fadescreen FADE_TO_BLACK
-	playfanfare MUS_MOVE_DELETED
 	delay 10
 	fadescreen FADE_FROM_BLACK
 	return
@@ -135,6 +127,7 @@ StrangeHouse_EventScript_PokeballOne_2:
 	case 5, StrangeHouse_EventScript_PokeballOne_15
 	case 6, StrangeHouse_EventScript_PokeballOne_16
 	case 7, StrangeHouse_EventScript_PokeballOne_17
+	case 9, StrangeHouse_EventScript_PokeballOne_18
 	goto StrangeHouse_EventScript_PokeballOne_1
 
 StrangeHouse_EventScript_PokeballOne_4:
@@ -177,6 +170,10 @@ StrangeHouse_EventScript_PokeballOne_17:
 	call StrangeHouse_EventScript_Grookey
 	goto StrangeHouse_EventScript_PokeballOne_1
 
+StrangeHouse_EventScript_PokeballOne_18:
+	call StrangeHouse_EventScript_SquirtleSevii
+	goto StrangeHouse_EventScript_PokeballOne_1
+
 
 StrangeHouse_EventScript_PokeballTwo::
 	lockall
@@ -198,6 +195,7 @@ StrangeHouse_EventScript_PokeballTwo_2:
 	case 5, StrangeHouse_EventScript_PokeballTwo_15
 	case 6, StrangeHouse_EventScript_PokeballTwo_16
 	case 7, StrangeHouse_EventScript_PokeballTwo_17
+	case 9, StrangeHouse_EventScript_PokeballTwo_18
 	goto StrangeHouse_EventScript_PokeballTwo_1
 
 StrangeHouse_EventScript_PokeballTwo_4:
@@ -240,6 +238,10 @@ StrangeHouse_EventScript_PokeballTwo_17:
 	call StrangeHouse_EventScript_Scorbunny
 	goto StrangeHouse_EventScript_PokeballTwo_1
 
+StrangeHouse_EventScript_PokeballTwo_18:
+	call StrangeHouse_EventScript_BulbasaurSevii
+	goto StrangeHouse_EventScript_PokeballTwo_1
+
 
 StrangeHouse_EventScript_PokeballThree::
 	lockall
@@ -261,6 +263,7 @@ StrangeHouse_EventScript_PokeballThree_2:
 	case 5, StrangeHouse_EventScript_PokeballThree_15
 	case 6, StrangeHouse_EventScript_PokeballThree_16
 	case 7, StrangeHouse_EventScript_PokeballThree_17
+	case 9, StrangeHouse_EventScript_PokeballThree_18
 	goto StrangeHouse_EventScript_PokeballThree_1
 
 StrangeHouse_EventScript_PokeballThree_4:
@@ -301,6 +304,10 @@ StrangeHouse_EventScript_PokeballThree_16:
 
 StrangeHouse_EventScript_PokeballThree_17:
 	call StrangeHouse_EventScript_Sobble
+	goto StrangeHouse_EventScript_PokeballThree_1
+
+StrangeHouse_EventScript_PokeballThree_18:
+	call StrangeHouse_EventScript_CharmanderSevii
 	goto StrangeHouse_EventScript_PokeballThree_1
 
 
@@ -352,20 +359,12 @@ StrangeHouse_EventScript_Bulbasaur_1:
 StrangeHouse_EventScript_Bulbasaur_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Bulbasaur_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_TWO
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Bulbasaur_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Bulbasaur_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_TWO
 	call NicknameBoxMon
 	return
 
@@ -391,20 +390,12 @@ StrangeHouse_EventScript_Charmander_1:
 StrangeHouse_EventScript_Charmander_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Charmander_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_THREE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Charmander_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Charmander_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_THREE
 	call NicknameBoxMon
 	return
 
@@ -430,20 +421,12 @@ StrangeHouse_EventScript_Squirtle_1:
 StrangeHouse_EventScript_Squirtle_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Squirtle_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Squirtle_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Squirtle_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -469,26 +452,18 @@ StrangeHouse_EventScript_Chikorita_1:
 StrangeHouse_EventScript_Chikorita_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Chikorita_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_TWO
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Chikorita_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Chikorita_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_TWO
 	call NicknameBoxMon
 	return
 
 
 StrangeHouse_EventScript_Cyndaquil::
-	showmonpic SPECIES_CYNDAQUIL, 10, 3
+	showmonpic SPECIES_MEWTWO, 10, 3
 	msgbox StrangeHouse_EventScript_Cyndaquil_Text_0, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq StrangeHouse_EventScript_Cyndaquil_1
@@ -496,7 +471,7 @@ StrangeHouse_EventScript_Cyndaquil::
 	return
 
 StrangeHouse_EventScript_Cyndaquil_1:
-	givemon SPECIES_CYNDAQUIL, 5
+	givemon SPECIES_BERGMITE, 99, ITEM_RARE_CANDY
 	compare VAR_RESULT, MON_GIVEN_TO_PARTY
 	goto_if_eq StrangeHouse_EventScript_Cyndaquil_4
 	compare VAR_RESULT, MON_GIVEN_TO_PC
@@ -508,20 +483,12 @@ StrangeHouse_EventScript_Cyndaquil_1:
 StrangeHouse_EventScript_Cyndaquil_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Cyndaquil_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_THREE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Cyndaquil_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Cyndaquil_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_THREE
 	call NicknameBoxMon
 	return
 
@@ -547,20 +514,12 @@ StrangeHouse_EventScript_Totodile_1:
 StrangeHouse_EventScript_Totodile_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Totodile_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Totodile_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Totodile_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -586,20 +545,12 @@ StrangeHouse_EventScript_Treecko_1:
 StrangeHouse_EventScript_Treecko_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Treecko_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_TWO
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Treecko_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Treecko_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_TWO
 	call NicknameBoxMon
 	return
 
@@ -625,20 +576,12 @@ StrangeHouse_EventScript_Torchic_1:
 StrangeHouse_EventScript_Torchic_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Torchic_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_THREE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Torchic_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Torchic_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_THREE
 	call NicknameBoxMon
 	return
 
@@ -664,20 +607,12 @@ StrangeHouse_EventScript_Mudkip_1:
 StrangeHouse_EventScript_Mudkip_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Mudkip_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Mudkip_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Mudkip_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -703,20 +638,12 @@ StrangeHouse_EventScript_Turtwig_1:
 StrangeHouse_EventScript_Turtwig_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Turtwig_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Turtwig_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Turtwig_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -742,20 +669,12 @@ StrangeHouse_EventScript_Chimchar_1:
 StrangeHouse_EventScript_Chimchar_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Chimchar_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Chimchar_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Chimchar_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -781,20 +700,12 @@ StrangeHouse_EventScript_Piplup_1:
 StrangeHouse_EventScript_Piplup_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Piplup_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Piplup_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Piplup_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -820,20 +731,12 @@ StrangeHouse_EventScript_Snivy_1:
 StrangeHouse_EventScript_Snivy_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Snivy_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Snivy_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Snivy_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -859,20 +762,12 @@ StrangeHouse_EventScript_Tepig_1:
 StrangeHouse_EventScript_Tepig_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Tepig_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Tepig_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Tepig_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -898,20 +793,12 @@ StrangeHouse_EventScript_Oshawott_1:
 StrangeHouse_EventScript_Oshawott_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Oshawott_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Oshawott_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Oshawott_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -937,20 +824,12 @@ StrangeHouse_EventScript_Chespin_1:
 StrangeHouse_EventScript_Chespin_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Chespin_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Chespin_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Chespin_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -976,20 +855,12 @@ StrangeHouse_EventScript_Fennekin_1:
 StrangeHouse_EventScript_Fennekin_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Fennekin_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Fennekin_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Fennekin_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -1015,20 +886,12 @@ StrangeHouse_EventScript_Froakie_1:
 StrangeHouse_EventScript_Froakie_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Froakie_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Froakie_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Froakie_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -1054,20 +917,12 @@ StrangeHouse_EventScript_Rowlet_1:
 StrangeHouse_EventScript_Rowlet_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Rowlet_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Rowlet_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Rowlet_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -1093,20 +948,12 @@ StrangeHouse_EventScript_Litten_1:
 StrangeHouse_EventScript_Litten_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Litten_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Litten_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Litten_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -1132,20 +979,12 @@ StrangeHouse_EventScript_Popplio_1:
 StrangeHouse_EventScript_Popplio_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Popplio_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Popplio_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Popplio_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -1171,20 +1010,12 @@ StrangeHouse_EventScript_Grookey_1:
 StrangeHouse_EventScript_Grookey_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Grookey_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Grookey_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Grookey_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -1210,20 +1041,12 @@ StrangeHouse_EventScript_Scorbunny_1:
 StrangeHouse_EventScript_Scorbunny_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Scorbunny_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Scorbunny_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Scorbunny_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknameBoxMon
 	return
 
@@ -1249,20 +1072,105 @@ StrangeHouse_EventScript_Sobble_1:
 StrangeHouse_EventScript_Sobble_4:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Sobble_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
 	call NicknamePartyMon
 	return
 
 StrangeHouse_EventScript_Sobble_5:
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox StrangeHouse_EventScript_Sobble_Text_1
-	removeobject 1
-	removeobject 2
-	removeobject 3
-	setflag STRANGEHOUSE_BALL_ONE
+	call NicknameBoxMon
+	return
+
+
+StrangeHouse_EventScript_CharmanderSevii::
+	showmonpic SPECIES_CHARMANDER_SEVII, 10, 3
+	msgbox StrangeHouse_EventScript_Charmander_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq StrangeHouse_EventScript_CharmanderSevii_1
+	hidemonpic
+	return
+
+StrangeHouse_EventScript_CharmanderSevii_1:
+	givemon SPECIES_CHARMANDER_SEVII, 5
+	compare VAR_RESULT, MON_GIVEN_TO_PARTY
+	goto_if_eq StrangeHouse_EventScript_CharmanderSevii_4
+	compare VAR_RESULT, MON_GIVEN_TO_PC
+	goto_if_eq StrangeHouse_EventScript_CharmanderSevii_5
+	hidemonpic
+	msgbox StrangeHouse_EventScript_Bulbasaur_Text_2
+	return
+
+StrangeHouse_EventScript_CharmanderSevii_4:
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox StrangeHouse_EventScript_Charmander_Text_1
+	call NicknamePartyMon
+	return
+
+StrangeHouse_EventScript_CharmanderSevii_5:
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox StrangeHouse_EventScript_Charmander_Text_1
+	call NicknameBoxMon
+	return
+
+
+StrangeHouse_EventScript_BulbasaurSevii::
+	showmonpic SPECIES_BULBASAUR_SEVII, 10, 3
+	msgbox StrangeHouse_EventScript_Bulbasaur_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq StrangeHouse_EventScript_BulbasaurSevii_1
+	hidemonpic
+	return
+
+StrangeHouse_EventScript_BulbasaurSevii_1:
+	givemon SPECIES_BULBASAUR_SEVII, 5
+	compare VAR_RESULT, MON_GIVEN_TO_PARTY
+	goto_if_eq StrangeHouse_EventScript_BulbasaurSevii_4
+	compare VAR_RESULT, MON_GIVEN_TO_PC
+	goto_if_eq StrangeHouse_EventScript_BulbasaurSevii_5
+	hidemonpic
+	msgbox StrangeHouse_EventScript_Bulbasaur_Text_2
+	return
+
+StrangeHouse_EventScript_BulbasaurSevii_4:
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox StrangeHouse_EventScript_Bulbasaur_Text_1
+	call NicknamePartyMon
+	return
+
+StrangeHouse_EventScript_BulbasaurSevii_5:
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox StrangeHouse_EventScript_Bulbasaur_Text_1
+	call NicknameBoxMon
+	return
+
+
+StrangeHouse_EventScript_SquirtleSevii::
+	showmonpic SPECIES_SQUIRTLE_SEVII, 10, 3
+	msgbox StrangeHouse_EventScript_Squirtle_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq StrangeHouse_EventScript_SquirtleSevii_1
+	hidemonpic
+	return
+
+StrangeHouse_EventScript_SquirtleSevii_1:
+	givemon SPECIES_SQUIRTLE_SEVII, 5
+	compare VAR_RESULT, MON_GIVEN_TO_PARTY
+	goto_if_eq StrangeHouse_EventScript_SquirtleSevii_4
+	compare VAR_RESULT, MON_GIVEN_TO_PC
+	goto_if_eq StrangeHouse_EventScript_SquirtleSevii_5
+	hidemonpic
+	msgbox StrangeHouse_EventScript_Bulbasaur_Text_2
+	return
+
+StrangeHouse_EventScript_SquirtleSevii_4:
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox StrangeHouse_EventScript_Squirtle_Text_1
+	call NicknamePartyMon
+	return
+
+StrangeHouse_EventScript_SquirtleSevii_5:
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox StrangeHouse_EventScript_Squirtle_Text_1
 	call NicknameBoxMon
 	return
 
@@ -1274,6 +1182,39 @@ StrangeHouse_EventScript_StrangePC_Text_0:
 	.string "Where are you from?$"
 
 StrangeHouse_EventScript_StrangePC_Text_1:
+	.string "Kanto$"
+
+StrangeHouse_EventScript_StrangePC_Text_2:
+	.string "Johto$"
+
+StrangeHouse_EventScript_StrangePC_Text_3:
+	.string "Hoenn$"
+
+StrangeHouse_EventScript_StrangePC_Text_4:
+	.string "Sinnoh$"
+
+StrangeHouse_EventScript_StrangePC_Text_5:
+	.string "Unova$"
+
+StrangeHouse_EventScript_StrangePC_Text_6:
+	.string "Kalos$"
+
+StrangeHouse_EventScript_StrangePC_Text_7:
+	.string "Alola$"
+
+StrangeHouse_EventScript_StrangePC_Text_8:
+	.string "Galar$"
+
+StrangeHouse_EventScript_StrangePC_Text_9:
+	.string "Paldea$"
+
+StrangeHouse_EventScript_StrangePC_Text_10:
+	.string "Sevii Isles$"
+
+StrangeHouse_EventScript_StrangePC_Text_11:
+	.string "Hisui$"
+
+StrangeHouse_EventScript_StrangePC_Text_12:
 	.string "Take care of your Pokémon.$"
 
 StrangeHouse_EventScript_PokeballOne_Text_0:

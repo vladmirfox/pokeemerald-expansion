@@ -1019,6 +1019,7 @@ extern const u8 gText_InBagVar1[];
 extern const u8 gText_Var1AndYouWantedVar2[];
 extern const u8 gText_HereYouGoThankYou[];
 extern const u8 gText_NoMoreRoomForThis[];
+extern const u8 gText_YouAlreadyHaveThis[];
 extern const u8 gText_ThankYouIllSendItHome[];
 extern const u8 gText_ThanksIllSendItHome[];
 extern const u8 gText_SpaceForVar1Full[];
@@ -3044,7 +3045,7 @@ extern const u8 gText_RegionKalos[];
 extern const u8 gText_RegionAlola[];
 extern const u8 gText_RegionGalar[];
 extern const u8 gText_RegionPaldea[];
+extern const u8 gText_RegionSevii[];
 extern const u8 gText_RegionHisui[];
-extern const u8 gText_RegionUltra[];
 
 #endif // GUARD_STRINGS_H

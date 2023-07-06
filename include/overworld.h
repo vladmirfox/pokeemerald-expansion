@@ -155,4 +155,18 @@ bool32 Overworld_SendKeysToLinkIsRunning(void);
 bool32 IsSendingKeysOverCable(void);
 void ClearLinkPlayerObjectEvents(void);
 
+enum{
+    REGION_KANTO,
+    REGION_JOHTO,
+    REGION_HOENN,
+    REGION_SINNOH,
+    REGION_UNOVA,
+    REGION_KALOS,
+    REGION_ALOLA,
+    REGION_GALAR,
+    REGION_PALDEA,
+    REGION_SEVII,
+    REGION_HISUI,
+};
+
 #endif // GUARD_OVERWORLD_H

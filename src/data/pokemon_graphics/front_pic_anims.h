@@ -10488,6 +10488,8 @@ static const union AnimCmd sAnim_EnamorusTherian_1[] =
 };
 #endif
 
+
+
 #define SINGLE_ANIMATION(name)                      \
 static const union AnimCmd *const sAnims_##name[] = \
 {                                                   \
@@ -11636,6 +11638,9 @@ SINGLE_ANIMATION(LycanrocDusk);
 #if P_GEN_8_POKEMON == TRUE
 SINGLE_ANIMATION(EnamorusTherian);
 #endif
+// Begin Magiya Custom Additions //
+    // TBA
+// End Magiya Custom Additions //
 
 const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
 {
@@ -11932,7 +11937,6 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     [SPECIES_SKITTY]      = sAnims_Skitty,
     [SPECIES_DELCATTY]    = sAnims_Delcatty,
     [SPECIES_KECLEON]     = sAnims_Kecleon,
-
     [SPECIES_BALTOY]      = sAnims_Baltoy,
     [SPECIES_CLAYDOL]     = sAnims_Claydol,
     [SPECIES_NOSEPASS]    = sAnims_Nosepass,
@@ -12883,31 +12887,37 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     [SPECIES_MAGEARNA_ORIGINAL_COLOR] = sAnims_Magearna,
 #endif
 #if P_GEN_8_POKEMON == TRUE
-    [SPECIES_CRAMORANT_GULPING] = sAnims_Cramorant,
-    [SPECIES_CRAMORANT_GORGING] = sAnims_Cramorant,
-    [SPECIES_TOXTRICITY_LOW_KEY] = sAnims_Toxtricity,
-    [SPECIES_SINISTEA_ANTIQUE] = sAnims_Sinistea,
-    [SPECIES_POLTEAGEIST_ANTIQUE] = sAnims_Polteageist,
-    [SPECIES_ALCREMIE_RUBY_CREAM] = sAnims_Alcremie,
-    [SPECIES_ALCREMIE_MATCHA_CREAM] = sAnims_Alcremie,
-    [SPECIES_ALCREMIE_MINT_CREAM] = sAnims_Alcremie,
-    [SPECIES_ALCREMIE_LEMON_CREAM] = sAnims_Alcremie,
-    [SPECIES_ALCREMIE_SALTED_CREAM] = sAnims_Alcremie,
-    [SPECIES_ALCREMIE_RUBY_SWIRL] = sAnims_Alcremie,
-    [SPECIES_ALCREMIE_CARAMEL_SWIRL] = sAnims_Alcremie,
-    [SPECIES_ALCREMIE_RAINBOW_SWIRL] = sAnims_Alcremie,
-    [SPECIES_EISCUE_NOICE_FACE] = sAnims_Eiscue,
-    [SPECIES_INDEEDEE_FEMALE] = sAnims_Indeedee,
-    [SPECIES_MORPEKO_HANGRY] = sAnims_Morpeko,
-    [SPECIES_ZACIAN_CROWNED_SWORD] = sAnims_Zacian,
-    [SPECIES_ZAMAZENTA_CROWNED_SHIELD] = sAnims_Zamazenta,
-    [SPECIES_ETERNATUS_ETERNAMAX] = sAnims_Eternatus,
-    [SPECIES_URSHIFU_RAPID_STRIKE_STYLE] = sAnims_Urshifu,
-    [SPECIES_ZARUDE_DADA] = sAnims_Zarude,
-    [SPECIES_CALYREX_ICE_RIDER] = sAnims_Calyrex,
-    [SPECIES_CALYREX_SHADOW_RIDER] = sAnims_Calyrex,
-    [SPECIES_ENAMORUS_THERIAN] = sAnims_EnamorusTherian,
-    [SPECIES_BASCULEGION_FEMALE] = sAnims_Basculegion,
+    [SPECIES_CRAMORANT_GULPING]                 = sAnims_Cramorant,
+    [SPECIES_CRAMORANT_GORGING]                 = sAnims_Cramorant,
+    [SPECIES_TOXTRICITY_LOW_KEY]                = sAnims_Toxtricity,
+    [SPECIES_SINISTEA_ANTIQUE]                  = sAnims_Sinistea,
+    [SPECIES_POLTEAGEIST_ANTIQUE]               = sAnims_Polteageist,
+    [SPECIES_ALCREMIE_RUBY_CREAM]               = sAnims_Alcremie,
+    [SPECIES_ALCREMIE_MATCHA_CREAM]             = sAnims_Alcremie,
+    [SPECIES_ALCREMIE_MINT_CREAM]               = sAnims_Alcremie,
+    [SPECIES_ALCREMIE_LEMON_CREAM]              = sAnims_Alcremie,
+    [SPECIES_ALCREMIE_SALTED_CREAM]             = sAnims_Alcremie,
+    [SPECIES_ALCREMIE_RUBY_SWIRL]               = sAnims_Alcremie,
+    [SPECIES_ALCREMIE_CARAMEL_SWIRL]            = sAnims_Alcremie,
+    [SPECIES_ALCREMIE_RAINBOW_SWIRL]            = sAnims_Alcremie,
+    [SPECIES_EISCUE_NOICE_FACE]                 = sAnims_Eiscue,
+    [SPECIES_INDEEDEE_FEMALE]                   = sAnims_Indeedee,
+    [SPECIES_MORPEKO_HANGRY]                    = sAnims_Morpeko,
+    [SPECIES_ZACIAN_CROWNED_SWORD]              = sAnims_Zacian,
+    [SPECIES_ZAMAZENTA_CROWNED_SHIELD]          = sAnims_Zamazenta,
+    [SPECIES_ETERNATUS_ETERNAMAX]               = sAnims_Eternatus,
+    [SPECIES_URSHIFU_RAPID_STRIKE_STYLE]        = sAnims_Urshifu,
+    [SPECIES_ZARUDE_DADA]                       = sAnims_Zarude,
+    [SPECIES_CALYREX_ICE_RIDER]                 = sAnims_Calyrex,
+    [SPECIES_CALYREX_SHADOW_RIDER]              = sAnims_Calyrex,
+    [SPECIES_ENAMORUS_THERIAN]                  = sAnims_EnamorusTherian,
+    [SPECIES_BASCULEGION_FEMALE]                = sAnims_Basculegion,
 #endif
-    [SPECIES_EGG]         = sAnims_Egg,
+// Begin Magiya Custom Additions //
+    //Seviian Forms
+    [SPECIES_SQUIRTLE_SEVII]                    = sAnims_Squirtle,
+    [SPECIES_BULBASAUR_SEVII]                   = sAnims_Bulbasaur,
+    [SPECIES_CHARMANDER_SEVII]                  = sAnims_Charmander,
+// End Magiya Custom Additions //
+    [SPECIES_EGG]                               = sAnims_Egg,
 };

@@ -1359,5 +1359,11 @@ const struct MonCoords gMonBackPicCoords[] =
     // Basculegion
     [SPECIES_BASCULEGION_FEMALE]           = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
 #endif
+// Begin Magiya Custom Additions //
+    // Seviian Forms
+    [SPECIES_SQUIRTLE_SEVII]               = { .size = MON_COORDS_SIZE(48, 48), .y_offset =  9 },
+    [SPECIES_BULBASAUR_SEVII]              = { .size = MON_COORDS_SIZE(56, 40), .y_offset = 13 },
+    [SPECIES_CHARMANDER_SEVII]             = { .size = MON_COORDS_SIZE(48, 48), .y_offset =  9 },
+// End Magiya Custom Additions //
     [SPECIES_EGG]                          = { .size = MON_COORDS_SIZE(24, 24), .y_offset = 20 },
 };

@@ -1,7 +1,7 @@
 raw `
 LittlerootTown_StrangeHouse_MapScripts::
 	.byte 0
-    `
+`
 
 script LittlerootTown_StrangeHouse_Fridge {
 	lockall
@@ -20,58 +20,35 @@ script StrangeHouse_EventScript_BallDefault{
 script StrangeHouse_EventScript_StrangePC{
     if(!(flag(STRANGEHOUSE_BALL_ONE) || flag(STRANGEHOUSE_BALL_TWO) || flag(STRANGEHOUSE_BALL_THREE))){
         lock
-        faceplayer
         message("Where are you from?")
-        multichoice(25, 0, MULTI_REGION_CHOICE, 0)
+        dynmultichoice(25, 3, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, "Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alola", "Galar", "Paldea", "Sevii Isles", "Hisui")
         closemessage
-        if (var(VAR_RESULT) == 0){
-            call(StarterFade)
-            setvar(STRANGEHOUSE_REGION, 0)
+        switch(var(VAR_RESULT)){
+            case  0: setvar(STRANGEHOUSE_REGION,  0)
+            case  1: setvar(STRANGEHOUSE_REGION,  1)
+            case  2: setvar(STRANGEHOUSE_REGION,  2)
+            case  3: setvar(STRANGEHOUSE_REGION,  3)
+            case  4: setvar(STRANGEHOUSE_REGION,  4)
+            case  5: setvar(STRANGEHOUSE_REGION,  5)
+            case  6: setvar(STRANGEHOUSE_REGION,  6)
+            case  7: setvar(STRANGEHOUSE_REGION,  7)
+            case  8: setvar(STRANGEHOUSE_REGION,  8)
+            case  9: setvar(STRANGEHOUSE_REGION,  9)
+            case 10: setvar(STRANGEHOUSE_REGION, 10)
         }
-        elif (var(VAR_RESULT) == 1){
-            call(StarterFade)
-            setvar(STRANGEHOUSE_REGION, 1)
-        }
-        elif (var(VAR_RESULT) == 2){
-            call(StarterFade)
-            setvar(STRANGEHOUSE_REGION, 2)
-        }
-        elif (var(VAR_RESULT) == 3){
-            call(StarterFade)
-            setvar(STRANGEHOUSE_REGION, 3)
-        }
-        elif (var(VAR_RESULT) == 4){
-            call(StarterFade)
-            setvar(STRANGEHOUSE_REGION, 4)
-        }
-        elif (var(VAR_RESULT) == 5){
-            call(StarterFade)
-            setvar(STRANGEHOUSE_REGION, 5)
-        }
-        elif (var(VAR_RESULT) == 6){
-            call(StarterFade)
-            setvar(STRANGEHOUSE_REGION, 6)
-        }
-        elif (var(VAR_RESULT) == 7){
-            call(StarterFade)
-            setvar(STRANGEHOUSE_REGION, 7)
-        }
-        elif (var(VAR_RESULT) == 8){
-            call(StarterFade)
-            setvar(STRANGEHOUSE_REGION, 8)
-        }
+        call(StarterFade)
         release
     }
     else{
         msgbox("Take care of your Pokémon.", MSGBOX_NPC)
-//        setflag(FLAG_SYS_POKEMON_GET)     // in case this script is used to replace birch's bag
+//        //setflag(FLAG_SYS_POKEMON_GET)     // in case this script is used to replace birch's bag
     }
     end
 }
 
 script StarterFade{
     fadescreen(FADE_TO_BLACK)
-    playfanfare(MUS_MOVE_DELETED)
+//    playfanfare(MUS_MOVE_DELETED)
     delay(10)
     fadescreen(FADE_FROM_BLACK)
     return
@@ -81,14 +58,17 @@ script StrangeHouse_EventScript_PokeballOne{
     lockall
     if(!(flag(STRANGEHOUSE_BALL_ONE) || flag(STRANGEHOUSE_BALL_TWO) || flag(STRANGEHOUSE_BALL_THREE))){
         switch(var(STRANGEHOUSE_REGION)){
-            case 0: call(StrangeHouse_EventScript_Bulbasaur)
-            case 1: call(StrangeHouse_EventScript_Chikorita)
-            case 2: call(StrangeHouse_EventScript_Treecko)
-            case 3: call(StrangeHouse_EventScript_Turtwig)
-            case 4: call(StrangeHouse_EventScript_Snivy)
-            case 5: call(StrangeHouse_EventScript_Chespin)
-            case 6: call(StrangeHouse_EventScript_Rowlet)
-            case 7: call(StrangeHouse_EventScript_Grookey)
+            case  0: call(StrangeHouse_EventScript_Bulbasaur)
+            case  1: call(StrangeHouse_EventScript_Chikorita)
+            case  2: call(StrangeHouse_EventScript_Treecko)
+            case  3: call(StrangeHouse_EventScript_Turtwig)
+            case  4: call(StrangeHouse_EventScript_Snivy)
+            case  5: call(StrangeHouse_EventScript_Chespin)
+            case  6: call(StrangeHouse_EventScript_Rowlet)
+            case  7: call(StrangeHouse_EventScript_Grookey)
+//            case  8: call(StrangeHouse_EventScript_Sprigatito)
+            case  9: call(StrangeHouse_EventScript_SquirtleSevii)
+//            case 10: call(StrangeHouse_EventScript_RowletHisui)
         }
    }
     else{
@@ -103,14 +83,17 @@ script StrangeHouse_EventScript_PokeballTwo{
     lockall
     if(!(flag(STRANGEHOUSE_BALL_ONE) || flag(STRANGEHOUSE_BALL_TWO) || flag(STRANGEHOUSE_BALL_THREE))){
         switch(var(STRANGEHOUSE_REGION)){
-            case 0: call(StrangeHouse_EventScript_Charmander)
-			case 1: call(StrangeHouse_EventScript_Cyndaquil)
-			case 2: call(StrangeHouse_EventScript_Torchic)
-			case 3: call(StrangeHouse_EventScript_Chimchar)
-			case 4: call(StrangeHouse_EventScript_Tepig)
-			case 5: call(StrangeHouse_EventScript_Fennekin)
-			case 6: call(StrangeHouse_EventScript_Litten)
-			case 7: call(StrangeHouse_EventScript_Scorbunny)
+            case  0: call(StrangeHouse_EventScript_Charmander)
+			case  1: call(StrangeHouse_EventScript_Cyndaquil)
+			case  2: call(StrangeHouse_EventScript_Torchic)
+			case  3: call(StrangeHouse_EventScript_Chimchar)
+			case  4: call(StrangeHouse_EventScript_Tepig)
+			case  5: call(StrangeHouse_EventScript_Fennekin)
+			case  6: call(StrangeHouse_EventScript_Litten)
+			case  7: call(StrangeHouse_EventScript_Scorbunny)
+//            case  8: call(StrangeHouse_EventScript_Fuecoco)
+            case  9: call(StrangeHouse_EventScript_BulbasaurSevii)
+//            case 10: call(StrangeHosue_EventScript_CyndaquilHisui)
         }
     }
     else{
@@ -125,14 +108,17 @@ script StrangeHouse_EventScript_PokeballThree{
     lockall
     if(!(flag(STRANGEHOUSE_BALL_ONE) || flag(STRANGEHOUSE_BALL_TWO) || flag(STRANGEHOUSE_BALL_THREE))){
         switch(var(STRANGEHOUSE_REGION)){
-            case 0: call(StrangeHouse_EventScript_Squirtle)
-            case 1: call(StrangeHouse_EventScript_Totodile)
-            case 2: call(StrangeHouse_EventScript_Mudkip)
-            case 3: call(StrangeHouse_EventScript_Piplup)
-            case 4: call(StrangeHouse_EventScript_Oshawott)
-            case 5: call(StrangeHouse_EventScript_Froakie)
-            case 6: call(StrangeHouse_EventScript_Popplio)
-            case 7: call(StrangeHouse_EventScript_Sobble)
+            case  0: call(StrangeHouse_EventScript_Squirtle)
+            case  1: call(StrangeHouse_EventScript_Totodile)
+            case  2: call(StrangeHouse_EventScript_Mudkip)
+            case  3: call(StrangeHouse_EventScript_Piplup)
+            case  4: call(StrangeHouse_EventScript_Oshawott)
+            case  5: call(StrangeHouse_EventScript_Froakie)
+            case  6: call(StrangeHouse_EventScript_Popplio)
+            case  7: call(StrangeHouse_EventScript_Sobble)
+//            case  8: call(StrangeHouse_EventScript_Quaxly)
+            case  9: call(StrangeHouse_EventScript_CharmanderSevii)
+//            case 10: call(StrangeHouse_EventScript_OshawottHisui)
         }
     }
     else{
@@ -169,19 +155,19 @@ script StrangeHouse_EventScript_Bulbasaur{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Bulbasaur")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_TWO)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_TWO)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Bulbasaur")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_TWO)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_TWO)
             call(NicknameBoxMon)
         }
         else{
@@ -202,19 +188,19 @@ script StrangeHouse_EventScript_Charmander{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Charmander")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_THREE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_THREE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Charmander")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_THREE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_THREE)
             call(NicknameBoxMon)
         }
         else{
@@ -235,19 +221,19 @@ script StrangeHouse_EventScript_Squirtle{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Squirtle")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Squirtle")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -268,19 +254,19 @@ script StrangeHouse_EventScript_Chikorita{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Chikorita")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_TWO)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_TWO)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Chikorita")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_TWO)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_TWO)
             call(NicknameBoxMon)
         }
         else{
@@ -294,26 +280,28 @@ script StrangeHouse_EventScript_Chikorita{
 }
 
 script StrangeHouse_EventScript_Cyndaquil{
-    showmonpic(SPECIES_CYNDAQUIL, 10,3)
+//    showmonpic(SPECIES_CYNDAQUIL, 10,3)
+    showmonpic(SPECIES_MEWTWO, 10,3)
     msgbox("Will you take the Cyndaquil?", MSGBOX_YESNO)
     if(var(VAR_RESULT) == YES){
-        givemon(SPECIES_CYNDAQUIL, 5)
+//        givemon(SPECIES_MEWTWO, 5)
+        givemon(SPECIES_BERGMITE, 99, ITEM_RARE_CANDY)
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Cyndaquil")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_THREE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_THREE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Cyndaquil")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_THREE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_THREE)
             call(NicknameBoxMon)
         }
         else{
@@ -334,19 +322,19 @@ script StrangeHouse_EventScript_Totodile{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Totodile")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Totodile")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -367,19 +355,19 @@ script StrangeHouse_EventScript_Treecko{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Treecko")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_TWO)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_TWO)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Treecko")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_TWO)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_TWO)
             call(NicknameBoxMon)
         }
         else{
@@ -400,19 +388,19 @@ script StrangeHouse_EventScript_Torchic{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Torchic")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_THREE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_THREE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Torchic")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_THREE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_THREE)
             call(NicknameBoxMon)
         }
         else{
@@ -433,19 +421,19 @@ script StrangeHouse_EventScript_Mudkip{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Mudkip")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Mudkip")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -466,19 +454,19 @@ script StrangeHouse_EventScript_Turtwig{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Turtwig")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Turtwig")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -499,19 +487,19 @@ script StrangeHouse_EventScript_Chimchar{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Chimchar")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Chimchar")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -532,19 +520,19 @@ script StrangeHouse_EventScript_Piplup{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Piplup")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Piplup")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -565,19 +553,19 @@ script StrangeHouse_EventScript_Snivy{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Snivy")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Snivy")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -598,19 +586,19 @@ script StrangeHouse_EventScript_Tepig{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Tepig")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Tepig")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -631,19 +619,19 @@ script StrangeHouse_EventScript_Oshawott{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Oshawott")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Oshawott")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -664,19 +652,19 @@ script StrangeHouse_EventScript_Chespin{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Chespin")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Chespin")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -697,19 +685,19 @@ script StrangeHouse_EventScript_Fennekin{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Fennekin")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Fennekin")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -730,19 +718,19 @@ script StrangeHouse_EventScript_Froakie{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Froakie")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Froakie")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -763,19 +751,19 @@ script StrangeHouse_EventScript_Rowlet{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Rowlet")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Rowlet")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -796,19 +784,19 @@ script StrangeHouse_EventScript_Litten{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Litten")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Litten")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -829,19 +817,19 @@ script StrangeHouse_EventScript_Popplio{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Popplio")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Popplio")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -862,19 +850,19 @@ script StrangeHouse_EventScript_Grookey{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Grookey")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Grookey")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -895,19 +883,19 @@ script StrangeHouse_EventScript_Scorbunny{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Scorbunny")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Scorbunny")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{
@@ -928,19 +916,118 @@ script StrangeHouse_EventScript_Sobble{
         if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Sobble")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknamePartyMon)
         }
         elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
             playfanfare(MUS_OBTAIN_ITEM)
             msgbox("Recieved Sobble")
-            removeobject(1)
-            removeobject(2)
-            removeobject(3)
-            setflag(STRANGEHOUSE_BALL_ONE)
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
+            call(NicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("Your PC is full!")
+        }
+    }
+    else{
+        hidemonpic
+    }
+}
+
+script StrangeHouse_EventScript_CharmanderSevii{
+    showmonpic(SPECIES_CHARMANDER_SEVII, 10,3)
+    msgbox("Will you take the Charmander?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_CHARMANDER_SEVII, 5)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Charmander")
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
+            call(NicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Charmander")
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
+            call(NicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("Your PC is full!")
+        }
+    }
+    else{
+        hidemonpic
+    }
+}
+
+script StrangeHouse_EventScript_BulbasaurSevii{
+    showmonpic(SPECIES_BULBASAUR_SEVII, 10,3)
+    msgbox("Will you take the Bulbasaur?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_BULBASAUR_SEVII, 5)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Bulbasaur")
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
+            call(NicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Bulbasaur")
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
+            call(NicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("Your PC is full!")
+        }
+    }
+    else{
+        hidemonpic
+    }
+}
+
+script StrangeHouse_EventScript_SquirtleSevii{
+    showmonpic(SPECIES_SQUIRTLE_SEVII, 10,3)
+    msgbox("Will you take the Squirtle?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_SQUIRTLE_SEVII, 5)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Squirtle")
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
+            call(NicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Squirtle")
+            //removeobject(1)
+            //removeobject(2)
+            //removeobject(3)
+            //setflag(STRANGEHOUSE_BALL_ONE)
             call(NicknameBoxMon)
         }
         else{

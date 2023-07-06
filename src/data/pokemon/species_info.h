@@ -24733,4 +24733,72 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #endif
+// Begin Magiya Custom Additions //
+    // Seviian Forms
+    [SPECIES_SQUIRTLE_SEVII] =
+    {
+        .baseHP                 = 43,
+        .baseAttack             = 50,
+        .baseDefense            = 65,
+        .baseSpeed              = 44,
+        .baseSpAttack           = 48,
+        .baseSpDefense          = 64,
+        .types                  = { TYPE_GRASS, TYPE_GRASS },
+        .catchRate              = 45,
+        .expYield               = 63,
+        .evYield_Defense        = 1,
+        .genderRatio            = PERCENT_FEMALE(12.5),
+        .eggCycles              = 20,
+        .friendship             = STANDARD_FRIENDSHIP,
+        .growthRate             = GROWTH_MEDIUM_SLOW,
+        .eggGroups              = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1},
+        .abilities              = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_SHELL_ARMOR},
+        .bodyColor              = BODY_COLOR_GREEN,
+        .noFlip                 = FALSE,
+    },
+
+    [SPECIES_BULBASAUR_SEVII] =
+    {
+        .baseHP                 = 65,
+        .baseAttack             = 49,
+        .baseDefense            = 45,
+        .baseSpeed              = 49,
+        .baseSpAttack           = 65,
+        .baseSpDefense          = 45,
+        .types                  = { TYPE_FIRE, TYPE_FIRE },
+        .catchRate              = 45,
+        .expYield               = 64,
+        .evYield_SpAttack       = 1,
+        .genderRatio            = PERCENT_FEMALE(12.5),
+        .eggCycles              = 20,
+        .friendship             = STANDARD_FRIENDSHIP,
+        .growthRate             = GROWTH_MEDIUM_SLOW,
+        .eggGroups              = { EGG_GROUP_MONSTER, EGG_GROUP_GRASS},
+        .abilities              = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_DROUGHT},
+        .bodyColor              = BODY_COLOR_RED,
+        .noFlip                 = FALSE,
+    },
+
+    [SPECIES_CHARMANDER_SEVII] =
+    {
+        .baseHP                 = 43,
+        .baseAttack             = 60,
+        .baseDefense            = 39,
+        .baseSpeed              = 65,
+        .baseSpAttack           = 55,
+        .baseSpDefense          = 47,
+        .types                  = { TYPE_WATER, TYPE_WATER },
+        .catchRate              = 45,
+        .expYield               = 62,
+        .evYield_Speed          = 1,
+        .genderRatio            = PERCENT_FEMALE(12.5),
+        .eggCycles              = 20,
+        .friendship             = STANDARD_FRIENDSHIP,
+        .growthRate             = GROWTH_MEDIUM_SLOW,
+        .eggGroups              = { EGG_GROUP_MONSTER, EGG_GROUP_DRAGON},
+        .abilities              = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_SWIFT_SWIM},
+        .bodyColor              = BODY_COLOR_BLUE,
+        .noFlip                 = FALSE,
+    },
+// End Magiya Custom Additions //
 };
