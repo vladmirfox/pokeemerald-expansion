@@ -1267,18 +1267,9 @@ bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
     return FALSE;
 }
 
-bool32 DoesSkyBattleCancelCurrentMove(u32 gCurrentMove)
+bool32 isMoveNotAllowedInSkyBattles(u32 move)
 {
-    bool8 moveBannedFromSkyBattles = FALSE;
-
-    //if (gBattleMoves[gCurrentMove].flags & FLAG_DISABLED_IN_SKY_BATTLE)
-    if (gBattleMoves[gCurrentMove].skybattleBanned)
-        moveBannedFromSkyBattles = TRUE;
-
-    if ((gBattleStruct->rulesVariants.skyBattle) && (moveBannedFromSkyBattles)){
-        return TRUE;
-    }
-    return FALSE;
+    return ((gBattleStruct->isSkyBattle) && (gBattleMoves[gCurrentMove].skybattleBanned));
 }
 
 static void Cmd_attackcanceler(void)
@@ -1383,7 +1374,7 @@ static void Cmd_attackcanceler(void)
     }
 
     gHitMarker |= HITMARKER_OBEYS;
-    if ((NoTargetPresent(gBattlerAttacker, gCurrentMove) && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))) || (DoesSkyBattleCancelCurrentMove(gCurrentMove)))
+    if ((NoTargetPresent(gBattlerAttacker, gCurrentMove) && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))) || (isMoveNotAllowedInSkyBattles(gCurrentMove)))
     {
         gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce;
         if (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
@@ -3645,7 +3636,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
 
                 #if B_SKY_BATTLE_STRICT_MECHANICS == FALSE
-                    if (gBattleStruct->rulesVariants.skyBattle){
+                    if (gBattleStruct->isSkyBattle){
                         gBattlescriptCurrInstr++;
                     }else
                 #endif

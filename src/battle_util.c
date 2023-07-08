@@ -4014,7 +4014,7 @@ static bool32 TryChangeBattleTerrain(u32 battler, u32 statusFlag, u8 *timer)
 #if B_SKY_BATTLE_STRICT_MECHANICS == TRUE
     if (!(gFieldStatuses & statusFlag))
 #else
-    if ((!(gFieldStatuses & statusFlag) && (!gBattleStruct->rulesVariants.skyBattle)))
+    if ((!(gFieldStatuses & statusFlag) && (!gBattleStruct->isSkyBattle)))
 #endif
     {
         gFieldStatuses &= ~(STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_GRASSY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_PSYCHIC_TERRAIN);
@@ -5648,7 +5648,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_TOXIC_DEBRIS:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
             #if B_SKY_BATTLE_STRICT_MECHANICS == FALSE
-             && (!gBattleStruct->rulesVariants.skyBattle)
+             && (!gBattleStruct->isSkyBattle)
             #endif
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && IS_MOVE_PHYSICAL(gCurrentMove)
@@ -10899,14 +10899,14 @@ bool32 IsAlly(u32 battlerAtk, u32 battlerDef)
     return (GetBattlerSide(battlerAtk) == GetBattlerSide(battlerDef));
 }
 
-bool8 CanMonParticipateInSkyBattle(struct Pokemon* pokemon)
+bool8 CanMonParticipateInSkyBattle(struct Pokemon *mon)
 {
-    u16 species = GetMonData(pokemon, MON_DATA_SPECIES);
-    u16 monAbilityNum = GetMonData(pokemon, MON_DATA_ABILITY_NUM, NULL);
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u16 monAbilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
 
     bool8 hasLevitateAbility = gSpeciesInfo[species].abilities[monAbilityNum] == ABILITY_LEVITATE;
     bool8 isFlyingType = gSpeciesInfo[species].types[0] == TYPE_FLYING || gSpeciesInfo[species].types[1] == TYPE_FLYING;
-    bool8 monIsValidAndNotEgg = GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(pokemon, MON_DATA_IS_EGG);
+    bool8 monIsValidAndNotEgg = GetMonData(mon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(mon, MON_DATA_IS_EGG);
 
     if (monIsValidAndNotEgg)
     {

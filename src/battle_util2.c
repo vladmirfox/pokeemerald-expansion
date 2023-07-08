@@ -20,7 +20,7 @@ void AllocateBattleResources(void)
     gBattleStruct = AllocZeroed(sizeof(*gBattleStruct));
 
 #if B_FLAG_SKY_BATTLE
-    gBattleStruct->rulesVariants.skyBattle = FlagGet(B_FLAG_SKY_BATTLE);
+    gBattleStruct->isSkyBattle = FlagGet(B_FLAG_SKY_BATTLE);
 #endif
 
     gBattleResources = AllocZeroed(sizeof(*gBattleResources));

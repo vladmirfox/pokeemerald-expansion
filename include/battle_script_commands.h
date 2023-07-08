@@ -46,7 +46,7 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem);
 u8 GetCatchingBattler(void);
 u32 GetHighestStatId(u32 battlerId);
 bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType);
-bool32 DoesSkyBattleCancelMove(u32 gCurrentMove);
+bool32 isMoveNotAllowedInSkyBattles(u32 move);
 bool32 DoSwitchInAbilitiesItems(u32 battlerId);
 u8 GetFirstFaintedPartyIndex(u8 battlerId);
 

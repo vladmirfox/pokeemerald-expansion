@@ -239,7 +239,7 @@ void RemoveConfusionStatus(u8 battlerId);
 u8 GetBattlerGender(u8 battlerId);
 bool8 AreBattlersOfOppositeGender(u8 battler1, u8 battler2);
 u32 CalcSecondaryEffectChance(u8 battlerId, u8 secondaryEffectChance);
-bool8 CanMonParticipateInSkyBattle(struct Pokemon* pokemon);
+bool8 CanMonParticipateInSkyBattle(struct Pokemon *mon);
 bool8 IsMonBannedFromSkyBattles(u16 species);
 
 #endif // GUARD_BATTLE_UTIL_H
