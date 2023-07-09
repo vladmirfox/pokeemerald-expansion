@@ -137,6 +137,7 @@ LittlerootTown_EventScript_StepOffTruckFemale::
 LittlerootTown_EventScript_GoInsideWithMom::
 	delay 15
 	playse SE_LEDGE
+	playse SE_APPLAUSE
 	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_Movement_PlayerStepOffTruck
 	waitmovement 0
 	opendoor VAR_0x8004, VAR_0x8005
@@ -909,18 +910,6 @@ LittlerootTown_EventScript_GiveRunningShoes::
 	delay 30
 	return
 
-LittlerootTown_Text_OurNewHomeLetsGoInside:
-	.string "MOM: {PLAYER}, we're here, honey!\p"
-	.string "It must be tiring riding with our things\n"
-	.string "in the moving truck.\p"
-	.string "Well, this is LITTLEROOT TOWN.\p"
-	.string "How do you like it?\n"
-	.string "This is our new home!\p"
-	.string "It has a quaint feel, but it seems to be\n"
-	.string "an easy place to live, don't you think?\p"
-	.string "And, you get your own room, {PLAYER}!\n"
-	.string "Let's go inside.$"
-
 LittlerootTown_Text_WaitPlayer:
 	.string "MOM: Wait, {PLAYER}!$"
 
@@ -1018,3 +1007,14 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I gave you?\p"
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
+
+LittlerootTown_Text_OurNewHomeLetsGoInside::
+	.string "MOM: {PLAYER} come inside, the\n"
+	.string "Vigoroth Moving Helper Co. will take\l"
+	.string "care of the rest. How greatful of your\l"
+	.string "Dad to send them right as we are almost\l"
+	.string "done...\p"
+	.string "Anyways, enough of that. Let's enjoy\n"
+	.string "our new start in LITTLEROOT TOWN.\p"
+	.string "...OH WAIT! What time is it? The Lottery\n"
+	.string "must be on soon. Come quick!$"

@@ -272,20 +272,6 @@ PlayersHouse_2F_EventScript_GameCube::
 	msgbox PlayersHouse_2F_Text_ItsAGameCube, MSGBOX_SIGN
 	end
 
-PlayersHouse_2F_Text_ClockIsStopped:
-	.string "The clock is stopped…\p"
-	.string "Better set it and start it!$"
-
-PlayersHouse_2F_Text_HowDoYouLikeYourRoom:
-	.string "MOM: {PLAYER}, how do you like your\n"
-	.string "new room?\p"
-	.string "Good! Everything's put away neatly!\p"
-	.string "They finished moving everything in\n"
-	.string "downstairs, too.\p"
-	.string "POKéMON movers are so convenient!\p"
-	.string "Oh, you should make sure that\n"
-	.string "everything's all there on your desk.$"
-
 PlayersHouse_2F_Text_Notebook:
 	.string "{PLAYER} flipped open the notebook.\p"
 	.string "ADVENTURE RULE NO. 1\n"
@@ -300,5 +286,17 @@ Common_Text_LookCloserAtMap:
 
 PlayersHouse_2F_Text_ItsAGameCube:
 	.string "It's a Nintendo GameCube.\p"
-	.string "A Game Boy Advance is connected to\n"
-	.string "serve as the Controller.$"
+	.string "An armed AK47 is connected to\n"
+	.string "serve as the Controller.\p"
+	.string "...better not touch it.$"
+
+PlayersHouse_2F_Text_ClockIsStopped::
+	.string "The current time should be displayed on\n"
+	.string "the clock, what time is it?$"
+
+PlayersHouse_2F_Text_HowDoYouLikeYourRoom::
+	.string "MOM: Is that right? Where did the time\n"
+	.string "go?\p"
+	.string "That means the Lottery is already on.\n"
+	.string "We better hurry to not miss the\l"
+	.string "announcement of this weeks winner.$"
