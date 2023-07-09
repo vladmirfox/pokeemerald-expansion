@@ -1267,7 +1267,7 @@ bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
     return FALSE;
 }
 
-bool32 isMoveNotAllowedInSkyBattles(u32 move)
+bool32 IsMoveNotAllowedInSkyBattles(u32 move)
 {
     return ((gBattleStruct->isSkyBattle) && (gBattleMoves[gCurrentMove].skybattleBanned));
 }
@@ -1374,7 +1374,7 @@ static void Cmd_attackcanceler(void)
     }
 
     gHitMarker |= HITMARKER_OBEYS;
-    if ((NoTargetPresent(gBattlerAttacker, gCurrentMove) && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))) || (isMoveNotAllowedInSkyBattles(gCurrentMove)))
+    if ((NoTargetPresent(gBattlerAttacker, gCurrentMove) && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))) || (IsMoveNotAllowedInSkyBattles(gCurrentMove)))
     {
         gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce;
         if (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))

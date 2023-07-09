@@ -10916,9 +10916,10 @@ bool8 CanMonParticipateInSkyBattle(struct Pokemon *mon)
     return FALSE;
 }
 
-bool8 IsMonBannedFromSkyBattles(u16 species){
-    switch (species){
-        case SPECIES_EGG:
+bool8 IsMonBannedFromSkyBattles(u16 species)
+{
+    switch (species)
+    {
 #if B_SKY_BATTLE_STRICT_ELIGIBILITY == TRUE
         case SPECIES_SPEAROW:
         case SPECIES_FARFETCHD:
@@ -10942,8 +10943,8 @@ bool8 IsMonBannedFromSkyBattles(u16 species){
         case SPECIES_ROWLET:
         case SPECIES_PIKIPEK:
 #endif
+        case SPECIES_EGG:
             return TRUE;
-            break;
         default:
             return FALSE;
     }
