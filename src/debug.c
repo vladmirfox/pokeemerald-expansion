@@ -3468,6 +3468,7 @@ static void DebugAction_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
     u32 personality;
     struct BoxPokemon boxMon;
     u16 species = SPECIES_BULBASAUR;
+    u8 speciesName[POKEMON_NAME_LENGTH + 1];
 
     personality = Random32();
 
@@ -3479,6 +3480,8 @@ static void DebugAction_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
         {
             if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
             {
+                GetSpeciesName(speciesName, species);
+                SetBoxMonData(&boxMon, MON_DATA_NICKNAME, &speciesName);
                 SetBoxMonData(&boxMon, MON_DATA_SPECIES, &species);
                 GiveBoxMonInitialMoveset_Fast(&boxMon);
                 gPokemonStoragePtr->boxes[boxId][boxPosition] = boxMon;
