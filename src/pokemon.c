@@ -2289,7 +2289,7 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_TORKOAL - 1]       = ANIM_V_STRETCH,
     [SPECIES_SPOINK - 1]        = ANIM_H_JUMPS_V_STRETCH_TWICE,
     [SPECIES_GRUMPIG - 1]       = ANIM_H_JUMPS_V_STRETCH,
-    [SPECIES_SPINDA - 1]        = ANIM_H_JUMPS,
+    [SPECIES_SPINDA - 1]        = ANIM_CIRCLE_INTO_BG,
     [SPECIES_TRAPINCH - 1]      = ANIM_V_SHAKE,
     [SPECIES_VIBRAVA - 1]       = ANIM_H_SHAKE,
     [SPECIES_FLYGON - 1]        = ANIM_ZIGZAG_SLOW,
@@ -2325,7 +2325,7 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_WYNAUT - 1]        = ANIM_H_JUMPS_V_STRETCH,
     [SPECIES_SNORUNT - 1]       = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
     [SPECIES_GLALIE - 1]        = ANIM_ZIGZAG_FAST,
-    [SPECIES_SPHEAL - 1]        = ANIM_V_STRETCH,
+    [SPECIES_SPHEAL - 1]        = ANIM_SPIN_LONG,
     [SPECIES_SEALEO - 1]        = ANIM_V_STRETCH,
     [SPECIES_WALREIN - 1]       = ANIM_H_SHAKE,
     [SPECIES_CLAMPERL - 1]      = ANIM_TWIST,
@@ -2877,6 +2877,11 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_SNEASLER - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_OVERQWIL - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_ENAMORUS - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
+
+    //Gen 3 forms
+    [SPECIES_CASTFORM_SUNNY - 1]         = ANIM_GROW_VIBRATE,
+    [SPECIES_CASTFORM_RAINY - 1]         = ANIM_CONCAVE_ARC_SMALL,
+    [SPECIES_CASTFORM_SNOWY - 1]         = ANIM_V_STRETCH,
     [SPECIES_DEOXYS_ATTACK - 1]          = ANIM_GROW_VIBRATE,
     [SPECIES_DEOXYS_DEFENSE - 1]         = ANIM_GROW_VIBRATE,
     [SPECIES_DEOXYS_SPEED - 1]           = ANIM_GROW_VIBRATE,
@@ -8096,13 +8101,9 @@ const u8 *GetTrainerNameFromId(u16 trainerId)
 
 bool8 HasTwoFramesAnimation(u16 species)
 {
-    return (species != SPECIES_CASTFORM
-         && species != SPECIES_SPINDA
-         && species != SPECIES_UNOWN
-         && species != SPECIES_CHERRIM
-         && species != SPECIES_CASTFORM_SUNNY
-         && species != SPECIES_CASTFORM_RAINY
-         && species != SPECIES_CASTFORM_SNOWY);
+    return (
+         species != SPECIES_UNOWN
+        );
 }
 
 static bool8 ShouldSkipFriendshipChange(void)
