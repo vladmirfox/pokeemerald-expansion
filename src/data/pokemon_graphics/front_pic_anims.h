@@ -3257,12 +3257,12 @@ static const union AnimCmd sAnim_Breloom_1[] =
 
 static const union AnimCmd sAnim_Spinda_1[] =
 {
-	ANIMCMD_FRAME(0, 17),
-	ANIMCMD_FRAME(1, 23),
-	ANIMCMD_FRAME(0, 17),
-	ANIMCMD_FRAME(1, 23),
-	ANIMCMD_FRAME(0, 13),
-	ANIMCMD_END,
+    ANIMCMD_FRAME(0, 17),
+    ANIMCMD_FRAME(1, 23),
+    ANIMCMD_FRAME(0, 17),
+    ANIMCMD_FRAME(1, 23),
+    ANIMCMD_FRAME(0, 13),
+    ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_Wingull_1[] =
@@ -4156,43 +4156,43 @@ static const union AnimCmd sAnim_Aggron_1[] =
 
 static const union AnimCmd sAnim_Castform_1[] =
 {
-	ANIMCMD_FRAME(0, 12),
-	ANIMCMD_FRAME(1, 24),
-	ANIMCMD_FRAME(0, 24),
-	ANIMCMD_FRAME(1, 24),
-	ANIMCMD_FRAME(0, 24),
-	ANIMCMD_END,
+    ANIMCMD_FRAME(0, 12),
+    ANIMCMD_FRAME(1, 24),
+    ANIMCMD_FRAME(0, 24),
+    ANIMCMD_FRAME(1, 24),
+    ANIMCMD_FRAME(0, 24),
+    ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_CastformSunny_1[] =
 {
-	ANIMCMD_FRAME(0, 12),
-	ANIMCMD_FRAME(1, 12),
-	ANIMCMD_FRAME(0, 12),
-	ANIMCMD_FRAME(1, 12),
-	ANIMCMD_FRAME(0, 12),
-	ANIMCMD_FRAME(1, 12),
-	ANIMCMD_FRAME(0, 12),
+    ANIMCMD_FRAME(0, 12),
+    ANIMCMD_FRAME(1, 12),
+    ANIMCMD_FRAME(0, 12),
+    ANIMCMD_FRAME(1, 12),
+    ANIMCMD_FRAME(0, 12),
+    ANIMCMD_FRAME(1, 12),
+    ANIMCMD_FRAME(0, 12),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_CastformRainy_1[] =
 {
-	ANIMCMD_FRAME(0, 22),
-	ANIMCMD_FRAME(1, 22),
-	ANIMCMD_FRAME(0, 22),
-	ANIMCMD_FRAME(1, 22),
-	ANIMCMD_FRAME(0, 11),
-	ANIMCMD_END,
+    ANIMCMD_FRAME(0, 22),
+    ANIMCMD_FRAME(1, 22),
+    ANIMCMD_FRAME(0, 22),
+    ANIMCMD_FRAME(1, 22),
+    ANIMCMD_FRAME(0, 11),
+    ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_CastformSnowy_1[] =
 {
     ANIMCMD_FRAME(0, 5),
-	ANIMCMD_FRAME(1, 12),
-	ANIMCMD_FRAME(0, 12),
-	ANIMCMD_FRAME(1, 29),
-	ANIMCMD_FRAME(0, 12),
+    ANIMCMD_FRAME(1, 12),
+    ANIMCMD_FRAME(0, 12),
+    ANIMCMD_FRAME(1, 29),
+    ANIMCMD_FRAME(0, 12),
     ANIMCMD_END,
 };
 
@@ -5158,14 +5158,11 @@ static const union AnimCmd sAnim_CherrimOvercast_2[] =
 
 static const union AnimCmd sAnim_CherrimSunshine_1[] =
 {
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(1, 8),
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(1, 8),
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(1, 8),
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(1, 8),
+    ANIMCMD_FRAME(1, 6),
+    ANIMCMD_FRAME(0, 28),
+    ANIMCMD_FRAME(1, 12),
+    ANIMCMD_FRAME(0, 28),
+    ANIMCMD_FRAME(1, 7),
     ANIMCMD_FRAME(0, 8),
     ANIMCMD_END,
 };
