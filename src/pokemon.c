@@ -8096,9 +8096,7 @@ const u8 *GetTrainerNameFromId(u16 trainerId)
 
 bool8 HasTwoFramesAnimation(u16 species)
 {
-    return (
-         species != SPECIES_UNOWN
-        );
+    return species != SPECIES_UNOWN;
 }
 
 static bool8 ShouldSkipFriendshipChange(void)
