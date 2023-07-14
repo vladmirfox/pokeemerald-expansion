@@ -251,14 +251,14 @@ int main(int argc, char *argv[])
         exit(2);
     }
 
-    nrunners = sysconf(_SC_NPROCESSORS_ONLN);
+    nrunners = 1;
     const char *makeflags = getenv("MAKEFLAGS");
     if (makeflags)
     {
         int e;
         regex_t preg;
         regmatch_t pmatch[4];
-        if ((e = regcomp(&preg, "(^| )-j([0-9]+)($| )", REG_EXTENDED)) != 0)
+        if ((e = regcomp(&preg, "(^| )-j([0-9]*)($| )", REG_EXTENDED)) != 0)
         {
             char errbuf[256];
             regerror(e, &preg, errbuf, sizeof(errbuf));
@@ -266,7 +266,12 @@ int main(int argc, char *argv[])
             exit(2);
         }
         if (regexec(&preg, makeflags, ARRAY_COUNT(pmatch), pmatch, 0) != REG_NOMATCH)
-            sscanf(makeflags + pmatch[2].rm_so, "%d", &nrunners);
+        {
+            if (pmatch[2].rm_so == pmatch[2].rm_eo)
+                nrunners = sysconf(_SC_NPROCESSORS_ONLN);
+            else
+                sscanf(makeflags + pmatch[2].rm_so, "%d", &nrunners);
+        }
         regfree(&preg);
     }
     if (nrunners > MAX_PROCESSES)
