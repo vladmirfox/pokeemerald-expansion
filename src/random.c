@@ -1,5 +1,6 @@
 #include "global.h"
 #include "random.h"
+#include <alloca.h>
 
 EWRAM_DATA static u8 sUnknown = 0;
 EWRAM_DATA static u32 sRandCount = 0;
