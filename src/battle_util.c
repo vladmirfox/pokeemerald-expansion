@@ -3386,7 +3386,6 @@ void TryClearRageAndFuryCutter(void)
 u8 AtkCanceller_UnableToUseMove(u32 moveType)
 {
     u8 effect = 0;
-    s32 *bideDmg = &gBattleScripting.bideDmg;
     do
     {
         switch (gBattleStruct->atkCancellerTracker)
@@ -3647,7 +3646,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     if (gTakenDmg[gBattlerAttacker])
                     {
                         gCurrentMove = MOVE_BIDE;
-                        *bideDmg = gTakenDmg[gBattlerAttacker] * 2;
+                        gBattleScripting.bideDmg = gTakenDmg[gBattlerAttacker] * 2;
                         gBattlerTarget = gTakenDmgByBattler[gBattlerAttacker];
                         if (gAbsentBattlerFlags & gBitTable[gBattlerTarget])
                             gBattlerTarget = GetMoveTarget(MOVE_BIDE, MOVE_TARGET_SELECTED + 1);
@@ -3820,26 +3819,6 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
             #endif
-            gBattleStruct->atkCancellerTracker++;
-            break;
-        case CANCELLER_PRIMAL_WEATHER:
-            if (WEATHER_HAS_EFFECT && gBattleMoves[gCurrentMove].power)
-            {
-                if (moveType == TYPE_FIRE && (gBattleWeather & B_WEATHER_RAIN_PRIMAL))
-                {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_WEATHER_FIZZLED_BY_RAIN;
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_PrimalWeatherBlocksMove;
-                    effect = 1;
-                }
-                else if (moveType == TYPE_WATER && (gBattleWeather & B_WEATHER_SUN_PRIMAL))
-                {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_WEATHER_EVAPORATED_IN_SUN;
-                    BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_PrimalWeatherBlocksMove;
-                    effect = 1;
-                }
-            }
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_END:

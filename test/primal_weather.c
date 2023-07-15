@@ -50,6 +50,7 @@ DOUBLE_BATTLE_TEST("Primordial Sea blocks damaging Fire-type moves and prints th
         NOT MESSAGE("The Fire-type attack fizzled out\nin the heavy rain!");
     } THEN {
         EXPECT_EQ(playerLeft->hp, playerLeft->maxHP);
+        EXPECT_EQ(playerRight->hp, playerRight->maxHP);
     }
 }
 
@@ -107,6 +108,8 @@ DOUBLE_BATTLE_TEST("Desolate Land blocks damaging Water-type moves and prints th
         NOT MESSAGE("The Water-type attack evaporated in the harsh sunlight!");
     } THEN {
         EXPECT_EQ(playerLeft->hp, playerLeft->maxHP);
+        EXPECT_EQ(playerRight->hp, playerRight->maxHP);
+        EXPECT_EQ(opponentRight->hp, opponentRight->maxHP);
     }
 }
 
