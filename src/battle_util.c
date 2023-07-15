@@ -3383,7 +3383,7 @@ void TryClearRageAndFuryCutter(void)
     }
 }
 
-u8 AtkCanceller_UnableToUseMove(void)
+u8 AtkCanceller_UnableToUseMove(u32 moveType)
 {
     u8 effect = 0;
     s32 *bideDmg = &gBattleScripting.bideDmg;
@@ -3717,8 +3717,6 @@ u8 AtkCanceller_UnableToUseMove(void)
         case CANCELLER_POWDER_STATUS:
             if (gBattleMons[gBattlerAttacker].status2 & STATUS2_POWDER)
             {
-                u32 moveType;
-                GET_MOVE_TYPE(gCurrentMove, moveType);
                 if (moveType == TYPE_FIRE)
                 {
                     gProtectStructs[gBattlerAttacker].powderSelfDmg = TRUE;
@@ -3822,6 +3820,26 @@ u8 AtkCanceller_UnableToUseMove(void)
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
             #endif
+            gBattleStruct->atkCancellerTracker++;
+            break;
+        case CANCELLER_PRIMAL_WEATHER:
+            if (WEATHER_HAS_EFFECT && gBattleMoves[gCurrentMove].power)
+            {
+                if (moveType == TYPE_FIRE && (gBattleWeather & B_WEATHER_RAIN_PRIMAL))
+                {
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_WEATHER_FIZZLED_BY_RAIN;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_PrimalWeatherBlocksMove;
+                    return;
+                }
+                else if (moveType == TYPE_WATER && (gBattleWeather & B_WEATHER_SUN_PRIMAL))
+                {
+                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_WEATHER_EVAPORATED_IN_SUN;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_PrimalWeatherBlocksMove;
+                    return;
+                }
+            }
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_END:
