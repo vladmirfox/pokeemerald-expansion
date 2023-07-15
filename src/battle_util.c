@@ -3830,14 +3830,14 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_WEATHER_FIZZLED_BY_RAIN;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_PrimalWeatherBlocksMove;
-                    return;
+                    effect = 1;
                 }
                 else if (moveType == TYPE_WATER && (gBattleWeather & B_WEATHER_SUN_PRIMAL))
                 {
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PRIMAL_WEATHER_EVAPORATED_IN_SUN;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_PrimalWeatherBlocksMove;
-                    return;
+                    effect = 1;
                 }
             }
             gBattleStruct->atkCancellerTracker++;
