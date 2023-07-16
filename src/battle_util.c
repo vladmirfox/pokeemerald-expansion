@@ -8925,19 +8925,20 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
     case ABILITY_PROTOSYNTHESIS:
         {
-            u8 atkHighestStat = GetHighestStatId(battlerDef);
+            u8 defHighestStat = GetHighestStatId(battlerDef);
             if (gBattleWeather & B_WEATHER_SUN && WEATHER_HAS_EFFECT
-            && ((IS_MOVE_PHYSICAL(move) && atkHighestStat == STAT_ATK) || (IS_MOVE_SPECIAL(move) && atkHighestStat == STAT_SPATK)))
+            && ((IS_MOVE_PHYSICAL(move) && defHighestStat == STAT_DEF) || (IS_MOVE_SPECIAL(move) && defHighestStat == STAT_SPDEF)))
                 MulModifier(&modifier, UQ_4_12(0.7));
         }
         break;
     case ABILITY_QUARK_DRIVE:
         {
-            u8 atkHighestStat = GetHighestStatId(battlerDef);
+            u8 defHighestStat = GetHighestStatId(battlerDef);
             if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN
-            && ((IS_MOVE_PHYSICAL(move) && atkHighestStat == STAT_ATK) || (IS_MOVE_SPECIAL(move) && atkHighestStat == STAT_SPATK)))
+            && ((IS_MOVE_PHYSICAL(move) && defHighestStat == STAT_DEF) || (IS_MOVE_SPECIAL(move) && defHighestStat == STAT_SPDEF)))
                 MulModifier(&modifier, UQ_4_12(0.7));
         }
+        break;
     }
 
     holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
