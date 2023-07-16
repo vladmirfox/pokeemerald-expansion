@@ -6097,7 +6097,17 @@ bool32 TryPrimalReversion(u8 battlerId)
     if (GetBattlerHoldEffect(battlerId, FALSE) == HOLD_EFFECT_PRIMAL_ORB
      && GetBattleFormChangeTargetSpecies(battlerId, FORM_CHANGE_BATTLE_PRIMAL_REVERSION) != SPECIES_NONE)
     {
-        BattleScriptExecute(BattleScript_PrimalReversion);
+        if (gBattlerAttacker == battlerId)
+        {
+            BattleScriptExecute(BattleScript_PrimalReversion);
+        }
+        else
+        {
+            // edge case for scenarios like a switch-in after activated eject button
+            gBattleScripting.savedBattler = gBattlerAttacker;
+            gBattlerAttacker = battlerId;
+            BattleScriptExecute(BattleScript_PrimalReversionRestoreAttacker);
+        }
         return TRUE;
     }
     return FALSE;

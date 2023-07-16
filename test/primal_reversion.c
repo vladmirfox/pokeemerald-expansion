@@ -152,3 +152,45 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a mon is switched in")
         EXPECT_EQ(player->species, SPECIES_GROUDON_PRIMAL);
     }
 }
+
+SINGLE_BATTLE_TEST("Primal reversion happens after a switch-in caused by Eject Button")
+{
+    GIVEN {
+        ASSUME(gBattleMoves[MOVE_TACKLE].power != 0);
+        ASSUME(gItems[ITEM_EJECT_BUTTON].holdEffect == HOLD_EFFECT_EJECT_BUTTON);
+        PLAYER(SPECIES_WOBBUFFET) {Item(ITEM_EJECT_BUTTON); }
+        PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_TACKLE); SEND_OUT(player, 1); }
+        TURN { MOVE(opponent, MOVE_TACKLE); }
+    } SCENE {
+        MESSAGE("Wobbuffet is switched out with the Eject Button!");
+        MESSAGE("Go! Groudon!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
+        MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+    } THEN {
+        EXPECT_EQ(player->species, SPECIES_GROUDON_PRIMAL);
+    }
+}
+
+SINGLE_BATTLE_TEST("Primal reversion happens after the entry hazards damage")
+{
+    GIVEN {
+        ASSUME(gBattleMoves[MOVE_SPIKES].effect == EFFECT_SPIKES);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SPIKES); }
+        TURN { MOVE(opponent, MOVE_SPIKES); SWITCH(player, 1);}
+    } SCENE {
+        MESSAGE("Go! Groudon!");
+        HP_BAR(player);
+        MESSAGE("Groudon is hurt by spikes!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
+        MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+    } THEN {
+        EXPECT_EQ(player->species, SPECIES_GROUDON_PRIMAL);
+    }
+}
