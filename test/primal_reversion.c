@@ -174,6 +174,26 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a switch-in caused by Eject B
     }
 }
 
+SINGLE_BATTLE_TEST("Primal reversion happens after a switch-in caused by Red Card")
+{
+    GIVEN {
+        ASSUME(gBattleMoves[MOVE_TACKLE].power != 0);
+        ASSUME(gItems[ITEM_RED_CARD].holdEffect == HOLD_EFFECT_RED_CARD);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
+        OPPONENT(SPECIES_WOBBUFFET) {Item(ITEM_RED_CARD); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_TACKLE); }
+    } SCENE {
+        MESSAGE("Foe Wobbuffet held up its Red Card against Wobbuffet!");
+        MESSAGE("Groudon was dragged out!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
+        MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+    } THEN {
+        EXPECT_EQ(player->species, SPECIES_GROUDON_PRIMAL);
+    }
+}
+
 SINGLE_BATTLE_TEST("Primal reversion happens after the entry hazards damage")
 {
     GIVEN {
