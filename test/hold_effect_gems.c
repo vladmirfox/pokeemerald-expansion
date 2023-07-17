@@ -26,25 +26,27 @@ SINGLE_BATTLE_TEST("Gem is consumed when it corresponds to the type of a move")
     }
 }
 
-SINGLE_BATTLE_TEST("Gem boost is only applied once", s16 damage)
+SINGLE_BATTLE_TEST("Gem boost is only applied once")
 {
-    u16 item;
-
-    PARAMETRIZE { item = ITEM_NONE; }
-    PARAMETRIZE { item = ITEM_NORMAL_GEM; }
-    PARAMETRIZE { item = ITEM_NONE; }
+    s16 boostedHit;
+    s16 normalHit;
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(item); };
+        ASSUME(I_GEM_BOOST_POWER >= GEN_5);
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_NORMAL_GEM); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+        MESSAGE("Normal Gem strengthened Wobbuffet's power!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
-        HP_BAR(opponent, captureDamage: &results[i].damage);
-    } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.3), results[1].damage);
-        EXPECT_EQ(results[0].damage, results[2].damage);
+        HP_BAR(opponent, captureDamage: &boostedHit);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+        HP_BAR(opponent, captureDamage: &normalHit);
+    } THEN {
+        EXPECT_MUL_EQ(normalHit, Q_4_12(1.3), boostedHit);
     }
 }
 
