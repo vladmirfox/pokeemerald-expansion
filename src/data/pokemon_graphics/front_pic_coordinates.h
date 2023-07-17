@@ -364,7 +364,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_ARON]                         = { .size = MON_COORDS_SIZE(32, 40), .y_offset = 14 },
     [SPECIES_LAIRON]                       = { .size = MON_COORDS_SIZE(56, 48), .y_offset =  8 },
     [SPECIES_AGGRON]                       = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
-    [SPECIES_CASTFORM]                     = { .size = MON_COORDS_SIZE(24, 32), .y_offset = 17 },
+    [SPECIES_CASTFORM_NORMAL]              = { .size = MON_COORDS_SIZE(24, 32), .y_offset = 17 },
     [SPECIES_VOLBEAT]                      = { .size = MON_COORDS_SIZE(48, 56), .y_offset =  8 },
     [SPECIES_ILLUMISE]                     = { .size = MON_COORDS_SIZE(40, 48), .y_offset = 10 },
     [SPECIES_LILEEP]                       = { .size = MON_COORDS_SIZE(48, 56), .y_offset =  7 },

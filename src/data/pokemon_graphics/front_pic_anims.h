@@ -4163,7 +4163,7 @@ static const union AnimCmd sAnim_Aggron_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Castform_1[] =
+static const union AnimCmd sAnim_CastformNormal_1[] =
 {
     ANIMCMD_FRAME(0, 12),
     ANIMCMD_FRAME(1, 24),
@@ -10923,7 +10923,7 @@ SINGLE_ANIMATION(Relicanth);
 SINGLE_ANIMATION(Aron);
 SINGLE_ANIMATION(Lairon);
 SINGLE_ANIMATION(Aggron);
-SINGLE_ANIMATION(Castform);
+SINGLE_ANIMATION(CastformNormal);
 SINGLE_ANIMATION(CastformSunny);
 SINGLE_ANIMATION(CastformRainy);
 SINGLE_ANIMATION(CastformSnowy);
@@ -12048,7 +12048,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_ARON]        = sAnims_Aron,
     [SPECIES_LAIRON]      = sAnims_Lairon,
     [SPECIES_AGGRON]      = sAnims_Aggron,
-    [SPECIES_CASTFORM]    = sAnims_Castform,
+    [SPECIES_CASTFORM_NORMAL] = sAnims_CastformNormal,
     [SPECIES_VOLBEAT]     = sAnims_Volbeat,
     [SPECIES_ILLUMISE]    = sAnims_Illumise,
     [SPECIES_LILEEP]      = sAnims_Lileep,

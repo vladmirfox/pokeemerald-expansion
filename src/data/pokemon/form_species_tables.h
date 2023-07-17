@@ -474,7 +474,7 @@ static const u16 sAltariaFormSpeciesIdTable[] = {
 };
 
 static const u16 sCastformFormSpeciesIdTable[] = {
-    SPECIES_CASTFORM,
+    SPECIES_CASTFORM_NORMAL,
     SPECIES_CASTFORM_SUNNY,
     SPECIES_CASTFORM_RAINY,
     SPECIES_CASTFORM_SNOWY,

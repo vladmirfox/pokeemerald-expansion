@@ -360,7 +360,7 @@ const struct CompressedSpritePalette gMonPaletteTable[NUM_SPECIES + 1] =
     SPECIES_PAL(ARON, gMonPalette_Aron),
     SPECIES_PAL(LAIRON, gMonPalette_Lairon),
     SPECIES_PAL(AGGRON, gMonPalette_Aggron),
-    SPECIES_PAL(CASTFORM, gMonPalette_Castform),
+    SPECIES_PAL(CASTFORM_NORMAL, gMonPalette_CastformNormal),
     SPECIES_PAL(VOLBEAT, gMonPalette_Volbeat),
     SPECIES_PAL(ILLUMISE, gMonPalette_Illumise),
     SPECIES_PAL(LILEEP, gMonPalette_Lileep),

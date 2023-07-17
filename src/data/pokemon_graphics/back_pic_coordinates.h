@@ -383,7 +383,7 @@ const struct MonCoords gMonBackPicCoords[NUM_SPECIES + 1] =
     [SPECIES_ARON]                         = { .size = MON_COORDS_SIZE(48, 40), .y_offset = 12 },
     [SPECIES_LAIRON]                       = { .size = MON_COORDS_SIZE(64, 40), .y_offset = 15 },
     [SPECIES_AGGRON]                       = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  5 },
-    [SPECIES_CASTFORM]                     = { .size = MON_COORDS_SIZE(32, 64), .y_offset =  0 },
+    [SPECIES_CASTFORM_NORMAL]              = { .size = MON_COORDS_SIZE(32, 64), .y_offset =  0 },
     [SPECIES_VOLBEAT]                      = { .size = MON_COORDS_SIZE(48, 64), .y_offset =  3 },
     [SPECIES_ILLUMISE]                     = { .size = MON_COORDS_SIZE(48, 56), .y_offset =  8 },
     [SPECIES_LILEEP]                       = { .size = MON_COORDS_SIZE(48, 48), .y_offset =  8 },
