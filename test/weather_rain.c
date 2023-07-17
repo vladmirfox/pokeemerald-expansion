@@ -45,5 +45,3 @@ SINGLE_BATTLE_TEST("Rain multiplies the power of Water-type moves by 1.5x", s16 
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
     }
 }
-
-TO_DO_BATTLE_TEST("Primal Rain prevents Fire-type moves from being used")
