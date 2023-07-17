@@ -5960,7 +5960,7 @@ static const union AnimCmd sAnim_Darkrai_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Shaymin_1[] =
+static const union AnimCmd sAnim_ShayminLand_1[] =
 {
     ANIMCMD_FRAME(0, 20),
     ANIMCMD_FRAME(1, 10),
@@ -11084,7 +11084,7 @@ SINGLE_ANIMATION(Cresselia);
 SINGLE_ANIMATION(Phione);
 SINGLE_ANIMATION(Manaphy);
 SINGLE_ANIMATION(Darkrai);
-SINGLE_ANIMATION(Shaymin);
+SINGLE_ANIMATION(ShayminLand);
 SINGLE_ANIMATION(Arceus);
 #endif
 #if P_GEN_5_POKEMON == TRUE
@@ -12172,7 +12172,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_PHIONE] = sAnims_Phione,
     [SPECIES_MANAPHY] = sAnims_Manaphy,
     [SPECIES_DARKRAI] = sAnims_Darkrai,
-    [SPECIES_SHAYMIN] = sAnims_Shaymin,
+    [SPECIES_SHAYMIN_LAND] = sAnims_ShayminLand,
     [SPECIES_ARCEUS] = sAnims_Arceus,
 #endif
 #if P_GEN_5_POKEMON == TRUE

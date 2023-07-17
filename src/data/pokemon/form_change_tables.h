@@ -302,7 +302,7 @@ static const struct FormChange sGiratinaFormChangeTable[] = {
 
 static const struct FormChange sShayminFormChangeTable[] = {
     {FORM_CHANGE_ITEM_USE, SPECIES_SHAYMIN_SKY, ITEM_GRACIDEA, DAY},
-    // {FORM_CHANGE_WITHDRAW, SPECIES_SHAYMIN},
+    // {FORM_CHANGE_WITHDRAW, SPECIES_SHAYMIN_LAND},
     {FORM_CHANGE_TERMINATOR},
 };
 

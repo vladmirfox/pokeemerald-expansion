@@ -641,7 +641,7 @@ static const u16 sGiratinaFormSpeciesIdTable[] = {
 };
 
 static const u16 sShayminFormSpeciesIdTable[] = {
-    SPECIES_SHAYMIN,
+    SPECIES_SHAYMIN_LAND,
     SPECIES_SHAYMIN_SKY,
     FORM_SPECIES_END,
 };

@@ -497,7 +497,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_PHIONE]                       = { .size = MON_COORDS_SIZE(56, 40), .y_offset =  8 },
     [SPECIES_MANAPHY]                      = { .size = MON_COORDS_SIZE(64, 40), .y_offset = 10 },
     [SPECIES_DARKRAI]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  3 },
-    [SPECIES_SHAYMIN]                      = { .size = MON_COORDS_SIZE(40, 32), .y_offset = 16 },
+    [SPECIES_SHAYMIN_LAND]                 = { .size = MON_COORDS_SIZE(40, 32), .y_offset = 16 },
     [SPECIES_ARCEUS]                       = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
 #endif
 #if P_GEN_5_POKEMON == TRUE

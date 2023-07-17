@@ -493,7 +493,7 @@ const struct CompressedSpriteSheet gMonFrontPicTable[NUM_SPECIES + 1] =
     SPECIES_SPRITE(PHIONE, gMonFrontPic_Phione),
     SPECIES_SPRITE(MANAPHY, gMonFrontPic_Manaphy),
     SPECIES_SPRITE(DARKRAI, gMonFrontPic_Darkrai),
-    SPECIES_SPRITE(SHAYMIN, gMonFrontPic_Shaymin),
+    SPECIES_SPRITE(SHAYMIN_LAND, gMonFrontPic_ShayminLand),
     SPECIES_SPRITE(ARCEUS, gMonFrontPic_Arceus),
 #endif
 #if P_GEN_5_POKEMON == TRUE

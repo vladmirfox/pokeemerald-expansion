@@ -9958,7 +9958,7 @@ static const struct LevelUpMove sDarkraiLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
-static const struct LevelUpMove sShayminLevelUpLearnset[] = {
+static const struct LevelUpMove sShayminLandLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_GROWTH),
     LEVEL_UP_MOVE(10, MOVE_MAGICAL_LEAF),
     LEVEL_UP_MOVE(19, MOVE_LEECH_SEED),

@@ -628,7 +628,7 @@ extern const u32 gMonFrontPic_Cresselia[];
 extern const u32 gMonFrontPic_Phione[];
 extern const u32 gMonFrontPic_Manaphy[];
 extern const u32 gMonFrontPic_Darkrai[];
-extern const u32 gMonFrontPic_Shaymin[];
+extern const u32 gMonFrontPic_ShayminLand[];
 extern const u32 gMonFrontPic_Arceus[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
@@ -1898,7 +1898,7 @@ extern const u32 gMonBackPic_Cresselia[];
 extern const u32 gMonBackPic_Phione[];
 extern const u32 gMonBackPic_Manaphy[];
 extern const u32 gMonBackPic_Darkrai[];
-extern const u32 gMonBackPic_Shaymin[];
+extern const u32 gMonBackPic_ShayminLand[];
 extern const u32 gMonBackPic_Arceus[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
@@ -3106,7 +3106,7 @@ extern const u32 gMonPalette_Cresselia[];
 extern const u32 gMonPalette_Phione[];
 extern const u32 gMonPalette_Manaphy[];
 extern const u32 gMonPalette_Darkrai[];
-extern const u32 gMonPalette_Shaymin[];
+extern const u32 gMonPalette_ShayminLand[];
 extern const u32 gMonPalette_Arceus[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
@@ -4339,7 +4339,7 @@ extern const u32 gMonShinyPalette_Cresselia[];
 extern const u32 gMonShinyPalette_Phione[];
 extern const u32 gMonShinyPalette_Manaphy[];
 extern const u32 gMonShinyPalette_Darkrai[];
-extern const u32 gMonShinyPalette_Shaymin[];
+extern const u32 gMonShinyPalette_ShayminLand[];
 extern const u32 gMonShinyPalette_Arceus[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
@@ -5565,7 +5565,7 @@ extern const u8 gMonIcon_Cresselia[];
 extern const u8 gMonIcon_Phione[];
 extern const u8 gMonIcon_Manaphy[];
 extern const u8 gMonIcon_Darkrai[];
-extern const u8 gMonIcon_Shaymin[];
+extern const u8 gMonIcon_ShayminLand[];
 extern const u8 gMonIcon_Arceus[];
 #endif
 #if P_GEN_5_POKEMON == TRUE

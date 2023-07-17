@@ -516,7 +516,7 @@ const struct MonCoords gMonBackPicCoords[NUM_SPECIES + 1] =
     [SPECIES_PHIONE]                       = { .size = MON_COORDS_SIZE(64, 48), .y_offset =  9 },
     [SPECIES_MANAPHY]                      = { .size = MON_COORDS_SIZE(64, 56), .y_offset = 10 },
     [SPECIES_DARKRAI]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
-    [SPECIES_SHAYMIN]                      = { .size = MON_COORDS_SIZE(56, 40), .y_offset = 15 },
+    [SPECIES_SHAYMIN_LAND]                 = { .size = MON_COORDS_SIZE(56, 40), .y_offset = 15 },
     [SPECIES_ARCEUS]                       = ARCEUS_BACK_PIC_COORDS,
 #endif
 #if P_GEN_5_POKEMON == TRUE

@@ -493,7 +493,7 @@ const u8 *const gMonFootprintTable[NUM_SPECIES + 1] =
     [SPECIES_PHIONE] = gMonFootprint_Phione,
     [SPECIES_MANAPHY] = gMonFootprint_Manaphy,
     [SPECIES_DARKRAI] = gMonFootprint_Darkrai,
-    [SPECIES_SHAYMIN] = gMonFootprint_Shaymin,
+    [SPECIES_SHAYMIN_LAND] = gMonFootprint_Shaymin,
     [SPECIES_ARCEUS] = gMonFootprint_Arceus,
 #endif
 #if P_GEN_5_POKEMON == TRUE

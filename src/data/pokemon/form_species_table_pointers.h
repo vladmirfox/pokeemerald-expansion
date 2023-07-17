@@ -99,7 +99,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_DIALGA] = sDialgaFormSpeciesIdTable,
     [SPECIES_PALKIA] = sPalkiaFormSpeciesIdTable,
     [SPECIES_GIRATINA_ALTERED] = sGiratinaFormSpeciesIdTable,
-    [SPECIES_SHAYMIN] = sShayminFormSpeciesIdTable,
+    [SPECIES_SHAYMIN_LAND] = sShayminFormSpeciesIdTable,
     [SPECIES_ARCEUS] = sArceusFormSpeciesIdTable,
 #endif
 #if P_GEN_5_POKEMON == TRUE

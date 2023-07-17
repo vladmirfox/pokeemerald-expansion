@@ -501,7 +501,8 @@
 #define SPECIES_PHIONE                       489
 #define SPECIES_MANAPHY                      490
 #define SPECIES_DARKRAI                      491
-#define SPECIES_SHAYMIN                      492
+#define SPECIES_SHAYMIN                      SPECIES_SHAYMIN_LAND
+#define SPECIES_SHAYMIN_LAND                 492
 #define SPECIES_ARCEUS                       493
 #define SPECIES_VICTINI                      494
 #define SPECIES_SNIVY                        495

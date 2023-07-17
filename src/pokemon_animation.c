@@ -711,7 +711,7 @@ static const u8 sSpeciesToBackAnimSet[NUM_SPECIES] =
     [SPECIES_PHIONE]                       = BACK_ANIM_CONVEX_DOUBLE_ARC,
     [SPECIES_MANAPHY]                      = BACK_ANIM_CONVEX_DOUBLE_ARC,
     [SPECIES_DARKRAI]                      = BACK_ANIM_SHRINK_GROW_VIBRATE,
-    [SPECIES_SHAYMIN]                      = BACK_ANIM_CONCAVE_ARC_SMALL,
+    [SPECIES_SHAYMIN_LAND]                 = BACK_ANIM_CONCAVE_ARC_SMALL,
     [SPECIES_ARCEUS]                       = BACK_ANIM_GROW,
         
         //Gen 4 Forms

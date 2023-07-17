@@ -561,7 +561,7 @@ const u32 gMonFrontPic_Cresselia[] = INCBIN_U32("graphics/pokemon/cresselia/anim
 const u32 gMonFrontPic_Phione[] = INCBIN_U32("graphics/pokemon/phione/anim_front.4bpp.lz");
 const u32 gMonFrontPic_Manaphy[] = INCBIN_U32("graphics/pokemon/manaphy/anim_front.4bpp.lz");
 const u32 gMonFrontPic_Darkrai[] = INCBIN_U32("graphics/pokemon/darkrai/anim_front.4bpp.lz");
-const u32 gMonFrontPic_Shaymin[] = INCBIN_U32("graphics/pokemon/shaymin/anim_front.4bpp.lz");
+const u32 gMonFrontPic_ShayminLand[] = INCBIN_U32("graphics/pokemon/shaymin/anim_front.4bpp.lz");
 const u32 gMonFrontPic_Arceus[] = INCBIN_U32("graphics/pokemon/arceus/anim_front.4bpp.lz");
 #endif
 #if P_GEN_5_POKEMON == TRUE
@@ -1829,7 +1829,7 @@ const u32 gMonBackPic_Cresselia[] = INCBIN_U32("graphics/pokemon/cresselia/back.
 const u32 gMonBackPic_Phione[] = INCBIN_U32("graphics/pokemon/phione/back.4bpp.lz");
 const u32 gMonBackPic_Manaphy[] = INCBIN_U32("graphics/pokemon/manaphy/back.4bpp.lz");
 const u32 gMonBackPic_Darkrai[] = INCBIN_U32("graphics/pokemon/darkrai/back.4bpp.lz");
-const u32 gMonBackPic_Shaymin[] = INCBIN_U32("graphics/pokemon/shaymin/back.4bpp.lz");
+const u32 gMonBackPic_ShayminLand[] = INCBIN_U32("graphics/pokemon/shaymin/back.4bpp.lz");
 const u32 gMonBackPic_Arceus[] = INCBIN_U32("graphics/pokemon/arceus/back.4bpp.lz");
 #endif
 #if P_GEN_5_POKEMON == TRUE
@@ -3037,7 +3037,7 @@ const u32 gMonPalette_Cresselia[] = INCBIN_U32("graphics/pokemon/cresselia/norma
 const u32 gMonPalette_Phione[] = INCBIN_U32("graphics/pokemon/phione/normal.gbapal.lz");
 const u32 gMonPalette_Manaphy[] = INCBIN_U32("graphics/pokemon/manaphy/normal.gbapal.lz");
 const u32 gMonPalette_Darkrai[] = INCBIN_U32("graphics/pokemon/darkrai/normal.gbapal.lz");
-const u32 gMonPalette_Shaymin[] = INCBIN_U32("graphics/pokemon/shaymin/normal.gbapal.lz");
+const u32 gMonPalette_ShayminLand[] = INCBIN_U32("graphics/pokemon/shaymin/normal.gbapal.lz");
 const u32 gMonPalette_Arceus[] = INCBIN_U32("graphics/pokemon/arceus/normal.gbapal.lz");
 #endif
 #if P_GEN_5_POKEMON == TRUE
@@ -4270,7 +4270,7 @@ const u32 gMonShinyPalette_Cresselia[] = INCBIN_U32("graphics/pokemon/cresselia/
 const u32 gMonShinyPalette_Phione[] = INCBIN_U32("graphics/pokemon/phione/shiny.gbapal.lz");
 const u32 gMonShinyPalette_Manaphy[] = INCBIN_U32("graphics/pokemon/manaphy/shiny.gbapal.lz");
 const u32 gMonShinyPalette_Darkrai[] = INCBIN_U32("graphics/pokemon/darkrai/shiny.gbapal.lz");
-const u32 gMonShinyPalette_Shaymin[] = INCBIN_U32("graphics/pokemon/shaymin/shiny.gbapal.lz");
+const u32 gMonShinyPalette_ShayminLand[] = INCBIN_U32("graphics/pokemon/shaymin/shiny.gbapal.lz");
 const u32 gMonShinyPalette_Arceus[] = INCBIN_U32("graphics/pokemon/arceus/shiny.gbapal.lz");
 #endif
 #if P_GEN_5_POKEMON == TRUE
@@ -5496,7 +5496,7 @@ const u8 gMonIcon_Cresselia[] = INCBIN_U8("graphics/pokemon/cresselia/icon.4bpp"
 const u8 gMonIcon_Phione[] = INCBIN_U8("graphics/pokemon/phione/icon.4bpp");
 const u8 gMonIcon_Manaphy[] = INCBIN_U8("graphics/pokemon/manaphy/icon.4bpp");
 const u8 gMonIcon_Darkrai[] = INCBIN_U8("graphics/pokemon/darkrai/icon.4bpp");
-const u8 gMonIcon_Shaymin[] = INCBIN_U8("graphics/pokemon/shaymin/icon.4bpp");
+const u8 gMonIcon_ShayminLand[] = INCBIN_U8("graphics/pokemon/shaymin/icon.4bpp");
 const u8 gMonIcon_Arceus[] = INCBIN_U8("graphics/pokemon/arceus/icon.4bpp");
 #endif
 #if P_GEN_5_POKEMON == TRUE

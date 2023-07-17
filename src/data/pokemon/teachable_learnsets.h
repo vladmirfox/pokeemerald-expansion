@@ -20141,7 +20141,7 @@ static const u16 sDarkraiTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 
-static const u16 sShayminTeachableLearnset[] = {
+static const u16 sShayminLandTeachableLearnset[] = {
     MOVE_BULLET_SEED,
     MOVE_DOUBLE_TEAM,
     MOVE_FACADE,

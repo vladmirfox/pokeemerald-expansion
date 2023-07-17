@@ -519,7 +519,7 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_PHIONE] = gMonIcon_Phione,
     [SPECIES_MANAPHY] = gMonIcon_Manaphy,
     [SPECIES_DARKRAI] = gMonIcon_Darkrai,
-    [SPECIES_SHAYMIN] = gMonIcon_Shaymin,
+    [SPECIES_SHAYMIN_LAND] = gMonIcon_ShayminLand,
     [SPECIES_ARCEUS] = gMonIcon_Arceus,
 #endif
 #if P_GEN_5_POKEMON == TRUE
@@ -1808,7 +1808,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_PHIONE] = 0,
     [SPECIES_MANAPHY] = 0,
     [SPECIES_DARKRAI] = 0,
-    [SPECIES_SHAYMIN] = 1,
+    [SPECIES_SHAYMIN_LAND] = 1,
     [SPECIES_ARCEUS] = 1,
     [SPECIES_VICTINI] = 0,
     [SPECIES_SNIVY] = 1,

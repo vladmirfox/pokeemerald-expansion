@@ -12097,7 +12097,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_MYTHICAL,
     },
 
-    [SPECIES_SHAYMIN] =
+    [SPECIES_SHAYMIN_LAND] =
     {
         .baseHP        = 100,
         .baseAttack    = 100,

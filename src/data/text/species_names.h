@@ -492,7 +492,7 @@ const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_PHIONE] = _("Phione"),
     [SPECIES_MANAPHY] = _("Manaphy"),
     [SPECIES_DARKRAI] = _("Darkrai"),
-    [SPECIES_SHAYMIN] = _("Shaymin"),
+    [SPECIES_SHAYMIN_LAND] = _("Shaymin"),
     [SPECIES_ARCEUS] = _("Arceus"),
 #endif
 #if P_GEN_5_POKEMON == TRUE
