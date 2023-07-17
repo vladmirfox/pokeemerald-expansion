@@ -495,7 +495,8 @@
 #define SPECIES_PALKIA                       484
 #define SPECIES_HEATRAN                      485
 #define SPECIES_REGIGIGAS                    486
-#define SPECIES_GIRATINA                     487
+#define SPECIES_GIRATINA                     SPECIES_GIRATINA_ALTERED
+#define SPECIES_GIRATINA_ALTERED             487
 #define SPECIES_CRESSELIA                    488
 #define SPECIES_PHIONE                       489
 #define SPECIES_MANAPHY                      490

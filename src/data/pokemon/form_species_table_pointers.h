@@ -98,7 +98,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_ROTOM] = sRotomFormSpeciesIdTable,
     [SPECIES_DIALGA] = sDialgaFormSpeciesIdTable,
     [SPECIES_PALKIA] = sPalkiaFormSpeciesIdTable,
-    [SPECIES_GIRATINA] = sGiratinaFormSpeciesIdTable,
+    [SPECIES_GIRATINA_ALTERED] = sGiratinaFormSpeciesIdTable,
     [SPECIES_SHAYMIN] = sShayminFormSpeciesIdTable,
     [SPECIES_ARCEUS] = sArceusFormSpeciesIdTable,
 #endif

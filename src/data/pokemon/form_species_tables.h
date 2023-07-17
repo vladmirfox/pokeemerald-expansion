@@ -635,7 +635,7 @@ static const u16 sPalkiaFormSpeciesIdTable[] = {
 };
 
 static const u16 sGiratinaFormSpeciesIdTable[] = {
-    SPECIES_GIRATINA,
+    SPECIES_GIRATINA_ALTERED,
     SPECIES_GIRATINA_ORIGIN,
     FORM_SPECIES_END,
 };

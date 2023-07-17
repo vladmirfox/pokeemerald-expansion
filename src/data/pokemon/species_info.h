@@ -11981,7 +11981,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
-    [SPECIES_GIRATINA] =
+    [SPECIES_GIRATINA_ALTERED] =
     {
         .baseHP        = 150,
         .baseAttack    = 100,

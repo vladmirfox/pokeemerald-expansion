@@ -292,7 +292,7 @@ static const struct FormChange sPalkiaFormChangeTable[] = {
 };
 
 static const struct FormChange sGiratinaFormChangeTable[] = {
-    {FORM_CHANGE_ITEM_HOLD, SPECIES_GIRATINA, ITEM_NONE},
+    {FORM_CHANGE_ITEM_HOLD, SPECIES_GIRATINA_ALTERED, ITEM_NONE},
 #if I_GRISEOUS_ORB_FORM_CHANGE < GEN_9
     {FORM_CHANGE_ITEM_HOLD, SPECIES_GIRATINA_ORIGIN, ITEM_GRISEOUS_ORB},
 #endif

@@ -5917,7 +5917,7 @@ static const union AnimCmd sAnim_Regigigas_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Giratina_1[] =
+static const union AnimCmd sAnim_GiratinaAltered_1[] =
 {
     ANIMCMD_FRAME(0, 12),
     ANIMCMD_FRAME(1, 45),
@@ -11079,7 +11079,7 @@ SINGLE_ANIMATION(Dialga);
 SINGLE_ANIMATION(Palkia);
 SINGLE_ANIMATION(Heatran);
 SINGLE_ANIMATION(Regigigas);
-SINGLE_ANIMATION(Giratina);
+SINGLE_ANIMATION(GiratinaAltered);
 SINGLE_ANIMATION(Cresselia);
 SINGLE_ANIMATION(Phione);
 SINGLE_ANIMATION(Manaphy);
@@ -12167,7 +12167,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_PALKIA] = sAnims_Palkia,
     [SPECIES_HEATRAN] = sAnims_Heatran,
     [SPECIES_REGIGIGAS] = sAnims_Regigigas,
-    [SPECIES_GIRATINA] = sAnims_Giratina,
+    [SPECIES_GIRATINA_ALTERED] = sAnims_GiratinaAltered,
     [SPECIES_CRESSELIA] = sAnims_Cresselia,
     [SPECIES_PHIONE] = sAnims_Phione,
     [SPECIES_MANAPHY] = sAnims_Manaphy,
