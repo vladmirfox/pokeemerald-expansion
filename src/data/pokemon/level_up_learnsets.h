@@ -7861,7 +7861,7 @@ static const struct LevelUpMove sJirachiLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
-static const struct LevelUpMove sDeoxysLevelUpLearnset[] = {
+static const struct LevelUpMove sDeoxysNormalLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_LEER),
     LEVEL_UP_MOVE( 1, MOVE_WRAP),
     LEVEL_UP_MOVE( 7, MOVE_NIGHT_SHADE),

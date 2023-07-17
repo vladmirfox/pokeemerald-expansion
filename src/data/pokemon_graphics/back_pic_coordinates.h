@@ -408,7 +408,7 @@ const struct MonCoords gMonBackPicCoords[NUM_SPECIES + 1] =
     [SPECIES_LATIAS]                       = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  0 },
     [SPECIES_LATIOS]                       = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  0 },
     [SPECIES_JIRACHI]                      = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  6 },
-    [SPECIES_DEOXYS]                       = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  6 },
+    [SPECIES_DEOXYS_NORMAL]                = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  6 },
     [SPECIES_CHIMECHO]                     = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  9 },
 #if P_GEN_4_POKEMON == TRUE
     [SPECIES_TURTWIG]                      = { .size = MON_COORDS_SIZE(48, 56), .y_offset =  6 },

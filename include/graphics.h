@@ -506,7 +506,7 @@ extern const u32 gMonFrontPic_Kyogre[];
 extern const u32 gMonFrontPic_Groudon[];
 extern const u32 gMonFrontPic_Rayquaza[];
 extern const u32 gMonFrontPic_Jirachi[];
-extern const u32 gMonFrontPic_Deoxys[];
+extern const u32 gMonFrontPic_DeoxysNormal[];
 #if P_GEN_4_POKEMON == TRUE
 extern const u32 gMonFrontPic_Turtwig[];
 extern const u32 gMonFrontPic_Grotle[];
@@ -1780,7 +1780,7 @@ extern const u32 gMonBackPic_Kyogre[];
 extern const u32 gMonBackPic_Groudon[];
 extern const u32 gMonBackPic_Rayquaza[];
 extern const u32 gMonBackPic_Jirachi[];
-extern const u32 gMonBackPic_Deoxys[];
+extern const u32 gMonBackPic_DeoxysNormal[];
 #if P_GEN_4_POKEMON == TRUE
 extern const u32 gMonBackPic_Turtwig[];
 extern const u32 gMonBackPic_Grotle[];
@@ -2996,7 +2996,7 @@ extern const u32 gMonPalette_Kyogre[];
 extern const u32 gMonPalette_Groudon[];
 extern const u32 gMonPalette_Rayquaza[];
 extern const u32 gMonPalette_Jirachi[];
-extern const u32 gMonPalette_Deoxys[];
+extern const u32 gMonPalette_DeoxysNormal[];
 #if P_GEN_4_POKEMON == TRUE
 extern const u32 gMonPalette_Turtwig[];
 extern const u32 gMonPalette_Grotle[];
@@ -4229,7 +4229,7 @@ extern const u32 gMonShinyPalette_Kyogre[];
 extern const u32 gMonShinyPalette_Groudon[];
 extern const u32 gMonShinyPalette_Rayquaza[];
 extern const u32 gMonShinyPalette_Jirachi[];
-extern const u32 gMonShinyPalette_Deoxys[];
+extern const u32 gMonShinyPalette_DeoxysNormal[];
 #if P_GEN_4_POKEMON == TRUE
 extern const u32 gMonShinyPalette_Turtwig[];
 extern const u32 gMonShinyPalette_Grotle[];
@@ -5454,7 +5454,7 @@ extern const u8 gMonIcon_Kyogre[];
 extern const u8 gMonIcon_Groudon[];
 extern const u8 gMonIcon_Rayquaza[];
 extern const u8 gMonIcon_Jirachi[];
-extern const u8 gMonIcon_Deoxys[];
+extern const u8 gMonIcon_DeoxysNormal[];
 #if P_GEN_4_POKEMON == TRUE
 extern const u8 gMonIcon_Turtwig[];
 extern const u8 gMonIcon_Grotle[];

@@ -542,7 +542,7 @@ static const u16 sRayquazaFormSpeciesIdTable[] = {
 };
 
 static const u16 sDeoxysFormSpeciesIdTable[] = {
-    SPECIES_DEOXYS,
+    SPECIES_DEOXYS_NORMAL,
     SPECIES_DEOXYS_ATTACK,
     SPECIES_DEOXYS_DEFENSE,
     SPECIES_DEOXYS_SPEED,

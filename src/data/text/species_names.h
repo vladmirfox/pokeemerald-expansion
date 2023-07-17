@@ -385,7 +385,7 @@ const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_GROUDON] = _("Groudon"),
     [SPECIES_RAYQUAZA] = _("Rayquaza"),
     [SPECIES_JIRACHI] = _("Jirachi"),
-    [SPECIES_DEOXYS] = _("Deoxys"),
+    [SPECIES_DEOXYS_NORMAL] = _("Deoxys"),
 #if P_GEN_4_POKEMON == TRUE
     [SPECIES_TURTWIG] = _("Turtwig"),
     [SPECIES_GROTLE] = _("Grotle"),

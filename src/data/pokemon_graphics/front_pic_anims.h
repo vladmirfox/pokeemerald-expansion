@@ -4522,22 +4522,13 @@ static const union AnimCmd sAnim_Jirachi_2[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Deoxys_1[] =
+static const union AnimCmd sAnim_DeoxysNormal_1[] =
 {
     ANIMCMD_FRAME(0, 16),
     ANIMCMD_FRAME(1, 16),
     ANIMCMD_FRAME(0, 26),
     ANIMCMD_FRAME(1, 16),
     ANIMCMD_FRAME(0, 16),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_Deoxys_2[] =
-{
-    ANIMCMD_FRAME(0, 20),
-    ANIMCMD_FRAME(2, 20),
-    ANIMCMD_FRAME(0, 20),
-    ANIMCMD_FRAME(2, 20),
     ANIMCMD_END,
 };
 
@@ -10951,7 +10942,7 @@ DOUBLE_ANIMATION(Rayquaza);
 DOUBLE_ANIMATION(Latias);
 DOUBLE_ANIMATION(Latios);
 DOUBLE_ANIMATION(Jirachi);
-DOUBLE_ANIMATION(Deoxys);
+SINGLE_ANIMATION(DeoxysNormal);
 SINGLE_ANIMATION(Chimecho);
 SINGLE_ANIMATION(Egg);
 SINGLE_ANIMATION(UnownB);
@@ -12073,7 +12064,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_LATIAS]      = sAnims_Latias,
     [SPECIES_LATIOS]      = sAnims_Latios,
     [SPECIES_JIRACHI]     = sAnims_Jirachi,
-    [SPECIES_DEOXYS]      = sAnims_Deoxys,
+    [SPECIES_DEOXYS_NORMAL] = sAnims_DeoxysNormal,
     [SPECIES_CHIMECHO]    = sAnims_Chimecho,
 #if P_GEN_4_POKEMON == TRUE
     [SPECIES_TURTWIG] = sAnims_Turtwig,

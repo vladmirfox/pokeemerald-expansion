@@ -385,7 +385,7 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[NUM_SPECIES + 1] =
     SPECIES_SHINY_PAL(LATIAS, gMonShinyPalette_Latias),
     SPECIES_SHINY_PAL(LATIOS, gMonShinyPalette_Latios),
     SPECIES_SHINY_PAL(JIRACHI, gMonShinyPalette_Jirachi),
-    SPECIES_SHINY_PAL(DEOXYS, gMonShinyPalette_Deoxys),
+    SPECIES_SHINY_PAL(DEOXYS_NORMAL, gMonShinyPalette_DeoxysNormal),
     SPECIES_SHINY_PAL(CHIMECHO, gMonShinyPalette_Chimecho),
 #if P_GEN_4_POKEMON == TRUE
     SPECIES_SHINY_PAL(TURTWIG, gMonShinyPalette_Turtwig),

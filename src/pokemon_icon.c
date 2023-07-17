@@ -411,7 +411,7 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_LATIAS] = gMonIcon_Latias,
     [SPECIES_LATIOS] = gMonIcon_Latios,
     [SPECIES_JIRACHI] = gMonIcon_Jirachi,
-    [SPECIES_DEOXYS] = gMonIcon_Deoxys,
+    [SPECIES_DEOXYS_NORMAL] = gMonIcon_DeoxysNormal,
     [SPECIES_CHIMECHO] = gMonIcon_Chimecho,
 #if P_GEN_4_POKEMON == TRUE
     [SPECIES_TURTWIG] = gMonIcon_Turtwig,
@@ -1701,7 +1701,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_LATIAS] = 0,
     [SPECIES_LATIOS] = 0,
     [SPECIES_JIRACHI] = 0,
-    [SPECIES_DEOXYS] = 0,
+    [SPECIES_DEOXYS_NORMAL] = 0,
     [SPECIES_CHIMECHO] = 0,
     [SPECIES_TURTWIG] = 1,
     [SPECIES_GROTLE] = 1,

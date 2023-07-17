@@ -389,7 +389,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_LATIAS]                       = { .size = MON_COORDS_SIZE(64, 48), .y_offset =  8 },
     [SPECIES_LATIOS]                       = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_JIRACHI]                      = { .size = MON_COORDS_SIZE(56, 48), .y_offset = 13 },
-    [SPECIES_DEOXYS]                       = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
+    [SPECIES_DEOXYS_NORMAL]                = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_CHIMECHO]                     = { .size = MON_COORDS_SIZE(48, 48), .y_offset = 11 },
 #if P_GEN_4_POKEMON == TRUE
     [SPECIES_TURTWIG]                      = { .size = MON_COORDS_SIZE(40, 48), .y_offset = 11 },

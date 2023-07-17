@@ -385,7 +385,7 @@ const struct CompressedSpriteSheet gMonBackPicTable[NUM_SPECIES + 1] =
     SPECIES_SPRITE(LATIAS, gMonBackPic_Latias),
     SPECIES_SPRITE(LATIOS, gMonBackPic_Latios),
     SPECIES_SPRITE(JIRACHI, gMonBackPic_Jirachi),
-    SPECIES_SPRITE(DEOXYS, gMonBackPic_Deoxys),
+    SPECIES_SPRITE(DEOXYS_NORMAL, gMonBackPic_DeoxysNormal),
     SPECIES_SPRITE(CHIMECHO, gMonBackPic_Chimecho),
 #if P_GEN_4_POKEMON == TRUE
     SPECIES_SPRITE(TURTWIG, gMonBackPic_Turtwig),

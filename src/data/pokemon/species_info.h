@@ -9757,7 +9757,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_MYTHICAL,
     },
 
-    [SPECIES_DEOXYS] =
+    [SPECIES_DEOXYS_NORMAL] =
     {
         .baseHP        = 50,
         .baseAttack    = 150,

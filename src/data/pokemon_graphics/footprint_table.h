@@ -385,7 +385,7 @@ const u8 *const gMonFootprintTable[NUM_SPECIES + 1] =
     [SPECIES_LATIAS] = gMonFootprint_Latias,
     [SPECIES_LATIOS] = gMonFootprint_Latios,
     [SPECIES_JIRACHI] = gMonFootprint_Jirachi,
-    [SPECIES_DEOXYS] = gMonFootprint_Deoxys,
+    [SPECIES_DEOXYS_NORMAL] = gMonFootprint_Deoxys,
     [SPECIES_CHIMECHO] = gMonFootprint_Chimecho,
 #if P_GEN_4_POKEMON == TRUE
     [SPECIES_TURTWIG] = gMonFootprint_Turtwig,

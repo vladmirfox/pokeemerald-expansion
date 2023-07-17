@@ -385,7 +385,7 @@ const struct CompressedSpritePalette gMonPaletteTable[NUM_SPECIES + 1] =
     SPECIES_PAL(LATIAS, gMonPalette_Latias),
     SPECIES_PAL(LATIOS, gMonPalette_Latios),
     SPECIES_PAL(JIRACHI, gMonPalette_Jirachi),
-    SPECIES_PAL(DEOXYS, gMonPalette_Deoxys),
+    SPECIES_PAL(DEOXYS_NORMAL, gMonPalette_DeoxysNormal),
     SPECIES_PAL(CHIMECHO, gMonPalette_Chimecho),
 #if P_GEN_4_POKEMON == TRUE
     SPECIES_PAL(TURTWIG, gMonPalette_Turtwig),

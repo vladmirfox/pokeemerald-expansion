@@ -16053,7 +16053,7 @@ static const u16 sJirachiTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 
-static const u16 sDeoxysTeachableLearnset[] = {
+static const u16 sDeoxysNormalTeachableLearnset[] = {
     MOVE_AERIAL_ACE,
     MOVE_BRICK_BREAK,
     MOVE_CALM_MIND,
