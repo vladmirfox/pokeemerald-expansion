@@ -6642,7 +6642,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                 break;
             case EVO_ITEM_DAY:
                 RtcCalcLocalTime();
-                if (GetCurrentTimeOfDay() == TIME_DAY gEvolutionTable[species][i].param == evolutionItem)
+                if (GetCurrentTimeOfDay() == TIME_DAY && gEvolutionTable[species][i].param == evolutionItem)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             }
