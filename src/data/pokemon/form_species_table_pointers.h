@@ -105,7 +105,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_SAMUROTT] = sSamurottFormSpeciesIdTable,
     [SPECIES_AUDINO] = sAudinoFormSpeciesIdTable,
-    [SPECIES_BASCULIN] = sBasculinFormSpeciesIdTable,
+    [SPECIES_BASCULIN_RED_STRIPED] = sBasculinFormSpeciesIdTable,
     [SPECIES_LILLIGANT] = sLilligantFormSpeciesIdTable,
     [SPECIES_DARUMAKA] = sDarumakaFormSpeciesIdTable,
     [SPECIES_DARMANITAN] = sDarmanitanFormSpeciesIdTable,

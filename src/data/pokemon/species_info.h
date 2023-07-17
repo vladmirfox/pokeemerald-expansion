@@ -13449,7 +13449,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = TRUE,
     },
 
-    [SPECIES_BASCULIN] =
+    [SPECIES_BASCULIN_RED_STRIPED] =
     {
         .baseHP        = 70,
         .baseAttack    = 92,

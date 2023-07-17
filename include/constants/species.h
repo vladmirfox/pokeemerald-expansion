@@ -561,7 +561,8 @@
 #define SPECIES_WHIMSICOTT                   547
 #define SPECIES_PETILIL                      548
 #define SPECIES_LILLIGANT                    549
-#define SPECIES_BASCULIN                     550
+#define SPECIES_BASCULIN                     SPECIES_BASCULIN_RED_STRIPED
+#define SPECIES_BASCULIN_RED_STRIPED         550
 #define SPECIES_SANDILE                      551
 #define SPECIES_KROKOROK                     552
 #define SPECIES_KROOKODILE                   553
