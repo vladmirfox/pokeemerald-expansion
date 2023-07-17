@@ -85,8 +85,8 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_RAYQUAZA] = sRayquazaFormSpeciesIdTable,
     [SPECIES_DEOXYS_NORMAL] = sDeoxysFormSpeciesIdTable,
 #if P_GEN_4_POKEMON == TRUE
-    [SPECIES_BURMY] = sBurmyFormSpeciesIdTable,
-    [SPECIES_WORMADAM] = sWormadamFormSpeciesIdTable,
+    [SPECIES_BURMY_PLANT_CLOAK] = sBurmyFormSpeciesIdTable,
+    [SPECIES_WORMADAM_PLANT_CLOAK] = sWormadamFormSpeciesIdTable,
     [SPECIES_CHERRIM] = sCherrimFormSpeciesIdTable,
     [SPECIES_SHELLOS] = sShellosFormSpeciesIdTable,
     [SPECIES_GASTRODON] = sGastrodonFormSpeciesIdTable,

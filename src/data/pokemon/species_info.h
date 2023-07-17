@@ -10350,9 +10350,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_BURMY] = BURMY_SPECIES_INFO(BODY_COLOR_GREEN),
+    [SPECIES_BURMY_PLANT_CLOAK] = BURMY_SPECIES_INFO(BODY_COLOR_GREEN),
 
-    [SPECIES_WORMADAM] =
+    [SPECIES_WORMADAM_PLANT_CLOAK] =
     {
         .baseHP        = 60,
         .baseAttack    = 59,

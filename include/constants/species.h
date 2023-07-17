@@ -415,8 +415,10 @@
 #define SPECIES_RAMPARDOS                    409
 #define SPECIES_SHIELDON                     410
 #define SPECIES_BASTIODON                    411
-#define SPECIES_BURMY                        412
-#define SPECIES_WORMADAM                     413
+#define SPECIES_BURMY                        SPECIES_BURMY_PLANT_CLOAK
+#define SPECIES_BURMY_PLANT_CLOAK            412
+#define SPECIES_WORMADAM                     SPECIES_WORMADAM_PLANT_CLOAK
+#define SPECIES_WORMADAM_PLANT_CLOAK         413
 #define SPECIES_MOTHIM                       414
 #define SPECIES_COMBEE                       415
 #define SPECIES_VESPIQUEN                    416
