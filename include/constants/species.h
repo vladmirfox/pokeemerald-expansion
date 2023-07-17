@@ -503,7 +503,8 @@
 #define SPECIES_DARKRAI                      491
 #define SPECIES_SHAYMIN                      SPECIES_SHAYMIN_LAND
 #define SPECIES_SHAYMIN_LAND                 492
-#define SPECIES_ARCEUS                       493
+#define SPECIES_ARCEUS                       SPECIES_ARCEUS_NORMAL
+#define SPECIES_ARCEUS_NORMAL                493
 #define SPECIES_VICTINI                      494
 #define SPECIES_SNIVY                        495
 #define SPECIES_SERVINE                      496

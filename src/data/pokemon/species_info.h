@@ -12122,7 +12122,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_MYTHICAL,
     },
 
-    [SPECIES_ARCEUS] =
+    [SPECIES_ARCEUS_NORMAL] =
     {
         .baseHP        = 120,
         .baseAttack    = 120,

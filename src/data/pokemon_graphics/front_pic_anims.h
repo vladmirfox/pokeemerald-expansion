@@ -12173,7 +12173,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_MANAPHY] = sAnims_Manaphy,
     [SPECIES_DARKRAI] = sAnims_Darkrai,
     [SPECIES_SHAYMIN_LAND] = sAnims_ShayminLand,
-    [SPECIES_ARCEUS] = sAnims_Arceus,
+    [SPECIES_ARCEUS_NORMAL] = sAnims_Arceus,
 #endif
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_VICTINI] = sAnims_Victini,

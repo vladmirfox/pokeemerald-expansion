@@ -494,7 +494,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_MANAPHY] = sManaphyTeachableLearnset,
     [SPECIES_DARKRAI] = sDarkraiTeachableLearnset,
     [SPECIES_SHAYMIN_LAND] = sShayminLandTeachableLearnset,
-    [SPECIES_ARCEUS] = sArceusTeachableLearnset,
+    [SPECIES_ARCEUS_NORMAL] = sArceusTeachableLearnset,
 #endif
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_VICTINI] = sVictiniTeachableLearnset,

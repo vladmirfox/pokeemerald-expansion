@@ -100,7 +100,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_PALKIA] = sPalkiaFormSpeciesIdTable,
     [SPECIES_GIRATINA_ALTERED] = sGiratinaFormSpeciesIdTable,
     [SPECIES_SHAYMIN_LAND] = sShayminFormSpeciesIdTable,
-    [SPECIES_ARCEUS] = sArceusFormSpeciesIdTable,
+    [SPECIES_ARCEUS_NORMAL] = sArceusFormSpeciesIdTable,
 #endif
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_SAMUROTT] = sSamurottFormSpeciesIdTable,
