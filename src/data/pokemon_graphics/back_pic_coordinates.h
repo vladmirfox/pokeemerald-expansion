@@ -445,7 +445,7 @@ const struct MonCoords gMonBackPicCoords[NUM_SPECIES + 1] =
     [SPECIES_BUIZEL]                       = { .size = MON_COORDS_SIZE(64, 48), .y_offset =  9 },
     [SPECIES_FLOATZEL]                     = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  6 },
     [SPECIES_CHERUBI]                      = { .size = MON_COORDS_SIZE(48, 40), .y_offset = 13 },
-    [SPECIES_CHERRIM]                      = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  9 },
+    [SPECIES_CHERRIM_OVERCAST]             = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  9 },
     [SPECIES_SHELLOS]                      = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  8 },
     [SPECIES_GASTRODON]                    = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  3 },
     [SPECIES_AMBIPOM]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  3 },

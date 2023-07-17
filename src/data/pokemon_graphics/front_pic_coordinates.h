@@ -426,7 +426,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_BUIZEL]                       = { .size = MON_COORDS_SIZE(56, 48), .y_offset = 10 },
     [SPECIES_FLOATZEL]                     = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  3 },
     [SPECIES_CHERUBI]                      = { .size = MON_COORDS_SIZE(40, 32), .y_offset = 16 },
-    [SPECIES_CHERRIM]                      = { .size = MON_COORDS_SIZE(32, 48), .y_offset =  8 },
+    [SPECIES_CHERRIM_OVERCAST]             = { .size = MON_COORDS_SIZE(32, 48), .y_offset =  8 },
     [SPECIES_SHELLOS]                      = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 13 },
     [SPECIES_GASTRODON]                    = { .size = MON_COORDS_SIZE(48, 48), .y_offset =  8 },
     [SPECIES_AMBIPOM]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  1 },

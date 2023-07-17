@@ -426,7 +426,8 @@
 #define SPECIES_BUIZEL                       418
 #define SPECIES_FLOATZEL                     419
 #define SPECIES_CHERUBI                      420
-#define SPECIES_CHERRIM                      421
+#define SPECIES_CHERRIM                      SPECIES_CHERRIM_OVERCAST
+#define SPECIES_CHERRIM_OVERCAST             421
 #define SPECIES_SHELLOS                      422
 #define SPECIES_GASTRODON                    423
 #define SPECIES_AMBIPOM                      424

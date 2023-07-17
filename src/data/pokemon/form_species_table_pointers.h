@@ -87,7 +87,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 #if P_GEN_4_POKEMON == TRUE
     [SPECIES_BURMY_PLANT_CLOAK] = sBurmyFormSpeciesIdTable,
     [SPECIES_WORMADAM_PLANT_CLOAK] = sWormadamFormSpeciesIdTable,
-    [SPECIES_CHERRIM] = sCherrimFormSpeciesIdTable,
+    [SPECIES_CHERRIM_OVERCAST] = sCherrimFormSpeciesIdTable,
     [SPECIES_SHELLOS] = sShellosFormSpeciesIdTable,
     [SPECIES_GASTRODON] = sGastrodonFormSpeciesIdTable,
     [SPECIES_LOPUNNY] = sLopunnyFormSpeciesIdTable,

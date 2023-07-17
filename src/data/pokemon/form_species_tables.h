@@ -565,7 +565,7 @@ static const u16 sWormadamFormSpeciesIdTable[] = {
 };
 
 static const u16 sCherrimFormSpeciesIdTable[] = {
-    SPECIES_CHERRIM,
+    SPECIES_CHERRIM_OVERCAST,
     SPECIES_CHERRIM_SUNSHINE,
     FORM_SPECIES_END,
 };
