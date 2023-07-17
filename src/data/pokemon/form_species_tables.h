@@ -571,13 +571,13 @@ static const u16 sCherrimFormSpeciesIdTable[] = {
 };
 
 static const u16 sShellosFormSpeciesIdTable[] = {
-    SPECIES_SHELLOS,
+    SPECIES_SHELLOS_WEST_SEA,
     SPECIES_SHELLOS_EAST_SEA,
     FORM_SPECIES_END,
 };
 
 static const u16 sGastrodonFormSpeciesIdTable[] = {
-    SPECIES_GASTRODON,
+    SPECIES_GASTRODON_WEST_SEA,
     SPECIES_GASTRODON_EAST_SEA,
     FORM_SPECIES_END,
 };

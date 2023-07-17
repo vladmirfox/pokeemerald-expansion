@@ -428,8 +428,10 @@
 #define SPECIES_CHERUBI                      420
 #define SPECIES_CHERRIM                      SPECIES_CHERRIM_OVERCAST
 #define SPECIES_CHERRIM_OVERCAST             421
-#define SPECIES_SHELLOS                      422
-#define SPECIES_GASTRODON                    423
+#define SPECIES_SHELLOS                      SPECIES_SHELLOS_WEST_SEA
+#define SPECIES_SHELLOS_WEST_SEA             422
+#define SPECIES_GASTRODON                    SPECIES_GASTRODON_WEST_SEA
+#define SPECIES_GASTRODON_WEST_SEA           423
 #define SPECIES_AMBIPOM                      424
 #define SPECIES_DRIFLOON                     425
 #define SPECIES_DRIFBLIM                     426
