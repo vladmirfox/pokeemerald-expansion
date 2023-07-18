@@ -1147,7 +1147,7 @@ static void Debug_RefreshListMenu(u8 taskId)
             else if (GetMonData(&gEnemyParty[i], MON_DATA_SANITY_HAS_SPECIES))
             {
                 species = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES);
-                GetSpeciesName(gStringVar1, species);
+                StringCopy(gStringVar1, GetSpeciesName(species));
                 StringCopy(&sDebugMenuListData->itemNames[i][0], gStringVar1);
             }
             else
@@ -3480,7 +3480,7 @@ static void DebugAction_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
         {
             if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
             {
-                GetSpeciesName(speciesName, species);
+                StringCopy(speciesName, GetSpeciesName(species));
                 SetBoxMonData(&boxMon, MON_DATA_NICKNAME, &speciesName);
                 SetBoxMonData(&boxMon, MON_DATA_SPECIES, &species);
                 GiveBoxMonInitialMoveset_Fast(&boxMon);
