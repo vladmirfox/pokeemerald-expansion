@@ -432,8 +432,8 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectInfernalParade          @ EFFECT_INFERNAL_PARADE
 	.4byte BattleScript_EffectTakeHeart               @ EFFECT_TAKE_HEART
 	.4byte BattleScript_EffectAxeKick                 @ EFFECT_AXE_KICK
-	.4byte BattleScript_EffectHit	                  @ EFFECT_COLLISION_COURSE
-	.4byte BattleScript_EffectSpinOut	              @ EFFECT_SPIN_OUT
+	.4byte BattleScript_EffectHit                     @ EFFECT_COLLISION_COURSE
+	.4byte BattleScript_EffectSpinOut                 @ EFFECT_SPIN_OUT
 	.4byte BattleScript_EffectMakeItRain              @ EFFECT_MAKE_IT_RAIN
 
 BattleScript_EffectMakeItRain:
