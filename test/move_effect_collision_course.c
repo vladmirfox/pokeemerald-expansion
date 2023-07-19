@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Collision Course damage is increased by 33 Percent if super 
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.33), results[1].damage);
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.3333), results[1].damage);
     }
 }
 

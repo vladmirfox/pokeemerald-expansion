@@ -3162,7 +3162,7 @@ BattleScript_EffectHit_Ret::
 	waitmessage B_WAIT_TIME_LONG
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
-    return
+	return
 
 BattleScript_EffectNaturalGift:
 	attackcanceler
