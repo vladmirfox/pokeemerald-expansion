@@ -1417,14 +1417,16 @@ void BattleSetup_StartTrainerBattle_Debug(void)
     ScriptContext_Stop();
 }
 
-static void HandleBattleVariantParty(void)
+static void HandleBattleVariantEndParty(void)
 {
+#if B_FLAG_SKY_BATTLE != 0
     if (FlagGet(B_FLAG_SKY_BATTLE))
     {
         SaveChangesToPlayerParty();
         LoadPlayerParty();
         FlagClear(B_FLAG_SKY_BATTLE);
     }
+#endif
 }
 
 static void CB2_EndTrainerBattle(void)

@@ -667,7 +667,7 @@ struct BattleStruct
     bool8 trainerSlideMegaEvolutionMsgDone;
     bool8 trainerSlideZMoveMsgDone;
     bool8 trainerSlideBeforeFirstTurnMsgDone;
-    u8 isSkyBattle:1;
+    bool8 isSkyBattle:1;
 };
 
 #define F_DYNAMIC_TYPE_1 (1 << 6)
