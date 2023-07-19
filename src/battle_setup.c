@@ -1431,7 +1431,7 @@ static void HandleBattleVariantEndParty(void)
 
 static void CB2_EndTrainerBattle(void)
 {
-    HandleBattleVariantParty();
+    HandleBattleVariantEndParty();
 
     if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
     {
