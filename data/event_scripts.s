@@ -1061,3 +1061,7 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/text/birch_speech.inc"
 
 	.include "data/maps/LittlerootPokemonArea/scripts.inc"
+
+	.include "data/maps/MtDumbbell_5F/scripts.inc"
+
+	.include "data/maps/LittlerootTown_TradingCenter/scripts.inc"

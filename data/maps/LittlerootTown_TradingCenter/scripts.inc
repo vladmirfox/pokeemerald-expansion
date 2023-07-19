@@ -1,0 +1,2 @@
+LittlerootTown_TradingCenter_MapScripts::
+	.byte 0

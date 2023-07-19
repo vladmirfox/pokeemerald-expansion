@@ -144,7 +144,13 @@
     }
   ],
   "warp_events": [
-
+    {
+      "x": 16,
+      "y": 31,
+      "elevation": 0,
+      "dest_map": "MAP_MT_DUMBBELL_5F",
+      "dest_warp_id": "0"
+    }
   ],
   "coord_events": [
 

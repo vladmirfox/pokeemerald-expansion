@@ -100,7 +100,8 @@
     "LittlerootTown_MaysHouse_1F",
     "LittlerootTown_MaysHouse_2F",
     "LittlerootTown_ProfessorBirchsLab",
-    "LittlerootPokemonArea"
+    "LittlerootPokemonArea",
+    "LittlerootTown_TradingCenter"
   ],
   "gMapGroup_IndoorOldale": [
     "OldaleTown_House1",
@@ -430,7 +431,8 @@
     "TerraCave_Entrance",
     "TerraCave_End",
     "AlteringCave",
-    "MeteorFalls_StevensCave"
+    "MeteorFalls_StevensCave",
+    "MtDumbbell_5F"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

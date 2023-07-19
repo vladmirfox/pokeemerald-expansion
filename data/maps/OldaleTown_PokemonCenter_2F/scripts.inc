@@ -17,3 +17,24 @@ OldaleTown_PokemonCenter_2F_EventScript_TradeCenter::
 OldaleTown_PokemonCenter_2F_EventScript_RecordCorner::
 	call CableClub_EventScript_RecordCorner
 	end
+
+OldaleTown_PokemonCenter_2F_EventScript_CandyShop::
+	lock
+	message OldaleTown_PokemonCenter_2F_EventScript_CandyShop_Text_0
+	waitmessage
+	pokemart OldaleTown_PokemonCenter_2F_CandyShop
+	msgbox OldaleTown_PokemonCenter_2F_EventScript_CandyShop_Text_1
+	release
+	return
+
+
+	.align 2
+OldaleTown_PokemonCenter_2F_CandyShop:
+	.2byte ITEM_RARE_CANDY
+	.2byte ITEM_NONE
+
+OldaleTown_PokemonCenter_2F_EventScript_CandyShop_Text_0:
+	.string "...psst. Wanna Buy Some Candy?$"
+
+OldaleTown_PokemonCenter_2F_EventScript_CandyShop_Text_1:
+	.string "Tell your Friends.$"

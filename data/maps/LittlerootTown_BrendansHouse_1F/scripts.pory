@@ -433,7 +433,3 @@ text PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor {
 text PlayersHouse_1F_Text_DidYouMeetProfBirch {
 	format("MOM: Did you find PROF. BIRCH?\p...\pHm, maybe he is still on his way from OLDALE TOWN?")
 }
-
-//text x {
-//	format("")
-//}

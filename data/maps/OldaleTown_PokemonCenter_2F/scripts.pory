@@ -20,3 +20,15 @@ OldaleTown_PokemonCenter_2F_EventScript_RecordCorner::
 	end
 
 `
+script OldaleTown_PokemonCenter_2F_EventScript_CandyShop {
+	lock
+	message("...psst. Wanna Buy Some Candy?")
+	waitmessage
+	pokemart(OldaleTown_PokemonCenter_2F_CandyShop)
+	msgbox("Tell your Friends.")
+	release
+}
+
+mart OldaleTown_PokemonCenter_2F_CandyShop {
+	ITEM_RARE_CANDY
+}
