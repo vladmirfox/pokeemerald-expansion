@@ -26,6 +26,26 @@ SINGLE_BATTLE_TEST("Sticky Web lowers Speed by 1 on switch-in")
     }
 }
 
+SINGLE_BATTLE_TEST("Sticky Web can only be set up 1 time")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_STICKY_WEB); }
+        TURN { MOVE(player, MOVE_STICKY_WEB); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Sticky Web!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
+        MESSAGE("A sticky web spreads out on the ground around the opposing team!");
+
+        MESSAGE("Wobbuffet used Sticky Web!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
+        MESSAGE("But it failed!");
+    }
+}
+
+
 DOUBLE_BATTLE_TEST("Sticky Web lowers Speed by 1 in a double battle after Explosion fainting both mons")
 {
     GIVEN {
@@ -134,7 +154,7 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
         PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); Speed(speedOpponent); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
         OPPONENT(SPECIES_CATERPIE) {Speed(speedOpponent); }
         OPPONENT(SPECIES_WEEDLE) {Speed(speedOpponent); }
-        OPPONENT(SPECIES_WURMPLE) {Speed(speedOpponent); }
+        OPPONENT(SPECIES_PIDGEY) {Speed(speedOpponent); } // Flying type,so not affected by Sticky Web.
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_STICKY_WEB); MOVE(playerRight, MOVE_STICKY_WEB); }
         TURN { SWITCH(opponentLeft, 2); }
@@ -160,6 +180,58 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
         EXPECT_EQ(playerLeft->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
         EXPECT_EQ(playerRight->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponentLeft->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(opponentRight->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no one has their Speed lowered if the set upper fainted")
+{
+    bool8 hasReplacement;
+
+    // We need to make sure Sticky Web user saves for both sides, so it doesn't matter who sets it first.
+    PARAMETRIZE {hasReplacement = TRUE;}
+    PARAMETRIZE {hasReplacement = FALSE;}
+
+    GIVEN {
+        ASSUME(P_GEN_8_POKEMON == TRUE);
+        ASSUME(gBattleMoves[MOVE_MEMENTO].effect == EFFECT_MEMENTO);
+        PLAYER(SPECIES_SQUIRTLE) {Speed(5); }
+        PLAYER(SPECIES_CHARMANDER) {Speed(5); }
+        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); Speed(5); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
+        OPPONENT(SPECIES_CATERPIE) {Speed(7); }
+        OPPONENT(SPECIES_WEEDLE) {Speed(7); }
+        if (hasReplacement) {
+            OPPONENT(SPECIES_PIDGEY) {Speed(7); }
+        }
+
+    } WHEN {
+        TURN { MOVE(opponentLeft, MOVE_STICKY_WEB); }
+        if (hasReplacement) {
+            TURN { MOVE(opponentLeft, MOVE_MEMENTO, target:playerLeft); SEND_OUT(opponentLeft, 2); }
+        } else {
+            TURN { MOVE(opponentLeft, MOVE_MEMENTO, target:playerLeft);}
+        }
+        TURN { SWITCH(playerRight, 2); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, opponentLeft);
+        MESSAGE("A sticky web spreads out on the ground around your team!");
+
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MEMENTO, opponentLeft);
+        MESSAGE("Foe Caterpie fainted!");
+        if (hasReplacement) {
+            MESSAGE("2 sent out Pidgey!");
+        }
+
+        MESSAGE("Go! Corviknigh!");
+        MESSAGE("Corviknigh was caught in a Sticky Web!");
+        ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
+    } THEN {
+        if (hasReplacement) {
+            EXPECT_EQ(opponentLeft->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
+        }
+        EXPECT_EQ(playerLeft->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(playerRight->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponentRight->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
     }
 }
