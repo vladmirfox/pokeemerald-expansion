@@ -449,7 +449,7 @@ def backupDump(structname, versionnumber, listofchanges):
         if field.bits != None:
             out += ":%s" % field.bits
         out += ";\n"
-    return (out + "}\n\n")
+    return (out + "};\n\n")
 
 if __name__ == "__main__":
     if '--log' in sys.argv:
