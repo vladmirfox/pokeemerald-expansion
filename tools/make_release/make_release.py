@@ -339,7 +339,6 @@ def prepareMigration(listofchanges, versionnumber):
     to_backup = listofchanges.copy()
     i = 0
     while(len(to_backup) > 0):
-        print(to_backup, i)
         outp = backupDump(to_backup[i], versionnumber, listofchanges, to_backup)
         if outp != "":
             content += outp
@@ -423,7 +422,7 @@ def dealWithMigration(name, changedstructs, specification):
                 out += "    gSaveBlock2Ptr->saveVersion = %s;\n" % globalVersion
             continue
         # if not present in the old save, we can't carry it over so it defaults to zero
-        if not field in GlobalClassesOld[name].fields:
+        if not checkFieldIn(field, GlobalClassesOld[name].fields):
             continue
         # ignore map-based save stuff
         if (field.name in ignored_map_fields):
@@ -463,6 +462,12 @@ def parseSpecification(name, specification):
         for i in range(1, len(specification)):
             out += "%s." % specification[i]
         return(out)
+    
+def checkFieldIn(field, fieldlist):
+    lst = []
+    for x in fieldlist:
+        lst.append(x.name)
+    return (field.name in lst)
 
 def backupDump(structname, versionnumber, listofchanges, tobackup):
     # we make a struct and add its components
