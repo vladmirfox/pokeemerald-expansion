@@ -336,9 +336,18 @@ def prepareMigration(listofchanges, versionnumber):
     # content header
     content = '#include "global.h"\n#include "save.h"\n\n// This file contains the backups for the save file of v%s.\n// Editing this file may cause unwanted behaviour.\n// Please use make release in case problems arise.\n\n' % versionnumber
     # add actual backups
-    for x in listofchanges:
-        content += backupDump(x, versionnumber, listofchanges)
-
+    to_backup = listofchanges.copy()
+    i = 0
+    while(len(to_backup) > 0):
+        print(to_backup, i)
+        outp = backupDump(to_backup[i], versionnumber, listofchanges, to_backup)
+        if outp != "":
+            content += outp
+            del to_backup[i]
+        else:
+            i += 1
+        if (i >= len(to_backup)):
+            i = 0
     # add migration function
     content += "\nbool8 UpdateSave_v%s_v%s(const struct SaveSectorLocation *locations)\n{\n" % (versionnumber, globalVersion)
     # add const structs
@@ -455,7 +464,7 @@ def parseSpecification(name, specification):
             out += "%s." % specification[i]
         return(out)
 
-def backupDump(structname, versionnumber, listofchanges):
+def backupDump(structname, versionnumber, listofchanges, tobackup):
     # we make a struct and add its components
     out = "struct %s_v%s\n{\n" % (structname, versionnumber)
     for field in GlobalClassesOld[structname].fields:
@@ -471,6 +480,9 @@ def backupDump(structname, versionnumber, listofchanges):
         # if the referenced struct is different from the modern one, refer to the old one
         if field_type.typename.segments[0].name in listofchanges and field_type.typename.segments[0].name not in trusted_typedefs:
             out += "_v%s" % versionnumber
+            if field_type.typename.segments[0].name in tobackup:
+                # postpone this dump for compiler purposes
+                return("")
         out += " %s" % field.name
         # add sizes for arrays
         field_type = field.type
