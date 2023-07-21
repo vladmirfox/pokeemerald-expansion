@@ -142,7 +142,7 @@ def updateSwitchVersion():
             out("Error: unable to update src/save.c (switch case)!")
             quit()
         content = ncontent
-        ncontent = re.sub("(\/\/ START Include old save data\n)[^\/]*(\/\/ END Include old save data)", "\\1" + includelist + "\\2", content)
+        ncontent = re.sub("(\/\/ START Include old save data\n)[\s\S]*?(\/\/ END Include old save data)", "\\1" + includelist + "\\2", content)
         if content == ncontent:
             out("Error: unable to update src/save.c (include list)!")
             quit()
