@@ -246,7 +246,7 @@ def compareFields(fieldname, inline, extratext):
         out("  " * (inline - 1) + "Comparing %s%s" % (fieldname, extratext_display))
     for x in GlobalClassesNew[fieldname].fields:
         if not x.name in fields_old:
-            out("  " * inline  + "%s is a new field that was not present in the previous version!" % x.name)
+            out("  " * inline  + "%s is a new field that was not present in the previous version" % x.name)
             globalHasChanges = True
             if not fieldname in globalDifferences:
                 globalDifferences.append(fieldname)
@@ -266,8 +266,8 @@ def compareFields(fieldname, inline, extratext):
             # figure out what exactly is different, starting with size
             globalHasChanges = True
             if 'size' in newclass and 'size' in oldclass:
-                oldsize = oldclass['size']
-                newsize = newclass['size']
+                oldsize = int(oldclass['size'])
+                newsize = int(newclass['size'])
                 if (oldsize != newsize):
                     if (oldsize < newsize):
                         out("  " * inline + "%s was expanded in size from %s to %s" % (x.name, oldsize, newsize))
@@ -401,6 +401,9 @@ def dealWithMigration(name):
                 out += "    gSaveBlock2Ptr->_saveSentinel = 0xFF;\n"
             if field.name == 'saveVersion':
                 out += "    gSaveBlock2Ptr->saveVersion = %s;\n" % globalVersion
+            continue
+        # if not present in the old save, we can't carry it over so it defaults to zero
+        if not field in GlobalClassesOld[name].fields:
             continue
         # ignore map-based save stuff
         if (field.name in ignored_map_fields):
