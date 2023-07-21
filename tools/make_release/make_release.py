@@ -273,6 +273,8 @@ def compareFields(fieldname, inline, extratext):
                         out("  " * inline + "%s was expanded in size from %s to %s" % (x.name, oldsize, newsize))
                     else:
                         out("  " * inline + "IMPORTANT: %s was truncated in size from %s to %s" % (x.name, oldsize, newsize))
+                    if not fieldname in globalDifferences:
+                        globalDifferences.append(fieldname)
                     continue
             out("  " * inline + "%s is different, but can't identify why!" % x.name)
         else:
@@ -360,7 +362,7 @@ def prepareMigration(listofchanges, versionnumber):
     if not 'SaveBlock2' in listofchanges:
         content += "    *gSaveBlock2Ptr = *sOldSaveBlock2Ptr;\n"
     else:
-        content += dealWithMigration('SaveBlock2')
+        content += dealWithMigration('SaveBlock2', listofchanges, 1)
 
     # saveblock1
     content += "\n    // SaveBlock1 \n"
@@ -368,7 +370,7 @@ def prepareMigration(listofchanges, versionnumber):
     if not 'SaveBlock1' in listofchanges:
         content += "    *gSaveBlock1Ptr = *sOldSaveBlock1Ptr;\n"
     else:
-        content += dealWithMigration('SaveBlock1')
+        content += dealWithMigration('SaveBlock1', listofchanges, 1)
 
     # pokemonstorage
     content += "\n    // PokemonStorage \n"
@@ -376,7 +378,7 @@ def prepareMigration(listofchanges, versionnumber):
     if not 'PokemonStorage' in listofchanges:
         content += "    *gPokemonStoragePtr = *sOldPokemonStoragePtr;\n"
     else:
-        content += dealWithMigration('PokemonStorage')
+        content += dealWithMigration('PokemonStorage', listofchanges, 1)
 
     # take care of continue game warp
     content += "\n    SetContinueGameWarpStatus();\n    gSaveBlock1Ptr->continueGameWarp = gSaveBlock1Ptr->lastHealLocation;\n\n    return TRUE;\n}\n"
@@ -392,8 +394,17 @@ def fetchDefineValue(name, code):
         return z[0]
     return None
 
-def dealWithMigration(name):
-    out = "#define COPY_FIELD(field) g{st}Ptr->field = sOld{st}Ptr->field\n#define COPY_BLOCK(field) CpuCopy16(&sOld{st}Ptr->field, &g{st}Ptr->field, sizeof(g{st}Ptr->field))\n#define COPY_ARRAY(field) for(i = 0; i < min(ARRAY_COUNT(g{st}Ptr->field), ARRAY_COUNT(sOld{st}Ptr->field)); i++) g{st}Ptr->field[i] = sOld{st}Ptr->field[i];\n\n".format(st=name)
+def copyField(name, fieldname):
+    return "g{st}Ptr->{st2} = sOld{st}Ptr->{st2};".format(st=name, st2=fieldname)
+
+def copyBlock(name, fieldname):
+    return "CpuCopy16(&sOld{st}Ptr->{st2}, &g{st}Ptr->{st2}, sizeof(g{st}Ptr->{st2}));".format(st=name, st2=fieldname)
+
+def copyArray(name, fieldname):
+    return "for(i = 0; i < min(ARRAY_COUNT(g{st}Ptr->{st2}), ARRAY_COUNT(sOld{st}Ptr->{st2})); i++) g{st}Ptr->{st2}[i] = sOld{st}Ptr->{st2}[i];".format(st=name, st2=fieldname)
+
+def dealWithMigration(name, changedstructs, indentation):
+    out = ""
     for field in GlobalClassesNew[name].fields:
         # hardcoded feature to make save migration work
         if (name == "SaveBlock2" and field.name in ['_saveSentinel', 'saveVersion']):
@@ -408,20 +419,26 @@ def dealWithMigration(name):
         # ignore map-based save stuff
         if (field.name in ignored_map_fields):
             continue
+        # check if it's an updated struct
+        field_type = field.type
+        while (field_type.__class__.__name__ == "Array"):
+            field_type = field_type.array_of
+        if field_type.typename.segments[0].name in changedstructs and field_type.typename.segments[0].name not in trusted_typedefs:
+            out += "    " * indentation + "// %s is a changed struct\n" % field.name
+            continue
         # check other fields
-        # add check to see if it actually stays the same here later
         if (field.type.__class__.__name__ == "Array"):
             if (field.type.array_of.__class__.__name__ == "Array"):
-                out += "    COPY_BLOCK(%s);\n" % field.name
+                out += "    " * indentation + "%s\n" % copyBlock(name, field.name)
                 continue
             elif (field.type.array_of.__class__.__name__ == "Type"):
                 if (field.type.array_of.typename.classkey == "struct"):
-                    out += "    COPY_BLOCK(%s);\n" % field.name
+                    out += "    " * indentation + "%s\n" % copyBlock(name, field.name)
                     continue
-            out += "    COPY_ARRAY(%s);\n" % field.name
+            out += "    " * indentation + "%s\n" % copyArray(name, field.name)
         else:
-            out += "    COPY_FIELD(%s);\n" % field.name
-    return out + "\n#undef COPY_FIELD\n#undef COPY_BLOCK\n#undef COPY_ARRAY\n"
+            out += "    " * indentation + "%s\n" % copyField(name, field.name)
+    return out
 
 def backupDump(structname, versionnumber, listofchanges):
     # we make a struct and add its components
