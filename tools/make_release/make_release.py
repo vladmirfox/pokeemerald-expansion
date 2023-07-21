@@ -362,7 +362,7 @@ def prepareMigration(listofchanges, versionnumber):
     if not 'SaveBlock2' in listofchanges:
         content += "    *gSaveBlock2Ptr = *sOldSaveBlock2Ptr;\n"
     else:
-        content += dealWithMigration('SaveBlock2', listofchanges, 1)
+        content += dealWithMigration('SaveBlock2', listofchanges, [])
 
     # saveblock1
     content += "\n    // SaveBlock1 \n"
@@ -370,7 +370,7 @@ def prepareMigration(listofchanges, versionnumber):
     if not 'SaveBlock1' in listofchanges:
         content += "    *gSaveBlock1Ptr = *sOldSaveBlock1Ptr;\n"
     else:
-        content += dealWithMigration('SaveBlock1', listofchanges, 1)
+        content += dealWithMigration('SaveBlock1', listofchanges, [])
 
     # pokemonstorage
     content += "\n    // PokemonStorage \n"
@@ -378,7 +378,7 @@ def prepareMigration(listofchanges, versionnumber):
     if not 'PokemonStorage' in listofchanges:
         content += "    *gPokemonStoragePtr = *sOldPokemonStoragePtr;\n"
     else:
-        content += dealWithMigration('PokemonStorage', listofchanges, 1)
+        content += dealWithMigration('PokemonStorage', listofchanges, [])
 
     # take care of continue game warp
     content += "\n    SetContinueGameWarpStatus();\n    gSaveBlock1Ptr->continueGameWarp = gSaveBlock1Ptr->lastHealLocation;\n\n    return TRUE;\n}\n"
@@ -394,16 +394,16 @@ def fetchDefineValue(name, code):
         return z[0]
     return None
 
-def copyField(name, fieldname):
-    return "g{st}Ptr->{st2} = sOld{st}Ptr->{st2};".format(st=name, st2=fieldname)
+def copyField(name, fieldname, specification):
+    return "g{st}{st2} = sOld{st}{st2};".format(st=parseSpecification(name,specification), st2=fieldname)
 
-def copyBlock(name, fieldname):
-    return "CpuCopy16(&sOld{st}Ptr->{st2}, &g{st}Ptr->{st2}, sizeof(g{st}Ptr->{st2}));".format(st=name, st2=fieldname)
+def copyBlock(name, fieldname, specification):
+    return "CpuCopy16(&sOld{st}{st2}, &g{st}{st2}, sizeof(g{st}{st2}));".format(st=parseSpecification(name,specification), st2=fieldname)
 
-def copyArray(name, fieldname):
-    return "for(i = 0; i < min(ARRAY_COUNT(g{st}Ptr->{st2}), ARRAY_COUNT(sOld{st}Ptr->{st2})); i++) g{st}Ptr->{st2}[i] = sOld{st}Ptr->{st2}[i];".format(st=name, st2=fieldname)
+def copyArray(name, fieldname, specification):
+    return "for(i = 0; i < min(ARRAY_COUNT(g{st}{st2}), ARRAY_COUNT(sOld{st}{st2})); i++) g{st}{st2}[i] = sOld{st}{st2}[i];".format(st=parseSpecification(name,specification), st2=fieldname)
 
-def dealWithMigration(name, changedstructs, indentation):
+def dealWithMigration(name, changedstructs, specification):
     out = ""
     for field in GlobalClassesNew[name].fields:
         # hardcoded feature to make save migration work
@@ -424,21 +424,36 @@ def dealWithMigration(name, changedstructs, indentation):
         while (field_type.__class__.__name__ == "Array"):
             field_type = field_type.array_of
         if field_type.typename.segments[0].name in changedstructs and field_type.typename.segments[0].name not in trusted_typedefs:
-            out += "    " * indentation + "// %s is a changed struct\n" % field.name
+            out += dealWithMigration(field_type.typename.segments[0].name, changedstructs, addSpecification(specification, name, field.name))
             continue
         # check other fields
         if (field.type.__class__.__name__ == "Array"):
             if (field.type.array_of.__class__.__name__ == "Array"):
-                out += "    " * indentation + "%s\n" % copyBlock(name, field.name)
+                out += "    %s\n" % copyBlock(name, field.name, specification)
                 continue
             elif (field.type.array_of.__class__.__name__ == "Type"):
                 if (field.type.array_of.typename.classkey == "struct"):
-                    out += "    " * indentation + "%s\n" % copyBlock(name, field.name)
+                    out += "    %s\n" % copyBlock(name, field.name, specification)
                     continue
-            out += "    " * indentation + "%s\n" % copyArray(name, field.name)
+            out += "    %s\n" % copyArray(name, field.name, specification)
         else:
-            out += "    " * indentation + "%s\n" % copyField(name, field.name)
+            out += "    %s\n" % copyField(name, field.name, specification)
     return out
+
+def addSpecification(specification, name, fieldname):
+    if (len(specification)==0):
+        return([name, fieldname])
+    else:
+        return(specification + [fieldname])
+
+def parseSpecification(name, specification):
+    if (len(specification)==0):
+        return("%sPtr->" % name)
+    else:
+        out = "%sPtr->" % specification[0]
+        for i in range(1, len(specification)):
+            out += "%s." % specification[i]
+        return(out)
 
 def backupDump(structname, versionnumber, listofchanges):
     # we make a struct and add its components
