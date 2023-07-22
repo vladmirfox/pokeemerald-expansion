@@ -1154,9 +1154,9 @@ static void Debug_RefreshListMenu(u8 taskId)
                 name = sDebugText_Continue;
                 StringCopy(&sDebugMenuListData->itemNames[i][0], name);
             }
-            else if (GetMonData(&gEnemyParty[i], MON_DATA_SANITY_HAS_SPECIES))
+            else if (GetMonData(&gEnemyParty[i], MON_DATA_SANITY_HAS_SPECIES, NULL))
             {
-                species = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES);
+                species = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES, NULL);
                 StringCopy(gStringVar1, GetSpeciesName(species));
                 StringCopy(&sDebugMenuListData->itemNames[i][0], gStringVar1);
             }
@@ -1458,7 +1458,7 @@ static void Debug_InitializeBattle(u8 taskId)
     for (i = 0; i < PARTY_SIZE; i++)
     {
         ZeroMonData(&gEnemyParty[i]);
-        if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_HAS_SPECIES))
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_HAS_SPECIES, NULL))
             gEnemyParty[i] = gPlayerParty[i];
     }
 
@@ -1797,8 +1797,8 @@ static void DebugAction_Util_PoisonMons(u8 taskId)
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, 0)
-            && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
-            && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
+            && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+            && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG)
         {
             u32 curStatus = STATUS1_POISON;
             SetMonData(&gPlayerParty[i], MON_DATA_STATUS, &curStatus);
@@ -2313,9 +2313,9 @@ static void DebugAction_FlagsVars_PokedexFlags_Reset(u8 taskId)
     // Add party Pokemon to Pokedex
     for (partyId = 0; partyId < PARTY_SIZE; partyId++)
     {
-        if (GetMonData(&gPlayerParty[partyId], MON_DATA_SANITY_HAS_SPECIES))
+        if (GetMonData(&gPlayerParty[partyId], MON_DATA_SANITY_HAS_SPECIES, NULL))
         {
-            species = GetMonData(&gPlayerParty[partyId], MON_DATA_SPECIES);
+            species = GetMonData(&gPlayerParty[partyId], MON_DATA_SPECIES, NULL);
             GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_CAUGHT);
             GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_SEEN);
         }
@@ -2326,9 +2326,9 @@ static void DebugAction_FlagsVars_PokedexFlags_Reset(u8 taskId)
     {
         for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
         {
-            if (GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
+            if (GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES, NULL))
             {
-                species = GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SPECIES);
+                species = GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SPECIES, NULL);
                 GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_CAUGHT);
                 GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_SET_SEEN);
             }
@@ -3492,7 +3492,7 @@ static void DebugAction_Fill_PCBoxes_Fast(u8 taskId) //Credit: Sierraffinity
     {
         for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++, species++)
         {
-            if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
+            if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES, NULL))
             {
                 StringCopy(speciesName, GetSpeciesName(species));
                 SetBoxMonData(&boxMon, MON_DATA_NICKNAME, &speciesName);
@@ -3520,7 +3520,7 @@ static void DebugAction_Fill_PCBoxes_Slow(u8 taskId)
     {
         for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
         {
-            if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES))
+            if (!GetBoxMonData(&gPokemonStoragePtr->boxes[boxId][boxPosition], MON_DATA_SANITY_HAS_SPECIES, NULL))
             {
                 if (!spaceAvailable)
                     PlayBGM(MUS_RG_MYSTERY_GIFT);

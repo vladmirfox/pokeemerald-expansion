@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("Poison deals 1/8th damage per turn")
         for (i = 0; i < 4; i++)
             TURN {}
     } SCENE {
-        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP, NULL);
         for (i = 0; i < 4; i++)
             HP_BAR(player, damage: maxHP / 8);
     }
@@ -47,7 +47,7 @@ SINGLE_BATTLE_TEST("Burn deals 1/16th damage per turn")
         for (i = 0; i < 4; i++)
             TURN {}
     } SCENE {
-        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP, NULL);
         for (i = 0; i < 4; i++)
             HP_BAR(player, damage: maxHP / 16);
     }
@@ -164,7 +164,7 @@ SINGLE_BATTLE_TEST("Bad poison deals 1/16th cumulative damage per turn")
         for (i = 0; i < 4; i++)
             TURN {}
     } SCENE {
-        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP, NULL);
         for (i = 0; i < 4; i++)
             HP_BAR(player, damage: maxHP / 16 * (i + 1));
     }
@@ -184,7 +184,7 @@ SINGLE_BATTLE_TEST("Bad poison cumulative damage resets on switch")
         TURN {}
         TURN {}
     } SCENE {
-        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP, NULL);
         for (i = 0; i < 2; i++)
             HP_BAR(player, damage: maxHP / 16 * (i + 1));
         for (i = 0; i < 2; i++)

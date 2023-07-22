@@ -3584,8 +3584,8 @@ static void IllusionNickHack(u32 battlerId, u32 partyId, u8 *dst)
         for (i = PARTY_SIZE - 1; i >= 0; i--)
         {
             id = i;
-            if (GetMonData(&gEnemyParty[id], MON_DATA_SANITY_HAS_SPECIES)
-                && GetMonData(&gEnemyParty[id], MON_DATA_HP)
+            if (GetMonData(&gEnemyParty[id], MON_DATA_SANITY_HAS_SPECIES, NULL)
+                && GetMonData(&gEnemyParty[id], MON_DATA_HP, NULL)
                 && &gEnemyParty[id] != mon
                 && &gEnemyParty[id] != partnerMon)
             {

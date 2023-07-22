@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Zen Mode switches Darmanitan's form when HP is half or less 
         PLAYER(standardSpecies)
         {
             Ability(ABILITY_ZEN_MODE);
-            HP((GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP) / 2) + 1);
+            HP((GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP, NULL) / 2) + 1);
         }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Zen Mode switches Darmanitan's form when HP is half or less 
         PLAYER(standardSpecies)
         {
             Ability(ABILITY_ZEN_MODE);
-            HP(GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP) / 2);
+            HP(GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP, NULL) / 2);
         }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -73,7 +73,7 @@ SINGLE_BATTLE_TEST("Zen Mode switches Darmanitan's form when HP is healed above 
         PLAYER(standardSpecies)
         {
             Ability(ABILITY_ZEN_MODE);
-            HP(GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP) / 2);
+            HP(GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP, NULL) / 2);
         }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

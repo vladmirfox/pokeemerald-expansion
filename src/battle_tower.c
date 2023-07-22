@@ -1991,7 +1991,7 @@ static void HandleSpecialTrainerBattleEnd(void)
     case SPECIAL_BATTLE_SECRET_BASE:
         for (i = 0; i < PARTY_SIZE; i++)
         {
-            u16 itemBefore = GetMonData(&gSaveBlock1Ptr->playerParty[i], MON_DATA_HELD_ITEM);
+            u16 itemBefore = GetMonData(&gSaveBlock1Ptr->playerParty[i], MON_DATA_HELD_ITEM, NULL);
             SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &itemBefore);
         }
         break;
@@ -2001,7 +2001,7 @@ static void HandleSpecialTrainerBattleEnd(void)
     case SPECIAL_BATTLE_MULTI:
         for (i = 0; i < 3; i++)
         {
-            if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES))
+            if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL))
                 gSaveBlock1Ptr->playerParty[i] = gPlayerParty[i];
         }
         break;
@@ -2056,7 +2056,7 @@ void DoSpecialTrainerBattle(void)
     case SPECIAL_BATTLE_SECRET_BASE:
         for (i = 0; i < PARTY_SIZE; i++)
         {
-            u16 itemBefore = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
+            u16 itemBefore = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, NULL);
             SetMonData(&gSaveBlock1Ptr->playerParty[i], MON_DATA_HELD_ITEM, &itemBefore);
         }
         CreateTask(Task_StartBattleAfterTransition, 1);
@@ -2838,7 +2838,7 @@ static void AwardBattleTowerRibbons(void)
             partyIndex = gSaveBlock2Ptr->frontier.selectedPartyMons[i] - 1;
             ribbons[i].partyIndex = partyIndex;
             ribbons[i].count = 0;
-            if (!GetMonData(&gSaveBlock1Ptr->playerParty[partyIndex], ribbonType))
+            if (!GetMonData(&gSaveBlock1Ptr->playerParty[partyIndex], ribbonType, NULL))
             {
                 gSpecialVar_Result = TRUE;
                 SetMonData(&gSaveBlock1Ptr->playerParty[partyIndex], ribbonType, &gSpecialVar_Result);

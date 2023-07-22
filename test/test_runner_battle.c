@@ -1056,7 +1056,7 @@ void ClosePokemon(u32 sourceLine)
         if ((i & BIT_SIDE) == DATA.currentSide
          && DATA.currentMonIndexes[i] == DATA.currentPartyIndex)
         {
-            INVALID_IF(GetMonData(DATA.currentMon, MON_DATA_HP) == 0, "Battlers cannot be fainted");
+            INVALID_IF(GetMonData(DATA.currentMon, MON_DATA_HP, NULL) == 0, "Battlers cannot be fainted");
         }
     }
     UpdateMonPersonality(&DATA.currentMon->box, GenerateNature(DATA.nature, DATA.gender % NUM_NATURES) | DATA.gender);
@@ -1067,7 +1067,7 @@ void Gender_(u32 sourceLine, u32 gender)
 {
     const struct SpeciesInfo *info;
     INVALID_IF(!DATA.currentMon, "Gender outside of PLAYER/OPPONENT");
-    info = &gSpeciesInfo[GetMonData(DATA.currentMon, MON_DATA_SPECIES)];
+    info = &gSpeciesInfo[GetMonData(DATA.currentMon, MON_DATA_SPECIES, NULL)];
     switch (gender)
     {
     case MON_MALE:
@@ -1097,7 +1097,7 @@ void Ability_(u32 sourceLine, u32 ability)
     u32 species;
     const struct SpeciesInfo *info;
     INVALID_IF(!DATA.currentMon, "Ability outside of PLAYER/OPPONENT");
-    species = GetMonData(DATA.currentMon, MON_DATA_SPECIES);
+    species = GetMonData(DATA.currentMon, MON_DATA_SPECIES, NULL);
     info = &gSpeciesInfo[species];
     for (i = 0; i < NUM_ABILITY_SLOTS; i++)
     {
@@ -1117,7 +1117,7 @@ void Ability_(u32 sourceLine, u32 ability)
 void Level_(u32 sourceLine, u32 level)
 {
     // TODO: Preserve any explicitly-set stats.
-    u32 species = GetMonData(DATA.currentMon, MON_DATA_SPECIES);
+    u32 species = GetMonData(DATA.currentMon, MON_DATA_SPECIES, NULL);
     INVALID_IF(!DATA.currentMon, "Level outside of PLAYER/OPPONENT");
     INVALID_IF(level == 0 || level > MAX_LEVEL, "Illegal level: %d", level);
     SetMonData(DATA.currentMon, MON_DATA_LEVEL, &level);
@@ -1135,7 +1135,7 @@ void MaxHP_(u32 sourceLine, u32 maxHP)
 void HP_(u32 sourceLine, u32 hp)
 {
     INVALID_IF(!DATA.currentMon, "HP outside of PLAYER/OPPONENT");
-    if (hp > GetMonData(DATA.currentMon, MON_DATA_MAX_HP))
+    if (hp > GetMonData(DATA.currentMon, MON_DATA_MAX_HP, NULL))
         SetMonData(DATA.currentMon, MON_DATA_MAX_HP, &hp);
     SetMonData(DATA.currentMon, MON_DATA_HP, &hp);
 }
@@ -1407,7 +1407,7 @@ void Move(u32 sourceLine, struct BattlePokemon *battler, struct MoveContext ctx)
         INVALID_IF(ctx.move == MOVE_NONE || ctx.move >= MOVES_COUNT, "Illegal move: %d", ctx.move);
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
-            moveId = GetMonData(mon, MON_DATA_MOVE1 + i);
+            moveId = GetMonData(mon, MON_DATA_MOVE1 + i, NULL);
             if (moveId == ctx.move)
             {
                 moveSlot = i;
@@ -1428,7 +1428,7 @@ void Move(u32 sourceLine, struct BattlePokemon *battler, struct MoveContext ctx)
     else if (ctx.explicitMoveSlot)
     {
         moveSlot = ctx.moveSlot;
-        moveId = GetMonData(mon, MON_DATA_MOVE1 + moveSlot);
+        moveId = GetMonData(mon, MON_DATA_MOVE1 + moveSlot, NULL);
         INVALID_IF(moveId == MOVE_NONE, "Empty moveSlot: %d", ctx.moveSlot);
     }
     else

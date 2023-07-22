@@ -638,9 +638,9 @@ static void CB2_InitBattleInternal(void)
 #define BUFFER_PARTY_VS_SCREEN_STATUS(party, flags, i)                      \
     for ((i) = 0; (i) < PARTY_SIZE; (i)++)                                  \
     {                                                                       \
-        u16 species = GetMonData(&(party)[(i)], MON_DATA_SPECIES_OR_EGG);   \
-        u16 hp = GetMonData(&(party)[(i)], MON_DATA_HP);                    \
-        u32 status = GetMonData(&(party)[(i)], MON_DATA_STATUS);            \
+        u16 species = GetMonData(&(party)[(i)], MON_DATA_SPECIES_OR_EGG, NULL);   \
+        u16 hp = GetMonData(&(party)[(i)], MON_DATA_HP, NULL);                    \
+        u32 status = GetMonData(&(party)[(i)], MON_DATA_STATUS, NULL);            \
                                                                             \
         if (species == SPECIES_NONE)                                        \
             continue;                                                       \
@@ -1338,17 +1338,17 @@ static void SetMultiPartnerMenuParty(u8 offset)
 
     for (i = 0; i < MULTI_PARTY_SIZE; i++)
     {
-        gMultiPartnerParty[i].species     = GetMonData(&gPlayerParty[offset + i], MON_DATA_SPECIES);
-        gMultiPartnerParty[i].heldItem    = GetMonData(&gPlayerParty[offset + i], MON_DATA_HELD_ITEM);
+        gMultiPartnerParty[i].species     = GetMonData(&gPlayerParty[offset + i], MON_DATA_SPECIES, NULL);
+        gMultiPartnerParty[i].heldItem    = GetMonData(&gPlayerParty[offset + i], MON_DATA_HELD_ITEM, NULL);
         GetMonData(&gPlayerParty[offset + i], MON_DATA_NICKNAME, gMultiPartnerParty[i].nickname);
-        gMultiPartnerParty[i].level       = GetMonData(&gPlayerParty[offset + i], MON_DATA_LEVEL);
-        gMultiPartnerParty[i].hp          = GetMonData(&gPlayerParty[offset + i], MON_DATA_HP);
-        gMultiPartnerParty[i].maxhp       = GetMonData(&gPlayerParty[offset + i], MON_DATA_MAX_HP);
-        gMultiPartnerParty[i].status      = GetMonData(&gPlayerParty[offset + i], MON_DATA_STATUS);
-        gMultiPartnerParty[i].personality = GetMonData(&gPlayerParty[offset + i], MON_DATA_PERSONALITY);
+        gMultiPartnerParty[i].level       = GetMonData(&gPlayerParty[offset + i], MON_DATA_LEVEL, NULL);
+        gMultiPartnerParty[i].hp          = GetMonData(&gPlayerParty[offset + i], MON_DATA_HP, NULL);
+        gMultiPartnerParty[i].maxhp       = GetMonData(&gPlayerParty[offset + i], MON_DATA_MAX_HP, NULL);
+        gMultiPartnerParty[i].status      = GetMonData(&gPlayerParty[offset + i], MON_DATA_STATUS, NULL);
+        gMultiPartnerParty[i].personality = GetMonData(&gPlayerParty[offset + i], MON_DATA_PERSONALITY, NULL);
         gMultiPartnerParty[i].gender      = GetMonGender(&gPlayerParty[offset + i]);
         StripExtCtrlCodes(gMultiPartnerParty[i].nickname);
-        if (GetMonData(&gPlayerParty[offset + i], MON_DATA_LANGUAGE) != LANGUAGE_JAPANESE)
+        if (GetMonData(&gPlayerParty[offset + i], MON_DATA_LANGUAGE, NULL) != LANGUAGE_JAPANESE)
             PadNameString(gMultiPartnerParty[i].nickname, CHAR_SPACE);
     }
     memcpy(sMultiPartnerPartyBuffer, gMultiPartnerParty, sizeof(gMultiPartnerParty));
@@ -2712,8 +2712,8 @@ static void TryCorrectShedinjaLanguage(struct Pokemon *mon)
     u8 nickname[POKEMON_NAME_LENGTH + 1];
     u8 language = LANGUAGE_JAPANESE;
 
-    if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_SHEDINJA
-     && GetMonData(mon, MON_DATA_LANGUAGE) != language)
+    if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_SHEDINJA
+     && GetMonData(mon, MON_DATA_LANGUAGE, NULL) != language)
     {
         GetMonData(mon, MON_DATA_NICKNAME, nickname);
         if (StringCompareWithoutExtCtrlCodes(nickname, sText_ShedinjaJpnName) == 0)
@@ -2807,7 +2807,7 @@ extern const struct MonCoords gMonFrontPicCoords[];
 void SpriteCB_FaintOpponentMon(struct Sprite *sprite)
 {
     u8 battler = sprite->sBattler;
-    u32 personality = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_PERSONALITY);
+    u32 personality = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_PERSONALITY, NULL);
     u16 species;
     u8 yOffset;
 
@@ -2816,7 +2816,7 @@ void SpriteCB_FaintOpponentMon(struct Sprite *sprite)
     else
         species = sprite->sSpeciesId;
 
-    GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_PERSONALITY);  // Unused return value.
+    GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler]], MON_DATA_PERSONALITY, NULL);  // Unused return value.
 
     if (species == SPECIES_UNOWN)
     {
@@ -3168,7 +3168,7 @@ static void BattleStartClearSetData(void)
     gBattleStruct->runTries = 0;
     gBattleStruct->safariGoNearCounter = 0;
     gBattleStruct->safariPkblThrowCounter = 0;
-    gBattleStruct->safariCatchFactor = gSpeciesInfo[GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)].catchRate * 100 / 1275;
+    gBattleStruct->safariCatchFactor = gSpeciesInfo[GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, NULL)].catchRate * 100 / 1275;
     gBattleStruct->safariEscapeFactor = 3;
     gBattleStruct->wildVictorySong = 0;
     gBattleStruct->moneyMultiplier = 1;
@@ -3193,7 +3193,7 @@ static void BattleStartClearSetData(void)
     {
         gBattleStruct->usedHeldItems[i][B_SIDE_PLAYER] = 0;
         gBattleStruct->usedHeldItems[i][B_SIDE_OPPONENT] = 0;
-        gBattleStruct->itemLost[i].originalItem = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
+        gBattleStruct->itemLost[i].originalItem = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, NULL);
         gPartyCriticalHits[i] = 0;
         gBattleStruct->allowedToChangeFormInWeather[i][B_SIDE_PLAYER] = FALSE;
         gBattleStruct->allowedToChangeFormInWeather[i][B_SIDE_OPPONENT] = FALSE;
@@ -3598,16 +3598,16 @@ static void DoBattleIntro(void)
 
             for (i = 0; i < PARTY_SIZE; i++)
             {
-                if (GetMonData(&gEnemyParty[i], MON_DATA_SPECIES_OR_EGG) == SPECIES_NONE
-                 || GetMonData(&gEnemyParty[i], MON_DATA_SPECIES_OR_EGG) == SPECIES_EGG)
+                if (GetMonData(&gEnemyParty[i], MON_DATA_SPECIES_OR_EGG, NULL) == SPECIES_NONE
+                 || GetMonData(&gEnemyParty[i], MON_DATA_SPECIES_OR_EGG, NULL) == SPECIES_EGG)
                 {
                     hpStatus[i].hp = HP_EMPTY_SLOT;
                     hpStatus[i].status = 0;
                 }
                 else
                 {
-                    hpStatus[i].hp = GetMonData(&gEnemyParty[i], MON_DATA_HP);
-                    hpStatus[i].status = GetMonData(&gEnemyParty[i], MON_DATA_STATUS);
+                    hpStatus[i].hp = GetMonData(&gEnemyParty[i], MON_DATA_HP, NULL);
+                    hpStatus[i].status = GetMonData(&gEnemyParty[i], MON_DATA_STATUS, NULL);
                 }
             }
 
@@ -3617,16 +3617,16 @@ static void DoBattleIntro(void)
 
             for (i = 0; i < PARTY_SIZE; i++)
             {
-                if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) == SPECIES_NONE
-                 || GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) == SPECIES_EGG)
+                if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG, NULL) == SPECIES_NONE
+                 || GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG, NULL) == SPECIES_EGG)
                 {
                     hpStatus[i].hp = HP_EMPTY_SLOT;
                     hpStatus[i].status = 0;
                 }
                 else
                 {
-                    hpStatus[i].hp = GetMonData(&gPlayerParty[i], MON_DATA_HP);
-                    hpStatus[i].status = GetMonData(&gPlayerParty[i], MON_DATA_STATUS);
+                    hpStatus[i].hp = GetMonData(&gPlayerParty[i], MON_DATA_HP, NULL);
+                    hpStatus[i].status = GetMonData(&gPlayerParty[i], MON_DATA_STATUS, NULL);
                 }
             }
 
@@ -3812,7 +3812,7 @@ static void TryDoEventsBeforeFirstTurn(void)
         {
             struct Pokemon *party = GetBattlerParty(i);
             struct Pokemon *mon = &party[gBattlerPartyIndexes[i]];
-            if (gBattleMons[i].hp == 0 || gBattleMons[i].species == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG))
+            if (gBattleMons[i].hp == 0 || gBattleMons[i].species == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG, NULL))
                 gAbsentBattlerFlags |= gBitTable[i];
         }
     }

@@ -317,22 +317,22 @@ static void CreateHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
     u16 moves[MAX_MON_MOVES];
     u32 ivs[NUM_STATS];
 
-    species = GetMonData(egg, MON_DATA_SPECIES);
+    species = GetMonData(egg, MON_DATA_SPECIES, NULL);
 
     for (i = 0; i < MAX_MON_MOVES; i++)
-        moves[i] = GetMonData(egg, MON_DATA_MOVE1 + i);
+        moves[i] = GetMonData(egg, MON_DATA_MOVE1 + i, NULL);
 
-    personality = GetMonData(egg, MON_DATA_PERSONALITY);
+    personality = GetMonData(egg, MON_DATA_PERSONALITY, NULL);
 
     for (i = 0; i < NUM_STATS; i++)
-        ivs[i] = GetMonData(egg, MON_DATA_HP_IV + i);
+        ivs[i] = GetMonData(egg, MON_DATA_HP_IV + i, NULL);
 
     // The language is initially read from the Egg but is later overwritten below
-    language = GetMonData(egg, MON_DATA_LANGUAGE);
-    gameMet = GetMonData(egg, MON_DATA_MET_GAME);
-    markings = GetMonData(egg, MON_DATA_MARKINGS);
-    pokerus = GetMonData(egg, MON_DATA_POKERUS);
-    isModernFatefulEncounter = GetMonData(egg, MON_DATA_MODERN_FATEFUL_ENCOUNTER);
+    language = GetMonData(egg, MON_DATA_LANGUAGE, NULL);
+    gameMet = GetMonData(egg, MON_DATA_MET_GAME, NULL);
+    markings = GetMonData(egg, MON_DATA_MARKINGS, NULL);
+    pokerus = GetMonData(egg, MON_DATA_POKERUS, NULL);
+    isModernFatefulEncounter = GetMonData(egg, MON_DATA_MODERN_FATEFUL_ENCOUNTER, NULL);
 
     CreateMon(temp, species, EGG_HATCH_LEVEL, USE_RANDOM_IVS, TRUE, personality, OT_ID_PLAYER_ID, 0);
 
@@ -368,7 +368,7 @@ static void AddHatchedMonToParty(u8 id)
     CreateHatchedMon(mon, &gEnemyParty[0]);
     SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
 
-    species = GetMonData(mon, MON_DATA_SPECIES);
+    species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     StringCopy(name, GetSpeciesName(species));
     SetMonData(mon, MON_DATA_NICKNAME, name);
 
@@ -439,8 +439,8 @@ static u8 EggHatchCreateMonSprite(u8 useAlt, u8 state, u8 partyId, u16 *speciesL
     case 0:
         // Load mon sprite gfx
         {
-            u16 species = GetMonData(mon, MON_DATA_SPECIES);
-            u32 pid = GetMonData(mon, MON_DATA_PERSONALITY);
+            u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+            u32 pid = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
             HandleLoadSpecialPokePic(TRUE,
                                      gMonSpritesGfxPtr->sprites.ptr[(useAlt * 2) + B_POSITION_OPPONENT_LEFT],
                                      species, pid);
@@ -636,7 +636,7 @@ static void CB2_EggHatch(void)
         // Wait for hatching animation to finish
         if (gSprites[sEggHatchData->eggSpriteId].callback == SpriteCallbackDummy)
         {
-            species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES);
+            species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES, NULL);
             DoMonFrontSpriteAnimation(&gSprites[sEggHatchData->monSpriteId], species, FALSE, 1);
             sEggHatchData->state++;
         }
@@ -686,7 +686,7 @@ static void CB2_EggHatch(void)
         {
         case 0: // Yes
             GetMonNickname2(&gPlayerParty[sEggHatchData->eggPartyId], gStringVar3);
-            species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES);
+            species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES, NULL);
             gender = GetMonGender(&gPlayerParty[sEggHatchData->eggPartyId]);
             personality = GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_PERSONALITY, 0);
             DoNamingScreen(NAMING_SCREEN_NICKNAME, gStringVar3, species, gender, personality, EggHatchSetMonNickname);
@@ -781,7 +781,7 @@ static void SpriteCB_Egg_Shake3(struct Sprite *sprite)
             u16 species;
             sprite->callback = SpriteCB_Egg_WaitHatch;
             sprite->sTimer = 0;
-            species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES);
+            species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyId], MON_DATA_SPECIES, NULL);
             gSprites[sEggHatchData->monSpriteId].x2 = 0;
             gSprites[sEggHatchData->monSpriteId].y2 = 0;
         }
@@ -925,7 +925,7 @@ u8 GetEggCyclesToSubtract(void)
     u8 count, i;
     for (count = CalculatePlayerPartyCount(), i = 0; i < count; i++)
     {
-        if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG))
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG, NULL))
         {
             u16 ability = GetMonAbility(&gPlayerParty[i]);
             if (ability == ABILITY_MAGMA_ARMOR

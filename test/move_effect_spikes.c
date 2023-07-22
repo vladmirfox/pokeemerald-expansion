@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Spikes damage on switch in")
         TURN { SWITCH(opponent, 1); }
     } SCENE {
         u32 count;
-        s32 maxHP = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP, NULL);
         for (count = 0; count < layers; ++count) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKES, player);
             MESSAGE("Spikes were scattered all around the opposing team!");
@@ -49,7 +49,7 @@ SINGLE_BATTLE_TEST("Spikes fails after 3 layers")
         TURN { MOVE(player, MOVE_SPIKES); }
         TURN { SWITCH(opponent, 1); }
     } SCENE {
-        s32 maxHP = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP, NULL);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKES, player);
         MESSAGE("Spikes were scattered all around the opposing team!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKES, player);
@@ -75,8 +75,8 @@ SINGLE_BATTLE_TEST("Spikes damage on subsequent switch ins")
         TURN { SWITCH(opponent, 1); }
         TURN { SWITCH(opponent, 0); }
     } SCENE {
-        s32 maxHP0 = GetMonData(&OPPONENT_PARTY[0], MON_DATA_MAX_HP);
-        s32 maxHP1 = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP);
+        s32 maxHP0 = GetMonData(&OPPONENT_PARTY[0], MON_DATA_MAX_HP, NULL);
+        s32 maxHP1 = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP, NULL);
         MESSAGE("2 sent out Wynaut!");
         HP_BAR(opponent, damage: maxHP1 / 8);
         MESSAGE("Foe Wynaut is hurt by spikes!");
@@ -125,7 +125,7 @@ SINGLE_BATTLE_TEST("Spikes do not damage airborne Pokemon")
         TURN { MOVE(opponent, move2); }
         TURN { MOVE(opponent, MOVE_BATON_PASS); SEND_OUT(opponent, 1); }
     } SCENE {
-        s32 maxHP = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP, NULL);
         if (airborne) {
             NOT HP_BAR(opponent, damage: maxHP / 8);
         } else {

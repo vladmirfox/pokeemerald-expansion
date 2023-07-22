@@ -114,6 +114,6 @@ SINGLE_BATTLE_TEST("Aegislash reverts to Shield Form upon fainting")
         MESSAGE("Foe Wobbuffet used Gust!");
         MESSAGE("Aegislash fainted!");
     } THEN {
-        EXPECT_EQ(GetMonData(&PLAYER_PARTY[0], MON_DATA_SPECIES), SPECIES_AEGISLASH);
+        EXPECT_EQ(GetMonData(&PLAYER_PARTY[0], MON_DATA_SPECIES, NULL), SPECIES_AEGISLASH);
     }
 }

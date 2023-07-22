@@ -989,9 +989,9 @@ static void SpriteCB_ReleaseMonFromBall(struct Sprite *sprite)
 
         illusionMon = GetIllusionMonPtr(battlerId);
         if (illusionMon != NULL)
-            gTasks[taskId].tCryTaskSpecies = GetMonData(illusionMon, MON_DATA_SPECIES);
+            gTasks[taskId].tCryTaskSpecies = GetMonData(illusionMon, MON_DATA_SPECIES, NULL);
         else
-            gTasks[taskId].tCryTaskSpecies = GetMonData(mon, MON_DATA_SPECIES);
+            gTasks[taskId].tCryTaskSpecies = GetMonData(mon, MON_DATA_SPECIES, NULL);
 
         gTasks[taskId].tCryTaskPan = pan;
         gTasks[taskId].tCryTaskWantedCry = wantedCryCase;
@@ -1537,5 +1537,5 @@ static u16 GetBattlerPokeballItemId(u8 battlerId)
     if (illusionMon != NULL)
         mon = illusionMon;
 
-    return GetMonData(mon, MON_DATA_POKEBALL);
+    return GetMonData(mon, MON_DATA_POKEBALL, NULL);
 }

@@ -895,9 +895,9 @@ void AnimTask_SwitchOutBallEffect(u8 taskId)
 
     spriteId = gBattlerSpriteIds[gBattleAnimAttacker];
     if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
-        ball = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_POKEBALL);
+        ball = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_POKEBALL, NULL);
     else
-        ball = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_POKEBALL);
+        ball = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_POKEBALL, NULL);
 
     ballId = ItemIdToBallId(ball);
     switch (gTasks[taskId].data[0])
@@ -2492,8 +2492,8 @@ void TryShinyAnimation(u8 battler, struct Pokemon *mon)
     if (illusionMon != NULL)
         mon = illusionMon;
 
-    otId = GetMonData(mon, MON_DATA_OT_ID);
-    personality = GetMonData(mon, MON_DATA_PERSONALITY);
+    otId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+    personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
 
     if (IsBattlerSpriteVisible(battler) && IsValidForBattle(mon))
     {

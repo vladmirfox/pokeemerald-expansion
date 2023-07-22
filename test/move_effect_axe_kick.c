@@ -28,7 +28,7 @@ SINGLE_BATTLE_TEST("Axe Kick deals damage half the hp to user if def battler pro
     } WHEN {
         TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_AXE_KICK); }
     } SCENE {
-        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP, NULL);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, opponent);
         MESSAGE("Foe Wobbuffet protected itself!");
         MESSAGE("Foe Wobbuffet protected itself!");
@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("Axe Kick deals damage half the hp to user if it fails")
     } WHEN {
         TURN { MOVE(player, MOVE_AXE_KICK, hit: FALSE); }
     } SCENE {
-        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP, NULL);
         MESSAGE("Wobbuffet used Axe Kick!");
         MESSAGE("Wobbuffet's attack missed!");
         MESSAGE("Wobbuffet kept going and crashed!");

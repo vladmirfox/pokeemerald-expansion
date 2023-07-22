@@ -15,7 +15,7 @@ SINGLE_BATTLE_TEST("Jump Kick has 50% recoil on miss")
     } WHEN {
         TURN { MOVE(player, MOVE_JUMP_KICK, hit: FALSE); }
     } SCENE {
-        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP, NULL);
         MESSAGE("Wobbuffet used Jump Kick!");
         MESSAGE("Wobbuffet's attack missed!");
         MESSAGE("Wobbuffet kept going and crashed!");
@@ -33,7 +33,7 @@ SINGLE_BATTLE_TEST("Jump Kick has 50% recoil on protect")
     } WHEN {
         TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_JUMP_KICK, hit: FALSE); }
     } SCENE {
-        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP, NULL);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, opponent);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_JUMP_KICK, player);
         HP_BAR(player, damage: maxHP / 2);
@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("Jump Kick has no recoil if no target")
     } WHEN {
         TURN { MOVE(opponent, MOVE_HEALING_WISH); MOVE(player, MOVE_JUMP_KICK, hit: FALSE); SEND_OUT(opponent, 1); }
     } SCENE {
-        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP, NULL);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HEALING_WISH, opponent);
         NOT HP_BAR(player, damage: maxHP / 2);
     }

@@ -2507,12 +2507,12 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
     struct Pokemon *mon = GetPartyBattlerPartyData(currBattler, switchBattler);
     u16 ability = GetMonAbility(mon);   // we know our own party data
     u16 holdEffect;
-    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u32 flags = gSideStatuses[GetBattlerSide(currBattler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES);
     s32 hazardDamage = 0;
     u8 type1 = gSpeciesInfo[species].types[0];
     u8 type2 = gSpeciesInfo[species].types[1];
-    u32 maxHp = GetMonData(mon, MON_DATA_MAX_HP);
+    u32 maxHp = GetMonData(mon, MON_DATA_MAX_HP, NULL);
 
     if (flags == 0)
         return FALSE;
@@ -2522,7 +2522,7 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
     if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM || ability == ABILITY_KLUTZ)
         holdEffect = HOLD_EFFECT_NONE;
     else
-        holdEffect = gItems[GetMonData(mon, MON_DATA_HELD_ITEM)].holdEffect;
+        holdEffect = gItems[GetMonData(mon, MON_DATA_HELD_ITEM, NULL)].holdEffect;
     if (holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
         return FALSE;
 
@@ -2539,7 +2539,7 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
         hazardDamage += spikesDmg;
     }
 
-    if (hazardDamage >= GetMonData(mon, MON_DATA_HP))
+    if (hazardDamage >= GetMonData(mon, MON_DATA_HP, NULL))
         return TRUE;
     return FALSE;
 }
@@ -3046,7 +3046,7 @@ bool32 AnyPartyMemberStatused(u8 battlerId, bool32 checkSoundproof)
         if (checkSoundproof && GetMonAbility(&party[i]) == ABILITY_SOUNDPROOF)
             continue;
 
-        if (GetMonData(&party[i], MON_DATA_STATUS) != STATUS1_NONE)
+        if (GetMonData(&party[i], MON_DATA_STATUS, NULL) != STATUS1_NONE)
             return TRUE;
     }
 
@@ -3322,8 +3322,8 @@ bool32 ShouldUseWishAromatherapy(u8 battlerAtk, u8 battlerDef, u16 move)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        u16 currHp = GetMonData(&party[i], MON_DATA_HP);
-        u16 maxHp = GetMonData(&party[i], MON_DATA_MAX_HP);
+        u16 currHp = GetMonData(&party[i], MON_DATA_HP, NULL);
+        u16 maxHp = GetMonData(&party[i], MON_DATA_MAX_HP, NULL);
 
         if (!GetMonData(&party[i], MON_DATA_IS_EGG, NULL) && currHp > 0)
         {
@@ -3416,9 +3416,9 @@ s32 CountUsablePartyMons(u8 battlerId)
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (i != battlerOnField1 && i != battlerOnField2
-         && GetMonData(&party[i], MON_DATA_HP) != 0
-         && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
-         && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
+         && GetMonData(&party[i], MON_DATA_HP, NULL) != 0
+         && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+         && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG)
         {
             ret++;
         }
@@ -3440,10 +3440,10 @@ bool32 IsPartyFullyHealedExceptBattler(u8 battlerId)
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (i != gBattlerPartyIndexes[battlerId]
-         && GetMonData(&party[i], MON_DATA_HP) != 0
-         && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
-         && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG
-         && GetMonData(&party[i], MON_DATA_HP) < GetMonData(&party[i], MON_DATA_MAX_HP))
+         && GetMonData(&party[i], MON_DATA_HP, NULL) != 0
+         && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+         && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
+         && GetMonData(&party[i], MON_DATA_HP, NULL) < GetMonData(&party[i], MON_DATA_MAX_HP, NULL))
             return FALSE;
     }
     return TRUE;

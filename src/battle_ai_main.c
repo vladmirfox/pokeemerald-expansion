@@ -129,11 +129,11 @@ void BattleAI_SetupItems(void)
 
 static u32 GetWildAiFlags(void)
 {
-    u8 avgLevel = GetMonData(&gEnemyParty[0], MON_DATA_LEVEL);
+    u8 avgLevel = GetMonData(&gEnemyParty[0], MON_DATA_LEVEL, NULL);
     u32 flags;
 
     if (IsDoubleBattle())
-        avgLevel = (GetMonData(&gEnemyParty[0], MON_DATA_LEVEL) + GetMonData(&gEnemyParty[1], MON_DATA_LEVEL)) / 2;
+        avgLevel = (GetMonData(&gEnemyParty[0], MON_DATA_LEVEL, NULL) + GetMonData(&gEnemyParty[1], MON_DATA_LEVEL, NULL)) / 2;
 
     flags |= AI_FLAG_CHECK_BAD_MOVE;
     if (avgLevel >= 20)
@@ -284,18 +284,18 @@ void Ai_InitPartyStruct(void)
     // Find fainted mons
     for (i = 0; i < AI_PARTY->count[B_SIDE_PLAYER]; i++)
     {
-        if (GetMonData(&gPlayerParty[i], MON_DATA_HP) == 0)
+        if (GetMonData(&gPlayerParty[i], MON_DATA_HP, NULL) == 0)
             AI_PARTY->mons[B_SIDE_PLAYER][i].isFainted = TRUE;
 
         if (isOmniscient)
         {
             u32 j;
             mon = &gPlayerParty[i];
-            AI_PARTY->mons[B_SIDE_PLAYER][i].item = GetMonData(mon, MON_DATA_HELD_ITEM);
+            AI_PARTY->mons[B_SIDE_PLAYER][i].item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
             AI_PARTY->mons[B_SIDE_PLAYER][i].heldEffect = ItemId_GetHoldEffect(AI_PARTY->mons[B_SIDE_PLAYER][i].item);
             AI_PARTY->mons[B_SIDE_PLAYER][i].ability = GetMonAbility(mon);
             for (j = 0; j < MAX_MON_MOVES; j++)
-                AI_PARTY->mons[B_SIDE_PLAYER][i].moves[j] = GetMonData(mon, MON_DATA_MOVE1 + j);
+                AI_PARTY->mons[B_SIDE_PLAYER][i].moves[j] = GetMonData(mon, MON_DATA_MOVE1 + j, NULL);
         }
     }
 }

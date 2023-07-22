@@ -418,7 +418,7 @@
  *
  * PLAYER_PARTY and OPPONENT_PARTY
  * Refer to the party members defined in GIVEN, e.g.:
- *     s32 maxHP = GetMonData(&OPPONENT_PARTY[0], MON_DATA_MAX_HP);
+ *     s32 maxHP = GetMonData(&OPPONENT_PARTY[0], MON_DATA_MAX_HP, NULL);
  *     HP_BAR(opponent, damage: maxHP / 2);
  *
  * THEN

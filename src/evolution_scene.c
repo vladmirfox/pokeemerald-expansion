@@ -257,9 +257,9 @@ void EvolutionScene(struct Pokemon *mon, u16 postEvoSpecies, bool8 canStopEvo, u
     StringCopy(gStringVar2, GetSpeciesName(postEvoSpecies));
 
     // preEvo sprite
-    currSpecies = GetMonData(mon, MON_DATA_SPECIES);
-    trainerId = GetMonData(mon, MON_DATA_OT_ID);
-    personality = GetMonData(mon, MON_DATA_PERSONALITY);
+    currSpecies = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    trainerId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+    personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
     DecompressPicFromTableGender(gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_LEFT],
                                 currSpecies,
                                 personality);
@@ -318,8 +318,8 @@ static void CB2_EvolutionSceneLoadGraphics(void)
     struct Pokemon *mon = &gPlayerParty[gTasks[sEvoStructPtr->evoTaskId].tPartyId];
 
     postEvoSpecies = gTasks[sEvoStructPtr->evoTaskId].tPostEvoSpecies;
-    trainerId = GetMonData(mon, MON_DATA_OT_ID);
-    personality = GetMonData(mon, MON_DATA_PERSONALITY);
+    trainerId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+    personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
 
     SetHBlankCallback(NULL);
     SetVBlankCallback(NULL);
@@ -422,8 +422,8 @@ static void CB2_TradeEvolutionSceneLoadGraphics(void)
     case 4:
         {
             const struct CompressedSpritePalette* pokePal;
-            u32 trainerId = GetMonData(mon, MON_DATA_OT_ID);
-            u32 personality = GetMonData(mon, MON_DATA_PERSONALITY);
+            u32 trainerId = GetMonData(mon, MON_DATA_OT_ID, NULL);
+            u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
             DecompressPicFromTableGender(gMonSpritesGfxPtr->sprites.ptr[B_POSITION_OPPONENT_RIGHT],
                                         postEvoSpecies,
                                         personality);
@@ -481,9 +481,9 @@ void TradeEvolutionScene(struct Pokemon *mon, u16 postEvoSpecies, u8 preEvoSprit
     gAffineAnimsDisabled = TRUE;
 
     // preEvo sprite
-    currSpecies = GetMonData(mon, MON_DATA_SPECIES);
-    personality = GetMonData(mon, MON_DATA_PERSONALITY);
-    trainerId = GetMonData(mon, MON_DATA_OT_ID);
+    currSpecies = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+    trainerId = GetMonData(mon, MON_DATA_OT_ID, NULL);
 
     sEvoStructPtr = AllocZeroed(sizeof(struct EvoInfo));
     sEvoStructPtr->preEvoSpriteId = preEvoSpriteId;
@@ -586,9 +586,9 @@ static void CreateShedinja(u16 preEvoSpecies, struct Pokemon *mon)
         GetSetPokedexFlag(SpeciesToNationalPokedexNum(gEvolutionTable[preEvoSpecies][1].targetSpecies), FLAG_SET_SEEN);
         GetSetPokedexFlag(SpeciesToNationalPokedexNum(gEvolutionTable[preEvoSpecies][1].targetSpecies), FLAG_SET_CAUGHT);
 
-        if (GetMonData(shedinja, MON_DATA_SPECIES) == SPECIES_SHEDINJA
-            && GetMonData(shedinja, MON_DATA_LANGUAGE) == LANGUAGE_JAPANESE
-            && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NINJASK)
+        if (GetMonData(shedinja, MON_DATA_SPECIES, NULL) == SPECIES_SHEDINJA
+            && GetMonData(shedinja, MON_DATA_LANGUAGE, NULL) == LANGUAGE_JAPANESE
+            && GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_NINJASK)
                 SetMonData(shedinja, MON_DATA_NICKNAME, sText_ShedinjaJapaneseName);
     }
 }
@@ -985,7 +985,7 @@ static void Task_EvolutionScene(u8 taskId)
                 else
                 {
                     // Selected move to forget
-                    u16 move = GetMonData(mon, var + MON_DATA_MOVE1);
+                    u16 move = GetMonData(mon, var + MON_DATA_MOVE1, NULL);
                     if (IsHMMove2(move))
                     {
                         // Can't forget HMs
@@ -1368,7 +1368,7 @@ static void Task_TradeEvolutionScene(u8 taskId)
                 else
                 {
                     // Selected move to forget
-                    u16 move = GetMonData(mon, var + MON_DATA_MOVE1);
+                    u16 move = GetMonData(mon, var + MON_DATA_MOVE1, NULL);
                     if (IsHMMove2(move))
                     {
                         // Can't forget HMs

@@ -411,17 +411,17 @@ static void GetMonSpeciesPersonalityOtId(u16 *species, u32 *personality, u32 *ot
     {
         // Get info for party mon
         struct Pokemon *mon = &gPlayerParty[monInfo->monId];
-        *species = GetMonData(mon, MON_DATA_SPECIES);
-        *personality = GetMonData(mon, MON_DATA_PERSONALITY);
-        *otId = GetMonData(mon, MON_DATA_OT_ID);
+        *species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+        *personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+        *otId = GetMonData(mon, MON_DATA_OT_ID, NULL);
     }
     else
     {
         // Get info for PC box mon
         struct BoxPokemon *boxMon = GetBoxedMonPtr(monInfo->boxId, monInfo->monId);
-        *species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
-        *personality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
-        *otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
+        *species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
+        *personality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY, NULL);
+        *otId = GetBoxMonData(boxMon, MON_DATA_OT_ID, NULL);
     }
 }
 
@@ -432,7 +432,7 @@ static u32 GetCurrMonRibbonCount(void)
     struct PokenavMonListItem *monInfo = &mons->monData[mons->currIndex];
 
     if (monInfo->boxId == TOTAL_BOXES_COUNT)
-        return GetMonData(&gPlayerParty[monInfo->monId], MON_DATA_RIBBON_COUNT);
+        return GetMonData(&gPlayerParty[monInfo->monId], MON_DATA_RIBBON_COUNT, NULL);
     else
         return GetBoxMonDataAt(monInfo->boxId, monInfo->monId, MON_DATA_RIBBON_COUNT);
 }
@@ -445,7 +445,7 @@ static void GetMonRibbons(struct Pokenav_RibbonsSummaryList *list)
     struct PokenavMonListItem *monInfo = &mons->monData[mons->currIndex];
 
     if (monInfo->boxId == TOTAL_BOXES_COUNT)
-        ribbonFlags = GetMonData(&gPlayerParty[monInfo->monId], MON_DATA_RIBBONS);
+        ribbonFlags = GetMonData(&gPlayerParty[monInfo->monId], MON_DATA_RIBBONS, NULL);
     else
         ribbonFlags = GetBoxMonDataAt(monInfo->boxId, monInfo->monId, MON_DATA_RIBBONS);
 

@@ -231,7 +231,7 @@ static u8 CalcBeatUpPower(void)
     struct Pokemon *party = GetBattlerParty(gBattlerAttacker);
 
     // Party slot is incremented by the battle script for Beat Up after this damage calculation
-    species = GetMonData(&party[gBattleStruct->beatUpSlot], MON_DATA_SPECIES);
+    species = GetMonData(&party[gBattleStruct->beatUpSlot], MON_DATA_SPECIES, NULL);
     basePower = (gSpeciesInfo[species].baseAttack / 10) + 5;
 
     return basePower;
@@ -1940,7 +1940,7 @@ u32 GetBattlerFriendshipScore(u8 battlerId)
 {
     u8 side = GetBattlerSide(battlerId);
     struct Pokemon *party = GetSideParty(side);
-    u16 species = GetMonData(&party[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES);
+    u16 species = GetMonData(&party[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES, NULL);
 
     if (side != B_SIDE_PLAYER)
         return FRIENDSHIP_NONE;
@@ -3761,10 +3761,10 @@ u8 AtkCanceller_UnableToUseMove(void)
 
                 for (i = 0; i < PARTY_SIZE; i++)
                 {
-                    if (GetMonData(&party[i], MON_DATA_HP)
-                    && GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE
-                    && !GetMonData(&party[i], MON_DATA_IS_EGG)
-                    && !GetMonData(&party[i], MON_DATA_STATUS))
+                    if (GetMonData(&party[i], MON_DATA_HP, NULL)
+                    && GetMonData(&party[i], MON_DATA_SPECIES, NULL) != SPECIES_NONE
+                    && !GetMonData(&party[i], MON_DATA_IS_EGG, NULL)
+                    && !GetMonData(&party[i], MON_DATA_STATUS, NULL))
                         gMultiHitCounter++;
                 }
 
@@ -3844,9 +3844,9 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
 
         for (i = 0; i < PARTY_SIZE; i++)
         {
-            if (GetMonData(&party[i], MON_DATA_HP) != 0
-             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
-             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG
+            if (GetMonData(&party[i], MON_DATA_HP, NULL) != 0
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
              && i != partyIdBattlerOn1 && i != partyIdBattlerOn2
              && i != *(gBattleStruct->monToSwitchIntoId + flankId) && i != playerId[gBattleStruct->monToSwitchIntoId])
                 break;
@@ -3860,9 +3860,9 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
         playerId = ((battler & BIT_FLANK) / 2);
         for (i = playerId * MULTI_PARTY_SIZE; i < playerId * MULTI_PARTY_SIZE + MULTI_PARTY_SIZE; i++)
         {
-            if (GetMonData(&party[i], MON_DATA_HP) != 0
-             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
-             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
+            if (GetMonData(&party[i], MON_DATA_HP, NULL) != 0
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG)
                 break;
         }
         return (i == playerId * MULTI_PARTY_SIZE + MULTI_PARTY_SIZE);
@@ -3895,9 +3895,9 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
 
         for (i = playerId * MULTI_PARTY_SIZE; i < playerId * MULTI_PARTY_SIZE + MULTI_PARTY_SIZE; i++)
         {
-            if (GetMonData(&party[i], MON_DATA_HP) != 0
-             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
-             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
+            if (GetMonData(&party[i], MON_DATA_HP, NULL) != 0
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG)
                 break;
         }
         return (i == playerId * MULTI_PARTY_SIZE + MULTI_PARTY_SIZE);
@@ -3913,9 +3913,9 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
 
         for (i = playerId; i < playerId + MULTI_PARTY_SIZE; i++)
         {
-            if (GetMonData(&party[i], MON_DATA_HP) != 0
-             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
-             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
+            if (GetMonData(&party[i], MON_DATA_HP, NULL) != 0
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG)
                 break;
         }
         return (i == playerId + 3);
@@ -3942,9 +3942,9 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
 
         for (i = 0; i < PARTY_SIZE; i++)
         {
-            if (GetMonData(&party[i], MON_DATA_HP) != 0
-             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
-             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG
+            if (GetMonData(&party[i], MON_DATA_HP, NULL) != 0
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
              && i != partyIdBattlerOn1 && i != partyIdBattlerOn2
              && i != *(gBattleStruct->monToSwitchIntoId + flankId) && i != playerId[gBattleStruct->monToSwitchIntoId])
                 break;
@@ -3973,7 +3973,7 @@ static void ShouldChangeFormInWeather(u8 battler)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        if (GetMonData(&party[i], MON_DATA_SPECIES) == SPECIES_EISCUE_NOICE_FACE)
+        if (GetMonData(&party[i], MON_DATA_SPECIES, NULL) == SPECIES_EISCUE_NOICE_FACE)
             gBattleStruct->allowedToChangeFormInWeather[i][side] = TRUE;
         else
             gBattleStruct->allowedToChangeFormInWeather[i][side] = FALSE;
@@ -4119,9 +4119,9 @@ static uq4_12_t GetSupremeOverlordModifier(u8 battlerId)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        if (GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE
-         && !GetMonData(&party[i], MON_DATA_IS_EGG)
-         && GetMonData(&party[i], MON_DATA_HP) == 0)
+        if (GetMonData(&party[i], MON_DATA_SPECIES, NULL) != SPECIES_NONE
+         && !GetMonData(&party[i], MON_DATA_IS_EGG, NULL)
+         && GetMonData(&party[i], MON_DATA_HP, NULL) == 0)
             modifier += (!appliedFirstBoost) ? UQ_4_12(0.2) : UQ_4_12(0.1);
         appliedFirstBoost = TRUE;
     }
@@ -7200,9 +7200,9 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
 
                     for (i = 0; i < MAX_MON_MOVES; i++)
                     {
-                        move = GetMonData(mon, MON_DATA_MOVE1 + i);
-                        changedPP = GetMonData(mon, MON_DATA_PP1 + i);
-                        ppBonuses = GetMonData(mon, MON_DATA_PP_BONUSES);
+                        move = GetMonData(mon, MON_DATA_MOVE1 + i, NULL);
+                        changedPP = GetMonData(mon, MON_DATA_PP1 + i, NULL);
+                        ppBonuses = GetMonData(mon, MON_DATA_PP_BONUSES, NULL);
                         if (move && changedPP == 0)
                             break;
                     }
@@ -10007,8 +10007,8 @@ bool32 CanMegaEvolve(u8 battlerId)
     else
         mon = &gPlayerParty[gBattlerPartyIndexes[battlerId]];
 
-    species = GetMonData(mon, MON_DATA_SPECIES);
-    itemId = GetMonData(mon, MON_DATA_HELD_ITEM);
+    species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    itemId = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
 
     // Check if there is an entry in the evolution table for regular Mega Evolution.
     if (GetBattleFormChangeTargetSpecies(battlerId, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM) != SPECIES_NONE)
@@ -10260,7 +10260,7 @@ u32 GetIllusionMonSpecies(u32 battlerId)
 {
     struct Pokemon *illusionMon = GetIllusionMonPtr(battlerId);
     if (illusionMon != NULL)
-        return GetMonData(illusionMon, MON_DATA_SPECIES);
+        return GetMonData(illusionMon, MON_DATA_SPECIES, NULL);
     return SPECIES_NONE;
 }
 
@@ -10291,9 +10291,9 @@ bool32 SetIllusionMon(struct Pokemon *mon, u32 battlerId)
     for (i = PARTY_SIZE - 1; i >= 0; i--)
     {
         id = i;
-        if (GetMonData(&party[id], MON_DATA_SANITY_HAS_SPECIES)
-            && GetMonData(&party[id], MON_DATA_HP)
-            && !GetMonData(&party[id], MON_DATA_IS_EGG)
+        if (GetMonData(&party[id], MON_DATA_SANITY_HAS_SPECIES, NULL)
+            && GetMonData(&party[id], MON_DATA_HP, NULL)
+            && !GetMonData(&party[id], MON_DATA_IS_EGG, NULL)
             && &party[id] != mon
             && &party[id] != partnerMon)
         {
@@ -10863,14 +10863,14 @@ static void SetRandomMultiHitCounter()
 
 void CopyMonLevelAndBaseStatsToBattleMon(u32 battler, struct Pokemon *mon)
 {
-    gBattleMons[battler].level = GetMonData(mon, MON_DATA_LEVEL);
-    gBattleMons[battler].hp = GetMonData(mon, MON_DATA_HP);
-    gBattleMons[battler].maxHP = GetMonData(mon, MON_DATA_MAX_HP);
-    gBattleMons[battler].attack = GetMonData(mon, MON_DATA_ATK);
-    gBattleMons[battler].defense = GetMonData(mon, MON_DATA_DEF);
-    gBattleMons[battler].speed = GetMonData(mon, MON_DATA_SPEED);
-    gBattleMons[battler].spAttack = GetMonData(mon, MON_DATA_SPATK);
-    gBattleMons[battler].spDefense = GetMonData(mon, MON_DATA_SPDEF);
+    gBattleMons[battler].level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+    gBattleMons[battler].hp = GetMonData(mon, MON_DATA_HP, NULL);
+    gBattleMons[battler].maxHP = GetMonData(mon, MON_DATA_MAX_HP, NULL);
+    gBattleMons[battler].attack = GetMonData(mon, MON_DATA_ATK, NULL);
+    gBattleMons[battler].defense = GetMonData(mon, MON_DATA_DEF, NULL);
+    gBattleMons[battler].speed = GetMonData(mon, MON_DATA_SPEED, NULL);
+    gBattleMons[battler].spAttack = GetMonData(mon, MON_DATA_SPATK, NULL);
+    gBattleMons[battler].spDefense = GetMonData(mon, MON_DATA_SPDEF, NULL);
 }
 
 void CopyMonAbilityAndTypesToBattleMon(u32 battler, struct Pokemon *mon)

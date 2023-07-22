@@ -20,7 +20,7 @@ SINGLE_BATTLE_TEST("Stone Axe / Ceaseless Edge set up hazards after hitting the 
         TURN { MOVE(player, move); }
         TURN { SWITCH(opponent, 1); }
     } SCENE {
-        s32 maxHP = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP, NULL);
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         HP_BAR(opponent);
         if (move == MOVE_CEASELESS_EDGE) {
@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("Ceaseless Edge can set up to 3 layers of Spikes")
         TURN { MOVE(player, MOVE_CEASELESS_EDGE); }
         TURN { SWITCH(opponent, 1); }
     } SCENE {
-        s32 maxHP = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP, NULL);
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CEASELESS_EDGE, player);
         HP_BAR(opponent);
@@ -91,7 +91,7 @@ SINGLE_BATTLE_TEST("Stone Axe can set up pointed stones only once")
         TURN { MOVE(player, MOVE_STONE_AXE); }
         TURN { SWITCH(opponent, 1); }
     } SCENE {
-        s32 maxHP = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP);
+        s32 maxHP = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP, NULL);
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STONE_AXE, player);
         HP_BAR(opponent);
