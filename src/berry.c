@@ -1448,7 +1448,7 @@ void SetEnigmaBerry(u8 *src)
 
     for (i = 0; i < 0x52C; i++)
     {
-        if (i < 0x01B || i >= 0x4BB)
+        if (i < 0x01C || i >= 0x4BC)
         {
             dest[j] = src[i];
             j++;
