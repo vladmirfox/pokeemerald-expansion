@@ -27,10 +27,15 @@ trusted_typedefs = {
 ignoreable_includes = ['string.h', 'stddef.h', 'stdint.h', 'sprite.h', 'limits.h']
 # the following fields are ignored when it comes to migration because they are related to maps and SetContinueGameWarpStatus(); takes care of that
 ignored_map_fields = ['weather', 'weatherCycleStage', 'flashLevel', 'savedMusic', 'mapLayoutId', 'mapView', 'objectEvents', 'objectEventTemplates']
+# for loop variables
+for_loop_variables = ['j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
-globalVersion = 0
-globalHasChanges = False
-globalDifferences = []
+globalVersion = 0 # which new version we are dealing with
+globalHasChanges = False # if we end up with changes
+globalChangedStructs = [] # which structs are changed
+globalHasChangedStructs = [] # which structs contain changed (sub)structs
+globalForLoops = 0 # for knowing which variable to use (i, j, k...)
+globalForLoopsTotal = 0 # for knowing which variables to declare
 
 # this class overrides the "include not found" error and prevents it from displaying if it is in ignoreable_includes (i.e. irrelevant)
 class PcppPreprocessor(Preprocessor):
@@ -215,7 +220,24 @@ def parse_file2(path):
             val += 1
     return(out, enum_out)
 
-def compareFields(fieldname, inline, extratext):
+def addToGlobal(field, parents):
+    global globalHasChanges
+    global globalChangedStructs
+    global globalHasChangedStructs
+    globalHasChanges = True
+    if not field in globalChangedStructs:
+        globalChangedStructs.append(field)
+    for x in parents:
+        if not x in globalHasChangedStructs:
+            globalHasChangedStructs.append(x)
+
+def appendToArray(array, element):
+    out = array.copy()
+    out.append(element)
+    return(out)
+
+def compareFields(fieldname, parentstructs, extratext):
+    inline = len(parentstructs) + 1
     extratext_display = ""
     if extratext != "":
         extratext_display = " (%s)" % extratext
@@ -241,15 +263,14 @@ def compareFields(fieldname, inline, extratext):
 
     # compare
     global globalHasChanges
-    global globalDifferences
+    global globalChangedStructs
+    global globalHasChangedStructs
     if '--verbose' in sys.argv or '--detailed' in sys.argv or (inline == 1):
         out("  " * (inline - 1) + "Comparing %s%s" % (fieldname, extratext_display))
     for x in GlobalClassesNew[fieldname].fields:
         if not x.name in fields_old:
             out("  " * inline  + "%s is a new field that was not present in the previous version" % x.name)
-            globalHasChanges = True
-            if not fieldname in globalDifferences:
-                globalDifferences.append(fieldname)
+            addToGlobal(fieldname, parentstructs)
             continue
         oldclass = parse_field(fields_old[x.name], GlobalEnumsOld)
         newclass = parse_field(x, GlobalEnumsNew)
@@ -261,7 +282,7 @@ def compareFields(fieldname, inline, extratext):
                     out("  " * inline + "%s is identical" % x.name)
                 # if identical, check the actual kind to make sure the underlying struct didn't change
                 if newclass['kind'] not in trusted_typedefs.keys():
-                    compareFields(newclass['kind'], inline + 1, "%s -> %s" % (extratext, x.name))
+                    compareFields(newclass['kind'], appendToArray(parentstructs, fieldname), "%s -> %s" % (extratext, x.name))
                 continue
             # figure out what exactly is different, starting with size
             globalHasChanges = True
@@ -273,8 +294,7 @@ def compareFields(fieldname, inline, extratext):
                         out("  " * inline + "%s was expanded in size from %s to %s" % (x.name, oldsize, newsize))
                     else:
                         out("  " * inline + "IMPORTANT: %s was truncated in size from %s to %s" % (x.name, oldsize, newsize))
-                    if not fieldname in globalDifferences:
-                        globalDifferences.append(fieldname)
+                    addToGlobal(fieldname, parentstructs)
                     continue
             out("  " * inline + "%s is different, but can't identify why!" % x.name)
         else:
@@ -329,7 +349,9 @@ def prepare_comparison(filename, starting_version):
                     GlobalReferNew[x.name] = "__AnonymousName%s" % x.type.typename.segments[0].id
     return(enums_old, enums_new)
 
-def prepareMigration(listofchanges, versionnumber):
+def prepareMigration(listofchanges, listofparents, versionnumber):
+    global globalForLoopsTotal
+    globalForLoopsTotal = 0
     # get sector ids
     with open("versioning/sectors_v%s.txt" % versionnumber, 'r') as file:
         sectorids = file.read().split("\n")
@@ -362,39 +384,49 @@ def prepareMigration(listofchanges, versionnumber):
         content += "    const struct PokemonStorage_v%s* sOldPokemonStoragePtr = (struct PokemonStorage_v%s*)(locations[%s].data); // SECTOR_ID_PKMN_STORAGE_START\n" % (versionnumber, versionnumber, sectorids[2])
     else:
         content += "    const struct PokemonStorage* sOldPokemonStoragePtr = (struct PokemonStorage*)(locations[%s].data); // SECTOR_ID_PKMN_STORAGE_START\n" % (sectorids[2])
-    content += "    u32 arg, i, j, k;\n\n"
+    content += "    u32 FIXARGUMENTSINPOST;\n\n"
 
     # saveblock2
     content += "    // SaveBlock2 \n"
 
-    if not 'SaveBlock2' in listofchanges:
+    if not 'SaveBlock2' in listofchanges and not 'SaveBlock2' in listofparents:
         content += "    *gSaveBlock2Ptr = *sOldSaveBlock2Ptr;\n"
     else:
-        content += dealWithMigration('SaveBlock2', listofchanges, [])
+        content += dealWithMigration('SaveBlock2', listofchanges, listofparents, [], False)
 
     # saveblock1
     content += "\n    // SaveBlock1 \n"
 
-    if not 'SaveBlock1' in listofchanges:
+    if not 'SaveBlock1' in listofchanges and not 'SaveBlock1' in listofparents:
         content += "    *gSaveBlock1Ptr = *sOldSaveBlock1Ptr;\n"
     else:
-        content += dealWithMigration('SaveBlock1', listofchanges, [])
+        content += dealWithMigration('SaveBlock1', listofchanges, listofparents, [], False)
 
     # pokemonstorage
     content += "\n    // PokemonStorage \n"
 
-    if not 'PokemonStorage' in listofchanges:
+    if not 'PokemonStorage' in listofchanges and not 'PokemonStorage' in listofparents:
         content += "    *gPokemonStoragePtr = *sOldPokemonStoragePtr;\n"
     else:
-        content += dealWithMigration('PokemonStorage', listofchanges, [])
+        content += dealWithMigration('PokemonStorage', listofchanges, listofparents, [], False)
 
     # take care of continue game warp
     content += "\n    SetContinueGameWarpStatus();\n    gSaveBlock1Ptr->continueGameWarp = gSaveBlock1Ptr->lastHealLocation;\n\n    return TRUE;\n}\n"
+
+    # take care of variable declaration
+    content = declareForLoopVariables(content)
 
     # write it to file
     with open("src/data/old_saves/save.v%s.h" % versionnumber, 'w') as file:
         file.write(content)
     out("Added migration support from version %s to version %s (src/data/old_saves/save.v%s.h)" % (versionnumber, globalVersion, versionnumber))
+
+def declareForLoopVariables(content):
+    out = "i"
+    if globalForLoopsTotal > 0:
+        for i in range(globalForLoopsTotal):
+            out += ", " + for_loop_variables[i]
+    return(content.replace("FIXARGUMENTSINPOST", out))
 
 def fetchDefineValue(name, code):
     z = re.findall('#define %s *(.*)' % name, code)
@@ -411,8 +443,13 @@ def copyBlock(name, fieldname, specification):
 def copyArray(name, fieldname, specification):
     return "for(i = 0; i < min(ARRAY_COUNT(g{st}{st2}), ARRAY_COUNT(sOld{st}{st2})); i++) g{st}{st2}[i] = sOld{st}{st2}[i];".format(st=parseSpecification(name,specification), st2=fieldname)
 
-def dealWithMigration(name, changedstructs, specification):
+def dealWithMigration(name, changedstructs, changedparents, specification, amarray):
+    global globalForLoops
+    global globalForLoopsTotal
     out = ""
+    if amarray:
+        out += "    " * (globalForLoops) + "for({st} = 0; {st} < min(ARRAY_COUNT(g{st2}), ARRAY_COUNT(sOld{st2})); {st}++)\n".format(st=for_loop_variables[globalForLoops - 1], st2=parseSpecification(name,specification)[:-4])
+        out += "    " * (globalForLoops) + "{\n"
     for field in GlobalClassesNew[name].fields:
         # hardcoded feature to make save migration work
         if (name == "SaveBlock2" and field.name in ['_saveSentinel', 'saveVersion']):
@@ -429,30 +466,46 @@ def dealWithMigration(name, changedstructs, specification):
             continue
         # check if it's an updated struct
         field_type = field.type
+        isarray = False
         while (field_type.__class__.__name__ == "Array"):
             field_type = field_type.array_of
-        if field_type.typename.segments[0].name in changedstructs and field_type.typename.segments[0].name not in trusted_typedefs:
-            out += dealWithMigration(field_type.typename.segments[0].name, changedstructs, addSpecification(specification, name, field.name))
+            isarray = True
+        if (field_type.typename.segments[0].name in changedstructs or field_type.typename.segments[0].name in changedparents) and field_type.typename.segments[0].name not in trusted_typedefs:
+            if isarray:
+                globalForLoops += 1
+                if (globalForLoops > globalForLoopsTotal):
+                    globalForLoopsTotal = globalForLoops
+            out += dealWithMigration(field_type.typename.segments[0].name, changedstructs, changedparents, addSpecification(specification, name, field.name, isarray), isarray)
+            if isarray:
+                globalForLoops -= 1
             continue
         # check other fields
         if (field.type.__class__.__name__ == "Array"):
             if (field.type.array_of.__class__.__name__ == "Array"):
-                out += "    %s\n" % copyBlock(name, field.name, specification)
+                out += "    " * (globalForLoops + 1) + "%s\n" % copyBlock(name, field.name, specification)
                 continue
             elif (field.type.array_of.__class__.__name__ == "Type"):
                 if (field.type.array_of.typename.classkey == "struct"):
-                    out += "    %s\n" % copyBlock(name, field.name, specification)
+                    out += "    " * (globalForLoops + 1) + "%s\n" % copyBlock(name, field.name, specification)
                     continue
-            out += "    %s\n" % copyArray(name, field.name, specification)
+            out += "    " * (globalForLoops + 1) + "%s\n" % copyArray(name, field.name, specification)
         else:
-            out += "    %s\n" % copyField(name, field.name, specification)
+            out += "    " * (globalForLoops + 1) + "%s\n" % copyField(name, field.name, specification)
+    if amarray:
+        out += "    " * (globalForLoops) + "}\n"
     return out
 
-def addSpecification(specification, name, fieldname):
+def addSpecification(specification, name, fieldname, isarray):
     if (len(specification)==0):
-        return([name, fieldname])
+        if isarray:
+            return([name, fieldname + "[%s]" % for_loop_variables[globalForLoops - 1]])
+        else:
+            return([name, fieldname])
     else:
-        return(specification + [fieldname])
+        if isarray:
+            return(specification + [fieldname + "[%s]" % for_loop_variables[globalForLoops - 1]])
+        else:
+            return(specification + [fieldname])
 
 def parseSpecification(name, specification):
     if (len(specification)==0):
@@ -519,9 +572,9 @@ if __name__ == "__main__":
     GlobalEnumsOld, GlobalEnumsNew = prepare_comparison('global', globalVersion - 1)
     prepare_comparison('pokemon_storage_system', globalVersion - 1) # no enum output because this file doesn't contain any
 
-    compareFields('SaveBlock2', 1, 'gSaveBlock2Ptr')
-    compareFields('SaveBlock1', 1, 'gSaveBlock1Ptr')
-    compareFields('PokemonStorage', 1, 'gPokemonStoragePtr')
+    compareFields('SaveBlock2', [], 'gSaveBlock2Ptr')
+    compareFields('SaveBlock1', [], 'gSaveBlock1Ptr')
+    compareFields('PokemonStorage', [], 'gPokemonStoragePtr')
     # clean up if no changes
     if not globalHasChanges:
         out("No save migration needed!")
@@ -538,18 +591,19 @@ if __name__ == "__main__":
             shutil.rmtree("src/data/old_saves/")
         os.mkdir("src/data/old_saves/")
         # start by updating the previous version to the current version
-        prepareMigration(globalDifferences, globalVersion - 1)
+        prepareMigration(globalChangedStructs, globalHasChangedStructs, globalVersion - 1)
         # loop through previous versions, compare and make migration scripts
         currentLoopingVersion = globalVersion - 2
         while (currentLoopingVersion >= 0):
             globalHasChanges = False
-            globalDifferences = []
+            globalChangedStructs = []
+            globalHasChangedStructs = []
             GlobalEnumsOld, GlobalEnumsNew = prepare_comparison('global', currentLoopingVersion)
             prepare_comparison('pokemon_storage_system', currentLoopingVersion) # no enum output because this file doesn't contain any
-            compareFields('SaveBlock2', 1, 'gSaveBlock2Ptr')
-            compareFields('SaveBlock1', 1, 'gSaveBlock1Ptr')
-            compareFields('PokemonStorage', 1, 'gPokemonStoragePtr')
-            prepareMigration(globalDifferences, currentLoopingVersion)
+            compareFields('SaveBlock2', [], 'gSaveBlock2Ptr')
+            compareFields('SaveBlock1', [], 'gSaveBlock1Ptr')
+            compareFields('PokemonStorage', [], 'gPokemonStoragePtr')
+            prepareMigration(globalChangedStructs, globalHasChangedStructs, currentLoopingVersion)
             currentLoopingVersion -= 1
 
     if '--log' in sys.argv:
