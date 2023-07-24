@@ -556,6 +556,39 @@ def backupDump(structname, versionnumber, listofchanges, tobackup):
         out += ";\n"
     return (out + "};\n\n")
 
+"""
+MAKE_RELEASE.PY
+
+An attempt at documentation
+
+1. Upon execution, this script attempts to pull a new version (pull_new_version).
+   This means that it will grab a copy of global.h and pokemon_storage_system.h.
+   It will also take note of the SECTOR_ID variables and write them in a sectors txt
+   files. These files are stored in /versioning/ alongside the relevant version number,
+   starting at 0.
+
+2. If this is the first time the script is run, it will active and inject some code
+   relative to Tustin's system (injectTustin). This includes adding _saveSentinel and
+   saveVersion to SaveBlock2, updating new_game.c to correctly identify new save files,
+   and uncommenting the versioning include file.
+
+3. From this point on, the user can make any changes to the SaveBlocks they desire.
+   Running make release again will add a new version and make all previous versions
+   compatible with it. This means that running make release once (step 2) will not yet
+   make older versions compatibile with - after all, a second version to compare with
+   has not yet been defined.
+
+4. If not the first time the script is run, it will start preparing a first comparison
+   between the latest defined version and the current state of affairs (compareFields).
+
+5. If there are no changes (globalHasChanges), the process is aborted since it is
+   redundant. Otherwise, the migration process begins. Since compatibility with all
+   previous versions is retained, all code is rewritten - this way, if there was a v0,
+   v1 and v2 and we are adding v3, it writes new code to directly migrate v0 to v3 etc.
+   This takes place in prepareMigration.
+
+"""
+
 if __name__ == "__main__":
     if '--log' in sys.argv:
         f = open('log.txt', 'w')
