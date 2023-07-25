@@ -3055,23 +3055,22 @@ bool32 AnyPartyMemberStatused(u8 battlerId, bool32 checkSoundproof)
 
 u16 GetBattlerSideSpeedAverage(u8 battler)
 {
-    u16 speed1 = 0;
-    u16 speed2 = 0;
+    u32 speed = 0;
     u8 numBattlersAlive = 0;
 
     if (IsBattlerAlive(battler))
     {
-        speed1 = GetBattlerTotalSpeedStat(battler);
+        speed += GetBattlerTotalSpeedStat(battler);
         numBattlersAlive++;
     }
 
     if (IsDoubleBattle() && IsBattlerAlive(BATTLE_PARTNER(battler)))
     {
-        speed2 = GetBattlerTotalSpeedStat(BATTLE_PARTNER(battler));
+        speed += GetBattlerTotalSpeedStat(BATTLE_PARTNER(battler));
         numBattlersAlive++;
     }
 
-    return (speed1 + speed2) / numBattlersAlive;
+    return (speed / numBattlersAlive);
 }
 
 bool32 ShouldUseRecoilMove(u8 battlerAtk, u8 battlerDef, u32 recoilDmg, u8 moveIndex)

@@ -610,20 +610,19 @@ bool8 TryRunFromBattle(u8 battler)
     }
     else
     {
-        u8 runningFromBattler = BATTLE_OPPOSITE(battler);
-        if (!IsBattlerAlive(runningFromBattler))
-            runningFromBattler |= BIT_FLANK;
+        u32 speedPlayer = GetBattlerSideSpeedAverage(battler);
+        u32 speedOpponent = GetBattlerSideSpeedAverage(BATTLE_OPPOSITE(battler));
 
         if (InBattlePyramid())
         {
             pyramidMultiplier = GetPyramidRunMultiplier();
-            speedVar = (gBattleMons[battler].speed * pyramidMultiplier) / (gBattleMons[runningFromBattler].speed) + (gBattleStruct->runTries * 30);
+            speedVar = (speedPlayer * pyramidMultiplier) / (speedOpponent) + (gBattleStruct->runTries * 30);
             if (speedVar > (Random() & 0xFF))
                 effect++;
         }
-        else if (gBattleMons[battler].speed < gBattleMons[runningFromBattler].speed)
+        else if (speedPlayer < speedOpponent)
         {
-            speedVar = (gBattleMons[battler].speed * 128) / (gBattleMons[runningFromBattler].speed) + (gBattleStruct->runTries * 30);
+            speedVar = (speedPlayer * 128) / (speedOpponent) + (gBattleStruct->runTries * 30);
             if (speedVar > (Random() & 0xFF))
                 effect++;
         }
