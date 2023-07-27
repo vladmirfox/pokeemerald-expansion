@@ -558,7 +558,7 @@ const struct CompressedSpriteSheet gMonBackPicTable[NUM_SPECIES + 1] =
     SPECIES_SPRITE(KROKOROK, gMonBackPic_Krokorok),
     SPECIES_SPRITE(KROOKODILE, gMonBackPic_Krookodile),
     SPECIES_SPRITE(DARUMAKA, gMonBackPic_Darumaka),
-    SPECIES_SPRITE(DARMANITAN, gMonBackPic_Darmanitan),
+    SPECIES_SPRITE(DARMANITAN_STANDARD_MODE, gMonBackPic_DarmanitanStandardMode),
     SPECIES_SPRITE(MARACTUS, gMonBackPic_Maractus),
     SPECIES_SPRITE(DWEBBLE, gMonBackPic_Dwebble),
     SPECIES_SPRITE(CRUSTLE, gMonBackPic_Crustle),
@@ -1011,7 +1011,7 @@ const struct CompressedSpriteSheet gMonBackPicTable[NUM_SPECIES + 1] =
     SPECIES_SPRITE(LINOONE_GALARIAN, gMonBackPic_LinooneGalarian),
 #if P_GEN_5_POKEMON == TRUE
     SPECIES_SPRITE(DARUMAKA_GALARIAN, gMonBackPic_DarumakaGalarian),
-    SPECIES_SPRITE(DARMANITAN_GALARIAN, gMonBackPic_DarmanitanGalarian),
+    SPECIES_SPRITE(DARMANITAN_GALARIAN_STANDARD_MODE, gMonBackPic_DarmanitanGalarianStandardMode),
     SPECIES_SPRITE(YAMASK_GALARIAN, gMonBackPic_YamaskGalarian),
     SPECIES_SPRITE(STUNFISK_GALARIAN, gMonBackPic_StunfiskGalarian),
 #endif
@@ -1141,7 +1141,7 @@ const struct CompressedSpriteSheet gMonBackPicTable[NUM_SPECIES + 1] =
     SPECIES_SPRITE(BASCULIN_WHITE_STRIPED, gMonBackPic_BasculinWhiteStriped),
 
     SPECIES_SPRITE(DARMANITAN_ZEN_MODE, gMonBackPic_DarmanitanZenMode),
-    SPECIES_SPRITE(DARMANITAN_ZEN_MODE_GALARIAN, gMonBackPic_DarmanitanZenModeGalarian),
+    SPECIES_SPRITE(DARMANITAN_GALARIAN_ZEN_MODE, gMonBackPic_DarmanitanGalarianZenMode),
 
     SPECIES_SPRITE(DEERLING_SUMMER, gMonBackPic_Deerling),
     SPECIES_SPRITE(DEERLING_AUTUMN, gMonBackPic_Deerling),

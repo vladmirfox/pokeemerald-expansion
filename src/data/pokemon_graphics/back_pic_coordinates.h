@@ -581,7 +581,7 @@ const struct MonCoords gMonBackPicCoords[NUM_SPECIES + 1] =
     [SPECIES_KROKOROK]                     = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  3 },
     [SPECIES_KROOKODILE]                   = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  6 },
     [SPECIES_DARUMAKA]                     = { .size = MON_COORDS_SIZE(56, 48), .y_offset = 12 },
-    [SPECIES_DARMANITAN]                   = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  2 },
+    [SPECIES_DARMANITAN_STANDARD_MODE]     = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  2 },
     [SPECIES_MARACTUS]                     = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  2 },
     [SPECIES_DWEBBLE]                      = { .size = MON_COORDS_SIZE(56, 32), .y_offset = 17 },
     [SPECIES_CRUSTLE]                      = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  9 },
@@ -1033,7 +1033,7 @@ const struct MonCoords gMonBackPicCoords[NUM_SPECIES + 1] =
     [SPECIES_LINOONE_GALARIAN]             = { .size = MON_COORDS_SIZE(64, 40), .y_offset = 13 },
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_DARUMAKA_GALARIAN]            = { .size = MON_COORDS_SIZE(56, 48), .y_offset = 11 },
-    [SPECIES_DARMANITAN_GALARIAN]          = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  2 },
+    [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  2 },
     [SPECIES_YAMASK_GALARIAN]              = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 13 },
     [SPECIES_STUNFISK_GALARIAN]            = { .size = MON_COORDS_SIZE(64, 24), .y_offset = 23 },
 #endif
@@ -1165,7 +1165,7 @@ const struct MonCoords gMonBackPicCoords[NUM_SPECIES + 1] =
     [SPECIES_BASCULIN_WHITE_STRIPED]       = { .size = MON_COORDS_SIZE(64, 40), .y_offset = 16 },
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE]          = { .size = MON_COORDS_SIZE(56, 48), .y_offset = 11 },
-    [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  1 },
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  1 },
     // Deerling
     [SPECIES_DEERLING_SUMMER]              = DEERLING_BACK_PIC_COORDS,
     [SPECIES_DEERLING_AUTUMN]              = DEERLING_BACK_PIC_COORDS,

@@ -558,7 +558,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_KROKOROK] = sKrokorokTeachableLearnset,
     [SPECIES_KROOKODILE] = sKrookodileTeachableLearnset,
     [SPECIES_DARUMAKA] = sDarumakaTeachableLearnset,
-    [SPECIES_DARMANITAN] = sDarmanitanTeachableLearnset,
+    [SPECIES_DARMANITAN_STANDARD_MODE] = sDarmanitanTeachableLearnset,
     [SPECIES_MARACTUS] = sMaractusTeachableLearnset,
     [SPECIES_DWEBBLE] = sDwebbleTeachableLearnset,
     [SPECIES_CRUSTLE] = sCrustleTeachableLearnset,
@@ -1011,7 +1011,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_LINOONE_GALARIAN] = sLinooneGalarianTeachableLearnset,
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_DARUMAKA_GALARIAN] = sDarumakaGalarianTeachableLearnset,
-    [SPECIES_DARMANITAN_GALARIAN] = sDarmanitanGalarianTeachableLearnset,
+    [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] = sDarmanitanGalarianTeachableLearnset,
     [SPECIES_YAMASK_GALARIAN] = sYamaskGalarianTeachableLearnset,
     [SPECIES_STUNFISK_GALARIAN] = sStunfiskGalarianTeachableLearnset,
 #endif
@@ -1143,7 +1143,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinTeachableLearnset,
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanTeachableLearnset,
-    [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = sDarmanitanGalarianTeachableLearnset,
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = sDarmanitanGalarianTeachableLearnset,
     // Deerling
     [SPECIES_DEERLING_SUMMER] = sDeerlingTeachableLearnset,
     [SPECIES_DEERLING_AUTUMN] = sDeerlingTeachableLearnset,

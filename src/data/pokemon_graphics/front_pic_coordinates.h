@@ -562,7 +562,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_KROKOROK]                     = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  4 },
     [SPECIES_KROOKODILE]                   = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_DARUMAKA]                     = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 13 },
-    [SPECIES_DARMANITAN]                   = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  2 },
+    [SPECIES_DARMANITAN_STANDARD_MODE]     = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  2 },
     [SPECIES_MARACTUS]                     = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  0 },
     [SPECIES_DWEBBLE]                      = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 14 },
     [SPECIES_CRUSTLE]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  2 },
@@ -1015,7 +1015,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_LINOONE_GALARIAN]             = { .size = MON_COORDS_SIZE(64, 40), .y_offset = 13 },
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_DARUMAKA_GALARIAN]            = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 15 },
-    [SPECIES_DARMANITAN_GALARIAN]          = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  0 },
+    [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  0 },
     [SPECIES_YAMASK_GALARIAN]              = { .size = MON_COORDS_SIZE(48, 40), .y_offset = 13 },
     [SPECIES_STUNFISK_GALARIAN]            = { .size = MON_COORDS_SIZE(48, 40), .y_offset = 14 },
 #endif
@@ -1147,7 +1147,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_BASCULIN_WHITE_STRIPED]       = { .size = MON_COORDS_SIZE(48, 40), .y_offset = 10 },
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE]          = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 14 },
-    [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = { .size = MON_COORDS_SIZE(48, 64), .y_offset =  2 },
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = { .size = MON_COORDS_SIZE(48, 64), .y_offset =  2 },
     // Deerling
     [SPECIES_DEERLING_SUMMER]              = { .size = MON_COORDS_SIZE(32, 48), .y_offset = 11 },
     [SPECIES_DEERLING_AUTUMN]              = { .size = MON_COORDS_SIZE(32, 48), .y_offset = 11 },

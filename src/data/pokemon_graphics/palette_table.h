@@ -558,7 +558,7 @@ const struct CompressedSpritePalette gMonPaletteTable[NUM_SPECIES + 1] =
     SPECIES_PAL(KROKOROK, gMonPalette_Krokorok),
     SPECIES_PAL(KROOKODILE, gMonPalette_Krookodile),
     SPECIES_PAL(DARUMAKA, gMonPalette_Darumaka),
-    SPECIES_PAL(DARMANITAN, gMonPalette_Darmanitan),
+    SPECIES_PAL(DARMANITAN_STANDARD_MODE, gMonPalette_DarmanitanStandardMode),
     SPECIES_PAL(MARACTUS, gMonPalette_Maractus),
     SPECIES_PAL(DWEBBLE, gMonPalette_Dwebble),
     SPECIES_PAL(CRUSTLE, gMonPalette_Crustle),
@@ -1010,7 +1010,7 @@ const struct CompressedSpritePalette gMonPaletteTable[NUM_SPECIES + 1] =
     SPECIES_PAL(LINOONE_GALARIAN, gMonPalette_LinooneGalarian),
 #if P_GEN_5_POKEMON == TRUE
     SPECIES_PAL(DARUMAKA_GALARIAN, gMonPalette_DarumakaGalarian),
-    SPECIES_PAL(DARMANITAN_GALARIAN, gMonPalette_DarmanitanGalarian),
+    SPECIES_PAL(DARMANITAN_GALARIAN_STANDARD_MODE, gMonPalette_DarmanitanGalarianStandardMode),
     SPECIES_PAL(YAMASK_GALARIAN, gMonPalette_YamaskGalarian),
     SPECIES_PAL(STUNFISK_GALARIAN, gMonPalette_StunfiskGalarian),
 #endif
@@ -1141,7 +1141,7 @@ const struct CompressedSpritePalette gMonPaletteTable[NUM_SPECIES + 1] =
     SPECIES_PAL(BASCULIN_WHITE_STRIPED, gMonPalette_BasculinWhiteStriped),
 
     SPECIES_PAL(DARMANITAN_ZEN_MODE, gMonPalette_DarmanitanZenMode),
-    SPECIES_PAL(DARMANITAN_ZEN_MODE_GALARIAN, gMonPalette_DarmanitanZenModeGalarian),
+    SPECIES_PAL(DARMANITAN_GALARIAN_ZEN_MODE, gMonPalette_DarmanitanGalarianZenMode),
 
     SPECIES_PAL(DEERLING_SUMMER, gMonPalette_DeerlingSummer),
     SPECIES_PAL(DEERLING_AUTUMN, gMonPalette_DeerlingAutumn),

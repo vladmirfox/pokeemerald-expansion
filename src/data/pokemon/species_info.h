@@ -13567,7 +13567,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_DARMANITAN] =
+    [SPECIES_DARMANITAN_STANDARD_MODE] =
     {
         .baseHP        = 105,
         .baseAttack    = 140,
@@ -23012,7 +23012,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_GALARIAN_FORM,
     },
 
-    [SPECIES_DARMANITAN_GALARIAN] =
+    [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] =
     {
         .baseHP        = 105,
         .baseAttack    = 140,
@@ -23821,7 +23821,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] =
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] =
     {
         .baseHP        = 105,
         .baseAttack    = 160,

@@ -108,7 +108,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_BASCULIN_RED_STRIPED] = sBasculinFormSpeciesIdTable,
     [SPECIES_LILLIGANT] = sLilligantFormSpeciesIdTable,
     [SPECIES_DARUMAKA] = sDarumakaFormSpeciesIdTable,
-    [SPECIES_DARMANITAN] = sDarmanitanFormSpeciesIdTable,
+    [SPECIES_DARMANITAN_STANDARD_MODE] = sDarmanitanFormSpeciesIdTable,
     [SPECIES_YAMASK] = sYamaskFormSpeciesIdTable,
     [SPECIES_ZORUA] = sZoruaFormSpeciesIdTable,
     [SPECIES_ZOROARK] = sZoroarkFormSpeciesIdTable,
@@ -268,7 +268,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_LINOONE_GALARIAN] = sLinooneFormSpeciesIdTable,
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_DARUMAKA_GALARIAN] = sDarumakaFormSpeciesIdTable,
-    [SPECIES_DARMANITAN_GALARIAN] = sDarmanitanFormSpeciesIdTable,
+    [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] = sDarmanitanFormSpeciesIdTable,
     [SPECIES_YAMASK_GALARIAN] = sYamaskFormSpeciesIdTable,
     [SPECIES_STUNFISK_GALARIAN] = sStunfiskFormSpeciesIdTable,
 #endif
@@ -400,7 +400,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinFormSpeciesIdTable,
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanFormSpeciesIdTable,
-    [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = sDarmanitanFormSpeciesIdTable,
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = sDarmanitanFormSpeciesIdTable,
     // Deerling
     [SPECIES_DEERLING_SUMMER] = sDeerlingFormSpeciesIdTable,
     [SPECIES_DEERLING_AUTUMN] = sDeerlingFormSpeciesIdTable,

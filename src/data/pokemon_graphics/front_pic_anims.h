@@ -6629,7 +6629,7 @@ static const union AnimCmd sAnim_Darumaka_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Darmanitan_1[] =
+static const union AnimCmd sAnim_DarmanitanStandardMode_1[] =
 {
     ANIMCMD_FRAME(1, 10),
     ANIMCMD_FRAME(0, 10),
@@ -10066,7 +10066,7 @@ static const union AnimCmd sAnim_DarumakaGalarian_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_DarmanitanGalarian_1[] =
+static const union AnimCmd sAnim_DarmanitanGalarianStandardMode_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -10379,7 +10379,7 @@ static const union AnimCmd sAnim_DarmanitanZenMode_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_DarmanitanZenModeGalarian_1[] =
+static const union AnimCmd sAnim_DarmanitanGalarianZenMode_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -11149,7 +11149,7 @@ SINGLE_ANIMATION(Sandile);
 SINGLE_ANIMATION(Krokorok);
 DOUBLE_ANIMATION(Krookodile);
 SINGLE_ANIMATION(Darumaka);
-SINGLE_ANIMATION(Darmanitan);
+SINGLE_ANIMATION(DarmanitanStandardMode);
 SINGLE_ANIMATION(Maractus);
 SINGLE_ANIMATION(Dwebble);
 SINGLE_ANIMATION(Crustle);
@@ -11599,7 +11599,7 @@ SINGLE_ANIMATION(ZigzagoonGalarian);
 SINGLE_ANIMATION(LinooneGalarian);
 #if P_GEN_5_POKEMON == TRUE
 SINGLE_ANIMATION(DarumakaGalarian);
-SINGLE_ANIMATION(DarmanitanGalarian);
+SINGLE_ANIMATION(DarmanitanGalarianStandardMode);
 SINGLE_ANIMATION(YamaskGalarian);
 SINGLE_ANIMATION(StunfiskGalarian);
 #endif
@@ -11651,7 +11651,7 @@ SINGLE_ANIMATION(ShayminSky);
 #endif
 #if P_GEN_5_POKEMON == TRUE
 SINGLE_ANIMATION(DarmanitanZenMode);
-SINGLE_ANIMATION(DarmanitanZenModeGalarian);
+SINGLE_ANIMATION(DarmanitanGalarianZenMode);
 SINGLE_ANIMATION(TornadusTherian);
 SINGLE_ANIMATION(ThundurusTherian);
 SINGLE_ANIMATION(LandorusTherian);
@@ -12237,7 +12237,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_KROKOROK] = sAnims_Krokorok,
     [SPECIES_KROOKODILE] = sAnims_Krookodile,
     [SPECIES_DARUMAKA] = sAnims_Darumaka,
-    [SPECIES_DARMANITAN] = sAnims_Darmanitan,
+    [SPECIES_DARMANITAN_STANDARD_MODE] = sAnims_DarmanitanStandardMode,
     [SPECIES_MARACTUS] = sAnims_Maractus,
     [SPECIES_DWEBBLE] = sAnims_Dwebble,
     [SPECIES_CRUSTLE] = sAnims_Crustle,
@@ -12686,7 +12686,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_LINOONE_GALARIAN] = sAnims_LinooneGalarian,
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_DARUMAKA_GALARIAN] = sAnims_DarumakaGalarian,
-    [SPECIES_DARMANITAN_GALARIAN] = sAnims_DarmanitanGalarian,
+    [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] = sAnims_DarmanitanGalarianStandardMode,
     [SPECIES_YAMASK_GALARIAN] = sAnims_YamaskGalarian,
     [SPECIES_STUNFISK_GALARIAN] = sAnims_StunfiskGalarian,
 #endif
@@ -12799,7 +12799,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_BASCULIN_BLUE_STRIPED] = sAnims_Basculin,
     [SPECIES_BASCULIN_WHITE_STRIPED] = sAnims_Basculin,
     [SPECIES_DARMANITAN_ZEN_MODE] = sAnims_DarmanitanZenMode,
-    [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = sAnims_DarmanitanZenModeGalarian,
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = sAnims_DarmanitanGalarianZenMode,
     [SPECIES_DEERLING_SUMMER] = sAnims_Deerling,
     [SPECIES_DEERLING_AUTUMN] = sAnims_Deerling,
     [SPECIES_DEERLING_WINTER] = sAnims_Deerling,

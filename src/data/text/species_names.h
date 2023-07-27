@@ -557,7 +557,7 @@ const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_KROKOROK] = _("Krokorok"),
     [SPECIES_KROOKODILE] = _("Krookodile"),
     [SPECIES_DARUMAKA] = _("Darumaka"),
-    [SPECIES_DARMANITAN] = _("Darmanitan"),
+    [SPECIES_DARMANITAN_STANDARD_MODE] = _("Darmanitan"),
     [SPECIES_MARACTUS] = _("Maractus"),
     [SPECIES_DWEBBLE] = _("Dwebble"),
     [SPECIES_CRUSTLE] = _("Crustle"),
@@ -1013,7 +1013,7 @@ const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_LINOONE_GALARIAN] = _("Linoone"),
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_DARUMAKA_GALARIAN] = _("Darumaka"),
-    [SPECIES_DARMANITAN_GALARIAN] = _("Darmanitan"),
+    [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] = _("Darmanitan"),
     [SPECIES_YAMASK_GALARIAN] = _("Yamask"),
     [SPECIES_STUNFISK_GALARIAN] = _("Stunfisk"),
 #endif
@@ -1146,7 +1146,7 @@ const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_BASCULIN_WHITE_STRIPED] = _("Basculin"),
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE] = _("Darmanitan"),
-    [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = _("Darmanitan"),
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = _("Darmanitan"),
     // Deerling
     [SPECIES_DEERLING_SUMMER] = _("Deerling"),
     [SPECIES_DEERLING_AUTUMN] = _("Deerling"),

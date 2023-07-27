@@ -558,7 +558,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_KROKOROK] = sKrokorokLevelUpLearnset,
     [SPECIES_KROOKODILE] = sKrookodileLevelUpLearnset,
     [SPECIES_DARUMAKA] = sDarumakaLevelUpLearnset,
-    [SPECIES_DARMANITAN] = sDarmanitanLevelUpLearnset,
+    [SPECIES_DARMANITAN_STANDARD_MODE] = sDarmanitanLevelUpLearnset,
     [SPECIES_MARACTUS] = sMaractusLevelUpLearnset,
     [SPECIES_DWEBBLE] = sDwebbleLevelUpLearnset,
     [SPECIES_CRUSTLE] = sCrustleLevelUpLearnset,
@@ -1011,7 +1011,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_LINOONE_GALARIAN] = sLinooneGalarianLevelUpLearnset,
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_DARUMAKA_GALARIAN] = sDarumakaGalarianLevelUpLearnset,
-    [SPECIES_DARMANITAN_GALARIAN] = sDarmanitanGalarianLevelUpLearnset,
+    [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] = sDarmanitanGalarianLevelUpLearnset,
     [SPECIES_YAMASK_GALARIAN] = sYamaskGalarianLevelUpLearnset,
     [SPECIES_STUNFISK_GALARIAN] = sStunfiskGalarianLevelUpLearnset,
 #endif
@@ -1143,7 +1143,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_BASCULIN_WHITE_STRIPED] = sBasculinLevelUpLearnset,
     // Darmanitan
     [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanLevelUpLearnset,
-    [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = sDarmanitanGalarianLevelUpLearnset,
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = sDarmanitanGalarianLevelUpLearnset,
     // Deerling
     [SPECIES_DEERLING_SUMMER] = sDeerlingLevelUpLearnset,
     [SPECIES_DEERLING_AUTUMN] = sDeerlingLevelUpLearnset,
