@@ -650,8 +650,8 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_ZEKROM] = sZekromTeachableLearnset,
     [SPECIES_LANDORUS_INCARNATE] = sLandorusTeachableLearnset,
     [SPECIES_KYUREM] = sKyuremTeachableLearnset,
-    [SPECIES_KELDEO] = sKeldeoTeachableLearnset,
-    [SPECIES_MELOETTA] = sMeloettaTeachableLearnset,
+    [SPECIES_KELDEO_ORDINARY] = sKeldeoTeachableLearnset,
+    [SPECIES_MELOETTA_ARIA] = sMeloettaTeachableLearnset,
     [SPECIES_GENESECT] = sGenesectTeachableLearnset,
 #endif
 #if P_GEN_6_POKEMON == TRUE

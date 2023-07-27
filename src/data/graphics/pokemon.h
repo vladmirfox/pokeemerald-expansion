@@ -721,8 +721,8 @@ const u32 gMonFrontPic_Reshiram[] = INCBIN_U32("graphics/pokemon/reshiram/anim_f
 const u32 gMonFrontPic_Zekrom[] = INCBIN_U32("graphics/pokemon/zekrom/anim_front.4bpp.lz");
 const u32 gMonFrontPic_LandorusIncarnate[] = INCBIN_U32("graphics/pokemon/landorus/anim_front.4bpp.lz");
 const u32 gMonFrontPic_Kyurem[] = INCBIN_U32("graphics/pokemon/kyurem/anim_front.4bpp.lz");
-const u32 gMonFrontPic_Keldeo[] = INCBIN_U32("graphics/pokemon/keldeo/anim_front.4bpp.lz");
-const u32 gMonFrontPic_Meloetta[] = INCBIN_U32("graphics/pokemon/meloetta/anim_front.4bpp.lz");
+const u32 gMonFrontPic_KeldeoOrdinary[] = INCBIN_U32("graphics/pokemon/keldeo/anim_front.4bpp.lz");
+const u32 gMonFrontPic_MeloettaAria[] = INCBIN_U32("graphics/pokemon/meloetta/anim_front.4bpp.lz");
 const u32 gMonFrontPic_Genesect[] = INCBIN_U32("graphics/pokemon/genesect/anim_front.4bpp.lz");
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -1989,8 +1989,8 @@ const u32 gMonBackPic_Reshiram[] = INCBIN_U32("graphics/pokemon/reshiram/back.4b
 const u32 gMonBackPic_Zekrom[] = INCBIN_U32("graphics/pokemon/zekrom/back.4bpp.lz");
 const u32 gMonBackPic_LandorusIncarnate[] = INCBIN_U32("graphics/pokemon/landorus/back.4bpp.lz");
 const u32 gMonBackPic_Kyurem[] = INCBIN_U32("graphics/pokemon/kyurem/back.4bpp.lz");
-const u32 gMonBackPic_Keldeo[] = INCBIN_U32("graphics/pokemon/keldeo/back.4bpp.lz");
-const u32 gMonBackPic_Meloetta[] = INCBIN_U32("graphics/pokemon/meloetta/back.4bpp.lz");
+const u32 gMonBackPic_KeldeoOrdinary[] = INCBIN_U32("graphics/pokemon/keldeo/back.4bpp.lz");
+const u32 gMonBackPic_MeloettaAria[] = INCBIN_U32("graphics/pokemon/meloetta/back.4bpp.lz");
 const u32 gMonBackPic_Genesect[] = INCBIN_U32("graphics/pokemon/genesect/back.4bpp.lz");
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -3197,8 +3197,8 @@ const u32 gMonPalette_Reshiram[] = INCBIN_U32("graphics/pokemon/reshiram/normal.
 const u32 gMonPalette_Zekrom[] = INCBIN_U32("graphics/pokemon/zekrom/normal.gbapal.lz");
 const u32 gMonPalette_LandorusIncarnate[] = INCBIN_U32("graphics/pokemon/landorus/normal.gbapal.lz");
 const u32 gMonPalette_Kyurem[] = INCBIN_U32("graphics/pokemon/kyurem/normal.gbapal.lz");
-const u32 gMonPalette_Keldeo[] = INCBIN_U32("graphics/pokemon/keldeo/normal.gbapal.lz");
-const u32 gMonPalette_Meloetta[] = INCBIN_U32("graphics/pokemon/meloetta/normal.gbapal.lz");
+const u32 gMonPalette_KeldeoOrdinary[] = INCBIN_U32("graphics/pokemon/keldeo/normal.gbapal.lz");
+const u32 gMonPalette_MeloettaAria[] = INCBIN_U32("graphics/pokemon/meloetta/normal.gbapal.lz");
 const u32 gMonPalette_Genesect[] = INCBIN_U32("graphics/pokemon/genesect/normal.gbapal.lz");
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -4430,8 +4430,8 @@ const u32 gMonShinyPalette_Reshiram[] = INCBIN_U32("graphics/pokemon/reshiram/sh
 const u32 gMonShinyPalette_Zekrom[] = INCBIN_U32("graphics/pokemon/zekrom/shiny.gbapal.lz");
 const u32 gMonShinyPalette_LandorusIncarnate[] = INCBIN_U32("graphics/pokemon/landorus/shiny.gbapal.lz");
 const u32 gMonShinyPalette_Kyurem[] = INCBIN_U32("graphics/pokemon/kyurem/shiny.gbapal.lz");
-const u32 gMonShinyPalette_Keldeo[] = INCBIN_U32("graphics/pokemon/keldeo/shiny.gbapal.lz");
-const u32 gMonShinyPalette_Meloetta[] = INCBIN_U32("graphics/pokemon/meloetta/shiny.gbapal.lz");
+const u32 gMonShinyPalette_KeldeoOrdinary[] = INCBIN_U32("graphics/pokemon/keldeo/shiny.gbapal.lz");
+const u32 gMonShinyPalette_MeloettaAria[] = INCBIN_U32("graphics/pokemon/meloetta/shiny.gbapal.lz");
 const u32 gMonShinyPalette_Genesect[] = INCBIN_U32("graphics/pokemon/genesect/shiny.gbapal.lz");
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -5656,8 +5656,8 @@ const u8 gMonIcon_Reshiram[] = INCBIN_U8("graphics/pokemon/reshiram/icon.4bpp");
 const u8 gMonIcon_Zekrom[] = INCBIN_U8("graphics/pokemon/zekrom/icon.4bpp");
 const u8 gMonIcon_LandorusIncarnate[] = INCBIN_U8("graphics/pokemon/landorus/icon.4bpp");
 const u8 gMonIcon_Kyurem[] = INCBIN_U8("graphics/pokemon/kyurem/icon.4bpp");
-const u8 gMonIcon_Keldeo[] = INCBIN_U8("graphics/pokemon/keldeo/icon.4bpp");
-const u8 gMonIcon_Meloetta[] = INCBIN_U8("graphics/pokemon/meloetta/icon.4bpp");
+const u8 gMonIcon_KeldeoOrdinary[] = INCBIN_U8("graphics/pokemon/keldeo/icon.4bpp");
+const u8 gMonIcon_MeloettaAria[] = INCBIN_U8("graphics/pokemon/meloetta/icon.4bpp");
 const u8 gMonIcon_Genesect[] = INCBIN_U8("graphics/pokemon/genesect/icon.4bpp");
 #endif
 #if P_GEN_6_POKEMON == TRUE

@@ -650,8 +650,8 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_ZEKROM] = sZekromLevelUpLearnset,
     [SPECIES_LANDORUS_INCARNATE] = sLandorusLevelUpLearnset,
     [SPECIES_KYUREM] = sKyuremLevelUpLearnset,
-    [SPECIES_KELDEO] = sKeldeoLevelUpLearnset,
-    [SPECIES_MELOETTA] = sMeloettaLevelUpLearnset,
+    [SPECIES_KELDEO_ORDINARY] = sKeldeoLevelUpLearnset,
+    [SPECIES_MELOETTA_ARIA] = sMeloettaLevelUpLearnset,
     [SPECIES_GENESECT] = sGenesectLevelUpLearnset,
 #endif
 #if P_GEN_6_POKEMON == TRUE

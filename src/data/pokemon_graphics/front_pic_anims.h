@@ -7607,14 +7607,14 @@ static const union AnimCmd sAnim_Kyurem_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Keldeo_1[] =
+static const union AnimCmd sAnim_KeldeoOrdinary_1[] =
 {
     ANIMCMD_FRAME(1, 32),
     ANIMCMD_FRAME(0, 20),
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Meloetta_1[] =
+static const union AnimCmd sAnim_MeloettaAria_1[] =
 {
     ANIMCMD_FRAME(0, 15),
     ANIMCMD_FRAME(1, 45),
@@ -7626,7 +7626,7 @@ static const union AnimCmd sAnim_Meloetta_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Meloetta_2[] =
+static const union AnimCmd sAnim_MeloettaAria_2[] =
 {
     ANIMCMD_FRAME(0, 20),
     ANIMCMD_FRAME(2, 20),
@@ -11241,8 +11241,8 @@ SINGLE_ANIMATION(Reshiram);
 SINGLE_ANIMATION(Zekrom);
 SINGLE_ANIMATION(LandorusIncarnate);
 SINGLE_ANIMATION(Kyurem);
-SINGLE_ANIMATION(Keldeo);
-DOUBLE_ANIMATION(Meloetta);
+SINGLE_ANIMATION(KeldeoOrdinary);
+DOUBLE_ANIMATION(MeloettaAria);
 SINGLE_ANIMATION(Genesect);
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -12329,8 +12329,8 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_ZEKROM] = sAnims_Zekrom,
     [SPECIES_LANDORUS_INCARNATE] = sAnims_LandorusIncarnate,
     [SPECIES_KYUREM] = sAnims_Kyurem,
-    [SPECIES_KELDEO] = sAnims_Keldeo,
-    [SPECIES_MELOETTA] = sAnims_Meloetta,
+    [SPECIES_KELDEO_ORDINARY] = sAnims_KeldeoOrdinary,
+    [SPECIES_MELOETTA_ARIA] = sAnims_MeloettaAria,
     [SPECIES_GENESECT] = sAnims_Genesect,
 #endif
 #if P_GEN_6_POKEMON == TRUE

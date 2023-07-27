@@ -369,8 +369,8 @@ static const struct FormChange sDarmanitanGalarianFormChangeTable[] = {
 };
 
 static const struct FormChange sMeloettaFormChangeTable[] = {
-    {FORM_CHANGE_FAINT,         SPECIES_MELOETTA},
-    {FORM_CHANGE_END_BATTLE,    SPECIES_MELOETTA},
+    {FORM_CHANGE_FAINT,         SPECIES_MELOETTA_ARIA},
+    {FORM_CHANGE_END_BATTLE,    SPECIES_MELOETTA_ARIA},
     {FORM_CHANGE_TERMINATOR},
 };
 
@@ -394,7 +394,7 @@ static const struct FormChange sLandorusFormChangeTable[] = {
 
 static const struct FormChange sKeldeoFormChangeTable[] = {
     // {FORM_CHANGE_MOVE, SPECIES_KELDEO_RESOLUTE, MOVE_SECRET_SWORD, WHEN_LEARNED},
-    // {FORM_CHANGE_MOVE, SPECIES_KELDEO, MOVE_SECRET_SWORD, WHEN_FORGOTTEN},
+    // {FORM_CHANGE_MOVE, SPECIES_KELDEO_ORDINARY, MOVE_SECRET_SWORD, WHEN_FORGOTTEN},
     {FORM_CHANGE_TERMINATOR},
 };
 

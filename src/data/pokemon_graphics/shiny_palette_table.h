@@ -650,8 +650,8 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[NUM_SPECIES + 1] =
     SPECIES_SHINY_PAL(ZEKROM, gMonShinyPalette_Zekrom),
     SPECIES_SHINY_PAL(LANDORUS_INCARNATE, gMonShinyPalette_LandorusIncarnate),
     SPECIES_SHINY_PAL(KYUREM, gMonShinyPalette_Kyurem),
-    SPECIES_SHINY_PAL(KELDEO, gMonShinyPalette_Keldeo),
-    SPECIES_SHINY_PAL(MELOETTA, gMonShinyPalette_Meloetta),
+    SPECIES_SHINY_PAL(KELDEO_ORDINARY, gMonShinyPalette_KeldeoOrdinary),
+    SPECIES_SHINY_PAL(MELOETTA, gMonShinyPalette_MeloettaAria),
     SPECIES_SHINY_PAL(GENESECT, gMonShinyPalette_Genesect),
 #endif
 #if P_GEN_6_POKEMON == TRUE

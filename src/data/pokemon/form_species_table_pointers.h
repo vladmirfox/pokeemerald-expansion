@@ -120,8 +120,8 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_THUNDURUS_INCARNATE] = sThundurusFormSpeciesIdTable,
     [SPECIES_LANDORUS_INCARNATE] = sLandorusFormSpeciesIdTable,
     [SPECIES_KYUREM] = sKyuremFormSpeciesIdTable,
-    [SPECIES_KELDEO] = sKeldeoFormSpeciesIdTable,
-    [SPECIES_MELOETTA] = sMeloettaFormSpeciesIdTable,
+    [SPECIES_KELDEO_ORDINARY] = sKeldeoFormSpeciesIdTable,
+    [SPECIES_MELOETTA_ARIA] = sMeloettaFormSpeciesIdTable,
     [SPECIES_GENESECT] = sGenesectFormSpeciesIdTable,
 #endif
 #if P_GEN_6_POKEMON == TRUE

@@ -788,8 +788,8 @@ extern const u32 gMonFrontPic_Reshiram[];
 extern const u32 gMonFrontPic_Zekrom[];
 extern const u32 gMonFrontPic_LandorusIncarnate[];
 extern const u32 gMonFrontPic_Kyurem[];
-extern const u32 gMonFrontPic_Keldeo[];
-extern const u32 gMonFrontPic_Meloetta[];
+extern const u32 gMonFrontPic_KeldeoOrdinary[];
+extern const u32 gMonFrontPic_MeloettaAria[];
 extern const u32 gMonFrontPic_Genesect[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -2058,8 +2058,8 @@ extern const u32 gMonBackPic_Reshiram[];
 extern const u32 gMonBackPic_Zekrom[];
 extern const u32 gMonBackPic_LandorusIncarnate[];
 extern const u32 gMonBackPic_Kyurem[];
-extern const u32 gMonBackPic_Keldeo[];
-extern const u32 gMonBackPic_Meloetta[];
+extern const u32 gMonBackPic_KeldeoOrdinary[];
+extern const u32 gMonBackPic_MeloettaAria[];
 extern const u32 gMonBackPic_Genesect[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -3266,8 +3266,8 @@ extern const u32 gMonPalette_Reshiram[];
 extern const u32 gMonPalette_Zekrom[];
 extern const u32 gMonPalette_LandorusIncarnate[];
 extern const u32 gMonPalette_Kyurem[];
-extern const u32 gMonPalette_Keldeo[];
-extern const u32 gMonPalette_Meloetta[];
+extern const u32 gMonPalette_KeldeoOrdinary[];
+extern const u32 gMonPalette_MeloettaAria[];
 extern const u32 gMonPalette_Genesect[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -4499,8 +4499,8 @@ extern const u32 gMonShinyPalette_Reshiram[];
 extern const u32 gMonShinyPalette_Zekrom[];
 extern const u32 gMonShinyPalette_LandorusIncarnate[];
 extern const u32 gMonShinyPalette_Kyurem[];
-extern const u32 gMonShinyPalette_Keldeo[];
-extern const u32 gMonShinyPalette_Meloetta[];
+extern const u32 gMonShinyPalette_KeldeoOrdinary[];
+extern const u32 gMonShinyPalette_MeloettaAria[];
 extern const u32 gMonShinyPalette_Genesect[];
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -5725,8 +5725,8 @@ extern const u8 gMonIcon_Reshiram[];
 extern const u8 gMonIcon_Zekrom[];
 extern const u8 gMonIcon_LandorusIncarnate[];
 extern const u8 gMonIcon_Kyurem[];
-extern const u8 gMonIcon_Keldeo[];
-extern const u8 gMonIcon_Meloetta[];
+extern const u8 gMonIcon_KeldeoOrdinary[];
+extern const u8 gMonIcon_MeloettaAria[];
 extern const u8 gMonIcon_Genesect[];
 #endif
 #if P_GEN_6_POKEMON == TRUE

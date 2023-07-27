@@ -649,8 +649,8 @@ const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_ZEKROM] = _("Zekrom"),
     [SPECIES_LANDORUS_INCARNATE] = _("Landorus"),
     [SPECIES_KYUREM] = _("Kyurem"),
-    [SPECIES_KELDEO] = _("Keldeo"),
-    [SPECIES_MELOETTA] = _("Meloetta"),
+    [SPECIES_KELDEO_ORDINARY] = _("Keldeo"),
+    [SPECIES_MELOETTA_ARIA] = _("Meloetta"),
     [SPECIES_GENESECT] = _("Genesect"),
 #endif
 #if P_GEN_6_POKEMON == TRUE

@@ -781,13 +781,13 @@ static const u16 sKyuremFormSpeciesIdTable[] = {
 };
 
 static const u16 sKeldeoFormSpeciesIdTable[] = {
-    SPECIES_KELDEO,
+    SPECIES_KELDEO_ORDINARY,
     SPECIES_KELDEO_RESOLUTE,
     FORM_SPECIES_END,
 };
 
 static const u16 sMeloettaFormSpeciesIdTable[] = {
-    SPECIES_MELOETTA,
+    SPECIES_MELOETTA_ARIA,
     SPECIES_MELOETTA_PIROUETTE,
     FORM_SPECIES_END,
 };

@@ -665,8 +665,10 @@
 #define SPECIES_LANDORUS                     SPECIES_LANDORUS_INCARNATE
 #define SPECIES_LANDORUS_INCARNATE           645
 #define SPECIES_KYUREM                       646
-#define SPECIES_KELDEO                       647
-#define SPECIES_MELOETTA                     648
+#define SPECIES_KELDEO                       SPECIES_KELDEO_ORDINARY
+#define SPECIES_KELDEO_ORDINARY              647
+#define SPECIES_MELOETTA                     SPECIES_MELOETTA_ARIA
+#define SPECIES_MELOETTA_ARIA                648
 #define SPECIES_GENESECT                     649
 #define SPECIES_CHESPIN                      650
 #define SPECIES_QUILLADIN                    651

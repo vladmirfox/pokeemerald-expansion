@@ -650,8 +650,8 @@ const u8 *const gMonFootprintTable[NUM_SPECIES + 1] =
     [SPECIES_ZEKROM] = gMonFootprint_Zekrom,
     [SPECIES_LANDORUS_INCARNATE] = gMonFootprint_Landorus,
     [SPECIES_KYUREM] = gMonFootprint_Kyurem,
-    [SPECIES_KELDEO] = gMonFootprint_Keldeo,
-    [SPECIES_MELOETTA] = gMonFootprint_Meloetta,
+    [SPECIES_KELDEO_ORDINARY] = gMonFootprint_Keldeo,
+    [SPECIES_MELOETTA_ARIA] = gMonFootprint_Meloetta,
     [SPECIES_GENESECT] = gMonFootprint_Genesect,
 #endif
 #if P_GEN_6_POKEMON == TRUE

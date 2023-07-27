@@ -673,8 +673,8 @@ const struct MonCoords gMonBackPicCoords[NUM_SPECIES + 1] =
     [SPECIES_ZEKROM]                       = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  3 },
     [SPECIES_LANDORUS_INCARNATE]           = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_KYUREM]                       = { .size = MON_COORDS_SIZE(64, 40), .y_offset = 12 },
-    [SPECIES_KELDEO]                       = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  4 },
-    [SPECIES_MELOETTA]                     = { .size = MON_COORDS_SIZE(48, 56), .y_offset =  7 },
+    [SPECIES_KELDEO_ORDINARY]              = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  4 },
+    [SPECIES_MELOETTA_ARIA]                = { .size = MON_COORDS_SIZE(48, 56), .y_offset =  7 },
     [SPECIES_GENESECT]                     = { .size = MON_COORDS_SIZE(64, 48), .y_offset =  8 },
 #endif
 #if P_GEN_6_POKEMON == TRUE

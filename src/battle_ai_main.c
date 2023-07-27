@@ -4606,7 +4606,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_RELIC_SONG:
         if (!(gBattleMons[battlerAtk].status2 & STATUS2_TRANSFORMED)) // Don't try to change form if it's transformed.
         {
-            if (gBattleMons[battlerAtk].species == SPECIES_MELOETTA && gBattleMons[battlerDef].defense < gBattleMons[battlerDef].spDefense)
+            if (gBattleMons[battlerAtk].species == SPECIES_MELOETTA_ARIA && gBattleMons[battlerDef].defense < gBattleMons[battlerDef].spDefense)
                 score += 3; // Change to Pirouette if can do more damage
             else if (gBattleMons[battlerAtk].species == SPECIES_MELOETTA_PIROUETTE && gBattleMons[battlerDef].spDefense < gBattleMons[battlerDef].defense)
                 score += 3; // Change to Aria if can do more damage

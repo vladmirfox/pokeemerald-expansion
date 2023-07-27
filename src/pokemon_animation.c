@@ -904,8 +904,8 @@ static const u8 sSpeciesToBackAnimSet[NUM_SPECIES] =
     [SPECIES_ZEKROM]                       = BACK_ANIM_SHAKE_GLOW_BLUE,
     [SPECIES_LANDORUS_INCARNATE]           = BACK_ANIM_V_SHAKE,
     [SPECIES_KYUREM]                       = BACK_ANIM_V_SHAKE_LOW,
-    [SPECIES_KELDEO]                       = BACK_ANIM_JOLT_RIGHT,
-    [SPECIES_MELOETTA]                     = BACK_ANIM_CONVEX_DOUBLE_ARC,
+    [SPECIES_KELDEO_ORDINARY]              = BACK_ANIM_JOLT_RIGHT,
+    [SPECIES_MELOETTA_ARIA]                = BACK_ANIM_CONVEX_DOUBLE_ARC,
     [SPECIES_GENESECT]                     = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,
 
         //Gen 5 Forms

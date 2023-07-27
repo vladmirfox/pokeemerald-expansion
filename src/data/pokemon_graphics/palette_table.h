@@ -650,8 +650,8 @@ const struct CompressedSpritePalette gMonPaletteTable[NUM_SPECIES + 1] =
     SPECIES_PAL(ZEKROM, gMonPalette_Zekrom),
     SPECIES_PAL(LANDORUS_INCARNATE, gMonPalette_LandorusIncarnate),
     SPECIES_PAL(KYUREM, gMonPalette_Kyurem),
-    SPECIES_PAL(KELDEO, gMonPalette_Keldeo),
-    SPECIES_PAL(MELOETTA, gMonPalette_Meloetta),
+    SPECIES_PAL(KELDEO_ORDINARY, gMonPalette_KeldeoOrdinary),
+    SPECIES_PAL(MELOETTA, gMonPalette_MeloettaAria),
     SPECIES_PAL(GENESECT, gMonPalette_Genesect),
 #endif
 #if P_GEN_6_POKEMON == TRUE

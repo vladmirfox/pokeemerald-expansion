@@ -15614,7 +15614,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
-    [SPECIES_KELDEO] =
+    [SPECIES_KELDEO_ORDINARY] =
     {
         .baseHP        = 91,
         .baseAttack    = 72,
@@ -15637,7 +15637,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_MYTHICAL,
     },
 
-    [SPECIES_MELOETTA] =
+    [SPECIES_MELOETTA_ARIA] =
     {
         .baseHP        = 100,
         .baseAttack    = 77,

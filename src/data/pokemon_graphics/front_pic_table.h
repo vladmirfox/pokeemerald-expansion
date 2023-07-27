@@ -650,8 +650,8 @@ const struct CompressedSpriteSheet gMonFrontPicTable[NUM_SPECIES + 1] =
     SPECIES_SPRITE(ZEKROM, gMonFrontPic_Zekrom),
     SPECIES_SPRITE(LANDORUS_INCARNATE, gMonFrontPic_LandorusIncarnate),
     SPECIES_SPRITE(KYUREM, gMonFrontPic_Kyurem),
-    SPECIES_SPRITE(KELDEO, gMonFrontPic_Keldeo),
-    SPECIES_SPRITE(MELOETTA, gMonFrontPic_Meloetta),
+    SPECIES_SPRITE(KELDEO_ORDINARY, gMonFrontPic_KeldeoOrdinary),
+    SPECIES_SPRITE(MELOETTA, gMonFrontPic_MeloettaAria),
     SPECIES_SPRITE(GENESECT, gMonFrontPic_Genesect),
 #endif
 #if P_GEN_6_POKEMON == TRUE

@@ -676,8 +676,8 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_ZEKROM] = gMonIcon_Zekrom,
     [SPECIES_LANDORUS_INCARNATE] = gMonIcon_LandorusIncarnate,
     [SPECIES_KYUREM] = gMonIcon_Kyurem,
-    [SPECIES_KELDEO] = gMonIcon_Keldeo,
-    [SPECIES_MELOETTA] = gMonIcon_Meloetta,
+    [SPECIES_KELDEO_ORDINARY] = gMonIcon_KeldeoOrdinary,
+    [SPECIES_MELOETTA_ARIA] = gMonIcon_MeloettaAria,
     [SPECIES_GENESECT] = gMonIcon_Genesect,
 #endif
 #if P_GEN_6_POKEMON == TRUE
@@ -1963,8 +1963,8 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_ZEKROM] = 2,
     [SPECIES_LANDORUS_INCARNATE] = 0,
     [SPECIES_KYUREM] = 0,
-    [SPECIES_KELDEO] = 0,
-    [SPECIES_MELOETTA] = 4,
+    [SPECIES_KELDEO_ORDINARY] = 0,
+    [SPECIES_MELOETTA_ARIA] = 4,
     [SPECIES_GENESECT] = 2,
     [SPECIES_CHESPIN] = 1,
     [SPECIES_QUILLADIN] = 1,
