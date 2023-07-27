@@ -598,8 +598,10 @@
 #define SPECIES_VANILLITE                    582
 #define SPECIES_VANILLISH                    583
 #define SPECIES_VANILLUXE                    584
-#define SPECIES_DEERLING                     585
-#define SPECIES_SAWSBUCK                     586
+#define SPECIES_DEERLING                     SPECIES_DEERLING_SPRING
+#define SPECIES_DEERLING_SPRING              585
+#define SPECIES_SAWSBUCK                     SPECIES_SAWSBUCK_SPRING
+#define SPECIES_SAWSBUCK_SPRING              586
 #define SPECIES_EMOLGA                       587
 #define SPECIES_KARRABLAST                   588
 #define SPECIES_ESCAVALIER                   589

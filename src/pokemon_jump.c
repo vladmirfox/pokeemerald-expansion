@@ -605,7 +605,7 @@ static const struct PokemonJumpMons sPokeJumpMons[] =
     { .species = SPECIES_CINCCINO,   .jumpType = JUMP_TYPE_NORMAL, },
     { .species = SPECIES_GOTHITA,    .jumpType = JUMP_TYPE_SLOW, },
     { .species = SPECIES_GOTHORITA,  .jumpType = JUMP_TYPE_SLOW, },
-    { .species = SPECIES_DEERLING,   .jumpType = JUMP_TYPE_FAST, },
+    { .species = SPECIES_DEERLING_SPRING, .jumpType = JUMP_TYPE_FAST, },
     { .species = SPECIES_DEERLING_SUMMER, .jumpType = JUMP_TYPE_FAST, },
     { .species = SPECIES_DEERLING_AUTUMN, .jumpType = JUMP_TYPE_FAST, },
     { .species = SPECIES_DEERLING_WINTER, .jumpType = JUMP_TYPE_FAST, },
