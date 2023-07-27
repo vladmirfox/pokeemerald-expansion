@@ -644,11 +644,11 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[NUM_SPECIES + 1] =
     SPECIES_SHINY_PAL(COBALION, gMonShinyPalette_Cobalion),
     SPECIES_SHINY_PAL(TERRAKION, gMonShinyPalette_Terrakion),
     SPECIES_SHINY_PAL(VIRIZION, gMonShinyPalette_Virizion),
-    SPECIES_SHINY_PAL(TORNADUS, gMonShinyPalette_Tornadus),
-    SPECIES_SHINY_PAL(THUNDURUS, gMonShinyPalette_Thundurus),
+    SPECIES_SHINY_PAL(TORNADUS_INCARNATE, gMonShinyPalette_TornadusIncarnate),
+    SPECIES_SHINY_PAL(THUNDURUS_INCARNATE, gMonShinyPalette_ThundurusIncarnate),
     SPECIES_SHINY_PAL(RESHIRAM, gMonShinyPalette_Reshiram),
     SPECIES_SHINY_PAL(ZEKROM, gMonShinyPalette_Zekrom),
-    SPECIES_SHINY_PAL(LANDORUS, gMonShinyPalette_Landorus),
+    SPECIES_SHINY_PAL(LANDORUS_INCARNATE, gMonShinyPalette_LandorusIncarnate),
     SPECIES_SHINY_PAL(KYUREM, gMonShinyPalette_Kyurem),
     SPECIES_SHINY_PAL(KELDEO, gMonShinyPalette_Keldeo),
     SPECIES_SHINY_PAL(MELOETTA, gMonShinyPalette_Meloetta),
@@ -914,7 +914,7 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[NUM_SPECIES + 1] =
     SPECIES_SHINY_PAL(BASCULEGION, gMonShinyPalette_Basculegion),
     SPECIES_SHINY_PAL(SNEASLER, gMonShinyPalette_Sneasler),
     SPECIES_SHINY_PAL(OVERQWIL, gMonShinyPalette_Overqwil),
-    SPECIES_SHINY_PAL(ENAMORUS, gMonShinyPalette_Enamorus),
+    SPECIES_SHINY_PAL(ENAMORUS_INCARNATE, gMonShinyPalette_EnamorusIncarnate),
 #endif
 
     SPECIES_SHINY_PAL(VENUSAUR_MEGA, gMonShinyPalette_VenusaurMega),

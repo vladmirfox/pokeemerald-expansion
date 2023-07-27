@@ -138,11 +138,11 @@ const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES] =
     [SPECIES_DARMANITAN_ZEN_MODE] = sDarmanitanFormChangeTable,
     [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] = sDarmanitanGalarianFormChangeTable,
     [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = sDarmanitanGalarianFormChangeTable,
-    [SPECIES_TORNADUS] = sTornadusFormChangeTable,
+    [SPECIES_TORNADUS_INCARNATE] = sTornadusFormChangeTable,
     [SPECIES_TORNADUS_THERIAN] = sTornadusFormChangeTable,
-    [SPECIES_THUNDURUS] = sThundurusFormChangeTable,
+    [SPECIES_THUNDURUS_INCARNATE] = sThundurusFormChangeTable,
     [SPECIES_THUNDURUS_THERIAN] = sThundurusFormChangeTable,
-    [SPECIES_LANDORUS] = sLandorusFormChangeTable,
+    [SPECIES_LANDORUS_INCARNATE] = sLandorusFormChangeTable,
     [SPECIES_LANDORUS_THERIAN] = sLandorusFormChangeTable,
     [SPECIES_KELDEO] = sKeldeoFormChangeTable,
     [SPECIES_KELDEO_RESOLUTE] = sKeldeoFormChangeTable,
@@ -223,7 +223,7 @@ const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES] =
     [SPECIES_ZACIAN_CROWNED_SWORD] = sZacianFormChangeTable,
     [SPECIES_ZAMAZENTA] = sZamazentaFormChangeTable,
     [SPECIES_ZAMAZENTA_CROWNED_SHIELD] = sZamazentaFormChangeTable,
-    [SPECIES_ENAMORUS] = sEnamorusFormChangeTable,
+    [SPECIES_ENAMORUS_INCARNATE] = sEnamorusFormChangeTable,
     [SPECIES_ENAMORUS_THERIAN] = sEnamorusFormChangeTable,
 #endif
 };

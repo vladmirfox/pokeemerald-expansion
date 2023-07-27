@@ -644,11 +644,11 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_COBALION] = sCobalionTeachableLearnset,
     [SPECIES_TERRAKION] = sTerrakionTeachableLearnset,
     [SPECIES_VIRIZION] = sVirizionTeachableLearnset,
-    [SPECIES_TORNADUS] = sTornadusTeachableLearnset,
-    [SPECIES_THUNDURUS] = sThundurusTeachableLearnset,
+    [SPECIES_TORNADUS_INCARNATE] = sTornadusTeachableLearnset,
+    [SPECIES_THUNDURUS_INCARNATE] = sThundurusTeachableLearnset,
     [SPECIES_RESHIRAM] = sReshiramTeachableLearnset,
     [SPECIES_ZEKROM] = sZekromTeachableLearnset,
-    [SPECIES_LANDORUS] = sLandorusTeachableLearnset,
+    [SPECIES_LANDORUS_INCARNATE] = sLandorusTeachableLearnset,
     [SPECIES_KYUREM] = sKyuremTeachableLearnset,
     [SPECIES_KELDEO] = sKeldeoTeachableLearnset,
     [SPECIES_MELOETTA] = sMeloettaTeachableLearnset,
@@ -914,7 +914,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_BASCULEGION] = sBasculegionTeachableLearnset,
     [SPECIES_SNEASLER] = sSneaslerTeachableLearnset,
     [SPECIES_OVERQWIL] = sOverqwilTeachableLearnset,
-    [SPECIES_ENAMORUS] = sEnamorusTeachableLearnset,
+    [SPECIES_ENAMORUS_INCARNATE] = sEnamorusTeachableLearnset,
 #endif
     // Megas
     [SPECIES_VENUSAUR_MEGA] = sVenusaurTeachableLearnset,

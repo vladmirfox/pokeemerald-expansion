@@ -116,9 +116,9 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_SAWSBUCK_SPRING] = sSawsbuckFormSpeciesIdTable,
     [SPECIES_STUNFISK] = sStunfiskFormSpeciesIdTable,
     [SPECIES_BRAVIARY] = sBraviaryFormSpeciesIdTable,
-    [SPECIES_TORNADUS] = sTornadusFormSpeciesIdTable,
-    [SPECIES_THUNDURUS] = sThundurusFormSpeciesIdTable,
-    [SPECIES_LANDORUS] = sLandorusFormSpeciesIdTable,
+    [SPECIES_TORNADUS_INCARNATE] = sTornadusFormSpeciesIdTable,
+    [SPECIES_THUNDURUS_INCARNATE] = sThundurusFormSpeciesIdTable,
+    [SPECIES_LANDORUS_INCARNATE] = sLandorusFormSpeciesIdTable,
     [SPECIES_KYUREM] = sKyuremFormSpeciesIdTable,
     [SPECIES_KELDEO] = sKeldeoFormSpeciesIdTable,
     [SPECIES_MELOETTA] = sMeloettaFormSpeciesIdTable,
@@ -170,7 +170,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_URSHIFU] = sUrshifuFormSpeciesIdTable,
     [SPECIES_ZARUDE] = sZarudeFormSpeciesIdTable,
     [SPECIES_CALYREX] = sCalyrexFormSpeciesIdTable,
-    [SPECIES_ENAMORUS] = sEnamorusFormSpeciesIdTable,
+    [SPECIES_ENAMORUS_INCARNATE] = sEnamorusFormSpeciesIdTable,
     [SPECIES_BASCULEGION] = sBasculegionFormSpeciesIdTable,
 #endif
     // Megas

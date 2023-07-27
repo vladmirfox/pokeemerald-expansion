@@ -7503,7 +7503,7 @@ static const union AnimCmd sAnim_Virizion_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Tornadus_1[] =
+static const union AnimCmd sAnim_TornadusIncarnate_1[] =
 {
     ANIMCMD_FRAME(1, 2),
     ANIMCMD_FRAME(0, 2),
@@ -7530,7 +7530,7 @@ static const union AnimCmd sAnim_Tornadus_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Thundurus_1[] =
+static const union AnimCmd sAnim_ThundurusIncarnate_1[] =
 {
     ANIMCMD_FRAME(1, 2),
     ANIMCMD_FRAME(0, 2),
@@ -7571,7 +7571,7 @@ static const union AnimCmd sAnim_Zekrom_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Landorus_1[] =
+static const union AnimCmd sAnim_LandorusIncarnate_1[] =
 {
     ANIMCMD_FRAME(1, 2),
     ANIMCMD_FRAME(0, 2),
@@ -9554,7 +9554,7 @@ static const union AnimCmd sAnim_Overqwil_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Enamorus_1[] =
+static const union AnimCmd sAnim_EnamorusIncarnate_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -11235,11 +11235,11 @@ SINGLE_ANIMATION(Volcarona);
 SINGLE_ANIMATION(Cobalion);
 DOUBLE_ANIMATION(Terrakion);
 SINGLE_ANIMATION(Virizion);
-SINGLE_ANIMATION(Tornadus);
-SINGLE_ANIMATION(Thundurus);
+SINGLE_ANIMATION(TornadusIncarnate);
+SINGLE_ANIMATION(ThundurusIncarnate);
 SINGLE_ANIMATION(Reshiram);
 SINGLE_ANIMATION(Zekrom);
-SINGLE_ANIMATION(Landorus);
+SINGLE_ANIMATION(LandorusIncarnate);
 SINGLE_ANIMATION(Kyurem);
 SINGLE_ANIMATION(Keldeo);
 DOUBLE_ANIMATION(Meloetta);
@@ -11506,7 +11506,7 @@ SINGLE_ANIMATION(Ursaluna);
 SINGLE_ANIMATION(Basculegion);
 SINGLE_ANIMATION(Sneasler);
 SINGLE_ANIMATION(Overqwil);
-SINGLE_ANIMATION(Enamorus);
+SINGLE_ANIMATION(EnamorusIncarnate);
 #endif
 SINGLE_ANIMATION(VenusaurMega);
 SINGLE_ANIMATION(CHARIZARD_MEGA_X);
@@ -12323,11 +12323,11 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_COBALION] = sAnims_Cobalion,
     [SPECIES_TERRAKION] = sAnims_Terrakion,
     [SPECIES_VIRIZION] = sAnims_Virizion,
-    [SPECIES_TORNADUS] = sAnims_Tornadus,
-    [SPECIES_THUNDURUS] = sAnims_Thundurus,
+    [SPECIES_TORNADUS_INCARNATE] = sAnims_TornadusIncarnate,
+    [SPECIES_THUNDURUS_INCARNATE] = sAnims_ThundurusIncarnate,
     [SPECIES_RESHIRAM] = sAnims_Reshiram,
     [SPECIES_ZEKROM] = sAnims_Zekrom,
-    [SPECIES_LANDORUS] = sAnims_Landorus,
+    [SPECIES_LANDORUS_INCARNATE] = sAnims_LandorusIncarnate,
     [SPECIES_KYUREM] = sAnims_Kyurem,
     [SPECIES_KELDEO] = sAnims_Keldeo,
     [SPECIES_MELOETTA] = sAnims_Meloetta,
@@ -12593,7 +12593,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_BASCULEGION] = sAnims_Basculegion,
     [SPECIES_SNEASLER] = sAnims_Sneasler,
     [SPECIES_OVERQWIL] = sAnims_Overqwil,
-    [SPECIES_ENAMORUS] = sAnims_Enamorus,
+    [SPECIES_ENAMORUS_INCARNATE] = sAnims_EnamorusIncarnate,
 #endif
     [SPECIES_VENUSAUR_MEGA] = sAnims_VenusaurMega,
     [SPECIES_CHARIZARD_MEGA_X] = sAnims_CHARIZARD_MEGA_X,

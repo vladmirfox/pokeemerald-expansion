@@ -643,11 +643,11 @@ const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_COBALION] = _("Cobalion"),
     [SPECIES_TERRAKION] = _("Terrakion"),
     [SPECIES_VIRIZION] = _("Virizion"),
-    [SPECIES_TORNADUS] = _("Tornadus"),
-    [SPECIES_THUNDURUS] = _("Thundurus"),
+    [SPECIES_TORNADUS_INCARNATE] = _("Tornadus"),
+    [SPECIES_THUNDURUS_INCARNATE] = _("Thundurus"),
     [SPECIES_RESHIRAM] = _("Reshiram"),
     [SPECIES_ZEKROM] = _("Zekrom"),
-    [SPECIES_LANDORUS] = _("Landorus"),
+    [SPECIES_LANDORUS_INCARNATE] = _("Landorus"),
     [SPECIES_KYUREM] = _("Kyurem"),
     [SPECIES_KELDEO] = _("Keldeo"),
     [SPECIES_MELOETTA] = _("Meloetta"),
@@ -913,7 +913,7 @@ const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_BASCULEGION] = _("Bsculegion"),
     [SPECIES_SNEASLER] = _("Sneasler"),
     [SPECIES_OVERQWIL] = _("Overqwil"),
-    [SPECIES_ENAMORUS] = _("Enamorus"),
+    [SPECIES_ENAMORUS_INCARNATE] = _("Enamorus"),
 #endif
 
     // Megas

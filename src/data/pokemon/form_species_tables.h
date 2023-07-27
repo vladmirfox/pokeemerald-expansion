@@ -756,19 +756,19 @@ static const u16 sBraviaryFormSpeciesIdTable[] = {
 };
 
 static const u16 sTornadusFormSpeciesIdTable[] = {
-    SPECIES_TORNADUS,
+    SPECIES_TORNADUS_INCARNATE,
     SPECIES_TORNADUS_THERIAN,
     FORM_SPECIES_END,
 };
 
 static const u16 sThundurusFormSpeciesIdTable[] = {
-    SPECIES_THUNDURUS,
+    SPECIES_THUNDURUS_INCARNATE,
     SPECIES_THUNDURUS_THERIAN,
     FORM_SPECIES_END,
 };
 
 static const u16 sLandorusFormSpeciesIdTable[] = {
-    SPECIES_LANDORUS,
+    SPECIES_LANDORUS_INCARNATE,
     SPECIES_LANDORUS_THERIAN,
     FORM_SPECIES_END,
 };
@@ -1140,7 +1140,7 @@ static const u16 sCalyrexFormSpeciesIdTable[] = {
 };
 
 static const u16 sEnamorusFormSpeciesIdTable[] = {
-    SPECIES_ENAMORUS,
+    SPECIES_ENAMORUS_INCARNATE,
     SPECIES_ENAMORUS_THERIAN,
     FORM_SPECIES_END,
 };

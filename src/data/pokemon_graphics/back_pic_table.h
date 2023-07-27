@@ -644,11 +644,11 @@ const struct CompressedSpriteSheet gMonBackPicTable[NUM_SPECIES + 1] =
     SPECIES_SPRITE(COBALION, gMonBackPic_Cobalion),
     SPECIES_SPRITE(TERRAKION, gMonBackPic_Terrakion),
     SPECIES_SPRITE(VIRIZION, gMonBackPic_Virizion),
-    SPECIES_SPRITE(TORNADUS, gMonBackPic_Tornadus),
-    SPECIES_SPRITE(THUNDURUS, gMonBackPic_Thundurus),
+    SPECIES_SPRITE(TORNADUS_INCARNATE, gMonBackPic_TornadusIncarnate),
+    SPECIES_SPRITE(THUNDURUS_INCARNATE, gMonBackPic_ThundurusIncarnate),
     SPECIES_SPRITE(RESHIRAM, gMonBackPic_Reshiram),
     SPECIES_SPRITE(ZEKROM, gMonBackPic_Zekrom),
-    SPECIES_SPRITE(LANDORUS, gMonBackPic_Landorus),
+    SPECIES_SPRITE(LANDORUS_INCARNATE, gMonBackPic_LandorusIncarnate),
     SPECIES_SPRITE(KYUREM, gMonBackPic_Kyurem),
     SPECIES_SPRITE(KELDEO, gMonBackPic_Keldeo),
     SPECIES_SPRITE(MELOETTA, gMonBackPic_Meloetta),
@@ -914,7 +914,7 @@ const struct CompressedSpriteSheet gMonBackPicTable[NUM_SPECIES + 1] =
     SPECIES_SPRITE(BASCULEGION, gMonBackPic_Basculegion),
     SPECIES_SPRITE(SNEASLER, gMonBackPic_Sneasler),
     SPECIES_SPRITE(OVERQWIL, gMonBackPic_Overqwil),
-    SPECIES_SPRITE(ENAMORUS, gMonBackPic_Enamorus),
+    SPECIES_SPRITE(ENAMORUS_INCARNATE, gMonBackPic_EnamorusIncarnate),
 #endif
 
     SPECIES_SPRITE(VENUSAUR_MEGA, gMonBackPic_VenusaurMega),

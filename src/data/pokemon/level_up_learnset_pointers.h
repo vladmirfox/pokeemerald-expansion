@@ -644,11 +644,11 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_COBALION] = sCobalionLevelUpLearnset,
     [SPECIES_TERRAKION] = sTerrakionLevelUpLearnset,
     [SPECIES_VIRIZION] = sVirizionLevelUpLearnset,
-    [SPECIES_TORNADUS] = sTornadusLevelUpLearnset,
-    [SPECIES_THUNDURUS] = sThundurusLevelUpLearnset,
+    [SPECIES_TORNADUS_INCARNATE] = sTornadusLevelUpLearnset,
+    [SPECIES_THUNDURUS_INCARNATE] = sThundurusLevelUpLearnset,
     [SPECIES_RESHIRAM] = sReshiramLevelUpLearnset,
     [SPECIES_ZEKROM] = sZekromLevelUpLearnset,
-    [SPECIES_LANDORUS] = sLandorusLevelUpLearnset,
+    [SPECIES_LANDORUS_INCARNATE] = sLandorusLevelUpLearnset,
     [SPECIES_KYUREM] = sKyuremLevelUpLearnset,
     [SPECIES_KELDEO] = sKeldeoLevelUpLearnset,
     [SPECIES_MELOETTA] = sMeloettaLevelUpLearnset,
@@ -914,7 +914,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_BASCULEGION] = sBasculegionLevelUpLearnset,
     [SPECIES_SNEASLER] = sSneaslerLevelUpLearnset,
     [SPECIES_OVERQWIL] = sOverqwilLevelUpLearnset,
-    [SPECIES_ENAMORUS] = sEnamorusLevelUpLearnset,
+    [SPECIES_ENAMORUS_INCARNATE] = sEnamorusLevelUpLearnset,
 #endif
     // Megas
     [SPECIES_VENUSAUR_MEGA] = sVenusaurLevelUpLearnset,

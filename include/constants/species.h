@@ -656,11 +656,14 @@
 #define SPECIES_COBALION                     638
 #define SPECIES_TERRAKION                    639
 #define SPECIES_VIRIZION                     640
-#define SPECIES_TORNADUS                     641
-#define SPECIES_THUNDURUS                    642
+#define SPECIES_TORNADUS                     SPECIES_TORNADUS_INCARNATE
+#define SPECIES_TORNADUS_INCARNATE           641
+#define SPECIES_THUNDURUS                    SPECIES_THUNDURUS_INCARNATE
+#define SPECIES_THUNDURUS_INCARNATE          642
 #define SPECIES_RESHIRAM                     643
 #define SPECIES_ZEKROM                       644
-#define SPECIES_LANDORUS                     645
+#define SPECIES_LANDORUS                     SPECIES_LANDORUS_INCARNATE
+#define SPECIES_LANDORUS_INCARNATE           645
 #define SPECIES_KYUREM                       646
 #define SPECIES_KELDEO                       647
 #define SPECIES_MELOETTA                     648
@@ -920,7 +923,8 @@
 #define SPECIES_BASCULEGION                  902
 #define SPECIES_SNEASLER                     903
 #define SPECIES_OVERQWIL                     904
-#define SPECIES_ENAMORUS                     905
+#define SPECIES_ENAMORUS                     SPECIES_ENAMORUS_INCARNATE
+#define SPECIES_ENAMORUS_INCARNATE           905
 
 // Megas
 #define SPECIES_VENUSAUR_MEGA                FORMS_START + 1
@@ -1386,7 +1390,7 @@
 // Basculegion
 #define SPECIES_BASCULEGION_FEMALE           FORMS_START + 329
 
-#define FORMS_START SPECIES_ENAMORUS
+#define FORMS_START SPECIES_ENAMORUS_INCARNATE
 #define SPECIES_EGG SPECIES_BASCULEGION_FEMALE + 1
 
 #define NUM_SPECIES SPECIES_EGG

@@ -648,11 +648,11 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_COBALION]                     = { .size = MON_COORDS_SIZE(48, 64), .y_offset =  0 },
     [SPECIES_TERRAKION]                    = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  6 },
     [SPECIES_VIRIZION]                     = { .size = MON_COORDS_SIZE(48, 64), .y_offset =  2 },
-    [SPECIES_TORNADUS]                     = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  1 },
-    [SPECIES_THUNDURUS]                    = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  1 },
+    [SPECIES_TORNADUS_INCARNATE]                     = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  1 },
+    [SPECIES_THUNDURUS_INCARNATE]                    = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  1 },
     [SPECIES_RESHIRAM]                     = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  1 },
     [SPECIES_ZEKROM]                       = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
-    [SPECIES_LANDORUS]                     = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  1 },
+    [SPECIES_LANDORUS_INCARNATE]                     = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  1 },
     [SPECIES_KYUREM]                       = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  6 },
     [SPECIES_KELDEO]                       = { .size = MON_COORDS_SIZE(56, 56), .y_offset =  5 },
     [SPECIES_MELOETTA]                     = { .size = MON_COORDS_SIZE(32, 48), .y_offset =  9 },
@@ -918,7 +918,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_BASCULEGION]                  = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_SNEASLER]                     = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_OVERQWIL]                     = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
-    [SPECIES_ENAMORUS]                     = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
+    [SPECIES_ENAMORUS_INCARNATE]           = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
 #endif
     // Megas
     [SPECIES_VENUSAUR_MEGA]                = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  3 },

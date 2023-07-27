@@ -15474,7 +15474,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
-    [SPECIES_TORNADUS] =
+    [SPECIES_TORNADUS_INCARNATE] =
     {
         .baseHP        = 79,
         .baseAttack    = 115,
@@ -15497,7 +15497,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
-    [SPECIES_THUNDURUS] =
+    [SPECIES_THUNDURUS_INCARNATE] =
     {
         .baseHP        = 79,
         .baseAttack    = 115,
@@ -15566,7 +15566,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
-    [SPECIES_LANDORUS] =
+    [SPECIES_LANDORUS_INCARNATE] =
     {
         .baseHP        = 89,
         .baseAttack    = 125,
@@ -21009,7 +21009,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_ENAMORUS] =
+    [SPECIES_ENAMORUS_INCARNATE] =
     {
         .baseHP        = 74,
         .baseAttack    = 115,
