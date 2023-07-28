@@ -17031,7 +17031,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_XERNEAS] = XERNEAS_SPECIES_INFO,
+    [SPECIES_XERNEAS_NEUTRAL] = XERNEAS_SPECIES_INFO,
 
     [SPECIES_YVELTAL] =
     {
@@ -17082,7 +17082,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_MYTHICAL,
     },
 
-    [SPECIES_HOOPA] =
+    [SPECIES_HOOPA_CONFINED] =
     {
         .baseHP        = 80,
         .baseAttack    = 110,

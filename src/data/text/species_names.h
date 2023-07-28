@@ -720,11 +720,11 @@ const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_AVALUGG] = _("Avalugg"),
     [SPECIES_NOIBAT] = _("Noibat"),
     [SPECIES_NOIVERN] = _("Noivern"),
-    [SPECIES_XERNEAS] = _("Xerneas"),
+    [SPECIES_XERNEAS_NEUTRAL] = _("Xerneas"),
     [SPECIES_YVELTAL] = _("Yveltal"),
     [SPECIES_ZYGARDE] = _("Zygarde"),
     [SPECIES_DIANCIE] = _("Diancie"),
-    [SPECIES_HOOPA] = _("Hoopa"),
+    [SPECIES_HOOPA_CONFINED] = _("Hoopa"),
     [SPECIES_VOLCANION] = _("Volcanion"),
 #endif
 #if P_GEN_7_POKEMON == TRUE

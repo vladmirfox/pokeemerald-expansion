@@ -996,11 +996,11 @@ static const u8 sSpeciesToBackAnimSet[NUM_SPECIES] =
     [SPECIES_AVALUGG]                      = BACK_ANIM_V_SHAKE_LOW,
     [SPECIES_NOIBAT]                       = BACK_ANIM_TRIANGLE_DOWN,
     [SPECIES_NOIVERN]                      = BACK_ANIM_JOLT_RIGHT,
-    [SPECIES_XERNEAS]                      = BACK_ANIM_V_SHAKE_LOW,
+    [SPECIES_XERNEAS_NEUTRAL]              = BACK_ANIM_V_SHAKE_LOW,
     [SPECIES_YVELTAL]                      = BACK_ANIM_SHAKE_GLOW_RED,
     [SPECIES_ZYGARDE]                      = BACK_ANIM_V_STRETCH,
     [SPECIES_DIANCIE]                      = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,
-    [SPECIES_HOOPA]                        = BACK_ANIM_CONVEX_DOUBLE_ARC,
+    [SPECIES_HOOPA_CONFINED]               = BACK_ANIM_CONVEX_DOUBLE_ARC,
     [SPECIES_VOLCANION]                    = BACK_ANIM_SHAKE_GLOW_RED,
     
         //Gen 6 Forms

@@ -923,7 +923,7 @@ static const u16 sAvaluggFormSpeciesIdTable[] = {
 };
 
 static const u16 sXerneasFormSpeciesIdTable[] = {
-    SPECIES_XERNEAS,
+    SPECIES_XERNEAS_NEUTRAL,
     SPECIES_XERNEAS_ACTIVE,
     FORM_SPECIES_END,
 };
@@ -944,7 +944,7 @@ static const u16 sDiancieFormSpeciesIdTable[] = {
 };
 
 static const u16 sHoopaFormSpeciesIdTable[] = {
-    SPECIES_HOOPA,
+    SPECIES_HOOPA_CONFINED,
     SPECIES_HOOPA_UNBOUND,
     FORM_SPECIES_END,
 };

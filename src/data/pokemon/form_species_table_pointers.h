@@ -138,10 +138,10 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_PUMPKABOO_AVERAGE] = sPumpkabooFormSpeciesIdTable,
     [SPECIES_GOURGEIST_AVERAGE] = sGourgeistFormSpeciesIdTable,
     [SPECIES_AVALUGG] = sAvaluggFormSpeciesIdTable,
-    [SPECIES_XERNEAS] = sXerneasFormSpeciesIdTable,
+    [SPECIES_XERNEAS_NEUTRAL] = sXerneasFormSpeciesIdTable,
     [SPECIES_ZYGARDE] = sZygardeFormSpeciesIdTable,
     [SPECIES_DIANCIE] = sDiancieFormSpeciesIdTable,
-    [SPECIES_HOOPA] = sHoopaFormSpeciesIdTable,
+    [SPECIES_HOOPA_CONFINED] = sHoopaFormSpeciesIdTable,
 #endif
 #if P_GEN_7_POKEMON == TRUE
     [SPECIES_DECIDUEYE] = sDecidueyeFormSpeciesIdTable,

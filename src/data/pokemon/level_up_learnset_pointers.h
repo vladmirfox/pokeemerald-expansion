@@ -721,11 +721,11 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_AVALUGG] = sAvaluggLevelUpLearnset,
     [SPECIES_NOIBAT] = sNoibatLevelUpLearnset,
     [SPECIES_NOIVERN] = sNoivernLevelUpLearnset,
-    [SPECIES_XERNEAS] = sXerneasLevelUpLearnset,
+    [SPECIES_XERNEAS_NEUTRAL] = sXerneasLevelUpLearnset,
     [SPECIES_YVELTAL] = sYveltalLevelUpLearnset,
     [SPECIES_ZYGARDE] = sZygardeLevelUpLearnset,
     [SPECIES_DIANCIE] = sDiancieLevelUpLearnset,
-    [SPECIES_HOOPA] = sHoopaLevelUpLearnset,
+    [SPECIES_HOOPA_CONFINED] = sHoopaConfinedLevelUpLearnset,
     [SPECIES_VOLCANION] = sVolcanionLevelUpLearnset,
 #endif
 #if P_GEN_7_POKEMON == TRUE

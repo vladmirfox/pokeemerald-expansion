@@ -721,11 +721,11 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_AVALUGG] = sAvaluggTeachableLearnset,
     [SPECIES_NOIBAT] = sNoibatTeachableLearnset,
     [SPECIES_NOIVERN] = sNoivernTeachableLearnset,
-    [SPECIES_XERNEAS] = sXerneasTeachableLearnset,
+    [SPECIES_XERNEAS_NEUTRAL] = sXerneasTeachableLearnset,
     [SPECIES_YVELTAL] = sYveltalTeachableLearnset,
     [SPECIES_ZYGARDE] = sZygardeTeachableLearnset,
     [SPECIES_DIANCIE] = sDiancieTeachableLearnset,
-    [SPECIES_HOOPA] = sHoopaTeachableLearnset,
+    [SPECIES_HOOPA_CONFINED] = sHoopaConfinedTeachableLearnset,
     [SPECIES_VOLCANION] = sVolcanionTeachableLearnset,
 #endif
 #if P_GEN_7_POKEMON == TRUE

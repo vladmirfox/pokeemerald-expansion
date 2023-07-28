@@ -721,11 +721,11 @@ const u8 *const gMonFootprintTable[NUM_SPECIES + 1] =
     [SPECIES_AVALUGG] = gMonFootprint_Avalugg,
     [SPECIES_NOIBAT] = gMonFootprint_Noibat,
     [SPECIES_NOIVERN] = gMonFootprint_Noivern,
-    [SPECIES_XERNEAS] = gMonFootprint_Xerneas,
+    [SPECIES_XERNEAS_NEUTRAL] = gMonFootprint_Xerneas,
     [SPECIES_YVELTAL] = gMonFootprint_Yveltal,
     [SPECIES_ZYGARDE] = gMonFootprint_Zygarde,
     [SPECIES_DIANCIE] = gMonFootprint_Diancie,
-    [SPECIES_HOOPA] = gMonFootprint_Hoopa,
+    [SPECIES_HOOPA_CONFINED] = gMonFootprint_Hoopa,
     [SPECIES_VOLCANION] = gMonFootprint_Volcanion,
 #endif
 #if P_GEN_7_POKEMON == TRUE

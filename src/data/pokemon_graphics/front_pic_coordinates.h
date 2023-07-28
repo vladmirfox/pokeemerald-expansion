@@ -725,11 +725,11 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_AVALUGG]                      = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  4 },
     [SPECIES_NOIBAT]                       = { .size = MON_COORDS_SIZE(64, 48), .y_offset =  8 },
     [SPECIES_NOIVERN]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  3 },
-    [SPECIES_XERNEAS]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
+    [SPECIES_XERNEAS_NEUTRAL]              = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_YVELTAL]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_ZYGARDE]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_DIANCIE]                      = { .size = MON_COORDS_SIZE(40, 64), .y_offset =  1 },
-    [SPECIES_HOOPA]                        = { .size = MON_COORDS_SIZE(48, 48), .y_offset = 11 },
+    [SPECIES_HOOPA_CONFINED]               = { .size = MON_COORDS_SIZE(48, 48), .y_offset = 11 },
     [SPECIES_VOLCANION]                    = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
 #endif
 #if P_GEN_7_POKEMON == TRUE

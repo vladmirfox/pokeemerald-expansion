@@ -5,7 +5,7 @@ SINGLE_BATTLE_TEST("Xerneas changes into Active Form upon battle start")
 {
     GIVEN {
         ASSUME(P_GEN_6_POKEMON == TRUE);
-        PLAYER(SPECIES_XERNEAS);
+        PLAYER(SPECIES_XERNEAS_NEUTRAL);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); }

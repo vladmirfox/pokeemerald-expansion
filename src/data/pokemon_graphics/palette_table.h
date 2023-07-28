@@ -721,11 +721,11 @@ const struct CompressedSpritePalette gMonPaletteTable[NUM_SPECIES + 1] =
     SPECIES_PAL(AVALUGG, gMonPalette_Avalugg),
     SPECIES_PAL(NOIBAT, gMonPalette_Noibat),
     SPECIES_PAL(NOIVERN, gMonPalette_Noivern),
-    SPECIES_PAL(XERNEAS, gMonPalette_Xerneas),
+    SPECIES_PAL(XERNEAS_NEUTRAL, gMonPalette_XerneasNeutral),
     SPECIES_PAL(YVELTAL, gMonPalette_Yveltal),
     SPECIES_PAL(ZYGARDE, gMonPalette_Zygarde),
     SPECIES_PAL(DIANCIE, gMonPalette_Diancie),
-    SPECIES_PAL(HOOPA, gMonPalette_Hoopa),
+    SPECIES_PAL(HOOPA_CONFINED, gMonPalette_HoopaConfined),
     SPECIES_PAL(VOLCANION, gMonPalette_Volcanion),
 #endif
 #if P_GEN_7_POKEMON == TRUE

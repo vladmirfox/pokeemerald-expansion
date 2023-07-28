@@ -860,11 +860,11 @@ extern const u32 gMonFrontPic_Bergmite[];
 extern const u32 gMonFrontPic_Avalugg[];
 extern const u32 gMonFrontPic_Noibat[];
 extern const u32 gMonFrontPic_Noivern[];
-extern const u32 gMonFrontPic_Xerneas[];
+extern const u32 gMonFrontPic_XerneasNeutral[];
 extern const u32 gMonFrontPic_Yveltal[];
 extern const u32 gMonFrontPic_Zygarde[];
 extern const u32 gMonFrontPic_Diancie[];
-extern const u32 gMonFrontPic_Hoopa[];
+extern const u32 gMonFrontPic_HoopaConfined[];
 extern const u32 gMonFrontPic_Volcanion[];
 #endif
 #if P_GEN_7_POKEMON == TRUE
@@ -2130,11 +2130,11 @@ extern const u32 gMonBackPic_Bergmite[];
 extern const u32 gMonBackPic_Avalugg[];
 extern const u32 gMonBackPic_Noibat[];
 extern const u32 gMonBackPic_Noivern[];
-extern const u32 gMonBackPic_Xerneas[];
+extern const u32 gMonBackPic_XerneasNeutral[];
 extern const u32 gMonBackPic_Yveltal[];
 extern const u32 gMonBackPic_Zygarde[];
 extern const u32 gMonBackPic_Diancie[];
-extern const u32 gMonBackPic_Hoopa[];
+extern const u32 gMonBackPic_HoopaConfined[];
 extern const u32 gMonBackPic_Volcanion[];
 #endif
 #if P_GEN_7_POKEMON == TRUE
@@ -3337,11 +3337,11 @@ extern const u32 gMonPalette_Bergmite[];
 extern const u32 gMonPalette_Avalugg[];
 extern const u32 gMonPalette_Noibat[];
 extern const u32 gMonPalette_Noivern[];
-extern const u32 gMonPalette_Xerneas[];
+extern const u32 gMonPalette_XerneasNeutral[];
 extern const u32 gMonPalette_Yveltal[];
 extern const u32 gMonPalette_Zygarde[];
 extern const u32 gMonPalette_Diancie[];
-extern const u32 gMonPalette_Hoopa[];
+extern const u32 gMonPalette_HoopaConfined[];
 extern const u32 gMonPalette_Volcanion[];
 #endif
 #if P_GEN_7_POKEMON == TRUE
@@ -4570,11 +4570,11 @@ extern const u32 gMonShinyPalette_Bergmite[];
 extern const u32 gMonShinyPalette_Avalugg[];
 extern const u32 gMonShinyPalette_Noibat[];
 extern const u32 gMonShinyPalette_Noivern[];
-extern const u32 gMonShinyPalette_Xerneas[];
+extern const u32 gMonShinyPalette_XerneasNeutral[];
 extern const u32 gMonShinyPalette_Yveltal[];
 extern const u32 gMonShinyPalette_Zygarde[];
 extern const u32 gMonShinyPalette_Diancie[];
-extern const u32 gMonShinyPalette_Hoopa[];
+extern const u32 gMonShinyPalette_HoopaConfined[];
 extern const u32 gMonShinyPalette_Volcanion[];
 #endif
 #if P_GEN_7_POKEMON == TRUE
@@ -5797,11 +5797,11 @@ extern const u8 gMonIcon_Bergmite[];
 extern const u8 gMonIcon_Avalugg[];
 extern const u8 gMonIcon_Noibat[];
 extern const u8 gMonIcon_Noivern[];
-extern const u8 gMonIcon_Xerneas[];
+extern const u8 gMonIcon_XerneasNeutral[];
 extern const u8 gMonIcon_Yveltal[];
 extern const u8 gMonIcon_Zygarde[];
 extern const u8 gMonIcon_Diancie[];
-extern const u8 gMonIcon_Hoopa[];
+extern const u8 gMonIcon_HoopaConfined[];
 extern const u8 gMonIcon_Volcanion[];
 #endif
 #if P_GEN_7_POKEMON == TRUE

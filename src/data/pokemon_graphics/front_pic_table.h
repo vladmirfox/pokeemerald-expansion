@@ -721,11 +721,11 @@ const struct CompressedSpriteSheet gMonFrontPicTable[NUM_SPECIES + 1] =
     SPECIES_SPRITE(AVALUGG, gMonFrontPic_Avalugg),
     SPECIES_SPRITE(NOIBAT, gMonFrontPic_Noibat),
     SPECIES_SPRITE(NOIVERN, gMonFrontPic_Noivern),
-    SPECIES_SPRITE(XERNEAS, gMonFrontPic_Xerneas),
+    SPECIES_SPRITE(XERNEAS_NEUTRAL, gMonFrontPic_XerneasNeutral),
     SPECIES_SPRITE(YVELTAL, gMonFrontPic_Yveltal),
     SPECIES_SPRITE(ZYGARDE, gMonFrontPic_Zygarde),
     SPECIES_SPRITE(DIANCIE, gMonFrontPic_Diancie),
-    SPECIES_SPRITE(HOOPA, gMonFrontPic_Hoopa),
+    SPECIES_SPRITE(HOOPA_CONFINED, gMonFrontPic_HoopaConfined),
     SPECIES_SPRITE(VOLCANION, gMonFrontPic_Volcanion),
 #endif
 #if P_GEN_7_POKEMON == TRUE

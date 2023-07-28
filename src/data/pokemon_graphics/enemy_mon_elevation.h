@@ -119,7 +119,7 @@ const u8 gEnemyMonElevation[NUM_SPECIES + 1] =
     [SPECIES_PHANTUMP] = 5,
     [SPECIES_NOIBAT] = 8,
     [SPECIES_YVELTAL] = 5,
-    [SPECIES_HOOPA] = 13,
+    [SPECIES_HOOPA_CONFINED] = 13,
     // Gen 7
     [SPECIES_VIKAVOLT] = 8,
     [SPECIES_CUTIEFLY] = 10,

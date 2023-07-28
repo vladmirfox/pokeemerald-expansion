@@ -721,11 +721,11 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[NUM_SPECIES + 1] =
     SPECIES_SHINY_PAL(AVALUGG, gMonShinyPalette_Avalugg),
     SPECIES_SHINY_PAL(NOIBAT, gMonShinyPalette_Noibat),
     SPECIES_SHINY_PAL(NOIVERN, gMonShinyPalette_Noivern),
-    SPECIES_SHINY_PAL(XERNEAS, gMonShinyPalette_Xerneas),
+    SPECIES_SHINY_PAL(XERNEAS_NEUTRAL, gMonShinyPalette_XerneasNeutral),
     SPECIES_SHINY_PAL(YVELTAL, gMonShinyPalette_Yveltal),
     SPECIES_SHINY_PAL(ZYGARDE, gMonShinyPalette_Zygarde),
     SPECIES_SHINY_PAL(DIANCIE, gMonShinyPalette_Diancie),
-    SPECIES_SHINY_PAL(HOOPA, gMonShinyPalette_Hoopa),
+    SPECIES_SHINY_PAL(HOOPA_CONFINED, gMonShinyPalette_HoopaConfined),
     SPECIES_SHINY_PAL(VOLCANION, gMonShinyPalette_Volcanion),
 #endif
 #if P_GEN_7_POKEMON == TRUE

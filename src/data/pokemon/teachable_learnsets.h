@@ -27666,7 +27666,7 @@ static const u16 sDiancieTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 
-static const u16 sHoopaTeachableLearnset[] = {
+static const u16 sHoopaConfinedTeachableLearnset[] = {
     MOVE_BRICK_BREAK,
     MOVE_CALM_MIND,
     MOVE_DOUBLE_TEAM,

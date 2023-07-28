@@ -14706,7 +14706,7 @@ static const struct LevelUpMove sDiancieLevelUpLearnset[] = {
     LEVEL_UP_END
 };
 
-static const struct LevelUpMove sHoopaLevelUpLearnset[] = {
+static const struct LevelUpMove sHoopaConfinedLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_HYPERSPACE_HOLE),
     LEVEL_UP_MOVE( 1, MOVE_TRICK),
     LEVEL_UP_MOVE( 1, MOVE_DESTINY_BOND),

@@ -159,14 +159,14 @@ const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES] =
     [SPECIES_GRENINJA_ASH] = sGreninjaBattleBondFormChangeTable,
     [SPECIES_AEGISLASH_SHIELD] = sAegislashFormChangeTable,
     [SPECIES_AEGISLASH_BLADE] = sAegislashFormChangeTable,
-    [SPECIES_XERNEAS] = sXerneasFormChangeTable,
+    [SPECIES_XERNEAS_NEUTRAL] = sXerneasFormChangeTable,
     [SPECIES_XERNEAS_ACTIVE] = sXerneasFormChangeTable,
     [SPECIES_ZYGARDE_10_POWER_CONSTRUCT] = sZygardePowerConstructFormChangeTable,
     [SPECIES_ZYGARDE_50_POWER_CONSTRUCT] = sZygardePowerConstructFormChangeTable,
     [SPECIES_ZYGARDE_COMPLETE] = sZygardePowerConstructFormChangeTable,
     [SPECIES_DIANCIE] = sDiancieFormChangeTable,
     [SPECIES_DIANCIE_MEGA] = sDiancieFormChangeTable,
-    [SPECIES_HOOPA] = sHoopaFormChangeTable,
+    [SPECIES_HOOPA_CONFINED] = sHoopaFormChangeTable,
     [SPECIES_HOOPA_UNBOUND] = sHoopaFormChangeTable,
 #endif
 #if P_GEN_7_POKEMON == TRUE

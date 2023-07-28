@@ -1096,7 +1096,7 @@ BattleScript_BothCanNoLongerEscape::
 
 BattleScript_EffectHyperspaceFury:
 	jumpifspecies BS_ATTACKER, SPECIES_HOOPA_UNBOUND, BattleScript_EffectHyperspaceFuryUnbound
-	jumpifspecies BS_ATTACKER, SPECIES_HOOPA, BattleScript_ButHoopaCantUseIt
+	jumpifspecies BS_ATTACKER, SPECIES_HOOPA_CONFINED, BattleScript_ButHoopaCantUseIt
 	goto BattleScript_PokemonCantUseTheMove
 
 BattleScript_EffectHyperspaceFuryUnbound::

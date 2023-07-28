@@ -12400,11 +12400,11 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_AVALUGG] = sAnims_Avalugg,
     [SPECIES_NOIBAT] = sAnims_Noibat,
     [SPECIES_NOIVERN] = sAnims_Noivern,
-    [SPECIES_XERNEAS] = sAnims_Xerneas,
+    [SPECIES_XERNEAS_NEUTRAL] = sAnims_Xerneas,
     [SPECIES_YVELTAL] = sAnims_Yveltal,
     [SPECIES_ZYGARDE] = sAnims_Zygarde,
     [SPECIES_DIANCIE] = sAnims_Diancie,
-    [SPECIES_HOOPA] = sAnims_Hoopa,
+    [SPECIES_HOOPA_CONFINED] = sAnims_Hoopa,
     [SPECIES_VOLCANION] = sAnims_Volcanion,
 #endif
 #if P_GEN_7_POKEMON == TRUE

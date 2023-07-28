@@ -745,11 +745,13 @@
 #define SPECIES_AVALUGG                      713
 #define SPECIES_NOIBAT                       714
 #define SPECIES_NOIVERN                      715
-#define SPECIES_XERNEAS                      716
+#define SPECIES_XERNEAS                      SPECIES_XERNEAS_NEUTRAL
+#define SPECIES_XERNEAS_NEUTRAL              716
 #define SPECIES_YVELTAL                      717
 #define SPECIES_ZYGARDE                      718
 #define SPECIES_DIANCIE                      719
-#define SPECIES_HOOPA                        720
+#define SPECIES_HOOPA                        SPECIES_HOOPA_CONFINED
+#define SPECIES_HOOPA_CONFINED               720
 #define SPECIES_VOLCANION                    721
 #define SPECIES_ROWLET                       722
 #define SPECIES_DARTRIX                      723

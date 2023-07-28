@@ -424,7 +424,7 @@ static const struct FormChange sAegislashFormChangeTable[] = {
 
 static const struct FormChange sXerneasFormChangeTable[] = {
     {FORM_CHANGE_BEGIN_BATTLE, SPECIES_XERNEAS_ACTIVE},
-    {FORM_CHANGE_END_BATTLE,   SPECIES_XERNEAS,      },
+    {FORM_CHANGE_END_BATTLE,   SPECIES_XERNEAS_NEUTRAL},
     {FORM_CHANGE_TERMINATOR},
 };
 
@@ -441,8 +441,8 @@ static const struct FormChange sDiancieFormChangeTable[] = {
 };
 
 static const struct FormChange sHoopaFormChangeTable[] = {
-    {FORM_CHANGE_ITEM_USE, SPECIES_HOOPA_UNBOUND, ITEM_PRISON_BOTTLE, SPECIES_HOOPA},
-    {FORM_CHANGE_WITHDRAW, SPECIES_HOOPA},
+    {FORM_CHANGE_ITEM_USE, SPECIES_HOOPA_UNBOUND, ITEM_PRISON_BOTTLE, SPECIES_HOOPA_CONFINED},
+    {FORM_CHANGE_WITHDRAW, SPECIES_HOOPA_CONFINED},
     {FORM_CHANGE_TERMINATOR},
 };
 #endif
