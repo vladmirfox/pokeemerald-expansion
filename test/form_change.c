@@ -107,10 +107,13 @@ SINGLE_BATTLE_TEST("Aegislash reverts to Shield Form upon fainting")
         ASSUME(P_GEN_6_POKEMON == TRUE);
         PLAYER(SPECIES_AEGISLASH_SHIELD) { HP(1); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_GUST); SEND_OUT(player, 1); }
+        TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_GUST); SEND_OUT(player, 1); }
     } SCENE {
+        ABILITY_POPUP(player, ABILITY_STANCE_CHANGE);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
+        MESSAGE("Aegislash used Tackle!");
         MESSAGE("Foe Wobbuffet used Gust!");
         MESSAGE("Aegislash fainted!");
     } THEN {
