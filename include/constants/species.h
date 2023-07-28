@@ -737,8 +737,10 @@
 #define SPECIES_KLEFKI                       707
 #define SPECIES_PHANTUMP                     708
 #define SPECIES_TREVENANT                    709
-#define SPECIES_PUMPKABOO                    710
-#define SPECIES_GOURGEIST                    711
+#define SPECIES_PUMPKABOO                    SPECIES_PUMPKABOO_AVERAGE
+#define SPECIES_PUMPKABOO_AVERAGE            710
+#define SPECIES_GOURGEIST                    SPECIES_GOURGEIST_AVERAGE
+#define SPECIES_GOURGEIST_AVERAGE            711
 #define SPECIES_BERGMITE                     712
 #define SPECIES_AVALUGG                      713
 #define SPECIES_NOIBAT                       714

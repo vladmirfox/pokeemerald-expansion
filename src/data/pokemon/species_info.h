@@ -16905,7 +16905,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_PUMPKABOO] =
+    [SPECIES_PUMPKABOO_AVERAGE] =
     {
         .baseHP        = 49,
         .baseAttack    = 66,
@@ -16916,7 +16916,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PUMKPABOO_MISC_INFO,
     },
 
-    [SPECIES_GOURGEIST] =
+    [SPECIES_GOURGEIST_AVERAGE] =
     {
         .baseHP        = 65,
         .baseAttack    = 90,

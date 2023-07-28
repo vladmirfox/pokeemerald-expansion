@@ -901,7 +901,7 @@ static const u16 sGoodraFormSpeciesIdTable[] = {
 };
 
 static const u16 sPumpkabooFormSpeciesIdTable[] = {
-    SPECIES_PUMPKABOO,
+    SPECIES_PUMPKABOO_AVERAGE,
     SPECIES_PUMPKABOO_SMALL,
     SPECIES_PUMPKABOO_LARGE,
     SPECIES_PUMPKABOO_SUPER,
@@ -909,7 +909,7 @@ static const u16 sPumpkabooFormSpeciesIdTable[] = {
 };
 
 static const u16 sGourgeistFormSpeciesIdTable[] = {
-    SPECIES_GOURGEIST,
+    SPECIES_GOURGEIST_AVERAGE,
     SPECIES_GOURGEIST_SMALL,
     SPECIES_GOURGEIST_LARGE,
     SPECIES_GOURGEIST_SUPER,
