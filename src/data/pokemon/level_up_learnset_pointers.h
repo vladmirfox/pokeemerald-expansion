@@ -723,7 +723,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_NOIVERN] = sNoivernLevelUpLearnset,
     [SPECIES_XERNEAS_NEUTRAL] = sXerneasLevelUpLearnset,
     [SPECIES_YVELTAL] = sYveltalLevelUpLearnset,
-    [SPECIES_ZYGARDE] = sZygardeLevelUpLearnset,
+    [SPECIES_ZYGARDE_50_AURA_BREAK] = sZygardeLevelUpLearnset,
     [SPECIES_DIANCIE] = sDiancieLevelUpLearnset,
     [SPECIES_HOOPA_CONFINED] = sHoopaConfinedLevelUpLearnset,
     [SPECIES_VOLCANION] = sVolcanionLevelUpLearnset,
@@ -1234,7 +1234,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     // Xerneas
     [SPECIES_XERNEAS_ACTIVE] = sXerneasLevelUpLearnset,
     // Zygarde
-    [SPECIES_ZYGARDE_10] = sZygardeLevelUpLearnset,
+    [SPECIES_ZYGARDE_10_AURA_BREAK] = sZygardeLevelUpLearnset,
     [SPECIES_ZYGARDE_10_POWER_CONSTRUCT] = sZygardeLevelUpLearnset,
     [SPECIES_ZYGARDE_50_POWER_CONSTRUCT] = sZygardeLevelUpLearnset,
     [SPECIES_ZYGARDE_COMPLETE] = sZygardeLevelUpLearnset,

@@ -722,7 +722,7 @@ const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_NOIVERN] = _("Noivern"),
     [SPECIES_XERNEAS_NEUTRAL] = _("Xerneas"),
     [SPECIES_YVELTAL] = _("Yveltal"),
-    [SPECIES_ZYGARDE] = _("Zygarde"),
+    [SPECIES_ZYGARDE_50_AURA_BREAK] = _("Zygarde"),
     [SPECIES_DIANCIE] = _("Diancie"),
     [SPECIES_HOOPA_CONFINED] = _("Hoopa"),
     [SPECIES_VOLCANION] = _("Volcanion"),
@@ -1238,7 +1238,7 @@ const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1] = {
     // Xerneas
     [SPECIES_XERNEAS_ACTIVE] = _("Xerneas"),
     // Zygarde
-    [SPECIES_ZYGARDE_10] = _("Zygarde"),
+    [SPECIES_ZYGARDE_10_AURA_BREAK] = _("Zygarde"),
     [SPECIES_ZYGARDE_10_POWER_CONSTRUCT] = _("Zygarde"),
     [SPECIES_ZYGARDE_50_POWER_CONSTRUCT] = _("Zygarde"),
     [SPECIES_ZYGARDE_COMPLETE] = _("Zygarde"),

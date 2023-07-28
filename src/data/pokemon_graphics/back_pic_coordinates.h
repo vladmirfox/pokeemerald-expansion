@@ -746,7 +746,7 @@ const struct MonCoords gMonBackPicCoords[NUM_SPECIES + 1] =
     [SPECIES_NOIVERN]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  4 },
     [SPECIES_XERNEAS_NEUTRAL]              = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_YVELTAL]                      = { .size = MON_COORDS_SIZE(64, 48), .y_offset = 10 },
-    [SPECIES_ZYGARDE]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  4 },
+    [SPECIES_ZYGARDE_50_AURA_BREAK]        = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  4 },
     [SPECIES_DIANCIE]                      = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  7 },
     [SPECIES_HOOPA_CONFINED]               = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  8 },
     [SPECIES_VOLCANION]                    = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  3 },
@@ -1256,7 +1256,7 @@ const struct MonCoords gMonBackPicCoords[NUM_SPECIES + 1] =
     // Xerneas
     [SPECIES_XERNEAS_ACTIVE]               = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     // Zygarde
-    [SPECIES_ZYGARDE_10]                   = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  8 },
+    [SPECIES_ZYGARDE_10_AURA_BREAK]        = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  8 },
     [SPECIES_ZYGARDE_10_POWER_CONSTRUCT]   = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  8 },
     [SPECIES_ZYGARDE_50_POWER_CONSTRUCT]   = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  4 },
     [SPECIES_ZYGARDE_COMPLETE]             = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },

@@ -723,7 +723,7 @@ const struct CompressedSpriteSheet gMonBackPicTable[NUM_SPECIES + 1] =
     SPECIES_SPRITE(NOIVERN, gMonBackPic_Noivern),
     SPECIES_SPRITE(XERNEAS_NEUTRAL, gMonBackPic_XerneasNeutral),
     SPECIES_SPRITE(YVELTAL, gMonBackPic_Yveltal),
-    SPECIES_SPRITE(ZYGARDE, gMonBackPic_Zygarde),
+    SPECIES_SPRITE(ZYGARDE_50_AURA_BREAK, gMonBackPic_Zygarde50),
     SPECIES_SPRITE(DIANCIE, gMonBackPic_Diancie),
     SPECIES_SPRITE(HOOPA_CONFINED, gMonBackPic_HoopaConfined),
     SPECIES_SPRITE(VOLCANION, gMonBackPic_Volcanion),
@@ -1234,7 +1234,7 @@ const struct CompressedSpriteSheet gMonBackPicTable[NUM_SPECIES + 1] =
 
     SPECIES_SPRITE(ZYGARDE_10, gMonBackPic_Zygarde10),
     SPECIES_SPRITE(ZYGARDE_10_POWER_CONSTRUCT, gMonBackPic_Zygarde10),
-    SPECIES_SPRITE(ZYGARDE_50_POWER_CONSTRUCT, gMonBackPic_Zygarde),
+    SPECIES_SPRITE(ZYGARDE_50_POWER_CONSTRUCT, gMonBackPic_Zygarde50),
     SPECIES_SPRITE(ZYGARDE_COMPLETE, gMonBackPic_ZygardeComplete),
 
     SPECIES_SPRITE(HOOPA_UNBOUND, gMonBackPic_HoopaUnbound),

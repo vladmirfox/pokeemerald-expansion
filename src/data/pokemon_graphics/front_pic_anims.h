@@ -8371,7 +8371,7 @@ static const union AnimCmd sAnim_Yveltal_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Zygarde_1[] =
+static const union AnimCmd sAnim_Zygarde50_1[] =
 {
     ANIMCMD_FRAME(0, 10),
     ANIMCMD_FRAME(1, 25),
@@ -11315,7 +11315,7 @@ SINGLE_ANIMATION(Noibat);
 SINGLE_ANIMATION(Noivern);
 SINGLE_ANIMATION(Xerneas);
 SINGLE_ANIMATION(Yveltal);
-SINGLE_ANIMATION(Zygarde);
+SINGLE_ANIMATION(Zygarde50);
 SINGLE_ANIMATION(Diancie);
 SINGLE_ANIMATION(Hoopa);
 SINGLE_ANIMATION(Volcanion);
@@ -12402,7 +12402,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_NOIVERN] = sAnims_Noivern,
     [SPECIES_XERNEAS_NEUTRAL] = sAnims_Xerneas,
     [SPECIES_YVELTAL] = sAnims_Yveltal,
-    [SPECIES_ZYGARDE] = sAnims_Zygarde,
+    [SPECIES_ZYGARDE_50_AURA_BREAK] = sAnims_Zygarde50,
     [SPECIES_DIANCIE] = sAnims_Diancie,
     [SPECIES_HOOPA_CONFINED] = sAnims_Hoopa,
     [SPECIES_VOLCANION] = sAnims_Volcanion,
@@ -12871,9 +12871,9 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_GOURGEIST_LARGE] = sAnims_Gourgeist,
     [SPECIES_GOURGEIST_SUPER] = sAnims_Gourgeist,
     [SPECIES_XERNEAS_ACTIVE] = sAnims_Xerneas,
-    [SPECIES_ZYGARDE_10] = sAnims_Zygarde10,
+    [SPECIES_ZYGARDE_10_AURA_BREAK] = sAnims_Zygarde10,
     [SPECIES_ZYGARDE_10_POWER_CONSTRUCT] = sAnims_Zygarde10,
-    [SPECIES_ZYGARDE_50_POWER_CONSTRUCT] = sAnims_Zygarde,
+    [SPECIES_ZYGARDE_50_POWER_CONSTRUCT] = sAnims_Zygarde50,
     [SPECIES_ZYGARDE_COMPLETE] = sAnims_ZygardeComplete,
     [SPECIES_HOOPA_UNBOUND] = sAnims_HoopaUnbound,
 #endif

@@ -723,7 +723,7 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[NUM_SPECIES + 1] =
     SPECIES_SHINY_PAL(NOIVERN, gMonShinyPalette_Noivern),
     SPECIES_SHINY_PAL(XERNEAS_NEUTRAL, gMonShinyPalette_XerneasNeutral),
     SPECIES_SHINY_PAL(YVELTAL, gMonShinyPalette_Yveltal),
-    SPECIES_SHINY_PAL(ZYGARDE, gMonShinyPalette_Zygarde),
+    SPECIES_SHINY_PAL(ZYGARDE_50_AURA_BREAK, gMonShinyPalette_Zygarde50),
     SPECIES_SHINY_PAL(DIANCIE, gMonShinyPalette_Diancie),
     SPECIES_SHINY_PAL(HOOPA_CONFINED, gMonShinyPalette_HoopaConfined),
     SPECIES_SHINY_PAL(VOLCANION, gMonShinyPalette_Volcanion),
@@ -1232,7 +1232,7 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[NUM_SPECIES + 1] =
 
     SPECIES_SHINY_PAL(ZYGARDE_10, gMonShinyPalette_Zygarde10),
     SPECIES_SHINY_PAL(ZYGARDE_10_POWER_CONSTRUCT, gMonShinyPalette_Zygarde10),
-    SPECIES_SHINY_PAL(ZYGARDE_50_POWER_CONSTRUCT, gMonShinyPalette_Zygarde),
+    SPECIES_SHINY_PAL(ZYGARDE_50_POWER_CONSTRUCT, gMonShinyPalette_Zygarde50),
     SPECIES_SHINY_PAL(ZYGARDE_COMPLETE, gMonShinyPalette_ZygardeComplete),
 
     SPECIES_SHINY_PAL(HOOPA_UNBOUND, gMonShinyPalette_HoopaUnbound),

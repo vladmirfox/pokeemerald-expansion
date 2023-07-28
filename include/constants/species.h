@@ -748,7 +748,9 @@
 #define SPECIES_XERNEAS                      SPECIES_XERNEAS_NEUTRAL
 #define SPECIES_XERNEAS_NEUTRAL              716
 #define SPECIES_YVELTAL                      717
-#define SPECIES_ZYGARDE                      718
+#define SPECIES_ZYGARDE                      SPECIES_ZYGARDE_50
+#define SPECIES_ZYGARDE_50                   SPECIES_ZYGARDE_50_AURA_BREAK
+#define SPECIES_ZYGARDE_50_AURA_BREAK        718
 #define SPECIES_DIANCIE                      719
 #define SPECIES_HOOPA                        SPECIES_HOOPA_CONFINED
 #define SPECIES_HOOPA_CONFINED               720
@@ -1281,7 +1283,8 @@
 #define SPECIES_XERNEAS_ACTIVE               FORMS_START + 258
 
 // Zygarde
-#define SPECIES_ZYGARDE_10                   FORMS_START + 259
+#define SPECIES_ZYGARDE_10                   SPECIES_ZYGARDE_10_AURA_BREAK
+#define SPECIES_ZYGARDE_10_AURA_BREAK        FORMS_START + 259
 #define SPECIES_ZYGARDE_10_POWER_CONSTRUCT   FORMS_START + 260
 #define SPECIES_ZYGARDE_50_POWER_CONSTRUCT   FORMS_START + 261
 #define SPECIES_ZYGARDE_COMPLETE             FORMS_START + 262

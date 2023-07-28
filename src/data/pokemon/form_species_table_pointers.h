@@ -139,7 +139,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_GOURGEIST_AVERAGE] = sGourgeistFormSpeciesIdTable,
     [SPECIES_AVALUGG] = sAvaluggFormSpeciesIdTable,
     [SPECIES_XERNEAS_NEUTRAL] = sXerneasFormSpeciesIdTable,
-    [SPECIES_ZYGARDE] = sZygardeFormSpeciesIdTable,
+    [SPECIES_ZYGARDE_50_AURA_BREAK] = sZygardeFormSpeciesIdTable,
     [SPECIES_DIANCIE] = sDiancieFormSpeciesIdTable,
     [SPECIES_HOOPA_CONFINED] = sHoopaFormSpeciesIdTable,
 #endif
@@ -491,7 +491,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     // Xerneas
     [SPECIES_XERNEAS_ACTIVE] = sXerneasFormSpeciesIdTable,
     // Zygarde
-    [SPECIES_ZYGARDE_10] = sZygardeFormSpeciesIdTable,
+    [SPECIES_ZYGARDE_10_AURA_BREAK] = sZygardeFormSpeciesIdTable,
     [SPECIES_ZYGARDE_10_POWER_CONSTRUCT] = sZygardeFormSpeciesIdTable,
     [SPECIES_ZYGARDE_50_POWER_CONSTRUCT] = sZygardeFormSpeciesIdTable,
     [SPECIES_ZYGARDE_COMPLETE] = sZygardeFormSpeciesIdTable,

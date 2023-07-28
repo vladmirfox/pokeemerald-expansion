@@ -723,7 +723,7 @@ const struct CompressedSpritePalette gMonPaletteTable[NUM_SPECIES + 1] =
     SPECIES_PAL(NOIVERN, gMonPalette_Noivern),
     SPECIES_PAL(XERNEAS_NEUTRAL, gMonPalette_XerneasNeutral),
     SPECIES_PAL(YVELTAL, gMonPalette_Yveltal),
-    SPECIES_PAL(ZYGARDE, gMonPalette_Zygarde),
+    SPECIES_PAL(ZYGARDE_50_AURA_BREAK, gMonPalette_Zygarde50),
     SPECIES_PAL(DIANCIE, gMonPalette_Diancie),
     SPECIES_PAL(HOOPA_CONFINED, gMonPalette_HoopaConfined),
     SPECIES_PAL(VOLCANION, gMonPalette_Volcanion),
@@ -1234,7 +1234,7 @@ const struct CompressedSpritePalette gMonPaletteTable[NUM_SPECIES + 1] =
 
     SPECIES_PAL(ZYGARDE_10, gMonPalette_Zygarde10),
     SPECIES_PAL(ZYGARDE_10_POWER_CONSTRUCT, gMonPalette_Zygarde10),
-    SPECIES_PAL(ZYGARDE_50_POWER_CONSTRUCT, gMonPalette_Zygarde),
+    SPECIES_PAL(ZYGARDE_50_POWER_CONSTRUCT, gMonPalette_Zygarde50),
     SPECIES_PAL(ZYGARDE_COMPLETE, gMonPalette_ZygardeComplete),
 
     SPECIES_PAL(HOOPA_UNBOUND, gMonPalette_HoopaUnbound),

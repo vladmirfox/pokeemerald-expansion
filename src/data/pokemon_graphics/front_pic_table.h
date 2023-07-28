@@ -723,7 +723,7 @@ const struct CompressedSpriteSheet gMonFrontPicTable[NUM_SPECIES + 1] =
     SPECIES_SPRITE(NOIVERN, gMonFrontPic_Noivern),
     SPECIES_SPRITE(XERNEAS_NEUTRAL, gMonFrontPic_XerneasNeutral),
     SPECIES_SPRITE(YVELTAL, gMonFrontPic_Yveltal),
-    SPECIES_SPRITE(ZYGARDE, gMonFrontPic_Zygarde),
+    SPECIES_SPRITE(ZYGARDE_50_AURA_BREAK, gMonFrontPic_Zygarde50),
     SPECIES_SPRITE(DIANCIE, gMonFrontPic_Diancie),
     SPECIES_SPRITE(HOOPA_CONFINED, gMonFrontPic_HoopaConfined),
     SPECIES_SPRITE(VOLCANION, gMonFrontPic_Volcanion),
@@ -1233,7 +1233,7 @@ const struct CompressedSpriteSheet gMonFrontPicTable[NUM_SPECIES + 1] =
 
     SPECIES_SPRITE(ZYGARDE_10, gMonFrontPic_Zygarde10),
     SPECIES_SPRITE(ZYGARDE_10_POWER_CONSTRUCT, gMonFrontPic_Zygarde10),
-    SPECIES_SPRITE(ZYGARDE_50_POWER_CONSTRUCT, gMonFrontPic_Zygarde),
+    SPECIES_SPRITE(ZYGARDE_50_POWER_CONSTRUCT, gMonFrontPic_Zygarde50),
     SPECIES_SPRITE(ZYGARDE_COMPLETE, gMonFrontPic_ZygardeComplete),
 
     SPECIES_SPRITE(HOOPA_UNBOUND, gMonFrontPic_HoopaUnbound),

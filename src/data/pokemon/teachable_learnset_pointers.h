@@ -723,7 +723,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_NOIVERN] = sNoivernTeachableLearnset,
     [SPECIES_XERNEAS_NEUTRAL] = sXerneasTeachableLearnset,
     [SPECIES_YVELTAL] = sYveltalTeachableLearnset,
-    [SPECIES_ZYGARDE] = sZygardeTeachableLearnset,
+    [SPECIES_ZYGARDE_50_AURA_BREAK] = sZygardeTeachableLearnset,
     [SPECIES_DIANCIE] = sDiancieTeachableLearnset,
     [SPECIES_HOOPA_CONFINED] = sHoopaConfinedTeachableLearnset,
     [SPECIES_VOLCANION] = sVolcanionTeachableLearnset,
@@ -1234,7 +1234,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     // Xerneas
     [SPECIES_XERNEAS_ACTIVE] = sXerneasTeachableLearnset,
     // Zygarde
-    [SPECIES_ZYGARDE_10] = sZygardeTeachableLearnset,
+    [SPECIES_ZYGARDE_10_AURA_BREAK] = sZygardeTeachableLearnset,
     [SPECIES_ZYGARDE_10_POWER_CONSTRUCT] = sZygardeTeachableLearnset,
     [SPECIES_ZYGARDE_50_POWER_CONSTRUCT] = sZygardeTeachableLearnset,
     [SPECIES_ZYGARDE_COMPLETE] = sZygardeTeachableLearnset,
