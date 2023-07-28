@@ -157,7 +157,7 @@ const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES] =
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_GRENINJA_BATTLE_BOND] = sGreninjaBattleBondFormChangeTable,
     [SPECIES_GRENINJA_ASH] = sGreninjaBattleBondFormChangeTable,
-    [SPECIES_AEGISLASH] = sAegislashFormChangeTable,
+    [SPECIES_AEGISLASH_SHIELD] = sAegislashFormChangeTable,
     [SPECIES_AEGISLASH_BLADE] = sAegislashFormChangeTable,
     [SPECIES_XERNEAS] = sXerneasFormChangeTable,
     [SPECIES_XERNEAS_ACTIVE] = sXerneasFormChangeTable,

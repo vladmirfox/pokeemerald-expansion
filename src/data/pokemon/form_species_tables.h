@@ -863,7 +863,7 @@ static const u16 sFlorgesFormSpeciesIdTable[] = {
 };
 
 static const u16 sFurfrouFormSpeciesIdTable[] = {
-    SPECIES_FURFROU,
+    SPECIES_FURFROU_NATURAL,
     SPECIES_FURFROU_HEART_TRIM,
     SPECIES_FURFROU_STAR_TRIM,
     SPECIES_FURFROU_DIAMOND_TRIM,
@@ -877,13 +877,13 @@ static const u16 sFurfrouFormSpeciesIdTable[] = {
 };
 
 static const u16 sMeowsticFormSpeciesIdTable[] = {
-    SPECIES_MEOWSTIC,
+    SPECIES_MEOWSTIC_MALE,
     SPECIES_MEOWSTIC_FEMALE,
     FORM_SPECIES_END,
 };
 
 static const u16 sAegislashFormSpeciesIdTable[] = {
-    SPECIES_AEGISLASH,
+    SPECIES_AEGISLASH_SHIELD,
     SPECIES_AEGISLASH_BLADE,
     FORM_SPECIES_END,
 };

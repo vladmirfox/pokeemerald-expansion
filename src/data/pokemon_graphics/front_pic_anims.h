@@ -8008,7 +8008,7 @@ static const union AnimCmd sAnim_Doublade_2[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Aegislash_1[] =
+static const union AnimCmd sAnim_AegislashShield_1[] =
 {
     ANIMCMD_FRAME(0, 18),
     ANIMCMD_FRAME(1, 18),
@@ -11278,7 +11278,7 @@ SINGLE_ANIMATION(Espurr);
 SINGLE_ANIMATION(Meowstic);
 SINGLE_ANIMATION(Honedge);
 DOUBLE_ANIMATION(Doublade);
-SINGLE_ANIMATION(Aegislash);
+SINGLE_ANIMATION(AegislashShield);
 SINGLE_ANIMATION(Spritzee);
 SINGLE_ANIMATION(Aromatisse);
 SINGLE_ANIMATION(Swirlix);
@@ -12360,12 +12360,12 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_GOGOAT] = sAnims_Gogoat,
     [SPECIES_PANCHAM] = sAnims_Pancham,
     [SPECIES_PANGORO] = sAnims_Pangoro,
-    [SPECIES_FURFROU] = sAnims_Furfrou,
+    [SPECIES_FURFROU_NATURAL] = sAnims_Furfrou,
     [SPECIES_ESPURR] = sAnims_Espurr,
-    [SPECIES_MEOWSTIC] = sAnims_Meowstic,
+    [SPECIES_MEOWSTIC_MALE] = sAnims_Meowstic,
     [SPECIES_HONEDGE] = sAnims_Honedge,
     [SPECIES_DOUBLADE] = sAnims_Doublade,
-    [SPECIES_AEGISLASH] = sAnims_Aegislash,
+    [SPECIES_AEGISLASH_SHIELD] = sAnims_AegislashShield,
     [SPECIES_SPRITZEE] = sAnims_Spritzee,
     [SPECIES_AROMATISSE] = sAnims_Aromatisse,
     [SPECIES_SWIRLIX] = sAnims_Swirlix,

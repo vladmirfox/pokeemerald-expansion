@@ -416,9 +416,9 @@ static const struct FormChange sGreninjaBattleBondFormChangeTable[] = {
 };
 
 static const struct FormChange sAegislashFormChangeTable[] = {
-    {FORM_CHANGE_BATTLE_SWITCH, SPECIES_AEGISLASH},
-    {FORM_CHANGE_FAINT,         SPECIES_AEGISLASH},
-    {FORM_CHANGE_END_BATTLE,    SPECIES_AEGISLASH},
+    {FORM_CHANGE_BATTLE_SWITCH, SPECIES_AEGISLASH_SHIELD},
+    {FORM_CHANGE_FAINT,         SPECIES_AEGISLASH_SHIELD},
+    {FORM_CHANGE_END_BATTLE,    SPECIES_AEGISLASH_SHIELD},
     {FORM_CHANGE_TERMINATOR},
 };
 
