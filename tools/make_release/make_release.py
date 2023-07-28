@@ -296,7 +296,16 @@ def compareFields(fieldname, parentstructs, extratext):
                         out("  " * inline + "IMPORTANT: %s was truncated in size from %s to %s" % (x.name, oldsize, newsize))
                     addToGlobal(fieldname, parentstructs)
                     continue
-            out("  " * inline + "%s is different, but can't identify why!" % x.name)
+            if 'kind' in newclass and 'kind' in oldclass:
+                oldkind = oldclass['kind']
+                newkind = newclass['kind']
+                eitherstruct = (oldclass['is_struct'] or newclass['is_struct'])
+                if (oldkind != newkind and not eitherstruct):
+                    out("  " * inline + "IMPORTANT: %s was changed from %s to %s" % (x.name, oldkind, newkind))
+                    addToGlobal(fieldname, parentstructs)
+                    continue
+            out("  " * inline + "%s is different, but can't identify why! Its contents will not migrate!" % x.name)
+            addToGlobal(fieldname, parentstructs)
         else:
             out("  " * inline + "%s is a new field; defaulting values to zero" % x.name)
 
