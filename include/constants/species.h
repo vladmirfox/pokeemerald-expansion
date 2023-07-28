@@ -686,7 +686,8 @@
 #define SPECIES_TALONFLAME                   663
 #define SPECIES_SCATTERBUG                   664
 #define SPECIES_SPEWPA                       665
-#define SPECIES_VIVILLON                     666 // Icy Snow Pattern
+#define SPECIES_VIVILLON                     SPECIES_VIVILLON_ICY_SNOW
+#define SPECIES_VIVILLON_ICY_SNOW            666
 #define SPECIES_LITLEO                       667
 #define SPECIES_PYROAR                       668
 #define SPECIES_FLABEBE                      669 // Red Flower

@@ -811,7 +811,7 @@ static const u16 sGreninjaFormSpeciesIdTable[] = {
 };
 
 static const u16 sVivillonFormSpeciesIdTable[] = {
-    SPECIES_VIVILLON,
+    SPECIES_VIVILLON_ICY_SNOW,
     SPECIES_VIVILLON_POLAR,
     SPECIES_VIVILLON_TUNDRA,
     SPECIES_VIVILLON_CONTINENTAL,
