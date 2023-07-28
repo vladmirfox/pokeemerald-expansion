@@ -127,7 +127,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 #if P_GEN_6_POKEMON == TRUE
     [SPECIES_GRENINJA] = sGreninjaFormSpeciesIdTable,
     [SPECIES_VIVILLON_ICY_SNOW] = sVivillonFormSpeciesIdTable,
-    [SPECIES_FLABEBE] = sFlabebeFormSpeciesIdTable,
+    [SPECIES_FLABEBE_RED_FLOWER] = sFlabebeFormSpeciesIdTable,
     [SPECIES_FLOETTE] = sFloetteFormSpeciesIdTable,
     [SPECIES_FLORGES] = sFlorgesFormSpeciesIdTable,
     [SPECIES_FURFROU] = sFurfrouFormSpeciesIdTable,

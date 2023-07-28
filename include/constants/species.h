@@ -690,9 +690,12 @@
 #define SPECIES_VIVILLON_ICY_SNOW            666
 #define SPECIES_LITLEO                       667
 #define SPECIES_PYROAR                       668
-#define SPECIES_FLABEBE                      669 // Red Flower
-#define SPECIES_FLOETTE                      670
-#define SPECIES_FLORGES                      671
+#define SPECIES_FLABEBE                      SPECIES_FLABEBE_RED_FLOWER
+#define SPECIES_FLABEBE_RED_FLOWER           669
+#define SPECIES_FLOETTE                      SPECIES_FLOETTE_RED_FLOWER
+#define SPECIES_FLOETTE_RED_FLOWER           670
+#define SPECIES_FLORGES                      SPECIES_FLORGES_RED_FLOWER
+#define SPECIES_FLORGES_RED_FLOWER           671
 #define SPECIES_SKIDDO                       672
 #define SPECIES_GOGOAT                       673
 #define SPECIES_PANCHAM                      674

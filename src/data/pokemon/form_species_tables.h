@@ -835,7 +835,7 @@ static const u16 sVivillonFormSpeciesIdTable[] = {
 };
 
 static const u16 sFlabebeFormSpeciesIdTable[] = {
-    SPECIES_FLABEBE,
+    SPECIES_FLABEBE_RED_FLOWER,
     SPECIES_FLABEBE_YELLOW_FLOWER,
     SPECIES_FLABEBE_ORANGE_FLOWER,
     SPECIES_FLABEBE_BLUE_FLOWER,
@@ -844,7 +844,7 @@ static const u16 sFlabebeFormSpeciesIdTable[] = {
 };
 
 static const u16 sFloetteFormSpeciesIdTable[] = {
-    SPECIES_FLOETTE,
+    SPECIES_FLOETTE_RED_FLOWER,
     SPECIES_FLOETTE_YELLOW_FLOWER,
     SPECIES_FLOETTE_ORANGE_FLOWER,
     SPECIES_FLOETTE_BLUE_FLOWER,
@@ -854,7 +854,7 @@ static const u16 sFloetteFormSpeciesIdTable[] = {
 };
 
 static const u16 sFlorgesFormSpeciesIdTable[] = {
-    SPECIES_FLORGES,
+    SPECIES_FLORGES_RED_FLOWER,
     SPECIES_FLORGES_YELLOW_FLOWER,
     SPECIES_FLORGES_ORANGE_FLOWER,
     SPECIES_FLORGES_BLUE_FLOWER,
