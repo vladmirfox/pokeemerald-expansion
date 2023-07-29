@@ -5405,10 +5405,8 @@ BattleScript_EffectTeleport:
 	attackcanceler
 	attackstring
 .if B_TELEPORT_BEHAVIOR >= GEN_7
-	getbattlerside BS_ATTACKER
-	jumpifbyte CMP_EQUAL, gBattleCommunication, B_SIDE_PLAYER, BattleScript_EffectBatonPass
 	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_EffectBatonPass
-	jumpifbyte CMP_EQUAL, gBattleCommunication, B_SIDE_OPPONENT, BattleScript_EffectTeleportTryToRunAway
+	jumpifside BS_ATTACKER, B_SIDE_PLAYER, BattleScript_EffectBatonPass, BattleScript_EffectTeleportTryToRunAway
 	goto BattleScript_ButItFailed
 .else
 	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_ButItFailed

@@ -2171,6 +2171,12 @@
 	jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_NO_EFFECT, \jumpInstr
 	.endm
 
+	.macro jumpifside battler:req, side:req, equalJumpInstr:req, notEqualJumpInstr:req
+	getbattlerside \battler
+	jumpifbyte CMP_EQUAL, gBattleCommunication, \side, \equalJumpInstr
+	jumpifbyte CMP_NOT_EQUAL, gBattleCommunication, \side, \notEqualJumpInstr
+	.endm
+
 	.macro jumpifbattletype flags:req, jumpInstr:req
 	jumpifword CMP_COMMON_BITS, gBattleTypeFlags, \flags, \jumpInstr
 	.endm
