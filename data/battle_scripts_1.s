@@ -5404,10 +5404,9 @@ BattleScript_EffectHurricane:
 BattleScript_EffectTeleport:
 	attackcanceler
 	attackstring
-	ppreduce
 .if B_TELEPORT_BEHAVIOR >= GEN_7
-	canteleport BS_ATTACKER
 	getbattlerside BS_ATTACKER
+	jumpifbyte CMP_EQUAL, gBattleCommunication, B_SIDE_PLAYER, BattleScript_EffectBatonPass
 	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_EffectBatonPass
 	jumpifbyte CMP_EQUAL, gBattleCommunication, B_SIDE_OPPONENT, BattleScript_EffectTeleportTryToRunAway
 	goto BattleScript_ButItFailed
@@ -5415,6 +5414,7 @@ BattleScript_EffectTeleport:
 	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_ButItFailed
 .endif
 BattleScript_EffectTeleportTryToRunAway:
+	ppreduce
 	getifcantrunfrombattle BS_ATTACKER
 	jumpifbyte CMP_EQUAL, gBattleCommunication, BATTLE_RUN_FORBIDDEN, BattleScript_ButItFailed
 	jumpifbyte CMP_EQUAL, gBattleCommunication, BATTLE_RUN_FAILURE, BattleScript_PrintAbilityMadeIneffective
