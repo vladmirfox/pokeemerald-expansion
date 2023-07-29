@@ -68,7 +68,7 @@ def pull_new_version():
     get_sector_id_values(globalVersion)
     if (globalVersion == 0):
         injectTustin()
-        quit()
+        pull_new_version()
 
 def get_sector_id_values(version):
     with open("include/save.h", 'r') as file:
@@ -111,8 +111,6 @@ def injectTustin():
         out("Updated include/constants/global.h")
     makeSaveVersionConstants()
     out("Successfully applied the necessary changes to the codebase.")
-    out("You will currently be unable to load previous save files until you make a new release.")
-    out("Even if you delay this in function of more saveblock changes, you will be able to play with newly created save files.")
 
 def failTustinInjection(msg):
     out(msg)
@@ -581,21 +579,21 @@ An attempt at documentation
    saveVersion to SaveBlock2, updating new_game.c to correctly identify new save files,
    and uncommenting the versioning include file.
 
-3. From this point on, the user can make any changes to the SaveBlocks they desire.
+3. If not the first time the script is run, it will start preparing a first comparison
+   between the latest defined version and the current state of affairs (compareFields).
+
+4. The script will start preparing a first comparison between the latest defined version
+   and the current state of affairs (compareFields).If there are no changes
+   (globalHasChanges), the process is aborted since it is redundant. Otherwise, the
+   migration process begins. Since compatibility with all previous versions is retained,
+   all code is rewritten - this way, if there was a v0, v1 and v2 and we are adding v3,
+   it writes new code to directly migrate v0 to v3 etc. This takes place in prepareMigration.
+
+5. From this point on, the user can make any changes to the SaveBlocks they desire.
    Running make release again will add a new version and make all previous versions
    compatible with it. This means that running make release once (step 2) will not yet
    make older versions compatibile with - after all, a second version to compare with
    has not yet been defined.
-
-4. If not the first time the script is run, it will start preparing a first comparison
-   between the latest defined version and the current state of affairs (compareFields).
-
-5. If there are no changes (globalHasChanges), the process is aborted since it is
-   redundant. Otherwise, the migration process begins. Since compatibility with all
-   previous versions is retained, all code is rewritten - this way, if there was a v0,
-   v1 and v2 and we are adding v3, it writes new code to directly migrate v0 to v3 etc.
-   This takes place in prepareMigration.
-
 """
 
 if __name__ == "__main__":
