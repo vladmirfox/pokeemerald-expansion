@@ -180,6 +180,7 @@
 #define STATUS3_LASER_FOCUS             (1 << 29)
 #define STATUS3_POWER_TRICK             (1 << 30)
 #define STATUS3_SKY_DROPPED             (1 << 31) // Target of Sky Drop
+#define STATUS3_MESMERIZE_POKES         (1 << 32)
 #define STATUS3_SEMI_INVULNERABLE       (STATUS3_UNDERGROUND | STATUS3_ON_AIR | STATUS3_UNDERWATER | STATUS3_PHANTOM_FORCE)
 
 #define STATUS4_ELECTRIFIED             (1 << 0)
@@ -503,5 +504,12 @@
 #define PARENTAL_BOND_1ST_HIT 2
 #define PARENTAL_BOND_2ND_HIT 1
 #define PARENTAL_BOND_OFF     0
+
+// Constants for Fist Barrage
+#define FIST_BARRAGE_1ST_HIT 4
+#define FIST_BARRAGE_2ND_HIT 3
+#define FIST_BARRAGE_3RD_HIT 2
+#define FIST_BARRAGE_4TH_HIT 1
+#define FIST_BARRAGE_OFF    0
 
 #endif // GUARD_CONSTANTS_BATTLE_H

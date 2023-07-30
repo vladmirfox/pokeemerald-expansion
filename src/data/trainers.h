@@ -3825,7 +3825,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("CALVIN"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_SMART_SWITCHING,
         .party = NO_ITEM_DEFAULT_MOVES(sParty_Calvin1),
     },
 
@@ -7388,8 +7388,8 @@ const struct Trainer gTrainers[] = {
         .trainerPic = TRAINER_PIC_BUG_CATCHER,
         .trainerName = _("RICK"),
         .items = {},
-        .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
+        .doubleBattle = TRUE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_SMART_SWITCHING,
         .party = NO_ITEM_DEFAULT_MOVES(sParty_Rick),
     },
 

@@ -1068,13 +1068,21 @@ static const u8 sWillOWispDescription[] = _(
     "Inflicts a burn on the foe\n"
     "with intense fire.");
 
+static const u8 sFLASH_FREEZEDescription[] = _(
+    "Inflicts frostbite on the\n"
+    "foe with freezing ice.");
+
 static const u8 sMementoDescription[] = _(
     "The user faints and lowers\n"
     "the foe's abilities.");
 
 static const u8 sFacadeDescription[] = _(
-    "Boosts Attack when burned,\n"
-    "paralyzed, or poisoned.");
+    "Boosts Attack when user\n"
+    "has a status condition.");
+
+static const u8 sBluffDescription[] = _(
+    "Boosts Attack when user\n"
+    "has a status condition.");
 
 static const u8 sFocusPunchDescription[] = _(
     "A powerful loyalty attack.\n"
@@ -3047,7 +3055,7 @@ static const u8 sCeaselessEdgeDescription[] = _(
 
 static const u8 sBleakwindStormDescription[] = _(
     "Hits with brutal, cold winds.\n"
-    "May lower the foe's Speed.");
+    "May cause frostbite.");
 
 static const u8 sWildboltStormDescription[] = _(
     "Hits with a brutal tempest.\n"
@@ -3147,6 +3155,10 @@ static const u8 sFlowerTrickDescription[] = _(
 
 static const u8 sTorchSongDescription[] = _(
     "Flames scorch the target.\n"
+    "Boosts the user's Sp. Atk.");
+
+static const u8 sGargleDescription[] = _(
+    "Spits water after gargling.\n"
     "Boosts the user's Sp. Atk.");
 
 static const u8 sAquaStepDescription[] = _(
@@ -3530,8 +3542,10 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_TORMENT - 1] = sTormentDescription,
     [MOVE_FLATTER - 1] = sFlatterDescription,
     [MOVE_WILL_O_WISP - 1] = sWillOWispDescription,
+    [MOVE_FLASH_FREEZE - 1] = sFLASH_FREEZEDescription,
     [MOVE_MEMENTO - 1] = sMementoDescription,
     [MOVE_FACADE - 1] = sFacadeDescription,
+    [MOVE_BLUFF - 1] = sBluffDescription,
     [MOVE_FOCUS_PUNCH - 1] = sFocusPunchDescription,
     [MOVE_SMELLING_SALTS - 1] = sSmellingSaltsDescription,
     [MOVE_FOLLOW_ME - 1] = sFollowMeDescription,
@@ -4070,6 +4084,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_KOWTOW_CLEAVE - 1] = sKowtowCleaveDescription,
     [MOVE_FLOWER_TRICK - 1] = sFlowerTrickDescription,
     [MOVE_TORCH_SONG - 1] = sTorchSongDescription,
+    [MOVE_GARGLE - 1] = sGargleDescription,
     [MOVE_AQUA_STEP - 1] = sAquaStepDescription,
     [MOVE_RAGING_BULL - 1] = sRagingBullDescription,
     [MOVE_MAKE_IT_RAIN - 1] = sMakeItRainDescription,

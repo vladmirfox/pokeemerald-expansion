@@ -407,7 +407,8 @@
 #define EFFECT_REVIVAL_BLESSING             401
 #define EFFECT_FROSTBITE_HIT                402
 #define EFFECT_SNOWSCAPE                    403
-
-#define NUM_BATTLE_MOVE_EFFECTS             404
+#define EFFECT_FLASH_FREEZE                 404
+#define EFFECT_COMET_PUNCH                  405
+#define NUM_BATTLE_MOVE_EFFECTS             406
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

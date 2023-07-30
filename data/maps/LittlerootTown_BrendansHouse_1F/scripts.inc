@@ -294,7 +294,7 @@ PlayersHouse_1F_Text_IsntItNiceInHere:
 PlayersHouse_1F_Text_MoversPokemonGoSetClock:
 	.string "The mover's POKéMON do all the work\n"
 	.string "of moving us in and cleaning up after.\l"
-	.string "This is so convenient!\p"
+	.string "And not morally questionable at all!\p"
 	.string "{PLAYER}, your room is upstairs.\n"
 	.string "Go check it out, dear!\p"
 	.string "DAD bought you a new clock to mark\n"
@@ -320,8 +320,7 @@ PlayersHouse_1F_Text_MaybeDadWillBeOn:
 
 PlayersHouse_1F_Text_ItsOverWeMissedHim:
 	.string "MOM: Oh… It's over.\p"
-	.string "I think DAD was on, but we missed him.\n"
-	.string "Too bad.$"
+	.string "DAD is such a hardworker, isn't it?$"
 
 PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor:
 	.string "Oh, yes.\n"
@@ -372,8 +371,12 @@ PlayersHouse_1F_Text_Vigoroth2:
 	.string "Huggoh, uggo uggo…$"
 
 PlayersHouse_1F_Text_ReportFromPetalburgGym:
-	.string "INTERVIEWER: …We brought you this\n"
-	.string "report from in front of PETALBURG GYM.$"
+	.string "INTERVIEWER: …And how do you respond\n"
+	.string "to the allegations of X-Item abuse\n"
+	.string "going on in your GYM?\p"
+	.string "DAD: Oops! I just remembered\n"
+	.string "I have a very important league meeting!\n"
+	.string "Sorry, gotta go!$"
 
 PlayersHouse_1F_Text_TheresAMovieOnTV:
 	.string "There is a movie on TV.\p"

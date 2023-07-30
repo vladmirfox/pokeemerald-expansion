@@ -1381,6 +1381,12 @@
 	.4byte \ptr
 	.endm
 
+	.macro checkfistbarragecounter counter:req, ptr:req
+	callnative BS_CheckFistBarrageCounter
+	.byte \counter
+	.4byte \ptr
+	.endm
+
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req
 	various \battler, VARIOUS_CANCEL_MULTI_TURN_MOVES
@@ -1527,6 +1533,10 @@
 	various \battler, VARIOUS_TRY_ACTIVATE_MOXIE
 	.endm
 
+	.macro tryactivatecometpunch battler:req
+	various \battler, VARIOUS_TRY_ACTIVATE_COMET_PUNCH
+	.endm
+	
 	.macro tryactivatebeastboost battler:req
 	various \battler, VARIOUS_TRY_ACTIVATE_BEAST_BOOST
 	.endm
@@ -1542,6 +1552,7 @@
 	.macro tryactivatefellstinger battler:req
 	various \battler, VARIOUS_TRY_ACTIVATE_FELL_STINGER
 	.endm
+
 
 	.macro playmoveanimation battler:req, move:req
 	various \battler, VARIOUS_PLAY_MOVE_ANIMATION

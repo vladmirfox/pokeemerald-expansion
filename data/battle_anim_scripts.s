@@ -855,7 +855,11 @@ gBattleAnims_Moves::
 	.4byte Move_COMBAT_TORQUE
 	.4byte Move_MAGICAL_TORQUE
 	.4byte Move_PSYBLADE
+	.4byte Move_FLASH_FREEZE
+	.4byte Move_BLUFF
 	.4byte Move_HYDRO_STEAM
+	.4byte Move_GARGLE
+
 @@@@ Z MOVES
 	.4byte Move_BREAKNECK_BLITZ
 	.4byte Move_ALL_OUT_PUMMELING
@@ -6320,6 +6324,8 @@ Move_FROST_BREATH:
 	waitforvisualfinish
 	call UnsetPsychicBg
 	end
+
+
 
 Move_DRAGON_TAIL:
 	loadspritegfx ANIM_TAG_ROCKS
@@ -14450,7 +14456,38 @@ Move_FILLET_AWAY::
 Move_KOWTOW_CLEAVE::
 Move_FLOWER_TRICK::
 Move_TORCH_SONG::
-Move_AQUA_STEP::
+Move_AQUA_STEP:
+	loadspritegfx ANIM_TAG_SPARKLE_6
+	loadspritegfx ANIM_TAG_ROUND_SHADOW
+	loadspritegfx ANIM_TAG_SPLASH
+	playsewithpan SE_M_HEADBUTT, SOUND_PAN_ATTACKER
+	createsprite gDiveBallSpriteTemplate, 2, 4, 0, 0, 13, 336
+	waitforvisualfinish
+	playsewithpan SE_M_DIVE, SOUND_PAN_ATTACKER
+	createsprite gDiveWaterSplashSpriteTemplate, 3, 1, 0
+	call DiveSetUpWaterDroplets
+	call DiveSetUpWaterDroplets
+	call DiveSetUpWaterDroplets
+	call DiveSetUpWaterDroplets
+	call DiveSetUpWaterDroplets
+	loadspritegfx ANIM_TAG_WATER_IMPACT
+	loadspritegfx ANIM_TAG_SMALL_BUBBLES
+	monbg ANIM_DEF_PARTNER
+	setalpha 12, 8
+	playsewithpan SE_M_EXPLOSION, SOUND_PAN_TARGET
+	createsprite gDiveWaterSplashSpriteTemplate, 131, 1, 1
+	call DiveAttackWaterDroplets
+	call DiveAttackWaterDroplets
+	call DiveAttackWaterDroplets
+	call DiveAttackWaterDroplets
+	call DiveAttackWaterDroplets
+	delay 12
+	call RisingWaterHitEffect
+	waitforvisualfinish
+	visible 0
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	end
 Move_RAGING_BULL::
 Move_MAKE_IT_RAIN::
 Move_RUINATION::
@@ -15066,26 +15103,29 @@ Move_MEGA_KICK:
 	end
 
 Move_COMET_PUNCH:
+	loadspritegfx ANIM_TAG_GOLD_STARS
 	loadspritegfx ANIM_TAG_IMPACT
 	loadspritegfx ANIM_TAG_HANDS_AND_FEET
-	monbg ANIM_TARGET
-	setalpha 12, 8
-	choosetwoturnanim CometPunchLeft, CometPunchRight
-CometPunchContinue:
-	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 6, 1
-	playsewithpan SE_M_COMET_PUNCH, SOUND_PAN_TARGET
+	panse SE_M_BARRIER, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, +3, 0
+	fadetobg BG_COSMIC
+	waitbgfadein
 	waitforvisualfinish
-	clearmonbg ANIM_TARGET
-	blendoff
+	createsprite gMeteorMashStarSpriteTemplate, ANIM_TARGET, 3, -48, -64, 72, 32, 30
+	delay 10
+	createsprite gMeteorMashStarSpriteTemplate, ANIM_TARGET, 3, -112, -64, 8, 32, 30
+	delay 40
+	createsprite gSpinningHandOrFootSpriteTemplate, ANIM_TARGET, 3, 0, 0, 0, 30
+	createsprite gMeteorMashStarSpriteTemplate, ANIM_TARGET, 3, -80, -64, 40, 32, 30
+	delay 20
+	playsewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, 0, ANIM_TARGET, 1
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 5, 0, 20, 1
+	waitforvisualfinish
+	delay 10
+	restorebg
+	waitbgfadein
+	waitforvisualfinish
 	end
-CometPunchLeft:
-	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, -8, -8, ANIM_TARGET, 2
-	createsprite gFistFootSpriteTemplate, ANIM_ATTACKER, 3, -8, 0, 8, 1, 0
-	goto CometPunchContinue
-CometPunchRight:
-	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 8, -8, ANIM_TARGET, 2
-	createsprite gFistFootSpriteTemplate, ANIM_ATTACKER, 3, 8, 0, 8, 1, 0
-	goto CometPunchContinue
 
 Move_SONIC_BOOM:
 	loadspritegfx ANIM_TAG_AIR_WAVE
@@ -17585,6 +17625,7 @@ Move_MEMENTO:
 	blendoff
 	delay 1
 	end
+
 
 Move_FACADE:
 	loadspritegfx ANIM_TAG_SWEAT_DROP
@@ -22147,6 +22188,7 @@ Move_WILL_O_WISP:
 	clearmonbg ANIM_DEF_PARTNER
 	end
 
+
 Move_ENCORE:
 	loadspritegfx ANIM_TAG_SPOTLIGHT
 	loadspritegfx ANIM_TAG_TAG_HAND
@@ -24010,6 +24052,55 @@ WeatherBallIce:
 	call IceCrystalEffectShort
 	waitforvisualfinish
 	end
+
+Move_FLASH_FREEZE:
+	loadspritegfx ANIM_TAG_ICE_CHUNK
+	loadspritegfx ANIM_TAG_SMALL_EMBER
+	loadspritegfx ANIM_TAG_FIRE_PLUME
+	fadetobg BG_ICE
+	waitbgfadeout
+	createvisualtask AnimTask_StartSlidingBg, 0x5, 0x300, 0x0, 0x0, 0xffff
+	waitbgfadein
+	playsewithpan SE_M_DRAGON_RAGE, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ShakeMon, 0x5, 0x0, 0x0, 0x2, 0x28, 0x1
+	waitforvisualfinish
+	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_TARGET, 2, 0x0, 0xf, 0x0, 0x0, 0x4
+	waitforvisualfinish
+	createsprite gFrostBreathBlueBreathTemplate, ANIM_TARGET, 2, 0x1e, 0xf, 0x0, 0xa, 0xa
+	waitforvisualfinish
+	loopsewithpan SE_M_ICY_WIND, SOUND_PAN_TARGET, 0xb, 0x3
+	createvisualtask AnimTask_ShakeMon, 0x5, 0x1, 0x0, 0x3, 0x19, 0x1
+	createsprite gFrostBreathBlueRageTemplate, ANIM_TARGET, 66, 0x1, 0x5, 0x0
+	delay 0x1
+	createsprite gFrostBreathBlueRageTemplate, ANIM_TARGET, 66, 0x1, 0xfff6, 0xfff1
+	delay 0x1
+	createsprite gFrostBreathBlueRageTemplate, ANIM_TARGET, 2, 0x1, 0x0, 0x19
+	delay 0x1
+	createsprite gFrostBreathBlueRageTemplate, ANIM_TARGET, 66, 0x1, 0xf, 0x5
+	delay 0x1
+	createsprite gFrostBreathBlueRageTemplate, ANIM_TARGET, 66, 0x1, 0xffe7, 0x0
+	delay 0x1
+	createsprite gFrostBreathBlueRageTemplate, ANIM_TARGET, 2, 0x1, 0x1e, 0x1e
+	delay 0x1
+	createsprite gFrostBreathBlueRageTemplate, ANIM_TARGET, 2, 0x1, 0xffe5, 0x19
+	delay 0x1
+	createsprite gFrostBreathBlueRageTemplate, ANIM_TARGET, 66, 0x1, 0x0, 0x8
+	waitforvisualfinish
+	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_TARGET, 66, 0x0, 0x0, 0x4
+	waitforvisualfinish
+	call UnsetPsychicBg
+	end
+
+Move_BLUFF:
+	loadspritegfx ANIM_TAG_SWEAT_DROP
+	createvisualtask AnimTask_SquishAndSweatDroplets, 2, ANIM_ATTACKER, 3
+	createvisualtask AnimTask_FacadeColorBlend, 2, ANIM_ATTACKER, 72
+	loopsewithpan SE_M_SWAGGER, SOUND_PAN_ATTACKER, 24, 3
+	end
+
+Move_GARGLE:
+	goto Move_WATER_PULSE
+
 
 Move_COUNT:
 	loadspritegfx ANIM_TAG_IMPACT

@@ -5015,6 +5015,7 @@ static void TurnValuesCleanUp(bool8 var0)
             gBattleMons[gActiveBattler].status2 &= ~STATUS2_SUBSTITUTE;
 
         gSpecialStatuses[gActiveBattler].parentalBondState = PARENTAL_BOND_OFF;
+        gSpecialStatuses[gActiveBattler].fistBarrageState = FIST_BARRAGE_OFF;
     }
 
     gSideStatuses[B_SIDE_PLAYER] &= ~(SIDE_STATUS_QUICK_GUARD | SIDE_STATUS_WIDE_GUARD | SIDE_STATUS_CRAFTY_SHIELD | SIDE_STATUS_MAT_BLOCK);

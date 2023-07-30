@@ -430,6 +430,8 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectRevivalBlessing         @ EFFECT_REVIVAL_BLESSING
 	.4byte BattleScript_EffectFrostbiteHit            @ EFFECT_FROSTBITE_HIT
 	.4byte BattleScript_EffectSnow                    @ EFFECT_SNOWSCAPE
+	.4byte BattleScript_EffectFlashFreeze             @ EFFECT_FLASH_FREEZE
+	.4byte BattleScript_EffectCometPunch			  @ EFFECT_COMET_PUNCH
 
 BattleScript_EffectRevivalBlessing::
 	attackcanceler
@@ -2376,6 +2378,7 @@ BattleScript_GrowthDoMoveAnim::
 	setbyte sSTAT_ANIM_PLAYED, FALSE
 	playstatchangeanimation BS_ATTACKER, BIT_ATK | BIT_SPATK, 0
 	jumpifweatheraffected BS_ATTACKER, B_WEATHER_SUN, BattleScript_GrowthAtk2
+	jumpifability BS_ATTACKER, ABILITY_SUN_WITHIN, BattleScript_GrowthAtk2
 	setstatchanger STAT_ATK, 1, FALSE
 	goto BattleScript_GrowthAtk
 BattleScript_GrowthAtk2:
@@ -2387,6 +2390,7 @@ BattleScript_GrowthAtk:
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_GrowthTrySpAtk::
 	jumpifweatheraffected BS_ATTACKER, B_WEATHER_SUN, BattleScript_GrowthSpAtk2
+	jumpifability BS_ATTACKER, ABILITY_SUN_WITHIN, BattleScript_GrowthSpAtk2
 	setstatchanger STAT_SPATK, 1, FALSE
 	goto BattleScript_GrowthSpAtk
 BattleScript_GrowthSpAtk2:
@@ -5378,6 +5382,7 @@ BattleScript_EffectGust::
 
 BattleScript_EffectSolarBeam::
 	jumpifweatheraffected BS_ATTACKER, B_WEATHER_SUN, BattleScript_SolarBeamOnFirstTurn
+	jumpifability BS_ATTACKER, ABILITY_SUN_WITHIN, BattleScript_SolarBeamOnFirstTurn
 BattleScript_SolarBeamDecideTurn::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING, BattleScript_TwoTurnMovesSecondTurn
@@ -6428,7 +6433,8 @@ BattleScript_FaintTarget::
 	tryactivatefellstinger BS_ATTACKER
 	tryactivatesoulheart
 	tryactivatereceiver BS_TARGET
-	tryactivatemoxie BS_ATTACKER        @ and chilling neigh, as one ice rider
+	tryactivatemoxie BS_ATTACKER
+	tryactivatecometpunch BS_ATTACKER         @ and chilling neigh, as one ice rider
 	tryactivatebeastboost BS_ATTACKER
 	tryactivategrimneigh BS_ATTACKER    @ and as one shadow rider
 	tryactivatebattlebond BS_ATTACKER
@@ -8736,6 +8742,7 @@ BattleScript_IntimidateEnd:
 	pause B_WAIT_TIME_MED
 	end3
 
+
 BattleScript_IntimidateContrary:
 	call BattleScript_AbilityPopUpTarget
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_IntimidateContrary_WontIncrease
@@ -8763,6 +8770,75 @@ BattleScript_IntimidateInReverse:
 	modifybattlerstatstage BS_TARGET, STAT_ATK, INCREASE, 1, BattleScript_IntimidateLoopIncrement, ANIM_ON
 	call BattleScript_TryAdrenalineOrb
 	goto BattleScript_IntimidateLoopIncrement
+
+
+BattleScript_MesmerizeActivates::
+	showabilitypopup BS_ATTACKER
+	pause B_WAIT_TIME_LONG
+	destroyabilitypopup
+	setbyte gBattlerTarget, 0
+BattleScript_MesmerizeLoop:
+	jumpifbyteequal gBattlerTarget, gBattlerAttacker, BattleScript_MesmerizeLoopIncrement
+	jumpiftargetally BattleScript_MesmerizeLoopIncrement
+	jumpifabsent BS_TARGET, BattleScript_MesmerizeLoopIncrement
+	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_MesmerizeLoopIncrement
+	jumpifability BS_TARGET, ABILITY_HYPER_CUTTER, BattleScript_MesmerizePrevented
+	jumpifability BS_TARGET, ABILITY_INNER_FOCUS, BattleScript_MesmerizePrevented
+	jumpifability BS_TARGET, ABILITY_SCRAPPY, BattleScript_MesmerizePrevented
+	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_MesmerizePrevented
+	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_MesmerizePrevented
+	jumpifability BS_TARGET, ABILITY_GUARD_DOG, BattleScript_MesmerizeInReverse
+BattleScript_MesmerizeEffect:
+	copybyte sBATTLER, gBattlerAttacker
+	statbuffchange STAT_CHANGE_NOT_PROTECT_AFFECTED | STAT_CHANGE_ALLOW_PTR, BattleScript_MesmerizeLoopIncrement
+	setgraphicalstatchangevalues
+	jumpifability BS_TARGET, ABILITY_CONTRARY, BattleScript_MesmerizeContrary
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_PKMNCUTSSPATTACKWITH
+BattleScript_MesmerizeEffect_WaitString:
+	waitmessage B_WAIT_TIME_LONG
+	copybyte sBATTLER, gBattlerTarget
+	call BattleScript_TryAdrenalineOrb
+BattleScript_MesmerizeLoopIncrement:
+	addbyte gBattlerTarget, 1
+	jumpifbytenotequal gBattlerTarget, gBattlersCount, BattleScript_MesmerizeLoop
+BattleScript_MesmerizeEnd:
+	copybyte sBATTLER, gBattlerAttacker
+	destroyabilitypopup
+	pause B_WAIT_TIME_MED
+	end3
+
+
+BattleScript_MesmerizeContrary:
+	call BattleScript_AbilityPopUpTarget
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_MesmerizeContrary_WontIncrease
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gStatUpStringIds
+	goto BattleScript_MesmerizeEffect_WaitString
+BattleScript_MesmerizeContrary_WontIncrease:
+	printstring STRINGID_TARGETSTATWONTGOHIGHER
+	goto BattleScript_MesmerizeEffect_WaitString
+
+BattleScript_MesmerizePrevented:
+	call BattleScript_AbilityPopUp
+	pause B_WAIT_TIME_LONG
+	setbyte gBattleCommunication STAT_ATK
+	stattextbuffer BS_TARGET
+	printstring STRINGID_STATWASNOTLOWERED
+	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_TryAdrenalineOrb
+	goto BattleScript_MesmerizeLoopIncrement
+
+BattleScript_MesmerizeInReverse:
+	copybyte sBATTLER, gBattlerTarget
+	call BattleScript_AbilityPopUpTarget
+	pause B_WAIT_TIME_SHORT
+	modifybattlerstatstage BS_TARGET, STAT_ATK, INCREASE, 1, BattleScript_MesmerizeLoopIncrement, ANIM_ON
+	call BattleScript_TryAdrenalineOrb
+	goto BattleScript_MesmerizeLoopIncrement
+
+
+
 
 BattleScript_DroughtActivates::
 	pause B_WAIT_TIME_SHORT
@@ -9352,6 +9428,16 @@ BattleScript_FellStingerRaisesStat::
 BattleScript_FellStingerRaisesAtkEnd:
 	return
 
+BattleScript_CometPunchRaisesStat::
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_CHANGE_ALLOW_PTR, BattleScript_CometPunchRaisesAtkEnd
+	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, B_MSG_DEFENDER_STAT_ROSE, BattleScript_CometPunchRaisesAtkEnd
+	setgraphicalstatchangevalues
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_CometPunchRaisesAtkEnd:
+	return
+
 BattleScript_AttackerAbilityStatRaiseEnd3::
 	call BattleScript_AttackerAbilityStatRaise
 	end3
@@ -9487,7 +9573,16 @@ BattleScript_BattleBondActivatesOnMoveEndAttacker::
 	printstring STRINGID_ATTACKERBECAMEASHSPECIES
 	return
 
+
 BattleScript_DancerActivates::
+	call BattleScript_AbilityPopUp
+	waitmessage B_WAIT_TIME_SHORT
+	setbyte sB_ANIM_TURN, 0
+	setbyte sB_ANIM_TARGETS_HIT, 0
+	orword gHitMarker, HITMARKER_ALLOW_NO_PP
+	jumptocalledmove TRUE
+
+BattleScript_SingerActivates::
 	call BattleScript_AbilityPopUp
 	waitmessage B_WAIT_TIME_SHORT
 	setbyte sB_ANIM_TURN, 0
@@ -10519,3 +10614,36 @@ BattleScript_EffectSnow::
 	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_STRONG_WINDS, BattleScript_MysteriousAirCurrentBlowsOn
 	setsnow
 	goto BattleScript_MoveWeatherChange
+
+BattleScript_EffectFlashFreeze::
+	attackcanceler
+	attackstring
+	ppreduce
+	jumpifsubstituteblocks BattleScript_ButItFailed
+	jumpiftype BS_TARGET, TYPE_ICE, BattleScript_NotAffected
+	jumpifability BS_TARGET, ABILITY_COMATOSE, BattleScript_AbilityProtectsDoesntAffect
+	jumpifability BS_TARGET, ABILITY_PURIFYING_SALT, BattleScript_AbilityProtectsDoesntAffect
+	jumpifflowerveil BattleScript_FlowerVeilProtects
+	jumpifleafguardprotected BS_TARGET, BattleScript_AbilityProtectsDoesntAffect
+	jumpifshieldsdown BS_TARGET, BattleScript_AbilityProtectsDoesntAffect
+	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_ButItFailed
+	jumpifterrainaffected BS_TARGET, STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents
+	accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
+	jumpifsafeguard BattleScript_SafeguardProtected
+	attackanimation
+	waitanimation
+	setmoveeffect MOVE_EFFECT_FROSTBITE
+	seteffectprimary
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectCometPunch::
+	jumpifability BS_ATTACKER, ABILITY_FIST_BARRAGE, BattleScript_HasFistBarrage
+	setmoveeffect MOVE_EFFECT_ATK_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
+goto BattleScript_EffectHit
+BattleScript_HasFistBarrage::
+	checkfistbarragecounter 1, BattleScript_EffectCometPunchLastHit
+	goto BattleScript_EffectHit
+BattleScript_EffectCometPunchLastHit::	
+setmoveeffect MOVE_EFFECT_ATK_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
+goto BattleScript_EffectHit
+	

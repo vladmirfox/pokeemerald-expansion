@@ -76,7 +76,7 @@ LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent::
 	return
 
 LittlerootTown_EventScript_MoveMomToMaysDoor::
-	setobjectxyperm LOCALID_MOM, 14, 8
+	setobjectxyperm LOCALID_MOM, 16, 9
 	return
 
 LittlerootTown_EventScript_SetTwinPos::
@@ -99,11 +99,11 @@ LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos::
 	return
 
 LittlerootTown_EventScript_SetMomInFrontOfDoorMale::
-	setobjectxyperm LOCALID_MOM, 5, 9
+	setobjectxyperm LOCALID_MOM, 5, 8
 	return
 
 LittlerootTown_EventScript_SetMomInFrontOfDoorFemale::
-	setobjectxyperm LOCALID_MOM, 14, 9
+	setobjectxyperm LOCALID_MOM, 16, 10
 	return
 
 LittlerootTown_OnFrame:
@@ -115,7 +115,7 @@ LittlerootTown_OnFrame:
 LittlerootTown_EventScript_StepOffTruckMale::
 	lockall
 	setvar VAR_0x8004, 5
-	setvar VAR_0x8005, 8
+	setvar VAR_0x8005, 7
 	call LittlerootTown_EventScript_GoInsideWithMom
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK
 	warpsilent MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F, 8, 8
@@ -125,8 +125,8 @@ LittlerootTown_EventScript_StepOffTruckMale::
 
 LittlerootTown_EventScript_StepOffTruckFemale::
 	lockall
-	setvar VAR_0x8004, 14
-	setvar VAR_0x8005, 8
+	setvar VAR_0x8004, 16
+	setvar VAR_0x8005, 9
 	call LittlerootTown_EventScript_GoInsideWithMom
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK
 	warpsilent MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F, 2, 8
@@ -491,12 +491,12 @@ LittlerootTown_EventScript_GiveRunningShoesTrigger::
 
 LittlerootTown_EventScript_SetHomeDoorCoordsMale::
 	setvar VAR_0x8009, 5
-	setvar VAR_0x800A, 8
+	setvar VAR_0x800A, 7
 	return
 
 LittlerootTown_EventScript_SetHomeDoorCoordsFemale::
-	setvar VAR_0x8009, 14
-	setvar VAR_0x800A, 8
+	setvar VAR_0x8009, 16
+	setvar VAR_0x800A, 9
 	return
 
 LittlerootTown_EventScript_MomNoticePlayerMale::
@@ -916,8 +916,8 @@ LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "Well, this is LITTLEROOT TOWN.\p"
 	.string "How do you like it?\n"
 	.string "This is our new home!\p"
-	.string "It has a quaint feel, but it seems to be\n"
-	.string "an easy place to live, don't you think?\p"
+	.string "It's a bit cloudy, but it seems to be\n"
+	.string "a nice place to live, don't you think?\p"
 	.string "And, you get your own room, {PLAYER}!\n"
 	.string "Let's go inside.$"
 
@@ -958,16 +958,17 @@ LittlerootTown_Text_ComeHomeIfAnythingHappens:
 	.string "Go on, go get them, honey!$"
 
 LittlerootTown_Text_CanUsePCToStoreItems:
-	.string "If you use a PC, you can store items\n"
-	.string "and POKéMON.\p"
-	.string "The power of science is staggering!$"
+	.string "Did you know that with new technology\n"
+	.string "anybody can make their own hack?\p"
+	.string "I'm so glad that companies don't employ\n"
+	.string "unethical copyright practices.\p"
+	.string "Right?$"
 
 LittlerootTown_Text_BirchSpendsDaysInLab:
 	.string "PROF. BIRCH spends days in his LAB\n"
 	.string "studying, then he'll suddenly go out in\l"
 	.string "the wild to do more research…\p"
-	.string "When does PROF. BIRCH spend time\n"
-	.string "at home?$"
+	.string "No wonder his wife left him.$"
 
 LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut:
 	.string "Um, um, um!\p"
@@ -997,7 +998,7 @@ LittlerootTown_Text_GoodLuckCatchingPokemon:
 
 LittlerootTown_Text_TownSign:
 	.string "LITTLEROOT TOWN\n"
-	.string "“A town that can't be shaded any hue.”$"
+	.string "“A town shaded by hue.”$"
 
 LittlerootTown_Text_ProfBirchsLab:
 	.string "PROF. BIRCH'S POKéMON LAB$"

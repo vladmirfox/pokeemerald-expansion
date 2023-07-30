@@ -183,6 +183,7 @@ struct SpecialStatus
     u8 gemBoost:1;
     u8 rototillerAffected:1;  // to be affected by rototiller
     u8 parentalBondState:2;
+    u8 fistBarrageState:4;
     u8 multiHitOn:1;
     u8 announceNeutralizingGas:1;   // See Cmd_switchineffects
     u8 neutralizingGasRemoved:1;    // See VARIOUS_TRY_END_NEUTRALIZING_GAS
@@ -191,6 +192,8 @@ struct SpecialStatus
     u8 damagedMons:4; // Mons that have been damaged directly by using a move, includes substitute.
     u8 dancerUsedMove:1;
     u8 dancerOriginalTarget:3;
+    u8 singerUsedMove:1;
+    u8 singerOriginalTarget:3;
     // End of byte
     u8 weatherAbilityDone:1;
     u8 terrainAbilityDone:1;

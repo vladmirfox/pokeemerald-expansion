@@ -4057,6 +4057,8 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score += 3;
         }
         break;
+
+    
     case EFFECT_BELLY_DRUM:
         if (!CanTargetFaintAi(battlerDef, battlerAtk) && HasMoveWithSplit(battlerAtk, SPLIT_PHYSICAL) && AI_DATA->abilities[battlerAtk] != ABILITY_CONTRARY)
             score += (MAX_STAT_STAGE - gBattleMons[battlerAtk].statStages[STAT_ATK]);
