@@ -6286,7 +6286,7 @@ Move_STRUGGLE_BUG:
 	end
 
 Move_BULLDOZE:
-	createvisualtask AnimTask_Splash, 0x2, 0x0, 0x3
+	createvisualtask AnimTask_Splash, 2, ANIM_ATTACKER, 3
 	delay 0x8
 	goto Move_EARTHQUAKE
 
@@ -8959,7 +8959,7 @@ Move_PLAY_NICE::
 
 Move_CONFIDE::
 	loadspritegfx ANIM_TAG_CONFIDE @Confide Bubble
-	createvisualtask AnimTask_Splash, 0x2, ANIM_ATTACKER, 0x3
+	createvisualtask AnimTask_Splash, 2, ANIM_ATTACKER, 3
 	createsprite gConfideBubbleTemplate, ANIM_ATTACKER, 11, 0x0, 0x64
 	playsewithpan SE_M_METRONOME, SOUND_PAN_ATTACKER
 	waitforvisualfinish
@@ -12324,7 +12324,7 @@ Move_STOMPING_TANTRUM::
 	loadspritegfx ANIM_TAG_IMPACT @pound hit
 	loadspritegfx ANIM_TAG_SMALL_EMBER @hit color
 	monbg ANIM_TARGET
-	createvisualtask AnimTask_Splash, 0x2, ANIM_ATTACKER, 0x3
+	createvisualtask AnimTask_Splash, 2, ANIM_ATTACKER, 3
 	delay 0x5
 	createvisualtask AnimTask_HorizontalShake, 0x5, 0x5, 0xa, 0x5
 	createvisualtask AnimTask_HorizontalShake, 0x5, 0x4, 0xa, 0x5
@@ -14885,11 +14885,11 @@ Move_CORROSIVE_GAS::
 @Credits to Skeli
 Move_COACHING::
 	playsewithpan SE_M_TAIL_WHIP, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_Splash, 0x2, ANIM_ATTACKER, 0x1
+	createvisualtask AnimTask_Splash, 2, ANIM_ATTACKER, 1
 	waitforvisualfinish
 	playsewithpan SE_M_TAIL_WHIP, SOUND_PAN_TARGET
 	createvisualtask AnimTask_BlendColorCycle, 0x2, F_PAL_TARGET, 0x1, 0x2, 0x0, 0xA, 0x1E5D
-	createvisualtask AnimTask_Splash, 0x2, ANIM_TARGET, 0x1
+	createvisualtask AnimTask_Splash, 2, ANIM_TARGET, 1
 	waitforvisualfinish
 	end
 
@@ -19003,7 +19003,7 @@ Move_FLASH:
 	end
 
 Move_SPLASH:
-	createvisualtask AnimTask_Splash, 2, 0, 3
+	createvisualtask AnimTask_Splash, 2, ANIM_ATTACKER, 3
 	delay 8
 	loopsewithpan SE_M_TAIL_WHIP, SOUND_PAN_ATTACKER, 38, 3
 	waitforvisualfinish
@@ -19082,7 +19082,7 @@ Move_SKETCH:
 	createsprite gPencilSpriteTemplate, ANIM_TARGET, 2
 	waitforvisualfinish
 	clearmonbg ANIM_TARGET
-	createvisualtask AnimTask_Splash, 2, 0, 2
+	createvisualtask AnimTask_Splash, 2, ANIM_ATTACKER, 2
 	loopsewithpan SE_M_TAIL_WHIP, SOUND_PAN_ATTACKER, 38, 2
 	end
 
@@ -20021,7 +20021,7 @@ Move_TEETER_DANCE:
 
 Move_MUD_SPORT:
 	loadspritegfx ANIM_TAG_MUD_SAND
-	createvisualtask AnimTask_Splash, 2, 0, 6
+	createvisualtask AnimTask_Splash, 2, ANIM_ATTACKER, 6
 	delay 24
 	createsprite gMudsportMudSpriteTemplate, ANIM_TARGET, 2, 0, -4, -16
 	createsprite gMudsportMudSpriteTemplate, ANIM_TARGET, 2, 0, 4, -12
