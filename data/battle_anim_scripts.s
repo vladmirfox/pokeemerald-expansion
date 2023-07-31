@@ -5336,7 +5336,7 @@ Move_ROUND:
 	createvisualtask AnimTask_MusicNotesRainbowBlend, 2
 	waitforvisualfinish
 	monbg ANIM_TARGET
-	createvisualtask SoundTask_PlayCryHighPitch, 2, 0, 255
+	createvisualtask SoundTask_PlayCryHighPitch, 2, ANIM_ATTACKER, 255
 	createvisualtask AnimTask_UproarDistortion, 2, 0
 	createsprite gWavyMusicNotesSpriteTemplate, ANIM_TARGET, 2, 7, 0, 12
 	delay 5
