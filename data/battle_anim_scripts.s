@@ -4105,7 +4105,7 @@ Move_AQUA_JET:
 	delay 12
 	call RisingWaterHitEffect
 	waitforvisualfinish
-	visible 0
+	visible ANIM_ATTACKER
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
 	end
@@ -4636,7 +4636,7 @@ ShadowForcePrep:
 	createvisualtask AnimTask_SetGrayscaleOrOriginalPal, 5, ANIM_DEF_PARTNER, TRUE
 	waitforvisualfinish
 	clearmonbg ANIM_ATTACKER
-	invisible 0
+	invisible ANIM_ATTACKER
 	delay 1
 	goto ShadowForceWaitEnd
 ShadowForceAttack:
@@ -8769,7 +8769,7 @@ Move_PLAY_ROUGH::
 	loadspritegfx ANIM_TAG_IMPACT
 	loadspritegfx ANIM_TAG_PINK_HEART
 	loadspritegfx ANIM_TAG_DUCK
-	monbg 0x3
+	monbg ANIM_DEF_PARTNER
 	setalpha 12, 8
 	playsewithpan SE_M_CRABHAMMER, SOUND_PAN_ATTACKER
 	waitplaysewithpan SE_M_FLAMETHROWER, SOUND_PAN_TARGET, 0xa
@@ -12559,7 +12559,7 @@ SpectralThiefUnleash:
 	delay 0x5
 	playsewithpan SE_M_SELF_DESTRUCT, SOUND_PAN_TARGET
 	createsprite gSpectralThiefBlackSmokeTemplate, ANIM_TARGET, 2, 0x8, 0x8, 0x0, 0x0
-	invisible 0x0
+	invisible ANIM_ATTACKER
 	delay 0x2
 	createsprite gSpectralThiefBlackSmokeTemplate, ANIM_TARGET, 2, 0xfff8, 0xfff8, 0x0, 0x0
 	delay 0x2
@@ -12625,7 +12625,7 @@ SpectralThiefUnleash:
 	playsewithpan SE_M_DOUBLE_SLAP, SOUND_PAN_TARGET
 	createvisualtask AnimTask_ShakeMon, 0x2, ANIM_TARGET, 0x0003, 0x0000, 0x0006, 0x0001
 	waitforvisualfinish
-	visible 0x0
+	visible ANIM_ATTACKER
 	delay 0x2
 	restorebg
 	waitbgfadein
@@ -12859,7 +12859,7 @@ Move_ZING_ZAP::
 	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0x18, 0x6, 0x1, 0x5
 	delay 0x4
 	call ZingZapSparks1
-	invisible 0x0
+	invisible ANIM_ATTACKER
 	createsprite gZingZapYellowBallTemplate, ANIM_TARGET, 2, 0x0, 0x0, 0xF
 	delay 0xA
 	call ZingZapSparks2
@@ -12870,7 +12870,7 @@ Move_ZING_ZAP::
 	createsprite gZingZapRingTemplate, ANIM_ATTACKER, 3, 0x0, 0x0, 0x1, 0x0, 0x1f, 0x8
 	createvisualtask AnimTask_ShakeMon, 0x5, ANIM_TARGET, 0x4, 0x0, 0x6, 0x1
 	call ElectricityEffect
-	visible 0x0
+	visible ANIM_ATTACKER
 	waitforvisualfinish
 	clearmonbg ANIM_TARGET
 	end
