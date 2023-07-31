@@ -1750,7 +1750,7 @@ Move_LAST_RESORT:
 	delay 10
 	playsewithpan SE_M_SWAGGER, SOUND_PAN_ATTACKER
 	waitplaysewithpan SE_M_SWAGGER, SOUND_PAN_ATTACKER, 8
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, 0, 18, 6, 2, 4
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 18, 6, 2, 4
 	waitforvisualfinish
 	createsprite gSimplePaletteBlendSpriteTemplate, 2, 5, 1, 0, 16, 16, RGB(31, 31, 31)
 	createsprite gSlideMonToOffsetSpriteTemplate, 2, 5, 0, 20, 0, 0, 4
@@ -2957,7 +2957,7 @@ Move_SHADOW_SNEAK:
 	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_BG, 0x1, 0x0, 0x7, 0x0000
 	waitforvisualfinish
 	playsewithpan SE_M_FAINT_ATTACK, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0x12, 0x6, 0x1, 0x3
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 18, 6, 1, 3
 	createvisualtask AnimTask_AttackerFadeToInvisible, 0x2, 0x1
 	waitforvisualfinish
 	clearmonbg ANIM_ATTACKER
@@ -4841,7 +4841,7 @@ Move_AUTOTOMIZE:
 	loadspritegfx ANIM_TAG_METAL_BITS @Metal Bits
 	setalpha 12, 8
 	monbg ANIM_ATK_PARTNER
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0x18, 0x6, 0x4, 0x4
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 24, 6, 4, 4
 	createvisualtask AnimTask_TraceMonBlended 0x2, 0x0, 0x4, 0x7, 0xa
 	playsewithpan SE_ELEVATOR, SOUND_PAN_ATTACKER
 	createsprite gAutotomizeMetalShardsTemplate, ANIM_ATTACKER, 0x2, 0x0, 0x0
@@ -5147,7 +5147,7 @@ Move_FLAME_CHARGE:
 	loadspritegfx ANIM_TAG_IMPACT
 	monbg ANIM_TARGET
 	loopsewithpan SE_M_FLAME_WHEEL, SOUND_PAN_ATTACKER, 0x20, 0x6
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0xc, 0x6, 0x6, 0x3
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 12, 6, 6, 3
 	call FlameChargeSwirl
 	delay 0x9
 	call FlameChargeSwirl
@@ -5379,7 +5379,7 @@ Move_CHIP_AWAY:
 	waitforvisualfinish
 	monbg ANIM_ATK_PARTNER
 	setalpha 12, 8
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0x18, 0x6, 0x1, 0x5
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 24, 6, 1, 5
 	delay 0x4
 	createvisualtask AnimTask_ShakeMon, 0x2, ANIM_TARGET, 0x5, 0x0, 0x6, 0x1
 	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 4, 0x0, 0x0, 0x1, 0x1
@@ -5658,7 +5658,7 @@ Move_CIRCLE_THROW:
 	monbg ANIM_DEF_PARTNER
 	setalpha 12, 8
 	playsewithpan SE_M_VITAL_THROW, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0xc, 0x4, 0x1, 0x2
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 12, 4, 1, 2
 	waitforvisualfinish
 	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, ANIM_ATTACKER, 0x14, 0x0, 0x0, 0x4
 	delay 0x2
@@ -7572,7 +7572,7 @@ Move_BOLT_STRIKE::
 	clearmonbg ANIM_ATTACKER
 	playsewithpan SE_M_SWAGGER, SOUND_PAN_ATTACKER
 	waitplaysewithpan SE_M_SWAGGER, SOUND_PAN_ATTACKER, 0x8
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0x12, 0x6, 0x2, 0x4
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 18, 6, 2, 4
 	delay 0xA
 	fadetobg BG_BOLT_STRIKE
 	waitbgfadeout
@@ -8177,10 +8177,10 @@ Move_ROTOTILLER::
 	waitforvisualfinish
 	createsprite gDirtMoundSpriteTemplate, ANIM_ATTACKER, 1, 0x0, 0x0, 0xb4
 	createsprite gDirtMoundSpriteTemplate, ANIM_ATTACKER, 1, 0x0, 0x1, 0xb4
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0x6, 0x4, 0x2, 0x4
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 6, 4, 2, 4
 	call DigThrowDirt
 	call DigThrowDirt
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0x6, 0x4, 0x2, 0x4
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 6, 4, 2, 4
 	call DigThrowDirt
 	call DigThrowDirt
 	waitforvisualfinish
@@ -9617,7 +9617,7 @@ Move_HOLD_HANDS::
 	loadspritegfx ANIM_TAG_MAGENTA_HEART @charm
 	loadspritegfx ANIM_TAG_VERTICAL_HEX @red
 	playsewithpan SE_M_PETAL_DANCE, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0xc, 0x6, 0x6, 0x3
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 12, 6, 6, 3
 	createsprite gHoldHandsHeartTemplate, ANIM_ATTACKER, 2, 0x0, 0xffe8, 0x8, 0x8c
 	delay 0x8
 	createsprite gHoldHandsHeartTemplate, ANIM_ATTACKER, 2, 0x0, 0xffe8, 0x8, 0x8c
@@ -10862,7 +10862,7 @@ SolarBladeUnleash:
 	createvisualtask AnimTask_BlendBattleAnimPal 10, (F_PAL_BG | F_PAL_BATTLERS), 1, 0, 6, 0x7fff
 	waitforvisualfinish
 	playsewithpan SE_M_SWORDS_DANCE, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0x10, 0x6, 0x1, 0x4
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 16, 6, 1, 4
 	createsprite gSwordsDanceBladeSpriteTemplate, ANIM_ATTACKER, 2, 0x0, 0x0
 	call SolarBladeSunRays
 	call SolarBladeSunRays
@@ -12386,7 +12386,7 @@ Move_ACCELEROCK::
 	loadspritegfx ANIM_TAG_IMPACT
 	monbg ANIM_ATK_PARTNER
 	setalpha 12, 8
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0x18, 0x6, 0x1, 0x5
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 24, 6, 1, 5
 	createvisualtask AnimTask_TraceMonBlended, 0x2, 0x0, 0x4, 0x7, 0x3
 	playsewithpan SE_M_JUMP_KICK, SOUND_PAN_ATTACKER
 	delay 0x4
@@ -12856,7 +12856,7 @@ Move_ZING_ZAP::
 	call ZingZapSparks2
 	createvisualtask AnimTask_ShakeMon, 0x5, ANIM_ATTACKER, 0x4, 0x0, 0x6, 0x1
 	delay 0xA
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0x18, 0x6, 0x1, 0x5
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 24, 6, 1, 5
 	delay 0x4
 	call ZingZapSparks1
 	invisible ANIM_ATTACKER
@@ -14096,7 +14096,7 @@ Move_FALSE_SURRENDER::
 	waitbgfadein
 	delay 0x0
 	playsewithpan SE_M_FAINT_ATTACK, 0xc0
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, 0x0, 0x12, 0x6, 0x1, 0x3
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 18, 6, 1, 3
 	createvisualtask AnimTask_AttackerFadeToInvisible, 0x2, 0x1
 	waitforvisualfinish
 	clearmonbg ANIM_ATTACKER
@@ -15848,7 +15848,7 @@ MountainGaleIceRock:
 @Credits to Skeli
 Move_VICTORY_DANCE::
 	loadspritegfx ANIM_TAG_HOLLOW_ORB
-	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 0x2, ANIM_ATTACKER, 0x28, 0x6, 0x3, 0x3
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 40, 6, 3, 3
 	playsewithpan SE_M_TELEPORT, SOUND_PAN_ATTACKER
 	delay 0x8
 	createvisualtask AnimTask_BlendPalInAndOutByTag, 0x5, ANIM_TAG_HOLLOW_ORB, 0x0B1D, 0xe, 0x0, 0x3 @;Light orange
