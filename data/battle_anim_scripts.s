@@ -13101,7 +13101,7 @@ Move_PLASMA_FISTS::
 	call PlasmaFistSpark2
 	waitforvisualfinish
 	clearmonbg ANIM_ATTACKER
-	createvisualtask AnimTask_ShockWaveProgressingBolt, 5
+	createvisualtask AnimTask_ShockWaveProgressingBolt, 5, ANIM_ATTACKER
 	waitforvisualfinish
 	monbg ANIM_TARGET
 	call PlasmaFistsImpact
