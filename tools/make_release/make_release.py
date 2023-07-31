@@ -417,6 +417,10 @@ def prepareMigration(listofchanges, listofparents, versionnumber):
     else:
         content += dealWithMigration('PokemonStorage', listofchanges, listofparents, [], False)
 
+    # if SaveBlock2 wasn't updated, update saveVersion either way
+    if not 'SaveBlock2' in listofchanges and not 'SaveBlock2' in listofparents:
+        content += "\n    gSaveBlock2Ptr->saveVersion = %s;\n" % globalVersion
+
     # take care of continue game warp
     content += "\n    SetContinueGameWarpStatus();\n    gSaveBlock1Ptr->continueGameWarp = gSaveBlock1Ptr->lastHealLocation;\n\n    return TRUE;\n}\n"
 
