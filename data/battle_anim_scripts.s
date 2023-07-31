@@ -2651,7 +2651,7 @@ GigaImpactContinuity:
 	delay 1
 	createsprite gSlideMonToOffsetSpriteTemplate 2, 5, 1, -16, 0, 0, 4
 	waitforvisualfinish
-	createvisualtask AnimTask_ShakeMonInPlace 2, 5, 1, 4, 0, 12, 1
+	createvisualtask AnimTask_ShakeMonInPlace, 2, 5, 1, 4, 0, 12, 1
 	waitforvisualfinish
 	delay 2
 	createsprite gSlideMonToOriginalPosSpriteTemplate 2, 3, 0, 0, 5
@@ -6255,7 +6255,7 @@ VoltSwitchLast:
 @ Attacking the same side requires a change of direction
 @ why would you attack your partner though?!
 VoltSwitchAgainstPartner:
-	createvisualtask AnimTask_SlideOffScreen, 5, ANIM_ATTACKER, +2
+	createvisualtask AnimTask_SlideOffScreen, 5, ANIM_ATTACKER, 2
 	goto VoltSwitchContinue
 
 Move_STRUGGLE_BUG:
@@ -13101,7 +13101,7 @@ Move_PLASMA_FISTS::
 	call PlasmaFistSpark2
 	waitforvisualfinish
 	clearmonbg ANIM_ATTACKER
-	createvisualtask AnimTask_ShockWaveProgressingBolt, 0x5
+	createvisualtask AnimTask_ShockWaveProgressingBolt, 5
 	waitforvisualfinish
 	monbg ANIM_TARGET
 	call PlasmaFistsImpact
@@ -26793,7 +26793,7 @@ General_FormChange:
 	end
 
 General_SlideOffScreen:
-	createvisualtask AnimTask_SlideOffScreen, 5, ANIM_TARGET, +3
+	createvisualtask AnimTask_SlideOffScreen, 5, ANIM_TARGET, 3
 	waitforvisualfinish
 	createvisualtask AnimTask_SetInvisible, 1, ANIM_TARGET, TRUE
 	waitforvisualfinish
