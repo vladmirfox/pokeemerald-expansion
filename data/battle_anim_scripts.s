@@ -1881,7 +1881,7 @@ Move_MAGNET_RISE:
 	delay 0
 	createvisualtask AnimTask_BlendColorCycle 2, 31, -31, 1, 5, 5, RGB(31, 31, 20)
 	playsewithpan SE_M_THUNDERBOLT2, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_WindUpLunge, 5, 7, 0, -12, 4, 10, 10, 12, 6
+	createvisualtask AnimTask_WindUpLunge, 5, ANIM_OPPONENT_RIGHT, 0, -12, 4, 10, 10, 12, 6
 	createsprite gSparkElectricitySpriteTemplate, 0, 7, 32, 24, 190, 12, 0, 1, 0
 	delay 0
 	createsprite gSparkElectricitySpriteTemplate, 0, 7, 80, 24, 22, 12, 0, 1, 0
@@ -7928,7 +7928,7 @@ Move_V_CREATE::
 	createvisualtask AnimTask_StartSlidingBg, 0x5, 0xA00, 0x0, 0x1, 0xffff
 	waitbgfadein
 	playsewithpan SE_M_TAKE_DOWN, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_WindUpLunge, 0x5, 0x0, 0xffe8, 0x8, 0x17, 0xa, 0x28, 0xa
+	createvisualtask AnimTask_WindUpLunge, 5, ANIM_ATTACKER, -24, 8, 23, 10, 40, 10
 	delay 0x23
 	createvisualtask AnimTask_ShakeMon, 0x2, ANIM_TARGET, 0x0, 0x5, 0x32, 0x1
 	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_TARGET, 0x2, 0x0, 0x9, 0x1f
@@ -13989,7 +13989,7 @@ Move_SPIRIT_BREAK::
 	createvisualtask AnimTask_BlendParticle, 0x5, ANIM_TAG_TEAL_ALERT, 0x0, 0xA, 0xA, 0x7DDE
 	createvisualtask AnimTask_BlendParticle, 0x5, ANIM_TAG_EXPLOSION_2, 0x0, 0xA, 0xA, 0x7DDE
 	monbg ANIM_DEF_PARTNER
-	createvisualtask AnimTask_WindUpLunge, 0x5, ANIM_ATTACKER, 0xffec, 0x8, 0x30, 0x8, 0x38, 0x6
+	createvisualtask AnimTask_WindUpLunge, 5, ANIM_ATTACKER, -20, 8, 48, 8, 56, 6
 	playsewithpan SE_M_MEGA_KICK, SOUND_PAN_TARGET
 	createsprite gSpriteTemplate_SpiritBreakChargeBall, ANIM_TARGET, 1, ANIM_TARGET
 	call MindReaderEyeSpikeEffect
@@ -15554,7 +15554,7 @@ Move_PSYSHIELD_BASH::
 	setalpha 12, 8
 	playsewithpan SE_M_SUPERSONIC, SOUND_PAN_ATTACKER
 	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_ATTACKER, 0x1, 0x0, 0xB, 0x7FAF @;Light blue
-	createvisualtask AnimTask_WindUpLunge, 0x5, 0x0, 0xffe8, 0x8, 0x17, 0xa, 0x38, 0xa
+	createvisualtask AnimTask_WindUpLunge, 5, ANIM_ATTACKER, -24, 8, 23, 10, 56, 10
 	delay 0x23
 	createsprite gSpriteTemplate_PsyshieldBashHit, ANIM_ATTACKER, 4, -10, 0x0, 0x1, 0x0
 	playsewithpan SE_M_MEGA_KICK2, SOUND_PAN_TARGET
@@ -15718,7 +15718,7 @@ Move_RAGING_FURY::
 	loadspritegfx ANIM_TAG_SMALL_EMBER
 	loopsewithpan SE_M_DRAGON_RAGE, SOUND_PAN_ATTACKER, 0x8, 0x3
 	createvisualtask AnimTask_BlendColorCycle, 0x2, (F_PAL_BG | F_PAL_ATTACKER | F_PAL_TARGET), 0x2, 0x5, 0x3, 0x8, 0x1f
-	createvisualtask AnimTask_WindUpLunge, 0x5, ANIM_ATTACKER, 0xffec, 0x8, 0x20, 0x8, 0x38, 0x6
+	createvisualtask AnimTask_WindUpLunge, 5, ANIM_ATTACKER, -20, 8, 32, 8, 56, 6
 	call OutrageFlames
 	call OutrageFlames
 	delay 10
@@ -15737,7 +15737,7 @@ Move_WAVE_CRASH::
 	loadspritegfx ANIM_TAG_ICE_CRYSTALS @Bubbles on attacker
 	monbg ANIM_DEF_PARTNER
 	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_ATTACKER, 0x2, 0x0, 0xB, 0x726A
-	createvisualtask AnimTask_WindUpLunge, 0x5, ANIM_ATTACKER, 0xffec, 0x8, 0x30, 0x8, 0x38, 0x6
+	createvisualtask AnimTask_WindUpLunge, 5, ANIM_ATTACKER, -20, 8, 48, 8, 56, 6
 	call WaterfallBubblesOnAttacker
 	waitforvisualfinish
 	createvisualtask AnimTask_ShakeMon, 0x2, ANIM_TARGET, 0x0, 0x5, 0x5, 0x1
@@ -27153,7 +27153,7 @@ Move_BREAKNECK_BLITZ::
 	waitbgfadein
 	setalpha 12, 8
 	delay 0x10
-	createvisualtask AnimTask_WindUpLunge, 0x5, 0x0, 0xffe8, 0x8, 0x17, 0xa, 0x28, 0xa
+	createvisualtask AnimTask_WindUpLunge, 5, ANIM_ATTACKER, -24, 8, 23, 10, 40, 10
 	delay 0x23
 	invisible ANIM_ATTACKER
 	createsprite gGrowingSuperpowerTemplate, ANIM_TARGET, 3, 0x0
@@ -27264,7 +27264,7 @@ Move_ALL_OUT_PUMMELING:
 	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0x0, 0x0, 0x1, 0x1
 	playsewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET
 	delay 0x10
-	createvisualtask AnimTask_WindUpLunge, 0x5, 0x0, 0xffe8, 0x8, 0x17, 0xa, 0x28, 0xa
+	createvisualtask AnimTask_WindUpLunge, 5, ANIM_ATTACKER, -24, 8, 23, 10, 40, 10
 	delay 0x23
 	invisible ANIM_ATTACKER
 	createsprite gGrowingSuperpowerTemplate, ANIM_TARGET, 3, 0x0
