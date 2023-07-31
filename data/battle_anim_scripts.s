@@ -7422,7 +7422,7 @@ Move_RELIC_SONG:
 	monbg ANIM_DEF_PARTNER
 	createvisualtask AnimTask_MusicNotesRainbowBlend, 0x2
 	waitforvisualfinish
-	createvisualtask SoundTask_PlayCryWithEcho, 2, ANIM_ATTACKER, 2
+	createvisualtask SoundTask_PlayCryWithEcho, 2, FALSE
 	createvisualtask AnimTask_UproarDistortion, 0x2, 0x0
 	createsprite gUproarRingSpriteTemplate, ANIM_ATTACKER, 3, 0x0, 0x0, 0x0, 0x0, 0x1f, 0x8
 	createsprite gJaggedMusicNoteSpriteTemplate, ANIM_ATTACKER, 2, 0x0, 0x1d, 0xfff4, 0x0
@@ -8875,7 +8875,7 @@ Move_BOOMBURST:
 	loadspritegfx ANIM_TAG_EXPLOSION
 	loadspritegfx ANIM_TAG_THIN_RING
 	createvisualtask AnimTask_InvertScreenColor, 2, 0x1 | 0x4 | 0x8 | 0x10
-	createvisualtask SoundTask_PlayCryWithEcho, 5
+	createvisualtask SoundTask_PlayCryWithEcho, 5, FALSE
 	createvisualtask AnimTask_ScaleMonAndRestore, 5, -5, -5, 5, ANIM_ATTACKER, 0
 	createsprite gHyperVoiceRingSpriteTemplate, ANIM_ATTACKER, 0, 45, 0, 0, 0, 0, 0, 1
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 1, 0, 6, 1
