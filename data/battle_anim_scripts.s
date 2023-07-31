@@ -3168,7 +3168,6 @@ Move_FLASH_CANNON:
 	end
 
 Move_ROCK_CLIMB:
-	createvisualtask AnimTask_Splash, 2, 2, ANIM_ATTACKER, 3
 	delay 8
 	loopsewithpan SE_M_TAIL_WHIP, SOUND_PAN_ATTACKER, 38, 3
 	waitforvisualfinish
