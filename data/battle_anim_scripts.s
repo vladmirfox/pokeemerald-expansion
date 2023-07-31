@@ -2121,7 +2121,7 @@ Move_POISON_JAB:
 	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, -4, -6, 1, 3
 	playsewithpan SE_M_COMET_PUNCH, SOUND_PAN_TARGET
 	createsprite gPoisonJabProjectileSpriteTemplate, ANIM_TARGET, 2, 2, 31, 10
-	createvisualtask AnimTask_SwayMon, 5, 0, 3, 0x2000, 6, ANIM_TARGET
+	createvisualtask AnimTask_SwayMon, 5, 0, 3, 8192, 6, ANIM_TARGET
 	createvisualtask AnimTask_BlendMonInAndOut, 5, ANIM_TARGET, RGB(16, 0, 16), 12, 0, 1
 	delay 2
 	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 6, 4, 1, 3
@@ -4894,7 +4894,7 @@ Move_TELEKINESIS::
 	createsprite gSpinningSparkleSpriteTemplate, ANIM_ATTACKER, 0xd, 0x14, 0xffec
 	waitforvisualfinish
 	loopsewithpan SE_M_SUPERSONIC, SOUND_PAN_TARGET, 0xa, 0x3
-	createvisualtask AnimTask_SwayMon, 0x5, 0x1, 0x18, 0xD0, 0x1, ANIM_TARGET
+	createvisualtask AnimTask_SwayMon, 5, 1, 24, 208, 1, ANIM_TARGET
 	waitforvisualfinish
 	delay 0xA
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG, 0x1, 0x9, 0x0, 0x0
@@ -5268,7 +5268,7 @@ Move_SIMPLE_BEAM:
 	call SimpleBeamsRegular
 	call SimpleBeamsRegular
 	createvisualtask AnimTask_BlendBattleAnimPal, 0xa, F_PAL_TARGET, 0x2, 0x0, 0x9, 0x7FFF
-	createvisualtask AnimTask_SwayMon, 0x5, 0x0, 0x6, 0x800, 0x4, ANIM_TARGET
+	createvisualtask AnimTask_SwayMon, 5, 0, 6, 2048, 4, ANIM_TARGET
 	call SimpleBeamWithRings
 	call SimpleBeamWithRings
 	call SimpleBeamWithRings
@@ -5319,7 +5319,7 @@ Move_ENTRAINMENT:
 Move_AFTER_YOU:
 	loadspritegfx ANIM_TAG_ANGER @rage
 	loadspritegfx ANIM_TAG_CIRCLE_OF_LIGHT @green color
-	createvisualtask AnimTask_SwayMon, 0x5, 0x1, 0xF, 0x600, 0x2, ANIM_ATTACKER
+	createvisualtask AnimTask_SwayMon, 5, 1, 15, 1536, 2, ANIM_ATTACKER
 	delay 0x1
 	createsprite gAfterYouGreenRageTemplate, ANIM_ATTACKER, 2, 0x0, 0xffec, 0xffe0
 	createsprite gAfterYouGreenRageTemplate, ANIM_ATTACKER, 2, 0x0, 0xfffb, 0xffe5
@@ -5686,8 +5686,8 @@ Move_INCINERATE:
 	delay 1
 	createsprite gIncinerateSpriteTemplate, ANIM_TARGET, 2, 6, 20, 0, -16, 24, 20
 	playsewithpan SE_M_FLAME_WHEEL, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_SwayMon, 5, 0, 3, 0xc00, 8, ANIM_TARGET
-	createvisualtask AnimTask_SwayMon, 5, 0, 3, 0xc00, 8, ANIM_DEF_PARTNER
+	createvisualtask AnimTask_SwayMon, 5, 0, 3, 3072, 8, ANIM_TARGET
+	createvisualtask AnimTask_SwayMon, 5, 0, 3, 3072, 8, ANIM_DEF_PARTNER
 	delay 3
 	createsprite gIncinerateSpriteTemplate, ANIM_TARGET, 2, 6, 20, 0, -16, 24, 20
 	delay 3
@@ -8952,7 +8952,7 @@ Move_KINGS_SHIELD::
 Move_PLAY_NICE::
 	loadspritegfx ANIM_TAG_RED_HEART
 	loopsewithpan SE_M_SANDSTORM, SOUND_PAN_ATTACKER, 0xc, 0x3
-	createvisualtask AnimTask_SwayMon, 0x5, 0x0, 0xc, 0x1000, 0x4, 0x0
+	createvisualtask AnimTask_SwayMon, 5, 0, 12, 4096, 4, ANIM_ATTACKER
 	delay 0xF
 	createsprite gRedHeartProjectileSpriteTemplate, ANIM_TARGET, 3, 0x14, 0xfff8
 	end
@@ -29469,10 +29469,10 @@ TwinkleTackleFinish:
 	delay 0x5
 	visible ANIM_ATTACKER
 	visible ANIM_TARGET
-	createvisualtask AnimTask_SwayMon, 0x5, 0x0, 0x8, 2048, 1, ANIM_ATTACKER
+	createvisualtask AnimTask_SwayMon, 5, 0, 8, 2048, 1, ANIM_ATTACKER
 	call TwinkleTackleStars
 	waitforvisualfinish
-	createvisualtask AnimTask_SwayMon, 0x5, 0x0, 0x8, 2048, 1, ANIM_ATTACKER
+	createvisualtask AnimTask_SwayMon, 5, 0, 8, 2048, 1, ANIM_ATTACKER
 	call TwinkleTackleStars
 	waitforvisualfinish
 	loadspritegfx ANIM_TAG_SPARKLE_4	@detect
