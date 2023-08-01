@@ -836,12 +836,10 @@ BattleScript_SkyDropFlyingAlreadyConfused:
 	goto BattleScript_ThrashConfuses
 
 BattleScript_EffectFling:
+	attackcanceler
 	jumpifcantfling BS_ATTACKER, BattleScript_ButItFailedAtkStringPpReduce
-	jumpifstatus3 BS_ATTACKER, STATUS3_EMBARGO, BattleScript_ButItFailedAtkStringPpReduce
-	jumpifword CMP_COMMON_BITS, gFieldStatuses, STATUS_FIELD_MAGIC_ROOM, BattleScript_ButItFailedAtkStringPpReduce
 	setlastuseditem BS_ATTACKER
 	removeitem BS_ATTACKER
-	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
 	pause B_WAIT_TIME_SHORT
@@ -5570,7 +5568,9 @@ BattleScript_EffectFakeOut::
 	jumpifnotfirstturn BattleScript_ButItFailedAtkStringPpReduce
 	setmoveeffect MOVE_EFFECT_FLINCH
 	goto BattleScript_EffectHit
-
+	
+BattleScript_RemoveItemButItFailedAtkStringPpReduce::
+	removeitem BS_ATTACKER
 BattleScript_ButItFailedAtkStringPpReduce::
 	attackstring
 BattleScript_ButItFailedPpReduce::
