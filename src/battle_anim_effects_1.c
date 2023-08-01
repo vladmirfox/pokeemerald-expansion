@@ -2872,14 +2872,14 @@ const union AffineAnimCmd gWoodHammerHammerAffineAnimCmd_BackwardsRotateAndScale
 const union AffineAnimCmd gWoodHammerHammerAffineAnimCmd_PunchClockwise[] =
 {
     AFFINEANIMCMD_FRAME(0x100 + WOOD_HAMMER_SCALED_AMOUNT, 0x100 + WOOD_HAMMER_SCALED_AMOUNT, WOOD_HAMMER_ROTATED_AMOUNT, 0),
-    AFFINEANIMCMD_FRAME(0, 0, -8, 14),
+    AFFINEANIMCMD_FRAME(0, 0, -16, 7),
     AFFINEANIMCMD_END
 };
 
 const union AffineAnimCmd gWoodHammerHammerAffineAnimCmd_PunchCounterClockwise[] =
 {
     AFFINEANIMCMD_FRAME(-0x100 - WOOD_HAMMER_SCALED_AMOUNT, 0x100 + WOOD_HAMMER_SCALED_AMOUNT, -WOOD_HAMMER_ROTATED_AMOUNT, 0),
-    AFFINEANIMCMD_FRAME(0, 0, 8, 14),
+    AFFINEANIMCMD_FRAME(0, 0, 16, 7),
     AFFINEANIMCMD_END
 };
 
@@ -3080,7 +3080,7 @@ static void AnimWoodHammerSmall(struct Sprite *sprite)
 }
 
 #define HAMMER_X_OFFSET 40
-#define HAMMER_PUNCH_WAIT_FRAMES 30
+#define HAMMER_PUNCH_WAIT_FRAMES 37
 
 static void AnimWoodHammerHammer(struct Sprite *sprite)
 {
