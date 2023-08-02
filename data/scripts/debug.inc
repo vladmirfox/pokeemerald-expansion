@@ -70,9 +70,17 @@ Debug_FlagsNotSetBattleConfigMessage_Text:
 	.string "'include/config/battle.h'!$"
 
 Debug_Script_1::
+    setwildbattle SPECIES_GENGAR, 10, ITEM_LIFE_ORB, SPECIES_PIKACHU, 10, ITEM_LIGHT_BALL
+    givemon SPECIES_MEWTWO,100,ITEM_LIFE_ORB
+    givemon SPECIES_LUGIA,100,ITEM_CHOICE_SCARF
+    dowildbattle
 	end
 
 Debug_Script_2::
+    setwildbattle SPECIES_GENGAR, 10, ITEM_LIFE_ORB, SPECIES_PIKACHU, 10, ITEM_LIGHT_BALL
+    givemon SPECIES_MEWTWO,100,ITEM_LIFE_ORB
+    givemon SPECIES_LUGIA,100,ITEM_CHOICE_SCARF
+    multi_fixed_wild TRAINER_MAY_LILYCOVE_MUDKIP, TRAINER_BACK_PIC_MAY
 	end
 
 Debug_Script_3::
