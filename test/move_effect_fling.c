@@ -43,8 +43,8 @@ SINGLE_BATTLE_TEST("Fling fails if pokemon is under the effects of Embargo or Ma
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RAZOR_CLAW); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, move);}
-        TURN { MOVE(player, MOVE_FLING);}
+        TURN { MOVE(opponent, move); }
+        TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
         MESSAGE("Wobbuffet used Fling!");
         if (move == MOVE_CELEBRATE) {
