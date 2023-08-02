@@ -1,6 +1,11 @@
 #include "global.h"
 #include "test_battle.h"
 
+ASSUMPTIONS
+{
+    ASSUME(P_GEN_8_POKEMON == TRUE);
+}
+
 SINGLE_BATTLE_TEST("Mirror Armor lowers a stat of the attacking pokemon")
 {
     u16 move, statId;
@@ -13,7 +18,7 @@ SINGLE_BATTLE_TEST("Mirror Armor lowers a stat of the attacking pokemon")
     PARAMETRIZE {move = MOVE_FAKE_TEARS; statId = STAT_SPDEF; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {Ability(ABILITY_MIRROR_ARMOR);}
+        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -50,16 +55,16 @@ SINGLE_BATTLE_TEST("Mirror Armor lowers a stat of the attacking pokemon")
 SINGLE_BATTLE_TEST("Mirror Armor triggers even if the attacking Pokemon also has Mirror Armor ability")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {Ability(ABILITY_MIRROR_ARMOR);}
-        OPPONENT(SPECIES_WYNAUT) {Ability(ABILITY_MIRROR_ARMOR);}
+        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
+        OPPONENT(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
-        MESSAGE("Foe Wynaut used Leer!");
+        MESSAGE("Foe Corviknigh used Leer!");
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wynaut's Defense fell!");
+        MESSAGE("Foe Corviknigh's Defense fell!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE - 1);
@@ -69,7 +74,7 @@ SINGLE_BATTLE_TEST("Mirror Armor triggers even if the attacking Pokemon also has
 SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stats of an attacking Pokemon with the Clear Body ability")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {Ability(ABILITY_MIRROR_ARMOR);}
+        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
         OPPONENT(SPECIES_WYNAUT) {Ability(ABILITY_CLEAR_BODY);}
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
@@ -87,7 +92,7 @@ SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stats of an attacking Pokemon
 SINGLE_BATTLE_TEST("Mirror Armor lowers the Attack of Pokemon with Intimidate")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {Ability(ABILITY_MIRROR_ARMOR);}
+        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
         OPPONENT(SPECIES_GYARADOS) {Ability(ABILITY_INTIMIDATE);}
     } WHEN {
         TURN {}
@@ -107,7 +112,7 @@ SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stats of an attacking Pokemon
 {
     KNOWN_FAILING;
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {Ability(ABILITY_MIRROR_ARMOR);}
+        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); }
@@ -127,7 +132,7 @@ SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stats of an attacking Pokemon
 SINGLE_BATTLE_TEST("Mirror Armor raises the stat of an attacking Pokemon with Contrary")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {Ability(ABILITY_MIRROR_ARMOR);}
+        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
         OPPONENT(SPECIES_SHUCKLE) {Ability(ABILITY_CONTRARY);}
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
@@ -145,7 +150,7 @@ SINGLE_BATTLE_TEST("Mirror Armor raises the stat of an attacking Pokemon with Co
 SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stat of the attacking Pokemon if it is already at -6")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {Ability(ABILITY_MIRROR_ARMOR);}
+        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(player, MOVE_SCREECH); }
@@ -153,9 +158,9 @@ SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stat of the attacking Pokemon
         TURN { MOVE(player, MOVE_SCREECH); }
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
-        MESSAGE("Wobbuffet used Screech!");
-        MESSAGE("Wobbuffet used Screech!");
-        MESSAGE("Wobbuffet used Screech!");
+        MESSAGE("Corviknigh used Screech!");
+        MESSAGE("Corviknigh used Screech!");
+        MESSAGE("Corviknigh used Screech!");
         MESSAGE("Foe Wynaut used Leer!");
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
