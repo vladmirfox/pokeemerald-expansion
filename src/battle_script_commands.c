@@ -1605,9 +1605,9 @@ static void Cmd_attackcanceler(void)
         && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
     {
         if (gBattleMoves[gCurrentMove].effect == EFFECT_FLING) // Edge case for removing a mon's item when there is no target available after using Fling.
-            gBattlescriptCurrInstr = BattleScript_RemoveItemButItFailedAtkStringPpReduce;
+            gBattlescriptCurrInstr = BattleScript_ButItFailedPpReduceAtkStringRemoveItem;
         else
-            gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce;
+            gBattlescriptCurrInstr = BattleScript_ButItFailedPpReduceAtkString;
 
         if (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
             CancelMultiTurnMoves(gBattlerAttacker);

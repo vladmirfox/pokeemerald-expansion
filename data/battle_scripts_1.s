@@ -837,7 +837,7 @@ BattleScript_SkyDropFlyingAlreadyConfused:
 
 BattleScript_EffectFling:
 	attackcanceler
-	jumpifcantfling BS_ATTACKER, BattleScript_ButItFailedAtkStringPpReduce
+	jumpifcantfling BS_ATTACKER, BattleScript_ButItFailedPpReduceAtkString
 	setlastuseditem BS_ATTACKER
 	removeitem BS_ATTACKER
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
@@ -969,7 +969,7 @@ BattleScript_EffectClangorousSoul:
 
 BattleScript_EffectOctolock:
 	attackcanceler
-	jumpifsubstituteblocks BattleScript_ButItFailedAtkStringPpReduce
+	jumpifsubstituteblocks BattleScript_ButItFailedPpReduceAtkString
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
 	ppreduce
@@ -1017,9 +1017,9 @@ BattleScript_EffectPoltergeist:
 
 BattleScript_EffectTarShot:
 	attackcanceler
-	jumpifsubstituteblocks BattleScript_ButItFailedAtkStringPpReduce
+	jumpifsubstituteblocks BattleScript_ButItFailedPpReduceAtkString
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-	cantarshotwork BS_TARGET, BattleScript_ButItFailedAtkStringPpReduce
+	cantarshotwork BS_TARGET, BattleScript_ButItFailedPpReduceAtkString
 	attackstring
 	ppreduce
 	setstatchanger STAT_SPEED, 1, TRUE
@@ -1500,7 +1500,7 @@ BattleScript_PurifyWorks:
 BattleScript_EffectStrengthSap:
 	setstatchanger STAT_ATK, 1, TRUE
 	attackcanceler
-	jumpifsubstituteblocks BattleScript_ButItFailedAtkStringPpReduce
+	jumpifsubstituteblocks BattleScript_ButItFailedPpReduceAtkString
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
 	ppreduce
@@ -2068,7 +2068,7 @@ BattleScript_EffectDefog:
 	jumpifsubstituteblocks BattleScript_DefogIfCanClearHazards
 	jumpifstat BS_TARGET, CMP_NOT_EQUAL, STAT_EVASION, MIN_STAT_STAGE, BattleScript_DefogWorks
 BattleScript_DefogIfCanClearHazards:
-	defogclear BS_ATTACKER, FALSE, BattleScript_ButItFailedAtkStringPpReduce
+	defogclear BS_ATTACKER, FALSE, BattleScript_ButItFailedPpReduceAtkString
 BattleScript_DefogWorks:
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
@@ -2214,9 +2214,9 @@ BattleScript_EffectClearSmog:
 BattleScript_EffectToxicThread:
 	setstatchanger STAT_SPEED, 2, TRUE
 	attackcanceler
-	jumpifsubstituteblocks BattleScript_ButItFailedAtkStringPpReduce
+	jumpifsubstituteblocks BattleScript_ButItFailedPpReduceAtkString
 	jumpifstat BS_TARGET, CMP_NOT_EQUAL, STAT_SPEED, MIN_STAT_STAGE, BattleScript_ToxicThreadWorks
-	jumpifstatus BS_TARGET, STATUS1_PSN_ANY, BattleScript_ButItFailedAtkStringPpReduce
+	jumpifstatus BS_TARGET, STATUS1_PSN_ANY, BattleScript_ButItFailedPpReduceAtkString
 BattleScript_ToxicThreadWorks:
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
@@ -2736,7 +2736,7 @@ BattleScript_EffectSimpleBeam:
 
 BattleScript_EffectSuckerPunch:
 	attackcanceler
-	suckerpunchcheck BattleScript_ButItFailedAtkStringPpReduce
+	suckerpunchcheck BattleScript_ButItFailedPpReduceAtkString
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	goto BattleScript_HitFromAtkString
 
@@ -2753,7 +2753,7 @@ BattleScript_EffectLuckyChant:
 
 BattleScript_EffectMetalBurst:
 	attackcanceler
-	metalburstdamagecalculator BattleScript_ButItFailedAtkStringPpReduce
+	metalburstdamagecalculator BattleScript_ButItFailedPpReduceAtkString
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
 	ppreduce
@@ -2764,7 +2764,7 @@ BattleScript_EffectMetalBurst:
 
 BattleScript_EffectHealingWish:
 	attackcanceler
-	jumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_ButItFailedAtkStringPpReduce
+	jumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_ButItFailedPpReduceAtkString
 	attackstring
 	ppreduce
 	attackanimation
@@ -3127,9 +3127,9 @@ BattleScript_EffectRoost:
 BattleScript_EffectCaptivate:
 	setstatchanger STAT_SPATK, 2, TRUE
 	attackcanceler
-	jumpifsubstituteblocks BattleScript_ButItFailedAtkStringPpReduce
+	jumpifsubstituteblocks BattleScript_ButItFailedPpReduceAtkString
 	jumpifoppositegenders BattleScript_CaptivateCheckAcc
-	goto BattleScript_ButItFailedAtkStringPpReduce
+	goto BattleScript_ButItFailedPpReduceAtkString
 BattleScript_CaptivateCheckAcc:
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	goto BattleScript_StatDownFromAttackString
@@ -3707,7 +3707,7 @@ BattleScript_EffectEvasionDown:
 	setstatchanger STAT_EVASION, 1, TRUE
 BattleScript_EffectStatDown:
 	attackcanceler
-	jumpifsubstituteblocks BattleScript_ButItFailedAtkStringPpReduce
+	jumpifsubstituteblocks BattleScript_ButItFailedPpReduceAtkString
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 BattleScript_StatDownFromAttackString:
 	attackstring
@@ -4600,7 +4600,7 @@ BattleScript_EffectPsywave::
 
 BattleScript_EffectCounter::
 	attackcanceler
-	counterdamagecalculator BattleScript_ButItFailedAtkStringPpReduce
+	counterdamagecalculator BattleScript_ButItFailedPpReduceAtkString
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
 	ppreduce
@@ -4907,7 +4907,7 @@ BattleScript_DoGhostCurse::
 
 BattleScript_EffectMatBlock::
 	attackcanceler
-	jumpifnotfirstturn BattleScript_ButItFailedAtkStringPpReduce
+	jumpifnotfirstturn BattleScript_ButItFailedPpReduceAtkString
 	goto BattleScript_ProtectLikeAtkString
 
 BattleScript_EffectProtect::
@@ -4925,7 +4925,7 @@ BattleScript_ProtectLikeAtkString:
 
 BattleScript_EffectSpikes::
 	attackcanceler
-	trysetspikes BattleScript_ButItFailedAtkStringPpReduce
+	trysetspikes BattleScript_ButItFailedPpReduceAtkString
 	attackstring
 	ppreduce
 	attackanimation
@@ -5323,7 +5323,7 @@ BattleScript_EffectPsychUp::
 
 BattleScript_EffectMirrorCoat::
 	attackcanceler
-	mirrorcoatdamagecalculator BattleScript_ButItFailedAtkStringPpReduce
+	mirrorcoatdamagecalculator BattleScript_ButItFailedPpReduceAtkString
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
 	ppreduce
@@ -5565,13 +5565,13 @@ BattleScript_AlreadyAtFullHp::
 
 BattleScript_EffectFakeOut::
 	attackcanceler
-	jumpifnotfirstturn BattleScript_ButItFailedAtkStringPpReduce
+	jumpifnotfirstturn BattleScript_ButItFailedPpReduceAtkString
 	setmoveeffect MOVE_EFFECT_FLINCH
 	goto BattleScript_EffectHit
 	
-BattleScript_RemoveItemButItFailedAtkStringPpReduce::
+BattleScript_ButItFailedPpReduceAtkStringRemoveItem::
 	removeitem BS_ATTACKER
-BattleScript_ButItFailedAtkStringPpReduce::
+BattleScript_ButItFailedPpReduceAtkString::
 	attackstring
 BattleScript_ButItFailedPpReduce::
 	ppreduce
@@ -5991,7 +5991,7 @@ BattleScript_EffectCloseCombat:
 
 BattleScript_EffectMagicCoat:
 	attackcanceler
-	trysetmagiccoat BattleScript_ButItFailedAtkStringPpReduce
+	trysetmagiccoat BattleScript_ButItFailedPpReduceAtkString
 	attackstring
 	ppreduce
 	attackanimation
@@ -6149,7 +6149,7 @@ BattleScript_EffectGrudge:
 
 BattleScript_EffectSnatch:
 	attackcanceler
-	trysetsnatch BattleScript_ButItFailedAtkStringPpReduce
+	trysetsnatch BattleScript_ButItFailedPpReduceAtkString
 	attackstring
 	ppreduce
 	attackanimation
