@@ -69,7 +69,7 @@ SINGLE_BATTLE_TEST("Fling fails for pokemon with Klutz ability")
         PLAYER(SPECIES_BUNEARY) { Item(ITEM_RAZOR_CLAW); Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_FLING);}
+        TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
         MESSAGE("Buneary used Fling!");
         if (ability != ABILITY_KLUTZ) {
