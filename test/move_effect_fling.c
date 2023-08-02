@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Fling fails if pokemon holds no item")
     PARAMETRIZE {item = ITEM_RAZOR_CLAW; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {Item(item); }
+        PLAYER(SPECIES_WOBBUFFET) { Item(item); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_FLING);}
