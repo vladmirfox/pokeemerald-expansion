@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("Fling fails if pokemon is under the effects of Embargo or Ma
     GIVEN {
         ASSUME(gBattleMoves[MOVE_EMBARGO].effect == EFFECT_EMBARGO);
         ASSUME(gBattleMoves[MOVE_MAGIC_ROOM].effect == EFFECT_MAGIC_ROOM);
-        PLAYER(SPECIES_WOBBUFFET) {Item(ITEM_RAZOR_CLAW); }
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RAZOR_CLAW); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move);}
