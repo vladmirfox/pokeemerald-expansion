@@ -111,7 +111,7 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - the 
         ASSUME(P_GEN_8_POKEMON == TRUE);
         PLAYER(SPECIES_SQUIRTLE);
         PLAYER(SPECIES_CHARMANDER);
-        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
+        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
         OPPONENT(SPECIES_CATERPIE);
         OPPONENT(SPECIES_WEEDLE);
     } WHEN {
