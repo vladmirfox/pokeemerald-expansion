@@ -685,11 +685,13 @@ struct BattleStruct
 #define IS_MOVE_SPECIAL(move)(GetBattleMoveSplit(move) == SPLIT_SPECIAL)
 #define IS_MOVE_STATUS(move)(gBattleMoves[move].split == SPLIT_STATUS)
 
-#define IS_MOVE_RECOIL(move)(gBattleMoves[move].effect == EFFECT_RECOIL_25          \
-                          || gBattleMoves[move].effect == EFFECT_RECOIL_IF_MISS     \
-                          || gBattleMoves[move].effect == EFFECT_RECOIL_50          \
-                          || gBattleMoves[move].effect == EFFECT_RECOIL_33          \
-                          || gBattleMoves[move].effect == EFFECT_RECOIL_33_STATUS)
+#define IS_EFFECT_RECOIL(effect)(effect == EFFECT_RECOIL_25      \
+                          || effect == EFFECT_RECOIL_IF_MISS     \
+                          || effect == EFFECT_RECOIL_50          \
+                          || effect == EFFECT_RECOIL_33          \
+                          || effect == EFFECT_RECOIL_33_STATUS)
+
+#define IS_MOVE_RECOIL(move)(IS_EFFECT_RECOIL(gBattleMoves[move].effect))
 
 #define BATTLER_MAX_HP(battlerId)(gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
 #define TARGET_TURN_DAMAGED ((gSpecialStatuses[gBattlerTarget].physicalDmg != 0 || gSpecialStatuses[gBattlerTarget].specialDmg != 0))

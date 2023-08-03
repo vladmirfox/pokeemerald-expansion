@@ -1847,7 +1847,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 6;
             break;
         case EFFECT_RECOIL_25:
-            if (AI_DATA->abilities[battlerAtk] != ABILITY_MAGIC_GUARD && AI_DATA->abilities[battlerAtk] != ABILITY_ROCK_HEAD)
+            if (AI_IsDamagedByRecoil(battlerAtk))
             {
                 u32 recoilDmg = max(1, AI_DATA->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] / 4);
                 if (!ShouldUseRecoilMove(battlerAtk, battlerDef, recoilDmg, AI_THINKING_STRUCT->movesetIndex))
@@ -1857,7 +1857,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_RECOIL_33:
         case EFFECT_RECOIL_33_STATUS:
-            if (AI_DATA->abilities[battlerAtk] != ABILITY_MAGIC_GUARD && AI_DATA->abilities[battlerAtk] != ABILITY_ROCK_HEAD)
+            if (AI_IsDamagedByRecoil(battlerAtk))
             {
                 u32 recoilDmg = max(1, AI_DATA->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] / 3);
                 if (!ShouldUseRecoilMove(battlerAtk, battlerDef, recoilDmg, AI_THINKING_STRUCT->movesetIndex))
@@ -1866,7 +1866,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             break;
         case EFFECT_RECOIL_50:
-            if (AI_DATA->abilities[battlerAtk] != ABILITY_MAGIC_GUARD && AI_DATA->abilities[battlerAtk] != ABILITY_ROCK_HEAD)
+            if (AI_IsDamagedByRecoil(battlerAtk))
             {
                 u32 recoilDmg = max(1, AI_DATA->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] / 2);
                 if (!ShouldUseRecoilMove(battlerAtk, battlerDef, recoilDmg, AI_THINKING_STRUCT->movesetIndex))
@@ -3146,6 +3146,10 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     u8 atkPriority = GetMovePriority(battlerAtk, move);
     u16 predictedMove = AI_DATA->predictedMoves[battlerDef];
     bool32 isDoubleBattle = IsValidDoubleBattle(battlerAtk);
+    u32 mostDmgMovesetId = GetAIMostDamagingMoveId(battlerAtk, battlerDef);
+    u32 *dmgs = AI_DATA->simulatedDmg[battlerAtk][battlerDef];
+    u32 noOfHitsMostDmg = GetNoOfHitsToKOBattler(dmgs[mostDmgMovesetId], battlerDef);
+    u32 noOfHitsCurrDmg = GetNoOfHitsToKOBattler(dmgs[AI_THINKING_STRUCT->movesetIndex], battlerDef);
     u32 i;
     // We only check for moves that have a 20% chance or more for their secondary effect to happen because moves with a smaller chance are rather worthless. We don't want the AI to use those.
     bool32 sereneGraceBoost = (AI_DATA->abilities[battlerAtk] == ABILITY_SERENE_GRACE && (gBattleMoves[move].secondaryEffectChance >= 20 && gBattleMoves[move].secondaryEffectChance < 100));
@@ -3154,17 +3158,48 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     if (IsTargetingPartner(battlerAtk, battlerDef))
         return score;
 
+    // if multiple moves can 0HKO, then
+    if (mostDmgMovesetId != AI_THINKING_STRUCT->movesetIndex && noOfHitsMostDmg == noOfHitsCurrDmg && noOfHitsCurrDmg == 1)
+    {
+        const struct BattleMove *currMove = &gBattleMoves[gBattleMons[battlerAtk].moves[AI_THINKING_STRUCT->movesetIndex]];
+        const struct BattleMove *mostDmgMove = &gBattleMoves[gBattleMons[battlerAtk].moves[mostDmgMovesetId]];
+        // prioritize moves with higher accuracy
+        if (AI_GetAbility(battlerAtk) != ABILITY_NO_GUARD && AI_GetAbility(battlerDef) != ABILITY_NO_GUARD)
+        {
+            if (currMove->accuracy > mostDmgMove->accuracy)
+                score++;
+            else if (currMove->accuracy < mostDmgMove->accuracy)
+                score--;
+        }
+        // prioritize moves without a risky secondary effect such as Overheat, Explosion or Hyper Beam
+        if (!IsInIgnoredPowerfulMoveEffects(currMove->effect) && IsInIgnoredPowerfulMoveEffects(mostDmgMove->effect))
+            score++;
+        else if (IsInIgnoredPowerfulMoveEffects(currMove->effect) && !IsInIgnoredPowerfulMoveEffects(mostDmgMove->effect))
+            score--;
+        // prioritize moves without recoil
+        if (AI_IsDamagedByRecoil(battlerAtk))
+        {
+            if (!IS_EFFECT_RECOIL(currMove->effect) && IS_EFFECT_RECOIL(mostDmgMove->effect))
+                score++;
+            else if (IS_EFFECT_RECOIL(currMove->effect) && !IS_EFFECT_RECOIL(mostDmgMove->effect))
+                score--;
+        }
+    }
+
+    // give priority to moves which can ko the target faster
+    if (AI_THINKING_STRUCT->movesetIndex != mostDmgMovesetId && noOfHitsMostDmg < 5 && noOfHitsCurrDmg != 1 && noOfHitsMostDmg < noOfHitsCurrDmg)
+    {
+        if (AI_WhichMoveBetter(gBattleMons[battlerAtk].moves[AI_THINKING_STRUCT->movesetIndex], gBattleMons[battlerAtk].moves[mostDmgMovesetId], battlerAtk, battlerDef) != 0)
+            score--;
+    }
+
     // check always hits
     if (!IS_MOVE_STATUS(move) && gBattleMoves[move].accuracy == 0)
     {
         // If 2 moves can KO the target in the same number of turns, but one of them always hits and there is a risk the other move could miss, prioritize the always hits move.
-        if (gBattleMons[battlerDef].statStages[STAT_EVASION] > 6 || gBattleMons[battlerAtk].statStages[STAT_ACC] < 6)
-        {
-            u32 mostDmgMoveId = GetAIMostDamagingMoveId(battlerAtk, battlerDef);
-            u32 *dmgs = AI_DATA->simulatedDmg[battlerAtk][battlerDef];
-            if (GetNoOfHitsToKO(dmgs[mostDmgMoveId], gBattleMons[battlerDef].hp) == GetNoOfHitsToKO(dmgs[AI_THINKING_STRUCT->movesetIndex], gBattleMons[battlerDef].hp))
-                score++;
-        }
+        if ((gBattleMons[battlerDef].statStages[STAT_EVASION] > 6 || gBattleMons[battlerAtk].statStages[STAT_ACC] < 6)
+            && noOfHitsMostDmg == noOfHitsCurrDmg)
+            score++;
         if (gBattleMons[battlerDef].statStages[STAT_EVASION] >= 10 || gBattleMons[battlerAtk].statStages[STAT_ACC] <= 2)
             score++;
         if (AI_RandLessThan(100) && (gBattleMons[battlerDef].statStages[STAT_EVASION] >= 8 || gBattleMons[battlerAtk].statStages[STAT_ACC] <= 4))
