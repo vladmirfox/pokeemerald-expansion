@@ -102,10 +102,10 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - the 
 {
     u8 playerSetUpper, opponentSetUpper; // 0 left, 1 right
 
-    PARAMETRIZE {playerSetUpper = 0; opponentSetUpper = 0;}
-    PARAMETRIZE {playerSetUpper = 0; opponentSetUpper = 1;}
-    PARAMETRIZE {playerSetUpper = 1; opponentSetUpper = 0;}
-    PARAMETRIZE {playerSetUpper = 1; opponentSetUpper = 1;}
+    PARAMETRIZE {playerSetUpper = 0; opponentSetUpper = 0; }
+    PARAMETRIZE {playerSetUpper = 0; opponentSetUpper = 1; }
+    PARAMETRIZE {playerSetUpper = 1; opponentSetUpper = 0; }
+    PARAMETRIZE {playerSetUpper = 1; opponentSetUpper = 1; }
 
     GIVEN {
         ASSUME(P_GEN_8_POKEMON == TRUE);
