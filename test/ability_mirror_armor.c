@@ -74,8 +74,8 @@ SINGLE_BATTLE_TEST("Mirror Armor triggers even if the attacking Pokemon also has
 SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stats of an attacking Pokemon with the Clear Body ability")
 {
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
-        OPPONENT(SPECIES_WYNAUT) {Ability(ABILITY_CLEAR_BODY);}
+        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_MIRROR_ARMOR); }
+        OPPONENT(SPECIES_WYNAUT) { Ability(ABILITY_CLEAR_BODY); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
