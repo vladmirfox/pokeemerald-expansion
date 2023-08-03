@@ -80,7 +80,7 @@ SINGLE_BATTLE_TEST("Sticky Web raises Speed by 1 for a Pokemon with Contrary")
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SHUCKLE) {Ability(ABILITY_CONTRARY); }
+        OPPONENT(SPECIES_SHUCKLE) { Ability(ABILITY_CONTRARY); }
     } WHEN {
         TURN { MOVE(player, MOVE_STICKY_WEB); }
         TURN { SWITCH(opponent, 1); }
