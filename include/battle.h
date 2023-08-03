@@ -727,17 +727,6 @@ struct BattleStruct
 #define SET_STATCHANGER(statId, stage, goesDown)(gBattleScripting.statChanger = (statId) + ((stage) << 3) + (goesDown << 7))
 #define SET_STATCHANGER2(dst, statId, stage, goesDown)(dst = (statId) + ((stage) << 3) + (goesDown << 7))
 
-static inline struct Pokemon *GetSideParty(u32 side)
-{
-    return side == B_SIDE_PLAYER ? gPlayerParty : gEnemyParty;
-}
-
-static inline struct Pokemon *GetBattlerParty(u32 battlerId)
-{
-    extern u8 GetBattlerSide(u8 battler);
-    return GetSideParty(GetBattlerSide(battlerId));
-}
-
 // NOTE: The members of this struct have hard-coded offsets
 //       in include/constants/battle_script_commands.h
 struct BattleScripting
@@ -1008,5 +997,21 @@ extern bool8 gHasFetchedBall;
 extern u8 gLastUsedBall;
 extern u16 gLastThrownBall;
 extern u8 gPartyCriticalHits[PARTY_SIZE];
+
+static inline u8 GetBattlerSide(u8 battlerId)
+{
+    return gBattlerPositions[battlerId] & BIT_SIDE;
+}
+
+static inline struct Pokemon *GetSideParty(u32 side)
+{
+    return side == B_SIDE_PLAYER ? gPlayerParty : gEnemyParty;
+}
+
+static inline struct Pokemon *GetBattlerParty(u32 battlerId)
+{
+    extern u8 GetBattlerSide(u8 battler);
+    return GetSideParty(GetBattlerSide(battlerId));
+}
 
 #endif // GUARD_BATTLE_H
