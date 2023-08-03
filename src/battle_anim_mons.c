@@ -847,7 +847,7 @@ bool32 InitSpritePosToAnimBattler(u32 animBattlerId, struct Sprite *sprite, bool
 
 inline u8 GetBattlerSide(u8 battlerId)
 {
-    return GetBattlerSide(battlerId);
+    return gBattlerPositions[battlerId] & BIT_SIDE;
 }
 
 u8 GetBattlerAtPosition(u8 position)
