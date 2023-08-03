@@ -2127,7 +2127,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         case EFFECT_TAUNT:
             if (gDisableStructs[battlerDef].tauntTimer > 0
               || DoesPartnerHaveSameMoveEffect(BATTLE_PARTNER(battlerAtk), battlerDef, move, AI_DATA->partnerMove))
-                score--;
+                score -= 10;
             break;
         case EFFECT_BESTOW:
             if (AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_NONE
@@ -2682,9 +2682,9 @@ static s16 AI_TryToFaint(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     {
         // this move can faint the target
         if (WillAIStrikeFirst() || GetMovePriority(battlerAtk, move) > 0)
-            score += 4; // we go first or we're using priority move
+            score += 5; // we go first or we're using priority move
         else
-            score += 2;
+            score += 4;
     }
     else
     {
@@ -3124,17 +3124,107 @@ static bool32 IsPinchBerryItemEffect(u16 holdEffect)
     return FALSE;
 }
 
-static u32 GetAIMostDamagingMoveId(u8 battlerAtk, u8 battlerDef)
+static u32 CompareMoveAccuracies(u32 battlerAtk, u32 battlerDef, u32 move1, u32 move2)
 {
-    u32 i, id = 0;
-    u32 mostDmg = 0;
+    u32 abilityAtk = AI_GetAbility(battlerAtk);
+    u32 abilityDef = AI_GetAbility(battlerDef);
+
+    if (abilityAtk != ABILITY_NO_GUARD && abilityDef != ABILITY_NO_GUARD)
+    {
+        u32 itemAtk = AI_GetHoldEffect(battlerAtk);
+        u32 itemDef = AI_GetHoldEffect(battlerAtk);
+
+        u32 acc1 = GetTotalAccuracy(battlerAtk, battlerDef, move1, abilityAtk, abilityDef, itemAtk, itemDef);
+        u32 acc2 = GetTotalAccuracy(battlerAtk, battlerDef, move2, abilityAtk, abilityDef, itemAtk, itemDef);
+
+        // If one move always hits and the other can miss
+        if (gBattleMoves[move1].accuracy == 0 && gBattleMoves[move2].accuracy != 0 && acc2 < 100)
+            return 0;
+        else if (gBattleMoves[move2].accuracy == 0 && gBattleMoves[move1].accuracy != 0 && acc1 < 100)
+            return 1;
+
+        if (acc1 > acc2)
+            return 0;
+        else if (acc2 > acc1)
+            return 1;
+    }
+    return 2;
+}
+
+static s16 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
+{
+    u32 i;
+    u16 noOfHits[MAX_MON_MOVES] = {0};
+    s16 score = 0;
+    u16 *moves = GetMovesArray(battlerAtk);
+    const struct BattleMove *currMove = &gBattleMoves[moves[currId]];
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (AI_DATA->simulatedDmg[battlerAtk][battlerDef][i] > mostDmg)
-            id = i, mostDmg = AI_DATA->simulatedDmg[battlerAtk][battlerDef][i];
+        if (moves[i] != MOVE_NONE && gBattleMoves[moves[i]].power)
+            noOfHits[i] = GetNoOfHitsToKOBattler(AI_DATA->simulatedDmg[battlerAtk][battlerDef][i], battlerDef);
     }
-    return id;
+
+    // if multiple moves can 0HKO, then compare the current move with the others
+    if (noOfHits[currId] == 1)
+    {
+        for (i = 0; i < MAX_MON_MOVES; i++)
+        {
+            if (noOfHits[i] != 1 || i == currId)
+                continue;
+
+            // prioritize moves without a risky secondary effect such as Overheat, Explosion or Hyper Beam
+            if (!IsInIgnoredPowerfulMoveEffects(currMove->effect) && IsInIgnoredPowerfulMoveEffects(gBattleMoves[moves[i]].effect))
+                score += 2;
+            else if (IsInIgnoredPowerfulMoveEffects(currMove->effect) && !IsInIgnoredPowerfulMoveEffects(gBattleMoves[moves[i]].effect))
+                score -= 2;
+
+            if (!IsInIgnoredPowerfulMoveEffects(currMove->effect))
+            {
+                // prioritize moves with higher accuracy
+                switch (CompareMoveAccuracies(battlerAtk, battlerDef, moves[currId], moves[i]))
+                {
+                case 0:
+                    score++;
+                    break;
+                case 1:
+                    score--;
+                    break;
+                }
+
+                // prioritize moves without recoil
+                if (AI_IsDamagedByRecoil(battlerAtk))
+                {
+                    if (!IS_EFFECT_RECOIL(currMove->effect) && IS_EFFECT_RECOIL(gBattleMoves[moves[i]].effect))
+                        score++;
+                    else if (IS_EFFECT_RECOIL(currMove->effect) && !IS_EFFECT_RECOIL(gBattleMoves[moves[i]].effect))
+                        score--;
+                }
+            }
+        }
+    }
+    else
+    {
+        // give priority to moves which can ko the target faster
+        for (i = 0; i < MAX_MON_MOVES; i++)
+        {
+            if (i != currId && noOfHits[i] < 5 && noOfHits[currId] != 1 && noOfHits[i] < noOfHits[currId])
+            {
+                if (AI_WhichMoveBetter(moves[currId], moves[i], battlerAtk, battlerDef) != 0)
+                    score--;
+            }
+        }
+
+        // If 2 moves can KO the target in the same number of turns, but one of them always hits and there is a risk the other move could miss, prioritize the move with better accuracy.
+        for (i = 0; i < MAX_MON_MOVES; i++)
+        {
+            if (i != currId && noOfHits[currId] == noOfHits[i]
+                && CompareMoveAccuracies(battlerAtk, battlerDef, moves[currId], moves[i]))
+                score++;
+        }
+    }
+
+    return score;
 }
 
 // AI_FLAG_CHECK_VIABILITY - a weird mix of increasing and decreasing scores
@@ -3146,10 +3236,6 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     u8 atkPriority = GetMovePriority(battlerAtk, move);
     u16 predictedMove = AI_DATA->predictedMoves[battlerDef];
     bool32 isDoubleBattle = IsValidDoubleBattle(battlerAtk);
-    u32 mostDmgMovesetId = GetAIMostDamagingMoveId(battlerAtk, battlerDef);
-    u32 *dmgs = AI_DATA->simulatedDmg[battlerAtk][battlerDef];
-    u32 noOfHitsMostDmg = GetNoOfHitsToKOBattler(dmgs[mostDmgMovesetId], battlerDef);
-    u32 noOfHitsCurrDmg = GetNoOfHitsToKOBattler(dmgs[AI_THINKING_STRUCT->movesetIndex], battlerDef);
     u32 i;
     // We only check for moves that have a 20% chance or more for their secondary effect to happen because moves with a smaller chance are rather worthless. We don't want the AI to use those.
     bool32 sereneGraceBoost = (AI_DATA->abilities[battlerAtk] == ABILITY_SERENE_GRACE && (gBattleMoves[move].secondaryEffectChance >= 20 && gBattleMoves[move].secondaryEffectChance < 100));
@@ -3158,48 +3244,12 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     if (IsTargetingPartner(battlerAtk, battlerDef))
         return score;
 
-    // if multiple moves can 0HKO, then
-    if (mostDmgMovesetId != AI_THINKING_STRUCT->movesetIndex && noOfHitsMostDmg == noOfHitsCurrDmg && noOfHitsCurrDmg == 1)
-    {
-        const struct BattleMove *currMove = &gBattleMoves[gBattleMons[battlerAtk].moves[AI_THINKING_STRUCT->movesetIndex]];
-        const struct BattleMove *mostDmgMove = &gBattleMoves[gBattleMons[battlerAtk].moves[mostDmgMovesetId]];
-        // prioritize moves with higher accuracy
-        if (AI_GetAbility(battlerAtk) != ABILITY_NO_GUARD && AI_GetAbility(battlerDef) != ABILITY_NO_GUARD)
-        {
-            if (currMove->accuracy > mostDmgMove->accuracy)
-                score++;
-            else if (currMove->accuracy < mostDmgMove->accuracy)
-                score--;
-        }
-        // prioritize moves without a risky secondary effect such as Overheat, Explosion or Hyper Beam
-        if (!IsInIgnoredPowerfulMoveEffects(currMove->effect) && IsInIgnoredPowerfulMoveEffects(mostDmgMove->effect))
-            score++;
-        else if (IsInIgnoredPowerfulMoveEffects(currMove->effect) && !IsInIgnoredPowerfulMoveEffects(mostDmgMove->effect))
-            score--;
-        // prioritize moves without recoil
-        if (AI_IsDamagedByRecoil(battlerAtk))
-        {
-            if (!IS_EFFECT_RECOIL(currMove->effect) && IS_EFFECT_RECOIL(mostDmgMove->effect))
-                score++;
-            else if (IS_EFFECT_RECOIL(currMove->effect) && !IS_EFFECT_RECOIL(mostDmgMove->effect))
-                score--;
-        }
-    }
-
-    // give priority to moves which can ko the target faster
-    if (AI_THINKING_STRUCT->movesetIndex != mostDmgMovesetId && noOfHitsMostDmg < 5 && noOfHitsCurrDmg != 1 && noOfHitsMostDmg < noOfHitsCurrDmg)
-    {
-        if (AI_WhichMoveBetter(gBattleMons[battlerAtk].moves[AI_THINKING_STRUCT->movesetIndex], gBattleMons[battlerAtk].moves[mostDmgMovesetId], battlerAtk, battlerDef) != 0)
-            score--;
-    }
+    if (gBattleMoves[move].power)
+        score += AI_CompareDamagingMoves(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex);
 
     // check always hits
     if (!IS_MOVE_STATUS(move) && gBattleMoves[move].accuracy == 0)
     {
-        // If 2 moves can KO the target in the same number of turns, but one of them always hits and there is a risk the other move could miss, prioritize the always hits move.
-        if ((gBattleMons[battlerDef].statStages[STAT_EVASION] > 6 || gBattleMons[battlerAtk].statStages[STAT_ACC] < 6)
-            && noOfHitsMostDmg == noOfHitsCurrDmg)
-            score++;
         if (gBattleMons[battlerDef].statStages[STAT_EVASION] >= 10 || gBattleMons[battlerAtk].statStages[STAT_ACC] <= 2)
             score++;
         if (AI_RandLessThan(100) && (gBattleMons[battlerDef].statStages[STAT_EVASION] >= 8 || gBattleMons[battlerAtk].statStages[STAT_ACC] <= 4))
@@ -4077,6 +4127,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score++;
             if (HasMoveEffect(battlerDef, EFFECT_MORNING_SUN)
               || HasMoveEffect(battlerDef, EFFECT_SYNTHESIS)
+              || HasMoveEffect(battlerDef, EFFECT_SOLAR_BEAM)
               || HasMoveEffect(battlerDef, EFFECT_MOONLIGHT))
                 score += 2;
             if (HasMoveWithType(battlerDef, TYPE_FIRE) || HasMoveWithType(BATTLE_PARTNER(battlerDef), TYPE_FIRE))
@@ -4867,9 +4918,12 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         IncreasePoisonScore(battlerAtk, battlerDef, move, &score);
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_SPEED, &score);
         break;
+    case EFFECT_SOLAR_BEAM:
+        if (GetNoOfHitsToKOBattler(AI_DATA->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex], battlerDef) >= 2
+            && HasMoveEffect(battlerAtk, EFFECT_SUNNY_DAY) && AI_WeatherHasEffect() && !(gBattleWeather & B_WEATHER_SUN)) // Use Sunny Day to boost damage.
+            score -= 3;
     case EFFECT_TWO_TURNS_ATTACK:
     case EFFECT_SKULL_BASH:
-    case EFFECT_SOLAR_BEAM:
         if (AI_DATA->holdEffects[battlerAtk] == HOLD_EFFECT_POWER_HERB)
             score += 2;
         break;

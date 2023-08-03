@@ -70,10 +70,6 @@ Debug_BoxFilledMessage_Text:
 	.string "Storage boxes filled!$"
 
 Debug_Script_1::
-	callnative ZeroPlayerPartyMons
-	givemon SPECIES_TYPHLOSION, 100
-	setmonmove 0, 0, MOVE_SPLASH
-	trainerbattle_no_intro TRAINER_ROXANNE_1, Debug_BoxFilledMessage_Text
 	end
 
 Debug_Script_2::
