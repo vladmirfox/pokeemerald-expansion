@@ -3053,7 +3053,7 @@ static const u8 *BattleStringGetOpponentName(u8 *text, u8 multiplayerId, u8 batt
 {
     const u8 *toCpy;
 
-    switch (gBattlerPositions[battlerId])
+    switch (GetBattlerPosition(battlerId))
     {
     case B_POSITION_OPPONENT_LEFT:
         toCpy = BattleStringGetOpponentNameByTrainerId(gTrainerBattleOpponent_A, text, multiplayerId, battlerId);
@@ -3073,7 +3073,7 @@ static const u8 *BattleStringGetPlayerName(u8 *text, u8 battlerId)
 {
     const u8 *toCpy;
 
-    switch (gBattlerPositions[battlerId])
+    switch (GetBattlerPosition(battlerId))
     {
     case B_POSITION_PLAYER_LEFT:
         if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
@@ -3499,7 +3499,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 toCpy = BattleStringGetTrainerName(text, multiplayerId, gBattlerAttacker);
                 break;
             case B_TXT_ATK_TRAINER_CLASS:
-                switch (gBattlerPositions[gBattlerAttacker])
+                switch (GetBattlerPosition(gBattlerAttacker))
                 {
                 case B_POSITION_PLAYER_RIGHT:
                     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)

@@ -763,9 +763,9 @@ void BattleTv_SetDataBasedOnString(u16 stringId)
     statStringId = (u16 *)(gBattleTextBuff2 + 2);
     finishedMoveId = (u16 *)(gBattleTextBuff1 + 2);
 
-    atkFlank = gBattlerPositions[gBattlerAttacker] / 2;
-    defFlank = gBattlerPositions[gBattlerTarget] / 2;
-    effFlank = gBattlerPositions[gEffectBattler] / 2;
+    atkFlank = GetBattlerPosition(gBattlerAttacker) / 2;
+    defFlank = GetBattlerPosition(gBattlerTarget) / 2;
+    effFlank = GetBattlerPosition(gEffectBattler) / 2;
 
     switch (stringId)
     {
@@ -1172,8 +1172,8 @@ void BattleTv_SetDataBasedOnMove(u16 move, u16 weatherFlags, struct DisableStruc
         return;
     }
 
-    tvPtr->pos[defSide][gBattlerPositions[gBattlerAttacker] / 2].attackedByMonId = gBattlerPartyIndexes[gBattlerAttacker] + 1;
-    tvPtr->pos[defSide][gBattlerPositions[gBattlerAttacker] / 2].attackedByMoveSlot = moveSlot;
+    tvPtr->pos[defSide][GetBattlerPosition(gBattlerAttacker) / 2].attackedByMonId = gBattlerPartyIndexes[gBattlerAttacker] + 1;
+    tvPtr->pos[defSide][GetBattlerPosition(gBattlerAttacker) / 2].attackedByMoveSlot = moveSlot;
     tvPtr->side[atkSide].usedMoveSlot = moveSlot;
     AddMovePoints(PTS_MOVE_EFFECT, moveSlot, gBattleMoves[move].effect, 0);
     AddPointsBasedOnWeather(weatherFlags, move, moveSlot);

@@ -705,11 +705,11 @@ static void InitLastUsedBallAssets(void)
 // The same goes for a 2 vs 1 where opponent has only one pokemon.
 u32 WhichBattleCoords(u32 battlerId) // 0 - singles, 1 - doubles
 {
-    if (gBattlerPositions[battlerId] == B_POSITION_PLAYER_LEFT
+    if (GetBattlerPosition(battlerId) == B_POSITION_PLAYER_LEFT
         && gPlayerPartyCount == 1
         && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
         return 0;
-    else if (gBattlerPositions[battlerId] == B_POSITION_OPPONENT_LEFT
+    else if (GetBattlerPosition(battlerId) == B_POSITION_OPPONENT_LEFT
              && gEnemyPartyCount == 1
              && !(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
         return 0;
@@ -754,8 +754,8 @@ u8 CreateBattlerHealthboxSprites(u8 battlerId)
     {
         if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
         {
-            healthboxLeftSpriteId = CreateSprite(&sHealthboxPlayerSpriteTemplates[gBattlerPositions[battlerId] / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
-            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxPlayerSpriteTemplates[gBattlerPositions[battlerId] / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
+            healthboxLeftSpriteId = CreateSprite(&sHealthboxPlayerSpriteTemplates[GetBattlerPosition(battlerId) / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
+            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxPlayerSpriteTemplates[GetBattlerPosition(battlerId) / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
 
             gSprites[healthboxLeftSpriteId].oam.affineParam = healthboxRightSpriteId;
 
@@ -767,8 +767,8 @@ u8 CreateBattlerHealthboxSprites(u8 battlerId)
         }
         else
         {
-            healthboxLeftSpriteId = CreateSprite(&sHealthboxOpponentSpriteTemplates[gBattlerPositions[battlerId] / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
-            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxOpponentSpriteTemplates[gBattlerPositions[battlerId] / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
+            healthboxLeftSpriteId = CreateSprite(&sHealthboxOpponentSpriteTemplates[GetBattlerPosition(battlerId) / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
+            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxOpponentSpriteTemplates[GetBattlerPosition(battlerId) / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
 
             gSprites[healthboxLeftSpriteId].oam.affineParam = healthboxRightSpriteId;
 
@@ -956,7 +956,7 @@ void GetBattlerHealthboxCoords(u8 battler, s16 *x, s16 *y)
     }
     else
     {
-        switch (gBattlerPositions[battler])
+        switch (GetBattlerPosition(battler))
         {
         case B_POSITION_PLAYER_LEFT:
             *x = 159, *y = 76;
@@ -1183,7 +1183,7 @@ static void PrintSafariMonInfo(u8 healthboxSpriteId, struct Pokemon *mon)
     u8 i, var, nature, healthBarSpriteId;
 
     memcpy(text, sEmptyWhiteText_GrayHighlight, sizeof(sEmptyWhiteText_GrayHighlight));
-    barFontGfx = &gMonSpritesGfxPtr->barFontGfx[0x520 + (gBattlerPositions[gSprites[healthboxSpriteId].hMain_Battler] * 384)];
+    barFontGfx = &gMonSpritesGfxPtr->barFontGfx[0x520 + (GetBattlerPosition(gSprites[healthboxSpriteId].hMain_Battler) * 384)];
     var = 5;
     nature = GetNature(mon);
     StringCopy(&text[6], gNatureNamePointers[nature]);
@@ -1578,7 +1578,7 @@ static void MegaIndicator_CreateSprite(u32 battlerId, u32 healthboxSpriteId)
     s16 xHealthbox = 0, y = 0;
     s32 x = 0;
 
-    position = gBattlerPositions[battlerId];
+    position = GetBattlerPosition(battlerId);
     GetBattlerHealthboxCoords(battlerId, &xHealthbox, &y);
 
     x = sIndicatorPositions[position][0];
@@ -1624,7 +1624,7 @@ u8 CreatePartyStatusSummarySprites(u8 battlerId, struct HpAndStatus *partyInfo, 
     u8 ballIconSpritesIds[PARTY_SIZE];
     u8 taskId;
 
-    if (!skipPlayer || gBattlerPositions[battlerId] != B_POSITION_OPPONENT_RIGHT)
+    if (!skipPlayer || GetBattlerPosition(battlerId) != B_POSITION_OPPONENT_RIGHT)
     {
         if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
         {
@@ -3078,7 +3078,7 @@ void CreateAbilityPopUp(u8 battlerId, u32 ability, bool32 isDoubleBattle)
         LoadSpritePalette(&sSpritePalette_AbilityPopUp);
     }
     gBattleStruct->activeAbilityPopUps |= gBitTable[battlerId];
-    battlerPosition = gBattlerPositions[battlerId];
+    battlerPosition = GetBattlerPosition(battlerId);
 
     if (isDoubleBattle)
         coords = sAbilityPopUpCoordsDoubles;

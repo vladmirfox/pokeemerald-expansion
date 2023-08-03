@@ -304,8 +304,8 @@ void AnimTask_DrawFallingWhiteLinesOnAttacker(u8 taskId)
 
     if (IsDoubleBattle() && !IsContest())
     {
-        if (gBattlerPositions[gBattleAnimAttacker] == B_POSITION_OPPONENT_RIGHT
-         || gBattlerPositions[gBattleAnimAttacker] == B_POSITION_PLAYER_LEFT)
+        if (GetBattlerPosition(gBattleAnimAttacker) == B_POSITION_OPPONENT_RIGHT
+         || GetBattlerPosition(gBattleAnimAttacker) == B_POSITION_PLAYER_LEFT)
         {
             if (IsBattlerSpriteVisible(BATTLE_PARTNER(gBattleAnimAttacker)) == TRUE)
             {
@@ -427,8 +427,8 @@ static void StatsChangeAnimation_Step1(u8 taskId)
 
     if (IsDoubleBattle() && sAnimStatsChangeData->data[3] == 0)
     {
-        if (gBattlerPositions[sAnimStatsChangeData->battler1] == B_POSITION_OPPONENT_RIGHT
-         || gBattlerPositions[sAnimStatsChangeData->battler1] == B_POSITION_PLAYER_LEFT)
+        if (GetBattlerPosition(sAnimStatsChangeData->battler1) == B_POSITION_OPPONENT_RIGHT
+         || GetBattlerPosition(sAnimStatsChangeData->battler1) == B_POSITION_PLAYER_LEFT)
         {
             if (IsBattlerSpriteVisible(sAnimStatsChangeData->battler2) == TRUE)
             {

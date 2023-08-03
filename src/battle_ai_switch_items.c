@@ -85,7 +85,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
         return FALSE;
 
-    opposingPosition = BATTLE_OPPOSITE(gBattlerPositions[gActiveBattler]);
+    opposingPosition = BATTLE_OPPOSITE(GetBattlerPosition(gActiveBattler));
 
     if (GetBattlerAbility(GetBattlerAtPosition(opposingPosition)) != ABILITY_WONDER_GUARD)
         return FALSE;
@@ -163,10 +163,10 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
         battlerIn1 = gActiveBattler;
-        if (gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(gBattlerPositions[gActiveBattler]))])
+        if (gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))])
             battlerIn2 = gActiveBattler;
         else
-            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(gBattlerPositions[gActiveBattler]));
+            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)));
     }
     else
     {
@@ -233,7 +233,7 @@ static bool8 ShouldSwitchIfGameStatePrompt(void)
     bool8 switchMon = FALSE;
     u16 monAbility = AI_DATA->abilities[gActiveBattler];
     u16 holdEffect = AI_DATA->holdEffects[gActiveBattler];
-    u8 opposingPosition = BATTLE_OPPOSITE(gBattlerPositions[gActiveBattler]);
+    u8 opposingPosition = BATTLE_OPPOSITE(GetBattlerPosition(gActiveBattler));
     u8 opposingBattler = GetBattlerAtPosition(opposingPosition);
     s32 moduloChance = 4; //25% Chance Default
     s32 chanceReducer = 1; //No Reduce default. Increase to reduce
@@ -405,7 +405,7 @@ static bool8 ShouldSwitchIfAbilityBenefit(void)
     s32 monToSwitchId;
     s32 moduloChance = 4; //25% Chance Default
     s32 chanceReducer = 1; //No Reduce default. Increase to reduce
-    u8 battlerId = gBattlerPositions[gActiveBattler];
+    u8 battlerId = GetBattlerPosition(gActiveBattler);
 
     if (AnyStatIsRaised(battlerId))
         chanceReducer = 5; // Reduce switchout probability by factor of 5 if setup
@@ -460,7 +460,7 @@ static bool8 HasSuperEffectiveMoveAgainstOpponents(bool8 noRng)
     s32 i;
     u16 move;
 
-    opposingPosition = BATTLE_OPPOSITE(gBattlerPositions[gActiveBattler]);
+    opposingPosition = BATTLE_OPPOSITE(GetBattlerPosition(gActiveBattler));
     opposingBattler = GetBattlerAtPosition(opposingPosition);
 
     if (!(gAbsentBattlerFlags & gBitTable[opposingBattler]))
@@ -541,10 +541,10 @@ static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent)
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
         battlerIn1 = gActiveBattler;
-        if (gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(gBattlerPositions[gActiveBattler]))])
+        if (gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))])
             battlerIn2 = gActiveBattler;
         else
-            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(gBattlerPositions[gActiveBattler]));
+            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)));
     }
     else
     {
@@ -630,10 +630,10 @@ bool32 ShouldSwitch(void)
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
         battlerIn1 = gActiveBattler;
-        if (gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(gBattlerPositions[gActiveBattler]))])
+        if (gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))])
             battlerIn2 = gActiveBattler;
         else
-            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(gBattlerPositions[gActiveBattler]));
+            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)));
     }
     else
     {
@@ -720,7 +720,7 @@ void AI_TrySwitchOrUseItem(void)
     u8 battlerIn1, battlerIn2;
     s32 firstId;
     s32 lastId; // + 1
-    u8 battlerIdentity = gBattlerPositions[gActiveBattler];
+    u8 battlerIdentity = GetBattlerPosition(gActiveBattler);
 
     if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
         party = gPlayerParty;
@@ -928,10 +928,10 @@ u8 GetMostSuitableMonToSwitchInto(void)
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
         battlerIn1 = gActiveBattler;
-        if (gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(gBattlerPositions[gActiveBattler]))])
+        if (gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)))])
             battlerIn2 = gActiveBattler;
         else
-            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(gBattlerPositions[gActiveBattler]));
+            battlerIn2 = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gActiveBattler)));
 
         opposingBattler = BATTLE_OPPOSITE(battlerIn1);
         if (gAbsentBattlerFlags & gBitTable[opposingBattler])
@@ -939,7 +939,7 @@ u8 GetMostSuitableMonToSwitchInto(void)
     }
     else
     {
-        opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(gBattlerPositions[gActiveBattler]));
+        opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(gActiveBattler)));
         battlerIn1 = gActiveBattler;
         battlerIn2 = gActiveBattler;
     }
@@ -1023,7 +1023,7 @@ static bool8 ShouldUseItem(void)
     bool8 shouldUse = FALSE;
 
     // If teaming up with player and Pokemon is on the right, or Pokemon is currently held by Sky Drop
-    if ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gBattlerPositions[gActiveBattler] == B_POSITION_PLAYER_RIGHT)
+    if ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && GetBattlerPosition(gActiveBattler) == B_POSITION_PLAYER_RIGHT)
        || gStatuses3[gActiveBattler] & STATUS3_SKY_DROPPED)
         return FALSE;
 

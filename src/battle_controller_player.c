@@ -308,7 +308,7 @@ static void HandleInputChooseAction(void)
     else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
     {
         if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-         && gBattlerPositions[gActiveBattler] == B_POSITION_PLAYER_RIGHT
+         && GetBattlerPosition(gActiveBattler) == B_POSITION_PLAYER_RIGHT
          && !(gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)])
          && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
         {
@@ -405,7 +405,7 @@ static void HandleInputChooseTarget(void)
         {
             do
             {
-                u8 currSelIdentity = gBattlerPositions[gMultiUsePlayerCursor];
+                u8 currSelIdentity = GetBattlerPosition(gMultiUsePlayerCursor);
 
                 for (i = 0; i < MAX_BATTLERS_COUNT; i++)
                 {
@@ -420,7 +420,7 @@ static void HandleInputChooseTarget(void)
                 } while (gMultiUsePlayerCursor == gBattlersCount);
 
                 i = 0;
-                switch (gBattlerPositions[gMultiUsePlayerCursor])
+                switch (GetBattlerPosition(gMultiUsePlayerCursor))
                 {
                 case B_POSITION_PLAYER_LEFT:
                 case B_POSITION_PLAYER_RIGHT:
@@ -455,7 +455,7 @@ static void HandleInputChooseTarget(void)
         {
             do
             {
-                u8 currSelIdentity = gBattlerPositions[gMultiUsePlayerCursor];
+                u8 currSelIdentity = GetBattlerPosition(gMultiUsePlayerCursor);
 
                 for (i = 0; i < MAX_BATTLERS_COUNT; i++)
                 {
@@ -470,7 +470,7 @@ static void HandleInputChooseTarget(void)
                 } while (gMultiUsePlayerCursor == gBattlersCount);
 
                 i = 0;
-                switch (gBattlerPositions[gMultiUsePlayerCursor])
+                switch (GetBattlerPosition(gMultiUsePlayerCursor))
                 {
                 case B_POSITION_PLAYER_LEFT:
                 case B_POSITION_PLAYER_RIGHT:
@@ -2421,7 +2421,7 @@ static void StartSendOutAnim(u8 battlerId, bool8 dontClearSubstituteBit)
     gBattlerPartyIndexes[battlerId] = gBattleResources->bufferA[battlerId][1];
     species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES);
     gBattleControllerData[battlerId] = CreateInvisibleSpriteWithCallback(SpriteCB_WaitForBattlerBallReleaseAnim);
-    SetMultiuseSpriteTemplateToPokemon(species, gBattlerPositions[battlerId]);
+    SetMultiuseSpriteTemplateToPokemon(species, GetBattlerPosition(battlerId));
 
     gBattlerSpriteIds[battlerId] = CreateSprite(
       &gMultiuseSpriteTemplate,
@@ -2516,7 +2516,7 @@ static void PlayerHandleDrawTrainerPic(void)
 
     if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
     {
-        if ((gBattlerPositions[gActiveBattler] & BIT_FLANK) != B_FLANK_LEFT) // Second mon, on the right.
+        if ((GetBattlerPosition(gActiveBattler) & BIT_FLANK) != B_FLANK_LEFT) // Second mon, on the right.
             xPos = 90;
         else // First mon, on the left.
             xPos = 32;
@@ -2543,7 +2543,7 @@ static void PlayerHandleDrawTrainerPic(void)
     {
         trainerPicId = PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender);
         DecompressTrainerFrontPic(trainerPicId, gActiveBattler);
-        SetMultiuseSpriteTemplateToTrainerFront(trainerPicId, gBattlerPositions[gActiveBattler]);
+        SetMultiuseSpriteTemplateToTrainerFront(trainerPicId, GetBattlerPosition(gActiveBattler));
         gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate, xPos, yPos, GetBattlerSpriteSubpriority(gActiveBattler));
 
         gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = IndexOfSpritePaletteTag(gTrainerFrontPicPaletteTable[trainerPicId].tag);
@@ -2558,7 +2558,7 @@ static void PlayerHandleDrawTrainerPic(void)
     else
     {
         DecompressTrainerBackPic(trainerPicId, gActiveBattler);
-        SetMultiuseSpriteTemplateToTrainerBack(trainerPicId, gBattlerPositions[gActiveBattler]);
+        SetMultiuseSpriteTemplateToTrainerBack(trainerPicId, GetBattlerPosition(gActiveBattler));
         gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate, xPos, yPos, GetBattlerSpriteSubpriority(gActiveBattler));
 
         gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;
@@ -2597,7 +2597,7 @@ static void PlayerHandleTrainerSlide(void)
     }
 
     DecompressTrainerBackPic(trainerPicId, gActiveBattler);
-    SetMultiuseSpriteTemplateToTrainerBack(trainerPicId, gBattlerPositions[gActiveBattler]);
+    SetMultiuseSpriteTemplateToTrainerBack(trainerPicId, GetBattlerPosition(gActiveBattler));
     gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate, 80, (8 - gTrainerBackPicCoords[trainerPicId].size) * 4 + 80, 30);
 
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;

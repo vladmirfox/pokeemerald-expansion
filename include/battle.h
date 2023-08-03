@@ -998,9 +998,14 @@ extern u8 gLastUsedBall;
 extern u16 gLastThrownBall;
 extern u8 gPartyCriticalHits[PARTY_SIZE];
 
+static inline u8 GetBattlerPosition(u8 battlerId)
+{
+    return gBattlerPositions[battlerId];
+}
+
 static inline u8 GetBattlerSide(u8 battlerId)
 {
-    return gBattlerPositions[battlerId] & BIT_SIDE;
+    return GetBattlerPosition(battlerId) & BIT_SIDE;
 }
 
 static inline struct Pokemon *GetSideParty(u32 side)

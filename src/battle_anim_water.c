@@ -924,7 +924,7 @@ static void AnimHydroCannonBeam(struct Sprite *sprite)
     if (GetBattlerSide(gBattleAnimAttacker) == GetBattlerSide(gBattleAnimTarget))
     {
         gBattleAnimArgs[0] *= -1;
-        if (gBattlerPositions[gBattleAnimAttacker] == B_POSITION_PLAYER_LEFT || gBattlerPositions[gBattleAnimAttacker] == B_POSITION_OPPONENT_LEFT)
+        if (GetBattlerPosition(gBattleAnimAttacker) == B_POSITION_PLAYER_LEFT || GetBattlerPosition(gBattleAnimAttacker) == B_POSITION_OPPONENT_LEFT)
             gBattleAnimArgs[0] *= -1;
     }
     if ((gBattleAnimArgs[5] & 0xFF00) == 0)

@@ -916,7 +916,7 @@ void AnimTask_MetallicShine(u8 taskId)
 
     if (IsDoubleBattle() && !IsContest())
     {
-        if (gBattlerPositions[gBattleAnimAttacker] == B_POSITION_OPPONENT_RIGHT || gBattlerPositions[gBattleAnimAttacker] == B_POSITION_PLAYER_LEFT)
+        if (GetBattlerPosition(gBattleAnimAttacker) == B_POSITION_OPPONENT_RIGHT || GetBattlerPosition(gBattleAnimAttacker) == B_POSITION_PLAYER_LEFT)
         {
             if (IsBattlerSpriteVisible(BATTLE_PARTNER(gBattleAnimAttacker)) == TRUE)
             {
