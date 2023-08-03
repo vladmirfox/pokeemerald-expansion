@@ -1005,7 +1005,7 @@ static inline u8 GetBattlerSide(u8 battlerId)
 
 static inline struct Pokemon *GetSideParty(u32 side)
 {
-    return side == B_SIDE_PLAYER ? gPlayerParty : gEnemyParty;
+    return (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
 }
 
 static inline struct Pokemon *GetBattlerParty(u32 battlerId)
