@@ -10,12 +10,12 @@ SINGLE_BATTLE_TEST("Mirror Armor lowers a stat of the attacking pokemon")
 {
     u16 move, statId;
 
-    PARAMETRIZE {move = MOVE_LEER; statId = STAT_DEF; }
-    PARAMETRIZE {move = MOVE_GROWL; statId = STAT_ATK; }
-    PARAMETRIZE {move = MOVE_SWEET_SCENT; statId = STAT_EVASION; }
-    PARAMETRIZE {move = MOVE_SAND_ATTACK; statId = STAT_ACC; }
-    PARAMETRIZE {move = MOVE_CONFIDE; statId = STAT_SPATK; }
-    PARAMETRIZE {move = MOVE_FAKE_TEARS; statId = STAT_SPDEF; }
+    PARAMETRIZE { move = MOVE_LEER; statId = STAT_DEF; }
+    PARAMETRIZE { move = MOVE_GROWL; statId = STAT_ATK; }
+    PARAMETRIZE { move = MOVE_SWEET_SCENT; statId = STAT_EVASION; }
+    PARAMETRIZE { move = MOVE_SAND_ATTACK; statId = STAT_ACC; }
+    PARAMETRIZE { move = MOVE_CONFIDE; statId = STAT_SPATK; }
+    PARAMETRIZE { move = MOVE_FAKE_TEARS; statId = STAT_SPDEF; }
 
     GIVEN {
         PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
