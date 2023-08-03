@@ -144,8 +144,8 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
     u16 speedPlayer, speedOpponent;
 
     // We need to make sure Sticky Web user saves for both sides, so it doesn't matter who sets it first.
-    PARAMETRIZE {speedPlayer = 5; speedOpponent = 10;}
-    PARAMETRIZE {speedPlayer = 10; speedOpponent = 5;}
+    PARAMETRIZE { speedPlayer = 5; speedOpponent = 10; }
+    PARAMETRIZE { speedPlayer = 10; speedOpponent = 5; }
 
     GIVEN {
         ASSUME(P_GEN_8_POKEMON == TRUE);
