@@ -2369,7 +2369,7 @@ void AnimTask_TransformMon(u8 taskId)
         if (IsContest())
             position = B_POSITION_PLAYER_LEFT;
         else
-            position = GetBattlerPosition(gBattleAnimAttacker);
+            position = gBattlerPositions[gBattleAnimAttacker];
 
         src = gMonSpritesGfxPtr->sprites.ptr[position];
         dest = animBg.bgTiles;
@@ -2652,7 +2652,7 @@ void AnimTask_DoomDesireLightBeam(u8 taskId)
         }
         else
         {
-            u8 position = GetBattlerPosition(gBattleAnimTarget);
+            u8 position = gBattlerPositions[gBattleAnimTarget];
             if (IsDoubleBattle() == TRUE)
             {
                 if (position == B_POSITION_OPPONENT_LEFT)

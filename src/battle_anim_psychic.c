@@ -490,8 +490,8 @@ static void AnimPsychoCut(struct Sprite *sprite)
 
     if (!IsContest() && GetBattlerSide(gBattleAnimAttacker) == GetBattlerSide(gBattleAnimTarget))
     {
-        if (GetBattlerPosition(gBattleAnimTarget) == B_POSITION_PLAYER_LEFT
-         || GetBattlerPosition(gBattleAnimTarget) == B_POSITION_OPPONENT_LEFT)
+        if (gBattlerPositions[gBattleAnimTarget] == B_POSITION_PLAYER_LEFT
+         || gBattlerPositions[gBattleAnimTarget] == B_POSITION_OPPONENT_LEFT)
         {
             s16 temp1, temp2;
 

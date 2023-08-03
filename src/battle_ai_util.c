@@ -442,7 +442,7 @@ void RecordLastUsedMoveByTarget(void)
 
 bool32 BattlerHasAi(u32 battlerId)
 {
-    switch (GetBattlerPosition(battlerId))
+    switch (gBattlerPositions[battlerId])
     {
     case B_POSITION_PLAYER_LEFT:
     default:
@@ -3404,7 +3404,7 @@ s32 CountUsablePartyMons(u8 battlerId)
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
     {
         battlerOnField1 = gBattlerPartyIndexes[battlerId];
-        battlerOnField2 = gBattlerPartyIndexes[GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(battlerId)))];
+        battlerOnField2 = gBattlerPartyIndexes[GetBattlerAtPosition(BATTLE_PARTNER(gBattlerPositions[battlerId]))];
     }
     else // In singles there's only one battlerId by side.
     {

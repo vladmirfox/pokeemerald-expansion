@@ -239,7 +239,7 @@ static void Intro_WaitForShinyAnimAndHealthbox(void)
 
     if (healthboxAnimDone)
     {
-        if (GetBattlerPosition(gActiveBattler) == B_POSITION_OPPONENT_LEFT)
+        if (gBattlerPositions[gActiveBattler] == B_POSITION_OPPONENT_LEFT)
         {
             if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim)
                 return;
@@ -298,7 +298,7 @@ static void Intro_TryShinyAnimShowHealthbox(void)
         {
             if (gBattleTypeFlags & BATTLE_TYPE_MULTI && gBattleTypeFlags & BATTLE_TYPE_LINK)
             {
-                if (GetBattlerPosition(gActiveBattler) == B_POSITION_OPPONENT_LEFT)
+                if (gBattlerPositions[gActiveBattler] == B_POSITION_OPPONENT_LEFT)
                     m4aMPlayContinue(&gMPlayInfo_BGM);
             }
             else
@@ -1108,7 +1108,7 @@ static void RecordedOpponentHandleLoadMonSprite(void)
     u16 species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_SPECIES);
 
     BattleLoadOpponentMonSpriteGfx(&gEnemyParty[gBattlerPartyIndexes[gActiveBattler]], gActiveBattler);
-    SetMultiuseSpriteTemplateToPokemon(species, GetBattlerPosition(gActiveBattler));
+    SetMultiuseSpriteTemplateToPokemon(species, gBattlerPositions[gActiveBattler]);
 
     gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate,
                                                GetBattlerSpriteCoord(gActiveBattler, BATTLER_COORD_X_2),
@@ -1141,7 +1141,7 @@ static void StartSendOutAnim(u8 battlerId, bool8 dontClearSubstituteBit)
     species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES);
     gBattleControllerData[battlerId] = CreateInvisibleSpriteWithCallback(SpriteCB_WaitForBattlerBallReleaseAnim);
     BattleLoadOpponentMonSpriteGfx(&gEnemyParty[gBattlerPartyIndexes[battlerId]], battlerId);
-    SetMultiuseSpriteTemplateToPokemon(species, GetBattlerPosition(battlerId));
+    SetMultiuseSpriteTemplateToPokemon(species, gBattlerPositions[battlerId]);
 
     gBattlerSpriteIds[battlerId] = CreateSprite(&gMultiuseSpriteTemplate,
                                         GetBattlerSpriteCoord(battlerId, BATTLER_COORD_X_2),
@@ -1210,7 +1210,7 @@ static void RecordedOpponentHandleDrawTrainerPic(void)
 
     if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
     {
-        if ((GetBattlerPosition(gActiveBattler) & BIT_FLANK) != 0) // second mon
+        if ((gBattlerPositions[gActiveBattler] & BIT_FLANK) != 0) // second mon
             xPos = 152;
         else // first mon
             xPos = 200;
@@ -1241,7 +1241,7 @@ static void RecordedOpponentHandleDrawTrainerPic(void)
     }
 
     DecompressTrainerFrontPic(trainerPicId, gActiveBattler);
-    SetMultiuseSpriteTemplateToTrainerBack(trainerPicId, GetBattlerPosition(gActiveBattler));
+    SetMultiuseSpriteTemplateToTrainerBack(trainerPicId, gBattlerPositions[gActiveBattler]);
     gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate,
                                                xPos,
                                                (8 - gTrainerFrontPicCoords[trainerPicId].size) * 4 + 40,

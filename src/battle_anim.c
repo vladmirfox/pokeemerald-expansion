@@ -852,7 +852,7 @@ static void Cmd_monbg(void)
     // Move designated battler to background
     if (IsBattlerSpriteVisible(battlerId))
     {
-        u8 position = GetBattlerPosition(battlerId);
+        u8 position = gBattlerPositions[battlerId];
         if (position == B_POSITION_OPPONENT_LEFT || position == B_POSITION_PLAYER_RIGHT || IsContest())
             toBG_2 = FALSE;
         else
@@ -872,7 +872,7 @@ static void Cmd_monbg(void)
     battlerId ^= BIT_FLANK;
     if (IsBattlerSpriteVisible(battlerId))
     {
-        u8 position = GetBattlerPosition(battlerId);
+        u8 position = gBattlerPositions[battlerId];
         if (position == B_POSITION_OPPONENT_LEFT || position == B_POSITION_PLAYER_RIGHT || IsContest())
             toBG_2 = FALSE;
         else
@@ -970,7 +970,7 @@ void MoveBattlerSpriteToBG(u8 battlerId, bool8 toBG_2, bool8 setSpriteInvisible)
         if (IsContest())
             battlerPosition = 0;
         else
-            battlerPosition = GetBattlerPosition(battlerId);
+            battlerPosition = gBattlerPositions[battlerId];
 
         DrawBattlerOnBg(1, 0, 0, battlerPosition, animBg.paletteId, animBg.bgTiles, animBg.bgTilemap, animBg.tilesOffset);
 
@@ -1002,7 +1002,7 @@ void MoveBattlerSpriteToBG(u8 battlerId, bool8 toBG_2, bool8 setSpriteInvisible)
         LoadPalette(&gPlttBufferUnfaded[OBJ_PLTT_ID(battlerId)], BG_PLTT_ID(9), PLTT_SIZE_4BPP);
         CpuCopy32(&gPlttBufferUnfaded[OBJ_PLTT_ID(battlerId)], (void *)(BG_PLTT + PLTT_OFFSET_4BPP(9)), PLTT_SIZE_4BPP);
 
-        DrawBattlerOnBg(2, 0, 0, GetBattlerPosition(battlerId), animBg.paletteId, animBg.bgTiles + 0x1000, animBg.bgTilemap + 0x400, animBg.tilesOffset);
+        DrawBattlerOnBg(2, 0, 0, gBattlerPositions[battlerId], animBg.paletteId, animBg.bgTiles + 0x1000, animBg.bgTilemap + 0x400, animBg.tilesOffset);
     }
 }
 
@@ -1146,7 +1146,7 @@ static void Task_ClearMonBg(u8 taskId)
     if (gTasks[taskId].data[1] != 1)
     {
         u8 to_BG2;
-        u8 position = GetBattlerPosition(gTasks[taskId].data[2]);
+        u8 position = gBattlerPositions[gTasks[taskId].data[2]];
         if (position == B_POSITION_OPPONENT_LEFT || position == B_POSITION_PLAYER_RIGHT || IsContest())
             to_BG2 = FALSE;
         else
@@ -1191,7 +1191,7 @@ static void Cmd_monbg_static(void)
 
     if (IsBattlerSpriteVisible(battlerId))
     {
-        u8 position = GetBattlerPosition(battlerId);
+        u8 position = gBattlerPositions[battlerId];
         if (position == B_POSITION_OPPONENT_LEFT || position == B_POSITION_PLAYER_RIGHT || IsContest())
             toBG_2 = FALSE;
         else
@@ -1203,7 +1203,7 @@ static void Cmd_monbg_static(void)
     battlerId ^= BIT_FLANK;
     if (animBattlerId > 1 && IsBattlerSpriteVisible(battlerId))
     {
-        u8 position = GetBattlerPosition(battlerId);
+        u8 position = gBattlerPositions[battlerId];
         if (position == B_POSITION_OPPONENT_LEFT || position == B_POSITION_PLAYER_RIGHT || IsContest())
             toBG_2 = FALSE;
         else
@@ -1255,7 +1255,7 @@ static void Task_ClearMonBgStatic(u8 taskId)
     {
         bool8 toBG_2;
         u8 battlerId = gTasks[taskId].data[2];
-        u8 position = GetBattlerPosition(battlerId);
+        u8 position = gBattlerPositions[battlerId];
         if (position == B_POSITION_OPPONENT_LEFT || position == B_POSITION_PLAYER_RIGHT || IsContest())
             toBG_2 = FALSE;
         else
@@ -1961,7 +1961,7 @@ static void Cmd_splitbgprio(void)
         battlerId = gBattleAnimAttacker;
 
     // Apply only if the given battler is the lead (on left from team's perspective)
-    battlerPosition = GetBattlerPosition(battlerId);
+    battlerPosition = gBattlerPositions[battlerId];
     if (!IsContest() && (battlerPosition == B_POSITION_PLAYER_LEFT || battlerPosition == B_POSITION_OPPONENT_RIGHT))
     {
         SetAnimBgAttribute(1, BG_ANIM_PRIORITY, 1);
@@ -1997,7 +1997,7 @@ static void Cmd_splitbgprio_foes(void)
             battlerId = gBattleAnimAttacker;
 
         // Apply only if the given battler is the lead (on left from team's perspective)
-        battlerPosition = GetBattlerPosition(battlerId);
+        battlerPosition = gBattlerPositions[battlerId];
         if (!IsContest() && (battlerPosition == B_POSITION_PLAYER_LEFT || battlerPosition == B_POSITION_OPPONENT_RIGHT))
         {
             SetAnimBgAttribute(1, BG_ANIM_PRIORITY, 1);

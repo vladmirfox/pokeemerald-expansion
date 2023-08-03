@@ -326,7 +326,7 @@ void Ai_UpdateSwitchInData(u32 battler)
         ClearBattlerMoveHistory(battler);
         ClearBattlerAbilityHistory(battler);
         ClearBattlerItemEffectHistory(battler);
-        CopyBattlerDataToAIParty(GetBattlerPosition(battler), side);
+        CopyBattlerDataToAIParty(gBattlerPositions[battler], side);
     }
 }
 

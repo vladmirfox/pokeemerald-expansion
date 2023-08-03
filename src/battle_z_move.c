@@ -160,8 +160,8 @@ bool32 IsViableZMove(u8 battlerId, u16 move)
 {
     struct Pokemon *mon;
     struct MegaEvolutionData *mega = &(((struct ChooseMoveStruct *)(&gBattleResources->bufferA[gActiveBattler][4]))->mega);
-    u8 battlerPosition = GetBattlerPosition(battlerId);
-    u8 partnerPosition = GetBattlerPosition(BATTLE_PARTNER(battlerId));
+    u8 battlerPosition = gBattlerPositions[battlerId];
+    u8 partnerPosition = gBattlerPositions[BATTLE_PARTNER(battlerId)];
     u32 item;
     u16 holdEffect;
     u16 species;
@@ -182,7 +182,7 @@ bool32 IsViableZMove(u8 battlerId, u16 move)
     if (gBattleTypeFlags & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_WALLY_TUTORIAL | BATTLE_TYPE_FRONTIER))
         return FALSE;
 
-    if ((GetBattlerPosition(battlerId) == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battlerId) == B_POSITION_PLAYER_RIGHT)) && !CheckBagHasItem(ITEM_Z_POWER_RING, 1))
+    if ((gBattlerPositions[battlerId] == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && gBattlerPositions[battlerId] == B_POSITION_PLAYER_RIGHT)) && !CheckBagHasItem(ITEM_Z_POWER_RING, 1))
         return FALSE;
 
     if (mega->alreadyEvolved[battlerPosition])

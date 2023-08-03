@@ -564,7 +564,7 @@ static void AnimFistOrFootRandomPos(struct Sprite *sprite)
     if (Random2() & 1)
         y *= -1;
 
-    if (GET_BATTLER_SIDE2(battler) == B_SIDE_PLAYER)
+    if (GET_BATTLER_SIDE(battler) == B_SIDE_PLAYER)
         y += 0xFFF0;
 
     sprite->x += x;
@@ -639,7 +639,7 @@ static void AnimCrossChopHand_Step(struct Sprite *sprite)
 // Rolling Kick / Low Kick
 static void AnimSlidingKick(struct Sprite *sprite)
 {
-    if (BATTLE_PARTNER(gBattleAnimAttacker) == gBattleAnimTarget && GetBattlerPosition(gBattleAnimTarget) < B_POSITION_PLAYER_RIGHT)
+    if (BATTLE_PARTNER(gBattleAnimAttacker) == gBattleAnimTarget && gBattlerPositions[gBattleAnimTarget] < B_POSITION_PLAYER_RIGHT)
         gBattleAnimArgs[0] *= -1;
 
     InitSpritePosToAnimTarget(sprite, TRUE);

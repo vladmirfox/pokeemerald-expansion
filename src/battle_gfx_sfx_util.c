@@ -576,7 +576,7 @@ static void BattleLoadMonSpriteGfx(struct Pokemon *mon, u32 battlerId, bool32 op
         #endif
     }
 
-    position = GetBattlerPosition(battlerId);
+    position = gBattlerPositions[battlerId];
     if (opponent)
     {
         HandleLoadSpecialPokePic(TRUE,
@@ -625,7 +625,7 @@ void BattleGfxSfxDummy2(u16 species)
 
 void DecompressTrainerFrontPic(u16 frontPicId, u8 battlerId)
 {
-    u8 position = GetBattlerPosition(battlerId);
+    u8 position = gBattlerPositions[battlerId];
     DecompressPicFromTable(&gTrainerFrontPicTable[frontPicId],
                            gMonSpritesGfxPtr->sprites.ptr[position],
                            SPECIES_NONE);
@@ -634,7 +634,7 @@ void DecompressTrainerFrontPic(u16 frontPicId, u8 battlerId)
 
 void DecompressTrainerBackPic(u16 backPicId, u8 battlerId)
 {
-    u8 position = GetBattlerPosition(battlerId);
+    u8 position = gBattlerPositions[battlerId];
     DecompressPicFromTable(&gTrainerBackPicTable[backPicId],
                            gMonSpritesGfxPtr->sprites.ptr[position],
                            SPECIES_NONE);
@@ -867,7 +867,7 @@ void HandleSpeciesGfxDataChange(u8 battlerAtk, u8 battlerDef, bool32 megaEvo, bo
     }
     else
     {
-        position = GetBattlerPosition(battlerAtk);
+        position = gBattlerPositions[battlerAtk];
 
         if (GetBattlerSide(battlerDef) == B_SIDE_OPPONENT)
             targetSpecies = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerDef]], MON_DATA_SPECIES);
@@ -948,7 +948,7 @@ void BattleLoadSubstituteOrMonSpriteGfx(u8 battlerId, bool8 loadMonSprite)
         if (IsContest())
             position = B_POSITION_PLAYER_LEFT;
         else
-            position = GetBattlerPosition(battlerId);
+            position = gBattlerPositions[battlerId];
 
         if (IsContest())
             LZDecompressVram(gSubstituteDollBackGfx, gMonSpritesGfxPtr->sprites.ptr[position]);
