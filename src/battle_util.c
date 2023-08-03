@@ -4178,7 +4178,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 break;
             }
 
-            gBattleScripting.battler = 0;
             BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
             effect++;
         }
@@ -4188,7 +4187,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // overworld weather started rain, so just do electric terrain anim
             gFieldStatuses = (STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_TERRAIN_PERMANENT);
             gBattleCommunication[MULTISTRING_CHOOSER] = 2;
-            gBattleScripting.battler = 0;
             BattleScriptPushCursorAndCallback(BattleScript_OverworldTerrain);
             effect++;
         }
@@ -4231,7 +4229,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         if (effect != 0)
         {
             gBattleCommunication[MULTISTRING_CHOOSER] = GetCurrentWeather();
-            gBattleScripting.battler = 0;
             BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);
         }
         break;
