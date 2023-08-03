@@ -4710,7 +4710,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
         speed *= 2;
 
     // various effects
-    if (gSideStatuses[GET_BATTLER_SIDE(battlerId)] & SIDE_STATUS_TAILWIND)
+    if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_TAILWIND)
         speed *= 2;
     if (gBattleResources->flags->flags[battlerId] & RESOURCE_FLAG_UNBURDEN)
         speed *= 2;

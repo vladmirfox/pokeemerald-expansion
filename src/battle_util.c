@@ -3144,7 +3144,7 @@ bool8 HandleWishPerishSongOnTurnEnd(void)
                 if (gWishFutureKnock.futureSightCounter[gActiveBattler] == 0
                  && gWishFutureKnock.futureSightCounter[BATTLE_PARTNER(gActiveBattler)] == 0)
                 {
-                    gSideStatuses[GET_BATTLER_SIDE(gBattlerTarget)] &= ~SIDE_STATUS_FUTUREATTACK;
+                    gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~SIDE_STATUS_FUTUREATTACK;
                 }
                 return TRUE;
             }
@@ -7897,7 +7897,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
     case MOVE_TARGET_BOTH:
     case MOVE_TARGET_FOES_AND_ALLY:
     case MOVE_TARGET_OPPONENTS_FIELD:
-        targetBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GET_BATTLER_SIDE(gBattlerAttacker)));
+        targetBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker)));
         if (!IsBattlerAlive(targetBattler))
             targetBattler ^= BIT_FLANK;
         break;
@@ -7908,7 +7908,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
         else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE && moveTarget & MOVE_TARGET_RANDOM)
             targetBattler = SetRandomTarget(gBattlerAttacker);
         else
-            targetBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GET_BATTLER_SIDE(gBattlerAttacker)));
+            targetBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker)));
         break;
     case MOVE_TARGET_USER_OR_SELECTED:
     case MOVE_TARGET_USER:
@@ -8688,7 +8688,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     u16 basePower = CalcMoveBasePower(move, battlerAtk, battlerDef);
     uq4_12_t holdEffectModifier;
     uq4_12_t modifier = UQ_4_12(1.0);
-    u32 atkSide = GET_BATTLER_SIDE(battlerAtk);
+    u32 atkSide = GetBattlerSide(battlerAtk);
     u16 atkAbility = GetBattlerAbility(battlerAtk);
     u16 defAbility = GetBattlerAbility(battlerDef);
 
@@ -9439,7 +9439,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     u32 percentBoost;
     u32 abilityAtk = GetBattlerAbility(battlerAtk);
     u32 abilityDef = GetBattlerAbility(battlerDef);
-    u32 defSide = GET_BATTLER_SIDE(battlerDef);
+    u32 defSide = GetBattlerSide(battlerDef);
     uq4_12_t finalModifier = UQ_4_12(1.0);
     u16 itemDef = gBattleMons[battlerDef].item;
     u16 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
@@ -10147,7 +10147,7 @@ bool32 CanBattlerFormChange(u8 battlerId, u16 method)
 bool32 TryBattleFormChange(u8 battlerId, u16 method)
 {
     u8 monId = gBattlerPartyIndexes[battlerId];
-    u8 side = GET_BATTLER_SIDE(battlerId);
+    u8 side = GetBattlerSide(battlerId);
     struct Pokemon *party = GetBattlerParty(battlerId);
     u16 targetSpecies;
 

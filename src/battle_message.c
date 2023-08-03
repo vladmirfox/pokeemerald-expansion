@@ -2968,7 +2968,7 @@ static void GetBattlerNick(u32 battlerId, u8 *dst)
 {
     struct Pokemon *mon, *illusionMon;
 
-    if (GET_BATTLER_SIDE(battlerId) == B_SIDE_PLAYER)
+    if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
         mon = &gPlayerParty[gBattlerPartyIndexes[battlerId]];
     else
         mon = &gEnemyParty[gBattlerPartyIndexes[battlerId]];

@@ -15,8 +15,6 @@
 #include "pokeball.h"
 #include "battle_debug.h"
 
-#define GET_BATTLER_SIDE(battler) (gBattlerPositions[battler] & BIT_SIDE)
-
 // Used to exclude moves learned temporarily by Transform or Mimic
 #define MOVE_IS_PERMANENT(battler, moveSlot)                        \
    (!(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)           \
