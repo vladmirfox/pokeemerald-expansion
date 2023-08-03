@@ -55,8 +55,8 @@ SINGLE_BATTLE_TEST("Mirror Armor lowers a stat of the attacking pokemon")
 SINGLE_BATTLE_TEST("Mirror Armor triggers even if the attacking Pokemon also has Mirror Armor ability")
 {
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
-        OPPONENT(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR);}
+        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_MIRROR_ARMOR); }
+        OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_MIRROR_ARMOR); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
