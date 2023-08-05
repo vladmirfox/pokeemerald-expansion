@@ -650,5 +650,9 @@ if __name__ == "__main__":
             prepareMigration(globalChangedStructs, globalHasChangedStructs, currentLoopingVersion)
             currentLoopingVersion -= 1
 
+    if globalVersion == 1:
+        out("First setup succesful! Please don't forget to go to src/strings.c and")
+        out("update gText_SaveFileOldUpdated and gText_SaveFileOldErrored.")
+
     if '--log' in sys.argv:
         f.close()
