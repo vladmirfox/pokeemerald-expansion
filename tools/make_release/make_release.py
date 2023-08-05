@@ -85,7 +85,7 @@ def injectTustin():
     with open("include/global.h", 'r') as file:
         content = file.read()
     if not 'u8 _saveSentinel;' in content:
-        ncontent = content.replace('struct SaveBlock2\n{\n    ', 'struct SaveBlock2\n{\n    // _saveSentinel and saveVersion are used by the save migration system. Please do not (re)move them.\n    u8 _saveSentinel; // 0xFF\n    // u8 unused;\n    u16 saveVersion;\n    ')
+        ncontent = content.replace('struct SaveBlock2\n{\n    ', 'struct SaveBlock2\n{\n    // _saveSentinel, saveVersion and expansionVersion (if using pokeemerald-expansion) are used by the save migration system. Please do not (re)move them.\n    u8 _saveSentinel; // 0xFF\n    // u8 unused;\n    u16 saveVersion;\n#ifdef RHH_EXPANSION\n    u16 expansionVersion;\n#endif\n    ')
         if ncontent == content: # the injection failed for whatever reason
             failTustinInjection("Unable to inject the necessary data into SaveBlock2! Aborting procedure.")
         with open("include/global.h", 'w') as file:
@@ -95,7 +95,7 @@ def injectTustin():
     with open("src/new_game.c", 'r') as file:
         content = file.read()
     if not 'gSaveBlock2Ptr->_saveSentinel = 0xFF;' in content:
-        ncontent = content.replace('gSaveBlock2Ptr->encryptionKey = 0;', 'gSaveBlock2Ptr->_saveSentinel = 0xFF;\n    gSaveBlock2Ptr->saveVersion = SAVE_VERSION;\n    gSaveBlock2Ptr->encryptionKey = 0;')
+        ncontent = content.replace('gSaveBlock2Ptr->encryptionKey = 0;', 'gSaveBlock2Ptr->_saveSentinel = 0xFF;\n    gSaveBlock2Ptr->saveVersion = SAVE_VERSION;\n#ifdef RHH_EXPANSION\n    gSaveBlock2Ptr->expansionVersion = RHH_EXPANSION_VERSION;\n#endif\n    gSaveBlock2Ptr->encryptionKey = 0;')
         if ncontent == content: # the injection failed for whatever reason
             failTustinInjection("Unable to inject the necessary data into new_game.c! Aborting procedure.")
         with open("src/new_game.c", 'w') as file:

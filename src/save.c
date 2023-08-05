@@ -1077,6 +1077,27 @@ u16 DetermineSaveVersion()
 #endif
 }
 
+#ifdef RHH_EXPANSION
+u16 DetermineExpansionSaveVersion()
+{
+#ifdef SAVE_VERSION
+    if (gSaveBlock2Ptr->_saveSentinel != 0xFF) return 0;
+    return gSaveBlock2Ptr->expansionVersion;
+#else
+    return 0;
+#endif
+}
+
+bool8 UpdateSaveByExpansion(void)
+{
+    // This code is taken care of by the RHH pokeemerald-expansion team.
+    // It ensures that their changes to saveblock structs don't interfere with your work.
+    u16 version = DetermineExpansionSaveVersion();
+    
+    return TRUE;
+}
+#endif
+
 bool8 UpdateSaveFile(void)
 {
     u16 version = DetermineSaveVersion();
@@ -1126,6 +1147,11 @@ bool8 UpdateSaveFile(void)
             break;
     }
     // END Attempt to update the save
+
+#ifdef RHH_EXPANSION
+    if (result == TRUE)
+        result = UpdateSaveByExpansion();
+#endif
 
     // Clean up and perform post-load copying operations
     Free(sOldSaveBlock);

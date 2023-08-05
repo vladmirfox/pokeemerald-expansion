@@ -57,6 +57,7 @@
 
 // Compatibility definition for other projects to detect pokeemerald-expansion
 #define RHH_EXPANSION
+#define RHH_EXPANSION_VERSION 0
 
 // Legacy branch-based defines included for backwards compatibility
 #define BATTLE_ENGINE
