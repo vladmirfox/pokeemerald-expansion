@@ -5407,7 +5407,6 @@ BattleScript_EffectTeleport:
 .if B_TELEPORT_BEHAVIOR >= GEN_7
 	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_EffectBatonPass
 	jumpifside BS_ATTACKER, B_SIDE_PLAYER, BattleScript_EffectBatonPass
-	goto BattleScript_EffectTeleportTryToRunAway
 .else
 	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_ButItFailed
 .endif
