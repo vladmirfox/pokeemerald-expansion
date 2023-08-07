@@ -4055,8 +4055,7 @@ u32 ShouldDoTrainerSlide(u32 battlerId, u32 which)
     for (i = 0; i < ARRAY_COUNT(sTrainerSlides); i++)
     {
         if (trainerId == sTrainerSlides[i].trainerId
-            && (((gBattleTypeFlags & BATTLE_TYPE_FRONTIER) && sTrainerSlides[i].isFrontierTrainer)
-                || (!(gBattleTypeFlags & BATTLE_TYPE_FRONTIER) && !sTrainerSlides[i].isFrontierTrainer)))
+            && ((gBattleTypeFlags & BATTLE_TYPE_FRONTIER) == sTrainerSlides[i].isFrontierTrainer))
         {
             gBattleScripting.battler = battlerId;
             switch (which)
