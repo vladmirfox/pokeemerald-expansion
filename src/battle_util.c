@@ -3801,7 +3801,12 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     // TODO
                 }
             }
-            else if (gBattleMoves[gCurrentMove].effect == EFFECT_TRIPLE_KICK || gBattleMoves[gCurrentMove].flags & FLAG_THREE_STRIKES || gBattleMons[gBattlerAttacker].ability == ABILITY_TRIPLE_THREAT)
+            else if (gBattleMoves[gCurrentMove].effect == EFFECT_TRIPLE_KICK || gBattleMoves[gCurrentMove].flags & FLAG_THREE_STRIKES )
+            {
+                gMultiHitCounter = 3;
+                PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+            }
+            else if ((gBattleMons[gBattlerAttacker].ability == ABILITY_TRIPLE_THREAT) & (gBattleMoves[gCurrentMove].split != SPLIT_STATUS))
             {
                 gMultiHitCounter = 3;
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
@@ -8758,9 +8763,8 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     switch (atkAbility)
     {
     case ABILITY_TRIPLE_THREAT:
-        if(IS_MOVE_PHYSICAL(move) || IS_MOVE_SPECIAL(move)) 
+        if (basePower <= 1) 
             MulModifier(&modifier, UQ_4_12(0.4));
-
         break;
     case ABILITY_TECHNICIAN:
         if (basePower <= 60)
@@ -9202,6 +9206,9 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     // attacker's abilities
     switch (GetBattlerAbility(battlerAtk))
     {
+    case ABILITY_TRIPLE_THREAT:
+        MulModifier(&modifier, UQ_4_12(0.4));
+        break;
     case ABILITY_HUGE_POWER:
     case ABILITY_PURE_POWER:
         if (IS_MOVE_PHYSICAL(move))

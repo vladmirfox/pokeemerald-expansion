@@ -291,6 +291,7 @@ static const u8 sEarthEaterDescription[] = _("Eats ground to heal HP.");
 static const u8 sMyceliumMightDescription[] = _("Status moves never fail.");
 static const u8 sTripleThreatDescription[] = _("Attacks 3 times in a row.");
 static const u8 sJustTheTipDescription[] = _("Boosts drill moves.");
+static const u8 sBigBallsDescription[] = _("Moves will always crit.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -596,6 +597,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_MYCELIUM_MIGHT] = _("Mycelium Might"),
     [ABILITY_TRIPLE_THREAT] = _("Triple Threat"),
     [ABILITY_JUST_THE_TIP] = _("Just The Tip"),
+    [ABILITY_BIG_BALLS] = _("Big Balls"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -901,6 +903,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_MYCELIUM_MIGHT] = _("MceliumMight"),
     [ABILITY_TRIPLE_THREAT] = _("TripleThreat"),
     [ABILITY_JUST_THE_TIP] = _("Just The Tip"),
+    [ABILITY_BIG_BALLS] = _("Big Balls"),
 };
 #endif
 
@@ -1207,4 +1210,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_MYCELIUM_MIGHT] = sMyceliumMightDescription,
     [ABILITY_TRIPLE_THREAT] = sTripleThreatDescription,
     [ABILITY_JUST_THE_TIP] = sJustTheTipDescription,
+    [ABILITY_BIG_BALLS] = sBigBallsDescription,
 };

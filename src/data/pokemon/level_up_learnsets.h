@@ -4079,6 +4079,7 @@ static const struct LevelUpMove sForretressLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sDunsparceLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_HYPER_DRILL),
     LEVEL_UP_MOVE( 1, MOVE_RAGE),
     LEVEL_UP_MOVE( 1, MOVE_DEFENSE_CURL),
     LEVEL_UP_MOVE( 3, MOVE_ROLLOUT),
