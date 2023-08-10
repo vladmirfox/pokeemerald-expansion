@@ -3801,13 +3801,8 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     // TODO
                 }
             }
-            else if (gBattleMoves[gCurrentMove].effect == EFFECT_TRIPLE_KICK || gBattleMoves[gCurrentMove].flags & FLAG_THREE_STRIKES)
+            else if (gBattleMoves[gCurrentMove].effect == EFFECT_TRIPLE_KICK || gBattleMoves[gCurrentMove].flags & FLAG_THREE_STRIKES || gBattleMons[gBattlerAttacker].ability == ABILITY_TRIPLE_THREAT)
             {
-                gMultiHitCounter = 3;
-                PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
-            }
-            else if (GetBattlerAbility(atkAbility) == ABILITY_TRIPLE_THREAT){
-                MulModifier(&basePower, UQ_4_12(0.4));
                 gMultiHitCounter = 3;
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
@@ -8762,6 +8757,11 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     // attacker's abilities
     switch (atkAbility)
     {
+    case ABILITY_TRIPLE_THREAT:
+        if(IS_MOVE_PHYSICAL(move) || IS_MOVE_SPECIAL(move)) 
+            MulModifier(&modifier, UQ_4_12(0.4));
+
+        break;
     case ABILITY_TECHNICIAN:
         if (basePower <= 60)
            MulModifier(&modifier, UQ_4_12(1.5));
@@ -8897,8 +8897,8 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         MulModifier(&modifier, gBattleStruct->supremeOverlordModifier[battlerAtk]);
         break;
     case ABILITY_JUST_THE_TIP:
-        if (gBattleMoves[move].flags $ FLAG_DRILL_MOVE)
-            MulModifier($modifier, UQ_4_12(1.5));
+        if (gBattleMoves[move].flags & FLAG_DRILL_MOVE)
+            MulModifier(&modifier, UQ_4_12(1.5));
         break;
     }
 
