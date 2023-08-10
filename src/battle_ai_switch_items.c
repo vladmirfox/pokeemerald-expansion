@@ -177,6 +177,8 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
         absorbingTypeAbility = ABILITY_WATER_ABSORB;
     else if (gBattleMoves[gLastLandedMoves[gActiveBattler]].type == TYPE_ELECTRIC)
         absorbingTypeAbility = ABILITY_VOLT_ABSORB;
+    else if (gBattleMoves[gLastLandedMoves[gActiveBattler]].type == TYPE_GRASS)
+        absorbingTypeAbility = ABILITY_SAP_SIPPER;
     else
         return FALSE;
 
@@ -208,7 +210,10 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
             continue;
 
         monAbility = GetMonAbility(&party[i]);
-        if (absorbingTypeAbility == monAbility && Random() & 1)
+        if (absorbingTypeAbility == monAbility
+        || (absorbingTypeAbility == ABILITY_WATER_ABSORB && (monAbility == ABILITY_STORM_DRAIN || monAbility == ABILITY_DRY_SKIN))
+        || (absorbingTypeAbility == ABILITY_VOLT_ABSORB && (monAbility == ABILITY_MOTOR_DRIVE || monAbility == ABILITY_LIGHTNING_ROD))
+        )
         {
             // we found a mon.
             *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = i;
