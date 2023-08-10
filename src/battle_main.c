@@ -4748,7 +4748,7 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     priority = gBattleMoves[move].priority;
     if (ability == ABILITY_GALE_WINGS
     #if B_GALE_WINGS >= GEN_7
-        && BATTLER_MAX_HP(battlerId)
+        && (gBattleMons[battlerId].hp > (gBattleMons[battlerId].maxHP / 2))
     #endif
         && gBattleMoves[move].type == TYPE_FLYING)
     {

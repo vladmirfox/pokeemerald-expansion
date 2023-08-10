@@ -294,6 +294,7 @@ static const u8 sJustTheTipDescription[] = _("Boosts drill moves.");
 static const u8 sBigBallsDescription[] = _("Moves will always crit.");
 static const u8 sMindSurferDescription[] = _("Faster on weird.");
 static const u8 sLawnSurferDescription[] = _("Faster on grass.");
+static const u8 sMonkeyBusinessDescription[] - _("Ups Sp.Atk and locks move.")
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -602,6 +603,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_BIG_BALLS] = _("Big Balls"),
     [ABILITY_MIND_SURFER] = _("Mind Surfer"),
     [ABILITY_LAWN_SURFER] = _("Lawn Surfer"),
+    [ABILITY_MONKEY_BUSINESS] = _("Monkey Business")
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -910,6 +912,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_BIG_BALLS] = _("Big Balls"),
     [ABILITY_MIND_SURFER] = _("Mind Surfer"),
     [ABILITY_LAWN_SURFER] = _("Lawn Surfer"),
+    [ABILITY_MONKEY_BUSINESS] = _("MnkyBusiness")
 };
 #endif
 
@@ -1219,4 +1222,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_BIG_BALLS] = sBigBallsDescription,
     [ABILITY_MIND_SURFER] = sMindSurferDescription,
     [ABILITY_LAWN_SURFER] = sLawnSurferDescription,
+    [ABILITY_MONKEY_BUSINESS] = sMonkeyBusinessDescription,
 };
