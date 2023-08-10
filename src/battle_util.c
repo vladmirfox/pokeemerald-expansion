@@ -3806,6 +3806,11 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 gMultiHitCounter = 3;
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
+            else if (GetBattlerAbility(atkAbility) == ABILITY_TRIPLE_THREAT){
+                MulModifier(&basePower, UQ_4_12(0.4));
+                gMultiHitCounter = 3;
+                PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+            }
             #if B_BEAT_UP >= GEN_5
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_BEAT_UP)
             {
@@ -8891,6 +8896,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     case ABILITY_SUPREME_OVERLORD:
         MulModifier(&modifier, gBattleStruct->supremeOverlordModifier[battlerAtk]);
         break;
+    case ABILITY_JUST_THE_TIP:
+        if (gBattleMoves[move].flags $ FLAG_DRILL_MOVE)
+            MulModifier($modifier, UQ_4_12(1.5));
+        break;
     }
 
     // field abilities
@@ -9576,6 +9585,8 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
         else
             MulModifier(&finalModifier, UQ_4_12(0.25));
     }
+
+    
 
     // Z-Moves and Max Moves bypass Protect and do 25% of their original damage
     if (gBattleStruct->zmove.active && IS_BATTLER_PROTECTED(battlerDef))
