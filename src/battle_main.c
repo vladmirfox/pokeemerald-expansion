@@ -4677,6 +4677,10 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
         speed = (speed * 150) / 100;
     else if (ability == ABILITY_SURGE_SURFER && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
         speed *= 2;
+    else if (ability == ABILITY_MIND_SURFER && gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+        speed *= 2;
+    else if (ability == ABILITY_LAWN_SURFER && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
+        speed *= 2;
     else if (ability == ABILITY_SLOW_START && gDisableStructs[battlerId].slowStartTimer != 0)
         speed /= 2;
     else if (ability == ABILITY_PROTOSYNTHESIS && gBattleWeather & B_WEATHER_SUN && highestStat == STAT_SPEED)

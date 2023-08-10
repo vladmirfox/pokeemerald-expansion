@@ -2153,6 +2153,17 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
              || abilityAtk == ABILITY_BIG_BALLS
              || abilityDef == ABILITY_BIG_BALLS)
     {
+        if (recordAbility)
+        {
+            if(abilityAtk == ABILITY_BIG_BALLS)
+            {
+                RecordAbilityBattle(battlerAtk, abilityAtk);
+            }   
+            else if(abilityDef == ABILITY_BIG_BALLS)
+            {
+                RecordAbilityBattle(battlerDef, abilityDef);
+            }
+        }
         critChance = -2;
     }
     else
