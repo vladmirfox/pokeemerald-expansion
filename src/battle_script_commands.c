@@ -13760,25 +13760,17 @@ static void Cmd_presentdamagecalculation(void)
      */
     if (gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_2ND_HIT)
     {
-        if (rand < 102)
+        if (rand < 85)
         {
-            gBattleStruct->presentBasePower = 40;
+            gBattleStruct->presentBasePower = 100;
         }
-        else if (rand < 178)
+        else if (rand < 170)
         {
-            gBattleStruct->presentBasePower = 80;
-        }
-        else if (rand < 204)
-        {
-            gBattleStruct->presentBasePower = 120;
+            gBattleStruct->presentBasePower = 130;
         }
         else
         {
-            gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 4;
-            if (gBattleMoveDamage == 0)
-                gBattleMoveDamage = 1;
-            gBattleMoveDamage *= -1;
-            gBattleStruct->presentBasePower = 0;
+            gBattleStruct->presentBasePower = 160;
         }
     }
 

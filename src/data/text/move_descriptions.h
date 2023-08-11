@@ -2590,7 +2590,7 @@ static const u8 sStompingTantrumDescription[] = _(
 
 static const u8 sShadowBoneDescription[] = _(
     "Strikes with a haunted\n"
-    "bone. Might drop Defense.");
+    "bone that strikes twice.");
 
 static const u8 sAccelerockDescription[] = _(
     "Hits with a high-speed\n"

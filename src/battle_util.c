@@ -8584,8 +8584,9 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
     case EFFECT_MAGNITUDE:
         basePower = gBattleStruct->magnitudeBasePower;
         break;
-    case EFFECT_PRESENT:
-        basePower = gBattleStruct->presentBasePower;
+    case EFFECT_HIT_ENEMY_HEAL_ALLY:
+        if(move == MOVE_PRESENT)
+            basePower = gBattleStruct->presentBasePower;
         break;
     case EFFECT_TRIPLE_KICK:
         if (gMultiHitCounter == 0) // Calc damage with max BP for move consideration
