@@ -5220,7 +5220,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_BLAST_BURN] =
     {
-        .effect = EFFECT_RECHARGE,
+        .effect = EFFECT_RECHARGE_PHYS_SPEC,
         .power = 150,
         .type = TYPE_FIRE,
         .accuracy = 90,
@@ -5235,7 +5235,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_HYDRO_CANNON] =
     {
-        .effect = EFFECT_RECHARGE,
+        .effect = EFFECT_RECHARGE_PHYS_SPEC,
         .power = 150,
         .type = TYPE_WATER,
         .accuracy = 90,
@@ -5754,7 +5754,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_FRENZY_PLANT] =
     {
-        .effect = EFFECT_RECHARGE,
+        .effect = EFFECT_RECHARGE_PHYS_SPEC,
         .power = 150,
         .type = TYPE_GRASS,
         .accuracy = 90,
