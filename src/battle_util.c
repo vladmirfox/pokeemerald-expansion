@@ -9901,7 +9901,7 @@ u16 CalcTypeEffectivenessMultiplier(u16 move, u8 moveType, u8 battlerAtk, u8 bat
     if (move != MOVE_STRUGGLE && moveType != TYPE_MYSTERY)
     {
         modifier = CalcTypeEffectivenessMultiplierInternal(move, moveType, battlerAtk, battlerDef, recordAbilities, modifier);
-        if (gBattleMoves[move].effect == EFFECT_TWO_TYPED_MOVE)
+        if (gBattleMoves[move].effect == EFFECT_TWO_TYPED_MOVE || move == MOVE_FREEZING_GLARE || move == MOVE_FIERY_WRATH || move == MOVE_THUNDEROUS_KICK)
             modifier = CalcTypeEffectivenessMultiplierInternal(move, gBattleMoves[move].argument, battlerAtk, battlerDef, recordAbilities, modifier);
     }
 

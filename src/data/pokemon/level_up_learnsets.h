@@ -18765,7 +18765,7 @@ static const struct LevelUpMove sZapdosGalarianLevelUpLearnset[] = {
 static const struct LevelUpMove sMoltresGalarianLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_GUST),
     LEVEL_UP_MOVE( 1, MOVE_LEER),
-    LEVEL_UP_MOVE( 5, MOVE_PAYBACK),
+    LEVEL_UP_MOVE( 5, MOVE_FIERY_WRATH),
     LEVEL_UP_MOVE(10, MOVE_SAFEGUARD),
     LEVEL_UP_MOVE(15, MOVE_WING_ATTACK),
     LEVEL_UP_MOVE(20, MOVE_AGILITY),

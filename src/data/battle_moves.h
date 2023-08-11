@@ -12390,6 +12390,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .argument = TYPE_ICE
     },
 
     [MOVE_FIERY_WRATH] =
@@ -12405,6 +12406,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .argument = TYPE_FIRE,
     },
 
     [MOVE_THUNDEROUS_KICK] =
@@ -12420,6 +12422,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .argument = TYPE_ELECTRIC,
     },
 
     [MOVE_GLACIAL_LANCE] =

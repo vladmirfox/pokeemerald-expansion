@@ -1538,6 +1538,10 @@
 	various \battler, VARIOUS_TRY_ACTIVATE_FELL_STINGER
 	.endm
 
+	.macro tryactivaterechargeskip battler:req
+	various \battler, VARIOUS_TRY_ACTIVATE_RECHARGE_SKIP
+	.endm
+
 	.macro playmoveanimation battler:req, move:req
 	various \battler, VARIOUS_PLAY_MOVE_ANIMATION
 	.2byte \move

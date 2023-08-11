@@ -6400,6 +6400,7 @@ BattleScript_FaintTarget::
 	cleareffectsonfaint BS_TARGET
 	tryactivatefellstinger BS_ATTACKER
 	tryactivatesoulheart
+	tryactivaterechargeskip BS_ATTACKER
 	tryactivatereceiver BS_TARGET
 	tryactivatemoxie BS_ATTACKER        @ and chilling neigh, as one ice rider
 	tryactivatebeastboost BS_ATTACKER

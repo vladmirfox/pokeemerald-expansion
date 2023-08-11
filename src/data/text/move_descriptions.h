@@ -2942,20 +2942,20 @@ static const u8 sDragonEnergyDescription[] = _(
     "the more damage caused.");
 
 static const u8 sFreezingGlareDescription[] = _(
-    "Shoots psychic power from\n"
+    "A beam that is also Ice-\n"
 #if B_USE_FROSTBITE == TRUE
-    "the eyes. May frostbite.");
+    "type. May frostbite.");
 #else
-    "the eyes. May freeze the foe.");
+    "type. May freeze the foe.");
 #endif
 
 static const u8 sFieryWrathDescription[] = _(
-    "An attack fueled by your\n"
-    "wrath. May cause flinching.");
+    "An attack that is also Fire-\n"
+    "type. May cause flinching.");
 
 static const u8 sThunderousKickDescription[] = _(
-    "Uses a lightning-like kick\n"
-    "to hit. Lowers foe's Defense.");
+    "A kick that is also Electric-\n"
+    "type. Lowers foe's Defense.");
 
 static const u8 sGlacialLanceDescription[] = _(
     "Strikes by hurling a blizzard-\n"

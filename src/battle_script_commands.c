@@ -9639,6 +9639,19 @@ static void Cmd_various(void)
         }
         break;
     }
+    case VARIOUS_TRY_ACTIVATE_RECHARGE_SKIP:
+    {
+        VARIOUS_ARGS();
+        if(gBattleMons[gBattlerAttacker].status2 & STATUS2_RECHARGE
+            && HasAttackerFaintedTarget()
+            && !NoAliveMonsForEitherParty()
+        ){
+            gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_RECHARGE;
+            gDisableStructs[gBattlerAttacker].rechargeTimer = 0;
+            return;
+        }
+        break;
+    }
     case VARIOUS_PLAY_MOVE_ANIMATION:
     {
         VARIOUS_ARGS(u16 move);

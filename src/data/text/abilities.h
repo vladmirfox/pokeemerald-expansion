@@ -294,7 +294,7 @@ static const u8 sJustTheTipDescription[] = _("Boosts drill moves.");
 static const u8 sBigBallsDescription[] = _("Moves will always crit.");
 static const u8 sMindSurferDescription[] = _("Faster on weird.");
 static const u8 sLawnSurferDescription[] = _("Faster on grass.");
-static const u8 sMonkeyBusinessDescription[] - _("Ups Sp.Atk and locks move.")
+static const u8 sMonkeyBusinessDescription[] = _("Ups Sp.Atk and locks move.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
