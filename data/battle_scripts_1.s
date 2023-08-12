@@ -8597,6 +8597,16 @@ BattleScript_HealerActivates::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_HealerLeftiesActivates::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_HEALERLEFTIES
+	waitmessage B_WAIT_TIME_LONG
+	orword gHitMarker, HITMARKER_SKIP_DMG_TRACK | HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE | HITMARKER_PASSIVE_DAMAGE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	end3
+
+
 BattleScript_SandstreamActivates::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp
