@@ -6298,7 +6298,7 @@ u32 IsAbilityPreventingEscape(u32 battlerId)
 {
     u32 id;
 #if B_GHOSTS_ESCAPE >= GEN_6
-    if (IS_BATTLER_OF_TYPE(battlerId, TYPE_GHOST))
+    if (IS_BATTLER_OF_TYPE(battlerId, TYPE_GHOST) || GetBattlerAbility(battlerId) == ABILITY_RUN_AWAY)
         return 0;
 #endif
 #if B_SHADOW_TAG_ESCAPE >= GEN_4
@@ -6318,6 +6318,8 @@ u32 IsAbilityPreventingEscape(u32 battlerId)
 bool32 CanBattlerEscape(u32 battlerId) // no ability check
 {
     if (GetBattlerHoldEffect(battlerId, TRUE) == HOLD_EFFECT_SHED_SHELL)
+        return TRUE;
+    else if(GetBattlerAbility(battlerId) == ABILITY_RUN_AWAY)
         return TRUE;
 #if B_GHOSTS_ESCAPE >= GEN_6
     else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_GHOST))
