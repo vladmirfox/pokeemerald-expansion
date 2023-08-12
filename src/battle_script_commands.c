@@ -3936,6 +3936,8 @@ static void Cmd_seteffectwithchance(void)
 
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE)
         percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 2;
+    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_TRIPLE_THREAT)
+        percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance / 2;
     else
         percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
 

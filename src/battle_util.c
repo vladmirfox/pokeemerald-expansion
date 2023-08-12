@@ -3790,7 +3790,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_MULTIHIT_MOVES:
-            if (gBattleMoves[gCurrentMove].effect == EFFECT_MULTI_HIT)
+            if (gBattleMoves[gCurrentMove].effect == EFFECT_MULTI_HIT || gCurrentMove == MOVE_FLAME_BURST)
             {
                 u16 ability = gBattleMons[gBattlerAttacker].ability;
 
@@ -3825,11 +3825,6 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 gMultiHitCounter = 3;
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
-            else if ((gBattleMons[gBattlerAttacker].ability == ABILITY_TRIPLE_THREAT) & (gBattleMoves[gCurrentMove].split != SPLIT_STATUS))
-            {
-                gMultiHitCounter = 3;
-                PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
-            }
             #if B_BEAT_UP >= GEN_5
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_BEAT_UP)
             {
@@ -3849,6 +3844,11 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
             }
             #endif
+            else if ((gBattleMons[gBattlerAttacker].ability == ABILITY_TRIPLE_THREAT) & (gBattleMoves[gCurrentMove].split != SPLIT_STATUS))
+            {
+                gMultiHitCounter = 3;
+                PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+            }
             gBattleStruct->atkCancellerTracker++;
             break;
         case CANCELLER_END:
@@ -8699,9 +8699,9 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         break;
     case EFFECT_PAYBACK:
         if (GetBattlerTurnOrderNum(battlerAtk) > GetBattlerTurnOrderNum(battlerDef)
-        #if B_PAYBACK_SWITCH_BOOST >= GEN_5
-            && (gDisableStructs[battlerDef].isFirstTurn != 2)
-        #endif
+        //#if B_PAYBACK_SWITCH_BOOST >= GEN_5
+        //    && (gDisableStructs[battlerDef].isFirstTurn != 2)
+        //#endif
         )
             basePower *= 2;
         break;
