@@ -6,7 +6,7 @@ SINGLE_BATTLE_TEST("Magic Bounce bounces back status moves")
     GIVEN {
         ASSUME(gBattleMoves[MOVE_TOXIC].effect == EFFECT_TOXIC);
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE);};
+        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
         TURN { MOVE(player, MOVE_TOXIC); }
     } SCENE {
@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("Magic Bounce bounces back powder moves")
         ASSUME(gBattleMoves[MOVE_STUN_SPORE].flags & FLAG_POWDER);
         ASSUME(gBattleMoves[MOVE_STUN_SPORE].effect == EFFECT_PARALYZE);
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE);};
+        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
         TURN { MOVE(player, MOVE_STUN_SPORE); }
     } SCENE {
@@ -42,7 +42,7 @@ SINGLE_BATTLE_TEST("Magic Bounce cannot bounce back powder moves against Grass T
         ASSUME(gBattleMoves[MOVE_STUN_SPORE].flags & FLAG_POWDER);
         ASSUME(gSpeciesInfo[SPECIES_ODDISH].types[0] == TYPE_GRASS);
         PLAYER(SPECIES_ODDISH);
-        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE);};
+        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
         TURN { MOVE(player, MOVE_STUN_SPORE); }
     } SCENE {
@@ -55,7 +55,6 @@ SINGLE_BATTLE_TEST("Magic Bounce cannot bounce back powder moves against Grass T
     }
 }
 
-
 DOUBLE_BATTLE_TEST("Magic Bounce bounces back moves hitting both foes at two foes")
 {
     GIVEN {
@@ -63,7 +62,7 @@ DOUBLE_BATTLE_TEST("Magic Bounce bounces back moves hitting both foes at two foe
         ASSUME(gBattleMoves[MOVE_LEER].target == MOVE_TARGET_BOTH);
         PLAYER(SPECIES_ABRA);
         PLAYER(SPECIES_KADABRA);
-        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE);};
+        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_LEER); }
@@ -73,11 +72,11 @@ DOUBLE_BATTLE_TEST("Magic Bounce bounces back moves hitting both foes at two foe
         MESSAGE("Abra's Leer was bounced back by Foe Espeon's Magic Bounce!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_LEER, opponentLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Abra's defense fell!");
+        MESSAGE("Abra's Defense fell!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-        MESSAGE("Kadabra's defense fell!");
+        MESSAGE("Kadabra's Defense fell!");
         // Also check if second original target gets hit by Leer as this was once bugged
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE("Foe Wynaut's defense fell!");
+        MESSAGE("Foe Wynaut's Defense fell!");
     }
 }

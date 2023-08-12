@@ -1,6 +1,6 @@
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Paralysis reduces speed by 50%")
+SINGLE_BATTLE_TEST("Paralysis reduces Speed by 50%")
 {
     u16 playerSpeed;
     bool32 playerFirst;

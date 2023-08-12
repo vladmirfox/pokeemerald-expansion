@@ -13,6 +13,7 @@ enum TestResult
     TEST_RESULT_INVALID,
     TEST_RESULT_ERROR,
     TEST_RESULT_TIMEOUT,
+    TEST_RESULT_CRASH,
     TEST_RESULT_TODO,
 };
 
@@ -38,14 +39,13 @@ struct TestRunnerState
 {
     u8 state;
     u8 exitCode;
-    s32 tests;
-    s32 passes;
     const char *skipFilename;
     const struct Test *test;
     u32 processCosts[MAX_PROCESSES];
 
     u8 result;
     u8 expectedResult;
+    bool8 expectLeaks:1;
     u32 timeoutSeconds;
 };
 
@@ -69,6 +69,7 @@ extern struct TestRunnerState gTestRunnerState;
 void CB2_TestRunner(void);
 
 void Test_ExpectedResult(enum TestResult);
+void Test_ExpectLeaks(bool32);
 void Test_ExitWithResult(enum TestResult, const char *fmt, ...);
 
 s32 MgbaPrintf_(const char *fmt, ...);
@@ -160,12 +161,15 @@ s32 MgbaPrintf_(const char *fmt, ...);
 #define KNOWN_FAILING \
     Test_ExpectedResult(TEST_RESULT_FAIL)
 
+#define KNOWN_LEAKING \
+    Test_ExpectLeaks(TRUE)
+
 #define PARAMETRIZE if (gFunctionTestRunnerState->parameters++ == gFunctionTestRunnerState->runParameter)
 
 #define TO_DO \
-    Test_ExpectedResult(TEST_RESULT_TODO)
-
-#define EXPECT_TO_DO \
-    Test_ExitWithResult(TEST_RESULT_TODO, "%s:%d: EXPECT_TO_DO", gTestRunnerState.test->filename, __LINE__)
+    do { \
+        Test_ExpectedResult(TEST_RESULT_TODO); \
+        Test_ExitWithResult(TEST_RESULT_TODO, "%s:%d: EXPECT_TO_DO", gTestRunnerState.test->filename, __LINE__); \
+    } while (0)
 
 #endif

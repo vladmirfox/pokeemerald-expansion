@@ -346,7 +346,7 @@ struct BattleMove
     s8 priority;
     u32 flags;
     u8 split;
-    u8 argument;
+    u16 argument;
     u8 zMoveEffect;
 };
 
@@ -414,6 +414,7 @@ extern const u16 gUnionRoomFacilityClasses[];
 extern const struct SpriteTemplate gBattlerSpriteTemplates[];
 extern const s8 gNatureStatTable[][5];
 extern const u16 *const gFormSpeciesIdTables[NUM_SPECIES];
+extern const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES];
 extern const u32 sExpCandyExperienceTable[];
 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);
@@ -442,6 +443,7 @@ void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest);
 u8 GetLevelFromMonExp(struct Pokemon *mon);
 u8 GetLevelFromBoxMonExp(struct BoxPokemon *boxMon);
 u16 GiveMoveToMon(struct Pokemon *mon, u16 move);
+u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move);
 u16 GiveMoveToBattleMon(struct BattlePokemon *mon, u16 move);
 void SetMonMoveSlot(struct Pokemon *mon, u16 move, u8 slot);
 void SetBattleMonMoveSlot(struct BattlePokemon *mon, u16 move, u8 slot);
@@ -460,12 +462,17 @@ void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition);
 void SetMultiuseSpriteTemplateToTrainerBack(u16 trainerSpriteId, u8 battlerPosition);
 void SetMultiuseSpriteTemplateToTrainerFront(u16 trainerPicId, u8 battlerPosition);
 
-// These are full type signatures for GetMonData() and GetBoxMonData(),
-// but they are not used since some code erroneously omits the third arg.
-// u32 GetMonData(struct Pokemon *mon, s32 field, u8 *data);
-// u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data);
-u32 GetMonData();
-u32 GetBoxMonData();
+/* GameFreak called Get(Box)MonData with either 2 or 3 arguments, for
+ * type safety we have a Get(Box)MonData macro which dispatches to
+ * either Get(Box)MonData2 or Get(Box)MonData3 based on the number of
+ * arguments. The two functions are aliases of each other, but they
+ * differ for matching purposes in the caller's codegen. */
+#define GetMonData(...) CAT(GetMonData, NARG_8(__VA_ARGS__))(__VA_ARGS__)
+#define GetBoxMonData(...) CAT(GetBoxMonData, NARG_8(__VA_ARGS__))(__VA_ARGS__)
+u32 GetMonData3(struct Pokemon *mon, s32 field, u8 *data);
+u32 GetMonData2(struct Pokemon *mon, s32 field);
+u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data);
+u32 GetBoxMonData2(struct BoxPokemon *boxMon, s32 field);
 
 void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg);
 void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg);
@@ -565,10 +572,12 @@ u8 *MonSpritesGfxManager_GetSpritePtr(u8 managerId, u8 spriteNum);
 u16 GetFormSpeciesId(u16 speciesId, u8 formId);
 u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId);
 u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg);
-u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *mon, u16 method, u32 arg);
+u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 arg);
+bool32 DoesSpeciesHaveFormChangeMethod(u16 species, u16 method);
 u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove);
 bool32 ShouldShowFemaleDifferences(u16 species, u32 personality);
-void TryToSetBattleFormChangeMoves(struct Pokemon *mon);
+bool32 TryFormChange(u32 monId, u32 side, u16 method);
+void TryToSetBattleFormChangeMoves(struct Pokemon *mon, u16 method);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);
 void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality);
 
