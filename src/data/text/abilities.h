@@ -296,7 +296,7 @@ static const u8 sMindSurferDescription[] = _("Faster on weird.");
 static const u8 sLawnSurferDescription[] = _("Faster on grass.");
 static const u8 sMonkeyBusinessDescription[] = _("Ups Sp.Atk and locks move.");
 static const u8 sHeatSinkDescription[] = _("Draws in Fire moves.");
-static const u8 sTrueAuroraDescription[] = _("Powers up Aurora Veil.");
+static const u8 sTrueAuroraDescription[] = _("Powers up Aurora moves.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =

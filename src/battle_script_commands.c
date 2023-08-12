@@ -1565,6 +1565,36 @@ static void Cmd_attackcanceler(void)
         return;
     }
 
+    if (((GetBattlerAbility(gBattlerTarget) == ABILITY_COLOR_CHANGE)) && (gBattlerAttacker != gBattlerTarget)) {
+        u32 currentType;
+        u32 bestType = gBattleMons[gBattlerTarget].type1;
+        u16 bestModifier = GetTypeModifier(moveType, bestType);
+
+        for (currentType = TYPE_NORMAL; currentType < NUMBER_OF_MON_TYPES; ++currentType) {
+            u16 currentModifier = GetTypeModifier(moveType, currentType);
+            if (currentModifier < bestModifier) {
+                bestModifier = currentModifier;
+                bestType = currentType;
+            }
+            if (bestModifier == UQ_4_12(0.0))
+                break;
+        }
+        if (moveType == TYPE_GRASS){
+            bestType = TYPE_GRASS; //powder immunity
+        }
+        if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PRANKSTER) && (IS_MOVE_STATUS(gCurrentMove) == TRUE)){
+            bestType = TYPE_DARK; //prankster immunity
+        }
+        if (gBattleMons[gBattlerTarget].type1 != bestType) {
+            SET_BATTLER_TYPE(gBattlerTarget, bestType);
+            PREPARE_TYPE_BUFFER(gBattleTextBuff1, bestType);
+            gBattlerAbility = gBattlerTarget;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ColorChangeActivates;
+            return;
+        }
+    }
+
     if (AtkCanceller_UnableToUseMove2())
         return;
     if (AbilityBattleEffects(ABILITYEFFECT_MOVES_BLOCK, gBattlerTarget, 0, 0, 0))
