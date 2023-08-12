@@ -1,3 +1,4 @@
+#include "global.h"
 #include "test/battle.h"
 
 SINGLE_BATTLE_TEST("Freeze has a 20% chance of being thawed")

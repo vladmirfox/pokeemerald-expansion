@@ -1,3 +1,4 @@
+#include "global.h"
 #include "test/battle.h"
 
 SINGLE_BATTLE_TEST("Sand Veil prevents damage from sandstorm")

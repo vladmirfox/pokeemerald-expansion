@@ -1,3 +1,4 @@
+#include "global.h"
 #include "test/battle.h"
 
 SINGLE_BATTLE_TEST("Sleep prevents the battler from using a move")

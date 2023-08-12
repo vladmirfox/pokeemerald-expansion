@@ -1,3 +1,4 @@
+#include "global.h"
 #include "test/battle.h"
 
 // Note: Since these tests are recorded battle, they don't test the right battle controller

@@ -1,3 +1,4 @@
+#include "global.h"
 #include "test/battle.h"
 
 SINGLE_BATTLE_TEST("Drizzle summons rain", s16 damage)

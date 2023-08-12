@@ -1,3 +1,4 @@
+#include "global.h"
 #include "test/battle.h"
 
 SINGLE_BATTLE_TEST("Venusaur can Mega Evolve holding Venusaurite")

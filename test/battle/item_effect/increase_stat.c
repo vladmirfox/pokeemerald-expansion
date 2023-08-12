@@ -1,3 +1,4 @@
+#include "global.h"
 #include "test/battle.h"
 
 SINGLE_BATTLE_TEST("X Attack sharply raises battler's Attack stat", s16 damage)

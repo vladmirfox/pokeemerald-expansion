@@ -1,3 +1,4 @@
+#include "global.h"
 #include "test/battle.h"
 
 SINGLE_BATTLE_TEST("Misty Terrain protects grounded battlers from non-volatile status conditions")
