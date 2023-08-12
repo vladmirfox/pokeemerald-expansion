@@ -197,6 +197,7 @@ struct SpecialStatus
     u8 terrainAbilityDone:1;
     u8 emergencyExited:1;
     u8 afterYou:1;
+    u8 heatSinkRedirected:1;
 };
 
 struct SideTimer

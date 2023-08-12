@@ -349,7 +349,8 @@ void HandleAction_UseMove(void)
            && gSideTimers[side].followmeTimer == 0
            && (gBattleMoves[gCurrentMove].power != 0 || (moveTarget != MOVE_TARGET_USER && moveTarget != MOVE_TARGET_ALL_BATTLERS))
            && ((GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
-            || (GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_STORM_DRAIN && moveType == TYPE_WATER)))
+            || (GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_STORM_DRAIN && moveType == TYPE_WATER)
+            || (GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_HEAT_SINK && moveType == TYPE_FIRE)))
     {
         side = GetBattlerSide(gBattlerAttacker);
         for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
@@ -357,7 +358,8 @@ void HandleAction_UseMove(void)
             if (side != GetBattlerSide(gActiveBattler)
                 && *(gBattleStruct->moveTarget + gBattlerAttacker) != gActiveBattler
                 && ((GetBattlerAbility(gActiveBattler) == ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
-                 || (GetBattlerAbility(gActiveBattler) == ABILITY_STORM_DRAIN && moveType == TYPE_WATER))
+                 || (GetBattlerAbility(gActiveBattler) == ABILITY_STORM_DRAIN && moveType == TYPE_WATER)
+                 || (GetBattlerAbility(gActiveBattler) == ABILITY_HEAT_SINK && moveType == TYPE_FIRE))
                 && GetBattlerTurnOrderNum(gActiveBattler) < var
                 && gBattleMoves[gCurrentMove].effect != EFFECT_SNIPE_SHOT
                 && (GetBattlerAbility(gBattlerAttacker) != ABILITY_PROPELLER_TAIL
@@ -425,6 +427,8 @@ void HandleAction_UseMove(void)
                 gSpecialStatuses[gActiveBattler].lightningRodRedirected = TRUE;
             else if (battlerAbility == ABILITY_STORM_DRAIN)
                 gSpecialStatuses[gActiveBattler].stormDrainRedirected = TRUE;
+            else if (battlerAbility == ABILITY_HEAT_SINK)
+                gSpecialStatuses[gActiveBattler].heatSinkRedirected = TRUE;
             gBattlerTarget = gActiveBattler;
         }
     }
@@ -1001,6 +1005,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_GOOD_AS_GOLD] = 1,
     [ABILITY_PURIFYING_SALT] = 1,
     [ABILITY_WELL_BAKED_BODY] = 1,
+    [ABILITY_HEAT_SINK] = 1,
 };
 
 static const u8 sAbilitiesNotTraced[ABILITIES_COUNT] =
@@ -5051,6 +5056,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (moveType == TYPE_WATER)
                     effect = 2, statId = STAT_SPATK;
                 break;
+            case ABILITY_HEAT_SINK:
+                if (moveType == TYPE_FIRE)
+                    effect = 2, statId = STAT_SPATK;
+                break;
             case ABILITY_SAP_SIPPER:
                 if (moveType == TYPE_GRASS)
                     effect = 2, statId = STAT_ATK;
@@ -7991,6 +8000,14 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
                 RecordAbilityBattle(targetBattler, gBattleMons[targetBattler].ability);
                 gSpecialStatuses[targetBattler].stormDrainRedirected = TRUE;
             }
+            else if (gBattleMoves[move].type == TYPE_FIRE
+                && IsAbilityOnOpposingSide(gBattlerAttacker, ABILITY_HEAT_SINK)
+                && GetBattlerAbility(targetBattler) != ABILITY_HEAT_SINK)
+            {
+                targetBattler ^= BIT_FLANK;
+                RecordAbilityBattle(targetBattler, gBattleMons[targetBattler].ability);
+                gSpecialStatuses[targetBattler].heatSinkRedirected = TRUE;
+            }
         }
         break;
     case MOVE_TARGET_DEPENDS:
@@ -10889,7 +10906,8 @@ bool32 BlocksPrankster(u16 move, u8 battlerPrankster, u8 battlerDef, bool32 chec
         return FALSE;
     if (gStatuses3[battlerDef] & STATUS3_SEMI_INVULNERABLE)
         return FALSE;
-
+    if (move == MOVE_SPORE)
+        return FALSE;
     return TRUE;
     #endif
     return FALSE;

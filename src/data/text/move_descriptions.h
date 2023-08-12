@@ -118,7 +118,7 @@ static const u8 sJumpKickDescription[] = _(
 
 static const u8 sRollingKickDescription[] = _(
     "A fast kick delivered from\n"
-    "a rapid spin.");
+    "a rapid spin. Lowers speed.");
 
 static const u8 sSandAttackDescription[] = _(
     "Reduces the foe's accuracy\n"
@@ -401,8 +401,8 @@ static const u8 sHypnosisDescription[] = _(
     "may induce sleep.");
 
 static const u8 sMeditateDescription[] = _(
-    "Meditates in a peaceful\n"
-    "fashion to raise Attack.");
+    "Meditates peacefully.\n"
+    "Raise Attack, Sp. Def.");
 
 static const u8 sAgilityDescription[] = _(
     "Relaxes the body to sharply\n"
@@ -529,8 +529,8 @@ static const u8 sWaterfallDescription[] = _(
     "to climb waterfalls.");
 
 static const u8 sClampDescription[] = _(
-    "Traps and squeezes the\n"
-    "foe for "BINDING_TURNS" turns.");
+    "Squeezes the foe 2 to 5\n"
+    "times in a row.");
 
 static const u8 sSwiftDescription[] = _(
     "Sprays star-shaped rays\n"
@@ -3007,7 +3007,7 @@ static const u8 sChloroblastDescription[] = _(
 
 static const u8 sMountainGaleDescription[] = _(
     "Giant chunks of ice damage\n"
-    "the foe. It may flinch.");
+    "the foe. It may frostbite.");
 
 static const u8 sVictoryDanceDescription[] = _(
     "Dances to raise Attack,\n"
