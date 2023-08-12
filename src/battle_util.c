@@ -5480,7 +5480,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 else
                 {
-                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
+                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 3;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
                     BattleScriptPushCursor();
@@ -5563,6 +5563,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        case ABILITY_MAGMA_ARMOR:
         case ABILITY_FLAME_BODY:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
@@ -5684,7 +5685,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
                     if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
                     {
-                        gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
+                        gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 3;
                         if (gBattleMoveDamage == 0)
                             gBattleMoveDamage = 1;
                     }
@@ -5697,7 +5698,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
                     if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
                     {
-                        gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
+                        gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 3;
                         if (gBattleMoveDamage == 0)
                             gBattleMoveDamage = 1;
                     }
@@ -8853,11 +8854,11 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
     case ABILITY_RECKLESS:
         if (gBattleMoves[move].flags & FLAG_RECKLESS_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.2));
+           MulModifier(&modifier, UQ_4_12(1.3));
         break;
     case ABILITY_IRON_FIST:
         if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.2));
+           MulModifier(&modifier, UQ_4_12(1.4));
         break;
     case ABILITY_SHEER_FORCE:
         if (gBattleMoves[move].flags & FLAG_SHEER_FORCE_BOOST)
@@ -8870,9 +8871,9 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
     case ABILITY_RIVALRY:
         if (AreBattlersOfOppositeGender(battlerAtk, battlerDef))
-            MulModifier(&modifier, UQ_4_12(1.25));
+            MulModifier(&modifier, UQ_4_12(1.5));
         else
-            MulModifier(&modifier, UQ_4_12(0.75));
+            MulModifier(&modifier, UQ_4_12(0.9));
         break;
     case ABILITY_ANALYTIC:
         if (GetBattlerTurnOrderNum(battlerAtk) == gBattlersCount - 1 && move != MOVE_FUTURE_SIGHT && move != MOVE_DOOM_DESIRE)
@@ -8920,7 +8921,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
     case ABILITY_PUNK_ROCK:
         if (gBattleMoves[move].flags & FLAG_SOUND)
-            MulModifier(&modifier, UQ_4_12(1.3));
+            MulModifier(&modifier, UQ_4_12(1.5));
         break;
     case ABILITY_STEELY_SPIRIT:
         if (moveType == TYPE_STEEL)
@@ -9049,6 +9050,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         }
         if (moveType == TYPE_FIRE)
             MulModifier(&modifier, UQ_4_12(2.0));
+        break;
+    case ABILITY_MAGMA_ARMOR:
+        if (IsMoveMakingContact(move, battlerAtk))
+        MulModifier(&finalModifier, UQ_4_12(0.75));
         break;
     case ABILITY_PROTOSYNTHESIS:
         {
