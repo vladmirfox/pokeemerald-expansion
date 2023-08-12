@@ -3820,7 +3820,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                     // TODO
                 }
             }
-            else if (gBattleMoves[gCurrentMove].effect == EFFECT_TRIPLE_KICK || gBattleMoves[gCurrentMove].flags & FLAG_THREE_STRIKES )
+            else if (gBattleMoves[gCurrentMove].effect == EFFECT_TRIPLE_KICK || gBattleMoves[gCurrentMove].flags & FLAG_THREE_STRIKES || gCurrentMove == MOVE_TRI_ATTACK)
             {
                 gMultiHitCounter = 3;
                 PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
