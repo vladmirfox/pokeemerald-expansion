@@ -147,6 +147,7 @@ struct ProtectStruct
     u16 quash:1;
     u16 shellTrap:1;
     u16 silkTrapped:1;
+    u16 firewalled:1;
     u16 eatMirrorHerb:1;
     u32 physicalDmg;
     u32 specialDmg;
@@ -715,7 +716,8 @@ struct BattleStruct
                                         || gProtectStructs[battlerId].kingsShielded                                    \
                                         || gProtectStructs[battlerId].banefulBunkered                                  \
                                         || gProtectStructs[battlerId].obstructed                                       \
-                                        || gProtectStructs[battlerId].silkTrapped)
+                                        || gProtectStructs[battlerId].silkTrapped                                      \
+                                        || gProtectStructs[battlerId].firewalled)
 
 #define GET_STAT_BUFF_ID(n)((n & 7))              // first three bits 0x1, 0x2, 0x4
 #define GET_STAT_BUFF_VALUE_WITH_SIGN(n)((n & 0xF8))

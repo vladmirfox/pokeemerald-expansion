@@ -831,6 +831,9 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_MAGICAL_TORQUE] = _("Magical Torque"),
     [MOVE_PSYBLADE] = _("Psyblade"),
     [MOVE_HYDRO_STEAM] = _("Hydro Steam"),
+    [MOVE_PURIFYING_WATER] = _("Purifying Water"),
+    [MOVE_DIVINE_SMITE] = _("Divine Smite"),
+    [MOVE_FIREWALL] = _("Firewall"),
 };
 #else
 // 12 letters
@@ -1665,6 +1668,9 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_MAGICAL_TORQUE] = _("MagiclTorque"),
     [MOVE_PSYBLADE] = _("Psyblade"),
     [MOVE_HYDRO_STEAM] = _("Hydro Steam"),
+    [MOVE_PURIFYING_WATER] = _("PurifyngWtr"),
+    [MOVE_DIVINE_SMITE] = _("Divine Smite"),
+    [MOVE_FIREWALL] = _("Firewall"),
 };
 #endif
 

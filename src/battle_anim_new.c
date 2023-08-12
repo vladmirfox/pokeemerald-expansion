@@ -4110,6 +4110,17 @@ const struct SpriteTemplate gSteelBeamSpikeShardTemplate =
     .callback = AnimDirtScatter
 };
 
+const struct SpriteTemplate gFirewallFlameTemplate =
+{
+    .tileTag = ANIM_TAG_SMALL_EMBER,
+    .paletteTag = ANIM_TAG_SMALL_EMBER,
+    .oam = &gOamData_AffineNormal_ObjNormal_16x16,
+    .anims = gAnims_BasicFire,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimSmallBubblePair
+};
+
 // Z MOVES
 //activate
 const struct SpriteTemplate gZMoveSymbolSpriteTemplate =

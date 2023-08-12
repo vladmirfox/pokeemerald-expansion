@@ -8265,7 +8265,7 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
     else if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD
              && GetBattlerMoveTargetType(gBattlerAttacker, move) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY))
         return TRUE;
-    else if (gProtectStructs[battlerId].banefulBunkered)
+    else if (gProtectStructs[battlerId].banefulBunkered || gProtectStructs[battlerId].firewalled)
         return TRUE;
     else if ((gProtectStructs[battlerId].obstructed || gProtectStructs[battlerId].silkTrapped) && !IS_MOVE_STATUS(move))
         return TRUE;
