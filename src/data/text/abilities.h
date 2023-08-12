@@ -296,6 +296,7 @@ static const u8 sMindSurferDescription[] = _("Faster on weird.");
 static const u8 sLawnSurferDescription[] = _("Faster on grass.");
 static const u8 sMonkeyBusinessDescription[] = _("Ups Sp.Atk and locks move.");
 static const u8 sHeatSinkDescription[] = _("Draws in Fire moves.");
+static const u8 sTrueAuroraDescription[] = _("Powers up Aurora Veil.")
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -606,6 +607,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_LAWN_SURFER] = _("Lawn Surfer"),
     [ABILITY_MONKEY_BUSINESS] = _("Monkey Business"),
     [ABILITY_HEAT_SINK] = _("Heat Sink"),
+    [ABILITY_TRUE_AURORA] = _("True Aurora"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -916,6 +918,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_LAWN_SURFER] = _("Lawn Surfer"),
     [ABILITY_MONKEY_BUSINESS] = _("MnkyBusiness"),
     [ABILITY_HEAT_SINK] = _("Heat Sink"),
+    [ABILITY_TRUE_AURORA] = _("True Aurora"),
 };
 #endif
 
@@ -1227,4 +1230,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_LAWN_SURFER] = sLawnSurferDescription,
     [ABILITY_MONKEY_BUSINESS] = sMonkeyBusinessDescription,
     [ABILITY_HEAT_SINK] = sHeatSinkDescription,
+    [ABILITY_TRUE_AURORA] = sTrueAuroraDescription,
 };

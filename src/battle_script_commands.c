@@ -10315,10 +10315,16 @@ static void Cmd_various(void)
             gMoveResultFlags |= MOVE_RESULT_MISSED;
             gBattleCommunication[MULTISTRING_CHOOSER] = 0;
         }
+        else if (!(GetBattlerAbility(gActiveBattler) == ABILITY_TRUE_AURORA))
+        {
+            gMoveResultFlags |= MOVE_RESULT_MISSED;
+            gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+        }
         else
         {
             gSideStatuses[GET_BATTLER_SIDE(gActiveBattler)] |= SIDE_STATUS_AURORA_VEIL;
-            if (GetBattlerHoldEffect(gActiveBattler, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
+            if (GetBattlerHoldEffect(gActiveBattler, TRUE) == HOLD_EFFECT_LIGHT_CLAY
+                || GetBattlerAbility(gActiveBattler) == ABILITY_TRUE_AURORA)
                 gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].auroraVeilTimer = 8;
             else
                 gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].auroraVeilTimer = 5;
