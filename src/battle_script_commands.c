@@ -7972,7 +7972,7 @@ static bool32 TryCheekPouch(u32 battlerId, u32 itemId)
         && gBattleStruct->ateBerry[GetBattlerSide(battlerId)] & gBitTable[gBattlerPartyIndexes[battlerId]]
         && !BATTLER_MAX_HP(battlerId))
     {
-        gBattleMoveDamage = gBattleMons[battlerId].maxHP / 3;
+        gBattleMoveDamage = gBattleMons[battlerId].maxHP / 2;
         if (gBattleMoveDamage == 0)
             gBattleMoveDamage = 1;
         gBattleMoveDamage *= -1;
@@ -10309,18 +10309,17 @@ static void Cmd_various(void)
     case VARIOUS_SET_AURORA_VEIL:
     {
         VARIOUS_ARGS();
-        if (gSideStatuses[GET_BATTLER_SIDE(gActiveBattler)] & SIDE_STATUS_AURORA_VEIL
-            || !(WEATHER_HAS_EFFECT && gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
+        if (gSideStatuses[GET_BATTLER_SIDE(gActiveBattler)] & SIDE_STATUS_AURORA_VEIL)
         {
             gMoveResultFlags |= MOVE_RESULT_MISSED;
             gBattleCommunication[MULTISTRING_CHOOSER] = 0;
         }
-        else if (!(GetBattlerAbility(gActiveBattler) == ABILITY_TRUE_AURORA))
+        else if ((!(WEATHER_HAS_EFFECT && gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
+            && !(GetBattlerAbility(gActiveBattler) == ABILITY_TRUE_AURORA))
         {
             gMoveResultFlags |= MOVE_RESULT_MISSED;
             gBattleCommunication[MULTISTRING_CHOOSER] = 0;
         }
-        else
         {
             gSideStatuses[GET_BATTLER_SIDE(gActiveBattler)] |= SIDE_STATUS_AURORA_VEIL;
             if (GetBattlerHoldEffect(gActiveBattler, TRUE) == HOLD_EFFECT_LIGHT_CLAY

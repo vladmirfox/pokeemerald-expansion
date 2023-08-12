@@ -1056,7 +1056,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_AURORA_BEAM] =
     {
         .effect = EFFECT_ATTACK_DOWN_HIT,
-        .power = 65,
+        .power = 80,
         .type = TYPE_ICE,
         .accuracy = 100,
         .pp = 20,
