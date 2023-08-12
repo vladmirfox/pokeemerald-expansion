@@ -9053,7 +9053,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
     case ABILITY_MAGMA_ARMOR:
         if (IsMoveMakingContact(move, battlerAtk))
-        MulModifier(&finalModifier, UQ_4_12(0.75));
+        MulModifier(&modifier, UQ_4_12(0.75));
         break;
     case ABILITY_PROTOSYNTHESIS:
         {

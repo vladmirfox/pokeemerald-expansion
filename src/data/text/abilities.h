@@ -144,7 +144,7 @@ static const u8 sHarvestDescription[] = _("May recycle a used Berry.");
 static const u8 sTelepathyDescription[] = _("Can't be damaged by an ally.");
 static const u8 sMoodyDescription[] = _("Stats change gradually.");
 static const u8 sOvercoatDescription[] = _("Blocks weather and powder.");
-static const u8 sBigPecksDescription[] = _("Prevents Defense loss.");
+static const u8 sBigPecksDescription[] = _("Intimidate: +1 to all.");
 static const u8 sSandRushDescription[] = _("Ups Speed in a sandstorm.");
 static const u8 sWonderSkinDescription[] = _("May avoid status problems.");
 static const u8 sAnalyticDescription[] = _("Moving last boosts power.");
@@ -296,7 +296,7 @@ static const u8 sMindSurferDescription[] = _("Faster on weird.");
 static const u8 sLawnSurferDescription[] = _("Faster on grass.");
 static const u8 sMonkeyBusinessDescription[] = _("Ups Sp.Atk and locks move.");
 static const u8 sHeatSinkDescription[] = _("Draws in Fire moves.");
-static const u8 sTrueAuroraDescription[] = _("Powers up Aurora Veil.")
+static const u8 sTrueAuroraDescription[] = _("Powers up Aurora Veil.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
