@@ -1,8 +1,10 @@
-# pokeemerald Expansion
+# pokeemerald Expansion ++
 
-## What is the pokeemerald Expansion?
+## What is the pokeemerald Expansion ++?
 
-The Pokeemerald Expansion is a collection of feature branches that can be integrated into existing [pokeemerald](https://github.com/pret/pokeemerald) projects.
+The Pokeemerald Expansion ++ is a fork -> collection of feature branches that can be integrated into existing [pokeemerald](https://github.com/pret/pokeemerald) projects.
+
+This is a WIP ROM Hack.
 
 ## What features are included?
 - Upgraded battle engine.
