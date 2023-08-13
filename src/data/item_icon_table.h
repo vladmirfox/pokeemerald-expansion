@@ -804,7 +804,7 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_RUBY] = {gItemIcon_Gem, gItemIconPalette_Ruby},
     [ITEM_SAPPHIRE] = {gItemIcon_Gem, gItemIconPalette_Sapphire},
     [ITEM_ABILITY_SHIELD] = {gItemIcon_AbilityShield, gItemIconPalette_AbilityShield},
-    [ITEM_CLEAR_AMULET] = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark}, // {gItemIcon_ClearAmulet, gItemIconPalette_ClearAmulet},
+    [ITEM_CLEAR_AMULET] = {gItemIcon_ClearAmulet, gItemIconPalette_ClearAmulet},
     [ITEM_PUNCHING_GLOVE] = {gItemIcon_PunchingGlove, gItemIconPalette_PunchingGlove},
     [ITEM_COVERT_CLOAK] = {gItemIcon_CovertCloak, gItemIconPalette_CovertCloak},
     [ITEM_LOADED_DICE] = {gItemIcon_LoadedDice, gItemIconPalette_LoadedDice},
@@ -840,6 +840,10 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_ADAMANT_CRYSTAL] = {gItemIcon_AdamantCrystal, gItemIconPalette_AdamantCrystal},
     [ITEM_GRISEOUS_CORE] = {gItemIcon_GriseousCore, gItemIconPalette_GriseousCore},
     [ITEM_LUSTROUS_GLOBE] = {gItemIcon_LustrousGlobe, gItemIconPalette_LustrousGlobe},
+    [ITEM_BLACK_AUGURITE] = {gItemIcon_BlackAugurite, gItemIconPalette_BlackAugurite},
+    [ITEM_LINKING_CORD] = {gItemIcon_LinkingCord, gItemIconPalette_LinkingCord},
+    [ITEM_PEAT_BLOCK] = {gItemIcon_PeatBlock, gItemIconPalette_PeatBlock},
+    [ITEM_BERSERK_GENE] = {gItemIcon_BerserkGene, gItemIconPalette_BerserkGene},
     // Return to field arrow
     [ITEMS_COUNT] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

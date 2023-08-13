@@ -5,6 +5,7 @@
 #include <limits.h>
 #include "config.h" // we need to define config before gba headers as print stuff needs the functions nulled before defines.
 #include "gba/gba.h"
+#include "fpmath.h"
 #include "constants/global.h"
 #include "constants/flags.h"
 #include "constants/vars.h"
@@ -20,7 +21,6 @@
 #define BLOCK_CROSS_JUMP asm("");
 
 // to help in decompiling
-#define asm_comment(x) asm volatile("@ -- " x " -- ")
 #define asm_unified(x) asm(".syntax unified\n" x "\n.syntax divided")
 #define NAKED __attribute__((naked))
 
@@ -50,32 +50,6 @@
     a = b;                  \
     b = temp;               \
 }
-
-// useful math macros
-
-// Converts a number to Q8.8 fixed-point format
-#define Q_8_8(n) ((s16)((n) * 256))
-
-// Converts a number to Q4.12 fixed-point format
-#define Q_4_12(n)  ((s16)((n) * 4096))
-#define UQ_4_12(n)  ((u16)((n) * 4096))
-
-// Converts a number to Q24.8 fixed-point format
-#define Q_24_8(n)  ((s32)((n) << 8))
-
-// Converts a Q8.8 fixed-point format number to a regular integer
-#define Q_8_8_TO_INT(n) ((int)((n) / 256))
-
-// Converts a Q4.12 fixed-point format number to a regular integer
-#define Q_4_12_TO_INT(n)  ((int)((n) / 4096))
-#define UQ_4_12_TO_INT(n)  ((int)((n) / 4096))
-
-// Converts a Q24.8 fixed-point format number to a regular integer
-#define Q_24_8_TO_INT(n) ((int)((n) >> 8))
-
-// Rounding value for Q4.12 fixed-point format
-#define Q_4_12_ROUND ((1) << (12 - 1))
-#define UQ_4_12_ROUND ((1) << (12 - 1))
 
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #define max(a, b) ((a) >= (b) ? (a) : (b))
@@ -137,15 +111,20 @@
 
 #define NUM_DEX_FLAG_BYTES ROUND_BITS_TO_BYTES(POKEMON_SLOTS_NUMBER)
 #define NUM_FLAG_BYTES ROUND_BITS_TO_BYTES(FLAGS_COUNT)
-#define NUM_ADDITIONAL_PHRASE_BYTES ROUND_BITS_TO_BYTES(NUM_ADDITIONAL_PHRASES)
+#define NUM_TRENDY_SAYING_BYTES ROUND_BITS_TO_BYTES(NUM_TRENDY_SAYINGS)
 
 // Calls m0/m1/.../m8 depending on how many arguments are passed.
 #define VARARG_8(m, ...) CAT(m, NARG_8(__VA_ARGS__))(__VA_ARGS__)
+
+// This returns the number of arguments passed to it (up to 8).
 #define NARG_8(...) NARG_8_(_, ##__VA_ARGS__, 8, 7, 6, 5, 4, 3, 2, 1, 0)
 #define NARG_8_(_, a, b, c, d, e, f, g, h, N, ...) N
 
 #define CAT(a, b) CAT_(a, b)
 #define CAT_(a, b) a ## b
+
+#define STR(a) STR_(a)
+#define STR_(a) #a
 
 // Converts a string to a compound literal, essentially making it a pointer to const u8
 #define COMPOUND_STRING(str) (const u8[]) _(str)
@@ -689,7 +668,7 @@ struct MauvilleManGiddy
 struct MauvilleManHipster
 {
     u8 id;
-    bool8 alreadySpoken;
+    bool8 taughtWord;
     u8 language;
 };
 
@@ -855,7 +834,7 @@ struct WaldaPhrase
 struct TrainerNameRecord
 {
     u32 trainerId;
-    u8 trainerName[PLAYER_NAME_LENGTH + 1];
+    u8 ALIGNED(2) trainerName[PLAYER_NAME_LENGTH + 1];
 };
 
 struct TrainerHillSave
@@ -1047,7 +1026,7 @@ struct SaveBlock1
     /*0x2BC8*/ u16 easyChatBattleWon[EASY_CHAT_BATTLE_WORDS_COUNT];
     /*0x2BD4*/ u16 easyChatBattleLost[EASY_CHAT_BATTLE_WORDS_COUNT];
     /*0x2BE0*/ struct Mail mail[MAIL_COUNT];
-    /*0x2E20*/ u8 additionalPhrases[NUM_ADDITIONAL_PHRASE_BYTES]; // bitfield for 33 additional phrases in easy chat system
+    /*0x2E20*/ u8 unlockedTrendySayings[NUM_TRENDY_SAYING_BYTES]; // Bitfield for unlockable Easy Chat words in EC_GROUP_TRENDY_SAYING
     /*0x2E25*/ //u8 padding5[3];
     /*0x2E28*/ OldMan oldMan;
     /*0x2e64*/ struct DewfordTrend dewfordTrends[SAVED_TRENDS_COUNT];

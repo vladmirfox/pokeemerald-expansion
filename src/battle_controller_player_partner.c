@@ -16,6 +16,7 @@
 #include "main.h"
 #include "m4a.h"
 #include "palette.h"
+#include "party_menu.h"
 #include "pokeball.h"
 #include "pokemon.h"
 #include "reshow_battle_screen.h"
@@ -27,6 +28,7 @@
 #include "window.h"
 #include "constants/battle_anim.h"
 #include "constants/songs.h"
+#include "constants/party_menu.h"
 #include "constants/trainers.h"
 
 static void PlayerPartnerHandleGetMonData(void);
@@ -1211,7 +1213,7 @@ static void PlayerPartnerHandleLoadMonSprite(void)
     gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = -DISPLAY_WIDTH;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = gActiveBattler;
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;
-    StartSpriteAnim(&gSprites[gBattlerSpriteIds[gActiveBattler]], gBattleMonForms[gActiveBattler]);
+    StartSpriteAnim(&gSprites[gBattlerSpriteIds[gActiveBattler]], 0);
     gBattlerControllerFuncs[gActiveBattler] = WaitForMonAnimAfterLoad;
 }
 
@@ -1247,7 +1249,7 @@ static void StartSendOutAnim(u8 battlerId, bool8 dontClearSubstituteBit)
     gSprites[gBattlerSpriteIds[battlerId]].data[2] = species;
     gSprites[gBattlerSpriteIds[battlerId]].oam.paletteNum = battlerId;
 
-    StartSpriteAnim(&gSprites[gBattlerSpriteIds[battlerId]], gBattleMonForms[battlerId]);
+    StartSpriteAnim(&gSprites[gBattlerSpriteIds[battlerId]], 0);
 
     gSprites[gBattlerSpriteIds[battlerId]].invisible = TRUE;
     gSprites[gBattlerSpriteIds[battlerId]].callback = SpriteCallbackDummy;
@@ -1431,6 +1433,7 @@ static void PlayerPartnerHandleMoveAnimation(void)
         gWeatherMoveAnim = gBattleResources->bufferA[gActiveBattler][12] | (gBattleResources->bufferA[gActiveBattler][13] << 8);
         gAnimDisableStructPtr = (struct DisableStruct *)&gBattleResources->bufferA[gActiveBattler][16];
         gTransformedPersonalities[gActiveBattler] = gAnimDisableStructPtr->transformedMonPersonality;
+        gTransformedOtIds[gActiveBattler] = gAnimDisableStructPtr->transformedMonOtId;
         gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].animationState = 0;
         gBattlerControllerFuncs[gActiveBattler] = PlayerPartnerDoMoveAnimation;
     }
@@ -1549,25 +1552,33 @@ static void PlayerPartnerHandleChooseItem(void)
 
 static void PlayerPartnerHandleChoosePokemon(void)
 {
-    s32 chosenMonId = GetMostSuitableMonToSwitchInto();
-
-    if (chosenMonId == PARTY_SIZE) // just switch to the next mon
+    s32 chosenMonId;
+    // Choosing Revival Blessing target
+    if ((gBattleResources->bufferA[gActiveBattler][1] & 0xF) == PARTY_ACTION_CHOOSE_FAINTED_MON)
     {
-        u8 playerMonIdentity = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
-        u8 selfIdentity = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
-
-        for (chosenMonId = PARTY_SIZE / 2; chosenMonId < PARTY_SIZE; chosenMonId++)
+        chosenMonId = gSelectedMonPartyId = GetFirstFaintedPartyIndex(gActiveBattler);
+    }
+    // Switching out
+    else
+    {
+        chosenMonId = GetMostSuitableMonToSwitchInto();
+        if (chosenMonId == PARTY_SIZE) // just switch to the next mon
         {
-            if (GetMonData(&gPlayerParty[chosenMonId], MON_DATA_HP) != 0
-                && chosenMonId != gBattlerPartyIndexes[playerMonIdentity]
-                && chosenMonId != gBattlerPartyIndexes[selfIdentity])
+            u8 playerMonIdentity = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+            u8 selfIdentity = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
+
+            for (chosenMonId = PARTY_SIZE / 2; chosenMonId < PARTY_SIZE; chosenMonId++)
             {
-                break;
+                if (GetMonData(&gPlayerParty[chosenMonId], MON_DATA_HP) != 0
+                    && chosenMonId != gBattlerPartyIndexes[playerMonIdentity]
+                    && chosenMonId != gBattlerPartyIndexes[selfIdentity])
+                {
+                    break;
+                }
             }
         }
+        *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = chosenMonId;
     }
-
-    *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = chosenMonId;
     BtlController_EmitChosenMonReturnValue(BUFFER_B, chosenMonId, NULL);
     PlayerPartnerBufferExecCompleted();
 }

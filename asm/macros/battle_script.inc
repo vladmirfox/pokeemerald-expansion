@@ -1053,8 +1053,9 @@
 	.byte 0xca
 	.endm
 
-	.macro setcharge
+	.macro setcharge battler:req
 	.byte 0xcb
+	.byte \battler
 	.endm
 
 	.macro callterrainattack
@@ -1186,11 +1187,11 @@
 	.byte 0xe5
 	.endm
 
-	.macro doweatherformchangeanimation
+	.macro unused3
 	.byte 0xe6
 	.endm
 
-	.macro tryweatherformdatachange
+	.macro unused4
 	.byte 0xe7
 	.endm
 
@@ -1317,7 +1318,7 @@
 	.2byte \holdEffect
 	.4byte \jumpInstr
 	.endm
-	
+
 	.macro dostockpilestatchangeswearoff, battler:req, statChangeInstr:req
 	callnative BS_DoStockpileStatChangesWearOff
 	.byte \battler
@@ -1328,6 +1329,57 @@
 	callnative BS_JumpIfMoreThanHalfHP
 	.byte \battler
 	.4byte \jumpInstr
+	.endm
+
+	.macro itemrestorehp
+	callnative BS_ItemRestoreHP
+	.endm
+
+	.macro itemcurestatus
+	callnative BS_ItemCureStatus
+	.endm
+
+	.macro itemincreasestat
+	callnative BS_ItemIncreaseStat
+	.endm
+
+	.macro itemrestorepp
+	callnative BS_ItemRestorePP
+	.endm
+
+	.macro tryrevertweatherform
+	callnative BS_TryRevertWeatherForm
+	.endm
+
+	.macro setsnow
+	callnative BS_SetSnow
+	.endm
+
+	.macro setzeffect
+	callnative BS_SetZEffect
+	.endm
+
+	@ Used by effects that may proc Symbiosis but do not call removeitem.
+	.macro trysymbiosis
+	callnative BS_TrySymbiosis
+	.endm
+
+	@ returns B_SIDE_x to gBattleCommunication[0]
+	.macro getbattlerside battler:req
+	callnative BS_GetBattlerSide
+	.byte \battler
+	.endm
+
+	.macro checkparentalbondcounter counter:req, ptr:req
+	callnative BS_CheckParentalBondCounter
+	.byte \counter
+	.4byte \ptr
+	.endm
+	
+	.macro jumpifcantloseitem battler:req, ptr:req
+	callnative BS_JumpIfCantLoseItem
+	.byte \battler
+	.4byte \ptr
 	.endm
 
 @ various command changed to more readable macros
@@ -1815,10 +1867,6 @@
 	various \battler, VARIOUS_TRY_ACTIVATE_GRIM_NEIGH
 	.endm
 
-	.macro setzeffect
-	various BS_ATTACKER, VARIOUS_SET_Z_EFFECT
-	.endm
-
 	.macro consumeberry battler:req, fromBattler:req
 	various \battler, VARIOUS_CONSUME_BERRY
 	.byte \fromBattler
@@ -2030,19 +2078,6 @@
 	various BS_ATTACKER, VARIOUS_SWAP_SIDE_STATUSES
 	.endm
 
-	.macro canteleport battler:req
-	various \battler, VARIOUS_CAN_TELEPORT
-	.endm
-
-	.macro getbattlerside battler:req
-	various \battler, VARIOUS_GET_BATTLER_SIDE
-	.endm
-
-	.macro checkparentalbondcounter counter:req, jumpInstr:req
-	various BS_ATTACKER, VARIOUS_CHECK_PARENTAL_BOND_COUNTER
-	.byte \counter
-	.4byte \jumpInstr
-	.endm
 	.macro swapstats stat:req
 	various BS_ATTACKER, VARIOUS_SWAP_STATS
 	.byte \stat
@@ -2059,6 +2094,14 @@
 
 	.macro activateterrainchangeabilities battler:req
 	various \battler, VARIOUS_ACTIVATE_TERRAIN_CHANGE_ABILITIES
+	.endm
+
+	.macro trytrainerslidezmovemsg battler:req
+	various \battler, VARIOUS_TRY_TRAINER_SLIDE_MSG_Z_MOVE
+	.endm
+
+	.macro trytrainerslidemegaevolutionmsg battler:req
+	various \battler, VARIOUS_TRY_TRAINER_SLIDE_MSG_MEGA_EVOLUTION
 	.endm
 
 @ helpful macros
@@ -2133,6 +2176,11 @@
 
 	.macro jumpifmovehadnoeffect jumpInstr:req
 	jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_NO_EFFECT, \jumpInstr
+	.endm
+
+	.macro jumpifside battler:req, side:req, equalJumpInstr:req
+	getbattlerside \battler
+	jumpifbyte CMP_EQUAL, gBattleCommunication, \side, \equalJumpInstr
 	.endm
 
 	.macro jumpifbattletype flags:req, jumpInstr:req
@@ -2214,11 +2262,6 @@
 	various 0, VARIOUS_SKY_DROP_YAWN
 	.endm
 
-	@ Used by effects that may proc Symbiosis but do not call removeitem.
-	.macro trysymbiosis
-	various BS_ATTACKER, VARIOUS_TRY_SYMBIOSIS
-	.endm
-
 	@ Tries to increase or decrease a battler's stat's stat stage by a specified amount. If impossible, jumps to \script.
 	.macro modifybattlerstatstage battler:req, stat:req, mode:req, amount:req, script:req, animation:req, customString
 
@@ -2262,4 +2305,9 @@
 
 	.macro hitswitchtargetfailed
 	various 0, VARIOUS_HIT_SWITCH_TARGET_FAILED
+	.endm
+
+	.macro tryrevivalblessing, jumpInstr:req
+	various 0, VARIOUS_TRY_REVIVAL_BLESSING
+	.4byte \jumpInstr
 	.endm

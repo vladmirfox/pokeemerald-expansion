@@ -7,11 +7,13 @@
 #include "battle_interface.h"
 #include "bg.h"
 #include "data.h"
+#include "item_menu.h"
 #include "item_use.h"
 #include "link.h"
 #include "main.h"
 #include "m4a.h"
 #include "palette.h"
+#include "party_menu.h"
 #include "pokeball.h"
 #include "pokemon.h"
 #include "recorded_battle.h"
@@ -1099,7 +1101,7 @@ static void RecordedPlayerHandleLoadMonSprite(void)
     gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = -DISPLAY_WIDTH;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = gActiveBattler;
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;
-    StartSpriteAnim(&gSprites[gBattlerSpriteIds[gActiveBattler]], gBattleMonForms[gActiveBattler]);
+    StartSpriteAnim(&gSprites[gBattlerSpriteIds[gActiveBattler]], 0);
     gBattlerControllerFuncs[gActiveBattler] = WaitForMonAnimAfterLoad;
 }
 
@@ -1135,7 +1137,7 @@ static void StartSendOutAnim(u8 battlerId, bool8 dontClearSubstituteBit)
     gSprites[gBattlerSpriteIds[battlerId]].data[2] = species;
     gSprites[gBattlerSpriteIds[battlerId]].oam.paletteNum = battlerId;
 
-    StartSpriteAnim(&gSprites[gBattlerSpriteIds[battlerId]], gBattleMonForms[battlerId]);
+    StartSpriteAnim(&gSprites[gBattlerSpriteIds[battlerId]], 0);
 
     gSprites[gBattlerSpriteIds[battlerId]].invisible = TRUE;
     gSprites[gBattlerSpriteIds[battlerId]].callback = SpriteCallbackDummy;
@@ -1333,6 +1335,7 @@ static void RecordedPlayerHandleMoveAnimation(void)
         gWeatherMoveAnim = gBattleResources->bufferA[gActiveBattler][12] | (gBattleResources->bufferA[gActiveBattler][13] << 8);
         gAnimDisableStructPtr = (struct DisableStruct *)&gBattleResources->bufferA[gActiveBattler][16];
         gTransformedPersonalities[gActiveBattler] = gAnimDisableStructPtr->transformedMonPersonality;
+        gTransformedOtIds[gActiveBattler] = gAnimDisableStructPtr->transformedMonOtId;
         gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].animationState = 0;
         gBattlerControllerFuncs[gActiveBattler] = RecordedPlayerDoMoveAnimation;
     }
@@ -1460,12 +1463,19 @@ static void RecordedPlayerHandleChooseMove(void)
 
 static void RecordedPlayerHandleChooseItem(void)
 {
+    u8 byte1 = RecordedBattle_GetBattlerAction(RECORDED_ITEM_ID, gActiveBattler);
+    u8 byte2 = RecordedBattle_GetBattlerAction(RECORDED_ITEM_ID, gActiveBattler);
+    gBattleStruct->chosenItem[gActiveBattler] = (byte1 << 8) | byte2;
+    gBattleStruct->itemPartyIndex[gActiveBattler] = RecordedBattle_GetBattlerAction(RECORDED_ITEM_TARGET, gActiveBattler);
+    gBattleStruct->itemMoveIndex[gActiveBattler] = RecordedBattle_GetBattlerAction(RECORDED_ITEM_MOVE, gActiveBattler);
+    BtlController_EmitOneReturnValue(BUFFER_B, gBattleStruct->chosenItem[gActiveBattler]);
     RecordedPlayerBufferExecCompleted();
 }
 
 static void RecordedPlayerHandleChoosePokemon(void)
 {
     *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = RecordedBattle_GetBattlerAction(RECORDED_PARTY_INDEX, gActiveBattler);
+    gSelectedMonPartyId = gBattleStruct->monToSwitchIntoId[gActiveBattler]; // Revival Blessing
     BtlController_EmitChosenMonReturnValue(BUFFER_B, *(gBattleStruct->monToSwitchIntoId + gActiveBattler), NULL);
     RecordedPlayerBufferExecCompleted();
 }
