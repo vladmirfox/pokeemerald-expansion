@@ -1,0 +1,64 @@
+mapscripts NewBirchsLab_MapScripts {}
+ 
+script NewBirchsLab_EventScript_Pokeball{
+ 
+    lockall
+    showmonpic(SPECIES_MUDKIP, 10,3)
+    msgbox("Do you want to choose Mudkip?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES){
+        givemon(SPECIES_MUDKIP, 5, ITEM_RARE_CANDY)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Mudkip")
+            removeobject(1)
+            setflag(FLAG_UNUSED_0x020)
+            call(NicknamePartyMon)
+        }
+        elif(var(VAR_RESULT) == MON_GIVEN_TO_PC){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Recieved Mudkip")
+            removeobject(1)
+            setflag(FLAG_UNUSED_0x020)
+            call(NicknameBoxMon)
+        }
+        else{
+            hidemonpic
+            msgbox("No More Room")
+        }
+    }
+    else{
+        hidemonpic
+        msgbox(NewBirchsLab_NotChosen)
+    }
+    waitmessage
+    releaseall
+    end
+ 
+}
+ 
+script NicknamePartyMon{
+ 
+    msgbox("Give it a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_GetGiftMonPartySlot)
+        call(Common_EventScript_NameReceivedPartyMon)
+    }
+ 
+ 
+}
+ 
+script NicknameBoxMon{
+ 
+    msgbox("Give it a nickname?", MSGBOX_YESNO)
+    hidemonpic
+    if(var(VAR_RESULT) == YES){
+        call(Common_EventScript_NameReceivedBoxMon)
+    }
+    call(Common_EventScript_TransferredToPC)
+ 
+}
+ 
+text NewBirchsLab_NotChosen{
+    "You did not choose the Pokemon"
+}
