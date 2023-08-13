@@ -4106,11 +4106,7 @@ static void Cmd_getexp(void)
                 else
                     holdEffect = ItemId_GetHoldEffect(item);
 
-            #if I_EXP_SHARE_FLAG != 0
-                if (holdEffect == HOLD_EFFECT_EXP_SHARE || FlagGet(I_EXP_SHARE_FLAG))
-            #else
-                if (holdEffect == HOLD_EFFECT_EXP_SHARE)
-            #endif
+                if (holdEffect == HOLD_EFFECT_EXP_SHARE || IsGen6ExpShareEnabled())
                     viaExpShare++;
             }
             #if (B_SCALED_EXP >= GEN_5) && (B_SCALED_EXP != GEN_6)
@@ -4159,11 +4155,7 @@ static void Cmd_getexp(void)
             else
                 holdEffect = ItemId_GetHoldEffect(item);
 
-        #if I_EXP_SHARE_FLAG != 0
-            if ((holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1) && !FlagGet(I_EXP_SHARE_FLAG))
-        #else
-            if ((holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1))
-        #endif
+            if ((holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1) && !IsGen6ExpShareEnabled())
              || GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPECIES_OR_EGG) == SPECIES_EGG)
             {
                 *(&gBattleStruct->sentInPokes) >>= 1;
@@ -4201,11 +4193,7 @@ static void Cmd_getexp(void)
                     else
                         gBattleMoveDamage = 0;
 
-                    if ((holdEffect == HOLD_EFFECT_EXP_SHARE
-                #if I_EXP_SHARE_FLAG != 0
-                        || FlagGet(I_EXP_SHARE_FLAG)
-                #endif
-                    )
+                    if ((holdEffect == HOLD_EFFECT_EXP_SHARE || IsGen6ExpShareEnabled())
                 #if B_SPLIT_EXP >= GEN_6
                     // only give exp share bonus in later gens if the mon wasn't sent out
                     && gBattleMoveDamage == 0
