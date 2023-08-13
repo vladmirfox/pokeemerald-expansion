@@ -449,7 +449,7 @@ def copyField(name, fieldname, specification):
     return "g{st}{st2} = sOld{st}{st2};".format(st=parseSpecification(name,specification), st2=fieldname)
 
 def copyBlock(name, fieldname, specification):
-    return "CpuCopy16(&sOld{st}{st2}, &g{st}{st2}, sizeof(g{st}{st2}));".format(st=parseSpecification(name,specification), st2=fieldname)
+    return "CpuCopy16(&sOld{st}{st2}, &g{st}{st2}, min(sizeof(g{st}{st2}), sizeof(sOld{st}{st2})));".format(st=parseSpecification(name,specification), st2=fieldname)
 
 def copyArray(name, fieldname, specification):
     return "for(i = 0; i < min(ARRAY_COUNT(g{st}{st2}), ARRAY_COUNT(sOld{st}{st2})); i++) g{st}{st2}[i] = sOld{st}{st2}[i];".format(st=parseSpecification(name,specification), st2=fieldname)
