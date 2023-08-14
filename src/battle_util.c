@@ -10077,9 +10077,9 @@ bool32 CanMegaEvolve(u8 battlerId)
     itemId = GetMonData(mon, MON_DATA_HELD_ITEM);
 
 #if DEBUG_BATTLE_MENU == TRUE
-	if (gBattleStruct->debugHoldEffects[battlerId])
-		holdEffect = gBattleStruct->debugHoldEffects[battlerId];
-	else
+    if (gBattleStruct->debugHoldEffects[battlerId])
+        holdEffect = gBattleStruct->debugHoldEffects[battlerId];
+    else
 #endif
     if (itemId == ITEM_ENIGMA_BERRY_E_READER)
         holdEffect = gEnigmaBerries[battlerId].holdEffect;

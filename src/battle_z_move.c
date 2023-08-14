@@ -189,7 +189,6 @@ bool32 IsViableZMove(u8 battlerId, u16 move)
         holdEffect = gBattleStruct->debugHoldEffects[battlerId];
     else
 #endif
-
     if (item == ITEM_ENIGMA_BERRY_E_READER)
         return FALSE;   // HoldEffect = gEnigmaBerries[battlerId].holdEffect;
     else
