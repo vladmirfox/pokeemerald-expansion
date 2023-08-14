@@ -9405,6 +9405,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         if (gBattleMons[battlerAtk].status1 & STATUS1_ANY && IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
+    case ABILITY_IL_VATICANO:
+        if (GetBattlerPosition(battlerAtk) == B_POSITION_PLAYER_LEFT && GetBattlerPosition(battlerDef) == B_POSITION_OPPONENT_RIGHT)
+            MulModifier(&modifier, UQ_4_12(1.4));
+        else if (GetBattlerPosition(battlerAtk) == B_POSITION_PLAYER_RIGHT && GetBattlerPosition(battlerDef) == B_POSITION_OPPONENT_LEFT)
+            MulModifier(&modifier, UQ_4_12(1.4));
+        break;
     }
 
     // target's abilities

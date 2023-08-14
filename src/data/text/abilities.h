@@ -297,7 +297,8 @@ static const u8 sLawnSurferDescription[] = _("Faster on grass.");
 static const u8 sMonkeyBusinessDescription[] = _("Ups Sp.Atk and locks move.");
 static const u8 sHeatSinkDescription[] = _("Draws in Fire moves.");
 static const u8 sTrueAuroraDescription[] = _("Powers up Aurora moves.");
-static const u8 sCatsCradleDescription[] = _("Pursuits fleeing foes.")
+static const u8 sCatsCradleDescription[] = _("Pursuits fleeing foes.");
+static const u8 sIlVaticatoDescription[] = _("Powers up diagonal.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -610,6 +611,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_HEAT_SINK] = _("Heat Sink"),
     [ABILITY_TRUE_AURORA] = _("True Aurora"),
     [ABILITY_CATS_CRADLE] = _("Cat's Cradle"),
+    [ABILITY_IL_VATICANO] = _("Il Vaticano"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -922,6 +924,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_HEAT_SINK] = _("Heat Sink"),
     [ABILITY_TRUE_AURORA] = _("True Aurora"),
     [ABILITY_CATS_CRADLE] = _("Cat's Cradle"),
+    [ABILITY_IL_VATICANO] = _("Il Vaticano"),
 };
 #endif
 
@@ -1235,4 +1238,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_HEAT_SINK] = sHeatSinkDescription,
     [ABILITY_TRUE_AURORA] = sTrueAuroraDescription,
     [ABILITY_CATS_CRADLE] = sCatsCradleDescription,
+    [ABILITY_IL_VATICANO] = sIlVaticatoDescription,
 };
