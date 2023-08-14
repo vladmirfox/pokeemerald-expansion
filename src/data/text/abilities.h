@@ -214,7 +214,7 @@ static const u8 sDancerDescription[] = _("Dances along with others.");
 static const u8 sBatteryDescription[] = _("Boosts ally's Sp. Atk.");
 static const u8 sFluffyDescription[] = _("Tougher but flammable.");
 static const u8 sSoulHeartDescription[] = _("KOs raise Sp. Atk.");
-static const u8 sTanglingHairDescription[] = _("Contact lowers Speed.");
+static const u8 sTanglingHairDescription[] = _("Contact traps, lowers Speed.");
 static const u8 sReceiverDescription[] = _("Copies ally's ability.");
 static const u8 sBeastBoostDescription[] = _("KOs boost best stat.");
 static const u8 sRKSSystemDescription[] = _("Memories change its type.");
@@ -297,6 +297,7 @@ static const u8 sLawnSurferDescription[] = _("Faster on grass.");
 static const u8 sMonkeyBusinessDescription[] = _("Ups Sp.Atk and locks move.");
 static const u8 sHeatSinkDescription[] = _("Draws in Fire moves.");
 static const u8 sTrueAuroraDescription[] = _("Powers up Aurora moves.");
+static const u8 sCatsCradleDescription[] = _("Pursuits fleeing foes.")
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -608,6 +609,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_MONKEY_BUSINESS] = _("Monkey Business"),
     [ABILITY_HEAT_SINK] = _("Heat Sink"),
     [ABILITY_TRUE_AURORA] = _("True Aurora"),
+    [ABILITY_CATS_CRADLE] = _("Cat's Cradle"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -919,6 +921,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_MONKEY_BUSINESS] = _("MnkyBusiness"),
     [ABILITY_HEAT_SINK] = _("Heat Sink"),
     [ABILITY_TRUE_AURORA] = _("True Aurora"),
+    [ABILITY_CATS_CRADLE] = _("Cat's Cradle"),
 };
 #endif
 
@@ -1231,4 +1234,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_MONKEY_BUSINESS] = sMonkeyBusinessDescription,
     [ABILITY_HEAT_SINK] = sHeatSinkDescription,
     [ABILITY_TRUE_AURORA] = sTrueAuroraDescription,
+    [ABILITY_CATS_CRADLE] = sCatsCradleDescription,
 };
