@@ -9432,6 +9432,14 @@ BattleScript_GooeyActivates::
 	swapattackerwithtarget  @ for defiant, mirror armor
 	seteffectsecondary
 	return
+BattleScript_TanglingHairTraps::
+	waitstate
+	call BattleScript_AbilityPopUp
+	swapattackerwithtarget  @ for defiant, mirror armor
+	seteffectsecondary
+	printstring STRINGID_TANGLINGHAIRTRAPS
+	waitmessage B_WAIT_TIME_LONG
+	return
 
 BattleScript_AbilityStatusEffect::
 	waitstate

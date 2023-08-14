@@ -1473,7 +1473,7 @@ static bool32 TryAegiFormChange(void)
         gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH_BLADE;
         break;
     case SPECIES_AEGISLASH_BLADE: // Blade -> Shield
-        if (gCurrentMove != MOVE_KINGS_SHIELD)
+        if ((gCurrentMove != MOVE_KINGS_SHIELD) && (gCurrentMove != MOVE_BEHEMOTH_BASH))
             return FALSE;
         gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH;
         break;
@@ -1582,9 +1582,11 @@ static void Cmd_attackcanceler(void)
         if (moveType == TYPE_GRASS){
             bestType = TYPE_GRASS; //powder immunity
         }
+        #if B_PRANKSTER_DARK_TYPES >= GEN_7
         if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PRANKSTER) && (IS_MOVE_STATUS(gCurrentMove) == TRUE)){
             bestType = TYPE_DARK; //prankster immunity
         }
+        #endif
         if (gBattleMons[gBattlerTarget].type1 != bestType) {
             SET_BATTLER_TYPE(gBattlerTarget, bestType);
             PREPARE_TYPE_BUFFER(gBattleTextBuff1, bestType);
@@ -9811,6 +9813,8 @@ static void Cmd_various(void)
         else
         {
             if (GetBattlerAbility(gBattlerAttacker) == ABILITY_MEGA_LAUNCHER && gBattleMoves[gCurrentMove].flags & FLAG_MEGA_LAUNCHER_BOOST)
+                gBattleMoveDamage = -(gBattleMons[gActiveBattler].maxHP * 75 / 100);
+            else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_HONEY_GATHER && gCurrentMove == MOVE_POLLEN_PUFF)
                 gBattleMoveDamage = -(gBattleMons[gActiveBattler].maxHP * 75 / 100);
             else
                 gBattleMoveDamage = -(gBattleMons[gActiveBattler].maxHP / 2);

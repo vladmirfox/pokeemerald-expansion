@@ -12733,7 +12733,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_SHELTER] =
     {
-        .effect = EFFECT_DEFENSE_UP_2,
+        .effect = EFFECT_COSMIC_POWER,
         .power = 0,
         .type = TYPE_STEEL,
         .accuracy = 0,
