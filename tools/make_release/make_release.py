@@ -662,7 +662,7 @@ if __name__ == "__main__":
 
     if globalVersion == 1:
         out("First setup succesful! Please don't forget to go to src/strings.c and")
-        out("update gText_SaveFileOldUpdated and gText_SaveFileOldErrored.")
+        out("update gText_SaveFileOldUpdated, gText_SaveFileOldErrored and gText_SaveFileTooNew.")
 
     if '--log' in sys.argv:
         f.close()

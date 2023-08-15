@@ -1833,3 +1833,4 @@ const u8 gText_Berry[] = _("BERRY");
 const u8 gText_Berries[] = _("BERRIES");
 const u8 gText_SaveFileOldUpdated[] = _("Your save file is for an older release\nof HACK NAME HERE.\pYour save will be updated. Please back\nup your old save if you wish to keep it.");
 const u8 gText_SaveFileOldErrored[] = _("Your save file is for an older release\nof HACK NAME HERE.\pThe attempt to update the save file\nhas failed.\pPlease report this to AUTHOR NAME.");
+const u8 gText_SaveFileTooNew[] = _("Your save file is for a newer release\nof HACK NAME HERE.\pYou can load your save file, but may\nexperience data corruption.\pPlease consider updating before\ncontinuing.");

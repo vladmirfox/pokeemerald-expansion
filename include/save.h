@@ -35,6 +35,7 @@
 #define SAVE_STATUS_NO_FLASH 4
 #define SAVE_STATUS_OUTDATED 10
 #define SAVE_STATUS_UPDATED  11
+#define SAVE_STATUS_TOO_NEW  12
 #define SAVE_STATUS_ERROR    0xFF
 
 // Special sector id value for certain save functions to

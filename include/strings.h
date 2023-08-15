@@ -3037,5 +3037,6 @@ extern const u8 gText_TellHimTheWords[];
 // Save Migration
 extern const u8 gText_SaveFileOldUpdated[];
 extern const u8 gText_SaveFileOldErrored[];
+extern const u8 gText_SaveFileTooNew[];
 
 #endif // GUARD_STRINGS_H
