@@ -90,76 +90,67 @@
 	special CallBattleTowerFunc
 	.endm
 
-	@Custom multi-battle commands
+	@ Custom multi-battle commands
 
-	.macro choose_mons
-	fadescreen 1
-	special ChooseHalfPartyForBattle @ choose 3 mons for battle
-	waitstate
+	@ Sets the type of multi-battle (MULTI_BATTLE_2_VS_2, MULTI_BATTLE_2_VS_1, MULTI_BATTLE_2_VS_WILD). Uses gSpecialVar_0x8006
+	.macro setmultibattletype type:req
+	setvar VAR_0x8006, \type
 	.endm
 
-	.macro multi_do type:req, partnerId:req, partnerPicId:req
-	special ReducePlayerPartyToSelectedMons
-	setvar VAR_0x8004, FRONTIER_UTIL_FUNC_SET_DATA
-	setvar VAR_0x8005, FRONTIER_DATA_SELECTED_MON_ORDER
-	special CallFrontierUtilFunc @ saves the mon order, so the non-selected mons get restored afterwards
-	setvar VAR_0x8004, SPECIAL_BATTLE_MULTI
-	setvar VAR_0x8005, \type | MULTI_BATTLE_CHOOSE_MONS
-	setvar VAR_0x8006, \partnerId
-	setvar VAR_0x8007, \partnerPicId
-	special DoSpecialTrainerBattle
-	waitstate
-	setvar VAR_0x8004, FRONTIER_UTIL_FUNC_SAVE_PARTY
-	special CallFrontierUtilFunc
-	special LoadPlayerParty
+	@ Sets the partner you battle with in the multi-battle. Uses gSpecialVar_0x8007
+	.macro setmultibattlepartner partner:req
+	setvar VAR_0x8007, \partner
 	.endm
 
-	.macro multi_2_vs_2 trainer1Id:req, trainer1LoseText:req, trainer2Id:req, trainer2LoseText:req, partnerId:req, partnerPicId:req
-	special SavePlayerParty
-	trainerbattle TRAINER_BATTLE_SET_TRAINER_A, \trainer1Id, 0, NULL, \trainer1LoseText @ set first trainer mons
-	trainerbattle TRAINER_BATTLE_SET_TRAINER_B, \trainer2Id, 0, NULL, \trainer2LoseText @ set second trainer mons
-	multi_do MULTI_BATTLE_2_VS_2, \partnerId, \partnerPicId
+	@ Configures the arguments for the multi-battle. If \choose_mon is TRUE, the player has to pick up to 3 Pokémon
+	.macro multi_battle type:req, trainer1:req, lose_text1:req, trainer2:req, lose_text2:req, partner:req, choose_mon:req
+	.if \type == MULTI_BATTLE_2_VS_2
+		trainerbattle_set_trainer_A \trainer1, \lose_text1
+		trainerbattle_set_trainer_B \trainer2, \lose_text2
+	.elseif \type == MULTI_BATTLE_2_VS_1
+		trainerbattle_set_trainer_A \trainer1, \lose_text1
+	.endif
+	.if \choose_mon == TRUE
+		setmultibattletype \type | MULTI_BATTLE_CHOOSE_MONS
+	.else
+		setmultibattletype \type
+	.endif
+	setmultibattlepartner \partner
+	.if \choose_mon == TRUE
+		call EventScript_MultiBattleChooseMon
+	.else
+		call EventScript_StartMultiBattleSaveParty
+	.endif
 	.endm
 
-	.macro multi_2_vs_1 trainer1Id:req, trainer1LoseText:req, partnerId:req, partnerPicId:req
-	special SavePlayerParty
-	trainerbattle TRAINER_BATTLE_SET_TRAINER_A, \trainer1Id, 0, NULL, \trainer1LoseText @ set first trainer mons
-	multi_do MULTI_BATTLE_2_VS_1, \partnerId, \partnerPicId
+	@ Player + \partner against \trainer1 and \trainer2
+	.macro multi_battle_2_vs_2 trainer1:req, lose_text1:req, trainer2:req, lose_text2:req, partner:req
+	multi_battle MULTI_BATTLE_2_VS_2, \trainer1, \lose_text1, \trainer2, \lose_text2, \partner, TRUE
 	.endm
 
+	@ Player + \partner against \trainer1
+	.macro multi_battle_2_vs_1 trainer:req, lose_text:req, partner:req
+	multi_battle MULTI_BATTLE_2_VS_1, \trainer, \lose_text, 0, NULL, \partner, TRUE
+	.endm
+
+	@ Player + \partner against two wild Pokémon
+	@ Wild Pokémon need to be assigned to gEnemyParty 0 and 3 slots, other slots need to be cleared out.
+	.macro multi_battle_wild partner:req
+	multi_battle MULTI_BATTLE_2_VS_WILD, 0, NULL, 0, NULL, \partner, TRUE
+	.endm
+
+	@ Player + \partner against \trainer1 and \trainer2
+	.macro multi_battle_fixed_2_vs_2 trainer1:req, lose_text1:req, trainer2:req, lose_text2:req, partner:req
+	multi_battle MULTI_BATTLE_2_VS_2, \trainer1, \lose_text1, \trainer2, \lose_text2, \partner, FALSE
+	.endm
+
+	@ Player + \partner against \trainer1
+	.macro multi_battle_fixed_2_vs_1 trainer:req, lose_text:req, partner:req
+	multi_battle MULTI_BATTLE_2_VS_1, \trainer, \lose_text, 0, NULL, \partner, FALSE
+	.endm
+
+	@ Player + \partner against two wild Pokémon
 	@ Wild mons need to be assigned to gEnemyParty 0 and 3 slots, other slots need to be cleared out.
-	.macro multi_wild partnerId:req, partnerPicId:req
-	special SavePlayerParty
-	multi_do MULTI_BATTLE_2_VS_WILD, \partnerId, \partnerPicId
-	.endm
-
-	.macro multi_do_fixed type:req, partnerId:req, partnerPicId:req
-	setvar VAR_0x8004, SPECIAL_BATTLE_MULTI
-	setvar VAR_0x8005, \type
-	setvar VAR_0x8006, \partnerId
-	setvar VAR_0x8007, \partnerPicId
-	special DoSpecialTrainerBattle
-	waitstate
-	setvar VAR_0x8004, FRONTIER_UTIL_FUNC_SAVE_PARTY
-	special CallFrontierUtilFunc
-	special LoadPlayerParty
-	.endm
-
-	.macro multi_fixed_2_vs_2 trainer1Id:req, trainer1LoseText:req, trainer2Id:req, trainer2LoseText:req, partnerId:req, partnerPicId:req
-	special SavePlayerParty
-	trainerbattle TRAINER_BATTLE_SET_TRAINER_A, \trainer1Id, 0, NULL, \trainer1LoseText @ set first trainer mons
-	trainerbattle TRAINER_BATTLE_SET_TRAINER_B, \trainer2Id, 0, NULL, \trainer2LoseText @ set second trainer mons
-	multi_do_fixed MULTI_BATTLE_2_VS_2, \partnerId, \partnerPicId
-	.endm
-
-	.macro multi_fixed_2_vs_1 trainer1Id:req, trainer1LoseText:req, partnerId:req, partnerPicId:req
-	special SavePlayerParty
-	trainerbattle TRAINER_BATTLE_SET_TRAINER_A, \trainer1Id, 0, NULL, \trainer1LoseText @ set first trainer mons
-	multi_do_fixed MULTI_BATTLE_2_VS_1, \partnerId, \partnerPicId
-	.endm
-
-	@ Wild mons need to be assigned to gEnemyParty 0 and 3 slots, other slots need to be cleared out.
-	.macro multi_fixed_wild partnerId:req, partnerPicId:req
-	special SavePlayerParty
-	multi_do_fixed MULTI_BATTLE_2_VS_WILD, \partnerId, \partnerPicId
+	.macro multi_battle_fixed_wild partner:req
+	multi_battle MULTI_BATTLE_2_VS_WILD, 0, NULL, 0, NULL, \partner, FALSE
 	.endm

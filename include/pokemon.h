@@ -621,5 +621,7 @@ void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality);
 u8 CalculatePartyCount(struct Pokemon *party);
 u16 SanitizeSpeciesId(u16 species);
 bool32 IsSpeciesEnabled(u16 species);
+const u8 *GetTrainerPartnerClassNameFromId(u16 partnerId);
+const u8 *GetTrainerPartnerNameFromId(u16 partnerId);
 
 #endif // GUARD_POKEMON_H

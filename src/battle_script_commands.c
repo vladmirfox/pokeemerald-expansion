@@ -4361,7 +4361,7 @@ static bool32 NoAliveMonsForPlayerAndPartner(void)
     u32 i;
     u32 HP_count = 0;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && (gPartnerTrainerId == TRAINER_STEVEN_PARTNER || gPartnerTrainerId >= TRAINER_CUSTOM_PARTNER))
+    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId >= TRAINER_PARTNER(PARTNER_NONE))
     {
         for (i = 0; i < PARTY_SIZE; i++)
         {
@@ -4383,7 +4383,7 @@ static bool32 NoAliveMonsForPlayer(void)
     u32 HP_count = 0;
 
     // Get total HP for the player's party to determine if the player has lost
-    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && (gPartnerTrainerId == TRAINER_STEVEN_PARTNER || gPartnerTrainerId >= TRAINER_CUSTOM_PARTNER))
+    if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gPartnerTrainerId >= TRAINER_PARTNER(PARTNER_NONE))
     {
         // In multi battle with Steven, skip his Pokémon
         for (i = 0; i < MULTI_PARTY_SIZE; i++)
