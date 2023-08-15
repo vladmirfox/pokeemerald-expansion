@@ -10432,10 +10432,6 @@ BattleScript_NeutralizingGasExitsLoop:
 	restoretarget
 	return
 
-BattleScript_MagicianActivates::
-	call BattleScript_AbilityPopUp
-	call BattleScript_ItemSteal
-	return
 
 BattleScript_SymbiosisActivates::
 	call BattleScript_AbilityPopUp
@@ -10536,3 +10532,10 @@ BattleScript_MeditateTrySpDef::
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_MeditateEnd::
 	goto BattleScript_MoveEnd
+
+BattleScript_MagicianActivates::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ITEMSCANTBEUSEDNOW
+	waitmessage B_WAIT_TIME_LONG
+	end3

@@ -4638,6 +4638,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        case ABILITY_MAGICIAN:
+            if (!gSpecialStatuses[battler].switchInAbilityDone &&
+			    !(gFieldStatuses & STATUS_FIELD_MAGIC_ROOM))
+            {
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MAGICIAN;
+				gFieldStatuses |= STATUS_FIELD_MAGIC_ROOM;
+                gFieldTimers.magicRoomTimer = 5;
+				BattleScriptPushCursorAndCallback(BattleScript_MagicianActivates);
+				effect++;
+			}
+            break;
         case ABILITY_INTIMIDATE:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -4950,9 +4962,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
                 break;
-            case ABILITY_SCHOOLING:
-                if (gBattleMons[battler].level < 20)
-                    break;
             // Fallthrough
             case ABILITY_ZEN_MODE:
             case ABILITY_SHIELDS_DOWN:
@@ -4985,6 +4994,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 break;
             case ABILITY_SCHOOLING:
+                if (gBattleMons[battler].level < 20)
+                    break;
 				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
 				{
                     gBattleScripting.abilityPopupOverwrite = ABILITY_SCHOOLING;
