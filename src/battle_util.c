@@ -3906,15 +3906,14 @@ u8 AtkCanceller_UnableToUseMove2(void)
 
 bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
 {
-    u32 i, side, playerId, flankId;
+    u8 playerId, flankId;
     struct Pokemon *party;
+    s32 i;
 
     if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
         return FALSE;
 
-    side = GetBattlerSide(battler);
-
-    if (BATTLE_TWO_VS_ONE_OPPONENT && side == B_SIDE_OPPONENT)
+    if (BATTLE_TWO_VS_ONE_OPPONENT && GetBattlerSide(battler) == B_SIDE_OPPONENT)
     {
         flankId = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
         playerId = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
@@ -3927,7 +3926,9 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
 
         for (i = 0; i < PARTY_SIZE; i++)
         {
-            if (IsValidForBattle(&party[i])
+            if (GetMonData(&party[i], MON_DATA_HP) != 0
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG
              && i != partyIdBattlerOn1 && i != partyIdBattlerOn2
              && i != *(gBattleStruct->monToSwitchIntoId + flankId) && i != playerId[gBattleStruct->monToSwitchIntoId])
                 break;
@@ -3937,41 +3938,22 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
     else if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
     {
         party = GetBattlerParty(battler);
-        if (side == B_SIDE_OPPONENT && WILD_DOUBLE_BATTLE)
-        {
-            flankId = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
-            playerId = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
 
-            if (partyIdBattlerOn1 == PARTY_SIZE)
-                partyIdBattlerOn1 = gBattlerPartyIndexes[flankId];
-            if (partyIdBattlerOn2 == PARTY_SIZE)
-                partyIdBattlerOn2 = gBattlerPartyIndexes[playerId];
-
-            for (i = 0; i < PARTY_SIZE; i++)
-            {
-                if (IsValidForBattle(&party[i])
-                 && i != partyIdBattlerOn1 && i != partyIdBattlerOn2
-                 && i != *(gBattleStruct->monToSwitchIntoId + flankId) && i != playerId[gBattleStruct->monToSwitchIntoId])
-                    break;
-            }
-            return (i == PARTY_SIZE);
-        }
-        else
+        playerId = ((battler & BIT_FLANK) / 2);
+        for (i = playerId * MULTI_PARTY_SIZE; i < playerId * MULTI_PARTY_SIZE + MULTI_PARTY_SIZE; i++)
         {
-            playerId = ((battler & BIT_FLANK) / 2);
-            for (i = playerId * MULTI_PARTY_SIZE; i < playerId * MULTI_PARTY_SIZE + MULTI_PARTY_SIZE; i++)
-            {
-                if (IsValidForBattle(&party[i]))
-                    break;
-            }
-            return (i == playerId * MULTI_PARTY_SIZE + MULTI_PARTY_SIZE);
+            if (GetMonData(&party[i], MON_DATA_HP) != 0
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
+                break;
         }
+        return (i == playerId * MULTI_PARTY_SIZE + MULTI_PARTY_SIZE);
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
     {
         if (gBattleTypeFlags & BATTLE_TYPE_TOWER_LINK_MULTI)
         {
-            if (side == B_SIDE_PLAYER)
+            if (GetBattlerSide(battler) == B_SIDE_PLAYER)
             {
                 party = gPlayerParty;
                 flankId = GetBattlerMultiplayerId(battler);
@@ -3995,12 +3977,14 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
 
         for (i = playerId * MULTI_PARTY_SIZE; i < playerId * MULTI_PARTY_SIZE + MULTI_PARTY_SIZE; i++)
         {
-            if (IsValidForBattle(&party[i]))
+            if (GetMonData(&party[i], MON_DATA_HP) != 0
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
                 break;
         }
         return (i == playerId * MULTI_PARTY_SIZE + MULTI_PARTY_SIZE);
     }
-    else if ((gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS) && side == B_SIDE_OPPONENT)
+    else if ((gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS) && GetBattlerSide(battler) == B_SIDE_OPPONENT)
     {
         party = gEnemyParty;
 
@@ -4011,14 +3995,16 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
 
         for (i = playerId; i < playerId + MULTI_PARTY_SIZE; i++)
         {
-            if (IsValidForBattle(&party[i]))
+            if (GetMonData(&party[i], MON_DATA_HP) != 0
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
                 break;
         }
         return (i == playerId + 3);
     }
     else
     {
-        if (side == B_SIDE_OPPONENT)
+        if (GetBattlerSide(battler) == B_SIDE_OPPONENT)
         {
             flankId = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
             playerId = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
@@ -4038,7 +4024,9 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
 
         for (i = 0; i < PARTY_SIZE; i++)
         {
-            if (IsValidForBattle(&party[i])
+            if (GetMonData(&party[i], MON_DATA_HP) != 0
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
+             && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG
              && i != partyIdBattlerOn1 && i != partyIdBattlerOn2
              && i != *(gBattleStruct->monToSwitchIntoId + flankId) && i != playerId[gBattleStruct->monToSwitchIntoId])
                 break;
@@ -4832,7 +4820,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 break;
             case ABILITY_EARTH_EATER:
-                if(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)  {  
+                if(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)  
+                {  
                     BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 4;
                     if (gBattleMoveDamage == 0)
@@ -8135,7 +8124,7 @@ u8 IsMonDisobedient(void)
 
     if (IsBattlerModernFatefulEncounter(gBattlerAttacker)) // only false if illegal Mew or Deoxys
     {
-        if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && GetBattlerPosition(gBattlerAttacker) == B_POSITION_PLAYER_RIGHT)
+        if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && GetBattlerPosition(gBattlerAttacker) == 2)
             return 0;
         if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
             return 0;
@@ -10246,19 +10235,19 @@ bool32 CanMegaEvolve(u8 battlerId)
     species = GetMonData(mon, MON_DATA_SPECIES);
     itemId = GetMonData(mon, MON_DATA_HELD_ITEM);
 
-#if DEBUG_BATTLE_MENU == TRUE
-    if (gBattleStruct->debugHoldEffects[battlerId])
-        holdEffect = gBattleStruct->debugHoldEffects[battlerId];
-    else
-#endif
-    if (itemId == ITEM_ENIGMA_BERRY_E_READER)
-        holdEffect = gEnigmaBerries[battlerId].holdEffect;
-    else
-        holdEffect = ItemId_GetHoldEffect(itemId);
-
     // Check if there is an entry in the evolution table for regular Mega Evolution.
     if (GetBattleFormChangeTargetSpecies(battlerId, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM) != SPECIES_NONE)
     {
+    #if DEBUG_BATTLE_MENU == TRUE
+        if (gBattleStruct->debugHoldEffects[battlerId])
+            holdEffect = gBattleStruct->debugHoldEffects[battlerId];
+        else
+    #endif
+        if (itemId == ITEM_ENIGMA_BERRY_E_READER)
+            holdEffect = gEnigmaBerries[battlerId].holdEffect;
+        else
+            holdEffect = ItemId_GetHoldEffect(itemId);
+
         // Can Mega Evolve via Mega Stone.
         if (holdEffect == HOLD_EFFECT_MEGA_STONE)
             return TRUE;
@@ -10266,11 +10255,7 @@ bool32 CanMegaEvolve(u8 battlerId)
 
     // Check if there is an entry in the evolution table for Wish Mega Evolution.
     if (GetBattleFormChangeTargetSpecies(battlerId, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_MOVE) != SPECIES_NONE)
-    {
-        // Can't Wish Mega Evolve if holding a Z Crystal.
-        if (holdEffect != HOLD_EFFECT_Z_CRYSTAL)
-            return TRUE;
-    }
+        return TRUE;
 
     // No checks passed, the mon CAN'T mega evolve.
     return FALSE;
