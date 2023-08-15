@@ -302,7 +302,17 @@ def compareFields(fieldname, parentstructs, extratext):
                     out("  " * inline + "IMPORTANT: %s was changed from %s to %s" % (x.name, oldkind, newkind))
                     addToGlobal(fieldname, parentstructs)
                     continue
+            if str(oldclass) == str(newclass):
+                # this is a hacky fallthrough that somehow just works! haha
+                if '--verbose' in sys.argv:
+                    out("  " * inline + "%s is identical" % x.name)
+                # if identical, check the actual kind to make sure the underlying struct didn't change
+                if newclass['kind'] not in trusted_typedefs.keys():
+                    compareFields(newclass['kind'], appendToArray(parentstructs, fieldname), "%s -> %s" % (extratext, x.name))
+                continue
             out("  " * inline + "%s is different, but can't identify why! Its contents will not migrate!" % x.name)
+            out("Old: %s" % fields_old[x.name])
+            out("New: %s" % x)
             addToGlobal(fieldname, parentstructs)
         else:
             out("  " * inline + "%s is a new field; defaulting values to zero" % x.name)
