@@ -2676,9 +2676,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
     [MOVE_HYPER_FANG] =
     {
         .effect = EFFECT_FLINCH_HIT,
-        .power = 80,
+        .power = 90,
         .type = TYPE_NORMAL,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 10,
         .target = MOVE_TARGET_SELECTED,
@@ -13696,6 +13696,25 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .flags = FLAG_PROTECTION_MOVE,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_DEF_UP_1,
+    },
+
+    [MOVE_STALACBITE] =
+    {
+        #if B_UPDATED_MOVE_DATA >= GEN_5
+            .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_STRONG_JAW_BOOST,
+        #else
+            .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_STRONG_JAW_BOOST,
+        #endif
+        .effect = EFFECT_DEFENSE_DOWN_HIT,
+        .power = 75,
+        .type = TYPE_ROCK,
+        .accuracy = 95,
+        .pp = 15,
+        .secondaryEffectChance = 10,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .split = SPLIT_PHYSICAL,
+        .zMoveEffect = Z_EFFECT_NONE,
     },
 
     // Z-Moves

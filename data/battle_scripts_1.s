@@ -7402,6 +7402,16 @@ BattleScript_EarthEaterActivates::
 BattleScript_EarthEaterRet:
 	return
 
+BattleScript_SelfSufficientActivates::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNREGAINEDHEALTH
+	waitmessage B_WAIT_TIME_LONG
+	orword gHitMarker, HITMARKER_SKIP_DMG_TRACK | HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE | HITMARKER_PASSIVE_DAMAGE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	end2
+
 BattleScript_PerishSongCountGoesDown::
 	printstring STRINGID_PKMNPERISHCOUNTFELL
 	waitmessage B_WAIT_TIME_LONG

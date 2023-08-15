@@ -6072,6 +6072,8 @@ const struct ContestMove gContestMoves[MOVES_COUNT] =
     [MOVE_DIVINE_SMITE] = {0},
 
     [MOVE_FIREWALL] = {0},
+
+    [MOVE_STALACBITE] = {0},
 };
 
 const struct ContestEffect gContestEffects[] =

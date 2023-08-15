@@ -4655,6 +4655,7 @@ static const struct LevelUpMove sPorygon2LevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 1, MOVE_CONVERSION),
     LEVEL_UP_MOVE( 1, MOVE_DEFENSE_CURL),
+    LEVEL_UP_MOVE( 1, MOVE_STONE_EDGE),
     LEVEL_UP_MOVE( 7, MOVE_PSYBEAM),
     LEVEL_UP_MOVE(12, MOVE_AGILITY),
     LEVEL_UP_MOVE(18, MOVE_RECOVER),
@@ -19129,8 +19130,9 @@ static const struct LevelUpMove sGoodraHisuianLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sAvaluggHisuianLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_ROCK_SLIDE),
-    LEVEL_UP_MOVE( 1, MOVE_TACKLE),
+    LEVEL_UP_MOVE( 0, MOVE_STALACBITE),
+    LEVEL_UP_MOVE( 1, MOVE_STALACBITE),
+    LEVEL_UP_MOVE( 1, MOVE_GIGA_IMPACT),
     LEVEL_UP_MOVE( 5, MOVE_POWDER_SNOW),
     LEVEL_UP_MOVE( 9, MOVE_ICE_SHARD),
     LEVEL_UP_MOVE(15, MOVE_BITE),

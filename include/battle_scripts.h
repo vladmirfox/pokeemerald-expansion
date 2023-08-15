@@ -460,6 +460,7 @@ extern const u8 BattleScript_SupremeOverlordActivates[];
 extern const u8 BattleScript_CostarActivates[];
 extern const u8 BattleScript_ToxicDebrisActivates[];
 extern const u8 BattleScript_EarthEaterActivates[];
+extern const u8 BattleScript_SchoolingRestoreActivates[];
 extern const u8 BattleScript_MimicryActivates_End3[];
 extern const u8 BattleScript_IceFaceNullsDamage[];
 extern const u8 BattleScript_BattlerFormChangeWithStringEnd3[];

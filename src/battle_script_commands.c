@@ -1941,6 +1941,10 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
         if (IS_MOVE_PHYSICAL(move))
             calc = (calc * 80) / 100; // 1.2 hustle loss
         break;
+    case ABILITY_ANALYTIC:
+        if (GetBattlerTurnOrderNum(battlerAtk) == gBattlersCount - 1 && move != MOVE_FUTURE_SIGHT && move != MOVE_DOOM_DESIRE)
+           calc = (calc * 110) / 100;
+        break;
     case ABILITY_JUST_THE_TIP:
         if(move == MOVE_HORN_DRILL)
             calc = (calc * 150) / 100; // 1.5 just the tip boost for horn drill
@@ -1950,14 +1954,6 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     // Target's ability
     switch (defAbility)
     {
-    case ABILITY_SAND_VEIL:
-        if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM)
-            calc = (calc * 80) / 100; // 1.2 sand veil loss
-        break;
-    case ABILITY_SNOW_CLOAK:
-        if (WEATHER_HAS_EFFECT && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
-            calc = (calc * 80) / 100; // 1.2 snow cloak loss
-        break;
     case ABILITY_TANGLED_FEET:
         if (gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
             calc = (calc * 50) / 100; // 1.5 tangled feet loss
@@ -15398,11 +15394,11 @@ static void Cmd_pursuitdoubles(void)
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
         && !(gAbsentBattlerFlags & gBitTable[gActiveBattler])
         && gChosenActionByBattler[gActiveBattler] == B_ACTION_USE_MOVE
-        && GetBattlerAbility(gBattleMons[gActiveBattler]) == ABILITY_WHATEVER
+        && GetBattlerAbility(gActiveBattler) == ABILITY_CATS_CRADLE
         && !IS_MOVE_STATUS(gChosenMoveByBattler[gActiveBattler]))
     {
         gActionsByTurnOrder[gActiveBattler] = B_ACTION_TRY_FINISH;
-        gCurrentMove = gChosenMoveByBattler[gActiveBattler]);
+        gCurrentMove = gChosenMoveByBattler[gActiveBattler];
         gBattlescriptCurrInstr = cmd->nextInstr;
         gBattleScripting.animTurn = 1;
         gBattleScripting.savedBattler = gBattlerAttacker;

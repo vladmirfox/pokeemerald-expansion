@@ -3272,6 +3272,10 @@ static const u8 sFirewallDescription[] = _(
     "Protects user and burns\n"
     "foes on contact.");
 
+static const u8 sStalacbiteDescription[] = _(
+    "May cause flinching or\n"
+    "lower the foe's Defense.");
+
 const u8 gNotDoneYetDescription[] = _(
     "This move can't be used. Its\n"
     "effect is in development.");
@@ -4114,4 +4118,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_PURIFYING_WATER - 1] = sPurifyingWaterDescription,
     [MOVE_DIVINE_SMITE - 1] = sDivineSmiteDescription,
     [MOVE_FIREWALL - 1] = sFirewallDescription,
+    [MOVE_STALACBITE - 1] = sStalacbiteDescription,
 };

@@ -834,6 +834,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_PURIFYING_WATER] = _("Purifying Water"),
     [MOVE_DIVINE_SMITE] = _("Divine Smite"),
     [MOVE_FIREWALL] = _("Firewall"),
+    [MOVE_STALACBITE] = _("Stalacbite"),
 };
 #else
 // 12 letters
@@ -1671,6 +1672,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_PURIFYING_WATER] = _("PurifyngWtr"),
     [MOVE_DIVINE_SMITE] = _("Divine Smite"),
     [MOVE_FIREWALL] = _("Firewall"),
+    [MOVE_STALACBITE] = _("Stalacbite"),
 };
 #endif
 

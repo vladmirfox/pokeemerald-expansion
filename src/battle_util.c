@@ -4820,13 +4820,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 break;
             case ABILITY_EARTH_EATER:
-                if(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)    
+                if(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)  {  
                     BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 4;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
                     gBattleMoveDamage *= -1;
                     effect++;
+                }
+                break;
             case ABILITY_HYDRATION:
                 if (IsBattlerWeatherAffected(battler, B_WEATHER_RAIN)
                  && gBattleMons[battler].status1 & STATUS1_ANY)
@@ -4978,6 +4980,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (TryBattleFormChange(battler, FORM_CHANGE_BATTLE_TURN_END))
                 {
                     BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3NoPopup);
+                    effect++;
+                }
+                break;
+            case ABILITY_SCHOOLING:
+				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
+				{
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_SCHOOLING;
+			        gLastUsedAbility = ABILITY_SCHOOLING;
+                    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    gBattleMoveDamage *= -1;
+                    BattleScriptExecute(BattleScript_SchoolingRestoreActivates);
                     effect++;
                 }
                 break;
@@ -9109,6 +9124,14 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
                 MulModifier(&modifier, UQ_4_12(0.7));
         }
         break;
+    case ABILITY_SAND_VEIL:
+        if (IS_MOVE_PHYSICAL(move) && WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM)
+            MulModifier(&modifier, UQ_4_12(1.2));
+        break;
+    case ABILITY_SNOW_CLOAK:
+        if (IS_MOVE_SPECIAL(move) && WEATHER_HAS_EFFECT && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
+            MulModifier(&modifier, UQ_4_12(1.2));
+        break;
     }
 
     holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
@@ -9343,7 +9366,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
     case ABILITY_DEFEATIST:
-        if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 2))
+        if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
             MulModifier(&modifier, UQ_4_12(0.5));
         break;
     case ABILITY_FLASH_FIRE:
@@ -9390,7 +9413,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
     case ABILITY_FLOWER_GIFT:
-        if (gBattleMons[battlerAtk].species == SPECIES_CHERRIM_SUNSHINE && IsBattlerWeatherAffected(battlerAtk, B_WEATHER_SUN) && IS_MOVE_PHYSICAL(move))
+        if (gBattleMons[battlerAtk].species == SPECIES_CHERRIM_SUNSHINE && IsBattlerWeatherAffected(battlerAtk, B_WEATHER_SUN))
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
     case ABILITY_HUSTLE:
@@ -9436,7 +9459,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         switch (GetBattlerAbility(BATTLE_PARTNER(battlerAtk)))
         {
         case ABILITY_FLOWER_GIFT:
-            if (gBattleMons[BATTLE_PARTNER(battlerAtk)].species == SPECIES_CHERRIM_SUNSHINE && IsBattlerWeatherAffected(BATTLE_PARTNER(battlerAtk), B_WEATHER_SUN) && IS_MOVE_PHYSICAL(move))
+            if (gBattleMons[BATTLE_PARTNER(battlerAtk)].species == SPECIES_CHERRIM_SUNSHINE && IsBattlerWeatherAffected(BATTLE_PARTNER(battlerAtk), B_WEATHER_SUN))
                 MulModifier(&modifier, UQ_4_12(1.5));
             break;
         }
@@ -9570,7 +9593,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         }
         break;
     case ABILITY_FLOWER_GIFT:
-        if (gBattleMons[battlerDef].species == SPECIES_CHERRIM_SUNSHINE && IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN) && !usesDefStat)
+        if (gBattleMons[battlerDef].species == SPECIES_CHERRIM_SUNSHINE && IsBattlerWeatherAffected(battlerDef, B_WEATHER_SUN))
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
     case ABILITY_PUNK_ROCK:
@@ -9589,7 +9612,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         switch (GetBattlerAbility(BATTLE_PARTNER(battlerDef)))
         {
         case ABILITY_FLOWER_GIFT:
-            if (gBattleMons[BATTLE_PARTNER(battlerDef)].species == SPECIES_CHERRIM_SUNSHINE && IsBattlerWeatherAffected(BATTLE_PARTNER(battlerDef), B_WEATHER_SUN) && !usesDefStat)
+            if (gBattleMons[BATTLE_PARTNER(battlerDef)].species == SPECIES_CHERRIM_SUNSHINE && IsBattlerWeatherAffected(BATTLE_PARTNER(battlerDef), B_WEATHER_SUN))
                 MulModifier(&modifier, UQ_4_12(1.5));
             break;
         }
