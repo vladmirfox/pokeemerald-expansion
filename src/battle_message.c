@@ -137,10 +137,10 @@ static const u8 sText_PkmnChangedType[] = _("{B_ATK_NAME_WITH_PREFIX} transforme
 static const u8 sText_PkmnFlinched[] = _("{B_ATK_NAME_WITH_PREFIX} flinched\nand couldn't move!");
 static const u8 sText_PkmnRegainedHealth[] = _("{B_DEF_NAME_WITH_PREFIX}'s HP was restored.");
 static const u8 sText_PkmnHPFull[] = _("{B_DEF_NAME_WITH_PREFIX}'s\nHP is full!");
-static const u8 sText_PkmnRaisedSpDef[] = _("{B_ATK_PREFIX1}'s {B_CURRENT_MOVE}\nraised SP. DEF!"); //light screen
-static const u8 sText_PkmnRaisedSpDefALittle[] = _("{B_ATK_PREFIX1}'s {B_CURRENT_MOVE}\nraised SP. DEF a little!"); //light screen
-static const u8 sText_PkmnRaisedDef[] = _("{B_ATK_PREFIX1}'s {B_CURRENT_MOVE}\nraised DEFENSE!"); //reflect
-static const u8 sText_PkmnRaisedDefALittle[] = _("{B_ATK_PREFIX1}'s {B_CURRENT_MOVE}\nraised DEFENSE a little!"); //reflect
+static const u8 sText_PkmnRaisedSpDef[] = _("Light Screen made {B_ATK_TEAM2} team\nstronger against special moves!");
+static const u8 sText_PkmnRaisedSpDefALittle[] = _("{B_ATK_PREFIX1}'s {B_CURRENT_MOVE}\nraised SP. DEF a little!"); //expansion doesn't use anymore
+static const u8 sText_PkmnRaisedDef[] = _("Reflect made {B_ATK_TEAM2} team\nstronger against physical moves!");
+static const u8 sText_PkmnRaisedDefALittle[] = _("{B_ATK_PREFIX1}'s {B_CURRENT_MOVE}\nraised DEFENSE a little!"); //expansion doesn't use anymore
 static const u8 sText_PkmnCoveredByVeil[] = _("{B_ATK_TEAM1} team became cloaked in\na mystical veil!");
 static const u8 sText_PkmnUsedSafeguard[] = _("{B_ATK_TEAM1} team is protected\nby Safeguard!");
 static const u8 sText_PkmnSafeguardExpired[] = _("{B_ATK_TEAM1} team is no longer protected\nby Safeguard!");
@@ -1612,9 +1612,9 @@ const u16 gReflectLightScreenSafeguardStringIds[] =
 {
     [B_MSG_SIDE_STATUS_FAILED]     = STRINGID_BUTITFAILED,
     [B_MSG_SET_REFLECT_SINGLE]     = STRINGID_PKMNRAISEDDEF,
-    [B_MSG_SET_REFLECT_DOUBLE]     = STRINGID_PKMNRAISEDDEFALITTLE,
+    [B_MSG_SET_REFLECT_DOUBLE]     = STRINGID_PKMNRAISEDDEF,
     [B_MSG_SET_LIGHTSCREEN_SINGLE] = STRINGID_PKMNRAISEDSPDEF,
-    [B_MSG_SET_LIGHTSCREEN_DOUBLE] = STRINGID_PKMNRAISEDSPDEFALITTLE,
+    [B_MSG_SET_LIGHTSCREEN_DOUBLE] = STRINGID_PKMNRAISEDSPDEF,
     [B_MSG_SET_SAFEGUARD]          = STRINGID_PKMNCOVEREDBYVEIL,
 };
 
@@ -1988,7 +1988,7 @@ const u8 gText_NewLine[] = _("\n");
 const u8 gText_Are[] = _("are");
 const u8 gText_Are2[] = _("are");
 const u8 gText_BadEgg[] = _("Bad Egg");
-const u8 gText_BattleWallyName[] = _("WALLY"); 
+const u8 gText_BattleWallyName[] = _("WALLY");
 const u8 gText_Win[] = _("{HIGHLIGHT TRANSPARENT}Win");
 const u8 gText_Loss[] = _("{HIGHLIGHT TRANSPARENT}Loss");
 const u8 gText_Draw[] = _("{HIGHLIGHT TRANSPARENT}Draw");

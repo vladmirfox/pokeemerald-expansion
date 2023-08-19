@@ -116,7 +116,7 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Mist and Safeguard
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
         else {
-            MESSAGE("Foe Wobbuffet is protected by the mist!");
+            MESSAGE("Wobbuffet is protected by the mist!");
             NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
         MESSAGE("Wobbuffet used Toxic!");
@@ -201,7 +201,7 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Spikes from player
             MESSAGE("The spikes disappeared from the ground around your team!");
         }
         // Switch happens
-        MESSAGE("Wobbuffet, that's enough! Come back!");
+        MESSAGE("Wobbuffet, come back!");
         MESSAGE("You're in charge, Wobbuffet!");
         if (move != MOVE_DEFOG) {
             HP_BAR(player);
