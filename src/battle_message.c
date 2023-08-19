@@ -86,7 +86,7 @@ static const u8 sText_PlayerWhiteout2[] = _("{B_PLAYER_NAME} dropped ¥{B_BUFF1}
 static const u8 sText_PlayerWhiteout2[] = _("{B_PLAYER_NAME} blacked out!{PAUSE_UNTIL_PRESS}");
 #endif
 static const u8 sText_PreventsEscape[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} prevents\nescape with {B_SCR_ACTIVE_ABILITY}!\p"); //not in gen 5+, ability popup
-static const u8 sText_CantEscape2[] = _("You couldn’t get away!\p");
+static const u8 sText_CantEscape2[] = _("You couldn't get away!\p");
 static const u8 sText_AttackerCantEscape[] = _("{B_ATK_NAME_WITH_PREFIX} can't escape!");
 static const u8 sText_HitXTimes[] = _("Hit {B_BUFF1} time(s)!");
 static const u8 sText_PkmnFellAsleep[] = _("{B_EFF_NAME_WITH_PREFIX}\nfell asleep!");
@@ -345,7 +345,7 @@ static const u8 sText_PlayerBattledToDrawVsTwo[] = _("Player battled to a draw a
 static const u8 sText_WildFled[] = _("{PLAY_SE SE_FLEE}{B_LINK_OPPONENT1_NAME} fled!"); //not in gen 5+, replaced with match was forfeited text
 static const u8 sText_TwoWildFled[] = _("{PLAY_SE SE_FLEE}{B_LINK_OPPONENT1_NAME} and\n{B_LINK_OPPONENT2_NAME} fled!"); //not in gen 5+, replaced with match was forfeited text
 static const u8 sText_NoRunningFromTrainers[] = _("No! There's no running\nfrom a Trainer battle!\p");
-static const u8 sText_CantEscape[] = _("Can't escape!\p");
+static const u8 sText_CantEscape[] = _("You can't escape!\p");
 static const u8 sText_DontLeaveBirch[] = _("PROF. BIRCH: Don't leave me like this!\p"); //no decapitalize until it is everywhere
 static const u8 sText_ButNothingHappened[] = _("But nothing happened!");
 static const u8 sText_ButItFailed[] = _("But it failed!");
