@@ -93,6 +93,6 @@ SINGLE_BATTLE_TEST("U-turn switches the user out if Wimp Out fails to activate")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
         HP_BAR(opponent);
         NOT ABILITY_POPUP(opponent);
-        MESSAGE("Just a little more! Hang in there, Wynaut!");
+        MESSAGE("Your opponent's weak! Get 'em, Wynaut!");
     }
 }

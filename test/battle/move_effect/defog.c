@@ -350,11 +350,11 @@ DOUBLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes everything it can"
         MESSAGE("Glalie is protected by the mist!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DEFOG, opponentRight);
         // Player side
-        MESSAGE("Ally's Reflect wore off!");
-        MESSAGE("Ally's Light Screen wore off!");
-        MESSAGE("Ally's Mist wore off!");
-        MESSAGE("Ally's Aurora Veil wore off!");
-        MESSAGE("Ally's Safeguard wore off!");
+        MESSAGE("Your team's Reflect wore off!");
+        MESSAGE("Your team's Light Screen wore off!");
+        MESSAGE("Your team's Mist wore off!");
+        MESSAGE("Your team's Aurora Veil wore off!");
+        MESSAGE("Your team's Safeguard wore off!");
 
         MESSAGE("The spikes disappeared from the ground around your team!");
         MESSAGE("The pointed stones disappeared from around your team!");

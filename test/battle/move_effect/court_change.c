@@ -108,7 +108,7 @@ DOUBLE_BATTLE_TEST("Court Change used by the player swaps Mist, Safeguard, Lucky
         // The effects now end for the player side.
         MESSAGE("Your team's Mist wore off!");
         MESSAGE("Your team is no longer protected by Safeguard!");
-        MESSAGE("Ally's Reflect wore off!");
+        MESSAGE("Your team's Reflect wore off!");
         MESSAGE("Your team's Lucky Chant wore off!");
         MESSAGE("Your team's tailwind petered out!");
         MESSAGE("Your team's Light Screen wore off!");
