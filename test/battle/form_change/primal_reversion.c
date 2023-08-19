@@ -207,7 +207,7 @@ SINGLE_BATTLE_TEST("Primal reversion happens after the entry hazards damage")
     } SCENE {
         MESSAGE("Go! Groudon!");
         HP_BAR(player);
-        MESSAGE("Groudon is hurt by spikes!");
+        MESSAGE("Groudon was hurt by the spikes!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
         MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
     } THEN {

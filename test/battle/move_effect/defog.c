@@ -205,12 +205,12 @@ SINGLE_BATTLE_TEST("Defog lowers evasiveness by 1 and removes Spikes from player
         MESSAGE("Go! Wobbuffet!");
         if (move != MOVE_DEFOG) {
             HP_BAR(player);
-            MESSAGE("Wobbuffet is hurt by spikes!");
+            MESSAGE("Wobbuffet was hurt by the spikes!");
         }
         else {
             NONE_OF {
                 HP_BAR(player);
-                MESSAGE("Wobbuffet is hurt by spikes!");
+                MESSAGE("Wobbuffet was hurt by the spikes!");
             }
         }
     }
