@@ -494,6 +494,7 @@ static const u8 sText_Lanettes[] = _("LANETTE's"); //no decapitalize until it is
 static const u8 sText_PkmnDataAddedToDex[] = _("{B_DEF_NAME}'s data was\nadded to the Pokédex.\p");
 static const u8 sText_ItIsRaining[] = _("It's raining!");
 static const u8 sText_SandstormIsRaging[] = _("The sandstorm is raging!");
+static const u8 sText_SunlightIsHarsh[] = _("The sunlight is harsh!");
 static const u8 sText_BoxIsFull[] = _("The Box is full!\nYou can't catch any more!\p");
 static const u8 sText_EnigmaBerry[] = _("ENIGMA BERRY"); //no decapitalize until it is everywhere
 static const u8 sText_BerrySuffix[] = _(" BERRY"); //no decapitalize until it is everywhere
@@ -1457,6 +1458,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_PKMNFROSTBITEHEALED - BATTLESTRINGS_TABLE_START] = sText_PkmnFrostbiteHealed,
     [STRINGID_PKMNFROSTBITEHEALED2 - BATTLESTRINGS_TABLE_START] = sText_PkmnFrostbiteHealed2,
     [STRINGID_PKMNFROSTBITEHEALEDBY - BATTLESTRINGS_TABLE_START] = sText_PkmnFrostbiteHealedBy,
+    [STRINGID_SUNLIGHTISHARSH - BATTLESTRINGS_TABLE_START] = sText_SunlightIsHarsh,
 };
 
 const u16 gTrainerUsedItemStringIds[] =
@@ -1847,7 +1849,7 @@ const u16 gWeatherStartsStringIds[] =
     [WEATHER_FOG_DIAGONAL]       = STRINGID_ITISRAINING,
     [WEATHER_UNDERWATER]         = STRINGID_ITISRAINING,
     [WEATHER_SHADE]              = STRINGID_ITISRAINING,
-    [WEATHER_DROUGHT]            = STRINGID_SUNLIGHTSTRONG,
+    [WEATHER_DROUGHT]            = STRINGID_SUNLIGHTISHARSH,
     [WEATHER_DOWNPOUR]           = STRINGID_ITISRAINING,
     [WEATHER_UNDERWATER_BUBBLES] = STRINGID_ITISRAINING,
     [WEATHER_ABNORMAL]           = STRINGID_ITISRAINING
