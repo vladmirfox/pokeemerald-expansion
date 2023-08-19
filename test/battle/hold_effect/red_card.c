@@ -373,7 +373,7 @@ SINGLE_BATTLE_TEST("Red Card activates before Emergency Exit")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("Golisopod held up its Red Card against Foe Wobbuffet!");
         ABILITY_POPUP(player, ABILITY_EMERGENCY_EXIT);
-        MESSAGE("Go! Wimpod!");
+        MESSAGE("You're in charge, Wimpod!");
     }
 }
 

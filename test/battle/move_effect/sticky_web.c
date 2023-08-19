@@ -124,7 +124,7 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - the 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, BATTLER_PLAYER);
         MESSAGE("A sticky web spreads out on the ground around the opposing team!");
 
-        MESSAGE("Go! Corviknigh!");
+        MESSAGE("You're in charge, Corviknigh!");
         MESSAGE("Corviknigh was caught in a Sticky Web!");
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, BATTLER_OPPONENT);
@@ -172,7 +172,7 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
             MESSAGE("A sticky web spreads out on the ground around the opposing team!");
         }
 
-        MESSAGE("Go! Corviknigh!");
+        MESSAGE("You're in charge, Corviknigh!");
         MESSAGE("Corviknigh was caught in a Sticky Web!");
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
@@ -222,7 +222,7 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
             MESSAGE("2 sent out Pidgey!");
         }
 
-        MESSAGE("Go! Corviknigh!");
+        MESSAGE("You're in charge, Corviknigh!");
         MESSAGE("Corviknigh was caught in a Sticky Web!");
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);

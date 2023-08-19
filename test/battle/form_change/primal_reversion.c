@@ -166,7 +166,7 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a switch-in caused by Eject B
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
         MESSAGE("Wobbuffet is switched out with the Eject Button!");
-        MESSAGE("Go! Groudon!");
+        MESSAGE("You're in charge, Groudon!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
         MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
     } THEN {
@@ -205,7 +205,7 @@ SINGLE_BATTLE_TEST("Primal reversion happens after the entry hazards damage")
         TURN { MOVE(opponent, MOVE_SPIKES); }
         TURN { MOVE(opponent, MOVE_SPIKES); SWITCH(player, 1);}
     } SCENE {
-        MESSAGE("Go! Groudon!");
+        MESSAGE("You're in charge, Groudon!");
         HP_BAR(player);
         MESSAGE("Groudon was hurt by the spikes!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
