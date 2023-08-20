@@ -4993,8 +4993,7 @@ void ItemUseCB_PPUp(u8 taskId, TaskFunc task)
 
 u16 ItemIdToBattleMoveId(u16 item)
 {
-    u16 tmNumber = item - ITEM_TM01;
-    return sTMHMMoves[tmNumber];
+    return gItems[item].secondaryId;
 }
 
 bool8 IsMoveHm(u16 move)
@@ -5003,7 +5002,7 @@ bool8 IsMoveHm(u16 move)
 
     for (i = 0; i < NUM_HIDDEN_MACHINES; i++)
     {
-        if (sTMHMMoves[i + NUM_TECHNICAL_MACHINES] == move)
+        if (gItems[i].secondaryId == move)
             return TRUE;
     }
     return FALSE;
