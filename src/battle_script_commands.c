@@ -354,6 +354,7 @@ static void BestowItem(u32 battlerAtk, u32 battlerDef);
 static bool8 IsFinalStrikeEffect(u16 move);
 static void TryUpdateRoundTurnOrder(void);
 static bool32 ChangeOrderTargetAfterAttacker(void);
+static void RemoveAllTerrains(void);
 
 static void Cmd_attackcanceler(void);
 static void Cmd_accuracycheck(void);
@@ -8463,19 +8464,19 @@ static void HandleTerrainMove(u16 move)
     {
     case EFFECT_MISTY_TERRAIN:
         statusFlag = STATUS_FIELD_MISTY_TERRAIN;
-        gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
         break;
     case EFFECT_GRASSY_TERRAIN:
         statusFlag = STATUS_FIELD_GRASSY_TERRAIN;
-        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_GRASSY;
         break;
     case EFFECT_ELECTRIC_TERRAIN:
         statusFlag = STATUS_FIELD_ELECTRIC_TERRAIN;
-        gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
         break;
     case EFFECT_PSYCHIC_TERRAIN:
         statusFlag = STATUS_FIELD_PSYCHIC_TERRAIN;
-        gBattleCommunication[MULTISTRING_CHOOSER] = 3;
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
         break;
     case EFFECT_HIT_SET_REMOVE_TERRAIN:
         switch (gBattleMoves[move].argument)
@@ -8493,8 +8494,7 @@ static void HandleTerrainMove(u16 move)
             else
             {
                 // remove all terrain
-                gFieldStatuses &= ~STATUS_FIELD_TERRAIN_ANY;
-                gBattleCommunication[MULTISTRING_CHOOSER] = 4;
+                RemoveAllTerrains();
                 gBattlescriptCurrInstr += 7;
             }
             return;
@@ -8553,19 +8553,19 @@ static void RemoveAllTerrains(void)
     switch (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
     {
     case STATUS_FIELD_MISTY_TERRAIN:
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINENDS_MISTY;
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_END_MISTY;
         break;
     case STATUS_FIELD_GRASSY_TERRAIN:
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINENDS_GRASS;
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_END_GRASSY;
         break;
     case STATUS_FIELD_ELECTRIC_TERRAIN:
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINENDS_ELECTRIC;
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_END_ELECTRIC;
         break;
     case STATUS_FIELD_PSYCHIC_TERRAIN:
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINENDS_PSYCHIC;
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_END_PSYCHIC;
         break;
     default:
-        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAINENDS_COUNT;  // failsafe
+        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_COUNT;  // failsafe
         break;
     }
     gFieldStatuses &= ~STATUS_FIELD_TERRAIN_ANY;    // remove the terrain
@@ -9767,7 +9767,7 @@ static void Cmd_various(void)
         }
         break;
     }
-    case VARIOUS_SET_TERRAIN:
+    case VARIOUS_SET_REMOVE_TERRAIN:
     {
         VARIOUS_ARGS(const u8 *failInstr);
         HandleTerrainMove(gCurrentMove);

@@ -1319,8 +1319,8 @@ BattleScript_EffectRemoveTerrain:
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
 	removeterrain
-	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_TERRAINENDS_COUNT, BattleScript_MoveEnd
-	printfromtable gTerrainEndingStringIds
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_TERRAIN_COUNT, BattleScript_MoveEnd
+	printfromtable gTerrainStringIds
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG
 	tryfaintmon BS_TARGET
@@ -2636,7 +2636,7 @@ BattleScript_EffectPsychicTerrain:
 	attackcanceler
 	attackstring
 	ppreduce
-	setterrain BattleScript_ButItFailed
+	setremoveterrain BattleScript_ButItFailed
 	attackanimation
 	waitanimation
 	printfromtable gTerrainStringIds
@@ -6928,7 +6928,7 @@ BattleScript_MagicRoomEnds::
 	end2
 
 BattleScript_TerrainEnds_Ret::
-	printfromtable gTerrainEndingStringIds
+	printfromtable gTerrainStringIds
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG
 	return
@@ -10218,9 +10218,10 @@ BattleScript_EffectHitSetRemoveTerrain:
 	waitmessage B_WAIT_TIME_LONG
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
-	setterrain BattleScript_TryFaint
+	setremoveterrain BattleScript_TryFaint
 	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG
 	printfromtable gTerrainStringIds
+	waitmessage B_WAIT_TIME_LONG
 BattleScript_TryFaint:
 	tryfaintmon BS_TARGET
 	goto BattleScript_MoveEnd

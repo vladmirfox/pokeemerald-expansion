@@ -1591,8 +1591,8 @@
 	various \battler, VARIOUS_INVERT_STAT_STAGES
 	.endm
 
-	.macro setterrain failInstr:req
-	various BS_ATTACKER, VARIOUS_SET_TERRAIN
+	.macro setremoveterrain failInstr:req
+	various BS_ATTACKER, VARIOUS_SET_REMOVE_TERRAIN
 	.4byte \failInstr
 	.endm
 
