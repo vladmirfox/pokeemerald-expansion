@@ -4996,18 +4996,6 @@ u16 ItemIdToBattleMoveId(u16 item)
     return gItems[item].secondaryId;
 }
 
-bool8 IsMoveHm(u16 move)
-{
-    u8 i;
-
-    for (i = 0; i < NUM_HIDDEN_MACHINES; i++)
-    {
-        if (gItems[i].secondaryId == move)
-            return TRUE;
-    }
-    return FALSE;
-}
-
 bool8 MonKnowsMove(struct Pokemon *mon, u16 move)
 {
     u8 i;
