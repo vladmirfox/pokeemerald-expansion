@@ -198,13 +198,15 @@ static bool8 FindMonThatAbsorbsOpponentsMove(void)
         numAbsorbingAbilities = 1;
     }
     else
+    {
         return FALSE;
+    }
 
     // Check current mon for all absorbing abilities
     for (i = 0; i < numAbsorbingAbilities; i++)
     {
         if (AI_DATA->abilities[gActiveBattler] == absorbingTypeAbilities[i])
-        return FALSE;
+            return FALSE;
     }
 
     GetAIPartyIndexes(gActiveBattler, &firstId, &lastId);
