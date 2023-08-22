@@ -170,7 +170,7 @@ const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES] =
     [SPECIES_HOOPA_UNBOUND] = sHoopaFormChangeTable,
 #endif
 #if P_GEN_7_POKEMON == TRUE
-    [SPECIES_ORICORIO] = sOricorioFormChangeTable,
+    [SPECIES_ORICORIO_BAILE] = sOricorioFormChangeTable,
     [SPECIES_ORICORIO_POM_POM] = sOricorioFormChangeTable,
     [SPECIES_ORICORIO_PAU] = sOricorioFormChangeTable,
     [SPECIES_ORICORIO_SENSU] = sOricorioFormChangeTable,

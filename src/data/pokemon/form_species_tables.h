@@ -958,7 +958,7 @@ static const u16 sDecidueyeFormSpeciesIdTable[] = {
 };
 
 static const u16 sOricorioFormSpeciesIdTable[] = {
-    SPECIES_ORICORIO,
+    SPECIES_ORICORIO_BAILE,
     SPECIES_ORICORIO_POM_POM,
     SPECIES_ORICORIO_PAU,
     SPECIES_ORICORIO_SENSU,

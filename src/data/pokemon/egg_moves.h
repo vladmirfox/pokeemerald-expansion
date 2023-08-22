@@ -3865,7 +3865,7 @@ const u16 gEggMoves[] = {
         MOVE_ENDEAVOR,
         MOVE_AMNESIA),
 
-    egg_moves(ORICORIO,
+    egg_moves(ORICORIO_BAILE,
         MOVE_PLUCK,
         MOVE_TAILWIND,
         MOVE_SAFEGUARD,

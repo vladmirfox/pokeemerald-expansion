@@ -774,7 +774,8 @@
 #define SPECIES_VIKAVOLT                     738
 #define SPECIES_CRABRAWLER                   739
 #define SPECIES_CRABOMINABLE                 740
-#define SPECIES_ORICORIO                     741
+#define SPECIES_ORICORIO                     SPECIES_ORICORIO_BAILE
+#define SPECIES_ORICORIO_BAILE               741
 #define SPECIES_CUTIEFLY                     742
 #define SPECIES_RIBOMBEE                     743
 #define SPECIES_ROCKRUFF                     744
