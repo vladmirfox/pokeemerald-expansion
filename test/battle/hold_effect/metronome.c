@@ -1,8 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
 
-
-
 ASSUMPTIONS
 {
     gItems[ITEM_METRONOME].holdEffect == HOLD_EFFECT_METRONOME;
