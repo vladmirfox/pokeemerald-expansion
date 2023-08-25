@@ -1042,9 +1042,9 @@ static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 inva
 }
 
 // This function integrates GetBestMonBatonPass (vanilla), GetBestMonTypeMatchup (vanilla with modifications), and GetBestMonDefensive (custom)
-// the Baton Pass code will prioritize switching into a mon with Baton Pass, and randomize between multiple valid options
 // the Type Matchup code will prioritize switching into a mon with the best type matchup and also a super effective move, or just best type matchup if no super effective move is found
 // the Most Defensive code will prioritize switching into the mon that takes the most hits to KO, with a minimum of 4 hits required to be considered a valid option
+// the Baton Pass code will prioritize switching into a mon with Baton Pass if it can get in, boost, and BP out without being KO'd, and randomizes between multiple valid options
 // Everything runs in the same loop to minimize computation time. This makes it harder to read, but hopefully the comments can guide you!
 static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, u32 opposingBattler, u8 battlerIn1, u8 battlerIn2)
 {
@@ -1053,7 +1053,8 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
     int i, j, aliveCount = 0, bits = 0;
     s32 damageTaken = 0, maxDamageTaken = 0, maxHitsToKO = 0, hitsToKO = 0;
     s32 hitKOThreshold = 3; // 3HKO threshold that candidate defensive mons must exceed
-    u32 playerMove, aiMove;
+    u32 playerMove, aiMove, aiMonSpeed = 0;
+    s32 playerMonSpeed = gBattleMons[opposingBattler].speed;
     u16 bestResist = UQ_4_12(1.0), bestResistEffective = UQ_4_12(1.0);
     u16 species, typeEffectiveness;
     u8 atkType1, atkType2, defType1, defType2;
@@ -1136,8 +1137,8 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         {
             aiMove = GetMonData(&party[i], MON_DATA_MOVE1 + j);
 
-            // Check for Baton Pass
-            if (aiMove == MOVE_BATON_PASS && hitsToKO > 1)
+            // Check for Baton Pass; hitsToKO requirements mean mon can boost and BP without dying whether it's slower or not
+            if (aiMove == MOVE_BATON_PASS && ((hitsToKO > 3 && aiMonSpeed < playerMonSpeed) || (hitsToKO > 2 && aiMonSpeed > playerMonSpeed)))
                 bits |= gBitTable[i];
 
             // Check for mon with resistance and super effective move for GetBestMonTypeMatchup
@@ -1156,17 +1157,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         }
     }
 
-    // GetBestMonBatonPass takes priority
-    if ((aliveCount == 2 || (aliveCount > 2 && Random() % 3 == 0)) && bits)
-    {
-        do
-        {
-            batonPassId = (Random() % (lastId - firstId)) + firstId;
-        } while (!(bits & gBitTable[i]));
-        return batonPassId;
-    }
-
-    // Return GetBestMonTypeMatchup > GetBestMonDefensive
+    // Return GetBestMonTypeMatchup > GetBestMonDefensive > GetBestMonBatonPass
     else if (typeMatchupEffectiveId != PARTY_SIZE)
         return typeMatchupEffectiveId;
 
@@ -1176,6 +1167,16 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
     if (defensiveMonId != PARTY_SIZE)
         return defensiveMonId;
 
+    // GetBestMonBatonPass randomly chooses between all mons that met Baton Pass check
+    if ((aliveCount == 2 || (aliveCount > 2 && Random() % 3 == 0)) && bits)
+    {
+        do
+        {
+            batonPassId = (Random() % (lastId - firstId)) + firstId;
+        } while (!(bits & gBitTable[i]));
+        return batonPassId;
+    }
+
     // If ace mon is the last available Pokemon and U-Turn/Volt Switch was used - switch to the mon.
     if (aceMonId != PARTY_SIZE
         && (gBattleMoves[gLastUsedMove].effect == EFFECT_HIT_ESCAPE || gBattleMoves[gLastUsedMove].effect == EFFECT_PARTING_SHOT))
@@ -1184,10 +1185,10 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
     else
         return PARTY_SIZE;
 }
-// This function integrates GetBestMonBatonPass (vanilla), GetBestMonRevengeKiller (custom), GetBestMonTypeMatchup (vanilla with modifications), and GetBestMonDmg (vanilla)
-// the Baton Pass code will prioritize switching into a mon with Baton Pass, and randomize between multiple valid options
+// This function integrates GetBestMonRevengeKiller (custom), GetBestMonTypeMatchup (vanilla with modifications), GetBestMonBatonPass (vanilla with modifications), and GetBestMonDmg (vanilla)
 // the Revenge Killer code will prioritize, in order, OHKO and outspeeds / OHKO, slower but not 2HKO'd / 2HKO, outspeeds and not OHKO'd / 2HKO, slower but not 3HKO'd 
 // the Type Matchup code will prioritize switching into a mon with the best type matchup and also a super effective move, or just best type matchup if no super effective move is found
+// the Baton Pass code will prioritize switching into a mon with Baton Pass if it can get in, boost, and BP out without being KO'd, and randomizes between multiple valid options
 // the Most Damage code will prioritize switching into whatever mon deals the most damage, which is generally not as good as having a good Type Matchup
 // Everything runs in the same loop to minimize computation time. This makes it harder to read, but hopefully the comments can guide you!
 static u32 GetBestMonAfterKOIntegrated(struct Pokemon *party, int firstId, int lastId, u32 opposingBattler, u8 battlerIn1, u8 battlerIn2)
@@ -1275,8 +1276,8 @@ static u32 GetBestMonAfterKOIntegrated(struct Pokemon *party, int firstId, int l
         {
             aiMove = GetMonData(&party[i], MON_DATA_MOVE1 + j);
 
-            // Check for Baton Pass
-            if (aiMove == MOVE_BATON_PASS && hitsToKO > 1)
+            // Check for Baton Pass; hitsToKO requirements mean mon can boost and BP without dying whether it's slower or not
+            if (aiMove == MOVE_BATON_PASS && ((hitsToKO > 2 && aiMonSpeed < playerMonSpeed) || (hitsToKO > 1 && aiMonSpeed > playerMonSpeed)))
                 bits |= gBitTable[i];
 
             if (aiMove != MOVE_NONE && gBattleMoves[aiMove].power != 0)
@@ -1352,17 +1353,10 @@ static u32 GetBestMonAfterKOIntegrated(struct Pokemon *party, int firstId, int l
         }
     }
 
-    // GetBestMonBatonPass takes priority
-    if ((aliveCount == 2 || (aliveCount > 2 && Random() % 3 == 0)) && bits)
-    {
-        do
-        {
-            batonPassId = (Random() % (lastId - firstId)) + firstId;
-        } while (!(bits & gBitTable[i]));
-        return batonPassId;
-    }
 
-    // Return GetBestMonRevengeKiller >  GetBestMonTypeMatchup > GetBestMonDmg
+
+
+    // Return GetBestMonRevengeKiller >  GetBestMonTypeMatchup > GetBestMonBatonPass > GetBestMonDmg
     if (revengeKillerId != PARTY_SIZE)
         return revengeKillerId;
 
@@ -1380,6 +1374,16 @@ static u32 GetBestMonAfterKOIntegrated(struct Pokemon *party, int firstId, int l
 
     else if (typeMatchupId != PARTY_SIZE)
         return typeMatchupId;
+    
+    // GetBestMonBatonPass randomly chooses between all mons that met Baton Pass check
+    if ((aliveCount == 2 || (aliveCount > 2 && Random() % 3 == 0)) && bits)
+    {
+        do
+        {
+            batonPassId = (Random() % (lastId - firstId)) + firstId;
+        } while (!(bits & gBitTable[i]));
+        return batonPassId;
+    }
 
     else if (damageMonId != PARTY_SIZE)
         return damageMonId;
