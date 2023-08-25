@@ -1310,7 +1310,6 @@ static u32 GetBestMonAfterKOIntegrated(struct Pokemon *party, int firstId, int l
                     {
                         // We have a revenge killer
                         revengeKillerId = i;
-                        return revengeKillerId;
                     }
 
                     // If mon is slower
