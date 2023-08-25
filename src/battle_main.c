@@ -4084,15 +4084,16 @@ static void HandleTurnActionSelectionState(void)
         case STATE_TURN_START_RECORD: // Recorded battle related action on start of every turn.
             RecordedBattle_CopyBattlerMoves();
             gBattleCommunication[gActiveBattler] = STATE_BEFORE_ACTION_CHOSEN;
-
-            // Do AI score computations here so we can use them in AI_TrySwitchOrUseItem
+            break;
+        case STATE_BEFORE_ACTION_CHOSEN: // Choose an action.
+                // Do AI score computations here so we can use them in AI_TrySwitchOrUseItem
             if ((gBattleTypeFlags & BATTLE_TYPE_HAS_AI || IsWildMonSmart())
                     && (BattlerHasAi(gActiveBattler) && !(gBattleTypeFlags & BATTLE_TYPE_PALACE)))
             {
+                AI_THINKING_STRUCT->mostSuitableMonId = GetMostSuitableMonToSwitchInto(FALSE);
                 gBattleStruct->aiMoveOrAction[gActiveBattler] = ComputeBattleAiScores(gActiveBattler);
             }
-            break;
-        case STATE_BEFORE_ACTION_CHOSEN: // Choose an action.
+            
             *(gBattleStruct->monToSwitchIntoId + gActiveBattler) = PARTY_SIZE;
             if (gBattleTypeFlags & BATTLE_TYPE_MULTI
                 || (position & BIT_FLANK) == B_FLANK_LEFT

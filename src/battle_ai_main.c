@@ -189,10 +189,12 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves)
     s32 i, move, dmg;
     u8 moveLimitations;
 
-    // Clear AI data but preserve the flags.
+    // Clear AI data but preserve the flags and most suitable mon (pre-calculated in HandleTurnActionSelectionState).
+    u8 mostSuitableMonId = AI_THINKING_STRUCT->mostSuitableMonId;
     u32 flags = AI_THINKING_STRUCT->aiFlags;
     memset(AI_THINKING_STRUCT, 0, sizeof(struct AI_ThinkingStruct));
     AI_THINKING_STRUCT->aiFlags = flags;
+    AI_THINKING_STRUCT->mostSuitableMonId = mostSuitableMonId;
 
     // Conditional score reset, unlike Ruby.
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -455,7 +457,7 @@ static u8 ChooseMoveOrAction_Singles(void)
                     break;
             }
 
-            if (i == MAX_MON_MOVES && GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
+            if (i == MAX_MON_MOVES && AI_THINKING_STRUCT->mostSuitableMonId != PARTY_SIZE)
             {
                 AI_THINKING_STRUCT->switchMon = TRUE;
                 return AI_CHOICE_SWITCH;
@@ -469,7 +471,7 @@ static u8 ChooseMoveOrAction_Singles(void)
             && gDisableStructs[sBattler_AI].truantCounter
             && gBattleMons[sBattler_AI].hp >= gBattleMons[sBattler_AI].maxHP / 2)
         {
-            if (GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
+            if (AI_THINKING_STRUCT->mostSuitableMonId != PARTY_SIZE)
             {
                 AI_THINKING_STRUCT->switchMon = TRUE;
                 return AI_CHOICE_SWITCH;

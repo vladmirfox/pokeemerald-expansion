@@ -3415,6 +3415,21 @@ s32 AI_CalcPartyMonBestMoveDamage(u32 battlerAtk, u32 battlerDef, struct Pokemon
     return dmg;
 }
 
+// party logic
+s32 AI_CalcPartyMonDamage(u16 move, u8 battlerAtk, u8 battlerDef, struct Pokemon *mon, bool8 isPartyMonAttacker)
+{
+    s32 dmg, i;
+    u8 effectiveness;
+    struct BattlePokemon *savedBattleMons = AllocSaveBattleMons();
+    if(isPartyMonAttacker)
+        PokemonToBattleMonGetBestMonIntegrated(mon, &gBattleMons[battlerAtk], isPartyMonAttacker);
+    else
+        PokemonToBattleMonGetBestMonIntegrated(mon, &gBattleMons[battlerDef], isPartyMonAttacker);
+    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, FALSE);
+    FreeRestoreBattleMons(savedBattleMons);
+    return dmg;
+}
+
 s32 CountUsablePartyMons(u8 battlerId)
 {
     s32 battlerOnField1, battlerOnField2, i, ret;
