@@ -485,9 +485,9 @@ static u8 TryLoadSaveSlot(u16 sectorId, struct SaveSectorLocation *locations)
     {
         if (gSaveBlock2Ptr->_saveSentinel != 0xFF)
             status = SAVE_STATUS_OUTDATED;
-        if (gSaveBlock2Ptr->saveVersion < SAVE_VERSION)
+        else if (gSaveBlock2Ptr->saveVersion < SAVE_VERSION)
             status = SAVE_STATUS_OUTDATED;
-        if (gSaveBlock2Ptr->saveVersion > SAVE_VERSION)
+        else if (gSaveBlock2Ptr->saveVersion > SAVE_VERSION)
             status = SAVE_STATUS_TOO_NEW;
     }
 #endif
