@@ -347,7 +347,6 @@ gFieldEffectScript_MoveDeoxysRock::
 	field_eff_callnative FldEff_MoveDeoxysRock
 	field_eff_end
 
-
 gFldEffScript_UseVsSeeker::
 	field_eff_callnative FldEff_UseVsSeeker
 	field_eff_end
