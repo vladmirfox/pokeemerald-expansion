@@ -22,6 +22,7 @@
 #include "task.h"
 #include "trainer_see.h"
 #include "trainer_hill.h"
+#include "trig.h"
 #include "util.h"
 #include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
@@ -8970,5 +8971,21 @@ u8 MovementAction_FlyDown_Step1(struct ObjectEvent *objectEvent, struct Sprite *
 // though this function returns TRUE without doing anything, this header is required due to being in an array of functions which needs it.
 u8 MovementAction_Fly_Finish(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
+    return TRUE;
+}
+
+bool8 MovementAction_EmoteX_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    ObjectEventGetLocalIdAndMap(objectEvent, &gFieldEffectArguments[0], &gFieldEffectArguments[1], &gFieldEffectArguments[2]);
+    FieldEffectStart(FLDEFF_X_ICON);
+    sprite->sActionFuncId = 1;
+    return TRUE;
+}
+
+bool8 MovementAction_EmoteDoubleExclamationMark_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    ObjectEventGetLocalIdAndMap(objectEvent, &gFieldEffectArguments[0], &gFieldEffectArguments[1], &gFieldEffectArguments[2]);
+    FieldEffectStart(FLDEFF_DOUBLE_EXCL_MARK_ICON);
+    sprite->sActionFuncId = 1;
     return TRUE;
 }

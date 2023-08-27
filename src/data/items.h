@@ -9441,7 +9441,7 @@ const struct Item gItems[] =
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_FIELD,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .fieldUseFunc = FieldUseFunc_VsSeeker,
     },
 
     [ITEM_TM_CASE] =
