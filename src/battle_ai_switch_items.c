@@ -1179,7 +1179,7 @@ static s32 GetSwitchinWeatherImpact(void)
                 weatherImpact = 1;
         }
     }
-    if ((gBattleWeather & B_WEATHER_HAIL) && ability == ABILITY_ICE_BODY)
+    if (((gBattleWeather & B_WEATHER_HAIL) || (gBattleWeather & B_WEATHER_SNOW)) && ability == ABILITY_ICE_BODY)
     {
         weatherImpact = maxHP / 16;
         if (weatherImpact == 0)
