@@ -5139,6 +5139,7 @@ static void Cmd_setroost(void)
 #if B_ROOST_PURE_FLYING >= GEN_5
         gBattleMons[gBattlerAttacker].type1 = TYPE_NORMAL;
         gBattleMons[gBattlerAttacker].type2 = TYPE_NORMAL;
+        // Do other uses of SET_BATTLER_TYPE need to be changed to not touch type3?
 #else
         SET_BATTLER_TYPE(gBattlerAttacker, TYPE_MYSTERY);
 #endif
