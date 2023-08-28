@@ -31,8 +31,6 @@
 #include "constants/trainer_types.h"
 #include "constants/field_effects.h"
 
-#define VSSEEKER_RECHARGE_STEPS 100
-
 enum
 {
    VSSEEKER_NOT_CHARGED,
@@ -54,14 +52,6 @@ typedef enum
     VSSEEKER_RESPONSE_FOUND_REMATCHES
 } VsSeekerResponseCode;
 
-// static types
-typedef struct VsSeekerData
-{
-    u16 trainerIdxs[7];
-    u16 mapGroup; // unused
-    u16 mapNum; // unused
-} VsSeekerData;
-
 struct VsSeekerTrainerInfo
 {
     const u8 *script;
@@ -75,14 +65,13 @@ struct VsSeekerTrainerInfo
 
 struct VsSeekerStruct
 {
-    /*0x000*/ struct VsSeekerTrainerInfo trainerInfo[OBJECT_EVENTS_COUNT];
-    /*0x100*/ u8 filler_100[0x300];
-    /*0x400*/ u16 trainerIdxArray[OBJECT_EVENTS_COUNT];
-    /*0x420*/ u8 runningBehaviourEtcArray[OBJECT_EVENTS_COUNT];
-    /*0x430*/ u8 numRematchableTrainers;
-    /*0x431*/ u8 trainerHasNotYetBeenFought:1;
-    /*0x431*/ u8 trainerDoesNotWantRematch:1;
-    /*0x431*/ u8 trainerWantsRematch:1;
+    struct VsSeekerTrainerInfo trainerInfo[OBJECT_EVENTS_COUNT];
+    u16 trainerIdxArray[OBJECT_EVENTS_COUNT];
+    u8 runningBehaviourEtcArray[OBJECT_EVENTS_COUNT];
+    u8 numRematchableTrainers;
+    u8 trainerHasNotYetBeenFought:1;
+    u8 trainerDoesNotWantRematch:1;
+    u8 trainerWantsRematch:1;
     u8 responseCode:5;
 };
 
@@ -149,7 +138,7 @@ void VsSeekerFreezeObjectsAfterChargeComplete(void)
 static void Task_ResetObjectsRematchWantedState(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
-    u8 i;
+    u32 i;
 
     if (task->data[0] == 0 && IsPlayerStandingStill() == TRUE)
     {
@@ -198,9 +187,9 @@ u16 VsSeekerConvertLocalIdToTableId(u16 localId)
 void VsSeekerResetObjectMovementAfterChargeComplete(void)
 {
     struct ObjectEventTemplate * templates = gSaveBlock1Ptr->objectEventTemplates;
-    u8 i;
-    u8 movementType;
-    u8 objEventId;
+    u32 i;
+    u32 movementType;
+    u32 objEventId;
     struct ObjectEvent * objectEvent;
 
     for (i = 0; i < gMapHeader.events->objectEventCount; i++)
@@ -260,7 +249,7 @@ void MapResetTrainerRematches(u16 mapGroup, u16 mapNum)
 
 static void ResetMovementOfRematchableTrainers(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
@@ -302,8 +291,8 @@ static void VsSeekerSetStepCounterFullyCharged(void)
 
 void Task_VsSeeker_0(u8 taskId)
 {
-    u8 i;
-    u8 respval;
+    u32 i;
+    u32 respval;
 
     for (i = 0; i < 16; i++)
         gTasks[taskId].data[i] = 0;
@@ -467,11 +456,7 @@ static u8 GetVsSeekerResponseInArea(void)
                 }
                 else
                 {
-DebugPrintf("before gSaveBlock1Ptr->trainerRematches[sVsSeeker->trainerInfo[vsSeekerIdx].localId] = %d",gSaveBlock1Ptr->trainerRematches[sVsSeeker->trainerInfo[vsSeekerIdx].localId]);
                     gSaveBlock1Ptr->trainerRematches[VsSeekerConvertLocalIdToTableId(sVsSeeker->trainerInfo[vsSeekerIdx].localId)] = rematchTrainerIdx;
-DebugPrintf("rematchTrainerIdx = %d",rematchTrainerIdx);
-DebugPrintf("sVsSeeker->trainerInfo[vsSeekerIdx].localId = %d",sVsSeeker->trainerInfo[vsSeekerIdx].localId);
-                    //gSaveBlock1Ptr->trainerRematches[sVsSeeker->trainerInfo[vsSeekerIdx].localId] = rematchTrainerIdx;
                     ShiftStillObjectEventCoords(&gObjectEvents[sVsSeeker->trainerInfo[vsSeekerIdx].objectEventId]);
                     StartTrainerObjectMovementScript(&sVsSeeker->trainerInfo[vsSeekerIdx], sMovementScript_TrainerRematch);
                     sVsSeeker->trainerIdxArray[sVsSeeker->numRematchableTrainers] = trainerIdx;
@@ -505,7 +490,7 @@ void ClearRematchMovementByTrainerId(void)
 
     if (vsSeekerDataIdx != -1)
     {
-        int i;
+        s32 i;
 
         for (i = 0; i < gMapHeader.events->objectEventCount; i++)
         {
@@ -529,7 +514,7 @@ void ClearRematchMovementByTrainerId(void)
     }
 }
 
-u32 GetGameProgressFlags()
+static u32 GetGameProgressFlags()
 {
     const u32 gameProgressFlags[] = {
         FLAG_VISITED_LAVARIDGE_TOWN,
@@ -538,7 +523,7 @@ u32 GetGameProgressFlags()
         FLAG_DEFEATED_METEOR_FALLS_STEVEN
     };
     u32 i = 0, numGameProgressFlags = 0;
-    u32 maxGameProgressFlags = ((sizeof(gameProgressFlags)) / (sizeof(gameProgressFlags[0])));
+    u32 maxGameProgressFlags = ARRAY_COUNT(gameProgressFlags);
 
     for (i = 0; i < maxGameProgressFlags; i++)
     {
@@ -576,9 +561,9 @@ static bool8 ObjectEventIdIsSane(u8 objectEventId)
 
 static u8 GetRandomFaceDirectionMovementType()
 {
-    u16 r1 = Random() % 4;
+    u16 randomFacingDirection = Random() % 4;
 
-    switch (r1)
+    switch (randomFacingDirection)
     {
         case 0:
             return MOVEMENT_TYPE_FACE_UP;
@@ -646,17 +631,13 @@ static u8 GetRunningBehaviorFromGraphicsId(u8 graphicsId)
         case OBJ_EVENT_GFX_WOMAN_5:
         case OBJ_EVENT_GFX_YOUNGSTER:
             return MOVEMENT_TYPE_ROTATE_CLOCKWISE;
-            //return MOVEMENT_TYPE_RAISE_HAND_AND_JUMP;
         case OBJ_EVENT_GFX_SWIMMER_F:
         case OBJ_EVENT_GFX_SWIMMER_M:
         case OBJ_EVENT_GFX_TUBER_M_SWIMMING:
-            //return MOVEMENT_TYPE_RAISE_HAND_AND_SWIM;
             return MOVEMENT_TYPE_ROTATE_CLOCKWISE;
         default:
-            //return MOVEMENT_TYPE_RAISE_HAND_AND_STOP;
             return MOVEMENT_TYPE_FACE_DOWN;
     }
-    // BRANCH_NOTE: These lines are in Jaizu's original implementation, but have been commented out as this branch uses the behavior from Pokemon DPPt, where Trainers will spin clockwise when they can be rebattled.
 }
 
 static u16 GetTrainerFlagFromScript(const u8 *script)
@@ -682,12 +663,12 @@ static u16 GetTrainerFlagFromScript(const u8 *script)
 
 static void ClearAllTrainerRematchStates(void)
 {
-    u8 i;
+    u8 32;
 
     if (!CheckBagHasItem(ITEM_VS_SEEKER, 1) == TRUE)
         return;
 
-    for (i = 0; i < NELEMS(gSaveBlock1Ptr->trainerRematches); i++)
+    for (i = 0; i < ARRAY_COUNT(gSaveBlock1Ptr->trainerRematches); i++)
         gSaveBlock1Ptr->trainerRematches[i] = 0;
 }
 
@@ -709,10 +690,10 @@ static bool8 IsTrainerVisibleOnScreen(struct VsSeekerTrainerInfo * trainerInfo)
     return FALSE;
 }
 
-static u8 GetRematchableTrainerLocalId(void)
+static u32 GetRematchableTrainerLocalId(void)
 {
-    u8 idx;
-    u8 i;
+    u32 idx;
+    u32 i;
 
     for (i = 0; sVsSeeker->trainerInfo[i].localId != 0xFF; i++)
     {
@@ -754,7 +735,6 @@ static u8 GetCurVsSeekerResponse(s32 vsSeekerIdx, u16 trainerIdx)
 
 static void StartAllRespondantIdleMovements(void)
 {
-    u8 dummy = 0;
     s32 i;
     s32 j;
 
