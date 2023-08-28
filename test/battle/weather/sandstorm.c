@@ -1,6 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
+// Please add Sandstorm interactions with move, item and ability effects on their respective files.
 SINGLE_BATTLE_TEST("Sandstorm deals 1/16 damage per turn")
 {
     s16 sandstormDamage;

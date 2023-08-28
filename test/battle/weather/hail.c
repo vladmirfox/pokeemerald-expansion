@@ -1,6 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
+// Please add Hail interactions with move, item and ability effects on their respective files.
 SINGLE_BATTLE_TEST("Hail deals 1/16 damage per turn")
 {
     s16 hailDamage;

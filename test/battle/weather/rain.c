@@ -1,6 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
+// Please add Rain interactions with move, item and ability effects on their respective files.
 ASSUMPTIONS
 {
     ASSUME(gBattleMoves[MOVE_EMBER].type == TYPE_FIRE);
