@@ -22,7 +22,6 @@
 #include "task.h"
 #include "trainer_see.h"
 #include "trainer_hill.h"
-#include "trig.h"
 #include "util.h"
 #include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
