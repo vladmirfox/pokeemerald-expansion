@@ -15,3 +15,18 @@ SINGLE_BATTLE_TEST("Grass-type Pokémon block powder and spore moves")
         MESSAGE("It doesn't affect Foe Oddish…");
     }
 }
+
+SINGLE_BATTLE_TEST("Grass-type Pokémon are immune to Leech Seed")
+{
+    PASSES_RANDOMLY(90, 100, RNG_ACCURACY);
+    GIVEN {
+        ASSUME(gSpeciesInfo[SPECIES_ODDISH].types[0] == TYPE_GRASS);
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_ODDISH);
+    } WHEN {
+        TURN { MOVE(player, MOVE_LEECH_SEED); }
+    } SCENE {
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_LEECH_SEED, player);
+        MESSAGE("It doesn't affect Foe Oddish…");
+    }
+}
