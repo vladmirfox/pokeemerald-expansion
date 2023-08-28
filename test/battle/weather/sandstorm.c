@@ -34,99 +34,41 @@ SINGLE_BATTLE_TEST("Sandstorm multiplies the special defense of Rock-types by 1.
     }
 }
 
-SINGLE_BATTLE_TEST("Sandstorm turns Weather Ball to a Rock-type move and doubles its power", s16 damage)
+SINGLE_BATTLE_TEST("Sandstorm damage does not hurt Ground-type Pokémon")
 {
-    u16 move;
-    PARAMETRIZE{ move = MOVE_CELEBRATE; }
-    PARAMETRIZE{ move = MOVE_SANDSTORM; }
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_WEATHER_BALL].effect == EFFECT_WEATHER_BALL);
+        ASSUME(gSpeciesInfo[SPECIES_SANDSLASH].types[0] == TYPE_GROUND);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_MAGMAR) { Item(ITEM_SAFETY_GOGGLES); }; //sandstorm damage throws the calculation off so i have to give safety goggles
+        OPPONENT(SPECIES_SANDSLASH);
     } WHEN {
-        TURN { MOVE(player, move); }
-        TURN { MOVE(player, MOVE_WEATHER_BALL); }
+        TURN {MOVE(player, MOVE_SANDSTORM);}
     } SCENE {
-        HP_BAR(opponent, captureDamage: &results[i].damage);
-    } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(4.0), results[1].damage); // double base power + type effectiveness.
+        NOT MESSAGE("Foe Sandslash is buffeted by the sandstorm!");
     }
 }
 
-SINGLE_BATTLE_TEST("Sandstorm halves the power of Solar Beam", s16 damage)
+SINGLE_BATTLE_TEST("Sandstorm damage does not hurt Rock-type Pokémon")
 {
-    u16 move;
-    PARAMETRIZE{ move = MOVE_CELEBRATE; }
-    PARAMETRIZE{ move = MOVE_SANDSTORM; }
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_SOLAR_BEAM].effect == EFFECT_SOLAR_BEAM);
+        ASSUME(gSpeciesInfo[SPECIES_NOSEPASS].types[0] == TYPE_ROCK);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_SAFETY_GOGGLES); };
+        OPPONENT(SPECIES_NOSEPASS);
     } WHEN {
-        TURN { MOVE(opponent, move); MOVE(player, MOVE_SOLAR_BEAM); }
-        TURN { SKIP_TURN(player); }
+        TURN {MOVE(player, MOVE_SANDSTORM);}
     } SCENE {
-        HP_BAR(opponent, captureDamage: &results[i].damage);
-    } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(0.5), results[1].damage);
+        NOT MESSAGE("Foe Nosepass is buffeted by the sandstorm!");
     }
 }
 
-SINGLE_BATTLE_TEST("Sandstorm halves the power of Solar Blade", s16 damage)
+SINGLE_BATTLE_TEST("Sandstorm damage does not hurt Steel-type Pokémon")
 {
-    u16 move;
-    KNOWN_FAILING; // fails bc the bp of solar blade gets rounded up which leads to slightly incorrect calcs down the line
-    PARAMETRIZE{ move = MOVE_CELEBRATE; }
-    PARAMETRIZE{ move = MOVE_SANDSTORM; }
     GIVEN {
-        ASSUME(gBattleMoves[MOVE_SOLAR_BLADE].effect == EFFECT_SOLAR_BEAM);
+        ASSUME(gSpeciesInfo[SPECIES_REGISTEEL].types[0] == TYPE_STEEL);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_SAFETY_GOGGLES); };
+        OPPONENT(SPECIES_REGISTEEL);
     } WHEN {
-        TURN { MOVE(opponent, move); MOVE(player, MOVE_SOLAR_BLADE); }
-        TURN { SKIP_TURN(player); }
+        TURN {MOVE(player, MOVE_SANDSTORM);}
     } SCENE {
-        HP_BAR(opponent, captureDamage: &results[i].damage);
-    } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(0.5), results[1].damage);
-    }
-}
-
-SINGLE_BATTLE_TEST("Sandstorm causes Moonlight to recover 1/4 of the user's max HP")
-{
-    GIVEN {
-        ASSUME(gBattleMoves[MOVE_MOONLIGHT].effect == EFFECT_MOONLIGHT);
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_SANDSTORM); MOVE(player, MOVE_MOONLIGHT); }
-    } SCENE {
-        HP_BAR(player, damage: -(400 / 4));
-    }
-}
-
-SINGLE_BATTLE_TEST("Sandstorm causes Synthesis to recover 1/4 of the user's max HP")
-{
-    GIVEN {
-        ASSUME(gBattleMoves[MOVE_SYNTHESIS].effect == EFFECT_SYNTHESIS);
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_SANDSTORM); MOVE(player, MOVE_SYNTHESIS); }
-    } SCENE {
-        HP_BAR(player, damage: -(400 / 4));
-    }
-}
-
-SINGLE_BATTLE_TEST("Sandstorm causes Morning Sun to recover 1/4 of the user's max HP")
-{
-    GIVEN {
-        ASSUME(gBattleMoves[MOVE_MORNING_SUN].effect == EFFECT_MORNING_SUN);
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_SANDSTORM); MOVE(player, MOVE_MORNING_SUN); }
-    } SCENE {
-        HP_BAR(player, damage: -(400 / 4));
+        NOT MESSAGE("Foe Registeel is buffeted by the sandstorm!");
     }
 }

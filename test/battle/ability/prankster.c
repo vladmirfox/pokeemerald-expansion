@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Dark-type Pokémon are immune to moves that gain priority due to Prankster")
+SINGLE_BATTLE_TEST("Prankster priority moves don't affect Dark-type Pokémon")
 {
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_UMBREON].types[0] == TYPE_DARK);

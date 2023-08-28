@@ -21,3 +21,35 @@ SINGLE_BATTLE_TEST("Poison Sting inflicts poison")
         STATUS_ICON(opponent, poison: TRUE);
     }
 }
+
+SINGLE_BATTLE_TEST("Poison cannot be inflicted on Poison-type Pokémon")
+{
+    GIVEN {
+        ASSUME(gSpeciesInfo[SPECIES_NIDORAN_M].types[0] == TYPE_POISON);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_NIDORAN_M);
+    } WHEN {
+        TURN { MOVE(player, MOVE_POISON_STING); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_POISON_STING, player);
+        HP_BAR(opponent);
+        NOT ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
+        NOT STATUS_ICON(opponent, poison: TRUE);
+    }
+}
+
+SINGLE_BATTLE_TEST("Poison cannot be inflicted on Steel-type Pokémon")
+{
+    GIVEN {
+        ASSUME(gSpeciesInfo[SPECIES_REGISTEEL].types[0] == TYPE_STEEL);
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_POISON_BARB); };
+        OPPONENT(SPECIES_REGISTEEL);
+    } WHEN {
+        TURN { MOVE(player, MOVE_FLING); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
+        HP_BAR(opponent);
+        NOT ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
+        NOT STATUS_ICON(opponent, poison: TRUE);
+    }
+}
