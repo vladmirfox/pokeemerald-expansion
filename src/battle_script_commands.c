@@ -5137,7 +5137,8 @@ static void Cmd_setroost(void)
         gBattleStruct->roostTypes[gBattlerAttacker][0] = TYPE_FLYING;
         gBattleStruct->roostTypes[gBattlerAttacker][1] = TYPE_FLYING;
 #if B_ROOST_PURE_FLYING >= GEN_5
-        SET_BATTLER_TYPE(gBattlerAttacker, TYPE_NORMAL);
+        gBattleMons[gBattlerAttacker].type1 = TYPE_NORMAL;
+        gBattleMons[gBattlerAttacker].type2 = TYPE_NORMAL;
 #else
         SET_BATTLER_TYPE(gBattlerAttacker, TYPE_MYSTERY);
 #endif
