@@ -407,7 +407,7 @@ void GetAiLogicData(void)
 
 static bool32 AI_SwitchMonIfSuitable(u32 battlerId)
 {
-    u32 monToSwitchId = GetMostSuitableMonToSwitchInto();
+    u32 monToSwitchId = AI_THINKING_STRUCT->mostSuitableMonId;
     if (monToSwitchId != PARTY_SIZE)
     {
         AI_DATA->shouldSwitchMon |= gBitTable[battlerId];
