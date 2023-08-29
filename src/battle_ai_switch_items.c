@@ -1317,13 +1317,13 @@ static u32 GetSwitchinStatusDamage()
             if (statusDamage == 0)
                 statusDamage = 1;
         }
-        else if ((status & STATUS1_POISON) && ability != ABILITY_POISON_HEAL && switchinCandidate.hypotheticalStatus == FALSE)
+        else if ((status & STATUS1_POISON) && ability != ABILITY_POISON_HEAL)
         {
             statusDamage = maxHP / 8;
             if (statusDamage == 0)
                 statusDamage = 1;
         }
-        else if ((status & STATUS1_TOXIC_POISON) && ability != ABILITY_POISON_HEAL && switchinCandidate.hypotheticalStatus == FALSE)
+        else if ((status & STATUS1_TOXIC_POISON) && ability != ABILITY_POISON_HEAL)
         {
             if ((status & STATUS1_TOXIC_COUNTER) != STATUS1_TOXIC_TURN(15)) // not 16 turns
                 switchinCandidate.status1 += STATUS1_TOXIC_TURN(1);
