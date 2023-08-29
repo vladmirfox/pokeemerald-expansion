@@ -212,9 +212,9 @@ static bool8 HasBadOdds()
             return FALSE;
 
         // Switch mon out
-        // *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = PARTY_SIZE; 
-        // BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
-        // return TRUE;
+        *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = PARTY_SIZE; 
+        BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+        return TRUE;
     }
 
     // General bad type matchups have more wiggle room
@@ -234,9 +234,9 @@ static bool8 HasBadOdds()
                 return FALSE;
 
             // Switch mon out
-			// *(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = PARTY_SIZE; 
-			// BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
-			// return TRUE;
+			*(gBattleStruct->AI_monToSwitchIntoId + gActiveBattler) = PARTY_SIZE; 
+			BtlController_EmitTwoReturnValues(1, B_ACTION_SWITCH, 0);
+			return TRUE;
 		}
 	}
 	return FALSE;
