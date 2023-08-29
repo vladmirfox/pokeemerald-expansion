@@ -4027,34 +4027,8 @@ static const struct TrainerMon sParty_Shelby5[] = {
 
 static const struct TrainerMon sParty_Calvin1[] = {
     {
-    .iv = 0,
-    .lvl = 25,
-    .species = SPECIES_PONYTA,
-    },
-    {
-    .iv = 0,
-    .lvl = 25,
-    .species = SPECIES_TANGELA,
-    },
-    {
-    .iv = 0,
-    .lvl = 25,
-    .species = SPECIES_ARON,
-    },
-    {
-    .iv = 0,
-    .lvl = 25,
-    .species = SPECIES_LOMBRE,
-    },
-    {
-    .iv = 0,
-    .lvl = 32,
-    .species = SPECIES_ELECTRODE,
-    },
-    {
-    .iv = 0,
     .lvl = 5,
-    .species = SPECIES_MAKUHITA,
+    .species = SPECIES_POOCHYENA,
     }
 };
 
