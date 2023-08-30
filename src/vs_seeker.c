@@ -388,23 +388,24 @@ static void GatherNearbyTrainerInfo(void)
 
 static void Task_VsSeeker_3(u8 taskId)
 {
-    if (ScriptMovement_IsObjectMovementFinished(0xFF, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup))
+    if (!ScriptMovement_IsObjectMovementFinished(0xFF, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup))
+        return;
+
+    if (sVsSeeker->responseCode == VSSEEKER_RESPONSE_NO_RESPONSE)
     {
-        if (sVsSeeker->responseCode == VSSEEKER_RESPONSE_NO_RESPONSE)
-        {
-            DisplayItemMessageOnField(taskId, VSSeeker_Text_TrainersNotReady, Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker);
-        }
-        else
-        {
-            if (sVsSeeker->responseCode == VSSEEKER_RESPONSE_FOUND_REMATCHES)
-                StartAllRespondantIdleMovements();
-            ClearDialogWindowAndFrame(0, TRUE);
-            ScriptUnfreezeObjectEvents();
-            UnlockPlayerFieldControls();
-            DestroyTask(taskId);
-        }
-        Free(sVsSeeker);
+        DisplayItemMessageOnField(taskId, VSSeeker_Text_TrainersNotReady, Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker);
     }
+    else
+    {
+        if (sVsSeeker->responseCode == VSSEEKER_RESPONSE_FOUND_REMATCHES)
+            StartAllRespondantIdleMovements();
+
+        ClearDialogWindowAndFrame(0, TRUE);
+        ScriptUnfreezeObjectEvents();
+        UnlockPlayerFieldControls();
+        DestroyTask(taskId);
+    }
+    Free(sVsSeeker);
 }
 
 static u8 CanUseVsSeeker(void)
