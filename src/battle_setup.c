@@ -1657,33 +1657,42 @@ static void SetRematchIdForTrainer(const struct RematchTrainer *table, u32 table
     gSaveBlock1Ptr->trainerRematches[tableId] = i;
 }
 
+static bool32 DoesCurrentMapMatchRematchTrainerMap(s32 i, const struct RematchTrainer *table, u16 mapGroup, u16 mapNum)
+{
+    return table[i].mapGroup == mapGroup && table[i].mapNum == mapNum;
+}
+
+bool32 TrainerIsMatchCallRegistered(s32 i)
+{
+    return FlagGet(FLAG_MATCH_CALL_REGISTERED + i);
+}
+
 static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u16 mapGroup, u16 mapNum)
 {
     s32 i;
-    bool32 ret = FALSE;
 
     if (CheckBagHasItem(ITEM_VS_SEEKER, 1) == TRUE)
-        return ret;
+        return FALSE;
 
     for (i = 0; i <= REMATCH_SPECIAL_TRAINER_START; i++)
     {
-        if (table[i].mapGroup == mapGroup && table[i].mapNum == mapNum && !IsRematchForbidden(i))
+        if (DoesCurrentMapMatchRematchTrainerMap(i,table,mapGroup,mapNum) && !IsRematchForbidden(i))
+            continue;
+
+        if (gSaveBlock1Ptr->trainerRematches[i] != 0)
         {
-            if (gSaveBlock1Ptr->trainerRematches[i] != 0)
-            {
-                // Trainer already wants a rematch. Don't bother updating it.
-                ret = TRUE;
-            }
-            else if (FlagGet(FLAG_MATCH_CALL_REGISTERED + i)
-             && (Random() % 100) <= 30)  // 31% chance of getting a rematch.
-            {
-                SetRematchIdForTrainer(table, i);
-                ret = TRUE;
-            }
+            // Trainer already wants a rematch. Don't bother updating it.
+            return TRUE;
+        }
+        else if (TrainerIsMatchCallRegistered(i) && ((Random() % 100) <= 30))
+            // 31% chance of getting a rematch.
+        {
+            SetRematchIdForTrainer(table, i);
+            return TRUE;
         }
     }
 
-    return ret;
+    return FALSE;
 }
 
 void UpdateRematchIfDefeated(s32 rematchTableId)

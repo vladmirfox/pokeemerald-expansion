@@ -92,7 +92,7 @@ static u8 GetRunningBehaviorFromGraphicsId(u8 graphicsId);
 static u16 GetTrainerFlagFromScript(const u8 * script);
 static void ClearAllTrainerRematchStates(void);
 static bool8 IsTrainerVisibleOnScreen(struct VsSeekerTrainerInfo * trainerInfo);
-static u8 GetRematchableTrainerLocalId(void);
+static u32 GetRematchableTrainerLocalId(void);
 static void StartTrainerObjectMovementScript(struct VsSeekerTrainerInfo * trainerInfo, const u8 * script);
 static u8 GetCurVsSeekerResponse(s32 vsSeekerIdx, u16 trainerIdx);
 static void StartAllRespondantIdleMovements(void);
@@ -663,7 +663,7 @@ static u16 GetTrainerFlagFromScript(const u8 *script)
 
 static void ClearAllTrainerRematchStates(void)
 {
-    u8 32;
+    u32 i;
 
     if (!CheckBagHasItem(ITEM_VS_SEEKER, 1) == TRUE)
         return;
