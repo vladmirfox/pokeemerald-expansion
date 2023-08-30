@@ -3948,13 +3948,14 @@ static void UseVsSeekerEffect_1(struct Task *task)
 static void UseVsSeekerEffect_2(struct Task *task)
 {
     struct ObjectEvent * playerObj = &gObjectEvents[gPlayerAvatar.objectEventId];
-    if (!ObjectEventIsMovementOverridden(playerObj) || ObjectEventClearHeldMovementIfFinished(playerObj))
-    {
-        StartPlayerAvatarVsSeekerAnim();
-        ObjectEventSetHeldMovement(playerObj, MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
-        task->data[0]++;
-    }
+    if ((ObjectEventIsMovementOverridden(playerObj) && (!(ObjectEventClearHeldMovementIfFinished(playerObj)))))
+        return;
+
+    StartPlayerAvatarVsSeekerAnim();
+    ObjectEventSetHeldMovement(playerObj, MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
+    task->data[0]++;
 }
+
 
 static void UseVsSeekerEffect_3(struct Task *task)
 {
