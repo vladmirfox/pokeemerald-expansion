@@ -135,18 +135,21 @@ void VsSeekerFreezeObjectsAfterChargeComplete(void)
     CreateTask(Task_ResetObjectsRematchWantedState, 80);
 }
 
+#define tResetPhase0 data[0]
+#define tResetPhase1 data[1]
+
 static void Task_ResetObjectsRematchWantedState(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
     u32 i;
 
-    if (task->data[0] == 0 && IsPlayerStandingStill() == TRUE)
+    if ((!task->tResetPhase0) && IsPlayerStandingStill())
     {
         PlayerFreeze();
-        task->data[0] = 1;
+        task->tResetPhase0 = 1;
     }
 
-    if (task->data[1] == 0)
+    if (!task->tResetPhase1)
     {
         for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
         {
@@ -159,14 +162,17 @@ static void Task_ResetObjectsRematchWantedState(u8 taskId)
         }
     }
 
-    task->data[1] = 1;
-    if (task->data[0] != 0)
+    task->tResetPhase1 = 1;
+    if (task->tResetPhase0)
     {
         DestroyTask(taskId);
         StopPlayerAvatar();
         ScriptContext_Enable();
     }
 }
+
+#undef tReset1
+#undef tReset2
 
 u16 VsSeekerConvertLocalIdToTableId(u16 localId)
 {
@@ -189,7 +195,7 @@ void VsSeekerResetObjectMovementAfterChargeComplete(void)
     struct ObjectEventTemplate * templates = gSaveBlock1Ptr->objectEventTemplates;
     u32 i;
     u32 movementType;
-    u32 objEventId;
+    u8 objEventId;
     struct ObjectEvent * objectEvent;
 
     for (i = 0; i < gMapHeader.events->objectEventCount; i++)
