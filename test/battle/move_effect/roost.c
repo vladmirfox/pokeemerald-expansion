@@ -25,6 +25,36 @@ ASSUMPTIONS
     ASSUME(gBattleMoves[MOVE_DISARMING_VOICE].type == TYPE_FAIRY);
 }
 
+SINGLE_BATTLE_TEST("Roost fails when user is at full HP")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_ROOST); }
+    } SCENE {
+        MESSAGE("Wobbuffet's HP is full!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
+        NOT HP_BAR(player);
+    }
+}
+
+SINGLE_BATTLE_TEST("Roost fails if the user is under the effects of Heal Block")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_HEAL_BLOCK); MOVE(player, MOVE_ROOST); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HEAL_BLOCK, opponent);
+        MESSAGE("Wobbuffet was prevented from healing!"); // Message when Heal Block is applied
+        MESSAGE("Wobbuffet was prevented from healing!"); // Message when trying to heal under Heal Block
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
+        NOT HP_BAR(player);
+    }
+}
+
 SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP, rounded down, in Gen 4", s16 hp)
 {
     u16 maxHP;
@@ -32,7 +62,7 @@ SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP, rounded down, in Ge
     PARAMETRIZE { maxHP = 200; }
 
     GIVEN {
-        //ASSUME(B_HEALING_ROUNDED_UP <= GEN_4)
+        //ASSUME(B_HEALING_ROUNDED_UP <= GEN_4) // If this is added as a config
         PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(maxHP); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -54,7 +84,7 @@ SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP, rounded up, in Gen 
     PARAMETRIZE { maxHP = 200; }
 
     GIVEN {
-        //ASSUME(B_HEALING_ROUNDED_UP >= GEN_5)
+        //ASSUME(B_HEALING_ROUNDED_UP >= GEN_5) // If this is added as a config
         PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(maxHP); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -67,22 +97,7 @@ SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP, rounded up, in Gen 
     }
 }
 
-SINGLE_BATTLE_TEST("Roost fails if Heal Block applies")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_HEAL_BLOCK); MOVE(player, MOVE_ROOST); }
-    } SCENE {
-        MESSAGE("Wobbuffet was prevented from healing!");
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        NOT HP_BAR(opponent);
-        NOT HP_BAR(player);
-    }
-}
-
-SINGLE_BATTLE_TEST("Roost, if used by a _____/Flying-type, removes the user's Flying type until the end of the turn")
+SINGLE_BATTLE_TEST("Roost, if used by a half Flying-type, removes the user's Flying type until the end of the turn")
 {
     s16 damage;
 
@@ -204,9 +219,9 @@ SINGLE_BATTLE_TEST("Roost, if used by a Fire/Flying-type that has lost its Fire 
     } 
 }
 
+TO_DO_BATTLE_TEST("Roost, if used by a pure Flying-type and under the effects of Trick-or-Treat or Forest's Curse, changes the user to a Normal-type while retaining the added type until the end of the turn");
 // Shorter description?
 // Does any of Roost's type changing effects touch type 3?
-TO_DO_BATTLE_TEST("Roost, if used by a pure Flying-type and under the effects of Trick-or-Treat or Forest's Curse, changes the user to a Normal-type while retaining the added type until the end of the turn");
 
 TO_DO_BATTLE_TEST("Roost interaction with other type-setting effects like Soak")
 // If Motres uses Roost first and then gets hit with Soak, at the end of the turn does it become:
@@ -214,7 +229,12 @@ TO_DO_BATTLE_TEST("Roost interaction with other type-setting effects like Soak")
 // 2. Water/Flying
 // 3. Water
 
-TO_DO_BATTLE_TEST("Roost, upon making the user lose their Flying-type, also makes the user grounded");
+TO_DO_BATTLE_TEST("Roost suppresses the user's Flying-type");
 
-TO_DO_BATTLE_TEST("Roost does not restore Flying-type until other end-of-turn effects")
-// Flying type is restored after Grassy Terrain end of turn healing
+TO_DO_BATTLE_TEST("Roost suppresses the user's not-yet-aquired Flying-type this turn")
+// A Pokemon with the Color Change ability that uses Roost, then gets hit by a 
+// Flying-type move, changes to a Flying-type, but it is still suppressed
+// until the end of the turn due to Roost.
+
+TO_DO_BATTLE_TEST("Roost does not restore Flying-type until other certain end-of-turn effects");
+// A Roosted Pokemon will benefit from Grassy Terrain's healing, for example

@@ -10984,3 +10984,29 @@ bool8 AreBattlersOfOppositeGender(u8 battler1, u8 battler2)
 
     return (gender1 != MON_GENDERLESS && gender2 != MON_GENDERLESS && gender1 != gender2);
 }
+
+u8 GetBattlerType(u8 battlerId, u8 typeIndex)
+{    
+    u16 types[3] = {0};
+    types[0] = gBattleMons[battlerId].type1;
+    types[1] = gBattleMons[battlerId].type2;
+    types[2] = gBattleMons[battlerId].type3;
+
+    // Handle Roost's Flying-type suppression
+    if (typeIndex == 0 || typeIndex == 1)
+    {
+        if (gBattleResources->flags->flags[battlerId] & RESOURCE_FLAG_ROOST)
+        {
+            if (types[0] == TYPE_FLYING && types[1] == TYPE_FLYING)
+#if B_ROOST_PURE_FLYING >= GEN_5
+                return TYPE_NORMAL;
+#else
+                return TYPE_MYSTERY;
+#endif
+            else
+                return  types[typeIndex] == TYPE_FLYING ? TYPE_MYSTERY : types[typeIndex];
+        }
+    }
+
+    return types[typeIndex];
+}

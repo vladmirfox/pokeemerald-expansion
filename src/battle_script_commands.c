@@ -5130,35 +5130,8 @@ static void Cmd_setroost(void)
     CMD_ARGS();
 
     gBattleResources->flags->flags[gBattlerAttacker] |= RESOURCE_FLAG_ROOST;
-
-    // Pure flying type.
-    if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING && gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
-    {
-        gBattleStruct->roostTypes[gBattlerAttacker][0] = TYPE_FLYING;
-        gBattleStruct->roostTypes[gBattlerAttacker][1] = TYPE_FLYING;
-#if B_ROOST_PURE_FLYING >= GEN_5
-        gBattleMons[gBattlerAttacker].type1 = TYPE_NORMAL;
-        gBattleMons[gBattlerAttacker].type2 = TYPE_NORMAL;
-#else
-        SET_BATTLER_TYPE(gBattlerAttacker, TYPE_MYSTERY);
-#endif
-    }
-    // Dual type with flying type.
-    else if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING || gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
-    {
-        gBattleStruct->roostTypes[gBattlerAttacker][0] = gBattleMons[gBattlerAttacker].type1;
-        gBattleStruct->roostTypes[gBattlerAttacker][1] = gBattleMons[gBattlerAttacker].type2;
-        if (gBattleMons[gBattlerAttacker].type1 == TYPE_FLYING)
-            gBattleMons[gBattlerAttacker].type1 = TYPE_MYSTERY;
-        else if (gBattleMons[gBattlerAttacker].type2 == TYPE_FLYING)
-            gBattleMons[gBattlerAttacker].type2 = TYPE_MYSTERY;
-    }
-    // Non-flying type.
-    else
-    {
-        gBattleStruct->roostTypes[gBattlerAttacker][0] = gBattleMons[gBattlerAttacker].type1;
-        gBattleStruct->roostTypes[gBattlerAttacker][1] = gBattleMons[gBattlerAttacker].type2;
-    }
+    gBattleStruct->roostTypes[gBattlerAttacker][0] = gBattleMons[gBattlerAttacker].type1;
+    gBattleStruct->roostTypes[gBattlerAttacker][1] = gBattleMons[gBattlerAttacker].type2;
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }

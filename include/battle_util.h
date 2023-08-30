@@ -243,5 +243,6 @@ bool8 ChangeTypeBasedOnTerrain(u8 battlerId);
 void RemoveConfusionStatus(u8 battlerId);
 u8 GetBattlerGender(u8 battlerId);
 bool8 AreBattlersOfOppositeGender(u8 battler1, u8 battler2);
+u8 GetBattlerType(u8 battlerId, u8 typeIndex);
 
 #endif // GUARD_BATTLE_UTIL_H
