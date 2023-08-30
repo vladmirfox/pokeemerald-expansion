@@ -3976,10 +3976,10 @@ static void UseVsSeekerEffect_3(struct Task *task) {
 static void UseVsSeekerEffect_4(struct Task *task)
 {
     struct ObjectEvent * playerObj = &gObjectEvents[gPlayerAvatar.objectEventId];
-    if (ObjectEventClearHeldMovementIfFinished(playerObj))
-    {
-        gPlayerAvatar.preventStep = FALSE;
-        FieldEffectActiveListRemove(FLDEFF_USE_VS_SEEKER);
-        DestroyTask(FindTaskIdByFunc(Task_FldEffUseVsSeeker));
-    }
+    if (!ObjectEventClearHeldMovementIfFinished(playerObj))
+        return;
+
+    gPlayerAvatar.preventStep = FALSE;
+    FieldEffectActiveListRemove(FLDEFF_USE_VS_SEEKER);
+    DestroyTask(FindTaskIdByFunc(Task_FldEffUseVsSeeker));
 }
