@@ -260,20 +260,22 @@ void MapResetTrainerRematches(u16 mapGroup, u16 mapNum)
 static void ResetMovementOfRematchableTrainers(void)
 {
     u32 i;
+    u8 movementType = 0;
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         struct ObjectEvent * objectEvent = &gObjectEvents[i];
-        if (objectEvent->movementType == MOVEMENT_TYPE_ROTATE_CLOCKWISE)
-        {
-            u8 movementType = GetRandomFaceDirectionMovementType();
-            if (objectEvent->active && gSprites[objectEvent->spriteId].data[0] == i)
-            {
-                gSprites[objectEvent->spriteId].x2 = 0;
-                gSprites[objectEvent->spriteId].y2 = 0;
-                SetTrainerMovementType(objectEvent, movementType);
-            }
-        }
+        if (objectEvent->movementType != MOVEMENT_TYPE_ROTATE_CLOCKWISE)
+            continue;
+
+        movementType = GetRandomFaceDirectionMovementType();
+
+        if (!objectEvent->active || gSprites[objectEvent->spriteId].data[0] != i)
+            continue;
+
+        gSprites[objectEvent->spriteId].x2 = 0;
+        gSprites[objectEvent->spriteId].y2 = 0;
+        SetTrainerMovementType(objectEvent, movementType);
     }
 }
 
