@@ -1336,26 +1336,26 @@ void FieldUseFunc_VsSeeker(u8 taskId)
             gMapHeader.mapType == MAP_TYPE_OCEAN_ROUTE);
 
     if (gMapHeader.mapType == MAP_TYPE_INDOOR) {
-        isValidMap = isValidMap || (mapGroup == MAP_GROUP(MT_PYRE_SUMMIT)) ||
-            (mapGroup == MAP_GROUP(SAFARI_ZONE_NORTH)) ||
-            (mapGroup == MAP_GROUP(SAFARI_ZONE_NORTHEAST)) ||
-            (mapGroup == MAP_GROUP(SAFARI_ZONE_NORTHWEST)) ||
-            (mapGroup == MAP_GROUP(SAFARI_ZONE_SOUTH)) ||
-            (mapGroup == MAP_GROUP(SAFARI_ZONE_SOUTHEAST)) ||
-            (mapGroup == MAP_GROUP(SAFARI_ZONE_SOUTHWEST)) ||
-            (mapGroup == MAP_GROUP(SKY_PILLAR_TOP)) ||
-            (mapGroup == MAP_GROUP(SOUTHERN_ISLAND_EXTERIOR)) ||
-            (mapGroup == MAP_GROUP(SOUTHERN_ISLAND_INTERIOR)) ||
-            (mapGroup == MAP_GROUP(RUSTBORO_CITY_GYM)) ||
-            (mapGroup == MAP_GROUP(DEWFORD_TOWN_GYM)) ||
-            (mapGroup == MAP_GROUP(MAUVILLE_CITY_GYM)) ||
-            (mapGroup == MAP_GROUP(LAVARIDGE_TOWN_GYM_1F)) ||
-            (mapGroup == MAP_GROUP(LAVARIDGE_TOWN_GYM_B1F)) ||
-            (mapGroup == MAP_GROUP(PETALBURG_CITY_GYM)) ||
-            (mapGroup == MAP_GROUP(FORTREE_CITY_GYM)) ||
-            (mapGroup == MAP_GROUP(MOSSDEEP_CITY_GYM)) ||
-            (mapGroup == MAP_GROUP(SOOTOPOLIS_CITY_GYM_1F)) ||
-            (mapGroup == MAP_GROUP(SOOTOPOLIS_CITY_GYM_B1F));
+        isValidMap = isValidMap && ((mapNum == MAP_NUM(MT_PYRE_SUMMIT)) ||
+            (mapGroup == MAP_NUM(SAFARI_ZONE_NORTH)) ||
+            (mapGroup == MAP_NUM(SAFARI_ZONE_NORTHEAST)) ||
+            (mapGroup == MAP_NUM(SAFARI_ZONE_NORTHWEST)) ||
+            (mapGroup == MAP_NUM(SAFARI_ZONE_SOUTH)) ||
+            (mapGroup == MAP_NUM(SAFARI_ZONE_SOUTHEAST)) ||
+            (mapGroup == MAP_NUM(SAFARI_ZONE_SOUTHWEST)) ||
+            (mapGroup == MAP_NUM(SKY_PILLAR_TOP)) ||
+            (mapGroup == MAP_NUM(SOUTHERN_ISLAND_EXTERIOR)) ||
+            (mapGroup == MAP_NUM(SOUTHERN_ISLAND_INTERIOR)) ||
+            (mapGroup == MAP_NUM(RUSTBORO_CITY_GYM)) ||
+            (mapGroup == MAP_NUM(DEWFORD_TOWN_GYM)) ||
+            (mapGroup == MAP_NUM(MAUVILLE_CITY_GYM)) ||
+            (mapGroup == MAP_NUM(LAVARIDGE_TOWN_GYM_1F)) ||
+            (mapGroup == MAP_NUM(LAVARIDGE_TOWN_GYM_B1F)) ||
+            (mapGroup == MAP_NUM(PETALBURG_CITY_GYM)) ||
+            (mapGroup == MAP_NUM(FORTREE_CITY_GYM)) ||
+            (mapGroup == MAP_NUM(MOSSDEEP_CITY_GYM)) ||
+            (mapGroup == MAP_NUM(SOOTOPOLIS_CITY_GYM_1F)) ||
+            (mapGroup == MAP_NUM(SOOTOPOLIS_CITY_GYM_B1F)));
     }
 
     if (isValidMap)

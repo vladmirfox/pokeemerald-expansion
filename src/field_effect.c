@@ -231,6 +231,12 @@ static void SpriteCB_DeoxysRockFragment(struct Sprite *sprite);
 
 static void Task_MoveDeoxysRock(u8 taskId);
 
+static void Task_FldEffUseVsSeeker(u8 taskId);
+static void UseVsSeekerEffect_1(struct Task *task);
+static void UseVsSeekerEffect_2(struct Task *task);
+static void UseVsSeekerEffect_3(struct Task *task);
+static void UseVsSeekerEffect_4(struct Task *task);
+
 // Static RAM declarations
 
 static u8 sActiveList[32];
@@ -3912,12 +3918,6 @@ static void Task_MoveDeoxysRock(u8 taskId)
 #undef tVelocityY
 #undef tMoveSteps
 #undef tObjEventId
-
-static void Task_FldEffUseVsSeeker(u8 taskId);
-static void UseVsSeekerEffect_1(struct Task *task);
-static void UseVsSeekerEffect_2(struct Task *task);
-static void UseVsSeekerEffect_3(struct Task *task);
-static void UseVsSeekerEffect_4(struct Task *task);
 
 static void (*const sUseVsSeekerEffectFuncs[])(struct Task *task) = {
     UseVsSeekerEffect_1,
