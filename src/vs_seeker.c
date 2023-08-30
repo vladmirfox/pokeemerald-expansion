@@ -425,54 +425,59 @@ static u8 CanUseVsSeeker(void)
 static u8 GetVsSeekerResponseInArea(void)
 {
     u16 trainerIdx = 0;
-    u16 rval = 0;
-    u8 rematchTrainerIdx;
-    u8 unusedIdx = 0;
-    u8 response = 0;
-    s32 vsSeekerIdx = 0;
+    u8 response = 0, rematchTrainerIdx;
+    s32 vsSeekerIdx = 0, randomValue = 0;
 
     while (sVsSeeker->trainerInfo[vsSeekerIdx].localId != 0xFF)
     {
-        if (IsTrainerVisibleOnScreen(&sVsSeeker->trainerInfo[vsSeekerIdx]) == TRUE)
+        if (!IsTrainerVisibleOnScreen(&sVsSeeker->trainerInfo[vsSeekerIdx]))
         {
-            trainerIdx = sVsSeeker->trainerInfo[vsSeekerIdx].trainerIdx;
-            if (!HasTrainerBeenFought(trainerIdx))
+            vsSeekerIdx++;
+            continue;
+        }
+
+        trainerIdx = sVsSeeker->trainerInfo[vsSeekerIdx].trainerIdx;
+        if (!HasTrainerBeenFought(trainerIdx))
+        {
+            StartTrainerObjectMovementScript(&sVsSeeker->trainerInfo[vsSeekerIdx], sMovementScript_TrainerUnfought);
+            sVsSeeker->trainerHasNotYetBeenFought = 1;
+            vsSeekerIdx++;
+            continue;
+        }
+
+        rematchTrainerIdx = GetRematchTrainerIdFromTable(gRematchTable, trainerIdx);
+        if (rematchTrainerIdx == 0)
+        {
+            StartTrainerObjectMovementScript(&sVsSeeker->trainerInfo[vsSeekerIdx], sMovementScript_TrainerNoRematch);
+            sVsSeeker->trainerDoesNotWantRematch = 1;
+        }
+        else
+        {
+            randomValue = Random() % 100; // Even if it's overwritten below, it progresses the RNG.
+            response = GetCurVsSeekerResponse(vsSeekerIdx, trainerIdx);
+
+            if (response == VSSEEKER_SINGLE_RESP_YES)
             {
-                StartTrainerObjectMovementScript(&sVsSeeker->trainerInfo[vsSeekerIdx], sMovementScript_TrainerUnfought);
-                sVsSeeker->trainerHasNotYetBeenFought = 1;
-                vsSeekerIdx++;
-                continue;
+                randomValue = 100; // Definitely yes
             }
-            rematchTrainerIdx = GetRematchTrainerIdFromTable(gRematchTable,trainerIdx);
-            if (rematchTrainerIdx == 0)
+            else if (response == VSSEEKER_SINGLE_RESP_NO)
+            {
+                randomValue = 0; // Definitely no
+            }
+            else if (randomValue < 30)
             {
                 StartTrainerObjectMovementScript(&sVsSeeker->trainerInfo[vsSeekerIdx], sMovementScript_TrainerNoRematch);
                 sVsSeeker->trainerDoesNotWantRematch = 1;
             }
             else
             {
-                rval = Random() % 100; // Even if it's overwritten below, it progresses the RNG.
-                response = GetCurVsSeekerResponse(vsSeekerIdx, trainerIdx);
-                if (response == VSSEEKER_SINGLE_RESP_YES)
-                    rval = 100; // Definitely yes
-                else if (response == VSSEEKER_SINGLE_RESP_NO)
-                    rval = 0; // Definitely no
-                              // Otherwise it's a 70% chance to want a rematch
-                if (rval < 30)
-                {
-                    StartTrainerObjectMovementScript(&sVsSeeker->trainerInfo[vsSeekerIdx], sMovementScript_TrainerNoRematch);
-                    sVsSeeker->trainerDoesNotWantRematch = 1;
-                }
-                else
-                {
-                    gSaveBlock1Ptr->trainerRematches[VsSeekerConvertLocalIdToTableId(sVsSeeker->trainerInfo[vsSeekerIdx].localId)] = rematchTrainerIdx;
-                    ShiftStillObjectEventCoords(&gObjectEvents[sVsSeeker->trainerInfo[vsSeekerIdx].objectEventId]);
-                    StartTrainerObjectMovementScript(&sVsSeeker->trainerInfo[vsSeekerIdx], sMovementScript_TrainerRematch);
-                    sVsSeeker->trainerIdxArray[sVsSeeker->numRematchableTrainers] = trainerIdx;
-                    sVsSeeker->runningBehaviourEtcArray[sVsSeeker->numRematchableTrainers] = GetRunningBehaviorFromGraphicsId(sVsSeeker->trainerInfo[vsSeekerIdx].graphicsId);
-                    sVsSeeker->numRematchableTrainers++;
-                    sVsSeeker->trainerWantsRematch = 1;
-                }
+                gSaveBlock1Ptr->trainerRematches[VsSeekerConvertLocalIdToTableId(sVsSeeker->trainerInfo[vsSeekerIdx].localId)] = rematchTrainerIdx;
+                ShiftStillObjectEventCoords(&gObjectEvents[sVsSeeker->trainerInfo[vsSeekerIdx].objectEventId]);
+                StartTrainerObjectMovementScript(&sVsSeeker->trainerInfo[vsSeekerIdx], sMovementScript_TrainerRematch);
+                sVsSeeker->trainerIdxArray[sVsSeeker->numRematchableTrainers] = trainerIdx;
+                sVsSeeker->runningBehaviourEtcArray[sVsSeeker->numRematchableTrainers] = GetRunningBehaviorFromGraphicsId(sVsSeeker->trainerInfo[vsSeekerIdx].graphicsId);
+                sVsSeeker->numRematchableTrainers++;
+                sVsSeeker->trainerWantsRematch = 1;
             }
         }
         vsSeekerIdx++;
@@ -485,8 +490,10 @@ static u8 GetVsSeekerResponseInArea(void)
         VsSeekerResetChargingStepCounter();
         return VSSEEKER_RESPONSE_FOUND_REMATCHES;
     }
+
     if (sVsSeeker->trainerHasNotYetBeenFought)
         return VSSEEKER_RESPONSE_UNFOUGHT_TRAINERS;
+
     return VSSEEKER_RESPONSE_NO_RESPONSE;
 }
 
