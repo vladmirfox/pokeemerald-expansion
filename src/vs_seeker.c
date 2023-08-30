@@ -201,19 +201,22 @@ void VsSeekerResetObjectMovementAfterChargeComplete(void)
 
     for (i = 0; i < gMapHeader.events->objectEventCount; i++)
     {
-        if ((templates[i].trainerType == TRAINER_TYPE_NORMAL
-          || templates[i].trainerType == TRAINER_TYPE_BURIED)
-          && (templates[i].movementType == MOVEMENT_TYPE_ROTATE_CLOCKWISE))
-        {
-            movementType = GetRandomFaceDirectionMovementType();
-            TryGetObjectEventIdByLocalIdAndMap(templates[i].localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &objEventId);
-            objectEvent = &gObjectEvents[objEventId];
-            if (ObjectEventIdIsSane(objEventId) == TRUE)
-            {
-                SetTrainerMovementType(objectEvent, movementType);
-            }
-            templates[i].movementType = movementType;
-        }
+        if (templates[i].trainerType != TRAINER_TYPE_NORMAL
+        && templates[i].trainerType != TRAINER_TYPE_BURIED)
+            continue;
+
+        if (templates[i].movementType != MOVEMENT_TYPE_ROTATE_CLOCKWISE)
+            continue;
+
+        movementType = GetRandomFaceDirectionMovementType();
+        TryGetObjectEventIdByLocalIdAndMap(templates[i].localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &objEventId);
+        objectEvent = &gObjectEvents[objEventId];
+
+        if (!ObjectEventIdIsSane(objEventId))
+            continue;
+
+        SetTrainerMovementType(objectEvent, movementType);
+        templates[i].movementType = movementType;
     }
 }
 
