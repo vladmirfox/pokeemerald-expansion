@@ -412,18 +412,14 @@ static u8 CanUseVsSeeker(void)
 {
     u8 vsSeekerChargeSteps = gSaveBlock1Ptr->trainerRematchStepCounter;
 
+    if ((vsSeekerChargeSteps == VSSEEKER_RECHARGE_STEPS) && (GetRematchableTrainerLocalId() == 0xFF))
+        return VSSEEKER_NO_ONE_IN_RANGE;
+
     if (vsSeekerChargeSteps == VSSEEKER_RECHARGE_STEPS)
-    {
-        if (GetRematchableTrainerLocalId() == 0xFF)
-            return VSSEEKER_NO_ONE_IN_RANGE;
-        else
-            return VSSEEKER_CAN_USE;
-    }
-    else
-    {
-        ConvertIntToDecimalStringN(gStringVar1, (VSSEEKER_RECHARGE_STEPS - vsSeekerChargeSteps), STR_CONV_MODE_LEFT_ALIGN, 3);
-        return VSSEEKER_NOT_CHARGED;
-    }
+        return VSSEEKER_CAN_USE;
+
+    ConvertIntToDecimalStringN(gStringVar1, (VSSEEKER_RECHARGE_STEPS - vsSeekerChargeSteps), STR_CONV_MODE_LEFT_ALIGN, 3);
+    return VSSEEKER_NOT_CHARGED;
 }
 
 static u8 GetVsSeekerResponseInArea(void)
