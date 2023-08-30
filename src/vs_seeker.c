@@ -499,34 +499,32 @@ static u8 GetVsSeekerResponseInArea(void)
 
 void ClearRematchMovementByTrainerId(void)
 {
+    s32 i;
     u8 objEventId = 0;
-    u8 holding = 0;
     struct ObjectEventTemplate *objectEventTemplates = gSaveBlock1Ptr->objectEventTemplates;
     int vsSeekerDataIdx = TrainerIdToRematchTableId(gRematchTable, gTrainerBattleOpponent_A);
 
-    if (vsSeekerDataIdx != -1)
+    if (vsSeekerDataIdx == -1)
+        return;
+
+    for (i = 0; i < gMapHeader.events->objectEventCount; i++)
     {
-        s32 i;
+        if ((objectEventTemplates[i].trainerType != TRAINER_TYPE_NORMAL
+        && objectEventTemplates[i].trainerType != TRAINER_TYPE_BURIED)
+        || vsSeekerDataIdx != TrainerIdToRematchTableId(gRematchTable, GetTrainerFlagFromScript(objectEventTemplates[i].script)))
+            continue;
 
-        for (i = 0; i < gMapHeader.events->objectEventCount; i++)
-        {
-            if ((objectEventTemplates[i].trainerType == TRAINER_TYPE_NORMAL
-                        || objectEventTemplates[i].trainerType == TRAINER_TYPE_BURIED)
-                    && vsSeekerDataIdx == TrainerIdToRematchTableId(gRematchTable, GetTrainerFlagFromScript(objectEventTemplates[i].script)))
-            {
-                struct ObjectEvent *objectEvent;
+        struct ObjectEvent *objectEvent;
 
-                TryGetObjectEventIdByLocalIdAndMap(objectEventTemplates[i].localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &objEventId);
-                objectEvent = &gObjectEvents[objEventId];
-                GetRandomFaceDirectionMovementType(&objectEventTemplates[i]);
-                TryOverrideTemplateCoordsForObjectEvent(objectEvent, sFaceDirectionMovementTypeByFacingDirection[objectEvent->facingDirection]);
+        TryGetObjectEventIdByLocalIdAndMap(objectEventTemplates[i].localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &objEventId);
+        objectEvent = &gObjectEvents[objEventId];
+        GetRandomFaceDirectionMovementType(&objectEventTemplates[i]);
+        TryOverrideTemplateCoordsForObjectEvent(objectEvent, sFaceDirectionMovementTypeByFacingDirection[objectEvent->facingDirection]);
 
-                if (gSelectedObjectEvent == objEventId)
-                    objectEvent->movementType = sFaceDirectionMovementTypeByFacingDirection[objectEvent->facingDirection];
-                else
-                    objectEvent->movementType = MOVEMENT_TYPE_FACE_DOWN;
-            }
-        }
+        if (gSelectedObjectEvent == objEventId)
+            objectEvent->movementType = sFaceDirectionMovementTypeByFacingDirection[objectEvent->facingDirection];
+        else
+            objectEvent->movementType = MOVEMENT_TYPE_FACE_DOWN;
     }
 }
 
@@ -736,15 +734,15 @@ static u8 GetCurVsSeekerResponse(s32 vsSeekerIdx, u16 trainerIdx)
 
     for (i = 0; i < vsSeekerIdx; i++)
     {
-        if (IsTrainerVisibleOnScreen(&sVsSeeker->trainerInfo[i]) == 1 && sVsSeeker->trainerInfo[i].trainerIdx == trainerIdx)
+        if (IsTrainerVisibleOnScreen(&sVsSeeker->trainerInfo[i]) != 1 || sVsSeeker->trainerInfo[i].trainerIdx != trainerIdx)
+            continue;
+
+        for (j = 0; j < sVsSeeker->numRematchableTrainers; j++)
         {
-            for (j = 0; j < sVsSeeker->numRematchableTrainers; j++)
-            {
-                if (sVsSeeker->trainerIdxArray[j] == sVsSeeker->trainerInfo[i].trainerIdx)
-                    return VSSEEKER_SINGLE_RESP_YES;
-            }
-            return VSSEEKER_SINGLE_RESP_NO;
+            if (sVsSeeker->trainerIdxArray[j] == sVsSeeker->trainerInfo[i].trainerIdx)
+                return VSSEEKER_SINGLE_RESP_YES;
         }
+        return VSSEEKER_SINGLE_RESP_NO;
     }
     return VSSEEKER_SINGLE_RESP_RAND;
 }
