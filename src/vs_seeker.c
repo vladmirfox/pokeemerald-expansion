@@ -135,35 +135,36 @@ void VsSeekerFreezeObjectsAfterChargeComplete(void)
     CreateTask(Task_ResetObjectsRematchWantedState, 80);
 }
 
-#define tResetPhase0 data[0]
-#define tResetPhase1 data[1]
+#define tIsPlayerFrozen data[0]
+#define tAreObjectsFrozen data[1]
 
 static void Task_ResetObjectsRematchWantedState(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
     u32 i;
 
-    if ((!task->tResetPhase0) && IsPlayerStandingStill())
+    if ((!task->tIsPlayerFrozen) && IsPlayerStandingStill())
     {
         PlayerFreeze();
-        task->tResetPhase0 = 1;
+        task->tIsPlayerFrozen = TRUE;
     }
 
-    if (!task->tResetPhase1)
+    if (!task->tAreObjectsFrozen)
     {
         for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
         {
-            if (ObjectEventIdIsSane(i) == TRUE)
-            {
-                if (gObjectEvents[i].singleMovementActive)
-                    return;
-                FreezeObjectEvent(&gObjectEvents[i]);
-            }
+            if (!ObjectEventIdIsSane(i))
+                continue;
+
+            if (gObjectEvents[i].singleMovementActive)
+                return;
+
+            FreezeObjectEvent(&gObjectEvents[i]);
         }
     }
 
-    task->tResetPhase1 = 1;
-    if (task->tResetPhase0)
+    task->tAreObjectsFrozen = TRUE;
+    if (task->tIsPlayerFrozen)
     {
         DestroyTask(taskId);
         StopPlayerAvatar();
