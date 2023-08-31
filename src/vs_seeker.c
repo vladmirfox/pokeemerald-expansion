@@ -161,8 +161,6 @@ static void Task_ResetObjectsRematchWantedState(u8 taskId)
 
             FreezeObjectEvent(&gObjectEvents[i]);
         }
-
-        task->tResetPhase2 = 1;
     }
 
     task->tAreObjectsFrozen = TRUE;
@@ -175,9 +173,6 @@ static void Task_ResetObjectsRematchWantedState(u8 taskId)
 }
 #undef tIsPlayerFrozen
 #undef tAreObjectsFrozen
-
-#undef tResetPhase1
-#undef tResetPhase2
 
 u16 VsSeekerConvertLocalIdToTableId(u16 localId)
 {
@@ -221,33 +216,6 @@ void VsSeekerResetObjectMovementAfterChargeComplete(void)
 
         SetTrainerMovementType(objectEvent, movementType);
         templates[i].movementType = movementType;
-    }
-}
-
-void VsSeekerResetObjectMovementAfterChargeComplete(void)
-{
-    struct ObjectEventTemplate * templates = gSaveBlock1Ptr->objectEventTemplates;
-    u32 i;
-    u8 movementType;
-    u8 objEventId;
-    struct ObjectEvent * objectEvent;
-
-    for (i = 0; i < gMapHeader.events->objectEventCount; i++)
-    {
-        if ((templates[i].trainerType == TRAINER_TYPE_NORMAL
-          || templates[i].trainerType == TRAINER_TYPE_BURIED)
-          && (templates[i].movementType == MOVEMENT_TYPE_ROTATE_CLOCKWISE))
-        {
-            movementType = GetRandomFaceDirectionMovementType();
-            TryGetObjectEventIdByLocalIdAndMap(templates[i].localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &objEventId);
-            objectEvent = &gObjectEvents[objEventId];
-            if (ObjectEventIdIsSane(objEventId) == TRUE)
-            {
-                SetTrainerMovementType(objectEvent, movementType);
-            }
-            templates[i].movementType = movementType;
-        }
->>>>>>> 277ebd023 (Added names for data[x])
     }
 }
 
@@ -533,6 +501,8 @@ void ClearRematchMovementByTrainerId(void)
     s32 i;
     u8 objEventId = 0;
     struct ObjectEventTemplate *objectEventTemplates = gSaveBlock1Ptr->objectEventTemplates;
+    struct ObjectEvent *objectEvent;
+
     int vsSeekerDataIdx = TrainerIdToRematchTableId(gRematchTable, gTrainerBattleOpponent_A);
 
     if (vsSeekerDataIdx == -1)
@@ -544,8 +514,6 @@ void ClearRematchMovementByTrainerId(void)
         && objectEventTemplates[i].trainerType != TRAINER_TYPE_BURIED)
         || vsSeekerDataIdx != TrainerIdToRematchTableId(gRematchTable, GetTrainerFlagFromScript(objectEventTemplates[i].script)))
             continue;
-
-        struct ObjectEvent *objectEvent;
 
         TryGetObjectEventIdByLocalIdAndMap(objectEventTemplates[i].localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &objEventId);
         objectEvent = &gObjectEvents[objEventId];
