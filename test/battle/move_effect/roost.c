@@ -42,7 +42,7 @@ SINGLE_BATTLE_TEST("Roost fails when user is at full HP")
 SINGLE_BATTLE_TEST("Roost fails if the user is under the effects of Heal Block")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        PLAYER(SPECIES_WOBBUFFET) { HP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_HEAL_BLOCK); MOVE(player, MOVE_ROOST); }
@@ -55,69 +55,69 @@ SINGLE_BATTLE_TEST("Roost fails if the user is under the effects of Heal Block")
     }
 }
 
-SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP, rounded down, in Gen 4", s16 hp)
+SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP, rounded down, in Gen 4")
 {
-    u16 maxHP;
-    PARAMETRIZE { maxHP = 199; }
-    PARAMETRIZE { maxHP = 200; }
+    s16 hp;
 
     GIVEN {
-        //ASSUME(B_HEALING_ROUNDED_UP <= GEN_4) // If this is added as a config
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(maxHP); }
+        //ASSUME(B_UPDATED_MOVE_DATA <= GEN_4)
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(99); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        HP_BAR(player, captureHP: &results[i].hp);
-    } FINALLY {
-        EXPECT(results[0].hp == results[1].hp - 1);
+        HP_BAR(player, captureHP: &hp);
+    } THEN {
+        EXPECT(hp == 50);
     }
 }
 
-SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP, rounded up, in Gen 5+", s16 hp)
+SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP, rounded up, in Gen 5+")
 {    
-    u16 maxHP;
+    s16 hp;
 
     KNOWN_FAILING; // All healing is currently rounded down
-    PARAMETRIZE { maxHP = 199; }
-    PARAMETRIZE { maxHP = 200; }
-
     GIVEN {
-        //ASSUME(B_HEALING_ROUNDED_UP >= GEN_5) // If this is added as a config
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(maxHP); }
+        //ASSUME(B_UPDATED_MOVE_DATA >= GEN_5)
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(99); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        HP_BAR(player, captureHP: &results[i].hp);
-    } FINALLY {
-        EXPECT(results[0].hp == results[1].hp);
+        HP_BAR(player, captureHP: &hp);
+    } THEN {
+        EXPECT(hp == 51);
     }
 }
 
-SINGLE_BATTLE_TEST("Roost, if used by a half Flying-type, removes the user's Flying type until the end of the turn")
+SINGLE_BATTLE_TEST("Roost suppresses the user's Flying-typing until the end of turn")
 {
-    s16 damage;
-
     GIVEN {
+        ASSUME(gSpeciesInfo[SPECIES_SKARMORY].types[0] == TYPE_STEEL);
         ASSUME(gSpeciesInfo[SPECIES_SKARMORY].types[1] == TYPE_FLYING);
-        PLAYER(SPECIES_SKARMORY) { Speed(300); HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(50); }
+        PLAYER(SPECIES_SKARMORY) { HP(50); MaxHP(100); Ability(ABILITY_STURDY); }
+        OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
+        TURN { MOVE(opponent, MOVE_EARTHQUAKE); }
     } SCENE {
+        // Turn 1: EQ hits when Roosted
+        MESSAGE("Skarmory used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Skarmory regained health!");
+        MESSAGE("Foe Wobbuffet used Earthquake!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
-        HP_BAR(player, captureDamage: &damage);
-    } THEN {
-        EXPECT_GT(damage, 0);
+        MESSAGE("It's super effective!");
+        // Turn 2: EQ has no effect because Roost expired
+        MESSAGE("Wobbuffet used Earthquake!");
+        MESSAGE("It doesn't affect Skarmory…");
+        NOT HP_BAR(player);
     }
 }
 
-SINGLE_BATTLE_TEST("Roost, if used by a pure Flying-type, leaves the user typeless until the end of the turn in Gen 4")
+SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a Mystery/Mystery until the end of the turn in Gen 4")
 {
     //s16 damage;
     u32 damagingMove;
@@ -142,42 +142,49 @@ SINGLE_BATTLE_TEST("Roost, if used by a pure Flying-type, leaves the user typele
 
     GIVEN {
         ASSUME(B_ROOST_PURE_FLYING <= GEN_4);
-        ASSUME(P_GEN_8_POKEMON == TRUE);
-        ASSUME(gSpeciesInfo[SPECIES_CORVISQUIRE].types[0] == TYPE_FLYING);
-        ASSUME(gSpeciesInfo[SPECIES_CORVISQUIRE].types[1] == TYPE_FLYING);
-        PLAYER(SPECIES_CORVISQUIRE) { Speed(300); HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(50); }
+        ASSUME(P_GEN_5_POKEMON == TRUE);
+        ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[0] == TYPE_FLYING);
+        ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[1] == TYPE_FLYING);
+        PLAYER(SPECIES_TORNADUS) { HP(50); MaxHP(100); }
+        OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, damagingMove); }
     } SCENE {
+        MESSAGE("Tornadus used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Corvisquir regained health!");
+        MESSAGE("Tornadus regained health!");
         ANIMATION(ANIM_TYPE_MOVE, damagingMove, opponent);
-        NOT MESSAGE("It's super effective!");
-        NOT MESSAGE("It's not very effective.");
-        NOT MESSAGE("It doesn't affect Corvisquir…");
+        // Should not see any effectiveness messages
+        NONE_OF {
+            MESSAGE("It's super effective!");
+            MESSAGE("It's not very effective…");
+            MESSAGE("It doesn't affect Tornadus…");
+        }
     }
 }
 
-SINGLE_BATTLE_TEST("Roost, if used by a pure Flying-type, changes the user to pure Normal-type until the end of the turn in Gen 5+")
+SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a Normal/Normal type until the end of the turn in Gen 5+")
 {
     GIVEN {
         ASSUME(B_ROOST_PURE_FLYING >= GEN_5);
-        ASSUME(gSpeciesInfo[SPECIES_CORVISQUIRE].types[0] == TYPE_FLYING);
-        ASSUME(gSpeciesInfo[SPECIES_CORVISQUIRE].types[1] == TYPE_FLYING);
-        PLAYER(SPECIES_CORVISQUIRE) { Speed(300); HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(50); }
+        ASSUME(P_GEN_5_POKEMON == TRUE);
+        ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[0] == TYPE_FLYING);
+        ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[1] == TYPE_FLYING);
+        PLAYER(SPECIES_TORNADUS) { HP(50); MaxHP(100); }
+        OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_LICK); }
     } SCENE {
+        MESSAGE("Tornadus used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Corvisquir regained health!");
+        MESSAGE("Tornadus regained health!");
+        MESSAGE("Foe Wobbuffet used Lick!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_LICK, opponent);
-        MESSAGE("It doesn't affect Corvisquir…");
+        MESSAGE("It doesn't affect Tornadus…");
     }
 }
 
-SINGLE_BATTLE_TEST("Roost, if used by a Fire/Flying-type that has lost its Fire type due to Burn Up, leaves the user typeless until the end of the turn in Gen 5+")
+SINGLE_BATTLE_TEST("Roost, if used by a Mystery/Flying type, treats the user as a Mystery/Mystery type until the end of the turn in Gen 5+", s16 damage)
 {
     u32 damagingMove;
     PARAMETRIZE{ damagingMove = MOVE_POUND; }
@@ -201,40 +208,65 @@ SINGLE_BATTLE_TEST("Roost, if used by a Fire/Flying-type that has lost its Fire 
 
     GIVEN {
         ASSUME(B_ROOST_PURE_FLYING >= GEN_5);
-        ASSUME(P_GEN_8_POKEMON == TRUE);
         ASSUME(gSpeciesInfo[SPECIES_MOLTRES].types[0] == TYPE_FIRE);
         ASSUME(gSpeciesInfo[SPECIES_MOLTRES].types[1] == TYPE_FLYING);
-        PLAYER(SPECIES_MOLTRES) { Speed(300); HP(1); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(50); }
+        PLAYER(SPECIES_MOLTRES) { HP(300); MaxHP(400); }
+        OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_BURN_UP); }
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, damagingMove); }
     } SCENE {
+        // Turn 1: Use Burn Up to change from Fire/Flying to Mystery/Flying
+        MESSAGE("Moltres used Burn Up!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BURN_UP, player);
+        MESSAGE("Moltres burned itself out!");
+        // Turn 2: Use Roost to now be treated as a Mystery/Mystery type
+        MESSAGE("Moltres used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Moltres regained health!");
         ANIMATION(ANIM_TYPE_MOVE, damagingMove, opponent);
-        NOT MESSAGE("It's super effective!");
-        NOT MESSAGE("It's not very effective.");
-        NOT MESSAGE("It doesn't affect Moltres…");
+        NONE_OF {
+            MESSAGE("It's super effective!");
+            MESSAGE("It's not very effective…");
+            MESSAGE("It doesn't affect Tornadus…");
+        }
     } 
 }
 
-TO_DO_BATTLE_TEST("Roost, if used by a pure Flying-type and under the effects of Trick-or-Treat or Forest's Curse, changes the user to a Normal-type while retaining the added type until the end of the turn");
-// Shorter description?
-// Does any of Roost's type changing effects touch type 3?
+DOUBLE_BATTLE_TEST("Roost suppresses the user's not-yet-aquired Flying-type this turn")
+{
+    GIVEN {
+        PLAYER(SPECIES_KECLEON) { Speed(40); HP(150); Ability(ABILITY_COLOR_CHANGE); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
+        OPPONENT(SPECIES_PIDGEY) { Speed(30); }
+        OPPONENT(SPECIES_SANDSHREW) { Speed(20); }        
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_ROOST); 
+               MOVE(opponentLeft, MOVE_GUST, target: playerLeft);
+               MOVE(opponentRight, MOVE_MUD_SLAP, target: playerLeft); }
+    } SCENE {
+        MESSAGE("Kecleon used Roost!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, playerLeft);
+        MESSAGE("Kecleon regained health!");
+        MESSAGE("Foe Pidgey used Gust!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_GUST, opponentLeft);
+        MESSAGE("Kecleon's Color Change made it the Flying type!");
+        MESSAGE("Foe Sandshrew used Mud-Slap!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MUD_SLAP, opponentLeft);
+        MESSAGE("Kecleon's Color Change made it the Ground type!");
+    }
+}
 
-TO_DO_BATTLE_TEST("Roost interaction with other type-setting effects like Soak")
-// If Motres uses Roost first and then gets hit with Soak, at the end of the turn does it become:
-// 1. Fire/Flying
-// 2. Water/Flying
-// 3. Water
+TO_DO_BATTLE_TEST("Roost does not affect the user's 3rd type");
+// Unless the user somehow gains the Flying-type as a 3rd type,
+// then it'll be suppressed
 
-TO_DO_BATTLE_TEST("Roost suppresses the user's Flying-type");
+TO_DO_BATTLE_TEST("Roost does not interfere with other type-setting effects like Soak");
+// If Moltres uses Roost first and then gets hit with Soak, it will become a pure Water-type
+// and remain a pure Water-type after the end of the turn
 
-TO_DO_BATTLE_TEST("Roost suppresses the user's not-yet-aquired Flying-type this turn")
-// A Pokemon with the Color Change ability that uses Roost, then gets hit by a 
-// Flying-type move, changes to a Flying-type, but it is still suppressed
-// until the end of the turn due to Roost.
+TO_DO_BATTLE_TEST("Roost's effect does not lift until other certain end-of-turn effects");
+// A Roosted Pokemon will benefit from Grassy Terrain's end-of-turn healing, for example
+// Not sure exactly what the order is among all effects
 
-TO_DO_BATTLE_TEST("Roost does not restore Flying-type until other certain end-of-turn effects");
-// A Roosted Pokemon will benefit from Grassy Terrain's healing, for example
+// What typing does Transform copy? Does it copy the Roost "status"?
