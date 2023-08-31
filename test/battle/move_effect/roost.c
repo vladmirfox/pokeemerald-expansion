@@ -4,6 +4,8 @@
 ASSUMPTIONS
 {
     ASSUME(gBattleMoves[MOVE_ROOST].effect == EFFECT_ROOST);
+    ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] != TYPE_FLYING);
+    ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[1] != TYPE_FLYING);
     // One attack of each type to verify typelessness
     ASSUME(gBattleMoves[MOVE_POUND].type == TYPE_NORMAL);
     ASSUME(gBattleMoves[MOVE_KARATE_CHOP].type == TYPE_FIGHTING);
@@ -229,14 +231,17 @@ SINGLE_BATTLE_TEST("Roost, if used by a Mystery/Flying type, treats the user as 
         NONE_OF {
             MESSAGE("It's super effective!");
             MESSAGE("It's not very effective…");
-            MESSAGE("It doesn't affect Tornadus…");
+            MESSAGE("It doesn't affect Moltres…");
         }
     } 
 }
 
+// Tested in ORAS
 DOUBLE_BATTLE_TEST("Roost suppresses the user's not-yet-aquired Flying-type this turn")
 {
     GIVEN {
+        ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[0] != TYPE_FLYING);
+        ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[1] != TYPE_FLYING);
         PLAYER(SPECIES_KECLEON) { Speed(40); HP(150); Ability(ABILITY_COLOR_CHANGE); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
         OPPONENT(SPECIES_PIDGEY) { Speed(30); }
@@ -244,7 +249,7 @@ DOUBLE_BATTLE_TEST("Roost suppresses the user's not-yet-aquired Flying-type this
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_ROOST); 
                MOVE(opponentLeft, MOVE_GUST, target: playerLeft);
-               MOVE(opponentRight, MOVE_MUD_SLAP, target: playerLeft); }
+               MOVE(opponentRight, MOVE_EARTHQUAKE, target: playerLeft); }
     } SCENE {
         MESSAGE("Kecleon used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, playerLeft);
@@ -252,27 +257,154 @@ DOUBLE_BATTLE_TEST("Roost suppresses the user's not-yet-aquired Flying-type this
         MESSAGE("Foe Pidgey used Gust!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GUST, opponentLeft);
         MESSAGE("Kecleon's Color Change made it the Flying type!");
-        MESSAGE("Foe Sandshrew used Mud-Slap!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_MUD_SLAP, opponentRight);
+        MESSAGE("Foe Sandshrew used Earthquake!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponentRight);
         MESSAGE("Kecleon's Color Change made it the Ground type!");
     }
 }
 
-TO_DO_BATTLE_TEST("Roost does not affect the user's 3rd type");
-// Unless the user somehow gains the Flying-type as a 3rd type,
-// then it'll be suppressed
+// Tested in ORAS
+SINGLE_BATTLE_TEST("Roost prevents a Flying-type user from being protected by Delta Stream")
+{
+    GIVEN {
+        ASSUME(gSpeciesInfo[SPECIES_RAYQUAZA].types[1] == TYPE_FLYING);
+        PLAYER(SPECIES_RAYQUAZA) { HP(1); Ability(ABILITY_DELTA_STREAM); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_ICE_BEAM); }
+    } SCENE {
+        MESSAGE("Rayquaza used Roost!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
+        MESSAGE("Rayquaza regained health!");
+        MESSAGE("Foe Wobbuffet used Ice Beam!");
+        NOT MESSAGE("The mysterious strong winds weakened the attack!");
+    }
+}
 
-TO_DO_BATTLE_TEST("Roost does not interfere with other type-setting effects like Soak");
-// If Moltres uses Roost first and then gets hit with Soak, it will become a pure Water-type
-// and remain a pure Water-type after the end of the turn
+SINGLE_BATTLE_TEST("Roost does not undo other type-changing effects at the end of the turn")
+{
+    GIVEN {
+        ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[0] == TYPE_NORMAL);
+        ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[1] == TYPE_FLYING);
+        PLAYER(SPECIES_SWELLOW) { HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_SOAK); }
+        TURN { MOVE(opponent, MOVE_VINE_WHIP); }
+    } SCENE {
+        MESSAGE("Swellow used Roost!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
+        MESSAGE("Swellow regained health!");
+        MESSAGE("Foe Wobbuffet used Soak!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SOAK, opponent);
+        MESSAGE("Swellow transformed into the Water type!");
+        MESSAGE("Foe Wobbuffet used Vine Whip!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_VINE_WHIP, opponent);
+        MESSAGE("It's super effective!");
+    }
+}
 
-TO_DO_BATTLE_TEST("Roost's effect does not lift until other certain end-of-turn effects");
-// A Roosted Pokemon will benefit from Grassy Terrain's end-of-turn healing, for example
-// Not sure exactly what the order is among all effects
+// https://www.smogon.com/forums/threads/sword-shield-battle-mechanics-research.3655528/page-64#post-9244179
+SINGLE_BATTLE_TEST("Roost's effect is lifted after Grassy Terrain's healing")
+{
+    GIVEN {
+        ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[0] == TYPE_NORMAL);
+        ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[1] == TYPE_FLYING);
+        PLAYER(SPECIES_SWELLOW) { HP(1); Ability(ABILITY_GRASSY_SURGE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_ROOST); }
+    } SCENE {
+        MESSAGE("Swellow used Roost!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
+        MESSAGE("Swellow regained health!");
+        MESSAGE("Swellow is healed by the grassy terrain!");
+        HP_BAR(player);
+    }
+}
 
-// What typing does Transform copy? Does it copy the Roost "status"?
+SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Levitate")
+{
+    GIVEN {
+        PLAYER(SPECIES_FLYGON) { HP(1); Ability(ABILITY_LEVITATE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
+    } SCENE {
+        MESSAGE("Flygon used Roost!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
+        MESSAGE("Flygon regained health!");
+        MESSAGE("Foe Wobbuffet used Earthquake!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
+        NOT HP_BAR(player);
+    }
+}
 
-// Does Delta Stream protect a Roosted Flying-type? No it doesn't (Tested in ORAS)
-// Delta Stream and being Roosted both protect from super effective damage against
-// the user's Flying-type, however being Roosted will prevent the message that
-// usually appears when Delta Stream protects a Flying-type.
+SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Air Balloon")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); Item(ITEM_AIR_BALLOON); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Roost!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
+        MESSAGE("Wobbuffet regained health!");
+        MESSAGE("Foe Wobbuffet used Earthquake!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
+        NOT HP_BAR(player);
+    }
+}
+
+SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Magnet Rise")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_MAGNET_RISE); }
+        TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
+    } SCENE {
+        // Turn 1: Magnet Rise
+        MESSAGE("Wobbuffet used Magnet Rise!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MAGNET_RISE, player);
+        MESSAGE("Wobbuffet levitated on electromagnetism!");
+        // Turn 2
+        MESSAGE("Wobbuffet used Roost!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
+        MESSAGE("Wobbuffet regained health!");
+        MESSAGE("Foe Wobbuffet used Earthquake!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
+        NOT HP_BAR(player);
+    }
+}
+
+SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Telekinesis")
+{
+    KNOWN_FAILING; // Telekinesis currently says the pokemon was identified
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_TELEKINESIS); }
+        TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
+    } SCENE {
+        // Turn 1: Telekinesis
+        MESSAGE("Foe Wobbuffet used Telekinesis!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TELEKINESIS, opponent);
+        MESSAGE("Wobbuffet was hurled into the air!");
+        // Turn 2
+        MESSAGE("Wobbuffet used Roost!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
+        MESSAGE("Wobbuffet regained health!");
+        MESSAGE("Foe Wobbuffet used Earthquake!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
+        NOT HP_BAR(player);
+    }
+}
+
+// Tested in ORAS
+// Transform does not copy the Roost "status" either. 
+// Probably better as a Transform test.
+TO_DO_BATTLE_TEST("Roost's suppression does not prevent others Transforming into the user from copying its Flying-type");
