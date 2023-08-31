@@ -882,7 +882,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_MR_RIME]                      = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  4 },
     [SPECIES_RUNERIGUS]                    = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  2 },
     [SPECIES_MILCERY]                      = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 15 },
-    [SPECIES_ALCREMIE]                     = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
+    [SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM] = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
     [SPECIES_FALINKS]                      = { .size = MON_COORDS_SIZE(56, 48), .y_offset =  8 },
     [SPECIES_PINCURCHIN]                   = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 15 },
     [SPECIES_SNOM]                         = { .size = MON_COORDS_SIZE(40, 32), .y_offset = 20 },
@@ -1309,14 +1309,14 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     // Polteageist
     [SPECIES_POLTEAGEIST_ANTIQUE]          = { .size = MON_COORDS_SIZE(48, 48), .y_offset = 11 },
     // Alcremie
-    [SPECIES_ALCREMIE_RUBY_CREAM]          = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
-    [SPECIES_ALCREMIE_MATCHA_CREAM]        = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
-    [SPECIES_ALCREMIE_MINT_CREAM]          = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
-    [SPECIES_ALCREMIE_LEMON_CREAM]         = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
-    [SPECIES_ALCREMIE_SALTED_CREAM]        = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
-    [SPECIES_ALCREMIE_RUBY_SWIRL]          = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
-    [SPECIES_ALCREMIE_CARAMEL_SWIRL]       = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
-    [SPECIES_ALCREMIE_RAINBOW_SWIRL]       = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM]    = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
+    [SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM]  = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
+    [SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM]    = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
+    [SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM]   = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
+    [SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM]  = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL]    = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
+    [SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL] = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
+    [SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL] = { .size = MON_COORDS_SIZE(40, 56), .y_offset =  7 },
     // Eiscue
     [SPECIES_EISCUE_NOICE_FACE]            = { .size = MON_COORDS_SIZE(40, 64), .y_offset =  0 },
     // Indeedee

@@ -878,7 +878,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_MR_RIME] = sMrRimeLevelUpLearnset,
     [SPECIES_RUNERIGUS] = sRunerigusLevelUpLearnset,
     [SPECIES_MILCERY] = sMilceryLevelUpLearnset,
-    [SPECIES_ALCREMIE] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM] = sAlcremieLevelUpLearnset,
     [SPECIES_FALINKS] = sFalinksLevelUpLearnset,
     [SPECIES_PINCURCHIN] = sPincurchinLevelUpLearnset,
     [SPECIES_SNOM] = sSnomLevelUpLearnset,
@@ -1305,14 +1305,14 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     // Polteageist
     [SPECIES_POLTEAGEIST_ANTIQUE] = sPolteageistLevelUpLearnset,
     // Alcremie
-    [SPECIES_ALCREMIE_RUBY_CREAM] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_MATCHA_CREAM] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_MINT_CREAM] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_LEMON_CREAM] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_SALTED_CREAM] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_RUBY_SWIRL] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_CARAMEL_SWIRL] = sAlcremieLevelUpLearnset,
-    [SPECIES_ALCREMIE_RAINBOW_SWIRL] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL] = sAlcremieLevelUpLearnset,
+    [SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL] = sAlcremieLevelUpLearnset,
     // Eiscue
     [SPECIES_EISCUE_NOICE_FACE] = sEiscueLevelUpLearnset,
     // Indeedee

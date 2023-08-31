@@ -877,7 +877,7 @@ const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_MR_RIME] = _("Mr. Rime"),
     [SPECIES_RUNERIGUS] = _("Runerigus"),
     [SPECIES_MILCERY] = _("Milcery"),
-    [SPECIES_ALCREMIE] = _("Alcremie"),
+    [SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM] = _("Alcremie"),
     [SPECIES_FALINKS] = _("Falinks"),
     [SPECIES_PINCURCHIN] = _("Pincurchin"),
     [SPECIES_SNOM] = _("Snom"),
@@ -1309,14 +1309,14 @@ const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1] = {
     // Polteageist
     [SPECIES_POLTEAGEIST_ANTIQUE] = _("Polteageis"),
     // Alcremie
-    [SPECIES_ALCREMIE_RUBY_CREAM] = _("Alcremie"),
-    [SPECIES_ALCREMIE_MATCHA_CREAM] = _("Alcremie"),
-    [SPECIES_ALCREMIE_MINT_CREAM] = _("Alcremie"),
-    [SPECIES_ALCREMIE_LEMON_CREAM] = _("Alcremie"),
-    [SPECIES_ALCREMIE_SALTED_CREAM] = _("Alcremie"),
-    [SPECIES_ALCREMIE_RUBY_SWIRL] = _("Alcremie"),
-    [SPECIES_ALCREMIE_CARAMEL_SWIRL] = _("Alcremie"),
-    [SPECIES_ALCREMIE_RAINBOW_SWIRL] = _("Alcremie"),
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM] = _("Alcremie"),
+    [SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM] = _("Alcremie"),
+    [SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM] = _("Alcremie"),
+    [SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM] = _("Alcremie"),
+    [SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM] = _("Alcremie"),
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL] = _("Alcremie"),
+    [SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL] = _("Alcremie"),
+    [SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL] = _("Alcremie"),
     // Eiscue
     [SPECIES_EISCUE_NOICE_FACE] = _("Eiscue"),
     // Indeedee

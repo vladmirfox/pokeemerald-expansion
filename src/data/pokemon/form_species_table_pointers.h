@@ -160,7 +160,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_TOXTRICITY_AMPED] = sToxtricityFormSpeciesIdTable,
     [SPECIES_SINISTEA_PHONY] = sSinisteaFormSpeciesIdTable,
     [SPECIES_POLTEAGEIST_PHONY] = sPolteageistFormSpeciesIdTable,
-    [SPECIES_ALCREMIE] = sAlcremieFormSpeciesIdTable,
+    [SPECIES_ALCREMIE_STRAWBERRY_VANILLA_CREAM] = sAlcremieFormSpeciesIdTable,
     [SPECIES_EISCUE] = sEiscueFormSpeciesIdTable,
     [SPECIES_INDEEDEE] = sIndeedeeFormSpeciesIdTable,
     [SPECIES_MORPEKO] = sMorpekoFormSpeciesIdTable,
@@ -562,14 +562,14 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     // Polteageist
     [SPECIES_POLTEAGEIST_ANTIQUE] = sPolteageistFormSpeciesIdTable,
     // Alcremie
-    [SPECIES_ALCREMIE_RUBY_CREAM] = sAlcremieFormSpeciesIdTable,
-    [SPECIES_ALCREMIE_MATCHA_CREAM] = sAlcremieFormSpeciesIdTable,
-    [SPECIES_ALCREMIE_MINT_CREAM] = sAlcremieFormSpeciesIdTable,
-    [SPECIES_ALCREMIE_LEMON_CREAM] = sAlcremieFormSpeciesIdTable,
-    [SPECIES_ALCREMIE_SALTED_CREAM] = sAlcremieFormSpeciesIdTable,
-    [SPECIES_ALCREMIE_RUBY_SWIRL] = sAlcremieFormSpeciesIdTable,
-    [SPECIES_ALCREMIE_CARAMEL_SWIRL] = sAlcremieFormSpeciesIdTable,
-    [SPECIES_ALCREMIE_RAINBOW_SWIRL] = sAlcremieFormSpeciesIdTable,
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM] = sAlcremieFormSpeciesIdTable,
+    [SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM] = sAlcremieFormSpeciesIdTable,
+    [SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM] = sAlcremieFormSpeciesIdTable,
+    [SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM] = sAlcremieFormSpeciesIdTable,
+    [SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM] = sAlcremieFormSpeciesIdTable,
+    [SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL] = sAlcremieFormSpeciesIdTable,
+    [SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL] = sAlcremieFormSpeciesIdTable,
+    [SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL] = sAlcremieFormSpeciesIdTable,
     // Eiscue
     [SPECIES_EISCUE_NOICE_FACE] = sEiscueFormSpeciesIdTable,
     // Indeedee
