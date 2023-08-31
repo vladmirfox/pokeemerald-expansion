@@ -1409,12 +1409,12 @@ static void Task_RaiseCurtainAtStart(u8 taskId)
         break;
     case 3:
     {
-        u16 bg0Cnt = GetGpuReg(REG_OFFSET_BG0CNT);
-        u16 bg2Cnt = GetGpuReg(REG_OFFSET_BG2CNT);
-        ((struct BgCnt *)&bg0Cnt)->priority = 0;
-        ((struct BgCnt *)&bg2Cnt)->priority = 0;
-        SetGpuReg(REG_OFFSET_BG0CNT, bg0Cnt);
-        SetGpuReg(REG_OFFSET_BG2CNT, bg2Cnt);
+        struct BgCnt bg0Cnt = GetBgCntReg(REG_OFFSET_BG0CNT);
+        struct BgCnt bg2Cnt = GetBgCntReg(REG_OFFSET_BG2CNT);
+        bg0Cnt.priority = 0;
+        bg2Cnt.priority = 0;
+        SetBgCntReg(REG_OFFSET_BG0CNT, bg0Cnt);
+        SetBgCntReg(REG_OFFSET_BG2CNT, bg2Cnt);
         SlideApplauseMeterIn();
         gTasks[taskId].data[0]++;
         break;
@@ -2630,12 +2630,12 @@ static void Task_UpdateContestantBoxOrder(u8 taskId)
 
 static void Task_TryStartNextRoundOfAppeals(u8 taskId)
 {
-    vu16 sp0 = GetGpuReg(REG_OFFSET_BG0CNT);
-    vu16 sp2 = GetGpuReg(REG_OFFSET_BG2CNT);
-    ((vBgCnt *)&sp0)->priority = 0;
-    ((vBgCnt *)&sp2)->priority = 0;
-    SetGpuReg(REG_OFFSET_BG0CNT, sp0);
-    SetGpuReg(REG_OFFSET_BG2CNT, sp2);
+    struct BgCnt bg0Cnt = GetBgCntReg(REG_OFFSET_BG0CNT);
+    struct BgCnt bg2Cnt = GetBgCntReg(REG_OFFSET_BG2CNT);
+    bg0Cnt.priority = 0;
+    bg2Cnt.priority = 0;
+    SetBgCntReg(REG_OFFSET_BG0CNT, bg0Cnt);
+    SetBgCntReg(REG_OFFSET_BG2CNT, bg2Cnt);
     eContest.appealNumber++;
     if (eContest.appealNumber == CONTEST_NUM_APPEALS)
     {
@@ -3247,8 +3247,7 @@ static void DrawMoveEffectSymbol(u16 move, u8 contestant)
     }
 }
 
-// Unused
-static void DrawMoveEffectSymbols(void)
+static void UNUSED DrawMoveEffectSymbols(void)
 {
     s32 i;
 
@@ -4217,8 +4216,7 @@ static void SpriteCB_EndBlinkContestantBox(struct Sprite *sprite)
     ResetBlendForContestantBoxBlink();
 }
 
-// Unused.
-static void ContestDebugTogglePointTotal(void)
+static void UNUSED ContestDebugTogglePointTotal(void)
 {
     if(eContestDebugMode == CONTEST_DEBUG_MODE_PRINT_POINT_TOTAL)
         eContestDebugMode = CONTEST_DEBUG_MODE_OFF;
@@ -4872,15 +4870,13 @@ static void Task_ShowAndUpdateApplauseMeter(u8 taskId)
     }
 }
 
-// Unused.
-static void HideApplauseMeterNoAnim(void)
+static void UNUSED HideApplauseMeterNoAnim(void)
 {
     gSprites[eContest.applauseMeterSpriteId].x2 = 0;
     gSprites[eContest.applauseMeterSpriteId].invisible = FALSE;
 }
 
-// Unused.
-static void ShowApplauseMeterNoAnim(void)
+static void UNUSED ShowApplauseMeterNoAnim(void)
 {
     gSprites[eContest.applauseMeterSpriteId].invisible = TRUE;
 }
@@ -5061,23 +5057,23 @@ bool8 IsContestantAllowedToCombo(u8 contestant)
 static void SetBgForCurtainDrop(void)
 {
     s32 i;
-    u16 bg0Cnt, bg1Cnt, bg2Cnt;
+    struct BgCnt bg0Cnt, bg1Cnt, bg2Cnt;
 
-    bg1Cnt = GetGpuReg(REG_OFFSET_BG1CNT);
-    ((vBgCnt *)&bg1Cnt)->priority = 0;
-    ((vBgCnt *)&bg1Cnt)->screenSize = 2;
-    ((vBgCnt *)&bg1Cnt)->areaOverflowMode = 0;
-    ((vBgCnt *)&bg1Cnt)->charBaseBlock = 0;
+    bg1Cnt = GetBgCntReg(REG_OFFSET_BG1CNT);
+    bg1Cnt.priority = 0;
+    bg1Cnt.screenSize = 2;
+    bg1Cnt.areaOverflowMode = 0;
+    bg1Cnt.charBaseBlock = 0;
 
-    SetGpuReg(REG_OFFSET_BG1CNT, bg1Cnt);
+    SetBgCntReg(REG_OFFSET_BG1CNT, bg1Cnt);
 
-    bg0Cnt = GetGpuReg(REG_OFFSET_BG0CNT);
-    bg2Cnt = GetGpuReg(REG_OFFSET_BG2CNT);
-    ((vBgCnt *)&bg0Cnt)->priority = 1;
-    ((vBgCnt *)&bg2Cnt)->priority = 1;
+    bg0Cnt = GetBgCntReg(REG_OFFSET_BG0CNT);
+    bg2Cnt = GetBgCntReg(REG_OFFSET_BG2CNT);
+    bg0Cnt.priority = 1;
+    bg2Cnt.priority = 1;
 
-    SetGpuReg(REG_OFFSET_BG0CNT, bg0Cnt);
-    SetGpuReg(REG_OFFSET_BG2CNT, bg2Cnt);
+    SetBgCntReg(REG_OFFSET_BG0CNT, bg0Cnt);
+    SetBgCntReg(REG_OFFSET_BG2CNT, bg2Cnt);
 
     gBattle_BG1_X = DISPLAY_WIDTH;
     gBattle_BG1_Y = DISPLAY_HEIGHT;
@@ -5099,18 +5095,18 @@ static void SetBgForCurtainDrop(void)
 static void UpdateContestantBoxOrder(void)
 {
     s32 i;
-    u16 bg1Cnt;
+    struct BgCnt bg1Cnt;
 
     RequestDma3Fill(0,(void *)(BG_CHAR_ADDR(2)), 0x2000, 1);
     CpuFill32(0, gContestResources->contestBgTilemaps[1], 0x1000);
     Contest_SetBgCopyFlags(1);
-    bg1Cnt = GetGpuReg(REG_OFFSET_BG1CNT);
-    ((vBgCnt *) &bg1Cnt)->priority = 1;
-    ((vBgCnt *) &bg1Cnt)->screenSize = 0;
-    ((vBgCnt *) &bg1Cnt)->areaOverflowMode = 0;
-    ((vBgCnt *) &bg1Cnt)->charBaseBlock = 2;
+    bg1Cnt = GetBgCntReg(REG_OFFSET_BG1CNT);
+    bg1Cnt.priority = 1;
+    bg1Cnt.screenSize = 0;
+    bg1Cnt.areaOverflowMode = 0;
+    bg1Cnt.charBaseBlock = 2;
 
-    SetGpuReg(REG_OFFSET_BG1CNT, bg1Cnt);
+    SetBgCntReg(REG_OFFSET_BG1CNT, bg1Cnt);
 
     gBattle_BG1_X = 0;
     gBattle_BG1_Y = 0;
@@ -5302,7 +5298,6 @@ static u16 SanitizeSpecies(u16 species)
 
 static void SetMoveSpecificAnimData(u8 contestant)
 {
-    s32 i;
     u16 move = SanitizeMove(eContestantStatus[contestant].currMove);
     u16 species = SanitizeSpecies(gContestMons[contestant].species);
     u8 targetContestant;

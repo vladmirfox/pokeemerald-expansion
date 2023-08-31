@@ -502,7 +502,6 @@ void CB2_InitBattle(void)
 static void CB2_InitBattleInternal(void)
 {
     s32 i;
-    u16 targetSpecies;
 
     SetHBlankCallback(NULL);
     SetVBlankCallback(NULL);
@@ -3213,6 +3212,7 @@ void SwitchInClearSetData(void)
     gSelectedMonPartyId = PARTY_SIZE;
 
     // Allow for illegal abilities within tests.
+    #if TESTING
     if (gTestRunnerEnabled)
     {
         u32 side = GetBattlerSide(gActiveBattler);
@@ -3220,6 +3220,7 @@ void SwitchInClearSetData(void)
         if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
             gBattleMons[i].ability = gBattleStruct->overwrittenAbilities[i] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
     }
+    #endif // TESTING
 
     Ai_UpdateSwitchInData(gActiveBattler);
 }
@@ -3718,6 +3719,7 @@ static void TryDoEventsBeforeFirstTurn(void)
     }
 
     // Allow for illegal abilities within tests.
+    #if TESTING
     if (gTestRunnerEnabled && gBattleStruct->switchInAbilitiesCounter == 0)
     {
         for (i = 0; i < gBattlersCount; ++i)
@@ -3728,6 +3730,7 @@ static void TryDoEventsBeforeFirstTurn(void)
                 gBattleMons[i].ability = gBattleStruct->overwrittenAbilities[i] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
         }
     }
+    #endif // TESTING
 
     if (gBattleStruct->switchInAbilitiesCounter == 0)
     {

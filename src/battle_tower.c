@@ -1130,8 +1130,7 @@ u16 GetRandomScaledFrontierTrainerId(u8 challengeNum, u8 battleNum)
     return trainerId;
 }
 
-// Unused
-static void GetRandomScaledFrontierTrainerIdRange(u8 challengeNum, u8 battleNum, u16 *trainerIdPtr, u8 *rangePtr)
+static void UNUSED GetRandomScaledFrontierTrainerIdRange(u8 challengeNum, u8 battleNum, u16 *trainerIdPtr, u8 *rangePtr)
 {
     u16 trainerId, range;
 
@@ -1766,7 +1765,7 @@ static void FillTrainerParty(u16 trainerId, u8 firstMonId, u8 monCount)
 }
 
 // Probably an early draft before the 'CreateApprenticeMon' was written.
-static void Unused_CreateApprenticeMons(u16 trainerId, u8 firstMonId)
+static void UNUSED Unused_CreateApprenticeMons(u16 trainerId, u8 firstMonId)
 {
     s32 i, j;
     u8 friendship = MAX_FRIENDSHIP;
@@ -2323,7 +2322,6 @@ static void LoadMultiPartnerCandidatesData(void)
     u32 lvlMode, battleMode;
     s32 challengeNum;
     u32 species1, species2;
-    u32 level;
     struct ObjectEventTemplate *objEventTemplates;
 
     objEventTemplates = gSaveBlock1Ptr->objectEventTemplates;
@@ -2332,7 +2330,7 @@ static void LoadMultiPartnerCandidatesData(void)
     challengeNum = gSaveBlock2Ptr->frontier.towerWinStreaks[battleMode][lvlMode] / FRONTIER_STAGES_PER_CHALLENGE;
     species1 = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES, NULL);
     species2 = GetMonData(&gPlayerParty[1], MON_DATA_SPECIES, NULL);
-    level = SetFacilityPtrsGetLevel();
+    SetFacilityPtrsGetLevel();
 
     j = 0;
     do
@@ -2504,13 +2502,15 @@ static void GetPotentialPartnerMoveAndSpecies(u16 trainerId, u16 monId)
 // PARTNER_MSGID_REJECT - If the player declines to be their partner
 static void ShowPartnerCandidateMessage(void)
 {
-    s32 i, j, partnerId;
-    s32 monId;
-    s32 level = SetFacilityPtrsGetLevel();
-    u16 winStreak = GetCurrentFacilityWinStreak();
-    s32 challengeNum = winStreak / FRONTIER_STAGES_PER_CHALLENGE;
-    s32 k = gSpecialVar_LastTalked - 2;
-    s32 trainerId = gSaveBlock2Ptr->frontier.trainerIds[k];
+    u16 winStreak;
+    s32 i, j, k, partnerId, challengeNum;
+    s32 monId, trainerId;
+
+    SetFacilityPtrsGetLevel();
+    winStreak = GetCurrentFacilityWinStreak();
+    challengeNum = winStreak / FRONTIER_STAGES_PER_CHALLENGE;
+    k = gSpecialVar_LastTalked - 2;
+    trainerId = gSaveBlock2Ptr->frontier.trainerIds[k];
 
     for (partnerId = 0; partnerId < ARRAY_COUNT(sPartnerTrainerTextTables); partnerId++)
     {
@@ -2868,7 +2868,7 @@ static void AwardBattleTowerRibbons(void)
 
 // This is a leftover debugging function that is used to populate the E-Reader
 // trainer with the player's current data.
-static void FillEReaderTrainerWithPlayerData(void)
+static void UNUSED FillEReaderTrainerWithPlayerData(void)
 {
     struct BattleTowerEReaderTrainer *ereaderTrainer = &gSaveBlock2Ptr->frontier.ereaderTrainer;
     s32 i, j;
@@ -3003,7 +3003,7 @@ void TryHideBattleTowerReporter(void)
 static void FillPartnerParty(u16 trainerId)
 {
     s32 i, j;
-    u32 ivs, level;
+    u32 ivs, level, personality;
     u32 friendship;
     u16 monId;
     u32 otID;
@@ -3053,22 +3053,22 @@ static void FillPartnerParty(u16 trainerId)
             u32 otIdType = OT_ID_RANDOM_NO_SHINY;
             do
             {
-                j = Random32();
-            } while (IsShinyOtIdPersonality(otID, j));
+                personality = Random32();
+            } while (IsShinyOtIdPersonality(otID, personality));
 
             if (partyData[i].gender == TRAINER_MON_MALE)
-                j = (j & 0xFFFFFF00) | GeneratePersonalityForGender(MON_MALE, partyData[i].species);
+                personality = (personality & 0xFFFFFF00) | GeneratePersonalityForGender(MON_MALE, partyData[i].species);
             else if (partyData[i].gender == TRAINER_MON_FEMALE)
-                j = (j & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[i].species);
+                personality = (personality & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[i].species);
             if (partyData[i].nature != 0)
-                ModifyPersonalityForNature(&j, partyData[i].nature - 1);
+                ModifyPersonalityForNature(&personality, partyData[i].nature - 1);
             if (partyData[i].isShiny)
             {
                 otIdType = OT_ID_PRESET;
-                otID = HIHALF(j) ^ LOHALF(j);
+                otID = HIHALF(personality) ^ LOHALF(personality);
             }
 
-            CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, 0, TRUE, j, otIdType, otID);
+            CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, 0, TRUE, personality, otIdType, otID);
             SetMonData(&gPlayerParty[i + 3], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
             CustomTrainerPartyAssignMoves(&gPlayerParty[i+3], &partyData[i]);
 

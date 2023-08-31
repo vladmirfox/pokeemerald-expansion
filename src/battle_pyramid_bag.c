@@ -174,12 +174,12 @@ enum {
 
 static const struct MenuAction sMenuActions[] =
 {
-    [ACTION_USE_FIELD] =    { gMenuText_Use, BagAction_UseOnField },
-    [ACTION_TOSS] =         { gMenuText_Toss, BagAction_Toss },
-    [ACTION_GIVE] =         { gMenuText_Give, BagAction_Give },
-    [ACTION_CANCEL] =       { gText_Cancel2, BagAction_Cancel },
-    [ACTION_USE_BATTLE] =   { gMenuText_Use, BagAction_UseInBattle },
-    [ACTION_DUMMY] =        { gText_EmptyString2, NULL },
+    [ACTION_USE_FIELD] =    { gMenuText_Use, {BagAction_UseOnField }},
+    [ACTION_TOSS] =         { gMenuText_Toss, {BagAction_Toss }},
+    [ACTION_GIVE] =         { gMenuText_Give, {BagAction_Give }},
+    [ACTION_CANCEL] =       { gText_Cancel2, {BagAction_Cancel }},
+    [ACTION_USE_BATTLE] =   { gMenuText_Use, {BagAction_UseInBattle }},
+    [ACTION_DUMMY] =        { gText_EmptyString2, {NULL }},
 };
 
 static const u8 sMenuActionIds_Field[] = {ACTION_USE_FIELD, ACTION_GIVE, ACTION_TOSS, ACTION_CANCEL};

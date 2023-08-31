@@ -52,7 +52,6 @@ static void ZMoveSelectionDisplayPpNumber(void);
 static void ZMoveSelectionDisplayPower(u16 move, u16 zMove);
 static void ShowZMoveTriggerSprite(u8 battleId);
 static bool32 AreStatsMaxed(u8 battlerId, u8 n);
-static u8 GetZMoveScore(u8 battlerAtk, u8 battlerDef, u16 baseMove, u16 zMove);
 static void ZMoveSelectionDisplayMoveType(u16 zMove);
 
 // Const Data
@@ -158,9 +157,6 @@ void QueueZMove(u8 battlerId, u16 baseMove)
 
 bool32 IsViableZMove(u8 battlerId, u16 move)
 {
-    struct Pokemon *mon;
-    u8 battlerPosition = GetBattlerPosition(battlerId);
-    u8 partnerPosition = GetBattlerPosition(BATTLE_PARTNER(battlerId));
     u32 item;
     u16 holdEffect;
     u16 species;
@@ -191,7 +187,7 @@ bool32 IsViableZMove(u8 battlerId, u16 move)
 
     if (holdEffect == HOLD_EFFECT_Z_CRYSTAL)
     {
-        u16 zMove = GetSignatureZMove(move, gBattleMons[battlerId].species, item);
+        u16 zMove = GetSignatureZMove(move, species, item);
         if (zMove != MOVE_NONE)
         {
             gBattleStruct->zmove.chosenZMove = zMove;  // Signature z move exists
@@ -236,6 +232,10 @@ bool32 TryChangeZIndicator(u8 battlerId, u8 moveIndex)
         HideZMoveTriggerSprite();   // Was a viable z move, now is not -> slide out
     else if (!gBattleStruct->zmove.viable && viableZMove)
         ShowZMoveTriggerSprite(battlerId);   // Was not a viable z move, now is -> slide back in
+    else
+        return FALSE;
+
+    return TRUE;
 }
 
 #define SINGLES_Z_TRIGGER_POS_X_OPTIMAL     (29)
@@ -267,7 +267,7 @@ void CreateZMoveTriggerSprite(u8 battlerId, bool8 viable)
     else
     {
         x = gSprites[gHealthboxSpriteIds[battlerId]].x - SINGLES_Z_TRIGGER_POS_X_SLIDE;
-        y = gSprites[gHealthboxSpriteIds[battlerId]].y - SINGLES_Z_TRIGGER_POS_Y_DIFF, 0;
+        y = gSprites[gHealthboxSpriteIds[battlerId]].y - SINGLES_Z_TRIGGER_POS_Y_DIFF;
     }
 
     if (gBattleStruct->zmove.triggerSpriteId == 0xFF)
@@ -350,7 +350,6 @@ void HideZMoveTriggerSprite(void)
 
 static void ShowZMoveTriggerSprite(u8 battlerId)
 {
-    struct Sprite *sprite = &gSprites[gBattleStruct->zmove.triggerSpriteId];
     gBattleStruct->zmove.viable = TRUE;
     CreateZMoveTriggerSprite(battlerId, TRUE);
 }
@@ -535,13 +534,11 @@ static void ZMoveSelectionDisplayPower(u16 move, u16 zMove)
 static void ZMoveSelectionDisplayPpNumber(void)
 {
     u8 *txtPtr;
-    struct ChooseMoveStruct *moveInfo;
 
     if (gBattleResources->bufferA[gActiveBattler][2] == TRUE) // Check if we didn't want to display pp number
         return;
 
     SetPpNumbersPaletteInMoveSelection();
-    moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[gActiveBattler][4]);
     txtPtr = ConvertIntToDecimalStringN(gDisplayedStringBattle, 1, STR_CONV_MODE_RIGHT_ALIGN, 2);
     *(txtPtr)++ = CHAR_SLASH;
     ConvertIntToDecimalStringN(txtPtr, 1, STR_CONV_MODE_RIGHT_ALIGN, 2);
@@ -551,7 +548,6 @@ static void ZMoveSelectionDisplayPpNumber(void)
 static void ZMoveSelectionDisplayMoveType(u16 zMove)
 {
     u8 *txtPtr;
-    struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[gActiveBattler][4]);
     u8 zMoveType;
 
     GET_MOVE_TYPE(zMove, zMoveType);

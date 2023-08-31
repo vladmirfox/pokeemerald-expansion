@@ -754,7 +754,7 @@ void EReaderHelper_SerialCallback(void)
     {
     case EREADER_XFR_STATE_HANDSHAKE:
         REG_SIOMLT_SEND = 0xCCD0; // Handshake id
-        *(u64 *)recv = REG_SIOMLT_RECV;
+        memcpy(recv, (void*) &REG_SIOMLT_RECV, sizeof(recv)); // Copy vu64 into an array of u16
         for (i = 0, cnt1 = 0, cnt2 = 0; i < 4; i++)
         {
             if (recv[i] == 0xCCD0)
@@ -821,7 +821,7 @@ void EReaderHelper_SerialCallback(void)
         if (!sSendRecvMgr.isParent)
             REG_SIOMLT_SEND = sSendRecvMgr.checksumResult;
 
-        *(vu64 *)recv = REG_SIOMLT_RECV;
+        memcpy(recv, (void*) &REG_SIOMLT_RECV, sizeof(recv)); // Copy vu64 into an array of u16
         if (recv[1] == EREADER_CHECKSUM_OK || recv[1] == EREADER_CHECKSUM_ERR)
         {
             if (sSendRecvMgr.isParent == TRUE)

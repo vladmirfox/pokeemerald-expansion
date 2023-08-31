@@ -111,7 +111,7 @@ static bool32 ValidateEReaderConnection(void)
 
     backupIME = REG_IME;
     REG_IME = 0;
-    *(u64 *)handshakes = *(u64 *)gLink.handshakeBuffer;
+    memcpy(handshakes, gLink.handshakeBuffer, sizeof(handshakes));
     REG_IME = backupIME;
 
     // Validate that we are player 1, the EReader is player 2,
