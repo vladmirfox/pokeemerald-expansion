@@ -323,6 +323,43 @@ SINGLE_BATTLE_TEST("Roost's effect is lifted after Grassy Terrain's healing")
     }
 }
 
+// Tested in USUM
+SINGLE_BATTLE_TEST("Roost's suppression prevents Reflect Type from copying any Flying typing")
+{
+    GIVEN {
+        ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[0] == TYPE_NORMAL);
+        ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[1] == TYPE_FLYING);
+        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] == TYPE_PSYCHIC);
+        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[1] == TYPE_PSYCHIC);
+        PLAYER(SPECIES_SWELLOW) { HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_REFLECT_TYPE); }
+        TURN { MOVE(player, MOVE_EARTHQUAKE); MOVE(opponent, MOVE_REFLECT_TYPE); }
+        TURN { MOVE(player, MOVE_EARTHQUAKE); }
+    } SCENE {
+        // Turn 1: Reflect Type on Roosted Normal/Flying
+        MESSAGE("Swellow used Roost!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
+        MESSAGE("Swellow regained health!");
+        MESSAGE("Foe Wobbuffet used Reflect Type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, opponent);
+        MESSAGE("Foe Wobbuffet's type changed to match the Swellow's!");
+        // Turn 2: EQ hits, Reflect Type on non-Roosted Normal/Flying
+        MESSAGE("Swellow used Earthquake!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, player);
+        HP_BAR(opponent);
+        MESSAGE("Foe Wobbuffet used Reflect Type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, opponent);
+        MESSAGE("Foe Wobbuffet's type changed to match the Swellow's!");
+        // Turn 3: EQ has no effect
+        MESSAGE("Swellow used Earthquake!");
+        MESSAGE("It doesn't affect Foe Wobbuffet…");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, player);
+        NOT HP_BAR(opponent);
+    }
+}
+
 SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Levitate")
 {
     GIVEN {
@@ -407,4 +444,4 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Telekinesis
 // Tested in ORAS
 // Transform does not copy the Roost "status" either. 
 // Probably better as a Transform test.
-TO_DO_BATTLE_TEST("Roost's suppression does not prevent others Transforming into the user from copying its Flying-type");
+TO_DO_BATTLE_TEST("Roost's suppression does not prevent others who are Transforming into the user from copying its Flying-type");
