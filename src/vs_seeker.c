@@ -655,24 +655,8 @@ static u8 GetRunningBehaviorFromGraphicsId(u8 graphicsId)
 }
 
 static u16 GetTrainerFlagFromScript(const u8 *script)
-/*
- * The trainer flag is a little-endian short located +2 from
- * the script pointer, assuming the trainerbattle command is
- * first in the script.  Because scripts are unaligned, and
- * because the ARM processor requires shorts to be 16-bit
- * aligned, this function needs to perform explicit bitwise
- * operations to get the correct flag.
- *
- * 5c XX YY ZZ ...
- *       -- --
- */
 {
-    u16 trainerFlag;
-
-    script += 2;
-    trainerFlag = script[0];
-    trainerFlag |= script[1] << 8;
-    return trainerFlag;
+    return T1_READ_16(script+=2);
 }
 
 static void ClearAllTrainerRematchStates(void)
