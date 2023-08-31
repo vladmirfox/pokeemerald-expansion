@@ -8,7 +8,7 @@
 
 static EWRAM_DATA u8 sEscalatorAnim_TaskId = 0;
 
-static void SetEscalatorMetatile(u8 taskId, const s16 *metatileIds, u16 metatileMasks);
+static void SetEscalatorMetatile(u8 taskId, const u16 *metatileIds, u16 metatileMasks);
 static void Task_DrawEscalator(u8 taskId);
 
 #define ESCALATOR_STAGES     3
@@ -63,7 +63,7 @@ static const u16 sEscalatorMetatiles_2F_2[ESCALATOR_STAGES] = {
 #define tPlayerX          data[4]
 #define tPlayerY          data[5]
 
-static void SetEscalatorMetatile(u8 taskId, const s16 *metatileIds, u16 metatileMasks)
+static void SetEscalatorMetatile(u8 taskId, const u16 *metatileIds, u16 metatileMasks)
 {
     s16 x = gTasks[taskId].tPlayerX - 1;
     s16 y = gTasks[taskId].tPlayerY - 1;

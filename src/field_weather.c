@@ -496,10 +496,10 @@ static void ApplyColorMap(u8 startPalIndex, u8 numPalettes, s8 colorMapIndex)
                 for (i = 0; i < 16; i++)
                 {
                     // Apply color map to the original color.
-                    struct RGBColor baseColor = *(struct RGBColor *)&gPlttBufferUnfaded[palOffset];
-                    r = colorMap[baseColor.r];
-                    g = colorMap[baseColor.g];
-                    b = colorMap[baseColor.b];
+                    u16 baseColor = gPlttBufferUnfaded[palOffset];
+                    r = colorMap[GET_R(baseColor)];
+                    g = colorMap[GET_G(baseColor)];
+                    b = colorMap[GET_B(baseColor)];
                     gPlttBufferFaded[palOffset++] = RGB2(r, g, b);
                 }
             }
@@ -547,10 +547,9 @@ static void ApplyColorMapWithBlend(u8 startPalIndex, u8 numPalettes, s8 colorMap
     u16 palOffset;
     u16 curPalIndex;
     u16 i;
-    struct RGBColor color = *(struct RGBColor *)&blendColor;
-    u8 rBlend = color.r;
-    u8 gBlend = color.g;
-    u8 bBlend = color.b;
+    u8 rBlend = GET_R(blendColor);
+    u8 gBlend = GET_G(blendColor);
+    u8 bBlend = GET_B(blendColor);
 
     palOffset = PLTT_ID(startPalIndex);
     numPalettes += startPalIndex;
@@ -576,10 +575,10 @@ static void ApplyColorMapWithBlend(u8 startPalIndex, u8 numPalettes, s8 colorMap
 
             for (i = 0; i < 16; i++)
             {
-                struct RGBColor baseColor = *(struct RGBColor *)&gPlttBufferUnfaded[palOffset];
-                u8 r = colorMap[baseColor.r];
-                u8 g = colorMap[baseColor.g];
-                u8 b = colorMap[baseColor.b];
+                u16 baseColor = gPlttBufferUnfaded[palOffset];
+                u8 r = colorMap[GET_R(baseColor)];
+                u8 g = colorMap[GET_G(baseColor)];
+                u8 b = colorMap[GET_B(baseColor)];
 
                 // Apply color map and target blend color to the original color.
                 r += ((rBlend - r) * blendCoeff) >> 4;
@@ -595,7 +594,6 @@ static void ApplyColorMapWithBlend(u8 startPalIndex, u8 numPalettes, s8 colorMap
 
 static void ApplyDroughtColorMapWithBlend(s8 colorMapIndex, u8 blendCoeff, u16 blendColor)
 {
-    struct RGBColor color;
     u8 rBlend;
     u8 gBlend;
     u8 bBlend;
@@ -604,10 +602,9 @@ static void ApplyDroughtColorMapWithBlend(s8 colorMapIndex, u8 blendCoeff, u16 b
     u16 i;
 
     colorMapIndex = -colorMapIndex - 1;
-    color = *(struct RGBColor *)&blendColor;
-    rBlend = color.r;
-    gBlend = color.g;
-    bBlend = color.b;
+    rBlend = GET_R(blendColor);
+    gBlend = GET_G(blendColor);
+    bBlend = GET_B(blendColor);
     palOffset = 0;
     for (curPalIndex = 0; curPalIndex < 32; curPalIndex++)
     {
@@ -622,21 +619,20 @@ static void ApplyDroughtColorMapWithBlend(s8 colorMapIndex, u8 blendCoeff, u16 b
             for (i = 0; i < 16; i++)
             {
                 u32 offset;
-                struct RGBColor color1;
-                struct RGBColor color2;
+                u16 color1, color2;
                 u8 r1, g1, b1;
                 u8 r2, g2, b2;
 
-                color1 = *(struct RGBColor *)&gPlttBufferUnfaded[palOffset];
-                r1 = color1.r;
-                g1 = color1.g;
-                b1 = color1.b;
+                color1 = gPlttBufferUnfaded[palOffset];
+                r1 = GET_R(color1);
+                g1 = GET_G(color1);
+                b1 = GET_B(color1);
 
                 offset = ((b1 & 0x1E) << 7) | ((g1 & 0x1E) << 3) | ((r1 & 0x1E) >> 1);
-                color2 = *(struct RGBColor *)&sDroughtWeatherColors[colorMapIndex][offset];
-                r2 = color2.r;
-                g2 = color2.g;
-                b2 = color2.b;
+                color2 = sDroughtWeatherColors[colorMapIndex][offset];
+                r2 = GET_R(color2);
+                g2 = GET_G(color2);
+                b2 = GET_G(color2);
 
                 r2 += ((rBlend - r2) * blendCoeff) >> 4;
                 g2 += ((gBlend - g2) * blendCoeff) >> 4;
@@ -650,17 +646,15 @@ static void ApplyDroughtColorMapWithBlend(s8 colorMapIndex, u8 blendCoeff, u16 b
 
 static void ApplyFogBlend(u8 blendCoeff, u16 blendColor)
 {
-    struct RGBColor color;
     u8 rBlend;
     u8 gBlend;
     u8 bBlend;
     u16 curPalIndex;
 
     BlendPalette(BG_PLTT_ID(0), 16 * 16, blendCoeff, blendColor);
-    color = *(struct RGBColor *)&blendColor;
-    rBlend = color.r;
-    gBlend = color.g;
-    bBlend = color.b;
+    rBlend = GET_R(blendColor);
+    gBlend = GET_G(blendColor);
+    bBlend = GET_B(blendColor);
 
     for (curPalIndex = 16; curPalIndex < 32; curPalIndex++)
     {
@@ -671,10 +665,10 @@ static void ApplyFogBlend(u8 blendCoeff, u16 blendColor)
 
             while (palOffset < palEnd)
             {
-                struct RGBColor color = *(struct RGBColor *)&gPlttBufferUnfaded[palOffset];
-                u8 r = color.r;
-                u8 g = color.g;
-                u8 b = color.b;
+                u16 color = gPlttBufferUnfaded[palOffset];
+                u8 r = GET_R(color);
+                u8 g = GET_G(color);
+                u8 b = GET_B(color);
 
                 r += ((28 - r) * 3) >> 2;
                 g += ((31 - g) * 3) >> 2;
@@ -855,8 +849,7 @@ void ApplyWeatherColorMapToPal(u8 paletteIndex)
     ApplyColorMap(paletteIndex, 1, gWeatherPtr->colorMapIndex);
 }
 
-// Unused
-static bool8 IsFirstFrameOfWeatherFadeIn(void)
+static bool8 UNUSED IsFirstFrameOfWeatherFadeIn(void)
 {
     if (gWeatherPtr->palProcessingState == WEATHER_PAL_STATE_SCREEN_FADING_IN)
         return gWeatherPtr->fadeInFirstFrame;
@@ -870,7 +863,7 @@ void LoadCustomWeatherSpritePalette(const u16 *palette)
     UpdateSpritePaletteWithWeather(gWeatherPtr->weatherPicSpritePalIndex);
 }
 
-static void LoadDroughtWeatherPalette(u8 *palsIndex, u8 *palsOffset)
+static void LoadDroughtWeatherPalette(s8 *palsIndex, u8 *palsOffset)
 {
     *palsIndex = 0x20;
     *palsOffset = 0x20;
@@ -997,8 +990,8 @@ bool8 Weather_UpdateBlend(void)
     return FALSE;
 }
 
-// Unused. Uses the same numbering scheme as the coord events
-static void SetFieldWeather(u8 weather)
+// Uses the same numbering scheme as the coord events
+static void UNUSED SetFieldWeather(u8 weather)
 {
     switch (weather)
     {

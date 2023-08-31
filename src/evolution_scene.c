@@ -1647,8 +1647,7 @@ static void StartBgAnimation(bool8 isLink)
     CreateBgAnimTask(isLink);
 }
 
-// Unused
-static void PauseBgPaletteAnim(void)
+static void UNUSED PauseBgPaletteAnim(void)
 {
     u8 taskId = FindTaskIdByFunc(Task_UpdateBgPalette);
 
