@@ -5768,7 +5768,7 @@ bool32 TryItemUseFusionChange(u8 taskId, TaskFunc task)
     if (targetSpecies != SPECIES_NONE)
     {
         gPartyMenuUseExitCallback = TRUE;
-        SetWordTaskArg(taskId, 3, (u32)task);
+        SetWordTaskArg(taskId, tNextFunc, (u32)task);
         gTasks[taskId].func = Task_TryItemUseFusionChange;
         gTasks[taskId].tState = 0;
         gTasks[taskId].tTargetSpecies = targetSpecies;
@@ -5878,11 +5878,14 @@ static void Task_TryItemUseFusionChange(u8 taskId)
         gTasks[taskId].tState++;
         break;
     case 5:
-        GetMonNickname(mon, gStringVar1);
-        StringExpandPlaceholders(gStringVar4, gText_PkmnTransformed);
-        DisplayPartyMenuMessage(gStringVar4, FALSE);
-        ScheduleBgCopyTilemapToVram(2);
-        gTasks[taskId].tState++;
+        if (IsCryFinished())
+        {
+            GetMonNickname(mon, gStringVar1);
+            StringExpandPlaceholders(gStringVar4, gText_PkmnTransformed);
+            DisplayPartyMenuMessage(gStringVar4, FALSE);
+            ScheduleBgCopyTilemapToVram(2);
+            gTasks[taskId].tState++;
+        }
         break;
     case 6:
         if (!IsPartyMenuTextPrinterActive())
