@@ -130,7 +130,7 @@ void BattleAI_SetupItems(void)
 static u32 GetWildAiFlags(void)
 {
     u8 avgLevel = GetMonData(&gEnemyParty[0], MON_DATA_LEVEL);
-    u32 flags;
+    u32 flags = 0;
 
     if (IsDoubleBattle())
         avgLevel = (GetMonData(&gEnemyParty[0], MON_DATA_LEVEL) + GetMonData(&gEnemyParty[1], MON_DATA_LEVEL)) / 2;
@@ -186,7 +186,7 @@ void BattleAI_SetupFlags(void)
 // sBattler_AI set in ComputeBattleAiScores
 void BattleAI_SetupAIData(u8 defaultScoreMoves)
 {
-    s32 i, move, dmg;
+    s32 i;
     u8 moveLimitations;
 
     // Clear AI data but preserve the flags.
@@ -480,7 +480,7 @@ static u8 ChooseMoveOrAction_Singles(void)
     u8 currentMoveArray[MAX_MON_MOVES];
     u8 consideredMoveArray[MAX_MON_MOVES];
     u32 numOfBestMoves;
-    s32 i, id;
+    s32 i;
     u32 flags = AI_THINKING_STRUCT->aiFlags;
 
     AI_DATA->partnerMove = 0;   // no ally
@@ -1870,7 +1870,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 4;
             break;
         case EFFECT_RECOIL_IF_MISS:
-            if (AI_DATA->abilities[battlerAtk] != ABILITY_MAGIC_GUARD && AI_GetMoveAccuracy(battlerAtk, battlerDef, move) < 75)
+            if (AI_DATA->abilities[battlerAtk] != ABILITY_MAGIC_GUARD && accuracy < 75)
                 score -= 6;
             break;
         case EFFECT_RECOIL_25:
@@ -3188,7 +3188,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         if (gBattleMons[battlerDef].statStages[STAT_EVASION] > 6 || gBattleMons[battlerAtk].statStages[STAT_ACC] < 6)
         {
             u32 mostDmgMoveId = GetAIMostDamagingMoveId(battlerAtk, battlerDef);
-            u32 *dmgs = AI_DATA->simulatedDmg[battlerAtk][battlerDef];
+            s32 *dmgs = AI_DATA->simulatedDmg[battlerAtk][battlerDef];
             if (GetNoOfHitsToKO(dmgs[mostDmgMoveId], gBattleMons[battlerDef].hp) == GetNoOfHitsToKO(dmgs[AI_THINKING_STRUCT->movesetIndex], gBattleMons[battlerDef].hp))
                 score++;
         }

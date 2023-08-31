@@ -2588,28 +2588,28 @@ static void AnimPencil_Step(struct Sprite *sprite)
 static void AnimBlendThinRing(struct Sprite *sprite)
 {
     u8 battler = 0;
-    u16 sp0 = 0;
-    u16 sp1 = 0;
-    u8 r4;
+    s16 x = 0;
+    s16 y = 0;
+    bool8 respectOffsets = gBattleAnimArgs[3] ^ 1;
+    u8 xCoord;
 
     if (gBattleAnimArgs[2] == 0)
         battler = gBattleAnimAttacker;
     else
         battler = gBattleAnimTarget;
 
-    r4 = gBattleAnimArgs[3] ^ 1;
     if (IsDoubleBattle() && IsBattlerSpriteVisible(BATTLE_PARTNER(battler)))
     {
-        SetAverageBattlerPositions(battler, r4, &sp0, &sp1);
-        if (r4 == 0)
-            r4 = GetBattlerSpriteCoord(battler, BATTLER_COORD_X);
+        SetAverageBattlerPositions(battler, respectOffsets, &x, &y);
+        if (respectOffsets == 0)
+            xCoord = GetBattlerSpriteCoord(battler, BATTLER_COORD_X);
         else
-            r4 = GetBattlerSpriteCoord(battler, BATTLER_COORD_X_2);
+            xCoord = GetBattlerSpriteCoord(battler, BATTLER_COORD_X_2);
 
         if (GetBattlerSide(battler) != B_SIDE_PLAYER)
-            gBattleAnimArgs[0] -= (sp0 - r4) - gBattleAnimArgs[0];  // This is weird.
+            gBattleAnimArgs[0] -= (x - xCoord) - gBattleAnimArgs[0];  // This is weird.
         else
-            gBattleAnimArgs[0] = sp0 - r4;
+            gBattleAnimArgs[0] = x - xCoord;
     }
 
     sprite->callback = AnimSpriteOnMonPos;

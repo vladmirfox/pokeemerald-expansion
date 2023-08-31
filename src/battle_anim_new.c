@@ -81,8 +81,8 @@ static void SpriteCB_HorizontalSliceStep(struct Sprite *sprite);
 static void SpriteCB_HorizontalSlice(struct Sprite *sprite);
 static void SpriteCB_LashOutStrike(struct Sprite* sprite);
 static void AnimTask_TwinkleTackleLaunchStep(u8 taskId);
-static void SpriteCB_ShellSmashShell(struct Sprite* sprite);
-static void SpriteCB_ShellSmashShell_DestroyDuringFadeOut(struct Sprite* sprite);
+//static void SpriteCB_ShellSmashShell(struct Sprite* sprite);
+//static void SpriteCB_ShellSmashShell_DestroyDuringFadeOut(struct Sprite* sprite);
 static void SpriteCB_AnimSpriteOnTargetSideCentre(struct Sprite *sprite);
 static void SpriteCB_SpriteOnMonUntilAffineAnimEnds(struct Sprite* sprite);
 static void SpriteCB_MoveSpriteUpwardsForDurationStep(struct Sprite* sprite);
@@ -4151,7 +4151,7 @@ const struct SpriteTemplate gSkitterSmackImpactTemplate =
 };
 
 // triple axel
-const struct SpriteTemplate gTripleAxelIceCrystalSpriteTemplate = 
+const struct SpriteTemplate gTripleAxelIceCrystalSpriteTemplate =
 {
     .tileTag = ANIM_TAG_ICE_CRYSTALS,
     .paletteTag = ANIM_TAG_ICE_CRYSTALS,
@@ -4173,7 +4173,7 @@ static const union AffineAnimCmd* const sSpriteAffineAnimTable_WingAttackFeather
 {
 	sSpriteAffineAnim_WingAttackFeather,
 };
-const struct SpriteTemplate gDualWingbeatFeatherSpriteTemplate = 
+const struct SpriteTemplate gDualWingbeatFeatherSpriteTemplate =
 {
     .tileTag = ANIM_TAG_WHITE_FEATHER,
     .paletteTag = ANIM_TAG_WHITE_FEATHER,
@@ -4192,7 +4192,7 @@ const struct SpriteTemplate gSpriteTemplate_LargeCrossImpact = {
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = sSpriteAffineAnimTable_LargeHailRock,
-    .callback = AnimCrossImpact 
+    .callback = AnimCrossImpact
 };
 
 // expanding force
@@ -4464,7 +4464,7 @@ const struct SpriteTemplate gSpriteTemplate_GlacialLance = {
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = sSpriteAffineAnimTable_GlacialLance,
-    .callback = SpriteCB_GlacialLance 
+    .callback = SpriteCB_GlacialLance
 };
 
 // eerie spell
@@ -4611,7 +4611,7 @@ const struct SpriteTemplate gSpriteTemplate_HeadlongRushImpact = {
     .images = NULL,
     .affineAnims = sSpriteAffineAnimTable_DrainPunchFist,
     .callback = AnimHitSplatBasic
-}; 
+};
 const struct SpriteTemplate gSpriteTemplate_MaxQuakeDirtGeyser = {
     .tileTag = ANIM_TAG_MUD_SAND,
     .paletteTag = ANIM_TAG_MUD_SAND,
@@ -4696,7 +4696,7 @@ const struct SpriteTemplate gSpriteTemplate_CeaselessEdgeSlash = {
     .anims = gSlashSliceAnimTable,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_FlippableSlash 
+    .callback = SpriteCB_FlippableSlash
 };
 
 // wildbolt storm
@@ -4758,7 +4758,7 @@ const struct SpriteTemplate gSpriteTemplate_BitterMaliceRing = {
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gAffineAnims_ShadowBall,
-    .callback = AnimParticleInVortex 
+    .callback = AnimParticleInVortex
 };
 
 //ultra burst
@@ -8297,7 +8297,7 @@ void AnimTask_AllBattlersVisible(u8 taskId)
 	{
 		spriteId = gBattlerSpriteIds[i];
 		if (IsBattlerSpriteVisible(i) && spriteId != 0xFF)
-			gSprites[spriteId].invisible = FALSE;		
+			gSprites[spriteId].invisible = FALSE;
 	}
 
 	DestroyAnimVisualTask(taskId);
@@ -8693,7 +8693,7 @@ void SpriteCB_HorizontalSliceStep(struct Sprite *sprite)
 static void SpriteCB_LashOutStrike(struct Sprite* sprite)
 {
 	bool8 flip = GetBattlerSide(gBattleAnimTarget) == B_SIDE_PLAYER;
-	
+
 	if (gBattleAnimArgs[2])
 		flip ^= 1;
 
@@ -8715,6 +8715,7 @@ static void SpriteCB_LashOutStrike(struct Sprite* sprite)
 	sprite->callback = AnimKnockOffStrike_Step;
 }
 
+/* TODO - FIX
 //Moves the shells towards the attacker and leaves them there until they fade out
 //arg 0: Initial x-pos
 //arg 1: Final x-pos
@@ -8742,6 +8743,8 @@ static void SpriteCB_ShellSmashShell_DestroyDuringFadeOut(struct Sprite* sprite)
 	if (GetGpuReg(REG_OFFSET_BLDALPHA) >= BLDALPHA_BLEND(0, 8)) //Fade out 1/2 done
 		DestroyAnimSprite(sprite);
 }
+
+*/
 
 static void SpriteCB_AnimSpriteOnTargetSideCentre(struct Sprite *sprite)
 {
@@ -8871,7 +8874,7 @@ static void SpriteCB_SteelRoller(struct Sprite* sprite)
 
 	sprite->x2 = gBattleAnimArgs[0];
 	sprite->y2 += gBattleAnimArgs[1];
-	
+
 	sprite->data[4] = gBattleAnimArgs[3]; //Left/Right distance
 	sprite->data[5] = gBattleAnimArgs[4]; //Left/Right speed
 
@@ -8930,10 +8933,10 @@ static void SpriteCB_DragonEnergyShot(struct Sprite* sprite)
 	else
 	{
 		y = 0;
-		
+
 		if (IsBattlerSpritePresent(def1))
 			y = GetBattlerSpriteCoord(def1, BATTLER_COORD_Y_PIC_OFFSET);
-		
+
 		if (IsBattlerSpritePresent(def2))
 			y += GetBattlerSpriteCoord(def2, BATTLER_COORD_Y_PIC_OFFSET);
 
@@ -9018,13 +9021,13 @@ static void SpriteCB_GlacialLance(struct Sprite* sprite)
 {
 	u8 def1 = gBattleAnimTarget;
 	u8 def2 = BATTLE_PARTNER(def1);
-	
+
 	InitSpritePosToAnimAttacker(sprite, TRUE);
 	sprite->data[5] = gBattleAnimArgs[4];
 	sprite->data[6] = gBattleAnimArgs[5];
-	
+
 	sprite->data[0] = gBattleAnimArgs[6];
-	
+
 	if (!IsDoubleBattle() || IsAlly(gBattleAnimAttacker, gBattleAnimTarget))
 	{
 		sprite->data[2] = GetBattlerSpriteCoord(def1, BATTLER_COORD_X_2) + gBattleAnimArgs[2]; //Converge on target

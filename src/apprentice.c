@@ -566,7 +566,7 @@ static void CreateApprenticeMenu(u8 menu)
 {
     u8 i;
     u8 windowId;
-    const u8 *strings[3];
+    const u8 *strings[3] = {NULL};
     u8 count = 2;
     u8 width;
     u8 left;
@@ -1279,7 +1279,7 @@ const u8 *GetApprenticeNameInLanguage(u32 apprenticeId, s32 language)
 }
 
 // Functionally unused
-static void Task_SwitchToFollowupFuncAfterButtonPress(u8 taskId)
+static void UNUSED Task_SwitchToFollowupFuncAfterButtonPress(u8 taskId)
 {
     if (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
         SwitchTaskToFollowupFunc(taskId);
@@ -1303,7 +1303,7 @@ static void ExecuteFuncAfterButtonPress(void (*func)(void))
 }
 
 // Unused
-static void ExecuteFollowupFuncAfterButtonPress(TaskFunc task)
+static void UNUSED ExecuteFollowupFuncAfterButtonPress(TaskFunc task)
 {
     u8 taskId = CreateTask(Task_SwitchToFollowupFuncAfterButtonPress, 1);
     SetTaskFuncWithFollowupFunc(taskId, Task_SwitchToFollowupFuncAfterButtonPress, task);

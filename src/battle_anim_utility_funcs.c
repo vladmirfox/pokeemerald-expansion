@@ -69,6 +69,7 @@ void AnimTask_BlendBattleAnimPalExclude(u8 taskId)
         selectedPalettes = 0;
         // fall through
     case ANIM_ATTACKER:
+    default:
         animBattlers[0] = gBattleAnimAttacker;
         break;
     case 3:
@@ -272,13 +273,29 @@ static void AnimMonTrace(struct Sprite *sprite)
     }
 }
 
+// Needed to get around -Werror=strict-aliasing
+struct BgCnt GetBgCntReg(u32 regOffset)
+{
+    struct BgCnt bgCnt;
+    u16 value = GetGpuReg(regOffset);
+    memcpy(&bgCnt, &value, sizeof(u16));
+    return bgCnt;
+}
+
+void SetBgCntReg(u32 regOffset, struct BgCnt bgCntValue)
+{
+    u16 value;
+    memcpy(&value, &bgCntValue, sizeof(u16));
+    SetGpuReg(regOffset, value);
+}
+
 // Only used by Curse for non-Ghost mons
 void AnimTask_DrawFallingWhiteLinesOnAttacker(u8 taskId)
 {
     u16 species;
     int spriteId, newSpriteId;
     u16 var0;
-    u16 bg1Cnt;
+    struct BgCnt bg1Cnt;
     struct BattleAnimBgData animBgData;
 
     var0 = 0;
@@ -291,15 +308,15 @@ void AnimTask_DrawFallingWhiteLinesOnAttacker(u8 taskId)
     SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJWIN_ON);
     SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
     SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(8, 12));
-    bg1Cnt = GetGpuReg(REG_OFFSET_BG1CNT);
-    ((struct BgCnt *)&bg1Cnt)->priority = 0;
-    ((struct BgCnt *)&bg1Cnt)->screenSize = 0;
-    SetGpuReg(REG_OFFSET_BG1CNT, bg1Cnt);
+    bg1Cnt = GetBgCntReg(REG_OFFSET_BG1CNT);
+    bg1Cnt.priority = 0;
+    bg1Cnt.screenSize = 0;
+    SetBgCntReg(REG_OFFSET_BG1CNT, bg1Cnt);
 
     if (!IsContest())
     {
-        ((struct BgCnt *)&bg1Cnt)->charBaseBlock = 1;
-        SetGpuReg(REG_OFFSET_BG1CNT, bg1Cnt);
+        bg1Cnt.charBaseBlock = 1;
+        SetBgCntReg(REG_OFFSET_BG1CNT, bg1Cnt);
     }
 
     if (IsDoubleBattle() && !IsContest())
@@ -310,8 +327,8 @@ void AnimTask_DrawFallingWhiteLinesOnAttacker(u8 taskId)
             if (IsBattlerSpriteVisible(BATTLE_PARTNER(gBattleAnimAttacker)) == TRUE)
             {
                 gSprites[gBattlerSpriteIds[BATTLE_PARTNER(gBattleAnimAttacker)]].oam.priority -= 1;
-                ((struct BgCnt *)&bg1Cnt)->priority = 1;
-                SetGpuReg(REG_OFFSET_BG1CNT, bg1Cnt);
+                bg1Cnt.priority = 1;
+                SetBgCntReg(REG_OFFSET_BG1CNT, bg1Cnt);
                 var0 = 1;
             }
         }
@@ -347,7 +364,7 @@ static void AnimTask_DrawFallingWhiteLinesOnAttacker_Step(u8 taskId)
 {
     struct BattleAnimBgData animBgData;
     struct Sprite *sprite;
-    u16 bg1Cnt;
+    struct BgCnt bg1Cnt;
 
     gTasks[taskId].data[10] += 4;
     gBattle_BG1_Y -= 4;
@@ -366,9 +383,9 @@ static void AnimTask_DrawFallingWhiteLinesOnAttacker_Step(u8 taskId)
                                        | WINOUT_WINOBJ_BG_ALL | WINOUT_WINOBJ_OBJ | WINOUT_WINOBJ_CLR);
             if (!IsContest())
             {
-                bg1Cnt = GetGpuReg(REG_OFFSET_BG1CNT);
-                ((struct BgCnt *)&bg1Cnt)->charBaseBlock = 0;
-                SetGpuReg(REG_OFFSET_BG1CNT, bg1Cnt);
+                bg1Cnt = GetBgCntReg(REG_OFFSET_BG1CNT);
+                bg1Cnt.charBaseBlock = 0;
+                SetBgCntReg(REG_OFFSET_BG1CNT, bg1Cnt);
             }
 
             SetGpuReg(REG_OFFSET_DISPCNT, GetGpuReg(REG_OFFSET_DISPCNT) ^ DISPCNT_OBJWIN_ON);
@@ -768,7 +785,7 @@ void StartMonScrollingBgMask(u8 taskId, int unused, u16 scrollSpeed, u8 battler,
 {
     u16 species;
     u8 spriteId, spriteId2;
-    u16 bg1Cnt;
+    struct BgCnt bg1Cnt;
     struct BattleAnimBgData animBgData;
     u8 battler2;
 
@@ -787,16 +804,16 @@ void StartMonScrollingBgMask(u8 taskId, int unused, u16 scrollSpeed, u8 battler,
     SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJWIN_ON);
     SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_TGT2_ALL | BLDCNT_EFFECT_BLEND);
     SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
-    bg1Cnt = GetGpuReg(REG_OFFSET_BG1CNT);
-    ((vBgCnt *)&bg1Cnt)->priority = 0;
-    ((vBgCnt *)&bg1Cnt)->screenSize = 0;
-    ((vBgCnt *)&bg1Cnt)->areaOverflowMode = 1;
+    bg1Cnt = GetBgCntReg(REG_OFFSET_BG1CNT);
+    bg1Cnt.priority = 0;
+    bg1Cnt.screenSize = 0;
+    bg1Cnt.areaOverflowMode = 1;
     if (!IsContest())
     {
-        ((vBgCnt *)&bg1Cnt)->charBaseBlock = 1;
+        bg1Cnt.charBaseBlock = 1;
     }
 
-    SetGpuReg(REG_OFFSET_BG1CNT, bg1Cnt);
+    SetBgCntReg(REG_OFFSET_BG1CNT, bg1Cnt);
 
     if (IsContest())
     {
@@ -873,9 +890,9 @@ static void UpdateMonScrollingBgMask(u8 taskId)
                                            | WINOUT_WINOBJ_BG_ALL | WINOUT_WINOBJ_OBJ | WINOUT_WINOBJ_CLR);
                 if (!IsContest())
                 {
-                    u16 bg1Cnt = GetGpuReg(REG_OFFSET_BG1CNT);
-                    ((vBgCnt *)&bg1Cnt)->charBaseBlock = 0;
-                    SetGpuReg(REG_OFFSET_BG1CNT, bg1Cnt);
+                    struct BgCnt bg1Cnt = GetBgCntReg(REG_OFFSET_BG1CNT);
+                    bg1Cnt.charBaseBlock = 0;
+                    SetBgCntReg(REG_OFFSET_BG1CNT, bg1Cnt);
                 }
 
                 SetGpuReg(REG_OFFSET_DISPCNT, GetGpuReg(REG_OFFSET_DISPCNT) ^ DISPCNT_OBJWIN_ON);

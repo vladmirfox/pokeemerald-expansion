@@ -142,7 +142,7 @@ static bool8 ShouldSwitchIfWonderGuard(void)
 static bool8 FindMonThatAbsorbsOpponentsMove(void)
 {
     u8 battlerIn1, battlerIn2;
-    u8 numAbsorbingAbilities = 0; 
+    u8 numAbsorbingAbilities = 0;
     u16 absorbingTypeAbilities[3]; // Array size is maximum number of absorbing abilities for a single type
     s32 firstId;
     s32 lastId; // + 1
@@ -421,7 +421,6 @@ static bool8 ShouldSwitchIfGameStatePrompt(void)
 
 static bool8 ShouldSwitchIfAbilityBenefit(void)
 {
-    s32 monToSwitchId;
     s32 moduloChance = 4; //25% Chance Default
     s32 chanceReducer = 1; //No Reduce default. Increase to reduce
     u8 battlerId = GetBattlerPosition(gActiveBattler);
@@ -896,7 +895,7 @@ static u32 GetBestMonTypeMatchup(struct Pokemon *party, int firstId, int lastId,
 
 static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 invalidMons, u32 opposingBattler)
 {
-    int i, j;
+    int i;
     int dmg, bestDmg = 0;
     int bestMonId = PARTY_SIZE;
 
@@ -928,7 +927,7 @@ u8 GetMostSuitableMonToSwitchInto(void)
     s32 firstId = 0;
     s32 lastId = 0; // + 1
     struct Pokemon *party;
-    s32 i, j, aliveCount = 0;
+    s32 i, aliveCount = 0;
     u32 invalidMons = 0, aceMonId = PARTY_SIZE;
 
     if (*(gBattleStruct->monToSwitchIntoId + gActiveBattler) != PARTY_SIZE)
@@ -1006,8 +1005,6 @@ u8 GetMostSuitableMonToSwitchInto(void)
 
 static bool32 AiExpectsToFaintPlayer(void)
 {
-    bool32 canFaintPlayer;
-    u32 i;
     u8 target = gBattleStruct->aiChosenTarget[gActiveBattler];
 
     if (gBattleStruct->aiMoveOrAction[gActiveBattler] > 3)
@@ -1061,7 +1058,6 @@ static bool8 ShouldUseItem(void)
     {
         u16 item;
         const u8 *itemEffects;
-        u8 paramOffset;
         u8 battlerSide;
 
         item = gBattleResources->battleHistory->trainerItems[i];
