@@ -9234,7 +9234,6 @@ const struct Item gItems[] =
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Fusion,
-        .secondaryId = FORM_ITEM_USE,
     },
 
     [ITEM_ZYGARDE_CUBE] =
@@ -9269,7 +9268,6 @@ const struct Item gItems[] =
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Fusion,
-        .secondaryId = FORM_ITEM_USE,
     },
 
     [ITEM_N_LUNARIZER] =
@@ -9281,7 +9279,6 @@ const struct Item gItems[] =
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Fusion,
-        .secondaryId = FORM_ITEM_USE,
     },
 
     [ITEM_REINS_OF_UNITY] =
@@ -9293,7 +9290,6 @@ const struct Item gItems[] =
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_Fusion,
-        .secondaryId = FORM_ITEM_USE,
     },
 
 // Battle Mechanic Key Items

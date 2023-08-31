@@ -5934,7 +5934,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
                 task->func = taskFunc;
                 return;
             }
-            for (i = 0; itemFusion[i].targetSpecies1 != FORM_CHANGE_END; i++) // Loops through fusion table and checks if the mon can be unfused
+            for (i = 0; itemFusion[i].targetSpecies1 != FORM_CHANGE_TERMINATOR; i++) // Loops through fusion table and checks if the mon can be unfused
             {
                 if(gPokemonStoragePtr->fusions[FusionStorageIndex(itemFusion[i].targetSpecies2)].level == 0)
                     continue;
@@ -5956,7 +5956,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
         case FUSE_MON:
             if(task->fusionType == FUSE_MON) // Cancel If Second Mon is Another First Fusion Mon
                 break;
-            for (i = 0; itemFusion[i].targetSpecies1 != FORM_CHANGE_END; i++) // Run through the Fusion table for each species and check if the item matches one of the entries
+            for (i = 0; itemFusion[i].targetSpecies1 != FORM_CHANGE_TERMINATOR; i++) // Run through the Fusion table for each species and check if the item matches one of the entries
             {
                 if(itemFusion[i].itemId == gSpecialVar_ItemId)
                 {
@@ -5977,7 +5977,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
                 break;
             if(gPokemonStoragePtr->fusions[FusionStorageIndex(species)].level != 0)
                 break;
-            for (i = 0; itemFusion[i].targetSpecies1 != FORM_CHANGE_END; i++) // run through fusion table and check if the fusion works
+            for (i = 0; itemFusion[i].targetSpecies1 != FORM_CHANGE_TERMINATOR; i++) // run through fusion table and check if the fusion works
             {
                 if((itemFusion[i].itemId == gSpecialVar_ItemId) && (itemFusion[i].targetSpecies2 == species) && (itemFusion[i].targetSpecies1 == task->firstFusion))
                 {
