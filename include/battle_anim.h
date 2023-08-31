@@ -234,6 +234,9 @@ bool32 IsCriticalCapture(void);
 // battle_anim_utility_funcs.c
 void InitStatsChangeAnimation(u8);
 void StartMonScrollingBgMask(u8 taskId, int unused, u16 scrollSpeed, u8 battler, bool8 includePartner, u8 numFadeSteps, u8 fadeStepDelay, u8 duration, const u32 *gfx, const u32 *tilemap, const u32 *palette);
+// Needed to get around -Werror=strict-aliasing
+struct BgCnt GetBgCntReg(u32 regOffset);
+void SetBgCntReg(u32 regOffset, struct BgCnt bgCntValue);
 
 // battle_anim_effects_1.c
 void AnimFalseSwipeSlice_Step3(struct Sprite *);
