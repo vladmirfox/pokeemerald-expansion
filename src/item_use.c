@@ -1380,7 +1380,7 @@ void FieldUseFunc_VsSeeker(u8 taskId)
 {
     if (IsValidLocationForVsSeeker())
     {
-        sItemUseOnFieldCB = Task_VsSeeker_0;
+        sItemUseOnFieldCB = Task_InitVsSeekerAndCheckForTrainersOnScreen;
         SetUpItemUseOnFieldCallback(taskId);
     }
     else

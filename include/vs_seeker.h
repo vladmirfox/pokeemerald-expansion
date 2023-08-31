@@ -3,7 +3,7 @@
 
 #include "global.h"
 
-void Task_VsSeeker_0(u8 taskId);
+void Task_InitVsSeekerAndCheckForTrainersOnScreen(u8 taskId);
 bool8 UpdateVsSeekerStepCounter(void);
 void MapResetTrainerRematches(u16 mapGroup, u16 mapNum);
 void ClearRematchMovementByTrainerId(void);

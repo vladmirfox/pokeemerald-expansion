@@ -82,10 +82,10 @@ static void VsSeekerResetInBagStepCounter(void);
 static void VsSeekerResetChargingStepCounter(void);
 static void Task_ResetObjectsRematchWantedState(u8 taskId);
 static void ResetMovementOfRematchableTrainers(void);
-static void Task_VsSeeker_1(u8 taskId);
-static void Task_VsSeeker_2(u8 taskId);
+static void Task_VsSeekerFrameCountdown(u8 taskId);
+static void Task_VsSeeker_PlaySoundAndGetResponseCode(u8 taskId);
 static void GatherNearbyTrainerInfo(void);
-static void Task_VsSeeker_3(u8 taskId);
+static void Task_VsSeeker_ShowResponseToPlayer(u8 taskId);
 static bool8 CanUseVsSeeker(void);
 static u8 GetVsSeekerResponseInArea(void);
 static u8 GetRunningBehaviorFromGraphicsId(u8 graphicsId);
@@ -171,9 +171,8 @@ static void Task_ResetObjectsRematchWantedState(u8 taskId)
         ScriptContext_Enable();
     }
 }
-
-#undef tReset1
-#undef tReset2
+#undef tIsPlayerFrozen
+#undef tAreObjectsFrozen
 
 u16 VsSeekerConvertLocalIdToTableId(u16 localId)
 {
@@ -301,7 +300,7 @@ static void VsSeekerSetStepCounterFullyCharged(void)
     gSaveBlock1Ptr->trainerRematchStepCounter |= (VSSEEKER_RECHARGE_STEPS << 8);
 }
 
-void Task_VsSeeker_0(u8 taskId)
+void Task_InitVsSeekerAndCheckForTrainersOnScreen(u8 taskId)
 {
     u32 i;
     u32 respval;
@@ -325,21 +324,21 @@ void Task_VsSeeker_0(u8 taskId)
     else if (respval == VSSEEKER_CAN_USE)
     {
         FieldEffectStart(FLDEFF_USE_VS_SEEKER);
-        gTasks[taskId].func = Task_VsSeeker_1;
+        gTasks[taskId].func = Task_VsSeekerFrameCountdown;
         gTasks[taskId].data[0] = 15;
     }
 }
 
-static void Task_VsSeeker_1(u8 taskId)
+static void Task_VsSeekerFrameCountdown(u8 taskId)
 {
     if (--gTasks[taskId].data[0] == 0)
     {
-        gTasks[taskId].func = Task_VsSeeker_2;
+        gTasks[taskId].func = Task_VsSeeker_PlaySoundAndGetResponseCode;
         gTasks[taskId].data[1] = 16;
     }
 }
 
-static void Task_VsSeeker_2(u8 taskId)
+static void Task_VsSeeker_PlaySoundAndGetResponseCode(u8 taskId)
 {
     s16 * data = gTasks[taskId].data;
 
@@ -357,7 +356,7 @@ static void Task_VsSeeker_2(u8 taskId)
         VsSeekerResetInBagStepCounter();
         sVsSeeker->responseCode = GetVsSeekerResponseInArea();
         ScriptMovement_StartObjectMovementScript(0xFF, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, sMovementScript_Wait48);
-        gTasks[taskId].func = Task_VsSeeker_3;
+        gTasks[taskId].func = Task_VsSeeker_ShowResponseToPlayer;
     }
 }
 
@@ -386,7 +385,7 @@ static void GatherNearbyTrainerInfo(void)
     sVsSeeker->trainerInfo[vsSeekerObjectIdx].localId = 0xFF;
 }
 
-static void Task_VsSeeker_3(u8 taskId)
+static void Task_VsSeeker_ShowResponseToPlayer(u8 taskId)
 {
     if (!ScriptMovement_IsObjectMovementFinished(0xFF, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup))
         return;
