@@ -92,7 +92,7 @@ SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP, rounded up, in Gen 
     }
 }
 
-SINGLE_BATTLE_TEST("Roost suppresses the user's Flying-typing until the end of turn")
+SINGLE_BATTLE_TEST("Roost suppresses the user's Flying-typing this turn, then restores it at the end of the turn")
 {
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_SKARMORY].types[0] == TYPE_STEEL);
@@ -111,7 +111,8 @@ SINGLE_BATTLE_TEST("Roost suppresses the user's Flying-typing until the end of t
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
         MESSAGE("It's super effective!");
         // Turn 2: EQ has no effect because Roost expired
-        MESSAGE("Wobbuffet used Earthquake!");
+        MESSAGE("Foe Wobbuffet used Earthquake!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
         MESSAGE("It doesn't affect Skarmory…");
         NOT HP_BAR(player);
     }
@@ -252,7 +253,7 @@ DOUBLE_BATTLE_TEST("Roost suppresses the user's not-yet-aquired Flying-type this
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GUST, opponentLeft);
         MESSAGE("Kecleon's Color Change made it the Flying type!");
         MESSAGE("Foe Sandshrew used Mud-Slap!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_MUD_SLAP, opponentLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MUD_SLAP, opponentRight);
         MESSAGE("Kecleon's Color Change made it the Ground type!");
     }
 }
@@ -270,3 +271,8 @@ TO_DO_BATTLE_TEST("Roost's effect does not lift until other certain end-of-turn 
 // Not sure exactly what the order is among all effects
 
 // What typing does Transform copy? Does it copy the Roost "status"?
+
+// Does Delta Stream protect a Roosted Flying-type? No it doesn't (Tested in ORAS)
+// Delta Stream and being Roosted both protect from super effective damage against
+// the user's Flying-type, however being Roosted will prevent the message that
+// usually appears when Delta Stream protects a Flying-type.
