@@ -31,7 +31,7 @@
 #include "constants/metatile_behaviors.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
-#include "constats/map_types.h"
+#include "constants/map_types.h"
 
 #define subsprite_table(ptr) {.subsprites = ptr, .subspriteCount = (sizeof ptr) / (sizeof(struct Subsprite))}
 
@@ -233,10 +233,10 @@ static void SpriteCB_DeoxysRockFragment(struct Sprite *sprite);
 static void Task_MoveDeoxysRock(u8 taskId);
 
 static void Task_FldEffUseVsSeeker(u8 taskId);
-static void UseVsSeekerEffect_1(struct Task *task);
-static void UseVsSeekerEffect_2(struct Task *task);
-static void UseVsSeekerEffect_3(struct Task *task);
-static void UseVsSeekerEffect_4(struct Task *task);
+static void UseVsSeeker_StopPlayerMovement(struct Task *task);
+static void UseVsSeeker_DoPlayerAnimation(struct Task *task);
+static void UseVsSeeker_ResetPlayerGraphics(struct Task *task);
+static void UseVsSeeker_CleanUpFieldEffect(struct Task *task);
 
 // Static RAM declarations
 
@@ -3921,10 +3921,10 @@ static void Task_MoveDeoxysRock(u8 taskId)
 #undef tObjEventId
 
 static void (*const sUseVsSeekerEffectFuncs[])(struct Task *task) = {
-    UseVsSeekerEffect_1,
-    UseVsSeekerEffect_2,
-    UseVsSeekerEffect_3,
-    UseVsSeekerEffect_4
+    UseVsSeeker_StopPlayerMovement,
+    UseVsSeeker_DoPlayerAnimation,
+    UseVsSeeker_ResetPlayerGraphics,
+    UseVsSeeker_CleanUpFieldEffect
 };
 
 u32 FldEff_UseVsSeeker(void)
@@ -3938,7 +3938,7 @@ static void Task_FldEffUseVsSeeker(u8 taskId)
     sUseVsSeekerEffectFuncs[gTasks[taskId].data[0]](&gTasks[taskId]);
 }
 
-static void UseVsSeekerEffect_1(struct Task *task)
+static void UseVsSeeker_StopPlayerMovement(struct Task *task)
 {
     LockPlayerFieldControls();
     FreezeObjectEvents();
@@ -3946,7 +3946,7 @@ static void UseVsSeekerEffect_1(struct Task *task)
     task->data[0]++;
 }
 
-static void UseVsSeekerEffect_2(struct Task *task)
+static void UseVsSeeker_DoPlayerAnimation(struct Task *task)
 {
     struct ObjectEvent * playerObj = &gObjectEvents[gPlayerAvatar.objectEventId];
     if ((ObjectEventIsMovementOverridden(playerObj) && (!(ObjectEventClearHeldMovementIfFinished(playerObj)))))
@@ -3960,7 +3960,7 @@ static void UseVsSeekerEffect_2(struct Task *task)
     task->data[0]++;
 }
 
-static void UseVsSeekerEffect_3(struct Task *task) {
+static void UseVsSeeker_ResetPlayerGraphics(struct Task *task) {
     struct ObjectEvent* playerObj = &gObjectEvents[gPlayerAvatar.objectEventId];
 
     if (!ObjectEventClearHeldMovementIfFinished(playerObj))
@@ -3974,7 +3974,7 @@ static void UseVsSeekerEffect_3(struct Task *task) {
     task->data[0]++;
 }
 
-static void UseVsSeekerEffect_4(struct Task *task)
+static void UseVsSeeker_CleanUpFieldEffect(struct Task *task)
 {
     struct ObjectEvent * playerObj = &gObjectEvents[gPlayerAvatar.objectEventId];
     if (!ObjectEventClearHeldMovementIfFinished(playerObj))
