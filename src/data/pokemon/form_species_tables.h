@@ -1054,19 +1054,19 @@ static const u16 sCramorantFormSpeciesIdTable[] = {
 };
 
 static const u16 sToxtricityFormSpeciesIdTable[] = {
-    SPECIES_TOXTRICITY,
+    SPECIES_TOXTRICITY_AMPED,
     SPECIES_TOXTRICITY_LOW_KEY,
     FORM_SPECIES_END,
 };
 
 static const u16 sSinisteaFormSpeciesIdTable[] = {
-    SPECIES_SINISTEA,
+    SPECIES_SINISTEA_PHONY,
     SPECIES_SINISTEA_ANTIQUE,
     FORM_SPECIES_END,
 };
 
 static const u16 sPolteageistFormSpeciesIdTable[] = {
-    SPECIES_POLTEAGEIST,
+    SPECIES_POLTEAGEIST_PHONY,
     SPECIES_POLTEAGEIST_ANTIQUE,
     FORM_SPECIES_END,
 };

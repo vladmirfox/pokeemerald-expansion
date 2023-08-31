@@ -157,9 +157,9 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
 #endif
 #if P_GEN_8_POKEMON == TRUE
     [SPECIES_CRAMORANT] = sCramorantFormSpeciesIdTable,
-    [SPECIES_TOXTRICITY] = sToxtricityFormSpeciesIdTable,
-    [SPECIES_SINISTEA] = sSinisteaFormSpeciesIdTable,
-    [SPECIES_POLTEAGEIST] = sPolteageistFormSpeciesIdTable,
+    [SPECIES_TOXTRICITY_AMPED] = sToxtricityFormSpeciesIdTable,
+    [SPECIES_SINISTEA_PHONY] = sSinisteaFormSpeciesIdTable,
+    [SPECIES_POLTEAGEIST_PHONY] = sPolteageistFormSpeciesIdTable,
     [SPECIES_ALCREMIE] = sAlcremieFormSpeciesIdTable,
     [SPECIES_EISCUE] = sEiscueFormSpeciesIdTable,
     [SPECIES_INDEEDEE] = sIndeedeeFormSpeciesIdTable,
