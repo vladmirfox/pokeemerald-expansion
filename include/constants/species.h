@@ -779,8 +779,10 @@
 #define SPECIES_CUTIEFLY                     742
 #define SPECIES_RIBOMBEE                     743
 #define SPECIES_ROCKRUFF                     744
-#define SPECIES_LYCANROC                     745
-#define SPECIES_WISHIWASHI                   746
+#define SPECIES_LYCANROC                     SPECIES_LYCANROC_MIDDAY
+#define SPECIES_LYCANROC_MIDDAY              745
+#define SPECIES_WISHIWASHI                   SPECIES_WISHIWASHI_SOLO
+#define SPECIES_WISHIWASHI_SOLO              746
 #define SPECIES_MAREANIE                     747
 #define SPECIES_TOXAPEX                      748
 #define SPECIES_MUDBRAY                      749
@@ -807,7 +809,8 @@
 #define SPECIES_PALOSSAND                    770
 #define SPECIES_PYUKUMUKU                    771
 #define SPECIES_TYPE_NULL                    772
-#define SPECIES_SILVALLY                     773
+#define SPECIES_SILVALLY                     SPECIES_SILVALLY_NORMAL
+#define SPECIES_SILVALLY_NORMAL              773
 #define SPECIES_MINIOR                       774
 #define SPECIES_KOMALA                       775
 #define SPECIES_TURTONATOR                   776

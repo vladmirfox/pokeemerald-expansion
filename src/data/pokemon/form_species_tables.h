@@ -972,20 +972,20 @@ static const u16 sRockruffFormSpeciesIdTable[] = {
 };
 
 static const u16 sLycanrocFormSpeciesIdTable[] = {
-    SPECIES_LYCANROC,
+    SPECIES_LYCANROC_MIDDAY,
     SPECIES_LYCANROC_MIDNIGHT,
     SPECIES_LYCANROC_DUSK,
     FORM_SPECIES_END,
 };
 
 static const u16 sWishiwashiFormSpeciesIdTable[] = {
-    SPECIES_WISHIWASHI,
+    SPECIES_WISHIWASHI_SOLO,
     SPECIES_WISHIWASHI_SCHOOL,
     FORM_SPECIES_END,
 };
 
 static const u16 sSilvallyFormSpeciesIdTable[] = {
-    SPECIES_SILVALLY,
+    SPECIES_SILVALLY_NORMAL,
     SPECIES_SILVALLY_FIGHTING,
     SPECIES_SILVALLY_FLYING,
     SPECIES_SILVALLY_POISON,

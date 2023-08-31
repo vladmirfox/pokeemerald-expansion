@@ -8525,13 +8525,13 @@ static const union AnimCmd sAnim_Rockruff_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Lycanroc_1[] =
+static const union AnimCmd sAnim_LycanrocMidday_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Wishiwashi_1[] =
+static const union AnimCmd sAnim_WishiwashiSolo_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -11312,8 +11312,8 @@ SINGLE_ANIMATION(Oricorio);
 SINGLE_ANIMATION(Cutiefly);
 SINGLE_ANIMATION(Ribombee);
 SINGLE_ANIMATION(Rockruff);
-SINGLE_ANIMATION(Lycanroc);
-SINGLE_ANIMATION(Wishiwashi);
+SINGLE_ANIMATION(LycanrocMidday);
+SINGLE_ANIMATION(WishiwashiSolo);
 SINGLE_ANIMATION(Mareanie);
 SINGLE_ANIMATION(Toxapex);
 SINGLE_ANIMATION(Mudbray);
@@ -12399,8 +12399,8 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_CUTIEFLY] = sAnims_Cutiefly,
     [SPECIES_RIBOMBEE] = sAnims_Ribombee,
     [SPECIES_ROCKRUFF] = sAnims_Rockruff,
-    [SPECIES_LYCANROC] = sAnims_Lycanroc,
-    [SPECIES_WISHIWASHI] = sAnims_Wishiwashi,
+    [SPECIES_LYCANROC_MIDDAY] = sAnims_LycanrocMidday,
+    [SPECIES_WISHIWASHI_SOLO] = sAnims_WishiwashiSolo,
     [SPECIES_MAREANIE] = sAnims_Mareanie,
     [SPECIES_TOXAPEX] = sAnims_Toxapex,
     [SPECIES_MUDBRAY] = sAnims_Mudbray,
@@ -12427,7 +12427,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_PALOSSAND] = sAnims_Palossand,
     [SPECIES_PYUKUMUKU] = sAnims_Pyukumuku,
     [SPECIES_TYPE_NULL] = sAnims_TypeNull,
-    [SPECIES_SILVALLY] = sAnims_Silvally,
+    [SPECIES_SILVALLY_NORMAL] = sAnims_Silvally,
     [SPECIES_MINIOR] = sAnims_Minior,
     [SPECIES_KOMALA] = sAnims_Komala,
     [SPECIES_TURTONATOR] = sAnims_Turtonator,
