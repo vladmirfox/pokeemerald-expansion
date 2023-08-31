@@ -31,6 +31,7 @@
 #include "constants/metatile_behaviors.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constats/map_types.h"
 
 #define subsprite_table(ptr) {.subsprites = ptr, .subspriteCount = (sizeof ptr) / (sizeof(struct Subsprite))}
 
@@ -3951,8 +3952,11 @@ static void UseVsSeekerEffect_2(struct Task *task)
     if ((ObjectEventIsMovementOverridden(playerObj) && (!(ObjectEventClearHeldMovementIfFinished(playerObj)))))
         return;
 
-    StartPlayerAvatarVsSeekerAnim();
-    ObjectEventSetHeldMovement(playerObj, MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
+    if (gMapHeader.mapType != MAP_TYPE_UNDERWATER)
+    {
+        SetPlayerAvatarFieldMove();
+        ObjectEventSetHeldMovement(playerObj, MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
+    }
     task->data[0]++;
 }
 
@@ -3962,14 +3966,11 @@ static void UseVsSeekerEffect_3(struct Task *task) {
     if (!ObjectEventClearHeldMovementIfFinished(playerObj))
         return;
 
-    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE | PLAYER_AVATAR_FLAG_MACH_BIKE))
-        ObjectEventSetGraphicsId(playerObj, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_MACH_BIKE));
-    if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
-        ObjectEventSetGraphicsId(playerObj, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_SURFING));
-    else
-        ObjectEventSetGraphicsId(playerObj, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_NORMAL));
-
-    ObjectEventForceSetHeldMovement(playerObj, GetFaceDirectionMovementAction(playerObj->facingDirection));
+    if (gMapHeader.mapType != MAP_TYPE_UNDERWATER)
+    {
+        ObjectEventSetGraphicsId(&gObjectEvents[gPlayerAvatar.objectEventId], GetPlayerAvatarGraphicsIdByCurrentState());
+        ObjectEventForceSetHeldMovement(playerObj, GetFaceDirectionMovementAction(playerObj->facingDirection));
+    }
     task->data[0]++;
 }
 
