@@ -1671,8 +1671,10 @@ static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u
 {
     s32 i;
 
+#if I_VS_SEEKER_CHARGING != 0
     if (CheckBagHasItem(ITEM_VS_SEEKER, 1) == TRUE)
         return FALSE;
+#endif
 
     for (i = 0; i <= REMATCH_SPECIAL_TRAINER_START; i++)
     {
@@ -1860,7 +1862,11 @@ static bool32 HasAtLeastFiveBadges(void)
 
 void IncrementRematchStepCounter(void)
 {
-    if (HasAtLeastFiveBadges() && (!CheckBagHasItem(ITEM_VS_SEEKER, 1)))
+    if (HasAtLeastFiveBadges()
+#if I_VS_SEEKER_CHARGING != 0
+        && (!CheckBagHasItem(ITEM_VS_SEEKER, 1))
+#endif
+       )
     {
         if (gSaveBlock1Ptr->trainerRematchStepCounter >= STEP_COUNTER_MAX)
             gSaveBlock1Ptr->trainerRematchStepCounter = STEP_COUNTER_MAX;
@@ -1895,7 +1901,7 @@ bool32 IsRematchTrainerIn(u16 mapGroup, u16 mapNum)
 
 static u16 GetRematchTrainerId(u16 trainerId)
 {
-    if (FlagGet(FLAG_SYS_VS_SEEKER_CHARGING))
+    if (FlagGet(I_VS_SEEKER_CHARGING))
         return GetRematchTrainerIdVSSeeker(trainerId);
     else
         return GetRematchTrainerIdFromTable(gRematchTable, trainerId);

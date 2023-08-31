@@ -1378,15 +1378,15 @@ bool32 IsValidLocationForVsSeeker(void)
 
 void FieldUseFunc_VsSeeker(u8 taskId)
 {
+#if I_VS_SEEKER_CHARGING != 0
     if (IsValidLocationForVsSeeker())
     {
         sItemUseOnFieldCB = Task_InitVsSeekerAndCheckForTrainersOnScreen;
         SetUpItemUseOnFieldCallback(taskId);
     }
     else
-    {
+#endif
         DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].data[3]);
-    }
 }
 
 void Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker(u8 taskId)

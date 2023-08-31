@@ -223,13 +223,13 @@ bool8 UpdateVsSeekerStepCounter(void)
 {
     u8 x = 0;
 
-    if (CheckBagHasItem(ITEM_VS_SEEKER, 1) == TRUE)
+    if (CheckBagHasItem(ITEM_VS_SEEKER, 1))
     {
         if ((gSaveBlock1Ptr->trainerRematchStepCounter & 0xFF) < VSSEEKER_RECHARGE_STEPS)
             gSaveBlock1Ptr->trainerRematchStepCounter++;
     }
 
-    if (FlagGet(FLAG_SYS_VS_SEEKER_CHARGING) == TRUE)
+    if (FlagGet(I_VS_SEEKER_CHARGING))
     {
         if (((gSaveBlock1Ptr->trainerRematchStepCounter >> 8) & 0xFF) < VSSEEKER_RECHARGE_STEPS)
         {
@@ -238,7 +238,7 @@ bool8 UpdateVsSeekerStepCounter(void)
         }
         if (((gSaveBlock1Ptr->trainerRematchStepCounter >> 8) & 0xFF) == VSSEEKER_RECHARGE_STEPS)
         {
-            FlagClear(FLAG_SYS_VS_SEEKER_CHARGING);
+            FlagClear(I_VS_SEEKER_CHARGING);
             VsSeekerResetChargingStepCounter();
             ClearAllTrainerRematchStates();
             return TRUE;
@@ -250,7 +250,7 @@ bool8 UpdateVsSeekerStepCounter(void)
 
 void MapResetTrainerRematches(u16 mapGroup, u16 mapNum)
 {
-    FlagClear(FLAG_SYS_VS_SEEKER_CHARGING);
+    FlagClear(I_VS_SEEKER_CHARGING);
     VsSeekerResetChargingStepCounter();
     ClearAllTrainerRematchStates();
     ResetMovementOfRematchableTrainers();
@@ -485,7 +485,7 @@ static u8 GetVsSeekerResponseInArea(void)
     if (sVsSeeker->trainerWantsRematch)
     {
         PlaySE(SE_PIN);
-        FlagSet(FLAG_SYS_VS_SEEKER_CHARGING);
+        FlagSet(I_VS_SEEKER_CHARGING);
         VsSeekerResetChargingStepCounter();
         return VSSEEKER_RESPONSE_FOUND_REMATCHES;
     }

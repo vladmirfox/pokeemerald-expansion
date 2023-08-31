@@ -2218,23 +2218,3 @@ static u8 TrySpinPlayerForWarp(struct ObjectEvent *object, s16 *delayTimer)
     *delayTimer = 0;
     return sSpinDirections[object->facingDirection];
 }
-
-
-static const u8 sPlayerAvatarVsSeekerBikeGfxIds[] = {
-   OBJ_EVENT_GFX_BRENDAN_FIELD_MOVE,
-   OBJ_EVENT_GFX_MAY_FIELD_MOVE,
-};
-
-u8 GetPlayerAvatarVsSeekerGfxId(void)
-{
-    if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
-        return sPlayerAvatarVsSeekerBikeGfxIds[gPlayerAvatar.gender];
-    else
-        return GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_VSSEEKER);
-}
-
-void StartPlayerAvatarVsSeekerAnim(void)
-{
-    ObjectEventSetGraphicsId(&gObjectEvents[gPlayerAvatar.objectEventId], GetPlayerAvatarVsSeekerGfxId());
-    StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], ANIM_VS_SEEKER);
-}
