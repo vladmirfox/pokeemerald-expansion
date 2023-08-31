@@ -88,7 +88,7 @@ static void GatherNearbyTrainerInfo(void);
 static void Task_VsSeeker_ShowResponseToPlayer(u8 taskId);
 static bool8 CanUseVsSeeker(void);
 static u8 GetVsSeekerResponseInArea(void);
-static u8 GetRunningBehaviorFromGraphicsId(u8 graphicsId);
+static u8 GetResponseMovementTypeFromTrainerGraphicsId(u8 graphicsId);
 static u16 GetTrainerFlagFromScript(const u8 * script);
 static void ClearAllTrainerRematchStates(void);
 static bool8 IsTrainerVisibleOnScreen(struct VsSeekerTrainerInfo * trainerInfo);
@@ -474,7 +474,7 @@ static u8 GetVsSeekerResponseInArea(void)
                 ShiftStillObjectEventCoords(&gObjectEvents[sVsSeeker->trainerInfo[vsSeekerIdx].objectEventId]);
                 StartTrainerObjectMovementScript(&sVsSeeker->trainerInfo[vsSeekerIdx], sMovementScript_TrainerRematch);
                 sVsSeeker->trainerIdxArray[sVsSeeker->numRematchableTrainers] = trainerIdx;
-                sVsSeeker->runningBehaviourEtcArray[sVsSeeker->numRematchableTrainers] = GetRunningBehaviorFromGraphicsId(sVsSeeker->trainerInfo[vsSeekerIdx].graphicsId);
+                sVsSeeker->runningBehaviourEtcArray[sVsSeeker->numRematchableTrainers] = GetResponseMovementTypeFromTrainerGraphicsId(sVsSeeker->trainerInfo[vsSeekerIdx].graphicsId);
                 sVsSeeker->numRematchableTrainers++;
                 sVsSeeker->trainerWantsRematch = 1;
             }
@@ -591,66 +591,93 @@ static u8 GetRandomFaceDirectionMovementType()
     }
 }
 
-static u8 GetRunningBehaviorFromGraphicsId(u8 graphicsId)
+static bool32 IsRegularLandTrainer(u8 graphicsId)
 {
-    switch (graphicsId)
+    u32 i;
+    u16 regularTrainersOnLand[] =
     {
-        case OBJ_EVENT_GFX_AQUA_MEMBER_F:
-        case OBJ_EVENT_GFX_AQUA_MEMBER_M:
-        case OBJ_EVENT_GFX_BEAUTY:
-        case OBJ_EVENT_GFX_BLACK_BELT:
-        case OBJ_EVENT_GFX_BOY_1:
-        case OBJ_EVENT_GFX_BOY_2:
-        case OBJ_EVENT_GFX_BOY_3:
-        case OBJ_EVENT_GFX_BUG_CATCHER:
-        case OBJ_EVENT_GFX_CAMPER:
-        case OBJ_EVENT_GFX_CYCLING_TRIATHLETE_F:
-        case OBJ_EVENT_GFX_CYCLING_TRIATHLETE_M:
-        case OBJ_EVENT_GFX_EXPERT_F:
-        case OBJ_EVENT_GFX_EXPERT_M:
-        case OBJ_EVENT_GFX_FAT_MAN:
-        case OBJ_EVENT_GFX_FISHERMAN:
-        case OBJ_EVENT_GFX_GENTLEMAN:
-        case OBJ_EVENT_GFX_GIRL_1:
-        case OBJ_EVENT_GFX_GIRL_2:
-        case OBJ_EVENT_GFX_GIRL_3:
-        case OBJ_EVENT_GFX_HEX_MANIAC:
-        case OBJ_EVENT_GFX_HIKER:
-        case OBJ_EVENT_GFX_LASS:
-        case OBJ_EVENT_GFX_LITTLE_BOY:
-        case OBJ_EVENT_GFX_LITTLE_GIRL:
-        case OBJ_EVENT_GFX_MAGMA_MEMBER_F:
-        case OBJ_EVENT_GFX_MAGMA_MEMBER_M:
-        case OBJ_EVENT_GFX_MAN_3:
-        case OBJ_EVENT_GFX_MAN_4:
-        case OBJ_EVENT_GFX_MAN_5:
-        case OBJ_EVENT_GFX_MANIAC:
-        case OBJ_EVENT_GFX_NINJA_BOY:
-        case OBJ_EVENT_GFX_PICNICKER:
-        case OBJ_EVENT_GFX_POKEFAN_F:
-        case OBJ_EVENT_GFX_POKEFAN_M:
-        case OBJ_EVENT_GFX_PSYCHIC_M:
-        case OBJ_EVENT_GFX_RICH_BOY:
-        case OBJ_EVENT_GFX_RUNNING_TRIATHLETE_F:
-        case OBJ_EVENT_GFX_RUNNING_TRIATHLETE_M:
-        case OBJ_EVENT_GFX_SAILOR:
-        case OBJ_EVENT_GFX_SCHOOL_KID_M:
-        case OBJ_EVENT_GFX_TUBER_F:
-        case OBJ_EVENT_GFX_TUBER_M:
-        case OBJ_EVENT_GFX_TWIN:
-        case OBJ_EVENT_GFX_WOMAN_1:
-        case OBJ_EVENT_GFX_WOMAN_2:
-        case OBJ_EVENT_GFX_WOMAN_4:
-        case OBJ_EVENT_GFX_WOMAN_5:
-        case OBJ_EVENT_GFX_YOUNGSTER:
-            return MOVEMENT_TYPE_ROTATE_CLOCKWISE;
-        case OBJ_EVENT_GFX_SWIMMER_F:
-        case OBJ_EVENT_GFX_SWIMMER_M:
-        case OBJ_EVENT_GFX_TUBER_M_SWIMMING:
-            return MOVEMENT_TYPE_ROTATE_CLOCKWISE;
-        default:
-            return MOVEMENT_TYPE_FACE_DOWN;
+        OBJ_EVENT_GFX_AQUA_MEMBER_F,
+        OBJ_EVENT_GFX_AQUA_MEMBER_M,
+        OBJ_EVENT_GFX_BEAUTY,
+        OBJ_EVENT_GFX_BLACK_BELT,
+        OBJ_EVENT_GFX_BOY_1,
+        OBJ_EVENT_GFX_BOY_2,
+        OBJ_EVENT_GFX_BOY_3,
+        OBJ_EVENT_GFX_BUG_CATCHER,
+        OBJ_EVENT_GFX_CAMPER,
+        OBJ_EVENT_GFX_CYCLING_TRIATHLETE_F,
+        OBJ_EVENT_GFX_CYCLING_TRIATHLETE_M,
+        OBJ_EVENT_GFX_EXPERT_F,
+        OBJ_EVENT_GFX_EXPERT_M,
+        OBJ_EVENT_GFX_FAT_MAN,
+        OBJ_EVENT_GFX_FISHERMAN,
+        OBJ_EVENT_GFX_GENTLEMAN,
+        OBJ_EVENT_GFX_GIRL_1,
+        OBJ_EVENT_GFX_GIRL_2,
+        OBJ_EVENT_GFX_GIRL_3,
+        OBJ_EVENT_GFX_HEX_MANIAC,
+        OBJ_EVENT_GFX_HIKER,
+        OBJ_EVENT_GFX_LASS,
+        OBJ_EVENT_GFX_LITTLE_BOY,
+        OBJ_EVENT_GFX_LITTLE_GIRL,
+        OBJ_EVENT_GFX_MAGMA_MEMBER_F,
+        OBJ_EVENT_GFX_MAGMA_MEMBER_M,
+        OBJ_EVENT_GFX_MAN_3,
+        OBJ_EVENT_GFX_MAN_4,
+        OBJ_EVENT_GFX_MAN_5,
+        OBJ_EVENT_GFX_MANIAC,
+        OBJ_EVENT_GFX_NINJA_BOY,
+        OBJ_EVENT_GFX_PICNICKER,
+        OBJ_EVENT_GFX_POKEFAN_F,
+        OBJ_EVENT_GFX_POKEFAN_M,
+        OBJ_EVENT_GFX_PSYCHIC_M,
+        OBJ_EVENT_GFX_RICH_BOY,
+        OBJ_EVENT_GFX_RUNNING_TRIATHLETE_F,
+        OBJ_EVENT_GFX_RUNNING_TRIATHLETE_M,
+        OBJ_EVENT_GFX_SAILOR,
+        OBJ_EVENT_GFX_SCHOOL_KID_M,
+        OBJ_EVENT_GFX_TUBER_F,
+        OBJ_EVENT_GFX_TUBER_M,
+        OBJ_EVENT_GFX_TWIN,
+        OBJ_EVENT_GFX_WOMAN_1,
+        OBJ_EVENT_GFX_WOMAN_2,
+        OBJ_EVENT_GFX_WOMAN_4,
+        OBJ_EVENT_GFX_WOMAN_5,
+        OBJ_EVENT_GFX_YOUNGSTER
+    };
+
+    for (i = 0; i < ARRAY_COUNT(regularTrainersOnLand); i++)
+    {
+        if (graphicsId == regularTrainersOnLand[i])
+            return TRUE;
     }
+    return FALSE;
+}
+
+static bool32 IsRegularWaterTrainer(u8 graphicsId)
+{
+    u32 i;
+    u16 regularTrainersInWater[] =
+    {
+        OBJ_EVENT_GFX_SWIMMER_F,
+        OBJ_EVENT_GFX_SWIMMER_M,
+        OBJ_EVENT_GFX_TUBER_M_SWIMMING
+    };
+
+    for (i = 0; i < ARRAY_COUNT(regularTrainersInWater); i++)
+    {
+        if (graphicsId == regularTrainersInWater[i])
+            return TRUE;
+    }
+    return FALSE;
+}
+
+static u8 GetResponseMovementTypeFromTrainerGraphicsId(u8 graphicsId)
+{
+    if (IsRegularLandTrainer(graphicsId) || IsRegularWaterTrainer(graphicsId))
+        return MOVEMENT_TYPE_ROTATE_CLOCKWISE;
+
+    return MOVEMENT_TYPE_FACE_DOWN;
 }
 
 static u16 GetTrainerFlagFromScript(const u8 *script)
