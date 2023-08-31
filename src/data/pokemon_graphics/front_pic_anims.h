@@ -8720,7 +8720,7 @@ static const union AnimCmd sAnim_Silvally_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Minior_1[] =
+static const union AnimCmd sAnim_MiniorMeteor_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -8746,7 +8746,7 @@ static const union AnimCmd sAnim_Togedemaru_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Mimikyu_1[] =
+static const union AnimCmd sAnim_MimikyuDisguised_1[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -11341,11 +11341,11 @@ SINGLE_ANIMATION(Palossand);
 SINGLE_ANIMATION(Pyukumuku);
 SINGLE_ANIMATION(TypeNull);
 SINGLE_ANIMATION(Silvally);
-SINGLE_ANIMATION(Minior);
+SINGLE_ANIMATION(MiniorMeteor);
 SINGLE_ANIMATION(Komala);
 SINGLE_ANIMATION(Turtonator);
 SINGLE_ANIMATION(Togedemaru);
-SINGLE_ANIMATION(Mimikyu);
+SINGLE_ANIMATION(MimikyuDisguised);
 SINGLE_ANIMATION(Bruxish);
 SINGLE_ANIMATION(Drampa);
 SINGLE_ANIMATION(Dhelmise);
@@ -12428,11 +12428,11 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_PYUKUMUKU] = sAnims_Pyukumuku,
     [SPECIES_TYPE_NULL] = sAnims_TypeNull,
     [SPECIES_SILVALLY_NORMAL] = sAnims_Silvally,
-    [SPECIES_MINIOR] = sAnims_Minior,
+    [SPECIES_MINIOR_METEOR_RED] = sAnims_MiniorMeteor,
     [SPECIES_KOMALA] = sAnims_Komala,
     [SPECIES_TURTONATOR] = sAnims_Turtonator,
     [SPECIES_TOGEDEMARU] = sAnims_Togedemaru,
-    [SPECIES_MIMIKYU] = sAnims_Mimikyu,
+    [SPECIES_MIMIKYU_DISGUISED] = sAnims_MimikyuDisguised,
     [SPECIES_BRUXISH] = sAnims_Bruxish,
     [SPECIES_DRAMPA] = sAnims_Drampa,
     [SPECIES_DHELMISE] = sAnims_Dhelmise,
@@ -12870,19 +12870,19 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_SILVALLY_DRAGON] = sAnims_Silvally,
     [SPECIES_SILVALLY_DARK] = sAnims_Silvally,
     [SPECIES_SILVALLY_FAIRY] = sAnims_Silvally,
-    [SPECIES_MINIOR_METEOR_ORANGE] = sAnims_Minior,
-    [SPECIES_MINIOR_METEOR_YELLOW] = sAnims_Minior,
-    [SPECIES_MINIOR_METEOR_GREEN] = sAnims_Minior,
-    [SPECIES_MINIOR_METEOR_BLUE] = sAnims_Minior,
-    [SPECIES_MINIOR_METEOR_INDIGO] = sAnims_Minior,
-    [SPECIES_MINIOR_METEOR_VIOLET] = sAnims_Minior,
-    [SPECIES_MINIOR_CORE_RED] = sAnims_Minior,
-    [SPECIES_MINIOR_CORE_ORANGE] = sAnims_Minior,
-    [SPECIES_MINIOR_CORE_YELLOW] = sAnims_Minior,
-    [SPECIES_MINIOR_CORE_GREEN] = sAnims_Minior,
-    [SPECIES_MINIOR_CORE_BLUE] = sAnims_Minior,
-    [SPECIES_MINIOR_CORE_INDIGO] = sAnims_Minior,
-    [SPECIES_MINIOR_CORE_VIOLET] = sAnims_Minior,
+    [SPECIES_MINIOR_METEOR_ORANGE] = sAnims_MiniorMeteor,
+    [SPECIES_MINIOR_METEOR_YELLOW] = sAnims_MiniorMeteor,
+    [SPECIES_MINIOR_METEOR_GREEN] = sAnims_MiniorMeteor,
+    [SPECIES_MINIOR_METEOR_BLUE] = sAnims_MiniorMeteor,
+    [SPECIES_MINIOR_METEOR_INDIGO] = sAnims_MiniorMeteor,
+    [SPECIES_MINIOR_METEOR_VIOLET] = sAnims_MiniorMeteor,
+    [SPECIES_MINIOR_CORE_RED] = sAnims_MiniorCore,
+    [SPECIES_MINIOR_CORE_ORANGE] = sAnims_MiniorCore,
+    [SPECIES_MINIOR_CORE_YELLOW] = sAnims_MiniorCore,
+    [SPECIES_MINIOR_CORE_GREEN] = sAnims_MiniorCore,
+    [SPECIES_MINIOR_CORE_BLUE] = sAnims_MiniorCore,
+    [SPECIES_MINIOR_CORE_INDIGO] = sAnims_MiniorCore,
+    [SPECIES_MINIOR_CORE_VIOLET] = sAnims_MiniorCore,
     [SPECIES_MIMIKYU_BUSTED] = sAnims_MimikyuBusted,
     [SPECIES_NECROZMA_DUSK_MANE] = sAnims_Necrozma,
     [SPECIES_NECROZMA_DAWN_WINGS] = sAnims_Necrozma,

@@ -811,11 +811,14 @@
 #define SPECIES_TYPE_NULL                    772
 #define SPECIES_SILVALLY                     SPECIES_SILVALLY_NORMAL
 #define SPECIES_SILVALLY_NORMAL              773
-#define SPECIES_MINIOR                       774
+#define SPECIES_MINIOR                       SPECIES_MINIOR_METEOR
+#define SPECIES_MINIOR_METEOR                SPECIES_MINIOR_METEOR_RED
+#define SPECIES_MINIOR_METEOR_RED            774
 #define SPECIES_KOMALA                       775
 #define SPECIES_TURTONATOR                   776
 #define SPECIES_TOGEDEMARU                   777
-#define SPECIES_MIMIKYU                      778
+#define SPECIES_MIMIKYU                      SPECIES_MIMIKYU_DISGUISED
+#define SPECIES_MIMIKYU_DISGUISED            778
 #define SPECIES_BRUXISH                      779
 #define SPECIES_DRAMPA                       780
 #define SPECIES_DHELMISE                     781
@@ -1337,6 +1340,7 @@
 #define SPECIES_MINIOR_METEOR_BLUE           FORMS_START + 291
 #define SPECIES_MINIOR_METEOR_INDIGO         FORMS_START + 292
 #define SPECIES_MINIOR_METEOR_VIOLET         FORMS_START + 293
+#define SPECIES_MINIOR_CORE                  SPECIES_MINIOR_CORE_RED
 #define SPECIES_MINIOR_CORE_RED              FORMS_START + 294
 #define SPECIES_MINIOR_CORE_ORANGE           FORMS_START + 295
 #define SPECIES_MINIOR_CORE_YELLOW           FORMS_START + 296

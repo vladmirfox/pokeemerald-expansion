@@ -150,8 +150,8 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_LYCANROC_MIDDAY] = sLycanrocFormSpeciesIdTable,
     [SPECIES_WISHIWASHI_SOLO] = sWishiwashiFormSpeciesIdTable,
     [SPECIES_SILVALLY_NORMAL] = sSilvallyFormSpeciesIdTable,
-    [SPECIES_MINIOR] = sMiniorFormSpeciesIdTable,
-    [SPECIES_MIMIKYU] = sMimikyuFormSpeciesIdTable,
+    [SPECIES_MINIOR_METEOR_RED] = sMiniorFormSpeciesIdTable,
+    [SPECIES_MIMIKYU_DISGUISED] = sMimikyuFormSpeciesIdTable,
     [SPECIES_NECROZMA] = sNecrozmaFormSpeciesIdTable,
     [SPECIES_MAGEARNA] = sMagearnaFormSpeciesIdTable,
 #endif

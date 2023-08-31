@@ -1007,7 +1007,7 @@ static const u16 sSilvallyFormSpeciesIdTable[] = {
 };
 
 static const u16 sMiniorFormSpeciesIdTable[] = {
-    SPECIES_MINIOR,
+    SPECIES_MINIOR_METEOR_RED,
     SPECIES_MINIOR_METEOR_ORANGE,
     SPECIES_MINIOR_METEOR_YELLOW,
     SPECIES_MINIOR_METEOR_GREEN,
@@ -1025,7 +1025,7 @@ static const u16 sMiniorFormSpeciesIdTable[] = {
 };
 
 static const u16 sMimikyuFormSpeciesIdTable[] = {
-    SPECIES_MIMIKYU,
+    SPECIES_MIMIKYU_DISGUISED,
     SPECIES_MIMIKYU_BUSTED,
     FORM_SPECIES_END,
 };
