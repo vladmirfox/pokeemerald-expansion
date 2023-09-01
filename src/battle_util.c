@@ -9571,7 +9571,7 @@ static inline uq4_12_t GetScreensModifier(u32 move, u32 battlerAtk, u32 battlerD
         return UQ_4_12(1.0);
     if (reflect || lightScreen || auroraVeil)
         return (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) ? UQ_4_12(0.667) : UQ_4_12(0.5);
-    return UQ_4_12(1.0); 
+    return UQ_4_12(1.0);
 }
 
 static inline uq4_12_t GetCollisionCourseElectroDriftModifier(u32 move, uq4_12_t typeEffectivenessModifier)
@@ -10193,7 +10193,7 @@ bool32 CanUltraBurst(u8 battlerId)
     // Check if mon is currently held by Sky Drop
     if (gStatuses3[battlerId] & STATUS3_SKY_DROPPED)
         return FALSE;
-    
+
     // Gets mon data.
     if (GetBattlerSide(battlerId) == B_SIDE_OPPONENT)
         mon = &gEnemyParty[gBattlerPartyIndexes[battlerId]];
@@ -11084,4 +11084,13 @@ u32 CalcSecondaryEffectChance(u8 battlerId, u8 secondaryEffectChance)
 bool32 IsAlly(u32 battlerAtk, u32 battlerDef)
 {
     return (GetBattlerSide(battlerAtk) == GetBattlerSide(battlerDef));
+}
+
+bool32 IsGen6ExpShareEnabled(void)
+{
+#if I_EXP_SHARE_ITEM < GEN_6
+    return FALSE;
+#else
+    return FlagGet(I_EXP_SHARE_FLAG);
+#endif
 }
