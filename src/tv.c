@@ -129,7 +129,6 @@ static void TVShowDone(void);
 static void InterviewAfter_FanClubLetter(void);
 static void InterviewAfter_RecentHappenings(void);
 static void InterviewAfter_PkmnFanClubOpinions(void);
-static void InterviewAfter_Dummy(void);
 static void InterviewAfter_BravoTrainerPokemonProfile(void);
 static void InterviewAfter_BravoTrainerBattleTowerProfile(void);
 static void InterviewAfter_ContestLiveUpdates(void);
@@ -1082,7 +1081,6 @@ void InterviewAfter(void)
         InterviewAfter_PkmnFanClubOpinions();
         break;
     case TVSHOW_DUMMY:
-        InterviewAfter_Dummy();
         break;
     case TVSHOW_BRAVO_TRAINER_POKEMON_PROFILE:
         InterviewAfter_BravoTrainerPokemonProfile();
@@ -1622,11 +1620,6 @@ static void InterviewAfter_PkmnFanClubOpinions(void)
         show->fanclubOpinions.pokemonNameLanguage = LANGUAGE_JAPANESE;
     else
         show->fanclubOpinions.pokemonNameLanguage = GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_LANGUAGE);
-}
-
-static void InterviewAfter_Dummy(void)
-{
-    TVShow *show = &gSaveBlock1Ptr->tvShows[sCurTVShowSlot];
 }
 
 static void TryStartRandomMassOutbreak(void)
@@ -3938,8 +3931,7 @@ else \
     (langptr) = langfix; \
 }
 
-// Unused
-static void TranslateShowNames(TVShow *show, u32 language)
+static void UNUSED TranslateShowNames(TVShow *show, u32 language)
 {
     int i;
     TVShow **shows;

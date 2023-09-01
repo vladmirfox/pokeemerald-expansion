@@ -88,7 +88,7 @@ struct RfuGameCompatibilityData
     u16 gameClear:1;
     u16 version:4;
     u16 unused:2;
-    u8 playerTrainerId[2];
+    u8 playerTrainerId[3];
 };
 
 // This struct is sent via the Wireless Adapter as the game name or "gname" data.

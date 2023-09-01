@@ -228,7 +228,7 @@ static void BuildMultiPartnerRoomStartMenu(void);
 static void ShowSafariBallsWindow(void);
 static void ShowPyramidFloorWindow(void);
 static void RemoveExtraStartMenuWindows(void);
-static bool32 PrintStartMenuActions(s8 *pIndex, u32 count);
+static bool32 PrintStartMenuActions(u8 *pIndex, u32 count);
 static bool32 InitStartMenuStep(void);
 static void InitStartMenu(void);
 static void CreateStartMenuTask(TaskFunc followupFunc);
@@ -323,7 +323,7 @@ static void BuildNormalStartMenu(void)
     AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
-static void BuildDebugStartMenu(void)
+static void UNUSED BuildDebugStartMenu(void)
 {
     AddStartMenuAction(MENU_ACTION_DEBUG);
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
@@ -448,9 +448,9 @@ static void RemoveExtraStartMenuWindows(void)
     }
 }
 
-static bool32 PrintStartMenuActions(s8 *pIndex, u32 count)
+static bool32 PrintStartMenuActions(u8 *pIndex, u32 count)
 {
-    s8 index = *pIndex;
+    u8 index = *pIndex;
 
     do
     {

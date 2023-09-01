@@ -108,8 +108,8 @@ static void Task_MixingRecordsRecv(u8);
 static void Task_SendPacket(u8);
 static void Task_CopyReceiveBuffer(u8);
 static void Task_SendPacket_SwitchToReceive(u8);
-static void *LoadPtrFromTaskData(const u16 *);
-static void StorePtrInTaskData(void *, u16 *);
+static void *LoadPtrFromTaskData(const s16 *);
+static void StorePtrInTaskData(void *, s16 *);
 static u8 GetMultiplayerId_(void);
 static void *GetPlayerRecvBuffer(u8);
 static void ReceiveOldManData(OldMan *, size_t, u8);
@@ -580,12 +580,12 @@ static void Task_SendPacket_SwitchToReceive(u8 taskId)
     sReadyToReceive = TRUE;
 }
 
-static void *LoadPtrFromTaskData(const u16 *asShort)
+static void *LoadPtrFromTaskData(const s16 *asShort)
 {
     return (void *)(asShort[0] | (asShort[1] << 16));
 }
 
-static void StorePtrInTaskData(void *records, u16 *asShort)
+static void StorePtrInTaskData(void *records, s16 *asShort)
 {
     asShort[0] = (u32)records;
     asShort[1] = ((u32)records >> 16);
@@ -765,9 +765,6 @@ static void ReceiveDaycareMailData(struct RecordMixingDaycareMail *records, size
     struct RecordMixingDaycareMail *mixMail;
     u8 playerSlot1, playerSlot2;
     void *ptr;
-    u8 unusedArr1[MAX_LINK_PLAYERS];
-    u8 unusedArr2[MAX_LINK_PLAYERS];
-    struct RecordMixingDaycareMail *unusedMixMail[MAX_LINK_PLAYERS];
     bool8 canHoldItem[MAX_LINK_PLAYERS][DAYCARE_MON_COUNT];
     u8 idxs[MAX_LINK_PLAYERS][2];
     u8 numDaycareCanHold;
@@ -782,8 +779,6 @@ static void ReceiveDaycareMailData(struct RecordMixingDaycareMail *records, size
     linkPlayerCount = GetLinkPlayerCount();
     for (i = 0; i < MAX_LINK_PLAYERS; i++)
     {
-        unusedArr1[i] = 0xFF;
-        unusedArr2[i] = 0;
         canHoldItem[i][0] = FALSE;
         canHoldItem[i][1] = FALSE;
     }
@@ -924,7 +919,6 @@ static void ReceiveDaycareMailData(struct RecordMixingDaycareMail *records, size
     for (i = 0; i < MAX_LINK_PLAYERS; i++)
     {
         mixMail = &records[multiplayerId * recordSize];
-        unusedMixMail[i] = mixMail;
     }
 
     // Choose a random table id to determine who will

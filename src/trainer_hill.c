@@ -70,7 +70,6 @@ static void GetChallengeWon(void);
 static void TrainerHillSetMode(void);
 static void SetUpDataStruct(void);
 static void FreeDataStruct(void);
-static void TrainerHillDummy(void);
 static void SetTimerValue(u32 *dst, u32 val);
 static u32 GetTimerValue(u32 *src);
 static void SetTrainerHillMonLevel(struct Pokemon *mon, u8 level);
@@ -357,7 +356,6 @@ static void SetUpDataStruct(void)
         // e.g. for HILL_MODE_NORMAL, it will copy sChallenge_Normal to sHillData->challenge and
         // it will copy sFloors_Normal to sHillData->floors
         CpuCopy32(sChallengeData[gSaveBlock1Ptr->trainerHill.mode], &sHillData->challenge, sizeof(sHillData->challenge) + sizeof(sHillData->floors));
-        TrainerHillDummy();
     }
 }
 
@@ -395,7 +393,6 @@ void CopyTrainerHillTrainerText(u8 which, u16 trainerId)
 
 static void TrainerHillStartChallenge(void)
 {
-    TrainerHillDummy();
     if (!ReadTrainerHillAndValidate())
         gSaveBlock1Ptr->trainerHill.field_3D6E_0f = 1;
     else
@@ -569,16 +566,6 @@ static void IsTrainerHillChallengeActive(void)
         gSpecialVar_Result = FALSE;
     else
         gSpecialVar_Result = TRUE;
-}
-
-static void TrainerHillDummy_Unused(void)
-{
-
-}
-
-static void TrainerHillDummy(void)
-{
-
 }
 
 void PrintOnTrainerHillRecordsWindow(void)
@@ -769,8 +756,7 @@ u8 GetCurrentTrainerHillMapId(void)
     return mapId;
 }
 
-// Unused
-static bool32 OnTrainerHillRoof(void)
+static bool32 UNUSED OnTrainerHillRoof(void)
 {
     bool32 onRoof;
 
