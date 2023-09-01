@@ -731,7 +731,7 @@ static void ItemUseOnFieldCB_WailmerPailBerry(u8 taskId)
 
 static bool8 TryToWaterSudowoodo(void)
 {
-    u16 x, y;
+    s16 x, y;
     u8 elevation;
     u8 objId;
     GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
@@ -1094,7 +1094,7 @@ static void Task_CloseStatIncreaseMessage(u8 taskId)
     }
 }
 
-static void Task_UseStatIncreaseItem(u8 taskId)
+static void UNUSED Task_UseStatIncreaseItem(u8 taskId)
 {
     if(++gTasks[taskId].data[8] > 7)
     {

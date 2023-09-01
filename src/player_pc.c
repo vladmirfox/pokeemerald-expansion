@@ -191,10 +191,10 @@ static const u8 *const sItemStorage_OptionDescriptions[] =
 
 static const struct MenuAction sPlayerPCMenuActions[] =
 {
-    [MENU_ITEMSTORAGE] = { gText_ItemStorage, PlayerPC_ItemStorage },
-    [MENU_MAILBOX]     = { gText_Mailbox,     PlayerPC_Mailbox },
-    [MENU_DECORATION]  = { gText_Decoration,  PlayerPC_Decoration },
-    [MENU_TURNOFF]     = { gText_TurnOff,     PlayerPC_TurnOff }
+    [MENU_ITEMSTORAGE] = { gText_ItemStorage, {PlayerPC_ItemStorage} },
+    [MENU_MAILBOX]     = { gText_Mailbox,     {PlayerPC_Mailbox} },
+    [MENU_DECORATION]  = { gText_Decoration,  {PlayerPC_Decoration} },
+    [MENU_TURNOFF]     = { gText_TurnOff,     {PlayerPC_TurnOff} }
 };
 
 static const u8 sBedroomPC_OptionOrder[] =
@@ -216,10 +216,10 @@ static const u8 sPlayerPC_OptionOrder[] =
 
 static const struct MenuAction sItemStorage_MenuActions[] =
 {
-    [MENU_WITHDRAW] = { gText_WithdrawItem, ItemStorage_Withdraw },
-    [MENU_DEPOSIT]  = { gText_DepositItem,  ItemStorage_Deposit },
-    [MENU_TOSS]     = { gText_TossItem,     ItemStorage_Toss },
-    [MENU_EXIT]     = { gText_Cancel,       ItemStorage_Exit }
+    [MENU_WITHDRAW] = { gText_WithdrawItem, {ItemStorage_Withdraw} },
+    [MENU_DEPOSIT]  = { gText_DepositItem,  {ItemStorage_Deposit} },
+    [MENU_TOSS]     = { gText_TossItem,     {ItemStorage_Toss} },
+    [MENU_EXIT]     = { gText_Cancel,       {ItemStorage_Exit} }
 };
 
 static const struct ItemSlot sNewGamePCItems[] =
@@ -230,10 +230,10 @@ static const struct ItemSlot sNewGamePCItems[] =
 
 const struct MenuAction gMailboxMailOptions[] =
 {
-    { gText_Read,      Mailbox_DoMailRead },
-    { gText_MoveToBag, Mailbox_MoveToBag },
-    { gText_Give2,     Mailbox_Give },
-    { gText_Cancel2,   Mailbox_Cancel }
+    { gText_Read,      {Mailbox_DoMailRead} },
+    { gText_MoveToBag, {Mailbox_MoveToBag} },
+    { gText_Give2,     {Mailbox_Give} },
+    { gText_Cancel2,   {Mailbox_Cancel} }
 };
 
 static const struct WindowTemplate sWindowTemplates_MainMenus[] =
@@ -388,9 +388,8 @@ void PlayerPC(void)
 
 static void InitPlayerPCMenu(u8 taskId)
 {
-    u16 *data;
     struct WindowTemplate windowTemplate;
-    data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
 
     if (sTopMenuNumOptions == NUM_PLAYER_PC_OPTIONS)
         windowTemplate = sWindowTemplates_MainMenus[WIN_MAIN_MENU];
@@ -408,10 +407,9 @@ static void InitPlayerPCMenu(u8 taskId)
 
 static void PlayerPCProcessMenuInput(u8 taskId)
 {
-    u16 *data;
     s8 inputOptionId;
+    s16 *data = gTasks[taskId].data;
 
-    data = gTasks[taskId].data;
     if (sTopMenuNumOptions > 3)
         inputOptionId = Menu_ProcessInput();
     else
@@ -503,11 +501,9 @@ static void PlayerPC_TurnOff(u8 taskId)
 
 static void InitItemStorageMenu(u8 taskId, u8 var)
 {
-    u16 *data;
-    struct WindowTemplate windowTemplate;
+    s16 *data = gTasks[taskId].data;
+    struct WindowTemplate windowTemplate = sWindowTemplates_MainMenus[WIN_ITEM_STORAGE_MENU];
 
-    data = gTasks[taskId].data;
-    windowTemplate = sWindowTemplates_MainMenus[WIN_ITEM_STORAGE_MENU];
     windowTemplate.width = GetMaxWidthInMenuTable(sItemStorage_MenuActions, ARRAY_COUNT(sItemStorage_MenuActions));
     tWindowId = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(tWindowId, FALSE);
@@ -621,7 +617,7 @@ static void ItemStorage_Toss(u8 taskId)
 
 static void ItemStorage_Enter(u8 taskId, bool8 toss)
 {
-    u16 *data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
 
     tInTossMenu = toss;
     ItemStorage_EraseMainMenu(taskId);
@@ -654,7 +650,7 @@ static void SetPlayerPCListCount(u8 taskId)
 
 static void ItemStorage_EraseMainMenu(u8 taskId)
 {
-    u16 *data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
     ClearStdWindowAndFrameToTransparent(tWindowId, FALSE);
     ClearWindowTilemap(tWindowId);
     RemoveWindow(tWindowId);
@@ -700,7 +696,7 @@ static void Mailbox_DrawMailboxMenu(u8 taskId)
 
 static void Mailbox_ProcessInput(u8 taskId)
 {
-    u16 *data = gTasks[taskId].data;
+    s16 *data = gTasks[taskId].data;
 
     if (!gPaletteFade.active)
     {
@@ -1488,7 +1484,6 @@ static void ItemStorage_HandleRemoveItem(u8 taskId)
 
 static void ItemStorage_HandleErrorMessageInput(u8 taskId)
 {
-    s16 *data = gTasks[taskId].data;
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
         ItemStorage_PrintMessage(ItemStorage_GetMessage(gSaveBlock1Ptr->pcItems[gPlayerPCItemPageInfo.itemsAbove + gPlayerPCItemPageInfo.cursorPos].itemId));

@@ -134,8 +134,6 @@ static const char str_checkMbootLL[] = "RFU-MBOOT";
 u16 rfu_initializeAPI(u32 *APIBuffer, u16 buffByteSize, IntrFunc *sioIntrTable_p, bool8 copyInterruptToRam)
 {
     u16 i;
-    u16 *dst;
-    const u16 *src;
     u16 buffByteSizeMax;
 
     // is in EWRAM?
@@ -182,11 +180,13 @@ u16 rfu_initializeAPI(u32 *APIBuffer, u16 buffByteSize, IntrFunc *sioIntrTable_p
     }
     // rfu_REQ_changeMasterSlave is the function next to rfu_STC_fastCopy
 #if LIBRFU_VERSION < 1026
-    src = (const u16 *)((uintptr_t)&rfu_STC_fastCopy & ~1);
-    dst = gRfuFixed->fastCopyBuffer;
+{
+    const u16 *src = (const u16 *)((uintptr_t)&rfu_STC_fastCopy & ~1);
+    u16 *dst = gRfuFixed->fastCopyBuffer;
     buffByteSizeMax = ((void *)rfu_REQ_changeMasterSlave - (void *)rfu_STC_fastCopy) / sizeof(u16);
     while (buffByteSizeMax-- != 0)
         *dst++ = *src++;
+}
 #else
     COPY(
         (uintptr_t)&rfu_STC_fastCopy & ~1,
@@ -577,7 +577,7 @@ static void rfu_CB_pollAndEndSearchChild(u8 reqCommand, u16 reqResult)
             STWI_set_Callback_M(rfu_CB_defaultCallback);
             STWI_send_SystemStatusREQ();
             if (STWI_poll_CommandEnd() == 0)
-                gRfuLinkStatus->my.id = *(u16 *)&gRfuFixed->STWIBuffer->rxPacketAlloc.rfuPacket32.data[0];
+                gRfuLinkStatus->my.id = gRfuFixed->STWIBuffer->rxPacketAlloc.rfuPacket32.data[0] & 0xFFFF; // read u16
         }
     }
     else if (reqCommand == ID_SC_END_REQ)
@@ -591,19 +591,17 @@ static void rfu_CB_pollAndEndSearchChild(u8 reqCommand, u16 reqResult)
 
 static void rfu_STC_readChildList(void)
 {
-    u32 stwiParam;
     u8 numSlots = gRfuFixed->STWIBuffer->rxPacketAlloc.rfuPacket8.data[1];
     u8 *data_p;
-    u8 i;
     u8 bm_slot_id;
-#if LIBRFU_VERSION < 1026
-    u8 true_slots[RFU_CHILD_MAX];
-#endif
 
 #if LIBRFU_VERSION < 1026
+    u8 true_slots[RFU_CHILD_MAX];
+
     if (numSlots != 0)
     {
-        stwiParam = gRfuFixed->STWIBuffer->rxPacketAlloc.rfuPacket32.data[0];
+        u8 i;
+        u32 stwiParam = gRfuFixed->STWIBuffer->rxPacketAlloc.rfuPacket32.data[0];
         STWI_set_Callback_M(rfu_CB_defaultCallback);
         STWI_send_LinkStatusREQ();
         if (STWI_poll_CommandEnd() == 0)
@@ -1400,7 +1398,7 @@ static u16 rfu_STC_setSendData_org(u8 ni_or_uni, u8 bmSendSlot, u8 subFrameSize,
 {
     u8 bm_slot_id, sendSlotFlag;
     u8 frameSize;
-    u8 *llFrameSize_p;
+    u8 *llFrameSize_p = NULL;
     u8 sending;
     u8 i;
     u16 imeBak;
@@ -1426,7 +1424,7 @@ static u16 rfu_STC_setSendData_org(u8 ni_or_uni, u8 bmSendSlot, u8 subFrameSize,
     else if (gRfuLinkStatus->parentChild == MODE_CHILD)
         llFrameSize_p = &gRfuLinkStatus->remainLLFrameSizeChild[bm_slot_id];
     frameSize = llsf_struct[gRfuLinkStatus->parentChild].frameSize;
-    if (subFrameSize > *llFrameSize_p || subFrameSize <= frameSize)
+    if (llFrameSize_p && (subFrameSize > *llFrameSize_p || subFrameSize <= frameSize))
         return ERR_SUBFRAME_SIZE;
     imeBak = REG_IME;
     REG_IME = 0;
@@ -1464,7 +1462,8 @@ static u16 rfu_STC_setSendData_org(u8 ni_or_uni, u8 bmSendSlot, u8 subFrameSize,
             } while (0);
         }
         gRfuLinkStatus->sendSlotNIFlag |= bmSendSlot;
-        *llFrameSize_p -= subFrameSize;
+        if (llFrameSize_p)
+            *llFrameSize_p -= subFrameSize;
         slotStatus_NI->send.state = SLOT_STATE_SEND_START;
     }
     else if (ni_or_uni & 0x10)
@@ -1473,7 +1472,8 @@ static u16 rfu_STC_setSendData_org(u8 ni_or_uni, u8 bmSendSlot, u8 subFrameSize,
         slotStatus_UNI->send.bmSlot = bmSendSlot;
         slotStatus_UNI->send.src = src;
         slotStatus_UNI->send.payloadSize = subFrameSize - frameSize;
-        *llFrameSize_p -= subFrameSize;
+        if (llFrameSize_p)
+            *llFrameSize_p -= subFrameSize;
         slotStatus_UNI->send.state = SLOT_STATE_SEND_UNI;
         gRfuLinkStatus->sendSlotUNIFlag |= bmSendSlot;
     }
@@ -1764,8 +1764,9 @@ static void rfu_constructSendLLFrame(void)
             if (gRfuLinkStatus->parentChild == MODE_CHILD)
             {
                 u8 *maxSize = llf_p - offsetof(struct RfuFixed, LLFBuffer[1]);
+                void *rfuPtr = &gRfuFixed;
 
-                pakcketSize = maxSize - *(u8 *volatile *)&gRfuFixed;
+                pakcketSize = maxSize - *(u8 *volatile *)(rfuPtr);
             }
         }
         gRfuStatic->totalPacketSize = pakcketSize;

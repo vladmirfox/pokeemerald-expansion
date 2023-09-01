@@ -49,16 +49,12 @@ struct LinkTestBGInfo
     u32 screenBaseBlock;
     u32 paletteNum;
     u32 baseChar;
-    u32 unused;
 };
 
 static struct BlockTransfer sBlockSend;
 static struct BlockTransfer sBlockRecv[MAX_LINK_PLAYERS];
 static u32 sBlockSendDelayCounter;
-static bool32 sDummy1; // Never read
-static bool8 sDummy2; // Never assigned, read in unused function
 static u32 sPlayerDataExchangeStatus;
-static bool32 sDummy3; // Never read
 static u8 sLinkTestLastBlockSendPos;
 static u8 sLinkTestLastBlockRecvPos[MAX_LINK_PLAYERS];
 static u8 sNumVBlanksWithoutSerialIntr;
@@ -278,8 +274,7 @@ static void InitLinkTestBG(u8 paletteNum, u8 bgNum, u8 screenBaseBlock, u8 charB
     SetGpuReg(REG_OFFSET_BG0VOFS + bgNum * 4, 0);
 }
 
-// Unused
-static void LoadLinkTestBgGfx(u8 paletteNum, u8 bgNum, u8 screenBaseBlock, u8 charBaseBlock)
+static void UNUSED LoadLinkTestBgGfx(u8 paletteNum, u8 bgNum, u8 screenBaseBlock, u8 charBaseBlock)
 {
     LoadPalette(sLinkTestDigitsPal, BG_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
     DmaCopy16(3, sLinkTestDigitsGfx, (u16 *)BG_CHAR_ADDR(charBaseBlock), sizeof sLinkTestDigitsGfx);
@@ -289,8 +284,7 @@ static void LoadLinkTestBgGfx(u8 paletteNum, u8 bgNum, u8 screenBaseBlock, u8 ch
     SetGpuReg(sBGControlRegs[bgNum], BGCNT_SCREENBASE(screenBaseBlock) | BGCNT_CHARBASE(charBaseBlock));
 }
 
-// Unused
-static void LinkTestScreen(void)
+static void UNUSED LinkTestScreen(void)
 {
     int i;
 
@@ -312,7 +306,6 @@ static void LinkTestScreen(void)
     AnimateSprites();
     BuildOamBuffer();
     UpdatePaletteFade();
-    sDummy3 = FALSE;
     InitLocalLinkPlayer();
     CreateTask(Task_PrintTestData, 0);
     SetMainCallback2(CB2_LinkTest);
@@ -380,7 +373,6 @@ void OpenLink(void)
         gSuppressLinkErrorMessage = FALSE;
         ResetBlockReceivedFlags();
         ResetBlockSend();
-        sDummy1 = FALSE;
         gLinkDummy2 = FALSE;
         gLinkDummy1 = FALSE;
         gReadyCloseLinkType = 0;
@@ -779,8 +771,7 @@ u32 LinkDummy_Return2(void)
     return 2;
 }
 
-// Unused
-static bool32 IsFullLinkGroupWithNoRS(void)
+static bool32 UNUSED IsFullLinkGroupWithNoRS(void)
 {
     if (GetLinkPlayerCount() != MAX_LINK_PLAYERS || AreAnyLinkPlayersUsingVersions(VERSION_RUBY, VERSION_SAPPHIRE) < 0)
     {
@@ -1012,14 +1003,12 @@ void SetBerryBlenderLinkCallback(void)
         gLinkCallback = LinkCB_BerryBlenderSendHeldKeys;
 }
 
-// Unused
-static u32 GetBerryBlenderKeySendAttempts(void)
+static u32 UNUSED GetBerryBlenderKeySendAttempts(void)
 {
     return gBerryBlenderKeySendAttempts;
 }
 
-// Unused
-static void SendBerryBlenderNoSpaceForPokeblocks(void)
+static void UNUSED SendBerryBlenderNoSpaceForPokeblocks(void)
 {
     BuildSendCmd(LINKCMD_BLENDER_NO_PBLOCK_SPACE);
 }
@@ -1165,7 +1154,7 @@ static void LinkTest_PrintHex(u32 num, u8 x, u8 y, u8 length)
     }
 }
 
-static void LinkTest_PrintInt(int num, u8 x, u8 y, u8 length)
+static void UNUSED LinkTest_PrintInt(int num, u8 x, u8 y, u8 length)
 {
     char buff[16];
     int negX;
@@ -1297,8 +1286,7 @@ u8 GetSavedPlayerCount(void)
     return gSavedLinkPlayerCount;
 }
 
-// Unused
-static u8 GetSavedMultiplayerId(void)
+static u8 UNUSED GetSavedMultiplayerId(void)
 {
     return gSavedMultiplayerId;
 }
@@ -1335,13 +1323,13 @@ bool8 DoesLinkPlayerCountMatchSaved(void)
 
 void ClearSavedLinkPlayers(void)
 {
-    int i;
     // The CpuSet loop below is incorrectly writing to NULL
     // instead of sSavedLinkPlayers.
     // Additionally it's using the wrong array size.
 #ifdef UBFIX
     memset(sSavedLinkPlayers, 0, sizeof(sSavedLinkPlayers));
 #else
+    int i;
     for (i = 0; i < MAX_LINK_PLAYERS; i++)
         CpuSet(&sSavedLinkPlayers[i], NULL, sizeof(struct LinkPlayer));
 #endif
@@ -1380,12 +1368,6 @@ bool8 IsLinkMaster(void)
         return Rfu_IsMaster();
 
     return EXTRACT_MASTER(gLinkStatus);
-}
-
-// Unused
-static u8 GetDummy2(void)
-{
-    return sDummy2;
 }
 
 void SetCloseLinkCallbackAndType(u16 type)
@@ -2201,26 +2183,26 @@ static bool8 DoHandshake(void)
     {
         REG_SIOMLT_SEND = SLAVE_HANDSHAKE;
     }
-    *(u64 *)gLink.handshakeBuffer = REG_SIOMLT_RECV;
+    gLink.handshakeBuffer.asU64 = REG_SIOMLT_RECV;
     REG_SIOMLT_RECV = 0;
     gLink.handshakeAsMaster = FALSE;
     for (i = 0; i < MAX_LINK_PLAYERS; i++)
     {
-        if ((gLink.handshakeBuffer[i] & ~0x3) == SLAVE_HANDSHAKE || gLink.handshakeBuffer[i] == MASTER_HANDSHAKE)
+        if ((gLink.handshakeBuffer.asU16[i] & ~0x3) == SLAVE_HANDSHAKE || gLink.handshakeBuffer.asU16[i] == MASTER_HANDSHAKE)
         {
             playerCount++;
-            if (minRecv > gLink.handshakeBuffer[i] && gLink.handshakeBuffer[i] != 0)
-                minRecv = gLink.handshakeBuffer[i];
+            if (minRecv > gLink.handshakeBuffer.asU16[i] && gLink.handshakeBuffer.asU16[i] != 0)
+                minRecv = gLink.handshakeBuffer.asU16[i];
         }
         else
         {
-            if (gLink.handshakeBuffer[i] != 0xFFFF)
+            if (gLink.handshakeBuffer.asU16[i] != 0xFFFF)
                 playerCount = 0;
             break;
         }
     }
     gLink.playerCount = playerCount;
-    if (gLink.playerCount > 1 && gLink.playerCount == sHandshakePlayerCount && gLink.handshakeBuffer[0] == MASTER_HANDSHAKE)
+    if (gLink.playerCount > 1 && gLink.playerCount == sHandshakePlayerCount && gLink.handshakeBuffer.asU16[0] == MASTER_HANDSHAKE)
     {
         return TRUE;
     }
@@ -2238,16 +2220,16 @@ static bool8 DoHandshake(void)
 
 static void DoRecv(void)
 {
-    u16 recv[4];
+    union LinkBuffer recv;
     u8 i;
     u8 index;
 
-    *(u64 *)recv = REG_SIOMLT_RECV;
+    recv.asU64 = REG_SIOMLT_RECV;
     if (gLink.sendCmdIndex == 0)
     {
         for (i = 0; i < gLink.playerCount; i++)
         {
-            if (gLink.checksum != recv[i] && sChecksumAvailable)
+            if (gLink.checksum != recv.asU16[i] && sChecksumAvailable)
             {
                 gLink.badChecksum = TRUE;
             }
@@ -2266,9 +2248,9 @@ static void DoRecv(void)
         {
             for (i = 0; i < gLink.playerCount; i++)
             {
-                gLink.checksum += recv[i];
-                sRecvNonzeroCheck |= recv[i];
-                gLink.recvQueue.data[i][gLink.recvCmdIndex][index] = recv[i];
+                gLink.checksum += recv.asU16[i];
+                sRecvNonzeroCheck |= recv.asU16[i];
+                gLink.recvQueue.data[i][gLink.recvCmdIndex][index] = recv.asU16[i];
             }
         }
         else

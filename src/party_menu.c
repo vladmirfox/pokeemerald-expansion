@@ -228,7 +228,6 @@ static EWRAM_DATA u16 *sSlot1TilemapBuffer = 0; // for switching party slots
 static EWRAM_DATA u16 *sSlot2TilemapBuffer = 0; //
 EWRAM_DATA u8 gSelectedOrderFromParty[MAX_FRONTIER_PARTY_SIZE] = {0};
 static EWRAM_DATA u16 sPartyMenuItemId = 0;
-static EWRAM_DATA u16 sUnused = 0;
 EWRAM_DATA u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2] = {0}; // bits 0-3 are the current pos of Slot 1, 4-7 are Slot 2, and so on
 static EWRAM_DATA u8 sInitialLevel = 0;
 static EWRAM_DATA u8 sFinalLevel = 0;
@@ -4170,7 +4169,7 @@ static void PartyMenuStartSpriteAnim(u8 spriteId, u8 animNum)
 
 // Unused. Might explain the large blank section in gPartyMenuPokeballSmall_Gfx
 // At the very least this is how the unused anim cmds for sSpriteAnimTable_MenuPokeballSmall were meant to be accessed
-static void SpriteCB_BounceConfirmCancelButton(u8 spriteId, u8 spriteId2, u8 animNum)
+static void UNUSED SpriteCB_BounceConfirmCancelButton(u8 spriteId, u8 spriteId2, u8 animNum)
 {
     if (animNum == 0)
     {
@@ -4957,7 +4956,7 @@ static void TryUseItemOnMove(u8 taskId)
     else
     {
         u16 move = MOVE_NONE;
-        s16 *moveSlot = &gPartyMenu.data1;
+        u16 *moveSlot = &gPartyMenu.data1;
         u16 item = gSpecialVar_ItemId;
 
         if (ExecuteTableBasedItemEffect(mon, item, ptr->slotId, *moveSlot))
@@ -5074,7 +5073,7 @@ void ItemUseCB_TMHM(u8 taskId, TaskFunc task)
 static void Task_LearnedMove(u8 taskId)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    s16 *move = &gPartyMenu.data1;
+    u16 *move = &gPartyMenu.data1;
     u16 item = gSpecialVar_ItemId;
 
     if (move[1] == 0)
@@ -5257,7 +5256,7 @@ static void Task_TryLearningNextMoveAfterText(u8 taskId)
         Task_TryLearningNextMove(taskId);
 }
 
-static void DisplayExpPoints(u8 taskId, TaskFunc task, u8 holdEffectParam)
+static void UNUSED DisplayExpPoints(u8 taskId, TaskFunc task, u8 holdEffectParam)
 {
     PlaySE(SE_USE_ITEM);
     ConvertIntToDecimalStringN(gStringVar2, sExpCandyExperienceTable[holdEffectParam], STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -5390,7 +5389,7 @@ static void Task_DisplayLevelUpStatsPg2(u8 taskId)
 
 static void DisplayLevelUpStatsPg1(u8 taskId)
 {
-    s16 *arrayPtr = sPartyMenuInternal->data;
+    u16 *arrayPtr = (u16*) sPartyMenuInternal->data;
 
     arrayPtr[12] = CreateLevelUpStatsWindow();
     DrawLevelUpWindowPg1(arrayPtr[12], arrayPtr, &arrayPtr[6], TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY);
@@ -5400,7 +5399,7 @@ static void DisplayLevelUpStatsPg1(u8 taskId)
 
 static void DisplayLevelUpStatsPg2(u8 taskId)
 {
-    s16 *arrayPtr = sPartyMenuInternal->data;
+    u16 *arrayPtr = (u16*) sPartyMenuInternal->data;
 
     DrawLevelUpWindowPg2(arrayPtr[12], &arrayPtr[6], TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY);
     CopyWindowToVram(arrayPtr[12], COPYWIN_GFX);
@@ -5852,7 +5851,7 @@ u8 GetItemEffectType(u16 item)
 static void TryTutorSelectedMon(u8 taskId)
 {
     struct Pokemon *mon;
-    s16 *move;
+    u16 *move;
 
     if (!gPaletteFade.active)
     {
@@ -6631,8 +6630,7 @@ static void UpdatePartyToFieldOrder(void)
     Free(partyBuffer);
 }
 
-// Unused
-static void SwitchAliveMonIntoLeadSlot(void)
+static void UNUSED SwitchAliveMonIntoLeadSlot(void)
 {
     u8 i;
     struct Pokemon *mon;
@@ -6734,8 +6732,7 @@ void ChooseMonForDaycare(void)
     InitPartyMenu(PARTY_MENU_TYPE_DAYCARE, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_MON, FALSE, PARTY_MSG_CHOOSE_MON_2, Task_HandleChooseMonInput, BufferMonSelection);
 }
 
-// Unused
-static void ChoosePartyMonByMenuType(u8 menuType)
+static void UNUSED ChoosePartyMonByMenuType(u8 menuType)
 {
     gFieldCallback2 = CB2_FadeFromPartyMenu;
     InitPartyMenu(menuType, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_AND_CLOSE, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_ReturnToField);

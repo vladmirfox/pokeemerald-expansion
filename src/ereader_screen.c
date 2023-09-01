@@ -107,17 +107,17 @@ static void OpenEReaderLink(void)
 static bool32 ValidateEReaderConnection(void)
 {
     volatile u16 backupIME;
-    u16 handshakes[MAX_LINK_PLAYERS];
+    union LinkBuffer handshakes;
 
     backupIME = REG_IME;
     REG_IME = 0;
-    memcpy(handshakes, gLink.handshakeBuffer, sizeof(handshakes));
+    handshakes = gLink.handshakeBuffer;
     REG_IME = backupIME;
 
     // Validate that we are player 1, the EReader is player 2,
     // and that players 3 and 4 are empty.
-    if (handshakes[0] == SLAVE_HANDSHAKE && handshakes[1] == EREADER_HANDSHAKE
-     && handshakes[2] == 0xFFFF && handshakes[3] == 0xFFFF)
+    if (handshakes.asU16[0] == SLAVE_HANDSHAKE && handshakes.asU16[1] == EREADER_HANDSHAKE
+     && handshakes.asU16[2] == 0xFFFF && handshakes.asU16[3] == 0xFFFF)
     {
         return TRUE;
     }

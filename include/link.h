@@ -204,13 +204,19 @@ struct RecvQueue
     u8 count;
 };
 
+union LinkBuffer
+{
+    u16 asU16[MAX_LINK_PLAYERS];
+    u64 asU64;
+};
+
 struct Link
 {
     /* 0x000 */ u8 isMaster; // 0: slave, 8: master
     /* 0x001 */ u8 state;
     /* 0x002 */ u8 localId; // local multi-player ID
     /* 0x003 */ u8 playerCount;
-    /* 0x004 */ u16 handshakeBuffer[MAX_LINK_PLAYERS];
+    /* 0x004 */ union LinkBuffer handshakeBuffer; // Changed to get around strict aliasing
     /* 0x00c */ bool8 receivedNothing;
     /* 0x00d */ s8 serialIntrCounter;
     /* 0x00e */ bool8 handshakeAsMaster;
