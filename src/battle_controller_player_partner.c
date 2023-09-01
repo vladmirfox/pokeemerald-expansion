@@ -307,6 +307,12 @@ static void PlayerPartnerHandleDrawTrainerPic(u32 battler)
         xPos = 90;
         yPos = (8 - gTrainerBackPicCoords[trainerPicId].size) * 4 + 80;
     }
+    else if (IsAiVsAiBattle())
+    {
+        trainerPicId = gTrainers[gPartnerTrainerId].trainerPic;
+        xPos = 60;
+        yPos = (8 - gTrainerFrontPicCoords[trainerPicId].size) * 4 + 80;
+    }
     else
     {
         trainerPicId = GetFrontierTrainerFrontSpriteId(gPartnerTrainerId);
@@ -373,6 +379,8 @@ static void PlayerPartnerHandleChooseMove(u32 battler)
         // If partner can mega evolve, do it.
         if (CanMegaEvolve(battler))
             BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (RET_MEGA_EVOLUTION) | (gBattlerTarget << 8));
+        else if (CanUltraBurst(battler))
+            BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (RET_ULTRA_BURST) | (gBattlerTarget << 8));
         else
             BtlController_EmitTwoReturnValues(BUFFER_B, 10, (chosenMoveId) | (gBattlerTarget << 8));
     }
@@ -432,6 +440,8 @@ static void PlayerPartnerHandleIntroTrainerBallThrow(u32 battler)
         trainerPal = gTrainerBackPicPaletteTable[TRAINER_STEVEN_PARTNER].data;
     else if (gPartnerTrainerId >= TRAINER_CUSTOM_PARTNER) // Custom multi battle.
         trainerPal = gTrainerBackPicPaletteTable[gPartnerSpriteId].data;
+    else if (IsAiVsAiBattle())
+        trainerPal = gTrainerFrontPicPaletteTable[gTrainers[gPartnerTrainerId].trainerPic].data;
     else
         trainerPal = gTrainerFrontPicPaletteTable[GetFrontierTrainerFrontSpriteId(gPartnerTrainerId)].data; // 2 vs 2 multi battle in Battle Frontier, load front sprite and pal.
 
