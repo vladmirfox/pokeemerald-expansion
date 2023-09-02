@@ -9323,9 +9323,8 @@ extern const u32 gConfetti_Pal[];
 
 extern const u32 gBattleInterfaceGfx_BattleBar[];
 extern const u32 gBattleAnimSpriteGfx_Substitute[];
-extern const u32 gBattleAnimSpritePal_Substitute[];
 extern const u32 gBattleAnimSpriteGfx_SubstituteBack[];
-extern const u32 gBattleAnimSpritePal_SubstituteBack[];
+extern const u32 gBattleAnimSpritePal_Substitute[];
 extern const u32 gHealthboxSinglesPlayerGfx[];
 extern const u32 gHealthboxSinglesOpponentGfx[];
 extern const u32 gHealthboxDoublesPlayerGfx[];

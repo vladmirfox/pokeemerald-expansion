@@ -956,7 +956,6 @@ void BattleLoadSubstituteOrMonSpriteGfx(u8 battlerId, bool8 loadMonSprite)
 
     if (!loadMonSprite)
     {
-        palOffset = OBJ_PLTT_ID(battlerId);
 
         if (IsContest())
             position = B_POSITION_PLAYER_LEFT;
@@ -964,25 +963,19 @@ void BattleLoadSubstituteOrMonSpriteGfx(u8 battlerId, bool8 loadMonSprite)
             position = GetBattlerPosition(battlerId);
 
         if (IsContest())
-        {
             LZDecompressVram(gBattleAnimSpriteGfx_SubstituteBack, gMonSpritesGfxPtr->sprites.ptr[position]);
-            LoadCompressedPalette(gBattleAnimSpritePal_SubstituteBack, palOffset, PLTT_SIZE_4BPP);
-        }
         else if (GetBattlerSide(battlerId) != B_SIDE_PLAYER)
-        {
             LZDecompressVram(gBattleAnimSpriteGfx_Substitute, gMonSpritesGfxPtr->sprites.ptr[position]);
-            LoadCompressedPalette(gBattleAnimSpritePal_Substitute, palOffset, PLTT_SIZE_4BPP);
-        }
         else
-        {
             LZDecompressVram(gBattleAnimSpriteGfx_SubstituteBack, gMonSpritesGfxPtr->sprites.ptr[position]);
-            LoadCompressedPalette(gBattleAnimSpritePal_SubstituteBack, palOffset, PLTT_SIZE_4BPP);
-        }
 
         for (i = 1; i < 4; i++)
         {
             Dma3CopyLarge32_(gMonSpritesGfxPtr->sprites.ptr[position], &gMonSpritesGfxPtr->sprites.byte[position][MON_PIC_SIZE * i], MON_PIC_SIZE);
         }
+
+        palOffset = OBJ_PLTT_ID(battlerId);
+        LoadCompressedPalette(gBattleAnimSpritePal_Substitute, palOffset, PLTT_SIZE_4BPP);
     }
     else
     {
