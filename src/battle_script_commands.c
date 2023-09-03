@@ -4064,6 +4064,7 @@ static void Cmd_getexp(void)
     s32 sentIn;
     s32 viaExpShare = 0;
     u32 *exp = &gBattleStruct->expValue;
+    u32 lastMonInParty = PARTY_SIZE - 1;
 
     gBattlerFainted = GetBattlerForBattleScript(cmd->battler);
     sentIn = gSentPokesToOpponent[(gBattlerFainted & 2) >> 1];
@@ -4249,12 +4250,17 @@ static void Cmd_getexp(void)
 
                     if (gBattleStruct->sentInPokes & 1)
                         PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
+                    else if (gBattleStruct->expGetterMonId == lastMonInParty)
+                    {
+                        gLastUsedItem = ITEM_EXP_SHARE;
+                        PrepareStringBattle(STRINGID_TEAMGAINEDEXP, NULL);
+                    }
+
                     MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
                 }
                 gBattleStruct->sentInPokes >>= 1;
                 gBattleScripting.getexpState++;
             }
-                //PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);// test
         }
         break;
     case 3: // Set stats and give exp
