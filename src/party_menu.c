@@ -238,6 +238,7 @@ void (*gItemUseCB)(u8, TaskFunc);
 
 static void ResetPartyMenu(void);
 static void CB2_InitPartyMenu(void);
+static void CB2_ReloadPartyMenu(void);
 static bool8 ShowPartyMenu(void);
 static bool8 ReloadPartyMenu(void);
 static void SetPartyMonsAllowedInMinigame(void);
@@ -536,6 +537,25 @@ static void InitPartyMenu(u8 menuType, u8 layout, u8 partyAction, bool8 keepCurs
     }
 }
 
+static void RefreshPartyMenu(void) //Refreshes the party menu without restarting tasks
+{
+    u16 i;
+
+    sPartyMenuInternal->exitCallback = NULL;
+    sPartyMenuInternal->lastSelectedSlot = 0;
+    sPartyMenuInternal->spriteIdConfirmPokeball = 0x7F;
+    sPartyMenuInternal->spriteIdCancelPokeball = 0x7F;
+
+    for (i = 0; i < ARRAY_COUNT(sPartyMenuInternal->data); i++)
+        sPartyMenuInternal->data[i] = 0;
+    for (i = 0; i < ARRAY_COUNT(sPartyMenuInternal->windowId); i++)
+        sPartyMenuInternal->windowId[i] = WINDOW_NONE;
+
+    gTextFlags.autoScroll = 0;
+    CalculatePlayerPartyCount();
+    SetMainCallback2(CB2_ReloadPartyMenu);
+}
+
 static void CB2_UpdatePartyMenu(void)
 {
     RunTasks();
@@ -694,7 +714,7 @@ static bool8 ShowPartyMenu(void)
     return FALSE;
 }
 
-static bool8 ReloadPartyMenu(void) //Reloads the party menu without restarting tasks
+static bool8 ReloadPartyMenu(void)
 {
     switch (gMain.state)
     {
@@ -5946,8 +5966,6 @@ static void Task_TryItemUseFusionChange(u8 taskId)
         targetSpecies = gTasks[taskId].tTargetSpecies;
         if (gTasks[taskId].tAnimWait == 0)
         {
-            FreeAndDestroyMonIconSprite(icon);
-            CreatePartyMonIconSpriteParameterized(targetSpecies, GetMonData(mon, MON_DATA_PERSONALITY, NULL), &sPartyMenuBoxes[gTasks[taskId].firstFusionSlot], 1);
             icon->oam.mosaic = TRUE;
             icon->data[0] = 10;
             icon->data[1] = 1;
@@ -5983,7 +6001,7 @@ static void Task_TryItemUseFusionChange(u8 taskId)
             }
 
         }
-        SetMainCallback2(CB2_ReloadPartyMenu);
+        RefreshPartyMenu();
         gTasks[taskId].tState++;
         break;
     case 3:
