@@ -4250,7 +4250,7 @@ static void Cmd_getexp(void)
 
                     if (gBattleStruct->sentInPokes & 1)
                         PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
-                    else if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId+1],MON_DATA_HP) == 0)
+                    else if (!IsValidForBattle(&gPlayerParty[gBattleStruct->expGetterMonId+1]))
                     {
                         gLastUsedItem = ITEM_EXP_SHARE;
                         PrepareStringBattle(STRINGID_TEAMGAINEDEXP, NULL);
