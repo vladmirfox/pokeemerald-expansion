@@ -119,7 +119,7 @@ const union AnimCmd *const gAnims_IceCrystalLarge[] =
     sAnim_IceCrystalLarge,
 };
 
-static const union AnimCmd *const sAnims_IceCrystalSmall[] =
+const union AnimCmd *const gAnims_IceCrystalSmall[] =
 {
     sAnim_IceCrystalSmall,
 };
@@ -166,7 +166,7 @@ const struct SpriteTemplate gIceCrystalSpiralInwardSmall =
     .tileTag = ANIM_TAG_ICE_CRYSTALS,
     .paletteTag = ANIM_TAG_ICE_CRYSTALS,
     .oam = &gOamData_AffineOff_ObjBlend_8x8,
-    .anims = sAnims_IceCrystalSmall,
+    .anims = gAnims_IceCrystalSmall,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimIcePunchSwirlingParticle,
@@ -199,7 +199,7 @@ const struct SpriteTemplate gIceBeamOuterCrystalSpriteTemplate =
     .tileTag = ANIM_TAG_ICE_CRYSTALS,
     .paletteTag = ANIM_TAG_ICE_CRYSTALS,
     .oam = &gOamData_AffineOff_ObjBlend_8x8,
-    .anims = sAnims_IceCrystalSmall,
+    .anims = gAnims_IceCrystalSmall,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = AnimIceBeamParticle,
@@ -234,7 +234,7 @@ const struct SpriteTemplate gIceCrystalHitSmallSpriteTemplate =
     .tileTag = ANIM_TAG_ICE_CRYSTALS,
     .paletteTag = ANIM_TAG_ICE_CRYSTALS,
     .oam = &gOamData_AffineNormal_ObjBlend_8x8,
-    .anims = sAnims_IceCrystalSmall,
+    .anims = gAnims_IceCrystalSmall,
     .images = NULL,
     .affineAnims = gAffineAnims_IceCrystalHit,
     .callback = AnimIceEffectParticle,
@@ -515,7 +515,7 @@ const struct SpriteTemplate gIceBallImpactShardSpriteTemplate =
     .tileTag = ANIM_TAG_ICE_CRYSTALS,
     .paletteTag = ANIM_TAG_ICE_CRYSTALS,
     .oam = &gOamData_AffineOff_ObjNormal_8x8,
-    .anims = sAnims_IceCrystalSmall,
+    .anims = gAnims_IceCrystalSmall,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = InitIceBallParticle,
@@ -1289,6 +1289,18 @@ static void InitPoisonGasCloudAnim(struct Sprite *sprite)
 
     sprite->x = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_X_2);
     sprite->y = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_Y_PIC_OFFSET);
+
+#if B_UPDATED_MOVE_DATA >= GEN_5
+    {
+        s16 x, y;
+        SetAverageBattlerPositions(gBattleAnimTarget, gBattleAnimArgs[7], &x, &y);
+        sprite->data[1] = sprite->x + gBattleAnimArgs[1];
+        sprite->data[2] = x + gBattleAnimArgs[3];
+        sprite->data[3] = sprite->y + gBattleAnimArgs[2];
+        sprite->data[4] = y + gBattleAnimArgs[4];
+        sprite->data[7] |= GetBattlerSpriteBGPriority(gBattleAnimTarget) << 8;
+    }
+#else
     if (gBattleAnimArgs[7])
     {
         sprite->data[1] = sprite->x + gBattleAnimArgs[1];
@@ -1305,6 +1317,7 @@ static void InitPoisonGasCloudAnim(struct Sprite *sprite)
         sprite->data[4] = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y) + gBattleAnimArgs[4];
         sprite->data[7] |= GetBattlerSpriteBGPriority(gBattleAnimTarget) << 8;
     }
+#endif
 
     if (IsContest())
     {
@@ -1333,8 +1346,14 @@ static void MovePoisonGasCloud(struct Sprite *sprite)
 
         if (sprite->data[0] <= 0)
         {
+            #if B_UPDATED_MOVE_DATA >= GEN_5
+                s16 x, y;
+                SetAverageBattlerPositions(gBattleAnimTarget, 0, &x, &y);
+                sprite->x = x;
+            #else
+                sprite->x = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X);
+            #endif
             sprite->data[0] = 80;
-            sprite->x = GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_X);
             sprite->data[1] = sprite->x;
             sprite->data[2] = sprite->x;
             sprite->y += sprite->y2;
@@ -1388,11 +1407,11 @@ static void MovePoisonGasCloud(struct Sprite *sprite)
             sprite->data[3] = sprite->y += sprite->y2;
             sprite->data[4] = sprite->y + 4;
             if (IsContest())
-                sprite->data[2] = -0x10;
+                sprite->data[2] = -16;
             else if (GET_BATTLER_SIDE2(gBattleAnimTarget) != B_SIDE_PLAYER)
-                sprite->data[2] = 0x100;
+                sprite->data[2] = DISPLAY_WIDTH + 16;
             else
-                sprite->data[2] = -0x10;
+                sprite->data[2] = -16;
 
             sprite->data[7]++;
             sprite->x2 = sprite->y2 = 0;
