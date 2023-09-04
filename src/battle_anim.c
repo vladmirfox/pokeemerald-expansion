@@ -440,30 +440,22 @@ static u8 GetBattleAnimMoveTargets(u8 battlerArgIndex, u8 *targets)
     u32 battler = gBattleAnimArgs[battlerArgIndex];
     switch (GetBattlerMoveTargetType(gBattleAnimAttacker, gAnimMoveIndex))
     {
+    case MOVE_TARGET_FOES_AND_ALLY:
+        if (IS_ALIVE_AND_PRESENT(BATTLE_PARTNER(BATTLE_OPPOSITE(battler)))) {
+            targets[idx++] = BATTLE_PARTNER(BATTLE_OPPOSITE(battler)); 
+            numTargets++;
+        }
+        // fallthrough
     case MOVE_TARGET_BOTH:
-        if (IsBattlerAlive(battler)) {
+        if (IS_ALIVE_AND_PRESENT(battler)) {
             targets[idx++] = battler;
             numTargets++;
         }
         battler = BATTLE_PARTNER(battler);
-        if (IsBattlerAlive(battler)) {
+        if (IS_ALIVE_AND_PRESENT(battler)) {
             targets[idx++] = battler;
             numTargets++;
-        }
-        break;
-    case MOVE_TARGET_FOES_AND_ALLY:
-        if (IsBattlerAlive(battler)) {
-            targets[idx++] = battler;
-            numTargets++;
-        }
-        if (IsBattlerAlive(BATTLE_PARTNER(battler))) {
-            targets[idx++] = BATTLE_PARTNER(battler);
-            numTargets++;
-        }
-        if (IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(battler)))) {
-            targets[idx++] = BATTLE_PARTNER(BATTLE_OPPOSITE(battler)); 
-            numTargets++;
-        }
+        }       
         break;
     default:
         targets[0] = gBattleAnimArgs[battlerArgIndex]; // original
