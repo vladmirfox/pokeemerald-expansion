@@ -353,6 +353,7 @@ struct BattleResources
     struct BattleHistory *battleHistory;
     u8 bufferA[MAX_BATTLERS_COUNT][0x200];
     u8 bufferB[MAX_BATTLERS_COUNT][0x200];
+    u8 transferBuffer[0x100];
 };
 
 #define AI_THINKING_STRUCT ((struct AI_ThinkingStruct *)(gBattleResources->ai))
@@ -573,7 +574,7 @@ struct BattleStruct
     u8 stringMoveType;
     u8 expGetterBattlerId;
     u8 absentBattlerFlags;
-    u8 palaceFlags; // First 4 bits are "is < 50% HP and not asleep" for each battler, last 4 bits are selected moves to pass to AI
+    u8 palaceFlags; // First 4 bits are "is <= 50% HP and not asleep" for each battler, last 4 bits are selected moves to pass to AI
     u8 field_93; // related to choosing pokemon?
     u8 wallyBattleState;
     u8 wallyMovesState;
@@ -679,6 +680,11 @@ struct BattleStruct
     bool8 trainerSlideZMoveMsgDone;
     bool8 trainerSlideBeforeFirstTurnMsgDone;
 };
+
+// The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
+// and 1 flag per battler to indicate whether the battler is awake and at <= 50% HP (which affects move choice).
+// The assert below is to ensure palaceFlags is large enough to store these flags without overlap.
+STATIC_ASSERT(sizeof(((struct BattleStruct *)0)->palaceFlags) * 8 >= MAX_BATTLERS_COUNT + MAX_MON_MOVES, PalaceFlagsTooSmall)
 
 #define F_DYNAMIC_TYPE_1 (1 << 6)
 #define F_DYNAMIC_TYPE_2 (1 << 7)
@@ -920,7 +926,6 @@ extern u8 gBattleTerrain;
 extern u32 gUnusedFirstBattleVar1;
 extern u8 *gBattleAnimBgTileBuffer;
 extern u8 *gBattleAnimBgTilemapBuffer;
-extern u8 gActiveBattler;
 extern u32 gBattleControllerExecFlags;
 extern u8 gBattlersCount;
 extern u16 gBattlerPartyIndexes[MAX_BATTLERS_COUNT];
