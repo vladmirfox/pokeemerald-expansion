@@ -2028,6 +2028,11 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             {
                 SetMonData(&party[i], MON_DATA_NICKNAME, partyData[i].nickname);
             }
+            if (partyData[i].isShiny)
+            {
+                j = TRUE;
+                SetMonData(&party[i], MON_DATA_IS_SHINY, &j);
+            }
             CalculateMonStats(&party[i]);
 
         #if B_TRAINER_CLASS_POKE_BALLS >= GEN_7
