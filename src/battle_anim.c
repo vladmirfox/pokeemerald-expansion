@@ -435,30 +435,33 @@ static void Cmd_unloadspritegfx(void)
 
 static u8 GetBattleAnimMoveTargets(u8 battlerArgIndex, u8 *targets)
 {
-    u8 numTargets = 1;
+    u8 numTargets = 0;
+    int idx = 0;
+    u32 battler = gBattleAnimArgs[battlerArgIndex];
     switch (GetBattlerMoveTargetType(gBattleAnimAttacker, gAnimMoveIndex))
     {
     case MOVE_TARGET_BOTH:
-        targets[0] = gBattleAnimArgs[battlerArgIndex];
-        numTargets = 1;
-        if (IsBattlerAlive(BATTLE_PARTNER(targets[0])))
-        {
-            targets[1] = BATTLE_PARTNER(targets[0]);
-            numTargets = 2;
+        if (IsBattlerAlive(battler)) {
+            targets[idx++] = battler;
+            numTargets++;
+        }
+        battler = BATTLE_PARTNER(battler);
+        if (IsBattlerAlive(battler)) {
+            targets[idx++] = battler;
+            numTargets++;
         }
         break;
     case MOVE_TARGET_FOES_AND_ALLY:
-        targets[0] = gBattleAnimArgs[battlerArgIndex];
-        numTargets = 1;
-        if (IsBattlerAlive(BATTLE_PARTNER(targets[0])))
-        {
-            targets[1] = BATTLE_PARTNER(targets[0]);
+        if (IsBattlerAlive(battler)) {
+            targets[idx++] = battler;
             numTargets++;
         }
-
-        if (IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(targets[0]))))
-        {
-            targets[2] = BATTLE_PARTNER(BATTLE_OPPOSITE(targets[0]));
+        if (IsBattlerAlive(BATTLE_PARTNER(battler))) {
+            targets[idx++] = BATTLE_PARTNER(battler);
+            numTargets++;
+        }
+        if (IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(battler)))) {
+            targets[idx++] = BATTLE_PARTNER(BATTLE_OPPOSITE(battler)); 
             numTargets++;
         }
         break;
@@ -551,7 +554,9 @@ static void CreateSpriteOnTargets(const struct SpriteTemplate *template, u8 argV
     subpriority = GetSubpriorityForMoveAnim(argVar);
 
     ntargets = GetBattleAnimMoveTargets(battlerArgIndex, targets);
-
+    if (ntargets == 0)
+        return;
+    
     for (i = 0; i < ntargets; i++) {
 
         if (overwriteAnimTgt)
@@ -676,7 +681,9 @@ static void Cmd_createvisualtaskontargets(void)
     }
 
     numArgs = GetBattleAnimMoveTargets(battlerArgIndex, targets);
-
+    if (numArgs == 0)
+        return;
+    
     for (i = 0; i < numArgs; i++)
     {
         gBattleAnimArgs[battlerArgIndex] = targets[i];
