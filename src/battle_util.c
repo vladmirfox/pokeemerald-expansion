@@ -6423,8 +6423,6 @@ static u8 HealConfuseBerry(u32 battler, u32 itemId, u8 flavorId, bool32 end2)
     return 0;
 }
 
-#undef CONFUSE_BERRY_HP_FRACTION
-
 static u8 StatRaiseBerry(u32 battler, u32 itemId, u32 statId, bool32 end2)
 {
     if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN) && HasEnoughHpToEatBerry(battler, GetBattlerItemHoldEffectParam(battler, itemId), itemId))

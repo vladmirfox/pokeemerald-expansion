@@ -106,7 +106,7 @@ static bool8 HasBadOdds(u32 battler)
     u32 aiMove, playerMove;
     bool8 getsOneShot = FALSE, hasStatusMove = FALSE, hasSuperEffectiveMove = FALSE;
 	struct Pokemon *party = NULL;
-	u16 typeEffectiveness = UQ_4_12(1.0); //baseline typing damage
+	u16 typeEffectiveness = UQ_4_12(1.0), aiMoveEffect; //baseline typing damage
 
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
     if (!(AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING))
@@ -129,17 +129,15 @@ static bool8 HasBadOdds(u32 battler)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         aiMove = gBattleMons[battler].moves[i];
+        aiMoveEffect = gBattleMoves[aiMove].effect;
         if (aiMove != MOVE_NONE)
         {
             // Check if mon has an "important" status move
-            if (aiMove == MOVE_REFLECT || aiMove == MOVE_LIGHT_SCREEN 
-            || aiMove == MOVE_SPIKES || aiMove == MOVE_TOXIC_SPIKES || aiMove == MOVE_STEALTH_ROCK || aiMove == MOVE_STICKY_WEB || aiMove == MOVE_LEECH_SEED
-            || aiMove == MOVE_EXPLOSION || aiMove == MOVE_SELF_DESTRUCT 
-            || aiMove == MOVE_SLEEP_POWDER || aiMove == MOVE_YAWN || aiMove == MOVE_LOVELY_KISS || aiMove == MOVE_GRASS_WHISTLE || aiMove == MOVE_HYPNOSIS 
-            || aiMove == MOVE_TOXIC || aiMove == MOVE_BANEFUL_BUNKER 
-            || aiMove == MOVE_WILL_O_WISP 
-            || aiMove == MOVE_TRICK || aiMove == MOVE_TRICK_ROOM || aiMove== MOVE_WONDER_ROOM || aiMove ==  MOVE_PSYCHO_SHIFT || aiMove == MOVE_FAKE_OUT
-            || aiMove == MOVE_STUN_SPORE || aiMove == MOVE_THUNDER_WAVE || aiMove == MOVE_NUZZLE || aiMove == MOVE_GLARE
+            if (aiMoveEffect == EFFECT_REFLECT || aiMoveEffect == EFFECT_LIGHT_SCREEN 
+            || aiMoveEffect == EFFECT_SPIKES || aiMoveEffect == EFFECT_TOXIC_SPIKES || aiMoveEffect == EFFECT_STEALTH_ROCK || aiMoveEffect == EFFECT_STICKY_WEB || aiMoveEffect == EFFECT_LEECH_SEED
+            || aiMoveEffect == EFFECT_EXPLOSION
+            || aiMoveEffect == EFFECT_SLEEP || aiMoveEffect == EFFECT_YAWN || aiMoveEffect == EFFECT_TOXIC || aiMoveEffect == EFFECT_WILL_O_WISP || aiMoveEffect == EFFECT_PARALYZE
+            || aiMoveEffect == EFFECT_TRICK || aiMoveEffect == EFFECT_TRICK_ROOM || aiMoveEffect== EFFECT_WONDER_ROOM || aiMoveEffect ==  EFFECT_PSYCHO_SHIFT || aiMoveEffect == EFFECT_FAKE_OUT
             )
             {
                 hasStatusMove = TRUE;
@@ -197,7 +195,7 @@ static bool8 HasBadOdds(u32 battler)
     }
 
     // If we don't have any other viable options, don't switch out
-    if (AI_THINKING_STRUCT->mostSuitableMonId == PARTY_SIZE)
+    if (AI_DATA->mostSuitableMonId == PARTY_SIZE)
         return FALSE;
 
     // Start assessing whether or not mon has bad odds
@@ -622,12 +620,12 @@ static bool8 ShouldSwitchIfAbilityBenefit(u32 battler)
             moduloChance = 4; //25%
             //Attempt to cure bad ailment
             if (gBattleMons[battler].status1 & (STATUS1_SLEEP | STATUS1_FREEZE | STATUS1_TOXIC_POISON)
-                && AI_THINKING_STRUCT->mostSuitableMonId != PARTY_SIZE)
+                && AI_DATA->mostSuitableMonId != PARTY_SIZE)
                 break;
             //Attempt to cure lesser ailment
             if ((gBattleMons[battler].status1 & STATUS1_ANY)
                 && (gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2)
-                && AI_THINKING_STRUCT->mostSuitableMonId != PARTY_SIZE
+                && AI_DATA->mostSuitableMonId != PARTY_SIZE
                 && Random() % (moduloChance*chanceReducer) == 0)
                 break;
 
@@ -639,7 +637,7 @@ static bool8 ShouldSwitchIfAbilityBenefit(u32 battler)
             if (gBattleMons[battler].status1 & STATUS1_ANY)
                 return FALSE;
             if ((gBattleMons[battler].hp <= ((gBattleMons[battler].maxHP * 2) / 3))
-                 && AI_THINKING_STRUCT->mostSuitableMonId != PARTY_SIZE
+                 && AI_DATA->mostSuitableMonId != PARTY_SIZE
                  && Random() % (moduloChance*chanceReducer) == 0)
                 break;
 
@@ -892,7 +890,7 @@ bool32 ShouldSwitch(u32 battler)
     if (ShouldSwitchIfAbilityBenefit(battler))
         return TRUE;
     if (HasBadOdds(battler))
-		return TRUE;
+        return TRUE;
 
     //Removing switch capabilites under specific conditions
     //These Functions prevent the "FindMonWithFlagsAndSuperEffective" from getting out of hand.
@@ -929,7 +927,7 @@ void AI_TrySwitchOrUseItem(u32 battler)
         {
             if (*(gBattleStruct->AI_monToSwitchIntoId + battler) == PARTY_SIZE)
             {
-                s32 monToSwitchId = AI_THINKING_STRUCT->mostSuitableMonId;
+                s32 monToSwitchId = AI_DATA->mostSuitableMonId;
                 if (monToSwitchId == PARTY_SIZE)
                 {
                     if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
@@ -1166,54 +1164,57 @@ static s32 GetSwitchinWeatherImpact(void)
     s32 weatherImpact = 0, maxHP = switchinCandidate.maxHP, ability = switchinCandidate.ability;
     u16 item = switchinCandidate.item;
 
-    // Damage
-    if (item != ITEM_SAFETY_GOGGLES)
+    if (WEATHER_HAS_EFFECT)
     {
-        if ((gBattleWeather & B_WEATHER_HAIL) && (switchinCandidate.type1 != TYPE_ICE || switchinCandidate.type2 != TYPE_ICE)
-        && ability != ABILITY_OVERCOAT && ability != ABILITY_SNOW_CLOAK && ability != ABILITY_ICE_BODY)
+        // Damage
+        if (item != ITEM_SAFETY_GOGGLES)
         {
-            weatherImpact = maxHP / 16;
-            if (weatherImpact == 0)
-                weatherImpact = 1;
+            if ((gBattleWeather & B_WEATHER_HAIL) && (switchinCandidate.type1 != TYPE_ICE || switchinCandidate.type2 != TYPE_ICE)
+            && ability != ABILITY_OVERCOAT && ability != ABILITY_SNOW_CLOAK && ability != ABILITY_ICE_BODY)
+            {
+                weatherImpact = maxHP / 16;
+                if (weatherImpact == 0)
+                    weatherImpact = 1;
+            }
+            else if ((gBattleWeather & B_WEATHER_SANDSTORM) && (switchinCandidate.type1 != TYPE_GROUND && switchinCandidate.type2 != TYPE_GROUND
+                && switchinCandidate.type1 != TYPE_ROCK && switchinCandidate.type2 != TYPE_ROCK
+                && switchinCandidate.type1 != TYPE_STEEL && switchinCandidate.type2 != TYPE_STEEL
+                && ability != ABILITY_OVERCOAT && ability != ABILITY_SAND_VEIL && ability != ABILITY_SAND_RUSH && ability != ABILITY_SAND_FORCE))
+            {
+                weatherImpact = maxHP / 16;
+                if (weatherImpact == 0)
+                    weatherImpact = 1;
+            }
         }
-        else if ((gBattleWeather & B_WEATHER_SANDSTORM) && (switchinCandidate.type1 != TYPE_GROUND && switchinCandidate.type2 != TYPE_GROUND
-            && switchinCandidate.type1 != TYPE_ROCK && switchinCandidate.type2 != TYPE_ROCK
-            && switchinCandidate.type1 != TYPE_STEEL && switchinCandidate.type2 != TYPE_STEEL
-            && ability != ABILITY_OVERCOAT && ability != ABILITY_SAND_VEIL && ability != ABILITY_SAND_RUSH && ability != ABILITY_SAND_FORCE))
-        {
-            weatherImpact = maxHP / 16;
-            if (weatherImpact == 0)
-                weatherImpact = 1;
-        }
-    }
-    if ((gBattleWeather & B_WEATHER_SUN) && (ability == ABILITY_SOLAR_POWER || ability == ABILITY_DRY_SKIN))
-    {
-        weatherImpact = maxHP / 8;
-        if (weatherImpact == 0)
-            weatherImpact = 1;
-    }
-
-    // Healing
-    if (gBattleWeather & B_WEATHER_RAIN)
-    {
-        if (ability == ABILITY_DRY_SKIN)
+        if ((gBattleWeather & B_WEATHER_SUN) && (ability == ABILITY_SOLAR_POWER || ability == ABILITY_DRY_SKIN))
         {
             weatherImpact = maxHP / 8;
             if (weatherImpact == 0)
                 weatherImpact = 1;
         }
-        else if (ability == ABILITY_RAIN_DISH)
+
+        // Healing
+        if (gBattleWeather & B_WEATHER_RAIN)
+        {
+            if (ability == ABILITY_DRY_SKIN)
+            {
+                weatherImpact = maxHP / 8;
+                if (weatherImpact == 0)
+                    weatherImpact = 1;
+            }
+            else if (ability == ABILITY_RAIN_DISH)
+            {
+                weatherImpact = maxHP / 16;
+                if (weatherImpact == 0)
+                    weatherImpact = 1;
+            }
+        }
+        if (((gBattleWeather & B_WEATHER_HAIL) || (gBattleWeather & B_WEATHER_SNOW)) && ability == ABILITY_ICE_BODY)
         {
             weatherImpact = maxHP / 16;
             if (weatherImpact == 0)
-                weatherImpact = 1;
+                weatherImpact =1;
         }
-    }
-    if (((gBattleWeather & B_WEATHER_HAIL) || (gBattleWeather & B_WEATHER_SNOW)) && ability == ABILITY_ICE_BODY)
-    {
-        weatherImpact = maxHP / 16;
-        if (weatherImpact == 0)
-            weatherImpact =1;
     }
     return weatherImpact;
 }
