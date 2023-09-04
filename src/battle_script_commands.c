@@ -4253,7 +4253,7 @@ static void Cmd_getexp(void)
                     else if (!IsValidForBattle(&gPlayerParty[gBattleStruct->expGetterMonId+1]))
                     {
                         gLastUsedItem = ITEM_EXP_SHARE;
-                        PrepareStringBattle(STRINGID_TEAMGAINEDEXP, NULL);
+                        PrepareStringBattle(STRINGID_TEAMGAINEDEXP, 0);
                     }
 
                     MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
