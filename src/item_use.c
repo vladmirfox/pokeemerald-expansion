@@ -38,6 +38,7 @@
 #include "string_util.h"
 #include "task.h"
 #include "text.h"
+#include "script_menu.h"
 #include "constants/event_bg.h"
 #include "constants/event_objects.h"
 #include "constants/item_effects.h"
@@ -1292,6 +1293,13 @@ void ItemUseOutOfBattle_FormChange_ConsumedOnUse(u8 taskId)
 {
     gItemUseCB = ItemUseCB_FormChange_ConsumedOnUse;
     gTasks[taskId].data[0] = TRUE;
+    SetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_RotomCatalog(u8 taskId)
+{   
+    gItemUseCB = ItemUseCB_RotomCatalog;
+    gTasks[taskId].data[0] = FALSE;
     SetUpItemUseCallback(taskId);
 }
 

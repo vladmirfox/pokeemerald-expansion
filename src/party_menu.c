@@ -63,6 +63,7 @@
 #include "trade.h"
 #include "union_room.h"
 #include "window.h"
+#include "script_menu.h"
 #include "constants/battle.h"
 #include "constants/battle_frontier.h"
 #include "constants/field_effects.h"
@@ -5724,11 +5725,8 @@ static void Task_TryItemUseFormChange(u8 taskId)
     }
 }
 
-bool32 TryItemUseFormChange(u8 taskId, TaskFunc task)
+bool32 TryItemUseFormChange(u8 taskId, TaskFunc task, u16 targetSpecies)
 {
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_USE, gSpecialVar_ItemId);
-
     if (targetSpecies != SPECIES_NONE)
     {
         gPartyMenuUseExitCallback = TRUE;
@@ -5752,14 +5750,29 @@ bool32 TryItemUseFormChange(u8 taskId, TaskFunc task)
 
 void ItemUseCB_FormChange(u8 taskId, TaskFunc task)
 {
-    TryItemUseFormChange(taskId, task);
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_USE, gSpecialVar_ItemId);
+
+    TryItemUseFormChange(taskId, task, targetSpecies);
 }
 
 void ItemUseCB_FormChange_ConsumedOnUse(u8 taskId, TaskFunc task)
 {
-    if (TryItemUseFormChange(taskId, task))
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_USE, gSpecialVar_ItemId);
+
+    if (TryItemUseFormChange(taskId, task, targetSpecies))
         RemoveBagItem(gSpecialVar_ItemId, 1);
 }
+
+void ItemUseCB_RotomCatalog(u8 taskId, TaskFunc task)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_USE_MULTICHOICE, gSpecialVar_ItemId);
+
+    TryItemUseFormChange(taskId, task, targetSpecies);
+}
+
 void TryItemHoldFormChange(struct Pokemon *mon)
 {
     u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_HOLD, 0);

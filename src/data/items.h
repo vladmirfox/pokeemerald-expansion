@@ -9199,8 +9199,8 @@ const struct Item gItems[] =
         .importance = 1,
         .description = sRotomCatalogDesc,
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RotomCatalog, // Todo
     },
 
     [ITEM_GRACIDEA] =
