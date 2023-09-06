@@ -79,6 +79,7 @@
 #define PARTY_MSG_DO_WHAT_WITH_ITEM         24
 #define PARTY_MSG_DO_WHAT_WITH_MAIL         25
 #define PARTY_MSG_ALREADY_HOLDING_ONE       26
+#define PARTY_MSG_WHICH_APPLIANCE           27
 #define PARTY_MSG_NONE                      127
 
 // IDs for DisplayPartyPokemonDescriptionText, to display a message in the party pokemon's box
@@ -100,5 +101,6 @@
 #define SELECTWINDOW_ITEM     1
 #define SELECTWINDOW_MAIL     2
 #define SELECTWINDOW_MOVES    3
+#define SELECTWINDOW_CATALOG  4
 
 #endif // GUARD_CONSTANTS_PARTY_MENU_H

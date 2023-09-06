@@ -95,6 +95,12 @@ enum {
     MENU_TRADE1,
     MENU_TRADE2,
     MENU_TOSS,
+    MENU_CATALOG_BULB,
+    MENU_CATALOG_OVEN,
+    MENU_CATALOG_WASHING,
+    MENU_CATALOG_FRIDGE,
+    MENU_CATALOG_FAN,
+    MENU_CATALOG_MOWER,
     MENU_FIELD_MOVES
 };
 
@@ -114,6 +120,7 @@ enum {
     ACTIONS_TRADE,
     ACTIONS_SPIN_TRADE,
     ACTIONS_TAKEITEM_TOSS,
+    ACTIONS_ROTOM_CATALOG,
 };
 
 // In CursorCb_FieldMove, field moves <= FIELD_MOVE_WATERFALL are assumed to line up with the badge flags.
@@ -477,6 +484,12 @@ static void CursorCb_Trade1(u8);
 static void CursorCb_Trade2(u8);
 static void CursorCb_Toss(u8);
 static void CursorCb_FieldMove(u8);
+static void CursorCb_CatalogBulb(u8);
+static void CursorCb_CatalogOven(u8);
+static void CursorCb_CatalogWashing(u8);
+static void CursorCb_CatalogFridge(u8);
+static void CursorCb_CatalogFan(u8);
+static void CursorCb_CatalogMower(u8);
 static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
@@ -2500,6 +2513,9 @@ void DisplayPartyMenuStdMessage(u32 stringId)
         case PARTY_MSG_ALREADY_HOLDING_ONE:
             *windowPtr = AddWindow(&sAlreadyHoldingOneMsgWindowTemplate);
             break;
+        case PARTY_MSG_WHICH_APPLIANCE:
+            *windowPtr = AddWindow(&sOrderWhichApplianceMsgWindowTemplate);
+            break;
         default:
             *windowPtr = AddWindow(&sDefaultPartyMsgWindowTemplate);
             break;
@@ -2555,6 +2571,9 @@ static u8 DisplaySelectionWindow(u8 windowType)
         break;
     case SELECTWINDOW_MAIL:
         window = sMailReadTakeWindowTemplate;
+        break;
+    case SELECTWINDOW_CATALOG:
+        window = sCatalogSelectWindowTemplate;
         break;
     default: // SELECTWINDOW_MOVES
         window = sMoveSelectWindowTemplate;
@@ -5633,7 +5652,70 @@ void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc task)
 #define tState          data[0]
 #define tTargetSpecies  data[1]
 #define tAnimWait       data[2]
+#define tMoveToLearn    data[3]
 #define tNextFunc       3
+
+void FormChangeTeachMove(u8 taskId, u16 move, u8 slot)
+{
+    struct Pokemon *mon;
+
+    gPartyMenu.data1 = move;
+    gPartyMenu.learnMoveState = 0;
+
+    PlaySE(SE_SELECT);
+    mon = &gPlayerParty[slot];
+    GetMonNickname(mon, gStringVar1);
+    StringCopy(gStringVar2, gMoveNames[move]);
+
+    if (GiveMoveToMon(mon, move) != MON_HAS_MAX_MOVES)
+    {
+        gTasks[taskId].func = Task_LearnedMove;
+    }
+    else
+    {
+        DisplayLearnMoveMessage(gText_PkmnNeedsToReplaceMove);
+        gTasks[taskId].func = Task_ReplaceMoveYesNo;
+    }
+}
+
+void DeleteMove(struct Pokemon *mon, u16 move)
+{
+    struct BoxPokemon *boxMon = &mon->box;
+    u8 i, j;
+    u8 deletemove = MOVE_NONE;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        u16 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
+        if (existingMove == move)
+        {
+            SetMonMoveSlot(mon, MOVE_NONE, i);
+            RemoveMonPPBonus(mon, i);
+            for (j = i; j < MAX_MON_MOVES - 1; j++)
+                ShiftMoveSlot(mon, j, j + 1);
+        }
+    }
+}
+
+u16 HasMoveInList(struct Pokemon *mon, const u16 *list)
+{
+    struct BoxPokemon *boxMon = &mon->box;
+    u8 i, j;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        u16 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
+        for (j = 0; j < ARRAY_COUNT(list); j++)
+        {
+            if (existingMove == list[j])
+            {
+                return existingMove;
+            }
+        }
+    }
+    return 0;
+}
+
 
 static void SpriteCB_FormChangeIconMosaic(struct Sprite *sprite)
 {
@@ -5716,8 +5798,18 @@ static void Task_TryItemUseFormChange(u8 taskId)
         break;
     case 6:
         if (!IsPartyMenuTextPrinterActive())
+        {
+            if (gSpecialVar_0x8000 != 0)
+            {
+                if (HasMoveInList(mon, sRotomFormChangeMoves) != 0)
+                {
+                    DeleteMove(mon, HasMoveInList(mon, sRotomFormChangeMoves));
+                }
+                FormChangeTeachMove(taskId, gSpecialVar_0x8000, gPartyMenu.slotId);
+            }
+            
             gTasks[taskId].tState++;
-
+        }
         break;
     case 7:
         gTasks[taskId].func = (void *)GetWordTaskArg(taskId, tNextFunc);
@@ -5725,8 +5817,11 @@ static void Task_TryItemUseFormChange(u8 taskId)
     }
 }
 
-bool32 TryItemUseFormChange(u8 taskId, TaskFunc task, u16 targetSpecies)
+bool32 TryItemUseFormChange(u8 taskId, TaskFunc task)
 {
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_USE, gSpecialVar_ItemId);
+
     if (targetSpecies != SPECIES_NONE)
     {
         gPartyMenuUseExitCallback = TRUE;
@@ -5750,28 +5845,96 @@ bool32 TryItemUseFormChange(u8 taskId, TaskFunc task, u16 targetSpecies)
 
 void ItemUseCB_FormChange(u8 taskId, TaskFunc task)
 {
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_USE, gSpecialVar_ItemId);
-
-    TryItemUseFormChange(taskId, task, targetSpecies);
+    TryItemUseFormChange(taskId, task);
 }
 
 void ItemUseCB_FormChange_ConsumedOnUse(u8 taskId, TaskFunc task)
 {
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_USE, gSpecialVar_ItemId);
-
-    if (TryItemUseFormChange(taskId, task, targetSpecies))
+    if (TryItemUseFormChange(taskId, task))
         RemoveBagItem(gSpecialVar_ItemId, 1);
 }
 
 void ItemUseCB_RotomCatalog(u8 taskId, TaskFunc task)
 {
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+    SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_ROTOM_CATALOG);
+    DisplaySelectionWindow(SELECTWINDOW_CATALOG);
+    DisplayPartyMenuStdMessage(PARTY_MSG_WHICH_APPLIANCE);
+    gTasks[taskId].data[0] = 0xFF;
+    gTasks[taskId].func = Task_HandleSelectionMenuInput;
+}
+
+bool32 TryCatalogFormChange(u8 taskId)
+{
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_USE_MULTICHOICE, gSpecialVar_ItemId);
 
-    TryItemUseFormChange(taskId, task, targetSpecies);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+
+    if (targetSpecies != SPECIES_NONE)
+    {
+        gPartyMenuUseExitCallback = TRUE;
+        SetWordTaskArg(taskId, tNextFunc, (u32)Task_ClosePartyMenuAfterText);
+        gTasks[taskId].func = Task_TryItemUseFormChange;
+        gTasks[taskId].tState = 0;
+        gTasks[taskId].tTargetSpecies = targetSpecies;
+        gTasks[taskId].tAnimWait = 0;
+        return TRUE;
+    }
+    else
+    {
+        gPartyMenuUseExitCallback = FALSE;
+        PlaySE(SE_SELECT);
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+    }
 }
+
+static void CursorCb_CatalogBulb(u8 taskId)
+{
+    gSpecialVar_Result = 0;
+    gSpecialVar_0x8000 = MOVE_THUNDER_SHOCK;
+    TryCatalogFormChange(taskId);
+}
+
+static void CursorCb_CatalogOven(u8 taskId)
+{
+    gSpecialVar_Result = 1;
+    gSpecialVar_0x8000 = MOVE_OVERHEAT;
+    TryCatalogFormChange(taskId);
+}
+
+static void CursorCb_CatalogWashing(u8 taskId)
+{
+    gSpecialVar_Result = 2;
+    gSpecialVar_0x8000 = MOVE_HYDRO_PUMP;
+    TryCatalogFormChange(taskId);
+}
+
+static void CursorCb_CatalogFridge(u8 taskId)
+{
+    gSpecialVar_Result = 3;
+    gSpecialVar_0x8000 = MOVE_BLIZZARD;
+    TryCatalogFormChange(taskId);
+}
+
+static void CursorCb_CatalogFan(u8 taskId)
+{
+    gSpecialVar_Result = 4;
+    gSpecialVar_0x8000 = MOVE_AIR_SLASH;
+    TryCatalogFormChange(taskId);
+}
+
+static void CursorCb_CatalogMower(u8 taskId)
+{
+    gSpecialVar_Result = 5;
+    gSpecialVar_0x8000 = MOVE_LEAF_STORM;
+    TryCatalogFormChange(taskId);
+}
+
 
 void TryItemHoldFormChange(struct Pokemon *mon)
 {

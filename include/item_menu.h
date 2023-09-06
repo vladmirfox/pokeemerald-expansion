@@ -33,7 +33,6 @@ enum {
     ITEMWIN_QUANTITY_WIDE,
     ITEMWIN_MONEY,
     ITEMWIN_COUNT,
-    ITEMWIN_ROTOM_CATALOG,
 };
 
 #define ITEMMENU_SWAP_LINE_LENGTH 8  // Swap line is 8 sprites long

@@ -90,12 +90,6 @@ enum {
     ACTION_GIVE_FAVOR_LADY,
     ACTION_CONFIRM_QUIZ_LADY,
     ACTION_DUMMY,
-    ACTION_ROTOM_BULB,
-    ACTION_ROTOM_OVEN,
-    ACTION_ROTOM_WASHING,
-    ACTION_ROTOM_FRIDGE,
-    ACTION_ROTOM_FAN,
-    ACTION_ROTOM_MOWER
 };
 
 enum {
@@ -286,12 +280,6 @@ static const struct MenuAction sItemMenuActions[] = {
     [ACTION_SHOW]              = {gMenuText_Show,       ItemMenu_Show},
     [ACTION_GIVE_FAVOR_LADY]   = {gMenuText_Give2,      ItemMenu_GiveFavorLady},
     [ACTION_CONFIRM_QUIZ_LADY] = {gMenuText_Confirm,    ItemMenu_ConfirmQuizLady},
-    [ACTION_ROTOM_BULB]        = {gText_LightBulb,      ItemMenu_UseOutOfBattle},
-    [ACTION_ROTOM_OVEN]        = {gText_MicrowaveOven,  ItemMenu_UseOutOfBattle},
-    [ACTION_ROTOM_WASHING]     = {gText_WashingMachine, ItemMenu_UseOutOfBattle},
-    [ACTION_ROTOM_FRIDGE]      = {gText_Refrigerator,   ItemMenu_UseOutOfBattle},
-    [ACTION_ROTOM_FAN]         = {gText_ElectricFan,    ItemMenu_UseOutOfBattle},
-    [ACTION_ROTOM_MOWER]       = {gText_LawnMower,      ItemMenu_UseOutOfBattle},
     [ACTION_DUMMY]             = {gText_EmptyString2,   NULL}
 };
 
@@ -350,16 +338,6 @@ static const u8 sContextMenuItems_FavorLady[] = {
 
 static const u8 sContextMenuItems_QuizLady[] = {
     ACTION_CONFIRM_QUIZ_LADY, ACTION_CANCEL
-};
-
-static const u8 sContextMenuItems_RotomCatalog[] = {
-    ACTION_ROTOM_BULB,
-    ACTION_ROTOM_OVEN,
-    ACTION_ROTOM_WASHING,
-    ACTION_ROTOM_FRIDGE,
-    ACTION_ROTOM_FAN,
-    ACTION_ROTOM_MOWER,
-    ACTION_CANCEL
 };
 
 
@@ -565,15 +543,6 @@ static const struct WindowTemplate sContextMenuWindowTemplates[] =
         .height = 2,
         .paletteNum = 15,
         .baseBlock = 0x231,
-    },
-    [ITEMWIN_ROTOM_CATALOG] = {
-        .bg = 1,
-        .tilemapLeft = 24,
-        .tilemapTop = 15,
-        .width = 5,
-        .height = 12,
-        .paletteNum = 15,
-        .baseBlock = 0x21D,
     },
 };
 
@@ -2635,14 +2604,4 @@ static void PrintTMHMMoveData(u16 itemId)
 
         CopyWindowToVram(WIN_TMHM_INFO, COPYWIN_GFX);
     }
-}
-
-void ItemMenu_RotomCatalog(u8 taskId)
-{
-    RemoveContextWindow();
-    gBagMenu->contextMenuItemsPtr = sContextMenuItems_RotomCatalog;
-    gBagMenu->contextMenuNumItems = ARRAY_COUNT(sContextMenuItems_RotomCatalog);
-    PrintContextMenuItems(ITEMWIN_ROTOM_CATALOG);
-    OpenContextMenu(taskId);
-    gTasks[taskId].func = Task_ItemContext_SingleRow;
 }
