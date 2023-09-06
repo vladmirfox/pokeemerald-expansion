@@ -101,7 +101,6 @@ enum {
     WIN_MESSAGE, // Identical to ITEMWIN_MESSAGE. Unused?
 };
 
-
 // Item list ID for toSwapPos to indicate an item is not currently being swapped
 #define NOT_SWAPPING 0xFF
 
@@ -266,21 +265,21 @@ static const struct ListMenuTemplate sItemListMenu =
 };
 
 static const struct MenuAction sItemMenuActions[] = {
-    [ACTION_USE]               = {gMenuText_Use,        ItemMenu_UseOutOfBattle},
-    [ACTION_TOSS]              = {gMenuText_Toss,       ItemMenu_Toss},
-    [ACTION_REGISTER]          = {gMenuText_Register,   ItemMenu_Register},
-    [ACTION_GIVE]              = {gMenuText_Give,       ItemMenu_Give},
-    [ACTION_CANCEL]            = {gText_Cancel2,        ItemMenu_Cancel},
-    [ACTION_BATTLE_USE]        = {gMenuText_Use,        ItemMenu_UseInBattle},
-    [ACTION_CHECK]             = {gMenuText_Check,      ItemMenu_UseOutOfBattle},
-    [ACTION_WALK]              = {gMenuText_Walk,       ItemMenu_UseOutOfBattle},
-    [ACTION_DESELECT]          = {gMenuText_Deselect,   ItemMenu_Register},
-    [ACTION_CHECK_TAG]         = {gMenuText_CheckTag,   ItemMenu_CheckTag},
-    [ACTION_CONFIRM]           = {gMenuText_Confirm,    Task_FadeAndCloseBagMenu},
-    [ACTION_SHOW]              = {gMenuText_Show,       ItemMenu_Show},
-    [ACTION_GIVE_FAVOR_LADY]   = {gMenuText_Give2,      ItemMenu_GiveFavorLady},
-    [ACTION_CONFIRM_QUIZ_LADY] = {gMenuText_Confirm,    ItemMenu_ConfirmQuizLady},
-    [ACTION_DUMMY]             = {gText_EmptyString2,   NULL}
+    [ACTION_USE]               = {gMenuText_Use,      ItemMenu_UseOutOfBattle},
+    [ACTION_TOSS]              = {gMenuText_Toss,     ItemMenu_Toss},
+    [ACTION_REGISTER]          = {gMenuText_Register, ItemMenu_Register},
+    [ACTION_GIVE]              = {gMenuText_Give,     ItemMenu_Give},
+    [ACTION_CANCEL]            = {gText_Cancel2,      ItemMenu_Cancel},
+    [ACTION_BATTLE_USE]        = {gMenuText_Use,      ItemMenu_UseInBattle},
+    [ACTION_CHECK]             = {gMenuText_Check,    ItemMenu_UseOutOfBattle},
+    [ACTION_WALK]              = {gMenuText_Walk,     ItemMenu_UseOutOfBattle},
+    [ACTION_DESELECT]          = {gMenuText_Deselect, ItemMenu_Register},
+    [ACTION_CHECK_TAG]         = {gMenuText_CheckTag, ItemMenu_CheckTag},
+    [ACTION_CONFIRM]           = {gMenuText_Confirm,  Task_FadeAndCloseBagMenu},
+    [ACTION_SHOW]              = {gMenuText_Show,     ItemMenu_Show},
+    [ACTION_GIVE_FAVOR_LADY]   = {gMenuText_Give2,    ItemMenu_GiveFavorLady},
+    [ACTION_CONFIRM_QUIZ_LADY] = {gMenuText_Confirm,  ItemMenu_ConfirmQuizLady},
+    [ACTION_DUMMY]             = {gText_EmptyString2, NULL}
 };
 
 // these are all 2D arrays with a width of 2 but are represented as 1D arrays
@@ -339,7 +338,6 @@ static const u8 sContextMenuItems_FavorLady[] = {
 static const u8 sContextMenuItems_QuizLady[] = {
     ACTION_CONFIRM_QUIZ_LADY, ACTION_CANCEL
 };
-
 
 static const TaskFunc sContextMenuFuncs[] = {
     [ITEMMENULOCATION_FIELD] =                  Task_ItemContext_Normal,

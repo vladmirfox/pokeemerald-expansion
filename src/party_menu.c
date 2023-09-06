@@ -63,7 +63,6 @@
 #include "trade.h"
 #include "union_room.h"
 #include "window.h"
-#include "script_menu.h"
 #include "constants/battle.h"
 #include "constants/battle_frontier.h"
 #include "constants/field_effects.h"
