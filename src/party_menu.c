@@ -101,6 +101,8 @@ enum {
     MENU_CATALOG_FRIDGE,
     MENU_CATALOG_FAN,
     MENU_CATALOG_MOWER,
+    MENU_CHANGE_FORM,
+    MENU_CHANGE_ABILITY,
     MENU_FIELD_MOVES
 };
 
@@ -121,6 +123,7 @@ enum {
     ACTIONS_SPIN_TRADE,
     ACTIONS_TAKEITEM_TOSS,
     ACTIONS_ROTOM_CATALOG,
+    ACTIONS_ZYGARDE_CUBE,
 };
 
 // In CursorCb_FieldMove, field moves <= FIELD_MOVE_WATERFALL are assumed to line up with the badge flags.
@@ -490,6 +493,8 @@ static void CursorCb_CatalogWashing(u8);
 static void CursorCb_CatalogFridge(u8);
 static void CursorCb_CatalogFan(u8);
 static void CursorCb_CatalogMower(u8);
+static void CursorCb_ChangeForm(u8);
+static void CursorCb_ChangeAbility(u8);
 static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
@@ -2574,6 +2579,9 @@ static u8 DisplaySelectionWindow(u8 windowType)
         break;
     case SELECTWINDOW_CATALOG:
         window = sCatalogSelectWindowTemplate;
+        break;
+    case SELECTWINDOW_ZYGARDECUBE:
+        window = sZygardeCubeSelectWindowTemplate;
         break;
     default: // SELECTWINDOW_MOVES
         window = sMoveSelectWindowTemplate;
@@ -5652,7 +5660,6 @@ void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc task)
 #define tState          data[0]
 #define tTargetSpecies  data[1]
 #define tAnimWait       data[2]
-#define tMoveToLearn    data[3]
 #define tNextFunc       3
 
 void FormChangeTeachMove(u8 taskId, u16 move, u8 slot)
@@ -5684,36 +5691,20 @@ void DeleteMove(struct Pokemon *mon, u16 move)
     u8 i, j;
     u8 deletemove = MOVE_NONE;
 
-    for (i = 0; i < MAX_MON_MOVES; i++)
+    if (move != MOVE_NONE)
     {
-        u16 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
-        if (existingMove == move)
+        for (i = 0; i < MAX_MON_MOVES; i++)
         {
-            SetMonMoveSlot(mon, MOVE_NONE, i);
-            RemoveMonPPBonus(mon, i);
-            for (j = i; j < MAX_MON_MOVES - 1; j++)
-                ShiftMoveSlot(mon, j, j + 1);
-        }
-    }
-}
-
-u16 HasMoveInList(struct Pokemon *mon, const u16 *list)
-{
-    struct BoxPokemon *boxMon = &mon->box;
-    u8 i, j;
-
-    for (i = 0; i < MAX_MON_MOVES; i++)
-    {
-        u16 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
-        for (j = 0; j < ARRAY_COUNT(list); j++)
-        {
-            if (existingMove == list[j])
+            u16 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
+            if (existingMove == move)
             {
-                return existingMove;
+                SetMonMoveSlot(mon, MOVE_NONE, i);
+                RemoveMonPPBonus(mon, i);
+                for (j = i; j < MAX_MON_MOVES - 1; j++)
+                    ShiftMoveSlot(mon, j, j + 1);
             }
         }
     }
-    return 0;
 }
 
 u8 DoesMonHaveAnyMoves(struct Pokemon *mon)
@@ -5813,10 +5804,20 @@ static void Task_TryItemUseFormChange(u8 taskId)
     case 6:
         if (!IsPartyMenuTextPrinterActive())
         {
-            if (gSpecialVar_0x8000 != 0) //only rotom should have this
+            if (gSpecialVar_ItemId == ITEM_ROTOM_CATALOG) //only for rotom currently
             {
-                if (HasMoveInList(mon, sRotomFormChangeMoves) != 0)
-                    DeleteMove(mon, HasMoveInList(mon, sRotomFormChangeMoves));
+                u16 i, j;
+                for (i = 0; i < MAX_MON_MOVES; i++)
+                {
+                    u16 existingMove = GetBoxMonData(&mon->box, MON_DATA_MOVE1 + i, NULL);
+                    for (j = 0; j < ARRAY_COUNT(sRotomFormChangeMoves); j++)
+                    {
+                        if (existingMove == sRotomFormChangeMoves[j])
+                        {
+                            DeleteMove(mon, existingMove);
+                        }
+                    }
+                }
 
                 if (gSpecialVar_0x8000 == MOVE_THUNDER_SHOCK)
                 {
@@ -5884,7 +5885,7 @@ void ItemUseCB_RotomCatalog(u8 taskId, TaskFunc task)
     gTasks[taskId].func = Task_HandleSelectionMenuInput;
 }
 
-bool32 TryCatalogFormChange(u8 taskId)
+bool32 TryMultichoiceFormChange(u8 taskId)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_USE_MULTICHOICE, gSpecialVar_ItemId);
@@ -5916,44 +5917,65 @@ static void CursorCb_CatalogBulb(u8 taskId)
 {
     gSpecialVar_Result = 0;
     gSpecialVar_0x8000 = MOVE_THUNDER_SHOCK;
-    TryCatalogFormChange(taskId);
+    TryMultichoiceFormChange(taskId);
 }
 
 static void CursorCb_CatalogOven(u8 taskId)
 {
     gSpecialVar_Result = 1;
     gSpecialVar_0x8000 = MOVE_OVERHEAT;
-    TryCatalogFormChange(taskId);
+    TryMultichoiceFormChange(taskId);
 }
 
 static void CursorCb_CatalogWashing(u8 taskId)
 {
     gSpecialVar_Result = 2;
     gSpecialVar_0x8000 = MOVE_HYDRO_PUMP;
-    TryCatalogFormChange(taskId);
+    TryMultichoiceFormChange(taskId);
 }
 
 static void CursorCb_CatalogFridge(u8 taskId)
 {
     gSpecialVar_Result = 3;
     gSpecialVar_0x8000 = MOVE_BLIZZARD;
-    TryCatalogFormChange(taskId);
+    TryMultichoiceFormChange(taskId);
 }
 
 static void CursorCb_CatalogFan(u8 taskId)
 {
     gSpecialVar_Result = 4;
     gSpecialVar_0x8000 = MOVE_AIR_SLASH;
-    TryCatalogFormChange(taskId);
+    TryMultichoiceFormChange(taskId);
 }
 
 static void CursorCb_CatalogMower(u8 taskId)
 {
     gSpecialVar_Result = 5;
     gSpecialVar_0x8000 = MOVE_LEAF_STORM;
-    TryCatalogFormChange(taskId);
+    TryMultichoiceFormChange(taskId);
 }
 
+void ItemUseCB_ZygardeCube(u8 taskId, TaskFunc task)
+{
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+    SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_ZYGARDE_CUBE);
+    DisplaySelectionWindow(SELECTWINDOW_ZYGARDECUBE);
+    gTasks[taskId].data[0] = 0xFF;
+    gTasks[taskId].func = Task_HandleSelectionMenuInput;
+}
+
+static void CursorCb_ChangeForm(u8 taskId)
+{
+    gSpecialVar_Result = 0;
+    TryMultichoiceFormChange(taskId);
+}
+
+static void CursorCb_ChangeAbility(u8 taskId)
+{
+    gSpecialVar_Result = 1;
+    TryMultichoiceFormChange(taskId);
+}
 
 void TryItemHoldFormChange(struct Pokemon *mon)
 {

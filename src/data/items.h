@@ -9200,7 +9200,7 @@ const struct Item gItems[] =
         .description = sRotomCatalogDesc,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_RotomCatalog, // Todo
+        .fieldUseFunc = ItemUseOutOfBattle_RotomCatalog,
     },
 
     [ITEM_GRACIDEA] =
@@ -9244,8 +9244,8 @@ const struct Item gItems[] =
         .importance = 1,
         .description = sZygardeCubeDesc,
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_ZygardeCube, // Todo
     },
 
     [ITEM_PRISON_BOTTLE] =

@@ -1298,9 +1298,16 @@ void ItemUseOutOfBattle_FormChange_ConsumedOnUse(u8 taskId)
 
 void ItemUseOutOfBattle_RotomCatalog(u8 taskId)
 {   
-    SetUpItemUseCallback(taskId);
     gItemUseCB = ItemUseCB_RotomCatalog;
     gTasks[taskId].data[0] = TRUE;
+    SetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_ZygardeCube(u8 taskId)
+{   
+    gItemUseCB = ItemUseCB_ZygardeCube;
+    gTasks[taskId].data[0] = TRUE;
+    SetUpItemUseCallback(taskId);
 }
 
 void Task_UseHoneyOnField(u8 taskId)

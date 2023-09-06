@@ -1319,7 +1319,7 @@ extern const u8 CableClub_Text_YouMayBattleHere[];
 extern const u8 CableClub_Text_CanMixRecords[];
 extern const u8 CableClub_Text_CanMakeBerryPowder[];
 
-// Rotom Catalog multichoice text
+// Rotom Catalog text
 extern const u8 gText_LightBulb[];
 extern const u8 gText_MicrowaveOven[];
 extern const u8 gText_WashingMachine[];
@@ -1327,6 +1327,10 @@ extern const u8 gText_Refrigerator[];
 extern const u8 gText_ElectricFan[];
 extern const u8 gText_LawnMower[];
 extern const u8 gText_Exit[];
+
+// Zygarde Cube text
+extern const u8 gText_ChangeForm[];
+extern const u8 gText_ChangeAbility[];
 
 // Frontier records.
 extern const u8 gText_WinStreak[];
