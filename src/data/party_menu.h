@@ -1138,7 +1138,6 @@ static const u8 *const sUnused_StatStrings[] =
 
 static const u16 sRotomFormChangeMoves[] =
 {
-    MOVE_THUNDER_SHOCK,
     MOVE_OVERHEAT,
     MOVE_HYDRO_PUMP,
     MOVE_BLIZZARD,

@@ -5716,6 +5716,20 @@ u16 HasMoveInList(struct Pokemon *mon, const u16 *list)
     return 0;
 }
 
+u8 DoesMonHaveAnyMoves(struct Pokemon *mon)
+{   
+    struct BoxPokemon *boxMon = &mon->box;
+    u8 i;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        u16 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
+        if (existingMove != MOVE_NONE)
+            i++;
+    }
+    return i;
+}
+
 
 static void SpriteCB_FormChangeIconMosaic(struct Sprite *sprite)
 {
@@ -5799,13 +5813,18 @@ static void Task_TryItemUseFormChange(u8 taskId)
     case 6:
         if (!IsPartyMenuTextPrinterActive())
         {
-            if (gSpecialVar_0x8000 != 0)
+            if (gSpecialVar_0x8000 != 0) //only rotom should have this
             {
                 if (HasMoveInList(mon, sRotomFormChangeMoves) != 0)
-                {
                     DeleteMove(mon, HasMoveInList(mon, sRotomFormChangeMoves));
+
+                if (gSpecialVar_0x8000 == MOVE_THUNDER_SHOCK)
+                {
+                    if (!DoesMonHaveAnyMoves(mon))
+                        FormChangeTeachMove(taskId, gSpecialVar_0x8000, gPartyMenu.slotId);
                 }
-                FormChangeTeachMove(taskId, gSpecialVar_0x8000, gPartyMenu.slotId);
+                else
+                    FormChangeTeachMove(taskId, gSpecialVar_0x8000, gPartyMenu.slotId);
             }
             
             gTasks[taskId].tState++;
