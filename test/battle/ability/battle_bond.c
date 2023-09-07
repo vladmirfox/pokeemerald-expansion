@@ -10,8 +10,8 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Battle Bond does not transform species other than Greninja")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {Ability(ABILITY_BATTLE_BOND); }
-        OPPONENT(SPECIES_WOBBUFFET) {HP(1); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_BATTLE_BOND); }
+        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_WATER_GUN); SEND_OUT(opponent, 1); }
