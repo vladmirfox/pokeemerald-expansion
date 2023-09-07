@@ -42,7 +42,7 @@ SINGLE_BATTLE_TEST("Battle Bond transforms player's Greninja - Singles")
         if (monsCountPlayer == 2) {
             PLAYER(SPECIES_WOBBUFFET);
         }
-        OPPONENT(SPECIES_WOBBUFFET) {HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         if (monsCountOpponent == 2) {
             OPPONENT(SPECIES_WOBBUFFET);
         }
