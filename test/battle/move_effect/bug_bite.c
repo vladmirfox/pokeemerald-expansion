@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
     u16 item;
     u32 status1 = STATUS1_NONE, effect, statId;
 
-    PARAMETRIZE {item = ITEM_NONE; }
+    PARAMETRIZE { item = ITEM_NONE; }
     PARAMETRIZE { item = ITEM_ORAN_BERRY; effect = HOLD_EFFECT_RESTORE_HP; }
     PARAMETRIZE { item = ITEM_SITRUS_BERRY; effect = HOLD_EFFECT_RESTORE_HP; }
     // PARAMETRIZE { item = ITEM_ENIGMA_BERRY; effect = HOLD_EFFECT_RESTORE_HP; } To do once Enigma Berry's effect is done
