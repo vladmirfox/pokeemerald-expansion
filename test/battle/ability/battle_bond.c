@@ -133,7 +133,7 @@ DOUBLE_BATTLE_TEST("Battle Bond transforms player's Greninja when fainting its A
 
     GIVEN {
         PLAYER(SPECIES_GRENINJA_BATTLE_BOND);
-        PLAYER(SPECIES_WOBBUFFET) {HP(1); }
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         if (monsCountPlayer == 3) {
             PLAYER(SPECIES_WOBBUFFET);
         }
