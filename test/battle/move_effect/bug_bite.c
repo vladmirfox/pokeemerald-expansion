@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
         if (item == ITEM_CHESTO_BERRY) {
             TURN { MOVE(player, MOVE_SLEEP_TALK); }
         } else {
-        TURN { MOVE(player, MOVE_BUG_BITE); }
+            TURN { MOVE(player, MOVE_BUG_BITE); }
         }
 
     } SCENE {
