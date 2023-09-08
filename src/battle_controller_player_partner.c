@@ -387,6 +387,7 @@ static void PlayerPartnerHandleChooseMove(u32 battler)
 
     PlayerPartnerBufferExecCompleted(battler);
 }
+
 static void PlayerPartnerHandleChoosePokemon(u32 battler)
 {
     s32 chosenMonId;
