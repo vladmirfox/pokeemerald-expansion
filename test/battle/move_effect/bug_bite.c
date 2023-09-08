@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
     u16 item;
     u32 status1 = STATUS1_NONE, effect, statId;
 
-    PARAMETRIZE {item = ITEM_NONE; }
+    PARAMETRIZE { item = ITEM_NONE; }
     PARAMETRIZE { item = ITEM_ORAN_BERRY; effect = HOLD_EFFECT_RESTORE_HP; }
     PARAMETRIZE { item = ITEM_SITRUS_BERRY; effect = HOLD_EFFECT_RESTORE_HP; }
     // PARAMETRIZE { item = ITEM_ENIGMA_BERRY; effect = HOLD_EFFECT_RESTORE_HP; } To do once Enigma Berry's effect is done
@@ -33,14 +33,14 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
     PARAMETRIZE { item = ITEM_SALAC_BERRY; effect = HOLD_EFFECT_SPEED_UP; statId = STAT_SPEED; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {HP(399); MaxHP(400); Status1(status1); Moves(MOVE_SLEEP_TALK, MOVE_BUG_BITE); }
+        PLAYER(SPECIES_WOBBUFFET) { HP(399); MaxHP(400); Status1(status1); Moves(MOVE_SLEEP_TALK, MOVE_BUG_BITE); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(item); }
     } WHEN {
         // Chesto Berry can only be applied if the pokemon is asleep and uses Sleep Talk.
         if (item == ITEM_CHESTO_BERRY) {
             TURN { MOVE(player, MOVE_SLEEP_TALK); }
         } else {
-        TURN { MOVE(player, MOVE_BUG_BITE); }
+            TURN { MOVE(player, MOVE_BUG_BITE); }
         }
 
     } SCENE {
