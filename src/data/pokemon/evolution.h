@@ -531,8 +531,8 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
     [SPECIES_CUFANT]                = {{EVO_LEVEL, 34, SPECIES_COPPERAJAH}},
     [SPECIES_DREEPY]                = {{EVO_LEVEL, 50, SPECIES_DRAKLOAK}},
     [SPECIES_DRAKLOAK]              = {{EVO_LEVEL, 60, SPECIES_DRAGAPULT}},
-    [SPECIES_KUBFU]                 = {{EVO_DARK_SCROLL, 0, SPECIES_URSHIFU},
-                                       {EVO_ITEM, ITEM_SCROLL_OF_DARKNESS, SPECIES_URSHIFU},
+    [SPECIES_KUBFU]                 = {{EVO_DARK_SCROLL, 0, SPECIES_URSHIFU_SINGLE_STRIKE_STYLE},
+                                       {EVO_ITEM, ITEM_SCROLL_OF_DARKNESS, SPECIES_URSHIFU_SINGLE_STRIKE_STYLE},
                                        {EVO_WATER_SCROLL, 0, SPECIES_URSHIFU_RAPID_STRIKE_STYLE},
                                        {EVO_ITEM, ITEM_SCROLL_OF_WATERS, SPECIES_URSHIFU_RAPID_STRIKE_STYLE}},
 #endif

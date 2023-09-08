@@ -20622,7 +20622,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_ZACIAN] =
+    [SPECIES_ZACIAN_HERO_OF_MANY_BATTLES] =
     {
         .baseHP        = 92,
         .baseAttack    = 130,
@@ -20645,7 +20645,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
-    [SPECIES_ZAMAZENTA] =
+    [SPECIES_ZAMAZENTA_HERO_OF_MANY_BATTLES] =
     {
         .baseHP        = 92,
         .baseAttack    = 130,
@@ -20714,7 +20714,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
-    [SPECIES_URSHIFU] =
+    [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE] =
     {
         .baseHP        = 100,
         .baseAttack    = 130,
@@ -20920,7 +20920,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_BASCULEGION] =
+    [SPECIES_BASCULEGION_MALE] =
     {
         .baseHP        = 120,
         .baseAttack    = 112,

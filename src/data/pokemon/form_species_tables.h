@@ -1103,13 +1103,13 @@ static const u16 sMorpekoFormSpeciesIdTable[] = {
 };
 
 static const u16 sZacianFormSpeciesIdTable[] = {
-    SPECIES_ZACIAN,
+    SPECIES_ZACIAN_HERO_OF_MANY_BATTLES,
     SPECIES_ZACIAN_CROWNED_SWORD,
     FORM_SPECIES_END,
 };
 
 static const u16 sZamazentaFormSpeciesIdTable[] = {
-    SPECIES_ZAMAZENTA,
+    SPECIES_ZAMAZENTA_HERO_OF_MANY_BATTLES,
     SPECIES_ZAMAZENTA_CROWNED_SHIELD,
     FORM_SPECIES_END,
 };
@@ -1121,7 +1121,7 @@ static const u16 sEternatusFormSpeciesIdTable[] = {
 };
 
 static const u16 sUrshifuFormSpeciesIdTable[] = {
-    SPECIES_URSHIFU,
+    SPECIES_URSHIFU_SINGLE_STRIKE_STYLE,
     SPECIES_URSHIFU_RAPID_STRIKE_STYLE,
     FORM_SPECIES_END,
 };
@@ -1146,7 +1146,7 @@ static const u16 sEnamorusFormSpeciesIdTable[] = {
 };
 
 static const u16 sBasculegionFormSpeciesIdTable[] = {
-    SPECIES_BASCULEGION,
+    SPECIES_BASCULEGION_MALE,
     SPECIES_BASCULEGION_FEMALE,
     FORM_SPECIES_END,
 };

@@ -937,11 +937,14 @@
 #define SPECIES_DREEPY                       885
 #define SPECIES_DRAKLOAK                     886
 #define SPECIES_DRAGAPULT                    887
-#define SPECIES_ZACIAN                       888
-#define SPECIES_ZAMAZENTA                    889
+#define SPECIES_ZACIAN                       SPECIES_ZACIAN_HERO_OF_MANY_BATTLES
+#define SPECIES_ZACIAN_HERO_OF_MANY_BATTLES  888
+#define SPECIES_ZAMAZENTA                    SPECIES_ZAMAZENTA_HERO_OF_MANY_BATTLES
+#define SPECIES_ZAMAZENTA_HERO_OF_MANY_BATTLES 889
 #define SPECIES_ETERNATUS                    890
 #define SPECIES_KUBFU                        891
-#define SPECIES_URSHIFU                      892
+#define SPECIES_URSHIFU                      SPECIES_URSHIFU_SINGLE_STRIKE_STYLE
+#define SPECIES_URSHIFU_SINGLE_STRIKE_STYLE  892
 #define SPECIES_ZARUDE                       893
 #define SPECIES_REGIELEKI                    894
 #define SPECIES_REGIDRAGO                    895
@@ -951,7 +954,8 @@
 #define SPECIES_WYRDEER                      899
 #define SPECIES_KLEAVOR                      900
 #define SPECIES_URSALUNA                     901
-#define SPECIES_BASCULEGION                  902
+#define SPECIES_BASCULEGION                  SPECIES_BASCULEGION_MALE
+#define SPECIES_BASCULEGION_MALE             902
 #define SPECIES_SNEASLER                     903
 #define SPECIES_OVERQWIL                     904
 #define SPECIES_ENAMORUS                     SPECIES_ENAMORUS_INCARNATE

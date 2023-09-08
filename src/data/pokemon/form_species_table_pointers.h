@@ -164,14 +164,14 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_EISCUE_ICE_FACE] = sEiscueFormSpeciesIdTable,
     [SPECIES_INDEEDEE_MALE] = sIndeedeeFormSpeciesIdTable,
     [SPECIES_MORPEKO_FULL_BELLY] = sMorpekoFormSpeciesIdTable,
-    [SPECIES_ZACIAN] = sZacianFormSpeciesIdTable,
-    [SPECIES_ZAMAZENTA] = sZamazentaFormSpeciesIdTable,
+    [SPECIES_ZACIAN_HERO_OF_MANY_BATTLES] = sZacianFormSpeciesIdTable,
+    [SPECIES_ZAMAZENTA_HERO_OF_MANY_BATTLES] = sZamazentaFormSpeciesIdTable,
     [SPECIES_ETERNATUS] = sEternatusFormSpeciesIdTable,
-    [SPECIES_URSHIFU] = sUrshifuFormSpeciesIdTable,
+    [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE] = sUrshifuFormSpeciesIdTable,
     [SPECIES_ZARUDE] = sZarudeFormSpeciesIdTable,
     [SPECIES_CALYREX] = sCalyrexFormSpeciesIdTable,
     [SPECIES_ENAMORUS_INCARNATE] = sEnamorusFormSpeciesIdTable,
-    [SPECIES_BASCULEGION] = sBasculegionFormSpeciesIdTable,
+    [SPECIES_BASCULEGION_MALE] = sBasculegionFormSpeciesIdTable,
 #endif
     // Megas
     [SPECIES_VENUSAUR_MEGA] = sVenusaurFormSpeciesIdTable,
