@@ -8481,19 +8481,20 @@ static void HandleTerrainMove(u16 move)
     case EFFECT_HIT_SET_REMOVE_TERRAIN:
         switch (gBattleMoves[move].argument)
         {
-        case 0: //genesis supernova
+        case ARG_SET_PSYCHIC_TERRAIN: // Genesis Supernova
             statusFlag = STATUS_FIELD_PSYCHIC_TERRAIN;
             gBattleCommunication[MULTISTRING_CHOOSER] = 3;
             break;
-        case 1: //splintered stormshards
+        case ARG_TRY_REMOVE_TERRAIN_HIT: // Splintered Stormshards
+        case ARG_TRY_REMOVE_TERRAIN_FAIL: // Steel Roller
             if (!(gFieldStatuses & STATUS_FIELD_TERRAIN_ANY))
             {
-                //no terrain to remove -> jump to battle script pointer
+                // No terrain to remove, jump to battle script pointer.
                 gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
             }
             else
             {
-                // remove all terrain
+                // Remove all terrains.
                 RemoveAllTerrains();
                 gBattlescriptCurrInstr += 7;
             }
@@ -16592,4 +16593,14 @@ void BS_SetSnow(void)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STARTED_SNOW;
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_JumpIfArgument(void)
+{
+    NATIVE_ARGS(u8 argument, const u8 *jumpInstr);
+
+    if (gBattleMoves[gCurrentMove].argument == cmd->argument)
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
