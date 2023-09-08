@@ -921,9 +921,12 @@
 #define SPECIES_SNOM                         872
 #define SPECIES_FROSMOTH                     873
 #define SPECIES_STONJOURNER                  874
-#define SPECIES_EISCUE                       875
-#define SPECIES_INDEEDEE                     876
-#define SPECIES_MORPEKO                      877
+#define SPECIES_EISCUE                       SPECIES_EISCUE_ICE_FACE
+#define SPECIES_EISCUE_ICE_FACE              875
+#define SPECIES_INDEEDEE                     SPECIES_INDEEDEE_MALE
+#define SPECIES_INDEEDEE_MALE                876
+#define SPECIES_MORPEKO                      SPECIES_MORPEKO_FULL_BELLY
+#define SPECIES_MORPEKO_FULL_BELLY           877
 #define SPECIES_CUFANT                       878
 #define SPECIES_COPPERAJAH                   879
 #define SPECIES_DRACOZOLT                    880
@@ -1427,6 +1430,69 @@
 
 // Basculegion
 #define SPECIES_BASCULEGION_FEMALE           FORMS_START + 329
+
+/*
+#define SPECIES_ALCREMIE_BERRY                               SPECIES_ALCREMIE_BERRY_VANILLA_CREAM
+#define SPECIES_ALCREMIE_BERRY_VANILLA_CREAM                 FORMS_START + 330 // Todo
+#define SPECIES_ALCREMIE_BERRY_RUBY_CREAM                    FORMS_START + 331 // Todo
+#define SPECIES_ALCREMIE_BERRY_MATCHA_CREAM                  FORMS_START + 332 // Todo
+#define SPECIES_ALCREMIE_BERRY_MINT_CREAM                    FORMS_START + 333 // Todo
+#define SPECIES_ALCREMIE_BERRY_LEMON_CREAM                   FORMS_START + 334 // Todo
+#define SPECIES_ALCREMIE_BERRY_SALTED_CREAM                  FORMS_START + 335 // Todo
+#define SPECIES_ALCREMIE_BERRY_RUBY_SWIRL                    FORMS_START + 336 // Todo
+#define SPECIES_ALCREMIE_BERRY_CARAMEL_SWIRL                 FORMS_START + 337 // Todo
+#define SPECIES_ALCREMIE_BERRY_RAINBOW_SWIRL                 FORMS_START + 338 // Todo
+#define SPECIES_ALCREMIE_LOVE                                SPECIES_ALCREMIE_LOVE_VANILLA_CREAM
+#define SPECIES_ALCREMIE_LOVE_VANILLA_CREAM                  FORMS_START + 339 // Todo
+#define SPECIES_ALCREMIE_LOVE_RUBY_CREAM                     FORMS_START + 340 // Todo
+#define SPECIES_ALCREMIE_LOVE_MATCHA_CREAM                   FORMS_START + 341 // Todo
+#define SPECIES_ALCREMIE_LOVE_MINT_CREAM                     FORMS_START + 342 // Todo
+#define SPECIES_ALCREMIE_LOVE_LEMON_CREAM                    FORMS_START + 343 // Todo
+#define SPECIES_ALCREMIE_LOVE_SALTED_CREAM                   FORMS_START + 344 // Todo
+#define SPECIES_ALCREMIE_LOVE_RUBY_SWIRL                     FORMS_START + 345 // Todo
+#define SPECIES_ALCREMIE_LOVE_CARAMEL_SWIRL                  FORMS_START + 346 // Todo
+#define SPECIES_ALCREMIE_LOVE_RAINBOW_SWIRL                  FORMS_START + 347 // Todo
+#define SPECIES_ALCREMIE_STAR                                SPECIES_ALCREMIE_STAR_VANILLA_CREAM
+#define SPECIES_ALCREMIE_STAR_VANILLA_CREAM                  FORMS_START + 348 // Todo
+#define SPECIES_ALCREMIE_STAR_RUBY_CREAM                     FORMS_START + 349 // Todo
+#define SPECIES_ALCREMIE_STAR_MATCHA_CREAM                   FORMS_START + 350 // Todo
+#define SPECIES_ALCREMIE_STAR_MINT_CREAM                     FORMS_START + 351 // Todo
+#define SPECIES_ALCREMIE_STAR_LEMON_CREAM                    FORMS_START + 352 // Todo
+#define SPECIES_ALCREMIE_STAR_SALTED_CREAM                   FORMS_START + 353 // Todo
+#define SPECIES_ALCREMIE_STAR_RUBY_SWIRL                     FORMS_START + 354 // Todo
+#define SPECIES_ALCREMIE_STAR_CARAMEL_SWIRL                  FORMS_START + 355 // Todo
+#define SPECIES_ALCREMIE_STAR_RAINBOW_SWIRL                  FORMS_START + 356 // Todo
+#define SPECIES_ALCREMIE_CLOVER                              SPECIES_ALCREMIE_CLOVER_VANILLA_CREAM
+#define SPECIES_ALCREMIE_CLOVER_VANILLA_CREAM                FORMS_START + 357 // Todo
+#define SPECIES_ALCREMIE_CLOVER_RUBY_CREAM                   FORMS_START + 358 // Todo
+#define SPECIES_ALCREMIE_CLOVER_MATCHA_CREAM                 FORMS_START + 359 // Todo
+#define SPECIES_ALCREMIE_CLOVER_MINT_CREAM                   FORMS_START + 360 // Todo
+#define SPECIES_ALCREMIE_CLOVER_LEMON_CREAM                  FORMS_START + 361 // Todo
+#define SPECIES_ALCREMIE_CLOVER_SALTED_CREAM                 FORMS_START + 362 // Todo
+#define SPECIES_ALCREMIE_CLOVER_RUBY_SWIRL                   FORMS_START + 363 // Todo
+#define SPECIES_ALCREMIE_CLOVER_CARAMEL_SWIRL                FORMS_START + 364 // Todo
+#define SPECIES_ALCREMIE_CLOVER_RAINBOW_SWIRL                FORMS_START + 365 // Todo
+#define SPECIES_ALCREMIE_FLOWER                              SPECIES_ALCREMIE_FLOWER_VANILLA_CREAM
+#define SPECIES_ALCREMIE_FLOWER_VANILLA_CREAM                FORMS_START + 366 // Todo
+#define SPECIES_ALCREMIE_FLOWER_RUBY_CREAM                   FORMS_START + 367 // Todo
+#define SPECIES_ALCREMIE_FLOWER_MATCHA_CREAM                 FORMS_START + 368 // Todo
+#define SPECIES_ALCREMIE_FLOWER_MINT_CREAM                   FORMS_START + 369 // Todo
+#define SPECIES_ALCREMIE_FLOWER_LEMON_CREAM                  FORMS_START + 370 // Todo
+#define SPECIES_ALCREMIE_FLOWER_SALTED_CREAM                 FORMS_START + 371 // Todo
+#define SPECIES_ALCREMIE_FLOWER_RUBY_SWIRL                   FORMS_START + 372 // Todo
+#define SPECIES_ALCREMIE_FLOWER_CARAMEL_SWIRL                FORMS_START + 373 // Todo
+#define SPECIES_ALCREMIE_FLOWER_RAINBOW_SWIRL                FORMS_START + 374 // Todo
+#define SPECIES_ALCREMIE_RIBBON                              SPECIES_ALCREMIE_RIBBON_VANILLA_CREAM
+#define SPECIES_ALCREMIE_RIBBON_VANILLA_CREAM                FORMS_START + 375 // Todo
+#define SPECIES_ALCREMIE_RIBBON_RUBY_CREAM                   FORMS_START + 376 // Todo
+#define SPECIES_ALCREMIE_RIBBON_MATCHA_CREAM                 FORMS_START + 377 // Todo
+#define SPECIES_ALCREMIE_RIBBON_MINT_CREAM                   FORMS_START + 378 // Todo
+#define SPECIES_ALCREMIE_RIBBON_LEMON_CREAM                  FORMS_START + 379 // Todo
+#define SPECIES_ALCREMIE_RIBBON_SALTED_CREAM                 FORMS_START + 380 // Todo
+#define SPECIES_ALCREMIE_RIBBON_RUBY_SWIRL                   FORMS_START + 381 // Todo
+#define SPECIES_ALCREMIE_RIBBON_CARAMEL_SWIRL                FORMS_START + 382 // Todo
+#define SPECIES_ALCREMIE_RIBBON_RAINBOW_SWIRL                FORMS_START + 383 // Todo
+*/
 
 #define FORMS_START SPECIES_ENAMORUS_INCARNATE
 #define SPECIES_EGG SPECIES_BASCULEGION_FEMALE + 1

@@ -1085,19 +1085,19 @@ static const u16 sAlcremieFormSpeciesIdTable[] = {
 };
 
 static const u16 sEiscueFormSpeciesIdTable[] = {
-    SPECIES_EISCUE,
+    SPECIES_EISCUE_ICE_FACE,
     SPECIES_EISCUE_NOICE_FACE,
     FORM_SPECIES_END,
 };
 
 static const u16 sIndeedeeFormSpeciesIdTable[] = {
-    SPECIES_INDEEDEE,
+    SPECIES_INDEEDEE_MALE,
     SPECIES_INDEEDEE_FEMALE,
     FORM_SPECIES_END,
 };
 
 static const u16 sMorpekoFormSpeciesIdTable[] = {
-    SPECIES_MORPEKO,
+    SPECIES_MORPEKO_FULL_BELLY,
     SPECIES_MORPEKO_HANGRY,
     FORM_SPECIES_END,
 };

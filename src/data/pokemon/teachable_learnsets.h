@@ -31538,7 +31538,7 @@ static const u16 sEiscueTeachableLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 
-static const u16 sIndeedeeTeachableLearnset[] = {
+static const u16 sIndeedeeMaleTeachableLearnset[] = {
     MOVE_ATTRACT,
     MOVE_CALM_MIND,
     MOVE_FACADE,

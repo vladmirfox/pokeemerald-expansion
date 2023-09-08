@@ -20354,7 +20354,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_EISCUE] =
+    [SPECIES_EISCUE_ICE_FACE] =
     {
         .baseHP        = 75,
         .baseAttack    = 80,
@@ -20376,7 +20376,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_INDEEDEE] =
+    [SPECIES_INDEEDEE_MALE] =
     {
         .baseHP        = 60,
         .baseAttack    = 65,
@@ -20398,7 +20398,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
-    [SPECIES_MORPEKO] = MORPEKO_SPECIES_INFO,
+    [SPECIES_MORPEKO_FULL_BELLY] = MORPEKO_SPECIES_INFO,
 
     [SPECIES_CUFANT] =
     {
