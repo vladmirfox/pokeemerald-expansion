@@ -4046,7 +4046,6 @@ static void Cmd_getexp(void)
     s32 sentIn;
     s32 viaExpShare = 0;
     u32 *exp = &gBattleStruct->expValue;
-    u32 lastMonInParty = PARTY_SIZE - 1;
 
     gBattlerFainted = GetBattlerForBattleScript(cmd->battler);
     sentIn = gSentPokesToOpponent[(gBattlerFainted & 2) >> 1];
@@ -4231,7 +4230,9 @@ static void Cmd_getexp(void)
                     PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
 
                     if (gBattleStruct->sentInPokes & 1)
+                    {
                         PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
+                    }
                     else if (!IsValidForBattle(&gPlayerParty[gBattleStruct->expGetterMonId+1]))
                     {
                         gLastUsedItem = ITEM_EXP_SHARE;
