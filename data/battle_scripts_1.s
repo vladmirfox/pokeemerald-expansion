@@ -9685,7 +9685,7 @@ BattleScript_ItemHealHP_RemoveItemEnd2_Anim:
 	datahpupdate BS_ATTACKER
 	removeitem BS_ATTACKER
 	end2
-	
+
 BattleScript_BerryPPHealRet::
 	jumpifability BS_ATTACKER, ABILITY_RIPEN, BattleScript_BerryPPHeal_AbilityPopup
 	goto BattleScript_BerryPPHeal_Anim
