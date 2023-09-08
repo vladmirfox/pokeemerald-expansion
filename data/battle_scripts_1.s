@@ -918,12 +918,10 @@ BattleScript_SkyDropFlyingAlreadyConfused:
 	goto BattleScript_ThrashConfuses
 
 BattleScript_EffectFling:
+	attackcanceler
 	jumpifcantfling BS_ATTACKER, BattleScript_FailedFromAtkString
-	jumpifstatus3 BS_ATTACKER, STATUS3_EMBARGO, BattleScript_FailedFromAtkString
-	jumpifword CMP_COMMON_BITS, gFieldStatuses, STATUS_FIELD_MAGIC_ROOM, BattleScript_FailedFromAtkString
 	setlastuseditem BS_ATTACKER
 	removeitem BS_ATTACKER
-	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
 	pause B_WAIT_TIME_SHORT
@@ -965,6 +963,10 @@ BattleScript_FlingEnd:
 	tryfaintmon BS_TARGET
 	trysymbiosis
 	goto BattleScript_MoveEnd
+	
+BattleScript_FlingFailConsumeItem::
+	removeitem BS_ATTACKER
+	goto BattleScript_FailedFromAtkString
 
 BattleScript_FlingFlameOrb:
 	setmoveeffect MOVE_EFFECT_BURN
@@ -5300,15 +5302,15 @@ BattleScript_EffectHurricane:
 	goto BattleScript_EffectHit
 
 BattleScript_EffectTeleport:
-	attackcanceler
-	attackstring
 .if B_TELEPORT_BEHAVIOR >= GEN_7
 	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_EffectBatonPass
 	jumpifside BS_ATTACKER, B_SIDE_PLAYER, BattleScript_EffectBatonPass
 .else
-	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_ButItFailed
+	jumpifbattletype BATTLE_TYPE_TRAINER, BattleScript_FailedFromAtkCanceler
 .endif
 BattleScript_EffectTeleportTryToRunAway:
+	attackcanceler
+	attackstring
 	ppreduce
 	getifcantrunfrombattle BS_ATTACKER
 	jumpifbyte CMP_EQUAL, gBattleCommunication, BATTLE_RUN_FORBIDDEN, BattleScript_ButItFailed
@@ -5445,6 +5447,8 @@ BattleScript_EffectFakeOut::
 	setmoveeffect MOVE_EFFECT_FLINCH
 	goto BattleScript_EffectHit
 
+BattleScript_FailedFromAtkCanceler::
+	attackcanceler
 BattleScript_FailedFromAtkString::
 	attackstring
 BattleScript_FailedFromPpReduce::
