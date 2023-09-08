@@ -5870,7 +5870,7 @@ void TeachFusionMove(u8 taskId, u16 move, u8 slot)
 u8 DoesMonHaveAnyMoves(struct Pokemon *mon)
 {   
     struct BoxPokemon *boxMon = &mon->box;
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
@@ -5884,7 +5884,7 @@ u8 DoesMonHaveAnyMoves(struct Pokemon *mon)
 void DeleteMove(struct Pokemon *mon, u16 move)
 {
     struct BoxPokemon *boxMon = &mon->box;
-    u8 i, j;
+    u32 i, j;
     u8 deletemove = MOVE_NONE;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
