@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(gItems[ITEM_LUM_BERRY].holdEffect == HOLD_EFFECT_CURE_STATUS);
 }
 
-SINGLE_BATTLE_TEST("xx - Pecha and Lum berry cure poison")
+SINGLE_BATTLE_TEST("Pecha and Lum Berries cure poison")
 {
     u16 item;
 
@@ -28,7 +28,7 @@ SINGLE_BATTLE_TEST("xx - Pecha and Lum berry cure poison")
     }
 }
 
-SINGLE_BATTLE_TEST("xx - Pecha and Lum berry cure bad poison")
+SINGLE_BATTLE_TEST("Pecha and Lum Berries cure bad poison")
 {
     u16 item;
 
@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("xx - Pecha and Lum berry cure bad poison")
     }
 }
 
-SINGLE_BATTLE_TEST("xx - Rawst and Lum berry cure burn")
+SINGLE_BATTLE_TEST("Rawst and Lum Berries cure burn")
 {
     u16 item;
 
@@ -72,7 +72,7 @@ SINGLE_BATTLE_TEST("xx - Rawst and Lum berry cure burn")
     }
 }
 
-SINGLE_BATTLE_TEST("xx - Aspear and Lum berry cure freeze")
+SINGLE_BATTLE_TEST("Aspear and Lum Berries cure freeze")
 {
     u16 item;
 
@@ -94,7 +94,7 @@ SINGLE_BATTLE_TEST("xx - Aspear and Lum berry cure freeze")
     }
 }
 
-SINGLE_BATTLE_TEST("xx - Chesto and Lum berry cure sleep")
+SINGLE_BATTLE_TEST("Chesto and Lum Berries cure sleep")
 {
     u16 item;
 
@@ -116,7 +116,7 @@ SINGLE_BATTLE_TEST("xx - Chesto and Lum berry cure sleep")
     }
 }
 
-SINGLE_BATTLE_TEST("xx - Cheri and Lum berry cure paralysis")
+SINGLE_BATTLE_TEST("Cheri and Lum Berries cure paralysis")
 {
     u16 item;
 
@@ -138,7 +138,7 @@ SINGLE_BATTLE_TEST("xx - Cheri and Lum berry cure paralysis")
     }
 }
 
-SINGLE_BATTLE_TEST("xx - Perism and Lum cure confusion")
+SINGLE_BATTLE_TEST("Perism and Lum Berries cure confusion")
 {
     u16 item;
 
@@ -158,7 +158,7 @@ SINGLE_BATTLE_TEST("xx - Perism and Lum cure confusion")
     }
 }
 
-SINGLE_BATTLE_TEST("xx - Hold effect cures status if a pokemon enters a battle")
+SINGLE_BATTLE_TEST("Berry hold effect cures status if a pokemon enters a battle")
 {
     u16 status;
     u16 item;
@@ -171,21 +171,22 @@ SINGLE_BATTLE_TEST("xx - Hold effect cures status if a pokemon enters a battle")
     PARAMETRIZE{ status = STATUS1_SLEEP; item = ITEM_CHESTO_BERRY; }
 
     GIVEN {
-        ASSUME(gItems[ITEM_PECHA_BERRY].holdEffect == HOLD_EFFECT_CURE_PSN);
         ASSUME(gItems[ITEM_RAWST_BERRY].holdEffect == HOLD_EFFECT_CURE_BRN);
         ASSUME(gItems[ITEM_ASPEAR_BERRY].holdEffect == HOLD_EFFECT_CURE_FRZ);
-        ASSUME(gItems[ITEM_CHESTO_BERRY].holdEffect == HOLD_EFFECT_CURE_SLP);
         ASSUME(gItems[ITEM_CHERI_BERRY].holdEffect == HOLD_EFFECT_CURE_PAR);
-        PLAYER(SPECIES_WOBBUFFET);
+        ASSUME(gItems[ITEM_PECHA_BERRY].holdEffect == HOLD_EFFECT_CURE_PSN);
+        ASSUME(gItems[ITEM_CHESTO_BERRY].holdEffect == HOLD_EFFECT_CURE_SLP);
+        PLAYER(SPECIES_WOBBUFFET) { Status1(status); Item(ITEM_LUM_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET) { Status1(status); Item(item); }
     } WHEN {
         TURN { }
     } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
     }
 }
 
-SINGLE_BATTLE_TEST("xx - Pokemon can be further poisoned with Toxic spikes after a status healing hold effect was previously used")
+SINGLE_BATTLE_TEST("Pokemon can be further poisoned with Toxic spikes after a status healing hold effect was previously used")
 {
     u16 item;
 
