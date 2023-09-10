@@ -185,13 +185,6 @@ void IncreaseSleepScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
 void IncreaseConfusionScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
 void IncreaseFrostbiteScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
 
-struct SwitchinCandidate
-{
-    struct BattlePokemon battlemon;
-    bool8 hypotheticalStatus;
-};
-
-extern struct SwitchinCandidate switchinCandidate;
 s32 AI_CalcPartyMonDamage(u16 move, u8 battlerAtk, u8 battlerDef, struct BattlePokemon switchinCandidate, bool8 isPartyMonAttacker);
 
 #endif //GUARD_BATTLE_AI_UTIL_H
