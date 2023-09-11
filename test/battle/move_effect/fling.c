@@ -180,7 +180,7 @@ SINGLE_BATTLE_TEST("Fling doesn't consume the item if pokemon is asleep/frozen/p
     } SCENE {
         if (status == STATUS1_FREEZE) {
             MESSAGE("Wobbuffet is frozen solid!");
-            MESSAGE("Wobbuffet was defrosted!");
+            MESSAGE("Wobbuffet thawed out!");
         }
         else if (status == STATUS1_PARALYSIS) {
             MESSAGE("Wobbuffet is paralyzed! It can't move!");
@@ -237,11 +237,11 @@ SINGLE_BATTLE_TEST("Fling applies special effects when throwing specific Items")
             STATUS_ICON(opponent, STATUS1_POISON);
             break;
         case EFFECT_TOXIC:
-            MESSAGE("Foe Wobbuffet is badly poisoned!");
+            MESSAGE("Foe Wobbuffet was badly poisoned!");
             STATUS_ICON(opponent, STATUS1_TOXIC_POISON);
             break;
         case EFFECT_FLINCH_HIT:
-            MESSAGE("Foe Wobbuffet flinched!");
+            MESSAGE("Foe Wobbuffet flinched and couldn't move!");
             break;
         }
     }
@@ -280,9 +280,9 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
         HP_BAR(opponent);
         if (effect == HOLD_EFFECT_RESTORE_HP) {
             if (item == ITEM_ORAN_BERRY) {
-                MESSAGE("Foe Wobbuffet's Oran Berry restored health!");
+                MESSAGE("Foe Wobbuffet restored its health using its Oran Berry!");
             } else {
-                MESSAGE("Foe Wobbuffet's Sitrus Berry restored health!");
+                MESSAGE("Foe Wobbuffet restored its health using its Sitrus Berry!");
             }
             HP_BAR(opponent);
         }
@@ -290,13 +290,13 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
             if (status1 == STATUS1_BURN) {
                 MESSAGE("Foe Wobbuffet's Rawst Berry healed its burn!");
             } else if (status1 == STATUS1_SLEEP) {
-                MESSAGE("Foe Wobbuffet's Chesto Berry woke it from its sleep!");
+                MESSAGE("Foe Wobbuffet's Chesto Berry woke it up!");
             } else if (status1 == STATUS1_FREEZE) {
                 MESSAGE("Foe Wobbuffet's Aspear Berry defrosted it!");
             } else if (status1 == STATUS1_PARALYSIS) {
-                MESSAGE("Foe Wobbuffet's Cheri Berry cured paralysis!");
+                MESSAGE("Foe Wobbuffet's Cheri Berry cured its paralysis!");
             } else if (status1 == STATUS1_TOXIC_POISON || status1 == STATUS1_POISON) {
-                MESSAGE("Foe Wobbuffet's Pecha Berry cured poison!");
+                MESSAGE("Foe Wobbuffet's Pecha Berry cured its poison!");
             }
             NOT STATUS_ICON(opponent, status1);
         }
