@@ -16300,3 +16300,20 @@ void BS_SetSnow(void)
     }
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
+
+void BS_SetGigatonHammer(void)
+{
+    NATIVE_ARGS();
+
+    gDisableStructs[gBattlerAttacker].gigatonHammerTimer = 2;
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_ApplySaltCure(void)
+{
+    NATIVE_ARGS(u8 battler);
+
+    u8 battler = GetBattlerForBattleScript(cmd->battler);
+    gStatuses4[battler] |= STATUS4_SALT_CURE;
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
