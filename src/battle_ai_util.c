@@ -1404,30 +1404,6 @@ bool32 IsConfusionMoveEffect(u16 moveEffect)
     }
 }
 
-bool32 IsStatLoweringMoveEffect(u16 moveEffect)
-{
-    switch (moveEffect)
-    {
-    case EFFECT_ATTACK_DOWN:
-    case EFFECT_DEFENSE_DOWN:
-    case EFFECT_SPEED_DOWN:
-    case EFFECT_SPECIAL_ATTACK_DOWN:
-    case EFFECT_SPECIAL_DEFENSE_DOWN:
-    case EFFECT_ACCURACY_DOWN:
-    case EFFECT_EVASION_DOWN:
-    case EFFECT_ATTACK_DOWN_2:
-    case EFFECT_DEFENSE_DOWN_2:
-    case EFFECT_SPEED_DOWN_2:
-    case EFFECT_SPECIAL_ATTACK_DOWN_2:
-    case EFFECT_SPECIAL_DEFENSE_DOWN_2:
-    case EFFECT_ACCURACY_DOWN_2:
-    case EFFECT_EVASION_DOWN_2:
-        return TRUE;
-    default:
-        return FALSE;
-    }
-}
-
 bool32 IsHazardMoveEffect(u16 moveEffect)
 {
     switch (moveEffect)

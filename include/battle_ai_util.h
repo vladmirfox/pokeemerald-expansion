@@ -101,7 +101,6 @@ bool32 HasMoveEffect(u32 battlerId, u16 moveEffect);
 bool32 HasMoveWithLowAccuracy(u8, u8, u8, bool32, u16, u16, u16, u16);
 bool32 IsAromaVeilProtectedMove(u16 move);
 bool32 IsNonVolatileStatusMoveEffect(u16 moveEffect);
-bool32 IsStatLoweringMoveEffect(u16 moveEffect);
 bool32 IsMoveRedirectionPrevented(u16 move, u16 atkAbility);
 bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move);
 bool32 IsHazardMoveEffect(u16 moveEffect);
