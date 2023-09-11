@@ -6767,6 +6767,22 @@ static u8 ItemEffectMoveEnd(u32 battler, u16 holdEffect)
     case HOLD_EFFECT_SP_DEFENSE_UP:
         effect = StatRaiseBerry(battler, gLastUsedItem, STAT_SPDEF, FALSE);
         break;
+    case HOLD_EFFECT_ENIGMA_BERRY: // consume and heal if hit by super effective move
+        if (IsBattlerAlive(battler)
+            && TARGET_TURN_DAMAGED
+            && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
+            && gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
+        {
+            gBattleScripting.battler = battler;
+            gBattleMoveDamage = (gBattleMons[battler].maxHP * 25 / 100) * -1;
+            if (GetBattlerAbility(battler) == ABILITY_RIPEN)
+                gBattleMoveDamage *= 2;
+            
+            effect = ITEM_HP_CHANGE;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_ItemHealHP_RemoveItemRet;
+        }
+        break;
     case HOLD_EFFECT_KEE_BERRY:  // consume and boost defense if used physical move
         effect = DamagedStatBoostBerryEffect(battler, STAT_DEF, SPLIT_PHYSICAL);
         break;
@@ -7728,6 +7744,22 @@ u8 ItemBattleEffects(u8 caseID, u8 battler, bool8 moveTurn)
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_TargetItemStatRaise;
                     gBattleScripting.statChanger = SET_STATCHANGER(STAT_SPATK, 1, FALSE);
+                }
+                break;
+            case HOLD_EFFECT_ENIGMA_BERRY: // consume and heal if hit by super effective move
+                if (IsBattlerAlive(battler)
+                    && TARGET_TURN_DAMAGED
+                    && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
+                    && gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE)
+                {
+                    gBattleScripting.battler = battler;
+                    gBattleMoveDamage = (gBattleMons[battler].maxHP * 25 / 100) * -1;
+                    if (GetBattlerAbility(battler) == ABILITY_RIPEN)
+                        gBattleMoveDamage *= 2;
+                    
+                    effect = ITEM_HP_CHANGE;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_ItemHealHP_RemoveItemRet;
                 }
                 break;
             case HOLD_EFFECT_JABOCA_BERRY:  // consume and damage attacker if used physical move
