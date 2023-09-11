@@ -282,7 +282,7 @@ struct AIPartyData // Opposing battlers - party mons.
 
 struct SwitchinCandidate
 {
-    struct BattlePokemon battlemon;
+    struct BattlePokemon battleMon;
     bool8 hypotheticalStatus;
 };
 
