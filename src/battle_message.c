@@ -496,6 +496,12 @@ static const u8 sText_PkmnDataAddedToDex[] = _("{B_DEF_NAME}'s data was\nadded t
 static const u8 sText_ItIsRaining[] = _("It's raining!");
 static const u8 sText_SandstormIsRaging[] = _("The sandstorm is raging!");
 static const u8 sText_SunlightIsHarsh[] = _("The sunlight is harsh!");
+static const u8 sText_ItIsHailing[] = _("It's hailing!");
+static const u8 sText_ItIsSnowing[] = _("It's snowing!");
+static const u8 sText_IsCoveredWithGrass[] = _("The battlefield\nis covered with grass!");
+static const u8 sText_MistSwirlsAround[] = _("Mist swirls around\nthe battlefield!");
+static const u8 sText_ElectricCurrentIsRunning[] = _("An electric current is running\nacross the battlefield!");
+static const u8 sText_SeemsWeird[] = _("The battlefield seems weird!");
 static const u8 sText_BoxIsFull[] = _("The Box is full!\nYou can't catch any more!\p");
 static const u8 sText_EnigmaBerry[] = _("ENIGMA BERRY"); //no decapitalize until it is everywhere
 static const u8 sText_BerrySuffix[] = _(" BERRY"); //no decapitalize until it is everywhere
@@ -1466,6 +1472,12 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_ULTRABURSTCOMPLETED - BATTLESTRINGS_TABLE_START] = sText_UltraBurstCompleted,
     [STRINGID_TEAMGAINEDEXP - BATTLESTRINGS_TABLE_START] = sText_TeamGainedEXP,
     [STRINGID_SUNLIGHTISHARSH - BATTLESTRINGS_TABLE_START] = sText_SunlightIsHarsh,
+    [STRINGID_ITISHAILING - BATTLESTRINGS_TABLE_START] = sText_ItIsHailing,
+    [STRINGID_ITISSNOWING - BATTLESTRINGS_TABLE_START] = sText_ItIsSnowing,
+    [STRINGID_ISCOVEREDWITHGRASS - BATTLESTRINGS_TABLE_START] = sText_IsCoveredWithGrass,
+    [STRINGID_MISTSWIRLSAROUND - BATTLESTRINGS_TABLE_START] = sText_MistSwirlsAround,
+    [STRINGID_ELECTRICCURRENTISRUNNING - BATTLESTRINGS_TABLE_START] = sText_ElectricCurrentIsRunning,
+    [STRINGID_SEEMSWEIRD - BATTLESTRINGS_TABLE_START] = sText_SeemsWeird,
 };
 
 const u16 gTrainerUsedItemStringIds[] =
@@ -1849,21 +1861,26 @@ const u16 gWeatherStartsStringIds[] =
     [WEATHER_SUNNY]              = STRINGID_ITISRAINING,
     [WEATHER_RAIN]               = STRINGID_ITISRAINING,
 #if B_OVERWORLD_SNOW >= GEN_9
-    [WEATHER_SNOW]               = STRINGID_STARTEDSNOW,
+    [WEATHER_SNOW]               = STRINGID_ITISSNOWING,
 #else
-    [WEATHER_SNOW]               = STRINGID_STARTEDHAIL,
+    [WEATHER_SNOW]               = STRINGID_ITISHAILING,
 #endif
     [WEATHER_RAIN_THUNDERSTORM]  = STRINGID_ITISRAINING,
-    [WEATHER_FOG_HORIZONTAL]     = STRINGID_ITISRAINING,
+    [WEATHER_FOG_HORIZONTAL]     = STRINGID_MISTSWIRLSAROUND,
     [WEATHER_VOLCANIC_ASH]       = STRINGID_ITISRAINING,
     [WEATHER_SANDSTORM]          = STRINGID_SANDSTORMISRAGING,
-    [WEATHER_FOG_DIAGONAL]       = STRINGID_ITISRAINING,
+    [WEATHER_FOG_DIAGONAL]       = STRINGID_MISTSWIRLSAROUND,
     [WEATHER_UNDERWATER]         = STRINGID_ITISRAINING,
     [WEATHER_SHADE]              = STRINGID_ITISRAINING,
     [WEATHER_DROUGHT]            = STRINGID_SUNLIGHTISHARSH,
     [WEATHER_DOWNPOUR]           = STRINGID_ITISRAINING,
     [WEATHER_UNDERWATER_BUBBLES] = STRINGID_ITISRAINING,
     [WEATHER_ABNORMAL]           = STRINGID_ITISRAINING
+};
+
+const u16 gTerrainStartsStringIds[] =
+{
+    STRINGID_MISTSWIRLSAROUND, STRINGID_ISCOVEREDWITHGRASS, STRINGID_ELECTRICCURRENTISRUNNING, STRINGID_SEEMSWEIRD, STRINGID_TERRAINREMOVED,
 };
 
 const u16 gPrimalWeatherBlocksStringIds[] =

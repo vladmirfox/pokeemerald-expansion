@@ -6735,7 +6735,7 @@ BattleScript_OverworldWeatherStarts::
 	end3
 
 BattleScript_OverworldTerrain::
-	printfromtable gTerrainStringIds
+	printfromtable gTerrainStartsStringIds
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_BATTLER_0, B_ANIM_RESTORE_BG
 	call BattleScript_ActivateTerrainEffects
