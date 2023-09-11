@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("Enigma Berry does nothing if Heal Block applies")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BITE, opponent);
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-            MESSAGE("Dragonair's Enigma Berry restored health!");
+            MESSAGE("Wynaut's Enigma Berry restored health!");
         }
     }
 }
