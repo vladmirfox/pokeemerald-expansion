@@ -6770,6 +6770,131 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
     return targetSpecies;
 }
 
+bool8 CanEvolveByLevelButHasnt(struct Pokemon *mon)
+{
+    int i, j;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
+    u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
+    u16 upperPersonality = personality >> 16;
+    
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        switch (gEvolutionTable[species][i].method)
+        {
+        case EVO_LEVEL_DAY:
+            RtcCalcLocalTime();
+            if (gLocalTime.hours >= 12 && gLocalTime.hours < 24 && gEvolutionTable[species][i].param <= level)
+                return TRUE;
+            break;
+        case EVO_LEVEL_NIGHT:
+            RtcCalcLocalTime();
+            if (gLocalTime.hours >= 0 && gLocalTime.hours < 12 && gEvolutionTable[species][i].param <= level)
+                return TRUE;
+            break;
+        case EVO_LEVEL_DUSK:
+            RtcCalcLocalTime();
+            if (gLocalTime.hours >= 17 && gLocalTime.hours < 18 && gEvolutionTable[species][i].param <= level)
+                return TRUE;
+            break;
+        case EVO_LEVEL:
+            if (gEvolutionTable[species][i].param <= level)
+                return TRUE;
+            break;
+        case EVO_LEVEL_FEMALE:
+            if (gEvolutionTable[species][i].param <= level && GetMonGender(mon) == MON_FEMALE)
+                return TRUE;
+            break;
+        case EVO_LEVEL_MALE:
+            if (gEvolutionTable[species][i].param <= level && GetMonGender(mon) == MON_MALE)
+                return TRUE;
+            break;
+        case EVO_LEVEL_ATK_GT_DEF:
+            if (gEvolutionTable[species][i].param <= level)
+                if (GetMonData(mon, MON_DATA_ATK, 0) > GetMonData(mon, MON_DATA_DEF, 0))
+                    return TRUE;
+            break;
+        case EVO_LEVEL_ATK_EQ_DEF:
+            if (gEvolutionTable[species][i].param <= level)
+                if (GetMonData(mon, MON_DATA_ATK, 0) == GetMonData(mon, MON_DATA_DEF, 0))
+                    return TRUE;
+            break;
+        case EVO_LEVEL_ATK_LT_DEF:
+            if (gEvolutionTable[species][i].param <= level)
+                if (GetMonData(mon, MON_DATA_ATK, 0) < GetMonData(mon, MON_DATA_DEF, 0))
+                    return TRUE;
+            break;
+        case EVO_LEVEL_SILCOON:
+            if (gEvolutionTable[species][i].param <= level && (upperPersonality % 10) <= 4)
+                return TRUE;
+            break;
+        case EVO_LEVEL_CASCOON:
+            if (gEvolutionTable[species][i].param <= level && (upperPersonality % 10) > 4)
+                return TRUE;
+            break;
+        case EVO_LEVEL_NINJASK:
+            if (gEvolutionTable[species][i].param <= level)
+                return TRUE;
+            break;
+        case EVO_LEVEL_RAIN:
+            j = GetCurrentWeather();
+            if (gEvolutionTable[species][i].param <= level
+                && (j == WEATHER_RAIN || j == WEATHER_RAIN_THUNDERSTORM || j == WEATHER_DOWNPOUR))
+                return TRUE;
+            break;
+        case EVO_LEVEL_NATURE_AMPED:
+            if (gEvolutionTable[species][i].param <= level)
+            {
+                u8 nature = GetNature(mon);
+                switch (nature)
+                {
+                case NATURE_HARDY:
+                case NATURE_BRAVE:
+                case NATURE_ADAMANT:
+                case NATURE_NAUGHTY:
+                case NATURE_DOCILE:
+                case NATURE_IMPISH:
+                case NATURE_LAX:
+                case NATURE_HASTY:
+                case NATURE_JOLLY:
+                case NATURE_NAIVE:
+                case NATURE_RASH:
+                case NATURE_SASSY:
+                case NATURE_QUIRKY:
+                    return TRUE;
+                    break;
+                }
+            }
+            break;
+        case EVO_LEVEL_NATURE_LOW_KEY:
+            if (gEvolutionTable[species][i].param <= level)
+            {
+                u8 nature = GetNature(mon);
+                switch (nature)
+                {
+                case NATURE_LONELY:
+                case NATURE_BOLD:
+                case NATURE_RELAXED:
+                case NATURE_TIMID:
+                case NATURE_SERIOUS:
+                case NATURE_MODEST:
+                case NATURE_MILD:
+                case NATURE_QUIET:
+                case NATURE_BASHFUL:
+                case NATURE_CALM:
+                case NATURE_GENTLE:
+                case NATURE_CAREFUL:
+                    return TRUE;
+                    break;
+                }
+            }
+            break;
+        }
+    }
+
+    return FALSE;
+}
+
 u16 HoennPokedexNumToSpecies(u16 hoennNum)
 {
     u16 species;
