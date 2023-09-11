@@ -57,31 +57,12 @@ SINGLE_BATTLE_TEST("Roost fails if the user is under the effects of Heal Block")
     }
 }
 
-SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP, rounded down, in Gen 4")
-{
-    s16 hp;
-
-    GIVEN {
-        //ASSUME(B_UPDATED_MOVE_DATA <= GEN_4)
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(99); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(player, MOVE_ROOST); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        HP_BAR(player, captureHP: &hp);
-    } THEN {
-        EXPECT(hp == 50);
-    }
-}
-
-SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP, rounded up, in Gen 5+")
+SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP")
 {    
     s16 hp;
 
     KNOWN_FAILING; // All healing is currently rounded down
     GIVEN {
-        //ASSUME(B_UPDATED_MOVE_DATA >= GEN_5)
         PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(99); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -90,7 +71,10 @@ SINGLE_BATTLE_TEST("Roost recovers 50% of the user's Max HP, rounded up, in Gen 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         HP_BAR(player, captureHP: &hp);
     } THEN {
-        EXPECT(hp == 51);
+        //if (B_UPDATED_MOVE_DATA >= GEN_5)
+            EXPECT(hp == 51); // Rounds up
+        //else
+        //    EXPECT(hp == 50); // Rounds down
     }
 }
 
@@ -120,9 +104,8 @@ SINGLE_BATTLE_TEST("Roost suppresses the user's Flying-typing this turn, then re
     }
 }
 
-SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a Mystery/Mystery until the end of the turn in Gen 4")
+SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a Normal-type (or Typeless in Gen. 4) until the end of the turn")
 {
-    //s16 damage;
     u32 damagingMove;
     PARAMETRIZE{ damagingMove = MOVE_POUND; }
     PARAMETRIZE{ damagingMove = MOVE_KARATE_CHOP; }
@@ -144,7 +127,6 @@ SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a
     PARAMETRIZE{ damagingMove = MOVE_DISARMING_VOICE; }
 
     GIVEN {
-        ASSUME(B_ROOST_PURE_FLYING <= GEN_4);
         ASSUME(P_GEN_5_POKEMON == TRUE);
         ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[0] == TYPE_FLYING);
         ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[1] == TYPE_FLYING);
@@ -156,38 +138,42 @@ SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a
         MESSAGE("Tornadus used Roost!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Tornadus regained health!");
-        ANIMATION(ANIM_TYPE_MOVE, damagingMove, opponent);
-        // Should not see any effectiveness messages
-        NONE_OF {
-            MESSAGE("It's super effective!");
-            MESSAGE("It's not very effective…");
-            MESSAGE("It doesn't affect Tornadus…");
+
+        if (B_ROOST_PURE_FLYING >= GEN_5) // >= Gen. 5, Pokemon becomes pure Normal-type
+        {
+            if (damagingMove == MOVE_KARATE_CHOP)
+            {
+                ANIMATION(ANIM_TYPE_MOVE, damagingMove, opponent);
+                MESSAGE("It's super effective!");
+            }
+            else if (damagingMove == MOVE_LICK)
+            {
+                NOT ANIMATION(ANIM_TYPE_MOVE, damagingMove, opponent);
+                MESSAGE("It doesn't affect Tornadus…");
+            }
+            else
+            {
+                ANIMATION(ANIM_TYPE_MOVE, damagingMove, opponent);
+                NONE_OF {
+                    MESSAGE("It's super effective!");
+                    MESSAGE("It's not very effective…");
+                    MESSAGE("It doesn't affect Tornadus…");
+                }
+            }
+        }
+        else // <= Gen. 4, Pokemon becomes Typeless
+        {
+            // Should not see any effectiveness messages
+            NONE_OF {
+                MESSAGE("It's super effective!");
+                MESSAGE("It's not very effective…");
+                MESSAGE("It doesn't affect Tornadus…");
+            }
         }
     }
 }
 
-SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a Normal/Normal type until the end of the turn in Gen 5+")
-{
-    GIVEN {
-        ASSUME(B_ROOST_PURE_FLYING >= GEN_5);
-        ASSUME(P_GEN_5_POKEMON == TRUE);
-        ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[0] == TYPE_FLYING);
-        ASSUME(gSpeciesInfo[SPECIES_TORNADUS].types[1] == TYPE_FLYING);
-        PLAYER(SPECIES_TORNADUS) { HP(50); MaxHP(100); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_LICK); }
-    } SCENE {
-        MESSAGE("Tornadus used Roost!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Tornadus regained health!");
-        MESSAGE("Foe Wobbuffet used Lick!");
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_LICK, opponent);
-        MESSAGE("It doesn't affect Tornadus…");
-    }
-}
-
-SINGLE_BATTLE_TEST("Roost, if used by a Mystery/Flying type, treats the user as a Mystery/Mystery type until the end of the turn in Gen 5+", s16 damage)
+SINGLE_BATTLE_TEST("Roost, if used by a Mystery/Flying type, treats the user as a Mystery/Mystery type until the end of the turn")
 {
     u32 damagingMove;
     PARAMETRIZE{ damagingMove = MOVE_POUND; }
@@ -210,7 +196,6 @@ SINGLE_BATTLE_TEST("Roost, if used by a Mystery/Flying type, treats the user as 
     PARAMETRIZE{ damagingMove = MOVE_DISARMING_VOICE; }
 
     GIVEN {
-        ASSUME(B_ROOST_PURE_FLYING >= GEN_5);
         ASSUME(gSpeciesInfo[SPECIES_MOLTRES].types[0] == TYPE_FIRE);
         ASSUME(gSpeciesInfo[SPECIES_MOLTRES].types[1] == TYPE_FLYING);
         PLAYER(SPECIES_MOLTRES) { HP(300); MaxHP(400); }
