@@ -12541,7 +12541,7 @@ static void Cmd_transformdataexecution(void)
                 gBattleMons[gBattlerAttacker].pp[i] = 5;
             aiMon->moves[i] = gBattleMons[gBattlerAttacker].moves[i];
         }
-        
+
         BtlController_EmitResetActionMoveSelection(gBattlerAttacker, BUFFER_A, RESET_MOVE_SELECTION);
         MarkBattlerForControllerExec(gBattlerAttacker);
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TRANSFORMED;
