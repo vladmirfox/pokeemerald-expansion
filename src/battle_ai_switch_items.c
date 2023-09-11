@@ -1134,6 +1134,7 @@ static u32 GetSwitchinHazardsDamage(u32 battler, struct BattlePokemon battlemon)
         }
 
         // Toxic Spikes
+        // TODO: CanBePoisoned compatibility to avoid duplicate code
         if ((hazardFlags & SIDE_STATUS_TOXIC_SPIKES) && ((defType1 != TYPE_POISON && defType2 != TYPE_POISON
             && defType1 != TYPE_STEEL && defType2 != TYPE_STEEL
             && ability != ABILITY_IMMUNITY && ability != ABILITY_POISON_HEAL && ability != ABILITY_COMATOSE
