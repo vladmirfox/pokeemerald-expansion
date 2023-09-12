@@ -1057,8 +1057,8 @@ struct SaveBlock1
     /*0x278E*/ u8 decorationPosters[10];
     /*0x2798*/ u8 decorationDolls[40];
     /*0x27C0*/ u8 decorationCushions[10];
-    /*0x27CA*/ //u8 padding4[2];
     /*0x27CC*/ TVShow tvShows[TV_SHOWS_COUNT];
+    /*0x27CA*/ //u8 padding4[2];
     /*0x2B50*/ PokeNews pokeNews[POKE_NEWS_COUNT];
     /*0x2B90*/ u16 outbreakPokemonSpecies;
     /*0x2B92*/ u8 outbreakLocationMapNum;
@@ -1104,7 +1104,9 @@ struct SaveBlock1
     /*0x3???*/ struct RamScript ramScript;
     #endif
     /*0x3???*/ struct RecordMixingGift recordMixingGift;
+    #ifndef FREE_EXTRA_SEEN_FLAGS
     /*0x3???*/ u8 seen2[NUM_DEX_FLAG_BYTES];
+    #endif
     /*0x3???*/ LilycoveLady lilycoveLady;
     /*0x3???*/ struct TrainerNameRecord trainerNameRecords[20];
     #ifndef FREE_UNION_ROOM_CHAT
