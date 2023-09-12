@@ -5819,7 +5819,7 @@ u8 IsFusionMon(u16 species) // Helps with control flow, probably not ideal
             return SECOND_FUSE_MON;
         default:
             return FALSE;
-        
+
     }
 }
 
@@ -5847,7 +5847,7 @@ void TeachFusionMove(u8 taskId, u16 move, u8 slot)
 }
 
 u8 DoesMonHaveAnyMoves(struct Pokemon *mon)
-{   
+{
     struct BoxPokemon *boxMon = &mon->box;
     u32 i;
 
@@ -5968,7 +5968,7 @@ static void Task_TryItemUseFusionChange(u8 taskId)
             gTasks[taskId].tState++;
         }
         break;
-    case 2: 
+    case 2:
         if (gPaletteFade.active)
             break;
         if (gTasks[taskId].fusionType == FUSE_MON)
@@ -6006,10 +6006,10 @@ static void Task_TryItemUseFusionChange(u8 taskId)
         if (!IsPartyMenuTextPrinterActive())
         {
             if (gTasks[taskId].moveToLearn != 0)
-            {   
+            {
                 if (gTasks[taskId].fusionType == FUSE_MON)
                 {
-                    
+
                     TeachFusionMove(taskId, gTasks[taskId].moveToLearn, gTasks[taskId].firstFusionSlot);
                 }
                 else
@@ -6017,12 +6017,12 @@ static void Task_TryItemUseFusionChange(u8 taskId)
                     DeleteMove(mon, gTasks[taskId].forgetMove);
                     if (!DoesMonHaveAnyMoves(mon))
                         TeachFusionMove(taskId, gTasks[taskId].moveToLearn, gTasks[taskId].firstFusionSlot);
-                }                
+                }
             }
-            
+
             gTasks[taskId].tState++;
         }
-            
+
         break;
     case 7:
         gTasks[taskId].func = (void *)GetWordTaskArg(taskId, tNextFunc);
@@ -6083,7 +6083,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
                     task->firstFusion = species;
                     task->firstFusionSlot = gPartyMenu.slotId;
                     task->storageIndex = itemFusion[i].fusionStorageIndex;
-                    task->func = Task_HandleChooseMonInput;       
+                    task->func = Task_HandleChooseMonInput;
                     gPartyMenuUseExitCallback = FALSE;
                     sPartyMenuInternal->exitCallback = NULL;
                     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
@@ -6091,7 +6091,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
                     return;
                 }
             }
-            break;   
+            break;
         case SECOND_FUSE_MON:
             if(task->fusionType != FUSE_MON) // Cancel if Secondary Fusion Mon Chosen First
                 break;
@@ -6113,16 +6113,16 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
             break;
     }
     // No Effect Exit
-    gPartyMenuUseExitCallback = FALSE;                      
-    DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);    
-    ScheduleBgCopyTilemapToVram(2);                         
+    gPartyMenuUseExitCallback = FALSE;
+    DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+    ScheduleBgCopyTilemapToVram(2);
     task->func = taskFunc;
     return;
 }
 
-#undef FUSE_MON        
-#undef UNFUSE_MON      
-#undef SECOND_FUSE_MON 
+#undef FUSE_MON
+#undef UNFUSE_MON
+#undef SECOND_FUSE_MON
 
 #undef fusionType
 #undef firstFusion
