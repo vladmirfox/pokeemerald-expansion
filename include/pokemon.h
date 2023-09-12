@@ -419,10 +419,11 @@ struct FormChange
 
 struct Fusion
 {
+    u16 fusionStorageIndex;
+    u16 itemId;
     u16 targetSpecies1;
     u16 targetSpecies2;
     u16 fusingIntoMon;
-    u16 itemId;
     u16 fusionMove;
     u16 unfuseForgetMove;
 };
