@@ -11000,7 +11000,7 @@ u8 GetBattlerType(u8 battlerId, u8 typeIndex)
                 return TYPE_MYSTERY;
 #endif
             else
-                return  types[typeIndex] == TYPE_FLYING ? TYPE_MYSTERY : types[typeIndex];
+                return types[typeIndex] == TYPE_FLYING ? TYPE_MYSTERY : types[typeIndex];
         }
     }
 
