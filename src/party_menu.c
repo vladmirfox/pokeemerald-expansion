@@ -6046,9 +6046,9 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
                 break;
             if(gPlayerPartyCount == 6)
             {
-                gPartyMenuUseExitCallback = FALSE;                      
-                DisplayPartyMenuMessage(gText_YourPartysFull, TRUE);    
-                ScheduleBgCopyTilemapToVram(2);                         
+                gPartyMenuUseExitCallback = FALSE;
+                DisplayPartyMenuMessage(gText_YourPartysFull, TRUE);
+                ScheduleBgCopyTilemapToVram(2);
                 task->func = taskFunc;
                 return;
             }
