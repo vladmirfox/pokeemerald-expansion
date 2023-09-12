@@ -69,6 +69,30 @@ Route102_Text_TianaPostBattle:
 	.string "To keep winning my way up, I see that\n"
 	.string "I have to catch more POKéMON.$"
 
+AcornAcre_Text_LaraIntro:
+	.string "Oh!\n"
+	.string "You're not a flower.$"
+
+AcornAcre_Text_LaraDefeated:
+	.string "Sorry!\n"
+	.string "You startled me.$"
+
+AcornAcre_Text_LaraPostBattle:
+	.string "Please be careful\n"
+	.string "Not to stand on any flowers.$"
+
+FieryPath_B1F_Text_YoseIntro:
+	.string "I climbed all the way up\n"
+	.string "a cliff to train here!$"
+
+FieryPath_B1F_YoseDefeated:
+	.string "All this way to get shown\n"
+	.string "up by a kid…$"
+
+FieryPath_B1F_Text_YosePostBattle:
+	.string "I'll never stop training!\n"
+	.string "Feel the burn!$"
+
 Route103_Text_DaisyIntro:
 	.string "Did you feel the tug of our\n"
 	.string "soul-soothing fragrance?$"

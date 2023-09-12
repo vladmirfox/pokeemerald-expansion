@@ -11,11 +11,30 @@ Route111_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route111_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, Route111_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route111_OnFrame
+	map_script MAP_SCRIPT_ON_RESUME, Route111_OnResume
 	.byte 0
+
+Route111_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route111_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route111_OnResume_Day
+	end
+
+Route111_OnResume_Night:
+	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
+
+Route111_OnResume_Day:
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
 
 Route111_OnLoad:
 	call_if_unset FLAG_REGI_DOORS_OPENED, Route111_EventScript_CloseDesertRuins
 	call_if_eq VAR_MIRAGE_TOWER_STATE, 1, Route111_EventScript_ShowTemporaryMirageTower
+	getplayerxy VAR_TEMP_0, VAR_TEMP_1
+	call Route111_EventScript_CheckSetSandstorm
 	end
 
 Route111_EventScript_CloseDesertRuins::
@@ -77,9 +96,16 @@ Route111_EventScript_CheckSetSandstorm::
 	goto_if_gt VAR_TEMP_1, 72, Route111_EventScript_SetSandstorm
 	goto_if_gt VAR_TEMP_0, 2000, Route111_EventScript_EndCheckSetSandstorm
 	goto_if_lt VAR_TEMP_0, 8, Route111_EventScript_EndCheckSetSandstorm
+	doweather
+	return
+
 Route111_EventScript_SetSandstorm::
 	setweather WEATHER_SANDSTORM
+
 Route111_EventScript_EndCheckSetSandstorm::
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route111_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route111_OnResume_Day
 	return
 
 Route111_EventScript_SetWinstratesNotDefeated::
@@ -252,7 +278,9 @@ Route111_Movement_PushRightFromRoute:
 	step_end
 
 Route111_EventScript_SunTrigger::
-	setweather WEATHER_SUNNY
+	special GetDayOrNight
+	call_if_eq VAR_RESULT, 1, Route111_OnResume_Night
+	call_if_eq VAR_RESULT, 0, Route111_OnResume_Day
 	fadenewbgm MUS_ROUTE110
 	doweather
 	setvar VAR_TEMP_3, 0

@@ -5,10 +5,33 @@
 Route119_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, Route119_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, Route119_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, Route119_OnLoad
 	.byte 0
+
+Route119_OnLoad:
+	special SetRoute119Weather
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route119_OnLoad_Night
+	goto_if_eq VAR_RESULT, 0, Route119_OnLoad_Day
+	end
+
+Route119_OnLoad_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_RAIN
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
+
+Route119_OnLoad_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_ROUTE119_CYCLE
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
 
 Route119_OnResume:
 	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, Route119_EventScript_TryRemoveKecleon
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route119_OnLoad_Night
+	goto_if_eq VAR_RESULT, 0, Route119_OnLoad_Day
 	end
 
 Route119_EventScript_TryRemoveKecleon::
@@ -18,10 +41,13 @@ Route119_EventScript_TryRemoveKecleon::
 	return
 
 Route119_OnTransition:
+	special SetRoute119Weather
 	call Common_EventScript_SetupRivalGfxId
 	call Common_EventScript_SetupRivalOnBikeGfxId
 	call_if_eq VAR_WEATHER_INSTITUTE_STATE, 1, Route119_EventScript_MoveInstituteWorkersDownstairs
-	special SetRoute119Weather
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route119_OnLoad_Night
+	goto_if_eq VAR_RESULT, 0, Route119_OnLoad_Day
 	end
 
 Route119_EventScript_MoveInstituteWorkersDownstairs::

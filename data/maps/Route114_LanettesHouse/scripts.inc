@@ -1,3 +1,5 @@
+.set LOCALID_LANETTE, 1
+
 Route114_LanettesHouse_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route114_LanettesHouse_OnTransition
 	.byte 0
@@ -9,17 +11,36 @@ Route114_LanettesHouse_OnTransition:
 Route114_LanettesHouse_EventScript_Lanette::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_DOLL_LANETTE, Route114_LanettesHouse_EventScript_OfferAdvice
+	goto_if_set FLAG_SYS_DETECTOR_MODE, Route114_LanettesHouse_EventScript_DetectorModeDescription
 	setflag FLAG_SYS_PC_LANETTE
 	msgbox Route114_LanettesHouse_Text_EverythingClutteredKeepThis, MSGBOX_DEFAULT
-	givedecoration DECOR_LOTAD_DOLL
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowNoRoomForDecor
-	setflag FLAG_RECEIVED_DOLL_LANETTE
+	closemessage
+	playse SE_PIN
+	applymovement LOCALID_LANETTE, Common_Movement_ExclamationMark
+	waitmovement 0
+	msgbox Route114_LanettesHouse_Text_OhIsThatDexNav, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_LANETTE, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	delay 30
+	applymovement LOCALID_LANETTE, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
+	delay 30
+	applymovement LOCALID_LANETTE, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	delay 30
+	msgbox Route114_LanettesHouse_Text_UpgradeThisForYou, MSGBOX_DEFAULT
+	closemessage
+	playfanfare MUS_OBTAIN_ITEM
+	message Route114_LanettesHouse_Text_DetectorModeUpgrade
+	waitfanfare
+	setflag FLAG_SYS_DETECTOR_MODE
+	msgbox Route114_LanettesHouse_Text_DetectorModeDescription, MSGBOX_DEFAULT
 	release
 	end
 
-Route114_LanettesHouse_EventScript_OfferAdvice::
-	msgbox Route114_LanettesHouse_Text_OrganizeYourBoxes, MSGBOX_DEFAULT
+Route114_LanettesHouse_EventScript_DetectorModeDescription::
+	msgbox Route114_LanettesHouse_Text_DetectorModeDescription, MSGBOX_DEFAULT
 	release
 	end
 
@@ -48,16 +69,34 @@ Route114_LanettesHouse_EventScript_PC::
 Route114_LanettesHouse_Text_EverythingClutteredKeepThis:
 	.string "LANETTE: Oh! {PLAYER}{KUN}!\p"
 	.string "I'm sorry everything is so cluttered…\n"
-	.string "When I get engrossed in research,\l"
-	.string "things end up this way…\p"
-	.string "This is embarrassing… Please keep\n"
-	.string "this a secret in exchange for this.$"
+	.string "When I get engrossed in research,\p"
+	.string "things end up this way…$"
 
-Route114_LanettesHouse_Text_OrganizeYourBoxes:
-	.string "May I offer advice about my POKéMON\n"
-	.string "Storage System?\p"
-	.string "You should organize your BOXES so you\n"
-	.string "can tell which POKéMON are in them.$"
+Route114_LanettesHouse_Text_OhIsThatDexNav:
+	.string "LANETTE: Is that?…\p"
+	.string "A DexNav you say?…\p"
+	.string "A fellow scientist showed me something\n"
+	.string "like this once.\p"
+	.string "I'd drafted some some plans to improve\n"
+	.string "the device a back then.$"
+
+Route114_LanettesHouse_Text_UpgradeThisForYou:
+	.string "LANETTE: Here they are!\p"
+	.string "Now if I just…\p"
+	.string "… … … … … … …\p"
+	.string "There!$"
+
+Route114_LanettesHouse_Text_DetectorModeUpgrade:
+	.string "{PLAYER}'s DEXNAV was upgraded\n"
+	.string "to include DETECTOR Mode!$"
+
+Route114_LanettesHouse_Text_DetectorModeDescription:
+	.string "With DETECTOR Mode. You will be able\n"
+	.string "to find even more POKéMON!\p"
+	.string "It searches for POKéMON passively as\n"
+	.string "you wander around.\p"
+	.string "You might even be able to find\n"
+	.string "rare POKéMON you couldn't before!$"
 
 Route114_LanettesHouse_Text_ResearchNotesPage1:
 	.string "It's LANETTE's research notes.\n"

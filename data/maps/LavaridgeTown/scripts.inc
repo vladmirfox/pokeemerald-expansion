@@ -4,7 +4,25 @@
 LavaridgeTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LavaridgeTown_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LavaridgeTown_OnFrame
+	map_script MAP_SCRIPT_ON_RESUME, LavaridgeTown_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, LavaridgeTown_OnResume
 	.byte 0
+
+LavaridgeTown_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, LavaridgeTown_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, LavaridgeTown_OnResume_Day
+	end
+
+LavaridgeTown_OnResume_Night:
+	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
+
+LavaridgeTown_OnResume_Day:
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
 
 LavaridgeTown_OnTransition:
 	setflag FLAG_VISITED_LAVARIDGE_TOWN
@@ -14,6 +32,9 @@ LavaridgeTown_OnTransition:
 	call Common_EventScript_SetupRivalOnBikeGfxId
 	call_if_eq VAR_LAVARIDGE_TOWN_STATE, 1, LavaridgeTown_EventScript_CheckSetRivalPos
 	call_if_eq VAR_LAVARIDGE_TOWN_STATE, 1, LavaridgeTown_EventScript_HideMapNamePopup
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, LavaridgeTown_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, LavaridgeTown_OnResume_Day
 	end
 
 LavaridgeTown_EventScript_ClearLavaridgeWhiteOut::

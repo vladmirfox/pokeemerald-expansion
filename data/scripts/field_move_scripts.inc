@@ -287,3 +287,19 @@ EventScript_FailSweetScent::
 
 Text_FailSweetScent:
 	.string "Looks like there's nothing here…$"
+
+EventScript_ChangedTime::
+	msgbox Text_ChangedTime, MSGBOX_SIGN
+	end
+
+Text_ChangedTime:
+	.string "{PLAYER} changed the time.$"
+
+EventScript_CantRegisterRareCandy::
+	msgbox Text_CantRegisterRareCandy, MSGBOX_SIGN
+	end
+
+Text_CantRegisterRareCandy:
+	.string "Sorry! You can't use this item\n"
+	.string "with SELECT. It breaks everything.$"
+

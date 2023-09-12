@@ -5,13 +5,35 @@ Route116_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route116_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, Route116_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route116_OnFrame
+	map_script MAP_SCRIPT_ON_RESUME, Route116_OnResume
 	.byte 0
+
+Route116_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route116_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route116_OnResume_Day
+	end
+
+Route116_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
+
+Route116_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
 
 Route116_OnTransition:
 	call_if_set FLAG_RECOVERED_DEVON_GOODS, Route116_EventScript_SetWandasBoyfriendPos
 	call_if_eq VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_HideMapNamePopup
-	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_NORTH, AbnormalWeather_StartGroudonWeather
-	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_SOUTH, AbnormalWeather_StartGroudonWeather
+	goto_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_NORTH, AbnormalWeather_StartGroudonWeather
+	goto_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_SOUTH, AbnormalWeather_StartGroudonWeather
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route116_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route116_OnResume_Day
 	end
 
 Route116_EventScript_SetWandasBoyfriendPos::
@@ -21,11 +43,21 @@ Route116_EventScript_SetWandasBoyfriendPos::
 Route116_OnLoad:
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_NORTH, AbnormalWeather_EventScript_PlaceTilesRoute116North
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_SOUTH, AbnormalWeather_EventScript_PlaceTilesRoute116South
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route116_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route116_OnResume_Day
 	end
 
 Route116_OnFrame:
 	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1
 	.2byte 0
+
+Route116_EventScript_ClefairyLady::
+	lock
+	faceplayer
+	msgbox Route116_Text_ClefairysUpMountain, MSGBOX_DEFAULT
+	release
+	end
 
 Route116_EventScript_WandasBoyfriend::
 	lock
@@ -358,6 +390,11 @@ Route116_Text_ScoundrelMadeOffWithPeeko:
 	.string "The scoundrel made off with my\n"
 	.string "darling PEEKO!\p"
 	.string "Wrrrooooooaaaar! PEEKO!$"
+
+Route116_Text_ClefairysUpMountain:
+	.string "I come here every night to watch\n"
+	.string "the CLEFAIRY descend the mountain.\p"
+	.string "They have such a serene grace.$"
 
 Route116_Text_WantToDigTunnel:
 	.string "Nnn… Roar!\p"

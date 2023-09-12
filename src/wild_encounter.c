@@ -63,6 +63,8 @@ EWRAM_DATA static u8 sWildEncountersDisabled = 0;
 EWRAM_DATA static u32 sFeebasRngValue = 0;
 EWRAM_DATA bool8 gIsFishingEncounter = 0;
 EWRAM_DATA bool8 gIsSurfingEncounter = 0;
+EWRAM_DATA u8 gChainFishingStreak = 0;
+EWRAM_DATA static u16 sLastFishingSpecies = 0;
 
 #include "data/wild_encounters.h"
 
@@ -181,7 +183,7 @@ static void FeebasSeedRng(u16 seed)
 }
 
 // LAND_WILD_COUNT
-static u8 ChooseWildMonIndex_Land(void)
+u8 ChooseWildMonIndex_Land(void)
 {
     u8 wildMonIndex = 0;
     bool8 swap = FALSE;
@@ -222,7 +224,7 @@ static u8 ChooseWildMonIndex_Land(void)
 }
 
 // ROCK_WILD_COUNT / WATER_WILD_COUNT
-static u8 ChooseWildMonIndex_WaterRock(void)
+u8 ChooseWildMonIndex_WaterRock(void)
 {
     u8 wildMonIndex = 0;
     bool8 swap = FALSE;
@@ -349,7 +351,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
     }
 }
 
-static u16 GetCurrentMapWildMonHeaderId(void)
+u16 GetCurrentMapWildMonHeaderId(void)
 {
     u16 i;
 
@@ -362,6 +364,118 @@ static u16 GetCurrentMapWildMonHeaderId(void)
         if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
             gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
         {
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE101) &&
+            gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE101))
+            i += VarGet(VAR_DAYNIGHT);
+        
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE102) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE102))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ACORN_ACRE) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ACORN_ACRE))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE103) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE103))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE104) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE104))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(PETALBURG_GROVE) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(PETALBURG_GROVE))
+                i += VarGet(VAR_DAYNIGHT);
+		
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(PETALBURG_WOODS) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(PETALBURG_WOODS))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(PETALBURG_WOODS_DEEP) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(PETALBURG_WOODS_DEEP))
+                i += VarGet(VAR_DAYNIGHT);
+            
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE116) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE116))
+                i += VarGet(VAR_DAYNIGHT);
+
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MOUNTAIN_FOOT) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(MOUNTAIN_FOOT))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(DEWFORD_HIVE) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(DEWFORD_HIVE))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SLATEPORT_CITY) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(SLATEPORT_CITY))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SLATEPORT_LEFT) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(SLATEPORT_LEFT))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE110) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE110))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE117) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE117))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAUVILLE_SANCTUARY) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAUVILLE_SANCTUARY))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE111) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE111))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE112) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE112))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE113) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE113))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE114) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE114))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE115) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE115))
+                i += VarGet(VAR_DAYNIGHT);
+
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE118) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE118))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE120) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE120))
+                i += VarGet(VAR_DAYNIGHT);
+            
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE121) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE121))
+                i += VarGet(VAR_DAYNIGHT);
+            
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE123) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE123))
+                i += VarGet(VAR_DAYNIGHT);
+
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MT_PYRE_5F) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(MT_PYRE_5F))
+                i += VarGet(VAR_DAYNIGHT);
+
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MT_PYRE_6F) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(MT_PYRE_6F))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LILYCOVE_CITY) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(LILYCOVE_CITY))
+                i += VarGet(VAR_DAYNIGHT);
+
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ALTERING_CAVE) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(ALTERING_CAVE))
             {
@@ -426,7 +540,7 @@ static u8 PickWildMonNature(void)
     return Random() % NUM_NATURES;
 }
 
-static void CreateWildMon(u16 species, u8 level)
+void CreateWildMon(u16 species, u8 level)
 {
     bool32 checkCuteCharm;
 
@@ -886,6 +1000,17 @@ void FishingWildEncounter(u8 rod)
     {
         species = GenerateFishingWildMon(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod);
     }
+    if (species == sLastFishingSpecies)
+    {
+    if (gChainFishingStreak < 20)
+        gChainFishingStreak++;
+    }
+    else
+    {
+        gChainFishingStreak = 0;    //reeling in different species resets chain fish counter
+    }
+
+    sLastFishingSpecies = species;
     IncrementGameStat(GAME_STAT_FISHING_ENCOUNTERS);
     SetPokemonAnglerSpecies(species);
     gIsFishingEncounter = TRUE;
@@ -1113,3 +1238,25 @@ bool8 TryDoDoubleWildBattle(void)
 #endif
     return FALSE;
 }
+
+u8 ChooseHiddenMonIndex(void)
+{
+    #ifdef ENCOUNTER_CHANCE_HIDDEN_MONS_TOTAL
+        u8 rand = Random() % ENCOUNTER_CHANCE_HIDDEN_MONS_TOTAL;
+
+        if (rand < ENCOUNTER_CHANCE_HIDDEN_MONS_SLOT_0)
+            return 0;
+        else if (rand >= ENCOUNTER_CHANCE_HIDDEN_MONS_SLOT_0 && rand < ENCOUNTER_CHANCE_HIDDEN_MONS_SLOT_1)
+            return 1;
+        else
+            return 2;
+    #else
+        return 0xFF;
+    #endif
+}
+
+bool32 MapHasNoEncounterData(void)
+{
+    return (GetCurrentMapWildMonHeaderId() == HEADER_NONE);
+}
+

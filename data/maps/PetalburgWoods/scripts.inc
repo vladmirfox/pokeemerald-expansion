@@ -2,7 +2,24 @@
 .set LOCALID_DEVON_EMPLOYEE, 4
 
 PetalburgWoods_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgWoods_OnResume
+	map_script MAP_SCRIPT_ON_RESUME, PetalburgWoods_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, PetalburgWoods_OnResume
 	.byte 0
+
+PetalburgWoods_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, PetalburgWoods_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, PetalburgWoods_OnResume_Day
+	end
+
+PetalburgWoods_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
+	end
+
+PetalburgWoods_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
+	end
 
 PetalburgWoods_EventScript_DevonResearcherLeft::
 	lockall

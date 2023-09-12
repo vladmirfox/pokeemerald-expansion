@@ -1,11 +1,30 @@
 FallarborTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, FallarborTown_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, FallarborTown_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, FallarborTown_OnResume
 	.byte 0
+
+FallarborTown_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, FallarborTown_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, FallarborTown_OnResume_Day
+	end
+
+FallarborTown_OnResume_Night:
+	setweather WEATHER_SHADE
+	end
+
+FallarborTown_OnResume_Day:
+	setweather WEATHER_SUNNY
+	end
 
 FallarborTown_OnTransition:
 	setflag FLAG_VISITED_FALLARBOR_TOWN
 	setvar VAR_CONTEST_HALL_STATE, 0
 	clearflag FLAG_CONTEST_SKETCH_CREATED
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, FallarborTown_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, FallarborTown_OnResume_Day
 	end
 
 FallarborTown_EventScript_ExpertM::

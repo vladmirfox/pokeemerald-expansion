@@ -1430,6 +1430,37 @@ static const u8 sBattlePalaceNatureToFlavorTextId[NUM_NATURES] =
     [NATURE_QUIRKY]  = B_MSG_EAGER_FOR_MORE,
 };
 
+const u16 sLevelCapFlags[NUM_SOFT_CAPS] =
+{
+    FLAG_BADGE01_GET, FLAG_BADGE02_GET, FLAG_BADGE03_GET, FLAG_BADGE04_GET,
+    FLAG_BADGE05_GET, FLAG_BADGE06_GET, FLAG_BADGE07_GET, FLAG_BADGE08_GET, 
+    FLAG_SYS_GAME_CLEAR
+};
+// The flags that progress the level cap.
+// For instance, FLAG_BADGE01_GET corresponds to beating Roxanne,
+// and takes us to the Brawly level cap.
+
+const u16 sLevelCaps[NUM_SOFT_CAPS] = 
+{ 
+15, //Roxanne
+22, //Brawly
+33, //Wattson
+40, //Flanery
+43, //Norman
+50, //Winona
+58, //Tate & Liza
+68, //Juan
+82, //Elite Four
+100 //Post game
+};
+
+const int sLevelCapReduction[4] = { 100, 3, 2, 1 };
+const int sRelativePartyScaling[4] = { 5, 3, 2, 1 };
+// The scaling that should be applied.
+// Base exp is divided by the provided value, then either added to the final exp
+// value for LevelCapReduction or added for RelativePartyScaling.
+// The first value of the array denotes default (the value applied at all times).
+
 static bool32 NoTargetPresent(u8 battlerId, u32 move)
 {
     if (!IsBattlerAlive(gBattlerTarget))
@@ -1600,15 +1631,9 @@ static void Cmd_attackcanceler(void)
     }
 
     gHitMarker |= HITMARKER_OBEYS;
-    // Check if no available target present on the field.
-    if (NoTargetPresent(gBattlerAttacker, gCurrentMove)
-        && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
+    if (NoTargetPresent(gBattlerAttacker, gCurrentMove) && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
     {
-        if (gBattleMoves[gCurrentMove].effect == EFFECT_FLING) // Edge case for removing a mon's item when there is no target available after using Fling.
-            gBattlescriptCurrInstr = BattleScript_FlingFailConsumeItem;
-        else
-            gBattlescriptCurrInstr = BattleScript_FailedFromAtkString;
-
+        gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce;
         if (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
             CancelMultiTurnMoves(gBattlerAttacker);
         return;
@@ -3864,6 +3889,13 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 gBattleMons[gBattlerTarget].status2 |= STATUS2_ESCAPE_PREVENTION;
                 gBattleMons[gBattlerAttacker].status2 |= STATUS2_ESCAPE_PREVENTION;
                 break;
+            case MOVE_EFFECT_SCALE_SHOT:
+                if (!NoAliveMonsForEitherParty())
+                {
+                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    gBattlescriptCurrInstr = BattleScript_DefDownSpeedUp;
+                }
+                break;
             case MOVE_EFFECT_BURN_UP:
                 // This seems unnecessary but is done to make it work properly with Parental Bond
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -4263,6 +4295,74 @@ static void Cmd_jumpbasedontype(void)
     }
 }
 
+u8 GetTeamLevel(void)
+{
+    u8 i;
+    u16 partyLevel = 0;
+    u16 threshold = 0;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) != SPECIES_NONE)
+            partyLevel += gPlayerParty[i].level;
+        else
+            break;
+    }
+    partyLevel /= i;
+
+    threshold = partyLevel * .8;
+    partyLevel = 0;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) != SPECIES_NONE)
+        {
+            if (gPlayerParty[i].level >= threshold)
+                partyLevel += gPlayerParty[i].level;
+        }
+        else
+            break;
+    }
+    partyLevel /= i;
+
+    return partyLevel;
+}
+
+int GetPkmnExpMultiplier(u8 level)
+{
+    u8 i;
+    int lvlCapMultiplier = 0;
+    u8 levelDiff;
+
+    for (i = 0; i < NUM_SOFT_CAPS; i++)
+    {
+        if (!FlagGet(sLevelCapFlags[i]) && level >= sLevelCaps[i])
+        {
+            levelDiff = (level + 1) - sLevelCaps[i];
+            if (levelDiff > 3)
+                levelDiff = 3;
+            lvlCapMultiplier = sLevelCapReduction[levelDiff];
+            break;
+        }
+    }
+
+    return lvlCapMultiplier;
+}
+
+int GetPkmnExpScaling(u8 level)
+{
+    s8 avgDiff;
+
+    avgDiff = GetTeamLevel() - level;
+
+    if (avgDiff >= 3)
+        avgDiff = 3;
+    else if (avgDiff <= 0)
+        avgDiff = 0;
+
+    return sRelativePartyScaling[avgDiff];
+}
+
 static void Cmd_getexp(void)
 {
     CMD_ARGS(u8 battler);
@@ -4397,18 +4497,34 @@ static void Cmd_getexp(void)
 
                 if (IsValidForBattle(&gPlayerParty[gBattleStruct->expGetterMonId]))
                 {
+                    int expMultiplier;
+                    int expScaling;
+
+                    expMultiplier = GetPkmnExpMultiplier(gPlayerParty[gBattleStruct->expGetterMonId].level);
+                    expScaling = GetPkmnExpScaling(gPlayerParty[gBattleStruct->expGetterMonId].level);
                     if (gBattleStruct->sentInPokes & 1)
-                        gBattleMoveDamage = *exp;
+                        {
+                        gBattleMoveDamage = *exp + (*exp / expScaling);
+                        gBattleMoveDamage = gBattleMoveDamage - (gBattleMoveDamage / expMultiplier);
+                        }
                     else
+                        {
                         gBattleMoveDamage = 0;
+                        }
 
                     // only give exp share bonus in later gens if the mon wasn't sent out
                 #if B_SPLIT_EXP < GEN_6
                     if (holdEffect == HOLD_EFFECT_EXP_SHARE)
-                        gBattleMoveDamage += gExpShareExp;
+                        {
+                        gBattleMoveDamage += gExpShareExp + (*gExpShareExp / expScaling);
+                        gBattleMoveDamage = gBattleMoveDamage - (gBattleMoveDamage / expMultiplier);
+                        }
                 #else
                     if (holdEffect == HOLD_EFFECT_EXP_SHARE && gBattleMoveDamage == 0)
-                        gBattleMoveDamage += gExpShareExp;
+                        {
+                        gBattleMoveDamage += gExpShareExp + (gExpShareExp / expScaling);
+                        gBattleMoveDamage = gBattleMoveDamage - (gBattleMoveDamage / expMultiplier);
+                        }
                 #endif
                     if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
                         gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
@@ -4440,7 +4556,7 @@ static void Cmd_getexp(void)
                         }
                         else
                         {
-                            gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
+                            gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;                  
                             i = STRINGID_ABOOSTED;
                         }
                     }
@@ -6088,12 +6204,6 @@ static void Cmd_moveend(void)
                 gBattleScripting.multihitString[4]++;
                 if (--gMultiHitCounter == 0)
                 {
-                    if (gBattleMoves[gCurrentMove].argument == MOVE_EFFECT_SCALE_SHOT && !NoAliveMonsForEitherParty())
-                    {
-                        BattleScriptPush(gBattlescriptCurrInstr + 1);
-                        gBattlescriptCurrInstr = BattleScript_DefDownSpeedUp;
-                    }
-
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_MultiHitPrintStrings;
                     effect = TRUE;
@@ -8874,16 +8984,6 @@ static bool32 ChangeOrderTargetAfterAttacker(void)
     return TRUE;
 }
 
-static u32 CalculateBattlerPartyCount(u32 battler)
-{
-    u32 count;
-    if (GetBattlerSide(battler) == B_SIDE_PLAYER)
-        count = CalculatePlayerPartyCount();
-    else
-        count = CalculateEnemyPartyCount();
-    return count;
-}
-
 static void Cmd_various(void)
 {
     CMD_ARGS(u8 battler, u8 id);
@@ -10686,7 +10786,7 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         if (gBattleMons[gBattlerAttacker].species == SPECIES_GRENINJA_BATTLE_BOND
             && HasAttackerFaintedTarget()
-            && CalculateBattlerPartyCount(gBattlerTarget) > 1
+            && CalculateEnemyPartyCount() > 1
             && !(gBattleStruct->battleBondTransformed[GET_BATTLER_SIDE2(gBattlerAttacker)] & gBitTable[gBattlerPartyIndexes[gBattlerAttacker]]))
         {
             gBattleStruct->battleBondTransformed[GET_BATTLER_SIDE2(gBattlerAttacker)] |= gBitTable[gBattlerPartyIndexes[gBattlerAttacker]];
@@ -10918,6 +11018,15 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr = cmd->nextInstr;
         else
             gBattlescriptCurrInstr = cmd->failInstr;
+        return;
+    }
+    case VARIOUS_JUMP_IF_CANT_FLING:
+    {
+        VARIOUS_ARGS(const u8 *jumpInstr);
+        if (!CanFling(gActiveBattler))
+            gBattlescriptCurrInstr = cmd->jumpInstr;
+        else
+            gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
     case VARIOUS_CURE_CERTAIN_STATUSES:
@@ -14117,13 +14226,12 @@ static void Cmd_trysetfutureattack(void)
 
 static void Cmd_trydobeatup(void)
 {
-#if B_BEAT_UP >= GEN_5
-    CMD_ARGS();
+    CMD_ARGS(const u8 *endInstr, const u8 *failInstr);
 
+#if B_BEAT_UP >= GEN_5
     gBattleStruct->beatUpSlot++;
     gBattlescriptCurrInstr = cmd->nextInstr;
 #else
-    CMD_ARGS(const u8 *endInstr, const u8 *failInstr);
     struct Pokemon *party = GetBattlerParty(gBattlerAttacker);
 
     if (gBattleMons[gBattlerTarget].hp == 0)
@@ -16164,22 +16272,11 @@ void BS_CalcMetalBurstDmg(void)
     }
 }
 
-void BS_JumpIfCantFling(void)
-{
-    NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
-
-    u32 battler = GetBattlerForBattleScript(cmd->battler);
-    if (!CanFling(battler))
-        gBattlescriptCurrInstr = cmd->jumpInstr;
-    else
-        gBattlescriptCurrInstr = cmd->nextInstr;
-}
-
 void BS_JumpIfMoreThanHalfHP(void)
 {
     NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
 
-    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    u8 battler = GetBattlerForBattleScript(cmd->battler);
     if (gBattleMons[battler].hp > (gBattleMons[battler].maxHP + 1) / 2)
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else

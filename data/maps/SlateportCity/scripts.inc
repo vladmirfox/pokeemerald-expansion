@@ -24,13 +24,36 @@
 SlateportCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, SlateportCity_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, SlateportCity_OnFrame
+	map_script MAP_SCRIPT_ON_RESUME, SlateportCity_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, SlateportCity_OnResume
 	.byte 0
+
+SlateportCity_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, SlateportCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, SlateportCity_OnResume_Day
+	end
+
+SlateportCity_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
+
+SlateportCity_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
 
 SlateportCity_OnTransition:
 	setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 0
 	call SlateportCity_EventScript_EnterSlateport
 	call_if_eq VAR_SLATEPORT_CITY_STATE, 1, SlateportCity_EventScript_MovePeopleForSternInterview
 	call_if_eq VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1, SlateportCity_EventScript_SetReadyForScottScene
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, SlateportCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, SlateportCity_OnResume_Day
 	end
 
 SlateportCity_EventScript_EnterSlateport::

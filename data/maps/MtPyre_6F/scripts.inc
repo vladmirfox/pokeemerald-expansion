@@ -1,6 +1,14 @@
 MtPyre_6F_MapScripts::
 	.byte 0
 
+MtPyre_6F_EventScript_LaxIncenseArea::
+	setvar VAR_DAYNIGHT, 1
+	end
+
+MtPyre_6F_EventScript_LeaveLaxIncenseArea::
+	setvar VAR_DAYNIGHT, 0
+	end
+
 MtPyre_6F_EventScript_Valerie::
 	trainerbattle_single TRAINER_VALERIE_1, MtPyre_6F_Text_ValerieIntro, MtPyre_6F_Text_ValerieDefeat, MtPyre_6F_EventScript_RegisterValerie
 	specialvar VAR_RESULT, ShouldTryRematchBattle

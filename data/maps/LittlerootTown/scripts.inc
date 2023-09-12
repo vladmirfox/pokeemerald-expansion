@@ -7,6 +7,8 @@ LittlerootTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_OnFrame
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_OnWarp
+	map_script MAP_SCRIPT_ON_RESUME, LittlerootTown_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, LittlerootTown_OnResume
 	.byte 0
 
 	@ State descriptions for VAR_LITTLEROOT_TOWN_STATE
@@ -51,6 +53,25 @@ LittlerootTown_OnTransition:
 	call_if_eq VAR_LITTLEROOT_RIVAL_STATE, 3, LittlerootTown_EventScript_SetRivalLeftForRoute103
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_HideMapNamePopup
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_EventScript_LeftLabAfterDexUpgrade
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, LittlerootTown_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, LittlerootTown_OnResume_Day
+	end
+
+LittlerootTown_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, LittlerootTown_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, LittlerootTown_OnResume_Day
+	end
+
+LittlerootTown_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	end
+
+LittlerootTown_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
 	end
 
 LittlerootTown_EventScript_LeftLabAfterDexUpgrade::

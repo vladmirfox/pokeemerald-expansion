@@ -5,7 +5,27 @@
 Route104_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route104_OnFrame
 	map_script MAP_SCRIPT_ON_TRANSITION, Route104_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, Route104_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, Route104_OnResume
 	.byte 0
+
+Route104_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route104_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route104_OnResume_Day
+	end
+
+Route104_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
+
+Route104_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
 
 Route104_OnFrame:
 	map_script_2 VAR_BOARD_BRINEY_BOAT_STATE, 1, Route104_EventScript_StartSailToDewford
@@ -20,6 +40,9 @@ Route104_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	call Route104_EventScript_TrySetRivalPos
 	call Route104_EventScript_ShowOrHideWhiteHerbFlorist
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1 Route104_OnResume_Night
+	goto_if_eq VAR_RESULT, 0 Route104_OnResume_Night
 	end
 
 Route104_EventScript_ShowOrHideWhiteHerbFlorist::

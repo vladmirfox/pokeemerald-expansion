@@ -3,15 +3,38 @@
 Route103_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route103_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, Route103_OnLoad
+	map_script MAP_SCRIPT_ON_RESUME, Route103_OnResume
 	.byte 0
+
+Route103_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route103_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route103_OnResume_Day
+	end
+
+Route103_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	end
+
+Route103_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	end
 
 Route103_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	call ProfBirch_EventScript_UpdateLocation
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route103_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route103_OnResume_Day
 	end
 
 Route103_OnLoad:
 	call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_OpenAlteringCave
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route103_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route103_OnResume_Day
 	end
 
 Route103_EventScript_OpenAlteringCave::

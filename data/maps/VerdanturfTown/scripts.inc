@@ -2,11 +2,34 @@
 
 VerdanturfTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, VerdanturfTown_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, VerdanturfTown_OnResume
 	.byte 0
+
+VerdanturfTown_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, VerdanturfTown_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, VerdanturfTown_OnResume_Day
+	end
+
+VerdanturfTown_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
+
+VerdanturfTown_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
 
 VerdanturfTown_OnTransition:
 	setflag FLAG_VISITED_VERDANTURF_TOWN
 	setvar VAR_CONTEST_HALL_STATE, 0
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, VerdanturfTown_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, VerdanturfTown_OnResume_Day
 	end
 
 VerdanturfTown_EventScript_Twin::

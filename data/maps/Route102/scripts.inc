@@ -1,5 +1,24 @@
 Route102_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route102_OnResume
+	map_script MAP_SCRIPT_ON_RESUME, Route102_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, Route102_OnResume
 	.byte 0
+
+Route102_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route102_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route102_OnResume_Day
+	end
+
+Route102_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	end
+
+Route102_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	end
 
 Route102_EventScript_LittleBoy::
 	msgbox Route102_Text_ImNotVeryTall, MSGBOX_NPC
@@ -97,12 +116,14 @@ Route102_Text_ImNotVeryTall:
 	.string "Fwatchoo!$"
 
 Route102_Text_CatchWholeBunchOfPokemon:
-	.string "I'm going to catch a whole bunch of\n"
-	.string "POKéMON!$"
+	.string "There's this big tree back here\n"
+	.string "full of SEDOT.\p"
+	.string "I should get more POKéBALLs!$"
 
 Route102_Text_RouteSignOldale:
 	.string "ROUTE 102\n"
-	.string "{RIGHT_ARROW} OLDALE TOWN$"
+	.string "{RIGHT_ARROW} OLDALE TOWN\p"
+	.string "{UP_ARROW} ACORN ACRE$"
 
 Route102_Text_RouteSignPetalburg:
 	.string "ROUTE 102\n"

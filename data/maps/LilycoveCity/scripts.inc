@@ -4,7 +4,26 @@
 LilycoveCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, LilycoveCity_OnLoad
+	map_script MAP_SCRIPT_ON_RESUME, LilycoveCity_OnResume
 	.byte 0
+
+LilycoveCity_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
+
+LilycoveCity_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
+
+LilycoveCity_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, FortreeCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, FortreeCity_OnResume_Day
+	end
 
 LilycoveCity_OnTransition:
 	setflag FLAG_VISITED_LILYCOVE_CITY
@@ -12,6 +31,9 @@ LilycoveCity_OnTransition:
 	setflag FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	call Common_EventScript_SetupRivalGfxId
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, FortreeCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, FortreeCity_OnResume_Day
 	end
 
 LilycoveCity_OnLoad:

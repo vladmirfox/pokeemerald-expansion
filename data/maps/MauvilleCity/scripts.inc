@@ -4,7 +4,25 @@
 
 MauvilleCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MauvilleCity_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, MauvilleCity_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, MauvilleCity_OnResume
 	.byte 0
+
+MauvilleCity_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, MauvilleCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, MauvilleCity_OnResume_Day
+	end
+
+MauvilleCity_OnResume_Night:
+	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
+
+MauvilleCity_OnResume_Day:
+	setweather WEATHER_SUNNY
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
 
 MauvilleCity_OnTransition:
 	setflag FLAG_VISITED_MAUVILLE_CITY
@@ -14,6 +32,9 @@ MauvilleCity_OnTransition:
 	clearflag FLAG_MAUVILLE_GYM_BARRIERS_STATE
 	setvar VAR_MAUVILLE_GYM_STATE, 0
 	call_if_set FLAG_GOT_TM24_FROM_WATTSON, MauvilleCity_EventScript_MoveWattsonBackToGym
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, MauvilleCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, MauvilleCity_OnResume_Day
 	end
 
 MauvilleCity_EventScript_MoveWattsonBackToGym::
@@ -107,8 +128,8 @@ MauvilleCity_EventScript_Wally::
 	end
 
 MauvilleCity_EventScript_BattleWallyPrompt::
-	call_if_eq VAR_RESULT, YES, MauvilleCity_EventScript_BattleWally
 	goto_if_eq VAR_RESULT, NO, MauvilleCity_EventScript_DeclineWallyBattle
+	call_if_eq VAR_RESULT, YES, MauvilleCity_EventScript_BattleWally
 	closemessage
 	switch VAR_FACING
 	case DIR_NORTH, MauvilleCity_EventScript_WallyAndUncleExitNorth
@@ -212,6 +233,7 @@ MauvilleCity_EventScript_BattleWally::
 	applymovement LOCALID_WALLY, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
 	msgbox MauvilleCity_Text_UncleNoNeedToBeDown, MSGBOX_DEFAULT
+	clearflag FLAG_DECLINED_WALLY_BATTLE_MAUVILLE
 	return
 
 MauvilleCity_EventScript_DeclineWallyBattle::
@@ -574,7 +596,13 @@ MauvilleCity_Text_ScottYouDidntHoldBack:
 	.string "battle is all about!\p"
 	.string "I idolize TRAINERS like that!\p"
 	.string "… … … … … …\n"
-	.string "I'll be cheering for you!$"
+	.string "Tell me.\p"
+	.string "Have you ever heard of 'MEGA\n"
+	.string "EVOLUTION?\p"
+	.string "… … Perhaps not.\n"
+	.string "They are only rumons after all.\p"
+	.string "… … … … … …\n"
+	.string "I'll keep rooting for you kid!$"
 
 MauvilleCity_Text_WattsonNeedFavorTakeKey:
 	.string "WATTSON: Oh, {PLAYER}{KUN}!\n"

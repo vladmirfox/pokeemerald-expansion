@@ -84,7 +84,12 @@ GraniteCave_StevensRoom_Movement_StevenExitSouth:
 GraniteCave_StevensRoom_Text_ImStevenLetterForMe:
 	.string "My name is STEVEN.\p"
 	.string "I'm interested in rare stones,\n"
-	.string "so I travel here and there.\p"
+	.string "so I came here.\p"
+	.string "I heard that a TRAINER found\n"
+	.string "something in this cave.\p"
+	.string "A mysterious gem that resembled\n"
+	.string "an AGGRON…\p"
+	.string "But I haven't found anything…\p"
 	.string "Oh?\n"
 	.string "A LETTER for me?$"
 

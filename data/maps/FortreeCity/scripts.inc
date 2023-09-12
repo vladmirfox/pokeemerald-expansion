@@ -1,14 +1,31 @@
 FortreeCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, FortreeCity_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, FortreeCity_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, FortreeCity_OnResume
 	.byte 0
+
+FortreeCity_OnResume_Night:
+	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
+
+FortreeCity_OnResume_Day:
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
 
 FortreeCity_OnTransition:
 	setflag FLAG_VISITED_FORTREE_CITY
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, FortreeCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, FortreeCity_OnResume_Day
 	end
 
 FortreeCity_OnResume:
 	setstepcallback STEP_CB_FORTREE_BRIDGE
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, FortreeCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, FortreeCity_OnResume_Day
 	end
 
 FortreeCity_EventScript_Man::

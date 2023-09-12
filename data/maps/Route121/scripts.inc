@@ -3,7 +3,28 @@
 .set LOCALID_GRUNT_3, 14
 
 Route121_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route121_OnResume
+	map_script MAP_SCRIPT_ON_RESUME, Route121_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, Route121_OnResume
 	.byte 0
+
+Route121_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
+
+Route121_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY_CLOUDS
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
+
+Route121_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, FortreeCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, FortreeCity_OnResume_Day
+	end
 
 Route121_EventScript_Woman::
 	msgbox Route121_Text_AheadLoomsMtPyre, MSGBOX_NPC

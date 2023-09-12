@@ -8,14 +8,37 @@
 RustboroCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, RustboroCity_OnFrame
+	map_script MAP_SCRIPT_ON_RESUME, RustboroCity_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, RustboroCity_OnResume
 	.byte 0
+
+RustboroCity_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, RustboroCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, RustboroCity_OnResume_Day
+	end
+
+RustboroCity_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
+
+RustboroCity_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
 
 RustboroCity_OnTransition:
 	setflag FLAG_VISITED_RUSTBORO_CITY
 	call Common_EventScript_SetupRivalGfxId
 	call_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_HideMapNamePopup
 	getplayerxy VAR_TEMP_0, VAR_TEMP_1
-	goto_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_PositionScientistForExit
+	call_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_PositionScientistForExit
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, RustboroCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, RustboroCity_OnResume_Day
 	end
 
 RustboroCity_EventScript_PositionScientistForExit::

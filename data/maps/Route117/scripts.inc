@@ -2,10 +2,32 @@
 
 Route117_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route117_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, Route117_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, Route117_OnResume
 	.byte 0
+
+Route117_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route117_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route117_OnResume_Day
+	end
+
+Route117_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
+
+Route117_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
 
 Route117_OnTransition:
 	call Route117_EventScript_TryMoveDayCareMan
+	goto_if_eq VAR_RESULT, 1, Route117_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route117_OnResume_Day
 	end
 
 Route117_EventScript_TryMoveDayCareMan::

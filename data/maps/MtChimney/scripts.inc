@@ -4,7 +4,6 @@
 .set LOCALID_MAGMA_GRUNT_2, 22
 .set LOCALID_MAGMA_GRUNT_1, 29
 
-
 MtChimney_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, MtChimney_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, MtChimney_OnTransition
@@ -76,6 +75,7 @@ MtChimney_EventScript_Maxie::
 	setflag FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY
 	clearflag FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO
 	setflag FLAG_HIDE_METEOR_FALLS_1F_1R_COZMO
+	setflag FLAG_HIDE_METEORFALLS_STEVEN
 	clearflag FLAG_HIDE_MT_CHIMNEY_LAVA_COOKIE_LADY
 	releaseall
 	end
@@ -502,11 +502,6 @@ MtChimney_EventScript_Sheila::
 	msgbox MtChimney_Text_SheilaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-MtChimney_EventScript_Shirley::
-	trainerbattle_single TRAINER_SHIRLEY, MtChimney_Text_ShirleyIntro, MtChimney_Text_ShirleyDefeat
-	msgbox MtChimney_Text_ShirleyPostBattle, MSGBOX_AUTOCLOSE
-	end
-
 MtChimney_EventScript_Grunt1::
 	trainerbattle_single TRAINER_GRUNT_MT_CHIMNEY_1, MtChimney_Text_Grunt1Intro, MtChimney_Text_Grunt1Defeat
 	msgbox MtChimney_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
@@ -584,21 +579,22 @@ MtChimney_Text_MaxieYouHaventSeenLastOfMagma:
 	.string "obtain that ORB… Fufufu…$"
 
 MtChimney_Text_TabithaIntro:
-	.string "Hehehe!\p"
-	.string "So you've come all the way here!\p"
-	.string "But you're too late!\n"
-	.string "I've already delivered the METEORITE\l"
-	.string "from METEOR FALLS to the BOSS!$"
+	.string "COURTNEY: …Who are you?\p"
+	.string "You've come all the way here but\n"
+	.string "I can't let you pass…\p"
+	.string "I've delivered the METEORITE\l"
+	.string "from METEOR FALLS to the BOSS.$"
 
 MtChimney_Text_TabithaDefeat:
-	.string "Hehehe…\p"
-	.string "Even though I've lost, if our leader\n"
-	.string "awakens that thing…$"
+	.string "…As anticipated. Unanticipated.\p"
+	.string "You. Target lock… completed.\n"
+	.string "Commencing… experiment.\p"
+	.string "You. Forever. Aha…$"
 
 MtChimney_Text_TabithaPostBattle:
-	.string "BOSS, hurry!\n"
-	.string "Give it the METEORITE's energy!\p"
-	.string "Hehehe…$"
+	.string "COURTNEY: …\p"
+	.string "My defeat… inconsequential.\n"
+	.string "The BOSS has the METEORITE…$"
 
 MtChimney_Text_Grunt2Intro:
 	.string "We of TEAM MAGMA are working hard for\n"
@@ -802,20 +798,6 @@ MtChimney_Text_SheilaPostBattle:
 	.string "I only do a little sightseeing…\p"
 	.string "I want to get in some battles and buy\n"
 	.string "COOKIES as souvenirs.$"
-
-MtChimney_Text_ShirleyIntro:
-	.string "Since I bathed in the hot springs,\n"
-	.string "I've been feeling great!\l"
-	.string "I'm sure I'm going to win!$"
-
-MtChimney_Text_ShirleyDefeat:
-	.string "Yowch!\n"
-	.string "I'm getting a chill out of the water.$"
-
-MtChimney_Text_ShirleyPostBattle:
-	.string "I'll have to take another dip in the\n"
-	.string "hot springs. Want to join me?\p"
-	.string "Just joking!$"
 
 MtChimney_Text_SawyerIntro:
 	.string "This is one fine mountain! Plenty of\n"

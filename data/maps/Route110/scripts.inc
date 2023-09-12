@@ -7,16 +7,34 @@ Route110_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, Route110_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, Route110_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route110_OnFrame
+	map_script MAP_SCRIPT_ON_LOAD, Route110_OnResume
 	.byte 0
 
 Route110_OnResume:
 	special UpdateCyclingRoadState
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route110_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route110_OnResume_Day
+	end
+
+Route110_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
+
+Route110_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 Route110_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
 	call Common_EventScript_SetupRivalOnBikeGfxId
 	call_if_eq VAR_CYCLING_CHALLENGE_STATE, 1, Route110_EventScript_SaveCyclingMusic
+	goto_if_eq VAR_RESULT, 1, Route110_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route110_OnResume_Day
 	end
 
 Route110_EventScript_SaveCyclingMusic::

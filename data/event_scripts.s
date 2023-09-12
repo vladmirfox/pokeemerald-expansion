@@ -858,7 +858,7 @@ gText_SandstormIsVicious::
 	.string "It's impossible to keep going.$"
 
 gText_SelectWithoutRegisteredItem::
-	.string "An item in the BAG can be\n"
+	.string "Up to four items in the BAG can be\n"
 	.string "registered to SELECT for easy use.$"
 
 gText_PokemonTrainerSchoolEmail::
@@ -1059,3 +1059,39 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+    .include "data/scripts/dexnav.inc"
+    
+	.include "data/maps/PetalburgGrove/scripts.inc"
+	.include "data/maps/PetalburgWoods_Deep/scripts.inc"
+	.include "data/maps/AcornAcre/scripts.inc"
+	.include "data/maps/AcornHouse/scripts.inc"
+	.include "data/maps/MountainFoot/scripts.inc"
+	.include "data/maps/DewfordHive/scripts.inc"
+	.include "data/maps/MauvilleSanctuary/scripts.inc"
+	.include "data/maps/Slateport_Left/scripts.inc"
+	.include "data/maps/SlateportCity_StorageShed/scripts.inc"
+	.include "data/maps/SlateportCity_ColdStorage/scripts.inc"
+	.include "data/maps/ColdStorage_B1F/scripts.inc"
+	.include "data/maps/CandyFactory/scripts.inc"
+	.include "data/maps/ColdStorage_1F/scripts.inc"
+
+
+	.include "data/maps/FieryPath_B1F/scripts.inc"
+
+	.include "data/maps/AshveilPark/scripts.inc"
+
+	.include "data/maps/MauvilleCity_House3/scripts.inc"
+
+	.include "data/maps/CoronetHotsprings/scripts.inc"
+
+	.include "data/maps/MauvilleCity_FlowerShop/scripts.inc"
+
+	.include "data/maps/Route119East/scripts.inc"
+
+	.include "data/maps/SpringPeak/scripts.inc"
+
+	.include "data/maps/DesertCavern_1F/scripts.inc"
+
+	.include "data/maps/FortreeCity_House6/scripts.inc"
+
+	.include "data/maps/FortreeCity_House7/scripts.inc"
