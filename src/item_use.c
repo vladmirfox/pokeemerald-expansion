@@ -681,11 +681,11 @@ static void Task_OpenRegisteredPokeblockCase(u8 taskId)
 
 void ItemUseOutOfBattle_PokemonBoxLink(u8 taskId)
 {
-    sItemUseOnFieldCB = Task_WaitFadeAccessPC;
+    sItemUseOnFieldCB = Task_WaitFadeAccessPokemonBoxLink;
     SetUpItemUseOnFieldCallback(taskId);
 }
 
-static void Task_WaitFadeAccessPC(u8 taskId)
+static void Task_WaitFadeAccessPokemonBoxLink(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
