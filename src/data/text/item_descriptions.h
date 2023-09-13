@@ -140,6 +140,11 @@ static const u8 sCherishBallDesc[] = _(
     "in commemoration\n"
     "of some event.");
 
+static const u8 sStrangeBallDesc[] = _(
+    "An unusual Ball\n"
+    "that warped through\n"
+    "space and time.");
+
 // Medicine
 static const u8 sPotionDesc[] = _(
     "Restores the HP of\n"
