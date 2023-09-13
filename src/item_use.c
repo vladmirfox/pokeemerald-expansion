@@ -77,6 +77,7 @@ static void Task_CloseCantUseKeyItemMessage(u8);
 static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
 static void ItemUseOnFieldCB_Honey(u8 taskId);
+static bool32 IsValidLocationForVsSeeker(void);
 static bool32 CannotUseBagBattleItem(u16 itemId);
 
 // EWRAM variables
@@ -1325,7 +1326,7 @@ void ItemUseOutOfBattle_CannotUse(u8 taskId)
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 }
 
-bool32 IsValidLocationForVsSeeker(void)
+static bool32 IsValidLocationForVsSeeker(void)
 {
     u16 mapGroup = gSaveBlock1Ptr->location.mapGroup;
     u16 mapNum = gSaveBlock1Ptr->location.mapNum;
@@ -1363,9 +1364,6 @@ bool32 IsValidLocationForVsSeeker(void)
 
     if (IsMapTypeOutdoors(mapType))
         return TRUE;
-
-    if (!IsMapTypeIndoors(mapType))
-        return FALSE;
 
     for (i = 0; i < ARRAY_COUNT(validIndoorLocations); i++)
     {
