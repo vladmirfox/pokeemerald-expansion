@@ -16334,4 +16334,3 @@ void BS_ApplySaltCure(void)
     gStatuses4[battler] |= STATUS4_SALT_CURE;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
-
