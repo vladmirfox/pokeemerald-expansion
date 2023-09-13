@@ -47,7 +47,7 @@ SINGLE_BATTLE_TEST("Toxic Debris does not activate if two layers of Toxic Spikes
     }
 }
 
-SINGLE_BATTLE_TEST("If a Substitute is hit Toxic Debris does not set Toxic Spikes")
+SINGLE_BATTLE_TEST("If a Substitute is hit, Toxic Debris does not set Toxic Spikes")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_TOXIC_DEBRIS); }
@@ -87,7 +87,6 @@ SINGLE_BATTLE_TEST("Air Balloon is popped after Toxic Debris activates")
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
-        TURN {}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         ABILITY_POPUP(player, ABILITY_TOXIC_DEBRIS);

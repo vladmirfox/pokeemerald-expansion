@@ -5713,9 +5713,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && (gSideTimers[gBattlerAttacker].toxicSpikesAmount != 2)
              && IsBattlerAlive(gBattlerTarget))
             {
-                i = gBattlerAttacker;
-                gBattlerAttacker = gBattlerTarget;
-                gBattlerTarget = i; // gBattlerTarget and gBattlerAttacker are swapped in order to activate Toxic Debris, if applicable
+                SWAP(gBattlerAttacker, gBattlerTarget, i);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_ToxicDebrisActivates;
                 effect++;
