@@ -9029,7 +9029,7 @@ extern const u32 gItemIcon_TinyBambooShoot[];
 extern const u32 gItemIconPalette_TinyBambooShoot[];
 
 // Tera Shards
-extern const u32 gItemIcon_NormalTeraShard[];
+extern const u32 gItemIcon_TeraShard[];
 extern const u32 gItemIconPalette_NormalTeraShard[];
 extern const u32 gItemIconPalette_FireTeraShard[];
 extern const u32 gItemIconPalette_WaterTeraShard[];
