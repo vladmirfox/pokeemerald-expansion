@@ -6770,7 +6770,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
     return targetSpecies;
 }
 
-bool8 CouldHaveEvolvedViaLevelUp(struct Pokemon *mon)
+bool8 IsMonPastEvolutionLevel(struct Pokemon *mon)
 {
     int i;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
