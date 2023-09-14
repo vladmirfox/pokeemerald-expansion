@@ -1019,7 +1019,7 @@ u8 ItemIdToBallId(u16 ballItem)
     case ITEM_STRANGE_BALL:
         return BALL_STRANGE;
     default:
-        return BALL_POKE;
+        return BALL_STRANGE;
     }
 }
 
