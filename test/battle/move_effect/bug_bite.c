@@ -10,8 +10,8 @@ ASSUMPTIONS
 // Pretty much copy/paste of the Berry Fling Test.
 SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its effect")
 {
-    u16 item;
-    u32 status1 = STATUS1_NONE, effect, statId;
+    u16 item = 0;
+    u32 status1 = STATUS1_NONE, effect = 0, statId = 0;
 
     PARAMETRIZE { item = ITEM_NONE; }
     PARAMETRIZE { item = ITEM_ORAN_BERRY; effect = HOLD_EFFECT_RESTORE_HP; }
