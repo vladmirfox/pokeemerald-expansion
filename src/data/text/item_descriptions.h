@@ -142,7 +142,7 @@ static const u8 sCherishBallDesc[] = _(
 
 static const u8 sStrangeBallDesc[] = _(
     "An unusual Ball\n"
-    "that warped through\n"
+    "warped through\n"
     "space and time.");
 
 // Medicine
