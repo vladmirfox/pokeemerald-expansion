@@ -490,6 +490,16 @@ static bool32 CannotUsePartyBattleItem(u16 itemId, struct Pokemon* mon);
 // static const data
 #include "data/party_menu.h"
 
+const struct SpriteSheet gSpriteSheet_HeldItem =
+{
+    .data = sHeldItemGfx, .size = sizeof(sHeldItemGfx), .tag = TAG_HELD_ITEM
+};
+
+static const struct SpritePalette sSpritePalette_HeldItem =
+{
+    .data = gHeldItemPalette, .tag = TAG_HELD_ITEM
+};
+
 // code
 static void InitPartyMenu(u8 menuType, u8 layout, u8 partyAction, bool8 keepCursorPos, u8 messageId, TaskFunc task, MainCallback callback)
 {
