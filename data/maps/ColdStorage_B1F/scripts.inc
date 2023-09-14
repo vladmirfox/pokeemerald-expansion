@@ -113,7 +113,7 @@ ColdStorage_Text_AreYouATrainer:
 	.string "Few others would come to this place.$"
 
 ColdStorage_Text_ImHereCatchingPokemon:
-	.string "I'm here to catch POKéMON you see.\p"
+	.string "I'm here to catch Pokémon you see.\p"
 	.string "During a power surge this place was\n"
 	.string "completely frozen over.\p"
 	.string "It's since been abandoned, but the\n"

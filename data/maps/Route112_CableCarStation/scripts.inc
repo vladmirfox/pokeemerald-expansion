@@ -188,13 +188,13 @@ Route112_CableCarStation_Text_StevenAlsoHaveThis:
 	.string "Although it can activate their power\n"
 	.string "the gems themselves are worthless\p"
 	.string "without the will of a trainer and their\n"
-	.string "POKéMON!\p"
+	.string "Pokémon!\p"
 	.string "…Using that ring, I was able to find this\n"
 	.string "amongst my collection\p"
 	.string "Here…$"
 
 Route112_CableCarStation_Text_SorryICantStay:
-	.string "It reminds me of you and your POKéMON!\p"
+	.string "It reminds me of you and your Pokémon!\p"
 	.string "I hope you can unlock its full\n"
 	.string "potential {PLAYER}!\p"
 	.string "… … …\n"

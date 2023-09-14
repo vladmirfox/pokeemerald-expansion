@@ -92,36 +92,36 @@ Route114_LanettesHouse_Text_DetectorModeUpgrade:
 
 Route114_LanettesHouse_Text_DetectorModeDescription:
 	.string "With DETECTOR Mode. You will be able\n"
-	.string "to find even more POKéMON!\p"
-	.string "It searches for POKéMON passively as\n"
+	.string "to find even more Pokémon!\p"
+	.string "It searches for Pokémon passively as\n"
 	.string "you wander around.\p"
 	.string "You might even be able to find\n"
-	.string "rare POKéMON you couldn't before!$"
+	.string "rare Pokémon you couldn't before!$"
 
 Route114_LanettesHouse_Text_ResearchNotesPage1:
 	.string "It's LANETTE's research notes.\n"
 	.string "There's information about BOXES.\p"
-	.string "Design BOXES to hold 30 POKéMON each.\p"
+	.string "Design BOXES to hold 30 Pokémon each.\p"
 	.string "Each TRAINER should be able to store\n"
-	.string "420 POKéMON on the PC system.\p"
+	.string "420 Pokémon on the PC system.\p"
 	.string "Keep reading?$"
 
 Route114_LanettesHouse_Text_ResearchNotesPage2:
 	.string "A marking system should be added to\n"
-	.string "make POKéMON easier to organize.\p"
+	.string "make Pokémon easier to organize.\p"
 	.string "The name and wallpaper design of each\n"
 	.string "BOX will be made changeable to please\l"
-	.string "the stored POKéMON.\p"
+	.string "the stored Pokémon.\p"
 	.string "Keep reading?$"
 
 Route114_LanettesHouse_Text_ResearchNotesPage3:
-	.string "When storing a POKéMON, it should be\n"
+	.string "When storing a Pokémon, it should be\n"
 	.string "sent to the BOX inspected last.\p"
 	.string "If that BOX is full, the received\n"
-	.string "POKéMON is stored in the next BOX.\p"
+	.string "Pokémon is stored in the next BOX.\p"
 	.string "In other words, when a BOX is examined,\n"
 	.string "it is automatically selected as the BOX\l"
-	.string "to which POKéMON are sent.$"
+	.string "to which Pokémon are sent.$"
 
 Route114_LanettesHouse_Text_ClosedTheNotebook:
 	.string "{PLAYER} closed the notebook.$"

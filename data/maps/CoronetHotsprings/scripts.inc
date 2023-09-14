@@ -43,7 +43,7 @@ CoronetHotsprings_Text_Flavia:
 
 CoronetHotsprings_Text_SometimesPokemon:
 	.string "Hihi!\p"
-	.string "Did you know that POKéMON sometimes\n"
+	.string "Did you know that Pokémon sometimes\n"
 	.string "come down here from the mountains!\p"
 	.string "Cool, huh?$"
 

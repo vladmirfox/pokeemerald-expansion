@@ -38,7 +38,7 @@ Route119_House_Text_RumorAboutCaveOfOrigin:
 	.string "I heard about a cave called the CAVE\n"
 	.string "OF ORIGIN.\p"
 	.string "People rumor that the spirits of\n"
-	.string "POKéMON are revived there. Could\l"
+	.string "Pokémon are revived there. Could\l"
 	.string "something like that really happen?$"
 
 Route119_House_Text_Wingull:
@@ -46,7 +46,7 @@ Route119_House_Text_Wingull:
 
 Route119_House_Text_ThoughtFlyByCatchingBirdMons:
 	.string "I thought you FLY by catching a whole\n"
-	.string "flock of BIRD POKéMON, and then\l"
+	.string "flock of BIRD Pokémon, and then\l"
 	.string "hanging on to them somehow.\p"
 	.string "But it turns out there's an HM move\n"
 	.string "called FLY!\p"

@@ -55,7 +55,7 @@ SlateportCity__Left_Text_TakingABreak:
 SlateportCity_Left_Text_ItsNiceHere:
 	.string "It's nice to relax over here\n"
 	.string "away from all of the hustle.\p"
-	.string "I think the POKéMON like it too!$"
+	.string "I think the Pokémon like it too!$"
 
 SlateportCity_Left_Text_ThisIsTheShed:
 	.string "This is the shed for the Market.\p"

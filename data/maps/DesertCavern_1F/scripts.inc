@@ -335,7 +335,7 @@ DesertCavern_1F_Text_RoxanneIntro:
 
 DesertCavern_1F_Text_RoxanneDefeat:
 	.string "Again?\p"
-	.string "Your POKéMON knowledge is unmatched…$"
+	.string "Your Pokémon knowledge is unmatched…$"
 
 DesertCavern_1F_Text_AlrightGoAhead:
 	.string "Alright…\n"

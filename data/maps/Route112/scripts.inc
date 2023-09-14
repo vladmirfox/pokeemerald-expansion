@@ -178,7 +178,7 @@ Route112_EventScript_Shayla::
 
 Route112_Text_YouWillTradeWontYou:
 	.string "Ho there!\p"
-	.string "I'm off-shift looking for POKéMON\n"
+	.string "I'm off-shift looking for Pokémon\n"
 	.string "to share my passions!\p"
 	.string "Say, do you happen to have a\n"
 	.string "MUNCHLAX?\p"
@@ -192,7 +192,7 @@ Route112_Text_MonYouTakeCare:
 
 Route112_Text_ThisIsntAMon:
 	.string "Oh. That isn't a {STR_VAR_1}.\p"
-	.string "I need a POKéMON like {STR_VAR_1}\n"
+	.string "I need a Pokémon like {STR_VAR_1}\n"
 	.string "to share in my passion for food!$"
 
 Route112_Text_YouWontTradeMe:

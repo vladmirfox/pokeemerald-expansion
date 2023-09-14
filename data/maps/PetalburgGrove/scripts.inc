@@ -127,7 +127,7 @@ PetalburgGrove_Text_HeyWait:
 PetalburgGrove_Text_ItsDangerousUpAhead:
 	.string "It's dangerous up ahead!\p"
 	.string "I've seen some very mysterious\n"
-	.string "POKéMON!\p"
+	.string "Pokémon!\p"
 	.string "… … …\p"
 	.string "If you want to pass I'll have to\n"
 	.string "make sure you are strong!\p"
@@ -135,7 +135,7 @@ PetalburgGrove_Text_ItsDangerousUpAhead:
 	.string "you that can handle the woods?$"
 
 PetalburgGrove_Text_AreYouSureAboutThis:
-	.string "The POKéMON in the woods are\n"
+	.string "The Pokémon in the woods are\n"
 	.string "very strong!\p"
 	.string "… … …\n"
 	.string "I'm strong too!\p"

@@ -30,8 +30,8 @@ MauvilleSanctuary_EventScript_Camper::
 	end
 
 MauvilleSanctuary_Text_PreferQuiet:
-	.string "The POKéMON seem to prefer it over here\p"
+	.string "The Pokémon seem to prefer it over here\p"
 	.string "where it's more quiet.\n"
-	.string "Even the the POKéMON in the pond seem\l"
+	.string "Even the the Pokémon in the pond seem\l"
 	.string "happier on this side.$"
 
