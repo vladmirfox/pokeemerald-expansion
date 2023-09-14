@@ -1361,10 +1361,6 @@
 	callnative BS_SetSnow
 	.endm
 
-	.macro setgigatonhammer
-	callnative BS_SetGigatonHammer
-	.endm
-
 	.macro applysaltcure battler:req
 	callnative BS_ApplySaltCure
 	.byte \battler

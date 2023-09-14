@@ -1749,7 +1749,7 @@ u32 TrySetCantSelectMoveBattleScript(u32 battler)
         }
     }
 
-    if (gBattleMoves[move].effect == EFFECT_GIGATON_HAMMER && gDisableStructs[battler].gigatonHammerTimer)
+    if (gBattleMoves[move].effect == EFFECT_GIGATON_HAMMER && move == gLastMoves[battler])
     {
         gCurrentMove = move;
         PREPARE_MOVE_BUFFER(gBattleTextBuff1, gCurrentMove);
@@ -1901,7 +1901,7 @@ u8 CheckMoveLimitations(u8 battler, u8 unusableMoves, u16 check)
         // Gorilla Tactics
         else if (check & MOVE_LIMITATION_CHOICE_ITEM && GetBattlerAbility(battler) == ABILITY_GORILLA_TACTICS && *choicedMove != MOVE_NONE && *choicedMove != MOVE_UNAVAILABLE && *choicedMove != gBattleMons[battler].moves[i])
             unusableMoves |= gBitTable[i];
-        else if (check & MOVE_LIMITATION_GIGATON_HAMMER && gBattleMoves[gBattleMons[battler].moves[i]].effect == EFFECT_GIGATON_HAMMER && gDisableStructs[battler].gigatonHammerTimer)
+        else if (check & MOVE_LIMITATION_GIGATON_HAMMER && gBattleMoves[gBattleMons[battler].moves[i]].effect == EFFECT_GIGATON_HAMMER && gBattleMons[battler].moves[i] == gLastMoves[battler])
             unusableMoves |= gBitTable[i];
     }
     return unusableMoves;
@@ -2541,7 +2541,6 @@ enum
     ENDTURN_SLOW_START,
     ENDTURN_PLASMA_FISTS,
     ENDTURN_CUD_CHEW,
-    ENDTURN_GIGATON_HAMMER,
     ENDTURN_SALT_CURE,
     ENDTURN_BATTLER_COUNT
 };
@@ -3104,11 +3103,6 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_CUD_CHEW:
             if (GetBattlerAbility(battler) == ABILITY_CUD_CHEW && !gDisableStructs[battler].cudChew && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
                 gDisableStructs[battler].cudChew = TRUE;
-            gBattleStruct->turnEffectsTracker++;
-            break;
-        case ENDTURN_GIGATON_HAMMER:
-            if (gDisableStructs[battler].gigatonHammerTimer)
-                gDisableStructs[battler].gigatonHammerTimer--;
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_SALT_CURE:
@@ -4285,7 +4279,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         gBattleWeather = B_WEATHER_SNOW;
                         gBattleScripting.animArg1 = B_ANIM_SNOW_CONTINUES;
                         effect++;
-                    #else  
+                    #else
                         gBattleWeather = B_WEATHER_HAIL;
                         gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
                         effect++;

@@ -436,7 +436,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectCorrosiveGas            @ EFFECT_CORROSIVE_GAS
 	.4byte BattleScript_EffectHit                     @ EFFECT_POPULATION_BOMB
 	.4byte BattleScript_EffectMortalSpin              @ EFFECT_MORTAL_SPIN
-	.4byte BattleScript_EffectGigatonHammer           @ EFFECT_GIGATON_HAMMER
+	.4byte BattleScript_EffectHit                     @ EFFECT_GIGATON_HAMMER
 	.4byte BattleScript_EffectSaltCure                @ EFFECT_SALT_CURE
 
 BattleScript_EffectSaltCure:
@@ -462,10 +462,6 @@ BattleScript_HurtTarget_NoString:
 	datahpupdate BS_TARGET
 	tryfaintmon BS_TARGET
 	return
-
-BattleScript_EffectGigatonHammer:
-	setgigatonhammer
-	goto BattleScript_EffectHit
 
 BattleScript_EffectMortalSpin:
 	call BattleScript_EffectHit_Ret
