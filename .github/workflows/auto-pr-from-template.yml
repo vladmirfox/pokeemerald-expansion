@@ -27,6 +27,5 @@ jobs:
       uses: peter-evans/create-pull-request@v3
       with:
         base: master
-        head: update-from-template
         title: "Merge updates from template repo"
         token: ${{ secrets.GITHUB_TOKEN }}
