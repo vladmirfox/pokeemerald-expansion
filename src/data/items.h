@@ -1606,7 +1606,7 @@ const struct Item gItems[] =
     [ITEM_BOTTLE_CAP] =
     {
         .name = _("Bottle Cap"),
-        .price = 5000,
+        .price = 20000,
         .description = sBottleCapDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1617,7 +1617,7 @@ const struct Item gItems[] =
     [ITEM_GOLD_BOTTLE_CAP] =
     {
         .name = _("GoldBottlCap"),
-        .price = 10000,
+        .price = 60000,
         .description = sGoldBottleCapDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1628,7 +1628,11 @@ const struct Item gItems[] =
     [ITEM_NUGGET] =
     {
         .name = _("Nugget"),
-        .price = 10000,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 20000,
+        #else
+            .price = 10000,
+        #endif
         .description = sNuggetDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1639,7 +1643,11 @@ const struct Item gItems[] =
     [ITEM_BIG_NUGGET] =
     {
         .name = _("Big Nugget"),
-        .price = 40000,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 80000,
+        #else
+            .price = 40000,
+        #endif
         .description = sBigNuggetDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1650,7 +1658,11 @@ const struct Item gItems[] =
     [ITEM_TINY_MUSHROOM] =
     {
         .name = _("Tiny Mushroom"),
-        .price = 500,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 1000,
+        #else
+            .price = 500,
+        #endif
         .description = sTinyMushroomDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1661,7 +1673,11 @@ const struct Item gItems[] =
     [ITEM_BIG_MUSHROOM] =
     {
         .name = _("Big Mushroom"),
-        .price = 5000,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 10000,
+        #else
+            .price = 5000,
+        #endif
         .description = sBigMushroomDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1672,7 +1688,11 @@ const struct Item gItems[] =
     [ITEM_BALM_MUSHROOM] =
     {
         .name = _("Balm Mushroom"),
-        .price = 15000,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 30000,
+        #else
+            .price = 15000,
+        #endif
         .description = sBalmMushroomDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1683,7 +1703,11 @@ const struct Item gItems[] =
     [ITEM_PEARL] =
     {
         .name = _("Pearl"),
-        .price = 2000,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 4000,
+        #else
+            .price = 2000,
+        #endif
         .description = sPearlDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1694,7 +1718,11 @@ const struct Item gItems[] =
     [ITEM_BIG_PEARL] =
     {
         .name = _("Big Pearl"),
-        .price = 8000,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 16000,
+        #else
+            .price = 8000,
+        #endif
         .description = sBigPearlDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1705,7 +1733,11 @@ const struct Item gItems[] =
     [ITEM_PEARL_STRING] =
     {
         .name = _("Pearl String"),
-        .price = 20000,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 40000,
+        #else
+            .price = 20000,
+        #endif
         .description = sPearlStringDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1716,7 +1748,11 @@ const struct Item gItems[] =
     [ITEM_STARDUST] =
     {
         .name = _("Stardust"),
-        .price = 3000,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 6000,
+        #else
+            .price = 3000,
+        #endif
         .description = sStardustDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1727,7 +1763,11 @@ const struct Item gItems[] =
     [ITEM_STAR_PIECE] =
     {
         .name = _("Star Piece"),
-        .price = 12000,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 24000,
+        #else
+            .price = 12000,
+        #endif
         .description = sStarPieceDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1738,7 +1778,11 @@ const struct Item gItems[] =
     [ITEM_COMET_SHARD] =
     {
         .name = _("Comet Shard"),
-        .price = 25000,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 50000,
+        #else
+            .price = 25000,
+        #endif
         .description = sCometShardDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1749,7 +1793,11 @@ const struct Item gItems[] =
     [ITEM_SHOAL_SALT] =
     {
         .name = _("Shoal Salt"),
-        .price = 20,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 20000,
+        #else
+            .price = 10000,
+        #endif
         .description = sShoalSaltDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1826,7 +1874,7 @@ const struct Item gItems[] =
     [ITEM_HONEY] =
     {
         .name = _("Honey"),
-        .price = 300,
+        .price = 900,
         .description = sHoneyDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_FIELD,
@@ -1837,7 +1885,11 @@ const struct Item gItems[] =
     [ITEM_RARE_BONE] =
     {
         .name = _("Rare Bone"),
-        .price = 5000,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 10000,
+        #else
+            .price = 5000,
+        #endif
         .description = sRareBoneDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1859,7 +1911,11 @@ const struct Item gItems[] =
     [ITEM_PRETTY_FEATHER] =
     {
         .name = _("PrettyFeather"),
-        .price = 1000,
+        #if I_SELL_VALUE >= GEN_9
+            .price = 2000,
+        #else
+            .price = 1000,
+        #endif
         .description = sPrettyFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1892,7 +1948,7 @@ const struct Item gItems[] =
     [ITEM_RELIC_GOLD] =
     {
         .name = _("Relic Gold"),
-        .price = 0,
+        .price = 60000,
         .description = sRelicGoldDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
