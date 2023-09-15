@@ -681,7 +681,7 @@ Route111_Text_RouteSignMauville:
 
 Route111_Text_WinstrateHouseSign:
 	.string "“Our family's hearts beat as one!”\n"
-	.string "THE WINSTRATE'S HOUSE$"
+	.string "THE WINSTRATE's HOUSE$"
 
 Route111_Text_RouteSign112:
 	.string "ROUTE 111\n"
@@ -692,7 +692,7 @@ Route111_Text_RouteSign113:
 	.string "{LEFT_ARROW} ROUTE 113$"
 
 Route111_Text_OldLadysRestStopSign:
-	.string "OLD LADY'S REST STOP\n"
+	.string "OLD LADY's REST STOP\n"
 	.string "“Come in and rest your tired bones.”$"
 
 Route111_Text_TrainerTipsSpAtkSpDef:

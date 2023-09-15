@@ -220,7 +220,7 @@ gText_ApprenticePleaseTeach4::
 	.string "Did you know?\p"
 	.string "You can't win at the BATTLE FRONTIER\n"
 	.string "if all you know is what they teach at\l"
-	.string "the TRAINER'S SCHOOL.\p"
+	.string "the TRAINER's SCHOOL.\p"
 	.string "I'm willing to listen to your advice.\n"
 	.string "You'll agree, of course?$"
 

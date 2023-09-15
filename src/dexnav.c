@@ -184,7 +184,7 @@ static const u8 sText_SearchLevel[] = _("SEARCH {LV}. {STR_VAR_1}");
 static const u8 sText_MonLevel[] = _("{LV}. {STR_VAR_1}");
 static const u8 sText_EggMove[] = _("MOVE: {STR_VAR_1}");
 static const u8 sText_HeldItem[] = _("{STR_VAR_1}");
-static const u8 sText_StartExit[] = _("{START_BUTTON} EXIT");
+static const u8 sText_StartExit[] = _("{START_BUTTON} Exit");
 static const u8 sText_DexNavChain[] = _("{NO} {STR_VAR_1}");
 static const u8 sText_DexNavChainLong[] = _("{NO}{STR_VAR_1}");
 
@@ -436,7 +436,7 @@ static const struct CompressedSpriteSheet sHiddenMonIconSpriteSheet = {sHiddenMo
 
 //// functions
 ///////////////////////
-//// DEXNAV SEARCH ////
+//// DexNav SEARCH ////
 ///////////////////////
 static s16 GetSearchWindowY(void)
 {
@@ -588,7 +588,7 @@ static void RemoveDexNavWindowAndGfx(void)
 
 
 //////////////////////
-////DEXNAV SEARCH/////
+////DexNav SEARCH/////
 //////////////////////
 static u8 GetPlayerDistance(s16 x, s16 y)
 {
@@ -1207,7 +1207,7 @@ static void DexNavUpdateSearchWindow(u8 proximity, u8 searchLevel)
 }
 
 //////////////////////////////
-//// DEXNAV MON GENERATOR ////
+//// DexNav MON GENERATOR ////
 //////////////////////////////
 static void CreateDexNavWildMon(u16 species, u8 potential, u8 level, u8 abilityNum, u16 item, u16* moves)
 {

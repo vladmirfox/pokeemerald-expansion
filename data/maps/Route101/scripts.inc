@@ -298,7 +298,7 @@ Route101_Text_HelpMe:
 Route101_Text_PleaseHelp:
 	.string "Hello! You over there!\n"
 	.string "Please! Help!\p"
-	.string "In my BAG!\n"
+	.string "In my Bag!\n"
 	.string "There's a POKé BALL!$"
 
 Route101_Text_DontLeaveMe:

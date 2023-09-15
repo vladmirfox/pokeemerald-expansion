@@ -3170,7 +3170,7 @@ static void Task_RunUnionRoom(u8 taskId)
             switch (input)
             {
             case LIST_CANCEL:
-            case 8: // EXIT
+            case 8: // Exit
                 HandleCancelActivity(TRUE);
                 uroom->state = UR_STATE_MAIN;
                 break;

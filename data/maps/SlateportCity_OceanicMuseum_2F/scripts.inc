@@ -421,7 +421,7 @@ SlateportCity_OceanicMuseum_2F_Text_SurfaceSeawaterDisplay:
 SlateportCity_OceanicMuseum_2F_Text_SSTidalReplica:
 	.string "“THE FERRY S.S. TIDAL\p"
 	.string "“A scale replica of the ship under\n"
-	.string "construction at STERN'S SHIPYARD.”$"
+	.string "construction at STERN's SHIPYARD.”$"
 
 SlateportCity_OceanicMuseum_2F_Text_SubmarineReplica:
 	.string "“SUBMARINE EXPLORER 1\p"

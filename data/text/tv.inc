@@ -1029,7 +1029,7 @@ gTVPokemonTodaySuccessfulText11::
 
 SmartShopper_Text_Intro::
 	.string "Hello!\p"
-	.string "It's time for TODAY'S SMART SHOPPER.\p"
+	.string "It's time for TODAY's SMART SHOPPER.\p"
 	.string "INTERVIEWER: How are you, viewers?\p"
 	.string "Today we're visiting a shop\n"
 	.string "in {STR_VAR_2}.\p"
@@ -1168,7 +1168,7 @@ gTVWorldOfMastersText02::
 	.string "Please tune in next time.$"
 
 gTVTodaysRivalTrainerText00::
-	.string "TODAY'S RIVAL TRAINER!\p"
+	.string "TODAY's RIVAL TRAINER!\p"
 	.string "Hello, fellow Pokémon TRAINERS!\n"
 	.string "How are we all doing today?\p"
 	.string "Today, like every other day,\n"
@@ -1178,24 +1178,24 @@ gTVTodaysRivalTrainerText07::
 	.string "Today's rival TRAINER is {STR_VAR_1},\n"
 	.string "who's around {STR_VAR_3} now.\p"
 	.string "{STR_VAR_1} has so far registered\n"
-	.string "{STR_VAR_2} Pokémon in the POKéDEX.$"
+	.string "{STR_VAR_2} Pokémon in the Pokédex.$"
 
 gTVTodaysRivalTrainerText08::
 	.string "Today's rival TRAINER is {STR_VAR_1},\n"
 	.string "who's in a SECRET BASE now.\p"
 	.string "{STR_VAR_1} has so far registered\n"
-	.string "{STR_VAR_2} Pokémon in the POKéDEX.$"
+	.string "{STR_VAR_2} Pokémon in the Pokédex.$"
 
 gTVTodaysRivalTrainerText09::
 	.string "Today's rival TRAINER is {STR_VAR_1}.\p"
 	.string "So far, {STR_VAR_1} has registered\n"
-	.string "{STR_VAR_2} Pokémon in the POKéDEX.$"
+	.string "{STR_VAR_2} Pokémon in the Pokédex.$"
 
 gTVTodaysRivalTrainerText10::
 	.string "Today's rival TRAINER is {STR_VAR_1},\n"
 	.string "who's on a ferry now.\p"
 	.string "{STR_VAR_1} has so far registered\n"
-	.string "{STR_VAR_2} Pokémon in the POKéDEX.$"
+	.string "{STR_VAR_2} Pokémon in the Pokédex.$"
 
 	.string "$"
 
@@ -2005,7 +2005,7 @@ gTVPokemonNewsBattleFrontierText18::
 	.string "That's the news on Pokémon NEWS!$"
 
 gTVWhatsNo1InHoennTodayText00::
-	.string "WHAT'S NO. 1 IN HOENN TODAY?\n"
+	.string "WHAT's NO. 1 IN HOENN TODAY?\n"
 	.string "Yes, it's that time again!\p"
 	.string "Hello, viewers! Are you giving your\n"
 	.string "best at whatever you do?\p"
@@ -2060,7 +2060,7 @@ gTVWhatsNo1InHoennTodayText05::
 gTVWhatsNo1InHoennTodayText06::
 	.string "In just one day, {STR_VAR_1} picked\n"
 	.string "{STR_VAR_2} BERRIES!\p"
-	.string "{STR_VAR_1}'s BAG became so filled\n"
+	.string "{STR_VAR_1}'s Bag became so filled\n"
 	.string "with BERRIES, the TRAINER had trouble\l"
 	.string "walking afterward!$"
 
@@ -2192,7 +2192,7 @@ TVSecretBaseSecrets_Text_UsedMudBall::
 TVSecretBaseSecrets_Text_UsedBag::
 	.string "…Oh?\p"
 	.string "The visitor is reaching for their own\n"
-	.string "BAG and rummaging about in it!\p"
+	.string "Bag and rummaging about in it!\p"
 	.string "The visitor pulled out\n"
 	.string "one {STR_VAR_2}!\p"
 	.string "Look at the visitor smile while\n"

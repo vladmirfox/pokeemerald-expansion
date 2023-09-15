@@ -87,7 +87,7 @@ Route114_LanettesHouse_Text_UpgradeThisForYou:
 	.string "There!$"
 
 Route114_LanettesHouse_Text_DetectorModeUpgrade:
-	.string "{PLAYER}'s DEXNAV was upgraded\n"
+	.string "{PLAYER}'s DexNav was upgraded\n"
 	.string "to include DETECTOR Mode!$"
 
 Route114_LanettesHouse_Text_DetectorModeDescription:

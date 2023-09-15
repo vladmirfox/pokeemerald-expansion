@@ -445,7 +445,7 @@ Route116_Text_NewBallAvailableAtMart:
 	.string "Thank you and bye-bye!$"
 
 Route116_Text_BagIsJamPacked:
-	.string "Your BAG is jam-packed.\n"
+	.string "Your Bag is jam-packed.\n"
 	.string "I can't give you this REPEAT BALL.$"
 
 Route116_Text_TokenOfAppreciation:
@@ -490,7 +490,7 @@ Route116_Text_RusturfTunnelSign:
 	.string "canceled.”$"
 
 Route116_Text_TunnelersRestHouse:
-	.string "TUNNELER'S REST HOUSE$"
+	.string "TUNNELER's REST HOUSE$"
 
 Route116_Text_TrainerTipsBToStopEvolution:
 	.string "TRAINER TIPS\p"
@@ -502,9 +502,9 @@ Route116_Text_TrainerTipsBToStopEvolution:
 
 Route116_Text_TrainerTipsBagHasPockets:
 	.string "TRAINER TIPS\p"
-	.string "Your BAG has several POCKETS.\p"
+	.string "Your Bag has several POCKETS.\p"
 	.string "Items you obtain are automatically\n"
 	.string "placed in the appropriate POCKETS.\p"
 	.string "No TRAINER can afford to be without\n"
-	.string "a BAG of their own.$"
+	.string "a Bag of their own.$"
 
