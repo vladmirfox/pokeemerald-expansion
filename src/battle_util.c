@@ -3773,19 +3773,19 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 {
                     gMultiHitCounter = RandomUniform(RNG_LOADED_DICE, 4, 10);
                 }
-                else
-                {
-                    gMultiHitCounter = gBattleMoves[gCurrentMove].strikeCount;
-                    PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 3, 0)
-                }
-                PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
-                if (gBattleMoves[gCurrentMove].effect == EFFECT_DRAGON_DARTS
+                else if (gBattleMoves[gCurrentMove].effect == EFFECT_DRAGON_DARTS
                 && CanTargetPartner(gBattlerTarget)
                 && TargetFullyImmuneToCurrMove(gBattlerTarget))
                 {
                     // Smart target to partner
                     gBattlerTarget = BATTLE_PARTNER(gBattlerTarget);
                 }
+                else
+                {
+                    gMultiHitCounter = gBattleMoves[gCurrentMove].strikeCount;
+                    PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 3, 0)
+                }
+
             }
         #if B_BEAT_UP >= GEN_5
             else if (gBattleMoves[gCurrentMove].effect == EFFECT_BEAT_UP)
