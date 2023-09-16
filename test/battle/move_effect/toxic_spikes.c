@@ -208,3 +208,65 @@ SINGLE_BATTLE_TEST("Toxic Spikes are removed by Poison-types affected by Magnet 
         NOT STATUS_ICON(opponent, poison: TRUE);
     }
 }
+
+SINGLE_BATTLE_TEST("Toxic Spikes inflicts poison on switch in after Pecha Berry's activation") // #3207
+{
+    GIVEN {
+        ASSUME(gItems[ITEM_PECHA_BERRY].holdEffect == HOLD_EFFECT_CURE_PSN);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET) {Item(ITEM_PECHA_BERRY); }
+        PLAYER(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_TOXIC_SPIKES); }
+        TURN { SWITCH(player, 1); }
+        TURN { SWITCH(player, 2); }
+    } SCENE {
+        MESSAGE("Foe Wobbuffet used Toxic Spikes!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, opponent);
+        MESSAGE("Poison Spikes were scattered all around the opposing team's feet!");
+        // 1st switch-in
+        MESSAGE("Go! Wobbuffet!");
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, player);
+        STATUS_ICON(player, poison: TRUE);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+        MESSAGE("Wobbuffet's Pecha Berry cured poison!");
+        STATUS_ICON(player, poison: FALSE);
+        // 2nd switch-in
+        MESSAGE("Go! Wynaut!");
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, player);
+        STATUS_ICON(player, poison: TRUE);
+    }
+}
+
+SINGLE_BATTLE_TEST("Toxic Spikes inflicts poison on switch in after Primal Reversed mon fainted") // Oddly specific, but encountered during testing
+{
+    GIVEN {
+        ASSUME(gBattleMoves[MOVE_MEMENTO].effect == EFFECT_MEMENTO); // Faints the user.
+        PLAYER(SPECIES_WOBBUFFET) {Speed(5); }
+        PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); Speed(1); }
+        PLAYER(SPECIES_WYNAUT) {Speed(5); }
+        OPPONENT(SPECIES_WOBBUFFET) {Speed(15); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_TOXIC_SPIKES); }
+        TURN { SWITCH(player, 1); }
+        TURN { MOVE(player, MOVE_MEMENTO); SEND_OUT(player, 2); }
+    } SCENE {
+        MESSAGE("Foe Wobbuffet used Toxic Spikes!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, opponent);
+        MESSAGE("Poison Spikes were scattered all around the opposing team's feet!");
+        // Switch in
+        MESSAGE("Go! Groudon!");
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, player);
+        STATUS_ICON(player, poison: TRUE);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
+        MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+        // Memento
+        MESSAGE("Groudon used Memento!");
+        MESSAGE("Groudon fainted!");
+        // 2nd switch-in
+        MESSAGE("Go! Wynaut!");
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, player);
+        STATUS_ICON(player, poison: TRUE);
+    }
+}
