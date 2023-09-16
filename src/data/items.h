@@ -1628,11 +1628,7 @@ const struct Item gItems[] =
     [ITEM_NUGGET] =
     {
         .name = _("Nugget"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 20000,
-        #else
-            .price = 10000,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 20000 : 10000,
         .description = sNuggetDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1643,11 +1639,7 @@ const struct Item gItems[] =
     [ITEM_BIG_NUGGET] =
     {
         .name = _("Big Nugget"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 80000,
-        #else
-            .price = 40000,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 80000 : 40000,
         .description = sBigNuggetDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1658,11 +1650,7 @@ const struct Item gItems[] =
     [ITEM_TINY_MUSHROOM] =
     {
         .name = _("Tiny Mushroom"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 1000,
-        #else
-            .price = 500,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 1000 : 500,
         .description = sTinyMushroomDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1673,11 +1661,7 @@ const struct Item gItems[] =
     [ITEM_BIG_MUSHROOM] =
     {
         .name = _("Big Mushroom"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 10000,
-        #else
-            .price = 5000,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 10000 : 5000,
         .description = sBigMushroomDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1688,11 +1672,7 @@ const struct Item gItems[] =
     [ITEM_BALM_MUSHROOM] =
     {
         .name = _("Balm Mushroom"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 30000,
-        #else
-            .price = 15000,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 30000 : 15000,
         .description = sBalmMushroomDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1703,11 +1683,7 @@ const struct Item gItems[] =
     [ITEM_PEARL] =
     {
         .name = _("Pearl"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 4000,
-        #else
-            .price = 2000,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 4000 : 2000,
         .description = sPearlDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1718,11 +1694,7 @@ const struct Item gItems[] =
     [ITEM_BIG_PEARL] =
     {
         .name = _("Big Pearl"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 16000,
-        #else
-            .price = 8000,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 16000 : 8000,
         .description = sBigPearlDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1733,11 +1705,7 @@ const struct Item gItems[] =
     [ITEM_PEARL_STRING] =
     {
         .name = _("Pearl String"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 40000,
-        #else
-            .price = 20000,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 40000 : 20000,
         .description = sPearlStringDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1748,11 +1716,7 @@ const struct Item gItems[] =
     [ITEM_STARDUST] =
     {
         .name = _("Stardust"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 6000,
-        #else
-            .price = 3000,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 6000 : 3000,
         .description = sStardustDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1763,11 +1727,7 @@ const struct Item gItems[] =
     [ITEM_STAR_PIECE] =
     {
         .name = _("Star Piece"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 24000,
-        #else
-            .price = 12000,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 24000 : 12000,
         .description = sStarPieceDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1778,11 +1738,7 @@ const struct Item gItems[] =
     [ITEM_COMET_SHARD] =
     {
         .name = _("Comet Shard"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 50000,
-        #else
-            .price = 25000,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 50000 : 25000,
         .description = sCometShardDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1793,11 +1749,7 @@ const struct Item gItems[] =
     [ITEM_SHOAL_SALT] =
     {
         .name = _("Shoal Salt"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 20000,
-        #else
-            .price = 10000,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 20000 : 10000,
         .description = sShoalSaltDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1885,11 +1837,7 @@ const struct Item gItems[] =
     [ITEM_RARE_BONE] =
     {
         .name = _("Rare Bone"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 10000,
-        #else
-            .price = 5000,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 10000 : 5000,
         .description = sRareBoneDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1911,11 +1859,7 @@ const struct Item gItems[] =
     [ITEM_PRETTY_FEATHER] =
     {
         .name = _("PrettyFeather"),
-        #if I_SELL_VALUE >= GEN_9
-            .price = 2000,
-        #else
-            .price = 1000,
-        #endif
+        .price = (I_SELL_VALUE >= GEN_9) ? 2000 : 1000,
         .description = sPrettyFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
