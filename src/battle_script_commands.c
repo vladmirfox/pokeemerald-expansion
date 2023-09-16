@@ -1755,12 +1755,8 @@ static void AccuracyCheck(bool32 recalcDragonDarts)
 
     u16 type, move = cmd->move;
     u16 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, move);
-<<<<<<< HEAD
     u16 gBattlerAttackerAbility = GetBattlerAbility(gBattlerAttacker);
     u8 gBattlerAttackerHoldEffect = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
-    bool8 recalculatedDragonDarts = FALSE;
-=======
->>>>>>> Replace goto in Cmd_accuracycheck() with a function call to improve readability
 
     if (move == ACC_CURR_MOVE)
         move = gCurrentMove;
