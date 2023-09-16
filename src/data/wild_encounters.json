@@ -9921,6 +9921,26 @@
                 "species": "SPECIES_RHYHORN"
               }
             ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 42,
+                "max_level": 42,
+                "species": "SPECIES_RHYDON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 42,
+                "species": "SPECIES_RHYDON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 42,
+                "species": "SPECIES_RHYDON"
+              }
+            ]
           }
         },
         {
@@ -9988,6 +10008,26 @@
                 "min_level": 36,
                 "max_level": 36,
                 "species": "SPECIES_RHYHORN"
+              }
+            ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 42,
+                "max_level": 42,
+                "species": "SPECIES_RHYDON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 42,
+                "species": "SPECIES_RHYDON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 42,
+                "species": "SPECIES_RHYDON"
               }
             ]
           }
@@ -13492,23 +13532,23 @@
               },
               {
                 "min_level": 34,
-                "max_level": 34,
+                "max_level": 35,
                 "species": "SPECIES_GOLBAT"
               },
               {
                 "min_level": 35,
                 "max_level": 35,
-                "species": "SPECIES_GOLBAT"
+                "species": "SPECIES_ELGYEM"
               },
               {
-                "min_level": 34,
+                "min_level": 33,
                 "max_level": 34,
-                "species": "SPECIES_SABLEYE"
+                "species": "SPECIES_BRONZOR"
               },
               {
-                "min_level": 36,
+                "min_level": 35,
                 "max_level": 36,
-                "species": "SPECIES_CLAYDOL"
+                "species": "SPECIES_BALTOY"
               },
               {
                 "min_level": 37,
@@ -13522,13 +13562,13 @@
               },
               {
                 "min_level": 36,
-                "max_level": 36,
+                "max_level": 37,
                 "species": "SPECIES_CLAYDOL"
               },
               {
                 "min_level": 37,
                 "max_level": 37,
-                "species": "SPECIES_CLAYDOL"
+                "species": "SPECIES_ELGYEM"
               },
               {
                 "min_level": 38,
@@ -13538,12 +13578,32 @@
               {
                 "min_level": 37,
                 "max_level": 37,
-                "species": "SPECIES_CLAYDOL"
+                "species": "SPECIES_BRONZONG"
               },
               {
-                "min_level": 38,
-                "max_level": 38,
-                "species": "SPECIES_CLAYDOL"
+                "min_level": 37,
+                "max_level": 37,
+                "species": "SPECIES_BRONZONG"
+              }
+            ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_WOBBUFFET"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_SIGILYPH"
               }
             ]
           }
@@ -13650,23 +13710,23 @@
               },
               {
                 "min_level": 34,
-                "max_level": 34,
+                "max_level": 35,
                 "species": "SPECIES_GOLBAT"
               },
               {
                 "min_level": 35,
                 "max_level": 35,
-                "species": "SPECIES_GOLBAT"
+                "species": "SPECIES_ELGYEM"
               },
               {
-                "min_level": 34,
+                "min_level": 33,
                 "max_level": 34,
-                "species": "SPECIES_SABLEYE"
+                "species": "SPECIES_BRONZOR"
               },
               {
-                "min_level": 36,
+                "min_level": 35,
                 "max_level": 36,
-                "species": "SPECIES_CLAYDOL"
+                "species": "SPECIES_BALTOY"
               },
               {
                 "min_level": 37,
@@ -13680,13 +13740,13 @@
               },
               {
                 "min_level": 36,
-                "max_level": 36,
+                "max_level": 37,
                 "species": "SPECIES_CLAYDOL"
               },
               {
                 "min_level": 37,
                 "max_level": 37,
-                "species": "SPECIES_CLAYDOL"
+                "species": "SPECIES_ELGYEM"
               },
               {
                 "min_level": 38,
@@ -13696,12 +13756,12 @@
               {
                 "min_level": 37,
                 "max_level": 37,
-                "species": "SPECIES_CLAYDOL"
+                "species": "SPECIES_BRONZONG"
               },
               {
-                "min_level": 38,
-                "max_level": 38,
-                "species": "SPECIES_CLAYDOL"
+                "min_level": 37,
+                "max_level": 37,
+                "species": "SPECIES_BRONZONG"
               }
             ]
           }
@@ -13719,23 +13779,23 @@
               },
               {
                 "min_level": 34,
-                "max_level": 34,
+                "max_level": 35,
                 "species": "SPECIES_GOLBAT"
               },
               {
                 "min_level": 35,
                 "max_level": 35,
-                "species": "SPECIES_GOLBAT"
+                "species": "SPECIES_ELGYEM"
               },
               {
-                "min_level": 34,
+                "min_level": 33,
                 "max_level": 34,
-                "species": "SPECIES_SABLEYE"
+                "species": "SPECIES_BRONZOR"
               },
               {
-                "min_level": 36,
+                "min_level": 35,
                 "max_level": 36,
-                "species": "SPECIES_CLAYDOL"
+                "species": "SPECIES_BALTOY"
               },
               {
                 "min_level": 37,
@@ -13749,28 +13809,28 @@
               },
               {
                 "min_level": 36,
-                "max_level": 36,
+                "max_level": 37,
                 "species": "SPECIES_CLAYDOL"
               },
               {
                 "min_level": 37,
                 "max_level": 37,
-                "species": "SPECIES_CLAYDOL"
+                "species": "SPECIES_ELGYEM"
               },
               {
                 "min_level": 38,
                 "max_level": 38,
-                "species": "SPECIES_ALTARIA"
+                "species": "SPECIES_CLAYDOL"
               },
               {
-                "min_level": 39,
+                "min_level": 37,
                 "max_level": 39,
-                "species": "SPECIES_ALTARIA"
+                "species": "SPECIES_BRONZONG"
               },
               {
-                "min_level": 39,
-                "max_level": 39,
-                "species": "SPECIES_ALTARIA"
+                "min_level": 37,
+                "max_level": 37,
+                "species": "SPECIES_BRONZONG"
               }
             ]
           }
@@ -17995,6 +18055,26 @@
                 "min_level": 35,
                 "max_level": 37,
                 "species": "SPECIES_RHYHORN"
+              }
+            ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 42,
+                "max_level": 42,
+                "species": "SPECIES_RHYDON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 42,
+                "species": "SPECIES_RHYDON"
+              },
+              {
+                "min_level": 42,
+                "max_level": 42,
+                "species": "SPECIES_RHYDON"
               }
             ]
           }
