@@ -355,6 +355,7 @@ static bool8 IsFinalStrikeEffect(u16 move);
 static void TryUpdateRoundTurnOrder(void);
 static bool32 ChangeOrderTargetAfterAttacker(void);
 void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBattler);
+static void AccuracyCheck(bool32 recalcDragonDarts);
 
 static void Cmd_attackcanceler(void);
 static void Cmd_accuracycheck(void);
@@ -1748,17 +1749,19 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     return calc;
 }
 
-static void Cmd_accuracycheck(void)
+static void AccuracyCheck(bool32 recalcDragonDarts)
 {
     CMD_ARGS(const u8 *failInstr, u16 move);
 
     u16 type, move = cmd->move;
     u16 moveTarget = GetBattlerMoveTargetType(gBattlerAttacker, move);
+<<<<<<< HEAD
     u16 gBattlerAttackerAbility = GetBattlerAbility(gBattlerAttacker);
     u8 gBattlerAttackerHoldEffect = GetBattlerHoldEffect(gBattlerAttacker, TRUE);
     bool8 recalculatedDragonDarts = FALSE;
+=======
+>>>>>>> Replace goto in Cmd_accuracycheck() with a function call to improve readability
 
-ACCURACY_CHECK_START:
     if (move == ACC_CURR_MOVE)
         move = gCurrentMove;
 
@@ -1806,15 +1809,14 @@ ACCURACY_CHECK_START:
                 gBattleStruct->blunderPolicy = TRUE;    // Only activates from missing through acc/evasion checks
 
             if (gBattleMoves[gCurrentMove].effect == EFFECT_DRAGON_DARTS
-                && !recalculatedDragonDarts // So we don't jump back and forth between targets
+                && !recalcDragonDarts // So we don't jump back and forth between targets
                 && CanTargetPartner(gBattlerTarget)
                 && !TargetFullyImmuneToCurrMove(BATTLE_PARTNER(gBattlerTarget)))
             {
                 // Smart target to partner if miss
                 gBattlerTarget = BATTLE_PARTNER(gBattlerTarget);
-                recalculatedDragonDarts = TRUE;
                 gMoveResultFlags & ~MOVE_RESULT_MISSED;
-                goto ACCURACY_CHECK_START;
+                AccuracyCheck(TRUE);
             }
 
             if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE &&
@@ -1828,6 +1830,14 @@ ACCURACY_CHECK_START:
         }
         JumpIfMoveFailed(7, move);
     }
+}
+
+static void Cmd_accuracycheck(void)
+{
+    // The main body of this function has been moved to AccuracyCheck() to accomodate
+    // Dragon Darts' multiple accuracy checks on a single attack;
+    // each dart can try to re-target once after missing.
+    AccuracyCheck(FALSE);
 }
 
 static void Cmd_attackstring(void)
