@@ -13,6 +13,10 @@ MtPyre_5F_EventScript_Atsushi::
 	msgbox MtPyre_5F_Text_AtsushiPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+MtPyre_4F_EventScript_SeaIncenseArea::
+	setvar VAR_DAYNIGHT, 1
+	end
+
 MtPyre_5F_Text_AtsushiIntro:
 	.string "Teacher…\n"
 	.string "Please watch over my progress!$"

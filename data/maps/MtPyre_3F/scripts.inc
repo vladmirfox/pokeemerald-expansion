@@ -1,5 +1,10 @@
 MtPyre_3F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, MtPyre_3F_OnTransition
 	.byte 0
+
+MtPyre_3F_OnTransition::
+	setvar VAR_DAYNIGHT, 0
+	end
 
 MtPyre_3F_EventScript_William::
 	trainerbattle_single TRAINER_WILLIAM, MtPyre_3F_Text_WilliamIntro, MtPyre_3F_Text_WilliamDefeat

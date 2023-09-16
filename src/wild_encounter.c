@@ -464,6 +464,10 @@ u16 GetCurrentMapWildMonHeaderId(void)
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE123))
                 i += VarGet(VAR_DAYNIGHT);
 
+            if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MT_PYRE_4F) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(MT_PYRE_4F))
+                i += VarGet(VAR_DAYNIGHT);
+
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MT_PYRE_5F) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(MT_PYRE_5F))
                 i += VarGet(VAR_DAYNIGHT);
@@ -474,6 +478,10 @@ u16 GetCurrentMapWildMonHeaderId(void)
 
 			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LILYCOVE_CITY) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(LILYCOVE_CITY))
+                i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(EVER_GRANDE_CITY))
                 i += VarGet(VAR_DAYNIGHT);
 
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ALTERING_CAVE) &&

@@ -1624,7 +1624,7 @@
     {
       "id": "LAYOUT_VICTORY_ROAD_1F",
       "name": "VictoryRoad_1F_Layout",
-      "width": 46,
+      "width": 50,
       "height": 45,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Cave",
