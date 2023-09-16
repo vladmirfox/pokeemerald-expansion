@@ -21,8 +21,8 @@ LilycoveCity_OnResume_Day:
 
 LilycoveCity_OnResume:
 	special GetDayOrNight
-	goto_if_eq VAR_RESULT, 1, FortreeCity_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, FortreeCity_OnResume_Day
+	goto_if_eq VAR_RESULT, 1, LilycoveCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, LilycoveCity_OnResume_Day
 	end
 
 LilycoveCity_OnTransition:
@@ -32,8 +32,8 @@ LilycoveCity_OnTransition:
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	call Common_EventScript_SetupRivalGfxId
 	special GetDayOrNight
-	goto_if_eq VAR_RESULT, 1, FortreeCity_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, FortreeCity_OnResume_Day
+	goto_if_eq VAR_RESULT, 1, LilycoveCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, LilycoveCity_OnResume_Day
 	end
 
 LilycoveCity_OnLoad:

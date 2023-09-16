@@ -7,7 +7,25 @@
 
 MossdeepCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_OnResume
+	map_script MAP_SCRIPT_ON_RESUME, MossdeepCity_OnResume
 	.byte 0
+
+MossdeepCity_OnResume_Night:
+	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
+
+MossdeepCity_OnResume_Day:
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
+
+MossdeepCity_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, MossdeepCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, MossdeepCity_OnResume_Day
+	end
 
 MossdeepCity_OnTransition:
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_1
@@ -15,6 +33,9 @@ MossdeepCity_OnTransition:
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_3
 	clearflag FLAG_MOSSDEEP_GYM_SWITCH_4
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, FortreeCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, FortreeCity_OnResume_Day
 	end
 
 MossdeepCity_EventScript_PokefanF::

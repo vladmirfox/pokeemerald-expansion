@@ -22,8 +22,8 @@ Route121_OnResume_Day:
 
 Route121_OnResume:
 	special GetDayOrNight
-	goto_if_eq VAR_RESULT, 1, FortreeCity_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, FortreeCity_OnResume_Day
+	goto_if_eq VAR_RESULT, 1, Route121_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route121_OnResume_Day
 	end
 
 Route121_EventScript_Woman::

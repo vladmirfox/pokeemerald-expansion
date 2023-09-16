@@ -24,6 +24,16 @@ SootopolisCity_MapScripts::
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, SootopolisCity_OnWarp
 	.byte 0
 
+SootopolisCity_OnResume_Night:
+	setweather WEATHER_RAIN
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
+
+SootopolisCity_OnResume_Day:
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
+
 SootopolisCity_OnLoad:
 	call_if_unset FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE, SootopolisCity_EventScript_LockGymDoor
 	goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_EventScript_LegendariesNotArrived
@@ -108,6 +118,9 @@ SootopolisCity_EventScript_SetWeather::
 	return
 
 SootopolisCity_EventScript_SetNormalWeather::
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, SootopolisCity_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, SootopolisCity_OnResume_Day
 	return
 
 SootopolisCity_EventScript_SetDownpour::
@@ -178,6 +191,7 @@ SootopolisCity_EventScript_PlayerFaceLegendaries2::
 
 SootopolisCity_OnResume:
 	setdivewarp MAP_UNDERWATER_SOOTOPOLIS_CITY, 9, 6
+	call SootopolisCity_EventScript_SetWeather
 	end
 
 SootopolisCity_OnFrame:
