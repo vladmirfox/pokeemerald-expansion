@@ -1749,7 +1749,7 @@ const struct Item gItems[] =
     [ITEM_SHOAL_SALT] =
     {
         .name = _("Shoal Salt"),
-        .price = 20
+        .price = 20,
         .description = sShoalSaltDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
