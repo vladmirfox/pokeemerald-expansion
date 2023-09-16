@@ -5,6 +5,7 @@ EverGrandeCity_MapScripts::
 	.byte 0
 
 EverGrandeCity_OnResume:
+	goto_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, EverGrandeCity_OnResume_Night
 	goto_if_eq VAR_RESULT, 0, EverGrandeCity_OnResume_Day
@@ -21,7 +22,7 @@ EverGrandeCity_OnResume_Day:
 	end
 
 EverGrandeCity_OnTransition:
-	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
+	goto_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, EverGrandeCity_OnResume_Night
 	goto_if_eq VAR_RESULT, 0, EverGrandeCity_OnResume_Day

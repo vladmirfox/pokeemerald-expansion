@@ -20,6 +20,7 @@ LilycoveCity_OnResume_Day:
 	return
 
 LilycoveCity_OnResume:
+	goto_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, LilycoveCity_OnResume_Night
 	goto_if_eq VAR_RESULT, 0, LilycoveCity_OnResume_Day
@@ -29,8 +30,8 @@ LilycoveCity_OnTransition:
 	setflag FLAG_VISITED_LILYCOVE_CITY
 	setvar VAR_CONTEST_HALL_STATE, 0
 	setflag FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER
-	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	call Common_EventScript_SetupRivalGfxId
+	goto_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, LilycoveCity_OnResume_Night
 	goto_if_eq VAR_RESULT, 0, LilycoveCity_OnResume_Day

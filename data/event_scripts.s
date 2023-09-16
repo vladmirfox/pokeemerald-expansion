@@ -711,7 +711,7 @@ Common_EventScript_NoRoomForDecor::
 
 Common_EventScript_SetAbnormalWeather::
 	setweather WEATHER_ABNORMAL
-	return
+	end
 
 Common_EventScript_PlayGymBadgeFanfare::
 	playfanfare MUS_OBTAIN_BADGE

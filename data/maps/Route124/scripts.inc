@@ -17,13 +17,14 @@ Route124_OnResume_Day:
 	return
 
 Route124_OnResume:
+	goto_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, Route124_OnResume_Night
 	goto_if_eq VAR_RESULT, 0, Route124_OnResume_Day
 	end
 
 Route124_OnTransition:
-	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
+	goto_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, Route124_OnResume_Night
 	goto_if_eq VAR_RESULT, 0, Route124_OnResume_Day
