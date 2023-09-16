@@ -193,7 +193,6 @@ SINGLE_BATTLE_TEST("Pokemon can be further poisoned with Toxic spikes after a st
     PARAMETRIZE { item = ITEM_PECHA_BERRY; }
     PARAMETRIZE { item = ITEM_LUM_BERRY; }
 
-    KNOWN_FAILING;
     GIVEN {
         ASSUME(gItems[ITEM_PECHA_BERRY].holdEffect == HOLD_EFFECT_CURE_PSN);
         PLAYER(SPECIES_WOBBUFFET);
