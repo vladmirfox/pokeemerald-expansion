@@ -1095,3 +1095,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/FortreeCity_House6/scripts.inc"
 
 	.include "data/maps/FortreeCity_House7/scripts.inc"
+
+	.include "data/maps/Underwater_Route131/scripts.inc"

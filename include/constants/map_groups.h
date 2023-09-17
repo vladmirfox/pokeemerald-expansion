@@ -74,6 +74,7 @@
 #define MAP_CORONET_HOTSPRINGS  (65 | (0 << 8))
 #define MAP_ROUTE119EAST        (66 | (0 << 8))
 #define MAP_SPRING_PEAK         (67 | (0 << 8))
+#define MAP_UNDERWATER_ROUTE131 (68 | (0 << 8))
 
 // gMapGroup_IndoorLittleroot
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (1 << 8))

@@ -4385,12 +4385,12 @@
               {
                 "min_level": 30,
                 "max_level": 35,
-                "species": "SPECIES_CLAMPERL"
+                "species": "SPECIES_RELICANTH"
               },
               {
                 "min_level": 30,
                 "max_level": 35,
-                "species": "SPECIES_RELICANTH"
+                "species": "SPECIES_LANTURN"
               },
               {
                 "min_level": 30,
@@ -17139,26 +17139,6 @@
               }
             ]
           },
-          "hidden_mons": {
-            "encounter_rate": 0,
-            "mons": [
-              {
-                "min_level": 23,
-                "max_level": 24,
-                "species": "SPECIES_MUNCHLAX"
-              },
-              {
-                "min_level": 23,
-                "max_level": 24,
-                "species": "SPECIES_ELEKID"
-              },
-              {
-                "min_level": 23,
-                "max_level": 24,
-                "species": "SPECIES_THROH"
-              }
-            ]
-          },
           "fishing_mons": {
             "encounter_rate": 0,
             "mons": [
@@ -17211,6 +17191,26 @@
                 "min_level": 40,
                 "max_level": 45,
                 "species": "SPECIES_SHARPEDO"
+              }
+            ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 23,
+                "max_level": 24,
+                "species": "SPECIES_MUNCHLAX"
+              },
+              {
+                "min_level": 23,
+                "max_level": 24,
+                "species": "SPECIES_ELEKID"
+              },
+              {
+                "min_level": 23,
+                "max_level": 24,
+                "species": "SPECIES_THROH"
               }
             ]
           }
@@ -18299,6 +18299,74 @@
                 "min_level": 35,
                 "max_level": 40,
                 "species": "SPECIES_SLOWPOKE"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_UNDERWATER_ROUTE127",
+          "base_label": "gUnderwater_Route127",
+          "water_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 35,
+                "max_level": 39,
+                "species": "SPECIES_HORSEA"
+              },
+              {
+                "min_level": 34,
+                "max_level": 37,
+                "species": "SPECIES_QWILFISH"
+              },
+              {
+                "min_level": 30,
+                "max_level": 32,
+                "species": "SPECIES_CLAMPERL"
+              },
+              {
+                "min_level": 32,
+                "max_level": 33,
+                "species": "SPECIES_CLAMPERL"
+              },
+              {
+                "min_level": 33,
+                "max_level": 34,
+                "species": "SPECIES_CLAMPERL"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_UNDERWATER_ROUTE131",
+          "base_label": "gUnderwater_Route131",
+          "water_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_FINNEON"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_CLAMPERL"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_CHINCHOU"
+              },
+              {
+                "min_level": 30,
+                "max_level": 35,
+                "species": "SPECIES_LUMINEON"
+              },
+              {
+                "min_level": 30,
+                "max_level": 35,
+                "species": "SPECIES_LANTURN"
               }
             ]
           }
