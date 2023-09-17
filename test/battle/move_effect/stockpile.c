@@ -48,10 +48,11 @@ SINGLE_BATTLE_TEST("Spit Up and Swallow don't work if used without Stockpile")
         TURN { MOVE(player, move); }
     } SCENE {
         NOT ANIMATION(ANIM_TYPE_MOVE, move, player);
-        if (move == MOVE_SWALLOW)
+        if (move == MOVE_SWALLOW) {
             MESSAGE("But it failed to swallow a thing!");
-        else
+        } else {
             MESSAGE("But it failed to spit up a thing!");
+        }
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STOCKPILE, player);
         MESSAGE("Wobbuffet stockpiled 1!");
@@ -59,8 +60,7 @@ SINGLE_BATTLE_TEST("Spit Up and Swallow don't work if used without Stockpile")
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         if (move == MOVE_SPIT_UP) {
             HP_BAR(opponent);
-        }
-        else {
+        } else {
             HP_BAR(player);
         }
     }
