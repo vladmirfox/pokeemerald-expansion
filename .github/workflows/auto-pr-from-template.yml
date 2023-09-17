@@ -28,9 +28,10 @@ jobs:
           git fetch template
           git checkout -b template-branch template/master
 
-      - name: Create PR
-        run: |
-          git push origin template-branch:template-branch
-          hub pull-request -m "Merge changes from the template repo" -b master -h template-branch -a
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Open PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          base: master
+          title: "Merge updates from template repo"
+          branch: template-branch
+          token: ${{ secrets.GITHUB_TOKEN }}
