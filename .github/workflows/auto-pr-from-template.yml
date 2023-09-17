@@ -22,32 +22,5 @@ jobs:
           git remote add template https://github.com/rh-hideout/pokeemerald-expansion.git
           git fetch template
           git checkout -b template-branch template/master
-
-      - name: Switch back to master branch
-        run: |
-          git checkout master
-
-      - name: Create PR
-        run: |
-          PR_BODY=$(cat <<-END
-          {
-            "title": "Merge updates from template repo",
-            "head": "template-branch",
-            "base": "master",
-            "body": "This pull request includes updates from the template repository."
-          }
-          END
-          )
-          
-          PR_URL=$(curl -s -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            -d "$PR_BODY" \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls" \
-            | jq -r '.html_url')
-          
-          echo "Created PR: $PR_URL"
-
-      - name: Display PR URL
-        run: |
-          echo "Pull Request URL: $PR_URL"
+          git push origin template-branch:template-branch
+  
