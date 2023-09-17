@@ -22,5 +22,5 @@ jobs:
       with:
         base: master
         title: "Merge updates from template repo"
-        branch: "rh-hideout/pokeemerald-expansion:master"
+        branch: "original/master"
         token: ${{ secrets.GITHUB_TOKEN }}
