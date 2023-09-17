@@ -17,26 +17,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Fetch RHH Changes
-      run: |
-        git remote add template https://github.com/rh-hideout/pokeemerald-expansion.git
-        git fetch template
-
-    - name: Merge RHH Changes into Branch
-      run: |
-        git checkout -b update-from-template
-        git config --global user.email "abyers.wilson@gmail.com"
-        git config --global user.name "fakuzatsu"
-        git fetch template
-        git merge --allow-unrelated-histories template/master --no-commit --no-ff
-        # If there are conflicts, handle them here
-        git commit -m "Merge updates from template repo"
-        git push origin update-from-template
-
     - name: Open PR
       uses: peter-evans/create-pull-request@v3
       with:
         base: master
         title: "Merge updates from template repo"
-        branch: "update-from-RHH"
+        branch: "rh-hideout/pokeemerald-expansion"
         token: ${{ secrets.GITHUB_TOKEN }}
