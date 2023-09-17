@@ -43,6 +43,7 @@
 #include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/songs.h"
+#include "rtc.h"
 
 static void SetUpItemUseCallback(u8);
 static void FieldCB_UseItemOnField(void);
@@ -794,8 +795,22 @@ void ItemUseOutOfBattle_PPUp(u8 taskId)
 
 void ItemUseOutOfBattle_RareCandy(u8 taskId)
 {
+    if (!gTasks[taskId].tUsingRegisteredKeyItem)
+    {
     gItemUseCB = ItemUseCB_RareCandy;
     SetUpItemUseCallback(taskId);
+    }
+    else
+    {
+    sItemUseOnFieldCB = ItemUseCB_CannotUse;
+    SetUpItemUseOnFieldCallback(taskId);
+    }
+}
+
+void ItemUseCB_CannotUse(u8 taskId)
+{
+    ScriptContext_SetupScript(EventScript_CantRegisterRareCandy);
+    DestroyTask(taskId);
 }
 
 void ItemUseOutOfBattle_TMHM(u8 taskId)
@@ -1316,6 +1331,32 @@ void ItemUseOutOfBattle_Honey(u8 taskId)
     gFieldCallback = FieldCB_UseItemOnField;
     gBagMenu->newScreenCallback = CB2_ReturnToField;
     Task_FadeAndCloseBagMenu(taskId);
+}
+
+void ItemUseCB_Poketch(u8 taskId)
+{
+    Overworld_ResetStateAfterDigEscRope();
+    ToggleDayNight();
+    ScriptContext_SetupScript(EventScript_ChangedTime);
+    RunOnResumeMapScript();
+    DoCurrentWeather();
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_Poketch(u8 taskId)
+{
+    if (!gTasks[taskId].tUsingRegisteredKeyItem)
+    {
+        sItemUseOnFieldCB = ItemUseCB_Poketch; 
+        gFieldCallback = FieldCB_UseItemOnField; 
+        gBagMenu->newScreenCallback = CB2_ReturnToField;
+        Task_FadeAndCloseBagMenu(taskId);
+    }
+    else 
+    {
+        sItemUseOnFieldCB = ItemUseCB_Poketch;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
 }
 
 void ItemUseOutOfBattle_CannotUse(u8 taskId)

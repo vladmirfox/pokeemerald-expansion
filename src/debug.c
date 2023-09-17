@@ -41,6 +41,7 @@
 #include "pokemon_storage_system.h"
 #include "random.h"
 #include "region_map.h"
+#include "rtc.h"
 #include "script.h"
 #include "script_pokemon_util.h"
 #include "sound.h"
@@ -307,7 +308,7 @@ static const u8 sDebugText_Give[] =      _("Give X");
 static const u8 sDebugText_Sound[] =     _("Sound");
 static const u8 sDebugText_Cancel[] =    _("Cancel");
 // Script menu
-static const u8 sDebugText_Util_Script_1[] = _("Script 1");
+static const u8 sDebugText_Util_Script_1[] = _("Change Time");
 static const u8 sDebugText_Util_Script_2[] = _("Script 2");
 static const u8 sDebugText_Util_Script_3[] = _("Script 3");
 static const u8 sDebugText_Util_Script_4[] = _("Script 4");
@@ -1353,8 +1354,12 @@ static void DebugAction_Util_Clear_Boxes(u8 taskId)
 static void DebugAction_Util_Script_1(u8 taskId)
 {
     Debug_DestroyMenu_Full(taskId);
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_Script_1);
+    Overworld_ResetStateAfterDigEscRope();
+    ToggleDayNight();
+    ScriptContext_SetupScript(EventScript_ChangedTime);
+    RunOnResumeMapScript();
+    DoCurrentWeather();
+    DestroyTask(taskId);
 }
 static void DebugAction_Util_Script_2(u8 taskId)
 {
