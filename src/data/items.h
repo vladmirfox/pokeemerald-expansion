@@ -9647,7 +9647,7 @@ const struct Item gItems[] =
     [ITEM_BRICK_PIECE] =
     {
         .name = _("Brick Piece"),
-        .price = 50,
+        .price = 100,
         .description = sBrickPieceDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
