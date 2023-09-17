@@ -257,6 +257,7 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
 
     PARAMETRIZE { item = ITEM_ORAN_BERRY; effect = HOLD_EFFECT_RESTORE_HP; }
     PARAMETRIZE { item = ITEM_SITRUS_BERRY; effect = HOLD_EFFECT_RESTORE_HP; }
+    PARAMETRIZE { item = ITEM_LEPPA_BERRY; effect = HOLD_EFFECT_RESTORE_PP; }
     PARAMETRIZE { item = ITEM_CHESTO_BERRY; effect = HOLD_EFFECT_CURE_SLP; status1 = STATUS1_SLEEP; }
     PARAMETRIZE { item = ITEM_CHERI_BERRY; effect = HOLD_EFFECT_CURE_PAR; status1 = STATUS1_PARALYSIS; }
     PARAMETRIZE { item = ITEM_PECHA_BERRY; effect = HOLD_EFFECT_CURE_PSN; status1 = STATUS1_POISON; }
@@ -273,7 +274,7 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET) { Status1(status1); HP(399); MaxHP(400); }
+        OPPONENT(SPECIES_WOBBUFFET) { Status1(status1); HP(399); MaxHP(400); MovesWithPP({MOVE_CELEBRATE, 35}); }
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
@@ -287,6 +288,9 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
                 MESSAGE("Foe Wobbuffet's Sitrus Berry restored health!");
             }
             HP_BAR(opponent);
+        }
+        else if (effect == HOLD_EFFECT_RESTORE_PP) {
+            MESSAGE("Foe Wobbuffet's Leppa Berry restored Celebrate's PP!");
         }
         else if (status1 != STATUS1_NONE) {
             if (status1 == STATUS1_BURN) {
@@ -327,7 +331,9 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
     } THEN {
         if (effect == HOLD_EFFECT_RESTORE_HP) {
             EXPECT_EQ(opponent->hp, opponent->maxHP);
-        } else if (status1 != STATUS1_NONE) {
+        } else if (effect == HOLD_EFFECT_RESTORE_PP) {
+            EXPECT_EQ(opponent->pp[0], 39); // Not 40, because Celebrate was used.
+        }  else if (status1 != STATUS1_NONE) {
             EXPECT_EQ(opponent->status1, STATUS1_NONE);
         }
         else if (statId != 0) {
