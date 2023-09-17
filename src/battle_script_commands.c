@@ -4505,7 +4505,8 @@ static void Cmd_getexp(void)
                     if (gBattleStruct->sentInPokes & 1)
                         {
                         gBattleMoveDamage = *exp + (*exp / expScaling);
-                        gBattleMoveDamage = gBattleMoveDamage - (gBattleMoveDamage / expMultiplier);
+                        if (FlagGet(FLAG_SYS_SOFT_LEVEL_CAP))
+                            gBattleMoveDamage = gBattleMoveDamage - (gBattleMoveDamage / expMultiplier);
                         }
                     else
                         {
@@ -4517,13 +4518,15 @@ static void Cmd_getexp(void)
                     if (holdEffect == HOLD_EFFECT_EXP_SHARE)
                         {
                         gBattleMoveDamage += gExpShareExp + (*gExpShareExp / expScaling);
-                        gBattleMoveDamage = gBattleMoveDamage - (gBattleMoveDamage / expMultiplier);
+                        if (FlagGet(FLAG_SYS_SOFT_LEVEL_CAP))
+                            gBattleMoveDamage = gBattleMoveDamage - (gBattleMoveDamage / expMultiplier);
                         }
                 #else
                     if (holdEffect == HOLD_EFFECT_EXP_SHARE && gBattleMoveDamage == 0)
                         {
                         gBattleMoveDamage += gExpShareExp + (gExpShareExp / expScaling);
-                        gBattleMoveDamage = gBattleMoveDamage - (gBattleMoveDamage / expMultiplier);
+                        if (FlagGet(FLAG_SYS_SOFT_LEVEL_CAP))
+                            gBattleMoveDamage = gBattleMoveDamage - (gBattleMoveDamage / expMultiplier);
                         }
                 #endif
                     if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
