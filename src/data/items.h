@@ -9643,4 +9643,15 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
     },
+
+    [ITEM_BRICK_PIECE] =
+    {
+        .name = _("Brick Piece"),
+        .price = 50,
+        .description = sBrickPieceDesc,
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 50,
+    },
 };

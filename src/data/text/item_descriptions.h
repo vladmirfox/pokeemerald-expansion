@@ -3918,3 +3918,7 @@ static const u8 sBerserkGene[] = _(
     "Sharply boosts\n"
     "Attack, but causes\n"
     "lasting confusion.");
+
+static const u8 sBrickPieceDesc[] = _(
+    "A rare chunk\n"
+    "of tile.");
