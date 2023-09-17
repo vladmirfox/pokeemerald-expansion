@@ -12,11 +12,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Install Hub CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y hub
-
       - name: Set up Git
         run: |
           git config user.name "GitHub Actions"
@@ -27,6 +22,10 @@ jobs:
           git remote add template https://github.com/rh-hideout/pokeemerald-expansion.git
           git fetch template
           git checkout -b template-branch template/master
+
+      - name: Switch back to master branch
+        run: |
+          git checkout master
 
       - name: Open PR
         uses: peter-evans/create-pull-request@v3
