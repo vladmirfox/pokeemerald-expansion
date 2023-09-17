@@ -25,6 +25,8 @@ jobs:
     - name: Merge RHH Changes into Branch
       run: |
         git checkout -b update-from-template
+        git config --global user.email "abyers.wilson@gmail.com"
+        git config --global user.name "fakuzatsu"
         git fetch template
         git merge --allow-unrelated-histories template/master --no-commit --no-ff
         # If there are conflicts, handle them here
