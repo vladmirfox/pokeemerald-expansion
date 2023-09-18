@@ -19,6 +19,11 @@ FallarborTown_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+FallarborTown_PokemonCenter_1F_EventScript_BattleMaster::
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
 FallarborTown_PokemonCenter_1F_EventScript_Girl::
 	msgbox FallarborTown_PokemonCenter_1F_Text_FossilManiacEdgeOfTown, MSGBOX_NPC
 	end

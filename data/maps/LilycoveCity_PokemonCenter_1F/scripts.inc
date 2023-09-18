@@ -33,6 +33,11 @@ LilycoveCity_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+LilycoveCity_PokemonCenter_1F_EventScript_BattleMaster::
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
 LilycoveCity_PokemonCenter_1F_EventScript_Boy::
 	msgbox LilycoveCity_PokemonCenter_1F_Text_HowManyKindsOfPokemon, MSGBOX_NPC
 	end

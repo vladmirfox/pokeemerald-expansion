@@ -17,6 +17,21 @@ SootopolisCity_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+SootopolisCity_PokemonCenter_1F_EventScript_BattleMaster::
+	goto_if_ge VAR_SKY_PILLAR_STATE, 2, SootopolisCity_PokemonCenter_1F_EventScript_BattleMasterNoLegendaries
+	goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_PokemonCenter_1F_EventScript_BattleMasterNoLegendaries
+	lock
+	faceplayer
+	msgbox SootopolisCity_PokemonCenter_1F_Text_BattleMaster_NowIsAGoodTime, MSGBOX_DEFAULT
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
+SootopolisCity_PokemonCenter_1F_EventScript_BattleMasterNoLegendaries::
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
 SootopolisCity_PokemonCenter_1F_EventScript_Gentleman::
 	lock
 	faceplayer
@@ -44,6 +59,13 @@ SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries::
 	msgbox SootopolisCity_PokemonCenter_1F_Text_AlwaysBeFriendsWithPokemon, MSGBOX_DEFAULT
 	release
 	end
+
+SootopolisCity_PokemonCenter_1F_Text_BattleMaster_NowIsAGoodTime:
+	.string "I suppose if ever there was a time to\n"
+	.string "make life easier on yourself…\p"
+	.string "It would be now, in the middle of this\n"
+	.string "battle of legends!\p"
+	.string "So…$"
 
 SootopolisCity_PokemonCenter_1F_Text_WallaceToughestInHoenn:
 	.string "WALLACE is rumored to be the toughest\n"

@@ -24,6 +24,11 @@ EverGrandeCity_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+EverGrandeCity_PokemonCenter_1F_EventScript_BattleMaster::
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
 EverGrandeCity_PokemonCenter_1F_EventScript_Woman::
 	msgbox EverGrandeCity_PokemonCenter_1F_Text_LeagueAfterVictoryRoad, MSGBOX_NPC
 	end

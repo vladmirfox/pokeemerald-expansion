@@ -18,6 +18,11 @@ VerdanturfTown_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+VerdanturfTown_PokemonCenter_1F_EventScript_BattleMaster::
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
 VerdanturfTown_PokemonCenter_1F_EventScript_Gentleman::
 	msgbox VerdanturfTown_PokemonCenter_1F_Text_FaithInYourPokemon, MSGBOX_NPC
 	end

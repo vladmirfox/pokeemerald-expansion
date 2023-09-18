@@ -18,6 +18,14 @@ LavaridgeTown_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+LavaridgeTown_PokemonCenter_1F_EventScript_BattleMaster::
+	lock
+	faceplayer
+	msgbox LavaridgeTown_PokemonCenter_1F_Text_TheyTookMySpot, MSGBOX_DEFAULT
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
 LavaridgeTown_PokemonCenter_1F_EventScript_Youngster::
 	msgbox LavaridgeTown_PokemonCenter_1F_Text_HotSpringCanInvigorate, MSGBOX_NPC
 	end
@@ -29,6 +37,11 @@ LavaridgeTown_PokemonCenter_1F_EventScript_Woman::
 LavaridgeTown_PokemonCenter_1F_EventScript_Gentleman::
 	msgbox LavaridgeTown_PokemonCenter_1F_Text_TrainersShouldRestToo, MSGBOX_NPC
 	end
+
+LavaridgeTown_PokemonCenter_1F_Text_TheyTookMySpot:
+	.string "…I can't stand in my usual spot here…\n"
+	.string "… … …\p"
+	.string "Oh?…$"
 
 LavaridgeTown_PokemonCenter_1F_Text_TrainersPokemonSpendTimeTogether:
 	.string "I think Pokémon get closer to their\n"

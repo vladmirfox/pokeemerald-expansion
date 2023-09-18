@@ -18,6 +18,11 @@ SlateportCity_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+SlateportCity_PokemonCenter_1F_EventScript_BattleMaster::
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
 SlateportCity_PokemonCenter_1F_EventScript_Sailor::
 	msgbox SlateportCity_PokemonCenter_1F_Text_RaiseDifferentTypesOfPokemon, MSGBOX_NPC
 	end

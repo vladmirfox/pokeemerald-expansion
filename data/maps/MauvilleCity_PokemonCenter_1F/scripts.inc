@@ -23,6 +23,11 @@ MauvilleCity_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+MauvilleCity_PokemonCenter_1F_EventScript_BattleMaster::
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
 MauvilleCity_PokemonCenter_1F_EventScript_Woman1::
 	msgbox MauvilleCity_PokemonCenter_1F_Text_ManOverThereSaysWeirdThings, MSGBOX_NPC
 	end

@@ -26,6 +26,18 @@ EverGrandeCity_PokemonLeague_1F_EventScript_Nurse::
 	release
 	end
 
+EverGrandeCity_PokemonLeague_1F_EventScript_BattleMaster::
+	lock
+	faceplayer
+	call_if_unset FLAG_SYS_GAME_CLEAR, EverGrandeCity_PokemonLeague_1F_EventScript_BattleMaster_SoCloseNow
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
+EverGrandeCity_PokemonLeague_1F_EventScript_BattleMaster_SoCloseNow::
+	msgbox EverGrandeCity_PokemonLeague_1F_Text_SoCloseNow
+	return
+
 EverGrandeCity_PokemonLeague_1F_EventScript_Clerk::
 	lock
 	faceplayer
@@ -164,6 +176,11 @@ EverGrandeCity_PokemonLeague_1F_Movement_RightGuardOutOfWay:
 	walk_right
 	walk_in_place_faster_down
 	step_end
+
+EverGrandeCity_PokemonLeague_1F_Text_SoCloseNow:
+	.string "You're so close now. Let's do this\n"
+	.string "one more time, before you become\l"
+	.string "the champion…$"
 
 EverGrandeCity_PokemonLeague_1F_Text_MustHaveAllGymBadges:
 	.string "Beyond this point, only those TRAINERS\n"

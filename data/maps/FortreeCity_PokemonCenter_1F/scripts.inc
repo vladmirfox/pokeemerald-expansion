@@ -17,6 +17,11 @@ FortreeCity_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+FortreeCity_PokemonCenter_1F_EventScript_BattleMaster::
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
 FortreeCity_PokemonCenter_1F_EventScript_Gentleman::
 	msgbox FortreeCity_PokemonCenter_1F_Text_GoToSafariZone, MSGBOX_NPC
 	end

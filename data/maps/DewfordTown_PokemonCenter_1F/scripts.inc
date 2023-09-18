@@ -18,6 +18,11 @@ DewfordTown_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+Dewford_PokemonCenter_1F_EventScript_BattleMaster::
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
 DewfordTown_PokemonCenter_1F_EventScript_PokefanF::
 	msgbox DewfordTown_PokemonCenter_1F_Text_StoneCavern, MSGBOX_NPC
 	end

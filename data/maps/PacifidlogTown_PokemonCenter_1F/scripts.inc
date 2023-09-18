@@ -17,6 +17,11 @@ PacifidlogTown_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+PacifidlogTown_PokemonCenter_1F_EventScript_BattleMaster::
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
 PacifidlogTown_PokemonCenter_1F_EventScript_Girl::
 	msgbox PacifidlogTown_PokemonCenter_1F_Text_WhatColorTrainerCard, MSGBOX_NPC
 	end

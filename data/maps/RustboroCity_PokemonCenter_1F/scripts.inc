@@ -18,6 +18,11 @@ RustboroCity_PokemonCenter_1F_EventScript_Nurse::
 	release
 	end
 
+RustboroCity_PokemonCenter_1F_EventScript_BattleMaster::
+	goto Common_EventScript_PkmnCenterBattleMaster
+	release
+	end
+
 RustboroCity_PokemonCenter_1F_EventScript_Man::
 	msgbox RustboroCity_PokemonCenter_1F_Text_PokemonHavePersonalities, MSGBOX_NPC
 	end
