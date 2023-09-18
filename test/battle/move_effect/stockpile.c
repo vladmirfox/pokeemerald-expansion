@@ -48,11 +48,10 @@ SINGLE_BATTLE_TEST("Spit Up and Swallow don't work if used without Stockpile")
         TURN { MOVE(player, move); }
     } SCENE {
         NOT ANIMATION(ANIM_TYPE_MOVE, move, player);
-        if (move == MOVE_SWALLOW) {
+        if (move == MOVE_SWALLOW)
             MESSAGE("But it failed to swallow a thing!");
-        } else {
+        else
             MESSAGE("But it failed to spit up a thing!");
-        }
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STOCKPILE, player);
         MESSAGE("Wobbuffet stockpiled 1!");
@@ -60,7 +59,8 @@ SINGLE_BATTLE_TEST("Spit Up and Swallow don't work if used without Stockpile")
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         if (move == MOVE_SPIT_UP) {
             HP_BAR(opponent);
-        } else {
+        }
+        else {
             HP_BAR(player);
         }
     }
@@ -250,4 +250,3 @@ DOUBLE_BATTLE_TEST("Stockpile's Def and Sp. Def boost is lost after using Spit U
         EXPECT_MUL_EQ(results[2].dmgSpecialBefore,  UQ_4_12(1.0), results[2].dmgSpecialAfter);
     }
 }
-

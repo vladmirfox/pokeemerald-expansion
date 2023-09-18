@@ -111,7 +111,7 @@ SECTIONS {
         test/*.o(.tests);
         __stop_tests = .;
         test/*.o(.text);
-        test/*.o(.rodata);
+        test/*.o(.rodata*);
     } =0
 
     /* DWARF debug sections.
