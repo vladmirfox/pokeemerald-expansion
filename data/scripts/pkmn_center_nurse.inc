@@ -61,8 +61,6 @@ EventScript_PkmnCenterNurse_ReturnPkmn::
     return
 
 EventScript_PkmnCenterNurse_ReturnPkmn2::
-	message gText_ThankYouForWaiting
-	waitmessage
 	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Bow
 	waitmovement 0
 	message gText_WeHopeToSeeYouAgain2
@@ -100,16 +98,21 @@ EventScript_PkmnCenterNurse_GoldCard::
 	waitmovement 0
 	applymovement VAR_0x800B, Common_Movement_Delay48
 	waitmovement 0
+	goto_if_set FLAG_SYS_ENFORCED_HARDMODE, EventScript_PkmnCenterNurse_GoldChallengeCard
 	msgbox gText_NoticesGoldCard, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, EventScript_PkmnCenterNurse_GoldCardHealPkmn
 	message gText_WeHopeToSeeYouAgain2
-	return
+	end
 
-EventScript_PkmnCenterNurse_AskForUsual::
-	msgbox gText_YouWantTheUsual, MSGBOX_YESNO
+EventScript_PkmnCenterNurse_GoldChallengeCard::
+	msgbox gText_NoticesGoldChallengeCard, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, EventScript_PkmnCenterNurse_GoldCardHealPkmn
 	message gText_WeHopeToSeeYouAgain2
-	return
+	end
+
+EventScript_PkmnCenterNurse_AskForUsual::
+	goto EventScript_PkmnCenterNurse_GoldCardHealPkmn
+	end
 
 EventScript_PkmnCenterNurse_GoldCardHealPkmn::
 	setvar VAR_0x8004, 1

@@ -44,3 +44,32 @@ gText_ReturnToChangeExperience::
     .string "Return to me if you wish to\n"
     .string "change your battle experience.$"
 
+gText_ImTheBattleMasterOhCard::
+    .string "Greetings…\p"
+    .string "I am the Battle Master…\p"
+    .string "…oh?\p"
+    .string "I see you have a challenge\n"
+    .string "card there.\p"
+    .string "In that case…\p"
+    .string "There is nothing I can do\n"
+    .string "for you…\p"
+    .string "Come back to me if you beat\n"
+    .string "the Pokémon League.\p"
+    .string "…Good luck.$"
+
+gText_YouDidItIncredible::
+    .string "So… you beat the Pokémon\n"
+    .string "League, hm?\p"
+    .string "How incredible!\p"
+    .string "You are a battler of great\n"
+    .string "remark!$"
+
+gText_TakeThisToCommemorate::
+    .string "Take this charm to commemorate\n"
+    .string "your achievement.$"
+
+gText_MoreChallengesAwait::
+    .string "…More challenges and more\n"
+    .string "rewards await you at the\p"
+    .string "Battle Frontier.$"
+

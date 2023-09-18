@@ -106,7 +106,7 @@ InsideOfTruck_Text_ItsYourBag:
 InsideOfTruck_Text_AreYouSure:
 	.string "{PLAYER} turned the card over.\p"
 	.string "The backside reads:\n"
-	.string "“Trainer's and Pokémon who see\p"
+	.string "“Trainers and Pokémon who see\p"
 	.string "this card will no longer go\n"
 	.string "easy on you.”\p"
 	.string "…Put the card in your bag anyways?$"

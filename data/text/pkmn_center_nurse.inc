@@ -36,13 +36,27 @@ gText_NoticesGoldCard::
 	.string "Okay, {PLAYER}, please allow me\n"
 	.string "the honor of resting your Pokémon!$"
 
+gText_NoticesGoldChallengeCard::
+	.string "Th-those cards…\n"
+	.string "Could it be… The GOLD CARD?!\p"
+	.string "A-and the Challenge Card too!?\p"
+	.string "It's like they were meant to\n"
+	.string "be together!\p"
+	.string "Oh, the colors are radiant!\n"
+	.string "The four stars seem to sparkle!\p"
+	.string "I've seen several Challengers with\n"
+	.string "a SILVER CARD before, but, {PLAYER},\l"
+	.string "you're the first Challenger I've ever\l"
+	.string "seen with a GOLD CARD!\p"
+	.string "Okay, {PLAYER}, please allow me\n"
+	.string "the honor of resting your Pokémon!$"
+
 gText_YouWantTheUsual::
 	.string "I'm delighted to see you, {PLAYER}!\n"
 	.string "You want the usual, am I right?$"
 
 gText_IllTakeYourPkmn2::
-	.string "Okay, I'll take your Pokémon\n"
-	.string "for a few seconds.$"
+	.string "Allow me, {PLAYER}$"
 
 gText_ThankYouForWaiting::
 	.string "Thank you for waiting.$"

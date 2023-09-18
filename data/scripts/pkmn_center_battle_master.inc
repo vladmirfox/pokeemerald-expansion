@@ -1,6 +1,7 @@
 Common_EventScript_PkmnCenterBattleMaster::
     lock
     faceplayer
+    goto_if_set FLAG_SYS_ENFORCED_HARDMODE, Common_EventScript_PkmnCenterBattleMaster_OhChallengeCard
 	message gText_ImTheBattleMaster
 	waitmessage
 	multichoice 16, 6, MULTI_CHOOSE_LEVEL_CAP, FALSE
@@ -9,6 +10,34 @@ Common_EventScript_PkmnCenterBattleMaster::
 	case 1, Common_EventScript_PkmnCenterBattleMaster_HardLevelCaps
 	case 2, Common_EventScript_PkmnCenterBattleMaster_Cancel
 	case MULTI_B_PRESSED, Common_EventScript_PkmnCenterBattleMaster_Cancel
+    end
+
+Common_EventScript_PkmnCenterBattleMaster_OhChallengeCard::
+    goto_if_set FLAG_SYS_GAME_CLEAR, Common_EventScript_PkmnCenterBattleMaster_ExcellentWork
+    message gText_ImTheBattleMasterOhCard
+    waitmessage
+    waitbuttonpress
+    release
+    end
+
+Common_EventScript_PkmnCenterBattleMaster_ExcellentWork::
+    message gText_YouDidItIncredible
+    waitmessage
+    waitbuttonpress
+    checkitem ITEM_EXP_CHARM
+    goto_if_eq VAR_RESULT, FALSE, Common_EventScript_PkmnCenterBattleMaster_TakeThisCharm
+    release
+    end
+
+Common_EventScript_PkmnCenterBattleMaster_TakeThisCharm::
+    message gText_TakeThisToCommemorate
+    waitmessage
+    waitbuttonpress
+    giveitem ITEM_EXP_CHARM
+    message gText_MoreChallengesAwait
+    waitmessage
+    waitbuttonpress
+    release
     end
 
 Common_EventScript_PkmnCenterBattleMaster_CancelBack::
