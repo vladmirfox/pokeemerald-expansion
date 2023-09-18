@@ -3381,7 +3381,7 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
         if (iv_val != 32 && iv_val != 0xFF)
             SetMonData(&mon, MON_DATA_HP_IV + i, &iv_val);
     }
-    CalculateMonStats(&mon);
+    CalculateMonStats(&mon, FALSE);
 
     //Moves
     for (i = 0; i < MAX_MON_MOVES; i++)

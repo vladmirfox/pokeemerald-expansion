@@ -455,7 +455,7 @@ static void SetPlayerAndOpponentParties(void)
                     SetMonData(&gPlayerParty[i], MON_DATA_HP_EV + j, &evs);
             }
 
-            CalculateMonStats(&gPlayerParty[i]);
+            CalculateMonStats(&gPlayerParty[i], FALSE);
             friendship = 0;
             for (k = 0; k < MAX_MON_MOVES; k++)
                 SetMonMoveAvoidReturn(&gPlayerParty[i], gFacilityTrainerMons[monId].moves[k], k);
@@ -496,7 +496,7 @@ static void SetPlayerAndOpponentParties(void)
                     SetMonData(&gEnemyParty[i], MON_DATA_HP_EV + j, &evs);
             }
 
-            CalculateMonStats(&gEnemyParty[i]);
+            CalculateMonStats(&gEnemyParty[i], TRUE);
             for (k = 0; k < MAX_MON_MOVES; k++)
                 SetMonMoveAvoidReturn(&gEnemyParty[i], gFacilityTrainerMons[monId].moves[k], k);
             SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBattleFrontierHeldItems[gFacilityTrainerMons[monId].itemTableId]);

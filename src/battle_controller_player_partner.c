@@ -343,7 +343,7 @@ static void Task_GiveExpToMon(u8 taskId)
             u8 savedActiveBank;
 
             SetMonData(mon, MON_DATA_EXP, &nextLvlExp);
-            CalculateMonStats(mon);
+            CalculateMonStats(mon, FALSE);
             gainedExp -= nextLvlExp - currExp;
             savedActiveBank = gActiveBattler;
             gActiveBattler = battlerId;
@@ -422,7 +422,7 @@ static void Task_GiveExpWithExpBar(u8 taskId)
                 u8 savedActiveBank;
 
                 SetMonData(&gPlayerParty[monId], MON_DATA_EXP, &expOnNextLvl);
-                CalculateMonStats(&gPlayerParty[monId]);
+                CalculateMonStats(&gPlayerParty[monId], FALSE);
                 gainedExp -= expOnNextLvl - currExp;
                 savedActiveBank = gActiveBattler;
                 gActiveBattler = battlerId;
@@ -2062,7 +2062,7 @@ static void Task_LowerHeartValue(u8 taskId)
             u8 savedActiveBattler;
 
             SetMonData(mon, MON_DATA_HEART_VALUE, &newVal);
-            //CalculateMonStats(mon);
+            //CalculateMonStats(mon, FALSE);
             savedActiveBattler = gActiveBattler;
             gActiveBattler = battlerId;
             // TODOSHADOW BtlController_EmitTwoReturnValues(BUFFER_B, RET_VALUE_LEVELED_UP, amount);
@@ -2133,7 +2133,7 @@ static void Task_LowerHeartValWithBar(u8 taskId)
 
                 SetMonData(&gPlayerParty[monId], MON_DATA_HEART_VALUE, &newVal);
                 // TODOSHADOW Replace CalculateMonStats with any necessary changes based on section unlocks (new moves, etc)
-                // CalculateMonStats(&gPlayerParty[monId]);
+                // CalculateMonStats(&gPlayerParty[monId], FALSE);
                 savedActiveBattler = gActiveBattler;
                 gActiveBattler = battlerId;
                 BtlController_EmitTwoReturnValues(BUFFER_B, RET_VALUE_LEVELED_UP, amount);
