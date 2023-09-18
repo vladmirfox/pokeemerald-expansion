@@ -5798,6 +5798,10 @@ void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst)
     dst->type3 = TYPE_MYSTERY;
     dst->ability = GetAbilityBySpecies(dst->species, dst->abilityNum);
     dst->isShadow = GetMonData(src, MON_DATA_IS_SHADOW, NULL);
+    dst->isXD = GetMonData(src, MON_DATA_IS_XD, NULL);
+    dst->shadowAggro = GetMonData(src, MON_DATA_SHADOW_AGGRO, NULL);
+    dst->shadowID = GetMonData(src, MON_DATA_SHADOW_ID, NULL);
+    dst->boostLevel = GetMonData(src, MON_DATA_BOOST_LEVEL, NULL);
     GetMonData(src, MON_DATA_NICKNAME, nickname);
     StringCopy_Nickname(dst->nickname, nickname);
     GetMonData(src, MON_DATA_OT_NAME, dst->otName);
