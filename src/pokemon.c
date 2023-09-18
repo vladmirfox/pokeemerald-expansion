@@ -4086,7 +4086,17 @@ static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
     SetMonData(mon, field, &n);                                 \
 }
 
-void CalculateMonStats(struct Pokemon *mon)
+#define CALC_BOOSTED_STAT(base, iv, ev, statIndex, field)               \
+{                                                               \
+    u8 baseStat = gSpeciesInfo[species].base;                   \
+    s32 n = (((2 * baseStat + iv + ev / 4) * boostedLevel) / 100) + 5; \
+    u8 nature = GetNature(mon);                                 \
+    n = ModifyStatByNature(nature, n, statIndex);               \
+    CALC_FRIENDSHIP_BOOST()                                     \
+    SetMonData(mon, field, &n);                                 \
+}
+
+void CalculateMonStats(struct Pokemon *mon, bool8 isBoosted)
 {
     s32 oldMaxHP = GetMonData(mon, MON_DATA_MAX_HP, NULL);
     s32 currentHP = GetMonData(mon, MON_DATA_HP, NULL);
@@ -4105,6 +4115,7 @@ void CalculateMonStats(struct Pokemon *mon)
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u8 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);
     s32 level = GetLevelFromMonExp(mon);
+    s32 boostedLevel = (level + GetMonData(mon, MON_DATA_BOOST_LEVEL, NULL));
     s32 newMaxHP;
 
     SetMonData(mon, MON_DATA_LEVEL, &level);
@@ -4112,6 +4123,11 @@ void CalculateMonStats(struct Pokemon *mon)
     if (species == SPECIES_SHEDINJA)
     {
         newMaxHP = 1;
+    }
+    else if (isBoosted == TRUE)
+    {
+        s32 n = 2 * gSpeciesInfo[species].baseHP + hpIV;
+        newMaxHP = (((n + hpEV / 4) * boostedLevel) / 100) + boostedLevel + 10;
     }
     else
     {
@@ -4125,11 +4141,23 @@ void CalculateMonStats(struct Pokemon *mon)
 
     SetMonData(mon, MON_DATA_MAX_HP, &newMaxHP);
 
-    CALC_STAT(baseAttack, attackIV, attackEV, STAT_ATK, MON_DATA_ATK)
-    CALC_STAT(baseDefense, defenseIV, defenseEV, STAT_DEF, MON_DATA_DEF)
-    CALC_STAT(baseSpeed, speedIV, speedEV, STAT_SPEED, MON_DATA_SPEED)
-    CALC_STAT(baseSpAttack, spAttackIV, spAttackEV, STAT_SPATK, MON_DATA_SPATK)
-    CALC_STAT(baseSpDefense, spDefenseIV, spDefenseEV, STAT_SPDEF, MON_DATA_SPDEF)
+    if (isBoosted == TRUE)
+    {
+        CALC_BOOSTED_STAT(baseAttack, attackIV, attackEV, STAT_ATK, MON_DATA_ATK)
+        CALC_BOOSTED_STAT(baseDefense, defenseIV, defenseEV, STAT_DEF, MON_DATA_DEF)
+        CALC_BOOSTED_STAT(baseSpeed, speedIV, speedEV, STAT_SPEED, MON_DATA_SPEED)
+        CALC_BOOSTED_STAT(baseSpAttack, spAttackIV, spAttackEV, STAT_SPATK, MON_DATA_SPATK)
+        CALC_BOOSTED_STAT(baseSpDefense, spDefenseIV, spDefenseEV, STAT_SPDEF, MON_DATA_SPDEF)
+        
+    }
+    else
+    {
+        CALC_STAT(baseAttack, attackIV, attackEV, STAT_ATK, MON_DATA_ATK)
+        CALC_STAT(baseDefense, defenseIV, defenseEV, STAT_DEF, MON_DATA_DEF)
+        CALC_STAT(baseSpeed, speedIV, speedEV, STAT_SPEED, MON_DATA_SPEED)
+        CALC_STAT(baseSpAttack, spAttackIV, spAttackEV, STAT_SPATK, MON_DATA_SPATK)
+        CALC_STAT(baseSpDefense, spDefenseIV, spDefenseEV, STAT_SPDEF, MON_DATA_SPDEF)
+    }
 
     if (species == SPECIES_SHEDINJA)
     {
@@ -5099,6 +5127,22 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         if (substruct3->isShadow)
             retVal = boxMon->nickData.shadowData.isReverse;
         break;
+    case MON_DATA_SHADOW_ID:
+        if (substruct3->isShadow)
+            retVal = boxMon->nickData.shadowData.shadowID;
+        break;
+    case MON_DATA_BOOST_LEVEL:
+        if (substruct3->isShadow)
+            retVal = boxMon->nickData.shadowData.boostLevel;
+        break;
+    case MON_DATA_IS_XD:
+        if (substruct3->isShadow)
+            retVal = boxMon->nickData.shadowData.isXD;
+        break;
+    case MON_DATA_SHADOW_AGGRO:
+        if (substruct3->isShadow)
+            retVal = boxMon->nickData.shadowData.shadowAggro;
+        break;
     case MON_DATA_HEART_VALUE:
         if (substruct3->isShadow)
             retVal = boxMon->nickData.shadowData.heartValue;
@@ -5425,6 +5469,18 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_REVERSE_MODE:
         SET8(boxMon->nickData.shadowData.isReverse);
+        break;
+    case MON_DATA_SHADOW_ID:
+        SET8(boxMon->nickData.shadowData.shadowID);
+        break;
+    case MON_DATA_IS_XD:
+        SET8(boxMon->nickData.shadowData.isXD);
+        break;
+    case MON_DATA_BOOST_LEVEL:
+        SET8(boxMon->nickData.shadowData.boostLevel);
+        break;
+    case MON_DATA_SHADOW_AGGRO:
+        SET8(boxMon->nickData.shadowData.shadowAggro);
         break;
     case MON_DATA_HEART_VALUE:
         SET16(boxMon->nickData.shadowData.heartValue);

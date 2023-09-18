@@ -94,6 +94,7 @@ enum {
     MON_DATA_IS_SHADOW,
     MON_DATA_SHADOW_ID,
     MON_DATA_IS_XD,
+    MON_DATA_SHADOW_AGGRO,
     MON_DATA_BOOST_LEVEL,
     MON_DATA_REVERSE_MODE,
     MON_DATA_HEART_VALUE,
@@ -511,7 +512,7 @@ bool8 ShouldIgnoreDeoxysForm(u8 caseId, u8 battlerId);
 u16 GetUnionRoomTrainerPic(void);
 u16 GetUnionRoomTrainerClass(void);
 void CreateEnemyEventMon(void);
-void CalculateMonStats(struct Pokemon *mon);
+void CalculateMonStats(struct Pokemon *mon, bool8 isBoosted);
 void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest);
 u8 GetLevelFromMonExp(struct Pokemon *mon);
 u8 GetLevelFromBoxMonExp(struct BoxPokemon *boxMon);
