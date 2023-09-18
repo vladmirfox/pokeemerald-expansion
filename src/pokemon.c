@@ -4124,7 +4124,7 @@ void CalculateMonStats(struct Pokemon *mon, bool8 canBeBoosted)
     {
         newMaxHP = 1;
     }
-    else if (isBoosted == TRUE)
+    else if (canBeBoosted == TRUE)
     {
         s32 n = 2 * gSpeciesInfo[species].baseHP + hpIV;
         newMaxHP = (((n + hpEV / 4) * boostedLevel) / 100) + boostedLevel + 10;
@@ -4141,7 +4141,7 @@ void CalculateMonStats(struct Pokemon *mon, bool8 canBeBoosted)
 
     SetMonData(mon, MON_DATA_MAX_HP, &newMaxHP);
 
-    if (isBoosted == TRUE)
+    if (canBeBoosted == TRUE)
     {
         CALC_BOOSTED_STAT(baseAttack, attackIV, attackEV, STAT_ATK, MON_DATA_ATK)
         CALC_BOOSTED_STAT(baseDefense, defenseIV, defenseEV, STAT_DEF, MON_DATA_DEF)

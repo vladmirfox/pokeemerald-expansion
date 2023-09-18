@@ -2119,6 +2119,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     bool8 shad = TRUE;
                     SetMonData(&party[i], MON_DATA_IS_SHADOW, &shad);
                     SetMonData(&party[i], MON_DATA_SHADOW_ID, &partyData[i].shadowID);
+                    SetMonData(&party[i], MON_DATA_SHADOW_AGGRO, &partyData[i].shadowAggro);
                     SetMonData(&party[i], MON_DATA_IS_XD, &partyData[i].isXD);
                     SetMonData(&party[i], MON_DATA_BOOST_LEVEL, &partyData[i].boostLevel);
                     SetMonData(&party[i], MON_DATA_HEART_VALUE, &partyData[i].heartGauge);
