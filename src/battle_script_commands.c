@@ -1454,6 +1454,20 @@ const u16 sLevelCaps[NUM_SOFT_CAPS] =
 100 //Post game
 };
 
+const u16 sLevelCaps2[NUM_SOFT_CAPS] =
+{ 
+17, //Roxanne
+24, //Brawly
+35, //Wattson
+42, //Flanery
+46, //Norman
+53, //Winona
+61, //Tate & Liza
+71, //Juan
+85, //Elite Four
+100 //Post game
+};
+
 const int sLevelCapReduction[4] = { 100, 3, 2, 1 };
 const int sRelativePartyScaling[4] = { 5, 3, 2, 1 };
 // The scaling that should be applied.
@@ -4363,6 +4377,28 @@ int GetPkmnExpScaling(u8 level)
     return sRelativePartyScaling[avgDiff];
 }
 
+int GetPkmnLevelCap(void)
+{
+    u8 i;
+    int numFlagsSet = 0;
+
+    for (i = 0; i < NUM_SOFT_CAPS; i++)
+    {
+        if (FlagGet(sLevelCapFlags[i]))
+        {
+            numFlagsSet++;
+        }
+    }
+
+    if (FlagGet(FLAG_SYS_HARD_LEVEL_CAP))
+        return sLevelCaps[numFlagsSet];
+
+    if (FlagGet(FLAG_SYS_SOFT_LEVEL_CAP))
+        return sLevelCaps2[numFlagsSet];
+
+    return MAX_LEVEL;
+}
+
 static void Cmd_getexp(void)
 {
     CMD_ARGS(u8 battler);
@@ -4472,7 +4508,7 @@ static void Cmd_getexp(void)
                 gBattleMoveDamage = 0; // used for exp
             }
             else if ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gBattleStruct->expGetterMonId >= 3)
-                  || GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) == MAX_LEVEL)
+                  || GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) >= GetPkmnLevelCap())
             {
                 *(&gBattleStruct->sentInPokes) >>= 1;
                 gBattleScripting.getexpState = 5;
@@ -4603,7 +4639,7 @@ static void Cmd_getexp(void)
         if (gBattleControllerExecFlags == 0)
         {
             gBattleResources->bufferB[gBattleStruct->expGetterBattlerId][0] = 0;
-            if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP) && GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) != MAX_LEVEL)
+            if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP) && GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) < GetPkmnLevelCap())
             {
                 gBattleResources->beforeLvlUp->stats[STAT_HP]    = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_MAX_HP);
                 gBattleResources->beforeLvlUp->stats[STAT_ATK]   = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_ATK);

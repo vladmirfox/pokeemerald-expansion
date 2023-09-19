@@ -4201,7 +4201,7 @@ u8 GetLevelFromMonExp(struct Pokemon *mon)
     u32 exp = GetMonData(mon, MON_DATA_EXP, NULL);
     s32 level = 1;
 
-    while (level <= MAX_LEVEL && gExperienceTables[gSpeciesInfo[species].growthRate][level] <= exp)
+    while (level <= GetPkmnLevelCap() && gExperienceTables[gSpeciesInfo[species].growthRate][level] <= exp)
         level++;
 
     return level - 1;
@@ -4213,7 +4213,7 @@ u8 GetLevelFromBoxMonExp(struct BoxPokemon *boxMon)
     u32 exp = GetBoxMonData(boxMon, MON_DATA_EXP, NULL);
     s32 level = 1;
 
-    while (level <= MAX_LEVEL && gExperienceTables[gSpeciesInfo[species].growthRate][level] <= exp)
+    while (level <= GetPkmnLevelCap() && gExperienceTables[gSpeciesInfo[species].growthRate][level] <= exp)
         level++;
 
     return level - 1;
@@ -5823,7 +5823,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
         case 3:
             // Rare Candy / EXP Candy
             if ((itemEffect[i] & ITEM3_LEVEL_UP)
-             && GetMonData(mon, MON_DATA_LEVEL, NULL) != MAX_LEVEL)
+             && GetMonData(mon, MON_DATA_LEVEL, NULL) < GetPkmnLevelCap())
             {
                 u8 param = ItemId_GetHoldEffectParam(item);
                 dataUnsigned = 0;
