@@ -14,7 +14,7 @@
     #define GEM_BOOST_PARAM 50
 #endif
 
-#if I_TYPE_BOOST_POWER >= GEN_4 //This is only for regular type boosting held items, not plates or pokemon-specific ones.
+#if I_TYPE_BOOST_POWER >= GEN_4 // For non Pokémon-specific type-boosting held items.
     #define TYPE_BOOST_PARAM 20 
 #else
     #define TYPE_BOOST_PARAM 10
