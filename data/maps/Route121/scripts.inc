@@ -16,7 +16,7 @@ Route121_OnResume_Night:
 
 Route121_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
-	setweather WEATHER_SUNNY_CLOUDS
+	setweather WEATHER_SUNNY
 	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	return
 
