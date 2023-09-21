@@ -1584,8 +1584,8 @@
     {
       "id": "LAYOUT_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1",
       "name": "CaveOfOrigin_UnusedRubySapphireMap1_Layout",
-      "width": 23,
-      "height": 23,
+      "width": 26,
+      "height": 24,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap1/border.bin",
@@ -4044,10 +4044,10 @@
     {
       "id": "LAYOUT_ISLAND_HARBOR",
       "name": "IslandHarbor_Layout",
-      "width": 17,
+      "width": 16,
       "height": 13,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_IslandHarbor",
+      "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/IslandHarbor/border.bin",
       "blockdata_filepath": "data/layouts/IslandHarbor/map.bin"
     },

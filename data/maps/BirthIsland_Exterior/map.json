@@ -44,7 +44,7 @@
   "warp_events": [
     {
       "x": 15,
-      "y": 25,
+      "y": 24,
       "elevation": 0,
       "dest_map": "MAP_METEOR_FALLS_STEVENS_CAVE",
       "dest_warp_id": "1"
