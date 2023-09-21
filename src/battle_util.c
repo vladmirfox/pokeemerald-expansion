@@ -8032,14 +8032,18 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
     return targetBattler;
 }
 
-static bool32 IsBattlerModernFatefulEncounter(u8 battler)
+static bool32 IsBattlerModernFatefulEncounter(u8 battler) //Function name is misleading, this only checks if a Mew or Deoxys has the fateful encounter flag.
 {
+#if B_MEW_DEOXYS_OBEDIENCE >= GEN_3
+    return TRUE;
+#else
     if (GetBattlerSide(battler) == B_SIDE_OPPONENT)
         return TRUE;
     if (GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_SPECIES, NULL) != SPECIES_DEOXYS
         && GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_SPECIES, NULL) != SPECIES_MEW)
             return TRUE;
     return GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler]], MON_DATA_MODERN_FATEFUL_ENCOUNTER, NULL);
+#endif
 }
 
 u8 IsMonDisobedient(void)
