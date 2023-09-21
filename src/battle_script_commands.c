@@ -4569,7 +4569,7 @@ static void Cmd_getexp(void)
                         gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
                 #if B_TRAINER_EXP_MULTIPLIER <= GEN_7
                     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-                        gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
+                        gBattleMoveDamage = (gBattleMoveDamage * 120) / 100;
                 #endif
                 #if (B_SCALED_EXP >= GEN_5) && (B_SCALED_EXP != GEN_6)
                     {
