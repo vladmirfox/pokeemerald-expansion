@@ -204,6 +204,52 @@ SINGLE_BATTLE_TEST("Recoil is not applied if battler was protected") // #3319
     }
 }
 
+SINGLE_BATTLE_TEST("Multi-hit moves don't hit a protected target and fail only once") // #3312
+{
+    u16 move = MOVE_NONE;
+
+    PARAMETRIZE {move = MOVE_PROTECT; }
+    PARAMETRIZE {move = MOVE_DETECT; }
+    PARAMETRIZE {move = MOVE_KINGS_SHIELD; }
+    PARAMETRIZE {move = MOVE_BANEFUL_BUNKER; }
+    PARAMETRIZE {move = MOVE_SILK_TRAP; }
+    PARAMETRIZE {move = MOVE_OBSTRUCT; }
+    PARAMETRIZE {move = MOVE_SPIKY_SHIELD; }
+
+    GIVEN {
+        ASSUME(gBattleMoves[MOVE_ARM_THRUST].effect == EFFECT_MULTI_HIT);
+        PLAYER(SPECIES_RAPIDASH);
+        OPPONENT(SPECIES_BEAUTIFLY);
+    } WHEN {
+        TURN { MOVE(opponent, move); MOVE(player, MOVE_ARM_THRUST); }
+        TURN {}
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, move, opponent);
+        MESSAGE("Foe Beautifly protected itself!");
+        MESSAGE("Rapidash used Arm Thrust!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_ARM_THRUST, player);
+        MESSAGE("Foe Beautifly protected itself!");
+        // Each effect happens only once.
+        if (move == MOVE_KINGS_SHIELD || move == MOVE_SILK_TRAP || move == MOVE_OBSTRUCT) {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+            NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        }
+        else if (move == MOVE_SPIKY_SHIELD) {
+            HP_BAR(player);
+            NOT HP_BAR(player);
+        }
+        else if (move == MOVE_BANEFUL_BUNKER) {
+            STATUS_ICON(player, STATUS1_POISON);
+        }
+        NONE_OF {
+            MESSAGE("Hit 2 time(s)!");
+            MESSAGE("Hit 3 time(s)!");
+            MESSAGE("Hit 4 time(s)!");
+            MESSAGE("Hit 5 time(s)!");
+        }
+    }
+}
+
 DOUBLE_BATTLE_TEST("Wide Guard protects self and ally from multi-target moves")
 {
     u16 move = MOVE_NONE;
