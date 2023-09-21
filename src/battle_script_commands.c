@@ -11431,8 +11431,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
 {
     bool32 certain = FALSE;
     bool32 notProtectAffected = FALSE;
-    u32 index, battler;
-    u16 battlerAbility, battlerHoldEffect;
+    u32 index, battler, battlerAbility, battlerHoldEffect;
     bool32 affectsUser = (flags & MOVE_EFFECT_AFFECTS_USER);
     bool32 mirrorArmored = (flags & STAT_CHANGE_MIRROR_ARMOR);
 
