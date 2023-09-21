@@ -4666,6 +4666,9 @@ u32 GetBattlerTotalSpeedStat(u8 battler)
         speed /= 4;
     #endif
 
+    if (gSideTimers[GetBattlerSide(battler)].swampTimer)
+        speed /= 4;
+
     return speed;
 }
 

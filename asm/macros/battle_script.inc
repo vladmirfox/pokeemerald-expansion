@@ -1366,6 +1366,16 @@
 	.byte \battler
 	.endm
 
+	.macro setpledge jumpInstr:req
+	callnative BS_SetPledge
+	.4byte \jumpInstr
+	.endm
+
+	.macro setpledgestatus battler:req
+	callnative BS_SetPledgeStatus
+	.4byte \battler
+	.endm
+
 	.macro setzeffect
 	callnative BS_SetZEffect
 	.endm

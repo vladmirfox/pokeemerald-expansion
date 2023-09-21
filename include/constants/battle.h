@@ -386,8 +386,11 @@
 #define MOVE_EFFECT_STEALTH_ROCK        76
 #define MOVE_EFFECT_SPIKES              77
 #define MOVE_EFFECT_TRIPLE_ARROWS       78
+#define MOVE_EFFECT_WATER_PLEDGE        79
+#define MOVE_EFFECT_FIRE_PLEDGE         80
+#define MOVE_EFFECT_GRASS_PLEDGE        81
 
-#define NUM_MOVE_EFFECTS                79
+#define NUM_MOVE_EFFECTS                82
 
 #define MOVE_EFFECT_AFFECTS_USER        0x4000
 #define MOVE_EFFECT_CERTAIN             0x8000

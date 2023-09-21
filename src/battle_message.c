@@ -807,9 +807,27 @@ static const u8 sText_TeamGainedEXP[] = _("The rest of your team gained EXP.\nPo
 static const u8 sText_CurrentMoveCantSelect[] = _("{B_BUFF1} cannot be used!\p");
 static const u8 sText_TargetIsBeingSaltCured[] = _("{B_DEF_NAME_WITH_PREFIX} is being salt cured!");
 static const u8 sText_TargetIsHurtBySaltCure[] = _("{B_DEF_NAME_WITH_PREFIX} is hurt by {B_BUFF1}!");
+static const u8 sText_TheTwoMovesBecomeOne[] = _("The two moves become one!\nIt's a combined move!{PAUSE 16}");
+static const u8 sText_ARainbowAppearedOnSide[] = _("A rainbow appeared in the sky\non {B_ATK_TEAM2} team's side!");
+static const u8 sText_TheRainbowDisappeared[] = _("The rainbow on {B_ATK_TEAM2}\nside disappeared!");
+static const u8 sText_WaitingForPartnersMove[] = _("{B_ATK_NAME_WITH_PREFIX} is waiting\nfor {B_ATK_PARTNER_NAME}'s move…{PAUSE 16}");
+static const u8 sText_SeaOfFireEnvelopedSide[] = _("A sea of fire enveloped\n{B_DEF_TEAM2} team!");
+static const u8 sText_HurtByTheSeaOfFire[] = _("{B_ATK_TEAM1} {B_ATK_NAME_WITH_PREFIX} was hurt\nby the sea of fire!");
+static const u8 sText_TheSeaOfFireDisappeared[] = _("The sea of fire around {B_ATK_TEAM2}\nteam disappeared!");
+static const u8 sText_SwampEnvelopedSide[] = _("A swamp enveloped\n{B_DEF_TEAM2} team!");
+static const u8 sText_TheSwampDisappeared[] = _("The swamp around {B_ATK_TEAM2}\nteam disappeared!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_THESWAMPDISAPPEARED - BATTLESTRINGS_TABLE_START] = sText_TheSwampDisappeared,
+    [STRINGID_SWAMPENVELOPEDSIDE - BATTLESTRINGS_TABLE_START] = sText_SwampEnvelopedSide,
+    [STRINGID_THESEAOFFIREDISAPPEARED - BATTLESTRINGS_TABLE_START] = sText_TheSeaOfFireDisappeared,
+    [STRINGID_HURTBYTHESEAOFFIRE - BATTLESTRINGS_TABLE_START] = sText_HurtByTheSeaOfFire,
+    [STRINGID_SEAOFFIREENVELOPEDSIDE - BATTLESTRINGS_TABLE_START] = sText_SeaOfFireEnvelopedSide,
+    [STRINGID_WAITINGFORPARTNERSMOVE - BATTLESTRINGS_TABLE_START] = sText_WaitingForPartnersMove,
+    [STRINGID_THERAINBOWDISAPPEARED - BATTLESTRINGS_TABLE_START] = sText_TheRainbowDisappeared,
+    [STRINGID_ARAINBOWAPPEAREDONSIDE - BATTLESTRINGS_TABLE_START] = sText_ARainbowAppearedOnSide,
+    [STRINGID_THETWOMOVESBECOMEONE - BATTLESTRINGS_TABLE_START] = sText_TheTwoMovesBecomeOne,
     [STRINGID_TARGETISHURTBYSALTCURE - BATTLESTRINGS_TABLE_START] = sText_TargetIsHurtBySaltCure,
     [STRINGID_TARGETISBEINGSALTCURED - BATTLESTRINGS_TABLE_START] = sText_TargetIsBeingSaltCured,
     [STRINGID_CURRENTMOVECANTSELECT - BATTLESTRINGS_TABLE_START] = sText_CurrentMoveCantSelect,

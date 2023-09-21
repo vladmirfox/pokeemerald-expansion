@@ -8737,6 +8737,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .argument = MOVE_EFFECT_WATER_PLEDGE,
     },
 
     [MOVE_FIRE_PLEDGE] =
@@ -8755,6 +8756,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .argument = MOVE_EFFECT_FIRE_PLEDGE,
     },
 
     [MOVE_GRASS_PLEDGE] =
@@ -8773,6 +8775,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .argument = MOVE_EFFECT_GRASS_PLEDGE,
     },
 
     [MOVE_VOLT_SWITCH] =

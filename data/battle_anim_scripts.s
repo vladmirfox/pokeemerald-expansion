@@ -949,6 +949,9 @@ gBattleAnims_General::
 	.4byte General_Snow                     @ B_ANIM_SNOW_CONTINUES
 	.4byte General_UltraBurst               @ B_ANIM_ULTRA_BURST
 	.4byte General_SaltCureDamage           @ B_ANIM_SALT_CURE_DAMAGE
+	.4byte General_Rainbow                  @ B_ANIM_RAINBOW
+	.4byte General_SeaOfFire                @ B_ANIM_SEA_OF_FIRE
+	.4byte General_Swamp                    @ B_ANIM_SWAMP
 
 	.align 2
 gBattleAnims_Special::
@@ -27138,6 +27141,30 @@ General_AffectionHangedOn_3Hearts:
 
 General_SaltCureDamage::
 	goto Status_Freeze
+
+General_Rainbow:: @ To do
+	goto Move_SUNNY_DAY
+
+General_SeaOfFire::
+	loadspritegfx ANIM_TAG_SMALL_EMBER
+	playsewithpan SE_M_FLAME_WHEEL, SOUND_PAN_TARGET
+	createsprite gEmberFlareSpriteTemplate, ANIM_TARGET, 2, -24, 24, 64, 24, 20, ANIM_TARGET, 1
+	delay 4
+	createsprite gEmberFlareSpriteTemplate, ANIM_TARGET, 2, -24, 24, 64, 24, 20, ANIM_TARGET, 1
+	delay 4
+	createsprite gEmberFlareSpriteTemplate, ANIM_TARGET, 2, -24, 24, 64, 24, 20, ANIM_TARGET, 1
+	delay 4
+	createsprite gEmberFlareSpriteTemplate, ANIM_TARGET, 2, -24, 24, 64, 24, 20, ANIM_TARGET, 1
+	delay 4
+	createsprite gEmberFlareSpriteTemplate, ANIM_TARGET, 2, -24, 24, 64, 24, 20, ANIM_TARGET, 1
+	delay 4
+	createsprite gEmberFlareSpriteTemplate, ANIM_TARGET, 2, -24, 24, 64, 24, 20, ANIM_TARGET, 1
+	delay 4
+	waitforvisualfinish
+	end
+
+General_Swamp:: @ To do
+	goto Move_HAZE
 
 SnatchMoveTrySwapFromSubstitute:
 	createvisualtask AnimTask_IsAttackerBehindSubstitute, 2
