@@ -122,10 +122,10 @@ SINGLE_BATTLE_TEST("Spiky Shield does 1/8 dmg of max hp for moves making contact
     u16 usedMove = MOVE_NONE;
     u16 hp = 400, maxHp = 400;
 
-    PARAMETRIZE {usedMove = MOVE_TACKLE; hp = 1;}
-    PARAMETRIZE {usedMove = MOVE_TACKLE;}
-    PARAMETRIZE {usedMove = MOVE_LEER;}
-    PARAMETRIZE {usedMove = MOVE_WATER_GUN;}
+    PARAMETRIZE { usedMove = MOVE_TACKLE; hp = 1;}
+    PARAMETRIZE { usedMove = MOVE_TACKLE;}
+    PARAMETRIZE { usedMove = MOVE_LEER;}
+    PARAMETRIZE { usedMove = MOVE_WATER_GUN;}
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) {HP(hp); MaxHP(maxHp); }
