@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("Protect, Detect, Spiky Shield, Baneful Bunker protect from m
     }
 }
 
-SINGLE_BATTLE_TEST("King's Shield / Silk Trap / Obstruct protect from damaging moves only and lower Atk / Spd / Def by 1 / 1 / 2 for contact moves")
+SINGLE_BATTLE_TEST("King's Shield, Silk Trap and Obstruct protect from damaging moves and lower stats on contact")
 {
     u32 j;
     static const u16 protectMoves[][3] =
