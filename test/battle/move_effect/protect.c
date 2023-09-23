@@ -266,9 +266,9 @@ DOUBLE_BATTLE_TEST("Wide Guard protects self and ally from multi-target moves")
 {
     u16 move = MOVE_NONE;
 
-    PARAMETRIZE {move = MOVE_TACKLE; }
-    PARAMETRIZE {move = MOVE_SURF; } // All targets
-    PARAMETRIZE {move = MOVE_HYPER_VOICE; } // 2 foes
+    PARAMETRIZE { move = MOVE_TACKLE; }      // Single target
+    PARAMETRIZE { move = MOVE_SURF; }        // All targets
+    PARAMETRIZE { move = MOVE_HYPER_VOICE; } // 2 foes
 
     GIVEN {
         ASSUME(gBattleMoves[MOVE_TACKLE].target == MOVE_TARGET_SELECTED);
