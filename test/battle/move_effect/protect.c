@@ -187,13 +187,13 @@ SINGLE_BATTLE_TEST("Recoil is not applied if battler was protected") // #3319
 {
     u16 move = MOVE_NONE;
 
-    PARAMETRIZE {move = MOVE_PROTECT; }
-    PARAMETRIZE {move = MOVE_DETECT; }
-    PARAMETRIZE {move = MOVE_KINGS_SHIELD; }
-    PARAMETRIZE {move = MOVE_BANEFUL_BUNKER; }
-    PARAMETRIZE {move = MOVE_SILK_TRAP; }
-    PARAMETRIZE {move = MOVE_OBSTRUCT; }
-    PARAMETRIZE {move = MOVE_SPIKY_SHIELD; }
+    PARAMETRIZE { move = MOVE_PROTECT; }
+    PARAMETRIZE { move = MOVE_DETECT; }
+    PARAMETRIZE { move = MOVE_KINGS_SHIELD; }
+    PARAMETRIZE { move = MOVE_BANEFUL_BUNKER; }
+    PARAMETRIZE { move = MOVE_SILK_TRAP; }
+    PARAMETRIZE { move = MOVE_OBSTRUCT; }
+    PARAMETRIZE { move = MOVE_SPIKY_SHIELD; }
 
     GIVEN {
         ASSUME(gBattleMoves[MOVE_DOUBLE_EDGE].effect == EFFECT_RECOIL_33);
