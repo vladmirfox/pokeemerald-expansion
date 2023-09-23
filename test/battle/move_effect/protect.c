@@ -100,6 +100,8 @@ SINGLE_BATTLE_TEST("King's Shield, Silk Trap and Obstruct protect from damaging 
                         MESSAGE("Wobbuffet's Defense harshly fell!");
                     }
                 }
+            } else {
+                NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
             }
         }
     } THEN {
