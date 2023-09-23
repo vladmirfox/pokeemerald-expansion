@@ -220,13 +220,13 @@ SINGLE_BATTLE_TEST("Multi-hit moves don't hit a protected target and fail only o
 {
     u16 move = MOVE_NONE;
 
-    PARAMETRIZE {move = MOVE_PROTECT; }
-    PARAMETRIZE {move = MOVE_DETECT; }
-    PARAMETRIZE {move = MOVE_KINGS_SHIELD; }
-    PARAMETRIZE {move = MOVE_BANEFUL_BUNKER; }
-    PARAMETRIZE {move = MOVE_SILK_TRAP; }
-    PARAMETRIZE {move = MOVE_OBSTRUCT; }
-    PARAMETRIZE {move = MOVE_SPIKY_SHIELD; }
+    PARAMETRIZE { move = MOVE_PROTECT; }
+    PARAMETRIZE { move = MOVE_DETECT; }
+    PARAMETRIZE { move = MOVE_KINGS_SHIELD; }
+    PARAMETRIZE { move = MOVE_BANEFUL_BUNKER; }
+    PARAMETRIZE { move = MOVE_SILK_TRAP; }
+    PARAMETRIZE { move = MOVE_OBSTRUCT; }
+    PARAMETRIZE { move = MOVE_SPIKY_SHIELD; }
 
     GIVEN {
         ASSUME(gBattleMoves[MOVE_ARM_THRUST].effect == EFFECT_MULTI_HIT);
