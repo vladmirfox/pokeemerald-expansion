@@ -145,7 +145,7 @@
 #define VAR_ROUTE131_STATE                               0x407E // Unused Var
 #define VAR_ROUTE132_STATE                               0x407F // Unused Var
 #define VAR_ROUTE133_STATE                               0x4080 // Unused Var
-#define VAR_ROUTE134_STATE                               0x4081 // Unused Var
+#define VAR_TROPHY_GARDEN_ENCOUNTERS                     0x4081 // Custom Var Trophy Garden Encounters
 #define VAR_LITTLEROOT_HOUSES_STATE_MAY                  0x4082
 #define VAR_DAYNIGHT                                     0x4083 // Custom Var DayNight
 #define VAR_BIRCH_LAB_STATE                              0x4084

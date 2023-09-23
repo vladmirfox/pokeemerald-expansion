@@ -114,7 +114,7 @@ static u16 GetFeebasFishingSpotId(s16 targetX, s16 targetY, u8 section)
     return spotId + 1;
 }
 
-static bool8 CheckFeebas(void)
+static bool8 CheckFeebas(u8 rod)
 {
     u8 i;
     u16 feebasSpots[NUM_FEEBAS_SPOTS];
@@ -137,9 +137,20 @@ static bool8 CheckFeebas(void)
         if (y >= sRoute119WaterTileData[3 * 2 + 0] && y <= sRoute119WaterTileData[3 * 2 + 1])
             route119Section = 2;
 
-        // 50% chance of encountering Feebas (assuming this is a Feebas spot)
-        if (Random() % 100 > 49)
+        // Chance of encountering a Feebas (provided this is a Feebas spot) depends on the Rod used.
+        switch (rod)
+        {
+        case OLD_ROD:
+            if (Random() % 100 > 49)
             return FALSE;
+            break;
+        case GOOD_ROD:
+            if (Random() % 100 > 74)
+            return FALSE;
+            break;
+        case SUPER_ROD:
+            break;
+        }
 
         FeebasSeedRng(gSaveBlock1Ptr->dewfordTrends[0].rand);
 
@@ -483,6 +494,10 @@ u16 GetCurrentMapWildMonHeaderId(void)
 			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(EVER_GRANDE_CITY))
                 i += VarGet(VAR_DAYNIGHT);
+
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LILYCOVE_CITY_LILYCOVE_MUSEUM_GARDEN) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(LILYCOVE_CITY_LILYCOVE_MUSEUM_GARDEN))
+                i += (VarGet(VAR_TROPHY_GARDEN_ENCOUNTERS) + VarGet(VAR_DAYNIGHT));
 
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ALTERING_CAVE) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(ALTERING_CAVE))
@@ -997,7 +1012,7 @@ void FishingWildEncounter(u8 rod)
 {
     u16 species;
 
-    if (CheckFeebas() == TRUE)
+    if (CheckFeebas(rod) == TRUE)
     {
         u8 level = ChooseWildMonLevel(&sWildFeebas, 0, WILD_AREA_FISHING);
 

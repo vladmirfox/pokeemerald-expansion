@@ -2417,7 +2417,7 @@
       "width": 58,
       "height": 26,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "0",
+      "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/UnusedOutdoorArea/border.bin",
       "blockdata_filepath": "data/layouts/UnusedOutdoorArea/map.bin"
     },
@@ -4650,6 +4650,16 @@
       "secondary_tileset": "gTileset_Underwater",
       "border_filepath": "data/layouts/Underwater_Route131/border.bin",
       "blockdata_filepath": "data/layouts/Underwater_Route131/map.bin"
+    },
+    {
+      "id": "LAYOUT_LILYCOVE_CITY_LILYCOVE_MUSEUM_GARDEN",
+      "name": "LilycoveCity_LilycoveMuseumGarden_Layout",
+      "width": 20,
+      "height": 22,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Lilycove",
+      "border_filepath": "data/layouts/LilycoveCity_LilycoveMuseumGarden/border.bin",
+      "blockdata_filepath": "data/layouts/LilycoveCity_LilycoveMuseumGarden/map.bin"
     }
   ]
 }

@@ -128,7 +128,28 @@ LilycoveCity_LilycoveMuseum_1F_EventScript_SchoolKidM::
 	end
 
 LilycoveCity_LilycoveMuseum_1F_EventScript_Artist1::
-	msgbox LilycoveCity_LilycoveMuseum_1F_Text_ThisMuseumIsInspiration, MSGBOX_NPC
+	lock
+	faceplayer
+	goto_if_eq VAR_TROPHY_GARDEN_ENCOUNTERS, 0, LilycoveCity_LilycoveMuseum_1F_EventScript_ISawSomething0
+	goto_if_eq VAR_TROPHY_GARDEN_ENCOUNTERS, 2, LilycoveCity_LilycoveMuseum_1F_EventScript_ISawSomething1
+	goto_if_eq VAR_TROPHY_GARDEN_ENCOUNTERS, 4, LilycoveCity_LilycoveMuseum_1F_EventScript_ISawSomething2
+	msgbox LilycoveCity_LilycoveMuseum_1F_Text_SomethingIsntRight, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_LilycoveMuseum_1F_EventScript_ISawSomething0::
+	msgbox LilycoveCity_LilycoveMuseum_1F_Text_ISawSomething0, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_LilycoveMuseum_1F_EventScript_ISawSomething1::
+	msgbox LilycoveCity_LilycoveMuseum_1F_Text_ISawSomething1, MSGBOX_DEFAULT
+	release
+	end
+
+LilycoveCity_LilycoveMuseum_1F_EventScript_ISawSomething2::
+	msgbox LilycoveCity_LilycoveMuseum_1F_Text_ISawSomething2, MSGBOX_DEFAULT
+	release
 	end
 
 LilycoveCity_LilycoveMuseum_1F_EventScript_NinjaBoy::
@@ -250,12 +271,23 @@ LilycoveCity_LilycoveMuseum_1F_Text_MustntForgetLoveForFineArts:
 	.string "But one mustn't forget our love for\n"
 	.string "the fine arts.$"
 
-LilycoveCity_LilycoveMuseum_1F_Text_ThisMuseumIsInspiration:
-	.string "This ART MUSEUM… Well, you could\n"
-	.string "see many fantastic paintings.\p"
-	.string "And the CURATOR is a wonderful person.\p"
-	.string "Among artists like myself, this MUSEUM\n"
-	.string "is an inspiration.$"
+LilycoveCity_LilycoveMuseum_1F_Text_SomethingIsntRight:
+	.string "Something seems wrong with the\n"
+	.string "Garden today…\p"
+	.string "You should let the curator know\n"
+	.string "about it.$"
+
+LilycoveCity_LilycoveMuseum_1F_Text_ISawSomething0:
+	.string "I saw a Girafarig in the Museum\n"
+	.string "Garden today!$"
+
+LilycoveCity_LilycoveMuseum_1F_Text_ISawSomething1:
+	.string "I saw a Miltank in the Museum\n"
+	.string "Garden today!$"
+
+LilycoveCity_LilycoveMuseum_1F_Text_ISawSomething2:
+	.string "I saw an Audino in the Museum\n"
+	.string "Garden today!$"
 
 LilycoveCity_LilycoveMuseum_1F_Text_ThisLadyIsPretty:
 	.string "This lady is pretty!\n"
