@@ -21,7 +21,6 @@ MauvilleCity_OnResume_Night:
 
 MauvilleCity_OnResume_Day:
 	setweather WEATHER_SUNNY
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 MauvilleCity_OnTransition:
@@ -34,7 +33,12 @@ MauvilleCity_OnTransition:
 	call_if_set FLAG_GOT_TM24_FROM_WATTSON, MauvilleCity_EventScript_MoveWattsonBackToGym
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, MauvilleCity_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, MauvilleCity_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, MauvilleCity_OnTransition_Day
+	end
+
+MauvilleCity_OnTransition_Day:
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 MauvilleCity_EventScript_MoveWattsonBackToGym::

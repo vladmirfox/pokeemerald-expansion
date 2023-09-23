@@ -11,15 +11,19 @@ FortreeCity_OnResume_Night:
 
 FortreeCity_OnResume_Day:
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	return
 
 FortreeCity_OnTransition:
 	setflag FLAG_VISITED_FORTREE_CITY
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, FortreeCity_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, FortreeCity_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, FortreeCity_OnTransition_Day
 	end
+
+FortreeCity_OnTransition_Day:
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
 
 FortreeCity_OnResume:
 	setstepcallback STEP_CB_FORTREE_BRIDGE

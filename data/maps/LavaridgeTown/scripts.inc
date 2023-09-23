@@ -21,7 +21,6 @@ LavaridgeTown_OnResume_Night:
 
 LavaridgeTown_OnResume_Day:
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 LavaridgeTown_OnTransition:
@@ -34,7 +33,12 @@ LavaridgeTown_OnTransition:
 	call_if_eq VAR_LAVARIDGE_TOWN_STATE, 1, LavaridgeTown_EventScript_HideMapNamePopup
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, LavaridgeTown_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, LavaridgeTown_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, LavaridgeTown_OnTransition_Day
+	end
+
+LavaridgeTown_OnTransition_Day:
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 LavaridgeTown_EventScript_ClearLavaridgeWhiteOut::

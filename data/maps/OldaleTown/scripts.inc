@@ -16,7 +16,13 @@ OldaleTown_OnTransition:
 	call_if_set FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_SetOldaleState
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, Oldale_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, Oldale_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, Oldale_OnTransition_Day
+	end
+
+Oldale_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 Oldale_OnResume:
@@ -34,7 +40,6 @@ Oldale_OnResume_Night:
 Oldale_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 @ This script seems pointless because nothing uses VAR_OLDALE_TOWN_STATE

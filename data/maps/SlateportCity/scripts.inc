@@ -43,7 +43,6 @@ SlateportCity_OnResume_Night:
 SlateportCity_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 SlateportCity_OnTransition:
@@ -53,7 +52,13 @@ SlateportCity_OnTransition:
 	call_if_eq VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1, SlateportCity_EventScript_SetReadyForScottScene
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, SlateportCity_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, SlateportCity_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, SlateportCity_OnTransition_Day
+	end
+
+SlateportCity_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 SlateportCity_EventScript_EnterSlateport::

@@ -3,10 +3,22 @@
 .set LOCALID_GRUNT_3, 14
 
 Route121_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route121_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, Route121_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Route121_OnResume
 	map_script MAP_SCRIPT_ON_LOAD, Route121_OnResume
 	.byte 0
+
+Route121_OnTransition:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route121_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route121_OnTransition_Day
+	end
+
+Route121_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
 
 Route121_OnResume_Night:
 	setvar VAR_DAYNIGHT, 1
@@ -17,7 +29,6 @@ Route121_OnResume_Night:
 Route121_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	return
 
 Route121_OnResume:

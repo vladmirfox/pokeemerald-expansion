@@ -1,8 +1,20 @@
 Slateport_Left_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Slateport_Left_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, Slateport_Left_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Slateport_Left_OnResume
 	map_script MAP_SCRIPT_ON_LOAD, Slateport_Left_OnResume
 	.byte 0
+
+Slateport_Left_OnTransition:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Slateport_Left_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Slateport_Left_OnTransition_Day
+	end
+
+Slateport_Left_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
 
 Slateport_Left_OnResume:
 	special GetDayOrNight
@@ -19,7 +31,6 @@ Slateport_Left_OnResume_Night:
 Slateport_Left_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 SlateportCity_Left_EventScript_OldMan::

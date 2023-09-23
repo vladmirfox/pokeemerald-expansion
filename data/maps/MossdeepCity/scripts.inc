@@ -18,7 +18,6 @@ MossdeepCity_OnResume_Night:
 
 MossdeepCity_OnResume_Day:
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	return
 
 MossdeepCity_OnResume:
@@ -36,8 +35,13 @@ MossdeepCity_OnTransition:
 	goto_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, MossdeepCity_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, MossdeepCity_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, MossdeepCity_OnTransition_Day
 	end
+
+MossdeepCity_OnTransition_Day:
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
 
 MossdeepCity_EventScript_PokefanF::
 	lock

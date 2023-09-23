@@ -16,7 +16,6 @@ LilycoveCity_OnResume_Night:
 LilycoveCity_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	return
 
 LilycoveCity_OnResume:
@@ -34,8 +33,14 @@ LilycoveCity_OnTransition:
 	goto_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, LilycoveCity_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, LilycoveCity_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, LilycoveCity_OnTransition_Day
 	end
+
+LilycoveCity_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
 
 LilycoveCity_OnLoad:
 	call_if_unset FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, LilycoveCity_EventScript_SetWailmerMetatiles

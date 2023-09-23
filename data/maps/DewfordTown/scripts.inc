@@ -31,14 +31,19 @@ DewfordTown_OnResume_Night:
 DewfordTown_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 DewfordTown_OnTransition:
 	setflag FLAG_VISITED_DEWFORD_TOWN
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, DewfordTown_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, DewfordTown_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, DewfordTown_OnTransition_Day
+	end
+
+DewfordTown_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 DewfordTown_EventScript_Briney::

@@ -13,7 +13,6 @@ Route124_OnResume_Night:
 Route124_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	return
 
 Route124_OnResume:
@@ -27,8 +26,14 @@ Route124_OnTransition:
 	goto_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, Route124_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, Route124_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, Route124_OnTransition_Day
 	end
+
+Route124_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
 
 Route124_EventScript_HuntersHouseSign::
 	msgbox Route124_Text_HuntersHouse, MSGBOX_SIGN

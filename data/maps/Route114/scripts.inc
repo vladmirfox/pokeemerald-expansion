@@ -20,7 +20,6 @@ Route114_OnResume_Night:
 Route114_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 Route114_OnTransition:
@@ -29,7 +28,13 @@ Route114_OnTransition:
 	goto_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_114_SOUTH, AbnormalWeather_StartGroudonWeather
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, Route114_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, Route114_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, Route114_OnTransition_Day
+	end
+
+Route114_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 Route114_OnLoad:

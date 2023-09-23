@@ -26,7 +26,6 @@ Route110_OnResume_Night:
 Route110_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 Route110_OnTransition:
@@ -34,7 +33,13 @@ Route110_OnTransition:
 	call Common_EventScript_SetupRivalOnBikeGfxId
 	call_if_eq VAR_CYCLING_CHALLENGE_STATE, 1, Route110_EventScript_SaveCyclingMusic
 	goto_if_eq VAR_RESULT, 1, Route110_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, Route110_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, Route110_OnTransition_Day
+	end
+
+Route110_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 Route110_EventScript_SaveCyclingMusic::

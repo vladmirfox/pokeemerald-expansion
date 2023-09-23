@@ -27,7 +27,6 @@ RustboroCity_OnResume_Night:
 RustboroCity_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 RustboroCity_OnTransition:
@@ -38,7 +37,13 @@ RustboroCity_OnTransition:
 	call_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_PositionScientistForExit
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, RustboroCity_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, RustboroCity_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, RustboroCity_OnTransition_Day
+	end
+
+RustboroCity_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 RustboroCity_EventScript_PositionScientistForExit::

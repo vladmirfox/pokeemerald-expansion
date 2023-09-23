@@ -21,7 +21,6 @@ VerdanturfTown_OnResume_Night:
 VerdanturfTown_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 VerdanturfTown_OnTransition:
@@ -29,7 +28,13 @@ VerdanturfTown_OnTransition:
 	setvar VAR_CONTEST_HALL_STATE, 0
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, VerdanturfTown_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, VerdanturfTown_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, VerdanturfTown_OnTransition_Day
+	end
+
+VerdanturfTown_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 VerdanturfTown_EventScript_Twin::

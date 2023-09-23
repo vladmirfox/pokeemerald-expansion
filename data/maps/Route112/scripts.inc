@@ -16,7 +16,6 @@ Route112_OnResume:
 Route112_OnResume_Night:
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_SHADE
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 Route112_OnResume_Day:
@@ -29,8 +28,14 @@ Route112_OnTransition:
 	clearflag FLAG_FORCE_MIRAGE_TOWER_VISIBLE
 	setvar VAR_JAGGED_PASS_ASH_WEATHER, 0
 	special GetDayOrNight
-	goto_if_eq VAR_RESULT, 1, Route112_OnResume_Night
+	goto_if_eq VAR_RESULT, 1, Route112_OnTransition_Night
 	goto_if_eq VAR_RESULT, 0, Route112_OnResume_Day
+	end
+
+Route112_OnTransition_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 Route112_EventScript_MagmaGrunts::

@@ -24,7 +24,6 @@ Route119_OnLoad_Night:
 Route119_OnLoad_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_ROUTE119_CYCLE
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	return
 
 Route119_OnResume:
@@ -47,8 +46,14 @@ Route119_OnTransition:
 	call_if_eq VAR_WEATHER_INSTITUTE_STATE, 1, Route119_EventScript_MoveInstituteWorkersDownstairs
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, Route119_OnLoad_Night
-	goto_if_eq VAR_RESULT, 0, Route119_OnLoad_Day
+	goto_if_eq VAR_RESULT, 0, Route119_OnTransition_Day
 	end
+
+Route119_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_ROUTE119_CYCLE
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
 
 Route119_EventScript_MoveInstituteWorkersDownstairs::
 	setflag FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS

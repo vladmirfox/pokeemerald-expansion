@@ -27,7 +27,6 @@ Route111_OnResume_Night:
 
 Route111_OnResume_Day:
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	return
 
 Route111_OnLoad:
@@ -105,7 +104,12 @@ Route111_EventScript_SetSandstorm::
 Route111_EventScript_EndCheckSetSandstorm::
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, Route111_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, Route111_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, Route111_OnTransition_Day
+	return
+
+Route111_OnTransition_Day:
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	return
 
 Route111_EventScript_SetWinstratesNotDefeated::

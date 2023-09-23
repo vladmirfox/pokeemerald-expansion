@@ -24,7 +24,6 @@ Route120_OnResume_Night:
 Route120_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	return
 
 Route120_EventScript_RemoveKecleonObject::
@@ -92,13 +91,20 @@ Route120_EventScript_SetCloudyWeather::
 Route120_EventScript_SetCloudyWeather_Day::
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY_CLOUDS
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	return
 
 Route120_EventScript_SetSunnyWeather::
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, Route120_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, Route120_OnResume_Day
+	goto_if_eq VAR_RESULT, 0, Route120_OnTransition_Day
 	end
+
+Route120_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	return
 
 Route120_EventScript_TrySetRainyWeather::
 	goto_if_le VAR_TEMP_0, 7, Route120_EventScript_SetRainyWeather
@@ -109,6 +115,7 @@ Route120_EventScript_TrySetRainyWeather::
 Route120_EventScript_SetRainyWeather::
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_RAIN
+	setflag FLAG_HIDE_TRAINER_DAYNIGHT
 	return
 
 Route120_EventScript_SunTrigger::

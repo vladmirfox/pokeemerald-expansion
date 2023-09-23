@@ -1,8 +1,20 @@
 MauvilleSanctuary_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, MauvilleSanctuary_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, MauvilleSanctuary_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, MauvilleSanctuary_OnResume
 	map_script MAP_SCRIPT_ON_LOAD, MauvilleSanctuary_OnResume
 	.byte 0
+
+MauvilleSanctuary_OnTransition:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, MauvilleSanctuary_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, MauvilleSanctuary_OnTransition_Day
+	end
+
+MauvilleSanctuary_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
 
 MauvilleSanctuary_OnResume:
 	special GetDayOrNight
@@ -19,7 +31,6 @@ MauvilleSanctuary_OnResume_Night:
 MauvilleSanctuary_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 MauvilleSanctuary_EventScript_Camper::

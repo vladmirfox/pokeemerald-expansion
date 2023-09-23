@@ -17,7 +17,6 @@ Route116_OnResume:
 Route116_OnResume_Night:
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_SHADE
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 Route116_OnResume_Day:
@@ -32,8 +31,14 @@ Route116_OnTransition:
 	goto_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_NORTH, AbnormalWeather_StartGroudonWeather
 	goto_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_SOUTH, AbnormalWeather_StartGroudonWeather
 	special GetDayOrNight
-	goto_if_eq VAR_RESULT, 1, Route116_OnResume_Night
+	goto_if_eq VAR_RESULT, 1, Route116_OnTransition_Night
 	goto_if_eq VAR_RESULT, 0, Route116_OnResume_Day
+	end
+
+Route116_OnTransition_Night:
+	setvar VAR_DAYNIGHT, 1
+	setweather WEATHER_SHADE
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 Route116_EventScript_SetWandasBoyfriendPos::

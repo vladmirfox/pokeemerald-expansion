@@ -24,7 +24,6 @@ Route104_OnResume_Night:
 Route104_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 Route104_OnFrame:
@@ -42,7 +41,13 @@ Route104_OnTransition:
 	call Route104_EventScript_ShowOrHideWhiteHerbFlorist
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1 Route104_OnResume_Night
-	goto_if_eq VAR_RESULT, 0 Route104_OnResume_Night
+	goto_if_eq VAR_RESULT, 0 Route104_OnTransition_Day
+	end
+
+Route104_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 Route104_EventScript_ShowOrHideWhiteHerbFlorist::

@@ -2,10 +2,22 @@
 @  These are labeled in DewfordTown/scripts.inc
 
 Route109_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route109_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, Route109_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Route109_OnResume
 	map_script MAP_SCRIPT_ON_LOAD, Route109_OnResume
 	.byte 0
+
+Route109_OnTransition:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, Route109_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, Route109_OnTransition_Day
+	end
+
+Route109_OnTransition_Day:
+	setvar VAR_DAYNIGHT, 0
+	setweather WEATHER_SUNNY
+	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	end
 
 Route109_OnResume:
 	special GetDayOrNight
@@ -22,7 +34,6 @@ Route109_OnResume_Night:
 Route109_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
 	end
 
 Route109_EventScript_StartDepartForDewford::
