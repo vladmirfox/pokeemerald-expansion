@@ -65,7 +65,7 @@ SINGLE_BATTLE_TEST("Steel Roller fails if there is no terrain on the field")
     } WHEN {
         TURN { MOVE(player, MOVE_STEEL_ROLLER); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_STEEL_ROLLER, player);
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_STEEL_ROLLER, player);
         MESSAGE("But it failed!");
     }
 }
