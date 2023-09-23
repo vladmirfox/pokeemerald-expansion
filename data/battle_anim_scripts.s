@@ -6705,29 +6705,25 @@ LeafTornadoVortex:
 	return
 
 Move_STEAMROLLER:
-	loadspritegfx ANIM_TAG_IMPACT
-	monbg ANIM_TARGET
-	setalpha 12, 8
-	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, 0, 26, 0, 0, 5
-	delay 6
-	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 4, -10, 0, 1, 0
-	loopsewithpan SE_M_MEGA_KICK2, SOUND_PAN_TARGET, 6, 3
-	delay 1
-	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, 1, -28, 0, 0, 3
-	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 4, 0, 3, 1, 0
-	delay 1
-	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 4, 10, 6, 1, 0
-	delay 1
+	loadspritegfx ANIM_TAG_ROUND_SHADOW
+	loadspritegfx ANIM_TAG_ROCKS
+	loadspritegfx ANIM_TAG_STEAMROLLER
+	monbg ANIM_ATTACKER
+	playsewithpan SE_M_TELEPORT, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_AttackerFadeToInvisible, 5, 0
+	createsprite gBounceBallShrinkSpriteTemplate, ANIM_ATTACKER, 2, 0, 0
 	waitforvisualfinish
-	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
-	waitforvisualfinish
-	delay 10
-	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 6
 	delay 5
-	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 1, 0, 6
+	loopsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET, 4, 8
+	createsprite gSteamRollerSpriteTemplate, ANIM_TARGET, 2
+	delay 14
+	createvisualtask AnimTask_SquishTarget, 0x2
+	createvisualtask SoundTask_PlaySE1WithPanning, 5, 141, SOUND_PAN_TARGET
+	delay 40
+	visible ANIM_ATTACKER
+	delay 2
 	waitforvisualfinish
-	clearmonbg ANIM_TARGET
-	blendoff
+	clearmonbg ANIM_ATTACKER
 	end
 
 Move_COTTON_GUARD:

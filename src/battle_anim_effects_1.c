@@ -156,6 +156,8 @@ static void AnimRockPolishSparkle(struct Sprite *);
 static void AnimPoisonJabProjectile(struct Sprite *);
 static void AnimNightSlash(struct Sprite *);
 static void AnimPluck(struct Sprite *);
+static void AnimSteamroller(struct Sprite *);
+static void AnimSteamroller_Step(struct Sprite *);
 
 const union AnimCmd gPowderParticlesAnimCmds[] =
 {
@@ -2894,6 +2896,53 @@ const union AnimCmd *const gWoodHammerSmallAnims[] =
     gWoodHammerSmallAnimCmd_2,
     gWoodHammerSmallAnimCmd_3,
 };
+
+const struct SpriteTemplate gSteamRollerSpriteTemplate =
+{
+    .tileTag = ANIM_TAG_STEAMROLLER,
+    .paletteTag = ANIM_TAG_STEAMROLLER,
+    .oam = &gOamData_AffineDouble_ObjNormal_64x64,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimSteamroller,
+};
+
+static void AnimSteamroller(struct Sprite *sprite)
+{
+    u16 rotation;
+    s16 posx = sprite->x;
+    s16 posy = sprite->y;
+
+    sprite->x = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_X_2);
+    sprite->y = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_Y_PIC_OFFSET);
+
+    sprite->data[4] = sprite->x << 4;
+    sprite->data[5] = sprite->y << 4;
+
+    sprite->data[6] = ((posx - sprite->x) << 4) / 24;
+    sprite->data[7] = ((posy - sprite->y) << 4) / 24;
+
+    rotation = ArcTan2Neg(posx - sprite->x, posy - sprite->y);
+    rotation -= 16384;
+
+    TrySetSpriteRotScale(sprite, TRUE, 0x100, 0x100, rotation);
+
+    sprite->callback = AnimSteamroller_Step;
+}
+
+void AnimSteamroller_Step(struct Sprite *sprite)
+{
+    sprite->data[4] += sprite->data[6];
+    sprite->data[5] += sprite->data[7];
+
+    sprite->x = sprite->data[4] >> 4;
+    sprite->y = sprite->data[5] >> 4;
+
+    if (sprite->x > DISPLAY_WIDTH + 45 || sprite->x < -45
+     || sprite->y > 157 || sprite->y < -45)
+        DestroySpriteAndMatrix(sprite);
+}
 
 const struct SpriteTemplate gGrassKnotSpriteTemplate =
 {
