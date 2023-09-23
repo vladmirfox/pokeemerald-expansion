@@ -22,7 +22,12 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Protect, Detect, Spiky Shield and Baneful Bunker protect from all moves")
 {
     u32 j;
-    static const u16 protectMoves[] = {MOVE_PROTECT, MOVE_DETECT, MOVE_SPIKY_SHIELD, MOVE_BANEFUL_BUNKER};
+    static const u16 protectMoves[] = {
+        MOVE_PROTECT,
+        MOVE_DETECT,
+        MOVE_SPIKY_SHIELD,
+        MOVE_BANEFUL_BUNKER,
+    };
     u16 protectMove = MOVE_NONE;
     u16 usedMove = MOVE_NONE;
 
