@@ -7,8 +7,8 @@ ASSUMPTIONS
     ASSUME(gBattleMoves[MOVE_PSYCHIC_TERRAIN].effect == EFFECT_PSYCHIC_TERRAIN);
     ASSUME(gBattleMoves[MOVE_GRASSY_TERRAIN].effect == EFFECT_GRASSY_TERRAIN);
     ASSUME(gBattleMoves[MOVE_MISTY_TERRAIN].effect == EFFECT_MISTY_TERRAIN);
-    ASSUME(gBattleMoves[MOVE_STEEL_ROLLER].effect == EFFECT_RECOIL_IF_MISS);
-    ASSUME(gBattleMoves[MOVE_ICE_SPINNER].effect == EFFECT_RECOIL_IF_MISS);
+    ASSUME(gBattleMoves[MOVE_STEEL_ROLLER].effect == EFFECT_HIT_SET_REMOVE_TERRAIN);
+    ASSUME(gBattleMoves[MOVE_ICE_SPINNER].effect == EFFECT_HIT_SET_REMOVE_TERRAIN);
 }
 
 SINGLE_BATTLE_TEST("Steel Roller and Ice Spinner can remove a terrain from the field")
@@ -65,6 +65,7 @@ SINGLE_BATTLE_TEST("Steel Roller fails if there is no terrain on the field")
     } WHEN {
         TURN { MOVE(player, MOVE_STEEL_ROLLER); }
     } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STEEL_ROLLER, player);
         MESSAGE("But it failed!");
     }
 }
