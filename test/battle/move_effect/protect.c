@@ -33,9 +33,9 @@ SINGLE_BATTLE_TEST("Protect, Detect, Spiky Shield and Baneful Bunker protect fro
 
     for (j = 0; j < ARRAY_COUNT(protectMoves); j++)
     {
-        PARAMETRIZE {protectMove = protectMoves[j]; usedMove = MOVE_TACKLE; }
-        PARAMETRIZE {protectMove = protectMoves[j]; usedMove = MOVE_LEER; }
-        PARAMETRIZE {protectMove = protectMoves[j]; usedMove = MOVE_WATER_GUN; }
+        PARAMETRIZE { protectMove = protectMoves[j]; usedMove = MOVE_TACKLE; }
+        PARAMETRIZE { protectMove = protectMoves[j]; usedMove = MOVE_LEER; }
+        PARAMETRIZE { protectMove = protectMoves[j]; usedMove = MOVE_WATER_GUN; }
     }
 
     GIVEN {
