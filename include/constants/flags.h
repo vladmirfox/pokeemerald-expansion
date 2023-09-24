@@ -511,8 +511,8 @@
 #define FLAG_DEFEATED_HO_OH                  0x1DC
 #define FLAG_DEFEATED_LUGIA                  0x1DD
 
-#define FLAG_UNUSED_0x1DE                    0x1DE // Unused Flag
-#define FLAG_UNUSED_0x1DF                    0x1DF // Unused Flag
+#define FLAG_PARTY_MOVES                     0x1DE // Custom Flag
+#define FLAG_RELEARN_AVAILABLE               0x1DF // Custom Flag
 #define FLAG_UNUSED_0x1E0                    0x1E0 // Unused Flag
 #define FLAG_UNUSED_0x1E1                    0x1E1 // Unused Flag
 #define FLAG_UNUSED_0x1E2                    0x1E2 // Unused Flag
@@ -1321,7 +1321,7 @@
 #define FLAG_DEFEATED_FORTREE_GYM                                   0x4F5
 #define FLAG_DEFEATED_MOSSDEEP_GYM                                  0x4F6
 #define FLAG_DEFEATED_SOOTOPOLIS_GYM                                0x4F7
-#define FLAG_DEFEATED_METEOR_FALLS_STEVEN                           0x4F8 // Now Unused
+#define FLAG_DEFEATED_METEOR_FALLS_STEVEN                           0x4F8 // Not Sure About This One
 
 #define FLAG_UNUSED_0x4F9                                           0x4F9 // Unused Flag
 #define FLAG_UNUSED_0x4FA                                           0x4FA // Unused Flag
@@ -1385,7 +1385,7 @@
 #define FLAG_NURSE_UNION_ROOM_REMINDER              (SYSTEM_FLAGS + 0x20)
 
 #define FLAG_SYS_DEXNAV_SEARCH                      (SYSTEM_FLAGS + 0x21)
-#define FLAG_SHINY_CREATION                         (SYSTEM_FLAGS + 0x22)   // force creation of a shiny mon
+#define FLAG_SHINY_CREATION                         (SYSTEM_FLAGS + 0x22) // force creation of a shiny mon
 #define FLAG_UNUSED_0x883                           (SYSTEM_FLAGS + 0x23) // Debug: OW_FLAG_NO_ENCOUNTER (Do not change)
 #define FLAG_UNUSED_0x884                           (SYSTEM_FLAGS + 0x24) // Debug: OW_FLAG_NO_TRAINER_SEE (Do not change)
 #define FLAG_UNUSED_0x885                           (SYSTEM_FLAGS + 0x25) // Debug: OW_FLAG_NO_COLLISION (Do not change)

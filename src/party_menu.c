@@ -73,11 +73,13 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "move_relearner.h"
 
 enum {
     MENU_SUMMARY,
     MENU_SWITCH,
     MENU_NICKNAME,
+    MENU_MOVES,
     MENU_CANCEL1,
     MENU_ITEM,
     MENU_GIVE,
@@ -195,7 +197,7 @@ struct PartyMenuInternal
     u32 spriteIdCancelPokeball:7;
     u32 messageId:14;
     u8 windowId[3];
-    u8 actions[8];
+    u8 actions[10];
     u8 numActions;
     // In vanilla Emerald, only the first 0xB0 hwords (0x160 bytes) are actually used.
     // However, a full 0x100 hwords (0x200 bytes) are allocated.
@@ -341,7 +343,6 @@ static void Task_UpdateHeldItemSprite(u8);
 static void Task_HandleSelectionMenuInput(u8);
 static void CB2_ShowPokemonSummaryScreen(void);
 static void UpdatePartyToBattleOrder(void);
-static void CB2_ReturnToPartyMenuFromSummaryScreen(void);
 static void SlidePartyMenuBoxOneStep(u8);
 static void Task_SlideSelectedSlotsOffscreen(u8);
 static void SwitchPartyMon(void);
@@ -460,6 +461,7 @@ static void BlitBitmapToPartyWindow_LeftColumn(u8, u8, u8, u8, u8, bool8);
 static void BlitBitmapToPartyWindow_RightColumn(u8, u8, u8, u8, u8, bool8);
 static void CursorCb_Summary(u8);
 static void CursorCb_Nickname(u8);
+static void CursorCb_Moves(u8);
 static void CursorCb_Switch(u8);
 static void CursorCb_Cancel1(u8);
 static void CursorCb_Item(u8);
@@ -2693,11 +2695,11 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_MAIL);
         else
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_ITEM);
+        if (GetNumberOfRelearnableMoves(&mons[slotId]) != 0 && FlagGet(FLAG_RELEARN_AVAILABLE))
+		AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_MOVES);
     }
     if (!IsTradedMon(&mons[slotId]))
-    {
-    AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_NICKNAME);
-    }
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_NICKNAME);
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_CANCEL1);
 }
 
@@ -2839,6 +2841,18 @@ static void CursorCb_Summary(u8 taskId)
     Task_ClosePartyMenu(taskId);
 }
 
+static void CursorCb_Moves(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+	FlagSet(FLAG_PARTY_MOVES);
+    gSpecialVar_0x8004 = gPartyMenu.slotId;
+	gSpecialVar_0x8005 = GetNumberOfRelearnableMoves(&gPlayerParty[gSpecialVar_0x8004]);
+	DisplayPartyPokemonDataForRelearner(gSpecialVar_0x8004);
+	TeachMoveRelearnerMove();
+    sPartyMenuInternal->exitCallback = TeachMoveRelearnerMove;
+    Task_ClosePartyMenu(taskId);
+}
+
 void ChangePokemonNickname(void);
 static void CursorCb_Nickname(u8 taskId)
 {
@@ -2861,7 +2875,7 @@ static void CB2_ShowPokemonSummaryScreen(void)
     }
 }
 
-static void CB2_ReturnToPartyMenuFromSummaryScreen(void)
+void CB2_ReturnToPartyMenuFromSummaryScreen(void)
 {
     gPaletteFade.bufferTransferDisabled = TRUE;
     gPartyMenu.slotId = gLastViewedMonIndex;
