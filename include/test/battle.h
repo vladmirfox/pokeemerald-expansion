@@ -470,7 +470,7 @@
 #define MAX_TURNS 16
 #define MAX_QUEUED_EVENTS 25
 
-enum { BATTLE_TEST_SINGLES, BATTLE_TEST_DOUBLES };
+enum { BATTLE_TEST_SINGLES, BATTLE_TEST_DOUBLES, BATTLE_TEST_WILD };
 
 typedef void (*SingleBattleTestFunction)(void *, u32, struct BattlePokemon *, struct BattlePokemon *);
 typedef void (*DoubleBattleTestFunction)(void *, u32, struct BattlePokemon *, struct BattlePokemon *, struct BattlePokemon *, struct BattlePokemon *);
@@ -492,6 +492,7 @@ enum
     QUEUED_ABILITY_POPUP_EVENT,
     QUEUED_ANIMATION_EVENT,
     QUEUED_HP_EVENT,
+    QUEUED_EXP_EVENT,
     QUEUED_MESSAGE_EVENT,
     QUEUED_STATUS_EVENT,
 };
@@ -511,8 +512,16 @@ struct QueuedAnimationEvent
 };
 
 enum { HP_EVENT_NEW_HP, HP_EVENT_DELTA_HP };
+enum { EXP_EVENT_NEW_EXP, EXP_EVENT_DELTA_EXP };
 
 struct QueuedHPEvent
+{
+    u32 battlerId:3;
+    u32 type:1;
+    u32 address:28;
+};
+
+struct QueuedExpEvent
 {
     u32 battlerId:3;
     u32 type:1;
@@ -541,6 +550,7 @@ struct QueuedEvent
         struct QueuedAbilityEvent ability;
         struct QueuedAnimationEvent animation;
         struct QueuedHPEvent hp;
+        struct QueuedExpEvent exp;
         struct QueuedMessageEvent message;
         struct QueuedStatusEvent status;
     } as;
@@ -676,6 +686,24 @@ extern struct BattleTestRunnerState *gBattleTestRunnerState;
     }; \
     static void CAT(Test, __LINE__)(struct CAT(Result, __LINE__) *results, u32 i, struct BattlePokemon *player, struct BattlePokemon *opponent)
 
+#define WILD_BATTLE_TEST(_name, ...) \
+    struct CAT(Result, __LINE__) { MEMBERS(__VA_ARGS__) }; \
+    static void CAT(Test, __LINE__)(struct CAT(Result, __LINE__) *, u32, struct BattlePokemon *, struct BattlePokemon *); \
+    __attribute__((section(".tests"))) static const struct Test CAT(sTest, __LINE__) = \
+    { \
+        .name = _name, \
+        .filename = __FILE__, \
+        .runner = &gBattleTestRunner, \
+        .data = (void *)&(const struct BattleTest) \
+        { \
+            .type = BATTLE_TEST_WILD, \
+            .sourceLine = __LINE__, \
+            .function = { .singles = (SingleBattleTestFunction)CAT(Test, __LINE__) }, \
+            .resultsSize = sizeof(struct CAT(Result, __LINE__)), \
+        }, \
+    }; \
+    static void CAT(Test, __LINE__)(struct CAT(Result, __LINE__) *results, u32 i, struct BattlePokemon *player, struct BattlePokemon *opponent)
+
 #define DOUBLE_BATTLE_TEST(_name, ...) \
     struct CAT(Result, __LINE__) { MEMBERS(__VA_ARGS__) }; \
     static void CAT(Test, __LINE__)(struct CAT(Result, __LINE__) *, u32, struct BattlePokemon *, struct BattlePokemon *, struct BattlePokemon *, struct BattlePokemon *); \
@@ -741,6 +769,7 @@ struct moveWithPP {
 #define MovesWithPP(movewithpp1, ...) MovesWithPP_(__LINE__, (struct moveWithPP[MAX_MON_MOVES]) {movewithpp1, __VA_ARGS__})
 #define Friendship(friendship) Friendship_(__LINE__, friendship)
 #define Status1(status1) Status1_(__LINE__, status1)
+#define OtName(otName) do {static const u8 otName_[] = _(otName); OtName_(__LINE__, otName_);} while (0)
 
 void OpenPokemon(u32 sourceLine, u32 side, u32 species);
 void ClosePokemon(u32 sourceLine);
@@ -762,6 +791,7 @@ void Moves_(u32 sourceLine, const u16 moves[MAX_MON_MOVES]);
 void MovesWithPP_(u32 sourceLine, struct moveWithPP moveWithPP[MAX_MON_MOVES]);
 void Friendship_(u32 sourceLine, u32 friendship);
 void Status1_(u32 sourceLine, u32 status1);
+void OtName_(u32 sourceLine, const u8 *otName);
 
 #define PLAYER_PARTY (gBattleTestRunnerState->data.recordedBattle.playerParty)
 #define OPPONENT_PARTY (gBattleTestRunnerState->data.recordedBattle.opponentParty)
@@ -837,6 +867,7 @@ void SendOut(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 #define ABILITY_POPUP(battler, ...) QueueAbility(__LINE__, battler, (struct AbilityEventContext) { __VA_ARGS__ })
 #define ANIMATION(type, id, ...) QueueAnimation(__LINE__, type, id, (struct AnimationEventContext) { __VA_ARGS__ })
 #define HP_BAR(battler, ...) QueueHP(__LINE__, battler, (struct HPEventContext) { APPEND_TRUE(__VA_ARGS__) })
+#define EXPERIENCE_BAR(battler, ...) QueueExp(__LINE__, battler, (struct ExpEventContext) { APPEND_TRUE(__VA_ARGS__) })
 // Static const is needed to make the modern compiler put the pattern variable in the .rodata section, instead of putting it on stack(which can break the game).
 #define MESSAGE(pattern) do {static const u8 msg[] = _(pattern); QueueMessage(__LINE__, msg);} while (0)
 #define STATUS_ICON(battler, status) QueueStatus(__LINE__, battler, (struct StatusEventContext) { status })
@@ -872,6 +903,14 @@ struct HPEventContext
     bool8 explicitCaptureDamage;
 };
 
+struct ExpEventContext
+{
+    u8 _;
+    u32 exp;
+    s32 *captureGainedExp;
+    bool8 explicitCaptureGainedExp;
+};
+
 struct StatusEventContext
 {
     u16 status1;
@@ -891,6 +930,7 @@ void CloseQueueGroup(u32 sourceLine);
 void QueueAbility(u32 sourceLine, struct BattlePokemon *battler, struct AbilityEventContext);
 void QueueAnimation(u32 sourceLine, u32 type, u32 id, struct AnimationEventContext);
 void QueueHP(u32 sourceLine, struct BattlePokemon *battler, struct HPEventContext);
+void QueueExp(u32 sourceLine, struct BattlePokemon *battler, struct ExpEventContext);
 void QueueMessage(u32 sourceLine, const u8 *pattern);
 void QueueStatus(u32 sourceLine, struct BattlePokemon *battler, struct StatusEventContext);
 
