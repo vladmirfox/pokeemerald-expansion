@@ -9526,7 +9526,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_SPD_UP_1,
         .magicCoatAffected = TRUE,
-        .skyBattleBanned = B_SKY_BATTLE_STRICT_MOVES == FALSE
+        .skyBattleBanned = TRUE,
     },
 
     [MOVE_FELL_STINGER] =
@@ -11070,7 +11070,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .skyBattleBanned = B_SKY_BATTLE_STRICT_MOVES == FALSE
+        .skyBattleBanned = TRUE,
     },
 
     [MOVE_SHADOW_BONE] =
@@ -11816,7 +11816,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .metronomeBanned = TRUE,
-        .skyBattleBanned = B_SKY_BATTLE_STRICT_MOVES == FALSE
+        .skyBattleBanned = TRUE,
     },
 
     [MOVE_DECORATE] =
@@ -11865,7 +11865,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .metronomeBanned = TRUE,
-        .skyBattleBanned = B_SKY_BATTLE_STRICT_MOVES == FALSE
+        .skyBattleBanned = TRUE,
     },
 
     [MOVE_PYRO_BALL] =
@@ -12174,7 +12174,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .skyBattleBanned = B_SKY_BATTLE_STRICT_MOVES == FALSE
+        .skyBattleBanned = TRUE,
     },
 
     [MOVE_SCALE_SHOT] =
@@ -12253,7 +12253,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .skyBattleBanned = B_SKY_BATTLE_STRICT_MOVES == FALSE
+        .skyBattleBanned = TRUE,
     },
 
     [MOVE_RISING_VOLTAGE] =
@@ -12764,7 +12764,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .skyBattleBanned = B_SKY_BATTLE_STRICT_MOVES == FALSE
+        .skyBattleBanned = TRUE,
     },
 
     [MOVE_CHLOROBLAST] =
@@ -13195,7 +13195,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .skyBattleBanned = B_SKY_BATTLE_STRICT_MOVES == FALSE
+        .skyBattleBanned = TRUE,
     },
 
     [MOVE_POPULATION_BOMB] =
@@ -13230,7 +13230,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .argument = 1, // Remove the active field terrain if there is one.
-        .skyBattleBanned = B_SKY_BATTLE_STRICT_MOVES == FALSE
+        .skyBattleBanned = TRUE,
     },
 
     [MOVE_GLAIVE_RUSH] =
@@ -13923,7 +13923,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = 0,
-        .skyBattleBanned = B_SKY_BATTLE_STRICT_MOVES == FALSE
+        .skyBattleBanned = TRUE,
     },
     [MOVE_CONTINENTAL_CRUSH] =
     {

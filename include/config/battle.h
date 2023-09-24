@@ -170,8 +170,6 @@
 #define B_VAR_SKY_BATTLE            0           // If this var has a value, the game will remember the positions of Pokémon used in Sky Battles.
 
 #define B_SKY_BATTLE_STRICT_ELIGIBILITY FALSE //If TRUE, Sky Battles will use the eligibility from Pokémon XY. If FALSE, all Flying-types or Pokémon with Levitate are allowed.
-#define B_SKY_BATTLE_STRICT_MOVES       FALSE //If TRUE, Sky Battles will use the banned moves from Pokémon XY. If FALSE, more moves that debuted after Pokémon XY are added.
-#define B_SKY_BATTLE_STRICT_MECHANICS   FALSE //If TRUE, Sky Battles will use the exact mechanics from Pokémon XY. If FALSE, moves and Abilities that set Terrain, Toxic Spikes, or Spikes will not have those effects activate.
 
 // Flag and Var settings
 #define B_RESET_FLAGS_VARS_AFTER_WHITEOUT TRUE // If TRUE, Overworld_ResetBattleFlagsAndVars will reset battle-related Flags and Vars when the player whites out.

@@ -4049,11 +4049,7 @@ bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility)
 
 static bool32 TryChangeBattleTerrain(u32 battler, u32 statusFlag, u8 *timer)
 {
-#if B_SKY_BATTLE_STRICT_MECHANICS == TRUE
-    if (!(gFieldStatuses & statusFlag))
-#else
     if ((!(gFieldStatuses & statusFlag) && (!gBattleStruct->isSkyBattle)))
-#endif
     {
         gFieldStatuses &= ~(STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_GRASSY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_PSYCHIC_TERRAIN);
         gFieldStatuses |= statusFlag;
@@ -5708,9 +5704,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             break;
         case ABILITY_TOXIC_DEBRIS:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-            #if B_SKY_BATTLE_STRICT_MECHANICS == FALSE
              && (!gBattleStruct->isSkyBattle)
-            #endif
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && IS_MOVE_PHYSICAL(gCurrentMove)
              && TARGET_TURN_DAMAGED
