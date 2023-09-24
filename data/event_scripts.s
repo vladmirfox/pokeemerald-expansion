@@ -852,7 +852,7 @@ gText_MomOrDadMightLikeThisProgram::
 	.string "Better get going!$"
 
 gText_WhichFloorWouldYouLike::
-	.string "Welcome to LILYCOVE DEPARTMENT STORE.\p"
+	.string "Welcome to LILYCOVE DEPARTMENT Store.\p"
 	.string "Which floor would you like?$"
 
 gText_SandstormIsVicious::
@@ -861,14 +861,14 @@ gText_SandstormIsVicious::
 
 gText_SelectWithoutRegisteredItem::
 	.string "Up to four items in the Bag can be\n"
-	.string "registered to SELECT for easy use.$"
+	.string "registered to Select for easy use.$"
 
 gText_PokemonTrainerSchoolEmail::
-	.string "There's an e-mail from Pokémon TRAINER\n"
+	.string "There's an e-mail from Pokémon Trainer\n"
 	.string "SCHOOL.\p"
 	.string "… … … … … …\p"
 	.string "A Pokémon may learn up to four moves.\p"
-	.string "A TRAINER's expertise is tested on the\n"
+	.string "A Trainer's expertise is tested on the\n"
 	.string "move sets chosen for Pokémon.\p"
 	.string "… … … … … …$"
 

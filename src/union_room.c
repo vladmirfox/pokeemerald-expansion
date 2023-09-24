@@ -3078,10 +3078,10 @@ static void Task_RunUnionRoom(u8 taskId)
             {
                 switch (input)
                 {
-                case 1: // REGISTER
+                case 1: // Register
                     ScheduleFieldMessageWithFollowupState(UR_STATE_REGISTER_SELECT_MON_FADE, sText_WhichMonWillYouOffer);
                     break;
-                case 2: // INFO
+                case 2: // Info
                     ScheduleFieldMessageWithFollowupState(UR_STATE_REGISTER_PROMPT_HANDLE_INPUT, sText_TradingBoardInfo);
                     break;
                 }

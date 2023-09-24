@@ -12,7 +12,7 @@ Route104_Text_PlantBerriesInSoilTakeThis:
 
 Route104_Text_TrainersOftenMakeMonHoldBerries:
 	.string "The way you look, you must be a\n"
-	.string "TRAINER, no?\p"
+	.string "Trainer, no?\p"
 	.string "TRAINERS often make Pokémon hold\n"
 	.string "BERRIES.\p"
 	.string "It's up to you whether to grow BERRIES\n"
@@ -81,7 +81,7 @@ LilycoveCity_Text_BerrySuitsYou:
 
 LilycoveCity_Text_BecauseYoureTrainer:
 	.string "When it gets right down to it…\p"
-	.string "It's because you're a TRAINER!$"
+	.string "It's because you're a Trainer!$"
 
 LilycoveCity_Text_PokeblocksSuitPokemon:
 	.string "When it gets right down to it…\p"

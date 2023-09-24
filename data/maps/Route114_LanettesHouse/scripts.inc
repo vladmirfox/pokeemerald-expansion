@@ -102,7 +102,7 @@ Route114_LanettesHouse_Text_ResearchNotesPage1:
 	.string "It's LANETTE's research notes.\n"
 	.string "There's information about BOXES.\p"
 	.string "Design BOXES to hold 30 Pokémon each.\p"
-	.string "Each TRAINER should be able to store\n"
+	.string "Each Trainer should be able to store\n"
 	.string "420 Pokémon on the PC system.\p"
 	.string "Keep reading?$"
 
@@ -110,17 +110,17 @@ Route114_LanettesHouse_Text_ResearchNotesPage2:
 	.string "A marking system should be added to\n"
 	.string "make Pokémon easier to organize.\p"
 	.string "The name and wallpaper design of each\n"
-	.string "BOX will be made changeable to please\l"
+	.string "Box will be made changeable to please\l"
 	.string "the stored Pokémon.\p"
 	.string "Keep reading?$"
 
 Route114_LanettesHouse_Text_ResearchNotesPage3:
 	.string "When storing a Pokémon, it should be\n"
-	.string "sent to the BOX inspected last.\p"
-	.string "If that BOX is full, the received\n"
-	.string "Pokémon is stored in the next BOX.\p"
-	.string "In other words, when a BOX is examined,\n"
-	.string "it is automatically selected as the BOX\l"
+	.string "sent to the Box inspected last.\p"
+	.string "If that Box is full, the received\n"
+	.string "Pokémon is stored in the next Box.\p"
+	.string "In other words, when a Box is examined,\n"
+	.string "it is automatically selected as the Box\l"
 	.string "to which Pokémon are sent.$"
 
 Route114_LanettesHouse_Text_ClosedTheNotebook:

@@ -469,7 +469,7 @@ Route120_Text_StevenGoodbye:
 	.string "I enjoy seeing Pokémon and TRAINERS\n"
 	.string "who strive together.\p"
 	.string "I think you're doing great.\p"
-	.string "PROFESSOR COSMO choose a great TRAINER\n"
+	.string "PROFESSOR COSMO choose a great Trainer\n"
 	.string "to wield his MEGA BRACELET.\p"
 	.string "Well, let's meet again somewhere.$"
 

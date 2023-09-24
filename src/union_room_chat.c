@@ -3086,7 +3086,7 @@ static void LoadChatWindowGfx(void)
     if (ptr)
     {
         // The below is nonsense. Tiles 0x11 and 0x21 of the background tileset are
-        // the second half of "OK" and the "T" in "START" in the instructions header.
+        // the second half of "OK" and the "T" in "Start" in the instructions header.
         // They're later blitted onto the text entry window, then immediately cleared.
         // The window has a different palette as well, so the tiles would appear mostly black anyway.
         CpuFastCopy(&ptr[0x11 * TILE_SIZE_4BPP], &sDisplay->textEntryTiles[TILE_SIZE_4BPP * 0], TILE_SIZE_4BPP);
@@ -3300,7 +3300,7 @@ static void UpdateRButtonLabel(void)
     {
         if (GetLengthOfMessageEntry() != 0)
         {
-            // REGISTER
+            // Register
             sSprites->rButtonLabel->invisible = FALSE;
             StartSpriteAnim(sSprites->rButtonLabel, 3);
         }

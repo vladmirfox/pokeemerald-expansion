@@ -202,7 +202,7 @@ LilycoveCity_LilycoveMuseum_1F_Text_NotDisturbYouTakeYourTime:
 
 LilycoveCity_LilycoveMuseum_1F_Text_HaveYouAnInterestInPaintings:
 	.string "Oh? I do believe that you seem to\n"
-	.string "be a Pokémon TRAINER.\p"
+	.string "be a Pokémon Trainer.\p"
 	.string "Have you an interest in paintings,\n"
 	.string "too?$"
 
@@ -321,6 +321,6 @@ LilycoveCity_LilycoveMuseum_1F_Text_MuseumTouristDestination:
 	.string "tourist destination.\p"
 	.string "It's great for LILYCOVE…\n"
 	.string "No, great for the HOENN region!\p"
-	.string "This is what I've heard--a lone TRAINER\n"
+	.string "This is what I've heard--a lone Trainer\n"
 	.string "procured all the paintings upstairs.$"
 

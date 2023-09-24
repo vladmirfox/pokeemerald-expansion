@@ -301,5 +301,5 @@ EventScript_CantRegisterRareCandy::
 
 Text_CantRegisterRareCandy:
 	.string "Sorry! You can't use this item\n"
-	.string "with SELECT. It breaks everything.$"
+	.string "with Select. It breaks everything.$"
 

@@ -199,10 +199,10 @@ Route113_Text_RouteSignFallarbor:
 	.string "{LEFT_ARROW} FALLARBOR TOWN$"
 
 Route113_Text_TrainerTipsRegisterKeyItems:
-	.string "TRAINER TIPS\p"
-	.string "You may register up to four KEY ITEMS\n"
-	.string "in your Bag to SELECT.\p"
-	.string "Simply press SELECT to use\n"
+	.string "Trainer TIPS\p"
+	.string "You may register up to four Key Items\n"
+	.string "in your Bag to Select.\p"
+	.string "Simply press Select to use\n"
 	.string "the registered items conveniently.$"
 
 Route113_Text_GlassWorkshopSign:
