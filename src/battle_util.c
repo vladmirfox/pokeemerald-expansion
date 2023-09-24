@@ -11186,6 +11186,7 @@ bool32 IsGen6ExpShareEnabled(void)
 #else
     return FlagGet(I_EXP_SHARE_FLAG);
 #endif
+}
 
 bool8 CanMonParticipateInSkyBattle(struct Pokemon *mon)
 {
