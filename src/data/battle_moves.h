@@ -2895,6 +2895,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .strikeCount = 3,
     },
 
     [MOVE_THIEF] =
@@ -9974,7 +9975,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .soundMove = TRUE,
+        .sheerForceBoost = TRUE,
         .thawsUser = TRUE,
         .metronomeBanned = TRUE,
     },
@@ -10724,7 +10725,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .ballisticMove = B_UPDATED_MOVE_FLAGS < GEN_9,
+        .ballisticMove = TRUE,
     },
 
     [MOVE_ANCHOR_SHOT] =
@@ -12178,7 +12179,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_SCALE_SHOT] =
     {
-        .effect = EFFECT_SCALE_SHOT,
+        .effect = EFFECT_MULTI_HIT,
         .power = 25,
         .type = TYPE_DRAGON,
         .accuracy = 90,
@@ -12188,6 +12189,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .argument = MOVE_EFFECT_SCALE_SHOT,
     },
 
     [MOVE_METEOR_BEAM] =
@@ -12345,7 +12347,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_CORROSIVE_GAS] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_CORROSIVE_GAS, TODO
+        .effect = EFFECT_CORROSIVE_GAS,
         .power = 0,
         .type = TYPE_POISON,
         .accuracy = 100,
@@ -12400,6 +12402,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .strikeCount = 3,
     },
 
     [MOVE_DUAL_WINGBEAT] =
@@ -12771,7 +12774,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         #else
             .power = 120,
         #endif
-        .effect = EFFECT_RECOIL_50,
+        .effect = EFFECT_STEEL_BEAM,
         .type = TYPE_GRASS,
         .accuracy = 95,
         .pp = 5,
@@ -13181,7 +13184,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_SPIN_OUT] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_SPIN_OUT
+        .effect = EFFECT_SPIN_OUT,
         .power = 100,
         .type = TYPE_STEEL,
         .accuracy = 100,
@@ -13197,7 +13200,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_POPULATION_BOMB] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_MULTI_HIT maybe?
+        .effect = EFFECT_POPULATION_BOMB,
         .power = 20,
         .type = TYPE_NORMAL,
         .accuracy = 90,
@@ -13210,6 +13213,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .makesContact = TRUE,
         .slicingMove = TRUE,
         .metronomeBanned = TRUE,
+        .strikeCount = 10,
     },
 
     [MOVE_ICE_SPINNER] =
@@ -13260,7 +13264,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_SALT_CURE] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_SALT_CURE
+        .effect = EFFECT_SALT_CURE,
         .power = 40,
         .type = TYPE_ROCK,
         .accuracy = 100,
@@ -13292,12 +13296,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_MORTAL_SPIN] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_MORTAL_SPIN
+        .effect = EFFECT_MORTAL_SPIN,
         .power = 30,
         .type = TYPE_POISON,
         .accuracy = 100,
         .pp = 15,
-        .secondaryEffectChance = 0,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
@@ -13417,12 +13421,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_MAKE_IT_RAIN] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_MAKE_IT_RAIN
+        .effect = EFFECT_MAKE_IT_RAIN,
         .power = 120,
         .type = TYPE_STEEL,
         .accuracy = 100,
         .pp = 5,
-        .secondaryEffectChance = 0,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .split = SPLIT_SPECIAL,
@@ -13447,7 +13451,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_COLLISION_COURSE] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_COLLISION_COURSE
+        .effect = EFFECT_COLLISION_COURSE,
         .power = 100,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
@@ -13463,7 +13467,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_ELECTRO_DRIFT] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_COLLISION_COURSE
+        .effect = EFFECT_COLLISION_COURSE,
         .power = 100,
         .type = TYPE_ELECTRIC,
         .accuracy = 100,
@@ -13681,7 +13685,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_GIGATON_HAMMER] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_GIGATON_HAMMER
+        .effect = EFFECT_GIGATON_HAMMER,
         .power = 160,
         .type = TYPE_STEEL,
         .accuracy = 100,

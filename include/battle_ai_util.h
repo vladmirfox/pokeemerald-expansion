@@ -9,10 +9,12 @@
 
 bool32 AI_RandLessThan(u8 val);
 void RecordLastUsedMoveByTarget(void);
+bool32 IsAiVsAiBattle(void);
 bool32 BattlerHasAi(u32 battlerId);
 bool32 IsAiBattlerAware(u32 battlerId);
 void ClearBattlerMoveHistory(u8 battlerId);
 void RecordLastUsedMoveBy(u32 battlerId, u32 move);
+void RecordAllMoves(u32 battler);
 void RecordKnownMove(u8 battlerId, u32 move);
 void RecordAbilityBattle(u8 battlerId, u16 abilityId);
 void ClearBattlerAbilityHistory(u8 battlerId);
@@ -168,7 +170,9 @@ bool32 PartnerMoveIsSameNoTarget(u8 battlerAtkPartner, u16 move, u16 partnerMove
 bool32 ShouldUseWishAromatherapy(u8 battlerAtk, u8 battlerDef, u16 move);
 
 // party logic
-s32 AI_CalcPartyMonDamage(u16 move, u8 battlerAtk, u8 battlerDef, struct Pokemon *mon);
+struct BattlePokemon *AllocSaveBattleMons(void);
+void FreeRestoreBattleMons(struct BattlePokemon *savedBattleMons);
+s32 AI_CalcPartyMonBestMoveDamage(u32 battlerAtk, u32 battlerDef, struct Pokemon *attackerMon, struct Pokemon *targetMon);
 s32 CountUsablePartyMons(u8 battlerId);
 bool32 IsPartyFullyHealedExceptBattler(u8 battler);
 bool32 PartyHasMoveSplit(u8 battlerId, u8 split);

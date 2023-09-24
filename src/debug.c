@@ -91,6 +91,7 @@ enum { // Util
     DEBUG_UTIL_MENU_ITEM_TRAINER_ID,
     DEBUG_UTIL_MENU_ITEM_CLEAR_BOXES,
     DEBUG_UTIL_MENU_ITEM_CHEAT,
+    DEBUG_UTIL_MENU_ITEM_HATCH_AN_EGG,
 };
 enum { // Scripts
     DEBUG_UTIL_MENU_ITEM_SCRIPT_1,
@@ -149,17 +150,17 @@ enum { // Battle 1 AI FLags
     DEBUG_BATTLE_1_MENU_ITEM_CONTINUE,
 };
 enum { // Battle 2 Terrain
-    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_0,   
-    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_1,   
-    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_2,   
-    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_3,   
-    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_4,   
-    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_5,   
-    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_6,   
-    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_7,   
-    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_8,   
+    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_0,
+    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_1,
+    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_2,
+    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_3,
+    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_4,
+    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_5,
+    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_6,
+    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_7,
+    DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_8,
     DEBUG_BATTLE_2_MENU_ITEM_TERRAIN_9,
-};   
+};
 enum { // Give
     DEBUG_GIVE_MENU_ITEM_ITEM_X,
     DEBUG_GIVE_MENU_ITEM_ALLTMS,
@@ -211,6 +212,8 @@ enum { //Sound
 #define DEBUG_NUMBER_ICON_X 210
 #define DEBUG_NUMBER_ICON_Y 50
 
+#define DEBUG_MAX_MENU_ITEMS 50
+
 // *******************************
 struct DebugMonData
 {
@@ -234,7 +237,7 @@ struct DebugMonData
 struct DebugMenuListData
 {
     struct ListMenuItem listItems[20 + 1];
-    u8 itemNames[PC_ITEMS_COUNT + 1][26];
+    u8 itemNames[DEBUG_MAX_MENU_ITEMS + 1][26];
     u8 listId;
 };
 
@@ -312,6 +315,7 @@ static void DebugAction_Util_Trainer_Gender(u8 taskId);
 static void DebugAction_Util_Trainer_Id(u8 taskId);
 static void DebugAction_Util_Clear_Boxes(u8 taskId);
 static void DebugAction_Util_CheatStart(u8 taskId);
+static void DebugAction_Util_HatchAnEgg(u8 taskId);
 
 static void DebugAction_FlagsVars_Flags(u8 taskId);
 static void DebugAction_FlagsVars_FlagsSelect(u8 taskId);
@@ -368,24 +372,28 @@ static void DebugAction_Sound_MUS(u8 taskId);
 static void DebugAction_Sound_MUS_SelectId(u8 taskId);
 
 
-extern u8 Debug_FlagsNotSetOverworldConfigMessage[];
-extern u8 Debug_FlagsNotSetBattleConfigMessage[];
+extern const u8 Debug_FlagsNotSetOverworldConfigMessage[];
+extern const u8 Debug_FlagsNotSetBattleConfigMessage[];
 extern const u8 Debug_FlagsAndVarNotSetBattleConfigMessage[];
-extern u8 Debug_Script_1[];
-extern u8 Debug_Script_2[];
-extern u8 Debug_Script_3[];
-extern u8 Debug_Script_4[];
-extern u8 Debug_Script_5[];
-extern u8 Debug_Script_6[];
-extern u8 Debug_Script_7[];
-extern u8 Debug_Script_8[];
+extern const u8 Debug_Script_1[];
+extern const u8 Debug_Script_2[];
+extern const u8 Debug_Script_3[];
+extern const u8 Debug_Script_4[];
+extern const u8 Debug_Script_5[];
+extern const u8 Debug_Script_6[];
+extern const u8 Debug_Script_7[];
+extern const u8 Debug_Script_8[];
+extern const u8 DebugScript_DaycareMonsNotCompatible[];
+extern const u8 DebugScript_OneDaycareMons[];
+extern const u8 DebugScript_ZeroDaycareMons[];
 
-extern u8 Debug_ShowFieldMessageStringVar4[];
-extern u8 Debug_CheatStart[];
-extern u8 PlayersHouse_2F_EventScript_SetWallClock[];
-extern u8 PlayersHouse_2F_EventScript_CheckWallClock[];
-extern u8 Debug_CheckSaveBlock[];
-extern u8 Debug_BoxFilledMessage[];
+extern const u8 Debug_ShowFieldMessageStringVar4[];
+extern const u8 Debug_CheatStart[];
+extern const u8 Debug_HatchAnEgg[];
+extern const u8 PlayersHouse_2F_EventScript_SetWallClock[];
+extern const u8 PlayersHouse_2F_EventScript_CheckWallClock[];
+extern const u8 Debug_CheckSaveBlock[];
+extern const u8 Debug_BoxFilledMessage[];
 
 #include "data/map_group_count.h"
 
@@ -437,6 +445,7 @@ static const u8 sDebugText_Util_Trainer_Gender[] =          _("Toggle T. Gender"
 static const u8 sDebugText_Util_Trainer_Id[] =              _("New Trainer Id");
 static const u8 sDebugText_Util_Clear_Boxes[] =             _("Clear Storage Boxes");
 static const u8 sDebugText_Util_CheatStart[] =              _("CHEAT Start");
+static const u8 sDebugText_Util_HatchAnEgg[] =              _("Hatch an Egg");
 // Flags/Vars Menu
 static const u8 sDebugText_FlagsVars_Flags[] =                  _("Set Flag XYZ…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_FlagsVars_Flag[] =                   _("Flag: {STR_VAR_1}{CLEAR_TO 90}\n{STR_VAR_2}{CLEAR_TO 90}\n{STR_VAR_3}");
@@ -598,6 +607,7 @@ static const struct ListMenuItem sDebugMenu_Items_Utilities[] =
     [DEBUG_UTIL_MENU_ITEM_TRAINER_ID]       = {sDebugText_Util_Trainer_Id,       DEBUG_UTIL_MENU_ITEM_TRAINER_ID},
     [DEBUG_UTIL_MENU_ITEM_CLEAR_BOXES]      = {sDebugText_Util_Clear_Boxes,      DEBUG_UTIL_MENU_ITEM_CLEAR_BOXES},
     [DEBUG_UTIL_MENU_ITEM_CHEAT]            = {sDebugText_Util_CheatStart,       DEBUG_UTIL_MENU_ITEM_CHEAT},
+    [DEBUG_UTIL_MENU_ITEM_HATCH_AN_EGG]     = {sDebugText_Util_HatchAnEgg,       DEBUG_UTIL_MENU_ITEM_HATCH_AN_EGG},
 };
 static const struct ListMenuItem sDebugMenu_Items_Scripts[] =
 {
@@ -730,6 +740,7 @@ static void (*const sDebugMenu_Actions_Utilities[])(u8) =
     [DEBUG_UTIL_MENU_ITEM_TRAINER_ID]       = DebugAction_Util_Trainer_Id,
     [DEBUG_UTIL_MENU_ITEM_CLEAR_BOXES]      = DebugAction_Util_Clear_Boxes,
     [DEBUG_UTIL_MENU_ITEM_CHEAT]            = DebugAction_Util_CheatStart,
+    [DEBUG_UTIL_MENU_ITEM_HATCH_AN_EGG]     = DebugAction_Util_HatchAnEgg,
 };
 static void (*const sDebugMenu_Actions_Scripts[])(u8) =
 {
@@ -1102,7 +1113,7 @@ static void Debug_InitDebugBattleData(void)
     sDebugBattleData->submenu       = 0;
     sDebugBattleData->battleType    = 0xFF;
     sDebugBattleData->battleTerrain = 0xFF;
-    
+
     for (i = 0; i < AI_FLAG_COUNT; i++)
         sDebugBattleData->aiFlags[i] = FALSE;
 }
@@ -1133,10 +1144,12 @@ static void Debug_RefreshListMenu(u8 taskId)
         totalItems = 7;
     }
 
+    // Failsafe to prevent memory corruption
+    totalItems = min(totalItems, DEBUG_MAX_MENU_ITEMS);
     // Copy item names for all entries but the last (which is Cancel)
     for(i = 0; i < totalItems; i++)
     {
-        
+
         if (sDebugMenuListData->listId == 1 && sDebugBattleData->submenu > 1)
         {
             u16 species;
@@ -1170,7 +1183,7 @@ static void Debug_RefreshListMenu(u8 taskId)
                     flagResult == 0xFF;
                 name = sDebugMenu_Items_Battle_1[i].name;
             }
-        
+
             if (flagResult == 0xFF)
             {
                 StringCopy(&sDebugMenuListData->itemNames[i][0], name);
@@ -1306,10 +1319,6 @@ static void DebugTask_HandleMenuInput_FlagsVars(u8 taskId)
     {
         PlaySE(SE_SELECT);
         Debug_DestroyMenu(taskId);
-        
-        ClearStdWindowAndFrame(gTasks[taskId].data[2], TRUE);
-        RemoveWindow(gTasks[taskId].data[2]);
-
         Debug_ReShowMainMenu();
     }
 }
@@ -1347,7 +1356,7 @@ static void DebugTask_HandleMenuInput_Battle(u8 taskId)
     ListMenuGetCurrentItemArrayId(listTaskId, &idx);
 
     if (gMain.newKeys & A_BUTTON)
-    {        
+    {
         PlaySE(SE_SELECT);
 
         switch (sDebugBattleData->submenu)
@@ -1380,7 +1389,7 @@ static void DebugTask_HandleMenuInput_Battle(u8 taskId)
                 sDebugBattleData->aiFlags[idx] = !sDebugBattleData->aiFlags[idx];
                 Debug_RedrawListMenu(taskId);
             }
-                
+
             break;
         case 2: // Terrain
             sDebugBattleData->submenu++;
@@ -1404,7 +1413,7 @@ static void DebugTask_HandleMenuInput_Battle(u8 taskId)
             Debug_ReShowMainMenu();
             break;
         case 2: // Skip AI Flag selection if wild battle
-            if (sDebugBattleData->battleType == DEBUG_BATTLE_0_MENU_ITEM_WILD 
+            if (sDebugBattleData->battleType == DEBUG_BATTLE_0_MENU_ITEM_WILD
              || sDebugBattleData->battleType == DEBUG_BATTLE_0_MENU_ITEM_WILD_DOUBLE)
             {
                 sDebugBattleData->submenu = 0;
@@ -1441,7 +1450,7 @@ static void Debug_InitializeBattle(u8 taskId)
         gBattleTypeFlags = (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_TRAINER | BATTLE_TYPE_INGAME_PARTNER);
         break;
     }
-    
+
     // Set terrain
     gBattleTerrain = sDebugBattleData->battleTerrain;
 
@@ -1798,7 +1807,7 @@ static void DebugAction_Util_PoisonMons(u8 taskId)
     PlaySE(SE_FIELD_POISON);
 }
 
-void CheckSaveBlock1Size(void)
+void CheckSaveBlock1Size(struct ScriptContext *ctx)
 {
     u32 currSb1Size = sizeof(struct SaveBlock1);
     u32 maxSb1Size = SECTOR_DATA_SIZE * (SECTOR_ID_SAVEBLOCK1_END - SECTOR_ID_SAVEBLOCK1_START + 1);
@@ -1806,7 +1815,7 @@ void CheckSaveBlock1Size(void)
     ConvertIntToDecimalStringN(gStringVar2, maxSb1Size, STR_CONV_MODE_LEFT_ALIGN, 6);
 }
 
-void CheckSaveBlock2Size(void)
+void CheckSaveBlock2Size(struct ScriptContext *ctx)
 {
     u32 currSb2Size = (sizeof(struct SaveBlock2));
     u32 maxSb2Size = SECTOR_DATA_SIZE;
@@ -1814,7 +1823,7 @@ void CheckSaveBlock2Size(void)
     ConvertIntToDecimalStringN(gStringVar2, maxSb2Size, STR_CONV_MODE_LEFT_ALIGN, 6);
 }
 
-void CheckPokemonStorageSize(void)
+void CheckPokemonStorageSize(struct ScriptContext *ctx)
 {
     u32 currPkmnStorageSize = sizeof(struct PokemonStorage);
     u32 maxPkmnStorageSize = SECTOR_DATA_SIZE * (SECTOR_ID_PKMN_STORAGE_END - SECTOR_ID_PKMN_STORAGE_START + 1);
@@ -1976,6 +1985,10 @@ static void DebugAction_Util_Clear_Boxes(u8 taskId)
 static void DebugAction_Util_CheatStart(u8 taskId)
 {
     Debug_DestroyMenu_Full_Script(taskId, Debug_CheatStart);
+}
+static void DebugAction_Util_HatchAnEgg(u8 taskId)
+{
+    Debug_DestroyMenu_Full_Script(taskId, Debug_HatchAnEgg);
 }
 
 // *******************************
@@ -2388,7 +2401,7 @@ static void DebugAction_FlagsVars_ToggleFlyFlags(u8 taskId)
     else
     {
         PlaySE(SE_PC_LOGIN);
-    
+
         FlagSet(FLAG_VISITED_LITTLEROOT_TOWN);
         FlagSet(FLAG_VISITED_OLDALE_TOWN);
         FlagSet(FLAG_VISITED_DEWFORD_TOWN);
@@ -3458,7 +3471,15 @@ static void DebugAction_Give_MaxBattlePoints(u8 taskId)
 
 static void DebugAction_Give_DayCareEgg(u8 taskId)
 {
-    TriggerPendingDaycareEgg();
+    s32 emptySlot = Daycare_FindEmptySpot(&gSaveBlock1Ptr->daycare);
+    if (emptySlot == 0) // no daycare mons
+        Debug_DestroyMenu_Full_Script(taskId, DebugScript_ZeroDaycareMons);
+    else if (emptySlot == 1) // 1 daycare mon
+        Debug_DestroyMenu_Full_Script(taskId, DebugScript_OneDaycareMons);
+    else if (GetDaycareCompatibilityScore(&gSaveBlock1Ptr->daycare) == PARENTS_INCOMPATIBLE) // not compatible parents
+        Debug_DestroyMenu_Full_Script(taskId, DebugScript_DaycareMonsNotCompatible);
+    else // 2 pokemon which can have a pokemon baby together
+        TriggerPendingDaycareEgg();
 }
 
 // *******************************
