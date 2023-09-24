@@ -310,9 +310,9 @@ FallarborTown_BattleTentLobby_Text_MakeThinkImJustKid:
 	.string "the title!$"
 
 FallarborTown_BattleTentLobby_Text_FallarborTentMyFavorite:
-	.string "You know how BATTLE TENTS offer\n"
+	.string "You know how Battle TENTS offer\n"
 	.string "different events in different towns?\p"
-	.string "My favorite is definitely the BATTLE\n"
+	.string "My favorite is definitely the Battle\n"
 	.string "TENT in FALLARBOR TOWN.\p"
 	.string "I think it's fantastic how TRAINERS\n"
 	.string "try to win with all their faith in\l"
@@ -328,7 +328,7 @@ FallarborTown_BattleTentLobby_Text_CameToCampOut:
 
 FallarborTown_BattleTentLobby_Text_ScottLookingForSomeone:
 	.string "SCOTT: Hi, {PLAYER}{KUN}!\n"
-	.string "So you came out to this BATTLE TENT!\p"
+	.string "So you came out to this Battle TENT!\p"
 	.string "The people in these parts tend to be\n"
 	.string "easygoing and laid-back.\p"
 	.string "But, you see, what I'm looking for are\n"

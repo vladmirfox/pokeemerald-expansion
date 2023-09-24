@@ -177,7 +177,7 @@ gText_ScrambleOrderOfNextAppeals::
 
 gText_AppealExcitesAudienceInAnyContest::
 	.string "An appeal that excites the\n"
-	.string "audience in any CONTEST.$"
+	.string "audience in any Contest.$"
 
 gText_BadlyStartlesMonsGoodAppeals::
 	.string "Badly startles all Pokémon\n"

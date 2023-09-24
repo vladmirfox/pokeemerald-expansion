@@ -25,7 +25,7 @@ CableClub_Text_CloseThisMenu:
 	.string "Close this menu.$"
 
 CableClub_Text_NeedTwoMonsForDoubleBattle:
-	.string "For a DOUBLE BATTLE, you must\n"
+	.string "For a DOUBLE Battle, you must\n"
 	.string "have at least two Pokémon.$"
 
 CableClub_Text_NeedTwoMonsToTrade:
@@ -34,7 +34,7 @@ CableClub_Text_NeedTwoMonsToTrade:
 
 CableClub_Text_CantTradeEnigmaBerry:
 	.string "A Pokémon holding the {STR_VAR_1}\n"
-	.string "BERRY can't be traded.$"
+	.string "Berry can't be traded.$"
 
 gText_PleaseWaitForLink::
 	.string "Please wait.\n"
@@ -86,11 +86,11 @@ CableClub_Text_IncorrectNumberOfParticipants:
 	.string "incorrect.$"
 
 CableClub_Text_CantSingleBattleWithXPlayers:
-	.string "The SINGLE BATTLE Mode can't be\n"
+	.string "The SINGLE Battle Mode can't be\n"
 	.string "played by {STR_VAR_1} players.$"
 
 CableClub_Text_CantDoubleBattleWithXPlayers:
-	.string "The DOUBLE BATTLE Mode can't be\n"
+	.string "The DOUBLE Battle Mode can't be\n"
 	.string "played by {STR_VAR_1} players.$"
 
 CableClub_Text_NeedFourPlayers:
@@ -195,7 +195,7 @@ CableClub_Text_YouMayBattleHere::
 
 CableClub_Text_CanMakeBerryPowder::
 	.string "Two to five TRAINERS can make\n"
-	.string "BERRY POWDER together.$"
+	.string "Berry POWDER together.$"
 
 CableClub_Text_CanMixRecords::
 	.string "The records of two to four players\n"
@@ -218,8 +218,8 @@ CableClub_Text_ReturnsToPreviousStep:
 	.string "Returns to the previous step.$"
 
 CableClub_Text_NeedBerryForBerryCrush:
-	.string "To use the BERRY CRUSH service,\n"
-	.string "you must have at least one BERRY.$"
+	.string "To use the Berry CRUSH service,\n"
+	.string "you must have at least one Berry.$"
 
 CableClub_Text_NeedTwoMonsForUnionRoom:
 	.string "To enter the UNION ROOM, you must\n"
@@ -227,7 +227,7 @@ CableClub_Text_NeedTwoMonsForUnionRoom:
 
 CableClub_Text_NoEnigmaBerryInUnionRoom:
 	.string "No Pokémon holding the {STR_VAR_1}\n"
-	.string "BERRY may enter the UNION ROOM.$"
+	.string "Berry may enter the UNION ROOM.$"
 
 CableClub_Text_UnionRoomAdapterNotConnected:
 	.string "This is the Pokémon WIRELESS CLUB\n"
@@ -265,9 +265,9 @@ MossdeepCity_GameCorner_1F_Text_PokemonJumpInfo:
 	.string "jumps in time.$"
 
 MossdeepCity_GameCorner_1F_Text_DodrioBerryPickingInfo:
-	.string "“DODRIO BERRY-PICKING”\p"
+	.string "“DODRIO Berry-PICKING”\p"
 	.string "Command DODRIO's three heads to\n"
-	.string "catch falling BERRIES.\p"
+	.string "catch falling Berries.\p"
 	.string "Press right, up, or left on the\n"
 	.string "{PLUS} Control Pad to move the heads.\p"
 	.string "To play this game, you must have\n"
@@ -323,7 +323,7 @@ MossdeepCity_GameCorner_1F_Text_ShortJumpingPokemonAllowed:
 	.string "That's all you need to know.$"
 
 MossdeepCity_GameCorner_1F_Text_OnlyDodrioAllowed:
-	.string "DODRIO BERRY-PICKING is a game that \n"
+	.string "DODRIO Berry-PICKING is a game that \n"
 	.string "only DODRIO may enter.$"
 
 @ Unused
@@ -352,19 +352,19 @@ CableClub_Text_AccessRecordCorner:
 
 CableClub_Text_UseBerryCrush:
 	.string "Would you like to use the\n"
-	.string "BERRY CRUSH System?$"
+	.string "Berry CRUSH System?$"
 
 CableClub_Text_ExplainBattleModes:
 	.string "There are three Battle Modes.\p"
-	.string "SINGLE BATTLE is for two TRAINERS\n"
+	.string "SINGLE Battle is for two TRAINERS\n"
 	.string "with one or more Pokémon each.\p"
 	.string "Each Trainer can have one Pokémon\n"
 	.string "in battle at a time.\p"
-	.string "DOUBLE BATTLE is for two TRAINERS\n"
+	.string "DOUBLE Battle is for two TRAINERS\n"
 	.string "with two or more Pokémon each.\p"
 	.string "Each Trainer will send out two\n"
 	.string "Pokémon in battle at a time.\p"
-	.string "MULTI BATTLE is for four TRAINERS\n"
+	.string "MULTI Battle is for four TRAINERS\n"
 	.string "with one or more Pokémon each.\p"
 	.string "Each Trainer can have one Pokémon\n"
 	.string "in battle at a time.$"

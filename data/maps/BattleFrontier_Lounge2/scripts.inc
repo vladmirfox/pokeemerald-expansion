@@ -114,13 +114,13 @@ BattleFrontier_Lounge2_EventScript_TriathleteF::
 
 BattleFrontier_Lounge2_Text_FrontierManiacIntro::
 	.string "Howdy! When it comes to news about\n"
-	.string "the BATTLE FRONTIER, I'm no. 1.\p"
+	.string "the Battle FRONTIER, I'm no. 1.\p"
 	.string "You can think of me as\n"
 	.string "the FRONTIER MANIAC.\p"
 	.string "Just checking, but you are a Trainer,\n"
 	.string "isn't that right?\p"
 	.string "I'll happily share the hottest news\n"
-	.string "I gathered about the BATTLE FRONTIER.$"
+	.string "I gathered about the Battle FRONTIER.$"
 
 BattleFrontier_Lounge2_Text_SwingByForTheLatestWord::
 	.string "Howdy! Did you swing by to grill me\n"
@@ -139,7 +139,7 @@ BattleFrontier_Lounge2_Text_FacilityIsHottest::
 
 BattleFrontier_Lounge2_Text_BattleTowerIsHottest::
 	.string "Let's see now…\p"
-	.string "It sounds like BATTLE TOWER\n"
+	.string "It sounds like Battle TOWER\n"
 	.string "{STR_VAR_1} is the hottest.$"
 
 BattleFrontier_Lounge2_Text_SalonMaidenIsThere::
@@ -155,7 +155,7 @@ BattleFrontier_Lounge2_Text_SalonMaidenSilverMons::
 	.string "she apparently uses these Pokémon:\p"
 	.string "A PSYCHIC-type PSI Pokémon,\n"
 	.string "a FIRE-type VOLCANO Pokémon,\l"
-	.string "and a NORMAL-type SLEEPING Pokémon.$"
+	.string "and a Normal-type SLEEPING Pokémon.$"
 
 BattleFrontier_Lounge2_Text_SalonMaidenGoldMons::
 	.string "Have you battled the SALON MAIDEN\n"
@@ -164,7 +164,7 @@ BattleFrontier_Lounge2_Text_SalonMaidenGoldMons::
 	.string "she apparently uses these Pokémon:\p"
 	.string "A DRAGON & PSYCHIC EON Pokémon,\n"
 	.string "an ELECTRIC-type THUNDER Pokémon,\l"
-	.string "and a NORMAL-type SLEEPING Pokémon.$"
+	.string "and a Normal-type SLEEPING Pokémon.$"
 
 BattleFrontier_Lounge2_Text_DomeAceIsThere::
 	.string "Bet you didn't know this!\p"
@@ -279,7 +279,7 @@ BattleFrontier_Lounge2_Text_PalaceMavenSilverMons::
 	.string "When he's testing the opponent's\n"
 	.string "spirit, he's said to use these Pokémon:\p"
 	.string "A POISON & FLYING-type BAT Pokémon,\n"
-	.string "a NORMAL-type LAZY Pokémon, and a\l"
+	.string "a Normal-type LAZY Pokémon, and a\l"
 	.string "WATER- & ICE-type TRANSPORT Pokémon.$"
 
 BattleFrontier_Lounge2_Text_PalaceMavenGoldMons::
@@ -288,7 +288,7 @@ BattleFrontier_Lounge2_Text_PalaceMavenGoldMons::
 	.string "When he throws his entire might into\n"
 	.string "battle, he's said to use these Pokémon:\p"
 	.string "A FIRE-type LEGENDARY Pokémon,\n"
-	.string "a NORMAL-type LAZY Pokémon,\l"
+	.string "a Normal-type LAZY Pokémon,\l"
 	.string "and a WATER-type AURORA Pokémon.$"
 
 BattleFrontier_Lounge2_Text_PyramidKingIsThere::
@@ -320,11 +320,11 @@ BattleFrontier_Lounge2_Text_PyramidKingGoldMons::
 BattleFrontier_Lounge2_Text_DoubleBattleAdvice1::
 	.string "Sure, there are several places where\n"
 	.string "you can enter DOUBLE BATTLES.\p"
-	.string "But the DOUBLE BATTLE ROOMS of\n"
-	.string "the BATTLE TOWER are, like, basic!\p"
+	.string "But the DOUBLE Battle ROOMS of\n"
+	.string "the Battle TOWER are, like, basic!\p"
 	.string "They're where you should learn about\n"
 	.string "how DOUBLE BATTLES are played here\l"
-	.string "in the BATTLE FRONTIER.$"
+	.string "in the Battle FRONTIER.$"
 
 BattleFrontier_Lounge2_Text_DoubleBattleAdvice2::
 	.string "Watch yourself in the battles here.\p"
@@ -340,14 +340,14 @@ BattleFrontier_Lounge2_Text_DoubleBattleAdvice3::
 
 BattleFrontier_Lounge2_Text_MultiBattleAdvice::
 	.string "All sorts of TRAINERS gather in\n"
-	.string "the BATTLE SALON.\p"
+	.string "the Battle SALON.\p"
 	.string "Just think--you may run into your\n"
 	.string "friends or followers!\l"
 	.string "You should look carefully!$"
 
 BattleFrontier_Lounge2_Text_LinkMultiBattleAdvice::
 	.string "If you're with a friend, head for the\n"
-	.string "LINK MULTI BATTLE ROOM.\p"
+	.string "LINK MULTI Battle ROOM.\p"
 	.string "If you play with a strong friend,\n"
 	.string "you can expect to see tough foes!$"
 

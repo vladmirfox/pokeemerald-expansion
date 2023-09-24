@@ -1069,7 +1069,7 @@ RustboroCity_Text_HaveYouChallengedGym:
 
 RustboroCity_Text_HeyThatsRustborosGymBadge:
 	.string "Hey, that's RUSTBORO's GYM BADGE!\p"
-	.string "Out of all the Pokémon GYM BADGES,\n"
+	.string "Out of all the Pokémon GYM Badges,\n"
 	.string "RUSTBORO's is the coolest, I'd say.$"
 
 RustboroCity_Text_YoureNewAroundHere:
@@ -1122,7 +1122,7 @@ RustboroCity_Text_TradePokemonGrowFast:
 	.string "A Pokémon you get in a trade from\n"
 	.string "someone grows fast.\p"
 	.string "But if you don't have certain GYM\n"
-	.string "BADGES, it may not obey you…$"
+	.string "Badges, it may not obey you…$"
 
 RustboroCity_Text_OutOfTheWay:
 	.string "Get out!\n"

@@ -54,7 +54,7 @@ MauvilleCity_FlowerShop_EventScript_NotEnoughMoney::
 
 MauvilleCity_FlowerShop_Text_StrangeBerryFor5000:
 	.string "Would you like to buy one of\n"
-	.string "my strange BERRIES for ¥5000?$"
+	.string "my strange Berries for ¥5000?$"
 
 MauvilleCity_FlowerShop_Text_ThankYouVeryMuch:
 	.string "Wow! thank you so much!$"
@@ -80,7 +80,7 @@ MauvilleCity_FlowerShop_Text_WelcomeToShop:
 	.string "just as nice as the SHOP on\p"
 	.string "ROUTE 104!\p"
 	.string "But whenever I try to grow any\n"
-	.string "BERRIES, they turn …strange.\p"
+	.string "Berries, they turn …strange.\p"
 	.string "I still need money to set\n"
 	.string "this place up though!\p"
 	.string "… … …\n"

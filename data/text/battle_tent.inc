@@ -1,5 +1,5 @@
 FallarborTown_BattleTentLobby_Text_WelcomeToBattleTent:
-	.string "I welcome you to the BATTLE TENT\n"
+	.string "I welcome you to the Battle TENT\n"
 	.string "FALLARBOR SITE!\p"
 	.string "I am your guide to the Set KO Tourney!$"
 
@@ -12,7 +12,7 @@ FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge:
 	.string "another occasion!$"
 
 FallarborTown_BattleTentLobby_Text_ExplainFallarborTent:
-	.string "In the FALLARBOR BATTLE TENT,\n"
+	.string "In the FALLARBOR Battle TENT,\n"
 	.string "we undertake the Set KO Tourney.\p"
 	.string "All participants enter with a team of\n"
 	.string "three Pokémon.\p"
@@ -33,7 +33,7 @@ FallarborTown_BattleTentLobby_Text_ExplainFallarborTent:
 	.string "we will present you with a fine prize.$"
 
 FallarborTown_BattleTentLobby_Text_SaveBeforeChallenge:
-	.string "Before showing you to the BATTLE\n"
+	.string "Before showing you to the Battle\n"
 	.string "TENT, I must save. Is that okay?$"
 
 @ Unused
@@ -70,7 +70,7 @@ FallarborTown_BattleTentLobby_Text_NotEnoughValidMonsLvOpen:
 
 FallarborTown_BattleTentLobby_Text_GuideYouToBattleTent:
 	.string "I shall now guide you to\n"
-	.string "the BATTLE TENT.$"
+	.string "the Battle TENT.$"
 
 FallarborTown_BattleTentLobby_Text_DidntSaveBeforeQuitting:
 	.string "My dear challenger!\p"
@@ -114,21 +114,21 @@ FallarborTown_BattleTentLobby_Text_AwaitAnotherChallenge2:
 FallarborTown_BattleTentLobby_Text_LookingForwardToArrival:
 	.string "We have been looking forward to\n"
 	.string "your arrival.\p"
-	.string "Before I show you to the BATTLE TENT,\n"
+	.string "Before I show you to the Battle TENT,\n"
 	.string "I must save the game. Please wait.$"
 
 VerdanturfTown_BattleTentLobby_Text_WelcomeToBattleTent:
-	.string "I welcome you to the BATTLE TENT\n"
+	.string "I welcome you to the Battle TENT\n"
 	.string "VERDANTURF SITE!\p"
 	.string "Here, the Trainer's trust toward\n"
 	.string "Pokémon is tested.$"
 
 VerdanturfTown_BattleTentLobby_Text_TakeChallenge:
 	.string "Do you wish to take the VERDANTURF\n"
-	.string "BATTLE TENT challenge?$"
+	.string "Battle TENT challenge?$"
 
 VerdanturfTown_BattleTentLobby_Text_ExplainVerdanturfTent:
-	.string "In the VERDANTURF BATTLE TENT,\n"
+	.string "In the VERDANTURF Battle TENT,\n"
 	.string "there is one crucial rule that must\l"
 	.string "be obeyed.\p"
 	.string "TRAINERS are permitted only to switch\n"
@@ -187,7 +187,7 @@ VerdanturfTown_BattleTentLobby_Text_SelectThreeMons:
 
 VerdanturfTown_BattleTentLobby_Text_SaveBeforeChallenge:
 	.string "I must save before I show you to\n"
-	.string "the BATTLE TENT. Is that okay?$"
+	.string "the Battle TENT. Is that okay?$"
 
 VerdanturfTown_BattleTentLobby_Text_NowFollowMe:
 	.string "Good.\n"
@@ -213,7 +213,7 @@ VerdanturfTown_BattleTentLobby_Text_PresentYouWithPrize:
 	.string "we present you with this prize.$"
 
 SlateportCity_BattleTentLobby_Text_WelcomeToBattleTent:
-	.string "Welcome to the BATTLE TENT\n"
+	.string "Welcome to the Battle TENT\n"
 	.string "SLATEPORT SITE!\p"
 	.string "I am your guide to the Battle Swap\n"
 	.string "Tournament.$"
@@ -223,13 +223,13 @@ SlateportCity_BattleTentLobby_Text_TakeChallenge:
 	.string "Swap challenge?$"
 
 SlateportCity_BattleTentLobby_Text_ExplainSlateportTent:
-	.string "Here at the SLATEPORT BATTLE TENT,\n"
+	.string "Here at the SLATEPORT Battle TENT,\n"
 	.string "we hold Battle Swap events\l"
 	.string "using rental Pokémon.\p"
 	.string "First, you will be loaned three\n"
 	.string "Pokémon specifically for this event.\p"
 	.string "Using the supplied rental Pokémon,\n"
-	.string "you must conduct a SINGLE BATTLE.\p"
+	.string "you must conduct a SINGLE Battle.\p"
 	.string "If you win, you are permitted to trade\n"
 	.string "one of your rental Pokémon.\p"
 	.string "Repeat this cycle of battling and\n"
@@ -352,13 +352,13 @@ SlateportCity_BattleTentLobby_Text_ExplainSwapNotes:
 
 SlateportCity_BattleTentLobby_Text_ExplainMonRules:
 	.string "The Pokémon of the SLATEPORT\n"
-	.string "BATTLE TENT are all rentals.\p"
+	.string "Battle TENT are all rentals.\p"
 	.string "All rental Pokémon are kept at\n"
 	.string "Level 30.$"
 
 @ Unused
 VerdanturfTown_BattleTentLobby_Text_RulesAreListed2:
-	.string "The VERDANTURF BATTLE TENT\n"
+	.string "The VERDANTURF Battle TENT\n"
 	.string "rules are listed.$"
 
 @ Unused
@@ -367,7 +367,7 @@ VerdanturfTown_BattleTentLobby_Text_ReadWhichHeading:
 
 @ Unused
 VerdanturfTown_BattleTentLobby_Text_ExplainBasicRules:
-	.string "Here at the VERDANTURF BATTLE TENT,\n"
+	.string "Here at the VERDANTURF Battle TENT,\n"
 	.string "Pokémon are required to think and\l"
 	.string "battle by themselves.\p"
 	.string "Unlike in the wild, Pokémon that live\n"
@@ -422,12 +422,12 @@ VerdanturfTown_BattleTentLobby_Text_ExplainWhenInDangerRules:
 	.string "in a pinch, watch it carefully.$"
 
 BattleTentLobby_Text_ExplainLevelRules:
-	.string "At this BATTLE TENT, the levels of\n"
+	.string "At this Battle TENT, the levels of\n"
 	.string "your opponents will be adjusted to\l"
 	.string "match the levels of your Pokémon.\p"
 	.string "However, no Trainer you face will\n"
 	.string "have any Pokémon below Level 30.$"
 
 VerdanturfTown_BattleTentLobby_Text_RulesAreListed:
-	.string "The VERDANTURF BATTLE TENT\n"
+	.string "The VERDANTURF Battle TENT\n"
 	.string "rules are listed.$"

@@ -1224,7 +1224,7 @@ PetalburgCity_Gym_Text_DadGoCollectBadges:
 	.string "the GYM LEADER, ROXANNE.\p"
 	.string "After her, go on to other Pokémon\n"
 	.string "GYMS and defeat their LEADERS.\p"
-	.string "Collect BADGES from them,\n"
+	.string "Collect Badges from them,\n"
 	.string "understood?\p"
 	.string "Of course, I'm a GYM LEADER, too.\n"
 	.string "We'll battle one day, {PLAYER}.\p"
@@ -1239,7 +1239,7 @@ PetalburgCity_Gym_Text_NormanGoToRustboro:
 	.string "{PLAYER}, I want you to challenge me\n"
 	.string "when you become a lot stronger.\p"
 	.string "I'll battle you, {PLAYER}, when you\n"
-	.string "can show me four GYM BADGES, okay?$"
+	.string "can show me four GYM Badges, okay?$"
 
 PetalburgCity_Gym_Text_NormanGoToDewford:
 	.string "DAD: I see… So, you've beaten\n"
@@ -1253,12 +1253,12 @@ PetalburgCity_Gym_Text_NormanGoToDewford:
 PetalburgCity_Gym_Text_YouHaveGottenStronger:
 	.string "DAD: Hm… {PLAYER}, you have gotten\n"
 	.string "stronger.\p"
-	.string "I can tell by the number of BADGES\n"
+	.string "I can tell by the number of Badges\n"
 	.string "that you've earned.$"
 
 PetalburgCity_Gym_Text_NormanIntro:
 	.string "DAD: Hm…\n"
-	.string "So, you did get four GYM BADGES.\p"
+	.string "So, you did get four GYM Badges.\p"
 	.string "Fine, as I promised, we will have\n"
 	.string "a Pokémon battle.\p"
 	.string "{PLAYER}…\p"
@@ -1338,7 +1338,7 @@ PetalburgCity_Gym_Text_GymGuideAdvice:
 	.string "The TRAINERS of PETALBURG GYM\n"
 	.string "use all kinds of items.\p"
 	.string "The door at the left leads to\n"
-	.string "the SPEED ROOM.\p"
+	.string "the Speed ROOM.\p"
 	.string "The door at the right leads to\n"
 	.string "the ACCURACY ROOM.\p"
 	.string "The room's name will be on\n"

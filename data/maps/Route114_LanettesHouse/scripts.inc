@@ -67,13 +67,13 @@ Route114_LanettesHouse_EventScript_PC::
 	end
 
 Route114_LanettesHouse_Text_EverythingClutteredKeepThis:
-	.string "LANETTE: Oh! {PLAYER}{KUN}!\p"
+	.string "Lanette: Oh! {PLAYER}{KUN}!\p"
 	.string "I'm sorry everything is so cluttered…\n"
 	.string "When I get engrossed in research,\p"
 	.string "things end up this way…$"
 
 Route114_LanettesHouse_Text_OhIsThatDexNav:
-	.string "LANETTE: Is that?…\p"
+	.string "Lanette: Is that?…\p"
 	.string "A DexNav you say?…\p"
 	.string "A fellow scientist showed me something\n"
 	.string "like this once.\p"
@@ -81,7 +81,7 @@ Route114_LanettesHouse_Text_OhIsThatDexNav:
 	.string "the device a back then.$"
 
 Route114_LanettesHouse_Text_UpgradeThisForYou:
-	.string "LANETTE: Here they are!\p"
+	.string "Lanette: Here they are!\p"
 	.string "Now if I just…\p"
 	.string "… … … … … … …\p"
 	.string "There!$"
@@ -99,9 +99,9 @@ Route114_LanettesHouse_Text_DetectorModeDescription:
 	.string "rare Pokémon you couldn't before!$"
 
 Route114_LanettesHouse_Text_ResearchNotesPage1:
-	.string "It's LANETTE's research notes.\n"
-	.string "There's information about BOXES.\p"
-	.string "Design BOXES to hold 30 Pokémon each.\p"
+	.string "It's Lanette's research notes.\n"
+	.string "There's information about Boxes.\p"
+	.string "Design Boxes to hold 30 Pokémon each.\p"
 	.string "Each Trainer should be able to store\n"
 	.string "420 Pokémon on the PC system.\p"
 	.string "Keep reading?$"

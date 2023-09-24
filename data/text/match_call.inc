@@ -665,7 +665,7 @@ MatchCall_PersonalizedText3::
 	.string "Hello! It's {STR_VAR_1}.\p"
 	.string "I love where I am now.\n"
 	.string "It's pleasant with sweet aromas!\p"
-	.string "I think someone planted BERRIES,\n"
+	.string "I think someone planted Berries,\n"
 	.string "and they burst into bloom.\p"
 	.string "See you again sometime!$"
 
@@ -2284,7 +2284,7 @@ MatchCall_Text_Drake::
 	.string "DRAKE: That voice… {PLAYER}, is it?\n"
 	.string "You sound well…\p"
 	.string "I understand that there is now\n"
-	.string "a facility called the BATTLE\l"
+	.string "a facility called the Battle\l"
 	.string "FRONTIER that tests the skills of\l"
 	.string "TRAINERS.\p"
 	.string "However, if you wish to have real\n"
@@ -2690,7 +2690,7 @@ MatchCall_Text_Scott6::
 	.string "SCOTT: Hi, hi, {PLAYER}{KUN}!\p"
 	.string "You know that you can challenge\n"
 	.string "the Pokémon LEAGUE when you've\l"
-	.string "collected all the GYM BADGES?\p"
+	.string "collected all the GYM Badges?\p"
 	.string "With your talent, becoming the\n"
 	.string "CHAMPION isn't a pipe dream.\p"
 	.string "But did you know?\n"
@@ -2727,7 +2727,7 @@ MatchCall_Text_Norman2::
 
 MatchCall_Text_Norman3::
 	.string "DAD: I see…\n"
-	.string "You've collected four GYM BADGES…\p"
+	.string "You've collected four GYM Badges…\p"
 	.string "There's no avoiding it now.\n"
 	.string "We will battle like I promised.\p"
 	.string "Come anytime.\n"

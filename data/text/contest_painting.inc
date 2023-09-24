@@ -4,10 +4,10 @@ gContestHallPaintingCaption::
 
 @ Unused
 gContestPaintingContest::
-	.string "CONTEST$"
+	.string "Contest$"
 
 gContestRankNormal::
-	.string "NORMAL RANK$"
+	.string "Normal RANK$"
 
 gContestRankSuper::
 	.string "SUPER RANK$"

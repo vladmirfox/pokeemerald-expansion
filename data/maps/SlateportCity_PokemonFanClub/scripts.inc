@@ -271,12 +271,12 @@ SlateportCity_PokemonFanClub_Text_MeetChairman:
 
 SlateportCity_PokemonFanClub_Text_LikeToSeeEnteredContestPokemon:
 	.string "The Pokémon of a Trainer who has\n"
-	.string "entered a Pokémon CONTEST…\l"
+	.string "entered a Pokémon Contest…\l"
 	.string "That, I would like to see.$"
 
 SlateportCity_PokemonFanClub_Text_AllowMeToExamineYourPokemon:
 	.string "Er-hem! I see you've participated in\n"
-	.string "a Pokémon CONTEST!\p"
+	.string "a Pokémon Contest!\p"
 	.string "Please! Allow me to examine how you\n"
 	.string "have raised your Pokémon.\p"
 	.string "It delights me no end to see Pokémon\n"

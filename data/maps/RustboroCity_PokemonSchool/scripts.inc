@@ -217,7 +217,7 @@ RustboroCity_PokemonSchool_Text_ExplainPoison:
 
 RustboroCity_PokemonSchool_Text_ExplainParalysis:
 	.string "If a Pokémon becomes paralyzed,\n"
-	.string "its SPEED drops.\p"
+	.string "its Speed drops.\p"
 	.string "It may also not be able to move while\n"
 	.string "it is in battle.\p"
 	.string "Paralysis remains after battle.\n"
@@ -281,7 +281,7 @@ RustboroCity_PokemonSchool_Text_ConfusedPokemonAttacksItself:
 	.string "return to normal.$"
 
 RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry:
-	.string "A Pokémon holding a BERRY will heal\n"
+	.string "A Pokémon holding a Berry will heal\n"
 	.string "itself…\p"
 	.string "There are many kinds of items that\n"
 	.string "Pokémon can hold…\p"
@@ -291,7 +291,7 @@ RustboroCity_PokemonSchool_Text_PokemonHealItselfWithBerry:
 RustboroCity_PokemonSchool_Text_StudentsNotes:
 	.string "It's this student's notebook…\p"
 	.string "Pokémon are to be caught using\n"
-	.string "POKé BALLS.\p"
+	.string "Poké Balls.\p"
 	.string "Up to six Pokémon can accompany\n"
 	.string "a Trainer.\p"
 	.string "A Trainer is someone who catches\n"

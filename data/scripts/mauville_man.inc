@@ -315,18 +315,18 @@ MauvilleCity_PokemonCenter_1F_Text_TrendsStartedStory::
 	.string "the HOENN region!$"
 
 MauvilleCity_PokemonCenter_1F_Text_BerriesPlantedTitle::
-	.string "The BERRY-Planting Trainer$"
+	.string "The Berry-Planting Trainer$"
 
 MauvilleCity_PokemonCenter_1F_Text_BerriesPlantedAction::
-	.string "Planted BERRIES$"
+	.string "Planted Berries$"
 
 MauvilleCity_PokemonCenter_1F_Text_BerriesPlantedStory::
 	.string "This is a tale of a Trainer\n"
 	.string "named {STR_VAR_3}.\p"
-	.string "This Trainer planted BERRIES\n"
+	.string "This Trainer planted Berries\n"
 	.string "{STR_VAR_1} times!\p"
 	.string "{STR_VAR_3} is a legendary lover of\n"
-	.string "BERRIES!$"
+	.string "Berries!$"
 
 MauvilleCity_PokemonCenter_1F_Text_BikeTradesTitle::
 	.string "The BIKE-Loving Trainer$"
@@ -566,18 +566,18 @@ MauvilleCity_PokemonCenter_1F_Text_RouletteWinsStory::
 	.string "bounced in ROULETTE!$"
 
 MauvilleCity_PokemonCenter_1F_Text_BattleTowerChallengesTitle::
-	.string "The BATTLE TOWER Challenger$"
+	.string "The Battle TOWER Challenger$"
 
 MauvilleCity_PokemonCenter_1F_Text_BattleTowerChallengesAction::
-	.string "Took the BATTLE TOWER challenge$"
+	.string "Took the Battle TOWER challenge$"
 
 MauvilleCity_PokemonCenter_1F_Text_BattleTowerChallengesStory::
 	.string "This is a tale of a Trainer\n"
 	.string "named {STR_VAR_3}.\p"
-	.string "This Trainer took the BATTLE TOWER\n"
+	.string "This Trainer took the Battle TOWER\n"
 	.string "challenge {STR_VAR_1} times!\p"
 	.string "{STR_VAR_3} is a Trainer who aspires\n"
-	.string "for excellence in the BATTLE TOWER!$"
+	.string "for excellence in the Battle TOWER!$"
 
 MauvilleCity_PokemonCenter_1F_Text_MadePokeblocksTitle::
 	.string "The Blend-Loving Trainer$"
@@ -590,11 +590,11 @@ MauvilleCity_PokemonCenter_1F_Text_MadePokeblocksStory::
 	.string "named {STR_VAR_3}.\p"
 	.string "This Trainer made {POKEBLOCK}S\n"
 	.string "{STR_VAR_1} times!\p"
-	.string "There is none better at using a BERRY\n"
+	.string "There is none better at using a Berry\n"
 	.string "BLENDER than {STR_VAR_3}!$"
 
 MauvilleCity_PokemonCenter_1F_Text_EnteredContestsTitle::
-	.string "The CONTEST-Loving Trainer$"
+	.string "The Contest-Loving Trainer$"
 
 MauvilleCity_PokemonCenter_1F_Text_EnteredContestsAction::
 	.string "Entered CONTESTS$"
@@ -608,7 +608,7 @@ MauvilleCity_PokemonCenter_1F_Text_EnteredContestsStory::
 	.string "Pokémon to others!$"
 
 MauvilleCity_PokemonCenter_1F_Text_WonContestsTitle::
-	.string "The CONTEST Master$"
+	.string "The Contest Master$"
 
 MauvilleCity_PokemonCenter_1F_Text_WonContestsAction::
 	.string "Won CONTESTS$"
@@ -619,7 +619,7 @@ MauvilleCity_PokemonCenter_1F_Text_WonContestsStory::
 	.string "This Trainer won CONTESTS\n"
 	.string "{STR_VAR_1} times!\p"
 	.string "{STR_VAR_3} must be an incredible\n"
-	.string "CONTEST master!$"
+	.string "Contest master!$"
 
 MauvilleCity_PokemonCenter_1F_Text_TimesShoppedTitle::
 	.string "The Happy Shopper$"

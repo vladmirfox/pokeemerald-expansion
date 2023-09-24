@@ -154,7 +154,7 @@ LilycoveCity_DepartmentStore_1F_Text_MomBuyingMeFurniture:
 
 LilycoveCity_DepartmentStore_1F_Text_BuyingSomethingForAzumarill:
 	.string "I'm buying something for my AZUMARILL\n"
-	.string "as a reward for winning a CONTEST.$"
+	.string "as a reward for winning a Contest.$"
 
 LilycoveCity_DepartmentStore_1F_Text_Azumarill:
 	.string "AZUMARILL: Maririroo!$"
@@ -163,7 +163,7 @@ LilycoveCity_DepartmentStore_1F_Text_FloorNamesSign:
 	.string "1F: SERVICE COUNTER\n"
 	.string "    LOTTERY CORNER\p"
 	.string "2F: Trainer's ZONE\p"
-	.string "3F: BATTLE COLLECTION\p"
+	.string "3F: Battle COLLECTION\p"
 	.string "4F: TM CORNER\p"
 	.string "5F: POKé DOLL FLOOR\p"
 	.string "ROOFTOP: ROOFTOP PLAZA$"

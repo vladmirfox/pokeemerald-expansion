@@ -467,7 +467,7 @@ BattleFrontier_Lounge7_Text_SwiftDesc::
 BattleFrontier_Lounge7_Text_IcyWindDesc::
 	.string "A chilling attack\n"
 	.string "that lowers the\n"
-	.string "foe's SPEED.$"
+	.string "foe's Speed.$"
 
 BattleFrontier_Lounge7_Text_EndureDesc::
 	.string "Endures any at-\n"

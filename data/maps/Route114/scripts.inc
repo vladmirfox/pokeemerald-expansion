@@ -228,5 +228,5 @@ Route114_Text_FossilManiacsHouseSign:
 	.string "“Fossils gratefully accepted!”$"
 
 Route114_Text_LanettesHouse:
-	.string "LANETTE's HOUSE$"
+	.string "Lanette's HOUSE$"
 

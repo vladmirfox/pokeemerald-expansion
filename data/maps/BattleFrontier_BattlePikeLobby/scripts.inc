@@ -270,8 +270,8 @@ BattleFrontier_BattlePike_EventScript_CloseCurtain::
 BattleFrontier_BattlePikeLobby_Text_WelcomeToBattlePike:
 	.string "Where the luck of TRAINERS\n"
 	.string "is put to the test…\p"
-	.string "Welcome to the BATTLE PIKE…\p"
-	.string "I am your guide to the BATTLE PIKE…$"
+	.string "Welcome to the Battle PIKE…\p"
+	.string "I am your guide to the Battle PIKE…$"
 
 BattleFrontier_BattlePikeLobby_Text_TakeChallenge:
 	.string "Would you like to take the Battle\n"
@@ -284,7 +284,7 @@ BattleFrontier_BattlePikeLobby_Text_ExplainBattlePike:
 	.string "simple…\p"
 	.string "Choose one of three paths and make\n"
 	.string "your way to the goal room at the end\l"
-	.string "of the BATTLE PIKE. It's that simple.\p"
+	.string "of the Battle PIKE. It's that simple.\p"
 	.string "However, what happens on the chosen\n"
 	.string "path depends entirely on the luck\l"
 	.string "of the challenger…\p"
@@ -421,7 +421,7 @@ BattleFrontier_BattlePikeLobby_Text_ExplainPokenavBagRules:
 
 BattleFrontier_BattlePikeLobby_Text_ExplainHeldItemRules:
 	.string "During a Battle Choice challenge,\n"
-	.string "any BERRY or HERB held by Pokémon\l"
+	.string "any Berry or HERB held by Pokémon\l"
 	.string "will be effective only once.$"
 
 BattleFrontier_BattlePikeLobby_Text_ExplainMonOrderRules:

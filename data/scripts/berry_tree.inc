@@ -183,7 +183,7 @@ BerryTree_Text_PickedTheBerry:
 	.string "{PLAYER} picked the {STR_VAR_2} {STR_VAR_1}.$"
 
 BerryTree_Text_BerryPocketFull:
-	.string "The Bag's BERRIES POCKET is full.\p"
+	.string "The Bag's Berries POCKET is full.\p"
 	.string "The {STR_VAR_1} couldn't be taken.$"
 
 BerryTree_Text_ExclamationPoint:
