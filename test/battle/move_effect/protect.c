@@ -311,10 +311,10 @@ DOUBLE_BATTLE_TEST("Quick Guard protects self and ally from priority moves")
     u16 move = MOVE_NONE;
     struct BattlePokemon *targetOpponent = NULL;
 
-    PARAMETRIZE {move = MOVE_TACKLE; targetOpponent = opponentLeft; }
-    PARAMETRIZE {move = MOVE_TACKLE; targetOpponent = opponentRight; }
-    PARAMETRIZE {move = MOVE_QUICK_ATTACK; targetOpponent = opponentLeft; }
-    PARAMETRIZE {move = MOVE_QUICK_ATTACK; targetOpponent = opponentRight; }
+    PARAMETRIZE { move = MOVE_TACKLE; targetOpponent = opponentLeft; }
+    PARAMETRIZE { move = MOVE_TACKLE; targetOpponent = opponentRight; }
+    PARAMETRIZE { move = MOVE_QUICK_ATTACK; targetOpponent = opponentLeft; }
+    PARAMETRIZE { move = MOVE_QUICK_ATTACK; targetOpponent = opponentRight; }
 
     GIVEN {
         ASSUME(gBattleMoves[MOVE_TACKLE].priority == 0);
