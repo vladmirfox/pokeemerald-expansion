@@ -185,7 +185,7 @@ SINGLE_BATTLE_TEST("Baneful Bunker poisons pokemon for moves making contact")
     }
 }
 
-SINGLE_BATTLE_TEST("Recoil is not applied if battler was protected") // #3319
+SINGLE_BATTLE_TEST("Recoil damage is not applied if target was protected")
 {
     u16 move = MOVE_NONE;
 
