@@ -6981,7 +6981,7 @@ static void Cmd_switchineffects(void)
         {
             if (DoSwitchInAbilitiesItems(battler))
                 return;
-            else if (AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, gActiveBattler, 0, 0, 0))
+            else if (AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, battler, 0, 0, 0))
                 return;
         }
 
@@ -11643,8 +11643,8 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                         && gBattleMons[index].statStages[statId] < MAX_STAT_STAGE)
                 {
                     gProtectStructs[index].eatMirrorHerb = 1;
-                    gTotemBoosts[index].stats |= (1 << (statId - 1));    // -1 to start at atk
-                    gTotemBoosts[index].statChanges[statId - 1] = statValue;
+                    gQueuedStatBoosts[index].stats |= (1 << (statId - 1));    // -1 to start at atk
+                    gQueuedStatBoosts[index].statChanges[statId - 1] = statValue;
                 }
             }
         }
