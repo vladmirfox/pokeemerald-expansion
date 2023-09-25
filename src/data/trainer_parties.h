@@ -3554,7 +3554,7 @@ static const struct TrainerMonItemCustomMoves sParty_Winona1[] = {
     .lvl = 33,
     .species = SPECIES_ALTARIA,
     .heldItem = ITEM_ALTARIANITE,
-    .moves = {MOVE_EARTHQUAKE, MOVE_DRAGON_BREATH, MOVE_DRAGON_DANCE, MOVE_AERIAL_ACE}
+    .moves = {MOVE_BULLDOZE, MOVE_DRAGON_BREATH, MOVE_DRAGON_DANCE, MOVE_AERIAL_ACE}
     }
 };
 
@@ -3593,13 +3593,6 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1[] = {
     {
     .iv = 200,
     .lvl = 41,
-    .species = SPECIES_LUVDISC,
-    .heldItem = ITEM_NONE,
-    .moves = {MOVE_WATER_PULSE, MOVE_ATTRACT, MOVE_SWEET_KISS, MOVE_FLAIL}
-    },
-    {
-    .iv = 200,
-    .lvl = 41,
     .species = SPECIES_WHISCASH,
     .heldItem = ITEM_NONE,
     .moves = {MOVE_RAIN_DANCE, MOVE_WATER_PULSE, MOVE_AMNESIA, MOVE_EARTHQUAKE}
@@ -3619,11 +3612,18 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1[] = {
     .moves = {MOVE_WATER_PULSE, MOVE_CRABHAMMER, MOVE_TAUNT, MOVE_LEER}
     },
     {
-    .iv = 250,
-    .lvl = 46,
+    .iv = 200,
+    .lvl = 43,
     .species = SPECIES_KINGDRA,
     .heldItem = ITEM_CHESTO_BERRY,
-    .moves = {MOVE_WATER_PULSE, MOVE_DOUBLE_TEAM, MOVE_ICE_BEAM, MOVE_REST}
+    .moves = {MOVE_BRINE, MOVE_DRAGON_PULSE, MOVE_ICE_BEAM, MOVE_REST}
+    },
+    {
+    .iv = 250,
+    .lvl = 45,
+    .species = SPECIES_GLALIE,
+    .heldItem = ITEM_GLALITITE,
+    .moves = {MOVE_DOUBLE_EDGE, MOVE_EARTHQUAKE, MOVE_FREEZE_DRY, MOVE_TAUNT}
     }
 };
 

@@ -801,6 +801,9 @@ static const u8 sText_AtkTrappedDef[] = _("{B_ATK_NAME_WITH_PREFIX} trapped\nthe
 static const u8 sText_MirrorHerbCopied[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} used its {B_LAST_ITEM}\nto mirror its opponent's stat changes!");
 static const u8 sText_YourDevotionIsIncredible[] = _("Your devotion to Pokémon is incredible!\nLet us soar together!");
 static const u8 sText_LetUsAscendTogether[] = _("Come Altaria!\nLet us ascend to the heavens as one!");
+static const u8 sText_ItWontBeSoEasy[] = _("Ahh… So the time has come for the\ngrande finale!");
+static const u8 sText_AhaHowIntriguing[] = _("Aha! So you do have some fight in you!\nThis shall be an intriguing duel!");
+static const u8 sText_CanYouBearThis[] = _("Let us see whether you can bear\nour full might!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -3971,6 +3974,21 @@ static const struct TrainerSlide sTrainerSlides[] =
         //.msgFirstSTABMove = sText_ABoosted,
         //.msgPlayerMonUnaffected = sText_ButNoEffect,
         .msgMegaEvolution = sText_LetUsAscendTogether,
+        //.msgZMove = sText_Electromagnetism,
+        //.msgBeforeFirstTurn = sText_GravityIntensified,
+    },
+    {
+        .trainerId = TRAINER_JUAN_1,
+        .isFrontierTrainer = FALSE,
+        ///.msgLastSwitchIn = sText_AarghAlmostHadIt,
+        .msgLastLowHp = sText_ItWontBeSoEasy,
+        .msgFirstDown = sText_AhaHowIntriguing,
+        //.msgLastHalfHp = sText_ShootSoClose,
+        //.msgFirstCriticalHit = sText_CriticalHit,
+        //.msgFirstSuperEffectiveHit = sText_SuperEffective,
+        //.msgFirstSTABMove = sText_ABoosted,
+        //.msgPlayerMonUnaffected = sText_ButNoEffect,
+        .msgMegaEvolution = sText_CanYouBearThis,
         //.msgZMove = sText_Electromagnetism,
         //.msgBeforeFirstTurn = sText_GravityIntensified,
     },
