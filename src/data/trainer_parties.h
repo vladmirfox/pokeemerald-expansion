@@ -3553,7 +3553,7 @@ static const struct TrainerMonItemCustomMoves sParty_Winona1[] = {
     .iv = 255,
     .lvl = 33,
     .species = SPECIES_ALTARIA,
-    .heldItem = ITEM_ORAN_BERRY,
+    .heldItem = ITEM_ALTARIANITE,
     .moves = {MOVE_EARTHQUAKE, MOVE_DRAGON_BREATH, MOVE_DRAGON_DANCE, MOVE_AERIAL_ACE}
     }
 };

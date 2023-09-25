@@ -799,6 +799,8 @@ static const u8 sText_ItemCuredSpeciesStatus[] = _("{B_BUFF1} had\nits status he
 static const u8 sText_ItemRestoredSpeciesPP[] = _("{B_BUFF1} had its\nPP restored!");
 static const u8 sText_AtkTrappedDef[] = _("{B_ATK_NAME_WITH_PREFIX} trapped\nthe {B_DEF_NAME_WITH_PREFIX}!");
 static const u8 sText_MirrorHerbCopied[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} used its {B_LAST_ITEM}\nto mirror its opponent's stat changes!");
+static const u8 sText_YourDevotionIsIncredible[] = _("Your devotion to Pokémon is incredible!\nLet us soar together!");
+static const u8 sText_LetUsAscendTogether[] = _("Come Altaria!\nLet us ascend to the heavens as one!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -3957,24 +3959,21 @@ struct TrainerSlide
 
 static const struct TrainerSlide sTrainerSlides[] =
 {
-    /* Put any trainer slide-in messages inside this array.
-    Example:
     {
-        .trainerId = TRAINER_WALLY_VR_2,
+        .trainerId = TRAINER_WINONA_1,
         .isFrontierTrainer = FALSE,
-        .msgLastSwitchIn = sText_AarghAlmostHadIt,
-        .msgLastLowHp = sText_BoxIsFull,
-        .msgFirstDown = sText_123Poof,
-        .msgLastHalfHp = sText_ShootSoClose,
-        .msgFirstCriticalHit = sText_CriticalHit,
-        .msgFirstSuperEffectiveHit = sText_SuperEffective,
-        .msgFirstSTABMove = sText_ABoosted,
-        .msgPlayerMonUnaffected = sText_ButNoEffect,
-        .msgMegaEvolution = sText_PowderExplodes,
-        .msgZMove = sText_Electromagnetism,
-        .msgBeforeFirstTurn = sText_GravityIntensified,
+        ///.msgLastSwitchIn = sText_AarghAlmostHadIt,
+        //.msgLastLowHp = sText_BoxIsFull,
+        .msgFirstDown = sText_YourDevotionIsIncredible,
+        //.msgLastHalfHp = sText_ShootSoClose,
+        //.msgFirstCriticalHit = sText_CriticalHit,
+        //.msgFirstSuperEffectiveHit = sText_SuperEffective,
+        //.msgFirstSTABMove = sText_ABoosted,
+        //.msgPlayerMonUnaffected = sText_ButNoEffect,
+        .msgMegaEvolution = sText_LetUsAscendTogether,
+        //.msgZMove = sText_Electromagnetism,
+        //.msgBeforeFirstTurn = sText_GravityIntensified,
     },
-    */
 };
 
 static u32 GetEnemyMonCount(u32 firstId, u32 lastId, bool32 onlyAlive)
