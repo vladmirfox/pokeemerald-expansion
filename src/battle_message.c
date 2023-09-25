@@ -311,7 +311,7 @@ const u8 gText_PkmnsXPreventsSwitching[] = _("{B_BUFF1}'s {B_LAST_ABILITY}\nprev
 static const u8 sText_PreventedFromWorking[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nprevented {B_SCR_ACTIVE_NAME_WITH_PREFIX}'s\l{B_BUFF1} from working!"); //unused
 static const u8 sText_PkmnsXMadeItIneffective[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nmade it ineffective!"); //not in gen 5+, ability popup
 static const u8 sText_PkmnsXPreventsFlinching[] = _("{B_EFF_NAME_WITH_PREFIX}'s {B_EFF_ABILITY}\nprevents flinching!"); //not in gen 5+, ability popup
-static const u8 sText_PkmnsXPreventsYsZ[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\nprevents {B_DEF_NAME_WITH_PREFIX}'s\l{B_DEF_ABILITY} from working!"); 
+static const u8 sText_PkmnsXPreventsYsZ[] = _("{B_ATK_NAME_WITH_PREFIX}'s {B_ATK_ABILITY}\nprevents {B_DEF_NAME_WITH_PREFIX}'s\l{B_DEF_ABILITY} from working!");
 static const u8 sText_PkmnsAbilityPreventsAbility[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nprevents {B_DEF_NAME_WITH_PREFIX}'s\l{B_DEF_ABILITY} from working!"); //not in gen 5+, ability popup
 static const u8 sText_PkmnsXCuredItsYProblem[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\ncured its {B_BUFF1} problem!"); //not in gen 5+, ability popup
 static const u8 sText_PkmnsXHadNoEffectOnY[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nhad no effect on {B_EFF_NAME_WITH_PREFIX}!"); //not in gen 5+, ability popup
@@ -364,7 +364,7 @@ static const u8 sText_SunlightGotBright[] = _("The sunlight turned harsh!");
 static const u8 sText_SunlightStrong[] = _("The sunlight is strong."); //not in gen 5+
 static const u8 sText_SunlightFaded[] = _("The sunlight faded.");
 static const u8 sText_StartedHail[] = _("It started to hail!");
-static const u8 sText_HailContinues[] = _("The hail is crashing down."); 
+static const u8 sText_HailContinues[] = _("The hail is crashing down.");
 static const u8 sText_HailStopped[] = _("The hail stopped.");
 static const u8 sText_StartedSnow[] = _("It started to snow!");
 static const u8 sText_SnowContinues[] = _("Snow continues to fall."); //not in gen 5+ (lol)
@@ -424,7 +424,7 @@ static const u8 sText_LinkPartnerSentOutPkmnGoPkmn[] = _("{B_LINK_PARTNER_NAME} 
 static const u8 sText_PkmnSwitchOut[] = _("{B_BUFF1}, switch out!\nCome back!"); //Later gens use this message when switching out a pokemon during shift rules.
 static const u8 sText_PkmnComeBack[] = _("{B_BUFF1}, come back!");
 static const u8 sText_PkmnThatsEnough[] = _("{B_BUFF1}, that's enough!\nCome back!");
-static const u8 sText_PkmnOkComeBack[] = _("OK, {B_BUFF1}!\nCome back!");                  
+static const u8 sText_PkmnOkComeBack[] = _("OK, {B_BUFF1}!\nCome back!");
 static const u8 sText_PkmnGoodComeBack[] = _("Good job, {B_BUFF1}!\nCome back!");
 static const u8 sText_Trainer1WithdrewPkmn[] = _("{B_TRAINER1_CLASS} {B_TRAINER1_NAME}\nwithdrew {B_BUFF1}!");
 static const u8 sText_LinkTrainer1WithdrewPkmn[] = _("{B_LINK_OPPONENT1_NAME} withdrew\n{B_BUFF1}!");
@@ -1885,7 +1885,7 @@ const u16 gWeatherStartsStringIds[] =
 
 const u16 gTerrainStartsStringIds[] =
 {
-    STRINGID_MISTSWIRLSAROUND, STRINGID_ISCOVEREDWITHGRASS, STRINGID_ELECTRICCURRENTISRUNNING, STRINGID_SEEMSWEIRD, STRINGID_TERRAINREMOVED,
+    STRINGID_MISTSWIRLSAROUND, STRINGID_ISCOVEREDWITHGRASS, STRINGID_ELECTRICCURRENTISRUNNING, STRINGID_SEEMSWEIRD,
 };
 
 const u16 gPrimalWeatherBlocksStringIds[] =
@@ -2791,7 +2791,7 @@ void BufferStringBattle(u16 stringID, u32 battler)
                     stringPtr = sText_LinkTrainerSentOutPkmn;
             }
         }
-        break; 
+        break;
     case STRINGID_RETURNMON: // sending poke to ball msg
         if (GetBattlerSide(battler) == B_SIDE_PLAYER)
         {
