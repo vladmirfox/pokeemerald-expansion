@@ -2349,7 +2349,6 @@ void AnimTask_TransformMon(u8 taskId)
 
         gTasks[taskId].data[10] = gBattleAnimArgs[0];
         gTasks[taskId].data[11] = gBattleAnimArgs[1];
-        gTasks[taskId].data[12] = gBattleAnimArgs[2];
         gTasks[taskId].data[0]++;
         break;
     case 1:
@@ -2364,7 +2363,7 @@ void AnimTask_TransformMon(u8 taskId)
         }
         break;
     case 2:
-        HandleSpeciesGfxDataChange(gBattleAnimAttacker, gBattleAnimTarget, gTasks[taskId].data[10], gTasks[taskId].data[11], gTasks[taskId].data[12]);
+        HandleSpeciesGfxDataChange(gBattleAnimAttacker, gBattleAnimTarget, gTasks[taskId].data[10], gTasks[taskId].data[11]);
         GetBgDataForTransform(&animBg, gBattleAnimAttacker);
 
         if (IsContest())
@@ -2372,7 +2371,7 @@ void AnimTask_TransformMon(u8 taskId)
         else
             position = GetBattlerPosition(gBattleAnimAttacker);
 
-        src = gMonSpritesGfxPtr->sprites.ptr[position] + (gBattleMonForms[gBattleAnimAttacker] << 11);
+        src = gMonSpritesGfxPtr->sprites.ptr[position];
         dest = animBg.bgTiles;
         CpuCopy32(src, dest, MON_PIC_SIZE);
         LoadBgTiles(1, animBg.bgTiles, 0x800, animBg.tilesOffset);
@@ -2446,12 +2445,6 @@ void AnimTask_TransformMon(u8 taskId)
 void AnimTask_IsMonInvisible(u8 taskId)
 {
     gBattleAnimArgs[ARG_RET_ID] = gSprites[gBattlerSpriteIds[gBattleAnimAttacker]].invisible;
-    DestroyAnimVisualTask(taskId);
-}
-
-void AnimTask_CastformGfxDataChange(u8 taskId)
-{
-    HandleSpeciesGfxDataChange(gBattleAnimAttacker, gBattleAnimTarget, TRUE, FALSE, FALSE);
     DestroyAnimVisualTask(taskId);
 }
 
@@ -3138,7 +3131,7 @@ static void AnimFlatterConfetti(struct Sprite *sprite)
     if (sprite->data[2] == ANIM_ATTACKER)
         sprite->x = -8;
     else
-        sprite->x = 248;
+        sprite->x = DISPLAY_WIDTH + 8;
 
     sprite->y = 104;
     sprite->callback = AnimFlatterConfetti_Step;
@@ -3496,8 +3489,8 @@ static void AnimTask_AcidArmor_Step(u8 taskId)
         var0 *= 2;
         while (var0 >= 0)
         {
-            gScanlineEffectRegBuffers[0][var0] = bgX + 240;
-            gScanlineEffectRegBuffers[1][var0] = bgX + 240;
+            gScanlineEffectRegBuffers[0][var0] = bgX + DISPLAY_WIDTH;
+            gScanlineEffectRegBuffers[1][var0] = bgX + DISPLAY_WIDTH;
             var0 -= 2;
         }
 
@@ -3978,7 +3971,7 @@ static void AnimTask_FacadeColorBlend_Step(u8 taskId)
     }
     else
     {
-        BlendPalette(gTasks[taskId].data[2], 16, 0, RGB(0, 0, 0));
+        BlendPalette(gTasks[taskId].data[2], 16, 0, RGB_BLACK);
         DestroyAnimVisualTask(taskId);
     }
 }
