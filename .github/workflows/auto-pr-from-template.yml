@@ -23,15 +23,8 @@ jobs:
           git fetch template
           git checkout -b template-branch template/master
           git push origin template-branch:template-branch
-
-      - name: Check for Changes
-        id: check_changes
-        run: |
-          CHANGES=$(git rev-list HEAD...template-branch)
-          echo "::set-output name=changes::${CHANGES}"
   
       - name: Create PR of Changes
-        if: steps.check_changes.outputs.changes != ''
         run: |
           hub pull-request \
             -b fakuzatsu:master \
