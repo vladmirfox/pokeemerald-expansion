@@ -41,3 +41,9 @@ SINGLE_BATTLE_TEST("Aurora Veil can be used in Snow")
         NOT MESSAGE("But it failed!");
     }
 }
+TO_DO_BATTLE_TEST("Aurora Veil reduces damage done to the user by half in singles")
+TO_DO_BATTLE_TEST("Aurora Veil reduces damage done to the user by roughly a third in doubles")
+TO_DO_BATTLE_TEST("Aurora Veil's damage reduction is ignored by Critical Hits")
+TO_DO_BATTLE_TEST("Aurora Veil's damage reduction doesn't stack with Reflect or Light Screen")
+TO_DO_BATTLE_TEST("Aurora Veil doesn't reduce confusion damage")
+TO_DO_BATTLE_TEST("Aurora Veil doesn't reduce damage done by moves that do direct damage") // Bide, Counter, Endeavor, Final Gambit, Metal Burst, Mirror Coat, Psywave, Seismic Toss, Sonic Boom, Super Fang

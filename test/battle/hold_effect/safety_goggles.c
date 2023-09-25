@@ -26,7 +26,7 @@ SINGLE_BATTLE_TEST("Safety Goggles blocks damage from Hail")
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_SAFETY_GOGGLES); };
     } WHEN {
-        TURN {MOVE(player, MOVE_HAIL);}
+        TURN { MOVE(player, MOVE_HAIL); }
     } SCENE {
         NOT MESSAGE("Foe Wobbuffet is pelted by HAIL!");
     }
@@ -38,7 +38,7 @@ SINGLE_BATTLE_TEST("Safety Goggles blocks damage from Sandstorm")
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_SAFETY_GOGGLES); };
     } WHEN {
-        TURN {MOVE(player, MOVE_SANDSTORM);}
+        TURN { MOVE(player, MOVE_SANDSTORM); }
     } SCENE {
         NOT MESSAGE("Foe Wobbuffet is buffeted by the sandstorm!");
     }
