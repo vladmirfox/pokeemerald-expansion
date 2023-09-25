@@ -224,7 +224,7 @@ SINGLE_BATTLE_TEST("Recoil damage is not applied if target was protected")
     }
 }
 
-SINGLE_BATTLE_TEST("Multi-hit moves don't hit a protected target and fail only once") // #3312
+SINGLE_BATTLE_TEST("Multi-hit moves don't hit a protected target and fail only once")
 {
     u16 move = MOVE_NONE;
 
