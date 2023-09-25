@@ -8022,6 +8022,7 @@ u8 IsMonDisobedient(void)
     s32 calc;
     u8 obedienceLevel = 0;
     u8 levelReferenced;
+    int scaledFactor;
 
     if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
         return 0;
@@ -8066,12 +8067,23 @@ u8 IsMonDisobedient(void)
         levelReferenced = gBattleMons[gBattlerAttacker].metLevel;
     else
 #endif
+    if (gBattleMons[gBattlerAttacker].friendship > 200) {
+        levelReferenced = gBattleMons[gBattlerAttacker].metLevel;
+    } else {
         levelReferenced = gBattleMons[gBattlerAttacker].level;
+    }
 
     if (levelReferenced <= obedienceLevel)
         return 0;
+
+    if (gBattleMons[gBattlerAttacker].friendship <= 100) {
+        scaledFactor = 50 + (gBattleMons[gBattlerAttacker].friendship * 50) / 100;
+    } else {
+        scaledFactor = 100 + ((gBattleMons[gBattlerAttacker].friendship - 100) * 50) / 155;
+    }
+
     rnd = (Random() & 255);
-    calc = (levelReferenced + obedienceLevel) * rnd >> 8;
+    calc = (((levelReferenced + obedienceLevel) * 100) / scaledFactor) * rnd >> 8;
     if (calc < obedienceLevel)
         return 0;
 
