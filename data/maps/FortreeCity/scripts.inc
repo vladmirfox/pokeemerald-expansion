@@ -1,3 +1,10 @@
+.set LOCALID_STEVEN, 13
+.set LOCALID_WINONA, 12
+.set LOCALID_LITTLEBOY, 11
+.set LOCALID_AMAZEDBOY, 10
+.set LOCALID_LADY, 9
+.set LOCALID_SHOCKEDWOMAN, 8
+
 FortreeCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, FortreeCity_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, FortreeCity_OnResume
@@ -36,6 +43,7 @@ FortreeCity_EventScript_Man::
 	msgbox FortreeCity_Text_SawGiganticPokemonInSky, MSGBOX_NPC
 	end
 
+@needs changed use this flag for the man
 FortreeCity_EventScript_Woman::
 	lock
 	faceplayer
@@ -53,6 +61,7 @@ FortreeCity_EventScript_Girl::
 	msgbox FortreeCity_Text_TreesGrowByDrinkingRainwater, MSGBOX_NPC
 	end
 
+@change to complain about the Kecleon
 FortreeCity_EventScript_OldMan::
 	msgbox FortreeCity_Text_EveryoneHealthyAndLively, MSGBOX_NPC
 	end
@@ -104,7 +113,108 @@ FortreeCity_EventScript_UseDevonScope::
 	release
 	end
 
+FortreeCity_EventScript_MegaCutsceneTrigger::
+	lockall
+	playbgm MUS_CONTEST_LOBBY, FALSE
+	applymovement OBJ_EVENT_ID_PLAYER, FortreeCity_Movement_PlayerTakePlace
+	waitmovement 0
+	applymovement LOCALID_SHOCKEDWOMAN, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	applymovement LOCALID_SHOCKEDWOMAN, Common_Movement_WalkInPlaceRight
+	waitmovement 0
+	msgbox FortreeCity_Text_IsItTrue, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_WINONA, Common_Movement_WalkInPlaceDown
+	waitmovement 0
+	msgbox FortreeCity_Text_ThatsRight, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_LITTLEBOY, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	applymovement LOCALID_LITTLEBOY, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	msgbox FortreeCity_Text_WowSoCool, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_WINONA, Common_Movement_WalkInPlaceDown
+	waitmovement 0
+	msgbox FortreeCity_Text_RemainEnthused, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	fadedefaultbgm
+	applymovement LOCALID_WINONA, Common_Movement_WalkInPlaceFasterUp
+	waitmovement 0
+	delay 30
+	removeobject LOCALID_WINONA
+	playse SE_DOOR
+	waitse
+	applymovement LOCALID_LADY, Common_Movement_WalkInPlaceLeft
+	waitmovement 0
+	applymovement LOCALID_LADY, Common_Movement_WalkInPlaceLeft
+	waitmovement 0
+	msgbox FortreeCity_Text_MegaEvolutionHuh, MSGBOX_DEFAULT
+	closemessage
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_LITTLEBOY
+	removeobject LOCALID_AMAZEDBOY
+	removeobject LOCALID_SHOCKEDWOMAN
+	removeobject LOCALID_LADY
+	setflag FLAG_HIDE_WINONA_CUSTSCENE_ACTORS
+	fadescreen FADE_FROM_BLACK
+	setvar VAR_FORTREE_CITY_STATE, 1
+	goto FortreeCity_EventScript_MegaCutsceneSteven
+	end
+
+FortreeCity_EventScript_MegaCutsceneSteven::
+	addobject LOCALID_STEVEN
+	setobjectxy LOCALID_STEVEN, 29, 14
+	applymovement LOCALID_STEVEN, FortreeCity_Movement_StevenApproachPlayer
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
+	msgbox FortreeCity_Text_YouSawThatTooHuh, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_STEVEN, Common_Movement_WalkInPlaceFasterUp
+	waitmovement 0
+	delay 30
+	applymovement LOCALID_STEVEN, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	msgbox FortreeCity_Text_YouShouldBattleWinona, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_STEVEN, FortreeCity_Movement_StevenDepart
+	waitmovement 0
+	removeobject LOCALID_STEVEN
+	releaseall
+	end
+
 FortreeCity_Movement_KecleonFlee:
+	walk_right
+	step_end
+
+FortreeCity_Movement_PlayerTakePlace:
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_faster_up
+	step_end
+
+FortreeCity_Movement_StevenApproachPlayer:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+FortreeCity_Movement_StevenDepart:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
 	walk_right
 	step_end
 
@@ -174,4 +284,57 @@ FortreeCity_Text_GymSign:
 	.string "LEADER: WINONA\p"
 	.string "“The bird user taking flight into\n"
 	.string "the world.”$"
+
+FortreeCity_Text_IsItTrue:
+	.string "Is it true lady Winona?\p"
+	.string "That you have a brand new power?$"
+
+FortreeCity_Text_ThatsRight:
+	.string "WINONA: That's right!\p"
+	.string "By the grace of the Pokémon\n"
+	.string "League, we have unlocked the\l"
+	.string "potential of Trainers and\l"
+	.string "Pokémon working in tandem!\p"
+	.string "With these mysterious stones, we can\n"
+	.string "unlock further evolution potential\l"
+	.string "with the trust of our companions!\p"
+	.string "With the power of our bonds we will\n"
+	.string "unleash Mega Evolution!\p"
+	.string "Together!\p"
+	.string "My BIRD Pokémon and I will soar\n"
+	.string "to the very heavens!$"
+
+FortreeCity_Text_WowSoCool:
+	.string "That's so cool!$"
+
+FortreeCity_Text_RemainEnthused:
+	.string "WINONA: I hope that we can share this\n"
+	.string "power with all Trainers and Pokémon\p"
+	.string "So that we all may soar together!\p"
+	.string "Please look forward to that future!$"
+
+FortreeCity_Text_MegaEvolutionHuh:
+	.string "Mega Evolution huh?\n"
+	.string "That sounds awesome!\p"
+	.string "I wonder what it's like…$"
+
+FortreeCity_Text_YouSawThatTooHuh:
+	.string "STEVEN: Greetings, {PLAYER}.\p"
+	.string "I saw you coming as Winona gave\n"
+	.string "her speech.\p"
+	.string "It seems that Prof. Cosmo isn't\n"
+	.string "the only one who discovered the\l"
+	.string "power of the Mega Stones.\p"
+	.string "The Pokémon League must have found\n"
+	.string "and researched some too…$"
+
+FortreeCity_Text_YouShouldBattleWinona:
+	.string "…Perhaps you should challenge the\n"
+	.string "gym here and see how your own\l"
+	.string "power compares.\p"
+	.string "In the meanwhile, I will be exploring\n"
+	.string "an interesting phenomena on Route 120.\p"
+	.string "We should meet again on Route 120\n"
+	.string "after you have battled Winona!\p"
+	.string "…Until then {PLAYER}!$"
 
