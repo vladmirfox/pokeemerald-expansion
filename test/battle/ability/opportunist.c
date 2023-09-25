@@ -1,12 +1,12 @@
 #include "global.h"
-#include "test_battle.h"
+#include "test/battle.h"
 
 ASSUMPTIONS
 {
     ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].abilities[2] == ABILITY_OPPORTUNIST);
 }
 
-SINGLE_BATTLE_TEST("Opportunist copies all of foe's positive stat changes in a turn", s16 damage)
+SINGLE_BATTLE_TEST("Opportunist only copies foe's positive stat changes in a turn", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_NONE; }
@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("Opportunist copies all of foe's positive stat changes in a t
         TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
         if (ability == ABILITY_NONE) {
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_SMASH, player);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
             HP_BAR(player, captureDamage: &results[i].damage);
         } else {
@@ -34,8 +34,8 @@ SINGLE_BATTLE_TEST("Opportunist copies all of foe's positive stat changes in a t
         EXPECT_EQ(player->statStages[STAT_SPATK], opponent->statStages[STAT_SPATK]);
         EXPECT_EQ(player->statStages[STAT_SPEED], opponent->statStages[STAT_SPEED]);
         // opportunist should not copy stat drops from shell smash
-        EXPECT_LT(opponent->statStages[STAT_DEF], player->statStages[STAT_DEF]);
-        EXPECT_LT(opponent->statStages[STAT_SPDEF], player->statStages[STAT_SPDEF]);
+        EXPECT_LT(player->statStages[STAT_DEF], opponent->statStages[STAT_DEF]);
+        EXPECT_LT(player->statStages[STAT_SPDEF], opponent->statStages[STAT_SPDEF]);
     }
 }
 
