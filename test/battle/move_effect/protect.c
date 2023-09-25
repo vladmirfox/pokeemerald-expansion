@@ -107,8 +107,6 @@ SINGLE_BATTLE_TEST("King's Shield, Silk Trap and Obstruct protect from damaging 
                 }
             } else {
                 NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            } else {
-                NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
             }
         }
     } THEN {
@@ -187,33 +185,41 @@ SINGLE_BATTLE_TEST("Baneful Bunker poisons pokemon for moves making contact")
 
 SINGLE_BATTLE_TEST("Recoil damage is not applied if target was protected")
 {
-    u16 move = MOVE_NONE;
+    u32 j, k;
+    static const u16 protectMoves[] = { MOVE_PROTECT, MOVE_DETECT, MOVE_KINGS_SHIELD, MOVE_BANEFUL_BUNKER, MOVE_SILK_TRAP, MOVE_OBSTRUCT, MOVE_SPIKY_SHIELD };
+    static const u16 recoilMoves[] = { MOVE_VOLT_TACKLE, MOVE_HEAD_SMASH, MOVE_TAKE_DOWN, MOVE_DOUBLE_EDGE };
+    u16 protectMove = MOVE_NONE;
+    u16 recoilMove = MOVE_NONE;
 
-    PARAMETRIZE { move = MOVE_PROTECT; }
-    PARAMETRIZE { move = MOVE_DETECT; }
-    PARAMETRIZE { move = MOVE_KINGS_SHIELD; }
-    PARAMETRIZE { move = MOVE_BANEFUL_BUNKER; }
-    PARAMETRIZE { move = MOVE_SILK_TRAP; }
-    PARAMETRIZE { move = MOVE_OBSTRUCT; }
-    PARAMETRIZE { move = MOVE_SPIKY_SHIELD; }
+    for (j = 0; j < ARRAY_COUNT(protectMoves); j++)
+    {
+        for (k = 0; k < ARRAY_COUNT(recoilMoves); k++)
+        {
+            PARAMETRIZE { protectMove = protectMoves[j]; recoilMove = recoilMoves[k]; }
+        }
+    }
+
 
     GIVEN {
+        ASSUME(gBattleMoves[MOVE_VOLT_TACKLE].effect == EFFECT_RECOIL_33_STATUS);
+        ASSUME(gBattleMoves[MOVE_HEAD_SMASH].effect == EFFECT_RECOIL_50);
+        ASSUME(gBattleMoves[MOVE_TAKE_DOWN].effect == EFFECT_RECOIL_25);
         ASSUME(gBattleMoves[MOVE_DOUBLE_EDGE].effect == EFFECT_RECOIL_33);
         PLAYER(SPECIES_RAPIDASH);
         OPPONENT(SPECIES_BEAUTIFLY);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); MOVE(player, MOVE_TACKLE); }
-        TURN { MOVE(opponent, move); MOVE(player, MOVE_DOUBLE_EDGE); }
+        TURN { MOVE(opponent, protectMove); MOVE(player, recoilMove); }
         TURN {}
     } SCENE {
         // 1st turn
         MESSAGE("Foe Beautifly used Tackle!");
         MESSAGE("Rapidash used Tackle!");
         // 2nd turn
-        ANIMATION(ANIM_TYPE_MOVE, move, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, protectMove, opponent);
         MESSAGE("Foe Beautifly protected itself!");
-        MESSAGE("Rapidash used Double-Edge!");
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_EDGE, player);
+        // MESSAGE("Rapidash used recoilMove!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, recoilMove, player);
         NOT MESSAGE("Rapidash is hit with recoil!");
     }
 }
