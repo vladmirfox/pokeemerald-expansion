@@ -72,9 +72,9 @@ SINGLE_BATTLE_TEST("King's Shield, Silk Trap and Obstruct protect from damaging 
 
     for (j = 0; j < ARRAY_COUNT(protectMoves); j++)
     {
-        PARAMETRIZE {protectMove = protectMoves[j][0]; statId = protectMoves[j][1]; lowersBy = protectMoves[j][2]; usedMove = MOVE_TACKLE; }
-        PARAMETRIZE {protectMove = protectMoves[j][0]; usedMove = MOVE_LEER; }
-        PARAMETRIZE {protectMove = protectMoves[j][0]; usedMove = MOVE_WATER_GUN; }
+        PARAMETRIZE { usedMove = MOVE_TACKLE; protectMove = protectMoves[j][0]; statId = protectMoves[j][1]; lowersBy = protectMoves[j][2]; }
+        PARAMETRIZE { usedMove = MOVE_LEER; protectMove = protectMoves[j][0]; statId = 0; lowersBy = 0; }
+        PARAMETRIZE { usedMove = MOVE_WATER_GUN; protectMove = protectMoves[j][0]; statId = 0; lowersBy = 0; }
     }
 
     GIVEN {
