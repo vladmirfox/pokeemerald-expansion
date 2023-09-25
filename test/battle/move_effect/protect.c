@@ -346,10 +346,10 @@ DOUBLE_BATTLE_TEST("Crafty Shield protects self and ally from status moves")
     u16 move = MOVE_NONE;
     struct BattlePokemon *targetOpponent = NULL;
 
-    PARAMETRIZE {move = MOVE_HYPER_VOICE; }
-    PARAMETRIZE {move = MOVE_LEER; }
-    PARAMETRIZE {move = MOVE_TACKLE; targetOpponent = opponentLeft; }
-    PARAMETRIZE {move = MOVE_TACKLE; targetOpponent = opponentRight; }
+    PARAMETRIZE { move = MOVE_HYPER_VOICE; }
+    PARAMETRIZE { move = MOVE_LEER; }
+    PARAMETRIZE { move = MOVE_TACKLE; targetOpponent = opponentLeft; }
+    PARAMETRIZE { move = MOVE_TACKLE; targetOpponent = opponentRight; }
 
     GIVEN {
         ASSUME(gBattleMoves[MOVE_LEER].target == MOVE_TARGET_BOTH);
