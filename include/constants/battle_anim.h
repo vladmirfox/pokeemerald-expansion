@@ -425,6 +425,7 @@
 //          127
 //
 #define SOUND_PAN_ATTACKER -64
+#define SOUND_PAN_NONE       0
 #define SOUND_PAN_TARGET    63
 
 // move background ids
