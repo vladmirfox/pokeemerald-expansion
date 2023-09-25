@@ -569,11 +569,13 @@ MossdeepCity_Gym_Text_ReceivedMindBadge:
 	.string "from TATE and LIZA.$"
 
 MossdeepCity_Gym_Text_ExplainMindBadgeTakeThis:
-	.string "TATE: The MIND BADGE enhances the\n"
-	.string "SP. ATK and SP. DEF of Pokémon.\p"
-	.string "LIZA: It also lets you use the HM move\n"
+	.string "TATE: The MIND BADGE makes all Pokémon\n"
+	.string "up to Level 80, obey you completely.\p"
+	.string "LIZA: Even Pokémon you recieve in a trade\n"
+	.string "from another Trainer!\p"
+	.string "TATE: It also lets you use the HM move\n"
 	.string "DIVE outside of battle.\p"
-	.string "TATE: You should also take this, too.$"
+	.string "LIZA: You should also take this, too.$"
 
 MossdeepCity_Gym_Text_ExplainCalmMind:
 	.string "TATE: That TM04 contains…\n"

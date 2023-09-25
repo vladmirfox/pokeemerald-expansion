@@ -201,8 +201,9 @@ RustboroCity_Gym_Text_ReceivedStoneBadge:
 	.string "from ROXANNE.$"
 
 RustboroCity_Gym_Text_StoneBadgeInfoTakeThis:
-	.string "The STONE BADGE heightens the ATTACK\n"
-	.string "power of your Pokémon.\p"
+	.string "The STONE BADGE commands the respect\n"
+	.string "of Pokémon. Both those you've caught\l"
+	.string "and traded, up to level 20.\p"
 	.string "It also enables them to use the HM move\n"
 	.string "CUT outside of battle.\p"
 	.string "Please take this with you, too.$"
