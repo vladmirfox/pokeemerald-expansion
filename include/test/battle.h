@@ -359,6 +359,20 @@
  *     ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
  * target can only be specified for ANIM_TYPE_MOVE.
  *
+ * EXPERIENCE_BAR(battler, [exp: | captureGainedExp:])
+ * If exp: is used, causes the test to fail if that amount of
+ * experience is not gained, e.g.:
+ *     EXPERIENCE_BAR(player, exp: 0);
+ * If captureGainedExp: is used, causes the test to fail if
+ * the Experience bar does not change, and then writes that change to the
+ * pointer, e.g.:
+ *     u32 exp;
+ *     EXPERIENCE_BAR(player, captureGainedExp: &exp);
+ * If none of the above are used, causes the test to fail if the Exp
+ * does not change at all.
+ * Please note that due to nature of tests, this command
+ * is only usable in WILD_BATTLE_TEST and will fail elsewhere.
+ *
  * HP_BAR(battler, [damage: | hp: | captureDamage: | captureHP:])
  * If hp: or damage: are used, causes the test to fail if that amount of
  * damage is not dealt, e.g.:
@@ -769,7 +783,7 @@ struct moveWithPP {
 #define MovesWithPP(movewithpp1, ...) MovesWithPP_(__LINE__, (struct moveWithPP[MAX_MON_MOVES]) {movewithpp1, __VA_ARGS__})
 #define Friendship(friendship) Friendship_(__LINE__, friendship)
 #define Status1(status1) Status1_(__LINE__, status1)
-#define OtName(otName) do {static const u8 otName_[] = _(otName); OtName_(__LINE__, otName_);} while (0)
+#define OTName(otName) do {static const u8 otName_[] = _(otName); OTName_(__LINE__, otName_);} while (0)
 
 void OpenPokemon(u32 sourceLine, u32 side, u32 species);
 void ClosePokemon(u32 sourceLine);
@@ -791,7 +805,7 @@ void Moves_(u32 sourceLine, const u16 moves[MAX_MON_MOVES]);
 void MovesWithPP_(u32 sourceLine, struct moveWithPP moveWithPP[MAX_MON_MOVES]);
 void Friendship_(u32 sourceLine, u32 friendship);
 void Status1_(u32 sourceLine, u32 status1);
-void OtName_(u32 sourceLine, const u8 *otName);
+void OTName_(u32 sourceLine, const u8 *otName);
 
 #define PLAYER_PARTY (gBattleTestRunnerState->data.recordedBattle.playerParty)
 #define OPPONENT_PARTY (gBattleTestRunnerState->data.recordedBattle.opponentParty)
@@ -907,6 +921,7 @@ struct ExpEventContext
 {
     u8 _;
     u32 exp;
+    bool8 explicitExp;
     s32 *captureGainedExp;
     bool8 explicitCaptureGainedExp;
 };

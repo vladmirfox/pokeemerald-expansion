@@ -4046,6 +4046,7 @@ static bool32 BattleTypeAllowsExp(void)
     else
         return TRUE;
 }
+
 static u32 GetMonHoldEffect(struct Pokemon *mon)
 {
     u32 holdEffect;

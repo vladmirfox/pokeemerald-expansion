@@ -783,7 +783,7 @@ void TestRunner_Battle_RecordExp(u32 battlerId, u32 oldExp, u32 newExp)
             {
                 const char *filename = gTestRunnerState.test->filename;
                 u32 line = SourceLine(DATA.queuedEvents[match].sourceLineOffset);
-                Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Matched EXP_BAR", filename, line);
+                Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Matched EXPERIENCE_BAR", filename, line);
             }
 
             queuedEvent += event->groupSize;
@@ -959,7 +959,7 @@ static const char *const sEventTypeMacros[] =
     [QUEUED_ABILITY_POPUP_EVENT] = "ABILITY_POPUP",
     [QUEUED_ANIMATION_EVENT] = "ANIMATION",
     [QUEUED_HP_EVENT] = "HP_BAR",
-    [QUEUED_EXP_EVENT] = "EXP_BAR",
+    [QUEUED_EXP_EVENT] = "EXPERIENCE_BAR",
     [QUEUED_MESSAGE_EVENT] = "MESSAGE",
     [QUEUED_STATUS_EVENT] = "STATUS_ICON",
 };
@@ -1370,7 +1370,7 @@ void Status1_(u32 sourceLine, u32 status1)
     SetMonData(DATA.currentMon, MON_DATA_STATUS, &status1);
 }
 
-void OtName_(u32 sourceLine, const u8 *otName)
+void OTName_(u32 sourceLine, const u8 *otName)
 {
     INVALID_IF(!DATA.currentMon, "Traded outside of PLAYER/OPPONENT");
     SetMonData(DATA.currentMon, MON_DATA_OT_NAME, &otName);
@@ -1890,11 +1890,16 @@ void QueueExp(u32 sourceLine, struct BattlePokemon *battler, struct ExpEventCont
     u32 type;
     uintptr_t address;
 
-    INVALID_IF(!STATE->runScene, "EXP_BAR outside of SCENE");
+    INVALID_IF(!STATE->runScene, "EXPERIENCE_BAR outside of SCENE");
     if (DATA.queuedEventsCount == MAX_QUEUED_EVENTS)
-        Test_ExitWithResult(TEST_RESULT_ERROR, "%s:%d: EXP_BAR exceeds MAX_QUEUED_EVENTS", gTestRunnerState.test->filename, sourceLine);
+        Test_ExitWithResult(TEST_RESULT_ERROR, "%s:%d: EXPERIENCE_BAR exceeds MAX_QUEUED_EVENTS", gTestRunnerState.test->filename, sourceLine);
 
-    if (ctx.explicitCaptureGainedExp)
+    if (ctx.explicitExp)
+    {
+        type = EXP_EVENT_NEW_EXP;
+        address = (u32)ctx.exp;
+    }
+    else if (ctx.explicitCaptureGainedExp)
     {
         INVALID_IF(ctx.captureGainedExp == NULL, "captureGainedExp is NULL");
         type = EXP_EVENT_DELTA_EXP;
@@ -1912,7 +1917,7 @@ void QueueExp(u32 sourceLine, struct BattlePokemon *battler, struct ExpEventCont
         .sourceLineOffset = SourceLineOffset(sourceLine),
         .groupType = QUEUE_GROUP_NONE,
         .groupSize = 1,
-        .as = { .hp = {
+        .as = { .exp = {
             .battlerId = battlerId,
             .type = type,
             .address = address,
