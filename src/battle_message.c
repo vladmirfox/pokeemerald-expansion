@@ -799,6 +799,17 @@ static const u8 sText_ItemCuredSpeciesStatus[] = _("{B_BUFF1} had\nits status he
 static const u8 sText_ItemRestoredSpeciesPP[] = _("{B_BUFF1} had its\nPP restored!");
 static const u8 sText_AtkTrappedDef[] = _("{B_ATK_NAME_WITH_PREFIX} trapped\nthe {B_DEF_NAME_WITH_PREFIX}!");
 static const u8 sText_MirrorHerbCopied[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} used its {B_LAST_ITEM}\nto mirror its opponent's stat changes!");
+static const u8 sText_SuperEffectiveMoves[] = _("Hm, Super Effective moves\ndeal double their usual damage!\lIt's good strategy to prepare with them.");
+static const u8 sText_RockPokemonAreDurable[] = _("Rock Pokémon are super durable!\nThey're hard to take down in one hit!")
+static const u8 sText_WoahYoureNoJoke[] = _("Woah! You and your Pokémon are\nno joke!");
+static const u8 sText_ChurnedUp[] = _("We've come back from worse tides!");
+static const u8 sText_GahGhostTypes[] = _("Gah! Ghost Pokémon?\nNo way!");
+static const u8 sText_WahahaWhatAnElectricBattle[] = _("Wahahahah!\nWhat an Electric Battle!");
+static const u8 sText_HereComesMyAce[] = _("Uh… down to my last Pokémon!\nBut it's Ok!");
+static const u8 sText_AlrightThisIsFine[] = _("W-wuah?…\nOh… I mean… no matter!\lTime to turn this battle around!");
+static const u8 sText_STABMoveHuh[] = _("Right!\n…moves the same type as your Pokémon\l…they get extra power in Battle!");
+static const u8 sText_ItComesDownToThis[] = _("So it comes down to this.\nMy last Pokémon!");
+static const u8 sText_GreatWorkPlayer[] = _("Great Work {PLAYER}!\nI see that you've learned a lot since\lyou started your journey.");
 static const u8 sText_YourDevotionIsIncredible[] = _("Your devotion to Pokémon is incredible!\nLet us soar together!");
 static const u8 sText_LetUsAscendTogether[] = _("Come Altaria!\nLet us ascend to the heavens as one!");
 static const u8 sText_ItWontBeSoEasy[] = _("Ahh… So the time has come for the\ngrande finale!");
@@ -3961,6 +3972,81 @@ struct TrainerSlide
 
 static const struct TrainerSlide sTrainerSlides[] =
 {
+    {
+        .trainerId = TRAINER_ROXANNE_1,
+        .isFrontierTrainer = FALSE,
+        //.msgLastSwitchIn = sText_WahahaWhatAnElectricBattle,
+        //.msgLastLowHp = sText_BoxIsFull,
+        //.msgFirstDown = sText_WoahYoureNoJoke,
+        .msgLastHalfHp = sText_RockPokemonAreDurable,
+        //.msgFirstCriticalHit = sText_CriticalHit,
+        .msgFirstSuperEffectiveHit = sText_SuperEffectiveMoves,
+        //.msgFirstSTABMove = sText_STABMoveHuh,
+        //.msgPlayerMonUnaffected = sText_HmAnEffectiveSwitch,
+        //.msgMegaEvolution = sText_LetUsAscendTogether,
+        //.msgZMove = sText_Electromagnetism,
+        //.msgBeforeFirstTurn = sText_GravityIntensified,
+    },
+    {
+        .trainerId = TRAINER_BRAWLY_1,
+        .isFrontierTrainer = FALSE,
+        //.msgLastSwitchIn = sText_WahahaWhatAnElectricBattle,
+        //.msgLastLowHp = sText_BoxIsFull,
+        .msgFirstDown = sText_WoahYoureNoJoke,
+        .msgLastHalfHp = sText_ChurnedUp,
+        //.msgFirstCriticalHit = sText_CriticalHit,
+        //.msgFirstSuperEffectiveHit = sText_SuperEffectiveMoveHuh,
+        //.msgFirstSTABMove = sText_STABMoveHuh,
+        .msgPlayerMonUnaffected = sText_GahGhostTypes,
+        //.msgMegaEvolution = sText_LetUsAscendTogether,
+        //.msgZMove = sText_Electromagnetism,
+        //.msgBeforeFirstTurn = sText_GravityIntensified,
+    },
+    {
+        .trainerId = TRAINER_WATTSON_1,
+        .isFrontierTrainer = FALSE,
+        .msgLastSwitchIn = sText_WahahaWhatAnElectricBattle,
+        //.msgLastLowHp = sText_BoxIsFull,
+        //.msgFirstDown = sText_AlrightThisIsFine,
+        //.msgLastHalfHp = sText_ShootSoClose,
+        //.msgFirstCriticalHit = sText_CriticalHit,
+        //.msgFirstSuperEffectiveHit = sText_SuperEffectiveMoveHuh,
+        //.msgFirstSTABMove = sText_STABMoveHuh,
+        //.msgPlayerMonUnaffected = sText_ButNoEffect,
+        //.msgMegaEvolution = sText_LetUsAscendTogether,
+        //.msgZMove = sText_Electromagnetism,
+        //.msgBeforeFirstTurn = sText_GravityIntensified,
+    },
+    {
+        .trainerId = TRAINER_FLANNERY_1,
+        .isFrontierTrainer = FALSE,
+        .msgLastSwitchIn = sText_HereComesMyAce,
+        //.msgLastLowHp = sText_BoxIsFull,
+        .msgFirstDown = sText_AlrightThisIsFine,
+        //.msgLastHalfHp = sText_ShootSoClose,
+        //.msgFirstCriticalHit = sText_CriticalHit,
+        //.msgFirstSuperEffectiveHit = sText_SuperEffectiveMoveHuh,
+        .msgFirstSTABMove = sText_STABMoveHuh,
+        //.msgPlayerMonUnaffected = sText_ButNoEffect,
+        //.msgMegaEvolution = sText_LetUsAscendTogether,
+        //.msgZMove = sText_Electromagnetism,
+        //.msgBeforeFirstTurn = sText_GravityIntensified,
+    },
+    {
+        .trainerId = TRAINER_NORMAN_1,
+        .isFrontierTrainer = FALSE,
+        .msgLastSwitchIn = sText_ItComesDownToThis,
+        //.msgLastLowHp = sText_BoxIsFull,
+        .msgFirstDown = sText_GreatWorkPlayer,
+        //.msgLastHalfHp = sText_ShootSoClose,
+        //.msgFirstCriticalHit = sText_CriticalHit,
+        //.msgFirstSuperEffectiveHit = sText_SuperEffective,
+        //.msgFirstSTABMove = sText_ABoosted,
+        //.msgPlayerMonUnaffected = sText_ButNoEffect,
+        //.msgMegaEvolution = sText_LetUsAscendTogether,
+        //.msgZMove = sText_Electromagnetism,
+        //.msgBeforeFirstTurn = sText_GravityIntensified,
+    },
     {
         .trainerId = TRAINER_WINONA_1,
         .isFrontierTrainer = FALSE,
