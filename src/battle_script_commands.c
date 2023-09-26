@@ -11247,8 +11247,6 @@ static void Cmd_various(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-#include "test/test.h"
-
 static void Cmd_setprotectlike(void)
 {
     CMD_ARGS();
