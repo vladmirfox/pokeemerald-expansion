@@ -116,8 +116,7 @@ SINGLE_BATTLE_TEST("King's Shield, Silk Trap and Obstruct protect from damaging 
     }
 }
 
-// Also checks if it can faint the mon.
-SINGLE_BATTLE_TEST("Spiky Shield does 1/8 dmg of max hp for moves making contact")
+SINGLE_BATTLE_TEST("Spiky Shield does 1/8 dmg of max hp of attackers making contact and may faint them")
 {
     u16 usedMove = MOVE_NONE;
     u16 hp = 400, maxHp = 400;
