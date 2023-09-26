@@ -251,7 +251,6 @@ static const u16 sPoints_MoveEffect[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_SWALLOW]                    = 3,
 //    [EFFECT_UNUSED_A3]                = 1,
     [EFFECT_HAIL]                       = 4,
-    [EFFECT_SNOWSCAPE]                  = 4,
     [EFFECT_TORMENT]                    = 7,
     [EFFECT_FLATTER]                    = 7,
     [EFFECT_WILL_O_WISP]                = 5,
@@ -441,7 +440,6 @@ static const u16 sPoints_MoveEffect[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_COACHING]                   = 0, // TODO: Assign points
     [EFFECT_LASH_OUT]                   = 0, // TODO: Assign points
     [EFFECT_GRASSY_GLIDE]               = 0, // TODO: Assign points
-    [EFFECT_REMOVE_TERRAIN]             = 0, // TODO: Assign points
     [EFFECT_DYNAMAX_DOUBLE_DMG]         = 0, // TODO: Assign points
     [EFFECT_DECORATE]                   = 0, // TODO: Assign points
     [EFFECT_SNIPE_SHOT]                 = 0, // TODO: Assign points
@@ -483,6 +481,7 @@ static const u16 sPoints_MoveEffect[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_SPECIAL_ATTACK_UP_HIT]      = 1,
     [EFFECT_VICTORY_DANCE]              = 0, // TODO: Assign points
     [EFFECT_FROSTBITE_HIT]              = 1,
+    [EFFECT_SNOWSCAPE]                  = 4,
 };
 
 static const u16 sPoints_Effectiveness[] =
