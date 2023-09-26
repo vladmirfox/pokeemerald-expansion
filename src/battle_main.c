@@ -4076,8 +4076,8 @@ static void HandleTurnActionSelectionState(void)
             RecordedBattle_CopyBattlerMoves(battler);
             gBattleCommunication[battler] = STATE_BEFORE_ACTION_CHOSEN;
             break;
-        case STATE_BEFORE_ACTION_CHOSEN: // Choose an action.
-                // Do AI score computations here so we can use them in AI_TrySwitchOrUseItem
+
+            // Do AI score computations here so we can use them in AI_TrySwitchOrUseItem
             if ((gBattleTypeFlags & BATTLE_TYPE_HAS_AI || IsWildMonSmart())
                     && (BattlerHasAi(battler) && !(gBattleTypeFlags & BATTLE_TYPE_PALACE)))
             {

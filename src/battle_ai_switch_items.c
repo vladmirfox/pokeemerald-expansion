@@ -70,9 +70,9 @@ static bool8 HasBadOdds(u32 battler)
 
 {
     //Variable initialization
-	u8 opposingPosition, opposingBattler, atkType1, atkType2, defType1, defType2, effectiveness;
+	u8 opposingPosition, atkType1, atkType2, defType1, defType2, effectiveness;
     s32 i, damageDealt = 0, maxDamageDealt = 0, damageTaken = 0, maxDamageTaken = 0;
-    u32 aiMove, playerMove, aiBestMove, aiAbility = GetBattlerAbility(battler);
+    u32 aiMove, playerMove, aiBestMove, aiAbility = GetBattlerAbility(battler), opposingBattler, weather = AI_GetWeather(AI_DATA);
     bool8 getsOneShot = FALSE, hasStatusMove = FALSE, hasSuperEffectiveMove = FALSE;
 	struct Pokemon *party = NULL;
 	u16 typeEffectiveness = UQ_4_12(1.0), aiMoveEffect; //baseline typing damage
@@ -144,7 +144,7 @@ static bool8 HasBadOdds(u32 battler)
         playerMove = gBattleMons[opposingBattler].moves[i];
         if (playerMove != MOVE_NONE && gBattleMoves[playerMove].power != 0)
         {
-            damageTaken = AI_CalcDamage(playerMove, opposingBattler, battler, &effectiveness, FALSE);
+            damageTaken = AI_CalcDamage(playerMove, opposingBattler, battler, &effectiveness, FALSE, weather);
             if (damageTaken > maxDamageTaken)
                 maxDamageTaken = damageTaken;
         }

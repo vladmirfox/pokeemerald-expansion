@@ -3384,7 +3384,7 @@ s32 AI_CalcPartyMonDamage(u16 move, u8 battlerAtk, u8 battlerDef, struct BattleP
         gBattleMons[battlerAtk] = switchinCandidate;
     else
         gBattleMons[battlerDef] = switchinCandidate;
-    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, FALSE);
+    dmg = AI_CalcDamage(move, battlerAtk, battlerDef, &effectiveness, FALSE, AI_GetWeather(AI_DATA));
     FreeRestoreBattleMons(savedBattleMons);
     return dmg;
 }
