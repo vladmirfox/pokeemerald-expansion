@@ -102,7 +102,7 @@ WILD_BATTLE_TEST("Large exp gains are supported", u32 exp) // #1455
     PARAMETRIZE { level = MAX_LEVEL; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Level(1); Item(ITEM_LUCKY_EGG); OtName("Test"); } // Ot Name is different so it gets more exp as a traded mon
+        PLAYER(SPECIES_WOBBUFFET) { Level(1); Item(ITEM_LUCKY_EGG); OTName("Test"); } // OT Name is different so it gets more exp as a traded mon
         OPPONENT(SPECIES_BLISSEY) { Level(level); HP(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
