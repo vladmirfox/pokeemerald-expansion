@@ -124,7 +124,6 @@ WILD_BATTLE_TEST("Large exp gains are supported", u32 exp) // #1455
 WILD_BATTLE_TEST("Exp Share(held) gives Experience to mons which did not participate in battle")
 {
     u32 item = 0;
-    KNOWN_FAILING;
 
     PARAMETRIZE { item = ITEM_NONE; }
     PARAMETRIZE { item = ITEM_EXP_SHARE; }
