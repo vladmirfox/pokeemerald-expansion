@@ -66,6 +66,7 @@
 #define ITEM6_ADD_EV       10
 #define ITEM6_SUBTRACT_EV -10
 #define ITEM6_ADD_ONE_EV    1
+#define ITEM6_RESET_EV      0
 
 // Used for GetItemEffectType.
 #define ITEM_EFFECT_X_ITEM 0
@@ -90,6 +91,7 @@
 #define ITEM_EFFECT_PP_UP 19
 #define ITEM_EFFECT_PP_MAX 20
 #define ITEM_EFFECT_HEAL_PP 21
+#define ITEM_EFFECT_RESET_EV
 #define ITEM_EFFECT_NONE 22
 
 #endif // GUARD_CONSTANTS_ITEM_EFFECTS_H
