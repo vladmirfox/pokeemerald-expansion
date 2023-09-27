@@ -2,7 +2,7 @@
 
 ## What is the pokeemerald Expansion?
 
-The pokeemerald Expansion is a feature branch meant to be integrated into existing Pokémon Emerald hacks based of pret's [pokeemerald](https://github.com/pret/pokeemerald) decompilation project. This is ***NOT*** a standalone romhack, and as such, most features will be unavailable and/or unbalanced if played as is.
+The pokeemerald Expansion is a feature branch meant to be integrated into existing Pokémon Emerald hacks based off pret's [pokeemerald](https://github.com/pret/pokeemerald) decompilation project. This is ***NOT*** a standalone romhack, and as such, most features will be unavailable and/or unbalanced if played as is.
 
 ## What features are included?
 - Configuration files that allows you to choose generation-specific behaviors. Full contents here:
@@ -29,14 +29,14 @@ The pokeemerald Expansion is a feature branch meant to be integrated into existi
         - Setting Terrains.
     - Mid-turn speed recalculation.
     - Quick Poké Ball selection in Wild Battles
-        - Press `R` to use last selected Poké Ball
+        - Press `R` to use last selected Poké Ball.
         - Hold `R` to change selection with the D-Pad.
     - Faster battle intro
-        - Message and animation/cry happens at the same time
+        - Message and animation/cry happens at the same time.
     - Faster HP drain.
     - Battle Debug menu.
         - Accessed by pressing `Select` on the "Fight/Bag/Pokémon/Run" menu.
-    - Option to use AI flags in wild Pokémon battles
+    - Option to use AI flags in wild Pokémon battles.
     - FRLG/Gen4+ whiteout money calculation.
     - Configurable experience settings
         - Experience on catch.
