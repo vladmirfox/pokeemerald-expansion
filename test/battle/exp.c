@@ -148,3 +148,24 @@ WILD_BATTLE_TEST("Exp Share(held) gives Experience to mons which did not partici
 }
 
 #endif // I_EXP_SHARE_ITEM
+
+AI_BATTLE_TEST("Test")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_STUNFISK);
+        PLAYER(SPECIES_PELIPPER);
+        OPPONENT(SPECIES_DARKRAI) {Moves(MOVE_TACKLE, MOVE_PECK, MOVE_EARTHQUAKE, MOVE_THUNDERBOLT); }
+        OPPONENT(SPECIES_SCIZOR) {Moves(MOVE_HYPER_BEAM, MOVE_FACADE, MOVE_GIGA_IMPACT, MOVE_EXTREME_SPEED); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_PROTECT); } // E-quake
+        TURN { SWITCH(player, 1); } // E-quake
+        TURN { MOVE(player, MOVE_PROTECT); } // T-Bolt
+        TURN { SWITCH(player, 0); } // T-Bolt
+        TURN { MOVE(player, MOVE_PROTECT); } // E-quake
+        TURN { SWITCH(player, 1); } // E-quake
+        TURN { MOVE(player, MOVE_PROTECT); } // T-Bolt
+        //TURN { RUN(player); }
+    } SCENE {
+    }
+}

@@ -96,6 +96,7 @@ static void InvokeTestFunction(const struct BattleTest *test)
     {
     case BATTLE_TEST_SINGLES:
     case BATTLE_TEST_WILD:
+    case BATTLE_TEST_AI:
         InvokeSingleTestFunctionWithStack(STATE->results, STATE->runParameter, &gBattleMons[B_POSITION_PLAYER_LEFT], &gBattleMons[B_POSITION_OPPONENT_LEFT], test->function.singles, &DATA.stack[BATTLE_TEST_STACK_SIZE]);
         break;
     case BATTLE_TEST_DOUBLES:
@@ -155,6 +156,8 @@ static void BattleTest_SetUp(void *data)
     switch (test->type)
     {
     case BATTLE_TEST_SINGLES:
+    case BATTLE_TEST_WILD:
+    case BATTLE_TEST_AI:
         STATE->battlersCount = 2;
         break;
     case BATTLE_TEST_DOUBLES:
@@ -234,18 +237,29 @@ static void BattleTest_Run(void *data)
     memset(&DATA, 0, sizeof(DATA));
 
     DATA.recordedBattle.rngSeed = RNG_SEED_DEFAULT;
-    DATA.recordedBattle.opponentA = TRAINER_LINK_OPPONENT;
-
     DATA.recordedBattle.textSpeed = OPTIONS_TEXT_SPEED_FAST;
-    if (test->type == BATTLE_TEST_WILD)
-        DATA.recordedBattle.battleFlags = BATTLE_TYPE_IS_MASTER;
-    else
-        DATA.recordedBattle.battleFlags = BATTLE_TYPE_RECORDED_IS_MASTER | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_TRAINER | BATTLE_TYPE_IS_MASTER;
-    if (test->type == BATTLE_TEST_DOUBLES)
+    // Set battle flags and opponent ids.
+    switch (test->type)
     {
-        DATA.recordedBattle.battleFlags |= BATTLE_TYPE_DOUBLE;
+    case BATTLE_TEST_WILD:
+        DATA.recordedBattle.battleFlags = BATTLE_TYPE_IS_MASTER;
+        break;
+    case BATTLE_TEST_AI:
+        DATA.recordedBattle.battleFlags = BATTLE_TYPE_IS_MASTER | BATTLE_TYPE_TRAINER;
+        DATA.recordedBattle.opponentA = TRAINER_LEAF;
+        DATA.hasAI = TRUE;
+        break;
+    case BATTLE_TEST_SINGLES:
+        DATA.recordedBattle.battleFlags = BATTLE_TYPE_IS_MASTER | BATTLE_TYPE_RECORDED_IS_MASTER | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_TRAINER;
+        DATA.recordedBattle.opponentA = TRAINER_LINK_OPPONENT;
+        break;
+    case BATTLE_TEST_DOUBLES:
+        DATA.recordedBattle.battleFlags = BATTLE_TYPE_IS_MASTER | BATTLE_TYPE_RECORDED_IS_MASTER | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE;
+        DATA.recordedBattle.opponentA = TRAINER_LINK_OPPONENT;
         DATA.recordedBattle.opponentB = TRAINER_LINK_OPPONENT;
+        break;
     }
+
     for (i = 0; i < STATE->battlersCount; i++)
     {
         DATA.recordedBattle.playersName[i][0] = CHAR_1 + i;
@@ -1128,6 +1142,14 @@ void RNGSeed_(u32 sourceLine, u32 seed)
     DATA.recordedBattle.rngSeed = seed;
 }
 
+void AIFlags_(u32 sourceLine, u32 flags)
+{
+    const struct BattleTest *test = gTestRunnerState.test->data;
+    INVALID_IF(test->type != BATTLE_TEST_AI, "AI_FLAGS is compatible only with AI_BATTLE_TEST");
+    DATA.recordedBattle.AI_scripts = flags;
+    DATA.hasAI = TRUE;
+}
+
 const struct TestRunner gBattleTestRunner =
 {
     .estimateCost = BattleTest_EstimateCost,
@@ -1395,8 +1417,12 @@ static const char *BattlerIdentifier(s32 battlerId)
     const struct BattleTest *test = gTestRunnerState.test->data;
     switch (test->type)
     {
-    case BATTLE_TEST_SINGLES: return sBattlerIdentifiersSingles[battlerId];
-    case BATTLE_TEST_DOUBLES: return sBattlerIdentifiersDoubles[battlerId];
+    case BATTLE_TEST_SINGLES:
+    case BATTLE_TEST_WILD:
+    case BATTLE_TEST_AI:
+        return sBattlerIdentifiersSingles[battlerId];
+    case BATTLE_TEST_DOUBLES:
+        return sBattlerIdentifiersDoubles[battlerId];
     }
     return "<unknown>";
 }
@@ -1519,13 +1545,18 @@ static void SetSlowerThan(s32 battlerId)
 
 void CloseTurn(u32 sourceLine)
 {
+    const struct BattleTest *test = gTestRunnerState.test->data;
     s32 i;
     INVALID_IF(DATA.turnState != TURN_OPEN, "Nested TURN");
     DATA.turnState = TURN_CLOSING;
-    for (i = 0; i < STATE->battlersCount; i++)
+    // If Move was not specific always use Celebrate. Ignore in AI Tests.
+    if (test->type != BATTLE_TEST_AI)
     {
-        if (!(DATA.actionBattlers & (1 << i)))
-            Move(sourceLine, &gBattleMons[i], (struct MoveContext) { move: MOVE_CELEBRATE, explicitMove: TRUE });
+        for (i = 0; i < STATE->battlersCount; i++)
+        {
+            if (!(DATA.actionBattlers & (1 << i)))
+                Move(sourceLine, &gBattleMons[i], (struct MoveContext) { move: MOVE_CELEBRATE, explicitMove: TRUE });
+        }
     }
     DATA.turnState = TURN_CLOSED;
     DATA.turns++;

@@ -470,6 +470,7 @@
 #include "recorded_battle.h"
 #include "util.h"
 #include "constants/abilities.h"
+#include "constants/battle_ai.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_move_effects.h"
 #include "constants/hold_effects.h"
@@ -484,7 +485,7 @@
 #define MAX_TURNS 16
 #define MAX_QUEUED_EVENTS 25
 
-enum { BATTLE_TEST_SINGLES, BATTLE_TEST_DOUBLES, BATTLE_TEST_WILD };
+enum { BATTLE_TEST_SINGLES, BATTLE_TEST_DOUBLES, BATTLE_TEST_WILD, BATTLE_TEST_AI };
 
 typedef void (*SingleBattleTestFunction)(void *, u32, struct BattlePokemon *, struct BattlePokemon *);
 typedef void (*DoubleBattleTestFunction)(void *, u32, struct BattlePokemon *, struct BattlePokemon *, struct BattlePokemon *, struct BattlePokemon *);
@@ -606,6 +607,7 @@ struct BattleTestData
     u8 turns;
     u8 actionBattlers;
     u8 moveBattlers;
+    bool8 hasAI:1;
 
     struct RecordedBattleSave recordedBattle;
     u8 battleRecordTypes[MAX_BATTLERS_COUNT][BATTLER_RECORD_SIZE];
@@ -682,7 +684,7 @@ extern struct BattleTestRunnerState *gBattleTestRunnerState;
         TO_DO; \
     }
 
-#define SINGLE_BATTLE_TEST(_name, ...) \
+#define BATTLE_TEST_ARGS_SINGLE(_name, _type, ...) \
     struct CAT(Result, __LINE__) { MEMBERS(__VA_ARGS__) }; \
     static void CAT(Test, __LINE__)(struct CAT(Result, __LINE__) *, u32, struct BattlePokemon *, struct BattlePokemon *); \
     __attribute__((section(".tests"))) static const struct Test CAT(sTest, __LINE__) = \
@@ -692,7 +694,7 @@ extern struct BattleTestRunnerState *gBattleTestRunnerState;
         .runner = &gBattleTestRunner, \
         .data = (void *)&(const struct BattleTest) \
         { \
-            .type = BATTLE_TEST_SINGLES, \
+            .type = _type, \
             .sourceLine = __LINE__, \
             .function = { .singles = (SingleBattleTestFunction)CAT(Test, __LINE__) }, \
             .resultsSize = sizeof(struct CAT(Result, __LINE__)), \
@@ -700,23 +702,9 @@ extern struct BattleTestRunnerState *gBattleTestRunnerState;
     }; \
     static void CAT(Test, __LINE__)(struct CAT(Result, __LINE__) *results, u32 i, struct BattlePokemon *player, struct BattlePokemon *opponent)
 
-#define WILD_BATTLE_TEST(_name, ...) \
-    struct CAT(Result, __LINE__) { MEMBERS(__VA_ARGS__) }; \
-    static void CAT(Test, __LINE__)(struct CAT(Result, __LINE__) *, u32, struct BattlePokemon *, struct BattlePokemon *); \
-    __attribute__((section(".tests"))) static const struct Test CAT(sTest, __LINE__) = \
-    { \
-        .name = _name, \
-        .filename = __FILE__, \
-        .runner = &gBattleTestRunner, \
-        .data = (void *)&(const struct BattleTest) \
-        { \
-            .type = BATTLE_TEST_WILD, \
-            .sourceLine = __LINE__, \
-            .function = { .singles = (SingleBattleTestFunction)CAT(Test, __LINE__) }, \
-            .resultsSize = sizeof(struct CAT(Result, __LINE__)), \
-        }, \
-    }; \
-    static void CAT(Test, __LINE__)(struct CAT(Result, __LINE__) *results, u32 i, struct BattlePokemon *player, struct BattlePokemon *opponent)
+#define SINGLE_BATTLE_TEST(_name, ...) BATTLE_TEST_ARGS_SINGLE(_name, BATTLE_TEST_SINGLES, __VA_ARGS__)
+#define WILD_BATTLE_TEST(_name, ...) BATTLE_TEST_ARGS_SINGLE(_name, BATTLE_TEST_WILD, __VA_ARGS__)
+#define AI_BATTLE_TEST(_name, ...) BATTLE_TEST_ARGS_SINGLE(_name, BATTLE_TEST_AI, __VA_ARGS__)
 
 #define DOUBLE_BATTLE_TEST(_name, ...) \
     struct CAT(Result, __LINE__) { MEMBERS(__VA_ARGS__) }; \
@@ -763,6 +751,7 @@ struct moveWithPP {
 #define GIVEN for (; gBattleTestRunnerState->runGiven; gBattleTestRunnerState->runGiven = FALSE)
 
 #define RNGSeed(seed) RNGSeed_(__LINE__, seed)
+#define AI_FLAGS(flags) AIFlags_(__LINE__, flags)
 
 #define PLAYER(species) for (OpenPokemon(__LINE__, B_SIDE_PLAYER, species); gBattleTestRunnerState->data.currentMon; ClosePokemon(__LINE__))
 #define OPPONENT(species) for (OpenPokemon(__LINE__, B_SIDE_OPPONENT, species); gBattleTestRunnerState->data.currentMon; ClosePokemon(__LINE__))
@@ -789,6 +778,7 @@ void OpenPokemon(u32 sourceLine, u32 side, u32 species);
 void ClosePokemon(u32 sourceLine);
 
 void RNGSeed_(u32 sourceLine, u32 seed);
+void AIFlags_(u32 sourceLine, u32 seed);
 void Gender_(u32 sourceLine, u32 gender);
 void Nature_(u32 sourceLine, u32 nature);
 void Ability_(u32 sourceLine, u32 ability);
