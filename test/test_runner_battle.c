@@ -797,8 +797,64 @@ void TestRunner_Battle_CheckChosenMove(u32 battlerId, u32 moveId, u32 target)
                 Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched NOT_EXPECTED_MOVE %S", filename, expectedAction->sourceLine, gMoveNames[expectedMoveId]);
         }
     }
-    MgbaPrintf_("%s:%d: Matched %S", filename, expectedAction->sourceLine, gMoveNames[moveId]);
+    // MgbaPrintf_("%s:%d: Matched %S", filename, expectedAction->sourceLine, gMoveNames[moveId]); // Debugging help
     DATA.aiActionsPlayed[battlerId]++;
+}
+
+static bool32 CheckComparision(s32 val1, s32 val2, u32 cmp)
+{
+    switch (cmp)
+    {
+    case CMP_EQUAL:
+        return (val1 == val2);
+    case CMP_NOT_EQUAL:
+        return (val1 != val2);
+    case CMP_GREATER_THAN:
+        return (val1 > val2);
+    case CMP_LESS_THAN:
+        return (val1 < val2);
+    }
+    return FALSE;
+}
+
+static const char *const sCmpToStringTable[] =
+{
+    [CMP_EQUAL] = "EQ",
+    [CMP_NOT_EQUAL] = "NE",
+    [CMP_LESS_THAN] = "LT",
+    [CMP_GREATER_THAN] = "GT",
+};
+
+void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
+{
+    s32 i;
+    const char *filename = gTestRunnerState.test->filename;
+    s32 turn = gBattleResults.battleTurnCounter;
+
+    for (i = 0; i < MAX_AI_SCORE_COMPARISION_PER_TURN; i++)
+    {
+        struct ExpectedAiScore *scoreCtx = &DATA.expectedAiScores[battlerId][turn][i];
+        if (scoreCtx->set)
+        {
+            u32 moveId1 = gBattleMons[battlerId].moves[scoreCtx->moveSlot1];
+            s32 target = scoreCtx->target;
+            s32 *scores = gBattleStruct->aiFinalScore[battlerId][target];
+
+            if (scoreCtx->toValue)
+            {
+
+            }
+            else
+            {
+                if (!CheckComparision(scores[scoreCtx->moveSlot1], scores[scoreCtx->moveSlot2], scoreCtx->cmp))
+                {
+                    u32 moveId2 = gBattleMons[battlerId].moves[scoreCtx->moveSlot2];
+                    Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched EXPECT_MOVES_%s, got %S: %d, %S: %d",
+                                        filename, scoreCtx->sourceLine, sCmpToStringTable[scoreCtx->cmp], gMoveNames[moveId1], scores[scoreCtx->moveSlot1], gMoveNames[moveId2], scores[scoreCtx->moveSlot2]);
+                }
+            }
+        }
+    }
 }
 
 static s32 TryExp(s32 i, s32 n, u32 battlerId, u32 oldExp, u32 newExp)
@@ -1628,7 +1684,7 @@ void CloseTurn(u32 sourceLine)
     {
         if (!(DATA.actionBattlers & (1 << i)))
         {
-             if (test->type == BATTLE_TEST_AI && BattlerHasAi(i)) // If Move was not specified, allow any move used.
+             if (test->type == BATTLE_TEST_AI && (i & BIT_SIDE) == B_SIDE_OPPONENT) // If Move was not specified, allow any move used.
                 SetAiActionToPass(sourceLine, i);
              else
                 Move(sourceLine, &gBattleMons[i], (struct MoveContext) { move: MOVE_CELEBRATE, explicitMove: TRUE });
@@ -1820,6 +1876,45 @@ void ExpectedMove(u32 sourceLine, struct BattlePokemon *battler, struct MoveCont
     s32 battlerId = battler - gBattleMons;
     TryMarkExpectedMove(sourceLine, battler, &ctx);
     DATA.expectedAiActionIndex[battlerId]++;
+}
+
+void ExpectCompare(u32 sourceLine, struct BattlePokemon *battler, u32 cmp, u32 moveId1, bool32 toValue, s32 valueOrMoveId2)
+{
+    u32 moveSlot1, moveSlot2;
+    s32 i, target;
+    struct MoveContext ctx = {0};
+    s32 battlerId = battler - gBattleMons;
+    s32 turn = DATA.turns;
+
+    for (i = 0; i < MAX_AI_SCORE_COMPARISION_PER_TURN; i++)
+    {
+        if (!DATA.expectedAiScores[battlerId][turn][i].set)
+            break;
+    }
+
+    INVALID_IF(i == MAX_AI_SCORE_COMPARISION_PER_TURN, "Too many EXPECTs in TURN");
+
+    ctx.move = moveId1;
+    ctx.explicitMove = TRUE;
+    MoveGetIdAndSlot(battlerId, &ctx, &moveId1, &moveSlot1, sourceLine);
+    target = MoveGetTarget(battlerId, moveId1, &ctx, sourceLine);
+    DATA.expectedAiScores[battlerId][turn][i].target = target;
+    DATA.expectedAiScores[battlerId][turn][i].moveSlot1 = moveSlot1;
+    DATA.expectedAiScores[battlerId][turn][i].cmp = cmp;
+    DATA.expectedAiScores[battlerId][turn][i].toValue = toValue;
+    if (toValue)
+    {
+        DATA.expectedAiScores[battlerId][turn][i].value = valueOrMoveId2;
+    }
+    else
+    {
+        ctx.move = valueOrMoveId2;
+        ctx.explicitMove = TRUE;
+        MoveGetIdAndSlot(battlerId, &ctx, &valueOrMoveId2, &moveSlot2, sourceLine);
+        DATA.expectedAiScores[battlerId][turn][i].moveSlot2 = moveSlot2;
+    }
+    DATA.expectedAiScores[battlerId][turn][i].sourceLine = sourceLine;
+    DATA.expectedAiScores[battlerId][turn][i].set = TRUE;
 }
 
 void ExpectedMoves(u32 sourceLine, struct BattlePokemon *battler, bool32 notExpected, struct FourMoves moves)

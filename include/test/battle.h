@@ -597,6 +597,21 @@ struct ExpectedAiAction
     u8 actionSet:1; // Action was set and is expected to happen. Set only for battlers controlled by AI.
 };
 
+#define MAX_AI_SCORE_COMPARISION_PER_TURN 4
+
+struct ExpectedAiScore
+{
+    // We can compare AI's move score to a value or to another move's score.
+    u8 moveSlot1:2;
+    u8 moveSlot2:2;
+    u8 target:2;
+    s8 value; // value
+    u8 cmp:3; // Uses battle script command's CMP_ macros
+    u8 toValue:1; // compare to value, not to move
+    u8 set:1;
+    u16 sourceLine;
+};
+
 struct BattleTestData
 {
     u8 stack[BATTLE_TEST_STACK_SIZE];
@@ -636,6 +651,7 @@ struct BattleTestData
     u8 expectedAiActionIndex[MAX_BATTLERS_COUNT];
     u8 aiActionsPlayed[MAX_BATTLERS_COUNT];
     struct ExpectedAiAction expectedAiActions[MAX_BATTLERS_COUNT][MAX_EXPECTED_ACTIONS];
+    struct ExpectedAiScore expectedAiScores[MAX_BATTLERS_COUNT][MAX_TURNS][MAX_AI_SCORE_COMPARISION_PER_TURN]; // Max 4 comparisions per turn
 };
 
 struct BattleTestRunnerState
@@ -844,9 +860,10 @@ enum { TURN_CLOSED, TURN_OPEN, TURN_CLOSING };
 
 #define EXPECTED_MOVE(battler, ...) ExpectedMove(__LINE__, battler, (struct MoveContext) { APPEND_TRUE(__VA_ARGS__) })
 #define NOT_EXPECTED_MOVE(battler, _move) ExpectedMove(__LINE__, battler, (struct MoveContext) { .move = _move, .explicitMove = TRUE, .notExpected = TRUE, .explicitNotExpected = TRUE, })
-
 #define EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, FALSE, (struct FourMoves) { APPEND(__VA_ARGS__) })
 #define NOT_EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, TRUE, (struct FourMoves) { APPEND(__VA_ARGS__) })
+#define EXPECT_MOVES_EQ(battler, move1, move2) ExpectCompare(__LINE__, battler, CMP_EQUAL, move1, FALSE, move2)
+#define EXPECT_MOVES_GT(battler, move1, move2) ExpectCompare(__LINE__, battler, CMP_GREATER_THAN, move1, FALSE, move2)
 
 #define FORCED_MOVE(battler) ForcedMove(__LINE__, battler)
 #define SWITCH(battler, partyIndex) Switch(__LINE__, battler, partyIndex)
@@ -897,6 +914,7 @@ void CloseTurn(u32 sourceLine);
 void Move(u32 sourceLine, struct BattlePokemon *, struct MoveContext);
 void ExpectedMove(u32 sourceLine, struct BattlePokemon *, struct MoveContext);
 void ExpectedMoves(u32 sourceLine, struct BattlePokemon *battler, bool32 notExpected, struct FourMoves moves);
+void ExpectCompare(u32 sourceLine, struct BattlePokemon *battler, u32 cmp, u32 moveId1, bool32 toValue, s32 valueOrMoveId2);
 void ForcedMove(u32 sourceLine, struct BattlePokemon *);
 void Switch(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 void SkipTurn(u32 sourceLine, struct BattlePokemon *);

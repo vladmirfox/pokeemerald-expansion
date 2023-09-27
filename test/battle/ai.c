@@ -1,7 +1,8 @@
 #include "global.h"
 #include "test/battle.h"
+#include "battle_ai_util.h"
 
-AI_BATTLE_TEST("Test")
+AI_BATTLE_TEST("AI Test")
 {
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
@@ -24,15 +25,42 @@ AI_BATTLE_TEST("Test")
 
 AI_BATTLE_TEST("AI prefers Bubble over Water Gun if it's slower")
 {
+    u32 speedPlayer, speedAi;
+
+    PARAMETRIZE { speedPlayer = 200; speedAi = 10; }
+    PARAMETRIZE { speedPlayer = 10; speedAi = 200; }
+
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_SCIZOR) {Speed(200); }
-        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_WATER_GUN, MOVE_BUBBLE); Speed(5); }
+        PLAYER(SPECIES_SCIZOR) {Speed(speedPlayer); }
+        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_WATER_GUN, MOVE_BUBBLE); Speed(speedAi); }
     } WHEN {
-        TURN { EXPECTED_MOVE(opponent, MOVE_BUBBLE); }
-        TURN { EXPECTED_MOVE(opponent, MOVE_BUBBLE); }
-        TURN { EXPECTED_MOVE(opponent, MOVE_BUBBLE); }
-        TURN { EXPECTED_MOVE(opponent, MOVE_BUBBLE); }
+        if (speedPlayer > speedAi)
+        {
+            TURN { EXPECT_MOVES_GT(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
+            TURN { EXPECT_MOVES_GT(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
+        }
+        else
+        {
+            TURN { EXPECT_MOVES_EQ(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
+            TURN { EXPECT_MOVES_EQ(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
+        }
     } SCENE {
+    }
+}
+
+AI_BATTLE_TEST("AI prefers Water Gun over Bubble if it knows that foe has Contrary")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_SHUCKLE) { Ability(ABILITY_CONTRARY); }
+        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_WATER_GUN, MOVE_BUBBLE); }
+    } WHEN {
+            TURN { MOVE(player, MOVE_DEFENSE_CURL);  }
+            TURN { MOVE(player, MOVE_DEFENSE_CURL); EXPECT_MOVES_GT(opponent, MOVE_WATER_GUN, MOVE_BUBBLE); }
+    } SCENE {
+        MESSAGE("Shuckle's Defense fell!"); // Contrary activates
+    } THEN {
+        EXPECT(gBattleResources->aiData->abilities[B_POSITION_PLAYER_LEFT] == ABILITY_CONTRARY);
     }
 }
