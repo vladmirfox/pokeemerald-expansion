@@ -1099,6 +1099,8 @@ static const struct PickupItem sPickupTable[] =
     { ITEM_BOTTLE_CAP,      {   _,   _,   _,   _,   _,   _,   _,   1,   1,   1, } },
 };
 
+#undef _
+
 static const u8 sTerrainToType[BATTLE_TERRAIN_COUNT] =
 {
     [BATTLE_TERRAIN_GRASS]            = TYPE_GRASS,
@@ -8972,7 +8974,7 @@ static void Cmd_various(void)
     }
     case VARIOUS_ARENA_JUDGMENT_STRING:
     {
-        CMD_ARGS(u8 id, u8 x);
+        CMD_ARGS(u8 id, u8 _);
         BattleStringExpandPlaceholdersToDisplayedString(gRefereeStringsTable[cmd->id]);
         BattlePutTextOnWindow(gDisplayedStringBattle, ARENA_WIN_JUDGMENT_TEXT);
         break;
