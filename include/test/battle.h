@@ -484,6 +484,7 @@
 #define BATTLE_TEST_STACK_SIZE 1024
 #define MAX_TURNS 16
 #define MAX_QUEUED_EVENTS 25
+#define MAX_EXPECTED_ACTIONS 10
 
 enum { BATTLE_TEST_SINGLES, BATTLE_TEST_DOUBLES, BATTLE_TEST_WILD, BATTLE_TEST_AI };
 
@@ -585,6 +586,17 @@ struct BattlerTurn
     struct TurnRNG rng;
 };
 
+struct ExpectedAiAction
+{
+    u16 sourceLine;
+    u8 type:4; // which action
+    u8 moveSlots:4; // Expected move(s) to be chosen or not, marked as bits.
+    u8 target:5; // move target or id of mon which gets sent out
+    u8 pass:1; // No matter what AI does, it always passes.
+    u8 notMove:1; // We're expecting AI to choose any move EXCEPT the specified one.
+    u8 actionSet:1; // Action was set and is expected to happen. Set only for battlers controlled by AI.
+};
+
 struct BattleTestData
 {
     u8 stack[BATTLE_TEST_STACK_SIZE];
@@ -621,6 +633,9 @@ struct BattleTestData
     u8 queueGroupStart;
     u8 queuedEvent;
     struct QueuedEvent queuedEvents[MAX_QUEUED_EVENTS];
+    u8 expectedAiActionIndex[MAX_BATTLERS_COUNT];
+    u8 aiActionsPlayed[MAX_BATTLERS_COUNT];
+    struct ExpectedAiAction expectedAiActions[MAX_BATTLERS_COUNT][MAX_EXPECTED_ACTIONS];
 };
 
 struct BattleTestRunnerState
@@ -664,6 +679,17 @@ extern struct BattleTestRunnerState *gBattleTestRunnerState;
 #define MEMBERS_6(a, b, c, d, e, f) a; b; c; d; e; f;
 #define MEMBERS_7(a, b, c, d, e, f, g) a; b; c; d; e; f; g;
 #define MEMBERS_8(a, b, c, d, e, f, g, h) a; b; c; d; e; f; g; h;
+
+#define APPEND(...) VARARG_8(APPEND_, __VA_ARGS__)
+#define APPEND_0()
+#define APPEND_1(a) a,
+#define APPEND_2(a, b) a,  b,
+#define APPEND_3(a, b, c) a,  b,  c,
+#define APPEND_4(a, b, c, d) a,  b,  c,  d,
+#define APPEND_5(a, b, c, d, e) a,  b,  c,  d,  e,
+#define APPEND_6(a, b, c, d, e, f) a,  b,  c,  d,  e,  f,
+#define APPEND_7(a, b, c, d, e, f, g) a,  b,  c,  d,  e,  f,  g,
+#define APPEND_8(a, b, c, d, e, f, g, h) a,  b,  c,  d,  e,  f,  g,  h,
 
 #define APPEND_TRUE(...) VARARG_8(APPEND_TRUE_, __VA_ARGS__)
 #define APPEND_TRUE_0()
@@ -797,6 +823,12 @@ void Friendship_(u32 sourceLine, u32 friendship);
 void Status1_(u32 sourceLine, u32 status1);
 void OTName_(u32 sourceLine, const u8 *otName);
 
+// Created for easy use of EXPECTED_MOVES, so the user can provide 1, 2, 3 or 4 moves for AI which can pass the test.
+struct FourMoves
+{
+    u16 moves[MAX_BATTLERS_COUNT];
+};
+
 #define PLAYER_PARTY (gBattleTestRunnerState->data.recordedBattle.playerParty)
 #define OPPONENT_PARTY (gBattleTestRunnerState->data.recordedBattle.opponentParty)
 
@@ -809,6 +841,13 @@ enum { TURN_CLOSED, TURN_OPEN, TURN_CLOSING };
 #define TURN for (OpenTurn(__LINE__); gBattleTestRunnerState->data.turnState == TURN_OPEN; CloseTurn(__LINE__))
 
 #define MOVE(battler, ...) Move(__LINE__, battler, (struct MoveContext) { APPEND_TRUE(__VA_ARGS__) })
+
+#define EXPECTED_MOVE(battler, ...) ExpectedMove(__LINE__, battler, (struct MoveContext) { APPEND_TRUE(__VA_ARGS__) })
+#define NOT_EXPECTED_MOVE(battler, _move) ExpectedMove(__LINE__, battler, (struct MoveContext) { .move = _move, .explicitMove = TRUE, .notExpected = TRUE, .explicitNotExpected = TRUE, })
+
+#define EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, FALSE, (struct FourMoves) { APPEND(__VA_ARGS__) })
+#define NOT_EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, TRUE, (struct FourMoves) { APPEND(__VA_ARGS__) })
+
 #define FORCED_MOVE(battler) ForcedMove(__LINE__, battler)
 #define SWITCH(battler, partyIndex) Switch(__LINE__, battler, partyIndex)
 #define SKIP_TURN(battler) SkipTurn(__LINE__, battler)
@@ -835,6 +874,8 @@ struct MoveContext
     // TODO: u8 zMove:1;
     u16 allowed:1;
     u16 explicitAllowed:1;
+    u16 notExpected:1; // Has effect only with EXPECTED_MOVE
+    u16 explicitNotExpected:1;
     struct BattlePokemon *target;
     bool8 explicitTarget;
     struct TurnRNG rng;
@@ -854,6 +895,8 @@ struct ItemContext
 void OpenTurn(u32 sourceLine);
 void CloseTurn(u32 sourceLine);
 void Move(u32 sourceLine, struct BattlePokemon *, struct MoveContext);
+void ExpectedMove(u32 sourceLine, struct BattlePokemon *, struct MoveContext);
+void ExpectedMoves(u32 sourceLine, struct BattlePokemon *battler, bool32 notExpected, struct FourMoves moves);
 void ForcedMove(u32 sourceLine, struct BattlePokemon *);
 void Switch(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 void SkipTurn(u32 sourceLine, struct BattlePokemon *);
