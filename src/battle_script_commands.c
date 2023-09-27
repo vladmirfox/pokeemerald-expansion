@@ -1060,12 +1060,6 @@ static const u16 sNaturePowerMoves[BATTLE_TERRAIN_COUNT] =
     [BATTLE_TERRAIN_ULTRA_SPACE]      = MOVE_PSYSHOCK,
 };
 
-struct PickupItem
-{
-    u16 itemId;
-    u8 percentage[10];
-};
-
 #define _ 0
 
 static const struct PickupItem sPickupTable[] =
