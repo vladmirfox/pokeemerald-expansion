@@ -22,6 +22,11 @@
       "map": "MAP_ROUTE108",
       "offset": 40,
       "direction": "left"
+    },
+    {
+      "map": "MAP_VERDANT_ISLE",
+      "offset": 1,
+      "direction": "down"
     }
   ],
   "object_events": [
@@ -183,8 +188,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
-      "x": 21,
-      "y": 56,
+      "x": 22,
+      "y": 57,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -327,9 +332,9 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_5",
       "x": 17,
-      "y": 56,
+      "y": 57,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT_AND_RIGHT",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",

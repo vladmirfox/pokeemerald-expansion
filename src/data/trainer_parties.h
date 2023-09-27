@@ -1596,6 +1596,29 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Shirley[] = {
     }
 };
 
+static const struct TrainerMonNoItemDefaultMoves sParty_Lydia[] = {
+    {
+    .iv = 100,
+    .lvl = 36,
+    .species = SPECIES_BRELOOM,
+    },
+    {
+    .iv = 100,
+    .lvl = 36,
+    .species = SPECIES_LUDICOLO,
+    },
+    {
+    .iv = 100,
+    .lvl = 36,
+    .species = SPECIES_SCEPTILE,
+    },
+    {
+    .iv = 100,
+    .lvl = 36,
+    .species = SPECIES_SERPERIOR,
+    }
+};
+
 static const struct TrainerMonNoItemCustomMoves sParty_Jessica1[] = {
     {
     .iv = 0,

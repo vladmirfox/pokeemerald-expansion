@@ -4670,6 +4670,16 @@
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/VerdantForest/border.bin",
       "blockdata_filepath": "data/layouts/VerdantForest/map.bin"
+    },
+    {
+      "id": "LAYOUT_VERDANT_ISLE",
+      "name": "VerdantIsle_Layout",
+      "width": 36,
+      "height": 32,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Slateport",
+      "border_filepath": "data/layouts/VerdantIsle/border.bin",
+      "blockdata_filepath": "data/layouts/VerdantIsle/map.bin"
     }
   ]
 }

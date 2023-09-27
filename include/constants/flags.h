@@ -736,9 +736,9 @@
 #define FLAG_UNUSED_0x2B4  0x2B4 // Unused Flag
 #define FLAG_UNUSED_0x2B5  0x2B5 // Unused Flag
 #define FLAG_UNUSED_0x2B6  0x2B6 // Unused Flag
-#define FLAG_UNUSED_0x2B7  0x2B7 // Unused Flag
 
 // Event Flags
+#define FLAG_DEFEATED_TRAINER_LYDIA                                 0x2B7 // Custom Flag
 #define FLAG_OBTAINED_SAIL_FOSSIL                                   0x2B8 // Custom Flag
 #define FLAG_OBTAINED_JAW_FOSSIL                                    0x2B9 // Custom Flag
 #define FLAG_MET_DESERT_CAVERN_ROXANNE                              0x2BA // Custom Flag 

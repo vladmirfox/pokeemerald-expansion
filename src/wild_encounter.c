@@ -495,6 +495,10 @@ u16 GetCurrentMapWildMonHeaderId(void)
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(EVER_GRANDE_CITY))
                 i += VarGet(VAR_DAYNIGHT);
 
+			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(VERDANT_FOREST) &&
+                gSaveBlock1Ptr->location.mapNum == MAP_NUM(VERDANT_FOREST))
+                i += VarGet(VAR_DAYNIGHT);
+
 			if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(LILYCOVE_CITY_LILYCOVE_MUSEUM_GARDEN) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(LILYCOVE_CITY_LILYCOVE_MUSEUM_GARDEN))
                 i += (VarGet(VAR_TROPHY_GARDEN_ENCOUNTERS) + VarGet(VAR_DAYNIGHT));

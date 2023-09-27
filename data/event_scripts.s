@@ -1103,3 +1103,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/LilycoveCity_LilycoveMuseumGarden/scripts.inc"
 
 	.include "data/maps/VerdantForest/scripts.inc"
+
+	.include "data/maps/VerdantIsle/scripts.inc"

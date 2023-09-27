@@ -41,6 +41,7 @@ PetalburgGrove_EventScript_LornaStopPlayerTrigger::
 PetalburgGrove_EventScript_LornaStopPlayerTriggerGo::
 	lockall
 	setvar VAR_0x8008, 2
+	playse SE_PIN
 	applymovement LOCALID_LORNA, Common_Movement_ExclamationMark
 	waitmovement 0
 	delay 30
