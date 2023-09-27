@@ -1060,234 +1060,43 @@ static const u16 sNaturePowerMoves[BATTLE_TERRAIN_COUNT] =
     [BATTLE_TERRAIN_ULTRA_SPACE]      = MOVE_PSYSHOCK,
 };
 
-static const u16 sPickupItemsL10[] =
+struct PickupItem
 {
-    ITEM_POTION, 35,
-    ITEM_TINY_MUSHROOM, 55,
-    ITEM_SUPER_POTION, 70,
-    ITEM_POKE_DOLL, 80,
-    ITEM_FULL_HEAL, 90,
-    ITEM_BIG_MUSHROOM, 93,
-    ITEM_REVIVE, 96,
-    ITEM_HYPER_POTION, 99,
-    ITEM_ETHER, 100,
+    u16 itemId;
+    u8 percentage[10];
 };
 
-static const u16 sPickupItemsL20[] =
-{
-    ITEM_POTION, 10,
-    ITEM_TINY_MUSHROOM, 20,
-    ITEM_SUPER_POTION, 35,
-    ITEM_POKE_DOLL, 45,
-    ITEM_FULL_HEAL, 65,
-    ITEM_BIG_MUSHROOM, 80,
-    ITEM_REVIVE, 85,
-    ITEM_HYPER_POTION, 88,
-    ITEM_ETHER, 90,
-    ITEM_MAX_POTION, 93,
-    ITEM_SUN_STONE, 96,
-    ITEM_MOON_STONE, 99,
-    ITEM_RARE_CANDY, 100,
-};
+#define _ 0
 
-static const u16 sPickupItemsL30[] =
-{
-    ITEM_SUPER_POTION, 15,
-    ITEM_POKE_DOLL, 25,
-    ITEM_FULL_HEAL, 45,
-    ITEM_BIG_MUSHROOM, 55,
-    ITEM_REVIVE, 65,
-    ITEM_HYPER_POTION, 70,
-    ITEM_ETHER, 73,
-    ITEM_MAX_POTION, 76,
-    ITEM_SUN_STONE, 79,
-    ITEM_MOON_STONE, 82,
-    ITEM_RARE_CANDY, 83,
-    ITEM_NUGGET, 88,
-    ITEM_MAX_REVIVE, 91,
-    ITEM_MAX_ETHER, 92,
-    ITEM_BALM_MUSHROOM, 93,
-    ITEM_PP_UP, 94,
-    ITEM_BIG_NUGGET, 95,
-    ITEM_WHITE_HERB, 96,
-    ITEM_POWER_HERB, 97,
-    ITEM_MENTAL_HERB, 98,
-    ITEM_DESTINY_KNOT, 99,
-    ITEM_LEFTOVERS, 100
-};
-
-static const u16 sPickupItemsL40[] =
-{
-    ITEM_SUPER_POTION, 10,
-    ITEM_POKE_DOLL, 20,
-    ITEM_FULL_HEAL, 40,
-    ITEM_REVIVE, 50,
-    ITEM_HYPER_POTION, 60,
-    ITEM_ETHER, 64,
-    ITEM_MAX_POTION, 67,
-    ITEM_SUN_STONE, 72,
-    ITEM_MOON_STONE, 77,
-    ITEM_RARE_CANDY, 79,
-    ITEM_NUGGET, 84,
-    ITEM_MAX_REVIVE, 87,
-    ITEM_MAX_ETHER, 89,
-    ITEM_BALM_MUSHROOM, 92,
-    ITEM_PP_UP, 94,
-    ITEM_BIG_NUGGET, 95,
-    ITEM_WHITE_HERB, 96,
-    ITEM_POWER_HERB, 97,
-    ITEM_MENTAL_HERB, 98,
-    ITEM_DESTINY_KNOT, 99,
-    ITEM_LEFTOVERS, 100
-};
-
-static const u16 sPickupItemsL50[] =
-{
-    ITEM_FULL_HEAL, 20,
-    ITEM_REVIVE, 30,
-    ITEM_HYPER_POTION, 50,
-    ITEM_ETHER, 55,
-    ITEM_MAX_POTION, 65,
-    ITEM_SUN_STONE, 70,
-    ITEM_MOON_STONE, 75,
-    ITEM_RARE_CANDY, 77,
-    ITEM_NUGGET, 82,
-    ITEM_MAX_REVIVE, 85,
-    ITEM_MAX_ETHER, 88,
-    ITEM_BALM_MUSHROOM, 91,
-    ITEM_PP_UP, 93,
-    ITEM_BIG_NUGGET, 94,
-    ITEM_WHITE_HERB, 95,
-    ITEM_POWER_HERB, 96,
-    ITEM_MENTAL_HERB, 97,
-    ITEM_DESTINY_KNOT, 98,
-    ITEM_LEFTOVERS, 99,
-    ITEM_ELIXIR, 100
-};
-
-static const u16 sPickupItemsL60[] =
-{
-    ITEM_FULL_HEAL, 10,
-    ITEM_REVIVE, 20,
-    ITEM_HYPER_POTION, 40,
-    ITEM_MAX_POTION, 50,
-    ITEM_SUN_STONE, 57,
-    ITEM_MOON_STONE, 64,
-    ITEM_RARE_CANDY, 67,
-    ITEM_NUGGET, 72,
-    ITEM_MAX_REVIVE, 82,
-    ITEM_MAX_ETHER, 86,
-    ITEM_BALM_MUSHROOM, 89,
-    ITEM_PP_UP, 92,
-    ITEM_BIG_NUGGET, 93,
-    ITEM_WHITE_HERB, 94,
-    ITEM_POWER_HERB, 95,
-    ITEM_MENTAL_HERB, 96,
-    ITEM_DESTINY_KNOT, 97,
-    ITEM_LEFTOVERS, 98,
-    ITEM_ELIXIR, 100
-};
-
-static const u16 sPickupItemsL70[] =
-{
-    ITEM_REVIVE, 15,
-    ITEM_HYPER_POTION, 35,
-    ITEM_MAX_POTION, 45,
-    ITEM_SUN_STONE, 52,
-    ITEM_MOON_STONE, 59,
-    ITEM_RARE_CANDY, 62,
-    ITEM_NUGGET, 67,
-    ITEM_MAX_REVIVE, 77,
-    ITEM_MAX_ETHER, 82,
-    ITEM_BALM_MUSHROOM, 85,
-    ITEM_PP_UP, 88,
-    ITEM_BIG_NUGGET, 91,
-    ITEM_WHITE_HERB, 92,
-    ITEM_POWER_HERB, 93,
-    ITEM_MENTAL_HERB, 94,
-    ITEM_DESTINY_KNOT, 95,
-    ITEM_LEFTOVERS, 96,
-    ITEM_ELIXIR, 99,
-    ITEM_MAX_ELIXIR, 100
-};
-
-static const u16 sPickupItemsL80[] =
-{
-    ITEM_HYPER_POTION, 20,
-    ITEM_MAX_POTION, 40,
-    ITEM_SUN_STONE, 47,
-    ITEM_MOON_STONE, 54,
-    ITEM_RARE_CANDY, 58,
-    ITEM_NUGGET, 63,
-    ITEM_MAX_REVIVE, 73,
-    ITEM_BALM_MUSHROOM, 78,
-    ITEM_PP_UP, 82,
-    ITEM_BIG_NUGGET, 88,
-    ITEM_WHITE_HERB, 89,
-    ITEM_POWER_HERB, 90,
-    ITEM_MENTAL_HERB, 91,
-    ITEM_DESTINY_KNOT, 92,
-    ITEM_LEFTOVERS, 93,
-    ITEM_ELIXIR, 97,
-    ITEM_MAX_ELIXIR, 99,
-    ITEM_BOTTLE_CAP, 100
-};
-
-static const u16 sPickupItemsL90[] =
-{
-    ITEM_HYPER_POTION, 10,
-    ITEM_MAX_POTION, 30,
-    ITEM_SUN_STONE, 40,
-    ITEM_MOON_STONE, 50,
-    ITEM_RARE_CANDY, 54,
-    ITEM_NUGGET, 59,
-    ITEM_MAX_REVIVE, 69,
-    ITEM_BALM_MUSHROOM, 74,
-    ITEM_PP_UP, 78,
-    ITEM_BIG_NUGGET, 86,
-    ITEM_WHITE_HERB, 87,
-    ITEM_POWER_HERB, 88,
-    ITEM_MENTAL_HERB, 89,
-    ITEM_DESTINY_KNOT, 90,
-    ITEM_LEFTOVERS, 91,
-    ITEM_ELIXIR, 96,
-    ITEM_MAX_ELIXIR, 99,
-    ITEM_BOTTLE_CAP, 100
-};
-
-static const u16 sPickupItemsL100[] =
-{
-    ITEM_MAX_POTION, 20,
-    ITEM_SUN_STONE, 32,
-    ITEM_MOON_STONE, 44,
-    ITEM_RARE_CANDY, 49,
-    ITEM_NUGGET, 54,
-    ITEM_MAX_REVIVE, 64,
-    ITEM_BALM_MUSHROOM, 69,
-    ITEM_PP_UP, 74,
-    ITEM_BIG_NUGGET, 84,
-    ITEM_WHITE_HERB, 85,
-    ITEM_POWER_HERB, 86,
-    ITEM_MENTAL_HERB, 87,
-    ITEM_DESTINY_KNOT, 88,
-    ITEM_LEFTOVERS, 89,
-    ITEM_ELIXIR, 94,
-    ITEM_MAX_ELIXIR, 99,
-    ITEM_BOTTLE_CAP, 100
-};
-
-static const u16* sPickupTables[] =
-{
-	sPickupItemsL10,
-	sPickupItemsL20,
-	sPickupItemsL30,
-	sPickupItemsL40,
-	sPickupItemsL50,
-	sPickupItemsL60,
-	sPickupItemsL70,
-	sPickupItemsL80,
-	sPickupItemsL90,
-	sPickupItemsL100,
+static const struct PickupItem sPickupTable[] =
+{//   Item                      1+  11+  21+  31+  41+  51+  61+  71+  81+  91+   Levels
+    { ITEM_POTION,          {  35,  10,   _,   _,   _,   _,   _,   _,   _,   _, } },
+    { ITEM_TINY_MUSHROOM,   {  20,  10,   _,   _,   _,   _,   _,   _,   _,   _, } },
+    { ITEM_SUPER_POTION,    {  15,  15,  15,  10,   _,   _,   _,   _,   _,   _, } },
+    { ITEM_POKE_DOLL,       {  10,  10,  10,  10,   _,   _,   _,   _,   _,   _, } },
+    { ITEM_FULL_HEAL,       {  10,  20,  20,  20,  20,  10,   _,   _,   _,   _, } },
+    { ITEM_BIG_MUSHROOM,    {   3,  15,  10,   _,   _,   _,   _,   _,   _,   _, } },
+    { ITEM_REVIVE,          {   3,   5,  10,  10,  10,  10,  15,   _,   _,   _, } },
+    { ITEM_HYPER_POTION,    {   3,   3,   5,  10,  20,  20,  20,  20,  10,   _, } },
+    { ITEM_ETHER,           {   1,   2,   3,   4,   5,   _,   _,   _,   _,   _, } },
+    { ITEM_MAX_POTION,      {   _,   3,   3,   3,  10,  10,  10,  20,  20,  20, } },
+    { ITEM_SUN_STONE,       {   _,   3,   3,   5,   5,   7,   7,   7,  10,  12, } },
+    { ITEM_MOON_STONE,      {   _,   3,   3,   5,   5,   7,   7,   7,  10,  12, } },
+    { ITEM_RARE_CANDY,      {   _,   1,   1,   2,   2,   3,   3,   4,   4,   5, } },
+    { ITEM_NUGGET,          {   _,   _,   5,   5,   5,   5,   5,   5,   5,   5, } },
+    { ITEM_MAX_REVIVE,      {   _,   _,   3,   3,   3,  10,  10,  10,  10,  10, } },
+    { ITEM_MAX_ETHER,       {   _,   _,   1,   2,   3,   4,   5,   _,   _,   _, } },
+    { ITEM_BALM_MUSHROOM,   {   _,   _,   1,   3,   3,   3,   3,   5,   5,   5, } },
+    { ITEM_PP_UP,           {   _,   _,   1,   2,   2,   3,   3,   4,   4,   5, } },
+    { ITEM_BIG_NUGGET,      {   _,   _,   1,   1,   1,   1,   3,   6,   8,  10, } },
+    { ITEM_WHITE_HERB,      {   _,   _,   1,   1,   1,   1,   1,   1,   1,   1, } },
+    { ITEM_POWER_HERB,      {   _,   _,   1,   1,   1,   1,   1,   1,   1,   1, } },
+    { ITEM_MENTAL_HERB,     {   _,   _,   1,   1,   1,   1,   1,   1,   1,   1, } },
+    { ITEM_DESTINY_KNOT,    {   _,   _,   1,   1,   1,   1,   1,   1,   1,   1, } },
+    { ITEM_LEFTOVERS,       {   _,   _,   1,   1,   1,   1,   1,   1,   1,   1, } },
+    { ITEM_ELIXIR,          {   _,   _,   _,   _,   1,   2,   3,   4,   5,   5, } },
+    { ITEM_MAX_ELIXIR,      {   _,   _,   _,   _,   _,   _,   1,   2,   3,   5, } },
+    { ITEM_BOTTLE_CAP,      {   _,   _,   _,   _,   _,   _,   _,   1,   1,   1, } },
 };
 
 static const u8 sTerrainToType[BATTLE_TERRAIN_COUNT] =
@@ -9163,7 +8972,7 @@ static void Cmd_various(void)
     }
     case VARIOUS_ARENA_JUDGMENT_STRING:
     {
-        CMD_ARGS(u8 id, u8 _);
+        CMD_ARGS(u8 id, u8 x);
         BattleStringExpandPlaceholdersToDisplayedString(gRefereeStringsTable[cmd->id]);
         BattlePutTextOnWindow(gDisplayedStringBattle, ARENA_WIN_JUDGMENT_TEXT);
         break;
@@ -14805,13 +14614,15 @@ static void Cmd_pickup(void)
                 }
                 else
                 {
-                    u32 rand = Random() % 99;
+                    u32 rand = Random() % 100;
+                    u32 percentTotal = 0;
 
-                    for (j = 0; j < ARRAY_COUNT(sPickupTables[lvlDivBy10]); j += 2)
+                    for (j = 0; j < ARRAY_COUNT(sPickupTable); j++)
                     {
-                        if ((sPickupTables[lvlDivBy10][j + 1]) + 1 <= rand)
+                        percentTotal += sPickupTable[j].percentage[lvlDivBy10];
+                        if (rand < percentTotal)
                         {
-                            SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &sPickupTables[lvlDivBy10][j]);
+                            SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &sPickupTable[j].itemId);
                             break;
                         }
                     }
