@@ -6,6 +6,7 @@
 void InitEventData(void);
 void ClearTempFieldEventData(void);
 void ClearDailyFlags(void);
+void IncrimentTrophyGardenVar(void);
 void DisableNationalPokedex(void);
 void EnableNationalPokedex(void);
 bool32 IsNationalPokedexEnabled(void);
