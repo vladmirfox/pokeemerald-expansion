@@ -89,10 +89,22 @@ The pokeemerald Expansion is a feature branch meant to be integrated into existi
     - Egg Move Transfer, including Mirror Herb.
     - Nature inheriting 100% of the time with Everstone
     - Gen6+ Ability inheriting.
-- Items from newer Generations
+- Items from newer Generations. Full list [here](/include/constants/items.h).
     - ***Gen 6+ Exp. Share*** (configurable)
-    - 
-    - and updated item effects for battle and field use.
+    - Existing item data but missing effects:
+        - Mints
+        - Dynamax Candy
+        - Mulches
+        - Rotom Catalog
+        - DNA Splicers
+        - Zygarde Cube
+        - N Solarizer/Lunarizer
+        - Reins of Unity
+        - Dynamax Band
+        - Gimmighoul Coin
+        - Booster Energy
+        - Tera Shards
+        - Tera Orb
 - Feature branches incorporated:
     - [RHH intro credits](https://github.com/Xhyzi/pokeemerald/tree/rhh-intro-credits) by Xhyzi.
         - A small signature from all of us to show the collective effort in the project :)
