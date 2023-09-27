@@ -129,17 +129,20 @@ With this, you'll get the latest version of the Expansion, plus a couple of bugf
 - If you haven't set up a remote, run the command `git remote add RHH https://github.com/rh-hideout/pokeemerald-expansion`.
 - Once you have your remote set up, run the command `git pull RHH expansion/1.6.0`.
 
+### Please consider crediting the entire [list of contributors](https://github.com/rh-hideout/pokeemerald-expansion/wiki/Credits) in your project, as they have all worked hard to develop this project :)
+
+## There's a bug in the project. How do I let you guys know?
+Please submit any issues with the project [here](https://github.com/rh-hideout/pokeemerald-expansion/issues). Make sure that the issue wasn't reported by someone else by searching using the filters.
+
+## Can I contribute even if I'm not a member of ROM Hacking Hideout?
+
+Yes! Contributions are welcome via Pull Requests and they will be reviewed by maintainers. Don't feel discouraged if we take a bit to review your PR, we'll get to it.
+
 ## Who maintains the project?
 
 The project was originally started by DizzyEgg alongside other contributors.
 
 The project has now gotten larger and DizzyEgg is now maintaining the project as part of the ROM Hacking Hideout community. Some members of this community are taking on larger roles to help maintain the project.
-
-### Please consider crediting the entire [list of contributors](https://github.com/rh-hideout/pokeemerald-expansion/wiki/Credits) in your project, as they have all worked hard to develop this project :)
-
-## Can I contribute even if I'm not a member of ROM Hacking Hideout?
-
-Yes! Contributions are welcome via Pull Requests and they will be reviewed by maintainers. Don't feel discouraged if we take a bit to review your PR, we'll get to it.
 
 ## What is ROM Hacking Hideout?
 
