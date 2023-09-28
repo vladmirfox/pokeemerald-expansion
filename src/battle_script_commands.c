@@ -1419,7 +1419,11 @@ static void Cmd_attackcanceler(void)
     gHitMarker |= HITMARKER_OBEYS;
     if (NoTargetPresent(gBattlerAttacker, gCurrentMove) && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
     {
-        gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce;
+        if (gBattleMoves[gCurrentMove].effect == EFFECT_FLING) // Edge case for removing a mon's item when there is no target available after using Fling.
+            gBattlescriptCurrInstr = BattleScript_FlingFailConsumeItem;
+        else
+            gBattlescriptCurrInstr = BattleScript_FailedFromAtkString;
+
         if (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
             CancelMultiTurnMoves(gBattlerAttacker);
         return;
@@ -3672,13 +3676,6 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 gBattleMons[gBattlerTarget].status2 |= STATUS2_ESCAPE_PREVENTION;
                 gBattleMons[gBattlerAttacker].status2 |= STATUS2_ESCAPE_PREVENTION;
                 break;
-            case MOVE_EFFECT_SCALE_SHOT:
-                if (!NoAliveMonsForEitherParty())
-                {
-                    BattleScriptPush(gBattlescriptCurrInstr + 1);
-                    gBattlescriptCurrInstr = BattleScript_DefDownSpeedUp;
-                }
-                break;
             case MOVE_EFFECT_BURN_UP:
                 // This seems unnecessary but is done to make it work properly with Parental Bond
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
@@ -4333,7 +4330,7 @@ static void Cmd_getexp(void)
                     expScaling = GetPkmnExpScaling(gPlayerParty[gBattleStruct->expGetterMonId].level);
                     if (wasSentOut)
                         {
-                        gBattleMoveDamage = *exp + (*exp / expScaling);
+                        gBattleMoveDamage = gBattleStruct->expValue + (gBattleStruct->expValue / expScaling);
                         if (FlagGet(FLAG_SYS_SOFT_LEVEL_CAP))
                             gBattleMoveDamage = gBattleStruct->expValue - (gBattleMoveDamage / expMultiplier);
                         }
@@ -4342,31 +4339,14 @@ static void Cmd_getexp(void)
                         gBattleMoveDamage = 0;
                         }
 
-                    // only give exp share bonus in later gens if the mon wasn't sent out
-                #if B_SPLIT_EXP < GEN_6
-                    if (holdEffect == HOLD_EFFECT_EXP_SHARE || IsGen6ExpShareEnabled())
-                        {
-                        gBattleMoveDamage += gExpShareExp + (*gExpShareExp / expScaling);
-                        if (FlagGet(FLAG_SYS_SOFT_LEVEL_CAP))
-                            gBattleMoveDamage = gBattleMoveDamage - (gBattleMoveDamage / expMultiplier);
-                        }
-                #else
-                    if (holdEffect == HOLD_EFFECT_EXP_SHARE && gBattleMoveDamage == 0)
-                        {
-                        gBattleMoveDamage += gExpShareExp + (gExpShareExp / expScaling);
-                        if (FlagGet(FLAG_SYS_SOFT_LEVEL_CAP))
-                            gBattleMoveDamage = gBattleMoveDamage - (gBattleMoveDamage / expMultiplier);
-                        }
-                #endif
-                    if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
-                        gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
-                #if B_TRAINER_EXP_MULTIPLIER <= GEN_7
-                    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-                        gBattleMoveDamage = (gBattleMoveDamage * 120) / 100;
-                #endif
-                #if (B_SCALED_EXP >= GEN_5) && (B_SCALED_EXP != GEN_6)
+                    if ((holdEffect == HOLD_EFFECT_EXP_SHARE || IsGen6ExpShareEnabled())
+                        #if B_SPLIT_EXP >= GEN_6
+                            // only give exp share bonus in later gens if the mon wasn't sent out
+                            && gBattleMoveDamage == 0
+                        #endif
+                       )
                     {
-                        gBattleMoveDamage += gBattleStruct->expShareExpValue;
+                        gBattleMoveDamage += gBattleStruct->expShareExpValue - (gBattleStruct->expShareExpValue / expMultiplier);
                     }
 
                     ApplyExperienceMultipliers(&gBattleMoveDamage, *expMonId, gBattlerFainted);
@@ -4377,9 +4357,9 @@ static void Cmd_getexp(void)
                         if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && *expMonId >= 3)
                             i = STRINGID_EMPTYSTRING4;
                         else
-                        {
-                            gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;                  
+                        {             
                             i = STRINGID_ABOOSTED;
+                        }
                     }
                     else
                     {
@@ -8649,6 +8629,16 @@ static bool32 ChangeOrderTargetAfterAttacker(void)
     return TRUE;
 }
 
+static u32 CalculateBattlerPartyCount(u32 battler)
+{
+    u32 count;
+    if (GetBattlerSide(battler) == B_SIDE_PLAYER)
+        count = CalculatePlayerPartyCount();
+    else
+        count = CalculateEnemyPartyCount();
+    return count;
+}
+
 static void Cmd_various(void)
 {
     CMD_ARGS(u8 battler, u8 id);
@@ -10636,15 +10626,6 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr = cmd->nextInstr;
         else
             gBattlescriptCurrInstr = cmd->failInstr;
-        return;
-    }
-    case VARIOUS_JUMP_IF_CANT_FLING:
-    {
-        VARIOUS_ARGS(const u8 *jumpInstr);
-        if (!CanFling(gActiveBattler))
-            gBattlescriptCurrInstr = cmd->jumpInstr;
-        else
-            gBattlescriptCurrInstr = cmd->nextInstr;
         return;
     }
     case VARIOUS_CURE_CERTAIN_STATUSES:
@@ -15827,6 +15808,17 @@ void BS_CalcMetalBurstDmg(void)
         gSpecialStatuses[gBattlerAttacker].ppNotAffectedByPressure = TRUE;
         gBattlescriptCurrInstr = cmd->failInstr;
     }
+}
+
+void BS_JumpIfCantFling(void)
+{
+    NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
+
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    if (!CanFling(battler))
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 void BS_JumpIfMoreThanHalfHP(void)

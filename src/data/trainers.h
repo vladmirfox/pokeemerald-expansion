@@ -1533,7 +1533,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
-        .party = NO_ITEM_DEFAULT_MOVES(sParty_Lydia),    
+        .party = TRAINER_PARTY(sParty_Lydia),    
     },
 
     [TRAINER_JESSICA_1] =
@@ -7413,7 +7413,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
-        .party = NO_ITEM_DEFAULT_MOVES(sParty_Lara),
+        .party = TRAINER_PARTY(sParty_Lara),
     },
 
     [TRAINER_YOSE] =
@@ -7425,7 +7425,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
-        .party = NO_ITEM_DEFAULT_MOVES(sParty_Yose),
+        .party = TRAINER_PARTY(sParty_Yose),
     },
 
     [TRAINER_LYLE] =
@@ -10257,7 +10257,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
-        .party = NO_ITEM_DEFAULT_MOVES(sParty_GruntMeteorFalls),
+        .party = TRAINER_PARTY(sParty_GruntMeteorFalls),
     },
 
     [TRAINER_RED] =

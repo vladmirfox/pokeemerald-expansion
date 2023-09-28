@@ -1285,7 +1285,6 @@ const struct Item gItems[] =
     [ITEM_DYNAMAX_CANDY] =
     {
         .name = _("DynamaxCandy"),
-        .itemId = ITEM_DYNAMAX_CANDY,
         .price = 10000,
         .description = sDynamaxCandyDesc,
         .pocket = POCKET_ITEMS,
@@ -8805,7 +8804,6 @@ const struct Item gItems[] =
     [ITEM_POKE_RADAR] =
     {
         .name = _("Poké Watch"),
-        .itemId = ITEM_POKE_RADAR,
         .price = 0,
         .description = sPokeRadarDesc,
         .importance = 1,
@@ -8817,7 +8815,6 @@ const struct Item gItems[] =
     [ITEM_INFINITE_CANDY] =
     {
         .name = _("Inf. Candy"),
-        .itemId = ITEM_INFINITE_CANDY,
         .price = 0,
         .description = sInfiniteCandy,
         .importance = 1,

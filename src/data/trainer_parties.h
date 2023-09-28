@@ -3661,7 +3661,7 @@ static const struct TrainerMon sParty_TateAndLiza1[] = {
     .moves = {MOVE_PSYCHIC, MOVE_SUNNY_DAY, MOVE_CONFUSE_RAY, MOVE_CALM_MIND}
     },
     {
-    .iv = TRAINER_PARTY_IVS(30, 30, 30, 30, 30, 30),,
+    .iv = TRAINER_PARTY_IVS(30, 30, 30, 30, 30, 30),
     .lvl = 41,
     .species = SPECIES_CHIMECHO,
     .heldItem = ITEM_NONE,
@@ -8034,7 +8034,7 @@ static const struct TrainerMon sParty_Crissy[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_Lara[] = {
+static const struct TrainerMon sParty_Lara[] = {
     {
     .lvl = 4,
     .species = SPECIES_COTTONEE,

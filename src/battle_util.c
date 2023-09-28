@@ -9370,7 +9370,10 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
         break;
     }
 
-    return ApplyModifier(modifier, atkStat);
+    // The offensive stats of a Player's Pokémon are boosted by x1.1 (+10%) if they have the 1st badge and 7th badges.
+    // Having the 1st badge boosts physical attack while having the 7th badge boosts special attack.
+
+    return uq4_12_multiply_by_int_half_down(modifier, atkStat);
 }
 
 static bool32 CanEvolve(u32 species)
@@ -9523,7 +9526,7 @@ static inline u32 CalcDefenseStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 
     if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE) && weather & B_WEATHER_SNOW && usesDefStat)
         modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
 
-    return ApplyModifier(modifier, defStat);
+    return uq4_12_multiply_by_int_half_down(modifier, defStat);
 }
 
 // base damage formula before adding any modifiers

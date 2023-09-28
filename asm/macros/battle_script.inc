@@ -2072,11 +2072,6 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro jumpifcantfling battler:req, jumpInstr:req
-	various \battler, VARIOUS_JUMP_IF_CANT_FLING
-	.4byte \jumpInstr
-	.endm
-
 	.macro curecertainstatuses battler:req
 	various \battler, VARIOUS_CURE_CERTAIN_STATUSES
 	.endm
