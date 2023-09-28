@@ -281,7 +281,7 @@ DesertCavern_1F_MovePlayerBackToRoxanne:
 	step_end
 
 DesertCavern_1F_Text_OhHiPlayer:
-	.string "Oh!…\p"
+	.string "ROXANNE: Oh!…\p"
 	.string "Hi there, {PLAYER}{KUN}!$"
 
 DesertCavern_1F_Text_WhatAreYouDoingHere:
@@ -298,7 +298,7 @@ DesertCavern_1F_Text_WhatAreYouDoingHere:
 	.string "should come along!$"
 
 DesertCavern_1F_Text_CheckOutTheseFossils:
-	.string "Hey {PLAYER}{KUN}!\p"
+	.string "ROXANNE: Hey {PLAYER}{KUN}!\p"
 	.string "I've been checking out all of the\n"
 	.string "minerals here!\p"
 	.string "…You can tell a lot from the age of\n"
@@ -323,7 +323,7 @@ DesertCavern_1F_Text_IllWaitHereForYou:
 	.string "We're in this together after all.$"
 
 DesertCavern_1F_Text_HeyWaitLetsBattle:
-	.string "Hey wait {PLAYER}{KUN}!\p"
+	.string "ROXANNE: Hey wait {PLAYER}{KUN}!\p"
 	.string "What if I want that one!\p"
 	.string "It's only fair if we battle\n"
 	.string "to see who picks first…$"
