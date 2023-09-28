@@ -13834,12 +13834,13 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .type = TYPE_GRASS,
         .accuracy = 90,
         .pp = 15,
-        .secondaryEffectChance = 0,
+        .secondaryEffectChance = 20, //burn
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .thawsUser = TRUE,
+        .metronomeBanned = TRUE,
     },
 
     [MOVE_SYRUP_BOMB] =
@@ -13855,6 +13856,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .ballisticMove = TRUE,
+        .metronomeBanned = TRUE,
     },
 
     [MOVE_IVY_CUDGEL] =
@@ -13870,6 +13872,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .highCritRatio = TRUE,
+        .metronomeBanned = TRUE,
     },
 
     // Z-Moves
