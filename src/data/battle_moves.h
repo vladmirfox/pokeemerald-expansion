@@ -13815,7 +13815,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_BLOOD_MOON] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_BLOOD_MOON
+        .effect = EFFECT_GIGATON_HAMMER,
         .power = 140,
         .type = TYPE_NORMAL,
         .accuracy = 100,
