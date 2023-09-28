@@ -3273,7 +3273,7 @@ static const u8 sSyrupBombDescription[] = _(
     "each turn for 3 turns.");
 
 static const u8 sIvyCudgelDescription[] = _(
-    "Type changes with worn mask.\n"
+    "Type changes with held mask.\n"
     "High critical-hit ratio.");
 
 const u8 gNotDoneYetDescription[] = _(
