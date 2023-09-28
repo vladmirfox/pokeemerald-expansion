@@ -11650,7 +11650,8 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
             {
                 if (GetBattlerSide(index) == GetBattlerSide(battler))
                     continue; // Only triggers on opposing side
-                if (GetBattlerAbility(index) == ABILITY_OPPORTUNIST && gProtectStructs[index].activateOpportunist == 0)
+                if (GetBattlerAbility(index) == ABILITY_OPPORTUNIST
+                        && gProtectStructs[battler].activateOpportunist == 0) // don't activate opportunist on other mon's opportunist raises
                 {
                     gProtectStructs[index].activateOpportunist = 2;      // set stats to copy
                     gQueuedStatBoosts[index].stats |= (1 << (statId - 1));    // -1 to start at atk
