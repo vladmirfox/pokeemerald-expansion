@@ -9230,6 +9230,7 @@ BattleScript_SpikyShieldEffect::
 	printstring STRINGID_PKMNHURTSWITH
 	waitmessage B_WAIT_TIME_LONG
 	tryfaintmon BS_ATTACKER
+	orhalfword gMoveResultFlags, MOVE_RESULT_MISSED
 BattleScript_SpikyShieldRet::
 	return
 
@@ -9241,6 +9242,7 @@ BattleScript_KingsShieldEffect::
 	copybyte sBATTLER, gBattlerTarget
 	copybyte gBattlerTarget, gBattlerAttacker
 	copybyte gBattlerAttacker, sBATTLER
+	orhalfword gMoveResultFlags, MOVE_RESULT_MISSED
 	return
 
 BattleScript_BanefulBunkerEffect::
@@ -9248,6 +9250,7 @@ BattleScript_BanefulBunkerEffect::
 	bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
 	seteffectsecondary
 	setmoveeffect 0
+	orhalfword gMoveResultFlags, MOVE_RESULT_MISSED
 	return
 
 BattleScript_CuteCharmActivates::
