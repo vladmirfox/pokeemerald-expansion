@@ -378,13 +378,18 @@ struct BattleMove
     u32 thawsUser:1;
     u32 ignoresSubstitute:1;
     u32 strikeCount:4;  // Max 15 hits. Defaults to 1 if not set. May apply its effect on each hit.
-    u32 meFirstBanned:1;
+    u32 forcePressure:1;
+    u32 cantUseTwice:1;
     u32 gravityBanned:1;
+    u32 healBlockBanned:1;
+    u32 meFirstBanned:1;
     u32 mimicBanned:1;
     u32 metronomeBanned:1;
     u32 copycatBanned:1;
     u32 sleepTalkBanned:1;
     u32 instructBanned:1;
+    u32 encoreBanned:1;
+    u32 assistBanned:1;
 };
 
 #define SPINDA_SPOT_WIDTH 16
