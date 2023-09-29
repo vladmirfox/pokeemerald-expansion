@@ -31,7 +31,7 @@
 
 static u32 ChooseMoveOrAction_Singles(u32 battlerAi);
 static u32 ChooseMoveOrAction_Doubles(u32 battlerAi);
-static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u32 battler);
+static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u32 battlerAi, u32 battlerDef);
 static bool32 IsPinchBerryItemEffect(u32 holdEffect);
 
 // ewram
@@ -171,6 +171,8 @@ void BattleAI_SetupFlags(void)
     if (gBattleTypeFlags & (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS) || gTrainers[gTrainerBattleOpponent_A].doubleBattle)
         AI_THINKING_STRUCT->aiFlags |= AI_FLAG_DOUBLE_BATTLE; // Act smart in doubles and don't attack your partner.
 }
+
+#include "test/test.h"
 
 // sBattler_AI set in ComputeBattleAiScores
 void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
@@ -486,7 +488,7 @@ static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
     {
         if (flags & 1)
         {
-            BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi);
+            BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
         }
         flags >>= 1;
         AI_THINKING_STRUCT->aiLogicId++;
@@ -494,6 +496,7 @@ static u32 ChooseMoveOrAction_Singles(u32 battlerAi)
 
     for (i = 0; i < MAX_MON_MOVES; i++) {
         gBattleStruct->aiFinalScore[battlerAi][gBattlerTarget][i] = AI_THINKING_STRUCT->score[i];
+
     }
 
     // Check special AI actions.
@@ -560,7 +563,7 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi)
 
             gBattlerTarget = i;
 
-            AI_DATA->partnerMove = GetAllyChosenMove(i);
+            AI_DATA->partnerMove = GetAllyChosenMove(battlerAi);
             AI_THINKING_STRUCT->aiLogicId = 0;
             AI_THINKING_STRUCT->movesetIndex = 0;
             flags = AI_THINKING_STRUCT->aiFlags;
@@ -568,7 +571,7 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi)
             {
                 if (flags & 1)
                 {
-                    BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi);
+                    BattleAI_DoAIProcessing(AI_THINKING_STRUCT, battlerAi, gBattlerTarget);
                 }
                 flags >>= 1;
                 AI_THINKING_STRUCT->aiLogicId++;
@@ -652,25 +655,37 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi)
     return actionOrMoveIndex[gBattlerTarget];
 }
 
-static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u32 battler)
+static inline bool32 ShouldConsiderMoveForBattler(u32 battlerAi, u32 battlerDef, u32 move)
+{
+    if (battlerAi == BATTLE_PARTNER(battlerDef))
+    {
+        if (gBattleMoves[move].target == MOVE_TARGET_BOTH || gBattleMoves[move].target == MOVE_TARGET_OPPONENTS_FIELD)
+            return FALSE;
+    }
+    return TRUE;
+}
+
+static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u32 battlerAi, u32 battlerDef)
 {
     do
     {
-        if (gBattleMons[battler].pp[aiThink->movesetIndex] == 0)
+        if (gBattleMons[battlerAi].pp[aiThink->movesetIndex] == 0)
             aiThink->moveConsidered = MOVE_NONE;
         else
-            aiThink->moveConsidered = gBattleMons[battler].moves[aiThink->movesetIndex];
+            aiThink->moveConsidered = gBattleMons[battlerAi].moves[aiThink->movesetIndex];
 
+        // There is no point in calculating scores for all 3 battlers(2 opponents + 1 ally) with certain moves.
         if (aiThink->moveConsidered != MOVE_NONE
-          && aiThink->score[aiThink->movesetIndex] > 0)
+          && aiThink->score[aiThink->movesetIndex] > 0
+          && ShouldConsiderMoveForBattler(battlerAi, battlerDef, aiThink->moveConsidered))
         {
             if (aiThink->aiLogicId < ARRAY_COUNT(sBattleAiFuncTable)
               && sBattleAiFuncTable[aiThink->aiLogicId] != NULL)
             {
                 // Call AI function
                 aiThink->score[aiThink->movesetIndex] =
-                    sBattleAiFuncTable[aiThink->aiLogicId](battler,
-                      gBattlerTarget,
+                    sBattleAiFuncTable[aiThink->aiLogicId](battlerAi,
+                      battlerDef,
                       aiThink->moveConsidered,
                       aiThink->score[aiThink->movesetIndex]);
             }
@@ -1577,29 +1592,29 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             break;
         case EFFECT_SANDSTORM:
             if (weather & (B_WEATHER_SANDSTORM | B_WEATHER_PRIMAL_ANY)
-             || PartnerMoveEffectIsWeather(BATTLE_PARTNER(battlerAtk), aiData->partnerMove))
+             || IsMoveEffectWeather(aiData->partnerMove))
                 score -= 8;
             break;
         case EFFECT_SUNNY_DAY:
             if (weather & (B_WEATHER_SUN | B_WEATHER_PRIMAL_ANY)
-             || PartnerMoveEffectIsWeather(BATTLE_PARTNER(battlerAtk), aiData->partnerMove))
+             || IsMoveEffectWeather(aiData->partnerMove))
                 score -= 8;
             break;
         case EFFECT_RAIN_DANCE:
             if (weather & (B_WEATHER_RAIN | B_WEATHER_PRIMAL_ANY)
-             || PartnerMoveEffectIsWeather(BATTLE_PARTNER(battlerAtk), aiData->partnerMove))
+             || IsMoveEffectWeather(aiData->partnerMove))
                 score -= 8;
             break;
         case EFFECT_HAIL:
             if (weather & (B_WEATHER_HAIL | B_WEATHER_PRIMAL_ANY)
-             || PartnerMoveEffectIsWeather(BATTLE_PARTNER(battlerAtk), aiData->partnerMove))
+             || IsMoveEffectWeather(aiData->partnerMove))
                 score -= 8;
             else if (weather & B_WEATHER_SNOW)
                 score -= 2; // mainly to prevent looping between hail and snow
             break;
         case EFFECT_SNOWSCAPE:
             if (weather & (B_WEATHER_SNOW | B_WEATHER_PRIMAL_ANY)
-             || PartnerMoveEffectIsWeather(BATTLE_PARTNER(battlerAtk), aiData->partnerMove))
+             || IsMoveEffectWeather(aiData->partnerMove))
                 score -= 8;
             else if (weather & B_WEATHER_HAIL)
                 score -= 2; // mainly to prevent looping between hail and snow
@@ -2778,6 +2793,15 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                         score += 3;
                 }
             }
+            break;
+        // Don't change weather if ally already decided to do so.
+        case EFFECT_SUNNY_DAY:
+        case EFFECT_HAIL:
+        case EFFECT_SNOWSCAPE:
+        case EFFECT_RAIN_DANCE:
+        case EFFECT_SANDSTORM:
+            if (IsMoveEffectWeather(move))
+                score -= 10;
             break;
         }
     } // check partner move effect

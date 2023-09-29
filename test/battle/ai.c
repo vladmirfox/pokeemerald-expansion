@@ -37,13 +37,13 @@ AI_BATTLE_TEST("AI prefers Bubble over Water Gun if it's slower")
     } WHEN {
         if (speedPlayer > speedAi)
         {
-            TURN { EXPECT_MOVES_GT(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
-            TURN { EXPECT_MOVES_GT(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
+            TURN { SCORE_GT(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
+            TURN { SCORE_GT(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
         }
         else
         {
-            TURN { EXPECT_MOVES_EQ(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
-            TURN { EXPECT_MOVES_EQ(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
+            TURN { SCORE_EQ(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
+            TURN { SCORE_EQ(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
         }
     } SCENE {
     }
@@ -57,7 +57,7 @@ AI_BATTLE_TEST("AI prefers Water Gun over Bubble if it knows that foe has Contra
         OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_WATER_GUN, MOVE_BUBBLE); }
     } WHEN {
             TURN { MOVE(player, MOVE_DEFENSE_CURL);  }
-            TURN { MOVE(player, MOVE_DEFENSE_CURL); EXPECT_MOVES_GT(opponent, MOVE_WATER_GUN, MOVE_BUBBLE); }
+            TURN { MOVE(player, MOVE_DEFENSE_CURL); SCORE_GT(opponent, MOVE_WATER_GUN, MOVE_BUBBLE); }
     } SCENE {
         MESSAGE("Shuckle's Defense fell!"); // Contrary activates
     } THEN {
@@ -159,5 +159,77 @@ AI_BATTLE_TEST("AI won't use ground type attacks against flying type Pokemon unl
             TURN { EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); SEND_OUT(player, 1); }
     } SCENE {
         MESSAGE("Gravity intensified!");
+    }
+}
+
+AI_DOUBLE_BATTLE_TEST("AI won't use a Weather changing move if partner already chose such move")
+{
+    u32 j, k;
+    static const u16 weatherMoves[] = {MOVE_SUNNY_DAY, MOVE_HAIL, MOVE_RAIN_DANCE, MOVE_SANDSTORM, MOVE_SNOWSCAPE};
+    u16 weatherMoveLeft, weatherMoveRight;
+
+    for (j = 0; j < ARRAY_COUNT(weatherMoves); j++)
+    {
+        for (k = 0; k < ARRAY_COUNT(weatherMoves); k++)
+        {
+            PARAMETRIZE { weatherMoveLeft = weatherMoves[j]; weatherMoveRight = weatherMoves[k]; }
+        }
+    }
+
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) {Moves(weatherMoveLeft); }
+        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_TACKLE, weatherMoveRight); }
+    } WHEN {
+            TURN {  NOT_EXPECTED_MOVE(opponentRight, weatherMoveRight);
+                    SCORE_LT_VAR(opponentRight, weatherMoveRight, 100, target:playerLeft);
+                    SCORE_LT_VAR(opponentRight, weatherMoveRight, 100, target:playerRight);
+                    SCORE_LT_VAR(opponentRight, weatherMoveRight, 100, target:opponentLeft);
+                 }
+    } SCENE {
+
+    }
+}
+
+AI_BATTLE_TEST("AI without any flags chooses moves at random - singles")
+{
+    GIVEN {
+        AI_FLAGS(0);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_NIDOQUEEN) {Moves(MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND); }
+    } WHEN {
+            TURN { EXPECTED_MOVES(opponent, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
+                   SCORE_EQ_VAR(opponent, MOVE_SPLASH, 100);
+                   SCORE_EQ_VAR(opponent, MOVE_EXPLOSION, 100);
+                   SCORE_EQ_VAR(opponent, MOVE_RAGE, 100);
+                   SCORE_EQ_VAR(opponent, MOVE_HELPING_HAND, 100);
+                }
+    } SCENE {
+    }
+}
+
+AI_DOUBLE_BATTLE_TEST("AI without any flags chooses moves at random - doubles")
+{
+    GIVEN {
+        AI_FLAGS(0);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_NIDOQUEEN) {Moves(MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND); }
+        OPPONENT(SPECIES_NIDOQUEEN) {Moves(MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND); }
+    } WHEN {
+            TURN { EXPECTED_MOVES(opponentLeft, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
+                   EXPECTED_MOVES(opponentRight, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
+                   SCORE_EQ_VAR(opponentLeft, MOVE_SPLASH, 100, target:playerLeft);
+                   SCORE_EQ_VAR(opponentLeft, MOVE_EXPLOSION, 100, target:playerLeft);
+                   SCORE_EQ_VAR(opponentLeft, MOVE_RAGE, 100, target:playerLeft);
+                   SCORE_EQ_VAR(opponentLeft, MOVE_HELPING_HAND, 100, target:playerLeft);
+                   SCORE_EQ_VAR(opponentRight, MOVE_SPLASH, 100, target:playerLeft);
+                   SCORE_EQ_VAR(opponentRight, MOVE_EXPLOSION, 100, target:playerLeft);
+                   SCORE_EQ_VAR(opponentRight, MOVE_RAGE, 100, target:playerLeft);
+                   SCORE_EQ_VAR(opponentRight, MOVE_HELPING_HAND, 100, target:playerLeft);
+                }
+    } SCENE {
     }
 }

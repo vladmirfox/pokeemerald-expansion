@@ -39,6 +39,7 @@ EWRAM_DATA struct BattleTestRunnerState *gBattleTestRunnerState = NULL;
 static void CB2_BattleTest_NextParameter(void);
 static void CB2_BattleTest_NextTrial(void);
 static void PushBattlerAction(u32 sourceLine, s32 battlerId, u32 actionType, u32 byte);
+static const char *BattlerIdentifier(s32 battlerId);
 
 NAKED static void InvokeSingleTestFunctionWithStack(void *results, u32 i, struct BattlePokemon *player, struct BattlePokemon *opponent, SingleBattleTestFunction function, void *stack)
 {
@@ -101,20 +102,27 @@ static void InvokeTestFunction(const struct BattleTest *test)
         InvokeSingleTestFunctionWithStack(STATE->results, STATE->runParameter, &gBattleMons[B_POSITION_PLAYER_LEFT], &gBattleMons[B_POSITION_OPPONENT_LEFT], test->function.singles, &DATA.stack[BATTLE_TEST_STACK_SIZE]);
         break;
     case BATTLE_TEST_DOUBLES:
+    case BATTLE_TEST_AI_DOUBLES:
         InvokeDoubleTestFunctionWithStack(STATE->results, STATE->runParameter, &gBattleMons[B_POSITION_PLAYER_LEFT], &gBattleMons[B_POSITION_OPPONENT_LEFT], &gBattleMons[B_POSITION_PLAYER_RIGHT], &gBattleMons[B_POSITION_OPPONENT_RIGHT], test->function.singles, &DATA.stack[BATTLE_TEST_STACK_SIZE]);
         break;
     }
 }
 
-static u32 SourceLine(u32 sourceLineOffset)
+static const struct BattleTest *GetBattleTest(void)
 {
     const struct BattleTest *test = gTestRunnerState.test->data;
+    return test;
+}
+
+static u32 SourceLine(u32 sourceLineOffset)
+{
+    const struct BattleTest *test = GetBattleTest();
     return test->sourceLine + sourceLineOffset;
 }
 
 static u32 SourceLineOffset(u32 sourceLine)
 {
-    const struct BattleTest *test = gTestRunnerState.test->data;
+    const struct BattleTest *test = GetBattleTest();
     if (sourceLine - test->sourceLine > 0xFF)
         return 0;
     else
@@ -162,6 +170,7 @@ static void BattleTest_SetUp(void *data)
         STATE->battlersCount = 2;
         break;
     case BATTLE_TEST_DOUBLES:
+    case BATTLE_TEST_AI_DOUBLES:
         STATE->battlersCount = 4;
         break;
     }
@@ -248,6 +257,12 @@ static void BattleTest_Run(void *data)
     case BATTLE_TEST_AI:
         DATA.recordedBattle.battleFlags = BATTLE_TYPE_IS_MASTER | BATTLE_TYPE_TRAINER;
         DATA.recordedBattle.opponentA = TRAINER_LEAF;
+        DATA.hasAI = TRUE;
+        break;
+    case BATTLE_TEST_AI_DOUBLES:
+        DATA.recordedBattle.battleFlags = BATTLE_TYPE_IS_MASTER | BATTLE_TYPE_TRAINER | BATTLE_TYPE_DOUBLE;
+        DATA.recordedBattle.opponentA = TRAINER_LEAF;
+        DATA.recordedBattle.opponentB = TRAINER_RED;
         DATA.hasAI = TRUE;
         break;
     case BATTLE_TEST_SINGLES:
@@ -761,6 +776,9 @@ void TestRunner_Battle_CheckChosenMove(u32 battlerId, u32 moveId, u32 target)
         if (expectedAction->type != B_ACTION_USE_MOVE)
             Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Expected MOVE, got %s", filename, expectedAction->sourceLine, sBattleActionNames[expectedAction->type]);
 
+        if (expectedAction->explicitTarget && expectedAction->target != target)
+            Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Expected target %s, got %s", filename, expectedAction->sourceLine, BattlerIdentifier(expectedAction->target), BattlerIdentifier(target));
+
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
             if (gBitTable[i] & expectedAction->moveSlots)
@@ -847,16 +865,26 @@ void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
             s32 target = scoreCtx->target;
             s32 *scores = gBattleStruct->aiFinalScore[battlerId][target];
 
+            //for (i = 0; i < MAX_MON_MOVES; i++)
+            //{
+                //MgbaPrintf_("Target = %d\n", target);
+                //MgbaPrintf_("Score %d: %d", i+1, scores[i]);
+            //}
+
             if (scoreCtx->toValue)
             {
-
+                if (!CheckComparision(scores[scoreCtx->moveSlot1], scoreCtx->value, scoreCtx->cmp))
+                {
+                    Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched SCORE_%s_VAR %d, got %d",
+                                        filename, scoreCtx->sourceLine, sCmpToStringTable[scoreCtx->cmp], scoreCtx->value, scores[scoreCtx->moveSlot1]);
+                }
             }
             else
             {
                 if (!CheckComparision(scores[scoreCtx->moveSlot1], scores[scoreCtx->moveSlot2], scoreCtx->cmp))
                 {
                     u32 moveId2 = gBattleMons[battlerId].moves[scoreCtx->moveSlot2];
-                    Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched EXPECT_MOVES_%s, got %S: %d, %S: %d",
+                    Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched SCORE_%s, got %S: %d, %S: %d",
                                         filename, scoreCtx->sourceLine, sCmpToStringTable[scoreCtx->cmp], gMoveNames[moveId1], scores[scoreCtx->moveSlot1], gMoveNames[moveId2], scores[scoreCtx->moveSlot2]);
                 }
             }
@@ -1158,7 +1186,7 @@ static const char *const sEventTypeMacros[] =
 
 void TestRunner_Battle_AfterLastTurn(void)
 {
-    const struct BattleTest *test = gTestRunnerState.test->data;
+    const struct BattleTest *test = GetBattleTest();
 
     if (DATA.turns - 1 != DATA.lastActionTurn)
     {
@@ -1291,7 +1319,7 @@ static bool32 BattleTest_HandleExitWithResult(void *data, enum TestResult result
 
 void Randomly(u32 sourceLine, u32 passes, u32 trials, struct RandomlyContext ctx)
 {
-    const struct BattleTest *test = gTestRunnerState.test->data;
+    const struct BattleTest *test = GetBattleTest();
     INVALID_IF(STATE->trials != 0, "PASSES_RANDOMLY can only be used once per test");
     INVALID_IF(test->resultsSize > 0, "PASSES_RANDOMLY is incompatible with results");
     INVALID_IF(passes > trials, "%d passes specified, but only %d trials", passes, trials);
@@ -1322,8 +1350,8 @@ void RNGSeed_(u32 sourceLine, u32 seed)
 
 void AIFlags_(u32 sourceLine, u32 flags)
 {
-    const struct BattleTest *test = gTestRunnerState.test->data;
-    INVALID_IF(test->type != BATTLE_TEST_AI, "AI_FLAGS is compatible only with AI_BATTLE_TEST");
+    const struct BattleTest *test = GetBattleTest();
+    INVALID_IF(test->type != BATTLE_TEST_AI && test->type != BATTLE_TEST_AI_DOUBLES, "AI_FLAGS is compatible only with AI_BATTLE_TEST & AI_DOUBLE_BATTLE_TEST");
     DATA.recordedBattle.AI_scripts = flags;
     DATA.hasAI = TRUE;
 }
@@ -1592,7 +1620,7 @@ static const char *const sBattlerIdentifiersDoubles[] =
 
 static const char *BattlerIdentifier(s32 battlerId)
 {
-    const struct BattleTest *test = gTestRunnerState.test->data;
+    const struct BattleTest *test = GetBattleTest();
     switch (test->type)
     {
     case BATTLE_TEST_SINGLES:
@@ -1600,6 +1628,7 @@ static const char *BattlerIdentifier(s32 battlerId)
     case BATTLE_TEST_AI:
         return sBattlerIdentifiersSingles[battlerId];
     case BATTLE_TEST_DOUBLES:
+    case BATTLE_TEST_AI_DOUBLES:
         return sBattlerIdentifiersDoubles[battlerId];
     }
     return "<unknown>";
@@ -1720,7 +1749,7 @@ static void SetAiActionToPass(u32 sourceLine, s32 battlerId)
 
 void CloseTurn(u32 sourceLine)
 {
-    const struct BattleTest *test = gTestRunnerState.test->data;
+    const struct BattleTest *test = GetBattleTest();
     s32 i;
     INVALID_IF(DATA.turnState != TURN_OPEN, "Nested TURN");
     DATA.turnState = TURN_CLOSING;
@@ -1730,7 +1759,7 @@ void CloseTurn(u32 sourceLine)
     {
         if (!(DATA.actionBattlers & (1 << i)))
         {
-             if (test->type == BATTLE_TEST_AI && (i & BIT_SIDE) == B_SIDE_OPPONENT) // If Move was not specified, allow any move used.
+             if ((test->type == BATTLE_TEST_AI || test->type == BATTLE_TEST_AI_DOUBLES) && (i & BIT_SIDE) == B_SIDE_OPPONENT) // If Move was not specified, allow any move used.
                 SetAiActionToPass(sourceLine, i);
              else
                 Move(sourceLine, &gBattleMons[i], (struct MoveContext) { move: MOVE_CELEBRATE, explicitMove: TRUE });
@@ -1752,7 +1781,7 @@ static struct Pokemon *CurrentMon(s32 battlerId)
 
 s32 MoveGetTarget(s32 battlerId, u32 moveId, struct MoveContext *ctx, u32 sourceLine)
 {
-    s32 target = 0;
+    s32 target = battlerId;
     if (ctx->explicitTarget)
     {
         target = ctx->target - gBattleMons;
@@ -1771,7 +1800,11 @@ s32 MoveGetTarget(s32 battlerId, u32 moveId, struct MoveContext *ctx, u32 source
         }
         else if (move->target == MOVE_TARGET_SELECTED)
         {
-            INVALID_IF(STATE->battlersCount > 2, "%S requires explicit target", gMoveNames[moveId]);
+            // In AI Doubles not specified target allows any target for EXPECTED_MOVE.
+            if (GetBattleTest()->type != BATTLE_TEST_AI_DOUBLES)
+            {
+                INVALID_IF(STATE->battlersCount > 2, "%S requires explicit target", gMoveNames[moveId]);
+            }
 
             target = BATTLE_OPPOSITE(battlerId);
         }
@@ -1908,6 +1941,7 @@ static void TryMarkExpectedMove(u32 sourceLine, struct BattlePokemon *battler, s
     DATA.expectedAiActions[battlerId][id].type = B_ACTION_USE_MOVE;
     DATA.expectedAiActions[battlerId][id].moveSlots |= gBitTable[moveSlot];
     DATA.expectedAiActions[battlerId][id].target = target;
+    DATA.expectedAiActions[battlerId][id].explicitTarget = ctx->explicitTarget;
     DATA.expectedAiActions[battlerId][id].sourceLine = sourceLine;
     DATA.expectedAiActions[battlerId][id].actionSet = TRUE;
     if (ctx->explicitNotExpected)
@@ -1924,11 +1958,29 @@ void ExpectedMove(u32 sourceLine, struct BattlePokemon *battler, struct MoveCont
     DATA.expectedAiActionIndex[battlerId]++;
 }
 
-void ExpectCompare(u32 sourceLine, struct BattlePokemon *battler, u32 cmp, u32 moveId1, bool32 toValue, s32 valueOrMoveId2)
+s32 GetAiMoveTargetForScoreCompare(u32 battlerId, u32 moveId, struct MoveContext *ctx, u32 sourceLine)
+{
+    s32 target;
+
+    // In Single Battles ai always targets the opposing mon.
+    if (GetBattleTest()->type == BATTLE_TEST_AI)
+    {
+        target = BATTLE_OPPOSITE(battlerId);
+    }
+    else
+    {
+        // TODO: Fix ai targeting self in double battles.
+        INVALID_IF(!ctx->explicitTarget, "%S requires explicit target for score comparison in doubles", gMoveNames[moveId]);
+        target = MoveGetTarget(battlerId, moveId, ctx, sourceLine);
+    }
+    return target;
+}
+
+void Score(u32 sourceLine, struct BattlePokemon *battler, u32 cmp, bool32 toValue, struct TestAiScoreStruct cmpCtx)
 {
     u32 moveSlot1, moveSlot2;
     s32 i, target;
-    struct MoveContext ctx = {0};
+    struct MoveContext moveCtx = {0};
     s32 battlerId = battler - gBattleMons;
     s32 turn = DATA.turns;
 
@@ -1940,23 +1992,28 @@ void ExpectCompare(u32 sourceLine, struct BattlePokemon *battler, u32 cmp, u32 m
 
     INVALID_IF(i == MAX_AI_SCORE_COMPARISION_PER_TURN, "Too many EXPECTs in TURN");
 
-    ctx.move = moveId1;
-    ctx.explicitMove = TRUE;
-    MoveGetIdAndSlot(battlerId, &ctx, &moveId1, &moveSlot1, sourceLine);
-    target = MoveGetTarget(battlerId, moveId1, &ctx, sourceLine);
+    moveCtx.move = cmpCtx.move1;
+    moveCtx.explicitMove = cmpCtx.explicitMove1;
+    moveCtx.target = cmpCtx.target;
+    moveCtx.explicitTarget = cmpCtx.explicitTarget;
+    MoveGetIdAndSlot(battlerId, &moveCtx, &cmpCtx.move1, &moveSlot1, sourceLine);
+    // For ai moves, target is never self.
+    target = GetAiMoveTargetForScoreCompare(battlerId, cmpCtx.move1, &moveCtx, sourceLine);
     DATA.expectedAiScores[battlerId][turn][i].target = target;
     DATA.expectedAiScores[battlerId][turn][i].moveSlot1 = moveSlot1;
     DATA.expectedAiScores[battlerId][turn][i].cmp = cmp;
     DATA.expectedAiScores[battlerId][turn][i].toValue = toValue;
     if (toValue)
     {
-        DATA.expectedAiScores[battlerId][turn][i].value = valueOrMoveId2;
+        DATA.expectedAiScores[battlerId][turn][i].value = cmpCtx.valueOrMoveId2;
     }
     else
     {
-        ctx.move = valueOrMoveId2;
-        ctx.explicitMove = TRUE;
-        MoveGetIdAndSlot(battlerId, &ctx, &valueOrMoveId2, &moveSlot2, sourceLine);
+        moveCtx.move = cmpCtx.valueOrMoveId2;
+        moveCtx.explicitMove = cmpCtx.explicitValueOrMoveId2;
+        moveCtx.target = cmpCtx.target;
+        moveCtx.explicitTarget = cmpCtx.explicitTarget;
+        MoveGetIdAndSlot(battlerId, &moveCtx, &cmpCtx.valueOrMoveId2, &moveSlot2, sourceLine);
         DATA.expectedAiScores[battlerId][turn][i].moveSlot2 = moveSlot2;
     }
     DATA.expectedAiScores[battlerId][turn][i].sourceLine = sourceLine;

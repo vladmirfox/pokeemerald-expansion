@@ -3188,7 +3188,7 @@ bool32 DoesPartnerHaveSameMoveEffect(u32 battlerAtkPartner, u32 battlerDef, u32 
         return FALSE;
 
     if (gBattleMoves[move].effect == gBattleMoves[partnerMove].effect
-      && gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE
+      && partnerMove != MOVE_NONE
       && gBattleStruct->moveTarget[battlerAtkPartner] == battlerDef)
     {
         return TRUE;
@@ -3203,7 +3203,7 @@ bool32 PartnerHasSameMoveEffectWithoutTarget(u32 battlerAtkPartner, u32 move, u3
         return FALSE;
 
     if (gBattleMoves[move].effect == gBattleMoves[partnerMove].effect
-      && gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE)
+      && partnerMove != MOVE_NONE)
         return TRUE;
     return FALSE;
 }
@@ -3214,7 +3214,7 @@ bool32 PartnerMoveEffectIsStatusSameTarget(u32 battlerAtkPartner, u32 battlerDef
     if (!IsDoubleBattle())
         return FALSE;
 
-    if (gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE
+    if (partnerMove != MOVE_NONE
      && gBattleStruct->moveTarget[battlerAtkPartner] == battlerDef
      && (gBattleMoves[partnerMove].effect == EFFECT_SLEEP
        || gBattleMoves[partnerMove].effect == EFFECT_POISON
@@ -3226,20 +3226,17 @@ bool32 PartnerMoveEffectIsStatusSameTarget(u32 battlerAtkPartner, u32 battlerDef
     return FALSE;
 }
 
-//PARTNER_MOVE_EFFECT_IS_WEATHER
-bool32 PartnerMoveEffectIsWeather(u32 battlerAtkPartner, u32 partnerMove)
+#include "test/test.h"
+
+bool32 IsMoveEffectWeather(u32 move)
 {
-    if (!IsDoubleBattle())
-        return FALSE;
-
-    if (gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE
-     && (gBattleMoves[partnerMove].effect == EFFECT_SUNNY_DAY
-      || gBattleMoves[partnerMove].effect == EFFECT_RAIN_DANCE
-      || gBattleMoves[partnerMove].effect == EFFECT_SANDSTORM
-      || gBattleMoves[partnerMove].effect == EFFECT_HAIL
-      || gBattleMoves[partnerMove].effect == EFFECT_SNOWSCAPE))
+    if (move != MOVE_NONE
+     && (gBattleMoves[move].effect == EFFECT_SUNNY_DAY
+      || gBattleMoves[move].effect == EFFECT_RAIN_DANCE
+      || gBattleMoves[move].effect == EFFECT_SANDSTORM
+      || gBattleMoves[move].effect == EFFECT_HAIL
+      || gBattleMoves[move].effect == EFFECT_SNOWSCAPE))
         return TRUE;
-
     return FALSE;
 }
 
@@ -3249,7 +3246,7 @@ bool32 PartnerMoveEffectIsTerrain(u32 battlerAtkPartner, u32 partnerMove)
     if (!IsDoubleBattle())
         return FALSE;
 
-    if (gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE
+    if (partnerMove != MOVE_NONE
      && (gBattleMoves[partnerMove].effect == EFFECT_GRASSY_TERRAIN
       || gBattleMoves[partnerMove].effect == EFFECT_MISTY_TERRAIN
       || gBattleMoves[partnerMove].effect == EFFECT_ELECTRIC_TERRAIN
@@ -3265,7 +3262,7 @@ bool32 PartnerMoveIs(u32 battlerAtkPartner, u32 partnerMove, u32 moveCheck)
     if (!IsDoubleBattle())
         return FALSE;
 
-    if (gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE && partnerMove == moveCheck)
+    if (partnerMove != MOVE_NONE && partnerMove == moveCheck)
         return TRUE;
     return FALSE;
 }
@@ -3276,7 +3273,7 @@ bool32 PartnerMoveIsSameAsAttacker(u32 battlerAtkPartner, u32 battlerDef, u32 mo
     if (!IsDoubleBattle())
         return FALSE;
 
-    if (gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE && move == partnerMove && gBattleStruct->moveTarget[battlerAtkPartner] == battlerDef)
+    if (partnerMove != MOVE_NONE && move == partnerMove && gBattleStruct->moveTarget[battlerAtkPartner] == battlerDef)
         return TRUE;
     return FALSE;
 }
@@ -3286,7 +3283,7 @@ bool32 PartnerMoveIsSameNoTarget(u32 battlerAtkPartner, u32 move, u32 partnerMov
 {
     if (!IsDoubleBattle())
         return FALSE;
-    if (gChosenMoveByBattler[battlerAtkPartner] != MOVE_NONE && move == partnerMove)
+    if (partnerMove != MOVE_NONE && move == partnerMove)
         return TRUE;
     return FALSE;
 }
