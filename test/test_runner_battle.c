@@ -958,6 +958,7 @@ static s32 TryMessage(s32 i, s32 n, const u8 *string)
             continue;
 
         event = &DATA.queuedEvents[i].as.message;
+        //MgbaPrintf_("Looking for: %S Found: %S\n", event->pattern, string); Useful for debugging.
         for (j = k = 0; ; j++, k++)
         {
             if (event->pattern[k] == CHAR_SPACE)
@@ -1481,7 +1482,7 @@ void Item_(u32 sourceLine, u32 item)
     SetMonData(DATA.currentMon, MON_DATA_HELD_ITEM, &item);
 }
 
-void Moves_(u32 sourceLine, const u16 moves[MAX_MON_MOVES])
+void Moves_(u32 sourceLine, u16 moves[MAX_MON_MOVES])
 {
     s32 i;
     INVALID_IF(!DATA.currentMon, "Moves outside of PLAYER/OPPONENT");

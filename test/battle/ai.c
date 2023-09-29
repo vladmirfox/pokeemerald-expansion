@@ -64,3 +64,35 @@ AI_BATTLE_TEST("AI prefers Water Gun over Bubble if it knows that foe has Contra
         EXPECT(gBattleResources->aiData->abilities[B_POSITION_PLAYER_LEFT] == ABILITY_CONTRARY);
     }
 }
+
+AI_BATTLE_TEST("AI prefers moves with better accuracy, but only if they both require the same number of hits")
+{
+    u16 move1, move2, move3, move4, hp, expectedMove, turns;
+
+    PARAMETRIZE { move1 = MOVE_SLAM; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 240; expectedMove = MOVE_STRENGTH; turns = 2; }
+    PARAMETRIZE { move1 = MOVE_SLAM; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 120; expectedMove = MOVE_STRENGTH; turns = 1; }
+    // Mega Kick can ohko here, while Strength requires 2 hits
+    PARAMETRIZE { move1 = MOVE_MEGA_KICK; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 150; expectedMove = MOVE_MEGA_KICK; turns = 1; }
+    PARAMETRIZE { move1 = MOVE_MEGA_KICK; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 240; expectedMove = MOVE_STRENGTH; turns = 2; }
+
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET) { HP(hp); }
+        PLAYER(SPECIES_WOBBUFFET);
+        ASSUME(gBattleMoves[MOVE_SWIFT].accuracy == 0);
+        // Same power, but different accuracies, choose wisely.
+        ASSUME(gBattleMoves[MOVE_SLAM].power == gBattleMoves[MOVE_STRENGTH].power);
+        ASSUME(gBattleMoves[MOVE_SLAM].accuracy < gBattleMoves[MOVE_STRENGTH].accuracy);
+        ASSUME(gBattleMoves[MOVE_TACKLE].accuracy == 100);
+        OPPONENT(SPECIES_EXPLOUD) {Moves(move1, move2, move3, move4); }
+    } WHEN {
+            if (turns == 1) {
+                TURN { EXPECTED_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
+            } else {
+                TURN { EXPECTED_MOVE(opponent, expectedMove); }
+                TURN { EXPECTED_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
+            }
+    } SCENE {
+        MESSAGE("Wobbuffet fainted!");
+    }
+}
