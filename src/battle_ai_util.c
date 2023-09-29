@@ -1053,9 +1053,14 @@ u32 GetNoOfHitsToKO(u32 dmg, s32 hp)
     return hp / (dmg + 1) + 1;
 }
 
-u32 GetNoOfHitsToKOBattler(u32 dmg, u32 battler)
+u32 GetNoOfHitsToKOBattlerDmg(u32 dmg, u32 battlerDef)
 {
-    return GetNoOfHitsToKO(dmg, gBattleMons[battler].hp);
+    return GetNoOfHitsToKO(dmg, gBattleMons[battlerDef].hp);
+}
+
+u32 GetNoOfHitsToKOBattler(u32 battlerAtk, u32 battlerDef, u32 moveIndex)
+{
+    return GetNoOfHitsToKOBattlerDmg(AI_DATA->simulatedDmg[battlerAtk][battlerDef][moveIndex], battlerDef);
 }
 
 bool32 IsInIgnoredPowerfulMoveEffects(u32 effect)

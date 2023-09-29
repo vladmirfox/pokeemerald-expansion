@@ -90,7 +90,8 @@ s32 AI_CalcDamageSaveBattlers(u32 move, u32 battlerAtk, u32 battlerDef, u8 *type
 s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 weather);
 bool32 AI_IsDamagedByRecoil(u32 battler);
 u32 GetNoOfHitsToKO(u32 dmg, s32 hp);
-u32 GetNoOfHitsToKOBattler(u32 dmg, u32 battler);
+u32 GetNoOfHitsToKOBattlerDmg(u32 dmg, u32 battlerDef);
+u32 GetNoOfHitsToKOBattler(u32 battlerAtk, u32 battlerDef, u32 moveIndex);
 bool32 IsInIgnoredPowerfulMoveEffects(u32 effect);
 void SetMovesDamageResults(u32 battlerAtk, u16 *moves);
 u32 GetMoveDamageResult(u32 battlerAtk, u32 battlerDef, u32 moveIndex);
