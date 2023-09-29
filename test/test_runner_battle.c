@@ -733,6 +733,17 @@ static const char *const sBattleActionNames[] =
     [B_ACTION_SWITCH] = "SWITCH",
 };
 
+static u32 CountAiExpectedMoves(struct ExpectedAiAction *expectedAction)
+{
+    u32 i, countExpected = 0;
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (gBitTable[i] & expectedAction->moveSlots)
+            countExpected++;
+    }
+    return countExpected;
+}
+
 void TestRunner_Battle_CheckChosenMove(u32 battlerId, u32 moveId, u32 target)
 {
     const char *filename = gTestRunnerState.test->filename;
@@ -775,12 +786,7 @@ void TestRunner_Battle_CheckChosenMove(u32 battlerId, u32 moveId, u32 target)
             }
         }
 
-        countExpected = 0;
-        for (i = 0; i < MAX_MON_MOVES; i++)
-        {
-            if (gBitTable[i] & expectedAction->moveSlots)
-                countExpected++;
-        }
+        countExpected = CountAiExpectedMoves(expectedAction);
 
         if (!expectedAction->notMove && !movePasses)
         {
@@ -828,6 +834,7 @@ static const char *const sCmpToStringTable[] =
 void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
 {
     s32 i;
+    struct ExpectedAiAction *aiAction;
     const char *filename = gTestRunnerState.test->filename;
     s32 turn = gBattleResults.battleTurnCounter;
 
@@ -852,6 +859,44 @@ void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
                     Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched EXPECT_MOVES_%s, got %S: %d, %S: %d",
                                         filename, scoreCtx->sourceLine, sCmpToStringTable[scoreCtx->cmp], gMoveNames[moveId1], scores[scoreCtx->moveSlot1], gMoveNames[moveId2], scores[scoreCtx->moveSlot2]);
                 }
+            }
+        }
+    }
+
+    // We need to make sure that the expected move has the best score. We have to rule out a situation where the expected move is used, but it has the same number of points as some other moves.
+    aiAction = &DATA.expectedAiActions[battlerId][DATA.aiActionsPlayed[battlerId]];
+    if (aiAction->actionSet && !aiAction->pass)
+    {
+        s32 *scores = gBattleStruct->aiFinalScore[battlerId][aiAction->target];
+        s32 bestScore = 0, bestScoreId = 0;
+        u16 *moves = gBattleMons[battlerId].moves;
+        for (i = 0; i < MAX_MON_MOVES; i++)
+        {
+            if (scores[i] > bestScore)
+            {
+                bestScore = scores[i];
+                bestScoreId = i;
+            }
+        }
+        for (i = 0; i < MAX_MON_MOVES; i++)
+        {
+            // We expect move 'i', but it has the same best score as another move that we didn't expect.
+            if (scores[i] == scores[bestScoreId]
+                && !aiAction->notMove
+                && (aiAction->moveSlots & gBitTable[i])
+                && !(aiAction->moveSlots & gBitTable[bestScoreId]))
+            {
+                Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: EXPECTED_MOVE %S has the same best score(%d) as not expected MOVE %S", filename,
+                                    aiAction->sourceLine, gMoveNames[moves[i]], scores[i], gMoveNames[moves[bestScoreId]]);
+            }
+            // We DO NOT expect move 'i', but it has the same best score as another move.
+            if (scores[i] == scores[bestScoreId]
+                && aiAction->notMove
+                && (aiAction->moveSlots & gBitTable[i])
+                && !(aiAction->moveSlots & gBitTable[bestScoreId]))
+            {
+                Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: NOT_EXPECTED_MOVE %S has the same best score(%d) as MOVE %S", filename,
+                                    aiAction->sourceLine, gMoveNames[moves[i]], scores[i], gMoveNames[moves[bestScoreId]]);
             }
         }
     }

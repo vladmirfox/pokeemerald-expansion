@@ -65,34 +65,99 @@ AI_BATTLE_TEST("AI prefers Water Gun over Bubble if it knows that foe has Contra
     }
 }
 
-AI_BATTLE_TEST("AI prefers moves with better accuracy, but only if they both require the same number of hits")
+AI_BATTLE_TEST("AI prefers moves with better accuracy, but only if they both require the same number of hits to ko")
 {
-    u16 move1, move2, move3, move4, hp, expectedMove, turns;
+    u16 move1 = MOVE_NONE, move2 = MOVE_NONE, move3 = MOVE_NONE, move4 = MOVE_NONE;
+    u16 hp, expectedMove, turns, abilityAtk, expectedMove2;
 
+    abilityAtk = ABILITY_NONE;
+    expectedMove2 = MOVE_NONE;
+
+    // Here it's a simple test, both Slam and Strength deal the same damage, but Strength always hits, whereas Slam get often miss.
+    PARAMETRIZE { move1 = MOVE_SLAM; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 360; expectedMove = MOVE_STRENGTH; turns = 3; }
     PARAMETRIZE { move1 = MOVE_SLAM; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 240; expectedMove = MOVE_STRENGTH; turns = 2; }
     PARAMETRIZE { move1 = MOVE_SLAM; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 120; expectedMove = MOVE_STRENGTH; turns = 1; }
-    // Mega Kick can ohko here, while Strength requires 2 hits
+    // Mega Kick deals more damage, but can miss more often. Here, AI should choose Mega Kick if it can faint the more in less number of turns than Strength. Otherwise, it should use Strength.
     PARAMETRIZE { move1 = MOVE_MEGA_KICK; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 150; expectedMove = MOVE_MEGA_KICK; turns = 1; }
     PARAMETRIZE { move1 = MOVE_MEGA_KICK; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 240; expectedMove = MOVE_STRENGTH; turns = 2; }
+    // Swift always hits and Guts has accuracy of 100%. Hustle lowers accuracy of all physical moves.
+    PARAMETRIZE { abilityAtk = ABILITY_HUSTLE; move1 = MOVE_MEGA_KICK; move2 = MOVE_STRENGTH; move3 = MOVE_SWIFT; move4 = MOVE_TACKLE; hp = 5; expectedMove = MOVE_SWIFT; turns = 1; }
+    PARAMETRIZE { abilityAtk = ABILITY_HUSTLE; move1 = MOVE_MEGA_KICK; move2 = MOVE_STRENGTH; move3 = MOVE_GUST; move4 = MOVE_TACKLE; hp = 5; expectedMove = MOVE_GUST; turns = 1; }
+    // Mega Kick and Slam both have lower accuracy. Gust and Tackle both have 100, so AI can choose either of them.
+    PARAMETRIZE { move1 = MOVE_MEGA_KICK; move2 = MOVE_SLAM; move3 = MOVE_TACKLE; move4 = MOVE_GUST; hp = 5; expectedMove = MOVE_GUST; expectedMove2 = MOVE_TACKLE; turns = 1; }
 
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET) { HP(hp); }
         PLAYER(SPECIES_WOBBUFFET);
         ASSUME(gBattleMoves[MOVE_SWIFT].accuracy == 0);
-        // Same power, but different accuracies, choose wisely.
         ASSUME(gBattleMoves[MOVE_SLAM].power == gBattleMoves[MOVE_STRENGTH].power);
+        ASSUME(gBattleMoves[MOVE_MEGA_KICK].power > gBattleMoves[MOVE_STRENGTH].power);
         ASSUME(gBattleMoves[MOVE_SLAM].accuracy < gBattleMoves[MOVE_STRENGTH].accuracy);
+        ASSUME(gBattleMoves[MOVE_MEGA_KICK].accuracy < gBattleMoves[MOVE_STRENGTH].accuracy);
         ASSUME(gBattleMoves[MOVE_TACKLE].accuracy == 100);
-        OPPONENT(SPECIES_EXPLOUD) {Moves(move1, move2, move3, move4); }
+        ASSUME(gBattleMoves[MOVE_GUST].accuracy == 100);
+        OPPONENT(SPECIES_EXPLOUD) {Moves(move1, move2, move3, move4); Ability(abilityAtk); }
     } WHEN {
             if (turns == 1) {
-                TURN { EXPECTED_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
+                if (expectedMove2 != MOVE_NONE) {
+                    TURN { EXPECTED_MOVES(opponent, expectedMove, expectedMove2); SEND_OUT(player, 1); }
+                } else {
+                    TURN { EXPECTED_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
+                }
             } else {
                 TURN { EXPECTED_MOVE(opponent, expectedMove); }
                 TURN { EXPECTED_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
             }
     } SCENE {
         MESSAGE("Wobbuffet fainted!");
+    }
+}
+
+AI_BATTLE_TEST("AI prefers moves which deal more damage instead of moves which are super-effective but deal less damage")
+{
+    u8 turns = 0;
+    u16 move1 = MOVE_NONE, move2 = MOVE_NONE, move3 = MOVE_NONE, move4 = MOVE_NONE;
+    u16 expectedMove, abilityAtk, abilityDef, expectedMove2;
+
+    abilityAtk = ABILITY_NONE;
+    expectedMove2 = MOVE_NONE;
+
+    // Scald takes 3 hits, Waterfall takes 2.
+    PARAMETRIZE { move1 = MOVE_WATERFALL; move2 = MOVE_SCALD; move3 = MOVE_POISON_JAB; move4 = MOVE_WATER_GUN; expectedMove = MOVE_WATERFALL; turns = 2; }
+    // Poison Jab takes 3 hits, Water gun 5. Immunity so there's no poison chip damage.
+    PARAMETRIZE { move1 = MOVE_POISON_JAB; move2 = MOVE_WATER_GUN; expectedMove = MOVE_POISON_JAB; abilityDef = ABILITY_IMMUNITY; turns = 3; }
+
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_TYPHLOSION) {Ability(abilityDef); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_NIDOQUEEN) {Moves(move1, move2, move3, move4); Ability(abilityAtk); }
+    } WHEN {
+            TURN { EXPECTED_MOVE(opponent, expectedMove); }
+            if (turns >= 2) {
+                TURN { EXPECTED_MOVE(opponent, expectedMove); }
+                if (turns == 3) {
+                    TURN { EXPECTED_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
+                }
+            }
+    } SCENE {
+        MESSAGE("Typhlosion fainted!");
+    }
+}
+
+AI_BATTLE_TEST("AI won't use ground type attacks against flying type Pokemon unless Gravity is in effect")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_CROBAT);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_NIDOQUEEN) {Moves(MOVE_EARTHQUAKE, MOVE_TACKLE, MOVE_POISON_STING, MOVE_GUST); }
+    } WHEN {
+            TURN { NOT_EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); }
+            TURN { MOVE(player, MOVE_GRAVITY); NOT_EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); }
+            TURN { EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); SEND_OUT(player, 1); }
+    } SCENE {
+        MESSAGE("Gravity intensified!");
     }
 }
