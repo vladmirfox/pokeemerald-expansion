@@ -658,9 +658,9 @@ struct BattleTestData
 struct BattleTestRunnerState
 {
     u8 battlersCount;
-    u8 parametersCount; // Valid only in BattleTest_Setup.
-    u8 parameters;
-    u8 runParameter;
+    u16 parametersCount; // Valid only in BattleTest_Setup.
+    u16 parameters;
+    u16 runParameter;
     u16 rngTag;
     u16 rngTrialOffset;
     u16 trials;
@@ -877,14 +877,15 @@ enum { TURN_CLOSED, TURN_OPEN, TURN_CLOSING };
 #define NOT_EXPECTED_MOVE(battler, _move) ExpectedMove(__LINE__, battler, (struct MoveContext) { .move = _move, .explicitMove = TRUE, .notExpected = TRUE, .explicitNotExpected = TRUE, })
 #define EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, FALSE, (struct FourMoves) { APPEND(__VA_ARGS__) })
 #define NOT_EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, TRUE, (struct FourMoves) { APPEND(__VA_ARGS__) })
+#define EXPECTED_SEND_OUT(battler, partyIndex) ExpectedSendOut(__LINE__, battler, partyIndex)
 #define SCORE_EQ(battler, ...) Score(__LINE__, battler, CMP_EQUAL, FALSE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
 #define SCORE_NE(battler, ...) Score(__LINE__, battler, CMP_NOT_EQUAL, FALSE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
 #define SCORE_GT(battler, ...) Score(__LINE__, battler, CMP_GREATER_THAN, FALSE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
 #define SCORE_LT(battler, ...) Score(__LINE__, battler, CMP_LESS_THAN, FALSE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
-#define SCORE_EQ_VAR(battler, ...) Score(__LINE__, battler, CMP_EQUAL, TRUE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
-#define SCORE_NE_VAR(battler, ...) Score(__LINE__, battler, CMP_NOT_EQUAL, TRUE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
-#define SCORE_GT_VAR(battler, ...) Score(__LINE__, battler, CMP_GREATER_THAN, TRUE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
-#define SCORE_LT_VAR(battler, ...) Score(__LINE__, battler, CMP_LESS_THAN, TRUE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
+#define SCORE_EQ_VAL(battler, ...) Score(__LINE__, battler, CMP_EQUAL, TRUE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
+#define SCORE_NE_VAL(battler, ...) Score(__LINE__, battler, CMP_NOT_EQUAL, TRUE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
+#define SCORE_GT_VAL(battler, ...) Score(__LINE__, battler, CMP_GREATER_THAN, TRUE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
+#define SCORE_LT_VAL(battler, ...) Score(__LINE__, battler, CMP_LESS_THAN, TRUE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
 
 #define FORCED_MOVE(battler) ForcedMove(__LINE__, battler)
 #define SWITCH(battler, partyIndex) Switch(__LINE__, battler, partyIndex)
@@ -935,6 +936,7 @@ void CloseTurn(u32 sourceLine);
 void Move(u32 sourceLine, struct BattlePokemon *, struct MoveContext);
 void ExpectedMove(u32 sourceLine, struct BattlePokemon *, struct MoveContext);
 void ExpectedMoves(u32 sourceLine, struct BattlePokemon *battler, bool32 notExpected, struct FourMoves moves);
+void ExpectedSendOut(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex);
 void Score(u32 sourceLine, struct BattlePokemon *battler, u32 cmp, bool32 toValue, struct TestAiScoreStruct cmpCtx);
 void ForcedMove(u32 sourceLine, struct BattlePokemon *);
 void Switch(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);

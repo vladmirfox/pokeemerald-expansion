@@ -189,7 +189,7 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (defaultScoreMoves & 1)
-            AI_THINKING_STRUCT->score[i] = 100;
+            AI_THINKING_STRUCT->score[i] = AI_SCORE_DEFAULT;
         else
             AI_THINKING_STRUCT->score[i] = 0;
 
@@ -615,7 +615,7 @@ static u32 ChooseMoveOrAction_Doubles(u32 battlerAi)
                 bestMovePointsForTarget[i] = mostViableMovesScores[0];
 
                 // Don't use a move against ally if it has less than 100 points.
-                if (i == BATTLE_PARTNER(battlerAi) && bestMovePointsForTarget[i] < 100)
+                if (i == BATTLE_PARTNER(battlerAi) && bestMovePointsForTarget[i] < AI_SCORE_DEFAULT)
                 {
                     bestMovePointsForTarget[i] = -1;
                 }
@@ -2769,8 +2769,8 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         switch (gBattleMoves[aiData->partnerMove].effect)
         {
         case EFFECT_HELPING_HAND:
-            if (!IS_MOVE_STATUS(move))
-                score += 5;
+            if (IS_MOVE_STATUS(move))
+                score -= 7;
             break;
         case EFFECT_PERISH_SONG:
             if (!(gBattleMons[battlerDef].status2 & (STATUS2_ESCAPE_PREVENTION | STATUS2_WRAPPED)))
@@ -2810,7 +2810,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     switch (effect)
     {
     case EFFECT_HELPING_HAND:
-        if (aiData->partnerMove != 0 && !HasDamagingMove(battlerAtkPartner))
+        if (!IsBattlerAlive(battlerAtkPartner) || !HasDamagingMove(battlerAtkPartner))
             score -= 5;
         break;
     case EFFECT_PERISH_SONG:

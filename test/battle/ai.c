@@ -162,6 +162,32 @@ AI_BATTLE_TEST("AI won't use ground type attacks against flying type Pokemon unl
     }
 }
 
+AI_BATTLE_TEST("AI will not switch in a Pokemon which is slower and gets 1HKOed after fainting")
+{
+    bool8 alakazamFaster;
+    u16 speedAlakazm;
+
+    PARAMETRIZE{ speedAlakazm = 200; alakazamFaster = FALSE; }
+    PARAMETRIZE{ speedAlakazm = 400; alakazamFaster = TRUE; }
+
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
+        PLAYER(SPECIES_WEAVILE) { Speed(300); Ability(ABILITY_SHADOW_TAG); } // Weavile has Shadow Tag, so AI can't switch on the first turn, but has to do it after fainting.
+        OPPONENT(SPECIES_KADABRA) {Speed(200); Moves(MOVE_PSYCHIC, MOVE_DISABLE, MOVE_TAUNT, MOVE_CALM_MIND); }
+        OPPONENT(SPECIES_ALAKAZAM) {Speed(speedAlakazm); Moves(MOVE_FOCUS_BLAST, MOVE_PSYCHIC); } // Alakazam has a move which OHKOes Weavile, but it doesn't matter if he's getting KO-ed first.
+        OPPONENT(SPECIES_BLASTOISE) {Speed(200); Moves(MOVE_BUBBLE_BEAM, MOVE_WATER_GUN, MOVE_LEER, MOVE_STRENGTH); } // Can't OHKO, but survives a hit from Weavile's Night Slash.
+    } WHEN {
+            TURN { MOVE(player, MOVE_NIGHT_SLASH) ; EXPECTED_SEND_OUT(opponent, alakazamFaster ? 1 : 2); }
+    } SCENE {
+        MESSAGE("Foe Kadabra fainted!");
+        if (alakazamFaster) {
+            MESSAGE("{PKMN} TRAINER LEAF sent out Alakazam!");
+        } else {
+            MESSAGE("{PKMN} TRAINER LEAF sent out Blastoise!");
+        }
+    }
+}
+
 AI_DOUBLE_BATTLE_TEST("AI won't use a Weather changing move if partner already chose such move")
 {
     u32 j, k;
@@ -184,12 +210,66 @@ AI_DOUBLE_BATTLE_TEST("AI won't use a Weather changing move if partner already c
         OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_TACKLE, weatherMoveRight); }
     } WHEN {
             TURN {  NOT_EXPECTED_MOVE(opponentRight, weatherMoveRight);
-                    SCORE_LT_VAR(opponentRight, weatherMoveRight, 100, target:playerLeft);
-                    SCORE_LT_VAR(opponentRight, weatherMoveRight, 100, target:playerRight);
-                    SCORE_LT_VAR(opponentRight, weatherMoveRight, 100, target:opponentLeft);
+                    SCORE_LT_VAL(opponentRight, weatherMoveRight, AI_SCORE_DEFAULT, target:playerLeft);
+                    SCORE_LT_VAL(opponentRight, weatherMoveRight, AI_SCORE_DEFAULT, target:playerRight);
+                    SCORE_LT_VAL(opponentRight, weatherMoveRight, AI_SCORE_DEFAULT, target:opponentLeft);
                  }
     } SCENE {
 
+    }
+}
+
+AI_DOUBLE_BATTLE_TEST("AI will not use Helping Hand if partner does not have any damage moves")
+{
+    u16 move1 = MOVE_NONE, move2 = MOVE_NONE, move3 = MOVE_NONE, move4 = MOVE_NONE;
+
+    PARAMETRIZE{ move1 = MOVE_LEER; move2 = MOVE_TOXIC; }
+    PARAMETRIZE{ move1 = MOVE_HELPING_HAND; move2 = MOVE_PROTECT; }
+    PARAMETRIZE{ move1 = MOVE_ACUPRESSURE; move2 = MOVE_DOUBLE_TEAM; move3 = MOVE_TOXIC; move4 = MOVE_PROTECT; }
+
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_HELPING_HAND, MOVE_TACKLE); }
+        OPPONENT(SPECIES_WOBBUFFET) {Moves(move1, move2, move3, move4); }
+    } WHEN {
+            TURN {  NOT_EXPECTED_MOVE(opponentLeft, MOVE_HELPING_HAND);
+                    SCORE_LT_VAL(opponentLeft, MOVE_HELPING_HAND, AI_SCORE_DEFAULT, target:playerLeft);
+                    SCORE_LT_VAL(opponentLeft, MOVE_HELPING_HAND, AI_SCORE_DEFAULT, target:playerRight);
+                    SCORE_LT_VAL(opponentLeft, MOVE_HELPING_HAND, AI_SCORE_DEFAULT, target:opponentLeft);
+                 }
+    } SCENE {
+        NOT MESSAGE("Foe Wobbuffet used Helping Hand!");
+    }
+}
+
+AI_DOUBLE_BATTLE_TEST("AI will not use a status move if partner already chose Helping Hand")
+{
+    s32 j;
+    u16 statusMove;
+
+    for (j = MOVE_NONE + 1; j < MOVES_COUNT; j++)
+    {
+        if (gBattleMoves[j].split == SPLIT_STATUS) {
+            PARAMETRIZE{ statusMove = j; }
+        }
+    }
+
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_HELPING_HAND); }
+        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_TACKLE, statusMove); }
+    } WHEN {
+            TURN {  NOT_EXPECTED_MOVE(opponentRight, statusMove);
+                    SCORE_LT_VAL(opponentRight, statusMove, AI_SCORE_DEFAULT, target:playerLeft);
+                    SCORE_LT_VAL(opponentRight, statusMove, AI_SCORE_DEFAULT, target:playerRight);
+                    SCORE_LT_VAL(opponentRight, statusMove, AI_SCORE_DEFAULT, target:opponentLeft);
+                 }
+    } SCENE {
+        MESSAGE("Foe Wobbuffet used Helping Hand!");
     }
 }
 
@@ -201,10 +281,10 @@ AI_BATTLE_TEST("AI without any flags chooses moves at random - singles")
         OPPONENT(SPECIES_NIDOQUEEN) {Moves(MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND); }
     } WHEN {
             TURN { EXPECTED_MOVES(opponent, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
-                   SCORE_EQ_VAR(opponent, MOVE_SPLASH, 100);
-                   SCORE_EQ_VAR(opponent, MOVE_EXPLOSION, 100);
-                   SCORE_EQ_VAR(opponent, MOVE_RAGE, 100);
-                   SCORE_EQ_VAR(opponent, MOVE_HELPING_HAND, 100);
+                   SCORE_EQ_VAL(opponent, MOVE_SPLASH, AI_SCORE_DEFAULT);
+                   SCORE_EQ_VAL(opponent, MOVE_EXPLOSION, AI_SCORE_DEFAULT);
+                   SCORE_EQ_VAL(opponent, MOVE_RAGE, AI_SCORE_DEFAULT);
+                   SCORE_EQ_VAL(opponent, MOVE_HELPING_HAND, AI_SCORE_DEFAULT);
                 }
     } SCENE {
     }
@@ -221,14 +301,14 @@ AI_DOUBLE_BATTLE_TEST("AI without any flags chooses moves at random - doubles")
     } WHEN {
             TURN { EXPECTED_MOVES(opponentLeft, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
                    EXPECTED_MOVES(opponentRight, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
-                   SCORE_EQ_VAR(opponentLeft, MOVE_SPLASH, 100, target:playerLeft);
-                   SCORE_EQ_VAR(opponentLeft, MOVE_EXPLOSION, 100, target:playerLeft);
-                   SCORE_EQ_VAR(opponentLeft, MOVE_RAGE, 100, target:playerLeft);
-                   SCORE_EQ_VAR(opponentLeft, MOVE_HELPING_HAND, 100, target:playerLeft);
-                   SCORE_EQ_VAR(opponentRight, MOVE_SPLASH, 100, target:playerLeft);
-                   SCORE_EQ_VAR(opponentRight, MOVE_EXPLOSION, 100, target:playerLeft);
-                   SCORE_EQ_VAR(opponentRight, MOVE_RAGE, 100, target:playerLeft);
-                   SCORE_EQ_VAR(opponentRight, MOVE_HELPING_HAND, 100, target:playerLeft);
+                   SCORE_EQ_VAL(opponentLeft, MOVE_SPLASH, AI_SCORE_DEFAULT, target:playerLeft);
+                   SCORE_EQ_VAL(opponentLeft, MOVE_EXPLOSION, AI_SCORE_DEFAULT, target:playerLeft);
+                   SCORE_EQ_VAL(opponentLeft, MOVE_RAGE, AI_SCORE_DEFAULT, target:playerLeft);
+                   SCORE_EQ_VAL(opponentLeft, MOVE_HELPING_HAND, AI_SCORE_DEFAULT, target:playerLeft);
+                   SCORE_EQ_VAL(opponentRight, MOVE_SPLASH, AI_SCORE_DEFAULT, target:playerLeft);
+                   SCORE_EQ_VAL(opponentRight, MOVE_EXPLOSION, AI_SCORE_DEFAULT, target:playerLeft);
+                   SCORE_EQ_VAL(opponentRight, MOVE_RAGE, AI_SCORE_DEFAULT, target:playerLeft);
+                   SCORE_EQ_VAL(opponentRight, MOVE_HELPING_HAND, AI_SCORE_DEFAULT, target:playerLeft);
                 }
     } SCENE {
     }

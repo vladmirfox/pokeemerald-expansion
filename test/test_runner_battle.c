@@ -825,6 +825,26 @@ void TestRunner_Battle_CheckChosenMove(u32 battlerId, u32 moveId, u32 target)
     DATA.aiActionsPlayed[battlerId]++;
 }
 
+void TestRunner_Battle_CheckSwitch(u32 battlerId, u32 partyIndex)
+{
+    const char *filename = gTestRunnerState.test->filename;
+    u32 id = DATA.aiActionsPlayed[battlerId];
+    struct ExpectedAiAction *expectedAction = &DATA.expectedAiActions[battlerId][id];
+
+    if (!expectedAction->actionSet)
+        return;
+
+    if (!expectedAction->pass)
+    {
+        if (expectedAction->type != B_ACTION_SWITCH)
+            Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Expected SWITCH/SEND_OUT, got %s", filename, expectedAction->sourceLine, sBattleActionNames[expectedAction->type]);
+
+        if (expectedAction->target != partyIndex)
+            Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Expected partyIndex %d, got %d", filename, expectedAction->sourceLine, expectedAction->target, partyIndex);
+    }
+    DATA.aiActionsPlayed[battlerId]++;
+}
+
 static bool32 CheckComparision(s32 val1, s32 val2, u32 cmp)
 {
     switch (cmp)
@@ -848,6 +868,43 @@ static const char *const sCmpToStringTable[] =
     [CMP_LESS_THAN] = "LT",
     [CMP_GREATER_THAN] = "GT",
 };
+
+static void CheckIfMaxScoreEqualExpectedMove(u32 battlerId, s32 target, struct ExpectedAiAction *aiAction, const char *filename)
+{
+    u32 i;
+    s32 *scores = gBattleStruct->aiFinalScore[battlerId][target];
+    s32 bestScore = 0, bestScoreId = 0;
+    u16 *moves = gBattleMons[battlerId].moves;
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        if (scores[i] > bestScore)
+        {
+            bestScore = scores[i];
+            bestScoreId = i;
+        }
+    }
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        // We expect move 'i', but it has the same best score as another move that we didn't expect.
+        if (scores[i] == scores[bestScoreId]
+            && !aiAction->notMove
+            && (aiAction->moveSlots & gBitTable[i])
+            && !(aiAction->moveSlots & gBitTable[bestScoreId]))
+        {
+            Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: EXPECTED_MOVE %S has the same best score(%d) as not expected MOVE %S", filename,
+                                aiAction->sourceLine, gMoveNames[moves[i]], scores[i], gMoveNames[moves[bestScoreId]]);
+        }
+        // We DO NOT expect move 'i', but it has the same best score as another move.
+        if (scores[i] == scores[bestScoreId]
+            && aiAction->notMove
+            && (aiAction->moveSlots & gBitTable[i])
+            && !(aiAction->moveSlots & gBitTable[bestScoreId]))
+        {
+            Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: NOT_EXPECTED_MOVE %S has the same best score(%d) as MOVE %S", filename,
+                                aiAction->sourceLine, gMoveNames[moves[i]], scores[i], gMoveNames[moves[bestScoreId]]);
+        }
+    }
+}
 
 void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
 {
@@ -875,8 +932,8 @@ void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
             {
                 if (!CheckComparision(scores[scoreCtx->moveSlot1], scoreCtx->value, scoreCtx->cmp))
                 {
-                    Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched SCORE_%s_VAR %d, got %d",
-                                        filename, scoreCtx->sourceLine, sCmpToStringTable[scoreCtx->cmp], scoreCtx->value, scores[scoreCtx->moveSlot1]);
+                    Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched SCORE_%s_VAL %S %d, got %d",
+                                        filename, scoreCtx->sourceLine, sCmpToStringTable[scoreCtx->cmp], gMoveNames[moveId1], scoreCtx->value, scores[scoreCtx->moveSlot1]);
                 }
             }
             else
@@ -895,37 +952,19 @@ void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
     aiAction = &DATA.expectedAiActions[battlerId][DATA.aiActionsPlayed[battlerId]];
     if (aiAction->actionSet && !aiAction->pass)
     {
-        s32 *scores = gBattleStruct->aiFinalScore[battlerId][aiAction->target];
-        s32 bestScore = 0, bestScoreId = 0;
-        u16 *moves = gBattleMons[battlerId].moves;
-        for (i = 0; i < MAX_MON_MOVES; i++)
+        s32 target = aiAction->target;
+        // AI's move targets self, but points for this move are distributed for all other battlers
+        if (aiAction->target == battlerId)
         {
-            if (scores[i] > bestScore)
+            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
             {
-                bestScore = scores[i];
-                bestScoreId = i;
+                if (i != battlerId && IsBattlerAlive(i))
+                    CheckIfMaxScoreEqualExpectedMove(battlerId, i, aiAction, filename);
             }
         }
-        for (i = 0; i < MAX_MON_MOVES; i++)
+        else
         {
-            // We expect move 'i', but it has the same best score as another move that we didn't expect.
-            if (scores[i] == scores[bestScoreId]
-                && !aiAction->notMove
-                && (aiAction->moveSlots & gBitTable[i])
-                && !(aiAction->moveSlots & gBitTable[bestScoreId]))
-            {
-                Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: EXPECTED_MOVE %S has the same best score(%d) as not expected MOVE %S", filename,
-                                    aiAction->sourceLine, gMoveNames[moves[i]], scores[i], gMoveNames[moves[bestScoreId]]);
-            }
-            // We DO NOT expect move 'i', but it has the same best score as another move.
-            if (scores[i] == scores[bestScoreId]
-                && aiAction->notMove
-                && (aiAction->moveSlots & gBitTable[i])
-                && !(aiAction->moveSlots & gBitTable[bestScoreId]))
-            {
-                Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: NOT_EXPECTED_MOVE %S has the same best score(%d) as MOVE %S", filename,
-                                    aiAction->sourceLine, gMoveNames[moves[i]], scores[i], gMoveNames[moves[bestScoreId]]);
-            }
+            CheckIfMaxScoreEqualExpectedMove(battlerId, target, aiAction, filename);
         }
     }
 }
@@ -1031,7 +1070,7 @@ static s32 TryMessage(s32 i, s32 n, const u8 *string)
             continue;
 
         event = &DATA.queuedEvents[i].as.message;
-        //MgbaPrintf_("Looking for: %S Found: %S\n", event->pattern, string); Useful for debugging.
+        // MgbaPrintf_("Looking for: %S Found: %S\n", event->pattern, string); // Useful for debugging.
         for (j = k = 0; ; j++, k++)
         {
             if (event->pattern[k] == CHAR_SPACE)
@@ -1818,7 +1857,11 @@ s32 MoveGetTarget(s32 battlerId, u32 moveId, struct MoveContext *ctx, u32 source
         }
         else
         {
-            INVALID("%S requires explicit target", gMoveNames[moveId]);
+            // In AI Doubles not specified target allows any target for EXPECTED_MOVE.
+            if (GetBattleTest()->type != BATTLE_TEST_AI_DOUBLES)
+            {
+                INVALID("%S requires explicit target", gMoveNames[moveId]);
+            }
         }
     }
     return target;
@@ -1955,6 +1998,37 @@ void ExpectedMove(u32 sourceLine, struct BattlePokemon *battler, struct MoveCont
 {
     s32 battlerId = battler - gBattleMons;
     TryMarkExpectedMove(sourceLine, battler, &ctx);
+    DATA.expectedAiActionIndex[battlerId]++;
+}
+
+void ExpectedSendOut(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex)
+{
+    s32 i, id;
+    s32 battlerId = battler - gBattleMons;
+    INVALID_IF(DATA.turnState == TURN_CLOSED, "EXPECTED_SEND_OUT outside TURN");
+    INVALID_IF(partyIndex >= ((battlerId & BIT_SIDE) == B_SIDE_PLAYER ? DATA.playerPartySize : DATA.opponentPartySize), "EXPECTED_SEND_OUT to invalid party index");
+    for (i = 0; i < STATE->battlersCount; i++)
+    {
+        if (battlerId != i && (battlerId & BIT_SIDE) == (i & BIT_SIDE))
+            INVALID_IF(DATA.currentMonIndexes[i] == partyIndex, "EXPECTED_SEND_OUT to battler");
+    }
+    if (!(DATA.actionBattlers & (1 << battlerId)))
+    {
+        const struct BattleTest *test = GetBattleTest();
+        if ((test->type == BATTLE_TEST_AI || test->type == BATTLE_TEST_AI_DOUBLES) && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT) // If Move was not specified, allow any move used.
+            SetAiActionToPass(sourceLine, battlerId);
+        else
+            Move(sourceLine, battler, (struct MoveContext) { move: MOVE_CELEBRATE, explicitMove: TRUE });
+    }
+
+    DATA.currentMonIndexes[battlerId] = partyIndex;
+    DATA.actionBattlers |= 1 << battlerId;
+
+    id = DATA.expectedAiActionIndex[battlerId];
+    DATA.expectedAiActions[battlerId][id].type = B_ACTION_SWITCH;
+    DATA.expectedAiActions[battlerId][id].target = partyIndex;
+    DATA.expectedAiActions[battlerId][id].sourceLine = sourceLine;
+    DATA.expectedAiActions[battlerId][id].actionSet = TRUE;
     DATA.expectedAiActionIndex[battlerId]++;
 }
 
@@ -2291,7 +2365,6 @@ void QueueExp(u32 sourceLine, struct BattlePokemon *battler, struct ExpEventCont
         }},
     };
 }
-
 
 void QueueMessage(u32 sourceLine, const u8 *pattern)
 {
