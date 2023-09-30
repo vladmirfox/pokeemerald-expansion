@@ -114,6 +114,17 @@ static const struct BattleTest *GetBattleTest(void)
     return test;
 }
 
+static bool32 IsAiTest(void)
+{
+    switch (GetBattleTest()->type)
+    {
+    case BATTLE_TEST_AI:
+    case BATTLE_TEST_AI_DOUBLES:
+        return TRUE;
+    }
+    return FALSE;
+}
+
 static u32 SourceLine(u32 sourceLineOffset)
 {
     const struct BattleTest *test = GetBattleTest();
@@ -1389,8 +1400,7 @@ void RNGSeed_(u32 sourceLine, u32 seed)
 
 void AIFlags_(u32 sourceLine, u32 flags)
 {
-    const struct BattleTest *test = GetBattleTest();
-    INVALID_IF(test->type != BATTLE_TEST_AI && test->type != BATTLE_TEST_AI_DOUBLES, "AI_FLAGS is compatible only with AI_BATTLE_TEST & AI_DOUBLE_BATTLE_TEST");
+    INVALID_IF(!IsAiTest(), "AI_FLAGS is compatible only with AI_BATTLE_TEST & AI_DOUBLE_BATTLE_TEST");
     DATA.recordedBattle.AI_scripts = flags;
     DATA.hasAI = TRUE;
 }
@@ -1788,7 +1798,6 @@ static void SetAiActionToPass(u32 sourceLine, s32 battlerId)
 
 void CloseTurn(u32 sourceLine)
 {
-    const struct BattleTest *test = GetBattleTest();
     s32 i;
     INVALID_IF(DATA.turnState != TURN_OPEN, "Nested TURN");
     DATA.turnState = TURN_CLOSING;
@@ -1798,7 +1807,7 @@ void CloseTurn(u32 sourceLine)
     {
         if (!(DATA.actionBattlers & (1 << i)))
         {
-             if ((test->type == BATTLE_TEST_AI || test->type == BATTLE_TEST_AI_DOUBLES) && (i & BIT_SIDE) == B_SIDE_OPPONENT) // If Move was not specified, allow any move used.
+             if (IsAiTest() && (i & BIT_SIDE) == B_SIDE_OPPONENT) // If Move was not specified, allow any move used.
                 SetAiActionToPass(sourceLine, i);
              else
                 Move(sourceLine, &gBattleMons[i], (struct MoveContext) { move: MOVE_CELEBRATE, explicitMove: TRUE });
@@ -1921,6 +1930,7 @@ void Move(u32 sourceLine, struct BattlePokemon *battler, struct MoveContext ctx)
     s32 target;
 
     INVALID_IF(DATA.turnState == TURN_CLOSED, "MOVE outside TURN");
+    INVALID_IF(IsAiTest() && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT, "MOVE is not allowed for opponent in AI tests. Use EXPECTED_MOVE instead");
 
     MoveGetIdAndSlot(battlerId, &ctx, &moveId, &moveSlot, sourceLine);
     target = MoveGetTarget(battlerId, moveId, &ctx, sourceLine);
@@ -2015,7 +2025,7 @@ void ExpectedSendOut(u32 sourceLine, struct BattlePokemon *battler, u32 partyInd
     if (!(DATA.actionBattlers & (1 << battlerId)))
     {
         const struct BattleTest *test = GetBattleTest();
-        if ((test->type == BATTLE_TEST_AI || test->type == BATTLE_TEST_AI_DOUBLES) && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT) // If Move was not specified, allow any move used.
+        if (IsAiTest() && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT) // If Move was not specified, allow any move used.
             SetAiActionToPass(sourceLine, battlerId);
         else
             Move(sourceLine, battler, (struct MoveContext) { move: MOVE_CELEBRATE, explicitMove: TRUE });
@@ -2120,6 +2130,7 @@ void Switch(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex)
     INVALID_IF(DATA.turnState == TURN_CLOSED, "SWITCH outside TURN");
     INVALID_IF(DATA.actionBattlers & (1 << battlerId), "Multiple battler actions");
     INVALID_IF(partyIndex >= ((battlerId & BIT_SIDE) == B_SIDE_PLAYER ? DATA.playerPartySize : DATA.opponentPartySize), "SWITCH to invalid party index");
+    INVALID_IF(IsAiTest() && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT, "SWITCH is not allowed for opponent in AI tests. Use EXPECTED_SWITCH instead");
 
     for (i = 0; i < STATE->battlersCount; i++)
     {
@@ -2132,6 +2143,31 @@ void Switch(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex)
     DATA.currentMonIndexes[battlerId] = partyIndex;
 
     DATA.actionBattlers |= 1 << battlerId;
+}
+
+void ExpectedSwitch(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex)
+{
+    s32 i, id;
+    s32 battlerId = battler - gBattleMons;
+    INVALID_IF(DATA.turnState == TURN_CLOSED, "EXPECTED_SWITCH outside TURN");
+    INVALID_IF(DATA.actionBattlers & (1 << battlerId), "Multiple battler actions");
+    INVALID_IF(partyIndex >= ((battlerId & BIT_SIDE) == B_SIDE_PLAYER ? DATA.playerPartySize : DATA.opponentPartySize), "EXPECTED_SWITCH to invalid party index");
+
+    for (i = 0; i < STATE->battlersCount; i++)
+    {
+        if (battlerId != i && (battlerId & BIT_SIDE) == (i & BIT_SIDE))
+            INVALID_IF(DATA.currentMonIndexes[i] == partyIndex, "EXPECTED_SWITCH to battler");
+    }
+
+    DATA.currentMonIndexes[battlerId] = partyIndex;
+    DATA.actionBattlers |= 1 << battlerId;
+
+    id = DATA.expectedAiActionIndex[battlerId];
+    DATA.expectedAiActions[battlerId][id].type = B_ACTION_SWITCH;
+    DATA.expectedAiActions[battlerId][id].target = partyIndex;
+    DATA.expectedAiActions[battlerId][id].sourceLine = sourceLine;
+    DATA.expectedAiActions[battlerId][id].actionSet = TRUE;
+    DATA.expectedAiActionIndex[battlerId]++;
 }
 
 void SkipTurn(u32 sourceLine, struct BattlePokemon *battler)
@@ -2147,6 +2183,7 @@ void SendOut(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex)
     s32 battlerId = battler - gBattleMons;
     INVALID_IF(DATA.turnState == TURN_CLOSED, "SEND_OUT outside TURN");
     INVALID_IF(partyIndex >= ((battlerId & BIT_SIDE) == B_SIDE_PLAYER ? DATA.playerPartySize : DATA.opponentPartySize), "SWITCH to invalid party index");
+    INVALID_IF(IsAiTest() && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT, "SEND_OUT is not allowed for opponent in AI tests. Use EXPECTED_SEND_OUT instead");
     for (i = 0; i < STATE->battlersCount; i++)
     {
         if (battlerId != i && (battlerId & BIT_SIDE) == (i & BIT_SIDE))

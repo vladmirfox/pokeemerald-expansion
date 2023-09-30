@@ -199,6 +199,17 @@
  * - Instead of player and opponent there is playerLeft, playerRight,
  *   opponentLeft, and opponentRight.
  *
+ * AI_BATTLE_TEST(name, results...) and AI_DOUBLE_BATTLE_TEST(name, results...)
+ * Define battles where opponent mons are controlled by AI, the same that runs
+ * when battling regular Trainers. The flags for AI should be specified by
+ * the AI_FLAGS command.
+ * The rules remain the same as with the SINGLE and DOUBLE battle tests
+ * with some differences:
+ * - opponent's action is specified by the EXPECTED_MOVE(s) / EXPECTED_SEND_OUT / EXPECTED_SWITCH commands
+ * - we don't control what opponent actually does, instead we make sure the opponent does what we expect it to do
+ * - we still control the player's action the same way
+ * - apart from the EXPECTED commands, there's also a new SCORE_ and SCORE__VAL commands
+ *
  * KNOWN_FAILING
  * Marks a test as not passing due to a bug. If there is an issue number
  * associated with the bug it should be included in a comment. If the
@@ -288,6 +299,11 @@
  * for all Pokémon.
  * Note if Moves is specified then MOVE will not automatically add moves
  * to the moveset.
+ *
+ * AI_FLAGS
+ * Specifies which AI flags are run during the test. Has use only for AI tests.
+ * The most common combination is  AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT)
+ * which is the general 'smart' AI.
  *
  * WHEN
  * Contains the choices that battlers make during the battle.
@@ -878,6 +894,7 @@ enum { TURN_CLOSED, TURN_OPEN, TURN_CLOSING };
 #define EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, FALSE, (struct FourMoves) { APPEND(__VA_ARGS__) })
 #define NOT_EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, TRUE, (struct FourMoves) { APPEND(__VA_ARGS__) })
 #define EXPECTED_SEND_OUT(battler, partyIndex) ExpectedSendOut(__LINE__, battler, partyIndex)
+#define EXPECTED_SWITCH(battler, partyIndex) ExpectedSwitch(__LINE__, battler, partyIndex)
 #define SCORE_EQ(battler, ...) Score(__LINE__, battler, CMP_EQUAL, FALSE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
 #define SCORE_NE(battler, ...) Score(__LINE__, battler, CMP_NOT_EQUAL, FALSE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
 #define SCORE_GT(battler, ...) Score(__LINE__, battler, CMP_GREATER_THAN, FALSE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
@@ -937,6 +954,7 @@ void Move(u32 sourceLine, struct BattlePokemon *, struct MoveContext);
 void ExpectedMove(u32 sourceLine, struct BattlePokemon *, struct MoveContext);
 void ExpectedMoves(u32 sourceLine, struct BattlePokemon *battler, bool32 notExpected, struct FourMoves moves);
 void ExpectedSendOut(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex);
+void ExpectedSwitch(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex);
 void Score(u32 sourceLine, struct BattlePokemon *battler, u32 cmp, bool32 toValue, struct TestAiScoreStruct cmpCtx);
 void ForcedMove(u32 sourceLine, struct BattlePokemon *);
 void Switch(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);

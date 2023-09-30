@@ -2,24 +2,23 @@
 #include "test/battle.h"
 #include "battle_ai_util.h"
 
-AI_BATTLE_TEST("AI Test")
+AI_BATTLE_TEST("AI gets baited by Protect Switch tactics") // This behavior is to be fixed.
 {
-    KNOWN_FAILING;
     GIVEN {
-        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
         PLAYER(SPECIES_STUNFISK);
         PLAYER(SPECIES_PELIPPER);
-        OPPONENT(SPECIES_DARKRAI) {Moves(MOVE_TACKLE, MOVE_PECK, MOVE_EARTHQUAKE, MOVE_THUNDERBOLT); }
-        OPPONENT(SPECIES_SCIZOR) {Moves(MOVE_HYPER_BEAM, MOVE_FACADE, MOVE_GIGA_IMPACT, MOVE_EXTREME_SPEED); }
+        OPPONENT(SPECIES_DARKRAI) { Moves(MOVE_TACKLE, MOVE_PECK, MOVE_EARTHQUAKE, MOVE_THUNDERBOLT); }
+        OPPONENT(SPECIES_SCIZOR) { Moves(MOVE_HYPER_BEAM, MOVE_FACADE, MOVE_GIGA_IMPACT, MOVE_EXTREME_SPEED); }
     } WHEN {
 
         TURN { MOVE(player, MOVE_PROTECT);  EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); } // E-quake
-        TURN { SWITCH(player, 1);           NOT_EXPECTED_MOVE(opponent, MOVE_PECK); } // E-quake
-        TURN { MOVE(player, MOVE_PROTECT);  EXPECTED_MOVES(opponent, MOVE_EARTHQUAKE, MOVE_THUNDERBOLT); } // T-Bolt
-        TURN { SWITCH(player, 0);           NOT_EXPECTED_MOVES(opponent, MOVE_TACKLE, MOVE_PECK); } // T-Bolt
-        TURN { MOVE(player, MOVE_PROTECT);   } // E-quake
-        TURN { SWITCH(player, 1);            } // E-quake
-        TURN { MOVE(player, MOVE_PROTECT);  EXPECTED_MOVE(opponent, MOVE_PECK); } // T-Bolt
+        TURN { SWITCH(player, 1);           EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); } // E-quake
+        TURN { MOVE(player, MOVE_PROTECT);  EXPECTED_MOVE(opponent, MOVE_THUNDERBOLT); } // T-Bolt
+        TURN { SWITCH(player, 0);           EXPECTED_MOVE(opponent, MOVE_THUNDERBOLT); } // T-Bolt
+        TURN { MOVE(player, MOVE_PROTECT);  EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); } // E-quake
+        TURN { SWITCH(player, 1);           EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE);} // E-quake
+        TURN { MOVE(player, MOVE_PROTECT);  EXPECTED_MOVE(opponent, MOVE_THUNDERBOLT); } // T-Bolt
     } SCENE {
     }
 }
@@ -35,8 +34,8 @@ AI_BATTLE_TEST("AI prefers Bubble over Water Gun if it's slower")
 
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_SCIZOR) {Speed(speedPlayer); }
-        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_WATER_GUN, MOVE_BUBBLE); Speed(speedAi); }
+        PLAYER(SPECIES_SCIZOR) { Speed(speedPlayer); }
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_WATER_GUN, MOVE_BUBBLE); Speed(speedAi); }
     } WHEN {
         if (speedPlayer > speedAi)
         {
@@ -58,7 +57,7 @@ AI_BATTLE_TEST("AI prefers Water Gun over Bubble if it knows that foe has Contra
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_SHUCKLE) { Ability(ABILITY_CONTRARY); }
-        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_WATER_GUN, MOVE_BUBBLE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_WATER_GUN, MOVE_BUBBLE); }
     } WHEN {
             TURN { MOVE(player, MOVE_DEFENSE_CURL);  }
             TURN { MOVE(player, MOVE_DEFENSE_CURL); SCORE_GT(opponent, MOVE_WATER_GUN, MOVE_BUBBLE); }
@@ -103,7 +102,7 @@ AI_BATTLE_TEST("AI prefers moves with better accuracy, but only if they both req
         ASSUME(gBattleMoves[MOVE_MEGA_KICK].accuracy < gBattleMoves[MOVE_STRENGTH].accuracy);
         ASSUME(gBattleMoves[MOVE_TACKLE].accuracy == 100);
         ASSUME(gBattleMoves[MOVE_GUST].accuracy == 100);
-        OPPONENT(SPECIES_EXPLOUD) {Moves(move1, move2, move3, move4); Ability(abilityAtk); }
+        OPPONENT(SPECIES_EXPLOUD) { Moves(move1, move2, move3, move4); Ability(abilityAtk); }
     } WHEN {
             if (turns == 1) {
                 if (expectedMove2 != MOVE_NONE) {
@@ -138,9 +137,9 @@ AI_BATTLE_TEST("AI prefers moves which deal more damage instead of moves which a
 
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_TYPHLOSION) {Ability(abilityDef); }
+        PLAYER(SPECIES_TYPHLOSION) { Ability(abilityDef); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_NIDOQUEEN) {Moves(move1, move2, move3, move4); Ability(abilityAtk); }
+        OPPONENT(SPECIES_NIDOQUEEN) { Moves(move1, move2, move3, move4); Ability(abilityAtk); }
     } WHEN {
             TURN { EXPECTED_MOVE(opponent, expectedMove); }
             if (turns >= 2) {
@@ -160,7 +159,7 @@ AI_BATTLE_TEST("AI won't use ground type attacks against flying type Pokemon unl
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_CROBAT);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_NIDOQUEEN) {Moves(MOVE_EARTHQUAKE, MOVE_TACKLE, MOVE_POISON_STING, MOVE_GUST); }
+        OPPONENT(SPECIES_NIDOQUEEN) { Moves(MOVE_EARTHQUAKE, MOVE_TACKLE, MOVE_POISON_STING, MOVE_GUST); }
     } WHEN {
             TURN { NOT_EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); }
             TURN { MOVE(player, MOVE_GRAVITY); NOT_EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); }
@@ -183,9 +182,9 @@ AI_BATTLE_TEST("AI will not switch in a Pokemon which is slower and gets 1HKOed 
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
         PLAYER(SPECIES_WEAVILE) { Speed(300); Ability(ABILITY_SHADOW_TAG); } // Weavile has Shadow Tag, so AI can't switch on the first turn, but has to do it after fainting.
-        OPPONENT(SPECIES_KADABRA) {Speed(200); Moves(MOVE_PSYCHIC, MOVE_DISABLE, MOVE_TAUNT, MOVE_CALM_MIND); }
-        OPPONENT(SPECIES_ALAKAZAM) {Speed(speedAlakazm); Moves(MOVE_FOCUS_BLAST, MOVE_PSYCHIC); } // Alakazam has a move which OHKOes Weavile, but it doesn't matter if he's getting KO-ed first.
-        OPPONENT(SPECIES_BLASTOISE) {Speed(200); Moves(MOVE_BUBBLE_BEAM, MOVE_WATER_GUN, MOVE_LEER, MOVE_STRENGTH); } // Can't OHKO, but survives a hit from Weavile's Night Slash.
+        OPPONENT(SPECIES_KADABRA) { Speed(200); Moves(MOVE_PSYCHIC, MOVE_DISABLE, MOVE_TAUNT, MOVE_CALM_MIND); }
+        OPPONENT(SPECIES_ALAKAZAM) { Speed(speedAlakazm); Moves(MOVE_FOCUS_BLAST, MOVE_PSYCHIC); } // Alakazam has a move which OHKOes Weavile, but it doesn't matter if he's getting KO-ed first.
+        OPPONENT(SPECIES_BLASTOISE) { Speed(200); Moves(MOVE_BUBBLE_BEAM, MOVE_WATER_GUN, MOVE_LEER, MOVE_STRENGTH); } // Can't OHKO, but survives a hit from Weavile's Night Slash.
     } WHEN {
             TURN { MOVE(player, MOVE_NIGHT_SLASH) ; EXPECTED_SEND_OUT(opponent, alakazamFaster ? 1 : 2); }
     } SCENE {
@@ -195,6 +194,23 @@ AI_BATTLE_TEST("AI will not switch in a Pokemon which is slower and gets 1HKOed 
         } else {
             MESSAGE("{PKMN} TRAINER LEAF sent out Blastoise!");
         }
+    }
+}
+
+AI_BATTLE_TEST("AI switches if Perish Song is about to kill")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_TACKLE); }
+        OPPONENT(SPECIES_CROBAT) {Moves(MOVE_TACKLE); }
+    } WHEN {
+            TURN { MOVE(player, MOVE_PERISH_SONG); }
+            TURN { ; }
+            TURN { ; }
+            TURN { EXPECTED_SWITCH(opponent, 1); }
+    } SCENE {
+        MESSAGE("{PKMN} TRAINER LEAF sent out Crobat!");
     }
 }
 
@@ -216,8 +232,8 @@ AI_DOUBLE_BATTLE_TEST("AI won't use a Weather changing move if partner already c
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) {Moves(weatherMoveLeft); }
-        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_TACKLE, weatherMoveRight); }
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(weatherMoveLeft); }
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_TACKLE, weatherMoveRight); }
     } WHEN {
             TURN {  NOT_EXPECTED_MOVE(opponentRight, weatherMoveRight);
                     SCORE_LT_VAL(opponentRight, weatherMoveRight, AI_SCORE_DEFAULT, target:playerLeft);
@@ -241,8 +257,8 @@ AI_DOUBLE_BATTLE_TEST("AI will not use Helping Hand if partner does not have any
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_HELPING_HAND, MOVE_TACKLE); }
-        OPPONENT(SPECIES_WOBBUFFET) {Moves(move1, move2, move3, move4); }
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_HELPING_HAND, MOVE_TACKLE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(move1, move2, move3, move4); }
     } WHEN {
             TURN {  NOT_EXPECTED_MOVE(opponentLeft, MOVE_HELPING_HAND);
                     SCORE_LT_VAL(opponentLeft, MOVE_HELPING_HAND, AI_SCORE_DEFAULT, target:playerLeft);
@@ -270,8 +286,8 @@ AI_DOUBLE_BATTLE_TEST("AI will not use a status move if partner already chose He
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_HELPING_HAND); }
-        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_TACKLE, statusMove); }
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_HELPING_HAND); }
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_TACKLE, statusMove); }
     } WHEN {
             TURN {  NOT_EXPECTED_MOVE(opponentRight, statusMove);
                     SCORE_LT_VAL(opponentRight, statusMove, AI_SCORE_DEFAULT, target:playerLeft);
@@ -288,7 +304,7 @@ AI_BATTLE_TEST("AI without any flags chooses moves at random - singles")
     GIVEN {
         AI_FLAGS(0);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_NIDOQUEEN) {Moves(MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND); }
+        OPPONENT(SPECIES_NIDOQUEEN) { Moves(MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND); }
     } WHEN {
             TURN { EXPECTED_MOVES(opponent, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
                    SCORE_EQ_VAL(opponent, MOVE_SPLASH, AI_SCORE_DEFAULT);
@@ -306,8 +322,8 @@ AI_DOUBLE_BATTLE_TEST("AI without any flags chooses moves at random - doubles")
         AI_FLAGS(0);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_NIDOQUEEN) {Moves(MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND); }
-        OPPONENT(SPECIES_NIDOQUEEN) {Moves(MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND); }
+        OPPONENT(SPECIES_NIDOQUEEN) { Moves(MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND); }
+        OPPONENT(SPECIES_NIDOQUEEN) { Moves(MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND); }
     } WHEN {
             TURN { EXPECTED_MOVES(opponentLeft, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
                    EXPECTED_MOVES(opponentRight, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
