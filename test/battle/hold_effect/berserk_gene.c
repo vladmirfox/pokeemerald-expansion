@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(gItems[ITEM_BERSERK_GENE].holdEffect == HOLD_EFFECT_BERSERK_GENE);
 }
 
-SINGLE_BATTLE_TEST("Berserk Gene sharply raises attack at the start of battle", s16 damage)
+SINGLE_BATTLE_TEST("Berserk Gene sharply raises attack at the start of a single battle", s16 damage)
 {
     u16 useItem;
     PARAMETRIZE { useItem = FALSE; }
@@ -25,6 +25,32 @@ SINGLE_BATTLE_TEST("Berserk Gene sharply raises attack at the start of battle", 
             MESSAGE("Wobbuffet became confused!");
         }
         HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[1].damage);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Berserk Gene sharply raises attack at the start of a double battle", s16 damage)
+{
+    u16 useItem;
+    PARAMETRIZE { useItem = FALSE; }
+    PARAMETRIZE { useItem = TRUE; }
+    GIVEN {
+        PLAYER(SPECIES_WYNAUT);
+        PLAYER(SPECIES_WOBBUFFET) { if (useItem) Item(ITEM_BERSERK_GENE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(playerRight, MOVE_TACKLE, target:opponentLeft, WITH_RNG(RNG_CONFUSION, FALSE)); }
+    } SCENE {
+        if (useItem)
+        {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
+            MESSAGE("Using Berserk Gene, the Attack of Wobbuffet sharply rose!");
+            ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, playerRight);
+            MESSAGE("Wobbuffet became confused!");
+        }
+        HP_BAR(opponentLeft, captureDamage: &results[i].damage);
     } FINALLY {
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[1].damage);
     }
@@ -56,7 +82,7 @@ SINGLE_BATTLE_TEST("Berserk Gene activates on switch in", s16 damage)
     }
 }
 
-SINGLE_BATTLE_TEST("Berserk Gene does not confuse a Pokemon with Own Tempo but still raises attack sharply", s16 damage)
+SINGLE_BATTLE_TEST("Berserk Gene does not confuse a Pokemon with Own Tempo but still raises attack sharply in a single battle", s16 damage)
 {
     u16 useItem;
     PARAMETRIZE { useItem = FALSE; }
@@ -80,6 +106,45 @@ SINGLE_BATTLE_TEST("Berserk Gene does not confuse a Pokemon with Own Tempo but s
         NOT MESSAGE("Slowbro became confused!");
     } FINALLY {
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[1].damage);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Berserk Gene does not confuse a Pokemon with Own Tempo but still raises attack sharply in a double battle", s16 damage)
+{
+    u16 useItem;
+    bool8 slowbroPosLeft = FALSE;
+
+    PARAMETRIZE { useItem = FALSE; }
+    PARAMETRIZE { useItem = TRUE; slowbroPosLeft = TRUE; }
+    PARAMETRIZE { useItem = TRUE; slowbroPosLeft = FALSE; }
+    GIVEN {
+        if (slowbroPosLeft) {
+            PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OWN_TEMPO); if (useItem) Item(ITEM_BERSERK_GENE); }
+            PLAYER(SPECIES_WOBBUFFET);
+        } else {
+            PLAYER(SPECIES_WOBBUFFET);
+            PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OWN_TEMPO); if (useItem) Item(ITEM_BERSERK_GENE); }
+        }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            MOVE((slowbroPosLeft != 0) ? playerLeft : playerRight, MOVE_TACKLE, target: opponentLeft);
+        }
+    } SCENE {
+        if (useItem)
+        {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, (slowbroPosLeft != 0) ? playerLeft : playerRight);
+            MESSAGE("Using Berserk Gene, the Attack of Slowbro sharply rose!");
+            ABILITY_POPUP((slowbroPosLeft != 0) ? playerLeft : playerRight, ABILITY_OWN_TEMPO);
+            MESSAGE("Slowbro's Own Tempo prevents confusion!");
+        }
+        HP_BAR(opponentLeft, captureDamage: &results[i].damage);
+        NOT MESSAGE("Slowbro became confused!");
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[1].damage);
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[2].damage);
+        EXPECT_EQ(((slowbroPosLeft != 0) ? playerLeft : playerRight)->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 2);
     }
 }
 
