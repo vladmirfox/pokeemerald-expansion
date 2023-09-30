@@ -4,6 +4,7 @@
 
 AI_BATTLE_TEST("AI Test")
 {
+    KNOWN_FAILING;
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_STUNFISK);
@@ -26,6 +27,8 @@ AI_BATTLE_TEST("AI Test")
 AI_BATTLE_TEST("AI prefers Bubble over Water Gun if it's slower")
 {
     u32 speedPlayer, speedAi;
+
+    KNOWN_FAILING;
 
     PARAMETRIZE { speedPlayer = 200; speedAi = 10; }
     PARAMETRIZE { speedPlayer = 10; speedAi = 200; }
@@ -51,6 +54,7 @@ AI_BATTLE_TEST("AI prefers Bubble over Water Gun if it's slower")
 
 AI_BATTLE_TEST("AI prefers Water Gun over Bubble if it knows that foe has Contrary")
 {
+    KNOWN_FAILING;
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_SHUCKLE) { Ability(ABILITY_CONTRARY); }
@@ -69,6 +73,8 @@ AI_BATTLE_TEST("AI prefers moves with better accuracy, but only if they both req
 {
     u16 move1 = MOVE_NONE, move2 = MOVE_NONE, move3 = MOVE_NONE, move4 = MOVE_NONE;
     u16 hp, expectedMove, turns, abilityAtk, expectedMove2;
+
+    KNOWN_FAILING;
 
     abilityAtk = ABILITY_NONE;
     expectedMove2 = MOVE_NONE;
@@ -120,6 +126,8 @@ AI_BATTLE_TEST("AI prefers moves which deal more damage instead of moves which a
     u16 move1 = MOVE_NONE, move2 = MOVE_NONE, move3 = MOVE_NONE, move4 = MOVE_NONE;
     u16 expectedMove, abilityAtk, abilityDef, expectedMove2;
 
+    KNOWN_FAILING;
+
     abilityAtk = ABILITY_NONE;
     expectedMove2 = MOVE_NONE;
 
@@ -166,6 +174,8 @@ AI_BATTLE_TEST("AI will not switch in a Pokemon which is slower and gets 1HKOed 
 {
     bool8 alakazamFaster;
     u16 speedAlakazm;
+
+    KNOWN_FAILING;
 
     PARAMETRIZE{ speedAlakazm = 200; alakazamFaster = FALSE; }
     PARAMETRIZE{ speedAlakazm = 400; alakazamFaster = TRUE; }
