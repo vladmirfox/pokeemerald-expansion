@@ -32,9 +32,9 @@ SINGLE_BATTLE_TEST("Berserk Gene sharply raises attack at the start of a single 
 
 DOUBLE_BATTLE_TEST("Berserk Gene sharply raises attack at the start of a double battle", s16 damage)
 {
-    u16 useItem;
-    PARAMETRIZE { useItem = FALSE; }
-    PARAMETRIZE { useItem = TRUE; }
+    u16 item;
+    PARAMETRIZE { item = ITEM_NONE; }
+    PARAMETRIZE { item = ITEM_BERSERK_GENE; }
     GIVEN {
         PLAYER(SPECIES_WYNAUT);
         PLAYER(SPECIES_WOBBUFFET) { if (useItem) Item(ITEM_BERSERK_GENE); }
