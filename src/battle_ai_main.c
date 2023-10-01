@@ -3214,9 +3214,9 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
                 // prioritize moves without recoil
                 if (AI_IsDamagedByRecoil(battlerAtk))
                 {
-                    if (!IS_EFFECT_RECOIL(gBattleMoves[moves[currId]].effect) && IS_EFFECT_RECOIL(gBattleMoves[moves[i]].effect))
+                    if (!IS_MOVE_RECOIL(moves[currId]) && IS_MOVE_RECOIL(moves[i]))
                         score++;
-                    else if (IS_EFFECT_RECOIL(gBattleMoves[moves[currId]].effect) && !IS_EFFECT_RECOIL(gBattleMoves[moves[i]].effect))
+                    else if (IS_MOVE_RECOIL(moves[currId]) && !IS_MOVE_RECOIL(moves[i]))
                         score--;
                 }
             }
