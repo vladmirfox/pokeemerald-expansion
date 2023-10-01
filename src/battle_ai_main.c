@@ -3234,7 +3234,9 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
             }
         }
 
-        // If 2 moves can KO the target in the same number of turns, but one of them always hits and there is a risk the other move could miss, prioritize the move with better accuracy.
+        // If 2 moves can KO the target in the same number of turns,
+        // but one of them always hits and there is a risk the other
+        // move could miss, prioritize the move with better accuracy.
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
             if (i != currId && noOfHits[currId] == noOfHits[i]
