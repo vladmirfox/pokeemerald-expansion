@@ -15,7 +15,7 @@
 #endif
 
 #if I_TYPE_BOOST_POWER >= GEN_4 // For non Pokémon-specific type-boosting held items.
-    #define TYPE_BOOST_PARAM 20 
+    #define TYPE_BOOST_PARAM 20
 #else
     #define TYPE_BOOST_PARAM 10
 #endif
@@ -1634,7 +1634,7 @@ const struct Item gItems[] =
     [ITEM_NUGGET] =
     {
         .name = _("Nugget"),
-        .price = (I_SELL_VALUE >= GEN_9) ? 20000 : 10000,
+        .price = (I_SELL_VALUE_FRACTION >= GEN_9) ? 20000 : 10000,
         .description = sNuggetDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1645,7 +1645,7 @@ const struct Item gItems[] =
     [ITEM_BIG_NUGGET] =
     {
         .name = _("Big Nugget"),
-        .price = (I_SELL_VALUE >= GEN_9) ? 80000 : 40000,
+        .price = (I_SELL_VALUE_FRACTION >= GEN_9) ? 80000 : 40000,
         .description = sBigNuggetDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1656,7 +1656,7 @@ const struct Item gItems[] =
     [ITEM_TINY_MUSHROOM] =
     {
         .name = _("Tiny Mushroom"),
-        .price = (I_SELL_VALUE >= GEN_9) ? 1000 : 500,
+        .price = (I_SELL_VALUE_FRACTION >= GEN_9) ? 1000 : 500,
         .description = sTinyMushroomDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1667,7 +1667,7 @@ const struct Item gItems[] =
     [ITEM_BIG_MUSHROOM] =
     {
         .name = _("Big Mushroom"),
-        .price = (I_SELL_VALUE >= GEN_9) ? 10000 : 5000,
+        .price = (I_SELL_VALUE_FRACTION >= GEN_9) ? 10000 : 5000,
         .description = sBigMushroomDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1678,7 +1678,7 @@ const struct Item gItems[] =
     [ITEM_BALM_MUSHROOM] =
     {
         .name = _("Balm Mushroom"),
-        .price = (I_SELL_VALUE >= GEN_9) ? 30000 : 15000,
+        .price = (I_SELL_VALUE_FRACTION >= GEN_9) ? 30000 : 15000,
         .description = sBalmMushroomDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1689,7 +1689,7 @@ const struct Item gItems[] =
     [ITEM_PEARL] =
     {
         .name = _("Pearl"),
-        .price = (I_SELL_VALUE >= GEN_9) ? 4000 : 2000,
+        .price = (I_SELL_VALUE_FRACTION >= GEN_9) ? 4000 : 2000,
         .description = sPearlDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1700,7 +1700,7 @@ const struct Item gItems[] =
     [ITEM_BIG_PEARL] =
     {
         .name = _("Big Pearl"),
-        .price = (I_SELL_VALUE >= GEN_9) ? 16000 : 8000,
+        .price = (I_SELL_VALUE_FRACTION >= GEN_9) ? 16000 : 8000,
         .description = sBigPearlDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1711,7 +1711,7 @@ const struct Item gItems[] =
     [ITEM_PEARL_STRING] =
     {
         .name = _("Pearl String"),
-        .price = (I_SELL_VALUE >= GEN_9) ? 40000 : 20000,
+        .price = (I_SELL_VALUE_FRACTION >= GEN_9) ? 40000 : 20000,
         .description = sPearlStringDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1722,7 +1722,7 @@ const struct Item gItems[] =
     [ITEM_STARDUST] =
     {
         .name = _("Stardust"),
-        .price = (I_SELL_VALUE >= GEN_9) ? 6000 : 3000,
+        .price = (I_SELL_VALUE_FRACTION >= GEN_9) ? 6000 : 3000,
         .description = sStardustDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1733,7 +1733,7 @@ const struct Item gItems[] =
     [ITEM_STAR_PIECE] =
     {
         .name = _("Star Piece"),
-        .price = (I_SELL_VALUE >= GEN_9) ? 24000 : 12000,
+        .price = (I_SELL_VALUE_FRACTION >= GEN_9) ? 24000 : 12000,
         .description = sStarPieceDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1744,7 +1744,7 @@ const struct Item gItems[] =
     [ITEM_COMET_SHARD] =
     {
         .name = _("Comet Shard"),
-        .price = (I_SELL_VALUE >= GEN_9) ? 50000 : 25000,
+        .price = (I_SELL_VALUE_FRACTION >= GEN_9) ? 50000 : 25000,
         .description = sCometShardDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1843,7 +1843,7 @@ const struct Item gItems[] =
     [ITEM_RARE_BONE] =
     {
         .name = _("Rare Bone"),
-        .price = (I_SELL_VALUE >= GEN_9) ? 10000 : 5000,
+        .price = (I_SELL_VALUE_FRACTION >= GEN_9) ? 10000 : 5000,
         .description = sRareBoneDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -1865,7 +1865,7 @@ const struct Item gItems[] =
     [ITEM_PRETTY_FEATHER] =
     {
         .name = _("PrettyFeather"),
-        .price = (I_SELL_VALUE >= GEN_9) ? 2000 : 1000,
+        .price = (I_SELL_VALUE_FRACTION >= GEN_9) ? 2000 : 1000,
         .description = sPrettyFeatherDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,

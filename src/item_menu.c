@@ -2098,7 +2098,7 @@ static void Task_ItemContext_Sell(u8 taskId)
     }
 }
 
-#if I_SELL_VALUE >= GEN_9
+#if I_SELL_VALUE_FRACTION >= GEN_9
 #define ITEM_SELL_FACTOR 4
 #else
 #define ITEM_SELL_FACTOR 2
