@@ -3488,7 +3488,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         {
             u32 totalRerolls = 0;
             if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
-                totalRerolls += I_SHINY_CHARM_REROLLS;
+                totalRerolls += I_SHINY_CHARM_ADDITIONAL_ROLLS;
             if (LURE_STEP_COUNT != 0)
                 totalRerolls += 1;
 
@@ -6605,6 +6605,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                  && (j == WEATHER_RAIN || j == WEATHER_RAIN_THUNDERSTORM || j == WEATHER_DOWNPOUR))
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
+            case EVO_LEVEL_FOG:
+                j = GetCurrentWeather();
+                if (gEvolutionTable[species][i].param <= level
+                 && (j == WEATHER_FOG_HORIZONTAL || j == WEATHER_FOG_DIAGONAL))
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
             case EVO_MAPSEC:
                 if (gMapHeader.regionMapSectionId == gEvolutionTable[species][i].param)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
@@ -6775,7 +6781,7 @@ bool8 IsMonPastEvolutionLevel(struct Pokemon *mon)
     int i;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
-    
+
     for (i = 0; i < EVOS_PER_MON; i++)
     {
         switch (gEvolutionTable[species][i].method)
