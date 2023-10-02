@@ -29,6 +29,21 @@
 #define AI_ACTION_WATCH         (1 << 2)
 #define AI_ACTION_DO_NOT_ATTACK (1 << 3)
 
+// Logs for debugging AI tests.
+#define SET_SCORE(battler, movesetIndex, value) \
+    do \
+    { \
+        TestRunner_Battle_AISetScore(__FILE__, __LINE__, battler, movesetIndex, value); \
+        AI_THINKING_STRUCT->score[movesetIndex] = value; \
+    } while (0) \
+
+#define ADJUST_SCORE(value) \
+    do \
+    { \
+        TestRunner_Battle_AIAdjustScore(__FILE__, __LINE__, sBattler_AI, AI_THINKING_STRUCT->movesetIndex, value); \
+        score += value; \
+    } while (0) \
+
 static u32 ChooseMoveOrAction_Singles(u32 battlerAi);
 static u32 ChooseMoveOrAction_Doubles(u32 battlerAi);
 static inline void BattleAI_DoAIProcessing(struct AI_ThinkingStruct *aiThink, u32 battlerAi, u32 battlerDef);
@@ -189,9 +204,9 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (defaultScoreMoves & 1)
-            AI_THINKING_STRUCT->score[i] = AI_SCORE_DEFAULT;
+            SET_SCORE(battler, i, AI_SCORE_DEFAULT);
         else
-            AI_THINKING_STRUCT->score[i] = 0;
+            SET_SCORE(battler, i, 0);
 
         defaultScoreMoves >>= 1;
     }
@@ -202,7 +217,7 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves, u32 battler)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (gBitTable[i] & moveLimitations)
-            AI_THINKING_STRUCT->score[i] = 0;
+            SET_SCORE(battler, i, 0);
     }
 
     //sBattler_AI = battler;

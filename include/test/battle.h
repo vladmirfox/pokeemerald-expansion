@@ -615,6 +615,7 @@ struct ExpectedAiAction
 };
 
 #define MAX_AI_SCORE_COMPARISION_PER_TURN 4
+#define MAX_AI_LOG_LINES 256
 
 struct ExpectedAiScore
 {
@@ -627,6 +628,14 @@ struct ExpectedAiScore
     u8 toValue:1; // compare to value, not to move
     u8 set:1;
     u16 sourceLine;
+};
+
+struct AILogLine
+{
+    const char *file;
+    u16 line:15;
+    u16 set:1; // Weather score was set, or added/subtracted
+    s16 score;
 };
 
 struct BattleTestData
@@ -652,6 +661,7 @@ struct BattleTestData
     u8 actionBattlers;
     u8 moveBattlers;
     bool8 hasAI:1;
+    bool8 logAI:1;
 
     struct RecordedBattleSave recordedBattle;
     u8 battleRecordTypes[MAX_BATTLERS_COUNT][BATTLER_RECORD_SIZE];
@@ -669,6 +679,7 @@ struct BattleTestData
     u8 aiActionsPlayed[MAX_BATTLERS_COUNT];
     struct ExpectedAiAction expectedAiActions[MAX_BATTLERS_COUNT][MAX_EXPECTED_ACTIONS];
     struct ExpectedAiScore expectedAiScores[MAX_BATTLERS_COUNT][MAX_TURNS][MAX_AI_SCORE_COMPARISION_PER_TURN]; // Max 4 comparisions per turn
+    struct AILogLine aiLogLines[MAX_BATTLERS_COUNT][MAX_MON_MOVES][MAX_AI_LOG_LINES];
 };
 
 struct BattleTestRunnerState
@@ -815,6 +826,7 @@ struct moveWithPP {
 
 #define RNGSeed(seed) RNGSeed_(__LINE__, seed)
 #define AI_FLAGS(flags) AIFlags_(__LINE__, flags)
+#define AI_LOG AILogScores()
 
 #define PLAYER(species) for (OpenPokemon(__LINE__, B_SIDE_PLAYER, species); gBattleTestRunnerState->data.currentMon; ClosePokemon(__LINE__))
 #define OPPONENT(species) for (OpenPokemon(__LINE__, B_SIDE_OPPONENT, species); gBattleTestRunnerState->data.currentMon; ClosePokemon(__LINE__))
@@ -842,6 +854,7 @@ void ClosePokemon(u32 sourceLine);
 
 void RNGSeed_(u32 sourceLine, u32 seed);
 void AIFlags_(u32 sourceLine, u32 seed);
+void AILogScores(void);
 void Gender_(u32 sourceLine, u32 gender);
 void Nature_(u32 sourceLine, u32 nature);
 void Ability_(u32 sourceLine, u32 ability);

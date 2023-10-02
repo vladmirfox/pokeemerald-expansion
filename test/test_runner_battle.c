@@ -917,6 +917,33 @@ static void CheckIfMaxScoreEqualExpectedMove(u32 battlerId, s32 target, struct E
     }
 }
 
+void PrintAiMoveLog(const char *filename, u32 battlerId, u32 moveSlot, u32 moveId, s32 totalScore)
+{
+    s32 i;
+
+    if (!DATA.logAI) return;
+
+    MgbaPrintf_("Score Log for move %S:\n", gMoveNames[moveId]);
+    for (i = 0; i < MAX_AI_LOG_LINES; i++)
+    {
+        struct AILogLine *log = &DATA.aiLogLines[battlerId][moveSlot][i];
+        if (log->file)
+        {
+            if (log->set)
+                MgbaPrintf_("%s:%d: = %d\n", filename, log->line, log->score);
+            else if (log->score > 0)
+                MgbaPrintf_("%s:%d: + %d\n", filename, log->line, log->score);
+            else
+                MgbaPrintf_("%s:%d: + %d\n", filename, log->line, log->score);
+        }
+        else
+        {
+            break;
+        }
+    }
+    MgbaPrintf_("Total: %d\n", totalScore);
+}
+
 void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
 {
     s32 i;
@@ -943,6 +970,7 @@ void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
             {
                 if (!CheckComparision(scores[scoreCtx->moveSlot1], scoreCtx->value, scoreCtx->cmp))
                 {
+                    PrintAiMoveLog(filename, battlerId, scoreCtx->moveSlot1, moveId1, scores[scoreCtx->moveSlot1]);
                     Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched SCORE_%s_VAL %S %d, got %d",
                                         filename, scoreCtx->sourceLine, sCmpToStringTable[scoreCtx->cmp], gMoveNames[moveId1], scoreCtx->value, scores[scoreCtx->moveSlot1]);
                 }
@@ -952,6 +980,8 @@ void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
                 if (!CheckComparision(scores[scoreCtx->moveSlot1], scores[scoreCtx->moveSlot2], scoreCtx->cmp))
                 {
                     u32 moveId2 = gBattleMons[battlerId].moves[scoreCtx->moveSlot2];
+                    PrintAiMoveLog(filename, battlerId, scoreCtx->moveSlot2, moveId1, scores[scoreCtx->moveSlot1]);
+                    PrintAiMoveLog(filename, battlerId, scoreCtx->moveSlot2, moveId2, scores[scoreCtx->moveSlot2]);
                     Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched SCORE_%s, got %S: %d, %S: %d",
                                         filename, scoreCtx->sourceLine, sCmpToStringTable[scoreCtx->cmp], gMoveNames[moveId1], scores[scoreCtx->moveSlot1], gMoveNames[moveId2], scores[scoreCtx->moveSlot2]);
                 }
@@ -1403,6 +1433,11 @@ void AIFlags_(u32 sourceLine, u32 flags)
     INVALID_IF(!IsAiTest(), "AI_FLAGS is compatible only with AI_BATTLE_TEST & AI_DOUBLE_BATTLE_TEST");
     DATA.recordedBattle.AI_scripts = flags;
     DATA.hasAI = TRUE;
+}
+
+void AILogScores(void)
+{
+    DATA.logAI = TRUE;
 }
 
 const struct TestRunner gBattleTestRunner =
@@ -2470,4 +2505,62 @@ void ValidateFinally(u32 sourceLine)
 u32 TestRunner_Battle_GetForcedAbility(u32 side, u32 partyIndex)
 {
     return DATA.forcedAbilities[side][partyIndex];
+}
+
+// TODO: Consider storing the last successful i and searching from i+1
+// to improve performance.
+struct AILogLine *GetLogLine(u32 battlerId, u32 moveIndex)
+{
+    s32 i, j;
+
+    for (i = 0; i < MAX_AI_LOG_LINES; i++)
+    {
+        struct AILogLine *log = &DATA.aiLogLines[battlerId][moveIndex][i];
+        if (!log->file)
+            return log;
+    }
+
+    Test_ExitWithResult(TEST_RESULT_ERROR, "Too many AI log lines");
+
+    /*
+    // Try compacting.
+    for (i = j = 0; i < ARRAY_COUNT(DATA.aiLogLines); i++)
+    {
+        struct AILogLine *log = &DATA.aiLogLines[i];
+        if (log->battlerId == MAX_BATTLERS_COUNT)
+        {
+            if (i != j)
+                DATA.aiLogLines[j] = DATA.aiLogLines[i];
+            j++;
+        }
+    }
+
+    if (j == ARRAY_COUNT(DATA.aiLogLines))
+        Test_ExitWithResult(TEST_RESULT_ERROR, "Too many AI log lines");
+
+    return &DATA.aiLogLines[j];
+    */
+}
+
+void TestRunner_Battle_AILogScore(const char *file, u32 line, u32 battlerId, u32 moveIndex, u32 score, bool32 setScore)
+{
+    struct AILogLine *log;
+
+    if (!DATA.logAI) return;
+
+    log = GetLogLine(battlerId, moveIndex);
+    log->file = file;
+    log->line = line;
+    log->score = score;
+    log->set = setScore;
+}
+
+void TestRunner_Battle_AISetScore(const char *file, u32 line, u32 battlerId, u32 moveIndex, u32 score)
+{
+    TestRunner_Battle_AILogScore(file, line, battlerId, moveIndex, score, TRUE);
+}
+
+void TestRunner_Battle_AIAdjustScore(const char *file, u32 line, u32 battlerId, u32 moveIndex, s32 score)
+{
+    TestRunner_Battle_AILogScore(file, line, battlerId, moveIndex, score, FALSE);
 }

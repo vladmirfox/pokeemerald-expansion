@@ -1874,6 +1874,14 @@ bool32 ShouldLowerStat(u32 battler, u32 battlerAbility, u32 stat)
          || battlerAbility == ABILITY_FULL_METAL_BODY)
             return FALSE;
 
+        // If AI is faster and doesn't have any mons left, lowering speed doesn't give any
+        if (stat == STAT_SPEED)
+        {
+            if (AI_WhoStrikesFirst(sBattler_AI, battler, AI_THINKING_STRUCT->moveConsidered) == AI_IS_FASTER
+                && CountUsablePartyMons(sBattler_AI) == 0
+                && !HasMoveEffect(sBattler_AI, EFFECT_ELECTRO_BALL))
+                return FALSE;
+        }
         return TRUE;
     }
 

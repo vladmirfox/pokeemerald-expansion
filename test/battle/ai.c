@@ -27,12 +27,11 @@ AI_BATTLE_TEST("AI prefers Bubble over Water Gun if it's slower")
 {
     u32 speedPlayer, speedAi;
 
-    KNOWN_FAILING;
-
     PARAMETRIZE { speedPlayer = 200; speedAi = 10; }
     PARAMETRIZE { speedPlayer = 10; speedAi = 200; }
 
     GIVEN {
+        AI_LOG;
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_SCIZOR) { Speed(speedPlayer); }
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_WATER_GUN, MOVE_BUBBLE); Speed(speedAi); }
