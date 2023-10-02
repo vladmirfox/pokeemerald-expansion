@@ -2690,51 +2690,23 @@ static s32 AI_TryToFaint(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         return score;
 
     if (gBattleMoves[move].power == 0)
-        return score;   // can't make anything faint with no power
+        return score; // can't make anything faint with no power
 
-    aiFaster = AI_STRIKES_FIRST(battlerAtk, battlerDef, move);
-    if (CanIndexMoveFaintTarget(battlerAtk, battlerDef, movesetIndex, 0) && gBattleMoves[move].effect != EFFECT_EXPLOSION)
+    aiFaster = GetWhichBattlerFaster(battlerAtk, battlerDef, TRUE) == AI_IS_FASTER;
+    if (CanTargetFaintAi(battlerDef, battlerAtk) && (GetMovePriority(battlerAtk, move) > 0) && !aiFaster)
     {
-        // this move can faint the target
-        if (aiFaster || GetMovePriority(battlerAtk, move) > 0)
-            score += 5; // we go first or we're using priority move
-        else
-            score += 4;
+        // If Target can kill AI and AI is slower, choose a priority move
+        score += 6;
     }
-    else
+    else if (CanIndexMoveFaintTarget(battlerAtk, battlerDef, movesetIndex, 0) && gBattleMoves[move].effect != EFFECT_EXPLOSION)
     {
-        // this move isn't expected to faint the target
-        if (gBattleMoves[move].highCritRatio)
-            score += 2; // crit makes it more likely to make them faint
-
-        if (GetMoveDamageResult(battlerAtk, battlerDef, movesetIndex) == MOVE_POWER_OTHER)
-            score--;
-
-        switch (AI_DATA->effectiveness[battlerAtk][battlerDef][movesetIndex])
-        {
-        case AI_EFFECTIVENESS_x8:
-            score += 8;
-            break;
-        case AI_EFFECTIVENESS_x4:
-            score += 4;
-            break;
-        case AI_EFFECTIVENESS_x2:
-            if (AI_RandLessThan(176))
-                score += 2;
-            else
-                score++;
-            break;
-        }
+        // If AI can faint target
+        if (aiFaster && GetMovePriority(battlerAtk, move) > 0)
+            score += 2; // we go first or we're using priority move
+        score += 5; // Increase score regardless of speed
     }
-
-    //AI_TryToFaint_CheckIfDanger
-    if (!aiFaster && CanTargetFaintAi(battlerDef, battlerAtk))
-    { // AI_TryToFaint_Danger
-        if (GetMoveDamageResult(battlerAtk, battlerDef, movesetIndex) != MOVE_POWER_BEST)
-            score--;
-        else
-            score++;
-    }
+    else if (GetMoveDamageResult(battlerAtk, battlerDef, movesetIndex) == MOVE_POWER_OTHER)
+        score--;
 
     return score;
 }
@@ -3142,11 +3114,9 @@ static u32 CompareMoveAccuracies(u32 battlerAtk, u32 battlerDef, u32 moveSlot1, 
     u32 acc1 = AI_DATA->moveAccuracy[battlerAtk][battlerDef][moveSlot1];
     u32 acc2 = AI_DATA->moveAccuracy[battlerAtk][battlerDef][moveSlot2];
 
-    if (acc1 > acc2)
-        return 0;
-    else if (acc2 > acc1)
-        return 1;
-    return 2;
+    if (acc2 > acc1)
+        return TRUE;
+    return FALSE;
 }
 
 static u32 GetAIMostDamagingMoveId(u32 battlerAtk, u32 battlerDef)
@@ -3193,32 +3163,17 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
                 continue;
 
             // prioritize moves without a risky secondary effect such as Overheat, Explosion or Hyper Beam
-            if (!isPowerfulIgnoredEffect[currId] && isPowerfulIgnoredEffect[i])
-                score += 2;
-            else if (isPowerfulIgnoredEffect[currId] && !isPowerfulIgnoredEffect[i])
+            if (isPowerfulIgnoredEffect[currId] && !isPowerfulIgnoredEffect[i])
                 score -= 2;
 
             if (!isPowerfulIgnoredEffect[currId])
             {
                 // prioritize moves with higher accuracy
-                switch (CompareMoveAccuracies(battlerAtk, battlerDef, currId, i))
-                {
-                case 0:
-                    score++;
-                    break;
-                case 1:
+                if (CompareMoveAccuracies(battlerAtk, battlerDef, currId, i))
                     score--;
-                    break;
-                }
-
                 // prioritize moves without recoil
-                if (AI_IsDamagedByRecoil(battlerAtk))
-                {
-                    if (!IS_MOVE_RECOIL(moves[currId]) && IS_MOVE_RECOIL(moves[i]))
-                        score++;
-                    else if (IS_MOVE_RECOIL(moves[currId]) && !IS_MOVE_RECOIL(moves[i]))
-                        score--;
-                }
+                if (AI_IsDamagedByRecoil(battlerAtk) && (IS_MOVE_RECOIL(moves[currId]) && !IS_MOVE_RECOIL(moves[i])))
+                    score--;
             }
         }
     }
@@ -3229,7 +3184,7 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
         {
             if (i != currId && noOfHits[i] < 5 && noOfHits[currId] != 1 && noOfHits[i] < noOfHits[currId])
             {
-                if (AI_WhichMoveBetter(moves[currId], moves[i], battlerAtk, battlerDef) != 0)
+                if (AI_WhichMoveBetter(moves[currId], moves[i], battlerAtk, battlerDef) == 1)
                     score--;
             }
         }
@@ -3241,7 +3196,7 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
         {
             if (i != currId && noOfHits[currId] == noOfHits[i]
                 && CompareMoveAccuracies(battlerAtk, battlerDef, currId, i))
-                score++;
+                score--;
         }
     }
 
@@ -3288,9 +3243,9 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
             score++;
     }
 
-    // check high crit
-    if (gBattleMoves[move].highCritRatio && effectiveness >= AI_EFFECTIVENESS_x2 && AI_RandLessThan(128))
-        score++;
+    // // check high crit
+    // if (gBattleMoves[move].highCritRatio && effectiveness >= AI_EFFECTIVENESS_x2 && AI_RandLessThan(128))
+    //     score++;
 
     // check already dead
     if (!IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef])
@@ -4982,25 +4937,12 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
                 score += 3;
         }
         break;
-    case EFFECT_FLAIL:
-        if (AI_WhoStrikesFirst(battlerAtk, battlerDef, move) == AI_IS_FASTER)  // Ai goes first
-        {
-            if (aiData->hpPercents[battlerAtk] < 20)
-                score++;
-            else if (aiData->hpPercents[battlerAtk] < 8)
-                score += 2;
-        }
-        break;
     case EFFECT_SHORE_UP:
         if ((AI_GetWeather(aiData) & B_WEATHER_SANDSTORM)
           && ShouldRecover(battlerAtk, battlerDef, move, 67))
             score += 3;
         else if (ShouldRecover(battlerAtk, battlerDef, move, 50))
             score += 2;
-        break;
-    case EFFECT_FACADE:
-        if (gBattleMons[battlerAtk].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON | STATUS1_FROSTBITE))
-            score++;
         break;
     case EFFECT_FOCUS_PUNCH:
         if (!isDoubleBattle && effectiveness > AI_EFFECTIVENESS_x0_5)
@@ -5010,14 +4952,6 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
             else if (gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION))
                 score++;
         }
-        break;
-    case EFFECT_SMELLINGSALT:
-        if (gBattleMons[battlerDef].status1 & STATUS1_PARALYSIS)
-            score += 2;
-        break;
-    case EFFECT_WAKE_UP_SLAP:
-        if (gBattleMons[battlerDef].status1 & STATUS1_SLEEP)
-            score += 2;
         break;
     case EFFECT_REVENGE:
         if (!(gBattleMons[battlerDef].status1 & STATUS1_SLEEP)
