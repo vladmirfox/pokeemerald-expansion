@@ -1527,24 +1527,24 @@ static const struct TrainerMon sParty_Shirley[] = {
 
 static const struct TrainerMon sParty_Lydia[] = {
     {
-    .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
+    .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
     .lvl = 36,
-    .species = SPECIES_BRELOOM,
+    .species = SPECIES_ELDEGOSS,
     },
     {
-    .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
+    .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
     .lvl = 36,
-    .species = SPECIES_LUDICOLO,
+    .species = SPECIES_ROSERADE,
     },
     {
-    .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
+    .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
     .lvl = 36,
-    .species = SPECIES_SCEPTILE,
+    .species = SPECIES_RILLABOOM,
     },
     {
-    .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
+    .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
     .lvl = 36,
-    .species = SPECIES_SERPERIOR,
+    .species = SPECIES_CHESNAUGHT,
     }
 };
 
