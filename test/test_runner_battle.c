@@ -39,6 +39,8 @@ EWRAM_DATA struct BattleTestRunnerState *gBattleTestRunnerState = NULL;
 static void CB2_BattleTest_NextParameter(void);
 static void CB2_BattleTest_NextTrial(void);
 static void PushBattlerAction(u32 sourceLine, s32 battlerId, u32 actionType, u32 byte);
+static void PrintAiMoveLog(u32 battlerId, u32 moveSlot, u32 moveId, s32 totalScore);
+static void ClearAiLog(u32 battlerId);
 static const char *BattlerIdentifier(s32 battlerId);
 
 NAKED static void InvokeSingleTestFunctionWithStack(void *results, u32 i, struct BattlePokemon *player, struct BattlePokemon *opponent, SingleBattleTestFunction function, void *stack)
@@ -759,13 +761,17 @@ static const char *const sBattleActionNames[] =
     [B_ACTION_SWITCH] = "SWITCH",
 };
 
-static u32 CountAiExpectedMoves(struct ExpectedAiAction *expectedAction)
+static u32 CountAiExpectedMoves(struct ExpectedAiAction *expectedAction, u32 battlerId, bool32 printLog)
 {
     u32 i, countExpected = 0;
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (gBitTable[i] & expectedAction->moveSlots)
+        {
+            if (printLog)
+                PrintAiMoveLog(battlerId, i, gBattleMons[battlerId].moves[i], gBattleStruct->aiFinalScore[battlerId][expectedAction->target][i]);
             countExpected++;
+        }
     }
     return countExpected;
 }
@@ -815,10 +821,12 @@ void TestRunner_Battle_CheckChosenMove(u32 battlerId, u32 moveId, u32 target)
             }
         }
 
-        countExpected = CountAiExpectedMoves(expectedAction);
+        countExpected = CountAiExpectedMoves(expectedAction, battlerId, TRUE);
 
         if (!expectedAction->notMove && !movePasses)
         {
+            u32 moveSlot = GetMoveSlot(gBattleMons[battlerId].moves, moveId);
+            PrintAiMoveLog(battlerId, moveSlot, moveId, gBattleStruct->aiFinalScore[battlerId][expectedAction->target][moveSlot]);
             if (countExpected > 1)
                 Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched EXPECTED_MOVES %S, got %S", filename, expectedAction->sourceLine, gMoveNames[expectedMoveId], gMoveNames[moveId]);
             else
@@ -833,6 +841,8 @@ void TestRunner_Battle_CheckChosenMove(u32 battlerId, u32 moveId, u32 target)
         }
     }
     // MgbaPrintf_("%s:%d: Matched %S", filename, expectedAction->sourceLine, gMoveNames[moveId]); // Debugging help
+    // Turn passed, clear logs from the turn
+    ClearAiLog(battlerId);
     DATA.aiActionsPlayed[battlerId]++;
 }
 
@@ -917,12 +927,14 @@ static void CheckIfMaxScoreEqualExpectedMove(u32 battlerId, s32 target, struct E
     }
 }
 
-void PrintAiMoveLog(const char *filename, u32 battlerId, u32 moveSlot, u32 moveId, s32 totalScore)
+static void PrintAiMoveLog(u32 battlerId, u32 moveSlot, u32 moveId, s32 totalScore)
 {
-    s32 i;
+    s32 i, scoreFromLogs = 0;
 
     if (!DATA.logAI) return;
+    if (DATA.aiLogPrintedForMove[battlerId] & gBitTable[moveSlot]) return;
 
+    DATA.aiLogPrintedForMove[battlerId] |= gBitTable[moveSlot];
     MgbaPrintf_("Score Log for move %S:\n", gMoveNames[moveId]);
     for (i = 0; i < MAX_AI_LOG_LINES; i++)
     {
@@ -930,18 +942,43 @@ void PrintAiMoveLog(const char *filename, u32 battlerId, u32 moveSlot, u32 moveI
         if (log->file)
         {
             if (log->set)
-                MgbaPrintf_("%s:%d: = %d\n", filename, log->line, log->score);
+            {
+                scoreFromLogs = log->score;
+                MgbaPrintf_("%s:%d: = %d\n", log->file, log->line, log->score);
+            }
             else if (log->score > 0)
-                MgbaPrintf_("%s:%d: + %d\n", filename, log->line, log->score);
+            {
+                scoreFromLogs += log->score;
+                MgbaPrintf_("%s:%d: +%d\n", log->file, log->line, log->score);
+            }
             else
-                MgbaPrintf_("%s:%d: + %d\n", filename, log->line, log->score);
+            {
+                scoreFromLogs += log->score;
+                MgbaPrintf_("%s:%d: %d\n", log->file, log->line, log->score);
+            }
         }
         else
         {
             break;
         }
     }
+    if (scoreFromLogs != totalScore)
+    {
+        MgbaPrintf_("Warning! Score from logs(%d) is different than actual score(%d). Make sure all of the score adjustments use the ADJUST_SCORE macro\n", scoreFromLogs, totalScore);
+    }
     MgbaPrintf_("Total: %d\n", totalScore);
+}
+
+static void ClearAiLog(u32 battlerId)
+{
+    u32 i, j;
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        struct AILogLine *logs = DATA.aiLogLines[battlerId][i];
+        for (j = 0; j < MAX_AI_LOG_LINES; j++)
+            memset(&logs[j], 0, sizeof(struct AILogLine));
+    }
+    DATA.aiLogPrintedForMove[battlerId] = 0;
 }
 
 void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
@@ -968,20 +1005,20 @@ void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
 
             if (scoreCtx->toValue)
             {
+                PrintAiMoveLog(battlerId, scoreCtx->moveSlot1, moveId1, scores[scoreCtx->moveSlot1]);
                 if (!CheckComparision(scores[scoreCtx->moveSlot1], scoreCtx->value, scoreCtx->cmp))
                 {
-                    PrintAiMoveLog(filename, battlerId, scoreCtx->moveSlot1, moveId1, scores[scoreCtx->moveSlot1]);
                     Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched SCORE_%s_VAL %S %d, got %d",
                                         filename, scoreCtx->sourceLine, sCmpToStringTable[scoreCtx->cmp], gMoveNames[moveId1], scoreCtx->value, scores[scoreCtx->moveSlot1]);
                 }
             }
             else
             {
+                u32 moveId2 = gBattleMons[battlerId].moves[scoreCtx->moveSlot2];
+                PrintAiMoveLog(battlerId, scoreCtx->moveSlot1, moveId1, scores[scoreCtx->moveSlot1]);
+                PrintAiMoveLog(battlerId, scoreCtx->moveSlot2, moveId2, scores[scoreCtx->moveSlot2]);
                 if (!CheckComparision(scores[scoreCtx->moveSlot1], scores[scoreCtx->moveSlot2], scoreCtx->cmp))
                 {
-                    u32 moveId2 = gBattleMons[battlerId].moves[scoreCtx->moveSlot2];
-                    PrintAiMoveLog(filename, battlerId, scoreCtx->moveSlot2, moveId1, scores[scoreCtx->moveSlot1]);
-                    PrintAiMoveLog(filename, battlerId, scoreCtx->moveSlot2, moveId2, scores[scoreCtx->moveSlot2]);
                     Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched SCORE_%s, got %S: %d, %S: %d",
                                         filename, scoreCtx->sourceLine, sCmpToStringTable[scoreCtx->cmp], gMoveNames[moveId1], scores[scoreCtx->moveSlot1], gMoveNames[moveId2], scores[scoreCtx->moveSlot2]);
                 }
@@ -2516,8 +2553,10 @@ struct AILogLine *GetLogLine(u32 battlerId, u32 moveIndex)
     for (i = 0; i < MAX_AI_LOG_LINES; i++)
     {
         struct AILogLine *log = &DATA.aiLogLines[battlerId][moveIndex][i];
-        if (!log->file)
+        if (log->file == NULL)
+        {
             return log;
+        }
     }
 
     Test_ExitWithResult(TEST_RESULT_ERROR, "Too many AI log lines");
@@ -2542,8 +2581,9 @@ struct AILogLine *GetLogLine(u32 battlerId, u32 moveIndex)
     */
 }
 
-void TestRunner_Battle_AILogScore(const char *file, u32 line, u32 battlerId, u32 moveIndex, u32 score, bool32 setScore)
+void TestRunner_Battle_AILogScore(const char *file, u32 line, u32 battlerId, u32 moveIndex, s32 score, bool32 setScore)
 {
+    s32 i;
     struct AILogLine *log;
 
     if (!DATA.logAI) return;
@@ -2555,7 +2595,7 @@ void TestRunner_Battle_AILogScore(const char *file, u32 line, u32 battlerId, u32
     log->set = setScore;
 }
 
-void TestRunner_Battle_AISetScore(const char *file, u32 line, u32 battlerId, u32 moveIndex, u32 score)
+void TestRunner_Battle_AISetScore(const char *file, u32 line, u32 battlerId, u32 moveIndex, s32 score)
 {
     TestRunner_Battle_AILogScore(file, line, battlerId, moveIndex, score, TRUE);
 }
