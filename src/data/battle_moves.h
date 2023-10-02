@@ -8300,6 +8300,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_SPD_UP_1,
+        .mirrorMoveBanned = TRUE,
     },
 
     [MOVE_WONDER_ROOM] =
