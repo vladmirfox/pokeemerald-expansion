@@ -437,6 +437,47 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectMortalSpin              @ EFFECT_MORTAL_SPIN
 	.4byte BattleScript_EffectHit                     @ EFFECT_GIGATON_HAMMER
 	.4byte BattleScript_EffectSaltCure                @ EFFECT_SALT_CURE
+	.4byte BattleScript_EffectChillyReception		      @ EFFECT_CHILLY_RECEPTION
+
+BattleScript_EffectChillyReception::
+	attackcanceler
+	printstring STRINGID_PKMNTELLCHILLINGRECEPTIONJOKE
+	waitmessage B_WAIT_TIME_LONG
+	attackstring
+	ppreduce
+	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_SUN_PRIMAL, BattleScript_ExtremelyHarshSunlightWasNotLessened
+	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_RAIN_PRIMAL, BattleScript_NoReliefFromHeavyRain
+	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_STRONG_WINDS, BattleScript_MysteriousAirCurrentBlowsOn
+	attackanimation
+	waitanimation
+	setsnow
+	call BattleScript_MoveWeatherChangeRet
+	goto BattleScript_MoveSwitch
+BattleScript_EffectChillyReceptionEnd:
+	end 
+
+BattleScript_MoveSwitch:
+	jumpifbattletype BATTLE_TYPE_ARENA, BattleScript_MoveEnd
+	jumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_MoveEnd
+	printstring STRINGID_PKMNWENTBACK
+	waitmessage B_WAIT_TIME_SHORT
+	openpartyscreen BS_ATTACKER, BattleScript_MoveEnd
+	switchoutabilities BS_ATTACKER
+	waitstate
+	switchhandleorder BS_ATTACKER, 2
+	returntoball BS_ATTACKER
+	getswitchedmondata BS_ATTACKER
+	switchindataupdate BS_ATTACKER
+	hpthresholds BS_ATTACKER
+	trytoclearprimalweather
+	printstring STRINGID_EMPTYSTRING3
+	waitmessage 1
+	printstring STRINGID_SWITCHINMON
+	switchinanim BS_ATTACKER, TRUE
+	waitstate
+	switchineffects BS_ATTACKER
+BattleScript_MoveSwitchEnd:
+	goto BattleScript_MoveEnd
 
 BattleScript_EffectSaltCure:
 	call BattleScript_EffectHit_Ret
@@ -1573,28 +1614,10 @@ BattleScript_EffectPartingShotTryAtk:
 BattleScript_EffectPartingShotTrySpAtk:
 	playstatchangeanimation BS_TARGET, BIT_SPATK, STAT_CHANGE_NEGATIVE
 	setstatchanger STAT_SPATK, 1, TRUE
-	statbuffchange STAT_CHANGE_ALLOW_PTR, BattleScript_EffectPartingShotSwitch
+	statbuffchange STAT_CHANGE_ALLOW_PTR, BattleScript_MoveSwitch
 	printfromtable gStatDownStringIds
 	waitmessage B_WAIT_TIME_LONG
-BattleScript_EffectPartingShotSwitch:
-	moveendall
-	jumpifbattletype BATTLE_TYPE_ARENA, BattleScript_PartingShotEnd
-	jumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_PartingShotEnd
-	openpartyscreen BS_ATTACKER, BattleScript_PartingShotEnd
-	switchoutabilities BS_ATTACKER
-	waitstate
-	switchhandleorder BS_ATTACKER, 2
-	returntoball BS_ATTACKER
-	getswitchedmondata BS_ATTACKER
-	switchindataupdate BS_ATTACKER
-	hpthresholds BS_ATTACKER
-	trytoclearprimalweather
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
-	printstring STRINGID_SWITCHINMON
-	switchinanim BS_ATTACKER, TRUE
-	waitstate
-	switchineffects BS_ATTACKER
+	goto BattleScript_MoveSwitch
 BattleScript_PartingShotEnd:
 	end
 
@@ -3056,24 +3079,8 @@ BattleScript_EffectHitEscape:
 	moveendfrom MOVEEND_TARGET_VISIBLE
 	jumpifbattleend BattleScript_HitEscapeEnd
 	jumpifbyte CMP_NOT_EQUAL gBattleOutcome 0, BattleScript_HitEscapeEnd
-	jumpifbattletype BATTLE_TYPE_ARENA, BattleScript_HitEscapeEnd
-	jumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_HitEscapeEnd
 	jumpifemergencyexited BS_TARGET, BattleScript_HitEscapeEnd
-	openpartyscreen BS_ATTACKER, BattleScript_HitEscapeEnd
-	switchoutabilities BS_ATTACKER
-	waitstate
-	switchhandleorder BS_ATTACKER, 2
-	returntoball BS_ATTACKER
-	getswitchedmondata BS_ATTACKER
-	switchindataupdate BS_ATTACKER
-	hpthresholds BS_ATTACKER
-	trytoclearprimalweather
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
-	printstring STRINGID_SWITCHINMON
-	switchinanim BS_ATTACKER, TRUE
-	waitstate
-	switchineffects BS_ATTACKER
+	goto BattleScript_MoveSwitch
 BattleScript_HitEscapeEnd:
 	end
 
@@ -5047,10 +5054,14 @@ BattleScript_EffectRainDance::
 BattleScript_MoveWeatherChange::
 	attackanimation
 	waitanimation
+	call BattleScript_MoveWeatherChangeRet
+	goto BattleScript_MoveEnd
+
+BattleScript_MoveWeatherChangeRet::
 	printfromtable gMoveWeatherChangeStringIds
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_ActivateWeatherAbilities
-	goto BattleScript_MoveEnd
+	return
 
 BattleScript_EffectSunnyDay::
 	attackcanceler
