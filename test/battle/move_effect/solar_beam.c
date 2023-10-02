@@ -52,7 +52,6 @@ SINGLE_BATTLE_TEST("Solar Beam's power is halved in Rain", s16 damage)
 SINGLE_BATTLE_TEST("Solar Blade's power is halved in Rain", s16 damage)
 {
     u16 move;
-    KNOWN_FAILING; // fails bc the bp of solar blade gets rounded up which leads to slightly incorrect calcs down the line
     PARAMETRIZE{ move = MOVE_CELEBRATE; }
     PARAMETRIZE{ move = MOVE_RAIN_DANCE; }
     GIVEN {
@@ -91,7 +90,6 @@ SINGLE_BATTLE_TEST("Solar Beam's power is halved in a Sandstorm", s16 damage)
 SINGLE_BATTLE_TEST("Solar Blade's power is halved in a Sandstorm", s16 damage)
 {
     u16 move;
-    KNOWN_FAILING; // fails bc the bp of solar blade gets rounded up which leads to slightly incorrect calcs down the line
     PARAMETRIZE{ move = MOVE_CELEBRATE; }
     PARAMETRIZE{ move = MOVE_SANDSTORM; }
     GIVEN {
@@ -130,7 +128,6 @@ SINGLE_BATTLE_TEST("Solar Beam's power is halved in Hail", s16 damage)
 SINGLE_BATTLE_TEST("Solar Blade's power is halved in Hail", s16 damage)
 {
     u16 move;
-    KNOWN_FAILING; // fails bc the bp of solar blade gets rounded up which leads to slightly incorrect calcs down the line
     PARAMETRIZE{ move = MOVE_CELEBRATE; }
     PARAMETRIZE{ move = MOVE_HAIL; }
     GIVEN {
@@ -169,7 +166,6 @@ SINGLE_BATTLE_TEST("Solar Beam's power is halved in Snow", s16 damage)
 SINGLE_BATTLE_TEST("Solar Blade's power is halved in Snow", s16 damage)
 {
     u16 move;
-    KNOWN_FAILING; // fails bc the bp of solar blade gets rounded up which leads to slightly incorrect calcs down the line
     PARAMETRIZE{ move = MOVE_CELEBRATE; }
     PARAMETRIZE{ move = MOVE_SNOWSCAPE; }
     GIVEN {
