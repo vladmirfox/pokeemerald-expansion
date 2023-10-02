@@ -1431,10 +1431,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 score -= 8;
             else if (aiData->hpPercents[battlerAtk] <= 25)
                 score -= 10;
-        #if B_SOUND_SUBSTITUTE >= GEN_6
-            else if (HasSoundMove(battlerDef))
+            else if (HasSubstituteIgnoringMove(battlerDef))
                 score -= 8;
-        #endif
             break;
         case EFFECT_LEECH_SEED:
             if (gStatuses3[battlerDef] & STATUS3_LEECHSEED
@@ -2518,7 +2516,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 
                 if (instructedMove == MOVE_NONE
                   || gBattleMoves[instructedMove].instructBanned
-                  || MoveRequiresRecharging(instructedMove)
+                  || gBattleMoves[instructedMove].rechargeMove
+                  || gBattleMoves[instructedMove].twoTurnMove
                   || MoveCallsOtherMove(instructedMove)
                   || IsZMove(instructedMove)
                   || (gLockedMoves[battlerDef] != 0 && gLockedMoves[battlerDef] != 0xFFFF)

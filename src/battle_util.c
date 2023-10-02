@@ -8134,11 +8134,6 @@ bool32 IsBattlerProtected(u32 battler, u32 move)
             return FALSE;
     }
 
-    if (move == MOVE_TEATIME)
-    {
-        return FALSE;
-    }
-
     // Z-Moves and Max Moves bypass protection
     if (gBattleStruct->zmove.active)
     {
@@ -8151,8 +8146,6 @@ bool32 IsBattlerProtected(u32 battler, u32 move)
         && (gBattleMoves[move].makesContact || (gBattleMoves[move].effect == EFFECT_SHELL_SIDE_ARM && gBattleStruct->swapDamageCategory)))
         return FALSE;
     else if (gBattleMoves[move].ignoresProtect)
-        return FALSE;
-    else if (gBattleMoves[move].effect == EFFECT_FEINT)
         return FALSE;
     else if (gProtectStructs[battler].protected)
         return TRUE;

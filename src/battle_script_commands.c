@@ -336,7 +336,6 @@ static const u16 sWhiteOutBadgeMoney[9] = { 8, 16, 24, 36, 48, 64, 80, 100, 120 
 
 #define TAG_LVLUP_BANNER_MON_ICON 55130
 
-static bool8 IsTwoTurnsMove(u16 move);
 static void TrySetDestinyBondToHappen(void);
 static u8 AttacksThisTurn(u8 battler, u16 move); // Note: returns 1 if it's a charging turn, otherwise 2.
 static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr);
@@ -1370,14 +1369,14 @@ static void Cmd_attackcanceler(void)
     gHitMarker |= HITMARKER_OBEYS;
     // Check if no available target present on the field.
     if (NoTargetPresent(gBattlerAttacker, gCurrentMove)
-        && (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
+        && (!gBattleMoves[gCurrentMove].twoTurnMove || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
     {
         if (gBattleMoves[gCurrentMove].effect == EFFECT_FLING) // Edge case for removing a mon's item when there is no target available after using Fling.
             gBattlescriptCurrInstr = BattleScript_FlingFailConsumeItem;
         else
             gBattlescriptCurrInstr = BattleScript_FailedFromAtkString;
 
-        if (!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
+        if (!gBattleMoves[gCurrentMove].twoTurnMove || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
             CancelMultiTurnMoves(gBattlerAttacker);
         return;
     }
@@ -1455,7 +1454,7 @@ static void Cmd_attackcanceler(void)
     }
     else if (IsBattlerProtected(gBattlerTarget, gCurrentMove)
      && (gCurrentMove != MOVE_CURSE || IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST))
-     && ((!IsTwoTurnsMove(gCurrentMove) || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
+     && ((!gBattleMoves[gCurrentMove].twoTurnMove || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
      && gBattleMoves[gCurrentMove].effect != EFFECT_SUCKER_PUNCH)
     {
         if (IsMoveMakingContact(gCurrentMove, gBattlerAttacker))
@@ -9608,7 +9607,8 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS(const u8 *failInstr);
         u16 move = gLastMoves[gBattlerTarget];
-        if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || gBattleMoves[move].instructBanned)
+        if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || gBattleMoves[move].instructBanned
+         || gBattleMoves[move].twoTurnMove | gBattleMoves[move].rechargeMove)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }
@@ -12705,7 +12705,7 @@ static void Cmd_settypetorandomresistance(void)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }
-    else if (IsTwoTurnsMove(gLastLandedMoves[gBattlerAttacker])
+    else if (gBattleMoves[gLastLandedMoves[gBattlerAttacker]].twoTurnMove
             && gBattleMons[gLastHitBy[gBattlerAttacker]].status2 & STATUS2_MULTIPLETURNS)
     {
         gBattlescriptCurrInstr = cmd->failInstr;
@@ -12814,20 +12814,6 @@ static void Cmd_copymovepermanently(void)
     }
 }
 
-static bool8 IsTwoTurnsMove(u16 move)
-{
-    if (gBattleMoves[move].effect == EFFECT_SKULL_BASH
-     || gBattleMoves[move].effect == EFFECT_TWO_TURNS_ATTACK
-     || gBattleMoves[move].effect == EFFECT_SOLAR_BEAM
-     || gBattleMoves[move].effect == EFFECT_SEMI_INVULNERABLE
-     || gBattleMoves[move].effect == EFFECT_BIDE
-     || gBattleMoves[move].effect == EFFECT_METEOR_BEAM
-     || gBattleMoves[move].effect == EFFECT_GEOMANCY)
-        return TRUE;
-    else
-        return FALSE;
-}
-
 // unused
 static u8 AttacksThisTurn(u8 battler, u16 move) // Note: returns 1 if it's a charging turn, otherwise 2
 {
@@ -12836,11 +12822,7 @@ static u8 AttacksThisTurn(u8 battler, u16 move) // Note: returns 1 if it's a cha
         && IsBattlerWeatherAffected(battler, B_WEATHER_SUN))
         return 2;
 
-    if (gBattleMoves[move].effect == EFFECT_SKULL_BASH
-     || gBattleMoves[move].effect == EFFECT_TWO_TURNS_ATTACK
-     || gBattleMoves[move].effect == EFFECT_SOLAR_BEAM
-     || gBattleMoves[move].effect == EFFECT_SEMI_INVULNERABLE
-     || gBattleMoves[move].effect == EFFECT_BIDE)
+    if (gBattleMoves[move].twoTurnMove)
     {
         if ((gHitMarker & HITMARKER_CHARGING))
             return 1;
@@ -12856,8 +12838,8 @@ static void Cmd_trychoosesleeptalkmove(void)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if ((gBattleMoves[gBattleMons[gBattlerAttacker].moves[i]].sleepTalkBanned)
-            || IsTwoTurnsMove(gBattleMons[gBattlerAttacker].moves[i]))
+        if (gBattleMoves[gBattleMons[gBattlerAttacker].moves[i]].sleepTalkBanned
+            || gBattleMoves[gBattleMons[gBattlerAttacker].moves[i]].twoTurnMove)
         {
             unusableMovesBits |= gBitTable[i];
         }
@@ -14693,10 +14675,6 @@ bool32 DoesSubstituteBlockMove(u32 battlerAtk, u32 battlerDef, u32 move)
 {
     if (!(gBattleMons[battlerDef].status2 & STATUS2_SUBSTITUTE))
         return FALSE;
-#if B_SOUND_SUBSTITUTE >= GEN_6
-    else if (gBattleMoves[move].soundMove)
-        return FALSE;
-#endif
     else if (gBattleMoves[move].ignoresSubstitute)
         return FALSE;
     else if (GetBattlerAbility(battlerAtk) == ABILITY_INFILTRATOR)
@@ -15744,41 +15722,13 @@ static bool32 CriticalCapture(u32 odds)
 #endif
 }
 
-static const u16 sParentalBondBannedEffects[] =
-{
-    EFFECT_BEAT_UP,
-    EFFECT_BIDE, // Note: Bide should work with Parental Bond. This will be addressed in future.
-    EFFECT_ENDEAVOR,
-    EFFECT_EXPLOSION,
-    EFFECT_FINAL_GAMBIT,
-    EFFECT_FLING,
-    EFFECT_GEOMANCY,
-    EFFECT_METEOR_BEAM,
-    EFFECT_MULTI_HIT,
-    EFFECT_OHKO,
-    EFFECT_ROLLOUT,
-    EFFECT_SEMI_INVULNERABLE,
-    EFFECT_SKULL_BASH,
-    EFFECT_SKY_DROP,
-    EFFECT_SOLAR_BEAM,
-    EFFECT_TRIPLE_KICK,
-    EFFECT_TWO_TURNS_ATTACK,
-    EFFECT_UPROAR,
-};
-
 bool32 IsMoveAffectedByParentalBond(u32 move, u32 battler)
 {
-    if (move != MOVE_NONE && move != MOVE_STRUGGLE
+    if (move != MOVE_NONE && move != MOVE_UNAVAILABLE && move != MOVE_STRUGGLE
+        && !gBattleMoves[move].noParentalBondHit
         && gBattleMoves[move].split != SPLIT_STATUS
         && !gBattleMoves[move].strikeCount > 2)
     {
-        u32 i;
-        for (i = 0; i < ARRAY_COUNT(sParentalBondBannedEffects); i++)
-        {
-            if (gBattleMoves[move].effect == sParentalBondBannedEffects[i])
-                return FALSE;
-        }
-
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
         {
             switch (GetBattlerMoveTargetType(battler, move))

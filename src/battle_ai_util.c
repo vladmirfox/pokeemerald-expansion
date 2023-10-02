@@ -1025,15 +1025,15 @@ u32 AI_WhichMoveBetter(u32 move1, u32 move2, u32 battlerAtk, u32 battlerDef)
     // Check recoil
     if (AI_IsDamagedByRecoil(battlerAtk))
     {
-        if (IS_MOVE_RECOIL(move1) && !IS_MOVE_RECOIL(move2) && gBattleMoves[move2].effect != EFFECT_RECHARGE)
+        if (IS_MOVE_RECOIL(move1) && !IS_MOVE_RECOIL(move2) && !gBattleMoves[move2].rechargeMove)
             return 1;
-        if (IS_MOVE_RECOIL(move2) && !IS_MOVE_RECOIL(move1) && gBattleMoves[move1].effect != EFFECT_RECHARGE)
+        if (IS_MOVE_RECOIL(move2) && !IS_MOVE_RECOIL(move1) && !gBattleMoves[move1].rechargeMove)
             return 0;
     }
     // Check recharge
-    if (gBattleMoves[move1].effect == EFFECT_RECHARGE && gBattleMoves[move2].effect != EFFECT_RECHARGE)
+    if (gBattleMoves[move1].rechargeMove && !gBattleMoves[move2].rechargeMove)
         return 1;
-    if (gBattleMoves[move2].effect == EFFECT_RECHARGE && gBattleMoves[move1].effect != EFFECT_RECHARGE)
+    if (gBattleMoves[move2].rechargeMove && !gBattleMoves[move1].rechargeMove)
         return 0;
     // Check additional effect.
     effect1 = AI_IsMoveEffectInPlus(battlerAtk, battlerDef, move1);
@@ -2389,6 +2389,11 @@ bool32 HasDamagingMoveOfType(u32 battlerId, u32 type)
     return FALSE;
 }
 
+bool32 HasSubstituteIgnoringMove(u32 battler)
+{
+    CHECK_MOVE_FLAG(ignoresSubstitute);
+}
+
 bool32 HasSoundMove(u32 battler)
 {
     CHECK_MOVE_FLAG(soundMove);
@@ -2416,17 +2421,6 @@ bool32 IsEncoreEncouragedEffect(u32 moveEffect)
     for (i = 0; i < ARRAY_COUNT(sEncouragedEncoreEffects); i++)
     {
         if (moveEffect == sEncouragedEncoreEffects[i])
-            return TRUE;
-    }
-    return FALSE;
-}
-
-bool32 MoveRequiresRecharging(u32 move)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sRechargeMoves); i++)
-    {
-        if (move == sRechargeMoves[i])
             return TRUE;
     }
     return FALSE;
