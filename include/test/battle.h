@@ -634,7 +634,7 @@ struct AILogLine
 {
     const char *file;
     u16 line:15;
-    u16 set:1; // Weather score was set, or added/subtracted
+    u16 set:1; // Whether score was set, or added/subtracted
     s16 score;
 };
 
@@ -724,17 +724,6 @@ extern struct BattleTestRunnerState *gBattleTestRunnerState;
 #define MEMBERS_6(a, b, c, d, e, f) a; b; c; d; e; f;
 #define MEMBERS_7(a, b, c, d, e, f, g) a; b; c; d; e; f; g;
 #define MEMBERS_8(a, b, c, d, e, f, g, h) a; b; c; d; e; f; g; h;
-
-#define APPEND(...) VARARG_8(APPEND_, __VA_ARGS__)
-#define APPEND_0()
-#define APPEND_1(a) a,
-#define APPEND_2(a, b) a,  b,
-#define APPEND_3(a, b, c) a,  b,  c,
-#define APPEND_4(a, b, c, d) a,  b,  c,  d,
-#define APPEND_5(a, b, c, d, e) a,  b,  c,  d,  e,
-#define APPEND_6(a, b, c, d, e, f) a,  b,  c,  d,  e,  f,
-#define APPEND_7(a, b, c, d, e, f, g) a,  b,  c,  d,  e,  f,  g,
-#define APPEND_8(a, b, c, d, e, f, g, h) a,  b,  c,  d,  e,  f,  g,  h,
 
 #define APPEND_TRUE(...) VARARG_8(APPEND_TRUE_, __VA_ARGS__)
 #define APPEND_TRUE_0()

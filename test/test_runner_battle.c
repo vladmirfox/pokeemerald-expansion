@@ -840,7 +840,6 @@ void TestRunner_Battle_CheckChosenMove(u32 battlerId, u32 moveId, u32 target)
                 Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched NOT_EXPECTED_MOVE %S", filename, expectedAction->sourceLine, gMoveNames[expectedMoveId]);
         }
     }
-    // MgbaPrintf_("%s:%d: Matched %S", filename, expectedAction->sourceLine, gMoveNames[moveId]); // Debugging help
     // Turn passed, clear logs from the turn
     ClearAiLog(battlerId);
     DATA.aiActionsPlayed[battlerId]++;
@@ -964,7 +963,7 @@ static void PrintAiMoveLog(u32 battlerId, u32 moveSlot, u32 moveId, s32 totalSco
     }
     if (scoreFromLogs != totalScore)
     {
-        MgbaPrintf_("Warning! Score from logs(%d) is different than actual score(%d). Make sure all of the score adjustments use the ADJUST_SCORE macro\n", scoreFromLogs, totalScore);
+        Test_ExitWithResult(TEST_RESULT_ERROR, "Warning! Score from logs(%d) is different than actual score(%d). Make sure all of the score adjustments use the ADJUST_SCORE macro\n", scoreFromLogs, totalScore);
     }
     MgbaPrintf_("Total: %d\n", totalScore);
 }
@@ -996,12 +995,6 @@ void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
             u32 moveId1 = gBattleMons[battlerId].moves[scoreCtx->moveSlot1];
             s32 target = scoreCtx->target;
             s32 *scores = gBattleStruct->aiFinalScore[battlerId][target];
-
-            //for (i = 0; i < MAX_MON_MOVES; i++)
-            //{
-                //MgbaPrintf_("Target = %d\n", target);
-                //MgbaPrintf_("Score %d: %d", i+1, scores[i]);
-            //}
 
             if (scoreCtx->toValue)
             {
@@ -2560,25 +2553,6 @@ struct AILogLine *GetLogLine(u32 battlerId, u32 moveIndex)
     }
 
     Test_ExitWithResult(TEST_RESULT_ERROR, "Too many AI log lines");
-
-    /*
-    // Try compacting.
-    for (i = j = 0; i < ARRAY_COUNT(DATA.aiLogLines); i++)
-    {
-        struct AILogLine *log = &DATA.aiLogLines[i];
-        if (log->battlerId == MAX_BATTLERS_COUNT)
-        {
-            if (i != j)
-                DATA.aiLogLines[j] = DATA.aiLogLines[i];
-            j++;
-        }
-    }
-
-    if (j == ARRAY_COUNT(DATA.aiLogLines))
-        Test_ExitWithResult(TEST_RESULT_ERROR, "Too many AI log lines");
-
-    return &DATA.aiLogLines[j];
-    */
 }
 
 void TestRunner_Battle_AILogScore(const char *file, u32 line, u32 battlerId, u32 moveIndex, s32 score, bool32 setScore)
