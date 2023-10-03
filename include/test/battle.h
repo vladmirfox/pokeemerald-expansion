@@ -199,13 +199,13 @@
  * - Instead of player and opponent there is playerLeft, playerRight,
  *   opponentLeft, and opponentRight.
  *
- * AI_BATTLE_TEST(name, results...) and AI_DOUBLE_BATTLE_TEST(name, results...)
+ * AI_SINGLE_BATTLE_TEST(name, results...) and AI_DOUBLE_BATTLE_TEST(name, results...)
  * Define battles where opponent mons are controlled by AI, the same that runs
  * when battling regular Trainers. The flags for AI should be specified by
  * the AI_FLAGS command.
  * The rules remain the same as with the SINGLE and DOUBLE battle tests
  * with some differences:
- * - opponent's action is specified by the EXPECTED_MOVE(s) / EXPECTED_SEND_OUT / EXPECTED_SWITCH commands
+ * - opponent's action is specified by the EXPECT_MOVE(s) / EXPECT_SEND_OUT / EXPECT_SWITCH commands
  * - we don't control what opponent actually does, instead we make sure the opponent does what we expect it to do
  * - we still control the player's action the same way
  * - apart from the EXPECTED commands, there's also a new SCORE_ and SCORE__VAL commands
@@ -502,7 +502,7 @@
 #define MAX_QUEUED_EVENTS 25
 #define MAX_EXPECTED_ACTIONS 10
 
-enum { BATTLE_TEST_SINGLES, BATTLE_TEST_DOUBLES, BATTLE_TEST_WILD, BATTLE_TEST_AI, BATTLE_TEST_AI_DOUBLES };
+enum { BATTLE_TEST_SINGLES, BATTLE_TEST_DOUBLES, BATTLE_TEST_WILD, BATTLE_TEST_AI_SINGLES, BATTLE_TEST_AI_DOUBLES };
 
 typedef void (*SingleBattleTestFunction)(void *, u32, struct BattlePokemon *, struct BattlePokemon *);
 typedef void (*DoubleBattleTestFunction)(void *, u32, struct BattlePokemon *, struct BattlePokemon *, struct BattlePokemon *, struct BattlePokemon *);
@@ -602,7 +602,7 @@ struct BattlerTurn
     struct TurnRNG rng;
 };
 
-struct ExpectedAiAction
+struct ExpectedAIAction
 {
     u16 sourceLine;
     u8 type:4; // which action
@@ -677,7 +677,7 @@ struct BattleTestData
     struct QueuedEvent queuedEvents[MAX_QUEUED_EVENTS];
     u8 expectedAiActionIndex[MAX_BATTLERS_COUNT];
     u8 aiActionsPlayed[MAX_BATTLERS_COUNT];
-    struct ExpectedAiAction expectedAiActions[MAX_BATTLERS_COUNT][MAX_EXPECTED_ACTIONS];
+    struct ExpectedAIAction expectedAiActions[MAX_BATTLERS_COUNT][MAX_EXPECTED_ACTIONS];
     struct ExpectedAiScore expectedAiScores[MAX_BATTLERS_COUNT][MAX_TURNS][MAX_AI_SCORE_COMPARISION_PER_TURN]; // Max 4 comparisions per turn
     struct AILogLine aiLogLines[MAX_BATTLERS_COUNT][MAX_MON_MOVES][MAX_AI_LOG_LINES];
     u8 aiLogPrintedForMove[MAX_BATTLERS_COUNT]; // Marks ai score log as printed for move, so the same log isn't displayed multiple times.
@@ -783,7 +783,7 @@ extern struct BattleTestRunnerState *gBattleTestRunnerState;
 
 #define SINGLE_BATTLE_TEST(_name, ...) BATTLE_TEST_ARGS_SINGLE(_name, BATTLE_TEST_SINGLES, __VA_ARGS__)
 #define WILD_BATTLE_TEST(_name, ...) BATTLE_TEST_ARGS_SINGLE(_name, BATTLE_TEST_WILD, __VA_ARGS__)
-#define AI_BATTLE_TEST(_name, ...) BATTLE_TEST_ARGS_SINGLE(_name, BATTLE_TEST_AI, __VA_ARGS__)
+#define AI_SINGLE_BATTLE_TEST(_name, ...) BATTLE_TEST_ARGS_SINGLE(_name, BATTLE_TEST_AI_SINGLES, __VA_ARGS__)
 
 #define DOUBLE_BATTLE_TEST(_name, ...) BATTLE_TEST_ARGS_DOUBLE(_name, BATTLE_TEST_DOUBLES, __VA_ARGS__)
 #define AI_DOUBLE_BATTLE_TEST(_name, ...) BATTLE_TEST_ARGS_DOUBLE(_name, BATTLE_TEST_AI_DOUBLES, __VA_ARGS__)
@@ -863,13 +863,13 @@ void Friendship_(u32 sourceLine, u32 friendship);
 void Status1_(u32 sourceLine, u32 status1);
 void OTName_(u32 sourceLine, const u8 *otName);
 
-// Created for easy use of EXPECTED_MOVES, so the user can provide 1, 2, 3 or 4 moves for AI which can pass the test.
+// Created for easy use of EXPECT_MOVES, so the user can provide 1, 2, 3 or 4 moves for AI which can pass the test.
 struct FourMoves
 {
     u16 moves[MAX_MON_MOVES];
 };
 
-struct TestAiScoreStruct
+struct TestAIScoreStruct
 {
     u32 move1;
     bool8 explicitMove1;
@@ -892,20 +892,20 @@ enum { TURN_CLOSED, TURN_OPEN, TURN_CLOSING };
 
 #define MOVE(battler, ...) Move(__LINE__, battler, (struct MoveContext) { APPEND_TRUE(__VA_ARGS__) })
 
-#define EXPECTED_MOVE(battler, ...) ExpectedMove(__LINE__, battler, (struct MoveContext) { APPEND_TRUE(__VA_ARGS__) })
-#define NOT_EXPECTED_MOVE(battler, _move) ExpectedMove(__LINE__, battler, (struct MoveContext) { .move = _move, .explicitMove = TRUE, .notExpected = TRUE, .explicitNotExpected = TRUE, })
-#define EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, FALSE, (struct FourMoves) { __VA_ARGS__ })
-#define NOT_EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, TRUE, (struct FourMoves) { __VA_ARGS__ })
-#define EXPECTED_SEND_OUT(battler, partyIndex) ExpectedSendOut(__LINE__, battler, partyIndex)
-#define EXPECTED_SWITCH(battler, partyIndex) ExpectedSwitch(__LINE__, battler, partyIndex)
-#define SCORE_EQ(battler, ...) Score(__LINE__, battler, CMP_EQUAL, FALSE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
-#define SCORE_NE(battler, ...) Score(__LINE__, battler, CMP_NOT_EQUAL, FALSE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
-#define SCORE_GT(battler, ...) Score(__LINE__, battler, CMP_GREATER_THAN, FALSE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
-#define SCORE_LT(battler, ...) Score(__LINE__, battler, CMP_LESS_THAN, FALSE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
-#define SCORE_EQ_VAL(battler, ...) Score(__LINE__, battler, CMP_EQUAL, TRUE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
-#define SCORE_NE_VAL(battler, ...) Score(__LINE__, battler, CMP_NOT_EQUAL, TRUE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
-#define SCORE_GT_VAL(battler, ...) Score(__LINE__, battler, CMP_GREATER_THAN, TRUE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
-#define SCORE_LT_VAL(battler, ...) Score(__LINE__, battler, CMP_LESS_THAN, TRUE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
+#define EXPECT_MOVE(battler, ...) ExpectMove(__LINE__, battler, (struct MoveContext) { APPEND_TRUE(__VA_ARGS__) })
+#define NOT_EXPECTED_MOVE(battler, _move) ExpectMove(__LINE__, battler, (struct MoveContext) { .move = _move, .explicitMove = TRUE, .notExpected = TRUE, .explicitNotExpected = TRUE, })
+#define EXPECT_MOVES(battler, ...) ExpectMoves(__LINE__, battler, FALSE, (struct FourMoves) { __VA_ARGS__ })
+#define NOT_EXPECT_MOVES(battler, ...) ExpectMoves(__LINE__, battler, TRUE, (struct FourMoves) { __VA_ARGS__ })
+#define EXPECT_SEND_OUT(battler, partyIndex) ExpectSendOut(__LINE__, battler, partyIndex)
+#define EXPECT_SWITCH(battler, partyIndex) ExpectSwitch(__LINE__, battler, partyIndex)
+#define SCORE_EQ(battler, ...) Score(__LINE__, battler, CMP_EQUAL, FALSE, (struct TestAIScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
+#define SCORE_NE(battler, ...) Score(__LINE__, battler, CMP_NOT_EQUAL, FALSE, (struct TestAIScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
+#define SCORE_GT(battler, ...) Score(__LINE__, battler, CMP_GREATER_THAN, FALSE, (struct TestAIScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
+#define SCORE_LT(battler, ...) Score(__LINE__, battler, CMP_LESS_THAN, FALSE, (struct TestAIScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
+#define SCORE_EQ_VAL(battler, ...) Score(__LINE__, battler, CMP_EQUAL, TRUE, (struct TestAIScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
+#define SCORE_NE_VAL(battler, ...) Score(__LINE__, battler, CMP_NOT_EQUAL, TRUE, (struct TestAIScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
+#define SCORE_GT_VAL(battler, ...) Score(__LINE__, battler, CMP_GREATER_THAN, TRUE, (struct TestAIScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
+#define SCORE_LT_VAL(battler, ...) Score(__LINE__, battler, CMP_LESS_THAN, TRUE, (struct TestAIScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
 
 #define FORCED_MOVE(battler) ForcedMove(__LINE__, battler)
 #define SWITCH(battler, partyIndex) Switch(__LINE__, battler, partyIndex)
@@ -933,7 +933,7 @@ struct MoveContext
     // TODO: u8 zMove:1;
     u16 allowed:1;
     u16 explicitAllowed:1;
-    u16 notExpected:1; // Has effect only with EXPECTED_MOVE
+    u16 notExpected:1; // Has effect only with EXPECT_MOVE
     u16 explicitNotExpected:1;
     struct BattlePokemon *target;
     bool8 explicitTarget;
@@ -954,11 +954,11 @@ struct ItemContext
 void OpenTurn(u32 sourceLine);
 void CloseTurn(u32 sourceLine);
 void Move(u32 sourceLine, struct BattlePokemon *, struct MoveContext);
-void ExpectedMove(u32 sourceLine, struct BattlePokemon *, struct MoveContext);
-void ExpectedMoves(u32 sourceLine, struct BattlePokemon *battler, bool32 notExpected, struct FourMoves moves);
-void ExpectedSendOut(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex);
-void ExpectedSwitch(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex);
-void Score(u32 sourceLine, struct BattlePokemon *battler, u32 cmp, bool32 toValue, struct TestAiScoreStruct cmpCtx);
+void ExpectMove(u32 sourceLine, struct BattlePokemon *, struct MoveContext);
+void ExpectMoves(u32 sourceLine, struct BattlePokemon *battler, bool32 notExpected, struct FourMoves moves);
+void ExpectSendOut(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex);
+void ExpectSwitch(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex);
+void Score(u32 sourceLine, struct BattlePokemon *battler, u32 cmp, bool32 toValue, struct TestAIScoreStruct cmpCtx);
 void ForcedMove(u32 sourceLine, struct BattlePokemon *);
 void Switch(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 void SkipTurn(u32 sourceLine, struct BattlePokemon *);

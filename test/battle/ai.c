@@ -2,7 +2,7 @@
 #include "test/battle.h"
 #include "battle_ai_util.h"
 
-AI_BATTLE_TEST("AI gets baited by Protect Switch tactics") // This behavior is to be fixed.
+AI_SINGLE_BATTLE_TEST("AI gets baited by Protect Switch tactics") // This behavior is to be fixed.
 {
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT | AI_FLAG_SMART_SWITCHING);
@@ -12,17 +12,17 @@ AI_BATTLE_TEST("AI gets baited by Protect Switch tactics") // This behavior is t
         OPPONENT(SPECIES_SCIZOR) { Moves(MOVE_HYPER_BEAM, MOVE_FACADE, MOVE_GIGA_IMPACT, MOVE_EXTREME_SPEED); }
     } WHEN {
 
-        TURN { MOVE(player, MOVE_PROTECT);  EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); } // E-quake
-        TURN { SWITCH(player, 1);           EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); } // E-quake
-        TURN { MOVE(player, MOVE_PROTECT);  EXPECTED_MOVE(opponent, MOVE_THUNDERBOLT); } // T-Bolt
-        TURN { SWITCH(player, 0);           EXPECTED_MOVE(opponent, MOVE_THUNDERBOLT); } // T-Bolt
-        TURN { MOVE(player, MOVE_PROTECT);  EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); } // E-quake
-        TURN { SWITCH(player, 1);           EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE);} // E-quake
-        TURN { MOVE(player, MOVE_PROTECT);  EXPECTED_MOVE(opponent, MOVE_THUNDERBOLT); } // T-Bolt
+        TURN { MOVE(player, MOVE_PROTECT);  EXPECT_MOVE(opponent, MOVE_EARTHQUAKE); } // E-quake
+        TURN { SWITCH(player, 1);           EXPECT_MOVE(opponent, MOVE_EARTHQUAKE); } // E-quake
+        TURN { MOVE(player, MOVE_PROTECT);  EXPECT_MOVE(opponent, MOVE_THUNDERBOLT); } // T-Bolt
+        TURN { SWITCH(player, 0);           EXPECT_MOVE(opponent, MOVE_THUNDERBOLT); } // T-Bolt
+        TURN { MOVE(player, MOVE_PROTECT);  EXPECT_MOVE(opponent, MOVE_EARTHQUAKE); } // E-quake
+        TURN { SWITCH(player, 1);           EXPECT_MOVE(opponent, MOVE_EARTHQUAKE);} // E-quake
+        TURN { MOVE(player, MOVE_PROTECT);  EXPECT_MOVE(opponent, MOVE_THUNDERBOLT); } // T-Bolt
     }
 }
 
-AI_BATTLE_TEST("AI prefers Bubble over Water Gun if it's slower")
+AI_SINGLE_BATTLE_TEST("AI prefers Bubble over Water Gun if it's slower")
 {
     u32 speedPlayer, speedAi;
 
@@ -47,7 +47,7 @@ AI_BATTLE_TEST("AI prefers Bubble over Water Gun if it's slower")
     }
 }
 
-AI_BATTLE_TEST("AI prefers Water Gun over Bubble if it knows that foe has Contrary")
+AI_SINGLE_BATTLE_TEST("AI prefers Water Gun over Bubble if it knows that foe has Contrary")
 {
     u32 abilityAI;
 
@@ -70,7 +70,7 @@ AI_BATTLE_TEST("AI prefers Water Gun over Bubble if it knows that foe has Contra
     }
 }
 
-AI_BATTLE_TEST("AI prefers moves with better accuracy, but only if they both require the same number of hits to ko")
+AI_SINGLE_BATTLE_TEST("AI prefers moves with better accuracy, but only if they both require the same number of hits to ko")
 {
     u16 move1 = MOVE_NONE, move2 = MOVE_NONE, move3 = MOVE_NONE, move4 = MOVE_NONE;
     u16 hp, expectedMove, turns, abilityAtk, expectedMove2;
@@ -111,26 +111,26 @@ AI_BATTLE_TEST("AI prefers moves with better accuracy, but only if they both req
             {
             case 1:
                 if (expectedMove2 != MOVE_NONE) {
-                    TURN { EXPECTED_MOVES(opponent, expectedMove, expectedMove2); SEND_OUT(player, 1); }
+                    TURN { EXPECT_MOVES(opponent, expectedMove, expectedMove2); SEND_OUT(player, 1); }
                 }
                 else {
-                    TURN { EXPECTED_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
+                    TURN { EXPECT_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
                 }
                 break;
             case 2:
-                TURN { EXPECTED_MOVE(opponent, expectedMove); }
-                TURN { EXPECTED_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
                 break;
             case 3:
-                TURN { EXPECTED_MOVE(opponent, expectedMove); }
-                TURN { EXPECTED_MOVE(opponent, expectedMove); }
-                TURN { EXPECTED_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
                 break;
             case 4:
-                TURN { EXPECTED_MOVE(opponent, expectedMove); }
-                TURN { EXPECTED_MOVE(opponent, expectedMove); }
-                TURN { EXPECTED_MOVE(opponent, expectedMove); }
-                TURN { EXPECTED_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
                 break;
             }
     } SCENE {
@@ -138,7 +138,7 @@ AI_BATTLE_TEST("AI prefers moves with better accuracy, but only if they both req
     }
 }
 
-AI_BATTLE_TEST("AI prefers moves which deal more damage instead of moves which are super-effective but deal less damage")
+AI_SINGLE_BATTLE_TEST("AI prefers moves which deal more damage instead of moves which are super-effective but deal less damage")
 {
     u8 turns = 0;
     u16 move1 = MOVE_NONE, move2 = MOVE_NONE, move3 = MOVE_NONE, move4 = MOVE_NONE;
@@ -161,13 +161,13 @@ AI_BATTLE_TEST("AI prefers moves which deal more damage instead of moves which a
             switch (turns)
             {
             case 2:
-                TURN { EXPECTED_MOVE(opponent, expectedMove); }
-                TURN { EXPECTED_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
                 break;
             case 3:
-                TURN { EXPECTED_MOVE(opponent, expectedMove); }
-                TURN { EXPECTED_MOVE(opponent, expectedMove); }
-                TURN { EXPECTED_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); }
+                TURN { EXPECT_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
                 break;
             }
     } SCENE {
@@ -175,7 +175,7 @@ AI_BATTLE_TEST("AI prefers moves which deal more damage instead of moves which a
     }
 }
 
-AI_BATTLE_TEST("AI prefers Earthquake over Drill Run if both require the same number of hits to ko")
+AI_SINGLE_BATTLE_TEST("AI prefers Earthquake over Drill Run if both require the same number of hits to ko")
 {
     // Drill Run has less accuracy than E-quake, but can score a higher crit. However the chance is too small, so AI should ignore it.
     GIVEN {
@@ -184,15 +184,15 @@ AI_BATTLE_TEST("AI prefers Earthquake over Drill Run if both require the same nu
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_GEODUDE) { Moves(MOVE_EARTHQUAKE, MOVE_DRILL_RUN); }
     } WHEN {
-        TURN { EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); }
-        TURN { EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); SEND_OUT(player, 1); }
+        TURN { EXPECT_MOVE(opponent, MOVE_EARTHQUAKE); }
+        TURN { EXPECT_MOVE(opponent, MOVE_EARTHQUAKE); SEND_OUT(player, 1); }
     }
     SCENE {
         MESSAGE("Typhlosion fainted!");
     }
 }
 
-AI_BATTLE_TEST("AI chooses the safest option to faint the target, taking into account accuracy and move effect")
+AI_SINGLE_BATTLE_TEST("AI chooses the safest option to faint the target, taking into account accuracy and move effect")
 {
     u16 move1 = MOVE_NONE, move2 = MOVE_NONE, move3 = MOVE_NONE, move4 = MOVE_NONE;
     u16 expectedMove, abilityAtk = ABILITY_NONE, abilityDef;
@@ -214,8 +214,8 @@ AI_BATTLE_TEST("AI chooses the safest option to faint the target, taking into ac
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_GEODUDE) { Moves(move1, move2, move3, move4); Ability(abilityAtk); }
     } WHEN {
-        TURN {  if (expectedMove2 == MOVE_NONE) { EXPECTED_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
-                else {EXPECTED_MOVES(opponent, expectedMove, expectedMove2); SCORE_EQ(opponent, expectedMove, expectedMove2); SEND_OUT(player, 1);}
+        TURN {  if (expectedMove2 == MOVE_NONE) { EXPECT_MOVE(opponent, expectedMove); SEND_OUT(player, 1); }
+                else {EXPECT_MOVES(opponent, expectedMove, expectedMove2); SCORE_EQ(opponent, expectedMove, expectedMove2); SEND_OUT(player, 1);}
              }
     }
     SCENE {
@@ -223,7 +223,7 @@ AI_BATTLE_TEST("AI chooses the safest option to faint the target, taking into ac
     }
 }
 
-AI_BATTLE_TEST("AI won't use ground type attacks against flying type Pokemon unless Gravity is in effect")
+AI_SINGLE_BATTLE_TEST("AI won't use ground type attacks against flying type Pokemon unless Gravity is in effect")
 {
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
@@ -233,13 +233,13 @@ AI_BATTLE_TEST("AI won't use ground type attacks against flying type Pokemon unl
     } WHEN {
             TURN { NOT_EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); }
             TURN { MOVE(player, MOVE_GRAVITY); NOT_EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); }
-            TURN { EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); SEND_OUT(player, 1); }
+            TURN { EXPECT_MOVE(opponent, MOVE_EARTHQUAKE); SEND_OUT(player, 1); }
     } SCENE {
         MESSAGE("Gravity intensified!");
     }
 }
 
-AI_BATTLE_TEST("AI will not switch in a Pokemon which is slower and gets 1HKOed after fainting")
+AI_SINGLE_BATTLE_TEST("AI will not switch in a Pokemon which is slower and gets 1HKOed after fainting")
 {
     bool32 alakazamFaster;
     u32 speedAlakazm;
@@ -256,7 +256,7 @@ AI_BATTLE_TEST("AI will not switch in a Pokemon which is slower and gets 1HKOed 
         OPPONENT(SPECIES_ALAKAZAM) { Speed(speedAlakazm); Moves(MOVE_FOCUS_BLAST, MOVE_PSYCHIC); } // Alakazam has a move which OHKOes Weavile, but it doesn't matter if he's getting KO-ed first.
         OPPONENT(SPECIES_BLASTOISE) { Speed(200); Moves(MOVE_BUBBLE_BEAM, MOVE_WATER_GUN, MOVE_LEER, MOVE_STRENGTH); } // Can't OHKO, but survives a hit from Weavile's Night Slash.
     } WHEN {
-            TURN { MOVE(player, MOVE_NIGHT_SLASH) ; EXPECTED_SEND_OUT(opponent, alakazamFaster ? 1 : 2); }
+            TURN { MOVE(player, MOVE_NIGHT_SLASH) ; EXPECT_SEND_OUT(opponent, alakazamFaster ? 1 : 2); }
     } SCENE {
         MESSAGE("Foe Kadabra fainted!");
         if (alakazamFaster) {
@@ -267,7 +267,7 @@ AI_BATTLE_TEST("AI will not switch in a Pokemon which is slower and gets 1HKOed 
     }
 }
 
-AI_BATTLE_TEST("AI switches if Perish Song is about to kill")
+AI_SINGLE_BATTLE_TEST("AI switches if Perish Song is about to kill")
 {
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
@@ -278,7 +278,7 @@ AI_BATTLE_TEST("AI switches if Perish Song is about to kill")
             TURN { MOVE(player, MOVE_PERISH_SONG); }
             TURN { ; }
             TURN { ; }
-            TURN { EXPECTED_SWITCH(opponent, 1); }
+            TURN { EXPECT_SWITCH(opponent, 1); }
     } SCENE {
         MESSAGE("{PKMN} TRAINER LEAF sent out Crobat!");
     }
@@ -367,14 +367,14 @@ AI_DOUBLE_BATTLE_TEST("AI will not use a status move if partner already chose He
     }
 }
 
-AI_BATTLE_TEST("AI without any flags chooses moves at random - singles")
+AI_SINGLE_BATTLE_TEST("AI without any flags chooses moves at random - singles")
 {
     GIVEN {
         AI_FLAGS(0);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_NIDOQUEEN) { Moves(MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND); }
     } WHEN {
-            TURN { EXPECTED_MOVES(opponent, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
+            TURN { EXPECT_MOVES(opponent, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
                    SCORE_EQ_VAL(opponent, MOVE_SPLASH, AI_SCORE_DEFAULT);
                    SCORE_EQ_VAL(opponent, MOVE_EXPLOSION, AI_SCORE_DEFAULT);
                    SCORE_EQ_VAL(opponent, MOVE_RAGE, AI_SCORE_DEFAULT);
@@ -392,8 +392,8 @@ AI_DOUBLE_BATTLE_TEST("AI without any flags chooses moves at random - doubles")
         OPPONENT(SPECIES_NIDOQUEEN) { Moves(MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND); }
         OPPONENT(SPECIES_NIDOQUEEN) { Moves(MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND); }
     } WHEN {
-            TURN { EXPECTED_MOVES(opponentLeft, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
-                   EXPECTED_MOVES(opponentRight, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
+            TURN { EXPECT_MOVES(opponentLeft, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
+                   EXPECT_MOVES(opponentRight, MOVE_SPLASH, MOVE_EXPLOSION, MOVE_RAGE, MOVE_HELPING_HAND);
                    SCORE_EQ_VAL(opponentLeft, MOVE_SPLASH, AI_SCORE_DEFAULT, target:playerLeft);
                    SCORE_EQ_VAL(opponentLeft, MOVE_EXPLOSION, AI_SCORE_DEFAULT, target:playerLeft);
                    SCORE_EQ_VAL(opponentLeft, MOVE_RAGE, AI_SCORE_DEFAULT, target:playerLeft);
