@@ -744,6 +744,13 @@ s32 AI_CalcDamageSaveBattlers(u32 move, u32 battlerAtk, u32 battlerDef, u8 *type
     AI_CalcDamage(move, battlerAtk, battlerDef, typeEffectiveness, considerZPower, AI_GetWeather(AI_DATA));
 }
 
+static inline s32 LowestRollDmg(s32 dmg)
+{
+    dmg *= 100 - 15;
+    dmg /= 100;
+    return dmg;
+}
+
 s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectiveness, bool32 considerZPower, u32 weather)
 {
     s32 dmg, moveType;
@@ -802,11 +809,11 @@ s32 AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u8 *typeEffectivenes
                                              aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
             u32 critChance = GetCritHitChance(critChanceIndex);
             // With critChance getting closer to 1, dmg gets closer to critDmg.
-            dmg = (critDmg + normalDmg * (critChance - 1)) / (critChance);
+            dmg = LowestRollDmg((critDmg + normalDmg * (critChance - 1)) / (critChance));
         }
         else
         {
-            dmg = normalDmg;
+            dmg = LowestRollDmg(normalDmg);
         }
 
         if (!gBattleStruct->zmove.active)
@@ -3403,8 +3410,6 @@ bool32 PartnerMoveEffectIsStatusSameTarget(u32 battlerAtkPartner, u32 battlerDef
         return TRUE;
     return FALSE;
 }
-
-#include "test/test.h"
 
 bool32 IsMoveEffectWeather(u32 move)
 {
