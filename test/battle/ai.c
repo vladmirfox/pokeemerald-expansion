@@ -243,8 +243,8 @@ AI_BATTLE_TEST("AI won't use ground type attacks against flying type Pokemon unl
 
 AI_BATTLE_TEST("AI will not switch in a Pokemon which is slower and gets 1HKOed after fainting")
 {
-    bool8 alakazamFaster;
-    u16 speedAlakazm;
+    bool32 alakazamFaster;
+    u32 speedAlakazm;
 
     KNOWN_FAILING;
 
