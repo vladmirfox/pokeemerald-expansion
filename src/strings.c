@@ -1935,7 +1935,6 @@ const u8 gText_EVO_LEVEL_DUSK[] = _("{LV}{UP_ARROW} to {STR_VAR_2}, dusk (5-6PM)
 const u8 gText_EVO_ITEM_HOLD_DAY[] = _("{LV}{UP_ARROW}, holds {STR_VAR_2}, day");
 const u8 gText_EVO_ITEM_HOLD_NIGHT[] = _("{LV}{UP_ARROW}, holds {STR_VAR_2}, night");
 const u8 gText_EVO_MOVE[] = _("{LV}{UP_ARROW}, knows {STR_VAR_2}");
-const u8 gText_EVO_MOVE_TYPE[] = _("{LV}{UP_ARROW}, knows {STR_VAR_2} move");
 const u8 gText_EVO_MAPSEC[] = _("{LV}{UP_ARROW} on {STR_VAR_2}");
 const u8 gText_EVO_ITEM_MALE[] = _("{STR_VAR_2} used on male");
 const u8 gText_EVO_ITEM_FEMALE[] = _("{STR_VAR_2} used on female");
