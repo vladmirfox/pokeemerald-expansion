@@ -1949,7 +1949,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                                                                         | BATTLE_TYPE_TRAINER_HILL)))
     {
         if (firstTrainer == TRUE)
-            ZeroEnemyPartyMons();
+            ZeroPartyMons(party);
 
         if (battleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
         {
@@ -1984,7 +1984,10 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             else if (partyData[i].gender == TRAINER_MON_FEMALE)
                 personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[i].species);
             if (partyData[i].nature != 0)
-                ModifyPersonalityForNature(&personalityValue, partyData[i].nature - 1);
+            {
+                while (GetNatureFromPersonality(personalityValue) != partyData[i].nature - 1)
+                    ModifyPersonalityForNature(&personalityValue, partyData[i].nature - 1);
+            }
             if (partyData[i].isShiny)
             {
                 otIdType = OT_ID_PRESET;

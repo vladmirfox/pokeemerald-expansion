@@ -3401,18 +3401,21 @@ void ZeroMonData(struct Pokemon *mon)
     SetMonData(mon, MON_DATA_MAIL, &arg);
 }
 
-void ZeroPlayerPartyMons(void)
+void ZeroPartyMons(struct Pokemon *party)
 {
     s32 i;
     for (i = 0; i < PARTY_SIZE; i++)
-        ZeroMonData(&gPlayerParty[i]);
+        ZeroMonData(&party[i]);
+}
+
+void ZeroPlayerPartyMons(void)
+{
+    ZeroPartyMons(gPlayerParty);
 }
 
 void ZeroEnemyPartyMons(void)
 {
-    s32 i;
-    for (i = 0; i < PARTY_SIZE; i++)
-        ZeroMonData(&gEnemyParty[i]);
+    ZeroPartyMons(gEnemyParty);
 }
 
 void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)

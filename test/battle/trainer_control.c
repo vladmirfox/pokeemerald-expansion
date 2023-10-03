@@ -10,7 +10,6 @@
 #include "constants/trainers.h"
 #include "constants/battle.h"
 
-
 static const struct TrainerMon sTestParty1[] =
 {
     {
