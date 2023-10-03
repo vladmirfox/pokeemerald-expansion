@@ -2553,25 +2553,6 @@ struct AILogLine *GetLogLine(u32 battlerId, u32 moveIndex)
     }
 
     Test_ExitWithResult(TEST_RESULT_ERROR, "Too many AI log lines");
-
-    /*
-    // Try compacting.
-    for (i = j = 0; i < ARRAY_COUNT(DATA.aiLogLines); i++)
-    {
-        struct AILogLine *log = &DATA.aiLogLines[i];
-        if (log->battlerId == MAX_BATTLERS_COUNT)
-        {
-            if (i != j)
-                DATA.aiLogLines[j] = DATA.aiLogLines[i];
-            j++;
-        }
-    }
-
-    if (j == ARRAY_COUNT(DATA.aiLogLines))
-        Test_ExitWithResult(TEST_RESULT_ERROR, "Too many AI log lines");
-
-    return &DATA.aiLogLines[j];
-    */
 }
 
 void TestRunner_Battle_AILogScore(const char *file, u32 line, u32 battlerId, u32 moveIndex, s32 score, bool32 setScore)
