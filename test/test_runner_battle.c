@@ -963,7 +963,7 @@ static void PrintAiMoveLog(u32 battlerId, u32 moveSlot, u32 moveId, s32 totalSco
     }
     if (scoreFromLogs != totalScore)
     {
-        MgbaPrintf_("Warning! Score from logs(%d) is different than actual score(%d). Make sure all of the score adjustments use the ADJUST_SCORE macro\n", scoreFromLogs, totalScore);
+        Test_ExitWithResult(TEST_RESULT_ERROR, "Warning! Score from logs(%d) is different than actual score(%d). Make sure all of the score adjustments use the ADJUST_SCORE macro\n", scoreFromLogs, totalScore);
     }
     MgbaPrintf_("Total: %d\n", totalScore);
 }
