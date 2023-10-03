@@ -6186,11 +6186,12 @@ u32 GetBattlerAbility(u32 battler)
     if (IsMyceliumMightOnField())
         return ABILITY_NONE;
 
-    if ((IsMoldBreakerTypeAbility(gBattleMons[battler].ability)
+    if (((IsMoldBreakerTypeAbility(gBattleMons[gBattlerAttacker].ability)
+            && !(gStatuses3[gBattlerAttacker] & STATUS3_GASTRO_ACID))
             || gBattleMoves[gCurrentMove].ignoresTargetAbility)
             && sAbilitiesAffectedByMoldBreaker[gBattleMons[battler].ability]
-            && gBattlerByTurnOrder[gCurrentTurnActionNumber] == battler
-            && gActionsByTurnOrder[gBattlerByTurnOrder[battler]] == B_ACTION_USE_MOVE
+            && gBattlerByTurnOrder[gCurrentTurnActionNumber] == gBattlerAttacker
+            && gActionsByTurnOrder[gBattlerByTurnOrder[gBattlerAttacker]] == B_ACTION_USE_MOVE
             && gCurrentTurnActionNumber < gBattlersCount)
         return ABILITY_NONE;
 
