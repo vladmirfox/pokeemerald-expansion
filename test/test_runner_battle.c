@@ -997,12 +997,6 @@ void TestRunner_Battle_CheckAiMoveScores(u32 battlerId)
             s32 target = scoreCtx->target;
             s32 *scores = gBattleStruct->aiFinalScore[battlerId][target];
 
-            //for (i = 0; i < MAX_MON_MOVES; i++)
-            //{
-                //MgbaPrintf_("Target = %d\n", target);
-                //MgbaPrintf_("Score %d: %d", i+1, scores[i]);
-            //}
-
             if (scoreCtx->toValue)
             {
                 PrintAiMoveLog(battlerId, scoreCtx->moveSlot1, moveId1, scores[scoreCtx->moveSlot1]);
