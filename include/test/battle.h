@@ -634,7 +634,7 @@ struct AILogLine
 {
     const char *file;
     u16 line:15;
-    u16 set:1; // Weather score was set, or added/subtracted
+    u16 set:1; // Whether score was set, or added/subtracted
     s16 score;
 };
 
