@@ -840,7 +840,6 @@ void TestRunner_Battle_CheckChosenMove(u32 battlerId, u32 moveId, u32 target)
                 Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched NOT_EXPECTED_MOVE %S", filename, expectedAction->sourceLine, gMoveNames[expectedMoveId]);
         }
     }
-    // MgbaPrintf_("%s:%d: Matched %S", filename, expectedAction->sourceLine, gMoveNames[moveId]); // Debugging help
     // Turn passed, clear logs from the turn
     ClearAiLog(battlerId);
     DATA.aiActionsPlayed[battlerId]++;
