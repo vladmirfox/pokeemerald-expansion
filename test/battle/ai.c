@@ -19,7 +19,6 @@ AI_BATTLE_TEST("AI gets baited by Protect Switch tactics") // This behavior is t
         TURN { MOVE(player, MOVE_PROTECT);  EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); } // E-quake
         TURN { SWITCH(player, 1);           EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE);} // E-quake
         TURN { MOVE(player, MOVE_PROTECT);  EXPECTED_MOVE(opponent, MOVE_THUNDERBOLT); } // T-Bolt
-    } SCENE {
     }
 }
 
@@ -45,7 +44,6 @@ AI_BATTLE_TEST("AI prefers Bubble over Water Gun if it's slower")
             TURN { SCORE_EQ(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
             TURN { SCORE_EQ(opponent, MOVE_BUBBLE, MOVE_WATER_GUN); }
         }
-    } SCENE {
     }
 }
 
@@ -243,8 +241,8 @@ AI_BATTLE_TEST("AI won't use ground type attacks against flying type Pokemon unl
 
 AI_BATTLE_TEST("AI will not switch in a Pokemon which is slower and gets 1HKOed after fainting")
 {
-    bool8 alakazamFaster;
-    u16 speedAlakazm;
+    bool32 alakazamFaster;
+    u32 speedAlakazm;
 
     KNOWN_FAILING;
 
@@ -312,8 +310,6 @@ AI_DOUBLE_BATTLE_TEST("AI won't use a Weather changing move if partner already c
                     SCORE_LT_VAL(opponentRight, weatherMoveRight, AI_SCORE_DEFAULT, target:playerRight);
                     SCORE_LT_VAL(opponentRight, weatherMoveRight, AI_SCORE_DEFAULT, target:opponentLeft);
                  }
-    } SCENE {
-
     }
 }
 
@@ -345,7 +341,7 @@ AI_DOUBLE_BATTLE_TEST("AI will not use Helping Hand if partner does not have any
 AI_DOUBLE_BATTLE_TEST("AI will not use a status move if partner already chose Helping Hand")
 {
     s32 j;
-    u16 statusMove;
+    u32 statusMove;
 
     for (j = MOVE_NONE + 1; j < MOVES_COUNT; j++)
     {
@@ -384,7 +380,6 @@ AI_BATTLE_TEST("AI without any flags chooses moves at random - singles")
                    SCORE_EQ_VAL(opponent, MOVE_RAGE, AI_SCORE_DEFAULT);
                    SCORE_EQ_VAL(opponent, MOVE_HELPING_HAND, AI_SCORE_DEFAULT);
                 }
-    } SCENE {
     }
 }
 
@@ -408,6 +403,5 @@ AI_DOUBLE_BATTLE_TEST("AI without any flags chooses moves at random - doubles")
                    SCORE_EQ_VAL(opponentRight, MOVE_RAGE, AI_SCORE_DEFAULT, target:playerLeft);
                    SCORE_EQ_VAL(opponentRight, MOVE_HELPING_HAND, AI_SCORE_DEFAULT, target:playerLeft);
                 }
-    } SCENE {
     }
 }

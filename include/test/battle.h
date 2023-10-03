@@ -905,8 +905,8 @@ enum { TURN_CLOSED, TURN_OPEN, TURN_CLOSING };
 
 #define EXPECTED_MOVE(battler, ...) ExpectedMove(__LINE__, battler, (struct MoveContext) { APPEND_TRUE(__VA_ARGS__) })
 #define NOT_EXPECTED_MOVE(battler, _move) ExpectedMove(__LINE__, battler, (struct MoveContext) { .move = _move, .explicitMove = TRUE, .notExpected = TRUE, .explicitNotExpected = TRUE, })
-#define EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, FALSE, (struct FourMoves) { APPEND(__VA_ARGS__) })
-#define NOT_EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, TRUE, (struct FourMoves) { APPEND(__VA_ARGS__) })
+#define EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, FALSE, (struct FourMoves) { __VA_ARGS__ })
+#define NOT_EXPECTED_MOVES(battler, ...) ExpectedMoves(__LINE__, battler, TRUE, (struct FourMoves) { __VA_ARGS__ })
 #define EXPECTED_SEND_OUT(battler, partyIndex) ExpectedSendOut(__LINE__, battler, partyIndex)
 #define EXPECTED_SWITCH(battler, partyIndex) ExpectedSwitch(__LINE__, battler, partyIndex)
 #define SCORE_EQ(battler, ...) Score(__LINE__, battler, CMP_EQUAL, FALSE, (struct TestAiScoreStruct) { APPEND_TRUE(__VA_ARGS__) } )
