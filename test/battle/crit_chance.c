@@ -118,7 +118,7 @@ SINGLE_BATTLE_TEST("User effected by Laser Focus causes moves to result in a cri
     }
 }
 
-SINGLE_BATTLE_TEST("If the target is poisoned the ability Merciless causes a moev to result in a critical hit")
+SINGLE_BATTLE_TEST("If the target is poisoned the ability Merciless causes a move to result in a critical hit")
 {
     GIVEN {
         PLAYER(SPECIES_MAREANIE) { Ability(ABILITY_MERCILESS); }
@@ -131,7 +131,7 @@ SINGLE_BATTLE_TEST("If the target is poisoned the ability Merciless causes a moe
     }
 }
 
-SINGLE_BATTLE_TEST("Focus Energy increases the user's critical hit ratio by one stage")
+SINGLE_BATTLE_TEST("Focus Energy increases the user's critical hit ratio by two stage")
 {
     PASSES_RANDOMLY(1, 2, RNG_CRITICAL_HIT);
     GIVEN {
