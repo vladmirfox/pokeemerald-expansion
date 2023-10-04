@@ -48,6 +48,7 @@ SINGLE_BATTLE_TEST("Sap Sipper does not increase Attack if already maxed")
     } WHEN {
         TURN { MOVE(player, MOVE_BELLY_DRUM); MOVE(opponent, MOVE_VINE_WHIP); }
     } SCENE {
+        ABILITY_POPUP(player, ABILITY_SAP_SIPPER);
         NONE_OF { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); }
         NONE_OF { MESSAGE("Marill's Attack rose!"); }
     }
