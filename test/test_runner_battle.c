@@ -116,7 +116,7 @@ static const struct BattleTest *GetBattleTest(void)
     return test;
 }
 
-static bool32 IsAiTest(void)
+static bool32 IsAITest(void)
 {
     switch (GetBattleTest()->type)
     {
@@ -837,7 +837,7 @@ void TestRunner_Battle_CheckChosenMove(u32 battlerId, u32 moveId, u32 target)
             if (countExpected > 1)
                 Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched NOT_EXPECT_MOVES %S", filename, expectedAction->sourceLine, gMoveNames[expectedMoveId]);
             else
-                Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched NOT_EXPECTED_MOVE %S", filename, expectedAction->sourceLine, gMoveNames[expectedMoveId]);
+                Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: Unmatched NOT_EXPECT_MOVE %S", filename, expectedAction->sourceLine, gMoveNames[expectedMoveId]);
         }
     }
     // Turn passed, clear logs from the turn
@@ -920,7 +920,7 @@ static void CheckIfMaxScoreEqualExpectMove(u32 battlerId, s32 target, struct Exp
             && (aiAction->moveSlots & gBitTable[i])
             && !(aiAction->moveSlots & gBitTable[bestScoreId]))
         {
-            Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: NOT_EXPECTED_MOVE %S has the same best score(%d) as MOVE %S", filename,
+            Test_ExitWithResult(TEST_RESULT_FAIL, "%s:%d: NOT_EXPECT_MOVE %S has the same best score(%d) as MOVE %S", filename,
                                 aiAction->sourceLine, gMoveNames[moves[i]], scores[i], gMoveNames[moves[bestScoreId]]);
         }
     }
@@ -1460,13 +1460,14 @@ void RNGSeed_(u32 sourceLine, u32 seed)
 
 void AIFlags_(u32 sourceLine, u32 flags)
 {
-    INVALID_IF(!IsAiTest(), "AI_FLAGS is compatible only with AI_SINGLE_BATTLE_TEST & AI_DOUBLE_BATTLE_TEST");
+    INVALID_IF(!IsAITest(), "AI_FLAGS is usable only in AI_SINGLE_BATTLE_TEST & AI_DOUBLE_BATTLE_TEST");
     DATA.recordedBattle.AI_scripts = flags;
     DATA.hasAI = TRUE;
 }
 
-void AILogScores(void)
+void AILogScores(u32 sourceLine)
 {
+    INVALID_IF(!IsAITest(), "AI_LOG is usable only in AI_SINGLE_BATTLE_TEST & AI_DOUBLE_BATTLE_TEST");
     DATA.logAI = TRUE;
 }
 
@@ -1872,7 +1873,7 @@ void CloseTurn(u32 sourceLine)
     {
         if (!(DATA.actionBattlers & (1 << i)))
         {
-             if (IsAiTest() && (i & BIT_SIDE) == B_SIDE_OPPONENT) // If Move was not specified, allow any move used.
+             if (IsAITest() && (i & BIT_SIDE) == B_SIDE_OPPONENT) // If Move was not specified, allow any move used.
                 SetAiActionToPass(sourceLine, i);
              else
                 Move(sourceLine, &gBattleMons[i], (struct MoveContext) { move: MOVE_CELEBRATE, explicitMove: TRUE });
@@ -1995,7 +1996,7 @@ void Move(u32 sourceLine, struct BattlePokemon *battler, struct MoveContext ctx)
     s32 target;
 
     INVALID_IF(DATA.turnState == TURN_CLOSED, "MOVE outside TURN");
-    INVALID_IF(IsAiTest() && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT, "MOVE is not allowed for opponent in AI tests. Use EXPECT_MOVE instead");
+    INVALID_IF(IsAITest() && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT, "MOVE is not allowed for opponent in AI tests. Use EXPECT_MOVE instead");
 
     MoveGetIdAndSlot(battlerId, &ctx, &moveId, &moveSlot, sourceLine);
     target = MoveGetTarget(battlerId, moveId, &ctx, sourceLine);
@@ -2052,6 +2053,7 @@ static void TryMarkExpectMove(u32 sourceLine, struct BattlePokemon *battler, str
     s32 target;
 
     INVALID_IF(DATA.turnState == TURN_CLOSED, "EXPECT_MOVE outside TURN");
+    INVALID_IF(!IsAITest(), "EXPECT_MOVE is usable only in AI_SINGLE_BATTLE_TEST & AI_DOUBLE_BATTLE_TEST");
     MoveGetIdAndSlot(battlerId, ctx, &moveId, &moveSlot, sourceLine);
     target = MoveGetTarget(battlerId, moveId, ctx, sourceLine);
 
@@ -2081,6 +2083,7 @@ void ExpectSendOut(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex
     s32 i, id;
     s32 battlerId = battler - gBattleMons;
     INVALID_IF(DATA.turnState == TURN_CLOSED, "EXPECT_SEND_OUT outside TURN");
+    INVALID_IF(!IsAITest(), "EXPECT_SEND_OUT is usable only in AI_SINGLE_BATTLE_TEST & AI_DOUBLE_BATTLE_TEST");
     INVALID_IF(partyIndex >= ((battlerId & BIT_SIDE) == B_SIDE_PLAYER ? DATA.playerPartySize : DATA.opponentPartySize), "EXPECT_SEND_OUT to invalid party index");
     for (i = 0; i < STATE->battlersCount; i++)
     {
@@ -2090,7 +2093,7 @@ void ExpectSendOut(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex
     if (!(DATA.actionBattlers & (1 << battlerId)))
     {
         const struct BattleTest *test = GetBattleTest();
-        if (IsAiTest() && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT) // If Move was not specified, allow any move used.
+        if (IsAITest() && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT) // If Move was not specified, allow any move used.
             SetAiActionToPass(sourceLine, battlerId);
         else
             Move(sourceLine, battler, (struct MoveContext) { move: MOVE_CELEBRATE, explicitMove: TRUE });
@@ -2132,6 +2135,8 @@ void Score(u32 sourceLine, struct BattlePokemon *battler, u32 cmp, bool32 toValu
     struct MoveContext moveCtx = {0};
     s32 battlerId = battler - gBattleMons;
     s32 turn = DATA.turns;
+
+    INVALID_IF(!IsAITest(), "SCORE_%s%s is usable only in AI_SINGLE_BATTLE_TEST & AI_DOUBLE_BATTLE_TEST", sCmpToStringTable[cmp], (toValue == TRUE) ? "_VAL" : "");
 
     for (i = 0; i < MAX_AI_SCORE_COMPARISION_PER_TURN; i++)
     {
@@ -2195,7 +2200,7 @@ void Switch(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex)
     INVALID_IF(DATA.turnState == TURN_CLOSED, "SWITCH outside TURN");
     INVALID_IF(DATA.actionBattlers & (1 << battlerId), "Multiple battler actions");
     INVALID_IF(partyIndex >= ((battlerId & BIT_SIDE) == B_SIDE_PLAYER ? DATA.playerPartySize : DATA.opponentPartySize), "SWITCH to invalid party index");
-    INVALID_IF(IsAiTest() && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT, "SWITCH is not allowed for opponent in AI tests. Use EXPECT_SWITCH instead");
+    INVALID_IF(IsAITest() && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT, "SWITCH is not allowed for opponent in AI tests. Use EXPECT_SWITCH instead");
 
     for (i = 0; i < STATE->battlersCount; i++)
     {
@@ -2215,6 +2220,7 @@ void ExpectSwitch(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex)
     s32 i, id;
     s32 battlerId = battler - gBattleMons;
     INVALID_IF(DATA.turnState == TURN_CLOSED, "EXPECT_SWITCH outside TURN");
+    INVALID_IF(!IsAITest(), "EXPECT_SWITCH is usable only in AI_SINGLE_BATTLE_TEST & AI_DOUBLE_BATTLE_TEST");
     INVALID_IF(DATA.actionBattlers & (1 << battlerId), "Multiple battler actions");
     INVALID_IF(partyIndex >= ((battlerId & BIT_SIDE) == B_SIDE_PLAYER ? DATA.playerPartySize : DATA.opponentPartySize), "EXPECT_SWITCH to invalid party index");
 
@@ -2248,7 +2254,7 @@ void SendOut(u32 sourceLine, struct BattlePokemon *battler, u32 partyIndex)
     s32 battlerId = battler - gBattleMons;
     INVALID_IF(DATA.turnState == TURN_CLOSED, "SEND_OUT outside TURN");
     INVALID_IF(partyIndex >= ((battlerId & BIT_SIDE) == B_SIDE_PLAYER ? DATA.playerPartySize : DATA.opponentPartySize), "SWITCH to invalid party index");
-    INVALID_IF(IsAiTest() && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT, "SEND_OUT is not allowed for opponent in AI tests. Use EXPECT_SEND_OUT instead");
+    INVALID_IF(IsAITest() && (battlerId & BIT_SIDE) == B_SIDE_OPPONENT, "SEND_OUT is not allowed for opponent in AI tests. Use EXPECT_SEND_OUT instead");
     for (i = 0; i < STATE->battlersCount; i++)
     {
         if (battlerId != i && (battlerId & BIT_SIDE) == (i & BIT_SIDE))

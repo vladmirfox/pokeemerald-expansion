@@ -231,8 +231,8 @@ AI_SINGLE_BATTLE_TEST("AI won't use ground type attacks against flying type Poke
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_NIDOQUEEN) { Moves(MOVE_EARTHQUAKE, MOVE_TACKLE, MOVE_POISON_STING, MOVE_GUST); }
     } WHEN {
-            TURN { NOT_EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); }
-            TURN { MOVE(player, MOVE_GRAVITY); NOT_EXPECTED_MOVE(opponent, MOVE_EARTHQUAKE); }
+            TURN { NOT_EXPECT_MOVE(opponent, MOVE_EARTHQUAKE); }
+            TURN { MOVE(player, MOVE_GRAVITY); NOT_EXPECT_MOVE(opponent, MOVE_EARTHQUAKE); }
             TURN { EXPECT_MOVE(opponent, MOVE_EARTHQUAKE); SEND_OUT(player, 1); }
     } SCENE {
         MESSAGE("Gravity intensified!");
@@ -305,7 +305,7 @@ AI_DOUBLE_BATTLE_TEST("AI won't use a Weather changing move if partner already c
         OPPONENT(SPECIES_WOBBUFFET) { Moves(weatherMoveLeft); }
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_TACKLE, weatherMoveRight); }
     } WHEN {
-            TURN {  NOT_EXPECTED_MOVE(opponentRight, weatherMoveRight);
+            TURN {  NOT_EXPECT_MOVE(opponentRight, weatherMoveRight);
                     SCORE_LT_VAL(opponentRight, weatherMoveRight, AI_SCORE_DEFAULT, target:playerLeft);
                     SCORE_LT_VAL(opponentRight, weatherMoveRight, AI_SCORE_DEFAULT, target:playerRight);
                     SCORE_LT_VAL(opponentRight, weatherMoveRight, AI_SCORE_DEFAULT, target:opponentLeft);
@@ -328,7 +328,7 @@ AI_DOUBLE_BATTLE_TEST("AI will not use Helping Hand if partner does not have any
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_HELPING_HAND, MOVE_TACKLE); }
         OPPONENT(SPECIES_WOBBUFFET) { Moves(move1, move2, move3, move4); }
     } WHEN {
-            TURN {  NOT_EXPECTED_MOVE(opponentLeft, MOVE_HELPING_HAND);
+            TURN {  NOT_EXPECT_MOVE(opponentLeft, MOVE_HELPING_HAND);
                     SCORE_LT_VAL(opponentLeft, MOVE_HELPING_HAND, AI_SCORE_DEFAULT, target:playerLeft);
                     SCORE_LT_VAL(opponentLeft, MOVE_HELPING_HAND, AI_SCORE_DEFAULT, target:playerRight);
                     SCORE_LT_VAL(opponentLeft, MOVE_HELPING_HAND, AI_SCORE_DEFAULT, target:opponentLeft);
@@ -357,7 +357,7 @@ AI_DOUBLE_BATTLE_TEST("AI will not use a status move if partner already chose He
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_HELPING_HAND); }
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_TACKLE, statusMove); }
     } WHEN {
-            TURN {  NOT_EXPECTED_MOVE(opponentRight, statusMove);
+            TURN {  NOT_EXPECT_MOVE(opponentRight, statusMove);
                     SCORE_LT_VAL(opponentRight, statusMove, AI_SCORE_DEFAULT, target:playerLeft);
                     SCORE_LT_VAL(opponentRight, statusMove, AI_SCORE_DEFAULT, target:playerRight);
                     SCORE_LT_VAL(opponentRight, statusMove, AI_SCORE_DEFAULT, target:opponentLeft);
