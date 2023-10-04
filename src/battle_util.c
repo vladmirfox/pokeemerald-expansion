@@ -1211,8 +1211,7 @@ u8 GetBattlerForBattleScript(u8 caseId)
     return ret;
 }
 
-// Unused
-static void MarkAllBattlersForControllerExec(void)
+static void UNUSED MarkAllBattlersForControllerExec(void)
 {
     int i;
 
