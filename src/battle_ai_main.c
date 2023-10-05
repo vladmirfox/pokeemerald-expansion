@@ -3169,9 +3169,9 @@ static u32 GetAIMostDamagingMoveId(u32 battlerAtk, u32 battlerDef)
 
 static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
 {
-    u32 i, bestViableMove;
+    u32 i, bestViableMoveSc0re;
     bool32 multipleBestMoves = FALSE;
-    u32 viableMoves[MAX_MON_MOVES] = {100, 100, 100, 100};
+    u32 viableMoveScores[MAX_MON_MOVES];
     s32 noOfHits[MAX_MON_MOVES];
     s32 score = 0;
     s32 leastHits = 1000, leastHitsId = 0;
@@ -3188,11 +3188,13 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
                 leastHits = noOfHits[i];
                 leastHitsId = i;
             }
+            viableMoveScores[i] = 100;
             isPowerfulIgnoredEffect[i] = IsInIgnoredPowerfulMoveEffects(gBattleMoves[moves[i]].effect);
         }
         else
         {
             noOfHits[i] = -1;
+            viableMoveScores[i] = 0;
             isPowerfulIgnoredEffect[i] = FALSE;
         }
         /*
@@ -3218,26 +3220,26 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
                 multipleBestMoves = TRUE;
                 // We need to make sure it's the current move which is objectively better.
                 if (isPowerfulIgnoredEffect[i] && !isPowerfulIgnoredEffect[currId])
-                    viableMoves[i] -= 3;
+                    viableMoveScores[i] -= 3;
                 else if (!isPowerfulIgnoredEffect[i] && isPowerfulIgnoredEffect[currId])
-                    viableMoves[currId] -= 3;
+                    viableMoveScores[currId] -= 3;
 
                 switch (CompareMoveAccuracies(battlerAtk, battlerDef, currId, i))
                 {
                 case 0:
-                    viableMoves[i] -= 2;
+                    viableMoveScores[i] -= 2;
                     break;
                 case 1:
-                    viableMoves[currId] -= 2;
+                    viableMoveScores[currId] -= 2;
                     break;
                 }
                 switch (AI_WhichMoveBetter(moves[currId], moves[i], battlerAtk, battlerDef, noOfHits[currId]))
                 {
                 case 0:
-                    viableMoves[i] -= 1;
+                    viableMoveScores[i] -= 1;
                     break;
                 case 1:
-                    viableMoves[currId] -= 1;
+                    viableMoveScores[currId] -= 1;
                     break;
                 }
             }
@@ -3247,14 +3249,14 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
             ADJUST_SCORE(1);
         else
         {
-            bestViableMove = 0;
+            bestViableMoveSc0re = 0;
             for (i = 0; i < MAX_MON_MOVES; i++)
             {
-                if (viableMoves[i] > bestViableMove)
-                    bestViableMove = viableMoves[i];
+                if (viableMoveScores[i] > bestViableMoveSc0re)
+                    bestViableMoveSc0re = viableMoveScores[i];
             }
             // Unless a better move was found increase score of current move
-            if (viableMoves[currId] == bestViableMove)
+            if (viableMoveScores[currId] == bestViableMoveSc0re)
                 ADJUST_SCORE(1);
         }
     }

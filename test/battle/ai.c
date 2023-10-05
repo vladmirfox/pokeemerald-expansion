@@ -230,6 +230,33 @@ AI_SINGLE_BATTLE_TEST("AI prefers a weaker move over a one with a downside effec
     }
 }
 
+AI_SINGLE_BATTLE_TEST("AI prefers moves with the best possible score, chosen randomly if tied")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET) { HP(5); };
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_THUNDERBOLT, MOVE_SLUDGE_BOMB, MOVE_TAKE_DOWN); }
+    } WHEN {
+        TURN { EXPECT_MOVES(opponent, MOVE_THUNDERBOLT, MOVE_SLUDGE_BOMB); SEND_OUT(player, 1); }
+    }
+    SCENE {
+        MESSAGE("Wobbuffet fainted!");
+    }
+}
+
+AI_SINGLE_BATTLE_TEST("AI can choose a stat boosting move randomly")
+{
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_THUNDERBOLT, MOVE_SLUDGE_BOMB, MOVE_SWORDS_DANCE); }
+    } WHEN {
+        TURN { EXPECT_MOVES(opponent, MOVE_THUNDERBOLT, MOVE_SLUDGE_BOMB, MOVE_SWORDS_DANCE); }
+    }
+}
+
 AI_SINGLE_BATTLE_TEST("AI chooses the safest option to faint the target, taking into account accuracy and move effect")
 {
     u16 move1 = MOVE_NONE, move2 = MOVE_NONE, move3 = MOVE_NONE, move4 = MOVE_NONE;
