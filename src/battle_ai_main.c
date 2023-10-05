@@ -3169,8 +3169,9 @@ static u32 GetAIMostDamagingMoveId(u32 battlerAtk, u32 battlerDef)
 
 static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
 {
-    u32 i;
+    u32 i, bestViableMove;
     bool32 multipleBestMoves = FALSE;
+    u32 viableMoves[MAX_MON_MOVES] = {100, 100, 100, 100};
     s32 noOfHits[MAX_MON_MOVES];
     s32 score = 0;
     s32 leastHits = 1000, leastHitsId = 0;
@@ -3217,19 +3218,45 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
                 multipleBestMoves = TRUE;
                 // We need to make sure it's the current move which is objectively better.
                 if (isPowerfulIgnoredEffect[i] && !isPowerfulIgnoredEffect[currId])
-                    ADJUST_SCORE(3);
-                else if (CompareMoveAccuracies(battlerAtk, battlerDef, currId, i) == 0)
-                    ADJUST_SCORE(2);
-                else if (AI_WhichMoveBetter(moves[currId], moves[i], battlerAtk, battlerDef, noOfHits[currId]) == 0)
+                    viableMoves[i] -= 3;
+                else if (!isPowerfulIgnoredEffect[i] && isPowerfulIgnoredEffect[currId])
+                    viableMoves[currId] -= 3;
+
+                switch (CompareMoveAccuracies(battlerAtk, battlerDef, currId, i))
                 {
-                    // MgbaPrintf_("%S better than %S", gMoveNames[moves[currId]], gMoveNames[moves[i]]);
-                    ADJUST_SCORE(1);
+                case 0:
+                    viableMoves[i] -= 2;
+                    break;
+                case 1:
+                    viableMoves[currId] -= 2;
+                    break;
+                }
+                switch (AI_WhichMoveBetter(moves[currId], moves[i], battlerAtk, battlerDef, noOfHits[currId]))
+                {
+                case 0:
+                    viableMoves[i] -= 1;
+                    break;
+                case 1:
+                    viableMoves[currId] -= 1;
+                    break;
                 }
             }
         }
         // Turns out the current move deals the most dmg compared to the other 3.
         if (!multipleBestMoves)
             ADJUST_SCORE(1);
+        else
+        {
+            bestViableMove = 0;
+            for (i = 0; i < MAX_MON_MOVES; i++)
+            {
+                if (viableMoves[i] > bestViableMove)
+                    bestViableMove = viableMoves[i];
+            }
+            // Unless a better move was found increase score of current move
+            if (viableMoves[currId] == bestViableMove)
+                ADJUST_SCORE(1);
+        }
     }
 
     return score;
