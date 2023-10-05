@@ -1105,3 +1105,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/VerdantForest/scripts.inc"
 
 	.include "data/maps/VerdantIsle/scripts.inc"
+
+	.include "data/maps/VerdantForest_Deep/scripts.inc"

@@ -52,15 +52,15 @@
       "x": 51,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_VERDANT_FOREST",
+      "dest_map": "MAP_VERDANT_FOREST_DEEP",
       "dest_warp_id": "0"
     },
     {
       "x": 52,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_VERDANT_FOREST",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_VERDANT_FOREST_DEEP",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [
