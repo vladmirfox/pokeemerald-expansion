@@ -76,7 +76,7 @@ DOUBLE_BATTLE_TEST("Rainbow flinch chance does not stack with Serene Grace")
 
 DOUBLE_BATTLE_TEST("Rainbow flinch chance does not stack with Serene Grace and Triple Arrows")
 {
-    PASSES_RANDOMLY(30, 100, RNG_SECONDARY_EFFECT);
+    PASSES_RANDOMLY(30, 100, RNG_TRIPLE_ARROWS_FLINCH);
     GIVEN {
         PLAYER(SPECIES_TOGEPI) { Speed(8); Ability(ABILITY_SERENE_GRACE); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(5); }
