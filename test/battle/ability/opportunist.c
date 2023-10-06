@@ -86,8 +86,8 @@ DOUBLE_BATTLE_TEST("Opportunist raises Attack only once when partner has Intimid
         HP_BAR(playerLeft, captureDamage: &results[i].damageLeft);
         HP_BAR(playerRight, captureDamage: &results[i].damageRight);
     } THEN {
-        EXPECT_EQ(opponentLeft->statStages[STAT_ATK],  (abilityLeft == ABILITY_CONTRARY)  ? DEFAULT_STAT_STAGE+1 : DEFAULT_STAT_STAGE-1);
-        EXPECT_EQ(opponentRight->statStages[STAT_ATK], (abilityRight == ABILITY_CONTRARY) ? DEFAULT_STAT_STAGE+1 : DEFAULT_STAT_STAGE-1);
+        EXPECT_EQ(opponentLeft->statStages[STAT_ATK],  DEFAULT_STAT_STAGE + (abilityLeft  == ABILITY_CONTRARY ? 1 : - 1));
+        EXPECT_EQ(opponentRight->statStages[STAT_ATK], DEFAULT_STAT_STAGE + (abilityRight == ABILITY_CONTRARY ? 1 : - 1));
         if ((abilityLeft == ABILITY_CONTRARY && abilityRight != ABILITY_CONTRARY)
                 || (abilityLeft != ABILITY_CONTRARY && abilityRight == ABILITY_CONTRARY)) {
             EXPECT_EQ(playerRight->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
