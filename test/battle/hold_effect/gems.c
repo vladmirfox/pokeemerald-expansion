@@ -87,17 +87,3 @@ SINGLE_BATTLE_TEST("Gem is consumed if the move type is changed")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FEINT_ATTACK, player);
     }
 }
-
-SINGLE_BATTLE_TEST("Chople Berry test")
-{
-    GIVEN {
-        PLAYER(SPECIES_DELCATTY) { Item(ITEM_CHOPLE_BERRY); };
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN {
-            MOVE(opponent, MOVE_ROCK_SMASH);
-        }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROCK_SMASH, opponent);
-    }
-}
