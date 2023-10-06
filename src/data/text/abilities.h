@@ -291,12 +291,12 @@ static const u8 sEarthEaterDescription[] = _("Eats ground to heal HP.");
 static const u8 sMyceliumMightDescription[] = _("Status moves never fail.");
 static const u8 sHospitalityDescription[] = _("Restores ally's HP.");
 static const u8 sMindsEyeDescription[] = _("Keen Eye and Scrappy.");
-static const u8 sEmbodyAspectTealDescription[] = _("Raises speed.");
-static const u8 sEmbodyAspectHearthflameDescription[] = _("Raises attack.");
-static const u8 sEmbodyAspectWellspringDescription[] = _("Raises sp. def.");
-static const u8 sEmbodyAspectCornerstoneDescription[] = _("Raises defense.");
+static const u8 sEmbodyAspectTealDescription[] = _("Raises Speed.");
+static const u8 sEmbodyAspectHearthflameDescription[] = _("Raises Attack.");
+static const u8 sEmbodyAspectWellspringDescription[] = _("Raises Sp. Def.");
+static const u8 sEmbodyAspectCornerstoneDescription[] = _("Raises Defense.");
 static const u8 sToxicChainDescription[] = _("Moves can poison.");
-static const u8 sSupersweetSyrupDescription[] = _("Lowers the foe's speed.");
+static const u8 sSupersweetSyrupDescription[] = _("Lowers the foe's Speed.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
