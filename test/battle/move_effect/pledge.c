@@ -9,7 +9,7 @@ ASSUMPTIONS
 }
 
 // Rainbow
-DOUBLE_BATTLE_TEST("Water and Fire Pledge create a rainbow on the user's side of the field for four turns")
+DOUBLE_BATTLE_TEST("xx - Water and Fire Pledge create a rainbow on the user's side of the field for four turns")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
@@ -35,7 +35,7 @@ DOUBLE_BATTLE_TEST("Water and Fire Pledge create a rainbow on the user's side of
     }
 }
 
-DOUBLE_BATTLE_TEST("Rainbow doubles the chance of secondary move effects")
+DOUBLE_BATTLE_TEST("xx - Rainbow doubles the chance of secondary move effects")
 {
     PASSES_RANDOMLY(20, 100, RNG_SECONDARY_EFFECT);
     GIVEN {
@@ -55,8 +55,48 @@ DOUBLE_BATTLE_TEST("Rainbow doubles the chance of secondary move effects")
     }
 }
 
+DOUBLE_BATTLE_TEST("xx - Rainbow flinch chance does not stack with Serene Grace")
+{
+    PASSES_RANDOMLY(30, 100, RNG_SECONDARY_EFFECT);
+    GIVEN {
+        PLAYER(SPECIES_TOGEPI) { Speed(8); Ability(ABILITY_SERENE_GRACE); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(5); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(4); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(3); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_WATER_PLEDGE, target: opponentLeft);
+               MOVE(playerRight, MOVE_FIRE_PLEDGE, target: opponentRight);
+        }
+        TURN { MOVE(playerLeft, MOVE_BITE, target: opponentRight); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_PLEDGE, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BITE, playerLeft);
+        MESSAGE("Foe Wynaut flinched!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("xx - Rainbow flinch chance does not stack with Serene Grace and Triple Arrows")
+{
+    PASSES_RANDOMLY(30, 100, RNG_TRIPLE_ARROWS_FLINCH);
+    GIVEN {
+        PLAYER(SPECIES_TOGEPI) { Speed(8); Ability(ABILITY_SERENE_GRACE); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(5); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(4); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(3); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_WATER_PLEDGE, target: opponentLeft);
+               MOVE(playerRight, MOVE_FIRE_PLEDGE, target: opponentRight);
+        }
+        TURN { MOVE(playerLeft, MOVE_TRIPLE_ARROWS, target: opponentRight); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_PLEDGE, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TRIPLE_ARROWS, playerLeft);
+        MESSAGE("Foe Wynaut flinched!");
+    }
+}
+
 // Sea Of Fire
-DOUBLE_BATTLE_TEST("Fire and Grass Pledge summons Sea Of Fire for four turns that damages the opponent")
+DOUBLE_BATTLE_TEST("xx - Fire and Grass Pledge summons Sea Of Fire for four turns that damages the opponent")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
@@ -95,7 +135,7 @@ DOUBLE_BATTLE_TEST("Fire and Grass Pledge summons Sea Of Fire for four turns tha
     }
 }
 
-DOUBLE_BATTLE_TEST("f Fire deals 1/8th damage per turn")
+DOUBLE_BATTLE_TEST("xx - Sea Of Fire deals 1/8th damage per turn")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
@@ -115,7 +155,7 @@ DOUBLE_BATTLE_TEST("f Fire deals 1/8th damage per turn")
 }
 
 // Swamp
-DOUBLE_BATTLE_TEST("Grass and Water Pledge create a swamp on the user's side of the field for four turns")
+DOUBLE_BATTLE_TEST("xx - Grass and Water Pledge create a swamp on the user's side of the field for four turns")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
@@ -141,7 +181,7 @@ DOUBLE_BATTLE_TEST("Grass and Water Pledge create a swamp on the user's side of 
     }
 }
 
-DOUBLE_BATTLE_TEST("Swamp reduces the speed of the effected side by 1/4th")
+DOUBLE_BATTLE_TEST("xx - Swamp reduces the speed of the effected side by 1/4th")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(5); }
@@ -161,5 +201,57 @@ DOUBLE_BATTLE_TEST("Swamp reduces the speed of the effected side by 1/4th")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponentRight);
+    }
+}
+
+
+DOUBLE_BATTLE_TEST("order test")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
+        PLAYER(SPECIES_WYNAUT) { Speed(3); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(8); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(5); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_WATER_PLEDGE, target: opponentLeft);
+               MOVE(playerRight, MOVE_FIRE_PLEDGE, target: opponentRight);
+               MOVE(opponentLeft, MOVE_WATER_PLEDGE, target: playerLeft);
+               MOVE(opponentRight, MOVE_FIRE_PLEDGE, target: playerRight);
+        }
+        TURN {}
+        TURN {}
+        TURN {}
+    } SCENE {
+        MESSAGE("A rainbow appeared in the sky on the opposing team's side!");
+        MESSAGE("A rainbow appeared in the sky on your team's side!");
+
+        MESSAGE("The rainbow on your side disappeared!");
+        MESSAGE("The rainbow on the opposing side disappeared!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("The base power of a combined pledge move effect is 150")
+{
+    s16 hyperBeamDamage;
+    s16 pledgeHitDamage;
+
+    GIVEN {
+        ASSUME(gBattleMoves[MOVE_HYPER_BEAM].power == 150);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
+        PLAYER(SPECIES_WYNAUT) { Speed(3); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(8); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(5); }
+    } WHEN {
+        TURN { MOVE(opponentRight, MOVE_HYPER_BEAM, target: playerRight);
+               MOVE(playerLeft, MOVE_WATER_PLEDGE, target: opponentLeft);
+               MOVE(playerRight, MOVE_FIRE_PLEDGE, target: opponentRight);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_BEAM, opponentRight);
+        HP_BAR(playerRight, captureDamage: &hyperBeamDamage);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_PLEDGE, playerRight);
+        HP_BAR(opponentRight, captureDamage: &pledgeHitDamage);
+    } THEN {
+        EXPECT_EQ(hyperBeamDamage, pledgeHitDamage);
     }
 }

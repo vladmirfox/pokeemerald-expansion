@@ -8737,7 +8737,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .argument = MOVE_EFFECT_WATER_PLEDGE,
     },
 
     [MOVE_FIRE_PLEDGE] =
@@ -8756,7 +8755,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .argument = MOVE_EFFECT_FIRE_PLEDGE,
     },
 
     [MOVE_GRASS_PLEDGE] =
@@ -8775,7 +8773,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .argument = MOVE_EFFECT_GRASS_PLEDGE,
     },
 
     [MOVE_VOLT_SWITCH] =
@@ -12881,7 +12878,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .effect = EFFECT_TRIPLE_ARROWS,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
-        .secondaryEffectChance = 100, // 50% Defense down, 30% Flinch. Can be modified in 'SetMoveEffect'
+        .secondaryEffectChance = 1, // Effect chance at 1 for multiplier purposes
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .split = SPLIT_PHYSICAL,

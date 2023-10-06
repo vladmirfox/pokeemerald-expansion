@@ -1371,9 +1371,10 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro setpledgestatus battler:req
+	.macro setpledgestatus battler:req sidestatus:req
 	callnative BS_SetPledgeStatus
-	.4byte \battler
+	.byte \battler
+	.4byte \sidestatus
 	.endm
 
 	.macro setzeffect

@@ -441,17 +441,17 @@ gBattleScriptsForMoveEffects::
 
 BattleScript_EffectPledge::
 	attackcanceler
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	setpledge BattleScript_HitFromAccCheck
 	attackstring
 	ppreduce
-	setpledge BattleScript_HitFromCritCalc
 	printstring STRINGID_WAITINGFORPARTNERSMOVE
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectCombinedPledge_Water::
 	call BattleScript_EffectHit_Pledge
-	setpledgestatus BS_ATTACKER
+	setpledgestatus BS_ATTACKER, SIDE_STATUS_RAINBOW
+	pause B_WAIT_TIME_SHORTEST
 	printstring STRINGID_ARAINBOWAPPEAREDONSIDE
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_ATTACKER, B_ANIM_RAINBOW
@@ -470,7 +470,8 @@ BattleScript_TheRainbowDisappeared::
 
 BattleScript_EffectCombinedPledge_Fire::
 	call BattleScript_EffectHit_Pledge
-	setpledgestatus BS_TARGET
+	setpledgestatus BS_TARGET, SIDE_STATUS_SEA_OF_FIRE
+	pause B_WAIT_TIME_SHORTEST
 	printstring STRINGID_SEAOFFIREENVELOPEDSIDE
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_TARGET, B_ANIM_SEA_OF_FIRE
@@ -489,7 +490,8 @@ BattleScript_TheSeaOfFireDisappeared::
 
 BattleScript_EffectCombinedPledge_Grass::
 	call BattleScript_EffectHit_Pledge
-	setpledgestatus BS_TARGET
+	setpledgestatus BS_TARGET, SIDE_STATUS_SWAMP
+	pause B_WAIT_TIME_SHORTEST
 	printstring STRINGID_SWAMPENVELOPEDSIDE
 	waitmessage B_WAIT_TIME_LONG
 	playanimation BS_TARGET, B_ANIM_SWAMP
@@ -507,10 +509,9 @@ BattleScript_TheSwampDisappeared::
 	end2
 
 BattleScript_EffectHit_Pledge::
-	attackcanceler
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	printstring STRINGID_THETWOMOVESBECOMEONE
 	waitmessage B_WAIT_TIME_LONG
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	ppreduce
 	critcalc
 	damagecalc
