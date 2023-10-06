@@ -101,3 +101,6 @@ DOUBLE_BATTLE_TEST("Opportunist raises Attack only once when partner has Intimid
     }
 }
 
+TO_DO_BATTLE_TEST("Opportunist doesn't copy ally stat increases");
+TO_DO_BATTLE_TEST("Opportunist doesn't copy foe stat increases gained via Opportunist");
+TO_DO_BATTLE_TEST("Opportunist copies foe stat increased gained via Swagger and Flatter");
