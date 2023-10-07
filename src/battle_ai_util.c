@@ -363,6 +363,26 @@ static const u16 sEncouragedEncoreEffects[] =
     EFFECT_CAMOUFLAGE,
 };
 
+// For the purposes of determining the most powerful move in a moveset, these
+// moves are treated the same as having a power of 0 or 1
+#define IGNORED_MOVES_END 0xFFFF
+static const u16 sIgnoredPowerfulMoveEffects[] =
+{
+    EFFECT_EXPLOSION,
+    EFFECT_DREAM_EATER,
+    EFFECT_RECHARGE,
+    EFFECT_SKULL_BASH,
+    EFFECT_SOLAR_BEAM,
+    EFFECT_SPIT_UP,
+    EFFECT_FOCUS_PUNCH,
+    EFFECT_SUPERPOWER,
+    EFFECT_ERUPTION,
+    EFFECT_OVERHEAT,
+    EFFECT_MIND_BLOWN,
+    EFFECT_MAKE_IT_RAIN,
+    IGNORED_MOVES_END
+};
+
 // Functions
 u32 GetAIChosenMove(u32 battlerId)
 {
@@ -1041,11 +1061,19 @@ u32 GetNoOfHitsToKOBattler(u32 battlerAtk, u32 battlerDef, u32 moveIndex)
     return GetNoOfHitsToKOBattlerDmg(AI_DATA->simulatedDmg[battlerAtk][battlerDef][moveIndex], battlerDef);
 }
 
-bool32 IsInIgnoredPowerfulMoveEffects(u32 move)
+bool32 IsInIgnoredPowerfulMoveEffects(u32 effect)
 {
-    if (gBattleMoves[move].powerfullMoveEffect
-    && !(gBattleMoves[move].effect == EFFECT_SOLAR_BEAM && (AI_GetWeather(AI_DATA) & B_WEATHER_SUN)))
-        return TRUE;
+    u32 i;
+    for (i = 0; sIgnoredPowerfulMoveEffects[i] != IGNORED_MOVES_END; i++)
+    {
+        if (effect == sIgnoredPowerfulMoveEffects[i])
+        {
+            // Don't ingore Solar Beam if doesn't have a charging turn.
+            if (effect == EFFECT_SOLAR_BEAM && (AI_GetWeather(AI_DATA) & B_WEATHER_SUN))
+                break;
+            return TRUE;
+        }
+    }
     return FALSE;
 }
 
@@ -1058,7 +1086,7 @@ void SetMovesDamageResults(u32 battlerAtk, u16 *moves)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         u32 move = moves[i];
-        if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || gBattleMoves[move].power == 0 || IsInIgnoredPowerfulMoveEffects(move))
+        if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || gBattleMoves[move].power == 0 || IsInIgnoredPowerfulMoveEffects(gBattleMoves[move].effect))
             isNotConsidered[i] = TRUE;
         else
             isNotConsidered[i] = FALSE;

@@ -3186,7 +3186,7 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
                 leastHits = noOfHits[i];
                 leastHitsId = i;
             }
-            isPowerfulIgnoredEffect[i] = IsInIgnoredPowerfulMoveEffects(moves[i]);
+            isPowerfulIgnoredEffect[i] = IsInIgnoredPowerfulMoveEffects(gBattleMoves[moves[i]].effect);
         }
         else
         {
