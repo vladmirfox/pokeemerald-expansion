@@ -1528,23 +1528,46 @@ static const struct TrainerMon sParty_Shirley[] = {
 static const struct TrainerMon sParty_Lydia[] = {
     {
     .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
-    .lvl = 36,
+    .lvl = 8,
     .species = SPECIES_ELDEGOSS,
     },
     {
     .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
-    .lvl = 36,
+    .lvl = 38,
     .species = SPECIES_ROSERADE,
     },
     {
     .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
-    .lvl = 36,
+    .lvl = 38,
     .species = SPECIES_RILLABOOM,
     },
     {
     .iv = TRAINER_PARTY_IVS(18, 18, 18, 18, 18, 18),
-    .lvl = 36,
+    .lvl = 38,
     .species = SPECIES_CHESNAUGHT,
+    }
+};
+
+static const struct TrainerMon sParty_Lisla[] = {
+    {
+    .iv = TRAINER_PARTY_IVS(24, 24, 24, 24, 24, 24),
+    .lvl = 50,
+    .species = SPECIES_VILEPLUME,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(24, 24, 24, 24, 24, 24),
+    .lvl = 50,
+    .species = SPECIES_EXEGGUTOR_ALOLAN,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(24, 24, 24, 24, 24, 24),
+    .lvl = 50,
+    .species = SPECIES_INTELEON,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(24, 24, 24, 24, 24, 24),
+    .lvl = 50,
+    .species = SPECIES_PRIMARINA,
     }
 };
 

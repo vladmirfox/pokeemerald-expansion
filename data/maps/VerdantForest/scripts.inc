@@ -15,11 +15,17 @@ VerdantForest_OnResume:
 VerdantForest_OnResume_Night:
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_SHADE
+	goto_if_set FLAG_DEFEATED_TRAINER_LYDIA, VerdantForest_EventScript_DisableTrigger
 	end
 
 VerdantForest_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
+	goto_if_set FLAG_DEFEATED_TRAINER_LYDIA, VerdantForest_EventScript_DisableTrigger
+	end
+
+VerdantForest_EventScript_DisableTrigger::
+	setvar VAR_TEMP_0, 1
 	end
 
 VerdantForest_EventScript_LydiaTalk::
@@ -33,13 +39,13 @@ VerdantForest_EventScript_LydiaTalk::
 
 VerdantForest_EventScript_LydiaStop1::
 	setvar VAR_0x8008, 1
-	goto_if_unset FLAG_DEFEATED_TRAINER_LORNA, VerdantForest_EventScript_LydiaStopPlayer
+	goto_if_unset FLAG_DEFEATED_TRAINER_LYDIA, VerdantForest_EventScript_LydiaStopPlayer
 	releaseall
 	end
 
 VerdantForest_EventScript_LydiaStop2::
 	setvar VAR_0x8008, 2
-	goto_if_unset FLAG_DEFEATED_TRAINER_LORNA, VerdantForest_EventScript_LydiaStopPlayer
+	goto_if_unset FLAG_DEFEATED_TRAINER_LYDIA, VerdantForest_EventScript_LydiaStopPlayer
 	releaseall
 	end
 

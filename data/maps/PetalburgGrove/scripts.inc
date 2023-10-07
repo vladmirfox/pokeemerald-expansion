@@ -22,11 +22,17 @@ PetalburgGrove_OnResume:
 PetalburgGrove_OnResume_Night:
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_SHADE
+	goto_if_set FLAG_DEFEATED_TRAINER_LORNA, PetalburgGrove_EventScript_DisableTrigger
 	end
 
 PetalburgGrove_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
+	goto_if_set FLAG_DEFEATED_TRAINER_LORNA, PetalburgGrove_EventScript_DisableTrigger
+	end
+
+PetalburgGrove_EventScript_DisableTrigger::
+	setvar VAR_TEMP_0, 1
 	end
 
 PetalburgGrove_EventScript_MoveLorna::

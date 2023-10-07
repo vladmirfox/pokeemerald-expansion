@@ -1536,6 +1536,18 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_PARTY(sParty_Lydia),    
     },
 
+    [TRAINER_LISLA] =
+    {
+        .trainerClass = TRAINER_CLASS_AROMA_LADY,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
+        .trainerPic = TRAINER_PIC_AROMA_LADY,
+        .trainerName = _("LISLA"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE,
+        .party = TRAINER_PARTY(sParty_Lisla),    
+    },
+
     [TRAINER_JESSICA_1] =
     {
         .trainerClass = TRAINER_CLASS_BEAUTY,

@@ -17,3 +17,4 @@ VerdantForest_Deep_OnResume_Night:
 VerdantForest_Deep_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	end
+

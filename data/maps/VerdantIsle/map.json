@@ -17,16 +17,64 @@
       "map": "MAP_ROUTE109",
       "offset": -1,
       "direction": "up"
+    },
+    {
+      "map": "MAP_UNDERWATER_VERDANT_ISLE",
+      "offset": 0,
+      "direction": "dive"
+    },
+    {
+      "map": "MAP_VERDANT_ISLE_DEEP",
+      "offset": 0,
+      "direction": "right"
     }
   ],
   "object_events": [
-
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LINK_RECEPTIONIST",
+      "x": 19,
+      "y": 23,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_LEFT_AND_RIGHT",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantIsle_EventScript_LislaTalk",
+      "flag": "0"
+    }
   ],
   "warp_events": [
 
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 24,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "VerdantIsle_EventScript_LislaStop1"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 25,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "VerdantIsle_EventScript_LislaStop2"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 26,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "VerdantIsle_EventScript_LislaStop3"
+    }
   ],
   "bg_events": [
 

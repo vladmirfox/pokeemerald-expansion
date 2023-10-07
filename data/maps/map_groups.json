@@ -107,7 +107,10 @@
     "Underwater_Route131",
     "VerdantForest",
     "VerdantIsle",
-    "VerdantForest_Deep"
+    "VerdantForest_Deep",
+    "Underwater_VerdantIsle",
+    "VerdantIsle_Deep",
+    "Underwater_VerdantIsle_Deep"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",

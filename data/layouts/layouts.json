@@ -4674,7 +4674,7 @@
     {
       "id": "LAYOUT_VERDANT_ISLE",
       "name": "VerdantIsle_Layout",
-      "width": 36,
+      "width": 35,
       "height": 32,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Slateport",
@@ -4684,12 +4684,42 @@
     {
       "id": "LAYOUT_VERDANT_FOREST_DEEP",
       "name": "VerdantForest_Deep_Layout",
-      "width": 34,
-      "height": 35,
+      "width": 36,
+      "height": 36,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/VerdantForest_Deep/border.bin",
       "blockdata_filepath": "data/layouts/VerdantForest_Deep/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNDERWATER_VERDANT_ISLE",
+      "name": "Underwater_VerdantIsle_Layout",
+      "width": 35,
+      "height": 26,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Underwater",
+      "border_filepath": "data/layouts/Underwater_VerdantIsle/border.bin",
+      "blockdata_filepath": "data/layouts/Underwater_VerdantIsle/map.bin"
+    },
+    {
+      "id": "LAYOUT_VERDANT_ISLE_DEEP",
+      "name": "VerdantIsle_Deep_Layout",
+      "width": 28,
+      "height": 34,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Slateport",
+      "border_filepath": "data/layouts/VerdantIsle_Deep/border.bin",
+      "blockdata_filepath": "data/layouts/VerdantIsle_Deep/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNDERWATER_VERDANT_ISLE_DEEP",
+      "name": "Underwater_VerdantIsle_Deep_Layout",
+      "width": 15,
+      "height": 28,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Underwater",
+      "border_filepath": "data/layouts/Underwater_VerdantIsle_Deep/border.bin",
+      "blockdata_filepath": "data/layouts/Underwater_VerdantIsle_Deep/map.bin"
     }
   ]
 }
