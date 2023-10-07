@@ -1,3 +1,8 @@
+# Controlled Randomization
+
+This project incorporates controlled randomization into the expansion of the pokeemerald decompilation (see below). By controlled randomization, I mean that events are randomized in a manner that feels natural. The following types of events are randomized:
+* TODO: coming soon
+
 # pokeemerald Expansion
 
 ## What is the pokeemerald Expansion?
