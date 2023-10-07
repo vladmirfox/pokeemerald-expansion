@@ -360,6 +360,7 @@ void HandleAction_UseMove(void)
                  || (GetBattlerAbility(battler) == ABILITY_STORM_DRAIN && moveType == TYPE_WATER))
                 && GetBattlerTurnOrderNum(battler) < var
                 && gBattleMoves[gCurrentMove].effect != EFFECT_SNIPE_SHOT
+                && gBattleMoves[gCurrentMove].effect != EFFECT_PLEDGE
                 && (GetBattlerAbility(gBattlerAttacker) != ABILITY_PROPELLER_TAIL
                  || GetBattlerAbility(gBattlerAttacker) != ABILITY_STALWART))
             {
@@ -8658,10 +8659,6 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
     switch (gBattleMoves[move].effect)
     {
     case EFFECT_PLEDGE:
-        // if (gBattleStruct->pledgeMove)
-        // {
-        //     basePower = 150;
-        // }
         basePower = (gBattleStruct->pledgeMove) ? 150 : basePower;
         break;
     case EFFECT_FLING:
@@ -11301,7 +11298,8 @@ u32 CalcSecondaryEffectChance(u32 battler, u16 move)
     u8 secondaryEffectChance = gBattleMoves[move].secondaryEffectChance;
     bool8 hasSereneGrace = (GetBattlerAbility(battler) == ABILITY_SERENE_GRACE);
 
-    if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_RAINBOW && hasSereneGrace && gBattleMoves[move].effect == EFFECT_FLINCH_HIT)
+    if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_RAINBOW
+    && hasSereneGrace && gBattleMoves[gCurrentMove].effect == EFFECT_FLINCH_HIT)
         return secondaryEffectChance;
 
     if (hasSereneGrace)

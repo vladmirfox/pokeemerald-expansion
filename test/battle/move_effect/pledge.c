@@ -226,3 +226,18 @@ DOUBLE_BATTLE_TEST("The base power of a combined pledge move effect is 150")
         EXPECT_EQ(hyperBeamDamage, pledgeHitDamage);
     }
 }
+
+DOUBLE_BATTLE_TEST("Pledge moves can not be redirected by absorbing abilities")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_LILEEP) { Ability(ABILITY_STORM_DRAIN); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_WATER_PLEDGE, target: opponentRight);}
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_PLEDGE, playerLeft);
+        HP_BAR(opponentRight);
+    }
+}
