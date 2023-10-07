@@ -2534,8 +2534,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 
                 if (instructedMove == MOVE_NONE
                   || gBattleMoves[instructedMove].instructBanned
-                  || MoveRequiresRecharging(instructedMove)
-                  || MoveCallsOtherMove(instructedMove)
+                  || gBattleMoves[instructedMove].effect == EFFECT_RECHARGE
                   || IsZMove(instructedMove)
                   || (gLockedMoves[battlerDef] != 0 && gLockedMoves[battlerDef] != 0xFFFF)
                   || gBattleMons[battlerDef].status2 & STATUS2_MULTIPLETURNS
@@ -3187,7 +3186,7 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
                 leastHits = noOfHits[i];
                 leastHitsId = i;
             }
-            isPowerfulIgnoredEffect[i] = IsInIgnoredPowerfulMoveEffects(gBattleMoves[moves[i]].effect);
+            isPowerfulIgnoredEffect[i] = IsInIgnoredPowerfulMoveEffects(moves[i]);
         }
         else
         {

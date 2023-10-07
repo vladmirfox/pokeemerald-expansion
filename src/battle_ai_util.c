@@ -363,61 +363,6 @@ static const u16 sEncouragedEncoreEffects[] =
     EFFECT_CAMOUFLAGE,
 };
 
-// For the purposes of determining the most powerful move in a moveset, these
-// moves are treated the same as having a power of 0 or 1
-#define IGNORED_MOVES_END 0xFFFF
-static const u16 sIgnoredPowerfulMoveEffects[] =
-{
-    EFFECT_EXPLOSION,
-    EFFECT_DREAM_EATER,
-    EFFECT_RECHARGE,
-    EFFECT_SKULL_BASH,
-    EFFECT_SOLAR_BEAM,
-    EFFECT_SPIT_UP,
-    EFFECT_FOCUS_PUNCH,
-    EFFECT_SUPERPOWER,
-    EFFECT_ERUPTION,
-    EFFECT_OVERHEAT,
-    EFFECT_MIND_BLOWN,
-    EFFECT_MAKE_IT_RAIN,
-    IGNORED_MOVES_END
-};
-
-static const u16 sIgnoreMoldBreakerMoves[] =
-{
-    MOVE_MOONGEIST_BEAM,
-    MOVE_SUNSTEEL_STRIKE,
-    MOVE_PHOTON_GEYSER,
-    MOVE_LIGHT_THAT_BURNS_THE_SKY,
-    MOVE_MENACING_MOONRAZE_MAELSTROM,
-    MOVE_SEARING_SUNRAZE_SMASH,
-};
-
-static const u16 sRechargeMoves[] =
-{
-    MOVE_HYPER_BEAM,
-    MOVE_BLAST_BURN,
-    MOVE_HYDRO_CANNON,
-    MOVE_FRENZY_PLANT,
-    MOVE_GIGA_IMPACT,
-    MOVE_ROCK_WRECKER,
-    MOVE_ROAR_OF_TIME,
-    MOVE_PRISMATIC_LASER,
-    MOVE_METEOR_ASSAULT,
-    MOVE_ETERNABEAM,
-};
-
-static const u16 sOtherMoveCallingMoves[] =
-{
-    MOVE_ASSIST,
-    MOVE_COPYCAT,
-    MOVE_ME_FIRST,
-    MOVE_METRONOME,
-    MOVE_MIRROR_MOVE,
-    MOVE_NATURE_POWER,
-    MOVE_SLEEP_TALK,
-};
-
 // Functions
 u32 GetAIChosenMove(u32 battlerId)
 {
@@ -1096,19 +1041,11 @@ u32 GetNoOfHitsToKOBattler(u32 battlerAtk, u32 battlerDef, u32 moveIndex)
     return GetNoOfHitsToKOBattlerDmg(AI_DATA->simulatedDmg[battlerAtk][battlerDef][moveIndex], battlerDef);
 }
 
-bool32 IsInIgnoredPowerfulMoveEffects(u32 effect)
+bool32 IsInIgnoredPowerfulMoveEffects(u32 move)
 {
-    u32 i;
-    for (i = 0; sIgnoredPowerfulMoveEffects[i] != IGNORED_MOVES_END; i++)
-    {
-        if (effect == sIgnoredPowerfulMoveEffects[i])
-        {
-            // Don't ingore Solar Beam if doesn't have a charging turn.
-            if (effect == EFFECT_SOLAR_BEAM && (AI_GetWeather(AI_DATA) & B_WEATHER_SUN))
-                break;
-            return TRUE;
-        }
-    }
+    if (gBattleMoves[move].powerfullMoveEffect
+    && !(gBattleMoves[move].effect == EFFECT_SOLAR_BEAM && (AI_GetWeather(AI_DATA) & B_WEATHER_SUN)))
+        return TRUE;
     return FALSE;
 }
 
@@ -1121,7 +1058,7 @@ void SetMovesDamageResults(u32 battlerAtk, u16 *moves)
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         u32 move = moves[i];
-        if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || gBattleMoves[move].power == 0 || IsInIgnoredPowerfulMoveEffects(gBattleMoves[move].effect))
+        if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || gBattleMoves[move].power == 0 || IsInIgnoredPowerfulMoveEffects(move))
             isNotConsidered[i] = TRUE;
         else
             isNotConsidered[i] = FALSE;
@@ -1505,13 +1442,7 @@ bool32 DoesBattlerIgnoreAbilityChecks(u32 atkAbility, u32 move)
     if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
         return FALSE;   // AI handicap flag: doesn't understand ability suppression concept
 
-    for (i = 0; i < ARRAY_COUNT(sIgnoreMoldBreakerMoves); i++)
-    {
-        if (move == sIgnoreMoldBreakerMoves[i])
-            return TRUE;
-    }
-
-    if (IsMoldBreakerTypeAbility(atkAbility))
+    if (IsMoldBreakerTypeAbility(atkAbility) || gBattleMoves[move].ignoresTargetAbility)
         return TRUE;
 
     return FALSE;
@@ -2448,28 +2379,6 @@ bool32 IsEncoreEncouragedEffect(u32 moveEffect)
     for (i = 0; i < ARRAY_COUNT(sEncouragedEncoreEffects); i++)
     {
         if (moveEffect == sEncouragedEncoreEffects[i])
-            return TRUE;
-    }
-    return FALSE;
-}
-
-bool32 MoveRequiresRecharging(u32 move)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sRechargeMoves); i++)
-    {
-        if (move == sRechargeMoves[i])
-            return TRUE;
-    }
-    return FALSE;
-}
-
-bool32 MoveCallsOtherMove(u32 move)
-{
-    u32 i;
-    for (i = 0; i < ARRAY_COUNT(sOtherMoveCallingMoves); i++)
-    {
-        if (move == sOtherMoveCallingMoves[i])
             return TRUE;
     }
     return FALSE;
