@@ -131,8 +131,8 @@ LilycoveCity_LilycoveMuseum_1F_EventScript_Artist1::
 	lock
 	faceplayer
 	goto_if_eq VAR_TROPHY_GARDEN_ENCOUNTERS, 0, LilycoveCity_LilycoveMuseum_1F_EventScript_ISawSomething0
-	goto_if_eq VAR_TROPHY_GARDEN_ENCOUNTERS, 2, LilycoveCity_LilycoveMuseum_1F_EventScript_ISawSomething1
-	goto_if_eq VAR_TROPHY_GARDEN_ENCOUNTERS, 4, LilycoveCity_LilycoveMuseum_1F_EventScript_ISawSomething2
+	goto_if_eq VAR_TROPHY_GARDEN_ENCOUNTERS, 1, LilycoveCity_LilycoveMuseum_1F_EventScript_ISawSomething1
+	goto_if_eq VAR_TROPHY_GARDEN_ENCOUNTERS, 2, LilycoveCity_LilycoveMuseum_1F_EventScript_ISawSomething2
 	msgbox LilycoveCity_LilycoveMuseum_1F_Text_SomethingIsntRight, MSGBOX_DEFAULT
 	release
 	end
