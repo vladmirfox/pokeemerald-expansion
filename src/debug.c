@@ -121,6 +121,8 @@ enum { // Flags and Vars
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_DEXNAV,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_DETECTOR,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RELEARN,
 };
 enum { // Battle 0 Type
@@ -337,6 +339,8 @@ static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId);
 static void DebugAction_FlagsVars_TrainerSeeOnOff(u8 taskId);
 static void DebugAction_FlagsVars_BagUseOnOff(u8 taskId);
 static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId);
+static void DebugAction_FlagsVars_DexNavOnOff(u8 taskId);
+static void DebugAction_FlagsVars_DetectorOnOff(u8 taskId);
 static void DebugAction_FlagsVars_RelearnOnOff(u8 taskId);
 
 static void Debug_InitializeBattle(u8 taskId);
@@ -465,12 +469,14 @@ static const u8 sDebugText_FlagsVars_RunningShoes[] =           _("Toggle {STR_V
 static const u8 sDebugText_FlagsVars_ToggleFlyFlags[] =         _("Toggle {STR_VAR_1}Fly Flags");
 static const u8 sDebugText_FlagsVars_ToggleAllBadges[] =        _("Toggle {STR_VAR_1}All badges");
 static const u8 sDebugText_FlagsVars_ToggleFrontierPass[] =     _("Toggle {STR_VAR_1}Frontier Pass");
-static const u8 sDebugText_FlagsVars_SwitchCollision[] =        _("Toggle {STR_VAR_1}Collision OFF");
-static const u8 sDebugText_FlagsVars_SwitchEncounter[] =        _("Toggle {STR_VAR_1}Encounter OFF");
-static const u8 sDebugText_FlagsVars_SwitchTrainerSee[] =       _("Toggle {STR_VAR_1}TrainerSee OFF");
-static const u8 sDebugText_FlagsVars_SwitchBagUse[] =           _("Toggle {STR_VAR_1}BagUse OFF");
-static const u8 sDebugText_FlagsVars_SwitchCatching[] =         _("Toggle {STR_VAR_1}Catching OFF");
-static const u8 sDebugText_FlagsVars_SwitchRelearn[] =          _("Toggle {STR_VAR_1}Relearn OFF");
+static const u8 sDebugText_FlagsVars_SwitchCollision[] =        _("Toggle {STR_VAR_1}No Collision");
+static const u8 sDebugText_FlagsVars_SwitchEncounter[] =        _("Toggle {STR_VAR_1}No Encounter");
+static const u8 sDebugText_FlagsVars_SwitchTrainerSee[] =       _("Toggle {STR_VAR_1}No TrainerSee");
+static const u8 sDebugText_FlagsVars_SwitchBagUse[] =           _("Toggle {STR_VAR_1}No BagUse");
+static const u8 sDebugText_FlagsVars_SwitchCatching[] =         _("Toggle {STR_VAR_1}No Catching");
+static const u8 sDebugText_FlagsVars_SwitchDexNav[] =           _("Toggle {STR_VAR_1}DexNav");
+static const u8 sDebugText_FlagsVars_SwitchDetectorMode[] =     _("Toggle {STR_VAR_1}Detector Mode");
+static const u8 sDebugText_FlagsVars_SwitchRelearn[] =          _("Toggle {STR_VAR_1}Relearn");
 // Battle
 static const u8 sDebugText_Battle_0_Wild[] =        _("Wild…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Battle_0_WildDouble[] =  _("Wild Double…{CLEAR_TO 110}{RIGHT_ARROW}");
@@ -641,6 +647,8 @@ static const struct ListMenuItem sDebugMenu_Items_FlagsVars[] =
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE]   = {sDebugText_FlagsVars_SwitchTrainerSee,   DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE]       = {sDebugText_FlagsVars_SwitchBagUse,       DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING]      = {sDebugText_FlagsVars_SwitchCatching,     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_DEXNAV]        = {sDebugText_FlagsVars_SwitchDexNav,       DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_DEXNAV},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_DETECTOR]      = {sDebugText_FlagsVars_SwitchDetectorMode, DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_DETECTOR},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RELEARN]       = {sDebugText_FlagsVars_SwitchRelearn,      DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RELEARN},
 };
 static const struct ListMenuItem sDebugMenu_Items_Battle_0[] =
@@ -775,6 +783,8 @@ static void (*const sDebugMenu_Actions_Flags[])(u8) =
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE]   = DebugAction_FlagsVars_TrainerSeeOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE]       = DebugAction_FlagsVars_BagUseOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING]      = DebugAction_FlagsVars_CatchingOnOff,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_DEXNAV]        = DebugAction_FlagsVars_DexNavOnOff,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_DETECTOR]      = DebugAction_FlagsVars_DetectorOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RELEARN]       = DebugAction_FlagsVars_RelearnOnOff,
 };
 static void (*const sDebugMenu_Actions_Give[])(u8) =
@@ -1104,6 +1114,12 @@ static u8 Debug_CheckToggleFlags(u8 id)
             result = FlagGet(B_FLAG_NO_CATCHING);
             break;
     #endif
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_DEXNAV:
+            result = FlagGet(FLAG_SYS_DEXNAV_GET);
+            break;
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_DETECTOR:
+            result = FlagGet(FLAG_SYS_DETECTOR_MODE);
+            break;
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RELEARN:
             result = FlagGet(FLAG_RELEARN_AVAILABLE);
             break;
@@ -2518,6 +2534,22 @@ static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId)
         PlaySE(SE_PC_LOGIN);
     FlagToggle(B_FLAG_NO_CATCHING);
 #endif
+}
+static void DebugAction_FlagsVars_DexNavOnOff(u8 taskId)
+{
+    if (FlagGet(FLAG_SYS_DEXNAV_GET))
+        PlaySE(SE_PC_OFF);
+    else
+        PlaySE(SE_PC_LOGIN);
+    FlagToggle(FLAG_SYS_DEXNAV_GET);
+}
+static void DebugAction_FlagsVars_DetectorOnOff(u8 taskId)
+{
+    if (FlagGet(FLAG_SYS_DETECTOR_MODE))
+        PlaySE(SE_PC_OFF);
+    else
+        PlaySE(SE_PC_LOGIN);
+    FlagToggle(FLAG_SYS_DETECTOR_MODE);
 }
 static void DebugAction_FlagsVars_RelearnOnOff(u8 taskId)
 {
