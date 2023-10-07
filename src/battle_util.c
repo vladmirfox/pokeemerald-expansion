@@ -9337,7 +9337,7 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
         if (atkBaseSpeciesId == SPECIES_PIKACHU)
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
         #else
-        if (atkBaseSpeciesId == SPECIES_PIKACHU && IS_TYPE_SPECIAL(move))
+        if (atkBaseSpeciesId == SPECIES_PIKACHU && IS_MOVE_SPECIAL(move))
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
         #endif
         break;
