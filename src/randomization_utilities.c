@@ -147,156 +147,184 @@ static bool8 DoesSpeciesMatchLevel(u16 species, u8 level)
     return TRUE;
 }
 
-static bool8 DoesSpeciesMatchArea(u16 species, u8 areaType, u16 currentMapId)
+static bool8 DoesSpeciesMatchLandGeneralNature(u16 species)
 {
     u8 i;
     bool8 match;
 
     match = FALSE;
 
+    for (i=0; i<2; i++)
+    {
+        switch (gSpeciesInfo[species].eggGroups[i])
+        {
+        case EGG_GROUP_NONE:
+        case EGG_GROUP_WATER_2:
+        case EGG_GROUP_WATER_3:
+        case EGG_GROUP_DRAGON:
+        case EGG_GROUP_UNDISCOVERED:
+            return FALSE;
+        case EGG_GROUP_MONSTER:
+        case EGG_GROUP_BUG:
+        case EGG_GROUP_FLYING:
+        case EGG_GROUP_FIELD:
+        case EGG_GROUP_FAIRY:
+        case EGG_GROUP_GRASS:
+        case EGG_GROUP_DITTO:
+            match = TRUE;
+            break;
+        }
+    }
+
+    return match;
+}
+
+static bool8 DoesSpeciesMatchLandNearWater(u16 species)
+{
+    u8 i;
+    bool8 match;
+
+    match = FALSE;
+
+    for (i=0; i<2; i++)
+    {
+        switch (gSpeciesInfo[species].eggGroups[i])
+        {
+        case EGG_GROUP_NONE:
+        case EGG_GROUP_WATER_2:
+        case EGG_GROUP_WATER_3:
+        case EGG_GROUP_DRAGON:
+        case EGG_GROUP_UNDISCOVERED:
+            return FALSE;
+        case EGG_GROUP_MONSTER:
+        case EGG_GROUP_BUG:
+        case EGG_GROUP_FLYING:
+        case EGG_GROUP_FIELD:
+        case EGG_GROUP_FAIRY:
+        case EGG_GROUP_GRASS:
+        case EGG_GROUP_DITTO:
+        case EGG_GROUP_WATER_1:
+            match = TRUE;
+            break;
+        }
+    }
+
+    return match;
+}
+
+static bool8 DoesSpeciesMatchLandInWater(u16 species)
+{
+    u8 i;
+    bool8 match;
+
+    match = FALSE;
+
+    for (i=0; i<2; i++)
+    {
+        switch (gSpeciesInfo[species].eggGroups[i])
+        {
+        case EGG_GROUP_NONE:
+        case EGG_GROUP_WATER_2:
+        case EGG_GROUP_WATER_3:
+        case EGG_GROUP_DRAGON:
+        case EGG_GROUP_UNDISCOVERED:
+            return FALSE;
+        case EGG_GROUP_WATER_1:
+            match = TRUE;
+            break;
+        }
+    }
+    if ((gSpeciesInfo[species].types[0] == TYPE_WATER)
+            || (gSpeciesInfo[species].types[1] == TYPE_WATER))
+    {
+        match = TRUE;
+    }
+
+    return match;
+}
+
+static bool8 DoesSpeciesMatchCurrentMap_Land(u16 species, u16 currentMapId)
+{
+    switch (currentMapId)
+    {
+    // general nature:
+    case MAP_ROUTE101:
+    case MAP_ROUTE102:
+    case MAP_ROUTE116:
+    case MAP_ROUTE117:
+    case MAP_ROUTE120:
+    case MAP_ROUTE121:
+    case MAP_ROUTE123:
+        return DoesSpeciesMatchLandGeneralNature(species);
+    
+    // forest near water:
+    case MAP_ROUTE103:
+    case MAP_ROUTE104:
+    case MAP_ROUTE118:
+    case MAP_MOSSDEEP_CITY:
+        return DoesSpeciesMatchLandNearWater(species);
+
+    // sea:
+    case MAP_ROUTE105:
+    case MAP_ROUTE106:
+    case MAP_ROUTE107:
+    case MAP_ROUTE108:
+    case MAP_ROUTE109:
+    case MAP_ROUTE110:
+    case MAP_ROUTE122:
+    case MAP_ROUTE124:
+    case MAP_ROUTE125:
+    case MAP_ROUTE126:
+    case MAP_ROUTE127:
+    case MAP_ROUTE128:
+    case MAP_ROUTE129:
+    case MAP_ROUTE130:
+    case MAP_ROUTE131:
+    case MAP_ROUTE132:
+    case MAP_ROUTE133:
+    case MAP_ROUTE134:
+        return DoesSpeciesMatchLandInWater(species);
+
+    // TODO: other routes
+    }
+
+    // TODO: return FALSE is only for debugging, will cause problems for undefined map segments
+    return FALSE;
+}
+
+static bool8 DoesSpeciesMatchWater(species)
+{
+    // TODO
+    return FALSE;
+}
+
+static bool8 DoesSpeciesMatchRocks(species)
+{
+    // TODO: mineral group, but no steel, flying or fish types types
+    return FALSE;
+}
+
+static bool8 DoesSpeciesMatchFishing(species)
+{
+    // TODO: only specific kinds of fish
+    return FALSE;
+}
+
+static bool8 DoesSpeciesMatchCurrentMap(u16 species, u8 areaType, u16 currentMapId)
+{
     switch (areaType)
     {
     case WILD_AREA_LAND:
-        switch (currentMapId)
-        {
-        // general nature:
-        case MAP_ROUTE101:
-        case MAP_ROUTE102:
-        case MAP_ROUTE116:
-        case MAP_ROUTE117:
-        case MAP_ROUTE120:
-        case MAP_ROUTE121:
-        case MAP_ROUTE123:
-            for (i=0; i<2; i++)
-            {
-                switch (gSpeciesInfo[species].eggGroups[i])
-                {
-                case EGG_GROUP_NONE:
-                case EGG_GROUP_WATER_2:
-                case EGG_GROUP_WATER_3:
-                case EGG_GROUP_DRAGON:
-                case EGG_GROUP_UNDISCOVERED:
-                    return FALSE;
-                case EGG_GROUP_MONSTER:
-                case EGG_GROUP_BUG:
-                case EGG_GROUP_FLYING:
-                case EGG_GROUP_FIELD:
-                case EGG_GROUP_FAIRY:
-                case EGG_GROUP_GRASS:
-                case EGG_GROUP_DITTO:
-                    match = TRUE;
-                    break;
-                }
-            }
-            return match;
-        
-        // forest near water:
-        case MAP_ROUTE103:
-        case MAP_ROUTE104:
-        case MAP_ROUTE118:
-        case MAP_MOSSDEEP_CITY:
-            for (i=0; i<2; i++)
-            {
-                switch (gSpeciesInfo[species].eggGroups[i])
-                {
-                case EGG_GROUP_NONE:
-                case EGG_GROUP_WATER_2:
-                case EGG_GROUP_WATER_3:
-                case EGG_GROUP_DRAGON:
-                case EGG_GROUP_UNDISCOVERED:
-                    return FALSE;
-                case EGG_GROUP_MONSTER:
-                case EGG_GROUP_BUG:
-                case EGG_GROUP_FLYING:
-                case EGG_GROUP_FIELD:
-                case EGG_GROUP_FAIRY:
-                case EGG_GROUP_GRASS:
-                case EGG_GROUP_DITTO:
-                case EGG_GROUP_WATER_1:
-                    match = TRUE;
-                    break;
-                }
-            }
-            return match;
-
-        // sea:
-        case MAP_ROUTE105:
-        case MAP_ROUTE106:
-        case MAP_ROUTE107:
-        case MAP_ROUTE108:
-        case MAP_ROUTE109:
-        case MAP_ROUTE110:
-        case MAP_ROUTE122:
-        case MAP_ROUTE124:
-        case MAP_ROUTE125:
-        case MAP_ROUTE126:
-        case MAP_ROUTE127:
-        case MAP_ROUTE128:
-        case MAP_ROUTE129:
-        case MAP_ROUTE130:
-        case MAP_ROUTE131:
-        case MAP_ROUTE132:
-        case MAP_ROUTE133:
-        case MAP_ROUTE134:
-            for (i=0; i<2; i++)
-            {
-                switch (gSpeciesInfo[species].eggGroups[i])
-                {
-                case EGG_GROUP_NONE:
-                case EGG_GROUP_WATER_2:
-                case EGG_GROUP_WATER_3:
-                case EGG_GROUP_DRAGON:
-                case EGG_GROUP_UNDISCOVERED:
-                    return FALSE;
-                case EGG_GROUP_WATER_1:
-                    match = TRUE;
-                    break;
-                }
-            }
-            if ((gSpeciesInfo[species].types[0] == TYPE_WATER)
-                    || (gSpeciesInfo[species].types[1] == TYPE_WATER))
-            {
-                match = TRUE;
-            }
-            return match;
-// #define EGG_GROUP_NONE          0 <- dont use
-// #define EGG_GROUP_MONSTER       1 <- mountains, general nature
-// #define EGG_GROUP_WATER_1       2 <- land near water
-// #define EGG_GROUP_BUG           3 <- BUG
-// #define EGG_GROUP_FLYING        4 <- flying types
-// #define EGG_GROUP_FIELD         5 <- pretty much anywhere on land
-// #define EGG_GROUP_FAIRY         6 <- general nature, maybe other nature too
-// #define EGG_GROUP_GRASS         7 <- general nature, forests
-// #define EGG_GROUP_HUMAN_LIKE    8 <- mountains and general nature
-// #define EGG_GROUP_WATER_3       9 <- only in water
-// #define EGG_GROUP_MINERAL       10 <- caves
-// #define EGG_GROUP_AMORPHOUS     11 <- mountains and caves
-// #define EGG_GROUP_WATER_2       12 <- ONLY in water
-// #define EGG_GROUP_DITTO         13 <- ditto
-// #define EGG_GROUP_DRAGON        14 <- mountains, if not combined with water(1 or 2) egg group
-// #define EGG_GROUP_UNDISCOVERED  15 <- no random encounters
-        }
-        break;
+        return DoesSpeciesMatchCurrentMap_Land(species, currentMapId);
+    case WILD_AREA_WATER:
+        return DoesSpeciesMatchWater(species);
+    case WILD_AREA_ROCKS:
+        return DoesSpeciesMatchRocks(species);
+    case WILD_AREA_FISHING:
+        return DoesSpeciesMatchFishing(species);
     }
-    // case WILD_AREA_WATER:
-    // case WILD_AREA_ROCKS:
-    // case WILD_AREA_FISHING:
 
-
-    //     // deep forest: petalburg woods
-
-
-
-
-    //     // mountain-like: route 111-112, 114-115, victory road, jagged pass
-
-    //     // near volcano: route 113, mt chimney
-
-    //     // rain forest: route 119
-
-    //     // abandoned monument: sky pillar
-
-    // TODO: return FALSE is only for debugging, will cause problems for undefined map segments
+    // area type should always be one of the above
     return FALSE;
 }
 
@@ -319,22 +347,24 @@ static bool8 IsSpeciesValidWildEncounter(u16 species)
     return TRUE;
 }
 
-u16 GetRandomizedSpecies_Land(u16 seedSpecies, u8 level, u8 areaType)
+u16 GetRandomizedSpecies(u16 seedSpecies, u8 level, u8 areaType)
 {
     u16 currentMapId;
     u16 randomizedSpecies;
     u8 i;
 
+    // create map ID early to use in RNG seed
     currentMapId = ((gSaveBlock1Ptr->location.mapGroup) << 8 | gSaveBlock1Ptr->location.mapNum);
 
     // create temporary random seed
     SeedRng(areaType + seedSpecies + currentMapId);
 
+    // sample random species until a valid match appears
     for (i=0; i<NUM_ENCOUNTER_RANDOMIZATION_TRIES; i++)
     {
         randomizedSpecies = Random() % NUM_SPECIES;
         if (IsSpeciesValidWildEncounter(randomizedSpecies)
-                && DoesSpeciesMatchArea(randomizedSpecies, areaType, currentMapId)
+                && DoesSpeciesMatchCurrentMap(randomizedSpecies, areaType, currentMapId)
                 // check level last because it is least efficient check:
                 && DoesSpeciesMatchLevel(randomizedSpecies, level)) 
         {
@@ -345,3 +375,32 @@ u16 GetRandomizedSpecies_Land(u16 seedSpecies, u8 level, u8 areaType)
     // no match found
     return SPECIES_UMBREON;
 }
+
+
+// Notes:
+// #define EGG_GROUP_NONE          0 <- dont use
+// #define EGG_GROUP_MONSTER       1 <- mountains, general nature
+// #define EGG_GROUP_WATER_1       2 <- land near water
+// #define EGG_GROUP_BUG           3 <- BUG
+// #define EGG_GROUP_FLYING        4 <- flying types
+// #define EGG_GROUP_FIELD         5 <- pretty much anywhere on land
+// #define EGG_GROUP_FAIRY         6 <- general nature, maybe other nature too
+// #define EGG_GROUP_GRASS         7 <- general nature, forests
+// #define EGG_GROUP_HUMAN_LIKE    8 <- mountains and general nature
+// #define EGG_GROUP_WATER_3       9 <- only in water
+// #define EGG_GROUP_MINERAL       10 <- caves
+// #define EGG_GROUP_AMORPHOUS     11 <- mountains and caves
+// #define EGG_GROUP_WATER_2       12 <- ONLY in water
+// #define EGG_GROUP_DITTO         13 <- ditto
+// #define EGG_GROUP_DRAGON        14 <- mountains, if not combined with water(1 or 2) egg group
+// #define EGG_GROUP_UNDISCOVERED  15 <- no random encounters
+
+
+    //     // deep forest: petalburg woods
+    //     // mountain-like: route 111-112, 114-115, victory road, jagged pass
+
+    //     // near volcano: route 113, mt chimney
+
+    //     // rain forest: route 119
+
+    //     // abandoned monument: sky pillar
