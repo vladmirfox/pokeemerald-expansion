@@ -468,6 +468,8 @@ static void ShowPyramidFloorWindow(void)
 static void ShowCurrentTimeWindow(void)
 {
     u8 currentHour;
+    const u8 sColor_Blue[] = _("{COLOR LIGHT_BLUE}{SHADOW LIGHT_BLUE}");
+    const u8 sColor_Yellow[] = _("{COLOR LIGHT_RED}{SHADOW LIGHT_RED}");
     RtcCalcLocalTime();
     if (gLocalTime.hours >= 12) 
         currentHour = (gLocalTime.hours - 12);
@@ -478,6 +480,10 @@ static void ShowCurrentTimeWindow(void)
     DrawStdWindowFrame(sCurrentTimeWindowId, FALSE);
     ConvertIntToDecimalStringN(gStringVar1, currentHour, STR_CONV_MODE_LEADING_ZEROS, 2);
     ConvertIntToDecimalStringN(gStringVar2, gLocalTime.minutes, STR_CONV_MODE_LEADING_ZEROS, 2);
+    if (gLocalTime.hours >= 8 && gLocalTime.hours <=19)
+    StringCopy(gStringVar3, sColor_Yellow);
+    else
+    StringCopy(gStringVar3, sColor_Blue);
     if (gLocalTime.hours >= 12)
     StringExpandPlaceholders(gStringVar4, gText_CurrentTimePM);
     else
