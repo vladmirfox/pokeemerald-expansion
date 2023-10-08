@@ -2509,7 +2509,7 @@ u8 DoFieldEndTurnEffects(void)
                             break;
                     }
 
-                    if (--gSideTimers[side].rainbowTimer == 0)
+                    if (gSideTimers[side].rainbowTimer > 0 && --gSideTimers[side].rainbowTimer == 0)
                     {
                         gSideStatuses[side] &= ~SIDE_STATUS_RAINBOW;
                         BattleScriptExecute(BattleScript_TheRainbowDisappeared);
@@ -2544,7 +2544,7 @@ u8 DoFieldEndTurnEffects(void)
                             break;
                     }
 
-                    if (--gSideTimers[side].seaOfFireTimer == 0)
+                    if (gSideTimers[side].seaOfFireTimer > 0 && --gSideTimers[side].seaOfFireTimer == 0)
                     {
                         gSideStatuses[side] &= ~SIDE_STATUS_SEA_OF_FIRE;
                         BattleScriptExecute(BattleScript_TheSeaOfFireDisappeared);
@@ -2574,7 +2574,7 @@ u8 DoFieldEndTurnEffects(void)
                             break;
                     }
 
-                    if (--gSideTimers[side].swampTimer == 0)
+                    if (gSideTimers[side].swampTimer > 0 && --gSideTimers[side].swampTimer == 0)
                     {
                         gSideStatuses[side] &= ~SIDE_STATUS_SWAMP;
                         BattleScriptExecute(BattleScript_TheSwampDisappeared);
@@ -11293,19 +11293,17 @@ bool32 AreBattlersOfOppositeGender(u32 battler1, u32 battler2)
     return (gender1 != MON_GENDERLESS && gender2 != MON_GENDERLESS && gender1 != gender2);
 }
 
-u32 CalcSecondaryEffectChance(u32 battler, u16 move)
+u32 CalcSecondaryEffectChance(u32 battler, u8 secondaryEffectChance, u16 moveEffect)
 {
-    u8 secondaryEffectChance = gBattleMoves[move].secondaryEffectChance;
     bool8 hasSereneGrace = (GetBattlerAbility(battler) == ABILITY_SERENE_GRACE);
+    bool8 hasRainbow = (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_RAINBOW) != 0;
 
-    if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_RAINBOW
-    && hasSereneGrace && gBattleMoves[gCurrentMove].effect == EFFECT_FLINCH_HIT)
-        return secondaryEffectChance;
+    if (hasRainbow && hasSereneGrace && moveEffect == EFFECT_FLINCH_HIT)
+        return secondaryEffectChance *= 2;
 
     if (hasSereneGrace)
         secondaryEffectChance *= 2;
-
-    if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_RAINBOW && move != MOVE_SECRET_POWER)
+    if (hasRainbow && moveEffect != EFFECT_SECRET_POWER)
         secondaryEffectChance *= 2;
 
     return secondaryEffectChance;

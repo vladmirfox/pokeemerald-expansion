@@ -34,6 +34,32 @@ DOUBLE_BATTLE_TEST("Water and Fire Pledge create a rainbow on the user's side of
     }
 }
 
+DOUBLE_BATTLE_TEST("")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
+        PLAYER(SPECIES_WYNAUT) { Speed(3); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(8); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(5); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_WATER_PLEDGE, target: opponentLeft);
+               MOVE(playerRight, MOVE_FIRE_PLEDGE, target: opponentRight);
+        }
+        TURN {}
+        TURN {}
+        TURN {}
+    } SCENE {
+        MESSAGE("Wobbuffet used Water Pledge!");
+        MESSAGE("Wobbuffet is waiting for Wynaut's move…{PAUSE 16}");
+        MESSAGE("Wynaut used Fire Pledge!");
+        MESSAGE("The two moves become one! It's a combined move!{PAUSE 16}");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_PLEDGE, playerRight);
+        HP_BAR(opponentRight);
+        MESSAGE("A rainbow appeared in the sky on your team's side!");
+        MESSAGE("The rainbow on your side disappeared!");
+    }
+}
+
 DOUBLE_BATTLE_TEST("Rainbow doubles the chance of secondary move effects")
 {
     PASSES_RANDOMLY(20, 100, RNG_SECONDARY_EFFECT);
@@ -56,7 +82,7 @@ DOUBLE_BATTLE_TEST("Rainbow doubles the chance of secondary move effects")
 
 DOUBLE_BATTLE_TEST("Rainbow flinch chance does not stack with Serene Grace")
 {
-    PASSES_RANDOMLY(30, 100, RNG_SECONDARY_EFFECT);
+    PASSES_RANDOMLY(60, 100, RNG_SECONDARY_EFFECT);
     GIVEN {
         PLAYER(SPECIES_TOGEPI) { Speed(8); Ability(ABILITY_SERENE_GRACE); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(5); }
@@ -74,9 +100,9 @@ DOUBLE_BATTLE_TEST("Rainbow flinch chance does not stack with Serene Grace")
     }
 }
 
-DOUBLE_BATTLE_TEST("Rainbow flinch chance does not stack with Serene Grace and Triple Arrows")
+DOUBLE_BATTLE_TEST("Rainbow flinch chance does not stack with Serene Grace if mvoe Triple Arrows is used")
 {
-    PASSES_RANDOMLY(30, 100, RNG_TRIPLE_ARROWS_FLINCH);
+    PASSES_RANDOMLY(60, 100, RNG_TRIPLE_ARROWS_FLINCH);
     GIVEN {
         PLAYER(SPECIES_TOGEPI) { Speed(8); Ability(ABILITY_SERENE_GRACE); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(5); }
@@ -239,5 +265,49 @@ DOUBLE_BATTLE_TEST("Pledge moves can not be redirected by absorbing abilities")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_PLEDGE, playerLeft);
         HP_BAR(opponentRight);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Pledge status timer does not reset if combined move is used again")
+{
+    u16 pledgeMove1, pledgeMove2;
+
+    PARAMETRIZE { pledgeMove1 = MOVE_WATER_PLEDGE; pledgeMove2 = MOVE_FIRE_PLEDGE; }
+    PARAMETRIZE { pledgeMove1 = MOVE_FIRE_PLEDGE; pledgeMove2 = MOVE_GRASS_PLEDGE; }
+    PARAMETRIZE { pledgeMove1 = MOVE_GRASS_PLEDGE; pledgeMove2 = MOVE_WATER_PLEDGE; }
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
+        PLAYER(SPECIES_WYNAUT) { Speed(3); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(8); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(5); }
+    } WHEN {
+        TURN { MOVE(playerLeft, pledgeMove1, target: opponentLeft);
+               MOVE(playerRight, pledgeMove2, target: opponentRight);
+        }
+        TURN { MOVE(playerLeft, pledgeMove1, target: opponentLeft);
+               MOVE(playerRight, pledgeMove2, target: opponentRight);
+        }
+        TURN {}
+        TURN {}
+        TURN {}
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, pledgeMove1, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, pledgeMove1, playerRight);
+        if (pledgeMove1 == MOVE_WATER_PLEDGE && pledgeMove2 == MOVE_FIRE_PLEDGE)
+        {
+            NOT MESSAGE("A rainbow appeared in the sky on your team's side!");
+            MESSAGE("The rainbow on your side disappeared!");
+        }
+        if (pledgeMove1 == MOVE_FIRE_PLEDGE && pledgeMove2 == MOVE_GRASS_PLEDGE)
+        {
+            NOT MESSAGE("A sea of fire enveloped the opposing team!");
+            MESSAGE("The sea of fire around the opposing team disappeared!");
+        }
+        if (pledgeMove1 == MOVE_GRASS_PLEDGE && pledgeMove2 == MOVE_WATER_PLEDGE)
+        {
+            NOT MESSAGE("A swamp enveloped the opposing team!");
+            MESSAGE("The swamp around the opposing team disappeared!");
+        }
     }
 }

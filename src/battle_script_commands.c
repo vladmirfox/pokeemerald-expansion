@@ -3667,15 +3667,8 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 break;
             case MOVE_EFFECT_TRIPLE_ARROWS:
                 {
-                    u8 randomLowerDefenseChance;
-                    u8 randomFlinchChance;
-
-                    randomLowerDefenseChance = RandomPercentage(RNG_TRIPLE_ARROWS_DEFENSE_DOWN, 50 * CalcSecondaryEffectChance(gBattlerAttacker, gCurrentMove));
-
-                    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE && gSideStatuses[GetBattlerSide(gBattlerAttacker)] & SIDE_STATUS_RAINBOW)
-                        randomFlinchChance = RandomPercentage(RNG_TRIPLE_ARROWS_FLINCH, 30);
-                    else
-                        randomFlinchChance = RandomPercentage(RNG_TRIPLE_ARROWS_FLINCH, 30 * CalcSecondaryEffectChance(gBattlerAttacker, gCurrentMove));
+                    u8 randomLowerDefenseChance = RandomPercentage(RNG_TRIPLE_ARROWS_DEFENSE_DOWN, CalcSecondaryEffectChance(gBattlerAttacker, 50, EFFECT_DEFENSE_DOWN_HIT));
+                    u8 randomFlinchChance = RandomPercentage(RNG_TRIPLE_ARROWS_FLINCH, CalcSecondaryEffectChance(gBattlerAttacker, 30, EFFECT_FLINCH_HIT));
 
                     if (randomFlinchChance && battlerAbility != ABILITY_INNER_FOCUS && GetBattlerTurnOrderNum(gEffectBattler) > gCurrentTurnActionNumber)
                         gBattleMons[gEffectBattler].status2 |= sStatusFlagsForMoveEffects[MOVE_EFFECT_FLINCH];
@@ -3702,7 +3695,7 @@ static void Cmd_seteffectwithchance(void)
 {
     CMD_ARGS();
 
-    u32 percentChance = CalcSecondaryEffectChance(gBattlerAttacker, gCurrentMove);
+    u32 percentChance = CalcSecondaryEffectChance(gBattlerAttacker, gBattleMoves[gCurrentMove].secondaryEffectChance, gBattleMoves[gCurrentMove].effect);
 
     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
      && gBattleScripting.moveEffect)
@@ -16442,21 +16435,25 @@ void BS_SetPledgeStatus(void)
     u32 battler = GetBattlerForBattleScript(cmd->battler);
     u32 side = GetBattlerSide(battler);
 
+    gBattleStruct->pledgeMove = FALSE;
     if (!(gSideStatuses[side] & cmd->sideStatus))
+    {
         gSideStatuses[side] |= cmd->sideStatus;
 
-    switch (cmd->sideStatus)
-    {
-    case SIDE_STATUS_RAINBOW:
-        gSideTimers[side].rainbowTimer = 4;
-        break;
-    case SIDE_STATUS_SEA_OF_FIRE:
-        gSideTimers[side].seaOfFireTimer = 4;
-        break;
-    case SIDE_STATUS_SWAMP:
-        gSideTimers[side].swampTimer = 4;
-    }
+        switch (cmd->sideStatus)
+        {
+        case SIDE_STATUS_RAINBOW:
+            gSideTimers[side].rainbowTimer = 4;
+            break;
+        case SIDE_STATUS_SEA_OF_FIRE:
+            gSideTimers[side].seaOfFireTimer = 4;
+            break;
+        case SIDE_STATUS_SWAMP:
+            gSideTimers[side].swampTimer = 4;
+        }
 
-    gBattleStruct->pledgeMove = FALSE;
-    gBattlescriptCurrInstr = cmd->nextInstr;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+        gBattlescriptCurrInstr = BattleScript_MoveEnd;
 }

@@ -220,10 +220,10 @@
 // Per-side statuses that affect an entire party
 #define SIDE_STATUS_REFLECT                 (1 << 0)
 #define SIDE_STATUS_LIGHTSCREEN             (1 << 1)
-#define SIDE_STATUS_STICKY_WEB              (1 << 2 | 1 << 3)
+#define SIDE_STATUS_STICKY_WEB              (1 << 2)
 #define SIDE_STATUS_SPIKES                  (1 << 4)
 #define SIDE_STATUS_SAFEGUARD               (1 << 5)
-#define SIDE_STATUS_FUTUREATTACK            (1 << 6 | 1 << 7)
+#define SIDE_STATUS_FUTUREATTACK            (1 << 6)
 #define SIDE_STATUS_MIST                    (1 << 8)
 // (1 << 9) previously was SIDE_STATUS_SPIKES_DAMAGED
 #define SIDE_STATUS_TAILWIND                (1 << 10)
