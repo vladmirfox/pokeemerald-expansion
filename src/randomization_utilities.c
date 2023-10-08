@@ -243,6 +243,142 @@ static bool8 DoesSpeciesMatchLandInWater(u16 species)
     return match;
 }
 
+static bool8 DoesSpeciesMatchLandInForest(u16 species)
+{
+    u8 i;
+    bool8 match;
+
+    match = FALSE;
+
+    for (i=0; i<2; i++)
+    {
+        switch (gSpeciesInfo[species].eggGroups[i])
+        {
+        case EGG_GROUP_NONE:
+        case EGG_GROUP_WATER_2:
+        case EGG_GROUP_WATER_3:
+        case EGG_GROUP_DRAGON:
+        case EGG_GROUP_UNDISCOVERED:
+            return FALSE;
+        case EGG_GROUP_GRASS:
+        case EGG_GROUP_BUG:
+        case EGG_GROUP_AMORPHOUS:
+            match = TRUE;
+            break;
+        }
+    }
+
+    return match;
+}
+
+static bool8 DoesSpeciesMatchLandOnMountain(u16 species)
+{
+    u8 i;
+    bool8 match;
+
+    for (i=0; i<2; i++)
+    {
+        switch (gSpeciesInfo[species].eggGroups[i])
+        {
+        case EGG_GROUP_NONE:
+        case EGG_GROUP_WATER_2:
+        case EGG_GROUP_WATER_3:
+        case EGG_GROUP_UNDISCOVERED:
+            return FALSE;
+        case EGG_GROUP_DRAGON:
+        case EGG_GROUP_HUMAN_LIKE:
+        case EGG_GROUP_FLYING:
+            match = TRUE;
+            break;
+        }
+    }
+
+    return match;
+}
+
+static bool8 DoesSpeciesMatchLandInNormalCave(u16 species)
+{
+    u8 i;
+    bool8 match;
+
+    // also allow bat-like mons
+    switch (species)
+    {
+        case SPECIES_ZUBAT:
+        case SPECIES_GOLBAT:
+        case SPECIES_CROBAT:
+        case SPECIES_NOIBAT:
+        case SPECIES_NOIVERN:
+        case SPECIES_WOOBAT:
+        case SPECIES_SWOOBAT:
+        case SPECIES_GLIGAR:
+        case SPECIES_GLISCOR:
+            return TRUE;
+    }
+
+    for (i=0; i<2; i++)
+    {
+        switch (gSpeciesInfo[species].eggGroups[i])
+        {
+        case EGG_GROUP_NONE:
+        case EGG_GROUP_WATER_2:
+        case EGG_GROUP_WATER_3:
+        case EGG_GROUP_UNDISCOVERED:
+            return FALSE;
+        case EGG_GROUP_DRAGON:
+            // dragons allowed in caves, but not flying ones
+            if ((gSpeciesInfo[species].types[0] == TYPE_FLYING)
+                    || (gSpeciesInfo[species].types[1] == TYPE_FLYING))
+            {
+                return FALSE;
+            }
+        case EGG_GROUP_MINERAL:
+            match = TRUE;
+            break;
+        }
+    }
+
+    return match;
+}
+
+return DoesSpeciesMatchLandInIcyCave(u16 species)
+{
+    u8 i;
+    bool8 match;
+
+    match = FALSE;
+
+    for (i=0; i<2; i++)
+    {
+        switch (gSpeciesInfo[species].eggGroups[i])
+        {
+        case EGG_GROUP_NONE:
+        case EGG_GROUP_WATER_2:
+        case EGG_GROUP_WATER_3:
+        case EGG_GROUP_UNDISCOVERED:
+            return FALSE;
+        case EGG_GROUP_MINERAL:
+            match = TRUE;
+            break;
+        }
+    }
+
+    // also allow all ice types that are not fish
+    if ((gSpeciesInfo[species].types[0] == TYPE_ICE)
+            || gSpeciesInfo[species].types[1] == TYPE_ICE)
+    {
+        return TRUE;
+    }
+
+    return match;
+}
+
+static bool8 DoesSpeciesMatchLandInCavern(u16 species)
+{
+    // TODO
+    return FALSE;
+}
+
 static bool8 DoesSpeciesMatchCurrentMap_Land(u16 species, u16 currentMapId)
 {
     switch (currentMapId)
@@ -255,6 +391,12 @@ static bool8 DoesSpeciesMatchCurrentMap_Land(u16 species, u16 currentMapId)
     case MAP_ROUTE120:
     case MAP_ROUTE121:
     case MAP_ROUTE123:
+    case MAP_SAFARI_ZONE_NORTHWEST:
+    case MAP_SAFARI_ZONE_NORTH:
+    case MAP_SAFARI_ZONE_SOUTHWEST:
+    case MAP_SAFARI_ZONE_SOUTH:
+    case MAP_SAFARI_ZONE_NORTHEAST:
+    case MAP_SAFARI_ZONE_SOUTHEAST:
         return DoesSpeciesMatchLandGeneralNature(species);
     
     // forest near water:
@@ -285,7 +427,94 @@ static bool8 DoesSpeciesMatchCurrentMap_Land(u16 species, u16 currentMapId)
     case MAP_ROUTE134:
         return DoesSpeciesMatchLandInWater(species);
 
-    // TODO: other routes
+    // deep forest:
+    case MAP_PETALBURG_WOODS:
+    case MAP_ROUTE119:
+        return DoesSpeciesMatchLandInForest(species);
+
+    // mountain-like:
+    case MAP_ROUTE112:
+    case MAP_ROUTE114:
+    case MAP_ROUTE115:
+    case MAP_JAGGED_PASS:
+    case MAP_MT_PYRE_EXTERIOR:
+        return DoesSpeciesMatchLandOnMountain(species);
+
+    // normal cave:
+    case MAP_METEOR_FALLS_1F_1R:
+    case MAP_METEOR_FALLS_1F_2R:
+    case MAP_METEOR_FALLS_B1F_1R:
+    case MAP_METEOR_FALLS_B1F_2R:
+    case MAP_RUSTURF_TUNNEL:
+    case MAP_GRANITE_CAVE_1F:
+    case MAP_GRANITE_CAVE_B1F:
+    case MAP_GRANITE_CAVE_B2F:
+    case MAP_GRANITE_CAVE_STEVENS_ROOM:
+    case MAP_CAVE_OF_ORIGIN_ENTRANCE:
+    case MAP_CAVE_OF_ORIGIN_1F:
+    case MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1:
+    case MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2:
+    case MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3:
+    case MAP_CAVE_OF_ORIGIN_B1F:
+    case MAP_VICTORY_ROAD_1F:
+    case MAP_VICTORY_ROAD_B1F:
+    case MAP_VICTORY_ROAD_B2F:
+    case MAP_ARTISAN_CAVE_B1F:
+    case MAP_ARTISAN_CAVE_1F:
+    case MAP_ALTERING_CAVE:
+    case MAP_METEOR_FALLS_STEVENS_CAVE:
+        return DoesSpeciesMatchLandInNormalCave(species);
+
+    // icy cave:
+    case MAP_SHOAL_CAVE_LOW_TIDE_ENTRANCE_ROOM:
+    case MAP_SHOAL_CAVE_LOW_TIDE_INNER_ROOM:
+    case MAP_SHOAL_CAVE_LOW_TIDE_STAIRS_ROOM:
+    case MAP_SHOAL_CAVE_LOW_TIDE_LOWER_ROOM:
+    case MAP_SHOAL_CAVE_HIGH_TIDE_ENTRANCE_ROOM:
+    case MAP_SHOAL_CAVE_HIGH_TIDE_INNER_ROOM:
+    case MAP_SHOAL_CAVE_LOW_TIDE_ICE_ROOM:
+        return DoesSpeciesMatchLandInIcyCave(species);
+
+    // desert:
+    case MAP_ROUTE111:
+    case MAP_MIRAGE_TOWER_1F:
+    case MAP_MIRAGE_TOWER_2F:
+    case MAP_MIRAGE_TOWER_3F:
+    case MAP_MIRAGE_TOWER_4F:
+    case MAP_DESERT_UNDERPASS:
+
+    // near volcano:
+    case MAP_FIERY_PATH:
+    case MAP_MT_CHIMNEY:
+    case MAP_MAGMA_HIDEOUT_1F:
+    case MAP_MAGMA_HIDEOUT_2F_1R:
+    case MAP_MAGMA_HIDEOUT_2F_2R:
+    case MAP_MAGMA_HIDEOUT_3F_1R:
+    case MAP_MAGMA_HIDEOUT_3F_2R:
+    case MAP_MAGMA_HIDEOUT_4F:
+    case MAP_MAGMA_HIDEOUT_3F_3R:
+    case MAP_MAGMA_HIDEOUT_2F_3R:
+
+    // creepy area:
+    case MAP_MT_PYRE_1F:
+    case MAP_MT_PYRE_2F:
+    case MAP_MT_PYRE_3F:
+    case MAP_MT_PYRE_4F:
+    case MAP_MT_PYRE_5F:
+    case MAP_MT_PYRE_6F:
+    case MAP_MT_PYRE_SUMMIT:
+    case MAP_SKY_PILLAR_ENTRANCE:
+    case MAP_SKY_PILLAR_OUTSIDE:
+    case MAP_SKY_PILLAR_1F:
+    case MAP_SKY_PILLAR_2F:
+    case MAP_SKY_PILLAR_3F:
+    case MAP_SKY_PILLAR_4F:
+    case MAP_SKY_PILLAR_5F:
+    case MAP_SKY_PILLAR_TOP:
+
+    // industrial area:
+    case MAP_NEW_MAUVILLE_ENTRANCE:
+    case MAP_NEW_MAUVILLE_INSIDE:
     }
 
     // TODO: return FALSE is only for debugging, will cause problems for undefined map segments
@@ -294,18 +523,64 @@ static bool8 DoesSpeciesMatchCurrentMap_Land(u16 species, u16 currentMapId)
 
 static bool8 DoesSpeciesMatchWater(species)
 {
-    // TODO
+    u8 i;
+
+    for (i=0; i<2; i++)
+    {
+        switch (gSpeciesInfo[species].eggGroups[i])
+        {
+        case EGG_GROUP_WATER_1:
+        case EGG_GROUP_WATER_2:
+        case EGG_GROUP_WATER_3:
+            return TRUE;
+        case EGG_GROUP_FLYING:
+            if ((gSpeciesInfo[species].types[0] == TYPE_WATER)
+                    || (gSpeciesInfo[species].types[1] == TYPE_WATER))
+            {
+                return TRUE;
+            }
+        }
+    }
+
     return FALSE;
 }
 
 static bool8 DoesSpeciesMatchRocks(species)
 {
+    u8 i, j;
+
+    for (i=0; i<2; i++)
+    {
+        if (gSpeciesInfo[species].eggGroups[i] == EGG_GROUP_MINERAL)
+        {
+            for (j=0; j<2; j++)
+            {
+                if ((gSpeciesInfo[species].types[j] == TYPE_STEEL)
+                        || (gSpeciesInfo[species].types[j] == TYPE_FLYING)
+                        || (gSpeciesInfo[species].types[j] == TYPE_WATER))
+                {
+                    return FALSE;
+                }
+            }
+            return TRUE;
+        }
+    }
+
     // TODO: mineral group, but no steel, flying or fish types types
     return FALSE;
 }
 
 static bool8 DoesSpeciesMatchFishing(species)
 {
+    u8 i;
+
+    for (i=0; i<2; i++)
+    {
+        if (gSpeciesInfo[species].eggGroups[i] == EGG_GROUP_WATER_2)
+        {
+            return TRUE;
+        }
+    }
     // TODO: only specific kinds of fish
     return FALSE;
 }
@@ -357,7 +632,9 @@ u16 GetRandomizedSpecies(u16 seedSpecies, u8 level, u8 areaType)
     currentMapId = ((gSaveBlock1Ptr->location.mapGroup) << 8 | gSaveBlock1Ptr->location.mapNum);
 
     // create temporary random seed
-    SeedRng(areaType + seedSpecies + currentMapId);
+    SeedRng(areaType + (seedSpecies << 4) + currentMapId);
+    // (The bit shift should lead to more diversity. Otherwise, different values might lead to the
+    // same sum.)
 
     // sample random species until a valid match appears
     for (i=0; i<NUM_ENCOUNTER_RANDOMIZATION_TRIES; i++)
