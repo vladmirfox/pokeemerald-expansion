@@ -34,32 +34,6 @@ DOUBLE_BATTLE_TEST("Water and Fire Pledge create a rainbow on the user's side of
     }
 }
 
-DOUBLE_BATTLE_TEST("")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
-        PLAYER(SPECIES_WYNAUT) { Speed(3); }
-        OPPONENT(SPECIES_WOBBUFFET) { Speed(8); }
-        OPPONENT(SPECIES_WYNAUT) { Speed(5); }
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_WATER_PLEDGE, target: opponentLeft);
-               MOVE(playerRight, MOVE_FIRE_PLEDGE, target: opponentRight);
-        }
-        TURN {}
-        TURN {}
-        TURN {}
-    } SCENE {
-        MESSAGE("Wobbuffet used Water Pledge!");
-        MESSAGE("Wobbuffet is waiting for Wynaut's move…{PAUSE 16}");
-        MESSAGE("Wynaut used Fire Pledge!");
-        MESSAGE("The two moves become one! It's a combined move!{PAUSE 16}");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_PLEDGE, playerRight);
-        HP_BAR(opponentRight);
-        MESSAGE("A rainbow appeared in the sky on your team's side!");
-        MESSAGE("The rainbow on your side disappeared!");
-    }
-}
-
 DOUBLE_BATTLE_TEST("Rainbow doubles the chance of secondary move effects")
 {
     PASSES_RANDOMLY(20, 100, RNG_SECONDARY_EFFECT);
