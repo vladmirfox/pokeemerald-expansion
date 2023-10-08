@@ -20921,6 +20921,95 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_EVER_GRANDE_CITY_SHAYMIN_GROVE",
+          "base_label": "gEverGrandeCity_ShayminGrove",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_LEDIAN"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_STEENEE"
+              },
+              {
+                "min_level": 37,
+                "max_level": 38,
+                "species": "SPECIES_SUNKERN"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_SUNFLORA"
+              },
+              {
+                "min_level": 37,
+                "max_level": 38,
+                "species": "SPECIES_SKIPLOOM"
+              },
+              {
+                "min_level": 39,
+                "max_level": 40,
+                "species": "SPECIES_WHIMSICOTT"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_WHIMSICOTT"
+              },
+              {
+                "min_level": 39,
+                "max_level": 39,
+                "species": "SPECIES_COMFEY"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_JUMPLUFF"
+              },
+              {
+                "min_level": 39,
+                "max_level": 40,
+                "species": "SPECIES_TSAREENA"
+              },
+              {
+                "min_level": 39,
+                "max_level": 40,
+                "species": "SPECIES_LEDIAN"
+              },
+              {
+                "min_level": 39,
+                "max_level": 40,
+                "species": "SPECIES_COMFEY"
+              }
+            ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 39,
+                "max_level": 40,
+                "species": "SPECIES_ORBEETLE"
+              },
+              {
+                "min_level": 39,
+                "max_level": 40,
+                "species": "SPECIES_FLAPPLE"
+              },
+              {
+                "min_level": 39,
+                "max_level": 40,
+                "species": "SPECIES_APPLETUN"
+              }
+            ]
+          }
         }
       ]
     },

@@ -1,2 +1,20 @@
 EverGrandeCity_ShayminGrove_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_ShayminGrove_OnResume
+	map_script MAP_SCRIPT_ON_RESUME, EverGrandeCity_ShayminGrove_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, EverGrandeCity_ShayminGrove_OnResume
 	.byte 0
+
+EverGrandeCity_ShayminGrove_OnResume:
+	special GetDayOrNight
+	goto_if_eq VAR_RESULT, 1, EverGrandeCity_ShayminGrove_OnResume_Night
+	goto_if_eq VAR_RESULT, 0, EverGrandeCity_ShayminGrove_OnResume_Day
+	end
+
+EverGrandeCity_ShayminGrove_OnResume_Night:
+	setweather WEATHER_SHADE
+	end
+
+EverGrandeCity_ShayminGrove_OnResume_Day:
+	setweather WEATHER_SUNNY
+	end
+
