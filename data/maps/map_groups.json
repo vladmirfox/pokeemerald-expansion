@@ -110,7 +110,8 @@
     "VerdantForest_Deep",
     "Underwater_VerdantIsle",
     "VerdantIsle_Deep",
-    "Underwater_VerdantIsle_Deep"
+    "Underwater_VerdantIsle_Deep",
+    "OutsetPath"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
