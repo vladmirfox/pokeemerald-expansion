@@ -4720,6 +4720,16 @@
       "secondary_tileset": "gTileset_Underwater",
       "border_filepath": "data/layouts/Underwater_VerdantIsle_Deep/border.bin",
       "blockdata_filepath": "data/layouts/Underwater_VerdantIsle_Deep/map.bin"
+    },
+    {
+      "id": "LAYOUT_EVER_GRANDE_CITY_SHAYMIN_GROVE",
+      "name": "EverGrandeCity_ShayminGrove_Layout",
+      "width": 30,
+      "height": 27,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_EverGrande",
+      "border_filepath": "data/layouts/EverGrandeCity_ShayminGrove/border.bin",
+      "blockdata_filepath": "data/layouts/EverGrandeCity_ShayminGrove/map.bin"
     }
   ]
 }

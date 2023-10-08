@@ -1113,3 +1113,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/VerdantIsle_Deep/scripts.inc"
 
 	.include "data/maps/Underwater_VerdantIsle_Deep/scripts.inc"
+
+	.include "data/maps/EverGrandeCity_ShayminGrove/scripts.inc"
