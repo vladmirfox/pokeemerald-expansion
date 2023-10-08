@@ -2,6 +2,7 @@
 #include "randomization_utilities.h"
 #include "pokemon.h"
 #include "random.h"
+#include "constants/abilities.h"
 #include "constants/map_groups.h"
 #include "constants/pokemon.h"
 #include "constants/species.h"
@@ -276,6 +277,8 @@ static bool8 DoesSpeciesMatchLandOnMountain(u16 species)
     u8 i;
     bool8 match;
 
+    match = FALSE;
+
     for (i=0; i<2; i++)
     {
         switch (gSpeciesInfo[species].eggGroups[i])
@@ -300,6 +303,8 @@ static bool8 DoesSpeciesMatchLandInNormalCave(u16 species)
 {
     u8 i;
     bool8 match;
+
+    match = FALSE;
 
     // also allow bat-like mons
     switch (species)
@@ -333,7 +338,11 @@ static bool8 DoesSpeciesMatchLandInNormalCave(u16 species)
                 return FALSE;
             }
         case EGG_GROUP_MINERAL:
-            match = TRUE;
+        case EGG_GROUP_AMORPHOUS:
+            if (species != SPECIES_JELLICENT)
+            {
+                match = TRUE;
+            }
             break;
         }
     }
@@ -341,7 +350,7 @@ static bool8 DoesSpeciesMatchLandInNormalCave(u16 species)
     return match;
 }
 
-return DoesSpeciesMatchLandInIcyCave(u16 species)
+static bool8 DoesSpeciesMatchLandInIcyCave(u16 species)
 {
     u8 i;
     bool8 match;
@@ -373,10 +382,151 @@ return DoesSpeciesMatchLandInIcyCave(u16 species)
     return match;
 }
 
-static bool8 DoesSpeciesMatchLandInCavern(u16 species)
+static bool8 DoesSpeciesMatchLandInDesert(u16 species)
 {
-    // TODO
-    return FALSE;
+    u8 i;
+    bool8 match;
+
+    match = FALSE;
+
+    for (i=0; i<2; i++)
+    {
+        switch (gSpeciesInfo[species].types[i])
+        {
+        case TYPE_ICE:
+        case TYPE_WATER:
+        case TYPE_FIRE:
+            return FALSE;
+        case TYPE_GROUND:
+            match = TRUE;
+        }
+    }
+    if (match)
+    {
+        return TRUE;
+    }
+
+    // also check for sand-related abilities
+    for (i=0; i<NUM_ABILITY_SLOTS; i++)
+    {
+        switch (gSpeciesInfo[species].abilities[i])
+        {
+            case ABILITY_SAND_STREAM:
+            case ABILITY_SAND_FORCE:
+            case ABILITY_SAND_RUSH:
+            case ABILITY_SAND_VEIL:
+                match = TRUE;
+        }
+    }
+
+    return match;
+}
+
+static bool8 DoesSpeciesMatchLandNearVolcano(u16 species)
+{
+    u8 i;
+    bool8 match;
+
+    match = FALSE;
+
+    // no flying or ice mons near volcano
+    if ((gSpeciesInfo[species].types[0] == TYPE_FLYING)
+            || (gSpeciesInfo[species].types[1] == TYPE_FLYING)
+            || (gSpeciesInfo[species].types[0] == TYPE_ICE)
+            || (gSpeciesInfo[species].types[1] == TYPE_ICE))
+    {
+        return FALSE;
+    }
+
+    for (i=0; i<2; i++)
+    {
+        switch (gSpeciesInfo[species].eggGroups[i])
+        {
+        case EGG_GROUP_NONE:
+        case EGG_GROUP_WATER_1:
+        case EGG_GROUP_WATER_2:
+        case EGG_GROUP_WATER_3:
+        case EGG_GROUP_UNDISCOVERED:
+            return FALSE;
+        case EGG_GROUP_DRAGON:
+        case EGG_GROUP_MINERAL:
+            match = TRUE;
+            break;
+        }
+    }
+
+    // also allow all fire types
+    if ((gSpeciesInfo[species].types[0] == TYPE_FIRE)
+            || (gSpeciesInfo[species].types[1] == TYPE_FIRE))
+    {
+        match = TRUE;
+    }
+
+    return match;
+}
+
+static bool8 DoesSpeciesMatchLandInCreepyArea(u16 species)
+{
+    u8 i;
+    bool8 match;
+
+    match = FALSE;
+
+    for (i=0; i<2; i++)
+    {
+        switch (gSpeciesInfo[species].eggGroups[i])
+        {
+        case EGG_GROUP_NONE:
+        case EGG_GROUP_WATER_1:
+        case EGG_GROUP_WATER_2:
+        case EGG_GROUP_WATER_3:
+        case EGG_GROUP_UNDISCOVERED:
+            return FALSE;
+        case EGG_GROUP_DITTO:
+        case EGG_GROUP_HUMAN_LIKE:
+        case EGG_GROUP_AMORPHOUS:
+            if (species != SPECIES_JELLICENT)
+            {
+                match = TRUE;
+            }
+        }
+    }
+
+    return match;            
+}
+
+static bool8 DoesSpeciesMatchLandInIndustrialArea(u16 species)
+{
+    u8 i;
+    bool8 match;
+
+    match = FALSE;
+
+    for (i=0; i<2; i++)
+    {
+        switch (gSpeciesInfo[species].eggGroups[i])
+        {
+        case EGG_GROUP_NONE:
+        case EGG_GROUP_WATER_1:
+        case EGG_GROUP_WATER_2:
+        case EGG_GROUP_WATER_3:
+        case EGG_GROUP_UNDISCOVERED:
+            return FALSE;
+        case EGG_GROUP_MINERAL:
+            match = TRUE;
+        }
+    }
+
+    // also allow all electric and steel types
+    if ((gSpeciesInfo[species].types[0] == TYPE_STEEL)
+            || (gSpeciesInfo[species].types[1] == TYPE_STEEL)
+            || (gSpeciesInfo[species].types[0] == TYPE_ELECTRIC)
+            || (gSpeciesInfo[species].types[1] == TYPE_ELECTRIC))
+    {
+        return TRUE;
+    }
+
+    return match;
 }
 
 static bool8 DoesSpeciesMatchCurrentMap_Land(u16 species, u16 currentMapId)
@@ -482,6 +632,7 @@ static bool8 DoesSpeciesMatchCurrentMap_Land(u16 species, u16 currentMapId)
     case MAP_MIRAGE_TOWER_3F:
     case MAP_MIRAGE_TOWER_4F:
     case MAP_DESERT_UNDERPASS:
+        return DoesSpeciesMatchLandInDesert(species);
 
     // near volcano:
     case MAP_FIERY_PATH:
@@ -494,6 +645,7 @@ static bool8 DoesSpeciesMatchCurrentMap_Land(u16 species, u16 currentMapId)
     case MAP_MAGMA_HIDEOUT_4F:
     case MAP_MAGMA_HIDEOUT_3F_3R:
     case MAP_MAGMA_HIDEOUT_2F_3R:
+        return DoesSpeciesMatchLandNearVolcano(species);
 
     // creepy area:
     case MAP_MT_PYRE_1F:
@@ -511,10 +663,12 @@ static bool8 DoesSpeciesMatchCurrentMap_Land(u16 species, u16 currentMapId)
     case MAP_SKY_PILLAR_4F:
     case MAP_SKY_PILLAR_5F:
     case MAP_SKY_PILLAR_TOP:
+        return DoesSpeciesMatchLandInCreepyArea(species);
 
     // industrial area:
     case MAP_NEW_MAUVILLE_ENTRANCE:
     case MAP_NEW_MAUVILLE_INSIDE:
+        return DoesSpeciesMatchLandInIndustrialArea(species);
     }
 
     // TODO: return FALSE is only for debugging, will cause problems for undefined map segments
@@ -652,32 +806,3 @@ u16 GetRandomizedSpecies(u16 seedSpecies, u8 level, u8 areaType)
     // no match found
     return SPECIES_UMBREON;
 }
-
-
-// Notes:
-// #define EGG_GROUP_NONE          0 <- dont use
-// #define EGG_GROUP_MONSTER       1 <- mountains, general nature
-// #define EGG_GROUP_WATER_1       2 <- land near water
-// #define EGG_GROUP_BUG           3 <- BUG
-// #define EGG_GROUP_FLYING        4 <- flying types
-// #define EGG_GROUP_FIELD         5 <- pretty much anywhere on land
-// #define EGG_GROUP_FAIRY         6 <- general nature, maybe other nature too
-// #define EGG_GROUP_GRASS         7 <- general nature, forests
-// #define EGG_GROUP_HUMAN_LIKE    8 <- mountains and general nature
-// #define EGG_GROUP_WATER_3       9 <- only in water
-// #define EGG_GROUP_MINERAL       10 <- caves
-// #define EGG_GROUP_AMORPHOUS     11 <- mountains and caves
-// #define EGG_GROUP_WATER_2       12 <- ONLY in water
-// #define EGG_GROUP_DITTO         13 <- ditto
-// #define EGG_GROUP_DRAGON        14 <- mountains, if not combined with water(1 or 2) egg group
-// #define EGG_GROUP_UNDISCOVERED  15 <- no random encounters
-
-
-    //     // deep forest: petalburg woods
-    //     // mountain-like: route 111-112, 114-115, victory road, jagged pass
-
-    //     // near volcano: route 113, mt chimney
-
-    //     // rain forest: route 119
-
-    //     // abandoned monument: sky pillar
