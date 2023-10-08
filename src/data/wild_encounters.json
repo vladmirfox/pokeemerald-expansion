@@ -2549,9 +2549,9 @@
                 "species": "SPECIES_LOMBRE"
               },
               {
-                "min_level": 16,
+                "min_level": 17,
                 "max_level": 18,
-                "species": "SPECIES_SEVIPER"
+                "species": "SPECIES_ZANGOOSE"
               },
               {
                 "min_level": 17,
@@ -2743,9 +2743,9 @@
                 "species": "SPECIES_LOTAD"
               },
               {
-                "min_level": 15,
-                "max_level": 16,
-                "species": "SPECIES_SURSKIT"
+                "min_level": 16,
+                "max_level": 17,
+                "species": "SPECIES_ZANGOOSE"
               },
               {
                 "min_level": 16,
@@ -2760,7 +2760,7 @@
               {
                 "min_level": 17,
                 "max_level": 17,
-                "species": "SPECIES_SEVIPER"
+                "species": "SPECIES_LOTAD"
               },
               {
                 "min_level": 16,
@@ -2768,9 +2768,9 @@
                 "species": "SPECIES_NIDORAN_F"
               },
               {
-                "min_level": 18,
-                "max_level": 18,
-                "species": "SPECIES_SEVIPER"
+                "min_level": 17,
+                "max_level": 17,
+                "species": "SPECIES_TYMPOLE"
               },
               {
                 "min_level": 16,
