@@ -16529,7 +16529,7 @@ Move_CHILLY_RECEPTION::
 	call CreateFlatterConfetti
   waitforvisualfinish
   clearmonbg ANIM_ATTACKER
-	delay 118
+  delay 10
   createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG | F_PAL_BATTLERS, 1, 0, 3, RGB_WHITE
   playsewithpan SE_M_GUST, SOUND_PAN_ATTACKER
 	call ChillyReceptionSnowballs
@@ -16542,19 +16542,19 @@ Move_CHILLY_RECEPTION::
   createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG | F_PAL_BATTLERS, 1, 3, 0, RGB_WHITE
 	end
 ChillyReceptionSnowballs:
-  createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 0, 0, 200, -150, 56, 4, 4, 0
+  createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 200, -150, 24, 0, 56, 4, 4, 0
 	delay 3
-	createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 0, -10, 200, -100, 56, 4, 4, 0
+	createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 200, -100, 24, -10, 56, 4, 4, 0
 	delay 3
-	createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 0, 10, 200, -100, 56, -4, 3, 0
+	createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 200, -100, 24, 10, 56, -4, 3, 0
 	delay 3
-	createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 0, -20, 200, -200, 56, -4, 5, 0
+	createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 200, -200, 24, -20, 56, -4, 5, 0
 	delay 3
-	createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 0, 15, 200, -150, 56, 4, 4, 0
+	createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 200, -150, 24, 15, 56, 4, 4, 0
 	delay 3
-	createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 0, -20, 200, -200, 56, 4, 4, 0
+	createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 200, -200, 24, -20, 56, 4, 4, 0
 	delay 3
-	createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 0, 20, 200, -200, 56, 4, 4, 0
+	createsprite gPowderSnowSnowballSpriteTemplate, ANIM_ATTACKER, 40, 200, -200, 24, 20, 56, 4, 4, 0
 	delay 3
 	return
 
