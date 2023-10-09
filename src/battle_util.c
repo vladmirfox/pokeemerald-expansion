@@ -2515,11 +2515,6 @@ u8 DoFieldEndTurnEffects(void)
                         BattleScriptExecute(BattleScript_TheRainbowDisappeared);
                         effect++;
                     }
-                    else
-                    {
-                        BattleScriptExecute(BattleScript_RainbowContinues);
-                        effect++;
-                    }
                 }
                 gBattleStruct->turnSideTracker++;
                 if (effect != 0)
@@ -2578,11 +2573,6 @@ u8 DoFieldEndTurnEffects(void)
                     {
                         gSideStatuses[side] &= ~SIDE_STATUS_SWAMP;
                         BattleScriptExecute(BattleScript_TheSwampDisappeared);
-                        effect++;
-                    }
-                    else
-                    {
-                        BattleScriptExecute(BattleScript_SwampContinues);
                         effect++;
                     }
                 }
@@ -7737,7 +7727,7 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
             #if B_SERENE_GRACE_BOOST >= GEN_5
                 if (ability == ABILITY_SERENE_GRACE)
                     atkHoldEffectParam *= 2;
-                if (gSideTimers[GetBattlerSide(battler)].rainbowTimer && gCurrentMove != MOVE_SECRET_POWER)
+                if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_RAINBOW && gCurrentMove != MOVE_SECRET_POWER)
                     atkHoldEffectParam *= 2;
             #endif
                 if (gBattleMoveDamage != 0  // Need to have done damage
@@ -8659,7 +8649,8 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
     switch (gBattleMoves[move].effect)
     {
     case EFFECT_PLEDGE:
-        basePower = (gBattleStruct->pledgeMove) ? 150 : basePower;
+        if (gBattleStruct->pledgeMove)
+            basePower = 150;
         break;
     case EFFECT_FLING:
         basePower = GetFlingPowerFromItemId(gBattleMons[battlerAtk].item);
@@ -9681,7 +9672,9 @@ static inline uq4_12_t GetParentalBondModifier(u32 battlerAtk)
 
 static inline uq4_12_t GetSameTypeAttackBonusModifier(u32 battlerAtk, u32 moveType, u32 move, u32 abilityAtk)
 {
-    if (!IS_BATTLER_OF_TYPE(battlerAtk, moveType) || move == MOVE_STRUGGLE || move == MOVE_NONE)
+    if (gBattleStruct->pledgeMove && IS_BATTLER_OF_TYPE(BATTLE_PARTNER(battlerAtk), moveType))
+        return (abilityAtk == ABILITY_ADAPTABILITY) ? UQ_4_12(2.0) : UQ_4_12(1.5);
+    else if (!IS_BATTLER_OF_TYPE(battlerAtk, moveType) || move == MOVE_STRUGGLE || move == MOVE_NONE)
         return UQ_4_12(1.0);
     return (abilityAtk == ABILITY_ADAPTABILITY) ? UQ_4_12(2.0) : UQ_4_12(1.5);
 }

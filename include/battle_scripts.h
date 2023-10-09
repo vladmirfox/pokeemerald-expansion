@@ -481,11 +481,9 @@ extern const u8 BattleScript_SaltCureExtraDamage[];
 extern const u8 BattleScript_EffectCombinedPledge_Water[];
 extern const u8 BattleScript_EffectCombinedPledge_Fire[];
 extern const u8 BattleScript_EffectCombinedPledge_Grass[];
-extern const u8 BattleScript_RainbowContinues[];
 extern const u8 BattleScript_TheRainbowDisappeared[];
 extern const u8 BattleScript_HurtByTheSeaOfFire[];
 extern const u8 BattleScript_TheSeaOfFireDisappeared[];
-extern const u8 BattleScript_SwampContinues[];
 extern const u8 BattleScript_TheSwampDisappeared[];
 
 // zmoves

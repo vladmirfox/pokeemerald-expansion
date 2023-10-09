@@ -442,6 +442,7 @@ BattleScript_EffectPledge::
 	attackcanceler
 	setpledge BattleScript_HitFromAccCheck
 	attackstring
+	pause B_WAIT_TIME_MED
 	ppreduce
 	printstring STRINGID_WAITINGFORPARTNERSMOVE
 	waitmessage B_WAIT_TIME_LONG
@@ -456,11 +457,6 @@ BattleScript_EffectCombinedPledge_Water::
 	playanimation BS_ATTACKER, B_ANIM_RAINBOW
 	waitanimation
 	goto BattleScript_MoveEnd
-
-BattleScript_RainbowContinues::
-	playanimation BS_ATTACKER, B_ANIM_RAINBOW
-	waitanimation
-	end2
 
 BattleScript_TheRainbowDisappeared::
 	printstring STRINGID_THERAINBOWDISAPPEARED
@@ -497,17 +493,13 @@ BattleScript_EffectCombinedPledge_Grass::
 	waitanimation
 	goto BattleScript_MoveEnd
 
-BattleScript_SwampContinues::
-	playanimation BS_ATTACKER, B_ANIM_SWAMP
-	waitanimation
-	end2
-
 BattleScript_TheSwampDisappeared::
 	printstring STRINGID_THESWAMPDISAPPEARED
 	waitmessage B_WAIT_TIME_LONG
 	end2
 
 BattleScript_EffectHit_Pledge::
+	pause B_WAIT_TIME_MED
 	printstring STRINGID_THETWOMOVESBECOMEONE
 	waitmessage B_WAIT_TIME_LONG
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
