@@ -2541,6 +2541,7 @@ enum
     ENDTURN_PLASMA_FISTS,
     ENDTURN_CUD_CHEW,
     ENDTURN_SALT_CURE,
+    ENDTURN_SYRUP_BOMB,
     ENDTURN_BATTLER_COUNT
 };
 
@@ -3115,6 +3116,23 @@ u8 DoBattlerEndTurnEffects(void)
                 effect++;
             }
             gBattleStruct->turnEffectsTracker++;
+            break;
+        case ENDTURN_SYRUP_BOMB:
+        {
+            u16 battlerAbility = GetBattlerAbility(battler);
+            if (gDisableStructs[battler].syrupBombTimer
+             && --gDisableStructs[battler].slowStartTimer == 0
+             && !(GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_CLEAR_AMULET
+                  || battlerAbility == ABILITY_CLEAR_BODY
+                  || battlerAbility == ABILITY_FULL_METAL_BODY
+                  || battlerAbility == ABILITY_WHITE_SMOKE))
+            {
+                gBattlerTarget = battler;
+                BattleScriptExecute(BattleScript_SyrupBombEndTurn);
+                effect++;
+            }
+            gBattleStruct->turnEffectsTracker++;
+        }
             break;
         case ENDTURN_BATTLER_COUNT:  // done
             gBattleStruct->turnEffectsTracker = 0;
@@ -11200,7 +11218,7 @@ bool32 IsGen6ExpShareEnabled(void)
 
 
 u8 GetBattlerType(u32 battler, u8 typeIndex)
-{    
+{
     u16 types[3] = {0};
     types[0] = gBattleMons[battler].type1;
     types[1] = gBattleMons[battler].type2;

@@ -438,6 +438,32 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_GIGATON_HAMMER
 	.4byte BattleScript_EffectSaltCure                @ EFFECT_SALT_CURE
 
+	.4byte BattleScript_EffectMatchaGotcha            @ EFFECT_MATCHA_GOTCHA
+	.4byte BattleScript_EffectSyrupBomb               @ EFFECT_SYRUP_BOMB
+	.4byte BattleScript_EffectHit                     @ EFFECT_IVY_CUDGEL
+
+BattleScript_EffectSyrupBomb::
+	setmoveeffect MOVE_EFFECT_SYRUP_BOMB
+	goto BattleScript_EffectHit
+
+BattleScript_SyrupBombEndTurn::
+	setbyte sSTAT_ANIM_PLAYED, FALSE
+	jumpifstat BS_TARGET, CMP_GREATER_THAN, STAT_DEF, MIN_STAT_STAGE, BattleScript_SyrupBombLowerSpeed
+	goto BattleScript_SyrupBombEnd2
+BattleScript_SyrupBombLowerSpeed:
+	playstatchangeanimation BS_ATTACKER, BIT_SPEED, STAT_CHANGE_NEGATIVE
+	setbyte sSTAT_ANIM_PLAYED, TRUE
+	setstatchanger STAT_SPEED, 1, TRUE
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_DECREASE, BattleScript_SyrupBombEnd2
+	printfromtable gStatUpStringIds
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_SyrupBombEnd2::
+	end2
+
+BattleScript_EffectMatchaGotcha::
+	setmoveeffect MOVE_EFFECT_BURN
+	goto BattleScript_EffectAbsorb
+
 BattleScript_EffectSaltCure:
 	call BattleScript_EffectHit_Ret
 	jumpiffainted BS_TARGET, TRUE, BattleScript_EffectSaltCure_End
@@ -3332,6 +3358,7 @@ BattleScript_EffectPoisonHit:
 
 BattleScript_EffectAbsorb::
 	call BattleScript_EffectHit_Ret
+	seteffectwithchance
 	jumpifstatus3 BS_ATTACKER, STATUS3_HEAL_BLOCK, BattleScript_AbsorbHealBlock
 	setdrainedhp
 	manipulatedamage DMG_BIG_ROOT
