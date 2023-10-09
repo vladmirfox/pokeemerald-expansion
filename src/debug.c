@@ -163,6 +163,7 @@ enum { // Battle 2 Terrain
 };
 enum { // Give
     DEBUG_GIVE_MENU_ITEM_ITEM_X,
+    DEBUG_GIVE_MENU_ITEM_ALLTMS,
     DEBUG_GIVE_MENU_ITEM_POKEMON_SIMPLE,
     DEBUG_GIVE_MENU_ITEM_POKEMON_COMPLEX,
     DEBUG_GIVE_MENU_ITEM_MAX_MONEY,
@@ -340,6 +341,7 @@ static void Debug_InitializeBattle(u8 taskId);
 static void DebugAction_Give_Item(u8 taskId);
 static void DebugAction_Give_Item_SelectId(u8 taskId);
 static void DebugAction_Give_Item_SelectQuantity(u8 taskId);
+static void DebugAction_Give_AllTMs(u8 taskId);
 static void DebugAction_Give_PokemonSimple(u8 taskId);
 static void DebugAction_Give_PokemonComplex(u8 taskId);
 static void DebugAction_Give_Pokemon_SelectId(u8 taskId);
@@ -682,6 +684,7 @@ static const struct ListMenuItem sDebugMenu_Items_Battle_2[] =
 static const struct ListMenuItem sDebugMenu_Items_Give[] =
 {
     [DEBUG_GIVE_MENU_ITEM_ITEM_X]            = {sDebugText_Give_GiveItem,           DEBUG_GIVE_MENU_ITEM_ITEM_X},
+    [DEBUG_GIVE_MENU_ITEM_ALLTMS]            = {sDebugText_Give_AllTMs,             DEBUG_GIVE_MENU_ITEM_ALLTMS},
     [DEBUG_GIVE_MENU_ITEM_POKEMON_SIMPLE]    = {sDebugText_Give_GivePokemonSimple,  DEBUG_GIVE_MENU_ITEM_POKEMON_SIMPLE},
     [DEBUG_GIVE_MENU_ITEM_POKEMON_COMPLEX]   = {sDebugText_Give_GivePokemonComplex, DEBUG_GIVE_MENU_ITEM_POKEMON_COMPLEX},
     [DEBUG_GIVE_MENU_ITEM_MAX_MONEY]         = {sDebugText_Give_MaxMoney,           DEBUG_GIVE_MENU_ITEM_MAX_MONEY},
@@ -771,6 +774,7 @@ static void (*const sDebugMenu_Actions_Flags[])(u8) =
 static void (*const sDebugMenu_Actions_Give[])(u8) =
 {
     [DEBUG_GIVE_MENU_ITEM_ITEM_X]            = DebugAction_Give_Item,
+    [DEBUG_GIVE_MENU_ITEM_ALLTMS]            = DebugAction_Give_AllTMs,
     [DEBUG_GIVE_MENU_ITEM_POKEMON_SIMPLE]    = DebugAction_Give_PokemonSimple,
     [DEBUG_GIVE_MENU_ITEM_POKEMON_COMPLEX]   = DebugAction_Give_PokemonComplex,
     [DEBUG_GIVE_MENU_ITEM_MAX_MONEY]         = DebugAction_Give_MaxMoney,
@@ -2670,6 +2674,20 @@ static void DebugAction_Give_Item_SelectQuantity(u8 taskId)
     }
 }
 
+//TMs
+static void DebugAction_Give_AllTMs(u8 taskId)
+{
+    u16 i;
+    PlayFanfare(MUS_OBTAIN_TMHM);
+    for (i = ITEM_TM01; i <= ITEM_HM08; i++)
+    {
+        if (ItemIdToBattleMoveId(i) != MOVE_NONE && !CheckBagHasItem(i, 1))
+            AddBagItem(i, 1);
+    }
+    Debug_DestroyMenu_Full(taskId);
+    ScriptContext_Enable();
+}
+
 //Pokemon
 static void ResetMonDataStruct(struct DebugMonData *sDebugMonData)
 {
@@ -3564,7 +3582,7 @@ static void DebugAction_Fill_PocketTMHM(u8 taskId)
 
     for (itemId = ITEM_TM01; itemId <= ITEM_HM08; itemId++)
     {
-        if (!CheckBagHasItem(itemId, 1) && ItemIdToBattleMoveId(itemId) != MOVE_NONE)
+        if (CheckBagHasSpace(itemId, 1) && ItemIdToBattleMoveId(itemId) != MOVE_NONE)
             AddBagItem(itemId, 1);
     }
 }
