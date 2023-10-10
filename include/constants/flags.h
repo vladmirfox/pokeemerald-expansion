@@ -688,53 +688,53 @@
 #define FLAG_UNUSED_0x286                                    0x286 // Unused Flag
 
 // Mega Stones (Hidden)
-#define FLAG_UNUSED_0x287                                    0x287 // Gengarite
-#define FLAG_UNUSED_0x288                                    0x288 // Gardevourite
-#define FLAG_UNUSED_0x289                                    0x289 // Ampharosite
-#define FLAG_UNUSED_0x28A                                    0x28A // Venusaurite
-#define FLAG_UNUSED_0x28B                                    0x28B // Charizardite X
-#define FLAG_UNUSED_0x28C                                    0x28C // Blastoiseite
-#define FLAG_UNUSED_0x28D                                    0x28D // Mewtwonite X
-#define FLAG_UNUSED_0x28E                                    0x28E // Mewtwonite Y
-#define FLAG_UNUSED_0x28F                                    0x28F // Blazikenite
-#define FLAG_UNUSED_0x290                                    0x290 // Medichamite
-#define FLAG_UNUSED_0x291                                    0x291 // Houndoominite
-#define FLAG_UNUSED_0x292                                    0x292 // Aggronite
-#define FLAG_UNUSED_0x293                                    0x293 // Banettite
-#define FLAG_UNUSED_0x294                                    0x294 // Tyranitarite
-#define FLAG_UNUSED_0x295                                    0x295 // Scizorite
-#define FLAG_UNUSED_0x296                                    0x296 // Pinsirite
-#define FLAG_UNUSED_0x297                                    0x297 // Aerodactylite
-#define FLAG_UNUSED_0x298                                    0x298 // Lucarionite
-#define FLAG_UNUSED_0x299                                    0x299 // Abomasite
-#define FLAG_UNUSED_0x29A                                    0x29A // Kangaskhanite
-#define FLAG_UNUSED_0x29B                                    0x29B // Gyaradosite
-#define FLAG_UNUSED_0x29C                                    0x29C // Absolite
-#define FLAG_UNUSED_0x29D                                    0x29D // Charizardite Y
-#define FLAG_UNUSED_0x29E                                    0x29E // Alakazite
-#define FLAG_UNUSED_0x29F                                    0x29F // Heracronite
-#define FLAG_UNUSED_0x2A0                                    0x2A0 // Mawillite
-#define FLAG_UNUSED_0x2A1                                    0x2A1 // Manectite
-#define FLAG_UNUSED_0x2A2                                    0x2A2 // Garchompite
-#define FLAG_UNUSED_0x2A3                                    0x2A3 // Latiasite
-#define FLAG_UNUSED_0x2A4                                    0x2A4 // Latiosite
-#define FLAG_UNUSED_0x2A5                                    0x2A5 // Swampertite
-#define FLAG_UNUSED_0x2A6                                    0x2A6 // Sceptilite
-#define FLAG_UNUSED_0x2A7                                    0x2A7 // Sablenite
-#define FLAG_UNUSED_0x2A8                                    0x2A8 // Altarianite
-#define FLAG_UNUSED_0x2A9                                    0x2A9 // Galladite
-#define FLAG_UNUSED_0x2AA                                    0x2AA // Audinite
-#define FLAG_UNUSED_0x2AB                                    0x2AB // Metagrossite
-#define FLAG_UNUSED_0x2AC                                    0x2AC // Sharpedonite
-#define FLAG_UNUSED_0x2AD                                    0x2AD // Slowbronite
-#define FLAG_UNUSED_0x2AE                                    0x2AE // Steelixite
-#define FLAG_UNUSED_0x2AF                                    0x2AF // Pidgeotite
-#define FLAG_UNUSED_0x2B0                                    0x2B0 // Glalitite
-#define FLAG_UNUSED_0x2B1                                    0x2B1 // Diancite
-#define FLAG_UNUSED_0x2B2                                    0x2B2 // Cameruptite
-#define FLAG_UNUSED_0x2B3                                    0x2B3 // Lopunnite
-#define FLAG_UNUSED_0x2B4                                    0x2B4 // Salamencite
-#define FLAG_UNUSED_0x2B5                                    0x2B5 // Beedrillite
+#define FLAG_HIDDEN_ITEM_GENGARITE                           0x287 
+#define FLAG_HIDDEN_ITEM_GARDEVOURITE                        0x288 
+#define FLAG_HIDDEN_ITEM_AMPHAROSITE                         0x289 
+#define FLAG_HIDDEN_ITEM_VENUSAURITE                         0x28A 
+#define FLAG_HIDDEN_ITEM_CHARIZARDITE_X                      0x28B 
+#define FLAG_HIDDEN_ITEM_BLASTOISEITE                        0x28C 
+#define FLAG_HIDDEN_ITEM_MEWTWONITE_X                        0x28D 
+#define FLAG_HIDDEN_ITEM_MEWTWONITE_Y                        0x28E 
+#define FLAG_HIDDEN_ITEM_BLAZIKENITE                         0x28F 
+#define FLAG_HIDDEN_ITEM_MEDICHAMITE                         0x290 
+#define FLAG_HIDDEN_ITEM_HOUNDOOMINITE                       0x291 
+#define FLAG_HIDDEN_ITEM_AGGRONITE                           0x292 
+#define FLAG_HIDDEN_ITEM_BANETTITE                           0x293 
+#define FLAG_HIDDEN_ITEM_TYRANITARITE                        0x294 
+#define FLAG_HIDDEN_ITEM_SCIZORITE                           0x295 
+#define FLAG_HIDDEN_ITEM_PINSIRITE                           0x296 
+#define FLAG_HIDDEN_ITEM_AERODACTYLITE                       0x297 
+#define FLAG_HIDDEN_ITEM_LUCARIONITE                         0x298 
+#define FLAG_HIDDEN_ITEM_ABOMASITE                           0x299 
+#define FLAG_HIDDEN_ITEM_KANGASKHANITE                       0x29A 
+#define FLAG_HIDDEN_ITEM_GYARADOSITE                         0x29B 
+#define FLAG_HIDDEN_ITEM_ABSOLITE                            0x29C 
+#define FLAG_HIDDEN_ITEM_CHARIZARDITE_Y                      0x29D 
+#define FLAG_HIDDEN_ITEM_ALAKAZITE                           0x29E 
+#define FLAG_HIDDEN_ITEM_HERACRONITE                         0x29F 
+#define FLAG_HIDDEN_ITEM_MAWILLITE                           0x2A0 
+#define FLAG_HIDDEN_ITEM_MANECTITE                           0x2A1 
+#define FLAG_HIDDEN_ITEM_GARCHOMPITE                         0x2A2 
+#define FLAG_HIDDEN_ITEM_LATIASITE                           0x2A3 
+#define FLAG_HIDDEN_ITEM_LATIOSITE                           0x2A4 
+#define FLAG_HIDDEN_ITEM_SWAMPERTITE                         0x2A5 
+#define FLAG_HIDDEN_ITEM_SCEPTILITE                          0x2A6 
+#define FLAG_HIDDEN_ITEM_SABLENITE                           0x2A7 
+#define FLAG_HIDDEN_ITEM_ALTARIANITE                         0x2A8 
+#define FLAG_HIDDEN_ITEM_GALLADITE                           0x2A9 
+#define FLAG_HIDDEN_ITEM_AUDINITE                            0x2AA 
+#define FLAG_HIDDEN_ITEM_METAGROSSITE                        0x2AB 
+#define FLAG_HIDDEN_ITEM_SHARPEDONITE                        0x2AC 
+#define FLAG_HIDDEN_ITEM_SLOWBRONITE                         0x2AD 
+#define FLAG_HIDDEN_ITEM_STEELIXITE                          0x2AE 
+#define FLAG_HIDDEN_ITEM_PIDGEOTITE                          0x2AF 
+#define FLAG_HIDDEN_ITEM_GLALITITE                           0x2B0 
+#define FLAG_HIDDEN_ITEM_DIANCITE                            0x2B1 
+#define FLAG_HIDDEN_ITEM_CAMERUPTITE                         0x2B2 
+#define FLAG_HIDDEN_ITEM_LOPUNNITE                           0x2B3 
+#define FLAG_HIDDEN_ITEM_SALAMENCITE                         0x2B4 
+#define FLAG_HIDDEN_ITEM_BEEDRILLITE                         0x2B5 
 
 // Event Flags
 #define FLAG_UNUSED_0x2B6                                           0x2B6 // Unused Flag
