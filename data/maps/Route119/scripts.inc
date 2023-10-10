@@ -18,7 +18,7 @@ Route119_OnLoad:
 Route119_OnLoad_Night:
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_RAIN
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 Route119_OnLoad_Day:
@@ -52,7 +52,7 @@ Route119_OnTransition:
 Route119_OnTransition_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_ROUTE119_CYCLE
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 Route119_EventScript_MoveInstituteWorkersDownstairs::

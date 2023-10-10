@@ -17,12 +17,13 @@ Route116_OnResume:
 Route116_OnResume_Night:
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_SHADE
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 Route116_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_DAY
 	end
 
 Route116_OnTransition:
@@ -38,7 +39,7 @@ Route116_OnTransition:
 Route116_OnTransition_Night:
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_SHADE
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 Route116_EventScript_SetWandasBoyfriendPos::

@@ -49,7 +49,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_Girl",
-      "flag": "FLAG_HIDE_TRAINER_DAYNIGHT"
+      "flag": "FLAG_HIDE_TRAINER_NIGHT"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_1",
@@ -101,7 +101,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_Woman2",
-      "flag": "FLAG_HIDE_TRAINER_DAYNIGHT"
+      "flag": "FLAG_HIDE_TRAINER_NIGHT"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
@@ -231,7 +231,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_BerryGentleman",
-      "flag": "FLAG_HIDE_TRAINER_DAYNIGHT"
+      "flag": "FLAG_HIDE_TRAINER_NIGHT"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_VAR_0",
@@ -257,7 +257,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LilycoveCity_EventScript_SchoolKidM",
-      "flag": "FLAG_HIDE_TRAINER_DAYNIGHT"
+      "flag": "FLAG_HIDE_TRAINER_NIGHT"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",

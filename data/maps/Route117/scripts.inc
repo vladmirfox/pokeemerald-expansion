@@ -15,7 +15,7 @@ Route117_OnResume:
 Route117_OnResume_Night:
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_SHADE
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 Route117_OnResume_Day:
@@ -32,7 +32,7 @@ Route117_OnTransition:
 Route117_OnTransition_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 Route117_EventScript_TryMoveDayCareMan::

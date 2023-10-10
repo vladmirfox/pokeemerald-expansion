@@ -737,8 +737,8 @@
 #define FLAG_HIDDEN_ITEM_BEEDRILLITE                         0x2B5 
 
 // Event Flags
-#define FLAG_UNUSED_0x2B6                                           0x2B6 // Unused Flag
-#define FLAG_UNUSED_0x2B7                                           0x2B7 // Unused Flag
+#define FLAG_HIDE_TRAINER_NIGHT                                     0x2B6 // Custom Flag
+#define FLAG_HIDE_TRAINER_DAY                                       0x2B7 // Custom Flag
 #define FLAG_OBTAINED_SAIL_FOSSIL                                   0x2B8 // Custom Flag
 #define FLAG_OBTAINED_JAW_FOSSIL                                    0x2B9 // Custom Flag
 #define FLAG_MET_DESERT_CAVERN_ROXANNE                              0x2BA // Custom Flag 
@@ -772,9 +772,7 @@
 #define FLAG_HIDE_PETALBURG_CITY_WALLY                              0x2D6
 #define FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_INVISIBLE_NINJA_BOY   0x2D7
 #define FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM                         0x2D8
-
-#define FLAG_HIDE_TRAINER_DAYNIGHT                                  0x2D9 // Custom Flag
-
+#define FLAG_UNUSED_0x2D9                                           0x2D9 // Unused Flag
 #define FLAG_HIDE_LILYCOVE_FAN_CLUB_INTERVIEWER                     0x2DA
 #define FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT                          0x2DB
 #define FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1                    0x2DC

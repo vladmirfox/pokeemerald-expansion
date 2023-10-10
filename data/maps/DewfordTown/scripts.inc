@@ -25,7 +25,7 @@ DewfordTown_OnResume:
 DewfordTown_OnResume_Night:
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_RAIN
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 DewfordTown_OnResume_Day:
@@ -43,7 +43,7 @@ DewfordTown_OnTransition:
 DewfordTown_OnTransition_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 DewfordTown_EventScript_Briney::

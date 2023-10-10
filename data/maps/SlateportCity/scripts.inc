@@ -37,7 +37,7 @@ SlateportCity_OnResume:
 SlateportCity_OnResume_Night:
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_SHADE
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 SlateportCity_OnResume_Day:
@@ -58,7 +58,7 @@ SlateportCity_OnTransition:
 SlateportCity_OnTransition_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 SlateportCity_EventScript_EnterSlateport::

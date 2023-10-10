@@ -13,7 +13,7 @@ Slateport_Left_OnTransition:
 Slateport_Left_OnTransition_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 Slateport_Left_OnResume:
@@ -25,7 +25,7 @@ Slateport_Left_OnResume:
 Slateport_Left_OnResume_Night:
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_SHADE
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 Slateport_Left_OnResume_Day:

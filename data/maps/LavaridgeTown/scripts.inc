@@ -16,7 +16,7 @@ LavaridgeTown_OnResume:
 
 LavaridgeTown_OnResume_Night:
 	setweather WEATHER_SHADE
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 LavaridgeTown_OnResume_Day:
@@ -38,7 +38,7 @@ LavaridgeTown_OnTransition:
 
 LavaridgeTown_OnTransition_Day:
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 LavaridgeTown_EventScript_ClearLavaridgeWhiteOut::

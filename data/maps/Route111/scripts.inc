@@ -22,7 +22,7 @@ Route111_OnResume:
 
 Route111_OnResume_Night:
 	setweather WEATHER_SHADE
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 Route111_OnResume_Day:
@@ -109,7 +109,7 @@ Route111_EventScript_EndCheckSetSandstorm::
 
 Route111_OnTransition_Day:
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 Route111_EventScript_SetWinstratesNotDefeated::

@@ -10,7 +10,7 @@ LilycoveCity_MapScripts::
 LilycoveCity_OnResume_Night:
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_SHADE
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 LilycoveCity_OnResume_Day:
@@ -39,7 +39,7 @@ LilycoveCity_OnTransition:
 LilycoveCity_OnTransition_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 LilycoveCity_OnLoad:

@@ -9,11 +9,11 @@ Route119_House_OnTransition:
 	end
 
 Route119_House_OnTransition_Night:
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 Route119_House_OnTransition_Day:
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 Route119_House_EventScript_Woman::

@@ -26,12 +26,12 @@ SootopolisCity_MapScripts::
 
 SootopolisCity_OnResume_Night:
 	setweather WEATHER_RAIN
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 SootopolisCity_OnResume_Day:
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 SootopolisCity_OnLoad:

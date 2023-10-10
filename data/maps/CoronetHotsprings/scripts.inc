@@ -12,7 +12,7 @@ CoronetHotsprings_OnTransition:
 
 CoronetHotsprings_OnTransition_Day:
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 CoronetHotsprings_OnResume:
@@ -23,7 +23,7 @@ CoronetHotsprings_OnResume:
 
 CoronetHotsprings_OnResume_Night:
 	setweather WEATHER_SHADE
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	end
 
 CoronetHotsprings_OnResume_Day:

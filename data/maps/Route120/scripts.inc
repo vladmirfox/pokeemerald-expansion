@@ -18,7 +18,7 @@ Route120_OnResume:
 Route120_OnResume_Night:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SHADE
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 Route120_OnResume_Day:
@@ -91,7 +91,7 @@ Route120_EventScript_SetCloudyWeather::
 Route120_EventScript_SetCloudyWeather_Day::
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY_CLOUDS
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 Route120_EventScript_SetSunnyWeather::
@@ -103,7 +103,7 @@ Route120_EventScript_SetSunnyWeather::
 Route120_OnTransition_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
-	clearflag FLAG_HIDE_TRAINER_DAYNIGHT
+	clearflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 Route120_EventScript_TrySetRainyWeather::
@@ -115,7 +115,7 @@ Route120_EventScript_TrySetRainyWeather::
 Route120_EventScript_SetRainyWeather::
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_RAIN
-	setflag FLAG_HIDE_TRAINER_DAYNIGHT
+	setflag FLAG_HIDE_TRAINER_NIGHT
 	return
 
 Route120_EventScript_SunTrigger::
