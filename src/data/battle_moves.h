@@ -11997,7 +11997,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .metronomeBanned = TRUE,
     },
 
-    [MOVE_DYNAMAX_CANNON] = ///////
+    [MOVE_DYNAMAX_CANNON] =
     {
         .effect = EFFECT_DYNAMAX_DOUBLE_DMG,
         .power = 100,
@@ -12009,12 +12009,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
+        .mimicBanned = TRUE,
         .encoreBanned = TRUE,
-        .assistBanned = TRUE,
+        //.assistBanned = TRUE,
         .noParentalBondHit = TRUE,
     },
 
@@ -12062,7 +12064,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .snatchAffected = TRUE,
-        .noParentalBondHit = TRUE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
     },
 
     [MOVE_NO_RETREAT] =
@@ -12078,7 +12081,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .snatchAffected = TRUE,
-        .noParentalBondHit = TRUE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
     },
 
     [MOVE_TAR_SHOT] =
@@ -12094,7 +12098,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .magicCoatAffected = TRUE,
-        .noParentalBondHit = TRUE,
     },
 
     [MOVE_MAGIC_POWDER] =
@@ -12112,7 +12115,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .magicCoatAffected = TRUE,
         .powderMove = TRUE,
-        .noParentalBondHit = TRUE,
     },
 
     [MOVE_DRAGON_DARTS] =
@@ -12139,12 +12141,13 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .accuracy = 0,
         .pp = 10,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_USER,
+        .target = MOVE_TARGET_ALL_BATTLERS,
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .ignoresProtect = TRUE,
-        .noParentalBondHit = TRUE,
+        .ignoresSubstitute = TRUE,
+        .mirrorMoveBanned = TRUE,
     },
 
     [MOVE_OCTOLOCK] =
@@ -12159,7 +12162,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
-        .noParentalBondHit = TRUE,
     },
 
     [MOVE_BOLT_BEAK] =
@@ -12205,7 +12207,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
-        .noParentalBondHit = TRUE,
+        .ignoresProtect = TRUE,
     },
 
     [MOVE_CLANGOROUS_SOUL] =
@@ -12221,9 +12223,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .snatchAffected = TRUE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
         .soundMove = TRUE,
+        .danceMove = TRUE,
         .metronomeBanned = TRUE,
-        .noParentalBondHit = TRUE,
     },
 
     [MOVE_BODY_PRESS] =
@@ -12244,7 +12248,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_DECORATE] =
     {
-        .ignoresProtect = B_UPDATED_MOVE_FLAGS >= GEN_5,
         .effect = EFFECT_DECORATE,
         .power = 0,
         .type = TYPE_FAIRY,
@@ -12255,8 +12258,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
-        .noParentalBondHit = TRUE,
     },
 
     [MOVE_DRUM_BEATING] =
@@ -12325,7 +12329,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .slicingMove = TRUE,
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
-        .assistBanned = TRUE,
+        .mimicBanned = TRUE,
+        //.assistBanned = TRUE,
     },
 
     [MOVE_BEHEMOTH_BASH] =
@@ -12343,7 +12348,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .makesContact = TRUE,
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
-        .assistBanned = TRUE,
+        .mimicBanned = TRUE,
+        //.assistBanned = TRUE,
     },
 
     [MOVE_AURA_WHEEL] =
@@ -12407,6 +12413,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .soundMove = TRUE,
+        .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
         .metronomeBanned = TRUE,
     },
 
@@ -12483,17 +12490,19 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .accuracy = 0,
         .pp = 10,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_USER,
+        .target = MOVE_TARGET_ALL_BATTLERS,
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .snatchAffected = TRUE,
+        .ignoresProtect = TRUE,
+        .ignoresSubstitute = TRUE,
+        .mirrorMoveBanned = TRUE,
         .healBlockBanned = TRUE,
         .metronomeBanned = TRUE,
-        .noParentalBondHit = TRUE,
     },
 
-    [MOVE_OBSTRUCT] =
+    [MOVE_OBSTRUCT] = //////
     {
         .effect = EFFECT_PROTECT,
         .power = 0,
@@ -12506,10 +12515,10 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .protectionMove = TRUE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
-        .copycatBanned = TRUE,
         .instructBanned = TRUE,
-        .noParentalBondHit = TRUE,
     },
 
     [MOVE_FALSE_SURRENDER] =
@@ -14311,7 +14320,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_BLOOD_MOON] =
     {
-        .effect = EFFECT_GIGATON_HAMMER,
+        .effect = EFFECT_HIT,
         .power = 140,
         .type = TYPE_NORMAL,
         .accuracy = 100,
