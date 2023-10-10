@@ -3118,21 +3118,28 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_SYRUP_BOMB:
-        {
-            u16 battlerAbility = GetBattlerAbility(battler);
-            if (gDisableStructs[battler].syrupBombTimer
-             && --gDisableStructs[battler].slowStartTimer == 0
-             && !(GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_CLEAR_AMULET
-                  || battlerAbility == ABILITY_CLEAR_BODY
-                  || battlerAbility == ABILITY_FULL_METAL_BODY
-                  || battlerAbility == ABILITY_WHITE_SMOKE))
+            if ((gStatuses4[battler] & STATUS4_SYRUP_BOMB) && (gBattleMons[battler].hp != 0))
             {
-                gBattlerTarget = battler;
-                BattleScriptExecute(BattleScript_SyrupBombEndTurn);
+                u16 battlerAbility = GetBattlerAbility(battler);
+                u32 battlerHoldEffect = GetBattlerHoldEffect(battler, TRUE);
+
+                gDisableStructs[battler].syrupBombTimer--;
+                if (gDisableStructs[battler].syrupBombTimer == 0)
+                {
+                    gStatuses4[battler] &= ~STATUS4_SYRUP_BOMB;
+                    PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_SYRUP_BOMB);
+                    gBattlescriptCurrInstr = BattleScript_WrapEnds;
+                }
+                else if (gDisableStructs[battler].syrupBombTimer != 0)
+                {
+                    gBattlerTarget = battler;
+                    PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_SYRUP_BOMB);
+                    gBattlescriptCurrInstr = BattleScript_SyrupBombEndTurn;
+                }
+                BattleScriptExecute(gBattlescriptCurrInstr);
                 effect++;
             }
             gBattleStruct->turnEffectsTracker++;
-        }
             break;
         case ENDTURN_BATTLER_COUNT:  // done
             gBattleStruct->turnEffectsTracker = 0;

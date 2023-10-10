@@ -3684,9 +3684,18 @@ void SetMoveEffect(bool32 primary, u32 certain)
 
                 break;
             case MOVE_EFFECT_SYRUP_BOMB:
-                gDisableStructs[gBattlerTarget].syrupBombTimer = 3;
-                gBattlescriptCurrInstr++;
-                break;            }
+                if (gStatuses4[gEffectBattler] & STATUS4_SYRUP_BOMB)
+                {
+                    gBattlescriptCurrInstr++;
+                }
+                else
+                {
+                    gStatuses4[gEffectBattler] |= STATUS4_SYRUP_BOMB;
+                    gDisableStructs[gBattlerTarget].syrupBombTimer = 3;
+                    gBattlescriptCurrInstr++;
+                }
+                break;
+            }
         }
     }
 
