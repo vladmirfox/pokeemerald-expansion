@@ -1,6 +1,11 @@
 #include "global.h"
 #include "test/battle.h"
 
+ASSUMPTIONS
+{
+    ASSUME(P_GEN_4_POKEMON == TRUE); // Because no <Gen4 mons have this ability
+}
+
 SINGLE_BATTLE_TEST("Sharpness increases the power of cutting moves", s16 damage)
 {
     u32 move;
