@@ -5130,6 +5130,9 @@ extern const u8 gMonIcon_Fearow[];
 extern const u8 gMonIcon_Ekans[];
 extern const u8 gMonIcon_Arbok[];
 extern const u8 gMonIcon_Pikachu[];
+#if P_MORE_GENDER_DIFF_ICONS == TRUE
+extern const u8 gMonIcon_PikachuF[];
+#endif
 extern const u8 gMonIcon_Raichu[];
 extern const u8 gMonIcon_Sandshrew[];
 extern const u8 gMonIcon_Sandslash[];
@@ -5556,7 +5559,7 @@ extern const u8 gMonIcon_Riolu[];
 extern const u8 gMonIcon_Lucario[];
 extern const u8 gMonIcon_Hippopotas[];
 extern const u8 gMonIcon_Hippowdon[];
-#if P_HIPPO_GENDER_DIFF_ICONS == TRUE
+#if P_MORE_GENDER_DIFF_ICONS == TRUE
 extern const u8 gMonIcon_HippopotasF[];
 extern const u8 gMonIcon_HippowdonF[];
 #endif

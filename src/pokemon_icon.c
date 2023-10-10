@@ -1301,7 +1301,10 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
 // Female icon palette indexes still need to be defined in gMonIconPaletteIndicesFemale, even if they are the same as males.
 const u8 *const gMonIconTableFemale[NUM_SPECIES + 1] =
 {
-#if P_GEN_4_POKEMON == TRUE && P_HIPPO_GENDER_DIFF_ICONS == TRUE
+#if P_MORE_GENDER_DIFF_ICONS == TRUE
+    [SPECIES_PIKACHU] = gMonIcon_PikachuF,
+#endif
+#if P_GEN_4_POKEMON == TRUE && P_MORE_GENDER_DIFF_ICONS == TRUE
     [SPECIES_HIPPOPOTAS] = gMonIcon_HippopotasF,
     [SPECIES_HIPPOWDON] = gMonIcon_HippowdonF,
 #endif
@@ -2534,6 +2537,7 @@ const u8 gMonIconPaletteIndices[] =
 
 const u8 gMonIconPaletteIndicesFemale[] =
 {
+    [SPECIES_PIKACHU] = 2,
 #if P_GEN_4_POKEMON == TRUE
     [SPECIES_HIPPOPOTAS] = 1,
     [SPECIES_HIPPOWDON] = 1,
