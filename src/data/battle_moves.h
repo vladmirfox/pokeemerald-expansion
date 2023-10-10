@@ -11416,7 +11416,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .mirrorMoveBanned = TRUE,
     },
 
-    [MOVE_SHELL_TRAP] = ////////
+    [MOVE_SHELL_TRAP] =
     {
         .effect = EFFECT_SHELL_TRAP,
         .power = 150,
@@ -11542,7 +11542,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .rechargeMove = TRUE,
-        .instructBanned = TRUE,
     },
 
     [MOVE_SPECTRAL_THIEF] =
@@ -11557,6 +11556,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .ignoresSubstitute = TRUE,
         .makesContact = TRUE,
         .metronomeBanned = TRUE,
     },
@@ -11637,7 +11637,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .makesContact = TRUE,
         .metronomeBanned = B_UPDATED_MOVE_FLAGS >= GEN_8,
     },
 
@@ -11998,7 +11997,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .metronomeBanned = TRUE,
     },
 
-    [MOVE_DYNAMAX_CANNON] =
+    [MOVE_DYNAMAX_CANNON] = ///////
     {
         .effect = EFFECT_DYNAMAX_DOUBLE_DMG,
         .power = 100,
