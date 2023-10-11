@@ -45,5 +45,3 @@ SINGLE_BATTLE_TEST("Sunlight multiplies the power of Water-type moves by 0.5x", 
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(0.5), results[1].damage);
     }
 }
-
-TO_DO_BATTLE_TEST("Harvest always restores a Berry in Sunlight"); //put this in the harvest ability file once its implemented
