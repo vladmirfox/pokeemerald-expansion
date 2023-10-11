@@ -36,11 +36,12 @@ SINGLE_BATTLE_TEST("Purifying Salt makes Rest fail")
 SINGLE_BATTLE_TEST("Purifying Salt grants immunity to status effects")
 {
     u32 move;
-    PARAMETRIZE { move = MOVE_WILL_O_WISP; }
-    PARAMETRIZE { move = MOVE_HYPNOSIS; }
-    PARAMETRIZE { move = MOVE_THUNDER_WAVE; }
-    PARAMETRIZE { move = MOVE_TOXIC; }
-    PARAMETRIZE { move = MOVE_POWDER_SNOW; }
+    u16 status;
+    PARAMETRIZE { move = MOVE_WILL_O_WISP; status = STATUS1_BURN; }
+    PARAMETRIZE { move = MOVE_HYPNOSIS; status = STATUS1_SLEEP; }
+    PARAMETRIZE { move = MOVE_THUNDER_WAVE; status = STATUS1_PARALYSIS; }
+    PARAMETRIZE { move = MOVE_TOXIC; status = STATUS1_TOXIC_POISON; }
+    PARAMETRIZE { move = MOVE_POWDER_SNOW; status = STATUS1_FREEZE; }
     GIVEN {
         ASSUME(gBattleMoves[MOVE_WILL_O_WISP].effect == EFFECT_WILL_O_WISP);
         ASSUME(gBattleMoves[MOVE_HYPNOSIS].effect == EFFECT_SLEEP);
@@ -52,37 +53,14 @@ SINGLE_BATTLE_TEST("Purifying Salt grants immunity to status effects")
     } WHEN {
         TURN { MOVE(opponent, move); }
     } SCENE {
-        switch (move)
+        if (move != MOVE_POWDER_SNOW)
         {
-            case MOVE_WILL_O_WISP:
-                MESSAGE("Foe Wobbuffet used Will-o-Wisp!");
-                NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_WILL_O_WISP, opponent);
-                ABILITY_POPUP(player, ABILITY_PURIFYING_SALT);
-                MESSAGE("It doesn't affect Wobbuffet…");
-                break;
-            case MOVE_HYPNOSIS:
-                MESSAGE("Foe Wobbuffet used Hypnosis!");
-                NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPNOSIS, opponent);
-                ABILITY_POPUP(player, ABILITY_PURIFYING_SALT);
-                MESSAGE("It doesn't affect Wobbuffet…");
-                break;
-            case MOVE_THUNDER_WAVE:
-                MESSAGE("Foe Wobbuffet used Thunder Wave!");
-                NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDER_WAVE, opponent);
-                ABILITY_POPUP(player, ABILITY_PURIFYING_SALT);
-                MESSAGE("It doesn't affect Wobbuffet…");
-                break;
-            case MOVE_TOXIC:
-                MESSAGE("Foe Wobbuffet used Toxic!");
-                NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC, opponent);
-                ABILITY_POPUP(player, ABILITY_PURIFYING_SALT);
-                MESSAGE("It doesn't affect Wobbuffet…");
-                break;
-            case MOVE_POWDER_SNOW:
-                MESSAGE("Foe Wobbuffet used Powder Snow!");
-                ANIMATION(ANIM_TYPE_MOVE, MOVE_POWDER_SNOW, opponent);
-                break;
+            NOT ANIMATION(ANIM_TYPE_MOVE, move, opponent);
+            ABILITY_POPUP(player, ABILITY_PURIFYING_SALT);
+            MESSAGE("It doesn't affect Wobbuffet…");
         }
-        NONE_OF { STATUS_ICON(player, status1: TRUE); }
+        else
+            NOT ABILITY_POPUP(player, ABILITY_PURIFYING_SALT);
+        NOT STATUS_ICON(player, status);
     }
 }
