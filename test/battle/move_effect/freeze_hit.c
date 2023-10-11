@@ -22,12 +22,12 @@ SINGLE_BATTLE_TEST("Powder Snow inflicts freeze")
     }
 }
 
-SINGLE_BATTLE_TEST("Freeze cannot be inflicted on Ice-type Pokémon")
+SINGLE_BATTLE_TEST("Powder Snow cannot freeze an Ice-type Pokémon")
 {
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_GLALIE].types[0] == TYPE_ICE);
+        ASSUME(gSpeciesInfo[SPECIES_SNORUNT].types[0] == TYPE_ICE);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_GLALIE);
+        OPPONENT(SPECIES_SNORUNT);
     } WHEN {
         TURN { MOVE(player, MOVE_POWDER_SNOW); }
     } SCENE {
@@ -50,25 +50,16 @@ SINGLE_BATTLE_TEST("Freeze cannot be inflicted in Sunlight")
     }
 }
 
-SINGLE_BATTLE_TEST("Blizzard bypasses accuracy checks in Hail")
+SINGLE_BATTLE_TEST("Blizzard bypasses accuracy checks in Hail and Snow")
 {
+    u32 move;
+    PARAMETRIZE { move = MOVE_HAIL; }
+    PARAMETRIZE { move = MOVE_SNOWSCAPE; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_HAIL); MOVE(player, MOVE_BLIZZARD); }
-    } SCENE {
-        NONE_OF { MESSAGE("Wobbuffet's attack missed!"); }
-    }
-}
-
-SINGLE_BATTLE_TEST("Blizzard bypasses accuracy checks in Snow")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_SNOWSCAPE); MOVE(player, MOVE_BLIZZARD); }
+        TURN { MOVE(opponent, move); MOVE(player, MOVE_BLIZZARD); }
     } SCENE {
         NONE_OF { MESSAGE("Wobbuffet's attack missed!"); }
     }

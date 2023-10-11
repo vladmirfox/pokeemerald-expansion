@@ -60,32 +60,15 @@ SINGLE_BATTLE_TEST("Weather Ball doubles its power and turns to a Rock-type move
     }
 }
 
-SINGLE_BATTLE_TEST("Weather Ball doubles its power and turns to an Ice-type move in Hail", s16 damage)
+SINGLE_BATTLE_TEST("Weather Ball doubles its power and turns to an Ice-type move in Hail and Snow", s16 damage)
 {
     u16 move;
     PARAMETRIZE{ move = MOVE_CELEBRATE; }
     PARAMETRIZE{ move = MOVE_HAIL; }
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_DRAGONAIR) { Item(ITEM_SAFETY_GOGGLES); };
-    } WHEN {
-        TURN { MOVE(player, move); }
-        TURN { MOVE(player, MOVE_WEATHER_BALL); }
-    } SCENE {
-        HP_BAR(opponent, captureDamage: &results[i].damage);
-    } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(4.0), results[1].damage); // double base power + type effectiveness.
-    }
-}
-
-SINGLE_BATTLE_TEST("Weather Ball doubles its power and turns to an Ice-type move in Snow", s16 damage)
-{
-    u16 move;
-    PARAMETRIZE{ move = MOVE_CELEBRATE; }
     PARAMETRIZE{ move = MOVE_SNOWSCAPE; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_DRAGONAIR);
+        OPPONENT(SPECIES_DRAGONAIR) { Item(ITEM_SAFETY_GOGGLES); };
     } WHEN {
         TURN { MOVE(player, move); }
         TURN { MOVE(player, MOVE_WEATHER_BALL); }
