@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(gBattleMoves[MOVE_TWINEEDLE].effect == EFFECT_POISON_HIT);
 }
 
-SINGLE_BATTLE_TEST("Poison is inflicted by Poison Sting")
+SINGLE_BATTLE_TEST("Poison Sting inflicts poison")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -23,7 +23,7 @@ SINGLE_BATTLE_TEST("Poison is inflicted by Poison Sting")
     }
 }
 
-SINGLE_BATTLE_TEST("Poison cannot be inflicted on Poison-type Pokémon")
+SINGLE_BATTLE_TEST("Poison Sting cannot poison Poison-type")
 {
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_NIDORAN_M].types[0] == TYPE_POISON);

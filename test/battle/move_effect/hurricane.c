@@ -32,3 +32,4 @@ SINGLE_BATTLE_TEST("Hurricane bypasses accuracy checks in Rain")
         NONE_OF { MESSAGE("Wobbuffet's attack missed!"); }
     }
 }
+TO_DO_BATTLE_TEST("Hurricane Veil can hit airborne targets") // Fly, Bounce, Sky Drop

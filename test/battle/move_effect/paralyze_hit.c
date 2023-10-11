@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Thunder Shock inflicts paralysis")
     }
 }
 
-SINGLE_BATTLE_TEST("Paralysis cannot be inflicted on Electric-type Pokémon")
+SINGLE_BATTLE_TEST("Thunder Shock cannot paralyze an Electric-type")
 {
     GIVEN {
         ASSUME(B_PARALYZE_ELECTRIC >= GEN_6);
