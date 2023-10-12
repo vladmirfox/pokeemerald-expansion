@@ -22,8 +22,7 @@ SINGLE_BATTLE_TEST("Beast Boost boosts the most proficient stat when knocking ou
         TURN { MOVE(player, MOVE_TACKLE); SEND_OUT(opponent, 1); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_BEAST_BOOST);
-        switch(i)
-        {
+        switch(i) {
             case 0:
                 MESSAGE("Nihilego's Beast Boost raised its Attack!");
                 break;

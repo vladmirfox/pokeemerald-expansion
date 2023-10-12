@@ -21,14 +21,13 @@ SINGLE_BATTLE_TEST("Leaf Guard prevents non-volatile status conditions in sun")
     } WHEN {
         TURN { MOVE(player, MOVE_SUNNY_DAY); MOVE(opponent, move); }
     } SCENE {
-        if (move != MOVE_POWDER_SNOW)
-        {
+        if (move != MOVE_POWDER_SNOW) {
             NOT ANIMATION(ANIM_TYPE_MOVE, move, opponent);
             ABILITY_POPUP(player, ABILITY_LEAF_GUARD);
             MESSAGE("It doesn't affect Leafeon…");
-        }
-        else
+        } else {
             NOT ABILITY_POPUP(player, ABILITY_LEAF_GUARD);
+        }
         NOT STATUS_ICON(player, status);
     }
 }
