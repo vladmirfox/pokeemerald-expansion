@@ -20,6 +20,8 @@
 #include "constants/battle_move_effects.h"
 #include "constants/items.h"
 #include "constants/moves.h"
+#include "constants/species.h"
+#include "tx_randomizer_and_challenges.h"
 
 // this file's functions
 static bool8 HasSuperEffectiveMoveAgainstOpponents(u32 battler, bool8 noRng);
@@ -845,8 +847,8 @@ static u32 GetBestMonTypeMatchup(struct Pokemon *party, int firstId, int lastId,
 
                 u8 atkType1 = gBattleMons[opposingBattler].type1;
                 u8 atkType2 = gBattleMons[opposingBattler].type2;
-                u8 defType1 = gSpeciesInfo[species].types[0];
-                u8 defType2 = gSpeciesInfo[species].types[1];
+                u8 defType1 = GetTypeBySpecies(species, 1);
+                u8 defType2 = GetTypeBySpecies(species, 2);
 
                 if (IsAiPartyMonOHKOBy(battler, opposingBattler, &party[i]))
                     continue;
@@ -1029,6 +1031,9 @@ static bool8 ShouldUseItem(u32 battler)
     bool8 shouldUse = FALSE;
 
     if (IsAiVsAiBattle())
+        return FALSE;
+
+    if (gSaveBlock1Ptr->tx_Challenges_NoItemTrainer) //tx_randomizer_and_challenges
         return FALSE;
 
     // If teaming up with player and Pokemon is on the right, or Pokemon is currently held by Sky Drop

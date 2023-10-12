@@ -25,6 +25,7 @@
 #include "constants/hold_effects.h"
 #include "constants/moves.h"
 #include "constants/region_map_sections.h"
+#include "tx_randomizer_and_challenges.h"
 
 extern const struct Evolution gEvolutionTable[][EVOS_PER_MON];
 
@@ -231,7 +232,8 @@ static void StorePokemonInDaycare(struct Pokemon *mon, struct DaycareMon *daycar
     }
 
     daycareMon->mon = mon->box;
-    BoxMonRestorePP(&daycareMon->mon);
+    if (!gSaveBlock1Ptr->tx_Challenges_PkmnCenter)
+        BoxMonRestorePP(&daycareMon->mon);
     daycareMon->steps = 0;
     ZeroMonData(mon);
     CompactPartySlots();
@@ -277,7 +279,7 @@ static void ApplyDaycareExperience(struct Pokemon *mon)
     bool8 firstMove;
     u16 learnedMove;
 
-    for (i = 0; i < MAX_LEVEL; i++)
+    for (i = 0; i < GetCurrentPartyLevelCap(); i++)
     {
         // Add the mon's gained daycare experience level by level until it can't level up anymore.
         if (TryIncrementMonLevel(mon))
@@ -320,7 +322,7 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
         species = newSpecies;
     }
 
-    if (GetMonData(&pokemon, MON_DATA_LEVEL) != MAX_LEVEL)
+    if (GetMonData(&pokemon, MON_DATA_LEVEL) < GetCurrentPartyLevelCap())
     {
         experience = GetMonData(&pokemon, MON_DATA_EXP) + daycareMon->steps;
         SetMonData(&pokemon, MON_DATA_EXP, &experience);
@@ -1136,6 +1138,8 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
             }
             else
             {
+                if (IsNuzlockeActive() && NuzlockeFlagGet(NuzlockeGetCurrentRegionMapSectionId()))
+                    return FALSE;
                 gSpecialVar_0x8004 = i;
                 return TRUE;
             }

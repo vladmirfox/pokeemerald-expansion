@@ -5,6 +5,8 @@
 #include "battle_controllers.h"
 #include "battle_interface.h"
 #include "battle_z_move.h"
+#include "battle_setup.h"
+#include "event_data.h"
 #include "graphics.h"
 #include "sprite.h"
 #include "window.h"
@@ -33,6 +35,16 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/items.h"
+#include "tx_randomizer_and_challenges.h"
+
+struct TestingBar
+{
+    s32 maxValue;
+    s32 oldValue;
+    s32 receivedValue;
+    u32 unkC_0:5;
+    u32 unk10;
+};
 
 enum
 {   // Corresponds to gHealthboxElementsGfxTable (and the tables after it) in graphics.c
@@ -2331,7 +2343,20 @@ static void TryAddPokeballIconToHealthbox(u8 healthboxSpriteId, bool8 noStatus)
     if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
         return;
     if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES)), FLAG_GET_CAUGHT))
+    {
+        if (!IsNuzlockeActive())
+            return;
+        if (NuzlockeIsSpeciesClauseActive || OneTypeChallengeCaptureBlocked || NuzlockeIsCaptureBlocked)
+            return;
+
+        healthBarSpriteId = gSprites[healthboxSpriteId].hMain_HealthBarSpriteId;
+
+        if (noStatus)
+            CpuCopy32(gNuzlockeFirstEncounterIndicatorGfx, (void*)(OBJ_VRAM0 + (gSprites[healthBarSpriteId].oam.tileNum + 8) * TILE_SIZE_4BPP), 32);
+        else
+            CpuFill32(0, (void*)(OBJ_VRAM0 + (gSprites[healthBarSpriteId].oam.tileNum + 8) * TILE_SIZE_4BPP), 32);
         return;
+    }
 
     healthBarSpriteId = gSprites[healthboxSpriteId].hMain_HealthBarSpriteId;
 
@@ -2690,7 +2715,7 @@ static void MoveBattleBarGraphically(u8 battlerId, u8 whichBar)
                     &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
                     array, B_EXPBAR_PIXELS / 8);
         level = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_LEVEL);
-        if (level == MAX_LEVEL)
+        if (level >= GetCurrentPartyLevelCap())
         {
             for (i = 0; i < 8; i++)
                 array[i] = 0;

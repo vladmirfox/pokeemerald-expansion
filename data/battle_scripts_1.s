@@ -10380,3 +10380,19 @@ BattleScript_EffectSnow::
 	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_STRONG_WINDS, BattleScript_MysteriousAirCurrentBlowsOn
 	setsnow
 	goto BattleScript_MoveWeatherChange
+
+BattleScript_Safari_OneTypeChallengeCaptureBlocked::
+	printselectionstring STRINGID_ONETYPECAPTUREBLOCKED
+	endselectionscript
+
+BattleScript_Safari_NuzlockeCaptureBlocked::
+	printselectionstring STRINGID_NUZLOCKECAPTUREBLOCKED
+	endselectionscript
+
+BattleScript_Safari_SpeciesClauseCaptureBlocked::
+	printselectionstring STRINGID_SPECIESCLAUSECAPTUREBLOCKED
+	endselectionscript
+
+BattleScript_Safari_SameSpeciesCaptureBlocked::
+	printselectionstring STRINGID_SAMESPECIESCAPTUREBLOCKED
+	endselectionscript

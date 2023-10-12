@@ -5,6 +5,7 @@
 #include "constants/items.h"
 #include "constants/region_map_sections.h"
 #include "constants/map_groups.h"
+#include "constants/species.h" //tx_randomizer_and_challenges
 
 #define GET_BASE_SPECIES_ID(speciesId) (GetFormSpeciesId(speciesId, 0))
 #define FORM_SPECIES_END (0xffff)
@@ -100,6 +101,7 @@ enum {
     MON_DATA_SPEED2,
     MON_DATA_SPATK2,
     MON_DATA_SPDEF2,
+    MON_DATA_NUZLOCKE_RIBBON,
 };
 
 struct PokemonSubstruct0
@@ -172,7 +174,8 @@ struct PokemonSubstruct3
  /* 0x0B */ u32 earthRibbon:1;              // Given to teams that have beaten Mt. Battle's 100-battle challenge in Colosseum/XD.
  /* 0x0B */ u32 worldRibbon:1;              // Distributed during Pokémon Festa '04 and '05 to tournament winners.
  /* 0x0B */ u32 unusedRibbons:2;            // Discarded in Gen 4.
- /* 0x0B */ u32 abilityNum:2;
+ /* 0x0B */ u32 abilityNum:1;
+ /* 0x0B */ u32 nuzlockeRibbon:1;           // tx_randomizer_and_challenges
 
  // The functionality of this bit changed in FRLG:
  // In RS, this bit does nothing, is never set, & is accidentally unset when hatching Eggs.
@@ -431,6 +434,7 @@ struct FormChange
 
 extern u8 gPlayerPartyCount;
 extern struct Pokemon gPlayerParty[PARTY_SIZE];
+extern struct Pokemon gPlayerPartyBackup[PARTY_SIZE];
 extern u8 gEnemyPartyCount;
 extern struct Pokemon gEnemyParty[PARTY_SIZE];
 extern struct SpriteTemplate gMultiuseSpriteTemplate;
@@ -453,6 +457,7 @@ extern const s8 gNatureStatTable[][5];
 extern const u16 *const gFormSpeciesIdTables[NUM_SPECIES];
 extern const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES];
 extern const u32 sExpCandyExperienceTable[];
+extern const u16 gEvolutionLines[NUM_SPECIES][EVOS_PER_LINE]; //tx_randomizer_and_challenges
 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);
 void ZeroMonData(struct Pokemon *mon);
@@ -517,6 +522,7 @@ u32 GetBoxMonData2(struct BoxPokemon *boxMon, s32 field);
 void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg);
 void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg);
 void CopyMon(void *dest, void *src, size_t size);
+u8 SendMonToPC(struct Pokemon* mon);
 u8 GiveMonToPlayer(struct Pokemon *mon);
 u8 SendMonToPC(struct Pokemon* mon);
 u8 CalculatePlayerPartyCount(void);
@@ -623,5 +629,16 @@ void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality);
 u8 CalculatePartyCount(struct Pokemon *party);
 u16 SanitizeSpeciesId(u16 species);
 bool32 IsSpeciesEnabled(u16 species);
+
+//tx_randomizer_and_challenges
+void RandomizeSpeciesListEWRAM(u16 seed);
+void RandomizeTypeEffectivenessListEWRAM(u16 seed);
+u16 PickRandomStarterForOneTypeChallenge(u16 *speciesList, u8 starterId);
+u16 PickRandomStarter(u16 *speciesList, u8 starterId);
+u8 GetTypeBySpecies(u16 species, u8 typeNum);
+u16 GetSpeciesRandomSeeded(u16 species, u8 type, u16 additionalOffset);
+u16 GetRandomMove(u16 input_move, u16 species);
+u8 GetRandomType(void);
+u8 EvolutionBlockedByEvoLimit(u16 species);
 
 #endif // GUARD_POKEMON_H

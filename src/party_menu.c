@@ -73,6 +73,7 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "tx_randomizer_and_challenges.h"
 
 enum {
     MENU_SUMMARY,
@@ -2623,6 +2624,7 @@ static void SetPartyMonSelectionActions(struct Pokemon *mons, u8 slotId, u8 acti
 static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 {
     u8 i, j;
+    bool8 hasFlashAlready, hasFlyAlread = FALSE;
 
     sPartyMenuInternal->numActions = 0;
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUMMARY);
@@ -2634,10 +2636,24 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         {
             if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1) == sFieldMoves[j])
             {
+                //tx_randomizer_and_challenges
+                if (sFieldMoves[j] == MOVE_FLASH)
+                    hasFlashAlready = TRUE;
+                if (sFieldMoves[j] == MOVE_FLY)
+                    hasFlyAlread = TRUE;
+                
                 AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + MENU_FIELD_MOVES);
                 break;
             }
         }
+    }
+
+    if (HMsOverwriteOptionActive() && slotId == 0) //tx_randomizer_and_challenges
+    {
+        if (CheckBagHasItem(ITEM_HM05_FLASH, 1) && !hasFlashAlready)
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, 1 + MENU_FIELD_MOVES);
+        if (CheckBagHasItem(ITEM_HM02_FLY, 1) && !hasFlyAlread)
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, 5 + MENU_FIELD_MOVES);
     }
 
     if (!InBattlePike())
@@ -4996,6 +5012,18 @@ u16 ItemIdToBattleMoveId(u16 item)
     return (ItemId_GetPocket(item) == POCKET_TM_HM) ? gItems[item].secondaryId : MOVE_NONE;
 }
 
+u16 BattleMoveIdToItemId(u16 moveId) //tx_randomizer_and_challenges
+{
+    u8 i;
+
+    for (i = 0; i < 50 + NUM_HIDDEN_MACHINES; i++)
+    {
+        if (sTMHMMoves[i] == moveId)
+            return ITEM_TM01 + i;
+    }
+    return ITEM_NONE;
+}
+
 bool8 MonKnowsMove(struct Pokemon *mon, u16 move)
 {
     u8 i;
@@ -5277,7 +5305,7 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
     u8 holdEffectParam = ItemId_GetHoldEffectParam(*itemPtr);
 
     sInitialLevel = GetMonData(mon, MON_DATA_LEVEL);
-    if (sInitialLevel != MAX_LEVEL)
+    if (sInitialLevel < GetCurrentPartyLevelCap())
     {
         BufferMonStatsToTaskData(mon, arrayPtr);
         cannotUseEffect = ExecuteTableBasedItemEffect(mon, *itemPtr, gPartyMenu.slotId, 0);

@@ -285,7 +285,14 @@
 #define EVO_ITEM_HOLD                     41     // Pokémon levels up, holds specified item
 #define EVO_LEVEL_FOG                     42     // Pokémon reaches the specified level during fog in the overworld
 
+//tx_randomizer_and_challenges
+#ifndef POKEMON_EXPANSION 
+#define EVOS_PER_MON 5
+#define EVOS_PER_LINE 6
+#else
 #define EVOS_PER_MON 10
+#define EVOS_PER_LINE 22
+#endif
 
 // Evolution 'modes,' for GetEvolutionTargetSpecies
 #define EVO_MODE_NORMAL            0

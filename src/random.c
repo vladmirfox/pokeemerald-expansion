@@ -1,5 +1,8 @@
 #include "global.h"
 #include "random.h"
+#include "new_game.h" //tx_randomizer_and_challenges
+#include "tx_randomizer_and_challenges.h"
+
 #if MODERN
 #include <alloca.h>
 #endif
@@ -120,4 +123,67 @@ u32 RandomWeightedArrayDefault(enum RandomTag tag, u32 sum, u32 n, const u8 *wei
 const void *RandomElementArrayDefault(enum RandomTag tag, const void *array, size_t size, size_t count)
 {
     return (const u8 *)array + size * RandomUniformDefault(tag, 0, count - 1);
+}
+
+//tx_randomizer_and_challenges
+u16 RandomSeeded(u16 value, u8 seeded)
+{
+    u16 otId, result;
+
+    if (gSaveBlock1Ptr->tx_Random_Chaos && !seeded)
+    {
+        result = Random();
+    }
+    else
+    {
+        otId = GetTrainerId(gSaveBlock2Ptr->playerTrainerId);
+        result = ISO_RANDOMIZE1(otId + value) >> 16;
+    }
+    return result;
+}
+#define I_MAX 5
+u16 RandomSeededModulo(u32 value, u16 modulo)
+{
+    u32 otId;
+    u32 RAND_MAX;
+    u32 result = 0;
+    u8 i = 0;
+
+    if (gSaveBlock1Ptr->tx_Random_Chaos)
+        value = Random();
+
+    otId = GetTrainerId(gSaveBlock2Ptr->playerTrainerId);
+    RAND_MAX = 0xFFFFFFFF - (0xFFFFFFFF % modulo);
+
+    do
+    {
+        result = ISO_RANDOMIZE1(otId + value + result);
+    }
+    while ((result >= RAND_MAX) && (++i != I_MAX));
+
+    return (result % modulo);
+}
+void ShuffleListU8(u8 *list, u8 count, u8 seed)
+{
+    u16 i;
+
+    for (i = (count - 1); i > 0; i--)
+    {
+        u16 j = RandomSeeded(seed, TRUE) % (i + 1);
+        u16 arr = list[j];
+        list[j] = list[i];
+        list[i] = arr;
+    }
+}
+void ShuffleListU16(u16 *list, u16 count, u32 seed)
+{
+    u16 i;
+
+    for (i = (count - 1); i > 0; i--)
+    {
+        u16 j = RandomSeeded(seed, TRUE) % (i + 1);
+        u16 arr = list[j];
+        list[j] = list[i];
+        list[i] = arr;
+    }
 }
