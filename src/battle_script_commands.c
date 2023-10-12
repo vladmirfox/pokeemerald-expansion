@@ -338,7 +338,6 @@ static const u16 sWhiteOutBadgeMoney[9] = { 8, 16, 24, 36, 48, 64, 80, 100, 120 
 
 static bool8 IsTwoTurnsMove(u16 move);
 static void TrySetDestinyBondToHappen(void);
-static u8 AttacksThisTurn(u8 battler, u16 move); // Note: returns 1 if it's a charging turn, otherwise 2.
 static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr);
 static bool32 IsMonGettingExpSentOut(void);
 static void InitLevelUpBanner(void);
@@ -2015,7 +2014,9 @@ static void Cmd_adjustdamage(void)
 
     u8 holdEffect, param;
     u32 moveType;
+    #if B_AFFECTION_MECHANICS == TRUE
     u32 friendshipScore = GetBattlerFriendshipScore(gBattlerTarget);
+    #endif // B_AFFECTION_MECHANICS
     u32 rand = Random() % 100;
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
@@ -2285,17 +2286,10 @@ static void Cmd_datahpupdate(void)
 {
     CMD_ARGS(u8 battler);
 
-    u32 battler, moveType;
+    u32 battler;
 
     if (gBattleControllerExecFlags)
         return;
-
-    if (gBattleStruct->dynamicMoveType == 0)
-        moveType = gBattleMoves[gCurrentMove].type;
-    else if (!(gBattleStruct->dynamicMoveType & F_DYNAMIC_TYPE_1))
-        moveType = gBattleStruct->dynamicMoveType & DYNAMIC_TYPE_MASK;
-    else
-        moveType = gBattleMoves[gCurrentMove].type;
 
     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) || (gHitMarker & HITMARKER_PASSIVE_DAMAGE))
     {
@@ -2752,7 +2746,7 @@ void StealTargetItem(u8 battlerStealer, u8 battlerItem)
 
 void SetMoveEffect(bool32 primary, u32 certain)
 {
-    s32 i, byTwo, affectsUser = 0;
+    s32 i, affectsUser = 0;
     bool32 statusChanged = FALSE;
     bool32 mirrorArmorReflected = (GetBattlerAbility(gBattlerTarget) == ABILITY_MIRROR_ARMOR);
     u32 flags = 0;
@@ -3510,6 +3504,8 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     {
                         if (gBattleMons[gBattlerTarget].statStages[i] > DEFAULT_STAT_STAGE && gBattleMons[gBattlerAttacker].statStages[i] != MAX_STAT_STAGE)
                         {
+                            bool32 byTwo = FALSE;
+
                             gBattleStruct->stolenStats[0] |= gBitTable[i];
                             // Store by how many stages to raise the stat.
                             gBattleStruct->stolenStats[i] = gBattleMons[gBattlerTarget].statStages[i] - DEFAULT_STAT_STAGE;
@@ -3737,14 +3733,14 @@ static void Cmd_seteffectwithchance(void)
 
 static void Cmd_seteffectprimary(void)
 {
-    CMD_ARGS();
+    //CMD_ARGS();
 
     SetMoveEffect(TRUE, 0);
 }
 
 static void Cmd_seteffectsecondary(void)
 {
-    CMD_ARGS();
+    //CMD_ARGS();
 
     SetMoveEffect(FALSE, 0);
 }
@@ -4888,7 +4884,7 @@ static void Cmd_return(void)
 
 static void Cmd_end(void)
 {
-    CMD_ARGS();
+    //CMD_ARGS();
 
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
         BattleArena_AddSkillPoints(gBattlerAttacker);
@@ -4899,7 +4895,7 @@ static void Cmd_end(void)
 
 static void Cmd_end2(void)
 {
-    CMD_ARGS();
+    //CMD_ARGS();
 
     gCurrentActionFuncId = B_ACTION_TRY_FINISH;
 }
@@ -4907,7 +4903,7 @@ static void Cmd_end2(void)
 // Pops the main function stack
 static void Cmd_end3(void)
 {
-    CMD_ARGS();
+    //CMD_ARGS();
 
     BattleScriptPop();
     if (gBattleResources->battleCallbackStack->size != 0)
@@ -4953,7 +4949,7 @@ static void Cmd_jumpifabilitypresent(void)
 
 static void Cmd_endselectionscript(void)
 {
-    CMD_ARGS();
+    //CMD_ARGS();
 
     *(gBattlerAttacker + gBattleStruct->selectionScriptFinished) = TRUE;
 }
@@ -8386,7 +8382,7 @@ static bool32 IsTeatimeAffected(u32 battler)
     sideTimerOpp->structField = BATTLE_OPPOSITE(temp);        \
 }                                               \
 
-static bool32 CourtChangeSwapSideStatuses(void)
+static void CourtChangeSwapSideStatuses(void)
 {
     struct SideTimer *sideTimerPlayer = &gSideTimers[B_SIDE_PLAYER];
     struct SideTimer *sideTimerOpp = &gSideTimers[B_SIDE_OPPONENT];
@@ -8509,7 +8505,7 @@ static void Cmd_various(void)
     CMD_ARGS(u8 battler, u8 id);
 
     struct Pokemon *mon;
-    s32 i, j;
+    s32 i;
     u8 data[10];
     u32 side, battler, bits;
 
@@ -8594,7 +8590,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_SET_LAST_USED_ITEM:
     {
-        VARIOUS_ARGS();
         gLastUsedItem = gBattleMons[battler].item;
         break;
     }
@@ -8634,7 +8629,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_TRY_FRISK:
     {
-        VARIOUS_ARGS();
         while (gBattleStruct->friskedBattler < gBattlersCount)
         {
             gBattlerTarget = gBattleStruct->friskedBattler++;
@@ -8682,7 +8676,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_TRACE_ABILITY:
     {
-        VARIOUS_ARGS();
         gBattleMons[battler].ability = gBattleStruct->overwrittenAbilities[battler] = gBattleStruct->tracedAbility[battler];
         break;
     }
@@ -8707,7 +8700,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_UPDATE_NICK:
     {
-        VARIOUS_ARGS();
         if (GetBattlerSide(battler) == B_SIDE_PLAYER)
             mon = &gPlayerParty[gBattlerPartyIndexes[battler]];
         else
@@ -8747,7 +8739,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_GRAVITY_ON_AIRBORNE_MONS:
     {
-        VARIOUS_ARGS();
         // Cancel all multiturn moves of IN_AIR Pokemon except those being targeted by Sky Drop.
         if (gStatuses3[battler] & STATUS3_ON_AIR && !(gStatuses3[battler] & STATUS3_SKY_DROPPED))
             CancelMultiTurnMoves(battler);
@@ -8757,7 +8748,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_SPECTRAL_THIEF:
     {
-        VARIOUS_ARGS();
         // Raise stats
         for (i = STAT_ATK; i < NUM_BATTLE_STATS; i++)
         {
@@ -8777,7 +8767,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_SET_POWDER:
     {
-        VARIOUS_ARGS();
         gBattleMons[battler].status2 |= STATUS2_POWDER;
         break;
     }
@@ -8809,13 +8798,11 @@ static void Cmd_various(void)
     }
     case VARIOUS_CANCEL_MULTI_TURN_MOVES:
     {
-        VARIOUS_ARGS();
         CancelMultiTurnMoves(battler);
         break;
     }
     case VARIOUS_SET_MAGIC_COAT_TARGET:
     {
-        VARIOUS_ARGS();
         gBattleStruct->attackerBeforeBounce = battler;
         gBattlerAttacker = gBattlerTarget;
         side = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
@@ -8827,19 +8814,16 @@ static void Cmd_various(void)
     }
     case VARIOUS_IS_RUNNING_IMPOSSIBLE:
     {
-        VARIOUS_ARGS();
         gBattleCommunication[0] = IsRunningFromBattleImpossible(battler);
         break;
     }
     case VARIOUS_GET_MOVE_TARGET:
     {
-        VARIOUS_ARGS();
         gBattlerTarget = GetMoveTarget(gCurrentMove, NO_TARGET_OVERRIDE);
         break;
     }
     case VARIOUS_GET_BATTLER_FAINTED:
     {
-        VARIOUS_ARGS();
         if (gHitMarker & HITMARKER_FAINTED(battler))
             gBattleCommunication[0] = TRUE;
         else
@@ -8848,14 +8832,12 @@ static void Cmd_various(void)
     }
     case VARIOUS_RESET_SWITCH_IN_ABILITY_BITS:
     {
-        VARIOUS_ARGS();
         gSpecialStatuses[battler].traced = FALSE;
         gSpecialStatuses[battler].switchInAbilityDone = FALSE;
         break;
     }
     case VARIOUS_UPDATE_CHOICE_MOVE_ON_LVL_UP:
     {
-        VARIOUS_ARGS();
         if (gBattlerPartyIndexes[0] == gBattleStruct->expGetterMonId || gBattlerPartyIndexes[2] == gBattleStruct->expGetterMonId)
         {
             if (gBattlerPartyIndexes[0] == gBattleStruct->expGetterMonId)
@@ -8875,7 +8857,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_RESET_PLAYER_FAINTED:
     {
-        VARIOUS_ARGS();
         if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_DOUBLE))
             && gBattleTypeFlags & BATTLE_TYPE_TRAINER
             && gBattleMons[0].hp != 0
@@ -8887,7 +8868,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_PALACE_FLAVOR_TEXT:
     {
-        VARIOUS_ARGS();
         // Try and print end-of-turn Battle Palace flavor text (e.g. "A glint appears in mon's eyes")
         gBattleCommunication[0] = FALSE; // whether or not msg should be printed
         gBattleScripting.battler = battler = gBattleCommunication[1];
@@ -8904,7 +8884,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_ARENA_JUDGMENT_WINDOW:
     {
-        VARIOUS_ARGS();
 
         i = BattleArena_ShowJudgmentWindow(&gBattleCommunication[0]);
 
@@ -8918,7 +8897,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_ARENA_OPPONENT_MON_LOST:
     {
-        VARIOUS_ARGS();
         gBattleMons[1].hp = 0;
         gHitMarker |= HITMARKER_FAINTED(1);
         gBattleStruct->arenaLostOpponentMons |= gBitTable[gBattlerPartyIndexes[1]];
@@ -8927,7 +8905,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_ARENA_PLAYER_MON_LOST:
     {
-        VARIOUS_ARGS();
         gBattleMons[0].hp = 0;
         gHitMarker |= HITMARKER_FAINTED(0);
         gHitMarker |= HITMARKER_PLAYER_FAINTED;
@@ -8937,7 +8914,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_ARENA_BOTH_MONS_LOST:
     {
-        VARIOUS_ARGS();
         gBattleMons[0].hp = 0;
         gBattleMons[1].hp = 0;
         gHitMarker |= HITMARKER_FAINTED(0);
@@ -8951,20 +8927,17 @@ static void Cmd_various(void)
     }
     case VARIOUS_EMIT_YESNOBOX:
     {
-        VARIOUS_ARGS();
         BtlController_EmitYesNoBox(battler, BUFFER_A);
         MarkBattlerForControllerExec(battler);
         break;
     }
     case VARIOUS_DRAW_ARENA_REF_TEXT_BOX:
     {
-        VARIOUS_ARGS();
         DrawArenaRefereeTextBox();
         break;
     }
     case VARIOUS_ERASE_ARENA_REF_TEXT_BOX:
     {
-        VARIOUS_ARGS();
         EraseArenaRefereeTextBox();
         break;
     }
@@ -8977,21 +8950,18 @@ static void Cmd_various(void)
     }
     case VARIOUS_ARENA_WAIT_STRING:
     {
-        VARIOUS_ARGS();
         if (IsTextPrinterActive(ARENA_WIN_JUDGMENT_TEXT))
             return;
         break;
     }
     case VARIOUS_WAIT_CRY:
     {
-        VARIOUS_ARGS();
         if (!IsCryFinished())
             return;
         break;
     }
     case VARIOUS_RETURN_OPPONENT_MON1:
     {
-        VARIOUS_ARGS();
         battler = 1;
         if (gBattleMons[battler].hp != 0)
         {
@@ -9002,7 +8972,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_RETURN_OPPONENT_MON2:
     {
-        VARIOUS_ARGS();
         if (gBattlersCount > 3)
         {
             battler = 3;
@@ -9016,32 +8985,27 @@ static void Cmd_various(void)
     }
     case VARIOUS_VOLUME_DOWN:
     {
-        VARIOUS_ARGS();
         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x55);
         break;
     }
     case VARIOUS_VOLUME_UP:
     {
-        VARIOUS_ARGS();
         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
         break;
     }
     case VARIOUS_SET_ALREADY_STATUS_MOVE_ATTEMPT:
     {
-        VARIOUS_ARGS();
         gBattleStruct->alreadyStatusedMoveAttempt |= gBitTable[battler];
         break;
     }
     case VARIOUS_PALACE_TRY_ESCAPE_STATUS:
     {
-        VARIOUS_ARGS();
         if (BattlePalace_TryEscapeStatus(battler))
             return;
         break;
     }
     case VARIOUS_SET_TELEPORT_OUTCOME:
     {
-        VARIOUS_ARGS();
         // Don't end the battle if one of the wild mons teleported from the wild double battle
         // and its partner is still alive.
         if (GetBattlerSide(battler) == B_SIDE_OPPONENT && IsBattlerAlive(BATTLE_PARTNER(battler)))
@@ -9065,14 +9029,12 @@ static void Cmd_various(void)
     }
     case VARIOUS_PLAY_TRAINER_DEFEATED_MUSIC:
     {
-        VARIOUS_ARGS();
         BtlController_EmitPlayFanfareOrBGM(battler, BUFFER_A, MUS_VICTORY_TRAINER, TRUE);
         MarkBattlerForControllerExec(battler);
         break;
     }
     case VARIOUS_STAT_TEXT_BUFFER:
     {
-        VARIOUS_ARGS();
         PREPARE_STAT_BUFFER(gBattleTextBuff1, gBattleCommunication[0]);
         break;
     }
@@ -9088,26 +9050,22 @@ static void Cmd_various(void)
     }
     case VARIOUS_SAVE_TARGET:
     {
-        VARIOUS_ARGS();
         gBattleStruct->savedBattlerTarget = gBattlerTarget;
         break;
     }
     case VARIOUS_RESTORE_TARGET:
     {
-        VARIOUS_ARGS();
         gBattlerTarget = gBattleStruct->savedBattlerTarget;
         break;
     }
     case VARIOUS_INSTANT_HP_DROP:
     {
-        VARIOUS_ARGS();
         BtlController_EmitHealthBarUpdate(battler, BUFFER_A, INSTANT_HP_BAR_DROP);
         MarkBattlerForControllerExec(battler);
         break;
     }
     case VARIOUS_CLEAR_STATUS:
     {
-        VARIOUS_ARGS();
         gBattleMons[battler].status1 = 0;
         BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[battler].status1), &gBattleMons[battler].status1);
         MarkBattlerForControllerExec(battler);
@@ -9115,7 +9073,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_RESTORE_PP:
     {
-        VARIOUS_ARGS();
         for (i = 0; i < 4; i++)
         {
             gBattleMons[battler].pp[i] = CalculatePPWithBonus(gBattleMons[battler].moves[i], gBattleMons[battler].ppBonuses, i);
@@ -9223,7 +9180,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_TRY_ACTIVATE_SOULHEART:
     {
-        VARIOUS_ARGS();
         while (gBattleStruct->soulheartBattlerId < gBattlersCount)
         {
             gBattleScripting.battler = gBattleStruct->soulheartBattlerId++;
@@ -9353,7 +9309,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_SET_LAST_USED_ABILITY:
     {
-        VARIOUS_ARGS();
         gLastUsedAbility = gBattleMons[battler].ability;
         break;
     }
@@ -9393,7 +9348,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_INVERT_STAT_STAGES:
     {
-        VARIOUS_ARGS();
         for (i = 0; i < NUM_BATTLE_STATS; i++)
         {
             if (gBattleMons[battler].statStages[i] < DEFAULT_STAT_STAGE) // Negative becomes positive.
@@ -9501,8 +9455,10 @@ static void Cmd_various(void)
         // Change species.
         if (cmd->case_ == 0)
         {
+            /* What was the idea here?
             if (!gBattleTextBuff1)
                 PREPARE_SPECIES_BUFFER(gBattleTextBuff1, gBattleMons[battler].species);
+            */
             BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_SPECIES_BATTLE, gBitTable[gBattlerPartyIndexes[battler]], sizeof(gBattleMons[battler].species), &gBattleMons[battler].species);
             MarkBattlerForControllerExec(battler);
         }
@@ -9650,13 +9606,11 @@ static void Cmd_various(void)
     }
     case VARIOUS_ABILITY_POPUP:
     {
-        VARIOUS_ARGS();
         CreateAbilityPopUp(battler, gBattleMons[battler].ability, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
         break;
     }
     case VARIOUS_UPDATE_ABILITY_POPUP:
     {
-        VARIOUS_ARGS();
         UpdateAbilityPopup(battler);
         break;
     }
@@ -9738,7 +9692,6 @@ static void Cmd_various(void)
         }
     case VARIOUS_CURE_STATUS:
     {
-        VARIOUS_ARGS();
         gBattleMons[battler].status1 = 0;
         BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[battler].status1), &gBattleMons[battler].status1);
         MarkBattlerForControllerExec(battler);
@@ -9746,7 +9699,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_POWER_TRICK:
     {
-        VARIOUS_ARGS();
         gStatuses3[battler] ^= STATUS3_POWER_TRICK;
         SWAP(gBattleMons[battler].attack, gBattleMons[battler].defense, i);
         break;
@@ -9785,7 +9737,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_ARGUMENT_TO_MOVE_EFFECT:
     {
-        VARIOUS_ARGS();
         gBattleScripting.moveEffect = gBattleMoves[gCurrentMove].argument;
         break;
     }
@@ -9793,7 +9744,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS(const u8 *jumpInstr);
         if (!IsBattlerGrounded(battler))
-            gBattlescriptCurrInstr = gBattlescriptCurrInstr = cmd->jumpInstr;
+            gBattlescriptCurrInstr = cmd->jumpInstr;
         else
             gBattlescriptCurrInstr = cmd->nextInstr;
         return;
@@ -9857,7 +9808,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_SET_AURORA_VEIL:
     {
-        VARIOUS_ARGS();
         if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_AURORA_VEIL
             || !(WEATHER_HAS_EFFECT && gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
         {
@@ -9897,7 +9847,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_DESTROY_ABILITY_POPUP:
     {
-        VARIOUS_ARGS();
         DestroyAbilityPopUp(battler);
         break;
     }
@@ -9941,7 +9890,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_MOVEEND_ITEM_EFFECTS:
     {
-        VARIOUS_ARGS();
         if (ItemBattleEffects(ITEMEFFECT_NORMAL, battler, FALSE))
             return;
         break;
@@ -9991,7 +9939,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_MAKE_INVISIBLE:
     {
-        VARIOUS_ARGS();
         if (gBattleControllerExecFlags)
             break;
 
@@ -10083,7 +10030,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_REMOVE_TERRAIN:
     {
-        VARIOUS_ARGS();
         RemoveAllTerrains();
         break;
     }
@@ -10099,7 +10045,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_SET_SKY_DROP:
     {
-        VARIOUS_ARGS();
         gStatuses3[gBattlerTarget] |= (STATUS3_SKY_DROPPED | STATUS3_ON_AIR);
         /* skyDropTargets holds the information of who is in a particular instance of Sky Drop.
            This is needed in the case that multiple Pokemon use Sky Drop in the same turn or if
@@ -10142,7 +10087,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_SKY_DROP_YAWN: // If the mon that's sleeping due to Yawn was holding a Pokemon in Sky Drop, release the target and clear Sky Drop data.
     {
-        VARIOUS_ARGS();
         if (gBattleStruct->skyDropTargets[gEffectBattler] != 0xFF && !(gStatuses3[gEffectBattler] & STATUS3_SKY_DROPPED))
         {
             // Set the target of Sky Drop as gEffectBattler
@@ -10208,7 +10152,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_TRY_END_NEUTRALIZING_GAS:
     {
-        VARIOUS_ARGS();
         if (gSpecialStatuses[battler].neutralizingGasRemoved)
         {
             gSpecialStatuses[battler].neutralizingGasRemoved = FALSE;
@@ -10257,7 +10200,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_TRY_ACTIVATE_BATTLE_BOND:
     {
-        VARIOUS_ARGS();
         if (gBattleMons[gBattlerAttacker].species == SPECIES_GRENINJA_BATTLE_BOND
             && HasAttackerFaintedTarget()
             && CalculateBattlerPartyCount(gBattlerTarget) > 1
@@ -10312,7 +10254,6 @@ static void Cmd_various(void)
         }
     case VARIOUS_APPLY_PLASMA_FISTS:
     {
-        VARIOUS_ARGS();
         for (i = 0; i < gBattlersCount; i++)
             gStatuses4[i] |= STATUS4_PLASMA_FISTS;
         break;
@@ -10328,14 +10269,11 @@ static void Cmd_various(void)
     }
     case VARIOUS_PHOTON_GEYSER_CHECK:
     {
-        VARIOUS_ARGS();
         gBattleStruct->swapDamageCategory = (GetSplitBasedOnStats(battler) == SPLIT_SPECIAL);
         break;
     }
     case VARIOUS_SHELL_SIDE_ARM_CHECK: // 0% chance GameFreak actually checks this way according to DaWobblefet, but this is the only functional explanation at the moment
     {
-        VARIOUS_ARGS();
-
         u32 attackerAtkStat = gBattleMons[gBattlerAttacker].attack;
         u32 targetDefStat = gBattleMons[gBattlerTarget].defense;
         u32 attackerSpAtkStat = gBattleMons[gBattlerAttacker].spAttack;
@@ -10386,7 +10324,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_SET_ATTACKER_STICKY_WEB_USER:
     {
-        VARIOUS_ARGS();
         // For Mirror Armor: "If the Pokémon with this Ability is affected by Sticky Web, the effect is reflected back to the Pokémon which set it up.
         //  If Pokémon which set up Sticky Web is not on the field, no Pokémon have their Speed lowered."
         gBattlerAttacker = gBattlerTarget;  // Initialize 'fail' condition
@@ -10570,31 +10507,26 @@ static void Cmd_various(void)
     }
     case VARIOUS_SAVE_BATTLER_ITEM:
     {
-        VARIOUS_ARGS();
         gBattleResources->battleHistory->heldItems[battler] = gBattleMons[battler].item;
         break;
     }
     case VARIOUS_RESTORE_BATTLER_ITEM:
     {
-        VARIOUS_ARGS();
         gBattleMons[battler].item = gBattleResources->battleHistory->heldItems[battler];
         break;
     }
     case VARIOUS_BATTLER_ITEM_TO_LAST_USED_ITEM:
     {
-        VARIOUS_ARGS();
         gBattleMons[battler].item = gLastUsedItem;
         break;
     }
     case VARIOUS_SET_BEAK_BLAST:
     {
-        VARIOUS_ARGS();
         gProtectStructs[battler].beakBlastCharge = TRUE;
         break;
     }
     case VARIOUS_SWAP_SIDE_STATUSES:
     {
-        VARIOUS_ARGS();
         CourtChangeSwapSideStatuses();
         break;
     }
@@ -10689,7 +10621,6 @@ static void Cmd_various(void)
     }
     case VARIOUS_STORE_HEALING_WISH:
     {
-        VARIOUS_ARGS();
         if (gCurrentMove == MOVE_LUNAR_DANCE)
             gBattleStruct->storedLunarDance |= gBitTable[battler];
         else
@@ -11206,11 +11137,8 @@ static void Cmd_jumpifuproarwakes(void)
 {
     CMD_ARGS(const u8 *jumpInstr);
 
-    const u8 *jumpInstr = cmd->jumpInstr;
-    u32 ability = GetBattlerAbility(gBattlerTarget);
-
     if (UproarWakeUpCheck(gBattlerTarget))
-        gBattlescriptCurrInstr = jumpInstr;
+        gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
@@ -11385,6 +11313,8 @@ static u16 ReverseStatChangeMoveEffect(u16 moveEffect)
         return MOVE_EFFECT_ACC_PLUS_2;
     case MOVE_EFFECT_EVS_MINUS_2:
         return MOVE_EFFECT_EVS_PLUS_2;
+    default:
+        return 0;
     }
 }
 
@@ -11709,7 +11639,7 @@ static void Cmd_normalisebuffs(void)
 {
     CMD_ARGS();
 
-    s32 i, j;
+    s32 i;
 
     for (i = 0; i < gBattlersCount; i++)
         TryResetBattlerStatChanges(i);
@@ -11788,7 +11718,6 @@ static void Cmd_forcerandomswitch(void)
 
     s32 firstMonId;
     s32 lastMonId = 0; // + 1
-    s32 monsCount;
     struct Pokemon *party = NULL;
     u8 validMons[PARTY_SIZE];
     s32 validMonsCount = 0;
@@ -11844,7 +11773,6 @@ static void Cmd_forcerandomswitch(void)
         {
             firstMonId = 0;
             lastMonId = 6;
-            monsCount = 6;
             battler2PartyId = gBattlerPartyIndexes[gBattlerTarget];
             battler1PartyId = gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerTarget)];
         }
@@ -11862,7 +11790,6 @@ static void Cmd_forcerandomswitch(void)
                 firstMonId = 0;
                 lastMonId = PARTY_SIZE / 2;
             }
-            monsCount = PARTY_SIZE / 2;
             battler2PartyId = gBattlerPartyIndexes[gBattlerTarget];
             battler1PartyId = gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerTarget)];
         }
@@ -11879,7 +11806,6 @@ static void Cmd_forcerandomswitch(void)
                 firstMonId = 0;
                 lastMonId = PARTY_SIZE / 2;
             }
-            monsCount = PARTY_SIZE / 2;
             battler2PartyId = gBattlerPartyIndexes[gBattlerTarget];
             battler1PartyId = gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerTarget)];
         }
@@ -11889,7 +11815,6 @@ static void Cmd_forcerandomswitch(void)
             {
                 firstMonId = 0;
                 lastMonId = PARTY_SIZE;
-                monsCount = PARTY_SIZE;
             }
             else
             {
@@ -11903,7 +11828,6 @@ static void Cmd_forcerandomswitch(void)
                     firstMonId = 0;
                     lastMonId = PARTY_SIZE / 2;
                 }
-                monsCount = PARTY_SIZE / 2;
             }
             battler2PartyId = gBattlerPartyIndexes[gBattlerTarget];
             battler1PartyId = gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerTarget)];
@@ -11912,7 +11836,6 @@ static void Cmd_forcerandomswitch(void)
         {
             firstMonId = 0;
             lastMonId = PARTY_SIZE;
-            monsCount = PARTY_SIZE;
             battler2PartyId = gBattlerPartyIndexes[gBattlerTarget];
             battler1PartyId = gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerTarget)];
         }
@@ -11920,7 +11843,6 @@ static void Cmd_forcerandomswitch(void)
         {
             firstMonId = 0;
             lastMonId = PARTY_SIZE;
-            monsCount = PARTY_SIZE;
             battler2PartyId = gBattlerPartyIndexes[gBattlerTarget]; // there is only one pokemon out in single battles
             battler1PartyId = gBattlerPartyIndexes[gBattlerTarget];
         }
@@ -11978,9 +11900,8 @@ static void Cmd_tryconversiontypechange(void)
 {
     CMD_ARGS(const u8 *failInstr);
 
-    u8 validMoves = 0;
     u8 moveChecked;
-    u8 moveType;
+    u8 moveType = 0;
 
 #if B_UPDATED_CONVERSION >= GEN_6
     // Changes user's type to its first move's type
@@ -12003,6 +11924,7 @@ static void Cmd_tryconversiontypechange(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 #else
+    u8 validMoves = 0;
     // Randomly changes user's type to one of its moves' type
     while (validMoves < MAX_MON_MOVES)
     {
@@ -12522,7 +12444,7 @@ static bool32 InvalidMetronomeMove(u32 move)
 
 static void Cmd_metronome(void)
 {
-    CMD_ARGS();
+    //CMD_ARGS();
 
 #if B_METRONOME_MOVES >= GEN_9
     u32 moveCount = MOVES_COUNT_GEN9;
@@ -12684,7 +12606,6 @@ static void Cmd_trysetencore(void)
         gDisableStructs[gBattlerTarget].encoredMove = gBattleMons[gBattlerTarget].moves[i];
         gDisableStructs[gBattlerTarget].encoredMovePos = i;
         gDisableStructs[gBattlerTarget].encoreTimer = 3;
-        gDisableStructs[gBattlerTarget].encoreTimer;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
     else
@@ -12850,26 +12771,6 @@ static bool8 IsTwoTurnsMove(u16 move)
         return TRUE;
     else
         return FALSE;
-}
-
-// unused
-static u8 AttacksThisTurn(u8 battler, u16 move) // Note: returns 1 if it's a charging turn, otherwise 2
-{
-    // first argument is unused
-    if (gBattleMoves[move].effect == EFFECT_SOLAR_BEAM
-        && IsBattlerWeatherAffected(battler, B_WEATHER_SUN))
-        return 2;
-
-    if (gBattleMoves[move].effect == EFFECT_SKULL_BASH
-     || gBattleMoves[move].effect == EFFECT_TWO_TURNS_ATTACK
-     || gBattleMoves[move].effect == EFFECT_SOLAR_BEAM
-     || gBattleMoves[move].effect == EFFECT_SEMI_INVULNERABLE
-     || gBattleMoves[move].effect == EFFECT_BIDE)
-    {
-        if ((gHitMarker & HITMARKER_CHARGING))
-            return 1;
-    }
-    return 2;
 }
 
 static void Cmd_trychoosesleeptalkmove(void)
@@ -13267,7 +13168,7 @@ static void Cmd_setembargo(void)
 
 static void Cmd_presentdamagecalculation(void)
 {
-    CMD_ARGS();
+    //CMD_ARGS();
 
     u32 rand = Random() & 0xFF;
 
@@ -14922,7 +14823,7 @@ u8 GetCatchingBattler(void)
 
 static void Cmd_handleballthrow(void)
 {
-    CMD_ARGS();
+    //CMD_ARGS();
 
     u16 ballMultiplier = 100;
     s8 ballAddition = 0;
@@ -15503,17 +15404,14 @@ static void Cmd_removeattackerstatus1(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
+// CMD_ARGS is not needed for these functions as they end the script execution.
 static void Cmd_finishaction(void)
 {
-    CMD_ARGS();
-
     gCurrentActionFuncId = B_ACTION_FINISHED;
 }
 
 static void Cmd_finishturn(void)
 {
-    CMD_ARGS();
-
     gCurrentActionFuncId = B_ACTION_FINISHED;
     gCurrentTurnActionNumber = gBattlersCount;
 }
@@ -15804,7 +15702,7 @@ bool32 IsMoveAffectedByParentalBond(u32 move, u32 battler)
 {
     if (move != MOVE_NONE && move != MOVE_STRUGGLE
         && gBattleMoves[move].split != SPLIT_STATUS
-        && !gBattleMoves[move].strikeCount > 2)
+        && gBattleMoves[move].strikeCount <= 2)
     {
         u32 i;
         for (i = 0; i < ARRAY_COUNT(sParentalBondBannedEffects); i++)
@@ -15909,7 +15807,7 @@ static void TryUpdateRoundTurnOrder(void)
         u32 i;
         u32 j = 0;
         u32 k = 0;
-        u32 currRounder;
+        u32 currRounder = 0;
         u8 roundUsers[3] = {0xFF, 0xFF, 0xFF};
         u8 nonRoundUsers[3] = {0xFF, 0xFF, 0xFF};
         for (i = 0; i < gBattlersCount; i++)

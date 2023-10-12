@@ -4123,7 +4123,9 @@ void CalculateMonStats(struct Pokemon *mon)
     s32 spDefenseIV = GetMonData(mon, MON_DATA_SPDEF_IV, NULL);
     s32 spDefenseEV = GetMonData(mon, MON_DATA_SPDEF_EV, NULL);
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    #if B_FRIENDSHIP_BOOST == TRUE
     u8 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);
+    #endif // B_FRIENDSHIP_BOOST
     s32 level = GetLevelFromMonExp(mon);
     s32 newMaxHP;
 
@@ -4308,7 +4310,7 @@ void GiveBoxMonInitialMoveset_Fast(struct BoxPokemon *boxMon) //Credit: Asparagu
 {
     u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
     s32 level = GetLevelFromBoxMonExp(boxMon);
-    s32 i, j;
+    s32 i;
     u16 levelMoveCount = 0;
     u16 moves[MAX_MON_MOVES] = {0};
     u8 addedMoves = 0;
@@ -4607,44 +4609,20 @@ static void DecryptBoxMon(struct BoxPokemon *boxMon)
 #define SUBSTRUCT_CASE(n, v1, v2, v3, v4)                               \
 case n:                                                                 \
     {                                                                   \
-    union PokemonSubstruct *substructs0 = boxMon->secure.substructs;    \
-    union PokemonSubstruct *substructs1 = boxMon->secure.substructs;    \
-    union PokemonSubstruct *substructs2 = boxMon->secure.substructs;    \
-    union PokemonSubstruct *substructs3 = boxMon->secure.substructs;    \
-    union PokemonSubstruct *substructs4 = boxMon->secure.substructs;    \
-    union PokemonSubstruct *substructs5 = boxMon->secure.substructs;    \
-    union PokemonSubstruct *substructs6 = boxMon->secure.substructs;    \
-    union PokemonSubstruct *substructs7 = boxMon->secure.substructs;    \
-    union PokemonSubstruct *substructs8 = boxMon->secure.substructs;    \
-    union PokemonSubstruct *substructs9 = boxMon->secure.substructs;    \
-    union PokemonSubstruct *substructs10 = boxMon->secure.substructs;   \
-    union PokemonSubstruct *substructs11 = boxMon->secure.substructs;   \
-    union PokemonSubstruct *substructs12 = boxMon->secure.substructs;   \
-    union PokemonSubstruct *substructs13 = boxMon->secure.substructs;   \
-    union PokemonSubstruct *substructs14 = boxMon->secure.substructs;   \
-    union PokemonSubstruct *substructs15 = boxMon->secure.substructs;   \
-    union PokemonSubstruct *substructs16 = boxMon->secure.substructs;   \
-    union PokemonSubstruct *substructs17 = boxMon->secure.substructs;   \
-    union PokemonSubstruct *substructs18 = boxMon->secure.substructs;   \
-    union PokemonSubstruct *substructs19 = boxMon->secure.substructs;   \
-    union PokemonSubstruct *substructs20 = boxMon->secure.substructs;   \
-    union PokemonSubstruct *substructs21 = boxMon->secure.substructs;   \
-    union PokemonSubstruct *substructs22 = boxMon->secure.substructs;   \
-    union PokemonSubstruct *substructs23 = boxMon->secure.substructs;   \
                                                                         \
         switch (substructType)                                          \
         {                                                               \
         case 0:                                                         \
-            substruct = &substructs ## n [v1];                          \
+            substruct = &boxMon->secure.substructs[v1];                          \
             break;                                                      \
         case 1:                                                         \
-            substruct = &substructs ## n [v2];                          \
+            substruct = &boxMon->secure.substructs[v2];                          \
             break;                                                      \
         case 2:                                                         \
-            substruct = &substructs ## n [v3];                          \
+            substruct = &boxMon->secure.substructs[v3];                          \
             break;                                                      \
         case 3:                                                         \
-            substruct = &substructs ## n [v4];                          \
+            substruct = &boxMon->secure.substructs[v4];                          \
             break;                                                      \
         }                                                               \
         break;                                                          \
@@ -6370,7 +6348,6 @@ static void BufferStatRoseMessage(s32 statIdx)
 
 u8 *UseStatIncreaseItem(u16 itemId)
 {
-    int i;
     const u8 *itemEffect;
 
     if (itemId == ITEM_ENIGMA_BERRY_E_READER)
@@ -8428,7 +8405,7 @@ u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg)
 // Returns SPECIES_NONE if no form change is possible
 u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 arg)
 {
-    u32 i, j;
+    u32 i;
     u16 targetSpecies = SPECIES_NONE;
     u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
     const struct FormChange *formChanges = gFormChangeTablePointers[species];
@@ -8499,7 +8476,7 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 
 
 bool32 DoesSpeciesHaveFormChangeMethod(u16 species, u16 method)
 {
-    u32 i, j;
+    u32 i;
     const struct FormChange *formChanges = gFormChangeTablePointers[species];
 
     if (formChanges != NULL)
