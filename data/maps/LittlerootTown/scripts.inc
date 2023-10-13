@@ -918,10 +918,9 @@ LittlerootTown_EventScript_SetReceivedRunningShoes::
 	end
 
 LittlerootTown_EventScript_GiveRunningShoes::
+	showmoneybox 0, 0
 	msgbox LittlerootTown_Text_WearTheseRunningShoes, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_ITEM
-	showmoneybox 0, 0
-	message LittlerootTown_Text_SwitchShoesWithRunningShoes
 	addmoney 3000
 	updatemoneybox
 	waitfanfare

@@ -302,4 +302,16 @@ EventScript_CantRegisterRareCandy::
 Text_CantRegisterRareCandy:
 	.string "Sorry! You can't use this item\n"
 	.string "with Select. It breaks everything.$"
-
+    
+EventScript_DisableAutoRun::
+    msgbox AutoRunDisabled MSGBOX_SIGN
+    end
+AutoRunDisabled:
+    .string "Auto Run {COLOR RED}Disabled{COLOR DARK_GRAY}.$"
+    
+EventScript_EnableAutoRun::
+    msgbox AutoRunEnabled MSGBOX_SIGN
+    end
+AutoRunEnabled:
+    .string "Auto Run {COLOR GREEN}Enabled{COLOR DARK_GRAY}.$"
+	
