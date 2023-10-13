@@ -1790,8 +1790,6 @@ bool32 ShouldSetSnow(u32 battler, u32 ability, u32 holdEffect)
 void ProtectChecks(u32 battlerAtk, u32 battlerDef, u32 move, u32 predictedMove, s32 *score)
 {
     // TODO more sophisticated logic
-    //u32 predictedEffect = gBattleMoves[predictedMove].effect;
-    //u32 defAbility = AI_DATA->abilities[battlerDef];
     u32 uses = gDisableStructs[battlerAtk].protectUses;
 
     /*if (GetMoveResultFlags(predictedMove) & (MOVE_RESULT_NO_EFFECT | MOVE_RESULT_MISSED))
