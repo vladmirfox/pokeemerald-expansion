@@ -807,9 +807,12 @@ static const u8 sText_TeamGainedEXP[] = _("The rest of your team gained EXP.\nPo
 static const u8 sText_CurrentMoveCantSelect[] = _("{B_BUFF1} cannot be used!\p");
 static const u8 sText_TargetIsBeingSaltCured[] = _("{B_DEF_NAME_WITH_PREFIX} is being salt cured!");
 static const u8 sText_TargetIsHurtBySaltCure[] = _("{B_DEF_NAME_WITH_PREFIX} is hurt by {B_BUFF1}!");
+static const u8 sText_OpportunistCopied[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} copied its\nopponent's stat changes!");
+static const u8 sText_TargetCoveredInStickyCandySyrup[] = _("{B_DEF_NAME_WITH_PREFIX} got covered\nin sticky syrup!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_OPPORTUNISTCOPIED - BATTLESTRINGS_TABLE_START] = sText_OpportunistCopied,
     [STRINGID_TARGETISHURTBYSALTCURE - BATTLESTRINGS_TABLE_START] = sText_TargetIsHurtBySaltCure,
     [STRINGID_TARGETISBEINGSALTCURED - BATTLESTRINGS_TABLE_START] = sText_TargetIsBeingSaltCured,
     [STRINGID_CURRENTMOVECANTSELECT - BATTLESTRINGS_TABLE_START] = sText_CurrentMoveCantSelect,
@@ -1469,6 +1472,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_ULTRABURSTREACTING - BATTLESTRINGS_TABLE_START] = sText_UltraBurstReacting,
     [STRINGID_ULTRABURSTCOMPLETED - BATTLESTRINGS_TABLE_START] = sText_UltraBurstCompleted,
     [STRINGID_TEAMGAINEDEXP - BATTLESTRINGS_TABLE_START] = sText_TeamGainedEXP,
+    [STRINGID_TARGETCOVEREDINSTICKYCANDYSYRUP - BATTLESTRINGS_TABLE_START] = sText_TargetCoveredInStickyCandySyrup,
 };
 
 const u16 gTrainerUsedItemStringIds[] =
@@ -1850,11 +1854,7 @@ const u16 gWeatherStartsStringIds[] =
     [WEATHER_SUNNY_CLOUDS]       = STRINGID_ITISRAINING,
     [WEATHER_SUNNY]              = STRINGID_ITISRAINING,
     [WEATHER_RAIN]               = STRINGID_ITISRAINING,
-#if B_OVERWORLD_SNOW >= GEN_9
-    [WEATHER_SNOW]               = STRINGID_STARTEDSNOW,
-#else
-    [WEATHER_SNOW]               = STRINGID_STARTEDHAIL,
-#endif
+    [WEATHER_SNOW]               = (B_OVERWORLD_SNOW >= GEN_9 ? STRINGID_STARTEDSNOW : STRINGID_STARTEDHAIL),
     [WEATHER_RAIN_THUNDERSTORM]  = STRINGID_ITISRAINING,
     [WEATHER_FOG_HORIZONTAL]     = STRINGID_ITISRAINING,
     [WEATHER_VOLCANIC_ASH]       = STRINGID_ITISRAINING,
