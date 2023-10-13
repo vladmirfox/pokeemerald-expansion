@@ -4290,7 +4290,7 @@ void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon)
     s32 level = GetLevelFromBoxMonExp(boxMon);
     s32 i;
 
-    for (i = 0; gLevelUpLearnsets[species][i].move != LEVEL_UP_END; i++)
+    for (i = 0; gLevelUpLearnsets[species][i].move != LEVEL_UP_MOVE_END; i++)
     {
         if (gLevelUpLearnsets[species][i].level > level)
             break;
@@ -4315,7 +4315,7 @@ void GiveBoxMonInitialMoveset_Fast(struct BoxPokemon *boxMon) //Credit: Asparagu
     u16 moves[MAX_MON_MOVES] = {0};
     u8 addedMoves = 0;
 
-    for (i = 0; gLevelUpLearnsets[species][i].move != LEVEL_UP_END; i++)
+    for (i = 0; gLevelUpLearnsets[species][i].move != LEVEL_UP_MOVE_END; i++)
         levelMoveCount++;
 
     for (i = levelMoveCount; (i >= 0 && addedMoves < MAX_MON_MOVES); i--)
@@ -4352,7 +4352,7 @@ u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove)
         while (gLevelUpLearnsets[species][sLearningMoveTableID].level != level)
         {
             sLearningMoveTableID++;
-            if (gLevelUpLearnsets[species][sLearningMoveTableID].move == LEVEL_UP_END)
+            if (gLevelUpLearnsets[species][sLearningMoveTableID].move == LEVEL_UP_MOVE_END)
                 return MOVE_NONE;
         }
     }
@@ -7479,7 +7479,7 @@ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
     {
         u16 moveLevel;
 
-        if (gLevelUpLearnsets[species][i].move == LEVEL_UP_END)
+        if (gLevelUpLearnsets[species][i].move == LEVEL_UP_MOVE_END)
             break;
 
         moveLevel = gLevelUpLearnsets[species][i].level;
@@ -7508,7 +7508,7 @@ u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves)
     u8 numMoves = 0;
     int i;
 
-    for (i = 0; i < MAX_LEVEL_UP_MOVES && gLevelUpLearnsets[species][i].move != LEVEL_UP_END; i++)
+    for (i = 0; i < MAX_LEVEL_UP_MOVES && gLevelUpLearnsets[species][i].move != LEVEL_UP_MOVE_END; i++)
          moves[numMoves++] = gLevelUpLearnsets[species][i].move;
 
      return numMoves;
@@ -7533,7 +7533,7 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
     {
         u16 moveLevel;
 
-        if (gLevelUpLearnsets[species][i].move == LEVEL_UP_END)
+        if (gLevelUpLearnsets[species][i].move == LEVEL_UP_MOVE_END)
             break;
 
         moveLevel = gLevelUpLearnsets[species][i].level;
@@ -8501,7 +8501,7 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)
     {
         sLearningMoveTableID = 0;
     }
-    while(gLevelUpLearnsets[species][sLearningMoveTableID].move != LEVEL_UP_END)
+    while(gLevelUpLearnsets[species][sLearningMoveTableID].move != LEVEL_UP_MOVE_END)
     {
         while (gLevelUpLearnsets[species][sLearningMoveTableID].level == 0 || gLevelUpLearnsets[species][sLearningMoveTableID].level == level)
         {
