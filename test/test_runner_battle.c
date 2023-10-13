@@ -1536,7 +1536,7 @@ static u32 GenerateNature(u32 nature, u32 offset)
 
 void ClosePokemon(u32 sourceLine)
 {
-    int i;
+    s32 i;
     INVALID_IF(DATA.hasExplicitSpeeds && !(DATA.explicitSpeeds[DATA.currentSide] & (1 << DATA.currentPartyIndex)), "Speed required");
     for (i = 0; i < STATE->battlersCount; i++)
     {
