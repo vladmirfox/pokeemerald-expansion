@@ -81,8 +81,6 @@ static void SpriteCB_HorizontalSliceStep(struct Sprite *sprite);
 static void SpriteCB_HorizontalSlice(struct Sprite *sprite);
 static void SpriteCB_LashOutStrike(struct Sprite* sprite);
 static void AnimTask_TwinkleTackleLaunchStep(u8 taskId);
-//static void SpriteCB_ShellSmashShell(struct Sprite* sprite);
-//static void SpriteCB_ShellSmashShell_DestroyDuringFadeOut(struct Sprite* sprite);
 static void SpriteCB_AnimSpriteOnTargetSideCentre(struct Sprite *sprite);
 static void SpriteCB_SpriteOnMonUntilAffineAnimEnds(struct Sprite* sprite);
 static void SpriteCB_MoveSpriteUpwardsForDurationStep(struct Sprite* sprite);
