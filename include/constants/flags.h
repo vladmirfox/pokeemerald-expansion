@@ -1409,7 +1409,7 @@
 #define FLAG_SYS_MIX_RECORD                                         0x8D3
 #define FLAG_SYS_CLOCK_SET                                          0x8D4
 #define FLAG_SYS_NATIONAL_DEX                                       0x8D5
-#define FLAG_SYS_CAVE_SHIP                                          0x8D6 // Unused flag
+#define FLAG_SYS_IS_FAST_SURFER                                     0x8D6 // Custom flag
 #define FLAG_SYS_CAVE_WONDER                                        0x8D7 // Unused flag
 #define FLAG_SYS_CAVE_BATTLE                                        0x8D8 // Unused flag
 #define FLAG_SYS_SHOAL_TIDE                                         0x8D9

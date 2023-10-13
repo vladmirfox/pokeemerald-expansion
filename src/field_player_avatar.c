@@ -638,6 +638,9 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
             gPlayerAvatar.creeping = TRUE;
             PlayerGoSlow(direction);
         }
+        else if (FlagGet(FLAG_SYS_IS_FAST_SURFER) && (heldKeys & B_BUTTON)) {
+            PlayerWalkFaster(direction);
+        }
         else
         {
             // speed 2 is fast, same speed as running
@@ -1686,6 +1689,7 @@ static void Task_WaitStopSurfing(u8 taskId)
         gPlayerAvatar.preventStep = FALSE;
         UnlockPlayerFieldControls();
         DestroySprite(&gSprites[playerObjEvent->fieldEffectSpriteId]);
+        FlagClear(FLAG_SYS_IS_FAST_SURFER);
         DestroyTask(taskId);
     }
 }

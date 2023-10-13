@@ -913,7 +913,6 @@ LittlerootTown_EventScript_Mom::
 
 LittlerootTown_EventScript_SetReceivedRunningShoes::
 	removeobject LOCALID_MOM
-	setflag FLAG_SYS_B_DASH
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
 	release
 	end
@@ -921,10 +920,13 @@ LittlerootTown_EventScript_SetReceivedRunningShoes::
 LittlerootTown_EventScript_GiveRunningShoes::
 	msgbox LittlerootTown_Text_WearTheseRunningShoes, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_ITEM
+	showmoneybox 0, 0
 	message LittlerootTown_Text_SwitchShoesWithRunningShoes
+	addmoney 3000
+	updatemoneybox
 	waitfanfare
 	setflag FLAG_RECEIVED_RUNNING_SHOES
-	msgbox LittlerootTown_Text_ExplainRunningShoes, MSGBOX_DEFAULT
+	hidemoneybox
 	msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
 	closemessage
 	delay 30
@@ -953,12 +955,11 @@ LittlerootTown_Text_WearTheseRunningShoes:
 	.string "You're your father's child, all right.\n"
 	.string "You look good together with Pokémon!\p"
 	.string "Here, honey! If you're going out on an\n"
-	.string "adventure, wear these RUNNING SHOES.\p"
-	.string "They'll put a zip in your step!$"
+	.string "adventure, take an allowance with you.\p"
+	.string "Just in case you need to buy supplies!$"
 
 LittlerootTown_Text_SwitchShoesWithRunningShoes:
-	.string "{PLAYER} switched shoes with the\n"
-	.string "RUNNING SHOES.$"
+	.string "{PLAYER} got an allowance from Mom.$"
 
 LittlerootTown_Text_ExplainRunningShoes:
 	.string "MOM: {PLAYER}, those shoes came with\n"

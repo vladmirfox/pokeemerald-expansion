@@ -1,6 +1,7 @@
 #include "global.h"
 #include "decompress.h"
 #include "event_object_movement.h"
+#include "event_data.h"
 #include "field_camera.h"
 #include "field_control_avatar.h"
 #include "field_effect.h"
@@ -2988,6 +2989,8 @@ u8 FldEff_UseSurf(void)
 {
     u8 taskId = CreateTask(Task_SurfFieldEffect, 0xff);
     gTasks[taskId].tMonId = gFieldEffectArguments[0];
+    if ((gSpeciesInfo[GetMonData(&gPlayerParty[gFieldEffectArguments[0]], MON_DATA_SPECIES)].baseSpeed) >= 90)
+    FlagSet(FLAG_SYS_IS_FAST_SURFER);
     Overworld_ClearSavedMusic();
     Overworld_ChangeMusicTo(MUS_SURF);
     return FALSE;
