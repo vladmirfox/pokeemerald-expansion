@@ -79,7 +79,7 @@
 //
 // The arguments can be accessed as cmd->failInstr and cmd->move.
 // gBattlescriptCurrInstr = cmd->nextInstr; advances to the next instruction.
-#define CMD_ARGS(...) const struct __attribute__((packed)) { u8 opcode; MEMBERS(__VA_ARGS__) const u8 nextInstr[0]; } *const cmd  = (const void *)gBattlescriptCurrInstr
+#define CMD_ARGS(...) const struct __attribute__((packed)) { u8 opcode; MEMBERS(__VA_ARGS__) const u8 nextInstr[0]; } *const cmd UNUSED = (const void *)gBattlescriptCurrInstr
 #define VARIOUS_ARGS(...) CMD_ARGS(u8 battler, u8 id, ##__VA_ARGS__)
 #define NATIVE_ARGS(...) CMD_ARGS(void (*func)(void), ##__VA_ARGS__)
 
@@ -3692,14 +3692,14 @@ static void Cmd_seteffectwithchance(void)
 
 static void Cmd_seteffectprimary(void)
 {
-    //CMD_ARGS();
+    CMD_ARGS();
 
     SetMoveEffect(TRUE, 0);
 }
 
 static void Cmd_seteffectsecondary(void)
 {
-    //CMD_ARGS();
+    CMD_ARGS();
 
     SetMoveEffect(FALSE, 0);
 }
@@ -4834,7 +4834,7 @@ static void Cmd_return(void)
 
 static void Cmd_end(void)
 {
-    //CMD_ARGS();
+    CMD_ARGS();
 
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)
         BattleArena_AddSkillPoints(gBattlerAttacker);
@@ -4845,7 +4845,7 @@ static void Cmd_end(void)
 
 static void Cmd_end2(void)
 {
-    //CMD_ARGS();
+    CMD_ARGS();
 
     gCurrentActionFuncId = B_ACTION_TRY_FINISH;
 }
@@ -4853,7 +4853,7 @@ static void Cmd_end2(void)
 // Pops the main function stack
 static void Cmd_end3(void)
 {
-    //CMD_ARGS();
+    CMD_ARGS();
 
     BattleScriptPop();
     if (gBattleResources->battleCallbackStack->size != 0)
@@ -4899,7 +4899,7 @@ static void Cmd_jumpifabilitypresent(void)
 
 static void Cmd_endselectionscript(void)
 {
-    //CMD_ARGS();
+    CMD_ARGS();
 
     *(gBattlerAttacker + gBattleStruct->selectionScriptFinished) = TRUE;
 }
@@ -12378,7 +12378,7 @@ static bool32 InvalidMetronomeMove(u32 move)
 
 static void Cmd_metronome(void)
 {
-    //CMD_ARGS();
+    CMD_ARGS();
 
 #if B_METRONOME_MOVES >= GEN_9
     u32 moveCount = MOVES_COUNT_GEN9;
@@ -13084,7 +13084,7 @@ static void Cmd_setembargo(void)
 
 static void Cmd_presentdamagecalculation(void)
 {
-    //CMD_ARGS();
+    CMD_ARGS();
 
     u32 rand = Random() & 0xFF;
 
@@ -14738,7 +14738,7 @@ u8 GetCatchingBattler(void)
 
 static void Cmd_handleballthrow(void)
 {
-    //CMD_ARGS();
+    CMD_ARGS();
 
     u16 ballMultiplier = 100;
     s8 ballAddition = 0;
