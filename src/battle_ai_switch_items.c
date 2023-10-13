@@ -72,9 +72,8 @@ static bool8 HasBadOdds(u32 battler)
     //Variable initialization
 	u8 opposingPosition, atkType1, atkType2, defType1, defType2, effectiveness;
     s32 i, damageDealt = 0, maxDamageDealt = 0, damageTaken = 0, maxDamageTaken = 0;
-    u32 aiMove, playerMove, aiBestMove, aiAbility = GetBattlerAbility(battler), opposingBattler, weather = AI_GetWeather(AI_DATA);
+    u32 aiMove, playerMove, aiBestMove = MOVE_NONE, aiAbility = GetBattlerAbility(battler), opposingBattler, weather = AI_GetWeather(AI_DATA);
     bool8 getsOneShot = FALSE, hasStatusMove = FALSE, hasSuperEffectiveMove = FALSE;
-	struct Pokemon *party = NULL;
 	u16 typeEffectiveness = UQ_4_12(1.0), aiMoveEffect; //baseline typing damage
 
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
@@ -122,7 +121,11 @@ static bool8 HasBadOdds(u32 battler)
                 // Get maximum damage mon can deal
                 damageDealt = AI_DATA->simulatedDmg[battler][opposingBattler][i];
                 if(damageDealt > maxDamageDealt)
+                {
                     maxDamageDealt = damageDealt;
+                    aiBestMove = aiMove;
+                }
+
             }
         }
     }
@@ -1056,6 +1059,7 @@ static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 inva
         InitializeSwitchinCandidate(&party[i]);
         for (j = 0; j < MAX_MON_MOVES; j++)
         {
+            aiMove = AI_DATA->switchinCandidate.battleMon.moves[j];
             if (aiMove != MOVE_NONE && gBattleMoves[aiMove].power != 0)
             {
                 aiMove = GetMonData(&party[i], MON_DATA_MOVE1 + j);
@@ -1779,7 +1783,7 @@ u8 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
     // This all handled by the GetBestMonIntegrated function if the AI_FLAG_SMART_MON_CHOICES flag is set
     else
     {
-        s32 i, j, aliveCount = 0;
+        s32 i, aliveCount = 0;
         u32 invalidMons = 0, aceMonId = PARTY_SIZE;
         // Get invalid slots ids.
         for (i = firstId; i < lastId; i++)
