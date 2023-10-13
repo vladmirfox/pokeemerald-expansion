@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    gItems[ITEM_MARANGA_BERRY].holdEffect == HOLD_EFFECT_MARANGA_BERRY;
+    ASSUME(gItems[ITEM_MARANGA_BERRY].holdEffect == HOLD_EFFECT_MARANGA_BERRY);
 }
 
 SINGLE_BATTLE_TEST("Maranga Berry raises the holder's Sp. Def by one stage when hit by a physical move")
@@ -27,6 +27,7 @@ SINGLE_BATTLE_TEST("Maranga Berry raises the holder's Sp. Def by one stage when 
 SINGLE_BATTLE_TEST("Maranga Berry raises the holder's Sp. Def by two stages with Ripen when hit by a physical move")
 {
     GIVEN {
+        ASSUME(P_GEN_8_POKEMON == TRUE);
         ASSUME(gBattleMoves[MOVE_SWIFT].split == SPLIT_SPECIAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_APPLIN) { Item(ITEM_MARANGA_BERRY); Ability(ABILITY_RIPEN); }

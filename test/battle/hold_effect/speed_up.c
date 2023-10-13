@@ -3,8 +3,8 @@
 
 ASSUMPTIONS
 {
-    gItems[ITEM_SALAC_BERRY].holdEffect == HOLD_EFFECT_SPEED_UP;
-    gBattleMoves[MOVE_DRAGON_RAGE].effect == EFFECT_DRAGON_RAGE;
+    ASSUME(gItems[ITEM_SALAC_BERRY].holdEffect == HOLD_EFFECT_SPEED_UP);
+    ASSUME(gBattleMoves[MOVE_DRAGON_RAGE].effect == EFFECT_DRAGON_RAGE);
 }
 
 SINGLE_BATTLE_TEST("Salac Berry raises the holder's Speed by one stage when HP drops to 1/4 or below")
@@ -56,6 +56,7 @@ SINGLE_BATTLE_TEST("Salac Berry raises Speed by one stage when HP drops to 1/2 o
 SINGLE_BATTLE_TEST("Salac Berry raises Speed by one stage when HP drops to 1/4 or below if holder has Ripen")
 {
     GIVEN {
+        ASSUME(P_GEN_8_POKEMON == TRUE);
         PLAYER(SPECIES_APPLIN) { MaxHP(160); HP(80); Ability(ABILITY_RIPEN); Item(ITEM_SALAC_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

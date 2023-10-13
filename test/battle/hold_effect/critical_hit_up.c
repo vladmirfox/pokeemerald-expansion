@@ -3,11 +3,11 @@
 
 ASSUMPTIONS
 {
-    gItems[ITEM_LANSAT_BERRY].holdEffect == HOLD_EFFECT_CRITICAL_UP;
-    gBattleMoves[MOVE_DRAGON_RAGE].effect == EFFECT_DRAGON_RAGE;
+    ASSUME(gItems[ITEM_LANSAT_BERRY].holdEffect == HOLD_EFFECT_CRITICAL_UP);
+    ASSUME(gBattleMoves[MOVE_DRAGON_RAGE].effect == EFFECT_DRAGON_RAGE);
 }
 
-SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by two stage when HP drops to 1/4 or below")
+SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by two stages when HP drops to 1/4 or below")
 {
     u32 move;
 
@@ -34,7 +34,7 @@ SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by two s
     }
 }
 
-SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by two stage when HP drops to 1/2 or below")
+SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by two stages when HP drops to 1/2 or below")
 {
     GIVEN {
         PLAYER(SPECIES_BELLSPROUT) { MaxHP(80); HP(80); Ability(ABILITY_GLUTTONY); Item(ITEM_LANSAT_BERRY); }
@@ -48,7 +48,7 @@ SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by two s
     }
 }
 
-SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by two stage when HP drops to 1/4 or below")
+SINGLE_BATTLE_TEST("Lansat Berry raises the holder's critical-hit-ratio by two stages when HP drops to 1/4 or below")
 {
     PASSES_RANDOMLY(1, 2, RNG_CRITICAL_HIT);
     GIVEN {

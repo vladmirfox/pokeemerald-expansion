@@ -3,10 +3,10 @@
 
 ASSUMPTIONS
 {
-    gItems[ITEM_CUSTAP_BERRY].holdEffect == HOLD_EFFECT_CUSTAP_BERRY;
+    ASSUME(gItems[ITEM_CUSTAP_BERRY].holdEffect == HOLD_EFFECT_CUSTAP_BERRY);
 }
 
-SINGLE_BATTLE_TEST("Custap Berry")
+SINGLE_BATTLE_TEST("Custap Berry allows the holder to move first in its priority bracket when HP is below 1/4")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(1); MaxHP(160); HP(40); Item(ITEM_CUSTAP_BERRY); }
@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Custap Berry")
     }
 }
 
-SINGLE_BATTLE_TEST("Custap Berry 2")
+SINGLE_BATTLE_TEST("Custap Berry allows the holder to move first in its priority bracket when HP is below 1/2. If the holder has Gluttony")
 {
     GIVEN {
         PLAYER(SPECIES_BELLSPROUT) { Speed(1); MaxHP(160); HP(80); Ability(ABILITY_GLUTTONY); Item(ITEM_CUSTAP_BERRY); }

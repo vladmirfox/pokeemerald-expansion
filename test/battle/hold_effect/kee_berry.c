@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    gItems[ITEM_JABOCA_BERRY].holdEffect == HOLD_EFFECT_JABOCA_BERRY;
+    ASSUME(gItems[ITEM_JABOCA_BERRY].holdEffect == HOLD_EFFECT_JABOCA_BERRY);
 }
 
 SINGLE_BATTLE_TEST("Jaboca Berry causes the attacker to lose 1/8 of its max HP if a physical move was used")

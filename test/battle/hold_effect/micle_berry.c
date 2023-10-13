@@ -3,8 +3,8 @@
 
 ASSUMPTIONS
 {
-    gItems[ITEM_MICLE_BERRY].holdEffect == HOLD_EFFECT_MICLE_BERRY;
-    gBattleMoves[MOVE_DRAGON_RAGE].effect == EFFECT_DRAGON_RAGE;
+    ASSUME(gItems[ITEM_MICLE_BERRY].holdEffect == HOLD_EFFECT_MICLE_BERRY);
+    ASSUME(gBattleMoves[MOVE_DRAGON_RAGE].effect == EFFECT_DRAGON_RAGE);
 }
 
 SINGLE_BATTLE_TEST("Micle Berry raises the holder's accuracy by 1.2 when HP drops to 1/4 or below")

@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    gItems[ITEM_KEE_BERRY].holdEffect == HOLD_EFFECT_KEE_BERRY;
+    ASSUME(gItems[ITEM_KEE_BERRY].holdEffect == HOLD_EFFECT_KEE_BERRY);
 }
 
 SINGLE_BATTLE_TEST("Kee Berry raises the holder's Defense by one stage when hit by a physical move")
