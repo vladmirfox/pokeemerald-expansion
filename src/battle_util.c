@@ -6103,6 +6103,9 @@ bool32 TryPrimalReversion(u32 battler)
     {
         if (gBattlerAttacker == battler)
         {
+            if (gHitMarker & HITMARKER_NO_ANIMATIONS)
+            BattleScriptExecute(BattleScript_PrimalReversionQ);
+            else
             BattleScriptExecute(BattleScript_PrimalReversion);
         }
         else
@@ -6110,6 +6113,9 @@ bool32 TryPrimalReversion(u32 battler)
             // edge case for scenarios like a switch-in after activated eject button
             gBattleScripting.savedBattler = gBattlerAttacker;
             gBattlerAttacker = battler;
+            if (gHitMarker & HITMARKER_NO_ANIMATIONS)
+            BattleScriptExecute(BattleScript_PrimalReversionRestoreAttackerQ);
+            else
             BattleScriptExecute(BattleScript_PrimalReversionRestoreAttacker);
         }
         return TRUE;
