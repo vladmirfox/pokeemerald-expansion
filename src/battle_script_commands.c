@@ -6208,8 +6208,8 @@ static void Cmd_switchindataupdate(void)
     for (i = 0; i < sizeof(struct BattlePokemon); i++)
         monData[i] = gBattleResources->bufferB[battler][4 + i];
 
-    gBattleMons[battler].type1 = GetTypeBySpecies(gBattleMons[gActiveBattler].species, 1);
-    gBattleMons[battler].type2 = GetTypeBySpecies(gBattleMons[gActiveBattler].species, 2);
+    gBattleMons[battler].type1 = GetTypeBySpecies(gBattleMons[battler].species, 1);
+    gBattleMons[battler].type2 = GetTypeBySpecies(gBattleMons[battler].species, 2);
     gBattleMons[battler].type3 = TYPE_MYSTERY;
     gBattleMons[battler].ability = GetAbilityBySpecies(gBattleMons[battler].species, gBattleMons[battler].abilityNum);
 
@@ -14617,7 +14617,7 @@ static void Cmd_pickup(void)
             if (lvlDivBy10 > 9)
                 lvlDivBy10 = 9;
 
-            ability = GetMonAbility(&party[i]);
+            ability = GetMonAbility(&gPlayerParty[i]);
 
             if (ability == ABILITY_PICKUP
                 && species != SPECIES_NONE
@@ -15424,6 +15424,8 @@ void BattleDestroyYesNoCursorAt(u8 cursorPosition)
 
 static void Cmd_trygivecaughtmonnick(void)
 {
+    u8 typeChallenge = gSaveBlock1Ptr->tx_Challenges_OneTypeChallenge;
+
     CMD_ARGS(const u8 *successInstr);
 
     switch (gBattleCommunication[MULTIUSE_STATE])
