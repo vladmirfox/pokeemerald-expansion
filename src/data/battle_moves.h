@@ -12807,6 +12807,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
+        .ignoresProtect = TRUE,
+        .ignoresSubstitute = TRUE,
+        .mirrorMoveBanned = TRUE,
     },
 
     [MOVE_FLIP_TURN] =
@@ -12884,6 +12887,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
+        .ignoresProtect = TRUE,
+        .ignoresSubstitute = TRUE,
+        .mirrorMoveBanned = TRUE,
         .healBlockBanned = TRUE,
         .metronomeBanned = TRUE,
     },
@@ -13057,6 +13063,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
         .soundMove = TRUE,
+        .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
     },
 
     [MOVE_DIRE_CLAW] =
@@ -13107,8 +13114,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
+        .snatchAffected = TRUE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
-    },
+},
 
     [MOVE_STONE_AXE] =
     {
@@ -13180,7 +13190,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .makesContact = TRUE,
         .metronomeBanned = TRUE,
     },
 
@@ -13250,6 +13259,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .danceMove = TRUE,
         .snatchAffected = TRUE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
     },
 
     [MOVE_HEADLONG_RUSH] =
@@ -13344,6 +13355,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .snatchAffected = TRUE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
     },
 
     [MOVE_TRIPLE_ARROWS] =
@@ -13476,6 +13489,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .snatchAffected = TRUE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
         .healBlockBanned = TRUE,
     },
 
@@ -13492,6 +13507,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .snatchAffected = TRUE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
     },
 
     [MOVE_TERA_BLAST] =
@@ -13523,6 +13540,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
         .protectionMove = TRUE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
     },
 
@@ -13585,6 +13604,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
+        .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
     },
 
@@ -13699,6 +13719,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
     },
 
@@ -13762,6 +13784,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
     },
 
@@ -13778,6 +13802,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_RECOVER_HP,
         .snatchAffected = TRUE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
     },
 
@@ -13825,6 +13851,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
         .soundMove = TRUE,
+        .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
     },
 
     [MOVE_AQUA_STEP] =
@@ -13934,6 +13961,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_RESET_STATS,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
     },
 
@@ -13949,6 +13978,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_SPD_UP_1,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
     },
 
@@ -13964,6 +13995,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_NONE,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
     },
 
@@ -13979,6 +14012,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_SPD_UP_1,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
         .metronomeBanned = TRUE,
     },
 
@@ -14155,6 +14190,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
+        .meFirstBanned = TRUE,
         .metronomeBanned = TRUE,
     },
 
@@ -14187,6 +14223,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
+        .mirrorMoveBanned = TRUE,
+        .meFirstBanned = TRUE,
         .mimicBanned = TRUE,
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
@@ -14209,6 +14247,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
+        .mirrorMoveBanned = TRUE,
+        .meFirstBanned = TRUE,
         .mimicBanned = TRUE,
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
@@ -14231,6 +14271,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
+        .mirrorMoveBanned = TRUE,
+        .meFirstBanned = TRUE,
         .mimicBanned = TRUE,
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
@@ -14253,6 +14295,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
+        .mirrorMoveBanned = TRUE,
+        .meFirstBanned = TRUE,
         .mimicBanned = TRUE,
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
@@ -14275,6 +14319,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
+        .mirrorMoveBanned = TRUE,
+        .meFirstBanned = TRUE,
         .mimicBanned = TRUE,
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
@@ -14312,6 +14358,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .thawsUser = TRUE,
     },
 
     [MOVE_BLOOD_MOON] =
@@ -14326,6 +14373,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
+        .cantUseTwice = TRUE,
     },
 
     [MOVE_MATCHA_GOTCHA] =
@@ -14770,6 +14818,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = 0,
         .soundMove = TRUE,
+        .ignoresSubstitute = B_UPDATED_MOVE_FLAGS >= GEN_6,
     },
     [MOVE_GUARDIAN_OF_ALOLA] =
     {
