@@ -17,6 +17,7 @@
 #define MAX_LEVEL_OVER_EVOLUTION_LEVEL          7
 
 extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
+extern struct SaveBlock2 *gSaveBlock2Ptr;
 
 enum { // stolen from wild_encounter.c - find better solution than defining it here a 2nd time...
     WILD_AREA_LAND,
@@ -780,20 +781,27 @@ u16 GetRandomizedSpecies(u16 seedSpecies, u8 level, u8 areaType)
 {
     u16 currentMapId;
     u16 randomizedSpecies;
+    // u16 seed;
+    union CompactRandomState seed;
     u8 i;
 
     // create map ID early to use in RNG seed
     currentMapId = ((gSaveBlock1Ptr->location.mapGroup) << 8 | gSaveBlock1Ptr->location.mapNum);
 
     // create temporary random seed
-    SeedRng(areaType + (seedSpecies << 4) + currentMapId);
+    seed.state = areaType + (seedSpecies << 4) + currentMapId
+            + (((u16) gSaveBlock2Ptr->playerTrainerId[0]) << 8)
+            + (((u16) gSaveBlock2Ptr->playerTrainerId[1])     )
+            + (((u16) gSaveBlock2Ptr->playerTrainerId[2]) << 8)
+            + (((u16) gSaveBlock2Ptr->playerTrainerId[3])     );
     // (The bit shift should lead to more diversity. Otherwise, different values might lead to the
     // same sum.)
 
     // sample random species until a valid match appears
     for (i=0; i<NUM_ENCOUNTER_RANDOMIZATION_TRIES; i++)
     {
-        randomizedSpecies = Random() % NUM_SPECIES;
+        seed.state = CompactRandom(&seed);
+        randomizedSpecies = seed.state % NUM_SPECIES;
         if (IsSpeciesValidWildEncounter(randomizedSpecies)
                 && DoesSpeciesMatchCurrentMap(randomizedSpecies, areaType, currentMapId)
                 // check level last because it is least efficient check:
