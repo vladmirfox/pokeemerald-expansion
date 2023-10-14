@@ -5020,9 +5020,15 @@ static bool32 TryDoMegaEvosBeforeMoves(void)
                 party = GetBattlerParty(gBattlerAttacker);
                 mon = &party[gBattlerPartyIndexes[gBattlerAttacker]];
                 if (GetBattleFormChangeTargetSpecies(gBattlerAttacker, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_MOVE) != SPECIES_NONE)
-                    BattleScriptExecute(BattleScript_WishMegaEvolution);
+                    if (gHitMarker & HITMARKER_NO_ANIMATIONS)
+						BattleScriptExecute(BattleScript_WishMegaEvolutionQ);
+					else 
+						BattleScriptExecute(BattleScript_WishMegaEvolution);
                 else
-                    BattleScriptExecute(BattleScript_MegaEvolution);
+					if (gHitMarker & HITMARKER_NO_ANIMATIONS)
+						BattleScriptExecute(BattleScript_MegaEvolutionQ);
+					else 
+						BattleScriptExecute(BattleScript_MegaEvolution);
                 return TRUE;
             }
 
@@ -5034,6 +5040,9 @@ static bool32 TryDoMegaEvosBeforeMoves(void)
                 gLastUsedItem = gBattleMons[battler].item;
                 party = GetBattlerParty(battler);
                 mon = &party[gBattlerPartyIndexes[battler]];
+                if (gHitMarker & HITMARKER_NO_ANIMATIONS)
+                BattleScriptExecute(BattleScript_UltraBurstQ);
+                else
                 BattleScriptExecute(BattleScript_UltraBurst);
                 return TRUE;
             }

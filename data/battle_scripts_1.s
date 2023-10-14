@@ -6232,7 +6232,7 @@ BattleScript_EffectCamouflage::
 BattleScript_FaintAttacker::
 	tryillusionoff BS_ATTACKER
 	playfaintcry BS_ATTACKER
-	pause B_WAIT_TIME_LONG
+	pause B_WAIT_TIME_MED
 	dofaintanimation BS_ATTACKER
 	printstring STRINGID_ATTACKERFAINTED
 	cleareffectsonfaint BS_ATTACKER
@@ -6244,7 +6244,7 @@ BattleScript_FaintAttacker::
 BattleScript_FaintTarget::
 	tryillusionoff BS_TARGET
 	playfaintcry BS_TARGET
-	pause B_WAIT_TIME_LONG
+	pause B_WAIT_TIME_MED
 	dofaintanimation BS_TARGET
 	printstring STRINGID_TARGETFAINTED
 	cleareffectsonfaint BS_TARGET
@@ -7721,18 +7721,49 @@ BattleScript_MegaEvolutionAfterString:
 	switchinabilities BS_ATTACKER
 	end3
 
+BattleScript_MegaEvolutionQ::
+	printstring STRINGID_EMPTYSTRING3
+	trytrainerslidemegaevolutionmsg BS_ATTACKER
+	printstring STRINGID_MEGAEVOREACTING
+BattleScript_MegaEvolutionQAfterString:
+	waitmessage B_WAIT_TIME_LONG
+	setbyte gIsCriticalHit, 0
+	handlemegaevo BS_ATTACKER, 0
+	playanimation BS_ATTACKER, B_ANIM_FORM_CHANGE
+	waitanimation
+	handlemegaevo BS_ATTACKER, 1
+	printstring STRINGID_MEGAEVOEVOLVED
+	waitmessage B_WAIT_TIME_LONG
+	switchinabilities BS_ATTACKER
+	end3
+
 BattleScript_WishMegaEvolution::
 	printstring STRINGID_EMPTYSTRING3
 	trytrainerslidemegaevolutionmsg BS_ATTACKER
 	printstring STRINGID_FERVENTWISHREACHED
 	goto BattleScript_MegaEvolutionAfterString
 
+BattleScript_WishMegaEvolutionQ::
+	printstring STRINGID_EMPTYSTRING3
+	trytrainerslidemegaevolutionmsg BS_ATTACKER
+	printstring STRINGID_FERVENTWISHREACHED
+	goto BattleScript_MegaEvolutionQAfterString
+
 BattleScript_PrimalReversion::
 	call BattleScript_PrimalReversionRet
 	end2
 
+BattleScript_PrimalReversionQ::
+	call BattleScript_PrimalReversionRetQ
+	end2
+
 BattleScript_PrimalReversionRestoreAttacker::
 	call BattleScript_PrimalReversionRet
+	copybyte gBattlerAttacker, sSAVED_BATTLER
+	end2
+
+BattleScript_PrimalReversionRestoreAttackerQ::
+	call BattleScript_PrimalReversionRetQ
 	copybyte gBattlerAttacker, sSAVED_BATTLER
 	end2
 
@@ -7750,6 +7781,20 @@ BattleScript_PrimalReversionRet::
 	switchinabilities BS_ATTACKER
 	return
 
+BattleScript_PrimalReversionRetQ::
+	printstring STRINGID_EMPTYSTRING3
+	waitmessage 1
+	setbyte gIsCriticalHit, 0
+	handleprimalreversion BS_ATTACKER, 0
+	handleprimalreversion BS_ATTACKER, 1
+	playanimation BS_ATTACKER, B_ANIM_FORM_CHANGE
+	waitanimation
+	handleprimalreversion BS_ATTACKER, 2
+	printstring STRINGID_PKMNREVERTEDTOPRIMAL
+	waitmessage B_WAIT_TIME_LONG
+	switchinabilities BS_ATTACKER
+	return
+
 BattleScript_UltraBurst::
 	printstring STRINGID_EMPTYSTRING3
 	trytrainerslidezmovemsg BS_ATTACKER
@@ -7758,6 +7803,21 @@ BattleScript_UltraBurst::
 	setbyte gIsCriticalHit, 0
 	handleultraburst BS_ATTACKER, 0
 	playanimation BS_ATTACKER, B_ANIM_ULTRA_BURST
+	waitanimation
+	handleultraburst BS_ATTACKER, 1
+	printstring STRINGID_ULTRABURSTCOMPLETED
+	waitmessage B_WAIT_TIME_LONG
+	switchinabilities BS_ATTACKER
+	end3
+
+BattleScript_UltraBurstQ::
+	printstring STRINGID_EMPTYSTRING3
+	trytrainerslidezmovemsg BS_ATTACKER
+	printstring STRINGID_ULTRABURSTREACTING
+	waitmessage B_WAIT_TIME_LONG
+	setbyte gIsCriticalHit, 0
+	handleultraburst BS_ATTACKER, 0
+	playanimation BS_ATTACKER, B_ANIM_FORM_CHANGE
 	waitanimation
 	handleultraburst BS_ATTACKER, 1
 	printstring STRINGID_ULTRABURSTCOMPLETED
