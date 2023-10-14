@@ -3169,9 +3169,10 @@ static u32 GetAIMostDamagingMoveId(u32 battlerAtk, u32 battlerDef)
 
 static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
 {
-    u32 i, bestViableMoveSc0re;
+    u32 i;
     bool32 multipleBestMoves = FALSE;
-    u32 viableMoveScores[MAX_MON_MOVES];
+    s32 viableMoveScores[MAX_MON_MOVES];
+    s32 bestViableMoveScore;
     s32 noOfHits[MAX_MON_MOVES];
     s32 score = 0;
     s32 leastHits = 1000, leastHitsId = 0;
@@ -3188,7 +3189,7 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
                 leastHits = noOfHits[i];
                 leastHitsId = i;
             }
-            viableMoveScores[i] = 100;
+            viableMoveScores[i] = AI_SCORE_DEFAULT;
             isPowerfulIgnoredEffect[i] = IsInIgnoredPowerfulMoveEffects(gBattleMoves[moves[i]].effect);
         }
         else
@@ -3249,14 +3250,14 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
             ADJUST_SCORE(1);
         else
         {
-            bestViableMoveSc0re = 0;
+            bestViableMoveScore = 0;
             for (i = 0; i < MAX_MON_MOVES; i++)
             {
-                if (viableMoveScores[i] > bestViableMoveSc0re)
-                    bestViableMoveSc0re = viableMoveScores[i];
+                if (viableMoveScores[i] > bestViableMoveScore)
+                    bestViableMoveScore = viableMoveScores[i];
             }
             // Unless a better move was found increase score of current move
-            if (viableMoveScores[currId] == bestViableMoveSc0re)
+            if (viableMoveScores[currId] == bestViableMoveScore)
                 ADJUST_SCORE(1);
         }
     }

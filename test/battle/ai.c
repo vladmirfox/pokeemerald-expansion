@@ -110,7 +110,7 @@ AI_SINGLE_BATTLE_TEST("AI prefers moves with better accuracy, but only if they b
         ASSUME(gBattleMoves[MOVE_GUST].accuracy == 100);
         ASSUME(gBattleMoves[MOVE_SHOCK_WAVE].accuracy == 0);
         ASSUME(gBattleMoves[MOVE_THUNDERBOLT].accuracy == 100);
-        ASSUME(gBattleMoves[MOVE_ICY_WIND].accuracy == 95);
+        ASSUME(gBattleMoves[MOVE_ICY_WIND].accuracy != 100);
         OPPONENT(SPECIES_EXPLOUD) { Moves(move1, move2, move3, move4); Ability(abilityAtk); SpAttack(50); } // Low Sp.Atk, so Swift deals less damage than Strength.
     } WHEN {
             switch (turns)
@@ -245,15 +245,16 @@ AI_SINGLE_BATTLE_TEST("AI prefers moves with the best possible score, chosen ran
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI can choose a stat boosting move randomly")
+AI_SINGLE_BATTLE_TEST("AI can choose a status move that boosts the attack by two")
 {
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET) { HP(250); };
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_THUNDERBOLT, MOVE_SLUDGE_BOMB, MOVE_SWORDS_DANCE); }
+        OPPONENT(SPECIES_KANGASKHAN) { Moves(MOVE_STRENGTH, MOVE_HORN_ATTACK, MOVE_SWORDS_DANCE); }
     } WHEN {
-        TURN { EXPECT_MOVES(opponent, MOVE_THUNDERBOLT, MOVE_SLUDGE_BOMB, MOVE_SWORDS_DANCE); }
+        TURN { EXPECT_MOVES(opponent, MOVE_STRENGTH, MOVE_SWORDS_DANCE); }
+        TURN { EXPECT_MOVE(opponent, MOVE_STRENGTH); SEND_OUT(player, 1); }
     }
 }
 
