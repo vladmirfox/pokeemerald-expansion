@@ -788,7 +788,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_MINIOR]                       = { .size = MON_COORDS_SIZE(48, 40), .y_offset = 14 },
     [SPECIES_KOMALA]                       = { .size = MON_COORDS_SIZE(48, 40), .y_offset = 12 },
     [SPECIES_TURTONATOR]                   = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
-    [SPECIES_TOGEDEMARU]                   = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 12 },
+    [SPECIES_TOGEDEMARU]                   = { .size = MON_COORDS_SIZE(40, 40), .y_offset =  5 },
     [SPECIES_MIMIKYU]                      = { .size = MON_COORDS_SIZE(48, 40), .y_offset = 12 },
     [SPECIES_BRUXISH]                      = { .size = MON_COORDS_SIZE(56, 40), .y_offset = 15 },
     [SPECIES_DRAMPA]                       = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
