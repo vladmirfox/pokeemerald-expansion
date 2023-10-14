@@ -8539,7 +8539,8 @@ static const union AnimCmd sAnim_Rockruff_1[] =
 
 static const union AnimCmd sAnim_Lycanroc_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 40),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 
