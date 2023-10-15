@@ -2709,7 +2709,7 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     // Gen 7
     [SPECIES_ROWLET - 1]                       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_DARTRIX - 1]                      = ANIM_H_STRETCH,
-    [SPECIES_DECIDUEYE - 1]                    = ANIM_H_VIBRATE,
+    [SPECIES_DECIDUEYE - 1]                    = ANIM_SHRINK_GROW_VIBRATE_FAST,
     [SPECIES_LITTEN - 1]                       = ANIM_H_STRETCH,
     [SPECIES_TORRACAT - 1]                     = ANIM_V_STRETCH,
     [SPECIES_INCINEROAR - 1]                   = ANIM_V_SHAKE,

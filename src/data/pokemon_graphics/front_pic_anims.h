@@ -8400,7 +8400,8 @@ static const union AnimCmd sAnim_Dartrix_1[] =
 
 static const union AnimCmd sAnim_Decidueye_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 50),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 

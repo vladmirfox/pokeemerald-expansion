@@ -950,7 +950,7 @@ static const u8 sSpeciesToBackAnimSet[NUM_SPECIES] =
     // Gen 7 todo: assign
     [SPECIES_ROWLET]                       = BACK_ANIM_H_VIBRATE,
     [SPECIES_DARTRIX]                      = BACK_ANIM_H_VIBRATE,
-    [SPECIES_DECIDUEYE]                    = BACK_ANIM_H_VIBRATE,
+    [SPECIES_DECIDUEYE]                    = BACK_ANIM_SHRINK_GROW_VIBRATE,
     [SPECIES_LITTEN]                       = BACK_ANIM_H_VIBRATE,
     [SPECIES_TORRACAT]                     = BACK_ANIM_H_VIBRATE,
     [SPECIES_INCINEROAR]                   = BACK_ANIM_H_VIBRATE,
