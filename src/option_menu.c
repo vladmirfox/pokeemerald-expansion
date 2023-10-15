@@ -23,6 +23,7 @@
 #define tSound data[4]
 #define tButtonMode data[5]
 #define tWindowFrameType data[6]
+#define tAutoRun data[7]
 
 enum
 {
@@ -231,14 +232,14 @@ void CB2_InitOptionMenu(void)
         gTasks[taskId].tTextSpeed = gSaveBlock2Ptr->optionsTextSpeed;
         gTasks[taskId].tBattleSceneOff = gSaveBlock2Ptr->optionsBattleSceneOff;
         gTasks[taskId].tBattleStyle = gSaveBlock2Ptr->optionsBattleStyle;
-        gTasks[taskId].tSound = gSaveBlock2Ptr->optionsSound;
+        gTasks[taskId].tAutoRun = gSaveBlock2Ptr->autoRun;
         gTasks[taskId].tButtonMode = gSaveBlock2Ptr->optionsButtonMode;
         gTasks[taskId].tWindowFrameType = gSaveBlock2Ptr->optionsWindowFrameType;
 
         TextSpeed_DrawChoices(gTasks[taskId].tTextSpeed);
         BattleScene_DrawChoices(gTasks[taskId].tBattleSceneOff);
         BattleStyle_DrawChoices(gTasks[taskId].tBattleStyle);
-        Sound_DrawChoices(gTasks[taskId].tSound);
+        Sound_DrawChoices(gTasks[taskId].tAutoRun);
         ButtonMode_DrawChoices(gTasks[taskId].tButtonMode);
         FrameType_DrawChoices(gTasks[taskId].tWindowFrameType);
         HighlightOptionMenuItem(gTasks[taskId].tMenuSelection);
@@ -316,11 +317,11 @@ static void Task_OptionMenuProcessInput(u8 taskId)
                 BattleStyle_DrawChoices(gTasks[taskId].tBattleStyle);
             break;
         case MENUITEM_SOUND:
-            previousOption = gTasks[taskId].tSound;
-            gTasks[taskId].tSound = Sound_ProcessInput(gTasks[taskId].tSound);
+            previousOption = gTasks[taskId].tAutoRun;
+            gTasks[taskId].tAutoRun = Sound_ProcessInput(gTasks[taskId].tAutoRun);
 
-            if (previousOption != gTasks[taskId].tSound)
-                Sound_DrawChoices(gTasks[taskId].tSound);
+            if (previousOption != gTasks[taskId].tAutoRun)
+                Sound_DrawChoices(gTasks[taskId].tAutoRun);
             break;
         case MENUITEM_BUTTONMODE:
             previousOption = gTasks[taskId].tButtonMode;
@@ -353,7 +354,7 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->optionsTextSpeed = gTasks[taskId].tTextSpeed;
     gSaveBlock2Ptr->optionsBattleSceneOff = gTasks[taskId].tBattleSceneOff;
     gSaveBlock2Ptr->optionsBattleStyle = gTasks[taskId].tBattleStyle;
-    gSaveBlock2Ptr->optionsSound = gTasks[taskId].tSound;
+    gSaveBlock2Ptr->autoRun = gTasks[taskId].tAutoRun;
     gSaveBlock2Ptr->optionsButtonMode = gTasks[taskId].tButtonMode;
     gSaveBlock2Ptr->optionsWindowFrameType = gTasks[taskId].tWindowFrameType;
 
@@ -492,7 +493,6 @@ static u8 Sound_ProcessInput(u8 selection)
     if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
     {
         selection ^= 1;
-        SetPokemonCryStereo(selection);
         sArrowPressed = TRUE;
     }
 
