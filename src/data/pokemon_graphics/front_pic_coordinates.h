@@ -744,7 +744,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_PRIMARINA]                    = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_PIKIPEK]                      = { .size = MON_COORDS_SIZE(29, 40), .y_offset = 10 },
     [SPECIES_TRUMBEAK]                     = { .size = MON_COORDS_SIZE(44, 53), .y_offset =  4 },
-    [SPECIES_TOUCANNON]                    = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  2 },
+    [SPECIES_TOUCANNON]                    = { .size = MON_COORDS_SIZE(59, 59), .y_offset =  2 },
     [SPECIES_YUNGOOS]                      = { .size = MON_COORDS_SIZE(64, 40), .y_offset = 12 },
     [SPECIES_GUMSHOOS]                     = { .size = MON_COORDS_SIZE(56, 56), .y_offset =  5 },
     [SPECIES_GRUBBIN]                      = { .size = MON_COORDS_SIZE(48, 32), .y_offset = 17 },
