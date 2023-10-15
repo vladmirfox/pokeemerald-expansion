@@ -8388,7 +8388,8 @@ static const union AnimCmd sAnim_Volcanion_1[] =
 #if P_GEN_7_POKEMON == TRUE
 static const union AnimCmd sAnim_Rowlet_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 

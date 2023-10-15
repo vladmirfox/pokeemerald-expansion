@@ -2707,7 +2707,7 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_VOLCANION - 1]                    = ANIM_V_SHAKE_TWICE,
 
     // Gen 7
-    [SPECIES_ROWLET - 1]                       = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_ROWLET - 1]                       = ANIM_CIRCULAR_STRETCH_TWICE,
     [SPECIES_DARTRIX - 1]                      = ANIM_V_STRETCH,
     [SPECIES_DECIDUEYE - 1]                    = ANIM_SHRINK_GROW_VIBRATE_FAST,
     [SPECIES_LITTEN - 1]                       = ANIM_H_STRETCH,

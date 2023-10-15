@@ -752,7 +752,7 @@ const struct MonCoords gMonBackPicCoords[NUM_SPECIES + 1] =
     [SPECIES_VOLCANION]                    = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  3 },
 #endif
 #if P_GEN_7_POKEMON == TRUE
-    [SPECIES_ROWLET]                       = { .size = MON_COORDS_SIZE(48, 40), .y_offset = 15 },
+    [SPECIES_ROWLET]                       = { .size = MON_COORDS_SIZE(43, 36), .y_offset = 15 },
     [SPECIES_DARTRIX]                      = { .size = MON_COORDS_SIZE(56, 54), .y_offset =  4 },
     [SPECIES_DECIDUEYE]                    = { .size = MON_COORDS_SIZE(46, 62), .y_offset =  0 },
     [SPECIES_LITTEN]                       = { .size = MON_COORDS_SIZE(64, 48), .y_offset = 11 },
