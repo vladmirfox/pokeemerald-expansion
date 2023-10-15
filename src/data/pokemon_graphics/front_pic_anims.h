@@ -8843,9 +8843,8 @@ static const union AnimCmd sAnim_JANGMO_O_1[] =
 
 static const union AnimCmd sAnim_HAKAMO_O_1[] =
 {
-    ANIMCMD_FRAME(0, 10),
     ANIMCMD_FRAME(1, 30),
-    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 
