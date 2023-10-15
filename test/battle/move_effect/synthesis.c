@@ -30,49 +30,18 @@ SINGLE_BATTLE_TEST("Synthesis recovers 2/3 of the user's max HP in Sunlight")
     }
 }
 
-SINGLE_BATTLE_TEST("Synthesis recovers 1/4 of the user's max HP in Rain")
+SINGLE_BATTLE_TEST("Synthesis recovers 1/4 of the user's max HP in Rain, Sandstorm, Hail, and Snow")
 {
+    u32 move;
+    PARAMETRIZE { move = MOVE_RAIN_DANCE; }
+    PARAMETRIZE { move = MOVE_SANDSTORM; }
+    PARAMETRIZE { move = MOVE_HAIL; }
+    PARAMETRIZE { move = MOVE_SNOWSCAPE; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(400); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_RAIN_DANCE); MOVE(player, MOVE_SYNTHESIS); }
-    } SCENE {
-        HP_BAR(player, damage: -(400 / 4));
-    }
-}
-
-SINGLE_BATTLE_TEST("Synthesis recovers 1/4 of the user's max HP in a Sandstorm")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_SANDSTORM); MOVE(player, MOVE_SYNTHESIS); }
-    } SCENE {
-        HP_BAR(player, damage: -(400 / 4));
-    }
-}
-
-SINGLE_BATTLE_TEST("Synthesis recovers 1/4 of the user's max HP in Hail")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_HAIL); MOVE(player, MOVE_SYNTHESIS); }
-    } SCENE {
-        HP_BAR(player, damage: -(400 / 4));
-    }
-}
-
-SINGLE_BATTLE_TEST("Synthesis recovers 1/4 of the user's max HP in Snow")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { HP(1); MaxHP(400); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_SNOWSCAPE); MOVE(player, MOVE_SYNTHESIS); }
+        TURN { MOVE(opponent, move); MOVE(player, MOVE_SYNTHESIS); }
     } SCENE {
         HP_BAR(player, damage: -(400 / 4));
     }
