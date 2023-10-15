@@ -753,7 +753,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_CRABRAWLER]                   = { .size = MON_COORDS_SIZE(64, 56), .y_offset =  7 },
     [SPECIES_CRABOMINABLE]                 = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  0 },
     [SPECIES_ORICORIO]                     = { .size = MON_COORDS_SIZE(56, 64), .y_offset =  2 },
-    [SPECIES_CUTIEFLY]                     = { .size = MON_COORDS_SIZE(40, 40), .y_offset = 16 },
+    [SPECIES_CUTIEFLY]                     = { .size = MON_COORDS_SIZE(33, 35), .y_offset = 16 },
     [SPECIES_RIBOMBEE]                     = { .size = MON_COORDS_SIZE(56, 56), .y_offset =  5 },
     [SPECIES_ROCKRUFF]                     = { .size = MON_COORDS_SIZE(37, 39), .y_offset = 11 },
     [SPECIES_LYCANROC]                     = { .size = MON_COORDS_SIZE(57, 53), .y_offset =  6 },
