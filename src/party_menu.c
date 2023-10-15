@@ -5686,7 +5686,7 @@ void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc task)
 #define tAnimWait       data[2]
 #define tNextFunc       3
 
-void FormChangeTeachMove(u8 taskId, u16 move, u8 slot)
+void FormChangeTeachMove(u8 taskId, u32 move, u32 slot)
 {
     struct Pokemon *mon;
 
@@ -5709,23 +5709,24 @@ void FormChangeTeachMove(u8 taskId, u16 move, u8 slot)
     }
 }
 
-void DeleteMove(struct Pokemon *mon, u16 move)
+void DeleteMove(struct Pokemon *mon, u32 move)
 {
     struct BoxPokemon *boxMon = &mon->box;
-    u8 i, j;
-    u8 deletemove = MOVE_NONE;
+    u32 i, j;
+    u32 deletemove = MOVE_NONE;
 
     if (move != MOVE_NONE)
     {
         for (i = 0; i < MAX_MON_MOVES; i++)
         {
-            u16 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
+            u32 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
             if (existingMove == move)
             {
                 SetMonMoveSlot(mon, MOVE_NONE, i);
                 RemoveMonPPBonus(mon, i);
                 for (j = i; j < MAX_MON_MOVES - 1; j++)
                     ShiftMoveSlot(mon, j, j + 1);
+                break;
             }
         }
     }
@@ -5734,11 +5735,11 @@ void DeleteMove(struct Pokemon *mon, u16 move)
 u8 DoesMonHaveAnyMoves(struct Pokemon *mon)
 {   
     struct BoxPokemon *boxMon = &mon->box;
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        u16 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
+        u32 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
         if (existingMove != MOVE_NONE)
             i++;
     }
@@ -5830,18 +5831,9 @@ static void Task_TryItemUseFormChange(u8 taskId)
         {
             if (gSpecialVar_ItemId == ITEM_ROTOM_CATALOG) //only for rotom currently
             {
-                u16 i, j;
-                for (i = 0; i < MAX_MON_MOVES; i++)
-                {
-                    u16 existingMove = GetBoxMonData(&mon->box, MON_DATA_MOVE1 + i, NULL);
-                    for (j = 0; j < ARRAY_COUNT(sRotomFormChangeMoves); j++)
-                    {
-                        if (existingMove == sRotomFormChangeMoves[j])
-                        {
-                            DeleteMove(mon, existingMove);
-                        }
-                    }
-                }
+                u32 i, j;
+                for (i = 0; i < ARRAY_COUNT(sRotomFormChangeMoves); i++)
+                    DeleteMove(mon, sRotomFormChangeMoves[i]);
 
                 if (gSpecialVar_0x8000 == MOVE_THUNDER_SHOCK)
                 {
@@ -5912,7 +5904,7 @@ void ItemUseCB_RotomCatalog(u8 taskId, TaskFunc task)
 bool32 TryMultichoiceFormChange(u8 taskId)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_USE_MULTICHOICE, gSpecialVar_ItemId);
+    u32 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_ITEM_USE_MULTICHOICE, gSpecialVar_ItemId);
 
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
