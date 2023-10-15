@@ -8450,7 +8450,10 @@ static const union AnimCmd sAnim_Pikipek_1[] =
 
 static const union AnimCmd sAnim_Trumbeak_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 15),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 
