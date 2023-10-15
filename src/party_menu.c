@@ -5738,8 +5738,7 @@ void FormChangeTeachMove(u8 taskId, u32 move, u32 slot)
 void DeleteMove(struct Pokemon *mon, u32 move)
 {
     struct BoxPokemon *boxMon = &mon->box;
-    u32 i, j;
-    u32 deletemove = MOVE_NONE;
+    u32 i;
 
     if (move != MOVE_NONE)
     {
@@ -5759,7 +5758,7 @@ void DeleteMove(struct Pokemon *mon, u32 move)
 }
 
 u8 DoesMonHaveAnyMoves(struct Pokemon *mon)
-{   
+{
     struct BoxPokemon *boxMon = &mon->box;
     u32 i;
 
@@ -5869,7 +5868,7 @@ static void Task_TryItemUseFormChange(u8 taskId)
                 else
                     FormChangeTeachMove(taskId, gSpecialVar_0x8000, gPartyMenu.slotId);
             }
-            
+
             gTasks[taskId].tState++;
         }
         break;
@@ -5952,6 +5951,7 @@ bool32 TryMultichoiceFormChange(u8 taskId)
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+        return FALSE;
     }
 }
 
