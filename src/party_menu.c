@@ -5738,7 +5738,7 @@ void FormChangeTeachMove(u8 taskId, u32 move, u32 slot)
 void DeleteMove(struct Pokemon *mon, u32 move)
 {
     struct BoxPokemon *boxMon = &mon->box;
-    u32 i;
+    u32 i, j;
 
     if (move != MOVE_NONE)
     {
@@ -5856,7 +5856,7 @@ static void Task_TryItemUseFormChange(u8 taskId)
         {
             if (gSpecialVar_ItemId == ITEM_ROTOM_CATALOG) //only for rotom currently
             {
-                u32 i, j;
+                u32 i;
                 for (i = 0; i < ARRAY_COUNT(sRotomFormChangeMoves); i++)
                     DeleteMove(mon, sRotomFormChangeMoves[i]);
 
