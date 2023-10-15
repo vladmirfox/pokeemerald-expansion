@@ -8774,7 +8774,8 @@ static const union AnimCmd sAnim_Bruxish_1[] =
 
 static const union AnimCmd sAnim_Drampa_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 50),
+    ANIMCMD_FRAME(0, 50),
     ANIMCMD_END,
 };
 
