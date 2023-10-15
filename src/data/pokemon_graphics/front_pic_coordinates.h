@@ -1254,7 +1254,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_ROCKRUFF_OWN_TEMPO]           = { .size = MON_COORDS_SIZE(40, 48), .y_offset = 11 },
     // Lycanroc
     [SPECIES_LYCANROC_MIDNIGHT]            = { .size = MON_COORDS_SIZE(56, 61), .y_offset =  0 },
-    [SPECIES_LYCANROC_DUSK]                = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  3 },
+    [SPECIES_LYCANROC_DUSK]                = { .size = MON_COORDS_SIZE(57, 58), .y_offset =  6 },
     // Wishiwashi
     [SPECIES_WISHIWASHI_SCHOOL]            = { .size = MON_COORDS_SIZE(64, 64), .y_offset =  4 },
     // Silvally

@@ -10503,7 +10503,8 @@ static const union AnimCmd sAnim_LycanrocMidnight_1[] =
 
 static const union AnimCmd sAnim_LycanrocDusk_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 40),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 #endif
