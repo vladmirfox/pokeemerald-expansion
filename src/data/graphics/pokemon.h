@@ -821,7 +821,7 @@ const u32 gMonFrontPic_Volcanion[] = INCBIN_U32("graphics/pokemon/volcanion/anim
 #endif
 #if P_GEN_7_POKEMON == TRUE
 const u32 gMonFrontPic_Rowlet[] = INCBIN_U32("graphics/pokemon/rowlet/front.4bpp.lz");
-const u32 gMonFrontPic_Dartrix[] = INCBIN_U32("graphics/pokemon/dartrix/front.4bpp.lz");
+const u32 gMonFrontPic_Dartrix[] = INCBIN_U32("graphics/pokemon/dartrix/anim_front.4bpp.lz");
 const u32 gMonFrontPic_Decidueye[] = INCBIN_U32("graphics/pokemon/decidueye/anim_front.4bpp.lz");
 const u32 gMonFrontPic_Litten[] = INCBIN_U32("graphics/pokemon/litten/front.4bpp.lz");
 const u32 gMonFrontPic_Torracat[] = INCBIN_U32("graphics/pokemon/torracat/front.4bpp.lz");
