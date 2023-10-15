@@ -8723,7 +8723,8 @@ static const union AnimCmd sAnim_Comfey_1[] =
 
 static const union AnimCmd sAnim_Oranguru_1[] =
 {
-    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 
