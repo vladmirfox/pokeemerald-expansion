@@ -47,5 +47,6 @@ u32 RtcGetMinuteCount(void);
 u32 RtcGetLocalDayCount(void);
 void ToggleDayNight(void);
 void RtcCalcLocalTimeFast(void);
+void TryReturnTimeOffset(void);
 
 #endif // GUARD_RTC_UTIL_H

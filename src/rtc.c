@@ -2,6 +2,7 @@
 #include "rtc.h"
 #include "string_util.h"
 #include "text.h"
+#include "event_data.h"
 
 // iwram bss
 static u16 sErrorStatus;
@@ -355,8 +356,16 @@ void ToggleDayNight(void)
     {
         totalOffsetHours -= 24;
     }
+    
+    FlagGet(FLAG_SYS_TIME_TOGGLED) ? FlagClear(FLAG_SYS_TIME_TOGGLED) : FlagSet(FLAG_SYS_TIME_TOGGLED);
 
     gSaveBlock2Ptr->localTimeOffset.hours = totalOffsetHours;
+}
+
+void TryReturnTimeOffset(void)
+{
+    if (FlagGet(FLAG_SYS_TIME_TOGGLED))
+    ToggleDayNight();
 }
 
 void RtcCalcLocalTimeFast(void)
