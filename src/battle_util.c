@@ -1246,8 +1246,9 @@ void MarkBattlerReceivedLinkData(u32 battler)
     gBattleControllerExecFlags &= ~((1 << 28) << battler);
 }
 
-void CancelMultiTurnMoves(u32 battler)
+const u8* CancelMultiTurnMoves(u32 battler)
 {
+    const u8 *result = NULL;
     gBattleMons[battler].status2 &= ~(STATUS2_MULTIPLETURNS);
     gBattleMons[battler].status2 &= ~(STATUS2_LOCK_CONFUSE);
     gBattleMons[battler].status2 &= ~(STATUS2_UPROAR);
@@ -1302,14 +1303,14 @@ void CancelMultiTurnMoves(u32 battler)
                 else if (gBattlescriptCurrInstr[0] == 0x76 && gBattlescriptCurrInstr[2] == 0)
                 {
                     gBattlerAttacker = otherSkyDropper;
-                    gBattlescriptCurrInstr = BattleScript_ThrashConfuses - 3;
+                    result = BattleScript_ThrashConfuses;
                 }
                 // If this CancelMultiTurnMoves is occuring due to receiving Sleep/Freeze status
                 else if (gBattleScripting.moveEffect <= PRIMARY_STATUS_MOVE_EFFECT)
                 {
                     gBattlerAttacker = otherSkyDropper;
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
-                    gBattlescriptCurrInstr = BattleScript_ThrashConfuses - 1;
+                    result = BattleScript_ThrashConfuses;
                 }
             }
         }
@@ -1324,6 +1325,7 @@ void CancelMultiTurnMoves(u32 battler)
 
     gDisableStructs[battler].rolloutTimer = 0;
     gDisableStructs[battler].furyCutterCounter = 0;
+    return result;
 }
 
 bool32 WasUnableToUseMove(u32 battler)
@@ -4071,16 +4073,16 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             switch (VarGet(VAR_TERRAIN) & STATUS_FIELD_TERRAIN_ANY)
             {
             case STATUS_FIELD_ELECTRIC_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = 2;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_ELECTRIC;
                 break;
             case STATUS_FIELD_MISTY_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_MISTY;
                 break;
             case STATUS_FIELD_GRASSY_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_GRASSY;
                 break;
             case STATUS_FIELD_PSYCHIC_TERRAIN:
-                gBattleCommunication[MULTISTRING_CHOOSER] = 3;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_TERRAIN_SET_PSYCHIC;
                 break;
             }
 
@@ -6477,6 +6479,7 @@ static u8 DamagedStatBoostBerryEffect(u32 battler, u8 statId, u8 split)
         else
             SET_STATCHANGER(statId, 1, FALSE);
 
+        gBattleScripting.battler = battler;
         gBattleScripting.animArg1 = 14 + statId;
         gBattleScripting.animArg2 = 0;
         BattleScriptPushCursor();
