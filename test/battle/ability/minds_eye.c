@@ -88,7 +88,6 @@ SINGLE_BATTLE_TEST("Mold Breaker-type abilities bypass Minds Eye's accuracy lowe
 #endif
     PASSES_RANDOMLY(gBattleMoves[MOVE_SCRATCH].accuracy * 3 / 4, 100, RNG_ACCURACY);
     
-    KNOWN_FAILING; // Not sure why, Keen Eye's tests work
     GIVEN {
         PLAYER(species) { Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_MINDS_EYE); }
@@ -103,5 +102,38 @@ SINGLE_BATTLE_TEST("Mold Breaker-type abilities bypass Minds Eye's accuracy lowe
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         MESSAGE("Foe Wobbuffet's accuracy fell!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
+    }
+}
+
+//// AI TESTS ////
+
+AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
+{
+    u32 abilityAI, moveAI, j;
+
+    for (j = MOVE_NONE + 1; j < MOVES_COUNT; j++)
+    {
+        if (gBattleMoves[j].effect == EFFECT_ACCURACY_DOWN || gBattleMoves[j].effect == EFFECT_ACCURACY_DOWN_2) {
+            PARAMETRIZE{ moveAI = j; abilityAI = ABILITY_SWIFT_SWIM; }
+            PARAMETRIZE{ moveAI = j; abilityAI = ABILITY_MOLD_BREAKER; }
+        }
+    }
+
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_MINDS_EYE); }
+        OPPONENT(SPECIES_BASCULEGION) { Moves(MOVE_CELEBRATE, moveAI); Ability(abilityAI); }
+    } WHEN {
+            TURN { MOVE(player, MOVE_TACKLE); }
+            TURN { MOVE(player, MOVE_TACKLE);
+                   if (abilityAI == ABILITY_MOLD_BREAKER) { SCORE_GT(opponent, moveAI, MOVE_CELEBRATE); }
+                   else { SCORE_EQ(opponent, moveAI, MOVE_CELEBRATE); }}
+    } SCENE {
+        MESSAGE("Wobbuffet used Tackle!");
+        if (abilityAI == ABILITY_MOLD_BREAKER){
+            SCORE_GT(opponent, moveAI, MOVE_CELEBRATE);
+        }
+    } THEN {
+        EXPECT(gBattleResources->aiData->abilities[B_POSITION_PLAYER_LEFT] == ABILITY_MINDS_EYE);
     }
 }
