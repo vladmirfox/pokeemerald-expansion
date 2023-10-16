@@ -9550,8 +9550,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS(const u8 *failInstr);
         u16 move = gLastMoves[gBattlerTarget];
-        if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || gBattleMoves[move].instructBanned
-         || gBattleMoves[move].twoTurnMove | gBattleMoves[move].rechargeMove)
+        if (move == MOVE_NONE || move == MOVE_UNAVAILABLE || gBattleMoves[move].instructBanned || gBattleMoves[move].twoTurnMove)
         {
             gBattlescriptCurrInstr = cmd->failInstr;
         }

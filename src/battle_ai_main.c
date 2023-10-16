@@ -2521,7 +2521,6 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 
                 if (instructedMove == MOVE_NONE
                   || gBattleMoves[instructedMove].instructBanned
-                  || gBattleMoves[instructedMove].rechargeMove
                   || gBattleMoves[instructedMove].twoTurnMove
                   || IsZMove(instructedMove)
                   || (gLockedMoves[battlerDef] != 0 && gLockedMoves[battlerDef] != 0xFFFF)
