@@ -670,15 +670,17 @@
 #define STRINGID_CURRENTMOVECANTSELECT                668
 #define STRINGID_TARGETISBEINGSALTCURED               669
 #define STRINGID_TARGETISHURTBYSALTCURE               670
-#define STRINGID_SUNLIGHTISHARSH                      671
-#define STRINGID_ITISHAILING                          672
-#define STRINGID_ITISSNOWING                          673
-#define STRINGID_ISCOVEREDWITHGRASS                   674
-#define STRINGID_MISTSWIRLSAROUND                     675
-#define STRINGID_ELECTRICCURRENTISRUNNING             676
-#define STRINGID_SEEMSWEIRD                           677
+#define STRINGID_OPPORTUNISTCOPIED                    671
+#define STRINGID_TARGETCOVEREDINSTICKYCANDYSYRUP      672
+#define STRINGID_SUNLIGHTISHARSH                      673
+#define STRINGID_ITISHAILING                          674
+#define STRINGID_ITISSNOWING                          675
+#define STRINGID_ISCOVEREDWITHGRASS                   676
+#define STRINGID_MISTSWIRLSAROUND                     677
+#define STRINGID_ELECTRICCURRENTISRUNNING             678
+#define STRINGID_SEEMSWEIRD                           679
 
-#define BATTLESTRINGS_COUNT                           678
+#define BATTLESTRINGS_COUNT                           680
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,

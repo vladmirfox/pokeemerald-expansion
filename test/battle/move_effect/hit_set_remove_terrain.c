@@ -3,7 +3,7 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gBattleMoves[MOVE_ELECTRIC_TERRAIN].effect == MOVE_ELECTRIC_TERRAIN);
+    ASSUME(gBattleMoves[MOVE_ELECTRIC_TERRAIN].effect == EFFECT_ELECTRIC_TERRAIN);
     ASSUME(gBattleMoves[MOVE_PSYCHIC_TERRAIN].effect == EFFECT_PSYCHIC_TERRAIN);
     ASSUME(gBattleMoves[MOVE_GRASSY_TERRAIN].effect == EFFECT_GRASSY_TERRAIN);
     ASSUME(gBattleMoves[MOVE_MISTY_TERRAIN].effect == EFFECT_MISTY_TERRAIN);
@@ -22,8 +22,8 @@ SINGLE_BATTLE_TEST("Steel Roller and Ice Spinner can remove a terrain from the f
         MOVE_MISTY_TERRAIN,
     };
 
-    u16 terrainMove;
-    u16 removeTerrainMove;
+    u16 terrainMove = MOVE_NONE;
+    u16 removeTerrainMove = MOVE_NONE;
 
     for (j = 0; j < ARRAY_COUNT(terrainMoves); j++)
     {
