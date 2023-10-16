@@ -12498,7 +12498,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .metronomeBanned = TRUE,
     },
 
-    [MOVE_OBSTRUCT] = //////
+    [MOVE_OBSTRUCT] =
     {
         .effect = EFFECT_PROTECT,
         .power = 0,
