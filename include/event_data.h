@@ -2,10 +2,12 @@
 #define GUARD_EVENT_DATA_H
 
 #define NUM_SOFT_CAPS 10
+#define NUM_GROTTO_VARS 9
 
 void InitEventData(void);
 void ClearTempFieldEventData(void);
 void ClearDailyFlags(void);
+void ClearGrottoVars(void);
 void IncrimentTrophyGardenVar(void);
 void DisableNationalPokedex(void);
 void EnableNationalPokedex(void);
@@ -52,5 +54,6 @@ extern u16 gSpecialVar_MonBoxPos;
 extern u16 gSpecialVar_Unused_0x8014;
 extern const u16 sLevelCapFlags[NUM_SOFT_CAPS];
 extern const u16 sLevelCaps[NUM_SOFT_CAPS];
+extern const u16 sHiddenGrottoVars[NUM_GROTTO_VARS];
 
 #endif // GUARD_EVENT_DATA_H

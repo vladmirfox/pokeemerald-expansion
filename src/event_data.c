@@ -52,6 +52,15 @@ void ClearDailyFlags(void)
     memset(&gSaveBlock1Ptr->flags[DAILY_FLAGS_START / 8], 0, DAILY_FLAGS_SIZE);
 }
 
+void ClearGrottoVars(void)
+{
+    int i;
+    for (i = 0; i < NUM_GROTTO_VARS; i++)
+    {
+        VarSet(sHiddenGrottoVars[i], 0);
+    }
+}
+
 void IncrimentTrophyGardenVar(void)
 {
     VarSet(VAR_TROPHY_GARDEN_ENCOUNTERS, (VarGet(VAR_TROPHY_GARDEN_ENCOUNTERS + 1) % 3));

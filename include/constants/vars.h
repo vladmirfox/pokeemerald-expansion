@@ -204,7 +204,7 @@
 #define VAR_UNUSED_0x40B8                                0x40B8 // Unused Var
 #define VAR_MT_PYRE_STATE                                0x40B9
 #define VAR_NEW_MAUVILLE_STATE                           0x40BA
-#define VAR_UNUSED_0x40BB                                0x40BB // Unused Var
+#define VAR_HIDDEN_GROTTO_PETALBURG_WOODS                0x40BB // Grotto Var
 #define VAR_BRAVO_TRAINER_BATTLE_TOWER_ON                0x40BC
 #define VAR_JAGGED_PASS_ASH_WEATHER                      0x40BD
 #define VAR_GLASS_WORKSHOP_STATE                         0x40BE
@@ -246,7 +246,7 @@
 #define VAR_GIFT_UNUSED_5                                0x40E2 // Var is written to, but never read
 #define VAR_GIFT_UNUSED_6                                0x40E3 // Var is written to, but never read
 #define VAR_GIFT_UNUSED_7                                0x40E4 // var is written to, but never read
-#define VAR_UNUSED_0x40E5                                0x40E5 // Unused Var
+#define VAR_HIDDEN_GROTTO_ROUTE_123                      0x40E5 // Grotto Var
 #define VAR_DAILY_SLOTS                                  0x40E6
 #define VAR_DAILY_WILDS                                  0x40E7
 #define VAR_DAILY_BLENDER                                0x40E8
@@ -266,13 +266,13 @@
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER             0x40F6
 #define VAR_DEXNAV_SPECIES                               0x40F7 // Registered dexnav species
 #define VAR_DEXNAV_STEP_COUNTER                          0x40F8 // steps for finding hidden pokemon
-#define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
-#define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
-#define VAR_UNUSED_0x40FB                                0x40FB // Unused Var
-#define VAR_UNUSED_0x40FC                                0x40FC // Unused Var
-#define VAR_UNUSED_0x40FD                                0x40FD // Unused Var
-#define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
-#define VAR_UNUSED_0x40FF                                0x40FF // Unused Var
+#define VAR_HIDDEN_GROTTO_ROUTE_103                      0x40F9 // Grotto Var
+#define VAR_HIDDEN_GROTTO_ROUTE_116                      0x40FA // Grotto Var
+#define VAR_HIDDEN_GROTTO_ROUTE_117                      0x40FB // Grotto Var
+#define VAR_HIDDEN_GROTTO_ROUTE_112                      0x40FC // Grotto Var
+#define VAR_HIDDEN_GROTTO_ROUTE_119                      0x40FD // Grotto Var
+#define VAR_HIDDEN_GROTTO_ROUTE_121                      0x40FE // Grotto Var
+#define VAR_HIDDEN_GROTTO_ROUTE_115                      0x40FF // Grotto Var
 
 #define VARS_END                                         0x40FF
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)

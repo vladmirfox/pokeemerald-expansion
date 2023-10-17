@@ -5,10 +5,12 @@ LilycoveCity_LilycoveMuseumGarden_MapScripts::
 	.byte 0
 
 LilycoveCity_LilycoveMuseumGarden_OnResume_Night:
+	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_SHADE
 	return
 
 LilycoveCity_LilycoveMuseumGarden_OnResume_Day:
+	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
 	return
 

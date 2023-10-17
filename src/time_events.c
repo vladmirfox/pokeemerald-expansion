@@ -9,6 +9,13 @@
 #include "script.h"
 #include "task.h"
 
+const u16 sHiddenGrottoVars[NUM_GROTTO_VARS] =
+{
+    VAR_HIDDEN_GROTTO_ROUTE_103, VAR_HIDDEN_GROTTO_ROUTE_116, VAR_HIDDEN_GROTTO_ROUTE_117, VAR_HIDDEN_GROTTO_ROUTE_112, 
+    VAR_HIDDEN_GROTTO_ROUTE_119, VAR_HIDDEN_GROTTO_ROUTE_121, VAR_HIDDEN_GROTTO_ROUTE_115, VAR_HIDDEN_GROTTO_ROUTE_123,
+    VAR_HIDDEN_GROTTO_PETALBURG_WOODS
+};
+
 static u32 GetMirageRnd(void)
 {
     u32 hi = VarGet(VAR_MIRAGE_RND_H);
@@ -115,4 +122,47 @@ void UpdateBirchState(u16 days)
     u16 *state = GetVarPointer(VAR_BIRCH_STATE);
     *state += days;
     *state %= 7;
+}
+
+bool8 GetGrottoWarpId(void)
+{
+    u8 flagsSet = 0;
+    u8 i;
+    int result;
+    int j;
+    bool8 isUnique = FALSE;
+
+    for (i = 0; i < NUM_SOFT_CAPS; i++)
+    {
+        if (FlagGet(sLevelCapFlags[i]))
+        {
+            flagsSet++;
+        }
+    }
+
+    result = (flagsSet * 27) / 9 + 3;
+
+    for (i = 0; i < NUM_GROTTO_VARS; i++)
+    {
+        if (result == VarGet(sHiddenGrottoVars[i]))
+        {
+            while (1)
+            {
+                result = (Random() % result) + 1;
+                isUnique = TRUE;
+                for (j = 0; j < NUM_GROTTO_VARS; j++)
+                {
+                    if (result == VarGet(sHiddenGrottoVars[j]))
+                    {
+                        isUnique = FALSE;
+                        break;
+                    }
+                }
+                if (isUnique)
+                    break;
+            }
+        }
+    }
+
+    return result;
 }
