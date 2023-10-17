@@ -1752,7 +1752,6 @@ const struct Item gItems[] =
                                            "Attack during one\n"
                                            "battle."),
         #endif
-        .description = sXAttackDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
