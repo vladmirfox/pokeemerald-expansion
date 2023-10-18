@@ -15610,7 +15610,7 @@ static bool32 CriticalCapture(u32 odds)
 bool32 IsMoveAffectedByParentalBond(u32 move, u32 battler)
 {
     if (move != MOVE_NONE && move != MOVE_UNAVAILABLE && move != MOVE_STRUGGLE
-        && !gBattleMoves[move].noParentalBondHit
+        && !gBattleMoves[move].parentalBondBanned
         && gBattleMoves[move].split != SPLIT_STATUS
         && gBattleMoves[move].strikeCount <= 2)
     {

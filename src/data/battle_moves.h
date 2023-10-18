@@ -2123,7 +2123,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .noParentalBondHit = TRUE,
+        .parentalBondBanned = TRUE,
     },
 
     [MOVE_EGG_BOMB] =
@@ -2730,7 +2730,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .noParentalBondHit = TRUE,
+        .parentalBondBanned = TRUE,
     },
 
     [MOVE_FURY_SWIPES] =
@@ -3695,7 +3695,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .instructBanned = TRUE,
-        .noParentalBondHit = TRUE,
+        .parentalBondBanned = TRUE,
     },
 
     [MOVE_FALSE_SWIPE] =
@@ -5080,7 +5080,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .noParentalBondHit = TRUE,
+        .parentalBondBanned = TRUE,
     },
 
     [MOVE_ERUPTION] =
@@ -5386,7 +5386,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .makesContact = TRUE,
         .ballisticMove = TRUE,
         .instructBanned = TRUE,
-        .noParentalBondHit = TRUE,
+        .parentalBondBanned = TRUE,
     },
 
     [MOVE_NEEDLE_ARM] =
@@ -6663,7 +6663,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .noParentalBondHit = TRUE,
+        .parentalBondBanned = TRUE,
     },
 
     [MOVE_PSYCHO_SHIFT] =
@@ -9031,7 +9031,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .mirrorMoveBanned = TRUE,
-        .noParentalBondHit = TRUE,
+        .parentalBondBanned = TRUE,
     },
 
     [MOVE_BESTOW] =
@@ -12013,7 +12013,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .mimicBanned = TRUE,
         .encoreBanned = TRUE,
         //.assistBanned = TRUE,
-        .noParentalBondHit = TRUE,
+        .parentalBondBanned = TRUE,
     },
 
     [MOVE_SNIPE_SHOT] =
@@ -12126,7 +12126,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .strikeCount = 2,
-        .noParentalBondHit = TRUE,
+        .parentalBondBanned = TRUE,
     },
 
     [MOVE_TEATIME] =
