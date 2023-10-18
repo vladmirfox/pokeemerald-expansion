@@ -1116,7 +1116,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .instructBanned = TRUE,
         .ignoresKingsRock = B_UPDATED_MOVE_FLAGS < GEN_3,
     },
 
@@ -5493,7 +5492,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .instructBanned = TRUE,
     },
 
     [MOVE_HYDRO_CANNON] =
@@ -5508,7 +5506,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .instructBanned = TRUE,
     },
 
     [MOVE_METEOR_MASH] =
@@ -6031,7 +6028,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .instructBanned = TRUE,
     },
 
     [MOVE_BULK_UP] =
@@ -7378,7 +7374,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .instructBanned = TRUE,
         .makesContact = TRUE,
     },
 
@@ -7751,7 +7746,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .instructBanned = TRUE,
         .ballisticMove = TRUE,
     },
 
@@ -8086,7 +8080,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .instructBanned = TRUE,
     },
 
     [MOVE_SPACIAL_REND] =
@@ -11537,7 +11530,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .priority = 0,
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .instructBanned = TRUE,
     },
 
     [MOVE_SPECTRAL_THIEF] =
@@ -12562,7 +12554,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .metronomeBanned = TRUE,
-        .instructBanned = TRUE,
     },
 
     [MOVE_STEEL_BEAM] =
