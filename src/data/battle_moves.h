@@ -12012,7 +12012,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .instructBanned = TRUE,
         .mimicBanned = TRUE,
         .encoreBanned = TRUE,
-        //.assistBanned = TRUE,
+        .assistBanned = TRUE,
         .parentalBondBanned = TRUE,
     },
 
@@ -12326,7 +12326,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .mimicBanned = TRUE,
-        //.assistBanned = TRUE,
+        .assistBanned = TRUE,
     },
 
     [MOVE_BEHEMOTH_BASH] =
@@ -12345,7 +12345,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .mimicBanned = TRUE,
-        //.assistBanned = TRUE,
+        .assistBanned = TRUE,
     },
 
     [MOVE_AURA_WHEEL] =

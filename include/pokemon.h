@@ -387,10 +387,10 @@ struct BattleMove
     u32 mimicBanned:1;
     u32 metronomeBanned:1;
     u32 copycatBanned:1;
+    u32 assistBanned:1; // Matches same moves as copycatBanned + semi-invulnerable moves and Mirror Coat.
     u32 sleepTalkBanned:1;
     u32 instructBanned:1;
     u32 encoreBanned:1;
-    u32 assistBanned:1;
     u32 parentalBondBanned:1;
 };
 
