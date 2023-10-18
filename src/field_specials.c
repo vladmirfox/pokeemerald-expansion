@@ -143,6 +143,29 @@ static void BufferFanClubTrainerName_(struct LinkBattleRecords *, u8, u8);
 static void BufferFanClubTrainerName_(u8 whichLinkTrainer, u8 whichNPCTrainer);
 #endif
 
+const u16 sHiddenGrottoVars[NUM_GROTTO_VARS] =
+{
+    VAR_HIDDEN_GROTTO_ROUTE_103, VAR_HIDDEN_GROTTO_ROUTE_116, VAR_HIDDEN_GROTTO_ROUTE_117, VAR_HIDDEN_GROTTO_ROUTE_112, 
+    VAR_HIDDEN_GROTTO_ROUTE_119, VAR_HIDDEN_GROTTO_ROUTE_121, VAR_HIDDEN_GROTTO_ROUTE_115, VAR_HIDDEN_GROTTO_ROUTE_123,
+    VAR_HIDDEN_GROTTO_PETALBURG_WOODS
+};
+
+static const u16 sHiddenGrottoLocations[NUM_GROTTO_VARS] =
+{
+    MAP_NUM(ROUTE103), MAP_NUM(ROUTE116), MAP_NUM(ROUTE117), MAP_NUM(ROUTE112), 
+    MAP_NUM(ROUTE119), MAP_NUM(ROUTE121), MAP_NUM(ROUTE115), MAP_NUM(ROUTE123), 
+    MAP_NUM(PETALBURG_WOODS)
+};
+
+static const u16 sHiddenGrottoMaps[NUM_GROTTO_MAPS] =
+{
+    //HIDDEN_GROTTO_1, HIDDEN_GROTTO_2, HIDDEN_GROTTO_3, HIDDEN_GROTTO_4, HIDDEN_GROTTO_5, HIDDEN_GROTTO_6,
+    //HIDDEN_GROTTO_7, HIDDEN_GROTTO_8, HIDDEN_GROTTO_9, HIDDEN_GROTTO_10, HIDDEN_GROTTO_11, HIDDEN_GROTTO_12,
+    //HIDDEN_GROTTO_13, HIDDEN_GROTTO_14, HIDDEN_GROTTO_15, HIDDEN_GROTTO_16, HIDDEN_GROTTO_17, HIDDEN_GROTTO_18,
+    //HIDDEN_GROTTO_19, HIDDEN_GROTTO_20, HIDDEN_GROTTO_21, HIDDEN_GROTTO_22, HIDDEN_GROTTO_23, HIDDEN_GROTTO_24,
+    //HIDDEN_GROTTO_25, HIDDEN_GROTTO_26, HIDDEN_GROTTO_27, HIDDEN_GROTTO_28, HIDDEN_GROTTO_29, HIDDEN_GROTTO_30
+};
+
 void Special_ShowDiploma(void)
 {
     SetMainCallback2(CB2_ShowDiploma);
@@ -169,6 +192,72 @@ void GetDayOrNight(void)
 		nightorday = 1; //Night
 	}
 	gSpecialVar_Result = nightorday;
+}
+
+void GetGrottoWarp(void)
+{
+    u8 warpid = 0;
+    u8 flagsSet = 0;
+    u8 maxGrottos = 0;
+    u8 var;
+    u8 j;
+    u8 i;
+    bool8 isUnique = FALSE;
+
+    // Gets the Grotto variable for the current map as well as the value of that variable.
+    for (i = 0; i < NUM_GROTTO_VARS; i++) {
+        if (gSaveBlock1Ptr->location.mapNum == sHiddenGrottoLocations[i]) {
+            var = sHiddenGrottoVars[i];
+            warpid = VarGet(var);
+            break;
+        }
+    }
+
+    // Runs if the warpid is 0 (i.e it has been cleared because it is a new day or it is a new game).
+    if (warpid == 0)
+    {
+        // Gets the maximum number of Grottos avaialble at this level of progression by getting the number of set progression flags (0-9).
+       for (i = 0; i < NUM_LEVEL_CAPS; i++)
+        {
+            if (FlagGet(sProgressionFlags[i]))
+            {
+                flagsSet++;
+            }
+        }
+        maxGrottos = (flagsSet * (NUM_GROTTOS_PER_FLAG * NUM_PROGRESSION_FLAGS)) / NUM_PROGRESSION_FLAGS + NUM_GROTTOS_PER_FLAG;
+
+        // Sets the warpid to a random number between 1 and the maximum number of Grottos for this level of progression.
+        warpid = (Random() % maxGrottos) + 1;
+
+        // Checks all of the set Grotto variables to make sure warpid does not match an existing grotto variable. If it does, re-randomise and check again.
+        for (i = 0; i < NUM_GROTTO_VARS; i++)
+        {
+            if (warpid == VarGet(sHiddenGrottoVars[i]))
+            {
+                while (1)
+                {
+                    warpid = (Random() % maxGrottos) + 1;
+                    isUnique = TRUE;
+                    for (j = 0; j < NUM_GROTTO_VARS; j++)
+                    {
+                        if (warpid == VarGet(sHiddenGrottoVars[j]))
+                        {
+                            isUnique = FALSE;
+                            break;
+                        }
+                    }
+                    if (isUnique)
+                        break;
+                }
+            }
+        }
+
+        // Set the variable to warpid provided we've reached this point (the warpid is unique amongst the set Grotto variables).
+        VarSet(var, warpid);
+    }
+
+    // Gets the associated map name from the sHiddenGrottoMaps array based on the value of warpid.
+    gSpecialVar_Result = sHiddenGrottoMaps[warpid -1];
 }
 
 void ResetCyclingRoadChallengeData(void)

@@ -1203,7 +1203,7 @@ static const u8 sBattlePalaceNatureToFlavorTextId[NUM_NATURES] =
     [NATURE_QUIRKY]  = B_MSG_EAGER_FOR_MORE,
 };
 
-const u16 sLevelCapFlags[NUM_SOFT_CAPS] =
+const u16 sProgressionFlags[NUM_PROGRESSION_FLAGS] =
 {
     FLAG_BADGE01_GET, FLAG_BADGE02_GET, FLAG_BADGE03_GET, FLAG_BADGE04_GET,
     FLAG_BADGE05_GET, FLAG_BADGE06_GET, FLAG_BADGE07_GET, FLAG_BADGE08_GET, 
@@ -1213,7 +1213,7 @@ const u16 sLevelCapFlags[NUM_SOFT_CAPS] =
 // For instance, FLAG_BADGE01_GET corresponds to beating Roxanne,
 // and takes us to the Brawly level cap.
 
-const u16 sLevelCaps[NUM_SOFT_CAPS] = 
+const u16 sLevelCaps[NUM_LEVEL_CAPS] = 
 { 
 15, //Roxanne
 22, //Brawly
@@ -1227,7 +1227,7 @@ const u16 sLevelCaps[NUM_SOFT_CAPS] =
 100 //Post game
 };
 
-const u16 sLevelCaps2[NUM_SOFT_CAPS] =
+const u16 sSoftLevelCaps[NUM_LEVEL_CAPS] =
 { 
 17, //Roxanne
 24, //Brawly
@@ -4106,9 +4106,9 @@ int GetPkmnExpMultiplier(u8 level)
     int lvlCapMultiplier = 0;
     u8 levelDiff;
 
-    for (i = 0; i < NUM_SOFT_CAPS; i++)
+    for (i = 0; i < NUM_LEVEL_CAPS; i++)
     {
-        if (!FlagGet(sLevelCapFlags[i]) && level >= sLevelCaps[i])
+        if (!FlagGet(sProgressionFlags[i]) && level >= sLevelCaps[i])
         {
             levelDiff = (level + 1) - sLevelCaps[i];
             if (levelDiff > 3)
@@ -4140,9 +4140,9 @@ int GetPkmnLevelCap(void)
     u8 i;
     int numFlagsSet = 0;
 
-    for (i = 0; i < NUM_SOFT_CAPS; i++)
+    for (i = 0; i < NUM_LEVEL_CAPS; i++)
     {
-        if (FlagGet(sLevelCapFlags[i]))
+        if (FlagGet(sProgressionFlags[i]))
         {
             numFlagsSet++;
         }
@@ -4152,7 +4152,7 @@ int GetPkmnLevelCap(void)
         return sLevelCaps[numFlagsSet];
 
     if (FlagGet(FLAG_SYS_SOFT_LEVEL_CAP))
-        return sLevelCaps2[numFlagsSet];
+        return sSoftLevelCaps[numFlagsSet];
 
     return MAX_LEVEL;
 }

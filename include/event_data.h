@@ -1,8 +1,21 @@
 #ifndef GUARD_EVENT_DATA_H
 #define GUARD_EVENT_DATA_H
 
-#define NUM_SOFT_CAPS 10
-#define NUM_GROTTO_VARS 9
+#define NUM_PROGRESSION_FLAGS 9 // Set to the number of flags in the sProgressionFlags array
+
+/* The number of level caps should always be 1 more than your progression flags because we need
+a level cap for when there are 0 progression flags are set, all the way up to when all of the
+progression flags are set. */
+#define NUM_LEVEL_CAPS NUM_PROGRESSION_FLAGS + 1
+
+#define NUM_GROTTO_VARS 9 // Each Grotto entrance should have it's own unique var in `include/vars.h`.
+
+#define NUM_GROTTOS_PER_FLAG 3 // Determines how many new Grottos become available per progression flag set.
+
+/* The number of avaialble Grotto maps should be equal to the number of progression flags + 1 multiplied 
+by the number of available grottos per flag. Since we also want Grotto's to be avaialble when none of the
+progression flags are set.*/
+#define NUM_GROTTO_MAPS (NUM_PROGRESSION_FLAGS + 1) * NUM_GROTTOS_PER_FLAG
 
 void InitEventData(void);
 void ClearTempFieldEventData(void);
@@ -52,8 +65,8 @@ extern u16 gSpecialVar_Facing;
 extern u16 gSpecialVar_MonBoxId;
 extern u16 gSpecialVar_MonBoxPos;
 extern u16 gSpecialVar_Unused_0x8014;
-extern const u16 sLevelCapFlags[NUM_SOFT_CAPS];
-extern const u16 sLevelCaps[NUM_SOFT_CAPS];
+extern const u16 sProgressionFlags[NUM_PROGRESSION_FLAGS];
+extern const u16 sLevelCaps[NUM_LEVEL_CAPS];
 extern const u16 sHiddenGrottoVars[NUM_GROTTO_VARS];
 
 #endif // GUARD_EVENT_DATA_H

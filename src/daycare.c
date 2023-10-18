@@ -329,14 +329,14 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
         SetMonData(&pokemon, MON_DATA_EXP, &experience);
         level = GetLevelFromMonExp(&pokemon);
 
-        for (i = 0; i < NUM_SOFT_CAPS; i++)
+        for (i = 0; i < NUM_LEVEL_CAPS; i++)
         {
             if (i <= 2)
                 cap = sLevelCaps[i] / 2;
             else
                 cap = sLevelCaps[i];
 
-            if (!FlagGet(sLevelCapFlags[i]) && level >= cap)
+            if (!FlagGet(sProgressionFlags[i]) && level >= cap)
             {
                 u8 levelDiff;
                 u32 newSteps;
@@ -393,14 +393,14 @@ static u8 GetLevelAfterDaycareSteps(struct BoxPokemon *mon, u32 steps)
         level = GetLevelFromBoxMonExp(&tempMon);
 
         // loop through to check caps
-        for (i = 0; i < NUM_SOFT_CAPS; i++)
+        for (i = 0; i < NUM_LEVEL_CAPS; i++)
         {
             if (i <= 2)
                 cap = sLevelCaps[i] / 2;
             else
                 cap = sLevelCaps[i];
 
-            if (!FlagGet(sLevelCapFlags[i]) && level >= cap)
+            if (!FlagGet(sProgressionFlags[i]) && level >= cap)
             {
                 u8 levelDiff;
                 u32 newSteps;
