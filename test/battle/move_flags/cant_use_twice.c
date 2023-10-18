@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(gBattleMoves[MOVE_GIGATON_HAMMER].cantUseTwice == TRUE);
 }
 
-SINGLE_BATTLE_TEST("Struggle will be used if slow Encore is used on CantUseTwice move")
+SINGLE_BATTLE_TEST("Struggle will be used if slow Encore is used on moves with the cantUseTwice flag")
 {
     GIVEN {
         ASSUME(gBattleMoves[MOVE_ENCORE].effect == EFFECT_ENCORE);
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Struggle will be used if slow Encore is used on CantUseTwice
     }
 }
 
-SINGLE_BATTLE_TEST("CantUseTwice move strikes again if fast encore is used")
+SINGLE_BATTLE_TEST("Moves with the cantUseTwice flag strike again if fast encore is used")
 {
     GIVEN {
         ASSUME(gBattleMoves[MOVE_ENCORE].effect == EFFECT_ENCORE);
@@ -42,7 +42,7 @@ SINGLE_BATTLE_TEST("CantUseTwice move strikes again if fast encore is used")
     }
 }
 
-SINGLE_BATTLE_TEST("CantUseTwice move alternates with Struggle if it is the only usable move left")
+SINGLE_BATTLE_TEST("Moves with the cantUseTwice flag alternate with Struggle if it is the only usable move left")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_GIGATON_HAMMER, MOVE_NONE, MOVE_NONE, MOVE_NONE); }
