@@ -5844,7 +5844,6 @@ void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc task)
 
 static void Task_TryItemUseFusionChange(u8 taskId);
 static void SpriteCB_FormChangeIconMosaic(struct Sprite *sprite);
-static void Task_TryItemUseUnfuseChange(u8 taskId);
 
 u8 IsFusionMon(u16 species) // Helps with control flow, probably not ideal
 {
@@ -5915,7 +5914,6 @@ void DeleteMove(struct Pokemon *mon, u16 move)
 {
     struct BoxPokemon *boxMon = &mon->box;
     u32 i, j;
-    u8 deletemove = MOVE_NONE;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
@@ -5966,7 +5964,6 @@ static void Task_TryItemUseFusionChange(u8 taskId)
     struct Sprite *icon = &gSprites[sPartyMenuBoxes[gTasks[taskId].firstFusionSlot].monSpriteId];
     struct Pokemon *mon2;
     struct Sprite *icon2 = &gSprites[sPartyMenuBoxes[gTasks[taskId].secondFusionSlot].monSpriteId];
-    u16 i;
     u16 targetSpecies;
 
     switch (gTasks[taskId].tState)
