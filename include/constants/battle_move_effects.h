@@ -416,7 +416,8 @@
 #define EFFECT_MATCHA_GOTCHA                410
 #define EFFECT_SYRUP_BOMB                   411
 #define EFFECT_IVY_CUDGEL                   412
+#define EFFECT_MAX_MOVE                     413
 
-#define NUM_BATTLE_MOVE_EFFECTS             413
+#define NUM_BATTLE_MOVE_EFFECTS             414
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H
