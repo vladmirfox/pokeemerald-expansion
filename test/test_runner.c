@@ -184,6 +184,8 @@ void CB2_TestRunner(void)
         else
             gTestRunnerState.timeoutSeconds = UINT_MAX;
         InitHeap(gHeap, HEAP_SIZE);
+        SeedRng(0);
+        SeedRng2(0);
         EnableInterrupts(INTR_FLAG_TIMER2);
         REG_TM2CNT_L = UINT16_MAX - (274 * 60); // Approx. 1 second.
         REG_TM2CNT_H = TIMER_ENABLE | TIMER_INTR_ENABLE | TIMER_1024CLK;
