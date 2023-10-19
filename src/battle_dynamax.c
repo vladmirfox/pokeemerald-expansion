@@ -93,7 +93,6 @@ static const struct GMaxMove sGMaxMoveTable[] =
 
 // forward declarations
 static void SpriteCb_DynamaxTrigger(struct Sprite *);
-static void SpriteCb_DynamaxIndicator(struct Sprite *);
 
 // Returns whether a battler is Dynamaxed.
 bool32 IsDynamaxed(u16 battlerId)
@@ -1283,12 +1282,6 @@ void DestroyDynamaxTriggerSprite(void)
 #undef tBattler
 #undef tHide
 
-// for sprite data fields
-#define tBattler        data[0]
-#define tType           data[1] // Indicator type: dynamax
-#define tPosX           data[2]
-#define tLevelXDelta    data[3] // X position depends whether level has 3, 2 or 1 digit
-
 // data fields for healthboxMain
 // oam.affineParam holds healthboxRight spriteId
 #define hMain_DynamaxIndicatorId    data[3]
@@ -1301,17 +1294,3 @@ void DestroyDynamaxTriggerSprite(void)
 
 // data fields for healthbar
 #define hBar_HealthBoxSpriteId      data[5]
-
-static void SpriteCb_DynamaxIndicator(struct Sprite *sprite)
-{
-    u32 battlerId = sprite->tBattler;
-
-    sprite->x = gSprites[gHealthboxSpriteIds[battlerId]].x + sprite->tPosX + sprite->tLevelXDelta;
-    sprite->x2 = gSprites[gHealthboxSpriteIds[battlerId]].x2;
-    sprite->y2 = gSprites[gHealthboxSpriteIds[battlerId]].y2;
-}
-
-#undef tBattler
-#undef tType
-#undef tPosX
-#undef tLevelXDelta
