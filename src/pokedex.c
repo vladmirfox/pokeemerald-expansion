@@ -3959,7 +3959,11 @@ u8 DisplayCaughtMonDexPage(u16 dexNum, u32 otId, u32 personality)
     return taskId;
 }
 
+#if POKEDEX_PLUS_HGSS
+static UNUSED void Task_DisplayCaughtMonDexPage(u8 taskId)
+#else
 static void Task_DisplayCaughtMonDexPage(u8 taskId)
+#endif
 {
     u8 spriteId;
     u16 dexNum = gTasks[taskId].tDexNum;

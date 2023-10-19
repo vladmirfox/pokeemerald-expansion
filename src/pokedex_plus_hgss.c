@@ -4779,15 +4779,25 @@ static void ResetStatsWindows(void)
 static void SaveMonDataInStruct(void)
 {
     u16 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
-    u8 evs[6] = {gSpeciesInfo[species].evYield_HP, gSpeciesInfo[species].evYield_Speed, gSpeciesInfo[species].evYield_Attack, gSpeciesInfo[species].evYield_SpAttack, gSpeciesInfo[species].evYield_Defense, gSpeciesInfo[species].evYield_SpDefense};
+    u8 EVs[NUM_STATS] =
+    {
+        [STAT_HP]    = gSpeciesInfo[species].evYield_HP,
+        [STAT_ATK]   = gSpeciesInfo[species].evYield_Speed,
+        [STAT_DEF]   = gSpeciesInfo[species].evYield_Attack,
+        [STAT_SPEED] = gSpeciesInfo[species].evYield_SpAttack,
+        [STAT_SPATK] = gSpeciesInfo[species].evYield_Defense,
+        [STAT_SPDEF] = gSpeciesInfo[species].evYield_SpDefense
+    };
     u8 differentEVs = 0;
     u8 i;
 
     //Count how many different EVs
-    for (i = 0; i<6; i++)
+    for (i = 0; i < NUM_STATS; i++)
     {
-        if (EVs[i] > 0) //HP//Speed//Attack//Special Attack//Defense//Special Defense
+        if (EVs[i] > 0)
+        {
             differentEVs++;
+        }
     }
 
     sPokedexView->sPokemonStats.species             = species;
@@ -4799,12 +4809,12 @@ static void SaveMonDataInStruct(void)
     sPokedexView->sPokemonStats.baseDefense         = gSpeciesInfo[species].baseDefense;
     sPokedexView->sPokemonStats.baseSpDefense       = gSpeciesInfo[species].baseSpDefense;
     sPokedexView->sPokemonStats.differentEVs        = differentEVs;
-    sPokedexView->sPokemonStats.evYield_HP          = EVs[0];
-    sPokedexView->sPokemonStats.evYield_Speed       = EVs[1];
-    sPokedexView->sPokemonStats.evYield_Attack      = EVs[2];
-    sPokedexView->sPokemonStats.evYield_SpAttack    = EVs[3];
-    sPokedexView->sPokemonStats.evYield_Defense     = EVs[4];
-    sPokedexView->sPokemonStats.evYield_SpDefense   = EVs[5];
+    sPokedexView->sPokemonStats.evYield_HP          = EVs[STAT_HP];
+    sPokedexView->sPokemonStats.evYield_Speed       = EVs[STAT_ATK];
+    sPokedexView->sPokemonStats.evYield_Attack      = EVs[STAT_DEF];
+    sPokedexView->sPokemonStats.evYield_SpAttack    = EVs[STAT_SPEED];
+    sPokedexView->sPokemonStats.evYield_Defense     = EVs[STAT_SPATK];
+    sPokedexView->sPokemonStats.evYield_SpDefense   = EVs[STAT_SPDEF];
     sPokedexView->sPokemonStats.catchRate           = gSpeciesInfo[species].catchRate;
     sPokedexView->sPokemonStats.growthRate          = gSpeciesInfo[species].growthRate;
     sPokedexView->sPokemonStats.eggGroup1           = gSpeciesInfo[species].eggGroups[0];
