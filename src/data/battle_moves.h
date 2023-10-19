@@ -224,7 +224,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .twoTurnMove = TRUE,
         .sleepTalkBanned = TRUE,
         .instructBanned = TRUE,
-        //.windMove = TRUE,
+        .windMove = B_EXTRAPOLATED_MOVE_FLAGS,
     },
 
     [MOVE_SWORDS_DANCE] =
@@ -5690,7 +5690,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
-        //.windMove = TRUE,
+        .windMove = B_EXTRAPOLATED_MOVE_FLAGS,
     },
 
     [MOVE_METAL_SOUND] =
@@ -8200,7 +8200,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .sheerForceBoost = TRUE,
-        //.windMove = TRUE,
+        .windMove = B_EXTRAPOLATED_MOVE_FLAGS,
     },
 
     [MOVE_SHADOW_FORCE] =
@@ -12004,7 +12004,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .instructBanned = TRUE,
         .mimicBanned = TRUE,
         .encoreBanned = TRUE,
-        .assistBanned = TRUE,
+        .assistBanned = B_EXTRAPOLATED_MOVE_FLAGS,
         .parentalBondBanned = TRUE,
     },
 
@@ -12318,7 +12318,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .mimicBanned = TRUE,
-        .assistBanned = TRUE,
+        .assistBanned = B_EXTRAPOLATED_MOVE_FLAGS,
     },
 
     [MOVE_BEHEMOTH_BASH] =
@@ -12337,7 +12337,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .metronomeBanned = TRUE,
         .copycatBanned = TRUE,
         .mimicBanned = TRUE,
-        .assistBanned = TRUE,
+        .assistBanned = B_EXTRAPOLATED_MOVE_FLAGS,
     },
 
     [MOVE_AURA_WHEEL] =
