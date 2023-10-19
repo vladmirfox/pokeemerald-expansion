@@ -14132,7 +14132,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
         .slicingMove = TRUE,
-        .healBlockBanned = TRUE,
+        .healBlockBanned = B_EXTRAPOLATED_MOVE_FLAGS,
     },
 
     [MOVE_DOUBLE_SHOCK] =
@@ -14379,6 +14379,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .zMoveEffect = Z_EFFECT_NONE,
         .thawsUser = TRUE,
         .metronomeBanned = TRUE,
+        .healBlockBanned = B_EXTRAPOLATED_MOVE_FLAGS,
     },
 
     [MOVE_SYRUP_BOMB] =
