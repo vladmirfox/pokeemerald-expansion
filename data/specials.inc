@@ -539,3 +539,4 @@ gSpecials::
 	def_special TrySpecialOverworldEvo
 	def_special GetDayOrNight
 	def_special GetGrottoWarp
+	def_special GetGrottoReturnWarp

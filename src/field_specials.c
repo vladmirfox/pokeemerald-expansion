@@ -150,20 +150,42 @@ const u16 sHiddenGrottoVars[NUM_GROTTO_VARS] =
     VAR_HIDDEN_GROTTO_PETALBURG_WOODS
 };
 
-static const u16 sHiddenGrottoLocations[NUM_GROTTO_VARS] =
+static const u16 sHiddenGrottoLocationNums[NUM_GROTTO_VARS] =
 {
     MAP_NUM(ROUTE103), MAP_NUM(ROUTE116), MAP_NUM(ROUTE117), MAP_NUM(ROUTE112), 
     MAP_NUM(ROUTE119), MAP_NUM(ROUTE121), MAP_NUM(ROUTE115), MAP_NUM(ROUTE123), 
     MAP_NUM(PETALBURG_WOODS)
 };
 
-static const u16 sHiddenGrottoMaps[NUM_GROTTO_MAPS] =
+static const u16 sHiddenGrottoLocationGroups[NUM_GROTTO_VARS] =
 {
-    //HIDDEN_GROTTO_1, HIDDEN_GROTTO_2, HIDDEN_GROTTO_3, HIDDEN_GROTTO_4, HIDDEN_GROTTO_5, HIDDEN_GROTTO_6,
-    //HIDDEN_GROTTO_7, HIDDEN_GROTTO_8, HIDDEN_GROTTO_9, HIDDEN_GROTTO_10, HIDDEN_GROTTO_11, HIDDEN_GROTTO_12,
-    //HIDDEN_GROTTO_13, HIDDEN_GROTTO_14, HIDDEN_GROTTO_15, HIDDEN_GROTTO_16, HIDDEN_GROTTO_17, HIDDEN_GROTTO_18,
-    //HIDDEN_GROTTO_19, HIDDEN_GROTTO_20, HIDDEN_GROTTO_21, HIDDEN_GROTTO_22, HIDDEN_GROTTO_23, HIDDEN_GROTTO_24,
-    //HIDDEN_GROTTO_25, HIDDEN_GROTTO_26, HIDDEN_GROTTO_27, HIDDEN_GROTTO_28, HIDDEN_GROTTO_29, HIDDEN_GROTTO_30
+    MAP_GROUP(ROUTE103), MAP_GROUP(ROUTE116), MAP_GROUP(ROUTE117), MAP_GROUP(ROUTE112), 
+    MAP_GROUP(ROUTE119), MAP_GROUP(ROUTE121), MAP_GROUP(ROUTE115), MAP_GROUP(ROUTE123), 
+    MAP_GROUP(PETALBURG_WOODS)
+};
+
+static const u16 sHiddenGrottoMapNums[NUM_GROTTO_MAPS] =
+{
+    //MAP_NUM(GROTTO1), MAP_NUM(GROTTO2), MAP_NUM(GROTTO3), MAP_NUM(GROTTO4), 
+    //MAP_NUM(GROTTO5), MAP_NUM(GROTTO6), MAP_NUM(GROTTO7), MAP_NUM(GROTTO8), 
+    //MAP_NUM(GROTTO9), MAP_NUM(GROTTO10), MAP_NUM(GROTTO11), MAP_NUM(GROTTO12), 
+    //MAP_NUM(GROTTO13), MAP_NUM(GROTTO14), MAP_NUM(GROTTO15), MAP_NUM(GROTTO16), 
+    //MAP_NUM(GROTTO17), MAP_NUM(GROTTO18), MAP_NUM(GROTTO19), MAP_NUM(GROTTO20), 
+    //MAP_NUM(GROTTO21), MAP_NUM(GROTTO22), MAP_NUM(GROTTO23), MAP_NUM(GROTTO24),
+    //MAP_NUM(GROTTO25), MAP_NUM(GROTTO26), MAP_NUM(GROTTO27), MAP_NUM(GROTTO28), 
+    //MAP_NUM(GROTTO29), MAP_NUM(GROTTO30)
+};
+
+static const u16 sHiddenGrottoMapGroups[NUM_GROTTO_MAPS] =
+{
+    //MAP_GROUP(GROTTO1), MAP_GROUP(GROTTO2), MAP_GROUP(GROTTO3), MAP_GROUP(GROTTO4), 
+    //MAP_GROUP(GROTTO5), MAP_GROUP(GROTTO6), MAP_GROUP(GROTTO7), MAP_GROUP(GROTTO8), 
+    //MAP_GROUP(GROTTO9), MAP_GROUP(GROTTO10), MAP_GROUP(GROTTO11), MAP_GROUP(GROTTO12),
+    //MAP_GROUP(GROTTO13), MAP_GROUP(GROTTO14), MAP_GROUP(GROTTO15), MAP_GROUP(GROTTO16), 
+    //MAP_GROUP(GROTTO17), MAP_GROUP(GROTTO18), MAP_GROUP(GROTTO19), MAP_GROUP(GROTTO20), 
+    //MAP_GROUP(GROTTO21), MAP_GROUP(GROTTO22), MAP_GROUP(GROTTO23), MAP_GROUP(GROTTO24),
+    //MAP_GROUP(GROTTO25), MAP_GROUP(GROTTO26), MAP_GROUP(GROTTO27), MAP_GROUP(GROTTO28), 
+    //MAP_GROUP(GROTTO29), MAP_GROUP(GROTTO30)
 };
 
 void Special_ShowDiploma(void)
@@ -199,24 +221,23 @@ void GetGrottoWarp(void)
     u8 warpid = 0;
     u8 flagsSet = 0;
     u8 maxGrottos = 0;
+    u8 j = 0;
+    u8 i = 0;
     u8 var;
-    u8 j;
-    u8 i;
     bool8 isUnique = FALSE;
 
-    // Gets the Grotto variable for the current map as well as the value of that variable.
     for (i = 0; i < NUM_GROTTO_VARS; i++) {
-        if (gSaveBlock1Ptr->location.mapNum == sHiddenGrottoLocations[i]) {
+        if (gSaveBlock1Ptr->location.mapGroup == sHiddenGrottoLocationGroups[i] && 
+            gSaveBlock1Ptr->location.mapNum == sHiddenGrottoLocationNums[i]) {
+            VarSet(VAR_HIDDEN_GROTTO_RETURN_WARP, i);
             var = sHiddenGrottoVars[i];
             warpid = VarGet(var);
             break;
         }
     }
 
-    // Runs if the warpid is 0 (i.e it has been cleared because it is a new day or it is a new game).
     if (warpid == 0)
     {
-        // Gets the maximum number of Grottos avaialble at this level of progression by getting the number of set progression flags (0-9).
        for (i = 0; i < NUM_LEVEL_CAPS; i++)
         {
             if (FlagGet(sProgressionFlags[i]))
@@ -224,40 +245,55 @@ void GetGrottoWarp(void)
                 flagsSet++;
             }
         }
-        maxGrottos = (flagsSet * (NUM_GROTTOS_PER_FLAG * NUM_PROGRESSION_FLAGS)) / NUM_PROGRESSION_FLAGS + NUM_GROTTOS_PER_FLAG;
 
-        // Sets the warpid to a random number between 1 and the maximum number of Grottos for this level of progression.
+        maxGrottos = (flagsSet * (NUM_GROTTOS_PER_FLAG * NUM_PROGRESSION_FLAGS)) / NUM_PROGRESSION_FLAGS + NUM_GROTTOS_PER_FLAG;
         warpid = (Random() % maxGrottos) + 1;
 
-        // Checks all of the set Grotto variables to make sure warpid does not match an existing grotto variable. If it does, re-randomise and check again.
-        for (i = 0; i < NUM_GROTTO_VARS; i++)
-        {
-            if (warpid == VarGet(sHiddenGrottoVars[i]))
+        // Check the number of non-zero Grotto vars and assigns to j.
+        for (i = 0; i < NUM_GROTTO_VARS; i++) {
+            if (VarGet(sHiddenGrottoVars[i]) != 0) {
+                j++;
+            }
+        }
+
+        if (j < maxGrottos) {
+            for (i = 0; i < NUM_GROTTO_VARS; i++)
             {
-                while (1)
+                if (warpid == VarGet(sHiddenGrottoVars[i]))
                 {
-                    warpid = (Random() % maxGrottos) + 1;
-                    isUnique = TRUE;
-                    for (j = 0; j < NUM_GROTTO_VARS; j++)
+                    while (1)
                     {
-                        if (warpid == VarGet(sHiddenGrottoVars[j]))
+                        warpid = (Random() % maxGrottos) + 1;
+                        isUnique = TRUE;
+                        // j is reused to count iterations.
+                        for (j = 0; j < NUM_GROTTO_VARS; j++)
                         {
-                            isUnique = FALSE;
-                            break;
+                            if (warpid == VarGet(sHiddenGrottoVars[j]))
+                            {
+                                isUnique = FALSE;
+                                break;
+                            }
                         }
+                        if (isUnique)
+                            break;
                     }
-                    if (isUnique)
-                        break;
                 }
             }
         }
 
-        // Set the variable to warpid provided we've reached this point (the warpid is unique amongst the set Grotto variables).
         VarSet(var, warpid);
     }
 
-    // Gets the associated map name from the sHiddenGrottoMaps array based on the value of warpid.
-    gSpecialVar_Result = sHiddenGrottoMaps[warpid -1];
+    SetDynamicWarp(0, sHiddenGrottoMapGroups[warpid -1], sHiddenGrottoMapNums[warpid -1], 0);
+}
+
+void GetGrottoReturnWarp(void)
+{
+    u8 i = 0;
+
+    i = VarGet(VAR_HIDDEN_GROTTO_RETURN_WARP);
+
+    SetDynamicWarp(0, sHiddenGrottoLocationGroups[i], sHiddenGrottoLocationNums[i], 0);
 }
 
 void ResetCyclingRoadChallengeData(void)
