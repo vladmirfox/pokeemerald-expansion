@@ -1368,7 +1368,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_ALCREMIE_GIGANTAMAX] = sAlcremieLevelUpLearnset,
     [SPECIES_COPPERAJAH_GIGANTAMAX] = sCopperajahLevelUpLearnset,
     [SPECIES_DURALUDON_GIGANTAMAX] = sDuraludonLevelUpLearnset,
-    [SPECIES_URSHIFU_GIGANTAMAX] = sUrshifuSingleStrikeStyleLevelUpLearnset,
+    [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX] = sUrshifuSingleStrikeStyleLevelUpLearnset,
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX] = sUrshifuRapidStrikeStyleLevelUpLearnset,
 #endif
 };

@@ -1367,7 +1367,7 @@ const struct CompressedSpriteSheet gMonBackPicTable[NUM_SPECIES + 1] =
     SPECIES_SPRITE(ALCREMIE_GIGANTAMAX, gMonBackPic_AlcremieGigantamax),
     SPECIES_SPRITE(COPPERAJAH_GIGANTAMAX, gMonBackPic_CopperajahGigantamax),
     SPECIES_SPRITE(DURALUDON_GIGANTAMAX, gMonBackPic_DuraludonGigantamax),
-    SPECIES_SPRITE(URSHIFU_GIGANTAMAX, gMonBackPic_UrshifuGigantamax),
+    SPECIES_SPRITE(URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX, gMonBackPic_UrshifuSingleStrikeGigantamax),
     SPECIES_SPRITE(URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX, gMonBackPic_UrshifuRapidStrikeGigantamax),
 #endif
     SPECIES_SPRITE(EGG, gMonFrontPic_Egg),

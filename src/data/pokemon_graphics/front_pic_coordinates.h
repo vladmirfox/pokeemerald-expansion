@@ -1372,7 +1372,7 @@ const struct MonCoords gMonFrontPicCoords[NUM_SPECIES + 1] =
     [SPECIES_ALCREMIE_GIGANTAMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0 },
     [SPECIES_COPPERAJAH_GIGANTAMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0 },
     [SPECIES_DURALUDON_GIGANTAMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0 },
-    [SPECIES_URSHIFU_GIGANTAMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0 },
+    [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0 },
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX] = { .size = MON_COORDS_SIZE(64, 64), .y_offset = 0 },
 #endif
     // Egg

@@ -1368,7 +1368,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_ALCREMIE_GIGANTAMAX] = sAlcremieTeachableLearnset,
     [SPECIES_COPPERAJAH_GIGANTAMAX] = sCopperajahTeachableLearnset,
     [SPECIES_DURALUDON_GIGANTAMAX] = sDuraludonTeachableLearnset,
-    [SPECIES_URSHIFU_GIGANTAMAX] = sUrshifuSingleStrikeStyleTeachableLearnset,
+    [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX] = sUrshifuSingleStrikeStyleTeachableLearnset,
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX] = sUrshifuRapidStrikeStyleTeachableLearnset,
 #endif
 };

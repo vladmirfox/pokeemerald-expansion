@@ -625,7 +625,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_ALCREMIE_GIGANTAMAX] = sAlcremieFormSpeciesIdTable,
     [SPECIES_COPPERAJAH_GIGANTAMAX] = sCopperajahFormSpeciesIdTable,
     [SPECIES_DURALUDON_GIGANTAMAX] = sDuraludonFormSpeciesIdTable,
-    [SPECIES_URSHIFU_GIGANTAMAX] = sUrshifuFormSpeciesIdTable,
+    [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX] = sUrshifuFormSpeciesIdTable,
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX] = sUrshifuFormSpeciesIdTable,
 #endif
 };

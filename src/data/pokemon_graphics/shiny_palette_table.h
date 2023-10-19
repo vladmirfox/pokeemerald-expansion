@@ -1365,7 +1365,7 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[NUM_SPECIES + 1] =
     SPECIES_SHINY_PAL(ALCREMIE_GIGANTAMAX, gMonShinyPalette_AlcremieGigantamax),
     SPECIES_SHINY_PAL(COPPERAJAH_GIGANTAMAX, gMonShinyPalette_CopperajahGigantamax),
     SPECIES_SHINY_PAL(DURALUDON_GIGANTAMAX, gMonShinyPalette_DuraludonGigantamax),
-    SPECIES_SHINY_PAL(URSHIFU_GIGANTAMAX, gMonShinyPalette_UrshifuGigantamax),
+    SPECIES_SHINY_PAL(URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX, gMonShinyPalette_UrshifuSingleStrikeGigantamax),
     SPECIES_SHINY_PAL(URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX, gMonShinyPalette_UrshifuRapidStrikeGigantamax),
 #endif
     SPECIES_SHINY_PAL(EGG, gMonPalette_Egg),

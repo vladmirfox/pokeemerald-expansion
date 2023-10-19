@@ -1320,7 +1320,7 @@ const u32 gMonFrontPic_GrimmsnarlGigantamax[] = INCBIN_U32("graphics/pokemon/gri
 const u32 gMonFrontPic_AlcremieGigantamax[] = INCBIN_U32("graphics/pokemon/alcremie/gigantamax/front.4bpp.lz");
 const u32 gMonFrontPic_CopperajahGigantamax[] = INCBIN_U32("graphics/pokemon/copperajah/gigantamax/front.4bpp.lz");
 const u32 gMonFrontPic_DuraludonGigantamax[] = INCBIN_U32("graphics/pokemon/duraludon/gigantamax/front.4bpp.lz");
-const u32 gMonFrontPic_UrshifuGigantamax[] = INCBIN_U32("graphics/pokemon/urshifu/single_strike_style_gigantamax/front.4bpp.lz");
+const u32 gMonFrontPic_UrshifuSingleStrikeGigantamax[] = INCBIN_U32("graphics/pokemon/urshifu/single_strike_style_gigantamax/front.4bpp.lz");
 const u32 gMonFrontPic_UrshifuRapidStrikeGigantamax[] = INCBIN_U32("graphics/pokemon/urshifu/rapid_strike_style_gigantamax/front.4bpp.lz");
 #endif
 const u32 gMonFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.lz");
@@ -2638,7 +2638,7 @@ const u32 gMonBackPic_GrimmsnarlGigantamax[] = INCBIN_U32("graphics/pokemon/grim
 const u32 gMonBackPic_AlcremieGigantamax[] = INCBIN_U32("graphics/pokemon/alcremie/gigantamax/back.4bpp.lz");
 const u32 gMonBackPic_CopperajahGigantamax[] = INCBIN_U32("graphics/pokemon/copperajah/gigantamax/back.4bpp.lz");
 const u32 gMonBackPic_DuraludonGigantamax[] = INCBIN_U32("graphics/pokemon/duraludon/gigantamax/back.4bpp.lz");
-const u32 gMonBackPic_UrshifuGigantamax[] = INCBIN_U32("graphics/pokemon/urshifu/single_strike_style_gigantamax/back.4bpp.lz");
+const u32 gMonBackPic_UrshifuSingleStrikeGigantamax[] = INCBIN_U32("graphics/pokemon/urshifu/single_strike_style_gigantamax/back.4bpp.lz");
 const u32 gMonBackPic_UrshifuRapidStrikeGigantamax[] = INCBIN_U32("graphics/pokemon/urshifu/rapid_strike_style_gigantamax/back.4bpp.lz");
 #endif
 
@@ -3903,7 +3903,7 @@ const u32 gMonPalette_GrimmsnarlGigantamax[] = INCBIN_U32("graphics/pokemon/grim
 const u32 gMonPalette_AlcremieGigantamax[] = INCBIN_U32("graphics/pokemon/alcremie/gigantamax/normal.gbapal.lz");
 const u32 gMonPalette_CopperajahGigantamax[] = INCBIN_U32("graphics/pokemon/copperajah/gigantamax/normal.gbapal.lz");
 const u32 gMonPalette_DuraludonGigantamax[] = INCBIN_U32("graphics/pokemon/duraludon/gigantamax/normal.gbapal.lz");
-const u32 gMonPalette_UrshifuGigantamax[] = INCBIN_U32("graphics/pokemon/urshifu/single_strike_style_gigantamax/normal.gbapal.lz");
+const u32 gMonPalette_UrshifuSingleStrikeGigantamax[] = INCBIN_U32("graphics/pokemon/urshifu/single_strike_style_gigantamax/normal.gbapal.lz");
 const u32 gMonPalette_UrshifuRapidStrikeGigantamax[] = INCBIN_U32("graphics/pokemon/urshifu/rapid_strike_style_gigantamax/normal.gbapal.lz");
 #endif
 const u32 gMonPalette_Egg[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
@@ -5163,7 +5163,7 @@ const u32 gMonShinyPalette_GrimmsnarlGigantamax[] = INCBIN_U32("graphics/pokemon
 const u32 gMonShinyPalette_AlcremieGigantamax[] = INCBIN_U32("graphics/pokemon/alcremie/gigantamax/shiny.gbapal.lz");
 const u32 gMonShinyPalette_CopperajahGigantamax[] = INCBIN_U32("graphics/pokemon/copperajah/gigantamax/shiny.gbapal.lz");
 const u32 gMonShinyPalette_DuraludonGigantamax[] = INCBIN_U32("graphics/pokemon/duraludon/gigantamax/shiny.gbapal.lz");
-const u32 gMonShinyPalette_UrshifuGigantamax[] = INCBIN_U32("graphics/pokemon/urshifu/single_strike_style_gigantamax/shiny.gbapal.lz");
+const u32 gMonShinyPalette_UrshifuSingleStrikeGigantamax[] = INCBIN_U32("graphics/pokemon/urshifu/single_strike_style_gigantamax/shiny.gbapal.lz");
 const u32 gMonShinyPalette_UrshifuRapidStrikeGigantamax[] = INCBIN_U32("graphics/pokemon/urshifu/rapid_strike_style_gigantamax/shiny.gbapal.lz");
 #endif
 
@@ -6417,7 +6417,7 @@ const u8 gMonIcon_GrimmsnarlGigantamax[] = INCBIN_U8("graphics/pokemon/grimmsnar
 const u8 gMonIcon_AlcremieGigantamax[] = INCBIN_U8("graphics/pokemon/alcremie/gigantamax/icon.4bpp");
 const u8 gMonIcon_CopperajahGigantamax[] = INCBIN_U8("graphics/pokemon/copperajah/gigantamax/icon.4bpp");
 const u8 gMonIcon_DuraludonGigantamax[] = INCBIN_U8("graphics/pokemon/duraludon/gigantamax/icon.4bpp");
-const u8 gMonIcon_UrshifuGigantamax[] = INCBIN_U8("graphics/pokemon/urshifu/single_strike_style_gigantamax/icon.4bpp");
+const u8 gMonIcon_UrshifuSingleStrikeGigantamax[] = INCBIN_U8("graphics/pokemon/urshifu/single_strike_style_gigantamax/icon.4bpp");
 const u8 gMonIcon_UrshifuRapidStrikeGigantamax[] = INCBIN_U8("graphics/pokemon/urshifu/rapid_strike_style_gigantamax/icon.4bpp");
 #endif
 const u8 gMonIcon_Egg[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");

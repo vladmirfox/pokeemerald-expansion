@@ -24991,7 +24991,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         DURALUDON_MISC_INFO,
         .gigantamax = TRUE,
     },
-    [SPECIES_URSHIFU_GIGANTAMAX] =
+    [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX] =
     {
         URSHIFU_SINGLE_STRIKE_STYLE_MISC_INFO,
         .gigantamax = TRUE,

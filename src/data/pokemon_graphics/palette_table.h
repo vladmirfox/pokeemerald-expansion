@@ -1366,7 +1366,7 @@ const struct CompressedSpritePalette gMonPaletteTable[NUM_SPECIES + 1] =
     SPECIES_PAL(ALCREMIE_GIGANTAMAX, gMonPalette_AlcremieGigantamax),
     SPECIES_PAL(COPPERAJAH_GIGANTAMAX, gMonPalette_CopperajahGigantamax),
     SPECIES_PAL(DURALUDON_GIGANTAMAX, gMonPalette_DuraludonGigantamax),
-    SPECIES_PAL(URSHIFU_GIGANTAMAX, gMonPalette_UrshifuGigantamax),
+    SPECIES_PAL(URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX, gMonPalette_UrshifuSingleStrikeGigantamax),
     SPECIES_PAL(URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX, gMonPalette_UrshifuRapidStrikeGigantamax),
 #endif
     SPECIES_PAL(EGG, gMonPalette_Egg),

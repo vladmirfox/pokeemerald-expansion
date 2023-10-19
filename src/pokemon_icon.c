@@ -1326,7 +1326,7 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_ALCREMIE_GIGANTAMAX] = gMonIcon_AlcremieGigantamax,
     [SPECIES_COPPERAJAH_GIGANTAMAX] = gMonIcon_CopperajahGigantamax,
     [SPECIES_DURALUDON_GIGANTAMAX] = gMonIcon_DuraludonGigantamax,
-    [SPECIES_URSHIFU_GIGANTAMAX] = gMonIcon_UrshifuGigantamax,
+    [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX] = gMonIcon_UrshifuSingleStrikeGigantamax,
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX] = gMonIcon_UrshifuRapidStrikeGigantamax,
 #endif
     [SPECIES_EGG] = gMonIcon_Egg,
@@ -2593,7 +2593,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_ALCREMIE_GIGANTAMAX] = 1,
     [SPECIES_COPPERAJAH_GIGANTAMAX] = 0,
     [SPECIES_DURALUDON_GIGANTAMAX] = 0,
-    [SPECIES_URSHIFU_GIGANTAMAX] = 0,
+    [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX] = 0,
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX] = 0,
 #endif
     [SPECIES_EGG] = 1,

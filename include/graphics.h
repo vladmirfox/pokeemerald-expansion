@@ -2674,7 +2674,7 @@ extern const u32 gMonBackPic_GrimmsnarlGigantamax[];
 extern const u32 gMonBackPic_AlcremieGigantamax[];
 extern const u32 gMonBackPic_CopperajahGigantamax[];
 extern const u32 gMonBackPic_DuraludonGigantamax[];
-extern const u32 gMonBackPic_UrshifuGigantamax[];
+extern const u32 gMonBackPic_UrshifuSingleStrikeGigantamax[];
 extern const u32 gMonBackPic_UrshifuRapidStrikeGigantamax[];
 #endif
 
@@ -3939,7 +3939,7 @@ extern const u32 gMonPalette_GrimmsnarlGigantamax[];
 extern const u32 gMonPalette_AlcremieGigantamax[];
 extern const u32 gMonPalette_CopperajahGigantamax[];
 extern const u32 gMonPalette_DuraludonGigantamax[];
-extern const u32 gMonPalette_UrshifuGigantamax[];
+extern const u32 gMonPalette_UrshifuSingleStrikeGigantamax[];
 extern const u32 gMonPalette_UrshifuRapidStrikeGigantamax[];
 #endif
 extern const u32 gMonPalette_Egg[];
@@ -5199,7 +5199,7 @@ extern const u32 gMonShinyPalette_GrimmsnarlGigantamax[];
 extern const u32 gMonShinyPalette_AlcremieGigantamax[];
 extern const u32 gMonShinyPalette_CopperajahGigantamax[];
 extern const u32 gMonShinyPalette_DuraludonGigantamax[];
-extern const u32 gMonShinyPalette_UrshifuGigantamax[];
+extern const u32 gMonShinyPalette_UrshifuSingleStrikeGigantamax[];
 extern const u32 gMonShinyPalette_UrshifuRapidStrikeGigantamax[];
 #endif
 
@@ -6453,7 +6453,7 @@ extern const u8 gMonIcon_GrimmsnarlGigantamax[];
 extern const u8 gMonIcon_AlcremieGigantamax[];
 extern const u8 gMonIcon_CopperajahGigantamax[];
 extern const u8 gMonIcon_DuraludonGigantamax[];
-extern const u8 gMonIcon_UrshifuGigantamax[];
+extern const u8 gMonIcon_UrshifuSingleStrikeGigantamax[];
 extern const u8 gMonIcon_UrshifuRapidStrikeGigantamax[];
 #endif
 extern const u8 gMonIcon_Egg[];
@@ -7404,7 +7404,7 @@ extern const u32 gMonFrontPic_GrimmsnarlGigantamax[];
 extern const u32 gMonFrontPic_AlcremieGigantamax[];
 extern const u32 gMonFrontPic_CopperajahGigantamax[];
 extern const u32 gMonFrontPic_DuraludonGigantamax[];
-extern const u32 gMonFrontPic_UrshifuGigantamax[];
+extern const u32 gMonFrontPic_UrshifuSingleStrikeGigantamax[];
 extern const u32 gMonFrontPic_UrshifuRapidStrikeGigantamax[];
 #endif
 

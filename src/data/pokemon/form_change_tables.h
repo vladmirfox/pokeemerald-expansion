@@ -646,7 +646,7 @@ static const struct FormChange sGrimmsnarlFormChangeTable[] = GIGANTAMAX_FORM(GR
 static const struct FormChange sAlcremieFormChangeTable[] = GIGANTAMAX_FORM(ALCREMIE)
 static const struct FormChange sCopperajahFormChangeTable[] = GIGANTAMAX_FORM(COPPERAJAH)
 static const struct FormChange sDuraludonFormChangeTable[] = GIGANTAMAX_FORM(DURALUDON)
-static const struct FormChange sUrshifuFormChangeTable[] = GIGANTAMAX_FORM(URSHIFU)
+static const struct FormChange sUrshifuSingleStrikeFormChangeTable[] = GIGANTAMAX_FORM(URSHIFU_SINGLE_STRIKE_STYLE)
 static const struct FormChange sUrshifuRapidStrikeFormChangeTable[] = GIGANTAMAX_FORM(URSHIFU_RAPID_STRIKE_STYLE)
 #endif
 
