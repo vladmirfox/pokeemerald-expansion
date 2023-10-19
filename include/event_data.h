@@ -8,7 +8,7 @@ a level cap for when there are 0 progression flags are set, all the way up to wh
 progression flags are set. */
 #define NUM_LEVEL_CAPS NUM_PROGRESSION_FLAGS + 1
 
-#define NUM_GROTTO_VARS 9 // Each Grotto entrance should have it's own unique var in `include/vars.h`.
+#define NUM_GROTTO_VARS 10 // Each Grotto entrance should have it's own unique var in `include/vars.h`.
 
 #define NUM_GROTTOS_PER_FLAG 3 // Determines how many new Grottos become available per progression flag set.
 

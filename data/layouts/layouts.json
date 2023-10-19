@@ -4740,6 +4740,36 @@
       "secondary_tileset": "gTileset_Fortree",
       "border_filepath": "data/layouts/OutsetPath/border.bin",
       "blockdata_filepath": "data/layouts/OutsetPath/map.bin"
+    },
+    {
+      "id": "LAYOUT_GROTTO1",
+      "name": "Grotto1_Layout",
+      "width": 8,
+      "height": 14,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/Grotto1/border.bin",
+      "blockdata_filepath": "data/layouts/Grotto1/map.bin"
+    },
+    {
+      "id": "LAYOUT_GROTTO2",
+      "name": "Grotto2_Layout",
+      "width": 8,
+      "height": 14,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/Grotto2/border.bin",
+      "blockdata_filepath": "data/layouts/Grotto2/map.bin"
+    },
+    {
+      "id": "LAYOUT_GROTTO3",
+      "name": "Grotto3_Layout",
+      "width": 12,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/Grotto3/border.bin",
+      "blockdata_filepath": "data/layouts/Grotto3/map.bin"
     }
   ]
 }

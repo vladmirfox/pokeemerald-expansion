@@ -1063,6 +1063,7 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
     .include "data/scripts/dexnav.inc"
+	.include "data/scripts/hidden_grotto.inc"
     
 	.include "data/maps/PetalburgGrove/scripts.inc"
 	.include "data/maps/PetalburgWoods_Deep/scripts.inc"
@@ -1118,3 +1119,9 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/EverGrandeCity_ShayminGrove/scripts.inc"
 
 	.include "data/maps/OutsetPath/scripts.inc"
+
+	.include "data/maps/Grotto1/scripts.inc"
+
+	.include "data/maps/Grotto2/scripts.inc"
+
+	.include "data/maps/Grotto3/scripts.inc"

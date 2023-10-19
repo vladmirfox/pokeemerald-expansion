@@ -31,6 +31,7 @@ Route103_OnTransition:
 	end
 
 Route103_OnLoad:
+	call Grotto_EventScript_SetGrottoWarp
 	call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_OpenAlteringCave
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, Route103_OnResume_Night
