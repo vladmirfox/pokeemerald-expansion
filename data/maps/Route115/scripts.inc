@@ -21,10 +21,9 @@ Route115_OnResume_Day:
 	end
 
 Route115_OnLoad:
+	call Grotto_EventScript_SetGrottoWarp
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_115_WEST, AbnormalWeather_EventScript_PlaceTilesRoute115West
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_115_EAST, AbnormalWeather_EventScript_PlaceTilesRoute115East
-	goto_if_eq VAR_RESULT, 1, Route115_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, Route115_OnResume_Day
 	end
 
 Route115_OnTransition:

@@ -350,6 +350,20 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE117_POKEMON_DAY_CARE",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 18,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_DYNAMIC",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 19,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_DYNAMIC",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [

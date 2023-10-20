@@ -4,7 +4,7 @@
 Route112_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route112_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Route112_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, Route112_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, Route112_OnLoad
 	.byte 0
 
 Route112_OnResume:
@@ -37,6 +37,10 @@ Route112_OnTransition_Night:
 	setvar VAR_DAYNIGHT, 1
 	setweather WEATHER_SHADE
 	clearflag FLAG_HIDE_TRAINER_NIGHT
+	end
+
+Route112_OnLoad:
+	call Grotto_EventScript_SetGrottoWarp
 	end
 
 Route112_EventScript_MagmaGrunts::

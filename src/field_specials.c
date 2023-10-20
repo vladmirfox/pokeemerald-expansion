@@ -164,6 +164,13 @@ static const u16 sHiddenGrottoLocationGroups[NUM_GROTTO_VARS] =
     MAP_GROUP(PETALBURG_WOODS), MAP_NUM(ROUTE120)
 };
 
+static const u16 sHiddenGrottoLocationWarps[NUM_GROTTO_VARS] =
+{
+    1, 5, 1, 6, 
+    2, 1, 3, 1,
+    6, 2
+};
+
 static const u16 sHiddenGrottoMapNums[NUM_GROTTO_MAPS] =
 {
     MAP_NUM(GROTTO1), MAP_NUM(GROTTO2), MAP_NUM(GROTTO3)//, MAP_NUM(GROTTO4), 
@@ -223,15 +230,15 @@ void GetGrottoWarp(void)
     u8 maxGrottos = 0;
     u8 j = 0;
     u8 i = 0;
-    u8 var;
+    u8 varPointer = 0;
     bool8 isUnique = FALSE;
 
     for (i = 0; i < NUM_GROTTO_VARS; i++) {
         if (gSaveBlock1Ptr->location.mapGroup == sHiddenGrottoLocationGroups[i] && 
             gSaveBlock1Ptr->location.mapNum == sHiddenGrottoLocationNums[i]) {
             VarSet(VAR_HIDDEN_GROTTO_RETURN_WARP, i);
-            var = sHiddenGrottoVars[i];
-            warpid = VarGet(var);
+            varPointer = i;
+            warpid = VarGet(sHiddenGrottoVars[varPointer]);
             break;
         }
     }
@@ -246,8 +253,12 @@ void GetGrottoWarp(void)
             }
         }
 
+        if (flagsSet > 0)
         maxGrottos = (flagsSet * (NUM_GROTTOS_PER_FLAG * NUM_PROGRESSION_FLAGS)) / NUM_PROGRESSION_FLAGS + NUM_GROTTOS_PER_FLAG;
-        warpid = (Random() % maxGrottos) + 1;
+        else
+        maxGrottos = NUM_GROTTOS_PER_FLAG;
+
+        warpid = RandRange(1, maxGrottos);
 
         // Check the number of non-zero Grotto vars and assigns to j.
         for (i = 0; i < NUM_GROTTO_VARS; i++) {
@@ -263,7 +274,7 @@ void GetGrottoWarp(void)
                 {
                     while (1)
                     {
-                        warpid = (Random() % maxGrottos) + 1;
+                        warpid = RandRange(1, maxGrottos);
                         isUnique = TRUE;
                         // j is reused to count iterations.
                         for (j = 0; j < NUM_GROTTO_VARS; j++)
@@ -281,7 +292,7 @@ void GetGrottoWarp(void)
             }
         }
 
-        VarSet(var, warpid);
+        VarSet(sHiddenGrottoVars[varPointer], warpid);
     }
 
     SetDynamicWarp(0, sHiddenGrottoMapGroups[warpid -1], sHiddenGrottoMapNums[warpid -1], 0);
@@ -289,11 +300,9 @@ void GetGrottoWarp(void)
 
 void GetGrottoReturnWarp(void)
 {
-    u8 i = 0;
+    u8 i = VarGet(VAR_HIDDEN_GROTTO_RETURN_WARP);
 
-    i = VarGet(VAR_HIDDEN_GROTTO_RETURN_WARP);
-
-    SetDynamicWarp(0, sHiddenGrottoLocationGroups[i], sHiddenGrottoLocationNums[i], 0);
+    SetDynamicWarp(0, sHiddenGrottoLocationGroups[i], sHiddenGrottoLocationNums[i], sHiddenGrottoLocationWarps[i]);
 }
 
 void ResetCyclingRoadChallengeData(void)

@@ -49,6 +49,7 @@ Route120_EventScript_RemoveKecleon::
 	return
 
 Route120_OnLoad:
+	call Grotto_EventScript_SetGrottoWarp
 	call_if_unset FLAG_REGI_DOORS_OPENED, Route120_EventScript_CloseAncientTomb
 	call_if_set FLAG_RECEIVED_DEVON_SCOPE, Route120_EventScript_SetBridgeClearMetatiles
 	call_if_unset FLAG_RECEIVED_DEVON_SCOPE, Route120_EventScript_SetBridgeKecleonMovement

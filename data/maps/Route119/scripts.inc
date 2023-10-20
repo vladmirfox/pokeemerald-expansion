@@ -9,10 +9,7 @@ Route119_MapScripts::
 	.byte 0
 
 Route119_OnLoad:
-	special SetRoute119Weather
-	special GetDayOrNight
-	goto_if_eq VAR_RESULT, 1, Route119_OnLoad_Night
-	goto_if_eq VAR_RESULT, 0, Route119_OnLoad_Day
+	call Grotto_EventScript_SetGrottoWarp
 	end
 
 Route119_OnLoad_Night:

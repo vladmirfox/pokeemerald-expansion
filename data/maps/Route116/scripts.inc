@@ -47,11 +47,9 @@ Route116_EventScript_SetWandasBoyfriendPos::
 	return
 
 Route116_OnLoad:
+	call Grotto_EventScript_SetGrottoWarp
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_NORTH, AbnormalWeather_EventScript_PlaceTilesRoute116North
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_SOUTH, AbnormalWeather_EventScript_PlaceTilesRoute116South
-	special GetDayOrNight
-	goto_if_eq VAR_RESULT, 1, Route116_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, Route116_OnResume_Day
 	end
 
 Route116_OnFrame:

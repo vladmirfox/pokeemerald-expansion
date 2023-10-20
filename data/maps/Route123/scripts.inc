@@ -1,6 +1,6 @@
 Route123_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route123_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, Route123_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, Route123_Load
 	map_script MAP_SCRIPT_ON_RESUME, Route123_OnResume
 	.byte 0
 
@@ -20,6 +20,10 @@ Route123_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_ROUTE123_CYCLE
 	return
+
+Route123_Load:
+	call Grotto_EventScript_SetGrottoWarp
+	end
 
 Route123_EventScript_GigaDrainGirl::
 	lock

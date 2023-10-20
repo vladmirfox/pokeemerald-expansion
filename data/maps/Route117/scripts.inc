@@ -3,7 +3,7 @@
 Route117_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route117_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Route117_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, Route117_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, Route117_Load
 	.byte 0
 
 Route117_OnResume:
@@ -33,6 +33,10 @@ Route117_OnTransition_Day:
 	setvar VAR_DAYNIGHT, 0
 	setweather WEATHER_SUNNY
 	clearflag FLAG_HIDE_TRAINER_NIGHT
+	end
+
+Route117_Load:
+	call Grotto_EventScript_SetGrottoWarp
 	end
 
 Route117_EventScript_TryMoveDayCareMan::

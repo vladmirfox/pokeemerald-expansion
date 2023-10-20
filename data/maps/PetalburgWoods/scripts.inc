@@ -4,7 +4,7 @@
 PetalburgWoods_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgWoods_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, PetalburgWoods_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, PetalburgWoods_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, PetalburgWoods_Load
 	.byte 0
 
 PetalburgWoods_OnResume:
@@ -19,6 +19,10 @@ PetalburgWoods_OnResume_Night:
 
 PetalburgWoods_OnResume_Day:
 	setvar VAR_DAYNIGHT, 0
+	end
+
+PetalburgWoods_Load:
+	call Grotto_EventScript_SetGrottoWarp
 	end
 
 PetalburgWoods_EventScript_DevonResearcherLeft::
