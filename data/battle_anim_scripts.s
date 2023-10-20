@@ -15161,7 +15161,7 @@ Move_SILK_TRAP::
 	clearmonbg ANIM_ATK_PARTNER
 	end
 
-@ Also used by Snow weather. Currently identical with Move_HAIL
+@ Also used by Snow weather. Credits to Dat.H A
 Move_SNOWSCAPE::
 	loadspritegfx ANIM_TAG_SNOWFLAKES
 	playsewithpan SE_M_GUST, SOUND_PAN_ATTACKER
