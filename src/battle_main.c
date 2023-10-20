@@ -5508,7 +5508,7 @@ static void HandleEndTurn_FinishBattle(void)
             TryPutBreakingNewsOnAir();
         }
 
-        //ty_difficulty_challenges
+        //tx_difficulty_challenges
         if (IsNuzlockeActive())
         {
             if (!(gBattleTypeFlags &(BATTLE_TYPE_LINK

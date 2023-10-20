@@ -216,7 +216,7 @@
 #define MAPSEC_TRAINER_HILL                 0xD4
 #define MAPSEC_NONE                         0xD5
 
-//ty_difficulty_challenges
+//tx_difficulty_challenges
 #define MAPSEC_SAFARI_ZONE_AREA1            0xD6
 #define MAPSEC_SAFARI_ZONE_AREA2            0xD7
 #define MAPSEC_SAFARI_ZONE_AREA3            0xD8

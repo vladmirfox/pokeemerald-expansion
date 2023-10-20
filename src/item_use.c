@@ -1243,6 +1243,22 @@ static bool32 CannotUseBagBattleItem(u16 itemId)
                 failStr = sText_CantThrowPokeBall_Disabled;
                 cannotUse++;
                 break;
+            case BALL_THROW_NUZLOCKE_ROUTE_BLOCK:
+                failStr = gText_NuzlockeCantThrowPokeBallRoute;
+                cannotUse++;
+                break;
+            case BALL_THROW_NUZLOCKE_ALREADY_CAUGHT:
+                failStr = gText_NuzlockeCantThrowPokeBallAlreadyCaught;
+                cannotUse++;
+                break;
+            case BALL_THROW_ONE_TYPE_CHALLENGE_CAPTURE_BLOCKED:
+                failStr = gText_OneTypeChallengeCantThrowPokeBall;
+                cannotUse++;
+                break;
+            case BALL_THROW_NUZLOCKE_SPECIES_CLAUSE:
+                failStr = gText_NuzlockeCantThrowPokeBallSpeciesClause;
+                cannotUse++;
+                break;
         }
     }
     // Max Mushrooms
