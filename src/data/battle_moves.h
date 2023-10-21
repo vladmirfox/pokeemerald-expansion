@@ -13862,7 +13862,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RAGING_BULL] =
     {
-        .effect = EFFECT_BRICK_BREAK, // Needs Paldean Tauros forms for type changing
+        .effect = EFFECT_BRICK_BREAK, // EFFECT_RAGING_BULL, needs Paldean Tauros forms for type changing
         .power = 90,
         .type = TYPE_NORMAL,
         .accuracy = 100,
