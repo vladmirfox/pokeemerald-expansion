@@ -109,10 +109,15 @@ static const u16 sSkillSwapBannedAbilities[] =
     ABILITY_RKS_SYSTEM,
     ABILITY_BATTLE_BOND,
     ABILITY_POWER_CONSTRUCT,
-    ABILITY_NEUTRALIZING_GAS,
     ABILITY_ICE_FACE,
-    ABILITY_HUNGER_SWITCH,
     ABILITY_GULP_MISSILE,
+    ABILITY_NEUTRALIZING_GAS,
+    ABILITY_ZERO_TO_HERO,
+    ABILITY_COMMANDER,
+    ABILITY_PROTOSYNTHESIS,
+    ABILITY_QUARK_DRIVE,
+    ABILITY_ORICHALCUM_PULSE,
+    ABILITY_HADRON_ENGINE,
 };
 
 static const u16 sRolePlayBannedAbilities[] =
@@ -133,11 +138,15 @@ static const u16 sRolePlayBannedAbilities[] =
     ABILITY_SHIELDS_DOWN,
     ABILITY_DISGUISE,
     ABILITY_RKS_SYSTEM,
-    ABILITY_BATTLE_BOND,
     ABILITY_POWER_CONSTRUCT,
+    ABILITY_BATTLE_BOND,
     ABILITY_ICE_FACE,
-    ABILITY_HUNGER_SWITCH,
     ABILITY_GULP_MISSILE,
+    ABILITY_NEUTRALIZING_GAS,
+    ABILITY_AS_ONE_ICE_RIDER,
+    ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_ZERO_TO_HERO,
+    ABILITY_COMMANDER,
 };
 
 static const u16 sRolePlayBannedAttackerAbilities[] =
@@ -150,14 +159,19 @@ static const u16 sRolePlayBannedAttackerAbilities[] =
     ABILITY_SHIELDS_DOWN,
     ABILITY_DISGUISE,
     ABILITY_RKS_SYSTEM,
-    ABILITY_BATTLE_BOND,
     ABILITY_POWER_CONSTRUCT,
+    ABILITY_BATTLE_BOND,
     ABILITY_ICE_FACE,
     ABILITY_GULP_MISSILE,
+    ABILITY_AS_ONE_ICE_RIDER,
+    ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_ZERO_TO_HERO,
+    ABILITY_COMMANDER,
 };
 
 static const u16 sWorrySeedBannedAbilities[] =
 {
+    ABILITY_TRUANT,
     ABILITY_MULTITYPE,
     ABILITY_STANCE_CHANGE,
     ABILITY_SCHOOLING,
@@ -167,27 +181,31 @@ static const u16 sWorrySeedBannedAbilities[] =
     ABILITY_RKS_SYSTEM,
     ABILITY_BATTLE_BOND,
     ABILITY_POWER_CONSTRUCT,
-    ABILITY_TRUANT,
     ABILITY_ICE_FACE,
     ABILITY_GULP_MISSILE,
+    ABILITY_QUARK_DRIVE,
+    ABILITY_PROTOSYNTHESIS,
 };
 
 static const u16 sGastroAcidBannedAbilities[] =
 {
+    ABILITY_MULTITYPE,
+    ABILITY_STANCE_CHANGE,
+    ABILITY_SCHOOLING,
+    ABILITY_COMATOSE,
+    ABILITY_SHIELDS_DOWN,
+    ABILITY_DISGUISE,
+    ABILITY_RKS_SYSTEM,
+    ABILITY_BATTLE_BOND,
+    ABILITY_POWER_CONSTRUCT,
+    ABILITY_ICE_FACE,
+    ABILITY_GULP_MISSILE,
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
-    ABILITY_BATTLE_BOND,
-    ABILITY_COMATOSE,
-    ABILITY_DISGUISE,
-    ABILITY_GULP_MISSILE,
-    ABILITY_ICE_FACE,
-    ABILITY_MULTITYPE,
-    ABILITY_POWER_CONSTRUCT,
-    ABILITY_RKS_SYSTEM,
-    ABILITY_SCHOOLING,
-    ABILITY_SHIELDS_DOWN,
-    ABILITY_STANCE_CHANGE,
-    ABILITY_ZEN_MODE,
+    ABILITY_ZERO_TO_HERO,
+    ABILITY_COMMANDER,
+    ABILITY_QUARK_DRIVE,
+    ABILITY_PROTOSYNTHESIS,
 };
 
 static const u16 sEntrainmentBannedAttackerAbilities[] =
@@ -202,16 +220,19 @@ static const u16 sEntrainmentBannedAttackerAbilities[] =
     ABILITY_RECEIVER,
     ABILITY_DISGUISE,
     ABILITY_POWER_CONSTRUCT,
-    ABILITY_NEUTRALIZING_GAS,
     ABILITY_ICE_FACE,
     ABILITY_HUNGER_SWITCH,
     ABILITY_GULP_MISSILE,
+    ABILITY_NEUTRALIZING_GAS,
+    ABILITY_ZERO_TO_HERO,
+    ABILITY_COMMANDER,
 };
 
 static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
 {
     ABILITY_TRUANT,
     ABILITY_MULTITYPE,
+    ABILITY_ZEN_MODE,
     ABILITY_STANCE_CHANGE,
     ABILITY_SCHOOLING,
     ABILITY_COMATOSE,
@@ -219,8 +240,13 @@ static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
     ABILITY_DISGUISE,
     ABILITY_RKS_SYSTEM,
     ABILITY_BATTLE_BOND,
+    ABILITY_POWER_CONSTRUCT,
     ABILITY_ICE_FACE,
     ABILITY_GULP_MISSILE,
+    ABILITY_AS_ONE_ICE_RIDER,
+    ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_ZERO_TO_HERO,
+    ABILITY_COMMANDER,
 };
 
 static u8 CalcBeatUpPower(void)
@@ -8192,10 +8218,10 @@ bool32 IsBattlerProtected(u32 battler, u32 move)
 
     // Z-Moves and Max Moves bypass protection (except Max Guard).
     if ((IsMaxMove(move) || gBattleStruct->zmove.active)
-         && (!gProtectStructs[battler].maxGuarded 
+         && (!gProtectStructs[battler].maxGuarded
              || gBattleMoves[move].argument == MAX_EFFECT_BYPASS_PROTECT))
         return FALSE;
-    
+
     // Max Guard is silly about the moves it blocks, including Teatime.
     if (gProtectStructs[battler].maxGuarded && IsMoveBlockedByMaxGuard(move))
         return TRUE;

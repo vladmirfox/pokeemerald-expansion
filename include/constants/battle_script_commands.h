@@ -249,6 +249,7 @@
 #define VARIOUS_TRY_REVIVAL_BLESSING                 156
 #define VARIOUS_TRY_TRAINER_SLIDE_MSG_Z_MOVE         157
 #define VARIOUS_TRY_TRAINER_SLIDE_MSG_MEGA_EVOLUTION 158
+#define VARIOUS_TIDY_UP                              159
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

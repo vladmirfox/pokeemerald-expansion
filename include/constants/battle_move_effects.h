@@ -417,7 +417,12 @@
 #define EFFECT_SYRUP_BOMB                   411
 #define EFFECT_IVY_CUDGEL                   412
 #define EFFECT_MAX_MOVE                     413
+#define EFFECT_SPICY_EXTRACT                414
+#define EFFECT_DOODLE                       415
+#define EFFECT_FILLET_AWAY                  416
+#define EFFECT_SHED_TAIL                    417
+#define EFFECT_TIDY_UP                      418
 
-#define NUM_BATTLE_MOVE_EFFECTS             414
+#define NUM_BATTLE_MOVE_EFFECTS             419
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

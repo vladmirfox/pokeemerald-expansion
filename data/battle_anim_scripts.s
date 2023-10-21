@@ -898,7 +898,7 @@ gBattleAnims_Moves::
 	.4byte Move_SOUL_STEALING_7_STAR_STRIKE
 @@@@ MAX MOVES
 	.4byte Move_MAX_GUARD
-	.4byte Move_MAX_STRIKE 
+	.4byte Move_MAX_STRIKE
 	.4byte Move_MAX_KNUCKLE
 	.4byte Move_MAX_AIRSTREAM
 	.4byte Move_MAX_OOZE
