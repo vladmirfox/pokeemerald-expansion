@@ -104,6 +104,7 @@ struct DisableStruct
     u8 stickyWebDone:1;
     u8 stealthRockDone:1;
     u8 syrupBombTimer;
+    u8 syrupBombIsShiny:1;
 };
 
 struct ProtectStruct
