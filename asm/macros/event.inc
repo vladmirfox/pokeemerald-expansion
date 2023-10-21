@@ -1938,14 +1938,6 @@
 	closebraillemessage
 	.endm
 
-	@ Creates a Pokémon with the modernFatefulEncounter bit set for an encounter
-	.macro seteventmon species:req, level:req, item=ITEM_NONE
-	setvar VAR_0x8004, \species
-	setvar VAR_0x8005, \level
-	setvar VAR_0x8006, \item
-	special CreateEnemyEventMon
-	.endm
-
 	@ Set up a totem boost for the next battle.
 	@ 'battler' is the position of the mon you want to gain a boost. see B_POSITION_xx in include/constants/battle.h.
 	@ The rest of the arguments are the stat change values to each stat.
