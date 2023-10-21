@@ -863,7 +863,7 @@
     {
       "type": "secret_base",
       "x": 30,
-      "y": 23,
+      "y": 24,
       "elevation": 0,
       "secret_base_id": "SECRET_BASE_SHRUB2_3"
     },
@@ -905,6 +905,22 @@
       "y": 76,
       "elevation": 0,
       "secret_base_id": "SECRET_BASE_SHRUB1_4"
+    },
+    {
+      "type": "sign",
+      "x": 32,
+      "y": 22,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Grotto_EventScript_GrottoInteract"
+    },
+    {
+      "type": "sign",
+      "x": 33,
+      "y": 22,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Grotto_EventScript_GrottoInteract"
     }
   ]
 }

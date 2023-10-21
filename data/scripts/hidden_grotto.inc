@@ -1,11 +1,28 @@
 Grotto_OnLoad::
-    call Grotto_EventScript_SetReturnWarp
+    call Grotto_EventScript_GetReturnWarp
     end
 
-Grotto_EventScript_SetGrottoWarp::
+Grotto_EventScript_GrottoInteract::
+	msgbox Grotto_Text_FollowThePath, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Grotto_EventScript_CancelGrotto
+    special SetGrottoWarp
+    releaseall
+    end
+
+Grotto_EventScript_CancelGrotto::
+    releaseall
+    end
+
+Grotto_EventScript_GetGrottoWarp::
     special GetGrottoWarp
     return
 
-Grotto_EventScript_SetReturnWarp::
+Grotto_EventScript_GetReturnWarp::
     special GetGrottoReturnWarp
     return
+
+Grotto_Text_FollowThePath:
+	.string "Look!\n"
+	.string "You've found a narrow path!\p"
+	.string "Will you follow it?$"
+

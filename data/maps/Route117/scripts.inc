@@ -36,8 +36,14 @@ Route117_OnTransition_Day:
 	end
 
 Route117_Load:
-	call Grotto_EventScript_SetGrottoWarp
+	call Grotto_EventScript_GetGrottoWarp
+	goto_if_eq VAR_HIDDEN_GROTTO_ROUTE_117, 0, Route117_EventScript_CloseGrotto
 	end
+
+Route117_EventScript_CloseGrotto::
+	setmetatile 18, 1, METATILE_General_Grass, FALSE
+	setmetatile 19, 1, METATILE_General_Grass, FALSE
+	return
 
 Route117_EventScript_TryMoveDayCareMan::
 	goto_if_unset FLAG_PENDING_DAYCARE_EGG, Route117_EventScript_StopMoveDayCareMan

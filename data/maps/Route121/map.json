@@ -545,6 +545,22 @@
       "elevation": 3,
       "item": "ITEM_MAX_REVIVE",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_121_MAX_REVIVE"
+    },
+    {
+      "type": "sign",
+      "x": 59,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Grotto_EventScript_GrottoInteract"
+    },
+    {
+      "type": "sign",
+      "x": 60,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Grotto_EventScript_GrottoInteract"
     }
   ]
 }

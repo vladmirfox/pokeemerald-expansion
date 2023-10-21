@@ -9,8 +9,14 @@ Route119_MapScripts::
 	.byte 0
 
 Route119_OnLoad:
-	call Grotto_EventScript_SetGrottoWarp
+	call Grotto_EventScript_GetGrottoWarp
+	goto_if_eq VAR_HIDDEN_GROTTO_ROUTE_119, 0, Route119_EventScript_CloseGrotto
 	end
+
+Route119_EventScript_CloseGrotto::
+	setmetatile 13, 88, METATILE_General_Grass, FALSE
+	setmetatile 14, 88, METATILE_General_Grass, FALSE
+	return
 
 Route119_OnLoad_Night:
 	setvar VAR_DAYNIGHT, 1

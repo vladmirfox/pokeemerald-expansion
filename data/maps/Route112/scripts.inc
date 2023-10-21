@@ -40,8 +40,14 @@ Route112_OnTransition_Night:
 	end
 
 Route112_OnLoad:
-	call Grotto_EventScript_SetGrottoWarp
+	call Grotto_EventScript_GetGrottoWarp
+	goto_if_eq VAR_HIDDEN_GROTTO_ROUTE_112, 0, Route112_EventScript_CloseGrotto
 	end
+
+Route112_EventScript_CloseGrotto::
+	setmetatile 35, 6, METATILE_General_Grass, FALSE
+	setmetatile 36, 6, METATILE_General_Grass, FALSE
+	return
 
 Route112_EventScript_MagmaGrunts::
 	lockall

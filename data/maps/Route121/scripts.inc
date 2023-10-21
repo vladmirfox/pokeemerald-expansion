@@ -38,8 +38,14 @@ Route121_OnResume:
 	end
 
 Route121_OnLoad:
-	call Grotto_EventScript_SetGrottoWarp
+	call Grotto_EventScript_GetGrottoWarp
+	goto_if_eq VAR_HIDDEN_GROTTO_ROUTE_121, 0, Route121_EventScript_CloseGrotto
 	end
+
+Route121_EventScript_CloseGrotto::
+	setmetatile 59, 2, METATILE_General_Grass, FALSE
+	setmetatile 60, 2, METATILE_General_Grass, FALSE
+	return
 
 Route121_EventScript_Woman::
 	msgbox Route121_Text_AheadLoomsMtPyre, MSGBOX_NPC

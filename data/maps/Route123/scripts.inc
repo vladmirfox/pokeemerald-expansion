@@ -22,8 +22,14 @@ Route123_OnResume_Day:
 	return
 
 Route123_Load:
-	call Grotto_EventScript_SetGrottoWarp
+	call Grotto_EventScript_GetGrottoWarp
+	goto_if_eq VAR_HIDDEN_GROTTO_ROUTE_123, 0, Route123_EventScript_CloseGrotto
 	end
+
+Route123_EventScript_CloseGrotto::
+	setmetatile 68, 1, METATILE_General_Grass, FALSE
+	setmetatile 69, 1, METATILE_General_Grass, FALSE
+	return
 
 Route123_EventScript_GigaDrainGirl::
 	lock

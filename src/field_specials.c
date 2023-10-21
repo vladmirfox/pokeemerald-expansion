@@ -147,7 +147,7 @@ const u16 sHiddenGrottoVars[NUM_GROTTO_VARS] =
 {
     VAR_HIDDEN_GROTTO_ROUTE_103, VAR_HIDDEN_GROTTO_ROUTE_116, VAR_HIDDEN_GROTTO_ROUTE_117, VAR_HIDDEN_GROTTO_ROUTE_112, 
     VAR_HIDDEN_GROTTO_ROUTE_119, VAR_HIDDEN_GROTTO_ROUTE_121, VAR_HIDDEN_GROTTO_ROUTE_115, VAR_HIDDEN_GROTTO_ROUTE_123,
-    VAR_HIDDEN_GROTTO_PETALBURG_WOODS, VAR_HIDDEN_GROTTO_ROUTE120
+    VAR_HIDDEN_GROTTO_PETALBURG_WOODS, VAR_HIDDEN_GROTTO_ROUTE_120
 };
 
 static const u16 sHiddenGrottoLocationNums[NUM_GROTTO_VARS] =
@@ -223,7 +223,7 @@ void GetDayOrNight(void)
 	gSpecialVar_Result = nightorday;
 }
 
-void GetGrottoWarp(void)
+void SetGrottoWarp(void)
 {
     u8 warpid = 0;
     u8 flagsSet = 0;
@@ -293,6 +293,27 @@ void GetGrottoWarp(void)
         }
 
         VarSet(sHiddenGrottoVars[varPointer], warpid);
+    }
+
+    SetWarpDestinationToMapWarp(sHiddenGrottoMapGroups[warpid -1], sHiddenGrottoMapNums[warpid -1], 0);
+    DoWarp();
+    ResetInitialPlayerAvatarState();
+}
+
+void GetGrottoWarp(void)
+{
+    u8 warpid = 0;
+    u8 i = 0;
+    u8 varPointer = 0;
+
+    for (i = 0; i < NUM_GROTTO_VARS; i++) {
+        if (gSaveBlock1Ptr->location.mapGroup == sHiddenGrottoLocationGroups[i] && 
+            gSaveBlock1Ptr->location.mapNum == sHiddenGrottoLocationNums[i]) {
+            VarSet(VAR_HIDDEN_GROTTO_RETURN_WARP, i);
+            varPointer = i;
+            warpid = VarGet(sHiddenGrottoVars[varPointer]);
+            break;
+        }
     }
 
     SetDynamicWarp(0, sHiddenGrottoMapGroups[warpid -1], sHiddenGrottoMapNums[warpid -1], 0);

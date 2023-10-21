@@ -4744,7 +4744,7 @@
     {
       "id": "LAYOUT_GROTTO1",
       "name": "Grotto1_Layout",
-      "width": 8,
+      "width": 7,
       "height": 14,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Rustboro",
@@ -4754,7 +4754,7 @@
     {
       "id": "LAYOUT_GROTTO2",
       "name": "Grotto2_Layout",
-      "width": 8,
+      "width": 7,
       "height": 14,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Rustboro",
@@ -4764,7 +4764,7 @@
     {
       "id": "LAYOUT_GROTTO3",
       "name": "Grotto3_Layout",
-      "width": 12,
+      "width": 9,
       "height": 18,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Rustboro",

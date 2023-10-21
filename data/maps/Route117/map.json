@@ -401,6 +401,22 @@
       "elevation": 3,
       "item": "ITEM_REPEL",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_117_REPEL"
+    },
+    {
+      "type": "sign",
+      "x": 18,
+      "y": 0,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Grotto_EventScript_GrottoInteract"
+    },
+    {
+      "type": "sign",
+      "x": 19,
+      "y": 0,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Grotto_EventScript_GrottoInteract"
     }
   ]
 }

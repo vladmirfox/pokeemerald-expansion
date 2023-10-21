@@ -22,8 +22,14 @@ PetalburgWoods_OnResume_Day:
 	end
 
 PetalburgWoods_Load:
-	call Grotto_EventScript_SetGrottoWarp
+	call Grotto_EventScript_GetGrottoWarp
+	goto_if_eq VAR_HIDDEN_GROTTO_PETALBURG_WOODS, 0, PetalburgWoods_EventScript_CloseGrotto
 	end
+
+PetalburgWoods_EventScript_CloseGrotto::
+	setmetatile 33, 4, METATILE_General_Grass, FALSE
+	setmetatile 34, 4, METATILE_General_Grass, FALSE
+	return
 
 PetalburgWoods_EventScript_DevonResearcherLeft::
 	lockall

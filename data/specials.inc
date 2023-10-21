@@ -538,5 +538,6 @@ gSpecials::
 	def_special SetTotemBoost
 	def_special TrySpecialOverworldEvo
 	def_special GetDayOrNight
+	def_special SetGrottoWarp
 	def_special GetGrottoWarp
 	def_special GetGrottoReturnWarp

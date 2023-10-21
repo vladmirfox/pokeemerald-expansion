@@ -31,12 +31,15 @@ Route103_OnTransition:
 	end
 
 Route103_OnLoad:
-	call Grotto_EventScript_SetGrottoWarp
+	call Grotto_EventScript_GetGrottoWarp
+	goto_if_eq VAR_HIDDEN_GROTTO_ROUTE_103, 0, Route103_EventScript_CloseGrotto
 	call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_OpenAlteringCave
-	special GetDayOrNight
-	goto_if_eq VAR_RESULT, 1, Route103_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, Route103_OnResume_Day
 	end
+
+Route103_EventScript_CloseGrotto::
+	setmetatile 9, 2, METATILE_General_Grass, FALSE
+	setmetatile 10, 2, METATILE_General_Grass, FALSE
+	return
 
 Route103_EventScript_OpenAlteringCave::
 	setmetatile 45, 5, METATILE_General_CaveEntrance_Top, TRUE
