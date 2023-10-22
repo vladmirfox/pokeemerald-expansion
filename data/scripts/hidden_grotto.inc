@@ -61,24 +61,6 @@ Grotto_Layout1_CloseRightTreeArea::
     setmetatile 10, 9, METATILE_General_Grass_TreeOverlap, TRUE
     return
 
-Grotto_Layout2_CloseLeftTreeArea::
-    setmetatile 1, 4, METATILE_General_Grass_TreeOverlap, TRUE
-    setmetatile 1, 5, METATILE_General_Grass_TreeOverlap, TRUE
-    setmetatile 1, 6, METATILE_General_Grass_TreeOverlap, TRUE
-    setmetatile 1, 7, METATILE_General_Grass_TreeOverlap, TRUE
-    setmetatile 2, 6, METATILE_General_Grass_TreeOverlap, TRUE
-    setmetatile 2, 5, METATILE_General_Grass_TreeUp, FALSE
-    return
-
-Grotto_Layout2_CloseRightTreeArea::
-    setmetatile 9, 4, METATILE_General_Grass_TreeOverlap, TRUE
-    setmetatile 9, 5, METATILE_General_Grass_TreeOverlap, TRUE
-    setmetatile 9, 6, METATILE_General_Grass_TreeOverlap, TRUE
-    setmetatile 9, 7, METATILE_General_Grass_TreeOverlap, TRUE
-    setmetatile 8, 6, METATILE_General_Grass_TreeOverlap, TRUE
-    setmetatile 8, 5, METATILE_General_Grass_TreeUp, FALSE
-    return
-
 Grotto_Layout3_CloseRightPath::
     setmetatile 7, 3, METATILE_General_Grass_TreeOverlap, TRUE
     setmetatile 7, 4, METATILE_General_Grass_TreeOverlap, TRUE
@@ -99,6 +81,24 @@ Grotto_Layout3_OpenMiddlePath::
 
 Grotto_Layout3_SetEventStage::
     setmetatile 3, 3, METATILE_General_Grass, FALSE
+    return
+
+Grotto_Layout4_CloseLeftTreeArea::
+    setmetatile 1, 4, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 1, 5, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 1, 6, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 1, 7, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 2, 6, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 2, 5, METATILE_General_Grass_TreeUp, FALSE
+    return
+
+Grotto_Layout4_CloseRightTreeArea::
+    setmetatile 9, 4, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 9, 5, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 9, 6, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 9, 7, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 8, 6, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 8, 5, METATILE_General_Grass_TreeUp, FALSE
     return
 
 Grotto_Text_FollowThePath:
