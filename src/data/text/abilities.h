@@ -79,7 +79,7 @@ static const u8 sTangledFeetDescription[] = _("Ups evasion if confused.");
 static const u8 sMotorDriveDescription[] = _("Electricity raises Speed.");
 static const u8 sRivalryDescription[] = _("Powers up against rivals.");
 static const u8 sSteadfastDescription[] = _("Flinching raises Speed.");
-static const u8 sSnowCloakDescription[] = _("Ups evasion in Hail.");
+static const u8 sSnowCloakDescription[] = _("Ups evasion in Hail or Snow.");
 static const u8 sGluttonyDescription[] = _("Eats Berries early.");
 static const u8 sAngerPointDescription[] = _("Critical hits raise Attack.");
 static const u8 sUnburdenDescription[] = _("Using a hold item ups Speed.");
@@ -113,8 +113,12 @@ static const u8 sFilterDescription[] = _("Weakens “supereffective”.");
 static const u8 sSlowStartDescription[] = _("Takes a while to get going.");
 static const u8 sScrappyDescription[] = _("Hits Ghost-type Pokémon.");
 static const u8 sStormDrainDescription[] = _("Draws in Water moves.");
-static const u8 sIceBodyDescription[] = _("Slight HP recovery in Hail.");
-static const u8 sSnowWarningDescription[] = _("Summons a hailstorm.");
+static const u8 sIceBodyDescription[] = _("HP recovery in Hail or Snow.");
+#if B_SNOW_WARNING < GEN_9
+static const u8 sSnowWarningDescription[] = _("Summons a Hailstorm.");
+#elif B_SNOW_WARNING >= GEN_9
+static const u8 sSnowWarningDescription[] = _("Summons a Snowstorm.");
+#endif
 static const u8 sHoneyGatherDescription[] = _("May gather Honey.");
 static const u8 sFriskDescription[] = _("Checks a foe's item.");
 static const u8 sRecklessDescription[] = _("Boosts moves with recoil.");
@@ -192,7 +196,7 @@ static const u8 sStakeoutDescription[] = _("Stronger as foes switch in.");
 static const u8 sWaterBubbleDescription[] = _("Guards from fire and burns.");
 static const u8 sSteelworkerDescription[] = _("Powers up Steel moves.");
 static const u8 sBerserkDescription[] = _("Boosts Sp. Atk at low HP.");
-static const u8 sSlushRushDescription[] = _("Raises Speed in hail.");
+static const u8 sSlushRushDescription[] = _("Raises Speed in Hail or Snow.");
 static const u8 sLongReachDescription[] = _("Never makes contact.");
 static const u8 sLiquidVoiceDescription[] = _("Makes sound moves Water.");
 static const u8 sTriageDescription[] = _("Healing moves go first.");
@@ -234,7 +238,7 @@ static const u8 sPunkRockDescription[] = _("Ups and resists sound.");
 static const u8 sSandSpitDescription[] = _("Creates a sandstorm if hit.");
 static const u8 sIceScalesDescription[] = _("Halves special damage.");
 static const u8 sRipenDescription[] = _("Doubles effect of Berries.");
-static const u8 sIceFaceDescription[] = _("Take a free hit. Hail renews.");
+static const u8 sIceFaceDescription[] = _("Hail or Snow renew free hit.");
 static const u8 sPowerSpotDescription[] = _("Powers up ally moves.");
 static const u8 sMimicryDescription[] = _("Changes type on terrain.");
 static const u8 sScreenCleanerDescription[] = _("Removes walls of light.");
@@ -285,6 +289,14 @@ static const u8 sToxicDebrisDescription[] = _("Throws poison spikes if hit.");
 static const u8 sArmorTailDescription[] = _("Protects from priority.");
 static const u8 sEarthEaterDescription[] = _("Eats ground to heal HP.");
 static const u8 sMyceliumMightDescription[] = _("Status moves never fail.");
+static const u8 sHospitalityDescription[] = _("Restores ally's HP.");
+static const u8 sMindsEyeDescription[] = _("Keen Eye and Scrappy.");
+static const u8 sEmbodyAspectTealDescription[] = _("Raises Speed.");
+static const u8 sEmbodyAspectHearthflameDescription[] = _("Raises Attack.");
+static const u8 sEmbodyAspectWellspringDescription[] = _("Raises Sp. Def.");
+static const u8 sEmbodyAspectCornerstoneDescription[] = _("Raises Defense.");
+static const u8 sToxicChainDescription[] = _("Moves can poison.");
+static const u8 sSupersweetSyrupDescription[] = _("Lowers the foe's Speed.");
 
 #if B_EXPANDED_ABILITY_NAMES == TRUE
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -588,6 +600,14 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_ARMOR_TAIL] = _("Armor Tail"),
     [ABILITY_EARTH_EATER] = _("Earth Eater"),
     [ABILITY_MYCELIUM_MIGHT] = _("Mycelium Might"),
+    [ABILITY_HOSPITALITY] = _("Hospitality"),
+    [ABILITY_MINDS_EYE] = _("Mind's Eye"),
+    [ABILITY_EMBODY_ASPECT_TEAL] = _("Embody Aspect"),
+    [ABILITY_EMBODY_ASPECT_HEARTHFLAME] = _("Embody Aspect"),
+    [ABILITY_EMBODY_ASPECT_WELLSPRING] = _("Embody Aspect"),
+    [ABILITY_EMBODY_ASPECT_CORNERSTONE] = _("Embody Aspect"),
+    [ABILITY_TOXIC_CHAIN] = _("Toxic Chain"),
+    [ABILITY_SUPERSWEET_SYRUP] = _("Supersweet Syrup"),
 };
 #else   // 12 characters
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -891,6 +911,14 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_ARMOR_TAIL] = _("Armor Tail"),
     [ABILITY_EARTH_EATER] = _("Earth Eater"),
     [ABILITY_MYCELIUM_MIGHT] = _("MceliumMight"),
+    [ABILITY_HOSPITALITY] = _("Hospitality"),
+    [ABILITY_MINDS_EYE] = _("Mind's Eye"),
+    [ABILITY_EMBODY_ASPECT_TEAL] = _("EmbodyAspect"),
+    [ABILITY_EMBODY_ASPECT_HEARTHFLAME] = _("EmbodyAspect"),
+    [ABILITY_EMBODY_ASPECT_WELLSPRING] = _("EmbodyAspect"),
+    [ABILITY_EMBODY_ASPECT_CORNERSTONE] = _("EmbodyAspect"),
+    [ABILITY_TOXIC_CHAIN] = _("Toxic Chain"),
+    [ABILITY_SUPERSWEET_SYRUP] = _("SuprswtSyrup"),
 };
 #endif
 
@@ -1195,4 +1223,12 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_ARMOR_TAIL] = sArmorTailDescription,
     [ABILITY_EARTH_EATER] = sEarthEaterDescription,
     [ABILITY_MYCELIUM_MIGHT] = sMyceliumMightDescription,
+    [ABILITY_HOSPITALITY] = sHospitalityDescription,
+    [ABILITY_MINDS_EYE] = sMindsEyeDescription,
+    [ABILITY_EMBODY_ASPECT_TEAL] = sEmbodyAspectTealDescription,
+    [ABILITY_EMBODY_ASPECT_HEARTHFLAME] = sEmbodyAspectHearthflameDescription,
+    [ABILITY_EMBODY_ASPECT_WELLSPRING] = sEmbodyAspectWellspringDescription,
+    [ABILITY_EMBODY_ASPECT_CORNERSTONE] = sEmbodyAspectCornerstoneDescription,
+    [ABILITY_TOXIC_CHAIN] = sToxicChainDescription,
+    [ABILITY_SUPERSWEET_SYRUP] = sSupersweetSyrupDescription,
 };

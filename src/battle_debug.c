@@ -137,7 +137,6 @@ enum
     VAR_IN_LOVE,
     VAR_U16_4_ENTRIES,
     VAL_S8,
-    VAL_ITEM,
     VAL_ALL_STAT_STAGES,
 };
 
@@ -154,6 +153,7 @@ enum
     LIST_SIDE_STEALTH_ROCK,
     LIST_SIDE_TOXIC_SPIKES,
     LIST_SIDE_STICKY_WEB,
+    LIST_SIDE_STEELSURGE,
 };
 
 enum
@@ -181,6 +181,7 @@ static const u8 sText_SideStatus[] = _("Side Status");
 static const u8 sText_MaxHp[] = _("HP Max");
 static const u8 sText_CurrHp[] = _("HP Current");
 static const u8 sText_Freeze[] = _("Freeze");
+static const u8 sText_Frostbite[] = _("Frostbite");
 static const u8 sText_ToxicPoison[] = _("Toxic Poison");
 static const u8 sText_ToxicCounter[] = _("Toxic Counter");
 static const u8 sText_Flinch[] = _("Flinch");
@@ -228,6 +229,7 @@ static const u8 sText_PP[] = _("PP");
 static const u8 sText_StealthRock[] = _("Stealth Rock");
 static const u8 sText_ToxicSpikes[] = _("Toxic Spikes");
 static const u8 sText_StickyWeb[] = _("Sticky Web");
+static const u8 sText_Steelsurge[] = _("Steelsurge");
 static const u8 sText_AI[] = _("AI");
 static const u8 sText_NoBadMoves[] = _("No Bad Moves");
 static const u8 sText_Viability[] = _("Viability");
@@ -245,7 +247,6 @@ static const u8 sText_InLove[] = _("In Love");
 static const u8 sText_AIMovePts[] = _("AI Pts/Dmg");
 static const u8 sText_AiKnowledge[] = _("AI Info");
 static const u8 sText_AiParty[] = _("AI Party");
-static const u8 sText_EffectOverride[] = _("Effect Override");
 
 static const u8 sText_EmptyString[] = _("");
 
@@ -258,6 +259,7 @@ static const struct BitfieldInfo sStatus1Bitfield[] =
     {/*Paralysis*/1, 6},
     {/*Toxic Poison*/ 1, 7},
     {/*Toxic Counter*/ 4, 8},
+    {/*Frostbite*/ 1, 12},
 };
 
 static const struct BitfieldInfo sStatus2Bitfield[] =
@@ -397,6 +399,7 @@ static const struct ListMenuItem sStatus1ListItems[] =
     {gText_Paralysis, 4},
     {sText_ToxicPoison, 5},
     {sText_ToxicCounter, 6},
+    {sText_Frostbite, 7},
 };
 
 static const struct ListMenuItem sStatus2ListItems[] =
@@ -454,6 +457,7 @@ static const struct ListMenuItem sSideStatusListItems[] =
     {sText_StealthRock, LIST_SIDE_STEALTH_ROCK},
     {sText_ToxicSpikes, LIST_SIDE_TOXIC_SPIKES},
     {sText_StickyWeb, LIST_SIDE_STICKY_WEB},
+    {sText_Steelsurge, LIST_SIDE_STEELSURGE},
 };
 
 static const struct ListMenuItem sSecondaryListItems[] =
@@ -774,7 +778,7 @@ static void Task_ShowAiPoints(u8 taskId)
 
         // Swap battler if it's player mon
         data->aiBattlerId = data->battlerId;
-        while (!IsBattlerAIControlled(data->aiBattlerId))
+        while (!BattlerHasAi(data->aiBattlerId))
         {
             if (++data->aiBattlerId >= gBattlersCount)
                 data->aiBattlerId = 0;
@@ -840,7 +844,7 @@ static const u8 *const sAiInfoItemNames[] =
 
 static void PutAiInfoText(struct BattleDebugMenu *data)
 {
-    u32 i, j, count;
+    u32 i;
     u8 *text = Alloc(0x50);
 
     FillWindowPixelBuffer(data->aiMovesWindowId, 0x11);
@@ -854,11 +858,11 @@ static void PutAiInfoText(struct BattleDebugMenu *data)
     // items info
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (GET_BATTLER_SIDE(i) == B_SIDE_PLAYER && IsBattlerAlive(i))
+        if (GetBattlerSide(i) == B_SIDE_PLAYER && IsBattlerAlive(i))
         {
-            u16 ability = AI_GetAbility(i);
-            u16 holdEffect = AI_GetHoldEffect(i);
-            u16 item = gBattleMons[i].item;
+            u16 ability = AI_DATA->abilities[i];
+            u16 holdEffect = AI_DATA->holdEffects[i];
+            u16 item = AI_DATA->items[i];
             u8 x = (i == B_POSITION_PLAYER_LEFT) ? 83 + (i) * 75 : 83 + (i-1) * 75;
             AddTextPrinterParameterized(data->aiMovesWindowId, 0, gAbilityNames[ability], x, 0, 0, NULL);
             AddTextPrinterParameterized(data->aiMovesWindowId, 0, ItemId_GetName(item), x, 15, 0, NULL);
@@ -874,10 +878,10 @@ static void PutAiPartyText(struct BattleDebugMenu *data)
 {
     u32 i, j, count;
     u8 *text = Alloc(0x50), *txtPtr;
-    struct AiPartyMon *aiMons = AI_PARTY->mons[GET_BATTLER_SIDE(data->aiBattlerId)];
+    struct AiPartyMon *aiMons = AI_PARTY->mons[GetBattlerSide(data->aiBattlerId)];
 
     FillWindowPixelBuffer(data->aiMovesWindowId, 0x11);
-    count = AI_PARTY->count[GET_BATTLER_SIDE(data->aiBattlerId)];
+    count = AI_PARTY->count[GetBattlerSide(data->aiBattlerId)];
     for (i = 0; i < count; i++)
     {
         if (aiMons[i].wasSentInBattle)
@@ -931,7 +935,7 @@ static void Task_ShowAiKnowledge(u8 taskId)
 
         // Swap battler if it's player mon
         data->aiBattlerId = data->battlerId;
-        while (!IsBattlerAIControlled(data->aiBattlerId))
+        while (!BattlerHasAi(data->aiBattlerId))
         {
             if (++data->aiBattlerId >= gBattlersCount)
                 data->aiBattlerId = 0;
@@ -940,7 +944,7 @@ static void Task_ShowAiKnowledge(u8 taskId)
         LoadMonIconPalettes();
         for (count = 0, i = 0; i < MAX_BATTLERS_COUNT; i++)
         {
-            if (GET_BATTLER_SIDE(i) == B_SIDE_PLAYER && IsBattlerAlive(i))
+            if (GetBattlerSide(i) == B_SIDE_PLAYER && IsBattlerAlive(i))
             {
                 data->spriteIds.aiIconSpriteIds[i] = CreateMonIcon(gBattleMons[i].species,
                                                          SpriteCallbackDummy,
@@ -999,8 +1003,8 @@ static void Task_ShowAiParty(u8 taskId)
         LoadMonIconPalettes();
         LoadPartyMenuAilmentGfx();
         data->aiBattlerId = data->battlerId;
-        aiMons = AI_PARTY->mons[GET_BATTLER_SIDE(data->aiBattlerId)];
-        for (i = 0; i < AI_PARTY->count[GET_BATTLER_SIDE(data->aiBattlerId)]; i++)
+        aiMons = AI_PARTY->mons[GetBattlerSide(data->aiBattlerId)];
+        for (i = 0; i < AI_PARTY->count[GetBattlerSide(data->aiBattlerId)]; i++)
         {
             u16 species = SPECIES_NONE; // Question mark
             if (aiMons[i].wasSentInBattle && aiMons[i].species)
@@ -1012,11 +1016,13 @@ static void Task_ShowAiParty(u8 taskId)
             gSprites[gSprites[data->spriteIds.aiPartyIcons[i]].sConditionSpriteId].oam.priority = 0;
             if (aiMons[i].isFainted)
                 ailment = AILMENT_FNT;
-            else if (aiMons[i].status)
-                ailment = GetAilmentFromStatus(aiMons[i].status);
             else
-                ailment = AILMENT_FNT + 1; // blank
-            StartSpriteAnim(&gSprites[gSprites[data->spriteIds.aiPartyIcons[i]].sConditionSpriteId], ailment - 1);
+                ailment = GetAilmentFromStatus(aiMons[i].status);
+
+            if (ailment != AILMENT_NONE)
+                StartSpriteAnim(&gSprites[gSprites[data->spriteIds.aiPartyIcons[i]].sConditionSpriteId], ailment - 1);
+            else
+                gSprites[gSprites[data->spriteIds.aiPartyIcons[i]].sConditionSpriteId].invisible = TRUE;
         }
         for (; i < PARTY_SIZE; i++)
             data->spriteIds.aiPartyIcons[i] = 0xFF;
@@ -1297,7 +1303,7 @@ static void CreateSecondaryListMenu(struct BattleDebugMenu *data)
         itemsCount = 1;
         break;
     case LIST_ITEM_HELD_ITEM:
-        itemsCount = 2;
+        itemsCount = 1;
         break;
     case LIST_ITEM_TYPES:
         itemsCount = 3;
@@ -1434,11 +1440,6 @@ static void PrintSecondaryEntries(struct BattleDebugMenu *data)
     case LIST_ITEM_HELD_ITEM:
         PadString(ItemId_GetName(gBattleMons[data->battlerId].item), text);
         printer.currentY = printer.y = sSecondaryListTemplate.upText_Y;
-        AddTextPrinter(&printer, 0, NULL);
-
-        PadString(sText_EffectOverride, text);
-        printer.fontId = 0;
-        printer.currentY = printer.y = sSecondaryListTemplate.upText_Y + yMultiplier;
         AddTextPrinter(&printer, 0, NULL);
         break;
     case LIST_ITEM_TYPES:
@@ -1581,12 +1582,6 @@ static void UpdateBattlerValue(struct BattleDebugMenu *data)
             gBattleMons[data->battlerId].status2 &= ~STATUS2_INFATUATION;
         }
         break;
-    case VAL_ITEM:
-        if (data->currentSecondaryListItemId == 0)
-            *(u16 *)(data->modifyArrows.modifiedValPtr) = data->modifyArrows.currValue;
-        else if (data->currentSecondaryListItemId == 1)
-            gBattleStruct->debugHoldEffects[data->battlerId] = data->modifyArrows.currValue;
-        break;
     }
     data->battlerWasChanged[data->battlerId] = TRUE;
 }
@@ -1634,7 +1629,7 @@ static void ValueToCharDigits(u8 *charDigits, u32 newValue, u8 maxDigits)
 
 static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus, bool32 statusTrue)
 {
-    struct SideTimer *sideTimer = &gSideTimers[GET_BATTLER_SIDE(data->battlerId)];
+    struct SideTimer *sideTimer = &gSideTimers[GetBattlerSide(data->battlerId)];
 
     switch (data->currentSecondaryListItemId)
     {
@@ -1744,6 +1739,15 @@ static u8 *GetSideStatusValue(struct BattleDebugMenu *data, bool32 changeStatus,
                 *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_STICKY_WEB;
         }
         return &sideTimer->stickyWebAmount;
+    case LIST_SIDE_STEELSURGE:
+        if (changeStatus)
+        {
+            if (statusTrue)
+                *(u32 *)(data->modifyArrows.modifiedValPtr) |= SIDE_STATUS_STEELSURGE;
+            else
+                *(u32 *)(data->modifyArrows.modifiedValPtr) &= ~SIDE_STATUS_STEELSURGE;
+        }
+        return &sideTimer->steelsurgeAmount;
     default:
         return NULL;
     }
@@ -1795,11 +1799,8 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
         data->modifyArrows.maxValue = ITEMS_COUNT - 1;
         data->modifyArrows.maxDigits = 3;
         data->modifyArrows.modifiedValPtr = &gBattleMons[data->battlerId].item;
-        data->modifyArrows.typeOfVal = VAL_ITEM;
-        if (data->currentSecondaryListItemId == 0)
-            data->modifyArrows.currValue = gBattleMons[data->battlerId].item;
-        else
-            data->modifyArrows.currValue = gBattleStruct->debugHoldEffects[data->battlerId];
+        data->modifyArrows.typeOfVal = VAL_U16;
+        data->modifyArrows.currValue = gBattleMons[data->battlerId].item;
         break;
     case LIST_ITEM_TYPES:
         data->modifyArrows.minValue = 0;
@@ -1920,7 +1921,7 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
             data->modifyArrows.maxValue = 9;
 
         data->modifyArrows.maxDigits = 2;
-        data->modifyArrows.modifiedValPtr = &gSideStatuses[GET_BATTLER_SIDE(data->battlerId)];
+        data->modifyArrows.modifiedValPtr = &gSideStatuses[GetBattlerSide(data->battlerId)];
         data->modifyArrows.typeOfVal = VAR_SIDE_STATUS;
         data->modifyArrows.currValue = *GetSideStatusValue(data, FALSE, FALSE);
         break;

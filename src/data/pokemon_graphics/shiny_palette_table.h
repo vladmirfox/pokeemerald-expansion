@@ -1,4 +1,4 @@
-const struct CompressedSpritePalette gMonShinyPaletteTable[] =
+const struct CompressedSpritePalette gMonShinyPaletteTable[NUM_SPECIES + 1] =
 {
     SPECIES_SHINY_PAL(NONE, gMonShinyPalette_CircledQuestionMark),
     SPECIES_SHINY_PAL(BULBASAUR, gMonShinyPalette_Bulbasaur),
@@ -789,9 +789,9 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(BRUXISH, gMonShinyPalette_Bruxish),
     SPECIES_SHINY_PAL(DRAMPA, gMonShinyPalette_Drampa),
     SPECIES_SHINY_PAL(DHELMISE, gMonShinyPalette_Dhelmise),
-    SPECIES_SHINY_PAL(JANGMO_O, gMonShinyPalette_Jangmoo),
-    SPECIES_SHINY_PAL(HAKAMO_O, gMonShinyPalette_Hakamoo),
-    SPECIES_SHINY_PAL(KOMMO_O, gMonShinyPalette_Kommoo),
+    SPECIES_SHINY_PAL(JANGMO_O, gMonShinyPalette_JangmoO),
+    SPECIES_SHINY_PAL(HAKAMO_O, gMonShinyPalette_HakamoO),
+    SPECIES_SHINY_PAL(KOMMO_O, gMonShinyPalette_KommoO),
     SPECIES_SHINY_PAL(TAPU_KOKO, gMonShinyPalette_TapuKoko),
     SPECIES_SHINY_PAL(TAPU_LELE, gMonShinyPalette_TapuLele),
     SPECIES_SHINY_PAL(TAPU_BULU, gMonShinyPalette_TapuBulu),
@@ -908,13 +908,13 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(GLASTRIER, gMonShinyPalette_Glastrier),
     SPECIES_SHINY_PAL(SPECTRIER, gMonShinyPalette_Spectrier),
     SPECIES_SHINY_PAL(CALYREX, gMonShinyPalette_Calyrex),
-    SPECIES_SHINY_PAL(WYRDEER, gMonShinyPalette_CircledQuestionMark), // gMonShinyPalette_Wyrdeer),
+    SPECIES_SHINY_PAL(WYRDEER, gMonShinyPalette_Wyrdeer),
     SPECIES_SHINY_PAL(KLEAVOR, gMonShinyPalette_Kleavor),
     SPECIES_SHINY_PAL(URSALUNA, gMonShinyPalette_Ursaluna),
-    SPECIES_SHINY_PAL(BASCULEGION, gMonShinyPalette_CircledQuestionMark), // gMonShinyPalette_Basculegion),
-    SPECIES_SHINY_PAL(SNEASLER, gMonShinyPalette_CircledQuestionMark), // gMonShinyPalette_Sneasler),
+    SPECIES_SHINY_PAL(BASCULEGION, gMonShinyPalette_Basculegion),
+    SPECIES_SHINY_PAL(SNEASLER, gMonShinyPalette_Sneasler),
     SPECIES_SHINY_PAL(OVERQWIL, gMonShinyPalette_Overqwil),
-    SPECIES_SHINY_PAL(ENAMORUS, gMonShinyPalette_CircledQuestionMark), // gMonShinyPalette_Enamorus),
+    SPECIES_SHINY_PAL(ENAMORUS, gMonShinyPalette_Enamorus),
 #endif
 
     SPECIES_SHINY_PAL(VENUSAUR_MEGA, gMonShinyPalette_VenusaurMega),
@@ -1024,7 +1024,7 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(QWILFISH_HISUIAN, gMonShinyPalette_QwilfishHisuian),
     SPECIES_SHINY_PAL(SNEASEL_HISUIAN, gMonShinyPalette_SneaselHisuian),
 #if P_GEN_5_POKEMON == TRUE
-    SPECIES_SHINY_PAL(SAMUROTT_HISUIAN, gMonShinyPalette_CircledQuestionMark), //gMonShinyPalette_SamurottHisuian),
+    SPECIES_SHINY_PAL(SAMUROTT_HISUIAN, gMonShinyPalette_SamurottHisuian),
     SPECIES_SHINY_PAL(LILLIGANT_HISUIAN, gMonShinyPalette_LilligantHisuian),
     SPECIES_SHINY_PAL(ZORUA_HISUIAN, gMonShinyPalette_ZoruaHisuian),
     SPECIES_SHINY_PAL(ZOROARK_HISUIAN, gMonShinyPalette_ZoroarkHisuian),
@@ -1036,7 +1036,7 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
     SPECIES_SHINY_PAL(AVALUGG_HISUIAN, gMonShinyPalette_AvaluggHisuian),
 #endif
 #if P_GEN_7_POKEMON == TRUE
-    SPECIES_SHINY_PAL(DECIDUEYE_HISUIAN, gMonShinyPalette_CircledQuestionMark), //gMonShinyPalette_DecidueyeHisuian),
+    SPECIES_SHINY_PAL(DECIDUEYE_HISUIAN, gMonShinyPalette_DecidueyeHisuian),
 #endif
 
     SPECIES_SHINY_PAL(PIKACHU_COSPLAY, gMonShinyPalette_PikachuCosplay),
@@ -1328,23 +1328,52 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
 
     SPECIES_SHINY_PAL(CALYREX_ICE_RIDER, gMonShinyPalette_CalyrexIceRider),
     SPECIES_SHINY_PAL(CALYREX_SHADOW_RIDER, gMonShinyPalette_CalyrexShadowRider),
-    
-    SPECIES_SHINY_PAL(ENAMORUS_THERIAN, gMonShinyPalette_CircledQuestionMark), //gMonShinyPalette_EnamorusTherian),
+
+    SPECIES_SHINY_PAL(ENAMORUS_THERIAN, gMonShinyPalette_EnamorusTherian),
+
+    SPECIES_SHINY_PAL(BASCULEGION_FEMALE, gMonShinyPalette_BasculegionFemale),
+
+    // Gigantamax Forms
+    SPECIES_SHINY_PAL(VENUSAUR_GIGANTAMAX, gMonShinyPalette_VenusaurGigantamax),
+    SPECIES_SHINY_PAL(CHARIZARD_GIGANTAMAX, gMonShinyPalette_CharizardGigantamax),
+    SPECIES_SHINY_PAL(BLASTOISE_GIGANTAMAX, gMonShinyPalette_BlastoiseGigantamax),
+    SPECIES_SHINY_PAL(BUTTERFREE_GIGANTAMAX, gMonShinyPalette_ButterfreeGigantamax),
+    SPECIES_SHINY_PAL(PIKACHU_GIGANTAMAX, gMonShinyPalette_PikachuGigantamax),
+    SPECIES_SHINY_PAL(MEOWTH_GIGANTAMAX, gMonShinyPalette_MeowthGigantamax),
+    SPECIES_SHINY_PAL(MACHAMP_GIGANTAMAX, gMonShinyPalette_MachampGigantamax),
+    SPECIES_SHINY_PAL(GENGAR_GIGANTAMAX, gMonShinyPalette_GengarGigantamax),
+    SPECIES_SHINY_PAL(KINGLER_GIGANTAMAX, gMonShinyPalette_KinglerGigantamax),
+    SPECIES_SHINY_PAL(LAPRAS_GIGANTAMAX, gMonShinyPalette_LaprasGigantamax),
+    SPECIES_SHINY_PAL(EEVEE_GIGANTAMAX, gMonShinyPalette_EeveeGigantamax),
+    SPECIES_SHINY_PAL(SNORLAX_GIGANTAMAX, gMonShinyPalette_SnorlaxGigantamax),
+    SPECIES_SHINY_PAL(GARBODOR_GIGANTAMAX, gMonShinyPalette_GarbodorGigantamax),
+    SPECIES_SHINY_PAL(MELMETAL_GIGANTAMAX, gMonShinyPalette_MelmetalGigantamax),
+    SPECIES_SHINY_PAL(RILLABOOM_GIGANTAMAX, gMonShinyPalette_RillaboomGigantamax),
+    SPECIES_SHINY_PAL(CINDERACE_GIGANTAMAX, gMonShinyPalette_CinderaceGigantamax),
+    SPECIES_SHINY_PAL(INTELEON_GIGANTAMAX, gMonShinyPalette_InteleonGigantamax),
+    SPECIES_SHINY_PAL(CORVIKNIGHT_GIGANTAMAX, gMonShinyPalette_CorviknightGigantamax),
+    SPECIES_SHINY_PAL(ORBEETLE_GIGANTAMAX, gMonShinyPalette_OrbeetleGigantamax),
+    SPECIES_SHINY_PAL(DREDNAW_GIGANTAMAX, gMonShinyPalette_DrednawGigantamax),
+    SPECIES_SHINY_PAL(COALOSSAL_GIGANTAMAX, gMonShinyPalette_CoalossalGigantamax),
+    SPECIES_SHINY_PAL(FLAPPLE_GIGANTAMAX, gMonShinyPalette_FlappleGigantamax),
+    SPECIES_SHINY_PAL(APPLETUN_GIGANTAMAX, gMonShinyPalette_AppletunGigantamax),
+    SPECIES_SHINY_PAL(SANDACONDA_GIGANTAMAX, gMonShinyPalette_SandacondaGigantamax),
+    SPECIES_SHINY_PAL(TOXTRICITY_GIGANTAMAX, gMonShinyPalette_ToxtricityGigantamax),
+    SPECIES_SHINY_PAL(CENTISKORCH_GIGANTAMAX, gMonShinyPalette_CentiskorchGigantamax),
+    SPECIES_SHINY_PAL(HATTERENE_GIGANTAMAX, gMonShinyPalette_HattereneGigantamax),
+    SPECIES_SHINY_PAL(GRIMMSNARL_GIGANTAMAX, gMonShinyPalette_GrimmsnarlGigantamax),
+    SPECIES_SHINY_PAL(ALCREMIE_GIGANTAMAX, gMonShinyPalette_AlcremieGigantamax),
+    SPECIES_SHINY_PAL(COPPERAJAH_GIGANTAMAX, gMonShinyPalette_CopperajahGigantamax),
+    SPECIES_SHINY_PAL(DURALUDON_GIGANTAMAX, gMonShinyPalette_DuraludonGigantamax),
+    SPECIES_SHINY_PAL(URSHIFU_GIGANTAMAX, gMonShinyPalette_UrshifuGigantamax),
+    SPECIES_SHINY_PAL(URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX, gMonShinyPalette_UrshifuRapidStrikeGigantamax),
 #endif
     SPECIES_SHINY_PAL(EGG, gMonPalette_Egg),
 };
 
-const struct CompressedSpritePalette gMonShinyPaletteTableFemale[] =
+const struct CompressedSpritePalette gMonShinyPaletteTableFemale[NUM_SPECIES + 1] =
 {
-    SPECIES_SHINY_PAL(EEVEE, gMonShinyPalette_Eevee),
 #if P_GEN_4_POKEMON == TRUE
-    SPECIES_SHINY_PAL(STARLY, gMonShinyPalette_Starly),
-    SPECIES_SHINY_PAL(STARAVIA, gMonShinyPalette_Staravia),
-    SPECIES_SHINY_PAL(STARAPTOR, gMonShinyPalette_Staraptor),
-    SPECIES_SHINY_PAL(BIDOOF, gMonShinyPalette_Bidoof),
-    SPECIES_SHINY_PAL(KRICKETOT, gMonShinyPalette_Kricketot),
-    SPECIES_SHINY_PAL(KRICKETUNE, gMonShinyPalette_Kricketune),
-    SPECIES_SHINY_PAL(SHINX, gMonShinyPalette_Shinx),
     SPECIES_SHINY_PAL(COMBEE, gMonShinyPalette_CombeeF),
     SPECIES_SHINY_PAL(HIPPOPOTAS, gMonShinyPalette_HippopotasF),
     SPECIES_SHINY_PAL(HIPPOWDON, gMonShinyPalette_HippowdonF),
@@ -1353,11 +1382,5 @@ const struct CompressedSpritePalette gMonShinyPaletteTableFemale[] =
     SPECIES_SHINY_PAL(UNFEZANT, gMonShinyPalette_UnfezantF),
     SPECIES_SHINY_PAL(FRILLISH, gMonShinyPalette_FrillishF),
     SPECIES_SHINY_PAL(JELLICENT, gMonShinyPalette_JellicentF),
-#endif
-#if P_GEN_6_POKEMON == TRUE
-    SPECIES_SHINY_PAL(PYROAR, gMonShinyPalette_Pyroar),
-#endif
-#if P_GEN_8_POKEMON == TRUE
-    SPECIES_SHINY_PAL(BASCULEGION, gMonShinyPalette_CircledQuestionMark), // gMonShinyPalette_BasculegionF),
 #endif
 };

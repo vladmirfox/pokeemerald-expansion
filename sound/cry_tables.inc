@@ -1126,9 +1126,9 @@ gCryTable::
 	cry Cry_Bruxish
 	cry Cry_Drampa
 	cry Cry_Dhelmise
-	cry Cry_Jangmoo
-	cry Cry_Hakamoo
-	cry Cry_Kommoo
+	cry Cry_JangmoO
+	cry Cry_HakamoO
+	cry Cry_KommoO
 	cry Cry_TapuKoko
 	cry Cry_TapuLele
 	cry Cry_TapuBulu
@@ -1334,13 +1334,13 @@ gCryTable::
 	cry Cry_Glastrier
 	cry Cry_Spectrier
 	cry Cry_Calyrex
-	cry Cry_Unown //Cry_Wyrdeer
-	cry Cry_Unown //Cry_Kleavor
-	cry Cry_Unown //Cry_Ursaluna
-	cry Cry_Unown //Cry_Basculegion
-	cry Cry_Unown //Cry_Sneasler
-	cry Cry_Unown //Cry_Overqwil
-	cry Cry_Unown //Cry_Enamorus
+	cry Cry_Wyrdeer
+	cry Cry_Kleavor
+	cry Cry_Ursaluna
+	cry Cry_Basculegion
+	cry Cry_Sneasler
+	cry Cry_Overqwil
+	cry Cry_Enamorus
 .else
 	cry Cry_Unown
 	cry Cry_Unown
@@ -1749,7 +1749,7 @@ gCryTable::
 	cry Cry_TornadusTherian
 	cry Cry_ThundurusTherian
 	cry Cry_LandorusTherian
-	cry Cry_Bulbasaur //Cry_EnamorusTherian
+	cry Cry_EnamorusTherian
 	@ Kyurem
 	cry Cry_KyuremWhite
 	cry Cry_KyuremBlack
@@ -2080,6 +2080,8 @@ gCryTable::
 	@ Calyrex
 	cry Cry_CalyrexIceRider
 	cry Cry_CalyrexShadowRider
+	@ Basculegion
+	cry Cry_Basculegion
 .else
 	@ Cramorant
 	cry Cry_Unown
@@ -2116,6 +2118,72 @@ gCryTable::
 	@ Zarude
 	cry Cry_Unown
 	@ Calyrex
+	cry Cry_Unown
+	cry Cry_Unown
+	@ Basculegion
+	cry Cry_Unown
+.endif
+@ Gigantamax Forms
+	cry Cry_Venusaur
+	cry Cry_Charizard
+	cry Cry_Blastoise
+	cry Cry_Butterfree
+	cry Cry_Pikachu
+	cry Cry_Meowth
+	cry Cry_Machamp
+	cry Cry_Gengar
+	cry Cry_Kingler
+	cry Cry_Lapras
+	cry Cry_Eevee
+	cry Cry_Snorlax
+.if P_GEN_5_POKEMON == TRUE
+	cry Cry_Garbodor
+.else
+	cry Cry_Unown
+.endif
+.if P_GEN_7_POKEMON == TRUE
+	cry Cry_Melmetal
+.else
+	cry Cry_Unown
+.endif
+.if P_GEN_8_POKEMON == TRUE
+	cry Cry_Rillaboom
+	cry Cry_Cinderace
+	cry Cry_Inteleon
+	cry Cry_Corviknight
+	cry Cry_Orbeetle
+	cry Cry_Drednaw
+	cry Cry_Coalossal
+	cry Cry_Flapple
+	cry Cry_Appletun
+	cry Cry_Sandaconda
+	cry Cry_Toxtricity
+	cry Cry_Centiskorch
+	cry Cry_Hatterene
+	cry Cry_Grimmsnarl
+	cry Cry_Alcremie
+	cry Cry_Copperajah
+	cry Cry_Duraludon
+	cry Cry_Urshifu
+	cry Cry_Urshifu
+.else
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
+	cry Cry_Unown
 	cry Cry_Unown
 	cry Cry_Unown
 .endif
@@ -3248,9 +3316,9 @@ gCryTable_Reverse::
 	cry_reverse Cry_Bruxish
 	cry_reverse Cry_Drampa
 	cry_reverse Cry_Dhelmise
-	cry_reverse Cry_Jangmoo
-	cry_reverse Cry_Hakamoo
-	cry_reverse Cry_Kommoo
+	cry_reverse Cry_JangmoO
+	cry_reverse Cry_HakamoO
+	cry_reverse Cry_KommoO
 	cry_reverse Cry_TapuKoko
 	cry_reverse Cry_TapuLele
 	cry_reverse Cry_TapuBulu
@@ -3456,13 +3524,13 @@ gCryTable_Reverse::
 	cry_reverse Cry_Glastrier
 	cry_reverse Cry_Spectrier
 	cry_reverse Cry_Calyrex
-	cry_reverse Cry_Unown //Cry_Wyrdeer
-	cry_reverse Cry_Unown //Cry_Kleavor
-	cry_reverse Cry_Unown //Cry_Ursaluna
-	cry_reverse Cry_Unown //Cry_Basculegion
-	cry_reverse Cry_Unown //Cry_Sneasler
-	cry_reverse Cry_Unown //Cry_Overqwil
-	cry_reverse Cry_Unown //Cry_Enamorus
+	cry_reverse Cry_Wyrdeer
+	cry_reverse Cry_Kleavor
+	cry_reverse Cry_Ursaluna
+	cry_reverse Cry_Basculegion
+	cry_reverse Cry_Sneasler
+	cry_reverse Cry_Overqwil
+	cry_reverse Cry_Enamorus
 .else
 	cry_reverse Cry_Unown
 	cry_reverse Cry_Unown
@@ -3862,7 +3930,7 @@ gCryTable_Reverse::
 	cry_reverse Cry_TornadusTherian
 	cry_reverse Cry_ThundurusTherian
 	cry_reverse Cry_LandorusTherian
-	cry_reverse Cry_Bulbasaur //Cry_EnamorusTherian
+	cry_reverse Cry_EnamorusTherian
 	@ Kyurem
 	cry_reverse Cry_KyuremWhite
 	cry_reverse Cry_KyuremBlack
@@ -4163,11 +4231,78 @@ gCryTable_Reverse::
 	@ Calyrex
 	cry_reverse Cry_CalyrexIceRider
 	cry_reverse Cry_CalyrexShadowRider
+	@ Basculegion
+	cry_reverse Cry_Basculegion
 .else
 	cry_reverse Cry_Unown
 	cry_reverse Cry_Unown
 	cry_reverse Cry_Unown
 	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+	cry_reverse Cry_Unown
+.endif
+	@ Gigantamax Forms
+	cry_reverse Cry_Venusaur
+	cry_reverse Cry_Charizard
+	cry_reverse Cry_Blastoise
+	cry_reverse Cry_Butterfree
+	cry_reverse Cry_Pikachu
+	cry_reverse Cry_Meowth
+	cry_reverse Cry_Machamp
+	cry_reverse Cry_Gengar
+	cry_reverse Cry_Kingler
+	cry_reverse Cry_Lapras
+	cry_reverse Cry_Eevee
+	cry_reverse Cry_Snorlax
+.if P_GEN_5_POKEMON == TRUE
+	cry_reverse Cry_Garbodor
+.else
+	cry_reverse Cry_Unown
+.endif
+.if P_GEN_7_POKEMON == TRUE
+	cry_reverse Cry_Melmetal
+.else
+	cry_reverse Cry_Unown
+.endif
+.if P_GEN_8_POKEMON == TRUE
+	cry_reverse Cry_Rillaboom
+	cry_reverse Cry_Cinderace
+	cry_reverse Cry_Inteleon
+	cry_reverse Cry_Corviknight
+	cry_reverse Cry_Orbeetle
+	cry_reverse Cry_Drednaw
+	cry_reverse Cry_Coalossal
+	cry_reverse Cry_Flapple
+	cry_reverse Cry_Appletun
+	cry_reverse Cry_Sandaconda
+	cry_reverse Cry_Toxtricity
+	cry_reverse Cry_Centiskorch
+	cry_reverse Cry_Hatterene
+	cry_reverse Cry_Grimmsnarl
+	cry_reverse Cry_Alcremie
+	cry_reverse Cry_Copperajah
+	cry_reverse Cry_Duraludon
+	cry_reverse Cry_Urshifu
+	cry_reverse Cry_Urshifu
+.else
 	cry_reverse Cry_Unown
 	cry_reverse Cry_Unown
 	cry_reverse Cry_Unown

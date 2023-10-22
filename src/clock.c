@@ -11,6 +11,7 @@
 #include "main.h"
 #include "overworld.h"
 #include "wallclock.h"
+#include "constants/form_change_types.h"
 
 static void UpdatePerDay(struct Time *localTime);
 static void UpdatePerMinute(struct Time *localTime);
@@ -81,8 +82,7 @@ static void FormChangeTimeUpdate()
     for (i = 0; i < PARTY_SIZE; i++)
     {
         struct Pokemon *mon = &gPlayerParty[i];
-        u16 species = GetMonData(mon, MON_DATA_SPECIES);
-        u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_TIME, 0);
+        u16 targetSpecies = GetFormChangeTargetSpecies(mon, FORM_CHANGE_TIME_OF_DAY, 0);
         
         if (targetSpecies != SPECIES_NONE)
         {
@@ -90,7 +90,6 @@ static void FormChangeTimeUpdate()
             CalculateMonStats(mon);
         }
     }
-
 }
 
 static void ReturnFromStartWallClock(void)
