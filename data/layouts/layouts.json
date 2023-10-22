@@ -4754,8 +4754,8 @@
     {
       "id": "LAYOUT_GROTTO2",
       "name": "Grotto2_Layout",
-      "width": 11,
-      "height": 14,
+      "width": 17,
+      "height": 18,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/Grotto2/border.bin",

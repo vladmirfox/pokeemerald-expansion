@@ -449,6 +449,7 @@
 #define METATILE_Rustboro_Door_Gray             0x21F
 #define METATILE_Rustboro_Door_Tan              0x22F
 #define METATILE_Rustboro_Grass_GrottoTreeDown  0x2C2
+#define METATILE_Rustboro_Grass_GrottoTreeUp    0x201
 
 // gTileset_SecretBase
 #define METATILE_SecretBase_AttractMat_BottomLeft       0x313

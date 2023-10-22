@@ -61,6 +61,47 @@ Grotto_Layout1_CloseRightTreeArea::
     setmetatile 10, 9, METATILE_General_Grass_TreeOverlap, TRUE
     return
 
+Grotto_Layout2_CloseEntranceLeftPath::
+    setmetatile 7, 10, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 7, 11, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 7, 12, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 6, 11, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 6, 10, METATILE_Rustboro_Grass_GrottoTreeUp, FALSE
+    return
+
+Grotto_Layout2_ClosePathThroughMiddle::
+    setmetatile 7, 8, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 7, 9, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 8, 8, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 8, 9, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 9, 8, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 9, 9, METATILE_General_Grass_TreeOverlap, TRUE
+    return
+
+Grotto_Layout2_CloseLeftPathToTop::
+    setmetatile 4, 4, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 4, 5, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 4, 6, METATILE_Rustboro_Grass_GrottoTreeDown, TRUE
+    setmetatile 5, 5, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 5, 4, METATILE_Rustboro_Grass_GrottoTreeUp, FALSE
+    return
+
+Grotto_Layout2_CloseRightPathToTop::
+    setmetatile 12, 4, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 12, 5, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 12, 6, METATILE_Rustboro_Grass_GrottoTreeDown, TRUE
+    setmetatile 11, 5, METATILE_General_Grass_TreeOverlap, TRUE
+    setmetatile 11, 4, METATILE_Rustboro_Grass_GrottoTreeUp, FALSE
+    return
+
+Grotto_Layout2_SetLeftEventStage::
+    setmetatile 3, 8, METATILE_General_Grass, FALSE
+    return
+
+Grotto_Layout2_SetMiddleEventStage::
+    setmetatile 8, 2, METATILE_General_Grass, FALSE
+    return
+
 Grotto_Layout3_CloseRightPath::
     setmetatile 7, 3, METATILE_General_Grass_TreeOverlap, TRUE
     setmetatile 7, 4, METATILE_General_Grass_TreeOverlap, TRUE
