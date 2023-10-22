@@ -4,41 +4,38 @@
 ASSUMPTIONS
 {
     ASSUME(gItems[ITEM_JABOCA_BERRY].holdEffect == HOLD_EFFECT_JABOCA_BERRY);
+    ASSUME(gBattleMoves[MOVE_TACKLE].split == SPLIT_PHYSICAL);
 }
 
 SINGLE_BATTLE_TEST("Jaboca Berry causes the attacker to lose 1/8 of its max HP if a physical move was used")
 {
     s16 damage;
+    u16 move;
 
-    GIVEN {
-        ASSUME(gBattleMoves[MOVE_TACKLE].split == SPLIT_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_JABOCA_BERRY); }
-    } WHEN {
-        TURN { MOVE(player, MOVE_TACKLE); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
-        HP_BAR(opponent);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
-        HP_BAR(player, captureDamage: &damage);
-        MESSAGE("Wobbuffet was hurt by Foe Wobbuffet's Jaboca Berry!");
-    } THEN {
-        EXPECT_EQ(player->maxHP / 8, damage);
-    }
-}
+    PARAMETRIZE { move = MOVE_SWIFT; }
+    PARAMETRIZE { move = MOVE_TACKLE; }
 
-SINGLE_BATTLE_TEST("Jaboca Berry is not triggered by a special move")
-{
     GIVEN {
         ASSUME(gBattleMoves[MOVE_SWIFT].split == SPLIT_SPECIAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_JABOCA_BERRY); }
     } WHEN {
-        TURN { MOVE(player, MOVE_SWIFT); }
+        TURN { MOVE(player, move); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SWIFT, player);
+        ANIMATION(ANIM_TYPE_MOVE, move, player);
         HP_BAR(opponent);
-        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
-        NOT MESSAGE("Wobbuffet was hurt by Foe Wobbuffet's Jaboca Berry!");
+        if (move == MOVE_TACKLE) {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
+            HP_BAR(player, captureDamage: &damage);
+            MESSAGE("Wobbuffet was hurt by Foe Wobbuffet's Jaboca Berry!");
+        } else {
+            NONE_OF {
+                ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
+                MESSAGE("Wobbuffet was hurt by Foe Wobbuffet's Jaboca Berry!");
+            }
+        }
+    } THEN {
+        if (move == MOVE_TACKLE)
+            EXPECT_EQ(player->maxHP / 8, damage);
     }
 }
