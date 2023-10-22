@@ -1695,13 +1695,13 @@ static const union AnimCmd *const sAnims_Snowflakes[] =
 
 const struct SpriteTemplate gSnowFlakesSpriteTemplate =
 {
-	.tileTag = ANIM_TAG_SNOWFLAKES,
-	.paletteTag = ANIM_TAG_SNOWFLAKES,
-	.oam = &gOamData_AffineOff_ObjNormal_16x32,
-	.anims = sAnims_Snowflakes,
-	.images = NULL,
-	.affineAnims = gDummySpriteAffineAnimTable,
-	.callback = AnimSnowflakes,
+    .tileTag = ANIM_TAG_SNOWFLAKES,
+    .paletteTag = ANIM_TAG_SNOWFLAKES,
+    .oam = &gOamData_AffineOff_ObjNormal_16x32,
+    .anims = sAnims_Snowflakes,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = AnimSnowflakes,
 };
 
 void AnimTask_CreateSnowflakes(u8 taskId)
