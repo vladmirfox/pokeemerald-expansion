@@ -13503,7 +13503,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_TERA_BLAST] =
     {
-        .effect = EFFECT_HIT, // EFFECT_TERA_BLAST, needs Tera gimmick to implement properly
+        .effect = EFFECT_PLACEHOLDER, // EFFECT_TERA_BLAST
         .power = 80,
         .type = TYPE_NORMAL,
         .accuracy = 100,
@@ -13514,6 +13514,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .forcePressure = TRUE,
+        .metronomeBanned = TRUE, // Only since it isn't implemented yet
     },
 
     [MOVE_SILK_TRAP] =
@@ -13582,7 +13583,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_ORDER_UP] =
     {
-        .effect = EFFECT_HIT, // EFFECT_ORDER_UP, needs Tatsugiri and Commander ability to implement properly
+        .effect = EFFECT_PLACEHOLDER, // EFFECT_ORDER_UP
         .power = 80,
         .type = TYPE_DRAGON,
         .accuracy = 100,
@@ -13862,7 +13863,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_RAGING_BULL] =
     {
-        .effect = EFFECT_BRICK_BREAK, // EFFECT_RAGING_BULL, needs Paldean Tauros forms for type changing
+        .effect = EFFECT_PLACEHOLDER, // EFFECT_RAGING_BULL
         .power = 90,
         .type = TYPE_NORMAL,
         .accuracy = 100,
