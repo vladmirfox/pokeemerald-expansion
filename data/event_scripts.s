@@ -1125,3 +1125,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/Grotto2/scripts.inc"
 
 	.include "data/maps/Grotto3/scripts.inc"
+
+	.include "data/maps/Grotto4/scripts.inc"

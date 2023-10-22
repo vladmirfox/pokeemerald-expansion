@@ -499,6 +499,7 @@
 #define MAP_GROTTO1                  (61 | (25 << 8))
 #define MAP_GROTTO2                  (62 | (25 << 8))
 #define MAP_GROTTO3                  (63 | (25 << 8))
+#define MAP_GROTTO4                  (64 | (25 << 8))
 
 // gMapGroup_SpecialArea
 #define MAP_SAFARI_ZONE_NORTHWEST                           (0 | (26 << 8))
