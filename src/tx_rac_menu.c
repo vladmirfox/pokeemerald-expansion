@@ -278,7 +278,7 @@ struct // MENU_RANDOMIZER
 } static const sItemFunctionsRandom[MENUITEM_RANDOM_COUNT] =
 {
     [MENUITEM_RANDOM_OFF_ON]                    = {DrawChoices_Random_Toggle,           ProcessInput_Options_Two},
-    [MENUITEM_RANDOM_STARTER]                   = {DrawChoices_Random_Starter,          ProcessInput_Options_Two},
+    [MENUITEM_RANDOM_STARTER]                   = {DrawChoices_Random_Starter,          ProcessInput_Options_Three},
     [MENUITEM_RANDOM_WILD_PKMN]                 = {DrawChoices_Random_WildPkmn,         ProcessInput_Options_Two},
     [MENUITEM_RANDOM_TRAINER]                   = {DrawChoices_Random_Trainer,          ProcessInput_Options_Two},
     [MENUITEM_RANDOM_STATIC]                    = {DrawChoices_Random_Static,           ProcessInput_Options_Two},
@@ -520,6 +520,7 @@ static const u8 sText_Description_Randomizer_Off[]                  = _("Game wi
 static const u8 sText_Description_Randomizer_On[]                   = _("Play the game randomized.\nSettings below!");
 static const u8 sText_Description_Random_Starter_Off[]              = _("Standard starter POKéMON.");
 static const u8 sText_Description_Random_Starter_On[]               = _("Randomize starter POKéMON.");
+static const u8 sText_Description_Random_Starter_Stage2[]           = _("Randomize starter POKéMON with\n3-stage POKéMON.");
 static const u8 sText_Description_Random_WildPokemon_Off[]          = _("Same wild encounter as in the\nbase game.");
 static const u8 sText_Description_Random_WildPokemon_On[]           = _("Randomize wild POKéMON.");
 static const u8 sText_Description_Random_Trainer_Off[]              = _("Trainer will have their expected\nparty.");
@@ -547,24 +548,24 @@ static const u8 sText_Description_Random_Items_On[]                 = _("Randomi
 static const u8 sText_Description_Random_ChaosMode_Off[]            = _("Chaos mode disabled.");
 static const u8 sText_Description_Random_ChaosMode_On[]             = _("Every above choosen option will be\nvery chaotic. {COLOR 7}{COLOR 8}NOT recommended!");
 static const u8 sText_Description_Random_Next[]                     = _("Continue to Nuzlocke options.");
-static const u8 *const sOptionMenuItemDescriptionsRandomizer[MENUITEM_RANDOM_COUNT][2] =
+static const u8 *const sOptionMenuItemDescriptionsRandomizer[MENUITEM_RANDOM_COUNT][3] =
 {
-    [MENUITEM_RANDOM_OFF_ON]                    = {sText_Description_Randomizer_Off,               sText_Description_Randomizer_On},
-    [MENUITEM_RANDOM_STARTER]                   = {sText_Description_Random_Starter_Off,                  sText_Description_Random_Starter_On},
-    [MENUITEM_RANDOM_WILD_PKMN]                 = {sText_Description_Random_WildPokemon_Off,              sText_Description_Random_WildPokemon_On},
-    [MENUITEM_RANDOM_TRAINER]                   = {sText_Description_Random_Trainer_Off,           sText_Description_Random_Trainer_On},
-    [MENUITEM_RANDOM_STATIC]                    = {sText_Description_Random_Static_Off,            sText_Description_Random_Static_On},
-    [MENUITEM_RANDOM_SIMILAR_EVOLUTION_LEVEL]   = {sText_Description_Random_BalanceTiers_On,    sText_Description_Random_BalanceTiers_Off},
-    [MENUITEM_RANDOM_INCLUDE_LEGENDARIES]       = {sText_Description_Random_IncludeLegendaries_Off,       sText_Description_Random_IncludeLegendaries_On},
-    [MENUITEM_RANDOM_TYPE]                      = {sText_Description_Random_Types_Off,             sText_Description_Random_Types_On},
-    [MENUITEM_RANDOM_MOVES]                     = {sText_Description_Random_Moves_Off,             sText_Description_Random_Moves_On},
-    [MENUITEM_RANDOM_ABILITIES]                 = {sText_Description_Random_Abilities_Off,         sText_Description_Random_Abilities_On},
-    [MENUITEM_RANDOM_EVOLUTIONS]                = {sText_Description_Random_Evos_Off,              sText_Description_Random_Evos_On},
-    [MENUITEM_RANDOM_EVOLUTIONS_METHODS]        = {sText_Description_Random_Evo_Methods_Off,       sText_Description_Random_Evo_Methods_On},
-    [MENUITEM_RANDOM_TYPE_EFFEC]                = {sText_Description_Random_Effectiveness_Off,     sText_Description_Random_Effectiveness_On},
-    [MENUITEM_RANDOM_ITEMS]                     = {sText_Description_Random_Items_Off,             sText_Description_Random_Items_On},
-    [MENUITEM_RANDOM_CHAOS]                     = {sText_Description_Random_ChaosMode_Off,               sText_Description_Random_ChaosMode_On},
-    [MENUITEM_RANDOM_NEXT]                      = {sText_Description_Random_Next,                  sText_Empty},
+    [MENUITEM_RANDOM_OFF_ON]                    = {sText_Description_Randomizer_Off,                    sText_Description_Randomizer_On},
+    [MENUITEM_RANDOM_STARTER]                   = {sText_Description_Random_Starter_Off,                sText_Description_Random_Starter_On,                sText_Description_Random_Starter_Stage2},
+    [MENUITEM_RANDOM_WILD_PKMN]                 = {sText_Description_Random_WildPokemon_Off,            sText_Description_Random_WildPokemon_On,            sText_Empty},
+    [MENUITEM_RANDOM_TRAINER]                   = {sText_Description_Random_Trainer_Off,                sText_Description_Random_Trainer_On,                sText_Empty},
+    [MENUITEM_RANDOM_STATIC]                    = {sText_Description_Random_Static_Off,                 sText_Description_Random_Static_On,                 sText_Empty},
+    [MENUITEM_RANDOM_SIMILAR_EVOLUTION_LEVEL]   = {sText_Description_Random_BalanceTiers_On,            sText_Description_Random_BalanceTiers_Off,          sText_Empty},
+    [MENUITEM_RANDOM_INCLUDE_LEGENDARIES]       = {sText_Description_Random_IncludeLegendaries_Off,     sText_Description_Random_IncludeLegendaries_On,     sText_Empty},
+    [MENUITEM_RANDOM_TYPE]                      = {sText_Description_Random_Types_Off,                  sText_Description_Random_Types_On,                  sText_Empty},
+    [MENUITEM_RANDOM_MOVES]                     = {sText_Description_Random_Moves_Off,                  sText_Description_Random_Moves_On,                  sText_Empty},
+    [MENUITEM_RANDOM_ABILITIES]                 = {sText_Description_Random_Abilities_Off,              sText_Description_Random_Abilities_On,              sText_Empty},
+    [MENUITEM_RANDOM_EVOLUTIONS]                = {sText_Description_Random_Evos_Off,                   sText_Description_Random_Evos_On,                   sText_Empty},
+    [MENUITEM_RANDOM_EVOLUTIONS_METHODS]        = {sText_Description_Random_Evo_Methods_Off,            sText_Description_Random_Evo_Methods_On,            sText_Empty},
+    [MENUITEM_RANDOM_TYPE_EFFEC]                = {sText_Description_Random_Effectiveness_Off,          sText_Description_Random_Effectiveness_On,          sText_Empty},
+    [MENUITEM_RANDOM_ITEMS]                     = {sText_Description_Random_Items_Off,                  sText_Description_Random_Items_On,                  sText_Empty},
+    [MENUITEM_RANDOM_CHAOS]                     = {sText_Description_Random_ChaosMode_Off,              sText_Description_Random_ChaosMode_On,              sText_Empty},
+    [MENUITEM_RANDOM_NEXT]                      = {sText_Description_Random_Next,                       sText_Empty,                                        sText_Empty},
 };
 
 static const u8 sText_Description_Nuzlocke_Base[]               = _("Nuzlocke mode is disabled.");
@@ -995,6 +996,7 @@ void CB2_InitTxRandomizerChallengesMenu(void)
     case 6:
         //tx_randomizer_and_challenges
         gSaveBlock1Ptr->tx_Random_Starter                   = TX_RANDOM_STARTER;
+        gSaveBlock1Ptr->tx_Random_Starter_Stage2            = TX_RANDOM_STARTER_STAGE2;
         gSaveBlock1Ptr->tx_Random_WildPokemon               = TX_RANDOM_WILD_POKEMON;
         gSaveBlock1Ptr->tx_Random_Trainer                   = TX_RANDOM_TRAINER;
         gSaveBlock1Ptr->tx_Random_Static                    = TX_RANDOM_STATIC;
@@ -1037,7 +1039,12 @@ void CB2_InitTxRandomizerChallengesMenu(void)
 
         sOptions = AllocZeroed(sizeof(*sOptions));
         sOptions->sel_randomizer[MENUITEM_RANDOM_OFF_ON]                     = FALSE;
-        sOptions->sel_randomizer[MENUITEM_RANDOM_STARTER]                    = gSaveBlock1Ptr->tx_Random_Starter;
+        if (gSaveBlock1Ptr->tx_Random_Starter_Stage2)
+            sOptions->sel_randomizer[MENUITEM_RANDOM_STARTER] = 2;
+        else if (gSaveBlock1Ptr->tx_Random_Starter)
+            sOptions->sel_randomizer[MENUITEM_RANDOM_STARTER] = 1;
+        else
+            sOptions->sel_randomizer[MENUITEM_RANDOM_STARTER] = 0;
         sOptions->sel_randomizer[MENUITEM_RANDOM_WILD_PKMN]                  = gSaveBlock1Ptr->tx_Random_WildPokemon;
         sOptions->sel_randomizer[MENUITEM_RANDOM_TRAINER]                    = gSaveBlock1Ptr->tx_Random_Trainer;
         sOptions->sel_randomizer[MENUITEM_RANDOM_STATIC]                     = gSaveBlock1Ptr->tx_Random_Static;
@@ -1315,9 +1322,23 @@ void SaveData_TxRandomizerAndChallenges(void)
 {
     PrintCurrentSelections();
     // MENU_RANDOMIZER
+    switch (sOptions->sel_randomizer[MENUITEM_RANDOM_STARTER])
+    {
+    case 0:
+        gSaveBlock1Ptr->tx_Random_Starter          = FALSE;
+        gSaveBlock1Ptr->tx_Random_Starter_Stage2   = FALSE;
+        break;
+    case 1:
+        gSaveBlock1Ptr->tx_Random_Starter          = TRUE;
+        gSaveBlock1Ptr->tx_Random_Starter_Stage2   = FALSE;
+        break;
+    case 2:
+        gSaveBlock1Ptr->tx_Random_Starter          = TRUE;
+        gSaveBlock1Ptr->tx_Random_Starter_Stage2   = TRUE;
+        break;
+    }
     if (sOptions->sel_randomizer[MENUITEM_RANDOM_OFF_ON] == TRUE)
     {
-        gSaveBlock1Ptr->tx_Random_Starter            = sOptions->sel_randomizer[MENUITEM_RANDOM_STARTER];
         gSaveBlock1Ptr->tx_Random_WildPokemon        = sOptions->sel_randomizer[MENUITEM_RANDOM_WILD_PKMN];
         gSaveBlock1Ptr->tx_Random_Trainer            = sOptions->sel_randomizer[MENUITEM_RANDOM_TRAINER];
         gSaveBlock1Ptr->tx_Random_Static             = sOptions->sel_randomizer[MENUITEM_RANDOM_STATIC];
@@ -1335,7 +1356,6 @@ void SaveData_TxRandomizerAndChallenges(void)
     }
     else
     {
-        gSaveBlock1Ptr->tx_Random_Starter            = FALSE;
         gSaveBlock1Ptr->tx_Random_WildPokemon        = FALSE;
         gSaveBlock1Ptr->tx_Random_Trainer            = FALSE;
         gSaveBlock1Ptr->tx_Random_Static             = FALSE;
@@ -1649,10 +1669,17 @@ static void DrawChoices_Random_Toggle(int selection, int y)
     bool8 active = CheckConditions(MENUITEM_RANDOM_OFF_ON);
     DrawChoices_Random_OffOn(selection, y, active);
 }
+static const u8 sText_3Stage[]  = _("EVO");
 static void DrawChoices_Random_Starter(int selection, int y)
 {
     bool8 active = CheckConditions(MENUITEM_RANDOM_STARTER);
-    DrawChoices_Random_OffRandom(selection, y, active);
+    u8 styles[3] = {0};
+    int xMid = GetMiddleX(sText_Off, sText_Random, sText_3Stage);
+    styles[selection] = 1;
+
+    DrawOptionMenuChoice(sText_Off, 104, y, styles[0], active);
+    DrawOptionMenuChoice(sText_Random, xMid, y, styles[1], active);
+    DrawOptionMenuChoice(sText_3Stage, GetStringRightAlignXOffset(1, sText_3Stage, 198), y, styles[2], active);
 }
 static void DrawChoices_Random_WildPkmn(int selection, int y)
 {

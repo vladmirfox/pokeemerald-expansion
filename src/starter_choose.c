@@ -367,7 +367,7 @@ u16 GetStarterPokemon(u16 chosenStarterId)
             sStarterList[chosenStarterId] = PickRandomStarterForOneTypeChallenge(sStarterList, chosenStarterId);
         mon = sStarterList[chosenStarterId];
     }
-    else if (gSaveBlock1Ptr->tx_Random_Starter)
+    else if (gSaveBlock1Ptr->tx_Random_Starter || gSaveBlock1Ptr->tx_Random_Starter_Stage2)
     {
         if (sStarterList[chosenStarterId] == 0)
             sStarterList[chosenStarterId] = PickRandomStarter(sStarterList, chosenStarterId);

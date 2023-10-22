@@ -8533,6 +8533,129 @@ static const u16 sRandomSpeciesEvoLegendary[] =
     #endif
 };
 
+#define RANDOM_STARTER_SPECIES_EVO_2_COUNT ARRAY_COUNT(sRandomStarterSpeciesEvo2)
+static const u16 sRandomStarterSpeciesEvo2[] =
+{   // Gen 1
+    SPECIES_BULBASAUR         , // EVO_TYPE_2,
+    SPECIES_CHARMANDER        , // EVO_TYPE_2,
+    SPECIES_SQUIRTLE          , // EVO_TYPE_2,
+    SPECIES_CATERPIE          , // EVO_TYPE_2,
+    SPECIES_WEEDLE            , // EVO_TYPE_2,
+    SPECIES_PIDGEY            , // EVO_TYPE_2,
+    SPECIES_NIDORAN_F         , // EVO_TYPE_2,
+    SPECIES_NIDORAN_M         , // EVO_TYPE_2,
+    SPECIES_ZUBAT             , // EVO_TYPE_2,
+    SPECIES_ODDISH            , // EVO_TYPE_2,
+    // Mankey
+    SPECIES_POLIWAG           , // EVO_TYPE_2,
+    SPECIES_ABRA              , // EVO_TYPE_2,
+    SPECIES_MACHOP            , // EVO_TYPE_2,
+    SPECIES_BELLSPROUT        , // EVO_TYPE_2,
+    SPECIES_GEODUDE           , // EVO_TYPE_2,
+    SPECIES_MAGNEMITE         , // EVO_TYPE_2,
+    SPECIES_GASTLY            , // EVO_TYPE_2,
+    SPECIES_RHYHORN           , // EVO_TYPE_2,
+    SPECIES_HORSEA            , // EVO_TYPE_2,
+    SPECIES_PORYGON           , // EVO_TYPE_2,
+    SPECIES_DRATINI           , // EVO_TYPE_2,
+    // Gen 2
+    SPECIES_CHIKORITA       , // EVO_TYPE_2,
+    SPECIES_CYNDAQUIL       , // EVO_TYPE_2,
+    SPECIES_TOTODILE        , // EVO_TYPE_2,
+    SPECIES_PICHU           , // EVO_TYPE_2,
+    SPECIES_CLEFFA          , // EVO_TYPE_2,
+    SPECIES_IGGLYBUFF       , // EVO_TYPE_2,
+    SPECIES_TOGEPI          , // EVO_TYPE_2,
+    SPECIES_MAREEP          , // EVO_TYPE_2,
+    SPECIES_HOPPIP          , // EVO_TYPE_2,
+    SPECIES_TEDDIURSA       , // EVO_TYPE_2,
+    SPECIES_SWINUB          , // EVO_TYPE_2,
+    SPECIES_ELEKID          , // EVO_TYPE_2,
+    SPECIES_MAGBY           , // EVO_TYPE_2,
+    SPECIES_LARVITAR        , // EVO_TYPE_2,
+    // Gen 3
+    SPECIES_TREECKO         , // EVO_TYPE_2,
+    SPECIES_TORCHIC         , // EVO_TYPE_2,
+    SPECIES_MUDKIP          , // EVO_TYPE_2,
+    SPECIES_WURMPLE         , // EVO_TYPE_2,
+    SPECIES_LOTAD           , // EVO_TYPE_2,
+    SPECIES_SEEDOT          , // EVO_TYPE_2,
+    SPECIES_RALTS           , // EVO_TYPE_2,
+    SPECIES_TRAPINCH        , // EVO_TYPE_2,
+    SPECIES_DUSKULL         , // EVO_TYPE_2,
+    SPECIES_SPHEAL          , // EVO_TYPE_2,
+    SPECIES_SLAKOTH         , // EVO_TYPE_2,
+    SPECIES_WHISMUR         , // EVO_TYPE_2,
+    SPECIES_AZURILL         , // EVO_TYPE_2,
+    SPECIES_ARON            , // EVO_TYPE_2,
+    SPECIES_ABRA            , // EVO_TYPE_2,
+    SPECIES_BAGON           , // EVO_TYPE_2,
+    SPECIES_BELDUM          , // EVO_TYPE_2,
+    #ifdef POKEMON_EXPANSION
+    // Gen 4
+    SPECIES_TURTWIG           , // EVO_TYPE_2,
+    SPECIES_CHIMCHAR          , // EVO_TYPE_2,
+    SPECIES_PIPLUP            , // EVO_TYPE_2,
+    SPECIES_STARLY            , // EVO_TYPE_2,
+    SPECIES_SHINX             , // EVO_TYPE_2,
+    SPECIES_BUDEW             , // EVO_TYPE_2,
+    SPECIES_MIME_JR           , // EVO_TYPE_2,
+    SPECIES_HAPPINY           , // EVO_TYPE_2,
+    SPECIES_GIBLE             , // EVO_TYPE_2,
+    // Gen 5
+    SPECIES_SNIVY             , // EVO_TYPE_2,
+    SPECIES_TEPIG             , // EVO_TYPE_2,
+    SPECIES_EMBOAR            , // EVO_TYPE_2,
+    SPECIES_LILLIPUP          , // EVO_TYPE_2,
+    SPECIES_PIDOVE            , // EVO_TYPE_2,
+    SPECIES_ROGGENROLA        , // EVO_TYPE_2,
+    SPECIES_TIMBURR           , // EVO_TYPE_2,
+    SPECIES_TYMPOLE           , // EVO_TYPE_2,
+    SPECIES_SEWADDLE          , // EVO_TYPE_2,
+    SPECIES_VENIPEDE          , // EVO_TYPE_2,
+    SPECIES_SANDILE           , // EVO_TYPE_2,
+    SPECIES_GOTHITA           , // EVO_TYPE_2,
+    SPECIES_SOLOSIS           , // EVO_TYPE_2,
+    SPECIES_VANILLITE         , // EVO_TYPE_2,
+    SPECIES_KLINK             , // EVO_TYPE_2,
+    SPECIES_TYNAMO            , // EVO_TYPE_2,
+    SPECIES_LITWICK           , // EVO_TYPE_2,
+    SPECIES_AXEW              , // EVO_TYPE_2,
+    SPECIES_DEINO             , // EVO_TYPE_2,
+    // Gen 6
+    SPECIES_CHESPIN           , // EVO_TYPE_2,
+    SPECIES_FENNEKIN          , // EVO_TYPE_2,
+    SPECIES_FROAKIE           , // EVO_TYPE_2,
+    SPECIES_FLETCHLING        , // EVO_TYPE_2,
+    SPECIES_SCATTERBUG        , // EVO_TYPE_2,
+    SPECIES_FLABEBE           , // EVO_TYPE_2,
+    SPECIES_HONEDGE           , // EVO_TYPE_2,
+    SPECIES_GOOMY             , // EVO_TYPE_2,
+    // Gen 7
+    SPECIES_ROWLET            , // EVO_TYPE_2,
+    SPECIES_LITTEN            , // EVO_TYPE_2,
+    SPECIES_POPPLIO           , // EVO_TYPE_2,
+    SPECIES_PIKIPEK           , // EVO_TYPE_2,
+    SPECIES_GRUBBIN           , // EVO_TYPE_2,
+    SPECIES_BOUNSWEET         , // EVO_TYPE_2,
+    SPECIES_JANGMO_O          , // EVO_TYPE_2,
+    // Gen 8
+    SPECIES_GROOKEY           , // EVO_TYPE_2,
+    SPECIES_SCORBUNNY         , // EVO_TYPE_2,
+    SPECIES_SOBBLE            , // EVO_TYPE_2,
+    SPECIES_ROOKIDEE          , // EVO_TYPE_2,
+    SPECIES_BLIPBUG           , // EVO_TYPE_2,
+    SPECIES_ROLYCOLY          , // EVO_TYPE_2,
+    SPECIES_HATENNA           , // EVO_TYPE_2,
+    SPECIES_IMPIDIMP          , // EVO_TYPE_2,
+    SPECIES_DREEPY            , // EVO_TYPE_2,
+    // Alolan Forms
+    SPECIES_GEODUDE_ALOLAN     , // EVO_TYPE_2,
+    // Galarian Forms
+    SPECIES_ZIGZAGOON_GALARIAN , // EVO_TYPE_2,
+    #endif
+};
+
 const u16 gEvolutionLines[NUM_SPECIES][EVOS_PER_LINE] =
 {   // Gen 1
     [SPECIES_BULBASAUR ... SPECIES_VENUSAUR]    = {SPECIES_BULBASAUR, SPECIES_IVYSAUR, SPECIES_VENUSAUR},
@@ -15675,12 +15798,21 @@ u16 PickRandomStarter(u16 *speciesList, u8 starterId)
     u16 species;
     if (gSaveBlock1Ptr->tx_Random_Chaos)
         return sRandomSpeciesLegendary[RandomSeededModulo(species, RANDOM_SPECIES_COUNT_LEGENDARY)];
-    
-    if (gSaveBlock1Ptr->tx_Random_Similar)
+
+    if (gSaveBlock1Ptr->tx_Random_Similar && !gSaveBlock1Ptr->tx_Random_Starter_Stage2)
     {
         u16 *stemp = Alloc(sizeof(sRandomSpeciesEvo0));
         DmaCopy16(3, sRandomSpeciesEvo0, stemp, sizeof(sRandomSpeciesEvo0));
         ShuffleListU16(stemp, RANDOM_SPECIES_EVO_0_COUNT, 12289);
+        species = stemp[starterId*27];
+        Free(stemp);
+        return species;
+    }
+    else if (gSaveBlock1Ptr->tx_Random_Starter_Stage2)
+    {
+        u16 *stemp = Alloc(sizeof(sRandomStarterSpeciesEvo2));
+        DmaCopy16(3, sRandomStarterSpeciesEvo2, stemp, sizeof(sRandomStarterSpeciesEvo2));
+        ShuffleListU16(stemp, RANDOM_STARTER_SPECIES_EVO_2_COUNT, 12289);
         species = stemp[starterId*27];
         Free(stemp);
         return species;

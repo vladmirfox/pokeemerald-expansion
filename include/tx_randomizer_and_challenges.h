@@ -19,6 +19,7 @@
 #define TX_RANDOM_ITEMS                 FALSE
 #define TX_RANDOM_CHAOS_MODE            FALSE
 #define TX_RANDOM_ONE_FOR_ONE           FALSE //not yet implemented in menu
+#define TX_RANDOM_STARTER_STAGE2        FALSE
 
 #define TX_NUZLOCKE_NUZLOCKE 0
 #define TX_NUZLOCKE_NUZLOCKE_HARDCORE 0 //CAREFULL!!!!!
