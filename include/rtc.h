@@ -18,7 +18,8 @@
 #define RTC_ERR_FLAG_MASK      0x0FF0
 
 #define TIME_DAY     0
-#define TIME_NIGHT   1
+#define TIME_DUSK    1
+#define TIME_NIGHT   2
 
 extern struct Time gLocalTime;
 

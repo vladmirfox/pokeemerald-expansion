@@ -295,9 +295,11 @@ void RtcCalcLocalTime(void)
 
 u8 GetTimeOfDay(void) {
     RtcCalcLocalTime();
-    if (gLocalTime.hours >= 12 && gLocalTime.hours < 24) {
+    if (gLocalTime.hours >= DAY_EVO_HOUR_BEGIN && gLocalTime.hours < DAY_EVO_HOUR_END) {
         return TIME_DAY;
-    } else if (gLocalTime.hours >= 0 && gLocalTime.hours < 12) {
+    } else if (gLocalTime.hours >= DUSK_EVO_HOUR_BEGIN && gLocalTime.hours < DUSK_EVO_HOUR_END) {
+        return TIME_DUSK;
+    } else if (gLocalTime.hours >= NIGHT_EVO_HOUR_BEGIN && gLocalTime.hours < NIGHT_EVO_HOUR_END) {
         return TIME_NIGHT;
     }
 }
