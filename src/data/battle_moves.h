@@ -13514,7 +13514,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .forcePressure = TRUE,
-        .metronomeBanned = TRUE, // Only since it isn't implemented yet
     },
 
     [MOVE_SILK_TRAP] =
@@ -13563,7 +13562,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
-        .metronomeBanned = TRUE, // Only since it isn't implemented yet
     },
 
     [MOVE_LUMINA_CRASH] =
@@ -13694,7 +13692,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .split = SPLIT_PHYSICAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .makesContact = TRUE,
-        .metronomeBanned = TRUE, // Only since it isn't implemented yet
     },
 
     [MOVE_REVIVAL_BLESSING] =
