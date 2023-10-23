@@ -62,6 +62,7 @@
 #include "constants/species.h"
 #include "constants/weather.h"
 #include "save.h"
+#include "tv.h"
 
 #if DEBUG_OVERWORLD_MENU == TRUE
 // *******************************
@@ -83,6 +84,7 @@ enum { // Util
     DEBUG_UTIL_MENU_ITEM_WARP,
     DEBUG_UTIL_MENU_ITEM_POISON_MONS,
     DEBUG_UTIL_MENU_ITEM_SAVEBLOCK,
+    DEBUG_UTIL_MENU_ITEM_ROM_SPACE,
     DEBUG_UTIL_MENU_ITEM_WEATHER,
     DEBUG_UTIL_MENU_ITEM_CHECKWALLCLOCK,
     DEBUG_UTIL_MENU_ITEM_SETWALLCLOCK,
@@ -303,6 +305,7 @@ static void DebugAction_Util_Warp_SelectWarp(u8 taskId);
 static void DebugAction_FlagsVars_RunningShoes(u8 taskId);
 static void DebugAction_Util_PoisonMons(u8 taskId);
 static void DebugAction_Util_CheckSaveBlock(u8 taskId);
+static void DebugAction_Util_CheckROMSpace(u8 taskId);
 static void DebugAction_Util_Weather(u8 taskId);
 static void DebugAction_Util_Weather_SelectId(u8 taskId);
 static void DebugAction_Util_CheckWallClock(u8 taskId);
@@ -390,6 +393,7 @@ extern const u8 Debug_HatchAnEgg[];
 extern const u8 PlayersHouse_2F_EventScript_SetWallClock[];
 extern const u8 PlayersHouse_2F_EventScript_CheckWallClock[];
 extern const u8 Debug_CheckSaveBlock[];
+extern const u8 Debug_CheckROMSpace[];
 extern const u8 Debug_BoxFilledMessage[];
 
 #include "data/map_group_count.h"
@@ -432,6 +436,7 @@ static const u8 sDebugText_Util_WarpToMap_SelectWarp[] =    _("Warp:{CLEAR_TO 90
 static const u8 sDebugText_Util_WarpToMap_SelMax[] =        _("{STR_VAR_1} / {STR_VAR_2}");
 static const u8 sDebugText_Util_PoisonMons[] =              _("Poison all mons");
 static const u8 sDebugText_Util_SaveBlockSpace[] =          _("SaveBlock Space…{CLEAR_TO 110}{RIGHT_ARROW}");
+static const u8 sDebugText_Util_ROMSpace[] =                _("ROM Space…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Util_Weather[] =                 _("Set weather…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Util_Weather_ID[] =              _("Weather Id: {STR_VAR_3}\n{STR_VAR_1}\n{STR_VAR_2}");
 static const u8 sDebugText_Util_CheckWallClock[] =          _("Check Wall Clock…{CLEAR_TO 110}{RIGHT_ARROW}");
@@ -595,6 +600,7 @@ static const struct ListMenuItem sDebugMenu_Items_Utilities[] =
     [DEBUG_UTIL_MENU_ITEM_WARP]             = {sDebugText_Util_WarpToMap,        DEBUG_UTIL_MENU_ITEM_WARP},
     [DEBUG_UTIL_MENU_ITEM_POISON_MONS]      = {sDebugText_Util_PoisonMons,       DEBUG_UTIL_MENU_ITEM_POISON_MONS},
     [DEBUG_UTIL_MENU_ITEM_SAVEBLOCK]        = {sDebugText_Util_SaveBlockSpace,   DEBUG_UTIL_MENU_ITEM_SAVEBLOCK},
+    [DEBUG_UTIL_MENU_ITEM_ROM_SPACE]        = {sDebugText_Util_ROMSpace,         DEBUG_UTIL_MENU_ITEM_ROM_SPACE},
     [DEBUG_UTIL_MENU_ITEM_WEATHER]          = {sDebugText_Util_Weather,          DEBUG_UTIL_MENU_ITEM_WEATHER},
     [DEBUG_UTIL_MENU_ITEM_CHECKWALLCLOCK]   = {sDebugText_Util_CheckWallClock,   DEBUG_UTIL_MENU_ITEM_CHECKWALLCLOCK},
     [DEBUG_UTIL_MENU_ITEM_SETWALLCLOCK]     = {sDebugText_Util_SetWallClock,     DEBUG_UTIL_MENU_ITEM_SETWALLCLOCK},
@@ -728,6 +734,7 @@ static void (*const sDebugMenu_Actions_Utilities[])(u8) =
     [DEBUG_UTIL_MENU_ITEM_WARP]             = DebugAction_Util_Warp_Warp,
     [DEBUG_UTIL_MENU_ITEM_POISON_MONS]      = DebugAction_Util_PoisonMons,
     [DEBUG_UTIL_MENU_ITEM_SAVEBLOCK]        = DebugAction_Util_CheckSaveBlock,
+    [DEBUG_UTIL_MENU_ITEM_ROM_SPACE]        = DebugAction_Util_CheckROMSpace,
     [DEBUG_UTIL_MENU_ITEM_WEATHER]          = DebugAction_Util_Weather,
     [DEBUG_UTIL_MENU_ITEM_CHECKWALLCLOCK]   = DebugAction_Util_CheckWallClock,
     [DEBUG_UTIL_MENU_ITEM_SETWALLCLOCK]     = DebugAction_Util_SetWallClock,
@@ -1823,6 +1830,59 @@ static void DebugAction_Util_CheckSaveBlock(u8 taskId)
     Debug_DestroyMenu_Full(taskId);
     LockPlayerFieldControls();
     ScriptContext_SetupScript(Debug_CheckSaveBlock);
+}
+
+enum RoundMode
+{
+    ROUND_CEILING,
+    ROUND_NEAREST,
+    ROUND_FLOOR,
+};
+
+static u8 *ConvertQ22_10ToDecimalString(u8 *string, u32 q22_10, u32 decimalDigits, enum RoundMode roundMode)
+{
+    string = ConvertIntToDecimalStringN(string, q22_10 >> 10, STR_CONV_MODE_LEFT_ALIGN, CountDigits(q22_10 >> 10));
+
+    if (decimalDigits == 0)
+        return string;
+
+    *string++ = CHAR_PERIOD;
+
+    q22_10 &= (1 << 10) - 1;
+    while (decimalDigits-- > 1)
+    {
+        q22_10 *= 10;
+        *string++ = CHAR_0 + (q22_10 >> 10);
+        q22_10 &= (1 << 10) - 1;
+    }
+
+    q22_10 *= 10;
+    switch (roundMode)
+    {
+    case ROUND_CEILING: q22_10 += (1 << 10) - 1; break;
+    case ROUND_NEAREST: q22_10 += 1 << (10 - 1); break;
+    case ROUND_FLOOR:                            break;
+    }
+    *string++ = CHAR_0 + (q22_10 >> 10);
+
+    *string++ = EOS;
+
+    return string;
+}
+
+void CheckROMSize(struct ScriptContext *ctx)
+{
+    extern u8 __rom_end[];
+    u32 currROMSizeB = __rom_end - (const u8 *)ROM_START;
+    u32 currROMSizeKB = (currROMSizeB + 1023) / 1024;
+    ConvertQ22_10ToDecimalString(gStringVar1, currROMSizeKB, 2, ROUND_CEILING);
+}
+
+static void DebugAction_Util_CheckROMSpace(u8 taskId)
+{
+    Debug_DestroyMenu_Full(taskId);
+    LockPlayerFieldControls();
+    ScriptContext_SetupScript(Debug_CheckROMSpace);
 }
 
 static const u8 sWeatherNames[22][24] = {
