@@ -582,7 +582,7 @@ MtChimney_Text_TabithaIntro:
 	.string "COURTNEY: …Who are you?\p"
 	.string "You've come all the way here but\n"
 	.string "I can't let you pass…\p"
-	.string "I've delivered the METEORITE\l"
+	.string "I've delivered the METEORITE\n"
 	.string "from METEOR FALLS to the BOSS.$"
 
 MtChimney_Text_TabithaDefeat:

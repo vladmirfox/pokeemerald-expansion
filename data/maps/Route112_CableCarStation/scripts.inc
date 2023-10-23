@@ -66,6 +66,8 @@ Route112_CableCarStation_EventScript_StevenAfterMegaStone::
 	closemessage
 	applymovement LOCALID_STEVEN, Route112_CableCarStation_Movement_StevenGoToLeave
 	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+	waitmovement 0
 	msgbox Route112_CableCarStation_Text_YouAreARemarkableTrainer, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_STEVEN, Common_Movement_WalkInPlaceFasterDown
@@ -173,7 +175,7 @@ Route112_CableCarStation_Text_StevenGiveMegaRing:
 	.string "I'm glad I was able to get ahead of\n"
 	.string "of you on my SKARMORY.\p"
 	.string "After I returned him to his lab,\n"
-	.string "PROFESSOR COSMO gave me this…\p"
+	.string "PROFESSOR COSMO gave me this…\l"
 	.string "It's a device he made…\p"
 	.string "It is capable of revealing and\n"
 	.string "unlocking the potential of stones.\p"
@@ -186,11 +188,11 @@ Route112_CableCarStation_Text_StevenGiveMegaRing:
 
 Route112_CableCarStation_Text_StevenAlsoHaveThis:
 	.string "Although it can activate their power\n"
-	.string "the gems themselves are worthless\p"
-	.string "without the will of a trainer and their\n"
+	.string "the gems themselves are worthless\l"
+	.string "without the will of a trainer and their\l"
 	.string "Pokémon!\p"
 	.string "…Using that ring, I was able to find this\n"
-	.string "amongst my collection\p"
+	.string "amongst my collection.\p"
 	.string "Here…$"
 
 Route112_CableCarStation_Text_SorryICantStay:
