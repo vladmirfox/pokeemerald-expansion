@@ -62,7 +62,6 @@
 #include "constants/species.h"
 #include "constants/weather.h"
 #include "save.h"
-#include "tv.h"
 
 #if DEBUG_OVERWORLD_MENU == TRUE
 // *******************************
@@ -1807,6 +1806,7 @@ void CheckSaveBlock1Size(struct ScriptContext *ctx)
     u32 maxSb1Size = SECTOR_DATA_SIZE * (SECTOR_ID_SAVEBLOCK1_END - SECTOR_ID_SAVEBLOCK1_START + 1);
     ConvertIntToDecimalStringN(gStringVar1, currSb1Size, STR_CONV_MODE_LEFT_ALIGN, 6);
     ConvertIntToDecimalStringN(gStringVar2, maxSb1Size, STR_CONV_MODE_LEFT_ALIGN, 6);
+    ConvertIntToDecimalStringN(gStringVar3, maxSb1Size - currSb1Size, STR_CONV_MODE_LEFT_ALIGN, 6);
 }
 
 void CheckSaveBlock2Size(struct ScriptContext *ctx)
@@ -1815,6 +1815,7 @@ void CheckSaveBlock2Size(struct ScriptContext *ctx)
     u32 maxSb2Size = SECTOR_DATA_SIZE;
     ConvertIntToDecimalStringN(gStringVar1, currSb2Size, STR_CONV_MODE_LEFT_ALIGN, 6);
     ConvertIntToDecimalStringN(gStringVar2, maxSb2Size, STR_CONV_MODE_LEFT_ALIGN, 6);
+    ConvertIntToDecimalStringN(gStringVar3, maxSb2Size - currSb2Size, STR_CONV_MODE_LEFT_ALIGN, 6);
 }
 
 void CheckPokemonStorageSize(struct ScriptContext *ctx)
@@ -1823,6 +1824,7 @@ void CheckPokemonStorageSize(struct ScriptContext *ctx)
     u32 maxPkmnStorageSize = SECTOR_DATA_SIZE * (SECTOR_ID_PKMN_STORAGE_END - SECTOR_ID_PKMN_STORAGE_START + 1);
     ConvertIntToDecimalStringN(gStringVar1, currPkmnStorageSize, STR_CONV_MODE_LEFT_ALIGN, 6);
     ConvertIntToDecimalStringN(gStringVar2, maxPkmnStorageSize, STR_CONV_MODE_LEFT_ALIGN, 6);
+    ConvertIntToDecimalStringN(gStringVar3, maxPkmnStorageSize - currPkmnStorageSize, STR_CONV_MODE_LEFT_ALIGN, 6);
 }
 
 static void DebugAction_Util_CheckSaveBlock(u8 taskId)
@@ -1841,7 +1843,7 @@ enum RoundMode
 
 static u8 *ConvertQ22_10ToDecimalString(u8 *string, u32 q22_10, u32 decimalDigits, enum RoundMode roundMode)
 {
-    string = ConvertIntToDecimalStringN(string, q22_10 >> 10, STR_CONV_MODE_LEFT_ALIGN, CountDigits(q22_10 >> 10));
+    string = ConvertIntToDecimalStringN(string, q22_10 >> 10, STR_CONV_MODE_LEFT_ALIGN, 10);
 
     if (decimalDigits == 0)
         return string;
@@ -1875,7 +1877,9 @@ void CheckROMSize(struct ScriptContext *ctx)
     extern u8 __rom_end[];
     u32 currROMSizeB = __rom_end - (const u8 *)ROM_START;
     u32 currROMSizeKB = (currROMSizeB + 1023) / 1024;
+    u32 currROMFreeKB = ((const u8 *)ROM_END - __rom_end) / 1024;
     ConvertQ22_10ToDecimalString(gStringVar1, currROMSizeKB, 2, ROUND_CEILING);
+    ConvertQ22_10ToDecimalString(gStringVar2, currROMFreeKB, 2, ROUND_FLOOR);
 }
 
 static void DebugAction_Util_CheckROMSpace(u8 taskId)
