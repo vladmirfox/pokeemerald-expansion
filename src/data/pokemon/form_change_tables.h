@@ -780,7 +780,7 @@ static const struct FormChange sDuraludonFormChangeTable[] =
 
 static const struct FormChange sUrshifuSingleStrikeFormChangeTable[] =
 {
-    {FORM_CHANGE_BATTLE_GIGANTAMAX, URSHIFU_SINGLE_STRIKE_STYLE},
+    {FORM_CHANGE_BATTLE_GIGANTAMAX, SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX},
     {FORM_CHANGE_TERMINATOR},
 };
 
