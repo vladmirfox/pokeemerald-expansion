@@ -17,18 +17,18 @@
 
 #define RTC_ERR_FLAG_MASK      0x0FF0
 
-#define DAY_EVO_HOUR_BEGIN       12
-#define DAY_EVO_HOUR_END         HOURS_PER_DAY
+#define DAY_EVO_HOUR_BEGIN     12
+#define DAY_EVO_HOUR_END       HOURS_PER_DAY
 
-#define DUSK_EVO_HOUR_BEGIN      17
-#define DUSK_EVO_HOUR_END        18
+#define DUSK_EVO_HOUR_BEGIN    17
+#define DUSK_EVO_HOUR_END      18
 
-#define NIGHT_EVO_HOUR_BEGIN     0
-#define NIGHT_EVO_HOUR_END       12
+#define NIGHT_EVO_HOUR_BEGIN   0
+#define NIGHT_EVO_HOUR_END     12
 
-#define TIME_DAY     0
-#define TIME_DUSK    1
-#define TIME_NIGHT   2
+#define TIME_DAY               0
+#define TIME_DUSK              1
+#define TIME_NIGHT             2
 
 extern struct Time gLocalTime;
 
