@@ -124,7 +124,7 @@ static const u16 sSkillSwapBannedAbilities[] =
     ABILITY_ZERO_TO_HERO,
 };
 
-static const u16 sRolePlayBannedAbilities[] =
+static const u16 sRolePlayDoodleBannedAbilities[] =
 {
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
@@ -158,7 +158,7 @@ static const u16 sRolePlayBannedAbilities[] =
     ABILITY_ZERO_TO_HERO,
 };
 
-static const u16 sRolePlayBannedAttackerAbilities[] =
+static const u16 sRolePlayDoodleBannedAttackerAbilities[] =
 {
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
@@ -10727,23 +10727,23 @@ bool32 CanFling(u32 battler)
 }
 
 // Ability checks
-bool32 IsRolePlayBannedAbilityAttacker(u16 ability)
+bool32 IsRolePlayDoodleBannedAbilityAttacker(u16 ability)
 {
     u32 i;
-    for (i = 0; i < ARRAY_COUNT(sRolePlayBannedAttackerAbilities); i++)
+    for (i = 0; i < ARRAY_COUNT(sRolePlayDoodleBannedAttackerAbilities); i++)
     {
-        if (ability == sRolePlayBannedAttackerAbilities[i])
+        if (ability == sRolePlayDoodleBannedAttackerAbilities[i])
             return TRUE;
     }
     return FALSE;
 }
 
-bool32 IsRolePlayBannedAbility(u16 ability)
+bool32 IsRolePlayDoodleBannedAbility(u16 ability)
 {
     u32 i;
-    for (i = 0; i < ARRAY_COUNT(sRolePlayBannedAbilities); i++)
+    for (i = 0; i < ARRAY_COUNT(sRolePlayDoodleBannedAbilities); i++)
     {
-        if (ability == sRolePlayBannedAbilities[i])
+        if (ability == sRolePlayDoodleBannedAbilities[i])
             return TRUE;
     }
     return FALSE;

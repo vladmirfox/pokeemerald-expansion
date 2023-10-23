@@ -14054,8 +14054,8 @@ static void Cmd_trycopyability(void)
 
     if (gBattleMons[battler].ability == defAbility
       || defAbility == ABILITY_NONE
-      || IsRolePlayBannedAbilityAttacker(gBattleMons[battler].ability)
-      || IsRolePlayBannedAbility(defAbility))
+      || IsRolePlayDoodleBannedAbilityAttacker(gBattleMons[battler].ability)
+      || IsRolePlayDoodleBannedAbility(defAbility))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
     }

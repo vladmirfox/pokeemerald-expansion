@@ -2151,8 +2151,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_ROLE_PLAY:
             if (aiData->abilities[battlerAtk] == aiData->abilities[battlerDef]
               || aiData->abilities[battlerDef] == ABILITY_NONE
-              || IsRolePlayBannedAbilityAttacker(aiData->abilities[battlerAtk])
-              || IsRolePlayBannedAbility(aiData->abilities[battlerDef]))
+              || IsRolePlayDoodleBannedAbilityAttacker(aiData->abilities[battlerAtk])
+              || IsRolePlayDoodleBannedAbility(aiData->abilities[battlerDef]))
                 ADJUST_SCORE(-10);
             else if (IsAbilityOfRating(aiData->abilities[battlerAtk], 5))
                 ADJUST_SCORE(-4);
@@ -4433,8 +4433,8 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
         }
         break;
     case EFFECT_ROLE_PLAY:
-        if (!IsRolePlayBannedAbilityAttacker(aiData->abilities[battlerAtk])
-          && !IsRolePlayBannedAbility(aiData->abilities[battlerDef])
+        if (!IsRolePlayDoodleBannedAbilityAttacker(aiData->abilities[battlerAtk])
+          && !IsRolePlayDoodleBannedAbility(aiData->abilities[battlerDef])
           && !IsAbilityOfRating(aiData->abilities[battlerAtk], 5)
           && IsAbilityOfRating(aiData->abilities[battlerDef], 5))
             ADJUST_SCORE(2);
