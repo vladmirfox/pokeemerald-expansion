@@ -173,7 +173,6 @@ struct SpecialStatus
     u8 lightningRodRedirected:1;
     u8 restoredBattlerSprite: 1;
     u8 traced:1;
-    u8 ppNotAffectedByPressure:1;
     u8 faintedHasReplacement:1;
     u8 focusBanded:1;
     u8 focusSashed:1;
@@ -545,7 +544,6 @@ struct DynamaxData
 {
     bool8 playerSelect;
     u8 triggerSpriteId;
-    u8 indicatorSpriteId[MAX_BATTLERS_COUNT];
     u8 toDynamax; // flags using gBitTable
     bool8 alreadyDynamaxed[NUM_BATTLE_SIDES];
     bool8 dynamaxed[MAX_BATTLERS_COUNT];
