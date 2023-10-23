@@ -8208,14 +8208,16 @@ static bool32 TryTidyUpClear(u32 battlerAtk, bool32 clear)
     }
 
     for (i=0; i < MAX_BATTLERS_COUNT; i++)
-    if (gBattleMons[i].status2 & STATUS2_SUBSTITUTE)
     {
-        gBattlerTarget = i;
-        gDisableStructs[i].substituteHP = 0;
-        gBattleMons[i].status2 &= ~STATUS2_SUBSTITUTE;
-        BattleScriptPushCursor();
-        gBattlescriptCurrInstr = BattleScript_SubstituteFade;
-        return TRUE;
+        if (gBattleMons[i].status2 & STATUS2_SUBSTITUTE)
+        {
+            gBattlerTarget = i;
+            gDisableStructs[i].substituteHP = 0;
+            gBattleMons[i].status2 &= ~STATUS2_SUBSTITUTE;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_SubstituteFade;
+            return TRUE;
+        }
     }
 
     return FALSE;

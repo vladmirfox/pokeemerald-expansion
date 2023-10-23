@@ -1092,7 +1092,7 @@
 	.4byte \failInstr
 	.endm
 
-	.macro trycopyability battler:req failInstr:req
+	.macro trycopyability battler:req, failInstr:req
 	.byte 0xd3
 	.byte \battler
 	.4byte \failInstr
