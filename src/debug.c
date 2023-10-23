@@ -2008,6 +2008,8 @@ static void DebugAction_Util_ExpansionVersion(u8 taskId)
 
 void BufferExpansionVersion(struct ScriptContext *ctx)
 {
+    static const u8 sText_Released[] = _("\nRelease Build");
+    static const u8 sText_Unreleased[] = _("\nDevelopment Build");
     u8 *string = gStringVar1;
     *string++ = CHAR_v;
     string = ConvertIntToDecimalStringN(string, EXPANSION_VERSION_MAJOR, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -2015,7 +2017,10 @@ void BufferExpansionVersion(struct ScriptContext *ctx)
     string = ConvertIntToDecimalStringN(string, EXPANSION_VERSION_MINOR, STR_CONV_MODE_LEFT_ALIGN, 3);
     *string++ = CHAR_PERIOD;
     string = ConvertIntToDecimalStringN(string, EXPANSION_VERSION_PATCH, STR_CONV_MODE_LEFT_ALIGN, 3);
-    *string++ = EOS;
+    if (EXPANSION_TAGGED_RELEASE)
+        string = StringCopy(string, sText_Released);
+    else
+        string = StringCopy(string, sText_Unreleased);
 }
 
 // *******************************

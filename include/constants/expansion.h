@@ -5,4 +5,8 @@
 #define EXPANSION_VERSION_MINOR 6
 #define EXPANSION_VERSION_PATCH 1
 
+// FALSE if this this version of Expansion is not a tagged commit, i.e.
+// it contains unreleased changes.
+#define EXPANSION_TAGGED_RELEASE FALSE
+
 #endif
