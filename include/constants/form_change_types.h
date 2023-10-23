@@ -103,4 +103,8 @@
 
 #define FORM_CHANGE_ITEM_USE_MULTICHOICE        17
 
+// Form change that activates when the mon Dynamaxes (TODO: with Gigantamax factor).
+// - No parameters
+#define FORM_CHANGE_BATTLE_GIGANTAMAX           18
+
 #endif // GUARD_CONSTANTS_FORM_CHANGE_TYPES_H
