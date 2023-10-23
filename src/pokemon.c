@@ -31,7 +31,6 @@
 #include "random.h"
 #include "recorded_battle.h"
 #include "rtc.h"
-#include "script_pokemon_util.h"
 #include "sound.h"
 #include "string_util.h"
 #include "strings.h"
@@ -4158,6 +4157,14 @@ void ConvertPokemonToBattleTowerPokemon(struct Pokemon *mon, struct BattleTowerP
     GetMonData(mon, MON_DATA_NICKNAME, dest->nickname);
 }
 
+static void CreateEventMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
+{
+    bool32 isModernFatefulEncounter = TRUE;
+
+    CreateMon(mon, species, level, fixedIV, hasFixedPersonality, fixedPersonality, otIdType, fixedOtId);
+    SetMonData(mon, MON_DATA_MODERN_FATEFUL_ENCOUNTER, &isModernFatefulEncounter);
+}
+
 // If FALSE, should load this game's Deoxys form. If TRUE, should load normal Deoxys form
 bool8 ShouldIgnoreDeoxysForm(u8 caseId, u8 battlerId)
 {
@@ -4243,6 +4250,23 @@ u16 GetUnionRoomTrainerClass(void)
     arrId = gLinkPlayers[linkId].trainerId % NUM_UNION_ROOM_CLASSES;
     arrId |= gLinkPlayers[linkId].gender * NUM_UNION_ROOM_CLASSES;
     return gFacilityClassToTrainerClass[gUnionRoomFacilityClasses[arrId]];
+}
+
+void CreateEnemyEventMon(void)
+{
+    s32 species = gSpecialVar_0x8004;
+    s32 level = gSpecialVar_0x8005;
+    s32 itemId = gSpecialVar_0x8006;
+
+    ZeroEnemyPartyMons();
+    CreateEventMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
+    if (itemId)
+    {
+        u8 heldItem[2];
+        heldItem[0] = itemId;
+        heldItem[1] = itemId >> 8;
+        SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, heldItem);
+    }
 }
 
 static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
@@ -5094,6 +5118,9 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         case MON_DATA_UNUSED_RIBBONS:
             retVal = substruct3->unusedRibbons;
             break;
+        case MON_DATA_MODERN_FATEFUL_ENCOUNTER:
+            retVal = substruct3->modernFatefulEncounter;
+            break;
         case MON_DATA_SPECIES_OR_EGG:
             retVal = substruct0->species;
             if (substruct0->species && (substruct3->isEgg || boxMon->isBadEgg))
@@ -5524,6 +5551,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             break;
         case MON_DATA_UNUSED_RIBBONS:
             SET8(substruct3->unusedRibbons);
+            break;
+        case MON_DATA_MODERN_FATEFUL_ENCOUNTER:
+            SET8(substruct3->modernFatefulEncounter);
             break;
         case MON_DATA_IVS:
         {
