@@ -383,54 +383,6 @@ OldaleTown_Movement_ReturnToOriginalPosition:
 	walk_left
 	step_end
 
-OldaleTown_EventScript_CandyMan::
-	lock
-	faceplayer
-	goto_if_set FLAG_CANDYFACTORY_NPC_ITEM_GIFTED, OldaleTown_EventScript_AlreadyGifted
-	copyvar VAR_0x8009, VAR_RESULT
-	msgbox OldaleTown_Text_DoYouLikeCheating, MSGBOX_YESNO
-	call_if_eq VAR_RESULT, YES, OldaleTown_EventScript_GiveInfiniteCandy
-	call_if_eq VAR_RESULT, NO, OldaleTown_EventScript_DontGiveInfiniteCandy
-	release
-	end
-
-OldaleTown_EventScript_GiveInfiniteCandy::
-	msgbox OldaleTown_Text_CheatingIsBased, MSGBOX_DEFAULT
-	giveitem ITEM_INFINITE_CANDY
-	setflag FLAG_CANDYFACTORY_NPC_ITEM_GIFTED
-	release
-	end
-
-OldaleTown_EventScript_DontGiveInfiniteCandy::
-	msgbox OldaleTown_Text_DeclineOffer, MSGBOX_DEFAULT
-	release
-	end
-
-OldaleTown_EventScript_AlreadyGifted::
-	msgbox OldaleTown_Text_AlreadyGifted, MSGBOX_DEFAULT
-	release
-	end
-
-OldaleTown_Text_DoYouLikeCheating:
-	.string "Hey kid. Do you like cheating\n"
-	.string "in video games?$"
-
-OldaleTown_Text_CheatingIsBased:
-	.string "Nice. Cheating is based.\n"
-	.string "You can have this.$"
-
-OldaleTown_Text_DeclineOffer:
-	.string "No? That's fine. Enjoying\n"
-	.string "a game as intended is based too.$"
-
-OldaleTown_Text_AlreadyGifted:
-	.string "Hope you're sticking to what\n"
-	.string "you believe in.\p"
-	.string "Don't go getting into trouble.\p"
-	.string "… … …\p"
-	.string "Oh, and don't tell anybody\n"
-	.string "that I gave you that …Ok?$"
-
 OldaleTown_Text_SavingMyProgress:
 	.string "I want to take a rest, so I'm saving my\n"
 	.string "progress.$"
