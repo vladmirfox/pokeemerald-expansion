@@ -2151,7 +2151,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_ROLE_PLAY:
             if (aiData->abilities[battlerAtk] == aiData->abilities[battlerDef]
               || aiData->abilities[battlerDef] == ABILITY_NONE
-              || IsRolePlayBannedAbilityAtk(aiData->abilities[battlerAtk])
+              || IsRolePlayBannedAbilityAttacker(aiData->abilities[battlerAtk])
               || IsRolePlayBannedAbility(aiData->abilities[battlerDef]))
                 ADJUST_SCORE(-10);
             else if (IsAbilityOfRating(aiData->abilities[battlerAtk], 5))
@@ -2199,15 +2199,14 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_ENTRAINMENT:
             if (aiData->abilities[battlerAtk] == ABILITY_NONE
               || IsEntrainmentBannedAbilityAttacker(aiData->abilities[battlerAtk])
-              || IsEntrainmentTargetOrSimpleBeamBannedAbility(aiData->abilities[battlerDef])
+              || IsEntrainmentBannedAbility(aiData->abilities[battlerDef])
               || aiData->holdEffects[battlerAtk] == HOLD_EFFECT_ABILITY_SHIELD)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_CORE_ENFORCER:
             break;
         case EFFECT_SIMPLE_BEAM:
-            if (aiData->abilities[battlerDef] == ABILITY_SIMPLE
-              || IsEntrainmentTargetOrSimpleBeamBannedAbility(aiData->abilities[battlerDef])
+            if (IsSimpleBeamBannedAbility(aiData->abilities[battlerDef])
               || aiData->holdEffects[battlerDef] == HOLD_EFFECT_ABILITY_SHIELD)
                 ADJUST_SCORE(-10);
             break;
@@ -4434,7 +4433,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
         }
         break;
     case EFFECT_ROLE_PLAY:
-        if (!IsRolePlayBannedAbilityAtk(aiData->abilities[battlerAtk])
+        if (!IsRolePlayBannedAbilityAttacker(aiData->abilities[battlerAtk])
           && !IsRolePlayBannedAbility(aiData->abilities[battlerDef])
           && !IsAbilityOfRating(aiData->abilities[battlerAtk], 5)
           && IsAbilityOfRating(aiData->abilities[battlerDef], 5))

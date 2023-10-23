@@ -265,7 +265,7 @@ static const u16 sEntrainmentBannedAttackerAbilities[] =
     ABILITY_ZERO_TO_HERO,
 };
 
-static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
+static const u16 sEntrainmentBannedAbilities[] =
 {
     ABILITY_AS_ONE_ICE_RIDER,
     ABILITY_AS_ONE_SHADOW_RIDER,
@@ -284,6 +284,32 @@ static const u16 sEntrainmentTargetSimpleBeamBannedAbilities[] =
     ABILITY_RKS_SYSTEM,
     ABILITY_SCHOOLING,
     ABILITY_SHIELDS_DOWN,
+    ABILITY_STANCE_CHANGE,
+    ABILITY_TRUANT,
+    ABILITY_ZEN_MODE,
+    ABILITY_ZERO_TO_HERO,
+};
+
+static const u16 sSimpleBeamBannedAbilities[] =
+{
+    ABILITY_AS_ONE_ICE_RIDER,
+    ABILITY_AS_ONE_SHADOW_RIDER,
+    ABILITY_BATTLE_BOND,
+    ABILITY_COMATOSE,
+    ABILITY_COMMANDER,
+    ABILITY_DISGUISE,
+    ABILITY_GULP_MISSILE,
+    ABILITY_HADRON_ENGINE,
+    ABILITY_ICE_FACE,
+    ABILITY_MULTITYPE,
+    ABILITY_ORICHALCUM_PULSE,
+    ABILITY_POWER_CONSTRUCT,
+    ABILITY_PROTOSYNTHESIS,
+    ABILITY_QUARK_DRIVE,
+    ABILITY_RKS_SYSTEM,
+    ABILITY_SCHOOLING,
+    ABILITY_SHIELDS_DOWN,
+    ABILITY_SIMPLE,
     ABILITY_STANCE_CHANGE,
     ABILITY_TRUANT,
     ABILITY_ZEN_MODE,
@@ -10701,7 +10727,7 @@ bool32 CanFling(u32 battler)
 }
 
 // Ability checks
-bool32 IsRolePlayBannedAbilityAtk(u16 ability)
+bool32 IsRolePlayBannedAbilityAttacker(u16 ability)
 {
     u32 i;
     for (i = 0; i < ARRAY_COUNT(sRolePlayBannedAttackerAbilities); i++)
@@ -10767,12 +10793,23 @@ bool32 IsEntrainmentBannedAbilityAttacker(u16 ability)
     return FALSE;
 }
 
-bool32 IsEntrainmentTargetOrSimpleBeamBannedAbility(u16 ability)
+bool32 IsEntrainmentBannedAbility(u16 ability)
 {
     u32 i;
-    for (i = 0; i < ARRAY_COUNT(sEntrainmentTargetSimpleBeamBannedAbilities); i++)
+    for (i = 0; i < ARRAY_COUNT(sEntrainmentBannedAbilities); i++)
     {
-        if (ability == sEntrainmentTargetSimpleBeamBannedAbilities[i])
+        if (ability == sEntrainmentBannedAbilities[i])
+            return TRUE;
+    }
+    return FALSE;
+}
+
+bool32 IsSimpleBeamBannedAbility(u16 ability)
+{
+    u32 i;
+    for (i = 0; i < ARRAY_COUNT(sSimpleBeamBannedAbilities); i++)
+    {
+        if (ability == sSimpleBeamBannedAbilities[i])
             return TRUE;
     }
     return FALSE;

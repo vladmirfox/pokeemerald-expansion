@@ -9287,8 +9287,7 @@ static void Cmd_various(void)
     case VARIOUS_SET_SIMPLE_BEAM:
     {
         VARIOUS_ARGS(const u8 *failInstr);
-        if (IsEntrainmentTargetOrSimpleBeamBannedAbility(gBattleMons[gBattlerTarget].ability)
-            || gBattleMons[gBattlerTarget].ability == ABILITY_SIMPLE)
+        if (IsSimpleBeamBannedAbility(gBattleMons[gBattlerTarget].ability))
         {
             RecordAbilityBattle(gBattlerTarget, gBattleMons[gBattlerTarget].ability);
             gBattlescriptCurrInstr = cmd->failInstr;
@@ -9312,7 +9311,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS(const u8 *failInstr);
         if (IsEntrainmentBannedAbilityAttacker(gBattleMons[gBattlerAttacker].ability)
-          || IsEntrainmentTargetOrSimpleBeamBannedAbility(gBattleMons[gBattlerTarget].ability))
+          || IsEntrainmentBannedAbility(gBattleMons[gBattlerTarget].ability))
         {
             RecordAbilityBattle(gBattlerTarget, gBattleMons[gBattlerTarget].ability);
             gBattlescriptCurrInstr = cmd->failInstr;
@@ -14055,7 +14054,7 @@ static void Cmd_trycopyability(void)
 
     if (gBattleMons[battler].ability == defAbility
       || defAbility == ABILITY_NONE
-      || IsRolePlayBannedAbilityAtk(gBattleMons[battler].ability)
+      || IsRolePlayBannedAbilityAttacker(gBattleMons[battler].ability)
       || IsRolePlayBannedAbility(defAbility))
     {
         gBattlescriptCurrInstr = cmd->failInstr;
