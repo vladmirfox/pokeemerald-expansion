@@ -85,7 +85,11 @@ ELF = $(ROM:.gba=.elf)
 MAP = $(ROM:.gba=.map)
 SYM = $(ROM:.gba=.sym)
 
+ifeq ($(MODERN),0)
 TEST_OBJ_DIR_NAME := build/test
+else
+TEST_OBJ_DIR_NAME := build/modern-test
+endif
 TESTELF = $(ROM:.gba=-test.elf)
 HEADLESSELF = $(ROM:.gba=-test-headless.elf)
 
@@ -345,6 +349,7 @@ $(C_BUILDDIR)/librfu_intr.o: CC1 := tools/agbcc/bin/agbcc_arm$(EXE)
 $(C_BUILDDIR)/librfu_intr.o: CFLAGS := -O2 -mthumb-interwork -quiet
 else
 $(C_BUILDDIR)/librfu_intr.o: CFLAGS := -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -fno-toplevel-reorder -Wno-pointer-to-int-cast
+$(C_BUILDDIR)/pokedex_plus_hgss.o: CFLAGS := -mthumb -mthumb-interwork -O2 -mabi=apcs-gnu -mtune=arm7tdmi -march=armv4t -Wno-pointer-to-int-cast -std=gnu17 -Werror -Wall -Wno-strict-aliasing -Wno-attribute-alias
 endif
 
 ifeq ($(DINFO),1)
