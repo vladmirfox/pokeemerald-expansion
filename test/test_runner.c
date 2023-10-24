@@ -56,10 +56,9 @@ static bool32 PrefixMatch(const char *pattern, const char *string)
 enum
 {
     STATE_INIT,
-    STATE_ASSIGN_TEST,
+    STATE_NEXT_TEST,
     STATE_RUN_TEST,
     STATE_REPORT_RESULT,
-    STATE_NEXT_TEST,
     STATE_EXIT,
 };
 
@@ -153,15 +152,17 @@ void CB2_TestRunner(void)
         }
         else
         {
-            gTestRunnerState.state = STATE_ASSIGN_TEST;
-            gTestRunnerState.test = __start_tests;
+            gTestRunnerState.state = STATE_NEXT_TEST;
+            gTestRunnerState.test = __start_tests - 1;
         }
         gTestRunnerState.exitCode = 0;
         gTestRunnerState.skipFilename = NULL;
 
         break;
 
-    case STATE_ASSIGN_TEST:
+    case STATE_NEXT_TEST:
+        gTestRunnerState.test++;
+
         if (gTestRunnerState.test == __stop_tests)
         {
             gTestRunnerState.state = STATE_EXIT;
@@ -171,7 +172,6 @@ void CB2_TestRunner(void)
         if (gTestRunnerState.test->runner != &gAssumptionsRunner
           && !PrefixMatch(gTestRunnerArgv, gTestRunnerState.test->name))
         {
-            gTestRunnerState.state = STATE_NEXT_TEST;
             return;
         }
 
@@ -191,8 +191,6 @@ void CB2_TestRunner(void)
         sCurrentTest.address = (uintptr_t)gTestRunnerState.test;
         sCurrentTest.state = CURRENT_TEST_STATE_ESTIMATE;
 
-        // If AssignCostToRunner fails, we want to report the failure.
-        gTestRunnerState.state = STATE_REPORT_RESULT;
         if (AssignCostToRunner() == gTestRunnerI)
             gTestRunnerState.state = STATE_RUN_TEST;
         else
@@ -206,10 +204,7 @@ void CB2_TestRunner(void)
         SeedRng(0);
         SeedRng2(0);
         if (gTestRunnerState.test->runner->setUp)
-        {
             gTestRunnerState.test->runner->setUp(gTestRunnerState.test->data);
-            gTestRunnerState.tearDown = TRUE;
-        }
         // NOTE: Assumes that the compiler interns __FILE__.
         if (gTestRunnerState.skipFilename == gTestRunnerState.test->filename) // Assumption fails for tests in this file.
         {
@@ -221,17 +216,13 @@ void CB2_TestRunner(void)
             gTestRunnerState.test->runner->run(gTestRunnerState.test->data);
         }
         break;
-
     case STATE_REPORT_RESULT:
         REG_TM2CNT_H = 0;
 
         gTestRunnerState.state = STATE_NEXT_TEST;
 
-        if (gTestRunnerState.tearDown && gTestRunnerState.test->runner->tearDown)
-        {
+        if (gTestRunnerState.test->runner->tearDown)
             gTestRunnerState.test->runner->tearDown(gTestRunnerState.test->data);
-            gTestRunnerState.tearDown = FALSE;
-        }
 
         if (gTestRunnerState.result == TEST_RESULT_PASS
          && !gTestRunnerState.expectLeaks)
@@ -349,11 +340,6 @@ void CB2_TestRunner(void)
                 MgbaPrintf_(":F%s%s\e[0m", color, result);
         }
 
-        break;
-
-    case STATE_NEXT_TEST:
-        gTestRunnerState.state = STATE_ASSIGN_TEST;
-        gTestRunnerState.test++;
         break;
 
     case STATE_EXIT:
