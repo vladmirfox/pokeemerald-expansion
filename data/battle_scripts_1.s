@@ -416,7 +416,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectVictoryDance            @ EFFECT_VICTORY_DANCE
 	.4byte BattleScript_EffectTeatime                 @ EFFECT_TEATIME
 	.4byte BattleScript_EffectAttackUpUserAlly        @ EFFECT_ATTACK_UP_USER_ALLY
-	.4byte BattleScript_EffectShellTrap				  @ EFFECT_SHELL_TRAP
+	.4byte BattleScript_EffectShellTrap               @ EFFECT_SHELL_TRAP
 	.4byte BattleScript_EffectHit                     @ EFFECT_PSYBLADE
 	.4byte BattleScript_EffectHit                     @ EFFECT_HYDRO_STEAM
 	.4byte BattleScript_EffectHitSetEntryHazard       @ EFFECT_HIT_SET_ENTRY_HAZARD
@@ -439,7 +439,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectMatchaGotcha            @ EFFECT_MATCHA_GOTCHA
 	.4byte BattleScript_EffectSyrupBomb               @ EFFECT_SYRUP_BOMB
 	.4byte BattleScript_EffectHit                     @ EFFECT_IVY_CUDGEL
-	.4byte BattleScript_EffectMaxMove 				  @ EFFECT_MAX_MOVE
+	.4byte BattleScript_EffectMaxMove                 @ EFFECT_MAX_MOVE
 
 BattleScript_EffectSyrupBomb::
 	setmoveeffect MOVE_EFFECT_SYRUP_BOMB
@@ -537,6 +537,8 @@ BattleScript_CorrosiveGasFail:
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectMakeItRain:
+	jumpifbattletype BATTLE_TYPE_DOUBLE, BattleScript_MakeItRainDoubles
+BattleScript_MakeItRainContinuous:
 	setmoveeffect MOVE_EFFECT_PAYDAY
 	call BattleScript_EffectHit_Ret
 	seteffectwithchance
@@ -544,6 +546,9 @@ BattleScript_EffectMakeItRain:
 	setmoveeffect MOVE_EFFECT_SP_ATK_MINUS_1 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
 	seteffectprimary
 	goto BattleScript_MoveEnd
+BattleScript_MakeItRainDoubles:
+	jumpifword CMP_NO_COMMON_BITS, gHitMarker, HITMARKER_NO_ATTACKSTRING | HITMARKER_NO_PPDEDUCT, BattleScript_NoMoveEffect
+	goto BattleScript_MakeItRainContinuous
 
 BattleScript_EffectSpinOut::
 	setmoveeffect MOVE_EFFECT_SPD_MINUS_2 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
@@ -757,8 +762,7 @@ BattleScript_AffectionBasedStatusHeal_Continue:
 	end2
 
 BattleScript_ShellTrapSetUp::
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 0x1
+	flushtextbox
 	playanimation BS_ATTACKER, B_ANIM_SHELL_TRAP_SETUP, NULL
 	printstring STRINGID_PREPARESHELLTRAP
 	waitmessage B_WAIT_TIME_LONG
@@ -831,8 +835,7 @@ BattleScript_EffectCourtChange::
 
 BattleScript_BeakBlastSetUp::
 	setbeakblast BS_ATTACKER
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	playanimation BS_ATTACKER, B_ANIM_BEAK_BLAST_SETUP, NULL
 	printstring STRINGID_HEATUPBEAK
 	waitmessage B_WAIT_TIME_LONG
@@ -856,7 +859,7 @@ BattleScript_EffectMeteorBeam::
 
 BattleScript_FirstChargingTurnMeteorBeam::
 	attackcanceler
-	printstring STRINGID_EMPTYSTRING3
+	flushtextbox
 	ppreduce
 	attackanimation
 	waitanimation
@@ -1047,7 +1050,7 @@ BattleScript_EffectPhotonGeyser:
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectAuraWheel: @ Aura Wheel can only be used by Morpeko
-	jumpifspecies BS_ATTACKER, SPECIES_MORPEKO, BattleScript_EffectSpeedUpHit
+	jumpifspecies BS_ATTACKER, SPECIES_MORPEKO_FULL_BELLY, BattleScript_EffectSpeedUpHit
 	jumpifspecies BS_ATTACKER, SPECIES_MORPEKO_HANGRY, BattleScript_EffectSpeedUpHit
 	goto BattleScript_PokemonCantUseTheMove
 
@@ -1160,7 +1163,7 @@ BattleScript_BothCanNoLongerEscape::
 
 BattleScript_EffectHyperspaceFury:
 	jumpifspecies BS_ATTACKER, SPECIES_HOOPA_UNBOUND, BattleScript_EffectHyperspaceFuryUnbound
-	jumpifspecies BS_ATTACKER, SPECIES_HOOPA, BattleScript_ButHoopaCantUseIt
+	jumpifspecies BS_ATTACKER, SPECIES_HOOPA_CONFINED, BattleScript_ButHoopaCantUseIt
 	goto BattleScript_PokemonCantUseTheMove
 
 BattleScript_EffectHyperspaceFuryUnbound::
@@ -1536,8 +1539,7 @@ BattleScript_MoveEffectCoreEnforcer::
 	waitmessage B_WAIT_TIME_LONG
 	trytoclearprimalweather
 	tryrevertweatherform
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 BattleScript_CoreEnforcerRet:
 	return
 
@@ -1631,8 +1633,7 @@ BattleScript_EffectPartingShotSwitch:
 	switchindataupdate BS_ATTACKER
 	hpthresholds BS_ATTACKER
 	trytoclearprimalweather
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	printstring STRINGID_SWITCHINMON
 	switchinanim BS_ATTACKER, TRUE
 	waitstate
@@ -1987,8 +1988,7 @@ BattleScript_SynchronoiseLoop:
 	waitmessage B_WAIT_TIME_LONG
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	tryfaintmon BS_TARGET
 BattleScript_SynchronoiseMoveTargetEnd:
 	moveendto MOVEEND_NEXT_TARGET
@@ -2672,8 +2672,7 @@ BattleScript_EffectSimpleBeam:
 	waitmessage B_WAIT_TIME_LONG
 	trytoclearprimalweather
 	tryrevertweatherform
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	tryendneutralizinggas BS_TARGET
 	goto BattleScript_MoveEnd
 
@@ -2726,8 +2725,7 @@ BattleScript_EffectHealingWish:
 	switchindataupdate BS_ATTACKER
 	hpthresholds BS_ATTACKER
 	trytoclearprimalweather
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	printstring STRINGID_SWITCHINMON
 	switchinanim BS_ATTACKER, TRUE
 	waitstate
@@ -2772,8 +2770,7 @@ BattleScript_EffectWorrySeed:
 	waitmessage B_WAIT_TIME_LONG
 	trytoclearprimalweather
 	tryrevertweatherform
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectPowerSplit:
@@ -2904,8 +2901,7 @@ BattleScript_EffectGastroAcid:
 	waitmessage B_WAIT_TIME_LONG
 	trytoclearprimalweather
 	tryrevertweatherform
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	tryendneutralizinggas BS_TARGET
 	goto BattleScript_MoveEnd
 
@@ -3115,8 +3111,7 @@ BattleScript_EffectHitEscape:
 	switchindataupdate BS_ATTACKER
 	hpthresholds BS_ATTACKER
 	trytoclearprimalweather
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	printstring STRINGID_SWITCHINMON
 	switchinanim BS_ATTACKER, TRUE
 	waitstate
@@ -3772,8 +3767,7 @@ BattleScript_DoMultiHit::
 	critmessage
 	waitmessage B_WAIT_TIME_LONG
 	multihitresultmessage
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	addbyte sMULTIHIT_STRING + 4, 1
 	moveendto MOVEEND_NEXT_TARGET
 	jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_FOE_ENDURED, BattleScript_MultiHitPrintStrings
@@ -3964,7 +3958,7 @@ BattleScript_TwoTurnMovesSecondTurn::
 
 BattleScriptFirstChargingTurn::
 	attackcanceler
-	printstring STRINGID_EMPTYSTRING3
+	flushtextbox
 	ppreduce
 	attackstring
 BattleScriptFirstChargingTurnAfterAttackString:
@@ -4139,8 +4133,7 @@ BattleScript_EffectTransform::
 	attackstring
 	ppreduce
 	trytoclearprimalweather
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	transformdataexecution
 	attackanimation
 	waitanimation
@@ -5041,8 +5034,7 @@ BattleScript_EffectBatonPass::
 	switchindataupdate BS_ATTACKER
 	hpthresholds BS_ATTACKER
 	trytoclearprimalweather
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	printstring STRINGID_SWITCHINMON
 	switchinanim BS_ATTACKER, TRUE
 	waitstate
@@ -6369,8 +6361,7 @@ BattleScript_FaintedMonTryChoose:
 	switchindataupdate BS_ATTACKER
 	hpthresholds BS_ATTACKER
 	trytoclearprimalweather
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	printstring STRINGID_SWITCHINMON
 	hidepartystatussummary BS_ATTACKER
 	switchinanim BS_ATTACKER, 0
@@ -6382,8 +6373,7 @@ BattleScript_FaintedMonSendOutNew:
 	switchindataupdate BS_FAINTED
 	hpthresholds BS_FAINTED
 	trytoclearprimalweather
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	printstring STRINGID_SWITCHINMON
 	hidepartystatussummary BS_FAINTED
 	switchinanim BS_FAINTED, FALSE
@@ -6417,8 +6407,7 @@ BattleScript_LinkHandleFaintedMonLoop::
 	switchindataupdate BS_FAINTED
 	hpthresholds BS_FAINTED
 	trytoclearprimalweather
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	printstring STRINGID_SWITCHINMON
 	hidepartystatussummary BS_FAINTED
 	switchinanim BS_FAINTED, FALSE
@@ -6642,8 +6631,7 @@ BattleScript_DoSwitchOut::
 	switchindataupdate BS_ATTACKER
 	hpthresholds BS_ATTACKER
 	trytoclearprimalweather
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	printstring STRINGID_SWITCHINMON
 	hidepartystatussummary BS_ATTACKER
 	switchinanim BS_ATTACKER, FALSE
@@ -6938,8 +6926,7 @@ BattleScript_RoarSuccessSwitch::
 	getswitchedmondata BS_TARGET
 	switchindataupdate BS_TARGET
 	trytoclearprimalweather
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	switchinanim BS_TARGET, FALSE
 	waitstate
 	printstring STRINGID_PKMNWASDRAGGEDOUT
@@ -7765,15 +7752,14 @@ BattleScript_MoveEffectClearSmog::
 	return
 
 BattleScript_FocusPunchSetUp::
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	playanimation BS_ATTACKER, B_ANIM_FOCUS_PUNCH_SETUP
 	printstring STRINGID_PKMNTIGHTENINGFOCUS
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
 BattleScript_MegaEvolution::
-	printstring STRINGID_EMPTYSTRING3
+	flushtextbox
 	trytrainerslidemegaevolutionmsg BS_ATTACKER
 	printstring STRINGID_MEGAEVOREACTING
 BattleScript_MegaEvolutionAfterString:
@@ -7789,7 +7775,7 @@ BattleScript_MegaEvolutionAfterString:
 	end3
 
 BattleScript_WishMegaEvolution::
-	printstring STRINGID_EMPTYSTRING3
+	flushtextbox
 	trytrainerslidemegaevolutionmsg BS_ATTACKER
 	printstring STRINGID_FERVENTWISHREACHED
 	goto BattleScript_MegaEvolutionAfterString
@@ -7804,8 +7790,7 @@ BattleScript_PrimalReversionRestoreAttacker::
 	end2
 
 BattleScript_PrimalReversionRet::
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	setbyte gIsCriticalHit, 0
 	handleprimalreversion BS_ATTACKER, 0
 	handleprimalreversion BS_ATTACKER, 1
@@ -7818,7 +7803,7 @@ BattleScript_PrimalReversionRet::
 	return
 
 BattleScript_UltraBurst::
-	printstring STRINGID_EMPTYSTRING3
+	flushtextbox
 	trytrainerslidezmovemsg BS_ATTACKER
 	printstring STRINGID_ULTRABURSTREACTING
 	waitmessage B_WAIT_TIME_LONG
@@ -7836,8 +7821,7 @@ BattleScript_AttackerFormChange::
 	pause 5
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 BattleScript_AttackerFormChangeNoPopup::
 	handleformchange BS_ATTACKER, 0
 	handleformchange BS_ATTACKER, 1
@@ -7884,8 +7868,7 @@ BattleScript_CudChewActivates::
 	end3
 
 BattleScript_TargetFormChangeNoPopup:
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	handleformchange BS_TARGET, 0
 	handleformchange BS_TARGET, 1
 	playanimation BS_TARGET, B_ANIM_FORM_CHANGE
@@ -7916,8 +7899,7 @@ BattleScript_TargetFormChangeWithStringNoPopup::
 BattleScript_BattlerFormChangeWithStringEnd3::
 	pause 5
 	call BattleScript_AbilityPopUp
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	handleformchange BS_SCRIPTING, 0
 	handleformchange BS_SCRIPTING, 1
 	playanimation BS_SCRIPTING, B_ANIM_FORM_CHANGE, NULL
@@ -9794,7 +9776,7 @@ BattleScript_ActionSelectionItemsCantBeUsed::
 	endselectionscript
 
 BattleScript_FlushMessageBox::
-	printstring STRINGID_EMPTYSTRING3
+	flushtextbox
 	return
 
 BattleScript_PalacePrintFlavorText::
@@ -9981,8 +9963,7 @@ BattleScript_AnnounceAirLockCloudNine::
 	end3
 
 BattleScript_QuickClawActivation::
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	playanimation BS_ATTACKER, B_ANIM_HELD_ITEM_EFFECT
 	waitanimation
 	printstring STRINGID_CANACTFASTERTHANKSTO
@@ -9990,16 +9971,14 @@ BattleScript_QuickClawActivation::
 	end2
 
 BattleScript_QuickDrawActivation::
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_CANACTFASTERTHANKSTO
 	waitmessage B_WAIT_TIME_LONG
 	end2
 
 BattleScript_CustapBerryActivation::
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	playanimation BS_ATTACKER, B_ANIM_HELD_ITEM_EFFECT
 	waitanimation
 	printstring STRINGID_CANACTFASTERTHANKSTO
@@ -10047,7 +10026,7 @@ BattleScript_JabocaRowapBerryActivate_Dmg:
 
 @ z moves / effects
 BattleScript_ZMoveActivateDamaging::
-	printstring STRINGID_EMPTYSTRING3
+	flushtextbox
 	trytrainerslidezmovemsg BS_ATTACKER
 	printstring STRINGID_ZPOWERSURROUNDS
 	playanimation BS_ATTACKER, B_ANIM_ZMOVE_ACTIVATE, NULL
@@ -10056,7 +10035,7 @@ BattleScript_ZMoveActivateDamaging::
 	return
 
 BattleScript_ZMoveActivateStatus::
-	printstring STRINGID_EMPTYSTRING3
+	flushtextbox
 	trytrainerslidezmovemsg BS_ATTACKER
 	savetarget
 	printstring STRINGID_ZPOWERSURROUNDS
@@ -10267,8 +10246,7 @@ BattleScript_EjectButtonActivates::
 	switchindataupdate BS_SCRIPTING
 	hpthresholds BS_SCRIPTING
 	trytoclearprimalweather
-	printstring STRINGID_EMPTYSTRING3
-	waitmessage 1
+	flushtextbox
 	printstring 0x3
 	switchinanim BS_SCRIPTING 0x1
 	waitstate
@@ -10648,7 +10626,7 @@ BattleScript_EffectSteelsurge::
 @@@ END MAX MOVES @@@
 
 BattleScript_DynamaxBegins::
-	printstring STRINGID_EMPTYSTRING3
+	flushtextbox
 	returnatktoball
 	pause B_WAIT_TIME_SHORT
 	returntoball BS_SCRIPTING
@@ -10659,7 +10637,7 @@ BattleScript_DynamaxBegins::
 	end3
 
 BattleScript_DynamaxEnds::
-	printstring STRINGID_EMPTYSTRING3
+	flushtextbox
 	updatedynamax
 	playanimation BS_SCRIPTING, B_ANIM_FORM_CHANGE
 	waitanimation
