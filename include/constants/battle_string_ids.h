@@ -670,17 +670,32 @@
 #define STRINGID_CURRENTMOVECANTSELECT                668
 #define STRINGID_TARGETISBEINGSALTCURED               669
 #define STRINGID_TARGETISHURTBYSALTCURE               670
-#define STRINGID_THETWOMOVESBECOMEONE                 671
-#define STRINGID_ARAINBOWAPPEAREDONSIDE               672
-#define STRINGID_THERAINBOWDISAPPEARED                673
-#define STRINGID_WAITINGFORPARTNERSMOVE               674
-#define STRINGID_SEAOFFIREENVELOPEDSIDE               675
-#define STRINGID_HURTBYTHESEAOFFIRE                   676
-#define STRINGID_THESEAOFFIREDISAPPEARED              677
-#define STRINGID_SWAMPENVELOPEDSIDE                   678
-#define STRINGID_THESWAMPDISAPPEARED                  679
+#define STRINGID_OPPORTUNISTCOPIED                    671
+#define STRINGID_TARGETCOVEREDINSTICKYCANDYSYRUP      672
+#define STRINGID_SHARPSTEELFLOATS                     673
+#define STRINGID_SHARPSTEELDMG                        674
+#define STRINGID_PKMNBLEWAWAYSHARPSTEEL               675
+#define STRINGID_SHARPSTEELDISAPPEAREDFROMTEAM        676
+#define STRINGID_TEAMTRAPPEDWITHVINES                 677
+#define STRINGID_PKMNHURTBYVINES                      678
+#define STRINGID_TEAMCAUGHTINVORTEX                   679
+#define STRINGID_PKMNHURTBYVORTEX                     680
+#define STRINGID_TEAMSURROUNDEDBYFIRE                 681
+#define STRINGID_PKMNBURNINGUP                        682
+#define STRINGID_TEAMSURROUNDEDBYROCKS                683
+#define STRINGID_PKMNHURTBYROCKSTHROWN                684
+#define STRINGID_MOVEBLOCKEDBYDYNAMAX                 685
+#define STRINGID_THETWOMOVESBECOMEONE                 686
+#define STRINGID_ARAINBOWAPPEAREDONSIDE               687
+#define STRINGID_THERAINBOWDISAPPEARED                688
+#define STRINGID_WAITINGFORPARTNERSMOVE               689
+#define STRINGID_SEAOFFIREENVELOPEDSIDE               690
+#define STRINGID_HURTBYTHESEAOFFIRE                   691
+#define STRINGID_THESEAOFFIREDISAPPEARED              692
+#define STRINGID_SWAMPENVELOPEDSIDE                   693
+#define STRINGID_THESWAMPDISAPPEARED                  694
 
-#define BATTLESTRINGS_COUNT                           680
+#define BATTLESTRINGS_COUNT                           695
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,
@@ -983,7 +998,21 @@
 // gDmgHazardsStringIds
 #define B_MSG_PKMNHURTBYSPIKES   0
 #define B_MSG_STEALTHROCKDMG     1
-#define B_MSG_POINTEDSTONESFLOAT 2
-#define B_MSG_SPIKESSCATTERED    3
+#define B_MSG_SHARPSTEELDMG      2
+#define B_MSG_POINTEDSTONESFLOAT 3
+#define B_MSG_SPIKESSCATTERED    4
+#define B_MSG_SHARPSTEELFLOATS   5
+
+// gDamageNonTypesStartStringIds
+#define B_MSG_TRAPPED_WITH_VINES  0
+#define B_MSG_CAUGHT_IN_VORTEX    1
+#define B_MSG_SURROUNDED_BY_FIRE  2
+#define B_MSG_SURROUNDED_BY_ROCKS 3
+
+// gDamageNonTypesDmgStringIds
+#define B_MSG_HURT_BY_VINES  0
+#define B_MSG_HURT_BY_VORTEX    1
+#define B_MSG_BURNING_UP  2
+#define B_MSG_HURT_BY_ROCKS_THROWN 3
 
 #endif // GUARD_CONSTANTS_BATTLE_STRING_IDS_H
