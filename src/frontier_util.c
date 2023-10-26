@@ -1922,8 +1922,6 @@ static u8 AppendCaughtBannedMonSpeciesName(u16 species, u8 count, s32 numBannedM
     return count;
 }
 
-#undef SPECIES_PER_LINE
-
 static void AppendIfValid(u16 species, u16 heldItem, u16 hp, u8 lvlMode, u8 monLevel, u16 *speciesArray, u16 *itemsArray, u8 *count)
 {
     s32 i = 0;
@@ -2041,7 +2039,7 @@ static void CheckPartyIneligibility(void)
         }
         else
         {
-            if (count & 1)
+            if (count % SPECIES_PER_LINE == SPECIES_PER_LINE - 1)
                 StringAppend(gStringVar1, gText_LineBreak);
             else
                 StringAppend(gStringVar1, gText_Space2);
@@ -2055,6 +2053,8 @@ static void CheckPartyIneligibility(void)
     }
     #undef numEligibleMons
 }
+
+#undef SPECIES_PER_LINE
 
 static void ValidateVisitingTrainer(void)
 {
