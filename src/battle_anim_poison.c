@@ -327,12 +327,12 @@ static const union AnimCmd sAnim_SyrupStick[] =
 
 static const union AnimCmd *const sAnims_SyrupCoat[] =
 {
-	sAnim_SyrupCoat,
+    sAnim_SyrupCoat,
 };
 
 static const union AnimCmd *const sAnims_SyrupStick[] =
 {
-	sAnim_SyrupStick,
+    sAnim_SyrupStick,
 };
 
 const struct SpriteTemplate gSyrupRedProjectileSpriteTemplate =
