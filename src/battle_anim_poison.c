@@ -339,22 +339,22 @@ const struct SpriteTemplate gSyrupRedProjectileSpriteTemplate =
 {
     .tileTag = ANIM_TAG_SYRUP_BLOB_RED,
     .paletteTag = ANIM_TAG_SYRUP_BLOB_RED,
-	.oam = &gOamData_AffineDouble_ObjNormal_16x16,
-	.anims = gAnims_PoisonProjectile,
-	.images = NULL,
-	.affineAnims = gAffineAnims_PoisonProjectile,
-	.callback = AnimSludgeProjectile,
+    .oam = &gOamData_AffineDouble_ObjNormal_16x16,
+    .anims = gAnims_PoisonProjectile,
+    .images = NULL,
+    .affineAnims = gAffineAnims_PoisonProjectile,
+    .callback = AnimSludgeProjectile,
 };
 
 const struct SpriteTemplate gSyrupYellowProjectileSpriteTemplate =
 {
     .tileTag = ANIM_TAG_SYRUP_BLOB_YELLOW,
     .paletteTag = ANIM_TAG_SYRUP_BLOB_YELLOW,
-	.oam = &gOamData_AffineDouble_ObjNormal_16x16,
-	.anims = gAnims_PoisonProjectile,
-	.images = NULL,
-	.affineAnims = gAffineAnims_PoisonProjectile,
-	.callback = AnimSludgeProjectile,
+    .oam = &gOamData_AffineDouble_ObjNormal_16x16,
+    .anims = gAnims_PoisonProjectile,
+    .images = NULL,
+    .affineAnims = gAffineAnims_PoisonProjectile,
+    .callback = AnimSludgeProjectile,
 };
 
 const struct SpriteTemplate gSyrupBombRedHitParticleSpriteTemplate =
