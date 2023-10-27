@@ -9148,3 +9148,28 @@ void AnimTask_GetWeatherToSet(u8 taskId)
     }
 	DestroyAnimVisualTask(taskId);
 }
+
+void AnimTask_SyrupBomb(u8 taskId)
+{
+    struct Pokemon *party = GetBattlerParty(gBattleAnimAttacker);
+
+    if (IsMonShiny(&party[gBattlerPartyIndexes[gBattleAnimAttacker]]))
+    {
+        gDisableStructs[gBattleAnimTarget].syrupBombIsShiny = TRUE;
+        gBattleAnimArgs[0] = TRUE;
+    }
+    else
+    {
+        gBattleAnimArgs[0] = FALSE;
+    }
+    DestroyAnimVisualTask(taskId);
+}
+
+void AnimTask_StickySyrup(u8 taskId)
+{
+    if (gDisableStructs[gBattleAnimTarget].syrupBombIsShiny)
+        gBattleAnimArgs[0] = TRUE;
+    else
+        gBattleAnimArgs[0] = FALSE;
+    DestroyAnimVisualTask(taskId);
+}
