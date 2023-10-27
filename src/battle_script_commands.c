@@ -1531,12 +1531,9 @@ static bool8 JumpIfMoveAffectedByProtect(u16 move)
 
 static bool32 AccuracyCalcHelper(u16 move)
 {
-    if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
-    {
-        JumpIfMoveFailed(7, move);
-        return TRUE;
-    }
-    else if (B_TOXIC_NEVER_MISS >= GEN_6 && gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_POISON))
+    if ((gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+     || (B_TOXIC_NEVER_MISS >= GEN_6 && gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_POISON))
+     || gStatuses4[gBattlerTarget] & STATUS4_GLEIVE_RUSH)
     {
         JumpIfMoveFailed(7, move);
         return TRUE;
@@ -16278,4 +16275,12 @@ void BS_TrySetOctolock(void)
         gDisableStructs[battler].battlerPreventingEscape = gBattlerAttacker;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
+}
+
+void BS_SetGlaiveRush(void)
+{
+    NATIVE_ARGS();
+
+    gStatuses4[gBattlerAttacker] |= STATUS4_GLEIVE_RUSH;
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }

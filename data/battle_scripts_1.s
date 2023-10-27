@@ -440,6 +440,11 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSyrupBomb               @ EFFECT_SYRUP_BOMB
 	.4byte BattleScript_EffectHit                     @ EFFECT_IVY_CUDGEL
 	.4byte BattleScript_EffectMaxMove                 @ EFFECT_MAX_MOVE
+	.4byte BattleScript_EffectGlaiveRush              @ EFFECT_GLAIVE_RUSH
+
+BattleScript_EffectGlaiveRush::
+	setglaiverush
+	goto BattleScript_EffectHit
 
 BattleScript_EffectSyrupBomb::
 	setmoveeffect MOVE_EFFECT_SYRUP_BOMB
@@ -7344,7 +7349,7 @@ BattleScript_StealthRockFree::
 	printstring STRINGID_PKMNBLEWAWAYSTEALTHROCK
 	waitmessage B_WAIT_TIME_LONG
 	return
-	
+
 BattleScript_SteelsurgeFree::
 	printstring STRINGID_PKMNBLEWAWAYSHARPSTEEL
 	waitmessage B_WAIT_TIME_LONG

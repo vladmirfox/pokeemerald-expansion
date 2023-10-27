@@ -1372,6 +1372,10 @@
 	.4byte \failInstr
 	.endm
 
+	.macro setglaiverush
+	callnative BS_SetGlaiveRush
+	.endm
+
 	.macro setzeffect
 	callnative BS_SetZEffect
 	.endm
@@ -1500,7 +1504,7 @@
 	callnative BS_TryRecycleBerry
 	.4byte \ptr
 	.endm
-	
+
 	.macro updatedynamax
 	callnative BS_UpdateDynamax
 	.endm
