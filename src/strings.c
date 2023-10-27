@@ -518,7 +518,6 @@ const u8 gText_PkmnSkills[] = _("Pokémon Skills");
 const u8 gText_BattleMoves[] = _("Battle Moves");
 const u8 gText_ContestMoves[] = _("Contest Moves");
 const u8 gText_Info[] = _("Info");
-const u8 gText_EVs[] = _("L/R");
 const u8 gText_EggWillTakeALongTime[] = _("It looks like this EGG will\ntake a long time to hatch.");
 const u8 gText_EggWillTakeSomeTime[] = _("What will hatch from this?\nIt will take some time.");
 const u8 gText_EggWillHatchSoon[] = _("It moves occasionally.\nIt should hatch soon.");
