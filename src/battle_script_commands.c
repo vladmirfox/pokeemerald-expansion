@@ -1623,7 +1623,11 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     gPotentialItemEffectBattler = battlerDef;
     accStage = gBattleMons[battlerAtk].statStages[STAT_ACC];
     evasionStage = gBattleMons[battlerDef].statStages[STAT_EVASION];
-    if (atkAbility == ABILITY_UNAWARE || atkAbility == ABILITY_KEEN_EYE)
+    if (atkAbility == ABILITY_UNAWARE || atkAbility == ABILITY_KEEN_EYE
+#if B_ILLUMINATE_EFFECT == GEN_9
+        || atkAbility == ABILITY_ILLUMINATE
+#endif
+    )
         evasionStage = DEFAULT_STAT_STAGE;
     if (gBattleMoves[move].ignoresTargetDefenseEvasionStages)
         evasionStage = DEFAULT_STAT_STAGE;
@@ -5058,6 +5062,9 @@ static void Cmd_playstatchangeanimation(void)
                         && ability != ABILITY_FULL_METAL_BODY
                         && ability != ABILITY_WHITE_SMOKE
                         && !(ability == ABILITY_KEEN_EYE && currStat == STAT_ACC)
+                    #if B_ILLUMINATE_EFFECT == GEN_9
+                        && !(ability == ABILITY_ILLUMINATE && currStat == STAT_ACC)
+                    #endif
                         && !(ability == ABILITY_HYPER_CUTTER && currStat == STAT_ATK)
                         && !(ability == ABILITY_BIG_PECKS && currStat == STAT_DEF))
                 {
@@ -11437,6 +11444,9 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
         }
         else if (!certain
                 && ((battlerAbility == ABILITY_KEEN_EYE && statId == STAT_ACC)
+            #if B_ILLUMINATE_EFFECT == GEN_9
+                || (battlerAbility == ABILITY_ILLUMINATE && statId == STAT_ACC)
+            #endif
                 || (battlerAbility == ABILITY_HYPER_CUTTER && statId == STAT_ATK)
                 || (battlerAbility == ABILITY_BIG_PECKS && statId == STAT_DEF)))
         {

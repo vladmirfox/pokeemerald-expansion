@@ -870,6 +870,9 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                     RETURN_SCORE_MINUS(10);
                 break;
             case ABILITY_KEEN_EYE:
+        #if B_ILLUMINATE_EFFECT == GEN_9
+            case ABILITY_ILLUMINATE:
+        #endif
                 if (moveEffect == EFFECT_ACCURACY_DOWN || moveEffect == EFFECT_ACCURACY_DOWN_2)
                     RETURN_SCORE_MINUS(10);
                 break;
@@ -1292,7 +1295,11 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_ACCURACY_DOWN_2:
             if (!ShouldLowerStat(battlerDef, aiData->abilities[battlerDef], STAT_ACC))
                 ADJUST_SCORE(-10);
-            else if (aiData->abilities[battlerDef] == ABILITY_KEEN_EYE)
+            else if (aiData->abilities[battlerDef] == ABILITY_KEEN_EYE
+        #if B_ILLUMINATE_EFFECT == GEN_9
+                     || aiData->abilities[battlerDef] == ABILITY_ILLUMINATE
+        #endif
+            )
                 ADJUST_SCORE(-8);
             break;
         case EFFECT_EVASION_DOWN:
