@@ -8082,8 +8082,8 @@ void SetWildMonHeldItem(void)
         u16 i;
 
         if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG, 0)
-            && (GetMonAbility(&gPlayerParty[0]) == ABILITY_COMPOUND_EYES
-                || GetMonAbility(&gPlayerParty[0]) == ABILITY_SUPER_LUCK))
+            && ((GetMonAbility(&gPlayerParty[0]) == ABILITY_COMPOUND_EYES && OW_COMPOUND_EYES < GEN_9)
+                || (GetMonAbility(&gPlayerParty[0]) == ABILITY_SUPER_LUCK && OW_SUPER_LUCK == GEN_8)))
         {
             chanceNoItem = 20;
             chanceNotRare = 80;
