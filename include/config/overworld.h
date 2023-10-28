@@ -16,6 +16,7 @@
 #define OW_SUPER_LUCK               GEN_LATEST // In Gen8, if a Pokémon with Super Luck is leading the party, the wild held item rate is increased to 60%/20%.
 #define OW_CUTE_CHARM               GEN_LATEST // Prior to Gen9, if a Pokémon with Cute Charm is leading the party, wild encounters have a 66.7% chance to be forced to be of the opposite gender.
 #define OW_ILLUMINATE               GEN_LATEST // Prior to Gen9, if a Pokémon with Illuminate is leading the party, the wild encounter rate is doubled.
+#define OW_INFILTRATOR              GEN_LATEST // In Gen8, if a Pokémon with Infiltrator is leading the party, the wild encounter rate is halved.
 
 // Overworld flags
 // To use the following features in scripting, replace the 0s with the flag ID you're assigning it to.
