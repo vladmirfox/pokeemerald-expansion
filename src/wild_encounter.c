@@ -383,7 +383,7 @@ static u16 GetCurrentMapWildMonHeaderId(void)
     return HEADER_NONE;
 }
 
-static u8 PickWildMonNature(void)
+u8 PickWildMonNature(void)
 {
     u8 i;
     u8 j;
@@ -415,11 +415,11 @@ static u8 PickWildMonNature(void)
             }
         }
     }
-#if B_SYNCHRONIZE_NATURE < GEN_9
+#if OW_SYNCHRONIZE_NATURE < GEN_9
     // check synchronize for a pokemon with the same ability
     if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG)
         && GetMonAbility(&gPlayerParty[0]) == ABILITY_SYNCHRONIZE
-        && (B_SYNCHRONIZE_NATURE >= GEN_8 || Random() % 2 == 0))
+        && (OW_SYNCHRONIZE_NATURE == GEN_8 || Random() % 2 == 0))
     {
         return GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY) % NUM_NATURES;
     }
