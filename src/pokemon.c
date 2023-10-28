@@ -8070,29 +8070,35 @@ static s32 GetWildMonTableIdInAlteringCave(u16 species)
     return 0;
 }
 
+static inline bool32 CanFirstMonBoostHeldItemRarity(void)
+{
+    u32 ability;
+    if (GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG, 0) == SPECIES_NONE)
+        return FALSE;
+    ability = GetMonAbility(&gPlayerParty[0]);
+    if (ability == ABILITY_COMPOUND_EYES)
+        return (OW_COMPOUND_EYES < GEN_9);
+    else if (ability == ABILITY_SUPER_LUCK)
+        return (OW_SUPER_LUCK == GEN_8);
+    return FALSE;
+}
+
 void SetWildMonHeldItem(void)
 {
     if (!(gBattleTypeFlags & (BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_TRAINER | BATTLE_TYPE_PYRAMID | BATTLE_TYPE_PIKE)))
     {
         u16 rnd;
         u16 species;
-        u16 chanceNoItem = 45;
-        u16 chanceNotRare = 95;
         u16 count = (WILD_DOUBLE_BATTLE) ? 2 : 1;
         u16 i;
-
-        if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG, 0)
-            && ((GetMonAbility(&gPlayerParty[0]) == ABILITY_COMPOUND_EYES && OW_COMPOUND_EYES < GEN_9)
-                || (GetMonAbility(&gPlayerParty[0]) == ABILITY_SUPER_LUCK && OW_SUPER_LUCK == GEN_8)))
-        {
-            chanceNoItem = 20;
-            chanceNotRare = 80;
-        }
+        bool32 itemHeldBoost = CanFirstMonBoostHeldItemRarity();
+        u16 chanceNoItem = itemHeldBoost ? 20 : 45;
+        u16 chanceNotRare = itemHeldBoost ? 80 : 95;
 
         for (i = 0; i < count; i++)
         {
             if (GetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, NULL) != ITEM_NONE)
-                continue; // prevent ovewriting previously set item
+                continue; // prevent overwriting previously set item
 
             rnd = Random() % 100;
             species = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES, 0);
