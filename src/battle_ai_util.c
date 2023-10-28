@@ -1996,9 +1996,7 @@ bool32 ShouldLowerAccuracy(u32 battlerAtk, u32 battlerDef, u32 defAbility)
       && defAbility != ABILITY_WHITE_SMOKE
       && defAbility != ABILITY_FULL_METAL_BODY
       && defAbility != ABILITY_KEEN_EYE
-    #if B_ILLUMINATE_EFFECT == GEN_9
-      && defAbility != ABILITY_ILLUMINATE
-    #endif
+      && (defAbility != ABILITY_ILLUMINATE && B_ILLUMINATE_EFFECT == GEN_9)
       && AI_DATA->holdEffects[battlerDef] != HOLD_EFFECT_CLEAR_AMULET)
         return TRUE;
     return FALSE;
