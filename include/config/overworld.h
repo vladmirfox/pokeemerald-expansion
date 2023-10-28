@@ -20,6 +20,7 @@
 #define OW_HARVEST                  GEN_LATEST // In Gen8, if a Pokémon with Harvest is leading the party, there is a 50% chance to encounter a Grass-type Pokémon.
 #define OW_LIGHTNING_ROD            GEN_LATEST // In Gen8, if a Pokémon with Lightning Rod is leading the party, there is a 50% chance to encounter an Electric-type Pokémon.
 #define OW_STORM_DRAIN              GEN_LATEST // In Gen8, if a Pokémon with Storm Drain is leading the party, there is a 50% chance to encounter a Water-type Pokémon.
+#define OW_FLASH_FIRE               GEN_LATEST // In Gen8, if a Pokémon with Flash Fire is leading the party, there is a 50% chance to encounter a Fire-type Pokémon.
 #define OW_MAGNET_PULL              GEN_LATEST // Prior to Gen9, if a Pokémon with Magnet Pull is leading the party, there is a 50% chance to encounter a Steel-type Pokémon.
 #define OW_STATIC                   GEN_LATEST // Prior to Gen9, if a Pokémon with Static is leading the party, there is a 50% chance to encounter an Electric-type Pokémon.
 
