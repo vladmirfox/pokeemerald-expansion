@@ -202,7 +202,7 @@ Route112_CableCarStation_Text_SorryICantStay:
 	.string "… … …\n"
 	.string "Unfortunately I can't stay.\p"
 	.string "After I beat those goons at the door\n"
-	.string "they ran back towards FALLABOR!\p"
+	.string "they ran back towards Fallarbor!\p"
 	.string "… … …\p"
 	.string "… I would hate for COSMO to run into\n"
 	.string "more trouble with TEAM MAGMA.\p"

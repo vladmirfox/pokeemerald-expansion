@@ -199,7 +199,7 @@
 #define VAR_WEATHER_INSTITUTE_STATE                      0x40B3
 #define VAR_SS_TIDAL_STATE                               0x40B4
 #define VAR_TRICK_HOUSE_ENTER_FROM_CORRIDOR              0x40B5
-#define VAR_TRICK_HOUSE_PUZZLE_7_STATE_2                 0x40B6 // Leftover from RS, never set
+#define VAR_DAYCARE_ADOPTION_SPECIALS                    0x40B6 // Custom Var
 #define VAR_SLATEPORT_FAN_CLUB_STATE                     0x40B7
 #define VAR_HIDDEN_GROTTO_RETURN_WARP                    0x40B8 // Grotto Var
 #define VAR_MT_PYRE_STATE                                0x40B9

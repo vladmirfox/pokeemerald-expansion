@@ -541,3 +541,5 @@ gSpecials::
 	def_special SetGrottoWarp
 	def_special GetGrottoWarp
 	def_special GetGrottoReturnWarp
+	def_special GetSpeciesForRandomEgg
+	def_special IncrementAdoptionSpecials
