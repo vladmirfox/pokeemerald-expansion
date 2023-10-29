@@ -68,6 +68,54 @@ SINGLE_BATTLE_TEST("If Glaive Rush is successful, moves targeted at the user dea
     }
 }
 
+SINGLE_BATTLE_TEST("If Glaive Rush isn't successful moves targeted at the user don't deal double damage", s16 damage)
+{
+    bool32 missesGlaiveRush;
+
+    PARAMETRIZE { missesGlaiveRush = FALSE; }
+    PARAMETRIZE { missesGlaiveRush = TRUE; }
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_BRIGHT_POWDER); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_GLAIVE_RUSH, hit: missesGlaiveRush); MOVE(opponent, MOVE_TACKLE); }
+    } SCENE {
+        if (!missesGlaiveRush)
+            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_GLAIVE_RUSH, player);
+        else
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_GLAIVE_RUSH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+        HP_BAR(player, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[1].damage);
+    }
+}
+
+SINGLE_BATTLE_TEST("Glaive Rush doesn't affect the user if the effect is blocked", s16 damage)
+{
+    u32 species;
+
+    PARAMETRIZE { species = SPECIES_CLEFAIRY; }
+    PARAMETRIZE { species = SPECIES_WOBBUFFET; }
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(species) { Attack(50); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_GLAIVE_RUSH); MOVE(opponent, MOVE_TACKLE); }
+    } SCENE {
+        if (species == SPECIES_CLEFAIRY)
+            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_GLAIVE_RUSH, player);
+        else
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_GLAIVE_RUSH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+        HP_BAR(player, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[1].damage);
+    }
+}
+
 SINGLE_BATTLE_TEST("Glaive Rush status last until the the user's next turn")
 {
     s16 normalDmgFristHit;
