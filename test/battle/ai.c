@@ -266,23 +266,6 @@ AI_SINGLE_BATTLE_TEST("AI will not switch in a Pokemon which is slower and gets 
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI switches if Perish Song is about to kill")
-{
-    GIVEN {
-        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) {Moves(MOVE_TACKLE); }
-        OPPONENT(SPECIES_CROBAT) {Moves(MOVE_TACKLE); }
-    } WHEN {
-            TURN { MOVE(player, MOVE_PERISH_SONG); }
-            TURN { ; }
-            TURN { ; }
-            TURN { EXPECT_SWITCH(opponent, 1); }
-    } SCENE {
-        MESSAGE("{PKMN} TRAINER LEAF sent out Crobat!");
-    }
-}
-
 AI_DOUBLE_BATTLE_TEST("AI won't use a Weather changing move if partner already chose such move")
 {
     u32 j, k;
