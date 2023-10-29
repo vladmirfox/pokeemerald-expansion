@@ -1411,7 +1411,7 @@
 #define FLAG_SYS_NATIONAL_DEX                                       0x8D5
 #define FLAG_SYS_IS_FAST_SURFER                                     0x8D6 // Custom flag
 #define FLAG_SYS_TIME_TOGGLED                                       0x8D7 // Custom flag
-#define FLAG_SYS_CAVE_BATTLE                                        0x8D8 // Unused flag
+#define FLAG_SYS_EXP_SHARE_ON                                       0x8D8 // Custom flag
 #define FLAG_SYS_SHOAL_TIDE                                         0x8D9
 #define FLAG_SYS_RIBBON_GET                                         0x8DA
 
