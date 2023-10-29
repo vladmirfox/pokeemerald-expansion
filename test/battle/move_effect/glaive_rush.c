@@ -45,7 +45,30 @@ SINGLE_BATTLE_TEST("If Glaive Rush is successful, moves targeted at the user dea
     }
 }
 
-SINGLE_BATTLE_TEST("Glaive Rush status last until the next turn")
+SINGLE_BATTLE_TEST("If Glaive Rush is successful, moves targeted at the user deal double damage until the user moves again")
+{
+    s16 glaiveRushEffectedDmg;
+    s16 normalDmg;
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_TACKLE); MOVE(player, MOVE_GLAIVE_RUSH); }
+        TURN { MOVE(opponent, MOVE_TACKLE); MOVE(player, MOVE_CELEBRATE);  }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+        HP_BAR(player, captureDamage: &normalDmg);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_GLAIVE_RUSH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+        HP_BAR(player, captureDamage: &glaiveRushEffectedDmg);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, player);
+    } THEN {
+        EXPECT_MUL_EQ(normalDmg, Q_4_12(2.0), glaiveRushEffectedDmg);
+    }
+}
+
+SINGLE_BATTLE_TEST("Glaive Rush status last until the the user's next turn")
 {
     s16 normalDmgFristHit;
     s16 normalDmgSecondHit;

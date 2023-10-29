@@ -443,8 +443,10 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectGlaiveRush              @ EFFECT_GLAIVE_RUSH
 
 BattleScript_EffectGlaiveRush::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	setglaiverush
-	goto BattleScript_EffectHit
+	goto BattleScript_HitFromAtkString
 
 BattleScript_EffectSyrupBomb::
 	setmoveeffect MOVE_EFFECT_SYRUP_BOMB
