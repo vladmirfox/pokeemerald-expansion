@@ -10,8 +10,8 @@ Route117_PokemonDayCare_EventScript_EggWoman::
 	lock
 	faceplayer
 	goto_if_eq VAR_DAYCARE_ADOPTION_SPECIALS, 0, Route117_PokemonDayCare_EventScript_IntroduceAdoption
-	goto_if_eq VAR_DAYCARE_ADOPTION_SPECIALS, 6, Route117_PokemonDayCare_EventScript_AdoptedFivePokemon
-	goto_if_eq VAR_DAYCARE_ADOPTION_SPECIALS, 11, Route117_PokemonDayCare_EventScript_AdoptedTenPokemon
+	goto_if_eq VAR_DAYCARE_ADOPTION_SPECIALS, 7, Route117_PokemonDayCare_EventScript_AdoptedSixPokemon
+	goto_if_eq VAR_DAYCARE_ADOPTION_SPECIALS, 10, Route117_PokemonDayCare_EventScript_AdoptedNinePokemon
 	goto_if_set FLAG_DAILY_ADOPT_EGG, Route117_PokemonDayCare_EventScript_ReceivedEgg
 	goto_if_set FLAG_ADOPTION_LADY_USES_NAME, Route117_PokemonDayCare_EventScript_LadyUsesName
 	msgbox Route117_PokemonDayCare_Text_HaveEggWillYouTakeIt, MSGBOX_YESNO
@@ -24,6 +24,14 @@ Route117_PokemonDayCare_EventScript_TryGiveEgg::
 	playfanfare MUS_OBTAIN_ITEM
 	message Route117_PokemonDayCare_Text_ReceivedTheEgg
 	waitfanfare
+	goto_if_eq VAR_0x8004, 1, Route117_PokemonDayCare_EventScript_GiveSpecialEgg
+	goto_if_eq VAR_DAYCARE_ADOPTION_SPECIALS, 13, Route117_PokemonDayCare_EventScript_GiveSpecialEgg
+	goto_if_eq VAR_DAYCARE_ADOPTION_SPECIALS, 16, Route177_PokemonDayCare_EventScript_GiveShinyEgg
+	goto_if_eq VAR_DAYCARE_ADOPTION_SPECIALS, 19, Route117_PokemonDayCare_EventScript_GiveSpecialEgg
+	goto_if_eq VAR_DAYCARE_ADOPTION_SPECIALS, 22, Route117_PokemonDayCare_EventScript_GiveSpecialEgg
+	goto_if_eq VAR_DAYCARE_ADOPTION_SPECIALS, 25, Route117_PokemonDayCare_EventScript_GiveSpecialEgg
+	goto_if_eq VAR_DAYCARE_ADOPTION_SPECIALS, 28, Route117_PokemonDayCare_EventScript_GiveSpecialEgg
+	goto_if_eq VAR_DAYCARE_ADOPTION_SPECIALS, 31, Route177_PokemonDayCare_EventScript_GiveShinySpecialEgg
 	specialvar VAR_RESULT, GetSpeciesForRandomEgg
 	giveegg VAR_RESULT
 	special IncrementAdoptionSpecials
@@ -51,25 +59,27 @@ Route117_PokemonDayCare_EventScript_DeclineEgg::
 	release
 	end
 
-Route117_PokemonDayCare_EventScript_AdoptedFivePokemon::
-	goto_if_unset FLAG_ADOPTION_LADY_USES_NAME, Route117_PokemonDayCare_EventScript_AdoptedFivePokemonEvent
+Route117_PokemonDayCare_EventScript_AdoptedSixPokemon::
+	goto_if_unset FLAG_ADOPTION_LADY_USES_NAME, Route117_PokemonDayCare_EventScript_AdoptedSixPokemonEvent
 	msgbox Route117_PokemonDayCare_Text_HaveEggWillYouTakeIt2, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route117_PokemonDayCare_EventScript_DeclineEgg
+	setvar VAR_0x8004, 1
 	goto Route117_PokemonDayCare_EventScript_TryGiveEgg
 
-Route117_PokemonDayCare_EventScript_AdoptedFivePokemonEvent::
+Route117_PokemonDayCare_EventScript_AdoptedSixPokemonEvent::
 	setflag FLAG_ADOPTION_LADY_USES_NAME
-	msgbox Route117_PokemonDayCare_Text_YouveAdoptedFivePokemonNow, MSGBOX_YESNO
+	msgbox Route117_PokemonDayCare_Text_YouveAdoptedSixPokemonNow, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route117_PokemonDayCare_EventScript_DeclineEgg
 	goto Route117_PokemonDayCare_EventScript_TryGiveEgg
 
-Route117_PokemonDayCare_EventScript_AdoptedTenPokemon::
-	goto_if_unset FLAG_ADOPTION_LADY_GIVES_CHARM, Route117_PokemonDayCare_EventScript_AdoptedTenPokemonEvent
+Route117_PokemonDayCare_EventScript_AdoptedNinePokemon::
+	goto_if_unset FLAG_ADOPTION_LADY_GIVES_CHARM, Route117_PokemonDayCare_EventScript_AdoptedNinePokemonEvent
 	msgbox Route117_PokemonDayCare_Text_HaveEggWillYouTakeIt2, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route117_PokemonDayCare_EventScript_DeclineEgg
+	setvar VAR_0x8004, 1
 	goto Route117_PokemonDayCare_EventScript_TryGiveEgg
 
-Route117_PokemonDayCare_EventScript_AdoptedTenPokemonEvent::
+Route117_PokemonDayCare_EventScript_AdoptedNinePokemonEvent::
 	setflag FLAG_ADOPTION_LADY_GIVES_CHARM
 	msgbox Route117_PokemonDayCare_Text_HopeYouDidntForget, MSGBOX_DEFAULT
 	giveitem ITEM_OVAL_CHARM
@@ -81,6 +91,31 @@ Route117_PokemonDayCare_EventScript_LadyUsesName::
 	msgbox Route117_PokemonDayCare_Text_HaveEggWillYouTakeIt2, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, Route117_PokemonDayCare_EventScript_DeclineEgg
 	goto Route117_PokemonDayCare_EventScript_TryGiveEgg
+
+Route117_PokemonDayCare_EventScript_GiveSpecialEgg::
+	specialvar VAR_RESULT, GetSpeciesForSpecialEgg
+	giveegg VAR_RESULT
+	special IncrementAdoptionSpecials
+	release
+	end
+
+Route177_PokemonDayCare_EventScript_GiveShinyEgg::
+	setflag FLAG_SHINY_CREATION
+	specialvar VAR_RESULT, GetSpeciesForRandomEgg
+	giveegg VAR_RESULT
+	clearflag FLAG_SHINY_CREATION
+	special IncrementAdoptionSpecials
+	release
+	end
+
+Route177_PokemonDayCare_EventScript_GiveShinySpecialEgg::
+	setflag FLAG_SHINY_CREATION
+	specialvar VAR_RESULT, GetSpeciesForSpecialEgg
+	giveegg VAR_RESULT
+	clearflag FLAG_SHINY_CREATION
+	special IncrementAdoptionSpecials
+	release
+	end
 
 Route117_PokemonDayCare_Text_HaveEggWillYouTakeIt:
 	.string "Oh! Welcome back!\p"
@@ -136,11 +171,11 @@ Route117_PokemonDayCare_Text_IntroduceAdoptionOfferEgg:
 	.string "Would you like to adopt one of\n"
 	.string "the eggs left here?$"
 
-Route117_PokemonDayCare_Text_YouveAdoptedFivePokemonNow:
+Route117_PokemonDayCare_Text_YouveAdoptedSixPokemonNow:
 	.string "Oh! Welcome back {PLAYER}!\p"
 	.string "I was hoping to see you today!\p"
 	.string "Did you know you have helped\n"
-	.string "rehome Five Pokémon now?\p"
+	.string "rehome Six Pokémon now?\p"
 	.string "You're just incredible!\p"
 	.string "… … …\p"
 	.string "I'm actually working on something\n"
@@ -154,7 +189,7 @@ Route117_PokemonDayCare_Text_HopeYouDidntForget:
 	.string "You're exactly who I was hoping\n"
 	.string "to see today!\p"
 	.string "Did you know that you've helped\n"
-	.string "rehome Ten Pokémon now?\p"
+	.string "rehome Nine Pokémon now?\p"
 	.string "Well…\p"
 	.string "I hope you didn't forget about\n"
 	.string "the gift I was working on with\l"
