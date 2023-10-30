@@ -5,6 +5,7 @@ Route119East_MapScripts::
 	.byte 0
 
 Route119East_OnResume:
+	setstepcallback STEP_CB_FORTREE_BRIDGE
 	special SetRoute119Weather
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, Route119East_OnResume_Night

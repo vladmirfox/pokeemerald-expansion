@@ -3,14 +3,15 @@
 Route113_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, Route113_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, Route113_OnTransition
-	map_script MAP_SCRIPT_ON_LOAD, Route113_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, Route113_OnLoad
 	.byte 0
 
-Route113_OnResume:
+Route113_OnLoad:
 	setstepcallback STEP_CB_ASH
-	special GetDayOrNight
-	goto_if_eq VAR_RESULT, 1, Route113_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, Route113_OnResume_Day
+	end
+
+Route113_OnResume:
+	call Route113_EventScript_CheckSetAshWeather
 	end
 
 Route113_OnResume_Night:
@@ -38,6 +39,7 @@ Route113_EventScript_CheckSetAshWeather::
 	goto_if_lt VAR_TEMP_0, 19, Route113_EventScript_DontSetAshWeather
 	goto_if_gt VAR_TEMP_0, 84, Route113_EventScript_DontSetAshWeather
 	setweather WEATHER_VOLCANIC_ASH
+	doweather
 	return
 
 Route113_EventScript_DontSetAshWeather::

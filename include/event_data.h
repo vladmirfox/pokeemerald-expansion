@@ -17,11 +17,14 @@ by the number of available grottos per flag. Since we also want Grotto's to be a
 progression flags are set.*/
 #define NUM_GROTTO_MAPS (NUM_PROGRESSION_FLAGS + 1) * NUM_GROTTOS_PER_FLAG
 
+#define NUM_RANDOM_EGG_SPECIES 49
+#define NUM_SPECIAL_EGG_SPECIES 28
+
 void InitEventData(void);
 void ClearTempFieldEventData(void);
 void ClearDailyFlags(void);
 void ClearGrottoVars(void);
-void IncrimentTrophyGardenVar(void);
+void IncrementTrophyGardenVar(void);
 void DisableNationalPokedex(void);
 void EnableNationalPokedex(void);
 bool32 IsNationalPokedexEnabled(void);

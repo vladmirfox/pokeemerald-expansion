@@ -393,6 +393,35 @@ static void HandleInputChooseAction(u32 battler)
     {
         SwapHpBarsWithHpText();
     }
+    else if (JOY_NEW(R_BUTTON) || gPlayerDpadHoldFrames > 59)
+    {
+        if (!(gActionSelectionCursor[battler] & 2))
+        {
+            PlaySE(SE_SELECT);
+            if (!(gActionSelectionCursor[battler] & 1))
+            {
+                PlaySE(SE_SELECT);
+                ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+                gActionSelectionCursor[battler] ^= 1;
+                ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+            }
+            ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+            gActionSelectionCursor[battler] ^= 2;
+            ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+        } else if (!(gActionSelectionCursor[battler] & 1))
+        {
+            PlaySE(SE_SELECT);
+            ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+            gActionSelectionCursor[battler] ^= 1;
+            ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+        }
+        else {
+        PlaySE(SE_SELECT);
+        TryHideLastUsedBall();
+        BtlController_EmitTwoReturnValues(battler, BUFFER_B, B_ACTION_RUN, 0);
+        PlayerBufferExecCompleted(battler);
+        }
+    }
 #if DEBUG_BATTLE_MENU == TRUE
     else if (JOY_NEW(SELECT_BUTTON))
     {

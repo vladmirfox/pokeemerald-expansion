@@ -61,9 +61,9 @@ void ClearGrottoVars(void)
     }
 }
 
-void IncrimentTrophyGardenVar(void)
+void IncrementTrophyGardenVar(void)
 {
-    VarSet(VAR_TROPHY_GARDEN_ENCOUNTERS, (VarGet(VAR_TROPHY_GARDEN_ENCOUNTERS + 1) % 3));
+    VarSet(VAR_TROPHY_GARDEN_ENCOUNTERS, (VarGet(VAR_TROPHY_GARDEN_ENCOUNTERS) + 1 % 3));
 }
 
 void DisableNationalPokedex(void)

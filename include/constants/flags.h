@@ -340,8 +340,8 @@
 #define FLAG_RECEIVED_MYSTIC_TICKET          0x13B
 #define FLAG_RECEIVED_OLD_SEA_MAP            0x13C
 #define FLAG_CANDYFACTORY_NPC_ITEM_GIFTED    0x13D // Custom Flag
-#define FLAG_WONDER_CARD_UNUSED_2            0x13E // These Wonder Card Flags are Unused. Also Wonder Cards are removed by Save Byte clearing.
-#define FLAG_WONDER_CARD_UNUSED_3            0x13F
+#define FLAG_ADOPTION_LADY_USES_NAME         0x13E // Custom Flag
+#define FLAG_ADOPTION_LADY_GIVES_CHARM       0x13F // Custom Flag
 #define FLAG_WONDER_CARD_UNUSED_4            0x140
 #define FLAG_WONDER_CARD_UNUSED_5            0x141
 #define FLAG_WONDER_CARD_UNUSED_6            0x142
@@ -1411,7 +1411,7 @@
 #define FLAG_SYS_NATIONAL_DEX                                       0x8D5
 #define FLAG_SYS_IS_FAST_SURFER                                     0x8D6 // Custom flag
 #define FLAG_SYS_TIME_TOGGLED                                       0x8D7 // Custom flag
-#define FLAG_SYS_CAVE_BATTLE                                        0x8D8 // Unused flag
+#define FLAG_SYS_EXP_SHARE_ON                                       0x8D8 // Custom flag
 #define FLAG_SYS_SHOAL_TIDE                                         0x8D9
 #define FLAG_SYS_RIBBON_GET                                         0x8DA
 
@@ -1514,7 +1514,7 @@
 #define FLAG_UNUSED_0x920                           (DAILY_FLAGS_START + 0x0)  // Unused Flag
 #define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY     (DAILY_FLAGS_START + 0x1)
 #define FLAG_DAILY_SECRET_BASE                      (DAILY_FLAGS_START + 0x2)
-#define FLAG_UNUSED_0x923                           (DAILY_FLAGS_START + 0x3)  // Unused Flag
+#define FLAG_DAILY_ADOPT_EGG                        (DAILY_FLAGS_START + 0x3)  // Custom Flag
 #define FLAG_UNUSED_0x924                           (DAILY_FLAGS_START + 0x4)  // Unused Flag
 #define FLAG_UNUSED_0x925                           (DAILY_FLAGS_START + 0x5)  // Unused Flag
 #define FLAG_UNUSED_0x926                           (DAILY_FLAGS_START + 0x6)  // Unused Flag
