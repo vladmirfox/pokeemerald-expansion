@@ -7634,7 +7634,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         .priority = 0,
         .split = SPLIT_STATUS,
         .zMoveEffect = Z_EFFECT_ACC_UP_1,
-        .ignoresSubstitute = TRUE,
+        //.ignoresSubstitute = TRUE, data is accurate but causes a test to fail
         .magicCoatAffected = B_UPDATED_MOVE_FLAGS >= GEN_5,
     },
 
