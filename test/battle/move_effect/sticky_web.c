@@ -50,13 +50,13 @@ DOUBLE_BATTLE_TEST("Sticky Web lowers Speed by 1 in a double battle after Explos
 {
     GIVEN {
         ASSUME(gBattleMoves[MOVE_EXPLOSION].effect == EFFECT_EXPLOSION);
-        PLAYER(SPECIES_WOBBUFFET) {Speed(5);}
-        PLAYER(SPECIES_WOBBUFFET) {HP(1500); Speed(10);}
-        PLAYER(SPECIES_WOBBUFFET) {Speed(10);}
-        OPPONENT(SPECIES_WOBBUFFET) {HP(1); Speed(1);}
-        OPPONENT(SPECIES_WOBBUFFET) {HP(1); Speed(1);}
-        OPPONENT(SPECIES_WYNAUT) {Speed(10);}
-        OPPONENT(SPECIES_WYNAUT) {Speed(10);}
+        PLAYER(SPECIES_WOBBUFFET) { Speed(5); }
+        PLAYER(SPECIES_WOBBUFFET) { HP(1500); Speed(10); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
+        OPPONENT(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        OPPONENT(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(10); }
+        OPPONENT(SPECIES_WYNAUT) { Speed(10); }
     } WHEN {
         TURN { MOVE(playerRight, MOVE_STICKY_WEB); MOVE(playerLeft, MOVE_EXPLOSION); SEND_OUT(playerLeft, 2); SEND_OUT(opponentLeft, 2); SEND_OUT(opponentRight, 3); }
         TURN {}
@@ -102,10 +102,10 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - the 
 {
     u8 playerSetUpper, opponentSetUpper; // 0 left, 1 right
 
-    PARAMETRIZE {playerSetUpper = 0; opponentSetUpper = 0; }
-    PARAMETRIZE {playerSetUpper = 0; opponentSetUpper = 1; }
-    PARAMETRIZE {playerSetUpper = 1; opponentSetUpper = 0; }
-    PARAMETRIZE {playerSetUpper = 1; opponentSetUpper = 1; }
+    PARAMETRIZE { playerSetUpper = 0; opponentSetUpper = 0; }
+    PARAMETRIZE { playerSetUpper = 0; opponentSetUpper = 1; }
+    PARAMETRIZE { playerSetUpper = 1; opponentSetUpper = 0; }
+    PARAMETRIZE { playerSetUpper = 1; opponentSetUpper = 1; }
 
     GIVEN {
         ASSUME(P_GEN_8_POKEMON == TRUE);
@@ -189,19 +189,19 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
     bool8 hasReplacement;
 
     // We need to make sure Sticky Web user saves for both sides, so it doesn't matter who sets it first.
-    PARAMETRIZE {hasReplacement = TRUE;}
-    PARAMETRIZE {hasReplacement = FALSE;}
+    PARAMETRIZE { hasReplacement = TRUE; }
+    PARAMETRIZE { hasReplacement = FALSE; }
 
     GIVEN {
         ASSUME(P_GEN_8_POKEMON == TRUE);
         ASSUME(gBattleMoves[MOVE_MEMENTO].effect == EFFECT_MEMENTO);
-        PLAYER(SPECIES_SQUIRTLE) {Speed(5); }
-        PLAYER(SPECIES_CHARMANDER) {Speed(5); }
-        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); Speed(5); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
-        OPPONENT(SPECIES_CATERPIE) {Speed(7); }
-        OPPONENT(SPECIES_WEEDLE) {Speed(7); }
+        PLAYER(SPECIES_SQUIRTLE) { Speed(5); }
+        PLAYER(SPECIES_CHARMANDER) { Speed(5); }
+        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); Speed(5); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
+        OPPONENT(SPECIES_CATERPIE) { Speed(7); }
+        OPPONENT(SPECIES_WEEDLE) { Speed(7); }
         if (hasReplacement) {
-            OPPONENT(SPECIES_PIDGEY) {Speed(7); }
+            OPPONENT(SPECIES_PIDGEY) { Speed(7); }
         }
 
     } WHEN {
@@ -209,7 +209,7 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
         if (hasReplacement) {
             TURN { MOVE(opponentLeft, MOVE_MEMENTO, target:playerLeft); SEND_OUT(opponentLeft, 2); }
         } else {
-            TURN { MOVE(opponentLeft, MOVE_MEMENTO, target:playerLeft);}
+            TURN { MOVE(opponentLeft, MOVE_MEMENTO, target:playerLeft); }
         }
         TURN { SWITCH(playerRight, 2); }
     } SCENE {

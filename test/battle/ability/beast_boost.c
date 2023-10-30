@@ -8,7 +8,7 @@ ASSUMPTIONS
 
 SINGLE_BATTLE_TEST("Beast Boost boosts the most proficient stat when knocking out a target")
 {
-    u8 stats[] = {1, 1, 1, 1, 1};
+    u8 stats[] = { 1, 1, 1, 1, 1 };
     PARAMETRIZE { stats[0] = 255; }
     PARAMETRIZE { stats[1] = 255; }
     PARAMETRIZE { stats[2] = 255; }

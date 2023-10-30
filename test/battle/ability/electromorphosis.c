@@ -6,8 +6,8 @@ SINGLE_BATTLE_TEST("Electromorphosis sets up Charge when hit by any move")
     s16 dmgBefore, dmgAfter;
     u16 move;
 
-    PARAMETRIZE {move = MOVE_TACKLE; }
-    PARAMETRIZE {move = MOVE_GUST; }
+    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_GUST; }
 
     GIVEN {
         ASSUME(gBattleMoves[MOVE_TACKLE].power != 0);
@@ -18,7 +18,7 @@ SINGLE_BATTLE_TEST("Electromorphosis sets up Charge when hit by any move")
         ASSUME(gBattleMoves[MOVE_THUNDERBOLT].type == TYPE_ELECTRIC);
 
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_ELECTROMORPHOSIS); Speed(10); }
-        OPPONENT(SPECIES_WOBBUFFET) {Ability(ABILITY_LIMBER); Speed(5) ;} // Limber, so it doesn't get paralyzed.
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIMBER); Speed(5); } // Limber, so it doesn't get paralyzed.
     }
     WHEN {
         TURN { MOVE(player, MOVE_THUNDERBOLT), MOVE(opponent, move); }

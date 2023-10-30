@@ -4,7 +4,7 @@
 SINGLE_BATTLE_TEST("Pressure causes opponent's moves to use up 1 additional PP")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { MovesWithPP({MOVE_POUND, 35}); }
+        PLAYER(SPECIES_WOBBUFFET) { MovesWithPP({ MOVE_POUND, 35 }); }
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_PRESSURE); }
     } WHEN {
         TURN { MOVE(player, MOVE_POUND); }
@@ -16,7 +16,7 @@ SINGLE_BATTLE_TEST("Pressure causes opponent's moves to use up 1 additional PP")
 DOUBLE_BATTLE_TEST("Pressure's effect stacks with multiple Pokémon")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { MovesWithPP({MOVE_SWIFT, 20}); }
+        PLAYER(SPECIES_WOBBUFFET) { MovesWithPP({ MOVE_SWIFT, 20 }); }
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_PRESSURE); }
         OPPONENT(SPECIES_WYNAUT) { Ability(ABILITY_PRESSURE); }
@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("Pressure's effect applies to Imprison and Snatch")
 {
     KNOWN_FAILING;
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { MovesWithPP({MOVE_IMPRISON, 10}, {MOVE_SNATCH, 10}); }
+        PLAYER(SPECIES_WOBBUFFET) { MovesWithPP({ MOVE_IMPRISON, 10 }, { MOVE_SNATCH, 10 }); }
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_PRESSURE); }
     } WHEN {
         TURN { MOVE(player, MOVE_IMPRISON); }
@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("Pressure's effect applies to Imprison and Snatch")
 SINGLE_BATTLE_TEST("Pressure's effect applies to Spikes, Stealth Rock and Toxic Spikes")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { MovesWithPP({MOVE_SPIKES, 20}, {MOVE_STEALTH_ROCK, 20}, {MOVE_TOXIC_SPIKES, 20}); }
+        PLAYER(SPECIES_WOBBUFFET) { MovesWithPP({ MOVE_SPIKES, 20 }, { MOVE_STEALTH_ROCK, 20 }, { MOVE_TOXIC_SPIKES, 20 }); }
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_PRESSURE); }
     } WHEN {
         TURN { MOVE(player, MOVE_SPIKES); }
@@ -62,7 +62,7 @@ SINGLE_BATTLE_TEST("Pressure's effect doesn't apply to Sticky Web")
 {
     KNOWN_FAILING;
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { MovesWithPP({MOVE_STICKY_WEB, 20}); }
+        PLAYER(SPECIES_WOBBUFFET) { MovesWithPP({ MOVE_STICKY_WEB, 20 }); }
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_PRESSURE); }
     } WHEN {
         TURN { MOVE(player, MOVE_STICKY_WEB); }

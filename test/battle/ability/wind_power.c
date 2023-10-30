@@ -20,12 +20,12 @@ SINGLE_BATTLE_TEST("Wind Power sets up Charge for player when hit by a wind move
     s16 dmgBefore, dmgAfter;
     u16 move;
 
-    PARAMETRIZE {move = MOVE_TACKLE; }
-    PARAMETRIZE {move = MOVE_AIR_CUTTER; }
+    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_AIR_CUTTER; }
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_WIND_POWER); Speed(10); }
-        OPPONENT(SPECIES_WOBBUFFET) {Ability(ABILITY_LIMBER); Speed(5) ;} // Limber, so it doesn't get paralyzed.
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIMBER); Speed(5); } // Limber, so it doesn't get paralyzed.
     } WHEN {
         TURN { MOVE(player, MOVE_THUNDERBOLT), MOVE(opponent, move); }
         TURN { MOVE(player, MOVE_THUNDERBOLT), MOVE(opponent, move); }
@@ -65,11 +65,11 @@ SINGLE_BATTLE_TEST("Wind Power sets up Charge for opponent when hit by a wind mo
     s16 dmgBefore, dmgAfter;
     u16 move;
 
-    PARAMETRIZE {move = MOVE_TACKLE; }
-    PARAMETRIZE {move = MOVE_AIR_CUTTER; }
+    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_AIR_CUTTER; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {Ability(ABILITY_LIMBER); Speed(5) ;} // Limber, so it doesn't get paralyzed.
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIMBER); Speed(5); } // Limber, so it doesn't get paralyzed.
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_WIND_POWER); Speed(10); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_THUNDERBOLT), MOVE(player, move); }
@@ -109,9 +109,9 @@ DOUBLE_BATTLE_TEST("Wind Power activates correctly for every battler with the ab
 {
     u16 abilityLeft, abilityRight;
 
-    PARAMETRIZE {abilityLeft = ABILITY_NONE, abilityRight = ABILITY_WIND_POWER;}
-    PARAMETRIZE {abilityLeft = ABILITY_WIND_POWER, abilityRight = ABILITY_NONE; }
-    PARAMETRIZE {abilityLeft = ABILITY_WIND_POWER, abilityRight = ABILITY_WIND_POWER; }
+    PARAMETRIZE { abilityLeft = ABILITY_NONE, abilityRight = ABILITY_WIND_POWER; }
+    PARAMETRIZE { abilityLeft = ABILITY_WIND_POWER, abilityRight = ABILITY_NONE; }
+    PARAMETRIZE { abilityLeft = ABILITY_WIND_POWER, abilityRight = ABILITY_WIND_POWER; }
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Ability(abilityLeft); Speed(10); }
@@ -119,7 +119,7 @@ DOUBLE_BATTLE_TEST("Wind Power activates correctly for every battler with the ab
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIMBER); Speed(20); }
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIMBER); Speed(15); }
     } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_AIR_CUTTER); MOVE(opponentRight, MOVE_AIR_CUTTER);}
+        TURN { MOVE(opponentLeft, MOVE_AIR_CUTTER); MOVE(opponentRight, MOVE_AIR_CUTTER); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_AIR_CUTTER, opponentLeft);
 
@@ -150,9 +150,9 @@ DOUBLE_BATTLE_TEST("Wind Power activates correctly for every battler with the ab
 {
     u16 abilityLeft, abilityRight;
 
-    PARAMETRIZE {abilityLeft = ABILITY_NONE, abilityRight = ABILITY_WIND_POWER; }
-    PARAMETRIZE {abilityLeft = ABILITY_WIND_POWER, abilityRight = ABILITY_NONE; }
-    PARAMETRIZE {abilityLeft = ABILITY_WIND_POWER, abilityRight = ABILITY_WIND_POWER; }
+    PARAMETRIZE { abilityLeft = ABILITY_NONE, abilityRight = ABILITY_WIND_POWER; }
+    PARAMETRIZE { abilityLeft = ABILITY_WIND_POWER, abilityRight = ABILITY_NONE; }
+    PARAMETRIZE { abilityLeft = ABILITY_WIND_POWER, abilityRight = ABILITY_WIND_POWER; }
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Ability(abilityLeft); Speed(10); }
@@ -160,7 +160,7 @@ DOUBLE_BATTLE_TEST("Wind Power activates correctly for every battler with the ab
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIMBER); Speed(20); }
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIMBER); Speed(15); }
     } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_PETAL_BLIZZARD);}
+        TURN { MOVE(opponentLeft, MOVE_PETAL_BLIZZARD); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PETAL_BLIZZARD, opponentLeft);
 
@@ -189,8 +189,8 @@ DOUBLE_BATTLE_TEST("Wind Power activates correctly when Tailwind is used")
 {
     bool8 opponentSide;
 
-    PARAMETRIZE {opponentSide = TRUE;}
-    PARAMETRIZE {opponentSide = FALSE;}
+    PARAMETRIZE { opponentSide = TRUE; }
+    PARAMETRIZE { opponentSide = FALSE; }
 
     GIVEN {
         ASSUME(gBattleMoves[MOVE_TAILWIND].effect == EFFECT_TAILWIND);
@@ -199,7 +199,7 @@ DOUBLE_BATTLE_TEST("Wind Power activates correctly when Tailwind is used")
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_WIND_POWER); Speed(20); }
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_WIND_POWER); Speed(15); }
     } WHEN {
-        TURN { MOVE((opponentSide == TRUE) ? opponentLeft : playerLeft, MOVE_TAILWIND);}
+        TURN { MOVE((opponentSide == TRUE) ? opponentLeft : playerLeft, MOVE_TAILWIND); }
     } SCENE {
         if (opponentSide) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TAILWIND, opponentLeft);

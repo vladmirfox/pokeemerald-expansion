@@ -8,9 +8,9 @@ SINGLE_BATTLE_TEST("Inner Focus prevents intimidate")
 
     GIVEN {
         ASSUME(B_UPDATED_INTIMIDATE >= GEN_8);
-        PLAYER(SPECIES_EKANS) { Ability(ABILITY_SHED_SKIN); };
-        PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); };
-        OPPONENT(SPECIES_ZUBAT) { Ability(ABILITY_INNER_FOCUS); };
+        PLAYER(SPECIES_EKANS) { Ability(ABILITY_SHED_SKIN); }
+        PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_ZUBAT) { Ability(ABILITY_INNER_FOCUS); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
         TURN { SWITCH(player, 1); MOVE(opponent, MOVE_TACKLE); }
@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("Inner Focus prevents flinching")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ZUBAT) { Ability(ABILITY_INNER_FOCUS); };
+        OPPONENT(SPECIES_ZUBAT) { Ability(ABILITY_INNER_FOCUS); }
     } WHEN {
         TURN { MOVE(player, MOVE_FAKE_OUT);
                MOVE(opponent, MOVE_TACKLE);
@@ -46,8 +46,8 @@ SINGLE_BATTLE_TEST("Inner Focus prevents flinching")
 SINGLE_BATTLE_TEST("Inner Focus is ignored by Mold Breaker")
 {
     GIVEN {
-        PLAYER(SPECIES_PINSIR) { Ability(ABILITY_MOLD_BREAKER); };
-        OPPONENT(SPECIES_ZUBAT) { Ability(ABILITY_INNER_FOCUS); };
+        PLAYER(SPECIES_PINSIR) { Ability(ABILITY_MOLD_BREAKER); }
+        OPPONENT(SPECIES_ZUBAT) { Ability(ABILITY_INNER_FOCUS); }
     } WHEN {
         TURN { MOVE(player, MOVE_FAKE_OUT); }
     } SCENE {

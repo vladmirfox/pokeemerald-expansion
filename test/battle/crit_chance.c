@@ -64,9 +64,9 @@ SINGLE_BATTLE_TEST("Mold Breaker, Teravolt and Turboblaze ignore Battle Armor an
     u32 j;
     static const u32 pokemonPlayer[][2] =
     {
-        {SPECIES_PINSIR, ABILITY_MOLD_BREAKER},
-        {SPECIES_ZEKROM, ABILITY_TERAVOLT},
-        {SPECIES_KYUREM_WHITE,  ABILITY_TURBOBLAZE},
+        { SPECIES_PINSIR, ABILITY_MOLD_BREAKER },
+        { SPECIES_ZEKROM, ABILITY_TERAVOLT },
+        { SPECIES_KYUREM_WHITE,  ABILITY_TURBOBLAZE },
     };
 
     u32 speciesPlayer;
@@ -167,7 +167,7 @@ SINGLE_BATTLE_TEST("Super Luck increases the critical hit ratio by one stage")
 {
     PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
     GIVEN {
-        PLAYER(SPECIES_TOGEPI) { Ability(ABILITY_SUPER_LUCK); };
+        PLAYER(SPECIES_TOGEPI) { Ability(ABILITY_SUPER_LUCK); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -182,7 +182,7 @@ SINGLE_BATTLE_TEST("Scope Lens increases the critical hit ratio by one stage")
     PASSES_RANDOMLY(1, 8, RNG_CRITICAL_HIT);
     GIVEN {
         ASSUME(gItems[ITEM_SCOPE_LENS].holdEffect == HOLD_EFFECT_SCOPE_LENS);
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_SCOPE_LENS); };
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_SCOPE_LENS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -197,7 +197,7 @@ SINGLE_BATTLE_TEST("Flag highCritRatio, Super Luck and Scope Lens cause the move
     GIVEN {
         ASSUME(gBattleMoves[MOVE_SLASH].highCritRatio == TRUE);
         ASSUME(gItems[ITEM_SCOPE_LENS].holdEffect == HOLD_EFFECT_SCOPE_LENS);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SUPER_LUCK); Item(ITEM_SCOPE_LENS); };
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SUPER_LUCK); Item(ITEM_SCOPE_LENS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SLASH); }

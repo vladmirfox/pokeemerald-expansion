@@ -5,8 +5,8 @@ SINGLE_BATTLE_TEST("Toxic Debris sets Toxic Spikes on the opposing side if hit b
 {
     u32 move;
 
-    PARAMETRIZE { move = MOVE_TACKLE;}
-    PARAMETRIZE { move = MOVE_SWIFT;}
+    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_SWIFT; }
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_TOXIC_DEBRIS); }

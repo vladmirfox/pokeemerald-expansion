@@ -32,10 +32,10 @@ SINGLE_BATTLE_TEST("Battle Bond transforms player's Greninja - Singles")
 {
     u32 monsCountPlayer, monsCountOpponent;
 
-    PARAMETRIZE {monsCountPlayer = 1; monsCountOpponent = 1; }
-    PARAMETRIZE {monsCountPlayer = 1; monsCountOpponent = 2; }
-    PARAMETRIZE {monsCountPlayer = 2; monsCountOpponent = 1; }
-    PARAMETRIZE {monsCountPlayer = 2; monsCountOpponent = 2; }
+    PARAMETRIZE { monsCountPlayer = 1; monsCountOpponent = 1; }
+    PARAMETRIZE { monsCountPlayer = 1; monsCountOpponent = 2; }
+    PARAMETRIZE { monsCountPlayer = 2; monsCountOpponent = 1; }
+    PARAMETRIZE { monsCountPlayer = 2; monsCountOpponent = 2; }
 
     GIVEN {
         PLAYER(SPECIES_GRENINJA_BATTLE_BOND);
@@ -79,17 +79,17 @@ SINGLE_BATTLE_TEST("Battle Bond transforms opponent's Greninja - Singles")
 {
     u32 monsCountPlayer, monsCountOpponent;
 
-    PARAMETRIZE {monsCountPlayer = 1; monsCountOpponent = 1; }
-    PARAMETRIZE {monsCountPlayer = 1; monsCountOpponent = 2; }
-    PARAMETRIZE {monsCountPlayer = 2; monsCountOpponent = 1; }
-    PARAMETRIZE {monsCountPlayer = 2; monsCountOpponent = 2; }
+    PARAMETRIZE { monsCountPlayer = 1; monsCountOpponent = 1; }
+    PARAMETRIZE { monsCountPlayer = 1; monsCountOpponent = 2; }
+    PARAMETRIZE { monsCountPlayer = 2; monsCountOpponent = 1; }
+    PARAMETRIZE { monsCountPlayer = 2; monsCountOpponent = 2; }
 
     GIVEN {
         OPPONENT(SPECIES_GRENINJA_BATTLE_BOND);
         if (monsCountOpponent == 2) {
             OPPONENT(SPECIES_WOBBUFFET);
         }
-        PLAYER(SPECIES_WOBBUFFET) {HP(1); }
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         if (monsCountPlayer == 2) {
             PLAYER(SPECIES_WOBBUFFET);
         }
@@ -126,10 +126,10 @@ DOUBLE_BATTLE_TEST("Battle Bond transforms player's Greninja when fainting its A
 {
     u32 monsCountPlayer, monsCountOpponent;
 
-    PARAMETRIZE {monsCountPlayer = 2; monsCountOpponent = 2; }
-    PARAMETRIZE {monsCountPlayer = 2; monsCountOpponent = 3; }
-    PARAMETRIZE {monsCountPlayer = 3; monsCountOpponent = 2; }
-    PARAMETRIZE {monsCountPlayer = 3; monsCountOpponent = 3; }
+    PARAMETRIZE { monsCountPlayer = 2; monsCountOpponent = 2; }
+    PARAMETRIZE { monsCountPlayer = 2; monsCountOpponent = 3; }
+    PARAMETRIZE { monsCountPlayer = 3; monsCountOpponent = 2; }
+    PARAMETRIZE { monsCountPlayer = 3; monsCountOpponent = 3; }
 
     GIVEN {
         PLAYER(SPECIES_GRENINJA_BATTLE_BOND);

@@ -25,7 +25,7 @@ static const struct TrainerMon sTestParty1[] =
         .iv = TRAINER_PARTY_IVS(25,26,27,28,29,30),
         .ev = TRAINER_PARTY_EVS(252, 0, 0, 252, 4, 0),
         .lvl = 67,
-        .moves = {MOVE_AIR_SLASH, MOVE_BARRIER, MOVE_SOLAR_BEAM, MOVE_EXPLOSION},
+        .moves = { MOVE_AIR_SLASH, MOVE_BARRIER, MOVE_SOLAR_BEAM, MOVE_EXPLOSION },
         .nature = TRAINER_PARTY_NATURE(NATURE_HASTY),
         .nickname = COMPOUND_STRING("Bubbles")
     },

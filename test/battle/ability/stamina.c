@@ -20,8 +20,8 @@ SINGLE_BATTLE_TEST("Stamina raises Defense by 1 when hit by a move")
     s16 turnOneHit, turnTwoHit;
     u16 move;
 
-    PARAMETRIZE {move = MOVE_TACKLE; }
-    PARAMETRIZE {move = MOVE_GUST; }
+    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_GUST; }
 
     GIVEN {
         ASSUME(gBattleMoves[MOVE_TACKLE].power != 0);
@@ -51,18 +51,18 @@ DOUBLE_BATTLE_TEST("Stamina activates correctly for every battler with the abili
 {
     u16 abilityLeft, abilityRight;
 
-    PARAMETRIZE {abilityLeft = ABILITY_NONE, abilityRight = ABILITY_STAMINA; }
-    PARAMETRIZE {abilityLeft = ABILITY_STAMINA, abilityRight = ABILITY_NONE; }
-    PARAMETRIZE {abilityLeft = ABILITY_STAMINA, abilityRight = ABILITY_STAMINA; }
+    PARAMETRIZE { abilityLeft = ABILITY_NONE, abilityRight = ABILITY_STAMINA; }
+    PARAMETRIZE { abilityLeft = ABILITY_STAMINA, abilityRight = ABILITY_NONE; }
+    PARAMETRIZE { abilityLeft = ABILITY_STAMINA, abilityRight = ABILITY_STAMINA; }
 
     GIVEN {
         ASSUME(gBattleMoves[MOVE_EARTHQUAKE].target == MOVE_TARGET_FOES_AND_ALLY);
         PLAYER(SPECIES_WOBBUFFET) { Ability(abilityLeft); Speed(10); }
         PLAYER(SPECIES_WOBBUFFET) { Ability(abilityRight); Speed(5); }
-        OPPONENT(SPECIES_WOBBUFFET) {Speed(20); }
-        OPPONENT(SPECIES_WOBBUFFET) {Speed(15); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(20); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(15); }
     } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_EARTHQUAKE);}
+        TURN { MOVE(opponentLeft, MOVE_EARTHQUAKE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponentLeft);
 

@@ -62,9 +62,9 @@ SINGLE_BATTLE_TEST("King's Shield, Silk Trap and Obstruct protect from damaging 
     u32 j;
     static const u16 protectMoves[][3] =
     {   // Move             Stat      Stages
-        {MOVE_KINGS_SHIELD, STAT_ATK,   1},
-        {MOVE_SILK_TRAP,    STAT_SPEED, 1},
-        {MOVE_OBSTRUCT,     STAT_DEF,   2},
+        { MOVE_KINGS_SHIELD, STAT_ATK,   1 },
+        { MOVE_SILK_TRAP,    STAT_SPEED, 1 },
+        { MOVE_OBSTRUCT,     STAT_DEF,   2 },
     };
     u16 protectMove = MOVE_NONE;
     u16 usedMove = MOVE_NONE;
@@ -124,13 +124,13 @@ SINGLE_BATTLE_TEST("Spiky Shield does 1/8 dmg of max hp of attackers making cont
     u16 usedMove = MOVE_NONE;
     u16 hp = 400, maxHp = 400;
 
-    PARAMETRIZE { usedMove = MOVE_TACKLE; hp = 1;}
-    PARAMETRIZE { usedMove = MOVE_TACKLE;}
-    PARAMETRIZE { usedMove = MOVE_LEER;}
-    PARAMETRIZE { usedMove = MOVE_WATER_GUN;}
+    PARAMETRIZE { usedMove = MOVE_TACKLE; hp = 1; }
+    PARAMETRIZE { usedMove = MOVE_TACKLE; }
+    PARAMETRIZE { usedMove = MOVE_LEER; }
+    PARAMETRIZE { usedMove = MOVE_WATER_GUN; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {HP(hp); MaxHP(maxHp); }
+        PLAYER(SPECIES_WOBBUFFET) { HP(hp); MaxHP(maxHp); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -160,9 +160,9 @@ SINGLE_BATTLE_TEST("Baneful Bunker poisons pokemon for moves making contact")
 {
     u16 usedMove = MOVE_NONE;
 
-    PARAMETRIZE {usedMove = MOVE_TACKLE; }
-    PARAMETRIZE {usedMove = MOVE_LEER; }
-    PARAMETRIZE {usedMove = MOVE_WATER_GUN; }
+    PARAMETRIZE { usedMove = MOVE_TACKLE; }
+    PARAMETRIZE { usedMove = MOVE_LEER; }
+    PARAMETRIZE { usedMove = MOVE_WATER_GUN; }
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);

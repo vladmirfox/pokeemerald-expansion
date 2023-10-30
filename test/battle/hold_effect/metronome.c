@@ -111,8 +111,8 @@ SINGLE_BATTLE_TEST("Metronome Item counts charging turn of moves for its attacki
     u32 item;
 
     KNOWN_FAILING; // https://github.com/rh-hideout/pokeemerald-expansion/issues/3250
-    PARAMETRIZE {item = ITEM_NONE; }
-    PARAMETRIZE {item = ITEM_METRONOME; }
+    PARAMETRIZE { item = ITEM_NONE; }
+    PARAMETRIZE { item = ITEM_METRONOME; }
     GIVEN {
         ASSUME(gBattleMoves[MOVE_SOLAR_BEAM].effect == EFFECT_SOLAR_BEAM);
         PLAYER(SPECIES_WOBBUFFET) { Item(item); }

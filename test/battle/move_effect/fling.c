@@ -10,14 +10,14 @@ SINGLE_BATTLE_TEST("Fling fails if pokemon holds no item")
 {
     u16 item;
 
-    PARAMETRIZE {item = ITEM_NONE; }
-    PARAMETRIZE {item = ITEM_RAZOR_CLAW; }
+    PARAMETRIZE { item = ITEM_NONE; }
+    PARAMETRIZE { item = ITEM_RAZOR_CLAW; }
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(item); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_FLING);}
+        TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
         MESSAGE("Wobbuffet used Fling!");
         if (item != ITEM_NONE) {
@@ -33,9 +33,9 @@ SINGLE_BATTLE_TEST("Fling fails if pokemon is under the effects of Embargo or Ma
 {
     u16 move;
 
-    PARAMETRIZE {move = MOVE_CELEBRATE; }
-    PARAMETRIZE {move = MOVE_EMBARGO; }
-    PARAMETRIZE {move = MOVE_MAGIC_ROOM; }
+    PARAMETRIZE { move = MOVE_CELEBRATE; }
+    PARAMETRIZE { move = MOVE_EMBARGO; }
+    PARAMETRIZE { move = MOVE_MAGIC_ROOM; }
 
     GIVEN {
         ASSUME(gBattleMoves[MOVE_EMBARGO].effect == EFFECT_EMBARGO);
@@ -60,8 +60,8 @@ SINGLE_BATTLE_TEST("Fling fails for pokemon with Klutz ability")
 {
     u16 ability;
 
-    PARAMETRIZE {ability = ABILITY_KLUTZ; }
-    PARAMETRIZE {ability = ABILITY_RUN_AWAY; }
+    PARAMETRIZE { ability = ABILITY_KLUTZ; }
+    PARAMETRIZE { ability = ABILITY_RUN_AWAY; }
 
     GIVEN {
         ASSUME(P_GEN_4_POKEMON == TRUE);
@@ -85,12 +85,12 @@ SINGLE_BATTLE_TEST("Fling's thrown item can be regained with Recycle")
 {
     GIVEN {
         ASSUME(gBattleMoves[MOVE_RECYCLE].effect == EFFECT_RECYCLE);
-        PLAYER(SPECIES_WOBBUFFET) {Item(ITEM_RAZOR_CLAW); }
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RAZOR_CLAW); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_FLING);}
-        TURN { MOVE(player, MOVE_RECYCLE);}
-        TURN { MOVE(player, MOVE_FLING);}
+        TURN { MOVE(player, MOVE_FLING); }
+        TURN { MOVE(player, MOVE_RECYCLE); }
+        TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
         MESSAGE("Wobbuffet used Fling!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
@@ -108,9 +108,9 @@ SINGLE_BATTLE_TEST("Fling - Item is lost even when there is no target")
 {
     GIVEN {
         ASSUME(gBattleMoves[MOVE_SELF_DESTRUCT].effect == EFFECT_EXPLOSION);
-        PLAYER(SPECIES_WOBBUFFET) {Item(ITEM_RAZOR_CLAW); Speed(2); }
-        OPPONENT(SPECIES_WOBBUFFET) {Speed(5); }
-        OPPONENT(SPECIES_WOBBUFFET) {Speed(5); }
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RAZOR_CLAW); Speed(2); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(5); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(5); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SELF_DESTRUCT); MOVE(player, MOVE_FLING); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_FLING); }
@@ -133,10 +133,10 @@ SINGLE_BATTLE_TEST("Fling - Item is lost when target protects itself")
 {
     GIVEN {
         ASSUME(gBattleMoves[MOVE_PROTECT].effect == EFFECT_PROTECT);
-        PLAYER(SPECIES_WOBBUFFET) {Item(ITEM_RAZOR_CLAW); }
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RAZOR_CLAW); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_FLING);}
+        TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_FLING); }
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
         MESSAGE("Foe Wobbuffet used Protect!");
@@ -156,15 +156,15 @@ SINGLE_BATTLE_TEST("Fling doesn't consume the item if pokemon is asleep/frozen/p
     u32 status;
     u16 item;
 
-    PARAMETRIZE {status = STATUS1_SLEEP_TURN(2); item = ITEM_RAZOR_CLAW; }
-    PARAMETRIZE {status = STATUS1_PARALYSIS; item = ITEM_RAZOR_CLAW; }
-    PARAMETRIZE {status = STATUS1_FREEZE; item = ITEM_RAZOR_CLAW; }
-    PARAMETRIZE {status = STATUS1_SLEEP_TURN(2); item = ITEM_NONE; }
-    PARAMETRIZE {status = STATUS1_PARALYSIS; item = ITEM_NONE; }
-    PARAMETRIZE {status = STATUS1_FREEZE; item = ITEM_NONE; }
+    PARAMETRIZE { status = STATUS1_SLEEP_TURN(2); item = ITEM_RAZOR_CLAW; }
+    PARAMETRIZE { status = STATUS1_PARALYSIS; item = ITEM_RAZOR_CLAW; }
+    PARAMETRIZE { status = STATUS1_FREEZE; item = ITEM_RAZOR_CLAW; }
+    PARAMETRIZE { status = STATUS1_SLEEP_TURN(2); item = ITEM_NONE; }
+    PARAMETRIZE { status = STATUS1_PARALYSIS; item = ITEM_NONE; }
+    PARAMETRIZE { status = STATUS1_FREEZE; item = ITEM_NONE; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {Item(item); Status1(status); }
+        PLAYER(SPECIES_WOBBUFFET) { Item(item); Status1(status); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         if (status == STATUS1_FREEZE) {
@@ -206,12 +206,12 @@ SINGLE_BATTLE_TEST("Fling applies special effects when throwing specific Items")
 {
     u16 item, effect;
 
-    PARAMETRIZE {item = ITEM_FLAME_ORB; effect = EFFECT_WILL_O_WISP; }
-    PARAMETRIZE {item = ITEM_TOXIC_ORB; effect = EFFECT_TOXIC; }
-    PARAMETRIZE {item = ITEM_POISON_BARB; effect = EFFECT_POISON; }
-    PARAMETRIZE {item = ITEM_LIGHT_BALL; effect = EFFECT_PARALYZE; }
-    PARAMETRIZE {item = ITEM_RAZOR_FANG; effect = EFFECT_FLINCH_HIT; }
-    PARAMETRIZE {item = ITEM_KINGS_ROCK; effect = EFFECT_FLINCH_HIT; }
+    PARAMETRIZE { item = ITEM_FLAME_ORB; effect = EFFECT_WILL_O_WISP; }
+    PARAMETRIZE { item = ITEM_TOXIC_ORB; effect = EFFECT_TOXIC; }
+    PARAMETRIZE { item = ITEM_POISON_BARB; effect = EFFECT_POISON; }
+    PARAMETRIZE { item = ITEM_LIGHT_BALL; effect = EFFECT_PARALYZE; }
+    PARAMETRIZE { item = ITEM_RAZOR_FANG; effect = EFFECT_FLINCH_HIT; }
+    PARAMETRIZE { item = ITEM_KINGS_ROCK; effect = EFFECT_FLINCH_HIT; }
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(item); }
@@ -274,7 +274,7 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET) { Status1(status1); HP(399); MaxHP(400); MovesWithPP({MOVE_CELEBRATE, 35}); }
+        OPPONENT(SPECIES_WOBBUFFET) { Status1(status1); HP(399); MaxHP(400); MovesWithPP({ MOVE_CELEBRATE, 35 }); }
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
