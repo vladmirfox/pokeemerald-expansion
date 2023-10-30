@@ -415,7 +415,11 @@
 #define EFFECT_GIGATON_HAMMER               409
 #define EFFECT_SALT_CURE                    410
 #define EFFECT_CHILLY_RECEPTION             411
+#define EFFECT_MATCHA_GOTCHA                412
+#define EFFECT_SYRUP_BOMB                   413
+#define EFFECT_IVY_CUDGEL                   414
+#define EFFECT_MAX_MOVE                     415
 
-#define NUM_BATTLE_MOVE_EFFECTS             412
+#define NUM_BATTLE_MOVE_EFFECTS             416
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H
