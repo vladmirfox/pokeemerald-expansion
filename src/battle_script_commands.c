@@ -12417,7 +12417,7 @@ static void Cmd_setsubstitute(void)
     u8 divisor;
     u32 hp;
 
-    divisor = 4
+    divisor = 4;
     if (cmd->half)
         divisor = 2;
 
