@@ -30,8 +30,7 @@ SINGLE_BATTLE_TEST("Weak Armor lowers Defense by 1 and boosts Speed by 2 when hi
             MESSAGE("Slugma's Weak Armor lowered its Defense!");
             MESSAGE("Slugma's Weak Armor raised its Speed!");
         }
-    }
-    THEN {
+    } THEN {
         if (move == MOVE_TACKLE) {
             EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE - 1);
             EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 2);
@@ -64,8 +63,7 @@ SINGLE_BATTLE_TEST("Weak Armor does not trigger when brought in by Dragon Tail a
             MESSAGE("Slugma's Weak Armor lowered its Defense!");
             MESSAGE("Slugma's Weak Armor raised its Speed!");
         }
-    }
-    THEN {
+    } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
         EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
     }
