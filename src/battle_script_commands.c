@@ -12414,11 +12414,14 @@ static void Cmd_setsubstitute(void)
 {
     CMD_ARGS(bool8 half);
 
-    u8 divisor = 4;
+    u8 divisor;
+    u32 hp;
+
+    divisor = 4
     if (cmd->half)
         divisor = 2;
 
-    u32 hp = GetNonDynamaxMaxHP(gBattlerAttacker) / divisor;
+    hp = GetNonDynamaxMaxHP(gBattlerAttacker) / divisor;
     if (hp == 0)
         hp = 1;
 
