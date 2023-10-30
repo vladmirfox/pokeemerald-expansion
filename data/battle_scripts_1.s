@@ -444,16 +444,13 @@ gBattleScriptsForMoveEffects::
 
 BattleScript_EffectGlaiveRush::
 	call BattleScript_EffectHit_Ret
-	seteffectwithchance
-	tryfaintmon BS_TARGET
-	jumpifhalfword CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE, BattleScript_MoveEnd
+	jumpifhalfword CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE, BattleScript_TryFaintMon
 	setglaiverush
-	goto BattleScript_MoveEnd
+	goto BattleScript_TryFaintMon
 
 BattleScript_EffectSyrupBomb::
 	setmoveeffect MOVE_EFFECT_SYRUP_BOMB
 	call BattleScript_EffectHit_Ret
-	seteffectwithchance
 	tryfaintmon BS_TARGET
 	goto BattleScript_MoveEnd
 
@@ -537,7 +534,6 @@ BattleScript_EffectMakeItRain:
 BattleScript_MakeItRainContinuous:
 	setmoveeffect MOVE_EFFECT_PAYDAY
 	call BattleScript_EffectHit_Ret
-	seteffectwithchance
 	tryfaintmon BS_TARGET
 	setmoveeffect MOVE_EFFECT_SP_ATK_MINUS_1 | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
 	seteffectprimary
@@ -1175,7 +1171,6 @@ BattleScript_HyperspaceFuryRemoveProtect::
 
 BattleScript_EffectPlasmaFists:
 	call BattleScript_EffectHit_Ret
-	seteffectwithchance
 	tryfaintmon BS_TARGET
 	applyplasmafists
 	printstring STRINGID_IONDELUGEON
@@ -1355,7 +1350,6 @@ BattleScript_NoMoveEffect:
 BattleScript_EffectRelicSong:
 	setmoveeffect MOVE_EFFECT_RELIC_SONG | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
 	call BattleScript_EffectHit_Ret
-	seteffectwithchance
 	argumentstatuseffect
 	tryfaintmon BS_TARGET
 	goto BattleScript_MoveEnd
@@ -3142,6 +3136,7 @@ BattleScript_HitFromAtkAnimation::
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
 	seteffectwithchance
+BattleScript_TryFaintMon::
 	tryfaintmon BS_TARGET
 BattleScript_MoveEnd::
 	moveendall
@@ -3166,6 +3161,7 @@ BattleScript_EffectHit_Ret::
 	waitmessage B_WAIT_TIME_LONG
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
+	seteffectwithchance
 	return
 
 BattleScript_EffectNaturalGift:
@@ -3360,7 +3356,6 @@ BattleScript_EffectPoisonHit:
 
 BattleScript_EffectAbsorb::
 	call BattleScript_EffectHit_Ret
-	seteffectwithchance
 	jumpifstatus3 BS_ATTACKER, STATUS3_HEAL_BLOCK, BattleScript_AbsorbHealBlock
 	setdrainedhp
 	manipulatedamage DMG_BIG_ROOT
@@ -3795,7 +3790,6 @@ BattleScript_EffectFlinchHit::
 BattleScript_EffectFlinchStatus:
 	setmoveeffect MOVE_EFFECT_FLINCH
 	call BattleScript_EffectHit_Ret
-	seteffectwithchance
 	argumentstatuseffect
 	tryfaintmon BS_TARGET
 	goto BattleScript_MoveEnd
