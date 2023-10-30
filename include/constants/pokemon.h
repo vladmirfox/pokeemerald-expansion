@@ -192,7 +192,7 @@
 #define FRIENDSHIP_MAX         6
 
 // Friendship value that the majority of species use.
-#if P_STANDARD_FRIENDSHIP >= GEN_8
+#if P_UPDATED_FRIENDSHIP >= GEN_8
 #define STANDARD_FRIENDSHIP 50
 #else
 #define STANDARD_FRIENDSHIP 70
