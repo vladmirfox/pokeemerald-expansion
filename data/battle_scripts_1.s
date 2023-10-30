@@ -467,23 +467,39 @@ BattleScript_SyrupBombTurnDmgEnd:
 BattleScript_EffectMatchaGotcha::
 	setmoveeffect MOVE_EFFECT_BURN
 	goto BattleScript_EffectAbsorb
+  end
 
 BattleScript_EffectChillyReception::
-	attackcanceler
 	printstring STRINGID_PKMNTELLCHILLINGRECEPTIONJOKE
+	attackcanceler
 	waitmessage B_WAIT_TIME_LONG
 	attackstring
 	ppreduce
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_SUN_PRIMAL, BattleScript_ExtremelyHarshSunlightWasNotLessened
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_RAIN_PRIMAL, BattleScript_NoReliefFromHeavyRain
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_STRONG_WINDS, BattleScript_MysteriousAirCurrentBlowsOn
+	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_SUN_PRIMAL, BattleScript_ExtremelyHarshSunlightWasNotLessenedRet
+	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_RAIN_PRIMAL, BattleScript_EffectChillyReceptionBlockedByPrimalRain
+	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_STRONG_WINDS, BattleScript_MysteriousAirCurrentBlowsOnRet
 	attackanimation
 	waitanimation
 	setsnow
 	call BattleScript_MoveWeatherChangeRet
 	goto BattleScript_MoveSwitch
+BattleScript_EffectChillyReceptionBlockedByPrimalSun:
+  call BattleScript_ExtremelyHarshSunlightWasNotLessenedRet
+  goto BattleScript_MoveSwitch
+BattleScript_EffectChillyReceptionBlockedByPrimalRain:
+  call BattleScript_NoReliefFromHeavyRainRet
+  goto BattleScript_MoveSwitch
+BattleScript_EffectChillyReceptionBlockedByStrongWinds:
+  call BattleScript_MysteriousAirCurrentBlowsOnRet
+  goto BattleScript_MoveSwitch
 BattleScript_EffectChillyReceptionEnd:
-	end 
+	end
+
+BattleScript_CheckPrimalWeather:
+	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_SUN_PRIMAL, BattleScript_ExtremelyHarshSunlightWasNotLessened
+	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_RAIN_PRIMAL, BattleScript_NoReliefFromHeavyRain
+	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_STRONG_WINDS, BattleScript_MysteriousAirCurrentBlowsOn
+  return
 
 BattleScript_MoveSwitch:
 	jumpifbattletype BATTLE_TYPE_ARENA, BattleScript_MoveEnd
@@ -507,7 +523,7 @@ BattleScript_MoveSwitch:
 	switchineffects BS_ATTACKER
 BattleScript_MoveSwitchEnd:
 	goto BattleScript_MoveEnd
-  
+
 BattleScript_EffectSaltCure:
 	call BattleScript_EffectHit_Ret
 	tryfaintmon BS_TARGET
@@ -4885,9 +4901,7 @@ BattleScript_EffectSandstorm::
 	attackcanceler
 	attackstring
 	ppreduce
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_SUN_PRIMAL, BattleScript_ExtremelyHarshSunlightWasNotLessened
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_RAIN_PRIMAL, BattleScript_NoReliefFromHeavyRain
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_STRONG_WINDS, BattleScript_MysteriousAirCurrentBlowsOn
+	call BattleScript_CheckPrimalWeather
 	setsandstorm
 	goto BattleScript_MoveWeatherChange
 
@@ -5076,9 +5090,7 @@ BattleScript_EffectRainDance::
 	attackcanceler
 	attackstring
 	ppreduce
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_SUN_PRIMAL, BattleScript_ExtremelyHarshSunlightWasNotLessened
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_RAIN_PRIMAL, BattleScript_NoReliefFromHeavyRain
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_STRONG_WINDS, BattleScript_MysteriousAirCurrentBlowsOn
+	call BattleScript_CheckPrimalWeather
 	setrain
 BattleScript_MoveWeatherChange::
 	attackanimation
@@ -5096,9 +5108,7 @@ BattleScript_EffectSunnyDay::
 	attackcanceler
 	attackstring
 	ppreduce
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_SUN_PRIMAL, BattleScript_ExtremelyHarshSunlightWasNotLessened
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_RAIN_PRIMAL, BattleScript_NoReliefFromHeavyRain
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_STRONG_WINDS, BattleScript_MysteriousAirCurrentBlowsOn
+	call BattleScript_CheckPrimalWeather
 	setsunny
 	goto BattleScript_MoveWeatherChange
 
@@ -5562,9 +5572,7 @@ BattleScript_EffectHail::
 	attackcanceler
 	attackstring
 	ppreduce
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_SUN_PRIMAL, BattleScript_ExtremelyHarshSunlightWasNotLessened
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_RAIN_PRIMAL, BattleScript_NoReliefFromHeavyRain
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_STRONG_WINDS, BattleScript_MysteriousAirCurrentBlowsOn
+	call BattleScript_CheckPrimalWeather
 	sethail
 	goto BattleScript_MoveWeatherChange
 
@@ -10681,9 +10689,7 @@ BattleScript_BerserkGeneRet_End:
 BattleScript_EffectSnow::
 	attackcanceler
 	attackstring
-	ppreduce
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_SUN_PRIMAL, BattleScript_ExtremelyHarshSunlightWasNotLessened
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_RAIN_PRIMAL, BattleScript_NoReliefFromHeavyRain
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_STRONG_WINDS, BattleScript_MysteriousAirCurrentBlowsOn
+	ppreduce	
+  call BattleScript_CheckPrimalWeather
 	setsnow
 	goto BattleScript_MoveWeatherChange
