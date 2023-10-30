@@ -389,6 +389,16 @@ static void HandleInputChooseAction(u32 battler)
             BtlController_EmitTwoReturnValues(battler, BUFFER_B, B_ACTION_CANCEL_PARTNER, 0);
             PlayerBufferExecCompleted(battler);
         }
+        else if (B_QUICK_MOVE_CURSOR_TO_RUN)
+        {
+            if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER)) // If wild battle, pressing B moves cursor to "Run".
+            {
+                PlaySE(SE_SELECT);
+                ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
+                gActionSelectionCursor[battler] = 3;
+                ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
+            }
+        }
     }
     else if (JOY_NEW(START_BUTTON))
     {
@@ -697,11 +707,8 @@ static void HandleInputChooseMove(u32 battler)
         }
 
         // Status moves turn into Max Guard when Dynamaxed, targets user.
-        if ((IsDynamaxed(battler) || gBattleStruct->dynamax.playerSelect)
-            && gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].split == SPLIT_STATUS)
-        {
-            moveTarget = MOVE_TARGET_USER;
-        }
+        if ((IsDynamaxed(battler) || gBattleStruct->dynamax.playerSelect))
+            moveTarget = gBattleMoves[GetMaxMove(battler, moveInfo->moves[gMoveSelectionCursor[battler]])].target;
 
         if (moveTarget & MOVE_TARGET_USER)
             gMultiUsePlayerCursor = battler;
