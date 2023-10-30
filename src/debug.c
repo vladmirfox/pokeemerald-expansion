@@ -1657,24 +1657,6 @@ static void DebugAction_Util_HealParty(u8 taskId)
 
 static void DebugAction_Util_Fly(u8 taskId)
 {
-    FlagSet(FLAG_VISITED_LITTLEROOT_TOWN);
-    FlagSet(FLAG_VISITED_OLDALE_TOWN);
-    FlagSet(FLAG_VISITED_DEWFORD_TOWN);
-    FlagSet(FLAG_VISITED_LAVARIDGE_TOWN);
-    FlagSet(FLAG_VISITED_FALLARBOR_TOWN);
-    FlagSet(FLAG_VISITED_VERDANTURF_TOWN);
-    FlagSet(FLAG_VISITED_PACIFIDLOG_TOWN);
-    FlagSet(FLAG_VISITED_PETALBURG_CITY);
-    FlagSet(FLAG_VISITED_SLATEPORT_CITY);
-    FlagSet(FLAG_VISITED_MAUVILLE_CITY);
-    FlagSet(FLAG_VISITED_RUSTBORO_CITY);
-    FlagSet(FLAG_VISITED_FORTREE_CITY);
-    FlagSet(FLAG_VISITED_LILYCOVE_CITY);
-    FlagSet(FLAG_VISITED_MOSSDEEP_CITY);
-    FlagSet(FLAG_VISITED_SOOTOPOLIS_CITY);
-    FlagSet(FLAG_VISITED_EVER_GRANDE_CITY);
-    FlagSet(FLAG_LANDMARK_POKEMON_LEAGUE);
-    FlagSet(FLAG_LANDMARK_BATTLE_FRONTIER);
     Debug_DestroyMenu_Full(taskId);
     SetMainCallback2(CB2_OpenFlyMap);
 }
@@ -2552,44 +2534,77 @@ static void DebugAction_FlagsVars_RunningShoes(u8 taskId)
 static void DebugAction_FlagsVars_ToggleFlyFlags(u8 taskId)
 {
     if (FlagGet(FLAG_LANDMARK_BATTLE_FRONTIER))
+    {
         PlaySE(SE_PC_OFF);
+        FlagClear(FLAG_VISITED_LITTLEROOT_TOWN);
+        FlagClear(FLAG_VISITED_OLDALE_TOWN);
+        FlagClear(FLAG_VISITED_DEWFORD_TOWN);
+        FlagClear(FLAG_VISITED_LAVARIDGE_TOWN);
+        FlagClear(FLAG_VISITED_FALLARBOR_TOWN);
+        FlagClear(FLAG_VISITED_VERDANTURF_TOWN);
+        FlagClear(FLAG_VISITED_PACIFIDLOG_TOWN);
+        FlagClear(FLAG_VISITED_PETALBURG_CITY);
+        FlagClear(FLAG_VISITED_SLATEPORT_CITY);
+        FlagClear(FLAG_VISITED_MAUVILLE_CITY);
+        FlagClear(FLAG_VISITED_RUSTBORO_CITY);
+        FlagClear(FLAG_VISITED_FORTREE_CITY);
+        FlagClear(FLAG_VISITED_LILYCOVE_CITY);
+        FlagClear(FLAG_VISITED_MOSSDEEP_CITY);
+        FlagClear(FLAG_VISITED_SOOTOPOLIS_CITY);
+        FlagClear(FLAG_VISITED_EVER_GRANDE_CITY);
+        FlagClear(FLAG_LANDMARK_POKEMON_LEAGUE);
+        FlagClear(FLAG_LANDMARK_BATTLE_FRONTIER);
+    }
     else
+    {
         PlaySE(SE_PC_LOGIN);
-
-    FlagToggle(FLAG_VISITED_LITTLEROOT_TOWN);
-    FlagToggle(FLAG_VISITED_OLDALE_TOWN);
-    FlagToggle(FLAG_VISITED_DEWFORD_TOWN);
-    FlagToggle(FLAG_VISITED_LAVARIDGE_TOWN);
-    FlagToggle(FLAG_VISITED_FALLARBOR_TOWN);
-    FlagToggle(FLAG_VISITED_VERDANTURF_TOWN);
-    FlagToggle(FLAG_VISITED_PACIFIDLOG_TOWN);
-    FlagToggle(FLAG_VISITED_PETALBURG_CITY);
-    FlagToggle(FLAG_VISITED_SLATEPORT_CITY);
-    FlagToggle(FLAG_VISITED_MAUVILLE_CITY);
-    FlagToggle(FLAG_VISITED_RUSTBORO_CITY);
-    FlagToggle(FLAG_VISITED_FORTREE_CITY);
-    FlagToggle(FLAG_VISITED_LILYCOVE_CITY);
-    FlagToggle(FLAG_VISITED_MOSSDEEP_CITY);
-    FlagToggle(FLAG_VISITED_SOOTOPOLIS_CITY);
-    FlagToggle(FLAG_VISITED_EVER_GRANDE_CITY);
-    FlagToggle(FLAG_LANDMARK_POKEMON_LEAGUE);
-    FlagToggle(FLAG_LANDMARK_BATTLE_FRONTIER);
+        FlagSet(FLAG_VISITED_LITTLEROOT_TOWN);
+        FlagSet(FLAG_VISITED_OLDALE_TOWN);
+        FlagSet(FLAG_VISITED_DEWFORD_TOWN);
+        FlagSet(FLAG_VISITED_LAVARIDGE_TOWN);
+        FlagSet(FLAG_VISITED_FALLARBOR_TOWN);
+        FlagSet(FLAG_VISITED_VERDANTURF_TOWN);
+        FlagSet(FLAG_VISITED_PACIFIDLOG_TOWN);
+        FlagSet(FLAG_VISITED_PETALBURG_CITY);
+        FlagSet(FLAG_VISITED_SLATEPORT_CITY);
+        FlagSet(FLAG_VISITED_MAUVILLE_CITY);
+        FlagSet(FLAG_VISITED_RUSTBORO_CITY);
+        FlagSet(FLAG_VISITED_FORTREE_CITY);
+        FlagSet(FLAG_VISITED_LILYCOVE_CITY);
+        FlagSet(FLAG_VISITED_MOSSDEEP_CITY);
+        FlagSet(FLAG_VISITED_SOOTOPOLIS_CITY);
+        FlagSet(FLAG_VISITED_EVER_GRANDE_CITY);
+        FlagSet(FLAG_LANDMARK_POKEMON_LEAGUE);
+        FlagSet(FLAG_LANDMARK_BATTLE_FRONTIER);
+    }
 }
 
 static void DebugAction_FlagsVars_ToggleBadgeFlags(u8 taskId)
 {
     if (FlagGet(FLAG_BADGE08_GET))
+    {
         PlaySE(SE_PC_OFF);
+        FlagClear(FLAG_BADGE01_GET);
+        FlagClear(FLAG_BADGE02_GET);
+        FlagClear(FLAG_BADGE03_GET);
+        FlagClear(FLAG_BADGE04_GET);
+        FlagClear(FLAG_BADGE05_GET);
+        FlagClear(FLAG_BADGE06_GET);
+        FlagClear(FLAG_BADGE07_GET);
+        FlagClear(FLAG_BADGE08_GET);
+    }
     else
+    {
         PlaySE(SE_PC_LOGIN);
-    FlagToggle(FLAG_BADGE01_GET);
-    FlagToggle(FLAG_BADGE02_GET);
-    FlagToggle(FLAG_BADGE03_GET);
-    FlagToggle(FLAG_BADGE04_GET);
-    FlagToggle(FLAG_BADGE05_GET);
-    FlagToggle(FLAG_BADGE06_GET);
-    FlagToggle(FLAG_BADGE07_GET);
-    FlagToggle(FLAG_BADGE08_GET);
+        FlagSet(FLAG_BADGE01_GET);
+        FlagSet(FLAG_BADGE02_GET);
+        FlagSet(FLAG_BADGE03_GET);
+        FlagSet(FLAG_BADGE04_GET);
+        FlagSet(FLAG_BADGE05_GET);
+        FlagSet(FLAG_BADGE06_GET);
+        FlagSet(FLAG_BADGE07_GET);
+        FlagSet(FLAG_BADGE08_GET);
+    }
 }
 
 static void DebugAction_FlagsVars_ToggleFrontierPass(u8 taskId)
