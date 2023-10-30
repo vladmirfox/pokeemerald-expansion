@@ -839,8 +839,9 @@
 	.byte 0x9b
 	.endm
 
-	.macro setsubstitute
+	.macro setsubstitute, half:req
 	.byte 0x9c
+	.byte \half
 	.endm
 
 	.macro mimicattackcopy failInstr:req

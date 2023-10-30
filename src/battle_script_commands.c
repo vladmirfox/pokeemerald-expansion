@@ -12412,10 +12412,14 @@ static void Cmd_transformdataexecution(void)
 
 static void Cmd_setsubstitute(void)
 {
-    CMD_ARGS();
+    CMD_ARGS(bool8 half);
 
-    u32 hp = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
-    if (GetNonDynamaxMaxHP(gBattlerAttacker) / 4 == 0)
+    u8 divisor = 4;
+    if (cmd->half)
+        divisor = 2;
+
+    u32 hp = GetNonDynamaxMaxHP(gBattlerAttacker) / divisor;
+    if (hp == 0)
         hp = 1;
 
     if (gBattleMons[gBattlerAttacker].hp <= hp)
@@ -12425,13 +12429,11 @@ static void Cmd_setsubstitute(void)
     }
     else
     {
-        gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 4; // one bit value will only work for pokemon which max hp can go to 1020(which is more than possible in games)
-        if (gBattleMoveDamage == 0)
-            gBattleMoveDamage = 1;
+        gBattleMoveDamage = hp; // one bit value will only work for pokemon which max hp can go to 1020(which is more than possible in games)
 
         gBattleMons[gBattlerAttacker].status2 |= STATUS2_SUBSTITUTE;
         gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_WRAPPED;
-        gDisableStructs[gBattlerAttacker].substituteHP = gBattleMoveDamage;
+        gDisableStructs[gBattlerAttacker].substituteHP = GetNonDynamaxMaxHP(gBattlerAttacker) / 4; // substitute HP will always be 1/4 of the pokemon's hp, no matter how much damage was used to make it
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SET_SUBSTITUTE;
         gHitMarker |= HITMARKER_IGNORE_SUBSTITUTE;
     }
