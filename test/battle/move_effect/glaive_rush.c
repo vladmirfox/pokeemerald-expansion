@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(gBattleMoves[MOVE_GLAIVE_RUSH].effect == EFFECT_GLAIVE_RUSH);
 }
 
-SINGLE_BATTLE_TEST("If Glaive Rush is successful moves targeted at the user do not check accuracy")
+SINGLE_BATTLE_TEST("xx If Glaive Rush is successful moves targeted at the user do not check accuracy")
 {
     PASSES_RANDOMLY(100, 100, RNG_ACCURACY);
     GIVEN {
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("If Glaive Rush is successful moves targeted at the user do n
     }
 }
 
-SINGLE_BATTLE_TEST("If Glaive Rush is successful, moves targeted at the user deal double damage")
+SINGLE_BATTLE_TEST("xx If Glaive Rush is successful, moves targeted at the user deal double damage")
 {
     s16 glaiveRushEffectedDmg;
     s16 normalDmg;
@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("If Glaive Rush is successful, moves targeted at the user dea
     }
 }
 
-SINGLE_BATTLE_TEST("If Glaive Rush is successful, moves targeted at the user deal double damage until the user moves again")
+SINGLE_BATTLE_TEST("xx If Glaive Rush is successful, moves targeted at the user deal double damage until the user moves again")
 {
     s16 glaiveRushEffectedDmg;
     s16 normalDmg;
@@ -68,7 +68,7 @@ SINGLE_BATTLE_TEST("If Glaive Rush is successful, moves targeted at the user dea
     }
 }
 
-SINGLE_BATTLE_TEST("If Glaive Rush isn't successful moves targeted at the user don't deal double damage", s16 damage)
+SINGLE_BATTLE_TEST("xx If Glaive Rush isn't successful moves targeted at the user don't deal double damage", s16 damage)
 {
     bool32 missesGlaiveRush;
 
@@ -92,7 +92,7 @@ SINGLE_BATTLE_TEST("If Glaive Rush isn't successful moves targeted at the user d
     }
 }
 
-SINGLE_BATTLE_TEST("Glaive Rush doesn't affect the user if the effect is blocked", s16 damage)
+SINGLE_BATTLE_TEST("xx Glaive Rush doesn't affect the user if the effect is blocked", s16 damage)
 {
     u32 species;
 
@@ -116,7 +116,7 @@ SINGLE_BATTLE_TEST("Glaive Rush doesn't affect the user if the effect is blocked
     }
 }
 
-SINGLE_BATTLE_TEST("Glaive Rush status last until the the user's next turn")
+SINGLE_BATTLE_TEST("xx Glaive Rush status last until the the user's next turn")
 {
     s16 normalDmgFristHit;
     s16 normalDmgSecondHit;

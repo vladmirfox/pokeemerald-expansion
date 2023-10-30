@@ -444,12 +444,10 @@ gBattleScriptsForMoveEffects::
 
 BattleScript_EffectGlaiveRush::
 	call BattleScript_EffectHit_Ret
-	jumpifhalfword CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE, BattleScript_GlaiveRushNoEffect
-	setglaiverush
-BattleScript_GlaiveRushNoEffect:
-	waitmessage B_WAIT_TIME_LONG
 	seteffectwithchance
 	tryfaintmon BS_TARGET
+	jumpifhalfword CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE, BattleScript_MoveEnd
+	setglaiverush
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectSyrupBomb::
