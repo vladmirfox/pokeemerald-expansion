@@ -693,7 +693,8 @@ const u8 gHealthboxElementsGfxTable[] = INCBIN_U8("graphics/battle_interface/hpb
                                                   "graphics/battle_interface/status3.4bpp",
                                                   "graphics/battle_interface/status4.4bpp",
                                                   "graphics/battle_interface/healthbox_doubles_frameend.4bpp",
-                                                  "graphics/battle_interface/healthbox_doubles_frameend_bar.4bpp");
+                                                  "graphics/battle_interface/healthbox_doubles_frameend_bar.4bpp",
+                                                  "graphics/battle_interface/nuzlocke_indicator.4bpp");
 const u32 gBattleInterfaceGfx_UnusedWindow3[] = INCBIN_U32("graphics/battle_interface/unused_window3.4bpp.lz");
 const u32 gBattleInterfaceGfx_UnusedWindow4[] = INCBIN_U32("graphics/battle_interface/unused_window4.4bpp.lz");
 
@@ -1364,7 +1365,6 @@ const u32 gBattleAnimBackgroundImageMuddyWater_Pal[] = INCBIN_U32("graphics/batt
 const u32 gEnemyMonShadow_Gfx[] = INCBIN_U32("graphics/battle_interface/enemy_mon_shadow.4bpp.lz");
 
 const u32 gBattleInterface_BallStatusBarGfx[] = INCBIN_U32("graphics/battle_interface/ball_status_bar.4bpp.lz");
-const u8 gNuzlockeFirstEncounterIndicatorGfx[] = INCBIN_U8("graphics/battle_interface/nuzlocke_indicator.4bpp");
 
 const u32 gBattleAnimBgImage_Ghost[] = INCBIN_U32("graphics/battle_anims/backgrounds/ghost.4bpp.lz");
 const u32 gBattleAnimBgPalette_Ghost[] = INCBIN_U32("graphics/battle_anims/backgrounds/ghost.gbapal.lz");

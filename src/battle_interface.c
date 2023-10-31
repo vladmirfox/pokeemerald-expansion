@@ -179,6 +179,7 @@ enum
     HEALTHBOX_GFX_123,
     HEALTHBOX_GFX_FRAME_END,
     HEALTHBOX_GFX_FRAME_END_BAR,
+    HEALTHBOX_GFX_NUZLOCKE_CAPTURABLE, //First route capturable
 };
 
 static const u8 *GetHealthboxElementGfxPtr(u8);
@@ -2352,7 +2353,7 @@ static void TryAddPokeballIconToHealthbox(u8 healthboxSpriteId, bool8 noStatus)
         healthBarSpriteId = gSprites[healthboxSpriteId].hMain_HealthBarSpriteId;
 
         if (noStatus)
-            CpuCopy32(gNuzlockeFirstEncounterIndicatorGfx, (void*)(OBJ_VRAM0 + (gSprites[healthBarSpriteId].oam.tileNum + 8) * TILE_SIZE_4BPP), 32);
+            CpuCopy32(GetHealthboxElementGfxPtr(HEALTHBOX_GFX_NUZLOCKE_CAPTURABLE), (void *)(OBJ_VRAM0 + (gSprites[healthBarSpriteId].oam.tileNum + 8) * TILE_SIZE_4BPP), 32);
         else
             CpuFill32(0, (void*)(OBJ_VRAM0 + (gSprites[healthBarSpriteId].oam.tileNum + 8) * TILE_SIZE_4BPP), 32);
         return;
