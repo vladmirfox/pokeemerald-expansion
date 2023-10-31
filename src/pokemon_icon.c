@@ -1392,6 +1392,7 @@ const u8 *const gMonIconTableFemale[NUM_SPECIES + 1] =
 {
 #if P_MORE_GENDER_DIFF_ICONS == TRUE
     [SPECIES_PIKACHU] = gMonIcon_PikachuF,
+    [SPECIES_WOBBUFFET] = gMonIcon_WobbuffetF,
 #endif
 #if P_GEN_4_POKEMON == TRUE && P_MORE_GENDER_DIFF_ICONS == TRUE
     [SPECIES_HIPPOPOTAS] = gMonIcon_HippopotasF,
@@ -2715,6 +2716,7 @@ const u8 gMonIconPaletteIndices[] =
 const u8 gMonIconPaletteIndicesFemale[] =
 {
     [SPECIES_PIKACHU] = 2,
+    [SPECIES_WOBBUFFET] = 0,
 #if P_GEN_4_POKEMON == TRUE
     [SPECIES_HIPPOPOTAS] = 1,
     [SPECIES_HIPPOWDON] = 1,

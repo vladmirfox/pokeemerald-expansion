@@ -5377,6 +5377,9 @@ extern const u8 gMonIcon_Slowking[];
 extern const u8 gMonIcon_Misdreavus[];
 extern const u8 gMonIcon_Unown[];
 extern const u8 gMonIcon_Wobbuffet[];
+#if P_MORE_GENDER_DIFF_ICONS == TRUE
+extern const u8 gMonIcon_WobbuffetF[];
+#endif
 extern const u8 gMonIcon_Girafarig[];
 extern const u8 gMonIcon_Pineco[];
 extern const u8 gMonIcon_Forretress[];
