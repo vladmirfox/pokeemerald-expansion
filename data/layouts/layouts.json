@@ -1152,6 +1152,16 @@
       "blockdata_filepath": "data/layouts/EverGrandeCity_ChampionsRoom/map.bin"
     },
     {
+      "id": "LAYOUT_ORIGINAL_REGION_CHAMPIONS_ROOM",
+      "name": "OriginalRegion_ChampionsRoom_Layout",
+      "width": 13,
+      "height": 13,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_EliteFour",
+      "border_filepath": "data/layouts/OriginalRegion_ChampionsRoom/border.bin",
+      "blockdata_filepath": "data/layouts/OriginalRegion_ChampionsRoom/map.bin"
+    },
+    {
       "id": "LAYOUT_EVER_GRANDE_CITY_SHORT_HALL",
       "name": "EverGrandeCity_ShortHall_Layout",
       "width": 11,

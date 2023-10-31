@@ -1,0 +1,10 @@
+raw `
+
+OriginalRegion_ChampionsRoom_EventScript_Jarnathon::
+	trainerbattle_single TRAINER_CHAMPION_JARNATHON, Route105_Text_ImaniIntro, Route105_Text_ImaniDefeated
+	msgbox Route105_Text_ImaniPostBattle, MSGBOX_AUTOCLOSE
+	end
+`
+
+mapscripts OriginalRegion_ChampionsRoom_MapScripts {
+}

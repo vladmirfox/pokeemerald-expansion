@@ -11074,6 +11074,63 @@ static const struct TrainerMon sParty_Brandon[] = {
     }
 };
 
+static const struct TrainerMon sParty_ChampionJarnathon[] = {
+    {
+    .lvl = 75,
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .species = SPECIES_GARCHOMP,
+    .heldItem = ITEM_LIFE_ORB,
+    .nature = NATURE_ADAMANT,
+    .ball = BALL_MASTER,
+    .isShiny = TRUE
+    },
+    {
+    .lvl = 75,
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .species = SPECIES_HYDREIGON,
+    .heldItem = ITEM_LIFE_ORB,
+    .nature = NATURE_MODEST,
+    .ball = BALL_MASTER,
+    .isShiny = TRUE
+    },
+    {
+    .lvl = 75,
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .species = SPECIES_SNORLAX,
+    .heldItem = ITEM_ROCKY_HELMET,
+    .nature = NATURE_IMPISH,
+    .ball = BALL_MASTER,
+    .isShiny = TRUE
+    },
+    {
+    .lvl = 75,
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .species = SPECIES_URSALUNA,
+    .heldItem = ITEM_FLAME_ORB,
+    .nature = NATURE_ADAMANT,
+    .ball = BALL_MASTER,
+    .isShiny = TRUE,
+    },
+    {
+    .lvl = 75,
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .species = SPECIES_DURALUDON,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .nature = NATURE_MODEST,
+    .ball = BALL_MASTER,
+    .isShiny = TRUE,
+    },
+    {
+    .lvl = 75,
+    .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
+    .species = SPECIES_YVELTAL,
+    .heldItem = ITEM_LIFE_ORB,
+    .nature = NATURE_MODEST,
+    .ball = BALL_MASTER,
+    .isShiny = TRUE,
+    }
+};
+
 static const struct TrainerMon sParty_Andres2[] = {
     {
     .iv = TRAINER_PARTY_IVS(1, 1, 1, 1, 1, 1),
