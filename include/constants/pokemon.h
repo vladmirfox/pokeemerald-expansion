@@ -199,8 +199,12 @@
 #define AFFECTION_FOUR_HEARTS   4 // 220-254 friendship
 #define AFFECTION_FIVE_HEARTS   5 // Max friendship
 
-// Friendship value that the majority of species use. This was changed in Generation 8 to 50.
+// Friendship value that the majority of species use.
+#if P_UPDATED_FRIENDSHIP >= GEN_8
+#define STANDARD_FRIENDSHIP 50
+#else
 #define STANDARD_FRIENDSHIP 70
+#endif
 
 #define MAX_FRIENDSHIP  255
 #define MAX_SHEEN       255
