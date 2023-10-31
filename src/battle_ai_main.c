@@ -3298,7 +3298,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
     {
         if ((gBattleMons[battlerAtk].status1 & STATUS1_BURN && HasOnlyMovesWithSplit(battlerAtk, SPLIT_PHYSICAL, TRUE))
         || (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && HasOnlyMovesWithSplit(battlerAtk, SPLIT_SPECIAL, TRUE)))
-            score = 90; // Force switch if all your attacking moves are physical and you have Natural Cure.
+            SET_SCORE(90); // Force switch if all your attacking moves are physical and you have Natural Cure.
     }
 
     // move effect checks
@@ -3311,6 +3311,9 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
         if (AI_RandLessThan(128))
             IncreaseSleepScore(battlerAtk, battlerDef, move, &score);
         break;
+    case EFFECT_ABSORB:
+        if (aiData->holdEffects[battlerAtk] == HOLD_EFFECT_BIG_ROOT && effectiveness >= AI_EFFECTIVENESS_x1)
+            ADJUST_SCORE(2);
     case EFFECT_EXPLOSION:
     case EFFECT_MEMENTO:
         if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_WILL_SUICIDE && gBattleMons[battlerDef].statStages[STAT_EVASION] < 7)

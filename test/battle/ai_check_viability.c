@@ -85,7 +85,7 @@ AI_SINGLE_BATTLE_TEST("AI sees increased base power of Grav Apple")
         OPPONENT(SPECIES_WOBBUFFET) { Speed(10); Moves(MOVE_TROP_KICK, MOVE_GRAV_APPLE); }
     } WHEN {
         TURN { MOVE(player, movePlayer); EXPECT_MOVE(opponent, MOVE_TROP_KICK); }
-        TURN { MOVE(player, MOVE_CELEBRATE);EXPECT_MOVE(opponent, expectedMove); }
+        TURN { MOVE(player, MOVE_CELEBRATE); EXPECT_MOVE(opponent, expectedMove); }
     } SCENE {
         if (expectedMove == MOVE_GRAV_APPLE)
             MESSAGE("Wobbuffet fainted!");
