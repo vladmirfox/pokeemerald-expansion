@@ -379,18 +379,17 @@
 #define MOVE_EFFECT_INCINERATE          67
 #define MOVE_EFFECT_BUG_BITE            68
 #define MOVE_EFFECT_RECOIL_HP_25        69
-#define MOVE_EFFECT_RELIC_SONG          70
-#define MOVE_EFFECT_TRAP_BOTH           71
-#define MOVE_EFFECT_DOUBLE_SHOCK        72
-#define MOVE_EFFECT_ROUND               73
-#define MOVE_EFFECT_STOCKPILE_WORE_OFF  74
-#define MOVE_EFFECT_DIRE_CLAW           75
-#define MOVE_EFFECT_STEALTH_ROCK        76
-#define MOVE_EFFECT_SPIKES              77
-#define MOVE_EFFECT_TRIPLE_ARROWS       78
-#define MOVE_EFFECT_SYRUP_BOMB          79
+#define MOVE_EFFECT_TRAP_BOTH           70
+#define MOVE_EFFECT_DOUBLE_SHOCK        71
+#define MOVE_EFFECT_ROUND               72
+#define MOVE_EFFECT_STOCKPILE_WORE_OFF  73
+#define MOVE_EFFECT_DIRE_CLAW           74
+#define MOVE_EFFECT_STEALTH_ROCK        75
+#define MOVE_EFFECT_SPIKES              76
+#define MOVE_EFFECT_TRIPLE_ARROWS       77
+#define MOVE_EFFECT_SYRUP_BOMB          78
 
-#define NUM_MOVE_EFFECTS                80
+#define NUM_MOVE_EFFECTS                79
 
 #define MOVE_EFFECT_AFFECTS_USER        0x4000
 #define MOVE_EFFECT_CERTAIN             0x8000

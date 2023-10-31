@@ -3546,21 +3546,6 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     gBattlescriptCurrInstr = BattleScript_MoveEffectBugBite;
                 }
                 break;
-            case MOVE_EFFECT_RELIC_SONG:
-                if (GetBattlerAbility(gBattlerAttacker) != ABILITY_SHEER_FORCE && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED))
-                {
-                    if (gBattleMons[gBattlerAttacker].species == SPECIES_MELOETTA_ARIA)
-                    {
-                        gBattleMons[gBattlerAttacker].species = SPECIES_MELOETTA_PIROUETTE;
-                        BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeMoveEffect);
-                    }
-                    else if (gBattleMons[gBattlerAttacker].species == SPECIES_MELOETTA_PIROUETTE)
-                    {
-                        gBattleMons[gBattlerAttacker].species = SPECIES_MELOETTA_ARIA;
-                        BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeMoveEffect);
-                    }
-                }
-                break;
             case MOVE_EFFECT_TRAP_BOTH:
                 if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_ESCAPE_PREVENTION) && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_ESCAPE_PREVENTION))
                 {
@@ -16288,4 +16273,22 @@ void BS_SetGlaiveRush(void)
     gStatuses4[gBattlerAttacker] |= STATUS4_GLAIVE_RUSH;
 
     gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_SetRelicSong(void)
+{
+    NATIVE_ARGS();
+
+    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_SHEER_FORCE && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED))
+    {
+        if (gBattleMons[gBattlerAttacker].species == SPECIES_MELOETTA_ARIA)
+            gBattleMons[gBattlerAttacker].species = SPECIES_MELOETTA_PIROUETTE;
+        else if (gBattleMons[gBattlerAttacker].species == SPECIES_MELOETTA_PIROUETTE)
+            gBattleMons[gBattlerAttacker].species = SPECIES_MELOETTA_ARIA;
+
+        BattleScriptPush(cmd->nextInstr);
+        gBattlescriptCurrInstr = BattleScript_AttackerFormChangeMoveEffect;
+    }
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }

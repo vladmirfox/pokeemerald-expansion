@@ -1349,11 +1349,12 @@ BattleScript_NoMoveEffect:
 	goto BattleScript_EffectHit
 
 BattleScript_EffectRelicSong:
-	setmoveeffect MOVE_EFFECT_RELIC_SONG | MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_CERTAIN
+	setmoveeffect MOVE_EFFECT_SLEEP
 	call BattleScript_EffectHit_Ret
-	argumentstatuseffect
 	tryfaintmon BS_TARGET
-	goto BattleScript_MoveEnd
+	moveendall
+	setrelicsong
+	end
 
 BattleScript_EffectAllySwitch:
 	attackcanceler
@@ -7830,7 +7831,7 @@ BattleScript_AttackerFormChangeMoveEffect::
 	printstring STRINGID_PKMNTRANSFORMED
 	waitmessage B_WAIT_TIME_LONG
 	handleformchange BS_ATTACKER, 2
-	end3
+	return
 
 BattleScript_BallFetch::
 	call BattleScript_AbilityPopUp

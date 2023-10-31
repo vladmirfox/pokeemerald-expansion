@@ -1376,6 +1376,10 @@
 	callnative BS_SetGlaiveRush
 	.endm
 
+	.macro setrelicsong
+	callnative BS_SetRelicSong
+	.endm
+
 	.macro setzeffect
 	callnative BS_SetZEffect
 	.endm
