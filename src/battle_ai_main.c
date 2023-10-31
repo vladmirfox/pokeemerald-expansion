@@ -3298,7 +3298,7 @@ static s32 AI_CheckViability(u32 battlerAtk, u32 battlerDef, u32 move, s32 score
     {
         if ((gBattleMons[battlerAtk].status1 & STATUS1_BURN && HasOnlyMovesWithSplit(battlerAtk, SPLIT_PHYSICAL, TRUE))
         || (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && HasOnlyMovesWithSplit(battlerAtk, SPLIT_SPECIAL, TRUE)))
-            SET_SCORE(90); // Force switch if all your attacking moves are physical and you have Natural Cure.
+            ADJUST_SCORE(-20); // Force switch if all your attacking moves are physical and you have Natural Cure.
     }
 
     // move effect checks
