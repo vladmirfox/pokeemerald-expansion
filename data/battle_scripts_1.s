@@ -1353,7 +1353,7 @@ BattleScript_EffectRelicSong:
 	call BattleScript_EffectHit_Ret
 	tryfaintmon BS_TARGET
 	moveendall
-	setrelicsong
+	tryrelicsong
 	end
 
 BattleScript_EffectAllySwitch:

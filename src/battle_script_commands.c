@@ -10222,13 +10222,6 @@ static void Cmd_various(void)
                 gBattlescriptCurrInstr = cmd->nextInstr;
             return;
         }
-    case VARIOUS_APPLY_PLASMA_FISTS:
-    {
-        VARIOUS_ARGS();
-        for (i = 0; i < gBattlersCount; i++)
-            gStatuses4[i] |= STATUS4_PLASMA_FISTS;
-        break;
-    }
     case VARIOUS_JUMP_IF_SPECIES:
     {
         VARIOUS_ARGS(u16 species, const u8 *jumpInstr);
@@ -16275,7 +16268,7 @@ void BS_SetGlaiveRush(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-void BS_SetRelicSong(void)
+void BS_TryRelicSong(void)
 {
     NATIVE_ARGS();
 
@@ -16291,4 +16284,15 @@ void BS_SetRelicSong(void)
     }
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_ApplyPlasmaFists(void)
+{
+    NATIVE_ARGS();
+
+    u8 i;
+    for (i = 0; i < gBattlersCount; i++)
+        gStatuses4[i] |= STATUS4_PLASMA_FISTS;
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }

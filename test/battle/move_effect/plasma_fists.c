@@ -26,6 +26,24 @@ SINGLE_BATTLE_TEST("Plasma Fists turns normal moves into electric for the remain
     }
 }
 
+SINGLE_BATTLE_TEST("Plasma Fists type-changing effect is applied after Pixilate")
+{
+    GIVEN {
+        PLAYER(SPECIES_KRABBY) { Speed(300); };
+        OPPONENT(SPECIES_ALTARIA) { Speed(1); Item(ITEM_ALTARIANITE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_PLASMA_FISTS); MOVE(opponent, MOVE_EMBER, megaEvolve: TRUE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
+        MESSAGE("Krabby used Plasma Fists!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_PLASMA_FISTS, player);
+        MESSAGE("A deluge of ions showers the battlefield!");
+        MESSAGE("Foe Altaria used Ember!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, opponent);
+        NOT MESSAGE("It's super effective!");
+    }
+}
+
 SINGLE_BATTLE_TEST("Plasma Fists type-changing effect is applied after Normalize")
 {
     GIVEN {
