@@ -1270,8 +1270,8 @@ static void HighlightSelectedMainMenuItem(u8 menuType, u8 selectedMenuItem, s16 
 static void CB2_NewGameBirchSpeech_ReturnFromTxRandomizerChallengesOptions(void)
 {
     u8 taskId;
-    u8 spriteId;
-    u16 savedIme;
+    //u8 spriteId;
+    //u16 savedIme;
     ResetBgsAndClearDma3BusyFlags(0);
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);

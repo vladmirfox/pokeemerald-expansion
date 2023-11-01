@@ -188,14 +188,16 @@ static int ProcessInput_Options_Two(int selection);
 static int ProcessInput_Options_Three(int selection);
 static int ProcessInput_Options_Four(int selection);
 static int ProcessInput_Options_Six(int selection);
-static int ProcessInput_Options_Eleven(int selection);
+//static int ProcessInput_Options_Eleven(int selection);
 static int ProcessInput_Options_OneTypeChallenge(int selection);
-static int ProcessInput_Sound(int selection);
-static int ProcessInput_FrameType(int selection);
+//static int ProcessInput_Sound(int selection);
+//static int ProcessInput_FrameType(int selection);
 static const u8 *const OptionTextDescription(void);
 static const u8 *const OptionTextRight(u8 menuItem);
 static u8 MenuItemCount(void);
+#ifndef NDEBUG
 static u8 MenuItemCountFromIndex(u8 index);
+#endif
 static u8 MenuItemCancel(void);
 static void DrawDescriptionText(void);
 static void DrawOptionMenuChoice(const u8 *text, u8 x, u8 y, u8 style, bool8 active);
@@ -245,7 +247,9 @@ static void DrawChoices_Challenges_BaseStatEqualizer(int selection, int y);
 static void DrawChoices_Challenges_Mirror(int selection, int y);
 static void DrawChoices_Challenges_Mirror_Thief(int selection, int y);
 
+#ifndef NDEBUG
 static void PrintCurrentSelections(void);
+#endif
 
 // EWRAM vars
 EWRAM_DATA static struct OptionMenu *sOptions = NULL;
@@ -445,6 +449,7 @@ static const u8 *const OptionTextRight(u8 menuItem)
     case MENU_DIFFICULTY:       return sOptionMenuItemsNamesDifficulty[menuItem];
     case MENU_CHALLENGES:       return sOptionMenuItemsNamesChallenges[menuItem];
     }
+    return 0;
 }
 
 // Menu left side text conditions
@@ -510,6 +515,7 @@ static bool8 CheckConditions(int selection)
         default:                                return TRUE;
         }
     }
+    return 0;
 }
 
 // Descriptions
@@ -746,6 +752,7 @@ static const u8 *const OptionTextDescription(void)
         else
             return sOptionMenuItemDescriptionsChallenges[menuItem][selection];
     }
+    return 0;
 }
 
 static u8 MenuItemCount(void)
@@ -757,8 +764,9 @@ static u8 MenuItemCount(void)
     case MENU_DIFFICULTY:   return MENUITEM_DIFFICULTY_COUNT;
     case MENU_CHALLENGES:   return MENUITEM_CHALLENGES_COUNT;
     }
+    return 0;
 }
-
+#ifndef NDEBUG
 static u8 MenuItemCountFromIndex(u8 index)
 {
     switch (index)
@@ -768,8 +776,9 @@ static u8 MenuItemCountFromIndex(u8 index)
     case MENU_DIFFICULTY:   return MENUITEM_DIFFICULTY_COUNT;
     case MENU_CHALLENGES:   return MENUITEM_CHALLENGES_COUNT;
     }
+    return 0;
 }
-
+#endif
 static u8 MenuItemCancel(void)
 {
     switch (sOptions->submenu)
@@ -779,6 +788,7 @@ static u8 MenuItemCancel(void)
     case MENU_DIFFICULTY:   return MENUITEM_DIFFICULTY_NEXT;
     case MENU_CHALLENGES:   return MENUITEM_CHALLENGES_SAVE;
     }
+    return 0;
 }
 
 // Main code
@@ -1320,7 +1330,9 @@ static void Task_RandomizerChallengesMenuFadeOut(u8 taskId)
 
 void SaveData_TxRandomizerAndChallenges(void)
 {
+    #ifndef NDEBUG
     PrintCurrentSelections();
+    #endif
     // MENU_RANDOMIZER
     switch (sOptions->sel_randomizer[MENUITEM_RANDOM_STARTER])
     {
@@ -1533,17 +1545,17 @@ static int ProcessInput_Options_Six(int selection)
 {
     return XOptions_ProcessInput(6, selection);
 }
-
+/*
 static int ProcessInput_Options_Eleven(int selection)
 {
     return XOptions_ProcessInput(11, selection);
 }
-
+*/
 static int ProcessInput_Options_OneTypeChallenge(int selection)
 {
     return XOptions_ProcessInput(NUMBER_OF_MON_TYPES+1, selection);
 }
-
+/*
 // Process Input functions ****SPECIFIC****
 static int ProcessInput_Sound(int selection)
 {
@@ -1580,7 +1592,7 @@ static int ProcessInput_FrameType(int selection)
     }
     return selection;
 }
-
+*/
 // Draw Choices functions ****GENERIC****
 static void DrawOptionMenuChoice(const u8 *text, u8 x, u8 y, u8 style, bool8 active)
 {
@@ -1627,7 +1639,7 @@ static void ReDrawAll(void)
     else
     {
         if (sOptions->arrowTaskId == TASK_NONE)
-            sOptions->arrowTaskId = sOptions->arrowTaskId = AddScrollIndicatorArrowPairParameterized(SCROLL_ARROW_UP, 240 / 2, 20, 110, MenuItemCount() - 1, 110, 110, 0);
+            sOptions->arrowTaskId = AddScrollIndicatorArrowPairParameterized(SCROLL_ARROW_UP, 240 / 2, 20, 110, MenuItemCount() - 1, 110, 110, 0);
 
     }
 
@@ -2023,10 +2035,11 @@ static void DrawBgWindowFrames(void)
 
 
 // Debug
+#ifndef NDEBUG
 static void PrintCurrentSelections(void)
 {
     u8 i, j;
-    #ifndef NDEBUG
+
     for (i = 0; i < MENU_COUNT; i++)
     {
         MgbaPrintf(MGBA_LOG_DEBUG, "Menu = %d", i);
@@ -2042,5 +2055,5 @@ static void PrintCurrentSelections(void)
         }
            
     }
-    #endif
 }
+#endif
