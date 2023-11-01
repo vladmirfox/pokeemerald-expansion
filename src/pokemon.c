@@ -4921,7 +4921,7 @@ static const u8 gSpeciesMapping[NUM_SPECIES+1] =
     #if P_GEN_5_POKEMON == TRUE
     [SPECIES_BASCULIN_BLUE_STRIPED] = EVO_TYPE_0,
     [SPECIES_DARMANITAN_ZEN_MODE] = EVO_TYPE_1,
-    [SPECIES_DARMANITAN_ZEN_MODE_GALARIAN] = EVO_TYPE_1,
+    [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] = EVO_TYPE_1,
     [SPECIES_DEERLING_SUMMER]   = EVO_TYPE_0,
     [SPECIES_DEERLING_AUTUMN]   = EVO_TYPE_0,
     [SPECIES_DEERLING_WINTER]   = EVO_TYPE_0,
@@ -6238,7 +6238,7 @@ static const u16 sRandomSpecies[] =
     #if P_GEN_5_POKEMON == TRUE
     SPECIES_BASCULIN_BLUE_STRIPED ,
     SPECIES_DARMANITAN_ZEN_MODE ,
-    SPECIES_DARMANITAN_ZEN_MODE_GALARIAN ,
+    SPECIES_DARMANITAN_GALARIAN_ZEN_MODE ,
     SPECIES_DEERLING_SUMMER   ,
     SPECIES_DEERLING_AUTUMN   ,
     SPECIES_DEERLING_WINTER   ,
@@ -7553,7 +7553,7 @@ static const u16 sRandomSpeciesLegendary[] =
     #if P_GEN_5_POKEMON == TRUE
     SPECIES_BASCULIN_BLUE_STRIPED ,
     SPECIES_DARMANITAN_ZEN_MODE ,
-    SPECIES_DARMANITAN_ZEN_MODE_GALARIAN ,
+    SPECIES_DARMANITAN_GALARIAN_ZEN_MODE ,
     SPECIES_DEERLING_SUMMER   ,
     SPECIES_DEERLING_AUTUMN   ,
     SPECIES_DEERLING_WINTER   ,
@@ -8544,7 +8544,7 @@ static const u16 sRandomSpeciesEvo1[] =
     #if P_GEN_5_POKEMON == TRUE
     // Gen 5 Forms
     SPECIES_DARMANITAN_ZEN_MODE , //= EVO_TYPE_1,
-    SPECIES_DARMANITAN_ZEN_MODE_GALARIAN , //= EVO_TYPE_1,
+    SPECIES_DARMANITAN_GALARIAN_ZEN_MODE , //= EVO_TYPE_1,
     SPECIES_SAWSBUCK_SUMMER    , //= EVO_TYPE_1,
     SPECIES_SAWSBUCK_AUTUMN    , //= EVO_TYPE_1,
     SPECIES_SAWSBUCK_WINTER    , //= EVO_TYPE_1,
@@ -10015,7 +10015,7 @@ const u16 gEvolutionLines[NUM_SPECIES][EVOS_PER_LINE] =
     [SPECIES_PONYTA_GALARIAN ... SPECIES_RAPIDASH_GALARIAN] = {SPECIES_PONYTA_GALARIAN, SPECIES_RAPIDASH_GALARIAN},
     [SPECIES_SLOWPOKE_GALARIAN ... SPECIES_SLOWBRO_GALARIAN] = {SPECIES_SLOWPOKE_GALARIAN, SPECIES_SLOWBRO_GALARIAN, SPECIES_SLOWKING_GALARIAN},
     [SPECIES_SLOWKING_GALARIAN]                 = {SPECIES_SLOWPOKE_GALARIAN, SPECIES_SLOWBRO_GALARIAN, SPECIES_SLOWKING_GALARIAN},
-    [SPECIES_DARUMAKA_GALARIAN ... SPECIES_DARMANITAN_GALARIAN] = {SPECIES_DARUMAKA_GALARIAN, SPECIES_DARMANITAN_GALARIAN, SPECIES_DARMANITAN_ZEN_MODE_GALARIAN},
+    [SPECIES_DARUMAKA_GALARIAN ... SPECIES_DARMANITAN_GALARIAN] = {SPECIES_DARUMAKA_GALARIAN, SPECIES_DARMANITAN_GALARIAN, SPECIES_DARMANITAN_GALARIAN_ZEN_MODE},
     // Hisuian Forms
     [SPECIES_GROWLITHE_HISUIAN ... SPECIES_ARCANINE_HISUIAN] = {SPECIES_GROWLITHE_HISUIAN, SPECIES_ARCANINE_HISUIAN},
     [SPECIES_VOLTORB_HISUIAN ... SPECIES_ELECTRODE_HISUIAN] = {SPECIES_VOLTORB_HISUIAN, SPECIES_ELECTRODE_HISUIAN},
@@ -11783,7 +11783,6 @@ void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon)
 
     for (i = 0; gLevelUpLearnsets[species][i].move != LEVEL_UP_MOVE_END; i++)
     {
-        u16 moveLevel;
         u16 move;
 
         if (gLevelUpLearnsets[species][i].level > level)
@@ -15082,15 +15081,13 @@ u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves)
 {
     u8 numMoves = 0;
     int i;
-    u16 move; //tx_randomizer_and_challenges
 
     for (i = 0; i < MAX_LEVEL_UP_MOVES && gLevelUpLearnsets[species][i].move != LEVEL_UP_MOVE_END; i++)
-    { 
-        //tx_randomizer_and_challenges
+    {
         moves[numMoves++] = gLevelUpLearnsets[species][i].move;
+        //tx_randomizer_and_challenges
         if (gSaveBlock1Ptr->tx_Random_Moves) //tx_randomizer_and_challenges
-            move = GetRandomMove(move, species);
-        moves[numMoves++] = move;
+            moves[numMoves++] = GetRandomMove(gLevelUpLearnsets[species][i].move, species);
     }
 
      return numMoves;
@@ -16409,8 +16406,10 @@ u16 PickRandomStarterForOneTypeChallenge(u16 *speciesList, u8 starterId)
 u16 PickRandomStarter(u16 *speciesList, u8 starterId)
 {
     u16 species;
+    /* todo: Fix
     if (gSaveBlock1Ptr->tx_Random_Chaos)
         return sRandomSpeciesLegendary[RandomSeededModulo(species, RANDOM_SPECIES_COUNT_LEGENDARY)];
+    */
 
     if (gSaveBlock1Ptr->tx_Random_Similar && !gSaveBlock1Ptr->tx_Random_Starter_Stage2)
     {
@@ -16474,7 +16473,7 @@ u8 GetTypeBySpecies(u16 species, u8 typeNum)
 
 static u16 GetRandomSpecies(u16 species, u8 mapBased, u8 type, u16 additionalOffset) //INTERNAL use only!
 {
-    u8 slot, slotNew;
+    u8 slot;//, slotNew;
     u16 mapOffset = 0; //12289, 49157
     if (mapBased)
         mapOffset = NuzlockeGetCurrentRegionMapSectionId();
@@ -16482,7 +16481,7 @@ static u16 GetRandomSpecies(u16 species, u8 mapBased, u8 type, u16 additionalOff
 
     if (gSaveBlock1Ptr->tx_Random_Similar)
     {
-        u16 speciesResult;
+        u16 speciesResult = SPECIES_NONE;
         slot = gSpeciesMapping[species];
 
         switch (slot)
@@ -16520,7 +16519,7 @@ static u16 GetRandomSpecies(u16 species, u8 mapBased, u8 type, u16 additionalOff
 
 u16 GetSpeciesRandomSeeded(u16 species, u8 type, u16 additionalOffset)
 {
-    u8 slot, slotNew;
+    u8 slot;//, slotNew;
     u16 speciesResult = species;
     u8 mapBased = FALSE;
 

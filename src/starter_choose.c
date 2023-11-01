@@ -355,7 +355,6 @@ u16 GetStarterPokemon(u16 chosenStarterId)
 {
     //tx_randomizer_and_challenges
     u16 mon = sStarterMon[chosenStarterId];
-    u16 i;
 
     if (chosenStarterId > STARTER_MON_COUNT)
         chosenStarterId = 0;

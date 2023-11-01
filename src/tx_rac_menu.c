@@ -445,6 +445,7 @@ static const u8 *const OptionTextRight(u8 menuItem)
     case MENU_DIFFICULTY:       return sOptionMenuItemsNamesDifficulty[menuItem];
     case MENU_CHALLENGES:       return sOptionMenuItemsNamesChallenges[menuItem];
     }
+    return 0;
 }
 
 // Menu left side text conditions
@@ -510,6 +511,7 @@ static bool8 CheckConditions(int selection)
         default:                                return TRUE;
         }
     }
+    return 0;
 }
 
 // Descriptions
@@ -746,6 +748,7 @@ static const u8 *const OptionTextDescription(void)
         else
             return sOptionMenuItemDescriptionsChallenges[menuItem][selection];
     }
+    return 0;
 }
 
 static u8 MenuItemCount(void)
@@ -757,6 +760,7 @@ static u8 MenuItemCount(void)
     case MENU_DIFFICULTY:   return MENUITEM_DIFFICULTY_COUNT;
     case MENU_CHALLENGES:   return MENUITEM_CHALLENGES_COUNT;
     }
+    return 0;
 }
 
 static u8 MenuItemCountFromIndex(u8 index)
@@ -768,6 +772,7 @@ static u8 MenuItemCountFromIndex(u8 index)
     case MENU_DIFFICULTY:   return MENUITEM_DIFFICULTY_COUNT;
     case MENU_CHALLENGES:   return MENUITEM_CHALLENGES_COUNT;
     }
+    return 0;
 }
 
 static u8 MenuItemCancel(void)
@@ -779,6 +784,7 @@ static u8 MenuItemCancel(void)
     case MENU_DIFFICULTY:   return MENUITEM_DIFFICULTY_NEXT;
     case MENU_CHALLENGES:   return MENUITEM_CHALLENGES_SAVE;
     }
+    return 0;
 }
 
 // Main code
@@ -1627,7 +1633,7 @@ static void ReDrawAll(void)
     else
     {
         if (sOptions->arrowTaskId == TASK_NONE)
-            sOptions->arrowTaskId = sOptions->arrowTaskId = AddScrollIndicatorArrowPairParameterized(SCROLL_ARROW_UP, 240 / 2, 20, 110, MenuItemCount() - 1, 110, 110, 0);
+            sOptions->arrowTaskId = AddScrollIndicatorArrowPairParameterized(SCROLL_ARROW_UP, 240 / 2, 20, 110, MenuItemCount() - 1, 110, 110, 0);
 
     }
 

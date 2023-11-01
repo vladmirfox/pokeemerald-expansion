@@ -190,11 +190,12 @@ u8 NuzlockeFlagSet(u16 mapsec) // @Kurausukun
 {
     u8 id = NuzlockeLUT[mapsec];
     u8 * ptr = &gSaveBlock1Ptr->NuzlockeEncounterFlags[id / 8];
-    u8 i;
+
     if (ptr)
         * ptr |= 1 << (id & 7);
 
     #ifndef NDEBUG
+    u8 i;
     MgbaPrintf(MGBA_LOG_DEBUG, "NuzlockeFlagSet Id=%d", id);
     for (i=0; i<9; i++)
         MgbaPrintf(MGBA_LOG_DEBUG, "gSaveBlock1Ptr->NuzlockeEncounterFlags[%d] = %d" , i, gSaveBlock1Ptr->NuzlockeEncounterFlags[i]);

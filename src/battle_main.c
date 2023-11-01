@@ -502,7 +502,7 @@ void CB2_InitBattle(void)
 static void CB2_InitBattleInternal(void)
 {
     s32 i,j;
-    u16 targetSpecies;
+    //u16 targetSpecies;
 
     SetHBlankCallback(NULL);
     SetVBlankCallback(NULL);
@@ -1956,7 +1956,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
     u32 personalityValue;
     s32 i, j;
     u8 monsCount;
-    u16 species, move; //tx_randomizer_and_challenges
+    u16 species;
 
     if (battleTypeFlags & BATTLE_TYPE_TRAINER && !(battleTypeFlags & (BATTLE_TYPE_FRONTIER
                                                                         | BATTLE_TYPE_EREADER_TRAINER
@@ -2069,7 +2069,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 {
     u8 retVal;
     s32 i, j;
-    u8 monsCount;
+    u8 monsCount = gTrainers[trainerNum].partySize;
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
     retVal = CreateNPCTrainerPartyFromTrainer(party, &gTrainers[trainerNum], firstTrainer, gBattleTypeFlags);
@@ -2084,7 +2084,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
         if (gSaveBlock1Ptr->tx_Challenges_TrainerScalingIVs && !FlagGet(FLAG_IS_CHAMPION))
         {
             u8 iv = GetCurrentTrainerIVs();
-            monsCount = gTrainers[trainerNum].partySize;
 
             for (i = 0; i < monsCount; i++)
             {
@@ -5524,7 +5523,6 @@ static void HandleEndTurn_FinishBattle(void)
                                         | BATTLE_TYPE_BATTLE_TOWER
                                         | BATTLE_TYPE_WALLY_TUTORIAL
                                         | BATTLE_TYPE_LEGENDARY
-                                        | BATTLE_TYPE_REGI
                                         | BATTLE_TYPE_TWO_OPPONENTS
                                         | BATTLE_TYPE_INGAME_PARTNER
                                         | BATTLE_TYPE_TOWER_LINK_MULTI
