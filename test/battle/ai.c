@@ -300,6 +300,36 @@ AI_SINGLE_BATTLE_TEST("AI chooses the safest option to faint the target, taking 
     }
 }
 
+AI_SINGLE_BATTLE_TEST("AI won't use Solar Beam if there is no Sun up or the user is not holding Power Herb")
+{
+    u16 abilityAtk = ABILITY_NONE;
+    u16 holdItemAtk = ITEM_NONE;
+
+    PARAMETRIZE { abilityAtk = ABILITY_DROUGHT; }
+    PARAMETRIZE { holdItemAtk = ITEM_POWER_HERB; }
+    PARAMETRIZE { }
+
+    GIVEN {
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
+        PLAYER(SPECIES_WOBBUFFET) { HP(211); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_TYPHLOSION) { Moves(MOVE_SOLAR_BEAM, MOVE_GRASS_PLEDGE); Ability(abilityAtk); Item(holdItemAtk); }
+    } WHEN {
+        if (abilityAtk == ABILITY_DROUGHT) {
+            TURN { EXPECT_MOVES(opponent, MOVE_SOLAR_BEAM, MOVE_GRASS_PLEDGE); }
+            TURN { EXPECT_MOVES(opponent, MOVE_SOLAR_BEAM, MOVE_GRASS_PLEDGE); SEND_OUT(player, 1); }
+        } else if (holdItemAtk == ITEM_POWER_HERB) {
+            TURN { EXPECT_MOVES(opponent, MOVE_SOLAR_BEAM, MOVE_GRASS_PLEDGE); MOVE(player, MOVE_KNOCK_OFF); }
+            TURN { EXPECT_MOVE(opponent, MOVE_GRASS_PLEDGE); SEND_OUT(player, 1); }
+        } else {
+            TURN { EXPECT_MOVE(opponent, MOVE_GRASS_PLEDGE); }
+            TURN { EXPECT_MOVE(opponent, MOVE_GRASS_PLEDGE); SEND_OUT(player, 1); }
+        }
+    } SCENE {
+        MESSAGE("Wobbuffet fainted!");
+    }
+}
+
 AI_SINGLE_BATTLE_TEST("AI won't use ground type attacks against flying type Pokemon unless Gravity is in effect")
 {
     GIVEN {

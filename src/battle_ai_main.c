@@ -3144,8 +3144,6 @@ static s32 AI_CompareDamagingMoves(u32 battlerAtk, u32 battlerDef, u32 currId)
             }
             viableMoveScores[i] = AI_SCORE_DEFAULT;
             isChargingMoveEffect[i] = IsChargingMove(battlerAtk, gBattleMoves[moves[i]].effect);
-            if (gBattleMoves[moves[i]].effect == EFFECT_METEOR_BEAM)
-                DebugPrintf("isChargingMoveEffect[i]: %d", isChargingMoveEffect[i]);
         }
         else
         {
