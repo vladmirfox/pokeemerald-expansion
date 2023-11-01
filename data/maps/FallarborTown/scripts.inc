@@ -21,7 +21,6 @@ FallarborTown_OnResume_Day:
 FallarborTown_OnTransition:
 	setflag FLAG_VISITED_FALLARBOR_TOWN
 	setvar VAR_CONTEST_HALL_STATE, 0
-	clearflag FLAG_CONTEST_SKETCH_CREATED
 	special GetDayOrNight
 	goto_if_eq VAR_RESULT, 1, FallarborTown_OnResume_Night
 	goto_if_eq VAR_RESULT, 0, FallarborTown_OnResume_Day

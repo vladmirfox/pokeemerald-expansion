@@ -87,3 +87,20 @@ gText_MoreChallengesAwait::
     .string "rewards await you at the\p"
     .string "Battle Frontier.$"
 
+gText_BattleMasterIntroduction::
+    .string "…hm?\p"
+    .string "I've never seen you before.\n"
+    .string "and I always remember a face.$"
+
+gText_BattleMasterGiveExpShare::
+    .string "Please…\n"
+    .string "Take this.\p"
+
+gText_BattleMasterPostExpShare::
+    .string "This item will assist you\n"
+    .string "in your travels.\p"
+    .string "Even when you cannot\n"
+    .string "reach me.\p"
+    .string "Now…\n"
+    .string "Back to business…$"
+
