@@ -18,7 +18,7 @@ progression flags are set.*/
 #define NUM_GROTTO_MAPS (NUM_PROGRESSION_FLAGS + 1) * NUM_GROTTOS_PER_FLAG
 
 #define NUM_RANDOM_EGG_SPECIES 49
-#define NUM_SPECIAL_EGG_SPECIES 28
+#define NUM_SPECIAL_EGG_SPECIES 37
 
 void InitEventData(void);
 void ClearTempFieldEventData(void);
