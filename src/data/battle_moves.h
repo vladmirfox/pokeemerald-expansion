@@ -4748,7 +4748,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
         #else
             .power = 60,
         #endif
-        .effect = EFFECT_SMELLINGSALT,
+        .effect = EFFECT_SMELLING_SALTS,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 10,
