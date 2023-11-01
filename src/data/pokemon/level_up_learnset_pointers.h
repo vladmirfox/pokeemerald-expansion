@@ -577,6 +577,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_ARCHEOPS] = sArcheopsLevelUpLearnset,
     [SPECIES_TRUBBISH] = sTrubbishLevelUpLearnset,
     [SPECIES_GARBODOR] = sGarbodorLevelUpLearnset,
+    [SPECIES_GARBODOR_GIGANTAMAX] = sGarbodorLevelUpLearnset,
     [SPECIES_ZORUA] = sZoruaLevelUpLearnset,
     [SPECIES_ZOROARK] = sZoroarkLevelUpLearnset,
     [SPECIES_MINCCINO] = sMinccinoLevelUpLearnset,
@@ -821,6 +822,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_ZERAORA] = sZeraoraLevelUpLearnset,
     [SPECIES_MELTAN] = sMeltanLevelUpLearnset,
     [SPECIES_MELMETAL] = sMelmetalLevelUpLearnset,
+    [SPECIES_MELMETAL_GIGANTAMAX] = sMelmetalLevelUpLearnset,
 #endif
 #if P_GEN_8_POKEMON == TRUE
     [SPECIES_GROOKEY] = sGrookeyLevelUpLearnset,
@@ -1540,8 +1542,6 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_LAPRAS_GIGANTAMAX] = sLaprasLevelUpLearnset,
     [SPECIES_EEVEE_GIGANTAMAX] = sEeveeLevelUpLearnset,
     [SPECIES_SNORLAX_GIGANTAMAX] = sSnorlaxLevelUpLearnset,
-    [SPECIES_GARBODOR_GIGANTAMAX] = sGarbodorLevelUpLearnset,
-    [SPECIES_MELMETAL_GIGANTAMAX] = sMelmetalLevelUpLearnset,
     [SPECIES_RILLABOOM_GIGANTAMAX] = sRillaboomLevelUpLearnset,
     [SPECIES_CINDERACE_GIGANTAMAX] = sCinderaceLevelUpLearnset,
     [SPECIES_INTELEON_GIGANTAMAX] = sInteleonLevelUpLearnset,

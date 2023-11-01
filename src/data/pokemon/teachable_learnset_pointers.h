@@ -577,6 +577,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_ARCHEOPS] = sArcheopsTeachableLearnset,
     [SPECIES_TRUBBISH] = sTrubbishTeachableLearnset,
     [SPECIES_GARBODOR] = sGarbodorTeachableLearnset,
+    [SPECIES_GARBODOR_GIGANTAMAX] = sGarbodorTeachableLearnset,
     [SPECIES_ZORUA] = sZoruaTeachableLearnset,
     [SPECIES_ZOROARK] = sZoroarkTeachableLearnset,
     [SPECIES_MINCCINO] = sMinccinoTeachableLearnset,
@@ -821,6 +822,7 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_ZERAORA] = sZeraoraTeachableLearnset,
     [SPECIES_MELTAN] = sMeltanTeachableLearnset,
     [SPECIES_MELMETAL] = sMelmetalTeachableLearnset,
+    [SPECIES_MELMETAL_GIGANTAMAX] = sMelmetalTeachableLearnset,
 #endif
 #if P_GEN_8_POKEMON == TRUE
     [SPECIES_GROOKEY] = sGrookeyTeachableLearnset,
@@ -1540,8 +1542,6 @@ const u16 *const gTeachableLearnsets[NUM_SPECIES] =
     [SPECIES_LAPRAS_GIGANTAMAX] = sLaprasTeachableLearnset,
     [SPECIES_EEVEE_GIGANTAMAX] = sEeveeTeachableLearnset,
     [SPECIES_SNORLAX_GIGANTAMAX] = sSnorlaxTeachableLearnset,
-    [SPECIES_GARBODOR_GIGANTAMAX] = sGarbodorTeachableLearnset,
-    [SPECIES_MELMETAL_GIGANTAMAX] = sMelmetalTeachableLearnset,
     [SPECIES_RILLABOOM_GIGANTAMAX] = sRillaboomTeachableLearnset,
     [SPECIES_CINDERACE_GIGANTAMAX] = sCinderaceTeachableLearnset,
     [SPECIES_INTELEON_GIGANTAMAX] = sInteleonTeachableLearnset,
