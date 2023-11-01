@@ -16285,14 +16285,3 @@ void BS_TryRelicSong(void)
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
-
-void BS_ApplyPlasmaFists(void)
-{
-    NATIVE_ARGS();
-
-    u8 i;
-    for (i = 0; i < gBattlersCount; i++)
-        gStatuses4[i] |= STATUS4_PLASMA_FISTS;
-
-    gBattlescriptCurrInstr = cmd->nextInstr;
-}

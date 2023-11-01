@@ -2468,7 +2468,6 @@ enum
     ENDTURN_POWDER,
     ENDTURN_THROAT_CHOP,
     ENDTURN_SLOW_START,
-    ENDTURN_PLASMA_FISTS,
     ENDTURN_CUD_CHEW,
     ENDTURN_TORMENT, // supposedly this goes after Taunt, before Encore, but Encore is first right now?
     ENDTURN_SALT_CURE,
@@ -3003,10 +3002,6 @@ u8 DoBattlerEndTurnEffects(void)
                 BattleScriptExecute(BattleScript_SlowStartEnds);
                 effect++;
             }
-            gBattleStruct->turnEffectsTracker++;
-            break;
-        case ENDTURN_PLASMA_FISTS:
-            gStatuses4[battler] &= ~STATUS4_PLASMA_FISTS;
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_CUD_CHEW:

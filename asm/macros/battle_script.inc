@@ -1380,10 +1380,6 @@
 	callnative BS_TryRelicSong
 	.endm
 
-	.macro applyplasmafists
-	callnative BS_ApplyPlasmaFists
-	.endm
-
 	.macro setzeffect
 	callnative BS_SetZEffect
 	.endm

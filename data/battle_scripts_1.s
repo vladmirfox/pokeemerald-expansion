@@ -1173,7 +1173,7 @@ BattleScript_HyperspaceFuryRemoveProtect::
 BattleScript_EffectPlasmaFists:
 	call BattleScript_EffectHit_Ret
 	tryfaintmon BS_TARGET
-	applyplasmafists
+	orword gFieldStatuses, STATUS_FIELD_ION_DELUGE
 	printstring STRINGID_IONDELUGEON
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
