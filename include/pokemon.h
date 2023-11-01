@@ -330,14 +330,14 @@ struct BattlePokemon
     /*0x51*/ u32 status2;
     /*0x55*/ u32 otId;
     /*0x59*/ u8 metLevel;
-    /*0x5A*/ u8 isShadow;       //Only needs 1 bit; potentially look into what needs to be changed to use these as a bitfield
-    /*0x5B*/ u8 boostLevel;     //Only needs 2 bits
-    /*0x5C*/ u8 shadowAggro;    //Only needs 3 bits
-    /*0x5D*/ u8 isReverse;      //Only needs 1 bit
-    /*0x5E*/ u8 isXD;           //Only needs 1 bit
-    /*0x5F*/ u8 shadowID;
-    /*0x60*/ u16 heartVal;
-    /*0x62*/ u16 heartMax;
+    /*0x5A*/ u8 isShadow:1;
+    /*0x5A*/ u8 boostLevel:2;
+    /*0x5A*/ u8 shadowAggro:3;
+    /*0x5A*/ u8 isReverse:1;
+    /*0x5A*/ u8 isXD:1;
+    /*0x5B*/ u8 shadowID;
+    /*0x5C*/ u16 heartVal;
+    /*0x5E*/ u16 heartMax;
 };
 
 struct SpeciesInfo /*0x24*/

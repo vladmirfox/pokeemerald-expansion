@@ -2206,6 +2206,7 @@ static void SetPlayerMonData(u8 monId)
     case REQUEST_ALL_BATTLE:
         {
             u8 iv;
+            u8 isShadow;
 
             SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &battlePokemon->species);
             SetMonData(&gPlayerParty[monId], MON_DATA_HELD_ITEM, &battlePokemon->item);
@@ -2239,7 +2240,8 @@ static void SetPlayerMonData(u8 monId)
             SetMonData(&gPlayerParty[monId], MON_DATA_SPEED, &battlePokemon->speed);
             SetMonData(&gPlayerParty[monId], MON_DATA_SPATK, &battlePokemon->spAttack);
             SetMonData(&gPlayerParty[monId], MON_DATA_SPDEF, &battlePokemon->spDefense);
-            SetMonData(&gPlayerParty[monId], MON_DATA_IS_SHADOW, &battlePokemon->isShadow);
+            isShadow = battlePokemon->isShadow;
+            SetMonData(&gPlayerParty[monId], MON_DATA_IS_SHADOW, &isShadow);
         }
         break;
     case REQUEST_SPECIES_BATTLE:
