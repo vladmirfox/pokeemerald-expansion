@@ -1,7 +1,7 @@
 Common_EventScript_PkmnCenterBattleMaster::
     lock
     faceplayer
-    goto_if_unset FLAG_MET_BATTLE_MASTER, Common_EventScript_PkmnCenterBattleMaster_Introduction
+    goto_if_unset FLAG_RECEIVED_EXP_SHARE, Common_EventScript_PkmnCenterBattleMaster_Introduction
     goto_if_set FLAG_SYS_ENFORCED_HARDMODE, Common_EventScript_PkmnCenterBattleMaster_OhChallengeCard
 	message gText_ImTheBattleMaster
 	waitmessage
@@ -165,8 +165,7 @@ Common_EventScript_PkmnCenterBattleMaster_Introduction::
     message gText_BattleMasterIntroduction
     waitmessage
     waitbuttonpress
-    call_if_unset FLAG_RECEIVED_EXP_SHARE, Common_EventScript_PkmnCenterBattleMaster_GiveExpShare
-    setflag FLAG_MET_BATTLE_MASTER
+    call Common_EventScript_PkmnCenterBattleMaster_GiveExpShare
     goto Common_EventScript_PkmnCenterBattleMaster
 
 Common_EventScript_PkmnCenterBattleMaster_GiveExpShare::
