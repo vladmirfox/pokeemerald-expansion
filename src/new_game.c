@@ -45,11 +45,14 @@
 #include "mystery_gift.h"
 #include "union_room_chat.h"
 #include "constants/items.h"
+#include "script_pokemon_util.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
 static void ClearFrontierRecord(void);
 static void WarpToTruck(void);
+static void WarpToStartingEliteFour(void);
+static void GiveChampionshipTeamToPlayer(void);
 static void ResetMiniGamesRecords(void);
 
 EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
@@ -130,6 +133,23 @@ static void WarpToTruck(void)
     WarpIntoMap();
 }
 
+static void WarpToStartingEliteFour(void)
+{
+    SetWarpDestination(MAP_GROUP(EVER_GRANDE_CITY_SIDNEYS_ROOM), MAP_NUM(EVER_GRANDE_CITY_SIDNEYS_ROOM), 0, -1, -1);
+    WarpIntoMap();
+}
+
+static void GiveChampionshipTeamToPlayer(void)
+{
+    //TODO WISHLIST Randomize this to make the first fight more interesting
+    ScriptGiveMon(SPECIES_ZACIAN, 100, ITEM_RUSTED_SWORD, 0, 0, 0);
+    ScriptGiveMon(SPECIES_ZYGARDE_COMPLETE, 100, ITEM_AIR_BALLOON, 0, 0, 0);
+    ScriptGiveMon(SPECIES_MEWTWO, 100, ITEM_CHOICE_SPECS, 0, 0, 0);
+    ScriptGiveMon(SPECIES_SHAYMIN_SKY, 100, ITEM_CHOICE_SCARF, 0, 0, 0);
+    ScriptGiveMon(SPECIES_RAIKOU, 100, ITEM_CELL_BATTERY, 0, 0, 0);
+    ScriptGiveMon(SPECIES_VOLCANION, 100, ITEM_MYSTIC_WATER, 0, 0, 0);
+}
+
 void Sav2_ClearSetDefault(void)
 {
     ClearSav2();
@@ -192,7 +212,9 @@ void NewGameInitData(void)
     InitDewfordTrend();
     ResetFanClub();
     ResetLotteryCorner();
-    WarpToTruck();
+    // Set Heal Point at the bottom of the elite four
+    GiveChampionshipTeamToPlayer();
+    WarpToStartingEliteFour();
     RunScriptImmediately(EventScript_ResetAllMapFlags);
     ResetMiniGamesRecords();
     InitUnionRoomChatRegisteredTexts();
