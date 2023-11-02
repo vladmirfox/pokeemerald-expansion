@@ -33,6 +33,7 @@ SINGLE_BATTLE_TEST("Chilly Reception switches the user out, even if the weather 
         TURN { MOVE(player, MOVE_CHILLY_RECEPTION); SEND_OUT(player, 1); }
     } SCENE {
         MESSAGE("Slowking is preparing to tell a chillingly bad joke!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHILLY_RECEPTION, player);
         MESSAGE("There is no relief from this heavy rain!");
         MESSAGE("Go! Slowpoke!");
     }
