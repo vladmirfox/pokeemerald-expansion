@@ -94,7 +94,7 @@ gText_BattleMasterIntroduction::
 
 gText_BattleMasterGiveExpShare::
     .string "Please…\n"
-    .string "Take this.\p"
+    .string "Take this.$"
 
 gText_BattleMasterPostExpShare::
     .string "This item will assist you\n"
