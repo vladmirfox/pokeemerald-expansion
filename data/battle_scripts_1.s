@@ -477,7 +477,7 @@ BattleScript_EffectChillyReception::
 	ppreduce
 	attackanimation
 	waitanimation
-	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_SUN_PRIMAL, BattleScript_ExtremelyHarshSunlightWasNotLessenedRet
+	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_SUN_PRIMAL, BattleScript_EffectChillyReceptionBlockedByPrimalSun
 	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_RAIN_PRIMAL, BattleScript_EffectChillyReceptionBlockedByPrimalRain
 	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_STRONG_WINDS, BattleScript_EffectChillyReceptionBlockedByStrongWinds
 	setsnow
@@ -492,8 +492,6 @@ BattleScript_EffectChillyReceptionBlockedByPrimalRain:
 BattleScript_EffectChillyReceptionBlockedByStrongWinds:
 	call BattleScript_MysteriousAirCurrentBlowsOnRet
 	goto BattleScript_MoveSwitch
-BattleScript_EffectChillyReceptionEnd:
-	end
 
 BattleScript_CheckPrimalWeather:
 	jumpifhalfword CMP_COMMON_BITS, gBattleWeather, B_WEATHER_SUN_PRIMAL, BattleScript_ExtremelyHarshSunlightWasNotLessened
@@ -502,11 +500,11 @@ BattleScript_CheckPrimalWeather:
 	return
 
 BattleScript_MoveSwitch:
-	jumpifbattletype BATTLE_TYPE_ARENA, BattleScript_MoveEnd
-	jumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_MoveEnd
+	jumpifbattletype BATTLE_TYPE_ARENA, BattleScript_MoveSwitchEnd
+	jumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_MoveSwitchEnd
 	printstring STRINGID_PKMNWENTBACK
 	waitmessage B_WAIT_TIME_SHORT
-	openpartyscreen BS_ATTACKER, BattleScript_MoveEnd
+	openpartyscreen BS_ATTACKER, BattleScript_MoveSwitchEnd
 	switchoutabilities BS_ATTACKER
 	waitstate
 	switchhandleorder BS_ATTACKER, 2
@@ -522,7 +520,7 @@ BattleScript_MoveSwitch:
 	waitstate
 	switchineffects BS_ATTACKER
 BattleScript_MoveSwitchEnd:
-	goto BattleScript_MoveEnd
+	end
 
 BattleScript_EffectSaltCure:
 	call BattleScript_EffectHit_Ret
@@ -1653,9 +1651,11 @@ BattleScript_EffectPartingShotTryAtk:
 BattleScript_EffectPartingShotTrySpAtk:
 	playstatchangeanimation BS_TARGET, BIT_SPATK, STAT_CHANGE_NEGATIVE
 	setstatchanger STAT_SPATK, 1, TRUE
-	statbuffchange STAT_CHANGE_ALLOW_PTR, BattleScript_MoveSwitch
+	statbuffchange STAT_CHANGE_ALLOW_PTR, BattleScript_EffectPartingShotSwitch
 	printfromtable gStatDownStringIds
 	waitmessage B_WAIT_TIME_LONG
+BattleScript_EffectPartingShotSwitch:
+	moveendall
 	goto BattleScript_MoveSwitch
 BattleScript_PartingShotEnd:
 	end
