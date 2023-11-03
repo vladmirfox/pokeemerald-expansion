@@ -6430,39 +6430,51 @@ static void AnimHornHit_Step(struct Sprite *sprite)
         DestroyAnimSprite(sprite);
 }
 
-void AnimTask_DoubleTeam(u8 taskId)
+void PrepareDoubleTeamAnim(u32 taskId, u32 animBattler, bool32 forAllySwitch)
 {
-    u16 i;
-    int obj;
-    u16 r3;
-    u16 r4;
+    s32 i, spriteId;
+    u16 palOffsetBattler, palOffsetSpoon;
     struct Task *task = &gTasks[taskId];
-    task->data[0] = GetAnimBattlerSpriteId(ANIM_ATTACKER);
-    task->data[1] = AllocSpritePalette(ANIM_TAG_BENT_SPOON);
-    r3 = OBJ_PLTT_ID(task->data[1]);
-    r4 = OBJ_PLTT_ID2(gSprites[task->data[0]].oam.paletteNum);
-    for (i = 1; i < 16; i++)
-        gPlttBufferUnfaded[r3 + i] = gPlttBufferUnfaded[r4 + i];
 
-    BlendPalette(r3, 16, 11, RGB_BLACK);
+    task->data[0] = GetAnimBattlerSpriteId(animBattler);
+    task->data[1] = AllocSpritePalette(ANIM_TAG_BENT_SPOON);
+    task->data[4] = GetAnimBattlerId(animBattler);
+    task->data[5] = forAllySwitch;
+    palOffsetSpoon = OBJ_PLTT_ID(task->data[1]);
+    palOffsetBattler = OBJ_PLTT_ID2(gSprites[task->data[0]].oam.paletteNum);
+    for (i = 1; i < 16; i++)
+        gPlttBufferUnfaded[palOffsetSpoon + i] = gPlttBufferUnfaded[palOffsetBattler + i];
+
+    BlendPalette(palOffsetSpoon, 16, 11, RGB_BLACK);
     task->data[3] = 0;
-    i = 0;
-    while (i < 2 && (obj = CloneBattlerSpriteWithBlend(0)) >= 0)
+    for (i = 0; i < ((forAllySwitch == TRUE) ? 1 : 2); i++)
     {
-        gSprites[obj].oam.paletteNum = task->data[1];
-        gSprites[obj].data[0] = 0;
-        gSprites[obj].data[1] = i << 7;
-        gSprites[obj].data[2] = taskId;
-        gSprites[obj].callback = AnimDoubleTeam;
+        spriteId = CloneBattlerSpriteWithBlend(animBattler);
+        if (spriteId < 0)
+            break;
+        gSprites[spriteId].oam.paletteNum = task->data[1];
+        gSprites[spriteId].data[0] = 0;
+        gSprites[spriteId].data[1] = i << 7;
+        gSprites[spriteId].data[2] = taskId;
+        // Which direction
+        if (gBattleAnimAttacker & BIT_FLANK)
+            gSprites[spriteId].data[6] = (animBattler != ANIM_ATTACKER);
+        else
+            gSprites[spriteId].data[6] = (animBattler == ANIM_ATTACKER);
+        gSprites[spriteId].callback = AnimDoubleTeam;
         task->data[3]++;
-        i++;
     }
 
     task->func = AnimTask_DoubleTeam_Step;
-    if (GetBattlerSpriteBGPriorityRank(gBattleAnimAttacker) == 1)
+    if (GetBattlerSpriteBGPriorityRank(task->data[4]) == 1)
         ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG1_ON);
     else
         ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
+}
+
+void AnimTask_DoubleTeam(u8 taskId)
+{
+    PrepareDoubleTeamAnim(taskId, ANIM_ATTACKER, FALSE);
 }
 
 static void AnimTask_DoubleTeam_Step(u8 taskId)
@@ -6470,12 +6482,20 @@ static void AnimTask_DoubleTeam_Step(u8 taskId)
     struct Task *task = &gTasks[taskId];
     if (!task->data[3])
     {
-        if (GetBattlerSpriteBGPriorityRank(gBattleAnimAttacker) == 1)
+        if (GetBattlerSpriteBGPriorityRank(task->data[4]) == 1)
             SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG1_ON);
         else
             SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
 
         FreeSpritePaletteByTag(ANIM_TAG_BENT_SPOON);
+        // Swap attacker and partner
+        if (task->data[5] && task->data[4] == BATTLE_PARTNER(gBattlerAttacker))
+        {
+            s32 temp;
+            u32 partner = BATTLE_PARTNER(gBattlerAttacker);
+            SWAP(gSprites[gBattlerSpriteIds[gBattlerAttacker]].x, gSprites[gBattlerSpriteIds[partner]].x, temp);
+            SWAP(gSprites[gBattlerSpriteIds[gBattlerAttacker]].x2, gSprites[gBattlerSpriteIds[partner]].x2, temp);
+        }
         DestroyAnimVisualTask(taskId);
     }
 }
@@ -6499,7 +6519,24 @@ static void AnimDoubleTeam(struct Sprite *sprite)
         sprite->data[5] = gSineTable[sprite->data[0]] / 13;
         sprite->data[1] = (sprite->data[1] + sprite->data[5]) & 0xFF;
         sprite->x2 = Sin(sprite->data[1], sprite->data[4]);
+        if (gTasks[sprite->data[2]].data[5]) // Ally Switch
+        {
+            if (sprite->data[6])
+                sprite->x2 = abs(sprite->x2);
+            else
+                sprite->x2 = -(abs(sprite->x2));
+        }
     }
+}
+
+void AnimTask_AllySwitchAttacker(u8 taskId)
+{
+    PrepareDoubleTeamAnim(taskId, ANIM_ATTACKER, TRUE);
+}
+
+void AnimTask_AllySwitchPartner(u8 taskId)
+{
+    PrepareDoubleTeamAnim(taskId, ANIM_ATK_PARTNER, TRUE);
 }
 
 static void AnimSuperFang(struct Sprite *sprite)
