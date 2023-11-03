@@ -979,7 +979,7 @@ gTVPokemonTodaySuccessfulText04::
 gTVPokemonTodaySuccessfulText05::
 	.string "BIG SIS: {STR_VAR_1}'s {STR_VAR_2} is a\n"
 	.string "memorable Pokémon because it took an\l"
-	.string "invaluable MASTER BALL to catch!\p"
+	.string "invaluable MASTER Ball to catch!\p"
 	.string "BIG BRO: Wow! That's mega-awesome!\p"
 	.string "BIG SIS: {STR_VAR_1} must have really\n"
 	.string "wanted that {STR_VAR_2}, for sure!$"
@@ -1387,7 +1387,7 @@ gTVBreakingNewsText02::
 	.string "the Pokémon {STR_VAR_3}.$"
 
 gTVBreakingNewsText03::
-	.string "In the battle, the number of POKé\n"
+	.string "In the battle, the number of Poké\n"
 	.string "BALLS thrown by the Trainer was {STR_VAR_1}.\p"
 	.string "Ultimately, the rare Pokémon was\n"
 	.string "caught by the {STR_VAR_2} used last.$"
@@ -2186,7 +2186,7 @@ TVSecretBaseSecrets_Text_UsedTV::
 	.string "Looks like we have a big fan of TV!$"
 
 TVSecretBaseSecrets_Text_UsedMudBall::
-	.string "The visitor stomped on a MUD BALL!\p"
+	.string "The visitor stomped on a MUD Ball!\p"
 	.string "The visitor looks delighted!$"
 
 TVSecretBaseSecrets_Text_UsedBag::
@@ -2737,7 +2737,7 @@ GabbyAndTy_Text_YouStompedUsInterviewAgain:
 
 GabbyAndTy_Text_YouThrewABallAtUsInterviewAgain:
 	.string "The last time we battled, didn't you\n"
-	.string "throw a POKé BALL at us?\p"
+	.string "throw a Poké Ball at us?\p"
 	.string "We were shocked! So we told everyone,\n"
 	.string "just everyone, about it!\p"
 	.string "Anyway, what do you think?\n"
@@ -2889,7 +2889,7 @@ gTVInSearchOfTrainersText04::
 
 gTVInSearchOfTrainersText05::
 	.string "There's only one thing to be said.\n"
-	.string "Don't you dare throw a POKé BALL during\l"
+	.string "Don't you dare throw a Poké Ball during\l"
 	.string "a Trainer battle!\p"
 	.string "{PLAYER} is certainly strong, but has\n"
 	.string "no clue about the basic rules.\p"

@@ -118,7 +118,7 @@ Route102_Text_ImNotVeryTall:
 Route102_Text_CatchWholeBunchOfPokemon:
 	.string "There's this big tree back here\n"
 	.string "full of SEDOT.\p"
-	.string "I should get more POKéBALLs!$"
+	.string "I should get more PokéBALLs!$"
 
 Route102_Text_RouteSignOldale:
 	.string "ROUTE 102\n"

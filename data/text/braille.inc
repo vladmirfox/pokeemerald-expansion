@@ -106,7 +106,7 @@ IslandCave_Braille_RunLapAroundWall:
 	brailleformat 5, 0, 25, 19, 8, 3
 	.braille "STAY CLOSE\n"
 	.braille "TO THE WALL.\n"
-	.braille "RUN AROUND\n"
+	.braille "Run AROUND\n"
 	.braille "ONE LAP.$"
 
 AncientTomb_Braille_ShineInTheMiddle:

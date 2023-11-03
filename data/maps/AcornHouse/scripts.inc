@@ -65,7 +65,7 @@ AcornHouse_Text_ThisIsntAMon:
 
 AcornHouse_Text_YouWontTradeMe:
 	.string "No? Guess I'll have to put down\n"
-	.string "my tools, and get my POKéBALLS.$"
+	.string "my tools, and get my PokéBALLS.$"
 
 AcornHouse_Text_ThankYouForTheSeedot:
 	.string "That BELLSPROUT came with me\n"

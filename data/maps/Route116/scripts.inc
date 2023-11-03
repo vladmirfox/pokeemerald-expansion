@@ -444,24 +444,24 @@ Route116_Text_ThankYouTokenOfAppreciation:
 	.string "For you, the most wonderful Trainer,\n"
 	.string "I bear good news!\p"
 	.string "Recently, our company developed\n"
-	.string "a new kind of POKé BALL.\p"
+	.string "a new kind of Poké Ball.\p"
 	.string "As a token of our appreciation, this\n"
 	.string "is our gift to our wonderful Trainer!$"
 
 Route116_Text_NewBallAvailableAtMart:
-	.string "Our new POKé BALL will be available\n"
+	.string "Our new Poké Ball will be available\n"
 	.string "at the Pokémon MART in RUSTBORO.\p"
 	.string "Please do try it out!\n"
 	.string "Thank you and bye-bye!$"
 
 Route116_Text_BagIsJamPacked:
 	.string "Your Bag is jam-packed.\n"
-	.string "I can't give you this REPEAT BALL.$"
+	.string "I can't give you this REPEAT Ball.$"
 
 Route116_Text_TokenOfAppreciation:
 	.string "As a token of our appreciation for\n"
 	.string "your delivering our package, I have\l"
-	.string "a gift of a new kind of POKé BALL\l"
+	.string "a gift of a new kind of Poké Ball\l"
 	.string "for our most wonderful Trainer!$"
 
 Route116_Text_CanYouHelpMeFindGlasses:

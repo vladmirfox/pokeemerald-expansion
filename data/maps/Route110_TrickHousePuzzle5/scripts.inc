@@ -932,7 +932,7 @@ Route110_TrickHousePuzzle5_Text_Mechadoll1Quiz3:
 
 Route110_TrickHousePuzzle5_Text_CorrectGoThrough:
 	.string "CONGRATULATIONS. CORRECT YOU ARE.\n"
-	.string "GO THROUGH. PLEASE.$"
+	.string "GO THROUGH. Please.$"
 
 Route110_TrickHousePuzzle5_Text_DisappointmentError:
 	.string "BZZZT. DISAPPOINTMENT.\n"
@@ -978,7 +978,7 @@ Route110_TrickHousePuzzle5_Text_Mechadoll3Quiz1:
 
 Route110_TrickHousePuzzle5_Text_Mechadoll3Quiz2:
 	.string "MECHADOLL 3 QUIZ.\p"
-	.string "Sell one GREAT BALL and buy\n"
+	.string "Sell one GREAT Ball and buy\n"
 	.string "one POTION. How much money remains?$"
 
 Route110_TrickHousePuzzle5_Text_Mechadoll3Quiz3:

@@ -165,7 +165,7 @@ LilycoveCity_DepartmentStore_1F_Text_FloorNamesSign:
 	.string "2F: Trainer's ZONE\p"
 	.string "3F: Battle COLLECTION\p"
 	.string "4F: TM CORNER\p"
-	.string "5F: POKé DOLL FLOOR\p"
+	.string "5F: Poké DOLL FLOOR\p"
 	.string "ROOFTOP: ROOFTOP PLAZA$"
 
 @ Unused

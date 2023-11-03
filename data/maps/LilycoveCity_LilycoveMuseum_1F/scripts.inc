@@ -250,7 +250,7 @@ LilycoveCity_LilycoveMuseum_Text_BirdPokemonSculptureReplica:
 	.string "It depicts an ancient BIRD Pokémon.$"
 
 LilycoveCity_LilycoveMuseum_1F_Text_BigPokeBallCarvedFromStone:
-	.string "It's a big POKé BALL carved from\n"
+	.string "It's a big Poké Ball carved from\n"
 	.string "a black stone.\p"
 	.string "It was apparently used in festivals\n"
 	.string "in the olden days.$"

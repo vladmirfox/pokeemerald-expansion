@@ -1038,7 +1038,7 @@ Route104_Text_WhatsItLikeAtBottomOfSea:
 	.string "of the sea?$"
 
 Route104_Text_ThrowBallAtWeakenedPokemon:
-	.string "If you're going to throw a POKé BALL,\n"
+	.string "If you're going to throw a Poké Ball,\n"
 	.string "weaken the wild Pokémon first.\p"
 	.string "It will be easier to catch if it's been\n"
 	.string "poisoned, burned, or lulled to sleep.$"
@@ -1160,7 +1160,7 @@ Route104_Text_BrendanWeShouldRegister:
 	.string "Cool, you had DEVON install the MATCH\n"
 	.string "CALL system on your PokéNav!\p"
 	.string "Let's register each other in our\n"
-	.string "POKéNAVS so we can keep in touch.$"
+	.string "PokéNAVS so we can keep in touch.$"
 
 Route104_Text_RegisteredBrendan:
 	.string "{PLAYER} registered Brendan\n"
