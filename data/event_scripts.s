@@ -1061,3 +1061,9 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/text/birch_speech.inc"
 
 	.include "data/maps/CozyHome/scripts.inc"
+
+	.include "data/maps/Basement/scripts.inc"
+
+	.include "data/maps/BasementTunnel/scripts.inc"
+
+	.include "data/maps/TownOfTheSleepingCat/scripts.inc"

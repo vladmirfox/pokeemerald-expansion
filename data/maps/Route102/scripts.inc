@@ -107,3 +107,36 @@ Route102_Text_RouteSignOldale:
 Route102_Text_RouteSignPetalburg:
 	.string "ROUTE 102\n"
 	.string "{LEFT_ARROW} PETALBURG CITY$"
+
+Route102_EventScript_ChadmandarBattle::
+	trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_1, chadIntro, chadOutro
+	end
+
+
+Route102_EventScript_TroyBattle::
+	trainerbattle_single TRAINER_TROY, troyIntro, troyOutro
+	end
+
+
+Route102_EventScript_TestBattle::
+	trainerbattle_single TRAINER_DRAKE, testIntro, testOutro
+	end
+
+
+chadIntro::
+	.string "Hey Emily! It's me, Chad!$"
+
+chadOutro::
+	.string "That's one powerful cat!$"
+
+testIntro::
+	.string "Test Battle Intro!$"
+
+testOutro::
+	.string "Test Outro!$"
+
+troyIntro::
+	.string "Would you like a bug fact?$"
+
+troyOutro::
+	.string "Most species of bee's are solitary bee's!$"

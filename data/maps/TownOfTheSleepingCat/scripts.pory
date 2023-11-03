@@ -1,0 +1,37 @@
+mapscripts TownOfTheSleepingCat_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if(!(flag(FLAG_PICK_UP_MEI))){
+            setvar(VAR_LITTLEROOT_LEAVE, 0)
+        }
+    }
+}
+
+script TOTSC_EventScript_HouseSign {
+    lockall
+    msgbox("Lin-Bolaris House")
+    releaseall
+}
+
+script TOTSC_EventScript_TownSign {
+    lockall
+    msgbox("Town of the Sleeping Cat")
+    releaseall
+}
+
+script TOTSC_Trigger_BlockExit {
+    lockall
+    msgbox("You can't leave on your own!")
+    applymovement(OBJ_EVENT_ID_PLAYER, StopEmily)
+    waitmovement(0)
+    releaseall
+}
+
+script setVarState {
+    setvar(VAR_LITTLEROOT_LEAVE, 0)
+    releaseall
+}
+
+
+movement StopEmily {
+    walk_up
+}

@@ -41,10 +41,10 @@
 #define FLAG_TEMP_1F     (TEMP_FLAGS_START + 0x1F)
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 
-#define FLAG_UNUSED_0x020    0x20 // Unused Flag
-#define FLAG_UNUSED_0x021    0x21 // Unused Flag
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
+#define FLAG_PICK_UP_MEI     0x20 // Flag if Mei has been picked up
+#define FLAG_FIRST_BATTLE    0x21 // FirstTrainerFlag
+#define FLAG_DEFEATED_AMELIA_1   0x22 // Flag for First Amelia Fight
+#define FLAG_JOHN_GIVE_DEX    0x23 // Flag for John giving the pokedex to emily
 #define FLAG_UNUSED_0x024    0x24 // Unused Flag
 #define FLAG_UNUSED_0x025    0x25 // Unused Flag
 #define FLAG_UNUSED_0x026    0x26 // Unused Flag

@@ -197,6 +197,11 @@ gCryTable::
 	cry Cry_Quagsire
 	cry Cry_Espeon
 	cry Cry_Umbreon
+	cry Cry_Mei
+	cry Cry_Zuko
+	cry Cry_Stinky
+	cry Cry_Sokka
+	cry Cry_Iroh
 	cry Cry_Murkrow
 	cry Cry_Slowking
 	cry Cry_Misdreavus
@@ -2319,6 +2324,11 @@ gCryTable_Reverse::
 	cry_reverse Cry_Quagsire
 	cry_reverse Cry_Espeon
 	cry_reverse Cry_Umbreon
+	cry_reverse Cry_Mei
+	cry_reverse Cry_Sokka
+	cry_reverse Cry_Iroh
+    cry_reverse Cry_Zuko
+    cry_reverse Cry_Stinky
 	cry_reverse Cry_Murkrow
 	cry_reverse Cry_Slowking
 	cry_reverse Cry_Misdreavus

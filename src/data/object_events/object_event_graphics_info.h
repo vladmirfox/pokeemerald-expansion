@@ -3097,14 +3097,14 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_AzurillDoll = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SkittyDoll = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_NPC_1,
+    .paletteTag = OBJ_EVENT_PAL_TAG_NPC_3,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 128,
     .width = 16,
     .height = 16,
-    .paletteSlot = PALSLOT_NPC_1,
+    .paletteSlot = PALSLOT_NPC_3,
     .shadowSize = SHADOW_SIZE_S,
-    .inanimate = TRUE,
+    .inanimate = FALSE,
     .disableReflectionPaletteLoad = FALSE,
     .tracks = TRACKS_NONE,
     .oam = &gObjectEventBaseOam_16x16,
@@ -3914,12 +3914,12 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Registeel = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Skitty = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_NPC_1,
+    .paletteTag = OBJ_EVENT_PAL_TAG_NPC_3,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 128,
     .width = 16,
     .height = 16,
-    .paletteSlot = PALSLOT_NPC_1,
+    .paletteSlot = PALSLOT_NPC_3,
     .shadowSize = SHADOW_SIZE_M,
     .inanimate = FALSE,
     .disableReflectionPaletteLoad = FALSE,
@@ -3929,6 +3929,25 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Skitty = {
     .anims = sAnimTable_Standard,
     .images = sPicTable_Skitty,
     .affineAnims = gDummySpriteAffineAnimTable,
+};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mei = {
+        .tileTag = TAG_NONE,
+        .paletteTag = OBJ_EVENT_PAL_TAG_MEI,
+        .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
+        .size = 128,
+        .width = 16,
+        .height = 16,
+        .paletteSlot = PALSLOT_NPC_SPECIAL,
+        .shadowSize = SHADOW_SIZE_M,
+        .inanimate = FALSE,
+        .disableReflectionPaletteLoad = FALSE,
+        .tracks = TRACKS_FOOT,
+        .oam = &gObjectEventBaseOam_16x16,
+        .subspriteTables = sOamTables_16x16,
+        .anims = sAnimTable_Standard,
+        .images = sPicTable_Mei,
+        .affineAnims = gDummySpriteAffineAnimTable,
 };
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kecleon = {

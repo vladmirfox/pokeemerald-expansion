@@ -5,7 +5,18 @@
 Route104_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route104_OnFrame
 	map_script MAP_SCRIPT_ON_TRANSITION, Route104_OnTransition
+	map_script MAP_SCRIPT_ON_TRANSITION, Route104_MapScripts_MAP_SCRIPT_ON_TRANSITION
 	.byte 0
+
+Route104_MapScripts_MAP_SCRIPT_ON_TRANSITION:
+	compare VAR_AMELIA_RIVAL, 0
+	goto_if_eq Route104_MapScripts_MAP_SCRIPT_ON_TRANSITION_1
+	setflag FLAG_DEFEATED_AMELIA_1
+	return
+
+Route104_MapScripts_MAP_SCRIPT_ON_TRANSITION_1:
+	clearflag FLAG_DEFEATED_AMELIA_1
+	return
 
 Route104_OnFrame:
 	map_script_2 VAR_BOARD_BRINEY_BOAT_STATE, 1, Route104_EventScript_StartSailToDewford
@@ -949,6 +960,8 @@ Route104_EventScript_Cindy::
 	release
 	end
 
+
+
 Route104_EventScript_TryRegisterCindyAfterBattle::
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
@@ -1170,3 +1183,99 @@ Route104_Text_BrendanPostBattle:
 	.string "making POKéMON battle.\p"
 	.string "Like MR. BRINEY, it's important to\n"
 	.string "become friends with your POKéMON.$"
+
+Route104_EventScript_AmeliaBattle1::
+	lockall
+	applymovement 26, ameliaMeet1
+	waitmovement 0
+	releaseall
+	return
+
+
+Route104_EventScript_AmeliaBattle2::
+	lockall
+	applymovement 26, ameliaMeet2
+	waitmovement 0
+	releaseall
+	return
+
+
+Route104_EventScript_AmeliaBattle3::
+	lockall
+	applymovement 26, ameliaMeet3
+	waitmovement 0
+	releaseall
+	return
+
+
+Route104_EventScript_startRivalBattle::
+	trainerbattle_single TRAINER_AMELIA_1, ameliaIntro, ameliaOutro, endRivalBattle
+	return
+
+
+endRivalBattle::
+	lockall
+	applymovement 26, ameliaLeave1
+	waitmovement 0
+	setflag FLAG_DEFEATED_AMELIA_1
+	setvar VAR_AMELIA_RIVAL, 1
+	releaseall
+	return
+
+
+ameliaMeet1:
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+ameliaMeet2:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+ameliaMeet3:
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	step_end
+
+ameliaLeave1:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+ameliaIntro::
+	.string "BEHOLD! My Queen Zuko!$"
+
+ameliaOutro::
+	.string "You got lucky!$"

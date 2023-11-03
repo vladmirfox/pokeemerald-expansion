@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../../C Program"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"linkedlist": "c",
+			"unistd.h": "c",
+			"hencode": "c",
+			"mypwc": "c",
+			"stat.h": "c",
+			"types.h": "c",
+			"stdio.h": "c",
+			"string.h": "c"
+		}
+	}
+}

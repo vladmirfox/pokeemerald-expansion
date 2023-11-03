@@ -1,0 +1,126 @@
+mapscripts CozyHome_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if(var(VAR_LITTLEROOT_LEAVE) == 0){
+            clearflag(FLAG_JOHN_GIVE_DEX)
+        } else {
+            setflag(FLAG_JOHN_GIVE_DEX)
+        }
+    }
+}
+
+script doll_Interact {
+    lockall
+    msgbox("An AZURILL doll!")
+    releaseall
+}
+
+script hearCrash {
+    lockall
+    msgbox("You hear a loud crash from downstairs!")
+    setflag(FLAG_JOHN_GIVE_DEX)
+    releaseall
+}
+
+script checkCrash {
+    lockall
+    msgbox("I should go meet JOHN downstairs...")
+    applymovement(OBJ_EVENT_ID_PLAYER, stopEmilyCrash)
+    waitmovement(0)
+    releaseall
+}
+
+script giveEmilyDex1 {
+    lock
+    applymovement(1, runToEmily1)
+    waitmovement(0)
+    call(GivePokedex)
+    msgbox(format("JOHN: I've got something else for you downstairs... Race you!"))
+    applymovement(1, runDownstairs)
+    waitmovement(0)
+    removeobject(1)
+    applymovement(OBJ_EVENT_ID_PLAYER, emilyStepForward)
+    waitmovement(0)
+    setvar(VAR_LITTLEROOT_LEAVE, 1)
+    releaseall
+}
+
+script giveEmilyDex2 {
+    lock
+    applymovement(1, runToEmily2)
+    waitmovement(0)
+    call(GivePokedex)
+    msgbox(format("JOHN: I've got something else for you downstairs... Race you!"))
+    applymovement(1, runDownstairs)
+    waitmovement(0)
+    removeobject(1)
+    applymovement(OBJ_EVENT_ID_PLAYER, emilyStepForward)
+    waitmovement(0)
+    setvar(VAR_LITTLEROOT_LEAVE, 1)
+    releaseall
+}
+
+script giveEmilyDex3 {
+    lock
+    applymovement(1, runToEmily3)
+    waitmovement(0)
+    call(GivePokedex)
+    msgbox(format("JOHN: I've got something else for you downstairs... Race you!"))
+    applymovement(1, runDownstairs)
+    waitmovement(0)
+    removeobject(1)
+    applymovement(OBJ_EVENT_ID_PLAYER, emilyStepForward)
+    waitmovement(0)
+    setvar(VAR_LITTLEROOT_LEAVE, 1)
+    releaseall
+}
+
+movement runToEmily1 {
+    walk_down * 3
+    walk_left * 3
+}
+
+movement runToEmily2 {
+    walk_down * 4
+    walk_left * 3
+}
+
+movement runToEmily3 {
+    walk_down * 5
+    walk_left * 3
+}
+
+movement runDownstairs {
+    walk_right * 3
+    walk_up * 7
+}
+
+movement stopEmilyCrash {
+    walk_right
+}
+movement emilyStepForward{
+    walk_right * 3
+}
+
+script GivePokedex{
+    lock
+    msgbox(TakePokedex, MSGBOX_DEFAULT)
+    playfanfare(MUS_OBTAIN_ITEM)
+	message("{PLAYER} received the POKéDEX!$")
+	waitfanfare
+    closemessage
+	setflag(FLAG_RECEIVED_POKEDEX_FROM_BIRCH)
+	setflag(FLAG_SYS_POKEDEX_GET)
+	special(SetUnlockedPokedexFlags)
+    msgbox("Also take these with you", MSGBOX_DEFAULT)
+    giveitem(ITEM_POKE_BALL, 5)
+    msgbox(format("These allow you to catch your own Pokemon in tall grass so you can collect research for the Pokedex"), MSGBOX_DEFAULT)
+    waitmessage
+    release
+	return
+}
+
+text TakePokedex{
+    "John: Here, {PLAYER}, I ordered this for my\n"
+	"research, but I think you should have\l"
+	"this POKéDEX."
+}

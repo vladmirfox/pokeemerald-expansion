@@ -4416,10 +4416,40 @@
       "name": "CozyHome_Layout",
       "width": 20,
       "height": 20,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_BrendansMaysHouse",
       "border_filepath": "data/layouts/CozyHome/border.bin",
       "blockdata_filepath": "data/layouts/CozyHome/map.bin"
+    },
+    {
+      "id": "LAYOUT_BASEMENT",
+      "name": "Basement_Layout",
+      "width": 20,
+      "height": 10,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/Basement/border.bin",
+      "blockdata_filepath": "data/layouts/Basement/map.bin"
+    },
+    {
+      "id": "LAYOUT_BASEMENT_TUNNEL",
+      "name": "BasementTunnel_Layout",
+      "width": 10,
+      "height": 10,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/BasementTunnel/border.bin",
+      "blockdata_filepath": "data/layouts/BasementTunnel/map.bin"
+    },
+    {
+      "id": "LAYOUT_TOWN_OF_THE_SLEEPING_CAT",
+      "name": "TownOfTheSleepingCat_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/TownOfTheSleepingCat/border.bin",
+      "blockdata_filepath": "data/layouts/TownOfTheSleepingCat/map.bin"
     }
   ]
 }

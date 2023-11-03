@@ -1020,8 +1020,15 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
 `
-script LittlerootTown_EventScript_EmilyHouseSign{
+script LittlerootTown_EventScript_NewSign {
     lockall
     msgbox("Emily's House")
+    releaseall
+}
+
+script LittlerootTown_EventScript_EmilyBrother {
+    lockall
+    msgbox("I heard a loud crash from over by\n"
+    "your house!")
     releaseall
 }

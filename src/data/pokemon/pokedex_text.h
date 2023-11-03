@@ -1186,10 +1186,10 @@ const u8 gUmbreonPokedexText[] = _(
     "and waits for its foes to move. The rings\n"
     "on its body glow when it leaps to attack.");
 
-const u8 gMeiPokedexText[] = _(
-    "Round, Anti-Social, but extremely loyal. Cautious around Strangers\n"
-    "but is a lifelong partner to those she trusts\n"
-    "Have to emphasize how round she is");
+const u8 gZukoPokedexText[] = _(
+    "A mighty and fierce fire cat.\n"
+    "Kittens fear her, Amelia loves her\n"
+    "Not a cat to underestimate");
 
 const u8 gMurkrowPokedexText[] = _(
     "Murkrow were feared as the alleged\n"
@@ -5403,4 +5403,21 @@ const u8 gEnamorusPokedexText[] = _(
     "winter. According to legend, this\n"
     "Pokémon's love gives rise to the\n"
     "budding of fresh life across the land.");
+
+const u8 gMeiPokedexText[] = _(
+    "Round, Anti-Social, but extremely\n"
+    "loyal. A lifelong partner \n"
+    "to those she trusts.");
+
+const u8 gStinkyPokedexText[] = _(
+    "Round, Anti-Social, but extremely\n"
+    "loyal. A lifelong partner \n"
+    "to those she trusts.");
+const u8 gSokkaPokedexText[] = _(
+    "Nosey AND Stinky\n"
+);
+
+const u8 gIrohPokedexText[] = _(
+    "Not potty trained\n"
+);
 #endif

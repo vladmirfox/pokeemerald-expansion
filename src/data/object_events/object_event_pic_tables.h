@@ -19,6 +19,7 @@ static const struct SpriteFrameImage sPicTable_BrendanNormal[] = {
     overworld_frame(gObjectEventPic_BrendanRunning, 2, 4, 8),
 };
 
+
 static const struct SpriteFrameImage sPicTable_BrendanMachBike[] = {
     overworld_frame(gObjectEventPic_BrendanMachBike, 4, 4, 0),
     overworld_frame(gObjectEventPic_BrendanMachBike, 4, 4, 1),
@@ -1783,6 +1784,18 @@ static const struct SpriteFrameImage sPicTable_Skitty[] = {
     overworld_frame(gObjectEventPic_Skitty, 2, 2, 1),
     overworld_frame(gObjectEventPic_Skitty, 2, 2, 2),
     overworld_frame(gObjectEventPic_Skitty, 2, 2, 2),
+};
+
+static const struct SpriteFrameImage sPicTable_Mei[] = {
+    overworld_frame(gObjectEventPic_MeiEvent, 2, 2, 0),
+    overworld_frame(gObjectEventPic_MeiEvent, 2, 2, 1),
+    overworld_frame(gObjectEventPic_MeiEvent, 2, 2, 2),
+    overworld_frame(gObjectEventPic_MeiEvent, 2, 2, 0),
+    overworld_frame(gObjectEventPic_MeiEvent, 2, 2, 0),
+    overworld_frame(gObjectEventPic_MeiEvent, 2, 2, 1),
+    overworld_frame(gObjectEventPic_MeiEvent, 2, 2, 1),
+    overworld_frame(gObjectEventPic_MeiEvent, 2, 2, 2),
+    overworld_frame(gObjectEventPic_MeiEvent, 2, 2, 2),
 };
 
 static const struct SpriteFrameImage sPicTable_Kecleon[] = {

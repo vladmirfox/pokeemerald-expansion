@@ -1176,9 +1176,26 @@ Cry_Umbreon::
 
     .align 2
 Cry_Mei::
-    .incbin "sound/direct_sound_samples/cries/umbreon.bin"
+    .incbin "sound/direct_sound_samples/cries/skitty.bin"
 
 	.align 2
+
+Cry_Zuko::
+    .incbin "sound/direct_sound_samples/cries/flareon.bin"
+    .align 2
+
+Cry_Stinky::
+    .incbin "sound/direct_sound_samples/cries/skitty.bin"
+    .align 2
+
+Cry_Sokka::
+    .incbin "sound/direct_sound_samples/cries/glaceon.bin"
+    .align 2
+
+Cry_Iroh::
+    .incbin "sound/direct_sound_samples/cries/flareon.bin"
+    .align 2
+
 Cry_Murkrow::
 	.incbin "sound/direct_sound_samples/cries/murkrow.bin"
 

@@ -1,0 +1,24 @@
+mapscripts BasementTunnel_MapScripts {}
+
+script BasementTunnel_EventScript_GetMei {
+    lockall
+    showmonpic(SPECIES_MEI, 10, 3)
+    msgbox("Would you like to rescue Mei Mei?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == YES)  {
+        givemon(SPECIES_MEI, 5, ITEM_MASTER_BALL)
+        if(var(VAR_RESULT) == MON_GIVEN_TO_PARTY){
+            playfanfare(MUS_OBTAIN_ITEM)
+            msgbox("Best Friend Obtained!")
+            removeobject(1)
+            setflag(FLAG_PICK_UP_MEI)
+            setvar(VAR_LITTLEROOT_LEAVE, 2)
+            setflag(FLAG_SYS_POKEMON_GET)
+        }
+    } else {
+        msgbox("Seems like a bad decision, but ok")
+    }
+    hidemonpic
+    waitmessage
+    releaseall
+    end
+}

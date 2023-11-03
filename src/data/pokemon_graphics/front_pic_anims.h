@@ -2305,6 +2305,14 @@ static const union AnimCmd sAnim_Espeon_1[] =
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_Iroh_1[] =
+{
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 25),
+    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd sAnim_Umbreon_1[] =
 {
     ANIMCMD_FRAME(1, 40),
@@ -5676,6 +5684,13 @@ static const union AnimCmd sAnim_Leafeon_1[] =
 
 static const union AnimCmd sAnim_Glaceon_1[] =
 {
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 36),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_Sokka_1[] = {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_FRAME(1, 36),
     ANIMCMD_FRAME(0, 10),
@@ -9470,6 +9485,19 @@ static const union AnimCmd sAnim_Mei_1[] = {
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_Zuko_1[] = {
+    ANIMCMD_FRAME(1, 40),
+    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_Stinky_1[] = {
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 35),
+    ANIMCMD_FRAME(0, 9),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd sAnim_Calyrex_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -11466,6 +11494,10 @@ SINGLE_ANIMATION(Regidrago);
 SINGLE_ANIMATION(Glastrier);
 SINGLE_ANIMATION(Spectrier);
 SINGLE_ANIMATION(Mei);
+SINGLE_ANIMATION(Zuko);
+SINGLE_ANIMATION(Stinky);
+SINGLE_ANIMATION(Iroh);
+SINGLE_ANIMATION(Sokka);
 SINGLE_ANIMATION(Calyrex);
 SINGLE_ANIMATION(Wyrdeer);
 SINGLE_ANIMATION(Kleavor);
@@ -11648,6 +11680,10 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
 {
     [SPECIES_NONE]        = sAnims_None,
     [SPECIES_MEI]         = sAnims_Mei,
+    [SPECIES_ZUKO]        = sAnims_Zuko,
+    [SPECIES_SOKKA]       = sAnims_Sokka,
+    [SPECIES_IROH]        = sAnims_Iroh,
+    [SPECIES_STINKY]      = sAnims_Stinky,
     [SPECIES_BULBASAUR]   = sAnims_Bulbasaur,
     [SPECIES_IVYSAUR]     = sAnims_Ivysaur,
     [SPECIES_VENUSAUR]    = sAnims_Venusaur,

@@ -1,0 +1,171 @@
+{
+  "id": "MAP_COZY_HOME",
+  "name": "CozyHome",
+  "layout": "LAYOUT_COZY_HOME",
+  "music": "MUS_LITTLEROOT",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_RED",
+      "x": 11,
+      "y": 14,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_JOHN_GIVE_DEX"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_AZURILL",
+      "x": 12,
+      "y": 2,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "doll_Interact",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 2,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_TOWN_OF_THE_SLEEPING_CAT",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 1,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_TOWN_OF_THE_SLEEPING_CAT",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 7,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_BASEMENT",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_LEAVE",
+      "var_value": "1",
+      "script": "hearCrash"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_LEAVE",
+      "var_value": "0",
+      "script": "giveEmilyDex3"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_LEAVE",
+      "var_value": "0",
+      "script": "giveEmilyDex2"
+    },
+    {
+      "type": "trigger",
+      "x": 7,
+      "y": 17,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_LEAVE",
+      "var_value": "0",
+      "script": "giveEmilyDex1"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_LEAVE",
+      "var_value": "1",
+      "script": "hearCrash"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_LEAVE",
+      "var_value": "1",
+      "script": "hearCrash"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_LEAVE",
+      "var_value": "1",
+      "script": "hearCrash"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_LEAVE",
+      "var_value": "0",
+      "script": "checkCrash"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 16,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_LEAVE",
+      "var_value": "1",
+      "script": "checkCrash"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 18,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_LEAVE",
+      "var_value": "1",
+      "script": "checkCrash"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 17,
+      "elevation": 0,
+      "var": "VAR_LITTLEROOT_LEAVE",
+      "var_value": "1",
+      "script": "checkCrash"
+    }
+  ],
+  "bg_events": [
+
+  ]
+}

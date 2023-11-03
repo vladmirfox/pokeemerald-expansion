@@ -1,0 +1,48 @@
+mapscripts Basement_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+     if(!(flag(FLAG_PICK_UP_MEI))){
+        setflag(FLAG_FIRST_BATTLE)
+        setvar(VAR_LITTLEROOT_LEAVE, 1)
+    }
+    else{
+        if(var(VAR_LITTLEROOT_LEAVE) == 2){
+            clearflag(FLAG_FIRST_BATTLE)
+            }
+    	}
+    }
+}
+
+script Basement_EventScript_FirstBattle {
+    trainerbattle_single(TRAINER_SAWYER_1, firstIntro, firstOutro, endFirstBattle)
+    end
+}
+
+script endFirstBattle {
+    lockall
+    msgbox(format("You win this time... But we captured John! Come with the cat and we will consider releasing him"))
+    applymovement(1, firstTrainerLeave)
+    waitmovement(0)
+    removeobject(1)
+    setflag(FLAG_FIRST_BATTLE)
+    setvar(VAR_LITTLEROOT_LEAVE, 3)
+    setVar(VAR_AMELIA_RIVAL, 0)
+    releaseall
+}
+
+movement firstTrainerLeave {
+    face_left
+    walk_left * 7
+    walk_down * 6
+}
+
+text firstIntro {
+    "You! Give me the cat!"
+}
+
+text firstOutro {
+    "How dare you!"
+}
+
+text firstPostBattle {
+    "You'll regret this!"
+}

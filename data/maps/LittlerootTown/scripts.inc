@@ -1019,3 +1019,23 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
 
+LittlerootTown_EventScript_NewSign::
+	lockall
+	msgbox LittlerootTown_EventScript_NewSign_Text_0
+	releaseall
+	return
+
+
+LittlerootTown_EventScript_EmilyBrother::
+	lockall
+	msgbox LittlerootTown_EventScript_EmilyBrother_Text_0
+	releaseall
+	return
+
+
+LittlerootTown_EventScript_NewSign_Text_0:
+	.string "Emily's House$"
+
+LittlerootTown_EventScript_EmilyBrother_Text_0:
+	.string "I heard a loud crash from over by\n"
+	.string "your house!$"

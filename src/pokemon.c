@@ -104,6 +104,7 @@ static const struct CombinedMove sCombinedMoves[2] =
 // Assigns all species to the Hoenn Dex Index (Summary No. for Hoenn Dex)
 static const u16 sSpeciesToHoennPokedexNum[NUM_SPECIES - 1] =
 {
+    SPECIES_TO_HOENN(MEI),
     SPECIES_TO_HOENN(TREECKO),
     SPECIES_TO_HOENN(GROVYLE),
     SPECIES_TO_HOENN(SCEPTILE),
@@ -333,11 +334,18 @@ static const u16 sSpeciesToHoennPokedexNum[NUM_SPECIES - 1] =
     SPECIES_TO_HOENN(RAYQUAZA),
     SPECIES_TO_HOENN(JIRACHI),
     SPECIES_TO_HOENN(DEOXYS),
+    SPECIES_TO_HOENN(STINKY),
+    SPECIES_TO_HOENN(IROH),
+    SPECIES_TO_HOENN(SOKKA),
 };
 
 // Assigns all species to the National Dex Index (Summary No. for National Dex)
 static const u16 sSpeciesToNationalPokedexNum[NUM_SPECIES - 1] =
 {
+    SPECIES_TO_NATIONAL(MEI),
+    SPECIES_TO_NATIONAL(STINKY),
+    SPECIES_TO_NATIONAL(SOKKA),
+    SPECIES_TO_NATIONAL(IROH),
     SPECIES_TO_NATIONAL(BULBASAUR),
     SPECIES_TO_NATIONAL(IVYSAUR),
     SPECIES_TO_NATIONAL(VENUSAUR),
@@ -535,7 +543,7 @@ static const u16 sSpeciesToNationalPokedexNum[NUM_SPECIES - 1] =
     SPECIES_TO_NATIONAL(QUAGSIRE),
     SPECIES_TO_NATIONAL(ESPEON),
     SPECIES_TO_NATIONAL(UMBREON),
-    SPECIES_TO_NATIONAL(MEI),
+    SPECIES_TO_NATIONAL(ZUKO),
     SPECIES_TO_NATIONAL(MURKROW),
     SPECIES_TO_NATIONAL(SLOWKING),
     SPECIES_TO_NATIONAL(MISDREAVUS),
@@ -1678,6 +1686,10 @@ static const u16 sSpeciesToNationalPokedexNum[NUM_SPECIES - 1] =
 // Assigns all Hoenn Dex Indexes to a National Dex Index
 static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
 {
+    HOENN_TO_NATIONAL(MEI),
+    HOENN_TO_NATIONAL(STINKY),
+    HOENN_TO_NATIONAL(SOKKA),
+    HOENN_TO_NATIONAL(IROH),
     HOENN_TO_NATIONAL(TREECKO),
     HOENN_TO_NATIONAL(GROVYLE),
     HOENN_TO_NATIONAL(SCEPTILE),
@@ -2160,8 +2172,12 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_WOOPER - 1]        = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_QUAGSIRE - 1]      = ANIM_H_STRETCH,
     [SPECIES_ESPEON - 1]        = ANIM_GROW_VIBRATE,
+    [SPECIES_IROH - 1]        = ANIM_GROW_VIBRATE,
     [SPECIES_UMBREON - 1]       = ANIM_V_SHAKE,
     [SPECIES_MEI - 1]           = ANIM_V_SHAKE,
+    [SPECIES_ZUKO -1]           = ANIM_V_SHAKE,
+    [SPECIES_STINKY- 1]         = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_SOKKA - 1]        =  ANIM_V_STRETCH,
     [SPECIES_MURKROW - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_SLOWKING - 1]      = ANIM_SHRINK_GROW,
     [SPECIES_MISDREAVUS - 1]    = ANIM_V_SLIDE_WOBBLE,

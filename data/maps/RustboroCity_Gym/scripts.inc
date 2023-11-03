@@ -176,13 +176,13 @@ RustboroCity_Gym_Text_MarcPostBattle:
 	.string "pick the ROCK type at her young age.$"
 
 RustboroCity_Gym_Text_RoxanneIntro:
-	.string "Hello, I am ROXANNE, the RUSTBORO\n"
+	.string "Hello, I am Allister, the RUSTBORO\n"
 	.string "POKéMON GYM LEADER.\p"
-	.string "I became a GYM LEADER so that I might\n"
-	.string "apply what I learned at the POKéMON\l"
-	.string "TRAINER'S SCHOOL in battle.\p"
-	.string "Would you kindly demonstrate how you\n"
-	.string "battle, and with which POKéMON?$"
+	.string "I became a GYM LEADER through sheer\n"
+	.string "determination and willpower.\l"
+	.string "check out my rocks!\p"
+	.string "Your cat stands no chance Emily!\n"
+	.string "Face my ROCKS!$"
 
 RustboroCity_Gym_Text_RoxanneDefeat:
 	.string "So…\n"

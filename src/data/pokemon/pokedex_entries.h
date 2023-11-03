@@ -2387,7 +2387,39 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerScale = 256,
         .trainerOffset = 0,
     },
-
+    [NATIONAL_DEX_ZUKO] =
+    {
+        .categoryName = _("QueenCat"),
+        .height = 10,
+        .weight = 3,
+        .description = gZukoPokedexText,
+        .pokemonScale = 317,
+        .pokemonOffset = 11,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+    [NATIONAL_DEX_SOKKA] =
+    {
+        .categoryName = _("Sokka"),
+        .height = 10,
+        .weight = 3,
+        .description = gSokkaPokedexText,
+        .pokemonScale = 366,
+        .pokemonOffset = 10,
+        .trainerScale = 257,
+        .trainerOffset = 0,
+    },
+    [NATIONAL_DEX_IROH] =
+    {
+        .categoryName = _("Iroh"),
+        .height = 10,
+        .weight = 3,
+        .description = gSokkaPokedexText,
+        .pokemonScale = 366,
+        .pokemonOffset = 10,
+        .trainerScale = 257,
+        .trainerOffset = 0,
+    },
     [NATIONAL_DEX_MURKROW] =
     {
         .categoryName = _("Darkness"),
@@ -3611,7 +3643,17 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerScale = 289,
         .trainerOffset = 3,
     },
-
+    [NATIONAL_DEX_STINKY] =
+    {
+        .categoryName = _("Stinky"),
+        .height = 6,
+        .weight = 110,
+        .description = gStinkyPokedexText,
+        .pokemonScale = 492,
+        .pokemonOffset = 19,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
     [NATIONAL_DEX_SKITTY] =
     {
         .categoryName = _("Kitten"),
