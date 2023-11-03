@@ -25,8 +25,6 @@ Route105_OnLoad:
 	call_if_unset FLAG_REGI_DOORS_OPENED, Route105_CloseRegiEntrance
 	goto_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_105_NORTH, AbnormalWeather_EventScript_PlaceTilesRoute105North
 	goto_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_105_SOUTH, AbnormalWeather_EventScript_PlaceTilesRoute105South
-	goto_if_eq VAR_RESULT, 1, Route105_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, Route105_OnResume_Day
 	end
 
 Route105_CloseRegiEntrance::

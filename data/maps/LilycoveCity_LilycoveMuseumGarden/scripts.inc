@@ -1,7 +1,6 @@
 LilycoveCity_LilycoveMuseumGarden_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_LilycoveMuseumGarden_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, LilycoveCity_LilycoveMuseumGarden_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, LilycoveCity_LilycoveMuseumGarden_OnResume
 	.byte 0
 
 LilycoveCity_LilycoveMuseumGarden_OnResume_Night:

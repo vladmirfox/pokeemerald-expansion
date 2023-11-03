@@ -6,7 +6,6 @@ Route104_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route104_OnFrame
 	map_script MAP_SCRIPT_ON_TRANSITION, Route104_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Route104_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, Route104_OnResume
 	.byte 0
 
 Route104_OnResume:

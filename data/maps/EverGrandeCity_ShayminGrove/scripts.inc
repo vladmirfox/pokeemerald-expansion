@@ -1,7 +1,6 @@
 EverGrandeCity_ShayminGrove_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_ShayminGrove_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, EverGrandeCity_ShayminGrove_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, EverGrandeCity_ShayminGrove_OnResume
 	.byte 0
 
 EverGrandeCity_ShayminGrove_OnResume:

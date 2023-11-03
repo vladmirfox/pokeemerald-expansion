@@ -1,7 +1,6 @@
 VerdantForest_Deep_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, VerdantForest_Deep_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, VerdantForest_Deep_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, VerdantForest_Deep_OnResume
 	.byte 0
 
 VerdantForest_Deep_OnResume:

@@ -5,7 +5,6 @@ LavaridgeTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LavaridgeTown_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LavaridgeTown_OnFrame
 	map_script MAP_SCRIPT_ON_RESUME, LavaridgeTown_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, LavaridgeTown_OnResume
 	.byte 0
 
 LavaridgeTown_OnResume:

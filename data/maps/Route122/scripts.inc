@@ -1,7 +1,6 @@
 Route122_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route122_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, Route122_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, Route122_OnResume
 	.byte 0
 
 Route122_OnResume:

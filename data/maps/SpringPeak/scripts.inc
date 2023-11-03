@@ -10,7 +10,6 @@ SpringPeak_OnResume:
 
 SpringPeak_OnLoad:
 	call_if_unset FLAG_SYS_GAME_CLEAR, SpringPeak_EventScript_CloseThunderCave
-	setweather WEATHER_RAIN_THUNDERSTORM
 	end
 
 SpringPeak_EventScript_CloseThunderCave::

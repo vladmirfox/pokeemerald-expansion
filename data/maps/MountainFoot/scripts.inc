@@ -1,7 +1,6 @@
 MountainFoot_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MountainFoot_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, MountainFoot_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, MountainFoot_OnResume
 	.byte 0
 
 MountainFoot_OnResume:

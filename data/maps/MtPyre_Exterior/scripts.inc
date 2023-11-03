@@ -1,7 +1,6 @@
 MtPyre_Exterior_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MtPyre_Exterior_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, MtPyre_Exterior_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, MtPyre_Exterior_OnResume
 	.byte 0
 
 MtPyre_Exterior_OnResume:

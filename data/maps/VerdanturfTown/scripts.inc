@@ -3,7 +3,6 @@
 VerdanturfTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, VerdanturfTown_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, VerdanturfTown_OnResume
 	.byte 0
 
 VerdanturfTown_OnResume:

@@ -1,7 +1,6 @@
 EverGrandeCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, EverGrandeCity_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, EverGrandeCity_OnResume
 	.byte 0
 
 EverGrandeCity_OnResume:

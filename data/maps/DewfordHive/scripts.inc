@@ -1,7 +1,6 @@
 DewfordHive_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, DewfordHive_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, DewfordHive_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, DewfordHive_OnResume
 	.byte 0
 
 DewfordHive_OnResume:

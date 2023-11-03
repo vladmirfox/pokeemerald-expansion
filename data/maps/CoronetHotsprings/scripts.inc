@@ -1,7 +1,6 @@
 CoronetHotsprings_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, CoronetHotsprings_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, CoronetHotsprings_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, CoronetHotsprings_OnResume
 	.byte 0
 
 CoronetHotsprings_OnTransition:

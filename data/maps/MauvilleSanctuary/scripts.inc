@@ -1,7 +1,6 @@
 MauvilleSanctuary_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MauvilleSanctuary_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, MauvilleSanctuary_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, MauvilleSanctuary_OnResume
 	.byte 0
 
 MauvilleSanctuary_OnTransition:

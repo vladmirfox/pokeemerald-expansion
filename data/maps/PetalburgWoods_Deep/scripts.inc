@@ -1,7 +1,6 @@
 PetalburgWoods_Deep_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgWoods_Deep_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, PetalburgWoods_Deep_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, PetalburgWoods_Deep_OnResume
 	.byte 0
 
 PetalburgWoods_Deep_OnResume:

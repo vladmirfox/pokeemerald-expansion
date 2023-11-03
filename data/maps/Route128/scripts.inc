@@ -6,7 +6,6 @@ Route128_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route128_OnResume
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route128_OnFrame
 	map_script MAP_SCRIPT_ON_RESUME, Route128_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, Route128_OnResume
 	.byte 0
 
 Route128_OnResume_Night:

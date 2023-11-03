@@ -5,7 +5,6 @@
 MauvilleCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MauvilleCity_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, MauvilleCity_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, MauvilleCity_OnResume
 	.byte 0
 
 MauvilleCity_OnResume:

@@ -3,7 +3,6 @@
 VerdantIsle_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, VerdantIsle_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, VerdantIsle_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, VerdantIsle_OnResume
 	.byte 0
 
 VerdantIsle_OnResume:

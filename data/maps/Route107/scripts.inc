@@ -1,7 +1,6 @@
 Route107_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route107_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, Route107_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, Route107_OnResume
 	.byte 0
 
 Route107_OnResume:

@@ -1,7 +1,6 @@
 AcornAcre_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, AcornAcre_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, AcornAcre_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, AcornAcre_OnResume
 	.byte 0
 
 AcornAcre_OnResume:

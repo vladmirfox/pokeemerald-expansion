@@ -40,9 +40,6 @@ Route114_OnTransition_Day:
 Route114_OnLoad:
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_114_NORTH, AbnormalWeather_EventScript_PlaceTilesRoute114North
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_114_SOUTH, AbnormalWeather_EventScript_PlaceTilesRoute114South
-	special GetDayOrNight
-	goto_if_eq VAR_RESULT, 1, Route114_OnResume_Night
-	goto_if_eq VAR_RESULT, 0, Route114_OnResume_Day
 	end
 
 Route114_OnFrame:

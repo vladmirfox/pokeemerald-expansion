@@ -7,7 +7,6 @@
 
 MossdeepCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_OnTransition
-	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, MossdeepCity_OnResume
 	.byte 0
 

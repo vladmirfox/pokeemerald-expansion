@@ -3,7 +3,6 @@
 PetalburgGrove_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgGrove_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, PetalburgGrove_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, PetalburgGrove_OnResume
 	.byte 0
 
 PetalburgGrove_OnTransition:

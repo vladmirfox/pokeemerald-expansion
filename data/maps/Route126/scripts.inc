@@ -1,7 +1,6 @@
 Route126_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route126_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Route126_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, Route126_OnResume
 	.byte 0
 
 Route126_OnResume_Night:

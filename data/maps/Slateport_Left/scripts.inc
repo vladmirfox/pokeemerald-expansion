@@ -1,7 +1,6 @@
 Slateport_Left_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Slateport_Left_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Slateport_Left_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, Slateport_Left_OnResume
 	.byte 0
 
 Slateport_Left_OnTransition:

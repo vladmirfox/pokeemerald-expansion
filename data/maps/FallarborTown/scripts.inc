@@ -1,7 +1,6 @@
 FallarborTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, FallarborTown_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, FallarborTown_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, FallarborTown_OnResume
 	.byte 0
 
 FallarborTown_OnResume:

@@ -4,7 +4,6 @@
 Route109_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route109_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Route109_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, Route109_OnResume
 	.byte 0
 
 Route109_OnTransition:

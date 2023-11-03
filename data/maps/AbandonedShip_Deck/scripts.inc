@@ -1,7 +1,6 @@
 AbandonedShip_Deck_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, AbandonedShip_Deck_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, AbandonedShip_Deck_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, AbandonedShip_Deck_OnResume
 	.byte 0
 
 AbandonedShip_Deck_OnResume:

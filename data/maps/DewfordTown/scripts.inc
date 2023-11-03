@@ -13,7 +13,6 @@
 DewfordTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, DewfordTown_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, DewfordTown_OnResume
 	.byte 0
 
 DewfordTown_OnResume:

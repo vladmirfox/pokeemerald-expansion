@@ -1,6 +1,5 @@
 Route119East_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route119East_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, Route119East_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, Route119East_OnResume
 	.byte 0
 

@@ -1,7 +1,6 @@
 OutsetPath_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, OutsetPath_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, OutsetPath_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, OutsetPath_OnResume
 	.byte 0
 
 OutsetPath_OnResume:

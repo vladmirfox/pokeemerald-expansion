@@ -8,7 +8,6 @@
 FortreeCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, FortreeCity_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, FortreeCity_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, FortreeCity_OnResume
 	.byte 0
 
 FortreeCity_OnResume_Night:

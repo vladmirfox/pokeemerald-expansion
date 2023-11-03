@@ -8,7 +8,6 @@ PetalburgCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgCity_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PetalburgCity_OnFrame
 	map_script MAP_SCRIPT_ON_RESUME, PetalburgCity_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, PetalburgCity_OnResume
 	.byte 0
 
 PetalburgCity_OnResume:

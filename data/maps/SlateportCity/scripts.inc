@@ -25,7 +25,6 @@ SlateportCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, SlateportCity_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, SlateportCity_OnFrame
 	map_script MAP_SCRIPT_ON_RESUME, SlateportCity_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, SlateportCity_OnResume
 	.byte 0
 
 SlateportCity_OnResume:

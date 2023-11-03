@@ -1,7 +1,6 @@
 PacifidlogTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PacifidlogTown_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, PacifidlogTown_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, PacifidlogTown_OnResume
 	.byte 0
 
 PacifidlogTown_OnResume_Night:

@@ -8,7 +8,6 @@ LittlerootTown_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_OnFrame
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_OnWarp
 	map_script MAP_SCRIPT_ON_RESUME, LittlerootTown_OnResume
-	map_script MAP_SCRIPT_ON_LOAD, LittlerootTown_OnResume
 	.byte 0
 
 	@ State descriptions for VAR_LITTLEROOT_TOWN_STATE
