@@ -1127,3 +1127,9 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/Grotto3/scripts.inc"
 
 	.include "data/maps/Grotto4/scripts.inc"
+
+	.include "data/maps/ThunderCave/scripts.inc"
+
+	.include "data/maps/AshveilCave/scripts.inc"
+
+	.include "data/maps/SurgeCave/scripts.inc"

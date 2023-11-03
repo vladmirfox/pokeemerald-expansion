@@ -4780,6 +4780,36 @@
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/Grotto4/border.bin",
       "blockdata_filepath": "data/layouts/Grotto4/map.bin"
+    },
+    {
+      "id": "LAYOUT_THUNDER_CAVE",
+      "name": "ThunderCave_Layout",
+      "width": 16,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/ThunderCave/border.bin",
+      "blockdata_filepath": "data/layouts/ThunderCave/map.bin"
+    },
+    {
+      "id": "LAYOUT_ASHVEIL_CAVE",
+      "name": "AshveilCave_Layout",
+      "width": 16,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/AshveilCave/border.bin",
+      "blockdata_filepath": "data/layouts/AshveilCave/map.bin"
+    },
+    {
+      "id": "LAYOUT_SURGE_CAVE",
+      "name": "SurgeCave_Layout",
+      "width": 16,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/SurgeCave/border.bin",
+      "blockdata_filepath": "data/layouts/SurgeCave/map.bin"
     }
   ]
 }

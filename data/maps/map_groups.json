@@ -462,7 +462,10 @@
     "ColdStorage_B1F",
     "ColdStorage_1F",
     "FieryPath_B1F",
-    "DesertCavern_1F"
+    "DesertCavern_1F",
+    "ThunderCave",
+    "AshveilCave",
+    "SurgeCave"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",
