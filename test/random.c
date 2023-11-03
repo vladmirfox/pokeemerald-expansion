@@ -21,9 +21,9 @@
 
 TEST("Shuffle randomizes the array [Shuffle8]")
 {
-    KNOWN_FAILING;
     u8 array[8] = { 0, 1, 2, 3, 4, 5, 6, 7 };
     SHUFFLE_TEST_IMPL;
+    KNOWN_FAILING;
 }
 
 TEST("Shuffle randomizes the array [Shuffle16]")

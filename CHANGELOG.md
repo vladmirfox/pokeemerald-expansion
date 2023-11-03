@@ -1,3 +1,73 @@
+# Verdant-Emerald Changelog
+
+# Version 1.0.0
+
+### *CREATED FROM POKEMERALD-EXPANSION*
+* See the bottom of the changelog for all Pokeemerald-Expanion changes. Note that Pokemerald-Expansion adds all Pokémon, Moves and Items froms Gen 1-8 *
+
+### Battle changes
+* All trainers have been updated use Pokémon from generations 1 to 8, including their **movesets** from generations 7 & 8 (decided based on balance).
+* Difficulty has been slightly boosted to accomidate the new veriety of Pokémon and moves made available throughout the game (this is not a difficulty hack).
+* Level caps have been added to manage player experience. *Hard level caps* and *Soft level caps*. These are toggleable along with *canon (no) caps*.
+* **Experience** gains have been slightly increased to reduce grinding.
+* Challenge mode has been added.
+
+### Menu changes
+* Stats associated with a Pokémon's **nature** are highlighted based on whether they increase or decrease the stat.
+* **EVs and IVs** can now be displayed on the Pokémon Summary screen by pressing **A** to rotate through them.
+* Quick switch has been added to the Pokémon Menu by pressing **Select** while hovering the Pokémon you wish to move.
+* Both the **Name Rater** and the **Move Reminder** functions have been added to the Pokémon menu (the purpose of these trainer's has also been changed).
+* Hidden Power now shows the type that it will become when used by the Pokémon in Battle (affects all summary screens).
+* You can now press **R** to **run** from battle. The first press will move your cursor to the **Run** prompt. Pressing **R** again will preform the run action.
+
+### Item changes
+* An Infinite Rare Candy has been added as a key item. Available from the Punk Guy at Rustboro.
+* The Exp Share has become a Key Item, operating like the item in **Gen 6** (this change can be reverted in the config `include/config/item.h`).
+
+### Field changes
+* All regular Pokémon are now avaialble in some capactiy across the overworld (can be found in regular encounters with some exceptions).
+* **Move Tutors** have been added across the region and new moves are unlocked as you progress through the game.
+### New Maps
+* Many new maps have been added as you progress through the region (with approximately 1 new encounter area per Badge).
+* New maps are loaded with events, trainers, and items like existing maps, and are made to fit into the Hoenn feel.
+
+### DexNav
+* The DexNav from Ghoulslash has been added to the game, replicating its features in *ORAS*. 
+* The DexNav unlocks many Pokémon encounters that would otherwise not be seen in the wild, as well as **Hidden Abilities**.
+* The DexNav can be chained to increase the odds of encountering **Hidden Abilities** and **Shinies**.
+
+### Day/Night Cycle
+* The DNS from Sierra has been added to the game, with dynamic palette changes occuring throughout the day.
+* Certain Pokémon, events, and items can only be encountered at certain hours of the day.
+* An Item has been added to allow the player to change the effective time of day at their convenience.
+* A clock has been added to the start menu to allow players to tell the current time.
+
+### Hidden Grottos
+* Hidden Grottos similar to **Gen 5** have been added to the game.
+* Grottos shift each day and certain Grottos will appear based on your progression through the story.
+* Grottos feature special events and Pokémon with their **Hidden Abilties**.
+
+### Key Item Wheel
+* The Key Item Wheel by Merrp has been added to the game, replicating its features in *ORAS*.
+* Register up to **4** items at once.
+
+### QOL changes
+* **Decapitalisation:** All strings have been decapitalised.
+* **Autorun:** An autorun option has been added to the option menu. When toggled on, hold **B** to walk.
+* **Easy Medicine:** Using medicine will no longer boot you back to the item menu if you still have more of that item to use.
+* **Obedience Fix:** Obedience is now scaled with *all* badges, instead of in large chunks rarely.
+* **Faster Interactions:** Certain redundant interactions have been removed or shortened, like the double confirmation when saving.
+* **Faster Nurse Joy:** Nurse Joy will heal your Pokémon without question, and you will be faced towards the door upon completion.
+* **Better PC:** The Move option in the PC has been swapped to the first option.
+* **EXP on Catch:** In-line with current generations, catching Pokémon will give you Exp.
+* **Reusable TMs:** TMs are no longer consumed on use. PP is not healed when teaching a TM.
+* **Immortal Berries:** Berry Trees no longer die once matured, and do not need to be watered when it is raining.
+* **No Match Call Interuptions:** Random Match Calls no longer occur. Scripted calls still happen, and you can still call others.
+* **Adaptive Gym Leaders:** Brawly and Watson will adapt their teams based on your current badge count.
+* **Super Rod Feebas:** Feebas has an increased chance of appearing on one of its predetermined tiles when using better rods.
+* **Friends Forever:** Pokémon friendship has a moderate effect on obedience. At max, a Pokémon acts as if you are it's OT.
+
+
 # Pokeemerald-Expansion Changelog
 
 # Version 1.6.2
@@ -120,3 +190,10 @@
 
 ## Full Changelog
 https://github.com/rh-hideout/pokeemerald-expansion/compare/expansion/1.6.1...expansion/1.6.2
+
+# Known Issues
+
+* **Roxanne?:** Roxanne uses a different trainer model in the Desert Cavern. Roxanne animations weren't scoped for Verdant 1.0.
+* **Steven is Light:** When moving across the Fortree Bridge, Steven does not trigger the bridge stepback animation or SE.
+* **Mega Ultra Burst:** When Ultra Burst and Mega Evolution are used on the same turn, only the first effect will play out.
+* **Lost Woods:** When entering or exiting a lost Grotto, the player will always emerge on the left tile.
