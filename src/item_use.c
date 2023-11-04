@@ -75,7 +75,6 @@ static void Task_CloseCantUseKeyItemMessage(u8);
 static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
 static void ItemUseOnFieldCB_Honey(u8 taskId);
-static bool32 CannotUseBagBattleItem(u16 itemId);
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -1139,11 +1138,13 @@ void ItemUseInBattle_PartyMenuChooseMove(u8 taskId)
 }
 
 // Returns whether an item can be used in battle and sets the fail text.
-static bool32 CannotUseBagBattleItem(u16 itemId)
+bool32 CannotUseItemsInBattle(u16 itemId, struct Pokemon *mon)
 {
-    u8 cannotUse = FALSE;
     u16 battleUsage = ItemId_GetBattleUsage(itemId);
+    bool8 cannotUse = FALSE;
     const u8* failStr = NULL;
+    u8 i;
+    u16 hp = GetMonData(mon, MON_DATA_HP);
 
     // Embargo Check
     if ((gPartyMenu.slotId == 0 && gStatuses3[B_POSITION_PLAYER_LEFT] & STATUS3_EMBARGO)
@@ -1152,63 +1153,106 @@ static bool32 CannotUseBagBattleItem(u16 itemId)
         return TRUE;
     }
     // X-Items
-    if (battleUsage == EFFECT_ITEM_INCREASE_STAT
+    else if (battleUsage == EFFECT_ITEM_INCREASE_STAT
         && gBattleMons[gBattlerInMenuId].statStages[gItemEffectTable[itemId][1]] == MAX_STAT_STAGE)
     {
-        cannotUse++;
+        cannotUse = TRUE;
     }
     // Dire Hit
-    if (battleUsage == EFFECT_ITEM_SET_FOCUS_ENERGY
+    else if (battleUsage == EFFECT_ITEM_SET_FOCUS_ENERGY
         && (gBattleMons[gBattlerInMenuId].status2 & STATUS2_FOCUS_ENERGY))
     {
-        cannotUse++;
+        cannotUse = TRUE;
     }
     // Guard Spec
-    if (battleUsage == EFFECT_ITEM_SET_MIST
+    else if (battleUsage == EFFECT_ITEM_SET_MIST
         && gSideStatuses[GetBattlerSide(gBattlerInMenuId)] & SIDE_STATUS_MIST)
     {
-        cannotUse++;
+        cannotUse = TRUE;
     }
     // Escape Items
-    if (battleUsage == EFFECT_ITEM_ESCAPE
+    else if (battleUsage == EFFECT_ITEM_ESCAPE
         && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
-        cannotUse++;
+        cannotUse = TRUE;
     }
     // Poke Balls
-    if (battleUsage == EFFECT_ITEM_THROW_BALL)
+    else if (battleUsage == EFFECT_ITEM_THROW_BALL)
     {
         switch (GetBallThrowableState())
         {
-            case BALL_THROW_UNABLE_TWO_MONS:
-                failStr = sText_CantThrowPokeBall_TwoMons;
-                cannotUse++;
-                break;
-            case BALL_THROW_UNABLE_NO_ROOM:
-                failStr = gText_BoxFull;
-                cannotUse++;
-                break;
-            case BALL_THROW_UNABLE_SEMI_INVULNERABLE:
-                failStr = sText_CantThrowPokeBall_SemiInvulnerable;
-                cannotUse++;
-                break;
-            case BALL_THROW_UNABLE_DISABLED_FLAG:
-                failStr = sText_CantThrowPokeBall_Disabled;
-                cannotUse++;
-                break;
+        case BALL_THROW_UNABLE_TWO_MONS:
+            failStr = sText_CantThrowPokeBall_TwoMons;
+            cannotUse = TRUE;
+            break;
+        case BALL_THROW_UNABLE_NO_ROOM:
+            failStr = gText_BoxFull;
+            cannotUse = TRUE;
+            break;
+        case BALL_THROW_UNABLE_SEMI_INVULNERABLE:
+            failStr = sText_CantThrowPokeBall_SemiInvulnerable;
+            cannotUse = TRUE;
+            break;
+        case BALL_THROW_UNABLE_DISABLED_FLAG:
+            failStr = sText_CantThrowPokeBall_Disabled;
+            cannotUse = TRUE;
+            break;
         }
     }
     // Max Mushrooms
-    if (battleUsage == EFFECT_ITEM_INCREASE_ALL_STATS)
+    else if (battleUsage == EFFECT_ITEM_INCREASE_ALL_STATS)
     {
         u32 i;
         for (i = 1; i < NUM_STATS; i++)
         {
             if (CompareStat(gBattlerInMenuId, i, MAX_STAT_STAGE, CMP_EQUAL))
             {
-                cannotUse++;
+                cannotUse = TRUE;
                 break;
             }
+        }
+    }
+    // Items that restore HP (Potions, Sitrus Berry, etc.)
+    else if (battleUsage == EFFECT_ITEM_RESTORE_HP && (hp == 0 || hp == GetMonData(mon, MON_DATA_MAX_HP)))
+    {
+        cannotUse = TRUE;
+    }
+    // Items that cure status (Burn Heal, Awakening, etc.)
+    else if (battleUsage == EFFECT_ITEM_CURE_STATUS
+        && !((GetMonData(mon, MON_DATA_STATUS) & GetItemStatus1Mask(itemId))
+        || (gPartyMenu.slotId == 0 && gBattleMons[gBattlerInMenuId].status2 & GetItemStatus2Mask(itemId))))
+    {
+        cannotUse = TRUE;
+    }
+    // Items that restore HP and cure status (Full Restore)
+    else if (battleUsage == EFFECT_ITEM_HEAL_AND_CURE_STATUS
+        && (hp == 0 || hp == GetMonData(mon, MON_DATA_MAX_HP))
+        && !((GetMonData(mon, MON_DATA_STATUS) & GetItemStatus1Mask(itemId))
+        || (gPartyMenu.slotId == 0 && gBattleMons[gBattlerInMenuId].status2 & GetItemStatus2Mask(itemId))))
+    {
+        cannotUse = TRUE;
+    }
+    // Items that revive a party member
+    else if (battleUsage == EFFECT_ITEM_REVIVE && hp != 0)
+    {
+        cannotUse = TRUE;
+    }
+    // Items that restore PP (Elixir, Ether, Leppa Berry)
+    else if (battleUsage == EFFECT_ITEM_RESTORE_PP)
+    {
+        if (GetItemEffect(itemId)[6] == ITEM4_HEAL_PP)
+        {
+            for (i = 0; i < MAX_MON_MOVES; i++)
+            {
+                if (GetMonData(mon, MON_DATA_PP1 + i) < CalculatePPWithBonus(GetMonData(mon, MON_DATA_MOVE1 + i), GetMonData(mon, MON_DATA_PP_BONUSES), i));
+                    break;
+            }
+            if (i == MAX_MON_MOVES)
+                cannotUse = TRUE;
+        }
+        else if (GetMonData(mon, MON_DATA_PP1 + gPartyMenu.data1) == CalculatePPWithBonus(GetMonData(mon, MON_DATA_MOVE1 + gPartyMenu.data1), GetMonData(mon, MON_DATA_PP_BONUSES), gPartyMenu.data1))
+        {
+            cannotUse = TRUE;
         }
     }
 
@@ -1216,12 +1260,13 @@ static bool32 CannotUseBagBattleItem(u16 itemId)
         StringExpandPlaceholders(gStringVar4, failStr);
     else
         StringExpandPlaceholders(gStringVar4, gText_WontHaveEffect);
+
     return cannotUse;
 }
 
 void ItemUseInBattle_BagMenu(u8 taskId)
 {
-    if (CannotUseBagBattleItem(gSpecialVar_ItemId))
+    if (CannotUseItemsInBattle(gSpecialVar_ItemId, NULL))
     {
         if (!InBattlePyramid())
             DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, CloseItemMessage);
