@@ -2010,6 +2010,17 @@ const u32 gItemIconPalette_DragonTeraShard[] = INCBIN_U32("graphics/items/icon_p
 const u32 gItemIconPalette_SteelTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/steel_tera_shard.gbapal.lz");
 const u32 gItemIconPalette_FairyTeraShard[] = INCBIN_U32("graphics/items/icon_palettes/fairy_tera_shard.gbapal.lz");
 
+// Mochi
+
+const u32 gItemIcon_Mochi[] = INCBIN_U32("graphics/items/icons/health_mochi.4bpp.lz");
+const u32 gItemIconPalette_HealthMochi[] = INCBIN_U32("graphics/items/icon_palettes/health_mochi.gbapal.lz");
+const u32 gItemIconPalette_MuscleMochi[] = INCBIN_U32("graphics/items/icon_palettes/muscle_mochi.gbapal.lz");
+const u32 gItemIconPalette_ResistMochi[] = INCBIN_U32("graphics/items/icon_palettes/resist_mochi.gbapal.lz");
+const u32 gItemIconPalette_GeniusMochi[] = INCBIN_U32("graphics/items/icon_palettes/genius_mochi.gbapal.lz");
+const u32 gItemIconPalette_CleverMochi[] = INCBIN_U32("graphics/items/icon_palettes/clever_mochi.gbapal.lz");
+const u32 gItemIconPalette_SwiftMochi[] = INCBIN_U32("graphics/items/icon_palettes/swift_mochi.gbapal.lz");
+const u32 gItemIconPalette_FreshStartMochi[] = INCBIN_U32("graphics/items/icon_palettes/fresh_start_mochi.gbapal.lz");
+
 // Misc. Items
 
 const u32 gItemIcon_AdamantCrystal[] = INCBIN_U32("graphics/items/icons/adamant_crystal.4bpp.lz");

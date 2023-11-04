@@ -9291,6 +9291,15 @@ extern const u32 gItemIconPalette_BerserkGene[];
 extern const u32 gItemIcon_FairyFeather[];
 extern const u32 gItemIconPalette_FairyFeather[];
 
+extern const u32 gItemIcon_Mochi[];
+extern const u32 gItemIconPalette_HealthMochi[];
+extern const u32 gItemIconPalette_MuscleMochi[];
+extern const u32 gItemIconPalette_ResistMochi[];
+extern const u32 gItemIconPalette_GeniusMochi[];
+extern const u32 gItemIconPalette_CleverMochi[];
+extern const u32 gItemIconPalette_SwiftMochi[];
+extern const u32 gItemIconPalette_FreshStartMochi[];
+
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u32 gItemIconPalette_ReturnToFieldArrow[];
 
