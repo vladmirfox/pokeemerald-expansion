@@ -707,7 +707,7 @@ gTVTrainerFanClubSpecialText05::
 
 gTVNameRaterText00::
 	.string "And now, it's time for…\n"
-	.string "THE Name RATER SHOW.\p"
+	.string "THE Name RATER Show.\p"
 	.string "I tell your Pokémon's fortune from\n"
 	.string "the nickname you've bestowed.\p"
 	.string "Advice is what I have to give, and it is\n"
@@ -2342,7 +2342,7 @@ TVSecretBaseSecrets_Text_UsedDoll::
 
 TVSecretBaseSecrets_Text_UsedSlide::
 	.string "The visitor is climbing the ladder\n"
-	.string "on a SLIDE!\p"
+	.string "on a Slide!\p"
 	.string "And…\p"
 	.string "The visitor slid down!\p"
 	.string "Looks like the visitor is having\n"
@@ -2350,7 +2350,7 @@ TVSecretBaseSecrets_Text_UsedSlide::
 
 TVSecretBaseSecrets_Text_UsedSlideButDidntGoDown::
 	.string "The visitor is climbing the ladder\n"
-	.string "on a SLIDE!\p"
+	.string "on a Slide!\p"
 	.string "And…\p"
 	.string "The visitor went back down\n"
 	.string "the ladder!\p"

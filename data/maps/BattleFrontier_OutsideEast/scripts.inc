@@ -282,7 +282,7 @@ BattleFrontier_OutsideEast_Text_ThriveInDarkness:
 	.string "I thrive in darkness…\n"
 	.string "Yes… What is worthy of me?\l"
 	.string "None other than the Battle PYRAMID…\p"
-	.string "What say you to wandering in darkness\n"
+	.string "What say you to Wandering in darkness\n"
 	.string "and in utter and total desperation?$"
 
 BattleFrontier_OutsideEast_Text_PutTogetherUltimateTeam:

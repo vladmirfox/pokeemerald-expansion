@@ -1,7 +1,7 @@
 const u8 gEasyChatWord_Thanks[] = _("THANKS");
 const u8 gEasyChatWord_Yes[] = _("YES");
 const u8 gEasyChatWord_HereGoes[] = _("HERE GOES");
-const u8 gEasyChatWord_HereICome[] = _("HERE I COME");
+const u8 gEasyChatWord_HereICome[] = _("HERE I Come");
 const u8 gEasyChatWord_HereItIs[] = _("HERE IT IS");
 const u8 gEasyChatWord_Yeah[] = _("YEAH");
 const u8 gEasyChatWord_Welcome[] = _("WELCOME");
@@ -38,7 +38,7 @@ const u8 gEasyChatWord_Listening[] = _("LISTENING");
 const u8 gEasyChatWord_HooHah[] = _("HOO-HAH");
 const u8 gEasyChatWord_Yahoo[] = _("YAHOO");
 const u8 gEasyChatWord_Yo[] = _("YO");
-const u8 gEasyChatWord_ComeOver[] = _("COME OVER");
+const u8 gEasyChatWord_ComeOver[] = _("Come OVER");
 const u8 gEasyChatWord_CountOn[] = _("COUNT ON");
 
 const struct EasyChatWordInfo gEasyChatGroup_Greetings[] = {
