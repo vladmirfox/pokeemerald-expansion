@@ -284,6 +284,7 @@ gSpecials::
 	def_special LookThroughPorthole
 	def_special DoSoftReset
 	def_special GameClear
+	def_special FakeGameClear
 	def_special MoveElevator
 	def_special ShowGlassWorkshopMenu
 	def_special SpawnCameraObject
