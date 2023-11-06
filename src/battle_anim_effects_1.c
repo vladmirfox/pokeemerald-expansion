@@ -6516,7 +6516,10 @@ static void AnimTask_AllySwitchDataSwap(u8 taskId)
     SwapStructData(&gDisableStructs[battlerAtk], &gDisableStructs[battlerPartner], data, sizeof(struct DisableStruct));
     SwapStructData(&gSpecialStatuses[battlerAtk], &gSpecialStatuses[battlerPartner], data, sizeof(struct SpecialStatus));
     SwapStructData(&gProtectStructs[battlerAtk], &gProtectStructs[battlerPartner], data, sizeof(struct ProtectStruct));
+    SwapStructData(&gBattleSpritesDataPtr->battlerData[battlerAtk], &gBattleSpritesDataPtr->battlerData[battlerPartner], data, sizeof(struct BattleSpriteInfo));
 
+    SWAP(gTransformedPersonalities[battlerAtk], gTransformedPersonalities[battlerPartner], temp);
+    SWAP(gTransformedOtIds[battlerAtk], gTransformedOtIds[battlerPartner], temp);
     SWAP(gStatuses3[battlerAtk], gStatuses3[battlerPartner], temp);
     SWAP(gStatuses4[battlerAtk], gStatuses4[battlerPartner], temp);
     // Swap turn order, so that all the battlers take action
