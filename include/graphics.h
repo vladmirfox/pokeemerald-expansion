@@ -8387,6 +8387,12 @@ extern const u32 gItemIcon_LinkingCord[];
 extern const u32 gItemIconPalette_LinkingCord[];
 extern const u32 gItemIcon_PeatBlock[];
 extern const u32 gItemIconPalette_PeatBlock[];
+extern const u32 gItemIcon_SyrupyApple[];
+extern const u32 gItemIconPalette_SyrupyApple[];
+extern const u32 gItemIcon_UnremarkableTeacup[];
+extern const u32 gItemIconPalette_UnremarkableTeacup[];
+extern const u32 gItemIcon_MasterpieceTeacup[];
+extern const u32 gItemIconPalette_MasterpieceTeacup[];
 // Nectars
 extern const u32 gItemIcon_RedNectar[];
 extern const u32 gItemIconPalette_RedNectar[];
@@ -9099,6 +9105,8 @@ extern const u32 gItemIcon_CatchingCharm[];
 extern const u32 gItemIconPalette_CatchingCharm[];
 extern const u32 gItemIcon_ExpCharm[];
 extern const u32 gItemIconPalette_ExpCharm[];
+extern const u32 gItemIcon_GlimmeringCharm[];
+extern const u32 gItemIconPalette_GlimmeringCharm[];
 // Form-changing Key Items
 extern const u32 gItemIcon_RotomCatalog[];
 extern const u32 gItemIconPalette_RotomCatalog[];
@@ -9299,14 +9307,6 @@ extern const u32 gItemIconPalette_GeniusMochi[];
 extern const u32 gItemIconPalette_CleverMochi[];
 extern const u32 gItemIconPalette_SwiftMochi[];
 extern const u32 gItemIconPalette_FreshStartMochi[];
-
-extern const u32 gItemIcon_SyrupyApple[];
-extern const u32 gItemIconPalette_SyrupyApple[];
-
-extern const u32 gItemIcon_UnremarkableTeacup[];
-extern const u32 gItemIconPalette_UnremarkableTeacup[];
-extern const u32 gItemIcon_MasterpieceTeacup[];
-extern const u32 gItemIconPalette_MasterpieceTeacup[];
 
 extern const u32 gItemIcon_WellspringMask[];
 extern const u32 gItemIconPalette_WellspringMask[];
