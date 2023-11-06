@@ -2368,7 +2368,7 @@ static void DestroyBubbleSprites(void)
     {
         for (i = 0; i < MAX_SPRITES; i++)
         {
-            if (gSprites[i].template == &sBubbleSpriteTemplate)
+            if (gSprites[i].tileTag == GFXTAG_BUBBLE)
                 DestroySprite(&gSprites[i]);
         }
 

@@ -1967,10 +1967,14 @@ static void RapinSpinMonElevation_Step(u8 taskId)
     }
 }
 
+// In AnimTask_TormentAttacker, TormentAttacker_Step task->data[0..15] are all used
+// In order to store the sprite IDs we need a global variable
+EWRAM_DATA static u8 *sTormentSpriteIds = NULL;
+
 void AnimTask_TormentAttacker(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
-
+    sTormentSpriteIds = Alloc(6 * sizeof(u8));
     task->data[0] = 0;
     task->data[1] = 0;
     task->data[2] = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_X_2);
@@ -1989,7 +1993,6 @@ static void TormentAttacker_Step(u8 taskId)
     u16 i, j;
     u8 spriteId;
     struct Task *task = &gTasks[taskId];
-
     switch (task->data[0])
     {
     case 0:
@@ -2007,6 +2010,7 @@ static void TormentAttacker_Step(u8 taskId)
 
         y = task->data[3] + task->data[5];
         spriteId = CreateSprite(&gThoughtBubbleSpriteTemplate, x, y, 6 - task->data[1]);
+        sTormentSpriteIds[task->data[1]] = spriteId;
         PlaySE12WithPanning(SE_M_METRONOME, BattleAnimAdjustPanning(SOUND_PAN_ATTACKER));
 
         if (spriteId != MAX_SPRITES)
@@ -2057,21 +2061,21 @@ static void TormentAttacker_Step(u8 taskId)
             task->data[0] = 4;
         break;
     case 4:
-        for (i = 0, j = 0; i < MAX_SPRITES; i++)
+        for (i = 0, j = 0; i < 6; i++)
         {
-            if (gSprites[i].template == &gThoughtBubbleSpriteTemplate)
+            u32 currentSpriteId = sTormentSpriteIds[i];
+            if (currentSpriteId != MAX_SPRITES)
             {
-                gSprites[i].data[0] = taskId;
-                gSprites[i].data[1] = 6;
-                StartSpriteAnim(&gSprites[i], 2);
-                gSprites[i].callback = TormentAttacker_Callback;
-
-                if (++j == 6)
-                    break;
+                gSprites[currentSpriteId].data[0] = taskId;
+                gSprites[currentSpriteId].data[1] = 6;
+                StartSpriteAnim(&gSprites[currentSpriteId], 2);
+                gSprites[currentSpriteId].callback = TormentAttacker_Callback;
+                j++;
             }
         }
 
-        task->data[6] = j;
+        FREE_AND_SET_NULL(sTormentSpriteIds);
+        task->data[6] = 6;
         task->data[0] = 5;
         break;
     case 5:
