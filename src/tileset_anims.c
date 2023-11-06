@@ -99,8 +99,6 @@ const u16 *const gTilesetAnims_General_Mega_Sparkle[] = {
     gTilesetAnims_General_Mega_Sparkle_Frame2,
     gTilesetAnims_General_Mega_Sparkle_Frame2,
     gTilesetAnims_General_Mega_Sparkle_Frame2,
-    gTilesetAnims_General_Mega_Sparkle_Frame2,
-    gTilesetAnims_General_Mega_Sparkle_Frame2,
     gTilesetAnims_General_Mega_Sparkle_Frame1
 };
 
