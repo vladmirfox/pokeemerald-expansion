@@ -16283,3 +16283,12 @@ void BS_TrySetOctolock(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }
+
+void BS_AllySwitchSwapBattler(void)
+{
+    NATIVE_ARGS();
+
+    gBattleScripting.battler = gBattlerAttacker;
+    gBattlerAttacker ^= BIT_FLANK;
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}

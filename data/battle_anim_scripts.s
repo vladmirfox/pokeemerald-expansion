@@ -5547,29 +5547,7 @@ Move_QUICK_GUARD:
 Move_ALLY_SWITCH:
 	createvisualtask AnimTask_AllySwitchAttacker, 2
 	createvisualtask AnimTask_AllySwitchPartner, 2
-	setalpha 12, 8
-	monbg ANIM_ATK_PARTNER
-	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_ATTACKER
-	delay 32
-	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_ATTACKER
-	delay 24
-	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_ATTACKER
-	delay 16
-	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_ATTACKER
-	delay 8
-	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_ATTACKER
-	delay 8
-	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_ATTACKER
-	delay 8
-	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_ATTACKER
-	delay 8
-	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_ATTACKER
-	delay 8
-	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_ATTACKER
-	waitforvisualfinish
-	clearmonbg ANIM_ATK_PARTNER
-	blendoff
-	delay 1
+	goto DoubleTeamContinueAnim
 	end
 
 Move_SCALD:
@@ -19070,6 +19048,7 @@ Move_TELEPORT:
 
 Move_DOUBLE_TEAM:
 	createvisualtask AnimTask_DoubleTeam, 2
+DoubleTeamContinueAnim:
 	setalpha 12, 8
 	monbg ANIM_ATK_PARTNER
 	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_ATTACKER
