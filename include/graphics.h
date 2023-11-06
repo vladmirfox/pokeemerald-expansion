@@ -9300,6 +9300,21 @@ extern const u32 gItemIconPalette_CleverMochi[];
 extern const u32 gItemIconPalette_SwiftMochi[];
 extern const u32 gItemIconPalette_FreshStartMochi[];
 
+extern const u32 gItemIcon_SyrupyApple[];
+extern const u32 gItemIconPalette_SyrupyApple[];
+
+extern const u32 gItemIcon_UnremarkableTeacup[];
+extern const u32 gItemIconPalette_UnremarkableTeacup[];
+extern const u32 gItemIcon_MasterpieceTeacup[];
+extern const u32 gItemIconPalette_MasterpieceTeacup[];
+
+extern const u32 gItemIcon_WellspringMask[];
+extern const u32 gItemIconPalette_WellspringMask[];
+extern const u32 gItemIcon_HearthflameMask[];
+extern const u32 gItemIconPalette_HearthflameMask[];
+extern const u32 gItemIcon_CornerstoneMask[];
+extern const u32 gItemIconPalette_CornerstoneMask[];
+
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u32 gItemIconPalette_ReturnToFieldArrow[];
 

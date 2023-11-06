@@ -654,6 +654,15 @@ const u32 gItemIconPalette_LinkingCord[] = INCBIN_U32("graphics/items/icon_palet
 const u32 gItemIcon_PeatBlock[] = INCBIN_U32("graphics/items/icons/peat_block.4bpp.lz");
 const u32 gItemIconPalette_PeatBlock[] = INCBIN_U32("graphics/items/icon_palettes/peat_block.gbapal.lz");
 
+const u32 gItemIcon_SyrupyApple[] = INCBIN_U32("graphics/items/icons/syrupy_apple.4bpp.lz");
+const u32 gItemIconPalette_SyrupyApple[] = INCBIN_U32("graphics/items/icon_palettes/syrupy_apple.gbapal.lz");
+
+const u32 gItemIcon_UnremarkableTeacup[] = INCBIN_U32("graphics/items/icons/unremarkable_teacup.4bpp.lz");
+const u32 gItemIconPalette_UnremarkableTeacup[] = INCBIN_U32("graphics/items/icon_palettes/unremarkable_teacup.gbapal.lz");
+
+const u32 gItemIcon_MasterpieceTeacup[] = INCBIN_U32("graphics/items/icons/masterpiece_teacup.4bpp.lz");
+const u32 gItemIconPalette_MasterpieceTeacup[] = INCBIN_U32("graphics/items/icon_palettes/masterpiece_teacup.gbapal.lz");
+
 // Nectars
 
 const u32 gItemIcon_RedNectar[] = INCBIN_U32("graphics/items/icons/red_nectar.4bpp.lz");
@@ -2020,6 +2029,15 @@ const u32 gItemIconPalette_GeniusMochi[] = INCBIN_U32("graphics/items/icon_palet
 const u32 gItemIconPalette_CleverMochi[] = INCBIN_U32("graphics/items/icon_palettes/clever_mochi.gbapal.lz");
 const u32 gItemIconPalette_SwiftMochi[] = INCBIN_U32("graphics/items/icon_palettes/swift_mochi.gbapal.lz");
 const u32 gItemIconPalette_FreshStartMochi[] = INCBIN_U32("graphics/items/icon_palettes/fresh_start_mochi.gbapal.lz");
+
+// Ogerpon masks
+
+const u32 gItemIcon_WellspringMask[] = INCBIN_U32("graphics/items/icons/wellspring_mask.4bpp.lz");
+const u32 gItemIconPalette_WellspringMask[] = INCBIN_U32("graphics/items/icon_palettes/wellspring_mask.gbapal.lz");
+const u32 gItemIcon_HearthflameMask[] = INCBIN_U32("graphics/items/icons/hearthflame_mask.4bpp.lz");
+const u32 gItemIconPalette_HearthflameMask[] = INCBIN_U32("graphics/items/icon_palettes/hearthflame_mask.gbapal.lz");
+const u32 gItemIcon_CornerstoneMask[] = INCBIN_U32("graphics/items/icons/cornerstone_mask.4bpp.lz");
+const u32 gItemIconPalette_CornerstoneMask[] = INCBIN_U32("graphics/items/icon_palettes/cornerstone_mask.gbapal.lz");
 
 // Misc. Items
 
