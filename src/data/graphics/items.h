@@ -2012,7 +2012,7 @@ const u32 gItemIconPalette_FairyTeraShard[] = INCBIN_U32("graphics/items/icon_pa
 
 // Mochi
 
-const u32 gItemIcon_Mochi[] = INCBIN_U32("graphics/items/icons/health_mochi.4bpp.lz");
+const u32 gItemIcon_Mochi[] = INCBIN_U32("graphics/items/icons/mochi.4bpp.lz");
 const u32 gItemIconPalette_HealthMochi[] = INCBIN_U32("graphics/items/icon_palettes/health_mochi.gbapal.lz");
 const u32 gItemIconPalette_MuscleMochi[] = INCBIN_U32("graphics/items/icon_palettes/muscle_mochi.gbapal.lz");
 const u32 gItemIconPalette_ResistMochi[] = INCBIN_U32("graphics/items/icon_palettes/resist_mochi.gbapal.lz");
