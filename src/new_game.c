@@ -53,6 +53,7 @@ static void ClearFrontierRecord(void);
 static void WarpToTruck(void);
 static void WarpToStartingEliteFour(void);
 static void GiveChampionshipTeamToPlayer(void);
+static void GiveChampionshipItemsToPlayer(void);
 static void ResetMiniGamesRecords(void);
 
 EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
@@ -141,13 +142,19 @@ static void WarpToStartingEliteFour(void)
 
 static void GiveChampionshipTeamToPlayer(void)
 {
-    //TODO WISHLIST Randomize this to make the first fight more interesting
+    //TODO DND WISHLIST Randomize this to make the first fight more interesting
     ScriptGiveMon(SPECIES_ZACIAN, 100, ITEM_RUSTED_SWORD, 0, 0, 0);
     ScriptGiveMon(SPECIES_ZYGARDE_COMPLETE, 100, ITEM_AIR_BALLOON, 0, 0, 0);
     ScriptGiveMon(SPECIES_MEWTWO, 100, ITEM_CHOICE_SPECS, 0, 0, 0);
     ScriptGiveMon(SPECIES_SHAYMIN_SKY, 100, ITEM_CHOICE_SCARF, 0, 0, 0);
     ScriptGiveMon(SPECIES_RAIKOU, 100, ITEM_CELL_BATTERY, 0, 0, 0);
     ScriptGiveMon(SPECIES_VOLCANION, 100, ITEM_MYSTIC_WATER, 0, 0, 0);
+}
+
+static void GiveChampionshipItemsToPlayer(void)
+{
+    AddBagItem(ITEM_FULL_RESTORE, 20);
+    AddBagItem(ITEM_MAX_REVIVE, 20);
 }
 
 void Sav2_ClearSetDefault(void)
@@ -214,6 +221,7 @@ void NewGameInitData(void)
     ResetLotteryCorner();
     // Set Heal Point at the bottom of the elite four
     GiveChampionshipTeamToPlayer();
+    GiveChampionshipItemsToPlayer();
     WarpToStartingEliteFour();
     RunScriptImmediately(EventScript_ResetAllMapFlags);
     ResetMiniGamesRecords();

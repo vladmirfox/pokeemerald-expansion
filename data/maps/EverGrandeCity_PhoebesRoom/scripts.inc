@@ -41,44 +41,40 @@ EverGrandeCity_PhoebesRoom_EventScript_Phoebe::
 	faceplayer
 	goto_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
-	msgbox EverGrandeCity_PhoebesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_PHOEBE, EverGrandeCity_PhoebesRoom_Text_Defeat
+	msgbox EverGrandeCity_BabarsRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_BABAR, EverGrandeCity_BabarsRoom_Text_Defeat
 	goto EverGrandeCity_PhoebesRoom_EventScript_Defeated
 	end
 
 EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech::
-	msgbox EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	msgbox EverGrandeCity_BabarsRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
 	release
 	end
 
 EverGrandeCity_PhoebesRoom_EventScript_Defeated::
 	setflag FLAG_DEFEATED_ELITE_4_PHOEBE
 	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
-	msgbox EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	msgbox EverGrandeCity_BabarsRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
 	release
 	end
 
-EverGrandeCity_PhoebesRoom_Text_IntroSpeech:
-	.string "Ahahaha!\p"
-	.string "I'm PHOEBE of the ELITE FOUR.\n"
-	.string "I did my training on MT. PYRE.\p"
-	.string "While I trained, I gained the ability\n"
-	.string "to commune with GHOST-type POKéMON.\p"
-	.string "Yes, the bond I developed with POKéMON\n"
-	.string "is extremely tight.\p"
-	.string "So, come on, just try and see if you can\n"
-	.string "even inflict damage on my POKéMON!$"
+EverGrandeCity_BabarsRoom_Text_IntroSpeech:
+	.string "Hail! And well met!\n"
+	.string "I'm BABAR of the ELITE FOUR.\p"
+	.string "I've been around the world\n"
+	.string "spreading the word of the Sun God!\l"
+	.string "With his guidance I've become strong.\p"
+	.string "Let us battle so I can show you\n"
+	.string "his true POWER!$"
 
-EverGrandeCity_PhoebesRoom_Text_Defeat:
-	.string "Oh, darn.\n"
+EverGrandeCity_BabarsRoom_Text_Defeat:
+	.string "Well shucks.\n"
 	.string "I've gone and lost.$"
 
-EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech:
-	.string "There's a definite bond between you\n"
-	.string "and your POKéMON, too.\p"
-	.string "I didn't recognize it, so it's only\n"
-	.string "natural that I lost.\p"
-	.string "Yup, I'd like to see how far your bond\n"
-	.string "will carry you.\p"
-	.string "Go ahead, move on to the next room.$"
+EverGrandeCity_BabarsRoom_Text_PostBattleSpeech:
+	.string "Haha! Maybe I need more training\n"
+	.string "or maybe you're just that strong!\p"
+	.string "Move on to the next room.\l"
+	.string "The others will definitely want to\n"
+	.string "battle such a worth opponent!$"
 
