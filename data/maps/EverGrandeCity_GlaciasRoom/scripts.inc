@@ -39,45 +39,41 @@ EverGrandeCity_GlaciasRoom_EventScript_CloseDoor::
 EverGrandeCity_GlaciasRoom_EventScript_Glacia::
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_ELITE_4_GLACIA, EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeech
+	goto_if_set FLAG_DEFEATED_ELITE_4_GLACIA, EverGrandeCity_GrungesRoom_EventScript_PostBattleSpeech
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
-	msgbox EverGrandeCity_GlaciasRoom_Text_IntroSpeech, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_GLACIA, EverGrandeCity_GlaciasRoom_Text_Defeat
-	goto EverGrandeCity_GlaciasRoom_EventScript_Defeated
+	msgbox EverGrandeCity_GrungesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_GRUNGE, EverGrandeCity_GrungesRoom_Text_Defeat
+	goto EverGrandeCity_GrungesRoom_EventScript_Defeated
 	end
 
-EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeech::
-	msgbox EverGrandeCity_GlaciasRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+EverGrandeCity_GrungesRoom_EventScript_PostBattleSpeech::
+	msgbox EverGrandeCity_GrungesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
 	release
 	end
 
-EverGrandeCity_GlaciasRoom_EventScript_Defeated::
+EverGrandeCity_GrungesRoom_EventScript_Defeated::
 	setflag FLAG_DEFEATED_ELITE_4_GLACIA
 	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
-	msgbox EverGrandeCity_GlaciasRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	msgbox EverGrandeCity_GrungesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
 	release
 	end
 
-EverGrandeCity_GlaciasRoom_Text_IntroSpeech:
-	.string "Welcome, my name is GLACIA\n"
+EverGrandeCity_GrungesRoom_Text_IntroSpeech:
+	.string "Hey there! I'm DR GRUNGE\n"
 	.string "of the ELITE FOUR.\p"
-	.string "I've traveled from afar to HOENN\n"
-	.string "so that I may hone my ice skills.\p"
-	.string "But all I have seen are challenges by\n"
-	.string "weak TRAINERS and their POKéMON.\p"
-	.string "What about you?\p"
-	.string "It would please me to no end if I could\n"
-	.string "go all out against you!$"
+	.string "I've worked my way up from just a\n"
+	.string "grunt in the army to BIG HEAD honcho!\p"
+	.string "Now let me see if you've got the brains\n"
+	.string "to face me and my friends!$"
 
-EverGrandeCity_GlaciasRoom_Text_Defeat:
-	.string "You and your POKéMON…\n"
-	.string "How hot your spirits burn!\p"
-	.string "The all-consuming heat overwhelms.\p"
-	.string "It's no surprise that my icy skills\n"
-	.string "failed to harm you.$"
+EverGrandeCity_GrungesRoom_Text_Defeat:
+	.string "Damn!\n"
+	.string "You're a lot smarter than you look!\p"
+	.string "And boy do you look like shit!\p"
+	.string "I wonder what that says about me?$"
 
-EverGrandeCity_GlaciasRoom_Text_PostBattleSpeech:
-	.string "Advance to the next room.\p"
-	.string "And there, confirm the truly fearsome\n"
-	.string "side of the POKéMON LEAGUE.$"
+EverGrandeCity_GrungesRoom_Text_PostBattleSpeech:
+	.string "Move on to the next room.\p"
+	.string "You can fight that little shrimp\n"
+	.string "and face a truly fearsome foe!$"
 
