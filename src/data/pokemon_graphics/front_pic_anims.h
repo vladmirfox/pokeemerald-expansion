@@ -7745,9 +7745,11 @@ static const union AnimCmd sAnim_Diggersby_1[] =
 
 static const union AnimCmd sAnim_Fletchling_1[] =
 {
+    ANIMCMD_FRAME(1, 7),
     ANIMCMD_FRAME(0, 3),
-    ANIMCMD_FRAME(1, 50),
-    ANIMCMD_FRAME(1, 28),
+    ANIMCMD_FRAME(1, 7),
+    ANIMCMD_FRAME(0, 3),
+    ANIMCMD_FRAME(1, 10),
     ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
