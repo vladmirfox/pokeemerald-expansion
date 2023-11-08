@@ -40,53 +40,46 @@ EverGrandeCity_DrakesRoom_EventScript_CloseDoor::
 EverGrandeCity_DrakesRoom_EventScript_Drake::
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech
+	goto_if_set FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_NeithsRoom_EventScript_PostBattleSpeech
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
-	msgbox EverGrandeCity_DrakesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_DRAKE, EverGrandeCity_DrakesRoom_Text_Defeat
-	goto EverGrandeCity_DrakesRoom_EventScript_Defeated
+	msgbox EverGrandeCity_NeithsRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_NEITH, EverGrandeCity_NeithsRoom_Text_Defeat
+	goto EverGrandeCity_NeithsRoom_EventScript_Defeated
 	end
 
-EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech::
-	msgbox EverGrandeCity_DrakesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+EverGrandeCity_NeithsRoom_EventScript_PostBattleSpeech::
+	msgbox EverGrandeCity_NeithsRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
 	release
 	end
 
-EverGrandeCity_DrakesRoom_EventScript_Defeated::
+EverGrandeCity_NeithsRoom_EventScript_Defeated::
 	setvar VAR_0x8004, FANCOUNTER_DEFEATED_DRAKE
 	special Script_TryGainNewFanFromCounter
 	setflag FLAG_DEFEATED_ELITE_4_DRAKE
 	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
-	msgbox EverGrandeCity_DrakesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	msgbox EverGrandeCity_NeithsRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
 	release
 	end
 
-EverGrandeCity_DrakesRoom_Text_IntroSpeech:
+EverGrandeCity_NeithsRoom_Text_IntroSpeech:
 	.string "I am the last of the POKéMON LEAGUE\n"
-	.string "ELITE FOUR, DRAKE the DRAGON master!\p"
-	.string "In their natural state, POKéMON are\n"
-	.string "wild living things. They are free.\p"
-	.string "At times, they hinder us.\n"
-	.string "At times, they help us.\p"
-	.string "For us to battle with POKéMON as\n"
-	.string "partners, do you know what it takes?\p"
-	.string "Do you know what is needed?\p"
-	.string "If you don't, then you will never\n"
-	.string "prevail over me!$"
+	.string "ELITE FOUR, NEITH MASTER of MEMORY!\p"
+	.string "I've been on many an adventure and\n"
+	.string "stolen many tales from those I met.\p"
+	.string "At times, they were bad memories.\n"
+	.string "At times, they were happy ones.\p"
+	.string "Let me take a peak into your mind\n"
+	.string "and see if there's anything tasty!$"
 
-EverGrandeCity_DrakesRoom_Text_Defeat:
-	.string "Superb, it should be said.$"
+EverGrandeCity_NeithsRoom_Text_Defeat:
+	.string "Nope, nothing that suits my taste.$"
 
-EverGrandeCity_DrakesRoom_Text_PostBattleSpeech:
-	.string "You deserve every credit for coming\n"
-	.string "this far as a TRAINER of POKéMON.\p"
-	.string "You do seem to know what is needed.\p"
-	.string "Yes, what a TRAINER needs is a\n"
-	.string "virtuous heart.\p"
-	.string "POKéMON touch the good hearts of\n"
-	.string "TRAINERS and learn good from wrong.\p"
-	.string "They touch the good hearts of\n"
-	.string "TRAINERS and grow strong.\p"
-	.string "Go! Go onwards!\n"
-	.string "The CHAMPION is waiting!$"
+EverGrandeCity_NeithsRoom_Text_PostBattleSpeech:
+	.string "You've done well for coming\n"
+	.string "this far as a TRAINER.\p"
+	.string "But now you must face HIM.\p"
+	.string "Someone who soars above the rest\n"
+	.string "of the competition.\p"
+	.string "Go! And see what it truly takes to\n"
+	.string "be at the top of the POKéMON world!$"
 

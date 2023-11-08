@@ -265,7 +265,7 @@
 #define TRAINER_LIIKA                       261
 #define TRAINER_BABAR                       262
 #define TRAINER_GRUNGE                      263
-#define TRAINER_DRAKE                       264
+#define TRAINER_NEITH                       264
 #define TRAINER_ROXANNE_1                   265
 #define TRAINER_BRAWLY_1                    266
 #define TRAINER_WATTSON_1                   267
