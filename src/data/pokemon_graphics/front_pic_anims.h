@@ -7731,10 +7731,8 @@ static const union AnimCmd sAnim_GreninjaAsh_1[] =
 
 static const union AnimCmd sAnim_Bunnelby_1[] =
 {
-    ANIMCMD_FRAME(1, 10),
-    ANIMCMD_FRAME(0, 10),
-    ANIMCMD_FRAME(1, 10),
-    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 25),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 
