@@ -7755,33 +7755,21 @@ static const union AnimCmd sAnim_Fletchling_1[] =
 };
 static const union AnimCmd sAnim_Fletchinder_1[] =
 {
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(1, 2),
-    ANIMCMD_FRAME(0, 2),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_Talonflame_1[] =
 {
-    ANIMCMD_FRAME(0, 15),
-    ANIMCMD_FRAME(1, 20),
-    ANIMCMD_FRAME(0, 15),
-    ANIMCMD_FRAME(1, 20),
-    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(1, 55),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
 
