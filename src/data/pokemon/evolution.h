@@ -176,7 +176,8 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
 #endif
     [SPECIES_PINECO]                = {{EVO_LEVEL, 31, SPECIES_FORRETRESS}},
 #if P_GEN_9_POKEMON == TRUE
-    [SPECIES_DUNSPARCE]             = {{EVO_NONE, 0, SPECIES_DUDUNSPARCE}},
+    [SPECIES_DUNSPARCE]             = {{EVO_NONE, 0, SPECIES_DUDUNSPARCE_TWO_SEGMENT},
+                                       {EVO_NONE, 0, SPECIES_DUDUNSPARCE_THREE_SEGMENT}},
 #endif
 #if P_GEN_4_POKEMON == TRUE
     [SPECIES_GLIGAR]                = {{EVO_ITEM_HOLD_NIGHT, ITEM_RAZOR_FANG, SPECIES_GLISCOR},
@@ -376,7 +377,8 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
     [SPECIES_PETILIL]               = {{EVO_ITEM, ITEM_SUN_STONE, SPECIES_LILLIGANT},
                                        {EVO_NONE, 0, SPECIES_LILLIGANT_HISUIAN}},
 #if P_GEN_9_POKEMON == TRUE
-    [SPECIES_BASCULIN_WHITE_STRIPED] = {{EVO_NONE, 0, SPECIES_BASCULEGION}},
+    [SPECIES_BASCULIN_WHITE_STRIPED] = {{EVO_NONE, 0, SPECIES_BASCULEGION_MALE},
+                                        {EVO_NONE, 0, SPECIES_BASCULEGION_FEMALE}},
 #endif
     [SPECIES_SANDILE]               = {{EVO_LEVEL, 29, SPECIES_KROKOROK}},
     [SPECIES_KROKOROK]              = {{EVO_LEVEL, 40, SPECIES_KROOKODILE}},
