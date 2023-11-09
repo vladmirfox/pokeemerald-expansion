@@ -37,7 +37,7 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
     [SPECIES_PSYDUCK]               = {{EVO_LEVEL, 33, SPECIES_GOLDUCK}},
     [SPECIES_MANKEY]                = {{EVO_LEVEL, 28, SPECIES_PRIMEAPE}},
 #if P_GEN_9_POKEMON == TRUE
-    [SPECIES_PRIMEAPE]              = {{EVO_NONE, 0, SPECIES_ANNIHILAPE}},
+    [SPECIES_PRIMEAPE]              = {{EVO_MOVE, MOVE_RAGE_FIST, SPECIES_ANNIHILAPE}},
 #endif
     [SPECIES_GROWLITHE]             = {{EVO_ITEM, ITEM_FIRE_STONE, SPECIES_ARCANINE}},
     [SPECIES_GROWLITHE_HISUIAN]     = {{EVO_ITEM, ITEM_FIRE_STONE, SPECIES_ARCANINE_HISUIAN}},
@@ -176,8 +176,8 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
 #endif
     [SPECIES_PINECO]                = {{EVO_LEVEL, 31, SPECIES_FORRETRESS}},
 #if P_GEN_9_POKEMON == TRUE
-    [SPECIES_DUNSPARCE]             = {{EVO_NONE, 0, SPECIES_DUDUNSPARCE_TWO_SEGMENT},
-                                       {EVO_NONE, 0, SPECIES_DUDUNSPARCE_THREE_SEGMENT}},
+    [SPECIES_DUNSPARCE]             = {{EVO_MOVE, MOVE_HYPER_DRILL, SPECIES_DUDUNSPARCE_TWO_SEGMENT},
+                                       {EVO_MOVE, MOVE_HYPER_DRILL, SPECIES_DUDUNSPARCE_THREE_SEGMENT}},
 #endif
 #if P_GEN_4_POKEMON == TRUE
     [SPECIES_GLIGAR]                = {{EVO_ITEM_HOLD_NIGHT, ITEM_RAZOR_FANG, SPECIES_GLISCOR},
@@ -202,7 +202,7 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
                                        {EVO_ITEM, ITEM_DUBIOUS_DISC, SPECIES_PORYGON_Z}},
 #endif
 #if P_GEN_9_POKEMON == TRUE
-    [SPECIES_STANTLER]              = {{EVO_NONE, 0, SPECIES_WYRDEER}},
+    [SPECIES_STANTLER]              = {{EVO_MOVE, MOVE_PSYSHIELD_BASH, SPECIES_WYRDEER}},
 #endif
     [SPECIES_TYROGUE]               = {{EVO_LEVEL_ATK_LT_DEF, 20, SPECIES_HITMONCHAN},
                                        {EVO_LEVEL_ATK_GT_DEF, 20, SPECIES_HITMONLEE},
