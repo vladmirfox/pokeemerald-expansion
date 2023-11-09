@@ -19079,7 +19079,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
-#define PUMKPABOO_MISC_INFO                                             \
+#define PUMPKABOO_MISC_INFO                                             \
         .types = { TYPE_GHOST, TYPE_GRASS},                             \
         .catchRate = 120,                                               \
         .expYield = 67,                                                 \
@@ -19101,7 +19101,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 51,
         .baseSpAttack  = 44,
         .baseSpDefense = 55,
-        PUMKPABOO_MISC_INFO,
+        PUMPKABOO_MISC_INFO,
     },
 
     [SPECIES_PUMPKABOO_SMALL] =
@@ -19112,7 +19112,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 56,
         .baseSpAttack  = 44,
         .baseSpDefense = 55,
-        PUMKPABOO_MISC_INFO,
+        PUMPKABOO_MISC_INFO,
     },
 
     [SPECIES_PUMPKABOO_LARGE] =
@@ -19123,7 +19123,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 46,
         .baseSpAttack  = 44,
         .baseSpDefense = 55,
-        PUMKPABOO_MISC_INFO,
+        PUMPKABOO_MISC_INFO,
     },
 
     [SPECIES_PUMPKABOO_SUPER] =
@@ -19136,7 +19136,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 55,
         .itemCommon = ITEM_MIRACLE_SEED,
         .itemRare = ITEM_MIRACLE_SEED,
-        PUMKPABOO_MISC_INFO,
+        PUMPKABOO_MISC_INFO,
     },
 
 #define GOURGEIST_MISC_INFO                                             \
