@@ -1366,6 +1366,12 @@
 	.byte \battler
 	.endm
 
+	.macro trysetoctolock battler:req, failInstr:req
+	callnative BS_TrySetOctolock
+	.byte \battler
+	.4byte \failInstr
+	.endm
+
 	.macro setpledge jumpInstr:req
 	callnative BS_SetPledge
 	.4byte \jumpInstr
@@ -1505,7 +1511,7 @@
 	callnative BS_TryRecycleBerry
 	.4byte \ptr
 	.endm
-	
+
 	.macro updatedynamax
 	callnative BS_UpdateDynamax
 	.endm
@@ -2095,11 +2101,6 @@
 
 	.macro checkpoltergeist battler:req, failInstr:req
 	various \battler, VARIOUS_CHECK_POLTERGEIST
-	.4byte \failInstr
-	.endm
-
-	.macro setoctolock battler:req, failInstr:req
-	various \battler, VARIOUS_SET_OCTOLOCK
 	.4byte \failInstr
 	.endm
 

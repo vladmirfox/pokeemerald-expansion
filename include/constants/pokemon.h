@@ -191,8 +191,12 @@
 #define FRIENDSHIP_200_TO_254  5
 #define FRIENDSHIP_MAX         6
 
-// Friendship value that the majority of species use. This was changed in Generation 8 to 50.
+// Friendship value that the majority of species use.
+#if P_UPDATED_FRIENDSHIP >= GEN_8
+#define STANDARD_FRIENDSHIP 50
+#else
 #define STANDARD_FRIENDSHIP 70
+#endif
 
 #define MAX_FRIENDSHIP  255
 #define MAX_SHEEN       255
@@ -327,6 +331,7 @@
 #define SPECIES_FLAG_ALL_PERFECT_IVS    (1 << 8)
 #define SPECIES_FLAG_CANNOT_BE_TRADED   (1 << 9)
 #define SPECIES_FLAG_ULTRA_BURST        (1 << 10)
+#define SPECIES_FLAG_PARADOX            (1 << 11)
 
 #define LEGENDARY_PERFECT_IV_COUNT 3
 
