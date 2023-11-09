@@ -979,7 +979,7 @@ static const u16 sFinalStrikeOnlyEffects[] =
     EFFECT_SECRET_POWER,
     EFFECT_SMACK_DOWN,
     EFFECT_SPARKLING_ARIA,
-    EFFECT_SMELLINGSALT,
+    EFFECT_SMELLING_SALTS,
     EFFECT_WAKE_UP_SLAP,
     EFFECT_HIT_ESCAPE,
     EFFECT_RECOIL_HP_25,
@@ -2782,7 +2782,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
         && !primary && gBattleScripting.moveEffect <= MOVE_EFFECT_CONFUSION)
         INCREMENT_RESET_RETURN
 
-    if (TestSheerForceFlag(gBattlerAttacker, gCurrentMove) && affectsUser != MOVE_EFFECT_AFFECTS_USER)
+    if (TestSheerForceFlag(gBattlerAttacker, gCurrentMove) && gBattleScripting.moveEffect != MOVE_EFFECT_CHARGING)
         INCREMENT_RESET_RETURN
 
     if (gBattleMons[gEffectBattler].hp == 0 && !activateAfterFaint)
@@ -9151,6 +9151,7 @@ static void Cmd_various(void)
             case ABILITY_SCHOOLING:         case ABILITY_COMATOSE:
             case ABILITY_SHIELDS_DOWN:      case ABILITY_DISGUISE:
             case ABILITY_RKS_SYSTEM:        case ABILITY_TRACE:
+            case ABILITY_ZERO_TO_HERO:
                 break;
             default:
                 gBattleStruct->tracedAbility[gBattlerAbility] = gBattleMons[battler].ability; // re-using the variable for trace
@@ -12777,6 +12778,8 @@ static void Cmd_trychoosesleeptalkmove(void)
     }
     else // at least one move can be chosen
     {
+        // Set Sleep Talk as used move, so it works with Last Resort.
+        gDisableStructs[gBattlerAttacker].usedMoves |= gBitTable[gCurrMovePos];
         do
         {
             movePosition = MOD(Random(), MAX_MON_MOVES);
