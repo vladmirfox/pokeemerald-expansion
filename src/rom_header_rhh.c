@@ -9,18 +9,18 @@
 // not be modified after being introduced.
 struct RHHRomHeader
 {
-    char rhh_magic[4]; // 'PORY'. Useful to locate the header if it shifts.
-    u8 expansionVersionMajor;
-    u8 expansionVersionMinor;
-    u8 expansionVersionPatch;
-    bool8 expansionVersionTagged;
+    /*0x00*/ char rhh_magic[6]; // 'RHHEXP'. Useful to locate the header if it shifts.
+    /*0x06*/ u8 expansionVersionMajor;
+    /*0x07*/ u8 expansionVersionMinor;
+    /*0x08*/ u8 expansionVersionPatch;
+    /*0x09*/ u8 expansionVersionFlags;
 };
 
 static const struct RHHRomHeader sRHHRomHeader =
 {
-    .rhh_magic = { 'P', 'O', 'R', 'Y' },
+    .rhh_magic = { 'R', 'H', 'H', 'E', 'X', 'P' },
     .expansionVersionMajor = EXPANSION_VERSION_MAJOR,
     .expansionVersionMinor = EXPANSION_VERSION_MINOR,
     .expansionVersionPatch = EXPANSION_VERSION_PATCH,
-    .expansionVersionTagged = EXPANSION_TAGGED_RELEASE,
+    .expansionVersionFlags = (EXPANSION_TAGGED_RELEASE << 0),
 };
