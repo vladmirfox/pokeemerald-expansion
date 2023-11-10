@@ -716,25 +716,26 @@ static void HandleInputChooseMove(u32 battler)
                 canSelectTarget = 0;
             }
 
-        #if B_SHOW_TARGETS == TRUE
-            // Show all available targets for multi-target moves
-            if ((moveTarget & MOVE_TARGET_ALL_BATTLERS) == MOVE_TARGET_ALL_BATTLERS)
+            if (B_SHOW_TARGETS == TRUE)
             {
-                u32 i = 0;
-                for (i = 0; i < gBattlersCount; i++)
-                    TryShowAsTarget(i);
+                // Show all available targets for multi-target moves
+                if ((moveTarget & MOVE_TARGET_ALL_BATTLERS) == MOVE_TARGET_ALL_BATTLERS)
+                {
+                    u32 i = 0;
+                    for (i = 0; i < gBattlersCount; i++)
+                        TryShowAsTarget(i);
 
-                canSelectTarget = 3;
+                    canSelectTarget = 3;
+                }
+                else if (moveTarget & (MOVE_TARGET_OPPONENTS_FIELD | MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY))
+                {
+                    TryShowAsTarget(gMultiUsePlayerCursor);
+                    TryShowAsTarget(BATTLE_PARTNER(gMultiUsePlayerCursor));
+                    if (moveTarget & MOVE_TARGET_FOES_AND_ALLY)
+                        TryShowAsTarget(BATTLE_PARTNER(battler));
+                    canSelectTarget = 2;
+                }
             }
-            else if (moveTarget & (MOVE_TARGET_OPPONENTS_FIELD | MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY))
-            {
-                TryShowAsTarget(gMultiUsePlayerCursor);
-                TryShowAsTarget(BATTLE_PARTNER(gMultiUsePlayerCursor));
-                if (moveTarget & MOVE_TARGET_FOES_AND_ALLY)
-                    TryShowAsTarget(BATTLE_PARTNER(battler));
-                canSelectTarget = 2;
-            }
-        #endif
         }
 
         switch (canSelectTarget)
@@ -897,7 +898,7 @@ static void ReloadMoveNames(u32 battler)
     MoveSelectionDisplayMoveType(battler);
 }
 
-static u32 HandleMoveInputUnused(u32 battler)
+static u32 UNUSED HandleMoveInputUnused(u32 battler)
 {
     u32 var = 0;
 
