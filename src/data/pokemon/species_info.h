@@ -463,6 +463,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .catchRate = 45,                                \
         .evYield_Attack    = 2,                         \
         .evYield_SpDefense = 1,                         \
+        .itemRare = ITEM_POISON_BARB,                   \
         .genderRatio = PERCENT_FEMALE(50),              \
         .eggCycles = 15,                                \
         .friendship = STANDARD_FRIENDSHIP,              \
@@ -480,7 +481,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .baseAttack    = BEEDRILL_ATTACK,
         .expYield = 178,
-        .itemRare = ITEM_POISON_BARB,
         .abilities = {ABILITY_SWARM, ABILITY_NONE, ABILITY_SNIPER},
         BEEDRILL_MISC_INFO,
     },
@@ -494,7 +494,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 15,
         .baseSpDefense = 80,
         .expYield = 223,
-        .itemRare = ITEM_POISON_BARB,
         .abilities = {ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         BEEDRILL_MISC_INFO,
@@ -2147,6 +2146,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_PSYCHIC, TYPE_PSYCHIC},                     \
         .catchRate = 50,                                            \
         .evYield_SpAttack  = 3,                                     \
+        .itemRare = ITEM_TWISTED_SPOON,                             \
         .genderRatio = PERCENT_FEMALE(25),                          \
         .eggCycles = 20,                                            \
         .friendship = STANDARD_FRIENDSHIP,                          \
@@ -2164,7 +2164,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 135,
         .baseSpDefense = ALAKAZAM_SP_DEF,
         .expYield = 225,
-        .itemRare = ITEM_TWISTED_SPOON,
         .abilities = {ABILITY_SYNCHRONIZE, ABILITY_INNER_FOCUS, ABILITY_MAGIC_GUARD},
         ALAKAZAM_MISC_INFO,
     },
@@ -2178,7 +2177,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 175,
         .baseSpDefense = ALAKAZAM_SP_DEF + 10,
         .expYield = 270,
-        .itemRare = ITEM_TWISTED_SPOON,
         .abilities = {ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         ALAKAZAM_MISC_INFO,
@@ -2585,6 +2583,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #define SLOWBRO_MISC_INFO                                       \
         .catchRate = 75,                                        \
+        .itemRare = ITEM_KINGS_ROCK,                            \
         .genderRatio = PERCENT_FEMALE(50),                      \
         .eggCycles = 20,                                        \
         .friendship = STANDARD_FRIENDSHIP,                      \
@@ -2603,7 +2602,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_WATER, TYPE_PSYCHIC },
         .expYield = 172,
         .evYield_Defense   = 2,
-        .itemRare = ITEM_KINGS_ROCK,
         .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
         .noFlip = FALSE,
         SLOWBRO_MISC_INFO,
@@ -2620,7 +2618,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_WATER, TYPE_PSYCHIC},
         .expYield = 207,
         .evYield_Defense   = 2,
-        .itemRare = ITEM_KINGS_ROCK,
         .abilities = {ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR},
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
@@ -3175,6 +3172,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_STEEL, TYPE_GROUND},                    \
         .catchRate = 25,                                        \
         .evYield_Defense   = 2,                                 \
+        .itemRare = ITEM_METAL_COAT,                            \
         .genderRatio = PERCENT_FEMALE(50),                      \
         .eggCycles = 25,                                        \
         .friendship = STANDARD_FRIENDSHIP,                      \
@@ -3192,7 +3190,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 55,
         .baseSpDefense = 65,
         .expYield = 179,
-        .itemRare = ITEM_METAL_COAT,
         .abilities = {ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SHEER_FORCE},
         STEELIX_MISC_INFO,
     },
@@ -3206,7 +3203,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 55,
         .baseSpDefense = 95,
         .expYield = 214,
-        .itemRare = ITEM_METAL_COAT,
         .abilities = {ABILITY_SAND_FORCE, ABILITY_SAND_FORCE, ABILITY_SAND_FORCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         STEELIX_MISC_INFO,
@@ -9637,6 +9633,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #define AGGRON_MISC_INFO                                        \
         .catchRate = 45,                                        \
         .evYield_Defense   = 3,                                 \
+        .itemRare = ITEM_HARD_STONE,                            \
         .genderRatio = PERCENT_FEMALE(50),                      \
         .eggCycles = 35,                                        \
         .friendship = 35,                                       \
@@ -9655,7 +9652,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 60,
         .types = { TYPE_STEEL, TYPE_ROCK },
         .expYield = 239,
-        .itemRare = ITEM_HARD_STONE,
         .abilities = {ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_HEAVY_METAL},
         AGGRON_MISC_INFO,
     },
@@ -9670,7 +9666,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .types = { TYPE_STEEL, TYPE_STEEL},
         .expYield = 284,
-        .itemRare = ITEM_HARD_STONE,
         .abilities = {ABILITY_FILTER, ABILITY_FILTER, ABILITY_FILTER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         AGGRON_MISC_INFO,
@@ -10044,6 +10039,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_WATER, TYPE_DARK},                      \
         .catchRate = 60,                                        \
         .evYield_Attack    = 2,                                 \
+        .itemRare = ITEM_DEEP_SEA_TOOTH,                        \
         .genderRatio = PERCENT_FEMALE(50),                      \
         .eggCycles = 20,                                        \
         .friendship = 35,                                       \
@@ -10061,7 +10057,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 95,
         .baseSpDefense = 40,
         .expYield = 161,
-        .itemRare = ITEM_DEEP_SEA_TOOTH,
         .abilities = {ABILITY_ROUGH_SKIN, ABILITY_NONE, ABILITY_SPEED_BOOST},
         SHARPEDO_MISC_INFO,
     },
@@ -10075,7 +10070,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 110,
         .baseSpDefense = 65,
         .expYield = 196,
-        .itemRare = ITEM_DEEP_SEA_TOOTH,
         .abilities = {ABILITY_STRONG_JAW, ABILITY_STRONG_JAW, ABILITY_STRONG_JAW},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         SHARPEDO_MISC_INFO,
@@ -10926,6 +10920,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GHOST, TYPE_GHOST},                         \
         .catchRate = 45,                                            \
         .evYield_Attack    = 2,                                     \
+        .itemRare = ITEM_SPELL_TAG,                                 \
         .genderRatio = PERCENT_FEMALE(50),                          \
         .eggCycles = 25,                                            \
         .friendship = 35,                                           \
@@ -10943,7 +10938,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 83,
         .baseSpDefense = 63,
         .expYield = 159,
-        .itemRare = ITEM_SPELL_TAG,
         .abilities = {ABILITY_INSOMNIA, ABILITY_FRISK, ABILITY_CURSED_BODY},
         BANETTE_MISC_INFO,
     },
@@ -10957,7 +10951,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 93,
         .baseSpDefense = 83,
         .expYield = 194,
-        .itemRare = ITEM_SPELL_TAG,
         .abilities = {ABILITY_PRANKSTER, ABILITY_PRANKSTER, ABILITY_PRANKSTER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         BANETTE_MISC_INFO,
@@ -11466,6 +11459,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_DRAGON, TYPE_FLYING},               \
         .catchRate = 45,                                    \
         .evYield_Attack    = 3,                             \
+        .itemRare = ITEM_DRAGON_FANG,                       \
         .genderRatio = PERCENT_FEMALE(50),                  \
         .eggCycles = 40,                                    \
         .friendship = 35,                                   \
@@ -11483,7 +11477,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 110,
         .baseSpDefense = 80,
         .expYield = 270,
-        .itemRare = ITEM_DRAGON_FANG,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_MOXIE},
         SALAMENCE_MISC_INFO,
     },
@@ -11497,7 +11490,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 120,
         .baseSpDefense = 90,
         .expYield = 315,
-        .itemRare = ITEM_DRAGON_FANG,
         .abilities = {ABILITY_AERILATE, ABILITY_AERILATE, ABILITY_AERILATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         SALAMENCE_MISC_INFO,
@@ -11553,6 +11545,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_STEEL, TYPE_PSYCHIC},                   \
         .catchRate = 3,                                         \
         .evYield_Defense   = 3,                                 \
+        .itemRare = ITEM_METAL_COAT,                            \
         .genderRatio = MON_GENDERLESS,                          \
         .eggCycles = 40,                                        \
         .friendship = 35,                                       \
@@ -11570,7 +11563,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 95,
         .baseSpDefense = 90,
         .expYield = 270,
-        .itemRare = ITEM_METAL_COAT,
         .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_LIGHT_METAL},
         METAGROSS_MISC_INFO,
     },
@@ -11584,7 +11576,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 105,
         .baseSpDefense = 110,
         .expYield = 315,
-        .itemRare = ITEM_METAL_COAT,
         .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         METAGROSS_MISC_INFO,
@@ -13484,6 +13475,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .catchRate = 60,                                    \
         .evYield_Attack    = 1,                             \
         .evYield_SpAttack  = 1,                             \
+        .itemRare = ITEM_NEVER_MELT_ICE,                    \
         .genderRatio = PERCENT_FEMALE(50),                  \
         .eggCycles = 20,                                    \
         .friendship = STANDARD_FRIENDSHIP,                  \
@@ -13501,7 +13493,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 92,
         .baseSpDefense = 85,
         .expYield = 173,
-        .itemRare = ITEM_NEVER_MELT_ICE,
         .abilities = {ABILITY_SNOW_WARNING, ABILITY_NONE, ABILITY_SOUNDPROOF},
         ABOMASNOW_MISC_INFO,
     },
@@ -13515,7 +13506,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 132,
         .baseSpDefense = 105,
         .expYield = 208,
-        .itemRare = ITEM_NEVER_MELT_ICE,
         .abilities = {ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         ABOMASNOW_MISC_INFO,
@@ -14849,6 +14839,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #define AUDINO_MISC_INFO                                    \
         .catchRate = 255,                                   \
         .evYield_HP        = 2,                             \
+        .itemCommon = ITEM_ORAN_BERRY,                      \
+        .itemRare = ITEM_SITRUS_BERRY,                      \
         .genderRatio = PERCENT_FEMALE(50),                  \
         .eggCycles = 20,                                    \
         .friendship = STANDARD_FRIENDSHIP,                  \
@@ -14866,8 +14858,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 86,
         .types = { TYPE_NORMAL, TYPE_NORMAL},
         .expYield = 390,
-        .itemCommon = ITEM_ORAN_BERRY,
-        .itemRare = ITEM_SITRUS_BERRY,
         .abilities = {ABILITY_HEALER, ABILITY_REGENERATOR, ABILITY_KLUTZ},
         .bodyColor = BODY_COLOR_PINK,
         AUDINO_MISC_INFO,
@@ -14883,8 +14873,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 126,
         .types = { TYPE_NORMAL, TYPE_FAIRY},
         .expYield = 425,
-        .itemCommon = ITEM_ORAN_BERRY,
-        .itemRare = ITEM_SITRUS_BERRY,
         .abilities = {ABILITY_HEALER, ABILITY_HEALER, ABILITY_HEALER},
         .bodyColor = BODY_COLOR_WHITE,
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
