@@ -8130,10 +8130,15 @@ static const union AnimCmd sAnim_Tyrantrum_1[] =
 
 static const union AnimCmd sAnim_Amaura_1[] =
 {
-    ANIMCMD_FRAME(0, 5),
-    ANIMCMD_FRAME(1, 10),
-    ANIMCMD_FRAME(0, 10),
-    ANIMCMD_FRAME(1, 35),
+    ANIMCMD_FRAME(1, 5),
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_FRAME(1, 8),
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(1, 11),
+    ANIMCMD_FRAME(0, 6),
+    ANIMCMD_FRAME(1, 8),
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(1, 5),
     ANIMCMD_FRAME(0, 5),
     ANIMCMD_END,
 };
