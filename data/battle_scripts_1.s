@@ -440,6 +440,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSyrupBomb               @ EFFECT_SYRUP_BOMB
 	.4byte BattleScript_EffectHit                     @ EFFECT_IVY_CUDGEL
 	.4byte BattleScript_EffectMaxMove                 @ EFFECT_MAX_MOVE
+	.4byte BattleScript_EffectBrickBreak              @ EFFECT_RAGING_BULL
 
 BattleScript_EffectSyrupBomb::
 	setmoveeffect MOVE_EFFECT_SYRUP_BOMB
