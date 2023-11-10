@@ -91,9 +91,8 @@ int FakeGameClear(void)
 {
     ZeroPlayerPartyMons();
     ResetPokedex();
-    // TODO DND Set Continue Warp to Heal Location NEW MAP
-    // TODO DND Change Warp Location to NEW MAP
-    SetWarpDestination(MAP_GROUP(LITTLEROOT_TOWN), MAP_NUM(LITTLEROOT_TOWN), 0, -1, -1);
+    // TODO DND Set Continue Warp to Heal Location NEW MAP AFTER BATTLE
+    SetWarpDestination(MAP_GROUP(DESTROYED_CITY_MAIN_HALL), MAP_NUM(DESTROYED_CITY_MAIN_HALL), 0, -2, -1);
     WarpIntoMap();
     gFieldCallback = FieldCB_WarpExitFadeFromBlack;
     SetMainCallback2(CB2_LoadMap);

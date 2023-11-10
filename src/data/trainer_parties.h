@@ -4370,6 +4370,7 @@ static const struct TrainerMon sParty_Timmy[] = {
     }
 };
 
+// TODO DND Make this into Jarnathan
 static const struct TrainerMon sParty_Wallace[] = {
     {
     .iv = TRAINER_PARTY_IVS(31, 31, 31, 31, 31, 31),
