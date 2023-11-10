@@ -2865,7 +2865,7 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_GENESECT - 1]                     = ANIM_H_VIBRATE,
 
     // Gen 6
-    [SPECIES_CHESPIN - 1]                      = ANIM_V_JUMPS_SMALL,
+    [SPECIES_CHESPIN - 1]                      = ANIM_H_SLIDE_SLOW,
     [SPECIES_QUILLADIN - 1]                    = ANIM_LUNGE_GROW,
     [SPECIES_CHESNAUGHT - 1]                   = ANIM_GROW_IN_STAGES,
     [SPECIES_FENNEKIN - 1]                     = ANIM_V_SQUISH_AND_BOUNCE,
