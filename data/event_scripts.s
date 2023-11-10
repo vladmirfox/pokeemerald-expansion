@@ -1004,12 +1004,14 @@ Common_EventScript_LegendaryFlewAway::
 	release
 	end
 
+.if I_VS_SEEKER_CHARGING != 0
 EventScript_VsSeekerChargingDone::
 	special VsSeekerFreezeObjectsAfterChargeComplete
 	waitstate
 	special VsSeekerResetObjectMovementAfterChargeComplete
 	releaseall
 	end
+.endif
 
 	.include "data/scripts/pc_transfer.inc"
 	.include "data/scripts/questionnaire.inc"

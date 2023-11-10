@@ -31,6 +31,7 @@
 #include "constants/trainer_types.h"
 #include "constants/field_effects.h"
 
+#if I_VS_SEEKER_CHARGING != 0
 enum
 {
    VSSEEKER_NOT_CHARGED,
@@ -778,3 +779,4 @@ static void StartAllRespondantIdleMovements(void)
         }
     }
 }
+#endif

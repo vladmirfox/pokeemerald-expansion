@@ -3,6 +3,7 @@
 
 #include "global.h"
 
+#if I_VS_SEEKER_CHARGING != 0
 void Task_InitVsSeekerAndCheckForTrainersOnScreen(u8 taskId);
 bool8 UpdateVsSeekerStepCounter(void);
 void MapResetTrainerRematches(u16 mapGroup, u16 mapNum);
@@ -10,5 +11,6 @@ void ClearRematchMovementByTrainerId(void);
 u16 GetRematchTrainerIdVSSeeker(u16 trainerId);
 
 #define VSSEEKER_RECHARGE_STEPS 100
+#endif
 
 #endif //GUARD_VS_SEEKER_H

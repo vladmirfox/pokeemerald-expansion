@@ -58,7 +58,9 @@
 #include "tv.h"
 #include "scanline_effect.h"
 #include "wild_encounter.h"
+#if I_VS_SEEKER_CHARGING != 0
 #include "vs_seeker.h"
+#endif
 #include "frontier_util.h"
 #include "constants/abilities.h"
 #include "constants/layouts.h"
@@ -819,7 +821,9 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     ResetCyclingRoadChallengeData();
     RestartWildEncounterImmunitySteps();
     TryUpdateRandomTrainerRematches(mapGroup, mapNum);
+#if I_VS_SEEKER_CHARGING != 0
     MapResetTrainerRematches(mapGroup, mapNum);
+#endif
     DoTimeBasedEvents();
     SetSavedWeatherFromCurrMapHeader();
     ChooseAmbientCrySpecies();
@@ -870,7 +874,9 @@ static void LoadMapFromWarp(bool32 a1)
     ResetCyclingRoadChallengeData();
     RestartWildEncounterImmunitySteps();
     TryUpdateRandomTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
+#if I_VS_SEEKER_CHARGING != 0
      MapResetTrainerRematches(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
+#endif
     if (a1 != TRUE)
         DoTimeBasedEvents();
     SetSavedWeatherFromCurrMapHeader();
