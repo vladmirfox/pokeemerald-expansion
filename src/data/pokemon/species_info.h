@@ -72,6 +72,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_VENUSAUR] =
     {
+        VENUSAUR_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 82,
         .baseDefense   = 83,
@@ -80,11 +81,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 100,
         .expYield = 236,
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_CHLOROPHYLL},
-        VENUSAUR_MISC_INFO,
     },
 
     [SPECIES_VENUSAUR_MEGA] =
     {
+        VENUSAUR_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 100,
         .baseDefense   = 123,
@@ -94,11 +95,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 281,
         .abilities = {ABILITY_THICK_FAT, ABILITY_THICK_FAT, ABILITY_THICK_FAT},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        VENUSAUR_MISC_INFO,
     },
 
     [SPECIES_VENUSAUR_GIGANTAMAX] =
     {
+        VENUSAUR_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 82,
         .baseDefense   = 83,
@@ -108,7 +109,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 236,
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_CHLOROPHYLL},
         .gigantamax = TRUE,
-        VENUSAUR_MISC_INFO,
     },
 #endif //FAMILY_BULBASAUR
 
@@ -170,6 +170,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_CHARIZARD] =
     {
+        CHARIZARD_MISC_INFO,
         .baseHP        = 78,
         .baseAttack    = 84,
         .baseDefense   = 78,
@@ -180,11 +181,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 240,
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_SOLAR_POWER},
         .bodyColor = BODY_COLOR_RED,
-        CHARIZARD_MISC_INFO,
     },
 
     [SPECIES_CHARIZARD_MEGA_X] =
     {
+        CHARIZARD_MISC_INFO,
         .baseHP        = 78,
         .baseAttack    = 130,
         .baseDefense   = 111,
@@ -196,11 +197,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
         .bodyColor = BODY_COLOR_BLACK,
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        CHARIZARD_MISC_INFO,
     },
 
     [SPECIES_CHARIZARD_MEGA_Y] =
     {
+        CHARIZARD_MISC_INFO,
         .baseHP        = 78,
         .baseAttack    = 104,
         .baseDefense   = 78,
@@ -212,11 +213,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_DROUGHT, ABILITY_DROUGHT, ABILITY_DROUGHT},
         .bodyColor = BODY_COLOR_RED,
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        CHARIZARD_MISC_INFO,
     },
 
     [SPECIES_CHARIZARD_GIGANTAMAX] =
     {
+        CHARIZARD_MISC_INFO,
         .baseHP        = 78,
         .baseAttack    = 84,
         .baseDefense   = 78,
@@ -228,7 +229,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_SOLAR_POWER},
         .bodyColor = BODY_COLOR_RED,
         .gigantamax = TRUE,
-        CHARIZARD_MISC_INFO,
     },
 #endif //FAMILY_CHARMANDER
 
@@ -292,6 +292,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_BLASTOISE] =
     {
+        BLASTOISE_MISC_INFO,
         .baseHP        = 79,
         .baseAttack    = 83,
         .baseDefense   = 100,
@@ -300,11 +301,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 105,
         .expYield = 239,
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_RAIN_DISH},
-        BLASTOISE_MISC_INFO,
     },
 
     [SPECIES_BLASTOISE_MEGA] =
     {
+        BLASTOISE_MISC_INFO,
         .baseHP        = 79,
         .baseAttack    = 103,
         .baseDefense   = 120,
@@ -314,11 +315,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 284,
         .abilities = {ABILITY_MEGA_LAUNCHER, ABILITY_MEGA_LAUNCHER, ABILITY_MEGA_LAUNCHER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        BLASTOISE_MISC_INFO,
     },
 
     [SPECIES_BLASTOISE_GIGANTAMAX] =
     {
+        BLASTOISE_MISC_INFO,
         .baseHP        = 79,
         .baseAttack    = 83,
         .baseDefense   = 100,
@@ -328,7 +329,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 239,
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_RAIN_DISH},
         .gigantamax = TRUE,
-        BLASTOISE_MISC_INFO,
     },
 #endif //FAMILY_SQUIRTLE
 
@@ -406,8 +406,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_BUTTERFREE_GIGANTAMAX] =
     {
-        .gigantamax = TRUE,
         BUTTERFREE_MISC_INFO,
+        .gigantamax = TRUE,
     },
 #endif //FAMILY_CATERPIE
 
@@ -474,6 +474,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_BEEDRILL] =
     {
+        BEEDRILL_MISC_INFO,
         .baseHP        = 65,
         .baseDefense   = 40,
         .baseSpeed     = 75,
@@ -482,11 +483,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseAttack    = BEEDRILL_ATTACK,
         .expYield = 178,
         .abilities = {ABILITY_SWARM, ABILITY_NONE, ABILITY_SNIPER},
-        BEEDRILL_MISC_INFO,
     },
 
     [SPECIES_BEEDRILL_MEGA] =
     {
+        BEEDRILL_MISC_INFO,
         .baseHP        = 65,
         .baseAttack    = BEEDRILL_ATTACK + 60,
         .baseDefense   = 40,
@@ -496,7 +497,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 223,
         .abilities = {ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        BEEDRILL_MISC_INFO,
     },
 #endif //FAMILY_WEEDLE
 
@@ -561,6 +561,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_PIDGEOT] =
     {
+        PIDGEOT_MISC_INFO,
         .baseHP        = 83,
         .baseAttack    = 80,
         .baseDefense   = 75,
@@ -569,11 +570,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = PIDGEOT_SPEED,
         .expYield = 216,
         .abilities = {ABILITY_KEEN_EYE, ABILITY_TANGLED_FEET, ABILITY_BIG_PECKS},
-        PIDGEOT_MISC_INFO,
     },
 
     [SPECIES_PIDGEOT_MEGA] =
     {
+        PIDGEOT_MISC_INFO,
         .baseHP        = 83,
         .baseAttack    = 80,
         .baseDefense   = 80,
@@ -583,7 +584,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 261,
         .abilities = {ABILITY_NO_GUARD, ABILITY_NO_GUARD, ABILITY_NO_GUARD},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        PIDGEOT_MISC_INFO,
     },
 #endif //FAMILY_PIDGEY
 
@@ -610,20 +610,20 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_RATTATA] =
     {
+        RATTATA_MISC_INFO,
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .abilities = {ABILITY_RUN_AWAY, ABILITY_GUTS, ABILITY_HUSTLE},
         .bodyColor = BODY_COLOR_PURPLE,
-        RATTATA_MISC_INFO,
     },
 
     [SPECIES_RATTATA_ALOLAN] =
     {
+        RATTATA_MISC_INFO,
         .types = { TYPE_DARK, TYPE_NORMAL},
         .itemRare = ITEM_PECHA_BERRY,
         .abilities = {ABILITY_GLUTTONY, ABILITY_HUSTLE, ABILITY_THICK_FAT},
         .bodyColor = BODY_COLOR_BLACK,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        RATTATA_MISC_INFO,
     },
 
 #define RATICATE_MISC_INFO                  \
@@ -634,6 +634,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_RATICATE] =
     {
+        RATICATE_MISC_INFO,
         .baseHP        = 55,
         .baseAttack    = 81,
         .baseDefense   = 60,
@@ -643,11 +644,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .abilities = {ABILITY_RUN_AWAY, ABILITY_GUTS, ABILITY_HUSTLE},
         .bodyColor = BODY_COLOR_BROWN,
-        RATICATE_MISC_INFO,
     },
 
     [SPECIES_RATICATE_ALOLAN] =
     {
+        RATICATE_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 71,
         .baseDefense   = 70,
@@ -659,7 +660,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_GLUTTONY, ABILITY_HUSTLE, ABILITY_THICK_FAT},
         .bodyColor = BODY_COLOR_BLACK,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        RATICATE_MISC_INFO,
     },
 #endif //FAMILY_RATTATA
 
@@ -779,14 +779,14 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_PICHU] =
     {
-        .noFlip = FALSE,
         PICHU_MISC_INFO,
+        .noFlip = FALSE,
     },
 
     [SPECIES_PICHU_SPIKY_EARED] =
     {
-        .noFlip = TRUE,
         PICHU_MISC_INFO,
+        .noFlip = TRUE,
     },
 
 #define PIKACHU_MISC_INFO(gender, flip)                                    \
@@ -853,6 +853,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_RAICHU] =
     {
+        RAICHU_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 90,
         .baseDefense   = 55,
@@ -862,11 +863,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_ELECTRIC, TYPE_ELECTRIC},
         .abilities = {ABILITY_STATIC, ABILITY_NONE, ABILITY_LIGHTNING_ROD},
         .bodyColor = BODY_COLOR_YELLOW,
-        RAICHU_MISC_INFO,
     },
 
     [SPECIES_RAICHU_ALOLAN] =
     {
+        RAICHU_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 85,
         .baseDefense   = 50,
@@ -877,7 +878,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SURGE_SURFER, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        RAICHU_MISC_INFO,
     },
 #endif //FAMILY_PIKACHU
 
@@ -899,6 +899,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SANDSHREW] =
     {
+        SANDSHREW_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 75,
         .baseDefense   = 85,
@@ -908,11 +909,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GROUND, TYPE_GROUND },
         .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_SAND_RUSH},
         .bodyColor = BODY_COLOR_YELLOW,
-        SANDSHREW_MISC_INFO,
     },
 
     [SPECIES_SANDSHREW_ALOLAN] =
     {
+        SANDSHREW_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 75,
         .baseDefense   = 90,
@@ -923,7 +924,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SLUSH_RUSH},
         .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        SANDSHREW_MISC_INFO,
     },
 
 #define SANDSLASH_MISC_INFO                     \
@@ -934,6 +934,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SANDSLASH] =
     {
+        SANDSLASH_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 100,
         .baseDefense   = 110,
@@ -943,11 +944,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GROUND, TYPE_GROUND },
         .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_SAND_RUSH},
         .bodyColor = BODY_COLOR_YELLOW,
-        SANDSLASH_MISC_INFO,
     },
 
     [SPECIES_SANDSLASH_ALOLAN] =
     {
+        SANDSLASH_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 100,
         .baseDefense   = 120,
@@ -958,7 +959,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SLUSH_RUSH},
         .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        SANDSLASH_MISC_INFO,
     },
 #endif //FAMILY_SANDSHREW
 
@@ -1196,21 +1196,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_VULPIX] =
     {
+        VULPIX_MISC_INFO,
         .types = { TYPE_FIRE, TYPE_FIRE },
         .itemRare = ITEM_CHARCOAL,
         .abilities = {ABILITY_FLASH_FIRE, ABILITY_NONE, ABILITY_DROUGHT},
         .bodyColor = BODY_COLOR_BROWN,
-        VULPIX_MISC_INFO,
     },
 
     [SPECIES_VULPIX_ALOLAN] =
     {
+        VULPIX_MISC_INFO,
         .types = { TYPE_ICE, TYPE_ICE},
         .itemRare = ITEM_SNOWBALL,
         .abilities = {ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SNOW_WARNING},
         .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        VULPIX_MISC_INFO,
     },
 
 #define NINETALES_MISC_INFO                     \
@@ -1222,6 +1222,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_NINETALES] =
     {
+        NINETALES_MISC_INFO,
         .baseHP        = 73,
         .baseAttack    = 76,
         .baseDefense   = 75,
@@ -1232,11 +1233,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_CHARCOAL,
         .abilities = {ABILITY_FLASH_FIRE, ABILITY_NONE, ABILITY_DROUGHT},
         .bodyColor = BODY_COLOR_YELLOW,
-        NINETALES_MISC_INFO,
     },
 
     [SPECIES_NINETALES_ALOLAN] =
     {
+        NINETALES_MISC_INFO,
         .baseHP        = 73,
         .baseAttack    = 67,
         .baseDefense   = 75,
@@ -1248,7 +1249,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SNOW_WARNING},
         .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        NINETALES_MISC_INFO,
     },
 #endif //FAMILY_VULPIX
 
@@ -1608,6 +1608,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_DIGLETT] =
     {
+        DIGLETT_MISC_INFO,
         .baseHP        = 10,
         .baseAttack    = 55,
         .baseDefense   = 25,
@@ -1616,11 +1617,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 45,
         .types = { TYPE_GROUND, TYPE_GROUND },
         .abilities = {ABILITY_SAND_VEIL, ABILITY_ARENA_TRAP, ABILITY_SAND_FORCE},
-        DIGLETT_MISC_INFO,
     },
 
     [SPECIES_DIGLETT_ALOLAN] =
     {
+        DIGLETT_MISC_INFO,
         .baseHP        = 10,
         .baseAttack    = 55,
         .baseDefense   = 30,
@@ -1630,7 +1631,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GROUND, TYPE_STEEL},
         .abilities = {ABILITY_SAND_VEIL, ABILITY_TANGLING_HAIR, ABILITY_SAND_FORCE},
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        DIGLETT_MISC_INFO,
     },
 
 #define DUGTRIO_MISC_INFO                   \
@@ -1643,6 +1643,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_DUGTRIO] =
     {
+        DUGTRIO_MISC_INFO,
         .baseHP        = 35,
         .baseAttack    = DUGTRIO_ATTACK,
         .baseDefense   = 50,
@@ -1652,11 +1653,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GROUND, TYPE_GROUND},
         .abilities = {ABILITY_SAND_VEIL, ABILITY_ARENA_TRAP, ABILITY_SAND_FORCE},
         .noFlip = FALSE,
-        DUGTRIO_MISC_INFO,
     },
 
     [SPECIES_DUGTRIO_ALOLAN] =
     {
+        DUGTRIO_MISC_INFO,
         .baseHP        = 35,
         .baseAttack    = DUGTRIO_ATTACK,
         .baseDefense   = 60,
@@ -1667,7 +1668,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SAND_VEIL, ABILITY_TANGLING_HAIR, ABILITY_SAND_FORCE},
         .noFlip = TRUE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        DUGTRIO_MISC_INFO,
     },
 #endif //FAMILY_DIGLETT
 
@@ -1684,6 +1684,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_MEOWTH] =
     {
+        MEOWTH_MISC_INFO,
         .baseHP        = 40,
         .baseAttack    = 45,
         .baseDefense   = 35,
@@ -1695,11 +1696,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_QUICK_CLAW,
         .abilities = {ABILITY_PICKUP, ABILITY_TECHNICIAN, ABILITY_UNNERVE},
         .bodyColor = BODY_COLOR_YELLOW,
-        MEOWTH_MISC_INFO,
     },
 
     [SPECIES_MEOWTH_ALOLAN] =
     {
+        MEOWTH_MISC_INFO,
         .baseHP        = 40,
         .baseAttack    = 35,
         .baseDefense   = 35,
@@ -1712,11 +1713,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PICKUP, ABILITY_TECHNICIAN, ABILITY_RATTLED},
         .bodyColor = BODY_COLOR_GRAY,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        MEOWTH_MISC_INFO,
     },
 
     [SPECIES_MEOWTH_GALARIAN] =
     {
+        MEOWTH_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 65,
         .baseDefense   = 55,
@@ -1728,11 +1729,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PICKUP, ABILITY_TOUGH_CLAWS, ABILITY_UNNERVE},
         .bodyColor = BODY_COLOR_BROWN,
         .flags = SPECIES_FLAG_GALARIAN_FORM,
-        MEOWTH_MISC_INFO,
     },
 
     [SPECIES_MEOWTH_GIGANTAMAX] =
     {
+        MEOWTH_MISC_INFO,
         .baseHP        = 40,
         .baseAttack    = 45,
         .baseDefense   = 35,
@@ -1745,7 +1746,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PICKUP, ABILITY_TECHNICIAN, ABILITY_UNNERVE},
         .bodyColor = BODY_COLOR_YELLOW,
         .gigantamax = TRUE,
-        MEOWTH_MISC_INFO,
     },
 
 #define PERSIAN_MISC_INFO                                   \
@@ -1762,6 +1762,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_PERSIAN] =
     {
+        PERSIAN_MISC_INFO,
         .baseHP        = 65,
         .baseAttack    = 70,
         .baseDefense   = 60,
@@ -1771,11 +1772,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .abilities = {ABILITY_LIMBER, ABILITY_TECHNICIAN, ABILITY_UNNERVE},
         .bodyColor = BODY_COLOR_YELLOW,
-        PERSIAN_MISC_INFO,
     },
 
     [SPECIES_PERSIAN_ALOLAN] =
     {
+        PERSIAN_MISC_INFO,
         .baseHP        = 65,
         .baseAttack    = 60,
         .baseDefense   = 60,
@@ -1786,7 +1787,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_FUR_COAT, ABILITY_TECHNICIAN, ABILITY_RATTLED},
         .bodyColor = BODY_COLOR_GRAY,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        PERSIAN_MISC_INFO,
     },
 
     [SPECIES_PERRSERKER] =
@@ -1944,6 +1944,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GROWLITHE] =
     {
+        GROWLITHE_MISC_INFO,
         .baseHP        = 55,
         .baseAttack    = 70,
         .baseDefense   = 45,
@@ -1952,11 +1953,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 50,
         .types = { TYPE_FIRE, TYPE_FIRE },
         .abilities = {ABILITY_INTIMIDATE, ABILITY_FLASH_FIRE, ABILITY_JUSTIFIED},
-        GROWLITHE_MISC_INFO,
     },
 
     [SPECIES_GROWLITHE_HISUIAN] =
     {
+        GROWLITHE_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 75,
         .baseDefense   = 45,
@@ -1966,7 +1967,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_FIRE, TYPE_ROCK},
         .abilities = {ABILITY_INTIMIDATE, ABILITY_FLASH_FIRE, ABILITY_ROCK_HEAD},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        GROWLITHE_MISC_INFO,
     },
 
 #define ARCANINE_MISC_INFO                  \
@@ -1977,6 +1977,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ARCANINE] =
     {
+        ARCANINE_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 110,
         .baseDefense   = 80,
@@ -1985,11 +1986,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .types = { TYPE_FIRE, TYPE_FIRE },
         .abilities = {ABILITY_INTIMIDATE, ABILITY_FLASH_FIRE, ABILITY_JUSTIFIED},
-        ARCANINE_MISC_INFO,
     },
 
     [SPECIES_ARCANINE_HISUIAN] =
     {
+        ARCANINE_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 115,
         .baseDefense   = 80,
@@ -1999,7 +2000,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_FIRE, TYPE_ROCK},
         .abilities = {ABILITY_INTIMIDATE, ABILITY_FLASH_FIRE, ABILITY_ROCK_HEAD},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        ARCANINE_MISC_INFO,
     },
 #endif //FAMILY_GROWLITHE
 
@@ -2160,6 +2160,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ALAKAZAM] =
     {
+        ALAKAZAM_MISC_INFO,
         .baseHP        = 55,
         .baseAttack    = 50,
         .baseDefense   = 45,
@@ -2168,11 +2169,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = ALAKAZAM_SP_DEF,
         .expYield = 225,
         .abilities = {ABILITY_SYNCHRONIZE, ABILITY_INNER_FOCUS, ABILITY_MAGIC_GUARD},
-        ALAKAZAM_MISC_INFO,
     },
 
     [SPECIES_ALAKAZAM_MEGA] =
     {
+        ALAKAZAM_MISC_INFO,
         .baseHP        = 55,
         .baseAttack    = 50,
         .baseDefense   = 65,
@@ -2182,7 +2183,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 270,
         .abilities = {ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        ALAKAZAM_MISC_INFO,
     },
 #endif //FAMILY_ABRA
 
@@ -2422,9 +2422,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GEODUDE_ALOLAN] =
     {
-        .itemRare = ITEM_CELL_BATTERY,
         ALOLAN_GEODUDE_FAMILY_INFO,
         GEODUDE_MISC_INFO,
+        .itemRare = ITEM_CELL_BATTERY,
     },
 
 #define GRAVELER_MISC_INFO                  \
@@ -2447,9 +2447,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GRAVELER_ALOLAN] =
     {
-        .itemRare = ITEM_CELL_BATTERY,
         ALOLAN_GEODUDE_FAMILY_INFO,
         GRAVELER_MISC_INFO,
+        .itemRare = ITEM_CELL_BATTERY,
     },
 
 #define GOLEM_ATTACK (P_UPDATED_STATS >= GEN_6 ? 120 : 110)
@@ -2474,9 +2474,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GOLEM_ALOLAN] =
     {
-        .itemCommon = ITEM_CELL_BATTERY,
         ALOLAN_GEODUDE_FAMILY_INFO,
         GOLEM_MISC_INFO,
+        .itemCommon = ITEM_CELL_BATTERY,
     },
 #endif //FAMILY_GEODUDE
 
@@ -2519,9 +2519,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_PONYTA_GALARIAN] =
     {
-        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC},
         GALARIAN_PONYTA_FAMILY_INFO,
         PONYTA_MISC_INFO,
+        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC},
     },
 
 #define RAPIDASH_MISC_INFO                  \
@@ -2544,9 +2544,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_RAPIDASH_GALARIAN] =
     {
-        .types = { TYPE_PSYCHIC, TYPE_FAIRY},
         GALARIAN_PONYTA_FAMILY_INFO,
         RAPIDASH_MISC_INFO,
+        .types = { TYPE_PSYCHIC, TYPE_FAIRY},
     },
 #endif //FAMILY_PONYTA
 
@@ -2571,18 +2571,18 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SLOWPOKE] =
     {
+        SLOWPOKE_MISC_INFO,
         .types = { TYPE_WATER, TYPE_PSYCHIC },
         .itemRare = ITEM_LAGGING_TAIL,
         .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
-        SLOWPOKE_MISC_INFO,
     },
 
     [SPECIES_SLOWPOKE_GALARIAN] =
     {
+        SLOWPOKE_MISC_INFO,
         .types = { TYPE_PSYCHIC, TYPE_PSYCHIC},
         .abilities = {ABILITY_GLUTTONY, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
         .flags = SPECIES_FLAG_GALARIAN_FORM,
-        SLOWPOKE_MISC_INFO,
     },
 
 #define SLOWBRO_MISC_INFO                                       \
@@ -2597,6 +2597,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SLOWBRO] =
     {
+        SLOWBRO_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 75,
         .baseDefense   = 110,
@@ -2608,11 +2609,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Defense   = 2,
         .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
         .noFlip = FALSE,
-        SLOWBRO_MISC_INFO,
     },
 
     [SPECIES_SLOWBRO_MEGA] =
     {
+        SLOWBRO_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 75,
         .baseDefense   = 180,
@@ -2625,11 +2626,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR, ABILITY_SHELL_ARMOR},
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        SLOWBRO_MISC_INFO,
     },
 
     [SPECIES_SLOWBRO_GALARIAN] =
     {
+        SLOWBRO_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 100,
         .baseDefense   = 95,
@@ -2642,7 +2643,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_QUICK_DRAW, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_GALARIAN_FORM,
-        SLOWBRO_MISC_INFO,
     },
 
 #define SLOWKING_MISC_INFO                                      \
@@ -2658,6 +2658,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SLOWKING] =
     {
+        SLOWKING_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 75,
         .baseDefense   = 80,
@@ -2668,11 +2669,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpDefense = 3,
         .itemRare = ITEM_KINGS_ROCK,
         .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
-        SLOWKING_MISC_INFO,
     },
 
     [SPECIES_SLOWKING_GALARIAN] =
     {
+        SLOWKING_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 65,
         .baseDefense   = 80,
@@ -2683,7 +2684,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpDefense = 2,
         .abilities = {ABILITY_CURIOUS_MEDICINE, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
         .flags = SPECIES_FLAG_GALARIAN_FORM,
-        SLOWKING_MISC_INFO,
     },
 #endif //FAMILY_SLOWPOKE
 
@@ -2775,6 +2775,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_FARFETCHD] =
     {
+        FARFETCHD_MISC_INFO,
         .baseHP        = 52,
         .baseDefense   = 55,
         .baseSpeed     = 60,
@@ -2784,11 +2785,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_NORMAL, TYPE_FLYING},
         .itemRare = ITEM_LEEK,
         .abilities = {ABILITY_KEEN_EYE, ABILITY_INNER_FOCUS, ABILITY_DEFIANT},
-        FARFETCHD_MISC_INFO,
     },
 
     [SPECIES_FARFETCHD_GALARIAN] =
     {
+        FARFETCHD_MISC_INFO,
         .baseHP        = 52,
         .baseAttack    = FARFETCHD_ATTACK + 5,
         .baseDefense   = 55,
@@ -2799,7 +2800,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemCommon = ITEM_LEEK,
         .abilities = {ABILITY_STEADFAST, ABILITY_NONE, ABILITY_SCRAPPY},
         .flags = SPECIES_FLAG_GALARIAN_FORM,
-        FARFETCHD_MISC_INFO,
     },
 
     [SPECIES_SIRFETCHD] =
@@ -2939,6 +2939,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .catchRate = 190,                   \
         .expYield = 65,                     \
         .evYield_HP        = 1,             \
+        .noFlip = FALSE,                    \
         GRIMER_FAMILY_MISC_INFO
 
 #define KANTONIAN_GRIMER_FAMILY_INFO                                                \
@@ -2948,9 +2949,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GRIMER] =
     {
-        .noFlip = FALSE,
-        GRIMER_MISC_INFO,
         KANTONIAN_GRIMER_FAMILY_INFO,
+        GRIMER_MISC_INFO,
     },
 
 #define ALOLAN_GRIMER_FAMILY_INFO                                                       \
@@ -2961,7 +2961,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GRIMER_ALOLAN] =
     {
-        .noFlip = FALSE,
         ALOLAN_GRIMER_FAMILY_INFO,
         GRIMER_MISC_INFO,
     },
@@ -2981,16 +2980,16 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_MUK] =
     {
-        .noFlip = FALSE,
-        MUK_MISC_INFO,
         KANTONIAN_GRIMER_FAMILY_INFO,
+        MUK_MISC_INFO,
+        .noFlip = FALSE,
     },
 
     [SPECIES_MUK_ALOLAN] =
     {
-        .noFlip = TRUE,
-        ALOLAN_GRIMER_FAMILY_INFO,
         MUK_MISC_INFO,
+        ALOLAN_GRIMER_FAMILY_INFO,
+        .noFlip = TRUE,
     },
 #endif //FAMILY_GRIMER
 
@@ -3109,6 +3108,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GENGAR] =
     {
+        GENGAR_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 65,
         .baseDefense   = 60,
@@ -3117,11 +3117,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 75,
         .expYield = 225,
         .abilities = GENGAR_ABILITIES,
-        GENGAR_MISC_INFO,
     },
 
     [SPECIES_GENGAR_MEGA] =
     {
+        GENGAR_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 65,
         .baseDefense   = 80,
@@ -3131,11 +3131,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 270,
         .abilities = {ABILITY_SHADOW_TAG, ABILITY_SHADOW_TAG, ABILITY_SHADOW_TAG},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        GENGAR_MISC_INFO,
     },
 
     [SPECIES_GENGAR_GIGANTAMAX] =
     {
+        GENGAR_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 65,
         .baseDefense   = 60,
@@ -3145,7 +3145,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 225,
         .abilities = GENGAR_ABILITIES,
         .gigantamax = TRUE,
-        GENGAR_MISC_INFO,
     },
 #endif //FAMILY_GASTLY
 
@@ -3187,6 +3186,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_STEELIX] =
     {
+        STEELIX_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 85,
         .baseDefense   = 200,
@@ -3195,11 +3195,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 65,
         .expYield = 179,
         .abilities = {ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SHEER_FORCE},
-        STEELIX_MISC_INFO,
     },
 
     [SPECIES_STEELIX_MEGA] =
     {
+        STEELIX_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 125,
         .baseDefense   = 230,
@@ -3209,7 +3209,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 214,
         .abilities = {ABILITY_SAND_FORCE, ABILITY_SAND_FORCE, ABILITY_SAND_FORCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        STEELIX_MISC_INFO,
     },
 #endif //FAMILY_ONIX
 
@@ -3309,8 +3308,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_KINGLER_GIGANTAMAX] =
     {
-        .gigantamax = TRUE,
         KINGLER_MISC_INFO,
+        .gigantamax = TRUE,
     },
 #endif //FAMILY_KRABBY
 
@@ -3339,15 +3338,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_VOLTORB] =
     {
-        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
         VOLTORB_MISC_INFO,
+        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
     },
 
     [SPECIES_VOLTORB_HISUIAN] =
     {
+        VOLTORB_MISC_INFO,
         .types = { TYPE_ELECTRIC, TYPE_GRASS},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        VOLTORB_MISC_INFO,
     },
 
 #define ELECTRODE_MISC_INFO                                     \
@@ -3364,15 +3363,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ELECTRODE] =
     {
-        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC},
         ELECTRODE_MISC_INFO,
+        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC},
     },
 
     [SPECIES_ELECTRODE_HISUIAN] =
     {
+        ELECTRODE_MISC_INFO,
         .types = { TYPE_ELECTRIC, TYPE_GRASS},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        ELECTRODE_MISC_INFO,
     },
 #endif //FAMILY_VOLTORB
 
@@ -3416,6 +3415,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_EXEGGUTOR] =
     {
+        EXEGGUTOR_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 95,
         .baseDefense   = 85,
@@ -3424,11 +3424,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = EXEGGUTOR_SP_DEF,
         .types = { TYPE_GRASS, TYPE_PSYCHIC},
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_HARVEST},
-        EXEGGUTOR_MISC_INFO,
     },
 
     [SPECIES_EXEGGUTOR_ALOLAN] =
     {
+        EXEGGUTOR_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 105,
         .baseDefense   = 85,
@@ -3438,7 +3438,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GRASS, TYPE_DRAGON},
         .abilities = {ABILITY_FRISK, ABILITY_NONE, ABILITY_HARVEST},
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        EXEGGUTOR_MISC_INFO,
     },
 #endif //FAMILY_EXEGGCUTE
 
@@ -3486,19 +3485,19 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_MAROWAK] =
     {
+        MAROWAK_MISC_INFO,
         .types = { TYPE_GROUND, TYPE_GROUND },
         .abilities = {ABILITY_ROCK_HEAD, ABILITY_LIGHTNING_ROD, ABILITY_BATTLE_ARMOR},
         .bodyColor = BODY_COLOR_BROWN,
-        MAROWAK_MISC_INFO,
     },
 
     [SPECIES_MAROWAK_ALOLAN] =
     {
+        MAROWAK_MISC_INFO,
         .types = { TYPE_FIRE, TYPE_GHOST},
         .abilities = {ABILITY_CURSED_BODY, ABILITY_LIGHTNING_ROD, ABILITY_ROCK_HEAD},
         .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-        MAROWAK_MISC_INFO,
     },
 #endif //FAMILY_CUBONE
 
@@ -3687,21 +3686,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_WEEZING] =
     {
+        WEEZING_MISC_INFO,
         .types = { TYPE_POISON, TYPE_POISON },
         .itemRare = ITEM_SMOKE_BALL,
             .abilities = {ABILITY_LEVITATE, ABILITY_NEUTRALIZING_GAS, ABILITY_STENCH},
         .bodyColor = BODY_COLOR_PURPLE,
-        WEEZING_MISC_INFO,
     },
 
     [SPECIES_WEEZING_GALARIAN] =
     {
+        WEEZING_MISC_INFO,
         .types = { TYPE_POISON, TYPE_FAIRY},
         .itemRare = ITEM_MISTY_SEED,
         .abilities = {ABILITY_LEVITATE, ABILITY_NEUTRALIZING_GAS, ABILITY_MISTY_SURGE},
         .bodyColor = BODY_COLOR_GRAY,
         .flags = SPECIES_FLAG_GALARIAN_FORM,
-        WEEZING_MISC_INFO,
     },
 #endif //FAMILY_KOFFING
 
@@ -3905,6 +3904,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_KANGASKHAN] =
     {
+        KANGASKHAN_MISC_INFO,
         .baseHP        = 105,
         .baseAttack    = 95,
         .baseDefense   = 80,
@@ -3913,11 +3913,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .expYield = 172,
         .abilities = {ABILITY_EARLY_BIRD, ABILITY_SCRAPPY, ABILITY_INNER_FOCUS},
-        KANGASKHAN_MISC_INFO,
     },
 
     [SPECIES_KANGASKHAN_MEGA] =
     {
+        KANGASKHAN_MISC_INFO,
         .baseHP        = 105,
         .baseAttack    = 125,
         .baseDefense   = 100,
@@ -3927,7 +3927,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 207,
         .abilities = {ABILITY_PARENTAL_BOND, ABILITY_PARENTAL_BOND, ABILITY_PARENTAL_BOND},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        KANGASKHAN_MISC_INFO,
     },
 #endif //FAMILY_KANGASKHAN
 
@@ -4142,6 +4141,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_MR_MIME] =
     {
+        MR_MIME_MISC_INFO,
         .baseHP        = 40,
         .baseAttack    = 45,
         .baseDefense   = 65,
@@ -4156,11 +4156,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpDefense = 2,
         .abilities = {ABILITY_SOUNDPROOF, ABILITY_FILTER, ABILITY_TECHNICIAN},
         .bodyColor = BODY_COLOR_PINK,
-        MR_MIME_MISC_INFO,
     },
 
     [SPECIES_MR_MIME_GALARIAN] =
     {
+        MR_MIME_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 65,
         .baseDefense   = 65,
@@ -4172,7 +4172,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_VITAL_SPIRIT, ABILITY_SCREEN_CLEANER, ABILITY_ICE_BODY},
         .bodyColor = BODY_COLOR_WHITE,
         .flags = SPECIES_FLAG_GALARIAN_FORM,
-        MR_MIME_MISC_INFO,
     },
 
     [SPECIES_MR_RIME] =
@@ -4235,6 +4234,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SCIZOR] =
     {
+        SCIZOR_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 130,
         .baseDefense   = 100,
@@ -4243,11 +4243,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .expYield = 175,
         .abilities = {ABILITY_SWARM, ABILITY_TECHNICIAN, ABILITY_LIGHT_METAL},
-        SCIZOR_MISC_INFO,
     },
 
     [SPECIES_SCIZOR_MEGA] =
     {
+        SCIZOR_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 150,
         .baseDefense   = 140,
@@ -4257,7 +4257,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 210,
         .abilities = {ABILITY_TECHNICIAN, ABILITY_TECHNICIAN, ABILITY_TECHNICIAN},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        SCIZOR_MISC_INFO,
     },
 
     [SPECIES_KLEAVOR] =
@@ -4485,6 +4484,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_PINSIR] =
     {
+        PINSIR_MISC_INFO,
         .baseHP        = 65,
         .baseAttack    = 125,
         .baseDefense   = 100,
@@ -4494,11 +4494,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_BUG, TYPE_BUG },
         .expYield = 175,
         .abilities = {ABILITY_HYPER_CUTTER, ABILITY_MOLD_BREAKER, ABILITY_MOXIE},
-        PINSIR_MISC_INFO,
     },
 
     [SPECIES_PINSIR_MEGA] =
     {
+        PINSIR_MISC_INFO,
         .baseHP        = 65,
         .baseAttack    = 155,
         .baseDefense   = 120,
@@ -4509,7 +4509,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 210,
         .abilities = {ABILITY_AERILATE, ABILITY_AERILATE, ABILITY_AERILATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        PINSIR_MISC_INFO,
     },
 #endif //FAMILY_PINSIR
 
@@ -4532,39 +4531,39 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_TAUROS] =
     {
+        TAUROS_MISC_INFO,
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .evYield_Attack    = 1,
         .evYield_Speed     = 1,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_BROWN,
-        TAUROS_MISC_INFO,
     },
 
     [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] =
     {
+        TAUROS_MISC_INFO,
         .types = { TYPE_FIGHTING, TYPE_FIGHTING },
         .evYield_Attack    = 2,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW},
         .bodyColor = BODY_COLOR_BROWN,
-        TAUROS_MISC_INFO,
     },
 
     [SPECIES_TAUROS_PALDEAN_BLAZE_BREED] =
     {
+        TAUROS_MISC_INFO,
         .types = { TYPE_FIGHTING, TYPE_FIRE },
         .evYield_Attack    = 2,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW},
         .bodyColor = BODY_COLOR_BROWN,
-        TAUROS_MISC_INFO,
     },
 
     [SPECIES_TAUROS_PALDEAN_AQUA_BREED] =
     {
+        TAUROS_MISC_INFO,
         .types = { TYPE_FIGHTING, TYPE_WATER },
         .evYield_Attack    = 2,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW},
         .bodyColor = BODY_COLOR_BROWN,
-        TAUROS_MISC_INFO,
     },
 #endif //FAMILY_TAUROS
 
@@ -4604,6 +4603,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GYARADOS] =
     {
+        GYARADOS_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 125,
         .baseDefense   = 79,
@@ -4613,11 +4613,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_WATER, TYPE_FLYING },
         .expYield = 189,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_MOXIE},
-        GYARADOS_MISC_INFO,
     },
 
     [SPECIES_GYARADOS_MEGA] =
     {
+        GYARADOS_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 155,
         .baseDefense   = 109,
@@ -4628,7 +4628,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 224,
         .abilities = {ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        GYARADOS_MISC_INFO,
     },
 #endif //FAMILY_MAGIKARP
 
@@ -4662,8 +4661,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_LAPRAS_GIGANTAMAX] =
     {
-        .gigantamax = TRUE,
         LAPRAS_MISC_INFO,
+        .gigantamax = TRUE,
     },
 #endif //FAMILY_LAPRAS
 
@@ -5077,6 +5076,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_AERODACTYL] =
     {
+        AERODACTYL_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 105,
         .baseDefense   = 65,
@@ -5085,11 +5085,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 75,
         .expYield = 180,
         .abilities = {ABILITY_ROCK_HEAD, ABILITY_PRESSURE, ABILITY_UNNERVE},
-        AERODACTYL_MISC_INFO,
     },
 
     [SPECIES_AERODACTYL_MEGA] =
     {
+        AERODACTYL_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 135,
         .baseDefense   = 85,
@@ -5099,7 +5099,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 215,
         .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        AERODACTYL_MISC_INFO,
     },
 #endif //FAMILY_AERODACTYL
 
@@ -5173,6 +5172,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ARTICUNO] =
     {
+        ARTICUNO_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 85,
         .baseDefense   = 100,
@@ -5186,11 +5186,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PRESSURE, ABILITY_NONE, ABILITY_SNOW_CLOAK},
         .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_LEGENDARY,
-        ARTICUNO_MISC_INFO,
     },
 
     [SPECIES_ARTICUNO_GALARIAN] =
     {
+        ARTICUNO_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 85,
         .baseDefense   = 85,
@@ -5204,7 +5204,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_COMPETITIVE, ABILITY_NONE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_GALARIAN_FORM,
-        ARTICUNO_MISC_INFO,
     },
 #endif //FAMILY_ARTICUNO
 
@@ -5220,6 +5219,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ZAPDOS] =
     {
+        ZAPDOS_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 90,
         .baseDefense   = 85,
@@ -5236,11 +5236,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
             .abilities = {ABILITY_PRESSURE, ABILITY_NONE, ABILITY_LIGHTNING_ROD},
         #endif
         .flags = SPECIES_FLAG_LEGENDARY,
-        ZAPDOS_MISC_INFO,
     },
 
     [SPECIES_ZAPDOS_GALARIAN] =
     {
+        ZAPDOS_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 125,
         .baseDefense   = 90,
@@ -5253,7 +5253,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggCycles = 120,
         .abilities = {ABILITY_DEFIANT, ABILITY_NONE, ABILITY_NONE},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_GALARIAN_FORM,
-        ZAPDOS_MISC_INFO,
     },
 #endif //FAMILY_ZAPDOS
 
@@ -5268,6 +5267,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_MOLTRES] =
     {
+        MOLTRES_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 100,
         .baseDefense   = 90,
@@ -5281,11 +5281,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PRESSURE, ABILITY_NONE, ABILITY_FLAME_BODY},
         .bodyColor = BODY_COLOR_YELLOW,
         .flags = SPECIES_FLAG_LEGENDARY,
-        MOLTRES_MISC_INFO,
     },
 
     [SPECIES_MOLTRES_GALARIAN] =
     {
+        MOLTRES_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 85,
         .baseDefense   = 90,
@@ -5299,7 +5299,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_BERSERK, ABILITY_NONE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_RED,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_GALARIAN_FORM,
-        MOLTRES_MISC_INFO,
     },
 #endif //FAMILY_MOLTRES
 
@@ -5388,6 +5387,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_MEWTWO] =
     {
+        SPECIES_MEWTWO_MISC_INFO,
         .baseHP        = 106,
         .baseAttack    = 110,
         .baseDefense   = 90,
@@ -5398,11 +5398,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 306,
         .abilities = {ABILITY_PRESSURE, ABILITY_NONE, ABILITY_UNNERVE},
         .flags = SPECIES_FLAG_LEGENDARY,
-        SPECIES_MEWTWO_MISC_INFO,
     },
 
     [SPECIES_MEWTWO_MEGA_X] =
     {
+        SPECIES_MEWTWO_MISC_INFO,
         .baseHP        = 106,
         .baseAttack    = 190,
         .baseDefense   = 100,
@@ -5413,11 +5413,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 351,
         .abilities = {ABILITY_STEADFAST, ABILITY_STEADFAST, ABILITY_STEADFAST},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
-        SPECIES_MEWTWO_MISC_INFO,
     },
 
     [SPECIES_MEWTWO_MEGA_Y] =
     {
+        SPECIES_MEWTWO_MISC_INFO,
         .baseHP        = 106,
         .baseAttack    = 150,
         .baseDefense   = 70,
@@ -5428,7 +5428,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 351,
         .abilities = {ABILITY_INSOMNIA, ABILITY_INSOMNIA, ABILITY_INSOMNIA},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
-        SPECIES_MEWTWO_MISC_INFO,
     },
 #endif //FAMILY_MEWTWO
 
@@ -5589,6 +5588,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_TYPHLOSION] =
     {
+        TYPHLOSION_MISC_INFO,
         .baseHP        = 78,
         .baseAttack    = 84,
         .baseDefense   = 78,
@@ -5597,11 +5597,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 85,
         .types = { TYPE_FIRE, TYPE_FIRE },
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_FLASH_FIRE},
-        TYPHLOSION_MISC_INFO,
     },
 
     [SPECIES_TYPHLOSION_HISUIAN] =
     {
+        TYPHLOSION_MISC_INFO,
         .baseHP        = 73,
         .baseAttack    = 84,
         .baseDefense   = 78,
@@ -5611,7 +5611,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_FIRE, TYPE_GHOST},
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_FRISK},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        TYPHLOSION_MISC_INFO,
     },
 #endif //FAMILY_CYNDAQUIL
 
@@ -6099,6 +6098,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_AMPHAROS] =
     {
+        AMPHAROS_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 75,
         .baseDefense   = AMPHAROS_DEFENSE,
@@ -6108,11 +6108,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_ELECTRIC, TYPE_ELECTRIC},
         .expYield = 230,
         .abilities = {ABILITY_STATIC, ABILITY_NONE, ABILITY_PLUS},
-        AMPHAROS_MISC_INFO,
     },
 
     [SPECIES_AMPHAROS_MEGA] =
     {
+        AMPHAROS_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 95,
         .baseDefense   = AMPHAROS_DEFENSE + 20,
@@ -6123,7 +6123,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 275,
         .abilities = {ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        AMPHAROS_MISC_INFO,
     },
 #endif //FAMILY_MAREEP
 
@@ -7132,17 +7131,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_QWILFISH] =
     {
+        QWILFISH_MISC_INFO,
         .types = { TYPE_WATER, TYPE_POISON},
         .bodyColor = BODY_COLOR_GRAY,
-        QWILFISH_MISC_INFO,
     },
 
     [SPECIES_QWILFISH_HISUIAN] =
     {
+        QWILFISH_MISC_INFO,
         .types = { TYPE_DARK, TYPE_POISON},
         .bodyColor = BODY_COLOR_BLACK,
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        QWILFISH_MISC_INFO,
     },
 
     [SPECIES_OVERQWIL] =
@@ -7210,6 +7209,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_HERACROSS] =
     {
+        HERACROSS_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 125,
         .baseDefense   = 75,
@@ -7218,11 +7218,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 95,
         .expYield = 175,
         .abilities = {ABILITY_SWARM, ABILITY_GUTS, ABILITY_MOXIE},
-        HERACROSS_MISC_INFO,
     },
 
     [SPECIES_HERACROSS_MEGA] =
     {
+        HERACROSS_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 185,
         .baseDefense   = 115,
@@ -7232,7 +7232,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 210,
         .abilities = {ABILITY_SKILL_LINK, ABILITY_SKILL_LINK, ABILITY_SKILL_LINK},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        HERACROSS_MISC_INFO,
     },
 #endif //FAMILY_HERACROSS
 
@@ -7257,19 +7256,19 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SNEASEL] =
     {
+        SNEASEL_MISC_INFO,
         .types = { TYPE_DARK, TYPE_ICE },
         .abilities = {ABILITY_INNER_FOCUS, ABILITY_KEEN_EYE, ABILITY_PICKPOCKET},
         .bodyColor = BODY_COLOR_BLACK,
-        SNEASEL_MISC_INFO,
     },
 
     [SPECIES_SNEASEL_HISUIAN] =
     {
+        SNEASEL_MISC_INFO,
         .types = { TYPE_POISON, TYPE_FIGHTING},
         .abilities = {ABILITY_INNER_FOCUS, ABILITY_KEEN_EYE, ABILITY_PICKPOCKET},
         .bodyColor = BODY_COLOR_GRAY,
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        SNEASEL_MISC_INFO,
     },
 
     [SPECIES_WEAVILE] =
@@ -7541,6 +7540,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_CORSOLA] =
     {
+        CORSOLA_MISC_INFO,
         .baseHP        = CORSOLA_HP,
         .baseAttack    = 55,
         .baseDefense   = CORSOLA_DEFENSES,
@@ -7552,11 +7552,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_LUMINOUS_MOSS,
         .abilities = {ABILITY_HUSTLE, ABILITY_NATURAL_CURE, ABILITY_REGENERATOR},
         .bodyColor = BODY_COLOR_PINK,
-        CORSOLA_MISC_INFO,
     },
 
     [SPECIES_CORSOLA_GALARIAN] =
     {
+        CORSOLA_MISC_INFO,
         .baseHP        = CORSOLA_HP - 5,
         .baseAttack    = 55,
         .baseDefense   = CORSOLA_DEFENSES + 5,
@@ -7567,7 +7567,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_CURSED_BODY},
         .bodyColor = BODY_COLOR_WHITE,
         .flags = SPECIES_FLAG_GALARIAN_FORM,
-        CORSOLA_MISC_INFO,
     },
 
     [SPECIES_CURSOLA] =
@@ -7772,6 +7771,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_HOUNDOOM] =
     {
+        HOUNDOOM_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 90,
         .baseDefense   = 50,
@@ -7780,11 +7780,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .expYield = 175,
         .abilities = {ABILITY_EARLY_BIRD, ABILITY_FLASH_FIRE, ABILITY_UNNERVE},
-        HOUNDOOM_MISC_INFO,
     },
 
     [SPECIES_HOUNDOOM_MEGA] =
     {
+        HOUNDOOM_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 90,
         .baseDefense   = 90,
@@ -7794,7 +7794,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 210,
         .abilities = {ABILITY_SOLAR_POWER, ABILITY_SOLAR_POWER, ABILITY_SOLAR_POWER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        HOUNDOOM_MISC_INFO,
     },
 #endif //FAMILY_HOUNDOUR
 
@@ -8091,6 +8090,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_TYRANITAR] =
     {
+        TYRANITAR_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 134,
         .baseDefense   = 110,
@@ -8099,11 +8099,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 100,
         .expYield = 270,
         .abilities = {ABILITY_SAND_STREAM, ABILITY_NONE, ABILITY_UNNERVE},
-        TYRANITAR_MISC_INFO,
     },
 
     [SPECIES_TYRANITAR_MEGA] =
     {
+        TYRANITAR_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 164,
         .baseDefense   = 150,
@@ -8113,7 +8113,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 315,
         .abilities = {ABILITY_SAND_STREAM, ABILITY_SAND_STREAM, ABILITY_SAND_STREAM},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        TYRANITAR_MISC_INFO,
     },
 #endif //FAMILY_LARVITAR
 
@@ -8254,6 +8253,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SCEPTILE] =
     {
+        SCEPTILE_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 85,
         .baseDefense   = 65,
@@ -8263,11 +8263,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GRASS, TYPE_GRASS },
         .expYield = 239,
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN},
-        SCEPTILE_MISC_INFO,
     },
 
     [SPECIES_SCEPTILE_MEGA] =
     {
+        SCEPTILE_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 110,
         .baseDefense   = 75,
@@ -8278,7 +8278,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 284,
         .abilities = {ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        SCEPTILE_MISC_INFO,
     },
 #endif //FAMILY_TREECKO
 
@@ -8342,6 +8341,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_BLAZIKEN] =
     {
+        BLAZIKEN_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 120,
         .baseDefense   = 70,
@@ -8350,11 +8350,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 70,
         .expYield = 239,
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_SPEED_BOOST},
-        BLAZIKEN_MISC_INFO,
     },
 
     [SPECIES_BLAZIKEN_MEGA] =
     {
+        BLAZIKEN_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 160,
         .baseDefense   = 80,
@@ -8364,7 +8364,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 284,
         .abilities = {ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        BLAZIKEN_MISC_INFO,
     },
 #endif //FAMILY_TORCHIC
 
@@ -8427,6 +8426,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SWAMPERT] =
     {
+        SWAMPERT_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 110,
         .baseDefense   = 90,
@@ -8435,11 +8435,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 90,
         .expYield = 241,
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_DAMP},
-        SWAMPERT_MISC_INFO,
     },
 
     [SPECIES_SWAMPERT_MEGA] =
     {
+        SWAMPERT_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 150,
         .baseDefense   = 110,
@@ -8449,7 +8449,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 286,
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        SWAMPERT_MISC_INFO,
     },
 #endif //FAMILY_MUDKIP
 
@@ -8520,19 +8519,19 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ZIGZAGOON] =
     {
+        ZIGZAGOON_MISC_INFO,
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .itemCommon = ITEM_POTION,
         .itemRare = ITEM_REVIVE,
         .bodyColor = BODY_COLOR_BROWN,
-        ZIGZAGOON_MISC_INFO,
     },
 
     [SPECIES_ZIGZAGOON_GALARIAN] =
     {
+        ZIGZAGOON_MISC_INFO,
         .types = { TYPE_DARK, TYPE_NORMAL},
         .bodyColor = BODY_COLOR_WHITE,
         .flags = SPECIES_FLAG_GALARIAN_FORM,
-        ZIGZAGOON_MISC_INFO,
     },
 
 #define LINOONE_MISC_INFO                                                   \
@@ -8556,17 +8555,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_LINOONE] =
     {
+        LINOONE_MISC_INFO,
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .itemCommon = ITEM_POTION,
         .itemRare = ITEM_MAX_REVIVE,
-        LINOONE_MISC_INFO,
     },
 
     [SPECIES_LINOONE_GALARIAN] =
     {
+        LINOONE_MISC_INFO,
         .types = { TYPE_DARK, TYPE_NORMAL},
         .flags = SPECIES_FLAG_GALARIAN_FORM,
-        LINOONE_MISC_INFO,
     },
 
     [SPECIES_OBSTAGOON] =
@@ -9015,6 +9014,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GARDEVOIR] =
     {
+        GARDEVOIR_MISC_INFO,
         .baseHP        = 68,
         .baseAttack    = 65,
         .baseDefense   = 65,
@@ -9023,11 +9023,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 115,
         .expYield = 233,
         .abilities = {ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_TELEPATHY},
-        GARDEVOIR_MISC_INFO,
     },
 
     [SPECIES_GARDEVOIR_MEGA] =
     {
+        GARDEVOIR_MISC_INFO,
         .baseHP        = 68,
         .baseAttack    = 85,
         .baseDefense   = 65,
@@ -9037,7 +9037,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 278,
         .abilities = {ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        GARDEVOIR_MISC_INFO,
     },
 
 #define GALLADE_MISC_INFO                               \
@@ -9054,6 +9053,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GALLADE] =
     {
+        GALLADE_MISC_INFO,
         .baseHP        = 68,
         .baseAttack    = 125,
         .baseDefense   = 65,
@@ -9066,11 +9066,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         #else
             .abilities = {ABILITY_STEADFAST, ABILITY_NONE, ABILITY_JUSTIFIED},
         #endif
-        GALLADE_MISC_INFO,
     },
 
     [SPECIES_GALLADE_MEGA] =
     {
+        GALLADE_MISC_INFO,
         .baseHP        = 68,
         .baseAttack    = 165,
         .baseDefense   = 95,
@@ -9080,7 +9080,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 278,
         .abilities = {ABILITY_INNER_FOCUS, ABILITY_INNER_FOCUS, ABILITY_INNER_FOCUS},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        GALLADE_MISC_INFO,
     },
 #endif //FAMILY_RALTS
 
@@ -9553,6 +9552,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SABLEYE] =
     {
+        SABLEYE_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 75,
         .baseDefense   = 75,
@@ -9562,11 +9562,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 133,
         .itemRare = ITEM_WIDE_LENS,
         .abilities = {ABILITY_KEEN_EYE, ABILITY_STALL, ABILITY_PRANKSTER},
-        SABLEYE_MISC_INFO,
     },
 
     [SPECIES_SABLEYE_MEGA] =
     {
+        SABLEYE_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 85,
         .baseDefense   = 125,
@@ -9576,7 +9576,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 168,
         .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        SABLEYE_MISC_INFO,
     },
 #endif //FAMILY_SABLEYE
 
@@ -9602,6 +9601,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_MAWILE] =
     {
+        MAWILE_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 85,
         .baseDefense   = 85,
@@ -9611,11 +9611,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 133,
         .itemRare = ITEM_IRON_BALL,
         .abilities = {ABILITY_HYPER_CUTTER, ABILITY_INTIMIDATE, ABILITY_SHEER_FORCE},
-        MAWILE_MISC_INFO,
     },
 
     [SPECIES_MAWILE_MEGA] =
     {
+        MAWILE_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 105,
         .baseDefense   = 125,
@@ -9625,7 +9625,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 168,
         .abilities = {ABILITY_HUGE_POWER, ABILITY_HUGE_POWER, ABILITY_HUGE_POWER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        MAWILE_MISC_INFO,
     },
 #endif //FAMILY_MAWILE
 
@@ -9690,6 +9689,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_AGGRON] =
     {
+        AGGRON_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 110,
         .baseDefense   = 180,
@@ -9699,11 +9699,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_STEEL, TYPE_ROCK },
         .expYield = 239,
         .abilities = {ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_HEAVY_METAL},
-        AGGRON_MISC_INFO,
     },
 
     [SPECIES_AGGRON_MEGA] =
     {
+        AGGRON_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 140,
         .baseDefense   = 230,
@@ -9714,7 +9714,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 284,
         .abilities = {ABILITY_FILTER, ABILITY_FILTER, ABILITY_FILTER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        AGGRON_MISC_INFO,
     },
 #endif //FAMILY_ARON
 
@@ -9755,6 +9754,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_MEDICHAM] =
     {
+        MEDICHAM_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 60,
         .baseDefense   = 75,
@@ -9763,11 +9763,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 75,
         .expYield = 144,
         .abilities = {ABILITY_PURE_POWER, ABILITY_NONE, ABILITY_TELEPATHY},
-        MEDICHAM_MISC_INFO,
     },
 
     [SPECIES_MEDICHAM_MEGA] =
     {
+        MEDICHAM_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 100,
         .baseDefense   = 85,
@@ -9777,7 +9777,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 179,
         .abilities = {ABILITY_PURE_POWER, ABILITY_PURE_POWER, ABILITY_PURE_POWER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        MEDICHAM_MISC_INFO,
     },
 #endif //FAMILY_MEDITITE
 
@@ -9818,6 +9817,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_MANECTRIC] =
     {
+        MANECTRIC_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 75,
         .baseDefense   = 60,
@@ -9826,11 +9826,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 60,
         .expYield = 166,
         .abilities = {ABILITY_STATIC, ABILITY_LIGHTNING_ROD, ABILITY_MINUS},
-        MANECTRIC_MISC_INFO,
     },
 
     [SPECIES_MANECTRIC_MEGA] =
     {
+        MANECTRIC_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 75,
         .baseDefense   = 80,
@@ -9840,7 +9840,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 201,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_INTIMIDATE, ABILITY_INTIMIDATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        MANECTRIC_MISC_INFO,
     },
 #endif //FAMILY_ELECTRIKE
 
@@ -10112,6 +10111,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SHARPEDO] =
     {
+        SHARPEDO_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 120,
         .baseDefense   = 40,
@@ -10120,11 +10120,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 40,
         .expYield = 161,
         .abilities = {ABILITY_ROUGH_SKIN, ABILITY_NONE, ABILITY_SPEED_BOOST},
-        SHARPEDO_MISC_INFO,
     },
 
     [SPECIES_SHARPEDO_MEGA] =
     {
+        SHARPEDO_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 140,
         .baseDefense   = 70,
@@ -10134,7 +10134,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 196,
         .abilities = {ABILITY_STRONG_JAW, ABILITY_STRONG_JAW, ABILITY_STRONG_JAW},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        SHARPEDO_MISC_INFO,
     },
 #endif //FAMILY_CARVANHA
 
@@ -10222,6 +10221,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_CAMERUPT] =
     {
+        CAMERUPT_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 100,
         .baseDefense   = 70,
@@ -10230,11 +10230,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 75,
         .expYield = 161,
         .abilities = {ABILITY_MAGMA_ARMOR, ABILITY_SOLID_ROCK, ABILITY_ANGER_POINT},
-        CAMERUPT_MISC_INFO,
     },
 
     [SPECIES_CAMERUPT_MEGA] =
     {
+        CAMERUPT_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 120,
         .baseDefense   = 100,
@@ -10244,7 +10244,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 196,
         .abilities = {ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        CAMERUPT_MISC_INFO,
     },
 #endif //FAMILY_NUMEL
 
@@ -10511,6 +10510,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ALTARIA] =
     {
+        ALTARIA_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 70,
         .baseDefense   = 90,
@@ -10520,11 +10520,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_DRAGON, TYPE_FLYING},
         .expYield = 172,
         .abilities = {ABILITY_NATURAL_CURE, ABILITY_NONE, ABILITY_CLOUD_NINE},
-        ALTARIA_MISC_INFO,
     },
 
     [SPECIES_ALTARIA_MEGA] =
     {
+        ALTARIA_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 110,
         .baseDefense   = 110,
@@ -10535,7 +10535,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 207,
         .abilities = {ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        ALTARIA_MISC_INFO,
     },
 #endif //FAMILY_SWABLU
 
@@ -10945,30 +10944,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_CASTFORM_NORMAL] =
     {
+        CASTFORM_MISC_INFO,
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .bodyColor = BODY_COLOR_GRAY,
-        CASTFORM_MISC_INFO,
     },
 
     [SPECIES_CASTFORM_SUNNY] =
     {
+        CASTFORM_MISC_INFO,
         .types = { TYPE_FIRE, TYPE_FIRE },
         .bodyColor = BODY_COLOR_RED,
-        CASTFORM_MISC_INFO,
     },
 
     [SPECIES_CASTFORM_RAINY] =
     {
+        CASTFORM_MISC_INFO,
         .types = { TYPE_WATER, TYPE_WATER },
         .bodyColor = BODY_COLOR_BLUE,
-        CASTFORM_MISC_INFO,
     },
 
     [SPECIES_CASTFORM_SNOWY] =
     {
+        CASTFORM_MISC_INFO,
         .types = { TYPE_ICE, TYPE_ICE },
         .bodyColor = BODY_COLOR_WHITE,
-        CASTFORM_MISC_INFO,
     },
 #endif //FAMILY_CASTFORM
 
@@ -11035,6 +11034,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_BANETTE] =
     {
+        BANETTE_MISC_INFO,
         .baseHP        = 64,
         .baseAttack    = 115,
         .baseDefense   = 65,
@@ -11043,11 +11043,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 63,
         .expYield = 159,
         .abilities = {ABILITY_INSOMNIA, ABILITY_FRISK, ABILITY_CURSED_BODY},
-        BANETTE_MISC_INFO,
     },
 
     [SPECIES_BANETTE_MEGA] =
     {
+        BANETTE_MISC_INFO,
         .baseHP        = 64,
         .baseAttack    = 165,
         .baseDefense   = 75,
@@ -11057,7 +11057,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 194,
         .abilities = {ABILITY_PRANKSTER, ABILITY_PRANKSTER, ABILITY_PRANKSTER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        BANETTE_MISC_INFO,
     },
 #endif //FAMILY_SHUPPET
 
@@ -11228,6 +11227,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ABSOL] =
     {
+        ABSOL_MISC_INFO,
         .baseHP        = 65,
         .baseAttack    = 130,
         .baseDefense   = 60,
@@ -11236,11 +11236,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 60,
         .expYield = 163,
         .abilities = {ABILITY_PRESSURE, ABILITY_SUPER_LUCK, ABILITY_JUSTIFIED},
-        ABSOL_MISC_INFO,
     },
 
     [SPECIES_ABSOL_MEGA] =
     {
+        ABSOL_MISC_INFO,
         .baseHP        = 65,
         .baseAttack    = 150,
         .baseDefense   = 60,
@@ -11250,7 +11250,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 198,
         .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        ABSOL_MISC_INFO,
     },
 #endif //FAMILY_ABSOL
 
@@ -11292,6 +11291,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GLALIE] =
     {
+        GLALIE_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 80,
         .baseDefense   = 80,
@@ -11300,11 +11300,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .expYield = 168,
         .abilities = {ABILITY_INNER_FOCUS, ABILITY_ICE_BODY, ABILITY_MOODY},
-        GLALIE_MISC_INFO,
     },
 
     [SPECIES_GLALIE_MEGA] =
     {
+        GLALIE_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 120,
         .baseDefense   = 80,
@@ -11314,7 +11314,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 203,
         .abilities = {ABILITY_REFRIGERATE, ABILITY_REFRIGERATE, ABILITY_REFRIGERATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        GLALIE_MISC_INFO,
     },
 
     [SPECIES_FROSLASS] =
@@ -11594,6 +11593,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SALAMENCE] =
     {
+        SALAMENCE_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 135,
         .baseDefense   = 80,
@@ -11602,11 +11602,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .expYield = 270,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_MOXIE},
-        SALAMENCE_MISC_INFO,
     },
 
     [SPECIES_SALAMENCE_MEGA] =
     {
+        SALAMENCE_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 145,
         .baseDefense   = 130,
@@ -11616,7 +11616,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 315,
         .abilities = {ABILITY_AERILATE, ABILITY_AERILATE, ABILITY_AERILATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        SALAMENCE_MISC_INFO,
     },
 #endif //FAMILY_BAGON
 
@@ -11682,6 +11681,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_METAGROSS] =
     {
+        METAGROSS_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 135,
         .baseDefense   = 130,
@@ -11690,11 +11690,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 90,
         .expYield = 270,
         .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_LIGHT_METAL},
-        METAGROSS_MISC_INFO,
     },
 
     [SPECIES_METAGROSS_MEGA] =
     {
+        METAGROSS_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 145,
         .baseDefense   = 150,
@@ -11704,7 +11704,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 315,
         .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        METAGROSS_MISC_INFO,
     },
 #endif //FAMILY_BELDUM
 
@@ -11798,6 +11797,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_LATIAS] =
     {
+        LATIAS_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 80,
         .baseDefense   = 90,
@@ -11808,11 +11808,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_RED,
         .flags = SPECIES_FLAG_LEGENDARY,
-        LATIAS_MISC_INFO,
     },
 
     [SPECIES_LATIAS_MEGA] =
     {
+        LATIAS_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 100,
         .baseDefense   = 120,
@@ -11823,7 +11823,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE},
         .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
-        LATIAS_MISC_INFO,
     },
 #endif //FAMILY_LATIAS
 
@@ -11841,6 +11840,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_LATIOS] =
     {
+        LATIOS_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 90,
         .baseDefense   = 80,
@@ -11851,11 +11851,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_LEGENDARY,
-        LATIOS_MISC_INFO,
     },
 
     [SPECIES_LATIOS_MEGA] =
     {
+        LATIOS_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 130,
         .baseDefense   = 100,
@@ -11866,7 +11866,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE},
         .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
-        LATIOS_MISC_INFO,
     },
 #endif //FAMILY_LATIOS
 
@@ -11886,6 +11885,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_KYOGRE] =
     {
+        KYOGRE_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 100,
         .baseDefense   = 90,
@@ -11894,11 +11894,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 140,
         .abilities = {ABILITY_DRIZZLE, ABILITY_NONE},
         .flags = SPECIES_FLAG_LEGENDARY,
-        KYOGRE_MISC_INFO,
     },
 
     [SPECIES_KYOGRE_PRIMAL] =
     {
+        KYOGRE_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 150,
         .baseDefense   = 90,
@@ -11907,7 +11907,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 160,
         .abilities = {ABILITY_PRIMORDIAL_SEA, ABILITY_PRIMORDIAL_SEA},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_PRIMAL_REVERSION,
-        KYOGRE_MISC_INFO,
     },
 #endif //FAMILY_KYOGRE
 
@@ -11926,6 +11925,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GROUDON] =
     {
+        GROUDON_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 150,
         .baseDefense   = 140,
@@ -11935,11 +11935,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GROUND, TYPE_GROUND},
         .abilities = {ABILITY_DROUGHT, ABILITY_NONE},
         .flags = SPECIES_FLAG_LEGENDARY,
-        GROUDON_MISC_INFO,
     },
 
     [SPECIES_GROUDON_PRIMAL] =
     {
+        GROUDON_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 180,
         .baseDefense   = 160,
@@ -11949,7 +11949,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GROUND, TYPE_FIRE},
         .abilities = {ABILITY_DESOLATE_LAND, ABILITY_DESOLATE_LAND},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_PRIMAL_REVERSION,
-        GROUDON_MISC_INFO,
     },
 #endif //FAMILY_GROUDON
 
@@ -11970,6 +11969,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_RAYQUAZA] =
     {
+        RAYQUAZA_MISC_INFO,
         .baseHP        = 105,
         .baseAttack    = 150,
         .baseDefense   = 90,
@@ -11978,11 +11978,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 90,
         .abilities = {ABILITY_AIR_LOCK, ABILITY_NONE},
         .flags = SPECIES_FLAG_LEGENDARY,
-        RAYQUAZA_MISC_INFO,
     },
 
     [SPECIES_RAYQUAZA_MEGA] =
     {
+        RAYQUAZA_MISC_INFO,
         .baseHP        = 105,
         .baseAttack    = 180,
         .baseDefense   = 100,
@@ -11991,7 +11991,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 100,
         .abilities = {ABILITY_DELTA_STREAM, ABILITY_DELTA_STREAM, ABILITY_DELTA_STREAM},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
-        RAYQUAZA_MISC_INFO,
     },
 #endif //FAMILY_RAYQUAZA
 
@@ -12038,6 +12037,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_DEOXYS_NORMAL] =
     {
+        DEOXYS_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 150,
         .baseDefense   = 50,
@@ -12048,11 +12048,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Speed     = 1,
         .evYield_SpAttack  = 1,
         .noFlip = FALSE,
-        DEOXYS_MISC_INFO,
     },
 
     [SPECIES_DEOXYS_ATTACK] =
     {
+        DEOXYS_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 180,
         .baseDefense   = 20,
@@ -12062,11 +12062,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Attack    = 2,
         .evYield_SpAttack  = 1,
         .noFlip = FALSE,
-        DEOXYS_MISC_INFO,
     },
 
     [SPECIES_DEOXYS_DEFENSE] =
     {
+        DEOXYS_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 70,
         .baseDefense   = 160,
@@ -12076,11 +12076,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Defense   = 2,
         .evYield_SpDefense = 1,
         .noFlip = FALSE,
-        DEOXYS_MISC_INFO,
     },
 
     [SPECIES_DEOXYS_SPEED] =
     {
+        DEOXYS_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 95,
         .baseDefense   = 90,
@@ -12089,7 +12089,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 90,
         .evYield_Speed     = 3,
         .noFlip = TRUE,
-        DEOXYS_MISC_INFO,
     },
 #endif //FAMILY_DEOXYS
 
@@ -12658,20 +12657,20 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_BURMY_PLANT_CLOAK] =
     {
-        .bodyColor = BODY_COLOR_GREEN,
         BURMY_MISC_INFO,
+        .bodyColor = BODY_COLOR_GREEN,
     },
 
     [SPECIES_BURMY_SANDY_CLOAK] =
     {
-        .bodyColor = BODY_COLOR_BROWN,
         BURMY_MISC_INFO,
+        .bodyColor = BODY_COLOR_BROWN,
     },
 
     [SPECIES_BURMY_TRASH_CLOAK] =
     {
-        .bodyColor = BODY_COLOR_RED,
         BURMY_MISC_INFO,
+        .bodyColor = BODY_COLOR_RED,
     },
 
 #define WORMADAM_MISC_INFO                                                  \
@@ -12688,6 +12687,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_WORMADAM_PLANT_CLOAK] =
     {
+        WORMADAM_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 59,
         .baseDefense   = 85,
@@ -12697,11 +12697,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_BUG, TYPE_GRASS},
         .evYield_SpDefense = 2,
         .bodyColor = BODY_COLOR_GREEN,
-        WORMADAM_MISC_INFO,
     },
 
     [SPECIES_WORMADAM_SANDY_CLOAK] =
     {
+        WORMADAM_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 79,
         .baseDefense   = 105,
@@ -12711,11 +12711,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_BUG, TYPE_GROUND},
         .evYield_Defense   = 2,
         .bodyColor = BODY_COLOR_BROWN,
-        WORMADAM_MISC_INFO,
     },
 
     [SPECIES_WORMADAM_TRASH_CLOAK] =
     {
+        WORMADAM_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 69,
         .baseDefense   = 95,
@@ -12726,7 +12726,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Defense   = 1,
         .evYield_SpDefense = 1,
         .bodyColor = BODY_COLOR_RED,
-        WORMADAM_MISC_INFO,
     },
 
     [SPECIES_MOTHIM] =
@@ -12919,14 +12918,14 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_CHERRIM_OVERCAST] =
     {
-        .bodyColor = BODY_COLOR_PURPLE,
         CHERRIM_MISC_INFO,
+        .bodyColor = BODY_COLOR_PURPLE,
     },
 
     [SPECIES_CHERRIM_SUNSHINE] =
     {
-        .bodyColor = BODY_COLOR_PINK,
         CHERRIM_MISC_INFO,
+        .bodyColor = BODY_COLOR_PINK,
     },
 #endif //FAMILY_CHERUBI
 
@@ -12952,14 +12951,14 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SHELLOS_WEST_SEA] =
     {
-        .bodyColor = BODY_COLOR_PURPLE,
         SHELLOS_MISC_INFO,
+        .bodyColor = BODY_COLOR_PURPLE,
     },
 
     [SPECIES_SHELLOS_EAST_SEA] =
     {
-        .bodyColor = BODY_COLOR_BLUE,
         SHELLOS_MISC_INFO,
+        .bodyColor = BODY_COLOR_BLUE,
     },
 
 #define GASTRODON_MISC_INFO                                                         \
@@ -12983,14 +12982,14 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GASTRODON_WEST_SEA] =
     {
-        .bodyColor = BODY_COLOR_PURPLE,
         GASTRODON_MISC_INFO,
+        .bodyColor = BODY_COLOR_PURPLE,
     },
 
     [SPECIES_GASTRODON_EAST_SEA] =
     {
-        .bodyColor = BODY_COLOR_BLUE,
         GASTRODON_MISC_INFO,
+        .bodyColor = BODY_COLOR_BLUE,
     },
 #endif //FAMILY_SHELLOS
 
@@ -13076,6 +13075,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_LOPUNNY] =
     {
+        LOPUNNY_MISC_INFO,
         .baseHP        = 65,
         .baseAttack    = 76,
         .baseDefense   = 84,
@@ -13085,11 +13085,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_NORMAL, TYPE_NORMAL},
         .expYield = 168,
         .abilities = {ABILITY_CUTE_CHARM, ABILITY_KLUTZ, ABILITY_LIMBER},
-        LOPUNNY_MISC_INFO,
     },
 
     [SPECIES_LOPUNNY_MEGA] =
     {
+        LOPUNNY_MISC_INFO,
         .baseHP        = 65,
         .baseAttack    = 136,
         .baseDefense   = 94,
@@ -13100,7 +13100,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 203,
         .abilities = {ABILITY_SCRAPPY, ABILITY_SCRAPPY, ABILITY_SCRAPPY},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        LOPUNNY_MISC_INFO,
     },
 #endif //FAMILY_BUNEARY
 
@@ -13354,6 +13353,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GARCHOMP] =
     {
+        GARCHOMP_MISC_INFO,
         .baseHP        = 108,
         .baseAttack    = 130,
         .baseDefense   = 95,
@@ -13362,11 +13362,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 85,
         .expYield = 270,
         .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_ROUGH_SKIN},
-        GARCHOMP_MISC_INFO,
     },
 
     [SPECIES_GARCHOMP_MEGA] =
     {
+        GARCHOMP_MISC_INFO,
         .baseHP        = 108,
         .baseAttack    = 170,
         .baseDefense   = 115,
@@ -13376,7 +13376,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 315,
         .abilities = {ABILITY_SAND_FORCE, ABILITY_SAND_FORCE, ABILITY_SAND_FORCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        GARCHOMP_MISC_INFO,
     },
 #endif //FAMILY_GIBLE
 
@@ -13418,6 +13417,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_LUCARIO] =
     {
+        LUCARIO_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 110,
         .baseDefense   = 70,
@@ -13426,11 +13426,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 70,
         .expYield = 184,
         .abilities = {ABILITY_STEADFAST, ABILITY_INNER_FOCUS, ABILITY_JUSTIFIED},
-        LUCARIO_MISC_INFO,
     },
 
     [SPECIES_LUCARIO_MEGA] =
     {
+        LUCARIO_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 145,
         .baseDefense   = 88,
@@ -13440,7 +13440,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 219,
         .abilities = {ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        LUCARIO_MISC_INFO,
     },
 #endif //FAMILY_RIOLU
 
@@ -13696,6 +13695,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ABOMASNOW] =
     {
+        ABOMASNOW_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 92,
         .baseDefense   = 75,
@@ -13704,11 +13704,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 85,
         .expYield = 173,
         .abilities = {ABILITY_SNOW_WARNING, ABILITY_NONE, ABILITY_SOUNDPROOF},
-        ABOMASNOW_MISC_INFO,
     },
 
     [SPECIES_ABOMASNOW_MEGA] =
     {
+        ABOMASNOW_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 132,
         .baseDefense   = 105,
@@ -13718,7 +13718,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 208,
         .abilities = {ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        ABOMASNOW_MISC_INFO,
     },
 #endif //FAMILY_SNOVER
 
@@ -13737,6 +13736,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ROTOM] =
     {
+        ROTOM_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 50,
         .baseDefense   = 77,
@@ -13746,7 +13746,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_ELECTRIC, TYPE_GHOST},
         .expYield = 154,
         .noFlip = FALSE,
-        ROTOM_MISC_INFO,
     },
 
 #define ROTOM_APPLIANCE_INFO(form)                                  \
@@ -13760,42 +13759,42 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ROTOM_HEAT] =
     {
+        ROTOM_MISC_INFO,
         .types = { TYPE_ELECTRIC, TYPE_FIRE },
         .noFlip = FALSE,
         ROTOM_APPLIANCE_INFO(Heat),
-        ROTOM_MISC_INFO,
     },
 
     [SPECIES_ROTOM_WASH] =
     {
+        ROTOM_MISC_INFO,
         .types = { TYPE_ELECTRIC, TYPE_WATER },
         .noFlip = TRUE,
         ROTOM_APPLIANCE_INFO(Wash),
-        ROTOM_MISC_INFO,
     },
 
     [SPECIES_ROTOM_FROST] =
     {
+        ROTOM_MISC_INFO,
         .types = { TYPE_ELECTRIC, TYPE_ICE },
         .noFlip = FALSE,
         ROTOM_APPLIANCE_INFO(Frost),
-        ROTOM_MISC_INFO,
     },
 
     [SPECIES_ROTOM_FAN] =
     {
+        ROTOM_MISC_INFO,
         .types = { TYPE_ELECTRIC, TYPE_FLYING },
         .noFlip = FALSE,
         ROTOM_APPLIANCE_INFO(Fan),
-        ROTOM_MISC_INFO,
     },
 
     [SPECIES_ROTOM_MOW] =
     {
+        ROTOM_MISC_INFO,
         .types = { TYPE_ELECTRIC, TYPE_GRASS },
         .noFlip = FALSE,
         ROTOM_APPLIANCE_INFO(Mow),
-        ROTOM_MISC_INFO,
     },
 #endif //FAMILY_ROTOM
 
@@ -13896,24 +13895,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_DIALGA] =
     {
+        DIALGA_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 120,
         .baseDefense   = 120,
         .baseSpeed     = 90,
         .baseSpAttack  = 150,
         .baseSpDefense = 100,
-        DIALGA_MISC_INFO,
     },
 
     [SPECIES_DIALGA_ORIGIN] =
     {
+        DIALGA_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 100,
         .baseDefense   = 120,
         .baseSpeed     = 90,
         .baseSpAttack  = 150,
         .baseSpDefense = 120,
-        DIALGA_MISC_INFO,
     },
 #endif //FAMILY_DIALGA
 
@@ -13935,24 +13934,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_PALKIA] =
     {
+        PALKIA_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 120,
         .baseDefense   = 100,
         .baseSpeed     = 100,
         .baseSpAttack  = 150,
         .baseSpDefense = 120,
-        PALKIA_MISC_INFO,
     },
 
     [SPECIES_PALKIA_ORIGIN] =
     {
+        PALKIA_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 100,
         .baseDefense   = 100,
         .baseSpeed     = 120,
         .baseSpAttack  = 150,
         .baseSpDefense = 120,
-        PALKIA_MISC_INFO,
     },
 #endif //FAMILY_PALKIA
 
@@ -14023,6 +14022,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GIRATINA_ALTERED] =
     {
+        GIRATINA_MISC_INFO,
         .baseHP        = 150,
         .baseAttack    = 100,
         .baseDefense   = 120,
@@ -14030,11 +14030,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 100,
         .baseSpDefense = 120,
         .abilities = {ABILITY_PRESSURE, ABILITY_NONE, ABILITY_TELEPATHY},
-        GIRATINA_MISC_INFO,
     },
 
     [SPECIES_GIRATINA_ORIGIN] =
     {
+        GIRATINA_MISC_INFO,
         .baseHP        = 150,
         .baseAttack    = 120,
         .baseDefense   = 100,
@@ -14042,7 +14042,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 120,
         .baseSpDefense = 100,
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE},
-        GIRATINA_MISC_INFO,
     },
 #endif //FAMILY_GIRATINA
 
@@ -14162,6 +14161,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SHAYMIN_LAND] =
     {
+        SHAYMIN_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 100,
         .baseDefense   = 100,
@@ -14171,11 +14171,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GRASS, TYPE_GRASS},
         .abilities = {ABILITY_NATURAL_CURE, ABILITY_NONE},
         .noFlip = FALSE,
-        SHAYMIN_MISC_INFO,
     },
 
     [SPECIES_SHAYMIN_SKY] =
     {
+        SHAYMIN_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 103,
         .baseDefense   = 75,
@@ -14185,7 +14185,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GRASS, TYPE_FLYING},
         .abilities = {ABILITY_SERENE_GRACE, ABILITY_NONE},
         .noFlip = TRUE,
-        SHAYMIN_MISC_INFO,
     },
 #endif //FAMILY_SHAYMIN
 
@@ -14446,6 +14445,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SAMUROTT] =
     {
+        SAMUROTT_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 100,
         .baseDefense   = 85,
@@ -14455,11 +14455,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_WATER, TYPE_WATER},
         .evYield_SpAttack  = 3,
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHELL_ARMOR},
-        SAMUROTT_MISC_INFO,
     },
 
     [SPECIES_SAMUROTT_HISUIAN] =
     {
+        SAMUROTT_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 108,
         .baseDefense   = 80,
@@ -14470,7 +14470,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Attack  = 3,
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHARPNESS},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        SAMUROTT_MISC_INFO,
     },
 
     [SPECIES_PATRAT] =
@@ -15088,6 +15087,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_AUDINO] =
     {
+        AUDINO_MISC_INFO,
         .baseHP        = 103,
         .baseAttack    = 60,
         .baseDefense   = 86,
@@ -15098,11 +15098,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 390,
         .abilities = {ABILITY_HEALER, ABILITY_REGENERATOR, ABILITY_KLUTZ},
         .bodyColor = BODY_COLOR_PINK,
-        AUDINO_MISC_INFO,
     },
 
     [SPECIES_AUDINO_MEGA] =
     {
+        AUDINO_MISC_INFO,
         .baseHP        = 103,
         .baseAttack    = 60,
         .baseDefense   = 126,
@@ -15114,7 +15114,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_HEALER, ABILITY_HEALER, ABILITY_HEALER},
         .bodyColor = BODY_COLOR_WHITE,
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
-        AUDINO_MISC_INFO,
     },
 
     [SPECIES_TIMBURR] =
@@ -15534,6 +15533,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_LILLIGANT] =
     {
+        LILLIGANT_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 60,
         .baseDefense   = 75,
@@ -15543,11 +15543,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GRASS, TYPE_GRASS},
         .evYield_SpAttack  = 2,
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_OWN_TEMPO, ABILITY_LEAF_GUARD},
-        LILLIGANT_MISC_INFO,
     },
 
     [SPECIES_LILLIGANT_HISUIAN] =
     {
+        LILLIGANT_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 105,
         .baseDefense   = 75,
@@ -15559,7 +15559,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Speed  = 1,
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_HUSTLE, ABILITY_LEAF_GUARD},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        LILLIGANT_MISC_INFO,
     },
 
 #define BASCULIN_MISC_INFO                                      \
@@ -15583,23 +15582,23 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_BASCULIN_RED_STRIPED] =
     {
+        BASCULIN_MISC_INFO,
         .itemRare = ITEM_DEEP_SEA_TOOTH,
         .abilities = {ABILITY_RECKLESS, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER},
-        BASCULIN_MISC_INFO,
     },
 
     [SPECIES_BASCULIN_BLUE_STRIPED] =
     {
+        BASCULIN_MISC_INFO,
         .itemRare = ITEM_DEEP_SEA_SCALE,
         .abilities = {ABILITY_ROCK_HEAD, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER},
-        BASCULIN_MISC_INFO,
     },
 
     [SPECIES_BASCULIN_WHITE_STRIPED] =
     {
+        BASCULIN_MISC_INFO,
         .itemRare = ITEM_DEEP_SEA_SCALE,
         .abilities = {ABILITY_RATTLED, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER},
-        BASCULIN_MISC_INFO,
     },
 
 #define BASCULEGION_MISC_INFO                                                           \
@@ -15617,6 +15616,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_BASCULEGION_MALE] =
     {
+        BASCULEGION_MISC_INFO,
         .baseHP        = 120,
         .baseAttack    = 112,
         .baseDefense   = 65,
@@ -15624,11 +15624,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 80,
         .baseSpDefense = 75,
         .genderRatio = MON_MALE,
-        BASCULEGION_MISC_INFO,
     },
 
     [SPECIES_BASCULEGION_FEMALE] =
     {
+        BASCULEGION_MISC_INFO,
         .baseHP        = 120,
         .baseAttack    = 92,
         .baseDefense   = 65,
@@ -15636,7 +15636,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 100,
         .baseSpDefense = 75,
         .genderRatio = MON_FEMALE,
-        BASCULEGION_MISC_INFO,
     },
 
     [SPECIES_SANDILE] =
@@ -15728,17 +15727,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_DARUMAKA] =
     {
+        DARUMAKA_MISC_INFO,
         .types = { TYPE_FIRE, TYPE_FIRE},
         .bodyColor = BODY_COLOR_RED,
-        DARUMAKA_MISC_INFO,
     },
 
     [SPECIES_DARUMAKA_GALARIAN] =
     {
+        DARUMAKA_MISC_INFO,
         .types = { TYPE_ICE, TYPE_ICE},
         .bodyColor = BODY_COLOR_WHITE,
         .flags = SPECIES_FLAG_GALARIAN_FORM,
-        DARUMAKA_MISC_INFO,
     },
 
 #define DARMANITAN_MISC_INFO                                \
@@ -15763,10 +15762,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_DARMANITAN_STANDARD_MODE] =
     {
+        DARMANITAN_STANDARD_MISC_INFO,
         .types = { TYPE_FIRE, TYPE_FIRE},
         .abilities = {ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_ZEN_MODE},
         .bodyColor = BODY_COLOR_RED,
-        DARMANITAN_STANDARD_MISC_INFO,
     },
 
 #define DARMANITAN_ZEN_MODE_MISC_INFO   \
@@ -15776,6 +15775,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_DARMANITAN_ZEN_MODE] =
     {
+        DARMANITAN_ZEN_MODE_MISC_INFO,
         .baseHP        = 105,
         .baseAttack    = 30,
         .baseDefense   = 105,
@@ -15785,7 +15785,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_FIRE, TYPE_PSYCHIC},
         .abilities = {ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_ZEN_MODE},
         .bodyColor = BODY_COLOR_BLUE,
-        DARMANITAN_ZEN_MODE_MISC_INFO,
     },
 
 #define DARMANITAN_GALARIAN_MISC_INFO                                           \
@@ -15795,13 +15794,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] =
     {
-        .types = { TYPE_ICE, TYPE_ICE},
         DARMANITAN_GALARIAN_MISC_INFO,
         DARMANITAN_STANDARD_MISC_INFO,
+        .types = { TYPE_ICE, TYPE_ICE},
     },
 
     [SPECIES_DARMANITAN_GALARIAN_ZEN_MODE] =
     {
+        DARMANITAN_GALARIAN_MISC_INFO,
+        DARMANITAN_ZEN_MODE_MISC_INFO,
         .baseHP        = 105,
         .baseAttack    = 160,
         .baseDefense   = 55,
@@ -15809,8 +15810,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 30,
         .baseSpDefense = 55,
         .types = { TYPE_ICE, TYPE_FIRE},
-        DARMANITAN_GALARIAN_MISC_INFO,
-        DARMANITAN_ZEN_MODE_MISC_INFO,
     },
 
     [SPECIES_MARACTUS] =
@@ -15965,6 +15964,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_YAMASK] =
     {
+        YAMASK_MISC_INFO,
         .baseHP        = 38,
         .baseAttack    = 30,
         .baseDefense   = 85,
@@ -15974,11 +15974,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GHOST, TYPE_GHOST},
         .itemRare = ITEM_SPELL_TAG,
         .abilities = {ABILITY_MUMMY, ABILITY_NONE},
-        YAMASK_MISC_INFO,
     },
 
     [SPECIES_YAMASK_GALARIAN] =
     {
+        YAMASK_MISC_INFO,
         .baseHP        = 38,
         .baseAttack    = 55,
         .baseDefense   = 85,
@@ -15988,7 +15988,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GROUND, TYPE_GHOST},
         .abilities = {ABILITY_WANDERING_SPIRIT, ABILITY_NONE},
         .flags = SPECIES_FLAG_GALARIAN_FORM,
-        YAMASK_MISC_INFO,
     },
 
     [SPECIES_COFAGRIGUS] =
@@ -16195,6 +16194,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ZORUA] =
     {
+        ZORUA_MISC_INFO,
         .baseHP        = 40,
         .baseAttack    = 65,
         .baseDefense   = 40,
@@ -16202,11 +16202,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 80,
         .baseSpDefense = 40,
         .types = { TYPE_DARK, TYPE_DARK},
-        ZORUA_MISC_INFO,
     },
 
     [SPECIES_ZORUA_HISUIAN] =
     {
+        ZORUA_MISC_INFO,
         .baseHP        = 35,
         .baseAttack    = 60,
         .baseDefense   = 40,
@@ -16215,7 +16215,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 40,
         .types = { TYPE_NORMAL, TYPE_GHOST},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        ZORUA_MISC_INFO,
     },
 
 #define ZOROARK_MISC_INFO                                   \
@@ -16233,6 +16232,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ZOROARK] =
     {
+        ZOROARK_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 105,
         .baseDefense   = 60,
@@ -16240,11 +16240,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 120,
         .baseSpDefense = 60,
         .types = { TYPE_DARK, TYPE_DARK},
-        ZOROARK_MISC_INFO,
     },
 
     [SPECIES_ZOROARK_HISUIAN] =
     {
+        ZOROARK_MISC_INFO,
         .baseHP        = 55,
         .baseAttack    = 100,
         .baseDefense   = 60,
@@ -16253,7 +16253,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 60,
         .types = { TYPE_NORMAL, TYPE_GHOST},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        ZOROARK_MISC_INFO,
     },
 
     [SPECIES_MINCCINO] =
@@ -17317,6 +17316,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_STUNFISK] =
     {
+        STUNFISK_MISC_INFO,
         .baseHP        = 109,
         .baseAttack    = 66,
         .baseDefense   = 84,
@@ -17328,11 +17328,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = 70,
         .abilities = {ABILITY_STATIC, ABILITY_LIMBER, ABILITY_SAND_VEIL},
         .bodyColor = BODY_COLOR_BROWN,
-        STUNFISK_MISC_INFO,
     },
 
     [SPECIES_STUNFISK_GALARIAN] =
     {
+        STUNFISK_MISC_INFO,
         .baseHP        = 109,
         .baseAttack    = 81,
         .baseDefense   = 99,
@@ -17344,7 +17344,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MIMICRY, ABILITY_NONE},
         .bodyColor = BODY_COLOR_GREEN,
         .flags = SPECIES_FLAG_GALARIAN_FORM,
-        STUNFISK_MISC_INFO,
     },
 
     [SPECIES_MIENFOO] =
@@ -17582,6 +17581,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_BRAVIARY] =
     {
+        BRAVIARY_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 123,
         .baseDefense   = 75,
@@ -17592,11 +17592,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Attack    = 2,
         .abilities = {ABILITY_KEEN_EYE, ABILITY_SHEER_FORCE, ABILITY_DEFIANT},
         .bodyColor = BODY_COLOR_RED,
-        BRAVIARY_MISC_INFO,
     },
 
     [SPECIES_BRAVIARY_HISUIAN] =
     {
+        BRAVIARY_MISC_INFO,
         .baseHP        = 110,
         .baseAttack    = 83,
         .baseDefense   = 70,
@@ -17608,7 +17608,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_SHEER_FORCE, ABILITY_TINTED_LENS},
         .bodyColor = BODY_COLOR_WHITE,
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        BRAVIARY_MISC_INFO,
     },
 
     [SPECIES_VULLABY] =
@@ -17896,6 +17895,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_TORNADUS_INCARNATE] =
     {
+        TORNADUS_MISC_INFO,
         .baseHP        = 79,
         .baseAttack    = 115,
         .baseDefense   = 70,
@@ -17903,11 +17903,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 125,
         .baseSpDefense = 80,
         .abilities = {ABILITY_PRANKSTER, ABILITY_NONE, ABILITY_DEFIANT},
-        TORNADUS_MISC_INFO,
     },
 
     [SPECIES_TORNADUS_THERIAN] =
     {
+        TORNADUS_MISC_INFO,
         .baseHP        = 79,
         .baseAttack    = 100,
         .baseDefense   = 80,
@@ -17915,7 +17915,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 110,
         .baseSpDefense = 90,
         .abilities = {ABILITY_REGENERATOR, ABILITY_NONE, ABILITY_REGENERATOR},
-        TORNADUS_MISC_INFO,
     },
 
 #define THUNDURUS_MISC_INFO                                             \
@@ -17933,6 +17932,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_THUNDURUS_INCARNATE] =
     {
+        THUNDURUS_MISC_INFO,
         .baseHP        = 79,
         .baseAttack    = 115,
         .baseDefense   = 70,
@@ -17941,11 +17941,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .evYield_Attack    = 3,
         .abilities = {ABILITY_PRANKSTER, ABILITY_NONE, ABILITY_DEFIANT},
-        THUNDURUS_MISC_INFO,
     },
 
     [SPECIES_THUNDURUS_THERIAN] =
     {
+        THUNDURUS_MISC_INFO,
         .baseHP        = 79,
         .baseAttack    = 105,
         .baseDefense   = 70,
@@ -17954,7 +17954,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .evYield_SpAttack  = 3,
         .abilities = {ABILITY_VOLT_ABSORB, ABILITY_NONE, ABILITY_VOLT_ABSORB},
-        THUNDURUS_MISC_INFO,
     },
 
     [SPECIES_RESHIRAM] =
@@ -18018,6 +18017,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_LANDORUS_INCARNATE] =
     {
+        LANDORUS_MISC_INFO,
         .baseHP        = 89,
         .baseAttack    = 125,
         .baseDefense   = 90,
@@ -18026,11 +18026,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .evYield_SpAttack  = 3,
         .abilities = {ABILITY_SAND_FORCE, ABILITY_NONE, ABILITY_SHEER_FORCE},
-        LANDORUS_MISC_INFO,
     },
 
     [SPECIES_LANDORUS_THERIAN] =
     {
+        LANDORUS_MISC_INFO,
         .baseHP        = 89,
         .baseAttack    = 145,
         .baseDefense   = 90,
@@ -18039,7 +18039,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .evYield_Attack  = 3,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_NONE},
-        LANDORUS_MISC_INFO,
     },
 
 #define KYUREM_MISC_INFO                                                \
@@ -18055,6 +18054,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_KYUREM] =
     {
+        KYUREM_MISC_INFO,
         .baseHP        = 125,
         .baseAttack    = 130,
         .baseDefense   = 90,
@@ -18067,11 +18067,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpAttack  = 1,
         .abilities = {ABILITY_PRESSURE, ABILITY_NONE},
         .flags = SPECIES_FLAG_LEGENDARY,
-        KYUREM_MISC_INFO,
     },
 
     [SPECIES_KYUREM_WHITE] =
     {
+        KYUREM_MISC_INFO,
         .baseHP        = 125,
         .baseAttack    = 120,
         .baseDefense   = 90,
@@ -18082,11 +18082,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpAttack  = 3,
         .abilities = {ABILITY_TURBOBLAZE, ABILITY_NONE},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_CANNOT_BE_TRADED,
-        KYUREM_MISC_INFO,
     },
 
     [SPECIES_KYUREM_BLACK] =
     {
+        KYUREM_MISC_INFO,
         .baseHP        = 125,
         .baseAttack    = 170,
         .baseDefense   = 100,
@@ -18097,7 +18097,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Attack    = 3,
         .abilities = {ABILITY_TERAVOLT, ABILITY_NONE},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_CANNOT_BE_TRADED,
-        KYUREM_MISC_INFO,
     },
 
 #define KELDEO_MISC_INFO                                                \
@@ -18122,14 +18121,14 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_KELDEO_ORDINARY] =
     {
-        .noFlip = FALSE,
         KELDEO_MISC_INFO,
+        .noFlip = FALSE,
     },
 
     [SPECIES_KELDEO_RESOLUTE] =
     {
-        .noFlip = TRUE,
         KELDEO_MISC_INFO,
+        .noFlip = TRUE,
     },
 
 #define MELOETTA_MISC_INFO                                              \
@@ -18150,6 +18149,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_MELOETTA_ARIA] =
     {
+        MELOETTA_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 77,
         .baseDefense   = 77,
@@ -18159,11 +18159,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_NORMAL, TYPE_PSYCHIC},
         .evYield_SpAttack  = 1,
         .evYield_SpDefense = 1,
-        MELOETTA_MISC_INFO,
     },
 
     [SPECIES_MELOETTA_PIROUETTE] =
     {
+        MELOETTA_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 128,
         .baseDefense   = 90,
@@ -18173,7 +18173,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_NORMAL, TYPE_FIGHTING},
         .evYield_Attack  = 1,
         .evYield_Defense = 1,
-        MELOETTA_MISC_INFO,
     },
 
 #define GENESECT_SPECIES_INFO                                           \
@@ -18406,24 +18405,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GRENINJA] =
     {
+        GRENINJA_MISC_INFO,
+        GRENINJA_NORMAL_MISC_INFO,
         .genderRatio = PERCENT_FEMALE(12.5),
         .eggGroups = { EGG_GROUP_WATER_1, EGG_GROUP_WATER_1},
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_PROTEAN},
-        GRENINJA_NORMAL_MISC_INFO,
-        GRENINJA_MISC_INFO,
     },
 
     [SPECIES_GRENINJA_BATTLE_BOND] =
     {
+        GRENINJA_MISC_INFO,
+        GRENINJA_NORMAL_MISC_INFO,
         .genderRatio = MON_MALE,
         .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED},
         .abilities = {ABILITY_BATTLE_BOND, ABILITY_NONE, ABILITY_NONE},
-        GRENINJA_NORMAL_MISC_INFO,
-        GRENINJA_MISC_INFO,
     },
 
     [SPECIES_GRENINJA_ASH] =
     {
+        GRENINJA_MISC_INFO,
         .baseHP        = 72,
         .baseAttack    = 145,
         .baseDefense   = 67,
@@ -18434,7 +18434,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .genderRatio = MON_MALE,
         .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED},
         .abilities = {ABILITY_BATTLE_BOND, ABILITY_NONE, ABILITY_NONE},
-        GRENINJA_MISC_INFO,
     },
 
     [SPECIES_BUNNELBY] =
@@ -18740,6 +18739,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_FLOETTE_WHITE_FLOWER]  = FLOETTE_NORMAL_INFO(WhiteFlower, WHITE_FLOWER, 1),
     [SPECIES_FLOETTE_ETERNAL_FLOWER] =
     {
+        FLOETTE_MISC_INFO,
         .baseHP        = 74,
         .baseAttack    = 65,
         .baseDefense   = 67,
@@ -18748,7 +18748,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 128,
         .expYield = 243,
         .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED},
-        FLOETTE_MISC_INFO,
     },
 
 #define FLORGES_SPECIES_INFO                                                \
@@ -18943,18 +18942,18 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_MEOWSTIC_MALE] =
     {
+        MEOWSTIC_MISC_INFO,
         .genderRatio = MON_MALE,
         .abilities = {ABILITY_KEEN_EYE, ABILITY_INFILTRATOR, ABILITY_PRANKSTER},
         .bodyColor = BODY_COLOR_BLUE,
-        MEOWSTIC_MISC_INFO,
     },
 
     [SPECIES_MEOWSTIC_FEMALE] =
     {
+        MEOWSTIC_MISC_INFO,
         .genderRatio = MON_FEMALE,
         .abilities = {ABILITY_KEEN_EYE, ABILITY_INFILTRATOR, ABILITY_COMPETITIVE},
         .bodyColor = BODY_COLOR_WHITE,
-        MEOWSTIC_MISC_INFO,
     },
 
     [SPECIES_HONEDGE] =
@@ -19019,6 +19018,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_AEGISLASH_SHIELD] =
     {
+        AEGISLASH_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 50,
         .baseDefense   = AEGISLASH_MAIN_STAT,
@@ -19027,11 +19027,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = AEGISLASH_MAIN_STAT,
         .evYield_Defense   = 2,
         .evYield_SpDefense = 1,
-        AEGISLASH_MISC_INFO,
     },
 
     [SPECIES_AEGISLASH_BLADE] =
     {
+        AEGISLASH_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = AEGISLASH_MAIN_STAT,
         .baseDefense   = 50,
@@ -19040,7 +19040,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 50,
         .evYield_Attack    = 2,
         .evYield_SpAttack  = 1,
-        AEGISLASH_MISC_INFO,
     },
 
     [SPECIES_SPRITZEE] =
@@ -19550,6 +19549,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SLIGGOO] =
     {
+        SLIGGOO_MISC_INFO,
         .baseHP        = 68,
         .baseAttack    = 75,
         .baseDefense   = 53,
@@ -19558,11 +19558,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 113,
         .types = { TYPE_DRAGON, TYPE_DRAGON},
         .abilities = {ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY},
-        SLIGGOO_MISC_INFO,
     },
 
     [SPECIES_SLIGGOO_HISUIAN] =
     {
+        SLIGGOO_MISC_INFO,
         .baseHP        = 58,
         .baseAttack    = 75,
         .baseDefense   = 83,
@@ -19572,7 +19572,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_DRAGON, TYPE_STEEL},
         .abilities = {ABILITY_SAP_SIPPER, ABILITY_SHELL_ARMOR, ABILITY_GOOEY},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        SLIGGOO_MISC_INFO,
     },
 
 #define GOODRA_MISC_INFO                                    \
@@ -19589,6 +19588,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GOODRA] =
     {
+        GOODRA_MISC_INFO,
         .baseHP        = 90,
         .baseAttack    = 100,
         .baseDefense   = 70,
@@ -19597,11 +19597,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 150,
         .types = { TYPE_DRAGON, TYPE_DRAGON},
         .abilities = {ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY},
-        GOODRA_MISC_INFO,
     },
 
     [SPECIES_GOODRA_HISUIAN] =
     {
+        GOODRA_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 100,
         .baseDefense   = 100,
@@ -19611,7 +19611,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_DRAGON, TYPE_STEEL},
         .abilities = {ABILITY_SAP_SIPPER, ABILITY_SHELL_ARMOR, ABILITY_GOOEY},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        GOODRA_MISC_INFO,
     },
 
     [SPECIES_KLEFKI] =
@@ -19696,39 +19695,40 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_PUMPKABOO_AVERAGE] =
     {
+        PUMPKABOO_MISC_INFO,
         .baseHP        = 49,
         .baseAttack    = 66,
         .baseDefense   = 70,
         .baseSpeed     = 51,
         .baseSpAttack  = 44,
         .baseSpDefense = 55,
-        PUMPKABOO_MISC_INFO,
     },
 
     [SPECIES_PUMPKABOO_SMALL] =
     {
+        PUMPKABOO_MISC_INFO,
         .baseHP        = 44,
         .baseAttack    = 66,
         .baseDefense   = 70,
         .baseSpeed     = 56,
         .baseSpAttack  = 44,
         .baseSpDefense = 55,
-        PUMPKABOO_MISC_INFO,
     },
 
     [SPECIES_PUMPKABOO_LARGE] =
     {
+        PUMPKABOO_MISC_INFO,
         .baseHP        = 54,
         .baseAttack    = 66,
         .baseDefense   = 70,
         .baseSpeed     = 46,
         .baseSpAttack  = 44,
         .baseSpDefense = 55,
-        PUMPKABOO_MISC_INFO,
     },
 
     [SPECIES_PUMPKABOO_SUPER] =
     {
+        PUMPKABOO_MISC_INFO,
         .baseHP        = 59,
         .baseAttack    = 66,
         .baseDefense   = 70,
@@ -19737,7 +19737,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 55,
         .itemCommon = ITEM_MIRACLE_SEED,
         .itemRare = ITEM_MIRACLE_SEED,
-        PUMPKABOO_MISC_INFO,
     },
 
 #define GOURGEIST_MISC_INFO                                             \
@@ -19756,39 +19755,40 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GOURGEIST_AVERAGE] =
     {
+        GOURGEIST_MISC_INFO,
         .baseHP        = 65,
         .baseAttack    = 90,
         .baseDefense   = 122,
         .baseSpeed     = 84,
         .baseSpAttack  = 58,
         .baseSpDefense = 75,
-        GOURGEIST_MISC_INFO,
     },
 
     [SPECIES_GOURGEIST_SMALL] =
     {
+        GOURGEIST_MISC_INFO,
         .baseHP        = 55,
         .baseAttack    = 85,
         .baseDefense   = 122,
         .baseSpeed     = 99,
         .baseSpAttack  = 58,
         .baseSpDefense = 75,
-        GOURGEIST_MISC_INFO,
     },
 
     [SPECIES_GOURGEIST_LARGE] =
     {
+        GOURGEIST_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 95,
         .baseDefense   = 122,
         .baseSpeed     = 69,
         .baseSpAttack  = 58,
         .baseSpDefense = 75,
-        GOURGEIST_MISC_INFO,
     },
 
     [SPECIES_GOURGEIST_SUPER] =
     {
+        GOURGEIST_MISC_INFO,
         .baseHP        = 85,
         .baseAttack    = 100,
         .baseDefense   = 122,
@@ -19797,7 +19797,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 75,
         .itemCommon = ITEM_MIRACLE_SEED,
         .itemRare = ITEM_MIRACLE_SEED,
-        GOURGEIST_MISC_INFO,
     },
 
 #if P_UPDATED_EGG_GROUPS >= GEN_8
@@ -19842,6 +19841,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_AVALUGG] =
     {
+        AVALUGG_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 117,
         .baseDefense   = 184,
@@ -19850,11 +19850,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 46,
         .types = { TYPE_ICE, TYPE_ICE},
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_ICE_BODY, ABILITY_STURDY},
-        AVALUGG_MISC_INFO,
     },
 
     [SPECIES_AVALUGG_HISUIAN] =
     {
+        AVALUGG_MISC_INFO,
         .baseHP        = 95,
         .baseAttack    = 127,
         .baseDefense   = 184,
@@ -19864,7 +19864,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_ICE, TYPE_ROCK},
         .abilities = {ABILITY_STRONG_JAW, ABILITY_ICE_BODY, ABILITY_STURDY},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        AVALUGG_MISC_INFO,
     },
 
     [SPECIES_NOIBAT] =
@@ -20019,6 +20018,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_ZYGARDE_10_POWER_CONSTRUCT] = ZYGARDE_10_SPECIES_INFO(ABILITY_POWER_CONSTRUCT),
     [SPECIES_ZYGARDE_COMPLETE] =
     {
+        ZYGARDE_MISC_INFO,
         .baseHP        = 216,
         .baseAttack    = 100,
         .baseDefense   = 121,
@@ -20028,7 +20028,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 319,
         .abilities = {ABILITY_POWER_CONSTRUCT, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLACK,
-        ZYGARDE_MISC_INFO,
     },
 
 #define DIANCE_MISC_INFO                                                \
@@ -20046,6 +20045,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_DIANCIE] =
     {
+        DIANCE_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 100,
         .baseDefense   = 150,
@@ -20055,11 +20055,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 270,
         .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE},
         .flags = SPECIES_FLAG_MYTHICAL,
-        DIANCE_MISC_INFO,
     },
 
     [SPECIES_DIANCIE_MEGA] =
     {
+        DIANCE_MISC_INFO,
         .baseHP        = 50,
         .baseAttack    = 160,
         .baseDefense   = 110,
@@ -20069,7 +20069,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 315,
         .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE},
         .flags = SPECIES_FLAG_MYTHICAL | SPECIES_FLAG_MEGA_EVOLUTION,
-        DIANCE_MISC_INFO,
     },
 
 #define HOOPA_MISC_INFO                                                 \
@@ -20087,6 +20086,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_HOOPA_CONFINED] =
     {
+        HOOPA_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 110,
         .baseDefense   = 60,
@@ -20095,11 +20095,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 130,
         .types = { TYPE_PSYCHIC, TYPE_GHOST},
         .friendship = 100,
-        HOOPA_MISC_INFO,
     },
 
     [SPECIES_HOOPA_UNBOUND] =
     {
+        HOOPA_MISC_INFO,
         .baseHP        = 80,
         .baseAttack    = 160,
         .baseDefense   = 60,
@@ -20108,7 +20108,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 130,
         .types = { TYPE_PSYCHIC, TYPE_DARK},
         .friendship = P_UPDATED_FRIENDSHIP >= GEN_8 ? STANDARD_FRIENDSHIP : 100,
-        HOOPA_MISC_INFO,
     },
 
     [SPECIES_VOLCANION] =
@@ -20194,6 +20193,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_DECIDUEYE] =
     {
+        DECIDUEYE_MISC_INFO,
         .baseHP        = 78,
         .baseAttack    = 107,
         .baseDefense   = 75,
@@ -20202,11 +20202,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 100,
         .types = { TYPE_GRASS, TYPE_GHOST},
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LONG_REACH},
-        DECIDUEYE_MISC_INFO,
     },
 
     [SPECIES_DECIDUEYE_HISUIAN] =
     {
+        DECIDUEYE_MISC_INFO,
         .baseHP        = 88,
         .baseAttack    = 112,
         .baseDefense   = 80,
@@ -20216,7 +20216,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GRASS, TYPE_FIGHTING},
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_SCRAPPY},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-        DECIDUEYE_MISC_INFO,
     },
 
     [SPECIES_LITTEN] =
@@ -20600,30 +20599,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ORICORIO_BAILE] =
     {
+        ORICORIO_MISC_INFO,
         .types = { TYPE_FIRE, TYPE_FLYING },
         .bodyColor = BODY_COLOR_RED,
-        ORICORIO_MISC_INFO,
     },
 
     [SPECIES_ORICORIO_POM_POM] =
     {
+        ORICORIO_MISC_INFO,
         .types = { TYPE_ELECTRIC, TYPE_FLYING },
         .bodyColor = BODY_COLOR_YELLOW,
-        ORICORIO_MISC_INFO,
     },
 
     [SPECIES_ORICORIO_PAU] =
     {
+        ORICORIO_MISC_INFO,
         .types = { TYPE_PSYCHIC, TYPE_FLYING },
         .bodyColor = BODY_COLOR_PINK,
-        ORICORIO_MISC_INFO,
     },
 
     [SPECIES_ORICORIO_SENSU] =
     {
+        ORICORIO_MISC_INFO,
         .types = { TYPE_GHOST, TYPE_FLYING },
         .bodyColor = BODY_COLOR_PURPLE,
-        ORICORIO_MISC_INFO,
     },
 
     [SPECIES_CUTIEFLY] =
@@ -20693,14 +20692,14 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ROCKRUFF] =
     {
-        .abilities = {ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_STEADFAST},
         ROCKRUFF_MISC_INFO,
+        .abilities = {ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_STEADFAST},
     },
 
     [SPECIES_ROCKRUFF_OWN_TEMPO] =
     {
-        .abilities = {ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_NONE},
         ROCKRUFF_MISC_INFO,
+        .abilities = {ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_NONE},
     },
 
 #define LYCANROC_MISC_INFO                                  \
@@ -20717,6 +20716,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_LYCANROC_MIDDAY] =
     {
+        LYCANROC_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 115,
         .baseDefense   = 65,
@@ -20725,11 +20725,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 65,
         .abilities = {ABILITY_KEEN_EYE, ABILITY_SAND_RUSH, ABILITY_STEADFAST},
         .bodyColor = BODY_COLOR_BROWN,
-        LYCANROC_MISC_INFO,
     },
 
     [SPECIES_LYCANROC_MIDNIGHT] =
     {
+        LYCANROC_MISC_INFO,
         .baseHP        = 85,
         .baseAttack    = 115,
         .baseDefense   = 75,
@@ -20738,11 +20738,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 75,
         .abilities = {ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_NO_GUARD},
         .bodyColor = BODY_COLOR_RED,
-        LYCANROC_MISC_INFO,
     },
 
     [SPECIES_LYCANROC_DUSK] =
     {
+        LYCANROC_MISC_INFO,
         .baseHP        = 75,
         .baseAttack    = 117,
         .baseDefense   = 65,
@@ -20751,7 +20751,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 65,
         .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
-        LYCANROC_MISC_INFO,
     },
 
 #define WISHIWASHI_MISC_INFO                                    \
@@ -20770,24 +20769,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_WISHIWASHI_SOLO] =
     {
+        WISHIWASHI_MISC_INFO,
         .baseHP        = 45,
         .baseAttack    = 20,
         .baseDefense   = 20,
         .baseSpeed     = 40,
         .baseSpAttack  = 25,
         .baseSpDefense = 25,
-        WISHIWASHI_MISC_INFO,
     },
 
     [SPECIES_WISHIWASHI_SCHOOL] =
     {
+        WISHIWASHI_MISC_INFO,
         .baseHP        = 45,
         .baseAttack    = 140,
         .baseDefense   = 130,
         .baseSpeed     = 30,
         .baseSpAttack  = 140,
         .baseSpDefense = 135,
-        WISHIWASHI_MISC_INFO,
     },
 
     [SPECIES_MAREANIE] =
@@ -22073,6 +22072,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_NECROZMA] =
     {
+        NECROZMA_MISC_INFO,
         .baseHP        = 97,
         .baseAttack    = 107,
         .baseDefense   = 101,
@@ -22087,11 +22087,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PRISM_ARMOR, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLACK,
         .flags = SPECIES_FLAG_LEGENDARY,
-        NECROZMA_MISC_INFO,
     },
 
     [SPECIES_NECROZMA_DUSK_MANE] =
     {
+        NECROZMA_MISC_INFO,
         .baseHP        = 97,
         .baseAttack    = 157,
         .baseDefense   = 127,
@@ -22105,11 +22105,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PRISM_ARMOR, ABILITY_NONE},
         .bodyColor = BODY_COLOR_YELLOW,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_CANNOT_BE_TRADED,
-        NECROZMA_MISC_INFO,
     },
 
     [SPECIES_NECROZMA_DAWN_WINGS] =
     {
+        NECROZMA_MISC_INFO,
         .baseHP        = 97,
         .baseAttack    = 113,
         .baseDefense   = 109,
@@ -22123,11 +22123,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PRISM_ARMOR, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_CANNOT_BE_TRADED,
-        NECROZMA_MISC_INFO,
     },
 
     [SPECIES_NECROZMA_ULTRA] =
     {
+        NECROZMA_MISC_INFO,
         .baseHP        = 97,
         .baseAttack    = 167,
         .baseDefense   = 97,
@@ -22143,7 +22143,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_NEUROFORCE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_YELLOW,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_ULTRA_BURST,
-        NECROZMA_MISC_INFO,
     },
 
 #define MAGEARNA_SPECIES_INFO(color)                                    \
@@ -23251,8 +23250,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SANDACONDA_GIGANTAMAX] =
     {
-        .gigantamax = TRUE,
         SANDACONDA_MISC_INFO,
+        .gigantamax = TRUE,
     },
 
 #define CRAMORANT_MISC_INFO                                 \
@@ -23377,28 +23376,28 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_TOXTRICITY_AMPED] =
     {
-        .abilities = {ABILITY_PUNK_ROCK, ABILITY_PLUS, ABILITY_TECHNICIAN},
         TOXTRICITY_MISC_INFO,
+        .abilities = {ABILITY_PUNK_ROCK, ABILITY_PLUS, ABILITY_TECHNICIAN},
     },
 
     [SPECIES_TOXTRICITY_AMPED_GIGANTAMAX] =
     {
+        TOXTRICITY_MISC_INFO,
         .abilities = {ABILITY_PUNK_ROCK, ABILITY_PLUS, ABILITY_TECHNICIAN},
         .gigantamax = TRUE,
-        TOXTRICITY_MISC_INFO,
     },
 
     [SPECIES_TOXTRICITY_LOW_KEY] =
     {
-        .abilities = {ABILITY_PUNK_ROCK, ABILITY_MINUS, ABILITY_TECHNICIAN},
         TOXTRICITY_MISC_INFO,
+        .abilities = {ABILITY_PUNK_ROCK, ABILITY_MINUS, ABILITY_TECHNICIAN},
     },
 
     [SPECIES_TOXTRICITY_LOW_KEY_GIGANTAMAX] =
     {
+        TOXTRICITY_MISC_INFO,
         .abilities = {ABILITY_PUNK_ROCK, ABILITY_MINUS, ABILITY_TECHNICIAN},
         .gigantamax = TRUE,
-        TOXTRICITY_MISC_INFO,
     },
 
     [SPECIES_SIZZLIPEDE] =
@@ -23704,8 +23703,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GRIMMSNARL_GIGANTAMAX] =
     {
-        .gigantamax = TRUE,
         GRIMMSNARL_MISC_INFO,
+        .gigantamax = TRUE,
     },
 
     [SPECIES_MILCERY] =
@@ -23984,6 +23983,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_INDEEDEE_MALE] =
     {
+        INDEEDEE_MISC_INFO,
         .baseHP        = 60,
         .baseAttack    = 65,
         .baseDefense   = 55,
@@ -23993,11 +23993,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpAttack  = 2,
         .genderRatio = MON_MALE,
         .abilities = {ABILITY_INNER_FOCUS, ABILITY_SYNCHRONIZE, ABILITY_PSYCHIC_SURGE},
-        INDEEDEE_MISC_INFO,
     },
 
     [SPECIES_INDEEDEE_FEMALE] =
     {
+        INDEEDEE_MISC_INFO,
         .baseHP        = 70,
         .baseAttack    = 55,
         .baseDefense   = 65,
@@ -24007,7 +24007,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpDefense = 2,
         .genderRatio = MON_FEMALE,
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_SYNCHRONIZE, ABILITY_PSYCHIC_SURGE},
-        INDEEDEE_MISC_INFO,
     },
 
 #define MORPEKO_MISC_INFO                                   \
@@ -24295,6 +24294,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ZACIAN_HERO_OF_MANY_BATTLES] =
     {
+        ZACIAN_MISC_INFO,
         .baseHP        = 92,
         .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
         .baseDefense   = 115,
@@ -24303,11 +24303,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 115,
         .types = { TYPE_FAIRY, TYPE_FAIRY},
         .expYield = 335,
-        ZACIAN_MISC_INFO,
     },
 
     [SPECIES_ZACIAN_CROWNED_SWORD] =
     {
+        ZACIAN_MISC_INFO,
         .baseHP        = 92,
         .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 150 : 170,
         .baseDefense   = 115,
@@ -24316,7 +24316,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 115,
         .types = { TYPE_FAIRY, TYPE_STEEL},
         .expYield = 360,
-        ZACIAN_MISC_INFO,
     },
 
 #define ZAMAZENTA_MISC_INFO                                             \
@@ -24334,6 +24333,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ZAMAZENTA_HERO_OF_MANY_BATTLES] =
     {
+        ZAMAZENTA_MISC_INFO,
         .baseHP        = 92,
         .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
         .baseDefense   = 115,
@@ -24342,11 +24342,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 115,
         .types = { TYPE_FIGHTING, TYPE_FIGHTING},
         .expYield = 335,
-        ZAMAZENTA_MISC_INFO,
     },
 
     [SPECIES_ZAMAZENTA_CROWNED_SHIELD] =
     {
+        ZAMAZENTA_MISC_INFO,
         .baseHP        = 92,
         .baseAttack    = P_UPDATED_STATS >= GEN_9 ? 120 : 130,
         .baseDefense   = P_UPDATED_STATS >= GEN_9 ? 140 : 145,
@@ -24355,7 +24355,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = P_UPDATED_STATS >= GEN_9 ? 140 : 145,
         .types = { TYPE_FIGHTING, TYPE_STEEL},
         .expYield = 360,
-        ZAMAZENTA_MISC_INFO,
     },
 
 #define ETERNATUS_MISC_INFO                                             \
@@ -24374,6 +24373,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ETERNATUS] =
     {
+        ETERNATUS_MISC_INFO,
         .baseHP        = 140,
         .baseAttack    = 85,
         .baseDefense   = 95,
@@ -24381,11 +24381,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 145,
         .baseSpDefense = 95,
         .expYield = 345,
-        ETERNATUS_MISC_INFO,
     },
 
     [SPECIES_ETERNATUS_ETERNAMAX] =
     {
+        ETERNATUS_MISC_INFO,
         .baseHP        = 255,
         .baseAttack    = 115,
         .baseDefense   = 250,
@@ -24393,7 +24393,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 125,
         .baseSpDefense = 250,
         .expYield = 563,
-        ETERNATUS_MISC_INFO,
     },
 
     [SPECIES_KUBFU] =
@@ -24450,8 +24449,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX] =
     {
-        .gigantamax = TRUE,
         URSHIFU_SINGLE_STRIKE_STYLE_MISC_INFO,
+        .gigantamax = TRUE,
     },
 
 #define URSHIFU_RAPID_STRIKE_STYLE_MISC_INFO                            \
@@ -24465,8 +24464,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX] =
     {
-        .gigantamax = TRUE,
         URSHIFU_RAPID_STRIKE_STYLE_MISC_INFO,
+        .gigantamax = TRUE,
     },
 
 #define ZARUDE_SPECIES_INFO                                             \
@@ -24672,6 +24671,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_ENAMORUS_INCARNATE] =
     {
+        ENAMORUS_MISC_INFO,
         .baseHP        = 74,
         .baseAttack    = 115,
         .baseDefense   = 70,
@@ -24679,11 +24679,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 135,
         .baseSpDefense = 80,
         .abilities = {ABILITY_CUTE_CHARM, ABILITY_NONE, ABILITY_CONTRARY},
-        ENAMORUS_MISC_INFO,
     },
 
     [SPECIES_ENAMORUS_THERIAN] =
     {
+        ENAMORUS_MISC_INFO,
         .baseHP        = 74,
         .baseAttack    = 115,
         .baseDefense   = 110,
@@ -24691,7 +24691,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 135,
         .baseSpDefense = 100,
         .abilities = {ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_NONE},
-        ENAMORUS_MISC_INFO,
     },
 #endif
 
@@ -24930,6 +24929,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_OINKOLOGNE_MALE] =
     {
+        OINKOLOGNE_MISC_INFO,
         .baseHP        = 110,
         .baseAttack    = 100,
         .baseDefense   = 75,
@@ -24938,11 +24938,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .genderRatio = PERCENT_FEMALE(0),
         .abilities = {ABILITY_LINGERING_AROMA, ABILITY_GLUTTONY, ABILITY_THICK_FAT},
-        OINKOLOGNE_MISC_INFO,
     },
 
     [SPECIES_OINKOLOGNE_FEMALE] =
     {
+        OINKOLOGNE_MISC_INFO,
         .baseHP        = 115,
         .baseAttack    = 90,
         .baseDefense   = 70,
@@ -24951,7 +24951,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 90,
         .genderRatio = PERCENT_FEMALE(100),
         .abilities = {ABILITY_AROMA_VEIL, ABILITY_GLUTTONY, ABILITY_THICK_FAT},
-        OINKOLOGNE_MISC_INFO,
     },
 
     [SPECIES_TAROUNTULA] =
@@ -25285,30 +25284,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_SQUAWKABILLY_GREEN_PLUMAGE] =
     {
+        SQUAWKABILLY_MISC_INFO,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS},
         .bodyColor = BODY_COLOR_GREEN,
-        SQUAWKABILLY_MISC_INFO,
     },
 
     [SPECIES_SQUAWKABILLY_BLUE_PLUMAGE] =
     {
+        SQUAWKABILLY_MISC_INFO,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS},
         .bodyColor = BODY_COLOR_BLUE,
-        SQUAWKABILLY_MISC_INFO,
     },
 
     [SPECIES_SQUAWKABILLY_YELLOW_PLUMAGE] =
     {
+        SQUAWKABILLY_MISC_INFO,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_YELLOW,
-        SQUAWKABILLY_MISC_INFO,
     },
 
     [SPECIES_SQUAWKABILLY_WHITE_PLUMAGE] =
     {
+        SQUAWKABILLY_MISC_INFO,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_WHITE,
-        SQUAWKABILLY_MISC_INFO,
     },
 
     [SPECIES_NACLI] =
@@ -26030,6 +26029,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_PALAFIN_ZERO] =
     {
+        PALAFIN_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 70,
         .baseDefense   = 72,
@@ -26037,11 +26037,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 53,
         .baseSpDefense = 62,
         .expYield = 160,
-        PALAFIN_MISC_INFO,
     },
 
     [SPECIES_PALAFIN_HERO] =
     {
+        PALAFIN_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 160,
         .baseDefense   = 97,
@@ -26049,7 +26049,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 106,
         .baseSpDefense = 87,
         .expYield = 228,
-        PALAFIN_MISC_INFO,
     },
 
     [SPECIES_VAROOM] =
@@ -26359,20 +26358,20 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_TATSUGIRI_CURLY] =
     {
-        .bodyColor = BODY_COLOR_PINK,
         TATSUGIRI_MISC_INFO,
+        .bodyColor = BODY_COLOR_PINK,
     },
 
     [SPECIES_TATSUGIRI_DROOPY] =
     {
-        .bodyColor = BODY_COLOR_RED,
         TATSUGIRI_MISC_INFO,
+        .bodyColor = BODY_COLOR_RED,
     },
 
     [SPECIES_TATSUGIRI_STRETCHY] =
     {
-        .bodyColor = BODY_COLOR_YELLOW,
         TATSUGIRI_MISC_INFO,
+        .bodyColor = BODY_COLOR_YELLOW,
     },
 
     [SPECIES_GREAT_TUSK] =
@@ -26733,6 +26732,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_GIMMIGHOUL_CHEST] =
     {
+        GIMMIGHOUL_MISC_INFO,
         .baseHP        = 45,
         .baseAttack    = 30,
         .baseDefense   = 70,
@@ -26741,11 +26741,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 70,
         .abilities = {ABILITY_RATTLED, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
-        GIMMIGHOUL_MISC_INFO,
     },
 
     [SPECIES_GIMMIGHOUL_ROAMING] =
     {
+        GIMMIGHOUL_MISC_INFO,
         .baseHP        = 45,
         .baseAttack    = 30,
         .baseDefense   = 25,
@@ -26754,7 +26754,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 45,
         .abilities = {ABILITY_RUN_AWAY, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
-        GIMMIGHOUL_MISC_INFO,
     },
 
     [SPECIES_GHOLDENGO] =
