@@ -11777,16 +11777,18 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 #endif //FAMILY_REGISTEEL
 
-#define LATIS_MISC_INFO                                                 \
+#if FAMILY_LATIAS
+#define LATIAS_MISC_INFO                                                \
         .types = { TYPE_DRAGON, TYPE_PSYCHIC},                          \
         .catchRate = 3,                                                 \
+        .evYield_SpDefense = 3,                                         \
+        .genderRatio = MON_FEMALE,                                      \
         .eggCycles = 120,                                               \
         .friendship = 90,                                               \
         .growthRate = GROWTH_SLOW,                                      \
         .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED}, \
         .noFlip = FALSE
 
-#if FAMILY_LATIAS
     [SPECIES_LATIAS] =
     {
         .baseHP        = 80,
@@ -11796,12 +11798,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 110,
         .baseSpDefense = 130,
         .expYield = 270,
-        .evYield_SpDefense = 3,
-        .genderRatio = MON_FEMALE,
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_RED,
         .flags = SPECIES_FLAG_LEGENDARY,
-        LATIS_MISC_INFO,
+        LATIAS_MISC_INFO,
     },
 
     [SPECIES_LATIAS_MEGA] =
@@ -11812,17 +11812,26 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 110,
         .baseSpAttack  = 140,
         .baseSpDefense = 150,
-        .evYield_SpDefense = 3,
         .expYield = 315,
-        .genderRatio = MON_FEMALE,
         .abilities = {ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE},
         .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
-        LATIS_MISC_INFO,
+        LATIAS_MISC_INFO,
     },
 #endif //FAMILY_LATIAS
 
 #if FAMILY_LATIOS
+#define LATIOS_MISC_INFO                                                \
+        .types = { TYPE_DRAGON, TYPE_PSYCHIC},                          \
+        .catchRate = 3,                                                 \
+        .evYield_SpAttack = 3,                                          \
+        .genderRatio = MON_MALE,                                        \
+        .eggCycles = 120,                                               \
+        .friendship = 90,                                               \
+        .growthRate = GROWTH_SLOW,                                      \
+        .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED}, \
+        .noFlip = FALSE
+
     [SPECIES_LATIOS] =
     {
         .baseHP        = 80,
@@ -11831,13 +11840,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 110,
         .baseSpAttack  = 130,
         .baseSpDefense = 110,
-        .evYield_SpAttack  = 3,
         .expYield = 270,
-        .genderRatio = MON_MALE,
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_LEGENDARY,
-        LATIS_MISC_INFO,
+        LATIOS_MISC_INFO,
     },
 
     [SPECIES_LATIOS_MEGA] =
@@ -11849,12 +11856,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 160,
         .baseSpDefense = 120,
         .expYield = 315,
-        .evYield_SpAttack  = 3,
-        .genderRatio = MON_MALE,
         .abilities = {ABILITY_LEVITATE, ABILITY_LEVITATE, ABILITY_LEVITATE},
         .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
-        LATIS_MISC_INFO,
+        LATIOS_MISC_INFO,
     },
 #endif //FAMILY_LATIOS
 
