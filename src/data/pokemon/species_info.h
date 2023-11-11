@@ -1978,6 +1978,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Attack    = 1,                 \
         GROWLITHE_FAMILY_MISC_INFO
 
+#define ARCANINE_MISC_INFO                  \
+        .catchRate = 75,                    \
+        .expYield = 194,                    \
+        .evYield_Attack    = 2,             \
+        GROWLITHE_FAMILY_MISC_INFO
+
     [SPECIES_GROWLITHE] =
     {
         GROWLITHE_MISC_INFO,
@@ -1991,6 +1997,20 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_FLASH_FIRE, ABILITY_JUSTIFIED},
     },
 
+    [SPECIES_ARCANINE] =
+    {
+        ARCANINE_MISC_INFO,
+        .baseHP        = 90,
+        .baseAttack    = 110,
+        .baseDefense   = 80,
+        .baseSpeed     = 95,
+        .baseSpAttack  = 100,
+        .baseSpDefense = 80,
+        .types = { TYPE_FIRE, TYPE_FIRE },
+        .abilities = {ABILITY_INTIMIDATE, ABILITY_FLASH_FIRE, ABILITY_JUSTIFIED},
+    },
+
+#if P_HISUIAN_FORMS
     [SPECIES_GROWLITHE_HISUIAN] =
     {
         GROWLITHE_MISC_INFO,
@@ -2003,25 +2023,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_FIRE, TYPE_ROCK},
         .abilities = {ABILITY_INTIMIDATE, ABILITY_FLASH_FIRE, ABILITY_ROCK_HEAD},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-    },
-
-#define ARCANINE_MISC_INFO                  \
-        .catchRate = 75,                    \
-        .expYield = 194,                    \
-        .evYield_Attack    = 2,             \
-        GROWLITHE_FAMILY_MISC_INFO
-
-    [SPECIES_ARCANINE] =
-    {
-        ARCANINE_MISC_INFO,
-        .baseHP        = 90,
-        .baseAttack    = 110,
-        .baseDefense   = 80,
-        .baseSpeed     = 95,
-        .baseSpAttack  = 100,
-        .baseSpDefense = 80,
-        .types = { TYPE_FIRE, TYPE_FIRE },
-        .abilities = {ABILITY_INTIMIDATE, ABILITY_FLASH_FIRE, ABILITY_JUSTIFIED},
     },
 
     [SPECIES_ARCANINE_HISUIAN] =
@@ -2037,6 +2038,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_FLASH_FIRE, ABILITY_ROCK_HEAD},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
     },
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_GROWLITHE
 
 #if P_FAMILY_POLIWAG
@@ -3396,19 +3398,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Speed     = 1,             \
         VOLTORB_FAMILY_MISC_INFO
 
-    [SPECIES_VOLTORB] =
-    {
-        VOLTORB_MISC_INFO,
-        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
-    },
-
-    [SPECIES_VOLTORB_HISUIAN] =
-    {
-        VOLTORB_MISC_INFO,
-        .types = { TYPE_ELECTRIC, TYPE_GRASS},
-        .flags = SPECIES_FLAG_HISUIAN_FORM,
-    },
-
 #define ELECTRODE_MISC_INFO                                     \
         .baseHP        = 60,                                    \
         .baseAttack    = 50,                                    \
@@ -3421,10 +3410,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Speed     = 2,                                 \
         VOLTORB_FAMILY_MISC_INFO
 
+    [SPECIES_VOLTORB] =
+    {
+        VOLTORB_MISC_INFO,
+        .types = { TYPE_ELECTRIC, TYPE_ELECTRIC },
+    },
+
     [SPECIES_ELECTRODE] =
     {
         ELECTRODE_MISC_INFO,
         .types = { TYPE_ELECTRIC, TYPE_ELECTRIC},
+    },
+
+#if P_HISUIAN_FORMS
+    [SPECIES_VOLTORB_HISUIAN] =
+    {
+        VOLTORB_MISC_INFO,
+        .types = { TYPE_ELECTRIC, TYPE_GRASS},
+        .flags = SPECIES_FLAG_HISUIAN_FORM,
     },
 
     [SPECIES_ELECTRODE_HISUIAN] =
@@ -3433,6 +3436,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_ELECTRIC, TYPE_GRASS},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
     },
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_VOLTORB
 
 #if P_FAMILY_EXEGGCUTE
@@ -5691,6 +5695,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_FLASH_FIRE},
     },
 
+#if P_HISUIAN_FORMS
     [SPECIES_TYPHLOSION_HISUIAN] =
     {
         TYPHLOSION_MISC_INFO,
@@ -5704,6 +5709,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_FRISK},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
     },
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_CYNDAQUIL
 
 #if P_FAMILY_TOTODILE
@@ -7230,6 +7236,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
     },
 
+#if P_HISUIAN_FORMS
     [SPECIES_QWILFISH_HISUIAN] =
     {
         QWILFISH_MISC_INFO,
@@ -7259,6 +7266,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
     },
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_QWILFISH
 
 #if P_FAMILY_SHUCKLE
@@ -7358,15 +7366,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
     },
 
-    [SPECIES_SNEASEL_HISUIAN] =
-    {
-        SNEASEL_MISC_INFO,
-        .types = { TYPE_POISON, TYPE_FIGHTING},
-        .abilities = {ABILITY_INNER_FOCUS, ABILITY_KEEN_EYE, ABILITY_PICKPOCKET},
-        .bodyColor = BODY_COLOR_GRAY,
-        .flags = SPECIES_FLAG_HISUIAN_FORM,
-    },
-
     [SPECIES_WEAVILE] =
     {
         .baseHP        = 70,
@@ -7391,6 +7390,16 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_HISUIAN_FORMS
+    [SPECIES_SNEASEL_HISUIAN] =
+    {
+        SNEASEL_MISC_INFO,
+        .types = { TYPE_POISON, TYPE_FIGHTING},
+        .abilities = {ABILITY_INNER_FOCUS, ABILITY_KEEN_EYE, ABILITY_PICKPOCKET},
+        .bodyColor = BODY_COLOR_GRAY,
+        .flags = SPECIES_FLAG_HISUIAN_FORM,
+    },
+
     [SPECIES_SNEASLER] =
     {
         .baseHP        = 80,
@@ -7412,6 +7421,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_SNEASEL
 
 #if P_FAMILY_TEDDIURSA
@@ -14617,6 +14627,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHELL_ARMOR},
     },
 
+#if P_HISUIAN_FORMS
     [SPECIES_SAMUROTT_HISUIAN] =
     {
         SAMUROTT_MISC_INFO,
@@ -14631,6 +14642,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHARPNESS},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
     },
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_OSHAWOTT
 
 #if P_FAMILY_PATRAT
@@ -15749,6 +15761,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_OWN_TEMPO, ABILITY_LEAF_GUARD},
     },
 
+#if P_HISUIAN_FORMS
     [SPECIES_LILLIGANT_HISUIAN] =
     {
         LILLIGANT_MISC_INFO,
@@ -15764,6 +15777,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_HUSTLE, ABILITY_LEAF_GUARD},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
     },
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_PETILIL
 
 #if P_FAMILY_BASCULIN
@@ -16426,31 +16440,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,                       \
         .noFlip = FALSE
 
-    [SPECIES_ZORUA] =
-    {
-        ZORUA_MISC_INFO,
-        .baseHP        = 40,
-        .baseAttack    = 65,
-        .baseDefense   = 40,
-        .baseSpeed     = 65,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 40,
-        .types = { TYPE_DARK, TYPE_DARK},
-    },
-
-    [SPECIES_ZORUA_HISUIAN] =
-    {
-        ZORUA_MISC_INFO,
-        .baseHP        = 35,
-        .baseAttack    = 60,
-        .baseDefense   = 40,
-        .baseSpeed     = 70,
-        .baseSpAttack  = 85,
-        .baseSpDefense = 40,
-        .types = { TYPE_NORMAL, TYPE_GHOST},
-        .flags = SPECIES_FLAG_HISUIAN_FORM,
-    },
-
 #define ZOROARK_MISC_INFO                                   \
         .catchRate = 45,                                    \
         .expYield = 179,                                    \
@@ -16476,6 +16465,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_DARK, TYPE_DARK},
     },
 
+    [SPECIES_ZORUA] =
+    {
+        ZORUA_MISC_INFO,
+        .baseHP        = 40,
+        .baseAttack    = 65,
+        .baseDefense   = 40,
+        .baseSpeed     = 65,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 40,
+        .types = { TYPE_DARK, TYPE_DARK},
+    },
+
+#if P_HISUIAN_FORMS
+    [SPECIES_ZORUA_HISUIAN] =
+    {
+        ZORUA_MISC_INFO,
+        .baseHP        = 35,
+        .baseAttack    = 60,
+        .baseDefense   = 40,
+        .baseSpeed     = 70,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 40,
+        .types = { TYPE_NORMAL, TYPE_GHOST},
+        .flags = SPECIES_FLAG_HISUIAN_FORM,
+    },
+
     [SPECIES_ZOROARK_HISUIAN] =
     {
         ZOROARK_MISC_INFO,
@@ -16488,6 +16503,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_NORMAL, TYPE_GHOST},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
     },
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_ZORUA
 
 #if P_FAMILY_MINCCINO
@@ -17886,6 +17902,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
     },
 
+#if P_HISUIAN_FORMS
     [SPECIES_BRAVIARY_HISUIAN] =
     {
         BRAVIARY_MISC_INFO,
@@ -17901,6 +17918,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_WHITE,
         .flags = SPECIES_FLAG_HISUIAN_FORM,
     },
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_RUFFLET
 
 #if P_FAMILY_VULLABY
@@ -19922,6 +19940,18 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,                     \
         .noFlip = FALSE
 
+#define GOODRA_MISC_INFO                                    \
+        .catchRate = 45,                                    \
+        .expYield = 270,                                    \
+        .evYield_SpDefense = 3,                             \
+        .genderRatio = PERCENT_FEMALE(50),                  \
+        .eggCycles = 40,                                    \
+        .friendship = 35,                                   \
+        .growthRate = GROWTH_SLOW,                          \
+        .eggGroups = { EGG_GROUP_DRAGON, EGG_GROUP_DRAGON}, \
+        .bodyColor = BODY_COLOR_PURPLE,                     \
+        .noFlip = FALSE
+
     [SPECIES_SLIGGOO] =
     {
         SLIGGOO_MISC_INFO,
@@ -19935,6 +19965,20 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY},
     },
 
+    [SPECIES_GOODRA] =
+    {
+        GOODRA_MISC_INFO,
+        .baseHP        = 90,
+        .baseAttack    = 100,
+        .baseDefense   = 70,
+        .baseSpeed     = 80,
+        .baseSpAttack  = 110,
+        .baseSpDefense = 150,
+        .types = { TYPE_DRAGON, TYPE_DRAGON},
+        .abilities = {ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY},
+    },
+
+#if P_HISUIAN_FORMS
     [SPECIES_SLIGGOO_HISUIAN] =
     {
         SLIGGOO_MISC_INFO,
@@ -19947,31 +19991,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_DRAGON, TYPE_STEEL},
         .abilities = {ABILITY_SAP_SIPPER, ABILITY_SHELL_ARMOR, ABILITY_GOOEY},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
-    },
-
-#define GOODRA_MISC_INFO                                    \
-        .catchRate = 45,                                    \
-        .expYield = 270,                                    \
-        .evYield_SpDefense = 3,                             \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 40,                                    \
-        .friendship = 35,                                   \
-        .growthRate = GROWTH_SLOW,                          \
-        .eggGroups = { EGG_GROUP_DRAGON, EGG_GROUP_DRAGON}, \
-        .bodyColor = BODY_COLOR_PURPLE,                     \
-        .noFlip = FALSE
-
-    [SPECIES_GOODRA] =
-    {
-        GOODRA_MISC_INFO,
-        .baseHP        = 90,
-        .baseAttack    = 100,
-        .baseDefense   = 70,
-        .baseSpeed     = 80,
-        .baseSpAttack  = 110,
-        .baseSpDefense = 150,
-        .types = { TYPE_DRAGON, TYPE_DRAGON},
-        .abilities = {ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY},
     },
 
     [SPECIES_GOODRA_HISUIAN] =
@@ -19987,6 +20006,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SAP_SIPPER, ABILITY_SHELL_ARMOR, ABILITY_GOOEY},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
     },
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_GOOMY
 
 #if P_FAMILY_KLEFKI
@@ -20235,6 +20255,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_ICE_BODY, ABILITY_STURDY},
     },
 
+#if P_HISUIAN_FORMS
     [SPECIES_AVALUGG_HISUIAN] =
     {
         AVALUGG_MISC_INFO,
@@ -20248,6 +20269,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_STRONG_JAW, ABILITY_ICE_BODY, ABILITY_STURDY},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
     },
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_BERGMITE
 
 #if P_FAMILY_NOIBAT
@@ -20603,6 +20625,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LONG_REACH},
     },
 
+#if P_HISUIAN_FORMS
     [SPECIES_DECIDUEYE_HISUIAN] =
     {
         DECIDUEYE_MISC_INFO,
@@ -20616,6 +20639,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_SCRAPPY},
         .flags = SPECIES_FLAG_HISUIAN_FORM,
     },
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_ROWLET
 
 #if P_FAMILY_LITTEN
