@@ -626,6 +626,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Speed     = 1,             \
         RATTATA_FAMILY_MISC_INFO
 
+#define RATICATE_MISC_INFO                  \
+        .catchRate = 127,                   \
+        .expYield = 145,                    \
+        .evYield_Speed     = 2,             \
+        RATTATA_FAMILY_MISC_INFO
+
     [SPECIES_RATTATA] =
     {
         RATTATA_MISC_INFO,
@@ -633,22 +639,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_RUN_AWAY, ABILITY_GUTS, ABILITY_HUSTLE},
         .bodyColor = BODY_COLOR_PURPLE,
     },
-
-    [SPECIES_RATTATA_ALOLAN] =
-    {
-        RATTATA_MISC_INFO,
-        .types = { TYPE_DARK, TYPE_NORMAL},
-        .itemRare = ITEM_PECHA_BERRY,
-        .abilities = {ABILITY_GLUTTONY, ABILITY_HUSTLE, ABILITY_THICK_FAT},
-        .bodyColor = BODY_COLOR_BLACK,
-        .flags = SPECIES_FLAG_ALOLAN_FORM,
-    },
-
-#define RATICATE_MISC_INFO                  \
-        .catchRate = 127,                   \
-        .expYield = 145,                    \
-        .evYield_Speed     = 2,             \
-        RATTATA_FAMILY_MISC_INFO
 
     [SPECIES_RATICATE] =
     {
@@ -662,6 +652,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .abilities = {ABILITY_RUN_AWAY, ABILITY_GUTS, ABILITY_HUSTLE},
         .bodyColor = BODY_COLOR_BROWN,
+    },
+
+#if P_ALOLAN_FORMS
+    [SPECIES_RATTATA_ALOLAN] =
+    {
+        RATTATA_MISC_INFO,
+        .types = { TYPE_DARK, TYPE_NORMAL},
+        .itemRare = ITEM_PECHA_BERRY,
+        .abilities = {ABILITY_GLUTTONY, ABILITY_HUSTLE, ABILITY_THICK_FAT},
+        .bodyColor = BODY_COLOR_BLACK,
+        .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
 
     [SPECIES_RATICATE_ALOLAN] =
@@ -679,6 +680,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
+#endif
 #endif //P_FAMILY_RATTATA
 
 #if P_FAMILY_SPEAROW
@@ -885,6 +887,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_YELLOW,
     },
 
+#if P_ALOLAN_FORMS
     [SPECIES_RAICHU_ALOLAN] =
     {
         RAICHU_MISC_INFO,
@@ -899,6 +902,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
+#endif
 #endif //P_FAMILY_PIKACHU
 
 #if P_FAMILY_SANDSHREW
@@ -917,6 +921,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Defense   = 1,                 \
         SANDSHREW_FAMILY_MISC_INFO
 
+#define SANDSLASH_MISC_INFO                     \
+        .catchRate = 90,                        \
+        .expYield = 158,                        \
+        .evYield_Defense   = 2,                 \
+        SANDSHREW_FAMILY_MISC_INFO
+
     [SPECIES_SANDSHREW] =
     {
         SANDSHREW_MISC_INFO,
@@ -931,6 +941,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_YELLOW,
     },
 
+    [SPECIES_SANDSLASH] =
+    {
+        SANDSLASH_MISC_INFO,
+        .baseHP        = 75,
+        .baseAttack    = 100,
+        .baseDefense   = 110,
+        .baseSpeed     = 65,
+        .baseSpAttack  = 45,
+        .baseSpDefense = 55,
+        .types = { TYPE_GROUND, TYPE_GROUND },
+        .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_SAND_RUSH},
+        .bodyColor = BODY_COLOR_YELLOW,
+    },
+
+#if P_ALOLAN_FORMS
     [SPECIES_SANDSHREW_ALOLAN] =
     {
         SANDSHREW_MISC_INFO,
@@ -944,26 +969,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SLUSH_RUSH},
         .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
-    },
-
-#define SANDSLASH_MISC_INFO                     \
-        .catchRate = 90,                        \
-        .expYield = 158,                        \
-        .evYield_Defense   = 2,                 \
-        SANDSHREW_FAMILY_MISC_INFO
-
-    [SPECIES_SANDSLASH] =
-    {
-        SANDSLASH_MISC_INFO,
-        .baseHP        = 75,
-        .baseAttack    = 100,
-        .baseDefense   = 110,
-        .baseSpeed     = 65,
-        .baseSpAttack  = 45,
-        .baseSpDefense = 55,
-        .types = { TYPE_GROUND, TYPE_GROUND },
-        .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_SAND_RUSH},
-        .bodyColor = BODY_COLOR_YELLOW,
     },
 
     [SPECIES_SANDSLASH_ALOLAN] =
@@ -980,6 +985,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
+#endif
 #endif //P_FAMILY_SANDSHREW
 
 #if P_FAMILY_NIDORAN
@@ -1214,6 +1220,13 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Speed     = 1,             \
         VULPIX_FAMILY_MISC_INFO
 
+#define NINETALES_MISC_INFO                     \
+        .catchRate = 75,                        \
+        .expYield = 177,                        \
+        .evYield_Speed     = 1,                 \
+        .evYield_SpDefense = 1,                 \
+        VULPIX_FAMILY_MISC_INFO
+
     [SPECIES_VULPIX] =
     {
         VULPIX_MISC_INFO,
@@ -1222,23 +1235,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_FLASH_FIRE, ABILITY_NONE, ABILITY_DROUGHT},
         .bodyColor = BODY_COLOR_BROWN,
     },
-
-    [SPECIES_VULPIX_ALOLAN] =
-    {
-        VULPIX_MISC_INFO,
-        .types = { TYPE_ICE, TYPE_ICE},
-        .itemRare = ITEM_SNOWBALL,
-        .abilities = {ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SNOW_WARNING},
-        .bodyColor = BODY_COLOR_BLUE,
-        .flags = SPECIES_FLAG_ALOLAN_FORM,
-    },
-
-#define NINETALES_MISC_INFO                     \
-        .catchRate = 75,                        \
-        .expYield = 177,                        \
-        .evYield_Speed     = 1,                 \
-        .evYield_SpDefense = 1,                 \
-        VULPIX_FAMILY_MISC_INFO
 
     [SPECIES_NINETALES] =
     {
@@ -1253,6 +1249,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_CHARCOAL,
         .abilities = {ABILITY_FLASH_FIRE, ABILITY_NONE, ABILITY_DROUGHT},
         .bodyColor = BODY_COLOR_YELLOW,
+    },
+
+#if P_ALOLAN_FORMS
+    [SPECIES_VULPIX_ALOLAN] =
+    {
+        VULPIX_MISC_INFO,
+        .types = { TYPE_ICE, TYPE_ICE},
+        .itemRare = ITEM_SNOWBALL,
+        .abilities = {ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_SNOW_WARNING},
+        .bodyColor = BODY_COLOR_BLUE,
+        .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
 
     [SPECIES_NINETALES_ALOLAN] =
@@ -1270,6 +1277,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
+#endif
 #endif //P_FAMILY_VULPIX
 
 #if P_FAMILY_JIGGLYPUFF
@@ -1626,6 +1634,14 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,                    \
         DIGLETT_FAMILY_MISC_INFO
 
+#define DUGTRIO_MISC_INFO                   \
+        .catchRate = 50,                    \
+        .expYield = 149,                    \
+        .evYield_Speed     = 2,             \
+        DIGLETT_FAMILY_MISC_INFO
+
+#define DUGTRIO_ATTACK (P_UPDATED_STATS >= GEN_7 ? 100 : 80)
+
     [SPECIES_DIGLETT] =
     {
         DIGLETT_MISC_INFO,
@@ -1639,28 +1655,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SAND_VEIL, ABILITY_ARENA_TRAP, ABILITY_SAND_FORCE},
     },
 
-    [SPECIES_DIGLETT_ALOLAN] =
-    {
-        DIGLETT_MISC_INFO,
-        .baseHP        = 10,
-        .baseAttack    = 55,
-        .baseDefense   = 30,
-        .baseSpeed     = 90,
-        .baseSpAttack  = 35,
-        .baseSpDefense = 45,
-        .types = { TYPE_GROUND, TYPE_STEEL},
-        .abilities = {ABILITY_SAND_VEIL, ABILITY_TANGLING_HAIR, ABILITY_SAND_FORCE},
-        .flags = SPECIES_FLAG_ALOLAN_FORM,
-    },
-
-#define DUGTRIO_MISC_INFO                   \
-        .catchRate = 50,                    \
-        .expYield = 149,                    \
-        .evYield_Speed     = 2,             \
-        DIGLETT_FAMILY_MISC_INFO
-
-#define DUGTRIO_ATTACK (P_UPDATED_STATS >= GEN_7 ? 100 : 80)
-
     [SPECIES_DUGTRIO] =
     {
         DUGTRIO_MISC_INFO,
@@ -1673,6 +1667,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_GROUND, TYPE_GROUND},
         .abilities = {ABILITY_SAND_VEIL, ABILITY_ARENA_TRAP, ABILITY_SAND_FORCE},
         .noFlip = FALSE,
+    },
+
+#if P_ALOLAN_FORMS
+    [SPECIES_DIGLETT_ALOLAN] =
+    {
+        DIGLETT_MISC_INFO,
+        .baseHP        = 10,
+        .baseAttack    = 55,
+        .baseDefense   = 30,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 35,
+        .baseSpDefense = 45,
+        .types = { TYPE_GROUND, TYPE_STEEL},
+        .abilities = {ABILITY_SAND_VEIL, ABILITY_TANGLING_HAIR, ABILITY_SAND_FORCE},
+        .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
 
     [SPECIES_DUGTRIO_ALOLAN] =
@@ -1689,6 +1698,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = TRUE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
+#endif
 #endif //P_FAMILY_DIGLETT
 
 #if P_FAMILY_MEOWTH
@@ -1700,6 +1710,18 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = STANDARD_FRIENDSHIP,                                  \
         .growthRate = GROWTH_MEDIUM_FAST,                                   \
         .eggGroups = {EGG_GROUP_FIELD, EGG_GROUP_FIELD},                    \
+        .noFlip = FALSE
+
+#define PERSIAN_MISC_INFO                                   \
+        .catchRate = 90,                                    \
+        .expYield = 154,                                    \
+        .evYield_Speed     = 2,                             \
+        .itemRare = ITEM_QUICK_CLAW,                        \
+        .genderRatio = PERCENT_FEMALE(50),                  \
+        .eggCycles = 20,                                    \
+        .friendship = STANDARD_FRIENDSHIP,                  \
+        .growthRate = GROWTH_MEDIUM_FAST,                   \
+        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},   \
         .noFlip = FALSE
 
     [SPECIES_MEOWTH] =
@@ -1718,6 +1740,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_YELLOW,
     },
 
+    [SPECIES_PERSIAN] =
+    {
+        PERSIAN_MISC_INFO,
+        .baseHP        = 65,
+        .baseAttack    = 70,
+        .baseDefense   = 60,
+        .baseSpeed     = 115,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 65,
+        .types = { TYPE_NORMAL, TYPE_NORMAL },
+        .abilities = {ABILITY_LIMBER, ABILITY_TECHNICIAN, ABILITY_UNNERVE},
+        .bodyColor = BODY_COLOR_YELLOW,
+    },
+
+#if P_ALOLAN_FORMS
     [SPECIES_MEOWTH_ALOLAN] =
     {
         MEOWTH_MISC_INFO,
@@ -1734,6 +1771,22 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
+
+    [SPECIES_PERSIAN_ALOLAN] =
+    {
+        PERSIAN_MISC_INFO,
+        .baseHP        = 65,
+        .baseAttack    = 60,
+        .baseDefense   = 60,
+        .baseSpeed     = 115,
+        .baseSpAttack  = 75,
+        .baseSpDefense = 65,
+        .types = { TYPE_DARK, TYPE_DARK},
+        .abilities = {ABILITY_FUR_COAT, ABILITY_TECHNICIAN, ABILITY_RATTLED},
+        .bodyColor = BODY_COLOR_GRAY,
+        .flags = SPECIES_FLAG_ALOLAN_FORM,
+    },
+#endif
 
     [SPECIES_MEOWTH_GALARIAN] =
     {
@@ -1769,47 +1822,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .gigantamax = TRUE,
     },
 #endif
-
-#define PERSIAN_MISC_INFO                                   \
-        .catchRate = 90,                                    \
-        .expYield = 154,                                    \
-        .evYield_Speed     = 2,                             \
-        .itemRare = ITEM_QUICK_CLAW,                        \
-        .genderRatio = PERCENT_FEMALE(50),                  \
-        .eggCycles = 20,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                  \
-        .growthRate = GROWTH_MEDIUM_FAST,                   \
-        .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},   \
-        .noFlip = FALSE
-
-    [SPECIES_PERSIAN] =
-    {
-        PERSIAN_MISC_INFO,
-        .baseHP        = 65,
-        .baseAttack    = 70,
-        .baseDefense   = 60,
-        .baseSpeed     = 115,
-        .baseSpAttack  = 65,
-        .baseSpDefense = 65,
-        .types = { TYPE_NORMAL, TYPE_NORMAL },
-        .abilities = {ABILITY_LIMBER, ABILITY_TECHNICIAN, ABILITY_UNNERVE},
-        .bodyColor = BODY_COLOR_YELLOW,
-    },
-
-    [SPECIES_PERSIAN_ALOLAN] =
-    {
-        PERSIAN_MISC_INFO,
-        .baseHP        = 65,
-        .baseAttack    = 60,
-        .baseDefense   = 60,
-        .baseSpeed     = 115,
-        .baseSpAttack  = 75,
-        .baseSpDefense = 65,
-        .types = { TYPE_DARK, TYPE_DARK},
-        .abilities = {ABILITY_FUR_COAT, ABILITY_TECHNICIAN, ABILITY_RATTLED},
-        .bodyColor = BODY_COLOR_GRAY,
-        .flags = SPECIES_FLAG_ALOLAN_FORM,
-    },
 
     [SPECIES_PERRSERKER] =
     {
@@ -2435,24 +2447,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Defense   = 1,             \
         GEODUDE_FAMILY_MISC_INFO
 
-    [SPECIES_GEODUDE] =
-    {
-        KANTONIAN_GEODUDE_FAMILY_INFO,
-        GEODUDE_MISC_INFO,
-    },
-
-#define ALOLAN_GEODUDE_FAMILY_INFO                                              \
-        .types = { TYPE_ROCK, TYPE_ELECTRIC },                                  \
-        .abilities = {ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE},  \
-        .flags = SPECIES_FLAG_ALOLAN_FORM
-
-    [SPECIES_GEODUDE_ALOLAN] =
-    {
-        ALOLAN_GEODUDE_FAMILY_INFO,
-        GEODUDE_MISC_INFO,
-        .itemRare = ITEM_CELL_BATTERY,
-    },
-
 #define GRAVELER_MISC_INFO                  \
         .baseHP        = 55,                \
         .baseAttack    = 95,                \
@@ -2464,19 +2458,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 137,                    \
         .evYield_Defense   = 2,             \
         GEODUDE_FAMILY_MISC_INFO
-
-    [SPECIES_GRAVELER] =
-    {
-        KANTONIAN_GEODUDE_FAMILY_INFO,
-        GRAVELER_MISC_INFO,
-    },
-
-    [SPECIES_GRAVELER_ALOLAN] =
-    {
-        ALOLAN_GEODUDE_FAMILY_INFO,
-        GRAVELER_MISC_INFO,
-        .itemRare = ITEM_CELL_BATTERY,
-    },
 
 #define GOLEM_ATTACK (P_UPDATED_STATS >= GEN_6 ? 120 : 110)
 
@@ -2492,10 +2473,42 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Defense   = 3,             \
         GEODUDE_FAMILY_MISC_INFO
 
+    [SPECIES_GEODUDE] =
+    {
+        KANTONIAN_GEODUDE_FAMILY_INFO,
+        GEODUDE_MISC_INFO,
+    },
+
+    [SPECIES_GRAVELER] =
+    {
+        KANTONIAN_GEODUDE_FAMILY_INFO,
+        GRAVELER_MISC_INFO,
+    },
+
     [SPECIES_GOLEM] =
     {
         KANTONIAN_GEODUDE_FAMILY_INFO,
         GOLEM_MISC_INFO,
+    },
+
+#if P_ALOLAN_FORMS
+#define ALOLAN_GEODUDE_FAMILY_INFO                                              \
+        .types = { TYPE_ROCK, TYPE_ELECTRIC },                                  \
+        .abilities = {ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_GALVANIZE},  \
+        .flags = SPECIES_FLAG_ALOLAN_FORM
+
+    [SPECIES_GEODUDE_ALOLAN] =
+    {
+        ALOLAN_GEODUDE_FAMILY_INFO,
+        GEODUDE_MISC_INFO,
+        .itemRare = ITEM_CELL_BATTERY,
+    },
+
+    [SPECIES_GRAVELER_ALOLAN] =
+    {
+        ALOLAN_GEODUDE_FAMILY_INFO,
+        GRAVELER_MISC_INFO,
+        .itemRare = ITEM_CELL_BATTERY,
     },
 
     [SPECIES_GOLEM_ALOLAN] =
@@ -2504,6 +2517,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         GOLEM_MISC_INFO,
         .itemCommon = ITEM_CELL_BATTERY,
     },
+#endif
 #endif //P_FAMILY_GEODUDE
 
 #if P_FAMILY_PONYTA
@@ -2970,29 +2984,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,                    \
         GRIMER_FAMILY_MISC_INFO
 
-#define KANTONIAN_GRIMER_FAMILY_INFO                                                \
-        .types = { TYPE_POISON, TYPE_POISON },                                      \
-        .abilities = {ABILITY_STENCH, ABILITY_STICKY_HOLD, ABILITY_POISON_TOUCH},   \
-        .bodyColor = BODY_COLOR_PURPLE
-
-    [SPECIES_GRIMER] =
-    {
-        KANTONIAN_GRIMER_FAMILY_INFO,
-        GRIMER_MISC_INFO,
-    },
-
-#define ALOLAN_GRIMER_FAMILY_INFO                                                       \
-        .types = { TYPE_POISON, TYPE_DARK },                                            \
-        .abilities = {ABILITY_POISON_TOUCH, ABILITY_GLUTTONY, ABILITY_POWER_OF_ALCHEMY},\
-        .bodyColor = BODY_COLOR_GREEN,                                                  \
-        .flags = SPECIES_FLAG_ALOLAN_FORM
-
-    [SPECIES_GRIMER_ALOLAN] =
-    {
-        ALOLAN_GRIMER_FAMILY_INFO,
-        GRIMER_MISC_INFO,
-    },
-
 #define MUK_MISC_INFO                   \
         .baseHP        = 105,           \
         .baseAttack    = 105,           \
@@ -3006,11 +2997,35 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Attack    = 1,         \
         GRIMER_FAMILY_MISC_INFO
 
+#define KANTONIAN_GRIMER_FAMILY_INFO                                                \
+        .types = { TYPE_POISON, TYPE_POISON },                                      \
+        .abilities = {ABILITY_STENCH, ABILITY_STICKY_HOLD, ABILITY_POISON_TOUCH},   \
+        .bodyColor = BODY_COLOR_PURPLE
+
+    [SPECIES_GRIMER] =
+    {
+        KANTONIAN_GRIMER_FAMILY_INFO,
+        GRIMER_MISC_INFO,
+    },
+
     [SPECIES_MUK] =
     {
         KANTONIAN_GRIMER_FAMILY_INFO,
         MUK_MISC_INFO,
         .noFlip = FALSE,
+    },
+
+#if P_ALOLAN_FORMS
+#define ALOLAN_GRIMER_FAMILY_INFO                                                       \
+        .types = { TYPE_POISON, TYPE_DARK },                                            \
+        .abilities = {ABILITY_POISON_TOUCH, ABILITY_GLUTTONY, ABILITY_POWER_OF_ALCHEMY},\
+        .bodyColor = BODY_COLOR_GREEN,                                                  \
+        .flags = SPECIES_FLAG_ALOLAN_FORM
+
+    [SPECIES_GRIMER_ALOLAN] =
+    {
+        ALOLAN_GRIMER_FAMILY_INFO,
+        GRIMER_MISC_INFO,
     },
 
     [SPECIES_MUK_ALOLAN] =
@@ -3019,6 +3034,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ALOLAN_GRIMER_FAMILY_INFO,
         .noFlip = TRUE,
     },
+#endif
 #endif //P_FAMILY_GRIMER
 
 #if P_FAMILY_SHELLDER
@@ -3462,6 +3478,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_HARVEST},
     },
 
+#if P_ALOLAN_FORMS
     [SPECIES_EXEGGUTOR_ALOLAN] =
     {
         EXEGGUTOR_MISC_INFO,
@@ -3475,6 +3492,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_FRISK, ABILITY_NONE, ABILITY_HARVEST},
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
+#endif
 #endif //P_FAMILY_EXEGGCUTE
 
 #if P_FAMILY_CUBONE
@@ -3527,6 +3545,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
     },
 
+#if P_ALOLAN_FORMS
     [SPECIES_MAROWAK_ALOLAN] =
     {
         MAROWAK_MISC_INFO,
@@ -3535,6 +3554,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
+#endif
 #endif //P_FAMILY_CUBONE
 
 #if P_FAMILY_HITMONS

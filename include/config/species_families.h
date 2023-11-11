@@ -4,6 +4,9 @@
 #define P_MEGA_EVOLUTIONS                TRUE
 #define P_GIGANTAMAX_FORMS               TRUE
 
+#define P_REGIONAL_FORMS                 TRUE
+#define P_ALOLAN_FORMS                   P_REGIONAL_FORMS
+
 // To disable specific families, replace P_GEN_x_POKEMON with FALSE.
 
 #define P_FAMILY_BULBASAUR               P_GEN_1_POKEMON
