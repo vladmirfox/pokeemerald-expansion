@@ -5,6 +5,7 @@
 #define P_ALOLAN_FORMS                   P_REGIONAL_FORMS
 #define P_GALARIAN_FORMS                 P_REGIONAL_FORMS
 #define P_HISUIAN_FORMS                  P_REGIONAL_FORMS
+#define P_PALDEAN_FORMS                  P_REGIONAL_FORMS
 
 #define P_MEGA_EVOLUTIONS                TRUE
 #define P_GIGANTAMAX_FORMS               TRUE

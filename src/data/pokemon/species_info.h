@@ -4617,6 +4617,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
     },
 
+#if P_PALDEAN_FORMS
     [SPECIES_TAUROS_PALDEAN_COMBAT_BREED] =
     {
         TAUROS_MISC_INFO,
@@ -4643,6 +4644,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW},
         .bodyColor = BODY_COLOR_BROWN,
     },
+#endif //P_PALDEAN_FORMS
 #endif //P_FAMILY_TAUROS
 
 #if P_FAMILY_MAGIKARP
@@ -6586,14 +6588,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         WOOPER_MISC_INFO
     },
 
-    [SPECIES_WOOPER_PALDEAN] =
-    {
-        .types = { TYPE_POISON, TYPE_GROUND },
-        .abilities = {ABILITY_POISON_POINT, ABILITY_WATER_ABSORB, ABILITY_UNAWARE},
-        .bodyColor = BODY_COLOR_BROWN,
-        WOOPER_MISC_INFO
-    },
-
     [SPECIES_QUAGSIRE] =
     {
         .baseHP        = 95,
@@ -6614,6 +6608,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_DAMP, ABILITY_WATER_ABSORB, ABILITY_UNAWARE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+    },
+
+#if P_PALDEAN_FORMS
+    [SPECIES_WOOPER_PALDEAN] =
+    {
+        .types = { TYPE_POISON, TYPE_GROUND },
+        .abilities = {ABILITY_POISON_POINT, ABILITY_WATER_ABSORB, ABILITY_UNAWARE},
+        .bodyColor = BODY_COLOR_BROWN,
+        WOOPER_MISC_INFO
     },
 
     [SPECIES_CLODSIRE] =
@@ -6637,6 +6640,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+#endif //P_PALDEAN_FORMS
 #endif //P_FAMILY_WOOPER
 
 #if P_FAMILY_MURKROW
