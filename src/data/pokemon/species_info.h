@@ -680,7 +680,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
-#endif
+#endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_RATTATA
 
 #if P_FAMILY_SPEAROW
@@ -902,7 +902,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
-#endif
+#endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_PIKACHU
 
 #if P_FAMILY_SANDSHREW
@@ -985,7 +985,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
-#endif
+#endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_SANDSHREW
 
 #if P_FAMILY_NIDORAN
@@ -1277,7 +1277,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
-#endif
+#endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_VULPIX
 
 #if P_FAMILY_JIGGLYPUFF
@@ -1698,7 +1698,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = TRUE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
-#endif
+#endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_DIGLETT
 
 #if P_FAMILY_MEOWTH
@@ -1786,7 +1786,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
-#endif
+#endif //P_ALOLAN_FORMS
 
 #if P_GALARIAN_FORMS
     [SPECIES_MEOWTH_GALARIAN] =
@@ -2519,7 +2519,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         GOLEM_MISC_INFO,
         .itemCommon = ITEM_CELL_BATTERY,
     },
-#endif
+#endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_GEODUDE
 
 #if P_FAMILY_PONYTA
@@ -3042,7 +3042,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ALOLAN_GRIMER_FAMILY_INFO,
         .noFlip = TRUE,
     },
-#endif
+#endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_GRIMER
 
 #if P_FAMILY_SHELLDER
@@ -3500,7 +3500,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_FRISK, ABILITY_NONE, ABILITY_HARVEST},
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
-#endif
+#endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_EXEGGCUTE
 
 #if P_FAMILY_CUBONE
@@ -3562,7 +3562,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_ALOLAN_FORM,
     },
-#endif
+#endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_CUBONE
 
 #if P_FAMILY_HITMONS
