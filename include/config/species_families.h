@@ -1,6 +1,8 @@
 #ifndef GUARD_CONFIG_SPECIES_FAMILIES_H
 #define GUARD_CONFIG_SPECIES_FAMILIES_H
 
+#define P_MEGA_EVOLUTIONS                TRUE
+
 // To disable specific families, replace P_GEN_x_POKEMON with FALSE.
 
 #define P_FAMILY_BULBASAUR               P_GEN_1_POKEMON

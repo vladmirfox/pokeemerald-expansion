@@ -83,6 +83,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_CHLOROPHYLL},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_VENUSAUR_MEGA] =
     {
         VENUSAUR_MISC_INFO,
@@ -96,6 +97,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_THICK_FAT, ABILITY_THICK_FAT, ABILITY_THICK_FAT},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 
     [SPECIES_VENUSAUR_GIGANTAMAX] =
     {
@@ -183,6 +185,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_CHARIZARD_MEGA_X] =
     {
         CHARIZARD_MISC_INFO,
@@ -214,6 +217,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 
     [SPECIES_CHARIZARD_GIGANTAMAX] =
     {
@@ -303,6 +307,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_RAIN_DISH},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_BLASTOISE_MEGA] =
     {
         BLASTOISE_MISC_INFO,
@@ -316,6 +321,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MEGA_LAUNCHER, ABILITY_MEGA_LAUNCHER, ABILITY_MEGA_LAUNCHER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 
     [SPECIES_BLASTOISE_GIGANTAMAX] =
     {
@@ -485,6 +491,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SWARM, ABILITY_NONE, ABILITY_SNIPER},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_BEEDRILL_MEGA] =
     {
         BEEDRILL_MISC_INFO,
@@ -498,6 +505,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_WEEDLE
 
 #if P_FAMILY_PIDGEY
@@ -572,6 +580,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_TANGLED_FEET, ABILITY_BIG_PECKS},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_PIDGEOT_MEGA] =
     {
         PIDGEOT_MISC_INFO,
@@ -585,6 +594,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_NO_GUARD, ABILITY_NO_GUARD, ABILITY_NO_GUARD},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_PIDGEY
 
 #if P_FAMILY_RATTATA
@@ -2171,6 +2181,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SYNCHRONIZE, ABILITY_INNER_FOCUS, ABILITY_MAGIC_GUARD},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_ALAKAZAM_MEGA] =
     {
         ALAKAZAM_MISC_INFO,
@@ -2184,6 +2195,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_ABRA
 
 #if P_FAMILY_MACHOP
@@ -2611,6 +2623,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_SLOWBRO_MEGA] =
     {
         SLOWBRO_MISC_INFO,
@@ -2627,6 +2640,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 
     [SPECIES_SLOWBRO_GALARIAN] =
     {
@@ -3119,6 +3133,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = GENGAR_ABILITIES,
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_GENGAR_MEGA] =
     {
         GENGAR_MISC_INFO,
@@ -3132,6 +3147,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SHADOW_TAG, ABILITY_SHADOW_TAG, ABILITY_SHADOW_TAG},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 
     [SPECIES_GENGAR_GIGANTAMAX] =
     {
@@ -3197,6 +3213,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SHEER_FORCE},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_STEELIX_MEGA] =
     {
         STEELIX_MISC_INFO,
@@ -3210,6 +3227,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SAND_FORCE, ABILITY_SAND_FORCE, ABILITY_SAND_FORCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_ONIX
 
 #if P_FAMILY_DROWZEE
@@ -3915,6 +3933,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_EARLY_BIRD, ABILITY_SCRAPPY, ABILITY_INNER_FOCUS},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_KANGASKHAN_MEGA] =
     {
         KANGASKHAN_MISC_INFO,
@@ -3928,6 +3947,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PARENTAL_BOND, ABILITY_PARENTAL_BOND, ABILITY_PARENTAL_BOND},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_KANGASKHAN
 
 #if P_FAMILY_HORSEA
@@ -4245,6 +4265,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SWARM, ABILITY_TECHNICIAN, ABILITY_LIGHT_METAL},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_SCIZOR_MEGA] =
     {
         SCIZOR_MISC_INFO,
@@ -4258,6 +4279,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TECHNICIAN, ABILITY_TECHNICIAN, ABILITY_TECHNICIAN},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 
     [SPECIES_KLEAVOR] =
     {
@@ -4496,6 +4518,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_HYPER_CUTTER, ABILITY_MOLD_BREAKER, ABILITY_MOXIE},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_PINSIR_MEGA] =
     {
         PINSIR_MISC_INFO,
@@ -4510,6 +4533,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_AERILATE, ABILITY_AERILATE, ABILITY_AERILATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_PINSIR
 
 #if P_FAMILY_TAUROS
@@ -4615,6 +4639,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_MOXIE},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_GYARADOS_MEGA] =
     {
         GYARADOS_MISC_INFO,
@@ -4629,6 +4654,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_MAGIKARP
 
 #if P_FAMILY_LAPRAS
@@ -5087,6 +5113,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_ROCK_HEAD, ABILITY_PRESSURE, ABILITY_UNNERVE},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_AERODACTYL_MEGA] =
     {
         AERODACTYL_MISC_INFO,
@@ -5100,6 +5127,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_AERODACTYL
 
 #if P_FAMILY_SNORLAX
@@ -5400,6 +5428,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_MEWTWO_MEGA_X] =
     {
         SPECIES_MEWTWO_MISC_INFO,
@@ -5429,6 +5458,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INSOMNIA, ABILITY_INSOMNIA, ABILITY_INSOMNIA},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_MEWTWO
 
 #if P_FAMILY_MEW
@@ -6110,6 +6140,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_STATIC, ABILITY_NONE, ABILITY_PLUS},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_AMPHAROS_MEGA] =
     {
         AMPHAROS_MISC_INFO,
@@ -6124,6 +6155,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_MAREEP
 
 #if P_FAMILY_MARILL
@@ -7220,6 +7252,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SWARM, ABILITY_GUTS, ABILITY_MOXIE},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_HERACROSS_MEGA] =
     {
         HERACROSS_MISC_INFO,
@@ -7233,6 +7266,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SKILL_LINK, ABILITY_SKILL_LINK, ABILITY_SKILL_LINK},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_HERACROSS
 
 #if P_FAMILY_SNEASEL
@@ -7782,6 +7816,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_EARLY_BIRD, ABILITY_FLASH_FIRE, ABILITY_UNNERVE},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_HOUNDOOM_MEGA] =
     {
         HOUNDOOM_MISC_INFO,
@@ -7795,6 +7830,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SOLAR_POWER, ABILITY_SOLAR_POWER, ABILITY_SOLAR_POWER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_HOUNDOUR
 
 #if P_FAMILY_PHANPY
@@ -8101,6 +8137,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SAND_STREAM, ABILITY_NONE, ABILITY_UNNERVE},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_TYRANITAR_MEGA] =
     {
         TYRANITAR_MISC_INFO,
@@ -8114,6 +8151,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SAND_STREAM, ABILITY_SAND_STREAM, ABILITY_SAND_STREAM},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_LARVITAR
 
 #if P_FAMILY_LUGIA
@@ -8265,6 +8303,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_SCEPTILE_MEGA] =
     {
         SCEPTILE_MISC_INFO,
@@ -8279,6 +8318,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_TREECKO
 
 #if P_FAMILY_TORCHIC
@@ -8352,6 +8392,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_SPEED_BOOST},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_BLAZIKEN_MEGA] =
     {
         BLAZIKEN_MISC_INFO,
@@ -8365,6 +8406,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_TORCHIC
 
 #if P_FAMILY_MUDKIP
@@ -8437,6 +8479,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_DAMP},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_SWAMPERT_MEGA] =
     {
         SWAMPERT_MISC_INFO,
@@ -8450,6 +8493,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_MUDKIP
 
 #if P_FAMILY_POOCHYENA
@@ -9025,6 +9069,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_TELEPATHY},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_GARDEVOIR_MEGA] =
     {
         GARDEVOIR_MISC_INFO,
@@ -9038,6 +9083,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 
 #define GALLADE_MISC_INFO                               \
         .types = { TYPE_PSYCHIC, TYPE_FIGHTING},        \
@@ -9068,6 +9114,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         #endif
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_GALLADE_MEGA] =
     {
         GALLADE_MISC_INFO,
@@ -9081,6 +9128,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INNER_FOCUS, ABILITY_INNER_FOCUS, ABILITY_INNER_FOCUS},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_RALTS
 
 #if P_FAMILY_SURSKIT
@@ -9564,6 +9612,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_STALL, ABILITY_PRANKSTER},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_SABLEYE_MEGA] =
     {
         SABLEYE_MISC_INFO,
@@ -9577,6 +9626,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_SABLEYE
 
 #if P_FAMILY_MAWILE
@@ -9613,6 +9663,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_HYPER_CUTTER, ABILITY_INTIMIDATE, ABILITY_SHEER_FORCE},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_MAWILE_MEGA] =
     {
         MAWILE_MISC_INFO,
@@ -9626,6 +9677,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_HUGE_POWER, ABILITY_HUGE_POWER, ABILITY_HUGE_POWER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_MAWILE
 
 #if P_FAMILY_ARON
@@ -9701,6 +9753,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_HEAVY_METAL},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_AGGRON_MEGA] =
     {
         AGGRON_MISC_INFO,
@@ -9715,6 +9768,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_FILTER, ABILITY_FILTER, ABILITY_FILTER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_ARON
 
 #if P_FAMILY_MEDITITE
@@ -9765,6 +9819,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PURE_POWER, ABILITY_NONE, ABILITY_TELEPATHY},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_MEDICHAM_MEGA] =
     {
         MEDICHAM_MISC_INFO,
@@ -9778,6 +9833,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PURE_POWER, ABILITY_PURE_POWER, ABILITY_PURE_POWER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_MEDITITE
 
 #if P_FAMILY_ELECTRIKE
@@ -9828,6 +9884,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_STATIC, ABILITY_LIGHTNING_ROD, ABILITY_MINUS},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_MANECTRIC_MEGA] =
     {
         MANECTRIC_MISC_INFO,
@@ -9841,6 +9898,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_INTIMIDATE, ABILITY_INTIMIDATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_ELECTRIKE
 
 #if P_FAMILY_PLUSLE
@@ -10122,6 +10180,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_ROUGH_SKIN, ABILITY_NONE, ABILITY_SPEED_BOOST},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_SHARPEDO_MEGA] =
     {
         SHARPEDO_MISC_INFO,
@@ -10135,6 +10194,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_STRONG_JAW, ABILITY_STRONG_JAW, ABILITY_STRONG_JAW},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_CARVANHA
 
 #if P_FAMILY_WAILMER
@@ -10232,6 +10292,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MAGMA_ARMOR, ABILITY_SOLID_ROCK, ABILITY_ANGER_POINT},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_CAMERUPT_MEGA] =
     {
         CAMERUPT_MISC_INFO,
@@ -10245,6 +10306,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_NUMEL
 
 #if P_FAMILY_TORKOAL
@@ -10522,6 +10584,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_NATURAL_CURE, ABILITY_NONE, ABILITY_CLOUD_NINE},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_ALTARIA_MEGA] =
     {
         ALTARIA_MISC_INFO,
@@ -10536,6 +10599,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_SWABLU
 
 #if P_FAMILY_ZANGOOSE
@@ -11045,6 +11109,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INSOMNIA, ABILITY_FRISK, ABILITY_CURSED_BODY},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_BANETTE_MEGA] =
     {
         BANETTE_MISC_INFO,
@@ -11058,6 +11123,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PRANKSTER, ABILITY_PRANKSTER, ABILITY_PRANKSTER},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_SHUPPET
 
 #if P_FAMILY_DUSKULL
@@ -11238,6 +11304,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PRESSURE, ABILITY_SUPER_LUCK, ABILITY_JUSTIFIED},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_ABSOL_MEGA] =
     {
         ABSOL_MISC_INFO,
@@ -11251,6 +11318,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_ABSOL
 
 #if P_FAMILY_SNORUNT
@@ -11302,6 +11370,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INNER_FOCUS, ABILITY_ICE_BODY, ABILITY_MOODY},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_GLALIE_MEGA] =
     {
         GLALIE_MISC_INFO,
@@ -11315,6 +11384,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_REFRIGERATE, ABILITY_REFRIGERATE, ABILITY_REFRIGERATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 
     [SPECIES_FROSLASS] =
     {
@@ -11604,6 +11674,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_MOXIE},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_SALAMENCE_MEGA] =
     {
         SALAMENCE_MISC_INFO,
@@ -11617,6 +11688,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_AERILATE, ABILITY_AERILATE, ABILITY_AERILATE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_BAGON
 
 #if P_FAMILY_BELDUM
@@ -11692,6 +11764,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_LIGHT_METAL},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_METAGROSS_MEGA] =
     {
         METAGROSS_MISC_INFO,
@@ -11705,6 +11778,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_BELDUM
 
 #if P_FAMILY_REGIROCK
@@ -11810,6 +11884,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_LATIAS_MEGA] =
     {
         LATIAS_MISC_INFO,
@@ -11824,6 +11899,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_LATIAS
 
 #if P_FAMILY_LATIOS
@@ -11853,6 +11929,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_LATIOS_MEGA] =
     {
         LATIOS_MISC_INFO,
@@ -11867,6 +11944,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_LATIOS
 
 #if P_FAMILY_KYOGRE
@@ -11980,6 +12058,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_RAYQUAZA_MEGA] =
     {
         RAYQUAZA_MISC_INFO,
@@ -11992,6 +12071,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_DELTA_STREAM, ABILITY_DELTA_STREAM, ABILITY_DELTA_STREAM},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_RAYQUAZA
 
 #if P_FAMILY_JIRACHI
@@ -13087,6 +13167,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_CUTE_CHARM, ABILITY_KLUTZ, ABILITY_LIMBER},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_LOPUNNY_MEGA] =
     {
         LOPUNNY_MISC_INFO,
@@ -13101,6 +13182,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SCRAPPY, ABILITY_SCRAPPY, ABILITY_SCRAPPY},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_BUNEARY
 
 #if P_FAMILY_GLAMEOW
@@ -13364,6 +13446,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_ROUGH_SKIN},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_GARCHOMP_MEGA] =
     {
         GARCHOMP_MISC_INFO,
@@ -13377,6 +13460,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SAND_FORCE, ABILITY_SAND_FORCE, ABILITY_SAND_FORCE},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_GIBLE
 
 #if P_FAMILY_RIOLU
@@ -13428,6 +13512,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_STEADFAST, ABILITY_INNER_FOCUS, ABILITY_JUSTIFIED},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_LUCARIO_MEGA] =
     {
         LUCARIO_MISC_INFO,
@@ -13441,6 +13526,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_RIOLU
 
 #if P_FAMILY_HIPPOPOTAS
@@ -13706,6 +13792,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SNOW_WARNING, ABILITY_NONE, ABILITY_SOUNDPROOF},
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_ABOMASNOW_MEGA] =
     {
         ABOMASNOW_MISC_INFO,
@@ -13719,6 +13806,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING},
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_SNOVER
 
 #if P_FAMILY_ROTOM
@@ -15132,6 +15220,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_AUDINO_MEGA] =
     {
         AUDINO_MISC_INFO,
@@ -15147,6 +15236,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_WHITE,
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_AUDINO
 
 #if P_FAMILY_TIMBURR
@@ -20286,6 +20376,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_MYTHICAL,
     },
 
+#if P_MEGA_EVOLUTIONS
     [SPECIES_DIANCIE_MEGA] =
     {
         DIANCE_MISC_INFO,
@@ -20299,6 +20390,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE},
         .flags = SPECIES_FLAG_MYTHICAL | SPECIES_FLAG_MEGA_EVOLUTION,
     },
+#endif
 #endif //P_FAMILY_DIANCIE
 
 #if P_FAMILY_HOOPA
