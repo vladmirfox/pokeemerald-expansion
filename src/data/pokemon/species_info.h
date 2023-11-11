@@ -615,6 +615,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         RATTATA_MISC_INFO,
     },
+
     [SPECIES_RATTATA_ALOLAN] =
     {
         .types = { TYPE_DARK, TYPE_NORMAL},
@@ -909,6 +910,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_YELLOW,
         SANDSHREW_MISC_INFO,
     },
+
     [SPECIES_SANDSHREW_ALOLAN] =
     {
         .baseHP        = 50,
@@ -1952,6 +1954,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_FLASH_FIRE, ABILITY_JUSTIFIED},
         GROWLITHE_MISC_INFO,
     },
+
     [SPECIES_GROWLITHE_HISUIAN] =
     {
         .baseHP        = 60,
@@ -2538,6 +2541,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         KANTONIAN_PONYTA_FAMILY_INFO,
         RAPIDASH_MISC_INFO,
     },
+
     [SPECIES_RAPIDASH_GALARIAN] =
     {
         .types = { TYPE_PSYCHIC, TYPE_FAIRY},
@@ -3422,6 +3426,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_HARVEST},
         EXEGGUTOR_MISC_INFO,
     },
+
     [SPECIES_EXEGGUTOR_ALOLAN] =
     {
         .baseHP        = 95,
@@ -3688,6 +3693,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         WEEZING_MISC_INFO,
     },
+
     [SPECIES_WEEZING_GALARIAN] =
     {
         .types = { TYPE_POISON, TYPE_FAIRY},
@@ -8520,6 +8526,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         ZIGZAGOON_MISC_INFO,
     },
+
     [SPECIES_ZIGZAGOON_GALARIAN] =
     {
         .types = { TYPE_DARK, TYPE_NORMAL},
@@ -12086,7 +12093,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 #endif //FAMILY_DEOXYS
 
-#if P_GEN_4_POKEMON == TRUE
+#if FAMILY_TURTWIG
     [SPECIES_TURTWIG] =
     {
         .baseHP        = 55,
@@ -12154,7 +12161,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
     },
+#endif //FAMILY_TURTWIG
 
+#if FAMILY_CHIMCHAR
     [SPECIES_CHIMCHAR] =
     {
         .baseHP        = 44,
@@ -12223,7 +12232,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+#endif //FAMILY_CHIMCHAR
 
+#if FAMILY_PIPLUP
     [SPECIES_PIPLUP] =
     {
         .baseHP        = 53,
@@ -12301,7 +12312,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
+#endif //FAMILY_PIPLUP
 
+#if FAMILY_STARLY
     [SPECIES_STARLY] =
     {
         .baseHP        = 40,
@@ -12367,7 +12380,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+#endif //FAMILY_STARLY
 
+#if FAMILY_BIDOOF
     [SPECIES_BIDOOF] =
     {
         .baseHP        = 59,
@@ -12411,7 +12426,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+#endif //FAMILY_BIDOOF
 
+#if FAMILY_KRICKETOT
     [SPECIES_KRICKETOT] =
     {
         .baseHP        = 37,
@@ -12457,7 +12474,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
     },
+#endif //FAMILY_KRICKETOT
 
+#if FAMILY_SHINX
     [SPECIES_SHINX] =
     {
         .baseHP        = 45,
@@ -12523,7 +12542,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
+#endif //FAMILY_SHINX
 
+#if FAMILY_CRANIDOS
     [SPECIES_CRANIDOS] =
     {
         .baseHP        = 67,
@@ -12567,7 +12588,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
+#endif //FAMILY_CRANIDOS
 
+#if FAMILY_SHIELDON
     [SPECIES_SHIELDON] =
     {
         .baseHP        = 30,
@@ -12611,7 +12634,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
     },
+#endif //FAMILY_SHIELDON
 
+#if FAMILY_BURMY
 #define BURMY_MISC_INFO                                                     \
         .baseHP        = 40,                                                \
         .baseAttack    = 29,                                                \
@@ -12727,7 +12752,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
     },
+#endif //FAMILY_BURMY
 
+#if FAMILY_COMBEE
     [SPECIES_COMBEE] =
     {
         .baseHP        = 30,
@@ -12774,7 +12801,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
     },
+#endif //FAMILY_COMBEE
 
+#if FAMILY_PACHIRISU
     [SPECIES_PACHIRISU] =
     {
         .baseHP        = 60,
@@ -12796,7 +12825,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
     },
+#endif //FAMILY_PACHIRISU
 
+#if FAMILY_BUIZEL
     [SPECIES_BUIZEL] =
     {
         .baseHP        = 55,
@@ -12840,7 +12871,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+#endif //FAMILY_BUIZEL
 
+#if FAMILY_CHERUBI
     [SPECIES_CHERUBI] =
     {
         .baseHP        = 45,
@@ -12895,7 +12928,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
         CHERRIM_MISC_INFO,
     },
+#endif //FAMILY_CHERUBI
 
+#if FAMILY_SHELLOS
 #define SHELLOS_MISC_INFO                                                           \
         .baseHP        = 76,                                                        \
         .baseAttack    = 48,                                                        \
@@ -12957,7 +12992,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         GASTRODON_MISC_INFO,
     },
+#endif //FAMILY_SHELLOS
 
+#if FAMILY_DRIFLOON
     [SPECIES_DRIFLOON] =
     {
         .baseHP        = 90,
@@ -13001,7 +13038,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
+#endif //FAMILY_DRIFLOON
 
+#if FAMILY_BUNEARY
     [SPECIES_BUNEARY] =
     {
         .baseHP        = 55,
@@ -13063,7 +13102,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         LOPUNNY_MISC_INFO,
     },
+#endif //FAMILY_BUNEARY
 
+#if FAMILY_GLAMEOW
     [SPECIES_GLAMEOW] =
     {
         .baseHP        = 49,
@@ -13107,7 +13148,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
     },
+#endif //FAMILY_GLAMEOW
 
+#if FAMILY_STUNKY
     [SPECIES_STUNKY] =
     {
         .baseHP        = 63,
@@ -13151,7 +13194,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
+#endif //FAMILY_STUNKY
 
+#if FAMILY_BRONZOR
     [SPECIES_BRONZOR] =
     {
         .baseHP        = 57,
@@ -13198,7 +13243,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
     },
+#endif //FAMILY_BRONZOR
 
+#if FAMILY_CHATOT
     [SPECIES_CHATOT] =
     {
         .baseHP        = 76,
@@ -13221,7 +13268,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
     },
+#endif //FAMILY_CHATOT
 
+#if FAMILY_SPIRITOMB
     [SPECIES_SPIRITOMB] =
     {
         .baseHP        = 50,
@@ -13244,7 +13293,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
+#endif //FAMILY_SPIRITOMB
 
+#if FAMILY_GIBLE
     [SPECIES_GIBLE] =
     {
         .baseHP        = 58,
@@ -13327,7 +13378,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         GARCHOMP_MISC_INFO,
     },
+#endif //FAMILY_GIBLE
 
+#if FAMILY_RIOLU
     [SPECIES_RIOLU] =
     {
         .baseHP        = 40,
@@ -13389,7 +13442,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         LUCARIO_MISC_INFO,
     },
+#endif //FAMILY_RIOLU
 
+#if FAMILY_HIPPOPOTAS
     [SPECIES_HIPPOPOTAS] =
     {
         .baseHP        = 68,
@@ -13433,7 +13488,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+#endif //FAMILY_HIPPOPOTAS
 
+#if FAMILY_SKORUPI
     [SPECIES_SKORUPI] =
     {
         .baseHP        = 40,
@@ -13479,7 +13536,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
+#endif //FAMILY_SKORUPI
 
+#if FAMILY_CROAGUNK
     [SPECIES_CROAGUNK] =
     {
         .baseHP        = 48,
@@ -13525,7 +13584,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
+#endif //FAMILY_CROAGUNK
 
+#if FAMILY_CARNIVINE
     [SPECIES_CARNIVINE] =
     {
         .baseHP        = 74,
@@ -13547,7 +13608,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
     },
+#endif //FAMILY_CARNIVINE
 
+#if FAMILY_FINNEON
     [SPECIES_FINNEON] =
     {
         .baseHP        = 49,
@@ -13591,7 +13654,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
+#endif //FAMILY_FINNEON
 
+#if FAMILY_SNOVER
     [SPECIES_SNOVER] =
     {
         .baseHP        = 60,
@@ -13655,7 +13720,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_MEGA_EVOLUTION,
         ABOMASNOW_MISC_INFO,
     },
+#endif //FAMILY_SNOVER
 
+#if FAMILY_ROTOM
 #define ROTOM_MISC_INFO                                             \
         .catchRate = 45,                                            \
         .evYield_Speed     = 1,                                     \
@@ -13682,7 +13749,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ROTOM_MISC_INFO,
     },
 
-#define ROTOM_APPLIANCE_INFO(form)                      \
+#define ROTOM_APPLIANCE_INFO(form)                                  \
         .baseHP        = 50,                                        \
         .baseAttack    = 65,                                        \
         .baseDefense   = 107,                                       \
@@ -13730,7 +13797,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ROTOM_APPLIANCE_INFO(Mow),
         ROTOM_MISC_INFO,
     },
+#endif //FAMILY_ROTOM
 
+#if FAMILY_UXIE
     [SPECIES_UXIE] =
     {
         .baseHP        = 75,
@@ -13754,7 +13823,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
     },
+#endif //FAMILY_UXIE
 
+#if FAMILY_MESPRIT
     [SPECIES_MESPRIT] =
     {
         .baseHP        = 80,
@@ -13779,7 +13850,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
     },
+#endif //FAMILY_MESPRIT
 
+#if FAMILY_AZELF
     [SPECIES_AZELF] =
     {
         .baseHP        = 75,
@@ -13803,7 +13876,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
     },
+#endif //FAMILY_AZELF
 
+#if FAMILY_DIALGA
 #define DIALGA_MISC_INFO                                                    \
         .types = { TYPE_STEEL, TYPE_DRAGON},                                \
         .catchRate = 3,                                                     \
@@ -13840,7 +13915,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 120,
         DIALGA_MISC_INFO,
     },
+#endif //FAMILY_DIALGA
 
+#if FAMILY_PALKIA
 #define PALKIA_MISC_INFO                                                    \
         .types = { TYPE_WATER, TYPE_DRAGON},                                \
         .catchRate = 3,                                                     \
@@ -13877,7 +13954,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 120,
         PALKIA_MISC_INFO,
     },
+#endif //FAMILY_PALKIA
 
+#if FAMILY_HEATRAN
     [SPECIES_HEATRAN] =
     {
         .baseHP        = 91,
@@ -13900,7 +13979,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
     },
+#endif //FAMILY_HEATRAN
 
+#if FAMILY_REGIGIGAS
     [SPECIES_REGIGIGAS] =
     {
         .baseHP        = 110,
@@ -13923,7 +14004,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
     },
+#endif //FAMILY_REGIGIGAS
 
+#if FAMILY_GIRATINA
 #define GIRATINA_MISC_INFO                                              \
         .types = { TYPE_GHOST, TYPE_DRAGON},                            \
         .catchRate = 3,                                                 \
@@ -13961,7 +14044,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE},
         GIRATINA_MISC_INFO,
     },
+#endif //FAMILY_GIRATINA
 
+#if FAMILY_CRESSELIA
     [SPECIES_CRESSELIA] =
     {
         .baseHP        = 120,
@@ -13984,7 +14069,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_LEGENDARY,
     },
+#endif //FAMILY_CRESSELIA
 
+#if FAMILY_MANAPHY
     [SPECIES_PHIONE] =
     {
         .baseHP        = 80,
@@ -14030,7 +14117,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_MYTHICAL,
     },
+#endif //FAMILY_MANAPHY
 
+#if FAMILY_DARKRAI
     [SPECIES_DARKRAI] =
     {
         .baseHP        = 70,
@@ -14054,7 +14143,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
         .flags = SPECIES_FLAG_MYTHICAL,
     },
+#endif //FAMILY_DARKRAI
 
+#if FAMILY_SHAYMIN
 #define SHAYMIN_MISC_INFO                                               \
         .catchRate = 45,                                                \
         .expYield = 270,                                                \
@@ -14096,7 +14187,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = TRUE,
         SHAYMIN_MISC_INFO,
     },
+#endif //FAMILY_SHAYMIN
 
+#if FAMILY_ARCEUS
 #define ARCEUS_SPECIES_INFO(type)                                       \
     {                                                                   \
         .baseHP        = 120,                                           \
@@ -14138,7 +14231,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_ARCEUS_DRAGON]   = ARCEUS_SPECIES_INFO(TYPE_DRAGON),
     [SPECIES_ARCEUS_DARK]     = ARCEUS_SPECIES_INFO(TYPE_DARK),
     [SPECIES_ARCEUS_FAIRY]    = ARCEUS_SPECIES_INFO(TYPE_FAIRY),
-#endif
+#endif //FAMILY_ARCEUS
 
 #if P_GEN_5_POKEMON == TRUE
     [SPECIES_VICTINI] =
@@ -15639,6 +15732,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         DARUMAKA_MISC_INFO,
     },
+
     [SPECIES_DARUMAKA_GALARIAN] =
     {
         .types = { TYPE_ICE, TYPE_ICE},
@@ -17236,6 +17330,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         STUNFISK_MISC_INFO,
     },
+
     [SPECIES_STUNFISK_GALARIAN] =
     {
         .baseHP        = 109,
@@ -17499,6 +17594,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         BRAVIARY_MISC_INFO,
     },
+
     [SPECIES_BRAVIARY_HISUIAN] =
     {
         .baseHP        = 110,
@@ -19464,6 +19560,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY},
         SLIGGOO_MISC_INFO,
     },
+
     [SPECIES_SLIGGOO_HISUIAN] =
     {
         .baseHP        = 58,
@@ -20107,6 +20204,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LONG_REACH},
         DECIDUEYE_MISC_INFO,
     },
+
     [SPECIES_DECIDUEYE_HISUIAN] =
     {
         .baseHP        = 88,
@@ -20598,6 +20696,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_STEADFAST},
         ROCKRUFF_MISC_INFO,
     },
+
     [SPECIES_ROCKRUFF_OWN_TEMPO] =
     {
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_NONE},
@@ -26263,11 +26362,13 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
         TATSUGIRI_MISC_INFO,
     },
+
     [SPECIES_TATSUGIRI_DROOPY] =
     {
         .bodyColor = BODY_COLOR_RED,
         TATSUGIRI_MISC_INFO,
     },
+
     [SPECIES_TATSUGIRI_STRETCHY] =
     {
         .bodyColor = BODY_COLOR_YELLOW,
