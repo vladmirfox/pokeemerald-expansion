@@ -1788,6 +1788,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 #endif
 
+#if P_GALARIAN_FORMS
     [SPECIES_MEOWTH_GALARIAN] =
     {
         MEOWTH_MISC_INFO,
@@ -1803,25 +1804,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .flags = SPECIES_FLAG_GALARIAN_FORM,
     },
-
-#if P_GIGANTAMAX_FORMS
-    [SPECIES_MEOWTH_GIGANTAMAX] =
-    {
-        MEOWTH_MISC_INFO,
-        .baseHP        = 40,
-        .baseAttack    = 45,
-        .baseDefense   = 35,
-        .baseSpeed     = 90,
-        .baseSpAttack  = 40,
-        .baseSpDefense = 40,
-        .evYield_Speed     = 1,
-        .types = { TYPE_NORMAL, TYPE_NORMAL },
-        .itemRare = ITEM_QUICK_CLAW,
-        .abilities = {ABILITY_PICKUP, ABILITY_TECHNICIAN, ABILITY_UNNERVE},
-        .bodyColor = BODY_COLOR_YELLOW,
-        .gigantamax = TRUE,
-    },
-#endif
 
     [SPECIES_PERRSERKER] =
     {
@@ -1844,6 +1826,26 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+#endif //P_GALARIAN_FORMS
+
+#if P_GIGANTAMAX_FORMS
+    [SPECIES_MEOWTH_GIGANTAMAX] =
+    {
+        MEOWTH_MISC_INFO,
+        .baseHP        = 40,
+        .baseAttack    = 45,
+        .baseDefense   = 35,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 40,
+        .evYield_Speed     = 1,
+        .types = { TYPE_NORMAL, TYPE_NORMAL },
+        .itemRare = ITEM_QUICK_CLAW,
+        .abilities = {ABILITY_PICKUP, ABILITY_TECHNICIAN, ABILITY_UNNERVE},
+        .bodyColor = BODY_COLOR_YELLOW,
+        .gigantamax = TRUE,
+    },
+#endif
 #endif //P_FAMILY_MEOWTH
 
 #if P_FAMILY_PSYDUCK
@@ -2546,24 +2548,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Speed     = 1,             \
         PONYTA_FAMILY_MISC_INFO
 
-    [SPECIES_PONYTA] =
-    {
-        KANTONIAN_PONYTA_FAMILY_INFO,
-        PONYTA_MISC_INFO,
-    },
-
-#define GALARIAN_PONYTA_FAMILY_INFO                                                 \
-        .abilities = {ABILITY_RUN_AWAY, ABILITY_PASTEL_VEIL, ABILITY_ANTICIPATION}, \
-        .bodyColor = BODY_COLOR_WHITE,                                              \
-        .flags = SPECIES_FLAG_GALARIAN_FORM
-
-    [SPECIES_PONYTA_GALARIAN] =
-    {
-        GALARIAN_PONYTA_FAMILY_INFO,
-        PONYTA_MISC_INFO,
-        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC},
-    },
-
 #define RAPIDASH_MISC_INFO                  \
         .baseHP        = 65,                \
         .baseAttack    = 100,               \
@@ -2576,10 +2560,29 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Speed     = 2,             \
         PONYTA_FAMILY_MISC_INFO
 
+    [SPECIES_PONYTA] =
+    {
+        KANTONIAN_PONYTA_FAMILY_INFO,
+        PONYTA_MISC_INFO,
+    },
+
     [SPECIES_RAPIDASH] =
     {
         KANTONIAN_PONYTA_FAMILY_INFO,
         RAPIDASH_MISC_INFO,
+    },
+
+#define GALARIAN_PONYTA_FAMILY_INFO                                                 \
+        .abilities = {ABILITY_RUN_AWAY, ABILITY_PASTEL_VEIL, ABILITY_ANTICIPATION}, \
+        .bodyColor = BODY_COLOR_WHITE,                                              \
+        .flags = SPECIES_FLAG_GALARIAN_FORM
+
+#if P_GALARIAN_FORMS
+    [SPECIES_PONYTA_GALARIAN] =
+    {
+        GALARIAN_PONYTA_FAMILY_INFO,
+        PONYTA_MISC_INFO,
+        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC},
     },
 
     [SPECIES_RAPIDASH_GALARIAN] =
@@ -2588,6 +2591,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         RAPIDASH_MISC_INFO,
         .types = { TYPE_PSYCHIC, TYPE_FAIRY},
     },
+#endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_PONYTA
 
 #if P_FAMILY_SLOWPOKE
@@ -2609,22 +2613,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,                           \
         .noFlip = FALSE
 
-    [SPECIES_SLOWPOKE] =
-    {
-        SLOWPOKE_MISC_INFO,
-        .types = { TYPE_WATER, TYPE_PSYCHIC },
-        .itemRare = ITEM_LAGGING_TAIL,
-        .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
-    },
-
-    [SPECIES_SLOWPOKE_GALARIAN] =
-    {
-        SLOWPOKE_MISC_INFO,
-        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC},
-        .abilities = {ABILITY_GLUTTONY, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
-        .flags = SPECIES_FLAG_GALARIAN_FORM,
-    },
-
 #define SLOWBRO_MISC_INFO                                       \
         .catchRate = 75,                                        \
         .itemRare = ITEM_KINGS_ROCK,                            \
@@ -2634,6 +2622,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .growthRate = GROWTH_MEDIUM_FAST,                       \
         .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1},   \
         .bodyColor = BODY_COLOR_PINK
+
+#define SLOWKING_MISC_INFO                                      \
+        .catchRate = 70,                                        \
+        .expYield = 172,                                        \
+        .genderRatio = PERCENT_FEMALE(50),                      \
+        .eggCycles = 20,                                        \
+        .friendship = STANDARD_FRIENDSHIP,                      \
+        .growthRate = GROWTH_MEDIUM_FAST,                       \
+        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1},   \
+        .bodyColor = BODY_COLOR_PINK,                           \
+        .noFlip = FALSE
+
+    [SPECIES_SLOWPOKE] =
+    {
+        SLOWPOKE_MISC_INFO,
+        .types = { TYPE_WATER, TYPE_PSYCHIC },
+        .itemRare = ITEM_LAGGING_TAIL,
+        .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
+    },
 
     [SPECIES_SLOWBRO] =
     {
@@ -2649,6 +2656,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Defense   = 2,
         .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
         .noFlip = FALSE,
+    },
+
+    [SPECIES_SLOWKING] =
+    {
+        SLOWKING_MISC_INFO,
+        .baseHP        = 95,
+        .baseAttack    = 75,
+        .baseDefense   = 80,
+        .baseSpeed     = 30,
+        .baseSpAttack  = 100,
+        .baseSpDefense = 110,
+        .types = { TYPE_WATER, TYPE_PSYCHIC },
+        .evYield_SpDefense = 3,
+        .itemRare = ITEM_KINGS_ROCK,
+        .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
     },
 
 #if P_MEGA_EVOLUTIONS
@@ -2670,6 +2692,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 #endif
 
+#if P_GALARIAN_FORMS
+    [SPECIES_SLOWPOKE_GALARIAN] =
+    {
+        SLOWPOKE_MISC_INFO,
+        .types = { TYPE_PSYCHIC, TYPE_PSYCHIC},
+        .abilities = {ABILITY_GLUTTONY, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
+        .flags = SPECIES_FLAG_GALARIAN_FORM,
+    },
+
     [SPECIES_SLOWBRO_GALARIAN] =
     {
         SLOWBRO_MISC_INFO,
@@ -2687,32 +2718,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_GALARIAN_FORM,
     },
 
-#define SLOWKING_MISC_INFO                                      \
-        .catchRate = 70,                                        \
-        .expYield = 172,                                        \
-        .genderRatio = PERCENT_FEMALE(50),                      \
-        .eggCycles = 20,                                        \
-        .friendship = STANDARD_FRIENDSHIP,                      \
-        .growthRate = GROWTH_MEDIUM_FAST,                       \
-        .eggGroups = { EGG_GROUP_MONSTER, EGG_GROUP_WATER_1},   \
-        .bodyColor = BODY_COLOR_PINK,                           \
-        .noFlip = FALSE
-
-    [SPECIES_SLOWKING] =
-    {
-        SLOWKING_MISC_INFO,
-        .baseHP        = 95,
-        .baseAttack    = 75,
-        .baseDefense   = 80,
-        .baseSpeed     = 30,
-        .baseSpAttack  = 100,
-        .baseSpDefense = 110,
-        .types = { TYPE_WATER, TYPE_PSYCHIC },
-        .evYield_SpDefense = 3,
-        .itemRare = ITEM_KINGS_ROCK,
-        .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
-    },
-
     [SPECIES_SLOWKING_GALARIAN] =
     {
         SLOWKING_MISC_INFO,
@@ -2727,6 +2732,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_CURIOUS_MEDICINE, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
         .flags = SPECIES_FLAG_GALARIAN_FORM,
     },
+#endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_SLOWPOKE
 
 #if P_FAMILY_MAGNEMITE
@@ -2829,6 +2835,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_KEEN_EYE, ABILITY_INNER_FOCUS, ABILITY_DEFIANT},
     },
 
+#if P_GALARIAN_FORMS
     [SPECIES_FARFETCHD_GALARIAN] =
     {
         FARFETCHD_MISC_INFO,
@@ -2866,6 +2873,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
     },
+#endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_FARFETCHD
 
 #if P_FAMILY_DODUO
@@ -3749,6 +3757,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
     },
 
+#if P_GALARIAN_FORMS
     [SPECIES_WEEZING_GALARIAN] =
     {
         WEEZING_MISC_INFO,
@@ -3758,6 +3767,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .flags = SPECIES_FLAG_GALARIAN_FORM,
     },
+#endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_KOFFING
 
 #if P_FAMILY_RHYHORN
@@ -4216,6 +4226,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
     },
 
+#if P_GALARIAN_FORMS
     [SPECIES_MR_MIME_GALARIAN] =
     {
         MR_MIME_MISC_INFO,
@@ -4253,6 +4264,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
+#endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_MR_MIME
 
 #if P_FAMILY_SCYTHER
@@ -5260,6 +5272,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
+#if P_GALARIAN_FORMS
     [SPECIES_ARTICUNO_GALARIAN] =
     {
         ARTICUNO_MISC_INFO,
@@ -5277,6 +5290,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_GALARIAN_FORM,
     },
+#endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_ARTICUNO
 
 #if P_FAMILY_ZAPDOS
@@ -5310,6 +5324,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
+#if P_GALARIAN_FORMS
     [SPECIES_ZAPDOS_GALARIAN] =
     {
         ZAPDOS_MISC_INFO,
@@ -5326,6 +5341,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_DEFIANT, ABILITY_NONE, ABILITY_NONE},
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_GALARIAN_FORM,
     },
+#endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_ZAPDOS
 
 #if P_FAMILY_MOLTRES
@@ -5355,6 +5371,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .flags = SPECIES_FLAG_LEGENDARY,
     },
 
+#if P_GALARIAN_FORMS
     [SPECIES_MOLTRES_GALARIAN] =
     {
         MOLTRES_MISC_INFO,
@@ -5372,6 +5389,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         .flags = SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_GALARIAN_FORM,
     },
+#endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_MOLTRES
 
 #if P_FAMILY_DRATINI
@@ -7632,6 +7650,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
     },
 
+#if P_GALARIAN_FORMS
     [SPECIES_CORSOLA_GALARIAN] =
     {
         CORSOLA_MISC_INFO,
@@ -7668,6 +7687,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
     },
+#endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_CORSOLA
 
 #if P_FAMILY_REMORAID
@@ -8605,23 +8625,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PICKUP, ABILITY_GLUTTONY, ABILITY_QUICK_FEET},\
         .noFlip = FALSE
 
-    [SPECIES_ZIGZAGOON] =
-    {
-        ZIGZAGOON_MISC_INFO,
-        .types = { TYPE_NORMAL, TYPE_NORMAL },
-        .itemCommon = ITEM_POTION,
-        .itemRare = ITEM_REVIVE,
-        .bodyColor = BODY_COLOR_BROWN,
-    },
-
-    [SPECIES_ZIGZAGOON_GALARIAN] =
-    {
-        ZIGZAGOON_MISC_INFO,
-        .types = { TYPE_DARK, TYPE_NORMAL},
-        .bodyColor = BODY_COLOR_WHITE,
-        .flags = SPECIES_FLAG_GALARIAN_FORM,
-    },
-
 #define LINOONE_MISC_INFO                                                   \
         .baseHP        = 78,                                                \
         .baseAttack    = 70,                                                \
@@ -8641,12 +8644,30 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_WHITE,                                      \
         .noFlip = FALSE
 
+    [SPECIES_ZIGZAGOON] =
+    {
+        ZIGZAGOON_MISC_INFO,
+        .types = { TYPE_NORMAL, TYPE_NORMAL },
+        .itemCommon = ITEM_POTION,
+        .itemRare = ITEM_REVIVE,
+        .bodyColor = BODY_COLOR_BROWN,
+    },
+
     [SPECIES_LINOONE] =
     {
         LINOONE_MISC_INFO,
         .types = { TYPE_NORMAL, TYPE_NORMAL },
         .itemCommon = ITEM_POTION,
         .itemRare = ITEM_MAX_REVIVE,
+    },
+
+#if P_GALARIAN_FORMS
+    [SPECIES_ZIGZAGOON_GALARIAN] =
+    {
+        ZIGZAGOON_MISC_INFO,
+        .types = { TYPE_DARK, TYPE_NORMAL},
+        .bodyColor = BODY_COLOR_WHITE,
+        .flags = SPECIES_FLAG_GALARIAN_FORM,
     },
 
     [SPECIES_LINOONE_GALARIAN] =
@@ -8677,6 +8698,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
     },
+#endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_ZIGZAGOON
 
 #if P_FAMILY_WURMPLE
@@ -15913,21 +15935,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_HUSTLE, ABILITY_NONE, ABILITY_INNER_FOCUS},   \
         .noFlip = FALSE
 
-    [SPECIES_DARUMAKA] =
-    {
-        DARUMAKA_MISC_INFO,
-        .types = { TYPE_FIRE, TYPE_FIRE},
-        .bodyColor = BODY_COLOR_RED,
-    },
-
-    [SPECIES_DARUMAKA_GALARIAN] =
-    {
-        DARUMAKA_MISC_INFO,
-        .types = { TYPE_ICE, TYPE_ICE},
-        .bodyColor = BODY_COLOR_WHITE,
-        .flags = SPECIES_FLAG_GALARIAN_FORM,
-    },
-
 #define DARMANITAN_MISC_INFO                                \
         .catchRate = 60,                                    \
         .genderRatio = PERCENT_FEMALE(50),                  \
@@ -15948,6 +15955,18 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Attack    = 2,         \
         DARMANITAN_MISC_INFO
 
+#define DARMANITAN_ZEN_MODE_MISC_INFO   \
+        .expYield = 189,                \
+        .evYield_SpAttack  = 2,         \
+        DARMANITAN_MISC_INFO
+
+    [SPECIES_DARUMAKA] =
+    {
+        DARUMAKA_MISC_INFO,
+        .types = { TYPE_FIRE, TYPE_FIRE},
+        .bodyColor = BODY_COLOR_RED,
+    },
+
     [SPECIES_DARMANITAN_STANDARD_MODE] =
     {
         DARMANITAN_STANDARD_MISC_INFO,
@@ -15955,11 +15974,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_ZEN_MODE},
         .bodyColor = BODY_COLOR_RED,
     },
-
-#define DARMANITAN_ZEN_MODE_MISC_INFO   \
-        .expYield = 189,                \
-        .evYield_SpAttack  = 2,         \
-        DARMANITAN_MISC_INFO
 
     [SPECIES_DARMANITAN_ZEN_MODE] =
     {
@@ -15973,6 +15987,15 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_FIRE, TYPE_PSYCHIC},
         .abilities = {ABILITY_SHEER_FORCE, ABILITY_NONE, ABILITY_ZEN_MODE},
         .bodyColor = BODY_COLOR_BLUE,
+    },
+
+#if P_GALARIAN_FORMS
+    [SPECIES_DARUMAKA_GALARIAN] =
+    {
+        DARUMAKA_MISC_INFO,
+        .types = { TYPE_ICE, TYPE_ICE},
+        .bodyColor = BODY_COLOR_WHITE,
+        .flags = SPECIES_FLAG_GALARIAN_FORM,
     },
 
 #define DARMANITAN_GALARIAN_MISC_INFO                                           \
@@ -15999,6 +16022,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 55,
         .types = { TYPE_ICE, TYPE_FIRE},
     },
+#endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_DARUMAKA
 
 #if P_FAMILY_MARACTUS
@@ -16174,20 +16198,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MUMMY, ABILITY_NONE},
     },
 
-    [SPECIES_YAMASK_GALARIAN] =
-    {
-        YAMASK_MISC_INFO,
-        .baseHP        = 38,
-        .baseAttack    = 55,
-        .baseDefense   = 85,
-        .baseSpeed     = 30,
-        .baseSpAttack  = 30,
-        .baseSpDefense = 65,
-        .types = { TYPE_GROUND, TYPE_GHOST},
-        .abilities = {ABILITY_WANDERING_SPIRIT, ABILITY_NONE},
-        .flags = SPECIES_FLAG_GALARIAN_FORM,
-    },
-
     [SPECIES_COFAGRIGUS] =
     {
         .baseHP        = 58,
@@ -16211,6 +16221,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GALARIAN_FORMS
+    [SPECIES_YAMASK_GALARIAN] =
+    {
+        YAMASK_MISC_INFO,
+        .baseHP        = 38,
+        .baseAttack    = 55,
+        .baseDefense   = 85,
+        .baseSpeed     = 30,
+        .baseSpAttack  = 30,
+        .baseSpDefense = 65,
+        .types = { TYPE_GROUND, TYPE_GHOST},
+        .abilities = {ABILITY_WANDERING_SPIRIT, ABILITY_NONE},
+        .flags = SPECIES_FLAG_GALARIAN_FORM,
+    },
+
     [SPECIES_RUNERIGUS] =
     {
         .baseHP        = 58,
@@ -16232,6 +16257,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
     },
+#endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_YAMASK
 
 #if P_FAMILY_TIRTOUGA
@@ -17582,6 +17608,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
     },
 
+#if P_GALARIAN_FORMS
     [SPECIES_STUNFISK_GALARIAN] =
     {
         STUNFISK_MISC_INFO,
@@ -17597,6 +17624,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         .flags = SPECIES_FLAG_GALARIAN_FORM,
     },
+#endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_STUNFISK
 
 #if P_FAMILY_MIENFOO
