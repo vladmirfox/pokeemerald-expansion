@@ -371,6 +371,7 @@ SINGLE_BATTLE_TEST("Embargo doesn't prevent Primal Reversion")
     } WHEN {
         TURN { MOVE(player, MOVE_EMBARGO); }
         TURN { MOVE(opponent, MOVE_BATON_PASS); SEND_OUT(opponent, 1); }
+        TURN { MOVE(opponent, MOVE_FLING); }
     } SCENE {
         // Turn 1
         MESSAGE("Wobbuffet used Embargo!");
@@ -381,6 +382,11 @@ SINGLE_BATTLE_TEST("Embargo doesn't prevent Primal Reversion")
         MESSAGE("2 sent out Groudon!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, opponent);
         MESSAGE("Foe Groudon's Primal Reversion! It reverted to its primal form!");
+        ABILITY_POPUP(opponent);
+        MESSAGE("The extremely harsh sunlight was not lessened at all!!");
+        // Turn 3
+        MESSAGE("Foe Groudon used Fling!");
+        MESSAGE("But it failed!");
     }
 }
 
