@@ -2049,6 +2049,8 @@
 	.endm
 
 	@ Toggles the Gigantamax Factor for a Pokemon.
+	@ Fails for Melmetal (vanilla behavior).
+	@ Sets VAR_RESULT to TRUE if it succeeds, and FALSE otherwise.
 	.macro togglegigantamaxfactor slot:req
 	callnative ToggleGigantamaxFactor
 	.2byte \slot

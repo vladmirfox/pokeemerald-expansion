@@ -164,3 +164,19 @@ TEST("hasgigantamaxfactor/togglegigantamaxfactor affect MON_DATA_GIGANTAMAX_FACT
     EXPECT(!VarGet(VAR_RESULT));
     EXPECT(!GetMonData(&gPlayerParty[0], MON_DATA_GIGANTAMAX_FACTOR));
 }
+
+TEST("togglegigantamaxfactor fails for Melmetal")
+{
+    CreateMon(&gPlayerParty[0], SPECIES_MELMETAL, 100, 0, FALSE, 0, OT_ID_PRESET, 0);
+
+    RUN_OVERWORLD_SCRIPT(
+        hasgigantamaxfactor 0;
+    );
+    EXPECT(!VarGet(VAR_RESULT));
+
+    RUN_OVERWORLD_SCRIPT(
+        togglegigantamaxfactor 0;
+    );
+    EXPECT(!VarGet(VAR_RESULT));
+    EXPECT(!GetMonData(&gPlayerParty[0], MON_DATA_GIGANTAMAX_FACTOR));
+}
