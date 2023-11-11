@@ -4116,7 +4116,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 {
     u32 effect = 0;
     u32 moveType, move;
+    u32 side;
     u32 i, j;
+    struct Pokemon *mon;
 
     if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
         return 0;
@@ -4704,8 +4706,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_ZERO_TO_HERO:
-            u32 side = GetBattlerSide(battler);
-            struct Pokemon *mon = &GetSideParty(side)[gBattlerPartyIndexes[battler]];
+            side = GetBattlerSide(battler);
+            mon = &GetSideParty(side)[gBattlerPartyIndexes[battler]];
 
             if (!gSpecialStatuses[battler].switchInAbilityDone
              && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_PALAFIN_HERO
