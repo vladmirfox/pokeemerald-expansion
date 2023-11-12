@@ -87,7 +87,7 @@ static const struct TrainerMon sParty_Gabrielle1[] = {
 
 static const struct TrainerMon sParty_GruntPetalburgWoods[] = {
     {
-    .lvl = 9,
+    .lvl = 11,
     .species = SPECIES_POOCHYENA,
     }
 };
@@ -143,8 +143,12 @@ static const struct TrainerMon sParty_Declan[] = {
 
 static const struct TrainerMon sParty_GruntRusturfTunnel[] = {
     {
-    .lvl = 11,
+    .lvl = 14,
     .species = SPECIES_POOCHYENA,
+    },
+    {
+    .lvl = 14,
+    .species = SPECIES_CARVANHA,
     }
 };
 
@@ -1386,7 +1390,7 @@ static const struct TrainerMon sParty_Valerie5[] = {
 
 static const struct TrainerMon sParty_Cindy1[] = {
     {
-    .lvl = 7,
+    .lvl = 9,
     .species = SPECIES_ZIGZAGOON,
     .heldItem = ITEM_NUGGET
     }
@@ -1634,7 +1638,12 @@ static const struct TrainerMon sParty_Jessica5[] = {
 
 static const struct TrainerMon sParty_Winston1[] = {
     {
-    .lvl = 7,
+    .lvl = 9,
+    .species = SPECIES_ZIGZAGOON,
+    .heldItem = ITEM_NUGGET
+    },
+    {
+    .lvl = 9,
     .species = SPECIES_ZIGZAGOON,
     .heldItem = ITEM_NUGGET
     }
@@ -3210,20 +3219,31 @@ static const struct TrainerMon sParty_Roxanne1[] = {
     .lvl = 12,
     .species = SPECIES_GEODUDE,
     .heldItem = ITEM_NONE,
+    .ability = ABILITY_STURDY,
     .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_ROCK_THROW, MOVE_ROCK_TOMB}
     },
     {
     .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
-    .lvl = 12,
+    .lvl = 14,
     .species = SPECIES_GEODUDE,
+    .heldItem = ITEM_HARD_STONE,
+    .ability = ABILITY_STURDY,
+    .moves = {MOVE_TACKLE, MOVE_PROTECT, MOVE_ROCK_THROW, MOVE_ROCK_TOMB}
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
+    .lvl = 15,
+    .species = SPECIES_OMANYTE,
+    .ability = ABILITY_WEAK_ARMOR,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_ROCK_THROW, MOVE_ROCK_TOMB}
+    .moves = {MOVE_WATER_GUN, MOVE_PROTECT, MOVE_BITE, MOVE_ROCK_TOMB}
     },
     {
     .iv = TRAINER_PARTY_IVS(24, 24, 24, 24, 24, 24),
-    .lvl = 15,
+    .lvl = 16,
     .species = SPECIES_NOSEPASS,
     .heldItem = ITEM_ORAN_BERRY,
+    .ability = ABILITY_STURDY,
     .moves = {MOVE_BLOCK, MOVE_HARDEN, MOVE_TACKLE, MOVE_ROCK_TOMB}
     }
 };
@@ -3455,7 +3475,7 @@ static const struct TrainerMon sParty_Juan1[] = {
 static const struct TrainerMon sParty_Jerry1[] = {
     {
     .iv = TRAINER_PARTY_IVS(1, 1, 1, 1, 1, 1),
-    .lvl = 9,
+    .lvl = 12,
     .species = SPECIES_RALTS,
     }
 };
@@ -3546,7 +3566,7 @@ static const struct TrainerMon sParty_Jerry5[] = {
 static const struct TrainerMon sParty_Karen1[] = {
     {
     .iv = TRAINER_PARTY_IVS(1, 1, 1, 1, 1, 1),
-    .lvl = 9,
+    .lvl = 13,
     .species = SPECIES_SHROOMISH,
     }
 };
@@ -4034,7 +4054,7 @@ static const struct TrainerMon sParty_Calvin1[] = {
 
 static const struct TrainerMon sParty_Billy[] = {
     {
-    .lvl = 5,
+    .lvl = 7,
     .species = SPECIES_ZIGZAGOON,
     },
     {
@@ -4046,8 +4066,14 @@ static const struct TrainerMon sParty_Billy[] = {
 static const struct TrainerMon sParty_Josh[] = {
     {
     .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
-    .lvl = 10,
+    .lvl = 12,
     .species = SPECIES_GEODUDE,
+    .moves = {MOVE_TACKLE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
+    .lvl = 12,
+    .species = SPECIES_ARON,
     .moves = {MOVE_TACKLE, MOVE_NONE, MOVE_NONE, MOVE_NONE}
     }
 };
@@ -4055,12 +4081,12 @@ static const struct TrainerMon sParty_Josh[] = {
 static const struct TrainerMon sParty_Tommy[] = {
     {
     .iv = TRAINER_PARTY_IVS(13, 13, 13, 13, 13, 13),
-    .lvl = 8,
+    .lvl = 11,
     .species = SPECIES_GEODUDE,
     },
     {
     .iv = TRAINER_PARTY_IVS(14, 14, 14, 14, 14, 14),
-    .lvl = 8,
+    .lvl = 11,
     .species = SPECIES_GEODUDE,
     }
 };
@@ -4201,11 +4227,11 @@ static const struct TrainerMon sParty_Eddie[] = {
 
 static const struct TrainerMon sParty_Allen[] = {
     {
-    .lvl = 4,
+    .lvl = 5,
     .species = SPECIES_ZIGZAGOON,
     },
     {
-    .lvl = 3,
+    .lvl = 6,
     .species = SPECIES_TAILLOW,
     }
 };
@@ -4283,16 +4309,16 @@ static const struct TrainerMon sParty_Andrew[] = {
 
 static const struct TrainerMon sParty_Ivan[] = {
     {
-    .lvl = 5,
-    .species = SPECIES_MAGIKARP,
-    },
-    {
     .lvl = 6,
     .species = SPECIES_MAGIKARP,
     },
     {
     .lvl = 7,
     .species = SPECIES_MAGIKARP,
+    },
+    {
+    .lvl = 8,
+    .species = SPECIES_WINGULL,
     }
 };
 
@@ -5939,11 +5965,11 @@ static const struct TrainerMon sParty_AmyAndLiv2[] = {
 
 static const struct TrainerMon sParty_GinaAndMia1[] = {
     {
-    .lvl = 6,
+    .lvl = 9,
     .species = SPECIES_SEEDOT,
     },
     {
-    .lvl = 6,
+    .lvl = 9,
     .species = SPECIES_LOTAD,
     }
 };
@@ -7251,12 +7277,12 @@ static const struct TrainerMon sParty_GruntJaggedPass[] = {
 static const struct TrainerMon sParty_Marc[] = {
     {
     .iv = TRAINER_PARTY_IVS(14, 14, 14, 14, 14, 14),
-    .lvl = 8,
+    .lvl = 11,
     .species = SPECIES_GEODUDE,
     },
     {
     .iv = TRAINER_PARTY_IVS(15, 15, 15, 15, 15, 15),
-    .lvl = 8,
+    .lvl = 11,
     .species = SPECIES_GEODUDE,
     }
 };
@@ -7423,9 +7449,14 @@ static const struct TrainerMon sParty_Macey[] = {
 
 static const struct TrainerMon sParty_BrendanRustboroTreecko[] = {
     {
-    .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
-    .lvl = 13,
+    .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
+    .lvl = 14,
     .species = SPECIES_LOTAD,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
+    .lvl = 14,
+    .species = SPECIES_NINCADA,
     },
     {
     .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
@@ -7436,9 +7467,15 @@ static const struct TrainerMon sParty_BrendanRustboroTreecko[] = {
 
 static const struct TrainerMon sParty_BrendanRustboroMudkip[] = {
     {
-    .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
-    .lvl = 13,
+    .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
+    .lvl = 14,
     .species = SPECIES_WINGULL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
+    .lvl = 14,
+    .species = SPECIES_CASCOON,
+    .moves = {MOVE_TACKLE, MOVE_STRING_SHOT, MOVE_HARDEN, MOVE_NONE}
     },
     {
     .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
@@ -7512,22 +7549,33 @@ static const struct TrainerMon sParty_Jonathan[] = {
 
 static const struct TrainerMon sParty_BrendanRustboroTorchic[] = {
     {
-    .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
-    .lvl = 13,
+    .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
+    .lvl = 14,
     .species = SPECIES_SLUGMA,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
+    .lvl = 14,
+    .species = SPECIES_SLAKOTH,
     },
     {
     .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
     .lvl = 15,
     .species = SPECIES_MUDKIP,
-    }
+    },
+    
 };
 
 static const struct TrainerMon sParty_MayRustboroMudkip[] = {
     {
-    .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
-    .lvl = 13,
+    .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
+    .lvl = 14,
     .species = SPECIES_WINGULL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
+    .lvl = 14,
+    .species = SPECIES_SKITTY,
     },
     {
     .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
@@ -7574,29 +7622,29 @@ static const struct TrainerMon sParty_MaxieMtChimney[] = {
 
 static const struct TrainerMon sParty_Tiana[] = {
     {
-    .lvl = 4,
+    .lvl = 5,
     .species = SPECIES_ZIGZAGOON,
     },
     {
-    .lvl = 4,
+    .lvl = 6,
     .species = SPECIES_SHROOMISH,
     }
 };
 
 static const struct TrainerMon sParty_Haley1[] = {
     {
-    .lvl = 6,
+    .lvl = 8,
     .species = SPECIES_LOTAD,
     },
     {
-    .lvl = 6,
+    .lvl = 8,
     .species = SPECIES_SHROOMISH,
     }
 };
 
 static const struct TrainerMon sParty_Janice[] = {
     {
-    .lvl = 9,
+    .lvl = 12,
     .species = SPECIES_MARILL,
     }
 };
@@ -7721,43 +7769,43 @@ static const struct TrainerMon sParty_Crissy[] = {
 
 static const struct TrainerMon sParty_Rick[] = {
     {
-    .lvl = 4,
+    .lvl = 5,
     .species = SPECIES_WURMPLE,
     },
     {
-    .lvl = 4,
+    .lvl = 5,
     .species = SPECIES_WURMPLE,
     }
 };
 
 static const struct TrainerMon sParty_Lyle[] = {
     {
-    .lvl = 3,
+    .lvl = 4,
+    .species = SPECIES_WURMPLE,
+    },
+    {
+    .lvl = 4,
+    .species = SPECIES_WURMPLE,
+    },
+    {
+    .lvl = 5,
     .species = SPECIES_WURMPLE,
     },
     {
     .lvl = 3,
-    .species = SPECIES_WURMPLE,
-    },
-    {
-    .lvl = 3,
-    .species = SPECIES_WURMPLE,
-    },
-    {
-    .lvl = 3,
-    .species = SPECIES_WURMPLE,
+    .species = SPECIES_SILCOON,
     }
 };
 
 static const struct TrainerMon sParty_Jose[] = {
     {
     .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
-    .lvl = 8,
+    .lvl = 10,
     .species = SPECIES_WURMPLE,
     },
     {
     .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
-    .lvl = 8,
+    .lvl = 11,
     .species = SPECIES_NINCADA,
     }
 };
@@ -7793,11 +7841,11 @@ static const struct TrainerMon sParty_Kent[] = {
 
 static const struct TrainerMon sParty_James1[] = {
     {
-    .lvl = 6,
+    .lvl = 7,
     .species = SPECIES_NINCADA,
     },
     {
-    .lvl = 6,
+    .lvl = 8,
     .species = SPECIES_NINCADA,
     }
 };
@@ -7929,8 +7977,12 @@ static const struct TrainerMon sParty_Alan[] = {
 
 static const struct TrainerMon sParty_Clark[] = {
     {
-    .lvl = 8,
+    .lvl = 9,
     .species = SPECIES_GEODUDE,
+    },
+    {
+    .lvl = 10,
+    .species = SPECIES_ARON,
     }
 };
 
@@ -8887,12 +8939,12 @@ static const struct TrainerMon sParty_Chris[] = {
 
 static const struct TrainerMon sParty_Dawson[] = {
     {
-    .lvl = 8,
+    .lvl = 11,
     .species = SPECIES_ZIGZAGOON,
     .heldItem = ITEM_NUGGET
     },
     {
-    .lvl = 8,
+    .lvl = 11,
     .species = SPECIES_POOCHYENA,
     .heldItem = ITEM_NONE
     }
@@ -8900,12 +8952,12 @@ static const struct TrainerMon sParty_Dawson[] = {
 
 static const struct TrainerMon sParty_Sarah[] = {
     {
-    .lvl = 8,
+    .lvl = 11,
     .species = SPECIES_LOTAD,
     .heldItem = ITEM_NONE
     },
     {
-    .lvl = 8,
+    .lvl = 11,
     .species = SPECIES_ZIGZAGOON,
     .heldItem = ITEM_NUGGET
     }
@@ -9470,22 +9522,22 @@ static const struct TrainerMon sParty_Marlene[] = {
 
 static const struct TrainerMon sParty_Devan[] = {
     {
-    .lvl = 8,
+    .lvl = 10,
     .species = SPECIES_GEODUDE,
     },
     {
-    .lvl = 8,
+    .lvl = 12,
     .species = SPECIES_GEODUDE,
     }
 };
 
 static const struct TrainerMon sParty_Johnson[] = {
     {
-    .lvl = 8,
+    .lvl = 10,
     .species = SPECIES_SHROOMISH,
     },
     {
-    .lvl = 8,
+    .lvl = 10,
     .species = SPECIES_LOTAD,
     }
 };
@@ -9659,9 +9711,14 @@ static const struct TrainerMon sParty_Cristin1[] = {
 
 static const struct TrainerMon sParty_MayRustboroTreecko[] = {
     {
-    .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
-    .lvl = 13,
+    .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
+    .lvl = 14,
     .species = SPECIES_LOTAD,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
+    .lvl = 14,
+    .species = SPECIES_SKITTY,
     },
     {
     .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
@@ -9672,9 +9729,14 @@ static const struct TrainerMon sParty_MayRustboroTreecko[] = {
 
 static const struct TrainerMon sParty_MayRustboroTorchic[] = {
     {
-    .iv = TRAINER_PARTY_IVS(3, 3, 3, 3, 3, 3),
-    .lvl = 13,
+    .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
+    .lvl = 14,
     .species = SPECIES_TORKOAL,
+    },
+    {
+    .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
+    .lvl = 14,
+    .species = SPECIES_SKITTY,
     },
     {
     .iv = TRAINER_PARTY_IVS(6, 6, 6, 6, 6, 6),
