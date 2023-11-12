@@ -16461,18 +16461,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,                       \
         .noFlip = FALSE
 
-    [SPECIES_ZOROARK] =
-    {
-        ZOROARK_MISC_INFO,
-        .baseHP        = 60,
-        .baseAttack    = 105,
-        .baseDefense   = 60,
-        .baseSpeed     = 105,
-        .baseSpAttack  = 120,
-        .baseSpDefense = 60,
-        .types = { TYPE_DARK, TYPE_DARK},
-    },
-
     [SPECIES_ZORUA] =
     {
         ZORUA_MISC_INFO,
@@ -16482,6 +16470,18 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 65,
         .baseSpAttack  = 80,
         .baseSpDefense = 40,
+        .types = { TYPE_DARK, TYPE_DARK},
+    },
+
+    [SPECIES_ZOROARK] =
+    {
+        ZOROARK_MISC_INFO,
+        .baseHP        = 60,
+        .baseAttack    = 105,
+        .baseDefense   = 60,
+        .baseSpeed     = 105,
+        .baseSpAttack  = 120,
+        .baseSpDefense = 60,
         .types = { TYPE_DARK, TYPE_DARK},
     },
 
