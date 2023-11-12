@@ -775,9 +775,9 @@ static bool8 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u8 modulo
     return FALSE;
 }
 
-static bool8 CanMonSurviveHazardSwitchin(u32 battler)
+static bool32 CanMonSurviveHazardSwitchin(u32 battler)
 {
-    u8 battlerIn1, battlerIn2;
+    u32 battlerIn1, battlerIn2;
     u32 hazardDamage = 0, battlerHp = gBattleMons[battler].hp;
     u32 ability = GetBattlerAbility(battler), aiMove;
     s32 firstId, lastId, i, j;
@@ -806,11 +806,7 @@ static bool8 CanMonSurviveHazardSwitchin(u32 battler)
         }
 
         GetAIPartyIndexes(battler, &firstId, &lastId);
-
-        if (GetBattlerSide(battler) == B_SIDE_PLAYER)
-            party = gPlayerParty;
-        else
-            party = gEnemyParty;
+        party = GetBattlerParty(battler);
 
         for (i = firstId; i < lastId; i++)
         {
@@ -843,7 +839,7 @@ static bool8 CanMonSurviveHazardSwitchin(u32 battler)
     return TRUE;
 }
 
-static bool8 ShouldSwitchIfEncored(u32 battler)
+static bool32 ShouldSwitchIfEncored(u32 battler)
 {   
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
     if (!(AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING))
@@ -867,15 +863,15 @@ static bool8 ShouldSwitchIfEncored(u32 battler)
 // AI should switch if it's become setup fodder and has something better to switch to
 static bool8 AreAttackingStatsLowered(u32 battler)
 {
-    s8 attackingStage = gBattleMons[battler].statStages[MON_DATA_ATK - MON_DATA_MAX_HP];
-    s8 spAttackingStage = gBattleMons[battler].statStages[MON_DATA_SPATK - MON_DATA_MAX_HP];
+    s8 attackingStage = gBattleMons[battler].statStages[STAT_ATK];
+    s8 spAttackingStage = gBattleMons[battler].statStages[STAT_SPATK];
 
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
     if (!(AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING))
         return FALSE;
 
     // Physical attacker
-    if (gBattleMons[battler].attack >= gBattleMons[battler].spAttack)
+    if (gBattleMons[battler].attack > gBattleMons[battler].spAttack)
     {
         // Don't switch if attack isn't below -1
         if (attackingStage > DEFAULT_STAT_STAGE - 2)
@@ -900,7 +896,7 @@ static bool8 AreAttackingStatsLowered(u32 battler)
     }
 
     // Special attacker
-    if (gBattleMons[battler].spAttack >= gBattleMons[battler].attack)
+    else
     {
         // Don't switch if attack isn't below -1
         if (spAttackingStage > DEFAULT_STAT_STAGE - 2)
@@ -1009,7 +1005,7 @@ bool32 ShouldSwitch(u32 battler)
         return TRUE;
 
     //These Functions can prompt switch to generic pary members
-    if ((CanMonSurviveHazardSwitchin(battler) == FALSE) && (AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING))
+    if ((AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING) && (CanMonSurviveHazardSwitchin(battler) == FALSE))
         return FALSE;
     if (ShouldSwitchIfAllBadMoves(battler))
         return TRUE;
