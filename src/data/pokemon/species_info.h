@@ -4625,6 +4625,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Attack    = 2,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW},
         .bodyColor = BODY_COLOR_BROWN,
+        .flags = SPECIES_FLAG_PALDEAN_FORM,
     },
 
     [SPECIES_TAUROS_PALDEAN_BLAZE_BREED] =
@@ -4634,6 +4635,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Attack    = 2,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW},
         .bodyColor = BODY_COLOR_BROWN,
+        .flags = SPECIES_FLAG_PALDEAN_FORM,
     },
 
     [SPECIES_TAUROS_PALDEAN_AQUA_BREED] =
@@ -4643,6 +4645,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Attack    = 2,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_ANGER_POINT, ABILITY_CUD_CHEW},
         .bodyColor = BODY_COLOR_BROWN,
+        .flags = SPECIES_FLAG_PALDEAN_FORM,
     },
 #endif //P_PALDEAN_FORMS
 #endif //P_FAMILY_TAUROS
@@ -6616,6 +6619,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .types = { TYPE_POISON, TYPE_GROUND },
         .abilities = {ABILITY_POISON_POINT, ABILITY_WATER_ABSORB, ABILITY_UNAWARE},
         .bodyColor = BODY_COLOR_BROWN,
+        .flags = SPECIES_FLAG_PALDEAN_FORM,
         WOOPER_MISC_INFO
     },
 
