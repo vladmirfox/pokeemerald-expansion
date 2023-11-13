@@ -111,7 +111,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 100,
         .expYield = 236,
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_CHLOROPHYLL},
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_BULBASAUR
@@ -235,7 +235,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 240,
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_SOLAR_POWER},
         .bodyColor = BODY_COLOR_RED,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_CHARMANDER
@@ -339,7 +339,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 105,
         .expYield = 239,
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_RAIN_DISH},
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_SQUIRTLE
@@ -420,7 +420,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_BUTTERFREE_GIGANTAMAX] =
     {
         BUTTERFREE_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_CATERPIE
@@ -856,7 +856,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_PIKACHU_GIGANTAMAX] =
     {
         PIKACHU_MISC_INFO(PERCENT_FEMALE(50), FLIP),
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 
@@ -1843,7 +1843,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_QUICK_CLAW,
         .abilities = {ABILITY_PICKUP, ABILITY_TECHNICIAN, ABILITY_UNNERVE},
         .bodyColor = BODY_COLOR_YELLOW,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_MEOWTH
@@ -2303,7 +2303,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_MACHAMP_GIGANTAMAX] =
     {
         MACHAMP_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_MACHOP
@@ -3201,7 +3201,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 75,
         .expYield = 225,
         .abilities = GENGAR_ABILITIES,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_GASTLY
@@ -3370,7 +3370,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_KINGLER_GIGANTAMAX] =
     {
         KINGLER_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_KRABBY
@@ -4748,7 +4748,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_LAPRAS_GIGANTAMAX] =
     {
         LAPRAS_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_LAPRAS
@@ -4809,7 +4809,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_EEVEE_GIGANTAMAX] =
     {
         EEVEE_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 
@@ -5249,7 +5249,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_SNORLAX_GIGANTAMAX] =
     {
         SNORLAX_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_SNORLAX
@@ -16429,7 +16429,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_GARBODOR_GIGANTAMAX] =
     {
         GARBODOR_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_TRUBBISH
@@ -22902,7 +22902,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_MELMETAL_GIGANTAMAX] =
     {
         MELMETAL_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_MELTAN
@@ -22981,7 +22981,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_RILLABOOM_GIGANTAMAX] =
     {
         RILLABOOM_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_GROOKEY
@@ -23060,7 +23060,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_CINDERACE_GIGANTAMAX] =
     {
         CINDERACE_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_SCORBUNNY
@@ -23140,7 +23140,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_INTELEON_GIGANTAMAX] =
     {
         INTELEON_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_SOBBLE
@@ -23267,7 +23267,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_CORVIKNIGHT_GIGANTAMAX] =
     {
         CORVIKNIGHT_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_ROOKIDEE
@@ -23348,7 +23348,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_ORBEETLE_GIGANTAMAX] =
     {
         ORBEETLE_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_BLIPBUG
@@ -23543,7 +23543,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_DREDNAW_GIGANTAMAX] =
     {
         DREDNAW_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_CHEWTLE
@@ -23668,7 +23668,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_COALOSSAL_GIGANTAMAX] =
     {
         COALOSSAL_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_ROLYCOLY
@@ -23725,7 +23725,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_FLAPPLE_GIGANTAMAX] =
     {
         FLAPPLE_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 
@@ -23758,7 +23758,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_APPLETUN_GIGANTAMAX] =
     {
         APPLETUN_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 
@@ -23837,7 +23837,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_SANDACONDA_GIGANTAMAX] =
     {
         SANDACONDA_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_SILICOBRA
@@ -23978,7 +23978,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     {
         TOXTRICITY_MISC_INFO,
         .abilities = {ABILITY_PUNK_ROCK, ABILITY_PLUS, ABILITY_TECHNICIAN},
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 
@@ -23993,7 +23993,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     {
         TOXTRICITY_MISC_INFO,
         .abilities = {ABILITY_PUNK_ROCK, ABILITY_MINUS, ABILITY_TECHNICIAN},
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_TOXEL
@@ -24050,7 +24050,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_CENTISKORCH_GIGANTAMAX] =
     {
         CENTISKORCH_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_SIZZLIPEDE
@@ -24237,7 +24237,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_HATTERENE_GIGANTAMAX] =
     {
         HATTERENE_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_HATENNA
@@ -24316,7 +24316,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_GRIMMSNARL_GIGANTAMAX] =
     {
         GRIMMSNARL_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_IMPIDIMP
@@ -24435,7 +24435,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_ALCREMIE_GIGANTAMAX] =
     {
         ALCREMIE_MISC_INFO(BODY_COLOR_PINK),
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_MILCERY
@@ -24725,7 +24725,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_COPPERAJAH_GIGANTAMAX] =
     {
         COPPERAJAH_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_CUFANT
@@ -24856,7 +24856,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_DURALUDON_GIGANTAMAX] =
     {
         DURALUDON_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_DURALUDON
@@ -25108,7 +25108,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX] =
     {
         URSHIFU_SINGLE_STRIKE_STYLE_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 
@@ -25125,7 +25125,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX] =
     {
         URSHIFU_RAPID_STRIKE_STYLE_MISC_INFO,
-        .gigantamax = TRUE,
+        .isGigantamax = TRUE,
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_KUBFU

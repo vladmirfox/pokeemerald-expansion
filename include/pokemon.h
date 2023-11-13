@@ -371,7 +371,7 @@ struct SpeciesInfo /*0x8C*/
  /* 0x79 */ u8 enemyMonElevation; // This determines how much higher above the usual position the enemy Pokémon is during battle. Species that float or fly have nonzero values.
             // Flags
  /* 0x7A */ u32 flags:31;
- /* 0x7C */ u32 gigantamax:1;
+ /* 0x7C */ u32 isGigantamax:1;
             // Move Data
  /* 0x80 */ const struct LevelUpMove *const levelUpLearnset;
  /* 0x84 */ const u16 *const teachableLearnset;
