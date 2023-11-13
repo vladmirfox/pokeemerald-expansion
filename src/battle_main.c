@@ -87,7 +87,6 @@ static void AskRecordBattle(void);
 static void SpriteCB_MoveWildMonToRight(struct Sprite *sprite);
 static void SpriteCB_WildMonShowHealthbox(struct Sprite *sprite);
 static void SpriteCB_WildMonAnimate(struct Sprite *sprite);
-static void SpriteCB_Flicker(struct Sprite *sprite);
 static void SpriteCB_AnimFaintOpponent(struct Sprite *sprite);
 static void SpriteCB_BlinkVisible(struct Sprite *sprite);
 static void SpriteCB_Idle(struct Sprite *sprite);
@@ -103,8 +102,6 @@ static void SetActionsAndBattlersTurnOrder(void);
 static void UpdateBattlerPartyOrdersOnSwitch(u32 battler);
 static bool8 AllAtActionConfirmed(void);
 static void TryChangeTurnOrder(void);
-static void CheckChosenMoveForEffectsBeforeTurnStarts(void);
-static void CheckMegaEvolutionBeforeTurn(void);
 static void CheckQuickClaw_CustapBerryActivation(void);
 static void FreeResetData_ReturnToOvOrDoEvolutions(void);
 static void ReturnFromBattleToOverworld(void);
@@ -134,16 +131,10 @@ EWRAM_DATA u16 gBattle_WIN0H = 0;
 EWRAM_DATA u16 gBattle_WIN0V = 0;
 EWRAM_DATA u16 gBattle_WIN1H = 0;
 EWRAM_DATA u16 gBattle_WIN1V = 0;
-EWRAM_DATA u8 gDisplayedStringBattle[400] = {0};
+EWRAM_DATA u8 gDisplayedStringBattle[425] = {0}; // Increased in size to fit Juan's defeat text (SootopolisCity_Gym_1F_Text_JuanDefeat)
 EWRAM_DATA u8 gBattleTextBuff1[TEXT_BUFF_ARRAY_COUNT] = {0};
 EWRAM_DATA u8 gBattleTextBuff2[TEXT_BUFF_ARRAY_COUNT] = {0};
-EWRAM_DATA u8 gBattleTextBuff3[30] = {0};   //expanded for stupidly long z move names
-// The below array is never intentionally used. However, Juan's
-// defeat text (SootopolisCity_Gym_1F_Text_JuanDefeat) is too long
-// for gDisplayedStringBattle and overflows into this array. If it
-// is removed (and none of the buffers above are increased in size)
-// it will instead overflow into useful data.
-EWRAM_DATA static u32 sFlickerArray[25] = {0};
+EWRAM_DATA u8 gBattleTextBuff3[TEXT_BUFF_ARRAY_COUNT + 13] = {0};   // expanded for stupidly long z move names
 EWRAM_DATA u32 gBattleTypeFlags = 0;
 EWRAM_DATA u8 gBattleTerrain = 0;
 EWRAM_DATA u32 gUnusedFirstBattleVar1 = 0; // Never read
@@ -509,7 +500,6 @@ void CB2_InitBattle(void)
 static void CB2_InitBattleInternal(void)
 {
     s32 i;
-    u16 targetSpecies;
 
     SetHBlankCallback(NULL);
     SetVBlankCallback(NULL);
@@ -606,14 +596,11 @@ static void CB2_InitBattleInternal(void)
     gSaveBlock2Ptr->frontier.disableRecordBattle = FALSE;
 
     for (i = 0; i < PARTY_SIZE; i++)
+    {
         AdjustFriendship(&gPlayerParty[i], FRIENDSHIP_EVENT_LEAGUE_BATTLE);
 
-    // Apply party-wide start-of-battle form changes
-    for (i = 0; i < PARTY_SIZE; i++)
-    {
-        // Player's side
+        // Apply party-wide start-of-battle form changes for both sides.
         TryFormChange(i, B_SIDE_PLAYER, FORM_CHANGE_BEGIN_BATTLE);
-        // Opponent's side
         TryFormChange(i, B_SIDE_OPPONENT, FORM_CHANGE_BEGIN_BATTLE);
     }
 
@@ -1896,7 +1883,7 @@ static u32 GeneratePartyHash(const struct Trainer *trainer, u32 i)
 void ModifyPersonalityForNature(u32 *personality, u32 newNature)
 {
     u32 nature = GetNatureFromPersonality(*personality);
-    s32 diff = abs(nature - newNature);
+    s32 diff = abs((s32)nature - (s32)newNature);
     s32 sign = (nature > newNature) ? 1 : -1;
     if (diff > NUM_NATURES / 2)
     {
@@ -1941,7 +1928,6 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
 {
     u32 personalityValue;
-    u8 fixedIV;
     s32 i, j;
     u8 monsCount;
     if (battleTypeFlags & BATTLE_TYPE_TRAINER && !(battleTypeFlags & (BATTLE_TYPE_FRONTIER
@@ -2697,29 +2683,6 @@ void SpriteCallbackDummy_2(struct Sprite *sprite)
 
 }
 
-#define sNumFlickers data[3]
-#define sDelay       data[4]
-
-static void SpriteCB_Flicker(struct Sprite *sprite)
-{
-    sprite->sDelay--;
-    if (sprite->sDelay == 0)
-    {
-        sprite->sDelay = 8;
-        sprite->invisible ^= 1;
-        sprite->sNumFlickers--;
-        if (sprite->sNumFlickers == 0)
-        {
-            sprite->invisible = FALSE;
-            sprite->callback = SpriteCallbackDummy_2;
-            // sFlickerArray[0] = 0;
-        }
-    }
-}
-
-#undef sNumFlickers
-#undef sDelay
-
 extern const struct MonCoords gMonFrontPicCoords[];
 
 void SpriteCB_FaintOpponentMon(struct Sprite *sprite)
@@ -3238,12 +3201,19 @@ void SwitchInClearSetData(u32 battler)
     gSpecialStatuses[battler].physicalDmg = 0;
     gSpecialStatuses[battler].specialDmg = 0;
 
+    // Reset G-Max Chi Strike boosts.
+    gBattleStruct->bonusCritStages[battler] = 0;
+
+    // Reset Dynamax flags.
+    UndoDynamax(battler);
+
     gBattleStruct->overwrittenAbilities[battler] = ABILITY_NONE;
 
     // Clear selected party ID so Revival Blessing doesn't get confused.
     gSelectedMonPartyId = PARTY_SIZE;
 
     // Allow for illegal abilities within tests.
+    #if TESTING
     if (gTestRunnerEnabled)
     {
         u32 side = GetBattlerSide(battler);
@@ -3251,13 +3221,15 @@ void SwitchInClearSetData(u32 battler)
         if (TestRunner_Battle_GetForcedAbility(side, partyIndex))
             gBattleMons[i].ability = gBattleStruct->overwrittenAbilities[i] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
     }
+    #endif // TESTING
 
     Ai_UpdateSwitchInData(battler);
 }
 
-void FaintClearSetData(u32 battler)
+const u8* FaintClearSetData(u32 battler)
 {
     s32 i;
+    const u8 *result = NULL;
 
     for (i = 0; i < NUM_BATTLE_STATS; i++)
         gBattleMons[battler].statStages[i] = DEFAULT_STAT_STAGE;
@@ -3391,7 +3363,7 @@ void FaintClearSetData(u32 battler)
                 {
                     gBattleMons[otherSkyDropper].status2 |= STATUS2_CONFUSION_TURN(((Random()) % 4) + 2);
                     gBattlerAttacker = otherSkyDropper;
-                    gBattlescriptCurrInstr = BattleScript_ThrashConfuses - 2;
+                    result = BattleScript_ThrashConfuses;
                 }
             }
         }
@@ -3401,6 +3373,7 @@ void FaintClearSetData(u32 battler)
     gBattleStruct->zmove.active = FALSE;
     gBattleStruct->zmove.toBeUsed[battler] = MOVE_NONE;
     gBattleStruct->zmove.effect = EFFECT_HIT;
+    return result;
 }
 
 static void DoBattleIntro(void)
@@ -3746,6 +3719,7 @@ static void TryDoEventsBeforeFirstTurn(void)
     }
 
     // Allow for illegal abilities within tests.
+    #if TESTING
     if (gTestRunnerEnabled && gBattleStruct->switchInAbilitiesCounter == 0)
     {
         for (i = 0; i < gBattlersCount; ++i)
@@ -3756,6 +3730,7 @@ static void TryDoEventsBeforeFirstTurn(void)
                 gBattleMons[i].ability = gBattleStruct->overwrittenAbilities[i] = TestRunner_Battle_GetForcedAbility(side, partyIndex);
         }
     }
+    #endif // TESTING
 
     if (gBattleStruct->switchInAbilitiesCounter == 0)
     {
@@ -3816,7 +3791,7 @@ static void TryDoEventsBeforeFirstTurn(void)
         if (ItemBattleEffects(ITEMEFFECT_ON_SWITCH_IN, gBattlerByTurnOrder[gBattleStruct->switchInItemsCounter++], FALSE))
             return;
     }
-    
+
     if (AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, 0, 0, 0, 0))
         return;
 
@@ -3852,7 +3827,7 @@ static void TryDoEventsBeforeFirstTurn(void)
     gMoveResultFlags = 0;
 
     gRandomTurnNumber = Random();
-    
+
     memset(gQueuedStatBoosts, 0, sizeof(gQueuedStatBoosts));  // erase all totem boosts just to be safe
 
     SetAiLogicDataForTurn(AI_DATA); // get assumed abilities, hold effects, etc of all battlers
@@ -4077,6 +4052,7 @@ static void HandleTurnActionSelectionState(void)
             if ((gBattleTypeFlags & BATTLE_TYPE_HAS_AI || IsWildMonSmart())
                     && (BattlerHasAi(battler) && !(gBattleTypeFlags & BATTLE_TYPE_PALACE)))
             {
+                AI_DATA->mostSuitableMonId = GetMostSuitableMonToSwitchInto(battler, FALSE);
                 gBattleStruct->aiMoveOrAction[battler] = ComputeBattleAiScores(battler);
             }
             // fallthrough
@@ -4278,6 +4254,8 @@ static void HandleTurnActionSelectionState(void)
 
                     gBattleStruct->mega.toEvolve &= ~(gBitTable[BATTLE_PARTNER(GetBattlerPosition(battler))]);
                     gBattleStruct->burst.toBurst &= ~(gBitTable[BATTLE_PARTNER(GetBattlerPosition(battler))]);
+                    gBattleStruct->dynamax.toDynamax &= ~(gBitTable[BATTLE_PARTNER(GetBattlerPosition(battler))]);
+                    gBattleStruct->dynamax.usingMaxMove[BATTLE_PARTNER(GetBattlerPosition(battler))] = FALSE;
                     gBattleStruct->zmove.toBeUsed[BATTLE_PARTNER(GetBattlerPosition(battler))] = MOVE_NONE;
                     BtlController_EmitEndBounceEffect(battler, BUFFER_A);
                     MarkBattlerForControllerExec(battler);
@@ -4365,13 +4343,25 @@ static void HandleTurnActionSelectionState(void)
                                 RecordedBattle_SetBattlerAction(battler, gBattleResources->bufferB[battler][3]);
                             }
 
-                            gBattleStruct->chosenMovePositions[battler] = gBattleResources->bufferB[battler][2] & ~(RET_MEGA_EVOLUTION | RET_ULTRA_BURST);
+                            // Get the chosen move position (and thus the chosen move) and target from the returned buffer.
+                            gBattleStruct->chosenMovePositions[battler] = gBattleResources->bufferB[battler][2] & ~(RET_MEGA_EVOLUTION | RET_ULTRA_BURST | RET_DYNAMAX);
                             gChosenMoveByBattler[battler] = gBattleMons[battler].moves[gBattleStruct->chosenMovePositions[battler]];
                             gBattleStruct->moveTarget[battler] = gBattleResources->bufferB[battler][3];
+
+                            // Check to see if any gimmicks need to be prepared.
                             if (gBattleResources->bufferB[battler][2] & RET_MEGA_EVOLUTION)
                                 gBattleStruct->mega.toEvolve |= gBitTable[battler];
                             else if (gBattleResources->bufferB[battler][2] & RET_ULTRA_BURST)
                                 gBattleStruct->burst.toBurst |= gBitTable[battler];
+                            else if (gBattleResources->bufferB[battler][2] & RET_DYNAMAX)
+                                gBattleStruct->dynamax.toDynamax |= gBitTable[battler];
+
+                            // Max Move check
+                            if (ShouldUseMaxMove(battler, gChosenMoveByBattler[battler]))
+                            {
+                                gBattleStruct->dynamax.baseMove[battler] = gBattleMons[battler].moves[gBattleStruct->chosenMovePositions[battler]];
+                                gBattleStruct->dynamax.usingMaxMove[battler] = TRUE;
+                            }
                             gBattleCommunication[battler]++;
 
                             if (gTestRunnerEnabled)
@@ -4646,7 +4636,7 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
         speed /= 2;
     else if (holdEffect == HOLD_EFFECT_IRON_BALL)
         speed /= 2;
-    else if (holdEffect == HOLD_EFFECT_CHOICE_SCARF)
+    else if (holdEffect == HOLD_EFFECT_CHOICE_SCARF && !IsDynamaxed(battler))
         speed = (speed * 150) / 100;
     else if (holdEffect == HOLD_EFFECT_QUICK_POWDER && gBattleMons[battler].species == SPECIES_DITTO && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
         speed *= 2;
@@ -4690,6 +4680,11 @@ s8 GetMovePriority(u32 battler, u16 move)
     u16 ability = GetBattlerAbility(battler);
 
     priority = gBattleMoves[move].priority;
+
+    // Max Guard check
+    if (gBattleStruct->dynamax.usingMaxMove[battler] && gBattleMoves[move].split == SPLIT_STATUS)
+        return gBattleMoves[MOVE_MAX_GUARD].priority;
+
     if (ability == ABILITY_GALE_WINGS
         && (B_GALE_WINGS < GEN_7 || BATTLER_MAX_HP(battler))
         && gBattleMoves[move].type == TYPE_FLYING)
@@ -4741,7 +4736,7 @@ u32 GetWhichBattlerFasterArgs(u32 battler1, u32 battler2, bool32 ignoreChosenMov
 
     // Battler 1
     // Quick Draw
-    if (!ignoreChosenMoves && ability1 == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler1]) && Random() % 100 < 30)
+    if (!ignoreChosenMoves && ability1 == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler1]) && RandomPercentage(RNG_QUICK_DRAW, 30))
         gProtectStructs[battler1].quickDraw = TRUE;
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler1].quickDraw
@@ -4751,7 +4746,7 @@ u32 GetWhichBattlerFasterArgs(u32 battler1, u32 battler2, bool32 ignoreChosenMov
 
     // Battler 2
     // Quick Draw
-    if (!ignoreChosenMoves && ability2 == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler2]) && Random() % 100 < 30)
+    if (!ignoreChosenMoves && ability2 == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler2]) && RandomPercentage(RNG_QUICK_DRAW, 30))
         gProtectStructs[battler2].quickDraw = TRUE;
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler2].quickDraw
@@ -4960,6 +4955,7 @@ static void TurnValuesCleanUp(bool8 var0)
             gProtectStructs[i].kingsShielded = FALSE;
             gProtectStructs[i].banefulBunkered = FALSE;
             gProtectStructs[i].quash = FALSE;
+            gProtectStructs[i].usedCustapBerry = FALSE;
         }
         else
         {
@@ -5000,42 +4996,48 @@ static void PopulateArrayWithBattlers(u8 *battlers)
         battlers[i] = i;
 }
 
-static bool32 TryDoMegaEvosBeforeMoves(void)
+static bool32 TryDoGimmicksBeforeMoves(void)
 {
-    if (!(gHitMarker & HITMARKER_RUN) && (gBattleStruct->mega.toEvolve || gBattleStruct->burst.toBurst))
+    if (!(gHitMarker & HITMARKER_RUN)
+        && (gBattleStruct->mega.toEvolve || gBattleStruct->burst.toBurst || gBattleStruct->dynamax.toDynamax))
     {
         u32 i, battler;
-        struct Pokemon *party;
-        struct Pokemon *mon;
-        u8 megaOrder[MAX_BATTLERS_COUNT];
+        u8 order[MAX_BATTLERS_COUNT];
 
-        PopulateArrayWithBattlers(megaOrder);
-        SortBattlersBySpeed(megaOrder, FALSE);
+        PopulateArrayWithBattlers(order);
+        SortBattlersBySpeed(order, FALSE);
         for (i = 0; i < gBattlersCount; i++)
         {
-            if (gBattleStruct->mega.toEvolve & gBitTable[megaOrder[i]]
-                && !(gProtectStructs[megaOrder[i]].noValidMoves))
+            // Dynamax Check
+            if (gBattleStruct->dynamax.toDynamax & gBitTable[order[i]])
             {
-                gBattlerAttacker = megaOrder[i];
+                gBattlerAttacker = order[i];
+                gBattleScripting.battler = gBattlerAttacker;
+                gBattleStruct->dynamax.toDynamax &= ~(gBitTable[gBattlerAttacker]);
+                PrepareBattlerForDynamax(gBattlerAttacker);
+                BattleScriptExecute(BattleScript_DynamaxBegins);
+                return TRUE;
+            }
+            // Mega Evo Check
+            if (gBattleStruct->mega.toEvolve & gBitTable[order[i]]
+                && !(gProtectStructs[order[i]].noValidMoves))
+            {
+                gBattlerAttacker = order[i];
                 gBattleStruct->mega.toEvolve &= ~(gBitTable[gBattlerAttacker]);
                 gLastUsedItem = gBattleMons[gBattlerAttacker].item;
-                party = GetBattlerParty(gBattlerAttacker);
-                mon = &party[gBattlerPartyIndexes[gBattlerAttacker]];
                 if (GetBattleFormChangeTargetSpecies(gBattlerAttacker, FORM_CHANGE_BATTLE_MEGA_EVOLUTION_MOVE) != SPECIES_NONE)
                     BattleScriptExecute(BattleScript_WishMegaEvolution);
                 else
                     BattleScriptExecute(BattleScript_MegaEvolution);
                 return TRUE;
             }
-
-            if (gBattleStruct->burst.toBurst & gBitTable[megaOrder[i]]
-                && !(gProtectStructs[megaOrder[i]].noValidMoves))
+            // Ultra Burst Check
+            if (gBattleStruct->burst.toBurst & gBitTable[order[i]]
+                && !(gProtectStructs[order[i]].noValidMoves))
             {
-                battler = gBattlerAttacker = megaOrder[i];
+                battler = gBattlerAttacker = order[i];
                 gBattleStruct->burst.toBurst &= ~(gBitTable[battler]);
                 gLastUsedItem = gBattleMons[battler].item;
-                party = GetBattlerParty(battler);
-                mon = &party[gBattlerPartyIndexes[battler]];
                 BattleScriptExecute(BattleScript_UltraBurst);
                 return TRUE;
             }
@@ -5052,7 +5054,6 @@ static bool32 TryDoMoveEffectsBeforeMoves(void)
     if (!(gHitMarker & HITMARKER_RUN))
     {
         u32 i;
-        struct Pokemon *mon;
         u8 battlers[MAX_BATTLERS_COUNT];
 
         PopulateArrayWithBattlers(battlers);
@@ -5125,7 +5126,6 @@ static void CheckQuickClaw_CustapBerryActivation(void)
             {
                 if (gProtectStructs[battler].usedCustapBerry)
                 {
-                    gProtectStructs[battler].usedCustapBerry = FALSE;
                     gLastUsedItem = gBattleMons[battler].item;
                     PREPARE_ITEM_BUFFER(gBattleTextBuff1, gLastUsedItem);
                     if (GetBattlerHoldEffect(battler, FALSE) == HOLD_EFFECT_CUSTAP_BERRY)
@@ -5181,7 +5181,7 @@ static void RunTurnActionsFunctions(void)
     // Mega Evolve / Focus Punch-like moves after switching, items, running, but before using a move.
     if (gCurrentActionFuncId == B_ACTION_USE_MOVE && !gBattleStruct->effectsBeforeUsingMoveDone)
     {
-        if (TryDoMegaEvosBeforeMoves())
+        if (TryDoGimmicksBeforeMoves())
             return;
         else if (TryDoMoveEffectsBeforeMoves())
             return;
@@ -5397,6 +5397,14 @@ static void HandleEndTurn_FinishBattle(void)
         FadeOutMapMusic(5);
         if (B_TRAINERS_KNOCK_OFF_ITEMS == TRUE || B_RESTORE_HELD_BATTLE_ITEMS == TRUE)
             TryRestoreHeldItems();
+
+        // Undo Dynamax HP multiplier before recalculating stats.
+        for (i = 0; i < gBattlersCount; ++i)
+        {
+            if (IsDynamaxed(i))
+                UndoDynamax(i);
+        }
+
         for (i = 0; i < PARTY_SIZE; i++)
         {
             bool8 changedForm = FALSE;
@@ -5682,7 +5690,8 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
              )
     {
         gBattleStruct->dynamicMoveType = ateType | F_DYNAMIC_TYPE_2;
-        gBattleStruct->ateBoost[battlerAtk] = 1;
+        if (!IsDynamaxed(battlerAtk))
+            gBattleStruct->ateBoost[battlerAtk] = 1;
     }
     else if (gBattleMoves[move].type != TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
@@ -5690,7 +5699,8 @@ void SetTypeBeforeUsingMove(u32 move, u32 battlerAtk)
              && attackerAbility == ABILITY_NORMALIZE)
     {
         gBattleStruct->dynamicMoveType = TYPE_NORMAL | F_DYNAMIC_TYPE_2;
-        gBattleStruct->ateBoost[battlerAtk] = 1;
+        if (!IsDynamaxed(battlerAtk))
+            gBattleStruct->ateBoost[battlerAtk] = 1;
     }
     else if (gBattleMoves[move].soundMove && attackerAbility == ABILITY_LIQUID_VOICE)
     {

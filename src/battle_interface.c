@@ -754,12 +754,6 @@ static const struct SpriteTemplate sSpriteTemplate_BurstTrigger =
 #define hBar_HealthBoxSpriteId      data[5]
 #define hBar_Data6                  data[6]
 
-static void InitLastUsedBallAssets(void)
-{
-    gBattleStruct->ballSpriteIds[0] = MAX_SPRITES;
-    gBattleStruct->ballSpriteIds[1] = MAX_SPRITES;
-}
-
 // This function is here to cover a specific case - one player's mon in a 2 vs 1 double battle. In this scenario - display singles layout.
 // The same goes for a 2 vs 1 where opponent has only one pokemon.
 u32 WhichBattleCoords(u32 battlerId) // 0 - singles, 1 - doubles
@@ -780,7 +774,7 @@ u8 CreateBattlerHealthboxSprites(u8 battlerId)
 {
     s16 data6 = 0;
     u8 healthboxLeftSpriteId, healthboxRightSpriteId;
-    u8 healthbarSpriteId, megaIndicatorSpriteId;
+    u8 healthbarSpriteId;
     struct Sprite *healthBarSpritePtr;
 
     if (WhichBattleCoords(battlerId) == 0) // Singles
@@ -1048,8 +1042,8 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
     u8 *objVram;
     u8 battler = gSprites[healthboxSpriteId].hMain_Battler;
 
-    // Don't print Lv char if mon is mega evolved or primal reverted.
-    if (IsBattlerMegaEvolved(battler) || IsBattlerPrimalReverted(battler))
+    // Don't print Lv char if mon is mega evolved or primal reverted or Dynamaxed.
+    if (IsBattlerMegaEvolved(battler) || IsBattlerPrimalReverted(battler) || IsDynamaxed(battler))
     {
         objVram = ConvertIntToDecimalStringN(text, lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
         xPos = 5 * (3 - (objVram - (text + 2))) - 1;
@@ -1063,6 +1057,7 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
 
         objVram = ConvertIntToDecimalStringN(text + 2, lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
         xPos = 5 * (3 - (objVram - (text + 2)));
+        MegaIndicator_SetVisibilities(healthboxSpriteId, TRUE);
     }
 
     windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, xPos, 3, 2, &windowId);
@@ -1088,7 +1083,7 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
 static void PrintHpOnHealthbox(u32 spriteId, s16 currHp, s16 maxHp, u32 bgColor, u32 rightTile, u32 leftTile)
 {
     u8 *windowTileData;
-    u32 windowId, tilesCount, x, healthboxTileNum;
+    u32 windowId, tilesCount, x;
     u8 text[28], *txtPtr;
     void *objVram = (void *)(OBJ_VRAM0) + gSprites[spriteId].oam.tileNum * TILE_SIZE_4BPP;
 
@@ -1477,6 +1472,7 @@ void HideTriggerSprites(void)
     HideMegaTriggerSprite();
     HideBurstTriggerSprite();
     HideZMoveTriggerSprite();
+    HideDynamaxTriggerSprite();
 }
 
 void DestroyMegaTriggerSprite(void)
@@ -1619,6 +1615,7 @@ enum
     INDICATOR_MEGA,
     INDICATOR_ALPHA,
     INDICATOR_OMEGA,
+    INDICATOR_DYNAMAX,
     INDICATOR_COUNT,
 };
 
@@ -1626,20 +1623,24 @@ static const u8 ALIGNED(4) sMegaIndicatorGfx[] = INCBIN_U8("graphics/battle_inte
 static const u16 sMegaIndicatorPal[] = INCBIN_U16("graphics/battle_interface/mega_indicator.gbapal");
 static const u8 ALIGNED(4) sAlphaIndicatorGfx[] = INCBIN_U8("graphics/battle_interface/alpha_indicator.4bpp");
 static const u8 ALIGNED(4) sOmegaIndicatorGfx[] = INCBIN_U8("graphics/battle_interface/omega_indicator.4bpp");
-static const u16 sAlphaOmegaIndicatorPal[] = INCBIN_U16("graphics/battle_interface/alpha_indicator.gbapal");
+static const u16 sAlphaOmegaIndicatorPal[] = INCBIN_U16("graphics/battle_interface/misc_indicator.gbapal");
+static const u8 ALIGNED(4) sDynamaxIndicatorGfx[] = INCBIN_U8("graphics/battle_interface/dynamax_indicator.4bpp");
+static const u16 sDynamaxIndicatorPal[] = INCBIN_U16("graphics/battle_interface/misc_indicator.gbapal");
 
 static const struct SpriteSheet sMegaIndicator_SpriteSheets[] =
 {
     [INDICATOR_MEGA] = {sMegaIndicatorGfx, sizeof(sMegaIndicatorGfx), TAG_MEGA_INDICATOR_TILE},
     [INDICATOR_ALPHA] = {sAlphaIndicatorGfx, sizeof(sAlphaIndicatorGfx), TAG_ALPHA_INDICATOR_TILE},
     [INDICATOR_OMEGA] = {sOmegaIndicatorGfx, sizeof(sOmegaIndicatorGfx), TAG_OMEGA_INDICATOR_TILE},
+    [INDICATOR_DYNAMAX] = {sDynamaxIndicatorGfx, sizeof(sDynamaxIndicatorGfx), TAG_DYNAMAX_INDICATOR_TILE},
     [INDICATOR_COUNT] = {0}
 };
 static const struct SpritePalette sMegaIndicator_SpritePalettes[] =
 {
     [INDICATOR_MEGA] = {sMegaIndicatorPal, TAG_MEGA_INDICATOR_PAL},
-    [INDICATOR_ALPHA] = {sAlphaOmegaIndicatorPal, TAG_ALPHA_OMEGA_INDICATOR_PAL},
-    [INDICATOR_OMEGA] = {sAlphaOmegaIndicatorPal, TAG_ALPHA_OMEGA_INDICATOR_PAL},
+    [INDICATOR_ALPHA] = {sAlphaOmegaIndicatorPal, TAG_MISC_INDICATOR_PAL},
+    [INDICATOR_OMEGA] = {sAlphaOmegaIndicatorPal, TAG_MISC_INDICATOR_PAL},
+    [INDICATOR_DYNAMAX] = {sDynamaxIndicatorPal, TAG_MISC_INDICATOR_PAL},
     [INDICATOR_COUNT] = {0}
 };
 
@@ -1664,8 +1665,9 @@ static const struct SpriteTemplate sSpriteTemplate_MegaIndicator =
 static const u16 sMegaIndicatorTags[][2] =
 {
     [INDICATOR_MEGA] = {TAG_MEGA_INDICATOR_TILE, TAG_MEGA_INDICATOR_PAL},
-    [INDICATOR_ALPHA] = {TAG_ALPHA_INDICATOR_TILE, TAG_ALPHA_OMEGA_INDICATOR_PAL},
-    [INDICATOR_OMEGA] = {TAG_OMEGA_INDICATOR_TILE, TAG_ALPHA_OMEGA_INDICATOR_PAL},
+    [INDICATOR_ALPHA] = {TAG_ALPHA_INDICATOR_TILE, TAG_MISC_INDICATOR_PAL},
+    [INDICATOR_OMEGA] = {TAG_OMEGA_INDICATOR_TILE, TAG_MISC_INDICATOR_PAL},
+    [INDICATOR_DYNAMAX] = {TAG_DYNAMAX_INDICATOR_TILE, TAG_MISC_INDICATOR_PAL},
 };
 
 static const s8 sIndicatorPositions[][2] =
@@ -1690,11 +1692,11 @@ void MegaIndicator_LoadSpritesGfx(void)
 
 static bool32 MegaIndicator_ShouldBeInvisible(u32 battlerId, struct Sprite *sprite)
 {
-    u32 side = GetBattlerSide(battlerId);
     bool32 megaEvolved = IsBattlerMegaEvolved(battlerId);
     bool32 primalReverted = IsBattlerPrimalReverted(battlerId);
+    bool32 dynamaxed = IsDynamaxed(battlerId);
 
-    if (!megaEvolved && !primalReverted)
+    if (!megaEvolved && !primalReverted && !dynamaxed)
         return TRUE;
 
     if (megaEvolved)
@@ -1703,6 +1705,8 @@ static bool32 MegaIndicator_ShouldBeInvisible(u32 battlerId, struct Sprite *spri
         sprite->tType = INDICATOR_ALPHA;
     else if (primalReverted && gBattleMons[battlerId].species == SPECIES_GROUDON_PRIMAL)
         sprite->tType = INDICATOR_OMEGA;
+    else if (dynamaxed)
+        sprite->tType = INDICATOR_DYNAMAX;
 
     sprite->oam.tileNum = GetSpriteTileStartByTag(sMegaIndicatorTags[sprite->tType][0]);
     sprite->oam.paletteNum = IndexOfSpritePaletteTag(sMegaIndicatorTags[sprite->tType][1]);
@@ -1737,7 +1741,6 @@ static void MegaIndicator_UpdateOamPriority(u32 healthboxId, u32 oamPriority)
 
 static void MegaIndicator_UpdateLevel(u32 healthboxId, u32 level)
 {
-    u32 i;
     s16 xDelta = 0;
     u8 *spriteId = MegaIndicator_GetSpriteId(healthboxId);
 
@@ -1752,7 +1755,7 @@ static void MegaIndicator_UpdateLevel(u32 healthboxId, u32 level)
 static void MegaIndicator_CreateSprite(u32 battlerId, u32 healthboxSpriteId)
 {
     struct SpriteTemplate sprTemplate;
-    u32 position, level;
+    u32 position;
     u8 *spriteId;
     s16 xHealthbox = 0, y = 0;
     s32 x = 0;
@@ -3656,13 +3659,13 @@ static void Task_BounceBall(u8 taskId)
             sprite->callback = SpriteCB_LastUsedBallBounce; //Show and bounce down
             task->sState++;
         }
-        break;     
+        break;
     case 4:  // Destroy Task
         if(!sprite->sMoving)
         {
             sprite->callback = SpriteCB_LastUsedBall;
             DestroyTask(taskId);
-        }        
+        }
     }
     if (!gLastUsedBallMenuPresent)
     {
