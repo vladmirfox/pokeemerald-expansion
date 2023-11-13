@@ -18,10 +18,10 @@ DesertCavern_1F_Hide_Aerodactylite::
 
 DesertCavern_1F_Aerodactylite::
 	goto_if_set FLAG_HIDDEN_ITEM_AERODACTYLITE, DesertCavern_1F_End_Aerodactylite
-	giveitem ITEM_AERODACTYLITE
-	setflag FLAG_HIDDEN_ITEM_AERODACTYLITE
 	call DesertCavern_1F_Hide_Aerodactylite
 	special DrawWholeMapView
+	giveitem ITEM_AERODACTYLITE
+	setflag FLAG_HIDDEN_ITEM_AERODACTYLITE
 DesertCavern_1F_End_Aerodactylite::
 	release
 	end	

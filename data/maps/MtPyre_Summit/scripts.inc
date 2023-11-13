@@ -21,10 +21,10 @@ MtPyre_Summit_Hide_Banettite::
 
 MtPyre_Summit_Banettite::
 	goto_if_set FLAG_HIDDEN_ITEM_BANETTITE, MtPyre_Summit_End_Banettite
-	giveitem ITEM_BANETTITE
-	setflag FLAG_HIDDEN_ITEM_BANETTITE
 	call MtPyre_Summit_Hide_Banettite
 	special DrawWholeMapView
+	giveitem ITEM_BANETTITE
+	setflag FLAG_HIDDEN_ITEM_BANETTITE
 MtPyre_Summit_End_Banettite::
 	release
 	end	

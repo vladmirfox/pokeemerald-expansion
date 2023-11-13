@@ -12,9 +12,10 @@ CaveOfOrigin_UnusedRubySapphireMap1_Hide_Abomasite::
 
 CaveOfOrigin_UnusedRubySapphireMap1_Abomasite::
 	goto_if_set FLAG_HIDDEN_ITEM_ABOMASITE, CaveOfOrigin_UnusedRubySapphireMap1_End_Abomasite
-	giveitem ITEM_ABOMASITE
 	call CaveOfOrigin_UnusedRubySapphireMap1_Hide_Abomasite
 	special DrawWholeMapView
+	giveitem ITEM_ABOMASITE
+	setflag FLAG_HIDDEN_ITEM_ABOMASITE
 CaveOfOrigin_UnusedRubySapphireMap1_End_Abomasite::
 	release
 	end	

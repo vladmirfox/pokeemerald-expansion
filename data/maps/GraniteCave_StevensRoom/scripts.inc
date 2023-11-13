@@ -14,10 +14,10 @@ GraniteCave_StevensRoom_Hide_Aggronite::
 
 GraniteCave_StevensRoom_Aggronite::
 	goto_if_set FLAG_HIDDEN_ITEM_AGGRONITE, GraniteCave_StevensRoom_End_Aggronite
-	giveitem ITEM_AGGRONITE
-	setflag FLAG_HIDDEN_ITEM_AGGRONITE
 	call GraniteCave_StevensRoom_Hide_Aggronite
 	special DrawWholeMapView
+	giveitem ITEM_AGGRONITE
+	setflag FLAG_HIDDEN_ITEM_AGGRONITE
 GraniteCave_StevensRoom_End_Aggronite::
 	release
 	end	
