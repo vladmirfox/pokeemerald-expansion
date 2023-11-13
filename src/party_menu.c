@@ -5757,7 +5757,7 @@ void DeleteMove(struct Pokemon *mon, u32 move)
     }
 }
 
-u8 DoesMonHaveAnyMoves(struct Pokemon *mon)
+bool32 DoesMonHaveAnyMoves(struct Pokemon *mon)
 {
     struct BoxPokemon *boxMon = &mon->box;
     u32 i;
@@ -5766,9 +5766,9 @@ u8 DoesMonHaveAnyMoves(struct Pokemon *mon)
     {
         u32 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
         if (existingMove != MOVE_NONE)
-            i++;
+            return TRUE;
     }
-    return i;
+    return FALSE;
 }
 
 
