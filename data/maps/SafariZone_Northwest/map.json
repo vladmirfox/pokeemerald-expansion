@@ -59,6 +59,13 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 31,
+      "y": 32,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SafariZone_Northwest_Pinsirite"
+    }
   ]
 }

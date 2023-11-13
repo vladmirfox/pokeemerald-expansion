@@ -1,5 +1,23 @@
 SafariZone_North_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, SafariZone_North_On_Load
 	.byte 0
+
+SafariZone_North_On_Load:
+	call_if_set FLAG_HIDDEN_ITEM_HERACRONITE, SafariZone_North_Hide_Heracronite
+	end
+
+SafariZone_North_Hide_Heracronite::
+    setmetatile 5, 38, METATILE_General_Grass, FALSE
+    return
+
+SafariZone_North_Heracronite::
+	goto_if_set FLAG_HIDDEN_ITEM_HERACRONITE, SafariZone_North_End_Heracronite
+	giveitem ITEM_HERACRONITE
+	call SafariZone_North_Hide_Heracronite
+	special DrawWholeMapView
+SafariZone_North_End_Heracronite::
+	release
+	end	
 
 SafariZone_North_EventScript_Fisherman::
 	msgbox SafariZone_North_Text_Fisherman, MSGBOX_NPC
