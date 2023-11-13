@@ -13,6 +13,7 @@ SafariZone_Northwest_Hide_Pinsirite::
 SafariZone_Northwest_Pinsirite::
 	goto_if_set FLAG_HIDDEN_ITEM_PINSIRITE, SafariZone_Northwest_End_Pinsirite
 	giveitem ITEM_PINSIRITE
+	setflag FLAG_HIDDEN_ITEM_PINSIRITE
 	call SafariZone_Northwest_Hide_Pinsirite
 	special DrawWholeMapView
 SafariZone_Northwest_End_Pinsirite::

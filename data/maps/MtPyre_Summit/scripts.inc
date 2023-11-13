@@ -8,7 +8,26 @@
 
 MtPyre_Summit_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MtPyre_Summit_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, MtPyre_Summit_OnLoad
 	.byte 0
+
+MtPyre_Summit_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_BANETTITE, MtPyre_Summit_Hide_Banettite
+	end
+
+MtPyre_Summit_Hide_Banettite::
+    setmetatile 10, 24, METATILE_Cave_RockFloor, FALSE
+    return
+
+MtPyre_Summit_Banettite::
+	goto_if_set FLAG_HIDDEN_ITEM_BANETTITE, MtPyre_Summit_End_Banettite
+	giveitem ITEM_BANETTITE
+	setflag FLAG_HIDDEN_ITEM_BANETTITE
+	call MtPyre_Summit_Hide_Banettite
+	special DrawWholeMapView
+MtPyre_Summit_End_Banettite::
+	release
+	end	
 
 MtPyre_Summit_OnTransition:
 	call_if_eq VAR_MT_PYRE_STATE, 2, MtPyre_Summit_EventScript_SetArchieMaxiePositions

@@ -1,7 +1,26 @@
 .set LOCALID_STEVEN, 1
 
 GraniteCave_StevensRoom_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, GraniteCave_StevensRoom_OnLoad
 	.byte 0
+
+GraniteCave_StevensRoom_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_AGGRONITE, GraniteCave_StevensRoom_Hide_Aggronite
+	end
+
+GraniteCave_StevensRoom_Hide_Aggronite::
+    setmetatile 7, 9, METATILE_Cave_RockFloor, FALSE
+    return
+
+GraniteCave_StevensRoom_Aggronite::
+	goto_if_set FLAG_HIDDEN_ITEM_AGGRONITE, GraniteCave_StevensRoom_End_Aggronite
+	giveitem ITEM_AGGRONITE
+	setflag FLAG_HIDDEN_ITEM_AGGRONITE
+	call GraniteCave_StevensRoom_Hide_Aggronite
+	special DrawWholeMapView
+GraniteCave_StevensRoom_End_Aggronite::
+	release
+	end	
 
 GraniteCave_StevensRoom_EventScript_Steven::
 	lock
