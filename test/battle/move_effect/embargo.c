@@ -1,6 +1,11 @@
 #include "global.h"
 #include "test/battle.h"
 
+ASSUMPTIONS
+{
+    ASSUME(gBattleMoves[MOVE_EMBARGO].effect == EFFECT_EMBARGO);
+}
+
 SINGLE_BATTLE_TEST("Embargo blocks the effect of an affected Pokémon's held item")
 {
     GIVEN {
@@ -52,13 +57,10 @@ WILD_BATTLE_TEST("Embargo doesn't block held item effects that affect experience
         OPPONENT(SPECIES_CATERPIE) { Level(10); HP(1); }
         ASSUME(gItems[ITEM_LUCKY_EGG].holdEffect == HOLD_EFFECT_LUCKY_EGG);
     } WHEN {
-        TURN { MOVE(player, MOVE_EMBARGO); }
-        TURN { MOVE(player, MOVE_SCRATCH); }
+        TURN { MOVE(opponent, MOVE_EMBARGO); MOVE(player, MOVE_SCRATCH); }
     } SCENE {
-        // Turn 1
-        MESSAGE("Wobbuffet used Embargo!");
-        MESSAGE("Wild Caterpie can't use items anymore!");
-        // Turn 2
+        MESSAGE("Wild Caterpie used Embargo!");
+        MESSAGE("Wobbuffet can't use items anymore!");
         MESSAGE("Wobbuffet used Scratch!");
         MESSAGE("Wild Caterpie fainted!");
         EXPERIENCE_BAR(player, captureGainedExp: &results[i].exp);
@@ -79,12 +81,11 @@ WILD_BATTLE_TEST("Embargo doesn't block held item effects that affect effort val
         ASSUME(gItems[ITEM_POWER_WEIGHT].secondaryId == STAT_HP);
         ASSUME(gSpeciesInfo[SPECIES_CATERPIE].evYield_HP == 1);
     } WHEN {
-        TURN { MOVE(player, MOVE_EMBARGO); }
-        TURN { MOVE(player, MOVE_SCRATCH); }
+        TURN { MOVE(opponent, MOVE_EMBARGO); MOVE(player, MOVE_SCRATCH); }
     } SCENE {
         // Turn 1
-        MESSAGE("Wobbuffet used Embargo!");
-        MESSAGE("Wild Caterpie can't use items anymore!");
+        MESSAGE("Wild Caterpie used Embargo!");
+        MESSAGE("Wobbuffet can't use items anymore!");
         // Turn 2
         MESSAGE("Wobbuffet used Scratch!");
         MESSAGE("Wild Caterpie fainted!");
@@ -136,7 +137,7 @@ WILD_BATTLE_TEST("Embargo doesn't block held item effects that affect friendship
     }
 }
 
-SINGLE_BATTLE_TEST("Embargo doesn't block a held item's form-changing effect, but it does any other effects", s16 damage)
+SINGLE_BATTLE_TEST("Embargo doesn't block a held item's form-changing effect, but it does block its other effects", s16 damage)
 {
     u32 heldItem;
 
@@ -149,11 +150,11 @@ SINGLE_BATTLE_TEST("Embargo doesn't block a held item's form-changing effect, bu
         ASSUME(gItems[ITEM_MEADOW_PLATE].holdEffectParam == 20);
         ASSUME(gItems[ITEM_MEADOW_PLATE].secondaryId == TYPE_GRASS);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_RAZOR_LEAF); }
+        TURN { MOVE(player, MOVE_EMBARGO); MOVE(opponent, MOVE_RAZOR_LEAF); }
     } SCENE {
         HP_BAR(player, captureDamage: &results[i].damage);
     } FINALLY {
-        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.2), results[1].damage);
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.0), results[1].damage);
     }
 }
 
