@@ -5872,32 +5872,20 @@ void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc task)
 static void Task_TryItemUseFusionChange(u8 taskId);
 static void SpriteCB_FormChangeIconMosaic(struct Sprite *sprite);
 
-u8 IsFusionMon(u16 species) // Helps with control flow, probably not ideal
+u8 IsFusionMon(u16 species)
 {
-    switch(species)
+    u16 i;
+    const struct Fusion *itemFusion = gFusionTablePointers[species];
+    for (i = 0; itemFusion[i].fusionStorageIndex != FUSION_TERMINATOR; i++)
     {
-        case SPECIES_CALYREX_ICE_RIDER:
-        case SPECIES_CALYREX_SHADOW_RIDER:
-        case SPECIES_KYUREM_BLACK:
-        case SPECIES_KYUREM_WHITE:
-        case SPECIES_NECROZMA_DAWN_WINGS:
-        case SPECIES_NECROZMA_DUSK_MANE:
+        if (itemFusion[i].fusingIntoMon == species)
             return UNFUSE_MON;
-        case SPECIES_NECROZMA:
-        case SPECIES_CALYREX:
-        case SPECIES_KYUREM:
+        else if (itemFusion[i].targetSpecies1 == species)
             return FUSE_MON;
-        case SPECIES_SOLGALEO:
-        case SPECIES_LUNALA:
-        case SPECIES_GLASTRIER:
-        case SPECIES_SPECTRIER:
-        case SPECIES_RESHIRAM:
-        case SPECIES_ZEKROM:
+        else if (itemFusion[i].targetSpecies2 == species)
             return SECOND_FUSE_MON;
-        default:
-            return FALSE;
-
     }
+    return FALSE;
 }
 
 void FormChangeTeachMove(u8 taskId, u32 move, u32 slot)
@@ -6135,8 +6123,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
             {
                 if(gPokemonStoragePtr->fusions[itemFusion[i].fusionStorageIndex].level == 0)
                     continue;
-                if((itemFusion[i].itemId == gSpecialVar_ItemId) && (itemFusion[i].fusingIntoMon == species)
-                    && (GetMonData(&gPokemonStoragePtr->fusions[itemFusion[i].fusionStorageIndex], MON_DATA_SPECIES) == itemFusion[i].targetSpecies2))
+                if((itemFusion[i].itemId == gSpecialVar_ItemId) && (GetMonData(&gPokemonStoragePtr->fusions[itemFusion[i].fusionStorageIndex], MON_DATA_SPECIES) == itemFusion[i].targetSpecies2))
                 {
                     task->fusionType = UNFUSE_MON;
                     task->firstFusion = species;
@@ -6178,7 +6165,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
             {
                 if(gPokemonStoragePtr->fusions[itemFusion[i].fusionStorageIndex].level != 0)
                     continue;
-                if((itemFusion[i].itemId == gSpecialVar_ItemId) && (itemFusion[i].targetSpecies2 == species) && (itemFusion[i].targetSpecies1 == task->firstFusion))
+                if((itemFusion[i].itemId == gSpecialVar_ItemId) && (itemFusion[i].targetSpecies1 == task->firstFusion))
                 {
                     task->storageIndex = itemFusion[i].fusionStorageIndex;
                     task->fusionResult = itemFusion[i].fusingIntoMon;
