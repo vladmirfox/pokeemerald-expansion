@@ -5959,24 +5959,6 @@ bool32 DoesMonHaveAnyMoves(struct Pokemon *mon)
     return FALSE;
 }
 
-void DeleteMove(struct Pokemon *mon, u16 move)
-{
-    struct BoxPokemon *boxMon = &mon->box;
-    u32 i, j;
-
-    for (i = 0; i < MAX_MON_MOVES; i++)
-    {
-        u16 existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i, NULL);
-        if (existingMove == move)
-        {
-            SetMonMoveSlot(mon, MOVE_NONE, i);
-            RemoveMonPPBonus(mon, i);
-            for (j = i; j < MAX_MON_MOVES - 1; j++)
-                ShiftMoveSlot(mon, j, j + 1);
-        }
-    }
-}
-
 bool32 TryItemUseFusionChange(u8 taskId, TaskFunc task)
 {
     u16 targetSpecies = gTasks[taskId].fusionResult;
