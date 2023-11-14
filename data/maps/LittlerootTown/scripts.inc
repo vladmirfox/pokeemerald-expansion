@@ -51,6 +51,7 @@ LittlerootTown_OnTransition:
 	call_if_eq VAR_LITTLEROOT_RIVAL_STATE, 3, LittlerootTown_EventScript_SetRivalLeftForRoute103
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_HideMapNamePopup
 	call_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_EventScript_LeftLabAfterDexUpgrade
+	call_if_unset FLAG_TEMP_BATTLE, LittlerootTown_EventScript_SetupTempBattle
 	end
 
 LittlerootTown_EventScript_LeftLabAfterDexUpgrade::
@@ -1019,3 +1020,77 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
 
+LittleRootTown_EventScript_NewSign::
+	lockall
+	msgbox LittleRootTown_EventScript_NewSign_Text_0
+	releaseall
+	return
+
+
+LittlerootTown_EventScript_SetupTempBattle::
+	goto_if_unset FLAG_UNUSED_0x020, LittlerootTown_EventScript_SetupTempBattle_3
+LittlerootTown_EventScript_SetupTempBattle_2:
+	compare VAR_TEMP_STATE, 0
+	goto_if_eq LittlerootTown_EventScript_SetupTempBattle_8
+	return
+
+LittlerootTown_EventScript_SetupTempBattle_1:
+	setflag FLAG_TEMP_BATTLE
+	setvar VAR_TEMP_STATE, 0
+	return
+
+LittlerootTown_EventScript_SetupTempBattle_3:
+	goto_if_unset FLAG_UNUSED_0x021, LittlerootTown_EventScript_SetupTempBattle_5
+	goto LittlerootTown_EventScript_SetupTempBattle_2
+
+LittlerootTown_EventScript_SetupTempBattle_5:
+	goto_if_unset FLAG_UNUSED_0x022, LittlerootTown_EventScript_SetupTempBattle_1
+	goto LittlerootTown_EventScript_SetupTempBattle_2
+
+LittlerootTown_EventScript_SetupTempBattle_8:
+	clearflag FLAG_TEMP_BATTLE
+	return
+
+
+LittlerootTown_EventScript_TempBattle::
+	trainerbattle_single TRAINER_MAY_ROUTE_103_TORCHIC, May_Intro, May_Outro, TempBattleOver
+	end
+
+
+TempBattleOver::
+	lockall
+	msgbox May_Postbattle, MSGBOX_AUTOCLOSE
+	applymovement 9, MayLeave
+	waitmovement 0
+	removeobject 9
+	setflag FLAG_TEMP_BATTLE
+	setvar VAR_TEMP_STATE, 1
+	waitmessage
+	release
+	return
+
+
+MayLeave:
+	face_down
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+LittleRootTown_EventScript_NewSign_Text_0:
+	.string "Hello World!$"
+
+May_Intro::
+	.string "I'll win for sure!$"
+
+May_Outro::
+	.string "That doesn't count...$"
+
+May_Postbattle::
+	.string "I'll win next time for sure!$"
