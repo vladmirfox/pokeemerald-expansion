@@ -1,0 +1,164 @@
+mapscripts NewBirchsLab_MapScripts {}
+
+script NewBirchsLab_EventScript_Pokeball1 {
+
+  lockall
+  if (!(flag(FLAG_UNUSED_0x020) || flag(FLAG_UNUSED_0x021) || flag(FLAG_UNUSED_0x022))) {
+    showmonpic(SPECIES_TURTWIG, 10, 3)
+    msgbox("Do you want to choose Turtwig?", MSGBOX_YESNO)
+
+    if (var(VAR_RESULT) == YES){
+      givemon(SPECIES_TURTWIG, 5, ITEM_BERRY_JUICE)
+      if (var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+        playfanfare(MUS_OBTAIN_ITEM)
+        msgbox("Received Turtwig!")
+        removeobject(1)
+        setflag(FLAG_UNUSED_0x020)
+        setflag(FLAG_SYS_POKEMON_GET)
+        call(NicknamePartyMon)
+      }
+      elif (var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+        playfanfare(MUS_OBTAIN_ITEM)
+        msgbox("Received Turtwig!")
+        removeobject(1)
+        setflag(FLAG_UNUSED_0x020)
+        setflag(FLAG_SYS_POKEMON_GET)
+        call(NicknameBoxMon)
+      }
+      else {
+        hidemonpic
+        msgbox("No more room.")
+      }
+    }
+    else {
+      hidemonpic
+      msgbox(NewBirchsLab_NotChosen)
+    }
+    waitmessage
+    releaseall
+    end
+  }
+  else {
+    msgbox(NewBirchsLab_AlreadyChosen)
+    releaseall
+    end
+  }
+}
+
+script NewBirchsLab_EventScript_Pokeball2 {
+
+  lockall
+  if (!(flag(FLAG_UNUSED_0x020) || flag(FLAG_UNUSED_0x021) || flag(FLAG_UNUSED_0x022))) {
+    showmonpic(SPECIES_FENNEKIN, 10, 3)
+    msgbox("Do you want to choose Fennekin?", MSGBOX_YESNO)
+
+    if (var(VAR_RESULT) == YES){
+      givemon(SPECIES_FENNEKIN, 5, ITEM_BERRY_JUICE)
+      if (var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+        playfanfare(MUS_OBTAIN_ITEM)
+        msgbox("Received Fennekin!")
+        removeobject(2)
+        setflag(FLAG_UNUSED_0x021)
+        setflag(FLAG_SYS_POKEMON_GET)
+        call(NicknamePartyMon)
+      }
+      elif (var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+        playfanfare(MUS_OBTAIN_ITEM)
+        msgbox("Received Fennekin!")
+        removeobject(2)
+        setflag(FLAG_UNUSED_0x021)
+        setflag(FLAG_SYS_POKEMON_GET)
+        call(NicknameBoxMon)
+      }
+      else {
+        hidemonpic
+        msgbox("No more room.")
+      }
+    }
+    else {
+      hidemonpic
+      msgbox(NewBirchsLab_NotChosen)
+    }
+    waitmessage
+    releaseall
+    end
+  }
+  else {
+    msgbox(NewBirchsLab_AlreadyChosen)
+    releaseall
+    end
+  }
+}
+
+script NewBirchsLab_EventScript_Pokeball3 {
+
+  lockall
+  if (!(flag(FLAG_UNUSED_0x020) || flag(FLAG_UNUSED_0x021) || flag(FLAG_UNUSED_0x022))) {
+    showmonpic(SPECIES_TOTODILE, 10, 3)
+    msgbox("Do you want to choose Totodile?", MSGBOX_YESNO)
+
+    if (var(VAR_RESULT) == YES){
+      givemon(SPECIES_TOTODILE, 5, ITEM_BERRY_JUICE)
+      if (var(VAR_RESULT) == MON_GIVEN_TO_PARTY) {
+        playfanfare(MUS_OBTAIN_ITEM)
+        msgbox("Received Totodile!")
+        removeobject(3)
+        setflag(FLAG_UNUSED_0x022)
+        setflag(FLAG_SYS_POKEMON_GET)
+        call(NicknamePartyMon)
+      }
+      elif (var(VAR_RESULT) == MON_GIVEN_TO_PC) {
+        playfanfare(MUS_OBTAIN_ITEM)
+        msgbox("Received Totodile!")
+        removeobject(3)
+        setflag(FLAG_UNUSED_0x022)
+        setflag(FLAG_SYS_POKEMON_GET)
+        call(NicknameBoxMon)
+      }
+      else {
+        hidemonpic
+        msgbox("No more room.")
+      }
+    }
+    else {
+      hidemonpic
+      msgbox(NewBirchsLab_NotChosen)
+    }
+    waitmessage
+    releaseall
+    end
+  }
+  else {
+    msgbox(NewBirchsLab_AlreadyChosen)
+    releaseall
+    end
+  }
+}
+
+script NicknamePartyMon {
+
+  msgbox("Give it a nickname?", MSGBOX_YESNO)
+  hidemonpic
+  if (var(VAR_RESULT) == YES) {
+    call(Common_EventScript_GetGiftMonPartySlot)
+    call(Common_EventScript_NameReceivedPartyMon)
+  }
+}
+
+script NicknameBoxMon {
+
+  msgbox("Give it a nickname?", MSGBOX_YESNO)
+  hidemonpic
+    if (var(VAR_RESULT) == YES) {
+    call(Common_EventScript_NameReceivedBoxMon)
+  }
+  msgbox("Pokémon transferred to PC.")
+}
+
+text NewBirchsLab_NotChosen{
+  "You did not choose the Pokémon."
+}
+
+text NewBirchsLab_AlreadyChosen{
+  "You can only choose one Pokémon!"
+}
