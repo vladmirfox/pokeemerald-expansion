@@ -4145,7 +4145,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         iv = (value & (MAX_IV_MASK << 10)) >> 10;
         SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
 
-        if (gSpeciesInfo[species].flags & SPECIES_FLAG_ALL_PERFECT_IVS)
+        if (gSpeciesInfo[species].allPerfectIVs)
         {
             iv = MAX_PER_STAT_IVS;
             SetBoxMonData(boxMon, MON_DATA_HP_IV, &iv);
@@ -4155,8 +4155,10 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
             SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &iv);
             SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &iv);
         }
-    #if P_LEGENDARY_PERFECT_IVS >= GEN_6
-        else if (gSpeciesInfo[species].flags & (SPECIES_FLAG_LEGENDARY | SPECIES_FLAG_MYTHICAL | SPECIES_FLAG_ULTRA_BEAST))
+        else if (P_LEGENDARY_PERFECT_IVS >= GEN_6 
+         && (gSpeciesInfo[species].isLegendary
+          || gSpeciesInfo[species].isMythical
+          || gSpeciesInfo[species].isUltraBeast))
         {
             iv = MAX_PER_STAT_IVS;
             // Initialize a list of IV indices.
@@ -4197,7 +4199,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
                 }
             }
         }
-    #endif
     }
 
     if (gSpeciesInfo[species].abilities[1])

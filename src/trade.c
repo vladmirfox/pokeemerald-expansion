@@ -1571,7 +1571,7 @@ static u8 CheckValidityOfTradeMons(u8 *aliveMons, u8 playerPartyCount, u8 player
     partnerSpecies = GetMonData(&gEnemyParty[partnerMonIdx], MON_DATA_SPECIES);
 
     // Can't trade specific species
-    if (gSpeciesInfo[partnerSpecies].flags & SPECIES_FLAG_CANNOT_BE_TRADED)
+    if (gSpeciesInfo[partnerSpecies].cannotBeTraded)
         return PARTNER_MON_INVALID;
 
     // Partner cant trade Egg or non-Hoenn mon if player doesn't have National Dex
@@ -2418,7 +2418,7 @@ static u32 CanTradeSelectedMon(struct Pokemon *playerParty, int partyCount, int 
     }
 
     // Can't trade specific species
-    if (gSpeciesInfo[species[monIdx]].flags & SPECIES_FLAG_CANNOT_BE_TRADED)
+    if (gSpeciesInfo[species[monIdx]].cannotBeTraded)
         return CANT_TRADE_INVALID_MON;
 
     // Make Eggs not count for numMonsLeft
@@ -2501,7 +2501,7 @@ int GetUnionRoomTradeMessageId(struct RfuGameCompatibilityData player, struct Rf
     }
 
     // Can't trade specific species
-    if (gSpeciesInfo[playerSpecies].flags & SPECIES_FLAG_CANNOT_BE_TRADED)
+    if (gSpeciesInfo[playerSpecies].cannotBeTraded)
         return UR_TRADE_MSG_MON_CANT_BE_TRADED;
 
     if (partnerSpecies == SPECIES_EGG)
@@ -2549,7 +2549,7 @@ int CanRegisterMonForTradingBoard(struct RfuGameCompatibilityData player, u16 sp
     bool8 hasNationalDex = player.hasNationalDex;
 
     // Can't trade specific species
-    if (gSpeciesInfo[species].flags & SPECIES_FLAG_CANNOT_BE_TRADED)
+    if (gSpeciesInfo[species].cannotBeTraded)
         return CANT_REGISTER_MON;
 
     if (hasNationalDex)

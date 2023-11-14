@@ -323,21 +323,6 @@
 #define NUM_NORMAL_ABILITY_SLOTS 2
 #define NUM_HIDDEN_ABILITY_SLOTS 1
 
-// Species Flags
-#define SPECIES_FLAG_LEGENDARY          (1 << 0)
-#define SPECIES_FLAG_MYTHICAL           (1 << 1)
-#define SPECIES_FLAG_MEGA_EVOLUTION     (1 << 2)
-#define SPECIES_FLAG_PRIMAL_REVERSION   (1 << 3)
-#define SPECIES_FLAG_ULTRA_BEAST        (1 << 4)
-#define SPECIES_FLAG_ALOLAN_FORM        (1 << 5)
-#define SPECIES_FLAG_GALARIAN_FORM      (1 << 6)
-#define SPECIES_FLAG_HISUIAN_FORM       (1 << 7)
-#define SPECIES_FLAG_PALDEAN_FORM       (1 << 8)
-#define SPECIES_FLAG_ALL_PERFECT_IVS    (1 << 9)
-#define SPECIES_FLAG_CANNOT_BE_TRADED   (1 << 10)
-#define SPECIES_FLAG_ULTRA_BURST        (1 << 11)
-#define SPECIES_FLAG_PARADOX            (1 << 12)
-
 #define LEGENDARY_PERFECT_IV_COUNT 3
 
 #endif // GUARD_CONSTANTS_POKEMON_H

@@ -1870,7 +1870,7 @@ u32 GetBattlerFriendshipScore(u32 battler)
 
     if (side != B_SIDE_PLAYER)
         return FRIENDSHIP_NONE;
-    else if (gSpeciesInfo[species].flags & SPECIES_FLAG_MEGA_EVOLUTION
+    else if (gSpeciesInfo[species].isMegaEvolution
           || (gBattleTypeFlags & (BATTLE_TYPE_EREADER_TRAINER
                                 | BATTLE_TYPE_FRONTIER
                                 | BATTLE_TYPE_LINK
@@ -10257,7 +10257,7 @@ bool32 IsBattlerMegaEvolved(u32 battler)
     // While Transform does copy stats and visuals, it shouldn't be counted as true Mega Evolution.
     if (gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
         return FALSE;
-    return (gSpeciesInfo[gBattleMons[battler].species].flags & SPECIES_FLAG_MEGA_EVOLUTION);
+    return (gSpeciesInfo[gBattleMons[battler].species].isMegaEvolution);
 }
 
 bool32 IsBattlerPrimalReverted(u32 battler)
@@ -10265,7 +10265,7 @@ bool32 IsBattlerPrimalReverted(u32 battler)
     // While Transform does copy stats and visuals, it shouldn't be counted as true Primal Revesion.
     if (gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
         return FALSE;
-    return (gSpeciesInfo[gBattleMons[battler].species].flags & SPECIES_FLAG_PRIMAL_REVERSION);
+    return (gSpeciesInfo[gBattleMons[battler].species].isPrimalRevesion);
 }
 
 bool32 IsBattlerUltraBursted(u32 battler)
@@ -10273,7 +10273,7 @@ bool32 IsBattlerUltraBursted(u32 battler)
     // While Transform does copy stats and visuals, it shouldn't be counted as true Ultra Burst.
     if (gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
         return FALSE;
-    return (gSpeciesInfo[gBattleMons[battler].species].flags & SPECIES_FLAG_ULTRA_BURST);
+    return (gSpeciesInfo[gBattleMons[battler].species].isUltraBurst);
 }
 
 // Returns SPECIES_NONE if no form change is possible
