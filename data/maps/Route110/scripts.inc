@@ -7,8 +7,26 @@ Route110_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, Route110_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, Route110_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route110_OnFrame
-	map_script MAP_SCRIPT_ON_LOAD, Route110_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, Route110_OnLoad
 	.byte 0
+
+Route110_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_MANECTITE, Route110_Hide_Manectite
+	end
+
+Route110_Hide_Manectite::
+    setmetatile 32, 16, METATILE_General_Grass, FALSE
+    return
+
+Route110_Manectite::
+	goto_if_set FLAG_HIDDEN_ITEM_MANECTITE, Route110_End_Manectite
+	call Route110_Hide_Manectite
+	special DrawWholeMapView
+	giveitem ITEM_MANECTITE
+	setflag FLAG_HIDDEN_ITEM_MANECTITE
+Route110_End_Manectite::
+	release
+	end	
 
 Route110_OnResume:
 	special UpdateCyclingRoadState

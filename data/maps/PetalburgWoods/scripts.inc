@@ -22,9 +22,9 @@ PetalburgWoods_OnResume_Day:
 	end
 
 PetalburgWoods_Load:
+	call_if_set FLAG_HIDDEN_ITEM_BEEDRILLITE, PetalburgWoods_Hide_Beedrillite
 	call Grotto_EventScript_GetGrottoWarp
 	goto_if_eq VAR_HIDDEN_GROTTO_PETALBURG_WOODS, 0, PetalburgWoods_EventScript_CloseGrotto
-	call_if_set FLAG_HIDDEN_ITEM_BEEDRILLITE, PetalburgWoods_Hide_Beedrillite
 	end
 
 PetalburgWoods_Hide_Beedrillite::
