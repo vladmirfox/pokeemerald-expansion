@@ -384,6 +384,7 @@ struct SpeciesInfo /*0x8C*/
             u32 isPaldeanForm:1;
             u32 cannotBeTraded:1;
             u32 allPerfectIVs:1;
+            u32 padding4:18;
             // Move Data
  /* 0x80 */ const struct LevelUpMove *const levelUpLearnset;
  /* 0x84 */ const u16 *const teachableLearnset;
