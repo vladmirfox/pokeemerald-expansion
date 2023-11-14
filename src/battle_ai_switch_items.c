@@ -825,7 +825,7 @@ static bool32 CanMonSurviveHazardSwitchin(u32 battler)
 
             for (j = 0; j < MAX_MON_MOVES; j++)
             {
-                aiMove = gBattleMons[battler].moves[j];
+                aiMove = GetMonData(&party[i], MON_DATA_MOVE1 + j, NULL);
                 if (aiMove == MOVE_RAPID_SPIN || aiMove == MOVE_DEFOG || aiMove == MOVE_MORTAL_SPIN || aiMove == MOVE_TIDY_UP)
                 {
                     // Have a mon that can clear the hazards, so switching out is okay
@@ -1262,7 +1262,7 @@ static u32 GetSwitchinHazardsDamage(u32 battler, struct BattlePokemon *battleMon
     {
         // Stealth Rock
         if ((hazardFlags & SIDE_STATUS_STEALTH_ROCK) && heldItemEffect != HOLD_EFFECT_HEAVY_DUTY_BOOTS)
-            hazardDamage += GetStealthHazardDamageByTypesAndHP(gBattleMoves[MOVE_STEALTH_ROCK].type, defType1, defType2, battleMon->hp);
+            hazardDamage += GetStealthHazardDamageByTypesAndHP(gBattleMoves[MOVE_STEALTH_ROCK].type, defType1, defType2, battleMon->maxHP);
         // Spikes
         if ((hazardFlags & SIDE_STATUS_SPIKES) && IsMonGrounded(heldItemEffect, ability, defType1, defType2))
         {
