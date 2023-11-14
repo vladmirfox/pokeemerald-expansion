@@ -1,14 +1,18 @@
 #ifndef GUARD_CONFIG_SPECIES_FAMILIES_H
 #define GUARD_CONFIG_SPECIES_FAMILIES_H
 
+#define P_MEGA_EVOLUTIONS                TRUE
+#define P_GIGANTAMAX_FORMS               TRUE
+
 #define P_REGIONAL_FORMS                 TRUE
 #define P_ALOLAN_FORMS                   P_REGIONAL_FORMS
 #define P_GALARIAN_FORMS                 P_REGIONAL_FORMS
 #define P_HISUIAN_FORMS                  P_REGIONAL_FORMS
 #define P_PALDEAN_FORMS                  P_REGIONAL_FORMS
 
-#define P_MEGA_EVOLUTIONS                TRUE
-#define P_GIGANTAMAX_FORMS               TRUE
+#define P_PIKACHU_EXTRA_FORMS            TRUE
+#define P_COSPLAY_PIKACHU_FORMS          P_PIKACHU_EXTRA_FORMS
+#define P_CAP_PIKACHU_FORMS              P_PIKACHU_EXTRA_FORMS
 
 // To disable specific families, replace P_GEN_x_POKEMON with FALSE.
 
