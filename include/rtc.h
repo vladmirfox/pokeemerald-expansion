@@ -20,14 +20,14 @@
 #define MORNING_EVO_HOUR_BEGIN 6
 #define MORNING_EVO_HOUR_END   10
 
-#define DAY_EVO_HOUR_BEGIN     12
-#define DAY_EVO_HOUR_END       HOURS_PER_DAY
+#define DAY_EVO_HOUR_BEGIN     10
+#define DAY_EVO_HOUR_END       19
 
-#define DUSK_EVO_HOUR_BEGIN    17
-#define DUSK_EVO_HOUR_END      18
+#define DUSK_EVO_HOUR_BEGIN    19
+#define DUSK_EVO_HOUR_END      20
 
-#define NIGHT_EVO_HOUR_BEGIN   0
-#define NIGHT_EVO_HOUR_END     12
+#define NIGHT_EVO_HOUR_BEGIN   20
+#define NIGHT_EVO_HOUR_END     6
 
 #define TIME_MORNING           0
 #define TIME_DAY               1
