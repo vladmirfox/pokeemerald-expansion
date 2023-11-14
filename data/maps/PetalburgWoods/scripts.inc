@@ -24,7 +24,22 @@ PetalburgWoods_OnResume_Day:
 PetalburgWoods_Load:
 	call Grotto_EventScript_GetGrottoWarp
 	goto_if_eq VAR_HIDDEN_GROTTO_PETALBURG_WOODS, 0, PetalburgWoods_EventScript_CloseGrotto
+	call_if_set FLAG_HIDDEN_ITEM_BEEDRILLITE, PetalburgWoods_Hide_Beedrillite
 	end
+
+PetalburgWoods_Hide_Beedrillite::
+    setmetatile 34, 18, METATILE_General_Grass, FALSE
+    return
+
+PetalburgWoods_Beedrillite::
+	goto_if_set FLAG_HIDDEN_ITEM_BEEDRILLITE, PetalburgWoods_End_Beedrillite
+	call PetalburgWoods_Hide_Beedrillite
+	special DrawWholeMapView
+	giveitem ITEM_BEEDRILLITE
+	setflag FLAG_HIDDEN_ITEM_BEEDRILLITE
+PetalburgWoods_End_Beedrillite::
+	release
+	end	
 
 PetalburgWoods_EventScript_CloseGrotto::
 	setmetatile 33, 4, METATILE_General_Grass, FALSE

@@ -4,7 +4,22 @@ ShoalCave_LowTideLowerRoom_MapScripts::
 
 ShoalCave_LowTideLowerRoom_OnLoad:
 	call ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatiles
+	call_if_set FLAG_HIDDEN_ITEM_GLALITITE, ShoalCave_LowTideLowerRoom_Hide_Glalitite
 	end
+
+ShoalCave_LowTideLowerRoom_Hide_Glalitite::
+    setmetatile 24, 9, METATILE_Cave_RockFloor, FALSE
+    return
+
+ShoalCave_LowTideLowerRoom_Glalitite::
+	goto_if_set FLAG_HIDDEN_ITEM_GLALITITE, ShoalCave_LowTideLowerRoom_End_Glalitite
+	call ShoalCave_LowTideLowerRoom_Hide_Glalitite
+	special DrawWholeMapView
+	giveitem ITEM_GLALITITE
+	setflag FLAG_HIDDEN_ITEM_GLALITITE
+ShoalCave_LowTideLowerRoom_End_Glalitite::
+	release
+	end	
 
 ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatiles::
 	goto_if_set FLAG_RECEIVED_SHOAL_SALT_4, ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatilesEnd
