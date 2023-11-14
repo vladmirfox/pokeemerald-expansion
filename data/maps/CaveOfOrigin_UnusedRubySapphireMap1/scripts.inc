@@ -1,7 +1,21 @@
 CaveOfOrigin_UnusedRubySapphireMap1_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, CaveOfOrigin_UnusedRubySapphireMap1_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, CaveOfOrigin_UnusedRubySapphireMap1_OnLoad
 	.byte 0
 
-CaveOfOrigin_UnusedRubySapphireMap1_OnTransition:
-	call_if_set FLAG_UNUSED_RS_LEGENDARY_BATTLE_DONE, CaveOfOrigin_EventScript_DisableTriggers
+CaveOfOrigin_UnusedRubySapphireMap1_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_ABOMASITE, CaveOfOrigin_UnusedRubySapphireMap1_Hide_Abomasite
 	end
+
+CaveOfOrigin_UnusedRubySapphireMap1_Hide_Abomasite::
+    setmetatile 9, 7, METATILE_Cave_RockFloor, FALSE
+    return
+
+CaveOfOrigin_UnusedRubySapphireMap1_Abomasite::
+	goto_if_set FLAG_HIDDEN_ITEM_ABOMASITE, CaveOfOrigin_UnusedRubySapphireMap1_End_Abomasite
+	call CaveOfOrigin_UnusedRubySapphireMap1_Hide_Abomasite
+	special DrawWholeMapView
+	giveitem ITEM_ABOMASITE
+	setflag FLAG_HIDDEN_ITEM_ABOMASITE
+CaveOfOrigin_UnusedRubySapphireMap1_End_Abomasite::
+	release
+	end	

@@ -9,7 +9,22 @@ DesertCavern_1F_MapScripts::
 DesertCavern_1F_OnLoad:
 	call_if_eq VAR_FOSSIL_OBTAINED, 1, DesertCavern_1F_EventScript_RemoveLedge
 	call_if_eq VAR_FOSSIL_OBTAINED, 2, DesertCavern_1F_EventScript_RemoveLedge
+	call_if_set FLAG_HIDDEN_ITEM_AERODACTYLITE, DesertCavern_1F_Hide_Aerodactylite
 	end
+
+DesertCavern_1F_Hide_Aerodactylite::
+    setmetatile 3, 11, METATILE_Cave_RockFloor, FALSE
+    return
+
+DesertCavern_1F_Aerodactylite::
+	goto_if_set FLAG_HIDDEN_ITEM_AERODACTYLITE, DesertCavern_1F_End_Aerodactylite
+	call DesertCavern_1F_Hide_Aerodactylite
+	special DrawWholeMapView
+	giveitem ITEM_AERODACTYLITE
+	setflag FLAG_HIDDEN_ITEM_AERODACTYLITE
+DesertCavern_1F_End_Aerodactylite::
+	release
+	end	
 
 DesertCavern_1F_EventScript_PrepareStartEvent1::
 	lockall

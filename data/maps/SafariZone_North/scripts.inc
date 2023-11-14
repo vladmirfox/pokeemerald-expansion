@@ -12,9 +12,10 @@ SafariZone_North_Hide_Heracronite::
 
 SafariZone_North_Heracronite::
 	goto_if_set FLAG_HIDDEN_ITEM_HERACRONITE, SafariZone_North_End_Heracronite
-	giveitem ITEM_HERACRONITE
 	call SafariZone_North_Hide_Heracronite
 	special DrawWholeMapView
+	giveitem ITEM_HERACRONITE
+	setflag FLAG_HIDDEN_ITEM_HERACRONITE
 SafariZone_North_End_Heracronite::
 	release
 	end	

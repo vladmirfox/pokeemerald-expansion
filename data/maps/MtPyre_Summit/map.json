@@ -201,8 +201,8 @@
   "bg_events": [
     {
       "type": "hidden_item",
-      "x": 9,
-      "y": 25,
+      "x": 29,
+      "y": 28,
       "elevation": 0,
       "item": "ITEM_ZINC",
       "flag": "FLAG_HIDDEN_ITEM_MT_PYRE_SUMMIT_ZINC"
@@ -214,6 +214,14 @@
       "elevation": 3,
       "item": "ITEM_RARE_CANDY",
       "flag": "FLAG_HIDDEN_ITEM_MT_PYRE_SUMMIT_RARE_CANDY"
+    },
+    {
+      "type": "sign",
+      "x": 10,
+      "y": 24,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "MtPyre_Summit_Banettite"
     }
   ]
 }
