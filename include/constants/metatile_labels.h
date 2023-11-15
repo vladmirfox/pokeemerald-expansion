@@ -174,6 +174,7 @@
 #define METATILE_Facility_NewMauvilleDoor_Open_Tile3    0x2CB
 #define METATILE_Facility_NewMauvilleDoor_Open_Tile4    0x2CC
 #define METATILE_Facility_NewMauvilleDoor_Open_Tile5    0x2CD
+#define METATILE_Facility_shipFloor                     0x228
 
 // gTileset_Fallarbor
 #define METATILE_Fallarbor_AshField                  0x218
