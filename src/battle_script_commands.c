@@ -2969,7 +2969,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STATUS_HAD_NO_EFFECT;
                 RESET_RETURN
             }
-            if (gBattleMons[gEffectBattler].status1)
+            if (gBattleMons[gEffectBattler].status1 & ~STATUS1_REVERSE_MODE)
                 break;
             if (CanBePoisoned(gBattleScripting.battler, gEffectBattler))
             {
@@ -3142,7 +3142,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 gBattlescriptCurrInstr++;
                 break;
             case MOVE_EFFECT_TRI_ATTACK:
-                if (gBattleMons[gEffectBattler].status1)
+                if (gBattleMons[gEffectBattler].status1 & ~STATUS1_REVERSE_MODE)
                 {
                     gBattlescriptCurrInstr++;
                 }
@@ -3611,7 +3611,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 gBattlescriptCurrInstr++;
                 break;
             case MOVE_EFFECT_DIRE_CLAW:
-                if (!gBattleMons[gEffectBattler].status1)
+                if (!gBattleMons[gEffectBattler].status1 & ~STATUS1_REVERSE_MODE)
                 {
                     static const u8 sDireClawEffects[] = { MOVE_EFFECT_POISON, MOVE_EFFECT_PARALYSIS, MOVE_EFFECT_SLEEP };
                     gBattleScripting.moveEffect = RandomElement(RNG_DIRE_CLAW, sDireClawEffects);
@@ -5353,7 +5353,7 @@ static void Cmd_moveend(void)
                          && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
-                    gBattleMons[gBattlerAttacker].status1 = STATUS1_BURN;
+                    gBattleMons[gBattlerAttacker].status1 |= STATUS1_BURN;
                     gActiveBattler = gBattlerAttacker;
                     BtlController_EmitSetMonData(BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gActiveBattler].status1), &gBattleMons[gActiveBattler].status1);
                     MarkBattlerForControllerExec(gActiveBattler);
@@ -6888,7 +6888,7 @@ static void Cmd_switchineffects(void)
     // Healing Wish activates before hazards.
     // Starting from Gen8 - it heals only pokemon which can be healed. In gens 5,6,7 the effect activates anyways.
     else if (((gBattleStruct->storedHealingWish & gBitTable[gActiveBattler]) || (gBattleStruct->storedLunarDance & gBitTable[gActiveBattler]))
-        && (gBattleMons[gActiveBattler].hp != gBattleMons[gActiveBattler].maxHP || gBattleMons[gActiveBattler].status1 != 0 || B_HEALING_WISH_SWITCH < GEN_8))
+        && (gBattleMons[gActiveBattler].hp != gBattleMons[gActiveBattler].maxHP || gBattleMons[gActiveBattler].status1 & ~STATUS1_REVERSE_MODE || B_HEALING_WISH_SWITCH < GEN_8))
     {
         if (gBattleStruct->storedHealingWish & gBitTable[gActiveBattler])
         {
@@ -7561,7 +7561,7 @@ static void Cmd_statusanimation(void)
             && gDisableStructs[gActiveBattler].substituteHP == 0
             && !(gHitMarker & HITMARKER_NO_ANIMATIONS))
         {
-            BtlController_EmitStatusAnimation(BUFFER_A, FALSE, gBattleMons[gActiveBattler].status1);
+            BtlController_EmitStatusAnimation(BUFFER_A, FALSE, gBattleMons[gActiveBattler].status1 & ~STATUS1_REVERSE_MODE);
             MarkBattlerForControllerExec(gActiveBattler);
         }
         gBattlescriptCurrInstr = cmd->nextInstr;
@@ -9256,7 +9256,7 @@ static void Cmd_various(void)
     case VARIOUS_CLEAR_STATUS:
     {
         VARIOUS_ARGS();
-        gBattleMons[gActiveBattler].status1 = 0;
+        gBattleMons[gActiveBattler].status1 &= STATUS1_REVERSE_MODE;
         BtlController_EmitSetMonData(BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gActiveBattler].status1), &gBattleMons[gActiveBattler].status1);
         MarkBattlerForControllerExec(gActiveBattler);
         break;
@@ -9897,7 +9897,7 @@ static void Cmd_various(void)
                 gBattlescriptCurrInstr = cmd->failInstr;
                 return;
             }
-            gBattleMons[gBattlerTarget].status1 = gBattleMons[gBattlerAttacker].status1 & STATUS1_ANY;
+            gBattleMons[gBattlerTarget].status1 |= gBattleMons[gBattlerAttacker].status1 & STATUS1_ANY;
             gActiveBattler = gBattlerTarget;
             BtlController_EmitSetMonData(BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gActiveBattler].status1), &gBattleMons[gActiveBattler].status1);
             MarkBattlerForControllerExec(gActiveBattler);
@@ -9907,7 +9907,7 @@ static void Cmd_various(void)
     case VARIOUS_CURE_STATUS:
     {
         VARIOUS_ARGS();
-        gBattleMons[gActiveBattler].status1 = 0;
+        gBattleMons[gActiveBattler].status1 &= STATUS1_REVERSE_MODE;
         BtlController_EmitSetMonData(BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gActiveBattler].status1), &gBattleMons[gActiveBattler].status1);
         MarkBattlerForControllerExec(gActiveBattler);
         break;
@@ -11441,7 +11441,8 @@ static void Cmd_trysetrest(void)
         else
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_REST;
 
-        gBattleMons[gBattlerTarget].status1 = STATUS1_SLEEP_TURN(3);
+        gBattleMons[gBattlerTarget].status1 &= STATUS1_REVERSE_MODE;
+        gBattleMons[gBattlerTarget].status1 |= STATUS1_SLEEP_TURN(3);
         BtlController_EmitSetMonData(BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gActiveBattler].status1), &gBattleMons[gActiveBattler].status1);
         MarkBattlerForControllerExec(gActiveBattler);
         gBattlescriptCurrInstr = cmd->nextInstr;
@@ -13358,7 +13359,7 @@ static void Cmd_healpartystatus(void)
 
         if (GetBattlerAbility(gBattlerAttacker) != ABILITY_SOUNDPROOF)
         {
-            gBattleMons[gBattlerAttacker].status1 = 0;
+            gBattleMons[gBattlerAttacker].status1 &= STATUS1_REVERSE_MODE;
             gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
         }
         else
@@ -13374,7 +13375,7 @@ static void Cmd_healpartystatus(void)
         {
             if (GetBattlerAbility(gActiveBattler) != ABILITY_SOUNDPROOF)
             {
-                gBattleMons[gActiveBattler].status1 = 0;
+                gBattleMons[gActiveBattler].status1 &= STATUS1_REVERSE_MODE;
                 gBattleMons[gActiveBattler].status2 &= ~STATUS2_NIGHTMARE;
             }
             else
@@ -13414,14 +13415,14 @@ static void Cmd_healpartystatus(void)
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SOOTHING_AROMA;
         toHeal = (1 << PARTY_SIZE) - 1;
 
-        gBattleMons[gBattlerAttacker].status1 = 0;
+        gBattleMons[gBattlerAttacker].status1 &= STATUS1_REVERSE_MODE;
         gBattleMons[gBattlerAttacker].status2 &= ~STATUS2_NIGHTMARE;
 
         gActiveBattler = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
             && !(gAbsentBattlerFlags & gBitTable[gActiveBattler]))
         {
-            gBattleMons[gActiveBattler].status1 = 0;
+            gBattleMons[gActiveBattler].status1 &= STATUS1_REVERSE_MODE;
             gBattleMons[gActiveBattler].status2 &= ~STATUS2_NIGHTMARE;
         }
 
@@ -14169,7 +14170,7 @@ static void Cmd_cureifburnedparalysedorpoisoned(void)
 
     if (gBattleMons[gBattlerAttacker].status1 & (STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON | STATUS1_FROSTBITE))
     {
-        gBattleMons[gBattlerAttacker].status1 = 0;
+        gBattleMons[gBattlerAttacker].status1 &= STATUS1_REVERSE_MODE;
         gBattlescriptCurrInstr = cmd->nextInstr;
         gActiveBattler = gBattlerAttacker;
         BtlController_EmitSetMonData(BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gActiveBattler].status1), &gBattleMons[gActiveBattler].status1);
@@ -14771,7 +14772,7 @@ static void Cmd_switchoutabilities(void)
         switch (GetBattlerAbility(gActiveBattler))
         {
         case ABILITY_NATURAL_CURE:
-            gBattleMons[gActiveBattler].status1 = 0;
+            gBattleMons[gActiveBattler].status1 &= STATUS1_REVERSE_MODE;
             BtlController_EmitSetMonData(BUFFER_A, REQUEST_STATUS_BATTLE,
                                          gBitTable[*(gBattleStruct->battlerPartyIndexes + gActiveBattler)],
                                          sizeof(gBattleMons[gActiveBattler].status1),
@@ -15847,7 +15848,7 @@ static void Cmd_removeattackerstatus1(void)
 {
     CMD_ARGS();
 
-    gBattleMons[gBattlerAttacker].status1 = 0;
+    gBattleMons[gBattlerAttacker].status1 &= STATUS1_REVERSE_MODE;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 

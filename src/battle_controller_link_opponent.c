@@ -864,10 +864,10 @@ static u32 CopyLinkOpponentMonData(u8 monId, u8 *dst)
         dst[0] = GetMonData(&gEnemyParty[monId], MON_DATA_IS_SHADOW);
         size = 1;
         break;
-    case REQUEST_REVERSE_MODE_BATTLE:
-        dst[0] = GetMonData(&gEnemyParty[monId], MON_DATA_REVERSE_MODE);
-        size = 1;
-        break;
+    // case REQUEST_REVERSE_MODE_BATTLE:
+    //     dst[0] = GetMonData(&gEnemyParty[monId], MON_DATA_REVERSE_MODE);
+    //     size = 1;
+    //     break;
     case REQUEST_HEART_VALUE_BATTLE:
         dst[0] = GetMonData(&gEnemyParty[monId], MON_DATA_HEART_VALUE);
         size = 1;
@@ -1127,9 +1127,9 @@ static void SetLinkOpponentMonData(u8 monId)
     case REQUEST_IS_SHADOW_BATTLE:
         SetMonData(&gEnemyParty[monId], MON_DATA_IS_SHADOW, &gBattleResources->bufferA[gActiveBattler][3]);
         break;
-    case REQUEST_REVERSE_MODE_BATTLE:
-        SetMonData(&gEnemyParty[monId], MON_DATA_REVERSE_MODE, &gBattleResources->bufferA[gActiveBattler][3]);
-        break;
+    // case REQUEST_REVERSE_MODE_BATTLE:
+    //     SetMonData(&gEnemyParty[monId], MON_DATA_REVERSE_MODE, &gBattleResources->bufferA[gActiveBattler][3]);
+    //     break;
     case REQUEST_HEART_VALUE_BATTLE:
         SetMonData(&gEnemyParty[monId], MON_DATA_HEART_VALUE, &gBattleResources->bufferA[gActiveBattler][3]);
         break;

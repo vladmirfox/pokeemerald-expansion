@@ -477,6 +477,8 @@ void InitAndLaunchChosenStatusAnimation(bool8 isStatus2, u32 status)
             LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_SLP);
         else if (status == STATUS1_PARALYSIS)
             LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_PRZ);
+        else if (status == STATUS1_REVERSE_MODE)
+            LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_REVERSE_MODE);
         else // no animation
             gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].statusAnimActive = 0;
     }
@@ -1300,7 +1302,7 @@ bool32 ShouldPlayNormalMonCry(struct Pokemon *mon)
     s16 hp, maxHP;
     s32 barLevel;
 
-    if (GetMonData(mon, MON_DATA_STATUS) & (STATUS1_ANY | STATUS1_TOXIC_COUNTER))
+    if (GetMonData(mon, MON_DATA_STATUS) & (STATUS1_ANY | STATUS1_TOXIC_COUNTER | STATUS1_REVERSE_MODE))
         return FALSE;
 
     hp = GetMonData(mon, MON_DATA_HP);

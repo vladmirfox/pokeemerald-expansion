@@ -5123,10 +5123,10 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_IS_SHADOW:
         retVal = substruct3->isShadow;
         break;
-    case MON_DATA_REVERSE_MODE:
-        if (substruct3->isShadow)
-            retVal = boxMon->nickData.shadowData.isReverse;
-        break;
+    // case MON_DATA_REVERSE_MODE:
+    //     if (substruct3->isShadow)
+    //         retVal = boxMon->nickData.shadowData.isReverse;
+    //     break;
     case MON_DATA_SHADOW_ID:
         if (substruct3->isShadow)
             retVal = boxMon->nickData.shadowData.shadowID;
@@ -5467,9 +5467,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_IS_SHADOW:
         SET8(substruct3->isShadow);
         break;
-    case MON_DATA_REVERSE_MODE:
-        SET8(boxMon->nickData.shadowData.isReverse);
-        break;
+    // case MON_DATA_REVERSE_MODE:
+    //     SET8(boxMon->nickData.shadowData.isReverse);
+    //     break;
     case MON_DATA_SHADOW_ID:
         SET8(boxMon->nickData.shadowData.shadowID);
         break;
