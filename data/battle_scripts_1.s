@@ -8257,6 +8257,10 @@ BattleScript_FrostbiteTurnDmg::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_DoStatusTurnDmg
 
+BattleScript_ReverseModeTurnDmg::
+	printstring STRINGID_REVERSEMODE_DAMAGE
+	goto BattleScript_DoStatusTurnDmg
+
 BattleScript_MoveUsedIsFrozen::
 	printstring STRINGID_PKMNISFROZEN
 	waitmessage B_WAIT_TIME_LONG

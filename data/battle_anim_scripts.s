@@ -926,6 +926,9 @@ gBattleAnims_StatusConditions::
 	.4byte Status_Curse                     @ B_ANIM_STATUS_CURSED
 	.4byte Status_Nightmare                 @ B_ANIM_STATUS_NIGHTMARE
 	.4byte Status_Powder
+	.4byte Status_Shadow                    @ B_ANIM_STATUS_SHADOW
+	.4byte Enter_Reverse_Mode               @ B_ANIM_ENTER_REVERSE_MODE
+	.4byte Status_Reverse_Mode              @ B_ANIM_STATUS_REVERSE_MODE
 
 	.align 2
 gBattleAnims_General::
@@ -27035,6 +27038,24 @@ Status_Nightmare:
 	end
 
 Status_Powder:
+	end
+
+Status_Shadow:
+	loopsewithpan SE_M_TOXIC, SOUND_PAN_TARGET, 13, 6
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(30, 0, 31)
+	end
+
+Status_Reverse_Mode:
+	loopsewithpan SE_M_TOXIC, SOUND_PAN_TARGET, 13, 6
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(30, 0, 0)
+	end
+
+Enter_Reverse_Mode:
+	loopsewithpan SE_M_TOXIC, SOUND_PAN_TARGET, 13, 6
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(30, 0, 0)
 	end
 
 General_StatsChange:

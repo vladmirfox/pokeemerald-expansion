@@ -2576,6 +2576,7 @@ enum
     ENDTURN_SLOW_START,
     ENDTURN_PLASMA_FISTS,
     ENDTURN_CUD_CHEW,
+    ENDTURN_REVERSE_MODE,
     ENDTURN_BATTLER_COUNT
 };
 
@@ -3138,6 +3139,21 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_CUD_CHEW:
             if (GetBattlerAbility(gActiveBattler) == ABILITY_CUD_CHEW && !gDisableStructs[gActiveBattler].cudChew && ItemId_GetPocket(GetUsedHeldItem(gActiveBattler)) == POCKET_BERRIES)
                 gDisableStructs[gActiveBattler].cudChew = TRUE;
+            gBattleStruct->turnEffectsTracker++;
+            break;
+        case ENDTURN_REVERSE_MODE:
+
+            MAGIC_GUARD_CHECK;
+            if ((gBattleMons[gActiveBattler].status1 & STATUS1_REVERSE_MODE)
+                && gBattleMons[gActiveBattler].hp != 0)
+            {
+                gBattleMoveDamage = (gBattleMons[gBattlerAttacker].maxHP / 16) + (Random() % 3) - 1;
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                BattleScriptExecute(BattleScript_ReverseModeTurnDmg);
+    		    LaunchStatusAnimation(gBattlerAttacker, B_ANIM_STATUS_REVERSE_MODE);
+                effect++;
+            }
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_BATTLER_COUNT:  // done
