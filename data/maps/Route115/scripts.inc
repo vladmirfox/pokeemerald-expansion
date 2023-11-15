@@ -21,11 +21,27 @@ Route115_OnResume_Day:
 	end
 
 Route115_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_AUDINITE, Route115_Hide_Audinite
 	call Grotto_EventScript_GetGrottoWarp
 	goto_if_eq VAR_HIDDEN_GROTTO_ROUTE_115, 0, Route115_EventScript_CloseGrotto
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_115_WEST, AbnormalWeather_EventScript_PlaceTilesRoute115West
 	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_115_EAST, AbnormalWeather_EventScript_PlaceTilesRoute115East
 	end
+
+Route115_Hide_Audinite::
+    setmetatile 10, 5, METATILE_General_Grass, FALSE
+    return
+
+Route115_Audinite::
+	goto_if_set FLAG_HIDDEN_ITEM_AUDINITE, Route115_End_Audinite
+	call Route115_Hide_Audinite
+	special DrawWholeMapView
+	giveitem ITEM_AUDINITE
+	setflag FLAG_HIDDEN_ITEM_AUDINITE
+Route115_End_Audinite::
+	release
+	end	
+
 
 Route115_EventScript_CloseGrotto::
 	setmetatile 6, 5, METATILE_General_Grass, FALSE

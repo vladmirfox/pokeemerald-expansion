@@ -25,7 +25,26 @@ SlateportCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, SlateportCity_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, SlateportCity_OnFrame
 	map_script MAP_SCRIPT_ON_RESUME, SlateportCity_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, SlateportCity_OnLoad
 	.byte 0
+
+SlateportCity_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_AMPHAROSITE, SlateportCity_Hide_Ampharosite
+	end
+
+SlateportCity_Hide_Ampharosite::
+    setmetatile 34, 53, METATILE_General_Grass, FALSE
+    return
+
+SlateportCity_Ampharosite::
+	goto_if_set FLAG_HIDDEN_ITEM_AMPHAROSITE, SlateportCity_End_Ampharosite
+	call SlateportCity_Hide_Ampharosite
+	special DrawWholeMapView
+	giveitem ITEM_AMPHAROSITE
+	setflag FLAG_HIDDEN_ITEM_AMPHAROSITE
+SlateportCity_End_Ampharosite::
+	release
+	end	
 
 SlateportCity_OnResume:
 	special GetDayOrNight
