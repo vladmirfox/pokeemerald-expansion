@@ -551,6 +551,7 @@
 #define B_ANIM_AFFECTION_HANGED_ON      35
 #define B_ANIM_SNOW_CONTINUES           36
 #define B_ANIM_SHADOW_SKY_CONTINUES     37
+#define B_ANIM_CALL_REVERSE_MODE        38
 
 // special animations table (gBattleAnims_Special)
 #define B_ANIM_LVL_UP                   0

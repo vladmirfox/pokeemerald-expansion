@@ -970,6 +970,7 @@ gBattleAnims_General::
 	.4byte General_AffectionHangedOn        @ B_ANIM_AFFECTION_HANGED_ON
 	.4byte General_Snow                     @ B_ANIM_SNOW_CONTINUES
 	.4byte General_ShadowSky				@ B_ANIM_SHADOW_SKY_CONTINUES
+	.4byte General_Call_Reverse_Mode		@ B_ANIM_CALL_REVERSE_MODE
 
 	.align 2
 gBattleAnims_Special::
@@ -27099,6 +27100,25 @@ Enter_Reverse_Mode:
 	call ReverseAuraEffect
 	waitforvisualfinish
 	end
+
+General_Call_Reverse_Mode:
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
+	loadspritegfx ANIM_TAG_REVERSE_PARTICLES
+	loadspritegfx ANIM_TAG_THIN_RING
+	loopsewithpan SE_M_SACRED_FIRE2, SOUND_PAN_TARGET, 18, 6
+	call ReverseAuraEffect
+	delay 8
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	call ReverseAuraEffect
+	delay 8
+	playsewithpan SE_SHINY, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(30, 30, 30)
+	call ShadowAuraEffect
+	createsprite gBlendThinRingExpandingSpriteTemplate, ANIM_ATTACKER, 16, 0, 0, 0, 1
+	waitforvisualfinish
+	end
+
+	
 
 General_StatsChange:
 	createvisualtask AnimTask_StatsChange, 5

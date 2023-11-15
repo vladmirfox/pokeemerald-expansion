@@ -10638,6 +10638,7 @@ BattleScript_TrainerCallToMonNormal::
 BattleScript_TrainerCallToMonReverse::
 	printstring STRINGID_TRAINERCALLTOMON
 	waitmessage B_WAIT_TIME_SHORTEST
+	playanimation BS_ATTACKER B_ANIM_CALL_REVERSE_MODE
 	setbyte sHEARTVALUE_STATE, 0
 	modifyheartvalue BS_ATTACKER, 300
 	end2

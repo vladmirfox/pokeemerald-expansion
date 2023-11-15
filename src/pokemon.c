@@ -5134,10 +5134,6 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_IS_SHADOW:
         retVal = substruct3->isShadow;
         break;
-    // case MON_DATA_REVERSE_MODE:
-    //     if (substruct3->isShadow)
-    //         retVal = boxMon->nickData.shadowData.isReverse;
-    //     break;
     case MON_DATA_SHADOW_ID:
         if (substruct3->isShadow)
             retVal = boxMon->nickData.shadowData.shadowID;
@@ -5478,9 +5474,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_IS_SHADOW:
         SET8(substruct3->isShadow);
         break;
-    // case MON_DATA_REVERSE_MODE:
-    //     SET8(boxMon->nickData.shadowData.isReverse);
-    //     break;
     case MON_DATA_SHADOW_ID:
         SET8(boxMon->nickData.shadowData.shadowID);
         break;
@@ -8849,17 +8842,20 @@ u8 ShdwCanMonGainEXP(struct Pokemon *mon)
     return TRUE;
 }
 
-u16 ModifyHeartValue(s32 amount)
+u16 ModifyHeartValueInBattle(u8 battlerId, u16 amount)
 {
-    u16 hVal = gBattleMons[gActiveBattler].heartVal;
-    u16 hMax = gBattleMons[gActiveBattler].heartMax;
-    u16 newVal = min(max(hVal - amount, 0), hMax);
+    u16 hVal, hMax, newVal;
 
-    gActiveBattler = gBattleScripting.battler;
+    hVal = gBattleMons[battlerId].heartVal;
+    hMax = gBattleMons[battlerId].heartMax;
+    newVal = min(max(hVal - amount, 0), hMax);
 
-    if (gBattleMons[gActiveBattler].isShadow)
+    if (gBattleMons[battlerId].isShadow)
     {
-        gBattleMons[gActiveBattler].heartVal = newVal;
-    }    
-    return newVal;
+        gBattleMons[battlerId].heartVal = newVal;
+    }
+    
+    // SetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_HEART_VALUE, &newVal);
+    
+    return amount;
 }

@@ -5903,8 +5903,8 @@ static void Cmd_moveend(void)
                 BtlController_EmitSetMonData(BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gBattlerAttacker].status1), &gBattleMons[gBattlerAttacker].status1);
                 PrepareStringBattle(STRINGID_REVERSEMODE_ENTER, gBattlerAttacker);
                 LaunchStatusAnimation(gBattlerAttacker, B_ANIM_ENTER_REVERSE_MODE);
-                UpdateHealthboxAttribute(gHealthboxSpriteIds[gBattlerAttacker], &gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], HEALTHBOX_NICK);
             }
+            
             gBattleScripting.moveendState++;
             break;
         }
@@ -11021,7 +11021,7 @@ static void Cmd_various(void)
     }
     case VARIOUS_MODIFY_HEART_VALUE:
     {
-        VARIOUS_ARGS(s32 amount);
+        VARIOUS_ARGS(u16 amount);
         switch (gBattleScripting.heartValueState)
         {
             case 0:
@@ -11047,10 +11047,11 @@ static void Cmd_various(void)
                 
                 if (gBattleMons[gActiveBattler].isShadow)
                 {
-                    j = ModifyHeartValue(cmd->amount);
-                    BtlController_EmitHeartValueUpdate(BUFFER_A, gBattlerPartyIndexes[gActiveBattler], j);
+                    j = ModifyHeartValueInBattle(gActiveBattler, cmd->amount);
+                    BtlController_EmitHeartValueUpdate(BUFFER_A, gBattlerPartyIndexes[gActiveBattler], -j);
                 }
                 
+                UpdateHealthboxAttribute(gHealthboxSpriteIds[gActiveBattler], &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], HEALTHBOX_EXP_BAR);
                 MarkBattlerForControllerExec(gActiveBattler);
                 gBattleScripting.heartValueState++;
                 break;

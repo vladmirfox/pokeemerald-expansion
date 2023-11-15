@@ -680,7 +680,7 @@ bool32 IsSpeciesEnabled(u16 species);
 u8 GetHeartGaugeSection(u16 heartVal, u16 heartMax);
 u8 GetReverseModeChance(struct BattlePokemon *mon);
 u8 ShdwCanMonGainEXP(struct Pokemon *mon);
-u16 ModifyHeartValue(s32 amount);
+u16 ModifyHeartValueInBattle(u8 battlerId, u16 amount);
 u8 CheckPartyShadow(struct Pokemon *party, u8 selection);
 
 #endif // GUARD_POKEMON_H
