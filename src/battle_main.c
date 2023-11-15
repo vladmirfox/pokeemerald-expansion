@@ -3805,7 +3805,7 @@ static void DoBattleIntro(void)
                     HandleSetPokedexFlag(SpeciesToNationalPokedexNum(gBattleMons[gActiveBattler].species), FLAG_SET_SEEN, gBattleMons[gActiveBattler].personality);
                     if (gBattleMons[gActiveBattler].isShadow)
                     {
-                        LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_PSN);
+                        LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_SHADOW);
                         PrepareStringBattle(STRINGID_SHADOWPKMNNOTICE, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
                     }
                 }

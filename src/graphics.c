@@ -1260,6 +1260,10 @@ const u32 gBattleAnimSpritePal_FlatRock[] = INCBIN_U32("graphics/battle_anims/sp
 
 const u32 gBattleAnimUnusedPal_Unknown2[] = INCBIN_U32("graphics/battle_anims/unused/unknown_2.gbapal.lz");
 
+const u32 gBattleAnimSpriteGfx_ShadowParticles[] = INCBIN_U32("graphics/battle_anims/sprites/shadowparticles.4bpp.lz");
+const u32 gBattleAnimSpritePal_ShadowParticles[] = INCBIN_U32("graphics/battle_anims/sprites/shadowparticles.gbapal.lz");
+const u32 gBattleAnimSpritePal_ReverseParticles[] = INCBIN_U32("graphics/battle_anims/sprites/shadowparticles_reverse.gbapal.lz");
+
 #include "data/graphics/pokemon.h"
 #include "data/graphics/trainers.h"
 

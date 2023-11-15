@@ -16454,6 +16454,30 @@ Move_PSYBLADE::
 Move_HYDRO_STEAM::
 	end @to do
 
+ShadowAuraEffect:
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -24, 26, 2
+	delay 4
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, 14, 28, 1
+	delay 4
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -5, 10, 2
+	delay 4
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 26, 3
+	delay 4
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -12, 0, 1
+	return
+
+ReverseAuraEffect:
+	createsprite gReverseParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -24, 26, 2
+	delay 4
+	createsprite gReverseParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, 14, 28, 1
+	delay 4
+	createsprite gReverseParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -5, 10, 2
+	delay 4
+	createsprite gReverseParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 26, 3
+	delay 4
+	createsprite gReverseParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -12, 0, 1
+	return
+
 Move_SHADOW_BLITZ::
 	loadspritegfx ANIM_TAG_PURPLE_FLAME
 	monbg ANIM_ATTACKER
@@ -27041,21 +27065,39 @@ Status_Powder:
 	end
 
 Status_Shadow:
-	loopsewithpan SE_M_TOXIC, SOUND_PAN_TARGET, 13, 6
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
+	loopsewithpan SE_M_SACRED_FIRE2, SOUND_PAN_TARGET, 13, 6
+	call ShadowAuraEffect
+	delay 8
+	call ShadowAuraEffect
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
-	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(30, 0, 31)
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(22, 22, 31)
+	delay 8
+	call ShadowAuraEffect
+	waitforvisualfinish
 	end
 
 Status_Reverse_Mode:
-	loopsewithpan SE_M_TOXIC, SOUND_PAN_TARGET, 13, 6
-	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
-	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(30, 0, 0)
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
+	loadspritegfx ANIM_TAG_REVERSE_PARTICLES
+	loopsewithpan SE_M_EMBER, SOUND_PAN_ATTACKER, 5, 2
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 10, 1
+	call ReverseAuraEffect
 	end
 
 Enter_Reverse_Mode:
-	loopsewithpan SE_M_TOXIC, SOUND_PAN_TARGET, 13, 6
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
+	loadspritegfx ANIM_TAG_REVERSE_PARTICLES
+	loopsewithpan SE_M_SACRED_FIRE2, SOUND_PAN_TARGET, 13, 6
+	call ShadowAuraEffect
+	delay 8
+	playsewithpan SE_M_MEGA_KICK, SOUND_PAN_TARGET
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
-	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(30, 0, 0)
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(25, 0, 11)
+	call ReverseAuraEffect
+	delay 8
+	call ReverseAuraEffect
+	waitforvisualfinish
 	end
 
 General_StatsChange:
