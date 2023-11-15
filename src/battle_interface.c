@@ -2200,7 +2200,7 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     healthBarSpriteId = gSprites[healthboxSpriteId].hMain_HealthBarSpriteId;
     if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
     {
-        status = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS);
+        status = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE;
         if (!WhichBattleCoords(battlerId))
             tileNumAdder = 0x1A;
         else
@@ -2208,7 +2208,7 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     }
     else
     {
-        status = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS);
+        status = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE;
         tileNumAdder = 0x11;
     }
 

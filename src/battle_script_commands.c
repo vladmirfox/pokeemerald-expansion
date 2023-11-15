@@ -5891,6 +5891,23 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         }
+        case MOVEEND_ENTER_REVERSE_MODE:
+        if (gBattleMons[gBattlerAttacker].isShadow == TRUE && !(gBattleMons[gBattlerAttacker].status1 & STATUS1_REVERSE_MODE) && GetBattlerSide(gBattlerAttacker) != B_SIDE_OPPONENT)
+        {
+            u8 chance = GetReverseModeChance(&gBattleMons[gBattlerAttacker]);
+            u8 roll = Random() % 100;
+
+            if (roll < chance)
+            {
+                gBattleMons[gBattlerAttacker].status1 |= STATUS1_REVERSE_MODE;
+                BtlController_EmitSetMonData(BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gBattlerAttacker].status1), &gBattleMons[gBattlerAttacker].status1);
+                PrepareStringBattle(STRINGID_REVERSEMODE_ENTER, gBattlerAttacker);
+                LaunchStatusAnimation(gBattlerAttacker, B_ANIM_ENTER_REVERSE_MODE);
+                UpdateHealthboxAttribute(gHealthboxSpriteIds[gBattlerAttacker], &gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], HEALTHBOX_NICK);
+            }
+            gBattleScripting.moveendState++;
+            break;
+        }
         case MOVEEND_EJECT_BUTTON:
             if (gBattleMoves[gCurrentMove].effect != EFFECT_HIT_SWITCH_TARGET
               && IsBattlerAlive(gBattlerAttacker)
@@ -11027,11 +11044,14 @@ static void Cmd_various(void)
                 {
                     gActiveBattler = 0;
                 }
-
-                gBattleMons[gActiveBattler].heartVal += cmd->amount;
-                BtlController_EmitHeartValueUpdate(BUFFER_A, gBattlerPartyIndexes[gActiveBattler], cmd->amount);
+                
+                if (gBattleMons[gActiveBattler].isShadow)
+                {
+                    j = ModifyHeartValue(cmd->amount);
+                    BtlController_EmitHeartValueUpdate(BUFFER_A, gBattlerPartyIndexes[gActiveBattler], j);
+                }
+                
                 MarkBattlerForControllerExec(gActiveBattler);
-
                 gBattleScripting.heartValueState++;
                 break;
                 }

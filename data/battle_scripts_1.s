@@ -10618,7 +10618,7 @@ BattleScript_EffectSnow::
 	setsnow
 	goto BattleScript_MoveWeatherChange
 
-BattleScript_TrainerCallToMon::
+BattleScript_TrainerCallToMonNormal::
 	printstring STRINGID_TRAINERCALLTOMON
 	waitmessage B_WAIT_TIME_SHORTEST
 	setstatchanger STAT_ACC, 1, FALSE
@@ -10631,11 +10631,11 @@ BattleScript_TrainerCallToMon::
 	printstring STRINGID_ATTACKERSSTATROSE
 	waitmessage B_WAIT_TIME_LONG
 	end2
-BattleScript_TrainerCallToMonShadow::
+BattleScript_TrainerCallToMonReverse::
 	printstring STRINGID_TRAINERCALLTOMON
 	waitmessage B_WAIT_TIME_SHORTEST
 	setbyte sHEARTVALUE_STATE, 0
-	modifyheartvalue BS_ATTACKER, -1000
+	modifyheartvalue BS_ATTACKER, 300
 	end2
 BattleScript_TrainerCallToMonEnd::
 	pause B_WAIT_TIME_SHORTEST

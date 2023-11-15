@@ -671,9 +671,10 @@ void HandleAction_Run(void)
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
-        if (GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_IS_SHADOW, NULL))
+        if (gBattleMons[gBattlerAttacker].status1 & STATUS1_REVERSE_MODE)
         {
-            gBattlescriptCurrInstr = BattleScript_TrainerCallToMonShadow;
+            gBattleMons[gBattlerAttacker].status1 &= ~STATUS1_REVERSE_MODE;
+            gBattlescriptCurrInstr = BattleScript_TrainerCallToMonReverse;
             gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
         }
         else
@@ -688,7 +689,7 @@ void HandleAction_Run(void)
                     gBattleMons[gBattlerAttacker].statStages[STAT_ACC] = MAX_STAT_STAGE;
             }
 
-            gBattlescriptCurrInstr = BattleScript_TrainerCallToMon;
+            gBattlescriptCurrInstr = BattleScript_TrainerCallToMonNormal;
             gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
         }
     }

@@ -1947,6 +1947,17 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
     [NATURE_QUIRKY]  = {    0,      0,      0,      0,      0   },
 };
 
+const u8 gShadowAggressionTable[NUM_AGGRO_LEVELS][HEART_GAUGE_LEVELS] = 
+{
+    [SHADOW_AGGRO_NONE]         = { 0,  0,  0,  0,  0,  0},
+    [SHADOW_AGGRO_VERY_LOW]     = {15, 10,  5,  2,  0,  0},
+    [SHADOW_AGGRO_LOW]          = {20, 15, 10,  5,  0,  0},
+    [SHADOW_AGGRO_MEDIUM]       = {30, 20, 15, 10,  0,  0},
+    [SHADOW_AGGRO_HIGH]         = {40, 25, 15, 10,  0,  0},
+    [SHADOW_AGGRO_VERY_HIGH]    = {50, 35, 20, 10,  0,  0},
+    [SHADOW_AGGRO_TEST]         = {80, 80, 80, 80, 80, 80},
+};
+
 #include "data/pokemon/trainer_class_lookups.h"
 #include "data/pokemon/experience_tables.h"
 #include "data/pokemon/species_info.h"
@@ -8810,6 +8821,25 @@ u8 GetHeartGaugeSection(u16 heartVal, u16 heartMax)
     #undef h77
 }
 
+u8 GetReverseModeChance(struct BattlePokemon *mon)
+{
+    u8 chance = 0;
+    u8 heartSection, aggro;
+    u16 heartVal, heartMax;
+
+    if (mon->isShadow == TRUE)
+    {
+        aggro = mon->shadowAggro;
+        // if (aggro >= NUM_AGGRO_LEVELS)
+            aggro = NUM_AGGRO_LEVELS - 1;
+        heartVal = mon->heartVal;
+        heartMax = mon->heartMax;
+        heartSection = GetHeartGaugeSection(heartVal, heartMax);
+        chance = gShadowAggressionTable[aggro][heartSection];
+    }
+    return chance;
+}
+
 u8 ShdwCanMonGainEXP(struct Pokemon *mon)
 {
     u16 hVal = GetMonData(mon, MON_DATA_HEART_VALUE, NULL);
@@ -8819,11 +8849,11 @@ u8 ShdwCanMonGainEXP(struct Pokemon *mon)
     return TRUE;
 }
 
-void ModifyHeartValue(void)
+u16 ModifyHeartValue(s32 amount)
 {
     u16 hVal = gBattleMons[gActiveBattler].heartVal;
     u16 hMax = gBattleMons[gActiveBattler].heartMax;
-    u16 newVal = min(max(hVal - 200, 0), hMax);
+    u16 newVal = min(max(hVal - amount, 0), hMax);
 
     gActiveBattler = gBattleScripting.battler;
 
@@ -8831,4 +8861,5 @@ void ModifyHeartValue(void)
     {
         gBattleMons[gActiveBattler].heartVal = newVal;
     }    
+    return newVal;
 }

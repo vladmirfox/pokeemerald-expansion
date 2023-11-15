@@ -231,6 +231,27 @@ union __attribute__((packed, aligned(2))) NicknameShadowdata
     } shadowData;
 };
 
+enum {
+    SHADOW_AGGRO_NONE,
+    SHADOW_AGGRO_VERY_LOW,
+    SHADOW_AGGRO_LOW,
+    SHADOW_AGGRO_MEDIUM,
+    SHADOW_AGGRO_HIGH,
+    SHADOW_AGGRO_VERY_HIGH,
+    SHADOW_AGGRO_TEST,
+    NUM_AGGRO_LEVELS
+};
+
+enum {
+    HEART_GAUGE_EMPTY,
+    HEART_SECTION_1,
+    HEART_SECTION_2,
+    HEART_SECTION_3,
+    HEART_SECTION_4,
+    HEART_GAUGE_FULL,
+    HEART_GAUGE_LEVELS
+};
+
 struct BoxPokemon
 {
     u32 personality;
@@ -488,6 +509,7 @@ extern const u8 gStatStageRatios[MAX_STAT_STAGE + 1][2];
 extern const u16 gUnionRoomFacilityClasses[];
 extern const struct SpriteTemplate gBattlerSpriteTemplates[];
 extern const s8 gNatureStatTable[][5];
+extern const u8 gShadowAggressionTable[][6];
 extern const u16 *const gFormSpeciesIdTables[NUM_SPECIES];
 extern const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES];
 extern const u32 sExpCandyExperienceTable[];
@@ -656,7 +678,9 @@ u8 CalculatePartyCount(struct Pokemon *party);
 u16 SanitizeSpeciesId(u16 species);
 bool32 IsSpeciesEnabled(u16 species);
 u8 GetHeartGaugeSection(u16 heartVal, u16 heartMax);
+u8 GetReverseModeChance(struct BattlePokemon *mon);
 u8 ShdwCanMonGainEXP(struct Pokemon *mon);
+u16 ModifyHeartValue(s32 amount);
 u8 CheckPartyShadow(struct Pokemon *party, u8 selection);
 
 #endif // GUARD_POKEMON_H

@@ -137,7 +137,7 @@ void ShdwLoadHealthboxPalette(u8 battlerId)
 
     LoadSpritePalette(&gSpritePalettes_HealthBoxHealthBar[palNum]);
 
-    if (GetMonData(mon, MON_DATA_STATUS))
+    if (GetMonData(mon, MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE)
         UpdateHealthboxAttribute(gHealthboxSpriteIds[battlerId], mon, HEALTHBOX_STATUS_ICON);
 }
 

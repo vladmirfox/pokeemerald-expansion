@@ -1562,7 +1562,7 @@ static void RecordedPlayerHandleStatusIconUpdate(void)
         gBattlerControllerFuncs[gActiveBattler] = CompleteOnFinishedStatusAnimation;
 
         if (gTestRunnerEnabled)
-            TestRunner_Battle_RecordStatus1(battlerId, GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS));
+            TestRunner_Battle_RecordStatus1(battlerId, GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS) & ~STATUS1_REVERSE_MODE);
     }
 }
 
