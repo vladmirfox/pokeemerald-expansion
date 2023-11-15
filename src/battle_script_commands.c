@@ -3640,8 +3640,11 @@ void SetMoveEffect(bool32 primary, u32 certain)
             case MOVE_EFFECT_SYRUP_BOMB:
                 if (!(gStatuses4[gEffectBattler] & STATUS4_SYRUP_BOMB))
                 {
+                    struct Pokemon *party = GetBattlerParty(gBattlerAttacker);
+
                     gStatuses4[gEffectBattler] |= STATUS4_SYRUP_BOMB;
-                    gDisableStructs[gBattlerTarget].syrupBombTimer = 3;
+                    gDisableStructs[gEffectBattler].syrupBombTimer = 3;
+                    gDisableStructs[gEffectBattler].syrupBombIsShiny = IsMonShiny(&party[gBattlerPartyIndexes[gBattlerAttacker]]);
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_SyrupBombActivates;
                 }
