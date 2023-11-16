@@ -244,11 +244,13 @@ const u8 gArbokPokedexText[] = _(
 #endif //P_FAMILY_EKANS
 
 #if P_FAMILY_PIKACHU
+#if P_GEN_2_CROSS_EVOS
 const u8 gPichuPokedexText[] = _(
     "It is still inept at retaining electricity.\n"
     "When it is startled, it discharges power\n"
     "accidentally. It gets better at holding\n"
     "power as it grows older.");
+#endif //P_GEN_2_CROSS_EVOS
 
 const u8 gPikachuPokedexText[] = _(
     "It stores electricity in the electric sacs\n"
@@ -392,11 +394,13 @@ const u8 gNidokingPokedexText[] = _(
 #endif //P_FAMILY_NIDORAN
 
 #if P_FAMILY_CLEFAIRY
+#if P_GEN_2_CROSS_EVOS
 const u8 gCleffaPokedexText[] = _(
     "On nights with many shooting stars,\n"
     "Cleffa can be seen dancing in a ring.\n"
     "They dance until daybreak, when they\n"
     "quench their thirst with the morning dew.");
+#endif //P_GEN_2_CROSS_EVOS
 
 const u8 gClefairyPokedexText[] = _(
     "On every night of a full moon, they come\n"
@@ -687,11 +691,13 @@ const u8 gPoliwrathPokedexText[] = _(
     "This Pokémon can swim back and forth\n"
     "across the Pacific Ocean without effort.");
 
+#if P_GEN_2_CROSS_EVOS
 const u8 gPolitoedPokedexText[] = _(
     "The curled hair on its head proves its\n"
     "status as a king. It is said that the\n"
     "longer and curlier the hair, the more\n"
     "respect it earns from its peers.");
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_POLIWAG
 
 #if P_FAMILY_ABRA
@@ -887,11 +893,13 @@ const u8 gSlowbroGalarianPokedexText[] = _(
     "causing Slowbro to become a\n"
     "Poison-type Pokémon.");
 
+#if P_GEN_2_CROSS_EVOS
 const u8 gSlowkingGalarianPokedexText[] = _(
     "A combination of toxins and the shock of\n"
     "evolving has increased Shellder's\n"
     "intelligence to the point that Shellder\n"
     "now controls Slowking.");
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_SLOWPOKE
 
@@ -908,11 +916,13 @@ const u8 gMagnetonPokedexText[] = _(
     "waves that raise temperatures by 3.6\n"
     "degrees F within a 3,300-foot radius.");
 
+#if P_GEN_4_CROSS_EVOS
 const u8 gMagnezonePokedexText[] = _(
     "As it zooms through the sky, this\n"
     "Pokémon seems to be receiving signals\n"
     "of unknown origin, while transmitting its\n"
     "own signals of unknown purpose.");
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_MAGNEMITE
 
 #if P_FAMILY_FARFETCHD
@@ -1046,6 +1056,7 @@ const u8 gOnixPokedexText[] = _(
     "while tunneling. As it grows older, its body\n"
     "becomes steadily rounder and smoother.");
 
+#if P_GEN_2_CROSS_EVOS
 #if P_MEGA_EVOLUTIONS
 const u8 gSteelixPokedexText[] = _(
     "Steelix live even further underground\n"
@@ -1059,6 +1070,7 @@ const u8 gSteelixMegaPokedexText[] = _(
     "are stronger than any mineral and able\n"
     "to withstand any temperature.");
 #endif //P_MEGA_EVOLUTIONS
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_ONIX
 
 #if P_FAMILY_DROWZEE
@@ -1166,11 +1178,13 @@ const u8 gMarowakAlolanPokedexText[] = _(
 #endif //P_FAMILY_CUBONE
 
 #if P_FAMILY_HITMONS
+#if P_GEN_2_CROSS_EVOS
 const u8 gTyroguePokedexText[] = _(
     "Tyrogue become stressed out if they do\n"
     "not get to train every day. When raising\n"
     "this Pokémon, the Trainer must establish\n"
     "a regular training schedule.");
+#endif //P_GEN_2_CROSS_EVOS
 
 const u8 gHitmonleePokedexText[] = _(
     "Its legs freely stretch and contract.\n"
@@ -1184,11 +1198,13 @@ const u8 gHitmonchanPokedexText[] = _(
     "world champion. Having an indomitable\n"
     "spirit means that it will never give up.");
 
+#if P_GEN_2_CROSS_EVOS
 const u8 gHitmontopPokedexText[] = _(
     "Its technique of kicking while spinning is\n"
     "a remarkable mix of both offense and\n"
     "defense. Hitmontop travel faster\n"
     "spinning than they do walking.");
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_HITMONS
 
 #if P_FAMILY_LICKITUNG
@@ -1198,11 +1214,13 @@ const u8 gLickitungPokedexText[] = _(
     "memorizes things by texture and taste.\n"
     "It is somewhat put off by sour things.");
 
+#if P_GEN_4_CROSS_EVOS
 const u8 gLickilickyPokedexText[] = _(
     "The long tongue is always soggy with\n"
     "slobber. The saliva contains a solvent\n"
     "that causes numbness. Getting too close\n"
     "to it will leave you soaked with drool.");
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_LICKITUNG
 
 #if P_FAMILY_KOFFING
@@ -1240,19 +1258,23 @@ const u8 gRhydonPokedexText[] = _(
     "It stands on its hind legs, and its brain\n"
     "is well developed.");
 
+#if P_GEN_4_CROSS_EVOS
 const u8 gRhyperiorPokedexText[] = _(
     "It can launch a rock held in its hand\n"
     "like a missile by tightening and then\n"
     "expanding its muscles instantaneously.\n"
     "Geodude are shot at rare times.");
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_RHYHORN
 
 #if P_FAMILY_CHANSEY
+#if P_GEN_4_CROSS_EVOS
 const u8 gHappinyPokedexText[] = _(
     "It carries a round white rock in its\n"
     "belly pouch. If it gets along well with\n"
     "someone, it will sometimes give that\n"
     "person the rock.");
+#endif //P_GEN_4_CROSS_EVOS
 
 const u8 gChanseyPokedexText[] = _(
     "Chansey lay nutritionally excellent eggs\n"
@@ -1260,11 +1282,13 @@ const u8 gChanseyPokedexText[] = _(
     "are eagerly devoured by even those people\n"
     "who have lost their appetite.");
 
+#if P_GEN_2_CROSS_EVOS
 const u8 gBlisseyPokedexText[] = _(
     "If it senses sadness with its fluffy fur,\n"
     "a Blissey will rush over to the sad person,\n"
     "however far away, to share an egg of\n"
     "happiness that brings a smile to any face.");
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_CHANSEY
 
 #if P_FAMILY_TANGELA
@@ -1274,11 +1298,13 @@ const u8 gTangelaPokedexText[] = _(
     "quick getaway. The lost vines are replaced\n"
     "by new growth the very next day.");
 
+#if P_GEN_4_CROSS_EVOS
 const u8 gTangrowthPokedexText[] = _(
     "It ensnares prey by extending arms made\n"
     "of vines. Even if one of its arms is eaten,\n"
     "it's fine. The Pokémon regenerates quickly\n"
     "and will go right back to normal.");
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_TANGELA
 
 #if P_FAMILY_KANGASKHAN
@@ -1310,11 +1336,13 @@ const u8 gSeadraPokedexText[] = _(
     "traditional herbal medicine. It shows no\n"
     "mercy to anything approaching its nest.");
 
+#if P_GEN_2_CROSS_EVOS
 const u8 gKingdraPokedexText[] = _(
     "It sleeps quietly, deep on the seafloor.\n"
     "When it comes up to the surface, it\n"
     "creates a huge whirlpool that can swallow\n"
     "even ships.");
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_HORSEA
 
 #if P_FAMILY_GOLDEEN
@@ -1346,11 +1374,13 @@ const u8 gStarmiePokedexText[] = _(
 #endif //P_FAMILY_STARYU
 
 #if P_FAMILY_MR_MIME
+#if P_GEN_4_CROSS_EVOS
 const u8 gMimeJrPokedexText[] = _(
     "In an attempt to confuse its enemy,\n"
     "it mimics the enemy's movements.\n"
     "Once mimicked, the foe cannot take\n"
     "its eyes off this Pokémon.");
+#endif //P_GEN_4_CROSS_EVOS
 
 const u8 gMrMimePokedexText[] = _(
     "A Mr. Mime is a master of pantomime. It can\n"
@@ -1379,6 +1409,7 @@ const u8 gScytherPokedexText[] = _(
     "The scythes can slice through thick logs\n"
     "in one wicked stroke.");
 
+#if P_GEN_2_CROSS_EVOS
 const u8 gScizorPokedexText[] = _(
     "A Scizor has a body with the hardness of\n"
     "steel. It is not easily fazed by ordinary\n"
@@ -1392,20 +1423,25 @@ const u8 gScizorMegaPokedexText[] = _(
     "overflow. It can't sustain a battle over\n"
     "long periods of time.");
 #endif //P_MEGA_EVOLUTIONS
+#endif //P_GEN_2_CROSS_EVOS
 
+#if P_GEN_8_CROSS_EVOS
 const u8 gKleavorPokedexText[] = _(
     "A violent creature that fells trees with\n"
     "its crude axes and shields itself with hard\n"
     "stone. Should one encounter this Pokémon\n"
     "in the wild, one's only recourse is to flee.");
+#endif //P_GEN_8_CROSS_EVOS
 #endif //P_FAMILY_SCYTHER
 
 #if P_FAMILY_JYNX
+#if P_GEN_2_CROSS_EVOS
 const u8 gSmoochumPokedexText[] = _(
     "It actively runs about, but also falls\n"
     "often. Whenever it falls, it will check its\n"
     "reflection on a lake's surface to make\n"
     "sure its face hasn't become dirty.");
+#endif //P_GEN_2_CROSS_EVOS
 
 const u8 gJynxPokedexText[] = _(
     "A Jynx sashays rhythmically as if it were\n"
@@ -1415,11 +1451,13 @@ const u8 gJynxPokedexText[] = _(
 #endif //P_FAMILY_JYNX
 
 #if P_FAMILY_ELECTABUZZ
+#if P_GEN_2_CROSS_EVOS
 const u8 gElekidPokedexText[] = _(
     "If it touches metal and discharges the\n"
     "electricity it has stored in its body, an\n"
     "Elekid begins swinging its arms in circles\n"
     "to recharge itself.");
+#endif //P_GEN_2_CROSS_EVOS
 
 const u8 gElectabuzzPokedexText[] = _(
     "When a storm approaches, it competes with\n"
@@ -1427,19 +1465,23 @@ const u8 gElectabuzzPokedexText[] = _(
     "be stricken by lightning. Some towns use\n"
     "Electabuzz in place of lightning rods.");
 
+#if P_GEN_4_CROSS_EVOS
 const u8 gElectivirePokedexText[] = _(
     "When it gets excited, it thumps its chest.\n"
     "With every thud, thunder roars, electric\n"
     "sparks shower all around and blue sparks\n"
     "begin to crackle between its horns.");
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_ELECTABUZZ
 
 #if P_FAMILY_MAGMAR
+#if P_GEN_2_CROSS_EVOS
 const u8 gMagbyPokedexText[] = _(
     "If a Magby is spouting yellow flames from\n"
     "its mouth, it is in good health. When it is\n"
     "fatigued, black smoke will be mixed in with\n"
     "the flames.");
+#endif //P_GEN_2_CROSS_EVOS
 
 const u8 gMagmarPokedexText[] = _(
     "In battle, it blows out intense flames from\n"
@@ -1447,11 +1489,13 @@ const u8 gMagmarPokedexText[] = _(
     "These fiery bursts create heat waves that\n"
     "ignite grass and trees in the area.");
 
+#if P_GEN_4_CROSS_EVOS
 const u8 gMagmortarPokedexText[] = _(
     "According to what is known, a single pair\n"
     "of male and female Magmortar lives in\n"
     "one volcano. From its arm, it launches\n"
     "fireballs hotter than 3,600ºF.");
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_MAGMAR
 
 #if P_FAMILY_PINSIR
@@ -1569,6 +1613,7 @@ const u8 gFlareonPokedexText[] = _(
     "excessively hot. Its body temperature can\n"
     "rise to a maximum of 1,650 degrees F.");
 
+#if P_GEN_2_CROSS_EVOS
 const u8 gEspeonPokedexText[] = _(
     "An Espeon is extremely loyal to any\n"
     "Trainer it considers to be worthy. It is\n"
@@ -1580,7 +1625,9 @@ const u8 gUmbreonPokedexText[] = _(
     "moon's energy pulses. It lurks in darkness\n"
     "and waits for its foes to move. The rings\n"
     "on its body glow when it leaps to attack.");
+#endif //P_GEN_2_CROSS_EVOS
 
+#if P_GEN_4_CROSS_EVOS
 const u8 gLeafeonPokedexText[] = _(
     "Its cellular composition is closer to\n"
     "that of a plant than an animal. It uses\n"
@@ -1592,12 +1639,15 @@ const u8 gGlaceonPokedexText[] = _(
     "at will. This enables it to freeze the\n"
     "moisture in the atmosphere, creating\n"
     "flurries of diamond dust.");
+#endif //P_GEN_4_CROSS_EVOS
 
+#if P_GEN_6_CROSS_EVOS
 const u8 gSylveonPokedexText[] = _(
     "Its ribbonlike feelers give off an aura\n"
     "that weakens hostility in its prey, causing\n"
     "them to let down their guard. A moment\n"
     "later, it pounces.");
+#endif //P_GEN_6_CROSS_EVOS
 #endif //P_FAMILY_EEVEE
 
 #if P_FAMILY_PORYGON
@@ -1607,17 +1657,21 @@ const u8 gPorygonPokedexText[] = _(
     "cyberspace. A Porygon is copy-\n"
     "protected so it cannot be duplicated.");
 
+#if P_GEN_2_CROSS_EVOS
 const u8 gPorygon2PokedexText[] = _(
     "It was created by humans using the power\n"
     "of science. It has been given artificial\n"
     "intelligence that enables it to learn new\n"
     "gestures and emotions on its own.");
 
+#if P_GEN_4_CROSS_EVOS
 const u8 gPorygonZPokedexText[] = _(
     "In order to create a more advanced\n"
     "Pokémon, an additional program was\n"
     "installed, but apparently it contained a\n"
     "defect that made it move oddly.");
+#endif //P_GEN_4_CROSS_EVOS
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_PORYGON
 
 #if P_FAMILY_OMANYTE
@@ -1664,11 +1718,13 @@ const u8 gAerodactylMegaPokedexText[] = _(
 #endif //P_FAMILY_AERODACTYL
 
 #if P_FAMILY_SNORLAX
+#if P_GEN_4_CROSS_EVOS
 const u8 gMunchlaxPokedexText[] = _(
     "When it finds something that looks like\n"
     "it might be edible, it goes right ahead\n"
     "and swallows it whole. That's why it gets\n"
     "fatter day by day.");
+#endif //P_GEN_4_CROSS_EVOS
 
 const u8 gSnorlaxPokedexText[] = _(
     "Snorlax's typical day consists of nothing\n"

@@ -778,7 +778,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_EKANS
 
 #if P_FAMILY_PIKACHU
-#define PICHU_MISC_INFO                                                     \
+#if P_GEN_2_CROSS_EVOS
+#define PICHU_MISC_INFO                                                    \
         .baseHP        = 20,                                               \
         .baseAttack    = 40,                                               \
         .baseDefense   = 15,                                               \
@@ -808,6 +809,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PICHU_MISC_INFO,
         .noFlip = TRUE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 
 #define PIKACHU_MISC_INFO(gender, flip)                                    \
         .baseHP        = 35,                                               \
@@ -1133,6 +1135,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     #define CLEFAIRY_FAMILY_TYPES { TYPE_NORMAL, TYPE_NORMAL }
 #endif
 
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_CLEFFA] =
     {
         .baseHP        = 50,
@@ -1155,6 +1158,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = TRUE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 
     [SPECIES_CLEFAIRY] =
     {
@@ -1291,6 +1295,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     #define JIGGLYPUFF_FAMILY_TYPES { TYPE_NORMAL, TYPE_NORMAL}
 #endif
 
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_IGGLYBUFF] =
     {
         .baseHP        = 90,
@@ -1312,6 +1317,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = TRUE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 
     [SPECIES_JIGGLYPUFF] =
     {
@@ -1405,6 +1411,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_CROBAT] =
     {
         .baseHP        = 85,
@@ -1426,6 +1433,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_ZUBAT
 
 #if P_FAMILY_ODDISH
@@ -1498,6 +1506,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_BELLOSSOM] =
     {
         .baseHP        = 75,
@@ -1520,6 +1529,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_ODDISH
 
 #if P_FAMILY_PARAS
@@ -1943,6 +1953,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_9_CROSS_EVOS
     [SPECIES_ANNIHILAPE] =
     {
         .baseHP        = 110,
@@ -1964,6 +1975,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
     },
+#endif //P_GEN_9_CROSS_EVOS
 #endif //P_FAMILY_MANKEY
 
 #if P_FAMILY_GROWLITHE
@@ -2114,6 +2126,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = TRUE,
     },
 
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_POLITOED] =
     {
         .baseHP        = 90,
@@ -2136,6 +2149,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_POLIWAG
 
 #if P_FAMILY_ABRA
@@ -2664,6 +2678,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_SLOWKING] =
     {
         SLOWKING_MISC_INFO,
@@ -2678,6 +2693,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .itemRare = ITEM_KINGS_ROCK,
         .abilities = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
     },
+#endif //P_GEN_2_CROSS_EVOS
 
 #if P_MEGA_EVOLUTIONS
     [SPECIES_SLOWBRO_MEGA] =
@@ -2724,6 +2740,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .isGalarianForm = TRUE,
     },
 
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_SLOWKING_GALARIAN] =
     {
         SLOWKING_MISC_INFO,
@@ -2738,6 +2755,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_CURIOUS_MEDICINE, ABILITY_OWN_TEMPO, ABILITY_REGENERATOR},
         .isGalarianForm = TRUE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_GALARIAN_FORMS
 #endif //P_FAMILY_SLOWPOKE
 
@@ -2788,6 +2806,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_MAGNEZONE] =
     {
         .baseHP        = 70,
@@ -2810,6 +2829,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_MAGNEMITE
 
 #if P_FAMILY_FARFETCHD
@@ -3233,6 +3253,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_2_CROSS_EVOS
 #define STEELIX_MISC_INFO                                       \
         .types = { TYPE_STEEL, TYPE_GROUND},                    \
         .catchRate = 25,                                        \
@@ -3274,6 +3295,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .isMegaEvolution = TRUE,
     },
 #endif //P_MEGA_EVOLUTIONS
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_ONIX
 
 #if P_FAMILY_DROWZEE
@@ -3574,6 +3596,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_CUBONE
 
 #if P_FAMILY_HITMONS
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_TYROGUE] =
     {
         .baseHP        = 35,
@@ -3595,6 +3618,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 
     [SPECIES_HITMONLEE] =
     {
@@ -3640,6 +3664,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_HITMONTOP] =
     {
         .baseHP        = 50,
@@ -3661,6 +3686,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_HITMONS
 
 #if P_FAMILY_LICKITUNG
@@ -3687,6 +3713,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_LICKILICKY] =
     {
         .baseHP        = 110,
@@ -3709,6 +3736,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_LICKITUNG
 
 #if P_FAMILY_KOFFING
@@ -3823,6 +3851,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_RHYPERIOR] =
     {
         .baseHP        = 115,
@@ -3844,9 +3873,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_RHYHORN
 
 #if P_FAMILY_CHANSEY
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_HAPPINY] =
     {
         .baseHP        = 100,
@@ -3869,6 +3900,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 
     [SPECIES_CHANSEY] =
     {
@@ -3893,6 +3925,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_BLISSEY] =
     {
         .baseHP        = 255,
@@ -3915,6 +3948,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_CHANSEY
 
 #if P_FAMILY_TANGELA
@@ -3940,6 +3974,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_TANGROWTH] =
     {
         .baseHP        = 100,
@@ -3961,6 +3996,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_TANGELA
 
 #if P_FAMILY_KANGASKHAN
@@ -4054,6 +4090,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_KINGDRA] =
     {
         .baseHP        = 75,
@@ -4078,6 +4115,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_HORSEA
 
 #if P_FAMILY_GOLDEEN
@@ -4179,6 +4217,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_STARYU
 
 #if P_FAMILY_MR_MIME
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_MIME_JR] =
     {
         .baseHP        = 20,
@@ -4204,6 +4243,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 
 #define MR_MIME_MISC_INFO                                           \
         .catchRate = 45,                                            \
@@ -4298,6 +4338,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_2_CROSS_EVOS
 #define SCIZOR_MISC_INFO                                \
         .types = { TYPE_BUG, TYPE_STEEL},               \
         .catchRate = 25,                                \
@@ -4338,7 +4379,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .isMegaEvolution = TRUE,
     },
 #endif //P_MEGA_EVOLUTIONS
+#endif //P_GEN_2_CROSS_EVOS
 
+#if P_GEN_8_CROSS_EVOS
     [SPECIES_KLEAVOR] =
     {
         .baseHP        = 70,
@@ -4360,9 +4403,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+#endif //P_GEN_8_CROSS_EVOS
 #endif //P_FAMILY_SCYTHER
 
 #if P_FAMILY_JYNX
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_SMOOCHUM] =
     {
         .baseHP        = 45,
@@ -4384,6 +4429,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 
     [SPECIES_JYNX] =
     {
@@ -4409,6 +4455,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_JYNX
 
 #if P_FAMILY_ELECTABUZZ
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_ELEKID] =
     {
         .baseHP        = 45,
@@ -4431,6 +4478,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = TRUE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 
     [SPECIES_ELECTABUZZ] =
     {
@@ -4455,6 +4503,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = TRUE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_ELECTIVIRE] =
     {
         .baseHP        = 75,
@@ -4477,9 +4526,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_ELECTABUZZ
 
 #if P_FAMILY_MAGMAR
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_MAGBY] =
     {
         .baseHP        = 45,
@@ -4502,6 +4553,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         .noFlip = TRUE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 
     [SPECIES_MAGMAR] =
     {
@@ -4526,6 +4578,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_MAGMORTAR] =
     {
         .baseHP        = 75,
@@ -4548,6 +4601,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         .noFlip = TRUE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_MAGMAR
 
 #if P_FAMILY_PINSIR
@@ -4883,6 +4937,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_ESPEON] =
     {
         .baseHP        = 65,
@@ -4926,7 +4981,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
     },
+#endif //P_GEN_2_CROSS_EVOS
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_LEAFEON] =
     {
         .baseHP        = 65,
@@ -4970,7 +5027,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 
+#if P_GEN_6_CROSS_EVOS
     [SPECIES_SYLVEON] =
     {
         .baseHP        = 95,
@@ -4992,6 +5051,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = TRUE,
     },
+#endif //P_GEN_6_CROSS_EVOS
 #endif //P_FAMILY_EEVEE
 
 #if P_FAMILY_PORYGON
@@ -5017,6 +5077,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_2_CROSS_EVOS
     [SPECIES_PORYGON2] =
     {
         .baseHP        = 85,
@@ -5039,6 +5100,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_PORYGON_Z] =
     {
         .baseHP        = 85,
@@ -5060,6 +5122,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
+#endif //P_GEN_2_CROSS_EVOS
 #endif //P_FAMILY_PORYGON
 
 #if P_FAMILY_OMANYTE
@@ -5198,6 +5262,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_AERODACTYL
 
 #if P_FAMILY_SNORLAX
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_MUNCHLAX] =
     {
         .baseHP        = 135,
@@ -5221,6 +5286,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 
 #define SNORLAX_MISC_INFO                                                       \
         .baseHP        = 160,                                                   \
@@ -6070,6 +6136,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_TOGEKISS] =
     {
         .baseHP        = 85,
@@ -6096,6 +6163,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_TOGEPI
 
 #if P_FAMILY_NATU
@@ -6236,6 +6304,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_MAREEP
 
 #if P_FAMILY_MARILL
+#if P_GEN_3_CROSS_EVOS
     [SPECIES_AZURILL] =
     {
         .baseHP        = 50,
@@ -6261,6 +6330,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
+#endif //P_GEN_3_CROSS_EVOS
 
     [SPECIES_MARILL] =
     {
@@ -6316,6 +6386,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_MARILL
 
 #if P_FAMILY_SUDOWOODO
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_BONSLY] =
     {
         .baseHP        = 50,
@@ -6337,6 +6408,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 
     [SPECIES_SUDOWOODO] =
     {
@@ -6452,6 +6524,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_AMBIPOM] =
     {
         .baseHP        = 75,
@@ -6473,6 +6546,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_AIPOM
 
 #if P_FAMILY_SUNKERN
@@ -6545,6 +6619,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_YANMEGA] =
     {
         .baseHP        = 86,
@@ -6567,6 +6642,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_YANMA
 
 #if P_FAMILY_WOOPER
@@ -6674,6 +6750,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_HONCHKROW] =
     {
         .baseHP        = 100,
@@ -6695,6 +6772,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_MURKROW
 
 #if P_FAMILY_MISDREAVUS
@@ -6720,6 +6798,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_MISMAGIUS] =
     {
         .baseHP        = 60,
@@ -6742,6 +6821,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_MISDREAVUS
 
 #if P_FAMILY_UNOWN
@@ -6935,6 +7015,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_UNOWN
 
 #if P_FAMILY_WOBBUFFET
+#if P_GEN_3_CROSS_EVOS
     [SPECIES_WYNAUT] =
     {
         .baseHP        = 95,
@@ -6956,6 +7037,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
+#endif //P_GEN_3_CROSS_EVOS
 
     [SPECIES_WOBBUFFET] =
     {
@@ -7003,6 +7085,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_9_CROSS_EVOS
     [SPECIES_FARIGIRAF] =
     {
         .baseHP        = 120,
@@ -7024,6 +7107,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+#endif //P_GEN_9_CROSS_EVOS
 #endif //P_FAMILY_GIRAFARIG
 
 #if P_FAMILY_PINECO
@@ -7095,6 +7179,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_9_CROSS_EVOS
 #define DUDUNSPARCE_SPECIES_INFO                                                \
     {                                                                           \
         .baseHP        = 125,                                                   \
@@ -7119,6 +7204,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_DUDUNSPARCE_TWO_SEGMENT]   = DUDUNSPARCE_SPECIES_INFO,
     [SPECIES_DUDUNSPARCE_THREE_SEGMENT] = DUDUNSPARCE_SPECIES_INFO,
+#endif //P_GEN_9_CROSS_EVOS
 #endif //P_FAMILY_DUNSPARCE
 
 #if P_FAMILY_GLIGAR
@@ -7144,6 +7230,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_GLISCOR] =
     {
         .baseHP        = 75,
@@ -7165,6 +7252,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_GLIGAR
 
 #if P_FAMILY_SNUBBULL
@@ -7378,6 +7466,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_WEAVILE] =
     {
         .baseHP        = 70,
@@ -7401,6 +7490,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 
 #if P_HISUIAN_FORMS
     [SPECIES_SNEASEL_HISUIAN] =
@@ -7481,6 +7571,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_8_CROSS_EVOS
     [SPECIES_URSALUNA] =
     {
         .baseHP        = 130,
@@ -7524,6 +7615,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+#endif //P_GEN_8_CROSS_EVOS
 #endif //P_FAMILY_TEDDIURSA
 
 #if P_FAMILY_SLUGMA
@@ -7618,6 +7710,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_MAMOSWINE] =
     {
         .baseHP        = 110,
@@ -7639,6 +7732,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_SWINUB
 
 #if P_FAMILY_CORSOLA
@@ -7784,6 +7878,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_DELIBIRD
 
 #if P_FAMILY_MANTINE
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_MANTYKE] =
     {
         .baseHP        = 45,
@@ -7805,6 +7900,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 
     [SPECIES_MANTINE] =
     {
@@ -7989,6 +8085,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_8_CROSS_EVOS
     [SPECIES_WYRDEER] =
     {
         .baseHP        = 103,
@@ -8011,6 +8108,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
     },
+#endif //P_GEN_8_CROSS_EVOS
 #endif //P_FAMILY_STANTLER
 
 #if P_FAMILY_SMEARGLE
@@ -9173,6 +9271,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 #endif //P_MEGA_EVOLUTIONS
 
+#if P_GEN_4_CROSS_EVOS
 #define GALLADE_MISC_INFO                               \
         .types = { TYPE_PSYCHIC, TYPE_FIGHTING},        \
         .catchRate = 45,                                \
@@ -9217,6 +9316,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .isMegaEvolution = TRUE,
     },
 #endif //P_MEGA_EVOLUTIONS
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_RALTS
 
 #if P_FAMILY_SURSKIT
@@ -9600,6 +9700,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_PROBOPASS] =
     {
         .baseHP        = 60,
@@ -9623,6 +9724,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_NOSEPASS
 
 #if P_FAMILY_SKITTY
@@ -10098,6 +10200,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_VOLBEAT_ILLUMISE
 
 #if P_FAMILY_ROSELIA
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_BUDEW] =
     {
         .baseHP        = 40,
@@ -10120,6 +10223,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 
     [SPECIES_ROSELIA] =
     {
@@ -10144,6 +10248,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = TRUE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_ROSERADE] =
     {
         .baseHP        = 60,
@@ -10166,6 +10271,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_ROSELIA
 
 #if P_FAMILY_GULPIN
@@ -11262,6 +11368,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_DUSKNOIR] =
     {
         .baseHP        = 45,
@@ -11285,6 +11392,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_DUSKULL
 
 #if P_FAMILY_TROPIUS
@@ -11312,6 +11420,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_TROPIUS
 
 #if P_FAMILY_CHIMECHO
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_CHINGLING] =
     {
         .baseHP        = 45,
@@ -11334,6 +11443,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 
     [SPECIES_CHIMECHO] =
     {
@@ -11474,6 +11584,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 #endif //P_MEGA_EVOLUTIONS
 
+#if P_GEN_4_CROSS_EVOS
     [SPECIES_FROSLASS] =
     {
         .baseHP        = 70,
@@ -11495,6 +11606,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
     },
+#endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_SNORUNT
 
 #if P_FAMILY_SPHEAL
@@ -15828,6 +15940,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_ROCK_HEAD, ABILITY_ADAPTABILITY, ABILITY_MOLD_BREAKER},
     },
 
+#if P_HISUIAN_FORMS
     [SPECIES_BASCULIN_WHITE_STRIPED] =
     {
         BASCULIN_MISC_INFO,
@@ -15871,6 +15984,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 75,
         .genderRatio = MON_FEMALE,
     },
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_BASCULIN
 
 #if P_FAMILY_SANDILE
@@ -17821,6 +17935,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
     },
 
+#if P_GEN_9_CROSS_EVOS
     [SPECIES_KINGAMBIT] =
     {
         .baseHP        = 100,
@@ -17842,6 +17957,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
     },
+#endif //P_GEN_9_CROSS_EVOS
 #endif //P_FAMILY_PAWNIARD
 
 #if P_FAMILY_BOUFFALANT
@@ -23769,6 +23885,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 #endif //P_GIGANTAMAX_FORMS
 
+#if P_GEN_9_CROSS_EVOS
     [SPECIES_DIPPLIN] =
     {
         .baseHP        = 80,
@@ -23790,6 +23907,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
     },
+#endif //P_GEN_9_CROSS_EVOS
 #endif //P_FAMILY_APPLIN
 
 #if P_FAMILY_SILICOBRA
