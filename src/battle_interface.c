@@ -1008,9 +1008,10 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
     u32 xPos;
     u8 *objVram;
     u8 battler = gSprites[healthboxSpriteId].hMain_Battler;
+    bool32 reverse = (gBattleMons[battler].status1 & STATUS1_REVERSE_MODE) ? TRUE : FALSE;
 
-    // Don't print Lv char if mon is mega evolved or primal reverted.
-    if (IsBattlerMegaEvolved(battler) || IsBattlerPrimalReverted(battler))
+    // Don't print Lv char if mon is mega evolved, primal reverted, or reverse mode.
+    if (IsBattlerMegaEvolved(battler) || IsBattlerPrimalReverted(battler) || reverse)
     {
         objVram = ConvertIntToDecimalStringN(text, lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
         xPos = 5 * (3 - (objVram - (text + 2))) - 1;
