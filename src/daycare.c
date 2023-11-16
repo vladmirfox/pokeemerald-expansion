@@ -462,7 +462,7 @@ static u16 GetEggSpecies(u16 species)
         {
             for (k = 0; k < EVOS_PER_MON; k++)
             {
-                if (gEvolutionTable[j][k].targetSpecies == species)
+                if (SanitizeSpeciesId(gEvolutionTable[j][k].targetSpecies) == species)
                 {
                     species = j;
                     found = TRUE;
