@@ -13,7 +13,6 @@
 #define AILMENT_FNT   7
 #define AILMENT_FSB   8
 #define AILMENT_SHDW  9
-#define AILMENT_REVM 10
 
 #define PARTY_LAYOUT_SINGLE          0
 #define PARTY_LAYOUT_DOUBLE          1

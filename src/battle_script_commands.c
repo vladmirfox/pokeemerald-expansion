@@ -5901,6 +5901,7 @@ static void Cmd_moveend(void)
             {
                 gBattleMons[gBattlerAttacker].status1 |= STATUS1_REVERSE_MODE;
                 BtlController_EmitSetMonData(BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[gBattlerAttacker].status1), &gBattleMons[gBattlerAttacker].status1);
+                UpdateHealthboxAttribute(gHealthboxSpriteIds[gBattlerAttacker], &gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], HEALTHBOX_ALL);
                 PrepareStringBattle(STRINGID_REVERSEMODE_ENTER, gBattlerAttacker);
                 LaunchStatusAnimation(gBattlerAttacker, B_ANIM_ENTER_REVERSE_MODE);
             }
@@ -11051,7 +11052,7 @@ static void Cmd_various(void)
                     BtlController_EmitHeartValueUpdate(BUFFER_A, gBattlerPartyIndexes[gActiveBattler], -j);
                 }
                 
-                UpdateHealthboxAttribute(gHealthboxSpriteIds[gActiveBattler], &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], HEALTHBOX_EXP_BAR);
+                UpdateHealthboxAttribute(gHealthboxSpriteIds[gActiveBattler], &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], HEALTHBOX_ALL);
                 MarkBattlerForControllerExec(gActiveBattler);
                 gBattleScripting.heartValueState++;
                 break;
