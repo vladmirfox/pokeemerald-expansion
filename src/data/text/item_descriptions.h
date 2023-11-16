@@ -1300,6 +1300,21 @@ static const u8 sEverstoneDesc[] = _(
     "item that prevents\n"
     "evolution.");
 
+static const u8 sBlackAuguriteDesc[] = _(
+    "A black stone that\n"
+    "makes some Pokémon\n"
+    "evolve.");;
+
+static const u8 sLinkingCordDesc[] = _(
+    "A mysterious string\n"
+    "that makes some\n"
+    "Pokémon evolve.");
+
+static const u8 sPeatBlockDesc[] = _(
+    "A block of material\n"
+    "that makes some\n"
+    "Pokémon evolve.");
+
 // Nectars
 static const u8 sRedNectarDesc[] = _(
     "Flower nectar that\n"
@@ -2391,9 +2406,15 @@ static const u8 sWhiteHerbDesc[] = _(
     "lowered stat.");
 
 static const u8 sExpShareDesc[] = _(
+#if I_EXP_SHARE_ITEM >= GEN_6
+    "This device gives\n"
+    "exp. to other\n"
+    "party members.");
+#else
     "A hold item that\n"
     "gets Exp. points\n"
     "from battles.");
+#endif
 
 static const u8 sQuickClawDesc[] = _(
     "A hold item that\n"
@@ -2634,8 +2655,8 @@ static const u8 sProtectivePadsDesc[] = _(
 
 static const u8 sThroatSprayDesc[] = _(
     "Raises Sp. Atk. if\n"
-    "a Pokémon is hit by\n"
-    "a sound-based move.");
+    "the holder uses a\n"
+    "sound-based move.");
 
 static const u8 sEjectPackDesc[] = _(
     "Forces the user to\n"
@@ -3792,3 +3813,183 @@ static const u8 sSapphireDesc[] = _(
     "A brilliant blue gem\n"
     "that symbolizes\n"
     "honesty.");
+
+static const u8 sAbilityShieldDesc[] = _(
+    "Ability changes are\n"
+    "prevented for this\n"
+    "items's holder.");
+
+static const u8 sClearAmuletDesc[] = _(
+    "Stat lowering is\n"
+    "prevented for this\n"
+    "items's holder.");
+
+static const u8 sPunchingGloveDesc[] = _(
+    "Powers up punching\n"
+    "moves and removes\n"
+    "their contact.");
+
+static const u8 sCovertCloakDesc[] = _(
+    "Protects the holder\n"
+    "from secondary\n"
+    "move effects.");
+
+static const u8 sLoadedDiceDesc[] = _(
+    "Rolls high numbers.\n"
+    "Multihit strikes\n"
+    "hit more times.");
+
+static const u8 sAuspiciousArmorDesc[] = _(
+    "Armor inhabited by\n"
+    "auspicious wishes.\n"
+    "Causes evolution.");
+
+static const u8 sBoosterEnergyDesc[] = _(
+    "Encapsuled energy\n"
+    "ups Pokémon with\n"
+    "certain Abilities.");
+
+static const u8 sBigBambooShootDesc[] = _(
+    "A large and rare\n"
+    "bamboo shoot. Best\n"
+    "sold to gourmands.");
+
+static const u8 sGimmighoulCoinDesc[] = _(
+    "Gimmighoul hoard\n"
+    "and treasure these\n"
+    "curious coins.");
+
+static const u8 sLeadersCrestDesc[] = _(
+    "A shard of an old\n"
+    "blade of some sort.\n"
+    "Held by Bisharp.");
+
+static const u8 sMaliciousArmorDesc[] = _(
+    "Armor inhabited by\n"
+    "malicious will.\n"
+    "Causes evolution.");
+
+static const u8 sMirrorHerbDesc[] = _(
+    "Mirrors an enemy's\n"
+    "stat increases\n"
+    "but only once.");
+
+static const u8 sScrollOfDarknessDesc[] = _(
+    "A peculiar scroll\n"
+    "with secrets of\n"
+    "the dark path.");
+
+static const u8 sScrollOfWatersDesc[] = _(
+    "A peculiar scroll\n"
+    "with secrets of\n"
+    "the water path.");
+
+static const u8 sTeraOrbDesc[] = _(
+    "Energy charges can\n"
+    "be used to cause\n"
+    "Terastallization.");
+
+static const u8 sTinyBambooShootDesc[] = _(
+    "A small and rare\n"
+    "bamboo shoot. Best\n"
+    "sold to gourmands.");
+
+static const u8 sTeraShardDesc[] = _(
+    "These shards may\n"
+    "form when a Tera\n"
+    "Pokémon faints.");
+
+static const u8 sAdamantCrystalDesc[] = _(
+    "A large, glowing gem\n"
+    "that lets Dialga\n"
+    "change form.");
+
+static const u8 sGriseousCoreDesc[] = _(
+    "A large, glowing gem\n"
+    "that lets Giratina\n"
+    "change form.");
+
+static const u8 sLustrousGlobeDesc[] = _(
+    "A large, glowing gem\n"
+    "that lets Palkia\n"
+    "change form.");
+
+static const u8 sBerserkGene[] = _(
+    "Sharply boosts\n"
+    "Attack, but causes\n"
+    "lasting confusion.");
+
+static const u8 sFairyFeatherDesc[] = _(
+    "A hold item that\n"
+    "raises the power of\n"
+    "Fairy-type moves.");
+
+static const u8 sSyrupyAppleDesc[] = _(
+    "A very syrupy apple\n"
+    "that makes certain\n"
+    "Pokémon evolve.");
+
+static const u8 sUnremarkableTeacupDesc[] = _(
+    "A cracked teacup\n"
+    "that makes certain\n"
+    "Pokémon evolve.");
+
+static const u8 sMasterpieceTeacupDesc[] = _(
+    "A chipped teacup\n"
+    "that makes certain\n"
+    "Pokémon evolve.");
+
+static const u8 sCornerstoneMaskDesc[] = _(
+    "Allows Ogerpon to\n"
+    "wield the Rock-\n"
+    "type in battle.");
+
+static const u8 sWellspringMaskDesc[] = _(
+    "Allows Ogerpon to\n"
+    "wield the Water-\n"
+    "type in battle.");
+
+static const u8 sHearthflameMaskDesc[] = _(
+    "Allows Ogerpon to\n"
+    "wield the Fire-\n"
+    "type in battle.");
+
+static const u8 sHealthMochiDesc[] = _(
+    "An item that raises\n"
+    "the base HP of\n"
+    "a Pokémon.");
+
+static const u8 sMuscleMochiDesc[] = _(
+    "An item that raises\n"
+    "the base Attack of\n"
+    "a Pokémon.");
+
+static const u8 sResistMochiDesc[] = _(
+    "An item that raises\n"
+    "the base Defense\n"
+    "of a Pokémon.");
+
+static const u8 sGeniusMochiDesc[] = _(
+    "An item that raises\n"
+    "the base Sp. Atk.\n"
+    "of a Pokémon.");
+
+static const u8 sCleverMochiDesc[] = _(
+    "An item that raises\n"
+    "the base Sp. Def.\n"
+    "of a Pokémon.");
+
+static const u8 sSwiftMochiDesc[] = _(
+    "An item that raises\n"
+    "the base Speed of\n"
+    "a Pokémon.");
+
+static const u8 sFreshStartMochiDesc[] = _(
+    "An item that resets\n"
+    "all base points of\n"
+    "a Pokémon.");
+
+static const u8 sGlimmeringCharmDesc[] = _(
+    "A charm that will\n"
+    "raise the shards\n"
+    "from Tera Raids.");

@@ -39,6 +39,8 @@
 #include "constants/moves.h"
 #include "constants/trainers.h"
 
+#define NUM_LAYOUT_OFFSETS 8
+
 extern const struct MapLayout *const gMapLayouts[];
 
 struct PyramidWildMon
@@ -56,7 +58,7 @@ struct PyramidFloorTemplate
     u8 itemPositions;
     u8 trainerPositions;
     u8 runMultiplier;
-    u8 layoutOffsets[8];
+    u8 layoutOffsets[NUM_LAYOUT_OFFSETS];
 };
 
 struct PyramidTrainerEncounterMusic
@@ -290,7 +292,7 @@ static const u8 sFloorTemplateOffsets[FRONTIER_STAGES_PER_CHALLENGE] =
     0, 4, 9, 14, 19, 24, 29
 };
 
-static const u16 sPickupItemsLvl50[TOTAL_ROUNDS][PICKUP_ITEMS_PER_ROUND] =
+static const u16 sPickupItemsLvl50[TOTAL_PYRAMID_ROUNDS][PICKUP_ITEMS_PER_ROUND] =
 {
     {ITEM_HYPER_POTION, ITEM_FLUFFY_TAIL, ITEM_CHERI_BERRY, ITEM_ETHER, ITEM_LUM_BERRY, ITEM_REVIVE, ITEM_BRIGHT_POWDER, ITEM_SHELL_BELL, ITEM_MAX_REVIVE, ITEM_SACRED_ASH},
     {ITEM_HYPER_POTION, ITEM_DIRE_HIT, ITEM_PECHA_BERRY, ITEM_ETHER, ITEM_LEPPA_BERRY, ITEM_REVIVE, ITEM_LEFTOVERS, ITEM_CHOICE_BAND, ITEM_FULL_RESTORE, ITEM_MAX_ELIXIR},
@@ -314,7 +316,7 @@ static const u16 sPickupItemsLvl50[TOTAL_ROUNDS][PICKUP_ITEMS_PER_ROUND] =
     {ITEM_HYPER_POTION, ITEM_X_DEFENSE, ITEM_LUM_BERRY, ITEM_ETHER, ITEM_LEPPA_BERRY, ITEM_REVIVE, ITEM_QUICK_CLAW, ITEM_KINGS_ROCK, ITEM_FULL_RESTORE, ITEM_MAX_ELIXIR},
 };
 
-static const u16 sPickupItemsLvlOpen[TOTAL_ROUNDS][PICKUP_ITEMS_PER_ROUND] =
+static const u16 sPickupItemsLvlOpen[TOTAL_PYRAMID_ROUNDS][PICKUP_ITEMS_PER_ROUND] =
 {
     {ITEM_HYPER_POTION, ITEM_FLUFFY_TAIL, ITEM_CHERI_BERRY, ITEM_ETHER, ITEM_LUM_BERRY, ITEM_REVIVE, ITEM_BRIGHT_POWDER, ITEM_SHELL_BELL, ITEM_MAX_REVIVE, ITEM_SACRED_ASH},
     {ITEM_HYPER_POTION, ITEM_DIRE_HIT, ITEM_PECHA_BERRY, ITEM_ETHER, ITEM_LEPPA_BERRY, ITEM_REVIVE, ITEM_LEFTOVERS, ITEM_CHOICE_BAND, ITEM_FULL_RESTORE, ITEM_MAX_ELIXIR},
@@ -935,7 +937,7 @@ static void SetBattlePyramidData(void)
 static void SavePyramidChallenge(void)
 {
     gSaveBlock2Ptr->frontier.challengeStatus = gSpecialVar_0x8005;
-    VarSet(VAR_TEMP_0, 0);
+    VarSet(VAR_TEMP_CHALLENGE_STATUS, 0);
     gSaveBlock2Ptr->frontier.challengePaused = TRUE;
     SaveMapView();
     TrySavingData(SAVE_LINK);
@@ -983,10 +985,10 @@ static void SetPickupItem(void)
     u8 id;
     u32 lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     u32 floor = gSaveBlock2Ptr->frontier.curChallengeBattleNum;
-    u32 round = (gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvlMode] / FRONTIER_STAGES_PER_CHALLENGE) % TOTAL_ROUNDS;
+    u32 round = (gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvlMode] / FRONTIER_STAGES_PER_CHALLENGE) % TOTAL_PYRAMID_ROUNDS;
 
-    if (round >= TOTAL_ROUNDS)
-        round = TOTAL_ROUNDS - 1;
+    if (round >= TOTAL_PYRAMID_ROUNDS)
+        round = TOTAL_PYRAMID_ROUNDS - 1;
 
     id = GetPyramidFloorTemplateId();
     itemIndex = (gSpecialVar_LastTalked - sPyramidFloorTemplates[id].numTrainers) - 1;
@@ -1191,7 +1193,7 @@ static void Task_SetPyramidFloorPalette(u8 taskId)
 {
     if (gPaletteFade.active)
     {
-        CpuCopy16(gBattlePyramidFloor_Pal[gSaveBlock2Ptr->frontier.curChallengeBattleNum], &gPlttBufferUnfaded[96], 32);
+        CpuCopy16(gBattlePyramidFloor_Pal[gSaveBlock2Ptr->frontier.curChallengeBattleNum], &gPlttBufferUnfaded[BG_PLTT_ID(6)], PLTT_SIZE_4BPP);
         DestroyTask(taskId);
     }
 }
@@ -1550,10 +1552,10 @@ void GenerateBattlePyramidWildMon(void)
     const struct PyramidWildMon *wildMons;
     u32 id;
     u32 lvl = gSaveBlock2Ptr->frontier.lvlMode;
-    u16 round = (gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvl] / FRONTIER_STAGES_PER_CHALLENGE) % TOTAL_ROUNDS;
+    u16 round = (gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvl] / FRONTIER_STAGES_PER_CHALLENGE) % TOTAL_PYRAMID_ROUNDS;
 
-    if (round >= TOTAL_ROUNDS)
-        round = TOTAL_ROUNDS - 1;
+    if (round >= TOTAL_PYRAMID_ROUNDS)
+        round = TOTAL_PYRAMID_ROUNDS - 1;
 
     if (lvl != FRONTIER_LVL_50)
         wildMons = sOpenLevelWildMonPointers[round];
@@ -1562,7 +1564,7 @@ void GenerateBattlePyramidWildMon(void)
 
     id = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, NULL) - 1;
     SetMonData(&gEnemyParty[0], MON_DATA_SPECIES, &wildMons[id].species);
-    GetSpeciesName(name, wildMons[id].species);
+    StringCopy(name, GetSpeciesName(wildMons[id].species));
     SetMonData(&gEnemyParty[0], MON_DATA_NICKNAME, &name);
     if (lvl != FRONTIER_LVL_50)
     {
@@ -1645,7 +1647,7 @@ void PausePyramidChallenge(void)
     {
         RestorePyramidPlayerParty();
         gSaveBlock2Ptr->frontier.challengeStatus = CHALLENGE_STATUS_PAUSED;
-        VarSet(VAR_TEMP_E, 0);
+        VarSet(VAR_TEMP_PLAYING_PYRAMID_MUSIC, 0);
         LoadPlayerParty();
     }
 }
@@ -1683,8 +1685,7 @@ u8 GetTrainerEncounterMusicIdInBattlePyramid(u16 trainerId)
     return TRAINER_ENCOUNTER_MUSIC_MALE;
 }
 
-// Unused
-static void BattlePyramidRetireChallenge(void)
+static void UNUSED BattlePyramidRetireChallenge(void)
 {
     ScriptContext_SetupScript(BattlePyramid_Retire);
 }
@@ -2108,7 +2109,7 @@ static void GetPyramidFloorLayoutOffsets(u8 *layoutOffsets)
 
     for (i = 0; i < NUM_PYRAMID_FLOOR_SQUARES; i++)
     {
-        layoutOffsets[i] = sPyramidFloorTemplates[id].layoutOffsets[rand & 0x7];
+        layoutOffsets[i] = sPyramidFloorTemplates[id].layoutOffsets[MOD(rand, NUM_LAYOUT_OFFSETS)];
         rand >>= 3;
         if (i == 7)
         {
@@ -2167,8 +2168,8 @@ u16 GetBattlePyramidPickupItemId(void)
     u32 lvlMode = gSaveBlock2Ptr->frontier.lvlMode;
     int round = (gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvlMode] / FRONTIER_STAGES_PER_CHALLENGE);
 
-    if (round >= TOTAL_ROUNDS)
-        round = TOTAL_ROUNDS - 1;
+    if (round >= TOTAL_PYRAMID_ROUNDS)
+        round = TOTAL_PYRAMID_ROUNDS - 1;
 
     rand = Random() % 100;
 

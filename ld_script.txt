@@ -2,6 +2,7 @@ ENTRY(Start)
 
 gNumMusicPlayers = 4;
 gMaxLines = 0;
+gInitialMainCB2 = CB2_InitCopyrightScreenAfterBootup;
 
 SECTIONS {
     . = 0x2000000;
@@ -14,8 +15,8 @@ SECTIONS {
         . = 0x1C000;
 
         INCLUDE "sym_ewram.ld"
-        src/*.o(.ewram_data);
-        gflib/*.o(.ewram_data);
+        src/*.o(ewram_data);
+        gflib/*.o(ewram_data);
 
         *libc.a:impure.o(.data);
         *libc.a:locale.o(.data);
@@ -51,6 +52,7 @@ SECTIONS {
     {
         src/rom_header.o(.text);
         src/rom_header_gf.o(.text.*);
+        src/rom_header_rhh.o(.text.*);
         src/crt0.o(.text);
         src/main.o(.text);
         gflib/malloc.o(.text);
@@ -342,6 +344,7 @@ SECTIONS {
         src/battle_transition_frontier.o(.text);
         src/international_string_util.o(.text);
         src/pokemon_debug.o(.text);
+        src/expansion_intro.o(.text);
     } =0
 
     script_data :
@@ -708,6 +711,7 @@ SECTIONS {
         src/m4a_tables.o(.rodata);
         data/sound_data.o(.rodata);
         src/pokemon_debug.o(.rodata);
+        src/expansion_intro.o(.rodata);
     } =0
 
     song_data :
@@ -1321,6 +1325,8 @@ SECTIONS {
         gflib/*.o(.rodata);
         data/*.o(.rodata);
     } = 0
+
+    __rom_end = .;
 
     /* DWARF debug sections.
        Symbols in the DWARF debugging sections are relative to the beginning
