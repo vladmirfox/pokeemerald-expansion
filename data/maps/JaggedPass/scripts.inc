@@ -30,8 +30,23 @@ JaggedPass_EventScript_SetWeatherAsh::
 	return
 
 JaggedPass_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_TYRANITARITE, JaggedPass_Hide_Tyranitarite
 	goto_if_le VAR_JAGGED_PASS_STATE, 1, JaggedPass_EventScript_ConcealHideoutEntrance
 	end
+
+JaggedPass_Hide_Tyranitarite::
+    setmetatile 23, 12, METATILE_Lavaridge_LavaField, FALSE
+    return
+
+JaggedPass_Tyranitarite::
+	goto_if_set FLAG_HIDDEN_ITEM_TYRANITARITE, JaggedPass_End_Tyranitarite
+	call JaggedPass_Hide_Tyranitarite
+	special DrawWholeMapView
+	giveitem ITEM_TYRANITARITE
+	setflag FLAG_HIDDEN_ITEM_TYRANITARITE
+JaggedPass_End_Tyranitarite::
+	release
+	end	
 
 JaggedPass_EventScript_ConcealHideoutEntrance::
 	setmetatile 16, 17, METATILE_Lavaridge_RockWall, TRUE

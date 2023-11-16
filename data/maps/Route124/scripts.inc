@@ -1,7 +1,26 @@
 Route124_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route124_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Route124_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, Route124_OnLoad
 	.byte 0
+
+Route124_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_GYARADOSITE, Route124_Hide_Gyaradosite
+	end
+
+Route124_Hide_Gyaradosite::
+    setmetatile 37, 63, METATILE_General_ShallowWater, FALSE
+    return
+
+Route124_Gyaradosite::
+	goto_if_set FLAG_HIDDEN_ITEM_GYARADOSITE, Route124_End_Gyaradosite
+	call Route124_Hide_Gyaradosite
+	special DrawWholeMapView
+	giveitem ITEM_GYARADOSITE
+	setflag FLAG_HIDDEN_ITEM_GYARADOSITE
+Route124_End_Gyaradosite::
+	release
+	end	
 
 Route124_OnResume_Night:
 	setvar VAR_DAYNIGHT, 1

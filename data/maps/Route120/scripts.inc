@@ -49,12 +49,27 @@ Route120_EventScript_RemoveKecleon::
 	return
 
 Route120_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_ABSOLITE, Route120_Hide_Absol
 	call Grotto_EventScript_GetGrottoWarp
 	goto_if_eq VAR_HIDDEN_GROTTO_ROUTE_120, 0, Route120_EventScript_CloseGrotto
 	call_if_unset FLAG_REGI_DOORS_OPENED, Route120_EventScript_CloseAncientTomb
 	call_if_set FLAG_RECEIVED_DEVON_SCOPE, Route120_EventScript_SetBridgeClearMetatiles
 	call_if_unset FLAG_RECEIVED_DEVON_SCOPE, Route120_EventScript_SetBridgeKecleonMovement
 	end
+
+Route120_Hide_Absol::
+    setmetatile 10, 48, METATILE_General_Grass, FALSE
+    return
+
+Route120_Absol::
+	goto_if_set FLAG_HIDDEN_ITEM_ABSOLITE, Route120_End_Absol
+	call Route120_Hide_Absol
+	special DrawWholeMapView
+	giveitem ITEM_ABSOLITE
+	setflag FLAG_HIDDEN_ITEM_ABSOLITE
+Route120_End_Absol::
+	release
+	end	
 
 Route120_EventScript_CloseGrotto::
 	setmetatile 32, 23, METATILE_General_Grass, FALSE
