@@ -1,5 +1,5 @@
-#ifndef GUARD_CONFIG_SPECIES_FAMILIES_H
-#define GUARD_CONFIG_SPECIES_FAMILIES_H
+#ifndef GUARD_CONFIG_SPECIES_ENABLED_H
+#define GUARD_CONFIG_SPECIES_ENABLED_H
 
 // Modifying the latest generation WILL change the saveblock due to Dex flags and will require a new save file.
 // Generations of Pokémon are defined by the first member introduced,
@@ -586,4 +586,4 @@
 #define P_FAMILY_FEZANDIPITI             P_GEN_9_POKEMON
 #define P_FAMILY_OGERPON                 P_GEN_9_POKEMON
 
-#endif // GUARD_CONFIG_SPECIES_FAMILIES_H
+#endif // GUARD_CONFIG_SPECIES_ENABLED_H
