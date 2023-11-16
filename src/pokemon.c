@@ -8823,7 +8823,7 @@ u8 GetReverseModeChance(struct BattlePokemon *mon)
     if (mon->isShadow == TRUE)
     {
         aggro = mon->shadowAggro;
-        // if (aggro >= NUM_AGGRO_LEVELS)
+        if (aggro >= NUM_AGGRO_LEVELS)
             aggro = NUM_AGGRO_LEVELS - 1;
         heartVal = mon->heartVal;
         heartMax = mon->heartMax;
