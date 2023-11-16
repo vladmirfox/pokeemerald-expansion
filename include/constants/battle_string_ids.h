@@ -547,7 +547,7 @@
 #define STRINGID_NOONEWILLBEABLETORUNAWAY             545
 #define STRINGID_DESTINYKNOTACTIVATES                 546
 #define STRINGID_CLOAKEDINAFREEZINGLIGHT              547
-#define STRINGID_STATWASNOTLOWERED                    548
+#define STRINGID_CLEARAMULETWONTLOWERSTATS            548
 #define STRINGID_FERVENTWISHREACHED                   549
 #define STRINGID_AIRLOCKACTIVATES                     550
 #define STRINGID_PRESSUREENTERS                       551
@@ -685,8 +685,9 @@
 #define STRINGID_TEAMSURROUNDEDBYROCKS                683
 #define STRINGID_PKMNHURTBYROCKSTHROWN                684
 #define STRINGID_MOVEBLOCKEDBYDYNAMAX                 685
+#define STRINGID_ZEROTOHEROTRANSFORMATION             686
 
-#define BATTLESTRINGS_COUNT                           686
+#define BATTLESTRINGS_COUNT                           687
 
 // This is the string id that gBattleStringsTable starts with.
 // String ids before this (e.g. STRINGID_INTROMSG) are not in the table,

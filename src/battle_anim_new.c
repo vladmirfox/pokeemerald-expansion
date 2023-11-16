@@ -8630,7 +8630,7 @@ void AnimTask_TerrainPulse(u8 taskId)
 
 void AnimTask_AffectionHangedOn(u8 taskId)
 {
-    gBattleAnimArgs[0] = GetBattlerFriendshipScore(gBattleAnimTarget);
+    gBattleAnimArgs[0] = GetBattlerAffectionHearts(gBattleAnimTarget);
     DestroyAnimVisualTask(taskId);
 }
 
@@ -9147,4 +9147,23 @@ void AnimTask_GetWeatherToSet(u8 taskId)
             break;
     }
 	DestroyAnimVisualTask(taskId);
+}
+
+void AnimTask_SyrupBomb(u8 taskId)
+{
+    struct Pokemon *party = GetBattlerParty(gBattleAnimAttacker);
+    u32 isShiny = IsMonShiny(&party[gBattlerPartyIndexes[gBattleAnimAttacker]]);
+
+    gDisableStructs[gBattleAnimTarget].syrupBombIsShiny = isShiny;
+    gBattleAnimArgs[0] = isShiny;
+    DestroyAnimVisualTask(taskId);
+}
+
+void AnimTask_StickySyrup(u8 taskId)
+{
+    if (gDisableStructs[gBattleAnimTarget].syrupBombIsShiny)
+        gBattleAnimArgs[0] = TRUE;
+    else
+        gBattleAnimArgs[0] = FALSE;
+    DestroyAnimVisualTask(taskId);
 }
