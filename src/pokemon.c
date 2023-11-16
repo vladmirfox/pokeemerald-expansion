@@ -7003,7 +7003,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
     u8 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
     u16 upperPersonality = personality >> 16;
     u32 holdEffect, currentMap, partnerSpecies, partnerHeldItem, partnerHoldEffect;
-    bool32 removeItem = FALSE;
 
     if (tradePartner != NULL)
     {
@@ -7044,6 +7043,9 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
 
         for (i = 0; i < EVOS_PER_MON; i++)
         {
+            if (SanitizeSpeciesId(gEvolutionTable[species][i].targetSpecies) == SPECIES_NONE)
+                continue;
+
             switch (gEvolutionTable[species][i].method)
             {
             case EVO_FRIENDSHIP:
@@ -7074,7 +7076,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                 RtcCalcLocalTime();
                 if (gLocalTime.hours >= NIGHT_EVO_HOUR_BEGIN && gLocalTime.hours < NIGHT_EVO_HOUR_END && heldItem == gEvolutionTable[species][i].param)
                 {
-                    removeItem = TRUE;
+                    heldItem = ITEM_NONE;
+                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 }
                 break;
@@ -7082,7 +7085,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                 RtcCalcLocalTime();
                 if (gLocalTime.hours >= DAY_EVO_HOUR_BEGIN && gLocalTime.hours < DAY_EVO_HOUR_END && heldItem == gEvolutionTable[species][i].param)
                 {
-                    removeItem = TRUE;
+                    heldItem = ITEM_NONE;
+                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 }
                 break;
@@ -7263,7 +7267,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
             case EVO_ITEM_HOLD:
                 if (heldItem == gEvolutionTable[species][i].param)
                 {
-                    removeItem = TRUE;
+                    heldItem = 0;
+                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 }
                 break;
@@ -7273,6 +7278,9 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
     case EVO_MODE_TRADE:
         for (i = 0; i < EVOS_PER_MON; i++)
         {
+            if (SanitizeSpeciesId(gEvolutionTable[species][i].targetSpecies) == SPECIES_NONE)
+                continue;
+
             switch (gEvolutionTable[species][i].method)
             {
             case EVO_TRADE:
@@ -7281,7 +7289,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
             case EVO_TRADE_ITEM:
                 if (gEvolutionTable[species][i].param == heldItem)
                 {
-                    removeItem = TRUE;
+                    heldItem = ITEM_NONE;
+                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 }
                 break;
@@ -7296,6 +7305,9 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
     case EVO_MODE_ITEM_CHECK:
         for (i = 0; i < EVOS_PER_MON; i++)
         {
+            if (SanitizeSpeciesId(gEvolutionTable[species][i].targetSpecies) == SPECIES_NONE)
+                continue;
+
             switch (gEvolutionTable[species][i].method)
             {
             case EVO_ITEM:
@@ -7327,6 +7339,9 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
     case EVO_MODE_BATTLE_SPECIAL:
         for (i = 0; i < EVOS_PER_MON; i++)
         {
+            if (SanitizeSpeciesId(gEvolutionTable[species][i].targetSpecies) == SPECIES_NONE)
+                continue;
+
             switch (gEvolutionTable[species][i].method)
             {
             case EVO_CRITICAL_HITS:
@@ -7340,6 +7355,9 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
     case EVO_MODE_OVERWORLD_SPECIAL:
         for (i = 0; i < EVOS_PER_MON; i++)
         {
+            if (SanitizeSpeciesId(gEvolutionTable[species][i].targetSpecies) == SPECIES_NONE)
+                continue;
+
             switch (gEvolutionTable[species][i].method)
             {
             case EVO_SCRIPT_TRIGGER_DMG:
@@ -7363,12 +7381,6 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
         }
         break;
     }
-    targetSpecies = SanitizeSpeciesId(targetSpecies);
-    if (targetSpecies && removeItem)
-    {
-        heldItem = ITEM_NONE;
-        SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
-    }
 
     return targetSpecies;
 }
@@ -7381,6 +7393,9 @@ bool8 IsMonPastEvolutionLevel(struct Pokemon *mon)
 
     for (i = 0; i < EVOS_PER_MON; i++)
     {
+        if (SanitizeSpeciesId(gEvolutionTable[species][i].targetSpecies) == SPECIES_NONE)
+            continue;
+
         switch (gEvolutionTable[species][i].method)
         {
         case EVO_LEVEL:
@@ -9093,7 +9108,7 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 
         }
     }
 
-    return SanitizeSpeciesId(targetSpecies);
+    return targetSpecies;
 }
 
 bool32 DoesSpeciesHaveFormChangeMethod(u16 species, u16 method)
