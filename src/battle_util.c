@@ -9319,7 +9319,8 @@ static bool32 CanEvolve(u32 species)
 
     for (i = 0; i < EVOS_PER_MON; i++)
     {
-        if (gEvolutionTable[species][i].method)
+        if (gEvolutionTable[species][i].method
+            && SanitizeSpeciesId(gEvolutionTable[species][i].targetSpecies) != SPECIES_NONE)
             return TRUE;
     }
     return FALSE;
