@@ -7002,11 +7002,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
     u16 friendship;
     u8 beauty = GetMonData(mon, MON_DATA_BEAUTY, 0);
     u16 upperPersonality = personality >> 16;
-    u8 holdEffect;
-    u16 currentMap;
-    u16 partnerSpecies;
-    u16 partnerHeldItem;
-    u8 partnerHoldEffect;
+    u32 holdEffect, currentMap, partnerSpecies, partnerHeldItem, partnerHoldEffect;
+    bool32 removeItem = FALSE;
 
     if (tradePartner != NULL)
     {
@@ -7077,8 +7074,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                 RtcCalcLocalTime();
                 if (gLocalTime.hours >= NIGHT_EVO_HOUR_BEGIN && gLocalTime.hours < NIGHT_EVO_HOUR_END && heldItem == gEvolutionTable[species][i].param)
                 {
-                    heldItem = ITEM_NONE;
-                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+                    removeItem = TRUE;
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 }
                 break;
@@ -7086,8 +7082,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
                 RtcCalcLocalTime();
                 if (gLocalTime.hours >= DAY_EVO_HOUR_BEGIN && gLocalTime.hours < DAY_EVO_HOUR_END && heldItem == gEvolutionTable[species][i].param)
                 {
-                    heldItem = ITEM_NONE;
-                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+                    removeItem = TRUE;
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 }
                 break;
@@ -7268,8 +7263,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
             case EVO_ITEM_HOLD:
                 if (heldItem == gEvolutionTable[species][i].param)
                 {
-                    heldItem = 0;
-                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+                    removeItem = TRUE;
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 }
                 break;
@@ -7287,8 +7281,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
             case EVO_TRADE_ITEM:
                 if (gEvolutionTable[species][i].param == heldItem)
                 {
-                    heldItem = ITEM_NONE;
-                    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+                    removeItem = TRUE;
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 }
                 break;
@@ -7369,6 +7362,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 mode, u16 evolutionItem, s
             }
         }
         break;
+    }
+    targetSpecies = SanitizeSpeciesId(targetSpecies);
+    if (targetSpecies && removeItem)
+    {
+        heldItem = ITEM_NONE;
+        SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
     }
 
     return targetSpecies;
@@ -9094,7 +9093,7 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 
         }
     }
 
-    return targetSpecies;
+    return SanitizeSpeciesId(targetSpecies);
 }
 
 bool32 DoesSpeciesHaveFormChangeMethod(u16 species, u16 method)
