@@ -4,8 +4,11 @@
 ASSUMPTIONS
 {
     ASSUME(gBattleMoves[MOVE_THUNDER_FANG].effect == EFFECT_FLINCH_STATUS);
+    ASSUME(gBattleMoves[MOVE_THUNDER_FANG].argument == STATUS1_PARALYSIS);
     ASSUME(gBattleMoves[MOVE_ICE_FANG].effect == EFFECT_FLINCH_STATUS);
+    ASSUME(gBattleMoves[MOVE_ICE_FANG].argument == STATUS1_FREEZE);
     ASSUME(gBattleMoves[MOVE_FIRE_FANG].effect == EFFECT_FLINCH_STATUS);
+    ASSUME(gBattleMoves[MOVE_FIRE_FANG].argument == STATUS1_BURN);
 }
 
 SINGLE_BATTLE_TEST("Thunder, Ice and Fire Fang inflict status 10% of the time")
