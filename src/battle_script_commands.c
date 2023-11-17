@@ -3758,7 +3758,10 @@ static void Cmd_tryfaintmon(void)
         {
             gActiveBattler = gBattlerTarget;
             battlerId = gBattlerAttacker;
-            instr = BattleScript_FaintTarget;
+            if (gBattleMons[gBattlerTarget].snagged == TRUE)
+                instr = BattleScript_ShowCaughtTargetAsFainted;
+            else
+                instr = BattleScript_FaintTarget;
         }
         if (!(gAbsentBattlerFlags & gBitTable[gActiveBattler])
          && gBattleMons[gActiveBattler].hp == 0)
@@ -11092,6 +11095,44 @@ static void Cmd_various(void)
         }
 	    return;
     }
+    case VARIOUS_COLLECT_SNAGGED_MONS:
+    {
+        VARIOUS_ARGS();
+        u8 i;
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            if (GetMonData(&gEnemyParty[i], MON_DATA_SNAGGED))
+            {
+                if (GiveMonToPlayer(&gEnemyParty[i]) != MON_GIVEN_TO_PARTY)
+                {
+                    if (!ShouldShowBoxWasFullMessage())
+                    {
+                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SENT_SOMEONES_PC;
+                        StringCopy(gStringVar1, GetBoxNamePtr(VarGet(VAR_PC_BOX_TO_SEND_MON)));
+                        GetMonData(&gEnemyParty[i], MON_DATA_NICKNAME, gStringVar2);
+                    }
+                    else
+                    {
+                        StringCopy(gStringVar1, GetBoxNamePtr(VarGet(VAR_PC_BOX_TO_SEND_MON))); // box the mon was sent to
+                        GetMonData(&gEnemyParty[i], MON_DATA_NICKNAME, gStringVar2);
+                        StringCopy(gStringVar3, GetBoxNamePtr(GetPCBoxToSendMon())); //box the mon was going to be sent to
+                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SOMEONES_BOX_FULL;
+                    }
+
+                    // Change to B_MSG_SENT_LANETTES_PC or B_MSG_LANETTES_BOX_FULL
+                    if (FlagGet(FLAG_SYS_PC_LANETTE))
+                        gBattleCommunication[MULTISTRING_CHOOSER]++;
+                }
+
+                gBattleResults.caughtMonSpecies = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES, NULL);
+                GetMonData(&gEnemyParty[i], MON_DATA_NICKNAME, gBattleResults.caughtMonNick);
+                gBattleResults.caughtMonBall = GetMonData(&gEnemyParty[i], MON_DATA_POKEBALL, NULL);
+                gBattlescriptCurrInstr = BattleScript_TryPrintSnaggedMonInfo;
+
+            }
+        }
+        
+    }
     } // End of switch (cmd->id)
 
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -15504,10 +15545,15 @@ static void Cmd_handleballthrow(void)
             BtlController_EmitBallThrowAnim(BUFFER_A, BALL_3_SHAKES_SUCCESS);
             MarkBattlerForControllerExec(gActiveBattler);
             TryBattleFormChange(gBattlerTarget, FORM_CHANGE_END_BATTLE);
-            if (gBattleMons[gBattlerTarget].isShadow)
+            if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
             {
-                gBattlescriptCurrInstr = BattleScript_SuccessBallThrowShadow;
+                bool8 snagFlag = TRUE;
+                gBattleMons[gBattlerTarget].snagged = TRUE;
+                gBattleMons[gBattlerTarget].hp = 0;
+                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_SNAGGED, &snagFlag);
+                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &gBattleMons[gBattlerTarget].hp);
                 SetHealthboxSpriteInvisible(gHealthboxSpriteIds[gBattlerTarget]);
+                gBattlescriptCurrInstr = BattleScript_SuccessBallThrowShadow;
             }
             else
             {
@@ -15566,11 +15612,16 @@ static void Cmd_handleballthrow(void)
                     gBattleSpritesDataPtr->animationData->criticalCaptureSuccess = TRUE;
 
                 TryBattleFormChange(gBattlerTarget, FORM_CHANGE_END_BATTLE);
-                if (gBattleMons[gBattlerTarget].isShadow)
-                {
-                    gBattlescriptCurrInstr = BattleScript_SuccessBallThrowShadow;
-                    SetHealthboxSpriteInvisible(gHealthboxSpriteIds[gBattlerTarget]);
-                }
+                if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+                    {
+                        bool8 snagFlag = TRUE;
+                        gBattleMons[gBattlerTarget].snagged = TRUE;
+                        gBattleMons[gBattlerTarget].hp = 0;
+                        SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_SNAGGED, &snagFlag);
+                        SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &gBattleMons[gBattlerTarget].hp);
+                        SetHealthboxSpriteInvisible(gHealthboxSpriteIds[gBattlerTarget]);
+                        gBattlescriptCurrInstr = BattleScript_SuccessBallThrowShadow;
+                    }
                 else
                 {
                     gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
@@ -15634,11 +15685,6 @@ static void Cmd_givecaughtmon(void)
     gBattleResults.caughtMonSpecies = GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_SPECIES, NULL);
     GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_NICKNAME, gBattleResults.caughtMonNick);
     gBattleResults.caughtMonBall = GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_POKEBALL, NULL);
-
-    if (GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]], MON_DATA_IS_SHADOW))
-    {
-        ZeroMonData(&gEnemyParty[gBattlerPartyIndexes[GetCatchingBattler()]]);
-    }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }

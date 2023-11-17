@@ -2103,9 +2103,12 @@
 	various \battler, VARIOUS_TRY_TRAINER_SLIDE_MSG_MEGA_EVOLUTION
 	.endm
 
-	.macro modifyheartvalue battler:req amount:req
+	.macro modifyheartvalue battler:req
 	various \battler, VARIOUS_MODIFY_HEART_VALUE
-	.4byte \amount
+	.endm
+
+	.macro collectsnags
+	various BS_ATTACKER, VARIOUS_COLLECT_SNAGGED_MONS
 	.endm
 
 @ helpful macros

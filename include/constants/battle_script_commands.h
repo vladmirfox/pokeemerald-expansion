@@ -260,6 +260,7 @@
 #define VARIOUS_TRY_TRAINER_SLIDE_MSG_MEGA_EVOLUTION 167
 #define VARIOUS_MODIFY_HEART_VALUE                   168
 #define VARIOUS_SET_SHADOW_SKY                       169
+#define VARIOUS_COLLECT_SNAGGED_MONS                 170
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

@@ -5158,6 +5158,10 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         if (substruct3->isShadow)
             retVal = boxMon->nickData.shadowData.heartMax;
         break;
+    case MON_DATA_SNAGGED:
+        if (substruct3->isShadow)
+            retVal = boxMon->nickData.shadowData.snagFlag;
+        break;
     default:
         break;
     }
@@ -5491,6 +5495,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     case MON_DATA_HEART_MAX:
         SET16(boxMon->nickData.shadowData.heartMax);
+        break;
+    case MON_DATA_SNAGGED:
+        SET8(boxMon->nickData.shadowData.snagFlag);
         break;
     case MON_DATA_IVS:
     {

@@ -4215,7 +4215,21 @@ static const struct TrainerMonCustomized sParty_ShadowTest[] = {
     {
     .iv = 0,
     .lvl = 2,
-    .species = SPECIES_LOTAD,
+    .species = SPECIES_GROUDON,
+    .isShadow = 1,
+    .heartGauge = 3000,
+    },
+    {
+    .iv = 0,
+    .lvl = 2,
+    .species = SPECIES_KYOGRE,
+    .isShadow = 1,
+    .heartGauge = 3000,
+    },
+    {
+    .iv = 0,
+    .lvl = 2,
+    .species = SPECIES_RAYQUAZA,
     .isShadow = 1,
     .heartGauge = 3000,
     },

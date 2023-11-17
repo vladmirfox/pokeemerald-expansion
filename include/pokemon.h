@@ -96,7 +96,7 @@ enum {
     MON_DATA_IS_XD,
     MON_DATA_SHADOW_AGGRO,
     MON_DATA_BOOST_LEVEL,
-    // MON_DATA_REVERSE_MODE,
+    MON_DATA_SNAGGED,
     MON_DATA_HEART_VALUE,
     MON_DATA_HEART_MAX,
     MON_DATA_KNOWN_MOVES,
@@ -220,8 +220,8 @@ union __attribute__((packed, aligned(2))) NicknameShadowdata
     /* 0x05 */ u8 shadowAggro:3; //Determines chance to enter Reverse Mode
     /* 0x05 */ u8 boostLevel:2; //Determines how much the Pokemon's stats are boosted before you can catch them
     /* 0x05 */ u8 isXD:1; //for Shadow Lugia's special case
-    // /* 0x05 */ u8 isReverse:1;
-    /* 0x05 */ u8 filler:2;
+    /* 0x05 */ u8 snagFlag:1; //Set when catching from another trainer, so that the mon is given to you after winning. Unset afterward.
+    /* 0x05 */ u8 filler:1;
     /* 0x06 */ 
     /* 0x07 */ 
     /* 0x08 */ 
@@ -354,9 +354,8 @@ struct BattlePokemon
     /*0x5A*/ u8 isShadow:1;
     /*0x5A*/ u8 boostLevel:2;
     /*0x5A*/ u8 shadowAggro:3;
-    // /*0x5A*/ u8 isReverse:1;
     /*0x5A*/ u8 isXD:1;
-    /*0x5A*/ u8 filler:1;
+    /*0x5A*/ u8 snagged:1;
     /*0x5B*/ u8 shadowID;
     /*0x5C*/ u16 heartVal;
     /*0x5E*/ u16 heartMax;

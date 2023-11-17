@@ -6623,6 +6623,7 @@ BattleScript_LocalBattleWonReward::
 	printstring STRINGID_PLAYERGOTMONEY
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_PayDayMoneyAndPickUpItems::
+	collectsnags
 	givepaydaymoney
 	pickup
 	end2
@@ -10640,7 +10641,7 @@ BattleScript_TrainerCallToMonReverse::
 	waitmessage B_WAIT_TIME_SHORTEST
 	playanimation BS_ATTACKER B_ANIM_CALL_REVERSE_MODE
 	setbyte sHEARTVALUE_STATE, 0
-	modifyheartvalue BS_ATTACKER, 300
+	modifyheartvalue BS_ATTACKER
 	end2
 BattleScript_TrainerCallToMonEnd::
 	pause B_WAIT_TIME_SHORTEST
