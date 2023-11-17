@@ -3,6 +3,7 @@
 
 AquaHideout_B2F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, AquaHideout_B2F_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, AquaHideout_B2F_OnLoad
 	.byte 0
 
 AquaHideout_B2F_OnTransition:
@@ -12,6 +13,24 @@ AquaHideout_B2F_OnTransition:
 AquaHideout_B2F_EventScript_PreventMattNoticing::
 	setvar VAR_TEMP_1, 1
 	return
+
+AquaHideout_B2F_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_SHARPEDONITE, AquaHideout_B2F_Hide_Sharpedonite
+	end
+
+AquaHideout_B2F_Hide_Sharpedonite::
+    setmetatile 3, 13, METATILE_Facility_shipFloor, FALSE
+    return
+
+AquaHideout_B2F_Sharpedonite::
+	goto_if_set FLAG_HIDDEN_ITEM_SHARPEDONITE, AquaHideout_B2F_End_Sharpedonite
+	call AquaHideout_B2F_Hide_Sharpedonite
+	special DrawWholeMapView
+	giveitem ITEM_SHARPEDONITE
+	setflag FLAG_HIDDEN_ITEM_SHARPEDONITE
+AquaHideout_B2F_End_Sharpedonite::
+	release
+	end	
 
 AquaHideout_B2F_EventScript_MattNoticePlayer::
 	lockall

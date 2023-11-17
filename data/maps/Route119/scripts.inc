@@ -9,9 +9,24 @@ Route119_MapScripts::
 	.byte 0
 
 Route119_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_ALTARIANITE, Route119_Hide_Altarianite
 	call Grotto_EventScript_GetGrottoWarp
 	goto_if_eq VAR_HIDDEN_GROTTO_ROUTE_119, 0, Route119_EventScript_CloseGrotto
 	end
+
+Route119_Hide_Altarianite::
+    setmetatile 9, 18, METATILE_General_Grass, FALSE
+    return
+
+Route119_Altarianite::
+	goto_if_set FLAG_HIDDEN_ITEM_ALTARIANITE, Route119_End_Altarianite
+	call Route119_Hide_Altarianite
+	special DrawWholeMapView
+	giveitem ITEM_ALTARIANITE
+	setflag FLAG_HIDDEN_ITEM_ALTARIANITE
+Route119_End_Altarianite::
+	release
+	end	
 
 Route119_EventScript_CloseGrotto::
 	setmetatile 13, 88, METATILE_General_Grass, FALSE
