@@ -439,6 +439,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectMatchaGotcha            @ EFFECT_MATCHA_GOTCHA
 	.4byte BattleScript_EffectSyrupBomb               @ EFFECT_SYRUP_BOMB
 	.4byte BattleScript_EffectHit                     @ EFFECT_IVY_CUDGEL
+	.4byte BattleScript_EffectHit                     @ EFFECT_RAGE_FIST
 	.4byte BattleScript_EffectMaxMove                 @ EFFECT_MAX_MOVE
 
 BattleScript_EffectSyrupBomb::

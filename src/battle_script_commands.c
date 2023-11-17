@@ -6027,6 +6027,19 @@ static void Cmd_moveend(void)
             }
             gBattleScripting.moveendState++;
             break;
+        case MOVEEND_RAGE_FIST:
+            if (HasMoveEffect(gBattlerTarget, EFFECT_RAGE_FIST)
+                && (gBattleStruct->rageFistHits[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)] < 6)
+                && gBattlerAttacker != gBattlerTarget
+                && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget)
+                && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && !(gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
+                && TARGET_TURN_DAMAGED)
+            {
+                gBattleStruct->rageFistHits[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)]++;
+            }
+            gBattleScripting.moveendState++;
+            break;
         case MOVEEND_CLEAR_BITS: // Clear/Set bits for things like using a move for all targets and all hits.
             if (gSpecialStatuses[gBattlerAttacker].instructedChosenTarget)
                 *(gBattleStruct->moveTarget + gBattlerAttacker) = gSpecialStatuses[gBattlerAttacker].instructedChosenTarget & 0x3;
