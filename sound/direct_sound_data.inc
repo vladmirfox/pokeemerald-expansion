@@ -4604,4 +4604,4 @@ DirectSoundWaveData_sd90_enhanced_delay_shaku::
 
 	.align 2
 DirectSoundWaveData_sc88pro_tuba_51_short::
-	.incbin "sound/direct_sound_samples/sc88pro_tuba_51_short.aif"
+	.incbin "sound/direct_sound_samples/sc88pro_tuba_51_short.bin"

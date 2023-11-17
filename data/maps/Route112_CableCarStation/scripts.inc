@@ -39,6 +39,7 @@ Route112_CableCarStation_EventScript_Steven::
 	waitmovement 0
 	msgbox Route112_CableCarStation_Text_StevenGiveMegaRing, MSGBOX_DEFAULT
 	giveitem ITEM_MEGA_RING
+	call EventScript_EnableAllMegaStones
 	msgbox Route112_CableCarStation_Text_StevenAlsoHaveThis, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
 	case 0, Route112_CableCarStation_EventScript_StevenGiveSceptileite

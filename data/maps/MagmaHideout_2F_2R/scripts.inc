@@ -1,5 +1,24 @@
 MagmaHideout_2F_2R_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, MagmaHideout_2F_2R_OnLoad
 	.byte 0
+
+MagmaHideout_2F_2R_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_CAMERUPTITE, MagmaHideout_2F_2R_Hide_Cameruptite
+	end
+
+MagmaHideout_2F_2R_Hide_Cameruptite::
+    setmetatile 18, 12, METATILE_Lavaridge_LavaField, FALSE
+    return
+
+MagmaHideout_2F_2R_Cameruptite::
+	goto_if_set FLAG_HIDDEN_ITEM_CAMERUPTITE, MagmaHideout_2F_2R_End_Cameruptite
+	call MagmaHideout_2F_2R_Hide_Cameruptite
+	special DrawWholeMapView
+	giveitem ITEM_CAMERUPTITE
+	setflag FLAG_HIDDEN_ITEM_CAMERUPTITE
+MagmaHideout_2F_2R_End_Cameruptite::
+	release
+	end	
 
 MagmaHideout_2F_2R_EventScript_Grunt15::
 	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_15, MagmaHideout_2F_2R_Text_Grunt15Intro, MagmaHideout_2F_2R_Text_Grunt15Defeat

@@ -1,7 +1,26 @@
 MountainFoot_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, MountainFoot_OnResume
 	map_script MAP_SCRIPT_ON_RESUME, MountainFoot_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, MountainFoot_OnLoad
 	.byte 0
+
+MountainFoot_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_ALAKAZITE, MountainFoot_Hide_Alakazite
+	end
+
+MountainFoot_Hide_Alakazite::
+    setmetatile 57, 12, METATILE_General_Grass, FALSE
+    return
+
+MountainFoot_Alakazite::
+	goto_if_set FLAG_HIDDEN_ITEM_ALAKAZITE, MountainFoot_End_Alakazite
+	call MountainFoot_Hide_Alakazite
+	special DrawWholeMapView
+	giveitem ITEM_ALAKAZITE
+	setflag FLAG_HIDDEN_ITEM_ALAKAZITE
+MountainFoot_End_Alakazite::
+	release
+	end	
 
 MountainFoot_OnResume:
 	special GetDayOrNight
