@@ -11796,7 +11796,7 @@ const struct PokedexEntry gPokedexEntries[] =
 
     [NATIONAL_DEX_DUDUNSPARCE] =
     {
-        .description = gDudunsparcePokedexText,
+        .description = gDudunsparceTwoSegmentPokedexText,
         .categoryName = _("Land Snake"),
         .pokemonScale = 356,
         .pokemonOffset = 17,
