@@ -79,6 +79,14 @@
       "elevation": 0,
       "item": "ITEM_IRON",
       "flag": "FLAG_HIDDEN_ITEM_ARTISAN_CAVE_B1F_IRON"
+    },
+    {
+      "type": "sign",
+      "x": 37,
+      "y": 17,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "ArtisanCave_B1F_Kangaskhanite"
     }
   ]
 }
