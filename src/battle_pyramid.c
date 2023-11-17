@@ -1393,7 +1393,7 @@ void GenerateBattlePyramidWildMon(void)
     u32 bstLim;
     u16 *moves = NULL;
     u16 *abilities = NULL;
-    int moveCount, abilityCount;
+    int moveCount = 0, abilityCount = 0;
 
     if (reqs->nMoves != 0)
         moves = AllocZeroed(sizeof(u16) * reqs->nMoves);
