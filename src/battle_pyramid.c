@@ -1387,7 +1387,7 @@ void GenerateBattlePyramidWildMon(void)
     int i, j;
     u32 id;
     u32 lvl = gSaveBlock2Ptr->frontier.lvlMode;
-    u16 round = (gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvl] / 7) % TOTAL_ROUNDS;
+    u16 round = (gSaveBlock2Ptr->frontier.pyramidWinStreaks[lvl] / 7) % TOTAL_PYRAMID_ROUNDS;
     const struct BattlePyramidRequirement *reqs = &sBattlePyramidRequirementsByRound[round];
     u16 species;
     u32 bstLim;
@@ -1401,8 +1401,8 @@ void GenerateBattlePyramidWildMon(void)
     if (reqs->nAbilities != 0)
         abilities = AllocZeroed(sizeof(u16) * reqs->nAbilities);
 
-    if (round >= TOTAL_ROUNDS)
-        round = TOTAL_ROUNDS - 1;
+    if (round >= TOTAL_PYRAMID_ROUNDS)
+        round = TOTAL_PYRAMID_ROUNDS - 1;
     
     id = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, NULL) - 1;   // index in table (0-11) -> higher index is lower probability
     bstLim = 450 + (25*round) + (5*id);                             // higher BST limit for 'rarer' wild mon rolls
@@ -1411,7 +1411,7 @@ void GenerateBattlePyramidWildMon(void)
     {
         species = Random() % FORMS_START;
         // check type
-        if (reqs->type != TYPE_MYSTERY && gSpeciesInfo[species].type1 != reqs->type && gSpeciesInfo[species].type2 != reqs->type)
+        if (reqs->type != TYPE_MYSTERY && gSpeciesInfo[species].types[0] != reqs->type && gSpeciesInfo[species].types[1] != reqs->type)
             continue;
         
         // check base stat total
@@ -1465,18 +1465,18 @@ void GenerateBattlePyramidWildMon(void)
 
     // Set species, name
     SetMonData(&gEnemyParty[0], MON_DATA_SPECIES, &species);
-    GetSpeciesName(name, species);
+    StringCopy(name, gSpeciesNames[species]);
     SetMonData(&gEnemyParty[0], MON_DATA_NICKNAME, &name);
     
     // set level
     if (lvl != FRONTIER_LVL_50)
     {
         lvl = SetFacilityPtrsGetLevel();
-        lvl -= (5 + (Random() % (TOTAL_ROUNDS - round)/2));
+        lvl -= (5 + (Random() % (TOTAL_PYRAMID_ROUNDS - round)/2));
     }
     else
     {
-        lvl = 50 - (5 + (Random() % (TOTAL_ROUNDS - round)/4));
+        lvl = 50 - (5 + (Random() % (TOTAL_PYRAMID_ROUNDS - round)/4));
     }
     SetMonData(&gEnemyParty[0],
                MON_DATA_EXP,
