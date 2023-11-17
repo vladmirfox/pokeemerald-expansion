@@ -317,7 +317,7 @@ static const u32 sWallpaperIcon_Brick[]        = INCBIN_U32("graphics/pokemon_st
 static const u32 sWallpaperIcon_FourStar[]     = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/four_star.4bpp.lz");
 static const u32 sWallpaperIcon_Asterisk[]     = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/asterisk.4bpp.lz");
 static const u32 sWallpaperIcon_Dot[]          = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/dot.4bpp.lz");
-static const u32 sWallpaperIcon_Cross[]        = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/cross.4bpp.lz");
+static const u32 sWallpaperIcon_CrossJapan[]   = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/cross_japan.4bpp.lz");
 static const u32 sWallpaperIcon_LineCircle[]   = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/line_circle.4bpp.lz");
 static const u32 sWallpaperIcon_PokeBall[]     = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/pokeball.4bpp.lz");
 static const u32 sWallpaperIcon_Maze[]         = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/maze.4bpp.lz");
@@ -326,7 +326,7 @@ static const u32 sWallpaperIcon_BigAsterisk[]  = INCBIN_U32("graphics/pokemon_st
 static const u32 sWallpaperIcon_Circle[]       = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/circle.4bpp.lz");
 static const u32 sWallpaperIcon_Koffing[]      = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/koffing.4bpp.lz");
 static const u32 sWallpaperIcon_Ribbon[]       = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/ribbon.4bpp.lz");
-static const u32 sWallpaperIcon_Bolt[]         = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/bolt.4bpp.lz");
+static const u32 sWallpaperIcon_BoltJapan[]    = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/bolt_japan.4bpp.lz");
 static const u32 sWallpaperIcon_FourCircles[]  = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/four_circles.4bpp.lz");
 static const u32 sWallpaperIcon_Lotad[]        = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/lotad.4bpp.lz");
 static const u32 sWallpaperIcon_Crystal[]      = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/crystal.4bpp.lz");
@@ -336,7 +336,7 @@ static const u32 sWallpaperIcon_Luvdisc[]      = INCBIN_U32("graphics/pokemon_st
 static const u32 sWallpaperIcon_StarInCircle[] = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/star_in_circle.4bpp.lz");
 static const u32 sWallpaperIcon_Spinda[]       = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/spinda.4bpp.lz");
 static const u32 sWallpaperIcon_Latis[]        = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/latis.4bpp.lz");
-static const u32 sWallpaperIcon_Plusle[]       = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/plusle.4bpp.lz");
+static const u32 sWallpaperIcon_PlusleJapan[]  = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/plusle_japan.4bpp.lz");
 static const u32 sWallpaperIcon_Minun[]        = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/minun.4bpp.lz");
 static const u32 sWallpaperIcon_Togepi[]       = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/togepi.4bpp.lz");
 static const u32 sWallpaperIcon_Magma[]        = INCBIN_U32("graphics/pokemon_storage/wallpapers/icons/magma.4bpp.lz");
@@ -370,7 +370,11 @@ static const u32 *const sWaldaWallpaperIcons[] =
     sWallpaperIcon_FourStar,
     sWallpaperIcon_Asterisk,
     sWallpaperIcon_Dot,
-    sWallpaperIcon_Cross,
+#if OW_PC_JAPAN_WALDA_ICONS == TRUE
+    sWallpaperIcon_CrossJapan,
+#else
+    gWallpaperIcon_Cross,
+#endif
     sWallpaperIcon_LineCircle,
     sWallpaperIcon_PokeBall,
     sWallpaperIcon_Maze,
@@ -379,7 +383,11 @@ static const u32 *const sWaldaWallpaperIcons[] =
     sWallpaperIcon_Circle,
     sWallpaperIcon_Koffing,
     sWallpaperIcon_Ribbon,
-    sWallpaperIcon_Bolt,
+#if OW_PC_JAPAN_WALDA_ICONS == TRUE
+    sWallpaperIcon_BoltJapan,
+#else
+    gWallpaperIcon_Bolt,
+#endif
     sWallpaperIcon_FourCircles,
     sWallpaperIcon_Lotad,
     sWallpaperIcon_Crystal,
@@ -389,7 +397,11 @@ static const u32 *const sWaldaWallpaperIcons[] =
     sWallpaperIcon_StarInCircle,
     sWallpaperIcon_Spinda,
     sWallpaperIcon_Latis,
-    sWallpaperIcon_Plusle,
+#if OW_PC_JAPAN_WALDA_ICONS == TRUE
+    sWallpaperIcon_PlusleJapan,
+#else
+    gWallpaperIcon_Plusle,
+#endif
     sWallpaperIcon_Minun,
     sWallpaperIcon_Togepi,
     sWallpaperIcon_Magma,
