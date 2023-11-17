@@ -10329,10 +10329,10 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
 
     [MOVE_LIGHT_OF_RUIN] =
     {
-        .effect = EFFECT_RECOIL_50,
-        .power = 140,
+        .effect = EFFECT_MEGA_DOUBLE_DMG,
+        .power = 100,
         .type = TYPE_FAIRY,
-        .accuracy = 90,
+        .accuracy = 100,
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
@@ -10340,6 +10340,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_Z] =
         .split = SPLIT_SPECIAL,
         .zMoveEffect = Z_EFFECT_NONE,
         .metronomeBanned = TRUE,
+        .copycatBanned = TRUE,
     },
 
     [MOVE_ORIGIN_PULSE] =

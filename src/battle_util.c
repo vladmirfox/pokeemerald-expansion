@@ -8812,6 +8812,10 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
         if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_ELECTRIC_TERRAIN))
             basePower = uq4_12_multiply(basePower, UQ_4_12(1.5));
         break;
+    case EFFECT_MEGA_DOUBLE_DMG:
+        if (IsBattlerMegaEvolved(battlerDef))
+            basePower *= 2;
+        break;
     }
 
     // Move-specific base power changes

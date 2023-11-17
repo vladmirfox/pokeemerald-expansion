@@ -2409,8 +2409,8 @@ static const u8 sLandsWrathDescription[] = _(
     "land to attack every foe.");
 
 static const u8 sLightOfRuinDescription[] = _(
-    "Fires a great beam of light\n"
-    "that also hurts the user.");
+    "A great beam of light. Deals\n"
+    "x2 damage to Mega foes.");
 
 static const u8 sOriginPulseDescription[] = _(
     "Beams of glowing blue light\n"

@@ -476,6 +476,7 @@ static const u16 sPoints_MoveEffect[NUM_BATTLE_MOVE_EFFECTS] =
     [EFFECT_VICTORY_DANCE]              = 0, // TODO: Assign points
     [EFFECT_FROSTBITE_HIT]              = 1,
     [EFFECT_SNOWSCAPE]                  = 4,
+    [EFFECT_MEGA_DOUBLE_DMG]            = 0, // TODO: Assign points
 };
 
 static const u16 sPoints_Effectiveness[] =
