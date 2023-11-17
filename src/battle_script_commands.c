@@ -4925,7 +4925,7 @@ static void PlayAnimation(u32 battler, u8 animId, const u16 *argPtr, const u8 *n
      || animId == B_ANIM_PRIMAL_REVERSION
      || animId == B_ANIM_ULTRA_BURST)
     {
-        BtlController_EmitBattleAnimation(battler, BUFFER_A, animId, *argPtr);
+        BtlController_EmitBattleAnimation(battler, BUFFER_A, animId, &gDisableStructs[gBattlerAttacker], *argPtr);
         MarkBattlerForControllerExec(battler);
         gBattlescriptCurrInstr = nextInstr;
     }
@@ -4940,7 +4940,7 @@ static void PlayAnimation(u32 battler, u8 animId, const u16 *argPtr, const u8 *n
           || animId == B_ANIM_HAIL_CONTINUES
           || animId == B_ANIM_SNOW_CONTINUES)
     {
-        BtlController_EmitBattleAnimation(battler, BUFFER_A, animId, *argPtr);
+        BtlController_EmitBattleAnimation(battler, BUFFER_A, animId, &gDisableStructs[gBattlerAttacker], *argPtr);
         MarkBattlerForControllerExec(battler);
         gBattlescriptCurrInstr = nextInstr;
     }
@@ -4950,7 +4950,7 @@ static void PlayAnimation(u32 battler, u8 animId, const u16 *argPtr, const u8 *n
     }
     else
     {
-        BtlController_EmitBattleAnimation(battler, BUFFER_A, animId, *argPtr);
+        BtlController_EmitBattleAnimation(battler, BUFFER_A, animId, &gDisableStructs[gBattlerAttacker], *argPtr);
         MarkBattlerForControllerExec(battler);
         gBattlescriptCurrInstr = nextInstr;
     }
@@ -5115,7 +5115,7 @@ static void Cmd_playstatchangeanimation(void)
     }
     else if (changeableStatsCount != 0 && !gBattleScripting.statAnimPlayed)
     {
-        BtlController_EmitBattleAnimation(battler, BUFFER_A, B_ANIM_STATS_CHANGE, statAnimId);
+        BtlController_EmitBattleAnimation(battler, BUFFER_A, B_ANIM_STATS_CHANGE, &gDisableStructs[gBattlerAttacker], statAnimId);
         MarkBattlerForControllerExec(battler);
         if (flags & STAT_CHANGE_MULTIPLE_STATS && changeableStatsCount > 1)
             gBattleScripting.statAnimPlayed = TRUE;
