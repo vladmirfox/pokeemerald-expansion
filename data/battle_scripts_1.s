@@ -376,7 +376,6 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_LASH_OUT
 	.4byte BattleScript_EffectHit                     @ EFFECT_GRASSY_GLIDE
 	.4byte BattleScript_EffectHit                     @ EFFECT_DYNAMAX_DOUBLE_DMG
-	.4byte BattleScript_EffectHit					  @ EFFECT_MEGA_DOUBLE_DMG
 	.4byte BattleScript_EffectDecorate                @ EFFECT_DECORATE
 	.4byte BattleScript_EffectHit                     @ EFFECT_SNIPE_SHOT
 	.4byte BattleScript_EffectRecoilHP25              @ EFFECT_RECOIL_HP_25
@@ -438,6 +437,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectMortalSpin              @ EFFECT_MORTAL_SPIN
 	.4byte BattleScript_EffectHit                     @ EFFECT_GIGATON_HAMMER
 	.4byte BattleScript_EffectSaltCure                @ EFFECT_SALT_CURE
+	.4byte BattleScript_EffectHit					  @ EFFECT_MEGA_DOUBLE_DMG
 
 BattleScript_EffectSaltCure:
 	call BattleScript_EffectHit_Ret
