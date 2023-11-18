@@ -1372,6 +1372,14 @@
 	.4byte \failInstr
 	.endm
 
+	.macro setglaiverush
+	callnative BS_SetGlaiveRush
+	.endm
+
+	.macro tryrelicsong
+	callnative BS_TryRelicSong
+	.endm
+
 	.macro setpledge jumpInstr:req
 	callnative BS_SetPledge
 	.4byte \jumpInstr
@@ -2062,10 +2070,6 @@
 	.macro jumpifcantreverttoprimal jumpInstr:req
 	various BS_ATTACKER, VARIOUS_JUMP_IF_CANT_REVERT_TO_PRIMAL
 	.4byte \jumpInstr
-	.endm
-
-	.macro applyplasmafists
-	various BS_ATTACKER, VARIOUS_APPLY_PLASMA_FISTS
 	.endm
 
 	.macro jumpifweatheraffected battler:req, flags:req, jumpInstr:req
