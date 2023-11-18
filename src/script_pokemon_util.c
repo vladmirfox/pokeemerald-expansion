@@ -105,6 +105,46 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     return sentToPc;
 }
 
+u8 ScriptGiveMonDebug(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 unused3)
+{
+    u16 nationalDexNum;
+    int sentToPc;
+    u8 heldItem[2];
+    struct Pokemon mon;
+    u16 targetSpecies;
+
+    if (OW_SYNCHRONIZE_NATURE >= GEN_6 && (gSpeciesInfo[species].eggGroups[0] == EGG_GROUP_UNDISCOVERED || OW_SYNCHRONIZE_NATURE == GEN_7))
+        CreateMonWithNature(&mon, species, level, USE_RANDOM_IVS, PickWildMonNature());
+    else
+        CreateMon(&mon, species, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
+
+    heldItem[0] = item;
+    heldItem[1] = item >> 8;
+    SetMonData(&mon, MON_DATA_HELD_ITEM, heldItem);
+
+    // In case a mon with a form changing item is given. Eg: SPECIES_ARCEUS_NORMAL with ITEM_SPLASH_PLATE will transform into SPECIES_ARCEUS_WATER upon gifted.
+    targetSpecies = GetFormChangeTargetSpecies(&mon, FORM_CHANGE_ITEM_HOLD, 0);
+    if (targetSpecies != SPECIES_NONE)
+    {
+        SetMonData(&mon, MON_DATA_SPECIES, &targetSpecies);
+        CalculateMonStats(&mon);
+    }
+
+    sentToPc = GiveMonToPlayer(&mon);
+    nationalDexNum = SpeciesToNationalPokedexNum(species);
+
+    // Don't set Pokédex flag for MON_CANT_GIVE
+    switch(sentToPc)
+    {
+    case MON_GIVEN_TO_PARTY:
+    case MON_GIVEN_TO_PC:
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);
+        GetSetPokedexFlag(nationalDexNum, FLAG_SET_CAUGHT);
+        break;
+    }
+    return sentToPc;
+}
+
 u8 ScriptGiveEgg(u16 species)
 {
     struct Pokemon mon;
