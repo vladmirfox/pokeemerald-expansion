@@ -1531,12 +1531,9 @@ static bool8 JumpIfMoveAffectedByProtect(u16 move)
 
 static bool32 AccuracyCalcHelper(u16 move)
 {
-    if (gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
-    {
-        JumpIfMoveFailed(7, move);
-        return TRUE;
-    }
-    else if (B_TOXIC_NEVER_MISS >= GEN_6 && gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_POISON))
+    if ((gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
+     || (B_TOXIC_NEVER_MISS >= GEN_6 && gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_POISON))
+     || gStatuses4[gBattlerTarget] & STATUS4_GLAIVE_RUSH)
     {
         JumpIfMoveFailed(7, move);
         return TRUE;
@@ -1725,9 +1722,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     if (gFieldStatuses & STATUS_FIELD_GRAVITY)
         calc = (calc * 5) / 3; // 1.66 Gravity acc boost
 
-    // With high affection/friendship there's a chance to evade a move by substracting 10% of its accuracy.
-    // I can't find exact information about that chance, so I'm just gonna write it as a 20% chance for now.
-    if (B_AFFECTION_MECHANICS == TRUE && GetBattlerFriendshipScore(battlerDef) >= FRIENDSHIP_150_TO_199 && (Random() % 100) <= 20)
+    if (B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(battlerDef) == AFFECTION_FIVE_HEARTS)
         calc = (calc * 90) / 100;
 
     return calc;
@@ -1907,7 +1902,7 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
                     + (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
                     + 2 * (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[battlerAtk].species == SPECIES_CHANSEY)
                     + 2 * BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)
-                    + 2 * (B_AFFECTION_MECHANICS == TRUE && GetBattlerFriendshipScore(battlerAtk) >= FRIENDSHIP_200_TO_254)
+                    + 2 * (B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(battlerAtk) == AFFECTION_FIVE_HEARTS)
                     + (abilityAtk == ABILITY_SUPER_LUCK)
                     + gBattleStruct->bonusCritStages[gBattlerAttacker];
 
@@ -1994,7 +1989,7 @@ static void Cmd_adjustdamage(void)
 
     u8 holdEffect, param;
     u32 moveType;
-    u32 friendshipScore = GetBattlerFriendshipScore(gBattlerTarget);
+    u32 affectionScore = GetBattlerAffectionHearts(gBattlerTarget);
     u32 rand = Random() % 100;
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
@@ -2026,12 +2021,11 @@ static void Cmd_adjustdamage(void)
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
         gSpecialStatuses[gBattlerTarget].focusSashed = TRUE;
     }
-    else if (B_AFFECTION_MECHANICS == TRUE && GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER && friendshipScore >= FRIENDSHIP_100_TO_149)
+    else if (B_AFFECTION_MECHANICS == TRUE && GetBattlerSide(gBattlerTarget) == B_SIDE_PLAYER && affectionScore >= AFFECTION_THREE_HEARTS)
     {
-        if ((friendshipScore == FRIENDSHIP_MAX && rand < 25)
-         || (friendshipScore == FRIENDSHIP_200_TO_254 && rand < 20)
-         || (friendshipScore == FRIENDSHIP_150_TO_199 && rand < 15)
-         || (friendshipScore == FRIENDSHIP_100_TO_149 && rand < 10))
+        if ((affectionScore == AFFECTION_FIVE_HEARTS && rand < 20)
+         || (affectionScore == AFFECTION_FOUR_HEARTS && rand < 15)
+         || (affectionScore == AFFECTION_THREE_HEARTS && rand < 10))
             gSpecialStatuses[gBattlerTarget].affectionEndured = TRUE;
     }
 
@@ -3547,21 +3541,6 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     MarkBattlerForControllerExec(gEffectBattler);
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_MoveEffectBugBite;
-                }
-                break;
-            case MOVE_EFFECT_RELIC_SONG:
-                if (GetBattlerAbility(gBattlerAttacker) != ABILITY_SHEER_FORCE && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED))
-                {
-                    if (gBattleMons[gBattlerAttacker].species == SPECIES_MELOETTA_ARIA)
-                    {
-                        gBattleMons[gBattlerAttacker].species = SPECIES_MELOETTA_PIROUETTE;
-                        BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeMoveEffect);
-                    }
-                    else if (gBattleMons[gBattlerAttacker].species == SPECIES_MELOETTA_PIROUETTE)
-                    {
-                        gBattleMons[gBattlerAttacker].species = SPECIES_MELOETTA_ARIA;
-                        BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeMoveEffect);
-                    }
                 }
                 break;
             case MOVE_EFFECT_TRAP_BOTH:
@@ -10241,13 +10220,6 @@ static void Cmd_various(void)
                 gBattlescriptCurrInstr = cmd->nextInstr;
             return;
         }
-    case VARIOUS_APPLY_PLASMA_FISTS:
-    {
-        VARIOUS_ARGS();
-        for (i = 0; i < gBattlersCount; i++)
-            gStatuses4[i] |= STATUS4_PLASMA_FISTS;
-        break;
-    }
     case VARIOUS_JUMP_IF_SPECIES:
     {
         VARIOUS_ARGS(u16 species, const u8 *jumpInstr);
@@ -15847,7 +15819,7 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
         *expAmount = (*expAmount * 150) / 100;
     if (B_UNEVOLVED_EXP_MULTIPLIER >= GEN_6 && IsMonPastEvolutionLevel(&gPlayerParty[expGetterMonId]))
         *expAmount = (*expAmount * 4915) / 4096;
-    if (B_AFFECTION_MECHANICS == TRUE && GetBattlerFriendshipScore(expGetterMonId) >= FRIENDSHIP_50_TO_99)
+    if (B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(expGetterMonId) >= AFFECTION_FOUR_HEARTS)
         *expAmount = (*expAmount * 4915) / 4096;
     if (CheckBagHasItem(ITEM_EXP_CHARM, 1)) //is also for other exp boosting Powers if/when implemented
         *expAmount = (*expAmount * 150) / 100;
@@ -16283,4 +16255,31 @@ void BS_TrySetOctolock(void)
         gDisableStructs[battler].battlerPreventingEscape = gBattlerAttacker;
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
+}
+
+void BS_SetGlaiveRush(void)
+{
+    NATIVE_ARGS();
+
+    gStatuses4[gBattlerAttacker] |= STATUS4_GLAIVE_RUSH;
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_TryRelicSong(void)
+{
+    NATIVE_ARGS();
+
+    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_SHEER_FORCE && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED))
+    {
+        if (gBattleMons[gBattlerAttacker].species == SPECIES_MELOETTA_ARIA)
+            gBattleMons[gBattlerAttacker].species = SPECIES_MELOETTA_PIROUETTE;
+        else if (gBattleMons[gBattlerAttacker].species == SPECIES_MELOETTA_PIROUETTE)
+            gBattleMons[gBattlerAttacker].species = SPECIES_MELOETTA_ARIA;
+
+        BattleScriptPush(cmd->nextInstr);
+        gBattlescriptCurrInstr = BattleScript_AttackerFormChangeMoveEffect;
+    }
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
