@@ -1133,3 +1133,5 @@ Common_EventScript_LegendaryFlewAway::
 	.include "data/maps/AshveilCave/scripts.inc"
 
 	.include "data/maps/SurgeCave/scripts.inc"
+
+	.include "data/maps/OldaleTown_House3/scripts.inc"
