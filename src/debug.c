@@ -3103,8 +3103,8 @@ static void DebugAction_Give_Pokemon_SelectLevel(u8 taskId)
         if (JOY_NEW(DPAD_UP))
         {
             gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > 100)
-                gTasks[taskId].tInput = 100;
+            if (gTasks[taskId].tInput > MAX_LEVEL)
+                gTasks[taskId].tInput = MAX_LEVEL;
         }
         if (JOY_NEW(DPAD_DOWN))
         {
@@ -3170,27 +3170,14 @@ static void DebugAction_Give_Pokemon_SelectLevel(u8 taskId)
 
 static void DebugAction_Give_Pokemon_SelectShiny(u8 taskId)
 {
+    static const u8 *txtStr;
+
     if (JOY_NEW(DPAD_ANY))
     {
         PlaySE(SE_SELECT);
-
-        if (JOY_NEW(DPAD_UP))
-        {
-            gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > 1)
-                gTasks[taskId].tInput = 1;
-        }
-        if (JOY_NEW(DPAD_DOWN))
-        {
-            gTasks[taskId].tInput -= sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput < 0)
-                gTasks[taskId].tInput = 0;
-        }
-
-        if (gTasks[taskId].tInput == 1)
-            StringCopyPadded(gStringVar2, sDebugText_True, CHAR_SPACE, 15);
-        else
-            StringCopyPadded(gStringVar2, sDebugText_False, CHAR_SPACE, 15);
+        gTasks[taskId].tInput ^= JOY_NEW(DPAD_UP | DPAD_DOWN);
+        txtStr = (gTasks[taskId].tInput == TRUE) ? sDebugText_True : sDebugText_False;
+        StringCopyPadded(gStringVar2, txtStr, CHAR_SPACE, 15);
         ConvertIntToDecimalStringN(gStringVar3, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 0);
         StringCopyPadded(gStringVar3, gStringVar3, CHAR_SPACE, 15);
         StringExpandPlaceholders(gStringVar4, sDebugText_PokemonShiny);
@@ -3339,8 +3326,8 @@ static void DebugAction_Give_Pokemon_SelectIVs(u8 taskId)
         if (JOY_NEW(DPAD_UP))
         {
             gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > 31)
-                gTasks[taskId].tInput = 31;
+            if (gTasks[taskId].tInput > MAX_PER_STAT_IVS)
+                gTasks[taskId].tInput = MAX_PER_STAT_IVS;
         }
         if (JOY_NEW(DPAD_DOWN))
         {
@@ -3477,8 +3464,8 @@ static void DebugAction_Give_Pokemon_SelectEVs(u8 taskId)
         if (JOY_NEW(DPAD_UP))
         {
             gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
-            if (gTasks[taskId].tInput > 255)
-                gTasks[taskId].tInput = 255;
+            if (gTasks[taskId].tInput > MAX_PER_STAT_EVS)
+                gTasks[taskId].tInput = MAX_PER_STAT_EVS;
         }
         if (JOY_NEW(DPAD_DOWN))
         {
