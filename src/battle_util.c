@@ -1377,6 +1377,7 @@ void CancelMultiTurnMoves(u32 battler)
             // Don't use CanBeConfused, can cause issues in edge cases.
             if (!(GetBattlerAbility(otherSkyDropper) == ABILITY_OWN_TEMPO
                 || gBattleMons[otherSkyDropper].status2 & STATUS2_CONFUSION
+                || IS_BATTLER_OF_TYPE(otherSkyDropper, TYPE_BUG)
                 || IsBattlerTerrainAffected(otherSkyDropper, STATUS_FIELD_MISTY_TERRAIN)))
             {
                 // Set confused status
@@ -6427,7 +6428,8 @@ bool32 CanGetFrostbite(u32 battler)
 
 bool32 CanBeConfused(u32 battler)
 {
-    if (GetBattlerAbility(battler) == ABILITY_OWN_TEMPO
+    if (IS_BATTLER_OF_TYPE(battler, TYPE_BUG)
+      || GetBattlerAbility(battler) == ABILITY_OWN_TEMPO
       || gBattleMons[battler].status2 & STATUS2_CONFUSION
       || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
