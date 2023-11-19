@@ -10606,6 +10606,7 @@ BattleScript_EffectSteelsurge::
 
 BattleScript_DynamaxBegins::
 	flushtextbox
+	trytrainerslidedynamaxmsg BS_ATTACKER
 	returnatktoball
 	pause B_WAIT_TIME_SHORT
 	returntoball BS_SCRIPTING

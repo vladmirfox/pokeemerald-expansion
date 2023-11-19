@@ -2185,6 +2185,10 @@
 	various \battler, VARIOUS_TRY_TRAINER_SLIDE_MSG_MEGA_EVOLUTION
 	.endm
 
+	.macro trytrainerslidedynamaxmsg battler:req
+	various \battler, VARIOUS_TRY_TRAINER_SLIDE_MSG_DYNAMAX
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER, \stat | \stages << 3 | \down << 7

@@ -4015,6 +4015,7 @@ struct TrainerSlide
     const u8 *msgMegaEvolution;
     const u8 *msgZMove;
     const u8 *msgBeforeFirstTurn;
+    const u8 *msgDynamax;
 };
 
 static const struct TrainerSlide sTrainerSlides[] =
@@ -4035,6 +4036,7 @@ static const struct TrainerSlide sTrainerSlides[] =
         .msgMegaEvolution = sText_PowderExplodes,
         .msgZMove = sText_Electromagnetism,
         .msgBeforeFirstTurn = sText_GravityIntensified,
+        .msgDynamax = sText_TargetWokeUp,
     },
     */
 };
@@ -4217,6 +4219,14 @@ u32 ShouldDoTrainerSlide(u32 battler, u32 which)
                 {
                     gBattleStruct->trainerSlideBeforeFirstTurnMsgDone = TRUE;
                     gBattleStruct->trainerSlideMsg = sTrainerSlides[i].msgBeforeFirstTurn;
+                    return TRUE;
+                }
+                break;
+            case TRAINER_SLIDE_DYNAMAX:
+                if (sTrainerSlides[i].msgDynamax != NULL && !gBattleStruct->trainerSlideDynamaxMsgDone)
+                {
+                    gBattleStruct->trainerSlideDynamaxMsgDone = TRUE;
+                    gBattleStruct->trainerSlideMsg = sTrainerSlides[i].msgDynamax;
                     return TRUE;
                 }
                 break;

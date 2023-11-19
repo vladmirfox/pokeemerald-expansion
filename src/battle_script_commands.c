@@ -10658,6 +10658,18 @@ static void Cmd_various(void)
         }
         break;
     }
+    case VARIOUS_TRY_TRAINER_SLIDE_MSG_DYNAMAX:
+    {
+        VARIOUS_ARGS();
+        if ((i = ShouldDoTrainerSlide(battler, TRAINER_SLIDE_DYNAMAX)))
+        {
+            gBattleScripting.battler = battler;
+            BattleScriptPush(cmd->nextInstr);
+            gBattlescriptCurrInstr = (i == 1 ? BattleScript_TrainerASlideMsgRet : BattleScript_TrainerBSlideMsgRet);
+            return;
+        }
+        break;
+    }
     } // End of switch (cmd->id)
 
     gBattlescriptCurrInstr = cmd->nextInstr;
