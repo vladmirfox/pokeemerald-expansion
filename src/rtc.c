@@ -306,8 +306,8 @@ u8 GetTimeOfDay(void)
     RtcCalcLocalTime();
     if (IsBetweenHours(gLocalTime.hours, MORNING_EVO_HOUR_BEGIN, MORNING_EVO_HOUR_END))
         return TIME_MORNING;
-    else if (IsBetweenHours(gLocalTime.hours, DUSK_EVO_HOUR_BEGIN, DUSK_EVO_HOUR_END))
-        return TIME_DUSK;
+    else if (IsBetweenHours(gLocalTime.hours, EVENING_EVO_HOUR_BEGIN, EVENING_EVO_HOUR_END))
+        return TIME_EVENING;
     else if (IsBetweenHours(gLocalTime.hours, NIGHT_EVO_HOUR_BEGIN, NIGHT_EVO_HOUR_END))
         return TIME_NIGHT;
     return TIME_DAY;

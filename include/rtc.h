@@ -32,7 +32,7 @@
 
     #define NIGHT_EVO_HOUR_BEGIN   20
     #define NIGHT_EVO_HOUR_END     4
-//Gen 5 not included as the seasons change the times of day
+//Gen 5 currently not included as the seasons change the times of day
 #elif OW_TIMES_OF_DAY == GEN_6
     #define MORNING_EVO_HOUR_BEGIN 4
     #define MORNING_EVO_HOUR_END   11
@@ -40,8 +40,8 @@
     #define DAY_EVO_HOUR_BEGIN     11
     #define DAY_EVO_HOUR_END       18
 
-    #define DUSK_EVO_HOUR_BEGIN    18
-    #define DUSK_EVO_HOUR_END      21
+    #define EVENING_EVO_HOUR_BEGIN 18
+    #define EVENING_EVO_HOUR_END   21
 
     #define NIGHT_EVO_HOUR_BEGIN   21
     #define NIGHT_EVO_HOUR_END     4
@@ -53,8 +53,8 @@
     #define DAY_EVO_HOUR_BEGIN     10
     #define DAY_EVO_HOUR_END       17
 
-    #define DUSK_EVO_HOUR_BEGIN    17
-    #define DUSK_EVO_HOUR_END      18
+    #define EVENING_EVO_HOUR_BEGIN 17
+    #define EVENING_EVO_HOUR_END   18
 
     #define NIGHT_EVO_HOUR_BEGIN   18
     #define NIGHT_EVO_HOUR_END     6
@@ -65,8 +65,8 @@
     #define DAY_EVO_HOUR_BEGIN     10
     #define DAY_EVO_HOUR_END       19
 
-    #define DUSK_EVO_HOUR_BEGIN    19
-    #define DUSK_EVO_HOUR_END      20
+    #define EVENING_EVO_HOUR_BEGIN 19
+    #define EVENING_EVO_HOUR_END   20
 
     #define NIGHT_EVO_HOUR_BEGIN   20
     #define NIGHT_EVO_HOUR_END     6
@@ -74,7 +74,7 @@
 
 #define TIME_MORNING           0
 #define TIME_DAY               1
-#define TIME_DUSK              2
+#define TIME_EVENING           2
 #define TIME_NIGHT             3
 
 extern struct Time gLocalTime;
