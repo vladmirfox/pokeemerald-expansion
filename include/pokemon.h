@@ -465,7 +465,6 @@ extern const s8 gNatureStatTable[][5];
 extern const u16 *const gFormSpeciesIdTables[NUM_SPECIES];
 extern const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES];
 extern const u32 sExpCandyExperienceTable[];
-extern const u16 gEvolutionLines[NUM_SPECIES][EVOS_PER_LINE]; //tx_randomizer_and_challenges
 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);
 void ZeroMonData(struct Pokemon *mon);

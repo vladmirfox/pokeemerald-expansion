@@ -49,6 +49,7 @@
 #include "tx_randomizer_and_challenges.h"
 #include "pokedex.h" //tx_randomizer_and_challenges
 #include "constants/region_map_sections.h" //tx_randomizer_and_challenges
+#include "data/tx_random_data.h"
 
 enum {
     TRANSITION_TYPE_NORMAL,
