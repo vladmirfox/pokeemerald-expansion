@@ -1689,7 +1689,7 @@ bool8 ScrCmd_givemon(struct ScriptContext *ctx)
     u32 unkParam2 = ScriptReadWord(ctx);
     u8 unkParam3 = ScriptReadByte(ctx);
 
-    gSpecialVar_Result = ScriptGiveMon(species, level, item, unkParam1, unkParam2, unkParam3);
+    gSpecialVar_Result = ScriptGiveMonWithRandom(species, level, item, unkParam1, unkParam2, unkParam3);
     return FALSE;
 }
 
