@@ -18,17 +18,17 @@
   ],
   "warp_events": [
     {
-      "x": 5,
-      "y": 10,
-      "elevation": 3,
-      "dest_map": "MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP1",
-      "dest_warp_id": "1"
+      "x": 3,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_FIERY_PATH",
+      "dest_warp_id": "3"
     },
     {
-      "x": 8,
-      "y": 14,
-      "elevation": 3,
-      "dest_map": "MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP3",
+      "x": 23,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2",
       "dest_warp_id": "0"
     }
   ],
@@ -36,6 +36,21 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 4,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CaveOfOrigin_UnusedRubySapphireMap2_CharizarditeX"
+    },
+    {
+      "type": "sign",
+      "x": 30,
+      "y": 14,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CaveOfOrigin_UnusedRubySapphireMap2_CharizarditY"
+    }
   ]
 }

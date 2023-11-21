@@ -1594,10 +1594,10 @@
     {
       "id": "LAYOUT_CAVE_OF_ORIGIN_UNUSED_RUBY_SAPPHIRE_MAP2",
       "name": "CaveOfOrigin_UnusedRubySapphireMap2_Layout",
-      "width": 21,
-      "height": 21,
+      "width": 36,
+      "height": 36,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_Lavaridge",
       "border_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap2/border.bin",
       "blockdata_filepath": "data/layouts/CaveOfOrigin_UnusedRubySapphireMap2/map.bin"
     },

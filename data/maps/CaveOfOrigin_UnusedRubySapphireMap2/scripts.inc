@@ -1,8 +1,37 @@
 CaveOfOrigin_UnusedRubySapphireMap2_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, CaveOfOrigin_UnusedRubySapphireMap2_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, CaveOfOrigin_UnusedRubySapphireMap2_OnLoad
 	.byte 0
 
-CaveOfOrigin_UnusedRubySapphireMap2_OnTransition:
-	call_if_set FLAG_UNUSED_RS_LEGENDARY_BATTLE_DONE, CaveOfOrigin_EventScript_DisableTriggers
+CaveOfOrigin_UnusedRubySapphireMap2_OnLoad:
+	call_if_set FLAG_HIDDEN_ITEM_CHARIZARDITE_X, CaveOfOrigin_UnusedRubySapphireMap2_Hide_CharizarditeX
+	call_if_set FLAG_HIDDEN_ITEM_CHARIZARDITE_Y, CaveOfOrigin_UnusedRubySapphireMap2_Hide_CharizarditeY
 	end
+
+CaveOfOrigin_UnusedRubySapphireMap2_Hide_CharizarditeX::
+    setmetatile 4, 8, METATILE_Lavaridge_LavaField, FALSE
+    return
+
+CaveOfOrigin_UnusedRubySapphireMap2_Hide_CharizarditeY::
+    setmetatile 30, 14, METATILE_Lavaridge_LavaField, FALSE
+    return
+
+CaveOfOrigin_UnusedRubySapphireMap2_CharizarditeX::
+	goto_if_set FLAG_HIDDEN_ITEM_CHARIZARDITE_X, CaveOfOrigin_UnusedRubySapphireMap2_End_CharizarditeX
+	call CaveOfOrigin_UnusedRubySapphireMap2_Hide_CharizarditeX
+	special DrawWholeMapView
+	giveitem ITEM_CHARIZARDITE_X
+	setflag FLAG_HIDDEN_ITEM_CHARIZARDITE_X
+CaveOfOrigin_UnusedRubySapphireMap2_End_CharizarditeX::
+	release
+	end	
+
+CaveOfOrigin_UnusedRubySapphireMap2_CharizarditY::
+	goto_if_set FLAG_HIDDEN_ITEM_CHARIZARDITE_Y, CaveOfOrigin_UnusedRubySapphireMap2_End_CharizarditeY
+	call CaveOfOrigin_UnusedRubySapphireMap2_Hide_CharizarditeY
+	special DrawWholeMapView
+	giveitem ITEM_CHARIZARDITE_Y
+	setflag FLAG_HIDDEN_ITEM_CHARIZARDITE_Y
+CaveOfOrigin_UnusedRubySapphireMap2_End_CharizarditeY::
+	release
+	end	
 
