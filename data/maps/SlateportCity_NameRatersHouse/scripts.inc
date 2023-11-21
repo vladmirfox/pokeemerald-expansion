@@ -207,6 +207,7 @@ SlateportCity_NameRatersHouse_EventScript_ChooseRandomPostGameEvent::
 	goto_if_eq VAR_RESULT, 6, SlateportCity_NameRatersHouse_EventScript_PostGameStevenBattle
 	goto_if_eq VAR_RESULT, 7, SlateportCity_NameRatersHouse_EventScript_PostGameCourtneyBattle
 	goto_if_eq VAR_RESULT, 8, SlateportCity_NameRatersHouse_EventScript_PostGameShelleyBattle
+	goto SlateportCity_NameRatersHouse_EventScript_PostGameCatchPokemon
 	release
 	end
 
