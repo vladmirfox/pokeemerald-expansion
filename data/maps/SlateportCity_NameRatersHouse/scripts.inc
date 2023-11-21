@@ -208,6 +208,7 @@ SlateportCity_NameRatersHouse_EventScript_ChooseRandomPostGameEvent::
 	goto_if_eq VAR_RESULT, 6, SlateportCity_NameRatersHouse_EventScript_PostGameStevenBattle
 	goto_if_eq VAR_RESULT, 7, SlateportCity_NameRatersHouse_EventScript_PostGameCourtneyBattle
 	goto_if_eq VAR_RESULT, 8, SlateportCity_NameRatersHouse_EventScript_PostGameShellyBattle
+	msgbox SlateportCity_NameRatersHouse_Text_DoVisitAgain, MSGBOX_DEFAULT
 	release
 	end
 
@@ -619,4 +620,8 @@ SlateportCity_NameRatersHouse_Text_PostGameShellyBattle:
 	.string "wave upon the shore.\p"
 	.string "They will need you to guide\n"
 	.string "them now.$"
+
+SlateportCity_NameRatersHouse_Text_DoVisitAgain:
+	.string "I see.\n"
+	.string "Do come visit again.$"
 
