@@ -1518,6 +1518,21 @@
 	.4byte \ptr
 	.endm
 
+	.macro trytrainerslidezmovemsg, battler:req
+	callnative BS_TryTrainerSlideZMoveMsg
+	.byte \battler
+	.endm
+
+	.macro trytrainerslidemegaevolutionmsg, battler:req
+	callnative BS_TryTrainerSlideMegaEvolutionMsg
+	.byte \battler
+	.endm
+
+	.macro trytrainerslidedynamaxmsg, battler:req
+	callnative BS_TryTrainerSlideDynamaxMsg
+	.byte \battler
+	.endm
+
 @ various command changed to more readable macros
 	.macro cancelmultiturnmoves battler:req
 	various \battler, VARIOUS_CANCEL_MULTI_TURN_MOVES
@@ -2175,18 +2190,6 @@
 
 	.macro activateterrainchangeabilities battler:req
 	various \battler, VARIOUS_ACTIVATE_TERRAIN_CHANGE_ABILITIES
-	.endm
-
-	.macro trytrainerslidezmovemsg battler:req
-	various \battler, VARIOUS_TRY_TRAINER_SLIDE_MSG_Z_MOVE
-	.endm
-
-	.macro trytrainerslidemegaevolutionmsg battler:req
-	various \battler, VARIOUS_TRY_TRAINER_SLIDE_MSG_MEGA_EVOLUTION
-	.endm
-
-	.macro trytrainerslidedynamaxmsg battler:req
-	various \battler, VARIOUS_TRY_TRAINER_SLIDE_MSG_DYNAMAX
 	.endm
 
 @ helpful macros
