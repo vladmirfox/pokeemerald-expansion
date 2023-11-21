@@ -360,6 +360,78 @@ PetalburgWoods_EventScript_JamesRematch::
 	msgbox PetalburgWoods_Text_IveBeenTrainingHard, MSGBOX_AUTOCLOSE
 	end
 
+PetalburgWoods_EventScript_Foongus1::
+	lock
+	faceplayer
+	setwildbattle SPECIES_FOONGUS, 5
+	waitse
+	playmoncry SPECIES_FOONGUS, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	dowildbattle
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, PetalburgWoods_EventScript_DefeatedFoongus1
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, PetalburgWoods_EventScript_DefeatedFoongus1
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, PetalburgWoods_EventScript_DefeatedFoongus1
+	setflag FLAG_PETALBURG_WOODS_FOONGUS1
+	release
+	end
+
+PetalburgWoods_EventScript_DefeatedFoongus1::
+	setflag FLAG_PETALBURG_WOODS_FOONGUS1
+	goto Common_EventScript_RemoveStaticPokemon
+	end
+
+PetalburgWoods_EventScript_Foongus2::
+	lock
+	faceplayer
+	setwildbattle SPECIES_FOONGUS, 5
+	waitse
+	playmoncry SPECIES_FOONGUS, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	dowildbattle
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, PetalburgWoods_EventScript_DefeatedFoongus2
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, PetalburgWoods_EventScript_DefeatedFoongus2
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, PetalburgWoods_EventScript_DefeatedFoongus2
+	setflag FLAG_PETALBURG_WOODS_FOONGUS2
+	release
+	end
+
+PetalburgWoods_EventScript_DefeatedFoongus2::
+	setflag FLAG_PETALBURG_WOODS_FOONGUS2
+	goto Common_EventScript_RemoveStaticPokemon
+	end
+
+PetalburgWoods_EventScript_Foongus3::
+	lock
+	faceplayer
+	setwildbattle SPECIES_FOONGUS, 8
+	waitse
+	playmoncry SPECIES_FOONGUS, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	dowildbattle
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, PetalburgWoods_EventScript_DefeatedFoongus3
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, PetalburgWoods_EventScript_DefeatedFoongus3
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, PetalburgWoods_EventScript_DefeatedFoongus3
+	setflag FLAG_PETALBURG_WOODS_FOONGUS3
+	release
+	end
+
+PetalburgWoods_EventScript_DefeatedFoongus3::
+	setflag FLAG_PETALBURG_WOODS_FOONGUS3
+	goto Common_EventScript_RemoveStaticPokemon
+	end
+
 PetalburgWoods_Text_NotAOneToBeFound:
 	.string "Hmmm…\n"
 	.string "Not a one to be found…$"
