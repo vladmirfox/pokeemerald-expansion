@@ -62,19 +62,19 @@ Route114_FossilManiacsTunnel_Text_LookInDesertForFossils:
 	.string "But the FOSSILS around these parts all\n"
 	.string "belong to me… None for you…\p"
 	.string "If you can't bear to go without\n"
-	.string "a FOSSIL, look in a desert where there\l"
+	.string "a Fossil, look in a desert where there\l"
 	.string "are boulders and sand that may hide\l"
-	.string "FOSSILS…$"
+	.string "Fossils…$"
 
 Route114_FossilManiacsTunnel_Text_DevonCorpRevivingFossils:
 	.string "You found a FOSSIL, didn't you?\n"
 	.string "That's so nice… It's so dreamy…\p"
 	.string "What are you going to do with that\n"
-	.string "FOSSIL?\p"
-	.string "From what I've heard, DEVON is doing\n"
-	.string "research on reviving POKéMON from\l"
-	.string "FOSSILS…\p"
-	.string "I love my FOSSILS, so I would never\n"
+	.string "Fossil?\p"
+	.string "From what I've heard, Devon is doing\n"
+	.string "research on reviving Pokémon from\l"
+	.string "Fossils…\p"
+	.string "I love my Fossils, so I would never\n"
 	.string "do anything like that…$"
 
 Route114_FossilManiacsTunnel_Text_FossilsAreWonderful:

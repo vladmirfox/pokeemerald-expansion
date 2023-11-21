@@ -86,7 +86,7 @@ EverGrandeCity_PokemonCenter_1F_Text_BelieveInYourPokemon:
 	.string "The long and harrowing VICTORY ROAD…\p"
 	.string "It's like reliving the path one has\n"
 	.string "traveled in life…\p"
-	.string "Believe in your POKéMON and give it\n"
+	.string "Believe in your Pokémon and give it\n"
 	.string "your very best!$"
 
 EverGrandeCity_PokemonCenter_1F_Text_ScottHappyForYou:
@@ -95,7 +95,7 @@ EverGrandeCity_PokemonCenter_1F_Text_ScottHappyForYou:
 	.string "I'm happy for you!\n"
 	.string "You made my cheering worthwhile!\p"
 	.string "{PLAYER}{KUN}, if you were to become\n"
-	.string "the POKéMON LEAGUE CHAMPION…\p"
+	.string "the Pokémon League Champion…\p"
 	.string "I'll get in touch with you then.\p"
 	.string "Okay, {PLAYER}{KUN}.\n"
 	.string "Go for greatness!$"

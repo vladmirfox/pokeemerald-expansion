@@ -24,7 +24,7 @@ PacifidlogTown_House5_Text_CantSeeMirageIslandToday:
 
 PacifidlogTown_House5_Text_CanSeeMirageIslandToday:
 	.string "Oh! Oh my!\n"
-	.string "I can see MIRAGE ISLAND today!$"
+	.string "I can see Mirage Island today!$"
 
 PacifidlogTown_House5_Text_MirageIslandAppearDependingOnWeather:
 	.string "MIRAGE ISLAND…\p"

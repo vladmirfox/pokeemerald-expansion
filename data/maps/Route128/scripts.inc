@@ -266,14 +266,14 @@ Route128_Text_MaxieDoYouUnderstandNow:
 Route128_Text_MaxieResposibilityFallsToArchieAndMe:
 	.string "MAXIE: {PLAYER}, don't say anything.\p"
 	.string "I know that I have no right to be\n"
-	.string "critical of ARCHIE…\p"
+	.string "critical of Archie…\p"
 	.string "But the way things are now, I doubt\n"
 	.string "that we humans will be capable of\l"
 	.string "doing anything about it.\p"
 	.string "But neither can we stand by and\n"
 	.string "just watch helplessly.\p"
 	.string "The responsibility for putting an end\n"
-	.string "to this falls to ARCHIE and me…$"
+	.string "to this falls to Archie and me…$"
 
 Route128_Text_MaxieThisDefiesBelief:
 	.string "MAXIE: This defies belief…\p"
@@ -289,13 +289,13 @@ Route128_Text_StevenWholeWorldWillDrown:
 	.string "This is terrible…\p"
 	.string "After the scorching heat wave ended,\n"
 	.string "this deluge began.\p"
-	.string "If this doesn't stop, all of HOENN…\n"
+	.string "If this doesn't stop, all of Hoenn…\n"
 	.string "No, the whole world will drown.\p"
 	.string "This huge rain cloud is spreading\n"
-	.string "from above SOOTOPOLIS…\p"
+	.string "from above Sootopolis…\p"
 	.string "What in the world is taking place there?\p"
 	.string "There's no point arguing here…\n"
-	.string "SOOTOPOLIS might provide answers…$"
+	.string "Sootopolis might provide answers…$"
 
 Route128_Text_StevenImGoingToSootopolis:
 	.string "{PLAYER}{KUN}…\n"

@@ -30,7 +30,7 @@ Route110_TrickHousePuzzle4_EventScript_Paula::
 Route110_TrickHousePuzzle4_Text_WroteSecretCodeLockOpened:
 	.string "{PLAYER} wrote down the secret code\n"
 	.string "on the door.\p"
-	.string "“TRICK MASTER is cool.”\n"
+	.string "“Trick Master is cool.”\n"
 	.string "… … … … … … … …\p"
 	.string "The lock clicked open!$"
 
@@ -44,7 +44,7 @@ Route110_TrickHousePuzzle4_Text_CoraDefeat:
 
 Route110_TrickHousePuzzle4_Text_CoraPostBattle:
 	.string "Wouldn't you agree? You would go\n"
-	.string "anywhere if TRAINERS were there.$"
+	.string "anywhere if Trainers were there.$"
 
 Route110_TrickHousePuzzle4_Text_YujiIntro:
 	.string "Heh! Boulders like this, I can brush\n"

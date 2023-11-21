@@ -62,7 +62,7 @@ MtPyre_2F_Text_MarkDefeat:
 
 MtPyre_2F_Text_MarkPostBattle:
 	.string "People don't come here often, so\n"
-	.string "I thought there'd be rare POKéMON.$"
+	.string "I thought there'd be rare Pokémon.$"
 
 MtPyre_2F_Text_LukeIntro:
 	.string "LUKE: We're here on a dare.\p"
@@ -104,7 +104,7 @@ MtPyre_2F_Text_DezNotEnoughMons:
 	.string "DEZ: If you want to challenge us, you\n"
 	.string "should bring at least two POKéMON.\p"
 	.string "My boyfriend's strong.\n"
-	.string "Just one POKéMON won't do at all.$"
+	.string "Just one Pokémon won't do at all.$"
 
 MtPyre_2F_Text_LeahIntro:
 	.string "You are an unfamiliar sight…\n"

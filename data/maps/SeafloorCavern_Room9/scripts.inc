@@ -235,7 +235,7 @@ SeafloorCavern_Room9_Text_ArchieSoItWasYou:
 SeafloorCavern_Room9_Text_ArchieBeholdKyogre:
 	.string "ARCHIE: Behold!\p"
 	.string "See how beautiful it is, the sleeping\n"
-	.string "form of the ancient POKéMON KYOGRE!\p"
+	.string "form of the ancient Pokémon Kyogre!\p"
 	.string "I have waited so long for this day to\n"
 	.string "come…$"
 
@@ -256,7 +256,7 @@ SeafloorCavern_Room9_Text_ArchieWithThisRedOrb:
 	.string "you are truly gifted.\p"
 	.string "But!\n"
 	.string "I have this in my possession!\p"
-	.string "With this RED ORB, I can make KYOGRE…$"
+	.string "With this Red Orb, I can make Kyogre…$"
 
 SeafloorCavern_Room9_Text_RedOrbShinesByItself:
 	.string "The RED ORB suddenly began shining\n"
@@ -265,8 +265,8 @@ SeafloorCavern_Room9_Text_RedOrbShinesByItself:
 SeafloorCavern_Room9_Text_ArchieWhereDidKyogreGo:
 	.string "ARCHIE: What?!\p"
 	.string "I didn't do anything.\n"
-	.string "Why did the RED ORB…\p"
-	.string "Where did KYOGRE go?$"
+	.string "Why did the Red Orb…\p"
+	.string "Where did Kyogre go?$"
 
 SeafloorCavern_Room9_Text_ArchieAMessageFromOutside:
 	.string "ARCHIE: Hm? It's a message from our\n"
@@ -277,8 +277,8 @@ SeafloorCavern_Room9_Text_ArchieWhatRainingTooHard:
 	.string "Hm…\n"
 	.string "It's raining heavily?\p"
 	.string "Good… That should have happened.\n"
-	.string "That is why we awakened KYOGRE,\l"
-	.string "to realize TEAM AQUA's vision of\l"
+	.string "That is why we awakened Kyogre,\l"
+	.string "to realize Team Aqua's vision of\l"
 	.string "expanding the sea.\p"
 	.string "What?!\p"
 	.string "It's raining far harder than we\n"
@@ -293,7 +293,7 @@ SeafloorCavern_Room9_Text_ArchieWhyDidKyogreDisappear:
 	.string "The RED ORB is supposed to awaken\n"
 	.string "and control KYOGRE…\p"
 	.string "But… Why?\n"
-	.string "Why did KYOGRE disappear?\p"
+	.string "Why did Kyogre disappear?\p"
 	.string "Why?!$"
 
 SeafloorCavern_Room9_Text_MaxieWhatHaveYouWrought:
@@ -308,10 +308,10 @@ SeafloorCavern_Room9_Text_MaxieWhatHaveYouWrought:
 SeafloorCavern_Room9_Text_ArchieDontGetAllHighAndMighty:
 	.string "ARCHIE: W-what?!\n"
 	.string "Don't get all high and mighty with me!\p"
-	.string "Wasn't it you, TEAM MAGMA, that\n"
-	.string "infuriated GROUDON?\p"
-	.string "So long as I have this RED ORB,\n"
-	.string "I should be able to control KYOGRE…\p"
+	.string "Wasn't it you, Team Magma, that\n"
+	.string "infuriated Groudon?\p"
+	.string "So long as I have this Red Orb,\n"
+	.string "I should be able to control Kyogre…\p"
 	.string "I should be able to control it…$"
 
 SeafloorCavern_Room9_Text_MaxieWeDontHaveTimeToArgue:

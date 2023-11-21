@@ -69,7 +69,7 @@ FortreeCity_House2_Text_YourHiddenPowerHasAwoken:
 	.string "Oh! Splendid!\n"
 	.string "Your hidden power has awoken!\p"
 	.string "Here, take this and awaken the hidden\n"
-	.string "power of your POKéMON.$"
+	.string "power of your Pokémon.$"
 
 FortreeCity_House2_Text_ExplainHiddenPower:
 	.string "HIDDEN POWER is a move that changes\n"

@@ -44,7 +44,7 @@ PacifidlogTown_Text_SkyPillarTooScary:
 	.string "tower a little further out.\p"
 	.string "If you asked me, I wouldn't climb it.\n"
 	.string "It's too scary to get up that high.\p"
-	.string "Life at sea level in PACIFIDLOG,\n"
+	.string "Life at sea level in Pacifidlog,\n"
 	.string "that suits me fine.$"
 
 PacifidlogTown_Text_TownSign:

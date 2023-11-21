@@ -59,7 +59,7 @@ RustboroCity_House1_Text_IllTradeIfYouWant:
 
 RustboroCity_House1_Text_PleaseBeGoodToMyPokemon:
 	.string "Eheheh…\n"
-	.string "Please be good to my POKéMON.$"
+	.string "Please be good to my Pokémon.$"
 
 RustboroCity_House1_Text_DoesntLookLikeMonToMe:
 	.string "Huh? That doesn't look anything like\n"
@@ -67,7 +67,7 @@ RustboroCity_House1_Text_DoesntLookLikeMonToMe:
 
 RustboroCity_House1_Text_YouDontWantToThatsOkay:
 	.string "Oh, if you don't want to, that's okay.\n"
-	.string "But my POKéMON is cute, you know…$"
+	.string "But my Pokémon is cute, you know…$"
 
 RustboroCity_House1_Text_AnyPokemonCanBeCute:
 	.string "Any POKéMON can be cute if you raise\n"
@@ -75,6 +75,6 @@ RustboroCity_House1_Text_AnyPokemonCanBeCute:
 
 RustboroCity_House1_Text_AllSortsOfPlaces:
 	.string "In all sorts of places, there are all\n"
-	.string "sorts of POKéMON and people.\p"
+	.string "sorts of Pokémon and people.\p"
 	.string "I find that fascinating, so I go to all\n"
 	.string "sorts of places.$"

@@ -29,11 +29,11 @@ MossdeepCity_House1_Text_ItLikesXPokeblocks:
 	.string "It likes {STR_VAR_1}S,\n"
 	.string "doesn't it?\p"
 	.string "No, I'm positive of it! It definitely\n"
-	.string "likes {STR_VAR_1}S!$"
+	.string "likes {STR_VAR_1}s!$"
 
 MossdeepCity_House1_Text_DoesntLikeOrDislikePokeblocks:
 	.string "It doesn't appear to like or dislike\n"
-	.string "any {POKEBLOCK}S.$"
+	.string "any {POKEBLOCK}s.$"
 
 MossdeepCity_House1_Text_HusbandCanTellPokeblockMonLikes:
 	.string "My husband can tell what kind of\n"

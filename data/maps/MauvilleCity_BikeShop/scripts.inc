@@ -177,7 +177,7 @@ MauvilleCity_BikeShop_EventScript_ExitAcroHandbook::
 MauvilleCity_BikeShop_Text_RydelGreeting:
 	.string "Well, well, what have we here?\n"
 	.string "A most energetic customer!\p"
-	.string "Me? You may call me RYDEL.\n"
+	.string "Me? You may call me Rydel.\n"
 	.string "I'm the owner of this cycle shop.$"
 
 MauvilleCity_BikeShop_Text_DidYouComeFromFarAway:
@@ -188,27 +188,27 @@ MauvilleCity_BikeShop_Text_DidYouComeFromFarAway:
 MauvilleCity_BikeShop_Text_GuessYouDontNeedBike:
 	.string "RYDEL: Is that right?\p"
 	.string "Then, I guess you have no need for\n"
-	.string "any of my BIKES.$"
+	.string "any of my Bikes.$"
 
 MauvilleCity_BikeShop_Text_ExplainBikesChooseWhichOne:
 	.string "RYDEL: Hm, hm… … … … …\p"
 	.string "You're saying that you came all this\n"
-	.string "way from LITTLEROOT?\p"
+	.string "way from Littleroot?\p"
 	.string "My goodness!\n"
 	.string "That's ridiculously far!\p"
-	.string "If you had one of my BIKES, you could\n"
+	.string "If you had one of my Bikes, you could\n"
 	.string "go anywhere easily while feeling the\l"
 	.string "gentle caress of the wind!\p"
 	.string "I'll tell you what!\n"
-	.string "I'll give you a BIKE!\p"
+	.string "I'll give you a Bike!\p"
 	.string "Oh, wait a second!\p"
 	.string "I forgot to tell you that there are\n"
-	.string "two kinds of BIKES!\p"
-	.string "They are the MACH BIKE and\n"
-	.string "the ACRO BIKE!\p"
-	.string "The MACH BIKE is for cyclists who want\n"
+	.string "two kinds of Bikes!\p"
+	.string "They are the Mach Bike and\n"
+	.string "the Acro Bike!\p"
+	.string "The Mach Bike is for cyclists who want\n"
 	.string "to feel the wind with their bodies!\p"
-	.string "And an ACRO BIKE is for those who\n"
+	.string "And an Acro Bike is for those who\n"
 	.string "prefer technical rides!\p"
 	.string "I'm a real sweetheart, so you can\n"
 	.string "have whichever one you like!\p"
@@ -257,7 +257,7 @@ MauvilleCity_BikeShop_Text_HandbooksAreInBack:
 	.string "I'm learning about BIKES while\n"
 	.string "I work here.\p"
 	.string "If you need advice on how to ride your\n"
-	.string "BIKE, there're a couple handbooks in\l"
+	.string "Bike, there're a couple handbooks in\l"
 	.string "the back.$"
 
 MauvilleCity_BikeShop_Text_MachHandbookWhichPage:
@@ -269,7 +269,7 @@ MauvilleCity_BikeShop_Text_HowToRideMachBike:
 	.string "the + Control Pad is pressed.\p"
 	.string "It will speed up once it gets rolling.\p"
 	.string "To stop, release the + Control Pad.\n"
-	.string "The BIKE will slow to a stop.\p"
+	.string "The Bike will slow to a stop.\p"
 	.string "Want to read a different page?$"
 
 MauvilleCity_BikeShop_Text_HowToTurnMachBike:
@@ -283,10 +283,10 @@ MauvilleCity_BikeShop_Text_HowToTurnMachBike:
 
 MauvilleCity_BikeShop_Text_SandySlopes:
 	.string "There are small sandy slopes\n"
-	.string "throughout the HOENN region.\p"
+	.string "throughout the Hoenn region.\p"
 	.string "The loose, crumbly sand makes it\n"
 	.string "impossible to climb normally.\p"
-	.string "But if you have a MACH BIKE, you can\n"
+	.string "But if you have a Mach Bike, you can\n"
 	.string "zip up a sandy slope.\p"
 	.string "Want to read a different page?$"
 
@@ -304,7 +304,7 @@ MauvilleCity_BikeShop_Text_Wheelies:
 
 MauvilleCity_BikeShop_Text_BunnyHops:
 	.string "Keeping the B Button pressed,\n"
-	.string "your BIKE can hop on the spot.\p"
+	.string "your Bike can hop on the spot.\p"
 	.string "This technique is called a bunny hop.\p"
 	.string "You can ride while hopping, too.\p"
 	.string "Want to read a different page?$"
@@ -314,6 +314,6 @@ MauvilleCity_BikeShop_Text_Jumps:
 	.string "Pad at the same time to jump.\p"
 	.string "Press the + Control Pad to the side\n"
 	.string "to jump sideways.\p"
-	.string "Press it backwards to make the BIKE\n"
+	.string "Press it backwards to make the Bike\n"
 	.string "change directions while jumping.\p"
 	.string "Want to read a different page?$"
