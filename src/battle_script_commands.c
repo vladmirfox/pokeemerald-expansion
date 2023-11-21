@@ -16264,14 +16264,12 @@ void BS_TryRelicSong(void)
 
 void BS_TryTrainerSlideZMoveMsg(void)
 {
-    NATIVE_ARGS(u8 battler);
+    NATIVE_ARGS();
     s32 i;
 
-    u8 battler = GetBattlerForBattleScript(cmd->battler);
-
-    if ((i = ShouldDoTrainerSlide(battler, TRAINER_SLIDE_Z_MOVE)))
+    if ((i = ShouldDoTrainerSlide(gBattlerAttacker, TRAINER_SLIDE_Z_MOVE)))
     {
-        gBattleScripting.battler = battler;
+        gBattleScripting.battler = gBattlerAttacker;
         BattleScriptPush(cmd->nextInstr);
         gBattlescriptCurrInstr = (i == 1 ? BattleScript_TrainerASlideMsgRet : BattleScript_TrainerBSlideMsgRet);
     }
@@ -16279,14 +16277,12 @@ void BS_TryTrainerSlideZMoveMsg(void)
 
 void BS_TryTrainerSlideMegaEvolutionMsg(void)
 {
-    NATIVE_ARGS(u8 battler);
+    NATIVE_ARGS();
     s32 i;
 
-    u8 battler = GetBattlerForBattleScript(cmd->battler);
-
-    if ((i = ShouldDoTrainerSlide(battler, TRAINER_SLIDE_MEGA_EVOLUTION)))
+    if ((i = ShouldDoTrainerSlide(gBattlerAttacker, TRAINER_SLIDE_MEGA_EVOLUTION)))
     {
-        gBattleScripting.battler = battler;
+        gBattleScripting.battler = gBattlerAttacker;
         BattleScriptPush(cmd->nextInstr);
         gBattlescriptCurrInstr = (i == 1 ? BattleScript_TrainerASlideMsgRet : BattleScript_TrainerBSlideMsgRet);
     }
@@ -16294,14 +16290,12 @@ void BS_TryTrainerSlideMegaEvolutionMsg(void)
 
 void BS_TryTrainerSlideDynamaxMsg(void)
 {
-    NATIVE_ARGS(u8 battler);
+    NATIVE_ARGS();
     s32 i;
 
-    u8 battler = GetBattlerForBattleScript(cmd->battler);
-
-    if ((i = ShouldDoTrainerSlide(battler, TRAINER_SLIDE_DYNAMAX)))
+    if ((i = ShouldDoTrainerSlide(gBattlerAttacker, TRAINER_SLIDE_DYNAMAX)))
     {
-        gBattleScripting.battler = battler;
+        gBattleScripting.battler = gBattlerAttacker;
         BattleScriptPush(cmd->nextInstr);
         gBattlescriptCurrInstr = (i == 1 ? BattleScript_TrainerASlideMsgRet : BattleScript_TrainerBSlideMsgRet);
     }

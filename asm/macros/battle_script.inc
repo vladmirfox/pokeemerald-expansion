@@ -1518,19 +1518,16 @@
 	.4byte \ptr
 	.endm
 
-	.macro trytrainerslidezmovemsg, battler:req
+	.macro trytrainerslidezmovemsg
 	callnative BS_TryTrainerSlideZMoveMsg
-	.byte \battler
 	.endm
 
-	.macro trytrainerslidemegaevolutionmsg, battler:req
+	.macro trytrainerslidemegaevolutionmsg
 	callnative BS_TryTrainerSlideMegaEvolutionMsg
-	.byte \battler
 	.endm
 
-	.macro trytrainerslidedynamaxmsg, battler:req
+	.macro trytrainerslidedynamaxmsg
 	callnative BS_TryTrainerSlideDynamaxMsg
-	.byte \battler
 	.endm
 
 @ various command changed to more readable macros
