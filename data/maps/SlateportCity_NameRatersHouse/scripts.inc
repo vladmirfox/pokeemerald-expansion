@@ -197,6 +197,7 @@ SlateportCity_NameRatersHouse_EventScript_GiveSablenite::
 	goto SlateportCity_NameRatersHouse_EventScript_ChooseRandomPostGameEvent
 
 SlateportCity_NameRatersHouse_EventScript_ChooseRandomPostGameEvent::
+	msgbox SlateportCity_NameRatersHouse_EventScript_PostGameTextLead, MSGBOX_DEFAULT
 	random 9
 	goto_if_eq VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_PostGameBattleFrontier
 	goto_if_eq VAR_RESULT, 1, SlateportCity_NameRatersHouse_EventScript_PostGameEliteFourRematch
@@ -206,18 +207,37 @@ SlateportCity_NameRatersHouse_EventScript_ChooseRandomPostGameEvent::
 	goto_if_eq VAR_RESULT, 5, SlateportCity_NameRatersHouse_EventScript_PostGameSpecialSootopolisBattle
 	goto_if_eq VAR_RESULT, 6, SlateportCity_NameRatersHouse_EventScript_PostGameStevenBattle
 	goto_if_eq VAR_RESULT, 7, SlateportCity_NameRatersHouse_EventScript_PostGameCourtneyBattle
-	goto_if_eq VAR_RESULT, 8, SlateportCity_NameRatersHouse_EventScript_PostGameShelleyBattle
-	goto SlateportCity_NameRatersHouse_EventScript_PostGameCatchPokemon
+	goto_if_eq VAR_RESULT, 8, SlateportCity_NameRatersHouse_EventScript_PostGameShellyBattle
 	release
 	end
 
 SlateportCity_NameRatersHouse_EventScript_PostGameBattleFrontier:
+	msgbox SlateportCity_NameRatersHouse_Text_PostGameBattleFrontier, MSGBOX_DEFAULT
+	release
+	end
+
 SlateportCity_NameRatersHouse_EventScript_PostGameEliteFourRematch:
+	msgbox SlateportCity_NameRatersHouse_Text_PostGameEliteFourRematch, MSGBOX_DEFAULT
+	release
+	end
+
 SlateportCity_NameRatersHouse_EventScript_PostGameGymLeaderRematch:
+	msgbox SlateportCity_NameRatersHouse_Text_PostGameGymLeaderRematch, MSGBOX_DEFAULT
+	release
+	end
+
 SlateportCity_NameRatersHouse_EventScript_PostGameCatchPokemon:
+	msgbox SlateportCity_NameRatersHouse_Text_PostGameCatchPokemon, MSGBOX_DEFAULT
+	release
+	end
+
 SlateportCity_NameRatersHouse_EventScript_PostGamePreformInContest:
+	msgbox SlateportCity_NameRatersHouse_Text_PostGamePreformInContest, MSGBOX_DEFAULT
+	release
+	end
+
 SlateportCity_NameRatersHouse_EventScript_PostGameSpecialSootopolisBattle:
-	msgbox SlateportCity_NameRatersHouse_Text_NotFinished, MSGBOX_DEFAULT
+	msgbox SlateportCity_NameRatersHouse_Text_PostGameSpecialSootopolisBattle, MSGBOX_DEFAULT
 	release
 	end
 
@@ -227,90 +247,21 @@ SlateportCity_NameRatersHouse_EventScript_PostGameStevenBattle:
 	end
 
 SlateportCity_NameRatersHouse_EventScript_PostGameCourtneyBattle:
-	goto SlateportCity_NameRatersHouse_EventScript_PostGameBattleFrontier
+	goto_if_set FLAG_DEFEATED_POSTGAME_COURTNEY, SlateportCity_NameRatersHouse_EventScript_PostGameBattleFrontier
+	msgbox SlateportCity_NameRatersHouse_Text_PostGameCourtneyBattle, MSGBOX_DEFAULT
 	release
 	end
 
-SlateportCity_NameRatersHouse_EventScript_PostGameShelleyBattle:
-	goto SlateportCity_NameRatersHouse_EventScript_PostGameEliteFourRematch
+SlateportCity_NameRatersHouse_EventScript_PostGameShellyBattle:
+	goto_if_set FLAG_DEFEATED_POSTGAME_SHELLY, SlateportCity_NameRatersHouse_EventScript_PostGameEliteFourRematch
+	msgbox SlateportCity_NameRatersHouse_Text_PostGameShellyBattle, MSGBOX_DEFAULT
 	release
 	end
-
-
-SlateportCity_NameRatersHouse_EventScript_NameRater::
-	lock
-	faceplayer
-	msgbox SlateportCity_NameRatersHouse_Text_PleasedToRateMonNickname, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, SlateportCity_NameRatersHouse_EventScript_ChooseMonToRate
-	goto_if_eq VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
-	end
-
-SlateportCity_NameRatersHouse_EventScript_ChooseMonToRate::
-	msgbox SlateportCity_NameRatersHouse_Text_CritiqueWhichMonNickname, MSGBOX_DEFAULT
-	special ChoosePartyMon
-	waitstate
-	goto_if_ne VAR_0x8004, PARTY_NOTHING_CHOSEN, SlateportCity_NameRatersHouse_EventScript_RateMonNickname
-	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
-	end
-
-SlateportCity_NameRatersHouse_EventScript_DeclineNameRate::
-	msgbox SlateportCity_NameRatersHouse_Text_DoVisitAgain, MSGBOX_DEFAULT
-	release
-	end
-
-SlateportCity_NameRatersHouse_EventScript_RateMonNickname::
-	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
-	goto_if_eq VAR_RESULT, SPECIES_EGG, SlateportCity_NameRatersHouse_EventScript_CantRateEgg
-	special BufferMonNickname
-	special IsMonOTIDNotPlayers
-	goto_if_eq VAR_RESULT, TRUE, SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
-	specialvar VAR_RESULT, MonOTNameNotPlayer
-	special BufferMonNickname
-	goto_if_eq VAR_RESULT, TRUE, SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
-	msgbox SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, SlateportCity_NameRatersHouse_EventScript_ChangeNickname
-	goto_if_eq VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
-	end
-
-SlateportCity_NameRatersHouse_EventScript_CantRateEgg::
-	msgbox SlateportCity_NameRatersHouse_Text_ThatIsMerelyAnEgg, MSGBOX_DEFAULT
-	release
-	end
-
-SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT::
-	msgbox SlateportCity_NameRatersHouse_Text_MagnificentName, MSGBOX_DEFAULT
-	release
-	end
-
-SlateportCity_NameRatersHouse_EventScript_ChangeNickname::
-	msgbox SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe, MSGBOX_DEFAULT
-	call Common_EventScript_NameReceivedPartyMon
-	specialvar VAR_RESULT, TryPutNameRaterShowOnTheAir
-	special BufferMonNickname
-	goto_if_eq VAR_RESULT, TRUE, SlateportCity_NameRatersHouse_EventScript_NewNameDifferent
-	msgbox SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior, MSGBOX_DEFAULT
-	release
-	end
-
-SlateportCity_NameRatersHouse_EventScript_NewNameDifferent::
-	msgbox SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName, MSGBOX_DEFAULT
-	release
-	end
-
-SlateportCity_NameRatersHouse_Text_PleasedToRateMonNickname:
-	.string "Hi, hi! I'm the Name RATER!\n"
-	.string "I'm the fortune-teller of names!\p"
-	.string "I shall be pleased to rate your\n"
-	.string "Pokémon's nickname.$"
 
 SlateportCity_NameRatersHouse_Text_LikeToHearYourFortune:
 	.string "Hi, hi! I'm the Fortune Teller!\p"
 	.string "I shall be pleased to tell you\n"
 	.string "your future.$"
-
-SlateportCity_NameRatersHouse_Text_CritiqueWhichMonNickname:
-	.string "Which Pokémon's nickname should\n"
-	.string "I critique?$"
 
 SlateportCity_NameRatersHouse_Text_LetsSeeThen:
 	.string "Let's see then…\p"
@@ -580,13 +531,6 @@ SlateportCity_NameRatersHouse_Text_HaventBeatenLeague:
 	.string "Four steps to the top.\p"
 	.string "Another to the heavens!$"
 
-SlateportCity_NameRatersHouse_Text_NotFinished:
-	.string "Your fortune is unclear to me.\p"
-	.string "It seems that our creator\n"
-	.string "forgot to add something to\l"
-	.string "the world.\p"
-	.string "You should tell them.$"
-
 SlateportCity_NameRatersHouse_Text_ImpressiveFortune:
 	.string "Your life has been very exciting\n"
 	.string "hasn't it?\p"
@@ -599,41 +543,80 @@ SlateportCity_NameRatersHouse_Text_AnywaysWhereWasI:
 	.string "Now where was I?\p"
 	.string "Ah yes…$"
 
-SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne:
-	.string "Hmmm… {STR_VAR_1}, is it? That is\n"
-	.string "quite a fine name you bestowed.\p"
-	.string "But! What say you, if I were to\n"
-	.string "suggest a slightly better name?$"
+SlateportCity_NameRatersHouse_EventScript_PostGameTextLead:
+	.string "I can sense your indomitable\n"
+	.string "spirit burning like a blaze!\p"
+	.string "Truly, you could do anything\n"
+	.string "you pleased.\p"
+	.string "A future in such flux, I\n"
+	.string "think I see…$"
 
-SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe:
-	.string "Ah, good. Then, what shall the new\n"
-	.string "nickname be?$"
+SlateportCity_NameRatersHouse_Text_PostGameBattleFrontier:
+	.string "A place where many battles\n"
+	.string "occur.\p"
+	.string "You fight your way through a\n"
+	.string "gauntlet to face off against\l"
+	.string "those above all.\p"
+	.string "A true frontier!$"
 
-SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName:
-	.string "Done! From now on, this Pokémon\n"
-	.string "shall be known as {STR_VAR_1}!\p"
-	.string "It is a better name than before!\n"
-	.string "How fortunate for you!$"
+SlateportCity_NameRatersHouse_Text_PostGameEliteFourRematch:
+	.string "Somewhere familiar.\p"
+	.string "You fought your way to the\n"
+	.string "top before.\p"
+	.string "The challenge is much more\n"
+	.string "more tough this time.\p"
+	.string "Can you defeat these elites?$"
 
-SlateportCity_NameRatersHouse_Text_DoVisitAgain:
-	.string "I see.\n"
-	.string "Do come visit again.$"
+SlateportCity_NameRatersHouse_Text_PostGameGymLeaderRematch:
+	.string "A place for trainers to\n"
+	.string "prove their worth!\p"
+	.string "One in most towns.\p"
+	.string "Their power has been rising\n"
+	.string "to meet your own.\p"
+	.string "Can you defeat them again?$"
 
-SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior:
-	.string "Done! From now on, this Pokémon\n"
-	.string "shall be known as {STR_VAR_1}!\p"
-	.string "It looks no different from before,\n"
-	.string "and yet, this is vastly superior!\p"
-	.string "How fortunate for you!$"
+SlateportCity_NameRatersHouse_Text_PostGameCatchPokemon:
+	.string "You are amongst the wild.\p"
+	.string "You have picked up many\n"
+	.string "companions on your travels.\p"
+	.string "But can you face the task\n"
+	.string "handed to you when you first\l"
+	.string "set out.\p"
+	.string "To find them all?$"
 
-SlateportCity_NameRatersHouse_Text_MagnificentName:
-	.string "Hmmm… {STR_VAR_1} it is!\p"
-	.string "This is a magnificent nickname!\n"
-	.string "It is impeccably beyond reproach!\p"
-	.string "You'll do well to cherish your\n"
-	.string "{STR_VAR_1} now and beyond.$"
+SlateportCity_NameRatersHouse_Text_PostGamePreformInContest:
+	.string "You are on a stage.\p"
+	.string "Showered in the affection\n"
+	.string "of your peers.\p"
+	.string "Your reward is not just\n"
+	.string "fame, but fortune!\p"
+	.string "It will take preperation\n"
+	.string "to make this dream true.$"
 
-SlateportCity_NameRatersHouse_Text_ThatIsMerelyAnEgg:
-	.string "Now, now.\n"
-	.string "That is merely an EGG!$"
+SlateportCity_NameRatersHouse_Text_PostGameSpecialSootopolisBattle:
+	.string "Somewhere fire and water unite\n"
+	.string "you will find…\p"
+	.string "A place for spirits to clash.\p"
+	.string "From regions beyond, their\n"
+	.string "power equal to yours.\p"
+	.string "To face them, you will need to\n"
+	.string "seek their secrets.$"
+
+SlateportCity_NameRatersHouse_Text_PostGameCourtneyBattle:
+	.string "In a city of progress, where\n"
+	.string "spirits are healed.\p"
+	.string "You will find…\p"
+	.string "The flickering ember of a fire\n"
+	.string "already extinguished.\p"
+	.string "They will need you to guide\n"
+	.string "them now.$"
+
+SlateportCity_NameRatersHouse_Text_PostGameShellyBattle:
+	.string "In a town where people live\n"
+	.string "as one with the waves.\p"
+	.string "You will find…\p"
+	.string "The shrinking ripple of a\n"
+	.string "wave upon the shore.\p"
+	.string "They will need you to guide\n"
+	.string "them now.$"
 
