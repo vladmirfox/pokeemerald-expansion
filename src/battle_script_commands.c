@@ -16388,6 +16388,8 @@ void BS_TryTrainerSlideZMoveMsg(void)
         BattleScriptPush(cmd->nextInstr);
         gBattlescriptCurrInstr = (shouldSlide == 1 ? BattleScript_TrainerASlideMsgRet : BattleScript_TrainerBSlideMsgRet);
     }
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 void BS_TryTrainerSlideMegaEvolutionMsg(void)
@@ -16401,6 +16403,8 @@ void BS_TryTrainerSlideMegaEvolutionMsg(void)
         BattleScriptPush(cmd->nextInstr);
         gBattlescriptCurrInstr = (shouldSlide == 1 ? BattleScript_TrainerASlideMsgRet : BattleScript_TrainerBSlideMsgRet);
     }
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 void BS_TryTrainerSlideDynamaxMsg(void)
@@ -16414,4 +16418,6 @@ void BS_TryTrainerSlideDynamaxMsg(void)
         BattleScriptPush(cmd->nextInstr);
         gBattlescriptCurrInstr = (shouldSlide == 1 ? BattleScript_TrainerASlideMsgRet : BattleScript_TrainerBSlideMsgRet);
     }
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
