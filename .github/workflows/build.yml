@@ -8,21 +8,8 @@ on:
   pull_request:
 
 jobs:
-  determine-runner:
-    runs-on: ubuntu-latest
-    outputs:
-      runner: ${{ steps.set-runner.outputs.use-runner }}
-    steps:
-      - name: Determine which runner to use
-        id: set-runner
-        uses: jimmygchen/runner-fallback-action@v1
-        with:
-          primary-runner: "self-hosted"
-          fallback-runner: "ubuntu-latest"
-
   build:
-    needs: determine-runner
-    runs-on: ${{ fromJson(needs.determine-runner.outputs.runner) }}
+    runs-on: self-hosted
     env:
       GAME_VERSION: EMERALD
       GAME_REVISION: 0
@@ -31,47 +18,27 @@ jobs:
       COMPARE: 0
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: pokemerald-expansion
+        uses: actions/checkout@v2
 
       - name: Checkout agbcc
-        if: ${{ fromJson(needs.determine-runner.outputs.runner) == 'ubuntu-latest'}}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
         with:
           path: agbcc
           repository: pret/agbcc
 
-      - name: Install binutils
-        run: sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi libelf-dev
-        if: ${{ fromJson(needs.determine-runner.outputs.runner) == 'ubuntu-latest'}}
-        # build-essential, git, and libpng-dev are already installed
-        # gcc-arm-none-eabi is only needed for the modern build
-        # as an alternative to dkP
-
-      - name: Build and install agbcc
-        run: |
-          ./build.sh
-          ./install.sh ../pokeemerald-expansion
-        if: ${{ fromJson(needs.determine-runner.outputs.runner) == 'ubuntu-latest'}}
-        working-directory: agbcc
-        
       - name: Install agbcc
         run: |
-          ./install.sh ../pokeemerald-expansion
-        if: ${{ fromJson(needs.determine-runner.outputs.runner) == 'self-hosted'}}
-        working-directory: agbcc
+          ./install.sh /home/zac/rhh_actions-runner/_work/pokeemerald-expansion/pokeemerald-expansion
+        working-directory: /home/zac/agbcc
 
       - name: Agbcc
         run: make -j${nproc} -O all
-        working-directory: pokeemerald-expansion
 
       - name: Modern
         env:
           MODERN: 1
           COMPARE: 0
         run: make -j${nproc} -O all
-        working-directory: pokeemerald-expansion
 
       - name: Test
         env:
@@ -79,4 +46,3 @@ jobs:
         run: |
           make -j${nproc} -O pokeemerald-test.elf
           make -j${nproc} check
-        working-directory: pokeemerald-expansion
