@@ -22,13 +22,15 @@ EventScript_SprayWoreOff_3:
 
 
 EventScript_BufferSprayName::
-	compare VAR_LAST_REPEL_LURE_USED, 0
-	goto_if_ne EventScript_BufferSprayName_2
-	specialvar VAR_0x8009, GetSprayType
+.if VAR_LAST_REPEL_LURE_USED != 0
+    bufferitemname STR_VAR_1, VAR_LAST_REPEL_LURE_USED
+.else
+	specialvar VAR_0x8009, GetLastUsedSprayType
 	compare VAR_0x8009, ITEM_REPEL
 	goto_if_eq EventScript_BufferSprayName_5
 	bufferitemname STR_VAR_1, ITEM_LURE
 EventScript_BufferSprayName_4:
+.endif
 	return
 
 EventScript_BufferSprayName_2:

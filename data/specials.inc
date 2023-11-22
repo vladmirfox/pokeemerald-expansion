@@ -538,4 +538,4 @@ gSpecials::
 	def_special TrySpecialOverworldEvo
     def_special GetNumberSprayStrength
     def_special GetSprayId
-    def_special GetSprayType
+    def_special GetLastUsedSprayType
