@@ -614,6 +614,29 @@ static void Cmd_unused(void);
 static void Cmd_tryworryseed(void);
 static void Cmd_callnative(void);
 
+// sets flags to use for each level cap (make sure to change NUM_LEVEL_CAPS if changing amount)
+const u16 sLevelCapFlags[NUM_LEVEL_CAPS] = 
+{
+    FLAG_BADGE01_GET, FLAG_BADGE02_GET, FLAG_BADGE03_GET, FLAG_BADGE04_GET,
+    FLAG_BADGE05_GET, FLAG_BADGE06_GET, FLAG_BADGE07_GET, FLAG_BADGE08_GET,
+};
+
+// sets the acutal levels for each level cap
+const u16 sLevelCaps[NUM_LEVEL_CAPS] = { 13, 21, 35, 44, 52, 58, 65, 72 };
+
+// gets the current level cap
+static u8 gCurrentLevelCap(void) {
+    u8 i;
+
+    for (i = 0; i < NUM_LEVEL_CAPS; i++) {
+        if (!FlagGet(sLevelCapFlags[i])) {
+            return sLevelCaps[i];
+        }
+    }
+
+    return MAX_LEVEL;
+}
+
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
     Cmd_attackcanceler,                          //0x0
@@ -4161,7 +4184,8 @@ static void Cmd_getexp(void)
                 gBattleMoveDamage = 0; // used for exp
             }
             else if ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && *expMonId >= 3)
-                  || GetMonData(&gPlayerParty[*expMonId], MON_DATA_LEVEL) == MAX_LEVEL)
+                  || GetMonData(&gPlayerParty[*expMonId], MON_DATA_LEVEL) == MAX_LEVEL
+                  || GetMonData(&gPlayerParty[*expMonId], MON_DATA_LEVEL) >= gCurrentLevelCap())
             {
                 gBattleScripting.getexpState = 5;
                 gBattleMoveDamage = 0; // used for exp
