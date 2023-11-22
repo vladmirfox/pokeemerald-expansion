@@ -70,6 +70,7 @@ u32 SetSprayMenuCursorPosition(int currentSpray, int count)
     return 0;
 }
 
+#if I_REPEL_LURE_MENU == TRUE
 void DrawSprayMenu(void)
 {
     struct MenuAction menuItems[SPRAYS_COUNT+1] = {NULL};
@@ -98,12 +99,20 @@ void DrawSprayMenu(void)
 
     DrawMultichoiceMenuInternal(18, yCoord, 0, FALSE, menuPos, menuItems, count+1);
 }
+#endif
 
 void HandleSprayMenuChoice(void)
 {
     u32 lureMask = (GetLastUsedSprayType() == ITEM_LURE) ? REPEL_LURE_MASK : 0;
 
-    VAR_SPRAY = VarGet(VAR_0x8004 + gSpecialVar_Result);
+//#if I_REPEL_LURE_MENU == TRUE
+    //if (GetNumberSprayStrength() > 1)
+        VAR_SPRAY = VarGet(VAR_0x8004 + gSpecialVar_Result);
+ //   else
+//#endif
+        //VAR_SPRAY = VarGet(VAR_0x8007);
+    //DebugPrintf("VAR_SPRAY %d",VAR_SPRAY);
+
     VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(VAR_SPRAY) | lureMask);
 
     if (VAR_LAST_REPEL_LURE_USED != 0)
