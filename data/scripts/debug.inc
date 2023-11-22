@@ -95,28 +95,43 @@ Debug_BoxFilledMessage::
 Debug_BoxFilledMessage_Text:
 	.string "Storage boxes filled!$"
 
+Debug_NoRepel_Text:
+    .string "You have no repels.$"
+
+Debug_OnlySuper:
+    .string "You have one super repel.$"
+
 Debug_EventScript_Script_1::
+    setvar VAR_0x8004,1
+    call HandleRepelTesting
+	end
+
+Debug_EventScript_Script_2::
+    setvar VAR_0x8004,2
+    call HandleRepelTesting
+	end
+
+Debug_EventScript_Script_3::
+    setvar VAR_0x8004,3
+    call HandleRepelTesting
+	end
+
+Debug_EventScript_Script_4::
+    setvar VAR_0x8004,4
+    call HandleRepelTesting
+	end
+
+Debug_EventScript_Script_5::
+    setvar VAR_0x8004,5
+    call HandleRepelTesting
+	end
+
+Debug_EventScript_Script_6::
 	giveitem ITEM_REPEL, 2
 	giveitem ITEM_SUPER_REPEL, 2
 	giveitem ITEM_MAX_REPEL, 2
 	giveitem ITEM_SUPER_LURE, 2
 	giveitem ITEM_MAX_LURE, 2
-	end
-
-Debug_EventScript_Script_2::
-    giveegg SPECIES_TREECKO
-	end
-
-Debug_EventScript_Script_3::
-	end
-
-Debug_EventScript_Script_4::
-	end
-
-Debug_EventScript_Script_5::
-	end
-
-Debug_EventScript_Script_6::
 	end
 
 Debug_EventScript_Script_7::
@@ -220,5 +235,79 @@ Debug_ShowExpansionVersion::
 
 Debug_ExpansionVersion:
 	.string "pokeemerald-expansion {STR_VAR_1}$"
+
+HandleRepelTesting::
+	setvar VAR_TEMP_1, 0
+	switch VAR_0x8004
+	case 1, HandleRepelTesting_3
+	case 2, HandleRepelTesting_4
+	case 3, HandleRepelTesting_5
+	case 4, HandleRepelTesting_6
+	case 5, HandleRepelTesting_7
+HandleRepelTesting_1:
+	setvar VAR_0x8005, ITEM_REPEL
+	call CheckItem
+	setvar VAR_0x8005, ITEM_SUPER_REPEL
+	call CheckItem
+	setvar VAR_0x8005, ITEM_MAX_REPEL
+	call CheckItem
+	call EmptyBag
+	return
+
+HandleRepelTesting_3:
+	removeitem ITEM_REPEL, 1
+	removeitem ITEM_SUPER_REPEL, 1
+	removeitem ITEM_MAX_REPEL, 1
+	goto HandleRepelTesting_1
+
+HandleRepelTesting_4:
+	removeitem ITEM_SUPER_REPEL, 1
+	goto HandleRepelTesting_1
+
+HandleRepelTesting_5:
+	removeitem ITEM_MAX_REPEL, 1
+	goto HandleRepelTesting_1
+
+HandleRepelTesting_6:
+	removeitem ITEM_REPEL, 1
+	goto HandleRepelTesting_1
+
+HandleRepelTesting_7:
+	goto HandleRepelTesting_1
+
+
+CheckItem::
+	checkitem VAR_0x8005, 1
+	compare VAR_RESULT, 0
+	goto_if_ne CheckItem_1
+	return
+
+CheckItem_1:
+	call PrintAndAdd
+	return
+
+
+PrintAndAdd::
+	bufferitemname STR_VAR_1, VAR_0x8005
+	msgbox PrintAndAdd_Text_0, MSGBOX_SIGN
+	addvar VAR_TEMP_1, 1
+	return
+
+
+EmptyBag::
+	compare VAR_TEMP_1, 0
+	goto_if_eq EmptyBag_1
+	return
+
+EmptyBag_1:
+	msgbox EmptyBag_Text_0, MSGBOX_SIGN
+	return
+
+
+PrintAndAdd_Text_0:
+	.string "you have one {STR_VAR_1}$"
+
+EmptyBag_Text_0:
+	.string "your bag has no repels$"
 
 .endif
