@@ -11,7 +11,6 @@
 #define SPRAY_GET 1
 
 #define SPRAYS_COUNT 3
-
 #define SPRAY_MENU_Y_COORD 8
 
 #define VAR_SPRAY gSpecialVar_0x8004
@@ -27,25 +26,21 @@ void PushSprayElement(u16);
 
 u32 CountOrGetSprays(u32 func)
 {
-    u32 i, sprayCount = 0;
+    u32 i, currentSpray, sprayCount = 0;
     u32 spray = GetLastUsedSprayType();
-    u32 yCoord = SPRAY_MENU_Y_COORD;
 
     for (i = 0; i < 3; i++)
     {
-        if (!CheckBagHasItem(spray+i,1))
+        currentSpray = spray + i;
+
+        if (!CheckBagHasItem(currentSpray,1))
             continue;
 
-        switch(func)
-        {
-            case SPRAY_COUNT:
-                sprayCount++;
-                break;
-            default:
-                return (spray+i);
-        }
+        if (func == SPRAY_COUNT)
+            sprayCount++;
+        else
+            return (currentSpray);
     }
-    VarSet(gSpecialVar_0x8008,yCoord);
     return sprayCount;
 }
 
@@ -67,7 +62,7 @@ u32 GetLastUsedSprayType(void)
         return ITEM_REPEL;
 }
 
-u32 SetSprayMenuPosition(int currentSpray, int count)
+u32 SetSprayMenuCursorPosition(int currentSpray, int count)
 {
     if (VarGet(VAR_LAST_REPEL_LURE_USED) == currentSpray)
         return count;
@@ -75,12 +70,10 @@ u32 SetSprayMenuPosition(int currentSpray, int count)
     return 0;
 }
 
-
 void DrawSprayMenu(void)
 {
     struct MenuAction menuItems[SPRAYS_COUNT+1] = {NULL};
-    int sprayIndex, count = 0, menuPos = 0, currentSpray;
-    u32 yCoord = 8;
+    int sprayIndex, count = 0, menuPos = 0, currentSpray, yCoord;
     u32 spray = GetLastUsedSprayType();
 
     for (sprayIndex = 0; sprayIndex < (SPRAYS_COUNT); sprayIndex++)
@@ -94,7 +87,7 @@ void DrawSprayMenu(void)
         VarSet(VAR_0x8004 + count, currentSpray);
 
         if (VAR_LAST_REPEL_LURE_USED != 0)
-            menuPos = SetSprayMenuPosition(currentSpray, count);
+            menuPos = SetSprayMenuCursorPosition(currentSpray, count);
 
         yCoord = SPRAY_MENU_Y_COORD - (2 * count);
         count++;
@@ -110,9 +103,9 @@ void HandleSprayMenuChoice(void)
 {
     u32 lureMask = (GetLastUsedSprayType() == ITEM_LURE) ? REPEL_LURE_MASK : 0;
 
-    gSpecialVar_0x8004 = VarGet(VAR_0x8004 + gSpecialVar_Result);
-    VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(gSpecialVar_0x8004) | lureMask);
+    VAR_SPRAY = VarGet(VAR_0x8004 + gSpecialVar_Result);
+    VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(VAR_SPRAY) | lureMask);
 
     if (VAR_LAST_REPEL_LURE_USED != 0)
-        VarSet(VAR_LAST_REPEL_LURE_USED, gSpecialVar_0x8004);
+        VarSet(VAR_LAST_REPEL_LURE_USED, VAR_SPRAY);
 }
