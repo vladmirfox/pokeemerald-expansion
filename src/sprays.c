@@ -29,7 +29,7 @@ u32 CountOrGetSprays(u32 func)
     u32 i, currentSpray, sprayCount = 0;
     u32 spray = GetLastUsedSprayType();
 
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < SPRAYS_COUNT; i++)
     {
         currentSpray = spray + i;
 
