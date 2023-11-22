@@ -73,7 +73,7 @@ u32 SetSprayMenuCursorPosition(int currentSpray, int count)
 void DrawSprayMenu(void)
 {
     struct MenuAction menuItems[SPRAYS_COUNT+1] = {NULL};
-    int sprayIndex, count = 0, menuPos = 0, currentSpray, yCoord;
+    int sprayIndex, count = 0, menuPos = 0, currentSpray, yCoord = 0;
     u32 spray = GetLastUsedSprayType();
 
     for (sprayIndex = 0; sprayIndex < (SPRAYS_COUNT); sprayIndex++)
