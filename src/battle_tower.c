@@ -2967,7 +2967,7 @@ static void FillPartnerParty(u16 trainerId)
             const struct TrainerMon *partyData = gBattlePartners[trainerId - TRAINER_PARTNER(PARTNER_NONE)].party;
             u32 otIdType = OT_ID_RANDOM_NO_SHINY;
 
-            if (trainerId == PARTNER_STEVEN)
+            if (trainerId == TRAINER_PARTNER(PARTNER_STEVEN))
             {
                 otID = STEVEN_OTID;
                 otIdType = OT_ID_PRESET;
