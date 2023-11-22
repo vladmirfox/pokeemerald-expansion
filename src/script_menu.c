@@ -89,7 +89,7 @@ static u16 UNUSED GetLengthWithExpandedPlayerName(const u8 *str)
     return length;
 }
 
-static void DrawMultichoiceMenuInternal(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPress, u8 cursorPos, const struct MenuAction *actions, int count)
+void DrawMultichoiceMenuInternal(u8 left, u8 top, u8 multichoiceId, bool8 ignoreBPress, u8 cursorPos, const struct MenuAction *actions, int count)
 {
     int i;
     u8 windowId;

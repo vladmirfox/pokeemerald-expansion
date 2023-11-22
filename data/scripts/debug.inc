@@ -96,9 +96,15 @@ Debug_BoxFilledMessage_Text:
 	.string "Storage boxes filled!$"
 
 Debug_EventScript_Script_1::
+	giveitem ITEM_REPEL, 2
+	giveitem ITEM_SUPER_REPEL, 2
+	giveitem ITEM_MAX_REPEL, 2
+	giveitem ITEM_SUPER_LURE, 2
+	giveitem ITEM_MAX_LURE, 2
 	end
 
 Debug_EventScript_Script_2::
+    giveegg SPECIES_TREECKO
 	end
 
 Debug_EventScript_Script_3::
