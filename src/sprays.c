@@ -10,7 +10,9 @@
 #define SPRAY_COUNT 0
 #define SPRAY_GET 1
 
-#define SPRAY_MENU_Y_COORD 6
+#define SPRAYS_COUNT 3
+
+#define SPRAY_MENU_Y_COORD 8
 
 #define VAR_SPRAY gSpecialVar_0x8004
 #define VAR_NUM_SPRAY_STRENGTH gSpecialVar_0x8005
@@ -73,12 +75,12 @@ u32 SetSprayMenuPosition(int currentSpray, int count)
     return 0;
 }
 
-#define SPRAYS_COUNT 3
 
 void DrawSprayMenu(void)
 {
     struct MenuAction menuItems[SPRAYS_COUNT+1] = {NULL};
     int sprayIndex, count = 0, menuPos = 0, currentSpray;
+    u32 yCoord = 8;
     u32 spray = GetLastUsedSprayType();
 
     for (sprayIndex = 0; sprayIndex < (SPRAYS_COUNT); sprayIndex++)
@@ -94,13 +96,14 @@ void DrawSprayMenu(void)
         if (VAR_LAST_REPEL_LURE_USED != 0)
             menuPos = SetSprayMenuPosition(currentSpray, count);
 
+        yCoord = SPRAY_MENU_Y_COORD - (2 * count);
         count++;
     }
 
     gSpecialVar_0x8003 = count;
     menuItems[count].text = gText_Cancel2;
 
-    DrawMultichoiceMenuInternal(0, 0, 0, FALSE, menuPos, menuItems, count+1);
+    DrawMultichoiceMenuInternal(18, yCoord, 0, FALSE, menuPos, menuItems, count+1);
 }
 
 void HandleSprayMenuChoice(void)
