@@ -198,7 +198,7 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_BUBBLE_BEAM]   = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_AURORA_BEAM]   = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_HYPER_BEAM]    = {[MOVE_POINTS_POPULAR] = 1},
-    [MOVE_COUNTER]       = {[MOVE_POINTS_DEF] = 1, [MOVE_POINTS_LUCK] = 1},
+    [MOVE_COUNTER]       = {[MOVE_POINTS_LUCK] = 1},
     [MOVE_LEECH_SEED]    = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_STATUS] = 1},
     [MOVE_SOLAR_BEAM]    = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_POPULAR] = 1},
     [MOVE_POISON_POWDER] = {[MOVE_POINTS_STATUS] = 1},
@@ -218,15 +218,6 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_HYPNOSIS]      = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_MEDITATE]      = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_MIMIC]         = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_DOUBLE_TEAM]   = {[MOVE_POINTS_DEF] = 1},
-    [MOVE_HARDEN]        = {[MOVE_POINTS_DEF] = 1},
-    [MOVE_MINIMIZE]      = {[MOVE_POINTS_DEF] = 1},
-    [MOVE_SMOKESCREEN]   = {[MOVE_POINTS_DEF] = 1},
-    [MOVE_WITHDRAW]      = {[MOVE_POINTS_DEF] = 1},
-    [MOVE_DEFENSE_CURL]  = {[MOVE_POINTS_DEF] = 1},
-    [MOVE_BARRIER]       = {[MOVE_POINTS_DEF] = 1},
-    [MOVE_LIGHT_SCREEN]  = {[MOVE_POINTS_DEF] = 1},
-    [MOVE_REFLECT]       = {[MOVE_POINTS_DEF] = 1},
     [MOVE_FOCUS_ENERGY]  = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_METRONOME]     = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_LUCK] = 1},
     [MOVE_MIRROR_MOVE]   = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_LUCK] = 1},
@@ -237,7 +228,6 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_FIRE_BLAST]    = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_CLAMP]         = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_CONSTRICT]     = {[MOVE_POINTS_STATUS] = 1, [MOVE_POINTS_EFFECT] = 1},
-    [MOVE_AMNESIA]       = {[MOVE_POINTS_DEF] = 1},
     [MOVE_DREAM_EATER]   = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_RARE] = 1},
     [MOVE_POISON_GAS]    = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_LOVELY_KISS]   = {[MOVE_POINTS_STATUS] = 1},
@@ -247,15 +237,12 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_DIZZY_PUNCH]   = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_SPORE]         = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_SPLASH]        = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_ACID_ARMOR]    = {[MOVE_POINTS_DEF] = 1},
     [MOVE_EXPLOSION]     = {[MOVE_POINTS_RISKY] = 1, [MOVE_POINTS_POPULAR] = 1},
     [MOVE_REST]          = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_ROCK_SLIDE]    = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_HYPER_FANG]    = {[MOVE_POINTS_EFFECT] = 1},
-    [MOVE_SHARPEN]       = {[MOVE_POINTS_DEF] = 1},
-    [MOVE_CONVERSION]    = {[MOVE_POINTS_DEF] = 1},
     [MOVE_TRI_ATTACK]    = {[MOVE_POINTS_EFFECT] = 1},
-    [MOVE_SUBSTITUTE]    = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_DEF] = 1}, // Odd that this is assigned qualities
+    [MOVE_SUBSTITUTE]    = {[MOVE_POINTS_RARE] = 1}, // Odd that this is assigned qualities
     [MOVE_SKETCH]        = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_LUCK] = 1},
     [MOVE_THIEF]         = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_EFFECT] = 1},
     [MOVE_NIGHTMARE]     = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_STATUS] = 1},
@@ -265,7 +252,7 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_REVERSAL]      = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SPITE]         = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_RISKY] = 1},
     [MOVE_POWDER_SNOW]   = {[MOVE_POINTS_EFFECT] = 1},
-    [MOVE_PROTECT]       = {[MOVE_POINTS_DEF] = 1, [MOVE_POINTS_POPULAR] = 1},
+    [MOVE_PROTECT]       = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_BELLY_DRUM]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SLUDGE_BOMB]   = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_MUD_SLAP]      = {[MOVE_POINTS_EFFECT] = 1},
@@ -275,17 +262,14 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_DESTINY_BOND]  = {[MOVE_POINTS_RISKY] = 1},
     [MOVE_PERISH_SONG]   = {[MOVE_POINTS_RISKY] = 1},
     [MOVE_ICY_WIND]      = {[MOVE_POINTS_EFFECT] = 1},
-    [MOVE_DETECT]        = {[MOVE_POINTS_DEF] = 1},
     [MOVE_LOCK_ON]       = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_OUTRAGE]       = {[MOVE_POINTS_EFFECT] = 1},
-    [MOVE_ENDURE]        = {[MOVE_POINTS_DEF] = 1},
     [MOVE_SWAGGER]       = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_SPARK]         = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_STEEL_WING]    = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_ATTRACT]       = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_SLEEP_TALK]    = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_LUCK] = 1},
     [MOVE_PRESENT]       = {[MOVE_POINTS_LUCK] = 1},
-    [MOVE_SAFEGUARD]     = {[MOVE_POINTS_DEF] = 1},
     [MOVE_PAIN_SPLIT]    = {[MOVE_POINTS_RARE] = 1},
     [MOVE_SACRED_FIRE]   = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_DYNAMIC_PUNCH] = {[MOVE_POINTS_LUCK] = 1, [MOVE_POINTS_EFFECT] = 1},
@@ -302,7 +286,6 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_RAIN_DANCE]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SUNNY_DAY]     = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_CRUNCH]        = {[MOVE_POINTS_EFFECT] = 1},
-    [MOVE_MIRROR_COAT]   = {[MOVE_POINTS_DEF] = 1},
     [MOVE_ANCIENT_POWER] = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_SHADOW_BALL]   = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_FUTURE_SIGHT]  = {[MOVE_POINTS_RARE] = 1},
@@ -323,8 +306,8 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_HELPING_HAND]  = {[MOVE_POINTS_RARE] = 1},
     [MOVE_TRICK]         = {[MOVE_POINTS_RARE] = 1},
     [MOVE_ASSIST]        = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_LUCK] = 1},
-    [MOVE_INGRAIN]       = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_DEF] = 1},
-    [MOVE_MAGIC_COAT]    = {[MOVE_POINTS_DEF] = 1, [MOVE_POINTS_LUCK] = 1},
+    [MOVE_INGRAIN]       = {[MOVE_POINTS_COMBO] = 1},
+    [MOVE_MAGIC_COAT]    = {[MOVE_POINTS_LUCK] = 1},
     [MOVE_REVENGE]       = {[MOVE_POINTS_LUCK] = 1},
     [MOVE_YAWN]          = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_STATUS] = 1},
     [MOVE_KNOCK_OFF]     = {[MOVE_POINTS_EFFECT] = 1},
@@ -349,7 +332,6 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_SAND_TOMB]     = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_SHEER_COLD]    = {[MOVE_POINTS_LUCK] = 1},
     [MOVE_MUDDY_WATER]   = {[MOVE_POINTS_EFFECT] = 1},
-    [MOVE_IRON_DEFENSE]  = {[MOVE_POINTS_DEF] = 1},
     [MOVE_BULK_UP]       = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_BOUNCE]        = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_MUD_SHOT]      = {[MOVE_POINTS_EFFECT] = 1},
@@ -4139,6 +4121,39 @@ static bool32 IsDomeHealingMoveEffect(u32 effect)
     }
 }
 
+static bool32 IsDomeDefensiveMoveEffect(u32 effect)
+{
+    switch(effect)
+    {
+    case EFFECT_COUNTER:
+    case EFFECT_EVASION_UP:
+    case EFFECT_DEFENSE_UP:
+    case EFFECT_DEFENSE_UP_2:
+    case EFFECT_SPECIAL_DEFENSE_UP:
+    case EFFECT_SPECIAL_DEFENSE_UP_2:
+    case EFFECT_MINIMIZE:
+    case EFFECT_ACCURACY_DOWN:
+    case EFFECT_DEFENSE_CURL:
+    case EFFECT_LIGHT_SCREEN:
+    case EFFECT_REFLECT:
+    case EFFECT_AURORA_VEIL:
+    case EFFECT_CONVERSION:
+    case EFFECT_PROTECT:
+    case EFFECT_MAT_BLOCK:
+    case EFFECT_ENDURE:
+    case EFFECT_SAFEGUARD:
+    case EFFECT_MIRROR_COAT:
+    case EFFECT_MAGIC_COAT:
+    case EFFECT_INGRAIN:
+    case EFFECT_AQUA_RING:
+    case EFFECT_SUBSTITUTE:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+    return FALSE;
+}
+
 #undef tUsingAlternateSlot
 
 // allocatedArray below needs to be large enough to hold stat totals for each mon, or totals of each type of move points
@@ -4331,6 +4346,9 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     break;
                 case MOVE_POINTS_DMG:
                     allocatedArray[k] = (gBattleMoves[move].power != 0) ? 1 : 0;
+                    break;
+                case MOVE_POINTS_DEF:
+                    allocatedArray[k] = IsDomeDefensiveMoveEffect(gBattleMoves[move].effect) ? 1 : 0;
                     break;
                 case MOVE_POINTS_ACCURATE:
                     allocatedArray[k] = (gBattleMoves[move].accuracy == 0 || gBattleMoves[move].accuracy == 100) ? 1 : 0;
