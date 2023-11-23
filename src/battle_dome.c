@@ -33,6 +33,7 @@
 #include "script_pokemon_util.h"
 #include "graphics.h"
 #include "constants/battle_dome.h"
+#include "constants/battle_move_effects.h"
 #include "constants/frontier_util.h"
 #include "constants/moves.h"
 #include "constants/trainers.h"
@@ -237,10 +238,8 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_CLAMP]         = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_CONSTRICT]     = {[MOVE_POINTS_STATUS] = 1, [MOVE_POINTS_EFFECT] = 1},
     [MOVE_AMNESIA]       = {[MOVE_POINTS_DEF] = 1},
-    [MOVE_SOFT_BOILED]   = {[MOVE_POINTS_HEAL] = 1},
-    [MOVE_DREAM_EATER]   = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_RARE] = 1, [MOVE_POINTS_HEAL] = 1},
+    [MOVE_DREAM_EATER]   = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_RARE] = 1},
     [MOVE_POISON_GAS]    = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_LEECH_LIFE]    = {[MOVE_POINTS_HEAL] = 1},
     [MOVE_LOVELY_KISS]   = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_SKY_ATTACK]    = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_TRANSFORM]     = {[MOVE_POINTS_RARE] = 1},
@@ -250,7 +249,7 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_SPLASH]        = {[MOVE_POINTS_RARE] = 1},
     [MOVE_ACID_ARMOR]    = {[MOVE_POINTS_DEF] = 1},
     [MOVE_EXPLOSION]     = {[MOVE_POINTS_RISKY] = 1, [MOVE_POINTS_POPULAR] = 1},
-    [MOVE_REST]          = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_HEAL] = 1},
+    [MOVE_REST]          = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_ROCK_SLIDE]    = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_HYPER_FANG]    = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_SHARPEN]       = {[MOVE_POINTS_DEF] = 1},
@@ -281,7 +280,6 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_OUTRAGE]       = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_ENDURE]        = {[MOVE_POINTS_DEF] = 1},
     [MOVE_SWAGGER]       = {[MOVE_POINTS_EFFECT] = 1},
-    [MOVE_MILK_DRINK]    = {[MOVE_POINTS_HEAL] = 1},
     [MOVE_SPARK]         = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_STEEL_WING]    = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_ATTRACT]       = {[MOVE_POINTS_STATUS] = 1},
@@ -296,9 +294,9 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_ENCORE]        = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_IRON_TAIL]     = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_METAL_CLAW]    = {[MOVE_POINTS_EFFECT] = 1},
-    [MOVE_MORNING_SUN]   = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_HEAL] = 1},
-    [MOVE_SYNTHESIS]     = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_HEAL] = 1},
-    [MOVE_MOONLIGHT]     = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_HEAL] = 1},
+    [MOVE_MORNING_SUN]   = {[MOVE_POINTS_COMBO] = 1},
+    [MOVE_SYNTHESIS]     = {[MOVE_POINTS_COMBO] = 1},
+    [MOVE_MOONLIGHT]     = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_HIDDEN_POWER]  = {[MOVE_POINTS_RARE] = 1},
     [MOVE_TWISTER]       = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_RAIN_DANCE]    = {[MOVE_POINTS_COMBO] = 1},
@@ -314,7 +312,7 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_UPROAR]        = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_STOCKPILE]     = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SPIT_UP]       = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SWALLOW]       = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_HEAL] = 1},
+    [MOVE_SWALLOW]       = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_HEAT_WAVE]     = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_TORMENT]       = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_WILL_O_WISP]   = {[MOVE_POINTS_STATUS] = 1},
@@ -324,16 +322,14 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_TAUNT]         = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_HELPING_HAND]  = {[MOVE_POINTS_RARE] = 1},
     [MOVE_TRICK]         = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_WISH]          = {[MOVE_POINTS_HEAL] = 1},
     [MOVE_ASSIST]        = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_LUCK] = 1},
-    [MOVE_INGRAIN]       = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_HEAL] = 1, [MOVE_POINTS_DEF] = 1},
+    [MOVE_INGRAIN]       = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_DEF] = 1},
     [MOVE_MAGIC_COAT]    = {[MOVE_POINTS_DEF] = 1, [MOVE_POINTS_LUCK] = 1},
     [MOVE_REVENGE]       = {[MOVE_POINTS_LUCK] = 1},
     [MOVE_YAWN]          = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_STATUS] = 1},
     [MOVE_KNOCK_OFF]     = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_SKILL_SWAP]    = {[MOVE_POINTS_RARE] = 1},
     [MOVE_IMPRISON]      = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_LUCK] = 1},
-    [MOVE_REFRESH]       = {[MOVE_POINTS_HEAL] = 1},
     [MOVE_SNATCH]        = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_LUCK] = 1},
     [MOVE_SECRET_POWER]  = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_EFFECT] = 1},
     [MOVE_CAMOUFLAGE]    = {[MOVE_POINTS_RARE] = 1},
@@ -341,7 +337,6 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_MIST_BALL]     = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_BLAZE_KICK]    = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_NEEDLE_ARM]    = {[MOVE_POINTS_EFFECT] = 1},
-    [MOVE_SLACK_OFF]     = {[MOVE_POINTS_HEAL] = 1},
     [MOVE_POISON_FANG]   = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_CRUSH_CLAW]    = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_METEOR_MASH]   = {[MOVE_POINTS_EFFECT] = 1},
@@ -4128,6 +4123,22 @@ static u8 Task_GetInfoCardInput(u8 taskId)
     return input;
 }
 
+static bool32 IsDomeHealingMoveEffect(u32 effect)
+{
+    if (IsHealingMoveEffect(effect))
+        return TRUE;
+    // Check extra effects not considered plain healing by AI
+    switch(effect)
+    {
+        case EFFECT_INGRAIN:
+        case EFFECT_REFRESH:
+        case EFFECT_AQUA_RING:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 #undef tUsingAlternateSlot
 
 // allocatedArray below needs to be large enough to hold stat totals for each mon, or totals of each type of move points
@@ -4314,6 +4325,9 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     break;
                 case MOVE_POINTS_STAT_LOWER:
                     allocatedArray[k] = IsStatLoweringEffect(gBattleMoves[move].effect) ? 1 : 0;
+                    break;
+                case MOVE_POINTS_HEAL:
+                    allocatedArray[k] = IsDomeHealingMoveEffect(gBattleMoves[move].effect) ? 1 : 0;
                     break;
                 case MOVE_POINTS_DMG:
                     allocatedArray[k] = (gBattleMoves[move].power != 0) ? 1 : 0;
