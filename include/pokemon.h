@@ -303,6 +303,13 @@ struct BattlePokemon
     /*0x59*/ u8 metLevel;
 };
 
+struct Evolution
+{
+    u16 method;
+    u16 param;
+    u16 targetSpecies;
+};
+
 struct SpeciesInfo /*0x8C*/
 {
  /* 0x00 */ u8 baseHP;
@@ -333,6 +340,7 @@ struct SpeciesInfo /*0x8C*/
  /* 0x1E */ u8 safariZoneFleeRate;
             // Pokédex data
  /* 0x1F */ u8 categoryName[13];
+ /* 0x1F */ u8 speciesName[POKEMON_NAME_LENGTH + 1];
  /* 0x2C */ u16 cryId;
  /* 0x2E */ u16 natDexNum;
  /* 0x30 */ u16 height; //in decimeters
@@ -390,7 +398,7 @@ struct SpeciesInfo /*0x8C*/
  /* 0x84 */ const u16 *const teachableLearnset;
  /* 0x88 */ const struct Evolution *const evolutions;
  /* 0x84 */ const u16 *const formSpeciesIdTable;
- /* 0x84 */ const u16 *const formChangeTable;
+ /* 0x84 */ const struct FormChange *const formChangeTable;
 };
 
 struct BattleMove
@@ -465,13 +473,6 @@ struct LevelUpMove
 {
     u16 move;
     u16 level;
-};
-
-struct Evolution
-{
-    u16 method;
-    u16 param;
-    u16 targetSpecies;
 };
 
 struct FormChange

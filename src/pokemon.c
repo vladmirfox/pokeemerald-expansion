@@ -15,6 +15,7 @@
 #include "evolution_scene.h"
 #include "field_specials.h"
 #include "field_weather.h"
+#include "graphics.h"
 #include "item.h"
 #include "link.h"
 #include "main.h"
@@ -2181,9 +2182,24 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
     [NATURE_QUIRKY]  = {    0,      0,      0,      0,      0   },
 };
 
+#define SPECIES_SPRITE(species, sprite) [SPECIES_##species] = {sprite, MON_PIC_SIZE, SPECIES_##species}
+#define SPECIES_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species}
+#define SPECIES_SHINY_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species + SPECIES_SHINY_TAG}
+
+#include "data/pokemon_graphics/front_pic_coordinates.h"
+#include "data/pokemon_graphics/back_pic_coordinates.h"
+
+#include "data/pokemon_graphics/back_pic_table.h"
+#include "data/pokemon_graphics/palette_table.h"
+#include "data/pokemon_graphics/shiny_palette_table.h"
+
+#include "data/pokemon_graphics/enemy_mon_elevation.h"
+#include "data/pokemon_graphics/front_pic_anims.h"
+#include "data/pokemon_graphics/front_pic_table.h"
+
 #include "data/pokemon/trainer_class_lookups.h"
+#include "data/pokemon/pokedex_text.h"
 #include "data/pokemon/experience_tables.h"
-#include "data/pokemon/species_info.h"
 #include "data/pokemon/level_up_learnsets.h"
 #include "data/pokemon/teachable_learnsets.h"
 #include "data/pokemon/evolution.h"
@@ -2193,6 +2209,9 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 #include "data/pokemon/form_species_table_pointers.h"
 #include "data/pokemon/form_change_tables.h"
 #include "data/pokemon/form_change_table_pointers.h"
+
+
+#include "data/pokemon/species_info.h"
 
 // SPECIES_NONE are ignored in the following two tables, so decrement before accessing these arrays to get the right result
 const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =

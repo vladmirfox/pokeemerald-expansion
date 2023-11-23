@@ -3636,7 +3636,7 @@ const u8 gJirachiPokedexText[] = _(
     "envelops the body to protect it from\n"
     "enemies.");
 
-const u8 gDeoxysPokedexText[] = _(
+const u8 gDeoxysNormalPokedexText[] = _(
     "Deoxys emerged from a virus that came\n"
     "from space. It is highly intelligent and\n"
     "can shoot lasers from the crystalline\n"
@@ -4613,11 +4613,13 @@ const u8 gBasculinWhiteStripedPokedexText[] = _(
     "it differs in several respects, including\n"
     "demeanor, being much gentler than others.");
 
-const u8 gBasculegionPokedexText[] = _(
+const u8 gBasculegionMalePokedexText[] = _(
     "Clads itself in the souls of comrades that\n"
     "perished before fulfilling their goals of\n"
     "journeying upstream. No other species in\n"
     "all Hisui's rivers is Basculegion's equal.");
+
+const u8 gBasculegionFemalePokedexText[] = _("");
 
 const u8 gSandilePokedexText[] = _(
     "It conceals itself in the sand and\n"
@@ -6198,39 +6200,7 @@ const u8 gSilvallyNormalPokedexText[] = _(
     "type by equipping special memories, a\n"
     "trait that is well displayed in battle.");
 
-const u8 gSilvallyFightingPokedexText[] = _("");
-
-const u8 gSilvallyFlyingPokedexText[] = _("");
-
-const u8 gSilvallyPoisonPokedexText[] = _("");
-
-const u8 gSilvallyGroundPokedexText[] = _("");
-
-const u8 gSilvallyRockPokedexText[] = _("");
-
-const u8 gSilvallyBugPokedexText[] = _("");
-
-const u8 gSilvallyGhostPokedexText[] = _("");
-
-const u8 gSilvallySteelPokedexText[] = _("");
-
-const u8 gSilvallyFirePokedexText[] = _("");
-
-const u8 gSilvallyWaterPokedexText[] = _("");
-
-const u8 gSilvallyGrassPokedexText[] = _("");
-
-const u8 gSilvallyElectricPokedexText[] = _("");
-
-const u8 gSilvallyPsychicPokedexText[] = _("");
-
-const u8 gSilvallyIcePokedexText[] = _("");
-
-const u8 gSilvallyDragonPokedexText[] = _("");
-
-const u8 gSilvallyDarkPokedexText[] = _("");
-
-const u8 gSilvallyFairyPokedexText[] = _("");
+const u8 gSilvallyMemoryPokedexText[] = _("");
 
 const u8 gMiniorMeteorPokedexText[] = _(
     "Originally making its home in the ozone\n"
@@ -6961,7 +6931,7 @@ const u8 gUrshifuSingleStrikeStylePokedexText[] = _(
 
 const u8 gUrshifuRapidStrikeStylePokedexText[] = _("");
 
-const u8 gUrshifuSingleStrikeGigantamaxPokedexText[] = _("");
+const u8 gUrshifuSingleStrikeStyleGigantamaxPokedexText[] = _("");
 
 const u8 gUrshifuRapidStrikeStyleGigantamaxPokedexText[] = _("");
 
@@ -7076,10 +7046,12 @@ const u8 gLechonkPokedexText[] = _(
     "doesn't use it for anything other\n"
     "than foraging.");
 
-const u8 gOinkolognePokedexText[] = _(
+const u8 gOinkologneMalePokedexText[] = _(
     "Oinkologne is proud of its fine,\n"
     "glossy skin. It emits a concentrated\n"
     "scent from the tip of its tail.");
+
+const u8 gOinkologneFemalePokedexText[] = _("");
 
 const u8 gTarountulaPokedexText[] = _(
     "The thread it secretes from its\n"
@@ -7129,7 +7101,9 @@ const u8 gTandemausPokedexText[] = _(
     "of any material that might be useful\n"
     "for a nest, then make off with them.");
 
-const u8 gMausholdPokedexText[] = _(
+const u8 gMausholdFamilyOfThreePokedexText[] = _("");
+
+const u8 gMausholdFamilyOfFourPokedexText[] = _(
     "The larger pair protects the little\n"
     "ones during battles. When facing\n"
     "strong opponents, the whole group\n"
@@ -7165,11 +7139,17 @@ const u8 gArbolivaPokedexText[] = _(
     "them with enough force to smash a\n"
     "boulder.");
 
-const u8 gSquawkabillyPokedexText[] = _(
+const u8 gSquawkabillyGreenPlumagePokedexText[] = _(
     "Green-feathered flocks hold the\n"
     "most sway. When they're out\n"
     "searching for food in the mornings and\n"
     "evenings, it gets very noisy.");
+
+const u8 gSquawkabillyBluePlumagePokedexText[] = _("");
+
+const u8 gSquawkabillyYellowPlumagePokedexText[] = _("");
+
+const u8 gSquawkabillyWhitePlumagePokedexText[] = _("");
 
 const u8 gNacliPokedexText[] = _(
     "The ground scrapes its body as it\n"
@@ -7360,11 +7340,13 @@ const u8 gFinizenPokedexText[] = _(
     "seawater mixed with a sticky fluid that\n"
     "Finizen secretes from its blowhole.");
 
-const u8 gPalafinPokedexText[] = _(
+const u8 gPalafinZeroPokedexText[] = _(
     "This Pokémon changes its\n"
     "appearance if it hears its allies calling for\n"
     "help. Palafin will never show\n"
     "anybody its moment of transformation.");
+
+const u8 gPalafinHeroPokedexText[] = _("");
 
 const u8 gVaroomPokedexText[] = _(
     "The steel section is Varoom's\n"
@@ -7444,11 +7426,15 @@ const u8 gDondozoPokedexText[] = _(
     "powerful, Dondozo is apparently not very\n"
     "smart.");
 
-const u8 gTatsugiriPokedexText[] = _(
+const u8 gTatsugiriCurlyPokedexText[] = _(
     "This is a small dragon Pokémon. It\n"
     "lives inside the mouth of Dondozo to\n"
     "protect itself from enemies on the\n"
     "outside.");
+
+const u8 gTatsugiriDroopyPokedexText[] = _("");
+
+const u8 gTatsugiriStretchyPokedexText[] = _("");
 
 const u8 gGreatTuskPokedexText[] = _(
     "Sightings of this Pokémon have\n"
@@ -7539,11 +7525,13 @@ const u8 gBaxcaliburPokedexText[] = _(
     "frigid air from its mouth. It finishes\n"
     "opponents off with its dorsal blade.");
 
-const u8 gGimmighoulPokedexText[] = _(
+const u8 gGimmighoulChestPokedexText[] = _(
     "It lives inside an old treasure\n"
     "chest. Sometimes it gets left in shop\n"
     "corners since no one realizes it's\n"
     "actually a Pokémon.");
+
+const u8 gGimmighoulRoamingPokedexText[] = _("");
 
 const u8 gGholdengoPokedexText[] = _(
     "It has a sturdy body made up of\n"
@@ -7609,17 +7597,21 @@ const u8 gDipplinPokedexText[] = _(
     "Its evolution was triggered by a special\n"
     "apple grown only in one place.");
 
-const u8 gPoltchageistPokedexText[] = _(
+const u8 gPoltchageistCounterfeitPokedexText[] = _(
     "Supposedly, the regrets of a tea\n"
     "ceremony master who died before\n"
     "perfecting his craft lingered in some\n"
     "matcha and became a Pokémon.");
 
-const u8 gSinistchaPokedexText[] = _(
+const u8 gPoltchageistArtisanPokedexText[] = _("");
+
+const u8 gSinistchaUnremarkablePokedexText[] = _(
     "It pretends to be tea, trying to fool\n"
     "people into drinking it so it can\n"
     "drain their life-force. Its ruse is\n"
     "generally unsuccessful.");
+
+const u8 gSinistchaMasterpiecePokedexText[] = _("");
 
 const u8 gOkidogiPokedexText[] = _(
     "After all its muscles were stimulated\n"
@@ -7639,10 +7631,16 @@ const u8 gFezandipitiPokedexText[] = _(
     "emanating from the chain wrapped around\n"
     "its body.");
 
-const u8 gOgerponPokedexText[] = _(
+const u8 gOgerponTealMaskPokedexText[] = _(
     "This Pokémon's type changes based on\n"
     "which mask it's wearing. It confounds\n"
     "its enemies with nimble movements\n"
     "and kicks.");
+
+const u8 gOgerponWellspringMaskPokedexText[] = _("");
+
+const u8 gOgerponHearthflameMaskPokedexText[] = _("");
+
+const u8 gOgerponCornerstoneMaskPokedexText[] = _("");
 
 #endif

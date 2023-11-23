@@ -1098,7 +1098,7 @@ extern const u32 gMonPalette_UrsalunaBloodmoon[];
 extern const u32 gMonBackPic_UrsalunaBloodmoon[];
 extern const u32 gMonShinyPalette_UrsalunaBloodmoon[];
 extern const u8 gMonIcon_UrsalunaBloodmoon[];
-extern const u8 gMonFootprint_UrsalunaBloodmoon[];
+//extern const u8 gMonFootprint_UrsalunaBloodmoon[];
 extern const u32 gMonFrontPic_BasculegionMale[];
 extern const u32 gMonFrontPic_Sneasler[];
 extern const u32 gMonFrontPic_Overqwil[];
