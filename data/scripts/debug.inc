@@ -242,8 +242,7 @@ HandleRepelTesting::
 	case 1, HandleRepelTesting_3
 	case 2, HandleRepelTesting_4
 	case 3, HandleRepelTesting_5
-	case 4, HandleRepelTesting_6
-	case 5, HandleRepelTesting_7
+	removeitem ITEM_REPEL, 1
 HandleRepelTesting_1:
 	setvar VAR_0x8005, ITEM_REPEL
 	call CheckItem
@@ -266,13 +265,6 @@ HandleRepelTesting_4:
 
 HandleRepelTesting_5:
 	removeitem ITEM_MAX_REPEL, 1
-	goto HandleRepelTesting_1
-
-HandleRepelTesting_6:
-	removeitem ITEM_REPEL, 1
-	goto HandleRepelTesting_1
-
-HandleRepelTesting_7:
 	goto HandleRepelTesting_1
 
 
