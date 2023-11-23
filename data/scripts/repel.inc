@@ -1,15 +1,15 @@
-.set VAR_SPRAY, VAR_0x8004
-.set VAR_NUM_SPRAY_STRENGTH, VAR_0x8005
-.set VAR_SPRAY_TYPE, VAR_0x8009
-.set VAR_NEW_SPRAY, VAR_0x8007
+.set LOCAL_VAR_SPRAY, VAR_0x8004
+.set LOCAL_VAR_NUM_SPRAY_STRENGTH, VAR_0x8005
+.set LOCAL_VAR_SPRAY_TYPE, VAR_0x8009
+.set LOCAL_VAR_NEW_SPRAY, VAR_0x8007
 
 EventScript_BufferSprayName::
 .if VAR_LAST_REPEL_LURE_USED != 0
 	bufferitemname STR_VAR_1, VAR_LAST_REPEL_LURE_USED
 	return
 .endif
-	specialvar VAR_SPRAY_TYPE, GetLastUsedSprayType
-	compare VAR_SPRAY_TYPE, ITEM_REPEL
+	specialvar LOCAL_VAR_SPRAY_TYPE, GetLastUsedSprayType
+	compare LOCAL_VAR_SPRAY_TYPE, ITEM_REPEL
 	goto_if_eq EventScript_BufferSprayName_2
 	bufferitemname STR_VAR_1, ITEM_LURE
 EventScript_BufferSprayName_1:
@@ -23,21 +23,12 @@ EventScript_BufferSprayName_2:
 EventScript_SprayWoreOff::
 	lock
 	call EventScript_BufferSprayName
-	specialvar VAR_NUM_SPRAY_STRENGTH, GetNumberSprayStrength
-	switch VAR_NUM_SPRAY_STRENGTH
-	case 0, EventScript_SprayWoreOff_2
-	case 1, EventScript_SprayWoreOff_3
+	specialvar LOCAL_VAR_NUM_SPRAY_STRENGTH, GetNumberSprayStrength
+	switch LOCAL_VAR_NUM_SPRAY_STRENGTH
+	case 0, EventScript_SprayWoreOffMessage
+	case 1, EventScript_UseSingleSpray
 	goto EventScript_HandleMultipleSprays
 	return
-
-EventScript_SprayWoreOff_2:
-	goto EventScript_SprayWoreOffMessage
-	return
-
-EventScript_SprayWoreOff_3:
-	goto EventScript_UseSingleSpray
-	return
-
 
 EventScript_HandleMultipleSprays::
 .if I_REPEL_LURE_MENU == TRUE
@@ -82,8 +73,8 @@ EventScript_SetSingleSprayAndUse::
 
 
 EventScript_UseDifferentSpray::
-	specialvar VAR_NEW_SPRAY, GetSprayId
-	bufferitemname STR_VAR_2, VAR_NEW_SPRAY
+	specialvar LOCAL_VAR_NEW_SPRAY, GetSprayId
+	bufferitemname STR_VAR_2, LOCAL_VAR_NEW_SPRAY
 	msgbox Text_SprayWoreOffAskUseX, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq EventScript_UseDifferentSpray_2
@@ -91,7 +82,7 @@ EventScript_UseDifferentSpray_1:
 	return
 
 EventScript_UseDifferentSpray_2:
-	copyvar VAR_SPRAY, VAR_NEW_SPRAY
+	copyvar LOCAL_VAR_SPRAY, LOCAL_VAR_NEW_SPRAY
 	call EventScript_SetSingleSprayAndUse
 	goto EventScript_UseDifferentSpray_1
 
@@ -105,7 +96,7 @@ EventScript_UseLastUsedSpray_1:
 	return
 
 EventScript_UseLastUsedSpray_2:
-	copyvar VAR_SPRAY, VAR_LAST_REPEL_LURE_USED
+	copyvar LOCAL_VAR_SPRAY, VAR_LAST_REPEL_LURE_USED
 	call EventScript_SetSingleSprayAndUse
 	goto EventScript_UseLastUsedSpray_1
 .endif
@@ -139,8 +130,8 @@ EventScript_UseSpray::
 	playse SE_REPEL
 	waitse
 	callnative HandleSprayMenuChoice
-	removeitem VAR_SPRAY, 1
-	bufferitemname STR_VAR_2, VAR_SPRAY
+	removeitem LOCAL_VAR_SPRAY, 1
+	bufferitemname STR_VAR_2, LOCAL_VAR_SPRAY
 	msgbox Text_SprayWoreOffUseX, MSGBOX_SIGN
 	return
 

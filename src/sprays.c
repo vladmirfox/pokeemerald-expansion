@@ -13,8 +13,8 @@
 #define NUM_SPRAY_TYPES 3
 #define SPRAY_MENU_Y_COORD 8
 
-#define VAR_SPRAY gSpecialVar_0x8004
-#define VAR_SPRAY_CONST VAR_0x8004
+#define LOCAL_VAR_SPRAY gSpecialVar_0x8004
+#define LOCAL_VAR_SPRAY_CONST VAR_0x8004
 
 u32 CountOrGetSprays(u32);
 u32 GetNumberSprayStrength(void);
@@ -87,7 +87,7 @@ void DrawSprayMenu(void)
             continue;
 
         menuItems[count].text = ItemId_GetName(currentSpray);
-        VarSet(VAR_SPRAY_CONST + count, currentSpray);
+        VarSet(LOCAL_VAR_SPRAY_CONST + count, currentSpray);
 
         if (VAR_LAST_REPEL_LURE_USED != 0)
             menuPos = SetSprayMenuCursorPosition(currentSpray, count);
@@ -107,10 +107,10 @@ void HandleSprayMenuChoice(void)
 {
     u32 lureMask = (GetLastUsedSprayType() == ITEM_LURE) ? REPEL_LURE_MASK : 0;
 
-    VAR_SPRAY = VarGet(VAR_SPRAY_CONST + gSpecialVar_Result);
+    LOCAL_VAR_SPRAY = VarGet(LOCAL_VAR_SPRAY_CONST + gSpecialVar_Result);
 
-    VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(VAR_SPRAY) | lureMask);
+    VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(LOCAL_VAR_SPRAY) | lureMask);
 
     if (VAR_LAST_REPEL_LURE_USED != 0)
-        VarSet(VAR_LAST_REPEL_LURE_USED, VAR_SPRAY);
+        VarSet(VAR_LAST_REPEL_LURE_USED, LOCAL_VAR_SPRAY);
 }
