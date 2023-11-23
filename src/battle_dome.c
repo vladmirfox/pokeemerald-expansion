@@ -237,7 +237,7 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_DIZZY_PUNCH]   = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_SPORE]         = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_SPLASH]        = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_EXPLOSION]     = {[MOVE_POINTS_RISKY] = 1, [MOVE_POINTS_POPULAR] = 1},
+    [MOVE_EXPLOSION]     = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_REST]          = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_ROCK_SLIDE]    = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_HYPER_FANG]    = {[MOVE_POINTS_EFFECT] = 1},
@@ -250,7 +250,7 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_SNORE]         = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_EFFECT] = 1},
     [MOVE_CURSE]         = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_REVERSAL]      = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SPITE]         = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_RISKY] = 1},
+    [MOVE_SPITE]         = {[MOVE_POINTS_RARE] = 1},
     [MOVE_POWDER_SNOW]   = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_PROTECT]       = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_BELLY_DRUM]    = {[MOVE_POINTS_COMBO] = 1},
@@ -259,8 +259,6 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_OCTAZOOKA]     = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_SPIKES]        = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_ZAP_CANNON]    = {[MOVE_POINTS_LUCK] = 1, [MOVE_POINTS_EFFECT] = 1},
-    [MOVE_DESTINY_BOND]  = {[MOVE_POINTS_RISKY] = 1},
-    [MOVE_PERISH_SONG]   = {[MOVE_POINTS_RISKY] = 1},
     [MOVE_ICY_WIND]      = {[MOVE_POINTS_EFFECT] = 1},
     [MOVE_LOCK_ON]       = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_OUTRAGE]       = {[MOVE_POINTS_EFFECT] = 1},
@@ -4151,7 +4149,20 @@ static bool32 IsDomeDefensiveMoveEffect(u32 effect)
     default:
         return FALSE;
     }
-    return FALSE;
+}
+
+static bool32 IsDomeRiskyMoveEffect(u32 effect)
+{
+    switch(effect)
+    {
+    case EFFECT_EXPLOSION:
+    case EFFECT_SPITE:
+    case EFFECT_DESTINY_BOND:
+    case EFFECT_PERISH_SONG:
+        return TRUE;
+    default:
+        return FALSE;
+    }
 }
 
 #undef tUsingAlternateSlot
@@ -4335,15 +4346,20 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                 
                 switch (k)
                 {
+                // case MOVE_POINTS_COMBO:
                 case MOVE_POINTS_STAT_RAISE:
                     allocatedArray[k] = IsStatRaisingEffect(gBattleMoves[move].effect) ? 1 : 0;
                     break;
                 case MOVE_POINTS_STAT_LOWER:
                     allocatedArray[k] = IsStatLoweringEffect(gBattleMoves[move].effect) ? 1 : 0;
                     break;
+                // case MOVE_POINTS_RARE:
                 case MOVE_POINTS_HEAL:
                     allocatedArray[k] = IsDomeHealingMoveEffect(gBattleMoves[move].effect) ? 1 : 0;
                     break;
+                case MOVE_POINTS_RISKY:
+                    allocatedArray[k] = IsDomeRiskyMoveEffect(gBattleMoves[move].effect) ? 1 : 0;
+                // case MOVE_POINTS_STATUS:
                 case MOVE_POINTS_DMG:
                     allocatedArray[k] = (gBattleMoves[move].power != 0) ? 1 : 0;
                     break;
@@ -4356,12 +4372,15 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                 case MOVE_POINTS_POWERFUL:
                     allocatedArray[k] = (gBattleMoves[move].power >= 100) ? 1 : 0;
                     break;
+                // case MOVE_POINTS_POPULAR:
+                // case MOVE_POINTS_LUCK:
                 case MOVE_POINTS_STRONG:
                     allocatedArray[k] = (gBattleMoves[move].power >= 90) ? 1 : 0;
                     break;
                 case MOVE_POINTS_LOW_PP:
                     allocatedArray[k] = (gBattleMoves[move].pp <= 5) ? 1 : 0;
                     break;
+                // case MOVE_POINTS_EFFECT:
                 default:
                     allocatedArray[k] = sBattleStyleMovePoints[move][k];
                     break;
