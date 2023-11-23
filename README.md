@@ -15,9 +15,9 @@ A fork of Pokeemerald that breathes extra life into Pokemon Emerald. With new wa
 git clone https://github.com/fakuzatsu/verdantemerald
 ```
 
-> Cloning our base should also link your local repo to the remote repo and keep you up to date with our changes.
+> Cloning our base should also link your local repo to the remote repo and keep you up to date with our changes. If you would prefer to make your own version of Verdant-Emerald rather than contribute, fork our repo instead.
 
-3. Make sure you are in the root directory and can see our pokeemerald file (`ls` to see files in the current directory). Then, run the following:
+3. Make sure you are in the root directory and can see our pokeemerald/verdant-emerald file (`ls` to see files in the current directory). Then, run the following:
 
 ```
 git clone https://github.com/pret/agbcc
@@ -28,7 +28,7 @@ cd agbcc
 
 ## VSCode and Extensions
 
-It is recommended to use VSCode to edit and add new files to our decomp, as well as Git. This will create a link between your own and the remote directory, which will let you push your changes for everyone to see using the Git tab on your VSCode. It will also let you pull changes that others have made, keeping us all up to date on development.
+It is recommended to use VSCode to edit and add new files to our decomp, as well as Git.
 
 - [**VSCode**](https://code.visualstudio.com/) - An open source IDE for editing in multiple languages.
 - [**Git**](https://git-scm.com/downloads) - An engine for syncing your directory with ours.
@@ -46,12 +46,17 @@ Tools for editing the decomp in order to add additional features, make changes t
 
 ## Features of Pokemmerald-Expansion
 
+Verdant-Emerald features the Pokeemerald-Expansion, which contains configurable behaviours for certain gameplay features. Those can be found below.
+
 - Configuration files that allows you to choose generation-specific behaviors. Full contents here:
     - [Battle configurations](/include/config/battle.h)
     - [Pokémon configurations](/include/config/pokemon.h)
     - [Item configurations](/include/config/item.h)
     - [Overworld configurations](/include/config/overworld.h)
     - [Debug configurations](/include/config/debug.h)
+
+Features of Pokeemerald-Expansion are as follows. For all Pokeemerald-Expansion and Verdant-Emerald changes, vist [the changelog](https://github.com/fakuzatsu/verdant-emerald/blob/master/CHANGELOG.md).
+
 - Upgraded battle engine.
     - Gen5+ damage calculation.
     - 2v2 Wild battles support.
