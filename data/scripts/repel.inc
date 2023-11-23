@@ -1,10 +1,15 @@
+.set VAR_SPRAY, VAR_0x8004
+.set VAR_NUM_SPRAY_STRENGTH, VAR_0x8005
+.set VAR_SPRAY_TYPE, VAR_0x8009
+.set VAR_NEW_SPRAY, VAR_0x8007
+
 EventScript_BufferSprayName::
 .if VAR_LAST_REPEL_LURE_USED != 0
 	bufferitemname STR_VAR_1, VAR_LAST_REPEL_LURE_USED
 	return
 .endif
-	specialvar VAR_0x8009, GetLastUsedSprayType
-	compare VAR_0x8009, ITEM_REPEL
+	specialvar VAR_SPRAY_TYPE, GetLastUsedSprayType
+	compare VAR_SPRAY_TYPE, ITEM_REPEL
 	goto_if_eq EventScript_BufferSprayName_2
 	bufferitemname STR_VAR_1, ITEM_LURE
 EventScript_BufferSprayName_1:
@@ -18,8 +23,8 @@ EventScript_BufferSprayName_2:
 EventScript_SprayWoreOff::
 	lock
 	call EventScript_BufferSprayName
-	specialvar VAR_0x8005, GetNumberSprayStrength
-	switch VAR_0x8005
+	specialvar VAR_NUM_SPRAY_STRENGTH, GetNumberSprayStrength
+	switch VAR_NUM_SPRAY_STRENGTH
 	case 0, EventScript_SprayWoreOff_2
 	case 1, EventScript_SprayWoreOff_3
 	goto EventScript_HandleMultipleSprays
@@ -77,8 +82,8 @@ EventScript_SetSingleSprayAndUse::
 
 
 EventScript_UseDifferentSpray::
-	specialvar VAR_0x8007, GetSprayId
-	bufferitemname STR_VAR_2, VAR_0x8007
+	specialvar VAR_NEW_SPRAY, GetSprayId
+	bufferitemname STR_VAR_2, VAR_NEW_SPRAY
 	msgbox Text_SprayWoreOffAskUseX, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq EventScript_UseDifferentSpray_2
@@ -86,7 +91,7 @@ EventScript_UseDifferentSpray_1:
 	return
 
 EventScript_UseDifferentSpray_2:
-	copyvar VAR_0x8004, VAR_0x8007
+	copyvar VAR_SPRAY, VAR_NEW_SPRAY
 	call EventScript_SetSingleSprayAndUse
 	goto EventScript_UseDifferentSpray_1
 
@@ -100,7 +105,7 @@ EventScript_UseLastUsedSpray_1:
 	return
 
 EventScript_UseLastUsedSpray_2:
-	copyvar VAR_0x8004, VAR_LAST_REPEL_LURE_USED
+	copyvar VAR_SPRAY, VAR_LAST_REPEL_LURE_USED
 	call EventScript_SetSingleSprayAndUse
 	goto EventScript_UseLastUsedSpray_1
 .endif
@@ -134,8 +139,8 @@ EventScript_UseSpray::
 	playse SE_REPEL
 	waitse
 	callnative HandleSprayMenuChoice
-	removeitem VAR_0x8004, 1
-	bufferitemname STR_VAR_2, VAR_0x8004
+	removeitem VAR_SPRAY, 1
+	bufferitemname STR_VAR_2, VAR_SPRAY
 	msgbox Text_SprayWoreOffUseX, MSGBOX_SIGN
 	return
 

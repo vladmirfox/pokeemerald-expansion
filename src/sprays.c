@@ -10,26 +10,28 @@
 #define SPRAY_COUNT 0
 #define SPRAY_GET 1
 
-#define SPRAYS_COUNT 3
+#define NUM_SPRAY_TYPES 3
 #define SPRAY_MENU_Y_COORD 8
 
 #define VAR_SPRAY gSpecialVar_0x8004
-#define VAR_NUM_SPRAY_STRENGTH gSpecialVar_0x8005
-#define VAR_SPRAY_TYPE gSpecialVar_0x8009
-#define VAR_NEW_SPRAY gSpecialVar_0x8007
+#define VAR_SPRAY_CONST VAR_0x8004
 
 u32 CountOrGetSprays(u32);
 u32 GetNumberSprayStrength(void);
 u32 GetSprayId(void);
 u32 GetLastUsedSprayType(void);
-void PushSprayElement(u16);
+u32 SetSprayMenuCursorPosition(int, int);
+#if I_REPEL_LURE_MENU == TRUE
+void DrawSprayMenu(void);
+#endif
+void HandleSprayMenuChoice(void);
 
 u32 CountOrGetSprays(u32 func)
 {
     u32 i, currentSpray, sprayCount = 0;
     u32 spray = GetLastUsedSprayType();
 
-    for (i = 0; i < SPRAYS_COUNT; i++)
+    for (i = 0; i < NUM_SPRAY_TYPES; i++)
     {
         currentSpray = spray + i;
 
@@ -73,11 +75,11 @@ u32 SetSprayMenuCursorPosition(int currentSpray, int count)
 #if I_REPEL_LURE_MENU == TRUE
 void DrawSprayMenu(void)
 {
-    struct MenuAction menuItems[SPRAYS_COUNT+1] = {NULL};
+    struct MenuAction menuItems[NUM_SPRAY_TYPES+1] = {NULL};
     int sprayIndex, count = 0, menuPos = 0, currentSpray, yCoord = 0;
     u32 spray = GetLastUsedSprayType();
 
-    for (sprayIndex = 0; sprayIndex < (SPRAYS_COUNT); sprayIndex++)
+    for (sprayIndex = 0; sprayIndex < (NUM_SPRAY_TYPES); sprayIndex++)
     {
         currentSpray = spray + sprayIndex;
 
@@ -85,7 +87,7 @@ void DrawSprayMenu(void)
             continue;
 
         menuItems[count].text = ItemId_GetName(currentSpray);
-        VarSet(VAR_0x8004 + count, currentSpray);
+        VarSet(VAR_SPRAY_CONST + count, currentSpray);
 
         if (VAR_LAST_REPEL_LURE_USED != 0)
             menuPos = SetSprayMenuCursorPosition(currentSpray, count);
@@ -105,7 +107,7 @@ void HandleSprayMenuChoice(void)
 {
     u32 lureMask = (GetLastUsedSprayType() == ITEM_LURE) ? REPEL_LURE_MASK : 0;
 
-    VAR_SPRAY = VarGet(VAR_0x8004 + gSpecialVar_Result);
+    VAR_SPRAY = VarGet(VAR_SPRAY_CONST + gSpecialVar_Result);
 
     VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(VAR_SPRAY) | lureMask);
 
