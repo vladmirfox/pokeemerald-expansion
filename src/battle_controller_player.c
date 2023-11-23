@@ -1740,10 +1740,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
 
     if (moveInfo->moves[gMoveSelectionCursor[battler]] == MOVE_IVY_CUDGEL)
     {
-        if (GetBattlerSide(battler) == B_SIDE_OPPONENT)
-            mon = &gEnemyParty[gBattlerPartyIndexes[battler]];
-        else
-            mon = &gPlayerParty[gBattlerPartyIndexes[battler]];
+        mon = &GetSideParty(GetBattlerSide(battler))[gBattlerPartyIndexes[battler]];
         itemId = GetMonData(mon, MON_DATA_HELD_ITEM);
 
         if (ItemId_GetHoldEffect(itemId) == HOLD_EFFECT_MASK)
