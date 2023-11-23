@@ -6038,14 +6038,10 @@ static void Task_TryItemUseFusionChange(u8 taskId)
     case 2:
         if (gPaletteFade.active)
             break;
-        if (gTasks[taskId].fusionType == FUSE_MON)
+        if (gTasks[taskId].fusionType == FUSE_MON && gTasks[taskId].firstFusionSlot > gTasks[taskId].secondFusionSlot)
         {
-            if (gTasks[taskId].firstFusionSlot > gTasks[taskId].secondFusionSlot)
-            {
-                gTasks[taskId].firstFusionSlot--;
-                gPartyMenu.slotId--;
-            }
-
+            gTasks[taskId].firstFusionSlot--;
+            gPartyMenu.slotId--;
         }
         RefreshPartyMenu();
         gTasks[taskId].tState++;
@@ -6075,10 +6071,7 @@ static void Task_TryItemUseFusionChange(u8 taskId)
             if (gTasks[taskId].moveToLearn != 0)
             {
                 if (gTasks[taskId].fusionType == FUSE_MON)
-                {
-
                     FormChangeTeachMove(taskId, gTasks[taskId].moveToLearn, gTasks[taskId].firstFusionSlot);
-                }
                 else
                 {
                     DeleteMove(mon, gTasks[taskId].forgetMove);
@@ -6086,10 +6079,8 @@ static void Task_TryItemUseFusionChange(u8 taskId)
                         FormChangeTeachMove(taskId, gTasks[taskId].moveToLearn, gTasks[taskId].firstFusionSlot);
                 }
             }
-
             gTasks[taskId].tState++;
         }
-
         break;
     case 7:
         gTasks[taskId].func = (void *)GetWordTaskArg(taskId, tNextFunc);
@@ -6105,13 +6096,14 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
     const struct Fusion *itemFusion = gFusionTablePointers[species];
 
     PlaySE(SE_SELECT);
-    switch(IsFusionMon(species)){
+    switch (IsFusionMon(species))
+    {
         case FALSE: // Cancel if Not a Fuse Mon
             break;
         case UNFUSE_MON:
-            if(task->fusionType == FUSE_MON) // Cancel if An already Fused Mon Is Chosen For The Second Fusion Mon
+            if (task->fusionType == FUSE_MON) // Cancel if An already Fused Mon Is Chosen For The Second Fusion Mon
                 break;
-            if(gPlayerPartyCount == 6)
+            if (gPlayerPartyCount == PARTY_SIZE)
             {
                 gPartyMenuUseExitCallback = FALSE;
                 DisplayPartyMenuMessage(gText_YourPartysFull, TRUE);
@@ -6121,9 +6113,9 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
             }
             for (i = 0; itemFusion[i].fusionStorageIndex != FUSION_TERMINATOR; i++) // Loops through fusion table and checks if the mon can be unfused
             {
-                if(gPokemonStoragePtr->fusions[itemFusion[i].fusionStorageIndex].level == 0)
+                if (gPokemonStoragePtr->fusions[itemFusion[i].fusionStorageIndex].level == 0)
                     continue;
-                if((itemFusion[i].itemId == gSpecialVar_ItemId) && (GetMonData(&gPokemonStoragePtr->fusions[itemFusion[i].fusionStorageIndex], MON_DATA_SPECIES) == itemFusion[i].targetSpecies2))
+                if (itemFusion[i].itemId == gSpecialVar_ItemId && GetMonData(&gPokemonStoragePtr->fusions[itemFusion[i].fusionStorageIndex], MON_DATA_SPECIES) == itemFusion[i].targetSpecies2)
                 {
                     task->fusionType = UNFUSE_MON;
                     task->firstFusion = species;
@@ -6139,11 +6131,11 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
             }
             break;
         case FUSE_MON:
-            if(task->fusionType == FUSE_MON) // Cancel If Second Mon is Another First Fusion Mon
+            if (task->fusionType == FUSE_MON) // Cancel If Second Mon is Another First Fusion Mon
                 break;
             for (i = 0; itemFusion[i].fusionStorageIndex != FUSION_TERMINATOR; i++) // Run through the Fusion table for each species and check if the item matches one of the entries
             {
-                if(itemFusion[i].itemId == gSpecialVar_ItemId)
+                if (itemFusion[i].itemId == gSpecialVar_ItemId)
                 {
                     task->fusionType = FUSE_MON;
                     task->firstFusion = species;
@@ -6159,13 +6151,13 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
             }
             break;
         case SECOND_FUSE_MON:
-            if(task->fusionType != FUSE_MON) // Cancel if Secondary Fusion Mon Chosen First
+            if (task->fusionType != FUSE_MON) // Cancel if Secondary Fusion Mon Chosen First
                 break;
             for (i = 0; itemFusion[i].fusionStorageIndex != FUSION_TERMINATOR; i++) // run through fusion table and check if the fusion works
             {
-                if(gPokemonStoragePtr->fusions[itemFusion[i].fusionStorageIndex].level != 0)
+                if (gPokemonStoragePtr->fusions[itemFusion[i].fusionStorageIndex].level != 0)
                     continue;
-                if((itemFusion[i].itemId == gSpecialVar_ItemId) && (itemFusion[i].targetSpecies1 == task->firstFusion))
+                if (itemFusion[i].itemId == gSpecialVar_ItemId && itemFusion[i].targetSpecies1 == task->firstFusion)
                 {
                     task->storageIndex = itemFusion[i].fusionStorageIndex;
                     task->fusionResult = itemFusion[i].fusingIntoMon;
