@@ -5969,15 +5969,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 
                 if (effect != 0)
                 {
-                    if (caseID == ABILITYEFFECT_TRACE1)
-                    {
-                        BattleScriptPushCursorAndCallback(BattleScript_TraceActivatesEnd3);
-                    }
-                    else
-                    {
-                        BattleScriptPushCursor();
-                        gBattlescriptCurrInstr = BattleScript_TraceActivates;
-                    }
+                    BattleScriptPushCursorAndCallback(BattleScript_TraceActivatesEnd3);
                     gBattleResources->flags->flags[i] &= ~RESOURCE_FLAG_TRACED;
                     gBattleStruct->tracedAbility[i] = gLastUsedAbility = gBattleMons[chosenTarget].ability;
                     RecordAbilityBattle(chosenTarget, gLastUsedAbility); // Record the opposing battler has this ability
