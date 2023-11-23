@@ -75,8 +75,8 @@ Features of Pokeemerald-Expansion are as follows. For all Pokeemerald-Expansion 
         - Setting Terrains.
     - Mid-turn speed recalculation.
     - Quick Poké Ball selection in Wild Battles
-        - Press `R` to use last selected Poké Ball.
-        - Hold `R` to change selection with the D-Pad.
+        - Press `L` to use last selected Poké Ball.
+        - Hold `L` to change selection with the D-Pad.
     - Faster battle intro
         - Message and animation/cry happens at the same time.
     - Faster HP drain.
@@ -155,7 +155,7 @@ Features of Pokeemerald-Expansion are as follows. For all Pokeemerald-Expansion 
     - [RHH intro credits](https://github.com/Xhyzi/pokeemerald/tree/rhh-intro-credits) by Xhyzi.
         - A small signature from all of us to show the collective effort in the project :)
     - [Overworld debug]() by TheXaman
-        - Accesible by pressing `R + Start` in the overworld by default.
+        - Accesible by pressing `R + Start` in the overworld by default. (Disabled in Verdant, but can be reconfigured on build).
         - **Additional features**:
             - *Clear Boxes*: cleans every Pokémon from the Boxes.
             - *Hatch an Egg*: lets you choose an Egg in your party and immediatly hatch it.
