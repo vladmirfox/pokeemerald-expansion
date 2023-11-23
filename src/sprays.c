@@ -10,7 +10,7 @@
 #define SPRAY_COUNT 0
 #define SPRAY_GET 1
 
-#define NUM_SPRAY_TYPES 3
+#define NUM_SPRAY_STRENGTH 3
 #define SPRAY_MENU_Y_COORD 8
 
 #define LOCAL_VAR_SPRAY gSpecialVar_0x8004
@@ -31,7 +31,7 @@ u32 CountOrGetSprays(u32 func)
     u32 i, currentSpray, sprayCount = 0;
     u32 spray = GetLastUsedSprayType();
 
-    for (i = 0; i < NUM_SPRAY_TYPES; i++)
+    for (i = 0; i < NUM_SPRAY_STRENGTH; i++)
     {
         currentSpray = spray + i;
 
@@ -75,11 +75,11 @@ u32 SetSprayMenuCursorPosition(int currentSpray, int count)
 #if I_REPEL_LURE_MENU == TRUE
 void DrawSprayMenu(void)
 {
-    struct MenuAction menuItems[NUM_SPRAY_TYPES+1] = {NULL};
+    struct MenuAction menuItems[NUM_SPRAY_STRENGTH+1] = {NULL};
     int sprayIndex, count = 0, menuPos = 0, currentSpray, yCoord = 0;
     u32 spray = GetLastUsedSprayType();
 
-    for (sprayIndex = 0; sprayIndex < (NUM_SPRAY_TYPES); sprayIndex++)
+    for (sprayIndex = 0; sprayIndex < (NUM_SPRAY_STRENGTH); sprayIndex++)
     {
         currentSpray = spray + sprayIndex;
 
