@@ -389,6 +389,8 @@ struct SpeciesInfo /*0x8C*/
  /* 0x80 */ const struct LevelUpMove *const levelUpLearnset;
  /* 0x84 */ const u16 *const teachableLearnset;
  /* 0x88 */ const struct Evolution *const evolutions;
+ /* 0x84 */ const u16 *const formSpeciesIdTable;
+ /* 0x84 */ const u16 *const formChangeTable;
 };
 
 struct BattleMove
