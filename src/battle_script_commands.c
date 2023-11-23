@@ -1368,11 +1368,10 @@ static void Cmd_attackcanceler(void)
     }
 
     gHitMarker |= HITMARKER_OBEYS;
-    // Check if no available target present on the field.
-    if ((NoTargetPresent(gBattlerAttacker, gCurrentMove))
-        && (!gBattleMoves[gCurrentMove].twoTurnMove || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS))
-        || IsMoveNotAllowedInSkyBattles(gCurrentMove)
-       )
+    // Check if no available target present on the field or if Sky Battles ban the move
+    if ((NoTargetPresent(gBattlerAttacker, gCurrentMove)
+        && (!gBattleMoves[gCurrentMove].twoTurnMove || (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)))
+        || (IsMoveNotAllowedInSkyBattles(gCurrentMove)))
     {
         if (gBattleMoves[gCurrentMove].effect == EFFECT_FLING) // Edge case for removing a mon's item when there is no target available after using Fling.
             gBattlescriptCurrInstr = BattleScript_FlingFailConsumeItem;

@@ -11312,6 +11312,7 @@ bool8 IsMonBannedFromSkyBattles(u16 species)
         default:
             return FALSE;
     }
+}
 
 u8 GetBattlerType(u32 battler, u8 typeIndex)
 {
