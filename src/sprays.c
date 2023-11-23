@@ -105,13 +105,7 @@ void HandleSprayMenuChoice(void)
 {
     u32 lureMask = (GetLastUsedSprayType() == ITEM_LURE) ? REPEL_LURE_MASK : 0;
 
-//#if I_REPEL_LURE_MENU == TRUE
-    //if (GetNumberSprayStrength() > 1)
-        VAR_SPRAY = VarGet(VAR_0x8004 + gSpecialVar_Result);
- //   else
-//#endif
-        //VAR_SPRAY = VarGet(VAR_0x8007);
-    //DebugPrintf("VAR_SPRAY %d",VAR_SPRAY);
+    VAR_SPRAY = VarGet(VAR_0x8004 + gSpecialVar_Result);
 
     VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(VAR_SPRAY) | lureMask);
 
