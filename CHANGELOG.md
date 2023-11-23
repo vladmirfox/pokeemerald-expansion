@@ -5,14 +5,14 @@
 ### *CREATED FROM POKEMERALD-EXPANSION*
 * See the bottom of the changelog for all Pokeemerald-Expanion changes. Note that Pokemerald-Expansion adds all Pokémon, Moves and Items froms Gen 1-8 *
 
-### Battle changes
+### 🗡️ Battle changes 🗡️
 * All trainers have been updated use Pokémon from generations 1 to 8, including their **movesets** from generations 7 & 8 (decided based on balance).
 * Difficulty has been slightly boosted to accomidate the new veriety of Pokémon and moves made available throughout the game (this is not a difficulty hack).
 * Level caps have been added to manage player experience. *Hard level caps* and *Soft level caps*. These are toggleable along with *canon (no) caps*.
 * **Experience** gains have been slightly increased to reduce grinding.
 * Challenge mode has been added.
 
-### Menu changes
+### 📟 Menu changes 📟
 * Stats associated with a Pokémon's **nature** are highlighted based on whether they increase or decrease the stat.
 * **EVs and IVs** can now be displayed on the Pokémon Summary screen by pressing **A** to rotate through them.
 * Quick switch has been added to the Pokémon Menu by pressing **Select** while hovering the Pokémon you wish to move.
@@ -20,11 +20,11 @@
 * Hidden Power now shows the type that it will become when used by the Pokémon in Battle (affects all summary screens).
 * You can now press **R** to **run** from battle. The first press will move your cursor to the **Run** prompt. Pressing **R** again will preform the run action.
 
-### Item changes
+### 🎁 Item changes 🎁
 * An Infinite Rare Candy has been added as a key item. Available from the Punk Guy at Rustboro.
 * The Exp Share has become a Key Item, operating like the item in **Gen 6** (this change can be reverted in the config `include/config/item.h`).
 
-### Field changes
+### 🌾 Field changes 🌾
 * All regular Pokémon are now avaialble in some capactiy across the overworld (can be found in regular encounters with some exceptions).
 * **Move Tutors** have been added across the region and new moves are unlocked as you progress through the game.
 ### New Maps
@@ -51,7 +51,7 @@
 * The Key Item Wheel by Merrp has been added to the game, replicating its features in *ORAS*.
 * Register up to **4** items at once.
 
-### QOL changes
+### ✨ QOL changes ✨
 * **Decapitalisation:** All strings have been decapitalised.
 * **Autorun:** An autorun option has been added to the option menu. When toggled on, hold **B** to walk.
 * **Easy Medicine:** Using medicine will no longer boot you back to the item menu if you still have more of that item to use.
