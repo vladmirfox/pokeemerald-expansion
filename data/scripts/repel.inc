@@ -1,4 +1,8 @@
 EventScript_BufferSprayName::
+.if VAR_LAST_REPEL_LURE_USED != 0
+	bufferitemname STR_VAR_1, VAR_LAST_REPEL_LURE_USED
+	return
+.endif
 	specialvar VAR_0x8009, GetLastUsedSprayType
 	compare VAR_0x8009, ITEM_REPEL
 	goto_if_eq EventScript_BufferSprayName_2
@@ -18,7 +22,7 @@ EventScript_SprayWoreOff::
 	switch VAR_0x8005
 	case 0, EventScript_SprayWoreOff_2
 	case 1, EventScript_SprayWoreOff_3
-	goto EventScript_ChooseWhichSpray
+	goto EventScript_HandleMultipleSprays
 	return
 
 EventScript_SprayWoreOff_2:
@@ -30,6 +34,15 @@ EventScript_SprayWoreOff_3:
 	return
 
 
+EventScript_HandleMultipleSprays::
+.if I_REPEL_LURE_MENU == TRUE
+	goto EventScript_ChooseWhichSpray
+.else
+	goto EventScript_UseSingleSpray
+.endif
+	return
+
+
 EventScript_SprayWoreOffMessage::
 	msgbox Text_SprayWoreOff, MSGBOX_SIGN
 	releaseall
@@ -37,18 +50,24 @@ EventScript_SprayWoreOffMessage::
 
 
 EventScript_UseSingleSpray::
+.if VAR_LAST_REPEL_LURE_USED == 0
+	call EventScript_UseDifferentSpray
+.else
 	checkitem VAR_LAST_REPEL_LURE_USED, 1
 	compare VAR_RESULT, TRUE
 	goto_if_eq EventScript_UseSingleSpray_2
 	call EventScript_UseDifferentSpray
+.endif
 EventScript_UseSingleSpray_1:
 	closemessage
 	releaseall
 	end
 
+.if VAR_LAST_REPEL_LURE_USED != 0
 EventScript_UseSingleSpray_2:
 	call EventScript_UseLastUsedSpray
 	goto EventScript_UseSingleSpray_1
+.endif
 
 
 EventScript_SetSingleSprayAndUse::
@@ -72,6 +91,7 @@ EventScript_UseDifferentSpray_2:
 	goto EventScript_UseDifferentSpray_1
 
 
+.if VAR_LAST_REPEL_LURE_USED != 0
 EventScript_UseLastUsedSpray::
 	msgbox Text_SprayWoreOffAskUseAnother, MSGBOX_YESNO
 	compare VAR_RESULT, YES
@@ -83,8 +103,10 @@ EventScript_UseLastUsedSpray_2:
 	copyvar VAR_0x8004, VAR_LAST_REPEL_LURE_USED
 	call EventScript_SetSingleSprayAndUse
 	goto EventScript_UseLastUsedSpray_1
+.endif
 
 
+.if I_REPEL_LURE_MENU == TRUE
 EventScript_ChooseWhichSpray::
 	message Text_SprayWoreOffAskUseAnother
 	waitmessage
@@ -105,6 +127,7 @@ EventScript_ChooseWhichSpray_3:
 	compare VAR_RESULT, VAR_0x8003
 	goto_if_ne EventScript_ChooseWhichSpray_2
 	goto EventScript_ChooseWhichSpray_1
+.endif
 
 
 EventScript_UseSpray::
@@ -131,4 +154,3 @@ Text_SprayWoreOffAskUseX::
 Text_SprayWoreOffUseX::
 	.string "{PLAYER} used the\n"
 	.string "{STR_VAR_2}.$"
-
