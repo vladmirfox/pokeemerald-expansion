@@ -1,3 +1,474 @@
+#include "constants/trainers.h"
+#include "data.h"
+
+const struct TrainerSprite gTrainerSprites[] =
+{
+    [TRAINER_PIC_HIKER] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_AQUA_GRUNT_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_POKEMON_BREEDER_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_COOLTRAINER_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_BIRD_KEEPER] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_COLLECTOR] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_AQUA_GRUNT_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_SWIMMER_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_MAGMA_GRUNT_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_EXPERT_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_AQUA_ADMIN_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_BLACK_BELT] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_AQUA_ADMIN_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_AQUA_LEADER_ARCHIE] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_HEX_MANIAC] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_AROMA_LADY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_RUIN_MANIAC] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_INTERVIEWER] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_TUBER_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_TUBER_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_COOLTRAINER_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_LADY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_BEAUTY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_RICH_BOY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_EXPERT_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_POKEMANIAC] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_MAGMA_GRUNT_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_GUITARIST] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_KINDLER] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_CAMPER] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_PICNICKER] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_BUG_MANIAC] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_POKEMON_BREEDER_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_PSYCHIC_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_PSYCHIC_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_GENTLEMAN] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_ELITE_FOUR_SIDNEY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_ELITE_FOUR_PHOEBE] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_ELITE_FOUR_GLACIA] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_ELITE_FOUR_DRAKE] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_LEADER_ROXANNE] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_LEADER_BRAWLY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_LEADER_WATTSON] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_LEADER_FLANNERY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_LEADER_NORMAN] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_LEADER_WINONA] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_LEADER_TATE_AND_LIZA] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_LEADER_JUAN] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_SCHOOL_KID_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_SCHOOL_KID_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_SR_AND_JR] =
+    {
+        .coordinates = {.size = 8, .y_offset = 2},
+    },
+    
+    [TRAINER_PIC_POKEFAN_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 2},
+    },
+    
+    [TRAINER_PIC_POKEFAN_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_YOUNGSTER] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_CHAMPION_WALLACE] =
+    {
+        .coordinates = {.size = 8, .y_offset = 2},
+    },
+    
+    [TRAINER_PIC_FISHERMAN] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_CYCLING_TRIATHLETE_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 2},
+    },
+    
+    [TRAINER_PIC_CYCLING_TRIATHLETE_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_RUNNING_TRIATHLETE_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_RUNNING_TRIATHLETE_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_SWIMMING_TRIATHLETE_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_SWIMMING_TRIATHLETE_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_DRAGON_TAMER] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_NINJA_BOY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_BATTLE_GIRL] =
+    {
+        .coordinates = {.size = 8, .y_offset = 2},
+    },
+    
+    [TRAINER_PIC_PARASOL_LADY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_SWIMMER_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_TWINS] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_SAILOR] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_MAGMA_ADMIN] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_WALLY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_BRENDAN] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_MAY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_BUG_CATCHER] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_POKEMON_RANGER_M] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_POKEMON_RANGER_F] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_MAGMA_LEADER_MAXIE] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_LASS] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_YOUNG_COUPLE] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_OLD_COUPLE] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_SIS_AND_BRO] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_STEVEN] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_SALON_MAIDEN_ANABEL] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_DOME_ACE_TUCKER] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_PALACE_MAVEN_SPENSER] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_ARENA_TYCOON_GRETA] =
+    {
+        .coordinates = {.size = 8, .y_offset = 2},
+    },
+    
+    [TRAINER_PIC_FACTORY_HEAD_NOLAND] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_PIKE_QUEEN_LUCY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_PYRAMID_KING_BRANDON] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_RED] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_LEAF] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_RS_BRENDAN] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+    
+    [TRAINER_PIC_RS_MAY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 1},
+    },
+};
+
 const u32 gTrainerFrontPic_Hiker[] = INCBIN_U32("graphics/trainers/front_pics/hiker.4bpp.lz");
 const u32 gTrainerPalette_Hiker[] = INCBIN_U32("graphics/trainers/front_pics/hiker.gbapal.lz");
 

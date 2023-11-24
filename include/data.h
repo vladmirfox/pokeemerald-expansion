@@ -28,6 +28,13 @@ struct MonCoords
     u8 y_offset;
 };
 
+struct TrainerSprite
+{
+    //See if y_offset is even needed for Trainer Sprites.
+    //If not, can remove MonCoords value (NOT THE STRUCT THOUGH) and just add size
+    const struct MonCoords coordinates;
+};
+
 #define MON_COORDS_SIZE(width, height)(DIV_ROUND_UP(width, 8) << 4 | DIV_ROUND_UP(height, 8))
 #define GET_MON_COORDS_WIDTH(size)((size >> 4) * 8)
 #define GET_MON_COORDS_HEIGHT(size)((size & 0xF) * 8)
@@ -93,7 +100,7 @@ extern const union AffineAnimCmd *const gAffineAnims_BattleSpriteContest[];
 extern const union AnimCmd sAnim_GeneralFrame0[];
 extern const union AnimCmd *const gAnims_MonPic[];
 extern const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[];
-extern const struct MonCoords gTrainerFrontPicCoords[];
+extern const struct TrainerSprite gTrainerSprites[];
 extern const struct CompressedSpriteSheet gTrainerFrontPicTable[];
 extern const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[];
 extern const union AnimCmd *const *const gTrainerBackAnimsPtrTable[];
