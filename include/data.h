@@ -30,7 +30,7 @@ struct MonCoords
 
 struct TrainerSprite
 {
-    //See if y_offset is even needed for Trainer Sprites.
+    //The y_offset might not even be needed/have any affect for Trainer Sprites.
     //If not, can remove MonCoords value (NOT THE STRUCT THOUGH) and just add size
     struct MonCoords coordinates;
     struct CompressedSpriteSheet frontPic;

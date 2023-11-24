@@ -571,6 +571,7 @@ const u8 gTrainerBackPic_Steven[] = INCBIN_U8("graphics/trainers/back_pics/steve
 const u32 gTrainerBackPicPalette_Red[] = INCBIN_U32("graphics/trainers/back_pics/red.gbapal.lz");
 const u32 gTrainerBackPicPalette_Leaf[] = INCBIN_U32("graphics/trainers/back_pics/leaf.gbapal.lz");
 
+#define TRAINER_SPRITE_SIZE 8
 #define TRAINER_SPRITE(trainerPic, sprite, size) {sprite, size, TRAINER_PIC_##trainerPic}
 #define TRAINER_PAL(trainerPic, pal) {pal, TRAINER_PIC_##trainerPic}
 
@@ -578,7 +579,7 @@ const struct TrainerSprite gTrainerSprites[] =
 {
     [TRAINER_PIC_HIKER] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(HIKER, gTrainerFrontPic_Hiker, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(HIKER, gTrainerPalette_Hiker),
         .animation = sAnims_Hiker,
@@ -586,7 +587,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_AQUA_GRUNT_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(AQUA_GRUNT_M, gTrainerFrontPic_AquaGruntM, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(AQUA_GRUNT_M, gTrainerPalette_AquaGruntM),
         .animation = sAnims_AquaGruntM,
@@ -594,7 +595,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_POKEMON_BREEDER_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(POKEMON_BREEDER_F, gTrainerFrontPic_PokemonBreederF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(POKEMON_BREEDER_F, gTrainerPalette_PokemonBreederF),
         .animation = sAnims_PokemonBreederF,
@@ -602,7 +603,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_COOLTRAINER_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(COOLTRAINER_M, gTrainerFrontPic_CoolTrainerM, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(COOLTRAINER_M, gTrainerPalette_CoolTrainerM),
         .animation = sAnims_CoolTrainerM,
@@ -610,7 +611,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_BIRD_KEEPER] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(BIRD_KEEPER, gTrainerFrontPic_BirdKeeper, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(BIRD_KEEPER, gTrainerPalette_BirdKeeper),
         .animation = sAnims_BirdKeeper,
@@ -618,7 +619,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_COLLECTOR] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(COLLECTOR, gTrainerFrontPic_Collector, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(COLLECTOR, gTrainerPalette_Collector),
         .animation = sAnims_Collector,
@@ -626,7 +627,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_AQUA_GRUNT_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(AQUA_GRUNT_F, gTrainerFrontPic_AquaGruntF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(AQUA_GRUNT_F, gTrainerPalette_AquaGruntF),
         .animation = sAnims_AquaGruntF,
@@ -634,7 +635,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_SWIMMER_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(SWIMMER_M, gTrainerFrontPic_SwimmerM, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(SWIMMER_M, gTrainerPalette_SwimmerM),
         .animation = sAnims_SwimmerM,
@@ -642,7 +643,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_MAGMA_GRUNT_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(MAGMA_GRUNT_M, gTrainerFrontPic_MagmaGruntM, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(MAGMA_GRUNT_M, gTrainerPalette_MagmaGruntM),
         .animation = sAnims_MagmaGruntM,
@@ -650,7 +651,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_EXPERT_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(EXPERT_M, gTrainerFrontPic_ExpertM, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(EXPERT_M, gTrainerPalette_ExpertM),
         .animation = sAnims_ExpertM,
@@ -658,7 +659,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_AQUA_ADMIN_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(AQUA_ADMIN_M, gTrainerFrontPic_AquaAdminM, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(AQUA_ADMIN_M, gTrainerPalette_AquaAdminM),
         .animation = sAnims_AquaAdminM,
@@ -666,7 +667,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_BLACK_BELT] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(BLACK_BELT, gTrainerFrontPic_BlackBelt, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(BLACK_BELT, gTrainerPalette_BlackBelt),
         .animation = sAnims_BlackBelt,
@@ -674,7 +675,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_AQUA_ADMIN_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(AQUA_ADMIN_F, gTrainerFrontPic_AquaAdminF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(AQUA_ADMIN_F, gTrainerPalette_AquaAdminF),
         .animation = sAnims_AquaAdminF,
@@ -682,7 +683,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_AQUA_LEADER_ARCHIE] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(AQUA_LEADER_ARCHIE, gTrainerFrontPic_AquaLeaderArchie, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(AQUA_LEADER_ARCHIE, gTrainerPalette_AquaLeaderArchie),
         .animation = sAnims_AquaLeaderArchie,
@@ -690,7 +691,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_HEX_MANIAC] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(HEX_MANIAC, gTrainerFrontPic_HexManiac, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(HEX_MANIAC, gTrainerPalette_HexManiac),
         .animation = sAnims_HexManiac,
@@ -698,7 +699,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_AROMA_LADY] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(AROMA_LADY, gTrainerFrontPic_AromaLady, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(AROMA_LADY, gTrainerPalette_AromaLady),
         .animation = sAnims_AromaLady,
@@ -706,7 +707,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_RUIN_MANIAC] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(RUIN_MANIAC, gTrainerFrontPic_RuinManiac, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(RUIN_MANIAC, gTrainerPalette_RuinManiac),
         .animation = sAnims_RuinManiac,
@@ -714,7 +715,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_INTERVIEWER] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(INTERVIEWER, gTrainerFrontPic_Interviewer, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(INTERVIEWER, gTrainerPalette_Interviewer),
         .animation = sAnims_Interviewer,
@@ -722,7 +723,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_TUBER_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(TUBER_F, gTrainerFrontPic_TuberF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(TUBER_F, gTrainerPalette_TuberF),
         .animation = sAnims_TuberF,
@@ -730,7 +731,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_TUBER_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(TUBER_M, gTrainerFrontPic_TuberM, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(TUBER_M, gTrainerPalette_TuberM),
         .animation = sAnims_TuberM,
@@ -738,7 +739,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_COOLTRAINER_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(COOLTRAINER_F, gTrainerFrontPic_CoolTrainerF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(COOLTRAINER_F, gTrainerPalette_CoolTrainerF),
         .animation = sAnims_CoolTrainerF,
@@ -746,7 +747,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_LADY] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(LADY, gTrainerFrontPic_Lady, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(LADY, gTrainerPalette_Lady),
         .animation = sAnims_Lady,
@@ -754,7 +755,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_BEAUTY] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(BEAUTY, gTrainerFrontPic_Beauty, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(BEAUTY, gTrainerPalette_Beauty),
         .animation = sAnims_Beauty,
@@ -762,7 +763,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_RICH_BOY] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(RICH_BOY, gTrainerFrontPic_RichBoy, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(RICH_BOY, gTrainerPalette_RichBoy),
         .animation = sAnims_RichBoy,
@@ -770,7 +771,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_EXPERT_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(EXPERT_F, gTrainerFrontPic_ExpertF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(EXPERT_F, gTrainerPalette_ExpertF),
         .animation = sAnims_ExpertF,
@@ -778,7 +779,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_POKEMANIAC] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(POKEMANIAC, gTrainerFrontPic_Pokemaniac, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(POKEMANIAC, gTrainerPalette_Pokemaniac),
         .animation = sAnims_Pokemaniac,
@@ -786,7 +787,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_MAGMA_GRUNT_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(MAGMA_GRUNT_F, gTrainerFrontPic_MagmaGruntF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(MAGMA_GRUNT_F, gTrainerPalette_MagmaGruntF),
         .animation = sAnims_MagmaGruntF,
@@ -794,7 +795,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_GUITARIST] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(GUITARIST, gTrainerFrontPic_Guitarist, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(GUITARIST, gTrainerPalette_Guitarist),
         .animation = sAnims_Guitarist,
@@ -802,7 +803,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_KINDLER] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(KINDLER, gTrainerFrontPic_Kindler, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(KINDLER, gTrainerPalette_Kindler),
         .animation = sAnims_Kindler,
@@ -810,7 +811,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_CAMPER] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(CAMPER, gTrainerFrontPic_Camper, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(CAMPER, gTrainerPalette_Camper),
         .animation = sAnims_Camper,
@@ -818,7 +819,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_PICNICKER] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(PICNICKER, gTrainerFrontPic_Picnicker, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(PICNICKER, gTrainerPalette_Picnicker),
         .animation = sAnims_Picnicker,
@@ -826,7 +827,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_BUG_MANIAC] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(BUG_MANIAC, gTrainerFrontPic_BugManiac, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(BUG_MANIAC, gTrainerPalette_BugManiac),
         .animation = sAnims_BugManiac,
@@ -834,7 +835,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_POKEMON_BREEDER_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(POKEMON_BREEDER_M, gTrainerFrontPic_PokemonBreederM, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(POKEMON_BREEDER_M, gTrainerPalette_PokemonBreederM),
         .animation = sAnims_PokemonBreederM,
@@ -842,7 +843,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_PSYCHIC_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(PSYCHIC_M, gTrainerFrontPic_PsychicM, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(PSYCHIC_M, gTrainerPalette_PsychicM),
         .animation = sAnims_PsychicM,
@@ -850,7 +851,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_PSYCHIC_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(PSYCHIC_F, gTrainerFrontPic_PsychicF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(PSYCHIC_F, gTrainerPalette_PsychicF),
         .animation = sAnims_PsychicF,
@@ -858,7 +859,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_GENTLEMAN] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(GENTLEMAN, gTrainerFrontPic_Gentleman, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(GENTLEMAN, gTrainerPalette_Gentleman),
         .animation = sAnims_Gentleman,
@@ -866,7 +867,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_ELITE_FOUR_SIDNEY] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(ELITE_FOUR_SIDNEY, gTrainerFrontPic_EliteFourSidney, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(ELITE_FOUR_SIDNEY, gTrainerPalette_EliteFourSidney),
         .animation = sAnims_EliteFourSidney,
@@ -874,7 +875,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_ELITE_FOUR_PHOEBE] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(ELITE_FOUR_PHOEBE, gTrainerFrontPic_EliteFourPhoebe, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(ELITE_FOUR_PHOEBE, gTrainerPalette_EliteFourPhoebe),
         .animation = sAnims_EliteFourPhoebe,
@@ -882,7 +883,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_ELITE_FOUR_GLACIA] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(ELITE_FOUR_GLACIA, gTrainerFrontPic_EliteFourGlacia, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(ELITE_FOUR_GLACIA, gTrainerPalette_EliteFourGlacia),
         .animation = sAnims_EliteFourGlacia,
@@ -890,7 +891,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_ELITE_FOUR_DRAKE] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(ELITE_FOUR_DRAKE, gTrainerFrontPic_EliteFourDrake, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(ELITE_FOUR_DRAKE, gTrainerPalette_EliteFourDrake),
         .animation = sAnims_EliteFourDrake,
@@ -898,7 +899,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_LEADER_ROXANNE] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(LEADER_ROXANNE, gTrainerFrontPic_LeaderRoxanne, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(LEADER_ROXANNE, gTrainerPalette_LeaderRoxanne),
         .animation = sAnims_LeaderRoxanne,
@@ -906,7 +907,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_LEADER_BRAWLY] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(LEADER_BRAWLY, gTrainerFrontPic_LeaderBrawly, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(LEADER_BRAWLY, gTrainerPalette_LeaderBrawly),
         .animation = sAnims_LeaderBrawly,
@@ -914,7 +915,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_LEADER_WATTSON] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(LEADER_WATTSON, gTrainerFrontPic_LeaderWattson, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(LEADER_WATTSON, gTrainerPalette_LeaderWattson),
         .animation = sAnims_LeaderWattson,
@@ -922,7 +923,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_LEADER_FLANNERY] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(LEADER_FLANNERY, gTrainerFrontPic_LeaderFlannery, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(LEADER_FLANNERY, gTrainerPalette_LeaderFlannery),
         .animation = sAnims_LeaderFlannery,
@@ -930,7 +931,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_LEADER_NORMAN] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(LEADER_NORMAN, gTrainerFrontPic_LeaderNorman, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(LEADER_NORMAN, gTrainerPalette_LeaderNorman),
         .animation = sAnims_LeaderNorman,
@@ -938,7 +939,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_LEADER_WINONA] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(LEADER_WINONA, gTrainerFrontPic_LeaderWinona, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(LEADER_WINONA, gTrainerPalette_LeaderWinona),
         .animation = sAnims_LeaderWinona,
@@ -946,7 +947,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_LEADER_TATE_AND_LIZA] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(LEADER_TATE_AND_LIZA, gTrainerFrontPic_LeaderTateAndLiza, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(LEADER_TATE_AND_LIZA, gTrainerPalette_LeaderTateAndLiza),
         .animation = sAnims_LeaderTateAndLiza,
@@ -954,7 +955,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_LEADER_JUAN] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(LEADER_JUAN, gTrainerFrontPic_LeaderJuan, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(LEADER_JUAN, gTrainerPalette_LeaderJuan),
         .animation = sAnims_LeaderJuan,
@@ -962,7 +963,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_SCHOOL_KID_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(SCHOOL_KID_M, gTrainerFrontPic_SchoolKidM, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(SCHOOL_KID_M, gTrainerPalette_SchoolKidM),
         .animation = sAnims_SchoolKidM,
@@ -970,7 +971,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_SCHOOL_KID_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(SCHOOL_KID_F, gTrainerFrontPic_SchoolKidF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(SCHOOL_KID_F, gTrainerPalette_SchoolKidF),
         .animation = sAnims_SchoolKidF,
@@ -978,7 +979,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_SR_AND_JR] =
     {
-        .coordinates = {.size = 8, .y_offset = 2},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 2},
         .frontPic = TRAINER_SPRITE(SR_AND_JR, gTrainerFrontPic_SrAndJr, TRAINER_PIC_SIZE * 2),
         .palette = TRAINER_PAL(SR_AND_JR, gTrainerPalette_SrAndJr),
         .animation = sAnims_SrAndJr,
@@ -986,7 +987,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_POKEFAN_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 2},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 2},
         .frontPic = TRAINER_SPRITE(POKEFAN_M, gTrainerFrontPic_PokefanM, TRAINER_PIC_SIZE * 2),
         .palette = TRAINER_PAL(POKEFAN_M, gTrainerPalette_PokefanM),
         .animation = sAnims_PokefanM,
@@ -994,7 +995,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_POKEFAN_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(POKEFAN_F, gTrainerFrontPic_PokefanF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(POKEFAN_F, gTrainerPalette_PokefanF),
         .animation = sAnims_PokefanF,
@@ -1002,7 +1003,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_YOUNGSTER] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(YOUNGSTER, gTrainerFrontPic_Youngster, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(YOUNGSTER, gTrainerPalette_Youngster),
         .animation = sAnims_Youngster,
@@ -1010,7 +1011,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_CHAMPION_WALLACE] =
     {
-        .coordinates = {.size = 8, .y_offset = 2},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 2},
         .frontPic = TRAINER_SPRITE(CHAMPION_WALLACE, gTrainerFrontPic_ChampionWallace, TRAINER_PIC_SIZE * 2),
         .palette = TRAINER_PAL(CHAMPION_WALLACE, gTrainerPalette_ChampionWallace),
         .animation = sAnims_ChampionWallace,
@@ -1018,7 +1019,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_FISHERMAN] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(FISHERMAN, gTrainerFrontPic_Fisherman, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(FISHERMAN, gTrainerPalette_Fisherman),
         .animation = sAnims_Fisherman,
@@ -1026,7 +1027,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_CYCLING_TRIATHLETE_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 2},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 2},
         .frontPic = TRAINER_SPRITE(CYCLING_TRIATHLETE_M, gTrainerFrontPic_CyclingTriathleteM, TRAINER_PIC_SIZE * 2),
         .palette = TRAINER_PAL(CYCLING_TRIATHLETE_M, gTrainerPalette_CyclingTriathleteM),
         .animation = sAnims_CyclingTriathleteM,
@@ -1034,7 +1035,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_CYCLING_TRIATHLETE_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(CYCLING_TRIATHLETE_F, gTrainerFrontPic_CyclingTriathleteF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(CYCLING_TRIATHLETE_F, gTrainerPalette_CyclingTriathleteF),
         .animation = sAnims_CyclingTriathleteF,
@@ -1042,7 +1043,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_RUNNING_TRIATHLETE_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(RUNNING_TRIATHLETE_M, gTrainerFrontPic_RunningTriathleteM, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(RUNNING_TRIATHLETE_M, gTrainerPalette_RunningTriathleteM),
         .animation = sAnims_RunningTriathleteM,
@@ -1050,7 +1051,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_RUNNING_TRIATHLETE_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(RUNNING_TRIATHLETE_F, gTrainerFrontPic_RunningTriathleteF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(RUNNING_TRIATHLETE_F, gTrainerPalette_RunningTriathleteF),
         .animation = sAnims_RunningTriathleteF,
@@ -1058,7 +1059,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_SWIMMING_TRIATHLETE_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(SWIMMING_TRIATHLETE_M, gTrainerFrontPic_SwimmingTriathleteM, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(SWIMMING_TRIATHLETE_M, gTrainerPalette_SwimmingTriathleteM),
         .animation = sAnims_SwimmingTriathleteM,
@@ -1066,7 +1067,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_SWIMMING_TRIATHLETE_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(SWIMMING_TRIATHLETE_F, gTrainerFrontPic_SwimmingTriathleteF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(SWIMMING_TRIATHLETE_F, gTrainerPalette_SwimmingTriathleteF),
         .animation = sAnims_SwimmingTriathleteF,
@@ -1074,7 +1075,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_DRAGON_TAMER] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(DRAGON_TAMER, gTrainerFrontPic_DragonTamer, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(DRAGON_TAMER, gTrainerPalette_DragonTamer),
         .animation = sAnims_DragonTamer,
@@ -1082,7 +1083,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_NINJA_BOY] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(NINJA_BOY, gTrainerFrontPic_NinjaBoy, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(NINJA_BOY, gTrainerPalette_NinjaBoy),
         .animation = sAnims_NinjaBoy,
@@ -1090,7 +1091,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_BATTLE_GIRL] =
     {
-        .coordinates = {.size = 8, .y_offset = 2},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 2},
         .frontPic = TRAINER_SPRITE(BATTLE_GIRL, gTrainerFrontPic_BattleGirl, TRAINER_PIC_SIZE * 2),
         .palette = TRAINER_PAL(BATTLE_GIRL, gTrainerPalette_BattleGirl),
         .animation = sAnims_BattleGirl,
@@ -1098,7 +1099,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_PARASOL_LADY] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(PARASOL_LADY, gTrainerFrontPic_ParasolLady, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(PARASOL_LADY, gTrainerPalette_ParasolLady),
         .animation = sAnims_ParasolLady,
@@ -1106,7 +1107,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_SWIMMER_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(SWIMMER_F, gTrainerFrontPic_SwimmerF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(SWIMMER_F, gTrainerPalette_SwimmerF),
         .animation = sAnims_SwimmerF,
@@ -1114,7 +1115,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_TWINS] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(TWINS, gTrainerFrontPic_Twins, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(TWINS, gTrainerPalette_Twins),
         .animation = sAnims_Twins,
@@ -1122,7 +1123,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_SAILOR] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(SAILOR, gTrainerFrontPic_Sailor, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(SAILOR, gTrainerPalette_Sailor),
         .animation = sAnims_Sailor,
@@ -1130,7 +1131,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_MAGMA_ADMIN] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(MAGMA_ADMIN, gTrainerFrontPic_MagmaAdmin, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(MAGMA_ADMIN, gTrainerPalette_MagmaAdmin),
         .animation = sAnims_MagmaAdmin,
@@ -1138,7 +1139,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_WALLY] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(WALLY, gTrainerFrontPic_Wally, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(WALLY, gTrainerPalette_Wally),
         .animation = sAnims_Wally,
@@ -1146,7 +1147,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_BRENDAN] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(BRENDAN, gTrainerFrontPic_Brendan, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(BRENDAN, gTrainerPalette_Brendan),
         .animation = sAnims_Brendan,
@@ -1154,7 +1155,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_MAY] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(MAY, gTrainerFrontPic_May, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(MAY, gTrainerPalette_May),
         .animation = sAnims_May,
@@ -1162,7 +1163,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_BUG_CATCHER] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(BUG_CATCHER, gTrainerFrontPic_BugCatcher, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(BUG_CATCHER, gTrainerPalette_BugCatcher),
         .animation = sAnims_BugCatcher,
@@ -1170,7 +1171,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_POKEMON_RANGER_M] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(POKEMON_RANGER_M, gTrainerFrontPic_PokemonRangerM, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(POKEMON_RANGER_M, gTrainerPalette_PokemonRangerM),
         .animation = sAnims_PokemonRangerM,
@@ -1178,7 +1179,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_POKEMON_RANGER_F] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(POKEMON_RANGER_F, gTrainerFrontPic_PokemonRangerF, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(POKEMON_RANGER_F, gTrainerPalette_PokemonRangerF),
         .animation = sAnims_PokemonRangerF,
@@ -1186,7 +1187,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_MAGMA_LEADER_MAXIE] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(MAGMA_LEADER_MAXIE, gTrainerFrontPic_MagmaLeaderMaxie, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(MAGMA_LEADER_MAXIE, gTrainerPalette_MagmaLeaderMaxie),
         .animation = sAnims_MagmaLeaderMaxie,
@@ -1194,7 +1195,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_LASS] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(LASS, gTrainerFrontPic_Lass, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(LASS, gTrainerPalette_Lass),
         .animation = sAnims_Lass,
@@ -1202,7 +1203,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_YOUNG_COUPLE] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(YOUNG_COUPLE, gTrainerFrontPic_YoungCouple, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(YOUNG_COUPLE, gTrainerPalette_YoungCouple),
         .animation = sAnims_YoungCouple,
@@ -1210,7 +1211,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_OLD_COUPLE] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(OLD_COUPLE, gTrainerFrontPic_OldCouple, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(OLD_COUPLE, gTrainerPalette_OldCouple),
         .animation = sAnims_OldCouple,
@@ -1218,7 +1219,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_SIS_AND_BRO] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(SIS_AND_BRO, gTrainerFrontPic_SisAndBro, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(SIS_AND_BRO, gTrainerPalette_SisAndBro),
         .animation = sAnims_SisAndBro,
@@ -1226,7 +1227,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_STEVEN] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(STEVEN, gTrainerFrontPic_Steven, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(STEVEN, gTrainerPalette_Steven),
         .animation = sAnims_Steven,
@@ -1234,7 +1235,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_SALON_MAIDEN_ANABEL] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(SALON_MAIDEN_ANABEL, gTrainerFrontPic_SalonMaidenAnabel, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(SALON_MAIDEN_ANABEL, gTrainerPalette_SalonMaidenAnabel),
         .animation = sAnims_SalonMaidenAnabel,
@@ -1242,7 +1243,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_DOME_ACE_TUCKER] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(DOME_ACE_TUCKER, gTrainerFrontPic_DomeAceTucker, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(DOME_ACE_TUCKER, gTrainerPalette_DomeAceTucker),
         .animation = sAnims_DomeAceTucker,
@@ -1250,7 +1251,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_PALACE_MAVEN_SPENSER] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(PALACE_MAVEN_SPENSER, gTrainerFrontPic_PalaceMavenSpenser, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(PALACE_MAVEN_SPENSER, gTrainerPalette_PalaceMavenSpenser),
         .animation = sAnims_PalaceMavenSpenser,
@@ -1258,7 +1259,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_ARENA_TYCOON_GRETA] =
     {
-        .coordinates = {.size = 8, .y_offset = 2},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 2},
         .frontPic = TRAINER_SPRITE(ARENA_TYCOON_GRETA, gTrainerFrontPic_ArenaTycoonGreta, TRAINER_PIC_SIZE * 2),
         .palette = TRAINER_PAL(ARENA_TYCOON_GRETA, gTrainerPalette_ArenaTycoonGreta),
         .animation = sAnims_ArenaTycoonGreta,
@@ -1266,7 +1267,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_FACTORY_HEAD_NOLAND] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(FACTORY_HEAD_NOLAND, gTrainerFrontPic_FactoryHeadNoland, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(FACTORY_HEAD_NOLAND, gTrainerPalette_FactoryHeadNoland),
         .animation = sAnims_FactoryHeadNoland,
@@ -1274,7 +1275,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_PIKE_QUEEN_LUCY] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(PIKE_QUEEN_LUCY, gTrainerFrontPic_PikeQueenLucy, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(PIKE_QUEEN_LUCY, gTrainerPalette_PikeQueenLucy),
         .animation = sAnims_PikeQueenLucy,
@@ -1282,7 +1283,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_PYRAMID_KING_BRANDON] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(PYRAMID_KING_BRANDON, gTrainerFrontPic_PyramidKingBrandon, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(PYRAMID_KING_BRANDON, gTrainerPalette_PyramidKingBrandon),
         .animation = sAnims_PyramidKingBrandon,
@@ -1290,7 +1291,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_RED] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(RED, gTrainerFrontPic_Red, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(RED, gTrainerPalette_Red),
         .animation = sAnims_Red,
@@ -1298,7 +1299,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_LEAF] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(LEAF, gTrainerFrontPic_Leaf, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(LEAF, gTrainerPalette_Leaf),
         .animation = sAnims_Leaf,
@@ -1306,7 +1307,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_RS_BRENDAN] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(RS_BRENDAN, gTrainerFrontPic_RubySapphireBrendan, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(RS_BRENDAN, gTrainerPalette_RubySapphireBrendan),
         .animation = sAnims_RubySapphireBrendan,
@@ -1314,7 +1315,7 @@ const struct TrainerSprite gTrainerSprites[] =
     
     [TRAINER_PIC_RS_MAY] =
     {
-        .coordinates = {.size = 8, .y_offset = 1},
+        .coordinates = {.size = TRAINER_SPRITE_SIZE, .y_offset = 1},
         .frontPic = TRAINER_SPRITE(RS_MAY, gTrainerFrontPic_RubySapphireMay, TRAINER_PIC_SIZE),
         .palette = TRAINER_PAL(RS_MAY, gTrainerPalette_RubySapphireMay),
         .animation = sAnims_RubySapphireMay,
