@@ -168,7 +168,6 @@ static EWRAM_DATA u8 *sTilemapBuffer = NULL;
 // All move points are either 1 or 0, so theyre essentially flags saying whether or not the move has that characteristic
 static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
 {
-    [MOVE_PAY_DAY]       = {[MOVE_POINTS_RARE] = 1},
     [MOVE_SWORDS_DANCE]  = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_WHIRLWIND]     = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_HYDRO_PUMP]    = {[MOVE_POINTS_COMBO] = 1},
@@ -177,55 +176,31 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_SOLAR_BEAM]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_HYPNOSIS]      = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_MEDITATE]      = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_MIMIC]         = {[MOVE_POINTS_RARE] = 1},
     [MOVE_FOCUS_ENERGY]  = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_METRONOME]     = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_MIRROR_MOVE]   = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_DREAM_EATER]   = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_RARE] = 1},
-    [MOVE_TRANSFORM]     = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_SPLASH]        = {[MOVE_POINTS_RARE] = 1},
+    [MOVE_DREAM_EATER]   = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_REST]          = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SUBSTITUTE]    = {[MOVE_POINTS_RARE] = 1}, // Odd that this is assigned qualities
-    [MOVE_SKETCH]        = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_THIEF]         = {[MOVE_POINTS_RARE] = 1},
     [MOVE_NIGHTMARE]     = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SNORE]         = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_REVERSAL]      = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SPITE]         = {[MOVE_POINTS_RARE] = 1},
     [MOVE_BELLY_DRUM]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SPIKES]        = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_LOCK_ON]       = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SLEEP_TALK]    = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_PAIN_SPLIT]    = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_BATON_PASS]    = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_RARE] = 1},
+    [MOVE_BATON_PASS]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_MORNING_SUN]   = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SYNTHESIS]     = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_MOONLIGHT]     = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_HIDDEN_POWER]  = {[MOVE_POINTS_RARE] = 1},
     [MOVE_RAIN_DANCE]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SUNNY_DAY]     = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_FUTURE_SIGHT]  = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_BEAT_UP]       = {[MOVE_POINTS_RARE] = 1},
     [MOVE_STOCKPILE]     = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SPIT_UP]       = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SWALLOW]       = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_MEMENTO]       = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_FOLLOW_ME]     = {[MOVE_POINTS_RARE] = 1},
     [MOVE_CHARGE]        = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_HELPING_HAND]  = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_TRICK]         = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_ASSIST]        = {[MOVE_POINTS_RARE] = 1},
     [MOVE_INGRAIN]       = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_YAWN]          = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SKILL_SWAP]    = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_IMPRISON]      = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_SNATCH]        = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_SECRET_POWER]  = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_CAMOUFLAGE]    = {[MOVE_POINTS_RARE] = 1},
     [MOVE_BULK_UP]       = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_CALM_MIND]     = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_DRAGON_DANCE]  = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_DOOM_DESIRE]   = {[MOVE_POINTS_RARE] = 1},
 };
 // This array is searched in-order to determine what battle style a tourney trainer uses.
 // If the sum of the points for the party's moves meets/exceeds all the point totals of an element, then they use that battle style
@@ -4130,6 +4105,26 @@ static bool32 IsDomeStatusMoveEffect(u32 effect)
     }
 }
 
+static bool32 IsDomeRareMove(u32 move)
+{
+    u16 i, j;
+    u16 species = 0;
+    for(i = 0; i < NUM_SPECIES; i++)
+    {
+        for(j = 0; gLevelUpLearnsets[i][j].move != LEVEL_UP_MOVE_END; j++)
+        {
+            if (gLevelUpLearnsets[i][j].move == move)
+            {
+                species++;
+                break;
+            }
+        }
+        if (species > NUM_SPECIES / 10)
+            return FALSE;
+    }
+    return TRUE;
+}
+
 // allocatedArray below needs to be large enough to hold stat totals for each mon, or totals of each type of move points
 #define ALLOC_ARRAY_SIZE max(NUM_STATS * FRONTIER_PARTY_SIZE, NUM_MOVE_POINT_TYPES)
 
@@ -4316,7 +4311,9 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                 case MOVE_POINTS_STAT_LOWER:
                     allocatedArray[k] = IsStatLoweringEffect(gBattleMoves[move].effect) ? 1 : 0;
                     break;
-                // case MOVE_POINTS_RARE:
+                case MOVE_POINTS_RARE:
+                    allocatedArray[k] = IsDomeRareMove(move) ? 1 : 0;
+                    break;
                 case MOVE_POINTS_HEAL:
                     allocatedArray[k] = IsDomeHealingMoveEffect(gBattleMoves[move].effect) ? 1 : 0;
                     break;
