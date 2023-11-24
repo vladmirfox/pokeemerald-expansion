@@ -111,7 +111,7 @@
 #define MOVE_POINTS_STAT_LOWER 2
 #define MOVE_POINTS_RARE       3   // Moves that appear in less than 5% of levelup learnsets
 #define MOVE_POINTS_HEAL       4   // Moves that heal
-#define MOVE_POINTS_RISKY      5   // Move effects deemed risky by the Emerald developers (excluding High Jump Kick et al for some reason)
+#define MOVE_POINTS_RISKY      5   // Move effects deemed risky by the Emerald developers (excluding High Jump Kick and others for some reason)
 #define MOVE_POINTS_STATUS     6   // Moves that cause status effects without dealing damage
 #define MOVE_POINTS_DMG        7   // Moves that deal damage (BP > 0)
 #define MOVE_POINTS_DEF        8   // Moves like screens, accuracy-lowers or evasiveness-raisers, (special) defense raisers, protect etc.

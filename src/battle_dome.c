@@ -4081,7 +4081,7 @@ static bool32 IsDomeRareMove(u32 move)
                 break;
             }
         }
-        if (species >= NUM_SPECIES * 0.05)
+        if (species >= NUM_SPECIES / 20) // At least 5% of all mons can learn this move
             return FALSE;
     }
     return TRUE;
