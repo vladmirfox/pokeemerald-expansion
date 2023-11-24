@@ -180,7 +180,6 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_SURF]          = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_POPULAR] = 1},
     [MOVE_ICE_BEAM]      = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_HYPER_BEAM]    = {[MOVE_POINTS_POPULAR] = 1},
-    [MOVE_COUNTER]       = {[MOVE_POINTS_LUCK] = 1},
     [MOVE_LEECH_SEED]    = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_STATUS] = 1},
     [MOVE_SOLAR_BEAM]    = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_POPULAR] = 1},
     [MOVE_POISON_POWDER] = {[MOVE_POINTS_STATUS] = 1},
@@ -189,15 +188,14 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_THUNDERBOLT]   = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_THUNDER_WAVE]  = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_EARTHQUAKE]    = {[MOVE_POINTS_POPULAR] = 1},
-    [MOVE_FISSURE]       = {[MOVE_POINTS_LUCK] = 1},
     [MOVE_TOXIC]         = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_PSYCHIC]       = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_HYPNOSIS]      = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_MEDITATE]      = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_MIMIC]         = {[MOVE_POINTS_RARE] = 1},
     [MOVE_FOCUS_ENERGY]  = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_METRONOME]     = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_LUCK] = 1},
-    [MOVE_MIRROR_MOVE]   = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_LUCK] = 1},
+    [MOVE_METRONOME]     = {[MOVE_POINTS_RARE] = 1},
+    [MOVE_MIRROR_MOVE]   = {[MOVE_POINTS_RARE] = 1},
     [MOVE_CONSTRICT]     = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_DREAM_EATER]   = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_RARE] = 1},
     [MOVE_POISON_GAS]    = {[MOVE_POINTS_STATUS] = 1},
@@ -208,7 +206,7 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_EXPLOSION]     = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_REST]          = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SUBSTITUTE]    = {[MOVE_POINTS_RARE] = 1}, // Odd that this is assigned qualities
-    [MOVE_SKETCH]        = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_LUCK] = 1},
+    [MOVE_SKETCH]        = {[MOVE_POINTS_RARE] = 1},
     [MOVE_THIEF]         = {[MOVE_POINTS_RARE] = 1},
     [MOVE_NIGHTMARE]     = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_STATUS] = 1},
     [MOVE_SNORE]         = {[MOVE_POINTS_COMBO] = 1},
@@ -218,13 +216,10 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_PROTECT]       = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_BELLY_DRUM]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SPIKES]        = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_ZAP_CANNON]    = {[MOVE_POINTS_LUCK] = 1},
     [MOVE_LOCK_ON]       = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_ATTRACT]       = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_SLEEP_TALK]    = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_LUCK] = 1},
-    [MOVE_PRESENT]       = {[MOVE_POINTS_LUCK] = 1},
+    [MOVE_SLEEP_TALK]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_PAIN_SPLIT]    = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_DYNAMIC_PUNCH] = {[MOVE_POINTS_LUCK] = 1},
     [MOVE_BATON_PASS]    = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_RARE] = 1},
     [MOVE_ENCORE]        = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_MORNING_SUN]   = {[MOVE_POINTS_COMBO] = 1},
@@ -246,17 +241,14 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_TAUNT]         = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_HELPING_HAND]  = {[MOVE_POINTS_RARE] = 1},
     [MOVE_TRICK]         = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_ASSIST]        = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_LUCK] = 1},
+    [MOVE_ASSIST]        = {[MOVE_POINTS_RARE] = 1},
     [MOVE_INGRAIN]       = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_MAGIC_COAT]    = {[MOVE_POINTS_LUCK] = 1},
-    [MOVE_REVENGE]       = {[MOVE_POINTS_LUCK] = 1},
     [MOVE_YAWN]          = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_STATUS] = 1},
     [MOVE_SKILL_SWAP]    = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_IMPRISON]      = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_LUCK] = 1},
-    [MOVE_SNATCH]        = {[MOVE_POINTS_RARE] = 1, [MOVE_POINTS_LUCK] = 1},
+    [MOVE_IMPRISON]      = {[MOVE_POINTS_RARE] = 1},
+    [MOVE_SNATCH]        = {[MOVE_POINTS_RARE] = 1},
     [MOVE_SECRET_POWER]  = {[MOVE_POINTS_RARE] = 1},
     [MOVE_CAMOUFLAGE]    = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_SHEER_COLD]    = {[MOVE_POINTS_LUCK] = 1},
     [MOVE_BULK_UP]       = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_CALM_MIND]     = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_DRAGON_DANCE]  = {[MOVE_POINTS_COMBO] = 1},
@@ -4024,6 +4016,8 @@ static u8 Task_GetInfoCardInput(u8 taskId)
     return input;
 }
 
+#undef tUsingAlternateSlot
+
 static bool32 IsDomeHealingMoveEffect(u32 effect)
 {
     if (IsHealingMoveEffect(effect))
@@ -4086,7 +4080,29 @@ static bool32 IsDomeRiskyMoveEffect(u32 effect)
     }
 }
 
-#undef tUsingAlternateSlot
+static bool32 IsDomeLuckyMove(u32 move)
+{
+    if (gBattleMoves[move].accuracy <= 50)
+        return TRUE;
+    switch(gBattleMoves[move].effect)
+    {
+    case EFFECT_COUNTER:
+    case EFFECT_OHKO: // Technically redundant because of the above accuracy check
+    case EFFECT_METRONOME:
+    case EFFECT_MIRROR_MOVE:
+    case EFFECT_SKETCH:
+    case EFFECT_SLEEP_TALK:
+    case EFFECT_PRESENT:
+    case EFFECT_ASSIST:
+    case EFFECT_MAGIC_COAT:
+    case EFFECT_REVENGE:
+    case EFFECT_IMPRISON:
+    case EFFECT_SNATCH:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
 
 // allocatedArray below needs to be large enough to hold stat totals for each mon, or totals of each type of move points
 #define ALLOC_ARRAY_SIZE max(NUM_STATS * FRONTIER_PARTY_SIZE, NUM_MOVE_POINT_TYPES)
@@ -4294,7 +4310,8 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     allocatedArray[k] = (gBattleMoves[move].power >= 100) ? 1 : 0;
                     break;
                 // case MOVE_POINTS_POPULAR:
-                // case MOVE_POINTS_LUCK:
+                case MOVE_POINTS_LUCK:
+                    allocatedArray[k] = IsDomeLuckyMove(move) ? 1 : 0;
                 case MOVE_POINTS_STRONG:
                     allocatedArray[k] = (gBattleMoves[move].power >= 90) ? 1 : 0;
                     break;
