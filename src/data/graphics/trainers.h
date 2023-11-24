@@ -292,574 +292,480 @@ const u8 gTrainerBackPic_Steven[] = INCBIN_U8("graphics/trainers/back_pics/steve
 const u32 gTrainerBackPicPalette_Red[] = INCBIN_U32("graphics/trainers/back_pics/red.gbapal.lz");
 const u32 gTrainerBackPicPalette_Leaf[] = INCBIN_U32("graphics/trainers/back_pics/leaf.gbapal.lz");
 
-#define TRAINER_PIC(file, trainerPic)                                                     \
-        .y_offset = 8,                                              \
-        .frontPic = {gTrainerFrontPic_##file, TRAINER_PIC_SIZE, TRAINER_PIC_##trainerPic},\
-        .palette = {gTrainerPalette_##file, TRAINER_PIC_##trainerPic}
-
-//If there's no reason for the value to ever change, it can be moved into TRAINER_PIC
-//However, some people may want to incorporate sprites with more than one frame so it might be best to stay outside
 static const union AnimCmd *const sAnims_Trainer[] ={
     sAnim_GeneralFrame0,
 };
+
+#define TRAINER_PIC(file, trainerPic, anims)                                              \
+        .y_offset = 8,                                                                    \
+        .frontPic = {gTrainerFrontPic_##file, TRAINER_PIC_SIZE, TRAINER_PIC_##trainerPic},\
+        .palette = {gTrainerPalette_##file, TRAINER_PIC_##trainerPic},                    \
+        .animation = sAnims_##anims
 
 const struct TrainerSprite gTrainerSprites[] =
 {
     [TRAINER_PIC_HIKER] =
     {
-        TRAINER_PIC(Hiker, HIKER),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Hiker, HIKER, Trainer),
     },
     
     [TRAINER_PIC_AQUA_GRUNT_M] =
     {
-        TRAINER_PIC(AquaGruntM, AQUA_GRUNT_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(AquaGruntM, AQUA_GRUNT_M, Trainer),
     },
     
     [TRAINER_PIC_POKEMON_BREEDER_F] =
     {
-        TRAINER_PIC(PokemonBreederF, POKEMON_BREEDER_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(PokemonBreederF, POKEMON_BREEDER_F, Trainer),
     },
     
     [TRAINER_PIC_COOLTRAINER_M] =
     {
-        TRAINER_PIC(CoolTrainerM, COOLTRAINER_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(CoolTrainerM, COOLTRAINER_M, Trainer),
     },
     
     [TRAINER_PIC_BIRD_KEEPER] =
     {
-        TRAINER_PIC(BirdKeeper, BIRD_KEEPER),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(BirdKeeper, BIRD_KEEPER, Trainer),
     },
     
     [TRAINER_PIC_COLLECTOR] =
     {
-        TRAINER_PIC(Collector, COLLECTOR),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Collector, COLLECTOR, Trainer),
     },
     
     [TRAINER_PIC_AQUA_GRUNT_F] =
     {
-        TRAINER_PIC(AquaGruntF, AQUA_GRUNT_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(AquaGruntF, AQUA_GRUNT_F, Trainer),
     },
     
     [TRAINER_PIC_SWIMMER_M] =
     {
-        TRAINER_PIC(SwimmerM, SWIMMER_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(SwimmerM, SWIMMER_M, Trainer),
     },
     
     [TRAINER_PIC_MAGMA_GRUNT_M] =
     {
-        TRAINER_PIC(MagmaGruntM, MAGMA_GRUNT_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(MagmaGruntM, MAGMA_GRUNT_M, Trainer),
     },
     
     [TRAINER_PIC_EXPERT_M] =
     {
-        TRAINER_PIC(ExpertM, EXPERT_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(ExpertM, EXPERT_M, Trainer),
     },
     
     [TRAINER_PIC_AQUA_ADMIN_M] =
     {
-        TRAINER_PIC(AquaAdminM, AQUA_ADMIN_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(AquaAdminM, AQUA_ADMIN_M, Trainer),
     },
     
     [TRAINER_PIC_BLACK_BELT] =
     {
-        TRAINER_PIC(BlackBelt, BLACK_BELT),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(BlackBelt, BLACK_BELT, Trainer),
     },
     
     [TRAINER_PIC_AQUA_ADMIN_F] =
     {
-        TRAINER_PIC(AquaAdminF, AQUA_ADMIN_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(AquaAdminF, AQUA_ADMIN_F, Trainer),
     },
     
     [TRAINER_PIC_AQUA_LEADER_ARCHIE] =
     {
-        TRAINER_PIC(AquaLeaderArchie, AQUA_LEADER_ARCHIE),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(AquaLeaderArchie, AQUA_LEADER_ARCHIE, Trainer),
     },
     
     [TRAINER_PIC_HEX_MANIAC] =
     {
-        TRAINER_PIC(HexManiac, HEX_MANIAC),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(HexManiac, HEX_MANIAC, Trainer),
     },
     
     [TRAINER_PIC_AROMA_LADY] =
     {
-        TRAINER_PIC(AromaLady, AROMA_LADY),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(AromaLady, AROMA_LADY, Trainer),
     },
     
     [TRAINER_PIC_RUIN_MANIAC] =
     {
-        TRAINER_PIC(RuinManiac, RUIN_MANIAC),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(RuinManiac, RUIN_MANIAC, Trainer),
     },
     
     [TRAINER_PIC_INTERVIEWER] =
     {
-        TRAINER_PIC(Interviewer, INTERVIEWER),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Interviewer, INTERVIEWER, Trainer),
     },
     
     [TRAINER_PIC_TUBER_F] =
     {
-        TRAINER_PIC(TuberF, TUBER_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(TuberF, TUBER_F, Trainer),
     },
     
     [TRAINER_PIC_TUBER_M] =
     {
-        TRAINER_PIC(TuberM, TUBER_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(TuberM, TUBER_M, Trainer),
     },
     
     [TRAINER_PIC_COOLTRAINER_F] =
     {
-        TRAINER_PIC(CoolTrainerF, COOLTRAINER_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(CoolTrainerF, COOLTRAINER_F, Trainer),
     },
     
     [TRAINER_PIC_LADY] =
     {
-        TRAINER_PIC(Lady, LADY),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Lady, LADY, Trainer),
     },
     
     [TRAINER_PIC_BEAUTY] =
     {
-        TRAINER_PIC(Beauty, BEAUTY),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Beauty, BEAUTY, Trainer),
     },
     
     [TRAINER_PIC_RICH_BOY] =
     {
-        TRAINER_PIC(RichBoy, RICH_BOY),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(RichBoy, RICH_BOY, Trainer),
     },
     
     [TRAINER_PIC_EXPERT_F] =
     {
-        TRAINER_PIC(ExpertF, EXPERT_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(ExpertF, EXPERT_F, Trainer),
     },
     
     [TRAINER_PIC_POKEMANIAC] =
     {
-        TRAINER_PIC(Pokemaniac, POKEMANIAC),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Pokemaniac, POKEMANIAC, Trainer),
     },
     
     [TRAINER_PIC_MAGMA_GRUNT_F] =
     {
-        TRAINER_PIC(MagmaGruntF, MAGMA_GRUNT_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(MagmaGruntF, MAGMA_GRUNT_F, Trainer),
     },
     
     [TRAINER_PIC_GUITARIST] =
     {
-        TRAINER_PIC(Guitarist, GUITARIST),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Guitarist, GUITARIST, Trainer),
     },
     
     [TRAINER_PIC_KINDLER] =
     {
-        TRAINER_PIC(Kindler, KINDLER),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Kindler, KINDLER, Trainer),
     },
     
     [TRAINER_PIC_CAMPER] =
     {
-        TRAINER_PIC(Camper, CAMPER),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Camper, CAMPER, Trainer),
     },
     
     [TRAINER_PIC_PICNICKER] =
     {
-        TRAINER_PIC(Picnicker, PICNICKER),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Picnicker, PICNICKER, Trainer),
     },
     
     [TRAINER_PIC_BUG_MANIAC] =
     {
-        TRAINER_PIC(BugManiac, BUG_MANIAC),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(BugManiac, BUG_MANIAC, Trainer),
     },
     
     [TRAINER_PIC_POKEMON_BREEDER_M] =
     {
-        TRAINER_PIC(PokemonBreederM, POKEMON_BREEDER_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(PokemonBreederM, POKEMON_BREEDER_M, Trainer),
     },
     
     [TRAINER_PIC_PSYCHIC_M] =
     {
-        TRAINER_PIC(PsychicM, PSYCHIC_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(PsychicM, PSYCHIC_M, Trainer),
     },
     
     [TRAINER_PIC_PSYCHIC_F] =
     {
-        TRAINER_PIC(PsychicF, PSYCHIC_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(PsychicF, PSYCHIC_F, Trainer),
     },
     
     [TRAINER_PIC_GENTLEMAN] =
     {
-        TRAINER_PIC(Gentleman, GENTLEMAN),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Gentleman, GENTLEMAN, Trainer),
     },
     
     [TRAINER_PIC_ELITE_FOUR_SIDNEY] =
     {
-        TRAINER_PIC(EliteFourSidney, ELITE_FOUR_SIDNEY),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(EliteFourSidney, ELITE_FOUR_SIDNEY, Trainer),
     },
     
     [TRAINER_PIC_ELITE_FOUR_PHOEBE] =
     {
-        TRAINER_PIC(EliteFourPhoebe, ELITE_FOUR_PHOEBE),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(EliteFourPhoebe, ELITE_FOUR_PHOEBE, Trainer),
     },
     
     [TRAINER_PIC_ELITE_FOUR_GLACIA] =
     {
-        TRAINER_PIC(EliteFourGlacia, ELITE_FOUR_GLACIA),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(EliteFourGlacia, ELITE_FOUR_GLACIA, Trainer),
     },
     
     [TRAINER_PIC_ELITE_FOUR_DRAKE] =
     {
-        TRAINER_PIC(EliteFourDrake, ELITE_FOUR_DRAKE),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(EliteFourDrake, ELITE_FOUR_DRAKE, Trainer),
     },
     
     [TRAINER_PIC_LEADER_ROXANNE] =
     {
-        TRAINER_PIC(LeaderRoxanne, LEADER_ROXANNE),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(LeaderRoxanne, LEADER_ROXANNE, Trainer),
     },
     
     [TRAINER_PIC_LEADER_BRAWLY] =
     {
-        TRAINER_PIC(LeaderBrawly, LEADER_BRAWLY),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(LeaderBrawly, LEADER_BRAWLY, Trainer),
     },
     
     [TRAINER_PIC_LEADER_WATTSON] =
     {
-        TRAINER_PIC(LeaderWattson, LEADER_WATTSON),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(LeaderWattson, LEADER_WATTSON, Trainer),
     },
     
     [TRAINER_PIC_LEADER_FLANNERY] =
     {
-        TRAINER_PIC(LeaderFlannery, LEADER_FLANNERY),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(LeaderFlannery, LEADER_FLANNERY, Trainer),
     },
     
     [TRAINER_PIC_LEADER_NORMAN] =
     {
-        TRAINER_PIC(LeaderNorman, LEADER_NORMAN),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(LeaderNorman, LEADER_NORMAN, Trainer),
     },
     
     [TRAINER_PIC_LEADER_WINONA] =
     {
-        TRAINER_PIC(LeaderWinona, LEADER_WINONA),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(LeaderWinona, LEADER_WINONA, Trainer),
     },
     
     [TRAINER_PIC_LEADER_TATE_AND_LIZA] =
     {
-        TRAINER_PIC(LeaderTateAndLiza, LEADER_TATE_AND_LIZA),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(LeaderTateAndLiza, LEADER_TATE_AND_LIZA, Trainer),
     },
     
     [TRAINER_PIC_LEADER_JUAN] =
     {
-        TRAINER_PIC(LeaderJuan, LEADER_JUAN),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(LeaderJuan, LEADER_JUAN, Trainer),
     },
     
     [TRAINER_PIC_SCHOOL_KID_M] =
     {
-        TRAINER_PIC(SchoolKidM, SCHOOL_KID_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(SchoolKidM, SCHOOL_KID_M, Trainer),
     },
     
     [TRAINER_PIC_SCHOOL_KID_F] =
     {
-        TRAINER_PIC(SchoolKidF, SCHOOL_KID_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(SchoolKidF, SCHOOL_KID_F, Trainer),
     },
     
     [TRAINER_PIC_SR_AND_JR] =
     {
-        TRAINER_PIC(SrAndJr, SR_AND_JR),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(SrAndJr, SR_AND_JR, Trainer),
     },
     
     [TRAINER_PIC_POKEFAN_M] =
     {
-        TRAINER_PIC(PokefanM, POKEFAN_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(PokefanM, POKEFAN_M, Trainer),
     },
     
     [TRAINER_PIC_POKEFAN_F] =
     {
-        TRAINER_PIC(PokefanF, POKEFAN_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(PokefanF, POKEFAN_F, Trainer),
     },
     
     [TRAINER_PIC_YOUNGSTER] =
     {
-        TRAINER_PIC(Youngster, YOUNGSTER),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Youngster, YOUNGSTER, Trainer),
     },
     
     [TRAINER_PIC_CHAMPION_WALLACE] =
     {
-        TRAINER_PIC(ChampionWallace, CHAMPION_WALLACE),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(ChampionWallace, CHAMPION_WALLACE, Trainer),
     },
     
     [TRAINER_PIC_FISHERMAN] =
     {
-        TRAINER_PIC(Fisherman, FISHERMAN),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Fisherman, FISHERMAN, Trainer),
     },
     
     [TRAINER_PIC_CYCLING_TRIATHLETE_M] =
     {
-        TRAINER_PIC(CyclingTriathleteM, CYCLING_TRIATHLETE_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(CyclingTriathleteM, CYCLING_TRIATHLETE_M, Trainer),
     },
     
     [TRAINER_PIC_CYCLING_TRIATHLETE_F] =
     {
-        TRAINER_PIC(CyclingTriathleteF, CYCLING_TRIATHLETE_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(CyclingTriathleteF, CYCLING_TRIATHLETE_F, Trainer),
     },
     
     [TRAINER_PIC_RUNNING_TRIATHLETE_M] =
     {
-        TRAINER_PIC(RunningTriathleteM, RUNNING_TRIATHLETE_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(RunningTriathleteM, RUNNING_TRIATHLETE_M, Trainer),
     },
     
     [TRAINER_PIC_RUNNING_TRIATHLETE_F] =
     {
-        TRAINER_PIC(RunningTriathleteF, RUNNING_TRIATHLETE_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(RunningTriathleteF, RUNNING_TRIATHLETE_F, Trainer),
     },
     
     [TRAINER_PIC_SWIMMING_TRIATHLETE_M] =
     {
-        TRAINER_PIC(SwimmingTriathleteM, SWIMMING_TRIATHLETE_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(SwimmingTriathleteM, SWIMMING_TRIATHLETE_M, Trainer),
     },
     
     [TRAINER_PIC_SWIMMING_TRIATHLETE_F] =
     {
-        TRAINER_PIC(SwimmingTriathleteF, SWIMMING_TRIATHLETE_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(SwimmingTriathleteF, SWIMMING_TRIATHLETE_F, Trainer),
     },
     
     [TRAINER_PIC_DRAGON_TAMER] =
     {
-        TRAINER_PIC(DragonTamer, DRAGON_TAMER),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(DragonTamer, DRAGON_TAMER, Trainer),
     },
     
     [TRAINER_PIC_NINJA_BOY] =
     {
-        TRAINER_PIC(NinjaBoy, NINJA_BOY),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(NinjaBoy, NINJA_BOY, Trainer),
     },
     
     [TRAINER_PIC_BATTLE_GIRL] =
     {
-        TRAINER_PIC(BattleGirl, BATTLE_GIRL),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(BattleGirl, BATTLE_GIRL, Trainer),
     },
     
     [TRAINER_PIC_PARASOL_LADY] =
     {
-        TRAINER_PIC(ParasolLady, PARASOL_LADY),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(ParasolLady, PARASOL_LADY, Trainer),
     },
     
     [TRAINER_PIC_SWIMMER_F] =
     {
-        TRAINER_PIC(SwimmerF, SWIMMER_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(SwimmerF, SWIMMER_F, Trainer),
     },
     
     [TRAINER_PIC_TWINS] =
     {
-        TRAINER_PIC(Twins, TWINS),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Twins, TWINS, Trainer),
     },
     
     [TRAINER_PIC_SAILOR] =
     {
-        TRAINER_PIC(Sailor, SAILOR),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Sailor, SAILOR, Trainer),
     },
     
     [TRAINER_PIC_MAGMA_ADMIN] =
     {
-        TRAINER_PIC(MagmaAdmin, MAGMA_ADMIN),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(MagmaAdmin, MAGMA_ADMIN, Trainer),
     },
     
     [TRAINER_PIC_WALLY] =
     {
-        TRAINER_PIC(Wally, WALLY),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Wally, WALLY, Trainer),
     },
     
     [TRAINER_PIC_BRENDAN] =
     {
-        TRAINER_PIC(Brendan, BRENDAN),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Brendan, BRENDAN, Trainer),
     },
     
     [TRAINER_PIC_MAY] =
     {
-        TRAINER_PIC(May, MAY),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(May, MAY, Trainer),
     },
     
     [TRAINER_PIC_BUG_CATCHER] =
     {
-        TRAINER_PIC(BugCatcher, BUG_CATCHER),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(BugCatcher, BUG_CATCHER, Trainer),
     },
     
     [TRAINER_PIC_POKEMON_RANGER_M] =
     {
-        TRAINER_PIC(PokemonRangerM, POKEMON_RANGER_M),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(PokemonRangerM, POKEMON_RANGER_M, Trainer),
     },
     
     [TRAINER_PIC_POKEMON_RANGER_F] =
     {
-        TRAINER_PIC(PokemonRangerF, POKEMON_RANGER_F),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(PokemonRangerF, POKEMON_RANGER_F, Trainer),
     },
     
     [TRAINER_PIC_MAGMA_LEADER_MAXIE] =
     {
-        TRAINER_PIC(MagmaLeaderMaxie, MAGMA_LEADER_MAXIE),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(MagmaLeaderMaxie, MAGMA_LEADER_MAXIE, Trainer),
     },
     
     [TRAINER_PIC_LASS] =
     {
-        TRAINER_PIC(Lass, LASS),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Lass, LASS, Trainer),
     },
     
     [TRAINER_PIC_YOUNG_COUPLE] =
     {
-        TRAINER_PIC(YoungCouple, YOUNG_COUPLE),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(YoungCouple, YOUNG_COUPLE, Trainer),
     },
     
     [TRAINER_PIC_OLD_COUPLE] =
     {
-        TRAINER_PIC(OldCouple, OLD_COUPLE),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(OldCouple, OLD_COUPLE, Trainer),
     },
     
     [TRAINER_PIC_SIS_AND_BRO] =
     {
-        TRAINER_PIC(SisAndBro, SIS_AND_BRO),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(SisAndBro, SIS_AND_BRO, Trainer),
     },
     
     [TRAINER_PIC_STEVEN] =
     {
-        TRAINER_PIC(Steven, STEVEN),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Steven, STEVEN, Trainer),
     },
     
     [TRAINER_PIC_SALON_MAIDEN_ANABEL] =
     {
-        TRAINER_PIC(SalonMaidenAnabel, SALON_MAIDEN_ANABEL),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(SalonMaidenAnabel, SALON_MAIDEN_ANABEL, Trainer),
     },
     
     [TRAINER_PIC_DOME_ACE_TUCKER] =
     {
-        TRAINER_PIC(DomeAceTucker, DOME_ACE_TUCKER),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(DomeAceTucker, DOME_ACE_TUCKER, Trainer),
     },
     
     [TRAINER_PIC_PALACE_MAVEN_SPENSER] =
     {
-        TRAINER_PIC(PalaceMavenSpenser, PALACE_MAVEN_SPENSER),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(PalaceMavenSpenser, PALACE_MAVEN_SPENSER, Trainer),
     },
     
     [TRAINER_PIC_ARENA_TYCOON_GRETA] =
     {
-        TRAINER_PIC(ArenaTycoonGreta, ARENA_TYCOON_GRETA),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(ArenaTycoonGreta, ARENA_TYCOON_GRETA, Trainer),
     },
     
     [TRAINER_PIC_FACTORY_HEAD_NOLAND] =
     {
-        TRAINER_PIC(FactoryHeadNoland, FACTORY_HEAD_NOLAND),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(FactoryHeadNoland, FACTORY_HEAD_NOLAND, Trainer),
     },
     
     [TRAINER_PIC_PIKE_QUEEN_LUCY] =
     {
-        TRAINER_PIC(PikeQueenLucy, PIKE_QUEEN_LUCY),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(PikeQueenLucy, PIKE_QUEEN_LUCY, Trainer),
     },
     
     [TRAINER_PIC_PYRAMID_KING_BRANDON] =
     {
-        TRAINER_PIC(PyramidKingBrandon, PYRAMID_KING_BRANDON),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(PyramidKingBrandon, PYRAMID_KING_BRANDON, Trainer),
     },
     
     [TRAINER_PIC_RED] =
     {
-        TRAINER_PIC(Red, RED),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Red, RED, Trainer),
     },
     
     [TRAINER_PIC_LEAF] =
     {
-        TRAINER_PIC(Leaf, LEAF),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(Leaf, LEAF, Trainer),
     },
     
     [TRAINER_PIC_RS_BRENDAN] =
     {
-        TRAINER_PIC(RubySapphireBrendan, RS_BRENDAN),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(RubySapphireBrendan, RS_BRENDAN, Trainer),
     },
     
     [TRAINER_PIC_RS_MAY] =
     {
-        TRAINER_PIC(RubySapphireMay, RS_MAY),
-        .animation = sAnims_Trainer,
+        TRAINER_PIC(RubySapphireMay, RS_MAY, Trainer),
     },
 };
