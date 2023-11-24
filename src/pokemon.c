@@ -8764,22 +8764,22 @@ void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality)
 
 const u8 *GetTrainerClassNameFromId(u16 trainerId)
 {
-    if (trainerId >= MAX_TRAINERS_COUNT && trainerId < PARTNERS_COUNT)
+    if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
         return gTrainerClassNames[gBattlePartners[trainerId].trainerClass];
     else if (trainerId < TRAINERS_COUNT)
         return gTrainerClassNames[gTrainers[trainerId].trainerClass];
-    else
-        return gTrainerClassNames[gTrainers[TRAINER_NONE].trainerClass];
+
+    return gTrainerClassNames[gTrainers[TRAINER_NONE].trainerClass];
 }
 
 const u8 *GetTrainerNameFromId(u16 trainerId)
 {
-    if (trainerId >= MAX_TRAINERS_COUNT && trainerId < PARTNERS_COUNT)
+    if (trainerId > TRAINER_PARTNER(PARTNER_NONE))
         return gBattlePartners[trainerId].trainerName;
     else if (trainerId < TRAINERS_COUNT)
         return gTrainers[trainerId].trainerName;
-    else
-        return gTrainers[TRAINER_NONE].trainerName;
+
+    return gTrainers[TRAINER_NONE].trainerName;
 }
 
 bool8 HasTwoFramesAnimation(u16 species)
