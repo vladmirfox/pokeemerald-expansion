@@ -4081,7 +4081,7 @@ static bool32 IsDomeRareMove(u32 move)
                 break;
             }
         }
-        if (species > NUM_SPECIES / 10)
+        if (species >= NUM_SPECIES * 0.05)
             return FALSE;
     }
     return TRUE;
@@ -4109,7 +4109,7 @@ static bool32 IsDomeComboMoveEffect(u32 effect)
     case EFFECT_SHORE_UP:
     case EFFECT_THUNDER:
     case EFFECT_HURRICANE:
-    //case EFFECT_BLIZZARD:
+    //case EFFECT_BLIZZARD: (needs a unique effect in gBattleMoves!)
     case EFFECT_SOLAR_BEAM:
     case EFFECT_GROWTH:
     case EFFECT_AURORA_VEIL:
@@ -4117,7 +4117,7 @@ static bool32 IsDomeComboMoveEffect(u32 effect)
     // Moves dependent on terrain
     case EFFECT_EXPANDING_FORCE:
     case EFFECT_GRASSY_GLIDE:
-    //case EFFECT_MISTY_EXPLOSION:
+    //case EFFECT_MISTY_EXPLOSION: (needs a unique effect in gBattleMoves!)
     case EFFECT_PSYBLADE:
     case EFFECT_RISING_VOLTAGE:
     case EFFECT_TERRAIN_PULSE:
