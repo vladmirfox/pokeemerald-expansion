@@ -4212,16 +4212,17 @@ u8 Script_TryGainNewFanFromCounter(void)
 
 void TrySkyBattle(void)
 {
-#if B_VAR_SKY_BATTLE == 0 || B_FLAG_SKY_BATTLE == 0
-    LockPlayerFieldControls();
-    ScriptContext_SetupScript(Debug_FlagsAndVarNotSetBattleConfigMessage);
-#else
     int i;
 
+    if (B_VAR_SKY_BATTLE == 0 || B_FLAG_SKY_BATTLE == 0)
+    {
+        LockPlayerFieldControls();
+        ScriptContext_SetupScript(Debug_FlagsAndVarNotSetBattleConfigMessage);
+        return;
+    }
     for (i = 0; i < CalculatePlayerPartyCount(); i++)
     {
         struct Pokemon* pokemon = &gPlayerParty[i];
-
         if (CanMonParticipateInSkyBattle(pokemon) && GetMonData(pokemon, MON_DATA_HP, NULL) > 0)
         {
             PreparePartyForSkyBattle();
@@ -4230,7 +4231,6 @@ void TrySkyBattle(void)
         }
     }
     gSpecialVar_Result = FALSE;
-#endif
 }
 
 void PreparePartyForSkyBattle(void)

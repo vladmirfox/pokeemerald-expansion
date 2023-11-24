@@ -46,7 +46,6 @@ void SetContinueGameWarpStatusToDynamicWarp(void);
 void ClearContinueGameWarpStatus2(void);
 void SavePlayerParty(void);
 void LoadPlayerParty(void);
-void SaveChangesToPlayerParty(void);
 void SaveObjectEvents(void);
 void LoadObjectEvents(void);
 void CopyPartyAndObjectsToSave(void);

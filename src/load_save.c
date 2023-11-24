@@ -178,20 +178,6 @@ void LoadPlayerParty(void)
         gPlayerParty[i] = gSaveBlock1Ptr->playerParty[i];
 }
 
-void SaveChangesToPlayerParty(void)
-{
-    u8 i = 0, j = 0;
-    u8 participatedPokemon = VarGet(B_VAR_SKY_BATTLE);
-    for (i = 0; i < PARTY_SIZE; i++)
-    {
-        if ((participatedPokemon >> i & 1) == 1)
-        {
-            gSaveBlock1Ptr->playerParty[i] = gPlayerParty[j];
-            j++;
-        }
-    }
-}
-
 void SaveObjectEvents(void)
 {
     int i;
