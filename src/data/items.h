@@ -22,14 +22,6 @@
 
 #define X_ITEM_STAGES (B_X_ITEMS_BUFF >= GEN_7) ? 2 : 1
 
-#if B_CONFUSE_BERRIES_HEAL >= GEN_8
-    #define CONFUSE_BERRY_HEAL_FRACTION 3
-#elif B_CONFUSE_BERRIES_HEAL == GEN_7
-    #define CONFUSE_BERRY_HEAL_FRACTION 2
-#else
-    #define CONFUSE_BERRY_HEAL_FRACTION 8
-#endif
-
 const struct Item gItems[] =
 {
     [ITEM_NONE] =
