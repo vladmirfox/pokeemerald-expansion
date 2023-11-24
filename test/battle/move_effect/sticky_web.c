@@ -35,11 +35,11 @@ SINGLE_BATTLE_TEST("Sticky Web can only be set up 1 time")
         TURN { MOVE(player, MOVE_STICKY_WEB); }
         TURN { MOVE(player, MOVE_STICKY_WEB); }
     } SCENE {
-        MESSAGE("Wobbuffet used Sticky Web!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_STICKY_WEB) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
         MESSAGE("A sticky web spreads out on the ground around the opposing team!");
 
-        MESSAGE("Wobbuffet used Sticky Web!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_STICKY_WEB) "!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
         MESSAGE("But it failed!");
     }

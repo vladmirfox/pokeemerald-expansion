@@ -34,10 +34,10 @@ SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when hit by Bug, Dark or Ghost typ
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
             MESSAGE("Foe Sudowoodo's Speed rose!");
         }
-        MESSAGE("Foe Sudowoodo used Celebrate!");
+        MESSAGE("Foe Sudowoodo used " MOVE_NAME(MOVE_CELEBRATE) "!");
         // Sudowoodo is now faster
         if (move != MOVE_TACKLE){
-            MESSAGE("Foe Sudowoodo used Celebrate!");
+            MESSAGE("Foe Sudowoodo used " MOVE_NAME(MOVE_CELEBRATE) "!");
             ANIMATION(ANIM_TYPE_MOVE, move, player);
             HP_BAR(opponent);
             ABILITY_POPUP(opponent, ABILITY_RATTLED);
@@ -47,7 +47,7 @@ SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when hit by Bug, Dark or Ghost typ
         else {
             ANIMATION(ANIM_TYPE_MOVE, move, player);
             HP_BAR(opponent);
-            MESSAGE("Foe Sudowoodo used Celebrate!");
+            MESSAGE("Foe Sudowoodo used " MOVE_NAME(MOVE_CELEBRATE) "!");
         }
     }
 }
@@ -82,7 +82,7 @@ SINGLE_BATTLE_TEST("Rattled triggers correctly when hit by U-Turn") // Specific 
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); }
     } SCENE {
-        MESSAGE("Wobbuffet used U-turn!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_U_TURN) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
         HP_BAR(opponent);
         ABILITY_POPUP(opponent, ABILITY_RATTLED);

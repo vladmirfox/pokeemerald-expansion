@@ -37,7 +37,7 @@ SINGLE_BATTLE_TEST("Wind Power sets up Charge for player when hit by a wind move
         HP_BAR(player);
         if (move == MOVE_AIR_CUTTER) {
             ABILITY_POPUP(player, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Air Cutter charged Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_AIR_CUTTER) " charged Wobbuffet with power!");
         }
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDERBOLT, player);
@@ -47,7 +47,7 @@ SINGLE_BATTLE_TEST("Wind Power sets up Charge for player when hit by a wind move
         HP_BAR(player);
         if (move == MOVE_AIR_CUTTER) {
             ABILITY_POPUP(player, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Air Cutter charged Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_AIR_CUTTER) " charged Wobbuffet with power!");
         }
     }
     THEN {
@@ -82,7 +82,7 @@ SINGLE_BATTLE_TEST("Wind Power sets up Charge for opponent when hit by a wind mo
         HP_BAR(opponent);
         if (move == MOVE_AIR_CUTTER) {
             ABILITY_POPUP(opponent, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Air Cutter charged Foe Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_AIR_CUTTER) " charged Foe Wobbuffet with power!");
         }
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDERBOLT, opponent);
@@ -92,7 +92,7 @@ SINGLE_BATTLE_TEST("Wind Power sets up Charge for opponent when hit by a wind mo
         HP_BAR(opponent);
         if (move == MOVE_AIR_CUTTER) {
             ABILITY_POPUP(opponent, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Air Cutter charged Foe Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_AIR_CUTTER) " charged Foe Wobbuffet with power!");
         }
     }
     THEN {
@@ -126,12 +126,12 @@ DOUBLE_BATTLE_TEST("Wind Power activates correctly for every battler with the ab
         HP_BAR(playerLeft);
         if (abilityLeft == ABILITY_WIND_POWER) {
             ABILITY_POPUP(playerLeft, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Air Cutter charged Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_AIR_CUTTER) " charged Wobbuffet with power!");
         }
         HP_BAR(playerRight);
         if (abilityRight == ABILITY_WIND_POWER) {
             ABILITY_POPUP(playerRight, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Air Cutter charged Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_AIR_CUTTER) " charged Wobbuffet with power!");
         }
         NONE_OF {
             HP_BAR(opponentLeft);
@@ -167,12 +167,12 @@ DOUBLE_BATTLE_TEST("Wind Power activates correctly for every battler with the ab
         HP_BAR(playerLeft);
         if (abilityLeft == ABILITY_WIND_POWER) {
             ABILITY_POPUP(playerLeft, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by PetalBlizzrd charged Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_PETAL_BLIZZARD) " charged Wobbuffet with power!");
         }
         HP_BAR(playerRight);
         if (abilityRight == ABILITY_WIND_POWER) {
             ABILITY_POPUP(playerRight, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by PetalBlizzrd charged Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_PETAL_BLIZZARD) " charged Wobbuffet with power!");
         }
         HP_BAR(opponentRight);
         NOT HP_BAR(opponentLeft);
@@ -205,19 +205,19 @@ DOUBLE_BATTLE_TEST("Wind Power activates correctly when Tailwind is used")
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TAILWIND, opponentLeft);
 
             ABILITY_POPUP(opponentLeft, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Tailwind charged Foe Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_TAILWIND) " charged Foe Wobbuffet with power!");
 
             ABILITY_POPUP(opponentRight, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Tailwind charged Foe Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_TAILWIND) " charged Foe Wobbuffet with power!");
         }
         else {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TAILWIND, playerLeft);
 
             ABILITY_POPUP(playerLeft, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Tailwind charged Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_TAILWIND) " charged Wobbuffet with power!");
 
             ABILITY_POPUP(playerRight, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by Tailwind charged Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_TAILWIND) " charged Wobbuffet with power!");
         }
     }
 }

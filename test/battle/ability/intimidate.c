@@ -118,7 +118,7 @@ SINGLE_BATTLE_TEST("Intimidate and Eject Button force the opponent to Attack")
         MESSAGE("Foe Hitmontop's Intimidate cuts Wobbuffet's attack!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
-            MESSAGE("Foe Hitmontop used Tackle!");
+            MESSAGE("Foe Hitmontop used " MOVE_NAME(MOVE_TACKLE) "!");
         }
     }
 }

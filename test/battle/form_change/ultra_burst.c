@@ -68,8 +68,8 @@ SINGLE_BATTLE_TEST("Ultra Burst affects turn order")
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, ultraBurst: TRUE); }
     } SCENE {
-        MESSAGE("Necrozma used Celebrate!");
-        MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("Necrozma used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
     } THEN {
         ASSUME(player->speed == 263);
     }

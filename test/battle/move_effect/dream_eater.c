@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Dream Eater fails on awake targets")
     } WHEN {
         TURN { MOVE(player, MOVE_DREAM_EATER); }
     } SCENE {
-        MESSAGE("Wobbuffet used Dream Eater!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_DREAM_EATER) "!");
         MESSAGE("Foe Wobbuffet wasn't affected!");
     }
 }

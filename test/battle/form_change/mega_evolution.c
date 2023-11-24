@@ -80,8 +80,8 @@ SINGLE_BATTLE_TEST("Mega Evolution affects turn order")
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, megaEvolve: TRUE); }
     } SCENE {
-        MESSAGE("Gardevoir used Celebrate!");
-        MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("Gardevoir used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
     } THEN {
         ASSUME(player->speed == 205);
     }
@@ -98,8 +98,8 @@ SINGLE_BATTLE_TEST("Abilities replaced by Mega Evolution do not affect turn orde
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, megaEvolve: TRUE); }
     } SCENE {
-        MESSAGE("Sableye used Celebrate!");
-        MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("Sableye used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
     } THEN {
         ASSUME(player->speed == 45);
     }

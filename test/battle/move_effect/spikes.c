@@ -56,7 +56,7 @@ SINGLE_BATTLE_TEST("Spikes fails after 3 layers")
         MESSAGE("Spikes were scattered all around the opposing team!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKES, player);
         MESSAGE("Spikes were scattered all around the opposing team!");
-        MESSAGE("Wobbuffet used Spikes!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SPIKES) "!");
         MESSAGE("But it failed!");
         MESSAGE("2 sent out Wynaut!");
         HP_BAR(opponent, damage: maxHP / 4);

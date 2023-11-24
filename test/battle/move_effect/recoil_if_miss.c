@@ -15,7 +15,7 @@ SINGLE_BATTLE_TEST("Jump Kick has 50% recoil on miss")
         TURN { MOVE(player, MOVE_JUMP_KICK, hit: FALSE); }
     } SCENE {
         s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
-        MESSAGE("Wobbuffet used Jump Kick!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_JUMP_KICK) "!");
         MESSAGE("Wobbuffet's attack missed!");
         MESSAGE("Wobbuffet kept going and crashed!");
         HP_BAR(player, damage: maxHP / 2);
@@ -77,7 +77,7 @@ SINGLE_BATTLE_TEST("Jump Kick's recoil happens after Spiky Shield damage and Pok
         TURN { ; }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKY_SHIELD, opponent);
-        MESSAGE("Wobbuffet used Jump Kick!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_JUMP_KICK) "!");
         MESSAGE("Foe Wobbuffet protected itself!");
         HP_BAR(player, damage: maxHp / 8);
         MESSAGE("Wobbuffet was hurt by Foe Wobbuffet's Spiky Shield!");

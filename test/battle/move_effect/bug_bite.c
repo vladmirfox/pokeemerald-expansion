@@ -45,9 +45,9 @@ SINGLE_BATTLE_TEST("Bug Bite eats the target's berry and immediately gains its e
 
     } SCENE {
         if (item == ITEM_CHESTO_BERRY) {
-            MESSAGE("Wobbuffet used Sleep Talk!");
+            MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SLEEP_TALK) "!");
         }
-        MESSAGE("Wobbuffet used Bug Bite!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_BUG_BITE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BUG_BITE, player);
         HP_BAR(opponent);
         if (effect == HOLD_EFFECT_RESTORE_HP || effect == HOLD_EFFECT_ENIGMA_BERRY) {
@@ -124,7 +124,7 @@ SINGLE_BATTLE_TEST("Tanga Berry activates before Bug Bite")
     } WHEN {
         TURN { MOVE(player, MOVE_BUG_BITE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Bug Bite!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_BUG_BITE) "!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         MESSAGE("Foe Wobbuffet ate its Tanga Berry!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BUG_BITE, player);

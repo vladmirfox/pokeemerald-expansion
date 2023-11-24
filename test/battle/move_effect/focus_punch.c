@@ -25,13 +25,13 @@ SINGLE_BATTLE_TEST("Focus Punch activates only if not damaged")
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
 
         if (activate) {
-            MESSAGE("Wobbuffet used Focus Punch!");
+            MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FOCUS_PUNCH) "!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FOCUS_PUNCH, player);
             HP_BAR(opponent);
         } else {
             MESSAGE("Wobbuffet lost its focus and couldn't move!");
             NONE_OF {
-                MESSAGE("Wobbuffet used Focus Punch!");
+                MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FOCUS_PUNCH) "!");
                 ANIMATION(ANIM_TYPE_MOVE, MOVE_FOCUS_PUNCH, player);
                 HP_BAR(opponent);
             }
@@ -62,11 +62,11 @@ DOUBLE_BATTLE_TEST("Focus Punch activation is based on Speed")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FOCUS_PUNCH_SETUP, opponentLeft);
         MESSAGE("Foe Wobbuffet is tightening its focus!");
 
-        MESSAGE("Foe Wynaut used Focus Punch!");
+        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_FOCUS_PUNCH) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FOCUS_PUNCH, opponentRight);
         HP_BAR(playerLeft);
 
-        MESSAGE("Wynaut used Focus Punch!");
+        MESSAGE("Wynaut used " MOVE_NAME(MOVE_FOCUS_PUNCH) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FOCUS_PUNCH, playerRight);
         HP_BAR(opponentLeft);
 

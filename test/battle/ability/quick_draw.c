@@ -11,7 +11,7 @@ SINGLE_BATTLE_TEST("Quick Draw has a 30% chance of going first")
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_QUICK_DRAW);
-        MESSAGE("Slowbro used Tackle!");
-        MESSAGE("Foe Wobbuffet used Celebrate!");
+        MESSAGE("Slowbro used " MOVE_NAME(MOVE_TACKLE) "!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
     }
 }

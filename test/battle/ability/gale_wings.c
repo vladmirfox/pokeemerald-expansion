@@ -15,12 +15,12 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP")
         TURN { MOVE(player, MOVE_AERIAL_ACE); }
     } SCENE {
         if (hp == 100) {
-            MESSAGE("Talonflame used Aerial Ace!");
-            MESSAGE("Foe Wobbuffet used Celebrate!");
+            MESSAGE("Talonflame used " MOVE_NAME(MOVE_AERIAL_ACE) "!");
+            MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
         }
         else {
-            MESSAGE("Foe Wobbuffet used Celebrate!");
-            MESSAGE("Talonflame used Aerial Ace!");
+            MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+            MESSAGE("Talonflame used " MOVE_NAME(MOVE_AERIAL_ACE) "!");
         }
     }
 }
@@ -40,12 +40,12 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority to Flying-type moves")
         TURN { MOVE(player, move); }
     } SCENE {
         if (move == MOVE_AERIAL_ACE) {
-            MESSAGE("Talonflame used Aerial Ace!");
-            MESSAGE("Foe Wobbuffet used Celebrate!");
+            MESSAGE("Talonflame used " MOVE_NAME(MOVE_AERIAL_ACE) "!");
+            MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
         }
         else {
-            MESSAGE("Foe Wobbuffet used Celebrate!");
-            MESSAGE("Talonflame used Flare Blitz!");
+            MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+            MESSAGE("Talonflame used " MOVE_NAME(MOVE_FLARE_BLITZ) "!");
         }
     }
 }

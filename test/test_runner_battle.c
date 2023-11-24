@@ -707,9 +707,18 @@ void TestRunner_Battle_RecordHP(u32 battlerId, u32 oldHP, u32 newHP)
     }
 }
 
+static u8 DigitToInt(u8 character)
+{
+    if (character >= CHAR_0 && character <= CHAR_9)
+        return (character - CHAR_0);
+    return 0;
+}
+
 static s32 TryMessage(s32 i, s32 n, const u8 *string)
 {
-    s32 j, k;
+    s32 j, k, l;
+    u32 refType, refID;
+    const u8 *refString;
     struct QueuedMessageEvent *event;
     s32 iMax = i + n;
     for (; i < iMax; i++)
@@ -739,14 +748,50 @@ static s32 TryMessage(s32 i, s32 n, const u8 *string)
                 if (string[j] == CHAR_PROMPT_CLEAR)
                     j++;
             }
+            if (event->pattern[k] == CHAR_BLACK_TRIANGLE && event->pattern[k + 1] != EOS)
+            {
+                refID = 0;
+                refType = event->pattern[k + 1];
+                k += 2;
+                while (event->pattern[k] != EOS && event->pattern[k] != CHAR_BLACK_TRIANGLE)
+                {
+                    refID = refID * 10 + DigitToInt(event->pattern[k]);
+                    k++;
+                }
+                switch(refType)
+                {
+                case CHAR_M: // M for move
+                    refString = gMoveNames[refID];
+                    break;
+                case CHAR_A: // A for ability
+                    refString = gAbilityNames[refID];
+                    break;
+                }
+                for (l = 0; refString[l] != EOS; l++)
+                {
+                    if (refString[l] != string[j])
+                        return -1;
+                    j++;
+                }
+                k++;
+                if (event->pattern[k] == CHAR_SPACE)
+                {
+                    switch (string[j])
+                    {
+                    case CHAR_SPACE:
+                    case CHAR_PROMPT_SCROLL:
+                    case CHAR_PROMPT_CLEAR:
+                    case CHAR_NEWLINE:
+                        j++;
+                        k++;
+                        break;
+                    }
+                }
+            }
             if (string[j] != event->pattern[k])
-            {
                 break;
-            }
             else if (string[j] == EOS)
-            {
                 return i;
-            }
         }
     }
     return -1;

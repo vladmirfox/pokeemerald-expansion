@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("Roar fails if no replacements")
     } WHEN {
         TURN { MOVE(player, MOVE_ROAR); }
     } SCENE {
-        MESSAGE("Wobbuffet used Roar!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_ROAR) "!");
         MESSAGE("But it failed!");
     }
 }
@@ -64,7 +64,7 @@ SINGLE_BATTLE_TEST("Roar fails if replacements fainted")
     } WHEN {
         TURN { MOVE(player, MOVE_ROAR); }
     } SCENE {
-        MESSAGE("Wobbuffet used Roar!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_ROAR) "!");
         MESSAGE("But it failed!");
     }
 }

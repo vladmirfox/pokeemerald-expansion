@@ -841,6 +841,9 @@ void SendOut(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 #define MESSAGE(pattern) do {static const u8 msg[] = _(pattern); QueueMessage(__LINE__, msg);} while (0)
 #define STATUS_ICON(battler, status) QueueStatus(__LINE__, battler, (struct StatusEventContext) { status })
 
+#define MOVE_NAME(move) "▶M" STR(move) "▶"
+#define ABILITY_NAME(ability) "▶A" STR(ability) "▶"
+
 enum QueueGroupType
 {
     QUEUE_GROUP_NONE,

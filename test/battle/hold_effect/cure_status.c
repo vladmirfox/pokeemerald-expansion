@@ -204,7 +204,7 @@ SINGLE_BATTLE_TEST("Opponent Pokemon can be further poisoned with Toxic spikes a
         TURN { SWITCH(opponent, 1); }
         TURN { SWITCH(opponent, 0); }
     } SCENE {
-        MESSAGE("Wobbuffet used Toxic Spikes!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TOXIC_SPIKES) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, player);
         MESSAGE("Poison Spikes were scattered all around the opposing team's feet!");
         // 1st switch-in
@@ -245,7 +245,7 @@ SINGLE_BATTLE_TEST("Player Pokemon can be further poisoned with Toxic spikes aft
         TURN { SWITCH(player, 1); }
         TURN { SWITCH(player, 2); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Toxic Spikes!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TOXIC_SPIKES) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, opponent);
         MESSAGE("Poison Spikes were scattered all around your team's feet!");
         // 1st switch-in

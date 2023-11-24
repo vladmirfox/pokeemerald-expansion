@@ -21,11 +21,11 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the opponent")
         TURN { MOVE(playerLeft, MOVE_COURT_CHANGE); }
         TURN { SWITCH(playerLeft, 2); SWITCH(opponentLeft, 2); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Sticky Web!");
-        MESSAGE("Foe Wobbuffet used Stealth Rock!");
-        MESSAGE("Foe Wobbuffet used Spikes!");
-        MESSAGE("Foe Wobbuffet used Toxic Spikes!");
-        MESSAGE("Wynaut used Court Change!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_STICKY_WEB) "!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_STEALTH_ROCK) "!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_SPIKES) "!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TOXIC_SPIKES) "!");
+        MESSAGE("Wynaut used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
         MESSAGE("Wynaut swapped the battle effects affecting each side!");
         MESSAGE("Go! Wynaut!");
         NONE_OF {
@@ -57,11 +57,11 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the player")
         TURN { MOVE(opponentLeft, MOVE_COURT_CHANGE); }
         TURN { SWITCH(opponentLeft, 2); SWITCH(playerLeft, 2); }
     } SCENE {
-        MESSAGE("Wobbuffet used Sticky Web!");
-        MESSAGE("Wobbuffet used Stealth Rock!");
-        MESSAGE("Wobbuffet used Spikes!");
-        MESSAGE("Wobbuffet used Toxic Spikes!");
-        MESSAGE("Foe Wynaut used Court Change!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_STICKY_WEB) "!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_STEALTH_ROCK) "!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SPIKES) "!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TOXIC_SPIKES) "!");
+        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
         MESSAGE("Foe Wynaut swapped the battle effects affecting each side!");
         MESSAGE("Go! Wobbuffet!");
         MESSAGE("Wobbuffet is hurt by spikes!");
@@ -97,13 +97,13 @@ DOUBLE_BATTLE_TEST("Court Change used by the player swaps Mist, Safeguard, Lucky
         TURN { }
         TURN { }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used Mist!");
-        MESSAGE("Foe Wobbuffet used Safeguard!");
-        MESSAGE("Foe Wobbuffet used Lucky Chant!");
-        MESSAGE("Foe Wobbuffet used Reflect!");
-        MESSAGE("Foe Wobbuffet used Light Screen!");
-        MESSAGE("Foe Wobbuffet used Tailwind!");
-        MESSAGE("Wynaut used Court Change!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_MIST) "!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_SAFEGUARD) "!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_LUCKY_CHANT) "!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_REFLECT) "!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_LIGHT_SCREEN) "!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TAILWIND) "!");
+        MESSAGE("Wynaut used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
         MESSAGE("Wynaut swapped the battle effects affecting each side!");
         // The effects now end for the player side.
         MESSAGE("Ally's Mist wore off!");
@@ -134,13 +134,13 @@ DOUBLE_BATTLE_TEST("Court Change used by the opponent swaps Mist, Safeguard, Luc
         TURN { }
         TURN { }
     } SCENE {
-        MESSAGE("Wobbuffet used Mist!");
-        MESSAGE("Wobbuffet used Safeguard!");
-        MESSAGE("Wobbuffet used Lucky Chant!");
-        MESSAGE("Wobbuffet used Reflect!");
-        MESSAGE("Wobbuffet used Light Screen!");
-        MESSAGE("Wobbuffet used Tailwind!");
-        MESSAGE("Foe Wynaut used Court Change!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_MIST) "!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SAFEGUARD) "!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_LUCKY_CHANT) "!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_REFLECT) "!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_LIGHT_SCREEN) "!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TAILWIND) "!");
+        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
         MESSAGE("Foe Wynaut swapped the battle effects affecting each side!");
         // The effects now end for the player side.
         MESSAGE("Foe's Mist wore off!");

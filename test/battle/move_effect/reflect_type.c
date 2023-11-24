@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("Reflect Type does not affect any of Arceus' forms")
     } WHEN {
         TURN { MOVE(player, MOVE_REFLECT_TYPE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Reflect Type!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_REFLECT_TYPE) "!");
         MESSAGE("But it failed!");
     }
 }
@@ -81,7 +81,7 @@ SINGLE_BATTLE_TEST("Reflect Type does not affect any of Silvally's forms")
     } WHEN {
         TURN { MOVE(player, MOVE_REFLECT_TYPE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Reflect Type!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_REFLECT_TYPE) "!");
         MESSAGE("But it failed!");
     }
 }
@@ -98,11 +98,11 @@ SINGLE_BATTLE_TEST("Reflect Type does not affect Pokémon with no types")
     } WHEN {
         TURN { MOVE(player, MOVE_BURN_UP); MOVE(opponent, MOVE_REFLECT_TYPE); }
     } SCENE {
-        MESSAGE("Arcanine used Burn Up!");
+        MESSAGE("Arcanine used " MOVE_NAME(MOVE_BURN_UP) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BURN_UP, player);
         HP_BAR(opponent);
         MESSAGE("Arcanine burned itself out!");
-        MESSAGE("Foe Poliwrath used Reflect Type!");
+        MESSAGE("Foe Poliwrath used " MOVE_NAME(MOVE_REFLECT_TYPE) "!");
         MESSAGE("But it failed!");
     }
 }
@@ -119,7 +119,7 @@ SINGLE_BATTLE_TEST("Reflect Type copies a target's dual types")
     } WHEN {
         TURN { MOVE(player, MOVE_REFLECT_TYPE); }
     } SCENE {
-        MESSAGE("Arcanine used Reflect Type!");
+        MESSAGE("Arcanine used " MOVE_NAME(MOVE_REFLECT_TYPE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, player);
         MESSAGE("Arcanine's type changed to match the Foe Poliwrath's!");
     } THEN {
@@ -141,7 +141,7 @@ SINGLE_BATTLE_TEST("Reflect Type copies a target's pure type")
     } WHEN {
         TURN { MOVE(player, MOVE_REFLECT_TYPE); }
     } SCENE {
-        MESSAGE("Arcanine used Reflect Type!");
+        MESSAGE("Arcanine used " MOVE_NAME(MOVE_REFLECT_TYPE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, player);
         MESSAGE("Arcanine's type changed to match the Foe Sudowoodo's!");
     } THEN {
@@ -166,16 +166,16 @@ SINGLE_BATTLE_TEST("Reflect Type defaults to Normal type for the user's type1 an
         TURN { MOVE(player, MOVE_REFLECT_TYPE); }
     } SCENE {
         // Turn 1
-        MESSAGE("Foe Arcanine used Burn Up!");
+        MESSAGE("Foe Arcanine used " MOVE_NAME(MOVE_BURN_UP) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BURN_UP, opponent);
         HP_BAR(player);
         MESSAGE("Foe Arcanine burned itself out!");
         // Turn 2
-        MESSAGE("Wobbuffet used Forest'sCurs!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FORESTS_CURSE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FORESTS_CURSE, player);
         MESSAGE("Grass type was added to Foe Arcanine!");
         // Turn 3
-        MESSAGE("Wobbuffet used Reflect Type!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_REFLECT_TYPE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, player);
         MESSAGE("Wobbuffet's type changed to match the Foe Arcanine's!");
     } THEN {

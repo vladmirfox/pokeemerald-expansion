@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("Strength Sap lowers Attack by 1 and restores HP based on tar
     } WHEN {
         TURN { MOVE(player, MOVE_STRENGTH_SAP); }
     } SCENE {
-        MESSAGE("Wobbuffet used Strength Sap!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_STRENGTH_SAP) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         MESSAGE("Foe Wobbuffet's Attack fell!");
@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("Strength Sap works exactly the same when attacker is behind 
         TURN { MOVE(player, MOVE_STRENGTH_SAP); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, player);
-        MESSAGE("Wobbuffet used Strength Sap!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_STRENGTH_SAP) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         MESSAGE("Foe Wobbuffet's Attack fell!");

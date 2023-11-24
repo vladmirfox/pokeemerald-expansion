@@ -94,14 +94,14 @@ SINGLE_BATTLE_TEST("Roost suppresses the user's Flying-typing this turn, then re
         TURN { MOVE(opponent, MOVE_EARTHQUAKE); }
     } SCENE {
         // Turn 1: EQ hits when Roosted
-        MESSAGE("Skarmory used Roost!");
+        MESSAGE("Skarmory used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Skarmory regained health!");
-        MESSAGE("Foe Wobbuffet used Earthquake!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
         MESSAGE("It's super effective!");
         // Turn 2: EQ has no effect because Roost expired
-        MESSAGE("Foe Wobbuffet used Earthquake!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
         MESSAGE("It doesn't affect Skarmory…");
         NOT HP_BAR(player);
@@ -139,7 +139,7 @@ SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, damagingMove); }
     } SCENE {
-        MESSAGE("Tornadus used Roost!");
+        MESSAGE("Tornadus used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Tornadus regained health!");
 
@@ -209,11 +209,11 @@ SINGLE_BATTLE_TEST("Roost, if used by a Mystery/Flying type, treats the user as 
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, damagingMove); }
     } SCENE {
         // Turn 1: Use Burn Up to change from Fire/Flying to Mystery/Flying
-        MESSAGE("Moltres used Burn Up!");
+        MESSAGE("Moltres used " MOVE_NAME(MOVE_BURN_UP) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BURN_UP, player);
         MESSAGE("Moltres burned itself out!");
         // Turn 2: Use Roost to now be treated as a Mystery/Mystery type
-        MESSAGE("Moltres used Roost!");
+        MESSAGE("Moltres used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Moltres regained health!");
         ANIMATION(ANIM_TYPE_MOVE, damagingMove, opponent);
@@ -240,13 +240,13 @@ DOUBLE_BATTLE_TEST("Roost suppresses the user's not-yet-aquired Flying-type this
                MOVE(opponentLeft, MOVE_GUST, target: playerLeft);
                MOVE(opponentRight, MOVE_EARTHQUAKE, target: playerLeft); }
     } SCENE {
-        MESSAGE("Kecleon used Roost!");
+        MESSAGE("Kecleon used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, playerLeft);
         MESSAGE("Kecleon regained health!");
-        MESSAGE("Foe Pidgey used Gust!");
+        MESSAGE("Foe Pidgey used " MOVE_NAME(MOVE_GUST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GUST, opponentLeft);
         MESSAGE("Kecleon's Color Change made it the Flying type!");
-        MESSAGE("Foe Sandshrew used Earthquake!");
+        MESSAGE("Foe Sandshrew used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponentRight);
         MESSAGE("Kecleon's Color Change made it the Ground type!");
     }
@@ -262,10 +262,10 @@ SINGLE_BATTLE_TEST("Roost prevents a Flying-type user from being protected by De
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_ICE_BEAM); }
     } SCENE {
-        MESSAGE("Rayquaza used Roost!");
+        MESSAGE("Rayquaza used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Rayquaza regained health!");
-        MESSAGE("Foe Wobbuffet used Ice Beam!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_ICE_BEAM) "!");
         NOT MESSAGE("The mysterious strong winds weakened the attack!");
     }
 }
@@ -281,13 +281,13 @@ SINGLE_BATTLE_TEST("Roost does not undo other type-changing effects at the end o
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_SOAK); }
         TURN { MOVE(opponent, MOVE_VINE_WHIP); }
     } SCENE {
-        MESSAGE("Swellow used Roost!");
+        MESSAGE("Swellow used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Swellow regained health!");
-        MESSAGE("Foe Wobbuffet used Soak!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_SOAK) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SOAK, opponent);
         MESSAGE("Swellow transformed into the Water type!");
-        MESSAGE("Foe Wobbuffet used Vine Whip!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_VINE_WHIP) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_VINE_WHIP, opponent);
         MESSAGE("It's super effective!");
     }
@@ -304,7 +304,7 @@ SINGLE_BATTLE_TEST("Roost's effect is lifted after Grassy Terrain's healing")
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); }
     } SCENE {
-        MESSAGE("Swellow used Roost!");
+        MESSAGE("Swellow used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Swellow regained health!");
         MESSAGE("Swellow is healed by the grassy terrain!");
@@ -328,21 +328,21 @@ SINGLE_BATTLE_TEST("Roost's suppression prevents Reflect Type from copying any F
         TURN { MOVE(player, MOVE_EARTHQUAKE); }
     } SCENE {
         // Turn 1: Reflect Type on Roosted Normal/Flying
-        MESSAGE("Swellow used Roost!");
+        MESSAGE("Swellow used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Swellow regained health!");
-        MESSAGE("Foe Wobbuffet used Reflect Type!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_REFLECT_TYPE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, opponent);
         MESSAGE("Foe Wobbuffet's type changed to match the Swellow's!");
         // Turn 2: EQ hits, Reflect Type on non-Roosted Normal/Flying
-        MESSAGE("Swellow used Earthquake!");
+        MESSAGE("Swellow used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, player);
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet used Reflect Type!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_REFLECT_TYPE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, opponent);
         MESSAGE("Foe Wobbuffet's type changed to match the Swellow's!");
         // Turn 3: EQ has no effect
-        MESSAGE("Swellow used Earthquake!");
+        MESSAGE("Swellow used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         MESSAGE("It doesn't affect Foe Wobbuffet…");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, player);
@@ -359,10 +359,10 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Levitate")
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
     } SCENE {
-        MESSAGE("Flygon used Roost!");
+        MESSAGE("Flygon used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Flygon regained health!");
-        MESSAGE("Foe Wobbuffet used Earthquake!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
             HP_BAR(player);
@@ -378,10 +378,10 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Air Balloon
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
     } SCENE {
-        MESSAGE("Wobbuffet used Roost!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Wobbuffet regained health!");
-        MESSAGE("Foe Wobbuffet used Earthquake!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
             HP_BAR(player);
@@ -399,14 +399,14 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Magnet Rise
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
     } SCENE {
         // Turn 1: Magnet Rise
-        MESSAGE("Wobbuffet used Magnet Rise!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_MAGNET_RISE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MAGNET_RISE, player);
         MESSAGE("Wobbuffet levitated on electromagnetism!");
         // Turn 2
-        MESSAGE("Wobbuffet used Roost!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Wobbuffet regained health!");
-        MESSAGE("Foe Wobbuffet used Earthquake!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
             HP_BAR(player);
@@ -425,14 +425,14 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Telekinesis
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
     } SCENE {
         // Turn 1: Telekinesis
-        MESSAGE("Foe Wobbuffet used Telekinesis!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TELEKINESIS) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TELEKINESIS, opponent);
         MESSAGE("Wobbuffet was hurled into the air!");
         // Turn 2
-        MESSAGE("Wobbuffet used Roost!");
+        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
         MESSAGE("Wobbuffet regained health!");
-        MESSAGE("Foe Wobbuffet used Earthquake!");
+        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
             HP_BAR(player);
