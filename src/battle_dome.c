@@ -171,49 +171,33 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_PAY_DAY]       = {[MOVE_POINTS_RARE] = 1},
     [MOVE_SWORDS_DANCE]  = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_WHIRLWIND]     = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_BIND]          = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_SING]          = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_SUPERSONIC]    = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_DISABLE]       = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_HYDRO_PUMP]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SURF]          = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_LEECH_SEED]    = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_STATUS] = 1},
+    [MOVE_LEECH_SEED]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SOLAR_BEAM]    = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_POISON_POWDER] = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_STUN_SPORE]    = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_SLEEP_POWDER]  = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_THUNDER_WAVE]  = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_TOXIC]         = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_HYPNOSIS]      = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_MEDITATE]      = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_MIMIC]         = {[MOVE_POINTS_RARE] = 1},
     [MOVE_FOCUS_ENERGY]  = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_METRONOME]     = {[MOVE_POINTS_RARE] = 1},
     [MOVE_MIRROR_MOVE]   = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_CONSTRICT]     = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_DREAM_EATER]   = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_RARE] = 1},
-    [MOVE_POISON_GAS]    = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_LOVELY_KISS]   = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_TRANSFORM]     = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_SPORE]         = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_SPLASH]        = {[MOVE_POINTS_RARE] = 1},
     [MOVE_REST]          = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SUBSTITUTE]    = {[MOVE_POINTS_RARE] = 1}, // Odd that this is assigned qualities
     [MOVE_SKETCH]        = {[MOVE_POINTS_RARE] = 1},
     [MOVE_THIEF]         = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_NIGHTMARE]     = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_STATUS] = 1},
+    [MOVE_NIGHTMARE]     = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SNORE]         = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_CURSE]         = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_REVERSAL]      = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SPITE]         = {[MOVE_POINTS_RARE] = 1},
     [MOVE_BELLY_DRUM]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SPIKES]        = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_LOCK_ON]       = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_ATTRACT]       = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_SLEEP_TALK]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_PAIN_SPLIT]    = {[MOVE_POINTS_RARE] = 1},
     [MOVE_BATON_PASS]    = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_RARE] = 1},
-    [MOVE_ENCORE]        = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_MORNING_SUN]   = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SYNTHESIS]     = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_MOONLIGHT]     = {[MOVE_POINTS_COMBO] = 1},
@@ -225,17 +209,14 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_STOCKPILE]     = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SPIT_UP]       = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SWALLOW]       = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_TORMENT]       = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_WILL_O_WISP]   = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_MEMENTO]       = {[MOVE_POINTS_RARE] = 1},
     [MOVE_FOLLOW_ME]     = {[MOVE_POINTS_RARE] = 1},
     [MOVE_CHARGE]        = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_TAUNT]         = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_HELPING_HAND]  = {[MOVE_POINTS_RARE] = 1},
     [MOVE_TRICK]         = {[MOVE_POINTS_RARE] = 1},
     [MOVE_ASSIST]        = {[MOVE_POINTS_RARE] = 1},
     [MOVE_INGRAIN]       = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_YAWN]          = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_STATUS] = 1},
+    [MOVE_YAWN]          = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SKILL_SWAP]    = {[MOVE_POINTS_RARE] = 1},
     [MOVE_IMPRISON]      = {[MOVE_POINTS_RARE] = 1},
     [MOVE_SNATCH]        = {[MOVE_POINTS_RARE] = 1},
@@ -4114,7 +4095,35 @@ static bool32 IsDomePopularMove(u32 move)
     {
     case EFFECT_PROTECT:
     case EFFECT_MAT_BLOCK:
-    case EFFECT_ATTACK_UP_2: // This is for Swords Dance, which is by far the odd one out in vanilla
+    case EFFECT_ATTACK_UP_2:
+    case EFFECT_SPECIAL_ATTACK_UP_2:
+    case EFFECT_SPECIAL_ATTACK_UP_3:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+static bool32 IsDomeStatusMoveEffect(u32 effect)
+{
+    switch(effect)
+    {
+    case EFFECT_TRAP:
+    case EFFECT_SLEEP:
+    case EFFECT_CONFUSE:
+    case EFFECT_DISABLE:
+    case EFFECT_POISON:
+    case EFFECT_PARALYZE:
+    case EFFECT_TOXIC:
+    case EFFECT_LEECH_SEED:
+    case EFFECT_TAUNT:
+    case EFFECT_TORMENT:
+    case EFFECT_WILL_O_WISP:
+    case EFFECT_ENCORE:
+    case EFFECT_ATTRACT:
+    case EFFECT_NIGHTMARE:
+    case EFFECT_YAWN:
+    case EFFECT_CURSE:
         return TRUE;
     default:
         return FALSE;
@@ -4313,7 +4322,10 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     break;
                 case MOVE_POINTS_RISKY:
                     allocatedArray[k] = IsDomeRiskyMoveEffect(gBattleMoves[move].effect) ? 1 : 0;
-                // case MOVE_POINTS_STATUS:
+                    break;
+                case MOVE_POINTS_STATUS:
+                    allocatedArray[k] = IsDomeStatusMoveEffect(gBattleMoves[move].effect) ? 1 : 0;
+                    break;
                 case MOVE_POINTS_DMG:
                     allocatedArray[k] = (gBattleMoves[move].power != 0) ? 1 : 0;
                     break;
