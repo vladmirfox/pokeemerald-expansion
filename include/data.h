@@ -34,6 +34,7 @@ struct TrainerSprite
     //If not, can remove MonCoords value (NOT THE STRUCT THOUGH) and just add size
     struct MonCoords coordinates;
     struct CompressedSpriteSheet frontPic;
+    struct CompressedSpritePalette palette;
 };
 
 #define MON_COORDS_SIZE(width, height)(DIV_ROUND_UP(width, 8) << 4 | DIV_ROUND_UP(height, 8))
@@ -102,7 +103,6 @@ extern const union AnimCmd sAnim_GeneralFrame0[];
 extern const union AnimCmd *const gAnims_MonPic[];
 extern const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[];
 extern const struct TrainerSprite gTrainerSprites[];
-extern const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[];
 extern const union AnimCmd *const *const gTrainerBackAnimsPtrTable[];
 extern const struct MonCoords gTrainerBackPicCoords[];
 extern const struct CompressedSpriteSheet gTrainerBackPicTable[]; // functionally unused

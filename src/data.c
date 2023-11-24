@@ -286,7 +286,6 @@ const union AnimCmd *const gAnims_MonPic[MAX_MON_PIC_FRAMES] =
 };
 
 #include "data/trainer_graphics/front_pic_anims.h"
-#include "data/trainer_graphics/front_pic_tables.h"
 #include "data/trainer_graphics/back_pic_anims.h"
 #include "data/trainer_graphics/back_pic_tables.h"
 
