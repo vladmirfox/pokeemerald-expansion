@@ -2244,6 +2244,11 @@ static void Cmd_healthbarupdate(void)
             if (GetBattlerSide(battler) == B_SIDE_PLAYER && gBattleMoveDamage > 0)
                 gBattleResults.playerMonWasDamaged = TRUE;
         }
+        if (!(gHitMarker & HITMARKER_PASSIVE_DAMAGE) && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
+            && gBattleStruct->timesGotHit[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)] < 6)
+        {
+            gBattleStruct->timesGotHit[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)]++;
+        }
     }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -6027,19 +6032,6 @@ static void Cmd_moveend(void)
             }
             gBattleScripting.moveendState++;
             break;
-        case MOVEEND_RAGE_FIST:
-            if (HasMoveEffect(gBattlerTarget, EFFECT_RAGE_FIST)
-                && (gBattleStruct->rageFistHits[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)] < 6)
-                && gBattlerAttacker != gBattlerTarget
-                && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget)
-                && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-                && !(gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
-                && TARGET_TURN_DAMAGED)
-            {
-                gBattleStruct->rageFistHits[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)]++;
-            }
-            gBattleScripting.moveendState++;
-            break;
         case MOVEEND_CLEAR_BITS: // Clear/Set bits for things like using a move for all targets and all hits.
             if (gSpecialStatuses[gBattlerAttacker].instructedChosenTarget)
                 *(gBattleStruct->moveTarget + gBattlerAttacker) = gSpecialStatuses[gBattlerAttacker].instructedChosenTarget & 0x3;
@@ -9532,25 +9524,6 @@ static void Cmd_various(void)
         else
         {
             gBattlescriptCurrInstr = cmd->failInstr;
-        }
-        return;
-    }
-    case VARIOUS_TRY_COPYCAT:
-    {
-        VARIOUS_ARGS(const u8 *failInstr);
-        if (gLastUsedMove == MOVE_NONE || gLastUsedMove == MOVE_UNAVAILABLE || gBattleMoves[gLastUsedMove].copycatBanned)
-        {
-            gBattlescriptCurrInstr = cmd->failInstr;
-        }
-        else
-        {
-            if (IsMaxMove(gLastUsedMove))
-                gCalledMove = gBattleStruct->dynamax.lastUsedBaseMove;
-            else
-                gCalledMove = gLastUsedMove;
-            gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
-            gBattlerTarget = GetMoveTarget(gCalledMove, NO_TARGET_OVERRIDE);
-            gBattlescriptCurrInstr = cmd->nextInstr;
         }
         return;
     }
@@ -16291,6 +16264,27 @@ void BS_TrySetOctolock(void)
         gDisableStructs[battler].octolock = TRUE;
         gBattleMons[battler].status2 |= STATUS2_ESCAPE_PREVENTION;
         gDisableStructs[battler].battlerPreventingEscape = gBattlerAttacker;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+}
+
+void BS_TryCopycat(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+
+    if (gLastUsedMove == MOVE_NONE || gLastUsedMove == MOVE_UNAVAILABLE || gBattleMoves[gLastUsedMove].copycatBanned)
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+    else
+    {
+        if (IsMaxMove(gLastUsedMove))
+            gCalledMove = gBattleStruct->dynamax.lastUsedBaseMove;
+        else
+            gCalledMove = gLastUsedMove;
+
+        gHitMarker &= ~HITMARKER_ATTACKSTRING_PRINTED;
+        gBattlerTarget = GetMoveTarget(gCalledMove, NO_TARGET_OVERRIDE);
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
 }

@@ -10,7 +10,7 @@ ASSUMPTIONS
 SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 if the user takes damage")
 {
     u8 turns;
-    s16 rageFistHits[2];
+    s16 timesGotHit[2];
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -22,18 +22,43 @@ SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 if the user takes da
     } SCENE {
         for (turns = 0; turns < 2; turns++) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
-            HP_BAR(opponent, captureDamage: &rageFistHits[turns]);
+            HP_BAR(opponent, captureDamage: &timesGotHit[turns]);
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
             HP_BAR(player);
         }
     } THEN {
-        EXPECT_MUL_EQ(rageFistHits[0], Q_4_12(2.0), rageFistHits[1]);
+        EXPECT_MUL_EQ(timesGotHit[0], Q_4_12(2.0), timesGotHit[1]);
     }
 }
 
-SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 if user is hit by confusion")
+SINGLE_BATTLE_TEST("Rage Fist base power is increased by each multi hit")
 {
-    s16 rageFistHits[2];
+    u8 turns;
+    s16 timesGotHit[2];
+
+    GIVEN {
+        ASSUME(gBattleMoves[MOVE_BULLET_SEED].effect == EFFECT_MULTI_HIT);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_REGIROCK);
+    } WHEN {
+        for (turns = 0; turns < 2; turns++) {
+            TURN { MOVE(player, MOVE_RAGE_FIST); MOVE(opponent, MOVE_BULLET_SEED); }
+        }
+    } SCENE {
+        for (turns = 0; turns < 2; turns++) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
+            HP_BAR(opponent, captureDamage: &timesGotHit[turns]);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, opponent);
+            HP_BAR(player);
+        }
+    } THEN {
+        EXPECT_MUL_EQ(timesGotHit[0], Q_4_12(6.0), timesGotHit[1]);
+    }
+}
+
+SINGLE_BATTLE_TEST("Rage Fist base power is not increased by a confusion hit")
+{
+    s16 timesGotHit[2];
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -44,7 +69,7 @@ SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 if user is hit by co
         TURN { MOVE(player, MOVE_RAGE_FIST, WITH_RNG(RNG_CONFUSION, FALSE)); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
-        HP_BAR(opponent, captureDamage: &rageFistHits[0]);
+        HP_BAR(opponent, captureDamage: &timesGotHit[0]);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, player);
         MESSAGE("Wobbuffet became confused!");
@@ -52,16 +77,16 @@ SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 if user is hit by co
         MESSAGE("It hurt itself in its confusion!");
         HP_BAR(player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
-        HP_BAR(opponent, captureDamage: &rageFistHits[1]);
+        HP_BAR(opponent, captureDamage: &timesGotHit[1]);
     } THEN {
-        EXPECT_MUL_EQ(rageFistHits[0], Q_4_12(2.0), rageFistHits[1]);
+        EXPECT_EQ(timesGotHit[0], timesGotHit[1]);
     }
 }
 
 DOUBLE_BATTLE_TEST("Rage Fist maximum base power is 350")
 {
     u16 turns;
-    s16 rageFistHits[2];
+    s16 timesGotHit[2];
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -84,7 +109,7 @@ DOUBLE_BATTLE_TEST("Rage Fist maximum base power is 350")
         for (turns = 1; turns <= 3; turns++) {
             if (turns == 1) {
                 ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, playerLeft);
-                HP_BAR(opponentLeft, captureDamage: &rageFistHits[0]);
+                HP_BAR(opponentLeft, captureDamage: &timesGotHit[0]);
             }
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerRight);
             HP_BAR(playerLeft);
@@ -94,15 +119,15 @@ DOUBLE_BATTLE_TEST("Rage Fist maximum base power is 350")
             HP_BAR(playerLeft);
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, playerLeft);
-        HP_BAR(opponentLeft, captureDamage: &rageFistHits[1]);
+        HP_BAR(opponentLeft, captureDamage: &timesGotHit[1]);
     } THEN {
-        EXPECT_MUL_EQ(rageFistHits[0], Q_4_12(7.0), rageFistHits[1]);
+        EXPECT_MUL_EQ(timesGotHit[0], Q_4_12(7.0), timesGotHit[1]);
     }
 }
 
 SINGLE_BATTLE_TEST("Rage Fist base power is not increased if a substitute was hit")
 {
-    s16 rageFistHits[2];
+    s16 timesGotHit[2];
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -113,21 +138,21 @@ SINGLE_BATTLE_TEST("Rage Fist base power is not increased if a substitute was hi
         TURN { MOVE(player, MOVE_RAGE_FIST); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
-        HP_BAR(opponent, captureDamage: &rageFistHits[0]);
+        HP_BAR(opponent, captureDamage: &timesGotHit[0]);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CRUNCH, opponent);
         MESSAGE("The SUBSTITUTE took damage for Wobbuffet!");
         MESSAGE("Wobbuffet's SUBSTITUTE faded!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
-        HP_BAR(opponent, captureDamage: &rageFistHits[1]);
+        HP_BAR(opponent, captureDamage: &timesGotHit[1]);
     } THEN {
-        EXPECT_EQ(rageFistHits[0], rageFistHits[1]);
+        EXPECT_EQ(timesGotHit[0], timesGotHit[1]);
     }
 }
 
 SINGLE_BATTLE_TEST("Rage Fist base power is not lost if user switches out")
 {
-    s16 rageFistHits[2];
+    s16 timesGotHit[2];
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -140,13 +165,37 @@ SINGLE_BATTLE_TEST("Rage Fist base power is not lost if user switches out")
         TURN { MOVE(player, MOVE_RAGE_FIST); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
-        HP_BAR(opponent, captureDamage: &rageFistHits[0]);
+        HP_BAR(opponent, captureDamage: &timesGotHit[0]);
         MESSAGE("Wobbuffet, that's enough! Come back!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         MESSAGE("Wynaut, that's enough! Come back!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
-        HP_BAR(opponent, captureDamage: &rageFistHits[1]);
+        HP_BAR(opponent, captureDamage: &timesGotHit[1]);
     } THEN {
-        EXPECT_MUL_EQ(rageFistHits[0], Q_4_12(2.0), rageFistHits[1]);
+        EXPECT_MUL_EQ(timesGotHit[0], Q_4_12(2.0), timesGotHit[1]);
+    }
+}
+
+SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 even if a damaging move does no damage")
+{
+    u8 turns;
+    s16 timesGotHit[2];
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { HP(1); }
+        OPPONENT(SPECIES_REGIROCK);
+    } WHEN {
+        for (turns = 0; turns < 2; turns++) {
+            TURN { MOVE(player, MOVE_RAGE_FIST); MOVE(opponent, MOVE_FALSE_SWIPE); }
+        }
+    } SCENE {
+        for (turns = 0; turns < 2; turns++) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
+            HP_BAR(opponent, captureDamage: &timesGotHit[turns]);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_FALSE_SWIPE, opponent);
+            HP_BAR(player);
+        }
+    } THEN {
+        EXPECT_MUL_EQ(timesGotHit[0], Q_4_12(2.0), timesGotHit[1]);
     }
 }
