@@ -17,20 +17,20 @@
 
 #define RTC_ERR_FLAG_MASK      0x0FF0
 
-//Morning/evening don't exist in Gen 3, so they use Gen 4/5's values
+//Morning and evening don't exist in Gen 3
 #if OW_TIMES_OF_DAY == GEN_3
-    #define MORNING_HOUR_BEGIN 4
-    #define MORNING_HOUR_END   10
+    #define MORNING_HOUR_BEGIN 0
+    #define MORNING_HOUR_END   0
 
     #define DAY_HOUR_BEGIN     12
     #define DAY_HOUR_END       HOURS_PER_DAY
 
-    #define EVENING_HOUR_BEGIN 18
-    #define EVENING_HOUR_END   21
+    #define EVENING_HOUR_BEGIN 0
+    #define EVENING_HOUR_END   0
 
     #define NIGHT_HOUR_BEGIN   0
     #define NIGHT_HOUR_END     12
-//Evening doesn't exist in Gen 4 so it uses Gen 5's values
+//Evening doesn't exist in Gen 4
 #elif OW_TIMES_OF_DAY == GEN_4
     #define MORNING_HOUR_BEGIN 4
     #define MORNING_HOUR_END   10
@@ -38,8 +38,8 @@
     #define DAY_HOUR_BEGIN     10
     #define DAY_HOUR_END       20
 
-    #define EVENING_HOUR_BEGIN 18
-    #define EVENING_HOUR_END   21
+    #define EVENING_HOUR_BEGIN 0
+    #define EVENING_HOUR_END   0
 
     #define NIGHT_HOUR_BEGIN   20
     #define NIGHT_HOUR_END     4
