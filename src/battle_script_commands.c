@@ -4105,6 +4105,7 @@ int GetPkmnExpMultiplier(u8 level)
     u8 i;
     int lvlCapMultiplier = 0;
     u8 levelDiff;
+    bool flagFound = false;
 
     for (i = 0; i < NUM_LEVEL_CAPS; i++)
     {
@@ -4114,9 +4115,13 @@ int GetPkmnExpMultiplier(u8 level)
             if (levelDiff > 3)
                 levelDiff = 3;
             lvlCapMultiplier = sLevelCapReduction[levelDiff];
+            flagFound = true;
             break;
         }
     }
+
+    if (!flagFound)
+        lvlCapMultiplier = sLevelCapReduction[0];
 
     return lvlCapMultiplier;
 }

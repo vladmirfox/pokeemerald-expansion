@@ -266,7 +266,7 @@ void SetGrottoWarp(void)
 
     if (warpid == 0)
     {
-       for (i = 0; i < NUM_LEVEL_CAPS; i++)
+       for (i = 0; i < NUM_PROGRESSION_FLAGS; i++)
         {
             if (FlagGet(sProgressionFlags[i]))
             {
