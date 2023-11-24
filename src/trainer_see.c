@@ -62,10 +62,8 @@ EWRAM_DATA u8 gApproachingTrainerId = 0;
 static const u8 sEmotion_ExclamationMarkGfx[] = INCBIN_U8("graphics/field_effects/pics/emotion_exclamation.4bpp");
 static const u8 sEmotion_QuestionMarkGfx[] = INCBIN_U8("graphics/field_effects/pics/emotion_question.4bpp");
 static const u8 sEmotion_HeartGfx[] = INCBIN_U8("graphics/field_effects/pics/emotion_heart.4bpp");
-#if I_VS_SEEKER_CHARGING != 0
 static const u8 sEmotion_DoubleExclamationMarkGfx[] = INCBIN_U8("graphics/field_effects/pics/emotion_double_exclamation.4bpp");
 static const u8 sEmotion_XGfx[] = INCBIN_U8("graphics/field_effects/pics/emote_x.4bpp");
-#endif
 
 static u8 (*const sDirectionalApproachDistanceFuncs[])(struct ObjectEvent *trainerObj, s16 range, s16 x, s16 y) =
 {
@@ -140,7 +138,6 @@ static const struct SpriteFrameImage sSpriteImageTable_ExclamationQuestionMark[]
     {
         .data = sEmotion_QuestionMarkGfx,
         .size = sizeof(sEmotion_QuestionMarkGfx)
-#if I_VS_SEEKER_CHARGING != 0
     },
     {
         .data = sEmotion_DoubleExclamationMarkGfx,
@@ -149,7 +146,6 @@ static const struct SpriteFrameImage sSpriteImageTable_ExclamationQuestionMark[]
     {
         .data = sEmotion_XGfx,
         .size = sizeof(sEmotion_XGfx)
-#endif
     }
 };
 
@@ -174,7 +170,6 @@ static const union AnimCmd sSpriteAnim_Icons2[] =
 };
 
 
-#if I_VS_SEEKER_CHARGING != 0
 static const union AnimCmd sSpriteAnim_Icons3[] =
 {
     ANIMCMD_FRAME(2, 60),
@@ -186,16 +181,13 @@ static const union AnimCmd sSpriteAnim_Icons4[] =
     ANIMCMD_FRAME(3, 60),
     ANIMCMD_END
 };
-#endif
 
 static const union AnimCmd *const sSpriteAnimTable_Icons[] =
 {
     sSpriteAnim_Icons1,
     sSpriteAnim_Icons2,
-#if I_VS_SEEKER_CHARGING != 0
     sSpriteAnim_Icons3,
     sSpriteAnim_Icons4
-#endif
 };
 
 static const struct SpriteTemplate sSpriteTemplate_ExclamationQuestionMark =
@@ -765,7 +757,6 @@ u8 FldEff_HeartIcon(void)
 }
 
 
-#if I_VS_SEEKER_CHARGING != 0
 u8 FldEff_DoubleExclMarkIcon(void)
 {
     u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_ExclamationQuestionMark, 0, 0, 0x53);
@@ -785,7 +776,6 @@ u8 FldEff_XIcon(void)
 
     return 0;
 }
-#endif
 
 static void SetIconSpriteData(struct Sprite *sprite, u16 fldEffId, u8 spriteAnimNum)
 {

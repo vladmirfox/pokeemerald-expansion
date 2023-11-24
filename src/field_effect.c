@@ -232,13 +232,11 @@ static void SpriteCB_DeoxysRockFragment(struct Sprite *sprite);
 
 static void Task_MoveDeoxysRock(u8 taskId);
 
-#if I_VS_SEEKER_CHARGING != 0
 static void Task_FldEffUseVsSeeker(u8 taskId);
 static void UseVsSeeker_StopPlayerMovement(struct Task *task);
 static void UseVsSeeker_DoPlayerAnimation(struct Task *task);
 static void UseVsSeeker_ResetPlayerGraphics(struct Task *task);
 static void UseVsSeeker_CleanUpFieldEffect(struct Task *task);
-#endif
 
 // Static RAM declarations
 
@@ -3921,7 +3919,6 @@ static void Task_MoveDeoxysRock(u8 taskId)
 #undef tMoveSteps
 #undef tObjEventId
 
-#if I_VS_SEEKER_CHARGING != 0
 static void (*const sUseVsSeekerEffectFuncs[])(struct Task *task) = {
     UseVsSeeker_StopPlayerMovement,
     UseVsSeeker_DoPlayerAnimation,
@@ -3986,4 +3983,3 @@ static void UseVsSeeker_CleanUpFieldEffect(struct Task *task)
     FieldEffectActiveListRemove(FLDEFF_USE_VS_SEEKER);
     DestroyTask(FindTaskIdByFunc(Task_FldEffUseVsSeeker));
 }
-#endif

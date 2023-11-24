@@ -70,10 +70,8 @@ u16 CountBattledRematchTeams(u16 trainerId);
 
 void DoStandardWildBattle_Debug(void);
 void BattleSetup_StartTrainerBattle_Debug(void);
-#if I_VS_SEEKER_CHARGING != 0
 s32 TrainerIdToRematchTableId(const struct RematchTrainer *table, u16 trainerId);
 s32 FirstBattleTrainerIdToRematchTableId(const struct RematchTrainer *table, u16 trainerId);
 u16 GetRematchTrainerIdFromTable(const struct RematchTrainer *table, u16 firstBattleTrainerId);
-#endif
 
 #endif // GUARD_BATTLE_SETUP_H

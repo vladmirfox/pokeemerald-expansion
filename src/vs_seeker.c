@@ -31,7 +31,6 @@
 #include "constants/trainer_types.h"
 #include "constants/field_effects.h"
 
-#if I_VS_SEEKER_CHARGING != 0
 enum
 {
    VSSEEKER_NOT_CHARGED,
@@ -224,6 +223,8 @@ bool8 UpdateVsSeekerStepCounter(void)
 {
     u8 x = 0;
 
+    if (!I_VS_SEEKER_CHARGING) return FALSE;
+
     if (CheckBagHasItem(ITEM_VS_SEEKER, 1))
     {
         if ((gSaveBlock1Ptr->trainerRematchStepCounter & 0xFF) < VSSEEKER_RECHARGE_STEPS)
@@ -251,6 +252,8 @@ bool8 UpdateVsSeekerStepCounter(void)
 
 void MapResetTrainerRematches(u16 mapGroup, u16 mapNum)
 {
+    if (!I_VS_SEEKER_CHARGING) return;
+
     FlagClear(I_VS_SEEKER_CHARGING);
     VsSeekerResetChargingStepCounter();
     ClearAllTrainerRematchStates();
@@ -293,6 +296,8 @@ void Task_InitVsSeekerAndCheckForTrainersOnScreen(u8 taskId)
 {
     u32 i;
     u32 respval;
+
+    if (!I_VS_SEEKER_CHARGING) return;
 
     for (i = 0; i < 16; i++)
         gTasks[taskId].data[i] = 0;
@@ -494,6 +499,8 @@ void ClearRematchMovementByTrainerId(void)
 
     int vsSeekerDataIdx = TrainerIdToRematchTableId(gRematchTable, gTrainerBattleOpponent_A);
 
+    if (!I_VS_SEEKER_CHARGING) return;
+
     if (vsSeekerDataIdx == -1)
         return;
 
@@ -540,6 +547,8 @@ u16 GetRematchTrainerIdVSSeeker(u16 trainerId)
 {
     u32 tableId = FirstBattleTrainerIdToRematchTableId(gRematchTable, trainerId);
     u32 rematchTrainerIdx = GetGameProgressFlags();
+
+    if (!I_VS_SEEKER_CHARGING) return 0;
 
     while (!HasTrainerBeenFought(gRematchTable[tableId].trainerIds[rematchTrainerIdx-1]))
     {
@@ -782,4 +791,3 @@ static void StartAllRespondantIdleMovements(void)
         }
     }
 }
-#endif

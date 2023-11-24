@@ -37,10 +37,8 @@
 #include "mirage_tower.h"
 #include "field_screen_effect.h"
 #include "data.h"
-#if I_VS_SEEKER_CHARGING != 0
 #include "vs_seeker.h"
 #include "item.h"
-#endif
 #include "constants/battle_frontier.h"
 #include "constants/battle_setup.h"
 #include "constants/game_stat.h"
@@ -1603,11 +1601,7 @@ static const u8 *GetTrainerCantBattleSpeech(void)
     return ReturnEmptyStringIfNull(sTrainerCannotBattleSpeech);
 }
 
-#if I_VS_SEEKER_CHARGING != 0
 s32 FirstBattleTrainerIdToRematchTableId(const struct RematchTrainer *table, u16 trainerId)
-#else
-static s32 FirstBattleTrainerIdToRematchTableId(const struct RematchTrainer *table, u16 trainerId)
-#endif
 {
     s32 i;
 
@@ -1620,11 +1614,7 @@ static s32 FirstBattleTrainerIdToRematchTableId(const struct RematchTrainer *tab
     return -1;
 }
 
-#if I_VS_SEEKER_CHARGING != 0
 s32 TrainerIdToRematchTableId(const struct RematchTrainer *table, u16 trainerId)
-#else
-static s32 TrainerIdToRematchTableId(const struct RematchTrainer *table, u16 trainerId)
-#endif
 {
     s32 i, j;
 
@@ -1683,11 +1673,9 @@ bool32 TrainerIsMatchCallRegistered(s32 i)
 static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u16 mapGroup, u16 mapNum)
 {
     s32 i;
-#if I_VS_SEEKER_CHARGING != 0
 
-    if (CheckBagHasItem(ITEM_VS_SEEKER, 1))
+    if (CheckBagHasItem(ITEM_VS_SEEKER, 1) && I_VS_SEEKER_CHARGING != 0)
         return FALSE;
-#endif
 
     for (i = 0; i <= REMATCH_SPECIAL_TRAINER_START; i++)
     {
@@ -1770,11 +1758,7 @@ static bool8 IsTrainerReadyForRematch_(const struct RematchTrainer *table, u16 t
     return TRUE;
 }
 
-#if I_VS_SEEKER_CHARGING != 0
 u16 GetRematchTrainerIdFromTable(const struct RematchTrainer *table, u16 firstBattleTrainerId)
-#else
-static u16 GetRematchTrainerIdFromTable(const struct RematchTrainer *table, u16 firstBattleTrainerId)
-#endif
 {
     const struct RematchTrainer *trainerEntry;
     s32 i;
@@ -1880,10 +1864,8 @@ static bool32 HasAtLeastFiveBadges(void)
 void IncrementRematchStepCounter(void)
 {
     if (HasAtLeastFiveBadges()
-#if I_VS_SEEKER_CHARGING != 0
-            && (!CheckBagHasItem(ITEM_VS_SEEKER, 1))
-#endif
-       )
+        && (I_VS_SEEKER_CHARGING != 0)
+        && (!CheckBagHasItem(ITEM_VS_SEEKER, 1)))
     {
         if (gSaveBlock1Ptr->trainerRematchStepCounter >= STEP_COUNTER_MAX)
             gSaveBlock1Ptr->trainerRematchStepCounter = STEP_COUNTER_MAX;
@@ -1918,11 +1900,9 @@ bool32 IsRematchTrainerIn(u16 mapGroup, u16 mapNum)
 
 static u16 GetRematchTrainerId(u16 trainerId)
 {
-#if I_VS_SEEKER_CHARGING != 0
-    if (FlagGet(I_VS_SEEKER_CHARGING))
+    if (FlagGet(I_VS_SEEKER_CHARGING) && (I_VS_SEEKER_CHARGING != 0))
         return GetRematchTrainerIdVSSeeker(trainerId);
     else
-#endif
         return GetRematchTrainerIdFromTable(gRematchTable, trainerId);
 }
 
@@ -1946,10 +1926,8 @@ bool8 IsTrainerReadyForRematch(void)
 
 static void HandleRematchVarsOnBattleEnd(void)
 {
-#if I_VS_SEEKER_CHARGING != 0
-    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && (I_VS_SEEKER_CHARGING != 0))
         ClearRematchMovementByTrainerId();
-#endif
 
     ClearTrainerWantRematchState(gRematchTable, gTrainerBattleOpponent_A);
     SetBattledTrainersFlags();

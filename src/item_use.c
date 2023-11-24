@@ -38,17 +38,13 @@
 #include "string_util.h"
 #include "task.h"
 #include "text.h"
-#if I_VS_SEEKER_CHARGING != 0
 #include "vs_seeker.h"
-#endif
 #include "constants/event_bg.h"
 #include "constants/event_objects.h"
 #include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/songs.h"
-#if I_VS_SEEKER_CHARGING != 0
 #include "constants/map_types.h"
-#endif
 
 static void SetUpItemUseCallback(u8);
 static void FieldCB_UseItemOnField(void);
@@ -81,9 +77,7 @@ static void Task_CloseCantUseKeyItemMessage(u8);
 static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
 static void ItemUseOnFieldCB_Honey(u8 taskId);
-#if I_VS_SEEKER_CHARGING != 0
 static bool32 IsValidLocationForVsSeeker(void);
-#endif
 static bool32 CannotUseBagBattleItem(u16 itemId);
 
 // EWRAM variables
@@ -1324,7 +1318,7 @@ void ItemUseOutOfBattle_FormChange_ConsumedOnUse(u8 taskId)
 }
 
 void ItemUseOutOfBattle_RotomCatalog(u8 taskId)
-{   
+{
     if (!gTasks[taskId].tUsingRegisteredKeyItem)
     {
         gItemUseCB = ItemUseCB_RotomCatalog;
@@ -1339,7 +1333,7 @@ void ItemUseOutOfBattle_RotomCatalog(u8 taskId)
 }
 
 void ItemUseOutOfBattle_ZygardeCube(u8 taskId)
-{   
+{
     if (!gTasks[taskId].tUsingRegisteredKeyItem)
     {
         gItemUseCB = ItemUseCB_ZygardeCube;
@@ -1381,7 +1375,6 @@ void ItemUseOutOfBattle_CannotUse(u8 taskId)
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 }
 
-#if I_VS_SEEKER_CHARGING != 0
 static bool32 IsValidLocationForVsSeeker(void)
 {
     u16 mapGroup = gSaveBlock1Ptr->location.mapGroup;
@@ -1445,6 +1438,5 @@ void Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker(u8 taskId)
 {
     Task_CloseCantUseKeyItemMessage(taskId);
 }
-#endif
 
 #undef tUsingRegisteredKeyItem
