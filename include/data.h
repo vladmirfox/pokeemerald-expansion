@@ -30,9 +30,9 @@ struct MonCoords
 
 struct TrainerSprite
 {
-    //The y_offset might not even be needed/have any affect for Trainer Sprites.
-    //If not, can remove MonCoords value (NOT THE STRUCT THOUGH) and just add size
-    struct MonCoords coordinates;
+    // This would use a bitfield, but some function
+    // uses it as a u8 and casting won't match.
+    u8 size; // u8 width:4, height:4;
     struct CompressedSpriteSheet frontPic;
     struct CompressedSpritePalette palette;
     const union AnimCmd *const *const animation;
