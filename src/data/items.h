@@ -5891,7 +5891,6 @@ const struct Item gItems[] =
         .name = _("Luck Incense"),
         .price = 11000,
         .holdEffect = HOLD_EFFECT_DOUBLE_PRIZE,
-        .holdEffectParam = 10,
         .description = COMPOUND_STRING("Doubles money in\n"
                                        "battle if the\n"
                                        "holder takes part."),
@@ -6727,7 +6726,6 @@ const struct Item gItems[] =
         .name = _("Amulet Coin"),
         .price = 10000,
         .holdEffect = HOLD_EFFECT_DOUBLE_PRIZE,
-        .holdEffectParam = 10,
         .description = COMPOUND_STRING("Doubles money in\n"
                                        "battle if the\n"
                                        "holder takes part."),
@@ -7121,8 +7119,8 @@ const struct Item gItems[] =
                                        "may cause flinching\n"
                                        "when the foe is hit."),
         .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = EVO_HELD_ITEM_TYPE,
+        .fieldUseFunc = EVO_HELD_ITEM_FIELD_FUNC,
         .flingPower = 30,
     },
 
@@ -9881,14 +9879,15 @@ const struct Item gItems[] =
                                        "deviced liked by\n"
                                        "Rotom."),
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RotomCatalog,
     },
 
     [ITEM_GRACIDEA] =
     {
         .name = _("Gracidea"),
         .price = 0,
+        .importance = 1,
         .description = COMPOUND_STRING("Bouquets made with\n"
                                        "it are offered as a\n"
                                        "token of gratitude."),
@@ -9901,6 +9900,7 @@ const struct Item gItems[] =
     {
         .name = _("Reveal Glass"),
         .price = 0,
+        .importance = 1,
         .description = COMPOUND_STRING("This glass returns\n"
                                        "a Pokémon back to\n"
                                        "its original form."),
@@ -9913,12 +9913,13 @@ const struct Item gItems[] =
     {
         .name = _("DNA Splicers"),
         .price = 0,
+        .importance = 1,
         .description = COMPOUND_STRING("Splicer that fuses\n"
                                        "Kyurem and a\n"
                                        "certain Pokémon."),
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo: ItemUseOutOfBattle_FormChange_Fusion
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Fusion,
     },
 
     [ITEM_ZYGARDE_CUBE] =
@@ -9930,14 +9931,15 @@ const struct Item gItems[] =
                                        "Zygarde Cores and\n"
                                        "Cells."),
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_ZygardeCube,
     },
 
     [ITEM_PRISON_BOTTLE] =
     {
         .name = _("Prison Bottle"),
         .price = 0,
+        .importance = 1,
         .description = COMPOUND_STRING("A bottle used to\n"
                                        "seal a certain\n"
                                        "Pokémon long ago."),
@@ -9950,36 +9952,39 @@ const struct Item gItems[] =
     {
         .name = _("N-Solarizer"),
         .price = 0,
+        .importance = 1,
         .description = COMPOUND_STRING("A device to fuse\n"
                                        "and split Necrozma\n"
                                        "using a Solgaleo."),
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo: ItemUseOutOfBattle_FormChange_Fusion
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Fusion,
     },
 
     [ITEM_N_LUNARIZER] =
     {
         .name = _("N-Lunarizer"),
         .price = 0,
+        .importance = 1,
         .description = COMPOUND_STRING("A device to fuse\n"
                                        "and split Necrozma\n"
                                        "using a Lunala."),
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo: ItemUseOutOfBattle_FormChange_Fusion
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Fusion,
     },
 
     [ITEM_REINS_OF_UNITY] =
     {
         .name = _("ReinsOfUnity"),
         .price = 0,
+        .importance = 1,
         .description = COMPOUND_STRING("Reins that unite\n"
                                        "Calyrex with its\n"
                                        "beloved steed."),
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse, // Todo: ItemUseOutOfBattle_FormChange_Fusion
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Fusion,
     },
 
 // Battle Mechanic Key Items
@@ -10550,9 +10555,9 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_OAKS_PARCEL] =
+    [ITEM_PARCEL] =
     {
-        .name = _("Oak's Parcel"),
+        .name = _("Parcel"),
         .price = 0,
         .description = COMPOUND_STRING("A parcel for Prof.\n"
                                        "Oak from a Pokémon\n"

@@ -28,7 +28,7 @@
 
 extern const struct Evolution gEvolutionTable[][EVOS_PER_MON];
 
-#define IS_DITTO(species) (gBaseStats[species].eggGroup1 == EGG_GROUP_DITTO || gBaseStats[species].eggGroup2 == EGG_GROUP_DITTO)
+#define IS_DITTO(species) (gSpeciesInfo[species].eggGroups[0] == EGG_GROUP_DITTO || gSpeciesInfo[species].eggGroups[1] == EGG_GROUP_DITTO)
 
 static void ClearDaycareMonMail(struct DaycareMail *mail);
 static void SetInitialEggData(struct Pokemon *mon, u16 species, struct DayCare *daycare);
@@ -1053,7 +1053,7 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
     else if (eggSpecies == SPECIES_MANAPHY)
         eggSpecies = SPECIES_PHIONE;
     else if (eggSpecies == SPECIES_SINISTEA_ANTIQUE)
-        eggSpecies = SPECIES_SINISTEA;
+        eggSpecies = SPECIES_SINISTEA_PHONY;
     else if (GET_BASE_SPECIES_ID(eggSpecies) == SPECIES_VIVILLON)
         eggSpecies = SPECIES_SCATTERBUG;
     else if (GET_BASE_SPECIES_ID(eggSpecies) == SPECIES_ROTOM)
@@ -1076,7 +1076,7 @@ static void _GiveEggFromDaycare(struct DayCare *daycare)
 {
     struct Pokemon egg;
     u16 species;
-    u8 parentSlots[DAYCARE_MON_COUNT];
+    u8 parentSlots[DAYCARE_MON_COUNT] = {0};
     bool8 isEgg;
 
     species = DetermineEggSpeciesAndParentSlots(daycare, parentSlots);
