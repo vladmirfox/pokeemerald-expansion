@@ -6248,6 +6248,14 @@ const u8 *GetSpeciesName(u16 species)
     return gSpeciesNames[SanitizeSpeciesId(species)];
 }
 
+const u8 *GetSpeciesPokedexDescription(u16 species)
+{
+    species = SanitizeSpeciesId(species);
+    if (gSpeciesInfo[species].description == NULL)
+        return gSpeciesInfo[SPECIES_NONE].description;
+    return gSpeciesInfo[species].description;
+}
+
 u8 CalculatePPWithBonus(u16 move, u8 ppBonuses, u8 moveIndex)
 {
     u8 basePP = gBattleMoves[move].pp;

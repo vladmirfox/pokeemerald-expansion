@@ -4510,9 +4510,7 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
         PrintInfoScreenText(gText_UnkWeight, 180, 77);
     }
     if (owned)
-    {
-        description = gPokedexEntries[num].description;
-    }
+        description = GetSpeciesPokedexDescription(species);
     else
         description = sExpandedPlaceholder_PokedexDescription;
     PrintInfoScreenText(description, GetStringCenterAlignXOffset(FONT_NORMAL, description, 0xF0), 93);
