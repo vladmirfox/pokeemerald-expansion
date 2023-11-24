@@ -164,44 +164,6 @@ static void InitDomeTrainers(void);
 static EWRAM_DATA struct TourneyTreeInfoCard *sInfoCard = {0};
 static EWRAM_DATA u8 *sTilemapBuffer = NULL;
 
-// Each move has an array of points for different move characteristics which contribute to a tourney trainers listed battle style (see sBattleStyleThresholds)
-// All move points are either 1 or 0, so theyre essentially flags saying whether or not the move has that characteristic
-static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
-{
-    [MOVE_SWORDS_DANCE]  = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_WHIRLWIND]     = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_HYDRO_PUMP]    = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SURF]          = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_LEECH_SEED]    = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SOLAR_BEAM]    = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_HYPNOSIS]      = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_MEDITATE]      = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_FOCUS_ENERGY]  = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_DREAM_EATER]   = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_REST]          = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_NIGHTMARE]     = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SNORE]         = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_REVERSAL]      = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_BELLY_DRUM]    = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SPIKES]        = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_LOCK_ON]       = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SLEEP_TALK]    = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_BATON_PASS]    = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_MORNING_SUN]   = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SYNTHESIS]     = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_MOONLIGHT]     = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_RAIN_DANCE]    = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SUNNY_DAY]     = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_STOCKPILE]     = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SPIT_UP]       = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SWALLOW]       = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_CHARGE]        = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_INGRAIN]       = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_YAWN]          = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_BULK_UP]       = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_CALM_MIND]     = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_DRAGON_DANCE]  = {[MOVE_POINTS_COMBO] = 1},
-};
 // This array is searched in-order to determine what battle style a tourney trainer uses.
 // If the sum of the points for the party's moves meets/exceeds all the point totals of an element, then they use that battle style
 static const u8 sBattleStyleThresholds[NUM_BATTLE_STYLES - 1][NUM_MOVE_POINT_TYPES] =
@@ -4125,6 +4087,85 @@ static bool32 IsDomeRareMove(u32 move)
     return TRUE;
 }
 
+static bool32 IsDomeComboMoveEffect(u32 effect)
+{
+    switch(effect)
+    {
+    // Weather moves
+    case EFFECT_SUNNY_DAY:
+    case EFFECT_RAIN_DANCE:
+    case EFFECT_SANDSTORM:
+    case EFFECT_HAIL:
+    case EFFECT_SNOWSCAPE:
+    // Terrain moves
+    case EFFECT_GRASSY_TERRAIN:
+    case EFFECT_ELECTRIC_TERRAIN:
+    case EFFECT_MISTY_TERRAIN:
+    case EFFECT_PSYCHIC_TERRAIN:
+    // Moves dependent on weather
+    case EFFECT_SYNTHESIS:
+    case EFFECT_MORNING_SUN:
+    case EFFECT_MOONLIGHT:
+    case EFFECT_SHORE_UP:
+    case EFFECT_THUNDER:
+    case EFFECT_HURRICANE:
+    //case EFFECT_BLIZZARD:
+    case EFFECT_SOLAR_BEAM:
+    case EFFECT_GROWTH:
+    case EFFECT_AURORA_VEIL:
+    case EFFECT_WEATHER_BALL:
+    // Moves dependent on terrain
+    case EFFECT_EXPANDING_FORCE:
+    case EFFECT_GRASSY_GLIDE:
+    //case EFFECT_MISTY_EXPLOSION:
+    case EFFECT_PSYBLADE:
+    case EFFECT_RISING_VOLTAGE:
+    case EFFECT_TERRAIN_PULSE:
+    // Stockpile group
+    case EFFECT_STOCKPILE:
+    case EFFECT_SPIT_UP:
+    case EFFECT_SWALLOW:
+    // Entry hazards & cleaners
+    case EFFECT_SPIKES:
+    case EFFECT_TOXIC_SPIKES:
+    case EFFECT_STEALTH_ROCK:
+    case EFFECT_STICKY_WEB:
+    // Inflicting sleep & related effects
+    case EFFECT_SLEEP:
+    case EFFECT_YAWN:
+    case EFFECT_DREAM_EATER:
+    case EFFECT_NIGHTMARE:
+    case EFFECT_REST:
+    case EFFECT_SLEEP_TALK:
+    case EFFECT_SNORE:
+    // Anything that ups offensive stats by more than one
+    case EFFECT_ATTACK_UP:
+    case EFFECT_ATTACK_UP_2:
+    case EFFECT_ATTACK_SPATK_UP:
+    case EFFECT_SPECIAL_ATTACK_UP:
+    case EFFECT_SPECIAL_ATTACK_UP_2:
+    case EFFECT_SPECIAL_ATTACK_UP_3:
+    case EFFECT_CALM_MIND:
+    case EFFECT_DRAGON_DANCE:
+    case EFFECT_BELLY_DRUM:
+    case EFFECT_CHARGE:
+    case EFFECT_BULK_UP:
+    case EFFECT_ATTACK_ACCURACY_UP:
+    // Others
+    case EFFECT_FOCUS_ENERGY:
+    case EFFECT_LOCK_ON:
+    case EFFECT_FLAIL:
+    case EFFECT_BATON_PASS:
+    case EFFECT_INGRAIN:
+    case EFFECT_AQUA_RING:
+    case EFFECT_LEECH_SEED:
+    case EFFECT_ROAR:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 // allocatedArray below needs to be large enough to hold stat totals for each mon, or totals of each type of move points
 #define ALLOC_ARRAY_SIZE max(NUM_STATS * FRONTIER_PARTY_SIZE, NUM_MOVE_POINT_TYPES)
 
@@ -4304,7 +4345,9 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                 
                 switch (k)
                 {
-                // case MOVE_POINTS_COMBO:
+                case MOVE_POINTS_COMBO:
+                    allocatedArray[k] = IsDomeComboMoveEffect(gBattleMoves[move].effect) ? 1 : 0;
+                    break;
                 case MOVE_POINTS_STAT_RAISE:
                     allocatedArray[k] = IsStatRaisingEffect(gBattleMoves[move].effect) ? 1 : 0;
                     break;
@@ -4349,9 +4392,6 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                     break;
                 case MOVE_POINTS_EFFECT:
                     allocatedArray[k] = (gBattleMoves[move].secondaryEffectChance > 0) ? 1 : 0;
-                    break;
-                default:
-                    allocatedArray[k] = sBattleStyleMovePoints[move][k];
                     break;
                 }
             }

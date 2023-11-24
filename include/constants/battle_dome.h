@@ -105,7 +105,7 @@
 #define DOME_TEXT_SPEED 12
 #define DOME_TEXT_SPATK 14
 
-// Move point indexes for sBattleStyleMovePoints[][], to determine Battle Dome trainers battle styles
+// Determine Battle Dome trainers battle styles
 #define MOVE_POINTS_COMBO      0   // Moves that work well in combination (e.g. Rain Dance + Hydro Pump)
 #define MOVE_POINTS_STAT_RAISE 1
 #define MOVE_POINTS_STAT_LOWER 2
