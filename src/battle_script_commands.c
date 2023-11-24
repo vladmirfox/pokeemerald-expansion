@@ -4105,7 +4105,7 @@ int GetPkmnExpMultiplier(u8 level)
     u8 i;
     int lvlCapMultiplier = 0;
     u8 levelDiff;
-    bool flagFound = false;
+    bool8 flagFound = false;
 
     for (i = 0; i < NUM_LEVEL_CAPS; i++)
     {
