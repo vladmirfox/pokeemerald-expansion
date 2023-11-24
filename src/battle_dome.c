@@ -169,27 +169,21 @@ static EWRAM_DATA u8 *sTilemapBuffer = NULL;
 static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
 {
     [MOVE_PAY_DAY]       = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_SWORDS_DANCE]  = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_POPULAR] = 1},
+    [MOVE_SWORDS_DANCE]  = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_WHIRLWIND]     = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_BIND]          = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_SING]          = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_SUPERSONIC]    = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_DISABLE]       = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_FLAMETHROWER]  = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_HYDRO_PUMP]    = {[MOVE_POINTS_COMBO] = 1},
-    [MOVE_SURF]          = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_POPULAR] = 1},
-    [MOVE_ICE_BEAM]      = {[MOVE_POINTS_POPULAR] = 1},
-    [MOVE_HYPER_BEAM]    = {[MOVE_POINTS_POPULAR] = 1},
+    [MOVE_SURF]          = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_LEECH_SEED]    = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_STATUS] = 1},
-    [MOVE_SOLAR_BEAM]    = {[MOVE_POINTS_COMBO] = 1, [MOVE_POINTS_POPULAR] = 1},
+    [MOVE_SOLAR_BEAM]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_POISON_POWDER] = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_STUN_SPORE]    = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_SLEEP_POWDER]  = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_THUNDERBOLT]   = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_THUNDER_WAVE]  = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_EARTHQUAKE]    = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_TOXIC]         = {[MOVE_POINTS_STATUS] = 1},
-    [MOVE_PSYCHIC]       = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_HYPNOSIS]      = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_MEDITATE]      = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_MIMIC]         = {[MOVE_POINTS_RARE] = 1},
@@ -203,7 +197,6 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_TRANSFORM]     = {[MOVE_POINTS_RARE] = 1},
     [MOVE_SPORE]         = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_SPLASH]        = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_EXPLOSION]     = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_REST]          = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SUBSTITUTE]    = {[MOVE_POINTS_RARE] = 1}, // Odd that this is assigned qualities
     [MOVE_SKETCH]        = {[MOVE_POINTS_RARE] = 1},
@@ -213,7 +206,6 @@ static const u8 sBattleStyleMovePoints[MOVES_COUNT][NUM_MOVE_POINT_TYPES] =
     [MOVE_CURSE]         = {[MOVE_POINTS_STATUS] = 1},
     [MOVE_REVERSAL]      = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SPITE]         = {[MOVE_POINTS_RARE] = 1},
-    [MOVE_PROTECT]       = {[MOVE_POINTS_POPULAR] = 1},
     [MOVE_BELLY_DRUM]    = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_SPIKES]        = {[MOVE_POINTS_COMBO] = 1},
     [MOVE_LOCK_ON]       = {[MOVE_POINTS_COMBO] = 1},
@@ -4104,6 +4096,31 @@ static bool32 IsDomeLuckyMove(u32 move)
     }
 }
 
+static bool32 IsDomePopularMove(u32 move)
+{
+    u8 i;
+    for (i = 0; i < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; i++)
+    {
+        if (ItemIdToBattleMoveId(ITEM_TM01 + i) == move)
+            return TRUE;
+    }
+    if (i == NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES)
+        return FALSE;
+    // Filter in TMs/HMs
+    if (gBattleMoves[move].power >= 90)
+        return TRUE;
+
+    switch(gBattleMoves[move].effect)
+    {
+    case EFFECT_PROTECT:
+    case EFFECT_MAT_BLOCK:
+    case EFFECT_ATTACK_UP_2: // This is for Swords Dance, which is by far the odd one out in vanilla
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 // allocatedArray below needs to be large enough to hold stat totals for each mon, or totals of each type of move points
 #define ALLOC_ARRAY_SIZE max(NUM_STATS * FRONTIER_PARTY_SIZE, NUM_MOVE_POINT_TYPES)
 
@@ -4309,9 +4326,12 @@ static void DisplayTrainerInfoOnCard(u8 flags, u8 trainerTourneyId)
                 case MOVE_POINTS_POWERFUL:
                     allocatedArray[k] = (gBattleMoves[move].power >= 100) ? 1 : 0;
                     break;
-                // case MOVE_POINTS_POPULAR:
+                case MOVE_POINTS_POPULAR:
+                    allocatedArray[k] = IsDomePopularMove(move) ? 1 : 0;
+                    break;
                 case MOVE_POINTS_LUCK:
                     allocatedArray[k] = IsDomeLuckyMove(move) ? 1 : 0;
+                    break;
                 case MOVE_POINTS_STRONG:
                     allocatedArray[k] = (gBattleMoves[move].power >= 90) ? 1 : 0;
                     break;
