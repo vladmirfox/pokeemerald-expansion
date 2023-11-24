@@ -292,9 +292,12 @@ const u8 gTrainerBackPic_Steven[] = INCBIN_U8("graphics/trainers/back_pics/steve
 const u32 gTrainerBackPicPalette_Red[] = INCBIN_U32("graphics/trainers/back_pics/red.gbapal.lz");
 const u32 gTrainerBackPicPalette_Leaf[] = INCBIN_U32("graphics/trainers/back_pics/leaf.gbapal.lz");
 
+//If there's no reason for the size to ever change, it can be moved into TRAINER_PIC
 #define TRAINER_SPRITE_SIZE 8
-#define TRAINER_SPRITE(sprite, trainerPic) {gTrainerFrontPic_##sprite, TRAINER_PIC_SIZE, TRAINER_PIC_##trainerPic}
-#define TRAINER_PAL(pal, trainerPic) {gTrainerPalette_##pal, TRAINER_PIC_##trainerPic}
+#define TRAINER_PIC(file, trainerPic) \
+        .frontPic = {gTrainerFrontPic_##file, TRAINER_PIC_SIZE, TRAINER_PIC_##trainerPic},\
+        .palette = {gTrainerPalette_##file, TRAINER_PIC_##trainerPic}
+
 static const union AnimCmd *const sAnims_Trainer[] ={
     sAnim_GeneralFrame0,
 };
@@ -304,744 +307,651 @@ const struct TrainerSprite gTrainerSprites[] =
     [TRAINER_PIC_HIKER] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Hiker, HIKER),
-        .palette = TRAINER_PAL(Hiker, HIKER),
+        TRAINER_PIC(Hiker, HIKER),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_AQUA_GRUNT_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(AquaGruntM, AQUA_GRUNT_M),
-        .palette = TRAINER_PAL(AquaGruntM, AQUA_GRUNT_M),
+        TRAINER_PIC(AquaGruntM, AQUA_GRUNT_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_POKEMON_BREEDER_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(PokemonBreederF, POKEMON_BREEDER_F),
-        .palette = TRAINER_PAL(PokemonBreederF, POKEMON_BREEDER_F),
+        TRAINER_PIC(PokemonBreederF, POKEMON_BREEDER_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_COOLTRAINER_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(CoolTrainerM, COOLTRAINER_M),
-        .palette = TRAINER_PAL(CoolTrainerM, COOLTRAINER_M),
+        TRAINER_PIC(CoolTrainerM, COOLTRAINER_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_BIRD_KEEPER] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(BirdKeeper, BIRD_KEEPER),
-        .palette = TRAINER_PAL(BirdKeeper, BIRD_KEEPER),
+        TRAINER_PIC(BirdKeeper, BIRD_KEEPER),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_COLLECTOR] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Collector, COLLECTOR),
-        .palette = TRAINER_PAL(Collector, COLLECTOR),
+        TRAINER_PIC(Collector, COLLECTOR),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_AQUA_GRUNT_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(AquaGruntF, AQUA_GRUNT_F),
-        .palette = TRAINER_PAL(AquaGruntF, AQUA_GRUNT_F),
+        TRAINER_PIC(AquaGruntF, AQUA_GRUNT_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_SWIMMER_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(SwimmerM, SWIMMER_M),
-        .palette = TRAINER_PAL(SwimmerM, SWIMMER_M),
+        TRAINER_PIC(SwimmerM, SWIMMER_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_MAGMA_GRUNT_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(MagmaGruntM, MAGMA_GRUNT_M),
-        .palette = TRAINER_PAL(MagmaGruntM, MAGMA_GRUNT_M),
+        TRAINER_PIC(MagmaGruntM, MAGMA_GRUNT_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_EXPERT_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(ExpertM, EXPERT_M),
-        .palette = TRAINER_PAL(ExpertM, EXPERT_M),
+        TRAINER_PIC(ExpertM, EXPERT_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_AQUA_ADMIN_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(AquaAdminM, AQUA_ADMIN_M),
-        .palette = TRAINER_PAL(AquaAdminM, AQUA_ADMIN_M),
+        TRAINER_PIC(AquaAdminM, AQUA_ADMIN_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_BLACK_BELT] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(BlackBelt, BLACK_BELT),
-        .palette = TRAINER_PAL(BlackBelt, BLACK_BELT),
+        TRAINER_PIC(BlackBelt, BLACK_BELT),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_AQUA_ADMIN_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(AquaAdminF, AQUA_ADMIN_F),
-        .palette = TRAINER_PAL(AquaAdminF, AQUA_ADMIN_F),
+        TRAINER_PIC(AquaAdminF, AQUA_ADMIN_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_AQUA_LEADER_ARCHIE] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(AquaLeaderArchie, AQUA_LEADER_ARCHIE),
-        .palette = TRAINER_PAL(AquaLeaderArchie, AQUA_LEADER_ARCHIE),
+        TRAINER_PIC(AquaLeaderArchie, AQUA_LEADER_ARCHIE),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_HEX_MANIAC] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(HexManiac, HEX_MANIAC),
-        .palette = TRAINER_PAL(HexManiac, HEX_MANIAC),
+        TRAINER_PIC(HexManiac, HEX_MANIAC),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_AROMA_LADY] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(AromaLady, AROMA_LADY),
-        .palette = TRAINER_PAL(AromaLady, AROMA_LADY),
+        TRAINER_PIC(AromaLady, AROMA_LADY),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_RUIN_MANIAC] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(RuinManiac, RUIN_MANIAC),
-        .palette = TRAINER_PAL(RuinManiac, RUIN_MANIAC),
+        TRAINER_PIC(RuinManiac, RUIN_MANIAC),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_INTERVIEWER] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Interviewer, INTERVIEWER),
-        .palette = TRAINER_PAL(Interviewer, INTERVIEWER),
+        TRAINER_PIC(Interviewer, INTERVIEWER),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_TUBER_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(TuberF, TUBER_F),
-        .palette = TRAINER_PAL(TuberF, TUBER_F),
+        TRAINER_PIC(TuberF, TUBER_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_TUBER_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(TuberM, TUBER_M),
-        .palette = TRAINER_PAL(TuberM, TUBER_M),
+        TRAINER_PIC(TuberM, TUBER_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_COOLTRAINER_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(CoolTrainerF, COOLTRAINER_F),
-        .palette = TRAINER_PAL(CoolTrainerF, COOLTRAINER_F),
+        TRAINER_PIC(CoolTrainerF, COOLTRAINER_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_LADY] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Lady, LADY),
-        .palette = TRAINER_PAL(Lady, LADY),
+        TRAINER_PIC(Lady, LADY),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_BEAUTY] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Beauty, BEAUTY),
-        .palette = TRAINER_PAL(Beauty, BEAUTY),
+        TRAINER_PIC(Beauty, BEAUTY),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_RICH_BOY] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(RichBoy, RICH_BOY),
-        .palette = TRAINER_PAL(RichBoy, RICH_BOY),
+        TRAINER_PIC(RichBoy, RICH_BOY),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_EXPERT_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(ExpertF, EXPERT_F),
-        .palette = TRAINER_PAL(ExpertF, EXPERT_F),
+        TRAINER_PIC(ExpertF, EXPERT_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_POKEMANIAC] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Pokemaniac, POKEMANIAC),
-        .palette = TRAINER_PAL(Pokemaniac, POKEMANIAC),
+        TRAINER_PIC(Pokemaniac, POKEMANIAC),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_MAGMA_GRUNT_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(MagmaGruntF, MAGMA_GRUNT_F),
-        .palette = TRAINER_PAL(MagmaGruntF, MAGMA_GRUNT_F),
+        TRAINER_PIC(MagmaGruntF, MAGMA_GRUNT_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_GUITARIST] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Guitarist, GUITARIST),
-        .palette = TRAINER_PAL(Guitarist, GUITARIST),
+        TRAINER_PIC(Guitarist, GUITARIST),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_KINDLER] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Kindler, KINDLER),
-        .palette = TRAINER_PAL(Kindler, KINDLER),
+        TRAINER_PIC(Kindler, KINDLER),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_CAMPER] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Camper, CAMPER),
-        .palette = TRAINER_PAL(Camper, CAMPER),
+        TRAINER_PIC(Camper, CAMPER),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_PICNICKER] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Picnicker, PICNICKER),
-        .palette = TRAINER_PAL(Picnicker, PICNICKER),
+        TRAINER_PIC(Picnicker, PICNICKER),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_BUG_MANIAC] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(BugManiac, BUG_MANIAC),
-        .palette = TRAINER_PAL(BugManiac, BUG_MANIAC),
+        TRAINER_PIC(BugManiac, BUG_MANIAC),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_POKEMON_BREEDER_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(PokemonBreederM, POKEMON_BREEDER_M),
-        .palette = TRAINER_PAL(PokemonBreederM, POKEMON_BREEDER_M),
+        TRAINER_PIC(PokemonBreederM, POKEMON_BREEDER_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_PSYCHIC_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(PsychicM, PSYCHIC_M),
-        .palette = TRAINER_PAL(PsychicM, PSYCHIC_M),
+        TRAINER_PIC(PsychicM, PSYCHIC_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_PSYCHIC_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(PsychicF, PSYCHIC_F),
-        .palette = TRAINER_PAL(PsychicF, PSYCHIC_F),
+        TRAINER_PIC(PsychicF, PSYCHIC_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_GENTLEMAN] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Gentleman, GENTLEMAN),
-        .palette = TRAINER_PAL(Gentleman, GENTLEMAN),
+        TRAINER_PIC(Gentleman, GENTLEMAN),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_ELITE_FOUR_SIDNEY] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(EliteFourSidney, ELITE_FOUR_SIDNEY),
-        .palette = TRAINER_PAL(EliteFourSidney, ELITE_FOUR_SIDNEY),
+        TRAINER_PIC(EliteFourSidney, ELITE_FOUR_SIDNEY),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_ELITE_FOUR_PHOEBE] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(EliteFourPhoebe, ELITE_FOUR_PHOEBE),
-        .palette = TRAINER_PAL(EliteFourPhoebe, ELITE_FOUR_PHOEBE),
+        TRAINER_PIC(EliteFourPhoebe, ELITE_FOUR_PHOEBE),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_ELITE_FOUR_GLACIA] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(EliteFourGlacia, ELITE_FOUR_GLACIA),
-        .palette = TRAINER_PAL(EliteFourGlacia, ELITE_FOUR_GLACIA),
+        TRAINER_PIC(EliteFourGlacia, ELITE_FOUR_GLACIA),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_ELITE_FOUR_DRAKE] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(EliteFourDrake, ELITE_FOUR_DRAKE),
-        .palette = TRAINER_PAL(EliteFourDrake, ELITE_FOUR_DRAKE),
+        TRAINER_PIC(EliteFourDrake, ELITE_FOUR_DRAKE),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_LEADER_ROXANNE] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(LeaderRoxanne, LEADER_ROXANNE),
-        .palette = TRAINER_PAL(LeaderRoxanne, LEADER_ROXANNE),
+        TRAINER_PIC(LeaderRoxanne, LEADER_ROXANNE),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_LEADER_BRAWLY] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(LeaderBrawly, LEADER_BRAWLY),
-        .palette = TRAINER_PAL(LeaderBrawly, LEADER_BRAWLY),
+        TRAINER_PIC(LeaderBrawly, LEADER_BRAWLY),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_LEADER_WATTSON] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(LeaderWattson, LEADER_WATTSON),
-        .palette = TRAINER_PAL(LeaderWattson, LEADER_WATTSON),
+        TRAINER_PIC(LeaderWattson, LEADER_WATTSON),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_LEADER_FLANNERY] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(LeaderFlannery, LEADER_FLANNERY),
-        .palette = TRAINER_PAL(LeaderFlannery, LEADER_FLANNERY),
+        TRAINER_PIC(LeaderFlannery, LEADER_FLANNERY),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_LEADER_NORMAN] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(LeaderNorman, LEADER_NORMAN),
-        .palette = TRAINER_PAL(LeaderNorman, LEADER_NORMAN),
+        TRAINER_PIC(LeaderNorman, LEADER_NORMAN),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_LEADER_WINONA] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(LeaderWinona, LEADER_WINONA),
-        .palette = TRAINER_PAL(LeaderWinona, LEADER_WINONA),
+        TRAINER_PIC(LeaderWinona, LEADER_WINONA),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_LEADER_TATE_AND_LIZA] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(LeaderTateAndLiza, LEADER_TATE_AND_LIZA),
-        .palette = TRAINER_PAL(LeaderTateAndLiza, LEADER_TATE_AND_LIZA),
+        TRAINER_PIC(LeaderTateAndLiza, LEADER_TATE_AND_LIZA),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_LEADER_JUAN] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(LeaderJuan, LEADER_JUAN),
-        .palette = TRAINER_PAL(LeaderJuan, LEADER_JUAN),
+        TRAINER_PIC(LeaderJuan, LEADER_JUAN),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_SCHOOL_KID_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(SchoolKidM, SCHOOL_KID_M),
-        .palette = TRAINER_PAL(SchoolKidM, SCHOOL_KID_M),
+        TRAINER_PIC(SchoolKidM, SCHOOL_KID_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_SCHOOL_KID_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(SchoolKidF, SCHOOL_KID_F),
-        .palette = TRAINER_PAL(SchoolKidF, SCHOOL_KID_F),
+        TRAINER_PIC(SchoolKidF, SCHOOL_KID_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_SR_AND_JR] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(SrAndJr, SR_AND_JR),
-        .palette = TRAINER_PAL(SrAndJr, SR_AND_JR),
+        TRAINER_PIC(SrAndJr, SR_AND_JR),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_POKEFAN_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(PokefanM, POKEFAN_M),
-        .palette = TRAINER_PAL(PokefanM, POKEFAN_M),
+        TRAINER_PIC(PokefanM, POKEFAN_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_POKEFAN_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(PokefanF, POKEFAN_F),
-        .palette = TRAINER_PAL(PokefanF, POKEFAN_F),
+        TRAINER_PIC(PokefanF, POKEFAN_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_YOUNGSTER] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Youngster, YOUNGSTER),
-        .palette = TRAINER_PAL(Youngster, YOUNGSTER),
+        TRAINER_PIC(Youngster, YOUNGSTER),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_CHAMPION_WALLACE] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(ChampionWallace, CHAMPION_WALLACE),
-        .palette = TRAINER_PAL(ChampionWallace, CHAMPION_WALLACE),
+        TRAINER_PIC(ChampionWallace, CHAMPION_WALLACE),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_FISHERMAN] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Fisherman, FISHERMAN),
-        .palette = TRAINER_PAL(Fisherman, FISHERMAN),
+        TRAINER_PIC(Fisherman, FISHERMAN),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_CYCLING_TRIATHLETE_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(CyclingTriathleteM, CYCLING_TRIATHLETE_M),
-        .palette = TRAINER_PAL(CyclingTriathleteM, CYCLING_TRIATHLETE_M),
+        TRAINER_PIC(CyclingTriathleteM, CYCLING_TRIATHLETE_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_CYCLING_TRIATHLETE_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(CyclingTriathleteF, CYCLING_TRIATHLETE_F),
-        .palette = TRAINER_PAL(CyclingTriathleteF, CYCLING_TRIATHLETE_F),
+        TRAINER_PIC(CyclingTriathleteF, CYCLING_TRIATHLETE_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_RUNNING_TRIATHLETE_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(RunningTriathleteM, RUNNING_TRIATHLETE_M),
-        .palette = TRAINER_PAL(RunningTriathleteM, RUNNING_TRIATHLETE_M),
+        TRAINER_PIC(RunningTriathleteM, RUNNING_TRIATHLETE_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_RUNNING_TRIATHLETE_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(RunningTriathleteF, RUNNING_TRIATHLETE_F),
-        .palette = TRAINER_PAL(RunningTriathleteF, RUNNING_TRIATHLETE_F),
+        TRAINER_PIC(RunningTriathleteF, RUNNING_TRIATHLETE_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_SWIMMING_TRIATHLETE_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(SwimmingTriathleteM, SWIMMING_TRIATHLETE_M),
-        .palette = TRAINER_PAL(SwimmingTriathleteM, SWIMMING_TRIATHLETE_M),
+        TRAINER_PIC(SwimmingTriathleteM, SWIMMING_TRIATHLETE_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_SWIMMING_TRIATHLETE_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(SwimmingTriathleteF, SWIMMING_TRIATHLETE_F),
-        .palette = TRAINER_PAL(SwimmingTriathleteF, SWIMMING_TRIATHLETE_F),
+        TRAINER_PIC(SwimmingTriathleteF, SWIMMING_TRIATHLETE_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_DRAGON_TAMER] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(DragonTamer, DRAGON_TAMER),
-        .palette = TRAINER_PAL(DragonTamer, DRAGON_TAMER),
+        TRAINER_PIC(DragonTamer, DRAGON_TAMER),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_NINJA_BOY] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(NinjaBoy, NINJA_BOY),
-        .palette = TRAINER_PAL(NinjaBoy, NINJA_BOY),
+        TRAINER_PIC(NinjaBoy, NINJA_BOY),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_BATTLE_GIRL] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(BattleGirl, BATTLE_GIRL),
-        .palette = TRAINER_PAL(BattleGirl, BATTLE_GIRL),
+        TRAINER_PIC(BattleGirl, BATTLE_GIRL),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_PARASOL_LADY] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(ParasolLady, PARASOL_LADY),
-        .palette = TRAINER_PAL(ParasolLady, PARASOL_LADY),
+        TRAINER_PIC(ParasolLady, PARASOL_LADY),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_SWIMMER_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(SwimmerF, SWIMMER_F),
-        .palette = TRAINER_PAL(SwimmerF, SWIMMER_F),
+        TRAINER_PIC(SwimmerF, SWIMMER_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_TWINS] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Twins, TWINS),
-        .palette = TRAINER_PAL(Twins, TWINS),
+        TRAINER_PIC(Twins, TWINS),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_SAILOR] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Sailor, SAILOR),
-        .palette = TRAINER_PAL(Sailor, SAILOR),
+        TRAINER_PIC(Sailor, SAILOR),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_MAGMA_ADMIN] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(MagmaAdmin, MAGMA_ADMIN),
-        .palette = TRAINER_PAL(MagmaAdmin, MAGMA_ADMIN),
+        TRAINER_PIC(MagmaAdmin, MAGMA_ADMIN),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_WALLY] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Wally, WALLY),
-        .palette = TRAINER_PAL(Wally, WALLY),
+        TRAINER_PIC(Wally, WALLY),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_BRENDAN] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Brendan, BRENDAN),
-        .palette = TRAINER_PAL(Brendan, BRENDAN),
+        TRAINER_PIC(Brendan, BRENDAN),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_MAY] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(May, MAY),
-        .palette = TRAINER_PAL(May, MAY),
+        TRAINER_PIC(May, MAY),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_BUG_CATCHER] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(BugCatcher, BUG_CATCHER),
-        .palette = TRAINER_PAL(BugCatcher, BUG_CATCHER),
+        TRAINER_PIC(BugCatcher, BUG_CATCHER),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_POKEMON_RANGER_M] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(PokemonRangerM, POKEMON_RANGER_M),
-        .palette = TRAINER_PAL(PokemonRangerM, POKEMON_RANGER_M),
+        TRAINER_PIC(PokemonRangerM, POKEMON_RANGER_M),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_POKEMON_RANGER_F] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(PokemonRangerF, POKEMON_RANGER_F),
-        .palette = TRAINER_PAL(PokemonRangerF, POKEMON_RANGER_F),
+        TRAINER_PIC(PokemonRangerF, POKEMON_RANGER_F),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_MAGMA_LEADER_MAXIE] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(MagmaLeaderMaxie, MAGMA_LEADER_MAXIE),
-        .palette = TRAINER_PAL(MagmaLeaderMaxie, MAGMA_LEADER_MAXIE),
+        TRAINER_PIC(MagmaLeaderMaxie, MAGMA_LEADER_MAXIE),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_LASS] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Lass, LASS),
-        .palette = TRAINER_PAL(Lass, LASS),
+        TRAINER_PIC(Lass, LASS),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_YOUNG_COUPLE] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(YoungCouple, YOUNG_COUPLE),
-        .palette = TRAINER_PAL(YoungCouple, YOUNG_COUPLE),
+        TRAINER_PIC(YoungCouple, YOUNG_COUPLE),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_OLD_COUPLE] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(OldCouple, OLD_COUPLE),
-        .palette = TRAINER_PAL(OldCouple, OLD_COUPLE),
+        TRAINER_PIC(OldCouple, OLD_COUPLE),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_SIS_AND_BRO] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(SisAndBro, SIS_AND_BRO),
-        .palette = TRAINER_PAL(SisAndBro, SIS_AND_BRO),
+        TRAINER_PIC(SisAndBro, SIS_AND_BRO),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_STEVEN] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Steven, STEVEN),
-        .palette = TRAINER_PAL(Steven, STEVEN),
+        TRAINER_PIC(Steven, STEVEN),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_SALON_MAIDEN_ANABEL] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(SalonMaidenAnabel, SALON_MAIDEN_ANABEL),
-        .palette = TRAINER_PAL(SalonMaidenAnabel, SALON_MAIDEN_ANABEL),
+        TRAINER_PIC(SalonMaidenAnabel, SALON_MAIDEN_ANABEL),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_DOME_ACE_TUCKER] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(DomeAceTucker, DOME_ACE_TUCKER),
-        .palette = TRAINER_PAL(DomeAceTucker, DOME_ACE_TUCKER),
+        TRAINER_PIC(DomeAceTucker, DOME_ACE_TUCKER),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_PALACE_MAVEN_SPENSER] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(PalaceMavenSpenser, PALACE_MAVEN_SPENSER),
-        .palette = TRAINER_PAL(PalaceMavenSpenser, PALACE_MAVEN_SPENSER),
+        TRAINER_PIC(PalaceMavenSpenser, PALACE_MAVEN_SPENSER),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_ARENA_TYCOON_GRETA] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(ArenaTycoonGreta, ARENA_TYCOON_GRETA),
-        .palette = TRAINER_PAL(ArenaTycoonGreta, ARENA_TYCOON_GRETA),
+        TRAINER_PIC(ArenaTycoonGreta, ARENA_TYCOON_GRETA),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_FACTORY_HEAD_NOLAND] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(FactoryHeadNoland, FACTORY_HEAD_NOLAND),
-        .palette = TRAINER_PAL(FactoryHeadNoland, FACTORY_HEAD_NOLAND),
+        TRAINER_PIC(FactoryHeadNoland, FACTORY_HEAD_NOLAND),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_PIKE_QUEEN_LUCY] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(PikeQueenLucy, PIKE_QUEEN_LUCY),
-        .palette = TRAINER_PAL(PikeQueenLucy, PIKE_QUEEN_LUCY),
+        TRAINER_PIC(PikeQueenLucy, PIKE_QUEEN_LUCY),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_PYRAMID_KING_BRANDON] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(PyramidKingBrandon, PYRAMID_KING_BRANDON),
-        .palette = TRAINER_PAL(PyramidKingBrandon, PYRAMID_KING_BRANDON),
+        TRAINER_PIC(PyramidKingBrandon, PYRAMID_KING_BRANDON),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_RED] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Red, RED),
-        .palette = TRAINER_PAL(Red, RED),
+        TRAINER_PIC(Red, RED),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_LEAF] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(Leaf, LEAF),
-        .palette = TRAINER_PAL(Leaf, LEAF),
+        TRAINER_PIC(Leaf, LEAF),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_RS_BRENDAN] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(RubySapphireBrendan, RS_BRENDAN),
-        .palette = TRAINER_PAL(RubySapphireBrendan, RS_BRENDAN),
+        TRAINER_PIC(RubySapphireBrendan, RS_BRENDAN),
         .animation = sAnims_Trainer,
     },
     
     [TRAINER_PIC_RS_MAY] =
     {
         .size = TRAINER_SPRITE_SIZE,
-        .frontPic = TRAINER_SPRITE(RubySapphireMay, RS_MAY),
-        .palette = TRAINER_PAL(RubySapphireMay, RS_MAY),
+        TRAINER_PIC(RubySapphireMay, RS_MAY),
         .animation = sAnims_Trainer,
     },
 };
