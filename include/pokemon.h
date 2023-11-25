@@ -370,8 +370,10 @@ struct SpeciesInfo /*0x8C*/
  /* 0x70 */ const u8 *const footprint;
             // All Pokémon pics are 64x64, but this data table defines where in this 64x64 frame the sprite's non-transparent pixels actually are.
  /* 0x74 */ u8 frontPicSize; // The dimensions of this drawn pixel area.
+ /* 0x74 */ u8 frontPicSizeFemale; // The dimensions of this drawn pixel area.
  /* 0x75 */ u8 frontPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
  /* 0x76 */ u8 backPicSize; // The dimensions of this drawn pixel area.
+ /* 0x76 */ u8 backPicSizeFemale; // The dimensions of this drawn pixel area.
  /* 0x77 */ u8 backPicYOffset; // The number of pixels between the drawn pixel area and the bottom edge.
  /* 0x78 */ u8 iconPalIndex:3;
             u8 iconPalIndexFemale:3;
