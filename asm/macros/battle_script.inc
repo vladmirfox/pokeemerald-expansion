@@ -1372,6 +1372,25 @@
 	.4byte \failInstr
 	.endm
 
+	.macro setglaiverush
+	callnative BS_SetGlaiveRush
+	.endm
+
+	.macro tryrelicsong
+	callnative BS_TryRelicSong
+	.endm
+
+	.macro setpledge jumpInstr:req
+	callnative BS_SetPledge
+	.4byte \jumpInstr
+	.endm
+
+	.macro setpledgestatus battler:req sidestatus:req
+	callnative BS_SetPledgeStatus
+	.byte \battler
+	.4byte \sidestatus
+	.endm
+
 	.macro trycopycat failInstr:req
 	callnative BS_TryCopycat
 	.4byte \failInstr
@@ -1513,6 +1532,18 @@
 	.macro jumpiftargetdynamaxed, ptr:req
 	callnative BS_JumpIfDynamaxed
 	.4byte \ptr
+	.endm
+
+	.macro trytrainerslidezmovemsg
+	callnative BS_TryTrainerSlideZMoveMsg
+	.endm
+
+	.macro trytrainerslidemegaevolutionmsg
+	callnative BS_TryTrainerSlideMegaEvolutionMsg
+	.endm
+
+	.macro trytrainerslidedynamaxmsg
+	callnative BS_TryTrainerSlideDynamaxMsg
 	.endm
 
 @ various command changed to more readable macros
@@ -2053,10 +2084,6 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro applyplasmafists
-	various BS_ATTACKER, VARIOUS_APPLY_PLASMA_FISTS
-	.endm
-
 	.macro jumpifweatheraffected battler:req, flags:req, jumpInstr:req
 	various \battler, VARIOUS_JUMP_IF_WEATHER_AFFECTED
 	.4byte \flags
@@ -2171,14 +2198,6 @@
 
 	.macro activateterrainchangeabilities battler:req
 	various \battler, VARIOUS_ACTIVATE_TERRAIN_CHANGE_ABILITIES
-	.endm
-
-	.macro trytrainerslidezmovemsg battler:req
-	various \battler, VARIOUS_TRY_TRAINER_SLIDE_MSG_Z_MOVE
-	.endm
-
-	.macro trytrainerslidemegaevolutionmsg battler:req
-	various \battler, VARIOUS_TRY_TRAINER_SLIDE_MSG_MEGA_EVOLUTION
 	.endm
 
 @ helpful macros
