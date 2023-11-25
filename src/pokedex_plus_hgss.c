@@ -4501,8 +4501,8 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     PrintInfoScreenText(gText_WTWeight, 155, 77);
     if (owned)
     {
-        PrintMonHeight(gPokedexEntries[num].height, 180, 64);
-        PrintMonWeight(gPokedexEntries[num].weight, 180, 77);
+        PrintMonHeight(GetSpeciesHeight(species), 180, 64);
+        PrintMonWeight(GetSpeciesWeight(species), 180, 77);
     }
     else
     {
