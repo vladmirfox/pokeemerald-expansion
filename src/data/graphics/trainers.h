@@ -296,476 +296,108 @@ static const union AnimCmd *const sAnims_Trainer[] ={
     sAnim_GeneralFrame0,
 };
 
-#define TRAINER_PIC(file, trainerPic, anims)                                              \
+#define TRAINER_PIC(trainerPic, file, anims)                                              \
+    [TRAINER_PIC_##trainerPic] =                                                          \
+    {                                                                                     \
         .y_offset = 8,                                                                    \
         .frontPic = {gTrainerFrontPic_##file, TRAINER_PIC_SIZE, TRAINER_PIC_##trainerPic},\
         .palette = {gTrainerPalette_##file, TRAINER_PIC_##trainerPic},                    \
-        .animation = sAnims_##anims
+        .animation = sAnims_##anims,                                                      \
+    }
 
 const struct TrainerSprite gTrainerSprites[] =
 {
-    [TRAINER_PIC_HIKER] =
-    {
-        TRAINER_PIC(Hiker, HIKER, Trainer),
-    },
-    
-    [TRAINER_PIC_AQUA_GRUNT_M] =
-    {
-        TRAINER_PIC(AquaGruntM, AQUA_GRUNT_M, Trainer),
-    },
-    
-    [TRAINER_PIC_POKEMON_BREEDER_F] =
-    {
-        TRAINER_PIC(PokemonBreederF, POKEMON_BREEDER_F, Trainer),
-    },
-    
-    [TRAINER_PIC_COOLTRAINER_M] =
-    {
-        TRAINER_PIC(CoolTrainerM, COOLTRAINER_M, Trainer),
-    },
-    
-    [TRAINER_PIC_BIRD_KEEPER] =
-    {
-        TRAINER_PIC(BirdKeeper, BIRD_KEEPER, Trainer),
-    },
-    
-    [TRAINER_PIC_COLLECTOR] =
-    {
-        TRAINER_PIC(Collector, COLLECTOR, Trainer),
-    },
-    
-    [TRAINER_PIC_AQUA_GRUNT_F] =
-    {
-        TRAINER_PIC(AquaGruntF, AQUA_GRUNT_F, Trainer),
-    },
-    
-    [TRAINER_PIC_SWIMMER_M] =
-    {
-        TRAINER_PIC(SwimmerM, SWIMMER_M, Trainer),
-    },
-    
-    [TRAINER_PIC_MAGMA_GRUNT_M] =
-    {
-        TRAINER_PIC(MagmaGruntM, MAGMA_GRUNT_M, Trainer),
-    },
-    
-    [TRAINER_PIC_EXPERT_M] =
-    {
-        TRAINER_PIC(ExpertM, EXPERT_M, Trainer),
-    },
-    
-    [TRAINER_PIC_AQUA_ADMIN_M] =
-    {
-        TRAINER_PIC(AquaAdminM, AQUA_ADMIN_M, Trainer),
-    },
-    
-    [TRAINER_PIC_BLACK_BELT] =
-    {
-        TRAINER_PIC(BlackBelt, BLACK_BELT, Trainer),
-    },
-    
-    [TRAINER_PIC_AQUA_ADMIN_F] =
-    {
-        TRAINER_PIC(AquaAdminF, AQUA_ADMIN_F, Trainer),
-    },
-    
-    [TRAINER_PIC_AQUA_LEADER_ARCHIE] =
-    {
-        TRAINER_PIC(AquaLeaderArchie, AQUA_LEADER_ARCHIE, Trainer),
-    },
-    
-    [TRAINER_PIC_HEX_MANIAC] =
-    {
-        TRAINER_PIC(HexManiac, HEX_MANIAC, Trainer),
-    },
-    
-    [TRAINER_PIC_AROMA_LADY] =
-    {
-        TRAINER_PIC(AromaLady, AROMA_LADY, Trainer),
-    },
-    
-    [TRAINER_PIC_RUIN_MANIAC] =
-    {
-        TRAINER_PIC(RuinManiac, RUIN_MANIAC, Trainer),
-    },
-    
-    [TRAINER_PIC_INTERVIEWER] =
-    {
-        TRAINER_PIC(Interviewer, INTERVIEWER, Trainer),
-    },
-    
-    [TRAINER_PIC_TUBER_F] =
-    {
-        TRAINER_PIC(TuberF, TUBER_F, Trainer),
-    },
-    
-    [TRAINER_PIC_TUBER_M] =
-    {
-        TRAINER_PIC(TuberM, TUBER_M, Trainer),
-    },
-    
-    [TRAINER_PIC_COOLTRAINER_F] =
-    {
-        TRAINER_PIC(CoolTrainerF, COOLTRAINER_F, Trainer),
-    },
-    
-    [TRAINER_PIC_LADY] =
-    {
-        TRAINER_PIC(Lady, LADY, Trainer),
-    },
-    
-    [TRAINER_PIC_BEAUTY] =
-    {
-        TRAINER_PIC(Beauty, BEAUTY, Trainer),
-    },
-    
-    [TRAINER_PIC_RICH_BOY] =
-    {
-        TRAINER_PIC(RichBoy, RICH_BOY, Trainer),
-    },
-    
-    [TRAINER_PIC_EXPERT_F] =
-    {
-        TRAINER_PIC(ExpertF, EXPERT_F, Trainer),
-    },
-    
-    [TRAINER_PIC_POKEMANIAC] =
-    {
-        TRAINER_PIC(Pokemaniac, POKEMANIAC, Trainer),
-    },
-    
-    [TRAINER_PIC_MAGMA_GRUNT_F] =
-    {
-        TRAINER_PIC(MagmaGruntF, MAGMA_GRUNT_F, Trainer),
-    },
-    
-    [TRAINER_PIC_GUITARIST] =
-    {
-        TRAINER_PIC(Guitarist, GUITARIST, Trainer),
-    },
-    
-    [TRAINER_PIC_KINDLER] =
-    {
-        TRAINER_PIC(Kindler, KINDLER, Trainer),
-    },
-    
-    [TRAINER_PIC_CAMPER] =
-    {
-        TRAINER_PIC(Camper, CAMPER, Trainer),
-    },
-    
-    [TRAINER_PIC_PICNICKER] =
-    {
-        TRAINER_PIC(Picnicker, PICNICKER, Trainer),
-    },
-    
-    [TRAINER_PIC_BUG_MANIAC] =
-    {
-        TRAINER_PIC(BugManiac, BUG_MANIAC, Trainer),
-    },
-    
-    [TRAINER_PIC_POKEMON_BREEDER_M] =
-    {
-        TRAINER_PIC(PokemonBreederM, POKEMON_BREEDER_M, Trainer),
-    },
-    
-    [TRAINER_PIC_PSYCHIC_M] =
-    {
-        TRAINER_PIC(PsychicM, PSYCHIC_M, Trainer),
-    },
-    
-    [TRAINER_PIC_PSYCHIC_F] =
-    {
-        TRAINER_PIC(PsychicF, PSYCHIC_F, Trainer),
-    },
-    
-    [TRAINER_PIC_GENTLEMAN] =
-    {
-        TRAINER_PIC(Gentleman, GENTLEMAN, Trainer),
-    },
-    
-    [TRAINER_PIC_ELITE_FOUR_SIDNEY] =
-    {
-        TRAINER_PIC(EliteFourSidney, ELITE_FOUR_SIDNEY, Trainer),
-    },
-    
-    [TRAINER_PIC_ELITE_FOUR_PHOEBE] =
-    {
-        TRAINER_PIC(EliteFourPhoebe, ELITE_FOUR_PHOEBE, Trainer),
-    },
-    
-    [TRAINER_PIC_ELITE_FOUR_GLACIA] =
-    {
-        TRAINER_PIC(EliteFourGlacia, ELITE_FOUR_GLACIA, Trainer),
-    },
-    
-    [TRAINER_PIC_ELITE_FOUR_DRAKE] =
-    {
-        TRAINER_PIC(EliteFourDrake, ELITE_FOUR_DRAKE, Trainer),
-    },
-    
-    [TRAINER_PIC_LEADER_ROXANNE] =
-    {
-        TRAINER_PIC(LeaderRoxanne, LEADER_ROXANNE, Trainer),
-    },
-    
-    [TRAINER_PIC_LEADER_BRAWLY] =
-    {
-        TRAINER_PIC(LeaderBrawly, LEADER_BRAWLY, Trainer),
-    },
-    
-    [TRAINER_PIC_LEADER_WATTSON] =
-    {
-        TRAINER_PIC(LeaderWattson, LEADER_WATTSON, Trainer),
-    },
-    
-    [TRAINER_PIC_LEADER_FLANNERY] =
-    {
-        TRAINER_PIC(LeaderFlannery, LEADER_FLANNERY, Trainer),
-    },
-    
-    [TRAINER_PIC_LEADER_NORMAN] =
-    {
-        TRAINER_PIC(LeaderNorman, LEADER_NORMAN, Trainer),
-    },
-    
-    [TRAINER_PIC_LEADER_WINONA] =
-    {
-        TRAINER_PIC(LeaderWinona, LEADER_WINONA, Trainer),
-    },
-    
-    [TRAINER_PIC_LEADER_TATE_AND_LIZA] =
-    {
-        TRAINER_PIC(LeaderTateAndLiza, LEADER_TATE_AND_LIZA, Trainer),
-    },
-    
-    [TRAINER_PIC_LEADER_JUAN] =
-    {
-        TRAINER_PIC(LeaderJuan, LEADER_JUAN, Trainer),
-    },
-    
-    [TRAINER_PIC_SCHOOL_KID_M] =
-    {
-        TRAINER_PIC(SchoolKidM, SCHOOL_KID_M, Trainer),
-    },
-    
-    [TRAINER_PIC_SCHOOL_KID_F] =
-    {
-        TRAINER_PIC(SchoolKidF, SCHOOL_KID_F, Trainer),
-    },
-    
-    [TRAINER_PIC_SR_AND_JR] =
-    {
-        TRAINER_PIC(SrAndJr, SR_AND_JR, Trainer),
-    },
-    
-    [TRAINER_PIC_POKEFAN_M] =
-    {
-        TRAINER_PIC(PokefanM, POKEFAN_M, Trainer),
-    },
-    
-    [TRAINER_PIC_POKEFAN_F] =
-    {
-        TRAINER_PIC(PokefanF, POKEFAN_F, Trainer),
-    },
-    
-    [TRAINER_PIC_YOUNGSTER] =
-    {
-        TRAINER_PIC(Youngster, YOUNGSTER, Trainer),
-    },
-    
-    [TRAINER_PIC_CHAMPION_WALLACE] =
-    {
-        TRAINER_PIC(ChampionWallace, CHAMPION_WALLACE, Trainer),
-    },
-    
-    [TRAINER_PIC_FISHERMAN] =
-    {
-        TRAINER_PIC(Fisherman, FISHERMAN, Trainer),
-    },
-    
-    [TRAINER_PIC_CYCLING_TRIATHLETE_M] =
-    {
-        TRAINER_PIC(CyclingTriathleteM, CYCLING_TRIATHLETE_M, Trainer),
-    },
-    
-    [TRAINER_PIC_CYCLING_TRIATHLETE_F] =
-    {
-        TRAINER_PIC(CyclingTriathleteF, CYCLING_TRIATHLETE_F, Trainer),
-    },
-    
-    [TRAINER_PIC_RUNNING_TRIATHLETE_M] =
-    {
-        TRAINER_PIC(RunningTriathleteM, RUNNING_TRIATHLETE_M, Trainer),
-    },
-    
-    [TRAINER_PIC_RUNNING_TRIATHLETE_F] =
-    {
-        TRAINER_PIC(RunningTriathleteF, RUNNING_TRIATHLETE_F, Trainer),
-    },
-    
-    [TRAINER_PIC_SWIMMING_TRIATHLETE_M] =
-    {
-        TRAINER_PIC(SwimmingTriathleteM, SWIMMING_TRIATHLETE_M, Trainer),
-    },
-    
-    [TRAINER_PIC_SWIMMING_TRIATHLETE_F] =
-    {
-        TRAINER_PIC(SwimmingTriathleteF, SWIMMING_TRIATHLETE_F, Trainer),
-    },
-    
-    [TRAINER_PIC_DRAGON_TAMER] =
-    {
-        TRAINER_PIC(DragonTamer, DRAGON_TAMER, Trainer),
-    },
-    
-    [TRAINER_PIC_NINJA_BOY] =
-    {
-        TRAINER_PIC(NinjaBoy, NINJA_BOY, Trainer),
-    },
-    
-    [TRAINER_PIC_BATTLE_GIRL] =
-    {
-        TRAINER_PIC(BattleGirl, BATTLE_GIRL, Trainer),
-    },
-    
-    [TRAINER_PIC_PARASOL_LADY] =
-    {
-        TRAINER_PIC(ParasolLady, PARASOL_LADY, Trainer),
-    },
-    
-    [TRAINER_PIC_SWIMMER_F] =
-    {
-        TRAINER_PIC(SwimmerF, SWIMMER_F, Trainer),
-    },
-    
-    [TRAINER_PIC_TWINS] =
-    {
-        TRAINER_PIC(Twins, TWINS, Trainer),
-    },
-    
-    [TRAINER_PIC_SAILOR] =
-    {
-        TRAINER_PIC(Sailor, SAILOR, Trainer),
-    },
-    
-    [TRAINER_PIC_MAGMA_ADMIN] =
-    {
-        TRAINER_PIC(MagmaAdmin, MAGMA_ADMIN, Trainer),
-    },
-    
-    [TRAINER_PIC_WALLY] =
-    {
-        TRAINER_PIC(Wally, WALLY, Trainer),
-    },
-    
-    [TRAINER_PIC_BRENDAN] =
-    {
-        TRAINER_PIC(Brendan, BRENDAN, Trainer),
-    },
-    
-    [TRAINER_PIC_MAY] =
-    {
-        TRAINER_PIC(May, MAY, Trainer),
-    },
-    
-    [TRAINER_PIC_BUG_CATCHER] =
-    {
-        TRAINER_PIC(BugCatcher, BUG_CATCHER, Trainer),
-    },
-    
-    [TRAINER_PIC_POKEMON_RANGER_M] =
-    {
-        TRAINER_PIC(PokemonRangerM, POKEMON_RANGER_M, Trainer),
-    },
-    
-    [TRAINER_PIC_POKEMON_RANGER_F] =
-    {
-        TRAINER_PIC(PokemonRangerF, POKEMON_RANGER_F, Trainer),
-    },
-    
-    [TRAINER_PIC_MAGMA_LEADER_MAXIE] =
-    {
-        TRAINER_PIC(MagmaLeaderMaxie, MAGMA_LEADER_MAXIE, Trainer),
-    },
-    
-    [TRAINER_PIC_LASS] =
-    {
-        TRAINER_PIC(Lass, LASS, Trainer),
-    },
-    
-    [TRAINER_PIC_YOUNG_COUPLE] =
-    {
-        TRAINER_PIC(YoungCouple, YOUNG_COUPLE, Trainer),
-    },
-    
-    [TRAINER_PIC_OLD_COUPLE] =
-    {
-        TRAINER_PIC(OldCouple, OLD_COUPLE, Trainer),
-    },
-    
-    [TRAINER_PIC_SIS_AND_BRO] =
-    {
-        TRAINER_PIC(SisAndBro, SIS_AND_BRO, Trainer),
-    },
-    
-    [TRAINER_PIC_STEVEN] =
-    {
-        TRAINER_PIC(Steven, STEVEN, Trainer),
-    },
-    
-    [TRAINER_PIC_SALON_MAIDEN_ANABEL] =
-    {
-        TRAINER_PIC(SalonMaidenAnabel, SALON_MAIDEN_ANABEL, Trainer),
-    },
-    
-    [TRAINER_PIC_DOME_ACE_TUCKER] =
-    {
-        TRAINER_PIC(DomeAceTucker, DOME_ACE_TUCKER, Trainer),
-    },
-    
-    [TRAINER_PIC_PALACE_MAVEN_SPENSER] =
-    {
-        TRAINER_PIC(PalaceMavenSpenser, PALACE_MAVEN_SPENSER, Trainer),
-    },
-    
-    [TRAINER_PIC_ARENA_TYCOON_GRETA] =
-    {
-        TRAINER_PIC(ArenaTycoonGreta, ARENA_TYCOON_GRETA, Trainer),
-    },
-    
-    [TRAINER_PIC_FACTORY_HEAD_NOLAND] =
-    {
-        TRAINER_PIC(FactoryHeadNoland, FACTORY_HEAD_NOLAND, Trainer),
-    },
-    
-    [TRAINER_PIC_PIKE_QUEEN_LUCY] =
-    {
-        TRAINER_PIC(PikeQueenLucy, PIKE_QUEEN_LUCY, Trainer),
-    },
-    
-    [TRAINER_PIC_PYRAMID_KING_BRANDON] =
-    {
-        TRAINER_PIC(PyramidKingBrandon, PYRAMID_KING_BRANDON, Trainer),
-    },
-    
-    [TRAINER_PIC_RED] =
-    {
-        TRAINER_PIC(Red, RED, Trainer),
-    },
-    
-    [TRAINER_PIC_LEAF] =
-    {
-        TRAINER_PIC(Leaf, LEAF, Trainer),
-    },
-    
-    [TRAINER_PIC_RS_BRENDAN] =
-    {
-        TRAINER_PIC(RubySapphireBrendan, RS_BRENDAN, Trainer),
-    },
-    
-    [TRAINER_PIC_RS_MAY] =
-    {
-        TRAINER_PIC(RubySapphireMay, RS_MAY, Trainer),
-    },
+    TRAINER_PIC(HIKER, Hiker, Trainer),    
+    TRAINER_PIC(AQUA_GRUNT_M, AquaGruntM, Trainer),    
+    TRAINER_PIC(POKEMON_BREEDER_F, PokemonBreederF, Trainer),    
+    TRAINER_PIC(COOLTRAINER_M, CoolTrainerM, Trainer),    
+    TRAINER_PIC(BIRD_KEEPER, BirdKeeper, Trainer),    
+    TRAINER_PIC(COLLECTOR, Collector, Trainer),    
+    TRAINER_PIC(AQUA_GRUNT_F, AquaGruntF, Trainer),    
+    TRAINER_PIC(SWIMMER_M, SwimmerM, Trainer),    
+    TRAINER_PIC(MAGMA_GRUNT_M, MagmaGruntM, Trainer),    
+    TRAINER_PIC(EXPERT_M, ExpertM, Trainer),    
+    TRAINER_PIC(AQUA_ADMIN_M, AquaAdminM, Trainer),    
+    TRAINER_PIC(BLACK_BELT, BlackBelt, Trainer),    
+    TRAINER_PIC(AQUA_ADMIN_F, AquaAdminF, Trainer),    
+    TRAINER_PIC(AQUA_LEADER_ARCHIE, AquaLeaderArchie, Trainer),    
+    TRAINER_PIC(HEX_MANIAC, HexManiac, Trainer),    
+    TRAINER_PIC(AROMA_LADY, AromaLady, Trainer),    
+    TRAINER_PIC(RUIN_MANIAC, RuinManiac, Trainer),    
+    TRAINER_PIC(INTERVIEWER, Interviewer, Trainer),    
+    TRAINER_PIC(TUBER_F, TuberF, Trainer),    
+    TRAINER_PIC(TUBER_M, TuberM, Trainer),    
+    TRAINER_PIC(COOLTRAINER_F, CoolTrainerF, Trainer),    
+    TRAINER_PIC(LADY, Lady, Trainer),    
+    TRAINER_PIC(BEAUTY, Beauty, Trainer),    
+    TRAINER_PIC(RICH_BOY, RichBoy, Trainer),    
+    TRAINER_PIC(EXPERT_F, ExpertF, Trainer),    
+    TRAINER_PIC(POKEMANIAC, Pokemaniac, Trainer),    
+    TRAINER_PIC(MAGMA_GRUNT_F, MagmaGruntF, Trainer),    
+    TRAINER_PIC(GUITARIST, Guitarist, Trainer),    
+    TRAINER_PIC(KINDLER, Kindler, Trainer),    
+    TRAINER_PIC(CAMPER, Camper, Trainer),    
+    TRAINER_PIC(PICNICKER, Picnicker, Trainer),    
+    TRAINER_PIC(BUG_MANIAC, BugManiac, Trainer),    
+    TRAINER_PIC(POKEMON_BREEDER_M, PokemonBreederM, Trainer),    
+    TRAINER_PIC(PSYCHIC_M, PsychicM, Trainer),    
+    TRAINER_PIC(PSYCHIC_F, PsychicF, Trainer),    
+    TRAINER_PIC(GENTLEMAN, Gentleman, Trainer),    
+    TRAINER_PIC(ELITE_FOUR_SIDNEY, EliteFourSidney, Trainer),    
+    TRAINER_PIC(ELITE_FOUR_PHOEBE, EliteFourPhoebe, Trainer),    
+    TRAINER_PIC(ELITE_FOUR_GLACIA, EliteFourGlacia, Trainer),    
+    TRAINER_PIC(ELITE_FOUR_DRAKE, EliteFourDrake, Trainer),    
+    TRAINER_PIC(LEADER_ROXANNE, LeaderRoxanne, Trainer),    
+    TRAINER_PIC(LEADER_BRAWLY, LeaderBrawly, Trainer),    
+    TRAINER_PIC(LEADER_WATTSON, LeaderWattson, Trainer),    
+    TRAINER_PIC(LEADER_FLANNERY, LeaderFlannery, Trainer),    
+    TRAINER_PIC(LEADER_NORMAN, LeaderNorman, Trainer),    
+    TRAINER_PIC(LEADER_WINONA, LeaderWinona, Trainer),    
+    TRAINER_PIC(LEADER_TATE_AND_LIZA, LeaderTateAndLiza, Trainer),    
+    TRAINER_PIC(LEADER_JUAN, LeaderJuan, Trainer),    
+    TRAINER_PIC(SCHOOL_KID_M, SchoolKidM, Trainer),    
+    TRAINER_PIC(SCHOOL_KID_F, SchoolKidF, Trainer),    
+    TRAINER_PIC(SR_AND_JR, SrAndJr, Trainer),    
+    TRAINER_PIC(POKEFAN_M, PokefanM, Trainer),    
+    TRAINER_PIC(POKEFAN_F, PokefanF, Trainer),    
+    TRAINER_PIC(YOUNGSTER, Youngster, Trainer),    
+    TRAINER_PIC(CHAMPION_WALLACE, ChampionWallace, Trainer),    
+    TRAINER_PIC(FISHERMAN, Fisherman, Trainer),    
+    TRAINER_PIC(CYCLING_TRIATHLETE_M, CyclingTriathleteM, Trainer),    
+    TRAINER_PIC(CYCLING_TRIATHLETE_F, CyclingTriathleteF, Trainer),    
+    TRAINER_PIC(RUNNING_TRIATHLETE_M, RunningTriathleteM, Trainer),    
+    TRAINER_PIC(RUNNING_TRIATHLETE_F, RunningTriathleteF, Trainer),    
+    TRAINER_PIC(SWIMMING_TRIATHLETE_M, SwimmingTriathleteM, Trainer),    
+    TRAINER_PIC(SWIMMING_TRIATHLETE_F, SwimmingTriathleteF, Trainer),    
+    TRAINER_PIC(DRAGON_TAMER, DragonTamer, Trainer),    
+    TRAINER_PIC(NINJA_BOY, NinjaBoy, Trainer),    
+    TRAINER_PIC(BATTLE_GIRL, BattleGirl, Trainer),    
+    TRAINER_PIC(PARASOL_LADY, ParasolLady, Trainer),    
+    TRAINER_PIC(SWIMMER_F, SwimmerF, Trainer),    
+    TRAINER_PIC(TWINS, Twins, Trainer),    
+    TRAINER_PIC(SAILOR, Sailor, Trainer),    
+    TRAINER_PIC(MAGMA_ADMIN, MagmaAdmin, Trainer),    
+    TRAINER_PIC(WALLY, Wally, Trainer),    
+    TRAINER_PIC(BRENDAN, Brendan, Trainer),    
+    TRAINER_PIC(MAY, May, Trainer),    
+    TRAINER_PIC(BUG_CATCHER, BugCatcher, Trainer),    
+    TRAINER_PIC(POKEMON_RANGER_M, PokemonRangerM, Trainer),    
+    TRAINER_PIC(POKEMON_RANGER_F, PokemonRangerF, Trainer),    
+    TRAINER_PIC(MAGMA_LEADER_MAXIE, MagmaLeaderMaxie, Trainer),    
+    TRAINER_PIC(LASS, Lass, Trainer),    
+    TRAINER_PIC(YOUNG_COUPLE, YoungCouple, Trainer),    
+    TRAINER_PIC(OLD_COUPLE, OldCouple, Trainer),    
+    TRAINER_PIC(SIS_AND_BRO, SisAndBro, Trainer),    
+    TRAINER_PIC(STEVEN, Steven, Trainer),    
+    TRAINER_PIC(SALON_MAIDEN_ANABEL, SalonMaidenAnabel, Trainer),    
+    TRAINER_PIC(DOME_ACE_TUCKER, DomeAceTucker, Trainer),    
+    TRAINER_PIC(PALACE_MAVEN_SPENSER, PalaceMavenSpenser, Trainer),    
+    TRAINER_PIC(ARENA_TYCOON_GRETA, ArenaTycoonGreta, Trainer),    
+    TRAINER_PIC(FACTORY_HEAD_NOLAND, FactoryHeadNoland, Trainer),    
+    TRAINER_PIC(PIKE_QUEEN_LUCY, PikeQueenLucy, Trainer),    
+    TRAINER_PIC(PYRAMID_KING_BRANDON, PyramidKingBrandon, Trainer),    
+    TRAINER_PIC(RED, Red, Trainer),    
+    TRAINER_PIC(LEAF, Leaf, Trainer),    
+    TRAINER_PIC(RS_BRENDAN, RubySapphireBrendan, Trainer),    
+    TRAINER_PIC(RS_MAY, RubySapphireMay, Trainer),
 };
