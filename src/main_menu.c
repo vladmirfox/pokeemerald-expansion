@@ -645,14 +645,14 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
                 if (tWirelessAdapterConnected)
                 {
                     if (IsMysteryGiftEnabled())
-                        tMenuType == HAS_MYSTERY_GIFT;
+                        tMenuType = HAS_MYSTERY_GIFT;
                     else
-                        tMenuType == HAS_SAVED_GAME;
+                        tMenuType = HAS_SAVED_GAME;
                 }
                 else
                 {
                     if (IsMysteryGiftEnabled() && !IsMysteryEventEnabled())
-                        tMenuType == HAS_MYSTERY_GIFT;
+                        tMenuType = HAS_MYSTERY_GIFT;
                     else if (!IsMysteryGiftEnabled() && IsMysteryEventEnabled())
                         tMenuType = HAS_MYSTERY_EVENTS;
                     else if (IsMysteryGiftEnabled() && IsMysteryEventEnabled())
@@ -673,14 +673,14 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
                 if (tWirelessAdapterConnected)
                 {
                     if (IsMysteryGiftEnabled())
-                        tMenuType == HAS_MYSTERY_GIFT;
+                        tMenuType = HAS_MYSTERY_GIFT;
                     else
-                        tMenuType == HAS_SAVED_GAME;
+                        tMenuType = HAS_SAVED_GAME;
                 }
                 else
                 {
                     if (IsMysteryGiftEnabled() && !IsMysteryEventEnabled())
-                        tMenuType == HAS_MYSTERY_GIFT;
+                        tMenuType = HAS_MYSTERY_GIFT;
                     else if (!IsMysteryGiftEnabled() && IsMysteryEventEnabled())
                         tMenuType = HAS_MYSTERY_EVENTS;
                     else if (IsMysteryGiftEnabled() && IsMysteryEventEnabled())
