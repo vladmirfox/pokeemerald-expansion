@@ -71,9 +71,11 @@
 #define GEN_7 4
 #define GEN_8 5
 #define GEN_9 6
-#define GEN_LATEST GEN_8
+#define GEN_LATEST GEN_9
 
 // General settings
-#define EXPANSION_INTRO   TRUE    // If TRUE, a custom RHH intro will play after the vanilla copyright screen.
+#define EXPANSION_INTRO              TRUE    // If TRUE, a custom RHH intro will play after the vanilla copyright screen.
+#define POKEDEX_PLUS_HGSS            FALSE   // If TRUE, enables the custom HGSS style Pokedex.
+#define SUMMARY_SCREEN_NATURE_COLORS TRUE    // If TRUE, nature-based stat boosts and reductions will be red and blue in the summary screen.
 
 #endif // GUARD_CONFIG_H
