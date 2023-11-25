@@ -16,7 +16,7 @@ SINGLE_BATTLE_TEST("Explosion causes the user to faint")
     } SCENE {
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
     }
 }
 
@@ -32,8 +32,8 @@ SINGLE_BATTLE_TEST("Explosion causes the user & the target to faint")
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
         HP_BAR(opponent, hp: 0);
-        MESSAGE("Foe Wobbuffet fainted!");
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
     }
 }
 
@@ -47,7 +47,7 @@ SINGLE_BATTLE_TEST("Explosion causes the user to faint even if it misses")
     } SCENE {
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
     }
 }
 
@@ -63,9 +63,9 @@ SINGLE_BATTLE_TEST("Explosion causes the user to faint even if it has no effect"
     } SCENE {
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
-        MESSAGE("It doesn't affect Foe Gastly…");
+        MESSAGE("It doesn't affect Foe " SPECIES_NAME(SPECIES_GASTLY) "…");
         NOT HP_BAR(opponent);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
     }
 }
 
@@ -83,11 +83,11 @@ DOUBLE_BATTLE_TEST("Explosion causes everyone to faint in a double battle")
         HP_BAR(playerLeft, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, playerLeft);
         HP_BAR(opponentLeft, hp: 0);
-        MESSAGE("Foe Abra fainted!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_ABRA) " fainted!");
         HP_BAR(playerRight, hp: 0);
-        MESSAGE("Wynaut fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " fainted!");
         HP_BAR(opponentRight, hp: 0);
-        MESSAGE("Foe Kadabra fainted!");
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_KADABRA) " fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
     }
 }

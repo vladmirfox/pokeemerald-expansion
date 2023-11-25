@@ -21,24 +21,24 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the opponent")
         TURN { MOVE(playerLeft, MOVE_COURT_CHANGE); }
         TURN { SWITCH(playerLeft, 2); SWITCH(opponentLeft, 2); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_STICKY_WEB) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_STEALTH_ROCK) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_SPIKES) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TOXIC_SPIKES) "!");
-        MESSAGE("Wynaut used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_STICKY_WEB) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_STEALTH_ROCK) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SPIKES) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TOXIC_SPIKES) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
         MESSAGE("Wynaut swapped the battle effects affecting each side!");
-        MESSAGE("Go! Wynaut!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_WYNAUT) "!");
         NONE_OF {
-            MESSAGE("Wynaut is hurt by spikes!");
+            MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " is hurt by spikes!");
             MESSAGE("Pointed stones dug into Wynaut!");
-            MESSAGE("Wynaut was poisoned!");
-            MESSAGE("Wynaut was caught in a Sticky Web!");
+            MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " was poisoned!");
+            MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " was caught in a Sticky Web!");
         }
-        MESSAGE("2 sent out Wobbuffet!");
-        MESSAGE("Foe Wobbuffet is hurt by spikes!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WOBBUFFET) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " is hurt by spikes!");
         MESSAGE("Pointed stones dug into Foe Wobbuffet!");
-        MESSAGE("Foe Wobbuffet was poisoned!");
-        MESSAGE("Foe Wobbuffet was caught in a Sticky Web!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " was poisoned!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " was caught in a Sticky Web!");
     }
 }
 
@@ -57,23 +57,23 @@ DOUBLE_BATTLE_TEST("Court Change swaps entry hazards used by the player")
         TURN { MOVE(opponentLeft, MOVE_COURT_CHANGE); }
         TURN { SWITCH(opponentLeft, 2); SWITCH(playerLeft, 2); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_STICKY_WEB) "!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_STEALTH_ROCK) "!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SPIKES) "!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TOXIC_SPIKES) "!");
-        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_STICKY_WEB) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_STEALTH_ROCK) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SPIKES) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TOXIC_SPIKES) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
         MESSAGE("Foe Wynaut swapped the battle effects affecting each side!");
-        MESSAGE("Go! Wobbuffet!");
-        MESSAGE("Wobbuffet is hurt by spikes!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_WOBBUFFET) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is hurt by spikes!");
         MESSAGE("Pointed stones dug into Wobbuffet!");
-        MESSAGE("Wobbuffet was poisoned!");
-        MESSAGE("Wobbuffet was caught in a Sticky Web!");
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was poisoned!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was caught in a Sticky Web!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
         NONE_OF {
-            MESSAGE("Foe Wynaut is hurt by spikes!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " is hurt by spikes!");
             MESSAGE("Pointed stones dug into Foe Wynaut!");
-            MESSAGE("Foe Wynaut was poisoned!");
-            MESSAGE("Foe Wynaut was caught in a Sticky Web!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " was poisoned!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " was caught in a Sticky Web!");
         }
     }
 }
@@ -97,13 +97,13 @@ DOUBLE_BATTLE_TEST("Court Change used by the player swaps Mist, Safeguard, Lucky
         TURN { }
         TURN { }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_MIST) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_SAFEGUARD) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_LUCKY_CHANT) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_REFLECT) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_LIGHT_SCREEN) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TAILWIND) "!");
-        MESSAGE("Wynaut used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_MIST) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SAFEGUARD) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_LUCKY_CHANT) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_REFLECT) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_LIGHT_SCREEN) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TAILWIND) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
         MESSAGE("Wynaut swapped the battle effects affecting each side!");
         // The effects now end for the player side.
         MESSAGE("Ally's Mist wore off!");
@@ -134,13 +134,13 @@ DOUBLE_BATTLE_TEST("Court Change used by the opponent swaps Mist, Safeguard, Luc
         TURN { }
         TURN { }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_MIST) "!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SAFEGUARD) "!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_LUCKY_CHANT) "!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_REFLECT) "!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_LIGHT_SCREEN) "!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TAILWIND) "!");
-        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_MIST) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SAFEGUARD) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_LUCKY_CHANT) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_REFLECT) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_LIGHT_SCREEN) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TAILWIND) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
         MESSAGE("Foe Wynaut swapped the battle effects affecting each side!");
         // The effects now end for the player side.
         MESSAGE("Foe's Mist wore off!");

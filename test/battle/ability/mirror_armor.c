@@ -28,22 +28,22 @@ SINGLE_BATTLE_TEST("Mirror Armor lowers a stat of the attacking pokemon")
         switch (statId)
         {
         case STAT_DEF:
-            MESSAGE("Foe Wynaut's Defense fell!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s Defense fell!");
             break;
         case STAT_ATK:
-            MESSAGE("Foe Wynaut's Attack fell!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s Attack fell!");
             break;
         case STAT_EVASION:
-            MESSAGE("Foe Wynaut's evasiveness harshly fell!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s evasiveness harshly fell!");
             break;
         case STAT_ACC:
-            MESSAGE("Foe Wynaut's accuracy fell!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s accuracy fell!");
             break;
         case STAT_SPATK:
-            MESSAGE("Foe Wynaut's Sp. Atk fell!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s Sp. Atk fell!");
             break;
         case STAT_SPDEF:
-            MESSAGE("Foe Wynaut's Sp. Def harshly fell!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s Sp. Def harshly fell!");
             break;
         }
     } THEN {
@@ -60,11 +60,11 @@ SINGLE_BATTLE_TEST("Mirror Armor triggers even if the attacking Pokemon also has
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
-        MESSAGE("Foe Corviknigh used " MOVE_NAME(MOVE_LEER) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_CORVIKNIGHT) " used " MOVE_NAME(MOVE_LEER) "!");
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Corviknigh's Defense fell!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_CORVIKNIGHT) "'s Defense fell!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE - 1);
@@ -79,10 +79,10 @@ SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stats of an attacking Pokemon
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
-        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_LEER) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_LEER) "!");
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         ABILITY_POPUP(opponent, ABILITY_CLEAR_BODY);
-        MESSAGE("Foe Wynaut's Clear Body prevents stat loss!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s Clear Body prevents stat loss!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
@@ -100,7 +100,7 @@ SINGLE_BATTLE_TEST("Mirror Armor lowers the Attack of Pokemon with Intimidate")
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Gyarados's Attack fell!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_GYARADOS) "'s Attack fell!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE - 1);
@@ -118,9 +118,9 @@ SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stats of an attacking Pokemon
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); }
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
-        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_SUBSTITUTE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_SUBSTITUTE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, opponent);
-        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_LEER) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_LEER) "!");
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
     } THEN {
@@ -137,10 +137,10 @@ SINGLE_BATTLE_TEST("Mirror Armor raises the stat of an attacking Pokemon with Co
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
-        MESSAGE("Foe Shuckle used " MOVE_NAME(MOVE_LEER) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_SHUCKLE) " used " MOVE_NAME(MOVE_LEER) "!");
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Shuckle's Defense rose!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_SHUCKLE) "'s Defense rose!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 1);
@@ -158,13 +158,13 @@ SINGLE_BATTLE_TEST("Mirror Armor doesn't lower the stat of the attacking Pokemon
         TURN { MOVE(player, MOVE_SCREECH); }
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
-        MESSAGE("Corviknigh used " MOVE_NAME(MOVE_SCREECH) "!");
-        MESSAGE("Corviknigh used " MOVE_NAME(MOVE_SCREECH) "!");
-        MESSAGE("Corviknigh used " MOVE_NAME(MOVE_SCREECH) "!");
-        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_LEER) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_CORVIKNIGHT) " used " MOVE_NAME(MOVE_SCREECH) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_CORVIKNIGHT) " used " MOVE_NAME(MOVE_SCREECH) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_CORVIKNIGHT) " used " MOVE_NAME(MOVE_SCREECH) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_LEER) "!");
         ABILITY_POPUP(player, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wynaut's Defense won't go lower!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s Defense won't go lower!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->statStages[STAT_DEF], MIN_STAT_STAGE);
@@ -190,13 +190,13 @@ DOUBLE_BATTLE_TEST("Mirror Armor lowers Speed of the partner Pokemon after Court
         TURN { SWITCH(playerRight, 2);}
         TURN { }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_STICKY_WEB) "!");
-        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_STICKY_WEB) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
         MESSAGE("Foe Wynaut swapped the battle effects affecting each side!");
-        MESSAGE("Go! Corviknigh!");
-        MESSAGE("Corviknigh was caught in a Sticky Web!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_CORVIKNIGH) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_CORVIKNIGHT) " was caught in a Sticky Web!");
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Wobbuffet's Speed fell!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Speed fell!");
     }
 }

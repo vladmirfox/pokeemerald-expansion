@@ -23,8 +23,8 @@ SINGLE_BATTLE_TEST("Freeze is thawed by opponent's Fire-type attacks")
     } WHEN {
         TURN { MOVE(opponent, MOVE_EMBER); MOVE(player, MOVE_CELEBRATE); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_EMBER) "!");
-        MESSAGE("Wobbuffet was defrosted!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_EMBER) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was defrosted!");
         STATUS_ICON(player, none: TRUE);
     }
 }
@@ -38,8 +38,8 @@ SINGLE_BATTLE_TEST("Freeze is thawed by user's Flame Wheel")
     } WHEN {
         TURN { MOVE(player, MOVE_FLAME_WHEEL); }
     } SCENE {
-        MESSAGE("Wobbuffet was defrosted by Flame Wheel!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was defrosted by Flame Wheel!");
         STATUS_ICON(player, none: TRUE);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FLAME_WHEEL) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLAME_WHEEL) "!");
     }
 }

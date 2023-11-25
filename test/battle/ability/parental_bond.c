@@ -12,9 +12,9 @@ SINGLE_BATTLE_TEST("Parental Bond converts Tackle into a two-strike move")
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE, megaEvolve: TRUE); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
-        MESSAGE("Kangaskhan's Kangaskhanite is reacting to 1's Mega Ring!");
+        MESSAGE(SPECIES_NAME(SPECIES_KANGASKHAN) "'s Kangaskhanite is reacting to 1's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, player);
-        MESSAGE("Kangaskhan has Mega Evolved into Mega Kangaskhan!");
+        MESSAGE(SPECIES_NAME(SPECIES_KANGASKHAN) " has Mega Evolved into Mega Kangaskhan!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         HP_BAR(opponent);
         HP_BAR(opponent);

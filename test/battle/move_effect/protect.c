@@ -97,12 +97,12 @@ SINGLE_BATTLE_TEST("King's Shield, Silk Trap and Obstruct protect from damaging 
                 NOT HP_BAR(opponent);
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
                 if (statId == STAT_ATK) {
-                    MESSAGE("Wobbuffet's Attack fell!");
+                    MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Attack fell!");
                 } else if (statId == STAT_SPEED) {
-                    MESSAGE("Wobbuffet's Speed fell!");
+                    MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Speed fell!");
                 } else if (statId == STAT_DEF) {
                     if (lowersBy == 2) {
-                        MESSAGE("Wobbuffet's Defense harshly fell!");
+                        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Defense harshly fell!");
                     }
                 }
             } else {
@@ -149,8 +149,8 @@ SINGLE_BATTLE_TEST("Spiky Shield does 1/8 dmg of max hp of attackers making cont
         if (usedMove == MOVE_TACKLE) {
             HP_BAR(player, maxHp / 8);
             if (hp == 1) {
-                MESSAGE("Wobbuffet fainted!");
-                MESSAGE("Go! Wobbuffet!");
+                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
+                MESSAGE("Go! " SPECIES_NAME(SPECIES_WOBBUFFET) "!");
             }
         }
     }
@@ -218,15 +218,15 @@ SINGLE_BATTLE_TEST("Recoil damage is not applied if target was protected")
         TURN {}
     } SCENE {
         // 1st turn
-        MESSAGE("Foe Beautifly used " MOVE_NAME(MOVE_TACKLE) "!");
-        MESSAGE("Rapidash used " MOVE_NAME(MOVE_TACKLE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_BEAUTIFLY) " used " MOVE_NAME(MOVE_TACKLE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_RAPIDASH) " used " MOVE_NAME(MOVE_TACKLE) "!");
         // 2nd turn
         ANIMATION(ANIM_TYPE_MOVE, protectMove, opponent);
         MESSAGE("Foe Beautifly protected itself!");
-        // MESSAGE("Rapidash used " MOVE_NAME(MOVE_RECOILMOVE) "!");
+        // MESSAGE(SPECIES_NAME(SPECIES_RAPIDASH) " used " MOVE_NAME(MOVE_RECOILMOVE) "!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, recoilMove, player);
-            MESSAGE("Rapidash is hit with recoil!");
+            MESSAGE(SPECIES_NAME(SPECIES_RAPIDASH) " is hit with recoil!");
         }
     }
 }
@@ -253,7 +253,7 @@ SINGLE_BATTLE_TEST("Multi-hit moves don't hit a protected target and fail only o
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
         MESSAGE("Foe Beautifly protected itself!");
-        MESSAGE("Rapidash used " MOVE_NAME(MOVE_ARM_THRUST) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_RAPIDASH) " used " MOVE_NAME(MOVE_ARM_THRUST) "!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_ARM_THRUST, player);
         MESSAGE("Foe Beautifly protected itself!");
         // Each effect happens only once.
@@ -298,10 +298,10 @@ DOUBLE_BATTLE_TEST("Wide Guard protects self and ally from multi-target moves")
         TURN { MOVE(opponentLeft, MOVE_WIDE_GUARD); MOVE(playerLeft, move, target:opponentLeft); }
         TURN {}
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_WIDE_GUARD) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_WIDE_GUARD) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WIDE_GUARD, opponentLeft);
         if (move == MOVE_TACKLE) {
-            MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TACKLE) "!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TACKLE) "!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerLeft);
             HP_BAR(opponentLeft);
         } else if (move == MOVE_HYPER_VOICE) {
@@ -341,10 +341,10 @@ DOUBLE_BATTLE_TEST("Quick Guard protects self and ally from priority moves")
         TURN { MOVE(opponentLeft, MOVE_QUICK_GUARD); MOVE(playerLeft, move, target:targetOpponent); }
         TURN {}
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_QUICK_GUARD) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_QUICK_GUARD) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_GUARD, opponentLeft);
         if (move == MOVE_TACKLE) {
-            MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TACKLE) "!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TACKLE) "!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerLeft);
             HP_BAR(targetOpponent);
         } else if (move == MOVE_QUICK_ATTACK) {
@@ -379,7 +379,7 @@ DOUBLE_BATTLE_TEST("Crafty Shield protects self and ally from status moves")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CRAFTY_SHIELD, opponentLeft);
         if (move == MOVE_LEER) {
-            MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_LEER) "!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_LEER) "!");
             MESSAGE("Foe Wobbuffet protected itself!");
             NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
             MESSAGE("Foe Wobbuffet protected itself!");

@@ -28,13 +28,13 @@ SINGLE_BATTLE_TEST("Shell Trap activates only if hit by a physical move")
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
 
         if (activate) {
-            MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_TRAP, player);
             HP_BAR(opponent);
         } else {
-            MESSAGE("Wobbuffet's shell trap didn't work!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s shell trap didn't work!");
             NONE_OF {
-                MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
+                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
                 ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_TRAP, player);
                 HP_BAR(opponent);
             }
@@ -59,13 +59,13 @@ SINGLE_BATTLE_TEST("Shell Trap does not activate if attacker's Sheer Force appli
         MESSAGE("Wobbuffet set a shell trap!");
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
         if (activate) {
-            MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_TRAP, player);
             HP_BAR(opponent);
         } else {
-            MESSAGE("Wobbuffet's shell trap didn't work!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s shell trap didn't work!");
             NONE_OF {
-                MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
+                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
                 ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_TRAP, player);
                 HP_BAR(opponent);
             }
@@ -85,10 +85,10 @@ SINGLE_BATTLE_TEST("Shell Trap does not activate if battler faints before being 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SHELL_TRAP_SETUP, player);
         MESSAGE("Wobbuffet set a shell trap!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
-        MESSAGE("Wobbuffet fainted!");
-        MESSAGE("Go! Wobbuffet!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_WOBBUFFET) "!");
         NONE_OF {
-            MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_TRAP, player);
             HP_BAR(opponent);
         }
@@ -108,14 +108,14 @@ DOUBLE_BATTLE_TEST("Shell Trap activates immediately after being hit on turn 1 a
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SHELL_TRAP_SETUP, playerLeft);
         MESSAGE("Wobbuffet set a shell trap!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TACKLE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TACKLE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_TRAP, playerLeft);
         HP_BAR(opponentLeft);
         HP_BAR(opponentRight);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
     }
 }
 
@@ -132,14 +132,14 @@ DOUBLE_BATTLE_TEST("Shell Trap activates immediately after being hit on turn 2 a
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SHELL_TRAP_SETUP, playerLeft);
         MESSAGE("Wobbuffet set a shell trap!");
-        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TACKLE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TACKLE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_TRAP, playerLeft);
         HP_BAR(opponentLeft);
         HP_BAR(opponentRight);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
     }
 }
 
@@ -156,11 +156,11 @@ DOUBLE_BATTLE_TEST("Shell Trap activates immediately after being hit on turn 3 a
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_SHELL_TRAP_SETUP, playerLeft);
         MESSAGE("Wobbuffet set a shell trap!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TACKLE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TACKLE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SHELL_TRAP) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_TRAP, playerLeft);
         HP_BAR(opponentLeft);
         HP_BAR(opponentRight);

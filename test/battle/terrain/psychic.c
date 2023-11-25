@@ -10,10 +10,10 @@ SINGLE_BATTLE_TEST("Psychic Terrain protects grounded battlers from priority mov
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
         TURN { MOVE(player, MOVE_QUICK_ATTACK); MOVE(opponent, MOVE_QUICK_ATTACK); }
     } SCENE {
-        MESSAGE("Claydol used " MOVE_NAME(MOVE_PSYCHIC_TERRAIN) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_CLAYDOL) " used " MOVE_NAME(MOVE_PSYCHIC_TERRAIN) "!");
         MESSAGE("Claydol cannot use Quick Attack!");
         NOT { HP_BAR(opponent); }
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_QUICK_ATTACK) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_QUICK_ATTACK) "!");
         HP_BAR(player);
     }
 }
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Psychic Terrain activates Psychic Seed and Mimicry")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Using Psychic Seed, the Sp. Def of Wobbuffet rose!");
         ABILITY_POPUP(opponent);
-        MESSAGE("Foe Stunfisk's type changed to Psychc!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_STUNFISK) "'s type changed to Psychc!");
     } THEN {
         EXPECT_EQ(gBattleMons[B_POSITION_OPPONENT_LEFT].type1, TYPE_PSYCHIC);
     }
@@ -51,7 +51,7 @@ SINGLE_BATTLE_TEST("Psychic Terrain increases power of Psychic-type moves by 30/
             TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
         TURN { MOVE(player, MOVE_CONFUSION); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CONFUSION) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CONFUSION) "!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         if (B_TERRAIN_TYPE_BOOST >= GEN_8)
@@ -70,8 +70,8 @@ SINGLE_BATTLE_TEST("Psychic Terrain doesn't block priority moves that target the
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
         TURN { MOVE(player, MOVE_RECOVER); }
     } SCENE {
-        MESSAGE("Sableye used " MOVE_NAME(MOVE_PSYCHIC_TERRAIN) "!");
-        MESSAGE("Sableye used " MOVE_NAME(MOVE_RECOVER) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_SABLEYE) " used " MOVE_NAME(MOVE_PSYCHIC_TERRAIN) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_SABLEYE) " used " MOVE_NAME(MOVE_RECOVER) "!");
         HP_BAR(player);
     }
 }
@@ -85,8 +85,8 @@ SINGLE_BATTLE_TEST("Psychic Terrain doesn't block priority moves that target all
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
         TURN { MOVE(player, MOVE_HAZE); }
     } SCENE {
-        MESSAGE("Sableye used " MOVE_NAME(MOVE_PSYCHIC_TERRAIN) "!");
-        MESSAGE("Sableye used " MOVE_NAME(MOVE_HAZE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_SABLEYE) " used " MOVE_NAME(MOVE_PSYCHIC_TERRAIN) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_SABLEYE) " used " MOVE_NAME(MOVE_HAZE) "!");
     }
 }
 
@@ -99,8 +99,8 @@ SINGLE_BATTLE_TEST("Psychic Terrain doesn't block priority moves that target all
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
         TURN { MOVE(player, MOVE_SPIKES); }
     } SCENE {
-        MESSAGE("Sableye used " MOVE_NAME(MOVE_PSYCHIC_TERRAIN) "!");
-        MESSAGE("Sableye used " MOVE_NAME(MOVE_SPIKES) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_SABLEYE) " used " MOVE_NAME(MOVE_PSYCHIC_TERRAIN) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_SABLEYE) " used " MOVE_NAME(MOVE_SPIKES) "!");
     }
 }
 
@@ -115,8 +115,8 @@ DOUBLE_BATTLE_TEST("Psychic Terrain doesn't block priority moves that target all
         TURN { MOVE(playerLeft, MOVE_PSYCHIC_TERRAIN); }
         TURN { MOVE(playerLeft, MOVE_HEAL_PULSE, target: playerRight); }
     } SCENE {
-        MESSAGE("Sableye used " MOVE_NAME(MOVE_PSYCHIC_TERRAIN) "!");
-        MESSAGE("Sableye used " MOVE_NAME(MOVE_HEAL_PULSE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_SABLEYE) " used " MOVE_NAME(MOVE_PSYCHIC_TERRAIN) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_SABLEYE) " used " MOVE_NAME(MOVE_HEAL_PULSE) "!");
     }
 }
 
@@ -129,8 +129,8 @@ SINGLE_BATTLE_TEST("Psychic Terrain doesn't block priority field moves")
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
         TURN { MOVE(player, MOVE_SUNNY_DAY); }
     } SCENE {
-        MESSAGE("Sableye used " MOVE_NAME(MOVE_PSYCHIC_TERRAIN) "!");
-        MESSAGE("Sableye used " MOVE_NAME(MOVE_SUNNY_DAY) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_SABLEYE) " used " MOVE_NAME(MOVE_PSYCHIC_TERRAIN) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_SABLEYE) " used " MOVE_NAME(MOVE_SUNNY_DAY) "!");
     }
 }
 
@@ -146,18 +146,18 @@ SINGLE_BATTLE_TEST("Psychic Terrain lasts for 5 turns")
         TURN {}
         TURN {}
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PSYCHIC_TERRAIN, player);
         MESSAGE("The battlefield got weird!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
 
         MESSAGE("The weirdness disappeared from the battlefield.");
     }

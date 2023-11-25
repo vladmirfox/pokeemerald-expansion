@@ -29,10 +29,10 @@ SINGLE_BATTLE_TEST("Stone Axe / Ceaseless Edge set up hazards after hitting the 
         else {
             MESSAGE("Pointed stones float in the air around the opposing team!");
         }
-        MESSAGE("2 sent out Wobbuffet!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WOBBUFFET) "!");
         if (move == MOVE_CEASELESS_EDGE) {
             HP_BAR(opponent, damage: maxHP / 8);
-            MESSAGE("Foe Wobbuffet is hurt by spikes!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " is hurt by spikes!");
         }
         else {
             HP_BAR(opponent, damage: maxHP / 8);
@@ -72,9 +72,9 @@ SINGLE_BATTLE_TEST("Ceaseless Edge can set up to 3 layers of Spikes")
         HP_BAR(opponent);
         NOT MESSAGE("Spikes were scattered all around the opposing team!");
 
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
         HP_BAR(opponent, damage: maxHP / 4);
-        MESSAGE("Foe Wynaut is hurt by spikes!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " is hurt by spikes!");
     }
 }
 
@@ -109,7 +109,7 @@ SINGLE_BATTLE_TEST("Stone Axe can set up pointed stones only once")
         HP_BAR(opponent);
         NOT MESSAGE("Pointed stones float in the air around the opposing team!");
 
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
         HP_BAR(opponent, damage: maxHP / 8);
         MESSAGE("Pointed stones dug into Foe Wynaut!");
     }

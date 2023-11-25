@@ -19,20 +19,20 @@ SINGLE_BATTLE_TEST("Tailwind applies for 4 turns")
         TURN {}
         TURN {}
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TAILWIND) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TAILWIND) "!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
 
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
     }
 }
 
@@ -47,9 +47,9 @@ DOUBLE_BATTLE_TEST("Tailwind affects partner on first turn")
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TAILWIND); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TAILWIND) "!");
-        MESSAGE("Wynaut used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TAILWIND) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
     }
 }

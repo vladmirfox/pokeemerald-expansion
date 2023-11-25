@@ -15,8 +15,8 @@ SINGLE_BATTLE_TEST("Aegislash reverts to Shield Form upon switching out")
     } SCENE {
         ABILITY_POPUP(player, ABILITY_STANCE_CHANGE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
-        MESSAGE("Aegislash used " MOVE_NAME(MOVE_TACKLE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_AEGISLASH) " used " MOVE_NAME(MOVE_TACKLE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_AEGISLASH);
     }

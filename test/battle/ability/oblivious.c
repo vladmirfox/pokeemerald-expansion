@@ -12,7 +12,7 @@ SINGLE_BATTLE_TEST("Oblivious prevents Infatuation")
     } SCENE {
         ABILITY_POPUP(player, ABILITY_OBLIVIOUS);
         NONE_OF { ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_INFATUATION, player); }
-        MESSAGE("It doesn't affect Slowpoke…");
+        MESSAGE("It doesn't affect " SPECIES_NAME(SPECIES_SLOWPOKE) "…");
     }
 }
 
@@ -27,7 +27,7 @@ SINGLE_BATTLE_TEST("Oblivious prevents Captivate")
     } SCENE {
         ABILITY_POPUP(player, ABILITY_OBLIVIOUS);
         NONE_OF { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); }
-        MESSAGE("It doesn't affect Slowpoke…");
+        MESSAGE("It doesn't affect " SPECIES_NAME(SPECIES_SLOWPOKE) "…");
     }
 }
 
@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Oblivious prevents Taunt")
     } SCENE {
         ABILITY_POPUP(player, ABILITY_OBLIVIOUS);
         NONE_OF { ANIMATION(ANIM_TYPE_MOVE, MOVE_TAUNT, opponent); }
-        MESSAGE("It doesn't affect Slowpoke…");
+        MESSAGE("It doesn't affect " SPECIES_NAME(SPECIES_SLOWPOKE) "…");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPORE, player);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
     }
@@ -63,6 +63,6 @@ SINGLE_BATTLE_TEST("Oblivious prevents Intimidate")
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
         ABILITY_POPUP(player, ABILITY_OBLIVIOUS);
         NONE_OF { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); }
-        MESSAGE("Slowpoke's Attack was not lowered!");
+        MESSAGE(SPECIES_NAME(SPECIES_SLOWPOKE) "'s Attack was not lowered!");
     }
 }

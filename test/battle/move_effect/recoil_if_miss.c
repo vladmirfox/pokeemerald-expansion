@@ -15,8 +15,8 @@ SINGLE_BATTLE_TEST("Jump Kick has 50% recoil on miss")
         TURN { MOVE(player, MOVE_JUMP_KICK, hit: FALSE); }
     } SCENE {
         s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_JUMP_KICK) "!");
-        MESSAGE("Wobbuffet's attack missed!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_JUMP_KICK) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s attack missed!");
         MESSAGE("Wobbuffet kept going and crashed!");
         HP_BAR(player, damage: maxHP / 2);
     }
@@ -77,13 +77,13 @@ SINGLE_BATTLE_TEST("Jump Kick's recoil happens after Spiky Shield damage and Pok
         TURN { ; }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKY_SHIELD, opponent);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_JUMP_KICK) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_JUMP_KICK) "!");
         MESSAGE("Foe Wobbuffet protected itself!");
         HP_BAR(player, damage: maxHp / 8);
-        MESSAGE("Wobbuffet was hurt by Foe Wobbuffet's Spiky Shield!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was hurt by Foe Wobbuffet's Spiky Shield!");
         if (faintOnSpiky){
-            MESSAGE("Wobbuffet fainted!");
-            MESSAGE("Go! Wynaut!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
+            MESSAGE("Go! " SPECIES_NAME(SPECIES_WYNAUT) "!");
             NONE_OF {
                 MESSAGE("Wobbuffet kept going and crashed!");
                 HP_BAR(player);
@@ -92,8 +92,8 @@ SINGLE_BATTLE_TEST("Jump Kick's recoil happens after Spiky Shield damage and Pok
             MESSAGE("Wobbuffet kept going and crashed!");
             HP_BAR(player);
             if (faintOnJumpKick) {
-                MESSAGE("Wobbuffet fainted!");
-                MESSAGE("Go! Wynaut!");
+                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
+                MESSAGE("Go! " SPECIES_NAME(SPECIES_WYNAUT) "!");
             }
         }
     }

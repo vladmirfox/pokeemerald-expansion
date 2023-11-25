@@ -30,9 +30,9 @@ SINGLE_BATTLE_TEST("Spikes damage on switch in")
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKES, player);
             MESSAGE("Spikes were scattered all around the opposing team!");
         }
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
         HP_BAR(opponent, damage: maxHP / divisor);
-        MESSAGE("Foe Wynaut is hurt by spikes!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " is hurt by spikes!");
     }
 }
 
@@ -56,11 +56,11 @@ SINGLE_BATTLE_TEST("Spikes fails after 3 layers")
         MESSAGE("Spikes were scattered all around the opposing team!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKES, player);
         MESSAGE("Spikes were scattered all around the opposing team!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SPIKES) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SPIKES) "!");
         MESSAGE("But it failed!");
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
         HP_BAR(opponent, damage: maxHP / 4);
-        MESSAGE("Foe Wynaut is hurt by spikes!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " is hurt by spikes!");
     }
 }
 
@@ -77,12 +77,12 @@ SINGLE_BATTLE_TEST("Spikes damage on subsequent switch ins")
     } SCENE {
         s32 maxHP0 = GetMonData(&OPPONENT_PARTY[0], MON_DATA_MAX_HP);
         s32 maxHP1 = GetMonData(&OPPONENT_PARTY[1], MON_DATA_MAX_HP);
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
         HP_BAR(opponent, damage: maxHP1 / 8);
-        MESSAGE("Foe Wynaut is hurt by spikes!");
-        MESSAGE("2 sent out Wobbuffet!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " is hurt by spikes!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WOBBUFFET) "!");
         HP_BAR(opponent, damage: maxHP0 / 8);
-        MESSAGE("Foe Wobbuffet is hurt by spikes!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " is hurt by spikes!");
     }
 }
 

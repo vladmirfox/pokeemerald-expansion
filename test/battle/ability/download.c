@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Download raises Attack if player has lower Def than Sp. Def"
         {
             ABILITY_POPUP(opponent, ABILITY_DOWNLOAD);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Porygon's Download raised its Attack!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_PORYGON) "'s Download raised its Attack!");
         }
         HP_BAR(player, captureDamage: &results[i].damage);
     } FINALLY {
@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("Download raises Sp.Attack if enemy has lower Sp. Def than De
         {
             ABILITY_POPUP(player, ABILITY_DOWNLOAD);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Porygon's Download raised its Sp. Atk!");
+            MESSAGE(SPECIES_NAME(SPECIES_PORYGON) "'s Download raised its Sp. Atk!");
         }
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -72,14 +72,14 @@ SINGLE_BATTLE_TEST("Download doesn't activate if target hasn't been sent out yet
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
         // Everyone faints.
 
-        MESSAGE("Go! Porygon!");
-        MESSAGE("2 sent out Porygon2!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_PORYGON) "!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_PORYGON) "2!");
 
         if (ability == ABILITY_DOWNLOAD)
         {
             ABILITY_POPUP(player, ABILITY_DOWNLOAD);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Porygon's Download raised its Attack!");
+            MESSAGE(SPECIES_NAME(SPECIES_PORYGON) "'s Download raised its Attack!");
             ABILITY_POPUP(opponent, ABILITY_DOWNLOAD);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
             MESSAGE("Foe Porygon2's Download raised its Sp. Atk!");

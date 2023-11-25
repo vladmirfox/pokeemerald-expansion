@@ -10,7 +10,7 @@ SINGLE_BATTLE_TEST("Grassy Terrain recovers 1/16th HP at end of turn")
         TURN { MOVE(player, MOVE_GRASSY_TERRAIN); }
     } SCENE {
         s32 maxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
-        MESSAGE("Wobbuffet is healed by the grassy terrain!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is healed by the grassy terrain!");
         HP_BAR(player, damage: -maxHP / 16);
     }
 }
@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("Grassy Terrain activates Grassy Seed and Mimicry")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Using Grassy Seed, the Defense of Wobbuffet rose!");
         ABILITY_POPUP(opponent);
-        MESSAGE("Foe Stunfisk's type changed to Grass!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_STUNFISK) "'s type changed to Grass!");
     } THEN {
         EXPECT_EQ(gBattleMons[B_POSITION_OPPONENT_LEFT].type1, TYPE_GRASS);
     }
@@ -48,7 +48,7 @@ SINGLE_BATTLE_TEST("Grassy Terrain increases power of Grass-type moves by 30/50 
             TURN { MOVE(player, MOVE_GRASSY_TERRAIN); }
         TURN { MOVE(player, MOVE_ABSORB); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_ABSORB) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_ABSORB) "!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         if (B_TERRAIN_TYPE_BOOST >= GEN_8)
@@ -97,18 +97,18 @@ SINGLE_BATTLE_TEST("Grassy Terrain lasts for 5 turns")
         TURN {}
         TURN {}
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GRASSY_TERRAIN, player);
         MESSAGE("Grass grew to cover the battlefield!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
 
         MESSAGE("The grass disappeared from the battlefield.");
     }

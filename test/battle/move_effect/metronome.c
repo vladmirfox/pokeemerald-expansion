@@ -14,9 +14,9 @@ SINGLE_BATTLE_TEST("Metronome picks a random move")
     } WHEN {
         TURN { MOVE(player, MOVE_METRONOME, WITH_RNG(RNG_METRONOME, MOVE_SCRATCH)); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_METRONOME) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_METRONOME) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_METRONOME, player);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_SCRATCH) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SCRATCH) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
         HP_BAR(opponent);
     }
@@ -33,11 +33,11 @@ SINGLE_BATTLE_TEST("Metronome's called powder move fails against Grass Types")
     } WHEN {
         TURN { MOVE(player, MOVE_METRONOME, WITH_RNG(RNG_METRONOME, MOVE_POISON_POWDER)); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_METRONOME) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_METRONOME) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_METRONOME, player);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_POISON_POWDER) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_POISON_POWDER) "!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_POISON_POWDER, player);
-        MESSAGE("It doesn't affect Foe Tangela…");
+        MESSAGE("It doesn't affect Foe " SPECIES_NAME(SPECIES_TANGELA) "…");
         NOT STATUS_ICON(opponent, poison: TRUE);
     }
 }
@@ -51,9 +51,9 @@ SINGLE_BATTLE_TEST("Metronome's called multi-hit move hits multiple times")
     } WHEN {
         TURN { MOVE(player, MOVE_METRONOME, WITH_RNG(RNG_METRONOME, MOVE_ROCK_BLAST)); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_METRONOME) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_METRONOME) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_METRONOME, player);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_ROCK_BLAST) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_ROCK_BLAST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROCK_BLAST, player);
         HP_BAR(opponent);
         MESSAGE("Hit 5 time(s)!");

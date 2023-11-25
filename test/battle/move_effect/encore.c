@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("Encore has no effect if no previous move")
     } WHEN {
         TURN { MOVE(opponent, MOVE_ENCORE); MOVE(player, MOVE_CELEBRATE); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_ENCORE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_ENCORE) "!");
         MESSAGE("But it failed!");
     }
 }

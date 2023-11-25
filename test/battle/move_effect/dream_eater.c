@@ -32,8 +32,8 @@ SINGLE_BATTLE_TEST("Dream Eater fails on awake targets")
     } WHEN {
         TURN { MOVE(player, MOVE_DREAM_EATER); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_DREAM_EATER) "!");
-        MESSAGE("Foe Wobbuffet wasn't affected!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_DREAM_EATER) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " wasn't affected!");
     }
 }
 
@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("Dream Eater fails if Heal Block applies")
     } WHEN {
         TURN { MOVE(opponent, MOVE_HEAL_BLOCK); MOVE(player, MOVE_DREAM_EATER); }
     } SCENE {
-        MESSAGE("Wobbuffet was prevented from healing!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was prevented from healing!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_DREAM_EATER, player);
             HP_BAR(opponent);

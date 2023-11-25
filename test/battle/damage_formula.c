@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Damage calculation matches Gen5+")
         }
     }
     SCENE{
-        MESSAGE("Glaceon used " MOVE_NAME(MOVE_ICE_FANG) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_GLACEON) " used " MOVE_NAME(MOVE_ICE_FANG) "!");
         HP_BAR(opponent, captureDamage: &dmg);
     }
     THEN{
@@ -69,7 +69,7 @@ SINGLE_BATTLE_TEST("Damage calculation matches Gen5+ (Muscle Band, crit)")
         }
     }
     SCENE{
-        MESSAGE("Glaceon used " MOVE_NAME(MOVE_ICE_FANG) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_GLACEON) " used " MOVE_NAME(MOVE_ICE_FANG) "!");
         HP_BAR(opponent, captureDamage: &dmg);
     }
     THEN{

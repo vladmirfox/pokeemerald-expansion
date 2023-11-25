@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("U-turn switches the user out")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
         HP_BAR(opponent);
-        MESSAGE("Go! Wynaut!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_WYNAUT) "!");
     }
 }
 
@@ -76,7 +76,7 @@ SINGLE_BATTLE_TEST("U-turn does not switch the user out if Wimp Out activates")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
         HP_BAR(opponent);
         ABILITY_POPUP(opponent, ABILITY_WIMP_OUT);
-        MESSAGE("2 sent out Wobbuffet!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WOBBUFFET) "!");
     }
 }
 

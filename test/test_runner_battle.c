@@ -766,6 +766,12 @@ static s32 TryMessage(s32 i, s32 n, const u8 *string)
                 case CHAR_A: // A for ability
                     refString = gAbilityNames[refID];
                     break;
+                case CHAR_S: // S for species
+                    refString = gSpeciesNames[refID];
+                    break;
+                case CHAR_I: // I for item
+                    refString = gItems[refID].name;
+                    break;
                 }
                 for (l = 0; refString[l] != EOS; l++)
                 {

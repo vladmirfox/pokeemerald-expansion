@@ -20,8 +20,8 @@ SINGLE_BATTLE_TEST("Revival Blessing revives a chosen fainted party member for t
     } WHEN {
         TURN { MOVE(player, MOVE_REVIVAL_BLESSING); SEND_OUT(player, 2); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_REVIVAL_BLESSING) "!");
-        MESSAGE("Wynaut was revived and is ready to fight again!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_REVIVAL_BLESSING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " was revived and is ready to fight again!");
     }
 }
 
@@ -35,8 +35,8 @@ SINGLE_BATTLE_TEST("Revival Blessing revives a fainted party member for an oppon
     } WHEN {
         TURN { MOVE(opponent, MOVE_REVIVAL_BLESSING); SEND_OUT(opponent, 1); }
     } SCENE {
-        MESSAGE("Foe Raichu used " MOVE_NAME(MOVE_REVIVAL_BLESSING) "!");
-        MESSAGE("Pichu was revived and is ready to fight again!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_RAICHU) " used " MOVE_NAME(MOVE_REVIVAL_BLESSING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_PICHU) " was revived and is ready to fight again!");
     }
 }
 
@@ -48,7 +48,7 @@ SINGLE_BATTLE_TEST("Revival Blessing fails if no party members are fainted")
     } WHEN {
         TURN { MOVE(player, MOVE_REVIVAL_BLESSING); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_REVIVAL_BLESSING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_REVIVAL_BLESSING) "!");
         MESSAGE("But it failed!");
     }
 }
@@ -76,11 +76,11 @@ TO_DO_BATTLE_TEST("Revival Blessing cannot revive a partner's party member");
 //         TURN { MOVE(user, MOVE_REVIVAL_BLESSING); }
 //     } SCENE {
 //         if (user == opponentLeft) {
-//             MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_REVIVAL_BLESSING) "!");
+//             MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_REVIVAL_BLESSING) "!");
 //             MESSAGE("But it failed!");
 //         } else {
-//             MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_REVIVAL_BLESSING) "!");
-//             MESSAGE("Wynaut was revived and is ready to fight again!");
+//             MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_REVIVAL_BLESSING) "!");
+//             MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " was revived and is ready to fight again!");
 //         }
 //     }
 // }
@@ -100,10 +100,10 @@ TO_DO_BATTLE_TEST("Revived battlers still lose their turn");
 //                MOVE(opponentLeft, MOVE_REVIVAL_BLESSING);
 //                SEND_OUT(opponentLeft, 1); }
 //     } SCENE {
-//         MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TACKLE) "!");
-//         MESSAGE("Foe Wynaut fainted!");
-//         MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_REVIVAL_BLESSING) "!");
-//         MESSAGE("Wynaut was revived and is ready to fight again!");
-//         NOT { MESSAGE("Wynaut used " MOVE_NAME(MOVE_CELEBRATE) "!"); }
+//         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TACKLE) "!");
+//         MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " fainted!");
+//         MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_REVIVAL_BLESSING) "!");
+//         MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " was revived and is ready to fight again!");
+//         NOT { MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_CELEBRATE) "!"); }
 //     }
 // }

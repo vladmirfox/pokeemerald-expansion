@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("Magic Bounce bounces back status moves")
     } SCENE {
         ABILITY_POPUP(opponent, ABILITY_MAGIC_BOUNCE);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC, player);
-        MESSAGE("Wynaut's Toxic was bounced back by Foe Espeon's Magic Bounce!");
+        MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) "'s Toxic was bounced back by Foe Espeon's Magic Bounce!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC, opponent);
         STATUS_ICON(player, badPoison: TRUE);
     }
@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("Magic Bounce bounces back powder moves")
     } SCENE {
         ABILITY_POPUP(opponent, ABILITY_MAGIC_BOUNCE);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC, player);
-        MESSAGE("Wynaut's Stun Spore was bounced back by Foe Espeon's Magic Bounce!");
+        MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) "'s Stun Spore was bounced back by Foe Espeon's Magic Bounce!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STUN_SPORE, opponent);
         STATUS_ICON(player, paralysis: TRUE);
     }
@@ -49,9 +49,9 @@ SINGLE_BATTLE_TEST("Magic Bounce cannot bounce back powder moves against Grass T
     } SCENE {
         ABILITY_POPUP(opponent, ABILITY_MAGIC_BOUNCE);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_STUN_SPORE, player);
-        MESSAGE("Oddish's Stun Spore was bounced back by Foe Espeon's Magic Bounce!");
+        MESSAGE(SPECIES_NAME(SPECIES_ODDISH) "'s Stun Spore was bounced back by Foe Espeon's Magic Bounce!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_STUN_SPORE, opponent);
-        MESSAGE("It doesn't affect Oddish…");
+        MESSAGE("It doesn't affect " SPECIES_NAME(SPECIES_ODDISH) "…");
         NOT STATUS_ICON(player, paralysis: TRUE);
     }
 }
@@ -70,14 +70,14 @@ DOUBLE_BATTLE_TEST("Magic Bounce bounces back moves hitting both foes at two foe
     } SCENE {
         ABILITY_POPUP(opponentLeft, ABILITY_MAGIC_BOUNCE);
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_LEER, playerLeft);
-        MESSAGE("Abra's Leer was bounced back by Foe Espeon's Magic Bounce!");
+        MESSAGE(SPECIES_NAME(SPECIES_ABRA) "'s Leer was bounced back by Foe Espeon's Magic Bounce!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_LEER, opponentLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Abra's Defense fell!");
+        MESSAGE(SPECIES_NAME(SPECIES_ABRA) "'s Defense fell!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-        MESSAGE("Kadabra's Defense fell!");
+        MESSAGE(SPECIES_NAME(SPECIES_KADABRA) "'s Defense fell!");
         // Also check if second original target gets hit by Leer as this was once bugged
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE("Foe Wynaut's Defense fell!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s Defense fell!");
     }
 }

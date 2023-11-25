@@ -48,7 +48,7 @@ SINGLE_BATTLE_TEST("Freeze cannot be inflicted in Sunlight")
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUNNY_DAY); MOVE(player, MOVE_ICE_BEAM); }
     } SCENE {
-        NOT MESSAGE("Wobbuffet was frozen solid!");
+        NOT MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was frozen solid!");
     }
 }
 
@@ -63,6 +63,6 @@ SINGLE_BATTLE_TEST("Blizzard bypasses accuracy checks in Hail and Snow")
     } WHEN {
         TURN { MOVE(opponent, move); MOVE(player, MOVE_BLIZZARD); }
     } SCENE {
-        NOT MESSAGE("Wobbuffet's attack missed!");
+        NOT MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s attack missed!");
     }
 }

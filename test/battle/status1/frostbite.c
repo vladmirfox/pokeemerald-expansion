@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Frostbite deals 1/16 damage to effected pokemon")
     } WHEN {
         TURN {}
     } SCENE {
-        MESSAGE("Foe Wobbuffet is hurt by its frostbite!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " is hurt by its frostbite!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_FRZ, opponent);
         HP_BAR(opponent, captureDamage: &frostbiteDamage);
    } THEN { EXPECT_EQ(frostbiteDamage, opponent->maxHP / 16); }
@@ -57,10 +57,10 @@ SINGLE_BATTLE_TEST("Frostbite is healed if hit with a thawing move")
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         if (move == MOVE_EMBER) {
             NONE_OF {
-                MESSAGE("Foe Wobbuffet's frostbite was healed!");
+                MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s frostbite was healed!");
             }
         } else {
-            MESSAGE("Foe Wobbuffet's frostbite was healed!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s frostbite was healed!");
         }
    }
 }
@@ -84,11 +84,11 @@ SINGLE_BATTLE_TEST("Frostbite is healed when the user uses a thawing move")
         ANIMATION(ANIM_TYPE_MOVE, move, player);
         HP_BAR(opponent);
         if (move == MOVE_EMBER) {
-            MESSAGE("Wobbuffet is hurt by its frostbite!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is hurt by its frostbite!");
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_FRZ, player);
         } else {
             NONE_OF {
-                MESSAGE("Wobbuffet is hurt by its frostbite!");
+                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is hurt by its frostbite!");
                 ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_FRZ, player);
             }
         }

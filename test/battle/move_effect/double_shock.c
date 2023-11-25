@@ -18,8 +18,8 @@ SINGLE_BATTLE_TEST("Double Shock user loses its Electric-type")
         TURN { MOVE(player, MOVE_DOUBLE_SHOCK); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SHOCK, player);
-        MESSAGE("Pikachu used up all of its electricity!");
-        MESSAGE("Pikachu used " MOVE_NAME(MOVE_DOUBLE_SHOCK) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_PIKACHU) " used up all of its electricity!");
+        MESSAGE(SPECIES_NAME(SPECIES_PIKACHU) " used " MOVE_NAME(MOVE_DOUBLE_SHOCK) "!");
         MESSAGE("But it failed!");
     }
 }
@@ -33,7 +33,7 @@ SINGLE_BATTLE_TEST("Double Shock fails if the user isn't an Electric-type")
         TURN { MOVE(player, MOVE_DOUBLE_SHOCK); }
     } SCENE {
         NONE_OF { ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SHOCK, player); }
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_DOUBLE_SHOCK) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_DOUBLE_SHOCK) "!");
         MESSAGE("But it failed!");
     }
 }
@@ -48,6 +48,6 @@ SINGLE_BATTLE_TEST("Double Shock user loses its Electric-type if enemy faints")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SHOCK, player);
         HP_BAR(opponent, hp: 0);
-        MESSAGE("Pikachu used up all of its electricity!");
+        MESSAGE(SPECIES_NAME(SPECIES_PIKACHU) " used up all of its electricity!");
     }
 }

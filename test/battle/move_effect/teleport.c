@@ -41,7 +41,7 @@ SINGLE_BATTLE_TEST("Teleport forces the pokemon to switch out")
         TURN { MOVE(opponent, MOVE_TELEPORT); SEND_OUT(opponent, 1); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TELEPORT, opponent);
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
     }
 }
 
@@ -56,6 +56,6 @@ SINGLE_BATTLE_TEST("Teleport does not fail if the user is trapped")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FIRE_SPIN, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TELEPORT, opponent);
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
     }
 }

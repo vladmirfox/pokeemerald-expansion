@@ -46,7 +46,7 @@ DOUBLE_BATTLE_TEST("After You does nothing if the target has already moved")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponentLeft);
-        MESSAGE("Foe Wynaut used " MOVE_NAME(MOVE_AFTER_YOU) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_AFTER_YOU) "!");
         MESSAGE("But it failed!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerRight);
     }

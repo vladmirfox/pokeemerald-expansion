@@ -15,12 +15,12 @@ SINGLE_BATTLE_TEST("Primal reversion happens for Groudon only when holding Red O
     } SCENE {
         if (heldItem == ITEM_RED_ORB) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
-            MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+            MESSAGE(SPECIES_NAME(SPECIES_GROUDON) "'s Primal Reversion! It reverted to its primal form!");
         }
         else {
             NONE_OF {
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
-                MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+                MESSAGE(SPECIES_NAME(SPECIES_GROUDON) "'s Primal Reversion! It reverted to its primal form!");
             }
         }
     } THEN {
@@ -47,12 +47,12 @@ SINGLE_BATTLE_TEST("Primal reversion happens for Kyogre only when holding Blue O
     } SCENE {
         if (heldItem == ITEM_BLUE_ORB) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, opponent);
-            MESSAGE("Foe Kyogre's Primal Reversion! It reverted to its primal form!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_KYOGRE) "'s Primal Reversion! It reverted to its primal form!");
         }
         else {
             NONE_OF {
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, opponent);
-                MESSAGE("Foe Kyogre's Primal Reversion! It reverted to its primal form!");
+                MESSAGE("Foe " SPECIES_NAME(SPECIES_KYOGRE) "'s Primal Reversion! It reverted to its primal form!");
             }
         }
     } THEN {
@@ -76,13 +76,13 @@ DOUBLE_BATTLE_TEST("Primal reversion's order is determined by Speed - opponent f
         TURN { MOVE(opponentLeft, MOVE_CELEBRATE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, opponentRight);
-        MESSAGE("Foe Kyogre's Primal Reversion! It reverted to its primal form!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_KYOGRE) "'s Primal Reversion! It reverted to its primal form!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, playerRight);
-        MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+        MESSAGE(SPECIES_NAME(SPECIES_GROUDON) "'s Primal Reversion! It reverted to its primal form!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, opponentLeft);
-        MESSAGE("Foe Groudon's Primal Reversion! It reverted to its primal form!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_GROUDON) "'s Primal Reversion! It reverted to its primal form!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, playerLeft);
-        MESSAGE("Kyogre's Primal Reversion! It reverted to its primal form!");
+        MESSAGE(SPECIES_NAME(SPECIES_KYOGRE) "'s Primal Reversion! It reverted to its primal form!");
     } THEN {
         EXPECT_EQ(playerLeft->species, SPECIES_KYOGRE_PRIMAL);
         EXPECT_EQ(opponentLeft->species, SPECIES_GROUDON_PRIMAL);
@@ -102,13 +102,13 @@ DOUBLE_BATTLE_TEST("Primal reversion's order is determined by Speed - player fas
         TURN { MOVE(opponentLeft, MOVE_CELEBRATE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, playerRight);
-        MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+        MESSAGE(SPECIES_NAME(SPECIES_GROUDON) "'s Primal Reversion! It reverted to its primal form!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, playerLeft);
-        MESSAGE("Kyogre's Primal Reversion! It reverted to its primal form!");
+        MESSAGE(SPECIES_NAME(SPECIES_KYOGRE) "'s Primal Reversion! It reverted to its primal form!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, opponentLeft);
-        MESSAGE("Foe Groudon's Primal Reversion! It reverted to its primal form!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_GROUDON) "'s Primal Reversion! It reverted to its primal form!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, opponentRight);
-        MESSAGE("Foe Kyogre's Primal Reversion! It reverted to its primal form!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_KYOGRE) "'s Primal Reversion! It reverted to its primal form!");
     } THEN {
         EXPECT_EQ(playerLeft->species, SPECIES_KYOGRE_PRIMAL);
         EXPECT_EQ(opponentLeft->species, SPECIES_GROUDON_PRIMAL);
@@ -128,9 +128,9 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a mon is sent out after a mon
         TURN { MOVE(opponent, MOVE_TACKLE); SEND_OUT(player, 1); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
-        MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+        MESSAGE(SPECIES_NAME(SPECIES_GROUDON) "'s Primal Reversion! It reverted to its primal form!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_GROUDON_PRIMAL);
     }
@@ -147,7 +147,7 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a mon is switched in")
         TURN { MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
-        MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+        MESSAGE(SPECIES_NAME(SPECIES_GROUDON) "'s Primal Reversion! It reverted to its primal form!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_GROUDON_PRIMAL);
     }
@@ -165,10 +165,10 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a switch-in caused by Eject B
         TURN { MOVE(opponent, MOVE_TACKLE); SEND_OUT(player, 1); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Wobbuffet is switched out with the Eject Button!");
-        MESSAGE("Go! Groudon!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is switched out with the Eject Button!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_GROUDON) "!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
-        MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+        MESSAGE(SPECIES_NAME(SPECIES_GROUDON) "'s Primal Reversion! It reverted to its primal form!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_GROUDON_PRIMAL);
     }
@@ -186,9 +186,9 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a switch-in caused by Red Car
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
         MESSAGE("Foe Wobbuffet held up its Red Card against Wobbuffet!");
-        MESSAGE("Groudon was dragged out!");
+        MESSAGE(SPECIES_NAME(SPECIES_GROUDON) " was dragged out!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
-        MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+        MESSAGE(SPECIES_NAME(SPECIES_GROUDON) "'s Primal Reversion! It reverted to its primal form!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_GROUDON_PRIMAL);
     }
@@ -205,11 +205,11 @@ SINGLE_BATTLE_TEST("Primal reversion happens after the entry hazards damage")
         TURN { MOVE(opponent, MOVE_SPIKES); }
         TURN { MOVE(opponent, MOVE_SPIKES); SWITCH(player, 1);}
     } SCENE {
-        MESSAGE("Go! Groudon!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_GROUDON) "!");
         HP_BAR(player);
-        MESSAGE("Groudon is hurt by spikes!");
+        MESSAGE(SPECIES_NAME(SPECIES_GROUDON) " is hurt by spikes!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
-        MESSAGE("Groudon's Primal Reversion! It reverted to its primal form!");
+        MESSAGE(SPECIES_NAME(SPECIES_GROUDON) "'s Primal Reversion! It reverted to its primal form!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_GROUDON_PRIMAL);
     }

@@ -16,7 +16,7 @@ SINGLE_BATTLE_TEST("Mind Blown makes the user lose 1/2 of its HP")
     } SCENE {
         HP_BAR(player, damage: 200);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIND_BLOWN, player);
-        NOT MESSAGE("Wobbuffet fainted!"); // Wobb had more than 1/2 of its HP, so it can't faint.
+        NOT MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!"); // Wobb had more than 1/2 of its HP, so it can't faint.
     }
 }
 
@@ -32,7 +32,7 @@ DOUBLE_BATTLE_TEST("Mind Blown makes the user lose 1/2 of its HP in a double bat
     } SCENE {
         HP_BAR(playerLeft, damage: 200);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIND_BLOWN, playerLeft);
-        NOT MESSAGE("Wobbuffet fainted!"); // Wobb had more than 1/2 of its HP, so it can't faint.
+        NOT MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!"); // Wobb had more than 1/2 of its HP, so it can't faint.
     }
 }
 
@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("Mind Blown causes the user to faint when below 1/2 of its HP
     } SCENE {
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIND_BLOWN, player);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
     }
 }
 
@@ -62,7 +62,7 @@ DOUBLE_BATTLE_TEST("Mind Blown causes the user to faint when below 1/2 of its HP
     } SCENE {
         HP_BAR(playerLeft, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIND_BLOWN, playerLeft);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
     }
 }
 
@@ -78,8 +78,8 @@ SINGLE_BATTLE_TEST("Mind Blown causes the user & the target to faint when below 
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIND_BLOWN, player);
         HP_BAR(opponent, hp: 0);
-        MESSAGE("Foe Wobbuffet fainted!");
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
     }
 }
 
@@ -97,11 +97,11 @@ DOUBLE_BATTLE_TEST("Mind Blown causes everyone to faint in a double battle")
         HP_BAR(playerLeft, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MIND_BLOWN, playerLeft);
         HP_BAR(opponentLeft, hp: 0);
-        MESSAGE("Foe Abra fainted!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_ABRA) " fainted!");
         HP_BAR(playerRight, hp: 0);
-        MESSAGE("Wynaut fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " fainted!");
         HP_BAR(opponentRight, hp: 0);
-        MESSAGE("Foe Kadabra fainted!");
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_KADABRA) " fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
     }
 }

@@ -204,22 +204,22 @@ SINGLE_BATTLE_TEST("Opponent Pokemon can be further poisoned with Toxic spikes a
         TURN { SWITCH(opponent, 1); }
         TURN { SWITCH(opponent, 0); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TOXIC_SPIKES) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TOXIC_SPIKES) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, player);
         MESSAGE("Poison Spikes were scattered all around the opposing team's feet!");
         // 1st switch-in
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
         STATUS_ICON(opponent, poison: TRUE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         if (item == ITEM_PECHA_BERRY) {
-            MESSAGE("Foe Wynaut's Pecha Berry cured poison!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s Pecha Berry cured poison!");
         } else {
-            MESSAGE("Foe Wynaut's Lum Berry cured its poison problem!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s Lum Berry cured its poison problem!");
         }
         STATUS_ICON(opponent, poison: FALSE);
         // 2nd switch-in
-        MESSAGE("2 sent out Wobbuffet!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WOBBUFFET) "!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, opponent);
         STATUS_ICON(opponent, poison: TRUE);
     }
@@ -245,22 +245,22 @@ SINGLE_BATTLE_TEST("Player Pokemon can be further poisoned with Toxic spikes aft
         TURN { SWITCH(player, 1); }
         TURN { SWITCH(player, 2); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TOXIC_SPIKES) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TOXIC_SPIKES) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, opponent);
         MESSAGE("Poison Spikes were scattered all around your team's feet!");
         // 1st switch-in
-        MESSAGE("Go! Wobbuffet!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_WOBBUFFET) "!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, player);
         STATUS_ICON(player, poison: TRUE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         if (item == ITEM_PECHA_BERRY) {
-            MESSAGE("Wobbuffet's Pecha Berry cured poison!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Pecha Berry cured poison!");
         } else {
-            MESSAGE("Wobbuffet's Lum Berry cured its poison problem!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Lum Berry cured its poison problem!");
         }
         STATUS_ICON(player, poison: FALSE);
         // 2nd switch-in
-        MESSAGE("Go! Wynaut!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_WYNAUT) "!");
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_PSN, player);
         STATUS_ICON(player, poison: TRUE);
     }

@@ -16,8 +16,8 @@ SINGLE_BATTLE_TEST("Mirror Move copies the last used move by the target")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         HP_BAR(player);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_MIRROR_MOVE) "!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TACKLE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_MIRROR_MOVE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TACKLE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         HP_BAR(opponent);
     }
@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("Mirror Move fails if no move was used before")
     } WHEN {
         TURN { MOVE(player, MOVE_MIRROR_MOVE); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_MIRROR_MOVE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_MIRROR_MOVE) "!");
         MESSAGE("The Mirror Move failed!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         HP_BAR(player);
@@ -51,10 +51,10 @@ SINGLE_BATTLE_TEST("Mirror Move's called powder move fails against Grass Types")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STUN_SPORE, player);
         STATUS_ICON(opponent, paralysis: TRUE);
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_MIRROR_MOVE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_STUN_SPORE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_MIRROR_MOVE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_STUN_SPORE) "!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_STUN_SPORE, opponent);
-        MESSAGE("It doesn't affect Oddish…");
+        MESSAGE("It doesn't affect " SPECIES_NAME(SPECIES_ODDISH) "…");
         NOT STATUS_ICON(player, paralysis: TRUE);
     }
 }
@@ -71,8 +71,8 @@ SINGLE_BATTLE_TEST("Mirror Move's called multi-hit move hits multiple times")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, player);
         HP_BAR(opponent);
         MESSAGE("Hit 5 time(s)!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_MIRROR_MOVE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_BULLET_SEED) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_MIRROR_MOVE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_BULLET_SEED) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BULLET_SEED, opponent);
         HP_BAR(player);
         MESSAGE("Hit 5 time(s)!");

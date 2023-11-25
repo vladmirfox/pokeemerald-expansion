@@ -10,11 +10,11 @@ SINGLE_BATTLE_TEST("Speed Boost gradually boosts Speed")
         TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_CELEBRATE); }
         TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Torchic used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_TORCHIC) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
         ABILITY_POPUP(player, ABILITY_SPEED_BOOST);
-        MESSAGE("Torchic's Speed Boost raised its SPEED!");
-        MESSAGE("Torchic used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_TORCHIC) "'s Speed Boost raised its SPEED!");
+        MESSAGE(SPECIES_NAME(SPECIES_TORCHIC) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
     }
 }

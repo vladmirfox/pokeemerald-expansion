@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a single battle",
         if (ability == ABILITY_CONTRARY) {
             ABILITY_POPUP(opponent, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Attack rose!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) "'s Attack rose!");
         }
         HP_BAR(player, captureDamage: &results[i].damage);
     }
@@ -51,18 +51,18 @@ DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle",
         if (abilityLeft == ABILITY_CONTRARY) {
             ABILITY_POPUP(opponentLeft, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE("Foe Spinda's Attack rose!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) "'s Attack rose!");
         } else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE("Mightyena's Intimidate cuts Foe Spinda's attack!");
+            MESSAGE(SPECIES_NAME(SPECIES_MIGHTYENA) "'s Intimidate cuts Foe Spinda's attack!");
         }
         if (abilityRight == ABILITY_CONTRARY) {
             ABILITY_POPUP(opponentRight, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-            MESSAGE("Foe Spinda's Attack rose!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) "'s Attack rose!");
         } else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-            MESSAGE("Mightyena's Intimidate cuts Foe Spinda's attack!");
+            MESSAGE(SPECIES_NAME(SPECIES_MIGHTYENA) "'s Intimidate cuts Foe Spinda's attack!");
         }
         HP_BAR(playerLeft, captureDamage: &results[i].damageLeft);
         HP_BAR(playerRight, captureDamage: &results[i].damageRight);
@@ -90,28 +90,28 @@ SINGLE_BATTLE_TEST("Contrary raises stats after using a move which would normall
         TURN { MOVE(opponent, MOVE_OVERHEAT); }
         TURN { MOVE(opponent, MOVE_OVERHEAT); }
     } SCENE {
-        MESSAGE("Foe Spinda used " MOVE_NAME(MOVE_OVERHEAT) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) " used " MOVE_NAME(MOVE_OVERHEAT) "!");
         HP_BAR(player, captureDamage: &results[i].damageBefore);
         if (ability == ABILITY_CONTRARY) {
             // ABILITY_POPUP(opponent, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Sp. Atk sharply rose!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) "'s Sp. Atk sharply rose!");
         }
         else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Sp. Atk harshly fell!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) "'s Sp. Atk harshly fell!");
         }
 
-        // MESSAGE("Foe Spinda used " MOVE_NAME(MOVE_OVERHEAT) "!");
+        // MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) " used " MOVE_NAME(MOVE_OVERHEAT) "!");
         HP_BAR(player, captureDamage: &results[i].damageAfter);
         if (ability == ABILITY_CONTRARY) {
             // ABILITY_POPUP(opponent, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Sp. Atk sharply rose!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) "'s Sp. Atk sharply rose!");
         }
         else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Sp. Atk harshly fell!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) "'s Sp. Atk harshly fell!");
         }
     }
     FINALLY {
@@ -134,21 +134,21 @@ SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normal
         TURN { MOVE(opponent, MOVE_SWORDS_DANCE); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Foe Spinda used " MOVE_NAME(MOVE_TACKLE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) " used " MOVE_NAME(MOVE_TACKLE) "!");
         HP_BAR(player, captureDamage: &results[i].damageBefore);
 
-        //MESSAGE("Foe Spinda used " MOVE_NAME(MOVE_SWORDS_DANCE) "!");
+        //MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) " used " MOVE_NAME(MOVE_SWORDS_DANCE) "!");
         if (ability == ABILITY_CONTRARY) {
             // ABILITY_POPUP(opponent, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Attack harshly fell!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) "'s Attack harshly fell!");
         }
         else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Attack sharply rose!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) "'s Attack sharply rose!");
         }
 
-        // MESSAGE("Foe Spinda used " MOVE_NAME(MOVE_TACKLE) "!");
+        // MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) " used " MOVE_NAME(MOVE_TACKLE) "!");
         HP_BAR(player, captureDamage: &results[i].damageAfter);
     }
     FINALLY {
@@ -169,18 +169,18 @@ SINGLE_BATTLE_TEST("Contrary raises a stat after using a move which would normal
     } WHEN {
         TURN { MOVE(player, MOVE_GROWL); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_GROWL) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_GROWL) "!");
         if (ability == ABILITY_CONTRARY) {
             // ABILITY_POPUP(opponent, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Attack rose!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) "'s Attack rose!");
         }
         else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Spinda's Attack fell!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) "'s Attack fell!");
         }
 
-        MESSAGE("Foe Spinda used " MOVE_NAME(MOVE_TACKLE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) " used " MOVE_NAME(MOVE_TACKLE) "!");
         HP_BAR(player, captureDamage: &results[i].damage);
     }
     FINALLY {

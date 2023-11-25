@@ -32,22 +32,22 @@ SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when hit by Bug, Dark or Ghost typ
         if (move != MOVE_TACKLE) {
             ABILITY_POPUP(opponent, ABILITY_RATTLED);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Sudowoodo's Speed rose!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SUDOWOODO) "'s Speed rose!");
         }
-        MESSAGE("Foe Sudowoodo used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_SUDOWOODO) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
         // Sudowoodo is now faster
         if (move != MOVE_TACKLE){
-            MESSAGE("Foe Sudowoodo used " MOVE_NAME(MOVE_CELEBRATE) "!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SUDOWOODO) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
             ANIMATION(ANIM_TYPE_MOVE, move, player);
             HP_BAR(opponent);
             ABILITY_POPUP(opponent, ABILITY_RATTLED);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Sudowoodo's Speed rose!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SUDOWOODO) "'s Speed rose!");
         }
         else {
             ANIMATION(ANIM_TYPE_MOVE, move, player);
             HP_BAR(opponent);
-            MESSAGE("Foe Sudowoodo used " MOVE_NAME(MOVE_CELEBRATE) "!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_SUDOWOODO) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
         }
     }
 }
@@ -63,10 +63,10 @@ SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when affected by Intimidate")
     } SCENE {
         ABILITY_POPUP(player, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Gyarados's Intimidate cuts Foe Sudowoodo's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_GYARADOS) "'s Intimidate cuts Foe Sudowoodo's attack!");
         ABILITY_POPUP(opponent, ABILITY_RATTLED);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Sudowoodo's Speed rose!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_SUDOWOODO) "'s Speed rose!");
     }
 }
 
@@ -82,12 +82,12 @@ SINGLE_BATTLE_TEST("Rattled triggers correctly when hit by U-Turn") // Specific 
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_U_TURN) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_U_TURN) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
         HP_BAR(opponent);
         ABILITY_POPUP(opponent, ABILITY_RATTLED);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Sudowoodo's Speed rose!");
-        MESSAGE("Go! Wynaut!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_SUDOWOODO) "'s Speed rose!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_WYNAUT) "!");
     }
 }

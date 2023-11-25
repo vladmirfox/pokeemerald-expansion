@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Beads of Ruin reduces Sp. Def", s16 damage)
     } SCENE {
         if (ability == ABILITY_BEADS_OF_RUIN) {
             ABILITY_POPUP(player, ABILITY_BEADS_OF_RUIN);
-            MESSAGE("Wobbuffet's Beads of Ruin weakened the Sp. Def of all surrounding Pokémon!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Beads of Ruin weakened the Sp. Def of all surrounding Pokémon!");
         }
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Beads of Ruin does not reduce Sp. Def if opposing mon has th
     } SCENE {
         if (ability == ABILITY_BEADS_OF_RUIN) {
             ABILITY_POPUP(player, ABILITY_BEADS_OF_RUIN);
-            MESSAGE("Wobbuffet's Beads of Ruin weakened the Sp. Def of all surrounding Pokémon!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Beads of Ruin weakened the Sp. Def of all surrounding Pokémon!");
         }
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {

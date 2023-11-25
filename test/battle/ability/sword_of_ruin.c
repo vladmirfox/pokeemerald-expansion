@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Sword of Ruin reduces Defense", s16 damage)
     } SCENE {
         if (ability == ABILITY_SWORD_OF_RUIN) {
             ABILITY_POPUP(player, ABILITY_SWORD_OF_RUIN);
-            MESSAGE("Wobbuffet's Sword of Ruin weakened the Defense of all surrounding Pokémon!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Sword of Ruin weakened the Defense of all surrounding Pokémon!");
         }
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Sword of Ruin does not reduce Defense if opposing mon has th
     } SCENE {
         if (ability == ABILITY_SWORD_OF_RUIN) {
             ABILITY_POPUP(player, ABILITY_SWORD_OF_RUIN);
-            MESSAGE("Wobbuffet's Sword of Ruin weakened the Defense of all surrounding Pokémon!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Sword of Ruin weakened the Defense of all surrounding Pokémon!");
         }
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {

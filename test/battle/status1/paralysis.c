@@ -16,15 +16,15 @@ SINGLE_BATTLE_TEST("Paralysis reduces Speed by 50%")
     } SCENE {
         if (playerFirst) {
             ONE_OF {
-                MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-                MESSAGE("Wobbuffet is paralyzed! It can't move!");
+                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is paralyzed! It can't move!");
             }
-            MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
         } else {
-            MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
             ONE_OF {
-                MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-                MESSAGE("Wobbuffet is paralyzed! It can't move!");
+                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is paralyzed! It can't move!");
             }
         }
     }
@@ -39,6 +39,6 @@ SINGLE_BATTLE_TEST("Paralysis has a 25% chance of skipping the turn")
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); }
     } SCENE {
-        MESSAGE("Wobbuffet is paralyzed! It can't move!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is paralyzed! It can't move!");
     }
 }

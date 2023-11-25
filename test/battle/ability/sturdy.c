@@ -10,9 +10,9 @@ SINGLE_BATTLE_TEST("Sturdy prevents OHKO moves")
     } WHEN {
         TURN { MOVE(opponent, MOVE_FISSURE); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_FISSURE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FISSURE) "!");
         ABILITY_POPUP(player, ABILITY_STURDY);
-        MESSAGE("Geodude was protected by Sturdy!");
+        MESSAGE(SPECIES_NAME(SPECIES_GEODUDE) " was protected by Sturdy!");
     } THEN {
         EXPECT_EQ(player->hp, player->maxHP);
     }

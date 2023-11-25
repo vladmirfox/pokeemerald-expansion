@@ -10,11 +10,11 @@ SINGLE_BATTLE_TEST("Misty Terrain protects grounded battlers from non-volatile s
         TURN { MOVE(player, MOVE_MISTY_TERRAIN); MOVE(opponent, MOVE_TOXIC); }
         TURN { MOVE(player, MOVE_TOXIC); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_MISTY_TERRAIN) "!");
-        MESSAGE("Foe Claydol used " MOVE_NAME(MOVE_TOXIC) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_MISTY_TERRAIN) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_CLAYDOL) " used " MOVE_NAME(MOVE_TOXIC) "!");
         MESSAGE("Wobbuffet surrounds itself with a protective mist!");
         NOT { STATUS_ICON(opponent, badPoison: TRUE); }
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TOXIC) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TOXIC) "!");
         STATUS_ICON(opponent, badPoison: TRUE);
     }
 }
@@ -33,7 +33,7 @@ SINGLE_BATTLE_TEST("Misty Terrain activates Misty Seed and Mimicry")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Using Misty Seed, the Sp. Def of Wobbuffet rose!");
         ABILITY_POPUP(opponent);
-        MESSAGE("Foe Stunfisk's type changed to Fairy!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_STUNFISK) "'s type changed to Fairy!");
     } THEN {
         EXPECT_EQ(gBattleMons[B_POSITION_OPPONENT_LEFT].type1, TYPE_FAIRY);
     }
@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("Misty Terrain does not increase the power of Fairy-type move
             TURN { MOVE(player, MOVE_MISTY_TERRAIN); }
         TURN { MOVE(player, MOVE_MOONBLAST); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_MOONBLAST) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_MOONBLAST) "!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         EXPECT_EQ(results[0].damage, results[1].damage);
@@ -72,7 +72,7 @@ SINGLE_BATTLE_TEST("Misty Terrain decreases power of Dragon-type moves by 50 per
             TURN { MOVE(player, MOVE_MISTY_TERRAIN); }
         TURN { MOVE(player, MOVE_DRAGON_CLAW); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_DRAGON_CLAW) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_DRAGON_CLAW) "!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(0.5), results[1].damage);
@@ -91,18 +91,18 @@ SINGLE_BATTLE_TEST("Misty Terrain lasts for 5 turns")
         TURN {}
         TURN {}
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MISTY_TERRAIN, player);
         MESSAGE("Mist swirled about the battlefield!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
 
         MESSAGE("The mist disappeared from the battlefield.");
     }

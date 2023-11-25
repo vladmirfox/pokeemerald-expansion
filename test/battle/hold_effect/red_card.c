@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Red Card switches the attacker with a random non-fainted rep
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("Wobbuffet held up its Red Card against Foe Wobbuffet!");
-        MESSAGE("Foe Bulbasaur was dragged out!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_BULBASAUR) " was dragged out!");
     } THEN {
         EXPECT(player->item == ITEM_NONE);
     }
@@ -44,7 +44,7 @@ DOUBLE_BATTLE_TEST("Red Card switches the target with a random non-battler, non-
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
         MESSAGE("Wobbuffet held up its Red Card against Foe Wobbuffet!");
-        MESSAGE("Foe Bulbasaur was dragged out!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_BULBASAUR) " was dragged out!");
     } THEN {
         EXPECT(playerLeft->item == ITEM_NONE);
     }
@@ -242,13 +242,13 @@ DOUBLE_BATTLE_TEST("Red Card activates for only the fastest target")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROCK_SLIDE, opponentLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
         MESSAGE("Wobbuffet held up its Red Card against Foe Wobbuffet!");
-        MESSAGE("Foe Unown was dragged out!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_UNOWN) " was dragged out!");
 
         // Slower target's Red Card still able to activate on other battler.
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentRight);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerRight);
         MESSAGE("Wynaut held up its Red Card against Foe Wynaut!");
-        MESSAGE("Foe Wobbuffet was dragged out!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " was dragged out!");
     } THEN {
         EXPECT(playerLeft->item == ITEM_NONE);
         EXPECT(playerRight->item == ITEM_NONE);
@@ -396,7 +396,7 @@ SINGLE_BATTLE_TEST("Red Card activates before Emergency Exit")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
         MESSAGE("Golisopod held up its Red Card against Foe Wobbuffet!");
         ABILITY_POPUP(player, ABILITY_EMERGENCY_EXIT);
-        MESSAGE("Go! Wimpod!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_WIMPOD) "!");
     }
 }
 
@@ -418,8 +418,8 @@ SINGLE_BATTLE_TEST("Red Card is consumed after dragged out replacement has its S
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         MESSAGE("Foe Wobbuffet held up its Red Card against Wobbuffet!");
-        MESSAGE("Wynaut was dragged out!");
-        MESSAGE("Wynaut was caught in a Sticky Web!");
+        MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " was dragged out!");
+        MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " was caught in a Sticky Web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         // 3rd turn, Red Card was consumed, it can't trigger again
         NONE_OF {

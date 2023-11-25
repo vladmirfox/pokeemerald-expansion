@@ -24,9 +24,9 @@ SINGLE_BATTLE_TEST("Immunity prevents Toxic bad poison")
     } WHEN {
         TURN { MOVE(player, MOVE_TOXIC); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TOXIC) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TOXIC) "!");
         ABILITY_POPUP(opponent, ABILITY_IMMUNITY);
-        MESSAGE("Foe Snorlax's Immunity prevents poisoning!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_SNORLAX) "'s Immunity prevents poisoning!");
         NOT STATUS_ICON(opponent, poison: TRUE);
     }
 }

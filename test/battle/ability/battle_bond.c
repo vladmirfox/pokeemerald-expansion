@@ -17,10 +17,10 @@ SINGLE_BATTLE_TEST("Battle Bond does not transform species other than Greninja")
         TURN { MOVE(player, MOVE_WATER_GUN); SEND_OUT(opponent, 1); }
     } SCENE {
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet fainted!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
         NONE_OF {
             ABILITY_POPUP(player, ABILITY_BATTLE_BOND);
-            MESSAGE("Wobbuffet became fully charged due to its bond with its trainer!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " became fully charged due to its bond with its trainer!");
         }
     } THEN {
         EXPECT(player->species == SPECIES_WOBBUFFET);
@@ -55,15 +55,15 @@ SINGLE_BATTLE_TEST("Battle Bond transforms player's Greninja - Singles")
 
     } SCENE {
         HP_BAR(opponent);
-        MESSAGE("Foe Wobbuffet fainted!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
         if (monsCountOpponent != 1) {
             ABILITY_POPUP(player, ABILITY_BATTLE_BOND);
-            MESSAGE("Greninja became fully charged due to its bond with its trainer!");
-            MESSAGE("Greninja became Ash-Greninja!");
+            MESSAGE(SPECIES_NAME(SPECIES_GRENINJA) " became fully charged due to its bond with its trainer!");
+            MESSAGE(SPECIES_NAME(SPECIES_GRENINJA) " became Ash-Greninja!");
         } else {
             NONE_OF {
                 ABILITY_POPUP(player, ABILITY_BATTLE_BOND);
-                MESSAGE("Greninja became fully charged due to its bond with its trainer!");
+                MESSAGE(SPECIES_NAME(SPECIES_GRENINJA) " became fully charged due to its bond with its trainer!");
             }
         }
     } FINALLY {
@@ -102,15 +102,15 @@ SINGLE_BATTLE_TEST("Battle Bond transforms opponent's Greninja - Singles")
 
     } SCENE {
         HP_BAR(player);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
         if (monsCountPlayer != 1) {
             ABILITY_POPUP(opponent, ABILITY_BATTLE_BOND);
-            MESSAGE("Foe Greninja became fully charged due to its bond with its trainer!");
-            MESSAGE("Foe Greninja became Ash-Greninja!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_GRENINJA) " became fully charged due to its bond with its trainer!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_GRENINJA) " became Ash-Greninja!");
         } else {
             NONE_OF {
                 ABILITY_POPUP(opponent, ABILITY_BATTLE_BOND);
-                MESSAGE("Foe Greninja became fully charged due to its bond with its trainer!");
+                MESSAGE("Foe " SPECIES_NAME(SPECIES_GRENINJA) " became fully charged due to its bond with its trainer!");
             }
         }
     } FINALLY {
@@ -151,10 +151,10 @@ DOUBLE_BATTLE_TEST("Battle Bond transforms player's Greninja when fainting its A
 
     } SCENE {
         HP_BAR(playerRight);
-        MESSAGE("Wobbuffet fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
         ABILITY_POPUP(playerLeft, ABILITY_BATTLE_BOND);
-        MESSAGE("Greninja became fully charged due to its bond with its trainer!");
-        MESSAGE("Greninja became Ash-Greninja!");
+        MESSAGE(SPECIES_NAME(SPECIES_GRENINJA) " became fully charged due to its bond with its trainer!");
+        MESSAGE(SPECIES_NAME(SPECIES_GRENINJA) " became Ash-Greninja!");
     } FINALLY {
         EXPECT(playerLeft->species == SPECIES_GRENINJA_ASH);
     }

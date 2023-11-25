@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("White Smoke prevents intimidate")
         ABILITY_POPUP(player, ABILITY_INTIMIDATE);
         NONE_OF { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); }
         ABILITY_POPUP(opponent, ABILITY_WHITE_SMOKE);
-        MESSAGE("Foe Torkoal's White Smoke prevents stat loss!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_TORKOAL) "'s White Smoke prevents stat loss!");
         HP_BAR(player, captureDamage: &turnTwoHit);
     } THEN {
         EXPECT_EQ(turnOneHit, turnTwoHit);

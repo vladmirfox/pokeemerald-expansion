@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Tablets of Ruin reduces Attack", s16 damage)
     } SCENE {
         if (ability == ABILITY_TABLETS_OF_RUIN) {
             ABILITY_POPUP(player, ABILITY_TABLETS_OF_RUIN);
-            MESSAGE("Wobbuffet's Tablets of Ruin weakened the Attack of all surrounding Pokémon!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Tablets of Ruin weakened the Attack of all surrounding Pokémon!");
         }
         HP_BAR(player, captureDamage: &results[i].damage);
     } FINALLY {
@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Tablets of Ruin does not reduce Attack if an opposing mon ha
     } SCENE {
         if (ability == ABILITY_TABLETS_OF_RUIN) {
             ABILITY_POPUP(player, ABILITY_TABLETS_OF_RUIN);
-            MESSAGE("Wobbuffet's Tablets of Ruin weakened the Attack of all surrounding Pokémon!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Tablets of Ruin weakened the Attack of all surrounding Pokémon!");
         }
         HP_BAR(player, captureDamage: &results[i].damage);
     } FINALLY {

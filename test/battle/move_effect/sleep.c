@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("Hypnosis inflicts 1-3 turns of sleep")
         for (count = 0; count < turns; ++count)
         {
             if (count < turns - 1)
-                MESSAGE("Foe Wobbuffet is fast asleep.");
+                MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " is fast asleep.");
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, opponent);
         }
         MESSAGE("Foe Wobbuffet woke up!");

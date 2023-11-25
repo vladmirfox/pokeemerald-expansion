@@ -23,7 +23,7 @@ SINGLE_BATTLE_TEST("Intimidate (opponent) lowers player's attack after switch ou
         {
             ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Foe Arbok's Intimidate cuts Wobbuffet's attack!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_ARBOK) "'s Intimidate cuts Wobbuffet's attack!");
         }
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -49,7 +49,7 @@ SINGLE_BATTLE_TEST("Intimidate (opponent) lowers player's attack after KO", s16 
         {
             ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Foe Arbok's Intimidate cuts Wobbuffet's attack!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_ARBOK) "'s Intimidate cuts Wobbuffet's attack!");
         }
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -77,22 +77,22 @@ DOUBLE_BATTLE_TEST("Intimidate doesn't activate on an empty field in a double ba
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, playerLeft);
         // Everyone faints.
 
-        MESSAGE("Go! Ekans!");
-        MESSAGE("2 sent out Arbok!");
-        MESSAGE("Go! Abra!");
-        MESSAGE("2 sent out Wynaut!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_EKANS) "!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_ARBOK) "!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_ABRA) "!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
 
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-        MESSAGE("Ekans's Intimidate cuts Foe Arbok's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_EKANS) "'s Intimidate cuts Foe Arbok's attack!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE("Ekans's Intimidate cuts Foe Wynaut's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_EKANS) "'s Intimidate cuts Foe Wynaut's attack!");
 
         ABILITY_POPUP(opponentLeft, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Foe Arbok's Intimidate cuts Ekans's attack!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_ARBOK) "'s Intimidate cuts Ekans's attack!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-        MESSAGE("Foe Arbok's Intimidate cuts Abra's attack!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_ARBOK) "'s Intimidate cuts Abra's attack!");
     }
 }
 
@@ -112,13 +112,13 @@ SINGLE_BATTLE_TEST("Intimidate and Eject Button force the opponent to Attack")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
-        MESSAGE("Foe Wobbuffet is switched out with the Eject Button!");
-        MESSAGE("2 sent out Hitmontop!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " is switched out with the Eject Button!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_HITMONTOP) "!");
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
-        MESSAGE("Foe Hitmontop's Intimidate cuts Wobbuffet's attack!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_HITMONTOP) "'s Intimidate cuts Wobbuffet's attack!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
-            MESSAGE("Foe Hitmontop used " MOVE_NAME(MOVE_TACKLE) "!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_HITMONTOP) " used " MOVE_NAME(MOVE_TACKLE) "!");
         }
     }
 }
@@ -146,16 +146,16 @@ DOUBLE_BATTLE_TEST("Intimidate activates on an empty slot")
 
     } SCENE {
         MESSAGE("Wobbuffet, that's enough! Come back!");
-        MESSAGE("Go! Wynaut!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_WYNAUT) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GUNK_SHOT, playerRight);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPLASH, opponentRight);
         MESSAGE("Wynaut, that's enough! Come back!");
-        MESSAGE("Go! Hitmontop!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_HITMONTOP) "!");
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         NONE_OF {
-            MESSAGE("Hitmontop's Intimidate cuts Foe Ralts's attack!");
+            MESSAGE(SPECIES_NAME(SPECIES_HITMONTOP) "'s Intimidate cuts Foe Ralts's attack!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE("Hitmontop's Intimidate cuts Foe Azurill's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_HITMONTOP) "'s Intimidate cuts Foe Azurill's attack!");
     }
 }

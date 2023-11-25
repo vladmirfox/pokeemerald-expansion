@@ -68,8 +68,8 @@ SINGLE_BATTLE_TEST("Ultra Burst affects turn order")
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, ultraBurst: TRUE); }
     } SCENE {
-        MESSAGE("Necrozma used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_NECROZMA) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
     } THEN {
         ASSUME(player->speed == 263);
     }
@@ -90,17 +90,17 @@ DOUBLE_BATTLE_TEST("Ultra Burst happens after switching, but before Focus Punch-
         TURN {}
     } SCENE {
         MESSAGE("2 withdrew Wobbuffet!");
-        MESSAGE("2 sent out Wobbuffet!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WOBBUFFET) "!");
 
         MESSAGE("Bright light is about to burst out of Necrozma!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, playerRight);
         MESSAGE("Necrozma regained its true power through Ultra Burst!");
 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FOCUS_PUNCH_SETUP, playerRight);
-        MESSAGE("Necrozma is tightening its focus!");
+        MESSAGE(SPECIES_NAME(SPECIES_NECROZMA) " is tightening its focus!");
 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FOCUS_PUNCH_SETUP, playerLeft);
-        MESSAGE("Wobbuffet is tightening its focus!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is tightening its focus!");
     }
 }
 
@@ -117,9 +117,9 @@ SINGLE_BATTLE_TEST("Ultra Burst and Mega Evolution can happen on the same turn")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, player);
         MESSAGE("Necrozma regained its true power through Ultra Burst!");
 
-        MESSAGE("Foe Gardevoir's Gardevoirite is reacting to 2's Mega Ring!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_GARDEVOIR) "'s Gardevoirite is reacting to 2's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
-        MESSAGE("Foe Gardevoir has Mega Evolved into Mega Gardevoir!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_GARDEVOIR) " has Mega Evolved into Mega Gardevoir!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_NECROZMA_ULTRA);
         EXPECT_EQ(opponent->species, SPECIES_GARDEVOIR_MEGA);

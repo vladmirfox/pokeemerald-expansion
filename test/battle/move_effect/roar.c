@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("Roar switches the target with a random non-fainted replaceme
         TURN { MOVE(player, MOVE_ROAR); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROAR, player);
-        MESSAGE("Foe Bulbasaur was dragged out!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_BULBASAUR) " was dragged out!");
     }
 }
 
@@ -38,7 +38,7 @@ DOUBLE_BATTLE_TEST("Roar switches the target with a random non-battler, non-fain
         TURN { MOVE(playerLeft, MOVE_ROAR, target: opponentRight); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROAR, playerLeft);
-        MESSAGE("Foe Bulbasaur was dragged out!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_BULBASAUR) " was dragged out!");
     }
 }
 
@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("Roar fails if no replacements")
     } WHEN {
         TURN { MOVE(player, MOVE_ROAR); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_ROAR) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_ROAR) "!");
         MESSAGE("But it failed!");
     }
 }
@@ -64,7 +64,7 @@ SINGLE_BATTLE_TEST("Roar fails if replacements fainted")
     } WHEN {
         TURN { MOVE(player, MOVE_ROAR); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_ROAR) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_ROAR) "!");
         MESSAGE("But it failed!");
     }
 }

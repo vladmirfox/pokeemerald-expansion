@@ -9,9 +9,9 @@ SINGLE_BATTLE_TEST("Venusaur can Mega Evolve holding Venusaurite")
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, megaEvolve: TRUE); }
     } SCENE {
-        MESSAGE("Venusaur's Venusaurite is reacting to 1's Mega Ring!");
+        MESSAGE(SPECIES_NAME(SPECIES_VENUSAUR) "'s Venusaurite is reacting to 1's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, player);
-        MESSAGE("Venusaur has Mega Evolved into Mega Venusaur!");
+        MESSAGE(SPECIES_NAME(SPECIES_VENUSAUR) " has Mega Evolved into Mega Venusaur!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_VENUSAUR_MEGA);
     }
@@ -27,12 +27,12 @@ DOUBLE_BATTLE_TEST("Mega Evolution's order is determined by Speed - opponent fas
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_CELEBRATE, megaEvolve: TRUE); MOVE(playerLeft, MOVE_CELEBRATE, megaEvolve: TRUE); }
     } SCENE {
-        MESSAGE("Foe Gardevoir's Gardevoirite is reacting to 2's Mega Ring!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_GARDEVOIR) "'s Gardevoirite is reacting to 2's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponentLeft);
-        MESSAGE("Foe Gardevoir has Mega Evolved into Mega Gardevoir!");
-        MESSAGE("Venusaur's Venusaurite is reacting to 1's Mega Ring!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_GARDEVOIR) " has Mega Evolved into Mega Gardevoir!");
+        MESSAGE(SPECIES_NAME(SPECIES_VENUSAUR) "'s Venusaurite is reacting to 1's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, playerLeft);
-        MESSAGE("Venusaur has Mega Evolved into Mega Venusaur!");
+        MESSAGE(SPECIES_NAME(SPECIES_VENUSAUR) " has Mega Evolved into Mega Venusaur!");
     }
 }
 
@@ -46,12 +46,12 @@ DOUBLE_BATTLE_TEST("Mega Evolution's order is determined by Speed - player faste
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_CELEBRATE, megaEvolve: TRUE); MOVE(playerLeft, MOVE_CELEBRATE, megaEvolve: TRUE); }
     } SCENE {
-        MESSAGE("Venusaur's Venusaurite is reacting to 1's Mega Ring!");
+        MESSAGE(SPECIES_NAME(SPECIES_VENUSAUR) "'s Venusaurite is reacting to 1's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, playerLeft);
-        MESSAGE("Venusaur has Mega Evolved into Mega Venusaur!");
-        MESSAGE("Foe Gardevoir's Gardevoirite is reacting to 2's Mega Ring!");
+        MESSAGE(SPECIES_NAME(SPECIES_VENUSAUR) " has Mega Evolved into Mega Venusaur!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_GARDEVOIR) "'s Gardevoirite is reacting to 2's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponentLeft);
-        MESSAGE("Foe Gardevoir has Mega Evolved into Mega Gardevoir!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_GARDEVOIR) " has Mega Evolved into Mega Gardevoir!");
     }
 }
 
@@ -65,7 +65,7 @@ SINGLE_BATTLE_TEST("Rayquaza can Mega Evolve knowing Dragon Ascent")
     } SCENE {
         MESSAGE("1's fervent wish has reached Rayquaza!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, player);
-        MESSAGE("Rayquaza has Mega Evolved into Mega Rayquaza!");
+        MESSAGE(SPECIES_NAME(SPECIES_RAYQUAZA) " has Mega Evolved into Mega Rayquaza!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_RAYQUAZA_MEGA);
     }
@@ -80,8 +80,8 @@ SINGLE_BATTLE_TEST("Mega Evolution affects turn order")
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, megaEvolve: TRUE); }
     } SCENE {
-        MESSAGE("Gardevoir used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_GARDEVOIR) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
     } THEN {
         ASSUME(player->speed == 205);
     }
@@ -98,8 +98,8 @@ SINGLE_BATTLE_TEST("Abilities replaced by Mega Evolution do not affect turn orde
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, megaEvolve: TRUE); }
     } SCENE {
-        MESSAGE("Sableye used " MOVE_NAME(MOVE_CELEBRATE) "!");
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_SABLEYE) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CELEBRATE) "!");
     } THEN {
         ASSUME(player->speed == 45);
     }
@@ -119,17 +119,17 @@ DOUBLE_BATTLE_TEST("Mega Evolution happens after switching, but before Focus Pun
         TURN {}
     } SCENE {
         MESSAGE("2 withdrew Wobbuffet!");
-        MESSAGE("2 sent out Wobbuffet!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WOBBUFFET) "!");
 
-        MESSAGE("Venusaur's Venusaurite is reacting to 1's Mega Ring!");
+        MESSAGE(SPECIES_NAME(SPECIES_VENUSAUR) "'s Venusaurite is reacting to 1's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, playerRight);
-        MESSAGE("Venusaur has Mega Evolved into Mega Venusaur!");
+        MESSAGE(SPECIES_NAME(SPECIES_VENUSAUR) " has Mega Evolved into Mega Venusaur!");
 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FOCUS_PUNCH_SETUP, playerRight);
-        MESSAGE("Venusaur is tightening its focus!");
+        MESSAGE(SPECIES_NAME(SPECIES_VENUSAUR) " is tightening its focus!");
 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FOCUS_PUNCH_SETUP, playerLeft);
-        MESSAGE("Wobbuffet is tightening its focus!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is tightening its focus!");
     }
 }
 
@@ -143,11 +143,11 @@ SINGLE_BATTLE_TEST("Regular Mega Evolution and Fervent Wish Mega Evolution can h
     } SCENE {
         MESSAGE("1's fervent wish has reached Rayquaza!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, player);
-        MESSAGE("Rayquaza has Mega Evolved into Mega Rayquaza!");
+        MESSAGE(SPECIES_NAME(SPECIES_RAYQUAZA) " has Mega Evolved into Mega Rayquaza!");
 
-        MESSAGE("Foe Gardevoir's Gardevoirite is reacting to 2's Mega Ring!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_GARDEVOIR) "'s Gardevoirite is reacting to 2's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);
-        MESSAGE("Foe Gardevoir has Mega Evolved into Mega Gardevoir!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_GARDEVOIR) " has Mega Evolved into Mega Gardevoir!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_RAYQUAZA_MEGA);
         EXPECT_EQ(opponent->species, SPECIES_GARDEVOIR_MEGA);

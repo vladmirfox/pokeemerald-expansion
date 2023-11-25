@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("Knock Off knocks a healing berry before it has the chance to
         ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
-            MESSAGE("Foe Wobbuffet's Sitrus Berry restored health!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Sitrus Berry restored health!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
         MESSAGE("Wobbuffet knocked off Foe Wobbuffet's Sitrus Berry!");
@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("Knock Off activates after Rocky Helmet and Weakness Policy")
             MESSAGE("Using WeaknssPolicy, the Sp. Atk of Foe Wobbuffet sharply rose!");
         } else if (item == ITEM_ROCKY_HELMET) {
             HP_BAR(player);
-            MESSAGE("Wobbuffet was hurt by Foe Wobbuffet's Rocky Helmet!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was hurt by Foe Wobbuffet's Rocky Helmet!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
             MESSAGE("Wobbuffet knocked off Foe Wobbuffet's Rocky Helmet!");
         }

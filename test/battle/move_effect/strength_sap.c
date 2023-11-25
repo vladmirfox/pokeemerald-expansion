@@ -19,10 +19,10 @@ SINGLE_BATTLE_TEST("Strength Sap lowers Attack by 1 and restores HP based on tar
     } WHEN {
         TURN { MOVE(player, MOVE_STRENGTH_SAP); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_STRENGTH_SAP) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_STRENGTH_SAP) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wobbuffet's Attack fell!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Attack fell!");
         HP_BAR(player, captureDamage: &results[i].hp);
         MESSAGE("Foe Wobbuffet had its energy drained!");
     } THEN {
@@ -46,10 +46,10 @@ SINGLE_BATTLE_TEST("Strength Sap works exactly the same when attacker is behind 
         TURN { MOVE(player, MOVE_STRENGTH_SAP); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, player);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_STRENGTH_SAP) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_STRENGTH_SAP) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STRENGTH_SAP, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wobbuffet's Attack fell!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Attack fell!");
         HP_BAR(player, captureDamage: &results[i].hp);
         NOT MESSAGE("The SUBSTITUTE took damage for Foe Wobbuffet!");
         MESSAGE("Foe Wobbuffet had its energy drained!");

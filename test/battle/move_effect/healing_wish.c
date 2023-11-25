@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("Healing Wish causes the user to faint and fully heals the re
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HEALING_WISH, player);
         HP_BAR(player, hp: 0);
-        MESSAGE("Gardevoir fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_GARDEVOIR) " fainted!");
         MESSAGE("The healing wish came true for Wynaut!");
         HP_BAR(player, hp: 100);
         STATUS_ICON(player, none: TRUE);
@@ -41,8 +41,8 @@ DOUBLE_BATTLE_TEST("Lunar Dance causes the user to faint and fully heals the rep
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_LUNAR_DANCE, playerLeft);
         HP_BAR(playerLeft, hp: 0);
-        MESSAGE("Gardevoir fainted!");
-        MESSAGE("Wynaut became cloaked in mystical moonlight!");
+        MESSAGE(SPECIES_NAME(SPECIES_GARDEVOIR) " fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " became cloaked in mystical moonlight!");
         HP_BAR(playerLeft, hp: 100);
         STATUS_ICON(playerLeft, none: TRUE);
         MESSAGE("Wynaut regained health!");
@@ -63,7 +63,7 @@ SINGLE_BATTLE_TEST("Healing Wish effect activates only if the switched pokemon c
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HEALING_WISH, player);
         HP_BAR(player, hp: 0);
-        MESSAGE("Gardevoir fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_GARDEVOIR) " fainted!");
         NONE_OF {
             MESSAGE("The healing wish came true for Wynaut!");
             MESSAGE("Wynaut regained health!");

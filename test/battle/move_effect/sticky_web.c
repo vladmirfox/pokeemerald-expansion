@@ -19,10 +19,10 @@ SINGLE_BATTLE_TEST("Sticky Web lowers Speed by 1 on switch-in")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
         MESSAGE("A sticky web spreads out on the ground around the opposing team!");
-        MESSAGE("2 sent out Wynaut!");
-        MESSAGE("Foe Wynaut was caught in a Sticky Web!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " was caught in a Sticky Web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Wynaut's Speed fell!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s Speed fell!");
     }
 }
 
@@ -35,11 +35,11 @@ SINGLE_BATTLE_TEST("Sticky Web can only be set up 1 time")
         TURN { MOVE(player, MOVE_STICKY_WEB); }
         TURN { MOVE(player, MOVE_STICKY_WEB); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_STICKY_WEB) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_STICKY_WEB) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
         MESSAGE("A sticky web spreads out on the ground around the opposing team!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_STICKY_WEB) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_STICKY_WEB) "!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
         MESSAGE("But it failed!");
     }
@@ -64,14 +64,14 @@ DOUBLE_BATTLE_TEST("Sticky Web lowers Speed by 1 in a double battle after Explos
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, playerRight);
         MESSAGE("A sticky web spreads out on the ground around the opposing team!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, playerLeft);
-        MESSAGE("2 sent out Wynaut!");
-        MESSAGE("Foe Wynaut was caught in a Sticky Web!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " was caught in a Sticky Web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-        MESSAGE("Foe Wynaut's Speed fell!");
-        MESSAGE("2 sent out Wynaut!");
-        MESSAGE("Foe Wynaut was caught in a Sticky Web!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s Speed fell!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " was caught in a Sticky Web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE("Foe Wynaut's Speed fell!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s Speed fell!");
     }
 }
 
@@ -88,10 +88,10 @@ SINGLE_BATTLE_TEST("Sticky Web raises Speed by 1 for a Pokemon with Contrary")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
         MESSAGE("A sticky web spreads out on the ground around the opposing team!");
-        MESSAGE("2 sent out Shuckle!");
-        MESSAGE("Foe Shuckle was caught in a Sticky Web!");
+        MESSAGE("2 sent out " SPECIES_NAME(SPECIES_SHUCKLE) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_SHUCKLE) " was caught in a Sticky Web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("Foe Shuckle's Speed rose!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_SHUCKLE) "'s Speed rose!");
     }
 }
 
@@ -124,14 +124,14 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - the 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, BATTLER_PLAYER);
         MESSAGE("A sticky web spreads out on the ground around the opposing team!");
 
-        MESSAGE("Go! Corviknigh!");
-        MESSAGE("Corviknigh was caught in a Sticky Web!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_CORVIKNIGHT) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_CORVIKNIGHT) " was caught in a Sticky Web!");
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, BATTLER_OPPONENT);
         if (opponentSetUpper == 0) {
-            MESSAGE("Foe Caterpie's Speed fell!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_CATERPIE) "'s Speed fell!");
         } else {
-            MESSAGE("Foe Weedle's Speed fell!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WEEDLE) "'s Speed fell!");
         }
     }
 }
@@ -172,8 +172,8 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
             MESSAGE("A sticky web spreads out on the ground around the opposing team!");
         }
 
-        MESSAGE("Go! Corviknigh!");
-        MESSAGE("Corviknigh was caught in a Sticky Web!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_CORVIKNIGHT) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_CORVIKNIGHT) " was caught in a Sticky Web!");
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
     } THEN {
@@ -217,13 +217,13 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
         MESSAGE("A sticky web spreads out on the ground around your team!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MEMENTO, opponentLeft);
-        MESSAGE("Foe Caterpie fainted!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_CATERPIE) " fainted!");
         if (hasReplacement) {
-            MESSAGE("2 sent out Pidgey!");
+            MESSAGE("2 sent out " SPECIES_NAME(SPECIES_PIDGEY) "!");
         }
 
-        MESSAGE("Go! Corviknigh!");
-        MESSAGE("Corviknigh was caught in a Sticky Web!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_CORVIKNIGHT) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_CORVIKNIGHT) " was caught in a Sticky Web!");
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
     } THEN {

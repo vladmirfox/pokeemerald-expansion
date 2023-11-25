@@ -36,7 +36,7 @@ SINGLE_BATTLE_TEST("Full Restore restores a battler's HP and cures confusion")
         TURN{ MOVE(player, MOVE_TACKLE); }
     } SCENE {
         MESSAGE("Wobbuffet had its HP restored!");
-        NONE_OF { MESSAGE("Wobbuffet is confused!"); }
+        NONE_OF { MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is confused!"); }
     } THEN {
         EXPECT_EQ(player->hp, player->maxHP);
     }

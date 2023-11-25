@@ -18,7 +18,7 @@ SINGLE_BATTLE_TEST("Protosynthesis boosts the highest stat")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, player);
         ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
         MESSAGE("The harsh sunlight activated Abra's Protosynthesis!");
-        MESSAGE("Abra's Sp. Atk was heightened!");
+        MESSAGE(SPECIES_NAME(SPECIES_ABRA) "'s Sp. Atk was heightened!");
     }
 }
 

@@ -160,8 +160,8 @@ SINGLE_BATTLE_TEST("Stockpile temporarily raises Def and Sp. Def", s16 dmgPyhsic
         if (move == MOVE_STOCKPILE) {
             MESSAGE("Wobbuffet stockpiled 1!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Wobbuffet's Defense rose!");
-            MESSAGE("Wobbuffet's Sp. Def rose!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Defense rose!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Sp. Def rose!");
         }
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
@@ -216,26 +216,26 @@ DOUBLE_BATTLE_TEST("Stockpile's Def and Sp. Def boost is lost after using Spit U
         ANIMATION(ANIM_TYPE_MOVE, move, playerLeft);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
         if (count == 1) {
-            MESSAGE("Wobbuffet's Defense fell!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Defense fell!");
         }
         else if (count == 2) {
-            MESSAGE("Wobbuffet's Defense harshly fell!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Defense harshly fell!");
         }
         else {
-            MESSAGE("Wobbuffet's Defense severely fell!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Defense severely fell!");
         }
 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
         if (count == 1) {
-            MESSAGE("Wobbuffet's Sp. Def fell!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Sp. Def fell!");
         }
         else if (count == 2) {
-            MESSAGE("Wobbuffet's Sp. Def harshly fell!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Sp. Def harshly fell!");
         }
         else {
-            MESSAGE("Wobbuffet's Sp. Def severely fell!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Sp. Def severely fell!");
         }
-        MESSAGE("Wobbuffet's stockpiled effect wore off!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s stockpiled effect wore off!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
         HP_BAR(playerLeft, captureDamage: &results[i].dmgPhysicalAfter);

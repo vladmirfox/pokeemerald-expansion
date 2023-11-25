@@ -15,7 +15,7 @@ SINGLE_BATTLE_TEST("Teatime causes the user to consume its Berry, ignoring HP re
     } WHEN {
         TURN { MOVE(player, MOVE_TEATIME); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TEATIME) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TEATIME) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TEATIME, player);
         MESSAGE("Using Liechi Berry, the Attack of Wobbuffet rose!");
     }
@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("Teatime causes the user to consume its Berry, even in the pr
     } WHEN {
         TURN { MOVE(player, MOVE_TEATIME); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TEATIME) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TEATIME) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TEATIME, player);
         MESSAGE("Using Liechi Berry, the Attack of Wobbuffet rose!");
     }
@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("Teatime causes the user to consume its Berry, even under the
             MOVE(player, MOVE_TEATIME);
         }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TEATIME) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TEATIME) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TEATIME, player);
         MESSAGE("Using Liechi Berry, the Attack of Wobbuffet rose!");
     }
@@ -60,7 +60,7 @@ SINGLE_BATTLE_TEST("Teatime causes the user to consume its Berry, ignoring HP re
     } WHEN {
         TURN { MOVE(opponent, MOVE_TEATIME); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TEATIME) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TEATIME) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TEATIME, opponent);
         MESSAGE("Using Liechi Berry, the Attack of Foe Wobbuffet rose!");
     }
@@ -74,7 +74,7 @@ SINGLE_BATTLE_TEST("Teatime causes other Pokemon to consume their Berry even if 
     } WHEN {
         TURN { MOVE(player, MOVE_TEATIME); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TEATIME) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TEATIME) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TEATIME, player);
         MESSAGE("Using Liechi Berry, the Attack of Foe Wobbuffet rose!");
     }
@@ -88,7 +88,7 @@ SINGLE_BATTLE_TEST("Teatime causes other Pokemon to consume their Berry even if 
     } WHEN {
         TURN { MOVE(opponent, MOVE_TEATIME); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TEATIME) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TEATIME) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TEATIME, opponent);
         MESSAGE("Using Liechi Berry, the Attack of Wobbuffet rose!");
     }
@@ -111,9 +111,9 @@ DOUBLE_BATTLE_TEST("Teatime causes all Pokémon to consume their berry")
     } SCENE {
         if (user == playerLeft || user == playerRight)
         {
-            MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TEATIME) "!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TEATIME) "!");
         } else {
-            MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TEATIME) "!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TEATIME) "!");
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TEATIME, user);
         MESSAGE("Using Liechi Berry, the Attack of Wobbuffet rose!");
@@ -131,7 +131,7 @@ SINGLE_BATTLE_TEST("Teatime fails if no Pokémon is holding a Berry")
     } WHEN {
         TURN { MOVE(player, MOVE_TEATIME); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TEATIME) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TEATIME) "!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_TEATIME, player);
         MESSAGE("But it failed!");
     }
@@ -148,7 +148,7 @@ SINGLE_BATTLE_TEST("Teatime does not affect Pokémon in the semi-invulnerable tu
             MOVE(player, MOVE_TEATIME);
         }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_TEATIME) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TEATIME) "!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TEATIME, player);
             MESSAGE("Using Liechi Berry, the Attack of Foe Wobbuffet rose!");
@@ -177,7 +177,7 @@ SINGLE_BATTLE_TEST("Teatime triggers Volt Absorb if it has been affected by Elec
             MOVE(opponent, MOVE_TEATIME);
         }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TEATIME) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TEATIME) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TEATIME, opponent);
         if (shouldTriggerAbility)
         {
@@ -213,17 +213,17 @@ SINGLE_BATTLE_TEST("Teatime triggers Lightning Rod if it has been affected by El
             MOVE(opponent, MOVE_TEATIME);
         }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TEATIME) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TEATIME) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TEATIME, opponent);
         if (shouldTriggerAbility)
         {
             ABILITY_POPUP(player, ABILITY_LIGHTNING_ROD);
-            MESSAGE("Pikachu's Sp. Atk rose!");
+            MESSAGE(SPECIES_NAME(SPECIES_PIKACHU) "'s Sp. Atk rose!");
             NOT MESSAGE("Using Liechi Berry, the Attack of Pikachu rose!");
         } else {
             NONE_OF {
                 ABILITY_POPUP(player, ABILITY_LIGHTNING_ROD);
-                MESSAGE("Pikachu's Sp. Atk rose!");
+                MESSAGE(SPECIES_NAME(SPECIES_PIKACHU) "'s Sp. Atk rose!");
             }
             MESSAGE("Using Liechi Berry, the Attack of Pikachu rose!");
         }
@@ -253,17 +253,17 @@ SINGLE_BATTLE_TEST("Teatime triggers Motor Drive if it has been affected by Elec
             MOVE(opponent, MOVE_TEATIME);
         }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_TEATIME) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_TEATIME) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TEATIME, opponent);
         if (shouldTriggerAbility)
         {
             ABILITY_POPUP(player, ABILITY_MOTOR_DRIVE);
-            MESSAGE("Electivire's Speed rose!");
+            MESSAGE(SPECIES_NAME(SPECIES_ELECTIVIRE) "'s Speed rose!");
             NOT MESSAGE("Using Liechi Berry, the Attack of Electivire rose!");
         } else {
             NONE_OF {
                 ABILITY_POPUP(player, ABILITY_MOTOR_DRIVE);
-                MESSAGE("Electivire's Speed rose!");
+                MESSAGE(SPECIES_NAME(SPECIES_ELECTIVIRE) "'s Speed rose!");
             }
             MESSAGE("Using Liechi Berry, the Attack of Electivire rose!");
         }

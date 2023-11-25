@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("White Herb restores stats when they're lowered")
     } SCENE {
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-        MESSAGE("Wobbuffet's White Herb restored its status!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s White Herb restored its status!");
     } THEN {
         EXPECT(player->item == ITEM_NONE);
         EXPECT(player->statStages[STAT_DEF] = DEFAULT_STAT_STAGE);
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("White Herb restores stats after Attack was lowered by Intimi
         ABILITY_POPUP(opponent, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-        MESSAGE("Wobbuffet's White Herb restored its status!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s White Herb restored its status!");
     } THEN {
         EXPECT(player->item == ITEM_NONE);
         EXPECT(player->statStages[STAT_DEF] = DEFAULT_STAT_STAGE);
@@ -58,9 +58,9 @@ DOUBLE_BATTLE_TEST("White Herb restores stats after Attack was lowered by Intimi
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentLeft);
-        MESSAGE("Foe Wobbuffet's White Herb restored its status!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s White Herb restored its status!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentRight);
-        MESSAGE("Foe Wynaut's White Herb restored its status!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s White Herb restored its status!");
     } THEN {
         EXPECT(opponentLeft->item == ITEM_NONE);
         EXPECT(opponentLeft->statStages[STAT_DEF] = DEFAULT_STAT_STAGE);

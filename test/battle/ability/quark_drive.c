@@ -18,7 +18,7 @@ SINGLE_BATTLE_TEST("Quark Drive boosts the highest stat")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ELECTRIC_TERRAIN, player);
         ABILITY_POPUP(player, ABILITY_QUARK_DRIVE);
         MESSAGE("The Electric Terrain activated Abra's Quark Drive!");
-        MESSAGE("Abra's Sp. Atk was heightened!");
+        MESSAGE(SPECIES_NAME(SPECIES_ABRA) "'s Sp. Atk was heightened!");
     }
 }
 

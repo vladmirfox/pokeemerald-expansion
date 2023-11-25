@@ -11,7 +11,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves don't affect Dark-type Pokémon")
         TURN { MOVE(opponent, MOVE_CONFUSE_RAY); }
     } SCENE {
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, player);
-        MESSAGE("It doesn't affect Umbreon…");
+        MESSAGE("It doesn't affect " SPECIES_NAME(SPECIES_UMBREON) "…");
     }
 }
 TO_DO_BATTLE_TEST("Prankster-affected moves affect Ally Dark-type Pokémon")

@@ -11,8 +11,8 @@ SINGLE_BATTLE_TEST("Aegislash reverts to Shield Form upon fainting")
     } WHEN {
         TURN { MOVE(opponent, MOVE_GUST); SEND_OUT(player, 1); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_GUST) "!");
-        MESSAGE("Aegislash fainted!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_GUST) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_AEGISLASH) " fainted!");
     } THEN {
         EXPECT_EQ(GetMonData(&PLAYER_PARTY[0], MON_DATA_SPECIES), SPECIES_AEGISLASH);
     }

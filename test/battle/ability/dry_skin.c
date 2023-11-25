@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("Dry Skin heals 1/8th Max HP in Rain")
         TURN { MOVE(player, MOVE_RAIN_DANCE); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_DRY_SKIN);
-        MESSAGE("Parasect's Dry Skin restored its HP a little!");
+        MESSAGE(SPECIES_NAME(SPECIES_PARASECT) "'s Dry Skin restored its HP a little!");
         HP_BAR(player, damage: -(200 / 8));
     }
 }
@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("Dry Skin increases damage taken from Fire-type moves by 25%"
     } WHEN {
         TURN { MOVE(player, MOVE_EMBER); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_EMBER) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_EMBER) "!");
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         // Due to numerics related to rounding on each applied multiplier,

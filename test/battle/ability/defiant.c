@@ -21,35 +21,35 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises player's Attack after Intimidate")
         //1st mon Intimidate
         ABILITY_POPUP(opponentLeft, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Foe Gyarados's Intimidate cuts Mankey's attack!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_GYARADOS) "'s Intimidate cuts Mankey's attack!");
         if (abilityLeft == ABILITY_DEFIANT) {
             ABILITY_POPUP(playerLeft, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-            MESSAGE("Mankey's Attack sharply rose!");
+            MESSAGE(SPECIES_NAME(SPECIES_MANKEY) "'s Attack sharply rose!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-        MESSAGE("Foe Gyarados's Intimidate cuts Primeape's attack!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_GYARADOS) "'s Intimidate cuts Primeape's attack!");
         if (abilityRight == ABILITY_DEFIANT) {
             ABILITY_POPUP(playerRight, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-            MESSAGE("Primeape's Attack sharply rose!");
+            MESSAGE(SPECIES_NAME(SPECIES_PRIMEAPE) "'s Attack sharply rose!");
         }
 
         //2nd mon Intimidate
         ABILITY_POPUP(opponentRight, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Foe Arbok's Intimidate cuts Mankey's attack!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_ARBOK) "'s Intimidate cuts Mankey's attack!");
         if (abilityLeft == ABILITY_DEFIANT) {
             ABILITY_POPUP(playerLeft, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-            MESSAGE("Mankey's Attack sharply rose!");
+            MESSAGE(SPECIES_NAME(SPECIES_MANKEY) "'s Attack sharply rose!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-        MESSAGE("Foe Arbok's Intimidate cuts Primeape's attack!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_ARBOK) "'s Intimidate cuts Primeape's attack!");
         if (abilityRight == ABILITY_DEFIANT) {
             ABILITY_POPUP(playerRight, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
-            MESSAGE("Primeape's Attack sharply rose!");
+            MESSAGE(SPECIES_NAME(SPECIES_PRIMEAPE) "'s Attack sharply rose!");
         }
     } FINALLY {
         // -2 from Intimidates and +4 from Defiants gets +2 total
@@ -79,35 +79,35 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises opponent's Attack after Intimidate")
         //1st mon Intimidate
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-        MESSAGE("Gyarados's Intimidate cuts Foe Mankey's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_GYARADOS) "'s Intimidate cuts Foe Mankey's attack!");
         if (abilityLeft == ABILITY_DEFIANT) {
             ABILITY_POPUP(opponentLeft, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE("Foe Mankey's Attack sharply rose!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_MANKEY) "'s Attack sharply rose!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE("Gyarados's Intimidate cuts Foe Primeape's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_GYARADOS) "'s Intimidate cuts Foe Primeape's attack!");
         if (abilityRight == ABILITY_DEFIANT) {
             ABILITY_POPUP(opponentRight, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-            MESSAGE("Foe Primeape's Attack sharply rose!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_PRIMEAPE) "'s Attack sharply rose!");
         }
 
         //2nd mon Intimidate
         ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-        MESSAGE("Arbok's Intimidate cuts Foe Mankey's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_ARBOK) "'s Intimidate cuts Foe Mankey's attack!");
         if (abilityLeft == ABILITY_DEFIANT) {
             ABILITY_POPUP(opponentLeft, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE("Foe Mankey's Attack sharply rose!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_MANKEY) "'s Attack sharply rose!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE("Arbok's Intimidate cuts Foe Primeape's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_ARBOK) "'s Intimidate cuts Foe Primeape's attack!");
         if (abilityRight == ABILITY_DEFIANT) {
             ABILITY_POPUP(opponentRight, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-            MESSAGE("Foe Primeape's Attack sharply rose!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_PRIMEAPE) "'s Attack sharply rose!");
         }
     } FINALLY {
         // -2 from Intimidates and +4 from Defiants gets +2 total
@@ -128,13 +128,13 @@ SINGLE_BATTLE_TEST("Defiant activates after Sticky Web lowers Speed")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, opponent);
         // Switch-in - Sticky Web activates
-        MESSAGE("Go! Mankey!");
-        MESSAGE("Mankey was caught in a Sticky Web!");
+        MESSAGE("Go! " SPECIES_NAME(SPECIES_MANKEY) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_MANKEY) " was caught in a Sticky Web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Mankey's Speed fell!");
+        MESSAGE(SPECIES_NAME(SPECIES_MANKEY) "'s Speed fell!");
         // Defiant activates
         ABILITY_POPUP(player, ABILITY_DEFIANT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Mankey's Attack sharply rose!");
+        MESSAGE(SPECIES_NAME(SPECIES_MANKEY) "'s Attack sharply rose!");
     }
 }

@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Vessel of Ruin reduces Sp. Atk", s16 damage)
     } SCENE {
         if (ability == ABILITY_VESSEL_OF_RUIN) {
             ABILITY_POPUP(player, ABILITY_VESSEL_OF_RUIN);
-            MESSAGE("Wobbuffet's Vessel of Ruin weakened the Sp. Atk of all surrounding Pokémon!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Vessel of Ruin weakened the Sp. Atk of all surrounding Pokémon!");
         }
         HP_BAR(player, captureDamage: &results[i].damage);
     } FINALLY {
@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Vessel of Ruin does not reduce Sp. Atk if opposing mon has t
     } SCENE {
         if (ability == ABILITY_VESSEL_OF_RUIN) {
             ABILITY_POPUP(player, ABILITY_VESSEL_OF_RUIN);
-            MESSAGE("Wobbuffet's Vessel of Ruin weakened the Sp. Atk of all surrounding Pokémon!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Vessel of Ruin weakened the Sp. Atk of all surrounding Pokémon!");
         }
         HP_BAR(player, captureDamage: &results[i].damage);
     } FINALLY {

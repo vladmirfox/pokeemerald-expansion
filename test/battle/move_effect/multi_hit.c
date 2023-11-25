@@ -154,9 +154,9 @@ SINGLE_BATTLE_TEST("Scale Shot decreases defense and increases speed after final
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
         MESSAGE("Hit 5 time(s)!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Defense fell!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Defense fell!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Speed rose!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Speed rose!");
     }
 }
 
@@ -178,8 +178,8 @@ SINGLE_BATTLE_TEST("Endure does not prevent multiple hits and stat changes occur
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALE_SHOT, player);
         MESSAGE("Hit 5 time(s)!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Defense fell!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Defense fell!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Speed rose!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Speed rose!");
     }
 }

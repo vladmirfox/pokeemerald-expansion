@@ -21,13 +21,13 @@ SINGLE_BATTLE_TEST("Make It Rain lowers special attack by one stage")
         HP_BAR(opponent, captureDamage: &damage[0]);
         MESSAGE("Coins scattered everywhere!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Sp. Atk fell!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Sp. Atk fell!");
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_MAKE_IT_RAIN, player);
         HP_BAR(opponent, captureDamage: &damage[1]);
         MESSAGE("Coins scattered everywhere!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Wobbuffet's Sp. Atk fell!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Sp. Atk fell!");
     } THEN {
         EXPECT_MUL_EQ(damage[0], Q_4_12(0.66), damage[1]);
     }
@@ -48,11 +48,11 @@ DOUBLE_BATTLE_TEST("Make It Rain lowers special attack by one stage if it hits b
         NONE_OF {
             MESSAGE("Coins scattered everywhere!");
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-            MESSAGE("Wobbuffet's Sp. Atk fell!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Sp. Atk fell!");
         }
         HP_BAR(opponentRight);
         MESSAGE("Coins scattered everywhere!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-        MESSAGE("Wobbuffet's Sp. Atk fell!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Sp. Atk fell!");
     }
 }

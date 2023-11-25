@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("Fling fails if pokemon holds no item")
     } WHEN {
         TURN { MOVE(player, MOVE_FLING);}
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FLING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
         if (item != ITEM_NONE) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
             HP_BAR(opponent);
@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("Fling fails if pokemon is under the effects of Embargo or Ma
         TURN { MOVE(opponent, move); }
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FLING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
         if (move == MOVE_CELEBRATE) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
             HP_BAR(opponent);
@@ -71,7 +71,7 @@ SINGLE_BATTLE_TEST("Fling fails for pokemon with Klutz ability")
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
-        MESSAGE("Buneary used " MOVE_NAME(MOVE_FLING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_BUNEARY) " used " MOVE_NAME(MOVE_FLING) "!");
         if (ability != ABILITY_KLUTZ) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
             HP_BAR(opponent);
@@ -92,13 +92,13 @@ SINGLE_BATTLE_TEST("Fling's thrown item can be regained with Recycle")
         TURN { MOVE(player, MOVE_RECYCLE);}
         TURN { MOVE(player, MOVE_FLING);}
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FLING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
         HP_BAR(opponent);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_RECYCLE) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_RECYCLE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RECYCLE, player);
         MESSAGE("Wobbuffet found one Razor Claw!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FLING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
         HP_BAR(opponent);
     }
@@ -115,14 +115,14 @@ SINGLE_BATTLE_TEST("Fling - Item is lost even when there is no target")
         TURN { MOVE(opponent, MOVE_SELF_DESTRUCT); MOVE(player, MOVE_FLING); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_SELF_DESTRUCT) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SELF_DESTRUCT) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SELF_DESTRUCT, opponent);
         HP_BAR(player);
-        MESSAGE("Foe Wobbuffet fainted!");
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FLING) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
         MESSAGE("But it failed!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FLING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
         MESSAGE("But it failed!");
     } THEN {
         EXPECT_EQ(player->item, ITEM_NONE);
@@ -139,12 +139,12 @@ SINGLE_BATTLE_TEST("Fling - Item is lost when target protects itself")
         TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_FLING);}
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet used " MOVE_NAME(MOVE_PROTECT) "!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_PROTECT) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, opponent);
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FLING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
         MESSAGE("Foe Wobbuffet protected itself!");
 
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FLING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
         MESSAGE("But it failed!");
     } THEN {
         EXPECT_EQ(player->item, ITEM_NONE);
@@ -179,17 +179,17 @@ SINGLE_BATTLE_TEST("Fling doesn't consume the item if pokemon is asleep/frozen/p
         }
     } SCENE {
         if (status == STATUS1_FREEZE) {
-            MESSAGE("Wobbuffet is frozen solid!");
-            MESSAGE("Wobbuffet was defrosted!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is frozen solid!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was defrosted!");
         }
         else if (status == STATUS1_PARALYSIS) {
-            MESSAGE("Wobbuffet is paralyzed! It can't move!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is paralyzed! It can't move!");
         }
         else {
-            MESSAGE("Wobbuffet is fast asleep.");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is fast asleep.");
             MESSAGE("Wobbuffet woke up!");
         }
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FLING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
         if (item != ITEM_NONE) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
             HP_BAR(opponent);
@@ -219,25 +219,25 @@ SINGLE_BATTLE_TEST("Fling applies special effects when throwing specific Items")
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FLING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
         HP_BAR(opponent);
         switch (effect)
         {
         case EFFECT_WILL_O_WISP:
-            MESSAGE("Foe Wobbuffet was burned!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " was burned!");
             STATUS_ICON(opponent, STATUS1_BURN);
             break;
         case EFFECT_PARALYZE:
-            MESSAGE("Foe Wobbuffet is paralyzed! It may be unable to move!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " is paralyzed! It may be unable to move!");
             STATUS_ICON(opponent, STATUS1_PARALYSIS);
             break;
         case EFFECT_POISON:
-            MESSAGE("Foe Wobbuffet was poisoned!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " was poisoned!");
             STATUS_ICON(opponent, STATUS1_POISON);
             break;
         case EFFECT_TOXIC:
-            MESSAGE("Foe Wobbuffet is badly poisoned!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " is badly poisoned!");
             STATUS_ICON(opponent, STATUS1_TOXIC_POISON);
             break;
         case EFFECT_FLINCH_HIT:
@@ -278,35 +278,35 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {
-        MESSAGE("Wobbuffet used " MOVE_NAME(MOVE_FLING) "!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
         HP_BAR(opponent);
         if (effect == HOLD_EFFECT_RESTORE_HP) {
             if (item == ITEM_ORAN_BERRY) {
-                MESSAGE("Foe Wobbuffet's Oran Berry restored health!");
+                MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Oran Berry restored health!");
             } else if (item == ITEM_SITRUS_BERRY) {
-                MESSAGE("Foe Wobbuffet's Sitrus Berry restored health!");
+                MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Sitrus Berry restored health!");
             } else {
-                MESSAGE("Wobbuffet's Enigma Berry restored health!");
+                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Enigma Berry restored health!");
             }
             HP_BAR(opponent);
         }
         else if (effect == HOLD_EFFECT_RESTORE_PP) {
-            MESSAGE("Foe Wobbuffet's Leppa Berry restored Celebrate's PP!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Leppa Berry restored Celebrate's PP!");
         }
         else if (status1 != STATUS1_NONE) {
             if (status1 == STATUS1_BURN) {
-                MESSAGE("Foe Wobbuffet's Rawst Berry healed its burn!");
+                MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Rawst Berry healed its burn!");
             } else if (status1 == STATUS1_SLEEP) {
-                MESSAGE("Foe Wobbuffet's Chesto Berry woke it from its sleep!");
+                MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Chesto Berry woke it from its sleep!");
             } else if (status1 == STATUS1_FREEZE) {
-                MESSAGE("Foe Wobbuffet's Aspear Berry defrosted it!");
+                MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Aspear Berry defrosted it!");
             } else if (status1 == STATUS1_FROSTBITE) {
-                MESSAGE("Foe Wobbuffet's Aspear Berry healed its frostbite!");
+                MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Aspear Berry healed its frostbite!");
             } else if (status1 == STATUS1_PARALYSIS) {
-                MESSAGE("Foe Wobbuffet's Cheri Berry cured paralysis!");
+                MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Cheri Berry cured paralysis!");
             } else if (status1 == STATUS1_TOXIC_POISON || status1 == STATUS1_POISON) {
-                MESSAGE("Foe Wobbuffet's Pecha Berry cured poison!");
+                MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Pecha Berry cured poison!");
             }
             NOT STATUS_ICON(opponent, status1);
         }

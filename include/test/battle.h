@@ -843,6 +843,8 @@ void SendOut(u32 sourceLine, struct BattlePokemon *, u32 partyIndex);
 
 #define MOVE_NAME(move) "▶M" STR(move) "▶"
 #define ABILITY_NAME(ability) "▶A" STR(ability) "▶"
+#define SPECIES_NAME(species) "▶S" STR(species) "▶"
+#define ITEM_NAME(item) "▶I" STR(item) "▶"
 
 enum QueueGroupType
 {

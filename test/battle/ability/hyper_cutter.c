@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("Hyper Cutter prevents intimidate")
         ABILITY_POPUP(player, ABILITY_INTIMIDATE);
         NONE_OF { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); }
         ABILITY_POPUP(opponent, ABILITY_HYPER_CUTTER);
-        MESSAGE("Foe Krabby's Attack was not lowered!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_KRABBY) "'s Attack was not lowered!");
         HP_BAR(player, captureDamage: &turnTwoHit);
     } THEN {
         EXPECT_EQ(turnOneHit, turnTwoHit);

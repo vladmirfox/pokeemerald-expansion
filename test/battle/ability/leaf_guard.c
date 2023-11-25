@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("Leaf Guard prevents non-volatile status conditions in sun")
         if (move != MOVE_POWDER_SNOW) {
             NOT ANIMATION(ANIM_TYPE_MOVE, move, opponent);
             ABILITY_POPUP(player, ABILITY_LEAF_GUARD);
-            MESSAGE("It doesn't affect Leafeon…");
+            MESSAGE("It doesn't affect " SPECIES_NAME(SPECIES_LEAFEON) "…");
             NOT STATUS_ICON(player, status);
         } else {
             NONE_OF {
@@ -49,10 +49,10 @@ SINGLE_BATTLE_TEST("Leaf Guard prevents status conditions from Flame Orb and Tox
         TURN { MOVE(player, MOVE_SUNNY_DAY); }
     } SCENE {
         if (item == ITEM_FLAME_ORB) {
-            NONE_OF { MESSAGE("Leafeon was burned!"); STATUS_ICON(player, burn: TRUE); }
+            NONE_OF { MESSAGE(SPECIES_NAME(SPECIES_LEAFEON) " was burned!"); STATUS_ICON(player, burn: TRUE); }
         }
         else {
-            NONE_OF { MESSAGE("Leafeon is badly poisoned!"); STATUS_ICON(player, poison: TRUE); }
+            NONE_OF { MESSAGE(SPECIES_NAME(SPECIES_LEAFEON) " is badly poisoned!"); STATUS_ICON(player, poison: TRUE); }
         }
     }
 }
