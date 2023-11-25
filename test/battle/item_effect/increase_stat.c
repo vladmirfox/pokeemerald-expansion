@@ -144,7 +144,7 @@ SINGLE_BATTLE_TEST("X Accuracy sharply raises battler's Accuracy stat")
         TURN { MOVE(player, MOVE_SING); }
     } SCENE {
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SING) "!");
-        MESSAGE("Foe Wobbuffet fell asleep!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " fell asleep!");
     }
 }
 

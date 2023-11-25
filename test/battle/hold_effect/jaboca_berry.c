@@ -27,11 +27,11 @@ SINGLE_BATTLE_TEST("Jaboca Berry causes the attacker to lose 1/8 of its max HP i
         if (move == MOVE_TACKLE) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
             HP_BAR(player, captureDamage: &damage);
-            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was hurt by Foe Wobbuffet's Jaboca Berry!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was hurt by Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Jaboca Berry!");
         } else {
             NONE_OF {
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
-                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was hurt by Foe Wobbuffet's Jaboca Berry!");
+                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was hurt by Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Jaboca Berry!");
             }
         }
     } THEN {
@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("Jaboca Berry tirggers before Bug Bite can steal it")
         HP_BAR(opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         HP_BAR(player);
-        MESSAGE(SPECIES_NAME(SPECIES_WYANUT) " was hurt by Foe Wobbuffet's Jaboca Berry!");
-        NOT MESSAGE("Wynaut stole and ate Foe Wobbuffet's Jaboca Berry!");
+        MESSAGE(SPECIES_NAME(SPECIES_WYANUT) " was hurt by Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Jaboca Berry!");
+        NOT MESSAGE(SPECIES_NAME(SPECIES_WYNAUT) " stole and ate Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Jaboca Berry!");
     }
 }

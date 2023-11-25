@@ -192,7 +192,7 @@ DOUBLE_BATTLE_TEST("Mirror Armor lowers Speed of the partner Pokemon after Court
     } SCENE {
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_STICKY_WEB) "!");
         MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " used " MOVE_NAME(MOVE_COURT_CHANGE) "!");
-        MESSAGE("Foe Wynaut swapped the battle effects affecting each side!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WYNAUT) " swapped the battle effects affecting each side!");
         MESSAGE("Go! " SPECIES_NAME(SPECIES_CORVIKNIGH) "!");
         MESSAGE(SPECIES_NAME(SPECIES_CORVIKNIGHT) " was caught in a Sticky Web!");
         ABILITY_POPUP(playerRight, ABILITY_MIRROR_ARMOR);

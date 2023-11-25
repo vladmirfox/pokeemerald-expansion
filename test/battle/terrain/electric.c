@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Electric Terrain protects grounded battlers from falling asl
         MESSAGE("Foe " SPECIES_NAME(SPECIES_CLAYDOL) " used " MOVE_NAME(MOVE_SPORE) "!");
         MESSAGE("Wobbuffet surrounds itself with electrified terrain!");
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_SPORE) "!");
-        MESSAGE("Foe Claydol fell asleep!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_CLAYDOL) " fell asleep!");
         STATUS_ICON(opponent, sleep: TRUE);
     }
 }

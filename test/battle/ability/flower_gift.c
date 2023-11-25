@@ -11,7 +11,7 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim in harsh sunlight")
     } SCENE {
         ABILITY_POPUP(player, ABILITY_FLOWER_GIFT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
-        MESSAGE("Cherrim transformed!");
+        MESSAGE(SPECIES_NAME(SPECIES_CHERRIM) " transformed!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_CHERRIM_SUNSHINE);
     }
@@ -29,11 +29,11 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal when weather c
         // transforms in sun
         ABILITY_POPUP(player, ABILITY_FLOWER_GIFT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
-        MESSAGE("Cherrim transformed!");
+        MESSAGE(SPECIES_NAME(SPECIES_CHERRIM) " transformed!");
         // back to normal
         ABILITY_POPUP(player, ABILITY_FLOWER_GIFT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
-        MESSAGE("Cherrim transformed!");
+        MESSAGE(SPECIES_NAME(SPECIES_CHERRIM) " transformed!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_CHERRIM);
     }
@@ -52,10 +52,10 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal when its abili
         // transforms in sun
         ABILITY_POPUP(player, ABILITY_FLOWER_GIFT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
-        MESSAGE("Cherrim transformed!");
+        MESSAGE(SPECIES_NAME(SPECIES_CHERRIM) " transformed!");
         // back to normal
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
-        MESSAGE("Cherrim transformed!");
+        MESSAGE(SPECIES_NAME(SPECIES_CHERRIM) " transformed!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_CHERRIM);
     }
@@ -81,7 +81,7 @@ DOUBLE_BATTLE_TEST("Flower Gift increases the attack of Cherrim and its allies b
         if (sunny) {
             ABILITY_POPUP(playerLeft, ABILITY_FLOWER_GIFT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, playerLeft);
-            MESSAGE("Cherrim transformed!");
+            MESSAGE(SPECIES_NAME(SPECIES_CHERRIM) " transformed!");
         }
         // player uses Tackle
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, playerLeft);
@@ -114,7 +114,7 @@ DOUBLE_BATTLE_TEST("Flower Gift increases the Sp. Def of Cherrim and its allies 
         if (sunny) {
             ABILITY_POPUP(playerLeft, ABILITY_FLOWER_GIFT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, playerLeft);
-            MESSAGE("Cherrim transformed!");
+            MESSAGE(SPECIES_NAME(SPECIES_CHERRIM) " transformed!");
         }
         // opponentLeft uses Hyper Voice
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, opponentLeft);
@@ -140,7 +140,7 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back when it switches out")
         // transforms in sun
         ABILITY_POPUP(player, ABILITY_FLOWER_GIFT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
-        MESSAGE("Cherrim transformed!");
+        MESSAGE(SPECIES_NAME(SPECIES_CHERRIM) " transformed!");
         MESSAGE("Cherrim, that's enough! Come back!");
     } THEN {
         EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_CHERRIM);
@@ -161,7 +161,7 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back when it uses a move that
         // transforms in sun
         ABILITY_POPUP(player, ABILITY_FLOWER_GIFT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
-        MESSAGE("Cherrim transformed!");
+        MESSAGE(SPECIES_NAME(SPECIES_CHERRIM) " transformed!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_U_TURN, player);
     } THEN {
         EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), SPECIES_CHERRIM);

@@ -118,6 +118,6 @@ SINGLE_BATTLE_TEST("Air Balloon pops before it can be stolen with Thief or Covet
     } SCENE {
         MESSAGE("Wobbuffet floats in the air with its Air Balloon!");
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s Air Balloon popped!");
-        NOT MESSAGE("Foe Wobbuffet stole Wobbuffet's Air Balloon!");
+        NOT MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " stole Wobbuffet's Air Balloon!");
     }
 }

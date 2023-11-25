@@ -11,7 +11,7 @@ SINGLE_BATTLE_TEST("Stench has a 10% chance to flinch")
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet flinched!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " flinched!");
     }
 }
 
@@ -27,7 +27,7 @@ SINGLE_BATTLE_TEST("Stench does not stack with King's Rock")
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet flinched!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " flinched!");
     }
 }
 

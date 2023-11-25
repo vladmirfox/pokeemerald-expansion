@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("Focus Punch activates only if not damaged")
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FOCUS_PUNCH, player);
             HP_BAR(opponent);
         } else {
-            MESSAGE("Wobbuffet lost its focus and couldn't move!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " lost its focus and couldn't move!");
             NONE_OF {
                 MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FOCUS_PUNCH) "!");
                 ANIMATION(ANIM_TYPE_MOVE, MOVE_FOCUS_PUNCH, player);
@@ -70,7 +70,7 @@ DOUBLE_BATTLE_TEST("Focus Punch activation is based on Speed")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FOCUS_PUNCH, playerRight);
         HP_BAR(opponentLeft);
 
-        MESSAGE("Wobbuffet lost its focus and couldn't move!");
-        MESSAGE("Foe Wobbuffet lost its focus and couldn't move!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " lost its focus and couldn't move!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " lost its focus and couldn't move!");
     }
 }

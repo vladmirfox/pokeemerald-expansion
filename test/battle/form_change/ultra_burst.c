@@ -12,7 +12,7 @@ SINGLE_BATTLE_TEST("Dusk Mane Necrozma can Ultra Burst holding Ultranecrozium Z"
     } SCENE {
         MESSAGE("Bright light is about to burst out of Necrozma!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, player);
-        MESSAGE("Necrozma regained its true power through Ultra Burst!");
+        MESSAGE(SPECIES_NAME(SPECIES_NECROZMA) " regained its true power through Ultra Burst!");
     } THEN {
         EXPECT_EQ(player->species, SPECIES_NECROZMA_ULTRA);
     }
@@ -29,12 +29,12 @@ DOUBLE_BATTLE_TEST("Ultra Burst's order is determined by Speed - opponent faster
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_CELEBRATE, ultraBurst: TRUE); MOVE(playerLeft, MOVE_CELEBRATE, ultraBurst: TRUE); }
     } SCENE {
-        MESSAGE("Bright light is about to burst out of Foe Necrozma!");
+        MESSAGE("Bright light is about to burst out of Foe " SPECIES_NAME(SPECIES_NECROZMA) "!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, opponentLeft);
-        MESSAGE("Foe Necrozma regained its true power through Ultra Burst!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_NECROZMA) " regained its true power through Ultra Burst!");
         MESSAGE("Bright light is about to burst out of Necrozma!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, playerLeft);
-        MESSAGE("Necrozma regained its true power through Ultra Burst!");
+        MESSAGE(SPECIES_NAME(SPECIES_NECROZMA) " regained its true power through Ultra Burst!");
     }
 }
 
@@ -51,10 +51,10 @@ DOUBLE_BATTLE_TEST("Ultra Burst's order is determined by Speed - player faster")
     } SCENE {
         MESSAGE("Bright light is about to burst out of Necrozma!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, playerLeft);
-        MESSAGE("Necrozma regained its true power through Ultra Burst!");
-        MESSAGE("Bright light is about to burst out of Foe Necrozma!");
+        MESSAGE(SPECIES_NAME(SPECIES_NECROZMA) " regained its true power through Ultra Burst!");
+        MESSAGE("Bright light is about to burst out of Foe " SPECIES_NAME(SPECIES_NECROZMA) "!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, opponentLeft);
-        MESSAGE("Foe Necrozma regained its true power through Ultra Burst!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_NECROZMA) " regained its true power through Ultra Burst!");
     }
 }
 
@@ -94,7 +94,7 @@ DOUBLE_BATTLE_TEST("Ultra Burst happens after switching, but before Focus Punch-
 
         MESSAGE("Bright light is about to burst out of Necrozma!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, playerRight);
-        MESSAGE("Necrozma regained its true power through Ultra Burst!");
+        MESSAGE(SPECIES_NAME(SPECIES_NECROZMA) " regained its true power through Ultra Burst!");
 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FOCUS_PUNCH_SETUP, playerRight);
         MESSAGE(SPECIES_NAME(SPECIES_NECROZMA) " is tightening its focus!");
@@ -115,7 +115,7 @@ SINGLE_BATTLE_TEST("Ultra Burst and Mega Evolution can happen on the same turn")
     } SCENE {
         MESSAGE("Bright light is about to burst out of Necrozma!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ULTRA_BURST, player);
-        MESSAGE("Necrozma regained its true power through Ultra Burst!");
+        MESSAGE(SPECIES_NAME(SPECIES_NECROZMA) " regained its true power through Ultra Burst!");
 
         MESSAGE("Foe " SPECIES_NAME(SPECIES_GARDEVOIR) "'s Gardevoirite is reacting to 2's Mega Ring!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_MEGA_EVOLUTION, opponent);

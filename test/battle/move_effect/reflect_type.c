@@ -121,7 +121,7 @@ SINGLE_BATTLE_TEST("Reflect Type copies a target's dual types")
     } SCENE {
         MESSAGE(SPECIES_NAME(SPECIES_ARCANINE) " used " MOVE_NAME(MOVE_REFLECT_TYPE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, player);
-        MESSAGE(SPECIES_NAME(SPECIES_ARCANINE) "'s type changed to match the Foe Poliwrath's!");
+        MESSAGE(SPECIES_NAME(SPECIES_ARCANINE) "'s type changed to match the Foe " SPECIES_NAME(SPECIES_POLIWRATH) "'s!");
     } THEN {
         EXPECT_EQ(player->type1, TYPE_WATER);
         EXPECT_EQ(player->type2, TYPE_FIGHTING);
@@ -143,7 +143,7 @@ SINGLE_BATTLE_TEST("Reflect Type copies a target's pure type")
     } SCENE {
         MESSAGE(SPECIES_NAME(SPECIES_ARCANINE) " used " MOVE_NAME(MOVE_REFLECT_TYPE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, player);
-        MESSAGE(SPECIES_NAME(SPECIES_ARCANINE) "'s type changed to match the Foe Sudowoodo's!");
+        MESSAGE(SPECIES_NAME(SPECIES_ARCANINE) "'s type changed to match the Foe " SPECIES_NAME(SPECIES_SUDOWOODO) "'s!");
     } THEN {
         EXPECT_EQ(player->type1, TYPE_ROCK);
         EXPECT_EQ(player->type2, TYPE_ROCK);
@@ -169,15 +169,15 @@ SINGLE_BATTLE_TEST("Reflect Type defaults to Normal type for the user's type1 an
         MESSAGE("Foe " SPECIES_NAME(SPECIES_ARCANINE) " used " MOVE_NAME(MOVE_BURN_UP) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BURN_UP, opponent);
         HP_BAR(player);
-        MESSAGE("Foe Arcanine burned itself out!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_ARCANINE) " burned itself out!");
         // Turn 2
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FORESTS_CURSE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FORESTS_CURSE, player);
-        MESSAGE("Grass type was added to Foe Arcanine!");
+        MESSAGE("Grass type was added to Foe " SPECIES_NAME(SPECIES_ARCANINE) "!");
         // Turn 3
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_REFLECT_TYPE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, player);
-        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s type changed to match the Foe Arcanine's!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) "'s type changed to match the Foe " SPECIES_NAME(SPECIES_ARCANINE) "'s!");
     } THEN {
         EXPECT_EQ(player->type1, TYPE_NORMAL);
         EXPECT_EQ(player->type2, TYPE_NORMAL);

@@ -61,9 +61,9 @@ SINGLE_BATTLE_TEST("Eject Button will not activate under Substitute")
         }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, opponent);
-        MESSAGE("Foe Raichu made a SUBSTITUTE!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_RAICHU) " made a SUBSTITUTE!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
-        MESSAGE("The SUBSTITUTE took damage for Foe Raichu!");
+        MESSAGE("The SUBSTITUTE took damage for Foe " SPECIES_NAME(SPECIES_RAICHU) "!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
             MESSAGE("Foe " SPECIES_NAME(SPECIES_RAICHU) " is switched out with the Eject Button!");
@@ -126,7 +126,7 @@ SINGLE_BATTLE_TEST("Eject Button is not triggered after given to player by Picke
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         ABILITY_POPUP(opponent, ABILITY_PICKPOCKET);
-        MESSAGE("Foe Sneasel stole Regieleki's Eject Button!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_SNEASEL) " stole Regieleki's Eject Button!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
     }
 }

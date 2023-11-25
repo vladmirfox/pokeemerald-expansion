@@ -185,7 +185,7 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a switch-in caused by Red Car
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Foe Wobbuffet held up its Red Card against Wobbuffet!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " held up its Red Card against Wobbuffet!");
         MESSAGE(SPECIES_NAME(SPECIES_GROUDON) " was dragged out!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
         MESSAGE(SPECIES_NAME(SPECIES_GROUDON) "'s Primal Reversion! It reverted to its primal form!");

@@ -36,7 +36,7 @@ SINGLE_BATTLE_TEST("Stone Axe / Ceaseless Edge set up hazards after hitting the 
         }
         else {
             HP_BAR(opponent, damage: maxHP / 8);
-            MESSAGE("Pointed stones dug into Foe Wobbuffet!");
+            MESSAGE("Pointed stones dug into Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "!");
         }
     }
 }
@@ -111,7 +111,7 @@ SINGLE_BATTLE_TEST("Stone Axe can set up pointed stones only once")
 
         MESSAGE("2 sent out " SPECIES_NAME(SPECIES_WYNAUT) "!");
         HP_BAR(opponent, damage: maxHP / 8);
-        MESSAGE("Pointed stones dug into Foe Wynaut!");
+        MESSAGE("Pointed stones dug into Foe " SPECIES_NAME(SPECIES_WYNAUT) "!");
     }
 }
 

@@ -82,7 +82,7 @@ SINGLE_BATTLE_TEST("Wind Power sets up Charge for opponent when hit by a wind mo
         HP_BAR(opponent);
         if (move == MOVE_AIR_CUTTER) {
             ABILITY_POPUP(opponent, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by " MOVE_NAME(MOVE_AIR_CUTTER) " charged Foe Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_AIR_CUTTER) " charged Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " with power!");
         }
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDERBOLT, opponent);
@@ -92,7 +92,7 @@ SINGLE_BATTLE_TEST("Wind Power sets up Charge for opponent when hit by a wind mo
         HP_BAR(opponent);
         if (move == MOVE_AIR_CUTTER) {
             ABILITY_POPUP(opponent, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by " MOVE_NAME(MOVE_AIR_CUTTER) " charged Foe Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_AIR_CUTTER) " charged Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " with power!");
         }
     }
     THEN {
@@ -205,10 +205,10 @@ DOUBLE_BATTLE_TEST("Wind Power activates correctly when Tailwind is used")
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TAILWIND, opponentLeft);
 
             ABILITY_POPUP(opponentLeft, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by " MOVE_NAME(MOVE_TAILWIND) " charged Foe Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_TAILWIND) " charged Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " with power!");
 
             ABILITY_POPUP(opponentRight, ABILITY_WIND_POWER);
-            MESSAGE("Being hit by " MOVE_NAME(MOVE_TAILWIND) " charged Foe Wobbuffet with power!");
+            MESSAGE("Being hit by " MOVE_NAME(MOVE_TAILWIND) " charged Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " with power!");
         }
         else {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_TAILWIND, playerLeft);

@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("Full Restore restores a battler's HP and cures any primary s
     } WHEN {
         TURN{ USE_ITEM(player, ITEM_FULL_RESTORE, partyIndex: 0); }
     } SCENE {
-        MESSAGE("Wobbuffet had its HP restored!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " had its HP restored!");
     } THEN {
         EXPECT_EQ(player->hp, player->maxHP);
         EXPECT_EQ(player->status1, STATUS1_NONE);
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("Full Restore restores a battler's HP and cures confusion")
         TURN{ USE_ITEM(player, ITEM_FULL_RESTORE, partyIndex: 0); }
         TURN{ MOVE(player, MOVE_TACKLE); }
     } SCENE {
-        MESSAGE("Wobbuffet had its HP restored!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " had its HP restored!");
         NONE_OF { MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is confused!"); }
     } THEN {
         EXPECT_EQ(player->hp, player->maxHP);

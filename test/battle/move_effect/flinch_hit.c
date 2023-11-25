@@ -25,20 +25,20 @@ SINGLE_BATTLE_TEST("Headbutt flinches the target if attacker is faster")
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HEADBUTT, player);
         HP_BAR(opponent);
         if (isFaster) {
-            MESSAGE("Foe Wobbuffet flinched!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " flinched!");
             NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
         } else {
-            NOT MESSAGE("Foe Wobbuffet flinched!");
+            NOT MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " flinched!");
         }
 
         // 2nd turn
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HEADBUTT, player);
         HP_BAR(opponent);
         if (isFaster) {
-            MESSAGE("Foe Wobbuffet flinched!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " flinched!");
             NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
         } else {
-            NOT MESSAGE("Foe Wobbuffet flinched!");
+            NOT MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " flinched!");
         }
     }
 }
@@ -55,17 +55,17 @@ SINGLE_BATTLE_TEST("Protect always works when used after flinching")
     } SCENE {
         // 1st turn
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, player);
-        MESSAGE("Wobbuffet protected itself!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " protected itself!");
 
         // 2nd turn
         ANIMATION(ANIM_TYPE_MOVE, MOVE_HEADBUTT, opponent);
         HP_BAR(player);
-        MESSAGE("Wobbuffet flinched!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " flinched!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
 
         // 3rd turn
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, player);
-        MESSAGE("Wobbuffet protected itself!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " protected itself!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_HEADBUTT, opponent);
     }
 }

@@ -19,13 +19,13 @@ SINGLE_BATTLE_TEST("Cute Charm inflicts infatuation on contact")
             ABILITY_POPUP(opponent, ABILITY_CUTE_CHARM);
             ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_INFATUATION, player);
             MESSAGE("Foe " SPECIES_NAME(SPECIES_CLEFAIRY) "'s Cute Charm infatuated Wobbuffet!");
-            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is in love with Foe Clefairy!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is in love with Foe " SPECIES_NAME(SPECIES_CLEFAIRY) "!");
         } else {
             NONE_OF {
                 ABILITY_POPUP(opponent, ABILITY_CUTE_CHARM);
                 ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_INFATUATION, player);
                 MESSAGE("Foe " SPECIES_NAME(SPECIES_CLEFAIRY) "'s Cute Charm infatuated Wobbuffet!");
-                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is in love with Foe Clefairy!");
+                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is in love with Foe " SPECIES_NAME(SPECIES_CLEFAIRY) "!");
             }
         }
     }

@@ -142,7 +142,7 @@ SINGLE_BATTLE_TEST("Fling - Item is lost when target protects itself")
         MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_PROTECT) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, opponent);
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
-        MESSAGE("Foe Wobbuffet protected itself!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " protected itself!");
 
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
         MESSAGE("But it failed!");
@@ -187,7 +187,7 @@ SINGLE_BATTLE_TEST("Fling doesn't consume the item if pokemon is asleep/frozen/p
         }
         else {
             MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is fast asleep.");
-            MESSAGE("Wobbuffet woke up!");
+            MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " woke up!");
         }
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_FLING) "!");
         if (item != ITEM_NONE) {
@@ -241,7 +241,7 @@ SINGLE_BATTLE_TEST("Fling applies special effects when throwing specific Items")
             STATUS_ICON(opponent, STATUS1_TOXIC_POISON);
             break;
         case EFFECT_FLINCH_HIT:
-            MESSAGE("Foe Wobbuffet flinched!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " flinched!");
             break;
         }
     }
@@ -313,23 +313,23 @@ SINGLE_BATTLE_TEST("Fling - thrown berry's effect activates for the target even 
         else if (statId != 0) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
             if (statId == STAT_ATK) {
-                MESSAGE("Using Liechi Berry, the Attack of Foe Wobbuffet rose!");
+                MESSAGE("Using Liechi Berry, the Attack of Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " rose!");
             } else if (statId == STAT_DEF) {
                 if (item == ITEM_GANLON_BERRY) {
-                    MESSAGE("Using Ganlon Berry, the Defense of Foe Wobbuffet rose!");
+                    MESSAGE("Using Ganlon Berry, the Defense of Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " rose!");
                 } else {
-                    MESSAGE("Using Kee Berry, the Defense of Foe Wobbuffet rose!");
+                    MESSAGE("Using Kee Berry, the Defense of Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " rose!");
                 }
             } else if (statId == STAT_SPDEF) {
                 if (item == ITEM_APICOT_BERRY) {
-                    MESSAGE("Using Apicot Berry, the Sp. Def of Foe Wobbuffet rose!");
+                    MESSAGE("Using Apicot Berry, the Sp. Def of Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " rose!");
                 } else {
-                    MESSAGE("Using Maranga Berry, the Sp. Def of Foe Wobbuffet rose!");
+                    MESSAGE("Using Maranga Berry, the Sp. Def of Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " rose!");
                 }
             } else if (statId == STAT_SPEED) {
-                MESSAGE("Using Salac Berry, the Speed of Foe Wobbuffet rose!");
+                MESSAGE("Using Salac Berry, the Speed of Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " rose!");
             } else if (statId == STAT_SPATK) {
-                MESSAGE("Using Petaya Berry, the Sp. Atk of Foe Wobbuffet rose!");
+                MESSAGE("Using Petaya Berry, the Sp. Atk of Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " rose!");
             }
         }
     } THEN {

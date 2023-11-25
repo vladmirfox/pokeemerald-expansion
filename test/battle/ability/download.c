@@ -82,7 +82,7 @@ SINGLE_BATTLE_TEST("Download doesn't activate if target hasn't been sent out yet
             MESSAGE(SPECIES_NAME(SPECIES_PORYGON) "'s Download raised its Attack!");
             ABILITY_POPUP(opponent, ABILITY_DOWNLOAD);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("Foe Porygon2's Download raised its Sp. Atk!");
+            MESSAGE("Foe " SPECIES_NAME(SPECIES_PORYGON) "2's Download raised its Sp. Atk!");
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
         HP_BAR(opponent, captureDamage: &results[i].damagePhysical);

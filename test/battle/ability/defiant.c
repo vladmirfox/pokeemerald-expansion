@@ -79,14 +79,14 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises opponent's Attack after Intimidate")
         //1st mon Intimidate
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-        MESSAGE(SPECIES_NAME(SPECIES_GYARADOS) "'s Intimidate cuts Foe Mankey's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_GYARADOS) "'s Intimidate cuts Foe " SPECIES_NAME(SPECIES_MANKEY) "'s attack!");
         if (abilityLeft == ABILITY_DEFIANT) {
             ABILITY_POPUP(opponentLeft, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
             MESSAGE("Foe " SPECIES_NAME(SPECIES_MANKEY) "'s Attack sharply rose!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE(SPECIES_NAME(SPECIES_GYARADOS) "'s Intimidate cuts Foe Primeape's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_GYARADOS) "'s Intimidate cuts Foe " SPECIES_NAME(SPECIES_PRIMEAPE) "'s attack!");
         if (abilityRight == ABILITY_DEFIANT) {
             ABILITY_POPUP(opponentRight, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
@@ -96,14 +96,14 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises opponent's Attack after Intimidate")
         //2nd mon Intimidate
         ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-        MESSAGE(SPECIES_NAME(SPECIES_ARBOK) "'s Intimidate cuts Foe Mankey's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_ARBOK) "'s Intimidate cuts Foe " SPECIES_NAME(SPECIES_MANKEY) "'s attack!");
         if (abilityLeft == ABILITY_DEFIANT) {
             ABILITY_POPUP(opponentLeft, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
             MESSAGE("Foe " SPECIES_NAME(SPECIES_MANKEY) "'s Attack sharply rose!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE(SPECIES_NAME(SPECIES_ARBOK) "'s Intimidate cuts Foe Primeape's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_ARBOK) "'s Intimidate cuts Foe " SPECIES_NAME(SPECIES_PRIMEAPE) "'s attack!");
         if (abilityRight == ABILITY_DEFIANT) {
             ABILITY_POPUP(opponentRight, ABILITY_DEFIANT);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);

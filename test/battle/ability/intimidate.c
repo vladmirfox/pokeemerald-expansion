@@ -84,9 +84,9 @@ DOUBLE_BATTLE_TEST("Intimidate doesn't activate on an empty field in a double ba
 
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-        MESSAGE(SPECIES_NAME(SPECIES_EKANS) "'s Intimidate cuts Foe Arbok's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_EKANS) "'s Intimidate cuts Foe " SPECIES_NAME(SPECIES_ARBOK) "'s attack!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE(SPECIES_NAME(SPECIES_EKANS) "'s Intimidate cuts Foe Wynaut's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_EKANS) "'s Intimidate cuts Foe " SPECIES_NAME(SPECIES_WYNAUT) "'s attack!");
 
         ABILITY_POPUP(opponentLeft, ABILITY_INTIMIDATE);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
@@ -153,9 +153,9 @@ DOUBLE_BATTLE_TEST("Intimidate activates on an empty slot")
         MESSAGE("Go! " SPECIES_NAME(SPECIES_HITMONTOP) "!");
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         NONE_OF {
-            MESSAGE(SPECIES_NAME(SPECIES_HITMONTOP) "'s Intimidate cuts Foe Ralts's attack!");
+            MESSAGE(SPECIES_NAME(SPECIES_HITMONTOP) "'s Intimidate cuts Foe " SPECIES_NAME(SPECIES_RALTS) "'s attack!");
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-        MESSAGE(SPECIES_NAME(SPECIES_HITMONTOP) "'s Intimidate cuts Foe Azurill's attack!");
+        MESSAGE(SPECIES_NAME(SPECIES_HITMONTOP) "'s Intimidate cuts Foe " SPECIES_NAME(SPECIES_AZURILL) "'s attack!");
     }
 }

@@ -54,7 +54,7 @@ DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle",
             MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) "'s Attack rose!");
         } else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
-            MESSAGE(SPECIES_NAME(SPECIES_MIGHTYENA) "'s Intimidate cuts Foe Spinda's attack!");
+            MESSAGE(SPECIES_NAME(SPECIES_MIGHTYENA) "'s Intimidate cuts Foe " SPECIES_NAME(SPECIES_SPINDA) "'s attack!");
         }
         if (abilityRight == ABILITY_CONTRARY) {
             ABILITY_POPUP(opponentRight, ABILITY_CONTRARY);
@@ -62,7 +62,7 @@ DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle",
             MESSAGE("Foe " SPECIES_NAME(SPECIES_SPINDA) "'s Attack rose!");
         } else {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
-            MESSAGE(SPECIES_NAME(SPECIES_MIGHTYENA) "'s Intimidate cuts Foe Spinda's attack!");
+            MESSAGE(SPECIES_NAME(SPECIES_MIGHTYENA) "'s Intimidate cuts Foe " SPECIES_NAME(SPECIES_SPINDA) "'s attack!");
         }
         HP_BAR(playerLeft, captureDamage: &results[i].damageLeft);
         HP_BAR(playerRight, captureDamage: &results[i].damageRight);

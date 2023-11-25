@@ -96,7 +96,7 @@ SINGLE_BATTLE_TEST("Roost suppresses the user's Flying-typing this turn, then re
         // Turn 1: EQ hits when Roosted
         MESSAGE(SPECIES_NAME(SPECIES_SKARMORY) " used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Skarmory regained health!");
+        MESSAGE(SPECIES_NAME(SPECIES_SKARMORY) " regained health!");
         MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
         MESSAGE("It's super effective!");
@@ -141,7 +141,7 @@ SINGLE_BATTLE_TEST("Roost, if used by a Flying/Flying type, treats the user as a
     } SCENE {
         MESSAGE(SPECIES_NAME(SPECIES_TORNADUS) " used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Tornadus regained health!");
+        MESSAGE(SPECIES_NAME(SPECIES_TORNADUS) " regained health!");
 
         if (B_ROOST_PURE_FLYING >= GEN_5) // >= Gen. 5, Pokemon becomes pure Normal-type
         {
@@ -215,7 +215,7 @@ SINGLE_BATTLE_TEST("Roost, if used by a Mystery/Flying type, treats the user as 
         // Turn 2: Use Roost to now be treated as a Mystery/Mystery type
         MESSAGE(SPECIES_NAME(SPECIES_MOLTRES) " used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Moltres regained health!");
+        MESSAGE(SPECIES_NAME(SPECIES_MOLTRES) " regained health!");
         ANIMATION(ANIM_TYPE_MOVE, damagingMove, opponent);
         NONE_OF {
             MESSAGE("It's super effective!");
@@ -242,7 +242,7 @@ DOUBLE_BATTLE_TEST("Roost suppresses the user's not-yet-aquired Flying-type this
     } SCENE {
         MESSAGE(SPECIES_NAME(SPECIES_KECLEON) " used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, playerLeft);
-        MESSAGE("Kecleon regained health!");
+        MESSAGE(SPECIES_NAME(SPECIES_KECLEON) " regained health!");
         MESSAGE("Foe " SPECIES_NAME(SPECIES_PIDGEY) " used " MOVE_NAME(MOVE_GUST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GUST, opponentLeft);
         MESSAGE(SPECIES_NAME(SPECIES_KECLEON) "'s Color Change made it the Flying type!");
@@ -264,7 +264,7 @@ SINGLE_BATTLE_TEST("Roost prevents a Flying-type user from being protected by De
     } SCENE {
         MESSAGE(SPECIES_NAME(SPECIES_RAYQUAZA) " used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Rayquaza regained health!");
+        MESSAGE(SPECIES_NAME(SPECIES_RAYQUAZA) " regained health!");
         MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_ICE_BEAM) "!");
         NOT MESSAGE("The mysterious strong winds weakened the attack!");
     }
@@ -306,7 +306,7 @@ SINGLE_BATTLE_TEST("Roost's effect is lifted after Grassy Terrain's healing")
     } SCENE {
         MESSAGE(SPECIES_NAME(SPECIES_SWELLOW) " used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Swellow regained health!");
+        MESSAGE(SPECIES_NAME(SPECIES_SWELLOW) " regained health!");
         MESSAGE(SPECIES_NAME(SPECIES_SWELLOW) " is healed by the grassy terrain!");
         HP_BAR(player);
     }
@@ -330,7 +330,7 @@ SINGLE_BATTLE_TEST("Roost's suppression prevents Reflect Type from copying any F
         // Turn 1: Reflect Type on Roosted Normal/Flying
         MESSAGE(SPECIES_NAME(SPECIES_SWELLOW) " used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Swellow regained health!");
+        MESSAGE(SPECIES_NAME(SPECIES_SWELLOW) " regained health!");
         MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_REFLECT_TYPE) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT_TYPE, opponent);
         MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s type changed to match the Swellow's!");
@@ -361,7 +361,7 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Levitate")
     } SCENE {
         MESSAGE(SPECIES_NAME(SPECIES_FLYGON) " used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Flygon regained health!");
+        MESSAGE(SPECIES_NAME(SPECIES_FLYGON) " regained health!");
         MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
@@ -380,7 +380,7 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Air Balloon
     } SCENE {
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Wobbuffet regained health!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " regained health!");
         MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
@@ -405,7 +405,7 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Magnet Rise
         // Turn 2
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Wobbuffet regained health!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " regained health!");
         MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);
@@ -431,7 +431,7 @@ SINGLE_BATTLE_TEST("Roost does not suppress the ungrounded effect of Telekinesis
         // Turn 2
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_ROOST) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROOST, player);
-        MESSAGE("Wobbuffet regained health!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " regained health!");
         MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_EARTHQUAKE) "!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, opponent);

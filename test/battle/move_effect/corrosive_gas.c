@@ -22,10 +22,10 @@ SINGLE_BATTLE_TEST("Corrosive Gas destroys the target's item or fails if the tar
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CORROSIVE_GAS) "!");
         if (item == ITEM_POTION) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_CORROSIVE_GAS, player);
-            MESSAGE("Wobbuffet corroded Foe Wobbuffet's Potion!");
+            MESSAGE("Wobbuffet corroded Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Potion!");
         }
         else {
-            MESSAGE("It had no effect on Foe Wobbuffet!");
+            MESSAGE("It had no effect on Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "!");
         }
     } THEN {
         EXPECT_EQ(opponent->item, ITEM_NONE);
@@ -42,7 +42,7 @@ SINGLE_BATTLE_TEST("Corrosive Gas doesn't destroy the item of a Pokemon with the
     } SCENE {
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CORROSIVE_GAS) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CORROSIVE_GAS, player);
-        NOT MESSAGE("Wobbuffet corroded Foe Wobbuffet's Potion!");
+        NOT MESSAGE("Wobbuffet corroded Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Potion!");
         ABILITY_POPUP(opponent, ABILITY_STICKY_HOLD);
         MESSAGE("Foe " SPECIES_NAME(SPECIES_MUK) "'s Sticky Hold made " MOVE_NAME(MOVE_CORROSIVE_GAS) " ineffective!");
     } THEN {
@@ -61,7 +61,7 @@ SINGLE_BATTLE_TEST("Items lost to Corrosive Gas cannot be restored by Recycle")
     } SCENE {
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_CORROSIVE_GAS) "!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CORROSIVE_GAS, player);
-        MESSAGE("Wobbuffet corroded Foe Wobbuffet's Oran Berry!");
+        MESSAGE("Wobbuffet corroded Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Oran Berry!");
         MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_RECYCLE) "!");
         MESSAGE("But it failed!");
     } THEN {
@@ -100,14 +100,14 @@ DOUBLE_BATTLE_TEST("Corrosive Gas destroys foes and ally's items if they have on
             MESSAGE("It had no effect on Wobbuffet!");
         }
         if (itemOpponentLeft == ITEM_ORAN_BERRY) {
-            MESSAGE("Wynaut corroded Foe Abra's Oran Berry!");
+            MESSAGE("Wynaut corroded Foe " SPECIES_NAME(SPECIES_ABRA) "'s Oran Berry!");
         } else {
-            MESSAGE("It had no effect on Foe Abra!");
+            MESSAGE("It had no effect on Foe " SPECIES_NAME(SPECIES_ABRA) "!");
         }
         if (itemOpponentRight == ITEM_CHESTO_BERRY) {
-            MESSAGE("Wynaut corroded Foe Kadabra's Chesto Berry!");
+            MESSAGE("Wynaut corroded Foe " SPECIES_NAME(SPECIES_KADABRA) "'s Chesto Berry!");
         } else {
-            MESSAGE("It had no effect on Foe Kadabra!");
+            MESSAGE("It had no effect on Foe " SPECIES_NAME(SPECIES_KADABRA) "!");
         }
 
     } THEN {

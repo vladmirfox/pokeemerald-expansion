@@ -37,7 +37,7 @@ SINGLE_BATTLE_TEST("Sheer Force boosts power, but removes secondary effects of m
                 STATUS_ICON(opponent, STATUS1_TOXIC_POISON);
                 STATUS_ICON(opponent, STATUS1_PARALYSIS);
                 MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " is confused!");
-                MESSAGE("Wobbuffet flinched!");
+                MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " flinched!");
             }
             // Volt Tackle/Flare Blitz edge case: recoil happens, but target isn't statused
             if (gBattleMoves[move].effect == EFFECT_RECOIL_33_STATUS)

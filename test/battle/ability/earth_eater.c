@@ -12,7 +12,7 @@ SINGLE_BATTLE_TEST("Earth Eater heals 25% when hit by ground type moves")
     } SCENE {
         ABILITY_POPUP(player, ABILITY_EARTH_EATER);
         HP_BAR(player, damage: -25);
-        MESSAGE("Wobbuffet restored HP using its Earth Eater!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " restored HP using its Earth Eater!");
     }
 }
 
@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("Earth Eater does not activate if protected")
     } WHEN {
         TURN { MOVE(player, MOVE_PROTECT); MOVE(opponent, MOVE_MUD_SLAP); }
     } SCENE {
-        NONE_OF { ABILITY_POPUP(player, ABILITY_EARTH_EATER); HP_BAR(player); MESSAGE("Wobbuffet restored HP using its Earth Eater!"); }
+        NONE_OF { ABILITY_POPUP(player, ABILITY_EARTH_EATER); HP_BAR(player); MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " restored HP using its Earth Eater!"); }
     }
 }
 
@@ -41,6 +41,6 @@ SINGLE_BATTLE_TEST("Earth Eater activates on status moves")
     } SCENE {
         ABILITY_POPUP(player, ABILITY_EARTH_EATER);
         HP_BAR(player, damage: -25);
-        MESSAGE("Wobbuffet restored HP using its Earth Eater!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " restored HP using its Earth Eater!");
     }
 }

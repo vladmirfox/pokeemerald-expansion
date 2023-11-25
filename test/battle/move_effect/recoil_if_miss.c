@@ -78,9 +78,9 @@ SINGLE_BATTLE_TEST("Jump Kick's recoil happens after Spiky Shield damage and Pok
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKY_SHIELD, opponent);
         MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " used " MOVE_NAME(MOVE_JUMP_KICK) "!");
-        MESSAGE("Foe Wobbuffet protected itself!");
+        MESSAGE("Foe " SPECIES_NAME(SPECIES_WOBBUFFET) " protected itself!");
         HP_BAR(player, damage: maxHp / 8);
-        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was hurt by Foe Wobbuffet's Spiky Shield!");
+        MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " was hurt by Foe " SPECIES_NAME(SPECIES_WOBBUFFET) "'s Spiky Shield!");
         if (faintOnSpiky){
             MESSAGE(SPECIES_NAME(SPECIES_WOBBUFFET) " fainted!");
             MESSAGE("Go! " SPECIES_NAME(SPECIES_WYNAUT) "!");
