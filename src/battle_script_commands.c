@@ -2243,11 +2243,6 @@ static void Cmd_healthbarupdate(void)
             if (GetBattlerSide(battler) == B_SIDE_PLAYER && gBattleMoveDamage > 0)
                 gBattleResults.playerMonWasDamaged = TRUE;
         }
-        if (!(gHitMarker & HITMARKER_PASSIVE_DAMAGE) && !DoesSubstituteBlockMove(gBattlerAttacker, battler, gCurrentMove)
-            && gBattleStruct->timesGotHit[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)] < 6)
-        {
-            gBattleStruct->timesGotHit[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)]++;
-        }
     }
 
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -5529,6 +5524,16 @@ static void Cmd_moveend(void)
                 gStatuses3[gBattlerTarget] &= ~STATUS3_SEMI_INVULNERABLE;
                 gBattleScripting.moveendState++;
                 return;
+            }
+            gBattleScripting.moveendState++;
+            break;
+        case MOVEEND_NUM_HITS:
+            if (gBattlerAttacker != gBattlerTarget
+                && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget)
+                && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) && gBattleMoves[gCurrentMove].power != 0
+                && !DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove))
+            {
+                gBattleStruct->timesGotHit[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)]++;
             }
             gBattleScripting.moveendState++;
             break;

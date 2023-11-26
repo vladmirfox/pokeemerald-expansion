@@ -8864,6 +8864,7 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
         break;
     case EFFECT_RAGE_FIST:
         basePower += 50 * gBattleStruct->timesGotHit[gBattlerPartyIndexes[battlerAtk]][GetBattlerSide(battlerAtk)];
+        basePower = (basePower > 350) ? 350 : basePower;
         break;
     }
 

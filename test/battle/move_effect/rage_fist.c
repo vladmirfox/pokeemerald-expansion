@@ -199,3 +199,27 @@ SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 even if a damaging m
         EXPECT_MUL_EQ(timesGotHit[0], Q_4_12(2.0), timesGotHit[1]);
     }
 }
+
+SINGLE_BATTLE_TEST("Rage Fist base power is not increased if move had no affect")
+{
+    u8 turns;
+    s16 timesGotHit[2];
+
+    GIVEN {
+        PLAYER(SPECIES_GASTLY);
+        OPPONENT(SPECIES_REGIROCK);
+    } WHEN {
+        for (turns = 0; turns < 2; turns++) {
+            TURN { MOVE(player, MOVE_RAGE_FIST); MOVE(opponent, MOVE_TACKLE); }
+        }
+    } SCENE {
+        for (turns = 0; turns < 2; turns++) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
+            HP_BAR(opponent, captureDamage: &timesGotHit[turns]);
+            MESSAGE("Foe Regirock used Tackle!");
+            MESSAGE("It doesn't affect Gastly…");
+        }
+    } THEN {
+        EXPECT_EQ(timesGotHit[0], timesGotHit[1]);
+    }
+}

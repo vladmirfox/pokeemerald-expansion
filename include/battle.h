@@ -731,7 +731,7 @@ struct BattleStruct
     u32 aiDelayFrames; // Number of frames it took to choose an action.
     bool8 transformZeroToHero[PARTY_SIZE][NUM_BATTLE_SIDES];
     u8 pledgeMove:1;
-    u32 timesGotHit[PARTY_SIZE][NUM_BATTLE_SIDES];
+    u8 timesGotHit[PARTY_SIZE][NUM_BATTLE_SIDES];
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
