@@ -402,6 +402,38 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_PIC(RS_MAY, RubySapphireMay, Trainer),
 };
 
+static const union AnimCmd sAnimCmd_Hoenn[] =
+{
+    ANIMCMD_FRAME(0, 24),
+    ANIMCMD_FRAME(1, 9),
+    ANIMCMD_FRAME(2, 24),
+    ANIMCMD_FRAME(0, 9),
+    ANIMCMD_FRAME(3, 50),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnimCmd_Kanto[] =
+{
+    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(2, 6),
+    ANIMCMD_FRAME(3, 6),
+    ANIMCMD_FRAME(4, 24),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sBackAnims_Hoenn[] =
+{
+    sAnim_GeneralFrame3,
+    sAnimCmd_Hoenn,
+};
+
+static const union AnimCmd *const sBackAnims_Kanto[] =
+{
+    sAnim_GeneralFrame0,
+    sAnimCmd_Kanto,
+};
+
 #define TRAINER_BACK_PAL(pal, trainerPic) {gTrainer##pal, TRAINER_BACK_PIC_##trainerPic}
 
 const struct TrainerBacksprite gTrainerBacksprites[] =
@@ -410,47 +442,55 @@ const struct TrainerBacksprite gTrainerBacksprites[] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
         .palette = TRAINER_BACK_PAL(Palette_Brendan, BRENDAN),
+        .animation = sBackAnims_Hoenn,
     },
 
     [TRAINER_BACK_PIC_MAY] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
         .palette = TRAINER_BACK_PAL(Palette_May, MAY),
+        .animation = sBackAnims_Hoenn,
     },
 
     [TRAINER_BACK_PIC_RED] =
     {
         .coordinates = {.size = 8, .y_offset = 5},
         .palette = TRAINER_BACK_PAL(BackPicPalette_Red, RED),
+        .animation = sBackAnims_Kanto,
     },
 
     [TRAINER_BACK_PIC_LEAF] =
     {
         .coordinates = {.size = 8, .y_offset = 5},
         .palette = TRAINER_BACK_PAL(BackPicPalette_Leaf, LEAF),
+        .animation = sBackAnims_Kanto,
     },
 
     [TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
         .palette = TRAINER_BACK_PAL(Palette_RubySapphireBrendan, RUBY_SAPPHIRE_BRENDAN),
+        .animation = sBackAnims_Hoenn,
     },
 
     [TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
         .palette = TRAINER_BACK_PAL(Palette_RubySapphireMay, RUBY_SAPPHIRE_MAY),
+        .animation = sBackAnims_Hoenn,
     },
 
     [TRAINER_BACK_PIC_WALLY] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
         .palette = TRAINER_BACK_PAL(Palette_Wally, WALLY),
+        .animation = sBackAnims_Hoenn,
     },
 
     [TRAINER_BACK_PIC_STEVEN] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
         .palette = TRAINER_BACK_PAL(Palette_Steven, STEVEN),
+        .animation = sBackAnims_Hoenn,
     },
 };

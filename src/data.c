@@ -119,7 +119,7 @@ const union AnimCmd sAnim_GeneralFrame0[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_GeneralFrame3[] =
+const union AnimCmd sAnim_GeneralFrame3[] =
 {
     ANIMCMD_FRAME(3, 0),
     ANIMCMD_END,
@@ -285,7 +285,6 @@ const union AnimCmd *const gAnims_MonPic[MAX_MON_PIC_FRAMES] =
     sAnim_MonPic_1,
 };
 
-#include "data/trainer_graphics/back_pic_anims.h"
 #include "data/trainer_graphics/back_pic_tables.h"
 
 #include "data/trainer_parties.h"

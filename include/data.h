@@ -40,6 +40,7 @@ struct TrainerBacksprite
 {
     struct MonCoords coordinates;
     struct CompressedSpritePalette palette;
+    const union AnimCmd *const *const animation;
 };
 
 #define MON_COORDS_SIZE(width, height)(DIV_ROUND_UP(width, 8) << 4 | DIV_ROUND_UP(height, 8))
@@ -105,10 +106,10 @@ extern const union AffineAnimCmd *const gAffineAnims_BattleSpriteOpponentSide[];
 extern const union AffineAnimCmd *const gAffineAnims_BattleSpriteContest[];
 
 extern const union AnimCmd sAnim_GeneralFrame0[];
+extern const union AnimCmd sAnim_GeneralFrame3[];
 extern const union AnimCmd *const gAnims_MonPic[];
 extern const struct TrainerSprite gTrainerSprites[];
 extern const struct TrainerBacksprite gTrainerBacksprites[];
-extern const union AnimCmd *const *const gTrainerBackAnimsPtrTable[];
 extern const struct CompressedSpriteSheet gTrainerBackPicTable[]; // functionally unused
 
 extern const struct Trainer gTrainers[];
