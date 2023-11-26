@@ -2326,7 +2326,7 @@ static const union AnimCmd sAnim_Misdreavus_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_Unown_1[] =
+static const union AnimCmd sAnim_UnownA_1[] =
 {
     ANIMCMD_FRAME(0, 30),
     ANIMCMD_FRAME(1, 30),
@@ -4730,7 +4730,7 @@ static const union AnimCmd sAnim_UnownZ_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_UnownEMark_1[] =
+static const union AnimCmd sAnim_UnownExclamationMark_1[] =
 {
     ANIMCMD_FRAME(0, 30),
     ANIMCMD_FRAME(1, 30),
@@ -4738,7 +4738,7 @@ static const union AnimCmd sAnim_UnownEMark_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_UnownQMark_1[] =
+static const union AnimCmd sAnim_UnownQuestionMark_1[] =
 {
     ANIMCMD_FRAME(0, 30),
     ANIMCMD_FRAME(1, 30),
@@ -11082,7 +11082,7 @@ SINGLE_ANIMATION(Umbreon);
 SINGLE_ANIMATION(Murkrow);
 SINGLE_ANIMATION(Slowking);
 SINGLE_ANIMATION(Misdreavus);
-SINGLE_ANIMATION(Unown);
+SINGLE_ANIMATION(UnownA);
 DOUBLE_ANIMATION(Wobbuffet);
 DOUBLE_ANIMATION(Girafarig);
 SINGLE_ANIMATION(Pineco);
@@ -11304,8 +11304,8 @@ SINGLE_ANIMATION(UnownW);
 SINGLE_ANIMATION(UnownX);
 SINGLE_ANIMATION(UnownY);
 SINGLE_ANIMATION(UnownZ);
-SINGLE_ANIMATION(UnownEMark);
-SINGLE_ANIMATION(UnownQMark);
+SINGLE_ANIMATION(UnownExclamationMark);
+SINGLE_ANIMATION(UnownQuestionMark);
 #if P_GEN_4_POKEMON == TRUE
 SINGLE_ANIMATION(Turtwig);
 SINGLE_ANIMATION(Grotle);
@@ -12376,7 +12376,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_MURKROW]                        = sAnims_Murkrow,
     [SPECIES_SLOWKING]                       = sAnims_Slowking,
     [SPECIES_MISDREAVUS]                     = sAnims_Misdreavus,
-    [SPECIES_UNOWN]                          = sAnims_Unown,
+    [SPECIES_UNOWN]                          = sAnims_UnownA,
     [SPECIES_WOBBUFFET]                      = sAnims_Wobbuffet,
     [SPECIES_GIRAFARIG]                      = sAnims_Girafarig,
     [SPECIES_PINECO]                         = sAnims_Pineco,
@@ -13449,8 +13449,8 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[NUM_SPECIES + 1] =
     [SPECIES_UNOWN_X]                        = sAnims_UnownX,
     [SPECIES_UNOWN_Y]                        = sAnims_UnownY,
     [SPECIES_UNOWN_Z]                        = sAnims_UnownZ,
-    [SPECIES_UNOWN_EMARK]                    = sAnims_UnownEMark,
-    [SPECIES_UNOWN_QMARK]                    = sAnims_UnownQMark,
+    [SPECIES_UNOWN_EMARK]                    = sAnims_UnownExclamationMark,
+    [SPECIES_UNOWN_QMARK]                    = sAnims_UnownQuestionMark,
     [SPECIES_CASTFORM_SUNNY]                 = sAnims_CastformSunny,
     [SPECIES_CASTFORM_RAINY]                 = sAnims_CastformRainy,
     [SPECIES_CASTFORM_SNOWY]                 = sAnims_CastformSnowy,

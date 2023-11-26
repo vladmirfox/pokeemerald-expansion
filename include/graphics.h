@@ -5405,7 +5405,7 @@ extern const u8 gMonIcon_Umbreon[];
 extern const u8 gMonIcon_Murkrow[];
 extern const u8 gMonIcon_Slowking[];
 extern const u8 gMonIcon_Misdreavus[];
-extern const u8 gMonIcon_Unown[];
+extern const u8 gMonIcon_UnownA[];
 extern const u8 gMonIcon_Wobbuffet[];
 #if P_CUSTOM_GENDER_DIFF_ICONS == TRUE
 extern const u8 gMonIcon_WobbuffetF[];
