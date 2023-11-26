@@ -301,7 +301,7 @@ static void PlayerPartnerHandleDrawTrainerPic(u32 battler)
     {
         trainerPicId = gBattlePartners[gPartnerTrainerId - TRAINER_PARTNER(PARTNER_NONE)].trainerPic;
         xPos = 90;
-        yPos = (8 - gTrainerBackPicCoords[trainerPicId].size) * 4 + 80;
+        yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
     }
     else if (IsAiVsAiBattle())
     {
@@ -435,7 +435,7 @@ static void PlayerPartnerHandleIntroTrainerBallThrow(u32 battler)
     const u32 *trainerPal;
 
     if (gPartnerTrainerId > TRAINER_PARTNER(PARTNER_NONE))
-        trainerPal = gTrainerBackPicPaletteTable[gPartnerSpriteId].data;
+        trainerPal = gTrainerBacksprites[gPartnerSpriteId].palette.data;
     else if (IsAiVsAiBattle())
         trainerPal = gTrainerSprites[gTrainers[gPartnerTrainerId].trainerPic].palette.data;
     else

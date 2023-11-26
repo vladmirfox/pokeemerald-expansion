@@ -660,7 +660,7 @@ void DecompressTrainerBackPic(u16 backPicId, u8 battler)
     u8 position = GetBattlerPosition(battler);
     DecompressPicFromTable(&gTrainerBackPicTable[backPicId],
                            gMonSpritesGfxPtr->sprites.ptr[position]);
-    LoadCompressedPalette(gTrainerBackPicPaletteTable[backPicId].data,
+    LoadCompressedPalette(gTrainerBacksprites[backPicId].palette.data,
                           OBJ_PLTT_ID(battler), PLTT_SIZE_4BPP);
 }
 

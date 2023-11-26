@@ -401,3 +401,56 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_PIC(RS_BRENDAN, RubySapphireBrendan, Trainer),
     TRAINER_PIC(RS_MAY, RubySapphireMay, Trainer),
 };
+
+#define TRAINER_BACK_PAL(pal, trainerPic) {gTrainer##pal, TRAINER_BACK_PIC_##trainerPic}
+
+const struct TrainerBacksprite gTrainerBacksprites[] =
+{
+    [TRAINER_BACK_PIC_BRENDAN] =
+    {
+        .coordinates = {.size = 8, .y_offset = 4},
+        .palette = TRAINER_BACK_PAL(Palette_Brendan, BRENDAN),
+    },
+
+    [TRAINER_BACK_PIC_MAY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 4},
+        .palette = TRAINER_BACK_PAL(Palette_May, MAY),
+    },
+
+    [TRAINER_BACK_PIC_RED] =
+    {
+        .coordinates = {.size = 8, .y_offset = 5},
+        .palette = TRAINER_BACK_PAL(BackPicPalette_Red, RED),
+    },
+
+    [TRAINER_BACK_PIC_LEAF] =
+    {
+        .coordinates = {.size = 8, .y_offset = 5},
+        .palette = TRAINER_BACK_PAL(BackPicPalette_Leaf, LEAF),
+    },
+
+    [TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN] =
+    {
+        .coordinates = {.size = 8, .y_offset = 4},
+        .palette = TRAINER_BACK_PAL(Palette_RubySapphireBrendan, RUBY_SAPPHIRE_BRENDAN),
+    },
+
+    [TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 4},
+        .palette = TRAINER_BACK_PAL(Palette_RubySapphireMay, RUBY_SAPPHIRE_MAY),
+    },
+
+    [TRAINER_BACK_PIC_WALLY] =
+    {
+        .coordinates = {.size = 8, .y_offset = 4},
+        .palette = TRAINER_BACK_PAL(Palette_Wally, WALLY),
+    },
+
+    [TRAINER_BACK_PIC_STEVEN] =
+    {
+        .coordinates = {.size = 8, .y_offset = 4},
+        .palette = TRAINER_BACK_PAL(Palette_Steven, STEVEN),
+    },
+};

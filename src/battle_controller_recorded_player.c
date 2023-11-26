@@ -397,14 +397,14 @@ static void RecordedPlayerHandleDrawTrainerPic(u32 battler)
         }
         else
         {
-            yPos = (8 - gTrainerBackPicCoords[trainerPicId].size) * 4 + 80;
+            yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
         }
 
     }
     else
     {
         xPos = 80;
-        yPos = (8 - gTrainerBackPicCoords[trainerPicId].size) * 4 + 80;
+        yPos = (8 - gTrainerBacksprites[trainerPicId].coordinates.size) * 4 + 80;
     }
 
     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
