@@ -2189,9 +2189,6 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 #include "data/pokemon_graphics/front_pic_coordinates.h"
 #include "data/pokemon_graphics/back_pic_coordinates.h"
 
-#include "data/pokemon_graphics/palette_table.h"
-#include "data/pokemon_graphics/shiny_palette_table.h"
-
 #include "data/pokemon_graphics/enemy_mon_elevation.h"
 #include "data/pokemon_graphics/front_pic_anims.h"
 
@@ -8354,21 +8351,21 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
     shinyValue = GET_SHINY_VALUE(otId, personality);
     if (shinyValue < SHINY_ODDS)
     {
-        if (gMonShinyPaletteTableFemale[species].data != NULL && IsPersonalityFemale(species, personality))
-            return gMonShinyPaletteTableFemale[species].data;
-        else if (gMonShinyPaletteTable[species].data != NULL)
-            return gMonShinyPaletteTable[species].data;
+        if (gSpeciesInfo[species].shinyPaletteFemale != NULL && IsPersonalityFemale(species, personality))
+            return gSpeciesInfo[species].shinyPaletteFemale;
+        else if (gSpeciesInfo[species].shinyPalette != NULL)
+            return gSpeciesInfo[species].shinyPalette;
         else
-            return gMonShinyPaletteTable[SPECIES_NONE].data;
+            return gSpeciesInfo[SPECIES_NONE].shinyPalette;
     }
     else
     {
-        if (gMonPaletteTableFemale[species].data != NULL && IsPersonalityFemale(species, personality))
-            return gMonPaletteTableFemale[species].data;
-        else if (gMonPaletteTable[species].data != NULL)
-            return gMonPaletteTable[species].data;
+        if (gSpeciesInfo[species].paletteFemale != NULL && IsPersonalityFemale(species, personality))
+            return gSpeciesInfo[species].paletteFemale;
+        else if (gSpeciesInfo[species].palette != NULL)
+            return gSpeciesInfo[species].palette;
         else
-            return gMonPaletteTable[SPECIES_NONE].data;
+            return gSpeciesInfo[SPECIES_NONE].palette;
     }
 }
 
@@ -9212,9 +9209,9 @@ void TrySpecialOverworldEvo(void)
 bool32 SpeciesHasGenderDifferences(u16 species)
 {
     if (gSpeciesInfo[species].frontPicFemale != NULL
-     || gMonPaletteTableFemale[species].data != NULL
+     || gSpeciesInfo[species].paletteFemale != NULL
      || gSpeciesInfo[species].backPicFemale != NULL
-     || gMonShinyPaletteTableFemale[species].data != NULL
+     || gSpeciesInfo[species].shinyPaletteFemale != NULL
      || gMonIconTableFemale[species] != NULL)
         return TRUE;
 

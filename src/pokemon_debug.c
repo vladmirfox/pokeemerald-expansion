@@ -684,21 +684,21 @@ static const u32 *GetMonSpritePalStructCustom(u16 species, bool8 isFemale, bool8
 {
     if (isShiny)
     {
-        if (gMonShinyPaletteTableFemale[species].data != NULL && isFemale)
-            return gMonShinyPaletteTableFemale[species].data;
-        else if (gMonShinyPaletteTable[species].data != NULL)
-            return gMonShinyPaletteTable[species].data;
+        if (gSpeciesInfo[species].shinyPaletteFemale != NULL && isFemale)
+            return gSpeciesInfo[species].shinyPaletteFemale;
+        else if (gSpeciesInfo[species].shinyPalette != NULL)
+            return gSpeciesInfo[species].shinyPalette;
         else
-            return gMonShinyPaletteTable[SPECIES_NONE].data;
+            return gSpeciesInfo[SPECIES_NONE].shinyPalette;
     }
     else
     {
-        if (gMonPaletteTableFemale[species].data != NULL && isFemale)
-            return gMonPaletteTableFemale[species].data;
-        else if (gMonPaletteTable[species].data != NULL)
-            return gMonPaletteTable[species].data;
+        if (gSpeciesInfo[species].paletteFemale != NULL && isFemale)
+            return gSpeciesInfo[species].paletteFemale;
+        else if (gSpeciesInfo[species].palette != NULL)
+            return gSpeciesInfo[species].palette;
         else
-            return gMonPaletteTable[SPECIES_NONE].data;
+            return gSpeciesInfo[SPECIES_NONE].palette;
     }
 }
 
@@ -709,21 +709,21 @@ static void BattleLoadOpponentMonSpriteGfxCustom(u16 species, bool8 isFemale, bo
 
     if (isShiny)
     {
-        if (gMonShinyPaletteTableFemale[species].data != NULL && isFemale)
-            lzPaletteData = gMonShinyPaletteTableFemale[species].data;
-        else if (gMonShinyPaletteTable[species].data != NULL)
-            lzPaletteData = gMonShinyPaletteTable[species].data;
+        if (gSpeciesInfo[species].shinyPaletteFemale != NULL && isFemale)
+            lzPaletteData = gSpeciesInfo[species].shinyPaletteFemale;
+        else if (gSpeciesInfo[species].shinyPalette != NULL)
+            lzPaletteData = gSpeciesInfo[species].shinyPalette;
         else
-            lzPaletteData = gMonShinyPaletteTable[SPECIES_NONE].data;
+            lzPaletteData = gSpeciesInfo[SPECIES_NONE].shinyPalette;
     }
     else
     {
-        if (gMonPaletteTableFemale[species].data != NULL && isFemale)
-            lzPaletteData = gMonPaletteTableFemale[species].data;
-        else if (gMonPaletteTable[species].data != NULL)
-            lzPaletteData = gMonPaletteTable[species].data;
+        if (gSpeciesInfo[species].paletteFemale != NULL && isFemale)
+            lzPaletteData = gSpeciesInfo[species].paletteFemale;
+        else if (gSpeciesInfo[species].palette != NULL)
+            lzPaletteData = gSpeciesInfo[species].palette;
         else
-            lzPaletteData = gMonPaletteTable[SPECIES_NONE].data;
+            lzPaletteData = gSpeciesInfo[SPECIES_NONE].palette;
     }
 
     LZDecompressWram(lzPaletteData, gDecompressionBuffer);
