@@ -5188,11 +5188,11 @@ static struct Sprite *CreateMonIconSprite(u16 species, u32 personality, s16 x, s
     species = GetIconSpecies(species, personality);
     if (gSpeciesInfo[species].iconSpriteFemale != NULL && IsPersonalityFemale(species, personality))
     {
-        template.paletteTag = PALTAG_MON_ICON_0 + gMonIconPaletteIndicesFemale[species];
+        template.paletteTag = PALTAG_MON_ICON_0 + gSpeciesInfo[species].iconPalIndexFemale;
     }
     else
     {
-        template.paletteTag = PALTAG_MON_ICON_0 + gMonIconPaletteIndices[species];
+        template.paletteTag = PALTAG_MON_ICON_0 + gSpeciesInfo[species].iconPalIndex;
     }
 
     tileNum = TryLoadMonIconTiles(species, personality);
