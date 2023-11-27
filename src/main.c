@@ -107,6 +107,7 @@ void AgbMain()
     CheckForFlashMemory();
     InitMainCallbacks();
     InitMapMusic();
+    SeedRngAndSetTrainerId();
 #ifdef BUGFIX
     SeedRngWithRtc(); // see comment at SeedRngWithRtc definition below
 #endif
@@ -215,9 +216,11 @@ void StartTimer1(void)
 
 void SeedRngAndSetTrainerId(void)
 {
-    u16 val = REG_TM1CNT_L;
+    u32 seed = RtcGetMinuteCount();
+    u16 val = RtcGetMinuteCount();
+    seed = (seed >> 16) ^ (seed & 0xFFFF);
+    SeedRng(seed);
     SeedRng(val);
-    REG_TM1CNT_H = 0;
     sTrainerId = val;
 }
 
