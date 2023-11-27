@@ -25,9 +25,7 @@
     uses a BACK_ANIM_* that refers to a set of 3 ANIM functions. Which of the
     3 that gets used depends on the Pokémon's nature (see sBackAnimationIds).
 
-    The table linking species to a BACK_ANIM is in this file (sSpeciesToBackAnimSet)
-    while the table linking species to an ANIM for their front animation is in
-    pokemon.c (sMonFrontAnimIdsTable).
+    The gSpeciesInfo table links to both BACK_ANIM and ANIM in its frontAnimId and backAnimId fields.
 
     These are the functions that will start an animation:
     - LaunchAnimationTaskForFrontSprite
