@@ -446,6 +446,7 @@ gBattleScriptsForMoveEffects::
 
 BattleScript_EffectSpicyExtract::
 	attackcanceler
+	accuracycheck BattleScript_ButItFailed, NO_ACC_CALC_CHECK_LOCK_ON
 	attackstring
 	ppreduce
 	jumpifstat BS_TARGET, CMP_LESS_THAN, STAT_ATK, MAX_STAT_STAGE, BattleScript_SpicyExtractAtkUp
