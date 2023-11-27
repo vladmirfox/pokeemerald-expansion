@@ -24,6 +24,8 @@ struct MonIconSpriteTemplate
 static u8 CreateMonIconSprite(struct MonIconSpriteTemplate *, s16, s16, u8);
 static void FreeAndDestroyMonIconSprite_(struct Sprite *sprite);
 
+// Kept this commented out table to keep PoryMap compatibility.
+/*
 const u8 *const gMonIconTable[NUM_SPECIES + 1] =
 {
     [SPECIES_NONE] = gMonIcon_QuestionMark,
@@ -1524,27 +1526,7 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
 #endif
     [SPECIES_EGG] = gMonIcon_Egg,
 };
-
-// Female icon palette indexes still need to be defined in gMonIconPaletteIndicesFemale, even if they are the same as males.
-const u8 *const gMonIconTableFemale[NUM_SPECIES + 1] =
-{
-#if P_CUSTOM_GENDER_DIFF_ICONS == TRUE
-    [SPECIES_PIKACHU] = gMonIcon_PikachuF,
-    [SPECIES_WOBBUFFET] = gMonIcon_WobbuffetF,
-#endif
-#if P_GEN_4_POKEMON == TRUE && P_CUSTOM_GENDER_DIFF_ICONS == TRUE
-    [SPECIES_HIPPOPOTAS] = gMonIcon_HippopotasF,
-    [SPECIES_HIPPOWDON] = gMonIcon_HippowdonF,
-#endif
-#if P_GEN_5_POKEMON == TRUE
-    [SPECIES_UNFEZANT] = gMonIcon_UnfezantF,
-    [SPECIES_FRILLISH] = gMonIcon_FrillishF,
-    [SPECIES_JELLICENT] = gMonIcon_JellicentF,
-#endif
-#if P_GEN_6_POKEMON == TRUE
-    [SPECIES_PYROAR] = gMonIcon_PyroarF,
-#endif
-};
+*/
 
 const u8 gMonIconPaletteIndices[] =
 {
@@ -3132,7 +3114,7 @@ u8 CreateMonIcon(u16 species, void (*callback)(struct Sprite *), s16 x, s16 y, u
 
     if (species > NUM_SPECIES)
         iconTemplate.paletteTag = POKE_ICON_BASE_PAL_TAG;
-    else if (gMonIconTableFemale[species] && IsPersonalityFemale(species, personality))
+    else if (gSpeciesInfo[species].iconSpriteFemale != NULL && IsPersonalityFemale(species, personality))
         iconTemplate.paletteTag = POKE_ICON_BASE_PAL_TAG + gMonIconPaletteIndicesFemale[species];
 
     spriteId = CreateMonIconSprite(&iconTemplate, x, y, subpriority);
@@ -3247,7 +3229,7 @@ void LoadMonIconPalette(u16 species)
 void LoadMonIconPalettePersonality(u16 species, u32 personality)
 {
     u8 palIndex;
-    if (gMonIconTableFemale[species] != NULL && IsPersonalityFemale(species, personality))
+    if (gSpeciesInfo[species].iconSpriteFemale != NULL && IsPersonalityFemale(species, personality))
         palIndex = gMonIconPaletteIndicesFemale[species];
     else
         palIndex = gMonIconPaletteIndices[species];
@@ -3291,12 +3273,12 @@ const u8 *GetMonIconTiles(u16 species, u32 personality)
     if (species > NUM_SPECIES)
         species = SPECIES_NONE;
 
-    if (gMonIconTableFemale[species] != NULL && IsPersonalityFemale(species, personality))
-        iconSprite = gMonIconTableFemale[species];
-    else if (gMonIconTable[species] != NULL)
-        iconSprite = gMonIconTable[species];
+    if (gSpeciesInfo[species].iconSpriteFemale != NULL && IsPersonalityFemale(species, personality))
+        iconSprite = gSpeciesInfo[species].iconSpriteFemale;
+    else if (gSpeciesInfo[species].iconSprite != NULL)
+        iconSprite = gSpeciesInfo[species].iconSprite;
     else
-        iconSprite = gMonIconTable[SPECIES_NONE];
+        iconSprite = gSpeciesInfo[SPECIES_NONE].iconSprite;
 
     return iconSprite;
 }

@@ -1741,7 +1741,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_SHAKE_FLASH_YELLOW,
         PALETTE(Pikachu),
         ICON(Pikachu, 2),
+    #if P_CUSTOM_GENDER_DIFF_ICONS == TRUE
         ICON_FEMALE(Pikachu, 2),
+    #endif
         .formChangeTable = sPikachuFormChangeTable,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_RAICHU},
                                 {EVO_NONE, 0, SPECIES_RAICHU_ALOLAN}),
@@ -14154,8 +14156,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_V_STRETCH,
         PALETTE(Wobbuffet),
         ICON(Wobbuffet, 0),
-        .iconSpriteFemale = gMonIcon_WobbuffetF,
-        .iconPalIndexFemale = 0,
+    #if P_CUSTOM_GENDER_DIFF_ICONS == TRUE
+        ICON_FEMALE(Wobbuffet, 0),
+    #endif
         .footprint = gMonFootprint_Wobbuffet,
         LEARNSETS(Wobbuffet),
     },
@@ -27223,8 +27226,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_Hippopotas,
         .shinyPaletteFemale = gMonShinyPalette_HippopotasF,
         ICON(Hippopotas, 1),
-        .iconSpriteFemale = gMonIcon_HippopotasF,
-        .iconPalIndexFemale = 1,
+    #if P_CUSTOM_GENDER_DIFF_ICONS == TRUE
+        ICON_FEMALE(Hippopotas, 1),
+    #endif
         .footprint = gMonFootprint_Hippopotas,
         LEARNSETS(Hippopotas),
         .evolutions = EVOLUTION({EVO_LEVEL, 34, SPECIES_HIPPOWDON}),
@@ -27273,8 +27277,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .shinyPalette = gMonShinyPalette_Hippowdon,
         .shinyPaletteFemale = gMonShinyPalette_HippowdonF,
         ICON(Hippowdon, 1),
-        .iconSpriteFemale = gMonIcon_HippowdonF,
-        .iconPalIndexFemale = 1,
+    #if P_CUSTOM_GENDER_DIFF_ICONS == TRUE
+        ICON_FEMALE(Hippowdon, 1),
+    #endif
         .footprint = gMonFootprint_Hippowdon,
         LEARNSETS(Hippowdon),
     },

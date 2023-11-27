@@ -7712,7 +7712,7 @@ bool32 SpeciesHasGenderDifferences(u16 species)
      || gSpeciesInfo[species].paletteFemale != NULL
      || gSpeciesInfo[species].backPicFemale != NULL
      || gSpeciesInfo[species].shinyPaletteFemale != NULL
-     || gMonIconTableFemale[species] != NULL)
+     || gSpeciesInfo[species].iconSpriteFemale != NULL)
         return TRUE;
 
     return FALSE;
