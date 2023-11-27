@@ -116,7 +116,6 @@ enum
     NAME_YZ,
 };
 
-extern const u8 *const gMonFootprintTable[];
 extern const u16 gPokedexOrder_Alphabetical[];
 extern const u16 gPokedexOrder_Height[];
 extern const u16 gPokedexOrder_Weight[];
@@ -4651,7 +4650,7 @@ static void UNUSED PrintDecimalNum(u8 windowId, u16 num, u8 left, u8 top)
 static void DrawFootprint(u8 windowId, u16 dexNum)
 {
     u8 footprint[32 * 4];
-    const u8 * footprintGfx = gMonFootprintTable[NationalPokedexNumToSpecies(dexNum)];
+    const u8 * footprintGfx = gSpeciesInfo[NationalPokedexNumToSpeciesHGSS(dexNum)].footprint;
     u16 tileIdx = 0;
     u16 i, j;
 
