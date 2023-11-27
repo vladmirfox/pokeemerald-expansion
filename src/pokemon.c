@@ -3627,19 +3627,16 @@ void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition)
     gMultiuseSpriteTemplate.paletteTag = speciesTag;
     if (battlerPosition == B_POSITION_PLAYER_LEFT || battlerPosition == B_POSITION_PLAYER_RIGHT)
         gMultiuseSpriteTemplate.anims = gAnims_MonPic;
-    else if (speciesTag > SPECIES_SHINY_TAG)
+    else 
     {
-        if (gMonFrontAnimsPtrTable[speciesTag - SPECIES_SHINY_TAG] != NULL)
-            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[speciesTag - SPECIES_SHINY_TAG];
+        if (speciesTag > SPECIES_SHINY_TAG)
+            speciesTag = speciesTag - SPECIES_SHINY_TAG;
+        
+        speciesTag = SanitizeSpeciesId(speciesTag);
+        if (gSpeciesInfo[speciesTag].frontAnimFrames != NULL)
+            gMultiuseSpriteTemplate.anims = gSpeciesInfo[speciesTag].frontAnimFrames;
         else
-            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[SPECIES_NONE];
-    }
-    else
-    {
-        if (gMonFrontAnimsPtrTable[speciesTag] != NULL)
-            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[speciesTag];
-        else
-            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[SPECIES_NONE];
+            gMultiuseSpriteTemplate.anims = gSpeciesInfo[SPECIES_NONE].frontAnimFrames;
     }
 }
 
