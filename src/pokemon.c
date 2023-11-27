@@ -2189,7 +2189,6 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 #include "data/pokemon_graphics/front_pic_coordinates.h"
 #include "data/pokemon_graphics/back_pic_coordinates.h"
 
-#include "data/pokemon_graphics/back_pic_table.h"
 #include "data/pokemon_graphics/palette_table.h"
 #include "data/pokemon_graphics/shiny_palette_table.h"
 
@@ -9248,7 +9247,7 @@ bool32 SpeciesHasGenderDifferences(u16 species)
 {
     if (gSpeciesInfo[species].frontPicFemale != NULL
      || gMonPaletteTableFemale[species].data != NULL
-     || gMonBackPicTableFemale[species].data != NULL
+     || gSpeciesInfo[species].backPicFemale != NULL
      || gMonShinyPaletteTableFemale[species].data != NULL
      || gMonIconTableFemale[species] != NULL)
         return TRUE;
