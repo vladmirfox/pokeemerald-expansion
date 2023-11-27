@@ -8693,3 +8693,5 @@ void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality)
     boxMon->checksum = CalculateBoxMonChecksum(boxMon);
     EncryptBoxMon(boxMon);
 }
+
+// TODO: enablePokemonChanges (to lock out editing moves/EVs/IVs/etc. in pokemon league)
