@@ -1420,6 +1420,29 @@ static void UpdateSubmenuTwoOptionValue(u8 taskId, bool8 increment)
     UpdateYPosOffsetText(data);
 }
 
+#define READ_PTR_FROM_TASK(taskId, dataId)                      \
+    (void *)(                                                   \
+    ((u16)(gTasks[taskId].data[dataId]) |                       \
+    ((u16)(gTasks[taskId].data[dataId + 1]) << 16)))
+
+#define STORE_PTR_IN_TASK(ptr, taskId, dataId)                 \
+{                                                              \
+    gTasks[taskId].data[dataId] = (u32)(ptr);                  \
+    gTasks[taskId].data[dataId + 1] = (u32)(ptr) >> 16;        \
+}
+
+#define sAnimId    data[2]
+#define sAnimDelay data[3]
+
+static void Task_AnimateAfterDelay(u8 taskId)
+{
+    if (--gTasks[taskId].sAnimDelay == 0)
+    {
+        LaunchAnimationTaskForFrontSprite(READ_PTR_FROM_TASK(taskId, 0), gTasks[taskId].sAnimId);
+        DestroyTask(taskId);
+    }
+}
+
 static void Handle_Input_Debug_Pokemon(u8 taskId)
 {
     struct PokemonDebugMenu *data = GetStructPtr(taskId);
@@ -1436,7 +1459,20 @@ static void Handle_Input_Debug_Pokemon(u8 taskId)
         PlayCryInternal(data->currentmonId, 0, 120, 10, 0);
         if (HasTwoFramesAnimation(data->currentmonId))
             StartSpriteAnim(Frontsprite, 1);
-        LaunchAnimationTaskForFrontSprite(Frontsprite, data->animIdFront);
+
+        if (gSpeciesInfo[data->currentmonId].frontAnimDelay != 0)
+        {
+            // Animation has delay, start delay task
+            u8 taskId = CreateTask(Task_AnimateAfterDelay, 0);
+            STORE_PTR_IN_TASK(Frontsprite, taskId, 0);
+            gTasks[taskId].sAnimId = data->animIdFront;
+            gTasks[taskId].sAnimDelay = gSpeciesInfo[data->currentmonId].frontAnimDelay;
+        }
+        else
+        {
+            // No delay, start animation
+            LaunchAnimationTaskForFrontSprite(Frontsprite, data->animIdFront);
+        }
     }
 
     if (JOY_NEW(START_BUTTON))
@@ -1621,6 +1657,8 @@ static void Handle_Input_Debug_Pokemon(u8 taskId)
         }
     }
 }
+#undef sDelay
+#undef sAnimId
 
 static void ReloadPokemonSprites(struct PokemonDebugMenu *data)
 {
