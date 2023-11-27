@@ -5541,7 +5541,7 @@ static void Cmd_moveend(void)
             if (gBattlerAttacker != gBattlerTarget
                 && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget)
                 && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) && gBattleMoves[gCurrentMove].power != 0
-                && !DoesSubstituteBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove))
+                && TARGET_TURN_DAMAGED)
             {
                 gBattleStruct->timesGotHit[gBattlerPartyIndexes[gBattlerTarget]][GetBattlerSide(gBattlerTarget)]++;
             }

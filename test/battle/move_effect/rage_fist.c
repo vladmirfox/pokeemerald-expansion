@@ -176,7 +176,7 @@ SINGLE_BATTLE_TEST("Rage Fist base power is not lost if user switches out")
     }
 }
 
-SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 even if a damaging move does no damage")
+SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 even if a damaging move does no damage - False Swipe")
 {
     u8 turns;
     s16 timesGotHit[2];
@@ -195,6 +195,30 @@ SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 even if a damaging m
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FALSE_SWIPE, opponent);
             HP_BAR(player);
         }
+    } THEN {
+        EXPECT_MUL_EQ(timesGotHit[0], Q_4_12(2.0), timesGotHit[1]);
+    }
+}
+
+SINGLE_BATTLE_TEST("Rage Fist base power is increased by 50 even if a damaging move does no damage - Endure")
+{
+    s16 timesGotHit[2];
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { HP(2); }
+        OPPONENT(SPECIES_REGIROCK);
+    } WHEN {
+        TURN { MOVE(player, MOVE_RAGE_FIST); MOVE(opponent, MOVE_FALSE_SWIPE); }
+        TURN { MOVE(player, MOVE_ENDURE); MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_RAGE_FIST); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
+        HP_BAR(opponent, captureDamage: &timesGotHit[0]);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FALSE_SWIPE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ENDURE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
+        HP_BAR(opponent, captureDamage: &timesGotHit[1]);
     } THEN {
         EXPECT_MUL_EQ(timesGotHit[0], Q_4_12(2.0), timesGotHit[1]);
     }
