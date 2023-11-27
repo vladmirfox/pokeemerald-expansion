@@ -3190,7 +3190,7 @@ extern const u32 gMonPalette_Phione[];
 extern const u32 gMonPalette_Manaphy[];
 extern const u32 gMonPalette_Darkrai[];
 extern const u32 gMonPalette_ShayminLand[];
-extern const u32 gMonPalette_Arceus[];
+extern const u32 gMonPalette_ArceusNormal[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
 extern const u32 gMonPalette_Victini[];
@@ -4448,7 +4448,7 @@ extern const u32 gMonShinyPalette_Phione[];
 extern const u32 gMonShinyPalette_Manaphy[];
 extern const u32 gMonShinyPalette_Darkrai[];
 extern const u32 gMonShinyPalette_ShayminLand[];
-extern const u32 gMonShinyPalette_Arceus[];
+extern const u32 gMonShinyPalette_ArceusNormal[];
 #endif
 #if P_GEN_5_POKEMON == TRUE
 extern const u32 gMonShinyPalette_Victini[];

@@ -498,7 +498,7 @@ const struct CompressedSpritePalette gMonPaletteTable[NUM_SPECIES + 1] =
     SPECIES_PAL(MANAPHY, gMonPalette_Manaphy),
     SPECIES_PAL(DARKRAI, gMonPalette_Darkrai),
     SPECIES_PAL(SHAYMIN_LAND, gMonPalette_ShayminLand),
-    SPECIES_PAL(ARCEUS, gMonPalette_Arceus),
+    SPECIES_PAL(ARCEUS, gMonPalette_ArceusNormal),
 #endif
 #if P_GEN_5_POKEMON == TRUE
     SPECIES_PAL(VICTINI, gMonPalette_Victini),

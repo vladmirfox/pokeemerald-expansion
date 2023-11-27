@@ -3162,7 +3162,7 @@ const u32 gMonPalette_Phione[] = INCBIN_U32("graphics/pokemon/phione/normal.gbap
 const u32 gMonPalette_Manaphy[] = INCBIN_U32("graphics/pokemon/manaphy/normal.gbapal.lz");
 const u32 gMonPalette_Darkrai[] = INCBIN_U32("graphics/pokemon/darkrai/normal.gbapal.lz");
 const u32 gMonPalette_ShayminLand[] = INCBIN_U32("graphics/pokemon/shaymin/normal.gbapal.lz");
-const u32 gMonPalette_Arceus[] = INCBIN_U32("graphics/pokemon/arceus/normal.gbapal.lz");
+const u32 gMonPalette_ArceusNormal[] = INCBIN_U32("graphics/pokemon/arceus/normal.gbapal.lz");
 #endif
 #if P_GEN_5_POKEMON == TRUE
 const u32 gMonPalette_Victini[] = INCBIN_U32("graphics/pokemon/victini/normal.gbapal.lz");
@@ -4420,7 +4420,7 @@ const u32 gMonShinyPalette_Phione[] = INCBIN_U32("graphics/pokemon/phione/shiny.
 const u32 gMonShinyPalette_Manaphy[] = INCBIN_U32("graphics/pokemon/manaphy/shiny.gbapal.lz");
 const u32 gMonShinyPalette_Darkrai[] = INCBIN_U32("graphics/pokemon/darkrai/shiny.gbapal.lz");
 const u32 gMonShinyPalette_ShayminLand[] = INCBIN_U32("graphics/pokemon/shaymin/shiny.gbapal.lz");
-const u32 gMonShinyPalette_Arceus[] = INCBIN_U32("graphics/pokemon/arceus/shiny.gbapal.lz");
+const u32 gMonShinyPalette_ArceusNormal[] = INCBIN_U32("graphics/pokemon/arceus/shiny.gbapal.lz");
 #endif
 #if P_GEN_5_POKEMON == TRUE
 const u32 gMonShinyPalette_Victini[] = INCBIN_U32("graphics/pokemon/victini/shiny.gbapal.lz");
