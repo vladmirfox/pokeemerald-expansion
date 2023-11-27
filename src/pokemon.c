@@ -8349,8 +8349,7 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
 {
     u32 shinyValue;
 
-    if (species > NUM_SPECIES)
-        return gMonPaletteTable[SPECIES_NONE].data;
+    species = SanitizeSpeciesId(species);
 
     shinyValue = GET_SHINY_VALUE(otId, personality);
     if (shinyValue < SHINY_ODDS)
@@ -8370,39 +8369,6 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
             return gMonPaletteTable[species].data;
         else
             return gMonPaletteTable[SPECIES_NONE].data;
-    }
-}
-
-const struct CompressedSpritePalette *GetMonSpritePalStruct(struct Pokemon *mon)
-{
-    u16 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG, 0);
-    u32 otId = GetMonData(mon, MON_DATA_OT_ID, 0);
-    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
-    return GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
-}
-
-const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u16 species, u32 otId , u32 personality)
-{
-    u32 shinyValue;
-
-    shinyValue = GET_SHINY_VALUE(otId, personality);
-    if (shinyValue < SHINY_ODDS)
-    {
-        if (gMonShinyPaletteTableFemale[species].data != NULL && IsPersonalityFemale(species, personality))
-            return &gMonShinyPaletteTableFemale[species];
-        else if (gMonShinyPaletteTable[species].data != NULL)
-            return &gMonShinyPaletteTable[species];
-        else
-            return &gMonShinyPaletteTable[SPECIES_NONE];
-    }
-    else
-    {
-        if (gMonPaletteTableFemale[species].data != NULL && IsPersonalityFemale(species, personality))
-            return &gMonPaletteTableFemale[species];
-        else if (gMonPaletteTable[species].data != NULL)
-            return &gMonPaletteTable[species];
-        else
-            return &gMonPaletteTable[SPECIES_NONE];
     }
 }
 
