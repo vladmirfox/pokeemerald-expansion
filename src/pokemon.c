@@ -2195,7 +2195,6 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 
 #include "data/pokemon_graphics/enemy_mon_elevation.h"
 #include "data/pokemon_graphics/front_pic_anims.h"
-#include "data/pokemon_graphics/front_pic_table.h"
 
 #include "data/pokemon/trainer_class_lookups.h"
 #include "data/pokemon/pokedex_text.h"
@@ -9247,7 +9246,7 @@ void TrySpecialOverworldEvo(void)
 
 bool32 SpeciesHasGenderDifferences(u16 species)
 {
-    if (gMonFrontPicTableFemale[species].data != NULL
+    if (gSpeciesInfo[species].frontPicFemale != NULL
      || gMonPaletteTableFemale[species].data != NULL
      || gMonBackPicTableFemale[species].data != NULL
      || gMonShinyPaletteTableFemale[species].data != NULL

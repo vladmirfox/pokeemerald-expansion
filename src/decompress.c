@@ -78,12 +78,12 @@ void LoadSpecialPokePic(void *dest, s32 species, u32 personality, bool8 isFrontP
 
     if (isFrontPic)
     {
-        if (gMonFrontPicTableFemale[species].data != NULL && IsPersonalityFemale(species, personality))
-            LZ77UnCompWram(gMonFrontPicTableFemale[species].data, dest);
-        else if (gMonFrontPicTable[species].data != NULL)
-            LZ77UnCompWram(gMonFrontPicTable[species].data, dest);
+        if (gSpeciesInfo[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
+            LZ77UnCompWram(gSpeciesInfo[species].frontPicFemale, dest);
+        else if (gSpeciesInfo[species].frontPic != NULL)
+            LZ77UnCompWram(gSpeciesInfo[species].frontPic, dest);
         else
-            LZ77UnCompWram(gMonFrontPicTable[SPECIES_NONE].data, dest);
+            LZ77UnCompWram(gSpeciesInfo[SPECIES_NONE].frontPic, dest);
     }
     else
     {
