@@ -8,7 +8,6 @@
 #include "text.h"
 #include "window.h"
 
-extern const struct PokedexEntry gPokedexEntries[];
 
 int GetStringCenterAlignXOffset(int fontId, const u8 *str, int totalWidth)
 {

@@ -19,14 +19,6 @@ enum
     FLAG_SET_CAUGHT
 };
 
-struct PokedexEntry
-{
-    /*0x16*/ u16 pokemonScale;
-    /*0x18*/ u16 pokemonOffset;
-    /*0x1A*/ u16 trainerScale;
-    /*0x1C*/ u16 trainerOffset;
-};  /*size = 0x20*/
-
 void ResetPokedex(void);
 u16 GetNationalPokedexCount(u8);
 u16 GetHoennPokedexCount(u8);
