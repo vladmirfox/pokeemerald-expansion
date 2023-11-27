@@ -296,13 +296,13 @@ static const union AnimCmd *const sAnims_Trainer[] ={
     sAnim_GeneralFrame0,
 };
 
-#define TRAINER_SPRITE(trainerPic, file, anims)                                           \
+#define TRAINER_SPRITE(trainerPic, file, anim)                                            \
     [TRAINER_PIC_##trainerPic] =                                                          \
     {                                                                                     \
         .y_offset = 8,                                                                    \
         .frontPic = {gTrainerFrontPic_##file, TRAINER_PIC_SIZE, TRAINER_PIC_##trainerPic},\
         .palette = {gTrainerPalette_##file, TRAINER_PIC_##trainerPic},                    \
-        .animation = sAnims_##anims,                                                      \
+        .animation = sAnims_##anim,                                                       \
     }
 
 const struct TrainerSprite gTrainerSprites[] =
@@ -434,63 +434,57 @@ static const union AnimCmd *const sBackAnims_Kanto[] =
     sAnimCmd_Kanto,
 };
 
-#define TRAINER_BACK_PAL(pal, trainerPic) {gTrainer##pal, TRAINER_BACK_PIC_##trainerPic}
+#define TRAINER_BACK_SPRITE(trainerPic, pal, anim)                 \
+        .palette = {gTrainer##pal, TRAINER_BACK_PIC_##trainerPic}, \
+        .animation = sBackAnims_##anim
 
 const struct TrainerBacksprite gTrainerBacksprites[] =
 {
     [TRAINER_BACK_PIC_BRENDAN] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
-        .palette = TRAINER_BACK_PAL(Palette_Brendan, BRENDAN),
-        .animation = sBackAnims_Hoenn,
+        TRAINER_BACK_SPRITE(BRENDAN, Palette_Brendan, Hoenn),
     },
 
     [TRAINER_BACK_PIC_MAY] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
-        .palette = TRAINER_BACK_PAL(Palette_May, MAY),
-        .animation = sBackAnims_Hoenn,
+        TRAINER_BACK_SPRITE(MAY, Palette_May, Hoenn),
     },
 
     [TRAINER_BACK_PIC_RED] =
     {
         .coordinates = {.size = 8, .y_offset = 5},
-        .palette = TRAINER_BACK_PAL(BackPicPalette_Red, RED),
-        .animation = sBackAnims_Kanto,
+        TRAINER_BACK_SPRITE(RED, BackPicPalette_Red, Kanto),
     },
 
     [TRAINER_BACK_PIC_LEAF] =
     {
         .coordinates = {.size = 8, .y_offset = 5},
-        .palette = TRAINER_BACK_PAL(BackPicPalette_Leaf, LEAF),
-        .animation = sBackAnims_Kanto,
+        TRAINER_BACK_SPRITE(LEAF, BackPicPalette_Leaf, Kanto),
     },
 
     [TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
-        .palette = TRAINER_BACK_PAL(Palette_RubySapphireBrendan, RUBY_SAPPHIRE_BRENDAN),
-        .animation = sBackAnims_Hoenn,
+        TRAINER_BACK_SPRITE(RUBY_SAPPHIRE_BRENDAN, Palette_RubySapphireBrendan, Hoenn),
     },
 
     [TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
-        .palette = TRAINER_BACK_PAL(Palette_RubySapphireMay, RUBY_SAPPHIRE_MAY),
-        .animation = sBackAnims_Hoenn,
+        TRAINER_BACK_SPRITE(RUBY_SAPPHIRE_MAY, Palette_RubySapphireMay, Hoenn),
     },
 
     [TRAINER_BACK_PIC_WALLY] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
-        .palette = TRAINER_BACK_PAL(Palette_Wally, WALLY),
-        .animation = sBackAnims_Hoenn,
+        TRAINER_BACK_SPRITE(WALLY, Palette_Wally, Hoenn),
     },
 
     [TRAINER_BACK_PIC_STEVEN] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
-        .palette = TRAINER_BACK_PAL(Palette_Steven, STEVEN),
-        .animation = sBackAnims_Hoenn,
+        TRAINER_BACK_SPRITE(STEVEN, Palette_Steven, Hoenn),
     },
 };
