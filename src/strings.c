@@ -1524,6 +1524,7 @@ const u8 gText_UpdatedTime[] = _("Updated time"); // Unused
 const u8 gText_MenuPokedex[] = _("Pokédex");
 const u8 gText_MenuPokemon[] = _("Pokémon");
 const u8 gText_MenuBag[] = _("Bag");
+const u8 gText_MenuPC[] = _("PC");
 const u8 gText_MenuPokenav[] = _("Pokénav");
 const u8 gText_MenuPlayer[] = _("{PLAYER}");
 const u8 gText_MenuSave[] = _("Save");
