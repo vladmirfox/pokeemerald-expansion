@@ -2147,7 +2147,10 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
             species = SanitizeSpeciesId(species);
             if (species == SPECIES_UNOWN)
                 species = GetUnownSpeciesId(personality);
-            size = gSpeciesInfo[species].backPicSize;
+            if (gSpeciesInfo[species].backPicFemale != NULL && IsPersonalityFemale(species, personality))
+                size = gSpeciesInfo[species].backPicSizeFemale;
+            else
+                size = gSpeciesInfo[species].backPicSize;
             y_offset = gSpeciesInfo[species].backPicYOffset;
         }
         else
@@ -2167,7 +2170,10 @@ s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr)
             species = SanitizeSpeciesId(species);
             if (species == SPECIES_UNOWN)
                 species = GetUnownSpeciesId(personality);
-            size = gSpeciesInfo[species].frontPicSize;
+            if (gSpeciesInfo[species].frontPicFemale != NULL && IsPersonalityFemale(species, personality))
+                size = gSpeciesInfo[species].frontPicSizeFemale;
+            else
+                size = gSpeciesInfo[species].frontPicSize;
             y_offset = gSpeciesInfo[species].frontPicYOffset;
         }
     }
