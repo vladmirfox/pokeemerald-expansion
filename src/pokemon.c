@@ -623,7 +623,6 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 #include "data/pokemon/level_up_learnsets.h"
 #include "data/pokemon/teachable_learnsets.h"
 #include "data/pokemon/form_species_tables.h"
-#include "data/pokemon/form_species_table_pointers.h"
 #include "data/pokemon/form_change_tables.h"
 #include "data/pokemon/form_change_table_pointers.h"
 
@@ -3218,6 +3217,14 @@ const struct Evolution *GetSpeciesEvolutions(u16 species)
     if (evolutions == NULL)
         return gSpeciesInfo[SPECIES_NONE].evolutions;
     return evolutions;
+}
+
+const u16 *GetSpeciesFormTable(u16 species)
+{
+    const u16 *formTable = gSpeciesInfo[SanitizeSpeciesId(species)].formSpeciesIdTable;
+    if (formTable == NULL)
+        return gSpeciesInfo[SPECIES_NONE].formSpeciesIdTable;
+    return formTable;
 }
 
 u8 CalculatePPWithBonus(u16 move, u8 ppBonuses, u8 moveIndex)
@@ -5958,8 +5965,8 @@ u8 *MonSpritesGfxManager_GetSpritePtr(u8 managerId, u8 spriteNum)
 
 u16 GetFormSpeciesId(u16 speciesId, u8 formId)
 {
-    if (gFormSpeciesIdTables[speciesId] != NULL)
-        return gFormSpeciesIdTables[speciesId][formId];
+    if (GetSpeciesFormTable(speciesId) != NULL)
+        return GetSpeciesFormTable(speciesId)[formId];
     else
         return speciesId;
 }
@@ -5968,11 +5975,11 @@ u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId)
 {
     u8 targetFormId = 0;
 
-    if (gFormSpeciesIdTables[formSpeciesId] != NULL)
+    if (GetSpeciesFormTable(formSpeciesId) != NULL)
     {
-        for (targetFormId = 0; gFormSpeciesIdTables[formSpeciesId][targetFormId] != FORM_SPECIES_END; targetFormId++)
+        for (targetFormId = 0; GetSpeciesFormTable(formSpeciesId)[targetFormId] != FORM_SPECIES_END; targetFormId++)
         {
-            if (formSpeciesId == gFormSpeciesIdTables[formSpeciesId][targetFormId])
+            if (formSpeciesId == GetSpeciesFormTable(formSpeciesId)[targetFormId])
                 break;
         }
     }

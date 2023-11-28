@@ -4166,7 +4166,7 @@ void Task_DisplayCaughtMonDexPageHGSS(u8 taskId)
         sPokedexView = AllocZeroed(sizeof(struct PokedexView)); //for type icons
         ResetPokedexView(sPokedexView);
 
-        if (gFormSpeciesIdTables[species] != NULL)
+        if (GetSpeciesFormTable(species) != NULL)
             sPokedexView->formSpecies = species;
         else
             sPokedexView->formSpecies = 0;
@@ -6312,7 +6312,7 @@ static void Task_HandleEvolutionScreenInput(u8 taskId)
             sPokedexListItem->seen   = GetSetPokedexFlag(dexNum, FLAG_GET_SEEN);
             sPokedexListItem->owned  = GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT);
 
-                if (gFormSpeciesIdTables[targetSpecies] != NULL)
+                if (GetSpeciesFormTable(targetSpecies) != NULL)
                     sPokedexView->formSpecies = targetSpecies;
                 else
                     sPokedexView->formSpecies = 0;
