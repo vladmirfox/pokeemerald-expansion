@@ -4439,7 +4439,7 @@ u16 NationalPokedexNumToSpecies(u16 nationalNum)
     if (species == NUM_SPECIES)
         return NATIONAL_DEX_NONE;
 
-    return species + 1;
+    return species;
 }
 
 u16 NationalToHoennOrder(u16 nationalNum)
