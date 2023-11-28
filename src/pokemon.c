@@ -615,11 +615,6 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
     [NATURE_QUIRKY]  = {    0,      0,      0,      0,      0   },
 };
 
-#define SPECIES_SPRITE(species, sprite) [SPECIES_##species] = {sprite, MON_PIC_SIZE, SPECIES_##species}
-#define SPECIES_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species}
-#define SPECIES_SHINY_PAL(species, pal) [SPECIES_##species] = {pal, SPECIES_##species + SPECIES_SHINY_TAG}
-
-#include "data/pokemon_graphics/enemy_mon_elevation.h"
 #include "data/pokemon_graphics/front_pic_anims.h"
 
 #include "data/pokemon/trainer_class_lookups.h"

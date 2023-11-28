@@ -734,7 +734,7 @@ static void SetConstSpriteValues(struct PokemonDebugMenu *data)
 {
     u16 species = data->currentmonId;
     data->constSpriteValues.frontPicCoords = gSpeciesInfo[species].frontPicYOffset;
-    data->constSpriteValues.frontElevation = gEnemyMonElevation[species];
+    data->constSpriteValues.frontElevation = gSpeciesInfo[species].enemyMonElevation;
     data->constSpriteValues.backPicCoords = gSpeciesInfo[species].backPicYOffset;
 }
 
@@ -749,12 +749,13 @@ static u8 GetBattlerSpriteFinal_YCustom(u16 species, s8 offset_picCoords, s8 off
 {
     u16 offset;
     u8 y;
+    species = SanitizeSpeciesId(species);
 
     //FrontPicCoords
     offset = gSpeciesInfo[species].frontPicYOffset + offset_picCoords;
 
     //Elevation
-    offset -= gEnemyMonElevation[species] + offset_elevation;
+    offset -= gSpeciesInfo[species].enemyMonElevation + offset_elevation;
 
     //Main position
     y = offset + sBattlerCoords[0][1].y;
@@ -786,7 +787,8 @@ static void LoadAndCreateEnemyShadowSpriteCustom(struct PokemonDebugMenu *data, 
 {
     u8 x, y;
     bool8 invisible = FALSE;
-    if (gEnemyMonElevation[species] == 0)
+    species = SanitizeSpeciesId(species);
+    if (gSpeciesInfo[species].enemyMonElevation == 0)
         invisible = TRUE;
     LoadCompressedSpriteSheet(&gSpriteSheet_EnemyShadow);
     LoadSpritePalette(&sSpritePalettes_HealthBoxHealthBar[0]);

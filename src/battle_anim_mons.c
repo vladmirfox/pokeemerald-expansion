@@ -196,10 +196,8 @@ u8 GetBattlerElevation(u8 battlerId, u16 species)
     {
         if (!IsContest())
         {
-            if (species > NUM_SPECIES)
-                ret = gEnemyMonElevation[0];
-            else
-                ret = gEnemyMonElevation[species];
+            species = SanitizeSpeciesId(species);
+            ret = gSpeciesInfo[species].enemyMonElevation;
         }
     }
     return ret;
