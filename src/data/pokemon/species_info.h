@@ -24130,7 +24130,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PALETTE(Kyogre),
         ICON(Kyogre, 2),
     },
-
+#if P_PRIMAL_REVERSIONS
     [SPECIES_KYOGRE_PRIMAL] =
     {
         KYOGRE_MISC_INFO,
@@ -24160,6 +24160,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(KyogrePrimal, 0),
         .isPrimalRevesion = TRUE,
     },
+#endif //P_PRIMAL_REVERSIONS
 #endif //P_FAMILY_KYOGRE
 
 #if P_FAMILY_GROUDON
@@ -24213,6 +24214,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(Groudon, 0),
     },
 
+#if P_PRIMAL_REVERSIONS
     [SPECIES_GROUDON_PRIMAL] =
     {
         GROUDON_MISC_INFO,
@@ -24243,6 +24245,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(GroudonPrimal, 0),
         .isPrimalRevesion = TRUE,
     },
+#endif //P_PRIMAL_REVERSIONS
 #endif //P_FAMILY_GROUDON
 
 #if P_FAMILY_RAYQUAZA
@@ -32748,6 +32751,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PRESSURE, ABILITY_NONE},
     },
 
+#if P_FUSION_FORMS
     [SPECIES_KYUREM_WHITE] =
     {
         KYUREM_MISC_INFO,
@@ -32777,6 +32781,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TERAVOLT, ABILITY_NONE},
         .cannotBeTraded = TRUE,
     },
+#endif //P_FUSION_FORMS
 #endif //P_FAMILY_KYUREM
 
 #if P_FAMILY_KELDEO
@@ -36948,6 +36953,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
     },
 
+#if P_FUSION_FORMS
     [SPECIES_NECROZMA_DUSK_MANE] =
     {
         NECROZMA_MISC_INFO,
@@ -36983,7 +36989,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .cannotBeTraded = TRUE,
     },
+#endif //P_FUSION_FORMS
 
+#if P_ULTRA_BURST_FORMS
     [SPECIES_NECROZMA_ULTRA] =
     {
         NECROZMA_MISC_INFO,
@@ -37003,6 +37011,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .isUltraBurst = TRUE,
     },
+#endif //P_ULTRA_BURST_FORMS
 #endif //P_FAMILY_NECROZMA
 
 #if P_FAMILY_MAGEARNA
@@ -39618,6 +39627,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .isLegendary = TRUE,
     },
 
+#if P_FUSION_FORMS
     [SPECIES_CALYREX_ICE_RIDER] =
     {
         .baseHP        = 100,
@@ -39665,6 +39675,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .isLegendary = TRUE,
         .cannotBeTraded = TRUE,
     },
+#endif //P_FUSION_FORMS
 #endif //P_FAMILY_CALYREX
 
 #if P_FAMILY_ENAMORUS

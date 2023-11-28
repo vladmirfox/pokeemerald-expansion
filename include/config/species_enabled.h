@@ -16,8 +16,12 @@
 #define P_GEN_8_POKEMON                  TRUE // Generation 8 Pokémon (SwSh, BDSP, LA)
 #define P_GEN_9_POKEMON                  TRUE // Generation 9 Pokémon (SV)
 
+#define P_FUSION_FORMS                   TRUE
+
 // Battle gimmick specific Forms.
 #define P_MEGA_EVOLUTIONS                TRUE
+#define P_PRIMAL_REVERSIONS              TRUE
+#define P_ULTRA_BURST_FORMS              TRUE // Ultra Necrozma only.
 #define P_GIGANTAMAX_FORMS               TRUE
 
 // Regional Forms. Includes Regional Form evolutions, like Sirfetch'd.
