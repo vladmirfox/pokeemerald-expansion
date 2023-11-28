@@ -4706,20 +4706,26 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
         case ABILITY_INTREPID_SWORD:
-            if (!gSpecialStatuses[battler].switchInAbilityDone && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+            if (!gSpecialStatuses[battler].switchInAbilityDone && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN)
+                 && !gBattleStruct->intrepidSwordBoost[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)])
             {
                 gBattlerAttacker = battler;
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                if (B_INTREPID_SWORD == GEN_9)
+                    gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattleStruct->intrepidSwordBoost[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)] = TRUE;
                 SET_STATCHANGER(STAT_ATK, 1, FALSE);
                 BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatRaiseOnSwitchIn);
                 effect++;
             }
             break;
         case ABILITY_DAUNTLESS_SHIELD:
-            if (!gSpecialStatuses[battler].switchInAbilityDone && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+            if (!gSpecialStatuses[battler].switchInAbilityDone && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN)
+                 && !gBattleStruct->dauntlessShieldBoost[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)])
             {
                 gBattlerAttacker = battler;
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                if (B_DAUNTLESS_SHIELD == GEN_9)
+                    gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattleStruct->dauntlessShieldBoost[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)] = TRUE;
                 SET_STATCHANGER(STAT_DEF, 1, FALSE);
                 BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatRaiseOnSwitchIn);
                 effect++;
