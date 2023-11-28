@@ -13809,7 +13809,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT_DYNAMAX] =
 
     [MOVE_DOODLE] =
     {
-        .effect = EFFECT_PLACEHOLDER, // EFFECT_DOODLE
+        .effect = EFFECT_DOODLE,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 100,
