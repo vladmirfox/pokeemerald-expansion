@@ -6463,11 +6463,13 @@ static u8 PrintPreEvolutions(u8 taskId, u16 species)
             {
                 preEvolutionOne = i;
                 numPreEvolutions += 1;
-                    if (gFormChangeTablePointers[species]->method == FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM)
-                    {
-                        CopyItemName(gFormChangeTablePointers[species]->param1, gStringVar2); //item
-                        isMega = TRUE;
-                    }
+                
+                if (GetSpeciesFormChanges(species) != NULL
+                 && GetSpeciesFormChanges(species)->method == FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM)
+                {
+                    CopyItemName(GetSpeciesFormChanges(species)->param1, gStringVar2); //item
+                    isMega = TRUE;
+                }
                 break;
             }
         }

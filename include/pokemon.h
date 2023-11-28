@@ -530,7 +530,6 @@ extern const u8 gStatStageRatios[MAX_STAT_STAGE + 1][2];
 extern const u16 gUnionRoomFacilityClasses[];
 extern const struct SpriteTemplate gBattlerSpriteTemplates[];
 extern const s8 gNatureStatTable[][5];
-extern const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES];
 extern const u32 sExpCandyExperienceTable[];
 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);
@@ -618,6 +617,7 @@ const struct LevelUpMove *GetSpeciesLevelUpLearnset(u16 species);
 const u16 *GetSpeciesTeachableLearnset(u16 species);
 const struct Evolution *GetSpeciesEvolutions(u16 species);
 const u16 *GetSpeciesFormTable(u16 species);
+const struct FormChange *GetSpeciesFormChanges(u16 species);
 u8 CalculatePPWithBonus(u16 move, u8 ppBonuses, u8 moveIndex);
 void RemoveMonPPBonus(struct Pokemon *mon, u8 moveIndex);
 void RemoveBattleMonPPBonus(struct BattlePokemon *mon, u8 moveIndex);

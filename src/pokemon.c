@@ -3227,6 +3227,14 @@ const u16 *GetSpeciesFormTable(u16 species)
     return formTable;
 }
 
+const struct FormChange *GetSpeciesFormChanges(u16 species)
+{
+    const struct FormChange *evolutions = gSpeciesInfo[SanitizeSpeciesId(species)].formChangeTable;
+    if (evolutions == NULL)
+        return gSpeciesInfo[SPECIES_NONE].formChangeTable;
+    return evolutions;
+}
+
 u8 CalculatePPWithBonus(u16 move, u8 ppBonuses, u8 moveIndex)
 {
     u8 basePP = gBattleMoves[move].pp;
@@ -5997,7 +6005,7 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 
     u32 i;
     u16 targetSpecies = SPECIES_NONE;
     u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
-    const struct FormChange *formChanges = gFormChangeTablePointers[species];
+    const struct FormChange *formChanges = GetSpeciesFormChanges(species);
     u16 heldItem;
     u32 ability;
 
@@ -6084,7 +6092,7 @@ u16 GetFormChangeTargetSpeciesBoxMon(struct BoxPokemon *boxMon, u16 method, u32 
 bool32 DoesSpeciesHaveFormChangeMethod(u16 species, u16 method)
 {
     u32 i;
-    const struct FormChange *formChanges = gFormChangeTablePointers[species];
+    const struct FormChange *formChanges = GetSpeciesFormChanges(species);
 
     if (formChanges != NULL)
     {
@@ -6228,7 +6236,7 @@ void TryToSetBattleFormChangeMoves(struct Pokemon *mon, u16 method)
 {
     int i, j;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
-    const struct FormChange *formChanges = gFormChangeTablePointers[species];
+    const struct FormChange *formChanges = GetSpeciesFormChanges(species);
 
     if (formChanges == NULL
         || (method != FORM_CHANGE_BEGIN_BATTLE && method != FORM_CHANGE_END_BATTLE))

@@ -10247,7 +10247,7 @@ bool32 IsPartnerMonFromSameTrainer(u32 battler)
 bool32 DoesSpeciesUseHoldItemToChangeForm(u16 species, u16 heldItemId)
 {
     u32 i;
-    const struct FormChange *formChanges = gFormChangeTablePointers[species];
+    const struct FormChange *formChanges = GetSpeciesFormChanges(species);
 
     if (formChanges != NULL)
     {
@@ -10415,7 +10415,7 @@ u16 GetBattleFormChangeTargetSpecies(u32 battler, u16 method)
     u32 i;
     u16 targetSpecies = SPECIES_NONE;
     u16 species = gBattleMons[battler].species;
-    const struct FormChange *formChanges = gFormChangeTablePointers[species];
+    const struct FormChange *formChanges = GetSpeciesFormChanges(species);
     u16 heldItem;
 
     if (formChanges != NULL)
