@@ -10444,7 +10444,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicYOffset =  6,
         .backAnimId = BACK_ANIM_H_VIBRATE,
         PALETTE(PorygonZ),
-        ICON(Porygon_Z, 0),
+        ICON(PorygonZ, 0),
         .footprint = gMonFootprint_PorygonZ,
         LEARNSETS(PorygonZ),
     },
@@ -13816,8 +13816,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
     {
         UNOWN_MISC_INFO(A),
         .noFlip = FALSE,
-        FRONT_PIC(Unown, 24, 40),
-        BACK_PIC(Unown, 24, 48),
+        FRONT_PIC(UnownA, 24, 40),
+        BACK_PIC(UnownA, 24, 48),
         .backPicYOffset =  8,
     },
 

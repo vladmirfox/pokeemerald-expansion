@@ -417,7 +417,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_JIRACHI] = gMonIcon_Jirachi,
     [SPECIES_DEOXYS_NORMAL] = gMonIcon_DeoxysNormal,
     [SPECIES_CHIMECHO] = gMonIcon_Chimecho,
-#if P_GEN_4_POKEMON == TRUE
     [SPECIES_TURTWIG] = gMonIcon_Turtwig,
     [SPECIES_GROTLE] = gMonIcon_Grotle,
     [SPECIES_TORTERRA] = gMonIcon_Torterra,
@@ -525,8 +524,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_DARKRAI] = gMonIcon_Darkrai,
     [SPECIES_SHAYMIN_LAND] = gMonIcon_ShayminLand,
     [SPECIES_ARCEUS_NORMAL] = gMonIcon_Arceus,
-#endif
-#if P_GEN_5_POKEMON == TRUE
     [SPECIES_VICTINI] = gMonIcon_Victini,
     [SPECIES_SNIVY] = gMonIcon_Snivy,
     [SPECIES_SERVINE] = gMonIcon_Servine,
@@ -683,8 +680,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_KELDEO_ORDINARY] = gMonIcon_KeldeoOrdinary,
     [SPECIES_MELOETTA_ARIA] = gMonIcon_MeloettaAria,
     [SPECIES_GENESECT] = gMonIcon_Genesect,
-#endif
-#if P_GEN_6_POKEMON == TRUE
     [SPECIES_CHESPIN] = gMonIcon_Chespin,
     [SPECIES_QUILLADIN] = gMonIcon_Quilladin,
     [SPECIES_CHESNAUGHT] = gMonIcon_Chesnaught,
@@ -757,8 +752,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_DIANCIE] = gMonIcon_Diancie,
     [SPECIES_HOOPA_CONFINED] = gMonIcon_HoopaConfined,
     [SPECIES_VOLCANION] = gMonIcon_Volcanion,
-#endif
-#if P_GEN_7_POKEMON == TRUE
     [SPECIES_ROWLET] = gMonIcon_Rowlet,
     [SPECIES_DARTRIX] = gMonIcon_Dartrix,
     [SPECIES_DECIDUEYE] = gMonIcon_Decidueye,
@@ -847,8 +840,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_ZERAORA] = gMonIcon_Zeraora,
     [SPECIES_MELTAN] = gMonIcon_Meltan,
     [SPECIES_MELMETAL] = gMonIcon_Melmetal,
-#endif
-#if P_GEN_8_POKEMON == TRUE
     [SPECIES_GROOKEY] = gMonIcon_Grookey,
     [SPECIES_THWACKEY] = gMonIcon_Thwackey,
     [SPECIES_RILLABOOM] = gMonIcon_Rillaboom,
@@ -1008,7 +999,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_SNEASLER] = gMonIcon_Sneasler,
     [SPECIES_OVERQWIL] = gMonIcon_Overqwil,
     [SPECIES_ENAMORUS_INCARNATE] = gMonIcon_EnamorusIncarnate,
-#endif
     [SPECIES_VENUSAUR_MEGA] = gMonIcon_VenusaurMega,
     [SPECIES_CHARIZARD_MEGA_X] = gMonIcon_CharizardMegaX,
     [SPECIES_CHARIZARD_MEGA_Y] = gMonIcon_CharizardMegaY,
@@ -1049,19 +1039,13 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_METAGROSS_MEGA] = gMonIcon_MetagrossMega,
     [SPECIES_LATIAS_MEGA] = gMonIcon_LatiasMega,
     [SPECIES_LATIOS_MEGA] = gMonIcon_LatiosMega,
-#if P_GEN_4_POKEMON == TRUE
     [SPECIES_LOPUNNY_MEGA] = gMonIcon_LopunnyMega,
     [SPECIES_GARCHOMP_MEGA] = gMonIcon_GarchompMega,
     [SPECIES_LUCARIO_MEGA] = gMonIcon_LucarioMega,
     [SPECIES_ABOMASNOW_MEGA] = gMonIcon_AbomasnowMega,
     [SPECIES_GALLADE_MEGA] = gMonIcon_GalladeMega,
-#endif
-#if P_GEN_5_POKEMON == TRUE
     [SPECIES_AUDINO_MEGA] = gMonIcon_AudinoMega,
-#endif
-#if P_GEN_6_POKEMON == TRUE
     [SPECIES_DIANCIE_MEGA] = gMonIcon_DiancieMega,
-#endif
     [SPECIES_RAYQUAZA_MEGA] = gMonIcon_RayquazaMega,
     [SPECIES_KYOGRE_PRIMAL] = gMonIcon_KyogrePrimal,
     [SPECIES_GROUDON_PRIMAL] = gMonIcon_GroudonPrimal,
@@ -1098,12 +1082,10 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_CORSOLA_GALARIAN] = gMonIcon_CorsolaGalarian,
     [SPECIES_ZIGZAGOON_GALARIAN] = gMonIcon_ZigzagoonGalarian,
     [SPECIES_LINOONE_GALARIAN] = gMonIcon_LinooneGalarian,
-#if P_GEN_5_POKEMON == TRUE
     [SPECIES_DARUMAKA_GALARIAN] = gMonIcon_DarumakaGalarian,
     [SPECIES_DARMANITAN_GALARIAN_STANDARD_MODE] = gMonIcon_DarmanitanGalarianStandardMode,
     [SPECIES_YAMASK_GALARIAN] = gMonIcon_YamaskGalarian,
     [SPECIES_STUNFISK_GALARIAN] = gMonIcon_StunfiskGalarian,
-#endif
     [SPECIES_GROWLITHE_HISUIAN] = gMonIcon_GrowlitheHisuian,
     [SPECIES_ARCANINE_HISUIAN] = gMonIcon_ArcanineHisuian,
     [SPECIES_VOLTORB_HISUIAN] = gMonIcon_VoltorbHisuian,
@@ -1111,21 +1093,15 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_TYPHLOSION_HISUIAN] = gMonIcon_TyphlosionHisuian,
     [SPECIES_QWILFISH_HISUIAN] = gMonIcon_QwilfishHisuian,
     [SPECIES_SNEASEL_HISUIAN] = gMonIcon_SneaselHisuian,
-#if P_GEN_5_POKEMON == TRUE
     [SPECIES_SAMUROTT_HISUIAN] = gMonIcon_SamurottHisuian,
     [SPECIES_LILLIGANT_HISUIAN] = gMonIcon_LilligantHisuian,
     [SPECIES_ZORUA_HISUIAN] = gMonIcon_ZoruaHisuian,
     [SPECIES_ZOROARK_HISUIAN] = gMonIcon_ZoroarkHisuian,
     [SPECIES_BRAVIARY_HISUIAN] = gMonIcon_BraviaryHisuian,
-#endif
-#if P_GEN_6_POKEMON == TRUE
     [SPECIES_SLIGGOO_HISUIAN] = gMonIcon_SliggooHisuian,
     [SPECIES_GOODRA_HISUIAN] = gMonIcon_GoodraHisuian,
     [SPECIES_AVALUGG_HISUIAN] = gMonIcon_AvaluggHisuian,
-#endif
-#if P_GEN_7_POKEMON == TRUE
     [SPECIES_DECIDUEYE_HISUIAN] = gMonIcon_DecidueyeHisuian,
-#endif
     [SPECIES_PIKACHU_COSPLAY] = gMonIcon_PikachuCosplay,
     [SPECIES_PIKACHU_ROCK_STAR] = gMonIcon_PikachuRockStar,
     [SPECIES_PIKACHU_BELLE] = gMonIcon_PikachuBelle,
@@ -1174,7 +1150,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_DEOXYS_ATTACK] = gMonIcon_DeoxysAttack,
     [SPECIES_DEOXYS_DEFENSE] = gMonIcon_DeoxysDefense,
     [SPECIES_DEOXYS_SPEED] = gMonIcon_DeoxysSpeed,
-#if P_GEN_4_POKEMON == TRUE
     [SPECIES_BURMY_SANDY_CLOAK] = gMonIcon_BurmySandyCloak,
     [SPECIES_BURMY_TRASH_CLOAK] = gMonIcon_BurmyTrashCloak,
     [SPECIES_WORMADAM_SANDY_CLOAK] = gMonIcon_WormadamSandyCloak,
@@ -1208,8 +1183,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_ARCEUS_DRAGON] = gMonIcon_Arceus,
     [SPECIES_ARCEUS_DARK] = gMonIcon_Arceus,
     [SPECIES_ARCEUS_FAIRY] = gMonIcon_Arceus,
-#endif
-#if P_GEN_5_POKEMON == TRUE
     [SPECIES_BASCULIN_BLUE_STRIPED] = gMonIcon_BasculinBlueStriped,
     [SPECIES_BASCULIN_WHITE_STRIPED] = gMonIcon_BasculinWhiteStriped,
     [SPECIES_DARMANITAN_ZEN_MODE] = gMonIcon_DarmanitanZenMode,
@@ -1231,8 +1204,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_GENESECT_SHOCK_DRIVE] = gMonIcon_Genesect,
     [SPECIES_GENESECT_BURN_DRIVE] = gMonIcon_Genesect,
     [SPECIES_GENESECT_CHILL_DRIVE] = gMonIcon_Genesect,
-#endif
-#if P_GEN_6_POKEMON == TRUE
     [SPECIES_GRENINJA_BATTLE_BOND] = gMonIcon_Greninja,
     [SPECIES_GRENINJA_ASH] = gMonIcon_GreninjaAsh,
     [SPECIES_VIVILLON_POLAR] = gMonIcon_VivillonPolar,
@@ -1290,8 +1261,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_ZYGARDE_50_POWER_CONSTRUCT] = gMonIcon_Zygarde50,
     [SPECIES_ZYGARDE_COMPLETE] = gMonIcon_ZygardeComplete,
     [SPECIES_HOOPA_UNBOUND] = gMonIcon_HoopaUnbound,
-#endif
-#if P_GEN_7_POKEMON == TRUE
     [SPECIES_ORICORIO_POM_POM] = gMonIcon_OricorioPomPom,
     [SPECIES_ORICORIO_PAU] = gMonIcon_OricorioPau,
     [SPECIES_ORICORIO_SENSU] = gMonIcon_OricorioSensu,
@@ -1334,8 +1303,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_NECROZMA_DAWN_WINGS] = gMonIcon_NecrozmaDawnWings,
     [SPECIES_NECROZMA_ULTRA] = gMonIcon_NecrozmaUltra,
     [SPECIES_MAGEARNA_ORIGINAL_COLOR] = gMonIcon_MagearnaOriginalColor,
-#endif
-#if P_GEN_8_POKEMON == TRUE
     [SPECIES_CRAMORANT_GULPING] = gMonIcon_CramorantGulping,
     [SPECIES_CRAMORANT_GORGING] = gMonIcon_CramorantGorging,
     [SPECIES_TOXTRICITY_LOW_KEY] = gMonIcon_ToxtricityLowKey,
@@ -1388,8 +1355,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     [SPECIES_DURALUDON_GIGANTAMAX] = gMonIcon_DuraludonGigantamax,
     [SPECIES_URSHIFU_SINGLE_STRIKE_STYLE_GIGANTAMAX] = gMonIcon_UrshifuSingleStrikeGigantamax,
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE_GIGANTAMAX] = gMonIcon_UrshifuRapidStrikeGigantamax,
-#endif
-#if P_GEN_9_POKEMON == TRUE
     [SPECIES_SPRIGATITO] = gMonIcon_Sprigatito,
     [SPECIES_FLORAGATO] = gMonIcon_Floragato,
     [SPECIES_MEOWSCARADA] = gMonIcon_Meowscarada,
@@ -1521,7 +1486,6 @@ const u8 *const gMonIconTable[NUM_SPECIES + 1] =
     //[SPECIES_OGERPON_WELLSPRING_MASK_TERA] = gMonIcon_OgerponWellspringMask, TODO
     //[SPECIES_OGERPON_HEARTHFLAME_MASK_TERA] = gMonIcon_OgerponHearthflameMask, TODO
     //[SPECIES_OGERPON_CORNERSTONE_MASK_TERA] = gMonIcon_OgerponCornerstoneMask, TODO
-#endif
     [SPECIES_EGG] = gMonIcon_Egg,
 };
 */
