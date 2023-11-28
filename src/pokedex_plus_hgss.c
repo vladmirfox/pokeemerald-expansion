@@ -5259,6 +5259,7 @@ static void PrintStatsScreen_DestroyMoveItemIcon(u8 taskId)
 static bool8 CalculateMoves(void)
 {
     u16 species = NationalPokedexNumToSpeciesHGSS(sPokedexListItem->dexNum);
+    const u16 *teachableLearnset = GetSpeciesTeachableLearnset(species);
 
     u16 statsMovesEgg[EGG_MOVES_ARRAY_COUNT] = {0};
     u16 statsMovesLevelUp[MAX_LEVEL_UP_MOVES] = {0};
@@ -5293,9 +5294,9 @@ static bool8 CalculateMoves(void)
         movesTotal++;
     }
 
-    for (i = 0; gTeachableLearnsets[species][i] != MOVE_UNAVAILABLE; i++)
+    for (i = 0; teachableLearnset[i] != MOVE_UNAVAILABLE; i++)
     {
-        move = gTeachableLearnsets[species][i];
+        move = teachableLearnset[i];
         for (j = 0; j < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; j++)
         {
             if (ItemIdToBattleMoveId(ITEM_TM01 + j) == move)

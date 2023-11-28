@@ -2195,7 +2195,6 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 #include "data/pokemon/level_up_learnsets.h"
 #include "data/pokemon/teachable_learnsets.h"
 #include "data/pokemon/evolution.h"
-#include "data/pokemon/teachable_learnset_pointers.h"
 #include "data/pokemon/form_species_tables.h"
 #include "data/pokemon/form_species_table_pointers.h"
 #include "data/pokemon/form_change_tables.h"
@@ -4778,6 +4777,14 @@ const struct LevelUpMove *GetSpeciesLevelUpLearnset(u16 species)
     return learnset;
 }
 
+const u16 *GetSpeciesTeachableLearnset(u16 species)
+{
+    const u16 *learnset = gSpeciesInfo[SanitizeSpeciesId(species)].teachableLearnset;
+    if (learnset == NULL)
+        return gSpeciesInfo[SPECIES_NONE].teachableLearnset;
+    return learnset;
+}
+
 u8 CalculatePPWithBonus(u16 move, u8 ppBonuses, u8 moveIndex)
 {
     u8 basePP = gBattleMoves[move].pp;
@@ -6600,9 +6607,10 @@ u8 CanLearnTeachableMove(u16 species, u16 move)
     else
     {
         u8 i;
-        for (i = 0; gTeachableLearnsets[species][i] != MOVE_UNAVAILABLE; i++)
+        const u16 *teachableLearnset = GetSpeciesTeachableLearnset(species);
+        for (i = 0; teachableLearnset[i] != MOVE_UNAVAILABLE; i++)
         {
-            if (gTeachableLearnsets[species][i] == move)
+            if (teachableLearnset[i] == move)
                 return TRUE;
         }
         return FALSE;
