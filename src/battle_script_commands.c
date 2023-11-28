@@ -94,8 +94,6 @@
 #define MEMBERS_7(a, b, c, d, e, f, g) a; b; c; d; e; f; g;
 #define MEMBERS_8(a, b, c, d, e, f, g, h) a; b; c; d; e; f; g; h;
 
-extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
-
 extern const u8 *const gBattleScriptsForMoveEffects[];
 
 // table to avoid ugly powing on gba (courtesy of doesnt)
@@ -14878,13 +14876,18 @@ static void Cmd_handleballthrow(void)
                     ballMultiplier = (B_LURE_BALL_MODIFIER >= GEN_7 ? 500 : 300);
                 break;
             case ITEM_MOON_BALL:
-                for (i = 0; i < EVOS_PER_MON; i++)
+            {
+                const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[gBattlerTarget].species);
+                if (evolutions == NULL)
+                    break;
+                for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
                 {
-                    if (gEvolutionTable[gBattleMons[gBattlerTarget].species][i].method == EVO_ITEM
-                        && gEvolutionTable[gBattleMons[gBattlerTarget].species][i].param == ITEM_MOON_STONE)
+                    if (evolutions[i].method == EVO_ITEM
+                        && evolutions[i].param == ITEM_MOON_STONE)
                         ballMultiplier = 400;
                 }
-                break;
+            }
+            break;
             case ITEM_LOVE_BALL:
                 if (gBattleMons[gBattlerTarget].species == gBattleMons[gBattlerAttacker].species)
                 {

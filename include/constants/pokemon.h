@@ -301,7 +301,6 @@
 #define EVO_LEVEL_FAMILY_OF_THREE         45     // Pokémon reaches the specified level with a personality value with a modulus of 0
 #define EVO_LEVEL_FAMILY_OF_FOUR          46     // Pokémon reaches the specified level with a personality value with a modulus of 1-99
 
-#define EVOS_PER_MON 11
 #define EVOLUTIONS_END 0xFFFF
 
 // Evolution 'modes,' for GetEvolutionTargetSpecies

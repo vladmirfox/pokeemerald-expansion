@@ -48,8 +48,6 @@
 #include "constants/weather.h"
 #include "constants/pokemon.h"
 
-extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
-
 /*
 NOTE: The data and functions in this file up until (but not including) sSoundMovesTable
 are actually part of battle_main.c. They needed to be moved to this file in order to
@@ -9434,12 +9432,17 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
 static bool32 CanEvolve(u32 species)
 {
     u32 i;
+    const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[gBattlerTarget].species);
 
-    for (i = 0; i < EVOS_PER_MON; i++)
+    if (evolutions != NULL)
     {
-        if (gEvolutionTable[species][i].method
-            && SanitizeSpeciesId(gEvolutionTable[species][i].targetSpecies) != SPECIES_NONE)
-            return TRUE;
+        for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
+        {
+            if (evolutions[i].method
+             && SanitizeSpeciesId(evolutions[i].targetSpecies) != SPECIES_NONE)
+                return TRUE;
+        }
+        
     }
     return FALSE;
 }

@@ -65,8 +65,6 @@
 #include "constants/trainers.h"
 #include "cable_club.h"
 
-extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
-
 extern const struct BgTemplate gBattleBgTemplates[];
 extern const struct WindowTemplate *const gBattleWindowTemplates[];
 
