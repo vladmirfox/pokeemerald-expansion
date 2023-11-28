@@ -503,58 +503,23 @@ const struct SpriteFrameImage gTrainerBackPicTable_Steven[] =
 // .backPic goes functionally unused, since none of these pics are compressed
 // and the place they would get extracted to gets overwritten later anyway
 // the casts are so they'll play nice with the strict struct definition
-#define TRAINER_BACK_SPRITE(trainerPic, sprite, pal, anim)                                                                                                \
-        .palette = {gTrainer##pal, TRAINER_BACK_PIC_##trainerPic},                                                                                        \
+#define TRAINER_BACK_SPRITE(trainerPic, yOffset, sprite, pal, anim)                                                                                       \
+    [TRAINER_BACK_PIC_##trainerPic] =                                                                                                                     \
+    {                                                                                                                                                     \
+        .coordinates = {.size = 8, .y_offset = yOffset},                                                                                                  \
         .backPic = {(const u32 *)gTrainerBackPic_##sprite, TRAINER_PIC_SIZE * ARRAY_COUNT(gTrainerBackPicTable_##sprite), TRAINER_BACK_PIC_##trainerPic}, \
-        .animation = sBackAnims_##anim
+        .palette = {gTrainer##pal, TRAINER_BACK_PIC_##trainerPic},                                                                                        \
+        .animation = sBackAnims_##anim,                                                                                                                   \
+    }
 
 const struct TrainerBacksprite gTrainerBacksprites[] =
 {
-    [TRAINER_BACK_PIC_BRENDAN] =
-    {
-        .coordinates = {.size = 8, .y_offset = 4},
-        TRAINER_BACK_SPRITE(BRENDAN, Brendan, Palette_Brendan, Hoenn),
-    },
-
-    [TRAINER_BACK_PIC_MAY] =
-    {
-        .coordinates = {.size = 8, .y_offset = 4},
-        TRAINER_BACK_SPRITE(MAY, May, Palette_May, Hoenn),
-    },
-
-    [TRAINER_BACK_PIC_RED] =
-    {
-        .coordinates = {.size = 8, .y_offset = 5},
-        TRAINER_BACK_SPRITE(RED, Red, BackPicPalette_Red, Kanto),
-    },
-
-    [TRAINER_BACK_PIC_LEAF] =
-    {
-        .coordinates = {.size = 8, .y_offset = 5},
-        TRAINER_BACK_SPRITE(LEAF, Leaf, BackPicPalette_Leaf, Kanto),
-    },
-
-    [TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN] =
-    {
-        .coordinates = {.size = 8, .y_offset = 4},
-        TRAINER_BACK_SPRITE(RUBY_SAPPHIRE_BRENDAN, RubySapphireBrendan, Palette_RubySapphireBrendan, Hoenn),
-    },
-
-    [TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY] =
-    {
-        .coordinates = {.size = 8, .y_offset = 4},
-        TRAINER_BACK_SPRITE(RUBY_SAPPHIRE_MAY, RubySapphireMay, Palette_RubySapphireMay, Hoenn),
-    },
-
-    [TRAINER_BACK_PIC_WALLY] =
-    {
-        .coordinates = {.size = 8, .y_offset = 4},
-        TRAINER_BACK_SPRITE(WALLY, Wally, Palette_Wally, Hoenn),
-    },
-
-    [TRAINER_BACK_PIC_STEVEN] =
-    {
-        .coordinates = {.size = 8, .y_offset = 4},
-        TRAINER_BACK_SPRITE(STEVEN, Steven, Palette_Steven, Hoenn),
-    },
+    TRAINER_BACK_SPRITE(BRENDAN, 4, Brendan, Palette_Brendan, Hoenn),
+    TRAINER_BACK_SPRITE(MAY, 4, May, Palette_May, Hoenn),
+    TRAINER_BACK_SPRITE(RED, 5, Red, BackPicPalette_Red, Kanto),
+    TRAINER_BACK_SPRITE(LEAF, 5, Leaf, BackPicPalette_Leaf, Kanto),
+    TRAINER_BACK_SPRITE(RUBY_SAPPHIRE_BRENDAN, 4, RubySapphireBrendan, Palette_RubySapphireBrendan, Hoenn),
+    TRAINER_BACK_SPRITE(RUBY_SAPPHIRE_MAY, 4, RubySapphireMay, Palette_RubySapphireMay, Hoenn),
+    TRAINER_BACK_SPRITE(WALLY, 4, Wally, Palette_Wally, Hoenn),
+    TRAINER_BACK_SPRITE(STEVEN, 4, Steven, Palette_Steven, Hoenn),
 };
