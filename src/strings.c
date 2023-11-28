@@ -1838,6 +1838,7 @@ const u8 gText_Berries[] = _("Berries");
 const u8 gText_ExpShareOn[] = _("The Exp. Share has been turned on.{PAUSE_UNTIL_PRESS}");
 const u8 gText_ExpShareOff[] = _("The Exp. Share has been turned off.{PAUSE_UNTIL_PRESS}");
 const u8 gText_Nickname[] = _("Nickname");
+const u8 gText_HMColor[] = _("{COLOR_HIGHLIGHT_SHADOW BLUE TRANSPARENT LIGHT_BLUE}");
 
 //// side quest data
 //names
@@ -1995,4 +1996,13 @@ const u8 gText_SideQuestReward_27[] = _("Reward 27");
 const u8 gText_SideQuestReward_28[] = _("Reward 28");
 const u8 gText_SideQuestReward_29[] = _("Reward 29");
 const u8 gText_SideQuestReward_30[] = _("Reward 30");
+
+
+// frlg_tm_case_port
+const u8 gText_TMCase[] =               _("TM Case");
+const u8 gText_Close[] =                _("Close");
+const u8 gText_TMCaseWillBePutAway[] =  _("The TM Case will be\nput away.");
+const u8 gText_FontSmall[] =            _("{FONT_SMALL}");
+const u8 gText_FontShort[] =            _("{FONT_SHORT}");
+const u8 gText_TMCase_Blue[] =          _("{COLOR_HIGHLIGHT_SHADOW BLUE TRANSPARENT LIGHT_BLUE}{STR_VAR_2}");
 
