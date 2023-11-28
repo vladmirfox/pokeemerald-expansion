@@ -39,6 +39,7 @@ struct TrainerSprite
 struct TrainerBacksprite
 {
     struct MonCoords coordinates;
+    struct CompressedSpriteSheet backPic;
     struct CompressedSpritePalette palette;
     const union AnimCmd *const *const animation;
 };
@@ -110,7 +111,6 @@ extern const union AnimCmd sAnim_GeneralFrame3[];
 extern const union AnimCmd *const gAnims_MonPic[];
 extern const struct TrainerSprite gTrainerSprites[];
 extern const struct TrainerBacksprite gTrainerBacksprites[];
-extern const struct CompressedSpriteSheet gTrainerBackPicTable[]; // functionally unused
 
 extern const struct Trainer gTrainers[];
 extern const struct Trainer gBattlePartners[];

@@ -434,8 +434,78 @@ static const union AnimCmd *const sBackAnims_Kanto[] =
     sAnimCmd_Kanto,
 };
 
-#define TRAINER_BACK_SPRITE(trainerPic, pal, anim)                 \
-        .palette = {gTrainer##pal, TRAINER_BACK_PIC_##trainerPic}, \
+const struct SpriteFrameImage gTrainerBackPicTable_Brendan[] =
+{
+    {gTrainerBackPic_Brendan + TRAINER_PIC_SIZE * 0, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Brendan + TRAINER_PIC_SIZE * 1, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Brendan + TRAINER_PIC_SIZE * 2, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Brendan + TRAINER_PIC_SIZE * 3, TRAINER_PIC_SIZE},
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_May[] =
+{
+    {gTrainerBackPic_May + TRAINER_PIC_SIZE * 0, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_May + TRAINER_PIC_SIZE * 1, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_May + TRAINER_PIC_SIZE * 2, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_May + TRAINER_PIC_SIZE * 3, TRAINER_PIC_SIZE},
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_Red[] =
+{
+    {gTrainerBackPic_Red + TRAINER_PIC_SIZE * 0, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Red + TRAINER_PIC_SIZE * 1, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Red + TRAINER_PIC_SIZE * 2, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Red + TRAINER_PIC_SIZE * 3, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Red + TRAINER_PIC_SIZE * 4, TRAINER_PIC_SIZE},
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_Leaf[] =
+{
+    {gTrainerBackPic_Leaf + TRAINER_PIC_SIZE * 0, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Leaf + TRAINER_PIC_SIZE * 1, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Leaf + TRAINER_PIC_SIZE * 2, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Leaf + TRAINER_PIC_SIZE * 3, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Leaf + TRAINER_PIC_SIZE * 4, TRAINER_PIC_SIZE},
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireBrendan[] =
+{
+    {gTrainerBackPic_RubySapphireBrendan + TRAINER_PIC_SIZE * 0, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_RubySapphireBrendan + TRAINER_PIC_SIZE * 1, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_RubySapphireBrendan + TRAINER_PIC_SIZE * 2, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_RubySapphireBrendan + TRAINER_PIC_SIZE * 3, TRAINER_PIC_SIZE},
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireMay[] =
+{
+    {gTrainerBackPic_RubySapphireMay + TRAINER_PIC_SIZE * 0, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_RubySapphireMay + TRAINER_PIC_SIZE * 1, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_RubySapphireMay + TRAINER_PIC_SIZE * 2, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_RubySapphireMay + TRAINER_PIC_SIZE * 3, TRAINER_PIC_SIZE},
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_Wally[] =
+{
+    {gTrainerBackPic_Wally + TRAINER_PIC_SIZE * 0, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Wally + TRAINER_PIC_SIZE * 1, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Wally + TRAINER_PIC_SIZE * 2, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Wally + TRAINER_PIC_SIZE * 3, TRAINER_PIC_SIZE},
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_Steven[] =
+{
+    {gTrainerBackPic_Steven + TRAINER_PIC_SIZE * 0, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Steven + TRAINER_PIC_SIZE * 1, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Steven + TRAINER_PIC_SIZE * 2, TRAINER_PIC_SIZE},
+    {gTrainerBackPic_Steven + TRAINER_PIC_SIZE * 3, TRAINER_PIC_SIZE},
+};
+
+// .backPic goes functionally unused, since none of these pics are compressed
+// and the place they would get extracted to gets overwritten later anyway
+// the casts are so they'll play nice with the strict struct definition
+#define TRAINER_BACK_SPRITE(trainerPic, sprite, pal, anim)                                                                                                \
+        .palette = {gTrainer##pal, TRAINER_BACK_PIC_##trainerPic},                                                                                        \
+        .backPic = {(const u32 *)gTrainerBackPic_##sprite, TRAINER_PIC_SIZE * ARRAY_COUNT(gTrainerBackPicTable_##sprite), TRAINER_BACK_PIC_##trainerPic}, \
         .animation = sBackAnims_##anim
 
 const struct TrainerBacksprite gTrainerBacksprites[] =
@@ -443,48 +513,48 @@ const struct TrainerBacksprite gTrainerBacksprites[] =
     [TRAINER_BACK_PIC_BRENDAN] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
-        TRAINER_BACK_SPRITE(BRENDAN, Palette_Brendan, Hoenn),
+        TRAINER_BACK_SPRITE(BRENDAN, Brendan, Palette_Brendan, Hoenn),
     },
 
     [TRAINER_BACK_PIC_MAY] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
-        TRAINER_BACK_SPRITE(MAY, Palette_May, Hoenn),
+        TRAINER_BACK_SPRITE(MAY, May, Palette_May, Hoenn),
     },
 
     [TRAINER_BACK_PIC_RED] =
     {
         .coordinates = {.size = 8, .y_offset = 5},
-        TRAINER_BACK_SPRITE(RED, BackPicPalette_Red, Kanto),
+        TRAINER_BACK_SPRITE(RED, Red, BackPicPalette_Red, Kanto),
     },
 
     [TRAINER_BACK_PIC_LEAF] =
     {
         .coordinates = {.size = 8, .y_offset = 5},
-        TRAINER_BACK_SPRITE(LEAF, BackPicPalette_Leaf, Kanto),
+        TRAINER_BACK_SPRITE(LEAF, Leaf, BackPicPalette_Leaf, Kanto),
     },
 
     [TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
-        TRAINER_BACK_SPRITE(RUBY_SAPPHIRE_BRENDAN, Palette_RubySapphireBrendan, Hoenn),
+        TRAINER_BACK_SPRITE(RUBY_SAPPHIRE_BRENDAN, RubySapphireBrendan, Palette_RubySapphireBrendan, Hoenn),
     },
 
     [TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
-        TRAINER_BACK_SPRITE(RUBY_SAPPHIRE_MAY, Palette_RubySapphireMay, Hoenn),
+        TRAINER_BACK_SPRITE(RUBY_SAPPHIRE_MAY, RubySapphireMay, Palette_RubySapphireMay, Hoenn),
     },
 
     [TRAINER_BACK_PIC_WALLY] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
-        TRAINER_BACK_SPRITE(WALLY, Palette_Wally, Hoenn),
+        TRAINER_BACK_SPRITE(WALLY, Wally, Palette_Wally, Hoenn),
     },
 
     [TRAINER_BACK_PIC_STEVEN] =
     {
         .coordinates = {.size = 8, .y_offset = 4},
-        TRAINER_BACK_SPRITE(STEVEN, Palette_Steven, Hoenn),
+        TRAINER_BACK_SPRITE(STEVEN, Steven, Palette_Steven, Hoenn),
     },
 };
