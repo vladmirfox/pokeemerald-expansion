@@ -4707,12 +4707,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             break;
         case ABILITY_INTREPID_SWORD:
             if (!gSpecialStatuses[battler].switchInAbilityDone && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN)
-                 && !gBattleStruct->intrepidSwordBoost[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)])
+                 && !(gBattleStruct->intrepidSwordBoost[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]))
             {
                 gBattlerAttacker = battler;
                 if (B_INTREPID_SWORD == GEN_9)
-                    gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                gBattleStruct->intrepidSwordBoost[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)] = TRUE;
+                    gBattleStruct->intrepidSwordBoost[GetBattlerSide(battler)] |= gBitTable[gBattlerPartyIndexes[battler]];
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 SET_STATCHANGER(STAT_ATK, 1, FALSE);
                 BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatRaiseOnSwitchIn);
                 effect++;
@@ -4720,12 +4720,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             break;
         case ABILITY_DAUNTLESS_SHIELD:
             if (!gSpecialStatuses[battler].switchInAbilityDone && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN)
-                 && !gBattleStruct->dauntlessShieldBoost[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)])
+                 && !(gBattleStruct->dauntlessShieldBoost[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]))
             {
                 gBattlerAttacker = battler;
                 if (B_DAUNTLESS_SHIELD == GEN_9)
-                    gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                gBattleStruct->dauntlessShieldBoost[gBattlerPartyIndexes[battler]][GetBattlerSide(battler)] = TRUE;
+                    gBattleStruct->dauntlessShieldBoost[GetBattlerSide(battler)] |= gBitTable[gBattlerPartyIndexes[battler]];
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 SET_STATCHANGER(STAT_DEF, 1, FALSE);
                 BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatRaiseOnSwitchIn);
                 effect++;
@@ -4824,10 +4824,10 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 
             if (!gSpecialStatuses[battler].switchInAbilityDone
              && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_PALAFIN_HERO
-             && !gBattleStruct->transformZeroToHero[gBattlerPartyIndexes[battler]][side])
+             && !(gBattleStruct->transformZeroToHero[side] & gBitTable[gBattlerPartyIndexes[battler]]))
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                gBattleStruct->transformZeroToHero[gBattlerPartyIndexes[battler]][side] = TRUE;
+                gBattleStruct->transformZeroToHero[side] |= gBitTable[gBattlerPartyIndexes[battler]];
                 BattleScriptPushCursorAndCallback(BattleScript_ZeroToHeroActivates);
                 effect++;
             }
