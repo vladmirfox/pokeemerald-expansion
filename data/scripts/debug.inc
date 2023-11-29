@@ -216,6 +216,7 @@ Debug_ExpansionVersion:
 	.string "pokeemerald-expansion {STR_VAR_1}$"
 
 .endif
+
 Debug_FlagsAndVarNotSetBattleConfigMessage::
 	lockall
 	message Debug_FlagsAndVarNotSetBattleConfigMessage_Text
