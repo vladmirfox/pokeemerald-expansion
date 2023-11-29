@@ -375,7 +375,16 @@ static void HandleInputChooseAction(u32 battler)
     }
     else if (JOY_NEW(B_BUTTON) || gPlayerDpadHoldFrames > 59)
     {
-        if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        if (!(gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FIRST_BATTLE)))
+        {
+            PlaySE(SE_SELECT);
+        #ifdef BATTLE_ENGINE
+            TryHideLastUsedBall();
+        #endif
+            BtlController_EmitTwoReturnValues(battler, BUFFER_B, B_ACTION_RUN_PROMPT, 0);
+            PlayerBufferExecCompleted(battler);
+        }
+        else if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
          && GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT
          && !(gAbsentBattlerFlags & gBitTable[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)])
          && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))

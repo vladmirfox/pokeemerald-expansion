@@ -6356,6 +6356,10 @@ BattleScript_FaintedMonSendOutNewEnd:
 	cancelallactions
 BattleScript_FaintedMonEnd::
 	end2
+BattleScript_RunPrompt::
+	printselectionstring STRINGID_RUNPROMPT
+	forfeityesnobox BS_ATTACKER
+	endselectionscript
 BattleScript_FaintedMonShiftSwitched:
 	copybyte sSAVED_BATTLER, gBattlerTarget
 	switchineffects BS_ATTACKER
