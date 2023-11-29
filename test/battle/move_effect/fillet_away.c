@@ -18,3 +18,24 @@ SINGLE_BATTLE_TEST("Fillet Away cuts the user's HP in half")
         HP_BAR(player, hp: maxHP / 2);
     }
 }
+
+SINGLE_BATTLE_TEST("Fillet Away sharply raises Attack, Sp. Atk, and Speed")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_FILLET_AWAY); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FILLET_AWAY, player);
+        HP_BAR(player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Wobbuffet's Attack sharply rose!");
+        MESSAGE("Wobbuffet's Sp. Atk sharply rose!");
+        MESSAGE("Wobbuffet's Speed sharply rose!");
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 2);
+        EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 2);
+        EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 2);
+    }
+}

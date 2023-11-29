@@ -43,3 +43,49 @@ SINGLE_BATTLE_TEST("Belly Drum maximizes the user's Attack stat", s16 damage)
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(4), results[1].damage);
     }
 }
+
+SINGLE_BATTLE_TEST("Belly Drum fails if user's current HP is half or less than half its maximum")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { MaxHP(100); HP(50);}
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_BELLY_DRUM); }
+    } SCENE {
+        MESSAGE("But it failed!");
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_BELLY_DRUM, player);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+            HP_BAR(player);
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Belly Drum fails if the user's Attack is already at +6")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SWORDS_DANCE); }
+        TURN { MOVE(player, MOVE_SWORDS_DANCE); }
+        TURN { MOVE(player, MOVE_SWORDS_DANCE); }
+        TURN { MOVE(player, MOVE_BELLY_DRUM); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Wobbuffet's Attack sharply rose!");
+
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Wobbuffet's Attack sharply rose!");
+
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Wobbuffet's Attack sharply rose!");
+
+        MESSAGE("But it failed!");
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_BELLY_DRUM, player);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+            HP_BAR(player);
+        }
+    }
+}
