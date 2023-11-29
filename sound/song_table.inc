@@ -91,7 +91,7 @@ gSongTable::
 	song se_thunder, 1, 1
 	song se_thunder2, 1, 1
 	song se_elevator, 1, 1
-	song se_low_health, 3, 3
+	song se_low_health, 2, 2
 	song se_exp_max, 1, 1
 	song se_roulette_ball, 2, 2
 	song se_roulette_ball2, 2, 2
