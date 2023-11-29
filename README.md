@@ -1,6 +1,6 @@
 # pokeemerald Expansion
 
-##(Note: this README is a leftover from pokeemerald-expansion. It will eventually be replaced.)
+## (Note: this README is a leftover from pokeemerald-expansion. It will eventually be replaced.)
 
 ## What is the pokeemerald Expansion?
 
