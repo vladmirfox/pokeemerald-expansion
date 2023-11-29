@@ -51,8 +51,8 @@ SINGLE_BATTLE_TEST("Fillet Away fails if user's current HP is half or less than 
         MESSAGE("But it failed!");
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_FILLET_AWAY, player);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
             HP_BAR(player);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         }
     }
 }
