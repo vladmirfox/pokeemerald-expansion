@@ -835,7 +835,9 @@ static bool8 StartMenuPCCallback(void)
     {
         PlayRainStoppingSoundEffect();
         RemoveExtraStartMenuWindows();
+        FlagSet(FLAG_ENTERED_PC_FROM_START_MENU);
 		EnterPokeStorage(0);
+
         return TRUE;
     }
 

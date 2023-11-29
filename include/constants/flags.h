@@ -655,7 +655,7 @@
 #define FLAG_QUEST_MENU_ACTIVE  0x264 // Is the Quest Menu currently active?
 #define FLAG_POKEMONPCMENU 0x265 // Should the PC option be shown in start menu?
 #define FLAG_PARTY_MOVES   0x266 // Used for editing moves from party screen
-#define FLAG_UNUSED_0x267  0x267 // Unused Flag
+#define FLAG_ENTERED_PC_FROM_START_MENU  0x267 // Used to return the player to the start menu if the PC was accessed from it
 #define FLAG_UNUSED_0x268  0x268 // Unused Flag
 #define FLAG_UNUSED_0x269  0x269 // Unused Flag
 #define FLAG_UNUSED_0x26A  0x26A // Unused Flag

@@ -1712,6 +1712,12 @@ static void CB2_ExitPokeStorage(void)
     SetMainCallback2(CB2_ReturnToField);
 }
 
+static void CB2_ExitPokeStorageFromStartMenu(void)
+{
+    sPreviousBoxOption = GetCurrentBoxOption();
+    SetMainCallback2(CB2_ReturnToFieldWithOpenMenu);
+}
+
 // Unused
 static s16 StorageSystemGetNextMonIndex(struct BoxPokemon *box, s8 startIdx, u8 stopIdx, u8 mode)
 {
@@ -2020,7 +2026,15 @@ void EnterPokeStorage(u8 boxOption)
     sStorage = Alloc(sizeof(*sStorage));
     if (sStorage == NULL)
     {
-        SetMainCallback2(CB2_ExitPokeStorage);
+        if (FlagGet(FLAG_ENTERED_PC_FROM_START_MENU))
+        {
+            SetMainCallback2(CB2_ExitPokeStorageFromStartMenu);
+            FlagClear(FLAG_ENTERED_PC_FROM_START_MENU);
+        }
+        else
+        {
+            SetMainCallback2(CB2_ExitPokeStorage);
+        }
     }
     else
     {
@@ -2040,7 +2054,15 @@ void CB2_ReturnToPokeStorage(void)
     sStorage = Alloc(sizeof(*sStorage));
     if (sStorage == NULL)
     {
-        SetMainCallback2(CB2_ExitPokeStorage);
+        if (FlagGet(FLAG_ENTERED_PC_FROM_START_MENU))
+        {
+            SetMainCallback2(CB2_ExitPokeStorageFromStartMenu);
+            FlagClear(FLAG_ENTERED_PC_FROM_START_MENU);
+        }
+        else
+        {
+            SetMainCallback2(CB2_ExitPokeStorage);
+        }
     }
     else
     {
@@ -3776,7 +3798,15 @@ static void Task_ChangeScreen(u8 taskId)
     case SCREEN_CHANGE_EXIT_BOX:
     default:
         FreePokeStorageData();
-        SetMainCallback2(CB2_ExitPokeStorage);
+        if (FlagGet(FLAG_ENTERED_PC_FROM_START_MENU))
+        {
+            SetMainCallback2(CB2_ExitPokeStorageFromStartMenu);
+            FlagClear(FLAG_ENTERED_PC_FROM_START_MENU);
+        }
+        else
+        {
+            SetMainCallback2(CB2_ExitPokeStorage);
+        }
         break;
     case SCREEN_CHANGE_SUMMARY_SCREEN:
         boxMons = sStorage->summaryMon.box;
