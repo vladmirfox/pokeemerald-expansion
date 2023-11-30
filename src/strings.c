@@ -379,6 +379,7 @@ const u8 gText_HP3[] = _("HP");
 const u8 gText_SpAtk3[] = _("Sp. Atk");
 const u8 gText_SpDef3[] = _("Sp. Def");
 const u8 gText_WontHaveEffect[] = _("It won't have any effect.{PAUSE_UNTIL_PRESS}");
+const u8 gText_ReachedLevelCap[] = _("The level cap has been reached.{PAUSE_UNTIL_PRESS}");
 const u8 gText_CantBeUsedOnPkmn[] = _("This can't be used on\nthat Pokémon.{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnCantSwitchOut[] = _("{STR_VAR_1} can't be switched\nout!{PAUSE_UNTIL_PRESS}");
 const u8 gText_PkmnAlreadyInBattle[] = _("{STR_VAR_1} is already\nin battle!{PAUSE_UNTIL_PRESS}");

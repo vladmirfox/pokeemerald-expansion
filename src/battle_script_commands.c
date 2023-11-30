@@ -625,7 +625,7 @@ const u16 sLevelCapFlags[NUM_LEVEL_CAPS] =
 const u16 sLevelCaps[NUM_LEVEL_CAPS] = { 13, 21, 35, 44, 52, 58, 65, 72 };
 
 // gets the current level cap
-static u8 gCurrentLevelCap(void) {
+u8 gCurrentLevelCap(void) {
     u8 i;
 
     for (i = 0; i < NUM_LEVEL_CAPS; i++) {
