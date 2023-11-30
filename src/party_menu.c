@@ -420,6 +420,7 @@ static void Task_DisplayLevelUpStatsPg1(u8);
 static void DisplayLevelUpStatsPg1(u8);
 static void Task_DisplayLevelUpStatsPg2(u8);
 static void DisplayLevelUpStatsPg2(u8);
+static void Task_CandyLevelUp(u8);
 static void Task_TryLearnNewMoves(u8);
 static void PartyMenuTryEvolution(u8);
 static void DisplayMonNeedsToReplaceMove(u8);
@@ -5437,7 +5438,7 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
         GetMonNickname(mon, gStringVar1);
         if (sFinalLevel > sInitialLevel)
         {
-            PlayFanfareByFanfareNum(FANFARE_LEVEL_UP);
+            PlaySE(SE_USE_ITEM);
             if (holdEffectParam == 0) // Rare Candy
             {
                 ConvertIntToDecimalStringN(gStringVar2, sFinalLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -5449,10 +5450,10 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
                 ConvertIntToDecimalStringN(gStringVar3, sFinalLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
                 StringExpandPlaceholders(gStringVar4, gText_PkmnGainedExpAndElevatedToLvVar3);
             }
-
-            DisplayPartyMenuMessage(gStringVar4, TRUE);
+            // don't display "[mon] raised to level x" message to speed up candy use
+            // DisplayPartyMenuMessage(gStringVar4, TRUE);
             ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = Task_DisplayLevelUpStatsPg1;
+            gTasks[taskId].func = Task_CandyLevelUp;
         }
         else
         {
@@ -5501,6 +5502,13 @@ static void Task_DisplayLevelUpStatsPg2(u8 taskId)
     }
 }
 
+// don't show stats after Rare/EXP Candy use to speed up process
+static void Task_CandyLevelUp(u8 taskId)
+{
+    sInitialLevel += 1; // so the Pokemon doesn't learn a move meant for its previous level
+    gTasks[taskId].func = Task_TryLearnNewMoves;
+}
+
 static void DisplayLevelUpStatsPg1(u8 taskId)
 {
     s16 *arrayPtr = sPartyMenuInternal->data;
@@ -5524,7 +5532,7 @@ static void Task_TryLearnNewMoves(u8 taskId)
 {
     u16 learnMove;
 
-    if (WaitFanfare(FALSE) && ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON))))
+    if (((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON))))
     {
         RemoveLevelUpStatsWindow();
         for (; sInitialLevel <= sFinalLevel; sInitialLevel++)
