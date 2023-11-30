@@ -7,8 +7,8 @@
         {
           "type": "land_mons",
           "encounter_rates": [
-            100,
-            1,
+            50,
+            50,
             1,
             1,
             1,
@@ -11504,9 +11504,9 @@
                 "species": "SPECIES_AMAURA"
               },
               {
-                "min_level": 5,
-                "max_level": 5,
-                "species": "SPECIES_AMAURA"
+                "min_level": 75,
+                "max_level": 80,
+                "species": "SPECIES_CHARIZARD"
               },
               {
                 "min_level": 5,
