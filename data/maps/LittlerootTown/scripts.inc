@@ -1021,7 +1021,7 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 
 LittleRootTown_EventScript_NewSign::
 	lockall
-	msgbox LittleRootTown_EventScript_NewSign_Text_0
+	giveitem ITEM_FULL_RESTORE, 10
 	releaseall
 	return
 
@@ -1081,9 +1081,6 @@ MayLeave:
 	walk_left
 	walk_left
 	step_end
-
-LittleRootTown_EventScript_NewSign_Text_0:
-	.string "Hello World!$"
 
 May_Intro::
 	.string "I'll win for sure!$"
