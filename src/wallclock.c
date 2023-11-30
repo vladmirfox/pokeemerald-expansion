@@ -64,6 +64,7 @@ enum {
     MOVE_NONE,
     MOVE_BACKWARD,
     MOVE_FORWARD,
+    MOVE_12HR,
 };
 
 enum {
@@ -877,7 +878,7 @@ static void Task_SetClock_Exit(u8 taskId)
 static void Task_ViewClock_WaitFadeIn(u8 taskId)
 {
     if (!gPaletteFade.active)
-        gTasks[taskId].func = Task_ViewClock_HandleInput;
+        gTasks[taskId].func = Task_SetClock_HandleInput;
 }
 
 static void Task_ViewClock_HandleInput(u8 taskId)
@@ -928,6 +929,8 @@ static u16 CalcNewMinHandAngle(u16 angle, u8 direction, u8 speed)
         else
             angle = 0;
         break;
+    case MOVE_12HR:
+        break;
     }
     return angle;
 }
@@ -970,6 +973,10 @@ static bool32 AdvanceClock(u8 taskId, u8 direction)
             UpdateClockPeriod(taskId, direction);
         }
         break;
+    case MOVE_12HR:
+        gTasks[taskId].tHours = (gTasks[taskId].tHours + 12) % 24;
+
+        UpdateClockPeriod(taskId, direction);
     }
     return FALSE;
 }
@@ -1000,6 +1007,12 @@ static void UpdateClockPeriod(u8 taskId, u8 direction)
             gTasks[taskId].tPeriod = PERIOD_PM;
             break;
         }
+        break;
+    case MOVE_12HR:
+        if (hours < 12)
+            gTasks[taskId].tPeriod = PERIOD_AM;
+        else
+            gTasks[taskId].tPeriod = PERIOD_PM;
         break;
     }
 }

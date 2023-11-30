@@ -531,6 +531,7 @@ struct SaveBlock2
     /*0x0F2C*/ u8 unlockedQuests[SIDE_QUEST_FLAGS_COUNT];
     /*0x????*/ u8 completedQuests[SIDE_QUEST_FLAGS_COUNT];
     /*0x????*/ u8 activeQuest;
+    /*0x????*/ struct Time fakeRTC;
 }; 
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;

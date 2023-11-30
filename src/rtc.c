@@ -32,6 +32,11 @@ static const s32 sNumDaysInMonths[12] =
     31,
 };
 
+struct Time* GetFakeRtc(void)
+{
+    return &gSaveBlock2Ptr->fakeRTC;
+}
+
 void RtcDisableInterrupts(void)
 {
     sSavedIme = REG_IME;
@@ -88,47 +93,26 @@ u16 ConvertDateToDayCount(u8 year, u8 month, u8 day)
 
 u16 RtcGetDayCount(struct SiiRtcInfo *rtc)
 {
-    u8 year = ConvertBcdToBinary(rtc->year);
-    u8 month = ConvertBcdToBinary(rtc->month);
-    u8 day = ConvertBcdToBinary(rtc->day);
-    return ConvertDateToDayCount(year, month, day);
+    return rtc->day;
 }
 
 void RtcInit(void)
 {
-    sErrorStatus = 0;
 
-    RtcDisableInterrupts();
-    SiiRtcUnprotect();
-    sProbeResult = SiiRtcProbe();
-    RtcRestoreInterrupts();
-
-    if ((sProbeResult & 0xF) != 1)
-    {
-        sErrorStatus = RTC_INIT_ERROR;
-        return;
-    }
-
-    if (sProbeResult & 0xF0)
-        sErrorStatus = RTC_INIT_WARNING;
-    else
-        sErrorStatus = 0;
-
-    RtcGetRawInfo(&sRtc);
-    sErrorStatus = RtcCheckInfo(&sRtc);
 }
 
 u16 RtcGetErrorStatus(void)
 {
-    return sErrorStatus;
+    return 0;
 }
 
 void RtcGetInfo(struct SiiRtcInfo *rtc)
 {
-    if (sErrorStatus & RTC_ERR_FLAG_MASK)
-        *rtc = sRtcDummy;
-    else
-        RtcGetRawInfo(rtc);
+    struct Time* time = GetFakeRtc();
+    rtc->second = time->seconds;
+    rtc->minute = time->minutes;
+    rtc->hour = time->hours;
+    rtc->day = time->days;
 }
 
 void RtcGetDateTime(struct SiiRtcInfo *rtc)
@@ -153,66 +137,12 @@ void RtcGetRawInfo(struct SiiRtcInfo *rtc)
 
 u16 RtcCheckInfo(struct SiiRtcInfo *rtc)
 {
-    u16 errorFlags = 0;
-    s32 year;
-    s32 month;
-    s32 value;
-
-    if (rtc->status & SIIRTCINFO_POWER)
-        errorFlags |= RTC_ERR_POWER_FAILURE;
-
-    if (!(rtc->status & SIIRTCINFO_24HOUR))
-        errorFlags |= RTC_ERR_12HOUR_CLOCK;
-
-    year = ConvertBcdToBinary(rtc->year);
-
-    if (year == 0xFF)
-        errorFlags |= RTC_ERR_INVALID_YEAR;
-
-    month = ConvertBcdToBinary(rtc->month);
-
-    if (month == 0xFF || month == 0 || month > 12)
-        errorFlags |= RTC_ERR_INVALID_MONTH;
-
-    value = ConvertBcdToBinary(rtc->day);
-
-    if (value == 0xFF)
-        errorFlags |= RTC_ERR_INVALID_DAY;
-
-    if (month == MONTH_FEB)
-    {
-        if (value > IsLeapYear(year) + sNumDaysInMonths[month - 1])
-            errorFlags |= RTC_ERR_INVALID_DAY;
-    }
-    else
-    {
-        if (value > sNumDaysInMonths[month - 1])
-            errorFlags |= RTC_ERR_INVALID_DAY;
-    }
-
-    value = ConvertBcdToBinary(rtc->hour);
-
-    if (value > 24)
-        errorFlags |= RTC_ERR_INVALID_HOUR;
-
-    value = ConvertBcdToBinary(rtc->minute);
-
-    if (value > 60)
-        errorFlags |= RTC_ERR_INVALID_MINUTE;
-
-    value = ConvertBcdToBinary(rtc->second);
-
-    if (value > 60)
-        errorFlags |= RTC_ERR_INVALID_SECOND;
-
-    return errorFlags;
+    return 0;
 }
 
 void RtcReset(void)
 {
-    RtcDisableInterrupts();
-    SiiRtcReset();
-    RtcRestoreInterrupts();
+    memset(GetFakeRtc(), 0, sizeof(struct Time));
 }
 
 void FormatDecimalTime(u8 *dest, s32 hour, s32 minute, s32 second)
@@ -263,9 +193,9 @@ void FormatHexDate(u8 *dest, s32 year, s32 month, s32 day)
 void RtcCalcTimeDifference(struct SiiRtcInfo *rtc, struct Time *result, struct Time *t)
 {
     u16 days = RtcGetDayCount(rtc);
-    result->seconds = ConvertBcdToBinary(rtc->second) - t->seconds;
-    result->minutes = ConvertBcdToBinary(rtc->minute) - t->minutes;
-    result->hours = ConvertBcdToBinary(rtc->hour) - t->hours;
+    result->seconds = rtc->second - t->seconds;
+    result->minutes = rtc->minute - t->minutes;
+    result->hours = rtc->hour - t->hours;
     result->days = days - t->days;
 
     if (result->seconds < 0)
@@ -343,4 +273,48 @@ u32 RtcGetMinuteCount(void)
 u32 RtcGetLocalDayCount(void)
 {
     return RtcGetDayCount(&sRtc);
+}
+
+void RtcAdvanceTime(u32 hours, u32 minutes, u32 seconds)
+{
+    struct Time* time = GetFakeRtc();
+    seconds += time->seconds;
+    minutes += time->minutes;
+    hours += time->hours;
+
+    while(seconds >= 60)
+    {
+	    minutes++;
+	    seconds -= 60;	
+    }
+
+    while(minutes >= 60)
+    {
+	    hours++;
+	    minutes -= 60;
+    }
+
+    while(hours >= 24)
+    {
+	    time->days++;
+	    hours -= 24;
+    }
+
+    time->seconds = seconds;
+    time->minutes = minutes;
+    time->hours = hours;
+}
+
+void RtcAdvanceTimeTo(u32 hour, u32 minute, u32 second)
+{
+    struct Time diff, target;
+    RtcCalcLocalTime();
+    
+    target.hours = hour;
+    target.minutes = minute;
+    target.seconds = second;
+    target.days = gLocalTime.days;
+    
+    CalcTimeDifference(&diff, &gLocalTime, &target);
+    RtcAdvanceTime(diff.hours, diff.minutes, diff.seconds);
 }
