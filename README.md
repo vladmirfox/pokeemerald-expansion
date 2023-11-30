@@ -4,6 +4,12 @@
 
 The pokeemerald Expansion is a decomp hack base project based off pret's [pokeemerald](https://github.com/pret/pokeemerald) decompilation project. It's recommended that any new projects that plan on using it, to clone this repository instead of pret's vanilla repository, as we regurlarly incorporate pret's documentation changes. This is ***NOT*** a standalone romhack, and as such, most features will be unavailable and/or unbalanced if played as is.
 
+If you use the pokeemerald-Expansion in your hack, please add RHH (Rom-hacking Hideout) to your credits list. Optionally, you can list the version used, so it can help players know what features to expect.
+You can phrase it as the following:
+```
+Based off RHH's pokeemerald Expansion v1.6.2 https://github.com/rh-hideout/pokeemerald-expansion/
+```
+
 ## What features are included?
 - ***IMPORTANT*❗❗ Read through these to learn what features you can toggle**:
     - [Battle configurations](/include/config/battle.h)
