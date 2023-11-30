@@ -211,6 +211,7 @@ void NewGameInitData(void)
     memset(&gSaveBlock2Ptr->completedQuests, 0, sizeof(gSaveBlock2Ptr->completedQuests));
     gSaveBlock2Ptr->activeQuest = 0;
     gSaveBlock2Ptr->autoRun = FALSE;
+    memset(&gSaveBlock2Ptr->itemFlags, 0, sizeof(gSaveBlock2Ptr->itemFlags));
 }
 
 static void ResetMiniGamesRecords(void)

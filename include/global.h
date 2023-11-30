@@ -493,6 +493,10 @@ struct RankingHall2P
 #include "constants/quests.h"
 #define SIDE_QUEST_FLAGS_COUNT     ((SIDE_QUEST_COUNT / 8) + ((SIDE_QUEST_COUNT % 8) ? 1 : 0))
 
+// item descriptions
+#include "constants/items.h"
+#define ITEM_FLAGS_COUNT ((ITEMS_COUNT / 8) + ((ITEMS_COUNT % 8) ? 1 : 0))
+
 struct SaveBlock2
 {
     /*0x00*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
@@ -532,6 +536,7 @@ struct SaveBlock2
     /*0x????*/ u8 completedQuests[SIDE_QUEST_FLAGS_COUNT];
     /*0x????*/ u8 activeQuest;
     /*0x????*/ struct Time fakeRTC;
+    /*0x????*/ u8 itemFlags[ITEM_FLAGS_COUNT];
 }; 
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;

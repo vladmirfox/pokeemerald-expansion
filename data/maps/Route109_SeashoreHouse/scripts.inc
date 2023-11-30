@@ -52,8 +52,8 @@ Route109_SeashoreHouse_EventScript_BuySodaPop::
 	msgbox Route109_SeashoreHouse_Text_HereYouGo, MSGBOX_DEFAULT
 	removemoney 300
 	updatemoneybox
-	giveitem ITEM_SODA_POP
 	hidemoneybox
+	giveitem ITEM_SODA_POP
 	release
 	end
 
@@ -100,14 +100,14 @@ Route109_SeashoreHouse_Text_SeashoreHouseIntro:
 	.string "I'm the owner of the SEASHORE HOUSE.\n"
 	.string "But you can call me MR. SEA!\p"
 	.string "What I love above all is to see hot\n"
-	.string "Pokémon battles.\p"
+	.string "POKéMON battles.\p"
 	.string "Let me see that your heart burns hot!\p"
-	.string "If you can defeat all the Trainers\n"
+	.string "If you can defeat all the TRAINERS\n"
 	.string "here, I'll reward your efforts.$"
 
 Route109_SeashoreHouse_Text_ShowMeSomeHotMatches:
 	.string "Show me some hot matches!\p"
-	.string "I run this Seashore House just for\n"
+	.string "I run this SEASHORE HOUSE just for\n"
 	.string "that reason alone!$"
 
 Route109_SeashoreHouse_Text_TakeTheseSodaPopBottles:
@@ -116,7 +116,7 @@ Route109_SeashoreHouse_Text_TakeTheseSodaPopBottles:
 	.string "I'm more than just satisfied!\p"
 	.string "As thanks for showing me your hot\n"
 	.string "streak, I want you to take these.\p"
-	.string "It's half a dozen bottles of Soda Pop!$"
+	.string "It's half a dozen bottles of SODA POP!$"
 
 Route109_SeashoreHouse_Text_BagFull:
 	.string "Oh, but hey, your BAG's jammed full.\n"
@@ -140,8 +140,8 @@ Route109_SeashoreHouse_Text_ThatsTooBad:
 
 Route109_SeashoreHouse_Text_DwayneIntro:
 	.string "If you're looking for a battle in the\n"
-	.string "Seashore House, you'll find no\l"
-	.string "hotter Trainer than me, matey!$"
+	.string "SEASHORE HOUSE, you'll find no\l"
+	.string "hotter TRAINER than me, matey!$"
 
 Route109_SeashoreHouse_Text_DwayneDefeated:
 	.string "That was a hot battle!\n"
@@ -154,18 +154,18 @@ Route109_SeashoreHouse_Text_DwaynePostBattle:
 Route109_SeashoreHouse_Text_JohannaIntro:
 	.string "Boring battles aren't worth the effort.\p"
 	.string "Fiery hot battles are what toughen up\n"
-	.string "Trainers and Pokémon!$"
+	.string "TRAINERS and POKéMON!$"
 
 Route109_SeashoreHouse_Text_JohannaDefeated:
 	.string "That's hot!$"
 
 Route109_SeashoreHouse_Text_JohannaPostBattle:
 	.string "Whew, I'm all thirsty.\n"
-	.string "Maybe I'll have a Soda Pop.$"
+	.string "Maybe I'll have a SODA POP.$"
 
 Route109_SeashoreHouse_Text_SimonIntro:
 	.string "I'm going to show you how great\n"
-	.string "my Pokémon are, but don't cry!$"
+	.string "my POKéMON are, but don't cry!$"
 
 Route109_SeashoreHouse_Text_SimonDefeated:
 	.string "…I lost, but I won't cry…$"
