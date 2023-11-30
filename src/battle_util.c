@@ -9433,7 +9433,7 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
 static bool32 CanEvolve(u32 species)
 {
     u32 i;
-    const struct Evolution *evolutions = GetSpeciesEvolutions(gBattleMons[gBattlerTarget].species);
+    const struct Evolution *evolutions = GetSpeciesEvolutions(species);
 
     if (evolutions != NULL)
     {
