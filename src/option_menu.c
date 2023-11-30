@@ -443,25 +443,48 @@ static void TextSpeed_DrawChoices(u8 selection)
 
 static u8 BattleScene_ProcessInput(u8 selection)
 {
-    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+    if (JOY_NEW(DPAD_RIGHT))
     {
-        selection ^= 1;
+        if (selection <= 1)
+            selection++;
+        else
+            selection = 0;
+
         sArrowPressed = TRUE;
     }
+    if (JOY_NEW(DPAD_LEFT))
+    {
+        if (selection != 0)
+            selection--;
+        else
+            selection = 2;
 
+        sArrowPressed = TRUE;
+    }
     return selection;
 }
 
 static void BattleScene_DrawChoices(u8 selection)
 {
-    u8 styles[2];
+    u8 styles[3];
+    s32 widthOn, widthOff, widthBosses, xOff;
 
     styles[0] = 0;
     styles[1] = 0;
+    styles[2] = 0;
     styles[selection] = 1;
 
     DrawOptionMenuChoice(gText_BattleSceneOn, 104, YPOS_BATTLESCENE, styles[0]);
-    DrawOptionMenuChoice(gText_BattleSceneOff, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleSceneOff, 198), YPOS_BATTLESCENE, styles[1]);
+
+    widthOn = GetStringWidth(FONT_NORMAL, gText_BattleSceneOn, 0);
+    widthOff = GetStringWidth(FONT_NORMAL, gText_BattleSceneOff, 0);
+    widthBosses = GetStringWidth(FONT_NORMAL, gText_BattleSceneBosses, 0);
+
+    widthOff -= 94;
+    xOff = (widthOn - widthOff - widthBosses) / 2 + 104;
+    DrawOptionMenuChoice(gText_BattleSceneOff, xOff, YPOS_BATTLESCENE, styles[1]);
+
+    DrawOptionMenuChoice(gText_BattleSceneBosses, GetStringRightAlignXOffset(FONT_NORMAL, gText_BattleSceneBosses, 198), YPOS_BATTLESCENE, styles[2]);
 }
 
 static u8 BattleStyle_ProcessInput(u8 selection)
