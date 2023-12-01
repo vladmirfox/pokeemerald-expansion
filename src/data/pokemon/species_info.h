@@ -50636,7 +50636,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Candy Apple"),
         .height = 4,
         .weight = 44,
-        .description = gDipplinPokedexText,
+        .description = COMPOUND_STRING(
+            "Dipplin is two creatures in one Pokémon.\n"
+            "Its evolution was triggered by a special\n"
+            "apple grown only in one place."),
         .pokemonScale = 356,
         .pokemonOffset = 17,
         .trainerScale = 256,
@@ -52780,7 +52783,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .categoryName = _("Electron"),
         .height = 12,
         .weight = 1450,
-        .description = gRegielekiPokedexText,
+        .description = COMPOUND_STRING(
+            "This Pokémon is a cluster of electrical\n"
+            "energy. It's said that removing the rings\n"
+            "on Regieleki's body will unleash the\n"
+            "Pokémon's latent power."),
         .pokemonScale = 282,
         .pokemonOffset = 4,
         .trainerScale = 256,
@@ -53090,6 +53097,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_PROTEAN},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .speciesName = _("Sprigatito"),
+        .cryId = CRY_SPRIGATITO,
+        .natDexNum = NATIONAL_DEX_SPRIGATITO,
+        .categoryName = _("Grass Cat"),
+        .height = 4,
+        .weight = 41,
+        .description = COMPOUND_STRING(
+            "The sweet scent its body gives off\n"
+            "mesmerizes those around it. The\n"
+            "scent grows stronger when this\n"
+            "Pokémon is in the sun."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Sprigatito, 64, 64),
+        .frontPicYOffset =  8,
+        .frontAnimFrames = sAnims_Sprigatito,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Sprigatito, 64, 64),
+        .backPicYOffset =  7,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Sprigatito),
+        ICON(Sprigatito, 4),
+        //.footprint = gMonFootprint_Sprigatito,
+        LEARNSETS(Sprigatito),
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_FLORAGATO}),
     },
 
     [SPECIES_FLORAGATO] =
@@ -53112,6 +53146,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_PROTEAN},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .speciesName = _("Floragato"),
+        .cryId = CRY_FLORAGATO,
+        .natDexNum = NATIONAL_DEX_FLORAGATO,
+        .categoryName = _("Grass Cat"),
+        .height = 9,
+        .weight = 122,
+        .description = COMPOUND_STRING(
+            "Floragato deftly wields the vine\n"
+            "hidden beneath its long fur, slamming\n"
+            "the hard flower bud against its\n"
+            "opponents."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Floragato, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Floragato,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Floragato, 64, 64),
+        .backPicYOffset =  6,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Floragato),
+        ICON(Floragato, 1),
+        //.footprint = gMonFootprint_Floragato,
+        LEARNSETS(Floragato),
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_MEOWSCARADA}),
     },
 
     [SPECIES_MEOWSCARADA] =
@@ -53134,6 +53195,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OVERGROW, ABILITY_NONE, ABILITY_PROTEAN},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .speciesName = _("Meowscarad"),
+        .cryId = CRY_MEOWSCARADA,
+        .natDexNum = NATIONAL_DEX_MEOWSCARADA,
+        .categoryName = _("Magician"),
+        .height = 15,
+        .weight = 312,
+        .description = COMPOUND_STRING(
+            "This Pokémon uses the reflective\n"
+            "fur lining its cape to camouflage the\n"
+            "stem of its flower, creating the\n"
+            "illusion that the flower is floating."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Meowscarada, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Meowscarada,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Meowscarada, 64, 64),
+        .backPicYOffset =  2,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Meowscarada),
+        ICON(Meowscarada, 1),
+        //.footprint = gMonFootprint_Meowscarada,
+        LEARNSETS(Meowscarada),
     },
 #endif //P_FAMILY_SPRIGATITO
 
@@ -53158,6 +53245,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_UNAWARE},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .speciesName = _("Fuecoco"),
+        .cryId = CRY_FUECOCO,
+        .natDexNum = NATIONAL_DEX_FUECOCO,
+        .categoryName = _("Fire Croc"),
+        .height = 4,
+        .weight = 98,
+        .description = COMPOUND_STRING(
+            "Its flame sac is small, so energy is\n"
+            "always leaking out. This energy is\n"
+            "released from the dent atop\n"
+            "Fuecoco's head and flickers to and fro."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Fuecoco, 64, 64),
+        .frontPicYOffset =  8,
+        .frontAnimFrames = sAnims_Fuecoco,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Fuecoco, 64, 64),
+        .backPicYOffset =  4,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Fuecoco),
+        ICON(Fuecoco, 0),
+        //.footprint = gMonFootprint_Fuecoco,
+        LEARNSETS(Fuecoco),
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_CROCALOR}),
     },
 
     [SPECIES_CROCALOR] =
@@ -53180,6 +53294,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_UNAWARE},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .speciesName = _("Crocalor"),
+        .cryId = CRY_CROCALOR,
+        .natDexNum = NATIONAL_DEX_CROCALOR,
+        .categoryName = _("Fire Croc"),
+        .height = 10,
+        .weight = 307,
+        .description = COMPOUND_STRING(
+            "The combination of Crocalor's fire\n"
+            "energy and overflowing vitality has\n"
+            "caused an egg-shaped fireball to\n"
+            "appear on the Pokémon's head."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Crocalor, 64, 64),
+        .frontPicYOffset =  7,
+        .frontAnimFrames = sAnims_Crocalor,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Crocalor, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Crocalor),
+        ICON(Crocalor, 0),
+        //.footprint = gMonFootprint_Crocalor,
+        LEARNSETS(Crocalor),
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_SKELEDIRGE}),
     },
 
     [SPECIES_SKELEDIRGE] =
@@ -53202,6 +53343,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_BLAZE, ABILITY_NONE, ABILITY_UNAWARE},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .speciesName = _("Skeledirge"),
+        .cryId = CRY_SKELEDIRGE,
+        .natDexNum = NATIONAL_DEX_SKELEDIRGE,
+        .categoryName = _("Singer"),
+        .height = 16,
+        .weight = 3265,
+        .description = COMPOUND_STRING(
+            "Skeledirge's gentle singing\n"
+            "soothes the souls of all that hear it. It\n"
+            "burns its enemies to a crisp with\n"
+            "flames of over 5,400 degrees Fahrenheit."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Skeledirge, 64, 64),
+        .frontPicYOffset =  7,
+        .frontAnimFrames = sAnims_Skeledirge,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Skeledirge, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Skeledirge),
+        ICON(Skeledirge, 0),
+        //.footprint = gMonFootprint_Skeledirge,
+        LEARNSETS(Skeledirge),
     },
 #endif //P_FAMILY_FUECOCO
 
@@ -53226,6 +53393,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_MOXIE},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .speciesName = _("Quaxly"),
+        .cryId = CRY_QUAXLY,
+        .natDexNum = NATIONAL_DEX_QUAXLY,
+        .categoryName = _("Duckling"),
+        .height = 5,
+        .weight = 61,
+        .description = COMPOUND_STRING(
+            "Its strong legs let it easily swim\n"
+            "around in even fast-flowing rivers.\n"
+            "It likes to keep things tidy and is\n"
+            "prone to overthinking things."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Quaxly, 64, 64),
+        .frontPicYOffset =  7,
+        .frontAnimFrames = sAnims_Quaxly,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Quaxly, 64, 64),
+        .backPicYOffset =  7,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Quaxly),
+        ICON(Quaxly, 2),
+        //.footprint = gMonFootprint_Quaxly,
+        LEARNSETS(Quaxly),
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_QUAXWELL}),
     },
 
     [SPECIES_QUAXWELL] =
@@ -53248,6 +53442,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_MOXIE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .speciesName = _("Quaxwell"),
+        .cryId = CRY_QUAXWELL,
+        .natDexNum = NATIONAL_DEX_QUAXWELL,
+        .categoryName = _("Practicing"),
+        .height = 12,
+        .weight = 215,
+        .description = COMPOUND_STRING(
+            "The hardworking Quaxwell observes\n"
+            "people and Pokémon from various\n"
+            "regions and incorporates their\n"
+            "movements into its own dance routines."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Quaxwell, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Quaxwell,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Quaxwell, 64, 64),
+        .backPicYOffset =  3,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Quaxwell),
+        ICON(Quaxwell, 0),
+        //.footprint = gMonFootprint_Quaxwell,
+        LEARNSETS(Quaxwell),
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_QUAQUAVAL}),
     },
 
     [SPECIES_QUAQUAVAL] =
@@ -53270,6 +53491,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TORRENT, ABILITY_NONE, ABILITY_MOXIE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .speciesName = _("Quaquaval"),
+        .cryId = CRY_QUAQUAVAL,
+        .natDexNum = NATIONAL_DEX_QUAQUAVAL,
+        .categoryName = _("Dancer"),
+        .height = 18,
+        .weight = 619,
+        .description = COMPOUND_STRING(
+            "A single kick from a Quaquaval can\n"
+            "send a truck rolling. This Pokémon\n"
+            "uses its powerful legs to perform\n"
+            "striking dances from far-off lands."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Quaquaval, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Quaquaval,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Quaquaval, 64, 64),
+        .backPicYOffset =  1,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Quaquaval),
+        ICON(Quaquaval, 0),
+        //.footprint = gMonFootprint_Quaquaval,
+        LEARNSETS(Quaquaval),
     },
 #endif //P_FAMILY_QUAXLY
 
@@ -53294,6 +53541,34 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_AROMA_VEIL, ABILITY_GLUTTONY, ABILITY_THICK_FAT},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .speciesName = _("Lechonk"),
+        .cryId = CRY_LECHONK,
+        .natDexNum = NATIONAL_DEX_LECHONK,
+        .categoryName = _("Hog"),
+        .height = 5,
+        .weight = 102,
+        .description = COMPOUND_STRING(
+            "It searches for food all day. It\n"
+            "possesses a keen sense of smell but\n"
+            "doesn't use it for anything other\n"
+            "than foraging."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Lechonk, 64, 64),
+        .frontPicYOffset =  10,
+        .frontAnimFrames = sAnims_Lechonk,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Lechonk, 64, 64),
+        .backPicYOffset =  11,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Lechonk),
+        ICON(Lechonk, 1),
+        //.footprint = gMonFootprint_Lechonk,
+        LEARNSETS(Lechonk),
+        .evolutions = EVOLUTION({EVO_LEVEL_MALE, 18, SPECIES_OINKOLOGNE_MALE},
+                                {EVO_LEVEL_FEMALE, 18, SPECIES_OINKOLOGNE_FEMALE}),
     },
 
 #define OINKOLOGNE_MISC_INFO                                \
@@ -53356,6 +53631,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INSOMNIA, ABILITY_NONE, ABILITY_STAKEOUT},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .speciesName = _("Tarountula"),
+        .cryId = CRY_TAROUNTULA,
+        .natDexNum = NATIONAL_DEX_TAROUNTULA,
+        .categoryName = _("String Ball"),
+        .height = 3,
+        .weight = 40,
+        .description = COMPOUND_STRING(
+            "The thread it secretes from its\n"
+            "rear is as strong as wire. The secret\n"
+            "behind the thread's strength is the\n"
+            "topic of ongoing research."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Tarountula, 64, 64),
+        .frontPicYOffset =  11,
+        .frontAnimFrames = sAnims_Tarountula,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Tarountula, 64, 64),
+        .backPicYOffset =  11,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Tarountula),
+        ICON(Tarountula, 1),
+        //.footprint = gMonFootprint_Tarountula,
+        LEARNSETS(Tarountula),
+        .evolutions = EVOLUTION({EVO_LEVEL, 15, SPECIES_SPIDOPS}),
     },
 
     [SPECIES_SPIDOPS] =
@@ -53378,6 +53680,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INSOMNIA, ABILITY_NONE, ABILITY_STAKEOUT},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .speciesName = _("Spidops"),
+        .cryId = CRY_SPIDOPS,
+        .natDexNum = NATIONAL_DEX_SPIDOPS,
+        .categoryName = _("Trap"),
+        .height = 10,
+        .weight = 165,
+        .description = COMPOUND_STRING(
+            "It clings to branches and ceilings\n"
+            "using its threads and moves without\n"
+            "a sound. It takes out its prey\n"
+            "before the prey even notices it."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Spidops, 64, 64),
+        .frontPicYOffset =  5,
+        .frontAnimFrames = sAnims_Spidops,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Spidops, 64, 64),
+        .backPicYOffset =  11,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Spidops),
+        ICON(Spidops, 1),
+        //.footprint = gMonFootprint_Spidops,
+        LEARNSETS(Spidops),
     },
 #endif //P_FAMILY_TAROUNTULA
 
@@ -53402,6 +53730,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SWARM, ABILITY_NONE, ABILITY_TINTED_LENS},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .speciesName = _("Nymble"),
+        .cryId = CRY_NYMBLE,
+        .natDexNum = NATIONAL_DEX_NYMBLE,
+        .categoryName = _("Grasshopper"),
+        .height = 2,
+        .weight = 10,
+        .description = COMPOUND_STRING(
+            "It has its third set of legs folded\n"
+            "up. When it's in a tough spot, this\n"
+            "Pokémon jumps over 30 feet using the\n"
+            "strength of its legs."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Nymble, 64, 64),
+        .frontPicYOffset =  5,
+        .frontAnimFrames = sAnims_Nymble,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Nymble, 64, 64),
+        .backPicYOffset =  14,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Nymble),
+        ICON(Nymble, 0),
+        //.footprint = gMonFootprint_Nymble,
+        LEARNSETS(Nymble),
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_LOKIX}),
     },
 
     [SPECIES_LOKIX] =
@@ -53424,6 +53779,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SWARM, ABILITY_NONE, ABILITY_TINTED_LENS},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .speciesName = _("Lokix"),
+        .cryId = CRY_LOKIX,
+        .natDexNum = NATIONAL_DEX_LOKIX,
+        .categoryName = _("Grasshopper"),
+        .height = 10,
+        .weight = 175,
+        .description = COMPOUND_STRING(
+            "When it decides to fight all out, it\n"
+            "stands on its previously folded\n"
+            "legs to enter Showdown Mode. It\n"
+            "neutralizes its enemies in short order."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Lokix, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Lokix,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Lokix, 64, 64),
+        .backPicYOffset =  7,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Lokix),
+        ICON(Lokix, 0),
+        //.footprint = gMonFootprint_Lokix,
+        LEARNSETS(Lokix),
     },
 #endif //P_FAMILY_NYMBLE
 
@@ -53448,6 +53829,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_STATIC, ABILITY_NATURAL_CURE, ABILITY_IRON_FIST},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .speciesName = _("Pawmi"),
+        .cryId = CRY_PAWMI,
+        .natDexNum = NATIONAL_DEX_PAWMI,
+        .categoryName = _("Mouse"),
+        .height = 3,
+        .weight = 25,
+        .description = COMPOUND_STRING(
+            "The pads of its paws are\n"
+            "electricity-discharging organs. Pawmi fires\n"
+            "electricity from its forepaws while\n"
+            "standing unsteadily on its hind legs."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Pawmi, 64, 64),
+        .frontPicYOffset =  7,
+        .frontAnimFrames = sAnims_Pawmi,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Pawmi, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Pawmi),
+        ICON(Pawmi, 3),
+        //.footprint = gMonFootprint_Pawmi,
+        LEARNSETS(Pawmi),
+        .evolutions = EVOLUTION({EVO_LEVEL, 18, SPECIES_PAWMO}),
     },
 
     [SPECIES_PAWMO] =
@@ -53470,6 +53878,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_VOLT_ABSORB, ABILITY_NATURAL_CURE, ABILITY_IRON_FIST},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .speciesName = _("Pawmo"),
+        .cryId = CRY_PAWMO,
+        .natDexNum = NATIONAL_DEX_PAWMO,
+        .categoryName = _("Mouse"),
+        .height = 4,
+        .weight = 65,
+        .description = COMPOUND_STRING(
+            "When its group is attacked, Pawmo\n"
+            "is the first to leap into battle,\n"
+            "defeating enemies with a fighting\n"
+            "technique that utilizes electric shocks."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Pawmo, 64, 64),
+        .frontPicYOffset =  2,
+        .frontAnimFrames = sAnims_Pawmo,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Pawmo, 64, 64),
+        .backPicYOffset =  4,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Pawmo),
+        ICON(Pawmo, 3),
+        //.footprint = gMonFootprint_Pawmo,
+        LEARNSETS(Pawmo),
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_PAWMOT}),
     },
 
     [SPECIES_PAWMOT] =
@@ -53492,6 +53927,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_VOLT_ABSORB, ABILITY_NATURAL_CURE, ABILITY_IRON_FIST},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .speciesName = _("Pawmot"),
+        .cryId = CRY_PAWMOT,
+        .natDexNum = NATIONAL_DEX_PAWMOT,
+        .categoryName = _("Hands-On"),
+        .height = 9,
+        .weight = 410,
+        .description = COMPOUND_STRING(
+            "This Pokémon normally is slow to\n"
+            "react, but once it enters battle, it\n"
+            "will strike down its enemies with\n"
+            "lightning-fast movements."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Pawmot, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Pawmot,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Pawmot, 64, 64),
+        .backPicYOffset =  6,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Pawmot),
+        ICON(Pawmot, 3),
+        //.footprint = gMonFootprint_Pawmot,
+        LEARNSETS(Pawmot),
     },
 #endif //P_FAMILY_PAWMI
 
@@ -53516,6 +53977,34 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_RUN_AWAY, ABILITY_PICKUP, ABILITY_OWN_TEMPO},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .speciesName = _("Tandemaus"),
+        .cryId = CRY_TANDEMAUS,
+        .natDexNum = NATIONAL_DEX_TANDEMAUS,
+        .categoryName = _("Couple"),
+        .height = 3,
+        .weight = 18,
+        .description = COMPOUND_STRING(
+            "Exhibiting great teamwork, they\n"
+            "use their incisors to cut pieces out\n"
+            "of any material that might be useful\n"
+            "for a nest, then make off with them."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Tandemaus, 64, 64),
+        .frontPicYOffset =  11,
+        .frontAnimFrames = sAnims_Tandemaus,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Tandemaus, 64, 64),
+        .backPicYOffset =  15,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Tandemaus),
+        ICON(Tandemaus, 0),
+        //.footprint = gMonFootprint_Tandemaus,
+        LEARNSETS(Tandemaus),
+        .evolutions = EVOLUTION({EVO_LEVEL_FAMILY_OF_FOUR, 25, SPECIES_MAUSHOLD_FAMILY_OF_FOUR},
+                                {EVO_LEVEL_FAMILY_OF_THREE, 25, SPECIES_MAUSHOLD_FAMILY_OF_THREE}),
     },
 
 #define MAUSHOLD_SPECIES_INFO                                                           \
@@ -53565,6 +54054,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_KLUTZ},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .speciesName = _("Fidough"),
+        .cryId = CRY_FIDOUGH,
+        .natDexNum = NATIONAL_DEX_FIDOUGH,
+        .categoryName = _("Puppy"),
+        .height = 3,
+        .weight = 109,
+        .description = COMPOUND_STRING(
+            "This Pokémon is smooth and moist\n"
+            "to the touch. Yeast in Fidough's\n"
+            "breath induces fermentation in the\n"
+            "Pokémon's vicinity."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Fidough, 64, 64),
+        .frontPicYOffset =  13,
+        .frontAnimFrames = sAnims_Fidough,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Fidough, 64, 64),
+        .backPicYOffset =  12,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Fidough),
+        ICON(Fidough, 1),
+        //.footprint = gMonFootprint_Fidough,
+        LEARNSETS(Fidough),
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_DACHSBUN}),
     },
 
     [SPECIES_DACHSBUN] =
@@ -53587,6 +54103,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_WELL_BAKED_BODY, ABILITY_NONE, ABILITY_AROMA_VEIL},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .speciesName = _("Dachsbun"),
+        .cryId = CRY_DACHSBUN,
+        .natDexNum = NATIONAL_DEX_DACHSBUN,
+        .categoryName = _("Dog"),
+        .height = 5,
+        .weight = 149,
+        .description = COMPOUND_STRING(
+            "The pleasant aroma that emanates\n"
+            "from this Pokémon's body helps\n"
+            "wheat grow, so Dachsbun has been\n"
+            "treasured by farming villages."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Dachsbun, 64, 64),
+        .frontPicYOffset =  6,
+        .frontAnimFrames = sAnims_Dachsbun,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Dachsbun, 64, 64),
+        .backPicYOffset =  9,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Dachsbun),
+        ICON(Dachsbun, 0), // TODO
+        //.footprint = gMonFootprint_Dachsbun,
+        LEARNSETS(Dachsbun),
     },
 #endif //P_FAMILY_FIDOUGH
 
@@ -53611,6 +54153,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_EARLY_BIRD, ABILITY_NONE, ABILITY_HARVEST},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .speciesName = _("Smoliv"),
+        .cryId = CRY_SMOLIV,
+        .natDexNum = NATIONAL_DEX_SMOLIV,
+        .categoryName = _("Olive"),
+        .height = 3,
+        .weight = 65,
+        .description = COMPOUND_STRING(
+            "This Pokémon converts nutrients\n"
+            "into oil, which it stores in the fruit\n"
+            "on its head. It can easily go a whole\n"
+            "week without eating or drinking."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Smoliv, 64, 64),
+        .frontPicYOffset =  13,
+        .frontAnimFrames = sAnims_Smoliv,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Smoliv, 64, 64),
+        .backPicYOffset =  13,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Smoliv),
+        ICON(Smoliv, 1),
+        //.footprint = gMonFootprint_Smoliv,
+        LEARNSETS(Smoliv),
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_DOLLIV}),
     },
 
     [SPECIES_DOLLIV] =
@@ -53633,6 +54202,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_EARLY_BIRD, ABILITY_NONE, ABILITY_HARVEST},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .speciesName = _("Dolliv"),
+        .cryId = CRY_DOLLIV,
+        .natDexNum = NATIONAL_DEX_DOLLIV,
+        .categoryName = _("Olive"),
+        .height = 6,
+        .weight = 119,
+        .description = COMPOUND_STRING(
+            "Dolliv shares its tasty, fresh-\n"
+            "scented oil with others. This species\n"
+            "has coexisted with humans since\n"
+            "times long gone."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Dolliv, 64, 64),
+        .frontPicYOffset =  3,
+        .frontAnimFrames = sAnims_Dolliv,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Dolliv, 64, 64),
+        .backPicYOffset =  2,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Dolliv),
+        ICON(Dolliv, 1),
+        //.footprint = gMonFootprint_Dolliv,
+        LEARNSETS(Dolliv),
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_ARBOLIVA}),
     },
 
     [SPECIES_ARBOLIVA] =
@@ -53655,6 +54251,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SEED_SOWER, ABILITY_NONE, ABILITY_HARVEST},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .speciesName = _("Arboliva"),
+        .cryId = CRY_ARBOLIVA,
+        .natDexNum = NATIONAL_DEX_ARBOLIVA,
+        .categoryName = _("Olive"),
+        .height = 14,
+        .weight = 482,
+        .description = COMPOUND_STRING(
+            "This Pokémon drives back enemies\n"
+            "by launching its rich, aromatic oil at\n"
+            "them with enough force to smash a\n"
+            "boulder."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Arboliva, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Arboliva,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Arboliva, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Arboliva),
+        ICON(Arboliva, 5),
+        //.footprint = gMonFootprint_Arboliva,
+        LEARNSETS(Arboliva),
     },
 #endif //P_FAMILY_SMOLIV
 
@@ -53727,6 +54349,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PURIFYING_SALT, ABILITY_STURDY, ABILITY_CLEAR_BODY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .speciesName = _("Nacli"),
+        .cryId = CRY_NACLI,
+        .natDexNum = NATIONAL_DEX_NACLI,
+        .categoryName = _("Rock Salt"),
+        .height = 4,
+        .weight = 160,
+        .description = COMPOUND_STRING(
+            "The ground scrapes its body as it\n"
+            "travels, causing it to leave salt\n"
+            "behind. Salt is constantly being created\n"
+            "and replenished inside Nacli's body."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Nacli, 64, 64),
+        .frontPicYOffset =  8,
+        .frontAnimFrames = sAnims_Nacli,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Nacli, 64, 64),
+        .backPicYOffset =  10,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Nacli),
+        ICON(Nacli, 2),
+        //.footprint = gMonFootprint_Nacli,
+        LEARNSETS(Nacli),
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_NACLSTACK}),
     },
 
     [SPECIES_NACLSTACK] =
@@ -53749,6 +54398,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PURIFYING_SALT, ABILITY_STURDY, ABILITY_CLEAR_BODY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .speciesName = _("Naclstack"),
+        .cryId = CRY_NACLSTACK,
+        .natDexNum = NATIONAL_DEX_NACLSTACK,
+        .categoryName = _("Rock Salt"),
+        .height = 6,
+        .weight = 1050,
+        .description = COMPOUND_STRING(
+            "It compresses rock salt inside its\n"
+            "body and shoots out hardened salt\n"
+            "pellets with enough force to\n"
+            "perforate an iron sheet."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Naclstack, 64, 64),
+        .frontPicYOffset =  2,
+        .frontAnimFrames = sAnims_Naclstack,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Naclstack, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Naclstack),
+        ICON(Naclstack, 2), // TODO: recolor
+        //.footprint = gMonFootprint_Naclstack,
+        LEARNSETS(Naclstack),
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_GARGANACL}),
     },
 
     [SPECIES_GARGANACL] =
@@ -53771,6 +54447,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PURIFYING_SALT, ABILITY_STURDY, ABILITY_CLEAR_BODY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .speciesName = _("Garganacl"),
+        .cryId = CRY_GARGANACL,
+        .natDexNum = NATIONAL_DEX_GARGANACL,
+        .categoryName = _("Rock Salt"),
+        .height = 23,
+        .weight = 2400,
+        .description = COMPOUND_STRING(
+            "Garganacl will rub its fingertips\n"
+            "together and sprinkle injured\n"
+            "Pokémon with salt. Even severe wounds will\n"
+            "promptly heal afterward."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Garganacl, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Garganacl,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Garganacl, 64, 64),
+        .backPicYOffset =  2,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Garganacl),
+        ICON(Garganacl, 2),
+        //.footprint = gMonFootprint_Garganacl,
+        LEARNSETS(Garganacl),
     },
 #endif //P_FAMILY_NACLI
 
@@ -53795,6 +54497,34 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_FLASH_FIRE, ABILITY_NONE, ABILITY_FLAME_BODY},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .speciesName = _("Charcadet"),
+        .cryId = CRY_CHARCADET,
+        .natDexNum = NATIONAL_DEX_CHARCADET,
+        .categoryName = _("Fire Child"),
+        .height = 6,
+        .weight = 105,
+        .description = COMPOUND_STRING(
+            "Burnt charcoal came to life and\n"
+            "became a Pokémon. Possessing a fiery\n"
+            "fighting spirit, Charcadet will\n"
+            "battle even tough opponents."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Charcadet, 64, 64),
+        .frontPicYOffset =  2,
+        .frontAnimFrames = sAnims_Charcadet,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Charcadet, 64, 64),
+        .backPicYOffset =  3,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Charcadet),
+        ICON(Charcadet, 1),
+        //.footprint = gMonFootprint_Charcadet,
+        LEARNSETS(Charcadet),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_AUSPICIOUS_ARMOR, SPECIES_ARMAROUGE},
+                                {EVO_ITEM, ITEM_MALICIOUS_ARMOR, SPECIES_CERULEDGE}),
     },
 
     [SPECIES_ARMAROUGE] =
@@ -53817,6 +54547,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_FLASH_FIRE, ABILITY_NONE, ABILITY_WEAK_ARMOR},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .speciesName = _("Armarouge"),
+        .cryId = CRY_ARMAROUGE,
+        .natDexNum = NATIONAL_DEX_ARMAROUGE,
+        .categoryName = _("Fire Warrior"),
+        .height = 15,
+        .weight = 850,
+        .description = COMPOUND_STRING(
+            "Armarouge evolved through the use\n"
+            "of a set of armor that belonged to\n"
+            "a distinguished warrior. This\n"
+            "Pokémon is incredibly loyal."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Armarouge, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Armarouge,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Armarouge, 64, 64),
+        .backPicYOffset =  3,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Armarouge),
+        ICON(Armarouge, 0),
+        //.footprint = gMonFootprint_Armarouge,
+        LEARNSETS(Armarouge),
     },
 
     [SPECIES_CERULEDGE] =
@@ -53839,6 +54595,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_FLASH_FIRE, ABILITY_NONE, ABILITY_WEAK_ARMOR},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .speciesName = _("Ceruledge"),
+        .cryId = CRY_CERULEDGE,
+        .natDexNum = NATIONAL_DEX_CERULEDGE,
+        .categoryName = _("Fire Blades"),
+        .height = 16,
+        .weight = 620,
+        .description = COMPOUND_STRING(
+            "The fiery blades on its arms burn\n"
+            "fiercely with the lingering\n"
+            "resentment of a sword wielder who fell\n"
+            "before accomplishing their goal."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Ceruledge, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Ceruledge,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Ceruledge, 64, 64),
+        .backPicYOffset =  5,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Ceruledge),
+        ICON(Ceruledge, 2),
+        //.footprint = gMonFootprint_Ceruledge,
+        LEARNSETS(Ceruledge),
     },
 #endif //P_FAMILY_CHARCADET
 
@@ -53863,6 +54645,34 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_STATIC, ABILITY_DAMP},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .speciesName = _("Tadbulb"),
+        .cryId = CRY_TADBULB,
+        .natDexNum = NATIONAL_DEX_TADBULB,
+        .categoryName = _("EleTadpole"),
+        .height = 3,
+        .weight = 4,
+        .description = COMPOUND_STRING(
+            "Tadbulb shakes its tail to\n"
+            "generate electricity. If it senses danger,\n"
+            "it will make its head blink on and off\n"
+            "to alert its allies."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Tadbulb, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Tadbulb,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 12,
+        BACK_PIC(Tadbulb, 64, 64),
+        .backPicYOffset =  8,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Tadbulb),
+        ICON(Tadbulb, 5), // TODO: Redo to 0
+        //.footprint = gMonFootprint_Tadbulb,
+        LEARNSETS(Tadbulb),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_BELLIBOLT}),
     },
 
     [SPECIES_BELLIBOLT] =
@@ -53885,6 +54695,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_ELECTROMORPHOSIS, ABILITY_STATIC, ABILITY_DAMP},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .speciesName = _("Bellibolt"),
+        .cryId = CRY_BELLIBOLT,
+        .natDexNum = NATIONAL_DEX_BELLIBOLT,
+        .categoryName = _("EleFrog"),
+        .height = 12,
+        .weight = 1130,
+        .description = COMPOUND_STRING(
+            "When this Pokémon expands and\n"
+            "contracts its wobbly body, the belly-\n"
+            "button dynamo in its stomach\n"
+            "produces a huge amount of electricity."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Bellibolt, 64, 64),
+        .frontPicYOffset =  7,
+        .frontAnimFrames = sAnims_Bellibolt,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Bellibolt, 64, 64),
+        .backPicYOffset =  10,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Bellibolt),
+        ICON(Bellibolt, 0),
+        //.footprint = gMonFootprint_Bellibolt,
+        LEARNSETS(Bellibolt),
     },
 #endif //P_FAMILY_TADBULB
 
@@ -53909,6 +54745,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_WIND_POWER, ABILITY_VOLT_ABSORB, ABILITY_COMPETITIVE},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .speciesName = _("Wattrel"),
+        .cryId = CRY_WATTREL,
+        .natDexNum = NATIONAL_DEX_WATTREL,
+        .categoryName = _("Storm Petrel"),
+        .height = 4,
+        .weight = 36,
+        .description = COMPOUND_STRING(
+            "When its wings catch the wind, the\n"
+            "bones within produce electricity.\n"
+            "This Pokémon dives into the ocean,\n"
+            "catching prey by electrocuting them."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Wattrel, 64, 64),
+        .frontPicYOffset =  11,
+        .frontAnimFrames = sAnims_Wattrel,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Wattrel, 64, 64),
+        .backPicYOffset =  14,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Wattrel),
+        ICON(Wattrel, 3),
+        //.footprint = gMonFootprint_Wattrel,
+        LEARNSETS(Wattrel),
+        .evolutions = EVOLUTION({EVO_LEVEL, 25, SPECIES_KILOWATTREL}),
     },
 
     [SPECIES_KILOWATTREL] =
@@ -53931,6 +54794,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_WIND_POWER, ABILITY_VOLT_ABSORB, ABILITY_COMPETITIVE},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .speciesName = _("Kilowatrel"),
+        .cryId = CRY_KILOWATTREL,
+        .natDexNum = NATIONAL_DEX_KILOWATTREL,
+        .categoryName = _("Frigatebird"),
+        .height = 14,
+        .weight = 386,
+        .description = COMPOUND_STRING(
+            "It uses its throat sac to store\n"
+            "electricity generated by its wings.\n"
+            "There's hardly any oil in its feathers,\n"
+            "so it is a poor swimmer."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Kilowattrel, 64, 64),
+        .frontPicYOffset =  5,
+        .frontAnimFrames = sAnims_Kilowattrel,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Kilowattrel, 64, 64),
+        .backPicYOffset =  7,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Kilowattrel),
+        ICON(Kilowattrel, 3),
+        //.footprint = gMonFootprint_Kilowattrel,
+        LEARNSETS(Kilowattrel),
     },
 #endif //P_FAMILY_WATTREL
 
@@ -53955,6 +54844,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_RUN_AWAY, ABILITY_STAKEOUT},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .speciesName = _("Maschiff"),
+        .cryId = CRY_MASCHIFF,
+        .natDexNum = NATIONAL_DEX_MASCHIFF,
+        .categoryName = _("Rascal"),
+        .height = 5,
+        .weight = 160,
+        .description = COMPOUND_STRING(
+            "Its well-developed jaw and fangs\n"
+            "are strong enough to crunch through\n"
+            "boulders, and its thick fat makes\n"
+            "for an excellent defense."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Maschiff, 64, 64),
+        .frontPicYOffset =  6,
+        .frontAnimFrames = sAnims_Maschiff,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Maschiff, 64, 64),
+        .backPicYOffset =  10,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Maschiff),
+        ICON(Maschiff, 3),
+        //.footprint = gMonFootprint_Maschiff,
+        LEARNSETS(Maschiff),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_MABOSSTIFF}),
     },
 
     [SPECIES_MABOSSTIFF] =
@@ -53977,6 +54893,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_GUARD_DOG, ABILITY_STAKEOUT},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .speciesName = _("Mabosstiff"),
+        .cryId = CRY_MABOSSTIFF,
+        .natDexNum = NATIONAL_DEX_MABOSSTIFF,
+        .categoryName = _("Boss"),
+        .height = 11,
+        .weight = 610,
+        .description = COMPOUND_STRING(
+            "Mabosstiff loves playing with\n"
+            "children. Though usually gentle, it\n"
+            "takes on an intimidating look when\n"
+            "protecting its family."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Mabosstiff, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Mabosstiff,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Mabosstiff, 64, 64),
+        .backPicYOffset =  14,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Mabosstiff),
+        ICON(Mabosstiff, 5),
+        //.footprint = gMonFootprint_Mabosstiff,
+        LEARNSETS(Mabosstiff),
     },
 #endif //P_FAMILY_MASCHIFF
 
@@ -54001,6 +54943,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_UNBURDEN, ABILITY_PICKPOCKET, ABILITY_PRANKSTER},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .speciesName = _("Shroodle"),
+        .cryId = CRY_SHROODLE,
+        .natDexNum = NATIONAL_DEX_SHROODLE,
+        .categoryName = _("Toxic Mouse"),
+        .height = 2,
+        .weight = 7,
+        .description = COMPOUND_STRING(
+            "To keep enemies away from its\n"
+            "territory, it paints markings around its\n"
+            "nest using a poisonous liquid that\n"
+            "has an acrid odor."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Shroodle, 64, 64),
+        .frontPicYOffset =  15,
+        .frontAnimFrames = sAnims_Shroodle,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Shroodle, 64, 64),
+        .backPicYOffset =  16,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Shroodle),
+        ICON(Shroodle, 0),
+        //.footprint = gMonFootprint_Shroodle,
+        LEARNSETS(Shroodle),
+        .evolutions = EVOLUTION({EVO_LEVEL, 28, SPECIES_GRAFAIAI}),
     },
 
     [SPECIES_GRAFAIAI] =
@@ -54023,6 +54992,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_UNBURDEN, ABILITY_POISON_TOUCH, ABILITY_PRANKSTER},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .speciesName = _("Grafaiai"),
+        .cryId = CRY_GRAFAIAI,
+        .natDexNum = NATIONAL_DEX_GRAFAIAI,
+        .categoryName = _("Toxic Monkey"),
+        .height = 7,
+        .weight = 272,
+        .description = COMPOUND_STRING(
+            "Each Grafaiai paints its own\n"
+            "individual pattern, and it will paint that\n"
+            "same pattern over and over again\n"
+            "throughout its life."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Grafaiai, 64, 64),
+        .frontPicYOffset =  9,
+        .frontAnimFrames = sAnims_Grafaiai,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Grafaiai, 64, 64),
+        .backPicYOffset =  12,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Grafaiai),
+        ICON(Grafaiai, 0),
+        //.footprint = gMonFootprint_Grafaiai,
+        LEARNSETS(Grafaiai),
     },
 #endif //P_FAMILY_SHROODLE
 
@@ -54047,6 +55042,34 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_WIND_RIDER, ABILITY_NONE, ABILITY_INFILTRATOR},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .speciesName = _("Bramblin"),
+        .cryId = CRY_BRAMBLIN,
+        .natDexNum = NATIONAL_DEX_BRAMBLIN,
+        .categoryName = _("Tumbleweed"),
+        .height = 6,
+        .weight = 6,
+        .description = COMPOUND_STRING(
+            "A soul unable to move on to the\n"
+            "afterlife was blown around by the wind\n"
+            "until it got tangled up with dried\n"
+            "grass and became a Pokémon."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Bramblin, 64, 64),
+        .frontPicYOffset =  13,
+        .frontAnimFrames = sAnims_Bramblin,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 1,
+        BACK_PIC(Bramblin, 64, 64),
+        .backPicYOffset =  14,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Bramblin),
+        ICON(Bramblin, 3),
+        //.footprint = gMonFootprint_Bramblin,
+        LEARNSETS(Bramblin),
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_BRAMBLEGHAST}),
     },
 
     [SPECIES_BRAMBLEGHAST] =
@@ -54069,6 +55092,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_WIND_RIDER, ABILITY_NONE, ABILITY_INFILTRATOR},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .speciesName = _("Brmblghast"),
+        .cryId = CRY_BRAMBLEGHAST,
+        .natDexNum = NATIONAL_DEX_BRAMBLEGHAST,
+        .categoryName = _("Tumbleweed"),
+        .height = 12,
+        .weight = 60,
+        .description = COMPOUND_STRING(
+            "It will open the branches of its\n"
+            "head to envelop its prey. Once it\n"
+            "absorbs all the life energy it needs, it\n"
+            "expels the prey and discards it."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Brambleghast, 64, 64),
+        .frontPicYOffset =  7,
+        .frontAnimFrames = sAnims_Brambleghast,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 1,
+        BACK_PIC(Brambleghast, 64, 64),
+        .backPicYOffset =  7,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Brambleghast),
+        ICON(Brambleghast, 5),
+        //.footprint = gMonFootprint_Brambleghast,
+        LEARNSETS(Brambleghast),
     },
 #endif //P_FAMILY_BRAMBLIN
 
@@ -54093,6 +55143,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MYCELIUM_MIGHT, ABILITY_NONE},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .speciesName = _("Toedscool"),
+        .cryId = CRY_TOEDSCOOL,
+        .natDexNum = NATIONAL_DEX_TOEDSCOOL,
+        .categoryName = _("Woodear"),
+        .height = 9,
+        .weight = 330,
+        .description = COMPOUND_STRING(
+            "Though it looks like Tentacool,\n"
+            "Toedscool is a completely different\n"
+            "species. Its legs may be thin, but it\n"
+            "can run at a speed of 30 mph."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Toedscool, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Toedscool,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Toedscool, 64, 64),
+        .backPicYOffset =  8,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Toedscool),
+        ICON(Toedscool, 0),
+        //.footprint = gMonFootprint_Toedscool,
+        LEARNSETS(Toedscool),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_TOEDSCRUEL}),
     },
 
     [SPECIES_TOEDSCRUEL] =
@@ -54115,6 +55192,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MYCELIUM_MIGHT, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .speciesName = _("Toedscruel"),
+        .cryId = CRY_TOEDSCRUEL,
+        .natDexNum = NATIONAL_DEX_TOEDSCRUEL,
+        .categoryName = _("Woodear"),
+        .height = 19,
+        .weight = 580,
+        .description = COMPOUND_STRING(
+            "These Pokémon gather into groups\n"
+            "and form colonies deep within\n"
+            "forests. They absolutely hate it when\n"
+            "strangers approach."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Toedscruel, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Toedscruel,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Toedscruel, 64, 64),
+        .backPicYOffset =  11,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Toedscruel),
+        ICON(Toedscruel, 0),
+        //.footprint = gMonFootprint_Toedscruel,
+        LEARNSETS(Toedscruel),
     },
 #endif //P_FAMILY_TOEDSCOOL
 
@@ -54139,6 +55242,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_ANGER_SHELL, ABILITY_SHELL_ARMOR, ABILITY_REGENERATOR},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .speciesName = _("Klawf"),
+        .cryId = CRY_KLAWF,
+        .natDexNum = NATIONAL_DEX_KLAWF,
+        .categoryName = _("Ambush"),
+        .height = 13,
+        .weight = 790,
+        .description = COMPOUND_STRING(
+            "Klawf hangs upside-down from\n"
+            "cliffs, waiting for prey. But Klawf can't\n"
+            "remain in this position for long\n"
+            "because its blood rushes to its head."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Klawf, 64, 64),
+        .frontPicYOffset =  14,
+        .frontAnimFrames = sAnims_Klawf,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Klawf, 64, 64),
+        .backPicYOffset =  20,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Klawf),
+        ICON(Klawf, 0),
+        //.footprint = gMonFootprint_Klawf,
+        LEARNSETS(Klawf),
     },
 #endif //P_FAMILY_KLAWF
 
@@ -54163,6 +55292,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_INSOMNIA, ABILITY_KLUTZ},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .speciesName = _("Capsakid"),
+        .cryId = CRY_CAPSAKID,
+        .natDexNum = NATIONAL_DEX_CAPSAKID,
+        .categoryName = _("Spicy Pepper"),
+        .height = 3,
+        .weight = 30,
+        .description = COMPOUND_STRING(
+            "The more sunlight this Pokémon\n"
+            "bathes in, the more spicy chemicals are\n"
+            "produced by its body, and thus the\n"
+            "spicier its moves become."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Capsakid, 64, 64),
+        .frontPicYOffset =  10,
+        .frontAnimFrames = sAnims_Capsakid,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Capsakid, 64, 64),
+        .backPicYOffset =  12,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Capsakid),
+        ICON(Capsakid, 1),
+        //.footprint = gMonFootprint_Capsakid,
+        LEARNSETS(Capsakid),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_FIRE_STONE, SPECIES_SCOVILLAIN}),
     },
 
     [SPECIES_SCOVILLAIN] =
@@ -54185,6 +55341,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_CHLOROPHYLL, ABILITY_INSOMNIA, ABILITY_MOODY},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .speciesName = _("Scovillain"),
+        .cryId = CRY_SCOVILLAIN,
+        .natDexNum = NATIONAL_DEX_SCOVILLAIN,
+        .categoryName = _("Spicy Pepper"),
+        .height = 9,
+        .weight = 150,
+        .description = COMPOUND_STRING(
+            "The green head has turned vicious\n"
+            "due to the spicy chemicals\n"
+            "stimulating its brain. Once it goes on a\n"
+            "rampage, there is no stopping it."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Scovillain, 64, 64),
+        .frontPicYOffset =  3,
+        .frontAnimFrames = sAnims_Scovillain,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Scovillain, 64, 64),
+        .backPicYOffset =  8,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Scovillain),
+        ICON(Scovillain, 1),
+        //.footprint = gMonFootprint_Scovillain,
+        LEARNSETS(Scovillain),
     },
 #endif //P_FAMILY_CAPSAKID
 
@@ -54209,6 +55391,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_SHED_SKIN},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .speciesName = _("Rellor"),
+        .cryId = CRY_RELLOR,
+        .natDexNum = NATIONAL_DEX_RELLOR,
+        .categoryName = _("Rolling"),
+        .height = 2,
+        .weight = 10,
+        .description = COMPOUND_STRING(
+            "This Pokémon creates a mud ball by\n"
+            "mixing sand and dirt with psychic\n"
+            "energy. It treasures its mud ball more\n"
+            "than its own life."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Rellor, 64, 64),
+        .frontPicYOffset =  10,
+        .frontAnimFrames = sAnims_Rellor,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Rellor, 64, 64),
+        .backPicYOffset =  15,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Rellor),
+        ICON(Rellor, 5),
+        //.footprint = gMonFootprint_Rellor,
+        LEARNSETS(Rellor),
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_RABSCA}),
     },
 
     [SPECIES_RABSCA] =
@@ -54231,6 +55440,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SYNCHRONIZE, ABILITY_NONE, ABILITY_TELEPATHY},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .speciesName = _("Rabsca"),
+        .cryId = CRY_RABSCA,
+        .natDexNum = NATIONAL_DEX_RABSCA,
+        .categoryName = _("Rolling"),
+        .height = 3,
+        .weight = 35,
+        .description = COMPOUND_STRING(
+            "The body that supports the ball\n"
+            "barely moves. Therefore, it is thought\n"
+            "that the true body of this Pokémon\n"
+            "is actually inside the ball."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Rabsca, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Rabsca,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Rabsca, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Rabsca),
+        ICON(Rabsca, 0),
+        //.footprint = gMonFootprint_Rabsca,
+        LEARNSETS(Rabsca),
     },
 #endif //P_FAMILY_RELLOR
 
@@ -54255,6 +55490,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_ANTICIPATION, ABILITY_FRISK, ABILITY_SPEED_BOOST},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .speciesName = _("Flittle"),
+        .cryId = CRY_FLITTLE,
+        .natDexNum = NATIONAL_DEX_FLITTLE,
+        .categoryName = _("Frill"),
+        .height = 2,
+        .weight = 15,
+        .description = COMPOUND_STRING(
+            "Flittle's toes levitate about half\n"
+            "an inch above the ground because of\n"
+            "the psychic power emitted from the\n"
+            "frills on the Pokémon's belly."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Flittle, 64, 64),
+        .frontPicYOffset =  12,
+        .frontAnimFrames = sAnims_Flittle,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Flittle, 64, 64),
+        .backPicYOffset =  9,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Flittle),
+        ICON(Flittle, 3),
+        //.footprint = gMonFootprint_Flittle,
+        LEARNSETS(Flittle),
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_ESPATHRA}),
     },
 
     [SPECIES_ESPATHRA] =
@@ -54277,6 +55539,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OPPORTUNIST, ABILITY_FRISK, ABILITY_SPEED_BOOST},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .speciesName = _("Espathra"),
+        .cryId = CRY_ESPATHRA,
+        .natDexNum = NATIONAL_DEX_ESPATHRA,
+        .categoryName = _("Ostrich"),
+        .height = 19,
+        .weight = 900,
+        .description = COMPOUND_STRING(
+            "It immobilizes opponents by\n"
+            "bathing them in psychic power from its\n"
+            "large eyes. Despite its appearance, it\n"
+            "has a vicious temperament."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Espathra, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Espathra,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Espathra, 64, 64),
+        .backPicYOffset =  11,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Espathra),
+        ICON(Espathra, 5),
+        //.footprint = gMonFootprint_Espathra,
+        LEARNSETS(Espathra),
     },
 #endif //P_FAMILY_FLITTLE
 
@@ -54301,6 +55589,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MOLD_BREAKER, ABILITY_OWN_TEMPO, ABILITY_PICKPOCKET},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .speciesName = _("Tinkatink"),
+        .cryId = CRY_TINKATINK,
+        .natDexNum = NATIONAL_DEX_TINKATINK,
+        .categoryName = _("Metalsmith"),
+        .height = 4,
+        .weight = 89,
+        .description = COMPOUND_STRING(
+            "This Pokémon pounds iron scraps\n"
+            "together to make a hammer. It will\n"
+            "remake the hammer again and again until\n"
+            "it's satisfied with the result."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Tinkatink, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Tinkatink,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Tinkatink, 64, 64),
+        .backPicYOffset =  12,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Tinkatink),
+        ICON(Tinkatink, 1),
+        //.footprint = gMonFootprint_Tinkatink,
+        LEARNSETS(Tinkatink),
+        .evolutions = EVOLUTION({EVO_LEVEL, 24, SPECIES_TINKATUFF}),
     },
 
     [SPECIES_TINKATUFF] =
@@ -54323,6 +55638,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MOLD_BREAKER, ABILITY_OWN_TEMPO, ABILITY_PICKPOCKET},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .speciesName = _("Tinkatuff"),
+        .cryId = CRY_TINKATUFF,
+        .natDexNum = NATIONAL_DEX_TINKATUFF,
+        .categoryName = _("Hammer"),
+        .height = 7,
+        .weight = 591,
+        .description = COMPOUND_STRING(
+            "These Pokémon make their homes in\n"
+            "piles of scrap metal. They test the\n"
+            "strength of each other's hammers by\n"
+            "smashing them together."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Tinkatuff, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Tinkatuff,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Tinkatuff, 64, 64),
+        .backPicYOffset =  2,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Tinkatuff),
+        ICON(Tinkatuff, 4),
+        //.footprint = gMonFootprint_Tinkatuff,
+        LEARNSETS(Tinkatuff),
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_TINKATON}),
     },
 
     [SPECIES_TINKATON] =
@@ -54345,6 +55687,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MOLD_BREAKER, ABILITY_OWN_TEMPO, ABILITY_PICKPOCKET},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .speciesName = _("Tinkaton"),
+        .cryId = CRY_TINKATON,
+        .natDexNum = NATIONAL_DEX_TINKATON,
+        .categoryName = _("Hammer"),
+        .height = 7,
+        .weight = 1128,
+        .description = COMPOUND_STRING(
+            "The hammer tops 220 pounds, yet it\n"
+            "gets swung around easily by\n"
+            "Tinkaton as it steals whatever it pleases\n"
+            "and carries its plunder back home."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Tinkaton, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Tinkaton,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Tinkaton, 64, 64),
+        .backPicYOffset =  15,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Tinkaton),
+        ICON(Tinkaton, 4),
+        //.footprint = gMonFootprint_Tinkaton,
+        LEARNSETS(Tinkaton),
     },
 #endif //P_FAMILY_TINKATINK
 
@@ -54369,6 +55737,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_GOOEY, ABILITY_RATTLED, ABILITY_SAND_VEIL},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .speciesName = _("Wiglett"),
+        .cryId = CRY_WIGLETT,
+        .natDexNum = NATIONAL_DEX_WIGLETT,
+        .categoryName = _("Garden Eel"),
+        .height = 12,
+        .weight = 18,
+        .description = COMPOUND_STRING(
+            "This Pokémon can pick up the scent\n"
+            "of a Veluza just over 65 feet away\n"
+            "and will hide itself in the sand."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Wiglett, 64, 64),
+        .frontPicYOffset =  17,
+        .frontAnimFrames = sAnims_Wiglett,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Wiglett, 64, 64),
+        .backPicYOffset =  14,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Wiglett),
+        ICON(Wiglett, 0),
+        //.footprint = gMonFootprint_Wiglett,
+        LEARNSETS(Wiglett),
+        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_WUGTRIO}),
     },
 
     [SPECIES_WUGTRIO] =
@@ -54391,6 +55785,31 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_GOOEY, ABILITY_RATTLED, ABILITY_SAND_VEIL},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
+        .speciesName = _("Wugtrio"),
+        .cryId = CRY_WUGTRIO,
+        .natDexNum = NATIONAL_DEX_WUGTRIO,
+        .categoryName = _("Garden Eel"),
+        .height = 12,
+        .weight = 54,
+        .description = COMPOUND_STRING(
+            "A variety of fish Pokémon, Wugtrio\n"
+            "was once considered to be a\n"
+            "regional form of Dugtrio."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Wugtrio, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Wugtrio,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Wugtrio, 64, 64),
+        .backPicYOffset =  11,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Wugtrio),
+        ICON(Wugtrio, 0),
+        //.footprint = gMonFootprint_Wugtrio,
+        LEARNSETS(Wugtrio),
     },
 #endif //P_FAMILY_WIGLETT
 
@@ -54415,6 +55834,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_BIG_PECKS, ABILITY_KEEN_EYE, ABILITY_ROCKY_PAYLOAD},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .speciesName = _("Bombirdier"),
+        .cryId = CRY_BOMBIRDIER,
+        .natDexNum = NATIONAL_DEX_BOMBIRDIER,
+        .categoryName = _("Item Drop"),
+        .height = 15,
+        .weight = 429,
+        .description = COMPOUND_STRING(
+            "Bombirdier uses the apron on its\n"
+            "chest to bundle up food, which it\n"
+            "carries back to its nest. It enjoys\n"
+            "dropping things that make loud noises."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Bombirdier, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Bombirdier,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 11,
+        BACK_PIC(Bombirdier, 64, 64),
+        .backPicYOffset =  4,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Bombirdier),
+        ICON(Bombirdier, 0),
+        //.footprint = gMonFootprint_Bombirdier,
+        LEARNSETS(Bombirdier),
     },
 #endif //P_FAMILY_BOMBIRDIER
 
@@ -54439,6 +55885,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_WATER_VEIL, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .speciesName = _("Finizen"),
+        .cryId = CRY_FINIZEN,
+        .natDexNum = NATIONAL_DEX_FINIZEN,
+        .categoryName = _("Dolphin"),
+        .height = 13,
+        .weight = 602,
+        .description = COMPOUND_STRING(
+            "Its water ring is made from\n"
+            "seawater mixed with a sticky fluid that\n"
+            "Finizen secretes from its blowhole."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Finizen, 64, 64),
+        .frontPicYOffset =  4,
+        .frontAnimFrames = sAnims_Finizen,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Finizen, 64, 64),
+        .backPicYOffset =  15,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Finizen),
+        ICON(Finizen, 0),
+        //.footprint = gMonFootprint_Finizen,
+        LEARNSETS(Finizen),
+        .evolutions = EVOLUTION({EVO_LEVEL, 38, SPECIES_PALAFIN_ZERO}),
     },
 
 #define PALAFIN_MISC_INFO                                   \
@@ -54500,6 +55972,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_SLOW_START},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .speciesName = _("Varoom"),
+        .cryId = CRY_VAROOM,
+        .natDexNum = NATIONAL_DEX_VAROOM,
+        .categoryName = _("Single-Cyl"),
+        .height = 10,
+        .weight = 350,
+        .description = COMPOUND_STRING(
+            "The steel section is Varoom's\n"
+            "actual body. This Pokémon clings to\n"
+            "rocks and converts the minerals within\n"
+            "into energy to fuel its activities."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Varoom, 64, 64),
+        .frontPicYOffset =  13,
+        .frontAnimFrames = sAnims_Varoom,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Varoom, 64, 64),
+        .backPicYOffset =  13,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Varoom),
+        ICON(Varoom, 5),
+        //.footprint = gMonFootprint_Varoom,
+        LEARNSETS(Varoom),
+        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_REVAVROOM}),
     },
 
     [SPECIES_REVAVROOM] =
@@ -54522,6 +56021,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_FILTER},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .speciesName = _("Revavroom"),
+        .cryId = CRY_REVAVROOM,
+        .natDexNum = NATIONAL_DEX_REVAVROOM,
+        .categoryName = _("Multi-Cyl"),
+        .height = 18,
+        .weight = 1200,
+        .description = COMPOUND_STRING(
+            "It creates a gas out of poison and\n"
+            "minerals from rocks. It then\n"
+            "detonates the gas in its cylinders- now\n"
+            "numbering eight-to generate energy."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Revavroom, 64, 64),
+        .frontPicYOffset =  8,
+        .frontAnimFrames = sAnims_Revavroom,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Revavroom, 64, 64),
+        .backPicYOffset =  16,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Revavroom),
+        ICON(Revavroom, 5),
+        //.footprint = gMonFootprint_Revavroom,
+        LEARNSETS(Revavroom),
     },
 #endif //P_FAMILY_VAROOM
 
@@ -54546,6 +56071,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_REGENERATOR},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+        .speciesName = _("Cyclizar"),
+        .cryId = CRY_CYCLIZAR,
+        .natDexNum = NATIONAL_DEX_CYCLIZAR,
+        .categoryName = _("Mount"),
+        .height = 16,
+        .weight = 630,
+        .description = COMPOUND_STRING(
+            "It can sprint at over 70 mph while\n"
+            "carrying a human. The rider's body\n"
+            "heat warms Cyclizar's back and lifts\n"
+            "the Pokémon's spirit."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Cyclizar, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Cyclizar,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Cyclizar, 64, 64),
+        .backPicYOffset =  6,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Cyclizar),
+        ICON(Cyclizar, 1),
+        //.footprint = gMonFootprint_Cyclizar,
+        LEARNSETS(Cyclizar),
     },
 #endif //P_FAMILY_CYCLIZAR
 
@@ -54570,6 +56121,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_EARTH_EATER, ABILITY_NONE, ABILITY_SAND_VEIL},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .speciesName = _("Orthworm"),
+        .cryId = CRY_ORTHWORM,
+        .natDexNum = NATIONAL_DEX_ORTHWORM,
+        .categoryName = _("Earthworm"),
+        .height = 25,
+        .weight = 3100,
+        .description = COMPOUND_STRING(
+            "When attacked, this Pokémon will\n"
+            "wield the tendrils on its body like\n"
+            "fists and pelt the opponent with a\n"
+            "storm of punches."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Orthworm, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Orthworm,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Orthworm, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Orthworm),
+        ICON(Orthworm, 4),
+        //.footprint = gMonFootprint_Orthworm,
+        LEARNSETS(Orthworm),
     },
 #endif //P_FAMILY_ORTHWORM
 
@@ -54594,6 +56171,34 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TOXIC_DEBRIS, ABILITY_NONE, ABILITY_CORROSION},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .speciesName = _("Glimmet"),
+        .cryId = CRY_GLIMMET,
+        .natDexNum = NATIONAL_DEX_GLIMMET,
+        .categoryName = _("Ore"),
+        .height = 7,
+        .weight = 80,
+        .description = COMPOUND_STRING(
+            "Glimmet's toxic mineral crystals\n"
+            "look just like flower petals. This\n"
+            "Pokémon scatters poisonous powder like\n"
+            "pollen to protect itself."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Glimmet, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Glimmet,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 1,
+        BACK_PIC(Glimmet, 64, 64),
+        .backPicYOffset =  14,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Glimmet),
+        ICON(Glimmet, 0),
+        //.footprint = gMonFootprint_Glimmet,
+        LEARNSETS(Glimmet),
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_GLIMMORA}),
     },
 
     [SPECIES_GLIMMORA] =
@@ -54616,6 +56221,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TOXIC_DEBRIS, ABILITY_NONE, ABILITY_CORROSION},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .speciesName = _("Glimmora"),
+        .cryId = CRY_GLIMMORA,
+        .natDexNum = NATIONAL_DEX_GLIMMORA,
+        .categoryName = _("Ore"),
+        .height = 15,
+        .weight = 450,
+        .description = COMPOUND_STRING(
+            "Glimmora's petals are made of\n"
+            "crystallized poison energy. It has\n"
+            "recently become evident that these\n"
+            "petals resemble Tera Jewels."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Glimmora, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Glimmora,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 10,
+        BACK_PIC(Glimmora, 64, 64),
+        .backPicYOffset =  11,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Glimmora),
+        ICON(Glimmora, 0),
+        //.footprint = gMonFootprint_Glimmora,
+        LEARNSETS(Glimmora),
     },
 #endif //P_FAMILY_GLIMMET
 
@@ -54640,6 +56272,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PICKUP, ABILITY_NONE, ABILITY_FLUFFY},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .speciesName = _("Greavard"),
+        .cryId = CRY_GREAVARD,
+        .natDexNum = NATIONAL_DEX_GREAVARD,
+        .categoryName = _("Ghost Dog"),
+        .height = 6,
+        .weight = 350,
+        .description = COMPOUND_STRING(
+            "This friendly Pokémon doesn't like\n"
+            "being alone. Pay it even the\n"
+            "slightest bit of attention, and it will\n"
+            "follow you forever."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Greavard, 64, 64),
+        .frontPicYOffset =  4,
+        .frontAnimFrames = sAnims_Greavard,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Greavard, 64, 64),
+        .backPicYOffset =  4,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Greavard),
+        ICON(Greavard, 2),
+        //.footprint = gMonFootprint_Greavard,
+        LEARNSETS(Greavard),
+        .evolutions = EVOLUTION({EVO_LEVEL_NIGHT, 30, SPECIES_HOUNDSTONE}),
     },
 
     [SPECIES_HOUNDSTONE] =
@@ -54662,6 +56321,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SAND_RUSH, ABILITY_NONE, ABILITY_FLUFFY},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .speciesName = _("Houndstone"),
+        .cryId = CRY_HOUNDSTONE,
+        .natDexNum = NATIONAL_DEX_HOUNDSTONE,
+        .categoryName = _("Ghost Dog"),
+        .height = 20,
+        .weight = 150,
+        .description = COMPOUND_STRING(
+            "Houndstone spends most of its\n"
+            "time sleeping in graveyards. Among all\n"
+            "the dog Pokémon, this one is most\n"
+            "loyal to its master."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Houndstone, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Houndstone,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Houndstone, 64, 64),
+        .backPicYOffset =  4,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Houndstone),
+        ICON(Houndstone, 5),
+        //.footprint = gMonFootprint_Houndstone,
+        LEARNSETS(Houndstone),
     },
 #endif //P_FAMILY_GREAVARD
 
@@ -54686,6 +56371,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_SCRAPPY, ABILITY_TANGLED_FEET, ABILITY_COSTAR},
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
+        .speciesName = _("Flamigo"),
+        .cryId = CRY_FLAMIGO,
+        .natDexNum = NATIONAL_DEX_FLAMIGO,
+        .categoryName = _("Synchronize"),
+        .height = 16,
+        .weight = 370,
+        .description = COMPOUND_STRING(
+            "Thanks to a behavior of theirs\n"
+            "known as “synchronizing,” an entire\n"
+            "flock of these Pokémon can attack\n"
+            "simultaneously in perfect harmony."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Flamigo, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Flamigo,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Flamigo, 64, 64),
+        .backPicYOffset =  3,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Flamigo),
+        ICON(Flamigo, 4),
+        //.footprint = gMonFootprint_Flamigo,
+        LEARNSETS(Flamigo),
     },
 #endif //P_FAMILY_FLAMIGO
 
@@ -54710,6 +56421,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_THICK_FAT, ABILITY_SNOW_CLOAK, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .speciesName = _("Cetoddle"),
+        .cryId = CRY_CETODDLE,
+        .natDexNum = NATIONAL_DEX_CETODDLE,
+        .categoryName = _("Terra Whale"),
+        .height = 12,
+        .weight = 450,
+        .description = COMPOUND_STRING(
+            "This species left the ocean and\n"
+            "began living on land a very long time\n"
+            "ago. It seems to be closely related\n"
+            "to Wailmer."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Cetoddle, 64, 64),
+        .frontPicYOffset =  14,
+        .frontAnimFrames = sAnims_Cetoddle,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Cetoddle, 64, 64),
+        .backPicYOffset =  16,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Cetoddle),
+        ICON(Cetoddle, 0),
+        //.footprint = gMonFootprint_Cetoddle,
+        LEARNSETS(Cetoddle),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_ICE_STONE, SPECIES_CETITAN}),
     },
 
     [SPECIES_CETITAN] =
@@ -54732,6 +56470,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_THICK_FAT, ABILITY_SLUSH_RUSH, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
+        .speciesName = _("Cetitan"),
+        .cryId = CRY_CETITAN,
+        .natDexNum = NATIONAL_DEX_CETITAN,
+        .categoryName = _("Terra Whale"),
+        .height = 45,
+        .weight = 7000,
+        .description = COMPOUND_STRING(
+            "Ice energy builds up in the horn on\n"
+            "its upper jaw, causing the horn to\n"
+            "reach cryogenic temperatures that\n"
+            "freeze its surroundings."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Cetitan, 64, 64),
+        .frontPicYOffset =  3,
+        .frontAnimFrames = sAnims_Cetitan,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Cetitan, 64, 64),
+        .backPicYOffset =  13,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Cetitan),
+        ICON(Cetitan, 0),
+        //.footprint = gMonFootprint_Cetitan,
+        LEARNSETS(Cetitan),
     },
 #endif //P_FAMILY_CETODDLE
 
@@ -54756,6 +56520,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_MOLD_BREAKER, ABILITY_NONE, ABILITY_SHARPNESS},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .speciesName = _("Veluza"),
+        .cryId = CRY_VELUZA,
+        .natDexNum = NATIONAL_DEX_VELUZA,
+        .categoryName = _("Jettison"),
+        .height = 25,
+        .weight = 900,
+        .description = COMPOUND_STRING(
+            "Veluza has excellent regenerative\n"
+            "capabilities. It sheds spare flesh\n"
+            "from its body to boost its agility,\n"
+            "then charges at its prey."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Veluza, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Veluza,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 1,
+        BACK_PIC(Veluza, 64, 64),
+        .backPicYOffset =  14,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Veluza),
+        ICON(Veluza, 4),
+        //.footprint = gMonFootprint_Veluza,
+        LEARNSETS(Veluza),
     },
 #endif //P_FAMILY_VELUZA
 
@@ -54780,6 +56571,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_UNAWARE, ABILITY_OBLIVIOUS, ABILITY_WATER_VEIL},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .speciesName = _("Dondozo"),
+        .cryId = CRY_DONDOZO,
+        .natDexNum = NATIONAL_DEX_DONDOZO,
+        .categoryName = _("Big Catfish"),
+        .height = 120,
+        .weight = 2200,
+        .description = COMPOUND_STRING(
+            "It treats Tatsugiri like its boss\n"
+            "and follows it loyally. Though\n"
+            "powerful, Dondozo is apparently not very\n"
+            "smart."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Dondozo, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Dondozo,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 1,
+        BACK_PIC(Dondozo, 64, 64),
+        .backPicYOffset =  11,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Dondozo),
+        ICON(Dondozo, 0),
+        //.footprint = gMonFootprint_Dondozo,
+        LEARNSETS(Dondozo),
     },
 #endif //P_FAMILY_DONDOZO
 
@@ -54844,6 +56662,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("Great Tusk"),
+        .cryId = CRY_GREAT_TUSK,
+        .natDexNum = NATIONAL_DEX_GREAT_TUSK,
+        .categoryName = _("Paradox"),
+        .height = 22,
+        .weight = 3200,
+        .description = COMPOUND_STRING(
+            "Sightings of this Pokémon have\n"
+            "occurred in recent years. The name\n"
+            "Great Tusk was taken from a creature\n"
+            "listed in a certain book."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(GreatTusk, 64, 64),
+        .frontPicYOffset =  4,
+        .frontAnimFrames = sAnims_GreatTusk,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(GreatTusk, 64, 64),
+        .backPicYOffset =  4,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(GreatTusk),
+        ICON(GreatTusk, 0),
+        //.footprint = gMonFootprint_GreatTusk,
+        LEARNSETS(GreatTusk),
     },
 #endif //P_FAMILY_GREAT_TUSK
 
@@ -54869,6 +56713,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_PINK,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("ScreamTail"),
+        .cryId = CRY_SCREAM_TAIL,
+        .natDexNum = NATIONAL_DEX_SCREAM_TAIL,
+        .categoryName = _("Paradox"),
+        .height = 12,
+        .weight = 80,
+        .description = COMPOUND_STRING(
+            "There has been only one reported\n"
+            "sighting of this Pokémon. It\n"
+            "resembles a mysterious creature depicted\n"
+            "in an old expedition journal."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(ScreamTail, 64, 64),
+        .frontPicYOffset =  7,
+        .frontAnimFrames = sAnims_ScreamTail,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(ScreamTail, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(ScreamTail),
+        ICON(ScreamTail, 0),
+        //.footprint = gMonFootprint_ScreamTail,
+        LEARNSETS(ScreamTail),
     },
 #endif //P_FAMILY_SCREAM_TAIL
 
@@ -54894,6 +56764,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("BruteBonet"),
+        .cryId = CRY_BRUTE_BONNET,
+        .natDexNum = NATIONAL_DEX_BRUTE_BONNET,
+        .categoryName = _("Paradox"),
+        .height = 12,
+        .weight = 210,
+        .description = COMPOUND_STRING(
+            "It bears a slight resemblance to a\n"
+            "Pokémon described in a dubious\n"
+            "magazine as a cross between a dinosaur\n"
+            "and a mushroom."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(BruteBonnet, 64, 64),
+        .frontPicYOffset =  5,
+        .frontAnimFrames = sAnims_BruteBonnet,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(BruteBonnet, 64, 64),
+        .backPicYOffset =  12,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(BruteBonnet),
+        ICON(BruteBonnet, 1),
+        //.footprint = gMonFootprint_BruteBonnet,
+        LEARNSETS(BruteBonnet),
     },
 #endif //P_FAMILY_BRUTE_BONNET
 
@@ -54921,6 +56817,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("FluttrMane"),
+        .cryId = CRY_FLUTTER_MANE,
+        .natDexNum = NATIONAL_DEX_FLUTTER_MANE,
+        .categoryName = _("Paradox"),
+        .height = 14,
+        .weight = 40,
+        .description = COMPOUND_STRING(
+            "It has similar features to a\n"
+            "ghostly pterosaur that was covered in a\n"
+            "paranormal magazine, but the two\n"
+            "have little else in common."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(FlutterMane, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_FlutterMane,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 5,
+        BACK_PIC(FlutterMane, 64, 64),
+        .backPicYOffset =  10,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(FlutterMane),
+        ICON(FlutterMane, 4),
+        //.footprint = gMonFootprint_FlutterMane,
+        LEARNSETS(FlutterMane),
     },
 #endif //P_FAMILY_FLUTTER_MANE
 
@@ -54946,6 +56869,31 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("SlithrWing"),
+        .cryId = CRY_SLITHER_WING,
+        .natDexNum = NATIONAL_DEX_SLITHER_WING,
+        .categoryName = _("Paradox"),
+        .height = 32,
+        .weight = 920,
+        .description = COMPOUND_STRING(
+            "This mysterious Pokémon has some\n"
+            "similarities to a creature that an\n"
+            "old book introduced as Slither Wing."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(SlitherWing, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_SlitherWing,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(SlitherWing, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(SlitherWing),
+        ICON(SlitherWing, 3),
+        //.footprint = gMonFootprint_SlitherWing,
+        LEARNSETS(SlitherWing),
     },
 #endif //P_FAMILY_SLITHER_WING
 
@@ -54971,6 +56919,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("SndyShocks"),
+        .cryId = CRY_SANDY_SHOCKS,
+        .natDexNum = NATIONAL_DEX_SANDY_SHOCKS,
+        .categoryName = _("Paradox"),
+        .height = 23,
+        .weight = 600,
+        .description = COMPOUND_STRING(
+            "It slightly resembles a Magneton\n"
+            "that lived for 10,000 years and was\n"
+            "featured in an article in a\n"
+            "paranormal magazine."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(SandyShocks, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_SandyShocks,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(SandyShocks, 64, 64),
+        .backPicYOffset =  10,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(SandyShocks),
+        ICON(SandyShocks, 0),
+        //.footprint = gMonFootprint_SandyShocks,
+        LEARNSETS(SandyShocks),
     },
 #endif //P_FAMILY_SANDY_SHOCKS
 
@@ -54996,6 +56970,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("IronTreads"),
+        .cryId = CRY_IRON_TREADS,
+        .natDexNum = NATIONAL_DEX_IRON_TREADS,
+        .categoryName = _("Paradox"),
+        .height = 9,
+        .weight = 2400,
+        .description = COMPOUND_STRING(
+            "Sightings of this Pokémon have\n"
+            "occurred in recent years. It resembles\n"
+            "a mysterious object described in an\n"
+            "old expedition journal."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(IronTreads, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_IronTreads,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(IronTreads, 64, 64),
+        .backPicYOffset =  4,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(IronTreads),
+        ICON(IronTreads, 0),
+        //.footprint = gMonFootprint_IronTreads,
+        LEARNSETS(IronTreads),
     },
 #endif //P_FAMILY_IRON_TREADS
 
@@ -55021,6 +57021,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("IronBundle"),
+        .cryId = CRY_IRON_BUNDLE,
+        .natDexNum = NATIONAL_DEX_IRON_BUNDLE,
+        .categoryName = _("Paradox"),
+        .height = 6,
+        .weight = 110,
+        .description = COMPOUND_STRING(
+            "Its shape is similar to a robot\n"
+            "featured in a paranormal magazine\n"
+            "article. The robot was said to have been\n"
+            "created by an ancient civilization."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(IronBundle, 64, 64),
+        .frontPicYOffset =  2,
+        .frontAnimFrames = sAnims_IronBundle,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(IronBundle, 64, 64),
+        .backPicYOffset =  9,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(IronBundle),
+        ICON(IronBundle, 0),
+        //.footprint = gMonFootprint_IronBundle,
+        LEARNSETS(IronBundle),
     },
 #endif //P_FAMILY_IRON_BUNDLE
 
@@ -55046,6 +57072,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("Iron Hands"),
+        .cryId = CRY_IRON_HANDS,
+        .natDexNum = NATIONAL_DEX_IRON_HANDS,
+        .categoryName = _("Paradox"),
+        .height = 18,
+        .weight = 3807,
+        .description = COMPOUND_STRING(
+            "It is very similar to a cyborg\n"
+            "covered exclusively by a paranormal\n"
+            "magazine. The cyborg was said to be the\n"
+            "modified form of a certain athlete."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(IronHands, 64, 64),
+        .frontPicYOffset =  3,
+        .frontAnimFrames = sAnims_IronHands,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(IronHands, 64, 64),
+        .backPicYOffset =  10,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(IronHands),
+        ICON(IronHands, 0),
+        //.footprint = gMonFootprint_IronHands,
+        LEARNSETS(IronHands),
     },
 #endif //P_FAMILY_IRON_HANDS
 
@@ -55071,6 +57123,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("IronJuguls"),
+        .cryId = CRY_IRON_JUGULIS,
+        .natDexNum = NATIONAL_DEX_IRON_JUGULIS,
+        .categoryName = _("Paradox"),
+        .height = 13,
+        .weight = 1110,
+        .description = COMPOUND_STRING(
+            "It resembles a certain Pokémon\n"
+            "introduced in a paranormal magazine,\n"
+            "described as the offspring of a\n"
+            "Hydreigon that fell in love with a robot."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(IronJugulis, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_IronJugulis,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 7,
+        BACK_PIC(IronJugulis, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(IronJugulis),
+        ICON(IronJugulis, 2),
+        //.footprint = gMonFootprint_IronJugulis,
+        LEARNSETS(IronJugulis),
     },
 #endif //P_FAMILY_IRON_JUGULIS
 
@@ -55096,6 +57175,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("Iron Moth"),
+        .cryId = CRY_IRON_MOTH,
+        .natDexNum = NATIONAL_DEX_IRON_MOTH,
+        .categoryName = _("Paradox"),
+        .height = 12,
+        .weight = 360,
+        .description = COMPOUND_STRING(
+            "No records exist of this species\n"
+            "being caught. Data is lacking, but\n"
+            "the Pokémon's traits match up with an\n"
+            "object described in an old book."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(IronMoth, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_IronMoth,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 4,
+        BACK_PIC(IronMoth, 64, 64),
+        .backPicYOffset =  4,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(IronMoth),
+        ICON(IronMoth, 3),
+        //.footprint = gMonFootprint_IronMoth,
+        LEARNSETS(IronMoth),
     },
 #endif //P_FAMILY_IRON_MOTH
 
@@ -55121,6 +57227,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("IronThorns"),
+        .cryId = CRY_IRON_THORNS,
+        .natDexNum = NATIONAL_DEX_IRON_THORNS,
+        .categoryName = _("Paradox"),
+        .height = 16,
+        .weight = 3030,
+        .description = COMPOUND_STRING(
+            "It has some similarities to a\n"
+            "Pokémon introduced in a dubious magazine\n"
+            "as a Tyranitar from one billion\n"
+            "years into the future."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(IronThorns, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_IronThorns,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(IronThorns, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(IronThorns),
+        ICON(IronThorns, 1),
+        //.footprint = gMonFootprint_IronThorns,
+        LEARNSETS(IronThorns),
     },
 #endif //P_FAMILY_IRON_THORNS
 
@@ -55145,6 +57277,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_THERMAL_EXCHANGE, ABILITY_NONE, ABILITY_ICE_BODY},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .speciesName = _("Frigibax"),
+        .cryId = CRY_FRIGIBAX,
+        .natDexNum = NATIONAL_DEX_FRIGIBAX,
+        .categoryName = _("Ice Fin"),
+        .height = 5,
+        .weight = 170,
+        .description = COMPOUND_STRING(
+            "This Pokémon lives in forests and\n"
+            "craggy areas. Using the power of its\n"
+            "dorsal fin, it cools the inside of its\n"
+            "nest like a refrigerator."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Frigibax, 64, 64),
+        .frontPicYOffset =  5,
+        .frontAnimFrames = sAnims_Frigibax,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Frigibax, 64, 64),
+        .backPicYOffset =  11,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Frigibax),
+        ICON(Frigibax, 3),
+        //.footprint = gMonFootprint_Frigibax,
+        LEARNSETS(Frigibax),
+        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_ARCTIBAX}),
     },
 
     [SPECIES_ARCTIBAX] =
@@ -55167,6 +57326,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_THERMAL_EXCHANGE, ABILITY_NONE, ABILITY_ICE_BODY},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .speciesName = _("Arctibax"),
+        .cryId = CRY_ARCTIBAX,
+        .natDexNum = NATIONAL_DEX_ARCTIBAX,
+        .categoryName = _("Ice Fin"),
+        .height = 8,
+        .weight = 300,
+        .description = COMPOUND_STRING(
+            "Arctibax freezes the air around it,\n"
+            "protecting its face with an ice\n"
+            "mask and turning its dorsal fin into a\n"
+            "blade of ice."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Arctibax, 64, 64),
+        .frontPicYOffset =  3,
+        .frontAnimFrames = sAnims_Arctibax,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Arctibax, 64, 64),
+        .backPicYOffset =  8,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Arctibax),
+        ICON(Arctibax, 0),
+        //.footprint = gMonFootprint_Arctibax,
+        LEARNSETS(Arctibax),
+        .evolutions = EVOLUTION({EVO_LEVEL, 54, SPECIES_BAXCALIBUR}),
     },
 
     [SPECIES_BAXCALIBUR] =
@@ -55189,6 +57375,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_THERMAL_EXCHANGE, ABILITY_NONE, ABILITY_ICE_BODY},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
+        .speciesName = _("Baxcalibur"),
+        .cryId = CRY_BAXCALIBUR,
+        .natDexNum = NATIONAL_DEX_BAXCALIBUR,
+        .categoryName = _("Ice Dragon"),
+        .height = 21,
+        .weight = 2100,
+        .description = COMPOUND_STRING(
+            "It launches itself into battle by\n"
+            "flipping upside down and spewing\n"
+            "frigid air from its mouth. It finishes\n"
+            "opponents off with its dorsal blade."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Baxcalibur, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Baxcalibur,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Baxcalibur, 64, 64),
+        .backPicYOffset =  5,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Baxcalibur),
+        ICON(Baxcalibur, 0),
+        //.footprint = gMonFootprint_Baxcalibur,
+        LEARNSETS(Baxcalibur),
     },
 #endif //P_FAMILY_FRIGIBAX
 
@@ -55251,6 +57463,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_GOOD_AS_GOLD, ABILITY_NONE},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .speciesName = _("Gholdengo"),
+        .cryId = CRY_GHOLDENGO,
+        .natDexNum = NATIONAL_DEX_GHOLDENGO,
+        .categoryName = _("Coin Entity"),
+        .height = 12,
+        .weight = 300,
+        .description = COMPOUND_STRING(
+            "It has a sturdy body made up of\n"
+            "stacked coins. Gholdengo overwhelms\n"
+            "its enemies by firing coin after coin\n"
+            "at them in quick succession."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Gholdengo, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Gholdengo,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Gholdengo, 64, 64),
+        .backPicYOffset =  6,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Gholdengo),
+        ICON(Gholdengo, 0),
+        //.footprint = gMonFootprint_Gholdengo,
+        LEARNSETS(Gholdengo),
     },
 #endif //P_FAMILY_GIMMIGHOUL
 
@@ -55276,6 +57514,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
         .isLegendary = TRUE,
+        .speciesName = _("Wo-Chien"),
+        .cryId = CRY_WO_CHIEN,
+        .natDexNum = NATIONAL_DEX_WO_CHIEN,
+        .categoryName = _("Ruinous"),
+        .height = 15,
+        .weight = 742,
+        .description = COMPOUND_STRING(
+            "The grudge of a person punished\n"
+            "for writing the king's evil deeds upon\n"
+            "wooden tablets has clad itself in\n"
+            "dead leaves to become a Pokémon."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(WoChien, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_WoChien,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(WoChien, 64, 64),
+        .backPicYOffset =  10,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(WoChien),
+        ICON(WoChien, 5),
+        //.footprint = gMonFootprint_WoChien,
+        LEARNSETS(WoChien),
     },
 #endif //P_FAMILY_WO_CHIEN
 
@@ -55301,6 +57565,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
         .isLegendary = TRUE,
+        .speciesName = _("Chien-Pao"),
+        .cryId = CRY_CHIEN_PAO,
+        .natDexNum = NATIONAL_DEX_CHIEN_PAO,
+        .categoryName = _("Ruinous"),
+        .height = 19,
+        .weight = 1522,
+        .description = COMPOUND_STRING(
+            "This Pokémon can control 100 tons\n"
+            "of fallen snow. It plays around\n"
+            "innocently by leaping in and out of\n"
+            "avalanches it has caused."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(ChienPao, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_ChienPao,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(ChienPao, 64, 64),
+        .backPicYOffset =  5,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(ChienPao),
+        ICON(ChienPao, 0),
+        //.footprint = gMonFootprint_ChienPao,
+        LEARNSETS(ChienPao),
     },
 #endif //P_FAMILY_CHIEN_PAO
 
@@ -55326,6 +57616,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
         .isLegendary = TRUE,
+        .speciesName = _("Ting-Lu"),
+        .cryId = CRY_TING_LU,
+        .natDexNum = NATIONAL_DEX_TING_LU,
+        .categoryName = _("Ruinous"),
+        .height = 27,
+        .weight = 6997,
+        .description = COMPOUND_STRING(
+            "It slowly brings its exceedingly\n"
+            "heavy head down upon the ground,\n"
+            "splitting the earth open with huge\n"
+            "fissures that run over 160 feet deep."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(TingLu, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_TingLu,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(TingLu, 64, 64),
+        .backPicYOffset =  5,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(TingLu),
+        ICON(TingLu, 0),
+        //.footprint = gMonFootprint_TingLu,
+        LEARNSETS(TingLu),
     },
 #endif //P_FAMILY_TING_LU
 
@@ -55351,6 +57667,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
         .isLegendary = TRUE,
+        .speciesName = _("Chi-Yu"),
+        .cryId = CRY_CHI_YU,
+        .natDexNum = NATIONAL_DEX_CHI_YU,
+        .categoryName = _("Ruinous"),
+        .height = 4,
+        .weight = 49,
+        .description = COMPOUND_STRING(
+            "It controls flames burning at over\n"
+            "5,400 degrees Fahrenheit. It\n"
+            "casually swims through the sea of lava it\n"
+            "creates by melting rock and sand."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(ChiYu, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_ChiYu,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 2,
+        BACK_PIC(ChiYu, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(ChiYu),
+        ICON(ChiYu, 0),
+        //.footprint = gMonFootprint_ChiYu,
+        LEARNSETS(ChiYu),
     },
 #endif //P_FAMILY_CHI_YU
 
@@ -55376,6 +57719,33 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("RoarngMoon"),
+        .cryId = CRY_ROARING_MOON,
+        .natDexNum = NATIONAL_DEX_ROARING_MOON,
+        .categoryName = _("Paradox"),
+        .height = 20,
+        .weight = 3800,
+        .description = COMPOUND_STRING(
+            "According to an article in a\n"
+            "dubious magazine, this Pokémon has some\n"
+            "connection to Mega Evolution that\n"
+            "occurs in Hoenn."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(RoaringMoon, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_RoaringMoon,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 20,
+        BACK_PIC(RoaringMoon, 64, 64),
+        .backPicYOffset =  7,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(RoaringMoon),
+        ICON(RoaringMoon, 3),
+        //.footprint = gMonFootprint_RoaringMoon,
+        LEARNSETS(RoaringMoon),
     },
 #endif //P_FAMILY_ROARING_MOON
 
@@ -55401,6 +57771,31 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("IronVliant"),
+        .cryId = CRY_IRON_VALIANT,
+        .natDexNum = NATIONAL_DEX_IRON_VALIANT,
+        .categoryName = _("Paradox"),
+        .height = 14,
+        .weight = 350,
+        .description = COMPOUND_STRING(
+            "It has some similarities to a mad\n"
+            "scientist's invention covered in a\n"
+            "paranormal magazine."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(IronValiant, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_IronValiant,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(IronValiant, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(IronValiant),
+        ICON(IronValiant, 4),
+        //.footprint = gMonFootprint_IronValiant,
+        LEARNSETS(IronValiant),
     },
 #endif //P_FAMILY_IRON_VALIANT
 
@@ -55427,6 +57822,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
         .isLegendary = TRUE,
         .isParadoxForm = TRUE,
+        .speciesName = _("Koraidon"),
+        .cryId = CRY_KORAIDON,
+        .natDexNum = NATIONAL_DEX_KORAIDON,
+        .categoryName = _("Paradox"),
+        .height = 25,
+        .weight = 3030,
+        .description = COMPOUND_STRING(
+            "This Pokémon resembles Cyclizar,\n"
+            "but it is far burlier and more\n"
+            "ferocious. Nothing is known about its\n"
+            "ecology or other features."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Koraidon, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Koraidon,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Koraidon, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Koraidon),
+        ICON(Koraidon, 0),
+        //.footprint = gMonFootprint_Koraidon,
+        LEARNSETS(Koraidon),
     },
 #endif //P_FAMILY_KORAIDON
 
@@ -55453,6 +57874,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .noFlip = FALSE,
         .isLegendary = TRUE,
         .isParadoxForm = TRUE,
+        .speciesName = _("Miraidon"),
+        .cryId = CRY_MIRAIDON,
+        .natDexNum = NATIONAL_DEX_MIRAIDON,
+        .categoryName = _("Paradox"),
+        .height = 35,
+        .weight = 2400,
+        .description = COMPOUND_STRING(
+            "This seems to be the Iron Serpent\n"
+            "mentioned in an Violet Book. The\n"
+            "Iron Serpent is said to have turned the\n"
+            "land to ash with its lightning."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Miraidon, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Miraidon,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Miraidon, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Miraidon),
+        ICON(Miraidon, 2),
+        //.footprint = gMonFootprint_Miraidon,
+        LEARNSETS(Miraidon),
     },
 #endif //P_FAMILY_MIRAIDON
 
@@ -55478,6 +57925,29 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("WalkngWake"),
+        .cryId = CRY_WALKING_WAKE,
+        .natDexNum = NATIONAL_DEX_WALKING_WAKE,
+        .categoryName = _("Paradox"),
+        .height = 35,
+        .weight = 2800,
+        .description = COMPOUND_STRING(
+            "Ecology under research."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(WalkingWake, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_WalkingWake,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(WalkingWake, 64, 64),
+        .backPicYOffset =  3,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(WalkingWake),
+        ICON(WalkingWake, 2),
+        //.footprint = gMonFootprint_WalkingWake,
+        LEARNSETS(WalkingWake),
     },
 #endif //P_FAMILY_WALKING_WAKE
 
@@ -55503,6 +57973,29 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
         .isParadoxForm = TRUE,
+        .speciesName = _("IronLeaves"),
+        .cryId = CRY_IRON_LEAVES,
+        .natDexNum = NATIONAL_DEX_IRON_LEAVES,
+        .categoryName = _("Paradox"),
+        .height = 15,
+        .weight = 1250,
+        .description = COMPOUND_STRING(
+            "Ecology under analysis."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(IronLeaves, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_IronLeaves,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(IronLeaves, 64, 64),
+        .backPicYOffset =  8,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(IronLeaves),
+        ICON(IronLeaves, 1),
+        //.footprint = gMonFootprint_IronLeaves,
+        LEARNSETS(IronLeaves),
     },
 #endif //P_FAMILY_IRON_LEAVES
 
@@ -55579,6 +58072,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TOXIC_CHAIN, ABILITY_NONE, ABILITY_GUARD_DOG},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
+        .speciesName = _("Okidogi"),
+        .cryId = CRY_OKIDOGI,
+        .natDexNum = NATIONAL_DEX_OKIDOGI,
+        .categoryName = _("Retainer"),
+        .height = 18,
+        .weight = 920,
+        .description = COMPOUND_STRING(
+            "After all its muscles were stimulated\n"
+            "by the toxic chain around its neck,\n"
+            "Okidogi transformed and gained\n"
+            "a powerful physique."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Okidogi, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Okidogi,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Okidogi, 64, 64),
+        .backPicYOffset =  16,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Okidogi),
+        ICON(Okidogi, 1),
+        //.footprint = gMonFootprint_Okidogi,
+        LEARNSETS(Okidogi),
         .isLegendary = TRUE,
     },
 #endif //P_FAMILY_OKIDOGI
@@ -55605,6 +58124,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
         .isLegendary = TRUE,
+        .speciesName = _("Munkidori"),
+        .cryId = CRY_MUNKIDORI,
+        .natDexNum = NATIONAL_DEX_MUNKIDORI,
+        .categoryName = _("Retainer"),
+        .height = 10,
+        .weight = 122,
+        .description = COMPOUND_STRING(
+            "The chain is made from toxins that\n"
+            "enhance capabilities. It stimulated\n"
+            "Munkidori's brain and caused the\n"
+            "Pokémon's psychic powers to bloom."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Munkidori, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Munkidori,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Munkidori, 64, 64),
+        .backPicYOffset =  0,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Munkidori),
+        ICON(Munkidori, 0),
+        //.footprint = gMonFootprint_Munkidori,
+        LEARNSETS(Munkidori),
     },
 #endif //P_FAMILY_MUNKIDORI
 
@@ -55630,6 +58175,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
         .isLegendary = TRUE,
+        .speciesName = _("Fezndipiti"),
+        .cryId = CRY_FEZANDIPITI,
+        .natDexNum = NATIONAL_DEX_FEZANDIPITI,
+        .categoryName = _("Retainer"),
+        .height = 14,
+        .weight = 301,
+        .description = COMPOUND_STRING(
+            "Fezandipiti owes its beautiful looks and\n"
+            "lovely voice to the toxic stimulants\n"
+            "emanating from the chain wrapped around\n"
+            "its body."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Fezandipiti, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Fezandipiti,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Fezandipiti, 64, 64),
+        .backPicYOffset =  4,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Fezandipiti),
+        ICON(Fezandipiti, 0),
+        //.footprint = gMonFootprint_Fezandipiti,
+        LEARNSETS(Fezandipiti),
     },
 #endif //P_FAMILY_FEZANDIPITI
 
