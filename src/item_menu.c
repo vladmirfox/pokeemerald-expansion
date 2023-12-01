@@ -150,7 +150,6 @@ static void GetItemName(s8 *, u16);
 static void PrintItemDescription(int);
 static void BagMenu_PrintCursorAtPos(u8, u8);
 static void BagMenu_Print(u8, u8, const u8 *, u8, u8, u8, u8, u8, u8);
-static void Task_CloseBagMenu(u8);
 static u8 AddItemMessageWindow(u8);
 static void RemoveItemMessageWindow(u8);
 static void ReturnToItemList(u8);
@@ -1151,7 +1150,7 @@ void Task_FadeAndCloseBagMenu(u8 taskId)
     gTasks[taskId].func = Task_CloseBagMenu;
 }
 
-static void Task_CloseBagMenu(u8 taskId)
+void Task_CloseBagMenu(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     if (!gPaletteFade.active)

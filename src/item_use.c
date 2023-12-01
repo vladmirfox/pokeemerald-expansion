@@ -1382,6 +1382,43 @@ void ItemUseOutOfBattle_Honey(u8 taskId)
     Task_FadeAndCloseBagMenu(taskId);
 }
 
+void Task_UseCleanseTagOnField(u8 taskId)
+{
+    ClearDialogWindowAndFrame(0, TRUE);
+    DestroyTask(taskId);
+    ScriptUnfreezeObjectEvents();
+    UnlockPlayerFieldControls();
+}
+
+void ItemUseOnFieldCB_CleanseTag(u8 taskId)
+{
+    bool8  cleanseTagOn = FlagGet(FLAG_CLEANSE_TAG);
+
+    Overworld_ResetStateAfterDigEscRope();
+    gTasks[taskId].data[0] = 0;
+
+    if (!cleanseTagOn)
+    {
+        FlagSet(FLAG_CLEANSE_TAG);
+        PlaySE(SE_EXP_MAX);
+        DisplayItemMessageOnField(taskId, gText_CleanseTagTurnOn, Task_UseCleanseTagOnField);
+    }
+    else
+    {
+        FlagClear(FLAG_CLEANSE_TAG);
+        PlaySE(SE_PC_OFF);
+        DisplayItemMessageOnField(taskId, gText_CleanseTagTurnOff, Task_UseCleanseTagOnField);
+    }
+}
+
+void ItemUseOutOfBattle_CleanseTag(u8 taskId)
+{
+    sItemUseOnFieldCB = ItemUseOnFieldCB_CleanseTag;
+    gFieldCallback = FieldCB_UseItemOnField;
+    gBagMenu->newScreenCallback = CB2_ReturnToField;
+    Task_FadeAndCloseBagMenu(taskId);
+}
+
 void ItemUseOutOfBattle_CannotUse(u8 taskId)
 {
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
