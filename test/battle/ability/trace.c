@@ -75,3 +75,24 @@ SINGLE_BATTLE_TEST("Trace copies opponents ability on switch-in even if opponent
         MESSAGE("Ralts TRACED Foe Torchic's Blaze!");
     }
 }
+
+DOUBLE_BATTLE_TEST("Trace copies opponents ability randomly")
+{
+    u16 ability1, ability2;
+
+    PARAMETRIZE { ability1 = ABILITY_SPEED_BOOST; ability2 = ABILITY_BLAZE;}
+    PARAMETRIZE { ability1 = ABILITY_BLAZE; ability2 = ABILITY_SPEED_BOOST; }
+
+    PASSES_RANDOMLY(1, 2, RNG_TRACE);
+    GIVEN {
+        PLAYER(SPECIES_RALTS) { Ability(ABILITY_TRACE); }
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_TORCHIC) { Ability(ability1); }
+        OPPONENT(SPECIES_TORCHIC) { Ability(ability2); }
+    } WHEN {
+        TURN { }
+    } SCENE {
+        ABILITY_POPUP(playerLeft, ABILITY_TRACE);
+        MESSAGE("Ralts TRACED Foe Torchic's Blaze!");
+    }
+}
