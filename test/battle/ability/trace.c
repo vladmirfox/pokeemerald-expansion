@@ -64,3 +64,19 @@ DOUBLE_BATTLE_TEST("Trace copies opponents ability randomly")
         MESSAGE("Ralts TRACED Foe Torchic's Blaze!");
     }
 }
+
+SINGLE_BATTLE_TEST("Trace will copy an opponent's ability whenever it has the chance but only once")
+{
+    GIVEN {
+        ASSUME(P_GEN_4_POKEMON == TRUE);
+        PLAYER(SPECIES_RALTS) { Ability(ABILITY_TRACE); }
+        OPPONENT(SPECIES_CHERRIM) { Ability(ABILITY_FLOWER_GIFT); }
+        OPPONENT(SPECIES_TORCHIC) { Ability(ABILITY_BLAZE); }
+    } WHEN {
+        TURN { SWITCH(opponent, 1); }
+    } SCENE {
+        // TURN 2
+        ABILITY_POPUP(player, ABILITY_TRACE);
+        MESSAGE("Ralts TRACED Foe Torchic's Blaze!");
+    }
+}
