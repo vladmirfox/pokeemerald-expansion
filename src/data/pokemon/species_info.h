@@ -49007,7 +49007,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(NecrozmaDawnWings, 0),
         .formChangeTable = sNecrozmaDawnWingsFormChangeTable,
     },
-#endif //P_FUSION_FORMS
 
 #if P_ULTRA_BURST_FORMS
     [SPECIES_NECROZMA_ULTRA] =
@@ -49044,6 +49043,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         ICON(NecrozmaUltra, 2),
     },
 #endif //P_ULTRA_BURST_FORMS
+#endif //P_FUSION_FORMS
 #endif //P_FAMILY_NECROZMA
 
 #if P_FAMILY_MAGEARNA
