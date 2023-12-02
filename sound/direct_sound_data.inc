@@ -1667,9 +1667,11 @@ Cry_Sunflora::
 Cry_Yanma::
 	.incbin "sound/direct_sound_samples/cries/yanma.bin"
 
+.if P_GEN_4_CROSS_EVOS == TRUE
 	.align 2
 Cry_Yanmega::
 	.incbin "sound/direct_sound_samples/cries/yanmega.bin"
+.endif @ P_GEN_4_CROSS_EVOS
 .endif @ P_FAMILY_YANMA
 
 .if P_FAMILY_WOOPER == TRUE

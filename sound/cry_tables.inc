@@ -542,7 +542,9 @@ gCryTable::
 .endif @ P_FAMILY_SUNKERN
 .if P_FAMILY_YANMA == TRUE
 	cry Cry_Yanma
+.if P_GEN_4_CROSS_EVOS == TRUE
 	cry Cry_Yanmega
+.endif @ P_GEN_4_CROSS_EVOS
 .endif @ P_FAMILY_YANMA
 .if P_FAMILY_WOOPER == TRUE
 	cry Cry_Wooper
@@ -2944,7 +2946,9 @@ gCryTable_Reverse::
 .endif @ P_FAMILY_SUNKERN
 .if P_FAMILY_YANMA == TRUE
 	cry_reverse Cry_Yanma
+.if P_GEN_4_CROSS_EVOS == TRUE
 	cry_reverse Cry_Yanmega
+.endif @ P_GEN_4_CROSS_EVOS
 .endif @ P_FAMILY_YANMA
 .if P_FAMILY_WOOPER == TRUE
 	cry_reverse Cry_Wooper
