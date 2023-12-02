@@ -63,6 +63,28 @@ const u8 gZygarde50PokedexText[] = _(
 
 const u8 gZygarde10PokedexText[] = _("");
 
+const u8 gRockruffPokedexText[] = _(
+    "This Pokémon has lived with people since\n"
+    "times long ago. It can sense when its\n"
+    "Trainer is in the dumps and will stick\n"
+    "close by its Trainer's side.");
+
+const u8 gSilvallyNormalPokedexText[] = _(
+    "Its trust in its partner awakens it.\n"
+    "This Pokémon is capable of changing its\n"
+    "type by equipping special memories, a\n"
+    "trait that is well displayed in battle.");
+
+const u8 gSilvallyMemoryPokedexText[] = _("");
+
+const u8 gMiniorMeteorPokedexText[] = _(
+    "Originally making its home in the ozone\n"
+    "layer, it hurtles to the ground when the\n"
+    "shell encasing its body grows too heavy.\n"
+    "It was born from mutated nanoparticles.");
+
+const u8 gMiniorCorePokedexText[] = _("");
+
 #define EVOLUTION(...) (const struct Evolution[]) { __VA_ARGS__, { EVOLUTIONS_END }, }
 
 #define FRONT_PIC(sprite, width, height)                    \
@@ -45885,18 +45907,47 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .growthRate = GROWTH_MEDIUM_FAST,                       \
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},       \
         .bodyColor = BODY_COLOR_BROWN,                          \
-        .noFlip = FALSE
+        .noFlip = FALSE,                                        \
+        .speciesName = _("Rockruff"),                           \
+        .cryId = CRY_ROCKRUFF,                                  \
+        .natDexNum = NATIONAL_DEX_ROCKRUFF,                     \
+        .categoryName = _("Puppy"),                             \
+        .height = 5,                                            \
+        .weight = 92,                                           \
+        .description = gRockruffPokedexText,                    \
+        .pokemonScale = 432,                                    \
+        .pokemonOffset = 13,                                    \
+        .trainerScale = 256,                                    \
+        .trainerOffset = 0,                                     \
+        .frontPicYOffset = 11,                                  \
+        .frontAnimFrames = sAnims_Rockruff,                     \
+        .frontAnimId = ANIM_V_STRETCH,                          \
+        .backPicYOffset =  7,                                   \
+        PALETTE(Rockruff),                                      \
+        ICON(Rockruff, 2),                                      \
+        .footprint = gMonFootprint_Rockruff,                    \
+        LEARNSETS(Rockruff),                                    \
+        .formSpeciesIdTable = sRockruffFormSpeciesIdTable
 
     [SPECIES_ROCKRUFF] =
     {
         ROCKRUFF_MISC_INFO,
         .abilities = {ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_STEADFAST},
+        FRONT_PIC(Rockruff, 37, 39),
+        BACK_PIC(Rockruff, 64, 56),
+        .backAnimId = BACK_ANIM_V_STRETCH,
+        .evolutions = EVOLUTION({EVO_LEVEL_DAY, 25, SPECIES_LYCANROC_MIDDAY},
+                                {EVO_LEVEL_NIGHT, 25, SPECIES_LYCANROC_MIDNIGHT}),
     },
 
     [SPECIES_ROCKRUFF_OWN_TEMPO] =
     {
         ROCKRUFF_MISC_INFO,
         .abilities = {ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_NONE},
+        FRONT_PIC(Rockruff, 40, 48),
+        BACK_PIC(Rockruff, 64, 56),
+        //.backAnimId = BACK_ANIM_NONE,
+        .evolutions = EVOLUTION({EVO_LEVEL_DUSK, 25, SPECIES_LYCANROC_DUSK}),
     },
 
 #define LYCANROC_MISC_INFO                                  \
@@ -45909,7 +45960,18 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = STANDARD_FRIENDSHIP,                  \
         .growthRate = GROWTH_MEDIUM_FAST,                   \
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},   \
-        .noFlip = FALSE
+        .noFlip = FALSE,                                    \
+        .speciesName = _("Lycanroc"),                       \
+        .natDexNum = NATIONAL_DEX_LYCANROC,                 \
+        .categoryName = _("Wolf"),                          \
+        .weight = 250,                                      \
+        .pokemonScale = 366,                                \
+        .pokemonOffset = 7,                                 \
+        .trainerScale = 257,                                \
+        .trainerOffset = 0,                                 \
+        BACK_PIC(LycanrocMidday, 64, 56),                   \
+        .footprint = gMonFootprint_Lycanroc,                \
+        .formSpeciesIdTable = sLycanrocFormSpeciesIdTable
 
     [SPECIES_LYCANROC_MIDDAY] =
     {
@@ -45922,6 +45984,22 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 65,
         .abilities = {ABILITY_KEEN_EYE, ABILITY_SAND_RUSH, ABILITY_STEADFAST},
         .bodyColor = BODY_COLOR_BROWN,
+        .cryId = CRY_LYCANROC_MIDDAY,
+        .height = 8,
+        .description = COMPOUND_STRING(
+            "Well equipped with claws and fangs, it\n"
+            "also uses the sharp rocks in its mane\n"
+            "as weapons. It will attack with no regard\n"
+            "for its own safety."),
+        FRONT_PIC(LycanrocMidday, 57, 53),
+        .frontPicYOffset =  6,
+        .frontAnimFrames = sAnims_LycanrocMidday,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backPicYOffset =  7,
+        .backAnimId = BACK_ANIM_V_SHAKE,
+        PALETTE(LycanrocMidday),
+        ICON(LycanrocMidday, 2),
+        LEARNSETS(LycanrocMidday),
     },
 
     [SPECIES_LYCANROC_MIDNIGHT] =
@@ -45935,6 +46013,19 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 75,
         .abilities = {ABILITY_KEEN_EYE, ABILITY_VITAL_SPIRIT, ABILITY_NO_GUARD},
         .bodyColor = BODY_COLOR_RED,
+        .cryId = CRY_LYCANROC_MIDNIGHT,
+        .height = 11,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(LycanrocMidnight, 56, 61),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_LycanrocMidnight,
+        .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_SLOW,
+        .backPicYOffset =  7,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        PALETTE(LycanrocMidnight),
+        ICON(LycanrocMidnight, 0),
+        LEARNSETS(LycanrocMidnight),
     },
 
     [SPECIES_LYCANROC_DUSK] =
@@ -45948,6 +46039,19 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 65,
         .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
+        .cryId = CRY_LYCANROC_DUSK,
+        .height = 8,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(LycanrocDusk, 57, 58),
+        .frontPicYOffset =  6,
+        .frontAnimFrames = sAnims_LycanrocDusk,
+        .frontAnimId = ANIM_V_SHAKE,
+        .backPicYOffset =  6,
+        .backAnimId = BACK_ANIM_V_SHAKE,
+        PALETTE(LycanrocDusk),
+        ICON(LycanrocDusk, 0),
+        LEARNSETS(LycanrocDusk),
     },
 #endif //P_FAMILY_ROCKRUFF
 
@@ -45964,7 +46068,18 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2},   \
         .abilities = {ABILITY_SCHOOLING, ABILITY_NONE},         \
         .bodyColor = BODY_COLOR_BLUE,                           \
-        .noFlip = FALSE
+        .noFlip = FALSE,                                        \
+        .speciesName = _("Wishiwashi"),                         \
+        .natDexNum = NATIONAL_DEX_WISHIWASHI,                   \
+        .categoryName = _("Small Fry"),                         \
+        .pokemonScale = 682,                                    \
+        .pokemonOffset = 24,                                    \
+        .trainerScale = 256,                                    \
+        .trainerOffset = 0,                                     \
+        .footprint = gMonFootprint_Wishiwashi,                  \
+        LEARNSETS(Wishiwashi),                                  \
+        .formSpeciesIdTable = sWishiwashiFormSpeciesIdTable,    \
+        .formChangeTable = sWishiwashiFormChangeTable
 
     [SPECIES_WISHIWASHI_SOLO] =
     {
@@ -45975,6 +46090,23 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 40,
         .baseSpAttack  = 25,
         .baseSpDefense = 25,
+        .cryId = CRY_WISHIWASHI_SOLO,
+        .height = 2,
+        .weight = 3,
+        .description = COMPOUND_STRING(
+            "When it's in trouble, its eyes moisten and\n"
+            "begin to shine. The shining light attracts\n"
+            "its comrades, and they stand together\n"
+            "against their enemies."),
+        FRONT_PIC(WishiwashiSolo, 40, 24),
+        .frontPicYOffset = 15,
+        .frontAnimFrames = sAnims_WishiwashiSolo,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
+        BACK_PIC(WishiwashiSolo, 56, 32),
+        .backPicYOffset = 18,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(WishiwashiSolo),
+        ICON(WishiwashiSolo, 2),
     },
 
     [SPECIES_WISHIWASHI_SCHOOL] =
@@ -45986,6 +46118,20 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpeed     = 30,
         .baseSpAttack  = 140,
         .baseSpDefense = 135,
+        .cryId = CRY_WISHIWASHI_SCHOOL,
+        .height = 82,
+        .weight = 786,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(WishiwashiSchool, 64, 64),
+        .frontPicYOffset =  4,
+        .frontAnimFrames = sAnims_WishiwashiSchool,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE, //Todo
+        BACK_PIC(WishiwashiSchool, 64, 56),
+        .backPicYOffset =  5,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(WishiwashiSchool),
+        ICON(WishiwashiSchool, 0),
     },
 #endif //P_FAMILY_WISHIWASHI
 
@@ -47300,7 +47446,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_SILVALLY_NORMAL}),
     },
 
-#define SILVALLY_SPECIES_INFO(type)                                     \
+#define SILVALLY_SPECIES_INFO(type, palette)                            \
     {                                                                   \
         .baseHP        = 95,                                            \
         .baseAttack    = 95,                                            \
@@ -47320,27 +47466,53 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_RKS_SYSTEM, ABILITY_NONE},                \
         .bodyColor = BODY_COLOR_GRAY,                                   \
         .noFlip = FALSE,                                                \
-        .isLegendary = TRUE,                                \
-    }
+        .isLegendary = TRUE,                                            \
+        .speciesName = _("Silvally"),                                   \
+        .cryId = CRY_SILVALLY,                                          \
+        .natDexNum = NATIONAL_DEX_SILVALLY,                             \
+        .categoryName = _("Synthetic"),                                 \
+        .height = 23,                                                   \
+        .weight = 1005,                                                 \
+        .description = (type == TYPE_NORMAL                             \
+            ? gSilvallyNormalPokedexText                                \
+            : gSilvallyMemoryPokedexText),                              \
+        .pokemonScale = 256,                                            \
+        .pokemonOffset = 0,                                             \
+        .trainerScale = 342,                                            \
+        .trainerOffset = 7,                                             \
+        FRONT_PIC(Silvally, 64, 64),                                    \
+        .frontPicYOffset =  0,                                          \
+        .frontAnimFrames = sAnims_Silvally,                             \
+        .frontAnimId = ANIM_V_SHAKE,                                    \
+        BACK_PIC(Silvally, 56, 64),                                     \
+        .backPicYOffset =  0,                                           \
+        PALETTE(palette),                                               \
+        ICON(Silvally, 0),                                              \
+        .footprint = gMonFootprint_Silvally,                            \
+        LEARNSETS(Silvally),                                            \
+        .formSpeciesIdTable = sSilvallyFormSpeciesIdTable,              \
+        .formChangeTable = sSilvallyFormChangeTable,                    \
+   }
+        //.backAnimId = BACK_ANIM_NONE,
 
-    [SPECIES_SILVALLY_NORMAL]   = SILVALLY_SPECIES_INFO(TYPE_NORMAL),
-    [SPECIES_SILVALLY_FIGHTING] = SILVALLY_SPECIES_INFO(TYPE_FIGHTING),
-    [SPECIES_SILVALLY_FLYING]   = SILVALLY_SPECIES_INFO(TYPE_FLYING),
-    [SPECIES_SILVALLY_POISON]   = SILVALLY_SPECIES_INFO(TYPE_POISON),
-    [SPECIES_SILVALLY_GROUND]   = SILVALLY_SPECIES_INFO(TYPE_GROUND),
-    [SPECIES_SILVALLY_ROCK]     = SILVALLY_SPECIES_INFO(TYPE_ROCK),
-    [SPECIES_SILVALLY_BUG]      = SILVALLY_SPECIES_INFO(TYPE_BUG),
-    [SPECIES_SILVALLY_GHOST]    = SILVALLY_SPECIES_INFO(TYPE_GHOST),
-    [SPECIES_SILVALLY_STEEL]    = SILVALLY_SPECIES_INFO(TYPE_STEEL),
-    [SPECIES_SILVALLY_FIRE]     = SILVALLY_SPECIES_INFO(TYPE_FIRE),
-    [SPECIES_SILVALLY_WATER]    = SILVALLY_SPECIES_INFO(TYPE_WATER),
-    [SPECIES_SILVALLY_GRASS]    = SILVALLY_SPECIES_INFO(TYPE_GRASS),
-    [SPECIES_SILVALLY_ELECTRIC] = SILVALLY_SPECIES_INFO(TYPE_ELECTRIC),
-    [SPECIES_SILVALLY_PSYCHIC]  = SILVALLY_SPECIES_INFO(TYPE_PSYCHIC),
-    [SPECIES_SILVALLY_ICE]      = SILVALLY_SPECIES_INFO(TYPE_ICE),
-    [SPECIES_SILVALLY_DRAGON]   = SILVALLY_SPECIES_INFO(TYPE_DRAGON),
-    [SPECIES_SILVALLY_DARK]     = SILVALLY_SPECIES_INFO(TYPE_DARK),
-    [SPECIES_SILVALLY_FAIRY]    = SILVALLY_SPECIES_INFO(TYPE_FAIRY),
+    [SPECIES_SILVALLY_NORMAL]   = SILVALLY_SPECIES_INFO(TYPE_NORMAL, SilvallyNormal),
+    [SPECIES_SILVALLY_FIGHTING] = SILVALLY_SPECIES_INFO(TYPE_FIGHTING, SilvallyFighting),
+    [SPECIES_SILVALLY_FLYING]   = SILVALLY_SPECIES_INFO(TYPE_FLYING, SilvallyFlying),
+    [SPECIES_SILVALLY_POISON]   = SILVALLY_SPECIES_INFO(TYPE_POISON, SilvallyPoison),
+    [SPECIES_SILVALLY_GROUND]   = SILVALLY_SPECIES_INFO(TYPE_GROUND, SilvallyGround),
+    [SPECIES_SILVALLY_ROCK]     = SILVALLY_SPECIES_INFO(TYPE_ROCK, SilvallyRock),
+    [SPECIES_SILVALLY_BUG]      = SILVALLY_SPECIES_INFO(TYPE_BUG, SilvallyBug),
+    [SPECIES_SILVALLY_GHOST]    = SILVALLY_SPECIES_INFO(TYPE_GHOST, SilvallyGhost),
+    [SPECIES_SILVALLY_STEEL]    = SILVALLY_SPECIES_INFO(TYPE_STEEL, SilvallySteel),
+    [SPECIES_SILVALLY_FIRE]     = SILVALLY_SPECIES_INFO(TYPE_FIRE, SilvallyFire),
+    [SPECIES_SILVALLY_WATER]    = SILVALLY_SPECIES_INFO(TYPE_WATER, SilvallyWater),
+    [SPECIES_SILVALLY_GRASS]    = SILVALLY_SPECIES_INFO(TYPE_GRASS, SilvallyGrass),
+    [SPECIES_SILVALLY_ELECTRIC] = SILVALLY_SPECIES_INFO(TYPE_ELECTRIC, SilvallyElectric),
+    [SPECIES_SILVALLY_PSYCHIC]  = SILVALLY_SPECIES_INFO(TYPE_PSYCHIC, SilvallyPsychic),
+    [SPECIES_SILVALLY_ICE]      = SILVALLY_SPECIES_INFO(TYPE_ICE, SilvallyIce),
+    [SPECIES_SILVALLY_DRAGON]   = SILVALLY_SPECIES_INFO(TYPE_DRAGON, SilvallyDragon),
+    [SPECIES_SILVALLY_DARK]     = SILVALLY_SPECIES_INFO(TYPE_DARK, SilvallyDark),
+    [SPECIES_SILVALLY_FAIRY]    = SILVALLY_SPECIES_INFO(TYPE_FAIRY, SilvallyFairy),
 #endif //P_FAMILY_TYPE_NULL
 
 #if P_FAMILY_MINIOR
@@ -47358,44 +47530,82 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_MINERAL},   \
         .abilities = {ABILITY_SHIELDS_DOWN, ABILITY_NONE},      \
         .bodyColor = color,                                     \
-        .noFlip = TRUE
+        .noFlip = TRUE,                                         \
+        .speciesName = _("Minior"),                             \
+        .cryId = CRY_MINIOR,                                    \
+        .natDexNum = NATIONAL_DEX_MINIOR,                       \
+        .categoryName = _("Meteor"),                            \
+        .height = 3,                                            \
+        .pokemonScale = 530,                                    \
+        .pokemonOffset = 13,                                    \
+        .trainerScale = 256,                                    \
+        .trainerOffset = 0,                                     \
+        .footprint = gMonFootprint_Minior,                      \
+        LEARNSETS(Minior),                                      \
+        .formSpeciesIdTable = sMiniorFormSpeciesIdTable
 
-#define MINIOR_METEOR_SPECIES_INFO          \
-    {                                       \
-        .baseHP        = 60,    \
-        .baseAttack    = 60,    \
-        .baseDefense   = 100,   \
-        .baseSpeed     = 60,    \
-        .baseSpAttack  = 60,    \
-        .baseSpDefense = 100,           \
-        MINIOR_MISC_INFO(BODY_COLOR_BROWN), \
+#define MINIOR_METEOR_SPECIES_INFO(Form)                        \
+    {                                                           \
+        .baseHP        = 60,                                    \
+        .baseAttack    = 60,                                    \
+        .baseDefense   = 100,                                   \
+        .baseSpeed     = 60,                                    \
+        .baseSpAttack  = 60,                                    \
+        .baseSpDefense = 100,                                   \
+        .weight = 400,                                          \
+        FRONT_PIC(MiniorMeteor, 48, 40),                        \
+        .frontPicYOffset = 14,                                  \
+        .frontAnimFrames = sAnims_MiniorMeteor,                 \
+        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,          \
+        .enemyMonElevation = 17,                                \
+        BACK_PIC(MiniorMeteor, 56, 40),                         \
+        .backPicYOffset = 14,                                   \
+        PALETTE(MiniorMeteor),                                  \
+        ICON(MiniorMeteor, 0),                                  \
+        .formChangeTable = sMinior ##Form##FormChangeTable,     \
+        MINIOR_MISC_INFO(BODY_COLOR_BROWN),                     \
     }
+    //.backAnimId = BACK_ANIM_NONE,
 
-#define MINIOR_CORE_SPECIES_INFO(color) \
-    {                                   \
-        .baseHP        = 60,  \
-        .baseAttack    = 100, \
-        .baseDefense   = 60,  \
-        .baseSpeed     = 120, \
-        .baseSpAttack  = 100, \
-        .baseSpDefense = 60,            \
-        MINIOR_MISC_INFO(color),        \
+#define MINIOR_CORE_SPECIES_INFO(Form, color)                   \
+    {                                                           \
+        .baseHP        = 60,                                    \
+        .baseAttack    = 100,                                   \
+        .baseDefense   = 60,                                    \
+        .baseSpeed     = 120,                                   \
+        .baseSpAttack  = 100,                                   \
+        .baseSpDefense = 60,                                    \
+        .weight = 3,                                            \
+        .description = gMiniorCorePokedexText,                  \
+        FRONT_PIC(MiniorCore, 48, 40),                          \
+        .frontPicYOffset = 14,                                  \
+        .frontAnimFrames = sAnims_MiniorMeteor,                 \
+        .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,          \
+        .enemyMonElevation = 17,                                \
+        BACK_PIC(MiniorCore, 56, 40),                           \
+        .backPicYOffset = 15,                                   \
+        .palette = gMonPalette_MiniorCoreRed,                   \
+        .shinyPalette = gMonShinyPalette_MiniorCore,            \
+        ICON(MiniorCoreRed, 0),                                 \
+        .formChangeTable = sMinior ##Form##FormChangeTable,     \
+        MINIOR_MISC_INFO(color),                                \
     }
+    //.backAnimId = BACK_ANIM_NONE,
 
-    [SPECIES_MINIOR_METEOR_RED]    = MINIOR_METEOR_SPECIES_INFO,
-    [SPECIES_MINIOR_METEOR_ORANGE] = MINIOR_METEOR_SPECIES_INFO,
-    [SPECIES_MINIOR_METEOR_YELLOW] = MINIOR_METEOR_SPECIES_INFO,
-    [SPECIES_MINIOR_METEOR_GREEN]  = MINIOR_METEOR_SPECIES_INFO,
-    [SPECIES_MINIOR_METEOR_BLUE]   = MINIOR_METEOR_SPECIES_INFO,
-    [SPECIES_MINIOR_METEOR_INDIGO] = MINIOR_METEOR_SPECIES_INFO,
-    [SPECIES_MINIOR_METEOR_VIOLET] = MINIOR_METEOR_SPECIES_INFO,
-    [SPECIES_MINIOR_CORE_RED]      = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_RED),
-    [SPECIES_MINIOR_CORE_ORANGE]   = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_RED),
-    [SPECIES_MINIOR_CORE_YELLOW]   = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_YELLOW),
-    [SPECIES_MINIOR_CORE_GREEN]    = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_GREEN),
-    [SPECIES_MINIOR_CORE_BLUE]     = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_BLUE),
-    [SPECIES_MINIOR_CORE_INDIGO]   = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_BLUE),
-    [SPECIES_MINIOR_CORE_VIOLET]   = MINIOR_CORE_SPECIES_INFO(BODY_COLOR_PURPLE),
+    [SPECIES_MINIOR_METEOR_RED]    = MINIOR_METEOR_SPECIES_INFO(Red),
+    [SPECIES_MINIOR_METEOR_ORANGE] = MINIOR_METEOR_SPECIES_INFO(Orange),
+    [SPECIES_MINIOR_METEOR_YELLOW] = MINIOR_METEOR_SPECIES_INFO(Yellow),
+    [SPECIES_MINIOR_METEOR_GREEN]  = MINIOR_METEOR_SPECIES_INFO(Green),
+    [SPECIES_MINIOR_METEOR_BLUE]   = MINIOR_METEOR_SPECIES_INFO(Blue),
+    [SPECIES_MINIOR_METEOR_INDIGO] = MINIOR_METEOR_SPECIES_INFO(Indigo),
+    [SPECIES_MINIOR_METEOR_VIOLET] = MINIOR_METEOR_SPECIES_INFO(Violet),
+    [SPECIES_MINIOR_CORE_RED]      = MINIOR_CORE_SPECIES_INFO(Red, BODY_COLOR_RED),
+    [SPECIES_MINIOR_CORE_ORANGE]   = MINIOR_CORE_SPECIES_INFO(Orange, BODY_COLOR_RED),
+    [SPECIES_MINIOR_CORE_YELLOW]   = MINIOR_CORE_SPECIES_INFO(Yellow, BODY_COLOR_YELLOW),
+    [SPECIES_MINIOR_CORE_GREEN]    = MINIOR_CORE_SPECIES_INFO(Green, BODY_COLOR_GREEN),
+    [SPECIES_MINIOR_CORE_BLUE]     = MINIOR_CORE_SPECIES_INFO(Blue, BODY_COLOR_BLUE),
+    [SPECIES_MINIOR_CORE_INDIGO]   = MINIOR_CORE_SPECIES_INFO(Indigo, BODY_COLOR_BLUE),
+    [SPECIES_MINIOR_CORE_VIOLET]   = MINIOR_CORE_SPECIES_INFO(Violet, BODY_COLOR_PURPLE),
 #endif //P_FAMILY_MINIOR
 
 #if P_FAMILY_KOMALA
@@ -47544,16 +47754,55 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggGroups = { EGG_GROUP_AMORPHOUS, EGG_GROUP_AMORPHOUS},   \
         .abilities = {ABILITY_DISGUISE, ABILITY_NONE},              \
         .bodyColor = BODY_COLOR_YELLOW,                             \
-        .noFlip = FALSE
+        .noFlip = FALSE,                                            \
+        .speciesName = _("Mimikyu"),                                \
+        .cryId = CRY_MIMIKYU,                                       \
+        .natDexNum = NATIONAL_DEX_MIMIKYU,                          \
+        .categoryName = _("Disguise"),                              \
+        .height = 2,                                                \
+        .weight = 7,                                                \
+        .pokemonScale = 682,                                        \
+        .pokemonOffset = 24,                                        \
+        .trainerScale = 256,                                        \
+        .trainerOffset = 0,                                         \
+        .footprint = gMonFootprint_Mimikyu,                         \
+        LEARNSETS(Mimikyu),                                         \
+        .formSpeciesIdTable = sMimikyuFormSpeciesIdTable,           \
+        .formChangeTable = sMimikyuFormChangeTable
 
     [SPECIES_MIMIKYU_DISGUISED] =
     {
         MIMIKYU_MISC_INFO,
+        .description = COMPOUND_STRING(
+            "A lonely Pokémon, it hides its terrifying\n"
+            "appearance beneath an old rag so it can\n"
+            "get closer to people and other Pokémon.\n"
+            "Its actual appearance is unknown."),
+        FRONT_PIC(MimikyuDisguised, 48, 40),
+        .frontPicYOffset = 12,
+        .frontAnimFrames = sAnims_MimikyuDisguised,
+        .frontAnimId = ANIM_DEEP_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(MimikyuDisguised, 56, 56),
+        .backPicYOffset =  7,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(MimikyuDisguised),
+        ICON(MimikyuDisguised, 1),
     },
 
     [SPECIES_MIMIKYU_BUSTED] =
     {
         MIMIKYU_MISC_INFO,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(MimikyuBusted, 48, 40),
+        .frontPicYOffset = 12,
+        .frontAnimFrames = sAnims_MimikyuBusted,
+        .frontAnimId = ANIM_DEEP_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(MimikyuBusted, 64, 40),
+        .backPicYOffset = 15,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(MimikyuBusted),
+        ICON(MimikyuBusted, 1),
     },
 #endif //P_FAMILY_MIMIKYU
 
@@ -48645,6 +48894,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .growthRate = GROWTH_SLOW,                                      \
         .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED}, \
         .noFlip = TRUE,                                                 \
+        .speciesName = _("Necrozma"),                                   \
+        .cryId = CRY_NECROZMA_DUSK_MANE,                                \
+        .natDexNum = NATIONAL_DEX_NECROZMA,                             \
+        .categoryName = _("Prism"),                                     \
+        .pokemonScale = 256,                                            \
+        .pokemonOffset = 3,                                             \
+        .trainerScale = 369,                                            \
+        .trainerOffset = 7,                                             \
+        .footprint = gMonFootprint_Necrozma,                            \
+        LEARNSETS(Necrozma),                                            \
+        .formSpeciesIdTable = sNecrozmaFormSpeciesIdTable,              \
         .isLegendary = TRUE
 
     [SPECIES_NECROZMA] =
@@ -48663,6 +48923,23 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpAttack  = 2,
         .abilities = {ABILITY_PRISM_ARMOR, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLACK,
+        .height = 24,
+        .weight = 2300,
+        .description = COMPOUND_STRING(
+            "Reminiscent of the Ultra Beasts, this\n"
+            "life-form, apparently asleep underground,\n"
+            "is thought to have come from another\n"
+            "world in ancient times."),
+        FRONT_PIC(Necrozma, 64, 64),
+        .frontPicYOffset =  2,
+        .frontAnimFrames = sAnims_Necrozma,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        .enemyMonElevation = 6,
+        BACK_PIC(Necrozma, 64, 64),
+        .backPicYOffset =  4,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Necrozma),
+        ICON(Necrozma, 0),
     },
 
 #if P_FUSION_FORMS
@@ -48682,6 +48959,20 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PRISM_ARMOR, ABILITY_NONE},
         .bodyColor = BODY_COLOR_YELLOW,
         .cannotBeTraded = TRUE,
+        .height = 38,
+        .weight = 4600,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(NecrozmaDuskMane, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Necrozma,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(NecrozmaDuskMane, 64, 64),
+        .backPicYOffset =  1,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(NecrozmaDuskMane),
+        ICON(NecrozmaDuskMane, 0),
+        .formChangeTable = sNecrozmaDuskManeFormChangeTable,
     },
 
     [SPECIES_NECROZMA_DAWN_WINGS] =
@@ -48700,6 +48991,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_PRISM_ARMOR, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .cannotBeTraded = TRUE,
+        .height = 42,
+        .weight = 3500,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(NecrozmaDawnWings, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Necrozma,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 6,
+        BACK_PIC(NecrozmaDawnWings, 64, 64),
+        .backPicYOffset =  2,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(NecrozmaDawnWings),
+        ICON(NecrozmaDawnWings, 0),
+        .formChangeTable = sNecrozmaDawnWingsFormChangeTable,
     },
 #endif //P_FUSION_FORMS
 
@@ -48722,13 +49028,26 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_NEUROFORCE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_YELLOW,
         .isUltraBurst = TRUE,
+        .height = 75,
+        .weight = 2300,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(NecrozmaUltra, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Necrozma,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 5,
+        BACK_PIC(NecrozmaUltra, 64, 64),
+        .backPicYOffset =  3,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(NecrozmaUltra),
+        ICON(NecrozmaUltra, 2),
     },
 #endif //P_ULTRA_BURST_FORMS
 #endif //P_FAMILY_NECROZMA
 
 #if P_FAMILY_MAGEARNA
-#define MAGEARNA_SPECIES_INFO(color)                                    \
-    {                                                                   \
+#define MAGEARNA_MISC_INFO(Form)                                        \
         .baseHP        = 80,                                            \
         .baseAttack    = 95,                                            \
         .baseDefense   = 115,                                           \
@@ -48745,13 +49064,48 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .growthRate = GROWTH_SLOW,                                      \
         .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED}, \
         .abilities = {ABILITY_SOUL_HEART, ABILITY_NONE},                \
-        .bodyColor = color,                                             \
         .noFlip = FALSE,                                                \
-        .isMythical = TRUE,                                 \
-    }
+        .speciesName = _("Magearna"),                                   \
+        .cryId = CRY_MAGEARNA,                                          \
+        .natDexNum = NATIONAL_DEX_MAGEARNA,                             \
+        .categoryName = _("Artificial"),                                \
+        .height = 10,                                                   \
+        .weight = 805,                                                  \
+        .pokemonScale = 305,                                            \
+        .pokemonOffset = 7,                                             \
+        .trainerScale = 257,                                            \
+        .trainerOffset = 0,                                             \
+        FRONT_PIC(Form, 56, 64),                                        \
+        .frontPicYOffset =  0,                                          \
+        .frontAnimFrames = sAnims_Magearna,                             \
+        .frontAnimId = ANIM_H_SLIDE_SLOW,                               \
+        BACK_PIC(Form, 64, 56),                                         \
+        .backPicYOffset =  4,                                           \
+        PALETTE(Form),                                                  \
+        ICON(Form, 0),                                                  \
+        .footprint = gMonFootprint_Magearna,                            \
+        LEARNSETS(Magearna),                                            \
+        .formSpeciesIdTable = sMagearnaFormSpeciesIdTable,              \
+        .isMythical = TRUE
+    //.backAnimId = BACK_ANIM_NONE,
 
-    [SPECIES_MAGEARNA]                = MAGEARNA_SPECIES_INFO(BODY_COLOR_GRAY),
-    [SPECIES_MAGEARNA_ORIGINAL_COLOR] = MAGEARNA_SPECIES_INFO(BODY_COLOR_RED),
+    [SPECIES_MAGEARNA] =
+    {
+        MAGEARNA_MISC_INFO(Magearna),
+        .bodyColor = BODY_COLOR_GRAY,
+        .description = COMPOUND_STRING(
+            "This artificial Pokémon, constructed more\n"
+            "than 500 years ago, can understand human\n"
+            "speech but cannot itself speak. Its true\n"
+            "self is its Soul-Heart, an artificial soul."),
+    },
+    [SPECIES_MAGEARNA_ORIGINAL_COLOR] =
+    {
+        MAGEARNA_MISC_INFO(MagearnaOriginalColor),
+        .bodyColor = BODY_COLOR_RED,
+        .description = COMPOUND_STRING(
+            ""),
+    },
 #endif //P_FAMILY_MAGEARNA
 
 #if P_FAMILY_MARSHADOW
@@ -49099,11 +49453,37 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_IRON_FIST, ABILITY_NONE},                 \
         .bodyColor = BODY_COLOR_GRAY,                                   \
         .noFlip = FALSE,                                                \
+        .speciesName = _("Melmetal"),                                   \
+        .cryId = CRY_MELMETAL,                                          \
+        .natDexNum = NATIONAL_DEX_MELMETAL,                             \
+        .categoryName = _("Hex Nut"),                                   \
+        .pokemonScale = 257,                                            \
+        .pokemonOffset = 10,                                            \
+        .trainerScale = 423,                                            \
+        .trainerOffset = 8,                                             \
+        .footprint = gMonFootprint_Melmetal,                            \
+        LEARNSETS(Melmetal),                                            \
+        .formChangeTable = sMelmetalFormChangeTable,                    \
         .isMythical = TRUE
 
     [SPECIES_MELMETAL] =
     {
         MELMETAL_MISC_INFO,
+        .height = 25,
+        .weight = 800,
+        .description = COMPOUND_STRING(
+            "Revered long ago for its capacity to create\n"
+            "iron from nothing, for some reason it has\n"
+            "come back to life after 3,000 years."),
+        FRONT_PIC(Melmetal, 64, 56),
+        .frontPicYOffset =  4,
+        .frontAnimFrames = sAnims_Melmetal,
+        .frontAnimId = ANIM_GROW_VIBRATE,
+        BACK_PIC(Melmetal, 64, 40),
+        .backPicYOffset = 13,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Melmetal),
+        ICON(Melmetal, 2),
     },
 
 #if P_GIGANTAMAX_FORMS
@@ -49111,6 +49491,19 @@ const struct SpeciesInfo gSpeciesInfo[] =
     {
         MELMETAL_MISC_INFO,
         .isGigantamax = TRUE,
+        .height = 250,
+        .weight = 0,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(MelmetalGigantamax, 64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_MelmetalGigantamax,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(MelmetalGigantamax, 64, 64),
+        .backPicYOffset = 14,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(MelmetalGigantamax),
+        ICON(MelmetalGigantamax, 0),
     },
 #endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_MELTAN
