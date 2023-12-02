@@ -49,6 +49,8 @@ static void OpponentHandleMoveAnimation(u32 battler);
 static void OpponentHandlePrintString(u32 battler);
 static void OpponentHandleChooseAction(u32 battler);
 static void OpponentHandleChooseMove(u32 battler);
+static bool32 CheckIfPartnerIsNaturalEnemy(u32 battler);
+static bool32 IsMonNaturalEnemy(u32 i, u16 speciesAttacker, u16 speciesTarget);
 static void OpponentHandleChooseItem(u32 battler);
 static void OpponentHandleChoosePokemon(u32 battler);
 static void OpponentHandleHealthBarUpdate(u32 battler);
@@ -598,174 +600,7 @@ static void OpponentHandleChooseMove(u32 battler)
             // Don't bother to loop through table if the move can't attack ally
             if (B_WILD_NATURAL_ENEMIES == TRUE && !(gBattleMoves[move].target & MOVE_TARGET_BOTH))
             {
-                u16 i, speciesAttacker, speciesTarget, isPartnerEnemy = FALSE;
-                static const u16 naturalEnemies[][3] =
-                {
-                    // Attacker              Target                 //Unofficial
-                    {SPECIES_ZANGOOSE,       SPECIES_SEVIPER,       FALSE},
-                    {SPECIES_HEATMOR,        SPECIES_DURANT,        FALSE},
-                    {SPECIES_SABLEYE,        SPECIES_CARBINK,       FALSE},
-                    {SPECIES_MAREANIE,       SPECIES_CORSOLA,       FALSE},
-                    {SPECIES_PIDGEY,         SPECIES_SEEDOT,        TRUE},
-                    {SPECIES_PIDGEOTTO,      SPECIES_MAGIKARP,      TRUE},
-                    {SPECIES_SPEAROW,        SPECIES_SUNKERN,       TRUE},
-                    {SPECIES_EKANS,          SPECIES_SPEAROW,       TRUE},
-                    {SPECIES_PERSIAN,        SPECIES_STARLY,        TRUE},
-                    {SPECIES_GRIMER,         SPECIES_TRUBBISH,      TRUE},
-                    {SPECIES_MUK,            SPECIES_TRUBBISH,      TRUE},
-                    {SPECIES_SHELLDER,       SPECIES_SLOWPOKE,      TRUE},
-                    {SPECIES_KINGLER,        SPECIES_SHELLDER,      TRUE},
-                    {SPECIES_MAROWAK,        SPECIES_MANDIBUZZ,     TRUE},
-                    {SPECIES_SCYTHER,        SPECIES_TAROUNTULA,    TRUE},
-                    {SPECIES_FURRET,         SPECIES_RATTATA,       TRUE},
-                    {SPECIES_LANTURN,        SPECIES_STARYU,        TRUE},
-                    {SPECIES_AIPOM,          SPECIES_BOUNSWEET,     TRUE},
-                    {SPECIES_SNEASEL,        SPECIES_PIDGEY,        TRUE},
-                    {SPECIES_SNEASEL,        SPECIES_DELIBIRD,      TRUE},
-                    {SPECIES_TAILLOW,        SPECIES_WURMPLE,       TRUE},
-                    {SPECIES_WINGULL,        SPECIES_FINNEON,       TRUE},
-                    {SPECIES_PELIPPER,       SPECIES_LUVDISC,       TRUE},
-                    {SPECIES_WAILMER,        SPECIES_WISHIWASHI,    TRUE},
-                    {SPECIES_GLALIE,         SPECIES_VANILLITE,     TRUE},
-                    {SPECIES_RAYQUAZA,       SPECIES_MINIOR,        TRUE},
-                    {SPECIES_STARLY,         SPECIES_CHERUBI,       TRUE},
-                    {SPECIES_LUMINEON,       SPECIES_STARYU,        TRUE},
-                    {SPECIES_WEAVILE,        SPECIES_SANDSHREW,     TRUE},
-                    {SPECIES_WEAVILE,        SPECIES_MAMOSWINE,     TRUE},
-                    {SPECIES_SANDILE,        SPECIES_TRAPINCH,      TRUE},
-                    {SPECIES_CARRACOSTA,     SPECIES_OMANYTE,       TRUE},
-                    {SPECIES_ARCHEOPS,       SPECIES_OMANYTE,       TRUE},
-                    {SPECIES_BEHEEYEM,       SPECIES_DUBWOOL,       TRUE},
-                    {SPECIES_DRUDDIGON,      SPECIES_DUGTRIO,       TRUE},
-                    {SPECIES_RUFFLET,        SPECIES_SPEWPA,        TRUE},
-                    {SPECIES_MANDIBUZZ,      SPECIES_CUBONE,        TRUE},
-                    {SPECIES_TALONFLAME,     SPECIES_WINGULL,       TRUE},
-                    {SPECIES_DRAGALGE,       SPECIES_FINIZEN,       TRUE},
-                    {SPECIES_TOUCANNON,      SPECIES_BOUNSWEET,     TRUE},
-                    {SPECIES_GUMSHOOS,       SPECIES_RATICATE,      TRUE},
-                    {SPECIES_CRABRAWLER,     SPECIES_EXEGGCUTE,     TRUE},
-                    {SPECIES_TOXAPEX,        SPECIES_CORSOLA,       TRUE},
-                    {SPECIES_SALANDIT,       SPECIES_SPINDA,        TRUE},
-                    {SPECIES_GOLISOPOD,      SPECIES_GRAPPLOCT,     TRUE},
-                    {SPECIES_BRUXISH,        SPECIES_MAREANIE,      TRUE},
-                    {SPECIES_DHELMISE,       SPECIES_WAILORD,       TRUE},
-                    {SPECIES_CORVISQUIRE,    SPECIES_STEENEE,       TRUE},
-                    {SPECIES_APPLETUN,       SPECIES_COMBEE,        TRUE},
-                    {SPECIES_SANDACONDA,     SPECIES_DURANT,        TRUE},
-                    {SPECIES_BARRASKEWDA,    SPECIES_WINGULL,       TRUE},
-                    {SPECIES_GRAPPLOCT,      SPECIES_GOLISOPOD,     TRUE},
-                    {SPECIES_DONDOZO,        SPECIES_BASCULIN,      TRUE},
-                    {SPECIES_BOMBIRDIER,     SPECIES_BASCULIN,      TRUE},
-                    {SPECIES_PIDGEOTTO,      SPECIES_EXEGGCUTE,     TRUE},
-                    {SPECIES_PIDGEOT,        SPECIES_MAGIKARP,      TRUE},
-                    {SPECIES_EKANS,          SPECIES_PIDGEY,        TRUE},
-                    {SPECIES_ARBOK,          SPECIES_WOOPER,        TRUE},
-                    {SPECIES_DEWGONG,        SPECIES_WISHIWASHI,    TRUE},
-                    {SPECIES_GRIMER,         SPECIES_GARBODOR,      TRUE},
-                    {SPECIES_MUK,            SPECIES_GARBODOR,      TRUE},
-                    {SPECIES_CLOYSTER,       SPECIES_SLOWPOKE,      TRUE},
-                    {SPECIES_KINGLER,        SPECIES_CLOYSTER,      TRUE},
-                    {SPECIES_WEEZING,        SPECIES_TRUBBISH,      TRUE},
-                    {SPECIES_OMASTAR,        SPECIES_SHELLDER,      TRUE},
-                    {SPECIES_SPINARAK,       SPECIES_CUTIEFLY,      TRUE},
-                    {SPECIES_LANTURN,        SPECIES_STARMIE,       TRUE},
-                    {SPECIES_PINECO,         SPECIES_CUTIEFLY,      TRUE},
-                    {SPECIES_SNEASEL,        SPECIES_SANDSHREW,     TRUE},
-                    {SPECIES_REMORAID,       SPECIES_BURMY,         TRUE},
-                    {SPECIES_SWELLOW,        SPECIES_WURMPLE,       TRUE},
-                    {SPECIES_WINGULL,        SPECIES_WISHIWASHI,    TRUE},
-                    {SPECIES_PELIPPER,       SPECIES_WISHIWASHI,    TRUE},
-                    {SPECIES_SHARPEDO,       SPECIES_WAILMER,       TRUE},
-                    {SPECIES_WAILORD,        SPECIES_WISHIWASHI,    TRUE},
-                    {SPECIES_METANG,         SPECIES_NOSEPASS,      TRUE},
-                    {SPECIES_STARLY,         SPECIES_WURMPLE,       TRUE},
-                    {SPECIES_STARLY,         SPECIES_SCATTERBUG,    TRUE},
-                    {SPECIES_LUMINEON,       SPECIES_STARMIE,       TRUE},
-                    {SPECIES_WEAVILE,        SPECIES_VULPIX,        TRUE},
-                    {SPECIES_SCOLIPEDE,      SPECIES_CENTISKORCH,   TRUE},
-                    {SPECIES_DARUMAKA,       SPECIES_SNOVER,        TRUE},
-                    {SPECIES_CARRACOSTA,     SPECIES_OMASTAR,       TRUE},
-                    {SPECIES_KARRABLAST,     SPECIES_SHELMET,       TRUE},
-                    {SPECIES_DRUDDIGON,      SPECIES_DIGLETT,       TRUE},
-                    {SPECIES_RUFFLET,        SPECIES_SHELLDER,      TRUE},
-                    {SPECIES_VULLABY,        SPECIES_HATENNA,       TRUE},
-                    {SPECIES_TALONFLAME,     SPECIES_PIKIPEK,       TRUE},
-                    {SPECIES_PIKIPEK,        SPECIES_METAPOD,       TRUE},
-                    {SPECIES_GUMSHOOS,       SPECIES_RATTATA,       TRUE},
-                    {SPECIES_GUMSHOOS,       SPECIES_SKWOVET,       TRUE},
-                    {SPECIES_LYCANROC,       SPECIES_DEERLING,      TRUE},
-                    {SPECIES_MAREANIE,       SPECIES_PINCURCHIN,    TRUE},
-                    {SPECIES_LURANTIS,       SPECIES_KRICKETOT,     TRUE},
-                    {SPECIES_SALANDIT,       SPECIES_COMBEE,        TRUE},
-                    {SPECIES_BRUXISH,        SPECIES_SHELLDER,      TRUE},
-                    {SPECIES_DHELMISE,       SPECIES_WAILMER,       TRUE},
-                    {SPECIES_GREEDENT,       SPECIES_BOUNSWEET,     TRUE},
-                    {SPECIES_CORVIKNIGHT,    SPECIES_BUNNELBY,      TRUE},
-                    {SPECIES_APPLETUN,       SPECIES_CUTIEFLY,      TRUE},
-                    {SPECIES_CRAMORANT,      SPECIES_ARROKUDA,      TRUE},
-                    {SPECIES_CENTISKORCH,    SPECIES_SCOLIPEDE,     TRUE},
-                    {SPECIES_WATTREL,        SPECIES_ARROKUDA,      TRUE},
-                    {SPECIES_VELUZA,         SPECIES_WIGLETT,       TRUE},
-                    {SPECIES_GRAFAIAI,       SPECIES_SCATTERBUG,    TRUE},
-                    // Rivals
-                    {SPECIES_CUTIEFLY,       SPECIES_BUTTERFREE,    TRUE},
-                    {SPECIES_SHIINOTIC,      SPECIES_PARASECT,      TRUE},
-                    {SPECIES_URSARING,       SPECIES_PRIMEAPE,      TRUE},
-                    {SPECIES_ROCKRUFF,       SPECIES_GROWLITHE,     TRUE},
-                    {SPECIES_KINGDRA,        SPECIES_DRAGONITE,     TRUE},
-                    {SPECIES_VIKAVOLT,       SPECIES_HERACROSS,     TRUE},
-                    {SPECIES_DEWPIDER,       SPECIES_SURSKIT,       TRUE},
-                    {SPECIES_BASCULIN,       SPECIES_CARVANHA,      TRUE},
-                    {SPECIES_PASSIMIAN,      SPECIES_AMBIPOM,       TRUE},
-                    {SPECIES_SQUAWKABILLY,   SPECIES_FLETCHLING,    TRUE},
-                    {SPECIES_BRUXISH,        SPECIES_TOXAPEX,       TRUE},
-                    {SPECIES_TEDDIURSA,      SPECIES_BEEDRILL,      TRUE},
-                    {SPECIES_MURKROW,        SPECIES_MEOWTH,        TRUE},
-                    {SPECIES_HAWLUCHA,       SPECIES_PRIMEAPE,      TRUE},
-                    {SPECIES_VIKAVOLT,       SPECIES_PINSIR,        TRUE},
-                    {SPECIES_LUMINEON,       SPECIES_LANTURN,       TRUE},
-                    {SPECIES_CORVIKNIGHT,    SPECIES_SKARMORY,      TRUE},
-                    {SPECIES_GABITE,         SPECIES_SABLEYE,       TRUE},
-                    {SPECIES_GARCHOMP,       SPECIES_SALAMENCE,     TRUE},
-                    {SPECIES_SIZZLIPEDE,     SPECIES_VENIPEDE,      TRUE},
-                    {SPECIES_FRIGIBAX,       SPECIES_BERGMITE,      TRUE},
-                    {SPECIES_FINIZEN,        SPECIES_BARRASKEWDA,   TRUE},
-                    //Parasite               //Prey
-                    {SPECIES_HYPNO,          SPECIES_KOMALA,        TRUE},
-                    {SPECIES_ELEKID,         SPECIES_TOGEDEMARU,    TRUE},
-                    {SPECIES_DWEBBLE,        SPECIES_ROGGENROLA,    TRUE},
-                    {SPECIES_DWEBBLE,        SPECIES_ROLYCOLY,      TRUE},
-                    {SPECIES_JOLTIK,         SPECIES_YAMPER,        TRUE},
-                    {SPECIES_CUTIEFLY,       SPECIES_GOSSIFLEUR,    TRUE},
-                    {SPECIES_TOGEDEMARU,     SPECIES_ELEKID,        TRUE},
-                    {SPECIES_LECHONK,        SPECIES_APPLETUN,      TRUE},
-                    {SPECIES_TINKATUFF,      SPECIES_PAWNIARD,      TRUE},
-                    {SPECIES_TINKATUFF,      SPECIES_BISHARP,       TRUE},
-                    {SPECIES_TINKATON,       SPECIES_CORVIKNIGHT,   TRUE},
-                };
-
-                speciesAttacker = gBattleMons[battler].species;
-                speciesTarget = gBattleMons[GetBattlerAtPosition(BATTLE_PARTNER(battler))].species;
-
-                for (i = 0; i < ARRAY_COUNT(naturalEnemies); i++)
-                {
-                    if ((speciesAttacker == SPECIES_CARBINK) && (speciesTarget == SPECIES_SABLEYE))
-                        break;
-
-                    if ((speciesAttacker == SPECIES_CORSOLA) && (speciesTarget == SPECIES_MAREANIE))
-                        break;
-
-                    if ((speciesAttacker != naturalEnemies[i][0] || speciesTarget != naturalEnemies[i][1])
-                        && (speciesAttacker != naturalEnemies[i][1] || speciesTarget != naturalEnemies[i][0]))
-                        continue;
-
-                    if ((B_WILD_NATURAL_ENEMIES_POKEDEX == FALSE) && (naturalEnemies[i][2] == TRUE))
-                        break;
-
-                    isPartnerEnemy = TRUE;
-                    break;
-                }
-                if (isPartnerEnemy && CanTargetBattler(battler, target, move))
+                if (CheckIfPartnerIsNaturalEnemy(battler) && CanTargetBattler(battler, target, move))
                     BtlController_EmitTwoReturnValues(battler, BUFFER_B, 10, (chosenMoveId) | (GetBattlerAtPosition(BATTLE_PARTNER(battler)) << 8));
                 else
                     BtlController_EmitTwoReturnValues(battler, BUFFER_B, 10, (chosenMoveId) | (target << 8));
@@ -780,6 +615,185 @@ static void OpponentHandleChooseMove(u32 battler)
 
         OpponentBufferExecCompleted(battler);
     }
+}
+
+static const u16 naturalEnemies[][3] =
+{
+    // Attacker              Target                 //Unofficial
+    {SPECIES_ZANGOOSE,       SPECIES_SEVIPER,       FALSE},
+    {SPECIES_HEATMOR,        SPECIES_DURANT,        FALSE},
+    {SPECIES_SABLEYE,        SPECIES_CARBINK,       FALSE},
+    {SPECIES_MAREANIE,       SPECIES_CORSOLA,       FALSE},
+    {SPECIES_PIDGEY,         SPECIES_SEEDOT,        TRUE},
+    {SPECIES_PIDGEOTTO,      SPECIES_MAGIKARP,      TRUE},
+    {SPECIES_SPEAROW,        SPECIES_SUNKERN,       TRUE},
+    {SPECIES_EKANS,          SPECIES_SPEAROW,       TRUE},
+    {SPECIES_PERSIAN,        SPECIES_STARLY,        TRUE},
+    {SPECIES_GRIMER,         SPECIES_TRUBBISH,      TRUE},
+    {SPECIES_MUK,            SPECIES_TRUBBISH,      TRUE},
+    {SPECIES_SHELLDER,       SPECIES_SLOWPOKE,      TRUE},
+    {SPECIES_KINGLER,        SPECIES_SHELLDER,      TRUE},
+    {SPECIES_MAROWAK,        SPECIES_MANDIBUZZ,     TRUE},
+    {SPECIES_SCYTHER,        SPECIES_TAROUNTULA,    TRUE},
+    {SPECIES_FURRET,         SPECIES_RATTATA,       TRUE},
+    {SPECIES_LANTURN,        SPECIES_STARYU,        TRUE},
+    {SPECIES_AIPOM,          SPECIES_BOUNSWEET,     TRUE},
+    {SPECIES_SNEASEL,        SPECIES_PIDGEY,        TRUE},
+    {SPECIES_SNEASEL,        SPECIES_DELIBIRD,      TRUE},
+    {SPECIES_TAILLOW,        SPECIES_WURMPLE,       TRUE},
+    {SPECIES_WINGULL,        SPECIES_FINNEON,       TRUE},
+    {SPECIES_PELIPPER,       SPECIES_LUVDISC,       TRUE},
+    {SPECIES_WAILMER,        SPECIES_WISHIWASHI,    TRUE},
+    {SPECIES_GLALIE,         SPECIES_VANILLITE,     TRUE},
+    {SPECIES_RAYQUAZA,       SPECIES_MINIOR,        TRUE},
+    {SPECIES_STARLY,         SPECIES_CHERUBI,       TRUE},
+    {SPECIES_LUMINEON,       SPECIES_STARYU,        TRUE},
+    {SPECIES_WEAVILE,        SPECIES_SANDSHREW,     TRUE},
+    {SPECIES_WEAVILE,        SPECIES_MAMOSWINE,     TRUE},
+    {SPECIES_SANDILE,        SPECIES_TRAPINCH,      TRUE},
+    {SPECIES_CARRACOSTA,     SPECIES_OMANYTE,       TRUE},
+    {SPECIES_ARCHEOPS,       SPECIES_OMANYTE,       TRUE},
+    {SPECIES_BEHEEYEM,       SPECIES_DUBWOOL,       TRUE},
+    {SPECIES_DRUDDIGON,      SPECIES_DUGTRIO,       TRUE},
+    {SPECIES_RUFFLET,        SPECIES_SPEWPA,        TRUE},
+    {SPECIES_MANDIBUZZ,      SPECIES_CUBONE,        TRUE},
+    {SPECIES_TALONFLAME,     SPECIES_WINGULL,       TRUE},
+    {SPECIES_DRAGALGE,       SPECIES_FINIZEN,       TRUE},
+    {SPECIES_TOUCANNON,      SPECIES_BOUNSWEET,     TRUE},
+    {SPECIES_GUMSHOOS,       SPECIES_RATICATE,      TRUE},
+    {SPECIES_CRABRAWLER,     SPECIES_EXEGGCUTE,     TRUE},
+    {SPECIES_TOXAPEX,        SPECIES_CORSOLA,       TRUE},
+    {SPECIES_SALANDIT,       SPECIES_SPINDA,        TRUE},
+    {SPECIES_GOLISOPOD,      SPECIES_GRAPPLOCT,     TRUE},
+    {SPECIES_BRUXISH,        SPECIES_MAREANIE,      TRUE},
+    {SPECIES_DHELMISE,       SPECIES_WAILORD,       TRUE},
+    {SPECIES_CORVISQUIRE,    SPECIES_STEENEE,       TRUE},
+    {SPECIES_APPLETUN,       SPECIES_COMBEE,        TRUE},
+    {SPECIES_SANDACONDA,     SPECIES_DURANT,        TRUE},
+    {SPECIES_BARRASKEWDA,    SPECIES_WINGULL,       TRUE},
+    {SPECIES_GRAPPLOCT,      SPECIES_GOLISOPOD,     TRUE},
+    {SPECIES_DONDOZO,        SPECIES_BASCULIN,      TRUE},
+    {SPECIES_BOMBIRDIER,     SPECIES_BASCULIN,      TRUE},
+    {SPECIES_PIDGEOTTO,      SPECIES_EXEGGCUTE,     TRUE},
+    {SPECIES_PIDGEOT,        SPECIES_MAGIKARP,      TRUE},
+    {SPECIES_EKANS,          SPECIES_PIDGEY,        TRUE},
+    {SPECIES_ARBOK,          SPECIES_WOOPER,        TRUE},
+    {SPECIES_DEWGONG,        SPECIES_WISHIWASHI,    TRUE},
+    {SPECIES_GRIMER,         SPECIES_GARBODOR,      TRUE},
+    {SPECIES_MUK,            SPECIES_GARBODOR,      TRUE},
+    {SPECIES_CLOYSTER,       SPECIES_SLOWPOKE,      TRUE},
+    {SPECIES_KINGLER,        SPECIES_CLOYSTER,      TRUE},
+    {SPECIES_WEEZING,        SPECIES_TRUBBISH,      TRUE},
+    {SPECIES_OMASTAR,        SPECIES_SHELLDER,      TRUE},
+    {SPECIES_SPINARAK,       SPECIES_CUTIEFLY,      TRUE},
+    {SPECIES_LANTURN,        SPECIES_STARMIE,       TRUE},
+    {SPECIES_PINECO,         SPECIES_CUTIEFLY,      TRUE},
+    {SPECIES_SNEASEL,        SPECIES_SANDSHREW,     TRUE},
+    {SPECIES_REMORAID,       SPECIES_BURMY,         TRUE},
+    {SPECIES_SWELLOW,        SPECIES_WURMPLE,       TRUE},
+    {SPECIES_WINGULL,        SPECIES_WISHIWASHI,    TRUE},
+    {SPECIES_PELIPPER,       SPECIES_WISHIWASHI,    TRUE},
+    {SPECIES_SHARPEDO,       SPECIES_WAILMER,       TRUE},
+    {SPECIES_WAILORD,        SPECIES_WISHIWASHI,    TRUE},
+    {SPECIES_METANG,         SPECIES_NOSEPASS,      TRUE},
+    {SPECIES_STARLY,         SPECIES_WURMPLE,       TRUE},
+    {SPECIES_STARLY,         SPECIES_SCATTERBUG,    TRUE},
+    {SPECIES_LUMINEON,       SPECIES_STARMIE,       TRUE},
+    {SPECIES_WEAVILE,        SPECIES_VULPIX,        TRUE},
+    {SPECIES_SCOLIPEDE,      SPECIES_CENTISKORCH,   TRUE},
+    {SPECIES_DARUMAKA,       SPECIES_SNOVER,        TRUE},
+    {SPECIES_CARRACOSTA,     SPECIES_OMASTAR,       TRUE},
+    {SPECIES_KARRABLAST,     SPECIES_SHELMET,       TRUE},
+    {SPECIES_DRUDDIGON,      SPECIES_DIGLETT,       TRUE},
+    {SPECIES_RUFFLET,        SPECIES_SHELLDER,      TRUE},
+    {SPECIES_VULLABY,        SPECIES_HATENNA,       TRUE},
+    {SPECIES_TALONFLAME,     SPECIES_PIKIPEK,       TRUE},
+    {SPECIES_PIKIPEK,        SPECIES_METAPOD,       TRUE},
+    {SPECIES_GUMSHOOS,       SPECIES_RATTATA,       TRUE},
+    {SPECIES_GUMSHOOS,       SPECIES_SKWOVET,       TRUE},
+    {SPECIES_LYCANROC,       SPECIES_DEERLING,      TRUE},
+    {SPECIES_MAREANIE,       SPECIES_PINCURCHIN,    TRUE},
+    {SPECIES_LURANTIS,       SPECIES_KRICKETOT,     TRUE},
+    {SPECIES_SALANDIT,       SPECIES_COMBEE,        TRUE},
+    {SPECIES_BRUXISH,        SPECIES_SHELLDER,      TRUE},
+    {SPECIES_DHELMISE,       SPECIES_WAILMER,       TRUE},
+    {SPECIES_GREEDENT,       SPECIES_BOUNSWEET,     TRUE},
+    {SPECIES_CORVIKNIGHT,    SPECIES_BUNNELBY,      TRUE},
+    {SPECIES_APPLETUN,       SPECIES_CUTIEFLY,      TRUE},
+    {SPECIES_CRAMORANT,      SPECIES_ARROKUDA,      TRUE},
+    {SPECIES_CENTISKORCH,    SPECIES_SCOLIPEDE,     TRUE},
+    {SPECIES_WATTREL,        SPECIES_ARROKUDA,      TRUE},
+    {SPECIES_VELUZA,         SPECIES_WIGLETT,       TRUE},
+    {SPECIES_GRAFAIAI,       SPECIES_SCATTERBUG,    TRUE},
+    // Rivals
+    {SPECIES_CUTIEFLY,       SPECIES_BUTTERFREE,    TRUE},
+    {SPECIES_SHIINOTIC,      SPECIES_PARASECT,      TRUE},
+    {SPECIES_URSARING,       SPECIES_PRIMEAPE,      TRUE},
+    {SPECIES_ROCKRUFF,       SPECIES_GROWLITHE,     TRUE},
+    {SPECIES_KINGDRA,        SPECIES_DRAGONITE,     TRUE},
+    {SPECIES_VIKAVOLT,       SPECIES_HERACROSS,     TRUE},
+    {SPECIES_DEWPIDER,       SPECIES_SURSKIT,       TRUE},
+    {SPECIES_BASCULIN,       SPECIES_CARVANHA,      TRUE},
+    {SPECIES_PASSIMIAN,      SPECIES_AMBIPOM,       TRUE},
+    {SPECIES_SQUAWKABILLY,   SPECIES_FLETCHLING,    TRUE},
+    {SPECIES_BRUXISH,        SPECIES_TOXAPEX,       TRUE},
+    {SPECIES_TEDDIURSA,      SPECIES_BEEDRILL,      TRUE},
+    {SPECIES_MURKROW,        SPECIES_MEOWTH,        TRUE},
+    {SPECIES_HAWLUCHA,       SPECIES_PRIMEAPE,      TRUE},
+    {SPECIES_VIKAVOLT,       SPECIES_PINSIR,        TRUE},
+    {SPECIES_LUMINEON,       SPECIES_LANTURN,       TRUE},
+    {SPECIES_CORVIKNIGHT,    SPECIES_SKARMORY,      TRUE},
+    {SPECIES_GABITE,         SPECIES_SABLEYE,       TRUE},
+    {SPECIES_GARCHOMP,       SPECIES_SALAMENCE,     TRUE},
+    {SPECIES_SIZZLIPEDE,     SPECIES_VENIPEDE,      TRUE},
+    {SPECIES_FRIGIBAX,       SPECIES_BERGMITE,      TRUE},
+    {SPECIES_FINIZEN,        SPECIES_BARRASKEWDA,   TRUE},
+    //Parasite               //Prey
+    {SPECIES_HYPNO,          SPECIES_KOMALA,        TRUE},
+    {SPECIES_ELEKID,         SPECIES_TOGEDEMARU,    TRUE},
+    {SPECIES_DWEBBLE,        SPECIES_ROGGENROLA,    TRUE},
+    {SPECIES_DWEBBLE,        SPECIES_ROLYCOLY,      TRUE},
+    {SPECIES_JOLTIK,         SPECIES_YAMPER,        TRUE},
+    {SPECIES_CUTIEFLY,       SPECIES_GOSSIFLEUR,    TRUE},
+    {SPECIES_TOGEDEMARU,     SPECIES_ELEKID,        TRUE},
+    {SPECIES_LECHONK,        SPECIES_APPLETUN,      TRUE},
+    {SPECIES_TINKATUFF,      SPECIES_PAWNIARD,      TRUE},
+    {SPECIES_TINKATUFF,      SPECIES_BISHARP,       TRUE},
+    {SPECIES_TINKATON,       SPECIES_CORVIKNIGHT,   TRUE},
+};
+
+static bool32 CheckIfPartnerIsNaturalEnemy(u32 battler)
+{
+    u32 i;
+    u16 speciesAttacker = gBattleMons[battler].species;
+    u16 speciesTarget = gBattleMons[GetBattlerAtPosition(BATTLE_PARTNER(battler))].species;
+
+    if ((speciesAttacker == SPECIES_CARBINK) && (speciesTarget == SPECIES_SABLEYE))
+        return FALSE;
+
+    if ((speciesAttacker == SPECIES_CORSOLA) && (speciesTarget == SPECIES_MAREANIE))
+        return FALSE;
+
+    for (i = 0; i < ARRAY_COUNT(naturalEnemies); i++)
+    {
+        if (!IsMonNaturalEnemy(i, speciesAttacker, speciesTarget))
+            continue;
+
+        if ((B_WILD_NATURAL_ENEMIES_POKEDEX == FALSE) && (naturalEnemies[i][2] == TRUE))
+            return FALSE;
+
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static bool32 IsMonNaturalEnemy(u32 i, u16 speciesAttacker, u16 speciesTarget)
+{
+    if ((speciesAttacker == naturalEnemies[i][0] && speciesTarget == naturalEnemies[i][1])
+            || (speciesAttacker == naturalEnemies[i][1] && speciesTarget == naturalEnemies[i][0]))
+        return TRUE;
+
+    return FALSE;
 }
 
 static void OpponentHandleChooseItem(u32 battler)
