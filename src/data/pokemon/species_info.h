@@ -41404,7 +41404,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_LITLEO
 
 #if P_FAMILY_FLABEBE
-#define FLABEBE_MISC_INFO(Form, FORM)                                       \
+#define FLABEBE_MISC_INFO(Form, FORM, iconPal)                              \
         .baseHP        = 44,                                                \
         .baseAttack    = 38,                                                \
         .baseDefense   = 39,                                                \
@@ -41441,8 +41441,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_PIC(Flabebe, 64, 40),                                          \
         .backPicYOffset = 12,                                               \
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,                          \
-        PALETTE(FlabebeBlueFlower),                                         \
-        ICON(FlabebeBlueFlower, 0),                                         \
+        PALETTE(Flabebe##Form##Flower),                                     \
+        ICON(Flabebe##Form##Flower, iconPal),                               \
         .footprint = gMonFootprint_Flabebe,                                 \
         LEARNSETS(Flabebe),                                                 \
         .formSpeciesIdTable = sFlabebeFormSpeciesIdTable,                   \
@@ -41450,7 +41450,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_FLABEBE_RED_FLOWER] =
     {
-        FLABEBE_MISC_INFO(Red, RED),
+        FLABEBE_MISC_INFO(Red, RED, 1),
         .description = COMPOUND_STRING(
             "When it finds a flower it likes, it dwells\n"
             "on that flower its whole life long.\n"
@@ -41459,25 +41459,25 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
     [SPECIES_FLABEBE_YELLOW_FLOWER] =
     {
-        FLABEBE_MISC_INFO(Yellow, YELLOW),
+        FLABEBE_MISC_INFO(Yellow, YELLOW, 1),
         .description = COMPOUND_STRING(
             ""),
     },
     [SPECIES_FLABEBE_ORANGE_FLOWER] =
     {
-        FLABEBE_MISC_INFO(Orange, ORANGE),
+        FLABEBE_MISC_INFO(Orange, ORANGE, 0),
         .description = COMPOUND_STRING(
             ""),
     },
     [SPECIES_FLABEBE_BLUE_FLOWER]   =
     {
-        FLABEBE_MISC_INFO(Blue, BLUE),
+        FLABEBE_MISC_INFO(Blue, BLUE, 0),
         .description = COMPOUND_STRING(
             ""),
     },
     [SPECIES_FLABEBE_WHITE_FLOWER]  =
     {
-        FLABEBE_MISC_INFO(White, WHITE),
+        FLABEBE_MISC_INFO(White, WHITE, 1),
         .description = COMPOUND_STRING(
             ""),
     },
@@ -41531,7 +41531,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_FLOETTE_RED_FLOWER] =
     {
-        FLOETTE_NORMAL_INFO(Red,    RED,    1),
+        FLOETTE_NORMAL_INFO(Red, RED, 1),
         .description = COMPOUND_STRING(
             "When the flowers of a well-tended flower\n"
             "bed bloom, it appears and celebrates\n"
@@ -41552,13 +41552,13 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
     [SPECIES_FLOETTE_BLUE_FLOWER] =
     {
-        FLOETTE_NORMAL_INFO(Blue,   BLUE,   0),
+        FLOETTE_NORMAL_INFO(Blue, BLUE, 0),
         .description = COMPOUND_STRING(
             ""),
     },
     [SPECIES_FLOETTE_WHITE_FLOWER] =
     {
-        FLOETTE_NORMAL_INFO(White,  WHITE,  1),
+        FLOETTE_NORMAL_INFO(White, WHITE, 1),
         .description = COMPOUND_STRING(
             ""),
     },
@@ -41575,6 +41575,13 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED},
         .description = COMPOUND_STRING(
             ""),
+        .cryId = CRY_FLOETTE_ETERNAL_FLOWER,
+        FRONT_PIC(FloetteEternalFlower, 64, 64),
+        .frontPicYOffset =  3,
+        .enemyMonElevation = 4,
+        BACK_PIC(FloetteEternalFlower, 64, 64),
+        .backPicYOffset =  2,
+        LEARNSETS(FloetteEternalFlower),
     },
 
 #define FLORGES_MISC_INFO(Form, iconPal)                                    \
@@ -41614,7 +41621,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backPicYOffset =  9,                                               \
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,                        \
         PALETTE(Florges##Form##Flower),                                     \
-        ICON(Florges##Form##Flower, 0),                                     \
+        ICON(Florges##Form##Flower, iconPal),                               \
         .footprint = gMonFootprint_Florges,                                 \
         LEARNSETS(Florges),                                                 \
         .formSpeciesIdTable = sFlorgesFormSpeciesIdTable
