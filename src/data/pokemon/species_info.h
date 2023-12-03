@@ -47653,6 +47653,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_COMATOSE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .speciesName = _("Komala"),
+        .cryId = CRY_KOMALA,
+        .natDexNum = NATIONAL_DEX_KOMALA,
+        .categoryName = _("Drowsing"),
+        .height = 4,
+        .weight = 199,
+        .description = COMPOUND_STRING(
+            "It is born asleep, and it dies asleep.\n"
+            "All its movements are apparently no more\n"
+            "than the results of it tossing and turning\n"
+            "in its dreams."),
+        .pokemonScale = 491,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Komala, 48, 40),
+        .frontPicYOffset = 12,
+        .frontAnimFrames = sAnims_Komala,
+        .frontAnimId = ANIM_H_DIP,
+        BACK_PIC(Komala, 64, 48),
+        .backPicYOffset =  9,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Komala),
+        ICON(Komala, 2),
+        .footprint = gMonFootprint_Komala,
+        LEARNSETS(Komala),
     },
 #endif //P_FAMILY_KOMALA
 
@@ -49154,6 +49180,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_TECHNICIAN, ABILITY_NONE},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = TRUE,
+        .speciesName = _("Marshadow"),
+        .cryId = CRY_MARSHADOW,
+        .natDexNum = NATIONAL_DEX_MARSHADOW,
+        .categoryName = _("Gloomdwellr"),
+        .height = 7,
+        .weight = 222,
+        .description = COMPOUND_STRING(
+            "Able to conceal itself in the shadows of\n"
+            "others, it never appears before humans,\n"
+            "so its very existence is the stuff of myth.\n"
+            "This Pokémon is craven and cowering."),
+        .pokemonScale = 365,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Marshadow, 32, 56),
+        .frontPicYOffset =  9,
+        .frontAnimFrames = sAnims_Marshadow,
+        .frontAnimId = ANIM_V_SHAKE,
+        BACK_PIC(Marshadow, 40, 56),
+        .backPicYOffset =  6,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Marshadow),
+        ICON(Marshadow, 0),
+        .footprint = gMonFootprint_Marshadow,
+        LEARNSETS(Marshadow),
         .isMythical = TRUE,
     },
 #endif //P_FAMILY_MARSHADOW
