@@ -1251,7 +1251,7 @@ bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
              || (gBattleMons[battler].type3 != moveType && gBattleMons[battler].type3 != TYPE_MYSTERY))
          && move != MOVE_STRUGGLE)
     {
-        SET_BATTLER_TYPE(gBattlerAttacker, moveType);
+        SET_BATTLER_TYPE(battler, moveType);
         return TRUE;
     }
     return FALSE;
