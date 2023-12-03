@@ -1,0 +1,43 @@
+If you dont have a linux command line and haven't installed pokeemerald before
+Install WSL
+
+Open Powershell, Type:
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+Restart PC
+
+Download Ubuntu from Windows Store, Open it, Type:
+sudo apt update && sudo apt upgrade
+sudo apt install build-essential binutils-arm-none-eabi git libpng-dev
+
+Choose Where to store it and match it to the typed line below, Type:
+cd /mnt/c/Users/<user>/Desktop/decomps
+
+
+Install the GitHub Clone
+git clone https://github.com/Plxtinum/pokemagenta.git
+or
+sudo git clone https://github.com/Plxtinum/pokemagenta.git
+
+if agbcc has not been built before. Type:
+git clone https://github.com/pret/agbcc
+cd agbcc
+./build.sh
+./install.sh ../pokemagenta
+
+if agbcc was built before in a diff terminal, Type:
+cd agbcc
+git clean -fX
+./build.sh
+./install.sh ../pokemagenta
+
+if agbcc was built in the same terminal, Type:
+cd agbcc
+./install.sh ../pokemagenta
+
+Type:
+cd ..
+
+Build pokemagenta, Type:
+cd pokemagenta
+make
