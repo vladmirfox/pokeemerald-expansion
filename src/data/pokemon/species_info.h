@@ -55302,11 +55302,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .expYield = 171,                                    \
         .evYield_HP = 2,                                    \
         .eggCycles = 15,                                    \
-        .friendship = STANDARD_FRIENDSHIP,                                   \
+        .friendship = STANDARD_FRIENDSHIP,                  \
         .growthRate = GROWTH_MEDIUM_FAST,                   \
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_FIELD},   \
         .bodyColor = BODY_COLOR_GRAY,                       \
-        .noFlip = FALSE
+        .noFlip = FALSE,                                    \
+        .speciesName = _("Oinkologne"),                     \
+        .natDexNum = NATIONAL_DEX_OINKOLOGNE,               \
+        .categoryName = _("Hog"),                           \
+        .height = 10,                                       \
+        .weight = 1200,                                     \
+        .pokemonScale = 356,                                \
+        .pokemonOffset = 17,                                \
+        .trainerScale = 256,                                \
+        .trainerOffset = 0,                                 \
+        .formSpeciesIdTable = sOinkologneFormSpeciesIdTable
 
     [SPECIES_OINKOLOGNE_MALE] =
     {
@@ -55319,6 +55329,23 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 80,
         .genderRatio = PERCENT_FEMALE(0),
         .abilities = {ABILITY_LINGERING_AROMA, ABILITY_GLUTTONY, ABILITY_THICK_FAT},
+        .cryId = CRY_OINKOLOGNE_MALE,
+        .description = COMPOUND_STRING(
+            "Oinkologne is proud of its fine,\n"
+            "glossy skin. It emits a concentrated\n"
+            "scent from the tip of its tail."),
+        FRONT_PIC(OinkologneMale, 64, 64),
+        .frontPicYOffset =  6,
+        .frontAnimFrames = sAnims_Oinkologne,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(OinkologneMale, 64, 64),
+        .backPicYOffset =  8,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(OinkologneMale),
+        ICON(OinkologneMale, 1),
+        //.footprint = gMonFootprint_Oinkologne,
+        LEARNSETS(OinkologneMale),
+
     },
 
     [SPECIES_OINKOLOGNE_FEMALE] =
@@ -55332,6 +55359,20 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 90,
         .genderRatio = PERCENT_FEMALE(100),
         .abilities = {ABILITY_AROMA_VEIL, ABILITY_GLUTTONY, ABILITY_THICK_FAT},
+        .cryId = CRY_OINKOLOGNE_FEMALE,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(OinkologneFemale, 64, 64),
+        .frontPicYOffset =  6,
+        .frontAnimFrames = sAnims_Oinkologne,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(OinkologneFemale, 64, 64),
+        .backPicYOffset =  7,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(OinkologneFemale),
+        ICON(OinkologneFemale, 2),
+        //.footprint = gMonFootprint_Oinkologne,
+        LEARNSETS(OinkologneFemale),
     },
 #endif //P_FAMILY_LECHONK
 
@@ -55733,7 +55774,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 
 #define MAUSHOLD_SPECIES_INFO                                                           \
-    {                                                                                   \
         .baseHP        = 74,                                                            \
         .baseAttack    = 75,                                                            \
         .baseDefense   = 70,                                                            \
@@ -55752,10 +55792,49 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_FRIEND_GUARD, ABILITY_CHEEK_POUCH, ABILITY_TECHNICIAN},   \
         .bodyColor = BODY_COLOR_WHITE,                                                  \
         .noFlip = FALSE,                                                                \
-    }
+        .speciesName = _("Maushold"),                                                   \
+        .natDexNum = NATIONAL_DEX_MAUSHOLD,                                             \
+        .categoryName = _("Family"),                                                    \
+        .height = 3,                                                                    \
+        .pokemonScale = 356,                                                            \
+        .pokemonOffset = 17,                                                            \
+        .trainerScale = 256,                                                            \
+        .trainerOffset = 0,                                                             \
+        .frontPicYOffset =  10,                                                         \
+        .frontAnimFrames = sAnims_Maushold,                                             \
+        .backPicYOffset =  15,                                                          \
+        PALETTE(Maushold),                                                              \
+        LEARNSETS(Maushold),                                                            \
+        .formSpeciesIdTable = sMausholdFormSpeciesIdTable
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //.backAnimId = BACK_ANIM_NONE,
+        //.footprint = gMonFootprint_Maushold,
 
-    [SPECIES_MAUSHOLD_FAMILY_OF_THREE] = MAUSHOLD_SPECIES_INFO,
-    [SPECIES_MAUSHOLD_FAMILY_OF_FOUR] = MAUSHOLD_SPECIES_INFO,
+    [SPECIES_MAUSHOLD_FAMILY_OF_THREE] =
+    {
+        MAUSHOLD_SPECIES_INFO,
+        .cryId = CRY_MAUSHOLD_FAMILY_OF_THREE,
+        .weight = 23,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(MausholdFamilyOfThree, 64, 64),
+        BACK_PIC(MausholdFamilyOfThree, 64, 64),
+        ICON(MausholdFamilyOfThree, 0),
+    },
+    [SPECIES_MAUSHOLD_FAMILY_OF_FOUR] =
+    {
+        MAUSHOLD_SPECIES_INFO,
+        .cryId = CRY_MAUSHOLD_FAMILY_OF_FOUR,
+        .weight = 28,
+        .description = COMPOUND_STRING(
+            "The larger pair protects the little\n"
+            "ones during battles. When facing\n"
+            "strong opponents, the whole group\n"
+            "will join the fight."),
+        FRONT_PIC(MausholdFamilyOfFour, 64, 64),
+        BACK_PIC(MausholdFamilyOfFour, 64, 64),
+        ICON(MausholdFamilyOfFour, 0),
+    },
 #endif //P_FAMILY_TANDEMAUS
 
 #if P_FAMILY_FIDOUGH
@@ -56022,13 +56101,40 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = STANDARD_FRIENDSHIP,                  \
         .growthRate = GROWTH_ERRATIC,                       \
         .eggGroups = { EGG_GROUP_FLYING, EGG_GROUP_FLYING}, \
-        .noFlip = FALSE
+        .noFlip = FALSE,                                    \
+        .speciesName = _("Sqawkabily"),                     \
+        .cryId = CRY_SQUAWKABILLY,                          \
+        .natDexNum = NATIONAL_DEX_SQUAWKABILLY,             \
+        .categoryName = _("Parrot"),                        \
+        .height = 6,                                        \
+        .weight = 24,                                       \
+        .pokemonScale = 356,                                \
+        .pokemonOffset = 17,                                \
+        .trainerScale = 256,                                \
+        .trainerOffset = 0,                                 \
+        FRONT_PIC(Squawkabilly, 64, 64),                    \
+        .frontPicYOffset =  0,                              \
+        .frontAnimFrames = sAnims_Squawkabilly,             \
+        BACK_PIC(Squawkabilly, 64, 64),                     \
+        .backPicYOffset =  4,                               \
+        LEARNSETS(Squawkabilly),                            \
+        .formSpeciesIdTable = sSquawkabillyFormSpeciesIdTable
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //.backAnimId = BACK_ANIM_NONE,
+        //.footprint = gMonFootprint_Squawkabilly,
 
     [SPECIES_SQUAWKABILLY_GREEN_PLUMAGE] =
     {
         SQUAWKABILLY_MISC_INFO,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS},
         .bodyColor = BODY_COLOR_GREEN,
+        .description = COMPOUND_STRING(
+            "Green-feathered flocks hold the\n"
+            "most sway. When they're out\n"
+            "searching for food in the mornings and\n"
+            "evenings, it gets very noisy."),
+        PALETTE(SquawkabillyGreenPlumage),
+        ICON(SquawkabillyGreenPlumage, 1),
     },
 
     [SPECIES_SQUAWKABILLY_BLUE_PLUMAGE] =
@@ -56036,6 +56142,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         SQUAWKABILLY_MISC_INFO,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_GUTS},
         .bodyColor = BODY_COLOR_BLUE,
+        .description = COMPOUND_STRING(
+            ""),
+        PALETTE(SquawkabillyBluePlumage),
+        ICON(SquawkabillyBluePlumage, 2),
     },
 
     [SPECIES_SQUAWKABILLY_YELLOW_PLUMAGE] =
@@ -56043,6 +56153,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         SQUAWKABILLY_MISC_INFO,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_YELLOW,
+        .description = COMPOUND_STRING(
+            ""),
+        PALETTE(SquawkabillyYellowPlumage),
+        ICON(SquawkabillyYellowPlumage, 1),
     },
 
     [SPECIES_SQUAWKABILLY_WHITE_PLUMAGE] =
@@ -56050,6 +56164,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         SQUAWKABILLY_MISC_INFO,
         .abilities = {ABILITY_INTIMIDATE, ABILITY_HUSTLE, ABILITY_SHEER_FORCE},
         .bodyColor = BODY_COLOR_WHITE,
+        .description = COMPOUND_STRING(
+            ""),
+        PALETTE(SquawkabillyWhitePlumage),
+        ICON(SquawkabillyWhitePlumage, 1),
     },
 #endif //P_FAMILY_SQUAWKABILLY
 
@@ -57649,7 +57767,20 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggGroups = { EGG_GROUP_FIELD, EGG_GROUP_WATER_2}, \
         .abilities = {ABILITY_ZERO_TO_HERO, ABILITY_NONE},  \
         .bodyColor = BODY_COLOR_BLUE,                       \
-        .noFlip = FALSE
+        .noFlip = FALSE,                                    \
+        .speciesName = _("Palafin"),                        \
+        .natDexNum = NATIONAL_DEX_PALAFIN,                  \
+        .pokemonScale = 356,                                \
+        .pokemonOffset = 17,                                \
+        .trainerScale = 256,                                \
+        .trainerOffset = 0,                                 \
+        .frontPicYOffset =  4,                              \
+        .frontAnimFrames = sAnims_Palafin,                  \
+        LEARNSETS(Palafin),                                 \
+        .formSpeciesIdTable = sPalafinFormSpeciesIdTable,   \
+        .formChangeTable = sPalafinZeroFormChangeTable
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //.footprint = gMonFootprint_Palafin,
 
     [SPECIES_PALAFIN_ZERO] =
     {
@@ -57661,6 +57792,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 53,
         .baseSpDefense = 62,
         .expYield = 160,
+        .cryId = CRY_PALAFIN_ZERO,
+        .categoryName = _("Dolphin"),
+        .height = 13,
+        .weight = 602,
+        .description = COMPOUND_STRING(
+            "This Pokémon changes its\n"
+            "appearance if it hears its allies calling for\n"
+            "help. Palafin will never show\n"
+            "anybody its moment of transformation."),
+        FRONT_PIC(PalafinZero, 64, 64),
+        BACK_PIC(PalafinZero, 64, 64),
+        .backPicYOffset =  15,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(PalafinZero),
+        ICON(PalafinZero, 0),
     },
 
     [SPECIES_PALAFIN_HERO] =
@@ -57673,6 +57819,18 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpAttack  = 106,
         .baseSpDefense = 87,
         .expYield = 228,
+        .cryId = CRY_PALAFIN_HERO,
+        .categoryName = _("Hero"),
+        .height = 18,
+        .weight = 974,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(PalafinHero, 64, 64),
+        BACK_PIC(PalafinHero, 64, 64),
+        .backPicYOffset =  1,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(PalafinHero),
+        ICON(PalafinHero, 0),
     },
 #endif //P_FAMILY_FINIZEN
 
@@ -58344,24 +58502,64 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .growthRate = GROWTH_MEDIUM_SLOW,                                   \
         .eggGroups = { EGG_GROUP_WATER_2, EGG_GROUP_WATER_2},               \
         .abilities = {ABILITY_COMMANDER, ABILITY_NONE, ABILITY_STORM_DRAIN},\
-        .noFlip = FALSE
+        .noFlip = FALSE,                                                    \
+        .speciesName = _("Tatsugiri"),                                      \
+        .natDexNum = NATIONAL_DEX_TATSUGIRI,                                \
+        .categoryName = _("Mimicry"),                                       \
+        .height = 3,                                                        \
+        .weight = 80,                                                       \
+        .pokemonScale = 356,                                                \
+        .pokemonOffset = 17,                                                \
+        .trainerScale = 256,                                                \
+        .trainerOffset = 0,                                                 \
+        .frontPicYOffset =  12,                                             \
+        .frontAnimFrames = sAnims_Tatsugiri,                                \
+        .backPicYOffset =  17,                                              \
+        LEARNSETS(Tatsugiri),                                               \
+        .formSpeciesIdTable = sTatsugiriFormSpeciesIdTable
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //.backAnimId = BACK_ANIM_NONE,
+        //.footprint = gMonFootprint_Tatsugiri,
 
     [SPECIES_TATSUGIRI_CURLY] =
     {
         TATSUGIRI_MISC_INFO,
         .bodyColor = BODY_COLOR_PINK,
+        .cryId = CRY_TATSUGIRI_CURLY,
+        .description = COMPOUND_STRING(
+            "This is a small dragon Pokémon. It\n"
+            "lives inside the mouth of Dondozo to\n"
+            "protect itself from enemies on the\n"
+            "outside."),
+        FRONT_PIC(TatsugiriCurly, 64, 64),
+        BACK_PIC(TatsugiriCurly, 64, 64),
+        PALETTE(TatsugiriCurly),
+        ICON(TatsugiriCurly, 0),
     },
 
     [SPECIES_TATSUGIRI_DROOPY] =
     {
         TATSUGIRI_MISC_INFO,
         .bodyColor = BODY_COLOR_RED,
+        .cryId = CRY_TATSUGIRI_DROOPY,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(TatsugiriDroopy, 64, 64),
+        BACK_PIC(TatsugiriDroopy, 64, 64),
+        PALETTE(TatsugiriDroopy),
+        ICON(TatsugiriDroopy, 0),
     },
 
     [SPECIES_TATSUGIRI_STRETCHY] =
     {
         TATSUGIRI_MISC_INFO,
         .bodyColor = BODY_COLOR_YELLOW,
+        .description = COMPOUND_STRING(
+            ""),
+        FRONT_PIC(TatsugiriStretchy, 64, 64),
+        BACK_PIC(TatsugiriStretchy, 64, 64),
+        PALETTE(TatsugiriStretchy),
+        ICON(TatsugiriStretchy, 0),
     },
 #endif //P_FAMILY_TATSUGIRI
 
@@ -59140,7 +59338,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = STANDARD_FRIENDSHIP,                              \
         .growthRate = GROWTH_SLOW,                                      \
         .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED}, \
-        .noFlip = FALSE
+        .noFlip = FALSE,                                                \
+        .speciesName = _("Gimmighoul"),                                 \
+        .cryId = CRY_GIMMIGHOUL,                                        \
+        .natDexNum = NATIONAL_DEX_GIMMIGHOUL,                           \
+        .frontAnimFrames = sAnims_Gimmighoul,                           \
+        LEARNSETS(Gimmighoul),                                          \
+        .formSpeciesIdTable = sGimmighoulFormSpeciesIdTable,            \
+        .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_GHOLDENGO})
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //.backAnimId = BACK_ANIM_NONE,
+        //.footprint = gMonFootprint_Gimmighoul,
 
     [SPECIES_GIMMIGHOUL_CHEST] =
     {
@@ -59153,6 +59361,24 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 70,
         .abilities = {ABILITY_RATTLED, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
+        .categoryName = _("Coin Chest"),
+        .height = 3,
+        .weight = 50,
+        .description = COMPOUND_STRING(
+            "It lives inside an old treasure\n"
+            "chest. Sometimes it gets left in shop\n"
+            "corners since no one realizes it's\n"
+            "actually a Pokémon."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(GimmighoulChest, 64, 64),
+        .frontPicYOffset =  3,
+        BACK_PIC(GimmighoulChest, 64, 64),
+        .backPicYOffset =  0,
+        PALETTE(GimmighoulChest),
+        ICON(GimmighoulChest, 0),
     },
 
     [SPECIES_GIMMIGHOUL_ROAMING] =
@@ -59166,6 +59392,21 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .baseSpDefense = 45,
         .abilities = {ABILITY_RUN_AWAY, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLUE,
+        .categoryName = _("Coin Hunter"),
+        .height = 1,
+        .weight = 1,
+        .description = COMPOUND_STRING(
+            ""),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(GimmighoulRoaming, 64, 64),
+        .frontPicYOffset =  7,
+        BACK_PIC(GimmighoulRoaming, 64, 64),
+        .backPicYOffset =  3,
+        PALETTE(GimmighoulRoaming),
+        ICON(GimmighoulRoaming, 0),
     },
 
     [SPECIES_GHOLDENGO] =
@@ -59725,8 +59966,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_IRON_LEAVES
 
 #if P_FAMILY_POLTCHAGEIST
-#define POLTCHAGEIST_SPECIES_INFO                                            \
-    {                                                                        \
+#define POLTCHAGEIST_MISC_INFO                                               \
         .baseHP        = 40,                                                 \
         .baseAttack    = 45,                                                 \
         .baseDefense   = 45,                                                 \
@@ -59745,13 +59985,47 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF}, \
         .bodyColor = BODY_COLOR_GREEN,                                       \
         .noFlip = FALSE,                                                     \
-    }
+        .speciesName = _("Ptchageist"),                                      \
+        .cryId = CRY_POLTCHAGEIST,                                           \
+        .natDexNum = NATIONAL_DEX_POLTCHAGEIST,                              \
+        .categoryName = _("Matcha"),                                         \
+        .height = 1,                                                         \
+        .weight = 11,                                                        \
+        .pokemonScale = 356,                                                 \
+        .pokemonOffset = 17,                                                 \
+        .trainerScale = 256,                                                 \
+        .trainerOffset = 0,                                                  \
+        FRONT_PIC(Poltchageist, 64, 64),                                     \
+        .frontPicYOffset =  0,                                               \
+        .frontAnimFrames = sAnims_Poltchageist,                              \
+        BACK_PIC(Poltchageist, 64, 64),                                      \
+        .backPicYOffset =  5,                                                \
+        PALETTE(Poltchageist),                                               \
+        ICON(Poltchageist, 4),                                               \
+        LEARNSETS(Poltchageist)
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //.backAnimId = BACK_ANIM_NONE,
+        //.footprint = gMonFootprint_Poltchageist,
 
-    [SPECIES_POLTCHAGEIST_COUNTERFEIT] = POLTCHAGEIST_SPECIES_INFO,
-    [SPECIES_POLTCHAGEIST_ARTISAN]     = POLTCHAGEIST_SPECIES_INFO,
+    [SPECIES_POLTCHAGEIST_COUNTERFEIT] =
+    {
+        POLTCHAGEIST_MISC_INFO,
+        .description = COMPOUND_STRING(
+            "Supposedly, the regrets of a tea\n"
+            "ceremony master who died before\n"
+            "perfecting his craft lingered in some\n"
+            "matcha and became a Pokémon."),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_UNREMARKABLE_TEACUP, SPECIES_SINISTCHA_UNREMARKABLE}),
+    },
+    [SPECIES_POLTCHAGEIST_ARTISAN] =
+    {
+        POLTCHAGEIST_MISC_INFO,
+        .description = COMPOUND_STRING(
+            ""),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MASTERPIECE_TEACUP, SPECIES_SINISTCHA_MASTERPIECE}),
+    },
 
-#define SINISTCHA_SPECIES_INFO                                               \
-    {                                                                        \
+#define SINISTCHA_MISC_INFO                                                  \
         .baseHP        = 71,                                                 \
         .baseAttack    = 60,                                                 \
         .baseDefense   = 106,                                                \
@@ -59770,10 +60044,43 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .abilities = {ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF}, \
         .bodyColor = BODY_COLOR_GREEN,                                       \
         .noFlip = FALSE,                                                     \
-    }
+        .speciesName = _("Sinistcha"),                                       \
+        .cryId = CRY_SINISTCHA,                                              \
+        .natDexNum = NATIONAL_DEX_SINISTCHA,                                 \
+        .categoryName = _("Matcha"),                                         \
+        .height = 2,                                                         \
+        .weight = 22,                                                        \
+        .pokemonScale = 356,                                                 \
+        .pokemonOffset = 17,                                                 \
+        .trainerScale = 256,                                                 \
+        .trainerOffset = 0,                                                  \
+        FRONT_PIC(Sinistcha, 64, 64),                                        \
+        .frontPicYOffset =  0,                                               \
+        .frontAnimFrames = sAnims_Sinistcha,                                 \
+        BACK_PIC(Sinistcha, 64, 64),                                         \
+        .backPicYOffset =  13,                                               \
+        PALETTE(Sinistcha),                                                  \
+        ICON(Sinistcha, 1),                                                  \
+        LEARNSETS(Sinistcha)
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //.backAnimId = BACK_ANIM_NONE,
+        //.footprint = gMonFootprint_Sinistcha,
 
-    [SPECIES_SINISTCHA_UNREMARKABLE] = SINISTCHA_SPECIES_INFO,
-    [SPECIES_SINISTCHA_MASTERPIECE]  = SINISTCHA_SPECIES_INFO,
+    [SPECIES_SINISTCHA_UNREMARKABLE] =
+    {
+        SINISTCHA_MISC_INFO,
+        .description = COMPOUND_STRING(
+            "It pretends to be tea, trying to fool\n"
+            "people into drinking it so it can\n"
+            "drain their life-force. Its ruse is\n"
+            "generally unsuccessful."),
+    },
+    [SPECIES_SINISTCHA_MASTERPIECE] =
+    {
+        SINISTCHA_MISC_INFO,
+        .description = COMPOUND_STRING(
+            ""),
+    },
 #endif //P_FAMILY_POLTCHAGEIST
 
 #if P_FAMILY_OKIDOGI
