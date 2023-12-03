@@ -16628,7 +16628,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .speciesName = _("Ursaluna"),                       \
         .cryId = CRY_URSALUNA,                              \
         .natDexNum = NATIONAL_DEX_URSALUNA,                 \
-        .categoryName = _("Peat")
+        .categoryName = _("Peat"),                          \
+        .formSpeciesIdTable = sUrsalunaFormSpeciesIdTable
 
     [SPECIES_URSALUNA] =
     {
