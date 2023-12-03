@@ -40220,6 +40220,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_PIC(Genesect, 64, 48),                                     \
         .backPicYOffset =  8,                                           \
         .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,                \
+        PALETTE(form),                                                  \
         ICON(Genesect, 2),                                              \
         .footprint = gMonFootprint_Genesect,                            \
         LEARNSETS(Genesect),                                            \
