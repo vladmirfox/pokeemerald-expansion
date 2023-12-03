@@ -418,7 +418,9 @@
 #define EFFECT_SYRUP_BOMB                   412
 #define EFFECT_IVY_CUDGEL                   413
 #define EFFECT_MAX_MOVE                     414
+#define EFFECT_GLAIVE_RUSH                  415
+#define EFFECT_RAGING_BULL                  416
 
-#define NUM_BATTLE_MOVE_EFFECTS             415
+#define NUM_BATTLE_MOVE_EFFECTS             417
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H
