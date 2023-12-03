@@ -518,7 +518,7 @@ struct SaveBlock2
              u16 optionsWindowFrameType:5; // Specifies one of the 20 decorative borders for text boxes
              u16 optionsSound:1; // OPTIONS_SOUND_[MONO/STEREO]
              u16 optionsBattleStyle:1; // OPTIONS_BATTLE_STYLE_[SHIFT/SET]
-             u16 optionsBattleSceneOff:1; // whether battle animations are disabled, or set to bosses only (2)
+             u16 optionsBattleSceneOff:2; // whether battle animations are disabled (1), or set to bosses only (2)
              u16 regionMapZoom:1; // whether the map is zoomed in
              //u16 padding1:4;
              //u16 padding2;

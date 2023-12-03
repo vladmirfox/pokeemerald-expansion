@@ -3094,7 +3094,9 @@ static void BattleStartClearSetData(void)
 
     if (!(gBattleTypeFlags & BATTLE_TYPE_RECORDED))
     {
-        if (!(gBattleTypeFlags & BATTLE_TYPE_LINK) && gSaveBlock2Ptr->optionsBattleSceneOff == TRUE && VarGet(VAR_FORCEANIM) != 1)
+        if (!(gBattleTypeFlags & BATTLE_TYPE_LINK) && gSaveBlock2Ptr->optionsBattleSceneOff == 1)
+            gHitMarker |= HITMARKER_NO_ANIMATIONS;
+        else if (!(gBattleTypeFlags & BATTLE_TYPE_LINK) && gSaveBlock2Ptr->optionsBattleSceneOff == 2 && VarGet(VAR_FORCEANIM) != 1)
             gHitMarker |= HITMARKER_NO_ANIMATIONS;
     }
     else if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK)) && GetBattleSceneInRecordedBattle())
