@@ -54707,9 +54707,18 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
 #endif //P_FAMILY_SPECTRIER
 
+#define CALYREX_MISC_INFO                                   \
+        .noFlip = FALSE,                                    \
+        .speciesName = _("Calyrex"),                        \
+        .natDexNum = NATIONAL_DEX_CALYREX,                  \
+        .footprint = gMonFootprint_Calyrex,                 \
+        .formSpeciesIdTable = sCalyrexFormSpeciesIdTable,   \
+        .isLegendary = TRUE
+
 #if P_FAMILY_CALYREX
     [SPECIES_CALYREX] =
     {
+        CALYREX_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 80,
         .baseDefense   = 80,
@@ -54727,13 +54736,35 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED},
         .abilities = {ABILITY_UNNERVE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = FALSE,
-        .isLegendary = TRUE,
+        .cryId = CRY_CALYREX,
+        .categoryName = _("King"),
+        .height = 11,
+        .weight = 77,
+        .description = COMPOUND_STRING(
+            "Calyrex is a merciful Pokémon, capable of\n"
+            "providing healing and blessings. It\n"
+            "reigned over the Galar region in times\n"
+            "of yore."),
+        .pokemonScale = 320,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(Calyrex, 48, 64),
+        .frontPicYOffset =  2,
+        .frontAnimFrames = sAnims_Calyrex,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(Calyrex, 56, 48),
+        .backPicYOffset = 10,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(Calyrex),
+        ICON(Calyrex, 0),
+        LEARNSETS(Calyrex),
     },
 
 #if P_FUSION_FORMS
     [SPECIES_CALYREX_ICE_RIDER] =
     {
+        CALYREX_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 165,
         .baseDefense   = 150,
@@ -54751,13 +54782,32 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED},
         .abilities = {ABILITY_AS_ONE_ICE_RIDER, ABILITY_NONE},
         .bodyColor = BODY_COLOR_WHITE,
-        .noFlip = FALSE,
-        .isLegendary = TRUE,
+        .cryId = CRY_CALYREX_ICE_RIDER,
+        .categoryName = _("High King"),
+        .height = 24,
+        .weight = 8091,
+        .description = COMPOUND_STRING(
+            ""),
+        .pokemonScale = 320,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(CalyrexIceRider, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Calyrex,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(CalyrexIceRider, 64, 64),
+        .backPicYOffset =  7,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(CalyrexIceRider),
+        ICON(CalyrexIceRider, 0),
+        LEARNSETS(CalyrexIceRider),
         .cannotBeTraded = TRUE,
     },
 
     [SPECIES_CALYREX_SHADOW_RIDER] =
     {
+        CALYREX_MISC_INFO,
         .baseHP        = 100,
         .baseAttack    = 85,
         .baseDefense   = 80,
@@ -54775,8 +54825,26 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED},
         .abilities = {ABILITY_AS_ONE_SHADOW_RIDER, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BLACK,
-        .noFlip = FALSE,
-        .isLegendary = TRUE,
+        .cryId = CRY_CALYREX_SHADOW_RIDER,
+        .categoryName = _("High King"),
+        .height = 24,
+        .weight = 536,
+        .description = COMPOUND_STRING(
+            ""),
+        .pokemonScale = 320,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        FRONT_PIC(CalyrexShadowRider, 64, 64),
+        .frontPicYOffset =  0,
+        .frontAnimFrames = sAnims_Calyrex,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        BACK_PIC(CalyrexShadowRider, 64, 56),
+        .backPicYOffset =  7,
+        //.backAnimId = BACK_ANIM_NONE,
+        PALETTE(CalyrexShadowRider),
+        ICON(CalyrexShadowRider, 0),
+        LEARNSETS(CalyrexShadowRider),
         .cannotBeTraded = TRUE,
     },
 #endif //P_FUSION_FORMS
