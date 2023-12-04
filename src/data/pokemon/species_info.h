@@ -34354,7 +34354,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 257,                                    \
         .trainerOffset = 0,                                     \
         .footprint = gMonFootprint_Basculin,                    \
-        LEARNSETS(Basculin),                                    \
         .formSpeciesIdTable = sBasculinFormSpeciesIdTable
 
     [SPECIES_BASCULIN_RED_STRIPED] =
@@ -34377,6 +34376,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
         PALETTE(BasculinRedStriped),
         ICON(BasculinRedStriped, 1),
+        LEARNSETS(Basculin),
     },
 
     [SPECIES_BASCULIN_BLUE_STRIPED] =
@@ -34399,6 +34399,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
         PALETTE(BasculinBlueStriped),
         ICON(BasculinBlueStriped, 0),
+        LEARNSETS(Basculin),
     },
 
 #if P_HISUIAN_FORMS
@@ -34422,6 +34423,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
         PALETTE(BasculinWhiteStriped),
         ICON(BasculinWhiteStriped, 0),
+        LEARNSETS(BasculinWhiteStriped),
         .evolutions = EVOLUTION({EVO_NONE, 0, SPECIES_BASCULEGION_MALE},
                                 {EVO_NONE, 0, SPECIES_BASCULEGION_FEMALE}),
     },
