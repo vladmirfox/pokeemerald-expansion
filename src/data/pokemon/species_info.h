@@ -11502,7 +11502,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         FRONT_PIC(PorygonZ, 40, 56),
         .frontPicYOffset =  6,
-        .frontAnimFrames = sAnims_PORYGON_Z,
+        .frontAnimFrames = sAnims_Porygon_Z,
         .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
         .enemyMonElevation = 12,
         BACK_PIC(PorygonZ, 64, 56),
@@ -15155,7 +15155,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,                                            \
         .trainerOffset = 0,                                             \
         .frontPicYOffset = 16,                                          \
-        .frontAnimFrames = sAnims_Unown ##letter,                       \
+        .frontAnimFrames = sAnims_Unown,                                \
         .frontAnimId = ANIM_ZIGZAG_FAST,                                \
         .enemyMonElevation = 8,                                         \
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,                    \
@@ -44645,7 +44645,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         FRONT_PIC(HoopaConfined, 48, 48),
         .frontPicYOffset = 11,
-        .frontAnimFrames = sAnims_Hoopa,
+        .frontAnimFrames = sAnims_HoopaConfined,
         .frontAnimId = ANIM_ZIGZAG_SLOW,
         .enemyMonElevation = 13,
         BACK_PIC(HoopaConfined, 64, 56),
@@ -48071,7 +48071,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         FRONT_PIC(JangmoO, 36, 43),
         .frontPicYOffset =  5,
-        .frontAnimFrames = sAnims_JANGMO_O,
+        .frontAnimFrames = sAnims_Jangmo_O,
         .frontAnimId = ANIM_H_STRETCH,
         BACK_PIC(JangmoO, 42, 56),
         .backPicYOffset =  5,
@@ -48121,7 +48121,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         FRONT_PIC(HakamoO, 53, 61),
         .frontPicYOffset =  1,
-        .frontAnimFrames = sAnims_HAKAMO_O,
+        .frontAnimFrames = sAnims_Hakamo_O,
         .frontAnimId = ANIM_H_STRETCH,
         BACK_PIC(HakamoO, 49, 56),
         .backPicYOffset =  5,
@@ -48171,7 +48171,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 1,
         FRONT_PIC(KommoO, 63, 63),
         .frontPicYOffset =  0,
-        .frontAnimFrames = sAnims_KOMMO_O,
+        .frontAnimFrames = sAnims_Kommo_O,
         .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_FAST,
         BACK_PIC(KommoO, 60, 60),
         .backPicYOffset =  2,
@@ -52950,7 +52950,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         FRONT_PIC(AlcremieStrawberry, 40, 56),
         .frontPicYOffset =  7,
-        .frontAnimFrames = sAnims_Alcremie,
+        .frontAnimFrames = sAnims_AlcremieGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(AlcremieStrawberry, 48, 56),
         .backPicYOffset =  9,
