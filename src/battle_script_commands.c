@@ -16423,11 +16423,11 @@ void BS_TryHealPulse(void)
     else
     {
         if (GetBattlerAbility(gBattlerAttacker) == ABILITY_MEGA_LAUNCHER && gBattleMoves[gCurrentMove].pulseMove)
-            gBattleMoveDamage = -(gBattleMons[gBattlerTarget].maxHP * 75 / 100);
+            gBattleMoveDamage = -(GetNonDynamaxMaxHP(gBattlerTarget) * 75 / 100);
         else if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && gBattleMoves[gCurrentMove].argument == MOVE_EFFECT_FLORAL_HEALING)
-            gBattleMoveDamage = -(gBattleMons[gBattlerTarget].maxHP * 2 / 3);
+            gBattleMoveDamage = -(GetNonDynamaxMaxHP(gBattlerTarget) * 2 / 3);
         else
-            gBattleMoveDamage = -(gBattleMons[gBattlerTarget].maxHP / 2);
+            gBattleMoveDamage = -(GetNonDynamaxMaxHP(gBattlerTarget) / 2);
 
         if (gBattleMoveDamage == 0)
             gBattleMoveDamage = -1;
