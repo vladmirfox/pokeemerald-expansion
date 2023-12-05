@@ -9061,6 +9061,10 @@ extern const u32 gItemIconPalette_BerserkGene[];
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u32 gItemIconPalette_ReturnToFieldArrow[];
 
+// NEW ITEMS
+extern const u32 gItemIcon_Pokevial[]; // pokevial branch
+extern const u32 gItemIconPalette_Pokevial[]; // pokevial branch
+
 //menu graphics
 extern const u16 gMenuInfoElements1_Pal[16];
 extern const u16 gMenuInfoElements2_Pal[16];

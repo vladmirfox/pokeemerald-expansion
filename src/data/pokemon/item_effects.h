@@ -184,6 +184,14 @@ const u8 gItemEffect_SacredAsh[7] = {
     [6] = ITEM6_HEAL_HP_FULL,
 };
 
+// pokevial branch
+const u8 gItemEffect_Pokevial[7] = {
+    [0] = ITEM0_POKEVIAL,
+    [3] = ITEM3_STATUS_ALL,
+    [4] = ITEM4_HEAL_HP | ITEM4_HEAL_PP,
+    [6] = ITEM6_HEAL_HP_FULL | ITEM6_HEAL_PP_FULL,
+};
+
 #define VITAMIN_FRIENDSHIP_CHANGE(i)             \
     [(i) + 0] = 5, /* Friendship change, low */  \
     [(i) + 1] = 3, /* Friendship change, mid */  \
@@ -592,5 +600,8 @@ const u8 *const gItemEffectTable[ITEMS_COUNT] =
     [ITEM_HONDEW_BERRY]       = gItemEffect_HondewBerry,
     [ITEM_GREPA_BERRY]        = gItemEffect_GrepaBerry,
     [ITEM_TAMATO_BERRY]       = gItemEffect_TamatoBerry,
+
+    // pokevial branch
+    [ITEM_POKEVIAL]           = gItemEffect_Pokevial,
     [LAST_BERRY_INDEX]        = NULL,
 };

@@ -9648,4 +9648,15 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 10,
     },
+
+    // pokevial branch
+    {
+        .name = _("Pokévial"),
+        .price = 0,
+        .description = sPokevialDesc,
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Pokevial,
+    },
 };

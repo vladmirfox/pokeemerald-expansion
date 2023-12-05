@@ -2023,3 +2023,7 @@ const u32 gItemIconPalette_LustrousGlobe[] = INCBIN_U32("graphics/items/icon_pal
 
 const u32 gItemIcon_BerserkGene[] = INCBIN_U32("graphics/items/icons/berserk_gene.4bpp.lz");
 const u32 gItemIconPalette_BerserkGene[] = INCBIN_U32("graphics/items/icon_palettes/berserk_gene.gbapal.lz");
+
+// pokevial branch
+const u32 gItemIcon_Pokevial[] = INCBIN_U32("graphics/items/icons/pokevial.4bpp.lz");
+const u32 gItemIconPalette_Pokevial[] = INCBIN_U32("graphics/items/icon_palettes/pokevial.gbapal.lz");

@@ -3919,3 +3919,9 @@ static const u8 sBerserkGene[] = _(
     "Sharply boosts\n"
     "Attack, but causes\n"
     "lasting confusion.");
+
+// pokevial branch
+static const u8 sPokevialDesc[] = _(
+    "Restores all\n"
+    "Pokémon to full\n"
+    "health.");

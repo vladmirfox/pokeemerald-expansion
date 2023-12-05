@@ -44,6 +44,7 @@
 #include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/songs.h"
+#include "tv.h" // pokevial branch
 
 static void SetUpItemUseCallback(u8);
 static void FieldCB_UseItemOnField(void);
@@ -77,6 +78,14 @@ static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
 static void ItemUseOnFieldCB_Honey(u8 taskId);
 static bool32 CannotUseBagBattleItem(u16 itemId);
+
+// pokevial branch
+static void UsePokevialFieldYes(u8 taskId);
+static void Task_UsePokevialFieldYes(u8 taskId);
+static void UsePokevialFieldNo(u8 taskId);
+static void UsePokevialYesNo(u8);
+static void UsePokevialYes(u8);
+void ItemUseOutOfBattle_Pokevial(u8);
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -1390,12 +1399,27 @@ void Task_UseCleanseTagOnField(u8 taskId)
     UnlockPlayerFieldControls();
 }
 
-void ItemUseOnFieldCB_CleanseTag(u8 taskId)
+void CleanseTagUseFromBag(u8 taskId)
 {
     bool8  cleanseTagOn = FlagGet(FLAG_CLEANSE_TAG);
 
-    Overworld_ResetStateAfterDigEscRope();
-    gTasks[taskId].data[0] = 0;
+    if (!cleanseTagOn)
+    {
+        FlagSet(FLAG_CLEANSE_TAG);
+        PlaySE(SE_EXP_MAX);
+        DisplayItemMessage(taskId, FONT_NORMAL, gText_CleanseTagTurnOn, CloseItemMessage);
+    }
+    else
+    {
+        FlagClear(FLAG_CLEANSE_TAG);
+        PlaySE(SE_PC_OFF);
+        DisplayItemMessage(taskId, FONT_NORMAL, gText_CleanseTagTurnOff, CloseItemMessage);
+    }
+}
+
+void ItemUseOnFieldCB_CleanseTag(u8 taskId)
+{
+    bool8  cleanseTagOn = FlagGet(FLAG_CLEANSE_TAG);
 
     if (!cleanseTagOn)
     {
@@ -1411,13 +1435,66 @@ void ItemUseOnFieldCB_CleanseTag(u8 taskId)
     }
 }
 
+void CleanseTagUseFromField(u8 taskId)
+{
+    LockPlayerFieldControls();
+    ItemUseOnFieldCB_CleanseTag(taskId);
+}
+
+void CleanseTagUse(bool32 isPlayerUsingRegisteredKeyItem, u8 taskId)
+{
+    if (isPlayerUsingRegisteredKeyItem)
+        CleanseTagUseFromField(taskId);
+    else
+        CleanseTagUseFromBag(taskId);
+}
+
 void ItemUseOutOfBattle_CleanseTag(u8 taskId)
 {
-    sItemUseOnFieldCB = ItemUseOnFieldCB_CleanseTag;
-    gFieldCallback = FieldCB_UseItemOnField;
-    gBagMenu->newScreenCallback = CB2_ReturnToField;
-    Task_FadeAndCloseBagMenu(taskId);
+    bool32 isPlayerUsingRegisteredKeyItem = gTasks[taskId].tUsingRegisteredKeyItem;
+
+    CleanseTagUse(isPlayerUsingRegisteredKeyItem, taskId);
 }
+
+//Start Pokevial Branch
+static void UsePokevialYes(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_UsePokevial;
+    SetUpItemUseCallback(taskId);
+}
+
+static void UsePokevialFieldYes(u8 taskId)
+{
+    LockPlayerFieldControls();
+    FadeScreen(FADE_TO_BLACK,0);
+    CreateTask(Task_UsePokevialFieldYes, 1);
+}
+
+static void Task_UsePokevialFieldYes(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        InitPartyMenuForPokevialFromField(taskId);
+        DestroyTask(taskId);
+    }
+}
+
+void PokevialUse(bool32 isPlayerUsingRegisteredKeyItem, u8 taskId)
+{
+    if (isPlayerUsingRegisteredKeyItem)
+        UsePokevialFieldYes(taskId);
+    else
+        UsePokevialYes(taskId);
+}
+
+void ItemUseOutOfBattle_Pokevial(u8 taskId)
+{
+    bool32 isPlayerUsingRegisteredKeyItem = gTasks[taskId].tUsingRegisteredKeyItem;
+
+    PokevialUse(isPlayerUsingRegisteredKeyItem, taskId);
+}
+//End Pokevial Branch
 
 void ItemUseOutOfBattle_CannotUse(u8 taskId)
 {

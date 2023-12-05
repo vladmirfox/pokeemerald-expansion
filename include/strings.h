@@ -3216,4 +3216,7 @@ extern const u8 gText_FontSmall[];
 extern const u8 gText_FontShort[];
 extern const u8 gText_TMCase_Blue[];
 
+// pokevial branch
+extern const u8 gText_YourPkmnWereRestored[];
+
 #endif // GUARD_STRINGS_H
