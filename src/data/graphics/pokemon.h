@@ -5533,16 +5533,16 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonShinyPalette_Cresselia[] = INCBIN_U32("graphics/pokemon/cresselia/shiny.gbapal.lz");
     const u8 gMonIcon_Cresselia[] = INCBIN_U8("graphics/pokemon/cresselia/icon.4bpp");
     const u8 gMonFootprint_Cresselia[] = INCBIN_U8("graphics/pokemon/cresselia/footprint.1bpp");
+#endif //P_FAMILY_CRESSELIA
 
+#if P_FAMILY_MANAPHY
     const u32 gMonFrontPic_Phione[] = INCBIN_U32("graphics/pokemon/phione/anim_front.4bpp.lz");
     const u32 gMonPalette_Phione[] = INCBIN_U32("graphics/pokemon/phione/normal.gbapal.lz");
     const u32 gMonBackPic_Phione[] = INCBIN_U32("graphics/pokemon/phione/back.4bpp.lz");
     const u32 gMonShinyPalette_Phione[] = INCBIN_U32("graphics/pokemon/phione/shiny.gbapal.lz");
     const u8 gMonIcon_Phione[] = INCBIN_U8("graphics/pokemon/phione/icon.4bpp");
     const u8 gMonFootprint_Phione[] = INCBIN_U8("graphics/pokemon/phione/footprint.1bpp");
-#endif //P_FAMILY_CRESSELIA
 
-#if P_FAMILY_MANAPHY
     const u32 gMonFrontPic_Manaphy[] = INCBIN_U32("graphics/pokemon/manaphy/anim_front.4bpp.lz");
     const u32 gMonPalette_Manaphy[] = INCBIN_U32("graphics/pokemon/manaphy/normal.gbapal.lz");
     const u32 gMonBackPic_Manaphy[] = INCBIN_U32("graphics/pokemon/manaphy/back.4bpp.lz");
