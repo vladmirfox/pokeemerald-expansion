@@ -456,7 +456,7 @@
 #define FLAG_REMATCH_DRAKE                   0x1A8
 #define FLAG_REMATCH_WALLACE                 0x1A9
 
-#define FLAG_UNUSED_0x1AA                    0x1AA // Unused Flag
+#define FLAG_DISABLE_MON_EDITING             0x1AA // Should move relearning, EV editing, and PC access from start menu be allowed?
 #define FLAG_UNUSED_0x1AB                    0x1AB // Unused Flag
 
 #define FLAG_DEFEATED_DEOXYS                 0x1AC

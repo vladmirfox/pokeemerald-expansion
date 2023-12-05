@@ -2690,7 +2690,8 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE)
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SWITCH);
         //Level Up Moves
-		if (GetMonData(&mons[slotId], MON_DATA_SPECIES) != SPECIES_NONE && GetNumberOfRelearnableMoves(&mons[slotId]) > 0)
+		if (GetMonData(&mons[slotId], MON_DATA_SPECIES) != SPECIES_NONE && GetNumberOfRelearnableMoves(&mons[slotId]) > 0 &&
+        FlagGet(FLAG_DISABLE_MON_EDITING) == FALSE)
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_MOVES);
         if (ItemIsMail(GetMonData(&mons[slotId], MON_DATA_HELD_ITEM)))
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_MAIL);

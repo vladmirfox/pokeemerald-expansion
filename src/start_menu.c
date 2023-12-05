@@ -360,7 +360,7 @@ static void BuildNormalStartMenu(void)
 
     AddStartMenuAction(MENU_ACTION_BAG);
 
-    if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
+    if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE && FlagGet(FLAG_DISABLE_MON_EDITING) == FALSE)
     {
         AddStartMenuAction(MENU_ACTION_PC);
     }
@@ -495,24 +495,24 @@ static void ShowPyramidFloorWindow(void)
 #define CLOCK_WINDOW_WIDTH 70
 
 // unused for now
-const u8 gText_Saturday[] = _("Sat.");
-const u8 gText_Sunday[] = _("Sun.");
-const u8 gText_Monday[] = _("Mon.");
-const u8 gText_Tuesday[] = _("Tue.");
-const u8 gText_Wednesday[] = _("Wed.");
-const u8 gText_Thursday[] = _("Thu.");
-const u8 gText_Friday[] = _("Fri.");
+// const u8 gText_Saturday[] = _("Sat.");
+// const u8 gText_Sunday[] = _("Sun.");
+// const u8 gText_Monday[] = _("Mon.");
+// const u8 gText_Tuesday[] = _("Tue.");
+// const u8 gText_Wednesday[] = _("Wed.");
+// const u8 gText_Thursday[] = _("Thu.");
+// const u8 gText_Friday[] = _("Fri.");
 
 // unused for now
-const u8 *const gDayNameStringsTable[7] = {
-    gText_Saturday,
-    gText_Sunday,
-    gText_Monday,
-    gText_Tuesday,
-    gText_Wednesday,
-    gText_Thursday,
-    gText_Friday,
-};
+// const u8 *const gDayNameStringsTable[7] = {
+//     gText_Saturday,
+//     gText_Sunday,
+//     gText_Monday,
+//     gText_Tuesday,
+//     gText_Wednesday,
+//     gText_Thursday,
+//     gText_Friday,
+// };
 
 static void ShowTimeWindow(void)
 {

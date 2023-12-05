@@ -64,13 +64,13 @@ enum {
 #define PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE 3
 
 // Button control text (upper right)
-#define PSS_LABEL_WINDOW_PROMPT_CANCEL 4
+#define PSS_LABEL_WINDOW_PROMPT_EDIT_EV 4
 #define PSS_LABEL_WINDOW_PROMPT_INFO 5
 #define PSS_LABEL_WINDOW_PROMPT_SWITCH 6
 #define PSS_LABEL_WINDOW_UNUSED1 7
+#define PSS_LABEL_WINDOW_PROMPT_EVIV 8
 
 // Info screen
-#define PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL 8
 #define PSS_LABEL_WINDOW_POKEMON_INFO_TYPE 9
 
 // Skills screen
@@ -126,6 +126,9 @@ enum
 #define TILE_FILLED_APPEAL_HEART 0x103A
 #define TILE_FILLED_JAM_HEART    0x103C
 #define TILE_EMPTY_JAM_HEART     0x103D
+
+// amount to shift EV if L or R is pressed while editing
+#define LR_EV_AMOUNT_CHANGE 64
 
 static EWRAM_DATA struct PokemonSummaryScreenData
 {
@@ -190,6 +193,11 @@ static EWRAM_DATA struct PokemonSummaryScreenData
     u8 unk_filler4[6];
     u8 splitIconSpriteId;
 } *sMonSummaryScreen = NULL;
+
+// Ev Modifier inside the summary screen
+EWRAM_DATA bool8 ViewingEVs = FALSE;
+EWRAM_DATA bool8 ModifyMode = FALSE;
+EWRAM_DATA u8 gCurrentModifyIndex = 0;
 
 EWRAM_DATA u8 gLastViewedMonIndex = 0;
 static EWRAM_DATA u8 sMoveSlotToReplace = 0;
@@ -314,7 +322,13 @@ static void DestroyMoveSelectorSprites(u8);
 static void SetMainMoveSelectorColor(u8);
 static void KeepMoveSelectorVisible(u8);
 static void SummaryScreen_DestroyAnimDelayTask(void);
-static void BufferIvOrEvStats(u8 mode);
+static void BufferIvOrEvStats(u8);
+static void RefreshPageAfterChange(u8);
+static void RedrawEVCursor(u8);
+static void UpdateInfoBar(void);
+static void PrintEVEditPageText(u8);
+static void ChangeToStatPageViaStart(u8);
+static void Task_ChangeToStatPageViaStart(u8);
 
 // const rom data
 #include "data/text/move_descriptions.h"
@@ -426,7 +440,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .paletteNum = 6,
         .baseBlock = 67,
     },
-    [PSS_LABEL_WINDOW_PROMPT_CANCEL] = {
+    [PSS_LABEL_WINDOW_PROMPT_EDIT_EV] = {
         .bg = 0,
         .tilemapLeft = 22,
         .tilemapTop = 0,
@@ -462,10 +476,10 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .paletteNum = 6,
         .baseBlock = 137,
     },
-    [PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL] = {
+    [PSS_LABEL_WINDOW_PROMPT_EVIV] = {
         .bg = 0,
-        .tilemapLeft = 11,
-        .tilemapTop = 4,
+        .tilemapLeft = 14,
+        .tilemapTop = 0,
         .width = 18,
         .height = 2,
         .paletteNum = 6,
@@ -1246,6 +1260,10 @@ static void CB2_InitSummaryScreen(void)
 
 static bool8 LoadGraphics(void)
 {
+    ViewingEVs = FALSE;
+    ModifyMode = FALSE;
+    gCurrentModifyIndex = 0;
+
     switch (gMain.state)
     {
     case 0:
@@ -1605,24 +1623,330 @@ static void CloseSummaryScreen(u8 taskId)
 
 static void Task_HandleInput(u8 taskId)
 {
+	u8 i;
+	u8  CurrentEv = 0;
+	u16 TotalEvs = 0;
+	u16 RemainingEvs = 0;
+	u8 abilityNum = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM);
+
+	switch(gCurrentModifyIndex){
+		case 0:
+			if (!sMonSummaryScreen->isBoxMon)
+				CurrentEv = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV);
+		break;
+		case 1:
+			if (!sMonSummaryScreen->isBoxMon)
+				CurrentEv = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV);
+		break;
+		case 2:
+			if (!sMonSummaryScreen->isBoxMon)
+				CurrentEv = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV);
+		break;
+		case 3:
+			if (!sMonSummaryScreen->isBoxMon)
+				CurrentEv = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV);
+		break;
+		case 4:
+			if (!sMonSummaryScreen->isBoxMon)
+				CurrentEv = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV);
+		break;
+		case 5:
+			if (!sMonSummaryScreen->isBoxMon)
+				CurrentEv = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV);
+		break;
+	}
+
+	for(i = 0; i < 6; i++)
+		TotalEvs = TotalEvs + GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV + i);
+
+	RemainingEvs = 510 - TotalEvs;
+
     if (MenuHelpers_ShouldWaitForLinkRecv() != TRUE && !gPaletteFade.active)
     {
         if (JOY_NEW(DPAD_UP))
         {
-            ChangeSummaryPokemon(taskId, -1);
+            if(!ModifyMode && sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS){
+                ViewingEVs = FALSE;
+				gCurrentModifyIndex = 0;
+                UpdateInfoBar();
+				ChangeSummaryPokemon(taskId, -1);
+			}
+            else if(!ModifyMode){
+                ViewingEVs = FALSE;
+				gCurrentModifyIndex = 0;
+                ChangeSummaryPokemon(taskId, -1);
+			}
+			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ViewingEVs){
+				if(gCurrentModifyIndex != 0)
+					gCurrentModifyIndex--;
+				else
+					gCurrentModifyIndex = 5;
+
+				//SetTaskFuncWithFollowupFunc(taskId, ChangeStatTask, gTasks[taskId].func); //Refreshes the Icon
+				RefreshPageAfterChange(1);
+		    }
         }
+
         else if (JOY_NEW(DPAD_DOWN))
         {
-            ChangeSummaryPokemon(taskId, 1);
+            if(!ModifyMode && sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS){
+                ViewingEVs = FALSE;
+				gCurrentModifyIndex = 0;
+                UpdateInfoBar();
+				ChangeSummaryPokemon(taskId, 1);
+			}
+			else if(!ModifyMode){
+				ViewingEVs = FALSE;
+                gCurrentModifyIndex = 0;
+                ChangeSummaryPokemon(taskId, 1);
+			}
+			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ViewingEVs){
+				if(gCurrentModifyIndex != 5)
+					gCurrentModifyIndex++;
+				else
+					gCurrentModifyIndex = 0;
+
+				//SetTaskFuncWithFollowupFunc(taskId, ChangeStatTask, gTasks[taskId].func); //Refreshes the Icon
+				RefreshPageAfterChange(1);
+			}
         }
-        else if ((JOY_NEW(DPAD_LEFT)) || GetLRKeysPressed() == MENU_L_PRESSED)
+
+        else if (JOY_NEW(DPAD_LEFT))
         {
-            ChangePage(taskId, -1);
+            if(!ModifyMode){ //normal page change
+                ViewingEVs = FALSE;
+                gCurrentModifyIndex = 0;
+				ChangePage(taskId, -1);
+			}
+			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ModifyMode){ //Ev Modifier
+				if(CurrentEv != 0 || gCurrentModifyIndex == 6){
+					CurrentEv--;
+					switch(gCurrentModifyIndex){
+					case 0:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV, &CurrentEv);
+						}
+					break;
+					case 1:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV, &CurrentEv);
+						}
+					break;
+					case 2:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV, &CurrentEv);
+						}
+					break;
+					case 3:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV, &CurrentEv);
+						}
+					break;
+					case 4:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV, &CurrentEv);
+						}
+					break;
+					case 5:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
+						}
+					break;
+					}
+				}
+				//SetTaskFuncWithFollowupFunc(taskId, ChangeStatTask, gTasks[taskId].func); //Refreshes the Icon
+				RefreshPageAfterChange(1);
+			}
         }
-        else if ((JOY_NEW(DPAD_RIGHT)) || GetLRKeysPressed() == MENU_R_PRESSED)
+
+        else if (JOY_NEW(DPAD_RIGHT))
         {
-            ChangePage(taskId, 1);
+            if(!ModifyMode){ //Normal Page Change
+                ViewingEVs = FALSE;
+                gCurrentModifyIndex = 0;
+				ChangePage(taskId, 1);
+			}
+            else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ModifyMode){ //Ev Modifier
+				if((CurrentEv != 252 && TotalEvs != 510) || gCurrentModifyIndex == 6){
+					CurrentEv++;
+					switch(gCurrentModifyIndex){
+					case 0:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV, &CurrentEv);
+						}
+					break;
+					case 1:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV, &CurrentEv);
+						}
+					break;
+					case 2:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV, &CurrentEv);
+						}
+					break;
+					case 3:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV, &CurrentEv);
+						}
+					break;
+					case 4:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV, &CurrentEv);
+						}
+					break;
+					case 5:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
+						}
+					break;
+					}
+				}
+				//SetTaskFuncWithFollowupFunc(taskId, ChangeStatTask, gTasks[taskId].func); //Refreshes the Icon
+				RefreshPageAfterChange(1);
+			}
         }
+
+        // show IVs/EVs/stats on button presses
+        // IVs
+        else if (gMain.newKeys & R_BUTTON)
+        {
+            if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && !ModifyMode)
+            {
+                ViewingEVs = FALSE;
+                RefreshPageAfterChange(0);
+            }
+			else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ModifyMode)
+            {
+				if(CurrentEv != 252 && TotalEvs != 510){
+					if(RemainingEvs + CurrentEv <= 252)
+						CurrentEv = RemainingEvs + CurrentEv;
+					else
+						CurrentEv = 252;
+
+					switch(gCurrentModifyIndex){
+					case 0:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV, &CurrentEv);
+						}
+					break;
+					case 1:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV, &CurrentEv);
+						}
+					break;
+					case 2:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV, &CurrentEv);
+						}
+					break;
+					case 3:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV, &CurrentEv);
+						}
+					break;
+					case 4:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV, &CurrentEv);
+						}
+					break;
+					case 5:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
+						}
+					break;
+					}
+				}
+				RefreshPageAfterChange(1);
+			}
+        }
+
+        // EVs
+        else if (gMain.newKeys & L_BUTTON)
+        {
+            if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && !ModifyMode)
+            {
+                ViewingEVs = TRUE;
+                RefreshPageAfterChange(1);
+            }
+			else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ModifyMode)
+            {
+				if(CurrentEv != 0){
+					CurrentEv = 0;
+
+					switch(gCurrentModifyIndex){
+					case 0:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV, &CurrentEv);
+						}
+					break;
+					case 1:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV, &CurrentEv);
+						}
+					break;
+					case 2:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV, &CurrentEv);
+						}
+					break;
+					case 3:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV, &CurrentEv);
+						}
+					break;
+					case 4:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV, &CurrentEv);
+						}
+					break;
+					case 5:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
+						}
+					break;
+					}
+				}
+				RefreshPageAfterChange(1);
+			}
+        }
+
+        // Stats
+        else if (gMain.newKeys & START_BUTTON)
+        {
+            if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && !ModifyMode)
+            {
+                ViewingEVs = FALSE;
+            
+                ChangeToStatPageViaStart(taskId);
+                RefreshPageAfterChange(2);
+            }
+        }
+
         else if (JOY_NEW(A_BUTTON))
         {
             if (sMonSummaryScreen->currPageIndex != PSS_PAGE_SKILLS)
@@ -1639,36 +1963,38 @@ static void Task_HandleInput(u8 taskId)
                     SwitchToMoveSelection(taskId);
                 }
             }
-        }
-        else if (JOY_NEW(B_BUTTON))
-        {
-            StopPokemonAnimations();
-            PlaySE(SE_SELECT);
-            BeginCloseSummaryScreen(taskId);
+            else if (!sMonSummaryScreen->isBoxMon && FlagGet(FLAG_DISABLE_MON_EDITING) == FALSE && ViewingEVs)
+            {
+                // Toggle EVs Modifier
+                ModifyMode = !ModifyMode;
+				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				CalculateMonStats(&sMonSummaryScreen->currentMon);
+
+				//SetTaskFuncWithFollowupFunc(taskId, ChangeStatTask, gTasks[taskId].func); //Refreshes the Icon
+				RefreshPageAfterChange(1);
+				PlaySE(SE_SELECT);
+            }
         }
 
-        // show IVs/EVs/stats on button presses
-        else if (gMain.newKeys & R_BUTTON)
+        else if (JOY_NEW(B_BUTTON))
         {
-            if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+            // Exit EVs Modifier
+            if (ModifyMode){
+                ModifyMode = !ModifyMode;
+				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				CalculateMonStats(&sMonSummaryScreen->currentMon);
+
+				RefreshPageAfterChange(1);
+				PlaySE(SE_SELECT);
+            }
+            else 
             {
-                BufferIvOrEvStats(0);
+                StopPokemonAnimations();
+                PlaySE(SE_SELECT);
+                BeginCloseSummaryScreen(taskId);
             }
         }
-        else if (gMain.newKeys & L_BUTTON)
-        {
-            if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
-            {
-                BufferIvOrEvStats(1);
-            }
-        }
-        else if (gMain.newKeys & START_BUTTON)
-        {
-            if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
-            {
-                BufferIvOrEvStats(2);
-            }
-        }
+
     #if DEBUG_POKEMON_MENU == TRUE
         else if (JOY_NEW(SELECT_BUTTON) && !gMain.inBattle)
         {
@@ -1679,6 +2005,52 @@ static void Task_HandleInput(u8 taskId)
         }
     #endif
     }
+}
+
+static void RefreshPageAfterChange(u8 mode){
+    // ClearWindowTilemap(PSS_DATA_WINDOW_SKILLS_STATS_LEFT);
+	// ClearWindowTilemap(PSS_DATA_WINDOW_SKILLS_STATS_RIGHT);
+    ScheduleBgCopyTilemapToVram(0);
+    UpdateInfoBar();
+    PrintEVEditPageText(mode);
+}
+
+// currently unused
+/* static void RedrawEVCursor(u8 oldPos)
+{
+    u8 width, height;
+
+    width = GetMenuCursorDimensionByFont(FONT_SMALL, 0);
+    height = GetMenuCursorDimensionByFont(FONT_SMALL, 1);
+
+    if (ModifyMode && gCurrentModifyIndex < 4) {
+
+    }
+    FillWindowPixelRect(sMenu.windowId, PIXEL_FILL(1), sMenu.left, sMenu.optionHeight * oldPos + sMenu.top, width, height);
+    AddTextPrinterParameterized(sMenu.windowId, FONT_SMALL, gText_SelectorArrow3, sMenu.left, sMenu.optionHeight * newPos + sMenu.top, 0, 0);
+} */
+
+static void UpdateInfoBar(void)
+{
+    if (ViewingEVs)
+    {
+        ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EVIV);
+        PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EDIT_EV);
+        PrintPageNamesAndStats();
+    }
+    else
+    {
+        ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EDIT_EV);
+        PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EVIV);
+        PrintPageNamesAndStats();       
+    }
+}
+
+static void PrintEVEditPageText(u8 mode) {
+    PrintHeldItemName();
+    PrintRibbonCount();
+    BufferIvOrEvStats(mode);
+    PrintExpPointsNextLevel();
 }
 
 static void ChangeSummaryPokemon(u8 taskId, s8 delta)
@@ -1729,6 +2101,41 @@ static void ChangeSummaryPokemon(u8 taskId, s8 delta)
             gTasks[taskId].func = Task_ChangeSummaryMon;
         }
     }
+}
+
+static void ChangeToStatPageViaStart(u8 taskId)
+{
+    gTasks[taskId].data[0] = 0;
+    gTasks[taskId].func = Task_ChangeToStatPageViaStart;
+}
+
+static void Task_ChangeToStatPageViaStart(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    switch (data[0])
+    {
+    case 0:
+        CopyMonToSummaryStruct(&sMonSummaryScreen->currentMon);
+        sMonSummaryScreen->switchCounter = 0;
+        break;
+    case 1:
+        if (ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon) == FALSE)
+            return;
+        break;
+    case 2:
+        PrintPageSpecificText(sMonSummaryScreen->currPageIndex);
+        LimitEggSummaryPageDisplay();
+        break;
+    default:
+        if (!MenuHelpers_ShouldWaitForLinkRecv() && !FuncIsActiveTask(Task_ShowStatusWindow))
+        {
+            data[0] = 0;
+            gTasks[taskId].func = Task_HandleInput;
+        }
+        return;
+    }
+    data[0]++;    
 }
 
 static void Task_ChangeSummaryMon(u8 taskId)
@@ -1813,9 +2220,9 @@ static s8 AdvanceMonIndex(s8 delta)
         while (GetMonData(&mon[index], MON_DATA_IS_EGG))
             index = (index + delta) % numMons;
 
-    // to avoid "scrolling" to the same Pokemon
+    // set first return to -1 to avoid "scrolling" to the same Pokemon
     if (index == sMonSummaryScreen->curMonIndex)
-        return -1;
+        return index;
     else
         return index;
 }
@@ -2912,12 +3319,12 @@ static void PrintPageNamesAndStats(void)
     PrintTextOnWindow(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE, gText_BattleMoves, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, gText_ContestMoves, 2, 1, 0, 1);
 
-    stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, gText_Cancel2, 62);
+    stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, gText_EditEVs, 62);
     iconXPos = stringXPos - 16;
     if (iconXPos < 0)
         iconXPos = 0;
-    PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_CANCEL, FALSE, iconXPos);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_CANCEL, gText_Cancel2, stringXPos, 1, 0, 0);
+    PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_EDIT_EV, FALSE, iconXPos);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_EDIT_EV, gText_EditEVs, stringXPos, 1, 0, 0);
 
     stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, gText_Info, 62);
     iconXPos = stringXPos - 16;
@@ -2933,7 +3340,9 @@ static void PrintPageNamesAndStats(void)
     PrintAOrBButtonIcon(PSS_LABEL_WINDOW_PROMPT_SWITCH, FALSE, iconXPos);
     PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_SWITCH, gText_Switch, stringXPos, 1, 0, 0);
 
-    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL, gText_RentalPkmn, 0, 1, 0, 1);
+    stringXPos = GetStringRightAlignXOffset(FONT_NORMAL, gText_EVIVControlInfo, 124);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_PROMPT_EVIV, gText_EVIVControlInfo, stringXPos, 1, 0, 0);
+
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE, gText_TypeSlash, 0, 1, 0, 0);
     statsXPos = 6 + GetStringCenterAlignXOffset(FONT_NORMAL, gText_HP4, 42);
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT, gText_HP4, statsXPos, 1, 0, 1);
@@ -2969,13 +3378,16 @@ static void PutPageWindowTilemaps(u8 page)
     {
     case PSS_PAGE_INFO:
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TITLE);
-        PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_CANCEL);
-        if (InBattleFactory() == TRUE || InSlateportBattleTent() == TRUE)
-            PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE);
         break;
     case PSS_PAGE_SKILLS:
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE);
+        if (ViewingEVs) {
+            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EDIT_EV);
+        }
+        else {
+            PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EVIV);
+        }
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP);
@@ -3019,12 +3431,15 @@ static void ClearPageWindowTilemaps(u8 page)
     switch (page)
     {
     case PSS_PAGE_INFO:
-        ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_CANCEL);
-        if (InBattleFactory() == TRUE || InSlateportBattleTent() == TRUE)
-            ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE);
         break;
     case PSS_PAGE_SKILLS:
+        if (ViewingEVs) {
+            ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EDIT_EV);
+        }
+        else {
+            ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EVIV);
+        }
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP);
@@ -3525,8 +3940,7 @@ static void BufferIvOrEvStats(u8 mode)
 
     switch (mode)
     {
-    case 0:
-    case 1:
+    case 0: // iv mode
         BufferStat(gStringVar1, 0, hp, 0, 7);
         BufferStat(gStringVar2, 0, atk, 1, 7);
         BufferStat(gStringVar3, 0, def, 2, 7);
@@ -3539,7 +3953,62 @@ static void BufferIvOrEvStats(u8 mode)
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsRightColumnLayout);
         PrintRightColumnStats();
         break;
-    case 2:
+    case 1: // ev mode
+        if (ModifyMode && gCurrentModifyIndex == 0)
+        {
+            BufferStat(gStringVar1, 1, hp, 0, 7);
+            BufferStat(gStringVar2, 0, atk, 1, 7);
+            BufferStat(gStringVar3, 0, def, 2, 7);
+        }
+        else if (ModifyMode && gCurrentModifyIndex == 1)
+        {
+            BufferStat(gStringVar1, 0, hp, 0, 7);
+            BufferStat(gStringVar2, 1, atk, 1, 7);
+            BufferStat(gStringVar3, 0, def, 2, 7);
+        }
+        else if (ModifyMode && gCurrentModifyIndex == 2)
+        {
+            BufferStat(gStringVar1, 0, hp, 0, 7);
+            BufferStat(gStringVar2, 0, atk, 1, 7);
+            BufferStat(gStringVar3, 1, def, 2, 7);
+        }
+        else
+        {
+            BufferStat(gStringVar1, 0, hp, 0, 7);
+            BufferStat(gStringVar2, 0, atk, 1, 7);
+            BufferStat(gStringVar3, 0, def, 2, 7);
+        }
+        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsLeftColumnLayoutIVEV);
+        PrintLeftColumnStats();
+
+        if (ModifyMode && gCurrentModifyIndex == 3)
+        {
+            BufferStat(gStringVar1, 1, spA, 0, 3);
+            BufferStat(gStringVar2, 0, spD, 1, 3);
+            BufferStat(gStringVar3, 0, spe, 2, 3);            
+        }
+        else if (ModifyMode && gCurrentModifyIndex == 4)
+        {
+            BufferStat(gStringVar1, 0, spA, 0, 3);
+            BufferStat(gStringVar2, 1, spD, 1, 3);
+            BufferStat(gStringVar3, 0, spe, 2, 3);   
+        }
+        else if (ModifyMode && gCurrentModifyIndex == 5)
+        {
+            BufferStat(gStringVar1, 0, spA, 0, 3);
+            BufferStat(gStringVar2, 0, spD, 1, 3);
+            BufferStat(gStringVar3, 1, spe, 2, 3);   
+        }
+        else
+        {
+            BufferStat(gStringVar1, 0, spA, 0, 3);
+            BufferStat(gStringVar2, 0, spD, 1, 3);
+            BufferStat(gStringVar3, 0, spe, 2, 3);
+        }
+        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sStatsRightColumnLayout);
+        PrintRightColumnStats();
+        break;
+    case 2: // stats mode
     default:
         BufferStat(currHPString, 0, hp, 0, 3);
         BufferStat(gStringVar1, 0, hp2, 1, 3);
