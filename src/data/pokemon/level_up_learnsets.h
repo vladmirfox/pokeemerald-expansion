@@ -10171,7 +10171,7 @@ static const struct LevelUpMove sJirachiLevelUpLearnset[] = {
     LEVEL_UP_MOVE(70, MOVE_DOOM_DESIRE),
     LEVEL_UP_END
 };
-#endif //P_FAMILY_JIRACHU
+#endif //P_FAMILY_JIRACHI
 
 #if P_FAMILY_DEOXYS
 static const struct LevelUpMove sDeoxysNormalLevelUpLearnset[] = {
@@ -10305,7 +10305,7 @@ static const struct LevelUpMove sTorterraLevelUpLearnset[] = {
     LEVEL_UP_MOVE(57, MOVE_LEAF_STORM),
     LEVEL_UP_END
 };
-#endif //P_FAMILY_JIRACHI
+#endif //P_FAMILY_TURTWIG
 
 #if P_FAMILY_CHIMCHAR
 static const struct LevelUpMove sChimcharLevelUpLearnset[] = {
