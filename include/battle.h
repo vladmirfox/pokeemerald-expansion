@@ -732,7 +732,7 @@ struct BattleStruct
     bool8 transformZeroToHero[PARTY_SIZE][NUM_BATTLE_SIDES];
     u8 pledgeMove:1;
     bool8 isSkyBattle:1;
-    u8 timesGotHit[PARTY_SIZE][NUM_BATTLE_SIDES];
+    u8 timesGotHit[NUM_BATTLE_SIDES][PARTY_SIZE];
     u8 enduredDamage;
 };
 

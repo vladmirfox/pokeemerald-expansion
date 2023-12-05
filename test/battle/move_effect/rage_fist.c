@@ -247,3 +247,48 @@ SINGLE_BATTLE_TEST("Rage Fist base power is not increased if move had no affect"
         EXPECT_EQ(timesGotHit[0], timesGotHit[1]);
     }
 }
+
+SINGLE_BATTLE_TEST("Rage Fist base power is increased if Disguise breaks")
+{
+    s16 timesGotHit[2];
+
+    GIVEN {
+        PLAYER(SPECIES_MIMIKYU_DISGUISED) { Ability(ABILITY_DISGUISE); }
+        OPPONENT(SPECIES_REGIROCK);
+    } WHEN {
+        TURN { MOVE(player, MOVE_RAGE_FIST); MOVE(opponent, MOVE_ROCK_THROW); }
+        TURN { MOVE(player, MOVE_RAGE_FIST); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
+        HP_BAR(opponent, captureDamage: &timesGotHit[0]);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROCK_THROW, opponent);
+        ABILITY_POPUP(player, ABILITY_DISGUISE);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
+        HP_BAR(opponent, captureDamage: &timesGotHit[1]);
+    } THEN {
+        EXPECT_MUL_EQ(timesGotHit[0], Q_4_12(2.0), timesGotHit[1]);
+    }
+}
+
+SINGLE_BATTLE_TEST("Rage Fist number of hits is copied by Transform")
+{
+    s16 timesGotHit[2];
+
+    // KNOWN_FAILING; // After Transform , wrong move is used by transformed mon
+    GIVEN {
+        PLAYER(SPECIES_REGIROCK);
+        OPPONENT(SPECIES_REGIROCK) { Moves(MOVE_RAGE_FIST, MOVE_CELEBRATE); }
+    } WHEN {
+            TURN { MOVE(player, MOVE_RAGE_FIST); MOVE(opponent, MOVE_CELEBRATE); }
+            TURN { MOVE(player, MOVE_TRANSFORM); MOVE(opponent, MOVE_CELEBRATE); }
+            TURN { MOVE(player, MOVE_RAGE_FIST); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
+        HP_BAR(opponent, captureDamage: &timesGotHit[0]);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TRANSFORM, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_RAGE_FIST, player);
+        HP_BAR(opponent, captureDamage: &timesGotHit[1]);
+    } THEN {
+        EXPECT_MUL_EQ(timesGotHit[0], Q_4_12(2.0), timesGotHit[1]);
+    }
+}
