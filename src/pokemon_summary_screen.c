@@ -2032,7 +2032,7 @@ static void RefreshPageAfterChange(u8 mode){
 
 static void UpdateInfoBar(void)
 {
-    if (ViewingEVs)
+    if (ViewingEVs && !sMonSummaryScreen->isBoxMon)
     {
         ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EVIV);
         PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_EDIT_EV);
