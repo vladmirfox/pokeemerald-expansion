@@ -451,8 +451,7 @@ BattleScript_EffectSpicyExtract::
 	attackstring
 	ppreduce
 	jumpifstat BS_TARGET, CMP_LESS_THAN, STAT_ATK, MAX_STAT_STAGE, BattleScript_SpicyExtractAtkUp
-	jumpifstat BS_TARGET, CMP_GREATER_THAN, STAT_DEF, MIN_STAT_STAGE, BattleScript_SpicyExtractAtkUp
-	goto BattleScript_ButItFailed
+	jumpifstat BS_TARGET, CMP_EQUAL, STAT_DEF, MIN_STAT_STAGE, BattleScript_ButItFailed
 BattleScript_SpicyExtractAtkUp:
 	attackanimation
 	waitanimation
