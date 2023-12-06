@@ -4156,20 +4156,15 @@ static void Cmd_getexp(void)
 
                 if (IsValidForBattle(&gPlayerParty[*expMonId]))
                 {
-                    if (B_EXP_CAP_TYPE == EXP_CAP_SOFT && wasSentOut)
+                    if (wasSentOut)
                         gBattleMoveDamage = GetSoftLevelCapExpValue(gPlayerParty[*expMonId].level, gBattleStruct->expValue);
-                    else if (B_EXP_CAP_TYPE != EXP_CAP_HARD && wasSentOut)
-                        gBattleMoveDamage = gBattleStruct->expValue;
                     else
                         gBattleMoveDamage = 0;
 
                     if ((holdEffect == HOLD_EFFECT_EXP_SHARE || IsGen6ExpShareEnabled())
                         && (B_SPLIT_EXP < GEN_6 || gBattleMoveDamage == 0)) // only give exp share bonus in later gens if the mon wasn't sent out
                     {
-                        if (B_EXP_CAP_TYPE == EXP_CAP_SOFT)
-                            gBattleMoveDamage += GetSoftLevelCapExpValue(gPlayerParty[*expMonId].level, gBattleStruct->expShareExpValue);
-                        else if (B_EXP_CAP_TYPE == EXP_CAP_NONE)
-                            gBattleMoveDamage += gBattleStruct->expShareExpValue;
+                        gBattleMoveDamage += GetSoftLevelCapExpValue(gPlayerParty[*expMonId].level, gBattleStruct->expShareExpValue);;
                     }
 
                     ApplyExperienceMultipliers(&gBattleMoveDamage, *expMonId, gBattlerFainted);

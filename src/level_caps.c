@@ -45,20 +45,26 @@ u16 GetSoftLevelCapExpValue(u8 level, u32 expValue)
     u8 levelDifference;
     u8 currentLevelCap = GetCurrentLevelCap();
 
-    if (level >= currentLevelCap)
+    if (B_EXP_CAP_TYPE == EXP_CAP_NONE)
+        return expValue;
+
+    if (B_LEVEL_CAP_EXP_UP && level < currentLevelCap)
+    {
+        levelDifference = currentLevelCap - level;
+        if (levelDifference > ARRAY_COUNT(sExpScalingDown))
+            return expValue + (expValue / sExpScalingUp[ARRAY_COUNT(sExpScalingDown) - 1]);
+        else
+            return expValue + (expValue / sExpScalingUp[levelDifference]);
+    }
+    else if (B_EXP_CAP_TYPE == EXP_CAP_SOFT && level >= currentLevelCap)
     {
         levelDifference = level - currentLevelCap;
-        if (levelDifference >= ARRAY_COUNT(sExpScalingDown) - 1)
-            return expValue / sExpScalingDown[levelDifference];
+        if (levelDifference > ARRAY_COUNT(sExpScalingDown))
+            return expValue / sExpScalingDown[ARRAY_COUNT(sExpScalingDown) - 1];
         else
             return expValue / sExpScalingDown[levelDifference];
     }
     else
-    {
-        levelDifference = currentLevelCap - level;
-        if (levelDifference >= ARRAY_COUNT(sExpScalingDown))
-            return expValue + (expValue / sExpScalingUp[ARRAY_COUNT(sExpScalingDown) - 1]);
-        else
-            return expValue + (expValue / sExpScalingUp[levelDifference - 1]);
-    }
+        return 0;
+
 }
