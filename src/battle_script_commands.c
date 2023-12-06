@@ -15827,7 +15827,8 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
 
         value *= sExperienceScalingFactors[(faintedLevel * 2) + 10];
         value /= sExperienceScalingFactors[faintedLevel + expGetterLevel + 10];
-        *expAmount = value + 1;
+        if (*expAmount != 0) // Mons at (hard) level cap should receive 0 exp
+            *expAmount = value + 1;
     }
 }
 
