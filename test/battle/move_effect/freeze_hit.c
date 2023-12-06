@@ -66,3 +66,20 @@ SINGLE_BATTLE_TEST("Blizzard bypasses accuracy checks in Hail and Snow")
         NOT MESSAGE("Wobbuffet's attack missed!");
     }
 }
+
+// test against Gen1
+SINGLE_BATTLE_TEST("Freezing Glare should freeze Psychic-types")
+{
+    GIVEN {
+        ASSUME(gSpeciesInfo[SPECIES_ARTICUNO_GALARIAN].types[0] == TYPE_PSYCHIC);
+        PLAYER(SPECIES_ARTICUNO_GALARIAN);
+        OPPONENT(SPECIES_ARTICUNO_GALARIAN);
+    } WHEN {
+        TURN { MOVE(player, MOVE_FREEZING_GLARE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FREEZING_GLARE, player);
+        HP_BAR(opponent);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_FRZ, opponent);
+        STATUS_ICON(opponent, freeze: TRUE);
+    }
+}

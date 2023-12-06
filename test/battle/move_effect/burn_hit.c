@@ -38,3 +38,20 @@ SINGLE_BATTLE_TEST("Ember cannot burn a Fire-type Pokémon")
         }
     }
 }
+
+// test against Gen1
+SINGLE_BATTLE_TEST("Scald should burn a Water-type Pokémon")
+{
+    GIVEN {
+        ASSUME(gSpeciesInfo[SPECIES_SQUIRTLE].types[0] == TYPE_WATER);
+        PLAYER(SPECIES_SQUIRTLE);
+        OPPONENT(SPECIES_SQUIRTLE);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SCALD); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCALD, player);
+        HP_BAR(opponent);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, opponent);
+        STATUS_ICON(opponent, burn: TRUE);
+    }
+}
