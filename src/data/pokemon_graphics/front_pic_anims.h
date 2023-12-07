@@ -242,8 +242,6 @@ static const union AnimCmd sAnim_Pidgeot_1[] =
 {
     ANIMCMD_FRAME(1, 20),
     ANIMCMD_FRAME(0, 10),
-    ANIMCMD_FRAME(1, 15),
-    ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 
@@ -1236,8 +1234,6 @@ static const union AnimCmd sAnim_Dodrio_1[] =
     ANIMCMD_FRAME(1, 12),
     ANIMCMD_FRAME(0, 12),
     ANIMCMD_FRAME(1, 12),
-    ANIMCMD_FRAME(0, 12),
-    ANIMCMD_FRAME(1, 12),
     ANIMCMD_FRAME(0, 8),
     ANIMCMD_END,
 };
@@ -1246,8 +1242,10 @@ static const union AnimCmd sAnim_Dodrio_1[] =
 #if P_FAMILY_SEEL
 static const union AnimCmd sAnim_Seel_1[] =
 {
-    ANIMCMD_FRAME(1, 40),
+    ANIMCMD_FRAME(1, 30),
     ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 
@@ -1299,22 +1297,10 @@ static const union AnimCmd sAnim_Shellder_1[] =
 
 static const union AnimCmd sAnim_Cloyster_1[] =
 {
-    ANIMCMD_FRAME(1, 5),
-    ANIMCMD_FRAME(0, 5),
-    ANIMCMD_FRAME(1, 5),
-    ANIMCMD_FRAME(0, 5),
-    ANIMCMD_FRAME(1, 5),
-    ANIMCMD_FRAME(0, 5),
-    ANIMCMD_FRAME(1, 5),
-    ANIMCMD_FRAME(0, 25),
-    ANIMCMD_FRAME(1, 5),
-    ANIMCMD_FRAME(0, 5),
-    ANIMCMD_FRAME(1, 5),
-    ANIMCMD_FRAME(0, 5),
-    ANIMCMD_FRAME(1, 5),
-    ANIMCMD_FRAME(0, 5),
-    ANIMCMD_FRAME(1, 5),
-    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(1, 32),
+    ANIMCMD_FRAME(0, 14),
+    ANIMCMD_FRAME(1, 18),
+    ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 #endif //P_FAMILY_SHELLDER
@@ -1322,9 +1308,13 @@ static const union AnimCmd sAnim_Cloyster_1[] =
 #if P_FAMILY_GASTLY
 static const union AnimCmd sAnim_Gastly_1[] =
 {
-    ANIMCMD_FRAME(1, 50),
-    ANIMCMD_FRAME(1, 30),
     ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 18),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 10),
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(1, 8),
+    ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 
@@ -1359,7 +1349,6 @@ PLACEHOLDER_ANIM_SINGLE_FRAME(GengarGigantamax);
 static const union AnimCmd sAnim_Onix_1[] =
 {
     ANIMCMD_FRAME(1, 50),
-    ANIMCMD_FRAME(1, 30),
     ANIMCMD_FRAME(0, 30),
     ANIMCMD_END,
 };
@@ -1409,26 +1398,19 @@ static const union AnimCmd sAnim_Hypno_1[] =
 #if P_FAMILY_KRABBY
 static const union AnimCmd sAnim_Krabby_1[] =
 {
-    ANIMCMD_FRAME(1, 8),
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(1, 8),
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(1, 8),
+    ANIMCMD_FRAME(1, 16),
+    ANIMCMD_FRAME(0, 16),
+    ANIMCMD_FRAME(1, 16),
+    ANIMCMD_FRAME(0, 16),
+    ANIMCMD_FRAME(1, 16),
     ANIMCMD_FRAME(0, 8),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_Kingler_1[] =
 {
-    ANIMCMD_FRAME(0, 5),
-    ANIMCMD_FRAME(1, 15),
-    ANIMCMD_FRAME(0, 10),
-    ANIMCMD_FRAME(1, 15),
-    ANIMCMD_FRAME(0, 25),
-    ANIMCMD_FRAME(1, 10),
-    ANIMCMD_FRAME(0, 10),
-    ANIMCMD_FRAME(1, 10),
-    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 50),
+    ANIMCMD_FRAME(0, 14),
     ANIMCMD_END,
 };
 
@@ -1450,11 +1432,10 @@ static const union AnimCmd sAnim_Voltorb_1[] =
 
 static const union AnimCmd sAnim_Electrode_1[] =
 {
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(1, 30),
-    ANIMCMD_FRAME(0, 8),
-    ANIMCMD_FRAME(1, 30),
-    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(0, 14),
+    ANIMCMD_FRAME(1, 34),
+    ANIMCMD_FRAME(1, 34),
+    ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 
@@ -1494,12 +1475,12 @@ PLACEHOLDER_ANIM_TWO_FRAMES(ExeggutorAlolan);
 #if P_FAMILY_CUBONE
 static const union AnimCmd sAnim_Cubone_1[] =
 {
-    ANIMCMD_FRAME(1, 14),
-    ANIMCMD_FRAME(0, 14),
-    ANIMCMD_FRAME(1, 14),
-    ANIMCMD_FRAME(0, 14),
-    ANIMCMD_FRAME(1, 14),
-    ANIMCMD_FRAME(0, 14),
+    ANIMCMD_FRAME(1, 6),
+    ANIMCMD_FRAME(0, 6),
+    ANIMCMD_LOOP(1),
+    ANIMCMD_FRAME(0, 12),
+    ANIMCMD_FRAME(1, 32),
+    ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 
@@ -1531,38 +1512,36 @@ static const union AnimCmd sAnim_Tyrogue_1[] =
 
 static const union AnimCmd sAnim_Hitmonlee_1[] =
 {
-    ANIMCMD_FRAME(1, 15),
-    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(0, 16),
+    ANIMCMD_FRAME(1, 18),
+    ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_Hitmonchan_1[] =
 {
-    ANIMCMD_FRAME(1, 5),
-    ANIMCMD_FRAME(0, 5),
-    ANIMCMD_FRAME(1, 5),
-    ANIMCMD_FRAME(0, 5),
-    ANIMCMD_FRAME(1, 5),
-    ANIMCMD_FRAME(0, 15),
-    ANIMCMD_FRAME(1, 25),
-    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(0, 17),
+    ANIMCMD_FRAME(1, 4),
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_FRAME(1, 4),
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_FRAME(1, 4),
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_FRAME(1, 4),
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_FRAME(1, 4),
+    ANIMCMD_FRAME(0, 4),
     ANIMCMD_END,
 };
 
 #if P_GEN_2_CROSS_EVOS
 static const union AnimCmd sAnim_Hitmontop_1[] =
 {
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_FRAME(1, 4),
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_FRAME(1, 4),
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_FRAME(1, 4),
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_FRAME(1, 4),
-    ANIMCMD_FRAME(0, 4),
-    ANIMCMD_FRAME(1, 4),
-    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_FRAME(0, 12),
+    ANIMCMD_FRAME(1, 26),
+    ANIMCMD_FRAME(0, 14),
+    ANIMCMD_FRAME(1, 32),
+    ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 #endif //P_GEN_2_CROSS_EVOS
@@ -1571,8 +1550,7 @@ static const union AnimCmd sAnim_Hitmontop_1[] =
 #if P_FAMILY_LICKITUNG
 static const union AnimCmd sAnim_Lickitung_1[] =
 {
-    ANIMCMD_FRAME(0, 28),
-    ANIMCMD_FRAME(1, 32),
+    ANIMCMD_FRAME(1, 16),
     ANIMCMD_FRAME(0, 15),
     ANIMCMD_END,
 };
@@ -1633,11 +1611,8 @@ static const union AnimCmd sAnim_Rhyhorn_1[] =
 
 static const union AnimCmd sAnim_Rhydon_1[] =
 {
-    ANIMCMD_FRAME(0, 11),
-    ANIMCMD_FRAME(1, 10),
-    ANIMCMD_FRAME(0, 10),
-    ANIMCMD_FRAME(1, 48),
-    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 16),
+    ANIMCMD_FRAME(0, 15),
     ANIMCMD_END,
 };
 
@@ -1687,16 +1662,9 @@ static const union AnimCmd sAnim_Blissey_1[] =
 #if P_FAMILY_TANGELA
 static const union AnimCmd sAnim_Tangela_1[] =
 {
-    ANIMCMD_FRAME(1, 9),
-    ANIMCMD_FRAME(0, 9),
-    ANIMCMD_FRAME(1, 9),
-    ANIMCMD_FRAME(0, 9),
-    ANIMCMD_FRAME(1, 9),
-    ANIMCMD_FRAME(0, 9),
-    ANIMCMD_FRAME(1, 9),
-    ANIMCMD_FRAME(0, 9),
-    ANIMCMD_FRAME(1, 9),
-    ANIMCMD_FRAME(0, 9),
+    ANIMCMD_FRAME(0, 40),
+    ANIMCMD_FRAME(1, 24),
+    ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 

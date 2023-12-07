@@ -906,7 +906,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 293,
         .trainerOffset = 2,
         FRONT_PIC(BlastoiseGigantamax, 64, 64),
-        .frontPicYOffset = 4,
+        .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_BlastoiseGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(BlastoiseGigantamax, 64, 64),
@@ -1066,8 +1066,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC_FEMALE(Butterfree, 64, 56),
         .frontPicYOffset = 10,
         .frontAnimFrames = sAnims_Butterfree,
-        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
-        .enemyMonElevation = 10,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .enemyMonElevation = 12,
         BACK_PIC(Butterfree, 64, 56),
         BACK_PIC_FEMALE(Butterfree, 64, 56),
         .backPicYOffset =  5,
@@ -1089,10 +1089,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(ButterfreeGigantamax, 64, 64),
-        .frontPicYOffset = 10,
+        .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_ButterfreeGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 10,
+        .enemyMonElevation = 7,
         BACK_PIC(ButterfreeGigantamax, 64, 64),
         .backPicYOffset = 3,
         //.backAnimId = BACK_ANIM_NONE,
@@ -1448,7 +1448,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Pidgeot, 64, 64),
         .frontPicYOffset =  2,
         .frontAnimFrames = sAnims_Pidgeot,
-        .frontAnimId = ANIM_FRONT_FLIP,
+        .frontAnimId = ANIM_GROW_VIBRATE,
         .enemyMonElevation = 5,
         BACK_PIC(Pidgeot, 64, 56),
         .backPicYOffset =  7,
@@ -1935,7 +1935,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         PICHU_MISC_INFO,
         .noFlip = TRUE,
         FRONT_PIC(PichuSpikyEared, 32, 40),
-        .frontPicYOffset = 14,
+        .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_PichuSpikyEared,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PichuSpikyEared, 48, 56),
@@ -2293,7 +2293,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = COMPOUND_STRING(
             ""),
         FRONT_PIC(PikachuGigantamax, 64, 64),
-        .frontPicYOffset = 1,
+        .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_PikachuGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(PikachuGigantamax, 64, 64),
@@ -2869,7 +2869,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimId = ANIM_H_SHAKE,
         .frontAnimDelay = 25,
         BACK_PIC(Nidoking, 64, 64),
-        .backPicYOffset =  2,
+        .backPicYOffset =  3,
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTE(Nidoking),
         ICON(Nidoking, 2),
@@ -4801,7 +4801,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(GrowlitheHisuian, 48, 48),
-        .frontPicYOffset =  6,
+        .frontPicYOffset = 11,
         .frontAnimFrames = sAnims_GrowlitheHisuian,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GrowlitheHisuian, 56, 56),
@@ -4837,7 +4837,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 312,
         .trainerOffset = 4,
         FRONT_PIC(ArcanineHisuian, 64, 64),
-        .frontPicYOffset =  2,
+        .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_ArcanineHisuian,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ArcanineHisuian, 64, 64),
@@ -5679,7 +5679,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Tentacruel, 64, 56),
         .frontPicYOffset =  4,
         .frontAnimFrames = sAnims_Tentacruel,
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimId = ANIM_V_SLIDE_WOBBLE,
         BACK_PIC(Tentacruel, 64, 48),
         .backPicYOffset = 11,
         .backAnimId = BACK_ANIM_H_SLIDE,
@@ -6858,7 +6858,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Seel, 56, 48),
         .frontPicYOffset =  8,
         .frontAnimFrames = sAnims_Seel,
-        .frontAnimId = ANIM_H_STRETCH,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
         BACK_PIC(Seel, 64, 40),
         .backPicYOffset = 13,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
@@ -7017,7 +7017,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Muk, 64, 56),
         .frontPicYOffset =  7,
         .frontAnimFrames = sAnims_Muk,
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimId = ANIM_DEEP_V_SQUISH_AND_BOUNCE,
         .frontAnimDelay = 45,
         BACK_PIC(Muk, 64, 56),
         .backPicYOffset =  9,
@@ -7185,7 +7185,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Cloyster, 64, 64),
         .frontPicYOffset =  3,
         .frontAnimFrames = sAnims_Cloyster,
-        .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
         BACK_PIC(Cloyster, 64, 56),
         .backPicYOffset =  7,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
@@ -7235,8 +7235,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Gastly, 64, 48),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Gastly,
-        .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
-        .enemyMonElevation = 10,
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .enemyMonElevation = 13,
         BACK_PIC(Gastly, 64, 56),
         .backPicYOffset =  6,
         .backAnimId = BACK_ANIM_H_VIBRATE,
@@ -7287,7 +7287,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Haunter,
         .frontAnimId = ANIM_FLICKER_INCREASING,
         .frontAnimDelay = 23,
-        .enemyMonElevation = 11,
+        .enemyMonElevation = 14,
         BACK_PIC(Haunter, 64, 56),
         .backPicYOffset =  4,
         .backAnimId = BACK_ANIM_H_VIBRATE,
@@ -7415,7 +7415,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 302,
         .trainerOffset = 2,
         FRONT_PIC(GengarGigantamax, 64, 64),
-        .frontPicYOffset = 8,
+        .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_GengarGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GengarGigantamax, 64, 64),
@@ -7665,7 +7665,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC_FEMALE(Hypno, 64, 64),
         .frontPicYOffset =  3,
         .frontAnimFrames = sAnims_Hypno,
-        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .frontAnimId = ANIM_GROW_VIBRATE,
         .frontAnimDelay = 40,
         BACK_PIC(Hypno, 64, 56),
         BACK_PIC_FEMALE(Hypno, 64, 56),
@@ -7717,7 +7717,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Krabby, 64, 48),
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Krabby,
-        .frontAnimId = ANIM_H_SLIDE,
+        .frontAnimId = ANIM_H_SLIDE_SLOW,
         BACK_PIC(Krabby, 56, 40),
         .backPicYOffset = 15,
         .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
@@ -7773,7 +7773,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Kingler, 64, 48),
         .frontPicYOffset =  8,
         .frontAnimFrames = sAnims_Kingler,
-        .frontAnimId = ANIM_H_SLIDE_SLOW,
+        .frontAnimId = ANIM_V_SHAKE_TWICE,
+        .frontAnimDelay = 4,
         BACK_PIC(Kingler, 64, 56),
         .backPicYOffset =  5,
         .backAnimId = BACK_ANIM_V_SHAKE,
@@ -7874,9 +7875,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "explodes at the slightest shock, even\n"
             "veteran Trainers treat it with caution."),
         FRONT_PIC(Voltorb, 32, 40),
-        .frontPicYOffset = 11,
+        .frontPicYOffset = 15,
         .frontAnimFrames = sAnims_Voltorb,
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimId = ANIM_SWING_CONCAVE,
         BACK_PIC(Voltorb, 48, 40),
         .backPicYOffset = 14,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
@@ -7898,9 +7899,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "electricity, they cause massive and\n"
             "chaotic blackouts in nearby cities."),
         FRONT_PIC(Electrode, 48, 48),
-        .frontPicYOffset =  8,
+        .frontPicYOffset =  11,
         .frontAnimFrames = sAnims_Electrode,
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimId = ANIM_SHRINK_GROW_VIBRATE_SLOW,
         BACK_PIC(Electrode, 64, 40),
         .backPicYOffset = 13,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
@@ -7922,10 +7923,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "current it has stored in its belly, then\n"
             "lets out a great, uproarious laugh."),
         FRONT_PIC(VoltorbHisuian, 32, 32),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 17,
         .frontAnimFrames = sAnims_VoltorbHisuian,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 1,
         BACK_PIC(VoltorbHisuian, 48, 32),
         .backPicYOffset = 10,
         //.backAnimId = BACK_ANIM_NONE,
@@ -7948,10 +7948,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "When irritated, it lets loose an electric\n"
             "current equal to 20 lightning bolts."),
         FRONT_PIC(ElectrodeHisuian, 48, 48),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_ElectrodeHisuian,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 4,
         BACK_PIC(ElectrodeHisuian, 64, 40),
         .backPicYOffset =  7,
         //.backAnimId = BACK_ANIM_NONE,
@@ -8093,7 +8092,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 309,
         .trainerOffset = 5,
         FRONT_PIC(ExeggutorAlolan, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  1,
         .frontAnimFrames = sAnims_ExeggutorAlolan,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ExeggutorAlolan, 64, 56),
@@ -8147,7 +8146,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Cubone, 56, 40),
         .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Cubone,
-        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .frontAnimDelay = 30,
         BACK_PIC(Cubone, 56, 48),
         .backPicYOffset = 10,
         .backAnimId = BACK_ANIM_JOLT_RIGHT,
@@ -8330,9 +8330,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 259,
         .trainerOffset = 1,
         FRONT_PIC(Hitmonlee, 64, 64),
-        .frontPicYOffset =  3,
+        .frontPicYOffset =  5,
         .frontAnimFrames = sAnims_Hitmonlee,
-        .frontAnimId = ANIM_H_STRETCH,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         BACK_PIC(Hitmonlee, 64, 56),
         .backPicYOffset =  4,
         .backAnimId = BACK_ANIM_H_SLIDE,
@@ -8378,10 +8378,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 277,
         .trainerOffset = 2,
         FRONT_PIC(Hitmonchan, 48, 64),
-        .frontPicYOffset =  3,
+        .frontPicYOffset =  4,
         .frontAnimFrames = sAnims_Hitmonchan,
         .frontAnimId = ANIM_GROW_VIBRATE,
-        .frontAnimDelay = 25,
         BACK_PIC(Hitmonchan, 56, 56),
         .backPicYOffset =  6,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
@@ -8430,7 +8429,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Hitmontop, 64, 56),
         .frontPicYOffset =  7,
         .frontAnimFrames = sAnims_Hitmontop,
-        .frontAnimId = ANIM_H_VIBRATE,
+        .frontAnimId = ANIM_SWING_CONCAVE,
         BACK_PIC(Hitmontop, 64, 56),
         .backPicYOffset =  6,
         .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,
@@ -8482,7 +8481,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Lickitung, 64, 56),
         .frontPicYOffset =  7,
         .frontAnimFrames = sAnims_Lickitung,
-        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE_SLOW,
+        .frontAnimId = ANIM_V_STRETCH,
         BACK_PIC(Lickitung, 64, 40),
         .backPicYOffset = 13,
         .backAnimId = BACK_ANIM_H_SLIDE,
@@ -8647,7 +8646,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  0,
         .frontAnimFrames = sAnims_Weezing,
         .frontAnimId = ANIM_V_SLIDE,
-        .enemyMonElevation = 6,
+        .enemyMonElevation = 3,
         BACK_PIC(Weezing, 64, 48),
         .backPicYOffset =  9,
         .backAnimId = BACK_ANIM_GROW,
@@ -8780,9 +8779,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 2,
         FRONT_PIC(Rhydon, 64, 56),
         FRONT_PIC_FEMALE(Rhydon, 64, 56),
-        .frontPicYOffset =  4,
+        .frontPicYOffset =  3,
         .frontAnimFrames = sAnims_Rhydon,
-        .frontAnimId = ANIM_H_SHAKE,
+        .frontAnimId = ANIM_V_STRETCH,
         BACK_PIC(Rhydon, 64, 56),
         BACK_PIC_FEMALE(Rhydon, 64, 56),
         .backPicYOffset =  5,
@@ -9043,7 +9042,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         FRONT_PIC(Tangela, 48, 40),
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Tangela,
-        .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
         BACK_PIC(Tangela, 64, 40),
         .backPicYOffset = 12,
         .backAnimId = BACK_ANIM_V_STRETCH,
@@ -9945,7 +9944,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 286,
         .trainerOffset = 1,
         FRONT_PIC(Kleavor, 64, 64),
-        .frontPicYOffset =  2,
+        .frontPicYOffset =  0,
         .frontAnimFrames = sAnims_Kleavor,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Kleavor, 64, 56),
@@ -10958,7 +10957,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(EeveeGigantamax, 64, 64),
-        .frontPicYOffset = 6,
+        .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_EeveeGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(EeveeGigantamax, 64, 64),
@@ -14853,7 +14852,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "The Pokémon changed over time, developing\n"
             "a poisonous film to protect its body."),
         FRONT_PIC(WooperPaldean, 40, 32),
-        .frontPicYOffset = 12,
+        .frontPicYOffset = 16,
         .frontAnimFrames = sAnims_WooperPaldean,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(WooperPaldean, 64, 40),
@@ -16123,11 +16122,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "because it sprays poison from its spines,\n"
             "getting it everywhere."),
         FRONT_PIC(QwilfishHisuian, 48, 40),
-        .frontPicYOffset =  8,
+        .frontPicYOffset = 16,
         .frontAnimFrames = sAnims_QwilfishHisuian,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 9,
         BACK_PIC(QwilfishHisuian, 56, 56),
-        .backPicYOffset =  6,
+        .backPicYOffset =  8,
         //.backAnimId = BACK_ANIM_NONE,
         PALETTE(QwilfishHisuian),
         ICON(QwilfishHisuian, 0),
@@ -16172,7 +16172,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 423,
         .trainerOffset = 8,
         FRONT_PIC(Overqwil, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  2,
         .frontAnimFrames = sAnims_Overqwil,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Overqwil, 64, 56),
@@ -16460,7 +16460,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "infiltrates the nerves of any prey caught."),
         FRONT_PIC(SneaselHisuian, 56, 56),
         FRONT_PIC_FEMALE(SneaselHisuian, 56, 56),
-        .frontPicYOffset =  7,
+        .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_SneaselHisuian,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SneaselHisuian, 56, 64),
@@ -16511,7 +16511,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Sneasler, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  1,
         .frontAnimFrames = sAnims_Sneasler,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Sneasler, 64, 64),
@@ -16667,7 +16667,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 369,
         .trainerOffset = 7,
         FRONT_PIC(Ursaluna, 56, 56),
-        .frontPicYOffset =  4,
+        .frontPicYOffset =  2,
         .frontAnimFrames = sAnims_Ursaluna,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Ursaluna, 64, 40),
@@ -18117,7 +18117,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Pupitar, 40, 48),
-        .frontPicYOffset =  9,
+        .frontPicYOffset =  11,
         .frontAnimFrames = sAnims_Pupitar,
         .frontAnimId = ANIM_H_SHAKE,
         BACK_PIC(Pupitar, 48, 56),
@@ -23001,7 +23001,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Spinda, 48, 64),
-        .frontPicYOffset =  1,
+        .frontPicYOffset =  8,
         .frontAnimFrames = sAnims_Spinda,
         .frontAnimId = ANIM_CIRCLE_INTO_BG,
         BACK_PIC(Spinda, 56, 56),
@@ -23318,7 +23318,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Swablu, 48, 40),
-        .frontPicYOffset = 12,
+        .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Swablu,
         .frontAnimId = ANIM_GROW_VIBRATE,
         BACK_PIC(Swablu, 64, 48),
@@ -23377,7 +23377,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  1,
         .frontAnimFrames = sAnims_Altaria,
         .frontAnimId = ANIM_V_STRETCH,
-        .enemyMonElevation = 8,
         BACK_PIC(Altaria, 64, 48),
         .backPicYOffset = 10,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
@@ -23671,9 +23670,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Barboach, 48, 40),
-        .frontPicYOffset = 11,
+        .frontPicYOffset = 15,
         .frontAnimFrames = sAnims_Barboach,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW,
+        .enemyMonElevation = 7,
         BACK_PIC(Barboach, 56, 48),
         .backPicYOffset =  9,
         .backAnimId = BACK_ANIM_V_STRETCH,
@@ -23870,10 +23870,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Baltoy, 40, 40),
-        .frontPicYOffset = 11,
+        .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Baltoy,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
-        .enemyMonElevation = 5,
+        .enemyMonElevation = 8,
         BACK_PIC(Baltoy, 64, 48),
         .backPicYOffset =  8,
         .backAnimId = BACK_ANIM_DIP_RIGHT_SIDE,
@@ -24513,7 +24513,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  7,
         .frontAnimFrames = sAnims_Banette,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
-        .enemyMonElevation = 8,
         BACK_PIC(Banette, 64, 64),
         .backPicYOffset =  5,
         .backAnimId = BACK_ANIM_H_VIBRATE,
@@ -24703,9 +24702,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 348,
         .trainerOffset = 6,
         FRONT_PIC(Dusknoir, 64, 64),
-        .frontPicYOffset =  2,
+        .frontPicYOffset =  4,
         .frontAnimFrames = sAnims_Dusknoir,
         .frontAnimId = ANIM_H_SLIDE,
+        .enemyMonElevation = 6,
         BACK_PIC(Dusknoir, 64, 56),
         .backPicYOffset =  6,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
@@ -24806,10 +24806,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Chingling, 40, 40),
-        .frontPicYOffset = 12,
+        .frontPicYOffset = 15,
         .frontAnimFrames = sAnims_Chingling,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
-        .enemyMonElevation = 5,
         BACK_PIC(Chingling, 48, 48),
         .backPicYOffset = 13,
         .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
@@ -25151,6 +25150,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  8,
         .frontAnimFrames = sAnims_Froslass,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .enemyMonElevation = 7,
         BACK_PIC(Froslass, 64, 64),
         .backPicYOffset =  3,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
@@ -25506,7 +25506,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,
         FRONT_PIC(Relicanth, 56, 56),
         FRONT_PIC_FEMALE(Relicanth, 56, 56),
-        .frontPicYOffset = 10,
+        .frontPicYOffset = 8,
         .frontAnimFrames = sAnims_Relicanth,
         .frontAnimId = ANIM_TIP_MOVE_FORWARD,
         BACK_PIC(Relicanth, 64, 40),
@@ -25558,7 +25558,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Luvdisc, 32, 40),
-        .frontPicYOffset = 11,
+        .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Luvdisc,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
         BACK_PIC(Luvdisc, 40, 48),
@@ -27969,6 +27969,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 0,                                                 \
         .frontAnimFrames = sAnims_Burmy,                                    \
         .frontAnimId = ANIM_V_STRETCH,                                      \
+        .enemyMonElevation = 10,                                            \
         .backAnimId = BACK_ANIM_H_SHAKE,                                    \
         .footprint = gMonFootprint_Burmy,                                   \
         LEARNSETS(Burmy),                                                   \
@@ -28056,6 +28057,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset = 10,                                              \
         .frontAnimFrames = sAnims_Wormadam,                                 \
         .frontAnimId = ANIM_SWING_CONVEX_FAST_SHORT,                        \
+        .enemyMonElevation = 8,                                            \
         .backPicYOffset =  2,                                               \
         .backAnimId = BACK_ANIM_V_SHAKE,                                    \
         .footprint = gMonFootprint_Wormadam,                                \
@@ -28227,7 +28229,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset = 16,
         .frontAnimFrames = sAnims_Combee,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
-        .enemyMonElevation = 8,
+        .enemyMonElevation = 15,
         BACK_PIC(Combee, 64, 48),
         .backPicYOffset = 22,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
@@ -29192,6 +29194,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Bronzor,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .enemyMonElevation = 9,
         BACK_PIC(Bronzor, 40, 48),
         .backPicYOffset =  9,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
@@ -29243,7 +29246,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  6,
         .frontAnimFrames = sAnims_Bronzong,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
-        .enemyMonElevation = 4,
+        .enemyMonElevation = 7,
         BACK_PIC(Bronzong, 64, 56),
         .backPicYOffset =  6,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
@@ -30044,6 +30047,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset = 10,
         .frontAnimFrames = sAnims_Carnivine,
         .frontAnimId = ANIM_FIGURE_8,
+        .enemyMonElevation = 8,
         BACK_PIC(Carnivine, 64, 56),
         .backPicYOffset =  6,
         .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
@@ -30474,7 +30478,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "mow down grass and flowers, then swagger\n"
             "around with pride at its accomplishments."),
         FRONT_PIC(RotomMow, 56, 64),
-        .frontPicYOffset = 12,
+        .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_RotomMow,
         .frontAnimId = ANIM_TIP_MOVE_FORWARD,
         .enemyMonElevation = 6,
@@ -31101,9 +31105,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Phione, 56, 40),
-        .frontPicYOffset =  8,
+        .frontPicYOffset =  12,
         .frontAnimFrames = sAnims_Phione,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 8,
         BACK_PIC(Phione, 64, 48),
         .backPicYOffset =  9,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
@@ -31150,9 +31155,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Manaphy, 64, 40),
-        .frontPicYOffset = 10,
+        .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Manaphy,
         .frontAnimId = ANIM_SWING_CONVEX,
+        .enemyMonElevation = 10,
         BACK_PIC(Manaphy, 64, 56),
         .backPicYOffset = 10,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
@@ -32588,7 +32594,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Munna, 32, 32),
-        .frontPicYOffset = 14,
+        .frontPicYOffset = 16,
         .frontAnimFrames = sAnims_Munna,
         .frontAnimId = ANIM_RISING_WOBBLE,
         .enemyMonElevation = 7,
@@ -33152,7 +33158,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  4,
         .frontAnimFrames = sAnims_Swoobat,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES_SMALL,
-        .enemyMonElevation = 12,
+        .enemyMonElevation = 10,
         BACK_PIC(Swoobat, 64, 64),
         .backPicYOffset =  7,
         .backAnimId = BACK_ANIM_V_STRETCH,
@@ -33395,7 +33401,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Timburr, 48, 40),
-        .frontPicYOffset = 13,
+        .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Timburr,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Timburr, 64, 40),
@@ -34311,7 +34317,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(LilligantHisuian, 56, 64),
-        .frontPicYOffset =  1,
+        .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_LilligantHisuian,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(LilligantHisuian, 56, 56),
@@ -34353,6 +34359,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .pokemonOffset = 7,                                     \
         .trainerScale = 257,                                    \
         .trainerOffset = 0,                                     \
+        .enemyMonElevation = 6,                                 \
         .footprint = gMonFootprint_Basculin,                    \
         .formSpeciesIdTable = sBasculinFormSpeciesIdTable
 
@@ -34415,7 +34422,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "it differs in several respects, including\n"
             "demeanor, being much gentler than others."),
         FRONT_PIC(BasculinWhiteStriped, 48, 40),
-        .frontPicYOffset = 10,
+        .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Basculin,
         .frontAnimId = ANIM_TIP_MOVE_FORWARD,
         BACK_PIC(BasculinWhiteStriped, 64, 40),
@@ -34450,8 +34457,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .pokemonOffset = 7,                                                             \
         .trainerScale = 256,                                                            \
         .trainerOffset = 0,                                                             \
-        .frontPicYOffset =  0,                                                          \
         .frontAnimFrames = sAnims_Basculegion,                                          \
+        .enemyMonElevation = 5,                                                         \
         .backPicYOffset =  0,                                                           \
         LEARNSETS(Basculegion),                                                         \
         .formSpeciesIdTable = sBasculegionFormSpeciesIdTable
@@ -34475,6 +34482,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "journeying upstream. No other species in\n"
             "all Hisui's rivers is Basculegion's equal."),
         FRONT_PIC(BasculegionMale, 64, 64),
+        .frontPicYOffset =  6,
         BACK_PIC(BasculegionMale, 64, 64),
         PALETTE(BasculegionMale),
         ICON(BasculegionMale, 1),
@@ -34493,6 +34501,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = COMPOUND_STRING(
             ""),
         FRONT_PIC(BasculegionFemale, 64, 64),
+        .frontPicYOffset =  9,
         BACK_PIC(BasculegionFemale, 64, 64),
         PALETTE(BasculegionFemale),
         ICON(BasculegionFemale, 0),
@@ -35558,7 +35567,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  4,
         .frontAnimFrames = sAnims_Archeops,
         .frontAnimId = ANIM_RISING_WOBBLE,
-        .enemyMonElevation = 8,
+        .enemyMonElevation = 11,
         BACK_PIC(Archeops, 64, 40),
         .backPicYOffset = 12,
         .backAnimId = BACK_ANIM_V_STRETCH,
@@ -35688,7 +35697,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 326,
         .trainerOffset = 4,
         FRONT_PIC(GarbodorGigantamax, 64, 64),
-        .frontPicYOffset = 0,
+        .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_GarbodorGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GarbodorGigantamax, 64, 64),
@@ -35822,7 +35831,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = COMPOUND_STRING(
             ""),
         FRONT_PIC(ZoruaHisuian, 48, 64),
-        .frontPicYOffset =  2,
+        .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_ZoruaHisuian,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ZoruaHisuian, 56, 64),
@@ -35850,7 +35859,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = COMPOUND_STRING(
             ""),
         FRONT_PIC(ZoroarkHisuian, 64, 64),
-        .frontPicYOffset =  1,
+        .frontPicYOffset = 0,
         .frontAnimFrames = sAnims_ZoroarkHisuian,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ZoroarkHisuian, 64, 64),
@@ -37030,7 +37039,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerOffset = 6,
         FRONT_PIC(Jellicent, 64, 64),
         FRONT_PIC_FEMALE(Jellicent, 64, 64),
-        .frontPicYOffset =  4,
+        .frontPicYOffset =  3,
         .frontAnimFrames = sAnims_Jellicent,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Jellicent, 64, 48),
@@ -37289,6 +37298,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  4,
         .frontAnimFrames = sAnims_Ferrothorn,
         .frontAnimId = ANIM_V_SHAKE,
+        .enemyMonElevation = 10,
         BACK_PIC(Ferrothorn, 64, 40),
         .backPicYOffset = 14,
         .backAnimId = BACK_ANIM_V_SHAKE_LOW,
@@ -37339,6 +37349,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Klink,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .enemyMonElevation = 12,
         BACK_PIC(Klink, 64, 64),
         .backPicYOffset = 17,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
@@ -37388,6 +37399,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  7,
         .frontAnimFrames = sAnims_Klang,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .enemyMonElevation = 8,
         BACK_PIC(Klang, 64, 64),
         .backPicYOffset =  7,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
@@ -37437,6 +37449,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  2,
         .frontAnimFrames = sAnims_Klinklang,
         .frontAnimId = ANIM_CIRCULAR_STRETCH_TWICE,
+        .enemyMonElevation = 4,
         BACK_PIC(Klinklang, 64, 64),
         .backPicYOffset =  7,
         .backAnimId = BACK_ANIM_CIRCLE_COUNTERCLOCKWISE,
@@ -37794,6 +37807,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  8,
         .frontAnimFrames = sAnims_Lampent,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE,
+        .enemyMonElevation = 6,
         BACK_PIC(Lampent, 56, 48),
         .backPicYOffset = 12,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
@@ -37847,6 +37861,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  4,
         .frontAnimFrames = sAnims_Chandelure,
         .frontAnimId = ANIM_H_SLIDE_WOBBLE,
+        .enemyMonElevation = 6,
         BACK_PIC(Chandelure, 64, 64),
         .backPicYOffset =  0,
         .backAnimId = BACK_ANIM_CONVEX_DOUBLE_ARC,
@@ -38892,7 +38907,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  1,
         .frontAnimFrames = sAnims_Braviary,
         .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 8,
+        .enemyMonElevation = 6,
         BACK_PIC(Braviary, 64, 48),
         .backPicYOffset = 10,
         .backAnimId = BACK_ANIM_TRIANGLE_DOWN,
@@ -39479,7 +39494,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 336,
         .trainerOffset = 4,
         FRONT_PIC(Terrakion, 64, 56),
-        .frontPicYOffset =  6,
+        .frontPicYOffset =  5,
         .frontAnimFrames = sAnims_Terrakion,
         .frontAnimId = ANIM_V_SHAKE_TWICE,
         BACK_PIC(Terrakion, 64, 48),
@@ -40287,7 +40302,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Chespin, 40, 48),
-        .frontPicYOffset =  5,
+        .frontPicYOffset =  11,
         .frontAnimFrames = sAnims_Chespin,
         .frontAnimId = ANIM_H_SLIDE_SLOW,
         BACK_PIC(Chespin, 56, 64),
@@ -40875,7 +40890,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Fletchling, 40, 40),
-        .frontPicYOffset = 12,
+        .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Fletchling,
         .frontAnimId = ANIM_V_JUMPS_SMALL,
         BACK_PIC(Fletchling, 64, 40),
@@ -43162,7 +43177,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Amaura, 32, 56),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  5,
         .frontAnimFrames = sAnims_Amaura,
         .frontAnimId = ANIM_CONCAVE_ARC_SMALL_TWICE,
         BACK_PIC(Amaura, 40, 64),
@@ -43562,11 +43577,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 257,
         .trainerOffset = 0,
         FRONT_PIC(SliggooHisuian, 48, 56),
-        .frontPicYOffset =  6,
+        .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_SliggooHisuian,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SliggooHisuian, 64, 64),
-        .backPicYOffset =  0,
+        .backPicYOffset =  1,
         //.backAnimId = BACK_ANIM_NONE,
         PALETTE(SliggooHisuian),
         ICON(SliggooHisuian, 2),
@@ -43597,7 +43612,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 334,
         .trainerOffset = 4,
         FRONT_PIC(GoodraHisuian, 56, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_GoodraHisuian,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GoodraHisuian, 64, 64),
@@ -44156,7 +44171,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 334,
         .trainerOffset = 4,
         FRONT_PIC(AvaluggHisuian, 64, 48),
-        .frontPicYOffset =  5,
+        .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_AvaluggHisuian,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(AvaluggHisuian, 64, 32),
@@ -45609,7 +45624,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 271,
         .trainerOffset = 0,
         FRONT_PIC(Vikavolt, 64, 56),
-        .frontPicYOffset =  6,
+        .frontPicYOffset =  3,
         .frontAnimFrames = sAnims_Vikavolt,
         .frontAnimId = ANIM_BOUNCE_ROTATE_TO_SIDES,
         .enemyMonElevation = 8,
@@ -46039,7 +46054,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "as weapons. It will attack with no regard\n"
             "for its own safety."),
         FRONT_PIC(LycanrocMidday, 57, 53),
-        .frontPicYOffset =  6,
+        .frontPicYOffset =  5,
         .frontAnimFrames = sAnims_LycanrocMidday,
         .frontAnimId = ANIM_V_SHAKE,
         .backPicYOffset =  7,
@@ -46094,7 +46109,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  6,
         .frontAnimFrames = sAnims_LycanrocDusk,
         .frontAnimId = ANIM_V_SHAKE,
-        .backPicYOffset =  6,
+        .backPicYOffset =  5,
         .backAnimId = BACK_ANIM_V_SHAKE,
         PALETTE(LycanrocDusk),
         ICON(LycanrocDusk, 0),
@@ -46146,9 +46161,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "its comrades, and they stand together\n"
             "against their enemies."),
         FRONT_PIC(WishiwashiSolo, 40, 24),
-        .frontPicYOffset = 15,
+        .frontPicYOffset = 20,
         .frontAnimFrames = sAnims_WishiwashiSolo,
         .frontAnimId = ANIM_V_SLIDE_WOBBLE_SMALL,
+        .enemyMonElevation = 12,
         BACK_PIC(WishiwashiSolo, 56, 32),
         .backPicYOffset = 18,
         //.backAnimId = BACK_ANIM_NONE,
@@ -47625,7 +47641,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .weight = 3,                                            \
         .description = gMiniorCorePokedexText,                  \
         FRONT_PIC(MiniorCore, 48, 40),                          \
-        .frontPicYOffset = 14,                                  \
+        .frontPicYOffset = 16,                                  \
         .frontAnimFrames = sAnims_MiniorMeteor,                 \
         .frontAnimId = ANIM_TUMBLING_FRONT_FLIP_TWICE,          \
         .enemyMonElevation = 17,                                \
@@ -47794,7 +47810,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Togedemaru, 40, 40),
-        .frontPicYOffset =  5,
+        .frontPicYOffset =  9,
         .frontAnimFrames = sAnims_Togedemaru,
         .frontAnimId = ANIM_FLASH_YELLOW,
         BACK_PIC(Togedemaru, 64, 48),
@@ -48070,7 +48086,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(JangmoO, 36, 43),
-        .frontPicYOffset =  5,
+        .frontPicYOffset =  9,
         .frontAnimFrames = sAnims_Jangmo_O,
         .frontAnimId = ANIM_H_STRETCH,
         BACK_PIC(JangmoO, 42, 56),
@@ -49595,7 +49611,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = COMPOUND_STRING(
             ""),
         FRONT_PIC(MelmetalGigantamax, 64, 64),
-        .frontPicYOffset = 0,
+        .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_MelmetalGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(MelmetalGigantamax, 64, 64),
@@ -50402,7 +50418,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 348,
         .trainerOffset = 6,
         FRONT_PIC(CorviknightGigantamax, 64, 64),
-        .frontPicYOffset = 3,
+        .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_CorviknightGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CorviknightGigantamax, 64, 64),
@@ -50582,7 +50598,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(OrbeetleGigantamax, 64, 64),
-        .frontPicYOffset = 0,
+        .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_OrbeetleGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(OrbeetleGigantamax, 64, 64),
@@ -51413,7 +51429,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(FlappleGigantamax, 64, 64),
-        .frontPicYOffset = 2,
+        .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_FlappleGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(FlappleGigantamax, 64, 64),
@@ -51490,7 +51506,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(AppletunGigantamax, 64, 64),
-        .frontPicYOffset = 2,
+        .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_AppletunGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(AppletunGigantamax, 64, 64),
@@ -51668,7 +51684,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 610,
         .trainerOffset = 17,
         FRONT_PIC(SandacondaGigantamax, 64, 64),
-        .frontPicYOffset = 0,
+        .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_SandacondaGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SandacondaGigantamax, 64, 64),
@@ -51805,7 +51821,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Arrokuda, 56, 32),
-        .frontPicYOffset = 13,
+        .frontPicYOffset = 17,
         .frontAnimFrames = sAnims_Arrokuda,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Arrokuda, 48, 40),
@@ -52744,7 +52760,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 271,
         .trainerOffset = 0,
         FRONT_PIC(GrimmsnarlGigantamax, 64, 64),
-        .frontPicYOffset = 0,
+        .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_GrimmsnarlGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GrimmsnarlGigantamax, 64, 64),
@@ -52948,16 +52964,16 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .pokemonOffset = 13,
         .trainerScale = 256,
         .trainerOffset = 0,
-        FRONT_PIC(AlcremieStrawberry, 40, 56),
-        .frontPicYOffset =  7,
+        FRONT_PIC(AlcremieGigantamax, 64, 64),
+        .frontPicYOffset =  2,
         .frontAnimFrames = sAnims_AlcremieGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        BACK_PIC(AlcremieStrawberry, 48, 56),
+        BACK_PIC(AlcremieStrawberry, 64, 64),
         .backPicYOffset =  9,
         //.backAnimId = BACK_ANIM_NONE,
-        .palette = gMonPalette_AlcremieStrawberryVanillaCream,
-        .shinyPalette = gMonShinyPalette_AlcremieStrawberry,
-        ICON(AlcremieStrawberryVanillaCream, 1),
+        .palette = gMonPalette_AlcremieGigantamax,
+        .shinyPalette = gMonShinyPalette_AlcremieGigantamax,
+        ICON(AlcremieGigantamax, 1),
         .footprint = gMonFootprint_Alcremie,
         LEARNSETS(Alcremie),
         .formSpeciesIdTable = sAlcremieFormSpeciesIdTable,
@@ -53562,7 +53578,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(CopperajahGigantamax, 64, 64),
-        .frontPicYOffset = 0,
+        .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_CopperajahGigantamax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(CopperajahGigantamax, 64, 64),
@@ -54907,9 +54923,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "gives rise to the budding of fresh life\n"
             "across the land."),
         FRONT_PIC(EnamorusIncarnate, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  1,
         .frontAnimFrames = sAnims_EnamorusIncarnate,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 7,
         BACK_PIC(EnamorusIncarnate, 64, 64),
         .backPicYOffset =  0,
         //.backAnimId = BACK_ANIM_NONE,
@@ -54932,7 +54949,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = COMPOUND_STRING(
             ""),
         FRONT_PIC(EnamorusTherian, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  3,
         .frontAnimFrames = sAnims_EnamorusTherian,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(EnamorusTherian, 64, 64),
@@ -54981,7 +54998,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Sprigatito, 64, 64),
-        .frontPicYOffset =  8,
+        .frontPicYOffset =  11,
         .frontAnimFrames = sAnims_Sprigatito,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Sprigatito, 64, 64),
@@ -55030,7 +55047,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Floragato, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  3,
         .frontAnimFrames = sAnims_Floragato,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Floragato, 64, 64),
@@ -55277,7 +55294,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Quaxly, 64, 64),
-        .frontPicYOffset =  7,
+        .frontPicYOffset =  9,
         .frontAnimFrames = sAnims_Quaxly,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Quaxly, 64, 64),
@@ -55326,7 +55343,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Quaxwell, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  1,
         .frontAnimFrames = sAnims_Quaxwell,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Quaxwell, 64, 64),
@@ -55425,7 +55442,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Lechonk, 64, 64),
-        .frontPicYOffset =  10,
+        .frontPicYOffset = 12,
         .frontAnimFrames = sAnims_Lechonk,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Lechonk, 64, 64),
@@ -55556,7 +55573,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Tarountula, 64, 64),
-        .frontPicYOffset =  11,
+        .frontPicYOffset = 10,
         .frontAnimFrames = sAnims_Tarountula,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Tarountula, 64, 64),
@@ -55655,7 +55672,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Nymble, 64, 64),
-        .frontPicYOffset =  5,
+        .frontPicYOffset =  8,
         .frontAnimFrames = sAnims_Nymble,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Nymble, 64, 64),
@@ -55704,7 +55721,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Lokix, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  3,
         .frontAnimFrames = sAnims_Lokix,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Lokix, 64, 64),
@@ -55754,7 +55771,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Pawmi, 64, 64),
-        .frontPicYOffset =  7,
+        .frontPicYOffset =  10,
         .frontAnimFrames = sAnims_Pawmi,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Pawmi, 64, 64),
@@ -55803,7 +55820,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Pawmo, 64, 64),
-        .frontPicYOffset =  2,
+        .frontPicYOffset =  4,
         .frontAnimFrames = sAnims_Pawmo,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Pawmo, 64, 64),
@@ -55852,7 +55869,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Pawmot, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  2,
         .frontAnimFrames = sAnims_Pawmot,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Pawmot, 64, 64),
@@ -55902,7 +55919,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Tandemaus, 64, 64),
-        .frontPicYOffset =  11,
+        .frontPicYOffset =  15,
         .frontAnimFrames = sAnims_Tandemaus,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Tandemaus, 64, 64),
@@ -55943,7 +55960,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .pokemonOffset = 17,                                                            \
         .trainerScale = 256,                                                            \
         .trainerOffset = 0,                                                             \
-        .frontPicYOffset =  10,                                                         \
+        .frontPicYOffset =  15,                                                         \
         .frontAnimFrames = sAnims_Maushold,                                             \
         .backPicYOffset =  15,                                                          \
         PALETTE(Maushold),                                                              \
@@ -56120,7 +56137,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontAnimFrames = sAnims_Smoliv,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Smoliv, 64, 64),
-        .backPicYOffset =  13,
+        .backPicYOffset =  16,
         //.backAnimId = BACK_ANIM_NONE,
         PALETTE(Smoliv),
         ICON(Smoliv, 1),
@@ -56165,7 +56182,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Dolliv, 64, 64),
-        .frontPicYOffset =  3,
+        .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_Dolliv,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Dolliv, 64, 64),
@@ -56256,7 +56273,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,                                \
         .trainerOffset = 0,                                 \
         FRONT_PIC(Squawkabilly, 64, 64),                    \
-        .frontPicYOffset =  0,                              \
+        .frontPicYOffset =  4,                              \
         .frontAnimFrames = sAnims_Squawkabilly,             \
         BACK_PIC(Squawkabilly, 64, 64),                     \
         .backPicYOffset =  4,                               \
@@ -56351,7 +56368,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Nacli, 64, 64),
-        .frontPicYOffset =  8,
+        .frontPicYOffset = 9,
         .frontAnimFrames = sAnims_Nacli,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Nacli, 64, 64),
@@ -56449,7 +56466,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Garganacl, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  1,
         .frontAnimFrames = sAnims_Garganacl,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Garganacl, 64, 64),
@@ -56499,7 +56516,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Charcadet, 64, 64),
-        .frontPicYOffset =  2,
+        .frontPicYOffset =  5,
         .frontAnimFrames = sAnims_Charcadet,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Charcadet, 64, 64),
@@ -56647,7 +56664,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Tadbulb, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  11,
         .frontAnimFrames = sAnims_Tadbulb,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 12,
@@ -56747,7 +56764,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Wattrel, 64, 64),
-        .frontPicYOffset =  11,
+        .frontPicYOffset =  13,
         .frontAnimFrames = sAnims_Wattrel,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Wattrel, 64, 64),
@@ -56796,7 +56813,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Kilowattrel, 64, 64),
-        .frontPicYOffset =  5,
+        .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_Kilowattrel,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Kilowattrel, 64, 64),
@@ -56846,7 +56863,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Maschiff, 64, 64),
-        .frontPicYOffset =  6,
+        .frontPicYOffset =  8,
         .frontAnimFrames = sAnims_Maschiff,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Maschiff, 64, 64),
@@ -56895,7 +56912,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Mabosstiff, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Mabosstiff,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Mabosstiff, 64, 64),
@@ -56945,7 +56962,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Shroodle, 64, 64),
-        .frontPicYOffset =  15,
+        .frontPicYOffset =  17,
         .frontAnimFrames = sAnims_Shroodle,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Shroodle, 64, 64),
@@ -57047,7 +57064,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  13,
         .frontAnimFrames = sAnims_Bramblin,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 1,
         BACK_PIC(Bramblin, 64, 64),
         .backPicYOffset =  14,
         //.backAnimId = BACK_ANIM_NONE,
@@ -57097,7 +57113,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  7,
         .frontAnimFrames = sAnims_Brambleghast,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 1,
         BACK_PIC(Brambleghast, 64, 64),
         .backPicYOffset =  7,
         //.backAnimId = BACK_ANIM_NONE,
@@ -57145,7 +57160,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Toedscool, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Toedscool,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Toedscool, 64, 64),
@@ -57194,7 +57209,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Toedscruel, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Toedscruel,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Toedscruel, 64, 64),
@@ -57294,7 +57309,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Capsakid, 64, 64),
-        .frontPicYOffset =  10,
+        .frontPicYOffset = 13,
         .frontAnimFrames = sAnims_Capsakid,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Capsakid, 64, 64),
@@ -57393,7 +57408,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Rellor, 64, 64),
-        .frontPicYOffset =  10,
+        .frontPicYOffset =  11,
         .frontAnimFrames = sAnims_Rellor,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Rellor, 64, 64),
@@ -57442,7 +57457,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Rabsca, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  1,
         .frontAnimFrames = sAnims_Rabsca,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Rabsca, 64, 64),
@@ -57591,7 +57606,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Tinkatink, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 10,
         .frontAnimFrames = sAnims_Tinkatink,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Tinkatink, 64, 64),
@@ -57640,7 +57655,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Tinkatuff, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_Tinkatuff,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Tinkatuff, 64, 64),
@@ -57689,7 +57704,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Tinkaton, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Tinkaton,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Tinkaton, 64, 64),
@@ -57738,7 +57753,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Wiglett, 64, 64),
-        .frontPicYOffset =  17,
+        .frontPicYOffset =  19,
         .frontAnimFrames = sAnims_Wiglett,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Wiglett, 64, 64),
@@ -57786,7 +57801,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Wugtrio, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Wugtrio,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Wugtrio, 64, 64),
@@ -57836,10 +57851,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Bombirdier, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  1,
         .frontAnimFrames = sAnims_Bombirdier,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 11,
+        .enemyMonElevation = 8,
         BACK_PIC(Bombirdier, 64, 64),
         .backPicYOffset =  4,
         //.backAnimId = BACK_ANIM_NONE,
@@ -57886,7 +57901,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Finizen, 64, 64),
-        .frontPicYOffset =  4,
+        .frontPicYOffset =  7,
         .frontAnimFrames = sAnims_Finizen,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Finizen, 64, 64),
@@ -57917,7 +57932,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .pokemonOffset = 17,                                \
         .trainerScale = 256,                                \
         .trainerOffset = 0,                                 \
-        .frontPicYOffset =  4,                              \
         .frontAnimFrames = sAnims_Palafin,                  \
         LEARNSETS(Palafin),                                 \
         .formSpeciesIdTable = sPalafinFormSpeciesIdTable,   \
@@ -57945,6 +57959,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             "help. Palafin will never show\n"
             "anybody its moment of transformation."),
         FRONT_PIC(PalafinZero, 64, 64),
+        .frontPicYOffset = 7,
         BACK_PIC(PalafinZero, 64, 64),
         .backPicYOffset =  15,
         //.backAnimId = BACK_ANIM_NONE,
@@ -57969,6 +57984,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .description = COMPOUND_STRING(
             ""),
         FRONT_PIC(PalafinHero, 64, 64),
+        .frontPicYOffset = 0,
         BACK_PIC(PalafinHero, 64, 64),
         .backPicYOffset =  1,
         //.backAnimId = BACK_ANIM_NONE,
@@ -58014,7 +58030,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Varoom, 64, 64),
-        .frontPicYOffset =  13,
+        .frontPicYOffset = 14,
         .frontAnimFrames = sAnims_Varoom,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Varoom, 64, 64),
@@ -58113,7 +58129,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Cyclizar, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  1,
         .frontAnimFrames = sAnims_Cyclizar,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Cyclizar, 64, 64),
@@ -58163,7 +58179,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Orthworm, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 3,
         .frontAnimFrames = sAnims_Orthworm,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Orthworm, 64, 64),
@@ -58213,10 +58229,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Glimmet, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  16,
         .frontAnimFrames = sAnims_Glimmet,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 1,
+        .enemyMonElevation = 11,
         BACK_PIC(Glimmet, 64, 64),
         .backPicYOffset =  14,
         //.backAnimId = BACK_ANIM_NONE,
@@ -58263,10 +58279,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Glimmora, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  2,
         .frontAnimFrames = sAnims_Glimmora,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 10,
+        .enemyMonElevation = 8,
         BACK_PIC(Glimmora, 64, 64),
         .backPicYOffset =  11,
         //.backAnimId = BACK_ANIM_NONE,
@@ -58314,7 +58330,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Greavard, 64, 64),
-        .frontPicYOffset =  4,
+        .frontPicYOffset = 6,
         .frontAnimFrames = sAnims_Greavard,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Greavard, 64, 64),
@@ -58363,7 +58379,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Houndstone, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Houndstone,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Houndstone, 64, 64),
@@ -58413,7 +58429,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Flamigo, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  2,
         .frontAnimFrames = sAnims_Flamigo,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Flamigo, 64, 64),
@@ -58562,10 +58578,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Veluza, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  11,
         .frontAnimFrames = sAnims_Veluza,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 1,
+        .enemyMonElevation = 5,
         BACK_PIC(Veluza, 64, 64),
         .backPicYOffset =  14,
         //.backAnimId = BACK_ANIM_NONE,
@@ -58613,7 +58629,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Dondozo, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_Dondozo,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 1,
@@ -58655,7 +58671,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .pokemonOffset = 17,                                                \
         .trainerScale = 256,                                                \
         .trainerOffset = 0,                                                 \
-        .frontPicYOffset =  12,                                             \
+        .frontPicYOffset = 14,                                              \
         .frontAnimFrames = sAnims_Tatsugiri,                                \
         .backPicYOffset =  17,                                              \
         LEARNSETS(Tatsugiri),                                               \
@@ -58744,7 +58760,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(GreatTusk, 64, 64),
-        .frontPicYOffset =  4,
+        .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_GreatTusk,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(GreatTusk, 64, 64),
@@ -58899,7 +58915,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(FlutterMane, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  5,
         .frontAnimFrames = sAnims_FlutterMane,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 5,
@@ -59001,7 +59017,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(SandyShocks, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_SandyShocks,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(SandyShocks, 64, 64),
@@ -59052,7 +59068,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(IronTreads, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_IronTreads,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(IronTreads, 64, 64),
@@ -59103,7 +59119,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(IronBundle, 64, 64),
-        .frontPicYOffset =  2,
+        .frontPicYOffset = 4,
         .frontAnimFrames = sAnims_IronBundle,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(IronBundle, 64, 64),
@@ -59205,7 +59221,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(IronJugulis, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_IronJugulis,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         .enemyMonElevation = 7,
@@ -59257,10 +59273,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(IronMoth, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 7,
         .frontAnimFrames = sAnims_IronMoth,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 4,
+        .enemyMonElevation = 8,
         BACK_PIC(IronMoth, 64, 64),
         .backPicYOffset =  4,
         //.backAnimId = BACK_ANIM_NONE,
@@ -59359,7 +59375,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Frigibax, 64, 64),
-        .frontPicYOffset =  5,
+        .frontPicYOffset =  7,
         .frontAnimFrames = sAnims_Frigibax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Frigibax, 64, 64),
@@ -59408,7 +59424,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Arctibax, 64, 64),
-        .frontPicYOffset =  3,
+        .frontPicYOffset =  5,
         .frontAnimFrames = sAnims_Arctibax,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Arctibax, 64, 64),
@@ -59457,7 +59473,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Baxcalibur, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset =  1,
         .frontAnimFrames = sAnims_Baxcalibur,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Baxcalibur, 64, 64),
@@ -59517,7 +59533,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(GimmighoulChest, 64, 64),
-        .frontPicYOffset =  3,
+        .frontPicYOffset = 2,
         BACK_PIC(GimmighoulChest, 64, 64),
         .backPicYOffset =  0,
         PALETTE(GimmighoulChest),
@@ -59545,7 +59561,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(GimmighoulRoaming, 64, 64),
-        .frontPicYOffset =  7,
+        .frontPicYOffset = 11,
         BACK_PIC(GimmighoulRoaming, 64, 64),
         .backPicYOffset =  3,
         PALETTE(GimmighoulRoaming),
@@ -59690,7 +59706,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(ChienPao, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_ChienPao,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(ChienPao, 64, 64),
@@ -59741,7 +59757,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(TingLu, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_TingLu,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(TingLu, 64, 64),
@@ -59792,10 +59808,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(ChiYu, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 10,
         .frontAnimFrames = sAnims_ChiYu,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 2,
+        .enemyMonElevation = 9,
         BACK_PIC(ChiYu, 64, 64),
         .backPicYOffset =  0,
         //.backAnimId = BACK_ANIM_NONE,
@@ -59847,7 +59863,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .frontPicYOffset =  0,
         .frontAnimFrames = sAnims_RoaringMoon,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
-        .enemyMonElevation = 20,
+        .enemyMonElevation = 6,
         BACK_PIC(RoaringMoon, 64, 64),
         .backPicYOffset =  7,
         //.backAnimId = BACK_ANIM_NONE,
@@ -60109,42 +60125,43 @@ const struct SpeciesInfo gSpeciesInfo[] =
 #endif //P_FAMILY_IRON_LEAVES
 
 #if P_FAMILY_POLTCHAGEIST
-#define POLTCHAGEIST_MISC_INFO                                               \
-        .baseHP        = 40,                                                 \
-        .baseAttack    = 45,                                                 \
-        .baseDefense   = 45,                                                 \
-        .baseSpeed     = 50,                                                 \
-        .baseSpAttack  = 74,                                                 \
-        .baseSpDefense = 54,                                                 \
-        .types = { TYPE_GRASS, TYPE_GHOST},                                  \
-        .catchRate = 120,                                                    \
-        .expYield = 62,                                                      \
-        .evYield_SpAttack  = 1,                                              \
-        .genderRatio = MON_GENDERLESS,                                       \
-        .eggCycles = 20,                                                     \
-        .friendship = STANDARD_FRIENDSHIP,                                   \
-        .growthRate = GROWTH_MEDIUM_FAST,                                    \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS},              \
-        .abilities = {ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF}, \
-        .bodyColor = BODY_COLOR_GREEN,                                       \
-        .noFlip = FALSE,                                                     \
-        .speciesName = _("Ptchageist"),                                      \
-        .cryId = CRY_POLTCHAGEIST,                                           \
-        .natDexNum = NATIONAL_DEX_POLTCHAGEIST,                              \
-        .categoryName = _("Matcha"),                                         \
-        .height = 1,                                                         \
-        .weight = 11,                                                        \
-        .pokemonScale = 356,                                                 \
-        .pokemonOffset = 17,                                                 \
-        .trainerScale = 256,                                                 \
-        .trainerOffset = 0,                                                  \
-        FRONT_PIC(Poltchageist, 64, 64),                                     \
-        .frontPicYOffset =  0,                                               \
-        .frontAnimFrames = sAnims_Poltchageist,                              \
-        BACK_PIC(Poltchageist, 64, 64),                                      \
-        .backPicYOffset =  5,                                                \
-        PALETTE(Poltchageist),                                               \
-        ICON(Poltchageist, 4),                                               \
+#define POLTCHAGEIST_MISC_INFO                                              \
+        .baseHP        = 40,                                                \
+        .baseAttack    = 45,                                                \
+        .baseDefense   = 45,                                                \
+        .baseSpeed     = 50,                                                \
+        .baseSpAttack  = 74,                                                \
+        .baseSpDefense = 54,                                                \
+        .types = { TYPE_GRASS, TYPE_GHOST},                                 \
+        .catchRate = 120,                                                   \
+        .expYield = 62,                                                     \
+        .evYield_SpAttack  = 1,                                             \
+        .genderRatio = MON_GENDERLESS,                                      \
+        .eggCycles = 20,                                                    \
+        .friendship = STANDARD_FRIENDSHIP,                                  \
+        .growthRate = GROWTH_MEDIUM_FAST,                                   \
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS},             \
+        .abilities = {ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF},\
+        .bodyColor = BODY_COLOR_GREEN,                                      \
+        .noFlip = FALSE,                                                    \
+        .speciesName = _("Ptchageist"),                                     \
+        .cryId = CRY_POLTCHAGEIST,                                          \
+        .natDexNum = NATIONAL_DEX_POLTCHAGEIST,                             \
+        .categoryName = _("Matcha"),                                        \
+        .height = 1,                                                        \
+        .weight = 11,                                                       \
+        .pokemonScale = 356,                                                \
+        .pokemonOffset = 17,                                                \
+        .trainerScale = 256,                                                \
+        .trainerOffset = 0,                                                 \
+        FRONT_PIC(Poltchageist, 64, 64),                                    \
+        .frontPicYOffset = 7,                                               \
+        .frontAnimFrames = sAnims_Poltchageist,                             \
+        .enemyMonElevation = 10,                                            \
+        BACK_PIC(Poltchageist, 64, 64),                                     \
+        .backPicYOffset =  5,                                               \
+        PALETTE(Poltchageist),                                              \
+        ICON(Poltchageist, 4),                                              \
         LEARNSETS(Poltchageist)
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
@@ -60168,42 +60185,43 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_MASTERPIECE_TEACUP, SPECIES_SINISTCHA_MASTERPIECE}),
     },
 
-#define SINISTCHA_MISC_INFO                                                  \
-        .baseHP        = 71,                                                 \
-        .baseAttack    = 60,                                                 \
-        .baseDefense   = 106,                                                \
-        .baseSpeed     = 70,                                                 \
-        .baseSpAttack  = 121,                                                \
-        .baseSpDefense = 80,                                                 \
-        .types = { TYPE_GRASS, TYPE_GHOST},                                  \
-        .catchRate = 60,                                                     \
-        .expYield = 178,                                                     \
-        .evYield_SpAttack  = 2,                                              \
-        .genderRatio = MON_GENDERLESS,                                       \
-        .eggCycles = 20,                                                     \
-        .friendship = STANDARD_FRIENDSHIP,                                   \
-        .growthRate = GROWTH_MEDIUM_FAST,                                    \
-        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS},              \
-        .abilities = {ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF}, \
-        .bodyColor = BODY_COLOR_GREEN,                                       \
-        .noFlip = FALSE,                                                     \
-        .speciesName = _("Sinistcha"),                                       \
-        .cryId = CRY_SINISTCHA,                                              \
-        .natDexNum = NATIONAL_DEX_SINISTCHA,                                 \
-        .categoryName = _("Matcha"),                                         \
-        .height = 2,                                                         \
-        .weight = 22,                                                        \
-        .pokemonScale = 356,                                                 \
-        .pokemonOffset = 17,                                                 \
-        .trainerScale = 256,                                                 \
-        .trainerOffset = 0,                                                  \
-        FRONT_PIC(Sinistcha, 64, 64),                                        \
-        .frontPicYOffset =  0,                                               \
-        .frontAnimFrames = sAnims_Sinistcha,                                 \
-        BACK_PIC(Sinistcha, 64, 64),                                         \
-        .backPicYOffset =  13,                                               \
-        PALETTE(Sinistcha),                                                  \
-        ICON(Sinistcha, 1),                                                  \
+#define SINISTCHA_MISC_INFO                                                 \
+        .baseHP        = 71,                                                \
+        .baseAttack    = 60,                                                \
+        .baseDefense   = 106,                                               \
+        .baseSpeed     = 70,                                                \
+        .baseSpAttack  = 121,                                               \
+        .baseSpDefense = 80,                                                \
+        .types = { TYPE_GRASS, TYPE_GHOST},                                 \
+        .catchRate = 60,                                                    \
+        .expYield = 178,                                                    \
+        .evYield_SpAttack  = 2,                                             \
+        .genderRatio = MON_GENDERLESS,                                      \
+        .eggCycles = 20,                                                    \
+        .friendship = STANDARD_FRIENDSHIP,                                  \
+        .growthRate = GROWTH_MEDIUM_FAST,                                   \
+        .eggGroups = { EGG_GROUP_MINERAL, EGG_GROUP_AMORPHOUS},             \
+        .abilities = {ABILITY_HOSPITALITY, ABILITY_NONE, ABILITY_HEATPROOF},\
+        .bodyColor = BODY_COLOR_GREEN,                                      \
+        .noFlip = FALSE,                                                    \
+        .speciesName = _("Sinistcha"),                                      \
+        .cryId = CRY_SINISTCHA,                                             \
+        .natDexNum = NATIONAL_DEX_SINISTCHA,                                \
+        .categoryName = _("Matcha"),                                        \
+        .height = 2,                                                        \
+        .weight = 22,                                                       \
+        .pokemonScale = 356,                                                \
+        .pokemonOffset = 17,                                                \
+        .trainerScale = 256,                                                \
+        .trainerOffset = 0,                                                 \
+        FRONT_PIC(Sinistcha, 64, 64),                                       \
+        .frontPicYOffset = 10,                                              \
+        .frontAnimFrames = sAnims_Sinistcha,                                \
+        .enemyMonElevation = 10,                                            \
+        BACK_PIC(Sinistcha, 64, 64),                                        \
+        .backPicYOffset =  13,                                              \
+        PALETTE(Sinistcha),                                                 \
+        ICON(Sinistcha, 1),                                                 \
         LEARNSETS(Sinistcha)
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         //.backAnimId = BACK_ANIM_NONE,
@@ -60263,7 +60281,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Okidogi, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 1,
         .frontAnimFrames = sAnims_Okidogi,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Okidogi, 64, 64),
@@ -60315,7 +60333,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Munkidori, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 5,
         .frontAnimFrames = sAnims_Munkidori,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Munkidori, 64, 64),
@@ -60366,7 +60384,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .trainerScale = 256,
         .trainerOffset = 0,
         FRONT_PIC(Fezandipiti, 64, 64),
-        .frontPicYOffset =  0,
+        .frontPicYOffset = 2,
         .frontAnimFrames = sAnims_Fezandipiti,
         //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
         BACK_PIC(Fezandipiti, 64, 64),
