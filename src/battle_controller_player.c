@@ -13,8 +13,10 @@
 #include "data.h"
 #include "item.h"
 #include "item_menu.h"
+#include "graphics.h"
 #include "link.h"
 #include "main.h"
+#include "menu.h"
 #include "m4a.h"
 #include "palette.h"
 #include "party_menu.h"
@@ -90,6 +92,7 @@ static void Task_SetControllerToWaitForString(u8);
 static void Task_GiveExpWithExpBar(u8);
 static void Task_UpdateLvlInHealthbox(u8);
 static void PrintLinkStandbyMsg(void);
+static void MoveSelectionDisplayTypeIcon(u8);
 
 static void ReloadMoveNames(u32 battler);
 
@@ -1666,6 +1669,7 @@ static void MoveSelectionDisplayPpNumber(u32 battler)
 static void MoveSelectionDisplayMoveType(u32 battler)
 {
     u8 *txtPtr;
+    u8 type;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
 
     txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
@@ -1673,8 +1677,10 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     *(txtPtr)++ = EXT_CTRL_CODE_FONT;
     *(txtPtr)++ = FONT_NORMAL;
 
-    StringCopy(txtPtr, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type]);
-    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
+    type = gBattleMoves[moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]].type;
+    //StringCopy(txtPtr, gTypeNames[type]);
+    //BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
+    MoveSelectionDisplayTypeIcon(type);
 }
 
 void MoveSelectionCreateCursorAt(u8 cursorPosition, u8 baseTileNum)
@@ -2052,6 +2058,15 @@ static void PlayerHandleCmd23(u32 battler)
 static void PlayerHandleHealthBarUpdate(u32 battler)
 {
     BtlController_HandleHealthBarUpdate(battler, TRUE);
+}
+
+static void MoveSelectionDisplayTypeIcon(u8 type)
+{
+    ListMenuLoadStdPalAt(BG_PLTT_ID(12), 1);
+    PutWindowTilemap(B_WIN_MOVE_TYPE);
+    FillWindowPixelBuffer(B_WIN_MOVE_TYPE, PIXEL_FILL(15));
+    BlitMenuInfoIcon(B_WIN_MOVE_TYPE, type + 1, 16, 2);
+    CopyWindowToVram(B_WIN_MOVE_TYPE, COPYWIN_FULL);
 }
 
 void PlayerHandleExpUpdate(u32 battler)
