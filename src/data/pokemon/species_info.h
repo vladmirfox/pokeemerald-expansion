@@ -52852,10 +52852,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .pokemonOffset = 13,                                \
         .trainerScale = 256,                                \
         .trainerOffset = 0,                                 \
-        FRONT_PIC(AlcremieStrawberry, 40, 56),              \
+        FRONT_PIC(Alcremie ##sweet, 40, 56),                \
         .frontPicYOffset =  7,                              \
         .frontAnimFrames = sAnims_Alcremie,                 \
-        BACK_PIC(AlcremieStrawberry, 48, 56),               \
+        BACK_PIC(Alcremie ##sweet, 48, 56),                 \
         .backPicYOffset =  9,                               \
         .palette = gMonPalette_Alcremie ##sweet##cream,     \
         .shinyPalette = gMonShinyPalette_Alcremie ##sweet,  \
@@ -52956,8 +52956,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         BACK_PIC(AlcremieStrawberry, 64, 64),
         .backPicYOffset =  9,
         //.backAnimId = BACK_ANIM_NONE,
-        .palette = gMonPalette_AlcremieGigantamax,
-        .shinyPalette = gMonShinyPalette_AlcremieGigantamax,
+        PALETTE(AlcremieGigantamax),
         ICON(AlcremieGigantamax, 1),
         .footprint = gMonFootprint_Alcremie,
         LEARNSETS(Alcremie),
