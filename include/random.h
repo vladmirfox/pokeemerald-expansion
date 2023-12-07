@@ -103,6 +103,7 @@ enum RandomTag
     RNG_TRIPLE_ARROWS_DEFENSE_DOWN,
     RNG_TRIPLE_ARROWS_FLINCH,
     RNG_QUICK_DRAW,
+    RNG_TRACE,
 };
 
 #define RandomWeighted(tag, ...) \
