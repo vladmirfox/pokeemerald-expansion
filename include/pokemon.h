@@ -357,17 +357,17 @@ struct SpeciesInfo /*0x8C*/
  /* 0x42 */ u8 frontAnimId;
  /* 0x43 */ u8 backAnimId;
  /* 0x44 */ const union AnimCmd *const *frontAnimFrames;
- /* 0x48 */ const u32 *const frontPic;
- /* 0x4C */ const u32 *const frontPicFemale;
- /* 0x50 */ const u32 *const backPic;
- /* 0x54 */ const u32 *const backPicFemale;
- /* 0x58 */ const u32 *const palette;
- /* 0x5C */ const u32 *const paletteFemale;
- /* 0x60 */ const u32 *const shinyPalette;
- /* 0x64 */ const u32 *const shinyPaletteFemale;
- /* 0x68 */ const u8 *const iconSprite;
- /* 0x6C */ const u8 *const iconSpriteFemale;
- /* 0x70 */ const u8 *const footprint;
+ /* 0x48 */ const u32 *frontPic;
+ /* 0x4C */ const u32 *frontPicFemale;
+ /* 0x50 */ const u32 *backPic;
+ /* 0x54 */ const u32 *backPicFemale;
+ /* 0x58 */ const u32 *palette;
+ /* 0x5C */ const u32 *paletteFemale;
+ /* 0x60 */ const u32 *shinyPalette;
+ /* 0x64 */ const u32 *shinyPaletteFemale;
+ /* 0x68 */ const u8 *iconSprite;
+ /* 0x6C */ const u8 *iconSpriteFemale;
+ /* 0x70 */ const u8 *footprint;
             // All Pokémon pics are 64x64, but this data table defines where in this 64x64 frame the sprite's non-transparent pixels actually are.
  /* 0x74 */ u8 frontPicSize; // The dimensions of this drawn pixel area.
  /* 0x74 */ u8 frontPicSizeFemale; // The dimensions of this drawn pixel area.
