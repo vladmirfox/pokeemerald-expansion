@@ -1677,7 +1677,7 @@ static void MoveSelectionDisplayMoveType(u32 battler)
     *(txtPtr)++ = EXT_CTRL_CODE_FONT;
     *(txtPtr)++ = FONT_NORMAL;
 
-    type = gBattleMoves[moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]].type;
+    type = gBattleMoves[moveInfo->moves[gMoveSelectionCursor[battler]]].type;
     //StringCopy(txtPtr, gTypeNames[type]);
     //BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
     MoveSelectionDisplayTypeIcon(type);
