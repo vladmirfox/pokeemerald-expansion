@@ -181,6 +181,7 @@ u16 CreateMonPicSprite_Affine(u16 species, u32 otId, u32 personality, u8 flags, 
     u8 i;
     u8 spriteId;
     u8 type;
+    species = SanitizeSpeciesId(species);
 
     for (i = 0; i < PICS_COUNT; i++)
     {
