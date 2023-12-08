@@ -48968,7 +48968,6 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggGroups = { EGG_GROUP_UNDISCOVERED, EGG_GROUP_UNDISCOVERED },    \
         .noFlip = TRUE,                                                     \
         .speciesName = _("Necrozma"),                                       \
-        .cryId = CRY_NECROZMA_DUSK_MANE,                                    \
         .natDexNum = NATIONAL_DEX_NECROZMA,                                 \
         .categoryName = _("Prism"),                                         \
         .pokemonScale = 256,                                                \
@@ -48996,6 +48995,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpAttack  = 2,
         .abilities = { ABILITY_PRISM_ARMOR, ABILITY_NONE },
         .bodyColor = BODY_COLOR_BLACK,
+        .cryId = CRY_NECROZMA,
         .height = 24,
         .weight = 2300,
         .description = COMPOUND_STRING(
@@ -49031,7 +49031,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_Attack    = 3,
         .abilities = { ABILITY_PRISM_ARMOR, ABILITY_NONE },
         .bodyColor = BODY_COLOR_YELLOW,
-        .cannotBeTraded = TRUE,
+        .cryId = CRY_NECROZMA_DUSK_MANE,
         .height = 38,
         .weight = 4600,
         .description = COMPOUND_STRING(
@@ -49045,6 +49045,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(NecrozmaDuskMane),
         ICON(NecrozmaDuskMane, 0),
+        .cannotBeTraded = TRUE,
         .formChangeTable = sNecrozmaDuskManeFormChangeTable,
     },
 
@@ -49063,7 +49064,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpAttack    = 3,
         .abilities = { ABILITY_PRISM_ARMOR, ABILITY_NONE },
         .bodyColor = BODY_COLOR_BLUE,
-        .cannotBeTraded = TRUE,
+        .cryId = CRY_NECROZMA_DAWN_WINGS,
         .height = 42,
         .weight = 3500,
         .description = COMPOUND_STRING(
@@ -49078,6 +49079,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(NecrozmaDawnWings),
         ICON(NecrozmaDawnWings, 0),
+        .cannotBeTraded = TRUE,
         .formChangeTable = sNecrozmaDawnWingsFormChangeTable,
     },
 
@@ -49099,7 +49101,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .evYield_SpAttack  = 1,
         .abilities = { ABILITY_NEUROFORCE, ABILITY_NONE },
         .bodyColor = BODY_COLOR_YELLOW,
-        .isUltraBurst = TRUE,
+        .cryId = CRY_NECROZMA_ULTRA,
         .height = 75,
         .weight = 2300,
         .description = COMPOUND_STRING(
@@ -49114,6 +49116,8 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.backAnimId = BACK_ANIM_NONE,
         PALETTES(NecrozmaUltra),
         ICON(NecrozmaUltra, 2),
+        .cannotBeTraded = TRUE,
+        .isUltraBurst = TRUE,
     },
 #endif //P_ULTRA_BURST_FORMS
 #endif //P_FUSION_FORMS
