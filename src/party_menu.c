@@ -947,7 +947,7 @@ static void InitPartyMenuBoxes(u8 layout)
 
 static void LoadPartyMenuBoxes(u8 layout)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -2234,7 +2234,7 @@ static void InitPartyMenuWindows(u8 layout)
 
 static void LoadPartyMenuWindows(void)
 {
-    u8 i;
+    u32 i;
     DeactivateAllTextPrinters();
     for (i = 0; i < PARTY_SIZE; i++)
         FillWindowPixelBuffer(i, PIXEL_FILL(0));
