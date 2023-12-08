@@ -508,8 +508,8 @@ gCryTable::
 	cry Cry_Natu
 	cry Cry_Xatu
 .endif @ P_FAMILY_NATU
-	cry Cry_Mareep
 .if P_FAMILY_MAREEP == TRUE
+	cry Cry_Mareep
 	cry Cry_Flaaffy
 	cry Cry_Ampharos
 .if P_MEGA_EVOLUTIONS == TRUE
@@ -660,8 +660,8 @@ gCryTable::
 .if P_FAMILY_SKARMORY == TRUE
 	cry Cry_Skarmory
 .endif @ P_FAMILY_SKARMORY
-	cry Cry_Houndour
 .if P_FAMILY_HOUNDOUR == TRUE
+	cry Cry_Houndour
 	cry Cry_Houndoom
 .if P_MEGA_EVOLUTIONS == TRUE
 	cry Cry_HoundoomMega
@@ -1080,15 +1080,15 @@ gCryTable::
 	cry Cry_Deoxys
 .endif @ P_FAMILY_DEOXYS
 .if P_FAMILY_TURTWIG == TRUE
-.endif @ P_FAMILY_TURTWIG
 	cry Cry_Turtwig
 	cry Cry_Grotle
 	cry Cry_Torterra
+.endif @ P_FAMILY_TURTWIG
 .if P_FAMILY_CHIMCHAR == TRUE
-.endif @ P_FAMILY_CHIMCHAR
 	cry Cry_Chimchar
 	cry Cry_Monferno
 	cry Cry_Infernape
+.endif @ P_FAMILY_CHIMCHAR
 .if P_FAMILY_PIPLUP == TRUE
 	cry Cry_Piplup
 	cry Cry_Prinplup
@@ -2912,8 +2912,8 @@ gCryTable_Reverse::
 	cry_reverse Cry_Natu
 	cry_reverse Cry_Xatu
 .endif @ P_FAMILY_NATU
-	cry_reverse Cry_Mareep
 .if P_FAMILY_MAREEP == TRUE
+	cry_reverse Cry_Mareep
 	cry_reverse Cry_Flaaffy
 	cry_reverse Cry_Ampharos
 .if P_MEGA_EVOLUTIONS == TRUE
@@ -3064,8 +3064,8 @@ gCryTable_Reverse::
 .if P_FAMILY_SKARMORY == TRUE
 	cry_reverse Cry_Skarmory
 .endif @ P_FAMILY_SKARMORY
-	cry_reverse Cry_Houndour
 .if P_FAMILY_HOUNDOUR == TRUE
+	cry_reverse Cry_Houndour
 	cry_reverse Cry_Houndoom
 .if P_MEGA_EVOLUTIONS == TRUE
 	cry_reverse Cry_HoundoomMega
@@ -3484,15 +3484,15 @@ gCryTable_Reverse::
 	cry_reverse Cry_Deoxys
 .endif @ P_FAMILY_DEOXYS
 .if P_FAMILY_TURTWIG == TRUE
-.endif @ P_FAMILY_TURTWIG
 	cry_reverse Cry_Turtwig
 	cry_reverse Cry_Grotle
 	cry_reverse Cry_Torterra
+.endif @ P_FAMILY_TURTWIG
 .if P_FAMILY_CHIMCHAR == TRUE
-.endif @ P_FAMILY_CHIMCHAR
 	cry_reverse Cry_Chimchar
 	cry_reverse Cry_Monferno
 	cry_reverse Cry_Infernape
+.endif @ P_FAMILY_CHIMCHAR
 .if P_FAMILY_PIPLUP == TRUE
 	cry_reverse Cry_Piplup
 	cry_reverse Cry_Prinplup

@@ -1582,11 +1582,12 @@ Cry_Natu::
 Cry_Xatu::
 	.incbin "sound/direct_sound_samples/cries/xatu.bin"
 .endif @ P_FAMILY_NATU
+
+.if P_FAMILY_MAREEP == TRUE
 	.align 2
 Cry_Mareep::
 	.incbin "sound/direct_sound_samples/cries/mareep.bin"
 
-.if P_FAMILY_MAREEP == TRUE
 	.align 2
 Cry_Flaaffy::
 	.incbin "sound/direct_sound_samples/cries/flaaffy.bin"
@@ -1922,11 +1923,12 @@ Cry_Mantine::
 Cry_Skarmory::
 	.incbin "sound/direct_sound_samples/cries/skarmory.bin"
 .endif @ P_FAMILY_SKARMORY
+
+.if P_FAMILY_HOUNDOUR == TRUE
 	.align 2
 Cry_Houndour::
 	.incbin "sound/direct_sound_samples/cries/houndour.bin"
 
-.if P_FAMILY_HOUNDOUR == TRUE
 	.align 2
 Cry_Houndoom::
 	.incbin "sound/direct_sound_samples/cries/houndoom.bin"
@@ -2892,7 +2894,6 @@ Cry_Deoxys::
 .endif @ P_FAMILY_DEOXYS
 
 .if P_FAMILY_TURTWIG == TRUE
-.endif @ P_FAMILY_TURTWIG
 	.align 2
 Cry_Turtwig::
 	.incbin "sound/direct_sound_samples/cries/turtwig.bin"
@@ -2904,9 +2905,9 @@ Cry_Grotle::
 	.align 2
 Cry_Torterra::
 	.incbin "sound/direct_sound_samples/cries/torterra.bin"
+.endif @ P_FAMILY_TURTWIG
 
 .if P_FAMILY_CHIMCHAR == TRUE
-.endif @ P_FAMILY_CHIMCHAR
 	.align 2
 Cry_Chimchar::
 	.incbin "sound/direct_sound_samples/cries/chimchar.bin"
@@ -2918,6 +2919,7 @@ Cry_Monferno::
 	.align 2
 Cry_Infernape::
 	.incbin "sound/direct_sound_samples/cries/infernape.bin"
+.endif @ P_FAMILY_CHIMCHAR
 
 .if P_FAMILY_PIPLUP == TRUE
 	.align 2
