@@ -24,6 +24,10 @@
 #define P_PRIMAL_REVERSIONS              TRUE // Groudon and Kyogre only.
 #define P_ULTRA_BURST_FORMS              TRUE // Ultra Necrozma only.
 #define P_GIGANTAMAX_FORMS               TRUE
+#define P_TERA_FORMS                     TRUE
+
+// Fusion forms
+#define P_FUSION_FORMS                   TRUE
 
 // Regional Forms. Includes Regional Form evolutions, like Sirfetch'd.
 #define P_REGIONAL_FORMS                 TRUE
@@ -47,9 +51,6 @@
 //#define P_GEN_7_CROSS_EVOS             // Alolan evolutions handled by P_ALOLAN_FORMS.
 #define P_GEN_8_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Regional evolutions handled by P_GALARIAN_FORMS and P_HISUIAN_FORMS.
 #define P_GEN_9_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Clodsire handled by P_PALDEAN_FORMS.
-
-// Fusion forms
-#define P_FUSION_FORMS                   TRUE
 
 // To disable specific families, replace P_GEN_x_POKEMON with FALSE.
 #define P_FAMILY_BULBASAUR               P_GEN_1_POKEMON
