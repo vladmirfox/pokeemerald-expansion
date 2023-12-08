@@ -60437,5 +60437,17 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_OGERPON_HEARTHFLAME_MASK_TERA] = OGERPON_SPECIES_INFO(HearthflameMask, TYPE_FIRE,  ABILITY_EMBODY_ASPECT_HEARTHFLAME, BODY_COLOR_RED, TRUE),
     [SPECIES_OGERPON_CORNERSTONE_MASK]      = OGERPON_SPECIES_INFO(CornerstoneMask, TYPE_ROCK,  ABILITY_STURDY,                    BODY_COLOR_GRAY, FALSE),
     [SPECIES_OGERPON_CORNERSTONE_MASK_TERA] = OGERPON_SPECIES_INFO(CornerstoneMask, TYPE_ROCK,  ABILITY_EMBODY_ASPECT_CORNERSTONE, BODY_COLOR_GRAY, TRUE),
-#endif //P_FAMILY_OGERPON
+#endif //P_FAMILY_OGERPON"
+
+    [SPECIES_EGG] =
+    {
+        FRONT_PIC(Egg, 24, 24),
+        .frontPicYOffset = 20,
+        .backPic = gMonFrontPic_Egg,
+        .backPicSize = MON_COORDS_SIZE(24, 24),
+        .backPicYOffset = 20,
+        .palette = gMonPalette_Egg,
+        .shinyPalette = gMonPalette_Egg,
+        ICON(Egg, 1),
+    }
 };
