@@ -1846,23 +1846,23 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u8 gMonFootprint_Tauros[] = INCBIN_U8("graphics/pokemon/tauros/footprint.1bpp");
 
 #if P_PALDEAN_FORMS
-    const u32 gMonFrontPic_TaurosPaldeanCombatBreed[] = INCBIN_U32("graphics/pokemon/tauros/combat/front.4bpp.lz");
-    const u32 gMonPalette_TaurosPaldeanCombatBreed[] = INCBIN_U32("graphics/pokemon/tauros/combat/normal.gbapal.lz");
-    const u32 gMonBackPic_TaurosPaldeanCombatBreed[] = INCBIN_U32("graphics/pokemon/tauros/combat/back.4bpp.lz");
-    const u32 gMonShinyPalette_TaurosPaldeanCombatBreed[] = INCBIN_U32("graphics/pokemon/tauros/combat/shiny.gbapal.lz");
-    const u8 gMonIcon_TaurosPaldeanCombatBreed[] = INCBIN_U8("graphics/pokemon/tauros/combat/icon.4bpp");
+    const u32 gMonFrontPic_TaurosPaldeanCombatBreed[] = INCBIN_U32("graphics/pokemon/tauros/paldean_combat_breed/front.4bpp.lz");
+    const u32 gMonPalette_TaurosPaldeanCombatBreed[] = INCBIN_U32("graphics/pokemon/tauros/paldean_combat_breed/normal.gbapal.lz");
+    const u32 gMonBackPic_TaurosPaldeanCombatBreed[] = INCBIN_U32("graphics/pokemon/tauros/paldean_combat_breed/back.4bpp.lz");
+    const u32 gMonShinyPalette_TaurosPaldeanCombatBreed[] = INCBIN_U32("graphics/pokemon/tauros/paldean_combat_breed/shiny.gbapal.lz");
+    const u8 gMonIcon_TaurosPaldeanCombatBreed[] = INCBIN_U8("graphics/pokemon/tauros/paldean_combat_breed/icon.4bpp");
 
-    const u32 gMonFrontPic_TaurosPaldeanBlazeBreed[] = INCBIN_U32("graphics/pokemon/tauros/blaze/front.4bpp.lz");
-    const u32 gMonPalette_TaurosPaldeanBlazeBreed[] = INCBIN_U32("graphics/pokemon/tauros/blaze/normal.gbapal.lz");
-    const u32 gMonBackPic_TaurosPaldeanBlazeBreed[] = INCBIN_U32("graphics/pokemon/tauros/blaze/back.4bpp.lz");
-    const u32 gMonShinyPalette_TaurosPaldeanBlazeBreed[] = INCBIN_U32("graphics/pokemon/tauros/blaze/shiny.gbapal.lz");
-    const u8 gMonIcon_TaurosPaldeanBlazeBreed[] = INCBIN_U8("graphics/pokemon/tauros/blaze/icon.4bpp");
+    const u32 gMonFrontPic_TaurosPaldeanBlazeBreed[] = INCBIN_U32("graphics/pokemon/tauros/paldean_blaze_breed/front.4bpp.lz");
+    const u32 gMonPalette_TaurosPaldeanBlazeBreed[] = INCBIN_U32("graphics/pokemon/tauros/paldean_blaze_breed/normal.gbapal.lz");
+    const u32 gMonBackPic_TaurosPaldeanBlazeBreed[] = INCBIN_U32("graphics/pokemon/tauros/paldean_blaze_breed/back.4bpp.lz");
+    const u32 gMonShinyPalette_TaurosPaldeanBlazeBreed[] = INCBIN_U32("graphics/pokemon/tauros/paldean_blaze_breed/shiny.gbapal.lz");
+    const u8 gMonIcon_TaurosPaldeanBlazeBreed[] = INCBIN_U8("graphics/pokemon/tauros/paldean_blaze_breed/icon.4bpp");
 
-    const u32 gMonFrontPic_TaurosPaldeanAquaBreed[] = INCBIN_U32("graphics/pokemon/tauros/aqua/front.4bpp.lz");
-    const u32 gMonPalette_TaurosPaldeanAquaBreed[] = INCBIN_U32("graphics/pokemon/tauros/aqua/normal.gbapal.lz");
-    const u32 gMonBackPic_TaurosPaldeanAquaBreed[] = INCBIN_U32("graphics/pokemon/tauros/aqua/back.4bpp.lz");
-    const u32 gMonShinyPalette_TaurosPaldeanAquaBreed[] = INCBIN_U32("graphics/pokemon/tauros/aqua/shiny.gbapal.lz");
-    const u8 gMonIcon_TaurosPaldeanAquaBreed[] = INCBIN_U8("graphics/pokemon/tauros/aqua/icon.4bpp");
+    const u32 gMonFrontPic_TaurosPaldeanAquaBreed[] = INCBIN_U32("graphics/pokemon/tauros/paldean_aqua_breed/front.4bpp.lz");
+    const u32 gMonPalette_TaurosPaldeanAquaBreed[] = INCBIN_U32("graphics/pokemon/tauros/paldean_aqua_breed/normal.gbapal.lz");
+    const u32 gMonBackPic_TaurosPaldeanAquaBreed[] = INCBIN_U32("graphics/pokemon/tauros/paldean_aqua_breed/back.4bpp.lz");
+    const u32 gMonShinyPalette_TaurosPaldeanAquaBreed[] = INCBIN_U32("graphics/pokemon/tauros/paldean_aqua_breed/shiny.gbapal.lz");
+    const u8 gMonIcon_TaurosPaldeanAquaBreed[] = INCBIN_U8("graphics/pokemon/tauros/paldean_aqua_breed/icon.4bpp");
 #endif //P_PALDEAN_FORMS
 #endif //P_FAMILY_TAUROS
 
@@ -2601,11 +2601,11 @@ const u8 gMonFootprint_QuestionMark[] = INCBIN_U8("graphics/pokemon/question_mar
     const u32 gMonBackPic_QuagsireF[] = INCBIN_U32("graphics/pokemon/quagsire/backf.4bpp.lz");
 
 #if P_PALDEAN_FORMS
-    const u32 gMonFrontPic_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/wooper_paldea/front.4bpp.lz");
-    const u32 gMonPalette_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/wooper_paldea/normal.gbapal.lz");
-    const u32 gMonBackPic_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/wooper_paldea/back.4bpp.lz");
-    const u32 gMonShinyPalette_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/wooper_paldea/shiny.gbapal.lz");
-    // const u8 gMonIcon_WooperPaldean[] = INCBIN_U8("graphics/pokemon/wooper/wooper_paldea/icon.4bpp");
+    const u32 gMonFrontPic_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/wooper_paldean/front.4bpp.lz");
+    const u32 gMonPalette_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/wooper_paldean/normal.gbapal.lz");
+    const u32 gMonBackPic_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/wooper_paldean/back.4bpp.lz");
+    const u32 gMonShinyPalette_WooperPaldean[] = INCBIN_U32("graphics/pokemon/wooper/wooper_paldean/shiny.gbapal.lz");
+    // const u8 gMonIcon_WooperPaldean[] = INCBIN_U8("graphics/pokemon/wooper/wooper_paldean/icon.4bpp");
 
     const u32 gMonFrontPic_Clodsire[] = INCBIN_U32("graphics/pokemon/clodsire/front.4bpp.lz");
     const u32 gMonPalette_Clodsire[] = INCBIN_U32("graphics/pokemon/clodsire/normal.gbapal.lz");
