@@ -6844,9 +6844,9 @@ static const union AnimCmd sAnim_Basculin_1[] =
     ANIMCMD_END,
 };
 
-#if P_GEN_8_CROSS_EVOS
+#if P_HISUIAN_FORMS
 PLACEHOLDER_ANIM_SINGLE_FRAME(Basculegion);
-#endif //P_GEN_8_CROSS_EVOS
+#endif //P_HISUIAN_FORMS
 #endif //P_FAMILY_BASCULIN
 
 #if P_FAMILY_SANDILE
