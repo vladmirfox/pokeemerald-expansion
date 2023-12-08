@@ -194,8 +194,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .backAnimId = BACK_ANIM_NONE,
         PALETTE(CircledQuestionMark),
         ICON(QuestionMark, 0),
-        .footprint = gMonFootprint_Bulbasaur,
-        LEARNSETS(Bulbasaur),
+        LEARNSETS(None),
     },
 
 #if P_FAMILY_BULBASAUR
