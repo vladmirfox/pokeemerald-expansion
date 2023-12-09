@@ -2375,7 +2375,7 @@ static void Cmd_datahpupdate(void)
                 if (!gSpecialStatuses[battler].dmg && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE))
                     gSpecialStatuses[battler].dmg = gHpDealt;
 
-                if (IS_MOVE_PHYSICAL(gCurrentMove) && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE) && gCurrentMove != MOVE_PAIN_SPLIT)
+                if (IS_MOVE_PHYSICAL(gCurrentMove) && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE) && gBattleMoves[gCurrentMove].effect != EFFECT_PAIN_SPLIT)
                 {
                     gProtectStructs[battler].physicalDmg = gHpDealt;
                     gSpecialStatuses[battler].physicalDmg = gHpDealt;
@@ -2390,7 +2390,7 @@ static void Cmd_datahpupdate(void)
                         gSpecialStatuses[battler].physicalBattlerId = gBattlerTarget;
                     }
                 }
-                else if (!IS_MOVE_PHYSICAL(gCurrentMove) && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE) && gCurrentMove != MOVE_PAIN_SPLIT)
+                else if (!IS_MOVE_PHYSICAL(gCurrentMove) && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE) && gBattleMoves[gCurrentMove].effect != EFFECT_PAIN_SPLIT)
                 {
                     gProtectStructs[battler].specialDmg = gHpDealt;
                     gSpecialStatuses[battler].specialDmg = gHpDealt;
