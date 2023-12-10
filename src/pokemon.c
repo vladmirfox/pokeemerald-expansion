@@ -765,8 +765,8 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 #if P_FLAG_FORCE_NO_SHINY != 0
         if (FlagGet(P_FLAG_FORCE_NO_SHINY))
         {
-            while (GET_SHINY_VALUE(value, personality) < SHINY_ODDS)
-                personality = Random32();
+            if (GET_SHINY_VALUE(value, personality) < SHINY_ODDS)
+                personality ^= 0x10000000; // Flip bit so it won't be shiny
         }
 #endif
 #if P_FLAG_FORCE_SHINY != 0
