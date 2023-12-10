@@ -3011,6 +3011,15 @@ void SetMoveEffect(bool32 primary, u32 certain)
             else
             {
                 gBattleMons[gEffectBattler].status1 |= sStatusFlagsForMoveEffects[gBattleScripting.moveEffect];
+
+                if (sStatusFlagsForMoveEffects[gBattleScripting.moveEffect] == STATUS1_FREEZE || sStatusFlagsForMoveEffects[gBattleScripting.moveEffect] == STATUS1_FROSTBITE)
+                {
+                    if (TryBattleFormChange(gEffectBattler, FORM_CHANGE_FROZEN))
+                    {
+                        BattleScriptPushCursor();
+                        gBattlescriptCurrInstr = BattleScript_AttackerFormChange;
+                    }
+                }
             }
 
             gBattlescriptCurrInstr = sMoveEffectBS_Ptrs[gBattleScripting.moveEffect];

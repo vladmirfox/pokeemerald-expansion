@@ -116,4 +116,7 @@
 // param2: multichoice list (starting at 0).
 #define FORM_CHANGE_ITEM_USE_MULTICHOICE        19
 
+// Form change that happens when Shaymin is frozen
+#define FORM_CHANGE_FROZEN        20
+
 #endif // GUARD_CONSTANTS_FORM_CHANGE_TYPES_H
